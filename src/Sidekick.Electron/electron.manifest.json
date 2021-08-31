@@ -5,7 +5,7 @@
   },
   "name": "Sidekick",
   "author": "Sidekick",
-  "homepage": "https://github.com/domialex/Sidekick",
+  "homepage": "https://github.com/Sidekick-Poe/Sidekick",
   "singleInstance": true,
   "build": {
     "appId": "com.sidekick.app",
@@ -18,7 +18,7 @@
       "publish": [
         {
           "provider": "github",
-          "owner": "domialex",
+          "owner": "Sidekick-Poe",
           "repo": "Sidekick"
         }
       ]

@@ -35,7 +35,7 @@ namespace Sidekick.Apis.GitHub
         public async Task<GitHubRelease> GetLatestRelease()
         {
             // Get List of releases
-            var listResponse = await client.GetAsync("/repos/domialex/Sidekick/releases");
+            var listResponse = await client.GetAsync("/repos/Sidekick-Poe/Sidekick/releases");
             if (listResponse.IsSuccessStatusCode)
             {
                 var githubReleaseList = await JsonSerializer.DeserializeAsync<GitHubRelease[]>(await listResponse.Content.ReadAsStreamAsync(), new JsonSerializerOptions { IgnoreNullValues = true, PropertyNameCaseInsensitive = true });
