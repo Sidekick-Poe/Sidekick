@@ -1,9 +1,6 @@
 name: Sidekick Build
 
 on:
-  push:
-    branches:
-    - main
   pull_request:
     branches:
     - main
