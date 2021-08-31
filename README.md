@@ -1,5 +1,5 @@
 # [![](./docs/assets/images/orb_exalted.png)](#) Sidekick 2
-[![](https://img.shields.io/github/v/release/Sidekick-Poe/Sidekick?style=flat-square)](https://github.com/Sidekick-Poe/Sidekick/releases) [![](https://img.shields.io/github/downloads/Sidekick-Poe/Sidekick/total?style=flat-square)](https://github.com/Sidekick-Poe/Sidekick/releases) [![](https://img.shields.io/github/downloads-pre/Sidekick-Poe/Sidekick/latest/total?style=flat-square)](https://github.com/Sidekick-Poe/Sidekick/releases) [![](https://img.shields.io/discord/664252463188279300?color=%23738AD6&label=Discord&style=flat-square)](https://discord.gg/H4bg4GQ)
+[![](https://img.shields.io/github/v/release/Sidekick-Poe/Sidekick?style=flat-square)](https://github.com/Sidekick-Poe/Sidekick/releases) [![](https://img.shields.io/github/downloads-pre/Sidekick-Poe/Sidekick/latest/total?style=flat-square)](https://github.com/Sidekick-Poe/Sidekick/releases) [![](https://img.shields.io/discord/664252463188279300?color=%23738AD6&label=Discord&style=flat-square)](https://discord.gg/H4bg4GQ)
 
 A Path of Exile companion tool.
 
