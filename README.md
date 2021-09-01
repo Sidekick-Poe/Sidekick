@@ -1,4 +1,4 @@
-# [![](./docs/assets/images/orb_exalted.png)](#) Sidekick 2
+# [![](https://sidekick-poe.github.io/assets/images/orb_exalted.png)](#) Sidekick 2
 [![](https://img.shields.io/github/v/release/Sidekick-Poe/Sidekick?style=flat-square)](https://github.com/Sidekick-Poe/Sidekick/releases) [![](https://img.shields.io/github/downloads-pre/Sidekick-Poe/Sidekick/latest/total?style=flat-square)](https://github.com/Sidekick-Poe/Sidekick/releases) [![](https://img.shields.io/discord/664252463188279300?color=%23738AD6&label=Discord&style=flat-square)](https://discord.gg/H4bg4GQ)
 
 A Path of Exile companion tool. Price check items, check for dangerous map modifiers, look at easily accessible cheatsheets, and more!
@@ -16,7 +16,7 @@ A Path of Exile companion tool. Price check items, check for dangerous map modif
 Opens a trade view from the official Path of Exile trade API. You can compare and preview items by clicking on any result. For rare items, a price prediction from poeprices.info is shown. For unique items, prices from poe.ninja are used.
 | Trade | Minimized |
 |---|---|
-| ![](./docs/assets/images/trade_maximized.png) | ![](./docs/assets/images/trade_minimized.png) |
+| ![](https://sidekick-poe.github.io/assets/images/trade_maximized.png) | ![](https://sidekick-poe.github.io/assets/images/trade_minimized.png) |
 
 ### Cheatsheets
 #### Default Binding: F6
@@ -24,7 +24,7 @@ Opens a view with useful common information about different mechanics of the gam
 
 | Heist | Betrayal | Incursion | Blight |
 |---|---|---|---|
-| ![](./docs/assets/images/cheatsheets_heist.png) | ![](./docs/assets/images/cheatsheets_betrayal.png) | ![](./docs/assets/images/cheatsheets_incursion.png) | ![](./docs/assets/images/cheatsheets_blight.png) |
+| ![](https://sidekick-poe.github.io/assets/images/cheatsheets_heist.png) | ![](https://sidekick-poe.github.io/assets/images/cheatsheets_betrayal.png) | ![](https://sidekick-poe.github.io/assets/images/cheatsheets_incursion.png) | ![](https://sidekick-poe.github.io/assets/images/cheatsheets_blight.png) |
 
 ### Map Information
 #### Default Binding: Ctrl + X
@@ -32,7 +32,7 @@ Checks the modifiers on a map or contract for mods that are dangerous (configura
 
 | Safe Map | Unsafe Map |
 |---|---|
-| ![](./docs/assets/images/map_safe.png) | ![](./docs/assets/images/map_unsafe.png) |
+| ![](https://sidekick-poe.github.io/assets/images/map_safe.png) | ![](https://sidekick-poe.github.io/assets/images/map_unsafe.png) |
 
 ### Chat Commands
 | Name | Default Binding | Description |
