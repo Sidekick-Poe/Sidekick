@@ -3,7 +3,7 @@ using Sidekick.Apis.Poe;
 using Sidekick.Common.Platform;
 using Sidekick.Domain.Keybinds;
 
-namespace Sidekick.Application.Keybinds
+namespace Sidekick.Electron.Keybinds
 {
     public class FindItemKeybindHandler : IKeybindHandler
     {

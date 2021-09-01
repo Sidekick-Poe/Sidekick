@@ -83,11 +83,19 @@ namespace Sidekick.Electron
             services.AddTransient<TrayResources>();
             services.AddSingleton<TrayProvider>();
             services.AddSingleton<IAppService, AppService>();
-            services.AddSingleton<IKeybindProvider, KeybindProvider>();
             services.AddSingleton<ElectronCookieProtection>();
             services.AddSingleton<ViewLocator>();
             services.AddSingleton<IViewLocator>((sp) => sp.GetRequiredService<ViewLocator>());
             services.AddScoped<IViewInstance, ViewInstance>();
+
+            services.AddSingleton<IKeybindProvider, KeybindProvider>();
+            services.AddSingleton<ChatKeybindHandler>();
+            services.AddSingleton<CloseOverlayKeybindHandler>();
+            services.AddSingleton<FindItemKeybindHandler>();
+            services.AddSingleton<OpenCheatsheetsKeybindHandler>();
+            services.AddSingleton<OpenMapInfoKeybindHandler>();
+            services.AddSingleton<OpenWikiPageKeybindHandler>();
+            services.AddSingleton<PriceCheckItemKeybindHandler>();
 
             var mvcBuilder = services
                 .AddRazorPages(options =>

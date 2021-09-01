@@ -1,9 +1,10 @@
 using System.Threading.Tasks;
 using Sidekick.Common.Blazor.Views;
+using Sidekick.Common.Extensions;
 using Sidekick.Common.Platform;
 using Sidekick.Domain.Keybinds;
 
-namespace Sidekick.Application.Keybinds
+namespace Sidekick.Electron.Keybinds
 {
     public class OpenMapInfoKeybindHandler : IKeybindHandler
     {
@@ -26,7 +27,7 @@ namespace Sidekick.Application.Keybinds
         public async Task Execute()
         {
             var itemText = await clipboardProvider.Copy();
-            await viewLocator.Open($"/map/{itemText}");
+            await viewLocator.Open($"/map/{itemText.EncodeBase64Url()}");
         }
     }
 }

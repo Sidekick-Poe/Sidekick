@@ -5,7 +5,7 @@ using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 using Sidekick.Domain.Keybinds;
 
-namespace Sidekick.Application.Keybinds
+namespace Sidekick.Electron.Keybinds
 {
     public class ChatKeybindHandler : IChatKeybindHandler
     {

@@ -3,7 +3,7 @@ using Sidekick.Apis.Poe;
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Application.Tests.Game.Items.Parser
+namespace Sidekick.Apis.Poe.Tests.Parser
 {
     [Collection(Collections.Mediator)]
     public class FlaskParsing

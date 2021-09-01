@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Localization;
 
-namespace Sidekick.Application.Tests.Game.Items.Parser
+namespace Sidekick.Apis.Poe.Tests.Parser
 {
     public class ItemTexts
     {

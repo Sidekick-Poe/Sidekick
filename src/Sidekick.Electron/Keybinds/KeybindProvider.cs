@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Sidekick.Application.Keybinds;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 using Sidekick.Domain.Keybinds;

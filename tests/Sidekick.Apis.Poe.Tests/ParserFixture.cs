@@ -3,8 +3,7 @@ using Bunit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.GitHub;
-using Sidekick.Apis.Poe;
-using Sidekick.Application.Tests.Game.Items.Parser;
+using Sidekick.Apis.Poe.Tests.Parser;
 using Sidekick.Common;
 using Sidekick.Common.Game;
 using Sidekick.Common.Settings;
@@ -13,7 +12,7 @@ using Sidekick.Modules.Initialization;
 using Sidekick.Modules.Settings;
 using Xunit;
 
-namespace Sidekick.Application.Tests
+namespace Sidekick.Apis.Poe.Tests
 {
     public class ParserFixture : IAsyncLifetime
     {

@@ -86,11 +86,11 @@ namespace Sidekick.Common.Platform.Windows.Keyboards
             new Key(Keys.Oemcomma, VirtualKeyCode.OEM_COMMA, ",", ","),
             new Key(Keys.OemPeriod, VirtualKeyCode.OEM_PERIOD, ",", ","),
             new Key(Keys.Oem1, VirtualKeyCode.OEM_1, ";", ";"),
-            new Key(Keys.OemSemicolon, VirtualKeyCode.OEM_3, "~", "~"),
+            new Key(Keys.OemSemicolon, VirtualKeyCode.OEM_1, ";", ";"),
             new Key(Keys.Oem2, VirtualKeyCode.OEM_2, "/", "/"),
-            new Key(Keys.OemQuestion, VirtualKeyCode.OEM_3, "~", "~"),
-            new Key(Keys.Oem3, VirtualKeyCode.OEM_3, "~", "~"),
-            new Key(Keys.Oemtilde, VirtualKeyCode.OEM_3, "~", "~"),
+            new Key(Keys.OemQuestion, VirtualKeyCode.OEM_2, "/", "/"),
+            new Key(Keys.Oem3, VirtualKeyCode.OEM_3, "`", "`"),
+            new Key(Keys.Oemtilde, VirtualKeyCode.OEM_3, "`", "`"),
             new Key(Keys.Oem4, VirtualKeyCode.OEM_4, "[", "["),
             new Key(Keys.OemOpenBrackets, VirtualKeyCode.OEM_4, "[", "["),
             new Key(Keys.Oem5, VirtualKeyCode.OEM_5, "\\", "\\"),
@@ -138,6 +138,7 @@ namespace Sidekick.Common.Platform.Windows.Keyboards
             new Key(Keys.NumPad7, VirtualKeyCode.NUMPAD7, "Num7", "num7"),
             new Key(Keys.NumPad8, VirtualKeyCode.NUMPAD8, "Num8", "num8"),
             new Key(Keys.NumPad9, VirtualKeyCode.NUMPAD9, "Num9", "num9"),
+
         };
 
         private static readonly Regex ModifierKeys = new("Ctrl|Shift|Alt");

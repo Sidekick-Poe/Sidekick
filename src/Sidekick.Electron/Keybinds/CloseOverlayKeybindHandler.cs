@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Domain.Keybinds;
 
-namespace Sidekick.Application.Keybinds
+namespace Sidekick.Electron.Keybinds
 {
     public class CloseOverlayKeybindHandler : IKeybindHandler
     {
