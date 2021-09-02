@@ -23,7 +23,8 @@ namespace Sidekick.Modules.Cheatsheets.Localization
         public string CrimsonOilEffect => localizer["CrimsonOilEffect"];
         public string GoldenOil => localizer["GoldenOil"];
         public string GoldenOilEffect => localizer["GoldenOilEffect"];
-        public string Legend => localizer["Legend"];
+        public string IndigoOil => localizer["IndigoOil"];
+        public string IndigoOilEffect => localizer["IndigoOilEffect"];
         public string OpalescentOil => localizer["OpalescentOil"];
         public string OpalescentOilEffect => localizer["OpalescentOilEffect"];
         public string SepiaOil => localizer["SepiaOil"];

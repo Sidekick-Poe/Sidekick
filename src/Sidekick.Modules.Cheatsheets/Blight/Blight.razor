@@ -1,7 +1,6 @@
 @page "/cheatsheets/blight"
 @layout CheatsheetLayout
 
-<UltimatumAlert />
 <MudGrid Spacing="1">
     @foreach (var oil in Oils)
     {
@@ -29,8 +28,9 @@
             new OilModel(Resources.CrimsonOil, Resources.CrimsonOilEffect, RewardValue.Medium, "Crimson_Oil.png"),
             new OilModel(Resources.VioletOil, Resources.VioletOilEffect, RewardValue.Low, "Violet_Oil.png"),
             new OilModel(Resources.AzureOil, Resources.AzureOilEffect, RewardValue.NoValue, "Azure_Oil.png"),
-            new OilModel(Resources.TealOil, Resources.TealOilEffect, RewardValue.Low, "Teal_Oil.png"),
+            new OilModel(Resources.TealOil, Resources.TealOilEffect, RewardValue.NoValue, "Teal_Oil.png"),
             new OilModel(Resources.VerdantOil, Resources.VerdantOilEffect, RewardValue.NoValue, "Verdant_Oil.png"),
+            new OilModel(Resources.IndigoOil, Resources.IndigoOilEffect, RewardValue.NoValue, "Indigo_Oil.png"),
             new OilModel(Resources.AmberOil, Resources.AmberOilEffect, RewardValue.NoValue, "Amber_Oil.png"),
             new OilModel(Resources.SepiaOil, Resources.SepiaOilEffect, RewardValue.NoValue, "Sepia_Oil.png"),
             new OilModel(Resources.ClearOil, Resources.ClearOilEffect, RewardValue.NoValue, "Clear_Oil.png"),
