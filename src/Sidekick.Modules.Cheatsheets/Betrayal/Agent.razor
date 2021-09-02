@@ -1,24 +1,20 @@
 
 <MudPaper Class="pa-2">
     <div class="d-flex align-center">
-        <img src="/images/betrayal/@Model.Image" alt="@Model.Name" />
+        <img src="/images/betrayal/@Image" alt="@Name" />
         <MudText Align="Align.Center" Typo="Typo.h3">
-            @Model.Name
+            @Name
         </MudText>
     </div>
     <MudList Dense="true" DisableGutters="true" DisablePadding="true">
-        <Reward Model="Model.Transportation" Label="@Resources.TypeTransportation"></Reward>
-        <MudDivider />
-        <Reward Model="Model.Fortification" Label="@Resources.TypeFortification"></Reward>
-        <MudDivider />
-        <Reward Model="Model.Research" Label="@Resources.TypeResearch"></Reward>
-        <MudDivider />
-        <Reward Model="Model.Intervention" Label="@Resources.TypeIntervention"></Reward>
+        @ChildContent
     </MudList>
 </MudPaper>
 
 @code {
     [Inject] private BetrayalResources Resources { get; set; }
 
-    [Parameter] public AgentModel Model { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public string Name { get; set; }
+    [Parameter] public string Image { get; set; }
 }
