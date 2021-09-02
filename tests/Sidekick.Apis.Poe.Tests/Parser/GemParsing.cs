@@ -1,4 +1,3 @@
-using Sidekick.Apis.Poe;
 using Sidekick.Common.Game.Items;
 using Xunit;
 
@@ -40,6 +39,77 @@ namespace Sidekick.Apis.Poe.Tests.Parser
             Assert.Equal(17, actual.Properties.Quality);
             Assert.True(actual.Properties.AlternateQuality);
             Assert.False(actual.Properties.Corrupted);
+        }
+
+        [Fact]
+        public void ArcaneSurgeSupport()
+        {
+            var actual = parser.ParseItem(@"Item Class: Support Skill Gems
+Rarity: Gem
+Arcane Surge Support
+--------
+Arcane, Support, Spell, Duration
+Level: 1
+Cost & Reservation Multiplier: 130%
+--------
+Requirements:
+Level: 1
+--------
+Each supported spell will track how much mana you spend on it, granting a buff when the total mana spent reaches a threshold. Cannot support skills used by totems, traps, mines or skills with a reservation.
+--------
+Gain Arcane Surge after Spending a total of 15 Mana with a Supported Skill
+Arcane Surge grants 10% more Spell Damage
+Arcane Surge grants 30% increased Mana Regeneration rate
+Arcane Surge lasts 4 seconds
+Supported Skills deal 10% more Spell Damage while you have Arcane Surge
+--------
+Experience: 1/70
+--------
+This is a Support Gem. It does not grant a bonus to your character, but to skills in sockets connected to it. Place into an item socket connected to a socket containing the Active Skill Gem you wish to augment. Right click to remove from a socket.
+");
+
+            Assert.Equal(Class.SupportSkillGems, actual.Metadata.Class);
+            Assert.Equal(Rarity.Gem, actual.Metadata.Rarity);
+            Assert.Equal(Category.Gem, actual.Metadata.Category);
+            Assert.Equal("Arcane Surge Support", actual.Metadata.Type);
+        }
+
+        [Fact]
+        public void VoidSphere()
+        {
+            var actual = parser.ParseItem(@"Item Class: Active Skill Gems
+Rarity: Gem
+Void Sphere
+--------
+Spell, AoE, Duration, Physical, Chaos, Orb
+Level: 1
+Cost: 30 Mana
+Cooldown Time: 10.00 sec
+Cast Time: 0.60 sec
+Critical Strike Chance: 5.00%
+Effectiveness of Added Damage: 55%
+--------
+Requirements:
+Level: 34
+Int: 79
+--------
+Creates a Void Sphere which Hinders enemies in an area around it, with the debuff being stronger on enemies closer to the sphere. It also regularly releases pulses of area damage. The Void Sphere will consume the corpses of any enemies which die in its area. Can only have one Void Sphere at a time.
+--------
+Deals 27 to 41 Physical Damage
+Base duration is 5.00 seconds
+Pulses every 0.40 seconds
+40% of Physical Damage Converted to Chaos Damage
+Enemies in range are Hindered, with up to 30% reduced Movement Speed, based on distance from the Void Sphere
+--------
+Experience: 1/252595
+--------
+Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
+");
+
+            Assert.Equal(Class.ActiveSkillGems, actual.Metadata.Class);
+            Assert.Equal(Rarity.Gem, actual.Metadata.Rarity);
+            Assert.Equal(Category.Gem, actual.Metadata.Category);
+            Assert.Equal("Void Sphere", actual.Metadata.Type);
         }
 
         #region ItemText

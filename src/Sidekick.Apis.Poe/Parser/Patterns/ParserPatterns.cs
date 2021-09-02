@@ -21,7 +21,8 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
             InitHeader();
             InitProperties();
             InitSockets();
-            InitInfluences(); InitClasses();
+            InitInfluences();
+            InitClasses();
         }
 
         #region Header (Rarity, Name, Type)

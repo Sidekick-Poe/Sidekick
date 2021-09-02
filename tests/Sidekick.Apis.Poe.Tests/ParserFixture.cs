@@ -2,8 +2,6 @@ using System.Threading.Tasks;
 using Bunit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Apis.GitHub;
-using Sidekick.Apis.Poe.Tests.Parser;
 using Sidekick.Common;
 using Sidekick.Common.Game;
 using Sidekick.Common.Settings;
@@ -17,7 +15,6 @@ namespace Sidekick.Apis.Poe.Tests
     public class ParserFixture : IAsyncLifetime
     {
         public IItemParser Parser { get; private set; }
-        public ItemTexts Texts { get; private set; }
 
         public Task DisposeAsync()
         {
@@ -39,7 +36,6 @@ namespace Sidekick.Apis.Poe.Tests
                 .AddSidekickCommonGame()
 
                 // Apis
-                .AddSidekickGitHubApi()
                 .AddSidekickPoeApi()
 
                 // Modules
@@ -48,8 +44,6 @@ namespace Sidekick.Apis.Poe.Tests
 
                 // Mocks
                 .AddSidekickMocks();
-
-            ctx.Services.AddSingleton<ItemTexts>();
 
             var settingsService = ctx.Services.GetRequiredService<ISettingsService>();
             await settingsService.Save(nameof(ISettings.Language_Parser), "en");
@@ -60,7 +54,6 @@ namespace Sidekick.Apis.Poe.Tests
             await initComponent.Instance.InitializationTask;
 
             Parser = ctx.Services.GetRequiredService<IItemParser>();
-            Texts = ctx.Services.GetRequiredService<ItemTexts>();
         }
     }
 }

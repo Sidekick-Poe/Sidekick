@@ -1,5 +1,4 @@
 using System.Linq;
-using Sidekick.Apis.Poe;
 using Sidekick.Common.Game.Items;
 using Xunit;
 
@@ -16,52 +15,65 @@ namespace Sidekick.Apis.Poe.Tests.Parser
         }
 
         [Fact]
-        public void ParseNormalMap()
+        public void ParseArcadeMap()
         {
-            var actual = parser.ParseItem(NormalMap);
+            var actual = parser.ParseItem(@"Item Class: Maps
+Rarity: Normal
+Arcade Map
+--------
+Map Tier: 15
+Atlas Region: Haewark Hamlet
+--------
+Item Level: 84
+--------
+Travel to this Map by using it in a personal Map Device. Maps can only be used once.
+");
 
             Assert.Equal(Category.Map, actual.Metadata.Category);
+            Assert.Equal(Class.Maps, actual.Metadata.Class);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
-            Assert.Equal("Beach Map", actual.Metadata.Type);
-            Assert.Equal(1, actual.Properties.MapTier);
-        }
-
-        [Fact]
-        public void ParseMagicMap()
-        {
-            var actual = parser.ParseItem(MagicMap);
-
-            Assert.Equal(Category.Map, actual.Metadata.Category);
-            Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
-            Assert.Equal("Beach Map", actual.Metadata.Type);
-            Assert.Equal(1, actual.Properties.MapTier);
-        }
-
-        [Fact]
-        public void ParseBlightedMap()
-        {
-            var actual = parser.ParseItem(BlightedMap);
-
-            Assert.Equal(Category.Map, actual.Metadata.Category);
-            Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
-            Assert.Equal("Dark Forest Map", actual.Metadata.Type);
-            Assert.Equal(14, actual.Properties.MapTier);
-            Assert.True(actual.Properties.Blighted);
+            Assert.Equal("Arcade Map", actual.Metadata.Type);
+            Assert.Equal(15, actual.Properties.MapTier);
+            Assert.Equal(84, actual.Properties.ItemLevel);
         }
 
         [Fact]
         public void ParseUniqueMap()
         {
-            var actual = parser.ParseItem(UniqueMap);
+            var actual = parser.ParseItem(@"Item Class: Maps
+Rarity: Unique
+Maelström of Chaos
+Atoll Map
+--------
+Map Tier: 5
+Atlas Region: Tirn's End
+Item Quantity: +41% (augmented)
+Item Rarity: +299% (augmented)
+--------
+Item Level: 73
+--------
+Area has patches of Chilled Ground
+Monsters deal 50% extra Physical Damage as Lightning
+Monsters are Immune to randomly chosen Elemental Ailments or Stun
+Monsters' Melee Attacks apply random Hexes on Hit
+Monsters Reflect Hexes
+--------
+Whispers from a world apart
+Speak my name beyond the tomb;
+Bound within the Maelström's heart,
+Will they grant me strength or doom?
+--------
+Travel to this Map by using it in a personal Map Device. Maps can only be used once.
+");
 
             Assert.Equal(Category.Map, actual.Metadata.Category);
+            Assert.Equal(Class.Maps, actual.Metadata.Class);
             Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
             Assert.Equal("Maelström of Chaos", actual.Metadata.Name);
             Assert.Equal("Atoll Map", actual.Metadata.Type);
             Assert.Equal(5, actual.Properties.MapTier);
-            Assert.Equal(10, actual.Properties.Quality);
-            Assert.Equal(69, actual.Properties.ItemQuantity);
-            Assert.Equal(356, actual.Properties.ItemRarity);
+            Assert.Equal(41, actual.Properties.ItemQuantity);
+            Assert.Equal(299, actual.Properties.ItemRarity);
         }
 
         [Fact]
@@ -133,77 +145,6 @@ Note: ~price 2 chaos
         }
 
         #region ItemText
-
-        private const string NormalMap = @"Item Class: Maps
-Rarity: Normal
-Beach Map
---------
-Map Tier: 1
-Atlas Region: Glennach Cairns
---------
-Item Level: 52
---------
-Travel to this Map by using it in a personal Map Device.Maps can only be used once.
-";
-
-        private const string MagicMap = @"Item Class: Maps
-Rarity: Magic
-Mirrored Beach Map
---------
-Map Tier: 1
-Atlas Region: Glennach Cairns
-Item Quantity: +10% (augmented)
-Item Rarity: +6% (augmented)
-Monster Pack Size: +4% (augmented)
---------
-Item Level: 52
---------
-Monsters reflect 13% of Elemental Damage
---------
-Travel to this Map by using it in a personal Map Device. Maps can only be used once.
-";
-
-        private const string BlightedMap = @"Item Class: Maps
-Rarity: Normal
-Blighted Dark Forest Map
---------
-Map Tier: 14
---------
-Item Level: 83
---------
-Area is infested with Fungal Growths
-Map's Item Quantity Modifiers also affect Blight Chest count at 20% value (implicit)
-Natural inhabitants of this area have been removed (implicit)
---------
-Travel to this Map by using it in a personal Map Device. Maps can only be used once.
-";
-
-        private const string UniqueMap = @"Item Class: Maps
-Rarity: Unique
-Maelström of Chaos
-Atoll Map
---------
-Map Tier: 5
-Atlas Region: Tirn's End
-Item Quantity: +69% (augmented)
-Item Rarity: +356% (augmented)
-Quality: +10% (augmented)
---------
-Item Level: 76
---------
-Area has patches of chilled ground
-Monsters deal 50% extra Damage as Lightning
-Monsters are Immune to randomly chosen Elemental Ailments or Stun
-Monsters' Melee Attacks apply random Curses on Hit
-Monsters reflect Curses
---------
-Whispers from a world apart
-Speak my name beyond the tomb;
-Bound within the Maelström's heart,
-Will they grant me strength or doom?
---------
-Travel to this Map by using it in a personal Map Device.Maps can only be used once.
-";
 
         private const string TimelessKaruiEmblem = @"Item Class: Map Fragments
 Rarity: Normal

@@ -104,6 +104,7 @@ namespace Sidekick.Apis.Poe.Parser
                 Category.Armour => ParseArmourProperties(parsingItem),
                 Category.Weapon => ParseWeaponProperties(parsingItem),
                 Category.Jewel => ParseJewelProperties(parsingItem),
+                Category.Flask => ParseFlaskProperties(parsingItem),
                 _ => new Properties(),
             };
         }
@@ -198,6 +199,17 @@ namespace Sidekick.Apis.Poe.Parser
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
+            };
+        }
+
+        private Properties ParseFlaskProperties(ParsingItem parsingItem)
+        {
+            return new Properties()
+            {
+                ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
+                Identified = !GetBool(patterns.Unidentified, parsingItem),
+                Corrupted = GetBool(patterns.Corrupted, parsingItem),
+                Quality = GetInt(patterns.Quality, parsingItem),
             };
         }
 

@@ -1,5 +1,4 @@
 using System.Linq;
-using Sidekick.Apis.Poe;
 using Sidekick.Common.Game.Items;
 using Xunit;
 
@@ -18,7 +17,20 @@ namespace Sidekick.Apis.Poe.Tests.Parser
         [Fact]
         public void ParseJewelBlightCut()
         {
-            var actual = parser.ParseItem(JewelBlightCut);
+            var actual = parser.ParseItem(@"Item Class: Unknown
+Rarity: Rare
+Blight Cut
+Cobalt Jewel
+--------
+Item Level: 68
+--------
++8 to Strength and Intelligence
+14% increased Spell Damage while Dual Wielding
+19% increased Burning Damage
+15% increased Damage with Wands
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree.Right click to remove from the Socket.
+");
 
             Assert.Equal(Category.Jewel, actual.Metadata.Category);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
@@ -36,37 +48,7 @@ namespace Sidekick.Apis.Poe.Tests.Parser
         [Fact]
         public void ParseJewelLoathHope()
         {
-            var actual = parser.ParseItem(JewelLoathHope);
-
-            Assert.Equal(Category.Jewel, actual.Metadata.Category);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal("Large Cluster Jewel", actual.Metadata.Type);
-            Assert.Equal("Loath Hope", actual.Original.Name);
-            Assert.Equal(69, actual.Properties.ItemLevel);
-
-            var enchants = actual.Modifiers.Enchant.Select(x => x.Text);
-            Assert.Contains("Added Small Passive Skills grant: Axe Attacks deal 12% increased Damage with Hits and Ailments\nAdded Small Passive Skills grant: Sword Attacks deal 12% increased Damage with Hits and Ailments", enchants);
-            Assert.Contains("2 Added Passive Skills are Jewel Sockets", enchants);
-            Assert.Contains("Adds 11 Passive Skills", enchants);
-        }
-
-        #region ItemText
-        private const string JewelBlightCut = @"Item Class: Unknown
-Rarity: Rare
-Blight Cut
-Cobalt Jewel
---------
-Item Level: 68
---------
-+8 to Strength and Intelligence
-14% increased Spell Damage while Dual Wielding
-19% increased Burning Damage
-15% increased Damage with Wands
---------
-Place into an allocated Jewel Socket on the Passive Skill Tree.Right click to remove from the Socket.
-";
-
-        private const string JewelLoathHope = @"Item Class: Unknown
+            var actual = parser.ParseItem(@"Item Class: Unknown
 Rarity: Rare
 Loath Hope
 Large Cluster Jewel
@@ -89,7 +71,43 @@ Added Small Passive Skills have 25% increased Effect
 Place into an allocated Large Jewel Socket on the Passive Skill Tree. Added passives do not interact with jewel radiuses. Right click to remove from the Socket.
 --------
 Note: ~price 1 alch
-";
-        #endregion
+");
+
+            Assert.Equal(Category.Jewel, actual.Metadata.Category);
+            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
+            Assert.Equal("Large Cluster Jewel", actual.Metadata.Type);
+            Assert.Equal("Loath Hope", actual.Original.Name);
+            Assert.Equal(69, actual.Properties.ItemLevel);
+
+            var enchants = actual.Modifiers.Enchant.Select(x => x.Text);
+            Assert.Contains("Added Small Passive Skills grant: Axe Attacks deal 12% increased Damage with Hits and Ailments\nAdded Small Passive Skills grant: Sword Attacks deal 12% increased Damage with Hits and Ailments", enchants);
+            Assert.Contains("2 Added Passive Skills are Jewel Sockets", enchants);
+            Assert.Contains("Adds 11 Passive Skills", enchants);
+        }
+
+        [Fact]
+        public void ViridianJewel()
+        {
+            var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Rare
+Phoenix Thirst
+Viridian Jewel
+--------
+Item Level: 85
+--------
+8% increased Damage
+15% increased Damage with Axes
+7% increased Attack Speed with Axes
+14% increased Global Accuracy Rating
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+            Assert.Equal(Class.Jewel, actual.Metadata.Class);
+            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
+            Assert.Equal(Category.Jewel, actual.Metadata.Category);
+            Assert.Equal("Viridian Jewel", actual.Metadata.Type);
+        }
+
     }
 }
