@@ -44,6 +44,8 @@ namespace Sidekick.Apis.Poe.Trade.Results
 
         public List<ResultLineContent> Properties { get; set; }
 
+        public List<ResultLineContent> AdditionalProperties { get; set; }
+
         [JsonPropertyName("implicitMods")]
         public List<string> ImplicitMods { get; set; }
 

@@ -448,6 +448,7 @@ namespace Sidekick.Apis.Poe.Trade
 
                 RequirementContents = ParseLineContents(result.Item.Requirements),
                 PropertyContents = ParseLineContents(result.Item.Properties),
+                AdditionalPropertyContents = ParseLineContents(result.Item.AdditionalProperties, false),
                 Sockets = ParseSockets(result.Item.Sockets),
 
                 Properties = new Properties()
@@ -526,12 +527,12 @@ namespace Sidekick.Apis.Poe.Trade
             return result;
         }
 
-        private static List<LineContent> ParseLineContents(List<ResultLineContent> lines)
+        private static List<LineContent> ParseLineContents(List<ResultLineContent> lines, bool executeOrderBy = true)
         {
-            if (lines == null) return new List<LineContent>();
+            if (lines == null) return null;
 
             return lines
-                .OrderBy(x => x.Order)
+                .OrderBy(x => executeOrderBy ? x.Order : 0)
                 .Select(line =>
                 {
                     var values = new List<LineContentValue>();
@@ -556,7 +557,16 @@ namespace Sidekick.Apis.Poe.Trade
                         switch (line.DisplayMode)
                         {
                             case 0:
-                                text = $"{line.Name}: {string.Join(", ", values.Select(x => x.Value))}";
+                                text = line.Name;
+                                if (values.Count > 0)
+                                {
+                                    if (!string.IsNullOrEmpty(line.Name))
+                                    {
+                                        text += ": ";
+                                    }
+
+                                    text += string.Join(", ", values.Select(x => x.Value));
+                                }
                                 break;
                             case 1:
                                 text = $"{values[0].Value} {line.Name}";

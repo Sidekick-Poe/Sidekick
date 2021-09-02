@@ -25,6 +25,7 @@ namespace Sidekick.Apis.Poe
             services.AddSingleton<IItemParser, ItemParser>();
             services.AddSingleton<IItemMetadataProvider, ItemMetadataProvider>();
             services.AddSingleton<IModifierProvider, ModifierProvider>();
+            services.AddSingleton<IEnglishModifierProvider, EnglishModifierProvider>();
             services.AddSingleton<IPseudoModifierProvider, PseudoModifierProvider>();
             services.AddSingleton<IItemStaticDataProvider, ItemStaticDataProvider>();
             services.AddSingleton<IStatTranslationProvider, StatTranslationProvider>();

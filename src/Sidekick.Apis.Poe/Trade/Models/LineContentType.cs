@@ -8,5 +8,6 @@ namespace Sidekick.Apis.Poe.Trade.Models
         Cold = 5,
         Lightning = 6,
         Chaos = 7,
+        BlockedIncursionRoom = 15,
     }
 }

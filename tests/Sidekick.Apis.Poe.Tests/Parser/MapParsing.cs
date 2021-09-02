@@ -118,7 +118,7 @@ Note: ~price 2 chaos
 
             var implicits = actual.Modifiers.Implicit.Select(x => x.Text);
             Assert.Contains("Area is influenced by The Elder", implicits);
-            Assert.Equal(2, actual.Modifiers.Implicit.First(x => x.Text.Contains("The Elder")).OptionValue.Value);
+            Assert.Equal("2", actual.Modifiers.Implicit.First(x => x.Text.Contains("The Elder")).OptionValue.Value);
         }
 
         [Fact]

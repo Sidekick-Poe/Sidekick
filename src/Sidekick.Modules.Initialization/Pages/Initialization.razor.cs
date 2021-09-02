@@ -34,6 +34,7 @@ namespace Sidekick.Modules.Initialization.Pages
         [Inject] private IGameLanguageProvider GameLanguageProvider { get; set; }
         [Inject] private IAppService AppService { get; set; }
         [Inject] private IUILanguageProvider UILanguageProvider { get; set; }
+        [Inject] private IEnglishModifierProvider EnglishModifierProvider { get; set; }
 
         private int Count { get; set; } = 0;
         private int Completed { get; set; } = 0;
@@ -56,7 +57,7 @@ namespace Sidekick.Modules.Initialization.Pages
             try
             {
                 Completed = 0;
-                Count = HasRun ? 7 : 10;
+                Count = HasRun ? 8 : 11;
 
                 // Report initial progress
                 await ReportProgress();
@@ -68,6 +69,7 @@ namespace Sidekick.Modules.Initialization.Pages
                 await Run(() => ParserPatterns.Initialize());
                 await Run(() => ItemMetadataProvider.Initialize());
                 await Run(() => ItemStaticDataProvider.Initialize());
+                await Run(() => EnglishModifierProvider.Initialize());
                 await Run(() => ModifierProvider.Initialize());
                 await Run(() => PseudoModifierProvider.Initialize());
 

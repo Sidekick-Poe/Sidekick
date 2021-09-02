@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Clients;
+using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Apis.Poe.Pseudo.Models;
-using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Items.Modifiers;
 
 namespace Sidekick.Apis.Poe.Pseudo
@@ -17,17 +16,14 @@ namespace Sidekick.Apis.Poe.Pseudo
         private readonly Regex ParseHashPattern = new("\\#");
 
         private readonly ILogger<PseudoModifierProvider> logger;
-        private readonly ICacheProvider cacheProvider;
-        private readonly IPoeTradeClient poeTradeClient;
+        private readonly IEnglishModifierProvider englishModifierProvider;
 
         public PseudoModifierProvider(
             ILogger<PseudoModifierProvider> logger,
-            ICacheProvider cacheProvider,
-            IPoeTradeClient poeTradeClient)
+            IEnglishModifierProvider englishModifierProvider)
         {
             this.logger = logger;
-            this.cacheProvider = cacheProvider;
-            this.poeTradeClient = poeTradeClient;
+            this.englishModifierProvider = englishModifierProvider;
         }
 
         private List<PseudoDefinition> Definitions { get; set; } = new List<PseudoDefinition>();
@@ -43,15 +39,13 @@ namespace Sidekick.Apis.Poe.Pseudo
             {
                 logger.LogInformation($"Pseudo stat service initialization started.");
 
-                var result = await cacheProvider.GetOrSet(
-                    "PseudoModifierProvider",
-                    () => poeTradeClient.Fetch<ApiCategory>("data/stats", useDefaultLanguage: true));
+                var result = await englishModifierProvider.GetList();
 
-                logger.LogInformation($"{result.Result.Count} attributes fetched.");
+                logger.LogInformation($"{result.Count} attributes fetched.");
 
-                var groups = InitGroups(result.Result);
+                var groups = InitGroups(result);
 
-                foreach (var category in result.Result)
+                foreach (var category in result)
                 {
                     var first = category.Entries.FirstOrDefault();
                     if (first == null || first.Id.Split('.').First() == "pseudo")

@@ -15,6 +15,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
         public int Height { get; set; }
 
         public List<LineContent> PropertyContents { get; set; }
+        public List<LineContent> AdditionalPropertyContents { get; set; }
         public List<LineContent> RequirementContents { get; set; }
     }
 }

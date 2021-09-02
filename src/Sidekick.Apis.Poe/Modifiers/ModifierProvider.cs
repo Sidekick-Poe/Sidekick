@@ -19,7 +19,7 @@ namespace Sidekick.Apis.Poe.Modifiers
         private readonly ICacheProvider cacheProvider;
         private readonly IPoeTradeClient poeTradeClient;
         private readonly IStatTranslationProvider statTranslationProvider;
-
+        private readonly IEnglishModifierProvider englishModifierProvider;
         private readonly Regex ParseHashPattern = new("\\#");
         private readonly Regex NewLinePattern = new("(?:\\\\)*[\\r\\n]+");
         private readonly Regex HashPattern = new("\\\\#");
@@ -29,12 +29,14 @@ namespace Sidekick.Apis.Poe.Modifiers
             IPseudoModifierProvider pseudoModifierProvider,
             ICacheProvider cacheProvider,
             IPoeTradeClient poeTradeClient,
-            IStatTranslationProvider statTranslationProvider)
+            IStatTranslationProvider statTranslationProvider,
+            IEnglishModifierProvider englishModifierProvider)
         {
             this.pseudoModifierProvider = pseudoModifierProvider;
             this.cacheProvider = cacheProvider;
             this.poeTradeClient = poeTradeClient;
             this.statTranslationProvider = statTranslationProvider;
+            this.englishModifierProvider = englishModifierProvider;
         }
 
         public List<ModifierPatternMetadata> PseudoPatterns { get; set; }
@@ -44,6 +46,7 @@ namespace Sidekick.Apis.Poe.Modifiers
         public List<ModifierPatternMetadata> CraftedPatterns { get; set; }
         public List<ModifierPatternMetadata> VeiledPatterns { get; set; }
         public List<ModifierPatternMetadata> FracturedPatterns { get; set; }
+        public List<ModifierPatternMetadata> IncursionRoomPatterns { get; set; }
 
         public async Task Initialize()
         {
@@ -141,6 +144,22 @@ namespace Sidekick.Apis.Poe.Modifiers
                     patterns.Add(modifier);
                 }
             }
+
+            // Prepare Incursion room patterns
+            IncursionRoomPatterns = PseudoPatterns.Where(x => englishModifierProvider.IncursionRooms.Contains(x.Id)).ToList();
+            foreach (var pattern in IncursionRoomPatterns)
+            {
+                var basePattern = pattern.Patterns.First(x => x.Value == 1);
+                pattern.Patterns.Add(new ModifierPattern()
+                {
+                    LineCount = 1,
+                    Negative = false,
+                    Text = basePattern.Text,
+                    OptionText = basePattern.OptionText,
+                    Pattern = ComputePattern(string.Empty, basePattern.Text.Split(':', 2).Last().Trim()),
+                    Value = basePattern.Value,
+                });
+            }
         }
 
         private Regex ComputePattern(string category, string text, string optionText = null)
@@ -201,6 +220,12 @@ namespace Sidekick.Apis.Poe.Modifiers
 
             mods.Pseudo = pseudoModifierProvider.Parse(mods);
 
+            // Check if we need to process Incursion room patterns
+            if (parsingItem.Metadata.Class == Common.Game.Items.Class.MiscMapItems)
+            {
+                ParseModifiers(mods.Pseudo, IncursionRoomPatterns, parsingItem);
+            }
+
             return mods;
         }
 
@@ -251,7 +276,7 @@ namespace Sidekick.Apis.Poe.Modifiers
             {
                 modifier.OptionValue = new ModifierOption()
                 {
-                    Value = pattern.Value,
+                    Value = pattern.Value.ToString(),
                 };
             }
             else if (pattern.Value.HasValue)

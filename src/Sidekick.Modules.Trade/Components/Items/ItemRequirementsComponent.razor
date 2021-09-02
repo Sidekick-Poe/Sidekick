@@ -1,9 +1,11 @@
+@if (Item.RequirementContents != null)
+{
+    <div class="requirements font-smallcaps">
+        <MudText Typo="Typo.body1" Class="font-smallcaps" Align="Align.Center">@Resources.Requires @((MarkupString)Text)</MudText>
+    </div>
 
-<div class="requirements font-smallcaps">
-    <MudText Typo="Typo.body1" Class="font-smallcaps" Align="Align.Center">@Resources.Requires @((MarkupString)Text)</MudText>
-</div>
-
-<ItemSeparatorComponent Item="Item" />
+    <ItemSeparatorComponent Item="Item" />
+}
 
 @code {
     [Inject] private TradeResources Resources { get; set; }
@@ -15,6 +17,11 @@
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
+
+        if (Item.RequirementContents == null)
+        {
+            return;
+        }
 
         Text = string.Join(", ", Item.RequirementContents.Select(x => x.Text));
 
