@@ -7,7 +7,13 @@
     @if (Model.BehindFracturedWall)
     {
         <MudTooltip Text="@Resources.FracturedWall">
-            <img src="/images/delve/FracturedWall.png" class="mr-2" />
+            <img src="/images/delve/FracturedWall.png" />
+        </MudTooltip>
+    }
+    @if (Model.InFossilRoom)
+    {
+        <MudTooltip Text="@Resources.FossilRoom">
+            <img src="/images/delve/FossilRoom.png" />
         </MudTooltip>
     }
 </div>

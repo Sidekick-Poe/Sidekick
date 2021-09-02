@@ -36,9 +36,10 @@
             {
                 Fossils = new List<FossilModel>()
 {
+                    new FossilModel(Resources.FacetedFossil, RewardValue.High, inFossilRoom: true),
                     new FossilModel(Resources.EnchantedFossil, RewardValue.Medium),
                     new FossilModel(Resources.PrismaticFossil, RewardValue.Low),
-                    new FossilModel(Resources.EncrustedFossil, RewardValue.NoValue, true),
+                    new FossilModel(Resources.EncrustedFossil, RewardValue.NoValue, behindFracturedWall: true),
                     new FossilModel(Resources.PristineFossil, RewardValue.NoValue),
                     new FossilModel(Resources.ScorchedFossil, RewardValue.NoValue),
                 }
@@ -48,10 +49,12 @@
             {
                 Fossils = new List<FossilModel>()
 {
+                    new FossilModel(Resources.FracturedFossil, RewardValue.High, inFossilRoom: true),
+                    new FossilModel(Resources.ShudderingFossil, RewardValue.Medium, inFossilRoom: true),
                     new FossilModel(Resources.PerfectFossil, RewardValue.Medium),
                     new FossilModel(Resources.MetallicFossil, RewardValue.Low),
                     new FossilModel(Resources.AethericFossil, RewardValue.NoValue),
-                    new FossilModel(Resources.EncrustedFossil, RewardValue.NoValue, true),
+                    new FossilModel(Resources.EncrustedFossil, RewardValue.NoValue, behindFracturedWall: true),
                 }
             },
 
@@ -59,11 +62,13 @@
             {
                 Fossils = new List<FossilModel>()
 {
-                    new FossilModel(Resources.SanctifiedFossil, RewardValue.High, true),
+                    new FossilModel(Resources.GlyphicFossil, RewardValue.High, inFossilRoom: true),
+                    new FossilModel(Resources.SanctifiedFossil, RewardValue.High, behindFracturedWall: true),
                     new FossilModel(Resources.SerratedFossil, RewardValue.Medium),
                     new FossilModel(Resources.ShudderingFossil, RewardValue.Medium),
                     new FossilModel(Resources.PrismaticFossil, RewardValue.Low),
                     new FossilModel(Resources.FrigidFossil, RewardValue.NoValue),
+                    new FossilModel(Resources.PristineFossil, RewardValue.NoValue),
                 }
             },
 
@@ -71,8 +76,9 @@
             {
                 Fossils = new List<FossilModel>()
 {
+                    new FossilModel(Resources.TangledFossil, RewardValue.Medium, inFossilRoom: true),
                     new FossilModel(Resources.CorrodedFossil, RewardValue.Medium),
-                    new FossilModel(Resources.GildedFossil, RewardValue.Medium, true),
+                    new FossilModel(Resources.GildedFossil, RewardValue.Medium, behindFracturedWall: true),
                     new FossilModel(Resources.PerfectFossil, RewardValue.Medium),
                     new FossilModel(Resources.AberrantFossil, RewardValue.Low),
                     new FossilModel(Resources.DenseFossil, RewardValue.Low),
@@ -83,7 +89,8 @@
             {
                 Fossils = new List<FossilModel>()
 {
-                    new FossilModel(Resources.SanctifiedFossil, RewardValue.High, true),
+                    new FossilModel(Resources.BloodstainedFossil, RewardValue.High, inFossilRoom: true),
+                    new FossilModel(Resources.SanctifiedFossil, RewardValue.High, behindFracturedWall: true),
                     new FossilModel(Resources.CorrodedFossil, RewardValue.Medium),
                     new FossilModel(Resources.BoundFossil, RewardValue.Low),
                     new FossilModel(Resources.DenseFossil, RewardValue.Low),
@@ -95,23 +102,11 @@
             {
                 Fossils = new List<FossilModel>()
 {
-                    new FossilModel(Resources.GildedFossil, RewardValue.Medium, true),
+                    new FossilModel(Resources.HollowFossil, RewardValue.High, inFossilRoom: true),
+                    new FossilModel(Resources.GildedFossil, RewardValue.Medium, behindFracturedWall: true),
                     new FossilModel(Resources.AberrantFossil, RewardValue.Low),
                     new FossilModel(Resources.BoundFossil, RewardValue.Low),
-                    new FossilModel(Resources.LucentFossil, RewardValue.NoValue, true),
-                }
-            },
-
-            new RegionModel(Resources.FossilRoom)
-            {
-                Fossils = new List<FossilModel>()
-{
-                    new FossilModel(Resources.BloodstainedFossil, RewardValue.High),
-                    new FossilModel(Resources.FacetedFossil, RewardValue.High),
-                    new FossilModel(Resources.FracturedFossil, RewardValue.High),
-                    new FossilModel(Resources.GlyphicFossil, RewardValue.High),
-                    new FossilModel(Resources.HollowFossil, RewardValue.High),
-                    new FossilModel(Resources.TangledFossil, RewardValue.Medium),
+                    new FossilModel(Resources.LucentFossil, RewardValue.NoValue, behindFracturedWall: true),
                 }
             },
         };
