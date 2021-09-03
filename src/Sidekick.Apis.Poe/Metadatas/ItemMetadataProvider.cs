@@ -155,11 +155,12 @@ namespace Sidekick.Apis.Poe.Metadatas
             }
             else if (parsingBlock.Lines.Count == 3)
             {
+                type = parsingBlock.Lines[2].Text;
                 name = parsingBlock.Lines[2].Text;
             }
 
             // Rares may have conflicting names, so we don't want to search any unique items that may have that name. Like "Ancient Orb" which can be used by abyss jewels.
-            if (itemRarity == Rarity.Rare)
+            if (itemRarity == Rarity.Rare || itemRarity == Rarity.Magic)
             {
                 name = null;
             }

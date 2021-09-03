@@ -293,5 +293,38 @@ Note: ~price 40 chaos
             Assert.Equal("Fishing Rod", actual.Metadata.Type);
         }
 
+        [Fact]
+        public void UnidentifiedHunterItem()
+        {
+            var actual = parser.ParseItem(@"Item Class: One Hand Maces
+Rarity: Rare
+Ornate Mace
+--------
+One Handed Mace
+Physical Damage: 53-67
+Critical Strike Chance: 5.00%
+Attacks per Second: 1.20
+Weapon Range: 11
+--------
+Requirements:
+Strength: 161
+--------
+Sockets: R-R-R 
+--------
+Item Level: 76
+--------
+15% reduced Enemy Stun Threshold (implicit)
+--------
+Unidentified
+--------
+Hunter Item");
+
+            Assert.Equal(Class.OneHandMaces, actual.Metadata.Class);
+            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
+            Assert.Equal(Category.Weapon, actual.Metadata.Category);
+            Assert.Equal("Ornate Mace", actual.Metadata.Type);
+            Assert.True(actual.Influences.Hunter);
+        }
+
     }
 }
