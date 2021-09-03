@@ -61,5 +61,41 @@ Note: ~price 1 blessed
             Assert.Equal("Clear Oil", actual.Metadata.Type);
         }
 
+        [Fact]
+        public void BlightedSpiderForestMap()
+        {
+            var actual = parser.ParseItem(@"Item Class: Maps
+Rarity: Rare
+Nightmare Spires
+Blighted Spider Forest Map
+--------
+Map Tier: 2
+Atlas Region: Lex Proxima
+Item Quantity: +55% (augmented)
+Item Rarity: +32% (augmented)
+Monster Pack Size: +21% (augmented)
+--------
+Item Level: 69
+--------
+Area is infested with Fungal Growths
+Map's Item Quantity Modifiers also affect Blight Chest count at 20% value (implicit)
+Natural inhabitants of this area have been removed (implicit)
+--------
+Monsters deal 54% extra Physical Damage as Lightning
+Unique Boss has 25% increased Life
+Unique Boss has 45% increased Area of Effect
+Slaying Enemies close together has a 13% chance to attract monsters from Beyond
+Players have 20% less Recovery Rate of Life and Energy Shield
+--------
+Travel to this Map by using it in a personal Map Device.Maps can only be used once.
+");
+
+            Assert.Equal(Class.Maps, actual.Metadata.Class);
+            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
+            Assert.Equal(Category.Map, actual.Metadata.Category);
+            Assert.Equal("Spider Forest Map", actual.Metadata.Type);
+            Assert.True(actual.Properties.Blighted);
+        }
+
     }
 }

@@ -168,7 +168,7 @@ namespace Sidekick.Apis.Poe.Parser
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
-                Blighted = patterns.Blighted.IsMatch(parsingItem.Blocks[0].Lines[2].Text),
+                Blighted = patterns.Blighted.IsMatch(parsingItem.Blocks[0].Lines[^1].Text),
 
                 ItemQuantity = GetInt(patterns.ItemQuantity, propertyBlock),
                 ItemRarity = GetInt(patterns.ItemRarity, propertyBlock),
