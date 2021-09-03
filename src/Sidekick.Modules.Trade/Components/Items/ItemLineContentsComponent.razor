@@ -1,12 +1,15 @@
 
-<div class="line-contents">
-    @foreach (var property in LineContents)
-    {
-        <MudText Typo="Typo.body1" Class="font-smallcaps" Align="Align.Center">@((MarkupString)GetLine(property))</MudText>
-    }
-</div>
+@if (LineContents != null && LineContents.Count > 0)
+{
+    <div class="line-contents">
+        @foreach (var property in LineContents)
+        {
+            <MudText Typo="Typo.body1" Class="font-smallcaps" Align="Align.Center">@((MarkupString)GetLine(property))</MudText>
+        }
+    </div>
 
-<ItemSeparatorComponent Item="Item" />
+    <ItemSeparatorComponent Item="Item" />
+}
 
 @code {
     [Parameter] public Item Item { get; set; }

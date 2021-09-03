@@ -482,7 +482,7 @@ namespace Sidekick.Apis.Poe.Trade
                 item.Modifiers.Explicit,
                 result.Item.ExplicitMods,
                 result.Item.Extended.Mods?.Explicit,
-                ParseHash(result.Item.Extended.Hashes?.Explicit));
+                ParseHash(result.Item.Extended.Hashes?.Explicit, result.Item.Extended.Hashes?.Monster));
 
             ParseMods(modifierProvider,
                 item.Modifiers.Implicit,
@@ -505,25 +505,30 @@ namespace Sidekick.Apis.Poe.Trade
             return item;
         }
 
-        private static List<LineContentValue> ParseHash(List<List<JsonElement>> values)
+        private static List<LineContentValue> ParseHash(params List<List<JsonElement>>[] hashes)
         {
             var result = new List<LineContentValue>();
-            if (values != null)
-            {
-                foreach (var value in values)
-                {
-                    if (value.Count != 2)
-                    {
-                        continue;
-                    }
 
-                    result.Add(new LineContentValue()
+            foreach (var values in hashes)
+            {
+                if (values != null)
+                {
+                    foreach (var value in values)
                     {
-                        Value = value[0].GetString(),
-                        Type = value[1].ValueKind == JsonValueKind.Array ? (LineContentType)value[1][0].GetInt32() : LineContentType.Simple
-                    });
+                        if (value.Count != 2)
+                        {
+                            continue;
+                        }
+
+                        result.Add(new LineContentValue()
+                        {
+                            Value = value[0].GetString(),
+                            Type = value[1].ValueKind == JsonValueKind.Array ? (LineContentType)value[1][0].GetInt32() : LineContentType.Simple
+                        });
+                    }
                 }
             }
+
             return result;
         }
 

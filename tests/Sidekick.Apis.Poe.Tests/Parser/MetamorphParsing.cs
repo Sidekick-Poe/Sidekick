@@ -60,7 +60,7 @@ Combine this with four other different samples in Tane's Laboratory.
         [Fact]
         public void ParseOrgan()
         {
-            var actual = parser.ParseItem(@"Item Class: Metamorph Sample
+            var actual = parser.ParseItem(@"Item Class: Metamorph Samples
 Rarity: Unique
 Portentia, the Foul's Heart
 --------
@@ -75,6 +75,32 @@ Drops additional Rare Jewellery
 --------
 Combine this with four other different samples in Tane's Laboratory.");
 
+            Assert.Equal(Category.ItemisedMonster, actual.Metadata.Category);
+            Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
+            Assert.Equal("Portentia, the Foul's Heart", actual.Metadata.Name);
+            Assert.Equal("Portentia, the Foul", actual.Metadata.Type);
+        }
+
+        [Fact]
+        public void Portentia()
+        {
+            var actual = parser.ParseItem(@"Item Class: Metamorph Samples
+Rarity: Unique
+Portentia, the Foul's Heart
+--------
+Uses: Blood Bubble
+--------
+Item Level: 79
+--------
+Drops additional Rare Jewellery
+Drops additional Currency Items
+Drops additional Currency Items
+Drops additional Rare Weapons
+Drops additional Rare Armour
+--------
+Combine this with four other different samples in Tane's Laboratory.");
+
+            Assert.Equal(Class.MetamorphSample, actual.Metadata.Class);
             Assert.Equal(Category.ItemisedMonster, actual.Metadata.Category);
             Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
             Assert.Equal("Portentia, the Foul's Heart", actual.Metadata.Name);
