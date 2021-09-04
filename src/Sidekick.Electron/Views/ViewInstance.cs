@@ -54,7 +54,7 @@ namespace Sidekick.Electron.Views
                 view.Browser.SetSkipTaskbar(false);
                 view.Browser.SetResizable(false);
                 view.Browser.SetAlwaysOnTop(false);
-                view.Browser.ShowInactive();
+                view.Browser.Show();
             }
             else
             {
@@ -77,10 +77,6 @@ namespace Sidekick.Electron.Views
             {
                 view.Browser.OnBlur += Browser_OnBlur;
             }
-
-            resizeBounce++;
-            view.Browser.OnResize -= Browser_OnResize;
-            view.Browser.OnBlur -= Browser_OnBlur;
         }
 
         public string Title { get; private set; } = "Sidekick";
@@ -119,28 +115,28 @@ namespace Sidekick.Electron.Views
 
         public async Task Close()
         {
-            Dispose();
-
             if (!await view.Browser.IsDestroyedAsync())
             {
                 view.Browser.Close();
             }
+
+            Dispose();
         }
 
         private void Browser_OnBlur()
         {
-            Dispose();
             view.Browser.Close();
+            Dispose();
         }
 
         private ulong resizeBounce = 0;
         private void Browser_OnResize()
         {
+            var currentBounce = ++resizeBounce;
             Task.Run(async () =>
             {
                 try
                 {
-                    var currentBounce = ++resizeBounce;
                     await Task.Delay(500);
                     if (currentBounce == resizeBounce)
                     {
