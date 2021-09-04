@@ -42,7 +42,7 @@ namespace Sidekick.Modules.Update.Pages
                 StateHasChanged();
                 var release = await GitHubClient.GetLatestRelease();
 
-                if (!GitHubClient.IsUpdateAvailable(release) || Environment.IsDevelopment())
+                if (release == null || !GitHubClient.IsUpdateAvailable(release) || Environment.IsDevelopment())
                 {
                     await Task.Delay(750);
                     NavigationManager.NavigateTo("/setup");
@@ -71,7 +71,7 @@ namespace Sidekick.Modules.Update.Pages
             {
                 Logger.LogError(ex.Message);
                 await AppService.OpenNotification(UpdateResources.Failed);
-                AppService.Shutdown();
+                NavigationManager.NavigateTo("/setup");
             }
         }
 
