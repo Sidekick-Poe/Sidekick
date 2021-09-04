@@ -23,7 +23,6 @@ namespace Sidekick.Modules.Cheatsheets.Localization
         public string BreachContainmentChamber => localizer["BreachContainmentChamber"];
         public string CatalystOfCorruption => localizer["CatalystOfCorruption"];
         public string ChamberOfIron => localizer["ChamberOfIron"];
-        public string CitaqualotlModTooltip => localizer["CitaqualotlModTooltip"];
         public string ConduitOfLightning => localizer["ConduitOfLightning"];
         public string Contains => localizer["Contains"];
         public string CorruptionChamber => localizer["CorruptionChamber"];

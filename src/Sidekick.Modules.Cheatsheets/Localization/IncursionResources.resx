@@ -127,11 +127,10 @@
     <value>Armourer's Workshop</value>
   </data>
   <data name="ArmourersWorkshopContains" xml:space="preserve">
-    <value>Armour&lt;br /&gt;
-Animate Guardian Recipe</value>
+    <value>Armour Chests</value>
   </data>
   <data name="ArmourersWorkshopModifiers" xml:space="preserve">
-    <value>10/20/30 &amp; more Monster Life</value>
+    <value>10/20/30 % more Monster Life and Resistance</value>
   </data>
   <data name="Armoury" xml:space="preserve">
     <value>Armoury</value>
@@ -153,21 +152,6 @@ Animate Guardian Recipe</value>
   </data>
   <data name="ChamberOfIron" xml:space="preserve">
     <value>Chamber of Iron</value>
-  </data>
-  <data name="CitaqualotlModTooltip" xml:space="preserve">
-    <value>Prefix: &lt;br /&gt;
-Minions deal 90-138% increased Damage&lt;br /&gt;
-------------------------------------&lt;br /&gt;
-+2 to Level of socketed Minion Gems&lt;br /&gt;
-------------------------------------&lt;br /&gt;
-Minions deal 70-110% increased Damage&lt;br /&gt;
-Minions have 5% Chance to deal Double Damage&lt;br /&gt;
-------------------------------------&lt;br /&gt;
-Suffix: &lt;br /&gt;
-Minions have 13-40% increased Attack Speed&lt;br /&gt;
-Minions have 13-40% increased Cast Speed&lt;br /&gt;
-------------------------------------&lt;br /&gt;
-17-30% increased Minion Duration</value>
   </data>
   <data name="ConduitOfLightning" xml:space="preserve">
     <value>Conduit of Lightning</value>
@@ -214,8 +198,7 @@ Transform into a rare Item with random influence &lt;br /&gt;
 Destroy the item</value>
   </data>
   <data name="DoubleGemCorruptionTooltip" xml:space="preserve">
-    <value>Applies two corruptions to a Gem&lt;br /&gt;
-Possible to get a 21/23 Gem</value>
+    <value>Applies two corruptions to a Gem</value>
   </data>
   <data name="EngineeringDepartment" xml:space="preserve">
     <value>Engineering Department</value>
@@ -224,8 +207,8 @@ Possible to get a 21/23 Gem</value>
     <value>Explosives Room</value>
   </data>
   <data name="ExplosivesRoomContains" xml:space="preserve">
-    <value>1/2/3 Explosive Kegs&lt;br /&gt;
-[Used to unlock doors]</value>
+    <value>1/2/3 Flashpowder Kegs&lt;br /&gt;
+Used to unlock doors</value>
   </data>
   <data name="Factory" xml:space="preserve">
     <value>Factory</value>
