@@ -7,7 +7,7 @@ namespace Sidekick.Common.Cache
 {
     public class CacheProvider : ICacheProvider
     {
-        private const string cachePath = "cache";
+        private const string cachePath = "SidekickCache";
 
         public async Task<TModel> Get<TModel>(string key)
             where TModel : class
