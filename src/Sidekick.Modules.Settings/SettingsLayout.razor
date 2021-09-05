@@ -55,7 +55,7 @@
 
     public async Task Save()
     {
-        await SettingsService.Save(ViewModel, false);
+        await SettingsService.Save(ViewModel);
         await ViewInstance.Close();
     }
 

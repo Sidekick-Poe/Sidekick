@@ -71,7 +71,7 @@ namespace Sidekick.Modules.Settings.Setup
 
         public async Task Save()
         {
-            await SettingsService.Save(ViewModel, true);
+            await SettingsService.Save(ViewModel);
             NavigationManager.NavigateTo("/initialize");
         }
 

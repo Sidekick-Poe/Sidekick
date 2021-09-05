@@ -29,7 +29,7 @@
             return;
         }
 
-        var property = GameLanguageProvider.Language.Classes.GetType().GetProperties().FirstOrDefault(x => x.Name == Item.Metadata.Class.ToString());
+        var property = GameLanguageProvider.Language.Classes?.GetType().GetProperties().FirstOrDefault(x => x.Name == Item.Metadata.Class.ToString());
         ClassLabel = property?.GetValue(GameLanguageProvider.Language.Classes).ToString();
     }
 

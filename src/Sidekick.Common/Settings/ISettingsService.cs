@@ -15,6 +15,6 @@ namespace Sidekick.Common.Settings
         /// Command to save the settings
         /// </summary>
         /// <param name="settings">The current settings to save</param>
-        Task Save(ISettings settings, bool skipInitialize);
+        Task Save(ISettings settings);
     }
 }

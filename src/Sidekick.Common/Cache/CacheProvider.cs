@@ -53,6 +53,15 @@ namespace Sidekick.Common.Cache
             Directory.Delete(Path.Combine(SidekickPaths.GetDataFilePath(), cachePath), true);
         }
 
+        public void Delete(string key)
+        {
+            var fileName = GetCacheFileName(key);
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
+        }
+
         public async Task<TModel> GetOrSet<TModel>(string key, Func<Task<TModel>> func) where TModel : class
         {
             EnsureDirectory();

@@ -60,5 +60,7 @@ namespace Sidekick.Modules.Settings
         public string Cheatsheets_Betrayal_Sort { get; set; } = "default";
 
         #endregion
+
+        public DateTimeOffset? PoeNinja_LastClear { get; set; } = null;
     }
 }

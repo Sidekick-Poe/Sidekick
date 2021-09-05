@@ -38,5 +38,7 @@ namespace Sidekick.Common.Settings
 
         string Wiki_Key_Open { get; set; }
         WikiSetting Wiki_Preferred { get; set; }
+
+        DateTimeOffset? PoeNinja_LastClear { get; set; }
     }
 }

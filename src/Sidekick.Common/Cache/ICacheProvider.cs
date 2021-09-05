@@ -35,6 +35,12 @@ namespace Sidekick.Common.Cache
             where TModel : class;
 
         /// <summary>
+        /// Delete a specific key
+        /// </summary>
+        /// <param name="key">The key to delete from the cache</param>
+        void Delete(string key);
+
+        /// <summary>
         /// Clears the cache
         /// </summary>
         void Clear();
