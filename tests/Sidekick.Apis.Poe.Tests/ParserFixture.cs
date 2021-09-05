@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Bunit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Sidekick.Apis.PoeNinja;
 using Sidekick.Common;
 using Sidekick.Common.Game;
 using Sidekick.Common.Settings;
@@ -37,6 +38,7 @@ namespace Sidekick.Apis.Poe.Tests
 
                 // Apis
                 .AddSidekickPoeApi()
+                .AddSidekickPoeNinjaApi()
 
                 // Modules
                 .AddSidekickInitialization()
