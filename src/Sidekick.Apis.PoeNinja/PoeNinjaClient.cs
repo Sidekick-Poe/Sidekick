@@ -79,6 +79,38 @@ namespace Sidekick.Apis.PoeNinja
                 }
             }
 
+            foreach (var currencyType in GetCurrencyTypes(item))
+            {
+                var repositoryItems = await repository.Load(currencyType);
+                if (repositoryItems == null)
+                {
+                    repositoryItems = await poeNinjaApiClient.FetchCurrencies(currencyType);
+                }
+
+                if (repositoryItems == null)
+                {
+                    continue;
+                }
+
+                var translations = await repository.LoadTranslations(currencyType);
+                if (translations.Any(x => x.Translation == name))
+                {
+                    name = translations.First(x => x.Translation == name).English;
+                }
+
+                var query = repositoryItems.AsQueryable().Where(x => x.Name == name || x.Name == type);
+
+                if (item.Properties != null)
+                {
+                    query = query.Where(x => x.Corrupted == item.Properties.Corrupted && x.MapTier == item.Properties.MapTier && x.GemLevel == item.Properties.GemLevel);
+                }
+
+                if (query.Any())
+                {
+                    return query.FirstOrDefault();
+                }
+            }
+
             return null;
         }
 
