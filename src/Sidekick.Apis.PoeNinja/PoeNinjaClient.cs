@@ -36,7 +36,7 @@ namespace Sidekick.Apis.PoeNinja
 
         public async Task Initialize()
         {
-            if (!settings.PoeNinja_LastClear.HasValue || settings.PoeNinja_LastClear > DateTimeOffset.Now.AddHours(-8))
+            if (!settings.PoeNinja_LastClear.HasValue || settings.PoeNinja_LastClear < DateTimeOffset.Now.AddHours(-8))
             {
                 await repository.Clear();
             }
