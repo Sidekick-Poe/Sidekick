@@ -47,10 +47,10 @@ namespace Sidekick.Modules.Settings
             var newSettings = new Settings();
             settings.CopyValuesTo(newSettings);
             propertyType.SetValue(newSettings, value);
-            await Save(newSettings, true);
+            await Save(newSettings);
         }
 
-        public async Task Save(ISettings newSettings, bool skipInitialize)
+        public async Task Save(ISettings newSettings)
         {
             var leagueHasChanged = settings.LeagueId != newSettings.LeagueId;
             var languageHasChanged = settings.Language_Parser != newSettings.Language_Parser;
@@ -114,7 +114,7 @@ namespace Sidekick.Modules.Settings
                 File.Delete(filePath);
             }
 
-            if (!skipInitialize && (languageHasChanged || leagueHasChanged))
+            if (languageHasChanged || leagueHasChanged)
             {
                 cacheProvider.Clear();
                 await viewLocator.Open("/initialize");

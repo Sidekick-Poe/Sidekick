@@ -1,6 +1,6 @@
 using System;
 
-namespace Sidekick.Apis.PoeNinja.Repository.Models
+namespace Sidekick.Apis.PoeNinja.Models
 {
     /// <summary>
     /// Contains the result of a PriceFromNinjaQuery

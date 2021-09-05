@@ -1,7 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Sidekick.Apis.PoeNinja.Api;
 using Sidekick.Apis.PoeNinja.Repository;
-using Sidekick.Common;
 
 namespace Sidekick.Apis.PoeNinja
 {
@@ -11,17 +10,8 @@ namespace Sidekick.Apis.PoeNinja
         {
             services.AddHttpClient();
 
-            var connectionString = "Filename=" + SidekickPaths.GetDataFilePath("poeninja.db");
-
-            services.AddDbContextPool<PoeNinjaContext>(options => options.UseSqlite(connectionString));
-
-            var builder = new DbContextOptionsBuilder<PoeNinjaContext>();
-            builder.UseSqlite(connectionString);
-            var context = new PoeNinjaContext(builder.Options);
-            context.Database.Migrate();
-
+            services.AddTransient<IPoeNinjaApiClient, PoeNinjaApiClient>();
             services.AddTransient<IPoeNinjaRepository, PoeNinjaRepository>();
-
             services.AddTransient<IPoeNinjaClient, PoeNinjaClient>();
 
             return services;

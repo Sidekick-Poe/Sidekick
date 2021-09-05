@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Sidekick.Apis.PoeNinja.Api;
+using Sidekick.Apis.PoeNinja.Api.Models;
 using Sidekick.Apis.PoeNinja.Models;
 using Sidekick.Apis.PoeNinja.Repository;
-using Sidekick.Apis.PoeNinja.Repository.Models;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
@@ -20,204 +18,156 @@ namespace Sidekick.Apis.PoeNinja
     /// </summary>
     public class PoeNinjaClient : IPoeNinjaClient
     {
-        private readonly static Uri POE_NINJA_API_BASE_URL = new("https://poe.ninja/api/data/");
-        /// <summary>
-        /// Poe.ninja uses its own language codes.
-        /// </summary>
-        public readonly static Dictionary<string, string> POE_NINJA_LANGUAGE_CODES = new()
-        {
-            { "de", "ge" }, // German.
-            { "en", "en" }, // English.
-            { "es", "es" }, // Spanish.
-            { "fr", "fr" }, // French.
-            { "kr", "ko" }, // Korean.
-            { "pt", "pt" }, // Portuguese.
-            { "ru", "ru" }, // Russian.
-            { "th", "th" }, // Thai.
-        };
-        private readonly HttpClient client;
-        private readonly ILogger logger;
-        private readonly IGameLanguageProvider gameLanguageProvider;
         private readonly ISettings settings;
         private readonly IPoeNinjaRepository repository;
-        private readonly JsonSerializerOptions options;
-
-        private string LanguageCode
-        {
-            get
-            {
-                if (POE_NINJA_LANGUAGE_CODES.TryGetValue(gameLanguageProvider.Language.LanguageCode, out var languageCode))
-                {
-                    return languageCode;
-                }
-                return string.Empty;
-            }
-        }
-
-        public bool IsSupportingCurrentLanguage => !string.IsNullOrEmpty(LanguageCode);
+        private readonly IPoeNinjaApiClient poeNinjaApiClient;
 
         public PoeNinjaClient(
-            IHttpClientFactory httpClientFactory,
             ILogger<PoeNinjaClient> logger,
             IGameLanguageProvider gameLanguageProvider,
             ISettings settings,
-            IPoeNinjaRepository repository)
+            IPoeNinjaRepository repository,
+            IPoeNinjaApiClient poeNinjaApiClient)
         {
-            this.logger = logger;
-            this.gameLanguageProvider = gameLanguageProvider;
             this.settings = settings;
             this.repository = repository;
-            options = new JsonSerializerOptions()
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                IgnoreNullValues = true,
-            };
-            options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+            this.poeNinjaApiClient = poeNinjaApiClient;
+        }
 
-            client = httpClientFactory.CreateClient();
-            client.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
-            client.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
+        public async Task Initialize()
+        {
+            if (!settings.PoeNinja_LastClear.HasValue || settings.PoeNinja_LastClear < DateTimeOffset.Now.AddHours(-8))
+            {
+                await repository.Clear();
+            }
         }
 
         public async Task<NinjaPrice> GetPriceInfo(Item item)
         {
-            var cacheResult = await repository.Find(item);
+            var name = item.Original.Name;
+            var type = item.Original.Type;
 
-            if (cacheResult != null && cacheResult.LastUpdated.AddHours(4) > DateTimeOffset.Now)
+            foreach (var itemType in GetItemTypes(item))
             {
-                return cacheResult;
+                var repositoryItems = await repository.Load(itemType);
+                if (repositoryItems == null)
+                {
+                    repositoryItems = await poeNinjaApiClient.FetchItems(itemType);
+                }
+
+                if (repositoryItems == null)
+                {
+                    continue;
+                }
+
+                var translations = await repository.LoadTranslations(itemType);
+                if (translations.Any(x => x.Translation == name))
+                {
+                    name = translations.First(x => x.Translation == name).English;
+                }
+
+                var query = repositoryItems.AsQueryable().Where(x => x.Name == name || x.Name == type);
+
+                if (item.Properties != null)
+                {
+                    query = query.Where(x => x.Corrupted == item.Properties.Corrupted && x.MapTier == item.Properties.MapTier && x.GemLevel == item.Properties.GemLevel);
+                }
+
+                if (query.Any())
+                {
+                    return query.FirstOrDefault();
+                }
             }
 
-            var fetchItems = new List<Task<PoeNinjaQueryResult<PoeNinjaItem>>>();
-            var fetchCurrencies = new List<Task<PoeNinjaQueryResult<PoeNinjaCurrency>>>();
+            foreach (var currencyType in GetCurrencyTypes(item))
+            {
+                var repositoryItems = await repository.Load(currencyType);
+                if (repositoryItems == null)
+                {
+                    repositoryItems = await poeNinjaApiClient.FetchCurrencies(currencyType);
+                }
+
+                if (repositoryItems == null)
+                {
+                    continue;
+                }
+
+                var translations = await repository.LoadTranslations(currencyType);
+                if (translations.Any(x => x.Translation == name))
+                {
+                    name = translations.First(x => x.Translation == name).English;
+                }
+
+                var query = repositoryItems.AsQueryable().Where(x => x.Name == name || x.Name == type);
+
+                if (item.Properties != null)
+                {
+                    query = query.Where(x => x.Corrupted == item.Properties.Corrupted && x.MapTier == item.Properties.MapTier && x.GemLevel == item.Properties.GemLevel);
+                }
+
+                if (query.Any())
+                {
+                    return query.FirstOrDefault();
+                }
+            }
+
+            return null;
+        }
+
+        private List<ItemType> GetItemTypes(Item item)
+        {
+            var result = new List<ItemType>();
 
             if (item.Metadata.Category == Category.Currency)
             {
-                fetchCurrencies.Add(FetchCurrencies(CurrencyType.Currency));
-                fetchCurrencies.Add(FetchCurrencies(CurrencyType.Fragment));
-
-                fetchItems.Add(FetchItems(ItemType.Incubator));
-                fetchItems.Add(FetchItems(ItemType.Oil));
-                fetchItems.Add(FetchItems(ItemType.Incubator));
-                fetchItems.Add(FetchItems(ItemType.Scarab));
-                fetchItems.Add(FetchItems(ItemType.Fossil));
-                fetchItems.Add(FetchItems(ItemType.Resonator));
-                fetchItems.Add(FetchItems(ItemType.Essence));
-                fetchItems.Add(FetchItems(ItemType.Resonator));
+                result.Add(ItemType.Incubator);
+                result.Add(ItemType.Oil);
+                result.Add(ItemType.Incubator);
+                result.Add(ItemType.Scarab);
+                result.Add(ItemType.Fossil);
+                result.Add(ItemType.Resonator);
+                result.Add(ItemType.Essence);
+                result.Add(ItemType.Resonator);
             }
             else if (item.Metadata.Rarity == Rarity.Unique)
             {
                 switch (item.Metadata.Category)
                 {
-                    case Category.Accessory: fetchItems.Add(FetchItems(ItemType.UniqueAccessory)); break;
-                    case Category.Armour: fetchItems.Add(FetchItems(ItemType.UniqueArmour)); break;
-                    case Category.Flask: fetchItems.Add(FetchItems(ItemType.UniqueFlask)); break;
-                    case Category.Jewel: fetchItems.Add(FetchItems(ItemType.UniqueJewel)); break;
-                    case Category.Map: fetchItems.Add(FetchItems(ItemType.UniqueMap)); break;
-                    case Category.Weapon: fetchItems.Add(FetchItems(ItemType.UniqueWeapon)); break;
-                    case Category.ItemisedMonster: fetchItems.Add(FetchItems(ItemType.Beast)); break;
+                    case Category.Accessory: result.Add(ItemType.UniqueAccessory); break;
+                    case Category.Armour: result.Add(ItemType.UniqueArmour); break;
+                    case Category.Flask: result.Add(ItemType.UniqueFlask); break;
+                    case Category.Jewel: result.Add(ItemType.UniqueJewel); break;
+                    case Category.Map: result.Add(ItemType.UniqueMap); break;
+                    case Category.Weapon: result.Add(ItemType.UniqueWeapon); break;
+                    case Category.ItemisedMonster: result.Add(ItemType.Beast); break;
                 }
             }
             else
             {
                 switch (item.Metadata.Category)
                 {
-                    case Category.DivinationCard: fetchItems.Add(FetchItems(ItemType.DivinationCard)); break;
-                    case Category.Map: fetchItems.Add(FetchItems(ItemType.Map)); break;
-                    case Category.Gem: fetchItems.Add(FetchItems(ItemType.SkillGem)); break;
-                    case Category.Prophecy: fetchItems.Add(FetchItems(ItemType.Prophecy)); break;
-                    case Category.ItemisedMonster: fetchItems.Add(FetchItems(ItemType.Beast)); break;
+                    case Category.DivinationCard: result.Add(ItemType.DivinationCard); break;
+                    case Category.Map: result.Add(ItemType.Map); break;
+                    case Category.Gem: result.Add(ItemType.SkillGem); break;
+                    case Category.Prophecy: result.Add(ItemType.Prophecy); break;
+                    case Category.ItemisedMonster: result.Add(ItemType.Beast); break;
                 }
             }
 
-            if (fetchCurrencies.Count == 0 && fetchItems.Count == 0)
-            {
-                return null;
-            }
-
-            var itemResults = await Task.WhenAll(fetchItems);
-            var items = itemResults
-                .SelectMany(x => x.Lines)
-                .Select(x => new NinjaPrice()
-                {
-                    Corrupted = x.Corrupted,
-                    Price = x.ChaosValue,
-                    LastUpdated = DateTimeOffset.Now,
-                    Name = x.Name,
-                    MapTier = x.MapTier,
-                    GemLevel = x.GemLevel,
-                })
-                .ToList();
-            await repository.SavePrices(items);
-            await SaveTranslations(itemResults);
-
-            var currencyResults = await Task.WhenAll(fetchCurrencies);
-            var currencies = currencyResults
-                .SelectMany(x => x.Lines)
-                .Where(x => x.Receive != null)
-                .Select(x => new NinjaPrice()
-                {
-                    Corrupted = false,
-                    Price = x.Receive.Value,
-                    LastUpdated = DateTimeOffset.Now,
-                    Name = x.CurrencyTypeName,
-                })
-                .ToList();
-            await repository.SavePrices(currencies);
-            await SaveTranslations(currencyResults);
-
-            return await repository.Find(item);
+            return result;
         }
 
-        private async Task<PoeNinjaQueryResult<PoeNinjaItem>> FetchItems(ItemType itemType)
+        private List<CurrencyType> GetCurrencyTypes(Item item)
         {
-            var url = new Uri($"{POE_NINJA_API_BASE_URL}itemoverview?league={settings.LeagueId}&type={itemType}&language={LanguageCode}");
+            var result = new List<CurrencyType>();
 
-            try
+            if (item.Metadata.Category == Category.Currency)
             {
-                var response = await client.GetAsync(url);
-                var responseStream = await response.Content.ReadAsStreamAsync();
-                return await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaItem>>(responseStream, options);
-            }
-            catch (Exception)
-            {
-                logger.LogInformation("Could not fetch {itemType} from poe.ninja", itemType);
+                result.Add(CurrencyType.Currency);
+                result.Add(CurrencyType.Fragment);
             }
 
-            return new PoeNinjaQueryResult<PoeNinjaItem>() { Lines = new List<PoeNinjaItem>() };
-        }
-
-        private async Task<PoeNinjaQueryResult<PoeNinjaCurrency>> FetchCurrencies(CurrencyType currency)
-        {
-            var url = new Uri($"{POE_NINJA_API_BASE_URL}currencyoverview?league={settings.LeagueId}&type={currency}&language={LanguageCode}");
-
-            try
-            {
-                var response = await client.GetAsync(url);
-                var responseStream = await response.Content.ReadAsStreamAsync();
-                return await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaCurrency>>(responseStream, options);
-            }
-            catch
-            {
-                logger.LogInformation("Could not fetch {currency} from poe.ninja", currency);
-            }
-
-            return new PoeNinjaQueryResult<PoeNinjaCurrency>() { Lines = new List<PoeNinjaCurrency>() };
-        }
-
-        private async Task SaveTranslations<T>(PoeNinjaQueryResult<T>[] results)
-        {
-            var translations = results
-                .SelectMany(x => x.Language.Translations)
-                .Where(y => !y.Value.Contains("."))
-                .Distinct()
-                .Select(x => new NinjaTranslation()
-                {
-                    English = x.Key,
-                    Translation = x.Value,
-                })
-                .ToList();
-            await repository.SaveTranslations(translations);
+            return result;
         }
     }
 }

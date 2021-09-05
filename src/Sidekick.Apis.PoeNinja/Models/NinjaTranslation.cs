@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Sidekick.Apis.PoeNinja.Repository.Models
+namespace Sidekick.Apis.PoeNinja.Models
 {
     /// <summary>
     /// Contains translation data from the Poe ninja api

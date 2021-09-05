@@ -84,10 +84,10 @@ namespace Sidekick.Modules.Settings
 
         public List<ChatSetting> Chat_Commands { get; set; }
 
-        #region Cheatsheets
         public string Cheatsheets_Selected { get; set; }
         public string Cheatsheets_Key_Open { get; set; }
         public string Cheatsheets_Betrayal_Sort { get; set; }
-        #endregion
+
+        public DateTimeOffset? PoeNinja_LastClear { get; set; }
     }
 }

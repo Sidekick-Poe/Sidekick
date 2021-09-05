@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.PoeNinja.Models
+namespace Sidekick.Apis.PoeNinja.Api.Models
 {
     public class Modifier
     {
