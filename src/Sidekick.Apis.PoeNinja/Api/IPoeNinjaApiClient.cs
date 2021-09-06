@@ -7,7 +7,6 @@ namespace Sidekick.Apis.PoeNinja.Api
 {
     public interface IPoeNinjaApiClient
     {
-        Task<List<NinjaPrice>> FetchItems(ItemType itemType);
-        Task<List<NinjaPrice>> FetchCurrencies(CurrencyType currencyType);
+        Task<List<NinjaPrice>> FetchPrices(ItemType itemType);
     }
 }

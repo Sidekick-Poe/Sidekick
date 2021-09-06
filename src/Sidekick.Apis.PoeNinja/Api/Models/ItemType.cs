@@ -20,6 +20,8 @@ namespace Sidekick.Apis.PoeNinja.Api.Models
         UniqueWeapon,
         UniqueArmour,
         UniqueAccessory,
-        Beast
+        Beast,
+        Currency,
+        Fragment,
     }
 }

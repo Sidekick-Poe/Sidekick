@@ -52,7 +52,7 @@ namespace Sidekick.Apis.PoeNinja
                 var repositoryItems = await repository.Load(itemType);
                 if (repositoryItems == null)
                 {
-                    repositoryItems = await poeNinjaApiClient.FetchItems(itemType);
+                    repositoryItems = await poeNinjaApiClient.FetchPrices(itemType);
                 }
 
                 if (repositoryItems == null)
@@ -61,38 +61,6 @@ namespace Sidekick.Apis.PoeNinja
                 }
 
                 var translations = await repository.LoadTranslations(itemType);
-                if (translations.Any(x => x.Translation == name))
-                {
-                    name = translations.First(x => x.Translation == name).English;
-                }
-
-                var query = repositoryItems.AsQueryable().Where(x => x.Name == name || x.Name == type);
-
-                if (item.Properties != null)
-                {
-                    query = query.Where(x => x.Corrupted == item.Properties.Corrupted && x.MapTier == item.Properties.MapTier && x.GemLevel == item.Properties.GemLevel);
-                }
-
-                if (query.Any())
-                {
-                    return query.FirstOrDefault();
-                }
-            }
-
-            foreach (var currencyType in GetCurrencyTypes(item))
-            {
-                var repositoryItems = await repository.Load(currencyType);
-                if (repositoryItems == null)
-                {
-                    repositoryItems = await poeNinjaApiClient.FetchCurrencies(currencyType);
-                }
-
-                if (repositoryItems == null)
-                {
-                    continue;
-                }
-
-                var translations = await repository.LoadTranslations(currencyType);
                 if (translations.Any(x => x.Translation == name))
                 {
                     name = translations.First(x => x.Translation == name).English;
@@ -120,6 +88,9 @@ namespace Sidekick.Apis.PoeNinja
 
             if (item.Metadata.Category == Category.Currency)
             {
+                result.Add(ItemType.Currency);
+                result.Add(ItemType.Fragment);
+
                 result.Add(ItemType.Incubator);
                 result.Add(ItemType.Oil);
                 result.Add(ItemType.Incubator);
@@ -152,19 +123,6 @@ namespace Sidekick.Apis.PoeNinja
                     case Category.Prophecy: result.Add(ItemType.Prophecy); break;
                     case Category.ItemisedMonster: result.Add(ItemType.Beast); break;
                 }
-            }
-
-            return result;
-        }
-
-        private List<CurrencyType> GetCurrencyTypes(Item item)
-        {
-            var result = new List<CurrencyType>();
-
-            if (item.Metadata.Category == Category.Currency)
-            {
-                result.Add(CurrencyType.Currency);
-                result.Add(CurrencyType.Fragment);
             }
 
             return result;
