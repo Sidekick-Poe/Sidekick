@@ -15,10 +15,10 @@
 </MudDrawer>
 
 <MudMainContent>
-    <MudContainer Class="py-6">
+    <MudContainer>
         @Body
 
-        <div class="pt-6 d-flex">
+        <div class="d-flex">
             <div class="flex-grow-1">
                 <MudButton Variant="Variant.Text"
                            OnClick="ResetCache">
@@ -62,7 +62,6 @@
     public async Task ResetCache()
     {
         CacheProvider.Clear();
-        await ViewLocator.Open("/initialize");
-        await ViewInstance.Close();
+        await ViewInstance.CloseAndOpen("/initialize");
     }
 }

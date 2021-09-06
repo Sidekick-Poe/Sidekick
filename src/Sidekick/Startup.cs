@@ -28,6 +28,8 @@ namespace Sidekick
 {
     public class Startup
     {
+        public static bool IsDevelopmentSite { get; set; } = false;
+
         private readonly IConfiguration configuration;
 
         public Startup(IConfiguration configuration)
@@ -39,6 +41,8 @@ namespace Sidekick
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            IsDevelopmentSite = true;
+
             services.AddTransient<ErrorResources>();
 
             services

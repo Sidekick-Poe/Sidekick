@@ -2,18 +2,21 @@
 @layout StartupLayout
 
 <SidekickLogo />
-<MudCard Class="my-4">
+
+<MudCard Class="my-1">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6" Align="Align.Center">@Title</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
     <MudCardContent>
-        <MudText Typo="Typo.body1"
-                 Align="Align.Center">
-            @Title
-        </MudText>
         <MudProgressLinear Color="Color.Primary"
                            Value="Percentage"
                            Minimum="0"
                            Maximum="100" />
     </MudCardContent>
 </MudCard>
+
 <div class="d-flex justify-end">
     <MudButton OnClick="Exit"
                Variant="Variant.Text"

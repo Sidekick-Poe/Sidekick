@@ -8,6 +8,7 @@ namespace Sidekick.Common.Settings
         Guid UserId { get; set; }
         string Language_Parser { get; set; }
         string Language_UI { get; set; }
+        string Theme { get; set; }
 
         string Key_Close { get; set; }
         bool EscapeClosesOverlays { get; set; }

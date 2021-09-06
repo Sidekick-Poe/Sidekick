@@ -1,6 +1,6 @@
 
 <div class="application-nav-bar">
-    <MudAppBar Color="Color.Primary" Fixed="false" Elevation="0">
+    <MudAppBar Fixed="false" Elevation="0">
         @LeftContent
         <div class="icon"><img src="/images/orbs/ExaltedOrb.png" /></div>
         <MudText Typo="Typo.h6">
@@ -12,13 +12,13 @@
         {
             if (Minimizable)
             {
-                <MudIconButton Icon="@Icons.Filled.Minimize" @onclick="ViewInstance.Minimize" />
+                <MudIconButton Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Filled.Minimize" @onclick="ViewInstance.Minimize" />
             }
             if (Maximizable)
             {
-                <MudIconButton Icon="@Icons.Filled.CropSquare" @onclick="ViewInstance.Maximize" />
+                <MudIconButton Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Filled.CropSquare" @onclick="ViewInstance.Maximize" />
             }
-            <MudIconButton Class="close-button" Icon="@Icons.Filled.Close" @onclick="ViewInstance.Close" Edge="Edge.End" />
+            <MudIconButton Class="close-button" Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Filled.Close" @onclick="ViewInstance.Close" Edge="Edge.End" />
         }
     </MudAppBar>
 </div>

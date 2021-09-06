@@ -123,6 +123,12 @@ namespace Sidekick.Electron.Views
             Dispose();
         }
 
+        public Task CloseAndOpen(string url)
+        {
+            _ = Close();
+            return locator.Open(url);
+        }
+
         private void Browser_OnBlur()
         {
             view.Browser.Close();

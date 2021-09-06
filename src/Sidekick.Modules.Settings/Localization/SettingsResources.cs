@@ -54,6 +54,7 @@ namespace Sidekick.Modules.Settings.Localization
         public string Map_Dangerous => resources["Map_Dangerous"];
         public string Map_Dangerous_Regex => resources["Map_Dangerous_Regex"];
         public string Map_Key_Check => resources["Map_Key_Check"];
+        public string Theme => resources["Theme"];
         public string Trade => resources["Trade"];
         public string Trade_CloseWithMouse => resources["Trade_CloseWithMouse"];
         public string Trade_Key_Check => resources["Trade_Key_Check"];

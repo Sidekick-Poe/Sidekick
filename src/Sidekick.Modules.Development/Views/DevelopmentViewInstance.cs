@@ -19,6 +19,12 @@ namespace Sidekick.Development.Views
             return Task.CompletedTask;
         }
 
+        public Task CloseAndOpen(string url)
+        {
+            navigationManager.NavigateTo(url);
+            return Task.CompletedTask;
+        }
+
         public virtual Task Maximize()
         {
             return Task.CompletedTask;

@@ -35,14 +35,7 @@ namespace Sidekick.Electron.Views
             ElectronNET.API.Electron.IpcMain.OnSync("close", (viewName) =>
             {
                 logger.LogError("Force closing the Blazor view {viewName}", viewName);
-                if (!string.IsNullOrEmpty(viewName?.ToString()))
-                {
-                    // Close(viewName.ToString());
-                }
-                else
-                {
-                    // CloseAll();
-                }
+                _ = TryCloseViews((_) => true);
 
                 return null;
             });

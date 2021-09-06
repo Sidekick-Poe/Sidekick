@@ -2,25 +2,26 @@
 @layout SettingsLayout
 
 <MudCard>
-    <MudCardHeader Class="pb-0">
+    <MudCardHeader>
         <CardHeaderContent>
             <MudText Typo="Typo.h3">@Resources.Group_Keybinds</MudText>
         </CardHeaderContent>
     </MudCardHeader>
-    <MudCardContent Class="pt-0">
+    <MudCardContent>
         <KeybindEditor Label="@Resources.Trade_Key_Check"
                        @bind-Value="ViewModel.Trade_Key_Check" />
         <KeybindEditor Label="@Resources.Key_Close"
                        @bind-Value="ViewModel.Key_Close" />
     </MudCardContent>
 </MudCard>
-<MudCard Class="mt-6">
-    <MudCardHeader Class="pb-0">
+
+<MudCard>
+    <MudCardHeader>
         <CardHeaderContent>
             <MudText Typo="Typo.h3">@Resources.Group_Other</MudText>
         </CardHeaderContent>
     </MudCardHeader>
-    <MudCardContent Class="pt-0">
+    <MudCardContent>
         <div>
             <MudCheckBox Label="@Resources.Trade_Prediction_Enable"
                          @bind-Checked="@ViewModel.Trade_Prediction_Enable"></MudCheckBox>

@@ -46,6 +46,11 @@
             border-radius: 0;
         }
 
+            ::deep .mud-appbar .mud-toolbar-appbar button.close-button {
+                background-color: transparent;
+                transition: all ease 0.4s;
+            }
+
             ::deep .mud-appbar .mud-toolbar-appbar button.close-button:hover {
                 color: var(--mud-palette-error-text);
                 background-color: var(--mud-palette-error);
