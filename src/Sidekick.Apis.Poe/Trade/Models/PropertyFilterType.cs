@@ -19,6 +19,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
         Misc_GemLevel,
         Misc_ItemLevel,
         Misc_Corrupted,
+        Misc_Scourged,
         Misc_Influence_Crusader,
         Misc_Influence_Elder,
         Misc_Influence_Hunter,

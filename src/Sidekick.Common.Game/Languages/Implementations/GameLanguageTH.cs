@@ -21,6 +21,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionQuality => "คุณภาพ";
         public string DescriptionAlternateQuality => "คุณภาพแบบพิเศษ";
         public string DescriptionCorrupted => "คอร์รัปต์";
+        public string DescriptionScourged => "อาบมิติอสูร";
         public string DescriptionSockets => "ซ็อกเก็ต";
         public string DescriptionItemLevel => "เลเวลไอเทม";
         public string PrefixSuperior => "Superior";

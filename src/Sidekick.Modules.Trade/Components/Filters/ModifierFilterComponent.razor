@@ -1,6 +1,6 @@
 
 <div>
-    <MudCheckBox @bind-Checked="Filter.Enabled" Color="Color.Primary" Label="@Filter.Modifier.Text" Class="font-smallcaps" />
+    <MudCheckBox @bind-Checked="Filter.Enabled" Color="Color.Primary" Label="@Filter.Modifier.Text" Class="@("font-smallcaps " + AdditionalClassNames)" />
     @if (Expanded)
     {
         <div class="pl-12 d-flex flex-row justify-start align-center">
@@ -18,6 +18,8 @@
     [Inject] public TradeResources Resources { get; set; }
 
     [Parameter] public ModifierFilter Filter { get; set; }
+
+    [Parameter] public string AdditionalClassNames { get; set; }
 
     private bool Expanded => Filter.Enabled && Filter.Modifier.OptionValue == null && Filter.Modifier.Values.Count > 0;
 }

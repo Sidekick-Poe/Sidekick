@@ -10,5 +10,6 @@ namespace Sidekick.Apis.Poe.Trade.Models
         public List<ModifierFilter> Enchant { get; set; } = new();
         public List<ModifierFilter> Pseudo { get; set; } = new();
         public List<ModifierFilter> Fractured { get; set; } = new();
+        public List<ModifierFilter> Scourge { get; set; } = new();
     }
 }

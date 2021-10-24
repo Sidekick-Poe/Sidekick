@@ -49,6 +49,7 @@ namespace Sidekick.Apis.Poe.Trade
             InitializeModifierFilters(result.Explicit, item.Modifiers.Explicit, enabledModifiers);
             InitializeModifierFilters(result.Crafted, item.Modifiers.Crafted, enabledModifiers);
             InitializeModifierFilters(result.Fractured, item.Modifiers.Fractured, enabledModifiers);
+            InitializeModifierFilters(result.Scourge, item.Modifiers.Scourge, enabledModifiers);
 
             return result;
         }
@@ -284,6 +285,13 @@ namespace Sidekick.Apis.Poe.Trade
                 PropertyFilterType.Misc_Influence_Warlord,
                 gameLanguageProvider.Language.InfluenceWarlord, item.Influences.Warlord,
                 enabled: item.Influences.Warlord);
+            // Scourged
+            InitializePropertyFilter(result.Misc,
+                PropertyFilterType.Misc_Scourged,
+                gameLanguageProvider.Language.DescriptionScourged,
+                1,
+                enabled: item.Properties.Scourged,
+                min: 1);
 
             return result;
         }

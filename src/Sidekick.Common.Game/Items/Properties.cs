@@ -43,5 +43,7 @@ namespace Sidekick.Common.Game.Items
         public double PhysicalDps { get; set; }
 
         public bool IsRelic { get; set; }
+
+        public bool Scourged { get; set; }
     }
 }

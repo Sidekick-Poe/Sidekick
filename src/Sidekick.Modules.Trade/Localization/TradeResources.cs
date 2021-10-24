@@ -21,6 +21,7 @@ namespace Sidekick.Modules.Trade.Localization
         public string Age_Seconds => localizer["Age_Seconds"];
         public string Class => localizer["Class"];
         public string Corrupted => localizer["Corrupted"];
+        public string Scourged => localizer["Scourged"];
         public string CountString(int count, int total) => localizer["CountString", count, total];
         public string Error_PoeApi => localizer["Error_PoeApi"];
         public string Filters_Expand => localizer["Filters_Expand"];
