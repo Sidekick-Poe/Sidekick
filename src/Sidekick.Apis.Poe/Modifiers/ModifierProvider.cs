@@ -46,6 +46,7 @@ namespace Sidekick.Apis.Poe.Modifiers
         public List<ModifierPatternMetadata> CraftedPatterns { get; set; }
         public List<ModifierPatternMetadata> VeiledPatterns { get; set; }
         public List<ModifierPatternMetadata> FracturedPatterns { get; set; }
+        public List<ModifierPatternMetadata> ScourgePatterns { get; set; }
         public List<ModifierPatternMetadata> IncursionRoomPatterns { get; set; }
 
         public async Task Initialize()
@@ -64,6 +65,7 @@ namespace Sidekick.Apis.Poe.Modifiers
             CraftedPatterns = new List<ModifierPatternMetadata>();
             VeiledPatterns = new List<ModifierPatternMetadata>();
             FracturedPatterns = new List<ModifierPatternMetadata>();
+            ScourgePatterns = new List<ModifierPatternMetadata>();
 
             foreach (var category in categories)
             {
@@ -88,6 +90,7 @@ namespace Sidekick.Apis.Poe.Modifiers
                     case "crafted": patterns = CraftedPatterns; break;
                     case "veiled": patterns = VeiledPatterns; break;
                     case "fractured": patterns = FracturedPatterns; break;
+                    case "scourge": patterns = ScourgePatterns; break;
                 }
 
                 foreach (var entry in category.Entries)
@@ -173,6 +176,7 @@ namespace Sidekick.Apis.Poe.Modifiers
                 "crafted" => "(?:\\ \\(crafted\\))?",
                 "veiled" => "(?:\\ \\(veiled\\))?",
                 "fractured" => "(?:\\ \\(fractured\\))?",
+                "scourge" => "(?:\\ \\(scourge\\))?",
                 _ => "",
             };
 
@@ -216,6 +220,7 @@ namespace Sidekick.Apis.Poe.Modifiers
             ParseModifiers(mods.Implicit, ImplicitPatterns, parsingItem);
             ParseModifiers(mods.Crafted, CraftedPatterns, parsingItem);
             ParseModifiers(mods.Fractured, FracturedPatterns, parsingItem);
+            ParseModifiers(mods.Scourge, ScourgePatterns, parsingItem);
             // ParseModifiers(mods.Veiled, VeiledPatterns, parsingItem);
 
             mods.Pseudo = pseudoModifierProvider.Parse(mods);
@@ -316,6 +321,7 @@ namespace Sidekick.Apis.Poe.Modifiers
             if (metadata == null) metadata = CraftedPatterns.FirstOrDefault(x => x.Id == id);
             if (metadata == null) metadata = EnchantPatterns.FirstOrDefault(x => x.Id == id);
             if (metadata == null) metadata = FracturedPatterns.FirstOrDefault(x => x.Id == id);
+            if (metadata == null) metadata = ScourgePatterns.FirstOrDefault(x => x.Id == id);
 
 
             if (metadata == null)

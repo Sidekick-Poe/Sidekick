@@ -23,6 +23,7 @@ namespace Sidekick.Common.Game.Languages
         string DescriptionQuality { get; }
         string DescriptionAlternateQuality { get; }
         string DescriptionCorrupted { get; }
+        string DescriptionScourged { get; }
         string DescriptionSockets { get; }
         string DescriptionItemLevel { get; }
         string DescriptionMapTier { get; }

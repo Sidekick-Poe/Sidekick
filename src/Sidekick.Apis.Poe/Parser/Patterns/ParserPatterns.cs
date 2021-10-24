@@ -42,11 +42,13 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
             ItemLevel = gameLanguageProvider.Language.DescriptionItemLevel.ToRegexIntCapture();
             Unidentified = gameLanguageProvider.Language.DescriptionUnidentified.ToRegexLine();
             Corrupted = gameLanguageProvider.Language.DescriptionCorrupted.ToRegexLine();
+            Scourged = gameLanguageProvider.Language.DescriptionScourged.ToRegexLine();
         }
         public Dictionary<Rarity, Regex> Rarity { get; private set; }
         public Regex ItemLevel { get; private set; }
         public Regex Unidentified { get; private set; }
         public Regex Corrupted { get; private set; }
+        public Regex Scourged { get; private set; }
         #endregion Header (Rarity, Name, Type)
 
         #region Properties (Armour, Evasion, Energy Shield, Quality, Level)

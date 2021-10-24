@@ -13,6 +13,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         Regex Blighted { get; }
         Regex ChanceToBlock { get; }
         Regex Corrupted { get; }
+        Regex Scourged { get; }
         Regex CriticalStrikeChance { get; }
         Regex Crusader { get; }
         Regex Elder { get; }

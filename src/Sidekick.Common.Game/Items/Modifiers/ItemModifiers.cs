@@ -10,5 +10,6 @@ namespace Sidekick.Common.Game.Items.Modifiers
         public List<Modifier> Enchant { get; set; } = new();
         public List<Modifier> Pseudo { get; set; } = new();
         public List<Modifier> Fractured { get; set; } = new();
+        public List<Modifier> Scourge { get; set; } = new();
     }
 }

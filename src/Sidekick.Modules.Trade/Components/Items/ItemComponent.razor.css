@@ -1,4 +1,4 @@
-﻿.clickable {
+.clickable {
   position: relative;
   cursor: pointer; }
   .clickable::before {
@@ -29,6 +29,12 @@ img {
 
 .red-text {
   color: #d20000; }
+
+.orange-text {
+    color: #FF6E25; }
+
+.brown-text {
+    color: #A29162; }
 
 .note-text {
   color: #AA9E82; }

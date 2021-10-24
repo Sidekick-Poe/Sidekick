@@ -309,6 +309,9 @@ namespace Sidekick.Apis.Poe.Trade
                     case PropertyFilterType.Misc_Corrupted:
                         filters.MiscFilters.Filters.Corrupted = new SearchFilterOption(propertyFilter);
                         break;
+                    case PropertyFilterType.Misc_Scourged:
+                        filters.MiscFilters.Filters.Scourged = new SearchFilterOption(propertyFilter);
+                        break;
 
                     // Weapon
                     case PropertyFilterType.Weapon_PhysicalDps:
@@ -342,6 +345,7 @@ namespace Sidekick.Apis.Poe.Trade
             SetModifierFilters(group, modifierFilters.Explicit);
             SetModifierFilters(group, modifierFilters.Crafted);
             SetModifierFilters(group, modifierFilters.Fractured);
+            SetModifierFilters(group, modifierFilters.Scourge);
 
             stats.Add(group);
         }
@@ -455,6 +459,7 @@ namespace Sidekick.Apis.Poe.Trade
                 {
                     ItemLevel = result.Item.ItemLevel,
                     Corrupted = result.Item.Corrupted,
+                    Scourged = result.Item.Scourged.Tier != 0,
                     IsRelic = result.Item.IsRelic,
                     Identified = result.Item.Identified,
                     Armor = result.Item.Extended.ArmourAtMax,
@@ -501,6 +506,12 @@ namespace Sidekick.Apis.Poe.Trade
                 result.Item.FracturedMods,
                 result.Item.Extended.Mods?.Fractured,
                 ParseHash(result.Item.Extended.Hashes?.Fractured));
+
+            ParseMods(modifierProvider,
+                item.Modifiers.Scourge,
+                result.Item.ScourgeMods,
+                result.Item.Extended.Mods?.Scourge,
+                ParseHash(result.Item.Extended.Hashes?.Scourge));
 
             return item;
         }
