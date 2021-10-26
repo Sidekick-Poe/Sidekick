@@ -120,11 +120,6 @@ namespace Sidekick.Apis.Poe.Trade
                     request.Query.Term = item.Original.Name;
                 }
 
-                if (item.Properties.MapTier > 0)
-                {
-                    request.Query.Filters.MapFilters.Filters.MapTier = new SearchFilterValue(item.Properties.MapTier, item.Properties.MapTier);
-                }
-
                 var uri = new Uri($"{gameLanguageProvider.Language.PoeTradeApiBaseUrl}search/{settings.LeagueId}");
                 var json = JsonSerializer.Serialize(request, poeTradeClient.Options);
                 var body = new StringContent(json, Encoding.UTF8, "application/json");
@@ -310,7 +305,7 @@ namespace Sidekick.Apis.Poe.Trade
                         filters.MiscFilters.Filters.Corrupted = new SearchFilterOption(propertyFilter);
                         break;
                     case PropertyFilterType.Misc_Scourged:
-                        filters.MiscFilters.Filters.Scourged = new SearchFilterOption(propertyFilter);
+                        filters.MiscFilters.Filters.Scourged = new SearchFilterValue(propertyFilter);
                         break;
 
                     // Weapon
