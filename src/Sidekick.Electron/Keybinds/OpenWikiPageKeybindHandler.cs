@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Browser;
@@ -20,6 +21,7 @@ namespace Sidekick.Electron.Keybinds
         private readonly IItemParser itemParser;
         private readonly IGameLanguageProvider gameLanguageProvider;
         private readonly IBrowserProvider browserProvider;
+        private readonly ILogger<OpenWikiPageKeybindHandler> logger;
 
         public OpenWikiPageKeybindHandler(
             IClipboardProvider clipboardProvider,
@@ -28,7 +30,8 @@ namespace Sidekick.Electron.Keybinds
             IProcessProvider processProvider,
             IItemParser itemParser,
             IGameLanguageProvider gameLanguageProvider,
-            IBrowserProvider browserProvider)
+            IBrowserProvider browserProvider,
+            ILogger<OpenWikiPageKeybindHandler> logger)
         {
             this.clipboardProvider = clipboardProvider;
             this.viewLocator = viewLocator;
@@ -37,6 +40,7 @@ namespace Sidekick.Electron.Keybinds
             this.itemParser = itemParser;
             this.gameLanguageProvider = gameLanguageProvider;
             this.browserProvider = browserProvider;
+            this.logger = logger;
         }
 
         public bool IsValid() => processProvider.IsPathOfExileInFocus;
@@ -53,13 +57,6 @@ namespace Sidekick.Electron.Keybinds
                 return;
             }
 
-            if (!gameLanguageProvider.IsEnglish())
-            {
-                // Only available for english language
-                await viewLocator.Open("/error/unavailable");
-                return;
-            }
-
             if (string.IsNullOrEmpty(item.Metadata.Name))
             {
                 // Most items will open the basetype wiki link.
@@ -68,47 +65,66 @@ namespace Sidekick.Electron.Keybinds
                 return;
             }
 
-            if (settings.Wiki_Preferred == WikiSetting.PoeDb)
+            if (settings.Wiki_Preferred == WikiSetting.PoeWiki)
+            {
+                if (!gameLanguageProvider.IsEnglish())
+                {
+                    await viewLocator.Open("/error/unavailable");
+                    return;
+                }
+
+                OpenPoeWiki(item);
+            }
+            else if (settings.Wiki_Preferred == WikiSetting.PoeDb)
             {
                 OpenPoeDb(item);
             }
-            else
+            else if (settings.Wiki_Preferred == WikiSetting.PoeFandom)
             {
-                OpenPoeWiki(item);
+                if (!gameLanguageProvider.IsEnglish())
+                {
+                    await viewLocator.Open("/error/unavailable");
+                    return;
+                }
+
+                OpenPoeFandom(item);
             }
         }
 
-        #region PoeDb
-        private const string PoeDb_BaseUri = "https://poedb.tw/";
-        private const string PoeDb_SubUrlUnique = "unique.php?n=";
-        private const string PoeDb_SubUrlGem = "gem.php?n=";
-        private const string PoeDb_SubUrlItem = "item.php?n=";
-        private void OpenPoeDb(Item item)
-        {
-            var subUrl = item.Metadata.Rarity switch
-            {
-                Rarity.Unique => PoeDb_SubUrlUnique,
-                Rarity.Gem => PoeDb_SubUrlGem,
-                _ => PoeDb_SubUrlItem
-            };
-
-            var searchLink = item.Metadata.Name ?? item.Metadata.Type;
-            var wikiLink = subUrl + searchLink.Replace(" ", "+");
-
-            browserProvider.OpenUri(new Uri(PoeDb_BaseUri + wikiLink));
-        }
-        #endregion
-
-        #region PoeWiki
+        private const string PoeWiki_BaseUri = "https://www.poewiki.net/";
+        private const string PoeWiki_SubUrl = "w/index.php?search=";
         private void OpenPoeWiki(Item item)
         {
-            // determine search link, so wiki can be opened for any item
             var searchLink = item.Metadata.Name ?? item.Metadata.Type;
-            // replace space encodes with '_' to match the link layout of the poe wiki and then url encode it
-            var itemLink = System.Net.WebUtility.UrlEncode(searchLink.Replace(" ", "_"));
+            var wikiLink = PoeWiki_SubUrl + searchLink.Replace(" ", "+");
+            var uri = new Uri(PoeWiki_BaseUri + wikiLink);
 
-            browserProvider.OpenUri(new Uri($"https://pathofexile.gamepedia.com/{itemLink}"));
+            logger.LogInformation("Opening in browser: {uri}", uri.AbsoluteUri);
+            browserProvider.OpenUri(uri);
         }
-        #endregion
+
+        private const string PoeDb_BaseUri = "https://poedb.tw/";
+        private const string PoeDb_SubUrl = "search?q=";
+        private void OpenPoeDb(Item item)
+        {
+            var searchLink = item.Metadata.Name ?? item.Metadata.Type;
+            var wikiLink = PoeDb_SubUrl + searchLink.Replace(" ", "+");
+            var uri = new Uri(PoeDb_BaseUri + wikiLink);
+
+            logger.LogInformation("Opening in browser: {uri}", uri.AbsoluteUri);
+            browserProvider.OpenUri(uri);
+        }
+
+        private const string PoeFandom_BaseUri = "https://pathofexile.fandom.com/";
+        private const string PoeFandom_SubUrl = "wiki/Special:Search?query=";
+        private void OpenPoeFandom(Item item)
+        {
+            var searchLink = item.Metadata.Name ?? item.Metadata.Type;
+            var wikiLink = PoeFandom_SubUrl + searchLink.Replace(" ", "+");
+            var uri = new Uri(PoeFandom_BaseUri + wikiLink);
+
+            logger.LogInformation("Opening in browser: {uri}", uri.AbsoluteUri);
+            browserProvider.OpenUri(uri);
+        }
     }
 }

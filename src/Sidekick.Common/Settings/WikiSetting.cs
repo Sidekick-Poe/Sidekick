@@ -5,7 +5,11 @@ namespace Sidekick.Common.Settings
     /// </summary>
     public enum WikiSetting
     {
+        // https://www.poewiki.net
         PoeWiki,
-        PoeDb,
+        // https://pathofexile.fandom.com
+        PoeFandom,
+        // https://poedb.tw
+        PoeDb
     }
 }
