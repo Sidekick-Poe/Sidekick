@@ -57,14 +57,6 @@ namespace Sidekick.Electron.Keybinds
                 return;
             }
 
-            if (string.IsNullOrEmpty(item.Metadata.Name))
-            {
-                // Most items will open the basetype wiki link.
-                // Does not work for unique items that are not identified.
-                await viewLocator.Open("/error/invalid");
-                return;
-            }
-
             if (settings.Wiki_Preferred == WikiSetting.PoeWiki)
             {
                 if (!gameLanguageProvider.IsEnglish())
