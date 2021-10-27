@@ -3,10 +3,11 @@
 {
     foreach (var filter in Filters)
     {
-        <ModifierFilterComponent Filter="filter" />
+        <ModifierFilterComponent Filter="filter" AdditionalClassNames="@AdditionalClassNames" />
     }
 }
 
 @code {
     [Parameter] public List<ModifierFilter> Filters { get; set; }
+    [Parameter] public string AdditionalClassNames { get; set; }
 }

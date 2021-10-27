@@ -22,6 +22,9 @@ namespace Sidekick.Apis.Poe.Trade.Filters
 
         public SearchFilterOption Corrupted { get; set; }
 
+        [JsonPropertyName("scourge_tier")]
+        public SearchFilterValue Scourged { get; set; }
+
         public SearchFilterOption Crafted { get; set; }
 
         public SearchFilterOption Enchanted { get; set; }

@@ -1,26 +1,21 @@
 .clickable {
-    position: relative;
-    cursor: pointer;
-}
-
-    .clickable::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        display: block;
-        background: #ffffff;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity ease 0.3s;
-        z-index: 1;
-    }
-
-    .clickable:hover::before {
-        opacity: 0.15;
-    }
+  position: relative;
+  cursor: pointer; }
+  .clickable::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    background: #ffffff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity ease 0.3s;
+    z-index: 1; }
+  .clickable:hover::before {
+    opacity: 0.15; }
 
 img {
     max-width: 100%;
@@ -38,6 +33,12 @@ img {
 .red-text {
     color: #d20000;
 }
+
+.orange-text {
+    color: #FF6E25; }
+
+.brown-text {
+    color: #A29162; }
 
 .note-text {
     color: #AA9E82;

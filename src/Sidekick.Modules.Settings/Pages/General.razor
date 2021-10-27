@@ -45,16 +45,8 @@
             <MudText Typo="Typo.h3">@Resources.Group_Other</MudText>
         </CardHeaderContent>
     </MudCardHeader>
-    <MudCardContent>
+    <MudCardContent Class="pt-0">
         <ThemeSelect @bind-Value="ViewModel.Theme" />
-        @*
-            <div>
-                <MudCheckBox Label="@Resources.General_SendCrashReports" @bind-Checked="@ViewModel.SendCrashReports" />
-                <MudTooltip Text="@Resources.General_CopyUserIdToClipboard" Placement="Placement.Top">
-                    <MudIconButton Icon="@Icons.Material.Filled.FileCopy" @onclick="CopyUserIdToClipboard" />
-                </MudTooltip>
-            </div>
-        *@
         <div>
             <MudCheckBox Label="@Resources.General_RetainClipboard"
                          @bind-Checked="@ViewModel.RetainClipboard"></MudCheckBox>

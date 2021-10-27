@@ -19,6 +19,7 @@ namespace Sidekick.Apis.Poe.Trade.Results
         public Rarity Rarity { get; set; }
 
         public bool Corrupted { get; set; }
+        public Scourged Scourged { get; set; } = new Scourged();
 
         public bool Fractured { get; set; }
 
@@ -66,6 +67,9 @@ namespace Sidekick.Apis.Poe.Trade.Results
 
         [JsonPropertyName("fracturedMods")]
         public List<string> FracturedMods { get; set; }
+
+        [JsonPropertyName("scourgeMods")]
+        public List<string> ScourgeMods { get; set; }
 
         public List<ResultSocket> Sockets { get; set; } = new List<ResultSocket>();
 

@@ -21,6 +21,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionQuality => "Качество";
         public string DescriptionAlternateQuality => "Изменённый эффект качества";
         public string DescriptionCorrupted => "Осквернено";
+        public string DescriptionScourged => "Преображено";
         public string DescriptionSockets => "Гнезда";
         public string DescriptionItemLevel => "Уровень предмета";
         public string PrefixSuperior => "Рог";

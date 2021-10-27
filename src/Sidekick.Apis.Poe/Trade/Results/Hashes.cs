@@ -24,6 +24,9 @@ namespace Sidekick.Apis.Poe.Trade.Results
         [JsonPropertyName("fractured")]
         public List<List<JsonElement>> Fractured { get; set; }
 
+        [JsonPropertyName("scourge")]
+        public List<List<JsonElement>> Scourge { get; set; }
+
         [JsonPropertyName("monster")]
         public List<List<JsonElement>> Monster { get; set; }
     }

@@ -21,6 +21,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionQuality => "퀄리티";
         public string DescriptionAlternateQuality => "대체 퀄리티";
         public string DescriptionCorrupted => "타락";
+        public string DescriptionScourged => "스컬지";
         public string DescriptionSockets => "홈";
         public string DescriptionItemLevel => "아이템 레벨";
         public string PrefixSuperior => "상";

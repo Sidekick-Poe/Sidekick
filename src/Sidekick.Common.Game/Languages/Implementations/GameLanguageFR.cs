@@ -21,6 +21,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionQuality => "Qualité";
         public string DescriptionAlternateQuality => "Qualité alternative";
         public string DescriptionCorrupted => "Corrompu";
+        public string DescriptionScourged => "Souillé";
         public string DescriptionSockets => "Châsses";
         public string DescriptionItemLevel => "Niveau de l'objet";
         public string DescriptionExperience => "Expérience";

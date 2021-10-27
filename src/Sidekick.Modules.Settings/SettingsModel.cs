@@ -21,8 +21,9 @@ namespace Sidekick.Modules.Settings
 
             WikiOptions = new Dictionary<WikiSetting, string>()
             {
-                { WikiSetting.PoeWiki, "POE Wiki" },
-                { WikiSetting.PoeDb, "POE Db" },
+                { WikiSetting.PoeWiki, "https://www.poewiki.net" },
+                { WikiSetting.PoeDb, "https://poedb.tw" },
+                { WikiSetting.PoeFandom, "https://pathofexile.fandom.com" }
             };
         }
 

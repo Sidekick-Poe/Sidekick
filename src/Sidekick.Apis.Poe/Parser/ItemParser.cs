@@ -118,6 +118,7 @@ namespace Sidekick.Apis.Poe.Parser
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
+                Scourged = GetBool(patterns.Scourged, parsingItem),
 
                 Quality = GetInt(patterns.Quality, propertyBlock),
                 AttacksPerSecond = GetDouble(patterns.AttacksPerSecond, propertyBlock),
@@ -140,6 +141,7 @@ namespace Sidekick.Apis.Poe.Parser
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
+                Scourged = GetBool(patterns.Scourged, parsingItem),
 
                 Quality = GetInt(patterns.Quality, propertyBlock),
                 Armor = GetInt(patterns.Armor, propertyBlock),
@@ -156,6 +158,7 @@ namespace Sidekick.Apis.Poe.Parser
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
+                Scourged = GetBool(patterns.Scourged, parsingItem),
             };
         }
 
@@ -168,6 +171,7 @@ namespace Sidekick.Apis.Poe.Parser
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
+                Scourged = GetBool(patterns.Scourged, parsingItem),
                 Blighted = patterns.Blighted.IsMatch(parsingItem.Blocks[0].Lines[^1].Text),
 
                 ItemQuantity = GetInt(patterns.ItemQuantity, propertyBlock),
@@ -185,6 +189,7 @@ namespace Sidekick.Apis.Poe.Parser
             return new Properties()
             {
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
+                Scourged = GetBool(patterns.Scourged, parsingItem),
 
                 GemLevel = GetInt(patterns.Level, propertyBlock),
                 Quality = GetInt(patterns.Quality, propertyBlock),
