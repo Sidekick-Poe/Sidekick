@@ -289,7 +289,7 @@ namespace Sidekick.Apis.Poe.Trade
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Scourged,
                 gameLanguageProvider.Language.DescriptionScourged,
-                1,
+                item.Properties.Scourged ? 1 : 0,
                 enabled: item.Properties.Scourged,
                 min: 1);
 
