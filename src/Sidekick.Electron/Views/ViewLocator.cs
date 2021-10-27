@@ -82,12 +82,6 @@ namespace Sidekick.Electron.Views
             window.SetTitle("Sidekick");
             window.SetVisibleOnAllWorkspaces(true);
 
-            // Remove menu to disable the default hotkeys such as Ctrl+W and Ctrl+R.
-            if (hostEnvironment.IsProduction())
-            {
-                window.RemoveMenu();
-            }
-
             if (FirstView)
             {
                 FirstView = false;

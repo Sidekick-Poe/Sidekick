@@ -28,7 +28,7 @@ namespace Sidekick.Modules.Update.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            await ViewInstance.Initialize("Update", width: 400, height: 260, isModal: true);
+            await ViewInstance.Initialize("Update", width: 400, height: 230, isModal: true);
             await base.OnInitializedAsync();
             await Handle();
         }
