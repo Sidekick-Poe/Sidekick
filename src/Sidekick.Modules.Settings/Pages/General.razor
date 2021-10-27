@@ -43,14 +43,6 @@
         </CardHeaderContent>
     </MudCardHeader>
     <MudCardContent Class="pt-0">
-        @*
-            <div>
-                <MudCheckBox Label="@Resources.General_SendCrashReports" @bind-Checked="@ViewModel.SendCrashReports" />
-                <MudTooltip Text="@Resources.General_CopyUserIdToClipboard" Placement="Placement.Top">
-                    <MudIconButton Icon="@Icons.Material.Filled.FileCopy" @onclick="CopyUserIdToClipboard" />
-                </MudTooltip>
-            </div>
-        *@
         <div>
             <MudCheckBox Label="@Resources.General_RetainClipboard"
                          @bind-Checked="@ViewModel.RetainClipboard"></MudCheckBox>
