@@ -57,3 +57,19 @@
 .font-smallcaps {
     font-family: 'fontin-smallcaps';
 }
+
+.mud-container {
+    padding: 12px;
+}
+
+.mud-card {
+    margin-bottom: 12px;
+}
+
+.mud-card-content {
+    padding: 4px 12px 8px 12px;
+}
+
+.mud-card-header {
+    padding: 8px 12px 4px 12px;
+}

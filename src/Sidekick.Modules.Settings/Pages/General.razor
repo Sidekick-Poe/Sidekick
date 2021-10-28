@@ -2,47 +2,51 @@
 @layout SettingsLayout
 
 <MudCard>
-    <MudCardHeader Class="pb-0">
+    <MudCardHeader>
         <CardHeaderContent>
             <MudText Typo="Typo.h3">@Resources.Language_Title</MudText>
         </CardHeaderContent>
     </MudCardHeader>
-    <MudCardContent Class="pt-0">
+    <MudCardContent>
         <UILanguageSelect @bind-Value="ViewModel.Language_UI"></UILanguageSelect>
         <GameLanguageSelect @bind-Value="ViewModel.Language_Parser"></GameLanguageSelect>
     </MudCardContent>
 </MudCard>
-<MudCard Class="mt-6">
-    <MudCardHeader Class="pb-0">
+
+<MudCard>
+    <MudCardHeader>
         <CardHeaderContent>
             <MudText Typo="Typo.h3">@Resources.Character_Title</MudText>
         </CardHeaderContent>
     </MudCardHeader>
-    <MudCardContent Class="pt-0">
+    <MudCardContent>
         <LeagueSelect @bind-Value="ViewModel.LeagueId"></LeagueSelect>
         <MudTextField Label="@Resources.Character_Name"
                       Variant="Variant.Filled"
                       @bind-Value="ViewModel.Character_Name" />
     </MudCardContent>
 </MudCard>
-<MudCard Class="mt-6">
-    <MudCardHeader Class="pb-0">
+
+<MudCard>
+    <MudCardHeader>
         <CardHeaderContent>
             <MudText Typo="Typo.h3">@Resources.Cheatsheets</MudText>
         </CardHeaderContent>
     </MudCardHeader>
-    <MudCardContent Class="pt-0">
+    <MudCardContent>
         <KeybindEditor Label="@Resources.Cheatsheets_Key_Open"
                        @bind-Value="ViewModel.Cheatsheets_Key_Open" />
     </MudCardContent>
 </MudCard>
-<MudCard Class="mt-6">
-    <MudCardHeader Class="pb-0">
+
+<MudCard>
+    <MudCardHeader>
         <CardHeaderContent>
             <MudText Typo="Typo.h3">@Resources.Group_Other</MudText>
         </CardHeaderContent>
     </MudCardHeader>
     <MudCardContent Class="pt-0">
+        <ThemeSelect @bind-Value="ViewModel.Theme" />
         <div>
             <MudCheckBox Label="@Resources.General_RetainClipboard"
                          @bind-Checked="@ViewModel.RetainClipboard"></MudCheckBox>

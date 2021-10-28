@@ -37,7 +37,7 @@ namespace Sidekick.Modules.Settings.Setup
 
         protected override async Task OnInitializedAsync()
         {
-            await ViewInstance.Initialize("Setup", width: 400, height: 260, isModal: true);
+            await ViewInstance.Initialize("Setup", width: 400, height: 230, isModal: true);
 
             var leagues = await LeagueProvider.GetList(false);
             var leaguesHash = Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(leagues)));

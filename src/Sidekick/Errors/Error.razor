@@ -1,16 +1,17 @@
 @page "/error/{type}"
 @layout OverlayLayout
 
-<MudPaper Class="pa-2 mb-4 d-flex flex-row align-center">
-    <MudIcon Size="Size.Large" Color="Color.Error" Icon="@Icons.Filled.Error" Class="mr-4" />
+<MudPaper Class="pa-3 mb-3 d-flex flex-row align-center">
+    <MudIcon Size="Size.Large" Color="Color.Error" Icon="@Icons.Filled.Error" Class="mr-3" />
     <MudText Align="Align.Center">
         @Text
     </MudText>
 </MudPaper>
+
 <div class="d-flex justify-end">
     <MudButton Variant="Variant.Filled"
                Color="Color.Primary"
-               OnClick="Close">
+               OnClick="ViewInstance.Close">
         @Resources.Close
     </MudButton>
 </div>
@@ -34,9 +35,4 @@
         ErrorType.Unparsable => Resources.ParserError,
         _ => Resources.Error,
     };
-
-    public Task Close()
-    {
-        return ViewInstance.Close();
-    }
 }

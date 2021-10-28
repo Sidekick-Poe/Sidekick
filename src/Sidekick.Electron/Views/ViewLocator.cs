@@ -35,14 +35,7 @@ namespace Sidekick.Electron.Views
             ElectronNET.API.Electron.IpcMain.OnSync("close", (viewName) =>
             {
                 logger.LogError("Force closing the Blazor view {viewName}", viewName);
-                if (!string.IsNullOrEmpty(viewName?.ToString()))
-                {
-                    // Close(viewName.ToString());
-                }
-                else
-                {
-                    // CloseAll();
-                }
+                _ = TryCloseViews((_) => true);
 
                 return null;
             });
@@ -88,12 +81,6 @@ namespace Sidekick.Electron.Views
             // Make sure the title is always Sidekick. For keybind management we are watching for this value.
             window.SetTitle("Sidekick");
             window.SetVisibleOnAllWorkspaces(true);
-
-            // Remove menu to disable the default hotkeys such as Ctrl+W and Ctrl+R.
-            if (hostEnvironment.IsProduction())
-            {
-                window.RemoveMenu();
-            }
 
             if (FirstView)
             {

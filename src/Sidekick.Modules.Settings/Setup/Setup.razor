@@ -4,16 +4,19 @@
 @if (!RequiresSetup)
 {
     <SidekickLogo />
-    <MudCard Class="my-4">
+
+    <MudCard Class="my-1">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6" Align="Align.Center">@Resources.Title</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
         <MudCardContent>
-            <MudText Typo="Typo.body1"
-                     Align="Align.Center">
-                @Resources.Title
-            </MudText>
             <MudProgressLinear Color="Color.Primary"
                                Indeterminate="true" />
         </MudCardContent>
     </MudCard>
+
     <div class="d-flex justify-end">
         <MudButton OnClick="Exit"
                    Variant="Variant.Text"
@@ -28,7 +31,7 @@ else
     <EditForm Model="@ViewModel" OnValidSubmit="Save">
         <FluentValidationValidator DisableAssemblyScanning="@true" />
 
-        <MudCard Class="my-3">
+        <MudCard Class="mt-1">
             <MudCardHeader>
                 <CardHeaderContent>
                     <MudText Typo="Typo.h6">@SettingsResources.Language_Title</MudText>
@@ -40,7 +43,7 @@ else
             </MudCardContent>
         </MudCard>
 
-        <MudCard Class="mb-3">
+        <MudCard>
             <MudCardHeader>
                 <CardHeaderContent>
                     <MudText Typo="Typo.h6">@SettingsResources.Character_Title</MudText>

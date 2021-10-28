@@ -27,5 +27,10 @@ namespace Sidekick.Mock
             Title = title;
             return Task.CompletedTask;
         }
+
+        public Task CloseAndOpen(string url)
+        {
+            return Task.CompletedTask;
+        }
     }
 }

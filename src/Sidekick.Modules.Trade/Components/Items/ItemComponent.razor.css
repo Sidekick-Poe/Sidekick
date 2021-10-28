@@ -18,17 +18,21 @@
     opacity: 0.15; }
 
 img {
-  max-width: 100%;
-  height: auto;
-  max-height: 500px; }
+    max-width: 100%;
+    height: auto;
+    max-height: 500px;
+}
 
 .item-content {
-  background-color: #000000;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px; }
+    background-color: rgba(0, 0, 0, 0.65);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    color: rgba(255,255,255, 0.7);
+}
 
 .red-text {
-  color: #d20000; }
+    color: #d20000;
+}
 
 .orange-text {
     color: #FF6E25; }
@@ -37,4 +41,5 @@ img {
     color: #A29162; }
 
 .note-text {
-  color: #AA9E82; }
+    color: #AA9E82;
+}

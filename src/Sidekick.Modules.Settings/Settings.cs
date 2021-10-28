@@ -12,6 +12,8 @@ namespace Sidekick.Modules.Settings
 
         public string Language_Parser { get; set; } = "";
 
+        public string Theme { get; set; } = "";
+
         public string LeagueId { get; set; } = "";
 
         public string LeaguesHash { get; set; } = "";

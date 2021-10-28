@@ -30,6 +30,11 @@ namespace Sidekick.Common.Blazor.Views
         Task Close();
 
         /// <summary>
+        /// Closes the view and opens a new view
+        /// </summary>
+        Task CloseAndOpen(string url);
+
+        /// <summary>
         /// The title of the view
         /// </summary>
         string Title { get; }
