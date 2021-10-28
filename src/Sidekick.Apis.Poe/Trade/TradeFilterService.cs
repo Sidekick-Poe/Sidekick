@@ -249,7 +249,7 @@ namespace Sidekick.Apis.Poe.Trade
                 PropertyFilterType.Misc_Corrupted,
                 gameLanguageProvider.Language.DescriptionCorrupted,
                 item.Properties.Corrupted,
-                enabled: (item.Metadata.Rarity == Rarity.Gem || item.Metadata.Rarity == Rarity.Unique || item.Metadata.Rarity == Rarity.Rare) && item.Properties.Corrupted);
+                enabled: item.Properties.Corrupted);
             // Crusader
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Influence_Crusader,

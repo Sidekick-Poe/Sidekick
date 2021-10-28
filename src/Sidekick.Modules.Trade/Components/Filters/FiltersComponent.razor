@@ -93,11 +93,12 @@
         modifierCount += ModifierFilters?.Explicit?.Count ?? 0;
         modifierCount += ModifierFilters?.Fractured?.Count ?? 0;
         modifierCount += ModifierFilters?.Implicit?.Count ?? 0;
+        modifierCount += ModifierFilters?.Scourge?.Count ?? 0;
         ModifierVisible = modifierCount > 0;
         PseudoVisible = ModifierFilters?.Pseudo?.Count > 0;
 
         Visible = propertyCount > 0 || ModifierVisible || PseudoVisible;
-        Expanded = Item?.Metadata.Rarity == Rarity.Rare || Item?.Metadata.Rarity == Rarity.Magic;
+        Expanded = ModifierVisible;
     }
 
     private void Expand()
