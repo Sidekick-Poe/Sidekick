@@ -153,6 +153,7 @@ namespace Sidekick.Apis.PoeNinja.Api
                 var result = await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaCurrency>>(responseStream, options);
                 return (
                     result.Lines
+                        .Where(x => x.Receive?.Value != null)
                         .Select(x => new NinjaPrice()
                         {
                             Corrupted = false,
