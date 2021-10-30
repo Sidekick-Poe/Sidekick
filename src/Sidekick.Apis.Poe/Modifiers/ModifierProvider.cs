@@ -110,7 +110,7 @@ namespace Sidekick.Apis.Poe.Modifiers
                             {
                                 Text = ComputeOptionText(entry.Text, entry.Option.Options[i].Text),
                                 LineCount = NewLinePattern.Matches(entry.Text).Count + NewLinePattern.Matches(entry.Option.Options[i].Text).Count + 1,
-                                Value = i + 1,
+                                Value = entry.Option.Options[i].Id,
                                 Pattern = ComputePattern(categoryLabel, entry.Text, entry.Option.Options[i].Text),
                             });
                         }
@@ -281,7 +281,7 @@ namespace Sidekick.Apis.Poe.Modifiers
             {
                 modifier.OptionValue = new ModifierOption()
                 {
-                    Value = pattern.Value.ToString(),
+                    Value = pattern.Value.Value,
                 };
             }
             else if (pattern.Value.HasValue)

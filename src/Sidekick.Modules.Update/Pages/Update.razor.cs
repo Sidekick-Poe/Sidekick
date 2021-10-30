@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
+using Sidekick.Common.Cache;
 using Sidekick.Modules.Update.Localization;
 
 namespace Sidekick.Modules.Update.Pages
@@ -21,6 +22,7 @@ namespace Sidekick.Modules.Update.Pages
         [Inject] private IWebHostEnvironment Environment { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }
         [Inject] private IViewInstance ViewInstance { get; set; }
+        [Inject] private ICacheProvider CacheProvider { get; set; }
 
         private string Title { get; set; }
 
@@ -61,6 +63,8 @@ namespace Sidekick.Modules.Update.Pages
                     NavigationManager.NavigateTo("/setup");
                     return;
                 }
+
+                CacheProvider.Clear();
 
                 // Downloaded
                 await Task.Delay(1500);
