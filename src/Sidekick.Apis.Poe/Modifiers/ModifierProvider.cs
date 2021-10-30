@@ -152,7 +152,7 @@ namespace Sidekick.Apis.Poe.Modifiers
             IncursionRoomPatterns = PseudoPatterns.Where(x => englishModifierProvider.IncursionRooms.Contains(x.Id)).ToList();
             foreach (var pattern in IncursionRoomPatterns)
             {
-                var basePattern = pattern.Patterns.First(x => x.Value == 1);
+                var basePattern = pattern.Patterns.First(x => x.Value == 0);
                 pattern.Patterns.Add(new ModifierPattern()
                 {
                     LineCount = 1,
