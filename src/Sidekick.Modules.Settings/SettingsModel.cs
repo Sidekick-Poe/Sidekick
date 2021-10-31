@@ -44,6 +44,7 @@ namespace Sidekick.Modules.Settings
         public string Map_Dangerous_Regex { get; set; }
 
         public bool Trade_Prediction_Enable { get; set; }
+        public bool Trade_Normalize_Values { get; set; }
 
         public string Trade_Key_Check { get; set; }
 

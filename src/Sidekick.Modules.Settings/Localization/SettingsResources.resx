@@ -253,7 +253,7 @@
     <value>Check Prices</value>
   </data>
   <data name="Trade_Prediction_Enable" xml:space="preserve">
-    <value>Enable Price Prediction</value>
+    <value>Show price prediction from poeprices.info</value>
   </data>
   <data name="ResetCache" xml:space="preserve">
     <value>Reset Cache</value>
@@ -287,5 +287,8 @@
   </data>
   <data name="Theme" xml:space="preserve">
     <value>Theme</value>
+  </data>
+  <data name="Trade_Normalize_Values" xml:space="preserve">
+    <value>Normalize values in the trade filters (-5 difference or 10%)</value>
   </data>
 </root>

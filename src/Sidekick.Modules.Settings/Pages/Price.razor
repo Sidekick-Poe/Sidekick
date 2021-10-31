@@ -23,6 +23,10 @@
     </MudCardHeader>
     <MudCardContent>
         <div>
+            <MudCheckBox Label="@Resources.Trade_Normalize_Values"
+                         @bind-Checked="@ViewModel.Trade_Normalize_Values"></MudCheckBox>
+        </div>
+        <div>
             <MudCheckBox Label="@Resources.Trade_Prediction_Enable"
                          @bind-Checked="@ViewModel.Trade_Prediction_Enable"></MudCheckBox>
         </div>

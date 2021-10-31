@@ -7,6 +7,7 @@ using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Items.Modifiers;
 using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade
 {
@@ -16,13 +17,16 @@ namespace Sidekick.Apis.Poe.Trade
 
         private readonly IGameLanguageProvider gameLanguageProvider;
         private readonly FilterResources resources;
+        private readonly ISettings sidekickSettings;
 
         public TradeFilterService(
             IGameLanguageProvider gameLanguageProvider,
-            FilterResources resources)
+            FilterResources resources,
+            ISettings sidekickSettings)
         {
             this.gameLanguageProvider = gameLanguageProvider;
             this.resources = resources;
+            this.sidekickSettings = sidekickSettings;
         }
 
         public ModifierFilters GetModifierFilters(Item item)
@@ -43,18 +47,18 @@ namespace Sidekick.Apis.Poe.Trade
 
             List<string> enabledModifiers = new();
 
-            InitializeModifierFilters(result.Pseudo, item.Modifiers.Pseudo, enabledModifiers);
+            InitializeModifierFilters(result.Pseudo, item.Modifiers.Pseudo, enabledModifiers, sidekickSettings.Trade_Normalize_Values);
             InitializeModifierFilters(result.Enchant, item.Modifiers.Enchant, enabledModifiers, false);
-            InitializeModifierFilters(result.Implicit, item.Modifiers.Implicit, enabledModifiers);
-            InitializeModifierFilters(result.Explicit, item.Modifiers.Explicit, enabledModifiers);
-            InitializeModifierFilters(result.Crafted, item.Modifiers.Crafted, enabledModifiers);
-            InitializeModifierFilters(result.Fractured, item.Modifiers.Fractured, enabledModifiers);
-            InitializeModifierFilters(result.Scourge, item.Modifiers.Scourge, enabledModifiers);
+            InitializeModifierFilters(result.Implicit, item.Modifiers.Implicit, enabledModifiers, sidekickSettings.Trade_Normalize_Values);
+            InitializeModifierFilters(result.Explicit, item.Modifiers.Explicit, enabledModifiers, sidekickSettings.Trade_Normalize_Values);
+            InitializeModifierFilters(result.Crafted, item.Modifiers.Crafted, enabledModifiers, sidekickSettings.Trade_Normalize_Values);
+            InitializeModifierFilters(result.Fractured, item.Modifiers.Fractured, enabledModifiers, sidekickSettings.Trade_Normalize_Values);
+            InitializeModifierFilters(result.Scourge, item.Modifiers.Scourge, enabledModifiers, sidekickSettings.Trade_Normalize_Values);
 
             return result;
         }
 
-        private static void InitializeModifierFilters(List<ModifierFilter> filters, List<Modifier> modifiers, List<string> enabledModifiers, bool normalizeValues = true)
+        private static void InitializeModifierFilters(List<ModifierFilter> filters, List<Modifier> modifiers, List<string> enabledModifiers, bool normalizeValues)
         {
             if (modifiers.Count == 0) return;
 

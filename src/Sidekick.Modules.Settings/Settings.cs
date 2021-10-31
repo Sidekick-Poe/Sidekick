@@ -30,6 +30,8 @@ namespace Sidekick.Modules.Settings
 
         public bool Trade_Prediction_Enable { get; set; } = true;
 
+        public bool Trade_Normalize_Values { get; set; } = true;
+
         // public bool SendCrashReports { get; set; } = false;
 
         public string Map_Dangerous_Regex { get; set; } = "reflect|regen";
