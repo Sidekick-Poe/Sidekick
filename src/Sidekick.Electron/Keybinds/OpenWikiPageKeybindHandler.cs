@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Browser;
@@ -21,7 +20,6 @@ namespace Sidekick.Electron.Keybinds
         private readonly IItemParser itemParser;
         private readonly IGameLanguageProvider gameLanguageProvider;
         private readonly IBrowserProvider browserProvider;
-        private readonly ILogger<OpenWikiPageKeybindHandler> logger;
 
         public OpenWikiPageKeybindHandler(
             IClipboardProvider clipboardProvider,
@@ -30,8 +28,7 @@ namespace Sidekick.Electron.Keybinds
             IProcessProvider processProvider,
             IItemParser itemParser,
             IGameLanguageProvider gameLanguageProvider,
-            IBrowserProvider browserProvider,
-            ILogger<OpenWikiPageKeybindHandler> logger)
+            IBrowserProvider browserProvider)
         {
             this.clipboardProvider = clipboardProvider;
             this.viewLocator = viewLocator;
@@ -40,7 +37,6 @@ namespace Sidekick.Electron.Keybinds
             this.itemParser = itemParser;
             this.gameLanguageProvider = gameLanguageProvider;
             this.browserProvider = browserProvider;
-            this.logger = logger;
         }
 
         public bool IsValid() => processProvider.IsPathOfExileInFocus;
@@ -91,7 +87,6 @@ namespace Sidekick.Electron.Keybinds
             var wikiLink = PoeWiki_SubUrl + searchLink.Replace(" ", "+");
             var uri = new Uri(PoeWiki_BaseUri + wikiLink);
 
-            logger.LogInformation("Opening in browser: {uri}", uri.AbsoluteUri);
             browserProvider.OpenUri(uri);
         }
 
@@ -103,7 +98,6 @@ namespace Sidekick.Electron.Keybinds
             var wikiLink = PoeDb_SubUrl + searchLink.Replace(" ", "+");
             var uri = new Uri(PoeDb_BaseUri + wikiLink);
 
-            logger.LogInformation("Opening in browser: {uri}", uri.AbsoluteUri);
             browserProvider.OpenUri(uri);
         }
 
@@ -115,7 +109,6 @@ namespace Sidekick.Electron.Keybinds
             var wikiLink = PoeFandom_SubUrl + searchLink.Replace(" ", "+");
             var uri = new Uri(PoeFandom_BaseUri + wikiLink);
 
-            logger.LogInformation("Opening in browser: {uri}", uri.AbsoluteUri);
             browserProvider.OpenUri(uri);
         }
     }
