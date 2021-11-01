@@ -1,18 +1,18 @@
 @page "/trade/{itemText}"
 @layout OverlayLayout
 
-<PriceOptionsComponent Item="Item"
-                       QueryId="@QueryResult?.Id"
-                       @bind-Layout="Layout"
-                       Count="Results?.Count ?? 0"
-                       Total="QueryResult?.Total ?? 0" />
-
 <div class="d-flex flex-row align-start mx-n1 mb-2">
     <PriceNinjaComponent Item="Item" Class="flex-grow-1 mx-1" />
     <PricePredictionComponent Item="Item" Class="flex-grow-1 mx-1" />
 </div>
 
 <FiltersComponent Item="Item" ModifierFilters="ModifierFilters" PropertyFilters="PropertyFilters" OnSearch="UpdateQuery" />
+
+<PriceOptionsComponent Item="Item"
+                       QueryId="@QueryResult?.Id"
+                       @bind-Layout="Layout"
+                       Count="Results?.Count ?? 0"
+                       Total="QueryResult?.Total ?? 0" />
 
 @if (IsError)
 {

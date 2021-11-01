@@ -14,11 +14,18 @@
             }
             else
             {
-                <MudButton Variant="Variant.Text" Color="Color.Info" FullWidth="true" Class="d-flex flex-row justify-center align-center mb-2" OnClick="Collapse">
+                <MudButton Variant="Variant.Text" Color="Color.Info" FullWidth="true" Class="d-flex flex-row justify-center align-center" OnClick="Collapse">
                     <MudIcon Color="Color.Info" Icon="@Icons.Material.Filled.ArrowDropUp" />
                     <MudText Color="Color.Info" Class="font-smallcaps">@Resources.Filters_Collapse</MudText>
                     <MudIcon Color="Color.Info" Icon="@Icons.Material.Filled.ArrowDropUp" />
                 </MudButton>
+
+                <div class="d-flex justify-center pa-2">
+                    <MudButton Class="search-button"
+                               Variant="Variant.Filled"
+                               Color="Color.Primary"
+                               OnClick="Search">@Resources.Filters_Submit</MudButton>
+                </div>
 
                 <MudGrid Spacing="2">
                     <MudItem xs="12" sm="6">
@@ -52,8 +59,11 @@
                     </MudItem>
                 </MudGrid>
 
-                <div class="d-flex justify-end pa-2">
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Search">@Resources.Filters_Submit</MudButton>
+                <div class="d-flex justify-center pa-2">
+                    <MudButton Class="search-button"
+                               Variant="Variant.Filled"
+                               Color="Color.Primary"
+                               OnClick="Search">@Resources.Filters_Submit</MudButton>
                 </div>
             }
         </MudPaper>

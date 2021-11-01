@@ -1,7 +1,10 @@
-
 @if (Item != null && !string.IsNullOrEmpty(QueryId))
 {
-    <MudNavLink OnClick="OpenWebsite">@Resources.OpenWebsite</MudNavLink>
+    <MudTooltip Text="@Resources.OpenQueryInWebsite"
+                Placement="Placement.Left">
+        <MudIconButton Icon="@Icons.Filled.OpenInBrowser"
+                       OnClick="OpenWebsite" />
+    </MudTooltip>
 }
 
 @code {
