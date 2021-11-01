@@ -1,22 +1,15 @@
-
-<div class="d-flex flex-row align-center justify-end">
-    <CountString Count="Count" Total="Total" />
-    <MudIconButton Icon="@Icons.Material.Filled.Settings" Size="Size.Small" OnClick="Open" />
-</div>
-
-<MudDrawer @bind-Open="@Opened" Anchor="Anchor.Right" Elevation="1" Variant="@DrawerVariant.Temporary" ClipMode="DrawerClipMode.Always">
-    <MudDrawerHeader>
-        <MudText Typo="Typo.h6">@Resources.Settings</MudText>
-    </MudDrawerHeader>
-    <MudNavMenu>
-        <LayoutSelectLink Layout="Layout" LayoutChanged="LayoutChanged" />
-        <OpenWebsiteLink Item="Item" QueryId="@QueryId" />
-    </MudNavMenu>
-</MudDrawer>
+@if (QueryId != null)
+{
+    <div class="d-flex flex-row align-center justify-end mb-2">
+        <CountString Count="Count" Total="Total" />
+        <MudButtonGroup Size="@Size.Small">
+            <OpenWebsiteLink Item="Item" QueryId="@QueryId" />
+            <ToggleLayoutButton Layout="Layout" LayoutChanged="LayoutChanged" />
+        </MudButtonGroup>
+    </div>
+}
 
 @code {
-    [Inject] private TradeResources Resources { get; set; }
-
     [Parameter] public Item Item { get; set; }
     [Parameter] public string QueryId { get; set; }
 

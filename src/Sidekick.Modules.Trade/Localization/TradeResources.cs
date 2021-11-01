@@ -49,7 +49,7 @@ namespace Sidekick.Modules.Trade.Localization
         public string MaxQualityEnergyShield => localizer["MaxQualityEnergyShield"];
         public string MaxQualityEvasion => localizer["MaxQualityEvasion"];
         public string MaxQualityPDps => localizer["MaxQualityPDps"];
-        public string OpenWebsite => localizer["OpenWebsite"];
+        public string OpenQueryInWebsite => localizer["OpenQueryInWebsite"];
         public string OverlayAccountName => localizer["OverlayAccountName"];
         public string OverlayAge => localizer["OverlayAge"];
         public string OverlayCharacter => localizer["OverlayCharacter"];
