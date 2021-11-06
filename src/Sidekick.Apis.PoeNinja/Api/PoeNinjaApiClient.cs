@@ -123,7 +123,7 @@ namespace Sidekick.Apis.PoeNinja.Api
                             GemLevel = x.GemLevel,
                             DetailsId = x.DetailsId,
                             ItemType = itemType,
-                            SparkLine = x.SparkLine,
+                            SparkLine = x.SparkLine ?? x.LowConfidenceSparkLine,
                         })
                         .ToList(),
                     result.Language.Translations
@@ -165,7 +165,7 @@ namespace Sidekick.Apis.PoeNinja.Api
                             Name = x.CurrencyTypeName,
                             DetailsId = x.DetailsId,
                             ItemType = itemType,
-                            SparkLine = x.ReceiveSparkLine,
+                            SparkLine = x.ReceiveSparkLine ?? x.LowConfidenceReceiveSparkLine,
                         })
                         .ToList(),
                     result.Language.Translations

@@ -14,7 +14,7 @@ namespace Sidekick.Apis.PoeNinja.Api.Models
 
         // public SparkLine LowConfidencePaySparkLine { get; set; }
 
-        // public SparkLine LowConfidenceReviceSparkLine { get; set; }
+        public SparkLine LowConfidenceReceiveSparkLine { get; set; }
 
         public string DetailsId { get; set; }
     }

@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Sidekick.Apis.PoeNinja.Api.Models
 {
     public class PoeNinjaItem
@@ -25,9 +27,11 @@ namespace Sidekick.Apis.PoeNinja.Api.Models
 
         //public int ItemClass { get; set; }
 
+        [JsonPropertyName("Sparkline")]
         public SparkLine SparkLine { get; set; }
 
-        //public SparkLine LowConfidenceSparkLine { get; set; }
+        [JsonPropertyName("lowConfidenceSparkline")]
+        public SparkLine LowConfidenceSparkLine { get; set; }
 
         //public List<Modifier> ImplicitModifiers { get; set; }
 
