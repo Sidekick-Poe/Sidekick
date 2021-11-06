@@ -52,5 +52,6 @@ namespace Sidekick.Common.Game.Languages
         public string HeistCloak { get; init; }
         public string AbyssJewel { get; init; }
         public string Trinkets { get; init; }
+        public string Logbooks { get; init; }
     }
 }

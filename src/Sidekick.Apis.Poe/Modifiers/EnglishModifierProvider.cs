@@ -22,6 +22,8 @@ namespace Sidekick.Apis.Poe.Modifiers
 
         public List<string> IncursionRooms { get; private set; }
 
+        public List<string> LogbookFactions { get; private set; }
+
         public async Task Initialize()
         {
             var result = await GetList();
@@ -32,6 +34,7 @@ namespace Sidekick.Apis.Poe.Modifiers
                 if (first?.Id.Split('.').First() == "pseudo")
                 {
                     IncursionRooms = category.Entries.Where(x => x.Text.StartsWith("Has Room: ")).Select(x => x.Id).ToList();
+                    LogbookFactions = category.Entries.Where(x => x.Text.StartsWith("Has Logbook Faction: ")).Select(x => x.Id).ToList();
                 }
             }
         }

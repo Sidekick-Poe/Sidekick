@@ -48,6 +48,7 @@ namespace Sidekick.Apis.Poe.Modifiers
         public List<ModifierPatternMetadata> FracturedPatterns { get; set; }
         public List<ModifierPatternMetadata> ScourgePatterns { get; set; }
         public List<ModifierPatternMetadata> IncursionRoomPatterns { get; set; }
+        public List<ModifierPatternMetadata> LogbookFactionPatterns { get; set; }
 
         public async Task Initialize()
         {
@@ -148,9 +149,16 @@ namespace Sidekick.Apis.Poe.Modifiers
                 }
             }
 
-            // Prepare Incursion room patterns
+            // Prepare special pseudo patterns
             IncursionRoomPatterns = PseudoPatterns.Where(x => englishModifierProvider.IncursionRooms.Contains(x.Id)).ToList();
-            foreach (var pattern in IncursionRoomPatterns)
+            ComputeSpecialPseudoPattern(IncursionRoomPatterns);
+            LogbookFactionPatterns = PseudoPatterns.Where(x => englishModifierProvider.LogbookFactions.Contains(x.Id)).ToList();
+            ComputeSpecialPseudoPattern(LogbookFactionPatterns);
+        }
+
+        private void ComputeSpecialPseudoPattern(List<ModifierPatternMetadata> patterns)
+        {
+            foreach (var pattern in patterns)
             {
                 var basePattern = pattern.Patterns.OrderBy(x => x.Value).First();
                 pattern.Patterns.Add(new ModifierPattern()
@@ -225,11 +233,9 @@ namespace Sidekick.Apis.Poe.Modifiers
 
             mods.Pseudo = pseudoModifierProvider.Parse(mods);
 
-            // Check if we need to process Incursion room patterns
-            if (parsingItem.Metadata.Class == Common.Game.Items.Class.MiscMapItems)
-            {
-                ParseModifiers(mods.Pseudo, IncursionRoomPatterns, parsingItem);
-            }
+            // Check if we need to process special pseudo patterns
+            if (parsingItem.Metadata.Class == Common.Game.Items.Class.MiscMapItems) ParseModifiers(mods.Pseudo, IncursionRoomPatterns, parsingItem);
+            if (parsingItem.Metadata.Class == Common.Game.Items.Class.Logbooks) ParseModifiers(mods.Pseudo, LogbookFactionPatterns, parsingItem);
 
             return mods;
         }

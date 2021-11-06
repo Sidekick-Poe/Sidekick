@@ -18,5 +18,6 @@ namespace Sidekick.Common.Game.Items
         Watchstone = 13,
         HeistEquipment = 14,
         Contract = 15,
+        Logbook = 16,
     }
 }

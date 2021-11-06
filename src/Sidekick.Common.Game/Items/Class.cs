@@ -9,6 +9,7 @@ namespace Sidekick.Common.Game.Items
         DelveStackableSocketableCurrency = 4,
         MetamorphSample = 5,
         AbyssJewel = 6,
+        Logbooks = 7,
 
         // Accessory
         Amulet = 101,

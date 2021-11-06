@@ -103,6 +103,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
             HeistCloak = "Heist Cloaks",
             AbyssJewel = "Abyss Jewels",
             Trinkets = "Trinkets",
+            Logbooks = "Expedition Logbooks",
         };
     }
 }
