@@ -33,7 +33,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionQuality => "品質";
         public string DescriptionAlternateQuality => "替代品質";
         public string DescriptionCorrupted => "已汙染";
-        public string DescriptionScourged => "TODO";
+        public string DescriptionScourged => "災魘";
         public string DescriptionSockets => "插槽";
         public string DescriptionItemLevel => "物品等級";
         public string DescriptionExperience => "經驗值";
