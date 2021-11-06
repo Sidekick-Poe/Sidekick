@@ -9,5 +9,6 @@ namespace Sidekick.Apis.Poe.Modifiers
         Task Initialize();
         Task<List<ApiCategory>> GetList();
         List<string> IncursionRooms { get; }
+        List<string> LogbookFactions { get; }
     }
 }

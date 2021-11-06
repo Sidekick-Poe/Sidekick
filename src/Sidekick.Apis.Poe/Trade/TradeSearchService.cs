@@ -178,6 +178,7 @@ namespace Sidekick.Apis.Poe.Trade
                     Class.HybridFlasks => "flask",
                     Class.Jewel => "jewel.base",
                     Class.LifeFlasks => "flask",
+                    Class.Logbooks => "logbook",
                     Class.ManaFlasks => "flask",
                     Class.MapFragments => "map.fragment",
                     // Maven invitations are in misc map items class at the moment. Ignoring for now.
