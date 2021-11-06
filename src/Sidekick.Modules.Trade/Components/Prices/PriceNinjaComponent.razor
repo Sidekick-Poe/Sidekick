@@ -5,22 +5,33 @@
 }
 else if (Price != null)
 {
-    <MudPaper Class="@($"pa-2 {Class}")">
-        <MudGrid Spacing="4" Justify="Justify.Center" Class="align-center">
-            <MudItem xs="6">
-                <MudText Typo="Typo.subtitle1" Align="Align.Right">@Resources.PoeNinja</MudText>
-                <MudText Typo="Typo.caption" Align="Align.Right" Class="d-block">@Resources.LastUpdated : @Price.LastUpdated.ToString("t")</MudText>
-            </MudItem>
-            <MudItem xs="6">
-                <PriceDisplay Value="Price.Price" Class="justify-start" />
-            </MudItem>
-        </MudGrid>
-    </MudPaper>
+    <div class="flex-grow-1">
+        <MudPaper Class="@($"pa-2 {Class}")">
+            <MudGrid Spacing="4" Justify="Justify.Center" Class="align-center">
+                <MudItem xs="6">
+                    <MudText Typo="Typo.subtitle1" Align="Align.Right">@Resources.PoeNinja</MudText>
+                    <MudText Typo="Typo.caption" Align="Align.Right" Class="d-block">@Resources.LastUpdated : @Price.LastUpdated.ToString("t")</MudText>
+                </MudItem>
+                <MudItem xs="6" Class="d-flex flex-row">
+                    <PriceDisplay Value="Price.Price" Class="justify-start mr-4" />
+                    @if (Series != null)
+                    {
+                        <MudTooltip Text="@Resources.OpenInWebsite" Placement="Placement.Left">
+                            <MudButton Variant="Variant.Filled" OnClick="OpenWebsite">
+                                <MudChart ChartType="ChartType.Line" ChartOptions="@ChartOptions" ChartSeries="@Series" />
+                            </MudButton>
+                        </MudTooltip>
+                    }
+                </MudItem>
+            </MudGrid>
+        </MudPaper>
+    </div>
 }
 
 @code {
     [Inject] private PoeNinjaResources Resources { get; set; }
     [Inject] private IPoeNinjaClient Client { get; set; }
+    [Inject] private IBrowserProvider BrowserProvider { get; set; }
 
     [Parameter] public string Class { get; set; }
     [Parameter] public Item Item { get; set; }
@@ -28,6 +39,8 @@ else if (Price != null)
     private bool Loading { get; set; }
     private NinjaPrice Price { get; set; }
     private bool IsInit { get; set; }
+    private ChartOptions ChartOptions { get; set; }
+    private List<ChartSeries> Series { get; set; }
 
     protected override async Task OnParametersSetAsync()
     {
@@ -41,8 +54,32 @@ else if (Price != null)
         {
             IsInit = true;
             Price = await Client.GetPriceInfo(Item);
+
+            ChartOptions = new ChartOptions()
+            {
+                DisableLegend = true,
+                XAxisLines = false,
+                YAxisLines = false,
+                ChartPalette = new string[] { Colors.Yellow.Default }
+            };
+
+            if (Price?.SparkLine?.Data?.All(x => x.HasValue) == true)
+            {
+                // Normalize values above 0 since the chart doesn't show negative values in the viewbox.
+                var sparkLineData = Price.SparkLine.Data.Select(x => x.Value).ToArray();
+                var min = Math.Abs(sparkLineData.Min());
+                var chartData = sparkLineData.Select(x => x + min).ToArray();
+
+                Series = new() { new ChartSeries() { Data = chartData } };
+            }
         }
 
         Loading = false;
+    }
+
+    private void OpenWebsite()
+    {
+        var uri = Client.GetDetailsUri(Price);
+        BrowserProvider.OpenUri(uri);
     }
 }

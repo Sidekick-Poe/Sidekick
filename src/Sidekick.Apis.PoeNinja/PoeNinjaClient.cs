@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoeNinja.Api;
@@ -18,13 +19,37 @@ namespace Sidekick.Apis.PoeNinja
     /// </summary>
     public class PoeNinjaClient : IPoeNinjaClient
     {
+        private readonly Uri POE_NINJA_BASE_URL = new("https://poe.ninja/");
+        private readonly string leagueUri;
         private readonly ISettings settings;
         private readonly IPoeNinjaRepository repository;
         private readonly IPoeNinjaApiClient poeNinjaApiClient;
 
+        // Poe.ninja uses a different uri for each item type, always in English.
+        private readonly Dictionary<ItemType, string> ItemTypesUris = new()
+        {
+            { ItemType.Oil, "oils" },
+            { ItemType.Incubator, "incubators" },
+            { ItemType.Scarab, "scarabs" },
+            { ItemType.Fossil, "fossils" },
+            { ItemType.Resonator, "resonators" },
+            { ItemType.Essence, "essences" },
+            { ItemType.DivinationCard, "divination-cards" },
+            { ItemType.Prophecy, "prophecies" },
+            { ItemType.SkillGem, "skill-gems" },
+            { ItemType.UniqueMap, "unique-maps" },
+            { ItemType.Map, "maps" },
+            { ItemType.UniqueJewel, "unique-jewels" },
+            { ItemType.UniqueFlask, "unique-flasks" },
+            { ItemType.UniqueWeapon, "unique-weapons" },
+            { ItemType.UniqueArmour, "unique-armours" },
+            { ItemType.UniqueAccessory, "unique-accessories" },
+            { ItemType.Beast, "beasts" },
+            { ItemType.Currency, "currency" },
+            { ItemType.Fragment, "fragments" },
+        };
+
         public PoeNinjaClient(
-            ILogger<PoeNinjaClient> logger,
-            IGameLanguageProvider gameLanguageProvider,
             ISettings settings,
             IPoeNinjaRepository repository,
             IPoeNinjaApiClient poeNinjaApiClient)
@@ -32,6 +57,22 @@ namespace Sidekick.Apis.PoeNinja
             this.settings = settings;
             this.repository = repository;
             this.poeNinjaApiClient = poeNinjaApiClient;
+
+            leagueUri = GetLeagueUriFromLeagueId(this.settings.LeagueId);
+        }
+
+        /// <summary>
+        /// Get Poe.ninja's league uri from POE's API league id.
+        /// </summary>
+        public string GetLeagueUriFromLeagueId(string leagueId)
+        {
+            return leagueId switch
+            {
+                "Standard" => "standard",
+                "Hardcore" => "hardcore",
+                string x when x.Contains("Hardcore") => "challengehc",
+                _ => "challenge"
+            };
         }
 
         public async Task Initialize()
@@ -80,6 +121,16 @@ namespace Sidekick.Apis.PoeNinja
             }
 
             return null;
+        }
+
+        public Uri GetDetailsUri(NinjaPrice ninjaPrice)
+        {
+            if (!string.IsNullOrWhiteSpace(ninjaPrice.DetailsId))
+            {
+                return new Uri(POE_NINJA_BASE_URL, $"{leagueUri}/{ItemTypesUris[ninjaPrice.ItemType]}/{ninjaPrice.DetailsId}");
+            }
+
+            return POE_NINJA_BASE_URL;
         }
 
         private List<ItemType> GetItemTypes(Item item)

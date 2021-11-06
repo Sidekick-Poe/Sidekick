@@ -121,6 +121,9 @@ namespace Sidekick.Apis.PoeNinja.Api
                             Name = x.Name,
                             MapTier = x.MapTier,
                             GemLevel = x.GemLevel,
+                            DetailsId = x.DetailsId,
+                            ItemType = itemType,
+                            SparkLine = x.SparkLine ?? x.LowConfidenceSparkLine,
                         })
                         .ToList(),
                     result.Language.Translations
@@ -160,6 +163,9 @@ namespace Sidekick.Apis.PoeNinja.Api
                             Price = x.Receive.Value,
                             LastUpdated = DateTimeOffset.Now,
                             Name = x.CurrencyTypeName,
+                            DetailsId = x.DetailsId,
+                            ItemType = itemType,
+                            SparkLine = x.ReceiveSparkLine ?? x.LowConfidenceReceiveSparkLine,
                         })
                         .ToList(),
                     result.Language.Translations

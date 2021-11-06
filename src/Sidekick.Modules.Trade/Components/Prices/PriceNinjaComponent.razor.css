@@ -1,0 +1,14 @@
+::deep .mud-charts-yaxis {
+    display: none;
+}
+
+::deep .mud-chart {
+    width: 100px;
+    height: 40px;
+    justify-content: center;
+}
+
+::deep .mud-chart-line {
+    height: 100%;
+    width: 100%;
+}
