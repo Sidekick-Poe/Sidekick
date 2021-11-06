@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Sidekick.Apis.PoeNinja.Models;
 using Sidekick.Common.Game.Items;
@@ -8,5 +9,6 @@ namespace Sidekick.Apis.PoeNinja
     {
         Task Initialize();
         Task<NinjaPrice> GetPriceInfo(Item item);
+        Uri GetDetailsUri(NinjaPrice price);
     }
 }

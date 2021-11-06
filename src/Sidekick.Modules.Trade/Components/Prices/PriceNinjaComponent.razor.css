@@ -1,0 +1,8 @@
+::deep .mud-charts-yaxis {
+    display: none;
+}
+
+::deep .mud-chart {
+    height: 70px;
+    justify-content: center;
+}

@@ -5,22 +5,40 @@
 }
 else if (Price != null)
 {
-    <MudPaper Class="@($"pa-2 {Class}")">
-        <MudGrid Spacing="4" Justify="Justify.Center" Class="align-center">
-            <MudItem xs="6">
-                <MudText Typo="Typo.subtitle1" Align="Align.Right">@Resources.PoeNinja</MudText>
-                <MudText Typo="Typo.caption" Align="Align.Right" Class="d-block">@Resources.LastUpdated : @Price.LastUpdated.ToString("t")</MudText>
-            </MudItem>
-            <MudItem xs="6">
-                <PriceDisplay Value="Price.Price" Class="justify-start" />
-            </MudItem>
-        </MudGrid>
-    </MudPaper>
+    <div class="flex-grow-1">
+        <MudPaper Class="@($"pa-2 {Class}")">
+            <MudGrid Spacing="4" Justify="Justify.Center" Class="align-center">
+                <MudItem xs="6">
+                    <MudText Typo="Typo.subtitle1" Align="Align.Right">@Resources.PoeNinja</MudText>
+                    <MudText Typo="Typo.caption" Align="Align.Right" Class="d-block">@Resources.LastUpdated : @Price.LastUpdated.ToString("t")</MudText>
+                </MudItem>
+                <MudItem xs="6">
+                    <MudGrid Spacing="4">
+                        <MudItem>
+                            <PriceDisplay Value="Price.Price" Class="justify-start" />
+                        </MudItem>
+                        <MudItem Class="pa-0">
+                            <MudChart ChartType="ChartType.Line"
+                                      ChartOptions="ChartOptions"
+                                      ChartSeries="@Series" />
+                        </MudItem>
+                        <MudItem Class="pa-0 d-flex align-center">
+                            <MudTooltip Text="@Resources.OpenInWebsite"
+                                        Placement="Placement.Left">
+                                <MudIconButton Icon="@Icons.Filled.OpenInBrowser" OnClick="OpenWebsite" />
+                            </MudTooltip>
+                        </MudItem>
+                    </MudGrid>
+                </MudItem>
+            </MudGrid>
+        </MudPaper>
+    </div>
 }
 
 @code {
     [Inject] private PoeNinjaResources Resources { get; set; }
     [Inject] private IPoeNinjaClient Client { get; set; }
+    [Inject] private IBrowserProvider BrowserProvider { get; set; }
 
     [Parameter] public string Class { get; set; }
     [Parameter] public Item Item { get; set; }
@@ -29,11 +47,21 @@ else if (Price != null)
     private NinjaPrice Price { get; set; }
     private bool IsInit { get; set; }
 
+    private ChartOptions ChartOptions = new();
+    private List<ChartSeries> Series = new();
+
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
 
         if (IsInit) return;
+
+        ChartOptions = new ChartOptions()
+        {
+            DisableLegend = true,
+            XAxisLines = false,
+            ChartPalette = new string[] { Colors.Yellow.Default }
+        };
 
         Loading = true;
 
@@ -43,6 +71,15 @@ else if (Price != null)
             Price = await Client.GetPriceInfo(Item);
         }
 
+        var data = Price.SparkLine.Data.Select(x => x.Value).ToArray();
+        Series = new() { new ChartSeries() { Data = data } };
+
         Loading = false;
+    }
+
+    private void OpenWebsite()
+    {
+        var uri = Client.GetDetailsUri(Price);
+        BrowserProvider.OpenUri(uri);
     }
 }

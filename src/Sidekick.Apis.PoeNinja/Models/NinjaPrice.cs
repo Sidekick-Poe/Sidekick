@@ -1,4 +1,5 @@
 using System;
+using Sidekick.Apis.PoeNinja.Api.Models;
 
 namespace Sidekick.Apis.PoeNinja.Models
 {
@@ -36,5 +37,11 @@ namespace Sidekick.Apis.PoeNinja.Models
         /// When was the data last updated from PoeNinja
         /// </summary>
         public DateTimeOffset LastUpdated { get; set; }
+
+        public string DetailsId { get; set; }
+
+        public ItemType ItemType { get; set; }
+
+        public SparkLine SparkLine { get; set; }
     }
 }

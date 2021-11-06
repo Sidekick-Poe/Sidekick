@@ -13,6 +13,6 @@ namespace Sidekick.Modules.Trade.Localization
 
         public string PoeNinja => localizer["PoeNinja"];
         public string LastUpdated => localizer["LastUpdated"];
-
+        public string OpenInWebsite => localizer["OpenInWebsite"];
     }
 }
