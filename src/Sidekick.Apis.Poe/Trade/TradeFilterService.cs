@@ -300,7 +300,7 @@ namespace Sidekick.Apis.Poe.Trade
             return result;
         }
 
-        private static void InitializePropertyFilter<T>(List<PropertyFilter> filters,
+        private void InitializePropertyFilter<T>(List<PropertyFilter> filters,
             PropertyFilterType type,
             string label,
             T value,
@@ -320,7 +320,7 @@ namespace Sidekick.Apis.Poe.Trade
                 case int intValue:
                     valueType = FilterValueType.Int;
                     if (intValue == 0) return;
-                    min ??= NormalizeMinValue(intValue, delta);
+                    min ??= sidekickSettings.Trade_Normalize_Values ? NormalizeMinValue(intValue, delta) : intValue;
                     if (LabelValues.IsMatch(label))
                     {
                         label = LabelValues.Replace(label, intValue.ToString());
@@ -333,7 +333,7 @@ namespace Sidekick.Apis.Poe.Trade
                 case double doubleValue:
                     valueType = FilterValueType.Double;
                     if (doubleValue == 0) return;
-                    min ??= NormalizeMinValue(doubleValue, delta);
+                    min ??= sidekickSettings.Trade_Normalize_Values ? NormalizeMinValue(doubleValue, delta) : doubleValue;
                     if (LabelValues.IsMatch(label))
                     {
                         label = LabelValues.Replace(label, doubleValue.ToString("0.00"));
