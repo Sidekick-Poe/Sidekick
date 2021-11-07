@@ -2,25 +2,12 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "electronize start",
-            "type": "process",
-            "command": "dotnet",
-            "args": ["electronize", "start", "/PublishSingleFile false"],
-            "options": {
-                "env": {
-                    "ASPNETCORE_ENVIRONMENT": "Development"
-                },
-                "cwd": "${workspaceFolder}/src/Sidekick.Presentation.Blazor.Electron"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
             "label": "build",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/Sidekick.Presentation.Blazor.Electron/Sidekick.Presentation.Blazor.Electron.csproj",
+                "${workspaceFolder}/src/Sidekick/Sidekick.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
