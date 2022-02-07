@@ -23,6 +23,7 @@
         <LeagueSelect @bind-Value="ViewModel.LeagueId"></LeagueSelect>
         <MudTextField Label="@Resources.Character_Name"
                       Variant="Variant.Filled"
+                      MaxLength="23"
                       @bind-Value="ViewModel.Character_Name" />
     </MudCardContent>
 </MudCard>
