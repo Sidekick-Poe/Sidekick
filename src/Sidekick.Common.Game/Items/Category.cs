@@ -13,11 +13,9 @@ namespace Sidekick.Common.Game.Items
         Map = 8,
         Weapon = 9,
         Leaguestone = 10,
-        Prophecy = 11,
-        ItemisedMonster = 12,
-        Watchstone = 13,
-        HeistEquipment = 14,
-        Contract = 15,
-        Logbook = 16,
+        ItemisedMonster = 11,
+        HeistEquipment = 12,
+        Contract = 13,
+        Logbook = 14,
     }
 }

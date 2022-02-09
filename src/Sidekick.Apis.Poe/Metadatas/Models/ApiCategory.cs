@@ -10,9 +10,7 @@ namespace Sidekick.Apis.Poe.Metadatas.Models
     /// Jewels
     /// Maps
     /// Weapons
-    /// Prophecies
     /// Itemised Monsters
-    /// Watchstones
     /// </summary>
     public class ApiCategory
     {

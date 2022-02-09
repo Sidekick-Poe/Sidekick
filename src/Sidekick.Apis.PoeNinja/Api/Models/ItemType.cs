@@ -9,7 +9,6 @@ namespace Sidekick.Apis.PoeNinja.Api.Models
         Resonator,
         Essence,
         DivinationCard,
-        Prophecy,
         SkillGem,
         // BaseType, // This is ~13mb of raw data, in memory it eats ~40mb.
         // HelmetEnchant,

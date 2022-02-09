@@ -101,10 +101,6 @@ namespace Sidekick.Apis.Poe.Trade
                     request.Query.Type = item.Metadata.Type;
                     request.Query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("Unique");
                 }
-                else if (item.Metadata.Rarity == Rarity.Prophecy)
-                {
-                    request.Query.Name = item.Metadata.Name;
-                }
                 else
                 {
                     request.Query.Type = item.Metadata.Type;

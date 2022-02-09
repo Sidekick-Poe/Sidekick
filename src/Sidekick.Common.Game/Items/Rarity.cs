@@ -9,7 +9,6 @@ namespace Sidekick.Common.Game.Items
         Gem = 4,
         Currency = 5,
         DivinationCard = 6,
-        Prophecy = 8,
 
         Unknown = 99,
     }

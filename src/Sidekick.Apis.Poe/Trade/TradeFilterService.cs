@@ -33,13 +33,11 @@ namespace Sidekick.Apis.Poe.Trade
         {
             var result = new ModifierFilters();
 
-            // No filters for prophecies, currencies and divination cards, etc.
+            // No filters for currencies and divination cards, etc.
             if (item.Metadata.Category == Category.DivinationCard
                 || item.Metadata.Category == Category.Currency
-                || item.Metadata.Category == Category.Prophecy
                 || item.Metadata.Category == Category.ItemisedMonster
                 || item.Metadata.Category == Category.Leaguestone
-                || item.Metadata.Category == Category.Watchstone
                 || item.Metadata.Category == Category.Undefined)
             {
                 return result;
@@ -136,13 +134,11 @@ namespace Sidekick.Apis.Poe.Trade
         {
             var result = new PropertyFilters();
 
-            // No filters for prophecies, currencies and divination cards, etc.
+            // No filters for currencies and divination cards, etc.
             if (item.Metadata.Category == Category.DivinationCard
                 || item.Metadata.Category == Category.Currency
-                || item.Metadata.Category == Category.Prophecy
                 || item.Metadata.Category == Category.ItemisedMonster
                 || item.Metadata.Category == Category.Leaguestone
-                || item.Metadata.Category == Category.Watchstone
                 || item.Metadata.Category == Category.Undefined)
             {
                 return result;

@@ -47,7 +47,6 @@ namespace Sidekick.Modules.Cheatsheets.Localization
         public string Reward_Talismans => localizer["Reward_Talismans"];
         public string Reward_Uniques => localizer["Reward_Uniques"];
         public string Reward_Weapon => localizer["Reward_Weapon"];
-        public string Reward_Prophecies => localizer["Reward_Prophecies"];
         public string Reward_Generic => localizer["Reward_Generic"];
         public string Reward_Blight => localizer["Reward_Blight"];
         public string Reward_Metamorph => localizer["Reward_Metamorph"];

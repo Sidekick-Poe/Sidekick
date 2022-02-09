@@ -57,12 +57,10 @@ namespace Sidekick.Apis.Poe.Metadatas
             FillPattern(result.Result[7].Entries, Category.Map, useRegex: true);
             FillPattern(result.Result[8].Entries, Category.Weapon, useRegex: true);
             FillPattern(result.Result[9].Entries, Category.Leaguestone);
-            FillPattern(result.Result[10].Entries, Category.Prophecy);
-            FillPattern(result.Result[11].Entries, Category.ItemisedMonster, useRegex: true);
-            FillPattern(result.Result[12].Entries, Category.Watchstone);
-            FillPattern(result.Result[13].Entries, Category.HeistEquipment, useRegex: true);
-            FillPattern(result.Result[14].Entries, Category.Contract, useRegex: true);
-            FillPattern(result.Result[15].Entries, Category.Logbook, useRegex: true);
+            FillPattern(result.Result[10].Entries, Category.ItemisedMonster, useRegex: true);
+            FillPattern(result.Result[11].Entries, Category.HeistEquipment, useRegex: true);
+            FillPattern(result.Result[12].Entries, Category.Contract, useRegex: true);
+            FillPattern(result.Result[13].Entries, Category.Logbook, useRegex: true);
 
             Prefixes = new Regex("^(?:" +
                 gameLanguageProvider.Language.PrefixSuperior + " |" +
@@ -117,10 +115,6 @@ namespace Sidekick.Apis.Poe.Metadatas
             if (item.Flags.Unique)
             {
                 return Rarity.Unique;
-            }
-            else if (item.Flags.Prophecy)
-            {
-                return Rarity.Prophecy;
             }
 
             return category switch

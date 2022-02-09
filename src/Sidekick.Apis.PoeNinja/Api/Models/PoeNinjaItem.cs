@@ -19,8 +19,6 @@ namespace Sidekick.Apis.PoeNinja.Api.Models
         //public string Variant { get; set; }
 
 
-        //public string ProphecyText { get; set; }
-
         //public string ArtFilename { get; set; }
 
         //public int Links { get; set; }
