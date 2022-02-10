@@ -1,4 +1,4 @@
-﻿.header {
+.header {
   position: relative;
   padding: 0 7px; }
   .header ::deep .name,
@@ -63,9 +63,6 @@
 
 .header-normal {
   background: url("/images/items/header-normal-left.png") top left repeat-y, url("/images/items/header-normal-right.png") top right repeat-y, url("/images/items/header-normal-middle.png") top center repeat; }
-
-.header-prophecy {
-  background: url("/images/items/header-prophecy-left.png") top left repeat-y, url("/images/items/header-prophecy-right.png") top right repeat-y, url("/images/items/header-prophecy-middle.png") top center repeat; }
 
 .header-rare {
   background: url("/images/items/header-rare-left.png") top left repeat-y, url("/images/items/header-rare-right.png") top right repeat-y, url("/images/items/header-rare-middle.png") top center repeat; }

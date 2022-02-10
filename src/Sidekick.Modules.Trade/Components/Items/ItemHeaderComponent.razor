@@ -39,7 +39,6 @@
             {
                 case Rarity.Currency: return "header-currency";
                 case Rarity.Magic: return "header-magic";
-                case Rarity.Prophecy: return "header-prophecy";
                 case Rarity.Gem: return "header-gem";
                 case Rarity.Rare:
                     if (string.IsNullOrEmpty(Item.Original.Name) || string.IsNullOrEmpty(Item.Original.Type))
@@ -62,7 +61,6 @@
     {
         Rarity.Currency => "color:#AA9E82;",
         Rarity.Magic => "color:#8888FF;",
-        Rarity.Prophecy => "color:#B54BFF;",
         Rarity.Rare => "color:#FFFF77;",
         Rarity.Unique => "color:#AF6025;",
         _ => "color:#C8C8C8",

@@ -35,7 +35,6 @@ namespace Sidekick.Apis.PoeNinja
             { ItemType.Resonator, "resonators" },
             { ItemType.Essence, "essences" },
             { ItemType.DivinationCard, "divination-cards" },
-            { ItemType.Prophecy, "prophecies" },
             { ItemType.SkillGem, "skill-gems" },
             { ItemType.UniqueMap, "unique-maps" },
             { ItemType.Map, "maps" },
@@ -171,7 +170,6 @@ namespace Sidekick.Apis.PoeNinja
                     case Category.DivinationCard: result.Add(ItemType.DivinationCard); break;
                     case Category.Map: result.Add(ItemType.Map); break;
                     case Category.Gem: result.Add(ItemType.SkillGem); break;
-                    case Category.Prophecy: result.Add(ItemType.Prophecy); break;
                     case Category.ItemisedMonster: result.Add(ItemType.Beast); break;
                 }
             }

@@ -1,4 +1,4 @@
-﻿.separator {
+.separator {
   background-position: center center;
   background-repeat: no-repeat;
   height: 8px; }
@@ -13,9 +13,6 @@
 
 .separator-normal {
   background-image: url("/images/items/seperator-normal.png"); }
-
-.separator-prophecy {
-  background-image: url("/images/items/seperator-prophecy.png"); }
 
 .separator-rare {
   background-image: url("/images/items/seperator-rare.png"); }
