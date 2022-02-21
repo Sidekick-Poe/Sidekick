@@ -131,6 +131,8 @@ namespace Sidekick.Electron
                 app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
+            app.UseMiddleware<ElectronCookieProtectionMiddleware>();
             app.UseStaticFiles();
             app.UseRouting();
 
