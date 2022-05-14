@@ -104,6 +104,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
             AbyssJewel = "Abyss Jewels",
             Trinkets = "Trinkets",
             Logbooks = "Expedition Logbooks",
+            Sentinel = "Sentinel",
         };
     }
 }

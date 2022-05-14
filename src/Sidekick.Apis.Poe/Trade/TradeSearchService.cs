@@ -205,6 +205,7 @@ namespace Sidekick.Apis.Poe.Trade
                     Class.UtilityFlasks => "flask",
                     Class.Wands => "weapon.wand",
                     Class.Warstaves => "weapon.warstaff",
+                    Class.Sentinel => "sentinel",
                     _ => null,
                 };
 

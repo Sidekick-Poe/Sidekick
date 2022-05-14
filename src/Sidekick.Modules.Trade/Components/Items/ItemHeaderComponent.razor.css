@@ -6,6 +6,7 @@
     height: 34px;
     line-height: 34px;
     white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis; }
 
 .influences {
@@ -28,6 +29,7 @@
   height: 27px;
   line-height: 23px;
   white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis; }
 
 .header-double-rare ::deep .name,
