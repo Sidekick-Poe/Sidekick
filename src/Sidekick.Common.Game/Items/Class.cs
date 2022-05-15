@@ -10,6 +10,7 @@ namespace Sidekick.Common.Game.Items
         MetamorphSample = 5,
         AbyssJewel = 6,
         Logbooks = 7,
+        Sentinel = 8,
 
         // Accessory
         Amulet = 101,
