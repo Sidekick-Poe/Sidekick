@@ -103,14 +103,14 @@ else
         IsError = false;
         IsFetching = true;
 
-        if (Item.Metadata.Rarity == Rarity.Currency && ItemStaticDataProvider.GetId(Item) != null)
-        {
-            QueryResult = await TradeSearchService.SearchBulk(Item);
-        }
-        else
-        {
+        //if (Item.Metadata.Rarity == Rarity.Currency && ItemStaticDataProvider.GetId(Item) != null)
+        //{
+        //    QueryResult = await TradeSearchService.SearchBulk(Item);
+        //}
+        //else
+        //{
             QueryResult = await TradeSearchService.Search(Item, PropertyFilters, ModifierFilters);
-        }
+        //}
 
         IsFetching = false;
 
