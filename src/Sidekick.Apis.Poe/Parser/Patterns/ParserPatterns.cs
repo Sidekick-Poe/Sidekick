@@ -41,6 +41,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
 
             ItemLevel = gameLanguageProvider.Language.DescriptionItemLevel.ToRegexIntCapture();
             Unidentified = gameLanguageProvider.Language.DescriptionUnidentified.ToRegexLine();
+            IsRelic = gameLanguageProvider.Language.DescriptionIsRelic.ToRegexLine();
             Corrupted = gameLanguageProvider.Language.DescriptionCorrupted.ToRegexLine();
             Scourged = gameLanguageProvider.Language.DescriptionScourged.ToRegexLine();
         }
@@ -49,6 +50,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         public Regex Unidentified { get; private set; }
         public Regex Corrupted { get; private set; }
         public Regex Scourged { get; private set; }
+        public Regex IsRelic { get; private set; }
         #endregion Header (Rarity, Name, Type)
 
         #region Properties (Armour, Evasion, Energy Shield, Quality, Level)

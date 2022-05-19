@@ -124,6 +124,7 @@ namespace Sidekick.Apis.PoeNinja.Api
                             DetailsId = x.DetailsId,
                             ItemType = itemType,
                             SparkLine = x.SparkLine ?? x.LowConfidenceSparkLine,
+                            IsRelic = x.ItemClass == 9 // 3 for Unique, 9 for Relic Unique.
                         })
                         .ToList(),
                     result.Language.Translations

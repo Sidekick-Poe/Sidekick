@@ -117,6 +117,7 @@ namespace Sidekick.Apis.Poe.Parser
             {
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
+                IsRelic = GetBool(patterns.IsRelic, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
                 Scourged = GetBool(patterns.Scourged, parsingItem),
 
@@ -140,6 +141,7 @@ namespace Sidekick.Apis.Poe.Parser
             {
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
+                IsRelic = GetBool(patterns.IsRelic, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
                 Scourged = GetBool(patterns.Scourged, parsingItem),
 
@@ -157,6 +159,7 @@ namespace Sidekick.Apis.Poe.Parser
             {
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
+                IsRelic = GetBool(patterns.IsRelic, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
                 Scourged = GetBool(patterns.Scourged, parsingItem),
             };
@@ -170,6 +173,7 @@ namespace Sidekick.Apis.Poe.Parser
             {
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
+                IsRelic = GetBool(patterns.IsRelic, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
                 Scourged = GetBool(patterns.Scourged, parsingItem),
                 Blighted = patterns.Blighted.IsMatch(parsingItem.Blocks[0].Lines[^1].Text),
@@ -203,6 +207,7 @@ namespace Sidekick.Apis.Poe.Parser
             {
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
+                IsRelic = GetBool(patterns.IsRelic, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
             };
         }
@@ -213,6 +218,7 @@ namespace Sidekick.Apis.Poe.Parser
             {
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
+                IsRelic = GetBool(patterns.IsRelic, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
                 Quality = GetInt(patterns.Quality, parsingItem),
             };

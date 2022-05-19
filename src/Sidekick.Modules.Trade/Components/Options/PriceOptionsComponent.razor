@@ -1,15 +1,20 @@
 @if (QueryId != null)
 {
-    <div class="d-flex flex-row align-center justify-end mb-2">
-        <CountString Count="Count" Total="Total" />
-        <MudButtonGroup Size="@Size.Small">
-            <OpenWebsiteLink Item="Item" QueryId="@QueryId" />
-            <ToggleLayoutButton Layout="Layout" LayoutChanged="LayoutChanged" />
-        </MudButtonGroup>
-    </div>
+    <MudPaper Class="d-flex flex-row align-center justify-space-between mb-2 pl-2">
+        <MudText Color="Color.Tertiary">@Settings.LeagueId</MudText>
+        <div>
+            <CountString Count="Count" Total="Total" />
+            <MudButtonGroup Size="@Size.Small">
+                <OpenWebsiteLink Item="Item" QueryId="@QueryId" />
+                <ToggleLayoutButton Layout="Layout" LayoutChanged="LayoutChanged" />
+            </MudButtonGroup>
+        </div>
+    </MudPaper>
 }
 
 @code {
+    [Inject] private ISettings Settings { get; set; }
+
     [Parameter] public Item Item { get; set; }
     [Parameter] public string QueryId { get; set; }
 

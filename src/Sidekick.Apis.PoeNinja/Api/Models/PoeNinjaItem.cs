@@ -23,7 +23,7 @@ namespace Sidekick.Apis.PoeNinja.Api.Models
 
         //public int Links { get; set; }
 
-        //public int ItemClass { get; set; }
+        public int ItemClass { get; set; }
 
         [JsonPropertyName("Sparkline")]
         public SparkLine SparkLine { get; set; }
