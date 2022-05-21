@@ -119,7 +119,8 @@ namespace Sidekick.Apis.PoeNinja
                     // <5 being 0 links in their API.
                     var highestSocketLinks = item.Sockets.GroupBy(x => x.Group)
                                                          .Select(x => x.Count())
-                                                         .Max();
+                                                         .OrderByDescending(x => x)
+                                                         .FirstOrDefault();
 
                     query = query.Where(x => x.Links == (highestSocketLinks >= 5 ? highestSocketLinks : 0));
                 }
