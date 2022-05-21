@@ -46,6 +46,12 @@ namespace Sidekick.Apis.Poe.Static
 
         public string GetImage(string id)
         {
+            id = id switch
+            {
+                "exalt" => "exalted",
+                _ => id
+            };
+
             if (!string.IsNullOrEmpty(id) && ImageUrls.TryGetValue(id, out var result))
             {
                 return result;
