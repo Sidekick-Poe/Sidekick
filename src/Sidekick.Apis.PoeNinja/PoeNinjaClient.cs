@@ -46,6 +46,9 @@ namespace Sidekick.Apis.PoeNinja
             { ItemType.Beast, "beasts" },
             { ItemType.Currency, "currency" },
             { ItemType.Fragment, "fragments" },
+            { ItemType.Invitation, "invitations" },
+            { ItemType.DeliriumOrb, "delirium-orbs" },
+            { ItemType.BlightedMap, "blighted-maps" },
         };
 
         public PoeNinjaClient(
@@ -111,9 +114,15 @@ namespace Sidekick.Apis.PoeNinja
                 if (item.Properties != null)
                 {
                     query = query.Where(x => x.Corrupted == item.Properties.Corrupted
-                                          && x.MapTier == item.Properties.MapTier
                                           && x.GemLevel == item.Properties.GemLevel
                                           && x.IsRelic == item.Properties.IsRelic);
+
+                    if (itemType == ItemType.Map
+                     || itemType == ItemType.UniqueMap
+                     || itemType == ItemType.BlightedMap)
+                    {
+                        query = query.Where(x => x.MapTier == item.Properties.MapTier);
+                    }
 
                     // Poe.ninja has pricings for <5, 5 and 6 links.
                     // <5 being 0 links in their API.
@@ -125,7 +134,10 @@ namespace Sidekick.Apis.PoeNinja
                     query = query.Where(x => x.Links == (highestSocketLinks >= 5 ? highestSocketLinks : 0));
                 }
 
-                return query.FirstOrDefault();
+                if (query.Any())
+                {
+                    return query.FirstOrDefault();
+                }
             }
 
             return null;
@@ -149,7 +161,7 @@ namespace Sidekick.Apis.PoeNinja
             {
                 result.Add(ItemType.Currency);
                 result.Add(ItemType.Fragment);
-
+                result.Add(ItemType.DeliriumOrb);
                 result.Add(ItemType.Incubator);
                 result.Add(ItemType.Oil);
                 result.Add(ItemType.Incubator);
@@ -177,7 +189,13 @@ namespace Sidekick.Apis.PoeNinja
                 switch (item.Metadata.Category)
                 {
                     case Category.DivinationCard: result.Add(ItemType.DivinationCard); break;
-                    case Category.Map: result.Add(ItemType.Map); break;
+                    case Category.Map:
+                        result.Add(ItemType.Map);
+                        result.Add(ItemType.Fragment);
+                        result.Add(ItemType.Scarab);
+                        result.Add(ItemType.Invitation);
+                        result.Add(ItemType.BlightedMap);
+                        break;
                     case Category.Gem: result.Add(ItemType.SkillGem); break;
                     case Category.ItemisedMonster: result.Add(ItemType.Beast); break;
                 }
