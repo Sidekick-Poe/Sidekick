@@ -28,17 +28,17 @@
                 </div>
 
                 <MudGrid Spacing="2">
-                    <MudItem xs="12" sm="6">
+                    <MudItem xs="12" sm="4">
                         <ClassFilter @bind-Value="PropertyFilters.Class" Item="Item" />
                         <PropertyFiltersComponent Filters="PropertyFilters.Armour" Title="@Resources.Filters_Armour" />
                         <PropertyFiltersComponent Filters="PropertyFilters.Weapon" Title="@Resources.Filters_Weapon" />
                         <PropertyFiltersComponent Filters="PropertyFilters.Map" Title="@Resources.Filters_Map" />
                         <PropertyFiltersComponent Filters="PropertyFilters.Misc" Title="@Resources.Filters_Misc" />
                     </MudItem>
-                    <MudItem xs="12" sm="6">
+                    <MudItem xs="12" sm="8">
                         @if (ModifierVisible)
                         {
-                            <div class="mb-2">
+                            <div class="mb-2 alternate-background">
                                 <MudText Typo="Typo.h5" Class="px-2">@Resources.Filters_Modifiers</MudText>
                                 <ModifierFiltersComponent Filters="ModifierFilters.Enchant" />
                                 <ModifierFiltersComponent Filters="ModifierFilters.Scourge" AdditionalClassNames="orange-text" />
@@ -51,7 +51,7 @@
 
                         @if (PseudoVisible)
                         {
-                            <div class="mb-2">
+                            <div class="mb-2 alternate-background">
                                 <MudText Typo="Typo.h5" Class="px-2">@Resources.Filters_Pseudo</MudText>
                                 <ModifierFiltersComponent Filters="ModifierFilters.Pseudo" />
                             </div>

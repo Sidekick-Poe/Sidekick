@@ -1,2 +1,7 @@
 ::deep .mud-checkbox .mud-button-root {
-  padding: 4px 8px; }
+    padding: 4px 8px;
+}
+
+::deep .alternate-background > div:nth-child(odd) {
+    background-color: var(--mud-palette-background)
+}

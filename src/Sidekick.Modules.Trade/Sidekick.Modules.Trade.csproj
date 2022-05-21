@@ -5,6 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Components\Filters\ModifierFilterComponent.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Components\Filters\ModifierFilterComponent.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Sidekick.Apis.PoeNinja\Sidekick.Apis.PoeNinja.csproj" />
     <ProjectReference Include="..\Sidekick.Apis.PoePriceInfo\Sidekick.Apis.PoePriceInfo.csproj" />
     <ProjectReference Include="..\Sidekick.Apis.Poe\Sidekick.Apis.Poe.csproj" />
