@@ -43,5 +43,7 @@ namespace Sidekick.Apis.PoeNinja.Models
         public ItemType ItemType { get; set; }
 
         public SparkLine SparkLine { get; set; }
+
+        public bool IsRelic { get; set; }
     }
 }

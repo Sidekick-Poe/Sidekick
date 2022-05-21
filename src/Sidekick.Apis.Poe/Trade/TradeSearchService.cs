@@ -99,7 +99,9 @@ namespace Sidekick.Apis.Poe.Trade
                 {
                     request.Query.Name = item.Metadata.Name;
                     request.Query.Type = item.Metadata.Type;
-                    request.Query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("Unique");
+
+                    var rarity = item.Properties.IsRelic ? "uniquefoil" : "Unique";
+                    request.Query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption(rarity);
                 }
                 else
                 {

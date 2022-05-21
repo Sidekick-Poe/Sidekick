@@ -110,7 +110,10 @@ namespace Sidekick.Apis.PoeNinja
 
                 if (item.Properties != null)
                 {
-                    query = query.Where(x => x.Corrupted == item.Properties.Corrupted && x.MapTier == item.Properties.MapTier && x.GemLevel == item.Properties.GemLevel);
+                    query = query.Where(x => x.Corrupted == item.Properties.Corrupted
+                                          && x.MapTier == item.Properties.MapTier
+                                          && x.GemLevel == item.Properties.GemLevel
+                                          && x.IsRelic == item.Properties.IsRelic);
                 }
 
                 if (query.Any())

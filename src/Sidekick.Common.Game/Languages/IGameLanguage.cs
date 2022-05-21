@@ -22,6 +22,7 @@ namespace Sidekick.Common.Game.Languages
         string DescriptionUnidentified { get; }
         string DescriptionQuality { get; }
         string DescriptionAlternateQuality { get; }
+        string DescriptionIsRelic { get; }
         string DescriptionCorrupted { get; }
         string DescriptionScourged { get; }
         string DescriptionSockets { get; }
