@@ -13,6 +13,10 @@ else if (Price != null)
                     <MudText Typo="Typo.caption" Align="Align.Right" Class="d-block">@Resources.LastUpdated : @Price.LastUpdated.ToString("t")</MudText>
                 </MudItem>
                 <MudItem xs="6" Class="d-flex flex-row">
+                    @if (Price.Links >= 5)
+                    {
+                        <MudText Typo="Typo.caption" Color="Color.Tertiary" Class="d-flex mr-4 align-self-center">@Price.Links @Resources.Links</MudText>
+                    }
                     <PriceDisplay Value="Price.Price" Class="justify-start mr-4" />
                     @if (Series != null)
                     {

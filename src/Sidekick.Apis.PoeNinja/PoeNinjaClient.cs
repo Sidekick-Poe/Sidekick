@@ -114,12 +114,17 @@ namespace Sidekick.Apis.PoeNinja
                                           && x.MapTier == item.Properties.MapTier
                                           && x.GemLevel == item.Properties.GemLevel
                                           && x.IsRelic == item.Properties.IsRelic);
+
+                    // Poe.ninja has pricings for <5, 5 and 6 links.
+                    // <5 being 0 links in their API.
+                    var highestSocketLinks = item.Sockets.GroupBy(x => x.Group)
+                                                         .Select(x => x.Count())
+                                                         .Max();
+
+                    query = query.Where(x => x.Links == (highestSocketLinks >= 5 ? highestSocketLinks : 0));
                 }
 
-                if (query.Any())
-                {
-                    return query.FirstOrDefault();
-                }
+                return query.FirstOrDefault();
             }
 
             return null;

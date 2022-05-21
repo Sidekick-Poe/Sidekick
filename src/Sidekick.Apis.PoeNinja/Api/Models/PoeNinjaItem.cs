@@ -21,7 +21,7 @@ namespace Sidekick.Apis.PoeNinja.Api.Models
 
         //public string ArtFilename { get; set; }
 
-        //public int Links { get; set; }
+        public int Links { get; set; }
 
         public int ItemClass { get; set; }
 

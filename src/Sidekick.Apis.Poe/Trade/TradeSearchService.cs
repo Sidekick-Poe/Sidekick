@@ -363,11 +363,10 @@ namespace Sidekick.Apis.Poe.Trade
         private static void SetSocketFilters(Item item, SearchFilters filters)
         {
             // Auto Search 5+ Links
-            var highestCount = item.Sockets
-                .GroupBy(x => x.Group)
-                .Select(x => x.Count())
-                .OrderByDescending(x => x)
-                .FirstOrDefault();
+            var highestCount = item.Sockets.GroupBy(x => x.Group)
+                                           .Select(x => x.Count())
+                                           .Max();
+
             if (highestCount >= 5)
             {
                 filters.SocketFilters.Filters.Links = new SocketFilterOption()
