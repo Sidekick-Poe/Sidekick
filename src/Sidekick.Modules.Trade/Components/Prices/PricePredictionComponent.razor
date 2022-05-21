@@ -14,7 +14,7 @@
             <MudGrid Spacing="4" Justify="Justify.Center" Class="align-center">
                 <MudItem xs="6">
                     <MudText Typo="Typo.subtitle1" Align="Align.Right">@Resources.Prediction</MudText>
-                    <MudText Typo="Typo.caption" Align="Align.Right" Class="d-block">@Resources.PredictionConfidence(Prediction.ConfidenceScore)</MudText>
+                    <MudText Typo="Typo.caption" Align="Align.Right" Style="@($"color: {GetConfidenceColor()};")" Class="d-block">@Resources.PredictionConfidence(Prediction.ConfidenceScore)</MudText>
                 </MudItem>
                 <MudItem xs="6">
                     <PriceRangeDisplay Min="Prediction.Min" Max="Prediction.Max" Currency="@Prediction.Currency" Class="justify-start" />
@@ -36,6 +36,16 @@
     private bool IsInit { get; set; }
     private PricePrediction Prediction { get; set; }
     private CancellationTokenSource pricePredictionCancellationTokenSource = new CancellationTokenSource();
+
+    private string GetConfidenceColor()
+    {
+        return Prediction.ConfidenceScore switch
+        {
+            (< 33) => MudBlazor.Colors.Red.Default,
+            (< 66) => MudBlazor.Colors.Yellow.Default,
+            _ => MudBlazor.Colors.Green.Default
+        };
+    }
 
     protected override async Task OnParametersSetAsync()
     {
