@@ -31,19 +31,19 @@
             <ItemModifiersComponent Item="Item" Modifiers="Item.Modifiers.Fractured" />
             @if (!Item.Properties.Identified)
             {
-                <div class="red-text">
+                <div class="unidentified-text">
                     <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Unidentified</MudText>
                 </div>
             }
             @if (Item.Properties.Corrupted)
             {
-                <div class="red-text">
+                <div class="corrupted-text">
                     <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Corrupted</MudText>
                 </div>
             }
             @if (Item.Properties.Scourged)
             {
-                <div class="orange-text">
+                <div class="scourge-text">
                     <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Scourged</MudText>
                 </div>
             }

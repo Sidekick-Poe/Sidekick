@@ -6,10 +6,12 @@
 
   <ItemGroup>
     <None Remove="Components\Filters\ModifierFilterComponent.razor.css" />
+    <None Remove="Components\Filters\PropertyFilterComponent.razor.css" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Components\Filters\ModifierFilterComponent.razor.css" />
+    <Content Include="Components\Filters\PropertyFilterComponent.razor.css" />
   </ItemGroup>
 
   <ItemGroup>

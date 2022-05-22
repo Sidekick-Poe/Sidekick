@@ -1,20 +1,20 @@
 
 <div>
-    <MudCheckBox @bind-Checked="Filter.Enabled" Color="Color.Primary" Class="@("font-smallcaps mb-1 d-flex" + AdditionalClassNames)">
+    <MudCheckBox @bind-Checked="Filter.Enabled" Color="Color.Primary" Class="@("font-smallcaps mb-1 d-flex " + AdditionalClassNames)">
         <div class="d-flex flex-row justify-start align-center">
             <MudText Class="flex-grow-1 mr-4">@Filter.Modifier.Text</MudText>
             <div class="filter-min"
                  @onwheel="OnWheelMin"
+                 @onwheel:preventDefault
                  @oncontextmenu="ClearMin"
-                 @oncontextmenu:preventDefault
-                 style="max-width: 67px;">
+                 @oncontextmenu:preventDefault>
                 <MudInput @bind-Value="Filter.Min" Placeholder="@Resources.Filters_Min" DisableUnderLine />
             </div>
-            <div class="filter-max mr-4"
+            <div class="filter-max my-1 mr-4"
                  @onwheel="OnWheelMax"
+                 @onwheel:preventDefault
                  @oncontextmenu="ClearMax"
-                 @oncontextmenu:preventDefault
-                 style="max-width: 67px;">
+                 @oncontextmenu:preventDefault>
                 <MudInput @bind-Value="Filter.Max" Placeholder="@Resources.Filters_Max" DisableUnderLine />
             </div>
         </div>
@@ -28,16 +28,16 @@
 
     [Parameter] public string AdditionalClassNames { get; set; }
 
-    private void ClearMin()
-    {
-        Filter.Min = null;
-    }
-
     private void OnWheelMin(WheelEventArgs args)
     {
         if (!Filter.Min.HasValue) Filter.Min = 0;
         if (args.DeltaY < 0) Filter.Min += 1;
         else Filter.Min -= 1;
+    }
+
+    private void ClearMin()
+    {
+        Filter.Min = null;
     }
 
     private void OnWheelMax(WheelEventArgs args)
