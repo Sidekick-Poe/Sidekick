@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazored.FluentValidation" Version="2.0.1" />
+    <PackageReference Include="Blazored.FluentValidation" Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.9" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="5.0.9" />
-    <PackageReference Include="MudBlazor" Version="5.1.2" />
+    <PackageReference Include="MudBlazor" Version="6.0.10" />
   </ItemGroup>
 
   <ItemGroup>
