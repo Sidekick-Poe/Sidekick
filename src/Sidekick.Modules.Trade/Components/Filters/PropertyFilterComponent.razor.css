@@ -1,0 +1,31 @@
+::deep label > p {
+    flex-grow: 1;
+}
+
+::deep .filter-min,
+::deep .filter-max {
+    max-width: 50px;
+    min-width: 50px;
+    border: 1px solid var(--mud-palette-lines-inputs);
+    border-radius: var(--mud-default-borderradius);
+}
+
+::deep .filter-min {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+::deep .filter-max {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+    ::deep .filter-min input,
+    ::deep .filter-max input {
+        text-align: center;
+    }
+
+::deep .corrupted-text {
+    color: #d20000;
+}

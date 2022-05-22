@@ -38,20 +38,20 @@
                     <MudItem xs="12" sm="6">
                         @if (ModifierVisible)
                         {
-                            <div class="mb-2">
+                            <div class="mb-2 alternate-background">
                                 <MudText Typo="Typo.h5" Class="px-2">@Resources.Filters_Modifiers</MudText>
-                                <ModifierFiltersComponent Filters="ModifierFilters.Enchant" />
-                                <ModifierFiltersComponent Filters="ModifierFilters.Scourge" AdditionalClassNames="orange-text" />
+                                <ModifierFiltersComponent Filters="ModifierFilters.Enchant" AdditionalClassNames="enchant-text" />
+                                <ModifierFiltersComponent Filters="ModifierFilters.Scourge" AdditionalClassNames="scourge-text" />
                                 <ModifierFiltersComponent Filters="ModifierFilters.Implicit" />
                                 <ModifierFiltersComponent Filters="ModifierFilters.Explicit" />
-                                <ModifierFiltersComponent Filters="ModifierFilters.Crafted" />
-                                <ModifierFiltersComponent Filters="ModifierFilters.Fractured" AdditionalClassNames="brown-text" />
+                                <ModifierFiltersComponent Filters="ModifierFilters.Crafted" AdditionalClassNames="crafted-text" />
+                                <ModifierFiltersComponent Filters="ModifierFilters.Fractured" AdditionalClassNames="fractured-text" />
                             </div>
                         }
 
                         @if (PseudoVisible)
                         {
-                            <div class="mb-2">
+                            <div class="mb-2 alternate-background">
                                 <MudText Typo="Typo.h5" Class="px-2">@Resources.Filters_Pseudo</MudText>
                                 <ModifierFiltersComponent Filters="ModifierFilters.Pseudo" />
                             </div>

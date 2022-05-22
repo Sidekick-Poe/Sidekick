@@ -1,17 +1,27 @@
 
 <div>
-    <MudCheckBox @bind-Checked="Filter.Enabled" Color="Color.Primary" Label="@Filter.Text" Class="font-smallcaps" />
-    @if (Expanded)
-    {
-        <div class="pl-12 d-flex flex-row justify-start align-center">
-            <div style="max-width: 100px;">
-                <MudTextField @bind-Value="Filter.Min" Label="@Resources.Filters_Min" Variant="Variant.Filled" Margin="Margin.Dense" />
-            </div>
-            <div class="ml-2" style="max-width: 100px;">
-                <MudTextField @bind-Value="Filter.Max" Label="@Resources.Filters_Max" Variant="Variant.Filled" Margin="Margin.Dense" />
-            </div>
+    <MudCheckBox @bind-Checked="Filter.Enabled" Color="Color.Primary" Class="font-smallcaps mb-1 d-flex">
+        <div class="d-flex flex-row justify-start align-center">
+            <MudText Class="@($"flex-grow-1 my-1 mr-2 {GetFilterTextClass()}")">@Filter.Text</MudText>
+            @if (Filter.ValueType == FilterValueType.Double || Filter.ValueType == FilterValueType.Int)
+            {
+                <div class="filter-min"
+                     @onwheel="OnWheelMin"
+                     @onwheel:preventDefault
+                     @oncontextmenu="ClearMin"
+                     @oncontextmenu:preventDefault>
+                    <MudInput @bind-Value="Filter.Min" Placeholder="@Resources.Filters_Min" DisableUnderLine />
+                </div>
+                <div class="filter-max my-1 mr-2"
+                     @onwheel="OnWheelMax"
+                     @onwheel:preventDefault
+                     @oncontextmenu="ClearMax"
+                     @oncontextmenu:preventDefault>
+                    <MudInput @bind-Value="Filter.Max" Placeholder="@Resources.Filters_Max" DisableUnderLine />
+                </div>
+            }
         </div>
-    }
+    </MudCheckBox>
 </div>
 
 @code {
@@ -19,5 +29,36 @@
 
     [Parameter] public PropertyFilter Filter { get; set; }
 
-    private bool Expanded => Filter.Enabled && (Filter.ValueType == FilterValueType.Double || Filter.ValueType == FilterValueType.Int);
+    private string GetFilterTextClass()
+    {
+        return Filter.Type switch
+        {
+            PropertyFilterType.Misc_Corrupted => "corrupted-text",
+            _ => string.Empty
+        };
+    }
+
+    private void OnWheelMin(WheelEventArgs args)
+    {
+        if (!Filter.Min.HasValue) Filter.Min = 0;
+        if (args.DeltaY < 0) Filter.Min += 1;
+        else Filter.Min -= 1;
+    }
+
+    private void ClearMin()
+    {
+        Filter.Min = null;
+    }
+
+    private void OnWheelMax(WheelEventArgs args)
+    {
+        if (!Filter.Max.HasValue) Filter.Max = 0;
+        if (args.DeltaY < 0) Filter.Max += 1;
+        else Filter.Max -= 1;
+    }
+
+    private void ClearMax()
+    {
+        Filter.Max = null;
+    }
 }
