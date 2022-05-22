@@ -5,6 +5,7 @@
 ::deep .filter-min,
 ::deep .filter-max {
     max-width: 50px;
+    min-width: 50px;
     border: 1px solid var(--mud-palette-lines-inputs);
     border-radius: var(--mud-default-borderradius);
 }

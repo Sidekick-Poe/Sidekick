@@ -2,21 +2,24 @@
 <div>
     <MudCheckBox @bind-Checked="Filter.Enabled" Color="Color.Primary" Class="font-smallcaps mb-1 d-flex">
         <div class="d-flex flex-row justify-start align-center">
-            <MudText Class="@($"flex-grow-1 mr-4 {GetFilterTextClass()}")">@Filter.Text</MudText>
-            <div class="filter-min"
-                 @onwheel="OnWheelMin"
-                 @onwheel:preventDefault
-                 @oncontextmenu="ClearMin"
-                 @oncontextmenu:preventDefault>
-                <MudInput @bind-Value="Filter.Min" Placeholder="@Resources.Filters_Min" DisableUnderLine />
-            </div>
-            <div class="filter-max my-1 mr-4"
-                 @onwheel="OnWheelMax"
-                 @onwheel:preventDefault
-                 @oncontextmenu="ClearMax"
-                 @oncontextmenu:preventDefault>
-                <MudInput @bind-Value="Filter.Max" Placeholder="@Resources.Filters_Max" DisableUnderLine />
-            </div>
+            <MudText Class="@($"flex-grow-1 mr-2 {GetFilterTextClass()}")">@Filter.Text</MudText>
+            @if (Filter.ValueType == FilterValueType.Double || Filter.ValueType == FilterValueType.Int)
+            {
+                <div class="filter-min"
+                     @onwheel="OnWheelMin"
+                     @onwheel:preventDefault
+                     @oncontextmenu="ClearMin"
+                     @oncontextmenu:preventDefault>
+                    <MudInput @bind-Value="Filter.Min" Placeholder="@Resources.Filters_Min" DisableUnderLine />
+                </div>
+                <div class="filter-max my-1 mr-2"
+                     @onwheel="OnWheelMax"
+                     @onwheel:preventDefault
+                     @oncontextmenu="ClearMax"
+                     @oncontextmenu:preventDefault>
+                    <MudInput @bind-Value="Filter.Max" Placeholder="@Resources.Filters_Max" DisableUnderLine />
+                </div>
+            }
         </div>
     </MudCheckBox>
 </div>

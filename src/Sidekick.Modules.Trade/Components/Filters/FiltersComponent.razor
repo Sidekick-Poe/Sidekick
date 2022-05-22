@@ -28,14 +28,14 @@
                 </div>
 
                 <MudGrid Spacing="2">
-                    <MudItem xs="12" sm="4">
+                    <MudItem xs="12" sm="6">
                         <ClassFilter @bind-Value="PropertyFilters.Class" Item="Item" />
                         <PropertyFiltersComponent Filters="PropertyFilters.Armour" Title="@Resources.Filters_Armour" />
                         <PropertyFiltersComponent Filters="PropertyFilters.Weapon" Title="@Resources.Filters_Weapon" />
                         <PropertyFiltersComponent Filters="PropertyFilters.Map" Title="@Resources.Filters_Map" />
                         <PropertyFiltersComponent Filters="PropertyFilters.Misc" Title="@Resources.Filters_Misc" />
                     </MudItem>
-                    <MudItem xs="12" sm="8">
+                    <MudItem xs="12" sm="6">
                         @if (ModifierVisible)
                         {
                             <div class="mb-2 alternate-background">
