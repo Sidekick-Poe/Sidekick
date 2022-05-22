@@ -1,33 +1,4 @@
-using System;
-using System.Drawing;
-using System.Threading.Tasks;
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using MudBlazor.Services;
-using PhotinoNET;
-using Sidekick.Apis.GitHub;
-using Sidekick.Apis.Poe;
-using Sidekick.Apis.PoeNinja;
-using Sidekick.Apis.PoePriceInfo;
-using Sidekick.Common;
-using Sidekick.Common.Blazor;
-using Sidekick.Common.Blazor.Views;
-using Sidekick.Common.Game;
-using Sidekick.Common.Platform;
-using Sidekick.Localization;
-using Sidekick.Modules.About;
-using Sidekick.Modules.Cheatsheets;
-using Sidekick.Modules.Initialization;
-using Sidekick.Modules.Maps;
-using Sidekick.Modules.Settings;
-using Sidekick.Modules.Trade;
-using Sidekick.Modules.Update;
-
+/*
 namespace Sidekick.Photino
 {
     public class Startup
@@ -53,25 +24,12 @@ namespace Sidekick.Photino
             //    .AddMudBlazorScrollManager()
             //    .AddMudBlazorJsApi()
 
-            //    // Common
-            //    .AddSidekickCommon()
-            //    .AddSidekickCommonGame()
-            //    .AddSidekickCommonPlatform()
+            // // Common .AddSidekickCommon() .AddSidekickCommonGame() .AddSidekickCommonPlatform()
 
-            //    // Apis
-            //    .AddSidekickGitHubApi()
-            //    .AddSidekickPoeApi()
-            //    .AddSidekickPoeNinjaApi()
-            //    .AddSidekickPoePriceInfoApi()
+            // // Apis .AddSidekickGitHubApi() .AddSidekickPoeApi() .AddSidekickPoeNinjaApi() .AddSidekickPoePriceInfoApi()
 
-            //    // Modules
-            //    .AddSidekickAbout()
-            //    .AddSidekickCheatsheets()
-            //    .AddSidekickInitialization()
-            //    .AddSidekickMaps()
-            //    .AddSidekickSettings(configuration)
-            //    .AddSidekickTrade()
-            //    .AddSidekickUpdate();
+            // // Modules .AddSidekickAbout() .AddSidekickCheatsheets() .AddSidekickInitialization()
+            // .AddSidekickMaps() .AddSidekickSettings(configuration) .AddSidekickTrade() .AddSidekickUpdate();
 
             var mvcBuilder = services
                .AddRazorPages()
@@ -123,6 +81,6 @@ namespace Sidekick.Photino
                 window.WaitForClose();
             });
         }
-
     }
 }
+*/
