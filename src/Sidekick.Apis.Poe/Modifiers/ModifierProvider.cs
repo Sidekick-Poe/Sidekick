@@ -280,7 +280,7 @@ namespace Sidekick.Apis.Poe.Modifiers
                 Index = match.Index,
                 Id = data.Id,
                 Text = pattern.Text,
-                Category = !data.Id.StartsWith("explicit") ? data.Category : null,
+                Category = data.Id.Split('.').First(),
             };
 
             if (data.IsOption)
