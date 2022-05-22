@@ -22,5 +22,8 @@ namespace Sidekick.Apis.PoeNinja.Api.Models
         Beast,
         Currency,
         Fragment,
+        Invitation,
+        DeliriumOrb,
+        BlightedMap,
     }
 }

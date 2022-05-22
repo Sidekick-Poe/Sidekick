@@ -10,7 +10,7 @@ else if (Price != null)
             <MudGrid Spacing="4" Justify="Justify.Center" Class="align-center">
                 <MudItem xs="6">
                     <MudText Typo="Typo.subtitle1" Align="Align.Right">@Resources.PoeNinja</MudText>
-                    <MudText Typo="Typo.caption" Align="Align.Right" Class="d-block">@Resources.LastUpdated : @Price.LastUpdated.ToString("t")</MudText>
+                    <MudText Typo="Typo.caption" Align="Align.Right" Class="d-block">@Resources.LastUpdated : @Price.LastUpdated.ToString("g")</MudText>
                 </MudItem>
                 <MudItem xs="6" Class="d-flex flex-row">
                     @if (Price.Links >= 5)
