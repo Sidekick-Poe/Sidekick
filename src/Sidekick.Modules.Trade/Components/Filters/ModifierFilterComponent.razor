@@ -2,7 +2,7 @@
 <div>
     <MudCheckBox @bind-Checked="Filter.Enabled" Color="Color.Primary" Class="@("font-smallcaps mb-1 d-flex " + AdditionalClassNames)">
         <div class="d-flex flex-row justify-start align-center">
-            <MudText Class="flex-grow-1 mr-2">@Filter.Modifier.Text</MudText>
+            <MudText Class="flex-grow-1 my-1 mr-2">@Filter.Modifier.Text</MudText>
             @if (Filter.Modifier.OptionValue == null && Filter.Modifier.Values.Count > 0)
             {
                 <div class="filter-min"

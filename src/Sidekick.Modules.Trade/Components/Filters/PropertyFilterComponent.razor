@@ -2,7 +2,7 @@
 <div>
     <MudCheckBox @bind-Checked="Filter.Enabled" Color="Color.Primary" Class="font-smallcaps mb-1 d-flex">
         <div class="d-flex flex-row justify-start align-center">
-            <MudText Class="@($"flex-grow-1 mr-2 {GetFilterTextClass()}")">@Filter.Text</MudText>
+            <MudText Class="@($"flex-grow-1 my-1 mr-2 {GetFilterTextClass()}")">@Filter.Text</MudText>
             @if (Filter.ValueType == FilterValueType.Double || Filter.ValueType == FilterValueType.Int)
             {
                 <div class="filter-min"
