@@ -1,5 +1,6 @@
 #pragma warning disable CA1806 // Do not ignore method results
 #pragma warning disable CA1416 // Validate platform compatibility
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -40,6 +41,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
         private readonly PlatformResources platformResources;
 
         public event Action OnFocus;
+
         public event Action OnBlur;
 
         private string FocusedWindow { get; set; }
@@ -47,8 +49,8 @@ namespace Sidekick.Common.Platform.Windows.Processes
         private CancellationTokenSource WindowsHook { get; set; }
 
         /// <summary>
-        /// Used to prevent having to Invoke the blur action everytime a
-        /// window that is not Path of Exile is focused.
+        /// Used to prevent having to Invoke the blur action everytime a window that is not Path of
+        /// Exile is focused.
         /// </summary>
         private bool PathOfExileWasMinimized { get; set; }
 
@@ -68,7 +70,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
             return Task.CompletedTask;
         }
 
-        void OnWindowsEvent(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
+        private void OnWindowsEvent(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
         {
             if (eventType == WinEvent.EVENT_SYSTEM_MINIMIZEEND || eventType == WinEvent.EVENT_SYSTEM_FOREGROUND)
             {
@@ -131,7 +133,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
         private async Task RestartAsAdmin()
         {
-            await appService.OpenConfirmationNotification(platformResources.RestartText,
+            await appService.OpenConfirmationNotification(platformResources.RestartAsAdminText,
                 onYes: () =>
                 {
                     try
@@ -144,7 +146,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
                     }
                     catch (Exception e)
                     {
-                        logger.LogWarning(e, platformResources.AdminError);
+                        logger.LogWarning(e, "This application must be run as administrator.");
                     }
                     finally
                     {

@@ -18,12 +18,6 @@ namespace Sidekick.Common.Platform
         event Action<string> OnKeyDown;
 
         /// <summary>
-        /// Indicates if the input includes a modifer (Ctrl, Alt, Shift) key pressed.
-        /// </summary>
-        /// <returns>If a modifier is in the input, returns true.</returns>
-        bool IncludesModifier(string input);
-
-        /// <summary>
         /// Command to send keystrokes to the system
         /// </summary>
         /// <param name="keys">The keys to send</param>

@@ -14,11 +14,6 @@ namespace Sidekick.Mock
             // Do nothing in mock
         }
 
-        public bool IncludesModifier(string input)
-        {
-            return true;
-        }
-
         public void PressKey(params string[] keys)
         {
             // Do nothing in mock
