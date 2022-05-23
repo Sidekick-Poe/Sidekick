@@ -1,0 +1,79 @@
+<div class="d-flex flex-column flex-grow-1">
+    <MudText Typo="Typo.h3" Color="Color.Info">@Resources.PoeWikiTitle</MudText>
+
+    @if (Loading)
+    {
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Class="flex-grow-1 d-flex my-2" Style="height: 100%;" />
+    }
+    else if (Map != null)
+    {
+        <div>
+            @if (Map.Drops.Any())
+            {
+                <MudText Typo="Typo.subtitle2" Class="my-2">@Resources.DropsTitle</MudText>
+
+                @foreach (var drop in Map.Drops.OrderBy(x => x.Name))
+                {
+                    <MudText>@drop.Name</MudText>
+                }
+            }
+            else
+            {
+                <MudText>@Resources.NoDropsTitle</MudText>
+            }
+
+            @if (Map.Drops.Any() && Map.Bosses.Any())
+            {
+                <MudDivider Class="ma-2" />
+            }
+
+            @if (Map.Bosses.Any())
+            {
+                <MudText Typo="Typo.subtitle2" Class="my-2">@Resources.MapBossesTitle</MudText>
+                @foreach (var boss in Map.Bosses)
+                {
+                    <MudText>@boss.Name</MudText>
+                }
+            }
+        </div>
+    }
+    else
+    {
+        <div>
+            <MudText Color="Color.Error" Class="mb-2">@Resources.PoeWikiError</MudText>
+        </div>
+    }
+
+    <MudButton Class="mt-2" Variant="Variant.Filled" Size="Size.Small" EndIcon="@Icons.Material.Filled.OpenInBrowser" OnClick="OpenMapOnPoeWiki">@Resources.OpenInPoeWiki</MudButton>
+</div>
+
+@code {
+    [Inject] private MapInfoResources Resources { get; set; }
+    [Inject] private IPoeWikiClient PoeWikiClient { get; set; }
+    [Inject] private IBrowserProvider BrowserProvider { get; set; }
+
+    [Parameter] public Item Item { get; set; }
+
+    private bool Loading { get; set; } = true;
+    private Map Map { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Loading)
+        {
+            Map = await PoeWikiClient.GetMap(Item);
+            Loading = false;
+        }
+    }
+
+    private void OpenMapOnPoeWiki()
+    {
+        var PoeWiki_BaseUri = "https://www.poewiki.net/";
+        var PoeWiki_SubUrl = "w/index.php?search=";
+        var searchLink = Item.Metadata.Type;
+        var wikiLink = PoeWiki_SubUrl + searchLink.Replace(" ", "+");
+        var uri = new Uri(PoeWiki_BaseUri + wikiLink);
+
+        BrowserProvider.OpenUri(uri);
+    }
+}
