@@ -1,13 +1,15 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Game.GameLogs;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Keybinds;
 using Sidekick.Common.Settings;
-using Sidekick.Domain.Keybinds;
 
-namespace Sidekick.Electron.Keybinds
+namespace Sidekick.Modules.Chat.Keybinds
 {
-    public class ChatKeybindHandler : IChatKeybindHandler
+    public class ChatKeybindHandler : IKeybindHandler
     {
         private const string Token_Me_CharacterName = "{Me.CharacterName}";
         private const string Token_LastWhisper_CharacterName = "{LastWhisper.CharacterName}";
@@ -35,12 +37,19 @@ namespace Sidekick.Electron.Keybinds
             this.gameLogProvider = gameLogProvider;
         }
 
+        public List<string> GetKeybinds() => settings.Chat_Commands.Select(x => x.Key).ToList();
+
         public bool IsValid() => processProvider.IsPathOfExileInFocus;
 
-        public async Task Execute(string command, bool submit)
+        public async Task Execute(string keybind)
         {
-            if (string.IsNullOrEmpty(command)) return;
+            var chatCommand = settings.Chat_Commands.FirstOrDefault(x => x.Key == keybind);
+            if (chatCommand == null)
+            {
+                return;
+            }
 
+            var command = chatCommand.Command;
             string clipboardValue = null;
             if (settings.RetainClipboard)
             {
@@ -49,7 +58,8 @@ namespace Sidekick.Electron.Keybinds
 
             if (command.Contains(Token_Me_CharacterName))
             {
-                // This operation is only valid if the user has added their character name to the settings file.
+                // This operation is only valid if the user has added their character name to the
+                // settings file.
                 if (string.IsNullOrEmpty(settings.Character_Name))
                 {
                     logger.LogWarning(@"This command requires a ""CharacterName"" to be specified in the settings menu.");
@@ -73,7 +83,7 @@ namespace Sidekick.Electron.Keybinds
 
             await clipboard.SetText(command);
 
-            if (submit)
+            if (chatCommand.Submit)
             {
                 keyboard.PressKey("Enter", "Ctrl+A", "Paste", "Enter", "Enter", "Up", "Up", "Esc");
             }

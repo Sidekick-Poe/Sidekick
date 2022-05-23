@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using SharpHook;
 using SharpHook.Native;
+using Sidekick.Common.Platform.Keybinds;
 
 namespace Sidekick.Common.Platform.Keyboards
 {
@@ -136,6 +137,7 @@ namespace Sidekick.Common.Platform.Keyboards
         private static readonly Regex ModifierKeys = new($"{CTRL}|{SHIFT}|{ALT}");
 
         private readonly ILogger<KeyboardProvider> logger;
+        private readonly IKeybindProvider keybindProvider;
 
         private bool HasInitialized { get; set; } = false;
         private TaskPoolGlobalHook Hook { get; set; }
@@ -146,9 +148,12 @@ namespace Sidekick.Common.Platform.Keyboards
         private bool CtrlPressed { get; set; } = false;
         private bool ShiftPressed { get; set; } = false;
 
-        public KeyboardProvider(ILogger<KeyboardProvider> logger)
+        public KeyboardProvider(
+            ILogger<KeyboardProvider> logger,
+            IKeybindProvider keybindProvider)
         {
             this.logger = logger;
+            this.keybindProvider = keybindProvider;
         }
 
         public event Action<string> OnKeyDown;
@@ -209,7 +214,21 @@ namespace Sidekick.Common.Platform.Keyboards
             }
 
             str.Append(key.StringValue);
-            OnKeyDown?.Invoke(str.ToString());
+            var keybind = str.ToString();
+
+            if (OnKeyDown != null && OnKeyDown.GetInvocationList().Length > 0)
+            {
+                OnKeyDown.Invoke(keybind);
+            }
+            else if (keybindProvider.KeybindHandlers.TryGetValue(keybind, out var keybindHandler))
+            {
+                if (keybindHandler.IsValid())
+                {
+                    args.Reserved = EventReservedValueMask.SuppressEvent;
+                    _ = keybindHandler.Execute(keybind);
+                    return;
+                }
+            }
         }
 
         private void OnKeyReleased(object sender, KeyboardHookEventArgs args)
