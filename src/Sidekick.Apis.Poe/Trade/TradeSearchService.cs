@@ -620,6 +620,7 @@ namespace Sidekick.Apis.Poe.Trade
                 modifiers.Add(new Modifier()
                 {
                     Id = id,
+                    Category = id.Split('.').First(),
                     Text = text,
                     Tier = mod?.Tier,
                     TierName = mod?.Name,
