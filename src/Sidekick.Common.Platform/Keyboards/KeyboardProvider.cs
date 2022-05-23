@@ -138,6 +138,7 @@ namespace Sidekick.Common.Platform.Keyboards
         private readonly ILogger<KeyboardProvider> logger;
 
         private bool HasInitialized { get; set; } = false;
+        private TaskPoolGlobalHook Hook { get; set; }
         private Task HookTask { get; set; }
         private EventSimulator Simulator { get; set; }
 
@@ -160,28 +161,35 @@ namespace Sidekick.Common.Platform.Keyboards
                 return;
             }
 
-            var hook = new TaskPoolGlobalHook();
+            Hook = new TaskPoolGlobalHook();
 
-            hook.KeyPressed += OnKeyPressed;
-            hook.KeyReleased += OnKeyReleased;
-            hook.KeyTyped += OnKeyTyped;
+            Hook.KeyPressed += OnKeyPressed;
+            Hook.KeyReleased += OnKeyReleased;
 
-            HookTask = hook.RunAsync();
+            HookTask = Hook.RunAsync();
             Simulator = new EventSimulator();
 
             HasInitialized = true;
         }
 
-        private void OnKeyTyped(object sender, KeyboardHookEventArgs args)
+        private void OnKeyPressed(object sender, KeyboardHookEventArgs args)
         {
+            // Make sure the key is one we recognize
             if (!ValidKeys.Any(x => x.KeyCode == args.Data.KeyCode))
             {
                 return;
             }
 
+            // Handle modifier keys and update their flags
             var key = ValidKeys.Find(x => x.KeyCode == args.Data.KeyCode);
             if (ModifierKeys.IsMatch(key.StringValue))
             {
+                switch (key.StringValue)
+                {
+                    case ALT: AltPressed = true; break;
+                    case CTRL: CtrlPressed = true; break;
+                    case SHIFT: ShiftPressed = true; break;
+                }
                 return;
             }
 
@@ -202,22 +210,6 @@ namespace Sidekick.Common.Platform.Keyboards
 
             str.Append(key.StringValue);
             OnKeyDown?.Invoke(str.ToString());
-        }
-
-        private void OnKeyPressed(object sender, KeyboardHookEventArgs args)
-        {
-            if (!ValidKeys.Any(x => x.KeyCode == args.Data.KeyCode))
-            {
-                return;
-            }
-
-            var key = ValidKeys.Find(x => x.KeyCode == args.Data.KeyCode);
-            switch (key.StringValue)
-            {
-                case ALT: AltPressed = true; break;
-                case CTRL: CtrlPressed = true; break;
-                case SHIFT: ShiftPressed = true; break;
-            }
         }
 
         private void OnKeyReleased(object sender, KeyboardHookEventArgs args)
@@ -320,6 +312,13 @@ namespace Sidekick.Common.Platform.Keyboards
 
         protected virtual void Dispose(bool disposing)
         {
+            if (Hook != null)
+            {
+                Hook.KeyPressed += OnKeyPressed;
+                Hook.KeyReleased += OnKeyReleased;
+                Hook.Dispose();
+            }
+
             if (HookTask != null)
             {
                 HookTask.Dispose();
