@@ -9,7 +9,7 @@
 </MudPaper>
 
 <MudGrid Spacing="2">
-    <MudItem xs="12" sm="6" Class="d-flex flex-grow-1">
+    <MudItem xs="12" sm="@(PoeWikiClient.IsEnabled ? 6 : 12)" Class="d-flex flex-grow-1">
         <MudPaper Class="pa-4 flex-grow-1">
             @foreach (var mod in DangerousMods)
             {
@@ -33,14 +33,17 @@
             }
         </MudPaper>
     </MudItem>
-    <MudItem xs="12" sm="6" Class="d-flex flex-grow-1">
-        @if (Item != null)
-        {
-            <MudPaper Class="d-flex flex-grow-1 pa-4">
-                <PoeWikiMapInfo Item="Item" />
-            </MudPaper>
-        }
-    </MudItem>
+    @if (PoeWikiClient.IsEnabled)
+    {
+        <MudItem xs="12" sm="6" Class="d-flex flex-grow-1">
+            @if (Item != null)
+            {
+                <MudPaper Class="d-flex flex-grow-1 pa-4">
+                    <PoeWikiMapInfo Item="Item" />
+                </MudPaper>
+            }
+        </MudItem>
+    }
 </MudGrid>
 
 @code {
@@ -49,6 +52,7 @@
     [Inject] private IItemParser ItemParser { get; set; }
     [Inject] private ISettings Settings { get; set; }
     [Inject] private NavigationManager NavigationManager { get; set; }
+    [Inject] private IPoeWikiClient PoeWikiClient { get; set; }
 
     [Parameter] public string ItemText { get; set; }
 

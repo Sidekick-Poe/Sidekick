@@ -7,6 +7,10 @@ namespace Sidekick.Apis.PoeWiki
 {
     public interface IPoeWikiClient
     {
+        public bool IsEnabled { get; }
         public Task<Map> GetMap(Item item);
+        public void OpenUri(Map map);
+        public void OpenUri(ItemDrop itemDrop);
+        public void OpenUri(Boss boss);
     }
 }

@@ -291,4 +291,7 @@
   <data name="Trade_Normalize_Values" xml:space="preserve">
     <value>Normalize values in the trade filters (-5 difference or 10%)</value>
   </data>
+  <data name="PoeWikiMap_Enable" xml:space="preserve">
+    <value>Show additional map info from poewiki.net (only works if Game Language is in English)</value>
+  </data>
 </root>

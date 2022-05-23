@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoeWiki.ApiModels;
 using Sidekick.Apis.PoeWiki.Extensions;
 using Sidekick.Apis.PoeWiki.Models;
+using Sidekick.Common.Browser;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
@@ -25,10 +26,19 @@ namespace Sidekick.Apis.PoeWiki
         private readonly HttpClient client;
         private readonly ILogger<PoeWikiClient> logger;
         private readonly IGameLanguageProvider gameLanguageProvider;
+        private readonly IBrowserProvider browserProvider;
+        private readonly ISettings settings;
+
+        private const string PoeWiki_BaseUri = "https://www.poewiki.net/";
+        private const string PoeWiki_SubUrl = "w/index.php?search=";
+
+        public bool IsEnabled { get; }
 
         public PoeWikiClient(ILogger<PoeWikiClient> logger,
                              IHttpClientFactory httpClientFactory,
-                             IGameLanguageProvider gameLanguageProvider)
+                             IGameLanguageProvider gameLanguageProvider,
+                             IBrowserProvider browserProvider,
+                             ISettings settings)
         {
             client = httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://www.poewiki.net/w/api.php");
@@ -43,6 +53,10 @@ namespace Sidekick.Apis.PoeWiki
 
             this.logger = logger;
             this.gameLanguageProvider = gameLanguageProvider;
+            this.browserProvider = browserProvider;
+            this.settings = settings;
+
+            IsEnabled = this.gameLanguageProvider.IsEnglish() && this.settings.PoeWikiMap_Enable;
         }
 
         private async Task<MapResult> GetMapResult(Item item)
@@ -147,9 +161,6 @@ namespace Sidekick.Apis.PoeWiki
 
         public async Task<Map> GetMap(Item item)
         {
-            // PoeWiki.net only supports English.
-            if (!gameLanguageProvider.IsEnglish()) return null;
-
             // Only maps.
             if (item.Metadata.Category != Category.Map) return null;
 
@@ -166,6 +177,30 @@ namespace Sidekick.Apis.PoeWiki
             var map = new Map(mapResult, bossesResult, itemsResult);
 
             return map;
+        }
+
+        public void OpenUri(Map map)
+        {
+            var wikiLink = PoeWiki_SubUrl + map.Name.Replace(" ", "+");
+            var uri = new Uri(PoeWiki_BaseUri + wikiLink);
+
+            browserProvider.OpenUri(uri);
+        }
+
+        public void OpenUri(ItemDrop itemDrop)
+        {
+            var wikiLink = PoeWiki_SubUrl + itemDrop.Name.Replace(" ", "+");
+            var uri = new Uri(PoeWiki_BaseUri + wikiLink);
+
+            browserProvider.OpenUri(uri);
+        }
+
+        public void OpenUri(Boss boss)
+        {
+            var wikiLink = "wiki/Monster:" + boss.Id.Replace("_", "~");
+            var uri = new Uri(PoeWiki_BaseUri + wikiLink);
+
+            browserProvider.OpenUri(uri);
         }
     }
 }
