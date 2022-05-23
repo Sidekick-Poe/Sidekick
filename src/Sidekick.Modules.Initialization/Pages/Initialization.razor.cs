@@ -44,7 +44,6 @@ namespace Sidekick.Modules.Initialization.Pages
         private string Title { get; set; }
         private int Percentage { get; set; }
 
-        public static bool HasRun { get; set; } = false;
         public Task InitializationTask { get; set; }
 
         protected override async Task OnInitializedAsync()
@@ -60,7 +59,7 @@ namespace Sidekick.Modules.Initialization.Pages
             try
             {
                 Completed = 0;
-                Count = HasRun ? 10 : 12;
+                Count = 12;
 
                 // Report initial progress
                 await ReportProgress();
@@ -77,12 +76,8 @@ namespace Sidekick.Modules.Initialization.Pages
                 await Run(() => PseudoModifierProvider.Initialize());
                 await Run(() => PoeNinjaClient.Initialize());
                 await Run(() => KeybindProvider.Initialize());
-
-                if (!HasRun)
-                {
-                    await Run(() => ProcessProvider.Initialize());
-                    await Run(() => KeyboardProvider.Initialize());
-                }
+                await Run(() => ProcessProvider.Initialize());
+                await Run(() => KeyboardProvider.Initialize());
 
                 // If we have a successful initialization, we delay for half a second to show the
                 // "Ready" label on the UI before closing the view
@@ -94,7 +89,6 @@ namespace Sidekick.Modules.Initialization.Pages
                 await AppService.OpenNotification(string.Format(Resources.Notification_Message, Settings.Trade_Key_Check.ToKeybindString(), Settings.Key_Close.ToKeybindString()),
                                                   Resources.Notification_Title);
 
-                HasRun = true;
                 await ViewInstance.Close();
             }
             catch (Exception ex)

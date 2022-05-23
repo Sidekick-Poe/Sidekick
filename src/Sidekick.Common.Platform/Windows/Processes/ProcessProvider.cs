@@ -46,6 +46,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
         private string FocusedWindow { get; set; }
         private bool PermissionChecked { get; set; } = false;
+        private bool HasInitialized { get; set; } = false;
         private CancellationTokenSource WindowsHook { get; set; }
 
         /// <summary>
@@ -66,7 +67,14 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
         public Task Initialize()
         {
+            // We can't initialize twice
+            if (HasInitialized)
+            {
+                return Task.CompletedTask;
+            }
+
             WindowsHook = EventLoop.Run(WinEvent.EVENT_SYSTEM_FOREGROUND, WinEvent.EVENT_SYSTEM_CAPTURESTART, IntPtr.Zero, OnWindowsEvent, 0, 0, WinEvent.WINEVENT_OUTOFCONTEXT);
+            HasInitialized = true;
             return Task.CompletedTask;
         }
 
