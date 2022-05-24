@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Game.GameLogs;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Keybinds;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.Chat.Keybinds

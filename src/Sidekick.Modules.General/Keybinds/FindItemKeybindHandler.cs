@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Sidekick.Apis.Poe;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Keybinds;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.General.Keybinds

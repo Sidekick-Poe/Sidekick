@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Sidekick.Common.Platform.Keybinds
+namespace Sidekick.Common.Platform
 {
     /// <summary>
     /// Service providing keybind functions

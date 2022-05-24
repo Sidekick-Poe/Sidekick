@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using SharpHook;
 using SharpHook.Native;
-using Sidekick.Common.Platform.Keybinds;
 
 namespace Sidekick.Common.Platform.Keyboards
 {

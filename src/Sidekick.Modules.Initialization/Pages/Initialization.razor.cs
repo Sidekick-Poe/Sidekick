@@ -12,7 +12,6 @@ using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Localization;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Keybinds;
 using Sidekick.Common.Settings;
 using Sidekick.Core.Settings;
 using Sidekick.Modules.Initialization.Localization;

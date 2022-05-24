@@ -7,7 +7,6 @@ using Sidekick.Common.Browser;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Keybinds;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.General.Keybinds

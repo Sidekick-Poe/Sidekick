@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Keybinds;
 
 namespace Sidekick.Mock
 {

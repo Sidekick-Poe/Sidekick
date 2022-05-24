@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Keybinds;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.Trade.Keybinds

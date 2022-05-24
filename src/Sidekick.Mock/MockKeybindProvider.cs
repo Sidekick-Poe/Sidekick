@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Sidekick.Common.Platform.Keybinds;
+using Sidekick.Common.Platform;
 
 namespace Sidekick.Mock
 {
