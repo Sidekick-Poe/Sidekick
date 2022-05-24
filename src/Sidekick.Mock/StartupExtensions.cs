@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Keybinds;
 
 namespace Sidekick.Mock
 {
@@ -12,6 +13,8 @@ namespace Sidekick.Mock
         {
             services.TryAddSingleton<IAppService, MockAppService>();
             services.TryAddSingleton<IProcessProvider, MockProcessProvider>();
+            services.TryAddSingleton<IKeyboardProvider, MockKeyboardProvider>();
+            services.TryAddSingleton<IKeybindProvider, MockKeybindProvider>();
             services.TryAddSingleton<IViewLocator, MockViewLocator>();
             services.TryAddScoped<IViewInstance, MockViewInstance>();
 
