@@ -246,9 +246,9 @@ namespace Sidekick.Common.Platform.Keyboards
             }
         }
 
-        public void PressKey(params string[] keys)
+        public void PressKey(params string[] keyStrokes)
         {
-            foreach (var stroke in keys)
+            foreach (var stroke in keyStrokes)
             {
                 logger.LogDebug("[Keyboard] Sending " + stroke);
 
@@ -262,36 +262,36 @@ namespace Sidekick.Common.Platform.Keyboards
                         continue;
                 }
 
-                var fetchKeys = FetchKeys(stroke);
+                var (modifiers, keys) = FetchKeys(stroke);
 
-                if (fetchKeys.Keys.Count == 0)
+                if (keys.Count == 0)
                 {
                     continue;
                 }
 
-                foreach (var modifierKey in fetchKeys.Modifier)
+                foreach (var modifierKey in modifiers)
                 {
                     Simulator.SimulateKeyPress(modifierKey.KeyCode);
                 }
 
-                foreach (var key in fetchKeys.Keys)
+                foreach (var key in keys)
                 {
                     Simulator.SimulateKeyPress(key.KeyCode);
                 }
 
-                foreach (var key in fetchKeys.Keys)
+                foreach (var key in keys)
                 {
                     Simulator.SimulateKeyRelease(key.KeyCode);
                 }
 
-                foreach (var modifierKey in fetchKeys.Modifier)
+                foreach (var modifierKey in modifiers)
                 {
                     Simulator.SimulateKeyRelease(modifierKey.KeyCode);
                 }
             }
         }
 
-        private (List<Key> Modifier, List<Key> Keys) FetchKeys(string stroke)
+        private (List<Key> Modifiers, List<Key> Keys) FetchKeys(string stroke)
         {
             var keyCodes = new List<Key>();
             var modifierCodes = new List<Key>();
