@@ -25,16 +25,3 @@
     ::deep .filter-max input {
         text-align: center;
     }
-
-::deep .scourge-text {
-    color: #FF6E25;
-}
-
-::deep .fractured-text {
-    color: #A29162;
-}
-
-::deep .enchant-text,
-::deep .crafted-text {
-    color: #B4B4FF;
-}

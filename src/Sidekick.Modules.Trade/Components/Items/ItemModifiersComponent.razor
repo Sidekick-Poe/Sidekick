@@ -5,7 +5,7 @@
         @foreach (var modifier in Modifiers)
         {
             <MudText Typo="Typo.body1" Class="modifier font-smallcaps" Align="Align.Center">
-                @modifier.Text
+                <ModifierText Modifier="modifier" />
                 @if (!String.IsNullOrWhiteSpace(modifier.Tier))
                 {
                     <span class="tier @GetTierClass(modifier.Tier)">@modifier.Tier</span>

@@ -1,8 +1,8 @@
 
 <div>
-    <MudCheckBox @bind-Checked="Filter.Enabled" Color="Color.Primary" Class="@("font-smallcaps mb-1 d-flex " + AdditionalClassNames)">
+    <MudCheckBox @bind-Checked="Filter.Enabled" Color="Color.Primary" Class="font-smallcaps mb-1 d-flex">
         <div class="d-flex flex-row justify-start align-center">
-            <MudText Class="flex-grow-1 my-1 mr-2">@Filter.Modifier.Text</MudText>
+            <ModifierText Class="flex-grow-1 my-1 mr-2" Modifier="Filter.Modifier" />
             @if (Filter.Modifier.OptionValue == null && Filter.Modifier.Values.Count > 0)
             {
                 <div class="filter-min"
@@ -28,8 +28,6 @@
     [Inject] public TradeResources Resources { get; set; }
 
     [Parameter] public ModifierFilter Filter { get; set; }
-
-    [Parameter] public string AdditionalClassNames { get; set; }
 
     private void OnWheelMin(WheelEventArgs args)
     {
