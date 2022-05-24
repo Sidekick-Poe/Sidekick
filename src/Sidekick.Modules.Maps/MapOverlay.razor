@@ -1,42 +1,50 @@
 @page "/map/{itemText}"
 @layout OverlayLayout
 
-@if (DangerousMods.Count == 0)
-{
-    <MudPaper Outlined="true" Class="pa-2 mb-2">
-        <MudText Typo="Typo.h1" Align="Align.Center" Color="Color.Success">
-            <MudIcon Icon="@Icons.Filled.ThumbUp" Size="Size.Large"></MudIcon>
-            @Resources.Is_Safe
-        </MudText>
-    </MudPaper>
-}
-else
-{
-    <MudPaper Outlined="true" Class="pa-2 mb-2">
-        <MudText Typo="Typo.h1" Align="Align.Center" Color="Color.Error">
-            <MudIcon Icon="@Icons.Filled.ThumbDown" Size="Size.Large"></MudIcon>
-            @Resources.Is_Unsafe
-        </MudText>
-    </MudPaper>
-    foreach (var mod in DangerousMods)
-    {
-        <MudText Typo="Typo.body1">
-            <MudIcon Icon="@Icons.Filled.ThumbDown" Size="Size.Small" Color="Color.Error" Class="mr-2"></MudIcon>
-            @mod
-        </MudText>
-    }
-    if (OkMods.Count > 0)
-    {
-        <MudDivider Class="my-1" />
-    }
-}
-@foreach (var mod in OkMods)
-{
-    <MudText Typo="Typo.body2">
-        <MudIcon Icon="@Icons.Filled.ThumbUp" Size="Size.Small" Color="Color.Success" Class="mr-2"></MudIcon>
-        @mod
+<MudPaper Class="pa-2 mb-2">
+    <MudText Typo="Typo.h1" Align="Align.Center" Color="@(DangerousMods.Any() ? Color.Error: Color.Success)" Class="d-flex justify-center align-center">
+        <MudIcon Icon="@(DangerousMods.Any() ? Icons.Filled.ThumbDown : Icons.Filled.ThumbUp)" Size="Size.Large" Class="mr-2" />
+        @(DangerousMods.Any() ? Resources.Is_Unsafe : Resources.Is_Safe)
     </MudText>
-}
+</MudPaper>
+
+<MudGrid Spacing="2">
+    <MudItem xs="12" sm="@(PoeWikiClient.IsEnabled ? 6 : 12)" Class="d-flex flex-grow-1">
+        <MudPaper Class="pa-4 flex-grow-1">
+            @foreach (var mod in DangerousMods)
+            {
+                <MudText Typo="Typo.body1" Class="d-flex align-center">
+                    <MudIcon Icon="@Icons.Filled.ThumbDown" Size="Size.Small" Color="Color.Error" Class="mr-2" />
+                    @mod
+                </MudText>
+            }
+
+            @if (DangerousMods.Any() && OkMods.Any())
+            {
+                <MudDivider Class="ma-2" />
+            }
+
+            @foreach (var mod in OkMods)
+            {
+                <MudText Typo="Typo.body2" Class="d-flex align-center">
+                    <MudIcon Icon="@Icons.Filled.ThumbUp" Size="Size.Small" Color="Color.Success" Class="mr-2" />
+                    @mod
+                </MudText>
+            }
+        </MudPaper>
+    </MudItem>
+    @if (PoeWikiClient.IsEnabled)
+    {
+        <MudItem xs="12" sm="6" Class="d-flex flex-grow-1">
+            @if (Item != null)
+            {
+                <MudPaper Class="d-flex flex-grow-1 pa-4">
+                    <PoeWikiMapInfo Item="Item" />
+                </MudPaper>
+            }
+        </MudItem>
+    }
+</MudGrid>
 
 @code {
     [Inject] private MapInfoResources Resources { get; set; }
@@ -44,6 +52,7 @@ else
     [Inject] private IItemParser ItemParser { get; set; }
     [Inject] private ISettings Settings { get; set; }
     [Inject] private NavigationManager NavigationManager { get; set; }
+    [Inject] private IPoeWikiClient PoeWikiClient { get; set; }
 
     [Parameter] public string ItemText { get; set; }
 

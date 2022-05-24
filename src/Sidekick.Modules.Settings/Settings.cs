@@ -66,5 +66,7 @@ namespace Sidekick.Modules.Settings
         #endregion
 
         public DateTimeOffset? PoeNinja_LastClear { get; set; } = null;
+
+        public bool PoeWikiMap_Enable { get; set; } = true;
     }
 }
