@@ -14,10 +14,5 @@ namespace Sidekick.Mock
         public void PressKey(params string[] keys)
         {
         }
-
-        public string ToElectronAccelerator(string key)
-        {
-            return null;
-        }
     }
 }
