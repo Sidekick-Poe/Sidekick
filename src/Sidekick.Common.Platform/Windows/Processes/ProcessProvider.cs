@@ -65,17 +65,16 @@ namespace Sidekick.Common.Platform.Windows.Processes
             this.platformResources = platformResources;
         }
 
-        public Task Initialize()
+        public void Initialize()
         {
             // We can't initialize twice
             if (HasInitialized)
             {
-                return Task.CompletedTask;
+                return;
             }
 
             WindowsHook = EventLoop.Run(WinEvent.EVENT_SYSTEM_FOREGROUND, WinEvent.EVENT_SYSTEM_CAPTURESTART, IntPtr.Zero, OnWindowsEvent, 0, 0, WinEvent.WINEVENT_OUTOFCONTEXT);
             HasInitialized = true;
-            return Task.CompletedTask;
         }
 
         private void OnWindowsEvent(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
