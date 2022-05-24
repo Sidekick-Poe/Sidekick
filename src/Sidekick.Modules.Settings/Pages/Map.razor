@@ -36,6 +36,10 @@
     </MudCardHeader>
     <MudCardContent>
         <div>
+            <MudCheckBox Label="@Resources.PoeWikiMap_Enable"
+                         @bind-Checked="@ViewModel.PoeWikiMap_Enable"></MudCheckBox>
+        </div>
+        <div>
             <MudCheckBox Label="@Resources.Map_CloseWithMouse"
                          @bind-Checked="@ViewModel.Map_CloseWithMouse"></MudCheckBox>
         </div>
