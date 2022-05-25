@@ -139,7 +139,7 @@ namespace Sidekick.Common.Platform.Keyboards
         private readonly IKeybindProvider keybindProvider;
 
         private bool HasInitialized { get; set; } = false;
-        private TaskPoolGlobalHook Hook { get; set; }
+        private SimpleGlobalHook Hook { get; set; }
         private Task HookTask { get; set; }
         private EventSimulator Simulator { get; set; }
 
@@ -165,7 +165,7 @@ namespace Sidekick.Common.Platform.Keyboards
                 return;
             }
 
-            Hook = new TaskPoolGlobalHook();
+            Hook = new ();
 
             Hook.KeyPressed += OnKeyPressed;
             Hook.KeyReleased += OnKeyReleased;
