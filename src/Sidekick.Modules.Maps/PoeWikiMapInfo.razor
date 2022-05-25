@@ -38,6 +38,8 @@
                 </MudPaper>
             }
         </div>
+
+        <MudButton Class="mt-2" Variant="Variant.Filled" Size="Size.Small" EndIcon="@Icons.Material.Filled.OpenInBrowser" OnClick="@(() => PoeWikiClient.OpenUri(Map))">@Resources.OpenInPoeWiki</MudButton>
     }
     else
     {
@@ -46,7 +48,6 @@
         </div>
     }
 
-    <MudButton Class="mt-2" Variant="Variant.Filled" Size="Size.Small" EndIcon="@Icons.Material.Filled.OpenInBrowser" OnClick="@(() => PoeWikiClient.OpenUri(Map))">@Resources.OpenInPoeWiki</MudButton>
 </div>
 
 @code {
