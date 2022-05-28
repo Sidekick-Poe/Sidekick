@@ -1,11 +1,11 @@
 ::deep .mud-appbar {
-    height: var(--mud-appbar-min-height);
+    height: var(--mud-appbar-height);
 }
 
     ::deep .mud-appbar .mud-toolbar-appbar {
         -webkit-app-region: drag;
         -webkit-user-select: none;
-        min-height: var(--mud-appbar-min-height);
+        min-height: var(--mud-appbar-height);
         margin: 4px 4px 0 4px;
         padding-left: 0;
         padding-right: 0;
@@ -17,8 +17,8 @@
         }
 
         ::deep .mud-appbar .mud-toolbar-appbar .icon {
-            width: var(--mud-appbar-min-height);
-            height: var(--mud-appbar-min-height);
+            width: var(--mud-appbar-height);
+            height: var(--mud-appbar-height);
             margin-top: calc(-4px * 2);
             margin-right: 2px;
             padding: 0 5px;
@@ -41,8 +41,8 @@
             margin: 0;
             top: -4px;
             right: -4px;
-            width: calc(var(--mud-appbar-min-height) * 1.4);
-            height: var(--mud-appbar-min-height);
+            width: calc(var(--mud-appbar-height) * 1.4);
+            height: var(--mud-appbar-height);
             border-radius: 0;
         }
 
@@ -51,7 +51,7 @@
                 transition: all ease 0.4s;
             }
 
-            ::deep .mud-appbar .mud-toolbar-appbar button.close-button:hover {
-                color: var(--mud-palette-error-text);
-                background-color: var(--mud-palette-error);
-            }
+                ::deep .mud-appbar .mud-toolbar-appbar button.close-button:hover {
+                    color: var(--mud-palette-error-text);
+                    background-color: var(--mud-palette-error);
+                }
