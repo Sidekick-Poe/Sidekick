@@ -14,8 +14,6 @@ namespace Sidekick.Common.Platform
     /// </summary>
     public static class StartupExtensions
     {
-        private static KeybindProvider KeybindProvider = null;
-
         /// <summary>
         /// Adds platform (operating system) functions to the service collection
         /// </summary>
