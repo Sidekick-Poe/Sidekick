@@ -18,8 +18,10 @@
     <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
     <ProjectReference Include="..\Sidekick.Mock\Sidekick.Mock.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.About\Sidekick.Modules.About.csproj" />
+    <ProjectReference Include="..\Sidekick.Modules.Chat\Sidekick.Modules.Chat.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.Cheatsheets\Sidekick.Modules.Cheatsheets.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.Development\Sidekick.Modules.Development.csproj" />
+    <ProjectReference Include="..\Sidekick.Modules.General\Sidekick.Modules.General.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.Initialization\Sidekick.Modules.Initialization.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.Maps\Sidekick.Modules.Maps.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.Settings\Sidekick.Modules.Settings.csproj" />

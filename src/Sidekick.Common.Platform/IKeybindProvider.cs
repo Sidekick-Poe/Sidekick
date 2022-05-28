@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Sidekick.Common.Platform
 {
     /// <summary>
@@ -6,18 +8,14 @@ namespace Sidekick.Common.Platform
     public interface IKeybindProvider
     {
         /// <summary>
-        /// Initialize the provider
+        /// A list of keybind handlers currently registered to the application
+        /// </summary>
+        Dictionary<string, IKeybindHandler> KeybindHandlers { get; }
+
+        /// <summary>
+        /// Initializes keybinds. If already initialized, this can be called again to refresh the
+        /// keybinds, such as when settings change.
         /// </summary>
         void Initialize();
-
-        /// <summary>
-        /// Register keybinds with the operating system
-        /// </summary>
-        void Register();
-
-        /// <summary>
-        /// Unregisters keybinds with the operating system
-        /// </summary>
-        void Unregister();
     }
 }

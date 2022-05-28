@@ -11,11 +11,11 @@ namespace Sidekick.Mock
         public static IServiceCollection AddSidekickMocks(this IServiceCollection services)
         {
             services.TryAddSingleton<IAppService, MockAppService>();
-            services.TryAddSingleton<IKeyboardProvider, MockKeyboardProvider>();
             services.TryAddSingleton<IProcessProvider, MockProcessProvider>();
+            services.TryAddSingleton<IKeyboardProvider, MockKeyboardProvider>();
+            services.TryAddSingleton<IKeybindProvider, MockKeybindProvider>();
             services.TryAddSingleton<IViewLocator, MockViewLocator>();
             services.TryAddScoped<IViewInstance, MockViewInstance>();
-            services.TryAddSingleton<IKeybindProvider, MockKeybindProvider>();
 
             return services;
         }

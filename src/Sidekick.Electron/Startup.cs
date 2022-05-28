@@ -20,13 +20,14 @@ using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
 using Sidekick.Electron.App;
-using Sidekick.Electron.Keybinds;
 using Sidekick.Electron.Localization;
 using Sidekick.Electron.Tray;
 using Sidekick.Electron.Views;
 using Sidekick.Localization;
 using Sidekick.Modules.About;
+using Sidekick.Modules.Chat;
 using Sidekick.Modules.Cheatsheets;
+using Sidekick.Modules.General;
 using Sidekick.Modules.Initialization;
 using Sidekick.Modules.Maps;
 using Sidekick.Modules.Settings;
@@ -74,7 +75,9 @@ namespace Sidekick.Electron
 
                 // Modules
                 .AddSidekickAbout()
+                .AddSidekickChat()
                 .AddSidekickCheatsheets()
+                .AddSidekickGeneral()
                 .AddSidekickInitialization()
                 .AddSidekickMaps()
                 .AddSidekickSettings(configuration)
@@ -89,15 +92,6 @@ namespace Sidekick.Electron
             services.AddSingleton<ViewLocator>();
             services.AddSingleton<IViewLocator>((sp) => sp.GetRequiredService<ViewLocator>());
             services.AddScoped<IViewInstance, ViewInstance>();
-
-            services.AddSingleton<IKeybindProvider, KeybindProvider>();
-            services.AddSingleton<ChatKeybindHandler>();
-            services.AddSingleton<CloseOverlayKeybindHandler>();
-            services.AddSingleton<FindItemKeybindHandler>();
-            services.AddSingleton<OpenCheatsheetsKeybindHandler>();
-            services.AddSingleton<OpenMapInfoKeybindHandler>();
-            services.AddSingleton<OpenWikiPageKeybindHandler>();
-            services.AddSingleton<PriceCheckItemKeybindHandler>();
 
             var mvcBuilder = services
                 .AddRazorPages(options =>
@@ -155,7 +149,8 @@ namespace Sidekick.Electron
                     trayProvider.Initialize();
 
                     // We need to trick Electron into thinking that our app is ready to be opened.
-                    // This makes Electron hide the splashscreen. For us, it means we are ready to initialize and price check :)
+                    // This makes Electron hide the splashscreen. For us, it means we are ready to
+                    // initialize and price check :)
                     var browserWindow = await ElectronNET.API.Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
                     {
                         Width = 1,
@@ -178,7 +173,6 @@ namespace Sidekick.Electron
 
                     // Initialize Sidekick
                     await viewLocator.Open("/update");
-
                 }
                 catch (Exception e)
                 {
