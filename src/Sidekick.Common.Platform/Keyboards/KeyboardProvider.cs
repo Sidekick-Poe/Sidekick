@@ -12,128 +12,124 @@ namespace Sidekick.Common.Platform.Keyboards
 {
     public class KeyboardProvider : IKeyboardProvider, IDisposable
     {
-        private const string ALT = "Alt";
-        private const string CTRL = "Ctrl";
-        private const string SHIFT = "Shift";
-
-        private static readonly List<Key> ValidKeys = new()
+        private static readonly Dictionary<KeyCode, string> Keys = new()
         {
-            new Key(KeyCode.VcLeftShift, SHIFT),
-            new Key(KeyCode.VcRightShift, SHIFT),
-            new Key(KeyCode.VcLeftControl, CTRL),
-            new Key(KeyCode.VcRightControl, CTRL),
-            new Key(KeyCode.VcLeftAlt, ALT),
-            new Key(KeyCode.VcRightAlt, ALT),
+            { KeyCode.VcLeftShift, "Shift" },
+            { KeyCode.VcRightShift, "Shift" },
+            { KeyCode.VcLeftControl, "Ctrl" },
+            { KeyCode.VcRightControl, "Ctrl" },
+            { KeyCode.VcLeftAlt, "Alt" },
+            { KeyCode.VcRightAlt, "Alt" },
 
-            new Key(KeyCode.VcF1, "F1"),
-            new Key(KeyCode.VcF2, "F2"),
-            new Key(KeyCode.VcF3, "F3"),
-            new Key(KeyCode.VcF4, "F4"),
-            new Key(KeyCode.VcF5, "F5"),
-            new Key(KeyCode.VcF6, "F6"),
-            new Key(KeyCode.VcF7, "F7"),
-            new Key(KeyCode.VcF8, "F8"),
-            new Key(KeyCode.VcF9, "F9"),
-            new Key(KeyCode.VcF10, "F10"),
-            new Key(KeyCode.VcF11, "F11"),
-            new Key(KeyCode.VcF12, "F12"),
-            new Key(KeyCode.VcF13, "F13"),
-            new Key(KeyCode.VcF14, "F14"),
-            new Key(KeyCode.VcF15, "F15"),
-            new Key(KeyCode.VcF16, "F16"),
-            new Key(KeyCode.VcF17, "F17"),
-            new Key(KeyCode.VcF18, "F18"),
-            new Key(KeyCode.VcF19, "F19"),
-            new Key(KeyCode.VcF20, "F20"),
-            new Key(KeyCode.VcF21, "F21"),
-            new Key(KeyCode.VcF22, "F22"),
-            new Key(KeyCode.VcF23, "F23"),
-            new Key(KeyCode.VcF24, "F24"),
+            { KeyCode.VcF1, "F1" },
+            { KeyCode.VcF2, "F2" },
+            { KeyCode.VcF3, "F3" },
+            { KeyCode.VcF4, "F4" },
+            { KeyCode.VcF5, "F5" },
+            { KeyCode.VcF6, "F6" },
+            { KeyCode.VcF7, "F7" },
+            { KeyCode.VcF8, "F8" },
+            { KeyCode.VcF9, "F9" },
+            { KeyCode.VcF10, "F10" },
+            { KeyCode.VcF11, "F11" },
+            { KeyCode.VcF12, "F12" },
+            { KeyCode.VcF13, "F13" },
+            { KeyCode.VcF14, "F14" },
+            { KeyCode.VcF15, "F15" },
+            { KeyCode.VcF16, "F16" },
+            { KeyCode.VcF17, "F17" },
+            { KeyCode.VcF18, "F18" },
+            { KeyCode.VcF19, "F19" },
+            { KeyCode.VcF20, "F20" },
+            { KeyCode.VcF21, "F21" },
+            { KeyCode.VcF22, "F22" },
+            { KeyCode.VcF23, "F23" },
+            { KeyCode.VcF24, "F24" },
 
-            new Key(KeyCode.Vc0, "0"),
-            new Key(KeyCode.Vc1, "1"),
-            new Key(KeyCode.Vc2, "2"),
-            new Key(KeyCode.Vc3, "3"),
-            new Key(KeyCode.Vc4, "4"),
-            new Key(KeyCode.Vc5, "5"),
-            new Key(KeyCode.Vc6, "6"),
-            new Key(KeyCode.Vc7, "7"),
-            new Key(KeyCode.Vc8, "8"),
-            new Key(KeyCode.Vc9, "9"),
+            { KeyCode.Vc0, "0" },
+            { KeyCode.Vc1, "1" },
+            { KeyCode.Vc2, "2" },
+            { KeyCode.Vc3, "3" },
+            { KeyCode.Vc4, "4" },
+            { KeyCode.Vc5, "5" },
+            { KeyCode.Vc6, "6" },
+            { KeyCode.Vc7, "7" },
+            { KeyCode.Vc8, "8" },
+            { KeyCode.Vc9, "9" },
 
-            new Key(KeyCode.VcA, "A"),
-            new Key(KeyCode.VcB, "B"),
-            new Key(KeyCode.VcC, "C"),
-            new Key(KeyCode.VcD, "D"),
-            new Key(KeyCode.VcE, "E"),
-            new Key(KeyCode.VcF, "F"),
-            new Key(KeyCode.VcG, "G"),
-            new Key(KeyCode.VcH, "H"),
-            new Key(KeyCode.VcI, "I"),
-            new Key(KeyCode.VcJ, "J"),
-            new Key(KeyCode.VcK, "K"),
-            new Key(KeyCode.VcL, "L"),
-            new Key(KeyCode.VcM, "M"),
-            new Key(KeyCode.VcN, "N"),
-            new Key(KeyCode.VcO, "O"),
-            new Key(KeyCode.VcP, "P"),
-            new Key(KeyCode.VcQ, "Q"),
-            new Key(KeyCode.VcR, "R"),
-            new Key(KeyCode.VcS, "S"),
-            new Key(KeyCode.VcT, "T"),
-            new Key(KeyCode.VcU, "U"),
-            new Key(KeyCode.VcV, "V"),
-            new Key(KeyCode.VcW, "W"),
-            new Key(KeyCode.VcX, "X"),
-            new Key(KeyCode.VcY, "Y"),
-            new Key(KeyCode.VcZ, "Z"),
+            { KeyCode.VcA, "A" },
+            { KeyCode.VcB, "B" },
+            { KeyCode.VcC, "C" },
+            { KeyCode.VcD, "D" },
+            { KeyCode.VcE, "E" },
+            { KeyCode.VcF, "F" },
+            { KeyCode.VcG, "G" },
+            { KeyCode.VcH, "H" },
+            { KeyCode.VcI, "I" },
+            { KeyCode.VcJ, "J" },
+            { KeyCode.VcK, "K" },
+            { KeyCode.VcL, "L" },
+            { KeyCode.VcM, "M" },
+            { KeyCode.VcN, "N" },
+            { KeyCode.VcO, "O" },
+            { KeyCode.VcP, "P" },
+            { KeyCode.VcQ, "Q" },
+            { KeyCode.VcR, "R" },
+            { KeyCode.VcS, "S" },
+            { KeyCode.VcT, "T" },
+            { KeyCode.VcU, "U" },
+            { KeyCode.VcV, "V" },
+            { KeyCode.VcW, "W" },
+            { KeyCode.VcX, "X" },
+            { KeyCode.VcY, "Y" },
+            { KeyCode.VcZ, "Z" },
 
-            new Key(KeyCode.VcMinus, "-"),
-            new Key(KeyCode.VcEquals, "="),
-            new Key(KeyCode.VcComma, ","),
-            new Key(KeyCode.VcPeriod, "."),
-            new Key(KeyCode.VcSemicolon, ";"),
-            new Key(KeyCode.VcSlash, "/"),
-            new Key(KeyCode.VcBackquote, "`"),
-            new Key(KeyCode.VcOpenBracket, "["),
-            new Key(KeyCode.VcBackSlash, "\\"),
-            new Key(KeyCode.VcCloseBracket, "]"),
-            new Key(KeyCode.VcQuote, "'"),
+            { KeyCode.VcMinus, "-" },
+            { KeyCode.VcEquals, "=" },
+            { KeyCode.VcComma, "," },
+            { KeyCode.VcPeriod, "." },
+            { KeyCode.VcSemicolon, ";" },
+            { KeyCode.VcSlash, "/" },
+            { KeyCode.VcBackquote, "`" },
+            { KeyCode.VcOpenBracket, "[" },
+            { KeyCode.VcBackSlash, "\\" },
+            { KeyCode.VcCloseBracket, "]" },
+            { KeyCode.VcQuote, "'" },
 
-            new Key(KeyCode.VcEscape, "Esc"),
-            new Key(KeyCode.VcTab, "Tab"),
-            new Key(KeyCode.VcCapsLock, "CapsLock"),
-            new Key(KeyCode.VcSpace, "Space"),
-            new Key(KeyCode.VcBackspace, "Backspace"),
-            new Key(KeyCode.VcEnter, "Enter"),
-            new Key(KeyCode.VcPrintscreen,"PrintScreen"),
-            new Key(KeyCode.VcScrollLock, "ScrollLock"),
-            new Key(KeyCode.VcInsert, "Insert"),
-            new Key(KeyCode.VcHome, "Home"),
-            new Key(KeyCode.VcDelete, "Delete"),
-            new Key(KeyCode.VcEnd, "End"),
-            new Key(KeyCode.VcPageDown, "PageDown"),
-            new Key(KeyCode.VcPageUp, "PageUp"),
+            { KeyCode.VcEscape, "Esc" },
+            { KeyCode.VcTab, "Tab" },
+            { KeyCode.VcCapsLock, "CapsLock" },
+            { KeyCode.VcSpace, "Space" },
+            { KeyCode.VcBackspace, "Backspace" },
+            { KeyCode.VcEnter, "Enter" },
+            { KeyCode.VcPrintscreen,"PrintScreen" },
+            { KeyCode.VcScrollLock, "ScrollLock" },
+            { KeyCode.VcInsert, "Insert" },
+            { KeyCode.VcHome, "Home" },
+            { KeyCode.VcDelete, "Delete" },
+            { KeyCode.VcEnd, "End" },
+            { KeyCode.VcPageDown, "PageDown" },
+            { KeyCode.VcPageUp, "PageUp" },
 
-            new Key(KeyCode.VcUp, "Up"),
-            new Key(KeyCode.VcDown, "Down"),
-            new Key(KeyCode.VcLeft, "Left"),
-            new Key(KeyCode.VcRight, "Right"),
+            { KeyCode.VcUp, "Up" },
+            { KeyCode.VcDown, "Down" },
+            { KeyCode.VcLeft, "Left" },
+            { KeyCode.VcRight, "Right" },
 
-            new Key(KeyCode.VcNumLock, "NumLock"),
-            new Key(KeyCode.VcNumPad0, "Num0"),
-            new Key(KeyCode.VcNumPad1, "Num1"),
-            new Key(KeyCode.VcNumPad2, "Num2"),
-            new Key(KeyCode.VcNumPad3, "Num3"),
-            new Key(KeyCode.VcNumPad4, "Num4"),
-            new Key(KeyCode.VcNumPad5, "Num5"),
-            new Key(KeyCode.VcNumPad6, "Num6"),
-            new Key(KeyCode.VcNumPad7, "Num7"),
-            new Key(KeyCode.VcNumPad8, "Num8"),
-            new Key(KeyCode.VcNumPad9, "Num9"),
+            { KeyCode.VcNumLock, "NumLock" },
+            { KeyCode.VcNumPad0, "Num0" },
+            { KeyCode.VcNumPad1, "Num1" },
+            { KeyCode.VcNumPad2, "Num2" },
+            { KeyCode.VcNumPad3, "Num3" },
+            { KeyCode.VcNumPad4, "Num4" },
+            { KeyCode.VcNumPad5, "Num5" },
+            { KeyCode.VcNumPad6, "Num6" },
+            { KeyCode.VcNumPad7, "Num7" },
+            { KeyCode.VcNumPad8, "Num8" },
+            { KeyCode.VcNumPad9, "Num9" },
         };
 
-        private static readonly Regex ModifierKeys = new($"{CTRL}|{SHIFT}|{ALT}");
+        private static readonly Regex ModifierKeys = new("Ctrl|Shift|Alt");
 
         private readonly ILogger<KeyboardProvider> logger;
         private readonly IKeybindProvider keybindProvider;
@@ -142,10 +138,6 @@ namespace Sidekick.Common.Platform.Keyboards
         private SimpleGlobalHook Hook { get; set; }
         private Task HookTask { get; set; }
         private EventSimulator Simulator { get; set; }
-
-        private bool AltPressed { get; set; } = false;
-        private bool CtrlPressed { get; set; } = false;
-        private bool ShiftPressed { get; set; } = false;
 
         public KeyboardProvider(
             ILogger<KeyboardProvider> logger,
@@ -165,10 +157,9 @@ namespace Sidekick.Common.Platform.Keyboards
                 return;
             }
 
-            Hook = new ();
+            Hook = new();
 
             Hook.KeyPressed += OnKeyPressed;
-            Hook.KeyReleased += OnKeyReleased;
 
             HookTask = Hook.RunAsync();
             Simulator = new EventSimulator();
@@ -179,40 +170,29 @@ namespace Sidekick.Common.Platform.Keyboards
         private void OnKeyPressed(object sender, KeyboardHookEventArgs args)
         {
             // Make sure the key is one we recognize
-            if (!ValidKeys.Any(x => x.KeyCode == args.Data.KeyCode))
+            if (!Keys.TryGetValue(args.Data.KeyCode, out var key))
             {
-                return;
-            }
-
-            // Handle modifier keys and update their flags
-            var key = ValidKeys.Find(x => x.KeyCode == args.Data.KeyCode);
-            if (ModifierKeys.IsMatch(key.StringValue))
-            {
-                switch (key.StringValue)
-                {
-                    case ALT: AltPressed = true; break;
-                    case CTRL: CtrlPressed = true; break;
-                    case SHIFT: ShiftPressed = true; break;
-                }
                 return;
             }
 
             // Transfer the event key to a string to compare to settings
             var str = new StringBuilder();
-            if (CtrlPressed)
+            if ((args.RawEvent.Mask & ModifierMask.Ctrl) > 0)
             {
-                str.Append($"{CTRL}+");
-            }
-            if (ShiftPressed)
-            {
-                str.Append($"{SHIFT}+");
-            }
-            if (AltPressed)
-            {
-                str.Append($"{ALT}+");
+                str.Append("Ctrl+");
             }
 
-            str.Append(key.StringValue);
+            if ((args.RawEvent.Mask & ModifierMask.Shift) > 0)
+            {
+                str.Append("Shift+");
+            }
+
+            if ((args.RawEvent.Mask & ModifierMask.Alt) > 0)
+            {
+                str.Append("Alt+");
+            }
+
+            str.Append(key);
             var keybind = str.ToString();
 
             if (OnKeyDown != null && OnKeyDown.GetInvocationList().Length > 0)
@@ -224,25 +204,8 @@ namespace Sidekick.Common.Platform.Keyboards
                 if (keybindHandler.IsValid())
                 {
                     args.Reserved = EventReservedValueMask.SuppressEvent;
-                    _ = keybindHandler.Execute(keybind);
-                    return;
+                    Task.Run(() => keybindHandler.Execute(keybind));
                 }
-            }
-        }
-
-        private void OnKeyReleased(object sender, KeyboardHookEventArgs args)
-        {
-            if (!ValidKeys.Any(x => x.KeyCode == args.Data.KeyCode))
-            {
-                return;
-            }
-
-            var key = ValidKeys.Find(x => x.KeyCode == args.Data.KeyCode);
-            switch (key.StringValue)
-            {
-                case ALT: AltPressed = false; break;
-                case CTRL: CtrlPressed = false; break;
-                case SHIFT: ShiftPressed = false; break;
             }
         }
 
@@ -271,46 +234,46 @@ namespace Sidekick.Common.Platform.Keyboards
 
                 foreach (var modifierKey in modifiers)
                 {
-                    Simulator.SimulateKeyPress(modifierKey.KeyCode);
+                    Simulator.SimulateKeyPress(modifierKey);
                 }
 
                 foreach (var key in keys)
                 {
-                    Simulator.SimulateKeyPress(key.KeyCode);
+                    Simulator.SimulateKeyPress(key);
                 }
 
                 foreach (var key in keys)
                 {
-                    Simulator.SimulateKeyRelease(key.KeyCode);
+                    Simulator.SimulateKeyRelease(key);
                 }
 
                 foreach (var modifierKey in modifiers)
                 {
-                    Simulator.SimulateKeyRelease(modifierKey.KeyCode);
+                    Simulator.SimulateKeyRelease(modifierKey);
                 }
             }
         }
 
-        private (List<Key> Modifiers, List<Key> Keys) FetchKeys(string stroke)
+        private (List<KeyCode> Modifiers, List<KeyCode> Keys) FetchKeys(string stroke)
         {
-            var keyCodes = new List<Key>();
-            var modifierCodes = new List<Key>();
+            var keyCodes = new List<KeyCode>();
+            var modifierCodes = new List<KeyCode>();
 
             foreach (var key in stroke.Split('+'))
             {
-                if (!ValidKeys.Any(x => x.StringValue == key))
+                if (!Keys.Any(x => x.Value == key))
                 {
                     return (null, null);
                 }
 
-                var validKey = ValidKeys.Find(x => x.StringValue == key);
+                var validKey = Keys.First(x => x.Value == key);
                 if (ModifierKeys.IsMatch(key))
                 {
-                    modifierCodes.Add(validKey);
+                    modifierCodes.Add(validKey.Key);
                 }
                 else
                 {
-                    keyCodes.Add(validKey);
+                    keyCodes.Add(validKey.Key);
                 }
             }
 
@@ -333,7 +296,6 @@ namespace Sidekick.Common.Platform.Keyboards
             if (Hook != null)
             {
                 Hook.KeyPressed += OnKeyPressed;
-                Hook.KeyReleased += OnKeyReleased;
                 Hook.Dispose();
             }
 
