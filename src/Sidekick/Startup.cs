@@ -1,3 +1,4 @@
+using System.IO;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -63,8 +64,8 @@ namespace Sidekick
                 .AddSidekickCommonGame()
                 .AddSidekickCommonPlatform(o =>
                 {
-                    o.WindowsIconPath = "/wwwroot/favicon.ico";
-                    o.OsxIconPath = "/wwwroot/apple-touch-icon.png";
+                    o.WindowsIconPath = Path.GetFullPath("wwwroot/favicon.ico");
+                    o.OsxIconPath = Path.GetFullPath("wwwroot/apple-touch-icon.png");
                 })
 
                 // Apis
