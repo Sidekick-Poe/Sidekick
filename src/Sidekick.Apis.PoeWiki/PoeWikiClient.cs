@@ -63,7 +63,7 @@ namespace Sidekick.Apis.PoeWiki
         {
             try
             {
-                var mapName = item.Metadata.Type;
+                var mapName = item.Metadata.Name ?? item.Metadata.Type;
                 var query = new QueryBuilder(new List<KeyValuePair<string, string>>
                 {
                     new("action", "cargoquery"),
