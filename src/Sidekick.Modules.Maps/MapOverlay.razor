@@ -92,6 +92,12 @@
 
     private void FilterMods(Regex modRegex, List<Modifier> modifiers)
     {
+        if (string.IsNullOrWhiteSpace(Settings.Map_Dangerous_Regex))
+        {
+            OkMods.AddRange(modifiers.Select(x => x.Text));
+            return;
+        }
+
         foreach (var mod in modifiers)
         {
             if (modRegex.IsMatch(mod.Text))
