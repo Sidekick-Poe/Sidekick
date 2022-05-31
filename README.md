@@ -32,7 +32,7 @@ Opens a view with useful common information about different mechanics of the gam
 - Checks the modifiers on a map or contract for mods that are dangerous (configurable).
 - Shows information on bosses and possible drops (information from poewiki.net)
 
-| Safe information |
+| Map information |
 |---|
 | ![](https://user-images.githubusercontent.com/4694217/171073300-f965554d-24f7-421b-a2ce-cf088a71fdce.png) |
 
