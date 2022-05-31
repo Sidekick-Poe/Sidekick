@@ -113,8 +113,7 @@ namespace Sidekick.Apis.PoeNinja
 
                 if (item.Properties != null)
                 {
-                    query = query.Where(x => x.Corrupted == item.Properties.Corrupted
-                                          && x.GemLevel == item.Properties.GemLevel
+                    query = query.Where(x => x.GemLevel == item.Properties.GemLevel
                                           && x.IsRelic == item.Properties.IsRelic);
 
                     if (itemType == ItemType.Map
@@ -136,7 +135,7 @@ namespace Sidekick.Apis.PoeNinja
 
                 if (query.Any())
                 {
-                    return query.FirstOrDefault();
+                    return query.OrderBy(x => x.Corrupted).FirstOrDefault();
                 }
             }
 
