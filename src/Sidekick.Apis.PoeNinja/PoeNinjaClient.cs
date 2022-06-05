@@ -49,6 +49,7 @@ namespace Sidekick.Apis.PoeNinja
             { ItemType.Invitation, "invitations" },
             { ItemType.DeliriumOrb, "delirium-orbs" },
             { ItemType.BlightedMap, "blighted-maps" },
+            { ItemType.Artifact, "artifacts" },
         };
 
         public PoeNinjaClient(
@@ -169,6 +170,7 @@ namespace Sidekick.Apis.PoeNinja
                 result.Add(ItemType.Resonator);
                 result.Add(ItemType.Essence);
                 result.Add(ItemType.Resonator);
+                result.Add(ItemType.Artifact);
             }
             else if (item.Metadata.Rarity == Rarity.Unique)
             {
