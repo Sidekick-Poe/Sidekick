@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Sidekick.Apis.Poe.Trade.Results;
 
 namespace Sidekick.Apis.Poe.Trade.Models
 {
@@ -9,5 +10,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
         public string Id { get; set; }
 
         public int Total { get; set; }
+
+        public Error Error { get; set; }
     }
 }
