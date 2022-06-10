@@ -23,6 +23,11 @@
 @if (IsError)
 {
     <MudAlert Severity="Severity.Error">@Resources.Error_PoeApi</MudAlert>
+
+    @if (QueryResult?.Error != null)
+    {
+        <MudAlert Class="mt-1" Severity="Severity.Error">@Resources.Error_PoeApiMessage <b>@QueryResult.Error.Message</b></MudAlert>
+    }
 }
 else
 {
@@ -114,7 +119,7 @@ else
 
         IsFetching = false;
 
-        if (QueryResult == null)
+        if (QueryResult == null || QueryResult?.Error != null)
         {
             IsError = true;
         }
