@@ -494,7 +494,7 @@ namespace Sidekick.Apis.Poe.Trade
 
             ParseMods(modifierProvider,
                 item.Modifiers.Implicit,
-                result.Item.ImplicitMods,
+                result.Item.ImplicitMods ?? result.Item.LogbookMods.SelectMany(x => x.Mods).ToList(),
                 result.Item.Extended.Mods?.Implicit,
                 ParseHash(result.Item.Extended.Hashes?.Implicit));
 
