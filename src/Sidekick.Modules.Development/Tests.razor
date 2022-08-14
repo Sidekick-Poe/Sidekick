@@ -29,7 +29,7 @@
 </MudCard>
 
 @code {
-    [Inject] private IAppService AppService { get; set; }
+    [Inject] private ITrayProvider TrayProvider { get; set; }
 
     private string NotificationTitle { get; set; }
     private string NotificationMessage { get; set; }
@@ -41,8 +41,8 @@
 #pragma warning restore S112 // General exceptions should never be thrown
     }
 
-    public async void ShowNotification()
+    public void ShowNotification()
     {
-        await AppService.OpenNotification(NotificationMessage, NotificationTitle);
+        TrayProvider.SendNotification(NotificationMessage, NotificationTitle);
     }
 }

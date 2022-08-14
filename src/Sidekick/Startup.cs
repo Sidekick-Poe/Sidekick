@@ -1,3 +1,4 @@
+using System.IO;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,8 +13,10 @@ using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
+using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Tray;
 using Sidekick.Localization;
 using Sidekick.Mock;
 using Sidekick.Modules.About;
@@ -61,7 +64,11 @@ namespace Sidekick
                 // Common
                 .AddSidekickCommon()
                 .AddSidekickCommonGame()
-                .AddSidekickCommonPlatform()
+                .AddSidekickCommonPlatform(o =>
+                {
+                    o.WindowsIconPath = Path.GetFullPath("wwwroot/favicon.ico");
+                    o.OsxIconPath = Path.GetFullPath("wwwroot/apple-touch-icon.png");
+                })
 
                 // Apis
                 .AddSidekickGitHubApi()
@@ -100,7 +107,11 @@ namespace Sidekick
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(
+            IApplicationBuilder app,
+            IWebHostEnvironment env,
+            IViewLocator viewLocator,
+            ITrayProvider trayProvider)
         {
             if (env.IsDevelopment())
             {
@@ -122,6 +133,8 @@ namespace Sidekick
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+
+            app.UseSidekickTray(trayProvider, viewLocator, env);
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using ElectronNET.API.Entities;
 using FluentValidation.AspNetCore;
@@ -19,9 +20,9 @@ using Sidekick.Common.Blazor;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Tray;
 using Sidekick.Electron.App;
 using Sidekick.Electron.Localization;
-using Sidekick.Electron.Tray;
 using Sidekick.Electron.Views;
 using Sidekick.Localization;
 using Sidekick.Modules.About;
@@ -64,7 +65,11 @@ namespace Sidekick.Electron
                 // Common
                 .AddSidekickCommon()
                 .AddSidekickCommonGame()
-                .AddSidekickCommonPlatform()
+                .AddSidekickCommonPlatform(o =>
+                {
+                    o.WindowsIconPath = Path.GetFullPath("wwwroot/favicon.ico");
+                    o.OsxIconPath = Path.GetFullPath("wwwroot/apple-touch-icon.png");
+                })
 
                 // Apis
                 .AddSidekickGitHubApi()
@@ -86,7 +91,6 @@ namespace Sidekick.Electron
 
             // Electron services
             services.AddTransient<TrayResources>();
-            services.AddSingleton<TrayProvider>();
             services.AddSingleton<IAppService, AppService>();
             services.AddSingleton<ElectronCookieProtection>();
             services.AddSingleton<ViewLocator>();
@@ -114,9 +118,9 @@ namespace Sidekick.Electron
         public void Configure(
             IApplicationBuilder app,
             IWebHostEnvironment env,
-            TrayProvider trayProvider,
             ILogger<Startup> logger,
-            IViewLocator viewLocator)
+            IViewLocator viewLocator,
+            ITrayProvider trayProvider)
         {
             if (env.IsDevelopment())
             {
@@ -132,6 +136,8 @@ namespace Sidekick.Electron
             app.UseStaticFiles();
             app.UseRouting();
 
+            app.UseSidekickTray(trayProvider, viewLocator, env);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapBlazorHub();
@@ -141,12 +147,12 @@ namespace Sidekick.Electron
             // Electron stuff
             ElectronNET.API.Electron.NativeTheme.SetThemeSource(ThemeSourceMode.Dark);
             ElectronNET.API.Electron.WindowManager.IsQuitOnWindowAllClosed = false;
+
             Task.Run(async () =>
             {
                 try
                 {
-                    // Tray
-                    trayProvider.Initialize();
+                    // Tray trayProvider.Initialize();
 
                     // We need to trick Electron into thinking that our app is ready to be opened.
                     // This makes Electron hide the splashscreen. For us, it means we are ready to
