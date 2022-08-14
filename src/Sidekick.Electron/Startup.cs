@@ -91,7 +91,6 @@ namespace Sidekick.Electron
 
             // Electron services
             services.AddTransient<TrayResources>();
-            // services.AddSingleton<TrayProvider>();
             services.AddSingleton<IAppService, AppService>();
             services.AddSingleton<ElectronCookieProtection>();
             services.AddSingleton<ViewLocator>();

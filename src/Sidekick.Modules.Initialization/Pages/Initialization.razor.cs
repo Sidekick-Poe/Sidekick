@@ -12,6 +12,7 @@ using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Localization;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Tray;
 using Sidekick.Common.Settings;
 using Sidekick.Core.Settings;
 using Sidekick.Modules.Initialization.Localization;
@@ -37,6 +38,7 @@ namespace Sidekick.Modules.Initialization.Pages
         [Inject] private IUILanguageProvider UILanguageProvider { get; set; }
         [Inject] private IEnglishModifierProvider EnglishModifierProvider { get; set; }
         [Inject] private IPoeNinjaClient PoeNinjaClient { get; set; }
+        [Inject] private ITrayProvider TrayProvider { get; set; }
 
         private int Count { get; set; } = 0;
         private int Completed { get; set; } = 0;
@@ -85,15 +87,16 @@ namespace Sidekick.Modules.Initialization.Pages
                 await Task.Delay(500);
 
                 // Show a system notification
-                await AppService.OpenNotification(string.Format(Resources.Notification_Message, Settings.Trade_Key_Check.ToKeybindString(), Settings.Key_Close.ToKeybindString()),
-                                                  Resources.Notification_Title);
+                TrayProvider.SendNotification(string.Format(Resources.Notification_Message, Settings.Trade_Key_Check.ToKeybindString(),
+                                                                                            Settings.Key_Close.ToKeybindString()),
+                                                                                            Resources.Notification_Title);
 
                 await ViewInstance.Close();
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex.Message);
-                await AppService.OpenNotification(Resources.Error);
+                TrayProvider.SendNotification(Resources.Error);
                 AppService.Shutdown();
             }
         }

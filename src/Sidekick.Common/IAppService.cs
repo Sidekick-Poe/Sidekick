@@ -11,13 +11,6 @@ namespace Sidekick.Common
         void Shutdown();
 
         /// <summary>
-        /// Open a notification message
-        /// </summary>
-        /// <param name="message">The message to show in the notification</param>
-        /// <param name="title">The title of the notification (optional)</param>
-        Task OpenNotification(string message, string title = null);
-
-        /// <summary>
         /// Open a notification message with Yes/No buttons
         /// </summary>
         /// <param name="message">The message to show in the notification</param>
