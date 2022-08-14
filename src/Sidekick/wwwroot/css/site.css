@@ -1,3 +1,7 @@
+body {
+    overflow: hidden;
+}
+
 #blazor-error-ui {
     color: black;
 }
