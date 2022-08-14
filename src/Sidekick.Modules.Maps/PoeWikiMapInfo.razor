@@ -1,5 +1,5 @@
 <div class="d-flex flex-column flex-grow-1">
-    <MudText Typo="Typo.h3" Color="Color.Info" Align="Align.Center">@Resources.PoeWikiTitle</MudText>
+    <MudText Typo="Typo.h5" Color="Color.Info" Align="Align.Center">@Resources.PoeWikiTitle</MudText>
 
     @if (Loading)
     {
@@ -8,6 +8,7 @@
     else if (Map != null)
     {
         <div>
+            <MudText>@Map.Name</MudText>
             @if (Map.Drops.Any())
             {
                 <MudText Typo="Typo.subtitle2" Class="my-2">@Resources.DropsTitle</MudText>

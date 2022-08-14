@@ -1,15 +1,15 @@
 using System;
-using System.Threading.Tasks;
 
 namespace Sidekick.Common.Platform
 {
     public interface IProcessProvider
     {
-        Task Initialize();
+        void Initialize();
 
         string ClientLogPath { get; }
 
         event Action OnFocus;
+
         event Action OnBlur;
 
         bool IsPathOfExileInFocus { get; }

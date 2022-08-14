@@ -1,3 +1,7 @@
+body {
+    overflow: hidden;
+}
+
 #blazor-error-ui {
     color: black;
 }
@@ -5,6 +9,13 @@
     #blazor-error-ui .reload, #blazor-error-ui .dismiss {
         color: black;
     }
+
+#components-reconnect-modal {
+    position: sticky !important;
+    height: 150px !important;
+    opacity: 1 !important;
+    background-color: var(--mud-palette-background) !important;
+}
 
 @font-face {
     font-family: 'fontin';

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Sidekick.Apis.Poe;
 using Sidekick.Common.Blazor.Views;
@@ -7,9 +8,8 @@ using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
-using Sidekick.Domain.Keybinds;
 
-namespace Sidekick.Electron.Keybinds
+namespace Sidekick.Modules.General.Keybinds
 {
     public class OpenWikiPageKeybindHandler : IKeybindHandler
     {
@@ -39,9 +39,11 @@ namespace Sidekick.Electron.Keybinds
             this.browserProvider = browserProvider;
         }
 
+        public List<string> GetKeybinds() => new() { settings.Wiki_Key_Open };
+
         public bool IsValid() => processProvider.IsPathOfExileInFocus;
 
-        public async Task Execute()
+        public async Task Execute(string _)
         {
             var text = await clipboardProvider.Copy();
             var item = itemParser.ParseItem(text);
@@ -81,6 +83,7 @@ namespace Sidekick.Electron.Keybinds
 
         private const string PoeWiki_BaseUri = "https://www.poewiki.net/";
         private const string PoeWiki_SubUrl = "w/index.php?search=";
+
         private void OpenPoeWiki(Item item)
         {
             var searchLink = item.Metadata.Name ?? item.Metadata.Type;
@@ -92,6 +95,7 @@ namespace Sidekick.Electron.Keybinds
 
         private const string PoeDb_BaseUri = "https://poedb.tw/";
         private const string PoeDb_SubUrl = "search?q=";
+
         private void OpenPoeDb(Item item)
         {
             var searchLink = item.Metadata.Name ?? item.Metadata.Type;
@@ -103,6 +107,7 @@ namespace Sidekick.Electron.Keybinds
 
         private const string PoeFandom_BaseUri = "https://pathofexile.fandom.com/";
         private const string PoeFandom_SubUrl = "wiki/Special:Search?query=";
+
         private void OpenPoeFandom(Item item)
         {
             var searchLink = item.Metadata.Name ?? item.Metadata.Type;

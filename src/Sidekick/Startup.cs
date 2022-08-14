@@ -20,8 +20,10 @@ using Sidekick.Common.Platform.Tray;
 using Sidekick.Localization;
 using Sidekick.Mock;
 using Sidekick.Modules.About;
+using Sidekick.Modules.Chat;
 using Sidekick.Modules.Cheatsheets;
 using Sidekick.Modules.Development;
+using Sidekick.Modules.General;
 using Sidekick.Modules.Initialization;
 using Sidekick.Modules.Maps;
 using Sidekick.Modules.Settings;
@@ -77,8 +79,10 @@ namespace Sidekick
 
                 // Modules
                 .AddSidekickAbout()
+                .AddSidekickChat()
                 .AddSidekickCheatsheets()
                 .AddSidekickDevelopment()
+                .AddSidekickGeneral()
                 .AddSidekickInitialization()
                 .AddSidekickMaps()
                 .AddSidekickSettings(configuration)

@@ -13,7 +13,7 @@ A Path of Exile companion tool. Price check items, check for dangerous map modif
 
 ## Features
 ### Trade
-#### Default Binding: Ctrl + D
+#### Default Binding: Ctrl+D
 Opens a trade view from the official Path of Exile trade API. You can compare and preview items by clicking on any result. For rare items, a price prediction from poeprices.info is shown. For unique items, prices from poe.ninja are used.
 | Trade | Minimized |
 |---|---|
@@ -28,27 +28,27 @@ Opens a view with useful common information about different mechanics of the gam
 | ![](https://sidekick-poe.github.io/assets/images/cheatsheets_heist.png) | ![](https://sidekick-poe.github.io/assets/images/cheatsheets_betrayal.png) | ![](https://sidekick-poe.github.io/assets/images/cheatsheets_incursion.png) | ![](https://sidekick-poe.github.io/assets/images/cheatsheets_blight.png) |
 
 ### Map Information
-#### Default Binding: Ctrl + X
-Checks the modifiers on a map or contract for mods that are dangerous (configurable).
+#### Default Binding: Ctrl+X
+- Checks the modifiers on a map or contract for mods that are dangerous (configurable).
+- Shows information on bosses and possible drops (information from poewiki.net)
 
-| Safe Map | Unsafe Map |
-|---|---|
-| ![](https://sidekick-poe.github.io/assets/images/map_safe.png) | ![](https://sidekick-poe.github.io/assets/images/map_unsafe.png) |
+| Map information |
+|---|
+| ![](https://user-images.githubusercontent.com/4694217/171073300-f965554d-24f7-421b-a2ce-cf088a71fdce.png) |
 
 ### Chat Commands
 | Name | Default Binding | Description |
 |---|---|---|
 | Go to Hideout | F5 | Quickly go to your hideout. Writes the following chat command: `/hideout` |
 | Leave Party | F4 | Quickly leave a party. You must have set your character name in the settings first. Writes the following chat command: `/kick {settings.Character_Name}` |
-| Reply to Latest Whisper | Ctrl + Shift + R | Reply to the last whisper received. Starts writing the following chat command: `@{characterName}` |
+| Reply to Latest Whisper | Ctrl+Shift+R | Reply to the last whisper received. Starts writing the following chat command: `@{characterName}` |
 | Exit to Character Selection | F9 | Exit to the character selection screen. Writes the following chat command: `/exit` |
 
 ### Other Features
 | Name | Default Binding | Description |
 |---|---|---|
-| Open Wiki | Alt + W | Open the wiki for the item currently under your mouse. |
-| Find Items | Ctrl + F | Search an item in your stash or passive tree. |
-| Open Search | Alt + Q | Open the official trade website using the item under your mouse. |
+| Open Wiki | Alt+W | Open the item currently under your mouse in your preferred wiki. |
+| Find Items | Ctrl+F | Searches in your stash or passive tree with the name of the item currently under your mouse. |
 
 ## Uninstallation
 You may uninstall Sidekick by using Windows Settings => Apps & features. Alternatively, you can run `Uninstall Sidekick.exe` in the installation folder. The default directory where the app is installed is `%APPDATA%/Local/Programs/sidekick`.
@@ -64,6 +64,7 @@ Community
 - [Path of Exile Trade](https://www.pathofexile.com/trade)
 - [poe.ninja](https://poe.ninja/)
 - [poeprices.info](https://www.poeprices.info/)
+- [poewiki.net](https://www.poewiki.net/)
 - [POE-TradeMacro](https://github.com/PoE-TradeMacro/POE-TradeMacro) - Original idea
 
 Technology

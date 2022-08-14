@@ -74,5 +74,7 @@ namespace Sidekick.Apis.Poe.Trade.Results
         public List<ResultSocket> Sockets { get; set; } = new List<ResultSocket>();
 
         public Extended Extended { get; set; } = new Extended();
+
+        public List<LogbookMod> LogbookMods { get; set; } = new();
     }
 }

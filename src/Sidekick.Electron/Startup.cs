@@ -21,12 +21,13 @@ using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Tray;
 using Sidekick.Electron.App;
-using Sidekick.Electron.Keybinds;
 using Sidekick.Electron.Localization;
 using Sidekick.Electron.Views;
 using Sidekick.Localization;
 using Sidekick.Modules.About;
+using Sidekick.Modules.Chat;
 using Sidekick.Modules.Cheatsheets;
+using Sidekick.Modules.General;
 using Sidekick.Modules.Initialization;
 using Sidekick.Modules.Maps;
 using Sidekick.Modules.Settings;
@@ -78,7 +79,9 @@ namespace Sidekick.Electron
 
                 // Modules
                 .AddSidekickAbout()
+                .AddSidekickChat()
                 .AddSidekickCheatsheets()
+                .AddSidekickGeneral()
                 .AddSidekickInitialization()
                 .AddSidekickMaps()
                 .AddSidekickSettings(configuration)
@@ -93,15 +96,6 @@ namespace Sidekick.Electron
             services.AddSingleton<ViewLocator>();
             services.AddSingleton<IViewLocator>((sp) => sp.GetRequiredService<ViewLocator>());
             services.AddScoped<IViewInstance, ViewInstance>();
-
-            services.AddSingleton<IKeybindProvider, KeybindProvider>();
-            services.AddSingleton<ChatKeybindHandler>();
-            services.AddSingleton<CloseOverlayKeybindHandler>();
-            services.AddSingleton<FindItemKeybindHandler>();
-            services.AddSingleton<OpenCheatsheetsKeybindHandler>();
-            services.AddSingleton<OpenMapInfoKeybindHandler>();
-            services.AddSingleton<OpenWikiPageKeybindHandler>();
-            services.AddSingleton<PriceCheckItemKeybindHandler>();
 
             var mvcBuilder = services
                 .AddRazorPages(options =>
