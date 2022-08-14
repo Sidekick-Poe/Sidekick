@@ -25,5 +25,6 @@ namespace Sidekick.Apis.PoeNinja.Api.Models
         Invitation,
         DeliriumOrb,
         BlightedMap,
+        Artifact,
     }
 }

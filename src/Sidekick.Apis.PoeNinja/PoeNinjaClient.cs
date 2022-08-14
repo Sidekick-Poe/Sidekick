@@ -49,6 +49,7 @@ namespace Sidekick.Apis.PoeNinja
             { ItemType.Invitation, "invitations" },
             { ItemType.DeliriumOrb, "delirium-orbs" },
             { ItemType.BlightedMap, "blighted-maps" },
+            { ItemType.Artifact, "artifacts" },
         };
 
         public PoeNinjaClient(
@@ -113,8 +114,7 @@ namespace Sidekick.Apis.PoeNinja
 
                 if (item.Properties != null)
                 {
-                    query = query.Where(x => x.Corrupted == item.Properties.Corrupted
-                                          && x.GemLevel == item.Properties.GemLevel
+                    query = query.Where(x => x.GemLevel == item.Properties.GemLevel
                                           && x.IsRelic == item.Properties.IsRelic);
 
                     if (itemType == ItemType.Map
@@ -136,7 +136,7 @@ namespace Sidekick.Apis.PoeNinja
 
                 if (query.Any())
                 {
-                    return query.FirstOrDefault();
+                    return query.OrderBy(x => x.Corrupted).FirstOrDefault();
                 }
             }
 
@@ -170,6 +170,7 @@ namespace Sidekick.Apis.PoeNinja
                 result.Add(ItemType.Resonator);
                 result.Add(ItemType.Essence);
                 result.Add(ItemType.Resonator);
+                result.Add(ItemType.Artifact);
             }
             else if (item.Metadata.Rarity == Rarity.Unique)
             {

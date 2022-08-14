@@ -5,18 +5,20 @@
             <ModifierText Class="flex-grow-1 my-1 mr-2" Modifier="Filter.Modifier" />
             @if (Filter.Modifier.OptionValue == null && Filter.Modifier.Values.Count > 0)
             {
+                <MudIconButton Icon="@Icons.Material.Filled.SwapHoriz"
+                               OnClick="SwapValues"
+                               Size="Size.Small"
+                               Class="mr-1" />
                 <div class="filter-min"
                      @onwheel="OnWheelMin"
                      @onwheel:preventDefault
-                     @oncontextmenu="ClearMin"
-                     @oncontextmenu:preventDefault>
+                     @oncontextmenu="ClearMin">
                     <MudInput @bind-Value="Filter.Min" Placeholder="@Resources.Filters_Min" DisableUnderLine />
                 </div>
                 <div class="filter-max my-1 mr-2"
                      @onwheel="OnWheelMax"
                      @onwheel:preventDefault
-                     @oncontextmenu="ClearMax"
-                     @oncontextmenu:preventDefault>
+                     @oncontextmenu="ClearMax">
                     <MudInput @bind-Value="Filter.Max" Placeholder="@Resources.Filters_Max" DisableUnderLine />
                 </div>
             }
@@ -28,6 +30,11 @@
     [Inject] public TradeResources Resources { get; set; }
 
     [Parameter] public ModifierFilter Filter { get; set; }
+
+    private void SwapValues(MouseEventArgs args)
+    {
+        (Filter.Min, Filter.Max) = (Filter.Max, Filter.Min);
+    }
 
     private void OnWheelMin(WheelEventArgs args)
     {

@@ -55,9 +55,9 @@ namespace Sidekick.Apis.Poe.Trade
                 var body = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await poeTradeClient.HttpClient.PostAsync(uri, body);
 
+                var content = await response.Content.ReadAsStreamAsync();
                 if (response.IsSuccessStatusCode)
                 {
-                    var content = await response.Content.ReadAsStreamAsync();
                     return await JsonSerializer.DeserializeAsync<TradeSearchResult<string>>(content, poeTradeClient.Options);
                 }
                 else
@@ -66,6 +66,10 @@ namespace Sidekick.Apis.Poe.Trade
                     logger.LogWarning("Querying failed: {responseCode} {responseMessage}", response.StatusCode, responseMessage);
                     logger.LogWarning("Uri: {uri}", uri);
                     logger.LogWarning("Query: {query}", json);
+
+                    var errorResult = await JsonSerializer.DeserializeAsync<ErrorResult>(content, poeTradeClient.Options);
+
+                    return new() { Error = errorResult.Error };
                 }
             }
             catch (Exception ex)
@@ -123,9 +127,9 @@ namespace Sidekick.Apis.Poe.Trade
                 var body = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await poeTradeClient.HttpClient.PostAsync(uri, body);
 
+                var content = await response.Content.ReadAsStreamAsync();
                 if (response.IsSuccessStatusCode)
                 {
-                    var content = await response.Content.ReadAsStreamAsync();
                     return await JsonSerializer.DeserializeAsync<TradeSearchResult<string>>(content, poeTradeClient.Options);
                 }
                 else
@@ -134,6 +138,10 @@ namespace Sidekick.Apis.Poe.Trade
                     logger.LogWarning("Querying failed: {responseCode} {responseMessage}", response.StatusCode, responseMessage);
                     logger.LogWarning("Uri: {uri}", uri);
                     logger.LogWarning("Query: {query}", json);
+
+                    var errorResult = await JsonSerializer.DeserializeAsync<ErrorResult>(content, poeTradeClient.Options);
+
+                    return new() { Error = errorResult.Error };
                 }
             }
             catch (Exception ex)
@@ -486,7 +494,7 @@ namespace Sidekick.Apis.Poe.Trade
 
             ParseMods(modifierProvider,
                 item.Modifiers.Implicit,
-                result.Item.ImplicitMods,
+                result.Item.ImplicitMods ?? result.Item.LogbookMods.SelectMany(x => x.Mods).ToList(),
                 result.Item.Extended.Mods?.Implicit,
                 ParseHash(result.Item.Extended.Hashes?.Implicit));
 
