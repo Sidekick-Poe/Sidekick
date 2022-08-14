@@ -2,8 +2,10 @@ using System;
 using System.Runtime.InteropServices;
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common.Platform.Clipboard;
+using Sidekick.Common.Platform.Keybinds;
+using Sidekick.Common.Platform.Keyboards;
+using Sidekick.Common.Platform.Options;
 using Sidekick.Common.Platform.Tray;
-using Sidekick.Common.Platform.Windows.Keyboards;
 using Sidekick.Common.Platform.Windows.Processes;
 using Sidekick.Common.Platforms.Localization;
 
@@ -19,7 +21,7 @@ namespace Sidekick.Common.Platform
         /// </summary>
         /// <param name="services">The services collection to add services to</param>
         /// <returns>The service collection with services added</returns>
-        public static IServiceCollection AddSidekickCommonPlatform(this IServiceCollection services)
+        public static IServiceCollection AddSidekickCommonPlatform(this IServiceCollection services, Action<PlatformOptions> options)
         {
             services.Configure(options);
 
@@ -27,6 +29,7 @@ namespace Sidekick.Common.Platform
             services.AddTransient<IClipboardProvider, ClipboardProvider>();
             services.AddSingleton<IKeybindProvider, KeybindProvider>();
             services.AddSingleton<IKeyboardProvider, KeyboardProvider>();
+            services.AddSingleton<ITrayProvider, TrayProvider>();
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
