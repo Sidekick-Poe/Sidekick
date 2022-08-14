@@ -1,0 +1,9 @@
+@if (Modifier != null)
+{
+    <span class="@($"{Class} {Modifier.Category}-text")">@Modifier.Text</span>
+}
+
+@code {
+    [Parameter] public string Class { get; set; }
+    [Parameter] public Modifier Modifier { get; set; }
+}

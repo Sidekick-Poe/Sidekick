@@ -42,5 +42,7 @@ namespace Sidekick.Common.Settings
         WikiSetting Wiki_Preferred { get; set; }
 
         DateTimeOffset? PoeNinja_LastClear { get; set; }
+
+        bool PoeWikiMap_Enable { get; set; }
     }
 }

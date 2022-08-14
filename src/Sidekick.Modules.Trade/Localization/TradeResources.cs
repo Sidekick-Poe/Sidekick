@@ -24,6 +24,7 @@ namespace Sidekick.Modules.Trade.Localization
         public string Scourged => localizer["Scourged"];
         public string CountString(int count, int total) => localizer["CountString", count, total];
         public string Error_PoeApi => localizer["Error_PoeApi"];
+        public string Error_PoeApiMessage => localizer["Error_PoeApiMessage"];
         public string Filters_Expand => localizer["Filters_Expand"];
         public string Filters_Collapse => localizer["Filters_Collapse"];
         public string Filters_Dps => localizer["Filters_Dps"];

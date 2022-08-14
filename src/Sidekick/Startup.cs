@@ -9,6 +9,7 @@ using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
+using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Game;
@@ -65,6 +66,7 @@ namespace Sidekick
                 .AddSidekickPoeApi()
                 .AddSidekickPoeNinjaApi()
                 .AddSidekickPoePriceInfoApi()
+                .AddSidekickPoeWikiApi()
 
                 // Modules
                 .AddSidekickAbout()
