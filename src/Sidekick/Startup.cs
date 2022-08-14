@@ -134,7 +134,7 @@ namespace Sidekick
                 endpoints.MapFallbackToPage("/_Host");
             });
 
-            app.UseSidekickTray(trayProvider, viewLocator);
+            app.UseSidekickTray(trayProvider, viewLocator, env);
         }
     }
 }

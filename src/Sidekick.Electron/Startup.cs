@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using ElectronNET.API.Entities;
 using FluentValidation.AspNetCore;
@@ -66,8 +67,8 @@ namespace Sidekick.Electron
                 .AddSidekickCommonGame()
                 .AddSidekickCommonPlatform(o =>
                 {
-                    o.WindowsIconPath = "/wwwroot/favicon.ico";
-                    o.OsxIconPath = "/wwwroot/apple-touch-icon.png";
+                    o.WindowsIconPath = Path.GetFullPath("wwwroot/favicon.ico");
+                    o.OsxIconPath = Path.GetFullPath("wwwroot/apple-touch-icon.png");
                 })
 
                 // Apis
@@ -136,7 +137,7 @@ namespace Sidekick.Electron
             app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseSidekickTray(trayProvider, viewLocator);
+            app.UseSidekickTray(trayProvider, viewLocator, env);
 
             app.UseEndpoints(endpoints =>
             {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NotificationIconSharp;
 
@@ -10,7 +12,6 @@ namespace Sidekick.Common.Platform.Tray
 {
     public class TrayProvider : IDisposable, ITrayProvider
     {
-        private bool disposedValue;
         private CancellationTokenSource cancellationTokenSource;
         private readonly IOptions<PlatformOptions> options;
 
@@ -20,10 +21,13 @@ namespace Sidekick.Common.Platform.Tray
 
         private List<TrayMenuItem> TrayMenuItems { get; set; }
 
-        public TrayProvider(IOptions<PlatformOptions> options)
+        public TrayProvider(IOptions<PlatformOptions> options,
+                            IHostApplicationLifetime hostApplicationLifetime)
         {
             cancellationTokenSource = new CancellationTokenSource();
             this.options = options;
+
+            hostApplicationLifetime.ApplicationStarted.Register(StartLoop, true);
         }
 
         public void Initialize(List<TrayMenuItem> trayMenuItems)
@@ -35,10 +39,9 @@ namespace Sidekick.Common.Platform.Tray
 
             TrayMenuItems = trayMenuItems;
 
-            NotificationManager.Initialize("com.app.sidekick", "App Test", options.Value.IconPath);
-            NotificationManager.SendNotification("My New Notification", "Isn't This Handy", "ActionId", options.Value.IconPath);
-
             TrayIcon = new NotificationIcon(options.Value.IconPath);
+
+            NotificationManager.Initialize("com.app.sidekick", "Sidekick", options.Value.IconPath);
 
             foreach (var menuItem in TrayMenuItems)
             {
@@ -50,20 +53,15 @@ namespace Sidekick.Common.Platform.Tray
                 TrayIcon.AddMenuItem(notificationMenuItem);
             }
 
-            StartLoop();
-
             IsInitialized = true;
         }
 
-        private void StartLoop()
+        public void StartLoop()
         {
             while (!cancellationTokenSource.IsCancellationRequested)
             {
                 TrayIcon?.DoMessageLoop(true);
             }
-
-            TrayIcon?.Dispose();
-            TrayIcon = null;
         }
 
         private void NotificationMenuItem_NotificationMenuItemSelected(NotificationMenuItem notificationMenuItem)
@@ -76,32 +74,16 @@ namespace Sidekick.Common.Platform.Tray
             }
         }
 
-        protected virtual void Dispose(bool disposing)
+        public void SendNotification(string message, string title = null)
         {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    cancellationTokenSource.Cancel();
-                    cancellationTokenSource.Dispose();
-                    // TODO: dispose managed state (managed objects)
-                }
-
-                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
-                // TODO: set large fields to null
-                disposedValue = true;
-            }
+            NotificationManager.SendNotification(title, message, Guid.NewGuid().ToString(), options.Value.IconPath);
         }
-
-        // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged
-        // resources ~TrayProvider() { // Do not change this code. Put cleanup code in 'Dispose(bool
-        // disposing)' method Dispose(disposing: false); }
 
         public void Dispose()
         {
-            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-            Dispose(disposing: true);
-            GC.SuppressFinalize(this);
+            cancellationTokenSource.Cancel();
+            TrayIcon?.Dispose();
+            TrayIcon = null;
         }
     }
 }
