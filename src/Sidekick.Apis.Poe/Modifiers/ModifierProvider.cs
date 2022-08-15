@@ -81,6 +81,7 @@ namespace Sidekick.Apis.Poe.Modifiers
                                 LineCount = NewLinePattern.Matches(entry.Text).Count + NewLinePattern.Matches(entry.Option.Options[i].Text).Count + 1,
                                 Value = entry.Option.Options[i].Id,
                                 Pattern = ComputePattern(modifierCategory, entry.Text, entry.Option.Options[i].Text),
+                                FuzzyText = ComputeFuzzyText(modifierCategory, entry.Text, entry.Option.Options[i].Text),
                             });
                         }
                     }
@@ -91,6 +92,7 @@ namespace Sidekick.Apis.Poe.Modifiers
                             Text = entry.Text,
                             LineCount = NewLinePattern.Matches(entry.Text).Count + 1,
                             Pattern = ComputePattern(modifierCategory, entry.Text),
+                            FuzzyText = ComputeFuzzyText(modifierCategory, entry.Text),
                         });
                     }
 
@@ -99,6 +101,7 @@ namespace Sidekick.Apis.Poe.Modifiers
 
                 Patterns.Add(modifierCategory, patterns);
 
+                BuildFuzzyDictionary(patterns);
             }
 
             // Prepare special pseudo patterns
@@ -178,6 +181,59 @@ namespace Sidekick.Apis.Poe.Modifiers
             }
 
             return new Regex($"^{patternValue}{suffix}$", RegexOptions.None);
+        }
+
+        private string ComputeFuzzyText(ModifierCategory category, string text, string optionText = null)
+        {
+            var fuzzyValue = text;
+
+            if (!string.IsNullOrEmpty(optionText))
+            {
+                foreach (var optionLine in NewLinePattern.Split(optionText))
+                {
+                    if (ParseHashPattern.IsMatch(fuzzyValue))
+                    {
+                        fuzzyValue = ParseHashPattern.Replace(fuzzyValue, optionLine);
+                    }
+                    else
+                    {
+                        fuzzyValue += optionLine;
+                    }
+                }
+            }
+
+            // Add the suffix
+            // The notes in parentheses are never translated by the game.
+            // We should be fine hardcoding them this way.
+            fuzzyValue += category switch
+            {
+                ModifierCategory.Implicit => " (implicit)",
+                ModifierCategory.Enchant => " (enchant)",
+                ModifierCategory.Crafted => " (crafted)",
+                ModifierCategory.Veiled => " (veiled)",
+                ModifierCategory.Fractured => " (fractured)",
+                ModifierCategory.Scourge => " (scourge)",
+                ModifierCategory.Pseudo => " (pseudo)",
+                _ => "",
+            };
+
+            return fuzzyValue;
+        }
+
+        private void BuildFuzzyDictionary(List<ModifierPatternMetadata> patternMetadatas)
+        {
+            foreach (var patternMetadata in patternMetadatas)
+            {
+                foreach (var pattern in patternMetadata.Patterns)
+                {
+                    if (!FuzzyDictionary.ContainsKey(pattern.FuzzyText))
+                    {
+                        FuzzyDictionary.Add(pattern.FuzzyText, new());
+                    }
+
+                    FuzzyDictionary[pattern.FuzzyText].Add((patternMetadata, pattern));
+                }
+            }
         }
 
         private string ComputeOptionText(string text, string optionText)

@@ -8,6 +8,8 @@ namespace Sidekick.Apis.Poe.Modifiers.Models
 
         public string OptionText { get; set; }
 
+        public string FuzzyText { get; set; }
+
         public int LineCount { get; set; }
 
         public Regex Pattern { get; set; }
