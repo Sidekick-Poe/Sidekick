@@ -13,6 +13,11 @@ namespace Sidekick.Common.Game.Items.Modifiers
         public string Text { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether the modifier was found using a fuzzy search.
+        /// </summary>
+        public bool IsFuzzy { get; set; }
+
+        /// <summary>
         /// Gets or sets the modifier associated with this line.
         /// </summary>
         public Modifier Modifier { get; set; }

@@ -42,6 +42,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionEvasion => "회피";
         public string DescriptionChanceToBlock => "막기";
         public string DescriptionLevel => "레벨";
+        public string DescriptionRequirements => "__TranslationRequired__:";
 
         public string PrefixSuperior => "상";
         public string PrefixBlighted => "역병";

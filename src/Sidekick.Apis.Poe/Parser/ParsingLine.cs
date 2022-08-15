@@ -20,6 +20,11 @@ namespace Sidekick.Apis.Poe.Parser
         public bool Parsed { get; set; } = false;
 
         /// <summary>
+        /// Indicates if this line is part of a multi line modifier
+        /// </summary>
+        public bool IsMultiline { get; set; } = false;
+
+        /// <summary>
         /// The line of the item description
         /// </summary>
         public string Text { get; set; }

@@ -82,7 +82,7 @@ Crusader Item
 
             var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
             Assert.Contains("33% increased Spell Damage", modifiers);
-            Assert.Contains("Adds 10 to 16 Physical Damage", modifiers);
+            Assert.Contains("Adds 10 to 16 Physical Damage (Local)", modifiers);
             Assert.Contains("24% increased Fire Damage", modifiers);
             Assert.Contains("14% increased Critical Strike Chance for Spells", modifiers);
             Assert.Contains("Attacks with this Weapon Penetrate 10% Lightning Resistance", modifiers);

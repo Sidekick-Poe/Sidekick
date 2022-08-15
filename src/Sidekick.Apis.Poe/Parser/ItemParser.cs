@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -47,11 +48,6 @@ namespace Sidekick.Apis.Poe.Parser
             return new ParsingItem(itemText);
         }
 
-        public Task Initialize()
-        {
-            throw new NotImplementedException();
-        }
-
         public Item ParseItem(string itemText)
         {
             if (string.IsNullOrEmpty(itemText))
@@ -68,6 +64,8 @@ namespace Sidekick.Apis.Poe.Parser
                 {
                     throw new NotSupportedException("Item not found.");
                 }
+
+                ParseRequirements(parsingItem);
 
                 var item = new Item
                 {
@@ -98,6 +96,18 @@ namespace Sidekick.Apis.Poe.Parser
                 Type = parsingItem.Blocks[0].Lines.ElementAtOrDefault(3)?.Text,
                 Text = parsingItem.Text,
             };
+        }
+
+        private void ParseRequirements(ParsingItem parsingItem)
+        {
+            foreach (var block in parsingItem.Blocks.Where(x => !x.Parsed))
+            {
+                if (TryParseValue(patterns.Requirements, block, out var match))
+                {
+                    block.Parsed = true;
+                    return;
+                }
+            }
         }
 
         private Properties ParseProperties(ParsingItem parsingItem)

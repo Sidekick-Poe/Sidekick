@@ -31,6 +31,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         Regex PhysicalDamage { get; }
         Regex Quality { get; }
         Regex AlternateQuality { get; }
+        Regex Requirements { get; }
         Dictionary<Rarity, Regex> Rarity { get; }
         Regex Redeemer { get; }
         Regex Shaper { get; }

@@ -5,8 +5,6 @@ namespace Sidekick.Apis.Poe
 {
     public interface IItemParser
     {
-        Task Initialize();
-
         Item ParseItem(string itemText);
     }
 }
