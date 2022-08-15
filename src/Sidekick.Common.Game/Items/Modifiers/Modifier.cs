@@ -12,7 +12,7 @@ namespace Sidekick.Common.Game.Items.Modifiers
 
         public string TierName { get; set; }
 
-        public string Category { get; set; }
+        public ModifierCategory Category { get; set; }
 
         public string Text { get; set; }
 

@@ -45,15 +45,43 @@ namespace Sidekick.Apis.Poe.Trade
 
             List<string> enabledModifiers = new();
 
-            InitializeModifierFilters(result.Pseudo, item.Modifiers.Pseudo, enabledModifiers, sidekickSettings.Trade_Normalize_Values);
-            InitializeModifierFilters(result.Enchant, item.Modifiers.Enchant, enabledModifiers, false);
-            InitializeModifierFilters(result.Implicit, item.Modifiers.Implicit, enabledModifiers, sidekickSettings.Trade_Normalize_Values);
-            InitializeModifierFilters(result.Explicit, item.Modifiers.Explicit, enabledModifiers, sidekickSettings.Trade_Normalize_Values);
-            InitializeModifierFilters(result.Crafted, item.Modifiers.Crafted, enabledModifiers, sidekickSettings.Trade_Normalize_Values);
-            InitializeModifierFilters(result.Fractured, item.Modifiers.Fractured, enabledModifiers, sidekickSettings.Trade_Normalize_Values);
-            InitializeModifierFilters(result.Scourge, item.Modifiers.Scourge, enabledModifiers, sidekickSettings.Trade_Normalize_Values);
+            InitializeModifierFilters(result.Pseudo, item.PseudoModifiers, enabledModifiers, sidekickSettings.Trade_Normalize_Values);
+            InitializeModifierFilters(result.Enchant, item.ModifierLines, enabledModifiers);
 
             return result;
+        }
+
+        private void InitializeModifierFilters(List<ModifierFilter> filters, List<ModifierLine> modifierLines, List<string> enabledModifiers)
+        {
+            if (modifierLines.Count == 0) return;
+
+            foreach (var modifierLine in modifierLines)
+            {
+                if (modifierLine.Modifiers.Count == 0)
+                {
+                    continue;
+                }
+
+                var modifier = modifierLine.Modifiers[0];
+                if (modifier.OptionValue != null)
+                {
+                    InitializeModifierFilter(filters,
+                        modifier,
+                        modifier.OptionValue,
+                        normalizeValues: sidekickSettings.Trade_Normalize_Values && modifier.Category != ModifierCategory.Enchant,
+                        enabled: enabledModifiers.Contains(modifier.Id)
+                    );
+                }
+                else
+                {
+                    InitializeModifierFilter(filters,
+                        modifier,
+                        modifier.Values,
+                        normalizeValues: sidekickSettings.Trade_Normalize_Values && modifier.Category != ModifierCategory.Enchant,
+                        enabled: enabledModifiers.Contains(modifier.Id)
+                    );
+                }
+            }
         }
 
         private static void InitializeModifierFilters(List<ModifierFilter> filters, List<Modifier> modifiers, List<string> enabledModifiers, bool normalizeValues)
@@ -313,6 +341,7 @@ namespace Sidekick.Apis.Poe.Trade
                     valueType = FilterValueType.Boolean;
                     if (!boolValue) return;
                     break;
+
                 case int intValue:
                     valueType = FilterValueType.Int;
                     if (intValue == 0) return;
@@ -326,6 +355,7 @@ namespace Sidekick.Apis.Poe.Trade
                         label += $": {value}";
                     }
                     break;
+
                 case double doubleValue:
                     valueType = FilterValueType.Double;
                     if (doubleValue == 0) return;
@@ -339,6 +369,7 @@ namespace Sidekick.Apis.Poe.Trade
                         label += $": {doubleValue:0.00}";
                     }
                     break;
+
                 default: return;
             }
 

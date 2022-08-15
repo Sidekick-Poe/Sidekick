@@ -461,14 +461,14 @@ namespace Sidekick.Apis.Poe.Pseudo
             return groups;
         }
 
-        public List<Modifier> Parse(ItemModifiers modifiers)
+        public List<Modifier> Parse(List<ModifierLine> modifiers)
         {
             var pseudo = new List<Modifier>();
 
-            FillPseudo(pseudo, modifiers.Explicit);
-            FillPseudo(pseudo, modifiers.Implicit);
-            FillPseudo(pseudo, modifiers.Enchant);
-            FillPseudo(pseudo, modifiers.Crafted);
+            foreach (var line in modifiers)
+            {
+                FillPseudo(pseudo, line.Modifiers);
+            }
 
             pseudo.ForEach(x =>
             {
@@ -504,6 +504,8 @@ namespace Sidekick.Apis.Poe.Pseudo
                         {
                             pseudoMod.Values[0] += (int)(mod.Values.FirstOrDefault() * pseudoModifier.Multiplier);
                         }
+
+                        break;
                     }
                 }
             }

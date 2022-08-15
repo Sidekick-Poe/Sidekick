@@ -23,12 +23,10 @@
 
             <ItemProperties Item="Item" />
 
-            <ItemModifiersComponent Item="Item" Modifiers="Item.Modifiers.Enchant" />
-            <ItemModifiersComponent Item="Item" Modifiers="Item.Modifiers.Scourge" />
-            <ItemModifiersComponent Item="Item" Modifiers="Item.Modifiers.Implicit" />
-            <ItemModifiersComponent Item="Item" Modifiers="Item.Modifiers.Explicit" />
-            <ItemModifiersComponent Item="Item" Modifiers="Item.Modifiers.Crafted" />
-            <ItemModifiersComponent Item="Item" Modifiers="Item.Modifiers.Fractured" />
+            @foreach (var line in Item.ModifierLines)
+            {
+                <ItemModifiersComponent Item="Item" Modifiers="line.Modifiers" />
+            }
 
             @if (!Item.Properties.Identified)
             {
@@ -91,7 +89,7 @@
     }
 </div>
 
-@code{
+@code {
     [Inject] private TradeResources Resources { get; set; }
 
     [Parameter] public TradeItem Item { get; set; }

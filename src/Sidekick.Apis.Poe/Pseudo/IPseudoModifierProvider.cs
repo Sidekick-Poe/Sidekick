@@ -8,6 +8,6 @@ namespace Sidekick.Apis.Poe.Pseudo
     {
         Task Initialize();
 
-        List<Modifier> Parse(ItemModifiers modifiers);
+        List<Modifier> Parse(List<ModifierLine> modifiers);
     }
 }

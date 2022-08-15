@@ -80,25 +80,20 @@
         OkMods.Clear();
 
         var dangerousModsRegex = new Regex(Settings.Map_Dangerous_Regex, RegexOptions.IgnoreCase);
-        FilterMods(dangerousModsRegex, Item.Modifiers.Enchant);
-        FilterMods(dangerousModsRegex, Item.Modifiers.Implicit);
-        FilterMods(dangerousModsRegex, Item.Modifiers.Explicit);
-        FilterMods(dangerousModsRegex, Item.Modifiers.Fractured);
-        FilterMods(dangerousModsRegex, Item.Modifiers.Crafted);
-        FilterMods(dangerousModsRegex, Item.Modifiers.Scourge);
+        FilterMods(dangerousModsRegex, Item.ModifierLines);
 
         await base.OnInitializedAsync();
     }
 
-    private void FilterMods(Regex modRegex, List<Modifier> modifiers)
+    private void FilterMods(Regex modRegex, List<ModifierLine> modifierLines)
     {
         if (string.IsNullOrWhiteSpace(Settings.Map_Dangerous_Regex))
         {
-            OkMods.AddRange(modifiers.Select(x => x.Text));
+            OkMods.AddRange(modifierLines.Select(x => x.Text));
             return;
         }
 
-        foreach (var mod in modifiers)
+        foreach (var mod in modifierLines)
         {
             if (modRegex.IsMatch(mod.Text))
             {
