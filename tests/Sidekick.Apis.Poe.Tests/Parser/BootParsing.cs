@@ -24,7 +24,7 @@ Iron Greaves
 --------
 Armour: 6
 --------
-Sockets: B B 
+Sockets: B B
 --------
 Item Level: 2
 --------
@@ -40,8 +40,8 @@ Fractured Item
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal("Iron Greaves", actual.Metadata.Type);
 
-            var fractureds = actual.Modifiers.Fractured.Select(x => x.Text);
-            Assert.Contains("10% increased Movement Speed", fractureds);
+            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
+            Assert.Contains("10% increased Movement Speed", modifiers);
         }
     }
 }

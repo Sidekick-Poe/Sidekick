@@ -8,11 +8,6 @@
         }
     </div>
     <ItemRequirementsComponent Item="Item" />
-
-    @if (Item.RequirementContents != null || Item.Properties.ItemLevel > 0)
-    {
-        <ItemSeparatorComponent Item="Item" />
-    }
 }
 
 @code {

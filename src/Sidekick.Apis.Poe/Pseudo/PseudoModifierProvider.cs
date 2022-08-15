@@ -467,7 +467,12 @@ namespace Sidekick.Apis.Poe.Pseudo
 
             foreach (var line in modifiers)
             {
-                FillPseudo(pseudo, line.Modifiers);
+                if (line.Modifier == null)
+                {
+                    continue;
+                }
+
+                FillPseudo(pseudo, line.Modifier);
             }
 
             pseudo.ForEach(x =>
@@ -478,16 +483,14 @@ namespace Sidekick.Apis.Poe.Pseudo
             return pseudo;
         }
 
-        private void FillPseudo(List<Modifier> pseudoMods, List<Modifier> mods)
+        private void FillPseudo(List<Modifier> pseudoMods, Modifier modifier)
         {
             Modifier pseudoMod;
-            Modifier mod;
             foreach (var pseudoDefinition in Definitions)
             {
                 foreach (var pseudoModifier in pseudoDefinition.Modifiers)
                 {
-                    mod = mods.FirstOrDefault(x => pseudoModifier.Ids.Any(id => id == x.Id));
-                    if (mod != null)
+                    if (pseudoModifier.Ids.Any(id => id == modifier.Id))
                     {
                         pseudoMod = pseudoMods.FirstOrDefault(x => x.Id == pseudoDefinition.Id);
                         if (pseudoMod == null)
@@ -497,12 +500,12 @@ namespace Sidekick.Apis.Poe.Pseudo
                                 Id = pseudoDefinition.Id,
                                 Text = pseudoDefinition.Text,
                             };
-                            pseudoMod.Values.Add((int)(mod.Values.FirstOrDefault() * pseudoModifier.Multiplier));
+                            pseudoMod.Values.Add((int)(modifier.Values.FirstOrDefault() * pseudoModifier.Multiplier));
                             pseudoMods.Add(pseudoMod);
                         }
                         else
                         {
-                            pseudoMod.Values[0] += (int)(mod.Values.FirstOrDefault() * pseudoModifier.Multiplier);
+                            pseudoMod.Values[0] += (int)(modifier.Values.FirstOrDefault() * pseudoModifier.Multiplier);
                         }
 
                         break;

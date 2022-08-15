@@ -1,5 +1,4 @@
 using System.Linq;
-using Sidekick.Apis.Poe;
 using Sidekick.Common.Game.Items;
 using Xunit;
 
@@ -24,9 +23,9 @@ namespace Sidekick.Apis.Poe.Tests.Parser
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal("Amethyst Ring", actual.Metadata.Type);
 
-            var implicits = actual.Modifiers.Implicit.Select(x => x.Text);
-            Assert.Contains("Cannot be Ignited", implicits);
-            Assert.Contains("Anger has 20% increased Aura Effect", implicits);
+            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
+            Assert.Contains("Cannot be Ignited", modifiers);
+            Assert.Contains("Anger has 20% increased Aura Effect", modifiers);
         }
 
         #region ItemText
@@ -54,6 +53,6 @@ Anger has 20% increased Aura Effect (implicit)
 Corrupted
 ";
 
-        #endregion
+        #endregion ItemText
     }
 }

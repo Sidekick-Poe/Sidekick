@@ -30,7 +30,7 @@ Level: 58
 Dex: 45
 Int: 45
 --------
-Sockets: G 
+Sockets: G
 --------
 Item Level: 61
 --------
@@ -46,11 +46,11 @@ Item Level: 61
             Assert.Equal("Death Nails", actual.Original.Name);
             Assert.Single(actual.Sockets);
 
-            var explicits = actual.Modifiers.Explicit.Select(x => x.Text);
-            Assert.Contains("+18 to Intelligence", explicits);
-            Assert.Contains("+73 to maximum Life", explicits);
-            Assert.Contains("+14% to Lightning Resistance", explicits);
-            Assert.Contains("0.23% of Physical Attack Damage Leeched as Mana", explicits);
+            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
+            Assert.Contains("+18 to Intelligence", modifiers);
+            Assert.Contains("+73 to maximum Life", modifiers);
+            Assert.Contains("+14% to Lightning Resistance", modifiers);
+            Assert.Contains("0.23% of Physical Attack Damage Leeched as Mana", modifiers);
         }
     }
 }

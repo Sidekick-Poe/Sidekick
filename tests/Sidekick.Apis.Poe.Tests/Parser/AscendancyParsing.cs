@@ -28,7 +28,7 @@ Requirements:
 Level: 69
 Int: 154
 --------
-Sockets: B-B 
+Sockets: B-B
 --------
 Item Level: 69
 --------
@@ -39,9 +39,9 @@ Split Arrow fires 2 additional Projectiles (enchant)
 39% increased Energy Shield
 +25 to maximum Life");
 
-            var enchants = actual.Modifiers.Enchant.Select(x => x.Text);
-            Assert.Contains("Split Arrow fires 2 additional Projectiles", enchants);
-            Assert.Equal(2, actual.Modifiers.Enchant.First().Values.First());
+            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
+            Assert.Contains("Split Arrow fires 2 additional Projectiles", modifiers);
+            Assert.Equal(2, actual.ModifierLines.First().Modifier.Values.First());
         }
 
         [Fact]
@@ -62,6 +62,5 @@ Travel to the Aspirants' Plaza and spend this item to open the Eternal Labyrinth
             Assert.Equal(Category.Map, actual.Metadata.Category);
             Assert.Equal("Tribute to the Goddess", actual.Metadata.Type);
         }
-
     }
 }

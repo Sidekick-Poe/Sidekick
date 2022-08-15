@@ -23,35 +23,39 @@
 
             <ItemProperties Item="Item" />
 
-            @foreach (var line in Item.ModifierLines)
+            @if (Item.ModifierLines != null && Item.ModifierLines.Count > 0)
             {
-                <ItemModifiersComponent Item="Item" Modifiers="line.Modifiers" />
+                <ItemSeparatorComponent Item="Item" />
+                @foreach (var line in Item.ModifierLines)
+                {
+                    <ItemModifierLineComponent Item="Item" ModifierLine="line" />
+                }
             }
 
             @if (!Item.Properties.Identified)
             {
+                <ItemSeparatorComponent Item="Item" />
                 <div class="unidentified-text">
                     <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Unidentified</MudText>
                 </div>
             }
             @if (Item.Properties.Corrupted)
             {
+                <ItemSeparatorComponent Item="Item" />
                 <div class="corrupted-text">
                     <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Corrupted</MudText>
                 </div>
             }
             @if (Item.Properties.Scourged)
             {
+                <ItemSeparatorComponent Item="Item" />
                 <div class="scourge-text">
                     <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Scourged</MudText>
                 </div>
             }
-            @if (!Item.Properties.Identified || Item.Properties.Corrupted)
-            {
-                <ItemSeparatorComponent Item="Item" />
-            }
             @if (!string.IsNullOrEmpty(Item.Price.Note))
             {
+                <ItemSeparatorComponent Item="Item" />
                 <div class="note-text">
                     <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Item.Price.Note</MudText>
                 </div>

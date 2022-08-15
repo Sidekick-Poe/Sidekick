@@ -30,7 +30,7 @@ Weapon Range: 11
 Requirements:
 Str: 21
 --------
-Sockets: R-G-B 
+Sockets: R-G-B
 --------
 Item Level: 71
 --------
@@ -60,7 +60,7 @@ Requirements:
 Level: 59
 Int: 188
 --------
-Sockets: R B 
+Sockets: R B
 --------
 Item Level: 70
 --------
@@ -80,14 +80,12 @@ Crusader Item
             Assert.Equal("Miracle Chant", actual.Original.Name);
             Assert.True(actual.Influences.Crusader);
 
-            var implicits = actual.Modifiers.Implicit.Select(x => x.Text);
-            Assert.Contains("33% increased Spell Damage", implicits);
-
-            var explicits = actual.Modifiers.Explicit.Select(x => x.Text);
-            Assert.Contains("Adds 10 to 16 Physical Damage", explicits);
-            Assert.Contains("24% increased Fire Damage", explicits);
-            Assert.Contains("14% increased Critical Strike Chance for Spells", explicits);
-            Assert.Contains("Attacks with this Weapon Penetrate 10% Lightning Resistance", explicits);
+            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
+            Assert.Contains("33% increased Spell Damage", modifiers);
+            Assert.Contains("Adds 10 to 16 Physical Damage", modifiers);
+            Assert.Contains("24% increased Fire Damage", modifiers);
+            Assert.Contains("14% increased Critical Strike Chance for Spells", modifiers);
+            Assert.Contains("Attacks with this Weapon Penetrate 10% Lightning Resistance", modifiers);
         }
 
         [Fact]
@@ -108,7 +106,7 @@ Level: 33
 Str: 80
 Dex: 37
 --------
-Sockets: R-R 
+Sockets: R-R
 --------
 Item Level: 50
 --------
@@ -119,8 +117,8 @@ Item Level: 50
             Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
             Assert.Equal("Shadow Axe", actual.Metadata.Type);
 
-            var explicits = actual.Modifiers.Explicit.Select(x => x.Text);
-            Assert.Contains("11% reduced Enemy Stun Threshold", explicits);
+            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
+            Assert.Contains("11% reduced Enemy Stun Threshold", modifiers);
         }
 
         /// <summary>
@@ -147,7 +145,7 @@ Level: 62
 Str: 140 (unmet)
 Dex: 86
 --------
-Sockets: R-B-R 
+Sockets: R-B-R
 --------
 Item Level: 70
 --------
@@ -191,7 +189,7 @@ Level: 50
 Str: 44
 Dex: 44
 --------
-Sockets: R-R B 
+Sockets: R-R B
 --------
 Item Level: 68
 --------
@@ -229,7 +227,7 @@ Critical Strike Chance: 5.00%
 Attacks per Second: 1.20
 Weapon Range: 13
 --------
-Sockets: G-R R R 
+Sockets: G-R R R
 --------
 Item Level: 85
 --------
@@ -267,7 +265,7 @@ Weapon Range: 11
 Requirements:
 Strength: 161
 --------
-Sockets: R-R-R 
+Sockets: R-R-R
 --------
 Item Level: 76
 --------
@@ -283,6 +281,5 @@ Hunter Item");
             Assert.Equal("Ornate Mace", actual.Metadata.Type);
             Assert.True(actual.Influences.Hunter);
         }
-
     }
 }

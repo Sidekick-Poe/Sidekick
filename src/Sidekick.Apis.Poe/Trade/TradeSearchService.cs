@@ -657,15 +657,13 @@ namespace Sidekick.Apis.Poe.Trade
                 modifierLines.Add(new()
                 {
                     Text = text,
-                    Modifiers = new() {
-                        new Modifier()
-                        {
-                            Id = id,
-                            Category = modifierProvider.GetModifierCategory(id),
-                            Text = text,
-                            Tier = mod?.Tier,
-                            TierName = mod?.Name,
-                        }
+                    Modifier = new Modifier()
+                    {
+                        Id = id,
+                        Category = modifierProvider.GetModifierCategory(id),
+                        Text = text,
+                        Tier = mod?.Tier,
+                        TierName = mod?.Name,
                     },
                 });
             }

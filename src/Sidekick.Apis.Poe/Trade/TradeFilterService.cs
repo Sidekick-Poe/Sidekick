@@ -57,28 +57,22 @@ namespace Sidekick.Apis.Poe.Trade
 
             foreach (var modifierLine in modifierLines)
             {
-                if (modifierLine.Modifiers.Count == 0)
-                {
-                    continue;
-                }
-
-                var modifier = modifierLine.Modifiers[0];
-                if (modifier.OptionValue != null)
+                if (modifierLine.Modifier.OptionValue != null)
                 {
                     InitializeModifierFilter(filters,
-                        modifier,
-                        modifier.OptionValue,
-                        normalizeValues: sidekickSettings.Trade_Normalize_Values && modifier.Category != ModifierCategory.Enchant,
-                        enabled: enabledModifiers.Contains(modifier.Id)
+                        modifierLine.Modifier,
+                        modifierLine.Modifier.OptionValue,
+                        normalizeValues: sidekickSettings.Trade_Normalize_Values && modifierLine.Modifier.Category != ModifierCategory.Enchant,
+                        enabled: enabledModifiers.Contains(modifierLine.Modifier.Id)
                     );
                 }
                 else
                 {
                     InitializeModifierFilter(filters,
-                        modifier,
-                        modifier.Values,
-                        normalizeValues: sidekickSettings.Trade_Normalize_Values && modifier.Category != ModifierCategory.Enchant,
-                        enabled: enabledModifiers.Contains(modifier.Id)
+                        modifierLine.Modifier,
+                        modifierLine.Modifier.Values,
+                        normalizeValues: sidekickSettings.Trade_Normalize_Values && modifierLine.Modifier.Category != ModifierCategory.Enchant,
+                        enabled: enabledModifiers.Contains(modifierLine.Modifier.Id)
                     );
                 }
             }

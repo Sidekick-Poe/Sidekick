@@ -1,5 +1,4 @@
 using System.Linq;
-using Sidekick.Apis.Poe;
 using Sidekick.Common.Game.Items;
 using Xunit;
 
@@ -24,8 +23,8 @@ namespace Sidekick.Apis.Poe.Tests.Parser
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal("Hunter Hood", actual.Metadata.Type);
 
-            var explicits = actual.Modifiers.Explicit.Select(x => x.Text);
-            Assert.Contains("You have Shocking Conflux for 3 seconds every 8 seconds", explicits);
+            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
+            Assert.Contains("You have Shocking Conflux for 3 seconds every 8 seconds", modifiers);
         }
 
         [Fact]
@@ -38,8 +37,8 @@ namespace Sidekick.Apis.Poe.Tests.Parser
             Assert.Equal("Starkonja's Head", actual.Metadata.Name);
             Assert.Equal("Silken Hood", actual.Metadata.Type);
 
-            var enchants = actual.Modifiers.Enchant.Select(x => x.Text);
-            Assert.Contains("Divine Ire Damages 2 additional nearby Enemies when gaining Stages", enchants);
+            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
+            Assert.Contains("Divine Ire Damages 2 additional nearby Enemies when gaining Stages", modifiers);
         }
 
         #region ItemText
@@ -55,7 +54,7 @@ Requirements:
 Level: 64
 Dex: 87
 --------
-Sockets: G 
+Sockets: G
 --------
 Item Level: 80
 --------
@@ -80,7 +79,7 @@ Requirements:
 Level: 60
 Dex: 138
 --------
-Sockets: G G 
+Sockets: G G
 --------
 Item Level: 80
 --------
@@ -98,6 +97,6 @@ There was no hero made out of Starkonja's death,
 but merely a long sleep made eternal.
 ";
 
-        #endregion
+        #endregion ItemText
     }
 }

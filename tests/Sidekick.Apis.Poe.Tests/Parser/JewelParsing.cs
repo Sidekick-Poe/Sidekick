@@ -38,11 +38,11 @@ Place into an allocated Jewel Socket on the Passive Skill Tree.Right click to re
             Assert.Equal("Blight Cut", actual.Original.Name);
             Assert.Equal(68, actual.Properties.ItemLevel);
 
-            var explicits = actual.Modifiers.Explicit.Select(x => x.Text);
-            Assert.Contains("+8 to Strength and Intelligence", explicits);
-            Assert.Contains("14% increased Spell Damage while Dual Wielding", explicits);
-            Assert.Contains("19% increased Burning Damage", explicits);
-            Assert.Contains("15% increased Damage with Wands", explicits);
+            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
+            Assert.Contains("+8 to Strength and Intelligence", modifiers);
+            Assert.Contains("14% increased Spell Damage while Dual Wielding", modifiers);
+            Assert.Contains("19% increased Burning Damage", modifiers);
+            Assert.Contains("15% increased Damage with Wands", modifiers);
         }
 
         [Fact]
@@ -79,10 +79,10 @@ Note: ~price 1 alch
             Assert.Equal("Loath Hope", actual.Original.Name);
             Assert.Equal(69, actual.Properties.ItemLevel);
 
-            var enchants = actual.Modifiers.Enchant.Select(x => x.Text);
-            Assert.Contains("Added Small Passive Skills grant: Axe Attacks deal 12% increased Damage with Hits and Ailments\nAdded Small Passive Skills grant: Sword Attacks deal 12% increased Damage with Hits and Ailments", enchants);
-            Assert.Contains("2 Added Passive Skills are Jewel Sockets", enchants);
-            Assert.Contains("Adds 11 Passive Skills", enchants);
+            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
+            Assert.Contains("Added Small Passive Skills grant: Axe Attacks deal 12% increased Damage with Hits and Ailments\nAdded Small Passive Skills grant: Sword Attacks deal 12% increased Damage with Hits and Ailments", modifiers);
+            Assert.Contains("2 Added Passive Skills are Jewel Sockets", modifiers);
+            Assert.Contains("Adds 11 Passive Skills", modifiers);
         }
 
         [Fact]
@@ -108,6 +108,5 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
             Assert.Equal(Category.Jewel, actual.Metadata.Category);
             Assert.Equal("Viridian Jewel", actual.Metadata.Type);
         }
-
     }
 }

@@ -1,9 +1,15 @@
-@if (Modifier != null)
-{
-    <span class="@($"{Class} {Modifier.Category}-text")">@Modifier.Text</span>
-}
+<span class="@($"{Class} {CategoryClass}")">@ModifierLine.Text</span>
 
 @code {
     [Parameter] public string Class { get; set; }
-    [Parameter] public Modifier Modifier { get; set; }
+    [Parameter] public ModifierLine ModifierLine { get; set; }
+
+    private string CategoryClass => ModifierLine.Modifier?.Category switch
+    {
+        ModifierCategory.Scourge => "scourge-text",
+        ModifierCategory.Fractured => "fractured-text",
+        ModifierCategory.Enchant => "enchant-text",
+        ModifierCategory.Crafted => "crafted-text",
+        _ => "",
+    };
 }

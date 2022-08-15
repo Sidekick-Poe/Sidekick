@@ -56,7 +56,7 @@ Take this item to Dannig in your Hideout to open portals to an expedition.
             Assert.Equal(Category.Logbook, actual.Metadata.Category);
             Assert.Equal("Expedition Logbook", actual.Metadata.Type);
 
-            var pseudos = actual.Modifiers.Pseudo.Select(x => x.Text);
+            var pseudos = actual.PseudoModifiers.Select(x => x.Text);
             Assert.Contains("Has Logbook Faction: Druids of the Broken Circle", pseudos);
             Assert.Contains("Has Logbook Faction: Order of the Chalice", pseudos);
         }

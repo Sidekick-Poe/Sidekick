@@ -190,23 +190,69 @@ namespace Sidekick.Apis.Poe.Modifiers
             return string.Join('\n', optionLines);
         }
 
+        /// <inheritdoc/>
         public List<ModifierLine> Parse(ParsingItem parsingItem)
         {
             var modifiers = new List<ModifierLine>();
 
-            foreach (var patternGroup in Patterns)
+            foreach (var block in parsingItem.Blocks.Where(x => !x.Parsed))
             {
-                if (modifiers == null)
+                for (var lineIndex = 0; lineIndex < block.Lines.Count; lineIndex++)
                 {
-                    continue;
-                }
+                    var line = block.Lines[lineIndex];
+                    if (line.Parsed)
+                    {
+                        continue;
+                    }
 
-                ParseModifiers(modifiers, patternGroup.Value, parsingItem);
+                    var modifierLine = new ModifierLine()
+                    {
+                        Text = line.Text,
+                    };
+
+                    foreach (var patternGroup in Patterns)
+                    {
+                        foreach (var metadata in patternGroup.Value)
+                        {
+                            foreach (var pattern in metadata.Patterns)
+                            {
+                                if (pattern.Pattern.IsMatch(line.Text))
+                                {
+                                    ParseMod(modifierLine, metadata, pattern, line.Text);
+                                    line.Parsed = true;
+                                }
+
+                                // Multiline modifiers
+                                else if (pattern.LineCount > 1 && pattern.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount))))
+                                {
+                                    ParseMod(modifierLine, metadata, pattern, string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount)));
+                                    foreach (var multiline in block.Lines.Skip(lineIndex).Take(pattern.LineCount))
+                                    {
+                                        multiline.Parsed = true;
+                                    }
+
+                                    // Increment the line index by one less of the pattern count. The default lineIndex++ will take care of the remaining increment.
+                                    lineIndex += pattern.LineCount - 1;
+                                }
+                            }
+                        }
+                    }
+
+                    // If we reach this point we have not found the modifier through traditional Regex means.
+                    // Text from the game sometimes differ from the text from the API. We do a fuzzy search here to find the most common text.
+                    if (!line.Parsed)
+                    {
+                        // Fuzz
+                        line.Parsed = true;
+                    }
+
+                    modifiers.Add(modifierLine);
+                }
             }
 
             // Check if we need to process special pseudo patterns
-            if (parsingItem.Metadata.Class == Common.Game.Items.Class.MiscMapItems) ParseModifiers(modifiers, IncursionRoomPatterns, parsingItem);
-            if (parsingItem.Metadata.Class == Common.Game.Items.Class.Logbooks) ParseModifiers(modifiers, LogbookFactionPatterns, parsingItem);
+            // if (parsingItem.Metadata.Class == Common.Game.Items.Class.MiscMapItems) ParseModifiers(modifiers, IncursionRoomPatterns, parsingItem);
+            // if (parsingItem.Metadata.Class == Common.Game.Items.Class.Logbooks) ParseModifiers(modifiers, LogbookFactionPatterns, parsingItem);
 
             // Order the mods by the order they appear on the item.
             return modifiers
@@ -214,60 +260,19 @@ namespace Sidekick.Apis.Poe.Modifiers
                 .ToList();
         }
 
-        private void ParseModifiers(List<ModifierLine> modifiers, List<ModifierPatternMetadata> metadatas, ParsingItem item)
-        {
-            foreach (var block in item.Blocks.Where(x => !x.Parsed))
-            {
-                foreach (var line in block.Lines.Where(x => !x.Parsed))
-                {
-                    foreach (var metadata in metadatas)
-                    {
-                        foreach (var pattern in metadata.Patterns)
-                        {
-                            if (pattern.Pattern.IsMatch(line.Text))
-                            {
-                                ParseMod(modifiers, metadata, pattern, line.Text);
-                                line.Parsed = true;
-                            }
-
-                            // Multiline modifiers
-                            else if (pattern.LineCount > 1 && pattern.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(line.Index).Take(pattern.LineCount))))
-                            {
-                                ParseMod(modifiers, metadata, pattern, string.Join('\n', block.Lines.Skip(line.Index).Take(pattern.LineCount)));
-                                foreach (var multiline in block.Lines.Skip(line.Index).Take(pattern.LineCount))
-                                {
-                                    multiline.Parsed = true;
-                                }
-                            }
-                        }
-
-                        // If we reach this point we have not found the modifier through traditional Regex means.
-                        // Text from the game sometimes differ from the text from the API. We do a fuzzy search here to find the most common text.
-                        if (!line.Parsed)
-                        {
-                            foreach (var pattern in metadata.Patterns)
-                            {
-                                // Fuzz
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        private void ParseMod(List<ModifierLine> modifiers, ModifierPatternMetadata data, ModifierPattern pattern, string text)
+        private void ParseMod(ModifierLine modifierLine, ModifierPatternMetadata metadata, ModifierPattern pattern, string text)
         {
             var match = pattern.Pattern.Match(text);
 
             var modifier = new Modifier()
             {
                 Index = match.Index,
-                Id = data.Id,
+                Id = metadata.Id,
                 Text = pattern.Text,
-                Category = data.Category,
+                Category = metadata.Category,
             };
 
-            if (data.IsOption)
+            if (metadata.IsOption)
             {
                 modifier.OptionValue = new ModifierOption()
                 {
@@ -298,11 +303,14 @@ namespace Sidekick.Apis.Poe.Modifiers
                 modifier.Text = modifier.Text.Replace("+-", "-");
             }
 
-            modifiers.Add(new ModifierLine()
+            if (modifierLine.Modifier == null)
             {
-                Modifiers = new() { modifier },
-                Text = text,
-            });
+                modifierLine.Modifier = modifier;
+            }
+            else
+            {
+                modifierLine.Alternates.Add(modifier);
+            }
         }
 
         public bool IsMatch(string id, string text)

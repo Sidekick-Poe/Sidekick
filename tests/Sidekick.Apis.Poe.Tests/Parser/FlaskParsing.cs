@@ -42,8 +42,8 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
             Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
             Assert.Equal("Sanctified Mana Flask", actual.Metadata.Type);
 
-            var explicits = actual.Modifiers.Explicit.Select(x => x.Text);
-            Assert.Contains("Grants Immunity to Bleeding for 4 seconds if used while Bleeding\nGrants Immunity to Corrupted Blood for 4 seconds if used while affected by Corrupted Blood", explicits);
+            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
+            Assert.Contains("Grants Immunity to Bleeding for 4 seconds if used while Bleeding\nGrants Immunity to Corrupted Blood for 4 seconds if used while affected by Corrupted Blood", modifiers);
         }
 
         [Fact]
@@ -98,6 +98,5 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
             Assert.Equal("Sacred Hybrid Flask", actual.Metadata.Type);
             Assert.Equal(13, actual.Properties.Quality);
         }
-
     }
 }

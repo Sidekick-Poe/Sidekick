@@ -116,9 +116,9 @@ Note: ~price 2 chaos
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal("Phantasmagoria Map", actual.Metadata.Type);
 
-            var implicits = actual.Modifiers.Implicit.Select(x => x.Text);
-            Assert.Contains("Area is influenced by The Elder", implicits);
-            Assert.Equal(2, actual.Modifiers.Implicit.First(x => x.Text.Contains("The Elder")).OptionValue.Value);
+            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
+            Assert.Contains("Area is influenced by The Elder", modifiers);
+            Assert.Equal(2, actual.ModifierLines.First(x => x.Text.Contains("The Elder")).Modifier.OptionValue.Value);
         }
 
         [Fact]
@@ -140,8 +140,8 @@ Note: ~price 2 chaos
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal("Burial Chambers Map", actual.Metadata.Type);
 
-            var explicits = actual.Modifiers.Explicit.Select(x => x.Text);
-            Assert.DoesNotContain("#% increased Area of Effect", explicits);
+            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
+            Assert.DoesNotContain("#% increased Area of Effect", modifiers);
         }
 
         #region ItemText
@@ -180,6 +180,6 @@ Magic Monster Packs each have a Bloodline Mod
 Travel to this Map by using it in a personal Map Device. Maps can only be used once.
 ";
 
-        #endregion
+        #endregion ItemText
     }
 }
