@@ -1,5 +1,5 @@
-using System.Linq;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items.Modifiers;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Parser
@@ -116,9 +116,7 @@ Note: ~price 2 chaos
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal("Phantasmagoria Map", actual.Metadata.Type);
 
-            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
-            Assert.Contains("Area is influenced by The Elder", modifiers);
-            Assert.Equal(2, actual.ModifierLines.First(x => x.Text.Contains("The Elder")).Modifier.OptionValue.Value);
+            actual.AssertHasModifier(ModifierCategory.Implicit, "Area is influenced by The Elder");
         }
 
         [Fact]
@@ -134,26 +132,7 @@ Note: ~price 2 chaos
         [Fact]
         public void ParseVortexPit()
         {
-            var actual = parser.ParseItem(VortexPit);
-
-            Assert.Equal(Category.Map, actual.Metadata.Category);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal("Burial Chambers Map", actual.Metadata.Type);
-
-            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
-            Assert.DoesNotContain("#% increased Area of Effect", modifiers);
-        }
-
-        #region ItemText
-
-        private const string TimelessKaruiEmblem = @"Item Class: Map Fragments
-Rarity: Normal
-Timeless Karui Emblem
---------
-Place two or more different Emblems in a Map Device to access the Domain of Timeless Conflict. Can only be used once.
-";
-
-        private const string VortexPit = @"Item Class: Unknown
+            var actual = parser.ParseItem(@"Item Class: Unknown
 Rarity: Rare
 Vortex Pit
 Burial Chambers Map
@@ -178,6 +157,22 @@ Rare Monsters each have a Nemesis Mod
 Magic Monster Packs each have a Bloodline Mod
 --------
 Travel to this Map by using it in a personal Map Device. Maps can only be used once.
+");
+
+            Assert.Equal(Category.Map, actual.Metadata.Category);
+            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
+            Assert.Equal("Burial Chambers Map", actual.Metadata.Type);
+
+            actual.AssertHasModifier(ModifierCategory.Explicit, "Monsters have #% increased Area of Effect", 100);
+        }
+
+        #region ItemText
+
+        private const string TimelessKaruiEmblem = @"Item Class: Map Fragments
+Rarity: Normal
+Timeless Karui Emblem
+--------
+Place two or more different Emblems in a Map Device to access the Domain of Timeless Conflict. Can only be used once.
 ";
 
         #endregion ItemText
