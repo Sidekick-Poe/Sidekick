@@ -4,8 +4,6 @@ namespace Sidekick.Common.Game.Items.Modifiers
 {
     public class Modifier
     {
-        public int Index { get; set; }
-
         public string Id { get; set; }
 
         public string Tier { get; set; }
@@ -18,6 +16,6 @@ namespace Sidekick.Common.Game.Items.Modifiers
 
         public List<double> Values { get; set; } = new List<double>();
 
-        public ModifierOption OptionValue { get; set; }
+        public int? OptionValue { get; set; }
     }
 }

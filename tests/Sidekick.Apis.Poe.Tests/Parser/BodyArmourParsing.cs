@@ -1,5 +1,6 @@
 using System.Linq;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items.Modifiers;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Parser
@@ -57,19 +58,17 @@ can deny that my work has made quite the splash...""
             Assert.Equal(186, actual.Properties.EnergyShield);
             Assert.Equal(6, actual.Sockets.Count(x => x.Group == 0));
 
-            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
-            Assert.Contains("128% increased Evasion and Energy Shield (Local)", modifiers);
-            Assert.Contains("+55 to maximum Life", modifiers);
-            Assert.Contains("+12% to all Elemental Resistances", modifiers);
-            Assert.Contains("44% increased Area of Effect", modifiers);
-            Assert.Contains("47% increased Area Damage", modifiers);
-            Assert.Contains("Extra gore", modifiers);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Evasion and Energy Shield (Local)", 128);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "# to maximum Life", 55);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% to all Elemental Resistances", 12);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Area of Effect", 44);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Area Damage", 47);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "Extra gore");
 
-            var pseudos = actual.PseudoModifiers.Select(x => x.Text);
-            Assert.Contains("+12% total to all Elemental Resistances", pseudos);
-            Assert.Contains("+36% total Elemental Resistance", pseudos);
-            Assert.Contains("+36% total Resistance", pseudos);
-            Assert.Contains("+55 total maximum Life", pseudos);
+            actual.AssertHasPseudoModifier("+12% total to all Elemental Resistances", 12);
+            actual.AssertHasPseudoModifier("+36% total Elemental Resistance", 36);
+            actual.AssertHasPseudoModifier("+36% total Resistance", 36);
+            actual.AssertHasPseudoModifier("+55 total maximum Life", 55);
         }
 
         [Fact]

@@ -499,6 +499,7 @@ namespace Sidekick.Apis.Poe.Pseudo
                             {
                                 Id = pseudoDefinition.Id,
                                 Text = pseudoDefinition.Text,
+                                Category = ModifierCategory.Pseudo,
                             };
                             pseudoMod.Values.Add((int)(modifier.Values.FirstOrDefault() * pseudoModifier.Multiplier));
                             pseudoMods.Add(pseudoMod);

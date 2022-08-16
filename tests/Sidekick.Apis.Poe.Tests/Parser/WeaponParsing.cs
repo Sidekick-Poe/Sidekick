@@ -1,5 +1,5 @@
-using System.Linq;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items.Modifiers;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Parser
@@ -80,12 +80,11 @@ Crusader Item
             Assert.Equal("Miracle Chant", actual.Original.Name);
             Assert.True(actual.Influences.Crusader);
 
-            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
-            Assert.Contains("33% increased Spell Damage", modifiers);
-            Assert.Contains("Adds 10 to 16 Physical Damage (Local)", modifiers);
-            Assert.Contains("24% increased Fire Damage", modifiers);
-            Assert.Contains("14% increased Critical Strike Chance for Spells", modifiers);
-            Assert.Contains("Attacks with this Weapon Penetrate 10% Lightning Resistance", modifiers);
+            actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Spell Damage", 33);
+            actual.AssertHasAlternateModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage (Local)", 10, 16);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Fire Damage", 24);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Critical Strike Chance for Spells", 14);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "Attacks with this Weapon Penetrate #% Lightning Resistance", 10);
         }
 
         [Fact]
@@ -117,8 +116,7 @@ Item Level: 50
             Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
             Assert.Equal("Shadow Axe", actual.Metadata.Type);
 
-            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
-            Assert.Contains("11% reduced Enemy Stun Threshold", modifiers);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% reduced Enemy Stun Threshold", 11);
         }
 
         /// <summary>

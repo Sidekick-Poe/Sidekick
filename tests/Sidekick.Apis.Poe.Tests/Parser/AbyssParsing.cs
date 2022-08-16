@@ -1,5 +1,5 @@
-using System.Linq;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items.Modifiers;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Parser
@@ -15,7 +15,7 @@ namespace Sidekick.Apis.Poe.Tests.Parser
         }
 
         [Fact]
-        public void ParseBulbonicTrail()
+        public void BulbonicTrail()
         {
             var actual = parser.ParseItem(@"Item Class: Boots
 Rarity: Unique
@@ -49,8 +49,7 @@ Even the dead serve the Lightless.
             Assert.Equal("Bubonic Trail", actual.Metadata.Name);
             Assert.Equal("Murder Boots", actual.Metadata.Type);
 
-            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
-            Assert.Contains("Has 1 Abyssal Socket", modifiers);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "Has # Abyssal Sockets", 1);
         }
 
         [Fact]

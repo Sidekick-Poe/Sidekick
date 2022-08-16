@@ -50,8 +50,8 @@ Note: ~price 1.29 exalted
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal("Chronicle of Atzoatl", actual.Metadata.Type);
 
-            var pseudos = actual.PseudoModifiers.Select(x => x.Text);
-            Assert.Contains("Has Room: Locus of Corruption (Tier 3)", pseudos);
+            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
+            Assert.Contains("Has Room: Locus of Corruption (Tier 3)", modifiers);
         }
     }
 }

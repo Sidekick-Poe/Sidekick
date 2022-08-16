@@ -1,5 +1,5 @@
-using System.Linq;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items.Modifiers;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Parser
@@ -46,11 +46,10 @@ Item Level: 61
             Assert.Equal("Death Nails", actual.Original.Name);
             Assert.Single(actual.Sockets);
 
-            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
-            Assert.Contains("+18 to Intelligence", modifiers);
-            Assert.Contains("+73 to maximum Life", modifiers);
-            Assert.Contains("+14% to Lightning Resistance", modifiers);
-            Assert.Contains("0.23% of Physical Attack Damage Leeched as Mana", modifiers);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "# to Intelligence", 18);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "# to maximum Life", 73);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% to Lightning Resistance", 14);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% of Physical Attack Damage Leeched as Mana", 0.23);
         }
     }
 }

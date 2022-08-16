@@ -1,5 +1,5 @@
-using System.Linq;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items.Modifiers;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Parser
@@ -42,8 +42,7 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
             Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
             Assert.Equal("Sanctified Mana Flask", actual.Metadata.Type);
 
-            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
-            Assert.Contains("Grants Immunity to Bleeding for 4 seconds if used while Bleeding\nGrants Immunity to Corrupted Blood for 4 seconds if used while affected by Corrupted Blood", modifiers);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "Grants Immunity to Bleeding for 4 seconds if used while Bleeding\nGrants Immunity to Corrupted Blood for 4 seconds if used while affected by Corrupted Blood");
         }
 
         [Fact]

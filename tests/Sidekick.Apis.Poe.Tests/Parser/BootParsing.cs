@@ -1,5 +1,5 @@
-using System.Linq;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items.Modifiers;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Parser
@@ -40,8 +40,7 @@ Fractured Item
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal("Iron Greaves", actual.Metadata.Type);
 
-            var modifiers = actual.ModifierLines.Select(x => x.Modifier?.Text);
-            Assert.Contains("10% increased Movement Speed", modifiers);
+            actual.AssertHasModifier(ModifierCategory.Fractured, "#% increased Movement Speed", 10);
         }
     }
 }
