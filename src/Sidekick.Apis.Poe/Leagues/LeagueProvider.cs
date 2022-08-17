@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Common.Cache;
@@ -26,6 +27,9 @@ namespace Sidekick.Apis.Poe.Leagues
             }
 
             var result = await GetList();
+
+            result = result.Where(x => x.Realm == LeagueRealm.PC).ToList();
+
             await cacheProvider.Set("Leagues", result);
             return result;
         }

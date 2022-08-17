@@ -14,5 +14,10 @@ namespace Sidekick.Apis.Poe.Leagues
         /// The label of the league
         /// </summary>
         public string Text { get; set; }
+
+        /// <summary>
+        /// Realm of the league
+        /// </summary>
+        public LeagueRealm Realm { get; set; }
     }
 }
