@@ -6,7 +6,7 @@ namespace Sidekick.Apis.Poe.Leagues
     public enum LeagueRealm
     {
         PC,
-        XBOX,
+        Xbox,
         Sony
     }
 }
