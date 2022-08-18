@@ -645,7 +645,7 @@ namespace Sidekick.Apis.Poe.Trade
             for (var index = 0; index < hashes.Count; index++)
             {
                 var id = hashes[index].Value;
-                var text = texts.FirstOrDefault(x => modifierProvider.IsMatch(id, x));
+                var text = texts.FirstOrDefault(x => modifierProvider.IsMatch(id, x)) ?? texts[index];
                 var mod = mods.FirstOrDefault(x => x.Magnitudes != null && x.Magnitudes.Any(y => y.Hash == id));
 
                 modifierLines.Add(new()

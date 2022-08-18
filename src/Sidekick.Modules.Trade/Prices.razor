@@ -4,58 +4,51 @@
 @if (Item != null)
 {
     <FiltersComponent Item="Item" ModifierFilters="ModifierFilters" PropertyFilters="PropertyFilters" OnSearch="UpdateQuery" />
-
-    <div class="d-flex flex-row align-start mx-n1 mb-2">
-        <PriceNinjaComponent Item="Item" Class="flex-grow-1 mx-1" />
-        <PricePredictionComponent Item="Item" Class="flex-grow-1 mx-1" />
-    </div>
-
-    if (FiltersReady)
-    {
-    }
-
-    <PriceOptionsComponent Item="Item"
-                       QueryId="@QueryResult?.Id"
-                       @bind-Layout="Layout"
-                       Count="Results?.Count ?? 0"
-                       Total="QueryResult?.Total ?? 0" />
 }
 
-@if (IsError)
-{
-    <MudAlert Severity="Severity.Error">@Resources.Error_PoeApi</MudAlert>
-
-    @if (QueryResult?.Error != null)
+<div class="ml-0">
+    @if (IsError)
     {
-        <MudAlert Class="mt-1" Severity="Severity.Error">@Resources.Error_PoeApiMessage <b>@QueryResult.Error.Message</b></MudAlert>
-    }
-}
-else
-{
-    <MudGrid Spacing="1" Class="align-stretch">
-        @if (Results != null)
+        <MudAlert Severity="Severity.Error">@Resources.Error_PoeApi</MudAlert>
+
+        @if (QueryResult?.Error != null)
         {
-            foreach (var result in Results)
-            {
-                <MudItem xs="12" sm="6" md="4" lg="3">
-                    <ItemComponent Item="result" Style="height: 100%;" Layout="Layout" />
-                </MudItem>
-            }
-
-            if (IsFetching)
-            {
-                <MudItem xs="12" sm="6" md="4" lg="3">
-                    <MudSkeleton Height="100%" Width="100%" Style="min-height: 100px;" SkeletonType="SkeletonType.Rectangle" />
-                </MudItem>
-            }
+            <MudAlert Class="mt-1" Severity="Severity.Error">@Resources.Error_PoeApiMessage <b>@QueryResult.Error.Message</b></MudAlert>
         }
-    </MudGrid>
-}
+    }
 
-@if (!IsFetching && !FullyLoaded && Results != null)
-{
-    <MudButton Variant="Variant.Outlined" Color="Color.Info" FullWidth="true" OnClick="LoadMoreData" Class="mt-2">@Resources.LoadMoreData</MudButton>
-}
+    @if (Item != null)
+    {
+        <div class="d-flex flex-row align-start mx-n1 mb-2">
+            <PriceNinjaComponent Item="Item" Class="flex-grow-1 mx-1" />
+            <PricePredictionComponent Item="Item" Class="flex-grow-1 mx-1" />
+        </div>
+
+        <PriceOptionsComponent Item="Item"
+                           QueryId="@QueryResult?.Id"
+                           @bind-Layout="Layout"
+                           Count="Results?.Count ?? 0"
+                           Total="QueryResult?.Total ?? 0" />
+    }
+
+    @if (Results != null)
+    {
+        foreach (var result in Results)
+        {
+            <ItemComponent Item="result" Layout="Layout" />
+        }
+
+        if (IsFetching)
+        {
+            <MudSkeleton Height="100px" Width="100%" SkeletonType="SkeletonType.Rectangle" />
+        }
+    }
+
+    @if (!IsFetching && !FullyLoaded && Results != null)
+    {
+        <MudButton Variant="Variant.Outlined" Color="Color.Info" FullWidth="true" OnClick="LoadMoreData" Class="mt-2">@Resources.LoadMoreData</MudButton>
+    }
+</div>
 
 @code {
     [Inject] private IViewInstance ViewInstance { get; set; }
@@ -152,5 +145,7 @@ else
         }
 
         IsFetching = false;
+
+        StateHasChanged();
     }
 }
