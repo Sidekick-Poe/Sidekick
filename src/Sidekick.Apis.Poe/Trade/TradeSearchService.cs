@@ -80,7 +80,7 @@ namespace Sidekick.Apis.Poe.Trade
             return null;
         }
 
-        public async Task<TradeSearchResult<string>> Search(Item item, PropertyFilters propertyFilters = null, ModifierFilters modifierFilters = null)
+        public async Task<TradeSearchResult<string>> Search(Item item, PropertyFilters propertyFilters = null, List<ModifierFilter> modifierFilters = null)
         {
             try
             {
@@ -356,36 +356,28 @@ namespace Sidekick.Apis.Poe.Trade
             }
         }
 
-        private static void SetModifierFilters(List<StatFilterGroup> stats, ModifierFilters modifierFilters)
+        private static void SetModifierFilters(List<StatFilterGroup> stats, List<ModifierFilter> modifierFilters)
         {
             if (modifierFilters == null) return;
 
             var group = new StatFilterGroup();
 
-            SetModifierFilters(group, modifierFilters.Pseudo);
-            SetModifierFilters(group, modifierFilters.Enchant);
-            SetModifierFilters(group, modifierFilters.Implicit);
-            SetModifierFilters(group, modifierFilters.Explicit);
-            SetModifierFilters(group, modifierFilters.Crafted);
-            SetModifierFilters(group, modifierFilters.Fractured);
-            SetModifierFilters(group, modifierFilters.Scourge);
-
-            stats.Add(group);
-        }
-
-        private static void SetModifierFilters(StatFilterGroup group, List<ModifierFilter> modifierFilters)
-        {
             if (modifierFilters == null)
             {
                 return;
             }
 
-            group.Filters.AddRange(modifierFilters.ConvertAll(x => new StatFilter()
-            {
-                Disabled = !x.Enabled,
-                Id = x.Modifier.Id,
-                Value = new SearchFilterValue(x),
-            }));
+            group.Filters.AddRange(modifierFilters
+                .Where(x => x.Line.Modifier != null)
+                .Select(x => new StatFilter()
+                {
+                    Disabled = !x.Enabled,
+                    Id = x.Line.Modifier.Id,
+                    Value = new SearchFilterValue(x),
+                })
+                .ToList());
+
+            stats.Add(group);
         }
 
         private static void SetSocketFilters(Item item, SearchFilters filters)
@@ -405,7 +397,7 @@ namespace Sidekick.Apis.Poe.Trade
             }
         }
 
-        public async Task<List<TradeItem>> GetResults(string queryId, List<string> ids, ModifierFilters modifierFilters = null)
+        public async Task<List<TradeItem>> GetResults(string queryId, List<string> ids, List<ModifierFilter> modifierFilters = null)
         {
             try
             {
@@ -414,7 +406,9 @@ namespace Sidekick.Apis.Poe.Trade
                 var pseudo = string.Empty;
                 if (modifierFilters != null)
                 {
-                    pseudo = string.Join("", modifierFilters.Pseudo.Select(x => $"&pseudos[]={x.Modifier.Id}"));
+                    pseudo = string.Join("", modifierFilters
+                        .Where(x => x.Line.Modifier != null && x.Line.Modifier.Category == ModifierCategory.Pseudo)
+                        .Select(x => $"&pseudos[]={x.Line.Modifier.Id}"));
                 }
 
                 var response = await poeTradeClient.HttpClient.GetAsync(gameLanguageProvider.Language.PoeTradeApiBaseUrl + "fetch/" + string.Join(",", ids) + "?query=" + queryId + pseudo);

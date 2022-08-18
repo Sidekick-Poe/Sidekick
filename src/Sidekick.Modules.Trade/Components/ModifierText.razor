@@ -1,10 +1,10 @@
-<span class="@($"{Class} {CategoryClass}")">@ModifierLine.Text</span>
+<span class="@Class font-smallcaps">@Text</span>
 
 @code {
-    [Parameter] public string Class { get; set; }
-    [Parameter] public ModifierLine ModifierLine { get; set; }
+    [Parameter] public string Text { get; set; }
+    [Parameter] public ModifierCategory? Category { get; set; }
 
-    private string CategoryClass => ModifierLine.Modifier?.Category switch
+    private string Class => Category switch
     {
         ModifierCategory.Scourge => "scourge-text",
         ModifierCategory.Fractured => "fractured-text",

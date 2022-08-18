@@ -1,53 +1,58 @@
 
-@if (Item != null)
-{
-    <div class="header @BackgroundClass">
-        <div class="influences left">
-            <ItemInfluencesComponent Item="Item" />
-        </div>
-        @if (!string.IsNullOrEmpty(Item.Original.Name))
-        {
-            <MudText Typo="Typo.h6" Align="Align.Center" Class="name font-smallcaps" Style="@LabelStyle">@Item.Original.Name</MudText>
-        }
-        @if (!string.IsNullOrEmpty(Item.Original.Type))
-        {
-            <MudText Typo="Typo.h6" Align="Align.Center" Class="type font-smallcaps" Style="@LabelStyle">@Item.Original.Type</MudText>
-        }
-        <div class="influences right">
-            <ItemInfluencesComponent Item="Item" />
-        </div>
+<div class="header @BackgroundClass">
+    <div class="influences left">
+        <ItemInfluencesComponent Influences="Influences" />
     </div>
-}
+    @if (!string.IsNullOrEmpty(Name))
+    {
+        <MudText Typo="Typo.h6" Align="Align.Center" Class="name font-smallcaps" Style="@LabelStyle">@Name</MudText>
+    }
+    @if (!string.IsNullOrEmpty(Type))
+    {
+        <MudText Typo="Typo.h6" Align="Align.Center" Class="type font-smallcaps" Style="@LabelStyle">@Type</MudText>
+    }
+    <div class="influences right">
+        <ItemInfluencesComponent Influences="Influences" />
+    </div>
+</div>
 
 @code {
-    [Parameter] public Item Item { get; set; }
+    [Parameter] public Rarity Rarity { get; set; }
+
+    [Parameter] public string Name { get; set; }
+
+    [Parameter] public string Type { get; set; }
+
+    [Parameter] public Influences Influences { get; set; }
+
+    [Parameter] public bool IsRelic { get; set; }
 
     private string BackgroundClass
     {
         get
         {
-            if (Item.Properties.IsRelic)
+            if (IsRelic)
             {
-                if (string.IsNullOrEmpty(Item.Original.Name) || string.IsNullOrEmpty(Item.Original.Type))
+                if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Type))
                 {
                     return "header-relic";
                 }
                 return "header-double-relic";
             }
 
-            switch (Item.Metadata.Rarity)
+            switch (Rarity)
             {
                 case Rarity.Currency: return "header-currency";
                 case Rarity.Magic: return "header-magic";
                 case Rarity.Gem: return "header-gem";
                 case Rarity.Rare:
-                    if (string.IsNullOrEmpty(Item.Original.Name) || string.IsNullOrEmpty(Item.Original.Type))
+                    if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Type))
                     {
                         return "header-rare";
                     }
                     return "header-double-rare";
                 case Rarity.Unique:
-                    if (string.IsNullOrEmpty(Item.Original.Name) || string.IsNullOrEmpty(Item.Original.Type))
+                    if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Type))
                     {
                         return "header-unique";
                     }
@@ -57,7 +62,7 @@
         }
     }
 
-    private string LabelStyle => Item.Metadata.Rarity switch
+    private string LabelStyle => Rarity switch
     {
         Rarity.Currency => "color:#AA9E82;",
         Rarity.Magic => "color:#8888FF;",

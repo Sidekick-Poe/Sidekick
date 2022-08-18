@@ -2,7 +2,8 @@
 {
     <div class="modifiers">
         <MudText Typo="Typo.body1" Class="modifier font-smallcaps" Align="Align.Center">
-            <ModifierText Modifier="Modifier" />
+            <ModifierText Text="@ModifierLine.Text"
+                      Category="ModifierLine.Modifier?.Category" />
             @if (!string.IsNullOrWhiteSpace(ModifierLine.Modifier.Tier))
             {
                 <span class="tier @GetTierClass(ModifierLine.Modifier.Tier)">@ModifierLine.Modifier.Tier</span>
@@ -12,7 +13,7 @@
 
     if (IsLastOfCategory && (Category == ModifierCategory.Implicit || Category == ModifierCategory.Enchant))
     {
-        <ItemSeparatorComponent Item="Item" />
+        <ItemSeparatorComponent Rarity="Item.Metadata.Rarity" />
     }
 }
 

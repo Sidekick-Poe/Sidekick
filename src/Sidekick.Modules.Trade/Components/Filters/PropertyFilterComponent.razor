@@ -1,31 +1,38 @@
 
 <div>
-    <MudCheckBox @bind-Checked="Filter.Enabled" Color="Color.Primary" Class="font-smallcaps mb-1 d-flex">
-        <div class="d-flex flex-row justify-start align-center">
-            <MudText Class="@($"flex-grow-1 my-1 mr-2 {GetFilterTextClass()}")">@Filter.Text</MudText>
-            @if (Filter.ValueType == FilterValueType.Double || Filter.ValueType == FilterValueType.Int)
-            {
-                <MudIconButton Icon="@Icons.Material.Filled.SwapHoriz"
-                               OnClick="SwapValues"
-                               Size="Size.Small"
-                               Class="mr-1" />
-                <div class="filter-min"
-                     @onwheel="OnWheelMin"
-                     @onwheel:preventDefault
-                     @oncontextmenu="ClearMin"
-                     @oncontextmenu:preventDefault>
-                    <MudInput @bind-Value="Filter.Min" Placeholder="@Resources.Filters_Min" DisableUnderLine />
-                </div>
-                <div class="filter-max my-1 mr-2"
-                     @onwheel="OnWheelMax"
-                     @onwheel:preventDefault
-                     @oncontextmenu="ClearMax"
-                     @oncontextmenu:preventDefault>
-                    <MudInput @bind-Value="Filter.Max" Placeholder="@Resources.Filters_Max" DisableUnderLine />
-                </div>
-            }
-        </div>
+    <MudCheckBox @bind-Checked="Filter.Enabled"
+                 Color="Color.Primary"
+                 Dense="true"
+                 Size="Size.Small">
+        <PropertyText Label="@Filter.Text"
+                      Value="Filter.Value" />
     </MudCheckBox>
+
+    @if (Filter.Enabled)
+    {
+        @if (Filter.ValueType == FilterValueType.Double || Filter.ValueType == FilterValueType.Int)
+        {
+            <MudIconButton Icon="@Icons.Material.Filled.SwapHoriz"
+                   OnClick="SwapValues"
+                   Size="Size.Small"
+                   Class="mr-1" />
+            <div class="filter-min"
+         @onwheel="OnWheelMin"
+         @onwheel:preventDefault
+         @oncontextmenu="ClearMin"
+         @oncontextmenu:preventDefault>
+                <MudInput @bind-Value="Filter.Min" Placeholder="@Resources.Filters_Min" DisableUnderLine />
+            </div>
+            <div class="filter-max my-1 mr-2"
+         @onwheel="OnWheelMax"
+         @onwheel:preventDefault
+         @oncontextmenu="ClearMax"
+         @oncontextmenu:preventDefault>
+                <MudInput @bind-Value="Filter.Max" Placeholder="@Resources.Filters_Max" DisableUnderLine />
+            </div>
+        }
+
+    }
 </div>
 
 @code {

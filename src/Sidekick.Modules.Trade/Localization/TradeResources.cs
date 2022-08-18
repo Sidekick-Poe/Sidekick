@@ -20,9 +20,12 @@ namespace Sidekick.Modules.Trade.Localization
         public string Age_Now => localizer["Age_Now"];
         public string Age_Seconds => localizer["Age_Seconds"];
         public string Class => localizer["Class"];
+        public string ClassHint => localizer["Class_Hint"];
         public string Corrupted => localizer["Corrupted"];
         public string Scourged => localizer["Scourged"];
+
         public string CountString(int count, int total) => localizer["CountString", count, total];
+
         public string Error_PoeApi => localizer["Error_PoeApi"];
         public string Error_PoeApiMessage => localizer["Error_PoeApiMessage"];
         public string Filters_Expand => localizer["Filters_Expand"];
@@ -59,7 +62,9 @@ namespace Sidekick.Modules.Trade.Localization
         public string PoeNinja => localizer["PoeNinja"];
         public string PoeNinjaLastUpdated => localizer["PoeNinjaLastUpdated"];
         public string Prediction => localizer["Prediction"];
+
         public string PredictionConfidence(double confidence) => localizer["PredictionConfidence", confidence.ToString("0.##")];
+
         public string Requires => localizer["Requires"];
         public string Settings => localizer["Settings"];
         public string Trade => localizer["Trade"];
@@ -69,6 +74,5 @@ namespace Sidekick.Modules.Trade.Localization
         public string UpdateShortly => localizer["UpdateShortly"];
         public string View_More => localizer["View_More"];
         public string View_Less => localizer["View_Less"];
-
     }
 }

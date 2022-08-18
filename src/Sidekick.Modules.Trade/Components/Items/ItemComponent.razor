@@ -1,6 +1,10 @@
 
 <div class="item-content @WrapperClass" style="@Style" @onclick="OnClick">
-    <ItemHeaderComponent Item="Item" />
+    <ItemHeaderComponent Name="@Item.Original.Name"
+                         Type="@Item.Original.Type"
+                         Influences="Item.Influences"
+                         Rarity="Item.Metadata.Rarity"
+                         IsRelic="Item.Properties.IsRelic" />
 
     @if (Layout == Layout.Cards_Maximized || Expanded)
     {
@@ -25,7 +29,7 @@
 
             @if (Item.ModifierLines != null && Item.ModifierLines.Count > 0)
             {
-                <ItemSeparatorComponent Item="Item" />
+                <ItemSeparatorComponent Rarity="Item.Metadata.Rarity" />
                 @foreach (var line in Item.ModifierLines)
                 {
                     <ItemModifierLineComponent Item="Item" ModifierLine="line" />
@@ -34,28 +38,28 @@
 
             @if (!Item.Properties.Identified)
             {
-                <ItemSeparatorComponent Item="Item" />
+                <ItemSeparatorComponent Rarity="Item.Metadata.Rarity" />
                 <div class="unidentified-text">
                     <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Unidentified</MudText>
                 </div>
             }
             @if (Item.Properties.Corrupted)
             {
-                <ItemSeparatorComponent Item="Item" />
+                <ItemSeparatorComponent Rarity="Item.Metadata.Rarity" />
                 <div class="corrupted-text">
                     <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Corrupted</MudText>
                 </div>
             }
             @if (Item.Properties.Scourged)
             {
-                <ItemSeparatorComponent Item="Item" />
+                <ItemSeparatorComponent Rarity="Item.Metadata.Rarity" />
                 <div class="scourge-text">
                     <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Scourged</MudText>
                 </div>
             }
             @if (!string.IsNullOrEmpty(Item.Price.Note))
             {
-                <ItemSeparatorComponent Item="Item" />
+                <ItemSeparatorComponent Rarity="Item.Metadata.Rarity" />
                 <div class="note-text">
                     <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Item.Price.Note</MudText>
                 </div>

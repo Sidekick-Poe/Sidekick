@@ -29,13 +29,14 @@ namespace Sidekick.Apis.Poe.Trade
             this.sidekickSettings = sidekickSettings;
         }
 
-        public ModifierFilters GetModifierFilters(Item item)
+        public List<ModifierFilter> GetModifierFilters(Item item)
         {
-            var result = new ModifierFilters();
+            var result = new List<ModifierFilter>();
 
             // No filters for currencies and divination cards, etc.
             if (item.Metadata.Category == Category.DivinationCard
                 || item.Metadata.Category == Category.Currency
+                || item.Metadata.Category == Category.Gem
                 || item.Metadata.Category == Category.ItemisedMonster
                 || item.Metadata.Category == Category.Leaguestone
                 || item.Metadata.Category == Category.Undefined)
@@ -45,8 +46,8 @@ namespace Sidekick.Apis.Poe.Trade
 
             List<string> enabledModifiers = new();
 
-            InitializeModifierFilters(result.Pseudo, item.PseudoModifiers, enabledModifiers, sidekickSettings.Trade_Normalize_Values);
-            InitializeModifierFilters(result.Enchant, item.ModifierLines, enabledModifiers);
+            InitializeModifierFilters(result, item.ModifierLines, enabledModifiers);
+            InitializePseudoFilters(result, item.PseudoModifiers, enabledModifiers);
 
             return result;
         }
@@ -57,60 +58,65 @@ namespace Sidekick.Apis.Poe.Trade
 
             foreach (var modifierLine in modifierLines)
             {
-                if (modifierLine.Modifier.OptionValue != null)
+                double? min = null, max = null;
+
+                if (modifierLine.Modifier != null)
                 {
-                    InitializeModifierFilter(filters,
-                        modifierLine.Modifier,
-                        modifierLine.Modifier.OptionValue,
-                        normalizeValues: sidekickSettings.Trade_Normalize_Values && modifierLine.Modifier.Category != ModifierCategory.Enchant,
-                        enabled: enabledModifiers.Contains(modifierLine.Modifier.Id)
-                    );
+                    if (modifierLine.Modifier.OptionValue != null)
+                    {
+                        (min, max) = NormalizeValues(modifierLine.Modifier.OptionValue, modifierLine.Modifier.Category);
+                    }
+                    else
+                    {
+                        (min, max) = NormalizeValues(modifierLine.Modifier.Values, modifierLine.Modifier.Category);
+                    }
                 }
-                else
+
+                filters.Add(new ModifierFilter()
                 {
-                    InitializeModifierFilter(filters,
-                        modifierLine.Modifier,
-                        modifierLine.Modifier.Values,
-                        normalizeValues: sidekickSettings.Trade_Normalize_Values && modifierLine.Modifier.Category != ModifierCategory.Enchant,
-                        enabled: enabledModifiers.Contains(modifierLine.Modifier.Id)
-                    );
-                }
+                    Enabled = false,
+                    Line = modifierLine,
+                    Min = min,
+                    Max = max,
+                });
             }
         }
 
-        private static void InitializeModifierFilters(List<ModifierFilter> filters, List<Modifier> modifiers, List<string> enabledModifiers, bool normalizeValues)
+        private void InitializePseudoFilters(List<ModifierFilter> filters, List<Modifier> modifiers, List<string> enabledModifiers)
         {
             if (modifiers.Count == 0) return;
 
             foreach (var modifier in modifiers)
             {
+                double? min = null, max = null;
+
                 if (modifier.OptionValue != null)
                 {
-                    InitializeModifierFilter(filters,
-                        modifier,
-                        modifier.OptionValue,
-                        normalizeValues: normalizeValues,
-                        enabled: enabledModifiers.Contains(modifier.Id)
-                    );
+                    (min, max) = NormalizeValues(modifier.OptionValue, modifier.Category);
                 }
                 else
                 {
-                    InitializeModifierFilter(filters,
-                        modifier,
-                        modifier.Values,
-                        normalizeValues: normalizeValues,
-                        enabled: enabledModifiers.Contains(modifier.Id)
-                    );
+                    (min, max) = NormalizeValues(modifier.Values, modifier.Category);
                 }
+
+                filters.Add(new ModifierFilter()
+                {
+                    Enabled = false,
+                    Line = new ModifierLine()
+                    {
+                        Text = modifier.Text,
+                        Modifier = modifier,
+                    },
+                    Min = min,
+                    Max = max,
+                });
             }
         }
 
-        private static void InitializeModifierFilter<T>(List<ModifierFilter> filters,
-            Modifier modifier,
+        private (double? Min, double? Max) NormalizeValues<T>(
             T value,
-            double delta = 5,
-            bool enabled = false,
-            bool normalizeValues = true)
+            ModifierCategory category,
+            double delta = 5)
         {
             double? min = null;
             double? max = null;
@@ -122,7 +128,7 @@ namespace Sidekick.Apis.Poe.Trade
                 if (itemValue >= 0)
                 {
                     min = itemValue;
-                    if (normalizeValues)
+                    if (sidekickSettings.Trade_Normalize_Values && category != ModifierCategory.Enchant)
                     {
                         min = NormalizeMinValue(min, delta);
                     }
@@ -130,7 +136,7 @@ namespace Sidekick.Apis.Poe.Trade
                 else
                 {
                     max = itemValue;
-                    if (normalizeValues)
+                    if (sidekickSettings.Trade_Normalize_Values && category != ModifierCategory.Enchant)
                     {
                         max = NormalizeMaxValue(max, delta);
                     }
@@ -143,13 +149,7 @@ namespace Sidekick.Apis.Poe.Trade
                 }
             }
 
-            filters.Add(new ModifierFilter()
-            {
-                Enabled = enabled,
-                Modifier = modifier,
-                Min = min,
-                Max = max,
-            });
+            return (min, max);
         }
 
         public PropertyFilters GetPropertyFilters(Item item)
@@ -340,28 +340,12 @@ namespace Sidekick.Apis.Poe.Trade
                     valueType = FilterValueType.Int;
                     if (intValue == 0) return;
                     min ??= sidekickSettings.Trade_Normalize_Values ? NormalizeMinValue(intValue, delta) : intValue;
-                    if (LabelValues.IsMatch(label))
-                    {
-                        label = LabelValues.Replace(label, intValue.ToString());
-                    }
-                    else
-                    {
-                        label += $": {value}";
-                    }
                     break;
 
                 case double doubleValue:
                     valueType = FilterValueType.Double;
                     if (doubleValue == 0) return;
                     min ??= sidekickSettings.Trade_Normalize_Values ? NormalizeMinValue(doubleValue, delta) : doubleValue;
-                    if (LabelValues.IsMatch(label))
-                    {
-                        label = LabelValues.Replace(label, doubleValue.ToString("0.00"));
-                    }
-                    else
-                    {
-                        label += $": {doubleValue:0.00}";
-                    }
                     break;
 
                 default: return;
