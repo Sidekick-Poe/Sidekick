@@ -3,16 +3,33 @@
 
 <MudGrid Spacing="1">
 
-        <MudItem xs="12" sm="6" md="4" lg="3">
+        
         @*@((MarkupString)textblob)*@
         @if(!Loading) {
-        @foreach (System.Text.RegularExpressions.Match m in titleMatches)
+        @foreach (mod m in modList)
             {
-                @((MarkupString)m.Value)
-                <br/>
+                    <MudItem xs="12" sm="6" md="4" lg="3">
+                <MudPaper>
+                <div class="d-flex align-center pa-2">
+                    <div class="flex-grow-1">
+                        <div class="d-flex align-center">
+                            <MudText Typo="Typo.h3">
+                                @((MarkupString)m.Name)
+                            </MudText>
+                        </div>
+                        <MudText Typo="Typo.body1">
+                            @foreach (string i in m.Items) {
+                                @i
+                                <br />
+                            }
+                        </MudText>
+                    </div>
+                </div>
+                </MudPaper>
+            </MudItem>
             }
         }
-        </MudItem>
+        
 </MudGrid>
 
 @code {
@@ -24,8 +41,7 @@
     private bool Loading { get; set; } = true;
 
     private string textblob { get; set; }
-    public System.Text.RegularExpressions.MatchCollection titleMatches { get; set; }
-    public System.Text.RegularExpressions.MatchCollection modMatches { get; set; }
+    private List<mod> modList {get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -33,18 +49,29 @@
         {
             WikiPage = await PoeWikiClient.GetWikiPage(95126);
 
-            var startIndex = WikiPage.WikiText.IndexOf("==Curated list==") + "==Curated list==".Length;
-            var endIndex = WikiPage.WikiText.LastIndexOf("==Datamined list==") - startIndex;
+            textblob = WikiPage.WikiText;
 
-            textblob = WikiPage.WikiText.Substring(startIndex, endIndex);
+            modList = new List<mod>();
 
-            string titleRegex = @"<span [^>]*>.*<\/span>";
-            titleMatches = System.Text.RegularExpressions.Regex.Matches(textblob, titleRegex);
-            //string modRegex = @"<\/span>(.*)<span [^>]*>";
-            //modMatches = System.Text.RegularExpressions.Regex.Matches(textblob, regex);
+            var _modList = textblob.Split("\n|-\n|").ToList();
+            _modList.RemoveAt(0);
+
+
+            foreach (String m in _modList)
+            {
+                var split = m.Split("||");
+                modList.Add(new mod() { Name = split[0], Level = split[1], Items = split[2].Split("<br>").ToList()});
+            }
+
             Loading = false;
         }
         await ViewInstance.Initialize(CheatsheetResources.Archnemesis);
         await base.OnInitializedAsync();
+    }
+
+    private class mod {
+        public string Name { get; set; }
+        public string Level { get; set; }
+        public List<String> Items { get; set; }
     }
 }

@@ -171,6 +171,8 @@ namespace Sidekick.Apis.PoeWiki
                     new("pageid", $"{pageId}"),
                     new("prop", "wikitext"),
                     new("formatversion", "2"),
+
+                    new("section", "1"),
                 });
 
                 var response = await client.GetAsync(query.ToString());
