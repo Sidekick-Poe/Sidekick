@@ -16,15 +16,15 @@ A Path of Exile companion tool. Price check items, check for dangerous map modif
 #### Default Binding: Ctrl+D
 Opens a trade view from the official Path of Exile trade API. You can compare and preview items by clicking on any result. For rare items, a price prediction from poeprices.info is shown. For unique items, prices from poe.ninja are used.
 | Trade | Minimized | Currency |
-|---|---|---|
-| ![](https://sidekick-poe.github.io/assets/images/trade_maximized.png) | ![](https://sidekick-poe.github.io/assets/images/trade_minimized.png) | ![](https://sidekick-poe.github.io/assets/images/trade_currency.png) |
+| --- | --- | --- |
+| ![](https://sidekick-poe.github.io/assets/images/trade_maximized.png?) | ![](https://sidekick-poe.github.io/assets/images/trade_minimized.png?) | ![](https://sidekick-poe.github.io/assets/images/trade_currency.png) |
 
 ### Cheatsheets
 #### Default Binding: F6
 Opens a view with useful common information about different mechanics of the game.
 
 | Heist | Betrayal | Incursion | Blight |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | ![](https://sidekick-poe.github.io/assets/images/cheatsheets_heist.png) | ![](https://sidekick-poe.github.io/assets/images/cheatsheets_betrayal.png) | ![](https://sidekick-poe.github.io/assets/images/cheatsheets_incursion.png) | ![](https://sidekick-poe.github.io/assets/images/cheatsheets_blight.png) |
 
 ### Map Information
@@ -33,7 +33,7 @@ Opens a view with useful common information about different mechanics of the gam
 - Shows information on bosses and possible drops (information from poewiki.net)
 
 | Safe | Unsafe (configurable) |
-|---|---|
+| --- | --- |
 | ![](https://sidekick-poe.github.io/assets/images/map_safe.png) | ![](https://sidekick-poe.github.io/assets/images/map_unsafe.png) |
 
 ### Chat Commands
