@@ -59,86 +59,25 @@
     {
         return Settings.Theme switch
         {
-            "Transparent" => GetTransparentPalette(),
             "Cyan" => GetCyanPalette(),
-            _ => GetIndigoPalette(),
+            _ => GetDefaultPalette(),
         };
     }
 
     private Palette GetDefaultPalette() => new Palette()
         {
-            Black = "#27272f",
-            Background = "#32333d",
-            BackgroundGrey = "#27272f",
-            Surface = "#373740",
-            Divider = "#757575",
-            DividerLight = "#E0E0E0",
-
-            DrawerBackground = "#27272f",
-            DrawerText = "rgba(255,255,255, 0.50)",
-            DrawerIcon = "rgba(255,255,255, 0.50)",
-
-            AppbarBackground = "#27272f",
-            AppbarText = "rgba(255,255,255, 0.70)",
-
-            TextPrimary = "rgba(255,255,255, 0.70)",
-            TextSecondary = "rgba(255,255,255, 0.50)",
-            TextDisabled = "rgba(255,255,255, 0.40)",
-
-            ActionDefault = "#adadb1",
-            ActionDisabled = "rgba(255,255,255, 0.26)",
-            ActionDisabledBackground = "rgba(255,255,255, 0.12)",
-        };
-
-    private Palette GetPurplePalette() => new Palette()
-        {
             Black = "#000000",
-            Background = "#161616",
-            BackgroundGrey = "#161616",
-            Surface = "#323232",
-            Divider = "#757575",
-            DividerLight = "#E0E0E0",
-
-            DrawerBackground = "#311B92",
-            DrawerText = "rgba(255,255,255, 0.90)",
-            DrawerIcon = "rgba(255,255,255, 0.90)",
-
-            AppbarBackground = "#9575CD",
-            AppbarText = "rgba(255,255,255, 0.90)",
-
-            TextPrimary = "rgba(255,255,255, 0.80)",
-            TextSecondary = "rgba(255,255,255, 0.70)",
-            TextDisabled = "rgba(255,255,255, 0.40)",
-
-            ActionDefault = "#00ACC1",
-            ActionDisabled = "rgba(255,255,255, 0.30)",
-            ActionDisabledBackground = "rgba(255,255,255, 0.15)",
-
-            Primary = "#9575CD",
-            PrimaryContrastText = "rgba(255,255,255, 0.90)",
-            PrimaryLighten = "#B39DDB",
-            PrimaryDarken = "#7E57C2",
-
-            Info = "#00BCD4",
-            InfoContrastText = "rgba(255,255,255, 0.90)",
-            InfoLighten = "#26C6DA",
-            InfoDarken = "#00ACC1",
-        };
-
-    private Palette GetIndigoPalette() => new Palette()
-        {
-            Black = "#000000",
-            Background = "#181818",
+            Background = "#1C1C1C",
             BackgroundGrey = "#161616",
             Surface = "#292929",
             Divider = "#757575",
             DividerLight = "#E0E0E0",
 
-            DrawerBackground = "#283593",
+            DrawerBackground = "#000000",
             DrawerText = "rgba(255,255,255, 0.90)",
             DrawerIcon = "rgba(255,255,255, 0.90)",
 
-            AppbarBackground = "#1A237E",
+            AppbarBackground = "#000000",
             AppbarText = "rgba(255,255,255, 0.90)",
 
             TextPrimary = "rgba(255,255,255, 0.80)",
@@ -149,7 +88,7 @@
             ActionDisabled = "rgba(255,255,255, 0.30)",
             ActionDisabledBackground = "rgba(255,255,255, 0.15)",
 
-            Primary = "#3F51B5",
+            Primary = "#8888FF",
             PrimaryContrastText = "rgba(255,255,255, 0.90)",
             PrimaryLighten = "#5C6BC0",
             PrimaryDarken = "#3949AB",
@@ -188,36 +127,6 @@
             PrimaryContrastText = "rgba(255,255,255, 0.90)",
             PrimaryLighten = "#80DEEA",
             PrimaryDarken = "#00838F",
-        };
-
-    private Palette GetTransparentPalette() => new Palette()
-        {
-            Black = Rgba("#000000", 0.5),
-            Background = Rgba("#000000", 0.7),
-            BackgroundGrey = Rgba("#212121", 0.5),
-            Surface = Rgba("#000000", 0.4),
-            Divider = Rgba("#FFFFFF", 0.25),
-            DividerLight = Rgba("#E0E0E0", 0.5),
-
-            DrawerBackground = Rgba("#212121", 0.85),
-            DrawerText = "rgba(255,255,255, 0.90)",
-            DrawerIcon = "rgba(255,255,255, 0.90)",
-
-            AppbarBackground = Rgba("#424242", 0.6),
-            AppbarText = "rgba(255,255,255, 0.90)",
-
-            TextPrimary = "rgba(255,255,255, 0.80)",
-            TextSecondary = "rgba(255,255,255, 0.70)",
-            TextDisabled = "rgba(255,255,255, 0.40)",
-
-            ActionDefault = "#283593",
-            ActionDisabled = "rgba(255,255,255, 0.30)",
-            ActionDisabledBackground = "rgba(255,255,255, 0.15)",
-
-            Primary = "#283593",
-            PrimaryContrastText = "rgba(255,255,255, 0.90)",
-            PrimaryLighten = "#5C6BC0",
-            PrimaryDarken = "#1A237E",
         };
 
     private static string Rgba(string hexString, double transparency)

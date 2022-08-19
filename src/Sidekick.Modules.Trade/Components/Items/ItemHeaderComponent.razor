@@ -1,20 +1,22 @@
 
-<div class="header @BackgroundClass">
+<ItemHeaderBackground Rarity="Rarity"
+                      IsRelic="IsRelic"
+                      Double="Double">
     <div class="influences left">
         <ItemInfluencesComponent Influences="Influences" />
     </div>
     @if (!string.IsNullOrEmpty(Name))
     {
-        <MudText Typo="Typo.h6" Align="Align.Center" Class="name font-smallcaps" Style="@LabelStyle">@Name</MudText>
+        <MudText Typo="Typo.h6" Align="Align.Center" Class="name font-smallcaps" Style="@context.LabelStyle">@Name</MudText>
     }
     @if (!string.IsNullOrEmpty(Type))
     {
-        <MudText Typo="Typo.h6" Align="Align.Center" Class="type font-smallcaps" Style="@LabelStyle">@Type</MudText>
+        <MudText Typo="Typo.h6" Align="Align.Center" Class="type font-smallcaps" Style="@context.LabelStyle">@Type</MudText>
     }
     <div class="influences right">
         <ItemInfluencesComponent Influences="Influences" />
     </div>
-</div>
+</ItemHeaderBackground>
 
 @code {
     [Parameter] public Rarity Rarity { get; set; }
@@ -27,48 +29,26 @@
 
     [Parameter] public bool IsRelic { get; set; }
 
-    private string BackgroundClass
+    private bool Double
     {
         get
         {
             if (IsRelic)
             {
-                if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Type))
-                {
-                    return "header-relic";
-                }
-                return "header-double-relic";
+                return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Type);
             }
 
             switch (Rarity)
             {
-                case Rarity.Currency: return "header-currency";
-                case Rarity.Magic: return "header-magic";
-                case Rarity.Gem: return "header-gem";
+                case Rarity.Currency: return false;
+                case Rarity.Magic: return false;
+                case Rarity.Gem: return false;
                 case Rarity.Rare:
-                    if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Type))
-                    {
-                        return "header-rare";
-                    }
-                    return "header-double-rare";
+                    return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Type);
                 case Rarity.Unique:
-                    if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Type))
-                    {
-                        return "header-unique";
-                    }
-                    return "header-double-unique";
-                default: return "header-normal";
+                    return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Type);
+                default: return false;
             }
         }
     }
-
-    private string LabelStyle => Rarity switch
-    {
-        Rarity.Currency => "color:#AA9E82;",
-        Rarity.Magic => "color:#8888FF;",
-        Rarity.Rare => "color:#FFFF77;",
-        Rarity.Unique => "color:#AF6025;",
-        Rarity.Gem => "color:#1BA29B",
-        _ => "color:#C8C8C8",
-    };
 }

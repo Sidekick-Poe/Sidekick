@@ -4,8 +4,14 @@
                  Color="Color.Primary"
                  Dense="true"
                  Size="Size.Small">
-        <ModifierText Text="@Filter.Line.Text"
-                      Category="Filter.Line.Modifier?.Category" />
+        <div class="d-flex align-center">
+            @if (Filter.Line.Modifier.Category == ModifierCategory.Pseudo)
+            {
+                <ModifierCategoryChip Category="Filter.Line.Modifier.Category" />
+            }
+            <ModifierText Text="@Filter.Line.Text"
+                          Category="Filter.Line.Modifier?.Category" />
+        </div>
     </MudCheckBox>
 
     @if (Filter.Enabled)
@@ -13,7 +19,27 @@
         <div class="pa-1">
             @if (Filter.Line.Alternates.Count > 0)
             {
-                @:ALTERNATES
+                <div class="mb-2 d-flex align-center">
+                    <MudSelect T="Modifier"
+                       Value="Filter.Line.Modifier"
+                       ValueChanged="ModifierChanged"
+                       Variant="Variant.Text"
+                       Dense="true"
+                       Margin="Margin.None">
+                        <MudSelectItem Value="Filter.Line.Modifier">
+                            <ModifierCategoryChip Category="Filter.Line.Modifier.Category" />
+                            <MudText Typo="Typo.caption">@Filter.Line.Modifier.Text</MudText>
+                        </MudSelectItem>
+                        @foreach (var alternate in Filter.Line.Alternates)
+                        {
+                            <MudSelectItem Value="alternate" Class="d-flex align-center">
+                                <ModifierCategoryChip Category="alternate.Category" />
+                                <MudText Typo="Typo.caption">@alternate.Text</MudText>
+                            </MudSelectItem>
+                        }
+                    </MudSelect>
+                    <Hint Text="@Resources.ModifierHint" />
+                </div>
             }
 
             @if (Filter.Line.Modifier?.OptionValue == null && Filter.Line.Modifier?.Values.Count > 0)
@@ -86,5 +112,12 @@
     private void ClearMax()
     {
         Filter.Max = null;
+    }
+
+    private void ModifierChanged(Modifier newValue)
+    {
+        Filter.Line.Alternates.Add(Filter.Line.Modifier);
+        Filter.Line.Alternates.Remove(newValue);
+        Filter.Line.Modifier = newValue;
     }
 }

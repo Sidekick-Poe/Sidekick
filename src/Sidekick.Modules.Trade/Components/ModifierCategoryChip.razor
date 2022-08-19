@@ -1,0 +1,17 @@
+
+<span>
+    <MudChip Size="Size.Small" Class="@Category.ToString()">@Category</MudChip>
+</span>
+
+@code {
+    [Parameter] public ModifierCategory? Category { get; set; }
+
+    private string Class => Category switch
+    {
+        ModifierCategory.Scourge => "scourge-text",
+        ModifierCategory.Fractured => "fractured-text",
+        ModifierCategory.Enchant => "enchant-text",
+        ModifierCategory.Crafted => "crafted-text",
+        _ => "",
+    };
+}

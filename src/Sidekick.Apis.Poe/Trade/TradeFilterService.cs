@@ -60,7 +60,7 @@ namespace Sidekick.Apis.Poe.Trade
             {
                 double? min = null, max = null;
 
-                if (modifierLine.Modifier != null)
+                if (modifierLine.Modifier != null && !modifierLine.IsFuzzy)
                 {
                     if (modifierLine.Modifier.OptionValue != null)
                     {
@@ -88,7 +88,7 @@ namespace Sidekick.Apis.Poe.Trade
 
             foreach (var modifier in modifiers)
             {
-                double? min = null, max = null;
+                double? min, max;
 
                 if (modifier.OptionValue != null)
                 {
