@@ -1,27 +1,17 @@
-
 @if (Item != null)
 {
     <div class="properties">
         @if (Item.Properties.ItemLevel > 0)
         {
-            <MudText Typo="Typo.body1" Class="font-smallcaps" Align="Align.Center">@((MarkupString)GetLine(GameLanguageProvider.Language.DescriptionItemLevel, Item.Properties.ItemLevel))</MudText>
+            <PropertyText Label="@GameLanguageProvider.Language.DescriptionItemLevel"
+                  Value="Item.Properties.ItemLevel" />
         }
     </div>
     <ItemRequirementsComponent Item="Item" />
-
-    @if (Item.RequirementContents != null || Item.Properties.ItemLevel > 0)
-    {
-        <ItemSeparatorComponent Item="Item" />
-    }
 }
 
 @code {
     [Parameter] public TradeItem Item { get; set; }
 
     [Inject] public IGameLanguageProvider GameLanguageProvider { get; set; }
-
-    private string GetLine(string label, object value)
-    {
-        return $"{label}: <span style=\"color:#FFFFFF;\">{value}</span>";
-    }
 }

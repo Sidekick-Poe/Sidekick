@@ -6,13 +6,13 @@ namespace Sidekick.Apis.Poe.Modifiers.Models
     {
         public string Text { get; set; }
 
+        public string FuzzyText { get; set; }
+
         public string OptionText { get; set; }
 
-        public int LineCount { get; set; }
+        public int LineCount => OptionText != null ? (OptionText?.Split('\n').Length ?? 1) : (Text?.Split('\n').Length ?? 1);
 
         public Regex Pattern { get; set; }
-
-        public bool Negative { get; set; } = false;
 
         public int? Value { get; set; }
     }

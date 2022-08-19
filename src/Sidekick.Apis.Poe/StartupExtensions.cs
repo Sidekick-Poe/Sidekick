@@ -9,7 +9,6 @@ using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Pseudo;
 using Sidekick.Apis.Poe.Static;
 using Sidekick.Apis.Poe.Trade;
-using Sidekick.Apis.Poe.Translations.Stats;
 
 namespace Sidekick.Apis.Poe
 {
@@ -28,7 +27,6 @@ namespace Sidekick.Apis.Poe
             services.AddSingleton<IEnglishModifierProvider, EnglishModifierProvider>();
             services.AddSingleton<IPseudoModifierProvider, PseudoModifierProvider>();
             services.AddSingleton<IItemStaticDataProvider, ItemStaticDataProvider>();
-            services.AddSingleton<IStatTranslationProvider, StatTranslationProvider>();
             services.AddSingleton<IParserPatterns, ParserPatterns>();
             services.AddSingleton<ITradeSearchService, TradeSearchService>();
             services.AddSingleton<ILeagueProvider, LeagueProvider>();

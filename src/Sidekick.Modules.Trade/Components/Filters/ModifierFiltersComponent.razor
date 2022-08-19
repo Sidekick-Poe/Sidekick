@@ -1,13 +1,17 @@
-
-@if (Filters != null && Filters.Count > 0)
+@if (Filters.Count > 0)
 {
-    foreach (var filter in Filters)
+    for (var i = 0; i < Filters.Count; i++)
     {
-        <ModifierFilterComponent Filter="filter" />
+        <ModifierFilterComponent Filter="Filters[i]" />
+
+        if (i + 1 < Filters.Count && Filters[i].Line.Modifier?.Category != Filters[i + 1].Line.Modifier?.Category)
+        {
+            <ItemSeparatorComponent Rarity="Rarity" />
+        }
     }
 }
 
 @code {
     [Parameter] public List<ModifierFilter> Filters { get; set; }
-    [Parameter] public string AdditionalClassNames { get; set; }
+    [Parameter] public Rarity Rarity { get; set; }
 }

@@ -144,6 +144,9 @@
   <data name="Class" xml:space="preserve">
     <value>Item Class</value>
   </data>
+  <data name="Class_Hint" xml:space="preserve">
+    <value>If checked, Sidekick will search for all items of this class. If left unchecked, Sidekick will search for this specific type. (e.g. Type: Prophet Crown vs Class: Helmet)</value>
+  </data>
   <data name="Corrupted" xml:space="preserve">
     <value>Corrupted</value>
   </data>
@@ -230,6 +233,9 @@
   </data>
   <data name="MaxQualityPDps" xml:space="preserve">
     <value>Physical DPS at max Quality</value>
+  </data>
+  <data name="ModifierHint" xml:space="preserve">
+    <value>This drop down allows you to select an alternate modifier. Sidekick does its best to find the best fitting modifier, but sometimes it fails to find the correct modifier as the game text sometimes differs from the trade modifier text.</value>
   </data>
   <data name="OpenQueryInWebsite" xml:space="preserve">
     <value>Open query in the official website</value>

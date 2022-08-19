@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Sidekick.Common.Game.Items.Modifiers;
 
 namespace Sidekick.Apis.Poe.Modifiers.Models
 {
@@ -6,7 +7,7 @@ namespace Sidekick.Apis.Poe.Modifiers.Models
     {
         public string Id { get; set; }
 
-        public string Category { get; set; }
+        public ModifierCategory Category { get; set; }
 
         public bool IsOption { get; set; }
 

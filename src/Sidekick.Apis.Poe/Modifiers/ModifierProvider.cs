@@ -3,12 +3,13 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using FuzzySharp;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Apis.Poe.Parser;
 using Sidekick.Apis.Poe.Pseudo;
-using Sidekick.Apis.Poe.Translations.Stats;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Items.Modifiers;
 
 namespace Sidekick.Apis.Poe.Modifiers
@@ -18,55 +19,39 @@ namespace Sidekick.Apis.Poe.Modifiers
         private readonly IPseudoModifierProvider pseudoModifierProvider;
         private readonly ICacheProvider cacheProvider;
         private readonly IPoeTradeClient poeTradeClient;
-        private readonly IStatTranslationProvider statTranslationProvider;
         private readonly IEnglishModifierProvider englishModifierProvider;
         private readonly Regex ParseHashPattern = new("\\#");
         private readonly Regex NewLinePattern = new("(?:\\\\)*[\\r\\n]+");
         private readonly Regex HashPattern = new("\\\\#");
         private readonly Regex ParenthesesPattern = new("((?:\\\\\\ )*\\\\\\([^\\(\\)]*\\\\\\))");
+        private readonly Regex CleanFuzzyPattern = new("[-+0-9%#]");
+        private readonly Regex TrimPattern = new(@"\s+");
+        private readonly Regex CleanOriginalTextPattern = new(" \\((?:implicit|enchant|crafted|veiled|fractured|scourge)\\)$");
 
         public ModifierProvider(
             IPseudoModifierProvider pseudoModifierProvider,
             ICacheProvider cacheProvider,
             IPoeTradeClient poeTradeClient,
-            IStatTranslationProvider statTranslationProvider,
             IEnglishModifierProvider englishModifierProvider)
         {
             this.pseudoModifierProvider = pseudoModifierProvider;
             this.cacheProvider = cacheProvider;
             this.poeTradeClient = poeTradeClient;
-            this.statTranslationProvider = statTranslationProvider;
             this.englishModifierProvider = englishModifierProvider;
         }
 
-        public List<ModifierPatternMetadata> PseudoPatterns { get; set; }
-        public List<ModifierPatternMetadata> ExplicitPatterns { get; set; }
-        public List<ModifierPatternMetadata> ImplicitPatterns { get; set; }
-        public List<ModifierPatternMetadata> EnchantPatterns { get; set; }
-        public List<ModifierPatternMetadata> CraftedPatterns { get; set; }
-        public List<ModifierPatternMetadata> VeiledPatterns { get; set; }
-        public List<ModifierPatternMetadata> FracturedPatterns { get; set; }
-        public List<ModifierPatternMetadata> ScourgePatterns { get; set; }
+        public Dictionary<ModifierCategory, List<ModifierPatternMetadata>> Patterns { get; set; } = new();
         public List<ModifierPatternMetadata> IncursionRoomPatterns { get; set; }
         public List<ModifierPatternMetadata> LogbookFactionPatterns { get; set; }
 
+        public Dictionary<string, List<FuzzyEntry>> FuzzyDictionary { get; set; } = new();
+
         public async Task Initialize()
         {
-            await statTranslationProvider.Initialize();
-
             var result = await cacheProvider.GetOrSet(
                 "ModifierProvider",
                 () => poeTradeClient.Fetch<ApiCategory>("data/stats"));
             var categories = result.Result;
-
-            PseudoPatterns = new List<ModifierPatternMetadata>();
-            ExplicitPatterns = new List<ModifierPatternMetadata>();
-            ImplicitPatterns = new List<ModifierPatternMetadata>();
-            EnchantPatterns = new List<ModifierPatternMetadata>();
-            CraftedPatterns = new List<ModifierPatternMetadata>();
-            VeiledPatterns = new List<ModifierPatternMetadata>();
-            FracturedPatterns = new List<ModifierPatternMetadata>();
-            ScourgePatterns = new List<ModifierPatternMetadata>();
 
             foreach (var category in categories)
             {
@@ -75,30 +60,18 @@ namespace Sidekick.Apis.Poe.Modifiers
                     continue;
                 }
 
-                // The notes in parentheses are never translated by the game.
-                // We should be fine hardcoding them this way.
-                List<ModifierPatternMetadata> patterns;
-                var categoryLabel = category.Entries[0].Id.Split('.').First();
-                switch (categoryLabel)
+                var modifierCategory = GetModifierCategory(category.Entries[0].Id);
+                if (modifierCategory == ModifierCategory.Undefined)
                 {
-                    default: continue;
-                    case "pseudo": patterns = PseudoPatterns; break;
-                    case "delve":
-                    case "monster":
-                    case "explicit": patterns = ExplicitPatterns; break;
-                    case "implicit": patterns = ImplicitPatterns; break;
-                    case "enchant": patterns = EnchantPatterns; break;
-                    case "crafted": patterns = CraftedPatterns; break;
-                    case "veiled": patterns = VeiledPatterns; break;
-                    case "fractured": patterns = FracturedPatterns; break;
-                    case "scourge": patterns = ScourgePatterns; break;
+                    continue;
                 }
 
+                var patterns = new List<ModifierPatternMetadata>();
                 foreach (var entry in category.Entries)
                 {
                     var modifier = new ModifierPatternMetadata()
                     {
-                        Category = categoryLabel,
+                        Category = modifierCategory,
                         Id = entry.Id,
                         IsOption = entry.Option?.Options?.Any() ?? false,
                     };
@@ -110,50 +83,54 @@ namespace Sidekick.Apis.Poe.Modifiers
                             modifier.Patterns.Add(new ModifierPattern()
                             {
                                 Text = ComputeOptionText(entry.Text, entry.Option.Options[i].Text),
-                                LineCount = NewLinePattern.Matches(entry.Text).Count + NewLinePattern.Matches(entry.Option.Options[i].Text).Count + 1,
+                                FuzzyText = ComputeFuzzyText(modifierCategory, entry.Text, entry.Option.Options[i].Text),
                                 Value = entry.Option.Options[i].Id,
-                                Pattern = ComputePattern(categoryLabel, entry.Text, entry.Option.Options[i].Text),
+                                Pattern = ComputePattern(entry.Text, modifierCategory, entry.Option.Options[i].Text),
                             });
                         }
                     }
                     else
                     {
-                        var stats = statTranslationProvider.GetAlternateModifiers(entry.Text);
-
-                        if (stats != null)
+                        modifier.Patterns.Add(new ModifierPattern()
                         {
-                            foreach (var stat in stats)
-                            {
-                                modifier.Patterns.Add(new ModifierPattern()
-                                {
-                                    Text = stat.Text,
-                                    LineCount = NewLinePattern.Matches(stat.Text).Count + 1,
-                                    Pattern = ComputePattern(categoryLabel, stat.Text),
-                                    Negative = stat.Negative,
-                                    Value = stat.Value,
-                                });
-                            }
-                        }
-                        else
-                        {
-                            modifier.Patterns.Add(new ModifierPattern()
-                            {
-                                Text = entry.Text,
-                                LineCount = NewLinePattern.Matches(entry.Text).Count + 1,
-                                Pattern = ComputePattern(categoryLabel, entry.Text),
-                            });
-                        }
+                            Text = entry.Text,
+                            FuzzyText = ComputeFuzzyText(modifierCategory, entry.Text),
+                            Pattern = ComputePattern(entry.Text, modifierCategory),
+                        });
                     }
 
                     patterns.Add(modifier);
                 }
+
+                Patterns.Add(modifierCategory, patterns);
+
+                BuildFuzzyDictionary(patterns);
             }
 
             // Prepare special pseudo patterns
-            IncursionRoomPatterns = PseudoPatterns.Where(x => englishModifierProvider.IncursionRooms.Contains(x.Id)).ToList();
+            IncursionRoomPatterns = Patterns[ModifierCategory.Pseudo].Where(x => englishModifierProvider.IncursionRooms.Contains(x.Id)).ToList();
             ComputeSpecialPseudoPattern(IncursionRoomPatterns);
-            LogbookFactionPatterns = PseudoPatterns.Where(x => englishModifierProvider.LogbookFactions.Contains(x.Id)).ToList();
+            LogbookFactionPatterns = Patterns[ModifierCategory.Pseudo].Where(x => englishModifierProvider.LogbookFactions.Contains(x.Id)).ToList();
             ComputeSpecialPseudoPattern(LogbookFactionPatterns);
+        }
+
+        /// <inheritdoc/>
+        public ModifierCategory GetModifierCategory(string apiId)
+        {
+            return apiId.Split('.').First() switch
+            {
+                "crafted" => ModifierCategory.Crafted,
+                "delve" => ModifierCategory.Delve,
+                "enchant" => ModifierCategory.Enchant,
+                "explicit" => ModifierCategory.Explicit,
+                "fractured" => ModifierCategory.Fractured,
+                "implicit" => ModifierCategory.Implicit,
+                "monster" => ModifierCategory.Monster,
+                "pseudo" => ModifierCategory.Pseudo,
+                "scourge" => ModifierCategory.Scourge,
+                "veiled" => ModifierCategory.Veiled,
+                _ => ModifierCategory.Undefined,
+            };
         }
 
         private void ComputeSpecialPseudoPattern(List<ModifierPatternMetadata> patterns)
@@ -163,28 +140,27 @@ namespace Sidekick.Apis.Poe.Modifiers
                 var basePattern = pattern.Patterns.OrderBy(x => x.Value).First();
                 pattern.Patterns.Add(new ModifierPattern()
                 {
-                    LineCount = 1,
-                    Negative = false,
                     Text = basePattern.Text,
+                    FuzzyText = ComputeFuzzyText(ModifierCategory.Pseudo, basePattern.Text),
                     OptionText = basePattern.OptionText,
-                    Pattern = ComputePattern(string.Empty, basePattern.Text.Split(':', 2).Last().Trim()),
+                    Pattern = ComputePattern(basePattern.Text.Split(':', 2).Last().Trim(), ModifierCategory.Pseudo),
                     Value = basePattern.Value,
                 });
             }
         }
 
-        private Regex ComputePattern(string category, string text, string optionText = null)
+        private Regex ComputePattern(string text, ModifierCategory? category = null, string optionText = null)
         {
             // The notes in parentheses are never translated by the game.
             // We should be fine hardcoding them this way.
             var suffix = category switch
             {
-                "implicit" => "(?:\\ \\(implicit\\))?",
-                "enchant" => "(?:\\ \\(enchant\\))?",
-                "crafted" => "(?:\\ \\(crafted\\))?",
-                "veiled" => "(?:\\ \\(veiled\\))?",
-                "fractured" => "(?:\\ \\(fractured\\))?",
-                "scourge" => "(?:\\ \\(scourge\\))?",
+                ModifierCategory.Implicit => "(?:\\ \\(implicit\\))?",
+                ModifierCategory.Enchant => "(?:\\ \\(enchant\\))?",
+                ModifierCategory.Crafted => "(?:\\ \\(crafted\\))?",
+                ModifierCategory.Veiled => "(?:\\ \\(veiled\\))?",
+                ModifierCategory.Fractured => "(?:\\ \\(fractured\\))?",
+                ModifierCategory.Scourge => "(?:\\ \\(scourge\\))?",
                 _ => "",
             };
 
@@ -194,19 +170,82 @@ namespace Sidekick.Apis.Poe.Modifiers
 
             if (string.IsNullOrEmpty(optionText))
             {
-                patternValue = HashPattern.Replace(patternValue, "([-+0-9,.]+)");
+                patternValue = HashPattern.Replace(patternValue, "[-+0-9,.]+") + suffix;
             }
             else
             {
                 var optionLines = new List<string>();
                 foreach (var optionLine in NewLinePattern.Split(optionText))
                 {
-                    optionLines.Add(HashPattern.Replace(patternValue, Regex.Escape(optionLine)));
+                    optionLines.Add(HashPattern.Replace(patternValue, Regex.Escape(optionLine)) + suffix);
                 }
                 patternValue = string.Join('\n', optionLines);
             }
 
-            return new Regex($"^{patternValue}{suffix}$", RegexOptions.None);
+            return new Regex($"^{patternValue}$", RegexOptions.None);
+        }
+
+        private string ComputeFuzzyText(ModifierCategory category, string text, string optionText = null)
+        {
+            var fuzzyValue = text;
+
+            if (!string.IsNullOrEmpty(optionText))
+            {
+                foreach (var optionLine in NewLinePattern.Split(optionText))
+                {
+                    if (ParseHashPattern.IsMatch(fuzzyValue))
+                    {
+                        fuzzyValue = ParseHashPattern.Replace(fuzzyValue, optionLine);
+                    }
+                    else
+                    {
+                        fuzzyValue += optionLine;
+                    }
+                }
+            }
+
+            // Add the suffix
+            // The notes in parentheses are never translated by the game.
+            // We should be fine hardcoding them this way.
+            fuzzyValue += category switch
+            {
+                ModifierCategory.Implicit => " (implicit)",
+                ModifierCategory.Enchant => " (enchant)",
+                ModifierCategory.Crafted => " (crafted)",
+                ModifierCategory.Veiled => " (veiled)",
+                ModifierCategory.Fractured => " (fractured)",
+                ModifierCategory.Scourge => " (scourge)",
+                ModifierCategory.Pseudo => " (pseudo)",
+                _ => "",
+            };
+
+            return CleanFuzzyText(fuzzyValue);
+        }
+
+        private string CleanFuzzyText(string text)
+        {
+            text = CleanFuzzyPattern.Replace(text, string.Empty);
+            return TrimPattern.Replace(text, " ").Trim();
+        }
+
+        private void BuildFuzzyDictionary(List<ModifierPatternMetadata> patternMetadatas)
+        {
+            foreach (var patternMetadata in patternMetadatas)
+            {
+                foreach (var pattern in patternMetadata.Patterns)
+                {
+                    if (!FuzzyDictionary.ContainsKey(pattern.FuzzyText))
+                    {
+                        FuzzyDictionary.Add(pattern.FuzzyText, new());
+                    }
+
+                    FuzzyDictionary[pattern.FuzzyText].Add(new FuzzyEntry()
+                    {
+                        Metadata = patternMetadata,
+                        Pattern = pattern
+                    });
+                }
+            }
         }
 
         private string ComputeOptionText(string text, string optionText)
@@ -219,99 +258,166 @@ namespace Sidekick.Apis.Poe.Modifiers
             return string.Join('\n', optionLines);
         }
 
-        public ItemModifiers Parse(ParsingItem parsingItem)
+        /// <inheritdoc/>
+        public List<ModifierLine> Parse(ParsingItem parsingItem)
         {
-            var mods = new ItemModifiers();
+            var modifierLines = new List<ModifierLine>();
 
-            ParseModifiers(mods.Explicit, ExplicitPatterns, parsingItem);
-            ParseModifiers(mods.Enchant, EnchantPatterns, parsingItem);
-            ParseModifiers(mods.Implicit, ImplicitPatterns, parsingItem);
-            ParseModifiers(mods.Crafted, CraftedPatterns, parsingItem);
-            ParseModifiers(mods.Fractured, FracturedPatterns, parsingItem);
-            ParseModifiers(mods.Scourge, ScourgePatterns, parsingItem);
-            // ParseModifiers(mods.Veiled, VeiledPatterns, parsingItem);
-
-            mods.Pseudo = pseudoModifierProvider.Parse(mods);
-
-            // Check if we need to process special pseudo patterns
-            if (parsingItem.Metadata.Class == Common.Game.Items.Class.MiscMapItems) ParseModifiers(mods.Pseudo, IncursionRoomPatterns, parsingItem);
-            if (parsingItem.Metadata.Class == Common.Game.Items.Class.Logbooks) ParseModifiers(mods.Pseudo, LogbookFactionPatterns, parsingItem);
-
-            return mods;
-        }
-
-        private void ParseModifiers(List<Modifier> modifiers, List<ModifierPatternMetadata> metadatas, ParsingItem item)
-        {
-            foreach (var block in item.Blocks.Where(x => !x.Parsed))
+            foreach (var block in parsingItem.Blocks.Where(x => !x.AnyParsed))
             {
-                foreach (var line in block.Lines.Where(x => !x.Parsed))
+                for (var lineIndex = 0; lineIndex < block.Lines.Count; lineIndex++)
                 {
-                    foreach (var metadata in metadatas)
+                    var line = block.Lines[lineIndex];
+                    if (line.Parsed)
                     {
-                        foreach (var pattern in metadata.Patterns)
-                        {
-                            if (pattern.Pattern.IsMatch(line.Text))
-                            {
-                                ParseMod(modifiers, metadata, pattern, line.Text);
-                                line.Parsed = true;
-                            }
+                        continue;
+                    }
 
-                            // Multiline modifiers
-                            else if (pattern.LineCount > 1 && pattern.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(line.Index).Take(pattern.LineCount))))
+                    var modifierLine = new ModifierLine()
+                    {
+                        Text = CleanOriginalTextPattern.Replace(line.Text, string.Empty),
+                    };
+
+                    List<Modifier> modifiers = new();
+
+                    foreach (var patternGroup in Patterns)
+                    {
+                        foreach (var metadata in patternGroup.Value)
+                        {
+                            foreach (var pattern in metadata.Patterns)
                             {
-                                ParseMod(modifiers, metadata, pattern, string.Join('\n', block.Lines.Skip(line.Index).Take(pattern.LineCount)));
-                                foreach (var multiline in block.Lines.Skip(line.Index).Take(pattern.LineCount))
+                                // Multiline modifiers
+                                if (pattern.LineCount > 1 && pattern.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount))))
                                 {
-                                    multiline.Parsed = true;
+                                    ParseMod(modifiers, metadata, pattern, string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount)));
+                                    line.Parsed = true;
+
+                                    foreach (var multiline in block.Lines.Skip(lineIndex + 1).Take(pattern.LineCount - 1))
+                                    {
+                                        modifierLine.Text += $"\n{line.Text}";
+                                        multiline.Parsed = true;
+                                    }
+
+                                    // Increment the line index by one less of the pattern count. The default lineIndex++ will take care of the remaining increment.
+                                    lineIndex += pattern.LineCount - 1;
+                                }
+                                else if (pattern.Pattern.IsMatch(line.Text))
+                                {
+                                    ParseMod(modifiers, metadata, pattern, line.Text);
+                                    line.Parsed = true;
                                 }
                             }
                         }
                     }
+
+                    // If we reach this point we have not found the modifier through traditional Regex means.
+                    // Text from the game sometimes differ from the text from the API. We do a fuzzy search here to find the most common text.
+                    var fuzzyLine = CleanFuzzyText(line.Text);
+                    if (!line.Parsed && parsingItem.Metadata.Category != Category.Flask)
+                    {
+                        var fuzzies = new List<FuzzyResult>();
+
+                        Parallel.ForEach(FuzzyDictionary, (x) =>
+                        {
+                            var ratio = Fuzz.Ratio(fuzzyLine, x.Key, FuzzySharp.PreProcess.PreprocessMode.None);
+                            if (ratio > 75)
+                            {
+                                fuzzies.Add(new FuzzyResult()
+                                {
+                                    Ratio = ratio,
+                                    Entries = x.Value,
+                                });
+                            }
+                        });
+
+                        if (fuzzies.Any())
+                        {
+                            fuzzies = fuzzies
+                                .OrderByDescending(x => x.Ratio)
+                                .ToList();
+
+                            foreach (var fuzzy in fuzzies)
+                            {
+                                foreach (var modifier in fuzzy.Entries)
+                                {
+                                    ParseMod(modifiers, modifier.Metadata, modifier.Pattern, line.Text);
+                                }
+                            }
+
+                            modifierLine.IsFuzzy = true;
+                            line.Parsed = true;
+                        }
+                    }
+                    else
+                    {
+                        modifiers = modifiers
+                            .OrderBy(x => x.Category == ModifierCategory.Pseudo) // Put pseudo mods at the end.
+                            .ThenByDescending(x => Fuzz.Ratio(fuzzyLine, CleanFuzzyText(x.Text))).ToList();
+                    }
+
+                    modifierLine.Modifier = modifiers.FirstOrDefault();
+                    modifierLine.Alternates = modifiers.Skip(1).ToList();
+
+                    modifierLines.Add(modifierLine);
                 }
             }
+
+            // Check if we need to process special pseudo patterns
+            // if (parsingItem.Metadata.Class == Common.Game.Items.Class.MiscMapItems) ParseModifiers(modifiers, IncursionRoomPatterns, parsingItem);
+            // if (parsingItem.Metadata.Class == Common.Game.Items.Class.Logbooks) ParseModifiers(modifiers, LogbookFactionPatterns, parsingItem);
+
+            // Order the mods by the order they appear on the item.
+            modifierLines = modifierLines.OrderBy(x => parsingItem.Text.IndexOf(x.Text)).ToList();
+
+            // Trim the beginning of modifier lines
+            for (var i = 0; i < modifierLines.Count; i++)
+            {
+                if (modifierLines[i].Modifier == null)
+                {
+                    modifierLines.Remove(modifierLines[i]);
+                    i--;
+                }
+            }
+
+            // Trim the end of modifier lines
+            for (var i = modifierLines.Count - 1; i >= 0; i--)
+            {
+                if (modifierLines[i].Modifier == null)
+                {
+                    modifierLines.Remove(modifierLines[i]);
+                }
+            }
+
+            return modifierLines;
         }
 
-        private void ParseMod(List<Modifier> modifiers, ModifierPatternMetadata data, ModifierPattern pattern, string text)
+        private void ParseMod(List<Modifier> modifiers, ModifierPatternMetadata metadata, ModifierPattern pattern, string text)
         {
-            var match = pattern.Pattern.Match(text);
-
             var modifier = new Modifier()
             {
-                Index = match.Index,
-                Id = data.Id,
+                Id = metadata.Id,
                 Text = pattern.Text,
-                Category = data.Id.Split('.').First(),
+                Category = metadata.Category,
             };
 
-            if (data.IsOption)
+            if (metadata.IsOption)
             {
-                modifier.OptionValue = new ModifierOption()
-                {
-                    Value = pattern.Value.Value,
-                };
+                modifier.OptionValue = pattern.Value.Value;
             }
             else if (pattern.Value.HasValue)
             {
                 modifier.Values.Add(pattern.Value.Value);
-                modifier.Text = ParseHashPattern.Replace(modifier.Text, match.Groups[1].Value, 1);
             }
-            else if (match.Groups.Count > 1)
+            else
             {
-                for (var index = 1; index < match.Groups.Count; index++)
+                var matches = new Regex("([-+0-9,.]+)").Matches(text);
+                foreach (Match match in matches)
                 {
-                    if (double.TryParse(match.Groups[index].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
+                    if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
                     {
-                        if (pattern.Negative)
-                        {
-                            parsedValue *= -1;
-                        }
-
                         modifier.Values.Add(parsedValue);
-                        modifier.Text = ParseHashPattern.Replace(modifier.Text, match.Groups[index].Value, 1);
                     }
                 }
-
-                modifier.Text = modifier.Text.Replace("+-", "-");
             }
 
             modifiers.Add(modifier);
@@ -321,25 +427,20 @@ namespace Sidekick.Apis.Poe.Modifiers
         {
             ModifierPatternMetadata metadata = null;
 
-            metadata = PseudoPatterns.FirstOrDefault(x => x.Id == id);
-            if (metadata == null) metadata = ImplicitPatterns.FirstOrDefault(x => x.Id == id);
-            if (metadata == null) metadata = ExplicitPatterns.FirstOrDefault(x => x.Id == id);
-            if (metadata == null) metadata = CraftedPatterns.FirstOrDefault(x => x.Id == id);
-            if (metadata == null) metadata = EnchantPatterns.FirstOrDefault(x => x.Id == id);
-            if (metadata == null) metadata = FracturedPatterns.FirstOrDefault(x => x.Id == id);
-            if (metadata == null) metadata = ScourgePatterns.FirstOrDefault(x => x.Id == id);
-
-
-            if (metadata == null)
+            foreach (var patternGroup in Patterns)
             {
-                return false;
-            }
-
-            foreach (var pattern in metadata.Patterns)
-            {
-                if (pattern.Pattern != null && pattern.Pattern.IsMatch(text))
+                metadata = patternGroup.Value.FirstOrDefault(x => x.Id == id);
+                if (metadata != null)
                 {
-                    return true;
+                    foreach (var pattern in metadata.Patterns)
+                    {
+                        if (pattern.Pattern != null && pattern.Pattern.IsMatch(text))
+                        {
+                            return true;
+                        }
+                    }
+
+                    break;
                 }
             }
 

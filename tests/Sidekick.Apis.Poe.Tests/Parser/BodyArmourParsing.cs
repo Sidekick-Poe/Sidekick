@@ -1,5 +1,6 @@
 using System.Linq;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items.Modifiers;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Parser
@@ -32,7 +33,7 @@ Str: 68
 Dex: 96
 Int: 111
 --------
-Sockets: B-B-R-B-B-B 
+Sockets: B-B-R-B-B-B
 --------
 Item Level: 81
 --------
@@ -57,20 +58,17 @@ can deny that my work has made quite the splash...""
             Assert.Equal(186, actual.Properties.EnergyShield);
             Assert.Equal(6, actual.Sockets.Count(x => x.Group == 0));
 
-            var explicits = actual.Modifiers.Explicit.Select(x => x.Text);
-            Assert.Contains("128% increased Evasion and Energy Shield (Local)", explicits);
-            Assert.Contains("+55 to maximum Life", explicits);
-            Assert.Contains("+12% to all Elemental Resistances", explicits);
-            Assert.Contains("44% increased Area of Effect", explicits);
-            Assert.Contains("47% increased Area Damage", explicits);
-            Assert.Contains("Extra gore", explicits);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Evasion and Energy Shield (Local)", 128);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "# to maximum Life", 55);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% to all Elemental Resistances", 12);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Area of Effect", 44);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Area Damage", 47);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "Extra gore");
 
-            var pseudos = actual.Modifiers.Pseudo.Select(x => x.Text);
-            Assert.Contains("+12% total to all Elemental Resistances", pseudos);
-            Assert.Contains("+36% total Elemental Resistance", pseudos);
-            Assert.Contains("+36% total Resistance", pseudos);
-            Assert.Contains("+55 total maximum Life", pseudos);
-
+            actual.AssertHasPseudoModifier("+12% total to all Elemental Resistances", 12);
+            actual.AssertHasPseudoModifier("+36% total Elemental Resistance", 36);
+            actual.AssertHasPseudoModifier("+36% total Resistance", 36);
+            actual.AssertHasPseudoModifier("+55 total maximum Life", 55);
         }
 
         [Fact]
@@ -89,7 +87,7 @@ Level: 63
 Str: 115
 Dex: 94
 --------
-Sockets: G-R-G 
+Sockets: G-R-G
 --------
 Item Level: 74
 --------

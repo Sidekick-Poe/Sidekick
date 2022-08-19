@@ -15,6 +15,8 @@ namespace Sidekick.Common.Game.Items
 
         public List<Socket> Sockets { get; set; } = new();
 
-        public ItemModifiers Modifiers { get; set; } = new();
+        public List<ModifierLine> ModifierLines { get; set; } = new();
+
+        public List<Modifier> PseudoModifiers { get; set; } = new();
     }
 }

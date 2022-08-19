@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using Sidekick.Common.Game.Items.Modifiers;
 
 namespace Sidekick.Apis.Poe.Trade.Models
 {
     public class ModifierFilter
     {
-        public Modifier Modifier { get; set; }
+        public ModifierLine Line { get; set; }
 
         public bool Enabled { get; set; }
 

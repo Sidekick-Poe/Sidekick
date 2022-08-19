@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Parser.Tokenizers;
+using Sidekick.Apis.Poe.Pseudo;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Items.Modifiers;
 
@@ -18,21 +20,24 @@ namespace Sidekick.Apis.Poe.Parser
         private readonly ILogger<ItemParser> logger;
         private readonly IItemMetadataProvider itemMetadataProvider;
         private readonly IModifierProvider modifierProvider;
+        private readonly IPseudoModifierProvider pseudoModifierProvider;
         private readonly IParserPatterns patterns;
 
         public ItemParser(
             ILogger<ItemParser> logger,
             IItemMetadataProvider itemMetadataProvider,
             IModifierProvider modifierProvider,
+            IPseudoModifierProvider pseudoModifierProvider,
             IParserPatterns patterns)
         {
             this.logger = logger;
             this.itemMetadataProvider = itemMetadataProvider;
             this.modifierProvider = modifierProvider;
+            this.pseudoModifierProvider = pseudoModifierProvider;
             this.patterns = patterns;
         }
 
-        public ParsingItem GetParsingItem(string itemText)
+        private ParsingItem GetParsingItem(string itemText)
         {
             if (string.IsNullOrEmpty(itemText))
             {
@@ -41,11 +46,6 @@ namespace Sidekick.Apis.Poe.Parser
 
             itemText = new ItemNameTokenizer().CleanString(itemText);
             return new ParsingItem(itemText);
-        }
-
-        public Task Initialize()
-        {
-            throw new NotImplementedException();
         }
 
         public Item ParseItem(string itemText)
@@ -65,6 +65,8 @@ namespace Sidekick.Apis.Poe.Parser
                     throw new NotSupportedException("Item not found.");
                 }
 
+                ParseRequirements(parsingItem);
+
                 var item = new Item
                 {
                     Metadata = parsingItem.Metadata,
@@ -72,8 +74,10 @@ namespace Sidekick.Apis.Poe.Parser
                     Properties = ParseProperties(parsingItem),
                     Influences = ParseInfluences(parsingItem),
                     Sockets = ParseSockets(parsingItem),
-                    Modifiers = ParseModifiers(parsingItem),
+                    ModifierLines = ParseModifiers(parsingItem),
                 };
+
+                item.PseudoModifiers = ParsePseudoModifiers(item.ModifierLines);
 
                 return item;
             }
@@ -92,6 +96,18 @@ namespace Sidekick.Apis.Poe.Parser
                 Type = parsingItem.Blocks[0].Lines.ElementAtOrDefault(3)?.Text,
                 Text = parsingItem.Text,
             };
+        }
+
+        private void ParseRequirements(ParsingItem parsingItem)
+        {
+            foreach (var block in parsingItem.Blocks.Where(x => !x.Parsed))
+            {
+                if (TryParseValue(patterns.Requirements, block, out var match))
+                {
+                    block.Parsed = true;
+                    return;
+                }
+            }
         }
 
         private Properties ParseProperties(ParsingItem parsingItem)
@@ -280,17 +296,27 @@ namespace Sidekick.Apis.Poe.Parser
             };
         }
 
-        private ItemModifiers ParseModifiers(ParsingItem parsingItem)
+        private List<ModifierLine> ParseModifiers(ParsingItem parsingItem)
         {
             return parsingItem.Metadata.Category switch
             {
-                Category.DivinationCard or Category.Currency or Category.Gem => new ItemModifiers(),
+                Category.DivinationCard or Category.Currency or Category.Gem => new(),
                 _ => modifierProvider.Parse(parsingItem),
             };
         }
 
+        private List<Modifier> ParsePseudoModifiers(List<ModifierLine> modifierLines)
+        {
+            if (modifierLines.Count == 0)
+            {
+                return null;
+            }
+
+            return pseudoModifierProvider.Parse(modifierLines);
+        }
 
         #region Helpers
+
         private static bool GetBool(Regex pattern, ParsingItem parsingItem)
         {
             return TryParseValue(pattern, parsingItem, out var _);
