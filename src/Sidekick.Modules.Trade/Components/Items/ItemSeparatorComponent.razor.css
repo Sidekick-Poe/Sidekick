@@ -1,19 +1,29 @@
 .separator {
-  background-position: center center;
-  background-repeat: no-repeat;
-  height: 8px; }
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 8px;
+}
+
+    .separator + .separator {
+        display: none;
+    }
 
 .separator-currency {
-  background-image: url("/images/items/seperator-currency.png"); }
+    background-image: url("/images/items/seperator-currency.png");
+}
 
 .separator-magic {
-  background-image: url("/images/items/seperator-magic.png"); }
+    background-image: url("/images/items/seperator-magic.png");
+}
 
 .separator-normal {
-  background-image: url("/images/items/seperator-normal.png"); }
+    background-image: url("/images/items/seperator-normal.png");
+}
 
 .separator-rare {
-  background-image: url("/images/items/seperator-rare.png"); }
+    background-image: url("/images/items/seperator-rare.png");
+}
 
 .separator-unique {
-  background-image: url("/images/items/seperator-unique.png"); }
+    background-image: url("/images/items/seperator-unique.png");
+}
