@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Sidekick.Apis.PoeWiki\Sidekick.Apis.PoeWiki.csproj" />
     <ProjectReference Include="..\Sidekick.Common.Blazor\Sidekick.Common.Blazor.csproj" />
   </ItemGroup>
 

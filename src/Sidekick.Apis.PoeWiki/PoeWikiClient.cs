@@ -159,6 +159,44 @@ namespace Sidekick.Apis.PoeWiki
             return null;
         }
 
+        private async Task<WikiPageResult> GetWikiPageResult(int pageId)
+        {
+
+            try
+            {
+                var query = new QueryBuilder(new List<KeyValuePair<string, string>>
+                {
+                    new("action", "parse"),
+                    new("format", "json"),
+                    new("pageid", $"{pageId}"),
+                    new("prop", "wikitext"),
+                    new("formatversion", "2"),
+                });
+
+                var response = await client.GetAsync(query.ToString());
+                var content = await response.Content.ReadAsStreamAsync();
+                var result = await JsonSerializer.DeserializeAsync<WikiPageResult>(content, options);
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                logger.LogWarning(e, "Error while trying to get wikipage from poewiki.net.");
+            }
+
+            return null;
+        }
+
+        public async Task<WikiPage> GetWikiPage (int pageId)
+        {
+
+            var wikiPageResult = await GetWikiPageResult(pageId);
+
+            if (wikiPageResult == null) return null;
+
+            return new WikiPage(wikiPageResult);
+        }
+
         public async Task<Map> GetMap(Item item)
         {
             // Only maps.

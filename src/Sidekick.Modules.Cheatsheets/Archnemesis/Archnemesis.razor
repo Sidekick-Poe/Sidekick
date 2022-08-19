@@ -1,0 +1,50 @@
+@page "/cheatsheets/Archnemesis"
+@layout CheatsheetLayout
+
+<MudGrid Spacing="1">
+
+        <MudItem xs="12" sm="6" md="4" lg="3">
+        @*@((MarkupString)textblob)*@
+        @if(!Loading) {
+        @foreach (System.Text.RegularExpressions.Match m in titleMatches)
+            {
+                @((MarkupString)m.Value)
+                <br/>
+            }
+        }
+        </MudItem>
+</MudGrid>
+
+@code {
+    [Inject] private CheatsheetResources CheatsheetResources { get; set; }
+    [Inject] private Sidekick.Apis.PoeWiki.IPoeWikiClient PoeWikiClient { get; set; }
+    [Inject] private IViewInstance ViewInstance { get; set; }
+
+    private Sidekick.Apis.PoeWiki.Models.WikiPage WikiPage { get; set; }
+    private bool Loading { get; set; } = true;
+
+    private string textblob { get; set; }
+    public System.Text.RegularExpressions.MatchCollection titleMatches { get; set; }
+    public System.Text.RegularExpressions.MatchCollection modMatches { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Loading)
+        {
+            WikiPage = await PoeWikiClient.GetWikiPage(95126);
+
+            var startIndex = WikiPage.WikiText.IndexOf("==Curated list==") + "==Curated list==".Length;
+            var endIndex = WikiPage.WikiText.LastIndexOf("==Datamined list==") - startIndex;
+
+            textblob = WikiPage.WikiText.Substring(startIndex, endIndex);
+
+            string titleRegex = @"<span [^>]*>.*<\/span>";
+            titleMatches = System.Text.RegularExpressions.Regex.Matches(textblob, titleRegex);
+            //string modRegex = @"<\/span>(.*)<span [^>]*>";
+            //modMatches = System.Text.RegularExpressions.Regex.Matches(textblob, regex);
+            Loading = false;
+        }
+        await ViewInstance.Initialize(CheatsheetResources.Archnemesis);
+        await base.OnInitializedAsync();
+    }
+}

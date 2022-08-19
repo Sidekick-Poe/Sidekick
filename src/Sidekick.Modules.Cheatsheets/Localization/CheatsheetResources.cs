@@ -23,5 +23,6 @@ namespace Sidekick.Modules.Cheatsheets.Localization
         public string Value_Medium => localizer["Value_Medium"];
         public string Value_None => localizer["Value_None"];
         public string Value_High => localizer["Value_High"];
+        public string Archnemesis => localizer["Archnemesis"];
     }
 }
