@@ -102,7 +102,14 @@ namespace Sidekick.Apis.Poe.Modifiers
                     patterns.Add(modifier);
                 }
 
-                Patterns.Add(modifierCategory, patterns);
+                if (Patterns.ContainsKey(modifierCategory))
+                {
+                    Patterns[modifierCategory].AddRange(patterns);
+                }
+                else
+                {
+                    Patterns.Add(modifierCategory, patterns);
+                }
 
                 BuildFuzzyDictionary(patterns);
             }
