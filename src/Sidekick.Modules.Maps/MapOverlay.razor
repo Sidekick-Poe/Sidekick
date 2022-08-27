@@ -65,12 +65,12 @@
         Item = ItemParser.ParseItem(ItemText.DecodeBase64Url());
         if (Item == null)
         {
-            NavigationManager.NavigateTo("/error/unparsable");
+            NavigationManager.NavigateTo(ErrorType.Unparsable.ToUrl());
             return;
         }
         if (Item.Metadata.Category != Category.Map && Item.Metadata.Category != Category.Contract)
         {
-            NavigationManager.NavigateTo("/error/invalid");
+            NavigationManager.NavigateTo(ErrorType.InvalidItem.ToUrl());
             return;
         }
 

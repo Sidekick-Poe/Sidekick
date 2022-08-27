@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Sidekick.Apis.Poe;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Browser;
+using Sidekick.Common.Errors;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Platform;
@@ -49,7 +50,7 @@ namespace Sidekick.Electron.Keybinds
             if (item == null)
             {
                 // If the item can't be parsed, show an error
-                await viewLocator.Open("/error/unparsable");
+                await viewLocator.Open(ErrorType.Unparsable.ToUrl());
                 return;
             }
 
@@ -57,7 +58,7 @@ namespace Sidekick.Electron.Keybinds
             {
                 if (!gameLanguageProvider.IsEnglish())
                 {
-                    await viewLocator.Open("/error/unavailable");
+                    await viewLocator.Open(ErrorType.UnavailableTranslation.ToUrl());
                     return;
                 }
 
@@ -71,7 +72,7 @@ namespace Sidekick.Electron.Keybinds
             {
                 if (!gameLanguageProvider.IsEnglish())
                 {
-                    await viewLocator.Open("/error/unavailable");
+                    await viewLocator.Open(ErrorType.UnavailableTranslation.ToUrl());
                     return;
                 }
 

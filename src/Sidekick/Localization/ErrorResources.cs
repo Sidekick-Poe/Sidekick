@@ -11,6 +11,8 @@ namespace Sidekick.Localization
             this.localizer = localizer;
         }
 
+        public string AdditionalInformation => localizer["AdditionalInformation"];
+        public string ApiError => localizer["ApiError"];
         public string AvailableInEnglishError => localizer["AvailableInEnglishError"];
         public string InvalidItemError => localizer["InvalidItemError"];
         public string ParserError => localizer["ParserError"];

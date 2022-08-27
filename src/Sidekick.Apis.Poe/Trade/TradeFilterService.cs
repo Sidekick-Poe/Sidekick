@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Localization;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Common.Game.Items;
@@ -13,8 +12,6 @@ namespace Sidekick.Apis.Poe.Trade
 {
     public class TradeFilterService : ITradeFilterService
     {
-        private static readonly Regex LabelValues = new("(\\#)");
-
         private readonly IGameLanguageProvider gameLanguageProvider;
         private readonly FilterResources resources;
         private readonly ISettings sidekickSettings;

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -46,6 +45,11 @@ namespace Sidekick.Apis.Poe.Parser
 
             itemText = new ItemNameTokenizer().CleanString(itemText);
             return new ParsingItem(itemText);
+        }
+
+        public Task<Item> ParseItemAsync(string itemText)
+        {
+            return Task.Run(() => ParseItem(itemText));
         }
 
         public Item ParseItem(string itemText)

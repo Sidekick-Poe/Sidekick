@@ -1,50 +1,41 @@
 @page "/trade/{itemText}"
 @layout OverlayLayout
 
-@if (Item != null)
+@if (Item == null)
+{
+    <LoadingAlert Text="Parsing your item" />
+}
+else
 {
     <FiltersComponent Item="Item" ModifierFilters="ModifierFilters" PropertyFilters="PropertyFilters" OnSearch="UpdateQuery" />
-}
 
-<div class="ml-0">
-    @if (IsError)
-    {
-        <MudAlert Severity="Severity.Error">@Resources.Error_PoeApi</MudAlert>
-
-        @if (QueryResult?.Error != null)
-        {
-            <MudAlert Class="mt-1" Severity="Severity.Error">@Resources.Error_PoeApiMessage <b>@QueryResult.Error.Message</b></MudAlert>
-        }
-    }
-
-    @if (Item != null)
-    {
+    <div class="ml-0">
         <PriceOptionsComponent Item="Item"
                            QueryId="@QueryResult?.Id"
                            @bind-Layout="Layout"
                            Count="Results?.Count ?? 0"
                            Total="QueryResult?.Total ?? 0"
                            CanExpand="CanExpand" />
-    }
 
-    @if (Results != null)
-    {
-        foreach (var result in Results)
+        @if (Results != null)
         {
-            <ItemComponent Item="result" Layout="Layout" CanExpand="CanExpand" />
+            foreach (var result in Results)
+            {
+                <ItemComponent Item="result" Layout="Layout" CanExpand="CanExpand" />
+            }
         }
 
-        if (IsFetching)
+        @if (IsFetching)
         {
-            <MudSkeleton Height="100px" Width="100%" SkeletonType="SkeletonType.Rectangle" />
+            <LoadingAlert Text="Loading results" />
         }
-    }
 
-    @if (!IsFetching && !FullyLoaded && Results != null)
-    {
-        <MudButton Variant="Variant.Outlined" Color="Color.Info" FullWidth="true" OnClick="LoadMoreData" Class="mt-2">@Resources.LoadMoreData</MudButton>
-    }
-</div>
+        @if (!IsFetching && !FullyLoaded && Results != null)
+        {
+            <MudButton Variant="Variant.Outlined" Color="Color.Info" FullWidth="true" OnClick="LoadMoreData" Class="mt-2">@Resources.LoadMoreData</MudButton>
+        }
+    </div>
+}
 
 @code {
     [Inject] private IViewInstance ViewInstance { get; set; }
@@ -64,9 +55,7 @@
     private TradeSearchResult<string> QueryResult { get; set; }
     private List<TradeItem> Results { get; set; }
     private bool FullyLoaded => (Results?.Count ?? 0) == (QueryResult?.Result?.Count ?? 0);
-    private bool IsError { get; set; }
     private bool IsFetching { get; set; }
-    private bool FiltersReady { get; set; }
     private Layout Layout { get; set; }
 
     private bool CanExpand => Item?.Metadata?.Category switch
@@ -87,31 +76,34 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Item = ItemParser.ParseItem(ItemText.DecodeBase64Url());
+        await ViewInstance.Initialize(Resources.Trade, isOverlay: true, closeOnBlur: Settings.Trade_CloseWithMouse);
+        await base.OnInitializedAsync();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Item = await ItemParser.ParseItemAsync(ItemText.DecodeBase64Url());
 
         if (Item == null)
         {
-            NavigationManager.NavigateTo("/error/unparsable");
+            NavigationManager.NavigateTo(ErrorType.Unparsable.ToUrl());
             return;
         }
 
-        await ViewInstance.Initialize(Resources.Trade, isOverlay: true, closeOnBlur: Settings.Trade_CloseWithMouse);
         PropertyFilters = TradeFilterService.GetPropertyFilters(Item);
         ModifierFilters = TradeFilterService.GetModifierFilters(Item);
-        FiltersReady = true;
 
         if (Item.Metadata.Rarity != Rarity.Rare && Item.Metadata.Rarity != Rarity.Magic)
         {
             await UpdateQuery();
         }
 
-        await base.OnInitializedAsync();
+        await base.OnParametersSetAsync();
     }
 
     public async Task UpdateQuery()
     {
         Results = new List<TradeItem>();
-        IsError = false;
         IsFetching = true;
 
         //if (Item.Metadata.Rarity == Rarity.Currency && ItemStaticDataProvider.GetId(Item) != null)
@@ -127,7 +119,8 @@
 
         if (QueryResult == null || QueryResult?.Error != null)
         {
-            IsError = true;
+            NavigationManager.NavigateTo(ErrorType.ApiError.ToUrl(QueryResult?.Error?.Message));
+            return;
         }
         else
         {
