@@ -1,7 +1,7 @@
 @if (Loading || Item == null)
 {
     <MudSkeleton Height="55px" />
-    <ItemSeparatorComponent Rarity="Item.Metadata.Rarity" />
+    <ItemSeparator Rarity="Item.Metadata.Rarity" />
 }
 else if (Price != null)
 {
@@ -10,7 +10,11 @@ else if (Price != null)
             <MudText Typo="Typo.subtitle1" Align="Align.Right">@Resources.PoeNinja</MudText>
             <MudText Typo="Typo.caption" Align="Align.Right" Class="d-block">@Resources.LastUpdated:<br />@Price.LastUpdated.ToString("g")</MudText>
             <MudText Align="Align.Right" Class="mt-1">
-                <MudButton Variant="Variant.Text" OnClick="OpenWebsite" Class="pa-0" Size="Size.Small">
+                <MudButton Variant="Variant.Text"
+                       OnClick="OpenWebsite"
+                       Class="pa-0"
+                       Size="Size.Small"
+                       StartIcon="@Icons.Material.Filled.OpenInBrowser">
                     @Resources.OpenInWebsite
                 </MudButton>
             </MudText>
@@ -33,7 +37,7 @@ else if (Price != null)
         </MudItem>
     </MudGrid>
 
-    <ItemSeparatorComponent Rarity="Item.Metadata.Rarity" />
+    <ItemSeparator Rarity="Item.Metadata.Rarity" />
 }
 
 @code {

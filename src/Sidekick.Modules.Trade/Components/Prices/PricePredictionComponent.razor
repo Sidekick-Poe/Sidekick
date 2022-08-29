@@ -7,7 +7,7 @@
     if (Loading || Item == null)
     {
         <MudSkeleton Height="55px" />
-        <ItemSeparatorComponent Rarity="Item.Metadata.Rarity" />
+        <ItemSeparator Rarity="Item.Metadata.Rarity" />
     }
     else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
     {
@@ -20,7 +20,7 @@
                 <PriceRangeDisplay Min="Prediction.Min" Max="Prediction.Max" Currency="@Prediction.Currency" Class="justify-start" />
             </MudItem>
         </MudGrid>
-        <ItemSeparatorComponent Rarity="Item.Metadata.Rarity" />
+        <ItemSeparator Rarity="Item.Metadata.Rarity" />
     }
 }
 

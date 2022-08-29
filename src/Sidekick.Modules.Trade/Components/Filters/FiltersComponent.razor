@@ -16,7 +16,7 @@
         <PricePredictionComponent Item="Item" />
     }
 
-    @if (Visible)
+    @if (FiltersVisible)
     {
         <ClassFilter @bind-Value="PropertyFilters.Class" Item="Item" />
 
@@ -50,7 +50,7 @@
     [Parameter] public EventCallback OnSearch { get; set; }
 
     private bool Expanded { get; set; } = false;
-    private bool Visible { get; set; }
+    private bool FiltersVisible { get; set; }
     private bool IsInit { get; set; } = false;
 
     protected override void OnParametersSet()
@@ -69,7 +69,7 @@
         int modifierCount = 0;
         modifierCount += ModifierFilters?.Count ?? 0;
 
-        Visible = (ModifierFilters?.Count ?? 0) + propertyCount > 0;
+        FiltersVisible = (ModifierFilters?.Count ?? 0) + propertyCount > 0;
     }
 
     private void Expand()

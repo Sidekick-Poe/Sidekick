@@ -1,50 +1,56 @@
 @page "/map/{itemText}"
 @layout OverlayLayout
 
-<MudPaper Class="pa-2 mb-2">
-    <MudText Typo="Typo.h1" Align="Align.Center" Color="@(DangerousMods.Any() ? Color.Error: Color.Success)" Class="d-flex justify-center align-center">
-        <MudIcon Icon="@(DangerousMods.Any() ? Icons.Filled.ThumbDown : Icons.Filled.ThumbUp)" Size="Size.Large" Class="mr-2" />
-        @(DangerousMods.Any() ? Resources.Is_Unsafe : Resources.Is_Safe)
-    </MudText>
-</MudPaper>
+@if (Item == null)
+{
+    <LoadingAlert Text="@Resources.Parsing" />
+}
+else
+{
+    <MudDrawer Open="true"
+           Variant="@DrawerVariant.Persistent"
+           Width="22em"
+           Class="black"
+           ClipMode="DrawerClipMode.Always">
+        <ItemHeaderComponent Name="@Item.Original.Name"
+                         Type="@Item.Original.Type"
+                         Rarity="Item.Metadata.Rarity"
+                         Influences="Item.Influences"
+                         IsRelic="Item.Properties.IsRelic" />
 
-<MudGrid Spacing="2">
-    <MudItem xs="12" sm="@(PoeWikiClient.IsEnabled ? 6 : 12)" Class="d-flex flex-grow-1">
-        <MudPaper Class="pa-4 flex-grow-1">
-            @foreach (var mod in DangerousMods)
-            {
-                <MudText Typo="Typo.body1" Class="d-flex align-center">
-                    <MudIcon Icon="@Icons.Filled.ThumbDown" Size="Size.Small" Color="Color.Error" Class="mr-2" />
-                    @mod
-                </MudText>
-            }
+        <MudText Typo="Typo.h1" Align="Align.Center" Color="@(DangerousMods.Any() ? Color.Error: Color.Success)" Class="d-flex justify-center align-center pa-4">
+            <MudIcon Icon="@(DangerousMods.Any() ? Icons.Filled.ThumbDown : Icons.Filled.ThumbUp)" Size="Size.Large" Class="mr-2" />
+            @(DangerousMods.Any() ? Resources.Is_Unsafe : Resources.Is_Safe)
+        </MudText>
 
-            @if (DangerousMods.Any() && OkMods.Any())
-            {
-                <MudDivider Class="ma-2" />
-            }
+        <ItemSeparator Rarity="Item.Metadata.Rarity" />
 
-            @foreach (var mod in OkMods)
-            {
-                <MudText Typo="Typo.body2" Class="d-flex align-center">
-                    <MudIcon Icon="@Icons.Filled.ThumbUp" Size="Size.Small" Color="Color.Success" Class="mr-2" />
-                    @mod
-                </MudText>
-            }
-        </MudPaper>
-    </MudItem>
-    @if (PoeWikiClient.IsEnabled)
-    {
-        <MudItem xs="12" sm="6" Class="d-flex flex-grow-1">
-            @if (Item != null)
-            {
-                <MudPaper Class="d-flex flex-grow-1 pa-4">
-                    <PoeWikiMapInfo Item="Item" />
-                </MudPaper>
-            }
-        </MudItem>
-    }
-</MudGrid>
+        @foreach (var mod in DangerousMods)
+        {
+            <div class="d-flex align-center px-4 py-1">
+                <MudIcon Icon="@Icons.Filled.ThumbDown" Size="Size.Small" Color="Color.Error" Class="mr-2" />
+                <ItemModifierText Text="@mod" />
+            </div>
+        }
+
+        @if (DangerousMods.Any() && OkMods.Any())
+        {
+            <ItemSeparator Rarity="Item.Metadata.Rarity" />
+        }
+
+        @foreach (var mod in OkMods)
+        {
+            <div class="d-flex align-center px-4 py-1">
+                <MudIcon Icon="@Icons.Filled.ThumbUp" Size="Size.Small" Color="Color.Success" Class="mr-2" />
+                <ItemModifierText Text="@mod" />
+            </div>
+        }
+    </MudDrawer>
+
+    <div class="ml-0">
+        <PoeWikiMapInfo Item="Item" />
+    </div>
+}
 
 @code {
     [Inject] private MapInfoResources Resources { get; set; }
@@ -62,19 +68,32 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Item = ItemParser.ParseItem(ItemText.DecodeBase64Url());
+        if (PoeWikiClient.IsEnabled)
+        {
+            await ViewInstance.Initialize(Resources.Title, width: 616, isOverlay: true, closeOnBlur: Settings.Map_CloseWithMouse);
+        }
+        else
+        {
+            await ViewInstance.Initialize(Resources.Title, width: 308, isOverlay: true, closeOnBlur: Settings.Map_CloseWithMouse);
+        }
+        await base.OnInitializedAsync();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Item = await ItemParser.ParseItemAsync(ItemText.DecodeBase64Url());
+
         if (Item == null)
         {
             NavigationManager.NavigateTo(ErrorType.Unparsable.ToUrl());
             return;
         }
+
         if (Item.Metadata.Category != Category.Map && Item.Metadata.Category != Category.Contract)
         {
             NavigationManager.NavigateTo(ErrorType.InvalidItem.ToUrl());
             return;
         }
-
-        await ViewInstance.Initialize(Item.Original.Type, isOverlay: true, closeOnBlur: Settings.Map_CloseWithMouse);
 
         DangerousMods.Clear();
         OkMods.Clear();
@@ -82,7 +101,7 @@
         var dangerousModsRegex = new Regex(Settings.Map_Dangerous_Regex, RegexOptions.IgnoreCase);
         FilterMods(dangerousModsRegex, Item.ModifierLines);
 
-        await base.OnInitializedAsync();
+        await base.OnParametersSetAsync();
     }
 
     private void FilterMods(Regex modRegex, List<ModifierLine> modifierLines)

@@ -7,10 +7,10 @@
         <div class="d-flex align-center">
             @if (Filter.Line.Modifier.Category == ModifierCategory.Pseudo)
             {
-                <ModifierCategoryChip Category="Filter.Line.Modifier.Category" />
+                <ItemModifierCategoryChip Category="Filter.Line.Modifier.Category" />
             }
-            <ModifierText Text="@Filter.Line.Text"
-                          Category="Filter.Line.Modifier?.Category" />
+            <ItemModifierText Text="@Filter.Line.Text"
+                              Category="Filter.Line.Modifier?.Category" />
         </div>
     </MudCheckBox>
 
@@ -27,13 +27,13 @@
                        Dense="true"
                        Margin="Margin.None">
                         <MudSelectItem Value="Filter.Line.Modifier">
-                            <ModifierCategoryChip Category="Filter.Line.Modifier.Category" />
+                            <ItemModifierCategoryChip Category="Filter.Line.Modifier.Category" />
                             <MudText Typo="Typo.caption">@Filter.Line.Modifier.Text</MudText>
                         </MudSelectItem>
                         @foreach (var alternate in Filter.Line.Alternates)
                         {
                             <MudSelectItem Value="alternate" Class="d-flex align-center">
-                                <ModifierCategoryChip Category="alternate.Category" />
+                                <ItemModifierCategoryChip Category="alternate.Category" />
                                 <MudText Typo="Typo.caption">@alternate.Text</MudText>
                             </MudSelectItem>
                         }

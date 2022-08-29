@@ -1,55 +1,59 @@
-<div class="d-flex flex-column flex-grow-1">
-    <MudText Typo="Typo.h5" Color="Color.Info" Align="Align.Center">@Resources.PoeWikiTitle</MudText>
-
-    @if (Loading)
+@if (PoeWikiClient.IsEnabled)
+{
+    if (Loading)
     {
-        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Class="flex-grow-1 d-flex my-2" Style="height: 100%;" />
+        <LoadingAlert Text="@Resources.Fetching" />
     }
     else if (Map != null)
     {
-        <div>
-            <MudText>@Map.Name</MudText>
+        if (Map.Bosses.Any())
+        {
+            <MudPaper Class="mb-4">
+                <MudText Typo="Typo.subtitle2" Class="pt-4 px-4">@Resources.MapBossesTitle</MudText>
+                <MudList Clickable Dense>
+                    @foreach (var boss in Map.Bosses.OrderBy(x => x.Name))
+                    {
+                        <MudListItem OnClick="@(() => PoeWikiClient.OpenUri(boss))">@boss.Name</MudListItem>
+                    }
+                </MudList>
+            </MudPaper>
+        }
+
+        <MudPaper Class="mb-4">
+            <MudText Typo="Typo.subtitle2" Class="pt-4 px-4">@Resources.DropsTitle</MudText>
             @if (Map.Drops.Any())
             {
-                <MudText Typo="Typo.subtitle2" Class="my-2">@Resources.DropsTitle</MudText>
-                <MudPaper Class="mb-2" Elevation="2" Outlined>
-                    <MudList Clickable Dense DisablePadding Class="info-section">
-                        @foreach (var drop in Map.Drops.OrderBy(x => x.Name))
-                        {
-                            <MudListItem OnClick="@(() => PoeWikiClient.OpenUri(drop))">@drop.Name</MudListItem>
-                        }
-                    </MudList>
-                </MudPaper>
+                <MudList Clickable Dense>
+                    @foreach (var drop in Map.Drops.OrderBy(x => x.Name))
+                    {
+                        <MudListItem OnClick="@(() => PoeWikiClient.OpenUri(drop))">@drop.Name</MudListItem>
+                    }
+                </MudList>
             }
             else
             {
-                <MudText>@Resources.NoDropsTitle</MudText>
+                <MudText Class="pa-4">@Resources.NoDropsTitle</MudText>
             }
+        </MudPaper>
 
-            @if (Map.Bosses.Any())
-            {
-                <MudText Typo="Typo.subtitle2" Class="my-2">@Resources.MapBossesTitle</MudText>
-                <MudPaper Class="mb-2" Elevation="2" Outlined>
-                    <MudList Clickable Dense DisablePadding Class="info-section">
-                        @foreach (var boss in Map.Bosses.OrderBy(x => x.Name))
-                        {
-                            <MudListItem OnClick="@(() => PoeWikiClient.OpenUri(boss))">@boss.Name</MudListItem>
-                        }
-                    </MudList>
-                </MudPaper>
-            }
+        <div style="text-align:right;">
+            <MudText Typo="Typo.caption" Color="Color.Info">
+                @Resources.PoeWikiTitle
+            </MudText>
+            <MudButton Class="pa-0 mt-2"
+               Variant="Variant.Text"
+               Size="Size.Small"
+               StartIcon="@Icons.Material.Filled.OpenInBrowser"
+               OnClick="@(() => PoeWikiClient.OpenUri(Map))">@Resources.OpenInPoeWiki</MudButton>
         </div>
-
-        <MudButton Class="mt-2" Variant="Variant.Filled" Size="Size.Small" EndIcon="@Icons.Material.Filled.OpenInBrowser" OnClick="@(() => PoeWikiClient.OpenUri(Map))">@Resources.OpenInPoeWiki</MudButton>
     }
     else
     {
-        <div>
-            <MudText Color="Color.Error" Class="mb-2">@Resources.PoeWikiError</MudText>
-        </div>
+        <MudAlert Severity="Severity.Error" Variant="Variant.Filled">
+            @Resources.PoeWikiError
+        </MudAlert>
     }
-
-</div>
+}
 
 @code {
     [Inject] private MapInfoResources Resources { get; set; }
