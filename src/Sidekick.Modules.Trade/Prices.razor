@@ -14,13 +14,14 @@ else
                            QueryId="@QueryResult?.Id"
                            @bind-Layout="Layout"
                            Count="Results?.Count ?? 0"
-                           Total="QueryResult?.Total ?? 0" />
+                           Total="QueryResult?.Total ?? 0"
+                           CanExpand="CanExpand" />
 
         @if (Results != null)
         {
             foreach (var result in Results)
             {
-                <ItemComponent Item="result" Layout="Layout" />
+                <ItemComponent Item="result" Layout="Layout" CanExpand="CanExpand" />
             }
         }
 
@@ -56,6 +57,22 @@ else
     private bool FullyLoaded => (Results?.Count ?? 0) == (QueryResult?.Result?.Count ?? 0);
     private bool IsFetching { get; set; }
     private Layout Layout { get; set; }
+
+    private bool CanExpand => Item?.Metadata?.Category switch
+    {
+        Category.Accessory => true,
+        Category.Armour => true,
+        Category.Flask => true,
+        Category.Gem => true,
+        Category.Jewel => true,
+        Category.Map => true,
+        Category.Weapon => true,
+        Category.HeistEquipment => true,
+        Category.Contract => true,
+        Category.Logbook => true,
+        Category.Sentinel => true,
+        _ => false,
+    };
 
     protected override async Task OnInitializedAsync()
     {
