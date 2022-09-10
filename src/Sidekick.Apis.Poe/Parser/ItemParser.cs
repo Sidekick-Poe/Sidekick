@@ -313,7 +313,7 @@ namespace Sidekick.Apis.Poe.Parser
         {
             if (modifierLines.Count == 0)
             {
-                return null;
+                return new();
             }
 
             return pseudoModifierProvider.Parse(modifierLines);
