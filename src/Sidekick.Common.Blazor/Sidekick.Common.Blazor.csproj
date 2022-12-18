@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Sidekick.Common.Game\Sidekick.Common.Game.csproj" />
     <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
   </ItemGroup>

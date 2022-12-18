@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Localization;
 
-namespace Sidekick.Localization
+namespace Sidekick.Common.Blazor.Errors
 {
     public class ErrorResources
     {

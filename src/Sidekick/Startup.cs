@@ -15,7 +15,6 @@ using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Tray;
-using Sidekick.Localization;
 using Sidekick.Mock;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
@@ -46,8 +45,6 @@ namespace Sidekick
         public void ConfigureServices(IServiceCollection services)
         {
             IsDevelopmentSite = true;
-
-            services.AddTransient<ErrorResources>();
 
             services
                 // MudBlazor

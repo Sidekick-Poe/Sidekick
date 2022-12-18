@@ -11,8 +11,4 @@
     <ProjectReference Include="..\Sidekick.Common.Game\Sidekick.Common.Game.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
 </Project>

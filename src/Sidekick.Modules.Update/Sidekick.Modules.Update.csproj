@@ -9,8 +9,4 @@
     <ProjectReference Include="..\Sidekick.Common.Blazor\Sidekick.Common.Blazor.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
 </Project>

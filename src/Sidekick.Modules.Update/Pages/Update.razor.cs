@@ -2,8 +2,6 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub;
 using Sidekick.Common;
@@ -20,7 +18,6 @@ namespace Sidekick.Modules.Update.Pages
         [Inject] private IGitHubClient GitHubClient { get; set; }
         [Inject] private IAppService AppService { get; set; }
         [Inject] private UpdateResources UpdateResources { get; set; }
-        [Inject] private IWebHostEnvironment Environment { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }
         [Inject] private IViewInstance ViewInstance { get; set; }
         [Inject] private ICacheProvider CacheProvider { get; set; }
@@ -39,6 +36,12 @@ namespace Sidekick.Modules.Update.Pages
 
         public async Task Handle()
         {
+#if DEBUG
+            await Task.Delay(750);
+            NavigationManager.NavigateTo("/setup");
+            return;
+#endif
+
             try
             {
                 // Checking release
@@ -46,7 +49,7 @@ namespace Sidekick.Modules.Update.Pages
                 StateHasChanged();
                 var release = await GitHubClient.GetLatestRelease();
 
-                if (release == null || !GitHubClient.IsUpdateAvailable(release) || Environment.IsDevelopment())
+                if (release == null || !GitHubClient.IsUpdateAvailable(release))
                 {
                     await Task.Delay(750);
                     NavigationManager.NavigateTo("/setup");

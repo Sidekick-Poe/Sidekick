@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace Sidekick.Modules.Development
+namespace Sidekick
 {
     public class DevelopmentStartupMiddleware
     {

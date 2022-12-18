@@ -1,0 +1,19 @@
+<Router AppAssembly="@typeof(MauiProgram).Assembly" AdditionalAssemblies="Sidekick.Common.Blazor.SidekickModule.Modules.Select(x=>x.Assembly)">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(WindowLayout)" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(WindowLayout)">
+            <MudPaper Class="pa-3 mb-4 d-flex flex-row align-center">
+                <MudIcon Size="Size.Large" Color="Color.Error" Icon="@Icons.Filled.Error" Class="mr-3" />
+                <MudText Align="Align.Center">
+                    Page not found.
+                </MudText>
+            </MudPaper>
+        </LayoutView>
+    </NotFound>
+</Router>
+
+<MudDialogProvider />
+<MudSnackbarProvider />
+<SidekickTheme />

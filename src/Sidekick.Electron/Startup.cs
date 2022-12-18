@@ -22,7 +22,6 @@ using Sidekick.Common.Platform.Tray;
 using Sidekick.Electron.App;
 using Sidekick.Electron.Localization;
 using Sidekick.Electron.Views;
-using Sidekick.Localization;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Cheatsheets;
@@ -48,8 +47,6 @@ namespace Sidekick.Electron
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<ErrorResources>();
-
             services
                 // MudBlazor
                 .AddMudServices()
