@@ -1,7 +1,6 @@
 #pragma warning disable CS0067
 
 using System;
-using System.Threading.Tasks;
 using Sidekick.Common.Platform;
 
 namespace Sidekick.Mock
@@ -11,11 +10,11 @@ namespace Sidekick.Mock
         public string ClientLogPath => string.Empty;
 
         public event Action OnFocus;
+
         public event Action OnBlur;
 
-        public Task Initialize()
+        public void Initialize()
         {
-            return Task.CompletedTask;
         }
 
         public bool IsPathOfExileInFocus => true;

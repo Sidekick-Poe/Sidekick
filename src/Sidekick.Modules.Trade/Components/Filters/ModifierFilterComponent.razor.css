@@ -1,0 +1,32 @@
+::deep .filter-min,
+::deep .filter-max {
+    width: 6em;
+}
+
+    ::deep .filter-min .mud-input-outlined-border {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    ::deep .filter-max .mud-input-outlined-border {
+        border-left: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+
+::deep .mud-select,
+::deep .mud-select .mud-input {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+    ::deep .mud-select .mud-input::before {
+        display: none;
+    }
+
+    ::deep .mud-select .mud-input-slot {
+        display: flex !important;
+        align-items: center !important;
+    }
+

@@ -1,15 +1,23 @@
 @if (QueryId != null)
 {
-    <div class="d-flex flex-row align-center justify-end mb-2">
-        <CountString Count="Count" Total="Total" />
-        <MudButtonGroup Size="@Size.Small">
-            <OpenWebsiteLink Item="Item" QueryId="@QueryId" />
-            <ToggleLayoutButton Layout="Layout" LayoutChanged="LayoutChanged" />
-        </MudButtonGroup>
+    <div class="d-flex flex-row align-center justify-space-between mb-2">
+        <MudText Color="Color.Info">@Settings.LeagueId</MudText>
+        <div>
+            <CountString Count="Count" Total="Total" />
+            <MudButtonGroup Size="@Size.Small">
+                <OpenWebsiteLink Item="Item" QueryId="@QueryId" />
+                @if (CanExpand)
+                {
+                    <ToggleLayoutButton Layout="Layout" LayoutChanged="LayoutChanged" />
+                }
+            </MudButtonGroup>
+        </div>
     </div>
 }
 
 @code {
+    [Inject] private ISettings Settings { get; set; }
+
     [Parameter] public Item Item { get; set; }
     [Parameter] public string QueryId { get; set; }
 
@@ -19,10 +27,17 @@
     [Parameter] public int Count { get; set; }
     [Parameter] public int Total { get; set; }
 
-    private bool Opened { get; set; } = false;
+    [Parameter] public bool CanExpand { get; set; }
 
-    private void Open()
+    protected override async Task OnInitializedAsync()
     {
-        Opened = true;
+        try
+        {
+            var layout = Enum.Parse<Layout>(Settings.Trade_Layout);
+            await LayoutChanged.InvokeAsync(layout);
+        }
+        catch (Exception) { }
+
+        await base.OnInitializedAsync();
     }
 }

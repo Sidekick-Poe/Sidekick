@@ -8,8 +8,16 @@ using Sidekick.Common.Logging;
 
 namespace Sidekick.Common
 {
+    /// <summary>
+    /// Startup functions for the Sidekick project
+    /// </summary>
     public static class StartupExtensions
     {
+        /// <summary>
+        /// Adds common functionality to the service collection
+        /// </summary>
+        /// <param name="services">The service collection to add services to</param>
+        /// <returns>The services collection</returns>
         public static IServiceCollection AddSidekickCommon(this IServiceCollection services)
         {
             services.AddSingleton<ICacheProvider, CacheProvider>();

@@ -41,6 +41,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
 
             ItemLevel = gameLanguageProvider.Language.DescriptionItemLevel.ToRegexIntCapture();
             Unidentified = gameLanguageProvider.Language.DescriptionUnidentified.ToRegexLine();
+            IsRelic = gameLanguageProvider.Language.DescriptionIsRelic.ToRegexLine();
             Corrupted = gameLanguageProvider.Language.DescriptionCorrupted.ToRegexLine();
             Scourged = gameLanguageProvider.Language.DescriptionScourged.ToRegexLine();
         }
@@ -49,6 +50,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         public Regex Unidentified { get; private set; }
         public Regex Corrupted { get; private set; }
         public Regex Scourged { get; private set; }
+        public Regex IsRelic { get; private set; }
         #endregion Header (Rarity, Name, Type)
 
         #region Properties (Armour, Evasion, Energy Shield, Quality, Level)
@@ -72,6 +74,8 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
             ItemRarity = gameLanguageProvider.Language.DescriptionItemRarity.ToRegexIntCapture();
             MonsterPackSize = gameLanguageProvider.Language.DescriptionMonsterPackSize.ToRegexIntCapture();
             Blighted = gameLanguageProvider.Language.PrefixBlighted.ToRegexStartOfLine();
+
+            Requirements = gameLanguageProvider.Language.DescriptionRequirements.ToRegexLine();
         }
 
         public Regex Armor { get; private set; }
@@ -90,6 +94,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         public Regex ElementalDamage { get; private set; }
         public Regex PhysicalDamage { get; private set; }
         public Regex Blighted { get; private set; }
+        public Regex Requirements { get; private set; }
         #endregion Properties (Armour, Evasion, Energy Shield, Quality, Level)
 
         #region Sockets

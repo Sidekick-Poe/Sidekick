@@ -1,5 +1,3 @@
-#pragma warning disable CS0067
-
 using System;
 using Sidekick.Common.Platform;
 
@@ -11,22 +9,10 @@ namespace Sidekick.Mock
 
         public void Initialize()
         {
-            // Do nothing in mock
-        }
-
-        public bool IncludesModifier(string input)
-        {
-            return true;
         }
 
         public void PressKey(params string[] keys)
         {
-            // Do nothing in mock
-        }
-
-        public string ToElectronAccelerator(string key)
-        {
-            return key;
         }
     }
 }

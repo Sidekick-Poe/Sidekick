@@ -1,6 +1,5 @@
-using System.Linq;
-using Sidekick.Apis.Poe;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items.Modifiers;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Parser
@@ -18,33 +17,7 @@ namespace Sidekick.Apis.Poe.Tests.Parser
         [Fact]
         public void ParseBlightGuardian()
         {
-            var actual = parser.ParseItem(BlightGuardian);
-
-            Assert.Equal(Category.Armour, actual.Metadata.Category);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal("Hunter Hood", actual.Metadata.Type);
-
-            var explicits = actual.Modifiers.Explicit.Select(x => x.Text);
-            Assert.Contains("You have Shocking Conflux for 3 seconds every 8 seconds", explicits);
-        }
-
-        [Fact]
-        public void ParseStarkonjaHead()
-        {
-            var actual = parser.ParseItem(StarkonjaHead);
-
-            Assert.Equal(Category.Armour, actual.Metadata.Category);
-            Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
-            Assert.Equal("Starkonja's Head", actual.Metadata.Name);
-            Assert.Equal("Silken Hood", actual.Metadata.Type);
-
-            var enchants = actual.Modifiers.Enchant.Select(x => x.Text);
-            Assert.Contains("Divine Ire Damages 2 additional nearby Enemies when gaining Stages", enchants);
-        }
-
-        #region ItemText
-
-        private const string BlightGuardian = @"Item Class: Unknown
+            var actual = parser.ParseItem(@"Item Class: Unknown
 Rarity: Rare
 Blight Guardian
 Hunter Hood
@@ -55,7 +28,7 @@ Requirements:
 Level: 64
 Dex: 87
 --------
-Sockets: G 
+Sockets: G
 --------
 Item Level: 80
 --------
@@ -67,37 +40,63 @@ Adds 28 to 51 Fire Damage to Spells
 You have Shocking Conflux for 3 seconds every 8 seconds
 --------
 Hunter Item
-";
+");
 
-        private const string StarkonjaHead = @"Item Class: Unknown
+            Assert.Equal(Category.Armour, actual.Metadata.Category);
+            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
+            Assert.Equal("Hunter Hood", actual.Metadata.Type);
+
+            actual.AssertHasModifier(ModifierCategory.Explicit, "You have Shocking Conflux for 3 seconds every 8 seconds");
+        }
+
+        [Fact]
+        public void ParseStarkonjaHead()
+        {
+            var actual = parser.ParseItem(@"Item Class: Helmets
 Rarity: Unique
 Starkonja's Head
 Silken Hood
 --------
-Evasion Rating: 765 (augmented)
+Evasion Rating: 793 (augmented)
 --------
 Requirements:
 Level: 60
 Dex: 138
 --------
-Sockets: G G 
+Sockets: G
 --------
-Item Level: 80
+Item Level: 63
 --------
-Divine Ire Damages 2 additional nearby Enemies when gaining Stages (enchant)
---------
-+57 to Dexterity
++53 to Dexterity
 50% reduced Damage when on Low Life
 10% increased Attack Speed
 25% increased Global Critical Strike Chance
-121% increased Evasion Rating
-+87 to maximum Life
+124% increased Evasion Rating
++80 to maximum Life
 150% increased Global Evasion Rating when on Low Life
 --------
 There was no hero made out of Starkonja's death,
 but merely a long sleep made eternal.
-";
+--------
+Note: ~price 1 chaos
+");
 
-        #endregion
+            Assert.Equal(Category.Armour, actual.Metadata.Category);
+            Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
+            Assert.Equal("Starkonja's Head", actual.Metadata.Name);
+            Assert.Equal("Silken Hood", actual.Metadata.Type);
+
+            Assert.True(actual.Properties.Identified);
+            Assert.Equal(63, actual.Properties.ItemLevel);
+            Assert.Equal(793, actual.Properties.Evasion);
+
+            actual.AssertHasModifier(ModifierCategory.Explicit, "# to Dexterity", 53);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Damage when on Low Life", 50);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Attack Speed", 10);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Global Critical Strike Chance", 25);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Evasion Rating", 124);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "# to maximum Life", 80);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Global Evasion Rating when on Low Life", 150);
+        }
     }
 }

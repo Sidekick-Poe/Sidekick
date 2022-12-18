@@ -4,13 +4,8 @@ namespace Sidekick.Apis.Poe.Trade.Filters
 {
     public class SearchFilterValue
     {
-        internal SearchFilterValue() { }
-
-        public SearchFilterValue(double? min, double? max)
-        {
-            Min = min;
-            Max = max;
-        }
+        internal SearchFilterValue()
+        { }
 
         public SearchFilterValue(PropertyFilter filter)
         {
@@ -21,7 +16,7 @@ namespace Sidekick.Apis.Poe.Trade.Filters
 
         public SearchFilterValue(ModifierFilter filter)
         {
-            Option = filter.Modifier.OptionValue?.Value;
+            Option = filter.Line.Modifier?.OptionValue;
             Min = filter.Min;
             Max = filter.Max;
         }

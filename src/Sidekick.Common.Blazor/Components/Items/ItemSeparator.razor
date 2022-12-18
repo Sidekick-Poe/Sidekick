@@ -1,0 +1,16 @@
+@using Sidekick.Common.Game.Items
+
+<div class="separator @BackgroundClass"></div>
+
+@code {
+    [Parameter] public Rarity Rarity { get; set; }
+
+    private string BackgroundClass => Rarity switch
+    {
+        Rarity.Currency => "separator-currency",
+        Rarity.Magic => "separator-magic",
+        Rarity.Rare => "separator-rare",
+        Rarity.Unique => "separator-unique",
+        _ => "separator-normal",
+    };
+}

@@ -144,32 +144,14 @@
   <data name="Class" xml:space="preserve">
     <value>Item Class</value>
   </data>
+  <data name="Class_Hint" xml:space="preserve">
+    <value>If checked, Sidekick will search for all items of this class. If left unchecked, Sidekick will search for this specific type. (e.g. Type: Prophet Crown vs Class: Helmet)</value>
+  </data>
   <data name="Corrupted" xml:space="preserve">
     <value>Corrupted</value>
   </data>
   <data name="CountString" xml:space="preserve">
     <value>Showing {0} out of {1} items</value>
-  </data>
-  <data name="Error_PoeApi" xml:space="preserve">
-    <value>An error occured while trying to get the results from the official trade API. The official trade website may be down. Please try again later or open a ticket on github.</value>
-  </data>
-  <data name="Filters_Armour" xml:space="preserve">
-    <value>Armour Filters</value>
-  </data>
-  <data name="Filters_Collapse" xml:space="preserve">
-    <value>Collapse Filters</value>
-  </data>
-  <data name="Filters_Dps" xml:space="preserve">
-    <value>Damage per second</value>
-  </data>
-  <data name="Filters_EDps" xml:space="preserve">
-    <value>Elemental DPS</value>
-  </data>
-  <data name="Filters_Expand" xml:space="preserve">
-    <value>Expand Filters</value>
-  </data>
-  <data name="Filters_Map" xml:space="preserve">
-    <value>Map Filters</value>
   </data>
   <data name="Filters_Max" xml:space="preserve">
     <value>Max</value>
@@ -177,23 +159,8 @@
   <data name="Filters_Min" xml:space="preserve">
     <value>Min</value>
   </data>
-  <data name="Filters_Misc" xml:space="preserve">
-    <value>Miscellaneous Filters</value>
-  </data>
-  <data name="Filters_Modifiers" xml:space="preserve">
-    <value>Modifier Filters</value>
-  </data>
-  <data name="Filters_PDps" xml:space="preserve">
-    <value>Physical DPS</value>
-  </data>
-  <data name="Filters_Pseudo" xml:space="preserve">
-    <value>Pseudo Filters</value>
-  </data>
   <data name="Filters_Submit" xml:space="preserve">
     <value>Search</value>
-  </data>
-  <data name="Filters_Weapon" xml:space="preserve">
-    <value>Weapon Filters</value>
   </data>
   <data name="ItemLevel" xml:space="preserve">
     <value>Item Level</value>
@@ -210,47 +177,14 @@
   <data name="LoadMoreData" xml:space="preserve">
     <value>Load More Data</value>
   </data>
-  <data name="MaxQualityArmour" xml:space="preserve">
-    <value>Armour at max Quality</value>
-  </data>
-  <data name="MaxQualityDps" xml:space="preserve">
-    <value>DPS at max Quality</value>
-  </data>
-  <data name="MaxQualityEDps" xml:space="preserve">
-    <value>Elemental DPS at max Quality</value>
-  </data>
-  <data name="MaxQualityEnergyShield" xml:space="preserve">
-    <value>Energy Shield at max Quality</value>
-  </data>
-  <data name="MaxQualityEvasion" xml:space="preserve">
-    <value>Evasion at max Quality</value>
-  </data>
-  <data name="MaxQualityPDps" xml:space="preserve">
-    <value>Physical DPS at max Quality</value>
+  <data name="ModifierHint" xml:space="preserve">
+    <value>This drop down allows you to select an alternate modifier. Sidekick does its best to find the best fitting modifier, but sometimes it fails to find the correct modifier as the game text sometimes differs from the trade modifier text.</value>
   </data>
   <data name="OpenQueryInWebsite" xml:space="preserve">
     <value>Open query in the official website</value>
   </data>
-  <data name="OverlayAccountName" xml:space="preserve">
-    <value>Account Name</value>
-  </data>
-  <data name="OverlayAge" xml:space="preserve">
-    <value>Age</value>
-  </data>
-  <data name="OverlayCharacter" xml:space="preserve">
-    <value>Character</value>
-  </data>
-  <data name="OverlayItemLevel" xml:space="preserve">
-    <value>iLvl</value>
-  </data>
-  <data name="OverlayPrice" xml:space="preserve">
-    <value>Price</value>
-  </data>
-  <data name="PoeNinja" xml:space="preserve">
-    <value>Poe.Ninja</value>
-  </data>
-  <data name="PoeNinjaLastUpdated" xml:space="preserve">
-    <value>Last updated</value>
+  <data name="Parsing" xml:space="preserve">
+    <value>Parsing your item</value>
   </data>
   <data name="Prediction" xml:space="preserve">
     <value>PoePrices.info</value>
@@ -264,19 +198,10 @@
   <data name="Scourged" xml:space="preserve">
     <value>Scourged</value>
   </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
-  </data>
   <data name="Trade" xml:space="preserve">
     <value>Trade</value>
   </data>
   <data name="Unidentified" xml:space="preserve">
     <value>Unidentified</value>
-  </data>
-  <data name="View_Less" xml:space="preserve">
-    <value>View Less</value>
-  </data>
-  <data name="View_More" xml:space="preserve">
-    <value>View More</value>
   </data>
 </root>

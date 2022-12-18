@@ -1,0 +1,33 @@
+@using Sidekick.Common.Game.Items
+
+@if (Influences != null)
+{
+    @if (Influences.Shaper)
+    {
+        <img src="/images/influences/shaper-symbol.png" />
+    }
+    @if (Influences.Elder)
+    {
+        <img src="/images/influences/elder-symbol.png" />
+    }
+    @if (Influences.Crusader)
+    {
+        <img src="/images/influences/crusader-symbol.png" />
+    }
+    @if (Influences.Redeemer)
+    {
+        <img src="/images/influences/redeemer-symbol.png" />
+    }
+    @if (Influences.Hunter)
+    {
+        <img src="/images/influences/hunter-symbol.png" />
+    }
+    @if (Influences.Warlord)
+    {
+        <img src="/images/influences/warlord-symbol.png" />
+    }
+}
+
+@code {
+    [Parameter] public Influences Influences { get; set; }
+}

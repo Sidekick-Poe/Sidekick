@@ -12,6 +12,7 @@ using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Localization;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Tray;
 using Sidekick.Common.Settings;
 using Sidekick.Core.Settings;
 using Sidekick.Modules.Initialization.Localization;
@@ -37,13 +38,13 @@ namespace Sidekick.Modules.Initialization.Pages
         [Inject] private IUILanguageProvider UILanguageProvider { get; set; }
         [Inject] private IEnglishModifierProvider EnglishModifierProvider { get; set; }
         [Inject] private IPoeNinjaClient PoeNinjaClient { get; set; }
+        [Inject] private ITrayProvider TrayProvider { get; set; }
 
         private int Count { get; set; } = 0;
         private int Completed { get; set; } = 0;
         private string Title { get; set; }
         private int Percentage { get; set; }
 
-        public static bool HasRun { get; set; } = false;
         public Task InitializationTask { get; set; }
 
         protected override async Task OnInitializedAsync()
@@ -59,7 +60,7 @@ namespace Sidekick.Modules.Initialization.Pages
             try
             {
                 Completed = 0;
-                Count = HasRun ? 9 : 12;
+                Count = 12;
 
                 // Report initial progress
                 await ReportProgress();
@@ -75,30 +76,27 @@ namespace Sidekick.Modules.Initialization.Pages
                 await Run(() => ModifierProvider.Initialize());
                 await Run(() => PseudoModifierProvider.Initialize());
                 await Run(() => PoeNinjaClient.Initialize());
+                await Run(() => KeybindProvider.Initialize());
+                await Run(() => ProcessProvider.Initialize());
+                await Run(() => KeyboardProvider.Initialize());
 
-                if (!HasRun)
-                {
-                    await Run(() => ProcessProvider.Initialize());
-                    await Run(() => KeyboardProvider.Initialize());
-                    await Run(() => KeybindProvider.Initialize());
-                }
-
-                // If we have a successful initialization, we delay for half a second to show the "Ready" label on the UI before closing the view
+                // If we have a successful initialization, we delay for half a second to show the
+                // "Ready" label on the UI before closing the view
                 Completed = Count;
                 await ReportProgress();
                 await Task.Delay(500);
 
                 // Show a system notification
-                await AppService.OpenNotification(string.Format(Resources.Notification_Message, Settings.Trade_Key_Check.ToKeybindString(), Settings.Key_Close.ToKeybindString()),
-                                                  Resources.Notification_Title);
+                TrayProvider.SendNotification(string.Format(Resources.Notification_Message, Settings.Trade_Key_Check.ToKeybindString(),
+                                                                                            Settings.Key_Close.ToKeybindString()),
+                                                                                            Resources.Notification_Title);
 
-                HasRun = true;
                 await ViewInstance.Close();
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex.Message);
-                await AppService.OpenNotification(Resources.Error);
+                TrayProvider.SendNotification(Resources.Error);
                 AppService.Shutdown();
             }
         }

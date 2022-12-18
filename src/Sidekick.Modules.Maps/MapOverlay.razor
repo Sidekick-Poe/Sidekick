@@ -1,41 +1,55 @@
 @page "/map/{itemText}"
 @layout OverlayLayout
 
-@if (DangerousMods.Count == 0)
+@if (Item == null)
 {
-    <MudPaper Outlined="true" Class="pa-2 mb-2">
-        <MudText Typo="Typo.h1" Align="Align.Center" Color="Color.Success">
-            <MudIcon Icon="@Icons.Filled.ThumbUp" Size="Size.Large"></MudIcon>
-            @Resources.Is_Safe
-        </MudText>
-    </MudPaper>
+    <LoadingAlert Text="@Resources.Parsing" />
 }
 else
 {
-    <MudPaper Outlined="true" Class="pa-2 mb-2">
-        <MudText Typo="Typo.h1" Align="Align.Center" Color="Color.Error">
-            <MudIcon Icon="@Icons.Filled.ThumbDown" Size="Size.Large"></MudIcon>
-            @Resources.Is_Unsafe
+    <MudDrawer Open="true"
+           Variant="@DrawerVariant.Persistent"
+           Width="22em"
+           Class="black"
+           ClipMode="DrawerClipMode.Always">
+        <ItemHeaderComponent Name="@Item.Original.Name"
+                         Type="@Item.Original.Type"
+                         Rarity="Item.Metadata.Rarity"
+                         Influences="Item.Influences"
+                         IsRelic="Item.Properties.IsRelic" />
+
+        <MudText Typo="Typo.h1" Align="Align.Center" Color="@(DangerousMods.Any() ? Color.Error: Color.Success)" Class="d-flex justify-center align-center pa-4">
+            <MudIcon Icon="@(DangerousMods.Any() ? Icons.Filled.ThumbDown : Icons.Filled.ThumbUp)" Size="Size.Large" Class="mr-2" />
+            @(DangerousMods.Any() ? Resources.Is_Unsafe : Resources.Is_Safe)
         </MudText>
-    </MudPaper>
-    foreach (var mod in DangerousMods)
-    {
-        <MudText Typo="Typo.body1">
-            <MudIcon Icon="@Icons.Filled.ThumbDown" Size="Size.Small" Color="Color.Error" Class="mr-2"></MudIcon>
-            @mod
-        </MudText>
-    }
-    if (OkMods.Count > 0)
-    {
-        <MudDivider Class="my-1" />
-    }
-}
-@foreach (var mod in OkMods)
-{
-    <MudText Typo="Typo.body2">
-        <MudIcon Icon="@Icons.Filled.ThumbUp" Size="Size.Small" Color="Color.Success" Class="mr-2"></MudIcon>
-        @mod
-    </MudText>
+
+        <ItemSeparator Rarity="Item.Metadata.Rarity" />
+
+        @foreach (var mod in DangerousMods)
+        {
+            <div class="d-flex align-center px-4 py-1">
+                <MudIcon Icon="@Icons.Filled.ThumbDown" Size="Size.Small" Color="Color.Error" Class="mr-2" />
+                <ItemModifierText Text="@mod" />
+            </div>
+        }
+
+        @if (DangerousMods.Any() && OkMods.Any())
+        {
+            <ItemSeparator Rarity="Item.Metadata.Rarity" />
+        }
+
+        @foreach (var mod in OkMods)
+        {
+            <div class="d-flex align-center px-4 py-1">
+                <MudIcon Icon="@Icons.Filled.ThumbUp" Size="Size.Small" Color="Color.Success" Class="mr-2" />
+                <ItemModifierText Text="@mod" />
+            </div>
+        }
+    </MudDrawer>
+
+    <div class="ml-0">
+        <PoeWikiMapInfo Item="Item" />
+    </div>
 }
 
 @code {
@@ -44,6 +58,7 @@ else
     [Inject] private IItemParser ItemParser { get; set; }
     [Inject] private ISettings Settings { get; set; }
     [Inject] private NavigationManager NavigationManager { get; set; }
+    [Inject] private IPoeWikiClient PoeWikiClient { get; set; }
 
     [Parameter] public string ItemText { get; set; }
 
@@ -53,37 +68,51 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        Item = ItemParser.ParseItem(ItemText.DecodeBase64Url());
+        if (PoeWikiClient.IsEnabled)
+        {
+            await ViewInstance.Initialize(Resources.Title, width: 616, isOverlay: true, closeOnBlur: Settings.Map_CloseWithMouse);
+        }
+        else
+        {
+            await ViewInstance.Initialize(Resources.Title, width: 308, isOverlay: true, closeOnBlur: Settings.Map_CloseWithMouse);
+        }
+        await base.OnInitializedAsync();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Item = await ItemParser.ParseItemAsync(ItemText.DecodeBase64Url());
+
         if (Item == null)
         {
-            NavigationManager.NavigateTo("/error/unparsable");
-            return;
-        }
-        if (Item.Metadata.Category != Category.Map && Item.Metadata.Category != Category.Contract)
-        {
-            NavigationManager.NavigateTo("/error/invalid");
+            NavigationManager.NavigateTo(ErrorType.Unparsable.ToUrl());
             return;
         }
 
-        await ViewInstance.Initialize(Item.Original.Type, isOverlay: true, closeOnBlur: Settings.Map_CloseWithMouse);
+        if (Item.Metadata.Category != Category.Map && Item.Metadata.Category != Category.Contract)
+        {
+            NavigationManager.NavigateTo(ErrorType.InvalidItem.ToUrl());
+            return;
+        }
 
         DangerousMods.Clear();
         OkMods.Clear();
 
         var dangerousModsRegex = new Regex(Settings.Map_Dangerous_Regex, RegexOptions.IgnoreCase);
-        FilterMods(dangerousModsRegex, Item.Modifiers.Enchant);
-        FilterMods(dangerousModsRegex, Item.Modifiers.Implicit);
-        FilterMods(dangerousModsRegex, Item.Modifiers.Explicit);
-        FilterMods(dangerousModsRegex, Item.Modifiers.Fractured);
-        FilterMods(dangerousModsRegex, Item.Modifiers.Crafted);
-        FilterMods(dangerousModsRegex, Item.Modifiers.Scourge);
+        FilterMods(dangerousModsRegex, Item.ModifierLines);
 
-        await base.OnInitializedAsync();
+        await base.OnParametersSetAsync();
     }
 
-    private void FilterMods(Regex modRegex, List<Modifier> modifiers)
+    private void FilterMods(Regex modRegex, List<ModifierLine> modifierLines)
     {
-        foreach (var mod in modifiers)
+        if (string.IsNullOrWhiteSpace(Settings.Map_Dangerous_Regex))
+        {
+            OkMods.AddRange(modifierLines.Select(x => x.Text));
+            return;
+        }
+
+        foreach (var mod in modifierLines)
         {
             if (modRegex.IsMatch(mod.Text))
             {

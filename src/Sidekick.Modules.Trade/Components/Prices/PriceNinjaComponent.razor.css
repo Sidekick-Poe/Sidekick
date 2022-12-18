@@ -12,3 +12,7 @@
     height: 100%;
     width: 100%;
 }
+
+::deep path.mud-chart-line {
+    stroke-width: 6;
+}

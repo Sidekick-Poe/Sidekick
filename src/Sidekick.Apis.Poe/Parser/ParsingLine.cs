@@ -9,9 +9,8 @@ namespace Sidekick.Apis.Poe.Parser
         /// Stores data about each line in the parsing process
         /// </summary>
         /// <param name="text">The line of the item description</param>
-        public ParsingLine(int index, string text)
+        public ParsingLine(string text)
         {
-            Index = index;
             Text = text;
         }
 
@@ -19,11 +18,6 @@ namespace Sidekick.Apis.Poe.Parser
         /// Indicates if this line has been successfully parsed
         /// </summary>
         public bool Parsed { get; set; } = false;
-
-        /// <summary>
-        /// The index of the line inside the ParsingBlock
-        /// </summary>
-        public int Index { get; }
 
         /// <summary>
         /// The line of the item description

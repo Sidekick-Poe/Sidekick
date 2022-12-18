@@ -10,6 +10,7 @@ using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Platform.Tray;
 using Sidekick.Common.Settings;
 using Sidekick.Modules.Settings.Components;
 using Sidekick.Modules.Settings.Localization;
@@ -29,6 +30,7 @@ namespace Sidekick.Modules.Settings.Setup
         [Inject] private ISettings Settings { get; set; }
         [Inject] private ICacheProvider CacheProvider { get; set; }
         [Inject] private IViewInstance ViewInstance { get; set; }
+        [Inject] private ITrayProvider TrayProvider { get; set; }
 
         public static bool HasRun { get; set; } = false;
         public bool RequiresSetup { get; set; } = false;
@@ -54,7 +56,7 @@ namespace Sidekick.Modules.Settings.Setup
                 await ViewInstance.Initialize("Setup", width: 600, height: 715, isModal: true);
 
                 RequiresSetup = true;
-                await AppService.OpenNotification(Resources.NewLeagues);
+                TrayProvider.SendNotification(Resources.NewLeagues);
             }
             else
             {

@@ -1,10 +1,19 @@
-
 @if (Visible)
 {
-    <div class="mb-2">
-        <MudText Typo="Typo.h5" Class="px-2">@Resources.Class</MudText>
-        <MudCheckBox T="bool" Checked="Enabled" Color="Color.Primary" Label="@ClassLabel" Class="font-smallcaps" CheckedChanged="CheckedChanged" />
-    </div>
+    <MudCheckBox T="bool"
+             Checked="Enabled"
+             Color="Color.Primary"
+             CheckedChanged="CheckedChanged"
+             Dense="true"
+             Size="Size.Small">
+        <div class="d-flex align-center flex-nowrap">
+            <ItemPropertyText Label="@Resources.Class"
+                          Value="ClassLabel" />
+            <Hint Text="@Resources.ClassHint" />
+        </div>
+    </MudCheckBox>
+
+    <ItemSeparator Rarity="Item.Metadata.Rarity" />
 }
 
 @code {

@@ -35,7 +35,11 @@ namespace Sidekick.Apis.PoeNinja.Repository
         public Task SavePrices(ItemType itemType, List<NinjaPrice> prices)
         {
             prices = prices
-                .GroupBy(x => (x.Name, x.Corrupted, x.MapTier, x.GemLevel))
+                .GroupBy(x => (x.Name,
+                               x.Corrupted,
+                               x.MapTier,
+                               x.GemLevel,
+                               x.Links))
                 .Select(x => x.OrderBy(x => x.Price).First())
                 .ToList();
             return cacheProvider.Set(GetCacheKey(itemType), prices);

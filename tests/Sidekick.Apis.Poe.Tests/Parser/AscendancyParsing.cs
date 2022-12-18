@@ -1,5 +1,5 @@
-using System.Linq;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items.Modifiers;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Parser
@@ -17,31 +17,33 @@ namespace Sidekick.Apis.Poe.Tests.Parser
         [Fact]
         public void ParseEnchantWithAdditionalProjectiles()
         {
-            var actual = parser.ParseItem(@"Item Class: Unknown
+            var actual = parser.ParseItem(@"Item Class: Helmets
 Rarity: Rare
-Doom Glance
-Hubris Circlet
+Corruption Crown
+Regicide Mask
 --------
-Energy Shield: 111 (augmented)
+Evasion Rating: 234 (augmented)
+Energy Shield: 57 (augmented)
 --------
 Requirements:
-Level: 69
-Int: 154
+Level: 63
+Dex: 58
+Int: 58
 --------
-Sockets: B-B 
+Sockets: G
 --------
-Item Level: 69
+Item Level: 83
 --------
 Split Arrow fires 2 additional Projectiles (enchant)
 --------
-+26 to Intelligence
-+4 to maximum Energy Shield
-39% increased Energy Shield
-+25 to maximum Life");
++10 to Dexterity
++83 to Evasion Rating
++26 to maximum Energy Shield
+14% increased Rarity of Items found
+27% increased Stun and Block Recovery
+");
 
-            var enchants = actual.Modifiers.Enchant.Select(x => x.Text);
-            Assert.Contains("Split Arrow fires 2 additional Projectiles", enchants);
-            Assert.Equal(2, actual.Modifiers.Enchant.First().Values.First());
+            actual.AssertHasModifier(ModifierCategory.Enchant, "Split Arrow fires an additional Projectile", 2);
         }
 
         [Fact]
@@ -62,6 +64,5 @@ Travel to the Aspirants' Plaza and spend this item to open the Eternal Labyrinth
             Assert.Equal(Category.Map, actual.Metadata.Category);
             Assert.Equal("Tribute to the Goddess", actual.Metadata.Type);
         }
-
     }
 }

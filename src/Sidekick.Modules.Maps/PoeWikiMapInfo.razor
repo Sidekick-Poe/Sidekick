@@ -1,0 +1,75 @@
+@if (PoeWikiClient.IsEnabled)
+{
+    if (Loading)
+    {
+        <LoadingAlert Text="@Resources.Fetching" />
+    }
+    else if (Map != null)
+    {
+        if (Map.Bosses.Any())
+        {
+            <MudPaper Class="mb-4">
+                <MudText Typo="Typo.subtitle2" Class="pt-4 px-4">@Resources.MapBossesTitle</MudText>
+                <MudList Clickable Dense>
+                    @foreach (var boss in Map.Bosses.OrderBy(x => x.Name))
+                    {
+                        <MudListItem OnClick="@(() => PoeWikiClient.OpenUri(boss))">@boss.Name</MudListItem>
+                    }
+                </MudList>
+            </MudPaper>
+        }
+
+        <MudPaper Class="mb-4">
+            <MudText Typo="Typo.subtitle2" Class="pt-4 px-4">@Resources.DropsTitle</MudText>
+            @if (Map.Drops.Any())
+            {
+                <MudList Clickable Dense>
+                    @foreach (var drop in Map.Drops.OrderBy(x => x.Name))
+                    {
+                        <MudListItem OnClick="@(() => PoeWikiClient.OpenUri(drop))">@drop.Name</MudListItem>
+                    }
+                </MudList>
+            }
+            else
+            {
+                <MudText Class="pa-4">@Resources.NoDropsTitle</MudText>
+            }
+        </MudPaper>
+
+        <div style="text-align:right;">
+            <MudText Typo="Typo.caption" Color="Color.Info">
+                @Resources.PoeWikiTitle
+            </MudText>
+            <MudButton Class="pa-0 mt-2"
+               Variant="Variant.Text"
+               Size="Size.Small"
+               StartIcon="@Icons.Material.Filled.OpenInBrowser"
+               OnClick="@(() => PoeWikiClient.OpenUri(Map))">@Resources.OpenInPoeWiki</MudButton>
+        </div>
+    }
+    else
+    {
+        <MudAlert Severity="Severity.Error" Variant="Variant.Filled">
+            @Resources.PoeWikiError
+        </MudAlert>
+    }
+}
+
+@code {
+    [Inject] private MapInfoResources Resources { get; set; }
+    [Inject] private IPoeWikiClient PoeWikiClient { get; set; }
+
+    [Parameter] public Item Item { get; set; }
+
+    private bool Loading { get; set; } = true;
+    private Map Map { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Loading)
+        {
+            Map = await PoeWikiClient.GetMap(Item);
+            Loading = false;
+        }
+    }
+}

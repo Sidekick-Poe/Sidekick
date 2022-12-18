@@ -1,16 +1,16 @@
 
-@if (Filters != null && Filters.Count > 0)
+@if (Filters.Count > 0)
 {
-    <div class="mb-2">
-        <MudText Typo="Typo.h5" Class="px-2">@Title</MudText>
-        @foreach (var filter in Filters)
+        foreach (var filter in Filters)
         {
             <PropertyFilterComponent Filter="filter" />
         }
-    </div>
+
+    <ItemSeparator Rarity="Rarity" />
 }
 
 @code {
-    [Parameter] public string Title { get; set; }
     [Parameter] public List<PropertyFilter> Filters { get; set; }
+
+    [Parameter] public Rarity Rarity { get; set; }
 }
