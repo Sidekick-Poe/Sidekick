@@ -1,5 +1,4 @@
 using System.IO;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -12,7 +11,6 @@ using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
-using Sidekick.Common.Blazor;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
@@ -92,15 +90,7 @@ namespace Sidekick
                 // Mocks
                 .AddSidekickMocks();
 
-            var mvcBuilder = services
-                .AddRazorPages()
-                .AddFluentValidation(options =>
-                {
-                    foreach (var module in SidekickModule.Modules)
-                    {
-                        options.RegisterValidatorsFromAssembly(module.Assembly);
-                    }
-                });
+            var mvcBuilder = services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddHttpClient();
             services.AddLocalization();

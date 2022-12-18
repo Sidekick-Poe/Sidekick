@@ -102,7 +102,7 @@ namespace Sidekick.Common.Platform.Keyboards
             { KeyCode.VcSpace, "Space" },
             { KeyCode.VcBackspace, "Backspace" },
             { KeyCode.VcEnter, "Enter" },
-            { KeyCode.VcPrintscreen,"PrintScreen" },
+            { KeyCode.VcPrintScreen,"PrintScreen" },
             { KeyCode.VcScrollLock, "ScrollLock" },
             { KeyCode.VcInsert, "Insert" },
             { KeyCode.VcHome, "Home" },
@@ -203,7 +203,7 @@ namespace Sidekick.Common.Platform.Keyboards
             {
                 if (keybindHandler.IsValid())
                 {
-                    args.Reserved = EventReservedValueMask.SuppressEvent;
+                    args.SuppressEvent = true;
                     Task.Run(() => keybindHandler.Execute(keybind));
                 }
             }

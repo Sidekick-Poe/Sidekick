@@ -12,8 +12,6 @@ namespace Sidekick.Modules.Settings
 
         public string Language_Parser { get; set; } = "";
 
-        public string Theme { get; set; } = "";
-
         public string LeagueId { get; set; } = "";
 
         public string LeaguesHash { get; set; } = "";
@@ -59,11 +57,12 @@ namespace Sidekick.Modules.Settings
         };
 
         #region Cheatsheets
+
         public string Cheatsheets_Key_Open { get; set; } = "F6";
         public string Cheatsheets_Selected { get; set; } = "betrayal";
         public string Cheatsheets_Betrayal_Sort { get; set; } = "default";
 
-        #endregion
+        #endregion Cheatsheets
 
         public DateTimeOffset? PoeNinja_LastClear { get; set; } = null;
 

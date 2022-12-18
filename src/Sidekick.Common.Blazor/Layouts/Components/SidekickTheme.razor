@@ -13,11 +13,11 @@
 
         Theme = new MudTheme()
             {
-                Palette = GetPalette(),
+                Palette = GetDefaultPalette(),
 
                 LayoutProperties = new LayoutProperties()
                 {
-                    AppbarMinHeight = "32px",
+                    AppbarHeight = "32px",
                 },
 
                 Typography = new Typography()
@@ -55,15 +55,6 @@
         return typo;
     }
 
-    private Palette GetPalette()
-    {
-        return Settings.Theme switch
-        {
-            "Cyan" => GetCyanPalette(),
-            _ => GetDefaultPalette(),
-        };
-    }
-
     private Palette GetDefaultPalette() => new Palette()
         {
             Black = "#000000",
@@ -98,45 +89,4 @@
             InfoLighten = "#26C6DA",
             InfoDarken = "#00ACC1",
         };
-
-    private Palette GetCyanPalette() => new Palette()
-        {
-            Black = "#212121",
-            Background = "#212121",
-            BackgroundGrey = "#212121",
-            Surface = "#424242",
-            Divider = "#757575",
-            DividerLight = "#E0E0E0",
-
-            DrawerBackground = "#006064",
-            DrawerText = "rgba(255,255,255, 0.90)",
-            DrawerIcon = "rgba(255,255,255, 0.90)",
-
-            AppbarBackground = "#0097A7",
-            AppbarText = "rgba(255,255,255, 0.90)",
-
-            TextPrimary = "rgba(255,255,255, 0.80)",
-            TextSecondary = "rgba(255,255,255, 0.70)",
-            TextDisabled = "rgba(255,255,255, 0.40)",
-
-            ActionDefault = "#00ACC1",
-            ActionDisabled = "rgba(255,255,255, 0.30)",
-            ActionDisabledBackground = "rgba(255,255,255, 0.15)",
-
-            Primary = "#00ACC1",
-            PrimaryContrastText = "rgba(255,255,255, 0.90)",
-            PrimaryLighten = "#80DEEA",
-            PrimaryDarken = "#00838F",
-        };
-
-    private static string Rgba(string hexString, double transparency)
-    {
-        hexString = hexString.Replace("#", "");
-
-        var r = int.Parse(hexString.Substring(0, 2), System.Globalization.NumberStyles.AllowHexSpecifier);
-        var g = int.Parse(hexString.Substring(2, 2), System.Globalization.NumberStyles.AllowHexSpecifier);
-        var b = int.Parse(hexString.Substring(4, 2), System.Globalization.NumberStyles.AllowHexSpecifier);
-
-        return $"rgba({r}, {g}, {b}, {transparency})";
-    }
 }
