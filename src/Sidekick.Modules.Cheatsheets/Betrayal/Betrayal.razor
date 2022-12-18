@@ -35,18 +35,18 @@
     {
         Agents.Add(new AgentModel(Resources.AislingName, "Aisling.png")
         {
-            Transportation = new RewardModel(Resources.AislingTransportation, RewardValue.NoValue),
-            Fortification = new RewardModel(Resources.AislingFortification, RewardValue.NoValue),
+            Transportation = new RewardModel(Resources.AislingTransportation, RewardValue.Low),
+            Fortification = new RewardModel(Resources.AislingFortification, RewardValue.Low),
             Research = new RewardModel(Resources.AislingResearch, RewardValue.High, Resources.AislingResearchTooltip),
-            Intervention = new RewardModel(Resources.AislingIntervention, RewardValue.Medium)
+            Intervention = new RewardModel(Resources.AislingIntervention, RewardValue.Low)
         });
 
         Agents.Add(new AgentModel(Resources.CameriaName, "Cameria.png")
         {
-            Transportation = new RewardModel(Resources.CameriaTransportation, RewardValue.Medium, Resources.CameriaTransportationTooltip),
-            Fortification = new RewardModel(Resources.CameriaFortification, RewardValue.Medium),
+            Transportation = new RewardModel(Resources.CameriaTransportation, RewardValue.Low, Resources.CameriaTransportationTooltip),
+            Fortification = new RewardModel(Resources.CameriaFortification, RewardValue.Low),
             Research = new RewardModel(Resources.CameriaResearch, RewardValue.Medium),
-            Intervention = new RewardModel(Resources.CameriaIntervention, RewardValue.High)
+            Intervention = new RewardModel(Resources.CameriaIntervention, RewardValue.Medium)
         });
 
         Agents.Add(new AgentModel(Resources.ElreonName, "Elreon.png")
@@ -62,13 +62,13 @@
             Transportation = new RewardModel(Resources.GraviciusTransportation, RewardValue.Medium),
             Fortification = new RewardModel(Resources.GraviciusFortification, RewardValue.Low),
             Research = new RewardModel(Resources.GraviciusResearch, RewardValue.NoValue),
-            Intervention = new RewardModel(Resources.GraviciusIntervention, RewardValue.Medium)
+            Intervention = new RewardModel(Resources.GraviciusIntervention, RewardValue.High)
         });
 
         Agents.Add(new AgentModel(Resources.GuffName, "Guff.png")
         {
-            Transportation = new RewardModel(Resources.GuffTransportation, RewardValue.Medium, Resources.GuffTransportationTooltip),
-            Fortification = new RewardModel(Resources.GuffFortification, RewardValue.Low, Resources.GuffFortificationTooltip),
+            Transportation = new RewardModel(Resources.GuffTransportation, RewardValue.Medium),
+            Fortification = new RewardModel(Resources.GuffFortification, RewardValue.Low),
             Research = new RewardModel(Resources.GuffResearch, RewardValue.Low),
             Intervention = new RewardModel(Resources.GuffIntervention, RewardValue.Low, Resources.GuffInterventionTooltip)
         });
@@ -78,14 +78,14 @@
             Transportation = new RewardModel(Resources.HakuTransportation, RewardValue.NoValue),
             Fortification = new RewardModel(Resources.HakuFortification, RewardValue.NoValue),
             Research = new RewardModel(Resources.HakuResearch, RewardValue.NoValue),
-            Intervention = new RewardModel(Resources.HakuIntervention, RewardValue.Low)
+            Intervention = new RewardModel(Resources.HakuIntervention, RewardValue.Medium)
         });
 
         Agents.Add(new AgentModel(Resources.HillockName, "Hillock.png")
         {
-            Transportation = new RewardModel(Resources.HillockTransportation, RewardValue.Low, Resources.HillockTransportationTooltip),
-            Fortification = new RewardModel(Resources.HillockFortification, RewardValue.Low, Resources.HillockFortificationTooltip),
-            Research = new RewardModel(Resources.HillockResearch, RewardValue.Low, Resources.HillockResearchTooltip),
+            Transportation = new RewardModel(Resources.HillockTransportation, RewardValue.Medium, Resources.HillockTransportationTooltip),
+            Fortification = new RewardModel(Resources.HillockFortification, RewardValue.Medium, Resources.HillockFortificationTooltip),
+            Research = new RewardModel(Resources.HillockResearch, RewardValue.High, Resources.HillockResearchTooltip),
             Intervention = new RewardModel(Resources.HillockIntervention, RewardValue.Low, Resources.HillockInterventionTooltip)
         });
 
@@ -93,30 +93,30 @@
         {
             Transportation = new RewardModel(Resources.ItThatFledTransportation, RewardValue.Low),
             Fortification = new RewardModel(Resources.ItThatFledFortification, RewardValue.Low),
-            Research = new RewardModel(Resources.ItThatFledResearch, RewardValue.High, Resources.ItThatFledResearchTooltip),
-            Intervention = new RewardModel(Resources.ItThatFledIntervention, RewardValue.Low)
+            Research = new RewardModel(Resources.ItThatFledResearch, RewardValue.High),
+            Intervention = new RewardModel(Resources.ItThatFledIntervention, RewardValue.Medium)
         });
 
         Agents.Add(new AgentModel(Resources.JanusName, "Janus.png")
         {
             Transportation = new RewardModel(Resources.JanusTransportation, RewardValue.Low),
-            Fortification = new RewardModel(Resources.JanusFortification, RewardValue.Medium),
+            Fortification = new RewardModel(Resources.JanusFortification, RewardValue.Low),
             Research = new RewardModel(Resources.JanusResearch, RewardValue.Medium),
-            Intervention = new RewardModel(Resources.JanusIntervention, RewardValue.Low)
+            Intervention = new RewardModel(Resources.JanusIntervention, RewardValue.High)
         });
 
         Agents.Add(new AgentModel(Resources.JorginName, "Jorgin.png")
         {
             Transportation = new RewardModel(Resources.JorginTransportation, RewardValue.Low),
             Fortification = new RewardModel(Resources.JorginFortification, RewardValue.Low),
-            Research = new RewardModel(Resources.JorginResearch, RewardValue.Low, Resources.JorginResearchTooltip),
-            Intervention = new RewardModel(Resources.JorginIntervention, RewardValue.High)
+            Research = new RewardModel(Resources.JorginResearch, RewardValue.Low),
+            Intervention = new RewardModel(Resources.JorginIntervention, RewardValue.Medium)
         });
 
         Agents.Add(new AgentModel(Resources.KorellName, "Korell.png")
         {
             Transportation = new RewardModel(Resources.KorellTransportation, RewardValue.Low),
-            Fortification = new RewardModel(Resources.KorellFortification, RewardValue.Low),
+            Fortification = new RewardModel(Resources.KorellFortification, RewardValue.Medium),
             Research = new RewardModel(Resources.KorellResearch, RewardValue.Medium),
             Intervention = new RewardModel(Resources.KorellIntervention, RewardValue.Low)
         });
@@ -125,7 +125,7 @@
         {
             Transportation = new RewardModel(Resources.LeoTransportation, RewardValue.Low),
             Fortification = new RewardModel(Resources.LeoFortification, RewardValue.Medium),
-            Research = new RewardModel(Resources.LeoResearch, RewardValue.Medium, Resources.LeoResearchTooltip),
+            Research = new RewardModel(Resources.LeoResearch, RewardValue.Medium),
             Intervention = new RewardModel(Resources.LeoIntervention, RewardValue.Low)
         });
 
@@ -133,7 +133,7 @@
         {
             Transportation = new RewardModel(Resources.RikerTransportation, RewardValue.Medium),
             Fortification = new RewardModel(Resources.RikerFortification, RewardValue.Low),
-            Research = new RewardModel(Resources.RikerResearch, RewardValue.NoValue),
+            Research = new RewardModel(Resources.RikerResearch, RewardValue.Medium),
             Intervention = new RewardModel(Resources.RikerIntervention, RewardValue.High)
         });
 
@@ -142,28 +142,28 @@
             Transportation = new RewardModel(Resources.RinTransportation, RewardValue.Low),
             Fortification = new RewardModel(Resources.RinFortification, RewardValue.Low),
             Research = new RewardModel(Resources.RinResearch, RewardValue.Low),
-            Intervention = new RewardModel(Resources.RinIntervention, RewardValue.Low)
+            Intervention = new RewardModel(Resources.RinIntervention, RewardValue.Medium)
         });
 
         Agents.Add(new AgentModel(Resources.ToraName, "Tora.png")
         {
-            Transportation = new RewardModel(Resources.ToraTransportation, RewardValue.Low, Resources.ToraTransportationTooltip),
-            Fortification = new RewardModel(Resources.ToraFortification, RewardValue.Medium, Resources.ToraFortificationTooltip),
+            Transportation = new RewardModel(Resources.ToraTransportation, RewardValue.Medium, Resources.ToraTransportationTooltip),
+            Fortification = new RewardModel(Resources.ToraFortification, RewardValue.Low, Resources.ToraFortificationTooltip),
             Research = new RewardModel(Resources.ToraResearch, RewardValue.High, Resources.ToraResearchTooltip),
-            Intervention = new RewardModel(Resources.ToraIntervention, RewardValue.Low)
+            Intervention = new RewardModel(Resources.ToraIntervention, RewardValue.Medium)
         });
 
         Agents.Add(new AgentModel(Resources.VaganName, "Vagan.png")
         {
-            Transportation = new RewardModel(Resources.VaganTransportation, RewardValue.High),
-            Fortification = new RewardModel(Resources.VaganFortification, RewardValue.High),
+            Transportation = new RewardModel(Resources.VaganTransportation, RewardValue.Low),
+            Fortification = new RewardModel(Resources.VaganFortification, RewardValue.Medium),
             Research = new RewardModel(Resources.VaganResearch, RewardValue.Medium),
             Intervention = new RewardModel(Resources.VaganIntervention, RewardValue.High)
         });
 
         Agents.Add(new AgentModel(Resources.VoriciName, "Vorici.png")
         {
-            Transportation = new RewardModel(Resources.VoriciTransportation, RewardValue.Low),
+            Transportation = new RewardModel(Resources.VoriciTransportation, RewardValue.Medium),
             Fortification = new RewardModel(Resources.VoriciFortification, RewardValue.Medium),
             Research = new RewardModel(Resources.VoriciResearch, RewardValue.High, Resources.VoriciResearchTooltip),
             Intervention = new RewardModel(Resources.VoriciIntervention, RewardValue.Low)

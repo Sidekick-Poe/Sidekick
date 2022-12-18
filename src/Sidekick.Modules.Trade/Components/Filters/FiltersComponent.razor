@@ -1,87 +1,56 @@
+@* Root <div> element is required for ::deep CSS styles to be applied. *@
+<MudDrawer Open="true"
+           Variant="@DrawerVariant.Persistent"
+           Width="22em"
+           Class="black"
+           ClipMode="DrawerClipMode.Always">
+    <ItemHeaderComponent Name="@Item.Original.Name"
+                         Type="@Item.Original.Type"
+                         Rarity="Item.Metadata.Rarity"
+                         Influences="Item.Influences"
+                         IsRelic="Item.Properties.IsRelic" />
 
-@if (Visible)
-{
-    // Root <div> element is required for ::deep CSS styles to be applied.
-    <div>
-        <MudPaper Class="mb-2">
-            @if (!Expanded)
-            {
-                <MudButton Variant="Variant.Text" Color="Color.Info" FullWidth="true" Class="d-flex flex-row justify-center align-center" OnClick="Expand">
-                    <MudIcon Color="Color.Info" Icon="@Icons.Material.Filled.ArrowDropDown" />
-                    <MudText Color="Color.Info" Class="font-smallcaps">@Resources.Filters_Expand</MudText>
-                    <MudIcon Color="Color.Info" Icon="@Icons.Material.Filled.ArrowDropDown" />
-                </MudButton>
-            }
-            else
-            {
-                <MudButton Variant="Variant.Text" Color="Color.Info" FullWidth="true" Class="d-flex flex-row justify-center align-center" OnClick="Collapse">
-                    <MudIcon Color="Color.Info" Icon="@Icons.Material.Filled.ArrowDropUp" />
-                    <MudText Color="Color.Info" Class="font-smallcaps">@Resources.Filters_Collapse</MudText>
-                    <MudIcon Color="Color.Info" Icon="@Icons.Material.Filled.ArrowDropUp" />
-                </MudButton>
+    @if (Item != null)
+    {
+        <PriceNinjaComponent Item="Item" />
+        <PricePredictionComponent Item="Item" />
+    }
 
-                <div class="d-flex justify-center pa-2">
-                    <MudButton FullWidth
-                               Variant="Variant.Filled"
-                               Color="Color.Primary"
-                               OnClick="Search">@Resources.Filters_Submit</MudButton>
-                </div>
+    @if (FiltersVisible)
+    {
+        <ClassFilter @bind-Value="PropertyFilters.Class" Item="Item" />
 
-                <MudGrid Spacing="2">
-                    <MudItem xs="12" sm="6">
-                        <ClassFilter @bind-Value="PropertyFilters.Class" Item="Item" />
-                        <PropertyFiltersComponent Filters="PropertyFilters.Armour" Title="@Resources.Filters_Armour" />
-                        <PropertyFiltersComponent Filters="PropertyFilters.Weapon" Title="@Resources.Filters_Weapon" />
-                        <PropertyFiltersComponent Filters="PropertyFilters.Map" Title="@Resources.Filters_Map" />
-                        <PropertyFiltersComponent Filters="PropertyFilters.Misc" Title="@Resources.Filters_Misc" />
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        @if (ModifierVisible)
-                        {
-                            <div class="mb-2 alternate-background">
-                                <MudText Typo="Typo.h5" Class="px-2">@Resources.Filters_Modifiers</MudText>
-                                <ModifierFiltersComponent Filters="ModifierFilters.Enchant" />
-                                <ModifierFiltersComponent Filters="ModifierFilters.Scourge" />
-                                <ModifierFiltersComponent Filters="ModifierFilters.Implicit" />
-                                <ModifierFiltersComponent Filters="ModifierFilters.Explicit" />
-                                <ModifierFiltersComponent Filters="ModifierFilters.Crafted" />
-                                <ModifierFiltersComponent Filters="ModifierFilters.Fractured" />
-                            </div>
-                        }
+        <PropertyFiltersComponent Filters="PropertyFilters.Armour"
+                              Rarity="Item.Metadata.Rarity" />
+        <PropertyFiltersComponent Filters="PropertyFilters.Weapon"
+                              Rarity="Item.Metadata.Rarity" />
+        <PropertyFiltersComponent Filters="PropertyFilters.Map"
+                              Rarity="Item.Metadata.Rarity" />
+        <PropertyFiltersComponent Filters="PropertyFilters.Misc"
+                              Rarity="Item.Metadata.Rarity" />
 
-                        @if (PseudoVisible)
-                        {
-                            <div class="mb-2 alternate-background">
-                                <MudText Typo="Typo.h5" Class="px-2">@Resources.Filters_Pseudo</MudText>
-                                <ModifierFiltersComponent Filters="ModifierFilters.Pseudo" />
-                            </div>
-                        }
-                    </MudItem>
-                </MudGrid>
+        <ModifierFiltersComponent Filters="ModifierFilters"
+                              Rarity="Item.Metadata.Rarity" />
 
-                <div class="d-flex justify-center pa-2">
-                    <MudButton FullWidth
-                               Variant="Variant.Filled"
-                               Color="Color.Primary"
-                               OnClick="Search">@Resources.Filters_Submit</MudButton>
-                </div>
-            }
-        </MudPaper>
-    </div>
-}
+        <div class="d-flex justify-center pa-2">
+            <MudButton FullWidth
+                   Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   OnClick="Search">@Resources.Filters_Submit</MudButton>
+        </div>
+    }
+</MudDrawer>
 
 @code {
     [Inject] public TradeResources Resources { get; set; }
 
     [Parameter] public Item Item { get; set; }
     [Parameter] public PropertyFilters PropertyFilters { get; set; }
-    [Parameter] public ModifierFilters ModifierFilters { get; set; }
+    [Parameter] public List<ModifierFilter> ModifierFilters { get; set; }
     [Parameter] public EventCallback OnSearch { get; set; }
 
     private bool Expanded { get; set; } = false;
-    private bool Visible { get; set; }
-    private bool ModifierVisible { get; set; }
-    private bool PseudoVisible { get; set; }
+    private bool FiltersVisible { get; set; }
     private bool IsInit { get; set; } = false;
 
     protected override void OnParametersSet()
@@ -98,17 +67,9 @@
         propertyCount += PropertyFilters?.Weapon?.Count ?? 0;
 
         int modifierCount = 0;
-        modifierCount += ModifierFilters?.Crafted?.Count ?? 0;
-        modifierCount += ModifierFilters?.Enchant?.Count ?? 0;
-        modifierCount += ModifierFilters?.Explicit?.Count ?? 0;
-        modifierCount += ModifierFilters?.Fractured?.Count ?? 0;
-        modifierCount += ModifierFilters?.Implicit?.Count ?? 0;
-        modifierCount += ModifierFilters?.Scourge?.Count ?? 0;
-        ModifierVisible = modifierCount > 0;
-        PseudoVisible = ModifierFilters?.Pseudo?.Count > 0;
+        modifierCount += ModifierFilters?.Count ?? 0;
 
-        Visible = propertyCount > 0 || ModifierVisible || PseudoVisible;
-        Expanded = ModifierVisible;
+        FiltersVisible = (ModifierFilters?.Count ?? 0) + propertyCount > 0;
     }
 
     private void Expand()

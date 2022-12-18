@@ -42,6 +42,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionItemQuantity => "Item Quantity";
         public string DescriptionItemRarity => "Item Rarity";
         public string DescriptionMonsterPackSize => "Monster Pack Size";
+        public string DescriptionRequirements => "Requirements:";
 
         public string PrefixSuperior => "Superior";
         public string PrefixBlighted => "Blighted";

@@ -1,0 +1,42 @@
+@if (ModifierLine?.Modifier != null)
+{
+    <div class="modifiers">
+        <MudText Typo="Typo.body1" Class="modifier font-smallcaps" Align="Align.Center">
+            <ItemModifierText Text="@ModifierLine.Text"
+                      Category="ModifierLine.Modifier?.Category" />
+            @if (!string.IsNullOrWhiteSpace(ModifierLine.Modifier.Tier))
+            {
+                <span class="tier @GetTierClass(ModifierLine.Modifier.Tier)">@ModifierLine.Modifier.Tier</span>
+            }
+        </MudText>
+    </div>
+
+    if (IsLastOfCategory && (Category == ModifierCategory.Implicit || Category == ModifierCategory.Enchant))
+    {
+        <ItemSeparator Rarity="Item.Metadata.Rarity" />
+    }
+}
+
+@code {
+    [Parameter] public Item Item { get; set; }
+    [Parameter] public ModifierLine ModifierLine { get; set; }
+
+    private ModifierCategory Category => ModifierLine?.Modifier?.Category ?? ModifierCategory.Undefined;
+
+    private bool IsLastOfCategory
+    {
+        get
+        {
+            var index = Item.ModifierLines.IndexOf(ModifierLine);
+            var next = Item.ModifierLines.ElementAtOrDefault(index + 1);
+            if (next != null && next.Modifier?.Category == Category)
+            {
+                return false;
+            }
+
+            return true;
+        }
+    }
+
+    private string GetTierClass(string tier) => tier.StartsWith("P") ? "prefix" : "suffix";
+}

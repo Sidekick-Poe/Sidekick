@@ -1,0 +1,14 @@
+
+<MudTooltip Placement="Placement.Right">
+    <ChildContent>
+        <MudIcon Icon="@Icons.Material.Filled.Help" Color="Color.Info" Size="Size.Small" Class="ml-2" />
+    </ChildContent>
+
+    <TooltipContent>
+        <MudText Typo="Typo.body1" Style="max-width: 15rem;">@Text</MudText>
+    </TooltipContent>
+</MudTooltip>
+
+@code {
+    [Parameter] public string Text { get; set; }
+}

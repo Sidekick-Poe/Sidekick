@@ -1,106 +1,119 @@
 
-<div class="item-content @WrapperClass" style="@Style" @onclick="OnClick">
-    <ItemHeaderComponent Item="Item" />
-
-    @if (Layout == Layout.Cards_Maximized || Expanded)
+<div class="item-content mb-2 @WrapperClass" style="@Style" @onclick="OnClick">
+    @if (CanExpand && (Layout == Layout.Cards_Maximized || Expanded))
     {
-        <MudGrid Spacing="2" Class="pt-2 px-4">
-            <MudItem xs="6" Class="align-self-center">
-                <div class="d-inline-block">
-                    <ItemImageComponent Item="Item" />
-                </div>
+        <ItemHeaderComponent Name="@Item.Original.Name"
+                         Type="@Item.Original.Type"
+                         Influences="Item.Influences"
+                         Rarity="Item.Metadata.Rarity"
+                         IsRelic="Item.Properties.IsRelic" />
+
+        <MudGrid Spacing="0" Class="py-2 px-4">
+            <MudItem xs="9">
+                <ItemLineContentsComponent Item="Item" LineContents="Item.PropertyContents" />
+                <ItemLineContentsComponent Item="Item" LineContents="Item.AdditionalPropertyContents" />
+
+                <ItemProperties Item="Item" />
+
+                @if (Item.ModifierLines != null && Item.ModifierLines.Count > 0)
+                {
+                    <ItemSeparator Rarity="Item.Metadata.Rarity" />
+                    @foreach (var line in Item.ModifierLines)
+                    {
+                        <ItemModifierLineComponent Item="Item" ModifierLine="line" />
+                    }
+                }
+
+                @if (!Item.Properties.Identified)
+                {
+                    <ItemSeparator Rarity="Item.Metadata.Rarity" />
+                    <div class="unidentified-text">
+                        <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Unidentified</MudText>
+                    </div>
+                }
+                @if (Item.Properties.Corrupted)
+                {
+                    <ItemSeparator Rarity="Item.Metadata.Rarity" />
+                    <div class="corrupted-text">
+                        <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Corrupted</MudText>
+                    </div>
+                }
+                @if (Item.Properties.Scourged)
+                {
+                    <ItemSeparator Rarity="Item.Metadata.Rarity" />
+                    <div class="scourge-text">
+                        <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Scourged</MudText>
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(Item.Price.Note))
+                {
+                    <ItemSeparator Rarity="Item.Metadata.Rarity" />
+                    <div class="note-text">
+                        <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Item.Price.Note</MudText>
+                    </div>
+                }
             </MudItem>
-            <MudItem xs="6" Class="align-self-start">
+            <MudItem xs="3">
                 <PriceDisplay Value="(double)Item.Price.Amount" Currency="@Item.Price.Currency" />
                 <MudText Typo="Typo.body2" Align="Align.Right">@Item.Price.AccountName</MudText>
                 <PriceAge Date="Item.Price.Date" Align="Align.Right" />
+
+                <div class="d-flex justify-end mt-2">
+                    <ItemImageComponent Item="Item" />
+                </div>
             </MudItem>
         </MudGrid>
-
-        <div class="pa-2">
-            <ItemLineContentsComponent Item="Item" LineContents="Item.PropertyContents" />
-            <ItemLineContentsComponent Item="Item" LineContents="Item.AdditionalPropertyContents" />
-
-            <ItemProperties Item="Item" />
-
-            <ItemModifiersComponent Item="Item" Modifiers="Item.Modifiers.Enchant" />
-            <ItemModifiersComponent Item="Item" Modifiers="Item.Modifiers.Scourge" />
-            <ItemModifiersComponent Item="Item" Modifiers="Item.Modifiers.Implicit" />
-            <ItemModifiersComponent Item="Item" Modifiers="Item.Modifiers.Explicit" />
-            <ItemModifiersComponent Item="Item" Modifiers="Item.Modifiers.Crafted" />
-            <ItemModifiersComponent Item="Item" Modifiers="Item.Modifiers.Fractured" />
-
-            @if (!Item.Properties.Identified)
-            {
-                <div class="unidentified-text">
-                    <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Unidentified</MudText>
-                </div>
-            }
-            @if (Item.Properties.Corrupted)
-            {
-                <div class="corrupted-text">
-                    <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Corrupted</MudText>
-                </div>
-            }
-            @if (Item.Properties.Scourged)
-            {
-                <div class="scourge-text">
-                    <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Scourged</MudText>
-                </div>
-            }
-            @if (!Item.Properties.Identified || Item.Properties.Corrupted)
-            {
-                <ItemSeparatorComponent Item="Item" />
-            }
-            @if (!string.IsNullOrEmpty(Item.Price.Note))
-            {
-                <div class="note-text">
-                    <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Item.Price.Note</MudText>
-                </div>
-            }
-        </div>
     }
     else
     {
-        <div class="d-flex flex-row align-center justify-space-between pa-2">
-            <div>
-                <MudText Typo="Typo.body2" Align="Align.Left">@Item.Price.AccountName</MudText>
-                <PriceAge Date="Item.Price.Date" Align="Align.Left" />
-            </div>
-            <PriceDisplay Value="(double)Item.Price.Amount" Currency="@Item.Price.Currency" />
-        </div>
-    }
+        <MudGrid Spacing="0" Class="align-start">
+            <MudItem xs="9">
+                <ItemHeaderBackground Rarity="Item.Metadata.Rarity"
+                                  IsRelic="Item.Properties.IsRelic"
+                                  Double="false">
+                    <div class="influences left">
+                        <ItemInfluencesComponent Influences="Item.Influences" />
+                    </div>
+                    <MudText Typo="Typo.h6" Align="Align.Center" Class="name font-smallcaps" Style="@context.LabelStyle">
+                        @if (!string.IsNullOrEmpty(Item.Original.Name))
+                        {
+                            @Item.Original.Name
+                        }
+                        @if (!string.IsNullOrEmpty(Item.Original.Name) && !string.IsNullOrEmpty(Item.Original.Type))
+                        {
+                            @:,
+                        }
+                        @if (!string.IsNullOrEmpty(Item.Original.Type))
+                        {
+                            @Item.Original.Type
+                        }
+                    </MudText>
+                </ItemHeaderBackground>
 
-    @if (Layout == Layout.Cards_Minimized)
-    {
-        <div class="d-flex flex-row justify-center align-center">
-
-            @if (Expanded)
-            {
-                <MudIcon Color="Color.Info" Icon="@Icons.Material.Filled.ArrowDropUp" />
-                <MudText Color="Color.Info" Class="font-smallcaps">@Resources.View_Less</MudText>
-                <MudIcon Color="Color.Info" Icon="@Icons.Material.Filled.ArrowDropUp" />
-            }
-            else
-            {
-                <MudIcon Color="Color.Info" Icon="@Icons.Material.Filled.ArrowDropDown" />
-                <MudText Color="Color.Info" Class="font-smallcaps">@Resources.View_More</MudText>
-                <MudIcon Color="Color.Info" Icon="@Icons.Material.Filled.ArrowDropDown" />
-            }
-        </div>
+                <div class="d-flex align-center pa-2">
+                    <MudText Typo="Typo.body2" Align="Align.Left">@Item.Price.AccountName</MudText>
+                    <div>,&nbsp;</div>
+                    <PriceAge Date="Item.Price.Date" Align="Align.Left" />
+                </div>
+            </MudItem>
+            <MudItem xs="3" Class="pa-2 align-self-center">
+                <PriceDisplay Value="(double)Item.Price.Amount" Currency="@Item.Price.Currency" />
+            </MudItem>
+        </MudGrid>
     }
 </div>
 
-@code{
+@code {
     [Inject] private TradeResources Resources { get; set; }
 
     [Parameter] public TradeItem Item { get; set; }
     [Parameter] public string Style { get; set; }
     [Parameter] public Layout Layout { get; set; }
+    [Parameter] public bool CanExpand { get; set; }
 
     private bool Expanded { get; set; }
 
-    private string WrapperClass => Layout == Layout.Cards_Minimized ? "clickable" : "";
+    private string WrapperClass => Layout == Layout.Cards_Minimized && CanExpand ? "clickable" : "";
 
     private void OnClick()
     {

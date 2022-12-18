@@ -20,5 +20,7 @@ namespace Sidekick.Modules.Maps.Localization
         public string OpenInPoeWiki => localizer["OpenInPoeWiki"];
         public string NoDropsTitle => localizer["NoDropsTitle"];
         public string MapBossesTitle => localizer["MapBossesTitle"];
+        public string Parsing => localizer["Parsing"];
+        public string Fetching => localizer["Fetching"];
     }
 }

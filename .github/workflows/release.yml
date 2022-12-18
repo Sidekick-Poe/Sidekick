@@ -111,7 +111,7 @@ jobs:
         prerelease: true
     - name: Manual Release - Asset
       if: github.ref != 'refs/heads/main'
-      uses: xresloader/upload-to-github-release@v1.3.0
+      uses: xresloader/upload-to-github-release@v1.3.4
       with:
         file: src/Sidekick.Electron/bin/Desktop/Sidekick-Setup.exe
         tag_name: v${{ steps.gitversion.outputs.fullSemVer }}
@@ -131,7 +131,7 @@ jobs:
         prerelease: false
     - name: Main Release - Asset
       if: github.ref == 'refs/heads/main'
-      uses: xresloader/upload-to-github-release@v1.3.0
+      uses: xresloader/upload-to-github-release@v1.3.4
       with:
         file: src/Sidekick.Electron/bin/Desktop/Sidekick-Setup.exe
         tag_name: v${{ steps.gitversion.outputs.majorMinorPatch }}

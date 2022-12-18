@@ -1,0 +1,5 @@
+.sidekick-wrapper ::deep .mud-main-content {
+    height: calc(100vh - var(--mud-appbar-min-height));
+    overflow-y: auto;
+    padding-top: 0;
+}

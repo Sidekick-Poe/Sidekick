@@ -35,7 +35,9 @@
         var leagues = await LeagueProvider.GetList(true);
         if (leagues != null)
         {
-            Options = leagues.ToDictionary(x => x.Id, x => x.Text);
+            Options = leagues
+                .GroupBy(x => x.Id)
+                .ToDictionary(x => x.First().Id, x => x.First().Text);
         }
     }
 }

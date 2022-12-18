@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AislingTransportation" xml:space="preserve">
-    <value>Double-Veiled weapons/jewellery</value>
+    <value>Veiled Weapons/Jewellery</value>
   </data>
   <data name="AislingResearch" xml:space="preserve">
-    <value>Veiled chaos orb (T4 - adds veiled mod)</value>
+    <value>Veiled Chaos Orb</value>
   </data>
   <data name="CameriaTransportation" xml:space="preserve">
-    <value>Timeworn Item</value>
+    <value>League Specific Uniques</value>
   </data>
   <data name="CameriaFortification" xml:space="preserve">
     <value>Harbinger Orbs</value>
   </data>
   <data name="CameriaResearch" xml:space="preserve">
-    <value>Sextants</value>
+    <value>Orb of Unmasking</value>
   </data>
   <data name="CameriaIntervention" xml:space="preserve">
     <value>Sulphite Scarab</value>
@@ -148,7 +148,7 @@
     <value>Reliquary Scarabs</value>
   </data>
   <data name="GraviciusTransportation" xml:space="preserve">
-    <value>Div Card Stack</value>
+    <value>Full Stack Div Card Stack</value>
   </data>
   <data name="GraviciusFortification" xml:space="preserve">
     <value>Random Div Cards</value>
@@ -157,19 +157,19 @@
     <value>Swap Div Cards</value>
   </data>
   <data name="GraviciusIntervention" xml:space="preserve">
-    <value>Div Card Scarab</value>
+    <value>Div Card Scarabs</value>
   </data>
   <data name="GuffTransportation" xml:space="preserve">
-    <value>Chaos Crafting</value>
+    <value>Craft Currency Spam</value>
   </data>
   <data name="GuffFortification" xml:space="preserve">
-    <value>Essence Crafting</value>
+    <value>Craft Essence Spam</value>
   </data>
   <data name="GuffResearch" xml:space="preserve">
-    <value>Annull\\Ex Crafting</value>
+    <value>Craft Annul/Exalt Spam</value>
   </data>
   <data name="GuffIntervention" xml:space="preserve">
-    <value>Alteration Crafting</value>
+    <value>Craft Alt Spam</value>
   </data>
   <data name="HakuTransportation" xml:space="preserve">
     <value>Rare Items</value>
@@ -178,10 +178,10 @@
     <value>Strongboxes</value>
   </data>
   <data name="HakuResearch" xml:space="preserve">
-    <value>Quality Items</value>
+    <value>Rare Quality Items</value>
   </data>
   <data name="HakuIntervention" xml:space="preserve">
-    <value>Strongbox Scarab</value>
+    <value>Ambush Scarabs</value>
   </data>
   <data name="HillockTransportation" xml:space="preserve">
     <value>Weapon Quality</value>
@@ -214,10 +214,10 @@
     <value>Currency Shards</value>
   </data>
   <data name="JanusResearch" xml:space="preserve">
-    <value>Perandus Coins (Spawns Perandus)</value>
+    <value>Expedition Currency</value>
   </data>
   <data name="JanusIntervention" xml:space="preserve">
-    <value>Perandus Scarab</value>
+    <value>Expedition Scarabs</value>
   </data>
   <data name="JorginTransportation" xml:space="preserve">
     <value>Talismans</value>
@@ -244,16 +244,16 @@
     <value>Elder Scarab</value>
   </data>
   <data name="LeoTransportation" xml:space="preserve">
-    <value>Silver Coins</value>
+    <value>Catalysts</value>
   </data>
   <data name="LeoFortification" xml:space="preserve">
     <value>Random Currency</value>
   </data>
   <data name="LeoResearch" xml:space="preserve">
-    <value>Currency Use</value>
+    <value>Reforge Colors/Sockets/Links 50x</value>
   </data>
   <data name="LeoIntervention" xml:space="preserve">
-    <value>Torment Scarab</value>
+    <value>Metamorph Scarabs</value>
   </data>
   <data name="RikerTransportation" xml:space="preserve">
     <value>Take One Currency</value>
@@ -262,7 +262,7 @@
     <value>Take One Unique</value>
   </data>
   <data name="RikerResearch" xml:space="preserve">
-    <value>Take One Veiled</value>
+    <value>Take One Currency/Fossils/Splinters/Catalyst</value>
   </data>
   <data name="RikerIntervention" xml:space="preserve">
     <value>Blighted Scarab</value>
@@ -280,7 +280,7 @@
     <value>Cartography Scarab</value>
   </data>
   <data name="ToraTransportation" xml:space="preserve">
-    <value>Pick Item [Timed]</value>
+    <value>Timed Item Traps</value>
   </data>
   <data name="ToraFortification" xml:space="preserve">
     <value>Enchanted Items</value>
@@ -301,13 +301,13 @@
     <value>Incubators</value>
   </data>
   <data name="VaganIntervention" xml:space="preserve">
-    <value>Legion Scarab</value>
+    <value>Legion Scarabs</value>
   </data>
   <data name="VoriciTransportation" xml:space="preserve">
     <value>Quality Gems</value>
   </data>
   <data name="VoriciFortification" xml:space="preserve">
-    <value>Linking Currency</value>
+    <value>Socket Currency</value>
   </data>
   <data name="VoriciResearch" xml:space="preserve">
     <value>White Socktes</value>
@@ -316,54 +316,14 @@
     <value>Shaper Scarab</value>
   </data>
   <data name="AislingResearchTooltip" xml:space="preserve">
-    <value>Level 4: Adds 1-2 veiled mods</value>
+    <value>Level 4: Annul random and add Veiled mod</value>
   </data>
   <data name="CameriaTransportationTooltip" xml:space="preserve">
     <value>League Specific Items (Headhunter possible)</value>
   </data>
-  <data name="GuffTransportationTooltip" xml:space="preserve">
-    <value>1 Alch
-200 Chaos
-6 Exalted
-20 Divine
-20 Blessed
-1 Vaal
-Level1: 8 Seconds
-Level2: 12 Seconds
-Level3: 18 Seconds</value>
-  </data>
-  <data name="GuffFortificationTooltip" xml:space="preserve">
-    <value>20 Scouring
-5 * 4 Essences
-20 Exalted
-1 Vaal
-Level1: 8 Seconds
-Level2: 12 Seconds
-Level3: 18 Seconds</value>
-  </data>
-  <data name="GuffResearchTooltip" xml:space="preserve">
-    <value>1 Alch
-100 Anullment
-100 Exalted
-1 Divine
-1 Blessed
-1 Vaal
-Level1: 8 Seconds
-Level2: 12 Seconds
-Level3: 18 Seconds</value>
-  </data>
+
   <data name="GuffInterventionTooltip" xml:space="preserve">
-    <value>1 Transmutation
-200 Alteration
-100 Augmentation
-1 Regal
-1 Exalted
-1 Divine
-1 Vaal
-Level1: 8 Seconds
-Level2: 12 Seconds
-Level3: 18 Seconds
-Level4: All basic currency</value>
+    <value> Level 4: All Basic Currency</value>
   </data>
   <data name="HillockTransportationTooltip" xml:space="preserve">
     <value>Level1: 24 %
@@ -382,22 +342,6 @@ Level4: 30 %</value>
 Level2: 24 %
 Level3: 26 %
 Level4: 28 %</value>
-  </data>
-  <data name="ItThatFledResearchTooltip" xml:space="preserve">
-    <value>Level1: Charged
-Level2: Enriched
-Level3: Pure</value>
-  </data>
-  <data name="JorginResearchTooltip" xml:space="preserve">
-    <value>Level1: Level 1 Talisman
-Level2: Level 2 Talisman
-Level3: Level 3 Talisman</value>
-  </data>
-  <data name="LeoResearchTooltip" xml:space="preserve">
-    <value>Level1: Blessed Orb
-Level2: Divine Orb
-Level3: Exalted Orb
-Level4: 2 Exalted Orbs</value>
   </data>
   <data name="ToraTransportationTooltip" xml:space="preserve">
     <value>Time Limit: 8 Seconds
@@ -504,9 +448,9 @@ Level4: 1-6 White Sockets</value>
     <value>Aisling</value>
   </data>
   <data name="AislingFortification" xml:space="preserve">
-    <value>Double-Veiled armour/jewellery</value>
+    <value>Veiled Armour/Jewellery</value>
   </data>
   <data name="AislingIntervention" xml:space="preserve">
-    <value>Metamorph scarabs</value>
+    <value>Torment Scarabs</value>
   </data>
 </root>

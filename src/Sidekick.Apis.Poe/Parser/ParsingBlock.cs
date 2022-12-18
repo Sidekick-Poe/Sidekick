@@ -22,7 +22,7 @@ namespace Sidekick.Apis.Poe.Parser
             Lines = NEWLINEPATTERN
                 .Split(Text)
                 .Where(x => !string.IsNullOrEmpty(x))
-                .Select((x, index) => new ParsingLine(index, x))
+                .Select((x) => new ParsingLine(x))
                 .ToList();
         }
 
@@ -45,6 +45,11 @@ namespace Sidekick.Apis.Poe.Parser
                 }
             }
         }
+
+        /// <summary>
+        /// Indicates if this block has any of its lines parsed by the parser
+        /// </summary>
+        public bool AnyParsed => Lines.Any(x => x.Parsed);
 
         /// <summary>
         /// Indicates if this block has been partially parsed by the parser
