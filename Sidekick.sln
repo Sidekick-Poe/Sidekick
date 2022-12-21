@@ -61,8 +61,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Modules.Update", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Apis.Poe.Tests", "tests\Sidekick.Apis.Poe.Tests\Sidekick.Apis.Poe.Tests.csproj", "{1AE4A2BC-0990-46AC-B3ED-2CCAEDE45473}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Web", "src\Sidekick\Sidekick.Web.csproj", "{05FBE486-11D1-4785-95DB-EC97DAB813A1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Modules.Chat", "src\Sidekick.Modules.Chat\Sidekick.Modules.Chat.csproj", "{31645DEE-C169-4297-80A1-D3FC0B4AC4D0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Modules.General", "src\Sidekick.Modules.General\Sidekick.Modules.General.csproj", "{877B6B69-57F2-4706-B5C1-3973ABFE39ED}"
@@ -149,10 +147,6 @@ Global
 		{1AE4A2BC-0990-46AC-B3ED-2CCAEDE45473}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AE4A2BC-0990-46AC-B3ED-2CCAEDE45473}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AE4A2BC-0990-46AC-B3ED-2CCAEDE45473}.Release|Any CPU.Build.0 = Release|Any CPU
-		{05FBE486-11D1-4785-95DB-EC97DAB813A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{05FBE486-11D1-4785-95DB-EC97DAB813A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{05FBE486-11D1-4785-95DB-EC97DAB813A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{05FBE486-11D1-4785-95DB-EC97DAB813A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{31645DEE-C169-4297-80A1-D3FC0B4AC4D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{31645DEE-C169-4297-80A1-D3FC0B4AC4D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31645DEE-C169-4297-80A1-D3FC0B4AC4D0}.Release|Any CPU.ActiveCfg = Release|Any CPU

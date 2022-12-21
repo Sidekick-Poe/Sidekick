@@ -6,7 +6,11 @@ public partial class App : Application
     {
         InitializeComponent();
 
+#if DEBUG
         mauiBlazorInterop.StartPage = "/setup";
+#else
+        mauiBlazorInterop.StartPage = "/update";
+#endif
 
         MainPage = new MainPage();
     }
