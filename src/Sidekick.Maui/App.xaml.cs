@@ -1,12 +1,13 @@
-﻿namespace Sidekick.Maui
-{
-    public partial class App : Application
-    {
-        public App()
-        {
-            InitializeComponent();
+namespace Sidekick.Maui;
 
-            MainPage = new MainPage();
-        }
+public partial class App : Application
+{
+    public App(MauiBlazorInterop mauiBlazorInterop)
+    {
+        InitializeComponent();
+
+        mauiBlazorInterop.StartPage = "/setup";
+
+        MainPage = new MainPage();
     }
 }

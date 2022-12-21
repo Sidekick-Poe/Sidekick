@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
@@ -25,6 +26,7 @@ namespace Sidekick.Modules.Initialization.Pages
         [Inject] private ISettings Settings { get; set; }
         [Inject] private ILogger<Initialization> Logger { get; set; }
         [Inject] private IViewInstance ViewInstance { get; set; }
+        [Inject] private IViewLocator ViewLocator { get; set; }
         [Inject] private IProcessProvider ProcessProvider { get; set; }
         [Inject] private IKeyboardProvider KeyboardProvider { get; set; }
         [Inject] private IKeybindProvider KeybindProvider { get; set; }
@@ -60,7 +62,7 @@ namespace Sidekick.Modules.Initialization.Pages
             try
             {
                 Completed = 0;
-                Count = 12;
+                Count = 13;
 
                 // Report initial progress
                 await ReportProgress();
@@ -79,6 +81,7 @@ namespace Sidekick.Modules.Initialization.Pages
                 await Run(() => KeybindProvider.Initialize());
                 await Run(() => ProcessProvider.Initialize());
                 await Run(() => KeyboardProvider.Initialize());
+                await Run(() => InitializeTray());
 
                 // If we have a successful initialization, we delay for half a second to show the
                 // "Ready" label on the UI before closing the view
@@ -143,6 +146,50 @@ namespace Sidekick.Modules.Initialization.Pages
                 StateHasChanged();
                 return Task.Delay(100);
             });
+        }
+
+        private void InitializeTray()
+        {
+            var menuItems = new List<TrayMenuItem>();
+
+#if DEBUG
+            menuItems.Add(new()
+            {
+                Label = "Send Notification",
+                OnClick = () => Task.Run(() => TrayProvider.SendNotification("Test message", "Test title"))
+            });
+#endif
+
+            menuItems.AddRange(new List<TrayMenuItem>()
+            {
+                new ()
+                {
+                    Label = "Sidekick - " + typeof(StartupExtensions).Assembly.GetName().Version.ToString(),
+                    Disabled = true,
+                },
+                new ()
+                {
+                    Label = "Cheatsheets",
+                    OnClick = () => ViewLocator.Open("/cheatsheets"),
+                },
+                new ()
+                {
+                    Label = "About",
+                    OnClick = () => ViewLocator.Open("/about"),
+                },
+                new ()
+                {
+                    Label = "Settings",
+                    OnClick = () => ViewLocator.Open("/settings"),
+                },
+                new ()
+                {
+                    Label = "Exit",
+                    OnClick = () => { Environment.Exit(0); return Task.CompletedTask; },
+                },
+            });
+
+            TrayProvider.Initialize(menuItems);
         }
 
         public void Exit()

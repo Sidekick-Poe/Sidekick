@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NotificationIconSharp;
 
@@ -21,13 +19,16 @@ namespace Sidekick.Common.Platform.Tray
 
         private List<TrayMenuItem> TrayMenuItems { get; set; }
 
-        public TrayProvider(IOptions<PlatformOptions> options,
-                            IHostApplicationLifetime hostApplicationLifetime)
+        public TrayProvider(IOptions<PlatformOptions> options)
         {
             cancellationTokenSource = new CancellationTokenSource();
             this.options = options;
 
-            hostApplicationLifetime.ApplicationStarted.Register(StartLoop, true);
+            try
+            {
+                NotificationManager.Initialize("com.sidekick", "Sidekick", options.Value.IconPath);
+            }
+            catch (Exception ex) { }
         }
 
         public void Initialize(List<TrayMenuItem> trayMenuItems)
@@ -41,8 +42,6 @@ namespace Sidekick.Common.Platform.Tray
 
             TrayIcon = new NotificationIcon(options.Value.IconPath);
 
-            NotificationManager.Initialize("com.app.sidekick", "Sidekick", options.Value.IconPath);
-
             foreach (var menuItem in TrayMenuItems)
             {
                 var notificationMenuItem = new NotificationMenuItem(menuItem.Label)
@@ -52,6 +51,8 @@ namespace Sidekick.Common.Platform.Tray
                 notificationMenuItem.NotificationMenuItemSelected += NotificationMenuItem_NotificationMenuItemSelected;
                 TrayIcon.AddMenuItem(notificationMenuItem);
             }
+
+            Task.Run(StartLoop);
 
             IsInitialized = true;
         }

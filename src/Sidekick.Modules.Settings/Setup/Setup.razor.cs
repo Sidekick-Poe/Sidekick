@@ -3,8 +3,8 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using FluentValidation;
 using Microsoft.AspNetCore.Components;
+using MudBlazor;
 using Sidekick.Apis.Poe;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
@@ -34,6 +34,8 @@ namespace Sidekick.Modules.Settings.Setup
 
         public static bool HasRun { get; set; } = false;
         public bool RequiresSetup { get; set; } = false;
+        private bool Success { get; set; }
+        private MudForm Form { get; set; }
 
         private LeagueSelect RefLeagueSelect;
 
@@ -73,6 +75,12 @@ namespace Sidekick.Modules.Settings.Setup
 
         public async Task Save()
         {
+            await Form.Validate();
+            if (!Success)
+            {
+                return;
+            }
+
             await SettingsService.Save(ViewModel);
             NavigationManager.NavigateTo("/initialize");
         }
@@ -82,25 +90,6 @@ namespace Sidekick.Modules.Settings.Setup
             ViewModel.Language_Parser = value;
             GameLanguageProvider.SetLanguage(value);
             await RefLeagueSelect.RefreshOptions();
-        }
-
-        public class Validator : AbstractValidator<SettingsModel>
-        {
-            public Validator(SettingsResources resources)
-            {
-                RuleFor(v => v.Language_UI)
-                    .Cascade(CascadeMode.Stop)
-                    .NotEmpty()
-                    .WithName(resources.Language_UI);
-                RuleFor(v => v.Language_Parser)
-                    .Cascade(CascadeMode.Stop)
-                    .NotEmpty()
-                    .WithName(resources.Language_Parser);
-                RuleFor(v => v.LeagueId)
-                    .Cascade(CascadeMode.Stop)
-                    .NotEmpty()
-                    .WithName(resources.Character_League);
-            }
         }
     }
 }

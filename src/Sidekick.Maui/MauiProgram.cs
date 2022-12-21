@@ -9,6 +9,7 @@ using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
+using Sidekick.Mock;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Cheatsheets;
@@ -35,7 +36,7 @@ namespace Sidekick.Maui
 
             builder.Configuration.SetBasePath(FileSystem.Current.AppDataDirectory)
               .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-              .AddJsonFile(SettingsService.FileName, optional: true, reloadOnChange: true);
+              .AddJsonFile(SidekickPaths.GetDataFilePath(SettingsService.FileName), true, true);
 
             builder.Services.AddMauiBlazorWebView();
 
@@ -59,8 +60,8 @@ namespace Sidekick.Maui
                 .AddSidekickCommonGame()
                 .AddSidekickCommonPlatform(o =>
                 {
-                    o.WindowsIconPath = Path.GetFullPath("wwwroot/favicon.ico");
-                    o.OsxIconPath = Path.GetFullPath("wwwroot/apple-touch-icon.png");
+                    o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
+                    o.OsxIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/apple-touch-icon.png");
                 })
 
                 // Apis
@@ -79,10 +80,15 @@ namespace Sidekick.Maui
                 .AddSidekickMaps()
                 .AddSidekickSettings(builder.Configuration)
                 .AddSidekickTrade()
-                .AddSidekickUpdate();
+                .AddSidekickUpdate()
+
+                // Mocks
+                .AddSidekickMocks();
 
             builder.Services.AddHttpClient();
             builder.Services.AddLocalization();
+
+            builder.Services.AddSingleton<MauiBlazorInterop>();
 
             return builder.Build();
         }

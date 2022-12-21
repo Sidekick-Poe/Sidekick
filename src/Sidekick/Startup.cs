@@ -120,8 +120,6 @@ namespace Sidekick
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
-
-            app.UseSidekickTray(trayProvider, viewLocator, env);
         }
     }
 }

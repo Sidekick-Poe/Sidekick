@@ -28,9 +28,7 @@
 else
 {
     <SidekickLogo />
-    <EditForm Model="@ViewModel" OnValidSubmit="Save">
-        <FluentValidationValidator DisableAssemblyScanning="@true" />
-
+    <MudForm @ref="Form" @bind-IsValid="@Success">
         <MudCard Class="mt-1">
             <MudCardHeader>
                 <CardHeaderContent>
@@ -38,8 +36,8 @@ else
                 </CardHeaderContent>
             </MudCardHeader>
             <MudCardContent>
-                <UILanguageSelect @bind-Value="ViewModel.Language_UI" For="@(() => ViewModel.Language_UI)" />
-                <GameLanguageSelect Value="@ViewModel.Language_Parser" For="@(() => ViewModel.Language_Parser)" ValueChanged="OnGameLanguageChange" />
+                <UILanguageSelect @bind-Value="ViewModel.Language_UI" />
+                <GameLanguageSelect Value="@ViewModel.Language_Parser" ValueChanged="OnGameLanguageChange" />
             </MudCardContent>
         </MudCard>
 
@@ -50,20 +48,12 @@ else
                 </CardHeaderContent>
             </MudCardHeader>
             <MudCardContent>
-                <LeagueSelect @bind-Value="ViewModel.LeagueId" For="@(() => ViewModel.LeagueId)" @ref="RefLeagueSelect" />
+                <LeagueSelect @bind-Value="ViewModel.LeagueId" @ref="RefLeagueSelect" />
                 <MudTextField Label="@SettingsResources.Character_Name"
                               Variant="Variant.Filled"
                               @bind-Value="ViewModel.Character_Name" />
             </MudCardContent>
         </MudCard>
-
-        @*
-            <MudCard Class="mb-3">
-                <MudCardContent>
-                    <MudCheckBox Label="@SettingsResources.General_SendCrashReports" @bind-Checked="@ViewModel.SendCrashReports" />
-                </MudCardContent>
-            </MudCard>
-        *@
 
         <div class="d-flex justify-end">
             <MudButton OnClick="Exit"
@@ -73,9 +63,9 @@ else
             </MudButton>
             <MudButton Variant="Variant.Filled"
                        Color="Color.Primary"
-                       ButtonType="ButtonType.Submit">
+                       OnClick="() => Save()">
                 @SettingsResources.Save
             </MudButton>
         </div>
-    </EditForm>
+    </MudForm>
 }

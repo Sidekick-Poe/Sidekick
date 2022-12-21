@@ -4,9 +4,10 @@
            Label="@Resources.Character_League"
            Variant="Variant.Filled"
            Value="Value"
-           For="For"
            ValueChanged="ValueChanged"
-           OffsetY="true">
+           OffsetY="true"
+           Required="true"
+           RequiredError="League is required!">
     @foreach (var option in Options)
     {
         <MudSelectItem Value="@option.Key">@option.Value</MudSelectItem>
@@ -19,7 +20,6 @@
 
     [Parameter] public string Value { get; set; }
     [Parameter] public EventCallback<string> ValueChanged { get; set; }
-    [Parameter] public Expression<Func<string>> For { get; set; }
 
     private Dictionary<string, string> Options { get; set; } = new Dictionary<string, string>();
 

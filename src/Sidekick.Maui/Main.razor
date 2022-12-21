@@ -1,3 +1,4 @@
+@using System.Diagnostics;
 <Router AppAssembly="@typeof(MauiProgram).Assembly" AdditionalAssemblies="Sidekick.Common.Blazor.SidekickModule.Modules.Select(x=>x.Assembly)">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(WindowLayout)" />
@@ -17,3 +18,18 @@
 <MudDialogProvider />
 <MudSnackbarProvider />
 <SidekickTheme />
+
+@code {
+    [Inject] public NavigationManager NavigationManager { get; set; }
+    [Inject] public MauiBlazorInterop MauiBlazorInterop { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        if (!string.IsNullOrEmpty(MauiBlazorInterop.StartPage))
+        {
+            NavigationManager.NavigateTo(MauiBlazorInterop.StartPage);
+        }
+    }
+}
