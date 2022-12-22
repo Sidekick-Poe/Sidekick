@@ -1,7 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common.Blazor;
-using Sidekick.Common.Blazor.Views;
-using Sidekick.Development.Views;
 
 namespace Sidekick.Modules.Development
 {
@@ -13,8 +11,6 @@ namespace Sidekick.Modules.Development
             {
                 Assembly = typeof(StartupExtensions).Assembly
             });
-
-            services.AddScoped<IViewInstance, DevelopmentViewInstance>();
 
             return services;
         }

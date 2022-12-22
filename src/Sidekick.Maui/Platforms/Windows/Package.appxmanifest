@@ -6,14 +6,14 @@
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   IgnorableNamespaces="uap rescap">
 
-  <Identity Name="maui-package-name-placeholder" Publisher="CN=User Name" Version="0.0.0.0" />
+  <Identity Name="sidekick.maui" Publisher="CN=sidekick" Version="0.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="14C1A208-0A8F-440E-88F7-781E521E48C0" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>$placeholder$</DisplayName>
-    <PublisherDisplayName>User Name</PublisherDisplayName>
-    <Logo>$placeholder$.png</Logo>
+    <DisplayName>Sidekick</DisplayName>
+    <PublisherDisplayName>Sidekick</PublisherDisplayName>
+    <Logo>Assets\$placeholder$.png</Logo>
   </Properties>
 
   <Dependencies>
@@ -28,13 +28,16 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="$placeholder$"
-        Description="$placeholder$"
-        Square150x150Logo="$placeholder$.png"
-        Square44x44Logo="$placeholder$.png"
+        DisplayName="Sidekick for Path of Exile"
+        Description="Companion application for Path of Exile."
+        Square150x150Logo="Assets\$placeholder$.png"
+        Square44x44Logo="Assets\$placeholder$.png"
         BackgroundColor="transparent">
-        <uap:DefaultTile Square71x71Logo="$placeholder$.png" Wide310x150Logo="$placeholder$.png" Square310x310Logo="$placeholder$.png" />
-        <uap:SplashScreen Image="$placeholder$.png" />
+        <uap:DefaultTile Wide310x150Logo="Assets\$placeholder$.png" Square310x310Logo="Assets\$placeholder$.png"  Square71x71Logo="Assets\$placeholder$.png"/>
+        <uap:SplashScreen Image="Assets\$placeholder$.png" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/>
+          <uap:Rotation Preference="landscapeFlipped"/></uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>

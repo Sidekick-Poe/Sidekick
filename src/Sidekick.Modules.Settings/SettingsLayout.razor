@@ -62,6 +62,7 @@
     public async Task ResetCache()
     {
         CacheProvider.Clear();
-        await ViewInstance.CloseAndOpen("/initialize");
+        await ViewLocator.Open("/initialize");
+        await ViewInstance.Close();
     }
 }

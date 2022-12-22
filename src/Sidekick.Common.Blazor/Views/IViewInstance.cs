@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 
 namespace Sidekick.Common.Blazor.Views
@@ -8,6 +9,11 @@ namespace Sidekick.Common.Blazor.Views
     public interface IViewInstance
     {
         /// <summary>
+        /// Event that is triggered when the view changes.
+        /// </summary>
+        event Action OnChange;
+
+        /// <summary>
         ///  Initializes the view
         /// </summary>
         /// <param name="title"></param>
@@ -15,24 +21,9 @@ namespace Sidekick.Common.Blazor.Views
         Task Initialize(string title, int width = 768, int height = 600, bool isOverlay = false, bool isModal = false, bool closeOnBlur = false);
 
         /// <summary>
-        /// Minimizes the view
-        /// </summary>
-        Task Minimize();
-
-        /// <summary>
-        /// Maximizes the view
-        /// </summary>
-        Task Maximize();
-
-        /// <summary>
         /// Closes the view
         /// </summary>
         Task Close();
-
-        /// <summary>
-        /// Closes the view and opens a new view
-        /// </summary>
-        Task CloseAndOpen(string url);
 
         /// <summary>
         /// The title of the view

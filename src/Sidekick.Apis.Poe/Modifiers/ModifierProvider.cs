@@ -369,31 +369,11 @@ namespace Sidekick.Apis.Poe.Modifiers
                 }
             }
 
-            // Check if we need to process special pseudo patterns
-            // if (parsingItem.Metadata.Class == Common.Game.Items.Class.MiscMapItems) ParseModifiers(modifiers, IncursionRoomPatterns, parsingItem);
-            // if (parsingItem.Metadata.Class == Common.Game.Items.Class.Logbooks) ParseModifiers(modifiers, LogbookFactionPatterns, parsingItem);
-
             // Order the mods by the order they appear on the item.
             modifierLines = modifierLines.OrderBy(x => parsingItem.Text.IndexOf(x.Text)).ToList();
 
-            // Trim the beginning of modifier lines
-            for (var i = 0; i < modifierLines.Count; i++)
-            {
-                if (modifierLines[i].Modifier == null)
-                {
-                    modifierLines.Remove(modifierLines[i]);
-                    i--;
-                }
-            }
-
-            // Trim the end of modifier lines
-            for (var i = modifierLines.Count - 1; i >= 0; i--)
-            {
-                if (modifierLines[i].Modifier == null)
-                {
-                    modifierLines.Remove(modifierLines[i]);
-                }
-            }
+            // Trim modifier lines
+            modifierLines.RemoveAll(x => x.Modifier == null);
 
             return modifierLines;
         }

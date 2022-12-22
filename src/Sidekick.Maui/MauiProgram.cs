@@ -9,7 +9,6 @@ using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
-using Sidekick.Mock;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Cheatsheets;
@@ -80,10 +79,7 @@ namespace Sidekick.Maui
                 .AddSidekickMaps()
                 .AddSidekickSettings(builder.Configuration)
                 .AddSidekickTrade()
-                .AddSidekickUpdate()
-
-                // Mocks
-                .AddSidekickMocks();
+                .AddSidekickUpdate();
 
             builder.Services.AddHttpClient();
             builder.Services.AddLocalization();

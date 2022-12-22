@@ -67,7 +67,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Modules.General", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Apis.PoeWiki", "src\Sidekick.Apis.PoeWiki\Sidekick.Apis.PoeWiki.csproj", "{4DAA5492-5947-4BDF-8857-67A633F94672}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick", "src\Sidekick.Maui\Sidekick.csproj", "{BF61B582-CE5B-4858-98C2-D65E07FB2903}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Maui", "src\Sidekick.Maui\Sidekick.Maui.csproj", "{BF61B582-CE5B-4858-98C2-D65E07FB2903}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
