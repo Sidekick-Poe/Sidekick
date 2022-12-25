@@ -111,6 +111,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
             Trinkets = "Trinkets",
             Logbooks = "Expedition Logbooks",
             Sentinel = "Sentinel",
+            MemoryLine = "Memory"
         };
     }
 }
