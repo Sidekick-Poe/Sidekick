@@ -62,6 +62,7 @@ namespace Sidekick.Apis.Poe.Metadatas
             FillPattern(result.Result[12].Entries, Category.Contract, useRegex: true);
             FillPattern(result.Result[13].Entries, Category.Logbook, useRegex: true);
             FillPattern(result.Result[14].Entries, Category.Sentinel, useRegex: true);
+            FillPattern(result.Result[15].Entries, Category.MemoryLine, useRegex: true);
 
             Prefixes = new Regex("^(?:" +
                 gameLanguageProvider.Language.PrefixSuperior + " |" +

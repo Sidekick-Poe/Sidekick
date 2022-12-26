@@ -11,6 +11,7 @@ namespace Sidekick.Common.Game.Items
         AbyssJewel = 6,
         Logbooks = 7,
         Sentinel = 8,
+        MemoryLine = 9,
 
         // Accessory
         Amulet = 101,
