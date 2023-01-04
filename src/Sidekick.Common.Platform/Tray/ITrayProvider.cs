@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Sidekick.Common.Platform.Tray
@@ -5,7 +6,7 @@ namespace Sidekick.Common.Platform.Tray
     /// <summary>
     /// Interface containing functions pertaining to tray features
     /// </summary>
-    public interface ITrayProvider
+    public interface ITrayProvider : IDisposable
     {
         /// <summary>
         /// Initializes the tray provider. Creates the tray icon with the menu as specified in the PlatformOptions.

@@ -83,6 +83,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="BlazorWindow.xaml.cs">
+      <DependentUpon>BlazorWindow.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="wwwroot\css\site.css">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

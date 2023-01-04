@@ -57,7 +57,7 @@ namespace Sidekick.Common.Platform.Tray
             IsInitialized = true;
         }
 
-        public void StartLoop()
+        private void StartLoop()
         {
             while (!cancellationTokenSource.IsCancellationRequested)
             {

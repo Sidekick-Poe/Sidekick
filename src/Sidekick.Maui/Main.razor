@@ -1,4 +1,5 @@
 @using System.Diagnostics;
+@using Sidekick.Maui.Services;
 <Router AppAssembly="@typeof(MauiProgram).Assembly" AdditionalAssemblies="Sidekick.Common.Blazor.SidekickModule.Modules.Select(x=>x.Assembly)">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(WindowLayout)" />
@@ -21,15 +22,17 @@
 
 @code {
     [Inject] public NavigationManager NavigationManager { get; set; }
-    [Inject] public MauiBlazorInterop MauiBlazorInterop { get; set; }
+    [Inject] public ViewLocator ViewLocator { get; set; }
+    [Inject] public ViewInstance ViewInstance { get; set; }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
-        if (!string.IsNullOrEmpty(MauiBlazorInterop.StartPage))
+        if (!string.IsNullOrEmpty(ViewLocator.NextWindowUrl))
         {
-            NavigationManager.NavigateTo(MauiBlazorInterop.StartPage);
+            ViewInstance.SetWindow(ViewLocator.NextWindow);
+            NavigationManager.NavigateTo(ViewLocator.NextWindowUrl);
         }
     }
 }

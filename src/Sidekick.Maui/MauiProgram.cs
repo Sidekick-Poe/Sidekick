@@ -7,8 +7,10 @@ using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
+using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
+using Sidekick.Maui.Services;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Cheatsheets;
@@ -84,7 +86,11 @@ namespace Sidekick.Maui
             builder.Services.AddHttpClient();
             builder.Services.AddLocalization();
 
-            builder.Services.AddSingleton<MauiBlazorInterop>();
+            builder.Services.AddSingleton<IAppService, AppService>();
+            builder.Services.AddSingleton<IViewLocator, ViewLocator>();
+            builder.Services.AddSingleton((sp) => (ViewLocator)sp.GetService<IViewLocator>());
+            builder.Services.AddSingleton((sp) => (ViewInstance)sp.GetService<IViewInstance>());
+            builder.Services.AddScoped<IViewInstance, ViewInstance>();
 
             return builder.Build();
         }
