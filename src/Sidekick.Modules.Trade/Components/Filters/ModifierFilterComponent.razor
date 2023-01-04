@@ -86,11 +86,10 @@
         if (Filter.Line.Modifier.Category == ModifierCategory.Enchant && PoeWikiClient.IsEnabled)
         {
             var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Line);
-            var metadataIds = await PoeWikiDataProvider.GetBlightOils();
 
-            if (oilMetadataIds != null && metadataIds != null)
+            if (oilMetadataIds != null)
             {
-                EnchantmentOils = oilMetadataIds.Select(x => metadataIds[x]).ToList();
+                EnchantmentOils = oilMetadataIds.Select(x => PoeWikiDataProvider.BlightOilNamesByMetadataIds[x]).ToList();
             }
 
         }

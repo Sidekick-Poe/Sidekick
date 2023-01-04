@@ -9,6 +9,6 @@ namespace Sidekick.Apis.PoeWiki
     public interface IPoeWikiDataProvider
     {
         Task Initialize();
-        Task<Dictionary<string, string>> GetBlightOils();
+        Dictionary<string, string> BlightOilNamesByMetadataIds { get; }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Sidekick.Apis.PoeWiki.ApiModels;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Languages;
 
@@ -39,19 +40,16 @@ namespace Sidekick.Apis.PoeWiki
             };
         }
 
-        /// <summary>
-        /// Gets the metadata ids of the blight oils from PoeWiki using their common names.
-        /// </summary>
-        public async Task<Dictionary<string, string>> GetBlightOils()
-        {
-            var result = await cacheProvider.GetOrSet("PoeWikiBlightOils", () => poeWikiClient.GetMetadataIdsFromItemNames(oilNames));
-
-            return result.ToDictionary(x => x.MetadataId, x => x.Name);
-        }
+        public Dictionary<string, string> BlightOilNamesByMetadataIds { get; private set; } = new();
 
         public async Task Initialize()
         {
-            await GetBlightOils();
+            var result = await cacheProvider.GetOrSet("PoeWikiBlightOils", () => poeWikiClient.GetMetadataIdsFromItemNames(oilNames));
+
+            if (result != null)
+            {
+                BlightOilNamesByMetadataIds = result?.ToDictionary(x => x.MetadataId, x => x.Name);
+            }
         }
     }
 }
