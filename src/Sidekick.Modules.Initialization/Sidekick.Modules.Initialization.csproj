@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sidekick.Apis.PoeNinja\Sidekick.Apis.PoeNinja.csproj" />
+    <ProjectReference Include="..\Sidekick.Apis.PoeWiki\Sidekick.Apis.PoeWiki.csproj" />
     <ProjectReference Include="..\Sidekick.Apis.Poe\Sidekick.Apis.Poe.csproj" />
     <ProjectReference Include="..\Sidekick.Common.Blazor\Sidekick.Common.Blazor.csproj" />
     <ProjectReference Include="..\Sidekick.Common.Game\Sidekick.Common.Game.csproj" />

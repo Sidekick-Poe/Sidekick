@@ -7,6 +7,7 @@ using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Pseudo;
 using Sidekick.Apis.PoeNinja;
+using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Game.Languages;
@@ -37,6 +38,7 @@ namespace Sidekick.Modules.Initialization.Pages
         [Inject] private IUILanguageProvider UILanguageProvider { get; set; }
         [Inject] private IEnglishModifierProvider EnglishModifierProvider { get; set; }
         [Inject] private IPoeNinjaClient PoeNinjaClient { get; set; }
+        [Inject] private IPoeWikiDataProvider PoeWikiDataProvider { get; set; }
 
         private int Count { get; set; } = 0;
         private int Completed { get; set; } = 0;
@@ -75,6 +77,7 @@ namespace Sidekick.Modules.Initialization.Pages
                 await Run(() => ModifierProvider.Initialize());
                 await Run(() => PseudoModifierProvider.Initialize());
                 await Run(() => PoeNinjaClient.Initialize());
+                await Run(() => PoeWikiDataProvider.Initialize());
 
                 if (!HasRun)
                 {

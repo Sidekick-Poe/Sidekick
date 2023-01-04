@@ -14,6 +14,11 @@
         </div>
     </MudCheckBox>
 
+    @if (EnchantmentOils?.Any() == true)
+    {
+        <OilAnointment Oils="EnchantmentOils" />
+    }
+
     @if (Filter.Enabled)
     {
         <div class="pa-1">
@@ -69,8 +74,27 @@
 
 @code {
     [Inject] public TradeResources Resources { get; set; }
+    [Inject] private IPoeWikiClient PoeWikiClient { get; set; }
+    [Inject] private IPoeWikiDataProvider PoeWikiDataProvider { get; set; }
 
     [Parameter] public ModifierFilter Filter { get; set; }
+
+    private List<string> EnchantmentOils { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Filter.Line.Modifier.Category == ModifierCategory.Enchant && PoeWikiClient.IsEnabled)
+        {
+            var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Line);
+            var metadataIds = await PoeWikiDataProvider.GetBlightOils();
+
+            if (oilMetadataIds != null && metadataIds != null)
+            {
+                EnchantmentOils = oilMetadataIds.Select(x => metadataIds[x]).ToList();
+            }
+
+        }
+    }
 
     private string Class
     {

@@ -9,6 +9,7 @@ namespace Sidekick.Apis.PoeWiki
             services.AddHttpClient();
 
             services.AddTransient<IPoeWikiClient, PoeWikiClient>();
+            services.AddSingleton<IPoeWikiDataProvider, PoeWikiDataProvider>();
 
             return services;
         }

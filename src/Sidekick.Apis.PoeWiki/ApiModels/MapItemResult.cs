@@ -4,7 +4,7 @@ using Sidekick.Apis.PoeWiki.JsonConverters;
 
 namespace Sidekick.Apis.PoeWiki.ApiModels
 {
-    public class ItemResult
+    public class MapItemResult
     {
         public string Name { get; set; }
 
