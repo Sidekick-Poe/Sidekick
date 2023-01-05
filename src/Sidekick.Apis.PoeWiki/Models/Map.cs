@@ -9,7 +9,7 @@ namespace Sidekick.Apis.PoeWiki.Models
 {
     public class Map
     {
-        public Map(MapResult map, List<BossResult> bosses, List<ItemResult> items)
+        public Map(MapResult map, List<BossResult> bosses, List<MapItemResult> items)
         {
             Id = map.AreaId;
             Name = map.Name;

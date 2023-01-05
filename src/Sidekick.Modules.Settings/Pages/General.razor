@@ -47,6 +47,10 @@
         </CardHeaderContent>
     </MudCardHeader>
     <MudCardContent Class="pt-0">
+        <div>
+            <MudCheckBox Label="@Resources.PoeWikiData_Enable"
+                         @bind-Checked="@ViewModel.PoeWikiData_Enable"></MudCheckBox>
+        </div>
         <ThemeSelect @bind-Value="ViewModel.Theme" />
         <div>
             <MudCheckBox Label="@Resources.General_RetainClipboard"

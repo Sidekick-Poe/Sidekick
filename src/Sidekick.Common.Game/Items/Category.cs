@@ -18,5 +18,6 @@ namespace Sidekick.Common.Game.Items
         Contract = 13,
         Logbook = 14,
         Sentinel = 15,
+        MemoryLine = 16,
     }
 }

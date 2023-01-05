@@ -8,6 +8,7 @@ using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Pseudo;
 using Sidekick.Apis.PoeNinja;
+using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Game.Languages;
@@ -41,6 +42,7 @@ namespace Sidekick.Modules.Initialization.Pages
         [Inject] private IEnglishModifierProvider EnglishModifierProvider { get; set; }
         [Inject] private IPoeNinjaClient PoeNinjaClient { get; set; }
         [Inject] private ITrayProvider TrayProvider { get; set; }
+        [Inject] private IPoeWikiDataProvider PoeWikiDataProvider { get; set; }
 
         private int Count { get; set; } = 0;
         private int Completed { get; set; } = 0;
@@ -62,7 +64,7 @@ namespace Sidekick.Modules.Initialization.Pages
             try
             {
                 Completed = 0;
-                Count = 13;
+                Count = 14;
 
                 // Report initial progress
                 await ReportProgress();
@@ -81,6 +83,7 @@ namespace Sidekick.Modules.Initialization.Pages
                 await Run(() => KeybindProvider.Initialize());
                 await Run(() => ProcessProvider.Initialize());
                 await Run(() => KeyboardProvider.Initialize());
+                await Run(() => PoeWikiDataProvider.Initialize());
                 await Run(() => InitializeTray());
 
                 // If we have a successful initialization, we delay for half a second to show the
