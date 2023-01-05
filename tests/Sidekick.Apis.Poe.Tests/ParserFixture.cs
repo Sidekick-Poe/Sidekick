@@ -3,6 +3,7 @@ using Bunit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.PoeNinja;
+using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Game;
 using Sidekick.Common.Settings;
@@ -39,6 +40,7 @@ namespace Sidekick.Apis.Poe.Tests
                 // Apis
                 .AddSidekickPoeApi()
                 .AddSidekickPoeNinjaApi()
+                .AddSidekickPoeWikiApi()
 
                 // Modules
                 .AddSidekickInitialization()
