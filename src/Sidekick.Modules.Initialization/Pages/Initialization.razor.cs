@@ -185,7 +185,7 @@ namespace Sidekick.Modules.Initialization.Pages
                 new ()
                 {
                     Label = "Exit",
-                    OnClick = () => { Environment.Exit(0); return Task.CompletedTask; },
+                    OnClick = () => { AppService.Shutdown(); return Task.CompletedTask; },
                 },
             });
 

@@ -8,6 +8,7 @@ namespace Sidekick.Maui.Services
         public void Shutdown()
         {
             Application.Current.Quit();
+            Environment.Exit(0);
         }
 
         public Task OpenConfirmationNotification(string message, string title = null, Func<Task> onYes = null, Func<Task> onNo = null)

@@ -19,10 +19,16 @@ public partial class App : Application
     protected override Window CreateWindow(IActivationState activationState)
     {
         var window = base.CreateWindow(activationState);
-        if (window != null)
-        {
-            window.Title = "Sidekick";
-        }
+
+        window.Title = "Sidekick";
+
+        window.Width = 400;
+        window.MinimumWidth = 400;
+        window.MaximumWidth = 400;
+
+        window.Height = 260;
+        window.MinimumHeight = 260;
+        window.MaximumHeight = 260;
 
         return window;
     }

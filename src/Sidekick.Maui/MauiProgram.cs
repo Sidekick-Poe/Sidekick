@@ -21,6 +21,13 @@ using Sidekick.Modules.Settings;
 using Sidekick.Modules.Trade;
 using Sidekick.Modules.Update;
 
+#if WINDOWS
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
+using Windows.Graphics;
+using Microsoft.Maui.LifecycleEvents;
+#endif
+
 namespace Sidekick.Maui
 {
     public static class MauiProgram
@@ -92,7 +99,29 @@ namespace Sidekick.Maui
             builder.Services.AddSingleton((sp) => (ViewInstance)sp.GetService<IViewInstance>());
             builder.Services.AddScoped<IViewInstance, ViewInstance>();
 
+            // ConfigureWindowsLifecycle(builder);
+
             return builder.Build();
+        }
+
+        public static void ConfigureWindowsLifecycle(MauiAppBuilder builder)
+        {
+#if WINDOWS
+            builder.ConfigureLifecycleEvents(events =>
+            {
+                events.AddWindows(wndLifeCycleBuilder =>
+                {
+                    wndLifeCycleBuilder.OnWindowCreated(window =>
+                    {
+                    IntPtr nativeWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(window);
+					WindowId win32WindowsId = Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
+					AppWindow winuiAppWindow = AppWindow.GetFromWindowId(win32WindowsId);
+
+                    window.ExtendsContentIntoTitleBar = false;
+                    });
+                });
+            });
+#endif
         }
     }
 }
