@@ -94,6 +94,6 @@ namespace Sidekick.Modules.Settings
 
         public DateTimeOffset? PoeNinja_LastClear { get; set; }
 
-        public bool PoeWikiMap_Enable { get; set; }
+        public bool PoeWikiData_Enable { get; set; }
     }
 }

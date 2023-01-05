@@ -1,0 +1,12 @@
+<div>
+    @foreach (var oilName in OilNames)
+    {
+        <MudTooltip Text="@oilName">
+            <img src="/images/blight/@(oilName.Replace(" ", "_")).png" alt="@oilName" />
+        </MudTooltip>
+    }
+</div>
+
+@code {
+    [Parameter] public List<string> OilNames { get; set; }
+}

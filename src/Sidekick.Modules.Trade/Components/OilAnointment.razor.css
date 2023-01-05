@@ -1,0 +1,8 @@
+::deep {
+    display: flex;
+    padding-left: 0.5rem;
+}
+
+    ::deep img {
+        width: 3rem;
+    }

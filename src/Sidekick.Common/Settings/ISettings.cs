@@ -43,6 +43,6 @@ namespace Sidekick.Common.Settings
 
         DateTimeOffset? PoeNinja_LastClear { get; set; }
 
-        bool PoeWikiMap_Enable { get; set; }
+        bool PoeWikiData_Enable { get; set; }
     }
 }
