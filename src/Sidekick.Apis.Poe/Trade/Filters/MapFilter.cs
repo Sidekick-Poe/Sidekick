@@ -19,6 +19,9 @@ namespace Sidekick.Apis.Poe.Trade.Filters
         [JsonPropertyName("map_blighted")]
         public SearchFilterOption Blighted { get; set; }
 
+        [JsonPropertyName("map_uberblighted")]
+        public SearchFilterOption BlightRavavaged { get; set; }
+
         [JsonPropertyName("map_elder")]
         public SearchFilterOption Elder { get; set; }
 

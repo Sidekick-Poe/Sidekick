@@ -13,6 +13,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
         Map_ItemRarity,
         Map_MonsterPackSize,
         Map_Blighted,
+        Map_BlightRavaged,
         Map_Tier,
 
         Misc_Quality,

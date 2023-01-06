@@ -49,6 +49,7 @@ namespace Sidekick.Apis.PoeNinja
             { ItemType.Invitation, "invitations" },
             { ItemType.DeliriumOrb, "delirium-orbs" },
             { ItemType.BlightedMap, "blighted-maps" },
+            { ItemType.BlightRavagedMap, "blight-ravaged-maps" },
             { ItemType.Artifact, "artifacts" },
         };
 
@@ -119,7 +120,8 @@ namespace Sidekick.Apis.PoeNinja
 
                     if (itemType == ItemType.Map
                      || itemType == ItemType.UniqueMap
-                     || itemType == ItemType.BlightedMap)
+                     || itemType == ItemType.BlightedMap
+                     || itemType == ItemType.BlightRavagedMap)
                     {
                         query = query.Where(x => x.MapTier == item.Properties.MapTier);
                     }
@@ -196,6 +198,7 @@ namespace Sidekick.Apis.PoeNinja
                         result.Add(ItemType.Scarab);
                         result.Add(ItemType.Invitation);
                         result.Add(ItemType.BlightedMap);
+                        result.Add(ItemType.BlightRavagedMap);
                         break;
                     case Category.Gem: result.Add(ItemType.SkillGem); break;
                     case Category.ItemisedMonster: result.Add(ItemType.Beast); break;

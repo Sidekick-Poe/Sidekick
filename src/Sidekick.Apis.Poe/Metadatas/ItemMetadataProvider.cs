@@ -67,6 +67,7 @@ namespace Sidekick.Apis.Poe.Metadatas
             Prefixes = new Regex("^(?:" +
                 gameLanguageProvider.Language.PrefixSuperior + " |" +
                 gameLanguageProvider.Language.PrefixBlighted + " |" +
+                gameLanguageProvider.Language.PrefixBlightRavaged + " |" +
                 gameLanguageProvider.Language.PrefixAnomalous + " |" +
                 gameLanguageProvider.Language.PrefixDivergent + " |" +
                 gameLanguageProvider.Language.PrefixPhantasmal + " )");
