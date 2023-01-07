@@ -13,12 +13,5 @@ namespace Sidekick.Common.Platform.Tray
         /// </summary>
         /// <param name="trayMenuItems">Contains the list of menu items to show in the tray menu.</param>
         void Initialize(List<TrayMenuItem> trayMenuItems);
-
-        /// <summary>
-        /// Sends a system notification.
-        /// </summary>
-        /// <param name="message">Notification message.</param>
-        /// <param name="title">Notification title (optional).</param>/
-        void SendNotification(string message, string title = null);
     }
 }

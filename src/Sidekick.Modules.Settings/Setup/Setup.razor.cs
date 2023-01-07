@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using Sidekick.Apis.Poe;
-using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Languages;
-using Sidekick.Common.Platform.Tray;
+using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 using Sidekick.Modules.Settings.Components;
 using Sidekick.Modules.Settings.Localization;
@@ -24,13 +23,12 @@ namespace Sidekick.Modules.Settings.Setup
         [Inject] private SettingsModel ViewModel { get; set; }
         [Inject] private ISettingsService SettingsService { get; set; }
         [Inject] private IGameLanguageProvider GameLanguageProvider { get; set; }
-        [Inject] private IAppService AppService { get; set; }
+        [Inject] private IApplicationService ApplicationService { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }
         [Inject] private ILeagueProvider LeagueProvider { get; set; }
         [Inject] private ISettings Settings { get; set; }
         [Inject] private ICacheProvider CacheProvider { get; set; }
         [Inject] private IViewInstance ViewInstance { get; set; }
-        [Inject] private ITrayProvider TrayProvider { get; set; }
 
         public static bool HasRun { get; set; } = false;
         public bool RequiresSetup { get; set; } = false;
@@ -58,7 +56,7 @@ namespace Sidekick.Modules.Settings.Setup
                 await ViewInstance.Initialize("Setup", width: 600, height: 715, isModal: true);
 
                 RequiresSetup = true;
-                TrayProvider.SendNotification(Resources.NewLeagues);
+                ApplicationService.ShowToast(Resources.NewLeagues);
             }
             else
             {
@@ -70,7 +68,7 @@ namespace Sidekick.Modules.Settings.Setup
 
         public void Exit()
         {
-            AppService.Shutdown();
+            ApplicationService.Shutdown();
         }
 
         public async Task Save()

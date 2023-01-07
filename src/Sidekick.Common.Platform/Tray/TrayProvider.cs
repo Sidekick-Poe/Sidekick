@@ -75,11 +75,6 @@ namespace Sidekick.Common.Platform.Tray
             }
         }
 
-        public void SendNotification(string message, string title = null)
-        {
-            NotificationManager.SendNotification(title, message, Guid.NewGuid().ToString(), options.Value.IconPath);
-        }
-
         public void Dispose()
         {
             cancellationTokenSource.Cancel();

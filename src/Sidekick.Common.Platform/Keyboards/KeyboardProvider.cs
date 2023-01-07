@@ -295,7 +295,7 @@ namespace Sidekick.Common.Platform.Keyboards
         {
             if (Hook != null)
             {
-                Hook.KeyPressed += OnKeyPressed;
+                Hook.KeyPressed -= OnKeyPressed;
                 Hook.Dispose();
             }
 

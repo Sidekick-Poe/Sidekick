@@ -20,6 +20,8 @@ using Sidekick.Modules.Maps;
 using Sidekick.Modules.Settings;
 using Sidekick.Modules.Trade;
 using Sidekick.Modules.Update;
+using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Markup;
 
 #if WINDOWS
 using Microsoft.UI;
@@ -37,6 +39,8 @@ namespace Sidekick.Maui
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
+                .UseMauiCommunityToolkitMarkup()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -93,7 +97,7 @@ namespace Sidekick.Maui
             builder.Services.AddHttpClient();
             builder.Services.AddLocalization();
 
-            builder.Services.AddSingleton<IAppService, AppService>();
+            builder.Services.AddSingleton<IApplicationService, ApplicationService>();
             builder.Services.AddSingleton<IViewLocator, ViewLocator>();
             builder.Services.AddSingleton((sp) => (ViewLocator)sp.GetService<IViewLocator>());
             builder.Services.AddSingleton((sp) => (ViewInstance)sp.GetService<IViewInstance>());
@@ -113,11 +117,11 @@ namespace Sidekick.Maui
                 {
                     wndLifeCycleBuilder.OnWindowCreated(window =>
                     {
-                    IntPtr nativeWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(window);
-					WindowId win32WindowsId = Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
-					AppWindow winuiAppWindow = AppWindow.GetFromWindowId(win32WindowsId);
+                        IntPtr nativeWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(window);
+                        WindowId win32WindowsId = Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
+                        AppWindow winuiAppWindow = AppWindow.GetFromWindowId(win32WindowsId);
 
-                    window.ExtendsContentIntoTitleBar = false;
+                        window.ExtendsContentIntoTitleBar = false;
                     });
                 });
             });

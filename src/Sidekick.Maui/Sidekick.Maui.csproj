@@ -65,6 +65,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Maui" Version="3.1.0" />
+    <PackageReference Include="CommunityToolkit.Maui.Markup" Version="2.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
   </ItemGroup>
 

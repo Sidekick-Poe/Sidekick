@@ -9,7 +9,6 @@ using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Pseudo;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
-using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Localization;
@@ -37,7 +36,7 @@ namespace Sidekick.Modules.Initialization.Pages
         [Inject] private IItemMetadataProvider ItemMetadataProvider { get; set; }
         [Inject] private IItemStaticDataProvider ItemStaticDataProvider { get; set; }
         [Inject] private IGameLanguageProvider GameLanguageProvider { get; set; }
-        [Inject] private IAppService AppService { get; set; }
+        [Inject] private IApplicationService ApplicationService { get; set; }
         [Inject] private IUILanguageProvider UILanguageProvider { get; set; }
         [Inject] private IEnglishModifierProvider EnglishModifierProvider { get; set; }
         [Inject] private IPoeNinjaClient PoeNinjaClient { get; set; }
@@ -93,17 +92,15 @@ namespace Sidekick.Modules.Initialization.Pages
                 await Task.Delay(500);
 
                 // Show a system notification
-                TrayProvider.SendNotification(string.Format(Resources.Notification_Message, Settings.Trade_Key_Check.ToKeybindString(),
-                                                                                            Settings.Key_Close.ToKeybindString()),
-                                                                                            Resources.Notification_Title);
+                ApplicationService.ShowToast(string.Format(Resources.Notification, Settings.Trade_Key_Check.ToKeybindString(), Settings.Key_Close.ToKeybindString()));
 
                 await ViewInstance.Close();
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex.Message);
-                TrayProvider.SendNotification(Resources.Error);
-                AppService.Shutdown();
+                ApplicationService.ShowToast(Resources.Error);
+                ApplicationService.Shutdown();
             }
         }
 
@@ -159,7 +156,7 @@ namespace Sidekick.Modules.Initialization.Pages
             menuItems.Add(new()
             {
                 Label = "Send Notification",
-                OnClick = () => Task.Run(() => TrayProvider.SendNotification("Test message", "Test title"))
+                OnClick = () => Task.Run(() => ApplicationService.ShowToast("Test message"))
             });
 #endif
 
@@ -188,7 +185,7 @@ namespace Sidekick.Modules.Initialization.Pages
                 new ()
                 {
                     Label = "Exit",
-                    OnClick = () => { AppService.Shutdown(); return Task.CompletedTask; },
+                    OnClick = () => { ApplicationService.Shutdown(); return Task.CompletedTask; },
                 },
             });
 
@@ -197,7 +194,7 @@ namespace Sidekick.Modules.Initialization.Pages
 
         public void Exit()
         {
-            AppService.Shutdown();
+            ApplicationService.Shutdown();
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
         private const int TOKEN_ALL_ACCESS = STANDARD_RIGHTS_REQUIRED | TOKEN_ASSIGN_PRIMARY | TOKEN_DUPLICATE | TOKEN_IMPERSONATE | TOKEN_QUERY | TOKEN_QUERY_SOURCE | TOKEN_ADJUST_PRIVILEGES | TOKEN_ADJUST_GROUPS | TOKEN_ADJUST_SESSIONID | TOKEN_ADJUST_DEFAULT;
 
         private readonly ILogger logger;
-        private readonly IAppService appService;
+        private readonly IApplicationService applicationService;
         private readonly PlatformResources platformResources;
 
         public event Action OnFocus;
@@ -57,11 +57,11 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
         public ProcessProvider(
             ILogger<ProcessProvider> logger,
-            IAppService appService,
+            IApplicationService applicationService,
             PlatformResources platformResources)
         {
             this.logger = logger;
-            this.appService = appService;
+            this.applicationService = applicationService;
             this.platformResources = platformResources;
         }
 
@@ -140,7 +140,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
         private async Task RestartAsAdmin()
         {
-            await appService.OpenConfirmationNotification(platformResources.RestartAsAdminText,
+            await applicationService.OpenConfirmationNotification(platformResources.RestartAsAdminText,
                 onYes: () =>
                 {
                     try

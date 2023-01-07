@@ -1,10 +1,8 @@
-using Sidekick.Common.Blazor.Views;
-
 namespace Sidekick.Maui;
 
 public partial class App : Application
 {
-    public App(IViewLocator viewLocator, IServiceProvider serviceProvider)
+    public App(IServiceProvider serviceProvider)
     {
         var initialPage = "/update";
 

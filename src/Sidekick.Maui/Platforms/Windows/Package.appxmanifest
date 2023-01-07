@@ -28,7 +28,7 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="Sidekick for Path of Exile"
+        DisplayName="Sidekick"
         Description="Companion application for Path of Exile."
         Square150x150Logo="Assets\$placeholder$.png"
         Square44x44Logo="Assets\$placeholder$.png"

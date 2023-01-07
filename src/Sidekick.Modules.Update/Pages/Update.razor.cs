@@ -4,10 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub;
-using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Cache;
-using Sidekick.Common.Platform.Tray;
+using Sidekick.Common.Platform;
 using Sidekick.Modules.Update.Localization;
 
 namespace Sidekick.Modules.Update.Pages
@@ -16,12 +15,11 @@ namespace Sidekick.Modules.Update.Pages
     {
         [Inject] private ILogger<Update> Logger { get; set; }
         [Inject] private IGitHubClient GitHubClient { get; set; }
-        [Inject] private IAppService AppService { get; set; }
+        [Inject] private IApplicationService ApplicationService { get; set; }
         [Inject] private UpdateResources UpdateResources { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }
         [Inject] private IViewInstance ViewInstance { get; set; }
         [Inject] private ICacheProvider CacheProvider { get; set; }
-        [Inject] private ITrayProvider TrayProvider { get; set; }
 
         private string Title { get; set; }
 
@@ -79,14 +77,14 @@ namespace Sidekick.Modules.Update.Pages
             catch (Exception ex)
             {
                 Logger.LogError(ex.Message);
-                TrayProvider.SendNotification(UpdateResources.Failed);
+                ApplicationService.ShowToast(UpdateResources.Failed);
                 NavigationManager.NavigateTo("/setup");
             }
         }
 
         public void Exit()
         {
-            AppService.Shutdown();
+            ApplicationService.Shutdown();
         }
     }
 }

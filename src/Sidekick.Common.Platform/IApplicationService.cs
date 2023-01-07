@@ -1,12 +1,15 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Sidekick.Common
+namespace Sidekick.Common.Platform
 {
-    public interface IAppService
+    /// <summary>
+    /// Interface containing platform specific methods.
+    /// </summary>
+    public interface IApplicationService
     {
         /// <summary>
-        /// Shutdown the application
+        /// Shutdown the application.
         /// </summary>
         void Shutdown();
 
@@ -18,5 +21,11 @@ namespace Sidekick.Common
         /// <param name="onYes">The action to execute when the Yes button is clicked</param>
         /// <param name="onNo">The action to execute when the No button is clicked</param>
         Task OpenConfirmationNotification(string message, string title = null, Func<Task> onYes = null, Func<Task> onNo = null);
+
+        /// <summary>
+        /// Shows a system toast natively on the current operating system.
+        /// </summary>
+        /// <param name="message">The message to show.</param>
+        void ShowToast(string message);
     }
 }
