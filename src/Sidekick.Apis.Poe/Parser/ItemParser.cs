@@ -197,6 +197,7 @@ namespace Sidekick.Apis.Poe.Parser
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
                 Scourged = GetBool(patterns.Scourged, parsingItem),
                 Blighted = patterns.Blighted.IsMatch(parsingItem.Blocks[0].Lines[^1].Text),
+                BlightRavaged = patterns.BlightRavaged.IsMatch(parsingItem.Blocks[0].Lines[^1].Text),
 
                 ItemQuantity = GetInt(patterns.ItemQuantity, propertyBlock),
                 ItemRarity = GetInt(patterns.ItemRarity, propertyBlock),

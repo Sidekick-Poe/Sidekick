@@ -46,6 +46,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
 
         public string PrefixSuperior => "Рог";
         public string PrefixBlighted => "Заражённая";
+        public string PrefixBlightRavaged => "Разорённая Скверной";
         public string PrefixAnomalous => "Аномальный: ";
         public string PrefixDivergent => "Искривлённый: ";
         public string PrefixPhantasmal => "Фантомный: ";

@@ -11,6 +11,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         Regex Armor { get; }
         Regex AttacksPerSecond { get; }
         Regex Blighted { get; }
+        Regex BlightRavaged { get; }
         Regex ChanceToBlock { get; }
         Regex IsRelic { get; }
         Regex Corrupted { get; }

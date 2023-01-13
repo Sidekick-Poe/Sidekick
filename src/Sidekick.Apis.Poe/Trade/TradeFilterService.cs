@@ -234,6 +234,12 @@ namespace Sidekick.Apis.Poe.Trade
                 gameLanguageProvider.Language.PrefixBlighted,
                 item.Properties.Blighted,
                 enabled: item.Properties.Blighted);
+            // Blight-ravaged
+            InitializePropertyFilter(result.Map,
+                PropertyFilterType.Map_BlightRavaged,
+                gameLanguageProvider.Language.PrefixBlightRavaged,
+                item.Properties.BlightRavaged,
+                enabled: item.Properties.BlightRavaged);
             // Map tier
             InitializePropertyFilter(result.Map,
                 PropertyFilterType.Map_Tier,
