@@ -54,16 +54,6 @@
         }
     }
 
-    private string GetFilterTextClass()
-    {
-        return Filter.Type switch
-        {
-            PropertyFilterType.Misc_Corrupted => "corrupted-text",
-            PropertyFilterType.Misc_Scourged => "scourge-text",
-            _ => string.Empty
-        };
-    }
-
     private void SwapValues(MouseEventArgs args)
     {
         (Filter.Min, Filter.Max) = (Filter.Max, Filter.Min);

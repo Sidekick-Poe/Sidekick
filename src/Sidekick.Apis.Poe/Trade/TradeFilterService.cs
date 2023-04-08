@@ -53,7 +53,7 @@ namespace Sidekick.Apis.Poe.Trade
         {
             if (modifierLines.Count == 0) return;
 
-            foreach (var modifierLine in modifierLines)
+            foreach (var modifierLine in modifierLines.OrderBy(x => x.Modifier.Category))
             {
                 double? min = null, max = null;
 
@@ -83,7 +83,7 @@ namespace Sidekick.Apis.Poe.Trade
         {
             if (modifiers.Count == 0) return;
 
-            foreach (var modifier in modifiers)
+            foreach (var modifier in modifiers.OrderBy(x => x.Category))
             {
                 double? min, max;
 
@@ -125,7 +125,7 @@ namespace Sidekick.Apis.Poe.Trade
                 if (itemValue >= 0)
                 {
                     min = itemValue;
-                    if (sidekickSettings.Trade_Normalize_Values && category != ModifierCategory.Enchant)
+                    if (sidekickSettings.Trade_Normalize_Values && category != ModifierCategory.Enchant && category != ModifierCategory.Crucible)
                     {
                         min = NormalizeMinValue(min, delta);
                     }
@@ -133,7 +133,7 @@ namespace Sidekick.Apis.Poe.Trade
                 else
                 {
                     max = itemValue;
-                    if (sidekickSettings.Trade_Normalize_Values && category != ModifierCategory.Enchant)
+                    if (sidekickSettings.Trade_Normalize_Values && category != ModifierCategory.Enchant && category != ModifierCategory.Crucible)
                     {
                         max = NormalizeMaxValue(max, delta);
                     }
