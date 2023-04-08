@@ -32,6 +32,8 @@ namespace Sidekick.Common.Game.Items
 
         public bool Blighted { get; set; }
 
+        public bool BlightRavaged { get; set; }
+
         public double CriticalStrikeChance { get; set; }
 
         public double AttacksPerSecond { get; set; }

@@ -26,7 +26,7 @@ namespace Sidekick.Apis.Poe.Modifiers
         private readonly Regex ParenthesesPattern = new("((?:\\\\\\ )*\\\\\\([^\\(\\)]*\\\\\\))");
         private readonly Regex CleanFuzzyPattern = new("[-+0-9%#]");
         private readonly Regex TrimPattern = new(@"\s+");
-        private readonly Regex CleanOriginalTextPattern = new(" \\((?:implicit|enchant|crafted|veiled|fractured|scourge)\\)$");
+        private readonly Regex CleanOriginalTextPattern = new(" \\((?:implicit|enchant|crafted|veiled|fractured|scourge|crucible)\\)$");
 
         public ModifierProvider(
             IPseudoModifierProvider pseudoModifierProvider,
@@ -136,6 +136,7 @@ namespace Sidekick.Apis.Poe.Modifiers
                 "pseudo" => ModifierCategory.Pseudo,
                 "scourge" => ModifierCategory.Scourge,
                 "veiled" => ModifierCategory.Veiled,
+                "crucible" => ModifierCategory.Crucible,
                 _ => ModifierCategory.Undefined,
             };
         }
@@ -168,6 +169,7 @@ namespace Sidekick.Apis.Poe.Modifiers
                 ModifierCategory.Veiled => "(?:\\ \\(veiled\\))?",
                 ModifierCategory.Fractured => "(?:\\ \\(fractured\\))?",
                 ModifierCategory.Scourge => "(?:\\ \\(scourge\\))?",
+                ModifierCategory.Crucible => "(?:\\ \\(crucible\\))?",
                 _ => "",
             };
 
@@ -223,6 +225,7 @@ namespace Sidekick.Apis.Poe.Modifiers
                 ModifierCategory.Fractured => " (fractured)",
                 ModifierCategory.Scourge => " (scourge)",
                 ModifierCategory.Pseudo => " (pseudo)",
+                ModifierCategory.Crucible => " (crucible)",
                 _ => "",
             };
 

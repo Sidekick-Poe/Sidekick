@@ -308,6 +308,10 @@ namespace Sidekick.Apis.Poe.Trade
                         filters.MapFilters.Filters.Blighted = new SearchFilterOption(propertyFilter);
                         break;
 
+                    case PropertyFilterType.Map_BlightRavaged:
+                        filters.MapFilters.Filters.BlightRavavaged = new SearchFilterOption(propertyFilter);
+                        break;
+
                     case PropertyFilterType.Map_Tier:
                         filters.MapFilters.Filters.MapTier = new SearchFilterValue(propertyFilter);
                         break;
