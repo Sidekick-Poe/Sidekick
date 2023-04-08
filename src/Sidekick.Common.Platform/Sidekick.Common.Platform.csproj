@@ -6,9 +6,9 @@
 
   <ItemGroup>
     <PackageReference Include="NotificationIconSharp" Version="1.0.1" />
-    <PackageReference Include="SharpHook" Version="4.0.0" />
+    <PackageReference Include="SharpHook" Version="4.1.0" />
     <PackageReference Include="TextCopy" Version="6.2.1" />
-    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="7.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="7.0.4" />
     <PackageReference Include="System.Security.Principal.Windows" Version="5.0.0" />
   </ItemGroup>
 

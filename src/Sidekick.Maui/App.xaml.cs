@@ -1,5 +1,3 @@
-using H.NotifyIcon;
-
 namespace Sidekick.Maui;
 
 public partial class App : Application
@@ -29,8 +27,6 @@ public partial class App : Application
         window.Height = 260;
         window.MinimumHeight = 260;
         window.MaximumHeight = 260;
-
-        WindowExtensions.
 
         return window;
     }
