@@ -85,6 +85,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="InitialWindow.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
     <Compile Update="BlazorWindow.xaml.cs">
       <DependentUpon>BlazorWindow.xaml</DependentUpon>
     </Compile>
@@ -98,6 +101,12 @@
     <Content Update="wwwroot\favicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-windows10.0.19041.0'">
+    <PackageReference Include="H.NotifyIcon.WinUI">
+      <Version>2.0.75</Version>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

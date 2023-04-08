@@ -1,3 +1,5 @@
+using H.NotifyIcon;
+
 namespace Sidekick.Maui;
 
 public partial class App : Application
@@ -11,7 +13,7 @@ public partial class App : Application
 #endif
 
         InitializeComponent();
-        MainPage = new BlazorWindow(serviceProvider, initialPage);
+        MainPage = new InitialWindow(serviceProvider, initialPage);
     }
 
     protected override Window CreateWindow(IActivationState activationState)
@@ -28,6 +30,13 @@ public partial class App : Application
         window.MinimumHeight = 260;
         window.MaximumHeight = 260;
 
+        WindowExtensions.
+
         return window;
+    }
+
+    public override void CloseWindow(Window window)
+    {
+        base.CloseWindow(window);
     }
 }
