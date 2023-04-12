@@ -491,6 +491,7 @@ namespace Sidekick.Apis.Poe.Trade
                     DamagePerSecond = result.Item.Extended.DamagePerSecond,
                     ElementalDps = result.Item.Extended.ElementalDps,
                     PhysicalDps = result.Item.Extended.PhysicalDps,
+                    BaseDefencePercentile = result.Item.Extended.BaseDefencePercentile,
                 },
             };
 
