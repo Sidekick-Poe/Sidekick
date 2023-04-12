@@ -36,5 +36,8 @@ namespace Sidekick.Apis.Poe.Trade.Results
 
         [JsonPropertyName("es_aug")]
         public bool EnergyShieldAugmented { get; set; }
+
+        [JsonPropertyName("base_defence_percentile")]
+        public int? BaseDefencePercentile { get; set; }
     }
 }

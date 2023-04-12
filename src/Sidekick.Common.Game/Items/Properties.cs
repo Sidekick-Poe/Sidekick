@@ -47,5 +47,7 @@ namespace Sidekick.Common.Game.Items
         public bool IsRelic { get; set; }
 
         public bool Scourged { get; set; }
+
+        public int? BaseDefencePercentile { get; set; }
     }
 }

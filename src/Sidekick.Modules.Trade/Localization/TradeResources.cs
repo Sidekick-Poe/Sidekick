@@ -44,5 +44,6 @@ namespace Sidekick.Modules.Trade.Localization
         public string Scourged => localizer["Scourged"];
         public string Trade => localizer["Trade"];
         public string Unidentified => localizer["Unidentified"];
+        public string BasePercentile => localizer["Base_Percentile"];
     }
 }
