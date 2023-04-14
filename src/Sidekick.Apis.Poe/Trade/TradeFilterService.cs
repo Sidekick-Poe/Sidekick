@@ -53,7 +53,7 @@ namespace Sidekick.Apis.Poe.Trade
         {
             if (modifierLines.Count == 0) return;
 
-            foreach (var modifierLine in modifierLines.OrderBy(x => x.Modifier.Category))
+            foreach (var modifierLine in modifierLines)
             {
                 double? min = null, max = null;
 
@@ -83,7 +83,7 @@ namespace Sidekick.Apis.Poe.Trade
         {
             if (modifiers.Count == 0) return;
 
-            foreach (var modifier in modifiers.OrderBy(x => x.Category))
+            foreach (var modifier in modifiers)
             {
                 double? min, max;
 
