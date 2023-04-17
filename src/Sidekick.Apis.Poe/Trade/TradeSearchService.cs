@@ -237,7 +237,7 @@ namespace Sidekick.Apis.Poe.Trade
         {
             foreach (var propertyFilter in propertyFilters)
             {
-                if (!propertyFilter.Enabled && propertyFilter.Type != PropertyFilterType.Misc_Corrupted)
+                if (!propertyFilter.Enabled == true && propertyFilter.Type != PropertyFilterType.Misc_Corrupted)
                 {
                     continue;
                 }
@@ -330,7 +330,7 @@ namespace Sidekick.Apis.Poe.Trade
                         break;
 
                     case PropertyFilterType.Misc_Corrupted:
-                        filters.MiscFilters.Filters.Corrupted = new SearchFilterOption(propertyFilter);
+                        filters.MiscFilters.Filters.Corrupted = propertyFilter.Enabled.HasValue ? new SearchFilterOption(propertyFilter) : null;
                         break;
 
                     case PropertyFilterType.Misc_Scourged:
@@ -491,6 +491,7 @@ namespace Sidekick.Apis.Poe.Trade
                     DamagePerSecond = result.Item.Extended.DamagePerSecond,
                     ElementalDps = result.Item.Extended.ElementalDps,
                     PhysicalDps = result.Item.Extended.PhysicalDps,
+                    BaseDefencePercentile = result.Item.Extended.BaseDefencePercentile,
                 },
             };
 

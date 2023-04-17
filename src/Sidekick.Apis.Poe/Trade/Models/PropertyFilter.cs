@@ -4,7 +4,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
     {
         public PropertyFilterType Type { get; set; }
 
-        public bool Enabled { get; set; }
+        public bool? Enabled { get; set; }
 
         public double? Min { get; set; }
 

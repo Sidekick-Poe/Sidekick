@@ -53,7 +53,7 @@ namespace Sidekick.Apis.Poe.Trade
         {
             if (modifierLines.Count == 0) return;
 
-            foreach (var modifierLine in modifierLines.OrderBy(x => x.Modifier.Category))
+            foreach (var modifierLine in modifierLines)
             {
                 double? min = null, max = null;
 
@@ -83,7 +83,7 @@ namespace Sidekick.Apis.Poe.Trade
         {
             if (modifiers.Count == 0) return;
 
-            foreach (var modifier in modifiers.OrderBy(x => x.Category))
+            foreach (var modifier in modifiers)
             {
                 double? min, max;
 
@@ -273,8 +273,8 @@ namespace Sidekick.Apis.Poe.Trade
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Corrupted,
                 gameLanguageProvider.Language.DescriptionCorrupted,
-                item.Properties.Corrupted,
-                enabled: item.Properties.Corrupted);
+                true,
+                enabled: item.Properties.Corrupted ? true : null);
             // Crusader
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Influence_Crusader,
@@ -326,7 +326,7 @@ namespace Sidekick.Apis.Poe.Trade
             string label,
             T value,
             double delta = 5,
-            bool enabled = false,
+            bool? enabled = false,
             double? min = null,
             double? max = null)
         {
@@ -336,7 +336,7 @@ namespace Sidekick.Apis.Poe.Trade
             {
                 case bool boolValue:
                     valueType = FilterValueType.Boolean;
-                    if (!boolValue) return;
+                    if (!boolValue && enabled == false) return;
                     break;
 
                 case int intValue:

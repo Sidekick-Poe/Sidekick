@@ -1,11 +1,16 @@
 
-<span class="font-smallcaps">
-    @Label:
-    <span style="color:#FFFFFF;">@Value</span>
-</span>
+<div class="font-smallcaps">
+    @Label
+    @if (OnlyShowLabel == false)
+    {
+        <span>: </span><span style="color:#FFFFFF;">@Value</span>
+    }
+</div>
 
 @code {
     [Parameter] public string Label { get; set; }
 
     [Parameter] public object Value { get; set; }
+
+    [Parameter] public bool OnlyShowLabel { get; set; }
 }
