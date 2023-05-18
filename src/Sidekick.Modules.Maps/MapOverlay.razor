@@ -89,7 +89,9 @@ else
             return;
         }
 
-        if (Item.Metadata.Category != Category.Map && Item.Metadata.Category != Category.Contract)
+        if (Item.Metadata.Category != Category.Map &&
+            Item.Metadata.Category != Category.Contract &&
+            Item.Metadata.Category != Category.Logbook)
         {
             NavigationManager.NavigateTo(ErrorType.InvalidItem.ToUrl());
             return;
