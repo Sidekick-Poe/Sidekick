@@ -9,12 +9,21 @@ namespace Sidekick.Common.Blazor
     /// </summary>
     public abstract class SidekickView : ComponentBase, IDisposable
     {
+        [Inject]
         private IViewLocator ViewLocator { get; set; }
+
+        [Inject]
+        private NavigationManager NavigationManager { get; set; }
 
         /// <summary>
         /// Event that is triggered when the view changes.
         /// </summary>
         public event Action OnChange;
+
+        /// <summary>
+        /// Gets the current url of the view.
+        /// </summary>
+        public string Url => NavigationManager.Uri.ToString();
 
         /// <summary>
         /// Gets the title of the view.
@@ -55,14 +64,14 @@ namespace Sidekick.Common.Blazor
         /// <inheritdoc/>
         protected override void OnInitialized()
         {
-            ViewLocator.Views.Add(this);
+            ViewLocator.Add(this);
             base.OnInitialized();
         }
 
         /// <inheritdoc/>
         public void Dispose()
         {
-            ViewLocator.Views.Remove(this);
+            ViewLocator.Remove(this);
         }
     }
 }

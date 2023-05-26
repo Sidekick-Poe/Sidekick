@@ -1,3 +1,4 @@
+using ElectronNET.API;
 using MudBlazor.Services;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
@@ -8,6 +9,7 @@ using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
+using Sidekick.Electron;
 using Sidekick.Mock;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
@@ -21,6 +23,7 @@ using Sidekick.Modules.Trade;
 using Sidekick.Modules.Update;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.UseElectron(args);
 
 #region Configuration
 
@@ -30,6 +33,7 @@ builder.Configuration.AddJsonFile(SidekickPaths.GetDataFilePath(SettingsService.
 
 #region Services
 
+builder.Services.AddElectron();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddHttpClient();
@@ -97,4 +101,11 @@ app.MapFallbackToPage("/_Host");
 
 #endregion Pipeline
 
-app.Run();
+await app.StartAsync();
+
+if (HybridSupport.IsElectronActive)
+{
+    await Bootstrap.ElectronBootstrap();
+}
+
+app.WaitForShutdown();

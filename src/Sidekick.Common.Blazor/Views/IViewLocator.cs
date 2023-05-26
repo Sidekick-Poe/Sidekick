@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Sidekick.Common.Blazor.Views
@@ -9,15 +8,28 @@ namespace Sidekick.Common.Blazor.Views
     public interface IViewLocator
     {
         /// <summary>
-        /// Gets a list of currently opened views.
-        /// </summary>
-        List<SidekickView> Views { get; }
-
-        /// <summary>
         /// Opens the specified view
         /// </summary>
         /// <param name="url">The url of the page to load and show</param>
         Task Open(string url);
+
+        /// <summary>
+        /// Closes the specified view.
+        /// </summary>
+        /// <param name="view">The view to close.</param>
+        void Close(SidekickView view);
+
+        /// <summary>
+        /// Adds a sidekick view to the active views.
+        /// </summary>
+        /// <param name="view">The view to add.</param>
+        void Add(SidekickView view);
+
+        /// <summary>
+        /// Removes a sidekick view from being active.
+        /// </summary>
+        /// <param name="view">The view to remove.</param>
+        void Remove(SidekickView view);
 
         /// <summary>
         /// Close all overlays

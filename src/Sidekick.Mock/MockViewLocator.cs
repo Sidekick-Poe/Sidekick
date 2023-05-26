@@ -7,7 +7,7 @@ namespace Sidekick.Mock
 {
     public class MockViewLocator : IViewLocator
     {
-        public List<SidekickView> Views { get; } = new();
+        private List<SidekickView> Views { get; set; } = new();
 
         public Task Open(string url)
         {
@@ -22,6 +22,21 @@ namespace Sidekick.Mock
         public bool IsOverlayOpened()
         {
             return false;
+        }
+
+        public void Close(SidekickView view)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Add(SidekickView view)
+        {
+            Views.Add(view);
+        }
+
+        public void Remove(SidekickView view)
+        {
+            Views.Remove(view);
         }
     }
 }
