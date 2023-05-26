@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Threading.Tasks;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Builder;
@@ -18,7 +17,6 @@ using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
 using Sidekick.Electron.Services;
-using Sidekick.Electron.Views;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Cheatsheets;
@@ -39,6 +37,10 @@ builder.Configuration.AddJsonFile(SidekickPaths.GetDataFilePath(SettingsService.
 #endregion Configuration
 
 #region Services
+
+builder.Services.AddElectron();
+builder.Services.AddHttpClient();
+builder.Services.AddLocalization();
 
 builder.Services
     // MudBlazor
@@ -77,9 +79,6 @@ builder.Services
     .AddSidekickTrade()
     .AddSidekickUpdate();
 
-builder.Services.AddHttpClient();
-builder.Services.AddLocalization();
-
 builder.Services.AddSingleton<IApplicationService, ApplicationService>();
 builder.Services.AddSingleton<IViewLocator, ViewLocator>();
 builder.Services.AddSingleton((sp) => (ViewLocator)sp.GetService<IViewLocator>());
@@ -97,11 +96,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapBlazorHub();
-    endpoints.MapFallbackToPage("/_Host");
-});
+app.MapBlazorHub();
+app.MapFallbackToPage("/_Host");
 
 #endregion Pipeline
 
@@ -117,8 +113,8 @@ ElectronNET.API.Electron.WindowManager.IsQuitOnWindowAllClosed = false;
 // This makes Electron hide the splashscreen. For us, it means we are ready to initialize and price check :)
 var browserWindow = await ElectronNET.API.Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
 {
-    Width = 1,
-    Height = 1,
+    Width = 400,
+    Height = 300,
     Frame = false,
     Show = true,
     Transparent = true,
@@ -131,13 +127,13 @@ var browserWindow = await ElectronNET.API.Electron.WindowManager.CreateWindowAsy
         NodeIntegration = false,
     }
 });
-browserWindow.WebContents.OnCrashed += (killed) => ElectronNET.API.Electron.App.Exit();
-await Task.Delay(50);
-browserWindow.Close();
+// browserWindow.WebContents.OnCrashed += (killed) => ElectronNET.API.Electron.App.Exit();
+// await Task.Delay(50);
+// browserWindow.Close();
 
 // Initialize Sidekick
-var viewLocator = app.Services.GetService<IViewLocator>();
-await viewLocator.Open("/update");
+// var viewLocator = app.Services.GetService<IViewLocator>();
+// await viewLocator.Open("/update");
 
 #endregion Electron
 

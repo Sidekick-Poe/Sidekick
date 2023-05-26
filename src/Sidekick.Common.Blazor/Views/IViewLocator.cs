@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Sidekick.Common.Blazor.Views
@@ -7,6 +8,11 @@ namespace Sidekick.Common.Blazor.Views
     /// </summary>
     public interface IViewLocator
     {
+        /// <summary>
+        /// Gets a list of currently opened views.
+        /// </summary>
+        List<SidekickView> Views { get; }
+
         /// <summary>
         /// Opens the specified view
         /// </summary>

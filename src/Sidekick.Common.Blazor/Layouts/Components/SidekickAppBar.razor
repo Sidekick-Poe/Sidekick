@@ -3,8 +3,25 @@
     <MudAppBar Fixed="false" Elevation="0">
         @LeftContent
         <div class="icon"><img src="/images/orbs/ExaltedOrb.png" /></div>
+        <MudText Typo="Typo.h6">
+            <span id="sidekick-appbar-title">@ViewInstance.Title</span>
+        </MudText>
         <MudSpacer />
-        @RightContent
+
+        @if (ViewInstance != null)
+        {
+            if (ViewInstance.Minimizable)
+            {
+                <MudIconButton Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Material.Filled.Minimize" @onclick="ViewInstance.Minimize" />
+            }
+
+            if (ViewInstance.Maximizable)
+            {
+                <MudIconButton Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Material.Filled.CropSquare" @onclick="ViewInstance.Maximize" />
+            }
+
+            <MudIconButton Class="close-button" Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Material.Filled.Close" @onclick="ViewInstance.Close" Edge="Edge.End" />
+        }
     </MudAppBar>
 </div>
 
@@ -12,5 +29,4 @@
     [Inject] private IViewInstance ViewInstance { get; set; }
 
     [Parameter] public RenderFragment LeftContent { get; set; }
-    [Parameter] public RenderFragment RightContent { get; set; }
 }

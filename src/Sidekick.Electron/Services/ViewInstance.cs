@@ -17,7 +17,7 @@ namespace Sidekick.Electron.Services
             ViewLocator locator,
             ICacheProvider cacheProvider)
         {
-            view = locator.Views.Last();
+            view = locator.InternalViews.Last();
             this.locator = locator;
             this.cacheProvider = cacheProvider;
         }
@@ -85,6 +85,10 @@ namespace Sidekick.Electron.Services
 
         public int MinHeight { get; set; }
 
+        public bool Minimizable { get; }
+
+        public bool Maximizable { get; }
+
         public async Task Close()
         {
             if (!await view.Browser.IsDestroyedAsync())
@@ -138,14 +142,24 @@ namespace Sidekick.Electron.Services
 
         public void Dispose()
         {
-            if (locator.Views.Contains(view))
+            if (locator.InternalViews.Contains(view))
             {
-                locator.Views.Remove(view);
+                locator.InternalViews.Remove(view);
             }
 
             resizeBounce++;
             view.Browser.OnResize -= Browser_OnResize;
             view.Browser.OnBlur -= Browser_OnBlur;
+        }
+
+        public Task Minimize()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Maximize()
+        {
+            throw new NotImplementedException();
         }
     }
 }

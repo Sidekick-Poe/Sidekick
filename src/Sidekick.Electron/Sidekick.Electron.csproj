@@ -44,9 +44,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ElectronPages\" />
-  </ItemGroup>
 
   <Target Name="Copywwwroot" BeforeTargets="PreBuildEvent">
     <ItemGroup>

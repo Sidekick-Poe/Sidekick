@@ -6,6 +6,7 @@ using ElectronNET.API;
 using ElectronNET.API.Entities;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Sidekick.Common.Blazor;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
@@ -41,9 +42,11 @@ namespace Sidekick.Electron.Services
             });
         }
 
+        public List<SidekickView> Views { get; } = new();
+
         private bool FirstView = true;
 
-        internal List<InternalViewInstance> Views { get; set; } = new List<InternalViewInstance>();
+        internal List<InternalViewInstance> InternalViews { get; set; } = new List<InternalViewInstance>();
 
         private async Task<BrowserWindow> CreateBrowser(string path)
         {
@@ -102,12 +105,12 @@ namespace Sidekick.Electron.Services
 
             await TryCloseViews(x => x.Key == newView.Key);
 
-            Views.Add(newView);
+            InternalViews.Add(newView);
         }
 
         public bool IsOverlayOpened()
         {
-            return Views.Any(x => x.IsOverlay);
+            return InternalViews.Any(x => x.IsOverlay);
         }
 
         public void CloseAllOverlays()
@@ -117,9 +120,9 @@ namespace Sidekick.Electron.Services
 
         private async Task TryCloseViews(Func<InternalViewInstance, bool> func)
         {
-            while (Views.Any(func))
+            while (InternalViews.Any(func))
             {
-                var view = Views.FirstOrDefault(func);
+                var view = InternalViews.FirstOrDefault(func);
 
                 try
                 {
@@ -132,7 +135,7 @@ namespace Sidekick.Electron.Services
                 {
                 }
 
-                Views.Remove(view);
+                InternalViews.Remove(view);
             }
         }
     }

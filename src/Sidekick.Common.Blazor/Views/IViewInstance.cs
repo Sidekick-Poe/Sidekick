@@ -21,6 +21,16 @@ namespace Sidekick.Common.Blazor.Views
         Task Initialize(string title, int width = 768, int height = 600, bool isOverlay = false, bool isModal = false, bool closeOnBlur = false);
 
         /// <summary>
+        /// Minimizes the view
+        /// </summary>
+        Task Minimize();
+
+        /// <summary>
+        /// Maximizes the view
+        /// </summary>
+        Task Maximize();
+
+        /// <summary>
         /// Closes the view
         /// </summary>
         Task Close();
@@ -29,5 +39,15 @@ namespace Sidekick.Common.Blazor.Views
         /// The title of the view
         /// </summary>
         string Title { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether the view can be minimized.
+        /// </summary>
+        bool Minimizable { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether the view can be maximized.
+        /// </summary>
+        bool Maximizable { get; }
     }
 }

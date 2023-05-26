@@ -11,7 +11,11 @@ namespace Sidekick.Mock
         public event Action OnChange;
 
         /// <inheritdoc/>
-        public string Title => string.Empty;
+        public string Title { get; private set; }
+
+        public bool Minimizable { get; }
+
+        public bool Maximizable { get; }
 
         /// <inheritdoc/>
         public virtual Task Close()
@@ -22,7 +26,18 @@ namespace Sidekick.Mock
         /// <inheritdoc/>
         public Task Initialize(string title, int width = 768, int height = 600, bool isOverlay = false, bool isModal = false, bool closeOnBlur = false)
         {
+            Title = title;
             return Task.CompletedTask;
+        }
+
+        public Task Minimize()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Maximize()
+        {
+            throw new NotImplementedException();
         }
     }
 }

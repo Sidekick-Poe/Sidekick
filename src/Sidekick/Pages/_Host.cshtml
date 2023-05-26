@@ -1,5 +1,5 @@
 @page "/"
-@namespace Sidekick.Electron.Pages
+@namespace Sidekick.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = null;
@@ -18,11 +18,11 @@
     <link rel="manifest" href="/site.webmanifest">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
-    <link href="Sidekick.Electron.styles.css" rel="stylesheet" />
-    <link href="css/site.css" rel="stylesheet" />
+    <link href="Sidekick.styles.css" rel="stylesheet" />
+    <link href="/css/site.css" rel="stylesheet" />
 </head>
 <body>
-    <component type="typeof(Sidekick.Pages.App)" render-mode="Server" />
+    <component type="typeof(Sidekick.Common.Blazor.Main)" render-mode="Server" />
 
     <div id="blazor-error-ui">
         <div class="content">
@@ -33,19 +33,7 @@
 
             <a href="" class="reload">Reload</a>
         </div>
-        <a class="dismiss">🗙</a>
     </div>
-
-    <script>
-        (function () {
-            const { ipcRenderer } = require('electron');
-            const viewName = window.location.pathname.split('/')[1];
-
-            document.getElementById('close').addEventListener('click', () => {
-                ipcRenderer.sendSync("close", viewName);
-            });
-        }());
-    </script>
 
     <script src="_framework/blazor.server.js"></script>
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
