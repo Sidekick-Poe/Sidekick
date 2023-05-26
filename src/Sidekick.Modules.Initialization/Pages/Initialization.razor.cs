@@ -15,7 +15,6 @@ using Sidekick.Common.Localization;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Tray;
 using Sidekick.Common.Settings;
-using Sidekick.Core.Settings;
 using Sidekick.Modules.Initialization.Localization;
 
 namespace Sidekick.Modules.Initialization.Pages
@@ -72,8 +71,6 @@ namespace Sidekick.Modules.Initialization.Pages
                 // Languages
                 await Run(() => UILanguageProvider.Set(Settings.Language_UI));
                 await Run(() => GameLanguageProvider.SetLanguage(Settings.Language_Parser));
-
-                throw new Exception("test");
 
                 await Run(() => ParserPatterns.Initialize());
                 await Run(() => ItemMetadataProvider.Initialize());

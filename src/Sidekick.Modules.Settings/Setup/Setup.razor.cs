@@ -52,7 +52,7 @@ namespace Sidekick.Modules.Settings.Setup
             }
 
             // Check to see if we should run Setup first before running the rest of the initialization process
-            if (string.IsNullOrEmpty(Settings.LeagueId) || !leagues.Any(x => x.Id == Settings.LeagueId) || true)
+            if (string.IsNullOrEmpty(Settings.LeagueId) || !leagues.Any(x => x.Id == Settings.LeagueId))
             {
                 await ViewInstance.Initialize("Setup", width: 600, height: 715, isModal: true);
 
