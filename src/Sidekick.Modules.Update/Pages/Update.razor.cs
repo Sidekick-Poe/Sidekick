@@ -22,6 +22,7 @@ namespace Sidekick.Modules.Update.Pages
         [Inject] private ICacheProvider CacheProvider { get; set; }
 
         private string Title { get; set; }
+        private bool Error { get; set; }
 
         public static bool HasRun { get; set; } = false;
 
@@ -77,8 +78,7 @@ namespace Sidekick.Modules.Update.Pages
             catch (Exception ex)
             {
                 Logger.LogError(ex.Message);
-                ApplicationService.ShowToast(UpdateResources.Failed);
-                NavigationManager.NavigateTo("/setup");
+                Error = true;
             }
         }
 

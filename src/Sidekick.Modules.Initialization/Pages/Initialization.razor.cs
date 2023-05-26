@@ -47,6 +47,7 @@ namespace Sidekick.Modules.Initialization.Pages
         private int Completed { get; set; } = 0;
         private string Title { get; set; }
         private int Percentage { get; set; }
+        private bool Error { get; set; }
 
         public Task InitializationTask { get; set; }
 
@@ -72,6 +73,8 @@ namespace Sidekick.Modules.Initialization.Pages
                 await Run(() => UILanguageProvider.Set(Settings.Language_UI));
                 await Run(() => GameLanguageProvider.SetLanguage(Settings.Language_Parser));
 
+                throw new Exception("test");
+
                 await Run(() => ParserPatterns.Initialize());
                 await Run(() => ItemMetadataProvider.Initialize());
                 await Run(() => ItemStaticDataProvider.Initialize());
@@ -85,22 +88,19 @@ namespace Sidekick.Modules.Initialization.Pages
                 await Run(() => PoeWikiDataProvider.Initialize());
                 await Run(() => InitializeTray());
 
+                throw new Exception("test");
+
                 // If we have a successful initialization, we delay for half a second to show the
                 // "Ready" label on the UI before closing the view
                 Completed = Count;
                 await ReportProgress();
-                await Task.Delay(500);
-
-                // Show a system notification
-                ApplicationService.ShowToast(string.Format(Resources.Notification, Settings.Trade_Key_Check.ToKeybindString(), Settings.Key_Close.ToKeybindString()));
-
+                await Task.Delay(5000);
                 await ViewInstance.Close();
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex.Message);
-                ApplicationService.ShowToast(Resources.Error);
-                ApplicationService.Shutdown();
+                Error = true;
             }
         }
 
@@ -151,14 +151,6 @@ namespace Sidekick.Modules.Initialization.Pages
         private void InitializeTray()
         {
             var menuItems = new List<TrayMenuItem>();
-
-#if DEBUG
-            menuItems.Add(new()
-            {
-                Label = "Send Notification",
-                OnClick = () => Task.Run(() => ApplicationService.ShowToast("Test message"))
-            });
-#endif
 
             menuItems.AddRange(new List<TrayMenuItem>()
             {

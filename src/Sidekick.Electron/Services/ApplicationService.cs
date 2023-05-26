@@ -37,16 +37,6 @@ namespace Sidekick.Electron.Services
             }
         }
 
-        public void ShowToast(string message)
-        {
-            var options = new NotificationOptions("Sidekick", message)
-            {
-                Icon = $"{webHostEnvironment.ContentRootPath}Assets/icon.png"
-            };
-
-            ElectronNET.API.Electron.Notification.Show(options);
-        }
-
         public void Shutdown()
         {
             ElectronNET.API.Electron.App.Exit();

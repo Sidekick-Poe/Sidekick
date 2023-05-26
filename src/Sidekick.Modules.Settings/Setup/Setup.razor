@@ -8,19 +8,19 @@
     <MudCard Class="my-1">
         <MudCardHeader>
             <CardHeaderContent>
-                <MudText Typo="Typo.h6" Align="Align.Center">@Resources.Title</MudText>
+                <MudText Typo="Typo.h5" Align="Align.Center">@Resources.Title</MudText>
             </CardHeaderContent>
         </MudCardHeader>
         <MudCardContent>
             <MudProgressLinear Color="Color.Primary"
-                               Indeterminate="true" />
+                           Indeterminate="true" />
         </MudCardContent>
     </MudCard>
 
     <div class="d-flex justify-end">
         <MudButton OnClick="Exit"
-                   Variant="Variant.Text"
-                   Color="Color.Default">
+               Variant="Variant.Text"
+               Color="Color.Default">
             @Resources.Exit
         </MudButton>
     </div>
@@ -28,11 +28,17 @@
 else
 {
     <SidekickLogo />
+
+    @if (NewLeagues)
+    {
+        <MudAlert Variant="Variant.Filled" Severity="Severity.Info" Class="mt-1 mb-3">@Resources.NewLeagues</MudAlert>
+    }
+
     <MudForm @ref="Form" @bind-IsValid="@Success">
         <MudCard Class="mt-1">
             <MudCardHeader>
                 <CardHeaderContent>
-                    <MudText Typo="Typo.h6">@SettingsResources.Language_Title</MudText>
+                    <MudText Typo="Typo.h5">@SettingsResources.Language_Title</MudText>
                 </CardHeaderContent>
             </MudCardHeader>
             <MudCardContent>
@@ -44,26 +50,26 @@ else
         <MudCard>
             <MudCardHeader>
                 <CardHeaderContent>
-                    <MudText Typo="Typo.h6">@SettingsResources.Character_Title</MudText>
+                    <MudText Typo="Typo.h5">@SettingsResources.Character_Title</MudText>
                 </CardHeaderContent>
             </MudCardHeader>
             <MudCardContent>
                 <LeagueSelect @bind-Value="ViewModel.LeagueId" @ref="RefLeagueSelect" />
                 <MudTextField Label="@SettingsResources.Character_Name"
-                              Variant="Variant.Filled"
-                              @bind-Value="ViewModel.Character_Name" />
+                          Variant="Variant.Filled"
+                          @bind-Value="ViewModel.Character_Name" />
             </MudCardContent>
         </MudCard>
 
         <div class="d-flex justify-end">
             <MudButton OnClick="Exit"
-                       Variant="Variant.Text"
-                       Color="Color.Default">
+                   Variant="Variant.Text"
+                   Color="Color.Default">
                 @Resources.Exit
             </MudButton>
             <MudButton Variant="Variant.Filled"
-                       Color="Color.Primary"
-                       OnClick="() => Save()">
+                   Color="Color.Primary"
+                   OnClick="() => Save()">
                 @SettingsResources.Save
             </MudButton>
         </div>

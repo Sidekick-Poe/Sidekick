@@ -11,10 +11,6 @@ namespace Sidekick.Mock
             return Task.CompletedTask;
         }
 
-        public void ShowToast(string message)
-        {
-        }
-
         public void Shutdown()
         {
             Environment.Exit(Environment.ExitCode);

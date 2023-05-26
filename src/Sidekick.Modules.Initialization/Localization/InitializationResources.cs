@@ -20,5 +20,6 @@ namespace Sidekick.Modules.Initialization.Localization
         public string UpdateAvailable => localizer["UpdateAvailable"];
         public string UpdateTitle => localizer["UpdateTitle"];
         public string Exit => localizer["Exit"];
+        public string Close => localizer["Close"];
     }
 }

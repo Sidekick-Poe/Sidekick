@@ -32,6 +32,7 @@ namespace Sidekick.Modules.Settings.Setup
 
         public static bool HasRun { get; set; } = false;
         public bool RequiresSetup { get; set; } = false;
+        public bool NewLeagues { get; set; } = false;
         private bool Success { get; set; }
         private MudForm Form { get; set; }
 
@@ -51,12 +52,12 @@ namespace Sidekick.Modules.Settings.Setup
             }
 
             // Check to see if we should run Setup first before running the rest of the initialization process
-            if (string.IsNullOrEmpty(Settings.LeagueId) || !leagues.Any(x => x.Id == Settings.LeagueId))
+            if (string.IsNullOrEmpty(Settings.LeagueId) || !leagues.Any(x => x.Id == Settings.LeagueId) || true)
             {
                 await ViewInstance.Initialize("Setup", width: 600, height: 715, isModal: true);
 
                 RequiresSetup = true;
-                ApplicationService.ShowToast(Resources.NewLeagues);
+                NewLeagues = true;
             }
             else
             {
