@@ -85,8 +85,6 @@ namespace Sidekick.Modules.Initialization.Pages
                 await Run(() => PoeWikiDataProvider.Initialize());
                 await Run(() => InitializeTray());
 
-                throw new Exception("test");
-
                 // If we have a successful initialization, we delay for half a second to show the
                 // "Ready" label on the UI before closing the view
                 Completed = Count;
