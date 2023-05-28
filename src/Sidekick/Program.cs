@@ -33,7 +33,6 @@ builder.Configuration.AddJsonFile(SidekickPaths.GetDataFilePath(SettingsService.
 
 #region Services
 
-builder.Services.AddElectron();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddHttpClient();
@@ -82,6 +81,15 @@ builder.Services
     .AddSingleton<IViewLocator, MockViewLocator>()
     .AddScoped<IViewInstance, MockViewInstance>();
 
+if (HybridSupport.IsElectronActive)
+{
+    builder.Services.AddSingleton<IViewLocator, ElectronViewLocator>();
+}
+else
+{
+    builder.Services.AddSingleton<IViewLocator, MockViewLocator>();
+}
+
 builder.Services.AddHttpClient();
 builder.Services.AddLocalization();
 
@@ -91,8 +99,6 @@ var app = builder.Build();
 
 #region Pipeline
 
-app.UseHsts();
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
@@ -101,11 +107,10 @@ app.MapFallbackToPage("/_Host");
 
 #endregion Pipeline
 
-await app.StartAsync();
-
 if (HybridSupport.IsElectronActive)
 {
-    await Bootstrap.ElectronBootstrap();
+    var viewLocator = app.Services.GetRequiredService<IViewLocator>();
+    await viewLocator.Open("/update");
 }
 
-app.WaitForShutdown();
+app.Run();
