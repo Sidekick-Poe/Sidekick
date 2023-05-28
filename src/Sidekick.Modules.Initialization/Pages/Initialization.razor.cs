@@ -19,13 +19,11 @@ using Sidekick.Modules.Initialization.Localization;
 
 namespace Sidekick.Modules.Initialization.Pages
 {
-    public partial class Initialization : ComponentBase
+    public partial class Initialization : SidekickView
     {
         [Inject] private InitializationResources Resources { get; set; }
         [Inject] private ISettings Settings { get; set; }
         [Inject] private ILogger<Initialization> Logger { get; set; }
-        [Inject] private IViewInstance ViewInstance { get; set; }
-        [Inject] private IViewLocator ViewLocator { get; set; }
         [Inject] private IProcessProvider ProcessProvider { get; set; }
         [Inject] private IKeyboardProvider KeyboardProvider { get; set; }
         [Inject] private IKeybindProvider KeybindProvider { get; set; }
@@ -44,16 +42,17 @@ namespace Sidekick.Modules.Initialization.Pages
 
         private int Count { get; set; } = 0;
         private int Completed { get; set; } = 0;
-        private string Title { get; set; }
+        private string Step { get; set; }
         private int Percentage { get; set; }
         private bool Error { get; set; }
 
         public Task InitializationTask { get; set; }
+        public override string Title => "Initialize";
+        public override SidekickViewType ViewType => SidekickViewType.Modal;
 
         protected override async Task OnInitializedAsync()
         {
             InitializationTask = Handle();
-            await ViewInstance.Initialize("Initialize", width: 400, height: 230, isModal: true);
             await base.OnInitializedAsync();
             await InitializationTask;
         }
@@ -90,7 +89,7 @@ namespace Sidekick.Modules.Initialization.Pages
                 Completed = Count;
                 await ReportProgress();
                 await Task.Delay(5000);
-                await ViewInstance.Close();
+                await Close();
             }
             catch (Exception ex)
             {
@@ -130,12 +129,12 @@ namespace Sidekick.Modules.Initialization.Pages
                 Percentage = Count == 0 ? 0 : Completed * 100 / Count;
                 if (Percentage >= 100)
                 {
-                    Title = Resources.Ready;
+                    Step = Resources.Ready;
                     Percentage = 100;
                 }
                 else
                 {
-                    Title = Resources.Title(Completed, Count);
+                    Step = Resources.Title(Completed, Count);
                 }
 
                 StateHasChanged();

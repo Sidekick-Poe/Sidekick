@@ -78,8 +78,7 @@ builder.Services
 
     // Mock
     .AddSingleton<IApplicationService, MockApplicationService>()
-    .AddSingleton<IViewLocator, MockViewLocator>()
-    .AddScoped<IViewInstance, MockViewInstance>();
+    .AddSingleton<IViewLocator, MockViewLocator>();
 
 if (HybridSupport.IsElectronActive)
 {

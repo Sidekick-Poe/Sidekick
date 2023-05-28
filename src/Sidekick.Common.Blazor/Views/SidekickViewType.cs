@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Blazor
+namespace Sidekick.Common.Blazor.Views
 {
     public enum SidekickViewType
     {

@@ -1,5 +1,6 @@
 @page "/cheatsheets/incursion"
 @layout CheatsheetLayout
+@inherits SidekickView
 
 <MudGrid Spacing="1">
     @foreach (var room in Rooms)
@@ -13,9 +14,10 @@
 @code {
     [Inject] private CheatsheetResources CheatsheetResources { get; set; }
     [Inject] private IncursionResources Resources { get; set; }
-    [Inject] private IViewInstance ViewInstance { get; set; }
 
     private List<RoomModel> Rooms { get; set; }
+    
+    public override string Title => CheatsheetResources.Incursion;
 
     protected override async Task OnInitializedAsync()
     {
@@ -174,7 +176,6 @@
             },
         };
 
-        await ViewInstance.Initialize(CheatsheetResources.Incursion);
         await base.OnInitializedAsync();
     }
 }

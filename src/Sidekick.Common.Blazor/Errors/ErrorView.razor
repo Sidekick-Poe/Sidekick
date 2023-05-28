@@ -2,6 +2,7 @@
 @page "/error/{type}/{additionalInformation}"
 @using Sidekick.Common.Errors;
 @layout OverlayLayout
+@inherits SidekickView
 
 <div class="d-flex justify-center pa-8">
     <MudAlert Severity="Severity.Error" Variant="Variant.Filled">
@@ -19,23 +20,19 @@
 <div class="d-flex justify-center">
     <MudButton Variant="Variant.Filled"
                Color="Color.Primary"
-               OnClick="ViewInstance.Close">
+               OnClick="Wrapper.View.Close">
         @Resources.Close
     </MudButton>
 </div>
 
 @code {
-    [Inject] private IViewInstance ViewInstance { get; set; }
     [Inject] private ErrorResources Resources { get; set; }
 
     [Parameter] public string Type { get; set; }
     [Parameter] public string AdditionalInformation { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        await ViewInstance.Initialize(Resources.Title, width: 400, height: 260, isModal: true);
-        await base.OnInitializedAsync();
-    }
+    public override string Title => Resources.Title;
+    public override SidekickViewType ViewType => SidekickViewType.Modal;
 
     private string Text => Enum.Parse<ErrorType>(Type) switch
     {

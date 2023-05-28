@@ -28,7 +28,7 @@ namespace Sidekick.Common.Platform.Tray
             {
                 NotificationManager.Initialize("com.sidekick", "Sidekick", options.Value.IconPath);
             }
-            catch (Exception ex) { }
+            catch (Exception) { }
         }
 
         public void Initialize(List<TrayMenuItem> trayMenuItems)

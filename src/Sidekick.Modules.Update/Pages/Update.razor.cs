@@ -11,24 +11,24 @@ using Sidekick.Modules.Update.Localization;
 
 namespace Sidekick.Modules.Update.Pages
 {
-    public partial class Update : ComponentBase
+    public partial class Update : SidekickView
     {
         [Inject] private ILogger<Update> Logger { get; set; }
         [Inject] private IGitHubClient GitHubClient { get; set; }
         [Inject] private IApplicationService ApplicationService { get; set; }
         [Inject] private UpdateResources UpdateResources { get; set; }
-        [Inject] private NavigationManager NavigationManager { get; set; }
-        [Inject] private IViewInstance ViewInstance { get; set; }
         [Inject] private ICacheProvider CacheProvider { get; set; }
 
-        private string Title { get; set; }
+        public override string Title => "Update";
+        public override SidekickViewType ViewType => SidekickViewType.Modal;
+
+        private string Step { get; set; }
         private bool Error { get; set; }
 
         public static bool HasRun { get; set; } = false;
 
         protected override async Task OnInitializedAsync()
         {
-            await ViewInstance.Initialize("Update", width: 400, height: 230, isModal: true);
             await base.OnInitializedAsync();
             await Handle();
         }
@@ -44,7 +44,7 @@ namespace Sidekick.Modules.Update.Pages
             try
             {
                 // Checking release
-                Title = UpdateResources.Checking;
+                Step = UpdateResources.Checking;
                 StateHasChanged();
                 var release = await GitHubClient.GetLatestRelease();
 
@@ -56,12 +56,12 @@ namespace Sidekick.Modules.Update.Pages
                 }
 
                 // Downloading
-                Title = UpdateResources.Downloading(release.Tag);
+                Step = UpdateResources.Downloading(release.Tag);
                 StateHasChanged();
                 var path = await GitHubClient.DownloadRelease(release);
                 if (path == null)
                 {
-                    Title = UpdateResources.Failed;
+                    Step = UpdateResources.Failed;
                     StateHasChanged();
                     await Task.Delay(3000);
                     NavigationManager.NavigateTo("/setup");

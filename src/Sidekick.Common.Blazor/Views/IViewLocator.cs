@@ -14,27 +14,33 @@ namespace Sidekick.Common.Blazor.Views
         Task Open(string url);
 
         /// <summary>
+        /// Initializes a view that was previously opened.
+        /// </summary>
+        /// <param name="view">The view to initialize.</param>
+        Task Initialize(SidekickView view);
+
+        /// <summary>
+        /// Minimizes the specified view.
+        /// </summary>
+        /// <param name="view">The view to minimize.</param>
+        Task Minimize(SidekickView view);
+
+        /// <summary>
+        /// Maximizes the specified view.
+        /// </summary>
+        /// <param name="view">The view to maximize.</param>
+        Task Maximize(SidekickView view);
+
+        /// <summary>
         /// Closes the specified view.
         /// </summary>
         /// <param name="view">The view to close.</param>
-        void Close(SidekickView view);
-
-        /// <summary>
-        /// Adds a sidekick view to the active views.
-        /// </summary>
-        /// <param name="view">The view to add.</param>
-        void Add(SidekickView view);
-
-        /// <summary>
-        /// Removes a sidekick view from being active.
-        /// </summary>
-        /// <param name="view">The view to remove.</param>
-        void Remove(SidekickView view);
+        Task Close(SidekickView view);
 
         /// <summary>
         /// Close all overlays
         /// </summary>
-        void CloseAllOverlays();
+        Task CloseAllOverlays();
 
         /// <summary>
         /// Check if an overlay is opened

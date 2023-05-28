@@ -13,7 +13,8 @@
 
         Theme = new MudTheme()
             {
-                Palette = GetDefaultPalette(),
+                Palette = GetPaletteDark(),
+                PaletteDark = GetPaletteDark(),
 
                 LayoutProperties = new LayoutProperties()
                 {
@@ -55,7 +56,7 @@
         return typo;
     }
 
-    private Palette GetDefaultPalette() => new Palette()
+    private PaletteDark GetPaletteDark() => new PaletteDark()
         {
             Black = "#000000",
             Background = "#1C1C1C",

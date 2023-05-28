@@ -12,22 +12,6 @@
     </MudCardContent>
 </MudCard>
 
-<MudCard Class="mt-6">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h6">Notification</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudText>OpenNotificationHandler must be implemented.</MudText>
-        <MudTextField Label="Title" @bind-Value="NotificationTitle" />
-        <MudTextField Label="Message" @bind-Value="NotificationMessage" />
-    </MudCardContent>
-    <MudCardActions>
-        <MudButton Variant="Variant.Filled" OnClick="ShowNotification">Show notification</MudButton>
-    </MudCardActions>
-</MudCard>
-
 @code {
     [Inject] private ITrayProvider TrayProvider { get; set; }
 
@@ -39,9 +23,5 @@
 #pragma warning disable S112 // General exceptions should never be thrown
         throw new Exception("Developper test from the exception page.");
 #pragma warning restore S112 // General exceptions should never be thrown
-    }
-
-    public void ShowNotification()
-    {
     }
 }

@@ -1,5 +1,6 @@
 @page "/map/{itemText}"
 @layout OverlayLayout
+@inherits SidekickView
 
 @if (Item == null)
 {
@@ -19,7 +20,7 @@ else
                          IsRelic="Item.Properties.IsRelic" />
 
         <MudText Typo="Typo.h1" Align="Align.Center" Color="@(DangerousMods.Any() ? Color.Error: Color.Success)" Class="d-flex justify-center align-center pa-4">
-            <MudIcon Icon="@(DangerousMods.Any() ? Icons.Filled.ThumbDown : Icons.Filled.ThumbUp)" Size="Size.Large" Class="mr-2" />
+            <MudIcon Icon="@(DangerousMods.Any() ? Icons.Material.Filled.ThumbDown : Icons.Material.Filled.ThumbUp)" Size="Size.Large" Class="mr-2" />
             @(DangerousMods.Any() ? Resources.Is_Unsafe : Resources.Is_Safe)
         </MudText>
 
@@ -28,7 +29,7 @@ else
         @foreach (var mod in DangerousMods)
         {
             <div class="d-flex align-center px-4 py-1">
-                <MudIcon Icon="@Icons.Filled.ThumbDown" Size="Size.Small" Color="Color.Error" Class="mr-2" />
+                <MudIcon Icon="@Icons.Material.Filled.ThumbDown" Size="Size.Small" Color="Color.Error" Class="mr-2" />
                 <ItemModifierText Text="@mod" />
             </div>
         }
@@ -41,7 +42,7 @@ else
         @foreach (var mod in OkMods)
         {
             <div class="d-flex align-center px-4 py-1">
-                <MudIcon Icon="@Icons.Filled.ThumbUp" Size="Size.Small" Color="Color.Success" Class="mr-2" />
+                <MudIcon Icon="@Icons.Material.Filled.ThumbUp" Size="Size.Small" Color="Color.Success" Class="mr-2" />
                 <ItemModifierText Text="@mod" />
             </div>
         }
@@ -54,10 +55,8 @@ else
 
 @code {
     [Inject] private MapInfoResources Resources { get; set; }
-    [Inject] private IViewInstance ViewInstance { get; set; }
     [Inject] private IItemParser ItemParser { get; set; }
     [Inject] private ISettings Settings { get; set; }
-    [Inject] private NavigationManager NavigationManager { get; set; }
     [Inject] private IPoeWikiClient PoeWikiClient { get; set; }
 
     [Parameter] public string ItemText { get; set; }
@@ -66,18 +65,10 @@ else
     private List<string> OkMods { get; set; } = new();
     private Item Item { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        if (PoeWikiClient.IsEnabled)
-        {
-            await ViewInstance.Initialize(Resources.Title, width: 616, isOverlay: true, closeOnBlur: Settings.Map_CloseWithMouse);
-        }
-        else
-        {
-            await ViewInstance.Initialize(Resources.Title, width: 308, isOverlay: true, closeOnBlur: Settings.Map_CloseWithMouse);
-        }
-        await base.OnInitializedAsync();
-    }
+    public override string Title => Resources.Title;
+    public override bool CloseOnBlur => Settings.Map_CloseWithMouse;
+    public override SidekickViewType ViewType => SidekickViewType.Overlay;
+    public override int ViewWidth => PoeWikiClient.IsEnabled ? 616 : 308;
 
     protected override async Task OnParametersSetAsync()
     {

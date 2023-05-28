@@ -1,5 +1,6 @@
 @page "/settings"
 @layout SettingsLayout
+@inherits SidekickView
 
 <MudCard>
     <MudCardHeader>
@@ -65,6 +66,8 @@
     [Inject] private SettingsResources Resources { get; set; }
     [Inject] private SettingsModel ViewModel { get; set; }
     [Inject] private IClipboardProvider ClipboardProvider { get; set; }
+
+    public override string Title => Resources.Title;
 
     public void CopyUserIdToClipboard()
     {

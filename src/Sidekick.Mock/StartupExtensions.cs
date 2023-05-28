@@ -14,7 +14,6 @@ namespace Sidekick.Mock
             services.TryAddSingleton<IKeyboardProvider, MockKeyboardProvider>();
             services.TryAddSingleton<IKeybindProvider, MockKeybindProvider>();
             services.TryAddSingleton<IViewLocator, MockViewLocator>();
-            services.TryAddScoped<IViewInstance, MockViewInstance>();
 
             return services;
         }

@@ -1,5 +1,6 @@
 @page "/cheatsheets/metamorph"
 @layout CheatsheetLayout
+@inherits SidekickView
 
 <MudGrid Spacing="1">
     @foreach (var catalyst in Catalysts)
@@ -13,9 +14,10 @@
 @code {
     [Inject] private CheatsheetResources CheatsheetResources { get; set; }
     [Inject] private MetamorphResources Resources { get; set; }
-    [Inject] private IViewInstance ViewInstance { get; set; }
 
     private List<CatalystModel> Catalysts { get; set; }
+    
+    public override string Title => CheatsheetResources.Metamorph;
 
     protected override async Task OnInitializedAsync()
     {
@@ -30,7 +32,6 @@
             new CatalystModel(Resources.TurbulentCatalyst, Resources.TurbulentCatalystEffect, RewardValue.Medium, "Turbulent_Catalyst.png"), // 5
         };
 
-        await ViewInstance.Initialize(CheatsheetResources.Metamorph);
         await base.OnInitializedAsync();
     }
 }

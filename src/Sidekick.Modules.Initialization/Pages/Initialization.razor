@@ -1,6 +1,7 @@
 @page "/initialize"
 @layout StartupLayout
 @using Sidekick.Core.Settings
+@inherits SidekickView
 
 <SidekickLogo />
 
@@ -13,7 +14,7 @@ else
     <MudCard Class="my-1">
         <MudCardHeader>
             <CardHeaderContent>
-                <MudText Typo="Typo.h5" Align="Align.Center">@Title</MudText>
+                <MudText Typo="Typo.h5" Align="Align.Center">@Step</MudText>
             </CardHeaderContent>
         </MudCardHeader>
         <MudCardContent>
@@ -47,7 +48,7 @@ else
 else
 {
     <div class="d-flex justify-end">
-        <MudButton OnClick="ViewInstance.Close"
+        <MudButton OnClick="Close"
                Variant="Variant.Text"
                Color="Color.Default">
             @Resources.Close

@@ -1,9 +1,17 @@
-<div class="sidekick-wrapper">
-    <MudLayout>
-        @ChildContent
-    </MudLayout>
-</div>
+
+<CascadingValue Value="this">
+    <div class="sidekick-wrapper">
+        <MudLayout>
+            @ChildContent
+        </MudLayout>
+    </div>
+</CascadingValue>
 
 @code {
     [Parameter] public RenderFragment ChildContent { get; set; }
+
+    /// <summary>
+    /// Gets or sets the current view.
+    /// </summary>
+    public SidekickView View { get; set; }
 }

@@ -16,7 +16,7 @@ using Sidekick.Modules.Settings.Localization;
 
 namespace Sidekick.Modules.Settings.Setup
 {
-    public partial class Setup : ComponentBase
+    public partial class Setup : SidekickView
     {
         [Inject] private SettingsResources SettingsResources { get; set; }
         [Inject] private SetupResources Resources { get; set; }
@@ -24,11 +24,9 @@ namespace Sidekick.Modules.Settings.Setup
         [Inject] private ISettingsService SettingsService { get; set; }
         [Inject] private IGameLanguageProvider GameLanguageProvider { get; set; }
         [Inject] private IApplicationService ApplicationService { get; set; }
-        [Inject] private NavigationManager NavigationManager { get; set; }
         [Inject] private ILeagueProvider LeagueProvider { get; set; }
         [Inject] private ISettings Settings { get; set; }
         [Inject] private ICacheProvider CacheProvider { get; set; }
-        [Inject] private IViewInstance ViewInstance { get; set; }
 
         public static bool HasRun { get; set; } = false;
         public bool RequiresSetup { get; set; } = false;
@@ -38,10 +36,13 @@ namespace Sidekick.Modules.Settings.Setup
 
         private LeagueSelect RefLeagueSelect;
 
+        public override string Title => "Setup";
+        public override SidekickViewType ViewType => SidekickViewType.Modal;
+        public override int ViewHeight => NewLeagues ? 715 : base.ViewHeight;
+        public override int ViewWidth => NewLeagues ? 600 : base.ViewWidth;
+
         protected override async Task OnInitializedAsync()
         {
-            await ViewInstance.Initialize("Setup", width: 400, height: 230, isModal: true);
-
             var leagues = await LeagueProvider.GetList(false);
             var leaguesHash = Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(leagues)));
 
@@ -54,10 +55,9 @@ namespace Sidekick.Modules.Settings.Setup
             // Check to see if we should run Setup first before running the rest of the initialization process
             if (string.IsNullOrEmpty(Settings.LeagueId) || !leagues.Any(x => x.Id == Settings.LeagueId))
             {
-                await ViewInstance.Initialize("Setup", width: 600, height: 715, isModal: true);
-
                 RequiresSetup = true;
                 NewLeagues = true;
+                await ViewLocator.Initialize(this);
             }
             else
             {

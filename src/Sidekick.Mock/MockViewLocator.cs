@@ -1,22 +1,18 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Sidekick.Common.Blazor;
 using Sidekick.Common.Blazor.Views;
 
 namespace Sidekick.Mock
 {
     public class MockViewLocator : IViewLocator
     {
-        private List<SidekickView> Views { get; set; } = new();
-
         public Task Open(string url)
         {
             return Task.CompletedTask;
         }
 
-        public void CloseAllOverlays()
+        public Task CloseAllOverlays()
         {
-            // Do nothing
+            return Task.CompletedTask;
         }
 
         public bool IsOverlayOpened()
@@ -24,19 +20,24 @@ namespace Sidekick.Mock
             return false;
         }
 
-        public void Close(SidekickView view)
+        public Task Close(SidekickView view)
         {
-            throw new System.NotImplementedException();
+            return Task.CompletedTask;
         }
 
-        public void Add(SidekickView view)
+        public Task Initialize(SidekickView view)
         {
-            Views.Add(view);
+            return Task.CompletedTask;
         }
 
-        public void Remove(SidekickView view)
+        public Task Minimize(SidekickView view)
         {
-            Views.Remove(view);
+            return Task.CompletedTask;
+        }
+
+        public Task Maximize(SidekickView view)
+        {
+            return Task.CompletedTask;
         }
     }
 }

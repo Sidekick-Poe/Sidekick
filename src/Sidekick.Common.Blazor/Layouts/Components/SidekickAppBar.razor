@@ -4,29 +4,35 @@
         @LeftContent
         <div class="icon"><img src="/images/orbs/ExaltedOrb.png" /></div>
         <MudText Typo="Typo.h6">
-            <span id="sidekick-appbar-title">@ViewInstance.Title</span>
+            <span id="sidekick-appbar-title">@Wrapper.View.Title</span>
         </MudText>
         <MudSpacer />
 
-        @if (ViewInstance != null)
+        @if (Wrapper.View != null)
         {
-            if (ViewInstance.Minimizable)
+            if (Wrapper.View.ViewType == SidekickViewType.Standard)
             {
-                <MudIconButton Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Material.Filled.Minimize" @onclick="ViewInstance.Minimize" />
+                <MudIconButton Color="Color.Inherit"
+                       Variant="Variant.Text"
+                       Icon="@Icons.Material.Filled.Minimize"
+                       @onclick="() => ViewLocator.Minimize(Wrapper.View)" />
+
+                <MudIconButton Color="Color.Inherit"
+                       Variant="Variant.Text"
+                       Icon="@Icons.Material.Filled.CropSquare"
+                       @onclick="() => ViewLocator.Maximize(Wrapper.View)" />
             }
 
-            if (ViewInstance.Maximizable)
-            {
-                <MudIconButton Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Material.Filled.CropSquare" @onclick="ViewInstance.Maximize" />
-            }
-
-            <MudIconButton Class="close-button" Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Material.Filled.Close" @onclick="ViewInstance.Close" Edge="Edge.End" />
+            <MudIconButton Class="close-button" Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Material.Filled.Close" @onclick="Wrapper.View.Close" Edge="Edge.End" />
         }
     </MudAppBar>
 </div>
 
 @code {
-    [Inject] private IViewInstance ViewInstance { get; set; }
+    [Inject]
+    private IViewLocator ViewLocator { get; set; }
+
+    [CascadingParameter] public SidekickWrapper Wrapper { get; set; }
 
     [Parameter] public RenderFragment LeftContent { get; set; }
 }
