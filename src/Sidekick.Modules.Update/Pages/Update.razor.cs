@@ -36,6 +36,7 @@ namespace Sidekick.Modules.Update.Pages
         public async Task Handle()
         {
 #if DEBUG
+            Step = "Development mode detected, redirecting to setup.";
             await Task.Delay(750);
             NavigationManager.NavigateTo("/setup");
             return;

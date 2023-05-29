@@ -6,9 +6,9 @@ namespace Sidekick.Mock
 {
     public class MockApplicationService : IApplicationService
     {
-        public Task OpenConfirmationNotification(string message, string title = null, Func<Task> onYes = null, Func<Task> onNo = null)
+        public Task<bool> OpenConfirmationModal(string message)
         {
-            return Task.CompletedTask;
+            return Task.FromResult(false);
         }
 
         public void Shutdown()

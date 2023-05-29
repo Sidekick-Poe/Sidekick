@@ -5,7 +5,6 @@ using Sidekick.Common.Platform.Clipboard;
 using Sidekick.Common.Platform.Keybinds;
 using Sidekick.Common.Platform.Keyboards;
 using Sidekick.Common.Platform.Options;
-using Sidekick.Common.Platform.Tray;
 using Sidekick.Common.Platform.Windows.Processes;
 using Sidekick.Common.Platforms.Localization;
 
@@ -29,7 +28,6 @@ namespace Sidekick.Common.Platform
             services.AddTransient<IClipboardProvider, ClipboardProvider>();
             services.AddSingleton<IKeybindProvider, KeybindProvider>();
             services.AddSingleton<IKeyboardProvider, KeyboardProvider>();
-            services.AddSingleton<ITrayProvider, TrayProvider>();
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {

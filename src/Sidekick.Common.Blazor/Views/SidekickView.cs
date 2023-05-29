@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
@@ -9,7 +8,7 @@ namespace Sidekick.Common.Blazor.Views
     /// <summary>
     /// Base class for sidekick views.
     /// </summary>
-    public abstract class SidekickView : ComponentBase, IDisposable
+    public abstract class SidekickView : ComponentBase
     {
         [Inject]
         protected IViewLocator ViewLocator { get; set; }
@@ -77,12 +76,6 @@ namespace Sidekick.Common.Blazor.Views
         {
             await ViewLocator.Initialize(this);
             await base.OnInitializedAsync();
-        }
-
-        /// <inheritdoc/>
-        public void Dispose()
-        {
-            ViewLocator.Close(this);
         }
     }
 }

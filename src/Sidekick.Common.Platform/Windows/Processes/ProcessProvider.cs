@@ -140,27 +140,27 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
         private async Task RestartAsAdmin()
         {
-            await applicationService.OpenConfirmationNotification(platformResources.RestartAsAdminText,
-                onYes: () =>
-                {
-                    try
-                    {
-                        using var p = new Process();
-                        p.StartInfo.FileName = "Sidekick.exe";
-                        p.StartInfo.UseShellExecute = true;
-                        p.StartInfo.Verb = "runas";
-                        p.Start();
-                    }
-                    catch (Exception e)
-                    {
-                        logger.LogWarning(e, "This application must be run as administrator.");
-                    }
-                    finally
-                    {
-                        Environment.Exit(Environment.ExitCode);
-                    }
-                    return Task.CompletedTask;
-                });
+            if (!await applicationService.OpenConfirmationModal(platformResources.RestartAsAdminText))
+            {
+                return;
+            }
+
+            try
+            {
+                using var p = new Process();
+                p.StartInfo.FileName = "Sidekick.exe";
+                p.StartInfo.UseShellExecute = true;
+                p.StartInfo.Verb = "runas";
+                p.Start();
+            }
+            catch (Exception e)
+            {
+                logger.LogWarning(e, "This application must be run as administrator.");
+            }
+            finally
+            {
+                applicationService.Shutdown();
+            }
         }
 
         private static bool IsUserRunAsAdmin()
