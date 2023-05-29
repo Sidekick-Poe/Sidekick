@@ -1,29 +1,30 @@
+@implements IDisposable
 
 <div class="application-nav-bar">
     <MudAppBar Fixed="false" Elevation="0">
         @LeftContent
         <div class="icon"><img src="/images/orbs/ExaltedOrb.png" /></div>
         <MudText Typo="Typo.h6">
-            <span id="sidekick-appbar-title">@Wrapper.View.Title</span>
+            <span id="sidekick-appbar-title">@View?.Title</span>
         </MudText>
         <MudSpacer />
 
-        @if (Wrapper.View != null)
+        @if (View != null)
         {
-            if (Wrapper.View.ViewType == SidekickViewType.Standard)
+            if (View.ViewType == SidekickViewType.Standard)
             {
                 <MudIconButton Color="Color.Inherit"
                        Variant="Variant.Text"
                        Icon="@Icons.Material.Filled.Minimize"
-                       @onclick="() => ViewLocator.Minimize(Wrapper.View)" />
+                       @onclick="() => ViewLocator.Minimize(View)" />
 
                 <MudIconButton Color="Color.Inherit"
                        Variant="Variant.Text"
                        Icon="@Icons.Material.Filled.CropSquare"
-                       @onclick="() => ViewLocator.Maximize(Wrapper.View)" />
+                       @onclick="() => ViewLocator.Maximize(View)" />
             }
 
-            <MudIconButton Class="close-button" Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Material.Filled.Close" @onclick="Wrapper.View.Close" Edge="Edge.End" />
+            <MudIconButton Class="close-button" Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Material.Filled.Close" @onclick="View.Close" Edge="Edge.End" />
         }
     </MudAppBar>
 </div>
@@ -32,7 +33,20 @@
     [Inject]
     private IViewLocator ViewLocator { get; set; }
 
-    [CascadingParameter] public SidekickWrapper Wrapper { get; set; }
+    [CascadingParameter]
+    public SidekickView View { get; set; }
 
-    [Parameter] public RenderFragment LeftContent { get; set; }
+    [Parameter]
+    public RenderFragment LeftContent { get; set; }
+
+    protected override void OnInitialized()
+    {
+
+        base.OnInitialized();
+    }
+
+    public void Dispose()
+    {
+        
+    }
 }

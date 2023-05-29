@@ -1,7 +1,7 @@
 @page "/error/{type}"
 @page "/error/{type}/{additionalInformation}"
 @using Sidekick.Common.Errors;
-@layout OverlayLayout
+@layout ModalLayout
 @inherits SidekickView
 
 <div class="d-flex justify-center pa-8">
@@ -20,7 +20,7 @@
 <div class="d-flex justify-center">
     <MudButton Variant="Variant.Filled"
                Color="Color.Primary"
-               OnClick="Wrapper.View.Close">
+               OnClick="Close">
         @Resources.Close
     </MudButton>
 </div>

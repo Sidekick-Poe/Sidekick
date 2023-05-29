@@ -44,7 +44,7 @@
     [Inject] private ICacheProvider CacheProvider { get; set; }
     
     [CascadingParameter] public MenuLayout Layout { get; set; }
-    [CascadingParameter] public SidekickWrapper Wrapper { get; set; }
+    [CascadingParameter] public SidekickView View { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -55,13 +55,13 @@
     public async Task Save()
     {
         await SettingsService.Save(ViewModel);
-        await Wrapper.View.Close();
+        await View.Close();
     }
 
     public async Task ResetCache()
     {
         CacheProvider.Clear();
         await ViewLocator.Open("/initialize");
-        await Wrapper.View.Close();
+        await View.Close();
     }
 }

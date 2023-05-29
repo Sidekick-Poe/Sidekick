@@ -40,8 +40,8 @@ namespace Sidekick.Common.Platform
         /// <summary>
         /// Adds a keybind to the application
         /// </summary>
+        /// <typeparam name="TKeybindHandler">The type of the keybind handler.</typeparam>
         /// <param name="services">The service collection to add the keybind to</param>
-        /// <param name="keybindHandler">The keybind handler to add</param>
         /// <returns>The service collection</returns>
         public static IServiceCollection AddSidekickKeybind<TKeybindHandler>(this IServiceCollection services)
             where TKeybindHandler : class, IKeybindHandler

@@ -77,5 +77,14 @@ namespace Sidekick.Common.Blazor.Views
             await ViewLocator.Initialize(this);
             await base.OnInitializedAsync();
         }
+
+        protected override void OnAfterRender(bool firstRender)
+        {
+            if (firstRender)
+            {
+                Wrapper.SetView(this);
+            }
+            base.OnAfterRender(firstRender);
+        }
     }
 }
