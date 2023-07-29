@@ -1,6 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Platform;
 
@@ -10,12 +9,12 @@ namespace Sidekick.Mock
     {
         public static IServiceCollection AddSidekickMocks(this IServiceCollection services)
         {
-            services.TryAddSingleton<IAppService, MockAppService>();
-            services.TryAddSingleton<IKeyboardProvider, MockKeyboardProvider>();
+            services.TryAddSingleton<IApplicationService, MockApplicationService>();
             services.TryAddSingleton<IProcessProvider, MockProcessProvider>();
-            services.TryAddSingleton<IViewLocator, MockViewLocator>();
-            services.TryAddScoped<IViewInstance, MockViewInstance>();
+            services.TryAddSingleton<IKeyboardProvider, MockKeyboardProvider>();
             services.TryAddSingleton<IKeybindProvider, MockKeybindProvider>();
+            services.TryAddSingleton<ITrayProvider, MockTrayProvider>();
+            services.TryAddSingleton<IViewLocator, MockViewLocator>();
 
             return services;
         }

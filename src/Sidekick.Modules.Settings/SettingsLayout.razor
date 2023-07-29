@@ -40,15 +40,14 @@
     [Inject] private SettingsResources Resources { get; set; }
     [Inject] private SettingsModel ViewModel { get; set; }
     [Inject] private IViewLocator ViewLocator { get; set; }
-    [Inject] private IViewInstance ViewInstance { get; set; }
     [Inject] private ISettingsService SettingsService { get; set; }
     [Inject] private ICacheProvider CacheProvider { get; set; }
-
+    
     [CascadingParameter] public MenuLayout Layout { get; set; }
+    [CascadingParameter] public SidekickView View { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        await ViewInstance.Initialize(Resources.Title);
         Layout.SetMenuIcon(false);
         await base.OnInitializedAsync();
     }
@@ -56,12 +55,13 @@
     public async Task Save()
     {
         await SettingsService.Save(ViewModel);
-        await ViewInstance.Close();
+        await View.Close();
     }
 
     public async Task ResetCache()
     {
         CacheProvider.Clear();
-        await ViewInstance.CloseAndOpen("/initialize");
+        await ViewLocator.Open("/initialize");
+        await View.Close();
     }
 }

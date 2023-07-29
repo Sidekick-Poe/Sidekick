@@ -21,7 +21,7 @@
         </MudField>
     </div>
     <div class="flex-grow-0">
-        <MudIconButton Icon="@Icons.Filled.Cancel" @onclick="Delete"></MudIconButton>
+        <MudIconButton Icon="@Icons.Material.Filled.Cancel" @onclick="Delete"></MudIconButton>
     </div>
 </div>
 
@@ -30,7 +30,6 @@
     [Inject] private SettingsResources Resources { get; set; }
     [Inject] private SettingsModel ViewModel { get; set; }
     [Inject] private IKeyboardProvider Keyboard { get; set; }
-    [Inject] private IKeybindProvider KeybindProvider { get; set; }
 
     [Parameter] public string Label { get; set; }
     [Parameter] public string Value { get; set; }
@@ -43,7 +42,6 @@
 
     protected override void OnInitialized()
     {
-        KeybindProvider.Unregister();
         Keyboard.OnKeyDown += OnKeyDown;
         base.OnInitialized();
     }
@@ -126,6 +124,5 @@
     public void Dispose()
     {
         Keyboard.OnKeyDown -= OnKeyDown;
-        KeybindProvider.Register();
     }
 }

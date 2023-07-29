@@ -1,5 +1,6 @@
 @page "/cheatsheets/betrayal"
 @layout CheatsheetLayout
+@inherits SidekickView
 
 <MudGrid Class="justify-end mb-1" Spacing="1">
     <MudItem xs="12" sm="6" md="4" lg="3">
@@ -26,10 +27,11 @@
 @code {
     [Inject] private CheatsheetResources CheatsheetResources { get; set; }
     [Inject] private BetrayalResources Resources { get; set; }
-    [Inject] private IViewInstance ViewInstance { get; set; }
     [Inject] private ISettings Settings { get; set; }
 
     private List<AgentModel> Agents { get; set; } = new();
+
+    public override string Title => CheatsheetResources.Betrayal;
 
     protected override async Task OnInitializedAsync()
     {
@@ -171,7 +173,6 @@
 
         Sort();
 
-        await ViewInstance.Initialize(CheatsheetResources.Betrayal);
         await base.OnInitializedAsync();
     }
 

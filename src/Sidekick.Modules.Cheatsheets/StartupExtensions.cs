@@ -1,5 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common.Blazor;
+using Sidekick.Common.Platform;
+using Sidekick.Modules.Cheatsheets.Keybinds;
 using Sidekick.Modules.Cheatsheets.Localization;
 
 namespace Sidekick.Modules.Cheatsheets
@@ -20,6 +22,8 @@ namespace Sidekick.Modules.Cheatsheets
             services.AddTransient<HeistResources>();
             services.AddTransient<IncursionResources>();
             services.AddTransient<MetamorphResources>();
+
+            services.AddSidekickKeybind<OpenCheatsheetsKeybindHandler>();
 
             return services;
         }

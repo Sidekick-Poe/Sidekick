@@ -37,7 +37,7 @@ namespace Sidekick.Common.Game.Languages
         {
             var result = new List<GameLanguageAttribute>();
 
-            foreach (var type in typeof(GameLanguageAttribute).GetImplementedAttribute())
+            foreach (var type in typeof(GameLanguageAttribute).GetTypesImplementingAttribute())
             {
                 var attribute = type.GetAttribute<GameLanguageAttribute>();
                 attribute.ImplementationType = type;

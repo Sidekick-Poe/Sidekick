@@ -1,5 +1,6 @@
 @page "/settings/chat"
 @layout SettingsLayout
+@inherits SidekickView
 
 @foreach (var chatSetting in ViewModel.Chat_Commands)
 {
@@ -26,6 +27,8 @@
 @code {
     [Inject] private SettingsResources Resources { get; set; }
     [Inject] private SettingsModel ViewModel { get; set; }
+
+    public override string Title => Resources.Title;
 
     private void Remove(ChatSetting chatSetting)
     {

@@ -1,9 +1,35 @@
-<div class="sidekick-wrapper">
-    <MudLayout>
-        @ChildContent
-    </MudLayout>
-</div>
+
+<CascadingValue Value="this" IsFixed="true">
+    <CascadingValue Value="View">
+        <div class="sidekick-wrapper @(HasAppbar ? "has-appbar" : "")">
+            <MudLayout>
+                @ChildContent
+            </MudLayout>
+        </div>
+    </CascadingValue>
+</CascadingValue>
 
 @code {
-    [Parameter] public RenderFragment ChildContent { get; set; }
+    /// <summary>
+    /// Gets or sets the content of the wrapper.
+    /// </summary>
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the view has an app bar or not.
+    /// </summary>
+    [Parameter]
+    public bool HasAppbar { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets the current view.
+    /// </summary>
+    private SidekickView View { get; set; }
+
+    public void SetView(SidekickView view)
+    {
+        View = view;
+        StateHasChanged();
+    }
 }

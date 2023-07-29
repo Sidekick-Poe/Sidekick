@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
@@ -8,23 +9,21 @@ using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Pseudo;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
-using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Localization;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Tray;
 using Sidekick.Common.Settings;
-using Sidekick.Core.Settings;
 using Sidekick.Modules.Initialization.Localization;
 
 namespace Sidekick.Modules.Initialization.Pages
 {
-    public partial class Initialization : ComponentBase
+    public partial class Initialization : SidekickView
     {
         [Inject] private InitializationResources Resources { get; set; }
         [Inject] private ISettings Settings { get; set; }
         [Inject] private ILogger<Initialization> Logger { get; set; }
-        [Inject] private IViewInstance ViewInstance { get; set; }
         [Inject] private IProcessProvider ProcessProvider { get; set; }
         [Inject] private IKeyboardProvider KeyboardProvider { get; set; }
         [Inject] private IKeybindProvider KeybindProvider { get; set; }
@@ -34,24 +33,26 @@ namespace Sidekick.Modules.Initialization.Pages
         [Inject] private IItemMetadataProvider ItemMetadataProvider { get; set; }
         [Inject] private IItemStaticDataProvider ItemStaticDataProvider { get; set; }
         [Inject] private IGameLanguageProvider GameLanguageProvider { get; set; }
-        [Inject] private IAppService AppService { get; set; }
+        [Inject] private IApplicationService ApplicationService { get; set; }
         [Inject] private IUILanguageProvider UILanguageProvider { get; set; }
         [Inject] private IEnglishModifierProvider EnglishModifierProvider { get; set; }
         [Inject] private IPoeNinjaClient PoeNinjaClient { get; set; }
+        [Inject] private ITrayProvider TrayProvider { get; set; }
         [Inject] private IPoeWikiDataProvider PoeWikiDataProvider { get; set; }
 
         private int Count { get; set; } = 0;
         private int Completed { get; set; } = 0;
-        private string Title { get; set; }
+        private string Step { get; set; }
         private int Percentage { get; set; }
+        private bool Error { get; set; }
 
-        public static bool HasRun { get; set; } = false;
         public Task InitializationTask { get; set; }
+        public override string Title => "Initialize";
+        public override SidekickViewType ViewType => SidekickViewType.Modal;
 
         protected override async Task OnInitializedAsync()
         {
             InitializationTask = Handle();
-            await ViewInstance.Initialize("Initialize", width: 400, height: 230, isModal: true);
             await base.OnInitializedAsync();
             await InitializationTask;
         }
@@ -61,7 +62,7 @@ namespace Sidekick.Modules.Initialization.Pages
             try
             {
                 Completed = 0;
-                Count = HasRun ? 9 : 12;
+                Count = 14;
 
                 // Report initial progress
                 await ReportProgress();
@@ -77,32 +78,23 @@ namespace Sidekick.Modules.Initialization.Pages
                 await Run(() => ModifierProvider.Initialize());
                 await Run(() => PseudoModifierProvider.Initialize());
                 await Run(() => PoeNinjaClient.Initialize());
+                await Run(() => KeybindProvider.Initialize());
+                await Run(() => ProcessProvider.Initialize());
+                await Run(() => KeyboardProvider.Initialize());
                 await Run(() => PoeWikiDataProvider.Initialize());
+                await Run(() => InitializeTray());
 
-                if (!HasRun)
-                {
-                    await Run(() => ProcessProvider.Initialize());
-                    await Run(() => KeyboardProvider.Initialize());
-                    await Run(() => KeybindProvider.Initialize());
-                }
-
-                // If we have a successful initialization, we delay for half a second to show the "Ready" label on the UI before closing the view
+                // If we have a successful initialization, we delay for half a second to show the
+                // "Ready" label on the UI before closing the view
                 Completed = Count;
                 await ReportProgress();
-                await Task.Delay(500);
-
-                // Show a system notification
-                await AppService.OpenNotification(string.Format(Resources.Notification_Message, Settings.Trade_Key_Check.ToKeybindString(), Settings.Key_Close.ToKeybindString()),
-                                                  Resources.Notification_Title);
-
-                HasRun = true;
-                await ViewInstance.Close();
+                await Task.Delay(5000);
+                await Close();
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex.Message);
-                await AppService.OpenNotification(Resources.Error);
-                AppService.Shutdown();
+                Error = true;
             }
         }
 
@@ -137,12 +129,12 @@ namespace Sidekick.Modules.Initialization.Pages
                 Percentage = Count == 0 ? 0 : Completed * 100 / Count;
                 if (Percentage >= 100)
                 {
-                    Title = Resources.Ready;
+                    Step = Resources.Ready;
                     Percentage = 100;
                 }
                 else
                 {
-                    Title = Resources.Title(Completed, Count);
+                    Step = Resources.Title(Completed, Count);
                 }
 
                 StateHasChanged();
@@ -150,9 +142,45 @@ namespace Sidekick.Modules.Initialization.Pages
             });
         }
 
+        private void InitializeTray()
+        {
+            var menuItems = new List<TrayMenuItem>();
+
+            menuItems.AddRange(new List<TrayMenuItem>()
+            {
+                new ()
+                {
+                    Label = "Sidekick - " + typeof(StartupExtensions).Assembly.GetName().Version.ToString(),
+                    Disabled = true,
+                },
+                new ()
+                {
+                    Label = "Cheatsheets",
+                    OnClick = () => ViewLocator.Open("/cheatsheets"),
+                },
+                new ()
+                {
+                    Label = "About",
+                    OnClick = () => ViewLocator.Open("/about"),
+                },
+                new ()
+                {
+                    Label = "Settings",
+                    OnClick = () => ViewLocator.Open("/settings"),
+                },
+                new ()
+                {
+                    Label = "Exit",
+                    OnClick = () => { ApplicationService.Shutdown(); return Task.CompletedTask; },
+                },
+            });
+
+            TrayProvider.Initialize(menuItems);
+        }
+
         public void Exit()
         {
-            AppService.Shutdown();
+            ApplicationService.Shutdown();
         }
     }
 }

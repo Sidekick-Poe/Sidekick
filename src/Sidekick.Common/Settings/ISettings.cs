@@ -8,7 +8,6 @@ namespace Sidekick.Common.Settings
         Guid UserId { get; set; }
         string Language_Parser { get; set; }
         string Language_UI { get; set; }
-        string Theme { get; set; }
 
         string Key_Close { get; set; }
         bool EscapeClosesOverlays { get; set; }
@@ -31,10 +30,12 @@ namespace Sidekick.Common.Settings
         string Map_Dangerous_Regex { get; set; }
 
         #region Cheatsheets
+
         string Cheatsheets_Key_Open { get; set; }
         string Cheatsheets_Selected { get; set; }
         string Cheatsheets_Betrayal_Sort { get; set; }
-        #endregion
+
+        #endregion Cheatsheets
 
         List<ChatSetting> Chat_Commands { get; set; }
 
