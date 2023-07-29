@@ -1,10 +1,8 @@
-@implements IDisposable
-
 <div class="application-nav-bar">
-    <MudAppBar Fixed="false" Elevation="0">
+    <MudAppBar Fixed="false" Elevation="0" Class="pl-4">
         @LeftContent
         <div class="icon"><img src="/images/orbs/ExaltedOrb.png" /></div>
-        <MudText Typo="Typo.h6">
+        <MudText Typo="Typo.h4">
             <span id="sidekick-appbar-title">@View?.Title</span>
         </MudText>
         <MudSpacer />
@@ -38,15 +36,4 @@
 
     [Parameter]
     public RenderFragment LeftContent { get; set; }
-
-    protected override void OnInitialized()
-    {
-
-        base.OnInitialized();
-    }
-
-    public void Dispose()
-    {
-        
-    }
 }
