@@ -194,7 +194,7 @@ namespace Sidekick.Electron
                 EnableLargerThanScreen = false,
                 WebPreferences = new WebPreferences()
                 {
-                    NodeIntegration = true,
+                    NodeIntegration = false,
                 }
             }, $"http://localhost:{BridgeSettings.WebPort}{url}");
 

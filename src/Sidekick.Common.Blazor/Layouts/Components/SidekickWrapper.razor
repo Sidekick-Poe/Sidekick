@@ -1,13 +1,29 @@
 
-<CascadingValue Value="this" IsFixed="true">
-    <CascadingValue Value="View">
-        <div class="sidekick-wrapper @(HasAppbar ? "has-appbar" : "")">
-            <MudLayout>
-                @ChildContent
-            </MudLayout>
+<ErrorBoundary>
+    <ChildContent>
+        <CascadingValue Value="this" IsFixed="true">
+            <CascadingValue Value="View">
+                <div class="sidekick-wrapper @(HasAppbar ? "has-appbar" : "")">
+                    <MudLayout>
+                        @ChildContent
+                    </MudLayout>
+                </div>
+            </CascadingValue>
+        </CascadingValue>
+    </ChildContent>
+    <ErrorContent>
+        <div class="blazor-error">
+            <div class="content">
+                <div>
+                    An error has occurred. This application may no longer respond until reloaded.<br />
+                    If this issue keeps reoccurring, please open a ticket on our github page.
+                </div>
+
+                <a href="javascript:;" class="reload" @onclick="Reload">Reload</a>
+            </div>
         </div>
-    </CascadingValue>
-</CascadingValue>
+    </ErrorContent>
+</ErrorBoundary>
 
 @code {
     /// <summary>
@@ -22,6 +38,9 @@
     [Parameter]
     public bool HasAppbar { get; set; } = true;
 
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
     /// <summary>
     /// Gets or sets the current view.
     /// </summary>
@@ -31,5 +50,10 @@
     {
         View = view;
         StateHasChanged();
+    }
+
+    private void Reload()
+    {
+        NavigationManager.NavigateTo(NavigationManager.Uri, true);
     }
 }
