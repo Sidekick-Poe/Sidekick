@@ -73,7 +73,7 @@ jobs:
     - name: .NET 6 - Setup (Required for Electron)
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.0
+        dotnet-version: 6.x
     - name: .NET 7 - Setup
       uses: actions/setup-dotnet@v1
       with:
