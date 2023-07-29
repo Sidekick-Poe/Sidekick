@@ -86,7 +86,7 @@ namespace Sidekick.Common.Blazor.Views
 
         protected override void OnAfterRender(bool firstRender)
         {
-            if (firstRender)
+            if (firstRender && Wrapper != null)
             {
                 Wrapper.SetView(this);
             }
