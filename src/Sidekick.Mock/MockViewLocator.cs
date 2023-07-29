@@ -5,6 +5,9 @@ namespace Sidekick.Mock
 {
     public class MockViewLocator : IViewLocator
     {
+        /// <inheritdoc/>
+        public bool IsElectron => false;
+
         public Task Open(string url)
         {
             return Task.CompletedTask;
@@ -22,6 +25,7 @@ namespace Sidekick.Mock
 
         public Task Close(SidekickView view)
         {
+            view.NavigationManager.NavigateTo("/");
             return Task.CompletedTask;
         }
 

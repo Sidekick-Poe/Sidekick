@@ -32,6 +32,9 @@ namespace Sidekick.Electron
             });
         }
 
+        /// <inheritdoc/>
+        public bool IsElectron => true;
+
         private List<BrowserWindow> Browsers { get; set; } = new();
 
         private List<SidekickView> Views { get; set; } = new();
@@ -185,6 +188,9 @@ namespace Sidekick.Electron
                 Show = false,
                 Transparent = true,
                 DarkTheme = true,
+                ThickFrame = false,
+                TitleBarStyle = TitleBarStyle.hidden,
+                UseContentSize = false,
                 EnableLargerThanScreen = false,
                 WebPreferences = new WebPreferences()
                 {
@@ -214,6 +220,10 @@ namespace Sidekick.Electron
                 FirstView = false;
                 await window.WebContents.Session.ClearCacheAsync();
             }
+
+#if DEBUG
+            window.WebContents.OpenDevTools();
+#endif
 
             Browsers.Add(window);
         }

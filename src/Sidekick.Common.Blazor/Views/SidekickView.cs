@@ -10,11 +10,17 @@ namespace Sidekick.Common.Blazor.Views
     /// </summary>
     public abstract class SidekickView : ComponentBase
     {
+        /// <summary>
+        /// Gets or sets the view locator service.
+        /// </summary>
         [Inject]
         protected IViewLocator ViewLocator { get; set; }
 
+        /// <summary>
+        /// Gets or sets the navigation manager.
+        /// </summary>
         [Inject]
-        protected NavigationManager NavigationManager { get; set; }
+        public NavigationManager NavigationManager { get; set; }
 
         /// <summary>
         /// Gets or sets the sidekick wrapper.
@@ -52,7 +58,7 @@ namespace Sidekick.Common.Blazor.Views
         /// </summary>
         public virtual int ViewHeight => ViewType switch
         {
-            SidekickViewType.Modal => 280,
+            SidekickViewType.Modal => 260,
             _ => 600,
         };
 

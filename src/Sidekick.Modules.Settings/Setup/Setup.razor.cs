@@ -38,7 +38,7 @@ namespace Sidekick.Modules.Settings.Setup
 
         public override string Title => "Setup";
         public override SidekickViewType ViewType => SidekickViewType.Modal;
-        public override int ViewHeight => NewLeagues ? 715 : base.ViewHeight;
+        public override int ViewHeight => NewLeagues ? 600 : base.ViewHeight;
         public override int ViewWidth => NewLeagues ? 600 : base.ViewWidth;
 
         protected override async Task OnInitializedAsync()
@@ -81,7 +81,7 @@ namespace Sidekick.Modules.Settings.Setup
             }
 
             await SettingsService.Save(ViewModel);
-            NavigationManager.NavigateTo("/initialize");
+            await Close();
         }
 
         public async Task OnGameLanguageChange(string value)

@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 
 namespace Sidekick.Common.Blazor.Views
@@ -8,6 +7,11 @@ namespace Sidekick.Common.Blazor.Views
     /// </summary>
     public interface IViewLocator
     {
+        /// <summary>
+        /// Gets a value indicating whether the application is currently running inside Electron.
+        /// </summary>
+        bool IsElectron { get; }
+
         /// <summary>
         /// Opens the specified view
         /// </summary>
