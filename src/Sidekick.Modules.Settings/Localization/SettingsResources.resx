@@ -123,12 +123,6 @@
   <data name="Character_League" xml:space="preserve">
     <value>League</value>
   </data>
-  <data name="Character_Name" xml:space="preserve">
-    <value>Character Name</value>
-  </data>
-  <data name="Character_Title" xml:space="preserve">
-    <value>Character Settings</value>
-  </data>
   <data name="Chat" xml:space="preserve">
     <value>Chat Commands</value>
   </data>
@@ -174,14 +168,14 @@
   <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
     <value>{LastWhisper.CharacterName} - Character name of the last whisper message you received.</value>
   </data>
-  <data name="Chat_Wildcard_Me_CharacterName" xml:space="preserve">
-    <value>{Me.CharacterName} - Your own character name.</value>
-  </data>
   <data name="Cheatsheets" xml:space="preserve">
     <value>Cheatsheets</value>
   </data>
   <data name="Cheatsheets_Key_Open" xml:space="preserve">
     <value>Open Cheatsheets</value>
+  </data>
+  <data name="Game_Title" xml:space="preserve">
+    <value>Game Settings</value>
   </data>
   <data name="General" xml:space="preserve">
     <value>General</value>

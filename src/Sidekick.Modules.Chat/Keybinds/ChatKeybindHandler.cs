@@ -10,7 +10,6 @@ namespace Sidekick.Modules.Chat.Keybinds
 {
     public class ChatKeybindHandler : IKeybindHandler
     {
-        private const string Token_Me_CharacterName = "{Me.CharacterName}";
         private const string Token_LastWhisper_CharacterName = "{LastWhisper.CharacterName}";
 
         private readonly ISettings settings;
@@ -53,19 +52,6 @@ namespace Sidekick.Modules.Chat.Keybinds
             if (settings.RetainClipboard)
             {
                 clipboardValue = await clipboard.GetText();
-            }
-
-            if (command.Contains(Token_Me_CharacterName))
-            {
-                // This operation is only valid if the user has added their character name to the
-                // settings file.
-                if (string.IsNullOrEmpty(settings.Character_Name))
-                {
-                    logger.LogWarning(@"This command requires a ""CharacterName"" to be specified in the settings menu.");
-                    return;
-                }
-
-                command = command.Replace(Token_Me_CharacterName, settings.Character_Name);
             }
 
             if (command.Contains(Token_LastWhisper_CharacterName))

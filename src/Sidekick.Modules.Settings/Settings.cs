@@ -18,8 +18,6 @@ namespace Sidekick.Modules.Settings
 
         public WikiSetting Wiki_Preferred { get; set; } = WikiSetting.PoeWiki;
 
-        public string Character_Name { get; set; } = "";
-
         public bool RetainClipboard { get; set; } = true;
 
         public bool Trade_CloseWithMouse { get; set; } = false;
@@ -51,7 +49,7 @@ namespace Sidekick.Modules.Settings
         public List<ChatSetting> Chat_Commands { get; set; } = new()
         {
             new ChatSetting("F5", "/hideout", true),
-            new ChatSetting("F4", "/kick {Me.CharacterName}", true),
+            new ChatSetting("F4", "/leave", true),
             new ChatSetting("Ctrl+Enter", "@{LastWhisper.CharacterName} ", false),
             new ChatSetting("F9", "/exit", true),
         };

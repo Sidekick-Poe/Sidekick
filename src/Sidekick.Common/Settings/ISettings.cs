@@ -14,7 +14,6 @@ namespace Sidekick.Common.Settings
         string LeagueId { get; set; }
         string LeaguesHash { get; set; }
 
-        string Character_Name { get; set; }
         bool RetainClipboard { get; set; }
         string Key_FindItems { get; set; }
         // bool SendCrashReports { get; set; }

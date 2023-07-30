@@ -10,22 +10,18 @@
     </MudCardHeader>
     <MudCardContent>
         <UILanguageSelect @bind-Value="ViewModel.Language_UI"></UILanguageSelect>
-        <GameLanguageSelect @bind-Value="ViewModel.Language_Parser"></GameLanguageSelect>
     </MudCardContent>
 </MudCard>
 
 <MudCard>
     <MudCardHeader>
         <CardHeaderContent>
-            <MudText Typo="Typo.h3">@Resources.Character_Title</MudText>
+            <MudText Typo="Typo.h5">@Resources.Game_Title</MudText>
         </CardHeaderContent>
     </MudCardHeader>
     <MudCardContent>
+        <GameLanguageSelect @bind-Value="ViewModel.Language_Parser"></GameLanguageSelect>
         <LeagueSelect @bind-Value="ViewModel.LeagueId"></LeagueSelect>
-        <MudTextField Label="@Resources.Character_Name"
-                      Variant="Variant.Filled"
-                      MaxLength="23"
-                      @bind-Value="ViewModel.Character_Name" />
     </MudCardContent>
 </MudCard>
 

@@ -58,6 +58,18 @@ namespace Sidekick.Modules.Settings.Setup
                 RequiresSetup = true;
                 NewLeagues = true;
                 await ViewLocator.Initialize(this);
+
+                foreach (var command in Settings.Chat_Commands)
+                {
+                    // Handle a legacy feature that allowed users to use the character name in commands.
+                    // This has been removed after the update of Crucible league as the league added the command /leave which leaves the current party.
+                    // The requirement of knowing the character name was no longer needed.
+                    if (command.Command.Contains("{Me.CharacterName}"))
+                    {
+                        command.Command = "/leave";
+                        await SettingsService.Save(Settings);
+                    }
+                }
             }
             else
             {
