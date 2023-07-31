@@ -1,5 +1,8 @@
 @page "/cheatsheets/Archnemesis"
+@using Sidekick.Apis.PoeWiki;
+@using Sidekick.Apis.PoeWiki.Models;
 @layout CheatsheetLayout
+@inherits SidekickView
 
 <MudGrid Spacing="1">
 
@@ -34,14 +37,15 @@
 
 @code {
     [Inject] private CheatsheetResources CheatsheetResources { get; set; }
-    [Inject] private Sidekick.Apis.PoeWiki.IPoeWikiClient PoeWikiClient { get; set; }
-    [Inject] private IViewInstance ViewInstance { get; set; }
+    [Inject] private IPoeWikiClient PoeWikiClient { get; set; }
 
-    private Sidekick.Apis.PoeWiki.Models.WikiPage WikiPage { get; set; }
+    private WikiPage WikiPage { get; set; }
     private bool Loading { get; set; } = true;
 
     private string textblob { get; set; }
     private List<mod> modList {get; set; }
+
+    public override string Title => CheatsheetResources.Archnemesis;
 
     protected override async Task OnInitializedAsync()
     {
@@ -65,7 +69,7 @@
 
             Loading = false;
         }
-        await ViewInstance.Initialize(CheatsheetResources.Archnemesis);
+
         await base.OnInitializedAsync();
     }
 
