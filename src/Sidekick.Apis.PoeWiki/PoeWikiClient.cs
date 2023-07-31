@@ -10,7 +10,9 @@ using Sidekick.Apis.PoeWiki.ApiModels;
 using Sidekick.Apis.PoeWiki.Extensions;
 using Sidekick.Apis.PoeWiki.Models;
 using Sidekick.Common.Browser;
+using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items.Modifiers;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
 
@@ -31,8 +33,6 @@ namespace Sidekick.Apis.PoeWiki
 
         private const string PoeWiki_BaseUri = "https://www.poewiki.net/";
         private const string PoeWiki_SubUrl = "w/index.php?search=";
-
-        public bool IsEnabled { get; }
 
         public PoeWikiClient(ILogger<PoeWikiClient> logger,
                              IHttpClientFactory httpClientFactory,
@@ -55,9 +55,9 @@ namespace Sidekick.Apis.PoeWiki
             this.gameLanguageProvider = gameLanguageProvider;
             this.browserProvider = browserProvider;
             this.settings = settings;
-
-            IsEnabled = this.gameLanguageProvider.IsEnglish() && this.settings.PoeWikiMap_Enable;
         }
+
+        public bool IsEnabled => gameLanguageProvider.IsEnglish() && settings.PoeWikiData_Enable;
 
         private async Task<MapResult> GetMapResult(Item item)
         {
@@ -72,9 +72,9 @@ namespace Sidekick.Apis.PoeWiki
 
                     new("tables", "maps,items,areas"),
 
-                    new("join_on", @"items._pageID=maps._pageID,maps.area_id=areas.id"),
+                    new("join_on", "items._pageID=maps._pageID,maps.area_id=areas.id"),
 
-                    new("fields", @"items.name,maps.area_id,areas.boss_monster_ids,items.drop_monsters"),
+                    new("fields", "items.name,maps.area_id,areas.boss_monster_ids,items.drop_monsters"),
 
                     new("group_by", "items.name"),
 
@@ -109,7 +109,7 @@ namespace Sidekick.Apis.PoeWiki
 
                     new("tables", "monsters"),
 
-                    new("fields", @"monsters.name,monsters.metadata_id"),
+                    new("fields", "monsters.name,monsters.metadata_id"),
 
                     new("where", @$"monsters.metadata_id IN ({mapResult.BossMonsterIds.ToQueryString()})"),
                 });
@@ -128,7 +128,7 @@ namespace Sidekick.Apis.PoeWiki
             return null;
         }
 
-        private async Task<List<ItemResult>> GetItemsResult(MapResult mapResult)
+        private async Task<List<MapItemResult>> GetItemsResult(MapResult mapResult)
         {
             try
             {
@@ -140,14 +140,14 @@ namespace Sidekick.Apis.PoeWiki
 
                     new("tables", "items"),
 
-                    new("fields", @"items.drop_areas,items.flavour_text,items.drop_text,items.class_id,items.drop_monsters,items.name,items.drop_enabled"),
+                    new("fields", "items.drop_areas,items.flavour_text,items.drop_text,items.class_id,items.drop_monsters,items.name,items.drop_enabled"),
 
                     new("where", @$"items.drop_areas HOLDS '{mapResult.AreaId}'"),
                 });
 
                 var response = await client.GetAsync(query.ToString());
                 var content = await response.Content.ReadAsStreamAsync();
-                var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<ItemResult>>(content, options);
+                var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<MapItemResult>>(content, options);
 
                 return result.CargoQuery.Select(x => x.Title).ToList();
             }
@@ -159,9 +159,9 @@ namespace Sidekick.Apis.PoeWiki
             return null;
         }
 
+
         private async Task<WikiPageResult> GetWikiPageResult(int pageId)
         {
-
             try
             {
                 var query = new QueryBuilder(new List<KeyValuePair<string, string>>
@@ -189,14 +189,82 @@ namespace Sidekick.Apis.PoeWiki
             return null;
         }
 
+        public async Task<List<string>> GetOilsMetadataIdsFromEnchantment(ModifierLine modifierLine)
+        {
+            try
+            {
+                var enchantmentText = modifierLine.Text.Replace("Allocates ", string.Empty);
+
+                var query = new QueryBuilder(new List<KeyValuePair<string, string>>
+                {
+                    new("action", "cargoquery"),
+                    new("format", "json"),
+                    new("limit", "500"),
+
+                    new("tables", "blight_crafting_recipes,blight_crafting_recipes_items,mods,passive_skills"),
+
+                    new("join_on", "blight_crafting_recipes_items.recipe_id=blight_crafting_recipes.id,blight_crafting_recipes.modifier_id=mods.id,blight_crafting_recipes.passive_id=passive_skills.id"),
+
+                    new("fields", "blight_crafting_recipes_items.item_id"),
+
+                    new("where", @$"passive_skills.name='{enchantmentText}' OR mods.stat_text='{enchantmentText}'"),
+                });
+
+                var response = await client.GetAsync(query.ToString());
+                var content = await response.Content.ReadAsStreamAsync();
+
+                var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<ItemIdResult>>(content, options);
+
+                return result.CargoQuery.Select(x => x.Title.ItemId).ToList();
+
+            }
+            catch (Exception e)
+            {
+                logger.LogWarning(e, "Error while trying to get oils from enchantment from poewiki.net.");
+
+            }
+
+            return null;
+        }
+
         public async Task<WikiPage> GetWikiPage (int pageId)
         {
-
             var wikiPageResult = await GetWikiPageResult(pageId);
 
             if (wikiPageResult == null) return null;
 
             return new WikiPage(wikiPageResult);
+        }
+
+        public async Task<List<ItemNameMetadataIdResult>> GetMetadataIdsFromItemNames(List<string> itemNames)
+        {
+            try
+            {
+                var query = new QueryBuilder(new List<KeyValuePair<string, string>>
+                {
+                    new("action", "cargoquery"),
+                    new("format", "json"),
+                    new("limit", "500"),
+
+                    new("tables", "items"),
+
+                    new("fields", "items.name,items.metadata_id"),
+
+                    new("where", @$"items.name IN ({itemNames.ToQueryString()})"),
+                });
+
+                var response = await client.GetAsync(query.ToString());
+                var content = await response.Content.ReadAsStreamAsync();
+                var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<ItemNameMetadataIdResult>>(content, options);
+
+                return result.CargoQuery.Select(x => x.Title).ToList();
+            }
+            catch (Exception e)
+            {
+                logger.LogWarning(e, "Error while trying to get item metadata ids from poewiki.net.");
+            }
+
+            return null;
         }
 
         public async Task<Map> GetMap(Item item)

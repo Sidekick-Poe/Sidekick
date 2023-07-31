@@ -1,5 +1,6 @@
 @page "/settings/chat"
 @layout SettingsLayout
+@inherits SidekickView
 
 @foreach (var chatSetting in ViewModel.Chat_Commands)
 {
@@ -12,7 +13,6 @@
 <MudText>@Resources.Chat_Commands_Exit</MudText>
 
 <MudText Typo="Typo.h5">@Resources.Chat_Wildcard</MudText>
-<MudText>@Resources.Chat_Wildcard_Me_CharacterName</MudText>
 <MudText>@Resources.Chat_Wildcard_LastWhisper_CharacterName</MudText>
 
 <div class="d-flex flex-row-reverse">
@@ -26,6 +26,8 @@
 @code {
     [Inject] private SettingsResources Resources { get; set; }
     [Inject] private SettingsModel ViewModel { get; set; }
+
+    public override string Title => Resources.Title;
 
     private void Remove(ChatSetting chatSetting)
     {

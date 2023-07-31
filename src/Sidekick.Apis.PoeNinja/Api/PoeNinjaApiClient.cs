@@ -19,11 +19,12 @@ namespace Sidekick.Apis.PoeNinja.Api
     /// </summary>
     public class PoeNinjaApiClient : IPoeNinjaApiClient
     {
-        private readonly static Uri POE_NINJA_API_BASE_URL = new("https://poe.ninja/api/data/");
+        private static readonly Uri POE_NINJA_API_BASE_URL = new("https://poe.ninja/api/data/");
+
         /// <summary>
         /// Poe.ninja uses its own language codes.
         /// </summary>
-        internal readonly static Dictionary<string, string> POE_NINJA_LANGUAGE_CODES = new()
+        internal static readonly Dictionary<string, string> POE_NINJA_LANGUAGE_CODES = new()
         {
             { "de", "ge" }, // German.
             { "en", "en" }, // English.
@@ -34,6 +35,7 @@ namespace Sidekick.Apis.PoeNinja.Api
             { "ru", "ru" }, // Russian.
             { "th", "th" }, // Thai.
         };
+
         private readonly HttpClient client;
         private readonly ILogger logger;
         private readonly IGameLanguageProvider gameLanguageProvider;
@@ -67,7 +69,7 @@ namespace Sidekick.Apis.PoeNinja.Api
             options = new JsonSerializerOptions()
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                IgnoreNullValues = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             };
             options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
 

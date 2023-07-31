@@ -70,10 +70,14 @@ jobs:
       with:
         name: GITHUB_TOKEN
         value: ${{ github.token }}
-    - name: .NET - Setup
+    - name: .NET 6 - Setup (Required for Electron)
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
+        dotnet-version: 6.x
+    - name: .NET 7 - Setup
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 7.x
     - name: NuGet - Setup
       uses: NuGet/setup-nuget@v1.0.5
     - name: NuGet - Source
@@ -86,18 +90,18 @@ jobs:
       run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
     - name: .NET - Tool Restore
       run: |
-        cd ./src/Sidekick.Electron
+        cd ./src/Sidekick
         dotnet tool restore
     - name: Electron - Build
       run: |
-        cd ./src/Sidekick.Electron
-        dotnet tool install ElectronNET.CLI -g
+        cd ./src/Sidekick
+        dotnet tool install ElectronNET.CLI -g --version 23.6.1
         electronize build /target win /PublishSingleFile false
     - name: Artifact - Build
       uses: actions/upload-artifact@v2.2.3
       with:
         name: Sidekick-windows
-        path: ./src/Sidekick.Electron/bin/Desktop/Sidekick-Setup.exe
+        path: ./src/Sidekick/bin/Desktop/Sidekick-Setup.exe
         
     # Manual release
     - name: Manual Release - Notes
@@ -111,9 +115,9 @@ jobs:
         prerelease: true
     - name: Manual Release - Asset
       if: github.ref != 'refs/heads/main'
-      uses: xresloader/upload-to-github-release@v1.3.0
+      uses: xresloader/upload-to-github-release@v1.3.4
       with:
-        file: src/Sidekick.Electron/bin/Desktop/Sidekick-Setup.exe
+        file: src/Sidekick/bin/Desktop/Sidekick-Setup.exe
         tag_name: v${{ steps.gitversion.outputs.fullSemVer }}
         draft: true
         verbose: true
@@ -131,9 +135,9 @@ jobs:
         prerelease: false
     - name: Main Release - Asset
       if: github.ref == 'refs/heads/main'
-      uses: xresloader/upload-to-github-release@v1.3.0
+      uses: xresloader/upload-to-github-release@v1.3.4
       with:
-        file: src/Sidekick.Electron/bin/Desktop/Sidekick-Setup.exe
+        file: src/Sidekick/bin/Desktop/Sidekick-Setup.exe
         tag_name: v${{ steps.gitversion.outputs.majorMinorPatch }}
         draft: true
         verbose: true

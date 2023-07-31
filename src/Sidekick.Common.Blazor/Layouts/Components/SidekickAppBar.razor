@@ -1,33 +1,39 @@
-
 <div class="application-nav-bar">
-    <MudAppBar Fixed="false" Elevation="0">
+    <MudAppBar Fixed="false" Elevation="0" Class="pl-4">
         @LeftContent
         <div class="icon"><img src="/images/orbs/ExaltedOrb.png" /></div>
-        <MudText Typo="Typo.h6">
-            <span id="sidekick-appbar-title">@ViewInstance.Title</span>
+        <MudText Typo="Typo.h4">
+            <span id="sidekick-appbar-title">@View?.Title</span>
         </MudText>
         <MudSpacer />
-        @RightContent
-        @if (ViewInstance != null)
+
+        @if (View != null)
         {
-            if (Minimizable)
+            if (View.ViewType == SidekickViewType.Standard)
             {
-                <MudIconButton Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Filled.Minimize" @onclick="ViewInstance.Minimize" />
+                <MudIconButton Color="Color.Inherit"
+                       Variant="Variant.Text"
+                       Icon="@Icons.Material.Filled.Minimize"
+                       @onclick="() => ViewLocator.Minimize(View)" />
+
+                <MudIconButton Color="Color.Inherit"
+                       Variant="Variant.Text"
+                       Icon="@Icons.Material.Filled.CropSquare"
+                       @onclick="() => ViewLocator.Maximize(View)" />
             }
-            if (Maximizable)
-            {
-                <MudIconButton Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Filled.CropSquare" @onclick="ViewInstance.Maximize" />
-            }
-            <MudIconButton Class="close-button" Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Filled.Close" @onclick="ViewInstance.Close" Edge="Edge.End" />
+
+            <MudIconButton Class="close-button" Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Material.Filled.Close" @onclick="View.Close" Edge="Edge.End" />
         }
     </MudAppBar>
 </div>
 
 @code {
-    [Inject] private IViewInstance ViewInstance { get; set; }
+    [Inject]
+    private IViewLocator ViewLocator { get; set; }
 
-    [Parameter] public bool Minimizable { get; set; } = false;
-    [Parameter] public bool Maximizable { get; set; } = false;
-    [Parameter] public RenderFragment LeftContent { get; set; }
-    [Parameter] public RenderFragment RightContent { get; set; }
+    [CascadingParameter]
+    public SidekickView View { get; set; }
+
+    [Parameter]
+    public RenderFragment LeftContent { get; set; }
 }

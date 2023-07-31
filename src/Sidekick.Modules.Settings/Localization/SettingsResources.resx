@@ -123,12 +123,6 @@
   <data name="Character_League" xml:space="preserve">
     <value>League</value>
   </data>
-  <data name="Character_Name" xml:space="preserve">
-    <value>Character Name</value>
-  </data>
-  <data name="Character_Title" xml:space="preserve">
-    <value>Character Settings</value>
-  </data>
   <data name="Chat" xml:space="preserve">
     <value>Chat Commands</value>
   </data>
@@ -174,14 +168,14 @@
   <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
     <value>{LastWhisper.CharacterName} - Character name of the last whisper message you received.</value>
   </data>
-  <data name="Chat_Wildcard_Me_CharacterName" xml:space="preserve">
-    <value>{Me.CharacterName} - Your own character name.</value>
-  </data>
   <data name="Cheatsheets" xml:space="preserve">
     <value>Cheatsheets</value>
   </data>
   <data name="Cheatsheets_Key_Open" xml:space="preserve">
     <value>Open Cheatsheets</value>
+  </data>
+  <data name="Game_Title" xml:space="preserve">
+    <value>Game Settings</value>
   </data>
   <data name="General" xml:space="preserve">
     <value>General</value>
@@ -191,9 +185,6 @@
   </data>
   <data name="General_RetainClipboard" xml:space="preserve">
     <value>Retain Clipboard Data</value>
-  </data>
-  <data name="General_SendCrashReports" xml:space="preserve">
-    <value>Send crash reports to help us fix bugs faster</value>
   </data>
   <data name="Group_Custom_Keybinds" xml:space="preserve">
     <value>Custom Keybinds</value>
@@ -291,7 +282,7 @@
   <data name="Trade_Normalize_Values" xml:space="preserve">
     <value>Normalize values in the trade filters (-5 difference or 10%)</value>
   </data>
-  <data name="PoeWikiMap_Enable" xml:space="preserve">
-    <value>Show additional map info from poewiki.net (only works if Game Language is in English)</value>
+  <data name="PoeWikiData_Enable" xml:space="preserve">
+    <value>Show additional information from poewiki.net such as item anointments and map drops. (only works if Game Language is in English)</value>
   </data>
 </root>

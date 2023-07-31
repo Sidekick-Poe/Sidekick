@@ -27,7 +27,7 @@ namespace Sidekick.Apis.Poe.Clients
             Options = new JsonSerializerOptions()
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                IgnoreNullValues = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             };
             Options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
         }

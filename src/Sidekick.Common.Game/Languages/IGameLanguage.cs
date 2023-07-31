@@ -41,9 +41,11 @@ namespace Sidekick.Common.Game.Languages
         string DescriptionEvasion { get; }
         string DescriptionChanceToBlock { get; }
         string DescriptionLevel { get; }
+        string DescriptionRequirements { get; }
 
         string PrefixSuperior { get; }
         string PrefixBlighted { get; }
+        string PrefixBlightRavaged { get; }
         string PrefixAnomalous { get; }
         string PrefixDivergent { get; }
         string PrefixPhantasmal { get; }

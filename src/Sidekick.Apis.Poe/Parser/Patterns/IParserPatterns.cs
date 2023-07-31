@@ -11,6 +11,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         Regex Armor { get; }
         Regex AttacksPerSecond { get; }
         Regex Blighted { get; }
+        Regex BlightRavaged { get; }
         Regex ChanceToBlock { get; }
         Regex IsRelic { get; }
         Regex Corrupted { get; }
@@ -31,6 +32,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         Regex PhysicalDamage { get; }
         Regex Quality { get; }
         Regex AlternateQuality { get; }
+        Regex Requirements { get; }
         Dictionary<Rarity, Regex> Rarity { get; }
         Regex Redeemer { get; }
         Regex Shaper { get; }

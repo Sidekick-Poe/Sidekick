@@ -1,5 +1,6 @@
 #pragma warning disable CA1806 // Do not ignore method results
 #pragma warning disable CA1416 // Validate platform compatibility
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -36,39 +37,47 @@ namespace Sidekick.Common.Platform.Windows.Processes
         private const int TOKEN_ALL_ACCESS = STANDARD_RIGHTS_REQUIRED | TOKEN_ASSIGN_PRIMARY | TOKEN_DUPLICATE | TOKEN_IMPERSONATE | TOKEN_QUERY | TOKEN_QUERY_SOURCE | TOKEN_ADJUST_PRIVILEGES | TOKEN_ADJUST_GROUPS | TOKEN_ADJUST_SESSIONID | TOKEN_ADJUST_DEFAULT;
 
         private readonly ILogger logger;
-        private readonly IAppService appService;
+        private readonly IApplicationService applicationService;
         private readonly PlatformResources platformResources;
 
         public event Action OnFocus;
+
         public event Action OnBlur;
 
         private string FocusedWindow { get; set; }
         private bool PermissionChecked { get; set; } = false;
+        private bool HasInitialized { get; set; } = false;
         private CancellationTokenSource WindowsHook { get; set; }
 
         /// <summary>
-        /// Used to prevent having to Invoke the blur action everytime a
-        /// window that is not Path of Exile is focused.
+        /// Used to prevent having to Invoke the blur action everytime a window that is not Path of
+        /// Exile is focused.
         /// </summary>
         private bool PathOfExileWasMinimized { get; set; }
 
         public ProcessProvider(
             ILogger<ProcessProvider> logger,
-            IAppService appService,
+            IApplicationService applicationService,
             PlatformResources platformResources)
         {
             this.logger = logger;
-            this.appService = appService;
+            this.applicationService = applicationService;
             this.platformResources = platformResources;
         }
 
-        public Task Initialize()
+        public void Initialize()
         {
+            // We can't initialize twice
+            if (HasInitialized)
+            {
+                return;
+            }
+
             WindowsHook = EventLoop.Run(WinEvent.EVENT_SYSTEM_FOREGROUND, WinEvent.EVENT_SYSTEM_CAPTURESTART, IntPtr.Zero, OnWindowsEvent, 0, 0, WinEvent.WINEVENT_OUTOFCONTEXT);
-            return Task.CompletedTask;
+            HasInitialized = true;
         }
 
-        void OnWindowsEvent(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
+        private void OnWindowsEvent(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
         {
             if (eventType == WinEvent.EVENT_SYSTEM_MINIMIZEEND || eventType == WinEvent.EVENT_SYSTEM_FOREGROUND)
             {
@@ -131,27 +140,27 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
         private async Task RestartAsAdmin()
         {
-            await appService.OpenConfirmationNotification(platformResources.RestartText,
-                onYes: () =>
-                {
-                    try
-                    {
-                        using var p = new Process();
-                        p.StartInfo.FileName = "Sidekick.exe";
-                        p.StartInfo.UseShellExecute = true;
-                        p.StartInfo.Verb = "runas";
-                        p.Start();
-                    }
-                    catch (Exception e)
-                    {
-                        logger.LogWarning(e, platformResources.AdminError);
-                    }
-                    finally
-                    {
-                        Environment.Exit(Environment.ExitCode);
-                    }
-                    return Task.CompletedTask;
-                });
+            if (!await applicationService.OpenConfirmationModal(platformResources.RestartAsAdminText))
+            {
+                return;
+            }
+
+            try
+            {
+                using var p = new Process();
+                p.StartInfo.FileName = "Sidekick.exe";
+                p.StartInfo.UseShellExecute = true;
+                p.StartInfo.Verb = "runas";
+                p.Start();
+            }
+            catch (Exception e)
+            {
+                logger.LogWarning(e, "This application must be run as administrator.");
+            }
+            finally
+            {
+                applicationService.Shutdown();
+            }
         }
 
         private static bool IsUserRunAsAdmin()

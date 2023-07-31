@@ -1,0 +1,60 @@
+@using Sidekick.Common.Game.Items
+
+<div class="header @BackgroundClass">
+    @ChildContent(this)
+</div>
+
+@code {
+    [Parameter] public Rarity Rarity { get; set; }
+
+    [Parameter] public bool IsRelic { get; set; }
+
+    [Parameter] public bool Double { get; set; }
+
+    [Parameter] public RenderFragment<ItemHeaderBackground> ChildContent { get; set; }
+
+    private string BackgroundClass
+    {
+        get
+        {
+            if (IsRelic)
+            {
+                if (!Double)
+                {
+                    return "header-relic";
+                }
+                return "header-double-relic";
+            }
+
+            switch (Rarity)
+            {
+                case Rarity.Currency: return "header-currency";
+                case Rarity.Magic: return "header-magic";
+                case Rarity.Gem: return "header-gem";
+                case Rarity.Rare:
+                    if (!Double)
+                    {
+                        return "header-rare";
+                    }
+                    return "header-double-rare";
+                case Rarity.Unique:
+                    if (!Double)
+                    {
+                        return "header-unique";
+                    }
+                    return "header-double-unique";
+                default: return "header-normal";
+            }
+        }
+    }
+
+    public string LabelStyle => Rarity switch
+    {
+        Rarity.Currency => "color:#AA9E82;",
+        Rarity.Magic => "color:#8888FF;",
+        Rarity.Rare => "color:#FFFF77;",
+        Rarity.Unique => "color:#AF6025;",
+        Rarity.Gem => "color:#1BA29B",
+        _ => "color:#C8C8C8",
+    };
+}

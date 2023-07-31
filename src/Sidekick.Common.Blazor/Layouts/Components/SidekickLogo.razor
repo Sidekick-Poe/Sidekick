@@ -5,13 +5,3 @@
              Align="Align.Center"
              Class="font-smallcaps">Sidekick</MudText>
 </div>
-
-@code {
-    [Inject] private IViewInstance ViewInstance { get; set; }
-
-    [Parameter] public bool Minimizable { get; set; } = false;
-    [Parameter] public bool Maximizable { get; set; } = false;
-    [Parameter] public RenderFragment LeftContent { get; set; }
-    [Parameter] public RenderFragment RightContent { get; set; }
-    [Parameter] public string Title { get; set; }
-}

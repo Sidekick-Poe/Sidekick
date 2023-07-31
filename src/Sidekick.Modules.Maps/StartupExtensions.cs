@@ -1,5 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common.Blazor;
+using Sidekick.Common.Platform;
+using Sidekick.Modules.Maps.Keybinds;
 using Sidekick.Modules.Maps.Localization;
 
 namespace Sidekick.Modules.Maps
@@ -14,6 +16,8 @@ namespace Sidekick.Modules.Maps
             });
 
             services.AddTransient<MapInfoResources>();
+
+            services.AddSidekickKeybind<OpenMapInfoKeybindHandler>();
 
             return services;
         }

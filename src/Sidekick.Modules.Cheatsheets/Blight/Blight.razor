@@ -1,5 +1,6 @@
 @page "/cheatsheets/blight"
 @layout CheatsheetLayout
+@inherits SidekickView
 
 <MudGrid Spacing="1">
     @foreach (var oil in Oils)
@@ -13,9 +14,10 @@
 @code {
     [Inject] private CheatsheetResources CheatsheetResources { get; set; }
     [Inject] private BlightResources Resources { get; set; }
-    [Inject] private IViewInstance ViewInstance { get; set; }
 
     private List<OilModel> Oils { get; set; }
+
+    public override string Title => CheatsheetResources.Blight;
 
     protected override async Task OnInitializedAsync()
     {
@@ -36,7 +38,6 @@
             new OilModel(Resources.ClearOil, Resources.ClearOilEffect, RewardValue.NoValue, "Clear_Oil.png"),
         };
 
-        await ViewInstance.Initialize(CheatsheetResources.Blight);
         await base.OnInitializedAsync();
     }
 }

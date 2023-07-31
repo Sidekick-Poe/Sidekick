@@ -1,5 +1,5 @@
-using System.Linq;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items.Modifiers;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Parser
@@ -50,8 +50,7 @@ Note: ~price 1.29 exalted
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal("Chronicle of Atzoatl", actual.Metadata.Type);
 
-            var pseudos = actual.Modifiers.Pseudo.Select(x => x.Text);
-            Assert.Contains("Has Room: Locus of Corruption (Tier 3)", pseudos);
+            actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)");
         }
     }
 }

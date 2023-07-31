@@ -1,111 +1,105 @@
 @page "/trade/{itemText}"
-@layout OverlayLayout
+@inherits SidekickView
 
-@if (Item != null)
+@if (Item == null)
 {
-    <div class="d-flex flex-row align-start mx-n1 mb-2">
-        <PriceNinjaComponent Item="Item" Class="flex-grow-1 mx-1" />
-        <PricePredictionComponent Item="Item" Class="flex-grow-1 mx-1" />
-    </div>
-
-    if (FiltersReady)
-    {
-        <FiltersComponent Item="Item" ModifierFilters="ModifierFilters" PropertyFilters="PropertyFilters" OnSearch="UpdateQuery" />
-    }
-
-    <PriceOptionsComponent Item="Item"
-                           QueryId="@QueryResult?.Id"
-                           @bind-Layout="Layout"
-                           Count="Results?.Count ?? 0"
-                           Total="QueryResult?.Total ?? 0" />
-}
-
-@if (IsError)
-{
-    <MudAlert Severity="Severity.Error">@Resources.Error_PoeApi</MudAlert>
-
-    @if (QueryResult?.Error != null)
-    {
-        <MudAlert Class="mt-1" Severity="Severity.Error">@Resources.Error_PoeApiMessage <b>@QueryResult.Error.Message</b></MudAlert>
-    }
+    <LoadingAlert Text="@Resources.Parsing" />
 }
 else
 {
-    <MudGrid Spacing="1" Class="align-stretch">
+    <FiltersComponent Item="Item" ModifierFilters="ModifierFilters" PropertyFilters="PropertyFilters" OnSearch="UpdateQuery" />
+
+    <div class="ml-0">
+        <PriceOptionsComponent Item="Item"
+                           QueryId="@QueryResult?.Id"
+                           @bind-Layout="Layout"
+                           Count="Results?.Count ?? 0"
+                           Total="QueryResult?.Total ?? 0"
+                           CanExpand="CanExpand" />
+
         @if (Results != null)
         {
             foreach (var result in Results)
             {
-                <MudItem xs="12" sm="6" md="4" lg="3">
-                    <ItemComponent Item="result" Style="height: 100%;" Layout="Layout" />
-                </MudItem>
-            }
-
-            if (IsFetching)
-            {
-                <MudItem xs="12" sm="6" md="4" lg="3">
-                    <MudSkeleton Height="100%" Width="100%" Style="min-height: 100px;" SkeletonType="SkeletonType.Rectangle" />
-                </MudItem>
+                <ItemComponent Item="result" Layout="Layout" CanExpand="CanExpand" />
             }
         }
-    </MudGrid>
-}
 
-@if (!IsFetching && !FullyLoaded && Results != null)
-{
-    <MudButton Variant="Variant.Outlined" Color="Color.Info" FullWidth="true" OnClick="LoadMoreData" Class="mt-2">@Resources.LoadMoreData</MudButton>
+        @if (IsFetching)
+        {
+            <LoadingAlert Text="Loading results" />
+        }
+
+        @if (!IsFetching && !FullyLoaded && Results != null)
+        {
+            <MudButton Variant="Variant.Outlined" Color="Color.Info" FullWidth="true" OnClick="LoadMoreData" Class="mt-2">@Resources.LoadMoreData</MudButton>
+        }
+    </div>
 }
 
 @code {
-    [Inject] private IViewInstance ViewInstance { get; set; }
     [Inject] private ITradeSearchService TradeSearchService { get; set; }
     [Inject] private IItemStaticDataProvider ItemStaticDataProvider { get; set; }
     [Inject] private ISettings Settings { get; set; }
     [Inject] private TradeResources Resources { get; set; }
     [Inject] private IItemParser ItemParser { get; set; }
     [Inject] private ITradeFilterService TradeFilterService { get; set; }
-    [Inject] private NavigationManager NavigationManager { get; set; }
 
     [Parameter] public string ItemText { get; set; }
 
     private Item Item { get; set; }
     private PropertyFilters PropertyFilters { get; set; }
-    private ModifierFilters ModifierFilters { get; set; }
+    private List<ModifierFilter> ModifierFilters { get; set; }
     private TradeSearchResult<string> QueryResult { get; set; }
     private List<TradeItem> Results { get; set; }
     private bool FullyLoaded => (Results?.Count ?? 0) == (QueryResult?.Result?.Count ?? 0);
-    private bool IsError { get; set; }
     private bool IsFetching { get; set; }
-    private bool FiltersReady { get; set; }
     private Layout Layout { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    public override string Title => Resources.Trade;
+    public override bool CloseOnBlur => Settings.Trade_CloseWithMouse;
+    public override SidekickViewType ViewType => SidekickViewType.Overlay;
+
+    private bool CanExpand => Item?.Metadata?.Category switch
     {
-        Item = ItemParser.ParseItem(ItemText.DecodeBase64Url());
+        Category.Accessory => true,
+        Category.Armour => true,
+        Category.Flask => true,
+        Category.Gem => true,
+        Category.Jewel => true,
+        Category.Map => Item.Metadata.Class != Class.MapFragments,
+        Category.Weapon => true,
+        Category.HeistEquipment => true,
+        Category.Contract => true,
+        Category.Logbook => true,
+        Category.Sentinel => true,
+        _ => false,
+    };
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Item = await ItemParser.ParseItemAsync(ItemText.DecodeBase64Url());
 
         if (Item == null)
         {
-            NavigationManager.NavigateTo("/error/unparsable");
+            NavigationManager.NavigateTo(ErrorType.Unparsable.ToUrl());
             return;
         }
 
-        await ViewInstance.Initialize(Item.Original.Name, isOverlay: true, closeOnBlur: Settings.Trade_CloseWithMouse);
         PropertyFilters = TradeFilterService.GetPropertyFilters(Item);
         ModifierFilters = TradeFilterService.GetModifierFilters(Item);
-        FiltersReady = true;
 
         if (Item.Metadata.Rarity != Rarity.Rare && Item.Metadata.Rarity != Rarity.Magic)
         {
             await UpdateQuery();
         }
 
-        await base.OnInitializedAsync();
+        await base.OnParametersSetAsync();
     }
 
     public async Task UpdateQuery()
     {
         Results = new List<TradeItem>();
-        IsError = false;
         IsFetching = true;
 
         //if (Item.Metadata.Rarity == Rarity.Currency && ItemStaticDataProvider.GetId(Item) != null)
@@ -114,14 +108,15 @@ else
         //}
         //else
         //{
-            QueryResult = await TradeSearchService.Search(Item, PropertyFilters, ModifierFilters);
+        QueryResult = await TradeSearchService.Search(Item, PropertyFilters, ModifierFilters);
         //}
 
         IsFetching = false;
 
         if (QueryResult == null || QueryResult?.Error != null)
         {
-            IsError = true;
+            NavigationManager.NavigateTo(ErrorType.ApiError.ToUrl(QueryResult?.Error?.Message));
+            return;
         }
         else
         {
@@ -151,5 +146,7 @@ else
         }
 
         IsFetching = false;
+
+        StateHasChanged();
     }
 }

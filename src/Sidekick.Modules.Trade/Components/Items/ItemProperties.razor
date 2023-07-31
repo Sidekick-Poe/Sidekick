@@ -1,18 +1,16 @@
-
 @if (Item != null)
 {
     <div class="properties">
         @if (Item.Properties.ItemLevel > 0)
         {
-            <MudText Typo="Typo.body1" Class="font-smallcaps" Align="Align.Center">@((MarkupString)GetLine(GameLanguageProvider.Language.DescriptionItemLevel, Item.Properties.ItemLevel))</MudText>
+            <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionItemLevel" Value="Item.Properties.ItemLevel" />
+        }
+        @if (Item.Properties.BaseDefencePercentile.HasValue)
+        {
+            <ItemPropertyText Label="@Resources.BasePercentile" Value="@(Item.Properties.BaseDefencePercentile + "%")" />
         }
     </div>
     <ItemRequirementsComponent Item="Item" />
-
-    @if (Item.RequirementContents != null || Item.Properties.ItemLevel > 0)
-    {
-        <ItemSeparatorComponent Item="Item" />
-    }
 }
 
 @code {
@@ -20,8 +18,5 @@
 
     [Inject] public IGameLanguageProvider GameLanguageProvider { get; set; }
 
-    private string GetLine(string label, object value)
-    {
-        return $"{label}: <span style=\"color:#FFFFFF;\">{value}</span>";
-    }
+    [Inject] private TradeResources Resources { get; set; }
 }

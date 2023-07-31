@@ -42,9 +42,11 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionEvasion => "__TranslationRequired__";
         public string DescriptionChanceToBlock => "__TranslationRequired__";
         public string DescriptionLevel => "__TranslationRequired__";
+        public string DescriptionRequirements => "__TranslationRequired__:";
 
         public string PrefixSuperior => "Рог";
         public string PrefixBlighted => "Заражённая";
+        public string PrefixBlightRavaged => "Разорённая Скверной";
         public string PrefixAnomalous => "Аномальный: ";
         public string PrefixDivergent => "Искривлённый: ";
         public string PrefixPhantasmal => "Фантомный: ";

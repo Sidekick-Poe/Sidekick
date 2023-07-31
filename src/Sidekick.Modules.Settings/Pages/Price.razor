@@ -1,5 +1,6 @@
 @page "/settings/price"
 @layout SettingsLayout
+@inherits SidekickView
 
 <MudCard>
     <MudCardHeader>
@@ -44,4 +45,6 @@
 @code {
     [Inject] private SettingsResources Resources { get; set; }
     [Inject] private SettingsModel ViewModel { get; set; }
+
+    public override string Title => Resources.Title;
 }

@@ -11,8 +11,9 @@ namespace Sidekick.Common.Platforms.Localization
             this.localizer = localizer;
         }
 
-        public string AdminError => localizer["AdminError"];
-        public string AlreadyRunningText => localizer["AlreadyRunningText"];
-        public string RestartText => localizer["RestartText"];
+        /// <summary>
+        /// Error message for when the application is not run as administrator, but the game is.
+        /// </summary>
+        public string RestartAsAdminText => localizer["RestartText"];
     }
 }

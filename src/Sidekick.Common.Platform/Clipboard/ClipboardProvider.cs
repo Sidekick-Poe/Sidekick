@@ -3,6 +3,7 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Common.Platform.Clipboard
 {
+    /// <inheritdoc/>
     public class ClipboardProvider : IClipboardProvider
     {
         private readonly ISettings settings;
@@ -16,6 +17,7 @@ namespace Sidekick.Common.Platform.Clipboard
             this.keyboard = keyboard;
         }
 
+        /// <inheritdoc/>
         public async Task<string> Copy()
         {
             var clipboardText = string.Empty;
@@ -47,11 +49,13 @@ namespace Sidekick.Common.Platform.Clipboard
             return result;
         }
 
+        /// <inheritdoc/>
         public async Task<string> GetText()
         {
             return await TextCopy.ClipboardService.GetTextAsync();
         }
 
+        /// <inheritdoc/>
         public async Task SetText(string text)
         {
             if (text == null)

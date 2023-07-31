@@ -1,5 +1,6 @@
 @page "/cheatsheets/heist"
 @layout CheatsheetLayout
+@inherits SidekickView
 
 <MudGrid Spacing="1">
     @foreach (var job in Jobs)
@@ -13,9 +14,10 @@
 @code {
     [Inject] private CheatsheetResources CheatsheetResources { get; set; }
     [Inject] private HeistResources Resources { get; set; }
-    [Inject] private IViewInstance ViewInstance { get; set; }
 
     private List<JobModel> Jobs { get; set; }
+    
+    public override string Title => CheatsheetResources.Heist;
 
     protected override async Task OnInitializedAsync()
     {
@@ -113,7 +115,6 @@
             }),
         };
 
-        await ViewInstance.Initialize(CheatsheetResources.Heist);
         await base.OnInitializedAsync();
     }
 }

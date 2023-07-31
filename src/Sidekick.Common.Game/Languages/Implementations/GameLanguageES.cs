@@ -27,12 +27,12 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionCorrupted => "Corrupto";
         public string DescriptionScourged => "de calamidad";
         public string DescriptionSockets => "Engarces";
-        public string DescriptionItemLevel => "Nivel de Objeto";
+        public string DescriptionItemLevel => "Nivel de objeto";
         public string DescriptionExperience => "Experiencia";
-        public string DescriptionMapTier => "Grado del Mapa";
-        public string DescriptionItemQuantity => "Cantidad de Objetos";
-        public string DescriptionItemRarity => "Rareza de Objetos";
-        public string DescriptionMonsterPackSize => "Tamaño de Grupos de Monstruos";
+        public string DescriptionMapTier => "Grado del mapa";
+        public string DescriptionItemQuantity => "Cantidad de objetos";
+        public string DescriptionItemRarity => "Rareza de objetos";
+        public string DescriptionMonsterPackSize => "Tamaño de los grupos de monstruos";
         public string DescriptionPhysicalDamage => "__TranslationRequired__";
         public string DescriptionElementalDamage => "__TranslationRequired__";
         public string DescriptionAttacksPerSecond => "__TranslationRequired__";
@@ -42,9 +42,11 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionEvasion => "__TranslationRequired__";
         public string DescriptionChanceToBlock => "__TranslationRequired__";
         public string DescriptionLevel => "__TranslationRequired__";
+        public string DescriptionRequirements => "__TranslationRequired__:";
 
         public string PrefixSuperior => "Superior";
         public string PrefixBlighted => "Infestado";
+        public string PrefixBlightRavaged => "devastado";
         public string PrefixAnomalous => "anómala";
         public string PrefixDivergent => "divergente";
         public string PrefixPhantasmal => "fantasmal";

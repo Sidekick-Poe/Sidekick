@@ -1,5 +1,6 @@
 @page "/settings"
 @layout SettingsLayout
+@inherits SidekickView
 
 <MudCard>
     <MudCardHeader>
@@ -9,22 +10,18 @@
     </MudCardHeader>
     <MudCardContent>
         <UILanguageSelect @bind-Value="ViewModel.Language_UI"></UILanguageSelect>
-        <GameLanguageSelect @bind-Value="ViewModel.Language_Parser"></GameLanguageSelect>
     </MudCardContent>
 </MudCard>
 
 <MudCard>
     <MudCardHeader>
         <CardHeaderContent>
-            <MudText Typo="Typo.h3">@Resources.Character_Title</MudText>
+            <MudText Typo="Typo.h5">@Resources.Game_Title</MudText>
         </CardHeaderContent>
     </MudCardHeader>
     <MudCardContent>
+        <GameLanguageSelect @bind-Value="ViewModel.Language_Parser"></GameLanguageSelect>
         <LeagueSelect @bind-Value="ViewModel.LeagueId"></LeagueSelect>
-        <MudTextField Label="@Resources.Character_Name"
-                      Variant="Variant.Filled"
-                      MaxLength="23"
-                      @bind-Value="ViewModel.Character_Name" />
     </MudCardContent>
 </MudCard>
 
@@ -47,6 +44,10 @@
         </CardHeaderContent>
     </MudCardHeader>
     <MudCardContent Class="pt-0">
+        <div>
+            <MudCheckBox Label="@Resources.PoeWikiData_Enable"
+                         @bind-Checked="@ViewModel.PoeWikiData_Enable"></MudCheckBox>
+        </div>
         <ThemeSelect @bind-Value="ViewModel.Theme" />
         <div>
             <MudCheckBox Label="@Resources.General_RetainClipboard"
@@ -61,6 +62,8 @@
     [Inject] private SettingsResources Resources { get; set; }
     [Inject] private SettingsModel ViewModel { get; set; }
     [Inject] private IClipboardProvider ClipboardProvider { get; set; }
+
+    public override string Title => Resources.Title;
 
     public void CopyUserIdToClipboard()
     {

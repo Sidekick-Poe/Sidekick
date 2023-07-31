@@ -6,21 +6,21 @@
 {
     if (Loading || Item == null)
     {
-        <MudSkeleton Height="55px" Class="@Class" />
+        <MudSkeleton Height="55px" />
+        <ItemSeparator Rarity="Item.Metadata.Rarity" />
     }
     else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
     {
-        <MudPaper Class="@($"pa-2 {Class}")">
-            <MudGrid Spacing="4" Justify="Justify.Center" Class="align-center">
-                <MudItem xs="6">
-                    <MudText Typo="Typo.subtitle1" Align="Align.Right">@Resources.Prediction</MudText>
-                    <MudText Typo="Typo.caption" Align="Align.Right" Style="@($"color: {GetConfidenceColor()};")" Class="d-block">@Resources.PredictionConfidence(Prediction.ConfidenceScore)</MudText>
-                </MudItem>
-                <MudItem xs="6">
-                    <PriceRangeDisplay Min="Prediction.Min" Max="Prediction.Max" Currency="@Prediction.Currency" Class="justify-start" />
-                </MudItem>
-            </MudGrid>
-        </MudPaper>
+        <MudGrid Spacing="0" Justify="Justify.Center" Class="align-center py-3">
+            <MudItem xs="6" Class="pr-2">
+                <MudText Typo="Typo.subtitle2" Align="Align.Right">@Resources.Prediction</MudText>
+                <MudText Typo="Typo.caption" Align="Align.Right" Style="@($"color: {GetConfidenceColor()};")" Class="d-block">@Resources.PredictionConfidence(Prediction.ConfidenceScore)</MudText>
+            </MudItem>
+            <MudItem xs="6" Class="pl-2">
+                <PriceRangeDisplay Min="Prediction.Min" Max="Prediction.Max" Currency="@Prediction.Currency" Class="justify-start" />
+            </MudItem>
+        </MudGrid>
+        <ItemSeparator Rarity="Item.Metadata.Rarity" />
     }
 }
 
@@ -29,7 +29,6 @@
     [Inject] private ISettings Settings { get; set; }
     [Inject] private IPoePriceInfoClient Client { get; set; }
 
-    [Parameter] public string Class { get; set; }
     [Parameter] public Item Item { get; set; }
 
     private bool Loading { get; set; }

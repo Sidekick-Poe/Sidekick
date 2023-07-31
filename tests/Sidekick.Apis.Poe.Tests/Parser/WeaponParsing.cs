@@ -1,5 +1,5 @@
-using System.Linq;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items.Modifiers;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Parser
@@ -30,7 +30,7 @@ Weapon Range: 11
 Requirements:
 Str: 21
 --------
-Sockets: R-G-B 
+Sockets: R-G-B
 --------
 Item Level: 71
 --------
@@ -60,7 +60,7 @@ Requirements:
 Level: 59
 Int: 188
 --------
-Sockets: R B 
+Sockets: R B
 --------
 Item Level: 70
 --------
@@ -80,14 +80,11 @@ Crusader Item
             Assert.Equal("Miracle Chant", actual.Original.Name);
             Assert.True(actual.Influences.Crusader);
 
-            var implicits = actual.Modifiers.Implicit.Select(x => x.Text);
-            Assert.Contains("33% increased Spell Damage", implicits);
-
-            var explicits = actual.Modifiers.Explicit.Select(x => x.Text);
-            Assert.Contains("Adds 10 to 16 Physical Damage", explicits);
-            Assert.Contains("24% increased Fire Damage", explicits);
-            Assert.Contains("14% increased Critical Strike Chance for Spells", explicits);
-            Assert.Contains("Attacks with this Weapon Penetrate 10% Lightning Resistance", explicits);
+            actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Spell Damage", 33);
+            actual.AssertHasAlternateModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage (Local)", 10, 16);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Fire Damage", 24);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Critical Strike Chance for Spells", 14);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "Attacks with this Weapon Penetrate #% Lightning Resistance", 10);
         }
 
         [Fact]
@@ -108,7 +105,7 @@ Level: 33
 Str: 80
 Dex: 37
 --------
-Sockets: R-R 
+Sockets: R-R
 --------
 Item Level: 50
 --------
@@ -119,8 +116,7 @@ Item Level: 50
             Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
             Assert.Equal("Shadow Axe", actual.Metadata.Type);
 
-            var explicits = actual.Modifiers.Explicit.Select(x => x.Text);
-            Assert.Contains("11% reduced Enemy Stun Threshold", explicits);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% reduced Enemy Stun Threshold", 11);
         }
 
         /// <summary>
@@ -147,7 +143,7 @@ Level: 62
 Str: 140 (unmet)
 Dex: 86
 --------
-Sockets: R-B-R 
+Sockets: R-B-R
 --------
 Item Level: 70
 --------
@@ -191,7 +187,7 @@ Level: 50
 Str: 44
 Dex: 44
 --------
-Sockets: R-R B 
+Sockets: R-R B
 --------
 Item Level: 68
 --------
@@ -229,7 +225,7 @@ Critical Strike Chance: 5.00%
 Attacks per Second: 1.20
 Weapon Range: 13
 --------
-Sockets: G-R R R 
+Sockets: G-R R R
 --------
 Item Level: 85
 --------
@@ -267,7 +263,7 @@ Weapon Range: 11
 Requirements:
 Strength: 161
 --------
-Sockets: R-R-R 
+Sockets: R-R-R
 --------
 Item Level: 76
 --------
@@ -283,6 +279,5 @@ Hunter Item");
             Assert.Equal("Ornate Mace", actual.Metadata.Type);
             Assert.True(actual.Influences.Hunter);
         }
-
     }
 }

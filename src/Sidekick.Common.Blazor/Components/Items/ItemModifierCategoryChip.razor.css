@@ -1,0 +1,49 @@
+::deep .mud-chip {
+    min-width: 70px;
+    padding: 0;
+    height: 16px !important;
+}
+
+    ::deep .mud-chip.Crafted {
+        background: #0060bf;
+    }
+
+    ::deep .mud-chip.Delve {
+        background: #ad631b;
+    }
+
+    ::deep .mud-chip.Enchant {
+        background: #8b579c;
+    }
+
+    ::deep .mud-chip.Explicit {
+        background: #26A69A;
+    }
+
+    ::deep .mud-chip.Fractured {
+        background: #a29162;
+    }
+
+    ::deep .mud-chip.Implicit {
+        background: #65621e;
+    }
+
+    ::deep .mud-chip.Monster {
+        background: #8b0000;
+    }
+
+    ::deep .mud-chip.Pseudo {
+        background: #8E24AA;
+    }
+
+    ::deep .mud-chip.Scourge {
+        background: #ff6e25;
+    }
+
+    ::deep .mud-chip.Veiled {
+        background: #545c63;
+    }
+
+    ::deep .mud-chip.Crucible {
+        color: #ff7339;
+    }

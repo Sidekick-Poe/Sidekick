@@ -1,5 +1,6 @@
 @page "/settings/map"
 @layout SettingsLayout
+@inherits SidekickView
 
 <MudCard>
     <MudCardHeader>
@@ -36,10 +37,6 @@
     </MudCardHeader>
     <MudCardContent>
         <div>
-            <MudCheckBox Label="@Resources.PoeWikiMap_Enable"
-                         @bind-Checked="@ViewModel.PoeWikiMap_Enable"></MudCheckBox>
-        </div>
-        <div>
             <MudCheckBox Label="@Resources.Map_CloseWithMouse"
                          @bind-Checked="@ViewModel.Map_CloseWithMouse"></MudCheckBox>
         </div>
@@ -53,4 +50,6 @@
 @code {
     [Inject] private SettingsResources Resources { get; set; }
     [Inject] private SettingsModel ViewModel { get; set; }
+
+    public override string Title => Resources.Title;
 }

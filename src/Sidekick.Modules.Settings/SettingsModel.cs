@@ -33,8 +33,6 @@ namespace Sidekick.Modules.Settings
 
         public Guid? CurrentKey { get; set; }
 
-        public string Character_Name { get; set; }
-
         public string Theme { get; set; }
 
         public bool Trade_CloseWithMouse { get; set; }
@@ -94,6 +92,6 @@ namespace Sidekick.Modules.Settings
 
         public DateTimeOffset? PoeNinja_LastClear { get; set; }
 
-        public bool PoeWikiMap_Enable { get; set; }
+        public bool PoeWikiData_Enable { get; set; }
     }
 }

@@ -12,15 +12,11 @@ namespace Sidekick.Modules.Settings
 
         public string Language_Parser { get; set; } = "";
 
-        public string Theme { get; set; } = "";
-
         public string LeagueId { get; set; } = "";
 
         public string LeaguesHash { get; set; } = "";
 
         public WikiSetting Wiki_Preferred { get; set; } = WikiSetting.PoeWiki;
-
-        public string Character_Name { get; set; } = "";
 
         public bool RetainClipboard { get; set; } = true;
 
@@ -53,20 +49,21 @@ namespace Sidekick.Modules.Settings
         public List<ChatSetting> Chat_Commands { get; set; } = new()
         {
             new ChatSetting("F5", "/hideout", true),
-            new ChatSetting("F4", "/kick {Me.CharacterName}", true),
+            new ChatSetting("F4", "/leave", true),
             new ChatSetting("Ctrl+Enter", "@{LastWhisper.CharacterName} ", false),
             new ChatSetting("F9", "/exit", true),
         };
 
         #region Cheatsheets
+
         public string Cheatsheets_Key_Open { get; set; } = "F6";
         public string Cheatsheets_Selected { get; set; } = "betrayal";
         public string Cheatsheets_Betrayal_Sort { get; set; } = "default";
 
-        #endregion
+        #endregion Cheatsheets
 
         public DateTimeOffset? PoeNinja_LastClear { get; set; } = null;
 
-        public bool PoeWikiMap_Enable { get; set; } = true;
+        public bool PoeWikiData_Enable { get; set; } = true;
     }
 }
