@@ -24,14 +24,19 @@
     private string IFrameSrc { get; set; }
 
     public override string Title => Resources.Cheatsheets;
-    
-    public override int ViewWidth => 900;
+
+    public override int ViewWidth => 1280;
 
     public override int ViewHeight => 800;
 
     protected override void OnParametersSet()
     {
         var page = WikiPage.DecodeBase64Url();
+        if (string.IsNullOrEmpty(page))
+        {
+            page = Settings.Cheatsheets_Selected;
+        }
+
         if (!string.IsNullOrEmpty(page) && Settings.Cheatsheets_WikiPages.TryGetValue(page, out var wikiPage))
         {
             IFrameSrc = wikiPage;
