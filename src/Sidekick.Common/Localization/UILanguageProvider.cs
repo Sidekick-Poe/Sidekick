@@ -1,13 +1,15 @@
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 
 namespace Sidekick.Common.Localization
 {
+    /// <summary>
+    /// Implementation of the ui language provider.
+    /// </summary>
     public class UILanguageProvider : IUILanguageProvider
     {
         private static readonly string[] SupportedLanguages = new[] { "en", "fr", "de", "zh-tw" };
 
+        /// <inheritdoc/>
         public List<CultureInfo> GetList()
         {
             var languages = SupportedLanguages
@@ -16,19 +18,20 @@ namespace Sidekick.Common.Localization
             return languages;
         }
 
+        /// <inheritdoc/>
         public void Set(string name)
         {
             var languages = GetList();
-
-            if (!languages.Any(x => x.Name == name))
+            string? language = name;
+            if (!languages.Any(x => x.Name == language))
             {
-                name = languages.FirstOrDefault()?.Name;
+                language = languages.FirstOrDefault()?.Name;
             }
 
-            if (!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(language))
             {
-                CultureInfo.DefaultThreadCurrentCulture = CultureInfo.GetCultureInfo(name);
-                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo(name);
+                CultureInfo.DefaultThreadCurrentCulture = CultureInfo.GetCultureInfo(language);
+                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo(language);
             }
         }
     }

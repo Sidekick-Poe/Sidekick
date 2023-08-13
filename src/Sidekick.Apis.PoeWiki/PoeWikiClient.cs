@@ -170,13 +170,9 @@ namespace Sidekick.Apis.PoeWiki
                     new("action", "cargoquery"),
                     new("format", "json"),
                     new("limit", "500"),
-
                     new("tables", "blight_crafting_recipes,blight_crafting_recipes_items,mods,passive_skills"),
-
                     new("join_on", "blight_crafting_recipes_items.recipe_id=blight_crafting_recipes.id,blight_crafting_recipes.modifier_id=mods.id,blight_crafting_recipes.passive_id=passive_skills.id"),
-
                     new("fields", "blight_crafting_recipes_items.item_id"),
-
                     new("where", @$"passive_skills.name='{enchantmentText}' OR mods.stat_text='{enchantmentText}'"),
                 });
 

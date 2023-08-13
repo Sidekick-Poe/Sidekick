@@ -1,7 +1,8 @@
-using System.Linq;
-
 namespace Sidekick.Common.Extensions
 {
+    /// <summary>
+    /// Extensions for objects.
+    /// </summary>
     public static class ObjectExtensions
     {
         /// <summary>

@@ -6,8 +6,6 @@ namespace Sidekick.Modules.Settings
 {
     public class Settings : ISettings
     {
-        public Guid UserId { get; set; } = Guid.NewGuid();
-
         public string Language_UI { get; set; } = "en";
 
         public string Language_Parser { get; set; } = "";
@@ -58,7 +56,16 @@ namespace Sidekick.Modules.Settings
 
         public string Cheatsheets_Key_Open { get; set; } = "F6";
         public string Cheatsheets_Selected { get; set; } = "betrayal";
-        public string Cheatsheets_Betrayal_Sort { get; set; } = "default";
+
+        public Dictionary<string, string> Cheatsheets_WikiPages { get; set; } = new Dictionary<string, string>()
+        {
+            { "Betrayal", "https://www.poewiki.net/wiki/Immortal_Syndicate" },
+            { "Blight", "https://www.poewiki.net/wiki/Oil" },
+            { "Delve", "https://www.poewiki.net/wiki/Delve" },
+            { "Heist", "https://www.poewiki.net/wiki/Heist#Chest_types" },
+            { "Incursion", "https://www.poewiki.net/wiki/Incursion_room" },
+            { "Vendor Recipes", "https://www.poewiki.net/wiki/Vendor_recipe_system" },
+        };
 
         #endregion Cheatsheets
 

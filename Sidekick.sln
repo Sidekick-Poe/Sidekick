@@ -69,6 +69,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Apis.PoeWiki", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick", "src\Sidekick\Sidekick.csproj", "{06F77E89-7EAF-4C6E-AC2A-1F1B3FBC0C5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Modules.Wiki", "src\Sidekick.Modules.Wiki\Sidekick.Modules.Wiki.csproj", "{BCCA32D3-96E6-4219-9215-0E5ED028868E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -163,6 +165,10 @@ Global
 		{06F77E89-7EAF-4C6E-AC2A-1F1B3FBC0C5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06F77E89-7EAF-4C6E-AC2A-1F1B3FBC0C5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06F77E89-7EAF-4C6E-AC2A-1F1B3FBC0C5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCCA32D3-96E6-4219-9215-0E5ED028868E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCCA32D3-96E6-4219-9215-0E5ED028868E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCCA32D3-96E6-4219-9215-0E5ED028868E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCCA32D3-96E6-4219-9215-0E5ED028868E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -189,6 +195,7 @@ Global
 		{31645DEE-C169-4297-80A1-D3FC0B4AC4D0} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 		{877B6B69-57F2-4706-B5C1-3973ABFE39ED} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 		{4DAA5492-5947-4BDF-8857-67A633F94672} = {7285BD58-2544-44AA-8488-52EA8E55D239}
+		{BCCA32D3-96E6-4219-9215-0E5ED028868E} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17B5631D-95B3-4007-BE6B-C9BBE799D014}

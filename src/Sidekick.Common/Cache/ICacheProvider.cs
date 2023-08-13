@@ -1,8 +1,8 @@
-using System;
-using System.Threading.Tasks;
-
 namespace Sidekick.Common.Cache
 {
+    /// <summary>
+    /// Interface for the cache provider.
+    /// </summary>
     public interface ICacheProvider
     {
         /// <summary>
@@ -12,7 +12,7 @@ namespace Sidekick.Common.Cache
         /// <param name="key">The key under which to save the cache</param>
         /// <param name="func">The func to initialize the data, in the event that the data is not in the cache</param>
         /// <returns>Returns the cache data</returns>
-        Task<TModel> Get<TModel>(string key)
+        Task<TModel?> Get<TModel>(string key)
             where TModel : class;
 
         /// <summary>

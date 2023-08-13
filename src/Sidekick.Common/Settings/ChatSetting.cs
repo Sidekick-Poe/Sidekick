@@ -8,7 +8,8 @@ namespace Sidekick.Common.Settings
         /// <summary>
         /// Send a message in the chat. Wildcards are supported.
         /// </summary>
-        public ChatSetting() { }
+        public ChatSetting()
+        { }
 
         /// <summary>
         /// Send a message in the chat. Wildcards are supported.
@@ -26,12 +27,12 @@ namespace Sidekick.Common.Settings
         /// <summary>
         /// The keybind to send the command
         /// </summary>
-        public string Key { get; set; }
+        public string? Key { get; set; }
 
         /// <summary>
         /// The message to write in the chat
         /// </summary>
-        public string Command { get; set; }
+        public string? Command { get; set; }
 
         /// <summary>
         /// Indicated if the message should be submitted after it is written

@@ -90,9 +90,9 @@ namespace Sidekick.Common.Platform.Keyboards
             { KeyCode.VcPeriod, "." },
             { KeyCode.VcSemicolon, ";" },
             { KeyCode.VcSlash, "/" },
-            { KeyCode.VcBackquote, "`" },
+            { KeyCode.VcBackQuote, "`" },
             { KeyCode.VcOpenBracket, "[" },
-            { KeyCode.VcBackSlash, "\\" },
+            { KeyCode.VcBackslash, "\\" },
             { KeyCode.VcCloseBracket, "]" },
             { KeyCode.VcQuote, "'" },
 

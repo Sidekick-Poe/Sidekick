@@ -1,8 +1,10 @@
-using System.Collections.Generic;
 using System.Globalization;
 
 namespace Sidekick.Common.Localization
 {
+    /// <summary>
+    /// Interface to access ui language parameters.
+    /// </summary>
     public interface IUILanguageProvider
     {
         /// <summary>
