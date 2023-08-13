@@ -1,15 +1,16 @@
-using System;
-using System.IO;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Sidekick.Common.Cache
 {
+    /// <summary>
+    /// Implementation for the cache provider.
+    /// </summary>
     public class CacheProvider : ICacheProvider
     {
         private const string cachePath = "SidekickCache";
 
-        public async Task<TModel> Get<TModel>(string key)
+        /// <inheritdoc/>
+        public async Task<TModel?> Get<TModel>(string key)
             where TModel : class
         {
             EnsureDirectory();
@@ -32,6 +33,7 @@ namespace Sidekick.Common.Cache
             }
         }
 
+        /// <inheritdoc/>
         public async Task Set<TModel>(string key, TModel data)
             where TModel : class
         {
@@ -48,6 +50,7 @@ namespace Sidekick.Common.Cache
             await JsonSerializer.SerializeAsync(stream, data);
         }
 
+        /// <inheritdoc/>
         public void Clear()
         {
             EnsureDirectory();
@@ -55,6 +58,7 @@ namespace Sidekick.Common.Cache
             Directory.Delete(Path.Combine(SidekickPaths.GetDataFilePath(), cachePath), true);
         }
 
+        /// <inheritdoc/>
         public void Delete(string key)
         {
             EnsureDirectory();
@@ -66,6 +70,7 @@ namespace Sidekick.Common.Cache
             }
         }
 
+        /// <inheritdoc/>
         public async Task<TModel> GetOrSet<TModel>(string key, Func<Task<TModel>> func) where TModel : class
         {
             EnsureDirectory();

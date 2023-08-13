@@ -61,12 +61,6 @@
 @code {
     [Inject] private SettingsResources Resources { get; set; }
     [Inject] private SettingsModel ViewModel { get; set; }
-    [Inject] private IClipboardProvider ClipboardProvider { get; set; }
 
     public override string Title => Resources.Title;
-
-    public void CopyUserIdToClipboard()
-    {
-        ClipboardProvider.SetText(ViewModel.UserId.ToString());
-    }
 }

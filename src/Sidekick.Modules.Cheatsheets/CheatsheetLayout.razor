@@ -10,34 +10,21 @@
         <MudText Typo="Typo.h5">@Resources.Cheatsheets</MudText>
     </MudDrawerHeader>
     <MudNavMenu>
-        <MudNavGroup Title="@Resources.Leagues"
+        <MudNavGroup Title="@Resources.Pages"
                      Expanded="true">
-            <MudNavLink Match="NavLinkMatch.All"
-                        Href="/cheatsheets/betrayal">
-                @Resources.Betrayal
-            </MudNavLink>
-            <MudNavLink Match="NavLinkMatch.All"
-                        Href="/cheatsheets/blight">
-                @Resources.Blight
-            </MudNavLink>
-            <MudNavLink Match="NavLinkMatch.All"
-                        Href="/cheatsheets/delve">
-                @Resources.Delve
-            </MudNavLink>
-            <MudNavLink Match="NavLinkMatch.All"
-                        Href="/cheatsheets/heist">
-                @Resources.Heist
-            </MudNavLink>
-            <MudNavLink Match="NavLinkMatch.All"
-                        Href="/cheatsheets/incursion">
-                @Resources.Incursion
-            </MudNavLink>
+            @foreach (var wikiPage in Settings.Cheatsheets_WikiPages)
+            {
+                <MudNavLink Match="NavLinkMatch.All"
+                            Href="@($"/cheatsheets/{wikiPage.Key.EncodeBase64Url()}")">
+                    @wikiPage.Key
+                </MudNavLink>
+            }
         </MudNavGroup>
     </MudNavMenu>
 </MudDrawer>
 
 <MudMainContent>
-    <MudContainer>
+    <MudContainer MaxWidth="MaxWidth.False" Class="pa-0" Style="overflow: hidden; height: calc(100vh - var(--mud-appbar-height));">
         @Body
     </MudContainer>
 </MudMainContent>
@@ -46,6 +33,7 @@
     [Inject] private CheatsheetResources Resources { get; set; }
     [Inject] private NavigationManager NavigationManager { get; set; }
     [Inject] private ISettingsService SettingsService { get; set; }
+    [Inject] private ISettings Settings { get; set; }
 
     [CascadingParameter] public MenuLayout Layout { get; set; }
 
@@ -56,6 +44,7 @@
         {
             await SettingsService.Save(nameof(ISettings.Cheatsheets_Selected), routeMatch.Groups[1].Value);
         }
+
         await base.OnInitializedAsync();
     }
 }

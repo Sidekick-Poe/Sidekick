@@ -27,8 +27,6 @@ namespace Sidekick.Modules.Settings
             };
         }
 
-        public Guid UserId { get; set; }
-
         public Dictionary<WikiSetting, string> WikiOptions { get; private set; }
 
         public Guid? CurrentKey { get; set; }
@@ -88,10 +86,10 @@ namespace Sidekick.Modules.Settings
 
         public string Cheatsheets_Selected { get; set; }
         public string Cheatsheets_Key_Open { get; set; }
-        public string Cheatsheets_Betrayal_Sort { get; set; }
 
         public DateTimeOffset? PoeNinja_LastClear { get; set; }
 
         public bool PoeWikiData_Enable { get; set; }
+        public Dictionary<string, string> Cheatsheets_WikiPages { get; set; }
     }
 }

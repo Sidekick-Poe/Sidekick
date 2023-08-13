@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Sidekick.Common.Browser;
@@ -45,9 +44,7 @@ namespace Sidekick.Common
             services.AddSingleton(logSink);
 
             services.AddSingleton<IUILanguageProvider, UILanguageProvider>();
-
             services.AddSingleton<IBrowserProvider, BrowserProvider>();
-
             return services;
         }
     }

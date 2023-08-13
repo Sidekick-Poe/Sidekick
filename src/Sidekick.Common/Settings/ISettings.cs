@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-
 namespace Sidekick.Common.Settings
 {
     public interface ISettings
     {
-        Guid UserId { get; set; }
         string Language_Parser { get; set; }
         string Language_UI { get; set; }
 
@@ -16,7 +12,6 @@ namespace Sidekick.Common.Settings
 
         bool RetainClipboard { get; set; }
         string Key_FindItems { get; set; }
-        // bool SendCrashReports { get; set; }
 
         bool Trade_CloseWithMouse { get; set; }
         string Trade_Key_Check { get; set; }
@@ -32,14 +27,18 @@ namespace Sidekick.Common.Settings
 
         string Cheatsheets_Key_Open { get; set; }
         string Cheatsheets_Selected { get; set; }
-        string Cheatsheets_Betrayal_Sort { get; set; }
+        Dictionary<string, string> Cheatsheets_WikiPages { get; set; }
 
         #endregion Cheatsheets
 
         List<ChatSetting> Chat_Commands { get; set; }
 
+        #region Cheatsheets
+
         string Wiki_Key_Open { get; set; }
         WikiSetting Wiki_Preferred { get; set; }
+
+        #endregion Cheatsheets
 
         DateTimeOffset? PoeNinja_LastClear { get; set; }
 

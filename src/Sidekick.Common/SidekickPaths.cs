@@ -1,6 +1,3 @@
-using System;
-using System.IO;
-
 namespace Sidekick.Common
 {
     public static class SidekickPaths

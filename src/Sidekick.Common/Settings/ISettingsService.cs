@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-
 namespace Sidekick.Common.Settings
 {
     public interface ISettingsService
