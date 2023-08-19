@@ -40,20 +40,36 @@ namespace Sidekick.Common.Platform.Windows.Processes
         private readonly IApplicationService applicationService;
         private readonly PlatformResources platformResources;
 
-        public event Action OnFocus;
-
-        public event Action OnBlur;
-
-        private string FocusedWindow { get; set; }
         private bool PermissionChecked { get; set; } = false;
         private bool HasInitialized { get; set; } = false;
         private CancellationTokenSource WindowsHook { get; set; }
 
-        /// <summary>
-        /// Used to prevent having to Invoke the blur action everytime a window that is not Path of
-        /// Exile is focused.
-        /// </summary>
-        private bool PathOfExileWasMinimized { get; set; }
+        private string FocusedWindow
+        {
+            get
+            {
+                // Create the variable
+                const int nChar = 256;
+                var ss = new StringBuilder(nChar);
+
+                // Run GetForeGroundWindows and get active window informations
+                // assign them into handle pointer variable
+                if (User32.GetWindowText(User32.GetForegroundWindow(), ss, nChar) > 0)
+                {
+                    return ss.ToString();
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
+        /// <inheritdoc/>
+        public bool IsPathOfExileInFocus => FocusedWindow == PATH_OF_EXILE_TITLE;
+
+        /// <inheritdoc/>
+        public bool IsSidekickInFocus => FocusedWindow == SIDEKICK_TITLE;
 
         public ProcessProvider(
             ILogger<ProcessProvider> logger,
@@ -81,20 +97,6 @@ namespace Sidekick.Common.Platform.Windows.Processes
         {
             if (eventType == WinEvent.EVENT_SYSTEM_MINIMIZEEND || eventType == WinEvent.EVENT_SYSTEM_FOREGROUND)
             {
-                FocusedWindow = GetWindowTitle(hwnd);
-                if (IsPathOfExileInFocus || IsSidekickInFocus)
-                {
-                    logger.LogInformation("Path of Exile focused.");
-                    PathOfExileWasMinimized = false;
-                    OnFocus?.Invoke();
-                }
-                else if (!PathOfExileWasMinimized)
-                {
-                    PathOfExileWasMinimized = true;
-                    logger.LogInformation("Path of Exile minimized.");
-                    OnBlur?.Invoke();
-                }
-
                 // If the game is run as administrator, Sidekick also needs administrator privileges.
                 if (!PermissionChecked && IsPathOfExileInFocus)
                 {
@@ -108,20 +110,6 @@ namespace Sidekick.Common.Platform.Windows.Processes
                     });
                 }
             }
-        }
-
-        public bool IsPathOfExileInFocus => FocusedWindow == PATH_OF_EXILE_TITLE;
-
-        public bool IsSidekickInFocus => FocusedWindow == SIDEKICK_TITLE;
-
-        private static string GetWindowTitle(IntPtr handle)
-        {
-            var buffer = new StringBuilder(User32.GetWindowTextLength(handle) + 1);
-            if (User32.GetWindowText(handle, buffer, buffer.Capacity) > 0)
-            {
-                return buffer.ToString();
-            }
-            return null;
         }
 
         private static Process GetPathOfExileProcess()
