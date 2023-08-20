@@ -12,11 +12,11 @@
     <MudNavMenu>
         <MudNavGroup Title="@Resources.Pages"
                      Expanded="true">
-            @foreach (var wikiPage in Settings.Cheatsheets_WikiPages)
+            @foreach (var wikiPage in Settings.Cheatsheets_Pages)
             {
                 <MudNavLink Match="NavLinkMatch.All"
-                            Href="@($"/cheatsheets/{wikiPage.Key.EncodeBase64Url()}")">
-                    @wikiPage.Key
+                            Href="@($"/cheatsheets/{wikiPage.Name.EncodeBase64Url()}")">
+                    @wikiPage.Name
                 </MudNavLink>
             }
         </MudNavGroup>

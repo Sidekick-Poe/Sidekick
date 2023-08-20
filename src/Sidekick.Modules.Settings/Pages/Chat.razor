@@ -15,7 +15,12 @@
 <MudText Typo="Typo.h5">@Resources.Chat_Wildcard</MudText>
 <MudText>@Resources.Chat_Wildcard_LastWhisper_CharacterName</MudText>
 
-<div class="d-flex flex-row-reverse">
+<div class="d-flex justify-space-between mb-3">
+    <MudButton Variant="Variant.Text"
+               Color="Color.Default"
+               OnClick="RestoreDefaults">
+        @Resources.Restore_Defaults
+    </MudButton>
     <MudButton Variant="Variant.Filled"
                Color="Color.Secondary"
                OnClick="Add">
@@ -37,5 +42,10 @@
     private void Add()
     {
         ViewModel.Chat_Commands.Add(new ChatSetting("", "", true));
+    }
+
+    private void RestoreDefaults()
+    {
+        ViewModel.Chat_Commands = Settings.GetDefaultChatCommands();
     }
 }

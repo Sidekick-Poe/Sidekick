@@ -1,0 +1,75 @@
+@page "/settings/cheatsheets"
+@layout SettingsLayout
+@inherits SidekickView
+
+<MudCard>
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h3">@Resources.Group_Keybinds</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <KeybindEditor Label="@Resources.Cheatsheets_Key_Open"
+        @bind-Value="ViewModel.Cheatsheets_Key_Open" />
+    </MudCardContent>
+</MudCard>
+
+@foreach (var page in ViewModel.Cheatsheets_Pages)
+{
+    <MudCard Class="mb-3">
+        <MudCardHeader Class="pb-0">
+            <CardHeaderContent>
+                <MudText Typo="Typo.h3">@(page.Name)</MudText>
+            </CardHeaderContent>
+            <CardHeaderActions>
+                <MudIconButton OnClick="() => Remove(page.Name)"
+                               Icon="@Icons.Material.Filled.Delete"
+                               Color="Color.Error"></MudIconButton>
+            </CardHeaderActions>
+        </MudCardHeader>
+        <MudCardContent Class="pt-0">
+            <MudTextField @bind-Value="page.Name"
+                          Label="@Resources.Cheatsheets_Name"
+                          Variant="Variant.Filled" />
+
+            <MudTextField @bind-Value="page.Url"
+                          Label="@Resources.Cheatsheets_Url"
+                          Variant="Variant.Filled" />
+        </MudCardContent>
+    </MudCard>
+}
+
+<div class="d-flex justify-space-between mb-3">
+    <MudButton Variant="Variant.Text"
+               Color="Color.Default"
+               OnClick="RestoreDefaults">
+        @Resources.Restore_Defaults
+    </MudButton>
+    <MudButton Variant="Variant.Filled"
+               Color="Color.Secondary"
+               OnClick="Add">
+        @Resources.Cheatsheets_Add
+    </MudButton>
+</div>
+
+@code {
+    [Inject] private SettingsResources Resources { get; set; }
+    [Inject] private SettingsModel ViewModel { get; set; }
+
+    public override string Title => Resources.Title;
+
+    private void Remove(string name)
+    {
+        ViewModel.Cheatsheets_Pages.RemoveAll(x => x.Name == name);
+    }
+
+    private void Add()
+    {
+        ViewModel.Cheatsheets_Pages.Add(new("", ""));
+    }
+
+    private void RestoreDefaults()
+    {
+        ViewModel.Cheatsheets_Pages = Settings.GetDefaultCheatsheets();
+    }
+}

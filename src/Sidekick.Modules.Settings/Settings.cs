@@ -6,6 +6,26 @@ namespace Sidekick.Modules.Settings
 {
     public class Settings : ISettings
     {
+        public static List<ChatSetting> GetDefaultChatCommands() =>
+        new()
+        {
+            new ChatSetting("F5", "/hideout", true),
+            new ChatSetting("F4", "/leave", true),
+            new ChatSetting("Ctrl+Enter", "@{LastWhisper.CharacterName} ", false),
+            new ChatSetting("F9", "/exit", true),
+        };
+
+        public static List<CheatsheetPage> GetDefaultCheatsheets() =>
+        new()
+        {
+            new("Betrayal", "https://www.poewiki.net/wiki/Immortal_Syndicate"),
+            new("Blight", "https://www.poewiki.net/wiki/Oil"),
+            new("Delve", "https://www.poewiki.net/wiki/Delve"),
+            new("Heist", "https://www.poewiki.net/wiki/Heist#Chest_types"),
+            new("Incursion", "https://www.poewiki.net/wiki/Incursion_room"),
+            new("Vendor Recipes", "https://www.poewiki.net/wiki/Vendor_recipe_system"),
+        };
+
         public string Language_UI { get; set; } = "en";
 
         public string Language_Parser { get; set; } = "";
@@ -44,28 +64,14 @@ namespace Sidekick.Modules.Settings
 
         public string Key_FindItems { get; set; } = "Ctrl+F";
 
-        public List<ChatSetting> Chat_Commands { get; set; } = new()
-        {
-            new ChatSetting("F5", "/hideout", true),
-            new ChatSetting("F4", "/leave", true),
-            new ChatSetting("Ctrl+Enter", "@{LastWhisper.CharacterName} ", false),
-            new ChatSetting("F9", "/exit", true),
-        };
+        public List<ChatSetting> Chat_Commands { get; set; } = GetDefaultChatCommands();
 
         #region Cheatsheets
 
         public string Cheatsheets_Key_Open { get; set; } = "F6";
         public string Cheatsheets_Selected { get; set; } = "betrayal";
 
-        public Dictionary<string, string> Cheatsheets_WikiPages { get; set; } = new Dictionary<string, string>()
-        {
-            { "Betrayal", "https://www.poewiki.net/wiki/Immortal_Syndicate" },
-            { "Blight", "https://www.poewiki.net/wiki/Oil" },
-            { "Delve", "https://www.poewiki.net/wiki/Delve" },
-            { "Heist", "https://www.poewiki.net/wiki/Heist#Chest_types" },
-            { "Incursion", "https://www.poewiki.net/wiki/Incursion_room" },
-            { "Vendor Recipes", "https://www.poewiki.net/wiki/Vendor_recipe_system" },
-        };
+        public List<CheatsheetPage> Cheatsheets_Pages { get; set; } = GetDefaultCheatsheets();
 
         #endregion Cheatsheets
 

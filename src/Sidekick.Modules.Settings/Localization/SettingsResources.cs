@@ -28,7 +28,11 @@ namespace Sidekick.Modules.Settings.Localization
         public string Chat_Commands => resources["Chat_Commands"];
         public string Chat_Commands_Hideout => resources["Chat_Commands_Hideout"];
         public string Chat_Commands_Exit => resources["Chat_Commands_Exit"];
+        public string Restore_Defaults => resources["Restore_Defaults"];
         public string Cheatsheets => resources["Cheatsheets"];
+        public string Cheatsheets_Name => resources["Cheatsheets_Name"];
+        public string Cheatsheets_Url => resources["Cheatsheets_Url"];
+        public string Cheatsheets_Add => resources["Cheatsheets_Add"];
         public string Cheatsheets_Key_Open => resources["Cheatsheets_Key_Open"];
         public string Game_Title => resources["Game_Title"];
         public string General => resources["General"];

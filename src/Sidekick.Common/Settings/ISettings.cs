@@ -27,7 +27,7 @@ namespace Sidekick.Common.Settings
 
         string Cheatsheets_Key_Open { get; set; }
         string Cheatsheets_Selected { get; set; }
-        Dictionary<string, string> Cheatsheets_WikiPages { get; set; }
+        List<CheatsheetPage> Cheatsheets_Pages { get; set; }
 
         #endregion Cheatsheets
 

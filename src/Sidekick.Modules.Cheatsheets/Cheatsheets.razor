@@ -15,9 +15,6 @@
     [Inject]
     private ISettings Settings { get; set; }
 
-    [Inject]
-    private NavigationManager NavigationManager { get; set; }
-
     [Parameter]
     public string WikiPage { get; set; }
 
@@ -37,13 +34,14 @@
             page = Settings.Cheatsheets_Selected;
         }
 
-        if (!string.IsNullOrEmpty(page) && Settings.Cheatsheets_WikiPages.TryGetValue(page, out var wikiPage))
+        var pageObject = Settings.Cheatsheets_Pages.FirstOrDefault(x => x.Name == page);
+        if (pageObject != null)
         {
-            IFrameSrc = wikiPage;
+            IFrameSrc = pageObject.Url;
         }
         else
         {
-            NavigationManager.NavigateTo($"/cheatsheets/{Settings.Cheatsheets_WikiPages.First().Key.EncodeBase64Url()}");
+            NavigationManager.NavigateTo($"/cheatsheets/{Settings.Cheatsheets_Pages.First().Name.EncodeBase64Url()}");
         }
 
         base.OnParametersSet();
