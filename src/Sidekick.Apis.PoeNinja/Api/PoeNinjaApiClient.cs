@@ -53,11 +53,6 @@ namespace Sidekick.Apis.PoeNinja.Api
 
         public async Task<List<NinjaPrice>> FetchPrices(ItemType itemType)
         {
-            if (!gameLanguageProvider.IsEnglish())
-            {
-                return null;
-            }
-
             List<NinjaPrice> items;
             if (itemType == ItemType.Currency || itemType == ItemType.Fragment)
             {
