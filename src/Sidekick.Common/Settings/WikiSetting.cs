@@ -8,9 +8,6 @@ namespace Sidekick.Common.Settings
         // https://www.poewiki.net
         PoeWiki,
 
-        // https://pathofexile.fandom.com
-        PoeFandom,
-
         // https://poedb.tw
         PoeDb
     }

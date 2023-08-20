@@ -70,16 +70,6 @@ namespace Sidekick.Modules.General.Keybinds
             {
                 OpenPoeDb(item);
             }
-            else if (settings.Wiki_Preferred == WikiSetting.PoeFandom)
-            {
-                if (!gameLanguageProvider.IsEnglish())
-                {
-                    await viewLocator.Open(ErrorType.UnavailableTranslation.ToUrl());
-                    return;
-                }
-
-                OpenPoeFandom(item);
-            }
         }
 
         private const string PoeWiki_BaseUri = "https://www.poewiki.net/";
@@ -102,18 +92,6 @@ namespace Sidekick.Modules.General.Keybinds
             var searchLink = item.Metadata.Name ?? item.Metadata.Type;
             var wikiLink = PoeDb_SubUrl + searchLink.Replace(" ", "+");
             var uri = new Uri(PoeDb_BaseUri + wikiLink);
-
-            browserProvider.OpenUri(uri);
-        }
-
-        private const string PoeFandom_BaseUri = "https://pathofexile.fandom.com/";
-        private const string PoeFandom_SubUrl = "wiki/Special:Search?query=";
-
-        private void OpenPoeFandom(Item item)
-        {
-            var searchLink = item.Metadata.Name ?? item.Metadata.Type;
-            var wikiLink = PoeFandom_SubUrl + searchLink.Replace(" ", "+");
-            var uri = new Uri(PoeFandom_BaseUri + wikiLink);
 
             browserProvider.OpenUri(uri);
         }
