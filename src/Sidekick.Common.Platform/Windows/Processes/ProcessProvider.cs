@@ -1,15 +1,9 @@
 #pragma warning disable CA1806 // Do not ignore method results
 #pragma warning disable CA1416 // Validate platform compatibility
 
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Security.Principal;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Platform.Windows.DllImport;
 using Sidekick.Common.Platforms.Localization;
@@ -22,7 +16,19 @@ namespace Sidekick.Common.Platform.Windows.Processes
         private const string SIDEKICK_TITLE = "Sidekick";
         private static readonly List<string> PossibleProcessNames = new() { "PathOfExile", "PathOfExile_x64", "PathOfExileSteam", "PathOfExile_x64Steam" };
 
-        public string ClientLogPath => Path.Combine(Path.GetDirectoryName(GetPathOfExileProcess().GetMainModuleFileName()), "logs", "Client.txt");
+        public string? ClientLogPath
+        {
+            get
+            {
+                var directory = Path.GetDirectoryName(GetPathOfExileProcess()?.GetMainModuleFileName());
+                if (directory == null)
+                {
+                    return null;
+                }
+
+                return Path.Combine(directory, "logs", "Client.txt");
+            }
+        }
 
         private const int STANDARD_RIGHTS_REQUIRED = 0xF0000;
         private const int TOKEN_ASSIGN_PRIMARY = 0x1;
@@ -42,7 +48,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
         private bool PermissionChecked { get; set; } = false;
         private bool HasInitialized { get; set; } = false;
-        private CancellationTokenSource WindowsHook { get; set; }
+        private CancellationTokenSource? WindowsHook { get; set; }
 
         private string FocusedWindow
         {
@@ -112,7 +118,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
             }
         }
 
-        private static Process GetPathOfExileProcess()
+        private static Process? GetPathOfExileProcess()
         {
             foreach (var processName in PossibleProcessNames)
             {
@@ -170,16 +176,23 @@ namespace Sidekick.Common.Platform.Windows.Processes
                 User32.OpenProcessToken(proc.Handle, TOKEN_ALL_ACCESS, out var ph);
                 using (var iden = new WindowsIdentity(ph))
                 {
-                    foreach (var role in iden.Groups)
+                    if (iden.Groups != null)
                     {
-                        if (role.IsValidTargetType(typeof(SecurityIdentifier)))
+                        foreach (var role in iden.Groups)
                         {
-                            var sid = role as SecurityIdentifier;
-
-                            if (sid.IsWellKnown(WellKnownSidType.AccountAdministratorSid) || sid.IsWellKnown(WellKnownSidType.BuiltinAdministratorsSid))
+                            if (role.IsValidTargetType(typeof(SecurityIdentifier)))
                             {
-                                result = true;
-                                break;
+                                var sid = role as SecurityIdentifier;
+                                if (sid == null)
+                                {
+                                    continue;
+                                }
+
+                                if (sid.IsWellKnown(WellKnownSidType.AccountAdministratorSid) || sid.IsWellKnown(WellKnownSidType.BuiltinAdministratorsSid))
+                                {
+                                    result = true;
+                                    break;
+                                }
                             }
                         }
                     }

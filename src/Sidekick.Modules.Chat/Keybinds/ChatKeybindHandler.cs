@@ -70,11 +70,11 @@ namespace Sidekick.Modules.Chat.Keybinds
 
             if (chatCommand.Submit)
             {
-                keyboard.PressKey("Enter", "Ctrl+A", "Paste", "Enter", "Enter", "Up", "Up", "Esc");
+                keyboard.PressKey("Enter", "Ctrl+A", "Ctrl+V", "Enter", "Enter", "Up", "Up", "Esc");
             }
             else
             {
-                keyboard.PressKey("Enter", "Ctrl+A", "Paste");
+                keyboard.PressKey("Enter", "Ctrl+A", "Ctrl+V");
             }
 
             if (settings.RetainClipboard)

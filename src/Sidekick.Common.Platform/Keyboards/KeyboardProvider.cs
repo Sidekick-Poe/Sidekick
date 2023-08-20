@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using SharpHook;
 using SharpHook.Native;
@@ -136,9 +132,9 @@ namespace Sidekick.Common.Platform.Keyboards
         private readonly IKeybindProvider keybindProvider;
 
         private bool HasInitialized { get; set; } = false;
-        private SimpleGlobalHook Hook { get; set; }
-        private Task HookTask { get; set; }
-        private EventSimulator Simulator { get; set; }
+        private SimpleGlobalHook? Hook { get; set; }
+        private Task? HookTask { get; set; }
+        private EventSimulator? Simulator { get; set; }
 
         public KeyboardProvider(
             ILogger<KeyboardProvider> logger,
@@ -148,7 +144,7 @@ namespace Sidekick.Common.Platform.Keyboards
             this.keybindProvider = keybindProvider;
         }
 
-        public event Action<string> OnKeyDown;
+        public event Action<string>? OnKeyDown;
 
         public void Initialize()
         {
@@ -168,7 +164,7 @@ namespace Sidekick.Common.Platform.Keyboards
             HasInitialized = true;
         }
 
-        private void OnKeyPressed(object sender, KeyboardHookEventArgs args)
+        private void OnKeyPressed(object? sender, KeyboardHookEventArgs args)
         {
             // Make sure the key is one we recognize
             if (!Keys.TryGetValue(args.Data.KeyCode, out var key))
@@ -212,19 +208,14 @@ namespace Sidekick.Common.Platform.Keyboards
 
         public void PressKey(params string[] keyStrokes)
         {
+            if (Simulator == null)
+            {
+                return;
+            }
+
             foreach (var stroke in keyStrokes)
             {
                 logger.LogDebug("[Keyboard] Sending " + stroke);
-
-                switch (stroke)
-                {
-                    case "Copy":
-                        PressKey("Ctrl+C");
-                        continue;
-                    case "Paste":
-                        PressKey("Ctrl+V");
-                        continue;
-                }
 
                 var (modifiers, keys) = FetchKeys(stroke);
 
@@ -264,7 +255,7 @@ namespace Sidekick.Common.Platform.Keyboards
             {
                 if (!Keys.Any(x => x.Value == key))
                 {
-                    return (null, null);
+                    return (new(), new());
                 }
 
                 var validKey = Keys.First(x => x.Value == key);
@@ -280,7 +271,7 @@ namespace Sidekick.Common.Platform.Keyboards
 
             if (keyCodes.Count == 0)
             {
-                return (null, null);
+                return (new(), new());
             }
 
             return (modifierCodes, keyCodes);

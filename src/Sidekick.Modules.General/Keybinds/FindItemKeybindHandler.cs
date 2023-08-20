@@ -40,7 +40,7 @@ namespace Sidekick.Modules.General.Keybinds
             if (item != null)
             {
                 await clipboardProvider.SetText(item.Original.Name);
-                keyboard.PressKey("Ctrl+F", "Ctrl+A", "Paste", "Enter");
+                keyboard.PressKey("Ctrl+F", "Ctrl+A", "Ctrl+V", "Enter");
             }
             else
             {

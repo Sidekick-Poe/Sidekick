@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Common.Platform.Clipboard
@@ -18,22 +17,17 @@ namespace Sidekick.Common.Platform.Clipboard
         }
 
         /// <inheritdoc/>
-        public async Task<string> Copy()
+        public async Task<string?> Copy()
         {
             var clipboardText = string.Empty;
-
             if (settings.RetainClipboard)
             {
                 clipboardText = await TextCopy.ClipboardService.GetTextAsync();
-                if (clipboardText == null)
-                {
-                    clipboardText = string.Empty;
-                }
             }
 
             await SetText(string.Empty);
 
-            keyboard.PressKey("Copy");
+            keyboard.PressKey("Ctrl+C");
 
             await Task.Delay(100);
 
@@ -43,20 +37,20 @@ namespace Sidekick.Common.Platform.Clipboard
             if (settings.RetainClipboard)
             {
                 await Task.Delay(100);
-                await TextCopy.ClipboardService.SetTextAsync(clipboardText);
+                await SetText(clipboardText);
             }
 
             return result;
         }
 
         /// <inheritdoc/>
-        public async Task<string> GetText()
+        public async Task<string?> GetText()
         {
             return await TextCopy.ClipboardService.GetTextAsync();
         }
 
         /// <inheritdoc/>
-        public async Task SetText(string text)
+        public async Task SetText(string? text)
         {
             if (text == null)
             {

@@ -4,7 +4,7 @@ namespace Sidekick.Common.Platform
     {
         void Initialize();
 
-        string ClientLogPath { get; }
+        string? ClientLogPath { get; }
 
         bool IsPathOfExileInFocus { get; }
         bool IsSidekickInFocus { get; }

@@ -1,6 +1,3 @@
-using System;
-using System.Threading.Tasks;
-
 namespace Sidekick.Common.Platform.Tray
 {
     /// <summary>
@@ -8,6 +5,12 @@ namespace Sidekick.Common.Platform.Tray
     /// </summary>
     public class TrayMenuItem
     {
+        public TrayMenuItem(string label, Func<Task> onClick)
+        {
+            Label = label;
+            OnClick = onClick;
+        }
+
         /// <summary>
         /// The label of the menu item
         /// </summary>
