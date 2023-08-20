@@ -59,8 +59,8 @@ can deny that my work has made quite the splash...""
             Assert.Equal(6, actual.Sockets.Count(x => x.Group == 0));
 
             actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Evasion and Energy Shield (Local)", 128);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "# to maximum Life", 55);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% to all Elemental Resistances", 12);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to maximum Life", 55);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "+#% to all Elemental Resistances", 12);
             actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Area of Effect", 44);
             actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Area Damage", 47);
             actual.AssertHasModifier(ModifierCategory.Explicit, "Extra gore");

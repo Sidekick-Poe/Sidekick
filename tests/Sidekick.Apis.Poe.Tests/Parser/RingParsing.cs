@@ -47,8 +47,8 @@ Corrupted
             Assert.True(actual.Properties.Corrupted);
 
             actual.AssertHasModifier(ModifierCategory.Implicit, "Anger has #% increased Aura Effect");
-            actual.AssertHasModifier(ModifierCategory.Explicit, "# to all Attributes");
-            actual.AssertHasModifier(ModifierCategory.Explicit, "# to Intelligence");
+            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to all Attributes");
+            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Intelligence");
             actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage to Attacks");
             actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Mana Regeneration Rate");
         }

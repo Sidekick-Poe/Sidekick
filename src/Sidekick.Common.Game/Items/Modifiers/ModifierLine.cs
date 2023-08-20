@@ -26,5 +26,11 @@ namespace Sidekick.Common.Game.Items.Modifiers
         /// Gets or sets the list of modifiers that also matches the game text, or similar phrased modifiers if fuzzy search was used.
         /// </summary>
         public List<Modifier> Alternates { get; set; } = new();
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return Text;
+        }
     }
 }
