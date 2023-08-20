@@ -92,6 +92,25 @@ namespace Sidekick.Apis.Poe.Parser
             }
         }
 
+        public OriginalItem ParseOriginalItem(string itemText)
+        {
+            if (string.IsNullOrEmpty(itemText))
+            {
+                return null;
+            }
+
+            try
+            {
+                var parsingItem = GetParsingItem(itemText);
+                return ParseOriginal(parsingItem);
+            }
+            catch (Exception e)
+            {
+                logger.LogWarning(e, "Could not parse item.");
+                return null;
+            }
+        }
+
         private static OriginalItem ParseOriginal(ParsingItem parsingItem)
         {
             return new OriginalItem()

@@ -1,7 +1,10 @@
 
 <div class="d-flex align-center">
     <div class="flex-grow-1 pr-4">
-        <MudField Label="@Label" Variant="Variant.Filled" Class="@Class" @onclick="Click">
+        <MudField @onclick="Click"
+                  Label="@Label"
+                  Variant="Variant.Filled"
+                  Class="@Class">
             @if (Active)
             {
                 <MudText>@Resources.Key_Active</MudText>
@@ -21,7 +24,8 @@
         </MudField>
     </div>
     <div class="flex-grow-0">
-        <MudIconButton Icon="@Icons.Material.Filled.Cancel" @onclick="Delete"></MudIconButton>
+        <MudIconButton @onclick="Delete"
+                       Icon="@Icons.Material.Filled.Cancel" />
     </div>
 </div>
 

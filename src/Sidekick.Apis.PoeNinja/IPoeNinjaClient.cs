@@ -8,7 +8,9 @@ namespace Sidekick.Apis.PoeNinja
     public interface IPoeNinjaClient
     {
         Task Initialize();
-        Task<NinjaPrice> GetPriceInfo(Item item);
+
+        Task<NinjaPrice> GetPriceInfo(OriginalItem originalItem, Item item);
+
         Uri GetDetailsUri(NinjaPrice price);
     }
 }

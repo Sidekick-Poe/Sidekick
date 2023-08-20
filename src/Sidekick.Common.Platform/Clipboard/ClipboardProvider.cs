@@ -17,7 +17,19 @@ namespace Sidekick.Common.Platform.Clipboard
         }
 
         /// <inheritdoc/>
-        public async Task<string?> Copy()
+        public Task<string?> Copy()
+        {
+            return ExecuteCopy("Ctrl+C");
+        }
+
+        /// <inheritdoc/>
+        public Task<string?> CopyAdvanced()
+        {
+            return ExecuteCopy("Ctrl+Alt+C");
+        }
+
+        /// <inheritdoc/>
+        private async Task<string?> ExecuteCopy(string keyStroke)
         {
             var clipboardText = string.Empty;
             if (settings.RetainClipboard)
@@ -27,7 +39,7 @@ namespace Sidekick.Common.Platform.Clipboard
 
             await SetText(string.Empty);
 
-            keyboard.PressKey("Ctrl+C");
+            keyboard.PressKey(keyStroke);
 
             await Task.Delay(100);
 

@@ -84,10 +84,10 @@ namespace Sidekick.Apis.PoeNinja
             }
         }
 
-        public async Task<NinjaPrice> GetPriceInfo(Item item)
+        public async Task<NinjaPrice> GetPriceInfo(OriginalItem originalItem, Item item)
         {
-            var name = item.Original.Name;
-            var type = item.Original.Type;
+            var name = originalItem.Name;
+            var type = originalItem.Type;
 
             foreach (var itemType in GetItemTypes(item))
             {

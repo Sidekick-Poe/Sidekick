@@ -1,4 +1,4 @@
-@page "/trade/{itemText}"
+@page "/trade/{itemName}/{itemText}"
 @inherits SidekickView
 
 @if (Item == null)
@@ -7,7 +7,7 @@
 }
 else
 {
-    <FiltersComponent Item="Item" ModifierFilters="ModifierFilters" PropertyFilters="PropertyFilters" OnSearch="UpdateQuery" />
+    <FiltersComponent Item="Item" ItemName="@ItemName" ModifierFilters="ModifierFilters" PropertyFilters="PropertyFilters" OnSearch="UpdateQuery" />
 
     <div class="ml-0">
         <PriceOptionsComponent Item="Item"
@@ -45,6 +45,7 @@ else
     [Inject] private IItemParser ItemParser { get; set; }
     [Inject] private ITradeFilterService TradeFilterService { get; set; }
 
+    [Parameter] public string ItemName { get; set; }
     [Parameter] public string ItemText { get; set; }
 
     private Item Item { get; set; }

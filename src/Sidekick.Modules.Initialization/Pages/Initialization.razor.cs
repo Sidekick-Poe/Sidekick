@@ -148,31 +148,11 @@ namespace Sidekick.Modules.Initialization.Pages
 
             menuItems.AddRange(new List<TrayMenuItem>()
             {
-                new ()
-                {
-                    Label = "Sidekick - " + typeof(StartupExtensions).Assembly.GetName().Version.ToString(),
-                    Disabled = true,
-                },
-                new ()
-                {
-                    Label = "Cheatsheets",
-                    OnClick = () => ViewLocator.Open("/cheatsheets"),
-                },
-                new ()
-                {
-                    Label = "About",
-                    OnClick = () => ViewLocator.Open("/about"),
-                },
-                new ()
-                {
-                    Label = "Settings",
-                    OnClick = () => ViewLocator.Open("/settings"),
-                },
-                new ()
-                {
-                    Label = "Exit",
-                    OnClick = () => { ApplicationService.Shutdown(); return Task.CompletedTask; },
-                },
+                new (label: "Sidekick - " + typeof(StartupExtensions).Assembly.GetName().Version.ToString()),
+                new (label: "Cheatsheets", onClick: () => ViewLocator.Open("/cheatsheets")),
+                new (label: "About", onClick: () => ViewLocator.Open("/about")),
+                new (label: "Settings", onClick: () => ViewLocator.Open("/settings")),
+                new (label: "Exit", onClick: () => { ApplicationService.Shutdown(); return Task.CompletedTask; }),
             });
 
             TrayProvider.Initialize(menuItems);
