@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoeNinja.Api;
 using Sidekick.Apis.PoeNinja.Api.Models;
 using Sidekick.Apis.PoeNinja.Models;
 using Sidekick.Apis.PoeNinja.Repository;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.PoeNinja
@@ -105,12 +102,6 @@ namespace Sidekick.Apis.PoeNinja
                     continue;
                 }
 
-                var translations = await repository.LoadTranslations(itemType);
-                if (translations.Any(x => x.Translation == name))
-                {
-                    name = translations.First(x => x.Translation == name).English;
-                }
-
                 var query = repositoryItems.AsQueryable().Where(x => x.Name == name || x.Name == type);
 
                 if (item.Properties != null)
@@ -200,6 +191,7 @@ namespace Sidekick.Apis.PoeNinja
                         result.Add(ItemType.BlightedMap);
                         result.Add(ItemType.BlightRavagedMap);
                         break;
+
                     case Category.Gem: result.Add(ItemType.SkillGem); break;
                     case Category.ItemisedMonster: result.Add(ItemType.Beast); break;
                 }

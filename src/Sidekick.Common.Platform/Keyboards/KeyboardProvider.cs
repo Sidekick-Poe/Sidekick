@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -152,7 +153,7 @@ namespace Sidekick.Common.Platform.Keyboards
         public void Initialize()
         {
             // We can't initialize twice
-            if (HasInitialized)
+            if (HasInitialized || Debugger.IsAttached)
             {
                 return;
             }

@@ -9,11 +9,7 @@ namespace Sidekick.Apis.PoeNinja.Repository
     {
         Task<List<NinjaPrice>> Load(ItemType itemType);
 
-        Task<List<NinjaTranslation>> LoadTranslations(ItemType itemType);
-
         Task SavePrices(ItemType itemType, List<NinjaPrice> prices);
-
-        Task SaveTranslations(ItemType itemType, List<NinjaTranslation> translations);
 
         Task Clear();
     }
