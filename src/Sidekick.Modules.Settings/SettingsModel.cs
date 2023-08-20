@@ -31,8 +31,6 @@ namespace Sidekick.Modules.Settings
 
         public Guid? CurrentKey { get; set; }
 
-        public string Theme { get; set; }
-
         public bool Trade_CloseWithMouse { get; set; }
 
         public bool Map_CloseWithMouse { get; set; }
