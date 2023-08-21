@@ -130,6 +130,7 @@ namespace Sidekick.Common.Platform.Keyboards
 
         private readonly ILogger<KeyboardProvider> logger;
         private readonly IKeybindProvider keybindProvider;
+        private readonly IProcessProvider processProvider;
 
         private bool HasInitialized { get; set; } = false;
         private SimpleGlobalHook? Hook { get; set; }
@@ -138,10 +139,12 @@ namespace Sidekick.Common.Platform.Keyboards
 
         public KeyboardProvider(
             ILogger<KeyboardProvider> logger,
-            IKeybindProvider keybindProvider)
+            IKeybindProvider keybindProvider,
+            IProcessProvider processProvider)
         {
             this.logger = logger;
             this.keybindProvider = keybindProvider;
+            this.processProvider = processProvider;
         }
 
         public event Action<string>? OnKeyDown;
@@ -191,12 +194,9 @@ namespace Sidekick.Common.Platform.Keyboards
 
             str.Append(key);
             var keybind = str.ToString();
+            OnKeyDown?.Invoke(keybind);
 
-            if (OnKeyDown != null && OnKeyDown.GetInvocationList().Length > 0)
-            {
-                OnKeyDown.Invoke(keybind);
-            }
-            else if (keybindProvider.KeybindHandlers.TryGetValue(keybind, out var keybindHandler))
+            if (processProvider.IsPathOfExileInFocus && keybindProvider.KeybindHandlers.TryGetValue(keybind, out var keybindHandler))
             {
                 if (keybindHandler.IsValid())
                 {
