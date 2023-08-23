@@ -1,5 +1,3 @@
-using System;
-
 namespace Sidekick.Common.Browser
 {
     public interface IBrowserProvider

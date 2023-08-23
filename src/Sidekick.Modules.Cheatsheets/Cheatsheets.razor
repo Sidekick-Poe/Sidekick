@@ -1,12 +1,49 @@
 @page "/cheatsheets"
+@page "/cheatsheets/{wikiPage}"
+@layout CheatsheetLayout
+@inherits SidekickView
+
+@if (!string.IsNullOrEmpty(IFrameSrc))
+{
+    <iframe src="@IFrameSrc" style="height: 100%;"></iframe>
+}
 
 @code {
-    [Inject] private ISettings Settings { get; set; }
-    [Inject] private NavigationManager NavigationManager { get; set; }
+    [Inject]
+    private CheatsheetResources Resources { get; set; }
 
-    protected override void OnAfterRender(bool firstRender)
+    [Inject]
+    private ISettings Settings { get; set; }
+
+    [Parameter]
+    public string WikiPage { get; set; }
+
+    private string IFrameSrc { get; set; }
+
+    public override string Title => Resources.Cheatsheets;
+
+    public override int ViewWidth => 1280;
+
+    public override int ViewHeight => 800;
+
+    protected override void OnParametersSet()
     {
-        base.OnAfterRender(firstRender);
-        NavigationManager.NavigateTo($"/cheatsheets/{Settings.Cheatsheets_Selected}");
+        var page = WikiPage.DecodeBase64Url();
+        if (string.IsNullOrEmpty(page))
+        {
+            page = Settings.Cheatsheets_Selected;
+        }
+
+        var pageObject = Settings.Cheatsheets_Pages.FirstOrDefault(x => x.Name == page);
+        if (pageObject != null)
+        {
+            IFrameSrc = pageObject.Url;
+        }
+        else
+        {
+            NavigationManager.NavigateTo($"/cheatsheets/{Settings.Cheatsheets_Pages.First().Name.EncodeBase64Url()}");
+        }
+
+        base.OnParametersSet();
     }
 }

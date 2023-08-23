@@ -12,7 +12,7 @@
 
     @if (Item != null)
     {
-        <PriceNinjaComponent Item="Item" />
+        <PriceNinjaComponent Item="Item" ItemName="@ItemName" />
         <PricePredictionComponent Item="Item" />
     }
 
@@ -45,6 +45,7 @@
     [Inject] public TradeResources Resources { get; set; }
 
     [Parameter] public Item Item { get; set; }
+    [Parameter] public string ItemName { get; set; }
     [Parameter] public PropertyFilters PropertyFilters { get; set; }
     [Parameter] public List<ModifierFilter> ModifierFilters { get; set; }
     [Parameter] public EventCallback OnSearch { get; set; }

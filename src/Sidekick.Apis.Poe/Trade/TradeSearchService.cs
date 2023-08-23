@@ -216,6 +216,7 @@ namespace Sidekick.Apis.Poe.Trade
                     Class.Wands => "weapon.wand",
                     Class.Warstaves => "weapon.warstaff",
                     Class.Sentinel => "sentinel",
+                    Class.MemoryLine => "memoryline",
                     _ => null,
                 };
 
@@ -236,7 +237,7 @@ namespace Sidekick.Apis.Poe.Trade
         {
             foreach (var propertyFilter in propertyFilters)
             {
-                if (!propertyFilter.Enabled && propertyFilter.Type != PropertyFilterType.Misc_Corrupted)
+                if (!propertyFilter.Enabled == true && propertyFilter.Type != PropertyFilterType.Misc_Corrupted)
                 {
                     continue;
                 }
@@ -307,6 +308,10 @@ namespace Sidekick.Apis.Poe.Trade
                         filters.MapFilters.Filters.Blighted = new SearchFilterOption(propertyFilter);
                         break;
 
+                    case PropertyFilterType.Map_BlightRavaged:
+                        filters.MapFilters.Filters.BlightRavavaged = new SearchFilterOption(propertyFilter);
+                        break;
+
                     case PropertyFilterType.Map_Tier:
                         filters.MapFilters.Filters.MapTier = new SearchFilterValue(propertyFilter);
                         break;
@@ -325,7 +330,7 @@ namespace Sidekick.Apis.Poe.Trade
                         break;
 
                     case PropertyFilterType.Misc_Corrupted:
-                        filters.MiscFilters.Filters.Corrupted = new SearchFilterOption(propertyFilter);
+                        filters.MiscFilters.Filters.Corrupted = propertyFilter.Enabled.HasValue ? new SearchFilterOption(propertyFilter) : null;
                         break;
 
                     case PropertyFilterType.Misc_Scourged:
@@ -486,6 +491,7 @@ namespace Sidekick.Apis.Poe.Trade
                     DamagePerSecond = result.Item.Extended.DamagePerSecond,
                     ElementalDps = result.Item.Extended.ElementalDps,
                     PhysicalDps = result.Item.Extended.PhysicalDps,
+                    BaseDefencePercentile = result.Item.Extended.BaseDefencePercentile,
                 },
             };
 

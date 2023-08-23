@@ -46,6 +46,7 @@ else if (Price != null)
     [Inject] private IBrowserProvider BrowserProvider { get; set; }
 
     [Parameter] public Item Item { get; set; }
+    [Parameter] public string ItemName { get; set; }
 
     private bool Loading { get; set; }
     private NinjaPrice Price { get; set; }
@@ -64,7 +65,7 @@ else if (Price != null)
         if (Item != null)
         {
             IsInit = true;
-            Price = await Client.GetPriceInfo(Item);
+            Price = await Client.GetPriceInfo(OriginalItem.Parse(ItemName), Item);
 
             ChartOptions = new ChartOptions()
                 {

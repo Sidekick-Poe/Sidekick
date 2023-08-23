@@ -1,4 +1,5 @@
 @page "/about"
+@inherits SidekickView
 
 <MudText Typo="Typo.h1">Sidekick - @VersionNumber</MudText>
 <MudText Typo="Typo.subtitle1">@Resources.Operating_System - @OperatingSystem</MudText>
@@ -52,7 +53,6 @@
 @code {
     [Inject] private AboutResources Resources { get; set; }
     [Inject] private ILogger<About> Logger { get; set; }
-    [Inject] private IViewInstance ViewInstance { get; set; }
     [Inject] private IBrowserProvider Browser { get; set; }
 
     public string VersionNumber { get; private set; }
@@ -66,7 +66,7 @@
     public string BugUrl { get; private set; } = "https://github.com/Sidekick-Poe/Sidekick/issues";
 
     public Dictionary<string, string> Contributors { get; private set; } = new Dictionary<string, string>()
-{
+    {
         { "domialex", "https://github.com/domialex" },
         { "leMicin", "https://github.com/leMicin" },
         { "Blinke", "https://github.com/Blinke" },
@@ -115,9 +115,10 @@
             Logger.LogInformation($"[About Page] - Failed to load Operating System details: " + e.Message);
         }
 
-        await ViewInstance.Initialize(Resources.Title);
         await base.OnInitializedAsync();
     }
+
+    public override string Title => Resources.Title;
 
     public void Navigate(string uri)
     {

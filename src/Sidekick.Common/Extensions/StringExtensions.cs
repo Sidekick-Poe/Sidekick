@@ -1,9 +1,11 @@
-using System;
 using System.Text;
 using System.Web;
 
 namespace Sidekick.Common.Extensions
 {
+    /// <summary>
+    /// Class containing extension methods for strings.
+    /// </summary>
     public static class StringExtensions
     {
         /// <summary>
@@ -44,6 +46,7 @@ namespace Sidekick.Common.Extensions
 
             return HttpUtility.UrlEncode(input);
         }
+
         /// <summary>
         /// Decodes a Url Encodeded String
         /// </summary>
@@ -60,8 +63,13 @@ namespace Sidekick.Common.Extensions
         /// <summary>
         /// Encode a string in Base64 for URL transfer
         /// </summary>
-        public static string EncodeBase64Url(this string input)
+        public static string? EncodeBase64Url(this string? input)
         {
+            if (input == null)
+            {
+                return null;
+            }
+
             if (input.HasInvalidUrlCharacters())
             {
                 return $"xurl_{input.EncodeBase64().EncodeUrl()}";
@@ -73,8 +81,13 @@ namespace Sidekick.Common.Extensions
         /// <summary>
         /// Decodes Base64 Url
         /// </summary>
-        public static string DecodeBase64Url(this string input)
+        public static string? DecodeBase64Url(this string? input)
         {
+            if (input == null)
+            {
+                return null;
+            }
+
             if (input.StartsWith("xurl_"))
             {
                 var substr = input.Substring(5);

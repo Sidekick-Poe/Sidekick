@@ -19,39 +19,14 @@ namespace Sidekick.Apis.PoeNinja.Api
     /// </summary>
     public class PoeNinjaApiClient : IPoeNinjaApiClient
     {
-        private readonly static Uri POE_NINJA_API_BASE_URL = new("https://poe.ninja/api/data/");
-        /// <summary>
-        /// Poe.ninja uses its own language codes.
-        /// </summary>
-        internal readonly static Dictionary<string, string> POE_NINJA_LANGUAGE_CODES = new()
-        {
-            { "de", "ge" }, // German.
-            { "en", "en" }, // English.
-            { "es", "es" }, // Spanish.
-            { "fr", "fr" }, // French.
-            { "kr", "ko" }, // Korean.
-            { "pt", "pt" }, // Portuguese.
-            { "ru", "ru" }, // Russian.
-            { "th", "th" }, // Thai.
-        };
+        private static readonly Uri POE_NINJA_API_BASE_URL = new("https://poe.ninja/api/data/");
+
         private readonly HttpClient client;
         private readonly ILogger logger;
         private readonly IGameLanguageProvider gameLanguageProvider;
         private readonly ISettings settings;
         private readonly IPoeNinjaRepository poeNinjaRepository;
         private readonly JsonSerializerOptions options;
-
-        private string LanguageCode
-        {
-            get
-            {
-                if (POE_NINJA_LANGUAGE_CODES.TryGetValue(gameLanguageProvider.Language.LanguageCode, out var languageCode))
-                {
-                    return languageCode;
-                }
-                return string.Empty;
-            }
-        }
 
         public PoeNinjaApiClient(
             IHttpClientFactory httpClientFactory,
@@ -67,7 +42,7 @@ namespace Sidekick.Apis.PoeNinja.Api
             options = new JsonSerializerOptions()
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                IgnoreNullValues = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             };
             options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
 
@@ -79,40 +54,35 @@ namespace Sidekick.Apis.PoeNinja.Api
         public async Task<List<NinjaPrice>> FetchPrices(ItemType itemType)
         {
             List<NinjaPrice> items;
-            List<NinjaTranslation> translations;
             if (itemType == ItemType.Currency || itemType == ItemType.Fragment)
             {
                 var result = await FetchCurrencies(itemType);
-                items = result.Items;
-                translations = result.Translations;
+                items = result;
             }
             else
             {
                 var result = await FetchItems(itemType);
-                items = result.Items;
-                translations = result.Translations;
+                items = result;
             }
 
             if (items != null)
             {
                 await poeNinjaRepository.SavePrices(itemType, items);
-                await poeNinjaRepository.SaveTranslations(itemType, translations);
             }
 
             return items;
         }
 
-        private async Task<(List<NinjaPrice> Items, List<NinjaTranslation> Translations)> FetchItems(ItemType itemType)
+        private async Task<List<NinjaPrice>> FetchItems(ItemType itemType)
         {
-            var url = new Uri($"{POE_NINJA_API_BASE_URL}itemoverview?league={settings.LeagueId}&type={itemType}&language={LanguageCode}");
+            var url = new Uri($"{POE_NINJA_API_BASE_URL}itemoverview?league={settings.LeagueId}&type={itemType}");
 
             try
             {
                 var response = await client.GetAsync(url);
                 var responseStream = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaItem>>(responseStream, options);
-                return (
-                    result.Lines
+                return result.Lines
                         .Select(x => new NinjaPrice()
                         {
                             Corrupted = x.Corrupted,
@@ -127,37 +97,26 @@ namespace Sidekick.Apis.PoeNinja.Api
                             IsRelic = x.ItemClass == 9, // 3 for Unique, 9 for Relic Unique.
                             Links = x.Links,
                         })
-                        .ToList(),
-                    result.Language.Translations
-                        .Where(y => !y.Value.Contains("."))
-                        .Distinct()
-                        .Select(x => new NinjaTranslation()
-                        {
-                            English = x.Key,
-                            Translation = x.Value,
-                        })
-                        .ToList()
-                );
+                        .ToList();
             }
             catch (Exception)
             {
                 logger.LogInformation("Could not fetch {itemType} from poe.ninja", itemType);
             }
 
-            return (null, null);
+            return null;
         }
 
-        private async Task<(List<NinjaPrice> Items, List<NinjaTranslation> Translations)> FetchCurrencies(ItemType itemType)
+        private async Task<List<NinjaPrice>> FetchCurrencies(ItemType itemType)
         {
-            var url = new Uri($"{POE_NINJA_API_BASE_URL}currencyoverview?league={settings.LeagueId}&type={itemType}&language={LanguageCode}");
+            var url = new Uri($"{POE_NINJA_API_BASE_URL}currencyoverview?league={settings.LeagueId}&type={itemType}");
 
             try
             {
                 var response = await client.GetAsync(url);
                 var responseStream = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaCurrency>>(responseStream, options);
-                return (
-                    result.Lines
+                return result.Lines
                         .Where(x => x.Receive?.Value != null)
                         .Select(x => new NinjaPrice()
                         {
@@ -169,24 +128,14 @@ namespace Sidekick.Apis.PoeNinja.Api
                             ItemType = itemType,
                             SparkLine = x.ReceiveSparkLine ?? x.LowConfidenceReceiveSparkLine,
                         })
-                        .ToList(),
-                    result.Language.Translations
-                        .Where(y => !y.Value.Contains("."))
-                        .Distinct()
-                        .Select(x => new NinjaTranslation()
-                        {
-                            English = x.Key,
-                            Translation = x.Value,
-                        })
-                        .ToList()
-                );
+                        .ToList();
             }
             catch
             {
                 logger.LogInformation("Could not fetch {currency} from poe.ninja", itemType);
             }
 
-            return (null, null);
+            return null;
         }
     }
 }

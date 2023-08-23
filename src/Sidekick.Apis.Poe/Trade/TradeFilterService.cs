@@ -125,7 +125,7 @@ namespace Sidekick.Apis.Poe.Trade
                 if (itemValue >= 0)
                 {
                     min = itemValue;
-                    if (sidekickSettings.Trade_Normalize_Values && category != ModifierCategory.Enchant)
+                    if (sidekickSettings.Trade_Normalize_Values && category != ModifierCategory.Enchant && category != ModifierCategory.Crucible)
                     {
                         min = NormalizeMinValue(min, delta);
                     }
@@ -133,7 +133,7 @@ namespace Sidekick.Apis.Poe.Trade
                 else
                 {
                     max = itemValue;
-                    if (sidekickSettings.Trade_Normalize_Values && category != ModifierCategory.Enchant)
+                    if (sidekickSettings.Trade_Normalize_Values && category != ModifierCategory.Enchant && category != ModifierCategory.Crucible)
                     {
                         max = NormalizeMaxValue(max, delta);
                     }
@@ -234,6 +234,12 @@ namespace Sidekick.Apis.Poe.Trade
                 gameLanguageProvider.Language.PrefixBlighted,
                 item.Properties.Blighted,
                 enabled: item.Properties.Blighted);
+            // Blight-ravaged
+            InitializePropertyFilter(result.Map,
+                PropertyFilterType.Map_BlightRavaged,
+                gameLanguageProvider.Language.PrefixBlightRavaged,
+                item.Properties.BlightRavaged,
+                enabled: item.Properties.BlightRavaged);
             // Map tier
             InitializePropertyFilter(result.Map,
                 PropertyFilterType.Map_Tier,
@@ -267,8 +273,8 @@ namespace Sidekick.Apis.Poe.Trade
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Corrupted,
                 gameLanguageProvider.Language.DescriptionCorrupted,
-                item.Properties.Corrupted,
-                enabled: item.Properties.Corrupted);
+                true,
+                enabled: item.Properties.Corrupted ? true : null);
             // Crusader
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Influence_Crusader,
@@ -320,7 +326,7 @@ namespace Sidekick.Apis.Poe.Trade
             string label,
             T value,
             double delta = 5,
-            bool enabled = false,
+            bool? enabled = false,
             double? min = null,
             double? max = null)
         {
@@ -330,7 +336,7 @@ namespace Sidekick.Apis.Poe.Trade
             {
                 case bool boolValue:
                     valueType = FilterValueType.Boolean;
-                    if (!boolValue) return;
+                    if (!boolValue && enabled == false) return;
                     break;
 
                 case int intValue:

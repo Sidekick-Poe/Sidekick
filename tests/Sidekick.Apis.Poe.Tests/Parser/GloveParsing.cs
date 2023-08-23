@@ -46,9 +46,9 @@ Item Level: 61
             Assert.Equal("Death Nails", actual.Original.Name);
             Assert.Single(actual.Sockets);
 
-            actual.AssertHasModifier(ModifierCategory.Explicit, "# to Intelligence", 18);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "# to maximum Life", 73);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% to Lightning Resistance", 14);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Intelligence", 18);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to maximum Life", 73);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "+#% to Lightning Resistance", 14);
             actual.AssertHasModifier(ModifierCategory.Explicit, "#% of Physical Attack Damage Leeched as Mana", 0.23);
         }
     }

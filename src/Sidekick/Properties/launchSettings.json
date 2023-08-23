@@ -1,13 +1,23 @@
 {
   "profiles": {
-    "Sidekick": {
+    "WebApplication": {
       "commandName": "Project",
-      "launchBrowser": false,
+      "launchBrowser": true,
+      "launchUrl": "https://localhost:8081/update",
       "applicationUrl": "https://localhost:8081;http://localhost:8080",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "dotnetRunMessages": "true"
+      "dotnetRunMessages": true
+    },
+    "Electron.NET": {
+      "commandName": "Executable",
+      "executablePath": "electronize",
+      "commandLineArgs": "start /PublishSingleFile false",
+      "workingDirectory": ".",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     }
   }
 }

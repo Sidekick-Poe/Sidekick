@@ -1,9 +1,61 @@
-<div class="sidekick-wrapper">
-    <MudLayout>
-        @ChildContent
-    </MudLayout>
-</div>
+@using Sidekick.Common.Blazor.Scripts
+
+<ErrorBoundary>
+    <ChildContent>
+        <CascadingValue Value="this" IsFixed="true">
+            <CascadingValue Value="View">
+                <div class="sidekick-wrapper @(HasAppbar ? "has-appbar" : "")">
+                    <MudLayout>
+                        @ChildContent
+                    </MudLayout>
+                </div>
+            </CascadingValue>
+        </CascadingValue>
+    </ChildContent>
+    <ErrorContent>
+        <div class="blazor-error">
+            <div class="content">
+                <div>
+                    An error has occurred. This application may no longer respond until reloaded.<br />
+                    If this issue keeps reoccurring, please open a ticket on our github page.
+                </div>
+
+                <a href="javascript:;" class="reload" @onclick="Reload">Reload</a>
+            </div>
+        </div>
+    </ErrorContent>
+</ErrorBoundary>
+<SidekickScripts />
 
 @code {
-    [Parameter] public RenderFragment ChildContent { get; set; }
+    /// <summary>
+    /// Gets or sets the content of the wrapper.
+    /// </summary>
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the view has an app bar or not.
+    /// </summary>
+    [Parameter]
+    public bool HasAppbar { get; set; } = true;
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    /// <summary>
+    /// Gets or sets the current view.
+    /// </summary>
+    private SidekickView View { get; set; }
+
+    public void SetView(SidekickView view)
+    {
+        View = view;
+        StateHasChanged();
+    }
+
+    private void Reload()
+    {
+        NavigationManager.NavigateTo(NavigationManager.Uri, true);
+    }
 }

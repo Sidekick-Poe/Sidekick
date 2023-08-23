@@ -32,6 +32,8 @@ namespace Sidekick.Common.Game.Items
 
         public bool Blighted { get; set; }
 
+        public bool BlightRavaged { get; set; }
+
         public double CriticalStrikeChance { get; set; }
 
         public double AttacksPerSecond { get; set; }
@@ -45,5 +47,7 @@ namespace Sidekick.Common.Game.Items
         public bool IsRelic { get; set; }
 
         public bool Scourged { get; set; }
+
+        public int? BaseDefencePercentile { get; set; }
     }
 }

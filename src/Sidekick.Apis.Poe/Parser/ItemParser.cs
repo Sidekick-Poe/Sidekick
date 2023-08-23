@@ -92,6 +92,25 @@ namespace Sidekick.Apis.Poe.Parser
             }
         }
 
+        public OriginalItem ParseOriginalItem(string itemText)
+        {
+            if (string.IsNullOrEmpty(itemText))
+            {
+                return null;
+            }
+
+            try
+            {
+                var parsingItem = GetParsingItem(itemText);
+                return ParseOriginal(parsingItem);
+            }
+            catch (Exception e)
+            {
+                logger.LogWarning(e, "Could not parse item.");
+                return null;
+            }
+        }
+
         private static OriginalItem ParseOriginal(ParsingItem parsingItem)
         {
             return new OriginalItem()
@@ -197,6 +216,7 @@ namespace Sidekick.Apis.Poe.Parser
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
                 Scourged = GetBool(patterns.Scourged, parsingItem),
                 Blighted = patterns.Blighted.IsMatch(parsingItem.Blocks[0].Lines[^1].Text),
+                BlightRavaged = patterns.BlightRavaged.IsMatch(parsingItem.Blocks[0].Lines[^1].Text),
 
                 ItemQuantity = GetInt(patterns.ItemQuantity, propertyBlock),
                 ItemRarity = GetInt(patterns.ItemRarity, propertyBlock),

@@ -11,7 +11,7 @@ namespace Sidekick.Apis.Poe.Trade.Filters
 
         public SearchFilterOption(PropertyFilter filter)
         {
-            Option = filter.Enabled ? "true" : "false";
+            Option = filter.Enabled == true ? "true" : "false";
         }
 
         public string Option { get; set; }

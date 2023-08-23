@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Sidekick.Common.Platform.Keybinds;
 
@@ -29,7 +28,7 @@ namespace Sidekick.Common.Platform.Options
 
             foreach (var keybindType in optionsMonitor.CurrentValue.Keybinds)
             {
-                var keybindHandler = (IKeybindHandler)serviceProvider.GetService(keybindType);
+                var keybindHandler = (IKeybindHandler)serviceProvider.GetRequiredService(keybindType);
                 foreach (var keybind in keybindHandler.GetKeybinds())
                 {
                     KeybindHandlers.Add(keybind, keybindHandler);

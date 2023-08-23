@@ -1,24 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazored.FluentValidation" Version="2.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.5" />
-    <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.5" />
-    <PackageReference Include="MudBlazor" Version="6.0.10" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.10" />
+    <PackageReference Include="MudBlazor" Version="6.9.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Sidekick.Common.Game\Sidekick.Common.Game.csproj" />
     <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Scripts\SidekickScripts.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
   </ItemGroup>
 
 </Project>

@@ -35,7 +35,7 @@ namespace Sidekick.Common.Platform.Windows.DllImport
         [DllImport("user32.dll")]
         internal static extern IntPtr DispatchMessage(ref WinMessage lpMsg);
 
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport("user32.dll")]
         internal static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]

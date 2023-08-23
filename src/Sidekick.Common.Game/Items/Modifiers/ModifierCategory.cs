@@ -13,5 +13,6 @@ namespace Sidekick.Common.Game.Items.Modifiers
         Pseudo = 8,
         Scourge = 9,
         Veiled = 10,
+        Crucible = 11,
     }
 }

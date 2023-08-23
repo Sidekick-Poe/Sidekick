@@ -1,15 +1,9 @@
 #pragma warning disable CA1806 // Do not ignore method results
 #pragma warning disable CA1416 // Validate platform compatibility
 
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Security.Principal;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Platform.Windows.DllImport;
 using Sidekick.Common.Platforms.Localization;
@@ -22,7 +16,19 @@ namespace Sidekick.Common.Platform.Windows.Processes
         private const string SIDEKICK_TITLE = "Sidekick";
         private static readonly List<string> PossibleProcessNames = new() { "PathOfExile", "PathOfExile_x64", "PathOfExileSteam", "PathOfExile_x64Steam" };
 
-        public string ClientLogPath => Path.Combine(Path.GetDirectoryName(GetPathOfExileProcess().GetMainModuleFileName()), "logs", "Client.txt");
+        public string? ClientLogPath
+        {
+            get
+            {
+                var directory = Path.GetDirectoryName(GetPathOfExileProcess()?.GetMainModuleFileName());
+                if (directory == null)
+                {
+                    return null;
+                }
+
+                return Path.Combine(directory, "logs", "Client.txt");
+            }
+        }
 
         private const int STANDARD_RIGHTS_REQUIRED = 0xF0000;
         private const int TOKEN_ASSIGN_PRIMARY = 0x1;
@@ -37,31 +43,47 @@ namespace Sidekick.Common.Platform.Windows.Processes
         private const int TOKEN_ALL_ACCESS = STANDARD_RIGHTS_REQUIRED | TOKEN_ASSIGN_PRIMARY | TOKEN_DUPLICATE | TOKEN_IMPERSONATE | TOKEN_QUERY | TOKEN_QUERY_SOURCE | TOKEN_ADJUST_PRIVILEGES | TOKEN_ADJUST_GROUPS | TOKEN_ADJUST_SESSIONID | TOKEN_ADJUST_DEFAULT;
 
         private readonly ILogger logger;
-        private readonly IAppService appService;
+        private readonly IApplicationService applicationService;
         private readonly PlatformResources platformResources;
 
-        public event Action OnFocus;
-
-        public event Action OnBlur;
-
-        private string FocusedWindow { get; set; }
         private bool PermissionChecked { get; set; } = false;
         private bool HasInitialized { get; set; } = false;
-        private CancellationTokenSource WindowsHook { get; set; }
+        private CancellationTokenSource? WindowsHook { get; set; }
 
-        /// <summary>
-        /// Used to prevent having to Invoke the blur action everytime a window that is not Path of
-        /// Exile is focused.
-        /// </summary>
-        private bool PathOfExileWasMinimized { get; set; }
+        private string FocusedWindow
+        {
+            get
+            {
+                // Create the variable
+                const int nChar = 256;
+                var ss = new StringBuilder(nChar);
+
+                // Run GetForeGroundWindows and get active window informations
+                // assign them into handle pointer variable
+                if (User32.GetWindowText(User32.GetForegroundWindow(), ss, nChar) > 0)
+                {
+                    return ss.ToString();
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
+        /// <inheritdoc/>
+        public bool IsPathOfExileInFocus => FocusedWindow == PATH_OF_EXILE_TITLE;
+
+        /// <inheritdoc/>
+        public bool IsSidekickInFocus => FocusedWindow == SIDEKICK_TITLE;
 
         public ProcessProvider(
             ILogger<ProcessProvider> logger,
-            IAppService appService,
+            IApplicationService applicationService,
             PlatformResources platformResources)
         {
             this.logger = logger;
-            this.appService = appService;
+            this.applicationService = applicationService;
             this.platformResources = platformResources;
         }
 
@@ -81,20 +103,6 @@ namespace Sidekick.Common.Platform.Windows.Processes
         {
             if (eventType == WinEvent.EVENT_SYSTEM_MINIMIZEEND || eventType == WinEvent.EVENT_SYSTEM_FOREGROUND)
             {
-                FocusedWindow = GetWindowTitle(hwnd);
-                if (IsPathOfExileInFocus || IsSidekickInFocus)
-                {
-                    logger.LogInformation("Path of Exile focused.");
-                    PathOfExileWasMinimized = false;
-                    OnFocus?.Invoke();
-                }
-                else if (!PathOfExileWasMinimized)
-                {
-                    PathOfExileWasMinimized = true;
-                    logger.LogInformation("Path of Exile minimized.");
-                    OnBlur?.Invoke();
-                }
-
                 // If the game is run as administrator, Sidekick also needs administrator privileges.
                 if (!PermissionChecked && IsPathOfExileInFocus)
                 {
@@ -110,21 +118,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
             }
         }
 
-        public bool IsPathOfExileInFocus => FocusedWindow == PATH_OF_EXILE_TITLE;
-
-        public bool IsSidekickInFocus => FocusedWindow == SIDEKICK_TITLE;
-
-        private static string GetWindowTitle(IntPtr handle)
-        {
-            var buffer = new StringBuilder(User32.GetWindowTextLength(handle) + 1);
-            if (User32.GetWindowText(handle, buffer, buffer.Capacity) > 0)
-            {
-                return buffer.ToString();
-            }
-            return null;
-        }
-
-        private static Process GetPathOfExileProcess()
+        private static Process? GetPathOfExileProcess()
         {
             foreach (var processName in PossibleProcessNames)
             {
@@ -140,27 +134,27 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
         private async Task RestartAsAdmin()
         {
-            await appService.OpenConfirmationNotification(platformResources.RestartAsAdminText,
-                onYes: () =>
-                {
-                    try
-                    {
-                        using var p = new Process();
-                        p.StartInfo.FileName = "Sidekick.exe";
-                        p.StartInfo.UseShellExecute = true;
-                        p.StartInfo.Verb = "runas";
-                        p.Start();
-                    }
-                    catch (Exception e)
-                    {
-                        logger.LogWarning(e, "This application must be run as administrator.");
-                    }
-                    finally
-                    {
-                        Environment.Exit(Environment.ExitCode);
-                    }
-                    return Task.CompletedTask;
-                });
+            if (!await applicationService.OpenConfirmationModal(platformResources.RestartAsAdminText))
+            {
+                return;
+            }
+
+            try
+            {
+                using var p = new Process();
+                p.StartInfo.FileName = "Sidekick.exe";
+                p.StartInfo.UseShellExecute = true;
+                p.StartInfo.Verb = "runas";
+                p.Start();
+            }
+            catch (Exception e)
+            {
+                logger.LogWarning(e, "This application must be run as administrator.");
+            }
+            finally
+            {
+                applicationService.Shutdown();
+            }
         }
 
         private static bool IsUserRunAsAdmin()
@@ -182,16 +176,23 @@ namespace Sidekick.Common.Platform.Windows.Processes
                 User32.OpenProcessToken(proc.Handle, TOKEN_ALL_ACCESS, out var ph);
                 using (var iden = new WindowsIdentity(ph))
                 {
-                    foreach (var role in iden.Groups)
+                    if (iden.Groups != null)
                     {
-                        if (role.IsValidTargetType(typeof(SecurityIdentifier)))
+                        foreach (var role in iden.Groups)
                         {
-                            var sid = role as SecurityIdentifier;
-
-                            if (sid.IsWellKnown(WellKnownSidType.AccountAdministratorSid) || sid.IsWellKnown(WellKnownSidType.BuiltinAdministratorsSid))
+                            if (role.IsValidTargetType(typeof(SecurityIdentifier)))
                             {
-                                result = true;
-                                break;
+                                var sid = role as SecurityIdentifier;
+                                if (sid == null)
+                                {
+                                    continue;
+                                }
+
+                                if (sid.IsWellKnown(WellKnownSidType.AccountAdministratorSid) || sid.IsWellKnown(WellKnownSidType.BuiltinAdministratorsSid))
+                                {
+                                    result = true;
+                                    break;
+                                }
                             }
                         }
                     }

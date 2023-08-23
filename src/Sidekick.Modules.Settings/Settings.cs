@@ -6,21 +6,35 @@ namespace Sidekick.Modules.Settings
 {
     public class Settings : ISettings
     {
-        public Guid UserId { get; set; } = Guid.NewGuid();
+        public static List<ChatSetting> GetDefaultChatCommands() =>
+        new()
+        {
+            new ChatSetting("F5", "/hideout", true),
+            new ChatSetting("F4", "/leave", true),
+            new ChatSetting("Ctrl+Enter", "@{LastWhisper.CharacterName} ", false),
+            new ChatSetting("F9", "/exit", true),
+        };
+
+        public static List<CheatsheetPage> GetDefaultCheatsheets() =>
+        new()
+        {
+            new("Betrayal", "https://www.poewiki.net/wiki/Immortal_Syndicate"),
+            new("Blight", "https://www.poewiki.net/wiki/Oil"),
+            new("Delve", "https://www.poewiki.net/wiki/Delve"),
+            new("Heist", "https://www.poewiki.net/wiki/Heist#Chest_types"),
+            new("Incursion", "https://www.poewiki.net/wiki/Incursion_room"),
+            new("Vendor Recipes", "https://www.poewiki.net/wiki/Vendor_recipe_system"),
+        };
 
         public string Language_UI { get; set; } = "en";
 
         public string Language_Parser { get; set; } = "";
-
-        public string Theme { get; set; } = "";
 
         public string LeagueId { get; set; } = "";
 
         public string LeaguesHash { get; set; } = "";
 
         public WikiSetting Wiki_Preferred { get; set; } = WikiSetting.PoeWiki;
-
-        public string Character_Name { get; set; } = "";
 
         public bool RetainClipboard { get; set; } = true;
 
@@ -50,23 +64,19 @@ namespace Sidekick.Modules.Settings
 
         public string Key_FindItems { get; set; } = "Ctrl+F";
 
-        public List<ChatSetting> Chat_Commands { get; set; } = new()
-        {
-            new ChatSetting("F5", "/hideout", true),
-            new ChatSetting("F4", "/kick {Me.CharacterName}", true),
-            new ChatSetting("Ctrl+Enter", "@{LastWhisper.CharacterName} ", false),
-            new ChatSetting("F9", "/exit", true),
-        };
+        public List<ChatSetting> Chat_Commands { get; set; } = GetDefaultChatCommands();
 
         #region Cheatsheets
+
         public string Cheatsheets_Key_Open { get; set; } = "F6";
         public string Cheatsheets_Selected { get; set; } = "betrayal";
-        public string Cheatsheets_Betrayal_Sort { get; set; } = "default";
 
-        #endregion
+        public List<CheatsheetPage> Cheatsheets_Pages { get; set; } = GetDefaultCheatsheets();
+
+        #endregion Cheatsheets
 
         public DateTimeOffset? PoeNinja_LastClear { get; set; } = null;
 
-        public bool PoeWikiMap_Enable { get; set; } = true;
+        public bool PoeWikiData_Enable { get; set; } = true;
     }
 }

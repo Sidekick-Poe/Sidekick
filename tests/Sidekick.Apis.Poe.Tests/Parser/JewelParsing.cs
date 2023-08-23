@@ -38,7 +38,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree.Right click to re
             Assert.Equal("Blight Cut", actual.Original.Name);
             Assert.Equal(68, actual.Properties.ItemLevel);
 
-            actual.AssertHasModifier(ModifierCategory.Explicit, "# to Strength and Intelligence", 8);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Strength and Intelligence", 8);
             actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Spell Damage while Dual Wielding", 14);
             actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Burning Damage", 19);
             actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Damage with Wands", 15);

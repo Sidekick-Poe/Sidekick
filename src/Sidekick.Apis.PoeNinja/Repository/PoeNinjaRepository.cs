@@ -27,11 +27,6 @@ namespace Sidekick.Apis.PoeNinja.Repository
             return cacheProvider.Get<List<NinjaPrice>>(GetCacheKey(itemType));
         }
 
-        public Task<List<NinjaTranslation>> LoadTranslations(ItemType itemType)
-        {
-            return cacheProvider.Get<List<NinjaTranslation>>(GetTranslationCacheKey(itemType));
-        }
-
         public Task SavePrices(ItemType itemType, List<NinjaPrice> prices)
         {
             prices = prices
@@ -45,28 +40,16 @@ namespace Sidekick.Apis.PoeNinja.Repository
             return cacheProvider.Set(GetCacheKey(itemType), prices);
         }
 
-        public Task SaveTranslations(ItemType itemType, List<NinjaTranslation> translations)
-        {
-            translations = translations
-                .GroupBy(x => x.English)
-                .Select(x => x.First())
-                .ToList();
-
-            return cacheProvider.Set(GetTranslationCacheKey(itemType), translations);
-        }
-
         public async Task Clear()
         {
             foreach (var value in Enum.GetValues<ItemType>())
             {
                 cacheProvider.Delete(GetCacheKey(value));
-                cacheProvider.Delete(GetTranslationCacheKey(value));
             }
 
             await settingsService.Save(nameof(ISettings.PoeNinja_LastClear), DateTimeOffset.Now);
         }
 
         private string GetCacheKey(ItemType itemType) => $"PoeNinja_{itemType}";
-        private string GetTranslationCacheKey(ItemType itemType) => $"PoeNinja_{itemType}_Translation";
     }
 }

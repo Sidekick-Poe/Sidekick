@@ -1,4 +1,6 @@
 @page "/"
+@using Sidekick.Apis.Poe;
+@inherits SidekickView
 
 <SidekickLogo />
 <MudGrid Class="mt-3" Spacing="2">
@@ -27,20 +29,17 @@
 </MudGrid>
 
 @code {
-    [Inject] private IViewInstance ViewInstance { get; set; }
-    [Inject] private NavigationManager NavigationManager { get; set; }
+    [Inject]
+    private IItemParser ItemParser { get; set; }
 
     private string ItemText { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        await ViewInstance.Initialize("Home");
-        await base.OnInitializedAsync();
-    }
+    
+    public override string Title => "Development Home";
 
     private void PriceCheck()
     {
-        NavigationManager.NavigateTo($"/trade/{ItemText.EncodeBase64Url()}");
+        var originalItem = ItemParser.ParseOriginalItem(ItemText);
+        NavigationManager.NavigateTo($"/trade/{originalItem}/{ItemText.EncodeBase64Url()}");
     }
 
     private void MapCheck()

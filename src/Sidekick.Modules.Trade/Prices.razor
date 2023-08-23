@@ -1,5 +1,5 @@
-@page "/trade/{itemText}"
-@layout OverlayLayout
+@page "/trade/{itemName}/{itemText}"
+@inherits SidekickView
 
 @if (Item == null)
 {
@@ -7,7 +7,7 @@
 }
 else
 {
-    <FiltersComponent Item="Item" ModifierFilters="ModifierFilters" PropertyFilters="PropertyFilters" OnSearch="UpdateQuery" />
+    <FiltersComponent Item="Item" ItemName="@ItemName" ModifierFilters="ModifierFilters" PropertyFilters="PropertyFilters" OnSearch="UpdateQuery" />
 
     <div class="ml-0">
         <PriceOptionsComponent Item="Item"
@@ -38,15 +38,14 @@ else
 }
 
 @code {
-    [Inject] private IViewInstance ViewInstance { get; set; }
     [Inject] private ITradeSearchService TradeSearchService { get; set; }
     [Inject] private IItemStaticDataProvider ItemStaticDataProvider { get; set; }
     [Inject] private ISettings Settings { get; set; }
     [Inject] private TradeResources Resources { get; set; }
     [Inject] private IItemParser ItemParser { get; set; }
     [Inject] private ITradeFilterService TradeFilterService { get; set; }
-    [Inject] private NavigationManager NavigationManager { get; set; }
 
+    [Parameter] public string ItemName { get; set; }
     [Parameter] public string ItemText { get; set; }
 
     private Item Item { get; set; }
@@ -57,6 +56,10 @@ else
     private bool FullyLoaded => (Results?.Count ?? 0) == (QueryResult?.Result?.Count ?? 0);
     private bool IsFetching { get; set; }
     private Layout Layout { get; set; }
+
+    public override string Title => Resources.Trade;
+    public override bool CloseOnBlur => Settings.Trade_CloseWithMouse;
+    public override SidekickViewType ViewType => SidekickViewType.Overlay;
 
     private bool CanExpand => Item?.Metadata?.Category switch
     {
@@ -73,12 +76,6 @@ else
         Category.Sentinel => true,
         _ => false,
     };
-
-    protected override async Task OnInitializedAsync()
-    {
-        await ViewInstance.Initialize(Resources.Trade, isOverlay: true, closeOnBlur: Settings.Trade_CloseWithMouse);
-        await base.OnInitializedAsync();
-    }
 
     protected override async Task OnParametersSetAsync()
     {

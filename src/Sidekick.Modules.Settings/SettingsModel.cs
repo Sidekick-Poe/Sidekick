@@ -22,20 +22,13 @@ namespace Sidekick.Modules.Settings
             WikiOptions = new Dictionary<WikiSetting, string>()
             {
                 { WikiSetting.PoeWiki, "https://www.poewiki.net" },
-                { WikiSetting.PoeDb, "https://poedb.tw" },
-                { WikiSetting.PoeFandom, "https://pathofexile.fandom.com" }
+                { WikiSetting.PoeDb, "https://poedb.tw" }
             };
         }
-
-        public Guid UserId { get; set; }
 
         public Dictionary<WikiSetting, string> WikiOptions { get; private set; }
 
         public Guid? CurrentKey { get; set; }
-
-        public string Character_Name { get; set; }
-
-        public string Theme { get; set; }
 
         public bool Trade_CloseWithMouse { get; set; }
 
@@ -90,10 +83,10 @@ namespace Sidekick.Modules.Settings
 
         public string Cheatsheets_Selected { get; set; }
         public string Cheatsheets_Key_Open { get; set; }
-        public string Cheatsheets_Betrayal_Sort { get; set; }
 
         public DateTimeOffset? PoeNinja_LastClear { get; set; }
 
-        public bool PoeWikiMap_Enable { get; set; }
+        public bool PoeWikiData_Enable { get; set; }
+        public List<CheatsheetPage> Cheatsheets_Pages { get; set; }
     }
 }

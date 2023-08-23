@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Concurrent;
-using System.IO;
 using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting;
@@ -13,7 +11,8 @@ namespace Sidekick.Common.Logging
         private readonly ITextFormatter textFormatter = new MessageTemplateTextFormatter("{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {Message:lj}{NewLine}{Exception}", null);
 
         public ConcurrentQueue<string> Events { get; } = new ConcurrentQueue<string>();
-        public event Action<string> LogEventEmitted;
+
+        public event Action<string> LogEventEmitted = null!;
 
         public void Emit(LogEvent logEvent)
         {

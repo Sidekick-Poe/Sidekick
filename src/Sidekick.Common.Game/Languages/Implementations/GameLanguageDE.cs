@@ -46,6 +46,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
 
         public string PrefixSuperior => "(hochwertig)";
         public string PrefixBlighted => "Befallene";
+        public string PrefixBlightRavaged => "Extrem befallene";
         public string PrefixAnomalous => "(anormal)";
         public string PrefixDivergent => "(abweichend)";
         public string PrefixPhantasmal => "(illusorisch)";

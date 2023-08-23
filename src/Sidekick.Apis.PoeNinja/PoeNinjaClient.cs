@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoeNinja.Api;
 using Sidekick.Apis.PoeNinja.Api.Models;
 using Sidekick.Apis.PoeNinja.Models;
 using Sidekick.Apis.PoeNinja.Repository;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.PoeNinja
@@ -49,6 +46,7 @@ namespace Sidekick.Apis.PoeNinja
             { ItemType.Invitation, "invitations" },
             { ItemType.DeliriumOrb, "delirium-orbs" },
             { ItemType.BlightedMap, "blighted-maps" },
+            { ItemType.BlightRavagedMap, "blight-ravaged-maps" },
             { ItemType.Artifact, "artifacts" },
         };
 
@@ -86,10 +84,10 @@ namespace Sidekick.Apis.PoeNinja
             }
         }
 
-        public async Task<NinjaPrice> GetPriceInfo(Item item)
+        public async Task<NinjaPrice> GetPriceInfo(OriginalItem originalItem, Item item)
         {
-            var name = item.Original.Name;
-            var type = item.Original.Type;
+            var name = originalItem.Name;
+            var type = originalItem.Type;
 
             foreach (var itemType in GetItemTypes(item))
             {
@@ -104,12 +102,6 @@ namespace Sidekick.Apis.PoeNinja
                     continue;
                 }
 
-                var translations = await repository.LoadTranslations(itemType);
-                if (translations.Any(x => x.Translation == name))
-                {
-                    name = translations.First(x => x.Translation == name).English;
-                }
-
                 var query = repositoryItems.AsQueryable().Where(x => x.Name == name || x.Name == type);
 
                 if (item.Properties != null)
@@ -119,7 +111,8 @@ namespace Sidekick.Apis.PoeNinja
 
                     if (itemType == ItemType.Map
                      || itemType == ItemType.UniqueMap
-                     || itemType == ItemType.BlightedMap)
+                     || itemType == ItemType.BlightedMap
+                     || itemType == ItemType.BlightRavagedMap)
                     {
                         query = query.Where(x => x.MapTier == item.Properties.MapTier);
                     }
@@ -196,7 +189,9 @@ namespace Sidekick.Apis.PoeNinja
                         result.Add(ItemType.Scarab);
                         result.Add(ItemType.Invitation);
                         result.Add(ItemType.BlightedMap);
+                        result.Add(ItemType.BlightRavagedMap);
                         break;
+
                     case Category.Gem: result.Add(ItemType.SkillGem); break;
                     case Category.ItemisedMonster: result.Add(ItemType.Beast); break;
                 }

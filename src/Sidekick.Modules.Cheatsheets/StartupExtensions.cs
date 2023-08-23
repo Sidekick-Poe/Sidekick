@@ -15,13 +15,7 @@ namespace Sidekick.Modules.Cheatsheets
                 Assembly = typeof(StartupExtensions).Assembly
             });
 
-            services.AddTransient<BetrayalResources>();
-            services.AddTransient<BlightResources>();
             services.AddTransient<CheatsheetResources>();
-            services.AddTransient<DelveResources>();
-            services.AddTransient<HeistResources>();
-            services.AddTransient<IncursionResources>();
-            services.AddTransient<MetamorphResources>();
 
             services.AddSidekickKeybind<OpenCheatsheetsKeybindHandler>();
 
