@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.Settings
@@ -64,14 +65,54 @@ namespace Sidekick.Modules.Settings
 
         public string Key_FindItems { get; set; } = "Ctrl+F";
 
-        public List<ChatSetting> Chat_Commands { get; set; } = GetDefaultChatCommands();
+        [JsonPropertyName("Chat_Commands")]
+        private List<ChatSetting> Chat_Commands_Value { get; set; }
+
+        [JsonIgnore]
+        public List<ChatSetting> Chat_Commands
+        {
+            get
+            {
+                if (Chat_Commands_Value != null)
+                {
+                    return Chat_Commands_Value;
+                }
+
+                Chat_Commands_Value = GetDefaultChatCommands();
+                return Chat_Commands_Value;
+            }
+            set
+            {
+                Chat_Commands_Value = value;
+            }
+        }
 
         #region Cheatsheets
 
         public string Cheatsheets_Key_Open { get; set; } = "F6";
         public string Cheatsheets_Selected { get; set; } = "betrayal";
 
-        public List<CheatsheetPage> Cheatsheets_Pages { get; set; } = GetDefaultCheatsheets();
+        [JsonPropertyName("Cheatsheets_Pages")]
+        private List<CheatsheetPage> Cheatsheets_Pages_Value { get; set; }
+
+        [JsonIgnore]
+        public List<CheatsheetPage> Cheatsheets_Pages
+        {
+            get
+            {
+                if (Cheatsheets_Pages_Value != null)
+                {
+                    return Cheatsheets_Pages_Value;
+                }
+
+                Cheatsheets_Pages_Value = GetDefaultCheatsheets();
+                return Cheatsheets_Pages_Value;
+            }
+            set
+            {
+                Cheatsheets_Pages_Value = value;
+            }
+        }
 
         #endregion Cheatsheets
 
