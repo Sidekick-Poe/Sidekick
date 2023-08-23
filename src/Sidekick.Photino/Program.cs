@@ -19,7 +19,6 @@ using Sidekick.Modules.Maps;
 using Sidekick.Modules.Settings;
 using Sidekick.Modules.Trade;
 using Sidekick.Modules.Update;
-using Sidekick.Pages;
 
 namespace Sidekick.Photino
 {
@@ -54,7 +53,7 @@ namespace Sidekick.Photino
                 // Common
                 .AddSidekickCommon()
                 .AddSidekickCommonGame()
-                .AddSidekickCommonPlatform()
+                .AddSidekickCommonPlatform(o => { })
 
                 // Apis
                 .AddSidekickGitHubApi()
@@ -76,7 +75,7 @@ namespace Sidekick.Photino
                 .AddSidekickMocks();
 
             // register root component and selector
-            appBuilder.RootComponents.Add<App>("app");
+            appBuilder.RootComponents.Add<Common.Blazor.Main>("app");
 
             var app = appBuilder.Build();
 
@@ -87,7 +86,7 @@ namespace Sidekick.Photino
 
             AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
             {
-                app.MainWindow.OpenAlertWindow("Fatal exception", error.ExceptionObject.ToString());
+                // app.MainWindow.OpenAlertWindow("Fatal exception", error.ExceptionObject.ToString());
             };
 
             app.Run();
