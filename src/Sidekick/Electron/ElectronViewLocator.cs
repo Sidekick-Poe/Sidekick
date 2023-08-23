@@ -66,6 +66,11 @@ namespace Sidekick.Electron
                 browser.SetResizable(true);
                 browser.SetAlwaysOnTop(true, OnTopLevel.screenSaver);
                 browser.ShowInactive();
+
+                if (view.CloseOnBlur)
+                {
+                    browser.Focus();
+                }
             }
             else if (view.ViewType == SidekickViewType.Modal)
             {
