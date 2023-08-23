@@ -1,25 +1,21 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using PhotinoNET;
 
-namespace Photino.Blazor
+namespace Sidekick.Photino
 {
     internal class PhotinoDispatcher : Dispatcher
     {
         private readonly PhotinoSynchronizationContext _context;
 
-        public PhotinoDispatcher(PhotinoWindow window)
+        public PhotinoDispatcher(PhotinoSynchronizationContext context)
         {
-            _context = new PhotinoSynchronizationContext(window);
-            _context.UnhandledException += (sender, e) =>
-            {
-                OnUnhandledException(e);
-            };
+            _context = context;
+            _context.UnhandledException += (sender, e) => OnUnhandledException(e);
         }
 
         public override bool CheckAccess() => SynchronizationContext.Current == _context;

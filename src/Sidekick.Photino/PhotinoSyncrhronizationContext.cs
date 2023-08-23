@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
 using System;
@@ -9,7 +9,7 @@ using PhotinoNET;
 
 #nullable disable warnings
 
-namespace Photino.Blazor
+namespace Sidekick.Photino
 {
     // Most UI platforms have a built-in SyncContext/Dispatcher, e.g., Windows Forms and WPF, which WebView
     // can normally use directly. However, Photino currently doesn't.

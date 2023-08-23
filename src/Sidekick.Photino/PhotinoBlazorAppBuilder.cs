@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net.Http;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Photino.Blazor
+namespace Sidekick.Photino
 {
     public class PhotinoBlazorAppBuilder
     {
@@ -22,10 +20,7 @@ namespace Photino.Blazor
             // here so that it shows up this way in the project templates.
             // var jsRuntime = DefaultWebAssemblyJSRuntime.Instance;
             var builder = new PhotinoBlazorAppBuilder();
-            builder.Services
-                .AddScoped(sp => new HttpClient(new PhotinoHttpHandler(sp.GetService<PhotinoBlazorApp>())) { BaseAddress = new Uri(PhotinoWebViewManager.AppBaseUri) })
-                .AddSingleton<PhotinoBlazorApp>()
-                .AddBlazorWebView();
+            builder.Services.AddBlazorDesktop();
 
             // Right now we don't have conventions or behaviors that are specific to this method
             // however, making this the default for the template allows us to add things like that
@@ -38,11 +33,13 @@ namespace Photino.Blazor
 
         public IServiceCollection Services { get; }
 
-
         public PhotinoBlazorApp Build(Action<IServiceProvider> serviceProviderOptions = null)
         {
+            // register root components with DI container
+            // Services.AddSingleton(RootComponents);
+
             var sp = Services.BuildServiceProvider();
-            var app = sp.GetService<PhotinoBlazorApp>();
+            var app = sp.GetRequiredService<PhotinoBlazorApp>();
 
             serviceProviderOptions?.Invoke(sp);
 
@@ -53,7 +50,7 @@ namespace Photino.Blazor
 
     public class RootComponentList : IEnumerable<(Type, string)>
     {
-        private List<(Type componentType, string domElementSelector)> components = new List<(Type componentType, string domElementSelector)>();
+        private readonly List<(Type componentType, string domElementSelector)> components = new List<(Type componentType, string domElementSelector)>();
 
         public void Add<TComponent>(string selector) where TComponent : IComponent
         {

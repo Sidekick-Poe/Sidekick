@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Photino.Blazor.Utils
+namespace Sidekick.Photino.Utils
 {
-    class SynchronousTaskScheduler : TaskScheduler
+    internal class SynchronousTaskScheduler : TaskScheduler
     {
         public override int MaximumConcurrencyLevel
         {

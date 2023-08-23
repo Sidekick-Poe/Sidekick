@@ -1,19 +1,22 @@
 using System;
+using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
-using Photino.Blazor;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
+using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
 using Sidekick.Mock;
 using Sidekick.Modules.About;
+using Sidekick.Modules.Chat;
 using Sidekick.Modules.Cheatsheets;
 using Sidekick.Modules.Development;
+using Sidekick.Modules.General;
 using Sidekick.Modules.Initialization;
 using Sidekick.Modules.Maps;
 using Sidekick.Modules.Settings;
@@ -53,18 +56,25 @@ namespace Sidekick.Photino
                 // Common
                 .AddSidekickCommon()
                 .AddSidekickCommonGame()
-                .AddSidekickCommonPlatform(o => { })
+                .AddSidekickCommonPlatform(o =>
+                {
+                    o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
+                    o.OsxIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/apple-touch-icon.png");
+                })
 
                 // Apis
                 .AddSidekickGitHubApi()
                 .AddSidekickPoeApi()
                 .AddSidekickPoeNinjaApi()
                 .AddSidekickPoePriceInfoApi()
+                .AddSidekickPoeWikiApi()
 
                 // Modules
                 .AddSidekickAbout()
+                .AddSidekickChat()
                 .AddSidekickCheatsheets()
                 .AddSidekickDevelopment()
+                .AddSidekickGeneral()
                 .AddSidekickInitialization()
                 .AddSidekickMaps()
                 .AddSidekickSettings(configurationRoot)
@@ -83,6 +93,7 @@ namespace Sidekick.Photino
             app.MainWindow
                 .SetIconFile("favicon.ico")
                 .SetTitle("Sidekick");
+            app.MainWindow.StartUrl = "/update";
 
             AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
             {

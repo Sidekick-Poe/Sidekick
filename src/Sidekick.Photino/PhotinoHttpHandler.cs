@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Photino.Blazor
+namespace Sidekick.Photino
 {
     public class PhotinoHttpHandler : DelegatingHandler
     {
-        private PhotinoBlazorApp app;
+        private readonly PhotinoBlazorApp app;
 
         //use this constructor if a handler is registered in DI to inject dependencies
         public PhotinoHttpHandler(PhotinoBlazorApp app) : this(app, null)
@@ -34,7 +30,7 @@ namespace Photino.Blazor
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             Stream content = app.HandleWebRequest(null, null, request.RequestUri.AbsoluteUri, out string contentType);
-            if(content != null)
+            if (content != null)
             {
                 var response = new HttpResponseMessage(HttpStatusCode.OK);
                 response.Content = new StreamContent(content);
