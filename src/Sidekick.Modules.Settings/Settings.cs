@@ -21,7 +21,7 @@ namespace Sidekick.Modules.Settings
             new("Betrayal", "https://www.poewiki.net/wiki/Immortal_Syndicate"),
             new("Blight", "https://www.poewiki.net/wiki/Oil"),
             new("Delve", "https://www.poewiki.net/wiki/Delve"),
-            new("Heist", "https://www.poewiki.net/wiki/Heist#Chest_types"),
+            new("Heist", "https://www.poewiki.net/wiki/Heist"),
             new("Incursion", "https://www.poewiki.net/wiki/Incursion_room"),
             new("Vendor Recipes", "https://www.poewiki.net/wiki/Vendor_recipe_system"),
         };
