@@ -19,6 +19,10 @@ namespace Sidekick.Modules.Settings
                 .Select(x => new ChatSetting(x.Key, x.Command, x.Submit))
                 .ToList();
 
+            Cheatsheets_Pages = sidekickSettings.Cheatsheets_Pages
+                .Select(x => new CheatsheetPage(x.Name, x.Url))
+                .ToList();
+
             WikiOptions = new Dictionary<WikiSetting, string>()
             {
                 { WikiSetting.PoeWiki, "https://www.poewiki.net" },

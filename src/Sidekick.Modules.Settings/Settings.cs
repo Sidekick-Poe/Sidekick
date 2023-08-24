@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sidekick.Common.Settings;
 
@@ -19,12 +20,12 @@ namespace Sidekick.Modules.Settings
         public static List<CheatsheetPage> GetDefaultCheatsheets() =>
         new()
         {
-            new("Betrayal", "https://www.poewiki.net/wiki/Immortal_Syndicate"),
-            new("Blight", "https://www.poewiki.net/wiki/Oil"),
-            new("Delve", "https://www.poewiki.net/wiki/Delve"),
-            new("Heist", "https://www.poewiki.net/wiki/Heist"),
-            new("Incursion", "https://www.poewiki.net/wiki/Incursion_room"),
-            new("Vendor Recipes", "https://www.poewiki.net/wiki/Vendor_recipe_system"),
+            new CheatsheetPage("Betrayal", "https://www.poewiki.net/wiki/Immortal_Syndicate"),
+            new CheatsheetPage("Blight", "https://www.poewiki.net/wiki/Oil"),
+            new CheatsheetPage("Delve", "https://www.poewiki.net/wiki/Delve"),
+            new CheatsheetPage("Heist", "https://www.poewiki.net/wiki/Heist"),
+            new CheatsheetPage("Incursion", "https://www.poewiki.net/wiki/Incursion_room"),
+            new CheatsheetPage("Vendor Recipes", "https://www.poewiki.net/wiki/Vendor_recipe_system"),
         };
 
         public string Language_UI { get; set; } = "en";
@@ -65,54 +66,13 @@ namespace Sidekick.Modules.Settings
 
         public string Key_FindItems { get; set; } = "Ctrl+F";
 
-        [JsonPropertyName("Chat_Commands")]
-        private List<ChatSetting> Chat_Commands_Value { get; set; }
-
-        [JsonIgnore]
-        public List<ChatSetting> Chat_Commands
-        {
-            get
-            {
-                if (Chat_Commands_Value != null)
-                {
-                    return Chat_Commands_Value;
-                }
-
-                Chat_Commands_Value = GetDefaultChatCommands();
-                return Chat_Commands_Value;
-            }
-            set
-            {
-                Chat_Commands_Value = value;
-            }
-        }
+        public List<ChatSetting> Chat_Commands { get; set; } = GetDefaultChatCommands();
 
         #region Cheatsheets
 
         public string Cheatsheets_Key_Open { get; set; } = "F6";
         public string Cheatsheets_Selected { get; set; } = "betrayal";
-
-        [JsonPropertyName("Cheatsheets_Pages")]
-        private List<CheatsheetPage> Cheatsheets_Pages_Value { get; set; }
-
-        [JsonIgnore]
-        public List<CheatsheetPage> Cheatsheets_Pages
-        {
-            get
-            {
-                if (Cheatsheets_Pages_Value != null)
-                {
-                    return Cheatsheets_Pages_Value;
-                }
-
-                Cheatsheets_Pages_Value = GetDefaultCheatsheets();
-                return Cheatsheets_Pages_Value;
-            }
-            set
-            {
-                Cheatsheets_Pages_Value = value;
-            }
-        }
+        public List<CheatsheetPage> Cheatsheets_Pages { get; set; } = GetDefaultCheatsheets();
 
         #endregion Cheatsheets
 
