@@ -27,6 +27,7 @@ namespace Sidekick.Modules.Settings
             var settings = new Settings();
             configuration.Bind(settings);
             configuration.BindList(nameof(ISettings.Chat_Commands), settings.Chat_Commands);
+            configuration.BindList(nameof(ISettings.Cheatsheets_Pages), settings.Cheatsheets_Pages);
             services.AddSingleton(settings);
             services.AddSingleton<ISettings>(sp => sp.GetRequiredService<Settings>());
 

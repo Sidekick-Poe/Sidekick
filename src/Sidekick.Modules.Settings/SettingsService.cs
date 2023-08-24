@@ -65,7 +65,6 @@ namespace Sidekick.Modules.Settings
             }
 
             newSettings.CopyValuesTo(settings);
-
             var json = JsonSerializer.Serialize(settings);
             var defaults = JsonSerializer.Serialize(new Settings());
             var filePath = SidekickPaths.GetDataFilePath(FileName);
