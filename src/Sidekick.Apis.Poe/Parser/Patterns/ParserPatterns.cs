@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Parser.Patterns
 {
@@ -16,16 +18,23 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
             this.gameLanguageProvider = gameLanguageProvider;
         }
 
-        public void Initialize()
+        /// <inheritdoc/>
+        public InitializationPriority Priority => InitializationPriority.Medium;
+
+        /// <inheritdoc/>
+        public Task Initialize()
         {
             InitHeader();
             InitProperties();
             InitSockets();
             InitInfluences();
             InitClasses();
+
+            return Task.CompletedTask;
         }
 
         #region Header (Rarity, Name, Type)
+
         private void InitHeader()
         {
             Rarity = new Dictionary<Rarity, Regex>
@@ -45,15 +54,18 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
             Corrupted = gameLanguageProvider.Language.DescriptionCorrupted.ToRegexLine();
             Scourged = gameLanguageProvider.Language.DescriptionScourged.ToRegexLine();
         }
+
         public Dictionary<Rarity, Regex> Rarity { get; private set; }
         public Regex ItemLevel { get; private set; }
         public Regex Unidentified { get; private set; }
         public Regex Corrupted { get; private set; }
         public Regex Scourged { get; private set; }
         public Regex IsRelic { get; private set; }
+
         #endregion Header (Rarity, Name, Type)
 
         #region Properties (Armour, Evasion, Energy Shield, Quality, Level)
+
         private void InitProperties()
         {
             Armor = gameLanguageProvider.Language.DescriptionArmour.ToRegexIntCapture();
@@ -97,9 +109,11 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         public Regex Blighted { get; private set; }
         public Regex BlightRavaged { get; private set; }
         public Regex Requirements { get; private set; }
+
         #endregion Properties (Armour, Evasion, Energy Shield, Quality, Level)
 
         #region Sockets
+
         private void InitSockets()
         {
             // We need 6 capturing groups as it is possible for a 6 socket unlinked item to exist
@@ -107,9 +121,11 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         }
 
         public Regex Socket { get; private set; }
+
         #endregion Sockets
 
         #region Influences
+
         private void InitInfluences()
         {
             Crusader = gameLanguageProvider.Language.InfluenceCrusader.ToRegexStartOfLine();
@@ -126,9 +142,11 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         public Regex Redeemer { get; private set; }
         public Regex Shaper { get; private set; }
         public Regex Warlord { get; private set; }
+
         #endregion Influences
 
         #region Classes
+
         public Dictionary<Class, Regex> Classes { get; } = new Dictionary<Class, Regex>();
 
         private void InitClasses()
@@ -149,6 +167,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
                 Classes.Add(Enum.Parse<Class>(property.Name), $"{prefix}{label}".ToRegexLine());
             }
         }
-        #endregion
+
+        #endregion Classes
     }
 }

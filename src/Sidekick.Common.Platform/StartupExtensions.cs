@@ -1,8 +1,6 @@
-using System;
 using System.Runtime.InteropServices;
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common.Platform.Clipboard;
-using Sidekick.Common.Platform.Keybinds;
 using Sidekick.Common.Platform.Keyboards;
 using Sidekick.Common.Platform.Options;
 using Sidekick.Common.Platform.Windows.Processes;
@@ -26,32 +24,14 @@ namespace Sidekick.Common.Platform
 
             services.AddTransient<PlatformResources>();
             services.AddTransient<IClipboardProvider, ClipboardProvider>();
-            services.AddSingleton<IKeybindProvider, KeybindProvider>();
-            services.AddSingleton<IKeyboardProvider, KeyboardProvider>();
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                services.AddSingleton<IProcessProvider, ProcessProvider>();
+                services.AddSidekickInitializableService<IProcessProvider, ProcessProvider>();
             }
 
-            return services;
-        }
-
-        /// <summary>
-        /// Adds a keybind to the application
-        /// </summary>
-        /// <typeparam name="TKeybindHandler">The type of the keybind handler.</typeparam>
-        /// <param name="services">The service collection to add the keybind to</param>
-        /// <returns>The service collection</returns>
-        public static IServiceCollection AddSidekickKeybind<TKeybindHandler>(this IServiceCollection services)
-            where TKeybindHandler : class, IKeybindHandler
-        {
-            services.AddSingleton<TKeybindHandler>();
-
-            services.Configure<KeybindOptions>(o =>
-            {
-                o.Keybinds.Add(typeof(TKeybindHandler));
-            });
+            services.AddSidekickInitializableService<IKeybindProvider, KeybindProvider>();
+            services.AddSidekickInitializableService<IKeyboardProvider, KeyboardProvider>();
 
             return services;
         }

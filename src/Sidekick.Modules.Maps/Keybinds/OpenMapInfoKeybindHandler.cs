@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Extensions;
+using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 

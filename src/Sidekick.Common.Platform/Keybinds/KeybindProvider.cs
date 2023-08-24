@@ -1,17 +1,18 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Sidekick.Common.Platform.Keybinds;
+using Sidekick.Common.Initialization;
+using Sidekick.Common.Keybinds;
 
 namespace Sidekick.Common.Platform.Options
 {
     /// <inheritdoc/>
     public class KeybindProvider : IKeybindProvider
     {
-        private IOptionsMonitor<KeybindOptions> optionsMonitor;
+        private IOptions<SidekickConfiguration> optionsMonitor;
         private IServiceProvider serviceProvider;
 
         public KeybindProvider(
-            IOptionsMonitor<KeybindOptions> optionsMonitor,
+            IOptions<SidekickConfiguration> optionsMonitor,
             IServiceProvider serviceProvider)
         {
             this.optionsMonitor = optionsMonitor;
@@ -21,12 +22,14 @@ namespace Sidekick.Common.Platform.Options
         /// <inheritdoc/>
         public Dictionary<string, IKeybindHandler> KeybindHandlers { get; init; } = new();
 
+        public InitializationPriority Priority => InitializationPriority.Low;
+
         /// <inheritdoc/>
-        public void Initialize()
+        public Task Initialize()
         {
             KeybindHandlers.Clear();
 
-            foreach (var keybindType in optionsMonitor.CurrentValue.Keybinds)
+            foreach (var keybindType in optionsMonitor.Value.Keybinds)
             {
                 var keybindHandler = (IKeybindHandler)serviceProvider.GetRequiredService(keybindType);
                 foreach (var keybind in keybindHandler.GetKeybinds())
@@ -34,6 +37,8 @@ namespace Sidekick.Common.Platform.Options
                     KeybindHandlers.Add(keybind, keybindHandler);
                 }
             }
+
+            return Task.CompletedTask;
         }
     }
 }

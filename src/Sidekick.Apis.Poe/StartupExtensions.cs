@@ -9,6 +9,7 @@ using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Pseudo;
 using Sidekick.Apis.Poe.Static;
 using Sidekick.Apis.Poe.Trade;
+using Sidekick.Common;
 
 namespace Sidekick.Apis.Poe
 {
@@ -22,15 +23,16 @@ namespace Sidekick.Apis.Poe
             services.AddTransient<FilterResources>();
 
             services.AddSingleton<IItemParser, ItemParser>();
-            services.AddSingleton<IItemMetadataProvider, ItemMetadataProvider>();
-            services.AddSingleton<IModifierProvider, ModifierProvider>();
-            services.AddSingleton<IEnglishModifierProvider, EnglishModifierProvider>();
-            services.AddSingleton<IPseudoModifierProvider, PseudoModifierProvider>();
-            services.AddSingleton<IItemStaticDataProvider, ItemStaticDataProvider>();
-            services.AddSingleton<IParserPatterns, ParserPatterns>();
             services.AddSingleton<ITradeSearchService, TradeSearchService>();
             services.AddSingleton<ILeagueProvider, LeagueProvider>();
             services.AddSingleton<ITradeFilterService, TradeFilterService>();
+
+            services.AddSidekickInitializableService<IParserPatterns, ParserPatterns>();
+            services.AddSidekickInitializableService<IItemMetadataProvider, ItemMetadataProvider>();
+            services.AddSidekickInitializableService<IItemStaticDataProvider, ItemStaticDataProvider>();
+            services.AddSidekickInitializableService<IEnglishModifierProvider, EnglishModifierProvider>();
+            services.AddSidekickInitializableService<IModifierProvider, ModifierProvider>();
+            services.AddSidekickInitializableService<IPseudoModifierProvider, PseudoModifierProvider>();
 
             return services;
         }

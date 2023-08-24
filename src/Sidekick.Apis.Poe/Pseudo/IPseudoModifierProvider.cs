@@ -1,13 +1,11 @@
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Sidekick.Common.Game.Items.Modifiers;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Pseudo
 {
-    public interface IPseudoModifierProvider
+    public interface IPseudoModifierProvider : IInitializableService
     {
-        Task Initialize();
-
         List<Modifier> Parse(List<ModifierLine> modifiers);
     }
 }

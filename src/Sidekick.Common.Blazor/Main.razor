@@ -1,5 +1,6 @@
+@using Microsoft.Extensions.Options;
 
-<Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="Sidekick.Common.Blazor.SidekickModule.Modules.Select(x=>x.Assembly)">
+<Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="Configuration.Value.Modules">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(StandardLayout)" />
     </Found>
@@ -18,3 +19,8 @@
 <MudDialogProvider />
 <MudSnackbarProvider />
 <SidekickTheme />
+
+@code {
+    [Inject]
+    private IOptions<SidekickConfiguration> Configuration { get; set; }
+}

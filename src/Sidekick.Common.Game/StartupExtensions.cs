@@ -11,8 +11,9 @@ namespace Sidekick.Common.Game
     {
         public static IServiceCollection AddSidekickCommonGame(this IServiceCollection services)
         {
-            services.AddSingleton<IGameLanguageProvider, GameLanguageProvider>();
             services.AddSingleton<IGameLogProvider, GameLogProvider>();
+
+            services.AddSidekickInitializableService<IGameLanguageProvider, GameLanguageProvider>();
 
             // Validate ClassLanguage implements correct properties
             var properties = typeof(ClassLanguage).GetProperties().Where(x => x.Name != "Prefix");

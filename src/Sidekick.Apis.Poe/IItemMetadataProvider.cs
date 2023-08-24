@@ -1,13 +1,11 @@
-using System.Threading.Tasks;
 using Sidekick.Apis.Poe.Parser;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe
 {
-    public interface IItemMetadataProvider
+    public interface IItemMetadataProvider : IInitializableService
     {
-        Task Initialize();
-
         ItemMetadata Parse(ParsingItem parsingItem);
     }
 }

@@ -7,6 +7,7 @@ using Sidekick.Common.Browser;
 using Sidekick.Common.Errors;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 

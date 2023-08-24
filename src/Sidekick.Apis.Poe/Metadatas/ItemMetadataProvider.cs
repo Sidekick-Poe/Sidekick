@@ -10,6 +10,7 @@ using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Metadatas
 {
@@ -36,8 +37,13 @@ namespace Sidekick.Apis.Poe.Metadatas
         private List<(Regex Regex, ItemMetadata Item)> NameAndTypeRegex { get; set; }
 
         private Regex Prefixes { get; set; }
+
+        /// <inheritdoc/>
+        public InitializationPriority Priority => InitializationPriority.Medium;
+
         private string GetLineWithoutPrefixes(string line) => Prefixes.Replace(line, string.Empty);
 
+        /// <inheritdoc/>
         public async Task Initialize()
         {
             NameAndTypeDictionary = new Dictionary<string, List<ItemMetadata>>();
@@ -244,6 +250,7 @@ namespace Sidekick.Apis.Poe.Metadatas
                     return pattern.Key;
                 }
             }
+
             throw new NotSupportedException("Item rarity is unknown.");
         }
 
@@ -256,6 +263,7 @@ namespace Sidekick.Apis.Poe.Metadatas
                     return pattern.Key;
                 }
             }
+
             return Class.Undefined;
         }
     }

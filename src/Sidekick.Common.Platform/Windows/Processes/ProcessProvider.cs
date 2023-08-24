@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Security.Principal;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using Sidekick.Common.Initialization;
 using Sidekick.Common.Platform.Windows.DllImport;
 using Sidekick.Common.Platforms.Localization;
 
@@ -87,16 +88,22 @@ namespace Sidekick.Common.Platform.Windows.Processes
             this.platformResources = platformResources;
         }
 
-        public void Initialize()
+        /// <inheritdoc/>
+        public InitializationPriority Priority => InitializationPriority.Low;
+
+        /// <inheritdoc/>
+        public Task Initialize()
         {
             // We can't initialize twice
             if (HasInitialized)
             {
-                return;
+                return Task.CompletedTask;
             }
 
             WindowsHook = EventLoop.Run(WinEvent.EVENT_SYSTEM_FOREGROUND, WinEvent.EVENT_SYSTEM_CAPTURESTART, IntPtr.Zero, OnWindowsEvent, 0, 0, WinEvent.WINEVENT_OUTOFCONTEXT);
             HasInitialized = true;
+
+            return Task.CompletedTask;
         }
 
         private void OnWindowsEvent(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)

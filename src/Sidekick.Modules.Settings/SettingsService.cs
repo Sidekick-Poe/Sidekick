@@ -66,53 +66,13 @@ namespace Sidekick.Modules.Settings
 
             newSettings.CopyValuesTo(settings);
 
-            var json = JsonSerializer.Serialize(settings);
-            var defaults = JsonSerializer.Serialize(new Settings());
+            var json = JsonSerializer.Serialize(settings, new JsonSerializerOptions()
+            {
+                WriteIndented = true,
+            });
+
             var filePath = SidekickPaths.GetDataFilePath(FileName);
-
-            using var fileStream = File.Create(filePath);
-            using var writer = new Utf8JsonWriter(fileStream, options: new JsonWriterOptions
-            {
-                Indented = true
-            });
-            using var document = JsonDocument.Parse(json, new JsonDocumentOptions
-            {
-                CommentHandling = JsonCommentHandling.Skip
-            });
-            using var defaultsDocument = JsonDocument.Parse(defaults, new JsonDocumentOptions
-            {
-                CommentHandling = JsonCommentHandling.Skip
-            });
-
-            var root = document.RootElement;
-            var defaultsRoot = defaultsDocument.RootElement;
-
-            if (root.ValueKind == JsonValueKind.Object)
-            {
-                writer.WriteStartObject();
-            }
-            else
-            {
-                return;
-            }
-
-            foreach (var property in root.EnumerateObject())
-            {
-                if (defaultsRoot.GetProperty(property.Name).ToString() == property.Value.ToString())
-                {
-                    continue;
-                }
-
-                property.WriteTo(writer);
-            }
-
-            writer.WriteEndObject();
-            writer.Flush();
-
-            if (writer.BytesCommitted == 0)
-            {
-                File.Delete(filePath);
-            }
+            File.WriteAllText(filePath, json);
 
             if (languageHasChanged || leagueHasChanged)
             {

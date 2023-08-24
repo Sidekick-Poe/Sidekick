@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Sidekick.Common;
 
 namespace Sidekick.Apis.PoeWiki
 {
@@ -9,7 +10,8 @@ namespace Sidekick.Apis.PoeWiki
             services.AddHttpClient();
 
             services.AddTransient<IPoeWikiClient, PoeWikiClient>();
-            services.AddSingleton<IPoeWikiDataProvider, PoeWikiDataProvider>();
+
+            services.AddSidekickInitializableService<IPoeWikiDataProvider, PoeWikiDataProvider>();
 
             return services;
         }

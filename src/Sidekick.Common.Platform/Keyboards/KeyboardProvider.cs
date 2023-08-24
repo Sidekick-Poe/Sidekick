@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using SharpHook;
 using SharpHook.Native;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Common.Platform.Keyboards
 {
@@ -149,12 +150,16 @@ namespace Sidekick.Common.Platform.Keyboards
 
         public event Action<string>? OnKeyDown;
 
-        public void Initialize()
+        /// <inheritdoc/>
+        public InitializationPriority Priority => InitializationPriority.Low;
+
+        /// <inheritdoc/>
+        public Task Initialize()
         {
             // We can't initialize twice
             if (HasInitialized || Debugger.IsAttached)
             {
-                return;
+                return Task.CompletedTask;
             }
 
             Hook = new();
@@ -165,6 +170,8 @@ namespace Sidekick.Common.Platform.Keyboards
             Simulator = new EventSimulator();
 
             HasInitialized = true;
+
+            return Task.CompletedTask;
         }
 
         private void OnKeyPressed(object? sender, KeyboardHookEventArgs args)

@@ -2,43 +2,26 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe;
-using Sidekick.Apis.Poe.Modifiers;
-using Sidekick.Apis.Poe.Parser.Patterns;
-using Sidekick.Apis.Poe.Pseudo;
-using Sidekick.Apis.PoeNinja;
-using Sidekick.Apis.PoeWiki;
+using Microsoft.Extensions.Options;
 using Sidekick.Common.Blazor.Views;
-using Sidekick.Common.Game.Languages;
-using Sidekick.Common.Localization;
+using Sidekick.Common.Initialization;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Tray;
 using Sidekick.Common.Settings;
-using Sidekick.Modules.Initialization.Localization;
 
-namespace Sidekick.Modules.Initialization.Pages
+namespace Sidekick.Common.Blazor.Initialization
 {
     public partial class Initialization : SidekickView
     {
         [Inject] private InitializationResources Resources { get; set; }
         [Inject] private ISettings Settings { get; set; }
         [Inject] private ILogger<Initialization> Logger { get; set; }
-        [Inject] private IProcessProvider ProcessProvider { get; set; }
-        [Inject] private IKeyboardProvider KeyboardProvider { get; set; }
-        [Inject] private IKeybindProvider KeybindProvider { get; set; }
-        [Inject] private IParserPatterns ParserPatterns { get; set; }
-        [Inject] private IModifierProvider ModifierProvider { get; set; }
-        [Inject] private IPseudoModifierProvider PseudoModifierProvider { get; set; }
-        [Inject] private IItemMetadataProvider ItemMetadataProvider { get; set; }
-        [Inject] private IItemStaticDataProvider ItemStaticDataProvider { get; set; }
-        [Inject] private IGameLanguageProvider GameLanguageProvider { get; set; }
         [Inject] private IApplicationService ApplicationService { get; set; }
-        [Inject] private IUILanguageProvider UILanguageProvider { get; set; }
-        [Inject] private IEnglishModifierProvider EnglishModifierProvider { get; set; }
-        [Inject] private IPoeNinjaClient PoeNinjaClient { get; set; }
         [Inject] private ITrayProvider TrayProvider { get; set; }
-        [Inject] private IPoeWikiDataProvider PoeWikiDataProvider { get; set; }
+        [Inject] private IOptions<SidekickConfiguration> Configuration { get; set; }
+        [Inject] private IServiceProvider ServiceProvider { get; set; }
 
         private int Count { get; set; } = 0;
         private int Completed { get; set; } = 0;
@@ -62,33 +45,27 @@ namespace Sidekick.Modules.Initialization.Pages
             try
             {
                 Completed = 0;
-                Count = 14;
+                Count = Configuration.Value.InitializableServices.Count + 1;
 
                 // Report initial progress
                 await ReportProgress();
 
-                // Languages
-                await Run(() => UILanguageProvider.Set(Settings.Language_UI));
-                await Run(() => GameLanguageProvider.SetLanguage(Settings.Language_Parser));
+                foreach (var serviceType in Configuration.Value.InitializableServices)
+                {
+                    var service = ServiceProvider.GetRequiredService(serviceType);
+                    if (service is IInitializableService initializableService)
+                    {
+                        await Run(initializableService.Initialize);
+                    }
+                }
 
-                await Run(() => ParserPatterns.Initialize());
-                await Run(() => ItemMetadataProvider.Initialize());
-                await Run(() => ItemStaticDataProvider.Initialize());
-                await Run(() => EnglishModifierProvider.Initialize());
-                await Run(() => ModifierProvider.Initialize());
-                await Run(() => PseudoModifierProvider.Initialize());
-                await Run(() => PoeNinjaClient.Initialize());
-                await Run(() => KeybindProvider.Initialize());
-                await Run(() => ProcessProvider.Initialize());
-                await Run(() => KeyboardProvider.Initialize());
-                await Run(() => PoeWikiDataProvider.Initialize());
                 await Run(() => InitializeTray());
 
                 // If we have a successful initialization, we delay for half a second to show the
                 // "Ready" label on the UI before closing the view
                 Completed = Count;
                 await ReportProgress();
-                await Task.Delay(5000);
+                await Task.Delay(4000);
                 await Close();
             }
             catch (Exception ex)

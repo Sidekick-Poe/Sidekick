@@ -1,15 +1,11 @@
-using System.Threading.Tasks;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe
 {
-    public interface IItemStaticDataProvider
+    public interface IItemStaticDataProvider : IInitializableService
     {
-        Task Initialize();
-
         string GetImage(string id);
-
-        string GetId(string text);
 
         string GetId(Item item);
     }

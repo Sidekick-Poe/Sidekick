@@ -1,14 +1,12 @@
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Sidekick.Apis.Poe.Parser;
 using Sidekick.Common.Game.Items.Modifiers;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Modifiers
 {
-    public interface IModifierProvider
+    public interface IModifierProvider : IInitializableService
     {
-        Task Initialize();
-
         /// <summary>
         /// Gets a modifier category from an api id. Allows for the internal use of an enum which is less error prone than hard coded string values.
         /// </summary>

@@ -74,18 +74,13 @@ namespace Sidekick.Modules.Update.Pages
                 // Downloaded
                 await Task.Delay(1500);
                 Process.Start(path);
-                Exit();
+                ApplicationService.Shutdown();
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex.Message);
                 Error = true;
             }
-        }
-
-        public void Exit()
-        {
-            ApplicationService.Shutdown();
         }
     }
 }

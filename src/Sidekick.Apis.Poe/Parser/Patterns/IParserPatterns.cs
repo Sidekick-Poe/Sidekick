@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Parser.Patterns
 {
-    public interface IParserPatterns
+    public interface IParserPatterns : IInitializableService
     {
-        void Initialize();
-
         Regex Armor { get; }
         Regex AttacksPerSecond { get; }
         Regex Blighted { get; }

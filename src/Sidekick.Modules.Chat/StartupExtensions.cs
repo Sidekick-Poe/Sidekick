@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Common.Platform;
+using Sidekick.Common;
 using Sidekick.Modules.Chat.Keybinds;
 
 namespace Sidekick.Modules.Chat

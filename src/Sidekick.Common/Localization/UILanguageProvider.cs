@@ -1,4 +1,6 @@
 using System.Globalization;
+using Sidekick.Common.Initialization;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Common.Localization
 {
@@ -8,6 +10,22 @@ namespace Sidekick.Common.Localization
     public class UILanguageProvider : IUILanguageProvider
     {
         private static readonly string[] SupportedLanguages = new[] { "en", "fr", "de", "zh-tw" };
+        private readonly ISettings settings;
+
+        public UILanguageProvider(ISettings settings)
+        {
+            this.settings = settings;
+        }
+
+        /// <inheritdoc/>
+        public InitializationPriority Priority => InitializationPriority.High;
+
+        /// <inheritdoc/>
+        public Task Initialize()
+        {
+            Set(settings.Language_UI);
+            return Task.CompletedTask;
+        }
 
         /// <inheritdoc/>
         public List<CultureInfo> GetList()
