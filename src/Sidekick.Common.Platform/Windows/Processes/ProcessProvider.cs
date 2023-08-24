@@ -51,32 +51,38 @@ namespace Sidekick.Common.Platform.Windows.Processes
         private bool HasInitialized { get; set; } = false;
         private CancellationTokenSource? WindowsHook { get; set; }
 
-        private string FocusedWindow
+        private DateTimeOffset PreviousFocusedWindowAttempt { get; set; }
+        private string? PreviousFocusedWindow { get; set; }
+        private string? GetFocusedWindow()
         {
-            get
+            if (DateTimeOffset.Now - PreviousFocusedWindowAttempt < TimeSpan.FromSeconds(3))
             {
-                // Create the variable
-                const int nChar = 256;
-                var ss = new StringBuilder(nChar);
-
-                // Run GetForeGroundWindows and get active window informations
-                // assign them into handle pointer variable
-                if (User32.GetWindowText(User32.GetForegroundWindow(), ss, nChar) > 0)
-                {
-                    return ss.ToString();
-                }
-                else
-                {
-                    return "";
-                }
+                return PreviousFocusedWindow;
             }
+
+            // Create the variable
+            const int nChar = 256;
+            var ss = new StringBuilder(nChar);
+
+            // Run GetForeGroundWindows and get active window informations
+            // assign them into handle pointer variable
+            if (User32.GetWindowText(User32.GetForegroundWindow(), ss, nChar) > 0)
+            {
+                PreviousFocusedWindow = ss.ToString();
+            }
+            else
+            {
+                PreviousFocusedWindow = null;
+            }
+
+            return PreviousFocusedWindow;
         }
 
         /// <inheritdoc/>
-        public bool IsPathOfExileInFocus => FocusedWindow == PATH_OF_EXILE_TITLE;
+        public bool IsPathOfExileInFocus => GetFocusedWindow() == PATH_OF_EXILE_TITLE;
 
         /// <inheritdoc/>
-        public bool IsSidekickInFocus => FocusedWindow == SIDEKICK_TITLE;
+        public bool IsSidekickInFocus => GetFocusedWindow() == SIDEKICK_TITLE;
 
         public ProcessProvider(
             ILogger<ProcessProvider> logger,
@@ -113,7 +119,6 @@ namespace Sidekick.Common.Platform.Windows.Processes
                 // If the game is run as administrator, Sidekick also needs administrator privileges.
                 if (!PermissionChecked && IsPathOfExileInFocus)
                 {
-                    PermissionChecked = true;
                     Task.Run(async () =>
                     {
                         if (!IsUserRunAsAdmin() && IsPathOfExileRunAsAdmin())
@@ -121,6 +126,10 @@ namespace Sidekick.Common.Platform.Windows.Processes
                             await RestartAsAdmin();
                         }
                     });
+
+                    // Once permission has been checked, we can stop this hook from running.
+                    PermissionChecked = true;
+                    WindowsHook?.Cancel();
                 }
             }
         }
