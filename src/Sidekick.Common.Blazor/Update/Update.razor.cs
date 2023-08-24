@@ -36,8 +36,9 @@ namespace Sidekick.Common.Blazor.Update
 
                 if (!await GitHubClient.IsUpdateAvailable())
                 {
-                    // Step = UpdateResources.NotAvaialble;
-                    // return;
+                    Step = UpdateResources.NotAvaialble;
+                    StateHasChanged();
+                    return;
                 }
 
                 // Downloading
