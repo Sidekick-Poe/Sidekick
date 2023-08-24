@@ -16,10 +16,4 @@
     <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="Scripts\SidekickScripts.razor">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </Content>
-  </ItemGroup>
-
 </Project>
