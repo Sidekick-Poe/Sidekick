@@ -7,9 +7,8 @@ using Sidekick.Apis.GitHub;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Platform;
-using Sidekick.Modules.Update.Localization;
 
-namespace Sidekick.Modules.Update.Pages
+namespace Sidekick.Common.Blazor.Update
 {
     public partial class Update : SidekickView
     {
@@ -19,59 +18,44 @@ namespace Sidekick.Modules.Update.Pages
         [Inject] private UpdateResources UpdateResources { get; set; }
         [Inject] private ICacheProvider CacheProvider { get; set; }
 
-        public override string Title => "Update";
+        public override string Title => UpdateResources.Title;
         public override SidekickViewType ViewType => SidekickViewType.Modal;
 
         private string Step { get; set; }
         private bool Error { get; set; }
 
-        public static bool HasRun { get; set; } = false;
-
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            await Handle();
-        }
-
-        public async Task Handle()
-        {
-#if DEBUG
-            Step = "Development mode detected, redirecting to setup.";
-            await Task.Delay(750);
-            NavigationManager.NavigateTo("/setup");
-            return;
-#endif
 
             try
             {
                 // Checking release
-                Step = UpdateResources.Checking;
+                Step = UpdateResources.Downloading;
                 StateHasChanged();
-                var release = await GitHubClient.GetLatestRelease();
 
-                if (release == null || !GitHubClient.IsUpdateAvailable(release))
+                if (!await GitHubClient.IsUpdateAvailable())
                 {
-                    await Task.Delay(750);
-                    NavigationManager.NavigateTo("/setup");
-                    return;
+                    // Step = UpdateResources.NotAvaialble;
+                    // return;
                 }
 
                 // Downloading
-                Step = UpdateResources.Downloading(release.Tag);
+                Step = UpdateResources.Downloading;
                 StateHasChanged();
-                var path = await GitHubClient.DownloadRelease(release);
+                var path = await GitHubClient.DownloadLatest();
                 if (path == null)
                 {
                     Step = UpdateResources.Failed;
                     StateHasChanged();
-                    await Task.Delay(3000);
-                    NavigationManager.NavigateTo("/setup");
                     return;
                 }
 
                 CacheProvider.Clear();
 
                 // Downloaded
+                Step = UpdateResources.Downloaded;
+                StateHasChanged();
                 await Task.Delay(1500);
                 Process.Start(path);
                 ApplicationService.Shutdown();

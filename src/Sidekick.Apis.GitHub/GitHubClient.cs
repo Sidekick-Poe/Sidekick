@@ -29,33 +29,18 @@ namespace Sidekick.Apis.GitHub
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        /// <summary>
-        /// Determines latest release on github. Pre-releases do not count as release, therefore we need to get the list of releases first, if no actual latest release can be found
-        /// </summary>
-        /// <returns></returns>
-        public async Task<GitHubRelease> GetLatestRelease()
+        private bool? UpdateAvailable { get; set; } = false;
+
+        /// <inheritdoc/>
+        public async Task<bool> IsUpdateAvailable()
         {
-            // Get List of releases
-            var listResponse = await client.GetAsync("/repos/Sidekick-Poe/Sidekick/releases");
-            if (listResponse.IsSuccessStatusCode)
+            if (UpdateAvailable.HasValue)
             {
-                var githubReleaseList = await JsonSerializer.DeserializeAsync<GitHubRelease[]>(await listResponse.Content.ReadAsStreamAsync(), new JsonSerializerOptions
-                {
-                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                    PropertyNameCaseInsensitive = true
-                });
-                return githubReleaseList.FirstOrDefault(x => !x.Prerelease);
+                return UpdateAvailable.Value;
             }
 
-            return null;
-        }
+            var release = await GetLatestRelease();
 
-        /// <summary>
-        /// Determines if there is a newer version available
-        /// </summary>
-        /// <returns></returns>
-        public bool IsUpdateAvailable(GitHubRelease release)
-        {
             if (release != null)
             {
                 logger.LogInformation("[Updater] Found " + release.Tag + " as latest version on GitHub.");
@@ -64,22 +49,22 @@ namespace Sidekick.Apis.GitHub
                 var currentVersion = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.FullName.Contains("Sidekick")).GetName().Version;
 
                 var result = currentVersion.CompareTo(latestVersion);
-                return result < 0;
+                UpdateAvailable = result < 0;
             }
             else
             {
                 logger.LogInformation("[Updater] No latest release found on GitHub.");
+                UpdateAvailable = false;
             }
 
-            return false;
+            return UpdateAvailable ?? false;
         }
 
-        /// <summary>
-        /// Downloads the latest release from github
-        /// </summary>
-        /// <returns></returns>
-        public async Task<string> DownloadRelease(GitHubRelease release)
+        /// <inheritdoc/>
+        public async Task<string> DownloadLatest()
         {
+            var release = await GetLatestRelease();
+
             if (release == null) return null;
 
             var downloadPath = SidekickPaths.GetDataFilePath("Sidekick-Update.exe");
@@ -94,6 +79,23 @@ namespace Sidekick.Apis.GitHub
             await downloadStream.CopyToAsync(fileStream);
 
             return downloadPath;
+        }
+
+        private async Task<GitHubRelease> GetLatestRelease()
+        {
+            // Get List of releases
+            var listResponse = await client.GetAsync("/repos/Sidekick-Poe/Sidekick/releases");
+            if (listResponse.IsSuccessStatusCode)
+            {
+                var githubReleaseList = await JsonSerializer.DeserializeAsync<GitHubRelease[]>(await listResponse.Content.ReadAsStreamAsync(), new JsonSerializerOptions
+                {
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                    PropertyNameCaseInsensitive = true
+                });
+                return githubReleaseList.FirstOrDefault(x => !x.Prerelease);
+            }
+
+            return null;
         }
     }
 }

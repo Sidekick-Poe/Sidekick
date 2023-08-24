@@ -1,6 +1,6 @@
 @inherits LayoutComponentBase
 
-<SidekickWrapper>
+<SidekickWrapper @ref="Wrapper">
     <SidekickAppBar>
         <LeftContent>
             @if (MenuIcon)
@@ -13,20 +13,55 @@
         </LeftContent>
     </SidekickAppBar>
 
-    <CascadingValue Value="this" IsFixed="true">
-        @Body
-    </CascadingValue>
+    <MudDrawer @bind-Open="@MenuOpened"
+               Anchor="Anchor.Left"
+               Variant="@(MenuIcon ? DrawerVariant.Responsive : DrawerVariant.Persistent)"
+               Breakpoint="Breakpoint.Lg"
+               ClipMode="DrawerClipMode.Docked">
+        <MudDrawerHeader></MudDrawerHeader>
+        <MudNavMenu>
+            @foreach (var menuLink in MenuLinks)
+            {
+                <MudNavLink Match="NavLinkMatch.All"
+                            Href="@menuLink.Url">
+                    @menuLink.Name
+                </MudNavLink>
+            }
+        </MudNavMenu>
+    </MudDrawer>
+
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.False" Class="pa-0" Style="overflow: hidden; height: calc(100vh - var(--mud-appbar-height));">
+            <Sidekick.Common.Blazor.Update.UpdateBanner />
+
+            @Body
+
+            @if (FooterActions.Count > 0)
+            {
+                <div class="d-flex pa-3 justify-end">
+                    @foreach (var action in FooterActions)
+                    {
+                        <MudButton Variant="@action.Variant"
+                                   Color="@action.Color"
+                                   OnClick="@action.OnClick"
+                                   Class="ml-3">
+                            @action.Name
+                        </MudButton>
+                    }
+                </div>
+            }
+        </MudContainer>
+    </MudMainContent>
 </SidekickWrapper>
 
 @code {
-    public bool MenuIcon { get; private set; } = true;
+    public bool MenuIcon { get; set; } = true;
     public bool MenuOpened { get; set; } = true;
 
-    public void SetMenuIcon(bool menuIcon)
-    {
-        MenuIcon = menuIcon;
-        StateHasChanged();
-    }
+    public List<MenuLink> MenuLinks { get; set; } = new();
+    public List<FooterAction> FooterActions { get; set; } = new();
+
+    public SidekickWrapper Wrapper { get; set; }
 
     public void ToggleMenu()
     {

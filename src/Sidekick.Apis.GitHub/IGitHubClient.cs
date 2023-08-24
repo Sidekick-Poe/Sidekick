@@ -1,12 +1,22 @@
 using System.Threading.Tasks;
-using Sidekick.Apis.GitHub.Models;
 
 namespace Sidekick.Apis.GitHub
 {
+    /// <summary>
+    /// Interface to communicate with GitHub.
+    /// </summary>
     public interface IGitHubClient
     {
-        Task<GitHubRelease> GetLatestRelease();
-        bool IsUpdateAvailable(GitHubRelease release);
-        Task<string> DownloadRelease(GitHubRelease release);
+        /// <summary>
+        /// Determines if there is a newer version available.
+        /// </summary>
+        /// <returns>True if an update is available.</returns>
+        Task<bool> IsUpdateAvailable();
+
+        /// <summary>
+        /// Downloads the latest release from github.
+        /// </summary>
+        /// <returns>The path where the file was downloaded.</returns>
+        Task<string> DownloadLatest();
     }
 }

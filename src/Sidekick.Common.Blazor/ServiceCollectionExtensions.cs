@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common.Blazor.Errors;
 using Sidekick.Common.Blazor.Initialization;
+using Sidekick.Common.Blazor.Update;
 
 namespace Sidekick.Common.Blazor
 {
@@ -18,6 +19,7 @@ namespace Sidekick.Common.Blazor
         {
             services.AddTransient<ErrorResources>();
             services.AddTransient<InitializationResources>();
+            services.AddTransient<UpdateResources>();
 
             return services;
         }

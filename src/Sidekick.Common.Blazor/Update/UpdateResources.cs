@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Localization;
 
-namespace Sidekick.Modules.Update.Localization
+namespace Sidekick.Common.Blazor.Update
 {
     public class UpdateResources
     {
@@ -11,10 +11,15 @@ namespace Sidekick.Modules.Update.Localization
             this.localizer = localizer;
         }
 
+        public string Available => localizer["Available"];
         public string Checking => localizer["Checking"];
+        public string Close => localizer["Close"];
+        public string Confirm => localizer["Confirm"];
+        public string Download => localizer["Download"];
         public string Downloaded => localizer["Downloaded"];
-        public string Downloading(string version) => localizer["Downloading", version];
-        public string Exit => localizer["Exit"];
+        public string Downloading => localizer["Downloading"];
         public string Failed => localizer["Failed"];
+        public string NotAvaialble => localizer["NotAvaialble"];
+        public string Title => localizer["Title"];
     }
 }
