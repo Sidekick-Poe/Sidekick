@@ -12,7 +12,6 @@ namespace Sidekick.Mock
             services.TryAddSingleton<IApplicationService, MockApplicationService>();
             services.TryAddSingleton<IProcessProvider, MockProcessProvider>();
             services.TryAddSingleton<IKeyboardProvider, MockKeyboardProvider>();
-            services.TryAddSingleton<IKeybindProvider, MockKeybindProvider>();
             services.TryAddSingleton<ITrayProvider, MockTrayProvider>();
             services.TryAddSingleton<IViewLocator, MockViewLocator>();
 
