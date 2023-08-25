@@ -1,5 +1,5 @@
 
-<ErrorBoundary>
+<SidekickErrorBoundary @ref="Boundary">
     <ChildContent>
         <CascadingValue Value="this" IsFixed="true">
             <CascadingValue Value="View">
@@ -19,11 +19,17 @@
                     If this issue keeps reoccurring, please open a ticket on our github page.
                 </div>
 
+                <div>
+                    <small>
+                        @Boundary.CurrentException
+                    </small>
+                </div>
+
                 <a href="javascript:;" class="reload" @onclick="Reload">Reload</a>
             </div>
         </div>
     </ErrorContent>
-</ErrorBoundary>
+</SidekickErrorBoundary>
 
 @code {
     /// <summary>
@@ -45,6 +51,8 @@
     /// Gets or sets the current view.
     /// </summary>
     public SidekickView View { get; set; }
+
+    private SidekickErrorBoundary Boundary { get; set; }
 
     public void SetView(SidekickView view)
     {

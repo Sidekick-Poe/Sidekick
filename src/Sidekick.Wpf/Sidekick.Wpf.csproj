@@ -9,9 +9,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazor.Extensions.Canvas" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.81" />
-    <PackageReference Include="Blazored.Modal" Version="7.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.92" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sidekick\Sidekick.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Update="wwwroot\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <Target Name="Copywwwroot" BeforeTargets="PreBuildEvent">
+    <ItemGroup>
+      <wwwrootFolder Include="$(ProjectDir)..\Sidekick\wwwroot\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(wwwrootFolder)" DestinationFolder="$(ProjectDir)wwwroot\%(RecursiveDir)" />
+  </Target>
 </Project>
