@@ -7,6 +7,7 @@ using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
+using Sidekick.Common.Blazor;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
@@ -17,11 +18,9 @@ using Sidekick.Modules.Chat;
 using Sidekick.Modules.Cheatsheets;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
-using Sidekick.Modules.Initialization;
 using Sidekick.Modules.Maps;
 using Sidekick.Modules.Settings;
 using Sidekick.Modules.Trade;
-using Sidekick.Modules.Update;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseElectron(args);
@@ -51,6 +50,7 @@ builder.Services
 
     // Common
     .AddSidekickCommon()
+    .AddSidekickCommonBlazor()
     .AddSidekickCommonGame()
     .AddSidekickCommonPlatform(o =>
     {
@@ -71,11 +71,9 @@ builder.Services
     .AddSidekickCheatsheets()
     .AddSidekickDevelopment()
     .AddSidekickGeneral()
-    .AddSidekickInitialization()
     .AddSidekickMaps()
     .AddSidekickSettings(builder.Configuration)
-    .AddSidekickTrade()
-    .AddSidekickUpdate();
+    .AddSidekickTrade();
 
 if (HybridSupport.IsElectronActive)
 {
@@ -110,7 +108,7 @@ app.MapFallbackToPage("/_Host");
 if (HybridSupport.IsElectronActive)
 {
     var viewLocator = app.Services.GetRequiredService<IViewLocator>();
-    await viewLocator.Open("/update");
+    await viewLocator.Open("/initialize");
 
     // We need to trick Electron into thinking that our app is ready to be opened.
     // This makes Electron hide the splashscreen. For us, it means we are ready to initialize and price check :)

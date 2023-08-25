@@ -1,11 +1,12 @@
 using System.Globalization;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Common.Localization
 {
     /// <summary>
     /// Interface to access ui language parameters.
     /// </summary>
-    public interface IUILanguageProvider
+    public interface IUILanguageProvider : IInitializableService
     {
         /// <summary>
         /// Gets the list of available UI languages

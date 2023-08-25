@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Common.Blazor;
+using Sidekick.Common;
 using Sidekick.Modules.About.Localization;
 
 namespace Sidekick.Modules.About
@@ -8,10 +8,7 @@ namespace Sidekick.Modules.About
     {
         public static IServiceCollection AddSidekickAbout(this IServiceCollection services)
         {
-            services.AddSidekickModule(new SidekickModule()
-            {
-                Assembly = typeof(StartupExtensions).Assembly
-            });
+            services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
             services.AddTransient<AboutResources>();
 

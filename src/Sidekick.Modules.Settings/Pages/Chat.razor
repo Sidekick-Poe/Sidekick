@@ -2,30 +2,32 @@
 @layout SettingsLayout
 @inherits SidekickView
 
-@foreach (var chatSetting in ViewModel.Chat_Commands)
-{
-    <ChatCommandEditor ChatSetting="chatSetting"
-                       OnRemove="() => Remove(chatSetting)" />
-}
+<div class="pa-3">
+    @foreach (var chatSetting in ViewModel.Chat_Commands)
+    {
+        <ChatCommandEditor ChatSetting="chatSetting"
+                           OnRemove="() => Remove(chatSetting)" />
+    }
 
-<MudText Typo="Typo.h5">@Resources.Chat_Commands</MudText>
-<MudText>@Resources.Chat_Commands_Hideout</MudText>
-<MudText>@Resources.Chat_Commands_Exit</MudText>
+    <MudText Typo="Typo.h5">@Resources.Chat_Commands</MudText>
+    <MudText>@Resources.Chat_Commands_Hideout</MudText>
+    <MudText>@Resources.Chat_Commands_Exit</MudText>
 
-<MudText Typo="Typo.h5">@Resources.Chat_Wildcard</MudText>
-<MudText>@Resources.Chat_Wildcard_LastWhisper_CharacterName</MudText>
+    <MudText Typo="Typo.h5">@Resources.Chat_Wildcard</MudText>
+    <MudText>@Resources.Chat_Wildcard_LastWhisper_CharacterName</MudText>
 
-<div class="d-flex justify-space-between mb-3">
-    <MudButton Variant="Variant.Text"
-               Color="Color.Default"
-               OnClick="RestoreDefaults">
-        @Resources.Restore_Defaults
-    </MudButton>
-    <MudButton Variant="Variant.Filled"
-               Color="Color.Secondary"
-               OnClick="Add">
-        @Resources.Chat_Add
-    </MudButton>
+    <div class="d-flex justify-space-between mb-3">
+        <MudButton Variant="Variant.Text"
+                   Color="Color.Default"
+                   OnClick="RestoreDefaults">
+            @Resources.Restore_Defaults
+        </MudButton>
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Secondary"
+                   OnClick="Add">
+            @Resources.Chat_Add
+        </MudButton>
+    </div>
 </div>
 
 @code {

@@ -4,6 +4,7 @@ using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Static.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Static
 {
@@ -23,6 +24,10 @@ namespace Sidekick.Apis.Poe.Static
         private Dictionary<string, string> ImageUrls { get; set; }
         private Dictionary<string, string> Ids { get; set; }
 
+        /// <inheritdoc/>
+        public InitializationPriority Priority => InitializationPriority.Medium;
+
+        /// <inheritdoc/>
         public async Task Initialize()
         {
             var result = await cacheProvider.GetOrSet(
@@ -60,8 +65,9 @@ namespace Sidekick.Apis.Poe.Static
             return null;
         }
 
-        public string GetId(string text)
+        public string GetId(Item item)
         {
+            var text = item.Metadata.Name ?? item.Metadata.Type;
             if (Ids.TryGetValue(text, out var result))
             {
                 return result;
@@ -69,7 +75,5 @@ namespace Sidekick.Apis.Poe.Static
 
             return null;
         }
-
-        public string GetId(Item item) => GetId(item.Metadata.Name ?? item.Metadata.Type);
     }
 }

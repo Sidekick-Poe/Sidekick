@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.PoeNinja.Api;
 using Sidekick.Apis.PoeNinja.Repository;
+using Sidekick.Common;
 
 namespace Sidekick.Apis.PoeNinja
 {
@@ -12,7 +13,8 @@ namespace Sidekick.Apis.PoeNinja
 
             services.AddTransient<IPoeNinjaApiClient, PoeNinjaApiClient>();
             services.AddTransient<IPoeNinjaRepository, PoeNinjaRepository>();
-            services.AddTransient<IPoeNinjaClient, PoeNinjaClient>();
+
+            services.AddSidekickInitializableService<IPoeNinjaClient, PoeNinjaClient>();
 
             return services;
         }

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Modifiers
 {
@@ -24,9 +25,15 @@ namespace Sidekick.Apis.Poe.Modifiers
 
         public List<string> LogbookFactions { get; private set; }
 
+        /// <inheritdoc/>
+        public InitializationPriority Priority => InitializationPriority.Medium;
+
+        /// <inheritdoc/>
         public async Task Initialize()
         {
-            var result = await GetList();
+            var result = await cacheProvider.GetOrSet(
+                "PseudoModifierProvider",
+                async () => (await poeTradeClient.Fetch<ApiCategory>("data/stats", useDefaultLanguage: true)).Result);
 
             foreach (var category in result)
             {
@@ -39,13 +46,6 @@ namespace Sidekick.Apis.Poe.Modifiers
             }
         }
 
-        public async Task<List<ApiCategory>> GetList()
-        {
-            var result = await cacheProvider.GetOrSet(
-                "PseudoModifierProvider",
-                () => poeTradeClient.Fetch<ApiCategory>("data/stats", useDefaultLanguage: true));
-
-            return result.Result;
-        }
+        public Task<List<ApiCategory>> GetList() => cacheProvider.Get<List<ApiCategory>>("PseudoModifierProvider");
     }
 }

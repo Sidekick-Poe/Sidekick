@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Sidekick.Apis.Poe;
+using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Errors;

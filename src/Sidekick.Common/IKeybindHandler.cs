@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Sidekick.Common.Platform
+namespace Sidekick.Common
 {
     /// <summary>
     /// Interface for keybind handlers

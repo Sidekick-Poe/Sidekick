@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Extensions;
+using Sidekick.Common.Initialization;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Common.Game.Languages
 {
@@ -10,14 +13,27 @@ namespace Sidekick.Common.Game.Languages
     {
         private const string EnglishLanguageCode = "en";
         private readonly ILogger<GameLanguageProvider> logger;
+        private readonly ISettings settings;
 
         public GameLanguageProvider(
-            ILogger<GameLanguageProvider> logger)
+            ILogger<GameLanguageProvider> logger,
+            ISettings settings)
         {
             this.logger = logger;
+            this.settings = settings;
         }
 
-        public IGameLanguage Language { get; set; }
+        public IGameLanguage Language { get; private set; }
+
+        /// <inheritdoc/>
+        public InitializationPriority Priority => InitializationPriority.High;
+
+        /// <inheritdoc/>
+        public Task Initialize()
+        {
+            SetLanguage(settings.Language_Parser);
+            return Task.CompletedTask;
+        }
 
         public void SetLanguage(string languageCode)
         {

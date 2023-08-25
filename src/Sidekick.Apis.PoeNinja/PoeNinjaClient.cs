@@ -7,6 +7,7 @@ using Sidekick.Apis.PoeNinja.Api.Models;
 using Sidekick.Apis.PoeNinja.Models;
 using Sidekick.Apis.PoeNinja.Repository;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.PoeNinja
@@ -62,6 +63,18 @@ namespace Sidekick.Apis.PoeNinja
             leagueUri = GetLeagueUriFromLeagueId(this.settings.LeagueId);
         }
 
+        /// <inheritdoc/>
+        public InitializationPriority Priority => InitializationPriority.Medium;
+
+        /// <inheritdoc/>
+        public async Task Initialize()
+        {
+            if (!settings.PoeNinja_LastClear.HasValue || settings.PoeNinja_LastClear < DateTimeOffset.Now.AddHours(-8))
+            {
+                await repository.Clear();
+            }
+        }
+
         /// <summary>
         /// Get Poe.ninja's league uri from POE's API league id.
         /// </summary>
@@ -74,14 +87,6 @@ namespace Sidekick.Apis.PoeNinja
                 string x when x.Contains("Hardcore") => "challengehc",
                 _ => "challenge"
             };
-        }
-
-        public async Task Initialize()
-        {
-            if (!settings.PoeNinja_LastClear.HasValue || settings.PoeNinja_LastClear < DateTimeOffset.Now.AddHours(-8))
-            {
-                await repository.Clear();
-            }
         }
 
         public async Task<NinjaPrice> GetPriceInfo(OriginalItem originalItem, Item item)

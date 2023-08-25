@@ -8,6 +8,7 @@ using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Apis.Poe.Pseudo.Models;
 using Sidekick.Common.Game.Items.Modifiers;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Pseudo
 {
@@ -28,6 +29,10 @@ namespace Sidekick.Apis.Poe.Pseudo
 
         private List<PseudoDefinition> Definitions { get; set; } = new List<PseudoDefinition>();
 
+        /// <inheritdoc/>
+        public InitializationPriority Priority => InitializationPriority.Low;
+
+        /// <inheritdoc/>
         public async Task Initialize()
         {
             if (Definitions != null && Definitions.Count > 0)

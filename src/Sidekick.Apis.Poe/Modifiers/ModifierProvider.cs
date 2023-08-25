@@ -7,16 +7,15 @@ using FuzzySharp;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Apis.Poe.Parser;
-using Sidekick.Apis.Poe.Pseudo;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Items.Modifiers;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Modifiers
 {
     public class ModifierProvider : IModifierProvider
     {
-        private readonly IPseudoModifierProvider pseudoModifierProvider;
         private readonly ICacheProvider cacheProvider;
         private readonly IPoeTradeClient poeTradeClient;
         private readonly IEnglishModifierProvider englishModifierProvider;
@@ -29,12 +28,10 @@ namespace Sidekick.Apis.Poe.Modifiers
         private readonly Regex CleanOriginalTextPattern = new(" \\((?:implicit|enchant|crafted|veiled|fractured|scourge|crucible)\\)$");
 
         public ModifierProvider(
-            IPseudoModifierProvider pseudoModifierProvider,
             ICacheProvider cacheProvider,
             IPoeTradeClient poeTradeClient,
             IEnglishModifierProvider englishModifierProvider)
         {
-            this.pseudoModifierProvider = pseudoModifierProvider;
             this.cacheProvider = cacheProvider;
             this.poeTradeClient = poeTradeClient;
             this.englishModifierProvider = englishModifierProvider;
@@ -46,6 +43,10 @@ namespace Sidekick.Apis.Poe.Modifiers
 
         public Dictionary<string, List<FuzzyEntry>> FuzzyDictionary { get; set; } = new();
 
+        /// <inheritdoc/>
+        public InitializationPriority Priority => InitializationPriority.Low;
+
+        /// <inheritdoc/>
         public async Task Initialize()
         {
             var result = await cacheProvider.GetOrSet(

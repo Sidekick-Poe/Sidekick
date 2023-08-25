@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Common.Blazor;
+using Sidekick.Common;
 using Sidekick.Common.Settings;
 using Sidekick.Modules.Settings.Localization;
 
@@ -12,10 +12,7 @@ namespace Sidekick.Modules.Settings
     {
         public static IServiceCollection AddSidekickSettings(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSidekickModule(new SidekickModule()
-            {
-                Assembly = typeof(StartupExtensions).Assembly
-            });
+            services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
             services.AddTransient<SettingsResources>();
             services.AddTransient<SetupResources>();

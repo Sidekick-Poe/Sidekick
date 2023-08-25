@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Security.Principal;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using Sidekick.Common.Initialization;
 using Sidekick.Common.Platform.Windows.DllImport;
 using Sidekick.Common.Platforms.Localization;
 
@@ -44,6 +45,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
         private readonly ILogger logger;
         private readonly IApplicationService applicationService;
+        private readonly ISidekickDialogs dialogService;
         private readonly PlatformResources platformResources;
 
         private bool PermissionChecked { get; set; } = false;
@@ -52,6 +54,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
         private DateTimeOffset PreviousFocusedWindowAttempt { get; set; }
         private string? PreviousFocusedWindow { get; set; }
+
         private string? GetFocusedWindow()
         {
             if (DateTimeOffset.Now - PreviousFocusedWindowAttempt < TimeSpan.FromSeconds(3))
@@ -86,23 +89,31 @@ namespace Sidekick.Common.Platform.Windows.Processes
         public ProcessProvider(
             ILogger<ProcessProvider> logger,
             IApplicationService applicationService,
+            ISidekickDialogs dialogService,
             PlatformResources platformResources)
         {
             this.logger = logger;
             this.applicationService = applicationService;
+            this.dialogService = dialogService;
             this.platformResources = platformResources;
         }
 
-        public void Initialize()
+        /// <inheritdoc/>
+        public InitializationPriority Priority => InitializationPriority.Low;
+
+        /// <inheritdoc/>
+        public Task Initialize()
         {
             // We can't initialize twice
             if (HasInitialized)
             {
-                return;
+                return Task.CompletedTask;
             }
 
             WindowsHook = EventLoop.Run(WinEvent.EVENT_SYSTEM_FOREGROUND, WinEvent.EVENT_SYSTEM_CAPTURESTART, IntPtr.Zero, OnWindowsEvent, 0, 0, WinEvent.WINEVENT_OUTOFCONTEXT);
             HasInitialized = true;
+
+            return Task.CompletedTask;
         }
 
         private void OnWindowsEvent(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
@@ -143,7 +154,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
         private async Task RestartAsAdmin()
         {
-            if (!await applicationService.OpenConfirmationModal(platformResources.RestartAsAdminText))
+            if (!await dialogService.OpenConfirmationModal(platformResources.RestartAsAdminText))
             {
                 return;
             }

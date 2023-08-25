@@ -1,9 +1,12 @@
 using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using SharpHook;
 using SharpHook.Native;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Common.Platform.Keyboards
 {
@@ -129,7 +132,8 @@ namespace Sidekick.Common.Platform.Keyboards
         private static readonly Regex ModifierKeys = new("Ctrl|Shift|Alt");
 
         private readonly ILogger<KeyboardProvider> logger;
-        private readonly IKeybindProvider keybindProvider;
+        private readonly IOptions<SidekickConfiguration> configuration;
+        private readonly IServiceProvider serviceProvider;
         private readonly IProcessProvider processProvider;
 
         private bool HasInitialized { get; set; } = false;
@@ -139,32 +143,53 @@ namespace Sidekick.Common.Platform.Keyboards
 
         public KeyboardProvider(
             ILogger<KeyboardProvider> logger,
-            IKeybindProvider keybindProvider,
+            IOptions<SidekickConfiguration> configuration,
+            IServiceProvider serviceProvider,
             IProcessProvider processProvider)
         {
             this.logger = logger;
-            this.keybindProvider = keybindProvider;
+            this.configuration = configuration;
+            this.serviceProvider = serviceProvider;
             this.processProvider = processProvider;
         }
 
         public event Action<string>? OnKeyDown;
 
-        public void Initialize()
+        private Dictionary<string, IKeybindHandler> KeybindHandlers { get; init; } = new();
+
+        /// <inheritdoc/>
+        public InitializationPriority Priority => InitializationPriority.Low;
+
+        /// <inheritdoc/>
+        public Task Initialize()
         {
             // We can't initialize twice
             if (HasInitialized || Debugger.IsAttached)
             {
-                return;
+                return Task.CompletedTask;
             }
 
+            // Initialize keybindings
+            KeybindHandlers.Clear();
+            foreach (var keybindType in configuration.Value.Keybinds)
+            {
+                var keybindHandler = (IKeybindHandler)serviceProvider.GetRequiredService(keybindType);
+                foreach (var keybind in keybindHandler.GetKeybinds())
+                {
+                    KeybindHandlers.Add(keybind, keybindHandler);
+                }
+            }
+
+            // Initialize keyboard hook
             Hook = new();
-
             Hook.KeyPressed += OnKeyPressed;
-
             HookTask = Hook.RunAsync();
             Simulator = new EventSimulator();
 
+            // Make sure we don't run this multiple times
             HasInitialized = true;
+
+            return Task.CompletedTask;
         }
 
         private void OnKeyPressed(object? sender, KeyboardHookEventArgs args)
@@ -196,7 +221,7 @@ namespace Sidekick.Common.Platform.Keyboards
             var keybind = str.ToString();
             OnKeyDown?.Invoke(keybind);
 
-            if (processProvider.IsPathOfExileInFocus && keybindProvider.KeybindHandlers.TryGetValue(keybind, out var keybindHandler))
+            if (processProvider.IsPathOfExileInFocus && KeybindHandlers.TryGetValue(keybind, out var keybindHandler))
             {
                 if (keybindHandler.IsValid())
                 {

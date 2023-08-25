@@ -1,9 +1,9 @@
+using Sidekick.Common.Initialization;
+
 namespace Sidekick.Common.Platform
 {
-    public interface IProcessProvider
+    public interface IProcessProvider : IInitializableService
     {
-        void Initialize();
-
         string? ClientLogPath { get; }
 
         bool IsPathOfExileInFocus { get; }

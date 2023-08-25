@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Common.Platform;
+using Sidekick.Common;
 using Sidekick.Modules.General.Keybinds;
 
 namespace Sidekick.Modules.General

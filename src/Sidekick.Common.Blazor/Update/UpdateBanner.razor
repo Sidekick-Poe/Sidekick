@@ -1,0 +1,47 @@
+@using Sidekick.Apis.GitHub;
+@using Sidekick.Common.Platform;
+
+@if (UpdateAvailable)
+{
+    <MudAlert Severity="Severity.Info" Dense="true" Variant="Variant.Filled">
+        @Resources.Available <MudLink OnClick="Download" Class="white-text" Style="text-decoration: underline;">@Resources.Download</MudLink>
+    </MudAlert>
+}
+
+@code {
+    [Inject]
+    private IGitHubClient GitHubClient { get; set; }
+
+    [Inject]
+    private UpdateResources Resources { get; set; }
+
+    [Inject]
+    private IViewLocator ViewLocator { get; set; }
+
+    [Inject]
+    private ISidekickDialogs DialogService { get; set; }
+
+    private bool UpdateAvailable { get; set; }
+
+    /// <inheritdoc/>
+    protected override async Task OnInitializedAsync()
+    {
+        UpdateAvailable = await GitHubClient.IsUpdateAvailable();
+
+#if DEBUG
+    UpdateAvailable = false;
+#endif
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task Download()
+    {
+        if (!await DialogService.OpenConfirmationModal(Resources.Confirm))
+        {
+            return;
+        }
+
+        await ViewLocator.Open("/update");
+    }
+}

@@ -1,12 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Sidekick.Apis.PoeWiki.ApiModels;
 using Sidekick.Common.Cache;
-using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.PoeWiki
 {
@@ -42,6 +38,10 @@ namespace Sidekick.Apis.PoeWiki
 
         public Dictionary<string, string> BlightOilNamesByMetadataIds { get; private set; } = new();
 
+        /// <inheritdoc/>
+        public InitializationPriority Priority => InitializationPriority.Low;
+
+        /// <inheritdoc/>
         public async Task Initialize()
         {
             var result = await cacheProvider.GetOrSet("PoeWikiBlightOils", () => poeWikiClient.GetMetadataIdsFromItemNames(oilNames));

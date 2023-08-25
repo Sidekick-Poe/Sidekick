@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Common.Blazor;
+using Sidekick.Common;
 
 namespace Sidekick.Modules.Development
 {
@@ -7,10 +7,7 @@ namespace Sidekick.Modules.Development
     {
         public static IServiceCollection AddSidekickDevelopment(this IServiceCollection services)
         {
-            services.AddSidekickModule(new SidekickModule()
-            {
-                Assembly = typeof(StartupExtensions).Assembly
-            });
+            services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
             return services;
         }

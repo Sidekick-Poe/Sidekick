@@ -5,10 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
+using Sidekick.Common.Blazor;
 using Sidekick.Common.Game;
 using Sidekick.Common.Settings;
 using Sidekick.Mock;
-using Sidekick.Modules.Initialization;
 using Sidekick.Modules.Settings;
 using Xunit;
 
@@ -35,6 +35,7 @@ namespace Sidekick.Apis.Poe.Tests
             ctx.Services
                 // Building blocks
                 .AddSidekickCommon()
+                .AddSidekickCommonBlazor()
                 .AddSidekickCommonGame()
 
                 // Apis
@@ -43,7 +44,6 @@ namespace Sidekick.Apis.Poe.Tests
                 .AddSidekickPoeWikiApi()
 
                 // Modules
-                .AddSidekickInitialization()
                 .AddSidekickSettings(configuration)
 
                 // Mocks
@@ -54,7 +54,7 @@ namespace Sidekick.Apis.Poe.Tests
             await settingsService.Save(nameof(ISettings.Language_UI), "en");
             await settingsService.Save(nameof(ISettings.LeagueId), "Standard");
 
-            var initComponent = ctx.RenderComponent<Modules.Initialization.Pages.Initialization>();
+            var initComponent = ctx.RenderComponent<Common.Blazor.Initialization.Initialization>();
             await initComponent.Instance.InitializationTask;
 
             Parser = ctx.Services.GetRequiredService<IItemParser>();
