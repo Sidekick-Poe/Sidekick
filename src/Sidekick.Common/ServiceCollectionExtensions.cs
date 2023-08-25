@@ -4,7 +4,6 @@ using Serilog;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Initialization;
-using Sidekick.Common.Keybinds;
 using Sidekick.Common.Localization;
 using Sidekick.Common.Logging;
 

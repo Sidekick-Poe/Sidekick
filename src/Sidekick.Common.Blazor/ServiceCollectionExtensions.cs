@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Sidekick.Common.Blazor.Dialogs;
 using Sidekick.Common.Blazor.Errors;
 using Sidekick.Common.Blazor.Initialization;
 using Sidekick.Common.Blazor.Update;
@@ -17,9 +18,13 @@ namespace Sidekick.Common.Blazor
         /// <returns>The service collection.</returns>
         public static IServiceCollection AddSidekickCommonBlazor(this IServiceCollection services)
         {
+            services.AddTransient<DialogResources>();
             services.AddTransient<ErrorResources>();
             services.AddTransient<InitializationResources>();
             services.AddTransient<UpdateResources>();
+
+            services.AddSingleton<ISidekickDialogs, DialogService>();
+            services.AddSingleton((sp) => (DialogService)sp.GetRequiredService<ISidekickDialogs>());
 
             return services;
         }

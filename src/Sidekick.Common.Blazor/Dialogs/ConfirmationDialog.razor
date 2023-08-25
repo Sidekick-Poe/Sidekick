@@ -1,0 +1,51 @@
+@page "/dialog/confirm/{message}"
+@layout ModalLayout
+@inherits SidekickView
+
+<SidekickLogo />
+
+<MudCard Class="my-3 pa-3">
+    <MudCardContent>
+        <MudText Typo="Typo.h5" Align="Align.Center">@Message</MudText>
+    </MudCardContent>
+</MudCard>
+
+<div class="d-flex justify-end">
+    <MudButton OnClick="No"
+               Variant="Variant.Text"
+               Color="Color.Default">
+        @Resources.No
+    </MudButton>
+    <MudButton OnClick="Yes"
+               Variant="Variant.Filled"
+               Color="Color.Primary"
+               Class="ml-3">
+        @Resources.Yes
+    </MudButton>
+</div>
+
+@code {
+    [Parameter]
+    public string Message { get; set; }
+
+    [Inject]
+    private DialogResources Resources { get; set; }
+
+    [Inject]
+    private DialogService Service { get; set; }
+
+    public override string Title => Resources.Title;
+    public override SidekickViewType ViewType => SidekickViewType.Modal;
+
+    private async Task Yes()
+    {
+        Service.SetConfirmationResult(true);
+        await Close();
+    }
+
+    private async Task No()
+    {
+        Service.SetConfirmationResult(false);
+        await Close();
+    }
+}

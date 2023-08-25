@@ -1,17 +1,10 @@
-using System.Threading.Tasks;
-
-namespace Sidekick.Common.Platform
+namespace Sidekick.Common
 {
     /// <summary>
-    /// Interface containing platform specific methods.
+    /// Interface to handle dialogs in the application.
     /// </summary>
-    public interface IApplicationService
+    public interface ISidekickDialogs
     {
-        /// <summary>
-        /// Shutdown the application.
-        /// </summary>
-        void Shutdown();
-
         /// <summary>
         /// Open a notification message with Yes/No buttons
         /// </summary>

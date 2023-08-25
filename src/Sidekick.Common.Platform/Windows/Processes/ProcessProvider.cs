@@ -45,6 +45,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
         private readonly ILogger logger;
         private readonly IApplicationService applicationService;
+        private readonly ISidekickDialogs dialogService;
         private readonly PlatformResources platformResources;
 
         private bool PermissionChecked { get; set; } = false;
@@ -53,6 +54,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
         private DateTimeOffset PreviousFocusedWindowAttempt { get; set; }
         private string? PreviousFocusedWindow { get; set; }
+
         private string? GetFocusedWindow()
         {
             if (DateTimeOffset.Now - PreviousFocusedWindowAttempt < TimeSpan.FromSeconds(3))
@@ -87,10 +89,12 @@ namespace Sidekick.Common.Platform.Windows.Processes
         public ProcessProvider(
             ILogger<ProcessProvider> logger,
             IApplicationService applicationService,
+            ISidekickDialogs dialogService,
             PlatformResources platformResources)
         {
             this.logger = logger;
             this.applicationService = applicationService;
+            this.dialogService = dialogService;
             this.platformResources = platformResources;
         }
 
@@ -150,7 +154,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
         private async Task RestartAsAdmin()
         {
-            if (!await applicationService.OpenConfirmationModal(platformResources.RestartAsAdminText))
+            if (!await dialogService.OpenConfirmationModal(platformResources.RestartAsAdminText))
             {
                 return;
             }

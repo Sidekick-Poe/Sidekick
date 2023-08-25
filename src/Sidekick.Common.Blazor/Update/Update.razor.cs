@@ -12,11 +12,20 @@ namespace Sidekick.Common.Blazor.Update
 {
     public partial class Update : SidekickView
     {
-        [Inject] private ILogger<Update> Logger { get; set; }
-        [Inject] private IGitHubClient GitHubClient { get; set; }
-        [Inject] private IApplicationService ApplicationService { get; set; }
-        [Inject] private UpdateResources UpdateResources { get; set; }
-        [Inject] private ICacheProvider CacheProvider { get; set; }
+        [Inject]
+        private ILogger<Update> Logger { get; set; }
+
+        [Inject]
+        private IGitHubClient GitHubClient { get; set; }
+
+        [Inject]
+        private IApplicationService ApplicationService { get; set; }
+
+        [Inject]
+        private UpdateResources UpdateResources { get; set; }
+
+        [Inject]
+        private ICacheProvider CacheProvider { get; set; }
 
         public override string Title => UpdateResources.Title;
         public override SidekickViewType ViewType => SidekickViewType.Modal;

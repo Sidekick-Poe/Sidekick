@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Keybinds
+namespace Sidekick.Common
 {
     /// <summary>
     /// Interface for keybind handlers

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Sidekick.Apis.Poe;
-using Sidekick.Common.Keybinds;
+using Sidekick.Common;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 

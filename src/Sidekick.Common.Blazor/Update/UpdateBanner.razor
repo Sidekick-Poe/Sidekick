@@ -1,8 +1,7 @@
 @using Sidekick.Apis.GitHub;
 @using Sidekick.Common.Platform;
 
-
-@if (UpdateAvailable || true)
+@if (UpdateAvailable)
 {
     <MudAlert Severity="Severity.Info" Dense="true" Variant="Variant.Filled">
         @Resources.Available <MudLink OnClick="Download" Class="white-text" Style="text-decoration: underline;">@Resources.Download</MudLink>
@@ -20,7 +19,7 @@
     private IViewLocator ViewLocator { get; set; }
 
     [Inject]
-    private IApplicationService ApplicationService { get; set; }
+    private ISidekickDialogs DialogService { get; set; }
 
     private bool UpdateAvailable { get; set; }
 
@@ -38,7 +37,7 @@
 
     private async Task Download()
     {
-        if (!await ApplicationService.OpenConfirmationModal(Resources.Confirm))
+        if (!await DialogService.OpenConfirmationModal(Resources.Confirm))
         {
             return;
         }
