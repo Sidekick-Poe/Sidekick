@@ -6,6 +6,7 @@ using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Platform;
 using Sidekick.Mock;
 using Sidekick.Modules.Settings;
+using Sidekick.Wpf.Services;
 
 namespace Sidekick.Wpf
 {
@@ -14,7 +15,7 @@ namespace Sidekick.Wpf
     /// </summary>
     public partial class App : Application
     {
-        public static ServiceProvider ServiceProvider;
+        public static ServiceProvider ServiceProvider { get; set; } = null!;
 
         public App()
         {
@@ -39,7 +40,7 @@ namespace Sidekick.Wpf
             services.AddSidekick(configuration);
 
             services.AddSingleton<IApplicationService, MockApplicationService>();
-            services.AddSingleton<ITrayProvider, MockTrayProvider>();
+            services.AddSingleton<ITrayProvider, WpfTrayProvider>();
             services.AddSingleton<IViewLocator, MockViewLocator>();
         }
     }
