@@ -43,5 +43,11 @@ namespace Sidekick.Wpf
             services.AddSingleton<ITrayProvider, WpfTrayProvider>();
             services.AddSingleton<IViewLocator, MockViewLocator>();
         }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            ServiceProvider?.Dispose();
+            base.OnExit(e);
+        }
     }
 }
