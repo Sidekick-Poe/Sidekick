@@ -1,6 +1,7 @@
 using System.Windows;
 using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
+using Sidekick.Wpf.Services;
 
 namespace Sidekick.Wpf;
 
@@ -9,14 +10,17 @@ namespace Sidekick.Wpf;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private readonly WpfViewLocator viewLocator;
+
     private IServiceScope Scope { get; set; }
 
-    public MainWindow()
+    public MainWindow(WpfViewLocator viewLocator)
     {
         Scope = App.ServiceProvider.CreateScope();
 
         Resources.Add("services", Scope.ServiceProvider);
         InitializeComponent();
+        this.viewLocator = viewLocator;
     }
 
     public string CurrentWebPath
@@ -42,5 +46,6 @@ public partial class MainWindow : Window
     {
         base.OnClosed(e);
         Scope.Dispose();
+        viewLocator.Windows.Remove(this);
     }
 }

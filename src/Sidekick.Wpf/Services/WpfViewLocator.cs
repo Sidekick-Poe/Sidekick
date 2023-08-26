@@ -22,10 +22,11 @@ namespace Sidekick.Wpf.Services
             this.logger = logger;
         }
 
-        private List<MainWindow> Windows { get; set; } = new();
+        internal List<MainWindow> Windows { get; set; } = new();
 
         internal string? NextUrl { get; set; }
 
+        /// <inheritdoc/>
         public async Task Initialize(SidekickView view)
         {
             var window = Windows.FirstOrDefault(x => x.CurrentWebPath == view.Url);
@@ -100,6 +101,7 @@ namespace Sidekick.Wpf.Services
             });
         }
 
+        /// <inheritdoc/>
         public async Task Maximize(SidekickView view)
         {
             var window = Windows.FirstOrDefault(x => x.CurrentWebPath == view.Url);
@@ -109,26 +111,35 @@ namespace Sidekick.Wpf.Services
                 return;
             }
 
-            // if (!await browser.IsMaximizedAsync())
-            // {
-            //     browser.Maximize();
-            // }
-            // else
-            // {
-            //     var preferences = await cacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
-            //     if (preferences != null)
-            //     {
-            //         browser.SetSize(preferences.Width, preferences.Height);
-            //     }
-            //     else
-            //     {
-            //         browser.SetSize(view.ViewWidth, view.ViewHeight);
-            //     }
-            //
-            //     browser.Center();
-            // }
+            var preferences = await cacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                if (window.WindowState == WindowState.Normal)
+                {
+                    window.WindowState = WindowState.Maximized;
+                }
+                else
+                {
+                    window.WindowState = WindowState.Normal;
+
+                    if (preferences != null)
+                    {
+                        window.Height = preferences.Height;
+                        window.Width = preferences.Width;
+                    }
+                    else
+                    {
+                        window.Height = view.ViewHeight;
+                        window.Width = view.ViewWidth;
+                    }
+
+                    WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
+                }
+            });
         }
 
+        /// <inheritdoc/>
         public Task Minimize(SidekickView view)
         {
             var window = Windows.FirstOrDefault(x => x.CurrentWebPath == view.Url);
@@ -138,30 +149,40 @@ namespace Sidekick.Wpf.Services
                 return Task.CompletedTask;
             }
 
-            // browser.Minimize();
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                if (window.WindowState == WindowState.Normal)
+                {
+                    window.WindowState = WindowState.Minimized;
+                }
+                else
+                {
+                    window.WindowState = WindowState.Normal;
+                    WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
+                }
+            });
             return Task.CompletedTask;
         }
 
-        public async Task Close(SidekickView view)
+        /// <inheritdoc/>
+        public Task Close(SidekickView view)
         {
             var window = Windows.FirstOrDefault(x => x.CurrentWebPath == view.Url);
             if (window == null)
             {
                 logger.LogError("Unable to find view {viewUrl}", view.Url);
-                return;
+                return Task.CompletedTask;
             }
 
-            // if (!await browser.IsDestroyedAsync())
-            // {
-            //     browser.Close();
-            // }
-            //
-            // // Todo remove events
-            //
-            // Views.Remove(view);
-            // Windows.Remove(browser);
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                window.Close();
+            });
+            Windows.Remove(window);
+            return Task.CompletedTask;
         }
 
+        /// <inheritdoc/>
         public async Task CloseAllOverlays()
         {
             // foreach (var overlay in Views.Where(x => x.ViewType == SidekickViewType.Overlay))
@@ -170,6 +191,7 @@ namespace Sidekick.Wpf.Services
             // }
         }
 
+        /// <inheritdoc/>
         public bool IsOverlayOpened()
         {
             // return Views.Any(x => x.ViewType == SidekickViewType.Overlay);
@@ -188,7 +210,7 @@ namespace Sidekick.Wpf.Services
 
             Application.Current.Dispatcher.Invoke(() =>
             {
-                var window = new MainWindow();
+                var window = new MainWindow(this);
                 Windows.Add(window);
                 window.Show();
             });
