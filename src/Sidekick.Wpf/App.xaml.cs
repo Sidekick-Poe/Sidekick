@@ -24,8 +24,15 @@ namespace Sidekick.Wpf
 
             var services = new ServiceCollection();
             ConfigureServices(services, configurationManager);
-
             ServiceProvider = services.BuildServiceProvider();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
+            _ = viewLocator.Open("/");
         }
 
         private void ConfigureServices(ServiceCollection services, IConfiguration configuration)
@@ -41,7 +48,8 @@ namespace Sidekick.Wpf
 
             services.AddSingleton<IApplicationService, MockApplicationService>();
             services.AddSingleton<ITrayProvider, WpfTrayProvider>();
-            services.AddSingleton<IViewLocator, MockViewLocator>();
+            services.AddSingleton<IViewLocator, WpfViewLocator>();
+            services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());
         }
 
         protected override void OnExit(ExitEventArgs e)

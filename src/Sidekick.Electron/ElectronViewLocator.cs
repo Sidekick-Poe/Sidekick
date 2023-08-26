@@ -32,9 +32,6 @@ namespace Sidekick.Electron
             });
         }
 
-        /// <inheritdoc/>
-        public bool IsElectron => true;
-
         private List<BrowserWindow> Browsers { get; set; } = new();
 
         private List<SidekickView> Views { get; set; } = new();

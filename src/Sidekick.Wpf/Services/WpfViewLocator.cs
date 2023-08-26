@@ -1,259 +1,199 @@
+using System.Windows;
+using Microsoft.Extensions.Logging;
+using Sidekick.Common.Blazor.Views;
+using Sidekick.Common.Cache;
+using Sidekick.Common.Settings;
+using Sidekick.Wpf.Helpers;
+
 namespace Sidekick.Wpf.Services
 {
-    /*
     public class WpfViewLocator : IViewLocator
     {
         internal readonly ICacheProvider cacheProvider;
-        internal readonly ILogger<ElectronViewLocator> logger;
         internal readonly ISettings settings;
-        internal readonly IHostEnvironment hostEnvironment;
-        private bool FirstView = true;
+        private readonly ILogger<WpfViewLocator> logger;
 
         public WpfViewLocator(ICacheProvider cacheProvider,
-                                   ILogger<ElectronViewLocator> logger,
-                                   ISettings settings,
-                                   IHostEnvironment hostEnvironment)
+                              ISettings settings,
+                              ILogger<WpfViewLocator> logger)
         {
             this.cacheProvider = cacheProvider;
-            this.logger = logger;
             this.settings = settings;
-            this.hostEnvironment = hostEnvironment;
-
-            ElectronNET.API.Electron.IpcMain.OnSync("close", (viewName) =>
-            {
-                logger.LogError("Force closing the Blazor view {viewName}", viewName);
-                // _ = TryCloseViews((_) => true);
-                return null;
-            });
+            this.logger = logger;
         }
 
-        /// <inheritdoc/>
-        public bool IsElectron => true;
+        private List<MainWindow> Windows { get; set; } = new();
 
-        private List<BrowserWindow> Browsers { get; set; } = new();
-
-        private List<SidekickView> Views { get; set; } = new();
+        internal string? NextUrl { get; set; }
 
         public async Task Initialize(SidekickView view)
         {
-            var browser = Browsers.FirstOrDefault(x => x.WebContents.GetUrl().Result == view.Url);
-            if (browser == null)
+            var window = Windows.FirstOrDefault(x => x.CurrentWebPath == view.Url);
+            if (window == null)
             {
                 logger.LogError("Unable to find view {viewUrl}", view.Url);
                 return;
             }
 
-            browser.SetTitle(view.Title);
-            browser.SetMinimumSize(view.ViewWidth, view.ViewHeight);
-            browser.SetSize(view.ViewWidth, view.ViewHeight);
-
             var preferences = await cacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
-            if (view.ViewType != SidekickViewType.Modal && preferences != null)
-            {
-                browser.SetSize(preferences.Width, preferences.Height);
-            }
 
-            if (view.ViewType == SidekickViewType.Overlay)
+            Application.Current.Dispatcher.Invoke(() =>
             {
-                browser.SetMaximizable(false);
-                browser.SetMinimizable(false);
-                browser.SetSkipTaskbar(true);
-                browser.SetResizable(true);
-                browser.SetAlwaysOnTop(true, OnTopLevel.screenSaver);
-                browser.ShowInactive();
+                window.Title = view.Title;
+                window.MinHeight = view.ViewHeight;
+                window.MinWidth = view.ViewWidth;
+                window.Height = view.ViewHeight;
+                window.Width = view.ViewWidth;
+
+                if (view.ViewType != SidekickViewType.Modal && preferences != null)
+                {
+                    window.Height = preferences.Height;
+                    window.Width = preferences.Width;
+                }
+
+                if (view.ViewType == SidekickViewType.Overlay)
+                {
+                    //window.SetMaximizable(false);
+                    //window.SetMinimizable(false);
+                    //window.SetSkipTaskbar(true);
+                    //window.SetResizable(true);
+                    //window.SetAlwaysOnTop(true, OnTopLevel.screenSaver);
+                    //window.ShowInactive();
+                    //
+                    //if (view.CloseOnBlur)
+                    //{
+                    //    window.Focus();
+                    //}
+                }
+                else if (view.ViewType == SidekickViewType.Modal)
+                {
+                    //window.SetMaximizable(false);
+                    //window.SetMinimizable(false);
+                    //window.SetSkipTaskbar(false);
+                    //window.SetResizable(false);
+                    //window.SetAlwaysOnTop(false);
+                    //window.Show();
+                }
+                else
+                {
+                    //window.SetMaximizable(true);
+                    //window.SetMinimizable(true);
+                    //window.SetSkipTaskbar(false);
+                    //window.SetResizable(true);
+                    //window.SetAlwaysOnTop(false);
+                    //window.Show();
+                }
+
+                WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
+
+                if (view.ViewType != SidekickViewType.Modal)
+                {
+                    //window.OnResize += () => Browser_OnResize(window, view);
+                }
 
                 if (view.CloseOnBlur)
                 {
-                    browser.Focus();
+                    //window.OnBlur += () => Task.Run(() => Close(view));
                 }
-            }
-            else if (view.ViewType == SidekickViewType.Modal)
-            {
-                browser.SetMaximizable(false);
-                browser.SetMinimizable(false);
-                browser.SetSkipTaskbar(false);
-                browser.SetResizable(false);
-                browser.SetAlwaysOnTop(false);
-                browser.Show();
-            }
-            else
-            {
-                browser.SetMaximizable(true);
-                browser.SetMinimizable(true);
-                browser.SetSkipTaskbar(false);
-                browser.SetResizable(true);
-                browser.SetAlwaysOnTop(false);
-                browser.Show();
-            }
 
-            browser.Center();
-
-            if (view.ViewType != SidekickViewType.Modal)
-            {
-                browser.OnResize += () => Browser_OnResize(browser, view);
-            }
-
-            if (view.CloseOnBlur)
-            {
-                browser.OnBlur += () => Task.Run(() => Close(view));
-            }
+                window.Ready();
+            });
         }
 
         public async Task Maximize(SidekickView view)
         {
-            var browser = Browsers.FirstOrDefault(x => x.WebContents.GetUrl().Result == view.Url);
-            if (browser == null)
+            var window = Windows.FirstOrDefault(x => x.CurrentWebPath == view.Url);
+            if (window == null)
             {
+                logger.LogError("Unable to find view {viewUrl}", view.Url);
                 return;
             }
 
-            if (!await browser.IsMaximizedAsync())
-            {
-                browser.Maximize();
-            }
-            else
-            {
-                var preferences = await cacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
-                if (preferences != null)
-                {
-                    browser.SetSize(preferences.Width, preferences.Height);
-                }
-                else
-                {
-                    browser.SetSize(view.ViewWidth, view.ViewHeight);
-                }
-
-                browser.Center();
-            }
+            // if (!await browser.IsMaximizedAsync())
+            // {
+            //     browser.Maximize();
+            // }
+            // else
+            // {
+            //     var preferences = await cacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
+            //     if (preferences != null)
+            //     {
+            //         browser.SetSize(preferences.Width, preferences.Height);
+            //     }
+            //     else
+            //     {
+            //         browser.SetSize(view.ViewWidth, view.ViewHeight);
+            //     }
+            //
+            //     browser.Center();
+            // }
         }
 
         public Task Minimize(SidekickView view)
         {
-            var browser = Browsers.FirstOrDefault(x => x.WebContents.GetUrl().Result == view.Url);
-            if (browser == null)
+            var window = Windows.FirstOrDefault(x => x.CurrentWebPath == view.Url);
+            if (window == null)
             {
+                logger.LogError("Unable to find view {viewUrl}", view.Url);
                 return Task.CompletedTask;
             }
 
-            browser.Minimize();
+            // browser.Minimize();
             return Task.CompletedTask;
         }
 
         public async Task Close(SidekickView view)
         {
-            var browser = Browsers.FirstOrDefault(x => x.WebContents.GetUrl().Result == view.Url);
-            if (browser == null)
+            var window = Windows.FirstOrDefault(x => x.CurrentWebPath == view.Url);
+            if (window == null)
             {
+                logger.LogError("Unable to find view {viewUrl}", view.Url);
                 return;
             }
 
-            if (!await browser.IsDestroyedAsync())
-            {
-                browser.Close();
-            }
-
-            // Todo remove events
-
-            Views.Remove(view);
-            Browsers.Remove(browser);
+            // if (!await browser.IsDestroyedAsync())
+            // {
+            //     browser.Close();
+            // }
+            //
+            // // Todo remove events
+            //
+            // Views.Remove(view);
+            // Windows.Remove(browser);
         }
 
         public async Task CloseAllOverlays()
         {
-            foreach (var overlay in Views.Where(x => x.ViewType == SidekickViewType.Overlay))
-            {
-                await Close(overlay);
-            }
+            // foreach (var overlay in Views.Where(x => x.ViewType == SidekickViewType.Overlay))
+            // {
+            //     await Close(overlay);
+            // }
         }
 
         public bool IsOverlayOpened()
         {
-            return Views.Any(x => x.ViewType == SidekickViewType.Overlay);
+            // return Views.Any(x => x.ViewType == SidekickViewType.Overlay);
+            return false;
         }
 
-        public async Task Open(string url)
+        /// <inheritdoc/>
+        public Task Open(string url)
         {
             if (string.IsNullOrEmpty(url))
             {
-                return;
+                return Task.CompletedTask;
             }
 
-            var window = await ElectronNET.API.Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
+            NextUrl = url;
+
+            Application.Current.Dispatcher.Invoke(() =>
             {
-                AcceptFirstMouse = true,
-                Center = true,
-                Frame = false,
-                Fullscreenable = false,
-                HasShadow = false,
-                Show = false,
-                Transparent = true,
-                DarkTheme = true,
-                ThickFrame = false,
-                TitleBarStyle = TitleBarStyle.hidden,
-                UseContentSize = false,
-                EnableLargerThanScreen = false,
-                WebPreferences = new WebPreferences()
-                {
-                    NodeIntegration = false,
-                }
-            }, $"http://localhost:{BridgeSettings.WebPort}{url}");
-
-            window.WebContents.OnCrashed += (killed) =>
-            {
-                logger.LogWarning("The view has crashed. Attempting to close the window.");
-                window.Close();
-            };
-
-            window.OnUnresponsive += () =>
-            {
-                logger.LogWarning("The view has become unresponsive. Attempting to close the window.");
-                window.Close();
-            };
-
-            window.OnReadyToShow += () => window.Show();
-            // Make sure the title is always Sidekick. For keybind management we are watching for this value.
-            window.SetTitle("Sidekick");
-            window.SetVisibleOnAllWorkspaces(true);
-
-            if (FirstView)
-            {
-                FirstView = false;
-                await window.WebContents.Session.ClearCacheAsync();
-            }
-
-#if DEBUG
-            window.WebContents.OpenDevTools();
-#endif
-
-            Browsers.Add(window);
-        }
-
-        private ulong resizeBounce = 0;
-
-        private void Browser_OnResize(BrowserWindow browser, SidekickView view)
-        {
-            var currentBounce = ++resizeBounce;
-            Task.Run(async () =>
-            {
-                try
-                {
-                    await Task.Delay(500);
-                    if (currentBounce == resizeBounce)
-                    {
-                        if (!await browser.IsMaximizedAsync())
-                        {
-                            var bounds = await browser.GetBoundsAsync();
-                            await cacheProvider.Set($"view_preference_{view.Key}", new ViewPreferences()
-                            {
-                                Width = bounds.Width,
-                                Height = bounds.Height
-                            });
-                        }
-                    }
-                }
-                catch (Exception) { }
+                var window = new MainWindow();
+                Windows.Add(window);
+                window.Show();
             });
+
+            return Task.CompletedTask;
         }
     }
-    */
 }

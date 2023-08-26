@@ -17,16 +17,17 @@ public partial class MainWindow : Window
 
         Resources.Add("services", Scope.ServiceProvider);
         InitializeComponent();
-
-        WebView.Loaded += WebView_Loaded;
     }
 
-    private void WebView_Loaded(object sender, RoutedEventArgs e)
+    public string CurrentWebPath
     {
-        WebView.WebView.NavigationCompleted += WebView_NavigationCompleted;
+        get
+        {
+            return WebView.WebView.Source.ToString();
+        }
     }
 
-    private void WebView_NavigationCompleted(object? sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs e)
+    public void Ready()
     {
         // This avoids the white flicker which is caused by the page content not being loaded initially. We show the webview control only when the content is ready.
         WebView.Visibility = Visibility.Visible;

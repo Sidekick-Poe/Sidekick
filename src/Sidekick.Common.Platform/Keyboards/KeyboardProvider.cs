@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.DependencyInjection;
@@ -164,7 +163,7 @@ namespace Sidekick.Common.Platform.Keyboards
         public Task Initialize()
         {
             // We can't initialize twice
-            if (HasInitialized || Debugger.IsAttached)
+            if (HasInitialized)
             {
                 return Task.CompletedTask;
             }

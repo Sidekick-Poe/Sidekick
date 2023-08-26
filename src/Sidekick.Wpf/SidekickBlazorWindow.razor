@@ -1,3 +1,4 @@
+@using Sidekick.Wpf.Services;
 
 <Sidekick.Common.Blazor.Main />
 
@@ -5,15 +6,16 @@
     [Inject]
     private NavigationManager NavigationManager { get; set; } = null!;
 
+    [Inject]
+    private WpfViewLocator ViewLocator { get; set; } = null!;
+
     protected override Task OnInitializedAsync()
     {
-        var path = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
-        if (string.IsNullOrEmpty(path) || path == "/")
+        if (!string.IsNullOrEmpty(ViewLocator.NextUrl))
         {
-            path = "/initialize";
+            NavigationManager.NavigateTo(ViewLocator.NextUrl, true);
+            ViewLocator.NextUrl = null;
         }
-
-        NavigationManager.NavigateTo(path);
 
         return base.OnInitializedAsync();
     }

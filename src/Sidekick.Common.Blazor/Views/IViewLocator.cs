@@ -8,11 +8,6 @@ namespace Sidekick.Common.Blazor.Views
     public interface IViewLocator
     {
         /// <summary>
-        /// Gets a value indicating whether the application is currently running inside Electron.
-        /// </summary>
-        bool IsElectron { get; }
-
-        /// <summary>
         /// Opens the specified view
         /// </summary>
         /// <param name="url">The url of the page to load and show</param>
