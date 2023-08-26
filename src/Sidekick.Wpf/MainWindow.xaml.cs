@@ -1,6 +1,8 @@
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
+using Sidekick.Common.Blazor.Views;
 using Sidekick.Wpf.Services;
 
 namespace Sidekick.Wpf;
@@ -23,13 +25,9 @@ public partial class MainWindow : Window
         this.viewLocator = viewLocator;
     }
 
-    public string CurrentWebPath
-    {
-        get
-        {
-            return WebView.WebView.Source.ToString();
-        }
-    }
+    internal SidekickView SidekickView { get; set; }
+
+    internal string CurrentWebPath => WebView.WebView.Source.ToString();
 
     public void Ready()
     {
@@ -40,6 +38,7 @@ public partial class MainWindow : Window
         Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
 
         InvalidateVisual();
+        Focus();
     }
 
     protected override void OnClosed(EventArgs e)
@@ -47,5 +46,54 @@ public partial class MainWindow : Window
         base.OnClosed(e);
         Scope.Dispose();
         viewLocator.Windows.Remove(this);
+    }
+
+    protected bool IsClosing = false;
+
+    protected override async void OnClosing(CancelEventArgs e)
+    {
+        base.OnClosing(e);
+
+        if (IsClosing || !IsVisible)
+        {
+            return;
+        }
+
+        if (ResizeMode != ResizeMode.CanResize && ResizeMode != ResizeMode.CanResizeWithGrip)
+        {
+            return;
+        }
+
+        if (WindowState == WindowState.Maximized)
+        {
+            return;
+        }
+
+        try
+        {
+            await viewLocator.cacheProvider.Set($"view_preference_{SidekickView.Key}", new ViewPreferences()
+            {
+                Width = (int)ActualWidth,
+                Height = (int)ActualHeight,
+            });
+        }
+        catch (Exception) { }
+
+        IsClosing = true;
+    }
+
+    protected override void OnDeactivated(EventArgs e)
+    {
+        base.OnDeactivated(e);
+
+        if (SidekickView.CloseOnBlur)
+        {
+            viewLocator.Close(SidekickView);
+        }
+    }
+
+    private void TopBorder_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        DragMove();
     }
 }

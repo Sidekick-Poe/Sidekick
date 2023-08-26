@@ -6,19 +6,36 @@
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
         xmlns:local="clr-namespace:Sidekick.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow"
-        Height="450"
-        Width="1400"
+        Title="Sidekick"
+        Height="0"
+        Width="0"
         WindowStyle="None"
         ResizeMode="CanResize"
         AllowsTransparency="True"
         Background="Transparent"
         WindowStartupLocation="CenterScreen">
-    <Grid>
-        <blazor:BlazorWebView Name="WebView" HostPage="wwwroot\index.html" Services="{DynamicResource services}" Visibility="Hidden">
+
+    <!-- WindowChrome used for resizing the window. -->
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="10" />
+    </WindowChrome.WindowChrome>
+
+    <Grid Margin="10">
+        <blazor:BlazorWebView Name="WebView" HostPage="wwwroot\index.html" Services="{DynamicResource services}" Visibility="Hidden" Panel.ZIndex="1">
             <blazor:BlazorWebView.RootComponents>
-                <blazor:RootComponent Selector="#app" ComponentType="{x:Type local:SidekickBlazorWindow}" />
+                <blazor:RootComponent Selector="#app" ComponentType="{x:Type local:SidekickBlazorWrapper}" />
             </blazor:BlazorWebView.RootComponents>
         </blazor:BlazorWebView>
+
+        <!-- Border used for dragging the window. -->
+        <Border Name="TopBorder"
+                Width="9000"
+                Height="60"
+                VerticalAlignment="Top"
+                Margin="0,0,0,0"
+                Background="White"
+                Opacity="0"
+                Panel.ZIndex="2"
+                MouseLeftButtonDown="TopBorder_MouseLeftButtonDown"></Border>
     </Grid>
 </Window>

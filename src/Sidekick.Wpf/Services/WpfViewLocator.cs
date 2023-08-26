@@ -36,15 +36,16 @@ namespace Sidekick.Wpf.Services
                 return;
             }
 
+            window.SidekickView = view;
             var preferences = await cacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
 
             Application.Current.Dispatcher.Invoke(() =>
             {
                 window.Title = view.Title;
-                window.MinHeight = view.ViewHeight;
-                window.MinWidth = view.ViewWidth;
-                window.Height = view.ViewHeight;
-                window.Width = view.ViewWidth;
+                window.MinHeight = view.ViewHeight + 20;
+                window.MinWidth = view.ViewWidth + 20;
+                window.Height = view.ViewHeight + 20;
+                window.Width = view.ViewWidth + 20;
 
                 if (view.ViewType != SidekickViewType.Modal && preferences != null)
                 {
@@ -54,48 +55,24 @@ namespace Sidekick.Wpf.Services
 
                 if (view.ViewType == SidekickViewType.Overlay)
                 {
-                    //window.SetMaximizable(false);
-                    //window.SetMinimizable(false);
-                    //window.SetSkipTaskbar(true);
-                    //window.SetResizable(true);
-                    //window.SetAlwaysOnTop(true, OnTopLevel.screenSaver);
-                    //window.ShowInactive();
-                    //
-                    //if (view.CloseOnBlur)
-                    //{
-                    //    window.Focus();
-                    //}
+                    window.Topmost = true;
+                    window.ShowInTaskbar = false;
+                    window.ResizeMode = ResizeMode.CanResize;
                 }
                 else if (view.ViewType == SidekickViewType.Modal)
                 {
-                    //window.SetMaximizable(false);
-                    //window.SetMinimizable(false);
-                    //window.SetSkipTaskbar(false);
-                    //window.SetResizable(false);
-                    //window.SetAlwaysOnTop(false);
-                    //window.Show();
+                    window.Topmost = true;
+                    window.ShowInTaskbar = true;
+                    window.ResizeMode = ResizeMode.NoResize;
                 }
                 else
                 {
-                    //window.SetMaximizable(true);
-                    //window.SetMinimizable(true);
-                    //window.SetSkipTaskbar(false);
-                    //window.SetResizable(true);
-                    //window.SetAlwaysOnTop(false);
-                    //window.Show();
+                    window.Topmost = false;
+                    window.ShowInTaskbar = true;
+                    window.ResizeMode = ResizeMode.CanResize;
                 }
 
                 WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
-
-                if (view.ViewType != SidekickViewType.Modal)
-                {
-                    //window.OnResize += () => Browser_OnResize(window, view);
-                }
-
-                if (view.CloseOnBlur)
-                {
-                    //window.OnBlur += () => Task.Run(() => Close(view));
-                }
 
                 window.Ready();
             });
@@ -185,18 +162,14 @@ namespace Sidekick.Wpf.Services
         /// <inheritdoc/>
         public async Task CloseAllOverlays()
         {
-            // foreach (var overlay in Views.Where(x => x.ViewType == SidekickViewType.Overlay))
-            // {
-            //     await Close(overlay);
-            // }
+            foreach (var overlay in Windows.Where(x => x.SidekickView.ViewType == SidekickViewType.Overlay))
+            {
+                await Close(overlay.SidekickView);
+            }
         }
 
         /// <inheritdoc/>
-        public bool IsOverlayOpened()
-        {
-            // return Views.Any(x => x.ViewType == SidekickViewType.Overlay);
-            return false;
-        }
+        public bool IsOverlayOpened() => Windows.Any(x => x.SidekickView.ViewType == SidekickViewType.Overlay);
 
         /// <inheritdoc/>
         public Task Open(string url)
