@@ -10,10 +10,12 @@
         Height="450"
         Width="1400"
         WindowStyle="None"
-        ResizeMode="CanResizeWithGrip"
-        AllowsTransparency="True">
+        ResizeMode="CanResize"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen">
     <Grid>
-        <blazor:BlazorWebView HostPage="wwwroot\index.html" Services="{DynamicResource services}">
+        <blazor:BlazorWebView Name="WebView" HostPage="wwwroot\index.html" Services="{DynamicResource services}" Visibility="Hidden">
             <blazor:BlazorWebView.RootComponents>
                 <blazor:RootComponent Selector="#app" ComponentType="{x:Type local:SidekickBlazorWindow}" />
             </blazor:BlazorWebView.RootComponents>
