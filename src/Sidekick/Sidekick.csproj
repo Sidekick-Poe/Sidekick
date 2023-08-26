@@ -4,21 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <AssemblyName>$(MSBuildProjectName).Web</AssemblyName>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Assets\**\*" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\**\*">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="ElectronNET.API" Version="23.6.1" />
-  </ItemGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />

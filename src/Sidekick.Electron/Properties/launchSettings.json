@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Sidekick.Electron": {
+      "commandName": "Executable",
+      "executablePath": "electronize",
+      "commandLineArgs": "start /PublishSingleFile false",
+      "workingDirectory": ".",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
