@@ -25,7 +25,7 @@ namespace Sidekick.Mock
 
         public Task Close(SidekickView view)
         {
-            view.NavigationManager.NavigateTo("/");
+            view.NavigationManager.NavigateTo("/home");
             return Task.CompletedTask;
         }
 

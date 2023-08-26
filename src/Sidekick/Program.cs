@@ -108,7 +108,7 @@ app.MapFallbackToPage("/_Host");
 if (HybridSupport.IsElectronActive)
 {
     var viewLocator = app.Services.GetRequiredService<IViewLocator>();
-    await viewLocator.Open("/initialize");
+    await viewLocator.Open("/");
 
     // We need to trick Electron into thinking that our app is ready to be opened.
     // This makes Electron hide the splashscreen. For us, it means we are ready to initialize and price check :)

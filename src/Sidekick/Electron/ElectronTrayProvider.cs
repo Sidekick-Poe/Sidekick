@@ -10,7 +10,8 @@ namespace Sidekick.Electron
         private readonly IWebHostEnvironment webHostEnvironment;
         private readonly IViewLocator viewLocator;
 
-        public ElectronTrayProvider(IWebHostEnvironment webHostEnvironment,
+        public ElectronTrayProvider(
+            IWebHostEnvironment webHostEnvironment,
             IViewLocator viewLocator)
         {
             this.webHostEnvironment = webHostEnvironment;
@@ -30,7 +31,13 @@ namespace Sidekick.Electron
             {
                 Label = x.Label,
                 Enabled = !x.Disabled,
-                Click = () => x.OnClick(),
+                Click = () =>
+                {
+                    if (x.OnClick != null)
+                    {
+                        x.OnClick();
+                    }
+                },
             }).ToArray());
             ElectronNET.API.Electron.Tray.OnDoubleClick += (_, _) => viewLocator.Open("/settings");
             ElectronNET.API.Electron.Tray.SetToolTip("Sidekick");
