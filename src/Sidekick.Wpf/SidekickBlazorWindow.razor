@@ -1,0 +1,20 @@
+
+<Sidekick.Common.Blazor.Main />
+
+@code {
+    [Inject]
+    private NavigationManager NavigationManager { get; set; } = null!;
+
+    protected override Task OnInitializedAsync()
+    {
+        var path = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        if (string.IsNullOrEmpty(path) || path == "/")
+        {
+            path = "/initialize";
+        }
+
+        NavigationManager.NavigateTo(path);
+
+        return base.OnInitializedAsync();
+    }
+}

@@ -8,11 +8,14 @@
         mc:Ignorable="d"
         Title="MainWindow"
         Height="450"
-        Width="1400">
+        Width="1400"
+        WindowStyle="None"
+        ResizeMode="CanResizeWithGrip"
+        AllowsTransparency="True">
     <Grid>
         <blazor:BlazorWebView HostPage="wwwroot\index.html" Services="{DynamicResource services}">
             <blazor:BlazorWebView.RootComponents>
-                <blazor:RootComponent Selector="#app" ComponentType="{x:Type local:SidekickBlazorMain}" />
+                <blazor:RootComponent Selector="#app" ComponentType="{x:Type local:SidekickBlazorWindow}" />
             </blazor:BlazorWebView.RootComponents>
         </blazor:BlazorWebView>
     </Grid>
