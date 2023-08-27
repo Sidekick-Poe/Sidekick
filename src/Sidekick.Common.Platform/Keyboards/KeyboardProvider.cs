@@ -221,9 +221,12 @@ namespace Sidekick.Common.Platform.Keyboards
             OnKeyDown?.Invoke(keybind);
 
             // Validate the event and keybinds
-            if (!processProvider.IsPathOfExileInFocus
-             || !KeybindHandlers.TryGetValue(keybind, out var keybindHandler)
-             || !keybindHandler.IsValid())
+            if (!processProvider.IsPathOfExileInFocus && !processProvider.IsSidekickInFocus)
+            {
+                return;
+            }
+
+            if (!KeybindHandlers.TryGetValue(keybind, out var keybindHandler) || !keybindHandler.IsValid())
             {
                 return;
             }

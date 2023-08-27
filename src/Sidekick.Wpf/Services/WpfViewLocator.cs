@@ -40,7 +40,7 @@ namespace Sidekick.Wpf.Services
 
             Application.Current.Dispatcher.Invoke(() =>
             {
-                window.Title = view.Title;
+                window.Title = $"Sidekick {view.Title}";
                 window.MinHeight = view.ViewHeight + 20;
                 window.MinWidth = view.ViewWidth + 20;
                 window.Height = view.ViewHeight + 20;
@@ -155,14 +155,19 @@ namespace Sidekick.Wpf.Services
         /// <inheritdoc/>
         public async Task CloseAllOverlays()
         {
-            foreach (var overlay in Windows.Where(x => x.SidekickView.ViewType == SidekickViewType.Overlay))
+            foreach (var overlay in Windows.Where(x => x.SidekickView?.ViewType == SidekickViewType.Overlay))
             {
+                if (overlay.SidekickView == null)
+                {
+                    continue;
+                }
+
                 await Close(overlay.SidekickView);
             }
         }
 
         /// <inheritdoc/>
-        public bool IsOverlayOpened() => Windows.Any(x => x.SidekickView.ViewType == SidekickViewType.Overlay);
+        public bool IsOverlayOpened() => Windows.Any(x => x.SidekickView?.ViewType == SidekickViewType.Overlay);
 
         /// <inheritdoc/>
         public Task Open(string url)
@@ -186,8 +191,15 @@ namespace Sidekick.Wpf.Services
 
         private bool TryGetWindow(SidekickView view, out MainWindow window)
         {
-            var viewUrl = WebUtility.UrlDecode(view.Url);
-            window = Windows.FirstOrDefault(x => x.CurrentWebPath == viewUrl)!;
+            MainWindow? windowResult = null;
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var viewUrl = WebUtility.UrlDecode(view.Url);
+                windowResult = Windows.FirstOrDefault(x => x.CurrentWebPath == viewUrl)!;
+            });
+
+            window = windowResult!;
             if (window == null)
             {
                 logger.LogError("Unable to find view {viewUrl}", view.Url);

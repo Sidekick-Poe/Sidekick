@@ -17,6 +17,7 @@ namespace Sidekick.Modules.General
         public static IServiceCollection AddSidekickGeneral(this IServiceCollection services)
         {
             services.AddSidekickKeybind<CloseOverlayKeybindHandler>();
+            services.AddSidekickKeybind<CloseOverlayWithEscHandler>();
             services.AddSidekickKeybind<FindItemKeybindHandler>();
             services.AddSidekickKeybind<OpenWikiPageKeybindHandler>();
 
