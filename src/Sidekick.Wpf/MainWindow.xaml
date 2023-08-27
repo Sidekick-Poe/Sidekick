@@ -20,7 +20,7 @@
         <WindowChrome ResizeBorderThickness="10" />
     </WindowChrome.WindowChrome>
 
-    <Grid Margin="10">
+    <Grid Margin="5" Name="Grid">
         <local:OverlayControl x:Name="OverlayContainer" Height="30" VerticalAlignment="Top" HorizontalAlignment="Stretch">
             <Grid>
                 <!-- Border used for dragging the window. -->
