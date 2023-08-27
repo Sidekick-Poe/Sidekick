@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Net;
 using System.Windows;
 using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,9 +26,9 @@ public partial class MainWindow : Window
         this.viewLocator = viewLocator;
     }
 
-    internal SidekickView SidekickView { get; set; }
+    internal SidekickView? SidekickView { get; set; }
 
-    internal string CurrentWebPath => WebView.WebView.Source.ToString();
+    internal string CurrentWebPath => WebUtility.UrlDecode(WebView.WebView.Source.ToString());
 
     public void Ready()
     {
@@ -37,7 +38,6 @@ public partial class MainWindow : Window
         // The window background is transparent to avoid any flickering when opening a window. When the webview content is ready we need to set a background color. Otherwise mouse clicks will go through the window.
         Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
 
-        InvalidateVisual();
         Focus();
     }
 
@@ -46,6 +46,7 @@ public partial class MainWindow : Window
         base.OnClosed(e);
         Scope.Dispose();
         viewLocator.Windows.Remove(this);
+        OverlayContainer.Dispose();
     }
 
     protected bool IsClosing = false;
@@ -54,24 +55,17 @@ public partial class MainWindow : Window
     {
         base.OnClosing(e);
 
-        if (IsClosing || !IsVisible)
-        {
-            return;
-        }
-
-        if (ResizeMode != ResizeMode.CanResize && ResizeMode != ResizeMode.CanResizeWithGrip)
-        {
-            return;
-        }
-
-        if (WindowState == WindowState.Maximized)
+        if (IsClosing
+         || !IsVisible
+         || ResizeMode != ResizeMode.CanResize && ResizeMode != ResizeMode.CanResizeWithGrip
+         || WindowState == WindowState.Maximized)
         {
             return;
         }
 
         try
         {
-            await viewLocator.cacheProvider.Set($"view_preference_{SidekickView.Key}", new ViewPreferences()
+            await viewLocator.cacheProvider.Set($"view_preference_{SidekickView?.Key}", new ViewPreferences()
             {
                 Width = (int)ActualWidth,
                 Height = (int)ActualHeight,
@@ -86,7 +80,7 @@ public partial class MainWindow : Window
     {
         base.OnDeactivated(e);
 
-        if (SidekickView.CloseOnBlur)
+        if (SidekickView != null && SidekickView.CloseOnBlur)
         {
             viewLocator.Close(SidekickView);
         }

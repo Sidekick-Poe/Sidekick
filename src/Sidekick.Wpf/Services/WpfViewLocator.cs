@@ -1,3 +1,4 @@
+using System.Net;
 using System.Windows;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Blazor.Views;
@@ -29,10 +30,8 @@ namespace Sidekick.Wpf.Services
         /// <inheritdoc/>
         public async Task Initialize(SidekickView view)
         {
-            var window = Windows.FirstOrDefault(x => x.CurrentWebPath == view.Url);
-            if (window == null)
+            if (!TryGetWindow(view, out var window))
             {
-                logger.LogError("Unable to find view {viewUrl}", view.Url);
                 return;
             }
 
@@ -81,10 +80,8 @@ namespace Sidekick.Wpf.Services
         /// <inheritdoc/>
         public async Task Maximize(SidekickView view)
         {
-            var window = Windows.FirstOrDefault(x => x.CurrentWebPath == view.Url);
-            if (window == null)
+            if (!TryGetWindow(view, out var window))
             {
-                logger.LogError("Unable to find view {viewUrl}", view.Url);
                 return;
             }
 
@@ -119,10 +116,8 @@ namespace Sidekick.Wpf.Services
         /// <inheritdoc/>
         public Task Minimize(SidekickView view)
         {
-            var window = Windows.FirstOrDefault(x => x.CurrentWebPath == view.Url);
-            if (window == null)
+            if (!TryGetWindow(view, out var window))
             {
-                logger.LogError("Unable to find view {viewUrl}", view.Url);
                 return Task.CompletedTask;
             }
 
@@ -144,10 +139,8 @@ namespace Sidekick.Wpf.Services
         /// <inheritdoc/>
         public Task Close(SidekickView view)
         {
-            var window = Windows.FirstOrDefault(x => x.CurrentWebPath == view.Url);
-            if (window == null)
+            if (!TryGetWindow(view, out var window))
             {
-                logger.LogError("Unable to find view {viewUrl}", view.Url);
                 return Task.CompletedTask;
             }
 
@@ -189,6 +182,19 @@ namespace Sidekick.Wpf.Services
             });
 
             return Task.CompletedTask;
+        }
+
+        private bool TryGetWindow(SidekickView view, out MainWindow window)
+        {
+            var viewUrl = WebUtility.UrlDecode(view.Url);
+            window = Windows.FirstOrDefault(x => x.CurrentWebPath == viewUrl)!;
+            if (window == null)
+            {
+                logger.LogError("Unable to find view {viewUrl}", view.Url);
+                return false;
+            }
+
+            return true;
         }
     }
 }

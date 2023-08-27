@@ -21,21 +21,28 @@
     </WindowChrome.WindowChrome>
 
     <Grid Margin="10">
-        <blazor:BlazorWebView Name="WebView" HostPage="wwwroot\index.html" Services="{DynamicResource services}" Visibility="Hidden" Panel.ZIndex="1">
+        <local:OverlayControl x:Name="OverlayContainer" Height="30" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+            <Grid>
+                <!-- Border used for dragging the window. -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20*" />
+                        <ColumnDefinition Width="60*" />
+                        <ColumnDefinition Width="20*" />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="1"
+                            Name="TopBorder"
+                            Background="Black"
+                            Opacity="0.01"
+                            MouseLeftButtonDown="TopBorder_MouseLeftButtonDown"></Border>
+                </Grid>
+            </Grid>
+        </local:OverlayControl>
+
+        <blazor:BlazorWebView Name="WebView" HostPage="wwwroot\index.html" Services="{DynamicResource services}" Visibility="Hidden">
             <blazor:BlazorWebView.RootComponents>
                 <blazor:RootComponent Selector="#app" ComponentType="{x:Type local:SidekickBlazorWrapper}" />
             </blazor:BlazorWebView.RootComponents>
         </blazor:BlazorWebView>
-
-        <!-- Border used for dragging the window. -->
-        <Border Name="TopBorder"
-                Width="9000"
-                Height="60"
-                VerticalAlignment="Top"
-                Margin="0,0,0,0"
-                Background="White"
-                Opacity="0"
-                Panel.ZIndex="2"
-                MouseLeftButtonDown="TopBorder_MouseLeftButtonDown"></Border>
     </Grid>
 </Window>
