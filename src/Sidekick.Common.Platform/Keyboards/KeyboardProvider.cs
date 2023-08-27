@@ -220,14 +220,16 @@ namespace Sidekick.Common.Platform.Keyboards
             var keybind = str.ToString();
             OnKeyDown?.Invoke(keybind);
 
-            if (processProvider.IsPathOfExileInFocus && KeybindHandlers.TryGetValue(keybind, out var keybindHandler))
+            // Validate the event and keybinds
+            if (!processProvider.IsPathOfExileInFocus
+             || !KeybindHandlers.TryGetValue(keybind, out var keybindHandler)
+             || !keybindHandler.IsValid())
             {
-                if (keybindHandler.IsValid())
-                {
-                    args.SuppressEvent = true;
-                    Task.Run(() => keybindHandler.Execute(keybind));
-                }
+                return;
             }
+
+            args.SuppressEvent = true;
+            Task.Run(() => keybindHandler.Execute(keybind));
         }
 
         public void PressKey(params string[] keyStrokes)
