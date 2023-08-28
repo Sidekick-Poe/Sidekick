@@ -9,8 +9,6 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    env:
-      ASPNETCORE_ENVIRONMENT: Production
     steps:
     - name: Git - Checkout
       uses: actions/checkout@v2

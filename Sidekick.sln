@@ -69,8 +69,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Electron", "src\Si
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Web", "src\Sidekick.Web\Sidekick.Web.csproj", "{9668241B-2FDC-46A6-9440-C4AE4B9AE39B}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Sidekick.Wpf.Setup", "src\Sidekick.Wpf.Setup\Sidekick.Wpf.Setup.vdproj", "{FA747E14-F9CD-4367-A8A9-CD7B7C9CCC1A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,8 +163,6 @@ Global
 		{9668241B-2FDC-46A6-9440-C4AE4B9AE39B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9668241B-2FDC-46A6-9440-C4AE4B9AE39B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9668241B-2FDC-46A6-9440-C4AE4B9AE39B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FA747E14-F9CD-4367-A8A9-CD7B7C9CCC1A}.Debug|Any CPU.ActiveCfg = Debug
-		{FA747E14-F9CD-4367-A8A9-CD7B7C9CCC1A}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

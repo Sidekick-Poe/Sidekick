@@ -23,7 +23,6 @@
         if (!string.IsNullOrEmpty(ViewLocator.NextUrl))
         {
             await JSRuntime.InvokeVoidAsync("eval", $"window.location = '{ViewLocator.NextUrl}'");
-            // NavigationManager.NavigateTo(ViewLocator.NextUrl, true);
             ViewLocator.NextUrl = null;
         }
         else

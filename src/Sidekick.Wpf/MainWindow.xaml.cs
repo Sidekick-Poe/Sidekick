@@ -49,7 +49,6 @@ public partial class MainWindow : Window
         base.OnClosed(e);
         Scope.Dispose();
         viewLocator.Windows.Remove(this);
-        OverlayContainer.Dispose();
     }
 
     protected bool IsClosing = false;
@@ -57,6 +56,7 @@ public partial class MainWindow : Window
     protected override async void OnClosing(CancelEventArgs e)
     {
         base.OnClosing(e);
+        OverlayContainer.Dispose();
 
         if (IsClosing
          || !IsVisible
