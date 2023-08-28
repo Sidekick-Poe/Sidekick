@@ -139,7 +139,7 @@ namespace Sidekick.Common.Platform.Keyboards
         private TaskPoolGlobalHook? Hook { get; set; }
         private Task? HookTask { get; set; }
         private EventSimulator? Simulator { get; set; }
-        
+
         public KeyboardProvider(
             ILogger<KeyboardProvider> logger,
             IOptions<SidekickConfiguration> configuration,
@@ -233,6 +233,7 @@ namespace Sidekick.Common.Platform.Keyboards
             Task.Run(async () =>
             {
                 await keybindHandler.Execute(keybind);
+                ReleaseModifierKeys();
                 logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
             });
         }
@@ -275,6 +276,8 @@ namespace Sidekick.Common.Platform.Keyboards
                     Simulator.SimulateKeyRelease(modifierKey);
                 }
             }
+
+            ReleaseModifierKeys();
         }
 
         private void ReleaseModifierKeys()

@@ -3,10 +3,12 @@
     "Sidekick.Web": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "https://localhost:8081/",
+      "applicationUrl": "https://localhost:8081;http://localhost:8080",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:60984;http://localhost:60985"
+      "dotnetRunMessages": true
     }
   }
 }
