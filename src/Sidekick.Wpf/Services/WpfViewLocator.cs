@@ -43,13 +43,16 @@ namespace Sidekick.Wpf.Services
                 window.Title = $"Sidekick {view.Title}";
                 window.MinHeight = view.ViewHeight + 20;
                 window.MinWidth = view.ViewWidth + 20;
-                window.Height = view.ViewHeight + 20;
-                window.Width = view.ViewWidth + 20;
 
                 if (view.ViewType != SidekickViewType.Modal && preferences != null)
                 {
                     window.Height = preferences.Height;
                     window.Width = preferences.Width;
+                }
+                else
+                {
+                    window.Height = view.ViewHeight + 20;
+                    window.Width = view.ViewWidth + 20;
                 }
 
                 if (view.ViewType == SidekickViewType.Overlay)
