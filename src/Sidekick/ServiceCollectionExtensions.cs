@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
