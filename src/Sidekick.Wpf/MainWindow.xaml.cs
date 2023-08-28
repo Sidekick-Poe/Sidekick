@@ -41,7 +41,7 @@ public partial class MainWindow : Window
         Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
         Opacity = 0.01;
 
-        Show();
+        Activate();
     }
 
     protected override void OnClosed(EventArgs e)
@@ -113,7 +113,13 @@ public partial class MainWindow : Window
     protected override void OnSourceInitialized(EventArgs e)
     {
         base.OnSourceInitialized(e);
-        ((HwndSource)PresentationSource.FromVisual(this)).AddHook(HookProc);
+        var hwndSource = PresentationSource.FromVisual(this) as HwndSource;
+        if (hwndSource == null)
+        {
+            return;
+        }
+
+        hwndSource.AddHook(HookProc);
     }
 
     public static IntPtr HookProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)

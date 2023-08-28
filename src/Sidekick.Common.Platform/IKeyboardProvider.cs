@@ -16,6 +16,6 @@ namespace Sidekick.Common.Platform
         /// Command to send keystrokes to the system
         /// </summary>
         /// <param name="keys">The keys to send</param>
-        void PressKey(params string[] keys);
+        Task PressKey(params string[] keys);
     }
 }

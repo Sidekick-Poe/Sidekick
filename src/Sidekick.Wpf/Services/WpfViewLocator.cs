@@ -155,7 +155,7 @@ namespace Sidekick.Wpf.Services
         /// <inheritdoc/>
         public async Task CloseAllOverlays()
         {
-            foreach (var overlay in Windows.Where(x => x.SidekickView?.ViewType == SidekickViewType.Overlay))
+            foreach (var overlay in Windows.Where(x => x.SidekickView?.ViewType == SidekickViewType.Overlay).ToList())
             {
                 if (overlay.SidekickView == null)
                 {

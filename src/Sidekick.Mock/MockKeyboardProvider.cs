@@ -16,8 +16,9 @@ namespace Sidekick.Mock
             return Task.CompletedTask;
         }
 
-        public void PressKey(params string[] keys)
+        public Task PressKey(params string[] keys)
         {
+            return Task.CompletedTask;
         }
     }
 }

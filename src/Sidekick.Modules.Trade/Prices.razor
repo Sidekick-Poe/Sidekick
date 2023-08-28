@@ -7,7 +7,7 @@
 }
 else
 {
-    <FiltersComponent Item="Item" ItemName="@ItemName" ModifierFilters="ModifierFilters" PropertyFilters="PropertyFilters" OnSearch="UpdateQuery" />
+    <FiltersComponent Item="Item" ItemName="@ItemName.DecodeBase64Url()" ModifierFilters="ModifierFilters" PropertyFilters="PropertyFilters" OnSearch="UpdateQuery" />
 
     <div class="ml-0">
         <PriceOptionsComponent Item="Item"

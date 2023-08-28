@@ -41,7 +41,7 @@ namespace Sidekick.Modules.Trade.Keybinds
             var advancedItemText = await clipboardProvider.CopyAdvanced();
             var originalItem = itemParser.ParseOriginalItem(advancedItemText);
 
-            await viewLocator.Open($"/trade/{originalItem}/{itemText.EncodeBase64Url()}");
+            await viewLocator.Open($"/trade/{originalItem.ToString().EncodeBase64Url()}/{itemText.EncodeBase64Url()}");
         }
     }
 }

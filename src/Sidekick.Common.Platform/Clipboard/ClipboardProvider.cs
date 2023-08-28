@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Common.Platform.Clipboard
@@ -7,13 +8,16 @@ namespace Sidekick.Common.Platform.Clipboard
     {
         private readonly ISettings settings;
         private readonly IKeyboardProvider keyboard;
+        private readonly ILogger<ClipboardProvider> logger;
 
         public ClipboardProvider(
             ISettings settings,
-            IKeyboardProvider keyboard)
+            IKeyboardProvider keyboard,
+            ILogger<ClipboardProvider> logger)
         {
             this.settings = settings;
             this.keyboard = keyboard;
+            this.logger = logger;
         }
 
         /// <inheritdoc/>
@@ -34,22 +38,26 @@ namespace Sidekick.Common.Platform.Clipboard
             var clipboardText = string.Empty;
             if (settings.RetainClipboard)
             {
-                clipboardText = await TextCopy.ClipboardService.GetTextAsync();
+                clipboardText = await GetText();
+                logger.LogDebug("[Clipboard] Retained clipboard.");
             }
 
             await SetText(string.Empty);
 
-            keyboard.PressKey(keyStroke);
+            await keyboard.PressKey(keyStroke);
+            logger.LogDebug($"[Clipboard] Sent keystrokes {keyStroke}");
 
             await Task.Delay(100);
 
             // Retrieve clipboard.
-            var result = await TextCopy.ClipboardService.GetTextAsync();
+            var result = await GetText();
+            logger.LogDebug("[Clipboard] Fetched clipboard value.");
 
             if (settings.RetainClipboard)
             {
                 await Task.Delay(100);
                 await SetText(clipboardText);
+                logger.LogDebug("[Clipboard] Reset clipboard to retained value.");
             }
 
             return result;
