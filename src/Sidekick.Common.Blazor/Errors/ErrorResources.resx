@@ -120,6 +120,9 @@
   <data name="AdditionalInformation" xml:space="preserve">
     <value>Here is additional information about the error:</value>
   </data>
+  <data name="AlreadyRunning" xml:space="preserve">
+    <value>The application is already running. Only one instance can run at once.</value>
+  </data>
   <data name="ApiError" xml:space="preserve">
     <value>An error occured while trying to get the results from the official trade API. The official trade website may be down. Please try again later or open a ticket on github.</value>
   </data>
@@ -140,8 +143,5 @@
   </data>
   <data name="Title" xml:space="preserve">
     <value>Error</value>
-  </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>An unknown error occured. The logs may contain additional information.</value>
   </data>
 </root>

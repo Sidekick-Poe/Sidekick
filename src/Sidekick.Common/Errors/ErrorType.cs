@@ -29,5 +29,10 @@ namespace Sidekick.Common.Errors
         /// Unknown error occured, look in the logs for more information.
         /// </summary>
         Unknown,
+
+        /// <summary>
+        /// Indicates the application is already running.
+        /// </summary>
+        AlreadyRunning,
     }
 }

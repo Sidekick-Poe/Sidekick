@@ -17,9 +17,12 @@ namespace Sidekick.Wpf
     /// </summary>
     public partial class App : Application
     {
+        private const string APPLICATION_PROCESS_GUID = "93c46709-7db2-4334-8aa3-28d473e66041";
+
         public static ServiceProvider ServiceProvider { get; set; } = null!;
 
         private readonly ILogger<App> logger;
+        private Mutex? Mutex { get; set; }
 
         public App()
         {
@@ -39,6 +42,13 @@ namespace Sidekick.Wpf
             AttachErrorHandlers();
 
             var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
+
+            if (!EnsureSingleInstance())
+            {
+                _ = viewLocator.Open(ErrorType.AlreadyRunning.ToUrl());
+                return;
+            }
+
             _ = viewLocator.Open("/");
         }
 
@@ -61,8 +71,29 @@ namespace Sidekick.Wpf
 
         protected override void OnExit(ExitEventArgs e)
         {
+            Mutex?.Close();
             ServiceProvider?.Dispose();
             base.OnExit(e);
+        }
+
+        private bool EnsureSingleInstance()
+        {
+            Mutex = new Mutex(true, APPLICATION_PROCESS_GUID, out var instanceResult);
+            if (!instanceResult)
+            {
+                Task.Run(async () =>
+                {
+                    await Task.Delay(5000);
+
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        Current.Shutdown();
+                    });
+                });
+                return false;
+            }
+
+            return true;
         }
 
         private void AttachErrorHandlers()
