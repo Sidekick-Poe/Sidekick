@@ -1,5 +1,5 @@
 
-<ErrorBoundary>
+<SidekickErrorBoundary @ref="Boundary">
     <ChildContent>
         <CascadingValue Value="this" IsFixed="true">
             <CascadingValue Value="View">
@@ -23,7 +23,7 @@
             </div>
         </div>
     </ErrorContent>
-</ErrorBoundary>
+</SidekickErrorBoundary>
 
 @code {
     /// <summary>
@@ -41,10 +41,25 @@
     [Inject]
     private NavigationManager NavigationManager { get; set; }
 
+    [Inject]
+    private IJSRuntime JSRuntime { get; set; }
+
     /// <summary>
     /// Gets or sets the current view.
     /// </summary>
     public SidekickView View { get; set; }
+
+    private SidekickErrorBoundary Boundary { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (Boundary.CurrentException != null)
+        {
+            await JSRuntime.InvokeVoidAsync("console.error", Boundary.CurrentException.ToString());
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
 
     public void SetView(SidekickView view)
     {

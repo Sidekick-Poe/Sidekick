@@ -41,13 +41,13 @@ namespace Sidekick.Modules.General.Keybinds
             if (item != null)
             {
                 await clipboardProvider.SetText(item.Original.Name);
-                keyboard.PressKey("Ctrl+F", "Ctrl+A", "Ctrl+V", "Enter");
+                await keyboard.PressKey("Ctrl+F", "Ctrl+A", "Ctrl+V", "Enter");
             }
             else
             {
                 // If we are not hovering over an item, we still want to put the focus in the search
                 // bar inside the game.
-                keyboard.PressKey("Ctrl+F");
+                await keyboard.PressKey("Ctrl+F");
             }
         }
     }

@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.DependencyInjection;
@@ -137,7 +136,7 @@ namespace Sidekick.Common.Platform.Keyboards
         private readonly IProcessProvider processProvider;
 
         private bool HasInitialized { get; set; } = false;
-        private SimpleGlobalHook? Hook { get; set; }
+        private TaskPoolGlobalHook? Hook { get; set; }
         private Task? HookTask { get; set; }
         private EventSimulator? Simulator { get; set; }
 
@@ -164,7 +163,7 @@ namespace Sidekick.Common.Platform.Keyboards
         public Task Initialize()
         {
             // We can't initialize twice
-            if (HasInitialized || Debugger.IsAttached)
+            if (HasInitialized)
             {
                 return Task.CompletedTask;
             }
@@ -194,8 +193,10 @@ namespace Sidekick.Common.Platform.Keyboards
 
         private void OnKeyPressed(object? sender, KeyboardHookEventArgs args)
         {
-            // Make sure the key is one we recognize
-            if (!Keys.TryGetValue(args.Data.KeyCode, out var key))
+            // Make sure the key is one we recognize and validate the event and keybinds
+            if (!Keys.TryGetValue(args.Data.KeyCode, out var key)
+             || ModifierKeys.IsMatch(key)
+             || (!processProvider.IsPathOfExileInFocus && !processProvider.IsSidekickInFocus))
             {
                 return;
             }
@@ -221,21 +222,31 @@ namespace Sidekick.Common.Platform.Keyboards
             var keybind = str.ToString();
             OnKeyDown?.Invoke(keybind);
 
-            if (processProvider.IsPathOfExileInFocus && KeybindHandlers.TryGetValue(keybind, out var keybindHandler))
+            if (!KeybindHandlers.TryGetValue(keybind, out var keybindHandler) || !keybindHandler.IsValid())
             {
-                if (keybindHandler.IsValid())
-                {
-                    args.SuppressEvent = true;
-                    Task.Run(() => keybindHandler.Execute(keybind));
-                }
+                return;
             }
+
+            logger.LogDebug($"[Keyboard] Executing keybind handler for {str}.");
+
+            args.SuppressEvent = true;
+            Task.Run(async () =>
+            {
+                await keybindHandler.Execute(keybind);
+                logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
+            });
         }
 
-        public void PressKey(params string[] keyStrokes)
+        public Task PressKey(params string[] keyStrokes)
         {
             if (Simulator == null)
             {
-                return;
+                return Task.CompletedTask;
+            }
+
+            if (Hook != null)
+            {
+                Hook.KeyPressed -= OnKeyPressed;
             }
 
             foreach (var stroke in keyStrokes)
@@ -268,6 +279,26 @@ namespace Sidekick.Common.Platform.Keyboards
                 {
                     Simulator.SimulateKeyRelease(modifierKey);
                 }
+            }
+
+            if (Hook != null)
+            {
+                Hook.KeyPressed += OnKeyPressed;
+            }
+
+            return Task.CompletedTask;
+        }
+
+        private void ReleaseModifierKeys()
+        {
+            if (Simulator == null)
+            {
+                return;
+            }
+
+            foreach (var modifierKey in Keys.Where(x => ModifierKeys.IsMatch(x.Value)))
+            {
+                Simulator.SimulateKeyRelease(modifierKey.Key);
             }
         }
 

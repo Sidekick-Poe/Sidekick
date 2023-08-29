@@ -16,6 +16,7 @@ namespace Sidekick.Common.Blazor.Errors
         public string AvailableInEnglishError => localizer["AvailableInEnglishError"];
         public string InvalidItemError => localizer["InvalidItemError"];
         public string ParserError => localizer["ParserError"];
+        public string AlreadyRunning => localizer["AlreadyRunning"];
         public string Title => localizer["Title"];
         public string Close => localizer["Close"];
         public string Error => localizer["Error"];

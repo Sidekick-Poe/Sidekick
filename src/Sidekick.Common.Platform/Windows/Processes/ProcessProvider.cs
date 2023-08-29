@@ -84,7 +84,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
         public bool IsPathOfExileInFocus => GetFocusedWindow() == PATH_OF_EXILE_TITLE;
 
         /// <inheritdoc/>
-        public bool IsSidekickInFocus => GetFocusedWindow() == SIDEKICK_TITLE;
+        public bool IsSidekickInFocus => GetFocusedWindow()?.StartsWith(SIDEKICK_TITLE) ?? false;
 
         public ProcessProvider(
             ILogger<ProcessProvider> logger,
