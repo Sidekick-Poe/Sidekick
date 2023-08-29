@@ -67,10 +67,9 @@ namespace Sidekick.Modules.Settings
             newSettings.CopyValuesTo(settings);
             var json = JsonSerializer.Serialize(settings);
             var defaults = JsonSerializer.Serialize(new Settings());
-            var filePath = SidekickPaths.GetDataFilePath(FileName);
 
-            using var fileStream = File.Create(filePath);
-            using var writer = new Utf8JsonWriter(fileStream, options: new JsonWriterOptions
+            using var memoryStream = new MemoryStream();
+            using var writer = new Utf8JsonWriter(memoryStream, options: new JsonWriterOptions
             {
                 Indented = true
             });
@@ -108,6 +107,11 @@ namespace Sidekick.Modules.Settings
             writer.WriteEndObject();
             writer.Flush();
 
+            // Actually save
+            var filePath = SidekickPaths.GetDataFilePath(FileName);
+            using var fileStream = File.Create(filePath);
+            memoryStream.Seek(0, SeekOrigin.Begin);
+            await memoryStream.CopyToAsync(fileStream);
             if (writer.BytesCommitted == 0)
             {
                 File.Delete(filePath);
