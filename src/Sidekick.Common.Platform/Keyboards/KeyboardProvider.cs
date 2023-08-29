@@ -179,7 +179,9 @@ namespace Sidekick.Common.Platform.Keyboards
             }
 
             // Initialize keyboard hook
-            Register();
+            Hook = new();
+            Hook.KeyPressed += OnKeyPressed;
+            HookTask = Hook.RunAsync();
 
             // Make sure we don't run this multiple times
             HasInitialized = true;
@@ -316,7 +318,13 @@ namespace Sidekick.Common.Platform.Keyboards
             return (modifierCodes, keyCodes);
         }
 
-        public void Unregister()
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
         {
             if (Hook != null)
             {
@@ -330,26 +338,6 @@ namespace Sidekick.Common.Platform.Keyboards
                 HookTask.Dispose();
                 HookTask = null;
             }
-        }
-
-        public void Register()
-        {
-            Unregister();
-
-            Hook = new();
-            Hook.KeyPressed += OnKeyPressed;
-            HookTask = Hook.RunAsync();
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            Unregister();
         }
     }
 }
