@@ -1,5 +1,3 @@
-using System;
-
 namespace Sidekick.Common.Game.Languages
 {
     public class GameLanguageAttribute : Attribute

@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Sidekick.Apis.Poe.Localization;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Common.Game.Items;
@@ -99,9 +96,8 @@ namespace Sidekick.Apis.Poe.Trade
                 filters.Add(new ModifierFilter()
                 {
                     Enabled = false,
-                    Line = new ModifierLine()
+                    Line = new ModifierLine(modifier.Text)
                     {
-                        Text = modifier.Text,
                         Modifier = modifier,
                     },
                     Min = min,
@@ -166,22 +162,22 @@ namespace Sidekick.Apis.Poe.Trade
             // Armour
             InitializePropertyFilter(result.Armour,
                 PropertyFilterType.Armour_Armour,
-                gameLanguageProvider.Language.DescriptionArmour,
+                gameLanguageProvider.Language?.DescriptionArmour,
                 item.Properties.Armor);
             // Evasion
             InitializePropertyFilter(result.Armour,
                 PropertyFilterType.Armour_Evasion,
-                gameLanguageProvider.Language.DescriptionEvasion,
+                gameLanguageProvider.Language?.DescriptionEvasion,
                 item.Properties.Evasion);
             // Energy shield
             InitializePropertyFilter(result.Armour,
                 PropertyFilterType.Armour_EnergyShield,
-                gameLanguageProvider.Language.DescriptionEnergyShield,
+                gameLanguageProvider.Language?.DescriptionEnergyShield,
                 item.Properties.EnergyShield);
             // Block
             InitializePropertyFilter(result.Armour,
                 PropertyFilterType.Armour_Block,
-                gameLanguageProvider.Language.DescriptionChanceToBlock,
+                gameLanguageProvider.Language?.DescriptionChanceToBlock,
                 item.Properties.ChanceToBlock,
                 delta: 1);
 
@@ -203,47 +199,47 @@ namespace Sidekick.Apis.Poe.Trade
             // Attacks per second
             InitializePropertyFilter(result.Weapon,
                 PropertyFilterType.Weapon_AttacksPerSecond,
-                gameLanguageProvider.Language.DescriptionAttacksPerSecond,
+                gameLanguageProvider.Language?.DescriptionAttacksPerSecond,
                 item.Properties.AttacksPerSecond,
                 delta: 0.1);
             // Critical strike chance
             InitializePropertyFilter(result.Weapon,
                 PropertyFilterType.Weapon_CriticalStrikeChance,
-                gameLanguageProvider.Language.DescriptionCriticalStrikeChance,
+                gameLanguageProvider.Language?.DescriptionCriticalStrikeChance,
                 item.Properties.CriticalStrikeChance,
                 delta: 1);
 
             // Item quantity
             InitializePropertyFilter(result.Map,
                 PropertyFilterType.Map_ItemQuantity,
-                gameLanguageProvider.Language.DescriptionItemQuantity,
+                gameLanguageProvider.Language?.DescriptionItemQuantity,
                 item.Properties.ItemQuantity);
             // Item rarity
             InitializePropertyFilter(result.Map,
                 PropertyFilterType.Map_ItemRarity,
-                gameLanguageProvider.Language.DescriptionItemRarity,
+                gameLanguageProvider.Language?.DescriptionItemRarity,
                 item.Properties.ItemRarity);
             // Monster pack size
             InitializePropertyFilter(result.Map,
                 PropertyFilterType.Map_MonsterPackSize,
-                gameLanguageProvider.Language.DescriptionMonsterPackSize,
+                gameLanguageProvider.Language?.DescriptionMonsterPackSize,
                 item.Properties.MonsterPackSize);
             // Blighted
             InitializePropertyFilter(result.Map,
                 PropertyFilterType.Map_Blighted,
-                gameLanguageProvider.Language.PrefixBlighted,
+                gameLanguageProvider.Language?.PrefixBlighted,
                 item.Properties.Blighted,
                 enabled: item.Properties.Blighted);
             // Blight-ravaged
             InitializePropertyFilter(result.Map,
                 PropertyFilterType.Map_BlightRavaged,
-                gameLanguageProvider.Language.PrefixBlightRavaged,
+                gameLanguageProvider.Language?.PrefixBlightRavaged,
                 item.Properties.BlightRavaged,
                 enabled: item.Properties.BlightRavaged);
             // Map tier
             InitializePropertyFilter(result.Map,
                 PropertyFilterType.Map_Tier,
-                gameLanguageProvider.Language.DescriptionMapTier,
+                gameLanguageProvider.Language?.DescriptionMapTier,
                 item.Properties.MapTier,
                 enabled: true,
                 min: item.Properties.MapTier);
@@ -251,69 +247,70 @@ namespace Sidekick.Apis.Poe.Trade
             // Quality
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Quality,
-                gameLanguageProvider.Language.DescriptionQuality,
+                gameLanguageProvider.Language?.DescriptionQuality,
                 item.Properties.Quality,
                 enabled: item.Metadata.Rarity == Rarity.Gem,
                 min: item.Metadata.Rarity == Rarity.Gem && item.Properties.Quality >= 20 ? item.Properties.Quality : null);
             // Gem level
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_GemLevel,
-                gameLanguageProvider.Language.DescriptionLevel,
+                gameLanguageProvider.Language?.DescriptionLevel,
                 item.Properties.GemLevel,
                 enabled: true,
                 min: item.Properties.GemLevel);
             // Item level
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_ItemLevel,
-                gameLanguageProvider.Language.DescriptionItemLevel,
+                gameLanguageProvider.Language?.DescriptionItemLevel,
                 item.Properties.ItemLevel,
                 enabled: item.Properties.ItemLevel >= 80 && item.Properties.MapTier == 0 && item.Metadata.Rarity != Rarity.Unique,
                 min: item.Properties.ItemLevel >= 80 ? (double?)item.Properties.ItemLevel : null);
             // Corrupted
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Corrupted,
-                gameLanguageProvider.Language.DescriptionCorrupted,
+                gameLanguageProvider.Language?.DescriptionCorrupted,
                 true,
                 enabled: item.Properties.Corrupted ? true : null);
             // Crusader
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Influence_Crusader,
-                gameLanguageProvider.Language.InfluenceCrusader,
+                gameLanguageProvider.Language?.InfluenceCrusader,
                 item.Influences.Crusader,
                 enabled: item.Influences.Crusader);
             // Elder
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Influence_Elder,
-                gameLanguageProvider.Language.InfluenceElder,
+                gameLanguageProvider.Language?.InfluenceElder,
                 item.Influences.Elder,
                 enabled: item.Influences.Elder);
             // Hunter
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Influence_Hunter,
-                gameLanguageProvider.Language.InfluenceHunter,
+                gameLanguageProvider.Language?.InfluenceHunter,
                 item.Influences.Hunter,
                 enabled: item.Influences.Hunter);
             // Redeemer
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Influence_Redeemer,
-                gameLanguageProvider.Language.InfluenceRedeemer,
+                gameLanguageProvider.Language?.InfluenceRedeemer,
                 item.Influences.Redeemer,
                 enabled: item.Influences.Redeemer);
             // Shaper
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Influence_Shaper,
-                gameLanguageProvider.Language.InfluenceShaper,
+                gameLanguageProvider.Language?.InfluenceShaper,
                 item.Influences.Shaper,
                 enabled: item.Influences.Shaper);
             // Warlord
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Influence_Warlord,
-                gameLanguageProvider.Language.InfluenceWarlord, item.Influences.Warlord,
+                gameLanguageProvider.Language?.InfluenceWarlord,
+                item.Influences.Warlord,
                 enabled: item.Influences.Warlord);
             // Scourged
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Scourged,
-                gameLanguageProvider.Language.DescriptionScourged,
+                gameLanguageProvider.Language?.DescriptionScourged,
                 item.Properties.Scourged ? 1 : 0,
                 enabled: item.Properties.Scourged,
                 min: 1);
@@ -323,13 +320,18 @@ namespace Sidekick.Apis.Poe.Trade
 
         private void InitializePropertyFilter<T>(List<PropertyFilter> filters,
             PropertyFilterType type,
-            string label,
+            string? label,
             T value,
             double delta = 5,
             bool? enabled = false,
             double? min = null,
             double? max = null)
         {
+            if (label == null)
+            {
+                return;
+            }
+
             FilterValueType valueType;
 
             switch (value)
@@ -354,16 +356,15 @@ namespace Sidekick.Apis.Poe.Trade
                 default: return;
             }
 
-            filters.Add(new PropertyFilter()
-            {
-                Enabled = enabled,
-                Type = type,
-                Value = value,
-                ValueType = valueType,
-                Text = label,
-                Min = min,
-                Max = max,
-            });
+            filters.Add(new PropertyFilter(
+                enabled: enabled,
+                type: type,
+                value: value,
+                valueType: valueType,
+                text: label,
+                min: min,
+                max: max
+            ));
         }
 
         /// <summary>

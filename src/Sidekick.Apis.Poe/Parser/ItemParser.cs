@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Patterns;
@@ -36,7 +32,7 @@ namespace Sidekick.Apis.Poe.Parser
             this.patterns = patterns;
         }
 
-        private ParsingItem GetParsingItem(string itemText)
+        private ParsingItem? GetParsingItem(string itemText)
         {
             if (string.IsNullOrEmpty(itemText))
             {
@@ -47,12 +43,12 @@ namespace Sidekick.Apis.Poe.Parser
             return new ParsingItem(itemText);
         }
 
-        public Task<Item> ParseItemAsync(string itemText)
+        public Task<Item?> ParseItemAsync(string itemText)
         {
             return Task.Run(() => ParseItem(itemText));
         }
 
-        public Item ParseItem(string itemText)
+        public Item? ParseItem(string itemText)
         {
             if (string.IsNullOrEmpty(itemText))
             {
@@ -62,28 +58,30 @@ namespace Sidekick.Apis.Poe.Parser
             try
             {
                 var parsingItem = GetParsingItem(itemText);
-                parsingItem.Metadata = itemMetadataProvider.Parse(parsingItem);
-
-                if (parsingItem.Metadata == null || (string.IsNullOrEmpty(parsingItem.Metadata.Name) && string.IsNullOrEmpty(parsingItem.Metadata.Type)))
+                if (parsingItem == null)
                 {
                     throw new NotSupportedException("Item not found.");
                 }
 
+                var metadata = itemMetadataProvider.Parse(parsingItem);
+                if (metadata == null || (string.IsNullOrEmpty(metadata?.Name) && string.IsNullOrEmpty(metadata?.Type)))
+                {
+                    throw new NotSupportedException("Item not found.");
+                }
+
+                parsingItem.Metadata = metadata;
                 ParseRequirements(parsingItem);
 
-                var item = new Item
-                {
-                    Metadata = parsingItem.Metadata,
-                    Original = ParseOriginal(parsingItem),
-                    Properties = ParseProperties(parsingItem),
-                    Influences = ParseInfluences(parsingItem),
-                    Sockets = ParseSockets(parsingItem),
-                    ModifierLines = ParseModifiers(parsingItem),
-                };
-
-                item.PseudoModifiers = ParsePseudoModifiers(item.ModifierLines);
-
-                return item;
+                var modifierLines = ParseModifiers(parsingItem);
+                return new Item(
+                    metadata: parsingItem.Metadata,
+                    original: ParseOriginal(parsingItem),
+                    properties: ParseProperties(parsingItem),
+                    influences: ParseInfluences(parsingItem),
+                    sockets: ParseSockets(parsingItem),
+                    modifierLines: modifierLines,
+                    pseudoModifiers: ParsePseudoModifiers(modifierLines)
+                );
             }
             catch (Exception e)
             {
@@ -92,7 +90,7 @@ namespace Sidekick.Apis.Poe.Parser
             }
         }
 
-        public OriginalItem ParseOriginalItem(string itemText)
+        public OriginalItem? ParseOriginalItem(string itemText)
         {
             if (string.IsNullOrEmpty(itemText))
             {
@@ -102,6 +100,11 @@ namespace Sidekick.Apis.Poe.Parser
             try
             {
                 var parsingItem = GetParsingItem(itemText);
+                if (parsingItem == null)
+                {
+                    return null;
+                }
+
                 return ParseOriginal(parsingItem);
             }
             catch (Exception e)
@@ -135,7 +138,7 @@ namespace Sidekick.Apis.Poe.Parser
 
         private Properties ParseProperties(ParsingItem parsingItem)
         {
-            return parsingItem.Metadata.Category switch
+            return parsingItem.Metadata?.Category switch
             {
                 Category.Gem => ParseGemProperties(parsingItem),
                 Category.Map or Category.Contract => ParseMapProperties(parsingItem),
@@ -305,7 +308,7 @@ namespace Sidekick.Apis.Poe.Parser
 
         private Influences ParseInfluences(ParsingItem parsingItem)
         {
-            return parsingItem.Metadata.Category switch
+            return parsingItem.Metadata?.Category switch
             {
                 Category.Accessory or Category.Armour or Category.Weapon => new Influences()
                 {
@@ -322,7 +325,7 @@ namespace Sidekick.Apis.Poe.Parser
 
         private List<ModifierLine> ParseModifiers(ParsingItem parsingItem)
         {
-            return parsingItem.Metadata.Category switch
+            return parsingItem.Metadata?.Category switch
             {
                 Category.DivinationCard or Category.Currency or Category.Gem => new(),
                 _ => modifierProvider.Parse(parsingItem),
@@ -410,7 +413,7 @@ namespace Sidekick.Apis.Poe.Parser
                 }
             }
 
-            match = null;
+            match = null!;
             return false;
         }
 
@@ -426,7 +429,7 @@ namespace Sidekick.Apis.Poe.Parser
                 }
             }
 
-            match = null;
+            match = null!;
             return false;
         }
 

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Sidekick.Apis.Poe.Trade.Filters
 {
     public class StatFilterGroup

@@ -4,7 +4,13 @@ namespace Sidekick.Apis.Poe.Parser.Tokenizers
 {
     public class ItemNameTokenMatch
     {
-        public bool IsMatch { get; set; }
+        public ItemNameTokenMatch(
+            ItemNameTokenType tokenType,
+            Match match)
+        {
+            TokenType = tokenType;
+            Match = match;
+        }
 
         public ItemNameTokenType TokenType { get; set; }
 

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Initialization;

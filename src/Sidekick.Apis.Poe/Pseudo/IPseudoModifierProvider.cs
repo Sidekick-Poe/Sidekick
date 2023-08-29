@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Sidekick.Common.Game.Items.Modifiers;
 using Sidekick.Common.Initialization;
 

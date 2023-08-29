@@ -5,27 +5,27 @@ namespace Sidekick.Apis.Poe.Trade.Filters
     public class SearchFilters
     {
         [JsonPropertyName("misc_filters")]
-        public MiscFilterGroup MiscFilters { get; set; } = new MiscFilterGroup();
+        public MiscFilterGroup MiscFilters { get; set; } = new();
 
         [JsonPropertyName("weapon_filters")]
-        public WeaponFilterGroup WeaponFilters { get; set; } = new WeaponFilterGroup();
+        public WeaponFilterGroup WeaponFilters { get; set; } = new();
 
         [JsonPropertyName("armour_filters")]
-        public ArmorFilterGroup ArmourFilters { get; set; } = new ArmorFilterGroup();
+        public ArmorFilterGroup ArmourFilters { get; set; } = new();
 
         [JsonPropertyName("socket_filters")]
-        public SocketFilterGroup SocketFilters { get; set; } = new SocketFilterGroup();
+        public SocketFilterGroup SocketFilters { get; set; } = new();
 
         [JsonPropertyName("req_filters")]
-        public RequirementFilterGroup RequirementFilters { get; set; } = new RequirementFilterGroup();
+        public RequirementFilterGroup RequirementFilters { get; set; } = new();
 
         [JsonPropertyName("type_filters")]
-        public TypeFilterGroup TypeFilters { get; set; } = new TypeFilterGroup();
+        public TypeFilterGroup TypeFilters { get; set; } = new();
 
         [JsonPropertyName("map_filters")]
-        public MapFilterGroup MapFilters { get; set; } = new MapFilterGroup();
+        public MapFilterGroup MapFilters { get; set; } = new();
 
         [JsonPropertyName("trade_filters")]
-        public TradeFilterGroup TradeFilters { get; set; } = new TradeFilterGroup();
+        public TradeFilterGroup TradeFilters { get; set; } = new();
     }
 }

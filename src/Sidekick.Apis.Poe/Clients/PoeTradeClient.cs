@@ -1,8 +1,5 @@
-using System;
-using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Game.Languages;
 
@@ -49,15 +46,21 @@ namespace Sidekick.Apis.Poe.Clients
 
             try
             {
-                var response = await HttpClient.GetAsync(language.PoeTradeApiBaseUrl + path);
+                var response = await HttpClient.GetAsync(language?.PoeTradeApiBaseUrl + path);
                 var content = await response.Content.ReadAsStreamAsync();
-                return await JsonSerializer.DeserializeAsync<FetchResult<TReturn>>(content, Options);
+                var result = await JsonSerializer.DeserializeAsync<FetchResult<TReturn>>(content, Options);
+                if (result != null)
+                {
+                    return result;
+                }
             }
             catch (Exception)
             {
-                logger.LogInformation($"Could not fetch {name} at {language.PoeTradeApiBaseUrl + path}.");
+                logger.LogInformation($"[Trade Client] Could not fetch {name} at {language?.PoeTradeApiBaseUrl + path}.");
                 throw;
             }
+
+            throw new Exception("[Trade Client] Could not understand the API response.");
         }
     }
 }

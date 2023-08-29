@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Sidekick.Apis.Poe.Pseudo.Models
 {
     public class PseudoDefinition
@@ -10,14 +8,19 @@ namespace Sidekick.Apis.Poe.Pseudo.Models
             Text = text;
         }
 
-        public string Id { get; set; }
+        public string Id { get; }
 
-        public string Text { get; set; }
+        public string Text { get; }
 
-        public List<PseudoDefinitionModifier> Modifiers { get; set; } = new List<PseudoDefinitionModifier>();
+        public List<PseudoDefinitionModifier> Modifiers { get; set; } = new();
 
         public override string ToString()
         {
+            if (Text == null)
+            {
+                return Id;
+            }
+
             return $"{Text} - {Id}";
         }
     }

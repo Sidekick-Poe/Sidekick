@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers;
@@ -48,43 +43,65 @@ namespace Sidekick.Apis.Poe.Trade
         {
             try
             {
-                logger.LogInformation("Querying Exchange API.");
+                logger.LogInformation("[Trade API] Querying Exchange API.");
+
+                if (gameLanguageProvider.Language == null)
+                {
+                    throw new Exception("[Trade API] Could not find a valid language.");
+                }
 
                 var uri = $"{gameLanguageProvider.Language.PoeTradeApiBaseUrl}exchange/{settings.LeagueId}";
-                var json = JsonSerializer.Serialize(new BulkQueryRequest(item, itemStaticDataProvider), poeTradeClient.Options);
+
+                var itemId = itemStaticDataProvider.GetId(item);
+                if (itemId == null)
+                {
+                    throw new Exception("[Trade API] Could not find a valid item.");
+                }
+
+                var model = new BulkQueryRequest();
+                model.Exchange.Want.Add(itemId);
+                model.Exchange.Have.Add("chaos");
+
+                var json = JsonSerializer.Serialize(model, poeTradeClient.Options);
                 var body = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await poeTradeClient.HttpClient.PostAsync(uri, body);
 
                 var content = await response.Content.ReadAsStreamAsync();
-                if (response.IsSuccessStatusCode)
+                if (!response.IsSuccessStatusCode)
                 {
-                    return await JsonSerializer.DeserializeAsync<TradeSearchResult<string>>(content, poeTradeClient.Options);
-                }
-                else
-                {
-                    var responseMessage = await response?.Content?.ReadAsStringAsync();
-                    logger.LogWarning("Querying failed: {responseCode} {responseMessage}", response.StatusCode, responseMessage);
-                    logger.LogWarning("Uri: {uri}", uri);
-                    logger.LogWarning("Query: {query}", json);
+                    var responseMessage = await response.Content.ReadAsStringAsync();
+                    logger.LogWarning("[Trade API] Querying failed: {responseCode} {responseMessage}", response.StatusCode, responseMessage);
+                    logger.LogWarning("[Trade API] Uri: {uri}", uri);
+                    logger.LogWarning("[Trade API] Query: {query}", json);
 
                     var errorResult = await JsonSerializer.DeserializeAsync<ErrorResult>(content, poeTradeClient.Options);
+                    return new() { Error = errorResult?.Error };
+                }
 
-                    return new() { Error = errorResult.Error };
+                var result = await JsonSerializer.DeserializeAsync<TradeSearchResult<string>?>(content, poeTradeClient.Options);
+                if (result != null)
+                {
+                    return result;
                 }
             }
             catch (Exception ex)
             {
-                logger.LogWarning(ex, "Exception thrown while querying trade api.");
+                logger.LogWarning(ex, "[Trade API] Exception thrown while querying trade api.");
             }
 
-            return null;
+            throw new Exception("[Trade API] Could not understand the API response.");
         }
 
-        public async Task<TradeSearchResult<string>> Search(Item item, PropertyFilters propertyFilters = null, List<ModifierFilter> modifierFilters = null)
+        public async Task<TradeSearchResult<string>> Search(Item item, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null)
         {
             try
             {
-                logger.LogInformation("Querying Trade API.");
+                logger.LogInformation("[Trade API] Querying Trade API.");
+
+                if (gameLanguageProvider.Language == null)
+                {
+                    throw new Exception("[Trade API] Could not find a valid language.");
+                }
 
                 var request = new QueryRequest();
 
@@ -128,33 +145,38 @@ namespace Sidekick.Apis.Poe.Trade
                 var response = await poeTradeClient.HttpClient.PostAsync(uri, body);
 
                 var content = await response.Content.ReadAsStreamAsync();
-                if (response.IsSuccessStatusCode)
+                if (!response.IsSuccessStatusCode)
                 {
-                    return await JsonSerializer.DeserializeAsync<TradeSearchResult<string>>(content, poeTradeClient.Options);
-                }
-                else
-                {
-                    var responseMessage = await response?.Content?.ReadAsStringAsync();
-                    logger.LogWarning("Querying failed: {responseCode} {responseMessage}", response.StatusCode, responseMessage);
-                    logger.LogWarning("Uri: {uri}", uri);
-                    logger.LogWarning("Query: {query}", json);
+                    var responseMessage = await response.Content.ReadAsStringAsync();
+                    logger.LogWarning("[Trade API] Querying failed: {responseCode} {responseMessage}", response.StatusCode, responseMessage);
+                    logger.LogWarning("[Trade API] Uri: {uri}", uri);
+                    logger.LogWarning("[Trade API] Query: {query}", json);
 
                     var errorResult = await JsonSerializer.DeserializeAsync<ErrorResult>(content, poeTradeClient.Options);
 
-                    return new() { Error = errorResult.Error };
+                    return new() { Error = errorResult?.Error };
+                }
+
+                var result = await JsonSerializer.DeserializeAsync<TradeSearchResult<string>?>(content, poeTradeClient.Options);
+                if (result != null)
+                {
+                    return result;
                 }
             }
             catch (Exception ex)
             {
-                logger.LogWarning(ex, "Exception thrown while querying trade api.");
+                logger.LogWarning(ex, "[Trade API] Exception thrown while querying trade api.");
             }
 
-            return null;
+            throw new Exception("[Trade API] Could not understand the API response.");
         }
 
-        private static void SetPropertyFilters(Query query, PropertyFilters propertyFilters)
+        private static void SetPropertyFilters(Query query, PropertyFilters? propertyFilters)
         {
-            if (propertyFilters == null) return;
+            if (propertyFilters == null)
+            {
+                return;
+            }
 
             if (propertyFilters.Class.HasValue && propertyFilters.Class.Value != Class.Undefined)
             {
@@ -361,23 +383,20 @@ namespace Sidekick.Apis.Poe.Trade
             }
         }
 
-        private static void SetModifierFilters(List<StatFilterGroup> stats, List<ModifierFilter> modifierFilters)
+        private static void SetModifierFilters(List<StatFilterGroup> stats, List<ModifierFilter>? modifierFilters)
         {
-            if (modifierFilters == null) return;
-
-            var group = new StatFilterGroup();
-
             if (modifierFilters == null)
             {
                 return;
             }
 
+            var group = new StatFilterGroup();
             group.Filters.AddRange(modifierFilters
-                .Where(x => x.Line.Modifier != null)
+                .Where(x => x.Line?.Modifier != null)
                 .Select(x => new StatFilter()
                 {
                     Disabled = !x.Enabled,
-                    Id = x.Line.Modifier.Id,
+                    Id = x.Line?.Modifier?.Id,
                     Value = new SearchFilterValue(x),
                 })
                 .ToList());
@@ -402,149 +421,166 @@ namespace Sidekick.Apis.Poe.Trade
             }
         }
 
-        public async Task<List<TradeItem>> GetResults(string queryId, List<string> ids, List<ModifierFilter> modifierFilters = null)
+        public async Task<List<TradeItem>> GetResults(string queryId, List<string> ids, List<ModifierFilter>? modifierFilters = null)
         {
             try
             {
-                logger.LogInformation($"Fetching Trade API Listings from Query {queryId}.");
+                logger.LogInformation($"[Trade API] Fetching Trade API Listings from Query {queryId}.");
+
+                if (gameLanguageProvider.Language == null)
+                {
+                    return new();
+                }
 
                 var pseudo = string.Empty;
                 if (modifierFilters != null)
                 {
                     pseudo = string.Join("", modifierFilters
-                        .Where(x => x.Line.Modifier != null && x.Line.Modifier.Category == ModifierCategory.Pseudo)
-                        .Select(x => $"&pseudos[]={x.Line.Modifier.Id}"));
+                        .Where(x => x.Line?.Modifier != null && x.Line.Modifier.Category == ModifierCategory.Pseudo)
+                        .Select(x => $"&pseudos[]={x.Line?.Modifier?.Id}"));
                 }
 
                 var response = await poeTradeClient.HttpClient.GetAsync(gameLanguageProvider.Language.PoeTradeApiBaseUrl + "fetch/" + string.Join(",", ids) + "?query=" + queryId + pseudo);
-                if (response.IsSuccessStatusCode)
+                if (!response.IsSuccessStatusCode)
                 {
-                    var content = await response.Content.ReadAsStreamAsync();
-                    var result = await JsonSerializer.DeserializeAsync<FetchResult<Result>>(content, new JsonSerializerOptions()
-                    {
-                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                    });
-
-                    return result.Result.Where(x => x != null).ToList().ConvertAll(x => GetItem(x));
+                    return new();
                 }
+
+                var content = await response.Content.ReadAsStreamAsync();
+                var result = await JsonSerializer.DeserializeAsync<FetchResult<Result>>(content, new JsonSerializerOptions()
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                });
+                if (result == null)
+                {
+                    return new();
+                }
+
+                return result.Result.Where(x => x != null).ToList().ConvertAll(x => GetItem(x));
             }
             catch (Exception ex)
             {
-                logger.LogWarning(ex, $"Exception thrown when fetching trade API listings from Query {queryId}.");
+                logger.LogWarning(ex, $"[Trade API] Exception thrown when fetching trade API listings from Query {queryId}.");
             }
 
-            return null;
+            return new();
         }
 
         private TradeItem GetItem(Result result)
         {
-            var item = new TradeItem()
+            var metadata = new ItemMetadata()
+            {
+                Name = result.Item?.Name,
+                Rarity = result.Item?.Rarity ?? Rarity.Unknown,
+                Type = result.Item?.TypeLine,
+            };
+
+            var original = new OriginalItem()
+            {
+                Name = result.Item?.Name,
+                Text = Encoding.UTF8.GetString(Convert.FromBase64String(result.Item?.Extended?.Text ?? string.Empty)),
+                Type = result.Item?.TypeLine,
+            };
+
+            var properties = new Properties()
+            {
+                ItemLevel = result.Item?.ItemLevel ?? 0,
+                Corrupted = result.Item?.Corrupted ?? false,
+                Scourged = result.Item?.Scourged.Tier != 0,
+                IsRelic = result.Item?.IsRelic ?? false,
+                Identified = result.Item?.Identified ?? false,
+                Armor = result.Item?.Extended?.ArmourAtMax ?? 0,
+                EnergyShield = result.Item?.Extended?.EnergyShieldAtMax ?? 0,
+                Evasion = result.Item?.Extended?.EvasionAtMax ?? 0,
+                DamagePerSecond = result.Item?.Extended?.DamagePerSecond ?? 0,
+                ElementalDps = result.Item?.Extended?.ElementalDps ?? 0,
+                PhysicalDps = result.Item?.Extended?.PhysicalDps ?? 0,
+                BaseDefencePercentile = result.Item?.Extended?.BaseDefencePercentile,
+            };
+
+            var influences = result.Item?.Influences ?? new();
+
+            var item = new TradeItem(
+                    metadata: metadata,
+                    original: original,
+                    properties: properties,
+                    influences: influences,
+                    sockets: ParseSockets(result.Item?.Sockets),
+                    modifierLines: new(),
+                    pseudoModifiers: new())
             {
                 Id = result.Id,
 
                 Price = new TradePrice()
                 {
-                    AccountCharacter = result.Listing.Account.LastCharacterName,
-                    AccountName = result.Listing.Account.Name,
-                    Amount = result.Listing.Price?.Amount ?? -1,
-                    Currency = result.Listing.Price?.Currency ?? "",
-                    Date = result.Listing.Indexed,
-                    Whisper = result.Listing.Whisper,
-                    Note = result.Item.Note,
+                    AccountCharacter = result.Listing?.Account?.LastCharacterName,
+                    AccountName = result.Listing?.Account?.Name,
+                    Amount = result.Listing?.Price?.Amount ?? -1,
+                    Currency = result.Listing?.Price?.Currency ?? "",
+                    Date = result.Listing?.Indexed ?? DateTimeOffset.MinValue,
+                    Whisper = result.Listing?.Whisper,
+                    Note = result.Item?.Note,
                 },
 
-                Influences = result.Item.Influences,
+                Image = result.Item?.Icon,
+                Width = result.Item?.Width ?? 0,
+                Height = result.Item?.Height ?? 0,
 
-                Original = new OriginalItem()
-                {
-                    Name = result.Item.Name,
-                    Text = Encoding.UTF8.GetString(Convert.FromBase64String(result.Item.Extended.Text)),
-                    Type = result.Item.TypeLine,
-                },
-
-                Metadata = new ItemMetadata()
-                {
-                    Name = result.Item.Name,
-                    Rarity = result.Item.Rarity,
-                    Type = result.Item.TypeLine,
-                },
-
-                Image = result.Item.Icon,
-                Width = result.Item.Width,
-                Height = result.Item.Height,
-
-                RequirementContents = ParseLineContents(result.Item.Requirements),
-                PropertyContents = ParseLineContents(result.Item.Properties),
-                AdditionalPropertyContents = ParseLineContents(result.Item.AdditionalProperties, false),
-                Sockets = ParseSockets(result.Item.Sockets),
-
-                Properties = new Properties()
-                {
-                    ItemLevel = result.Item.ItemLevel,
-                    Corrupted = result.Item.Corrupted,
-                    Scourged = result.Item.Scourged.Tier != 0,
-                    IsRelic = result.Item.IsRelic,
-                    Identified = result.Item.Identified,
-                    Armor = result.Item.Extended.ArmourAtMax,
-                    EnergyShield = result.Item.Extended.EnergyShieldAtMax,
-                    Evasion = result.Item.Extended.EvasionAtMax,
-                    DamagePerSecond = result.Item.Extended.DamagePerSecond,
-                    ElementalDps = result.Item.Extended.ElementalDps,
-                    PhysicalDps = result.Item.Extended.PhysicalDps,
-                    BaseDefencePercentile = result.Item.Extended.BaseDefencePercentile,
-                },
+                RequirementContents = ParseLineContents(result.Item?.Requirements),
+                PropertyContents = ParseLineContents(result.Item?.Properties),
+                AdditionalPropertyContents = ParseLineContents(result.Item?.AdditionalProperties, false),
             };
 
             ParseMods(modifierProvider,
                 item.ModifierLines,
-                result.Item.EnchantMods,
-                result.Item.Extended.Mods?.Enchant,
-                ParseHash(result.Item.Extended.Hashes?.Enchant));
+                result.Item?.EnchantMods,
+                result.Item?.Extended?.Mods?.Enchant,
+                ParseHash(result.Item?.Extended?.Hashes?.Enchant));
 
             ParseMods(modifierProvider,
                 item.ModifierLines,
-                result.Item.ImplicitMods ?? result.Item.LogbookMods.SelectMany(x => x.Mods).ToList(),
-                result.Item.Extended.Mods?.Implicit,
-                ParseHash(result.Item.Extended.Hashes?.Implicit));
+                result.Item?.ImplicitMods ?? result.Item?.LogbookMods.SelectMany(x => x.Mods).ToList(),
+                result.Item?.Extended?.Mods?.Implicit,
+                ParseHash(result.Item?.Extended?.Hashes?.Implicit));
 
             ParseMods(modifierProvider,
                 item.ModifierLines,
-                result.Item.CraftedMods,
-                result.Item.Extended.Mods?.Crafted,
-                ParseHash(result.Item.Extended.Hashes?.Crafted));
+                result.Item?.CraftedMods,
+                result.Item?.Extended?.Mods?.Crafted,
+                ParseHash(result.Item?.Extended?.Hashes?.Crafted));
 
             ParseMods(modifierProvider,
                 item.ModifierLines,
-                result.Item.ExplicitMods,
-                result.Item.Extended.Mods?.Explicit,
-                ParseHash(result.Item.Extended.Hashes?.Explicit, result.Item.Extended.Hashes?.Monster));
+                result.Item?.ExplicitMods,
+                result.Item?.Extended?.Mods?.Explicit,
+                ParseHash(result.Item?.Extended?.Hashes?.Explicit, result.Item?.Extended?.Hashes?.Monster));
 
             ParseMods(modifierProvider,
                 item.ModifierLines,
-                result.Item.FracturedMods,
-                result.Item.Extended.Mods?.Fractured,
-                ParseHash(result.Item.Extended.Hashes?.Fractured));
+                result.Item?.FracturedMods,
+                result.Item?.Extended?.Mods?.Fractured,
+                ParseHash(result.Item?.Extended?.Hashes?.Fractured));
 
             ParseMods(modifierProvider,
                 item.ModifierLines,
-                result.Item.ScourgeMods,
-                result.Item.Extended.Mods?.Scourge,
-                ParseHash(result.Item.Extended.Hashes?.Scourge));
+                result.Item?.ScourgeMods,
+                result.Item?.Extended?.Mods?.Scourge,
+                ParseHash(result.Item?.Extended?.Hashes?.Scourge));
 
             ParseMods(modifierProvider,
                 item.PseudoModifiers,
-                result.Item.PseudoMods,
-                result.Item.Extended.Mods?.Pseudo,
-                ParseHash(result.Item.Extended.Hashes?.Pseudo));
+                result.Item?.PseudoMods,
+                result.Item?.Extended?.Mods?.Pseudo,
+                ParseHash(result.Item?.Extended?.Hashes?.Pseudo));
 
             item.ModifierLines = item.ModifierLines
-                .OrderBy(x => item.Original.Text.IndexOf(x.Text))
+                .OrderBy(x => item.Original.Text?.IndexOf(x.Text ?? string.Empty))
                 .ToList();
 
             return item;
         }
 
-        private static List<LineContentValue> ParseHash(params List<List<JsonElement>>[] hashes)
+        private static List<LineContentValue> ParseHash(params List<List<JsonElement>>?[] hashes)
         {
             var result = new List<LineContentValue>();
 
@@ -571,9 +607,12 @@ namespace Sidekick.Apis.Poe.Trade
             return result;
         }
 
-        private static List<LineContent> ParseLineContents(List<ResultLineContent> lines, bool executeOrderBy = true)
+        private static List<LineContent> ParseLineContents(List<ResultLineContent>? lines, bool executeOrderBy = true)
         {
-            if (lines == null) return null;
+            if (lines == null)
+            {
+                return new();
+            }
 
             return lines
                 .OrderBy(x => executeOrderBy ? x.Order : 0)
@@ -622,7 +661,7 @@ namespace Sidekick.Apis.Poe.Trade
                                 break;
 
                             case 3:
-                                var format = Regex.Replace(line.Name, "%(\\d)", "{$1}");
+                                var format = Regex.Replace(line.Name ?? string.Empty, "%(\\d)", "{$1}");
                                 text = string.Format(format, values.Select(x => x.Value).ToArray());
                                 break;
 
@@ -641,9 +680,9 @@ namespace Sidekick.Apis.Poe.Trade
                 .ToList();
         }
 
-        private static void ParseMods(IModifierProvider modifierProvider, List<ModifierLine> modifierLines, List<string> texts, List<Mod> mods, List<LineContentValue> hashes)
+        private static void ParseMods(IModifierProvider modifierProvider, List<ModifierLine>? modifierLines, List<string>? texts, List<Mod>? mods, List<LineContentValue>? hashes)
         {
-            if (modifierLines == null || mods == null || hashes == null)
+            if (modifierLines == null || texts == null || mods == null || hashes == null)
             {
                 return;
             }
@@ -651,17 +690,22 @@ namespace Sidekick.Apis.Poe.Trade
             for (var index = 0; index < hashes.Count; index++)
             {
                 var id = hashes[index].Value;
+                if (id == null)
+                {
+                    continue;
+                }
+
                 var text = texts.FirstOrDefault(x => modifierProvider.IsMatch(id, x)) ?? texts[index];
                 var mod = mods.FirstOrDefault(x => x.Magnitudes != null && x.Magnitudes.Any(y => y.Hash == id));
 
-                modifierLines.Add(new()
+                modifierLines.Add(new(
+                    text: text)
                 {
-                    Text = text,
-                    Modifier = new Modifier()
+                    Modifier = new Modifier(
+                        text: text)
                     {
                         Id = id,
                         Category = modifierProvider.GetModifierCategory(id),
-                        Text = text,
                         Tier = mod?.Tier,
                         TierName = mod?.Name,
                     },
@@ -669,9 +713,9 @@ namespace Sidekick.Apis.Poe.Trade
             }
         }
 
-        private static void ParseMods(IModifierProvider modifierProvider, List<Modifier> modifiers, List<string> texts, List<Mod> mods, List<LineContentValue> hashes)
+        private static void ParseMods(IModifierProvider modifierProvider, List<Modifier>? modifiers, List<string>? texts, List<Mod>? mods, List<LineContentValue>? hashes)
         {
-            if (modifiers == null || mods == null || hashes == null)
+            if (modifiers == null || texts == null || mods == null || hashes == null)
             {
                 return;
             }
@@ -679,22 +723,36 @@ namespace Sidekick.Apis.Poe.Trade
             for (var index = 0; index < hashes.Count; index++)
             {
                 var id = hashes[index].Value;
-                var text = texts.FirstOrDefault(x => modifierProvider.IsMatch(id, x));
-                var mod = mods.FirstOrDefault(x => x.Magnitudes != null && x.Magnitudes.Any(y => y.Hash == id));
+                if (id == null)
+                {
+                    continue;
+                }
 
-                modifiers.Add(new Modifier()
+                var text = texts.FirstOrDefault(x => modifierProvider.IsMatch(id, x));
+                if (text == null)
+                {
+                    continue;
+                }
+
+                var mod = mods.FirstOrDefault(x => x.Magnitudes != null && x.Magnitudes.Any(y => y.Hash == id));
+                modifiers.Add(new Modifier(
+                    text: text)
                 {
                     Id = id,
                     Category = modifierProvider.GetModifierCategory(id),
-                    Text = text,
                     Tier = mod?.Tier,
                     TierName = mod?.Name,
                 });
             }
         }
 
-        private static List<Socket> ParseSockets(List<ResultSocket> sockets)
+        private static List<Socket> ParseSockets(List<ResultSocket>? sockets)
         {
+            if (sockets == null)
+            {
+                return new();
+            }
+
             return sockets
                 .Where(x => x.ColourString != "DV") // Remove delve resonator sockets
                 .Select(x => new Socket()
@@ -715,15 +773,19 @@ namespace Sidekick.Apis.Poe.Trade
 
         public Uri GetTradeUri(Item item, string queryId)
         {
-            Uri baseUri;
-
+            Uri? baseUri;
             if (item.Metadata.Rarity == Rarity.Currency && itemStaticDataProvider.GetId(item) != null)
             {
-                baseUri = gameLanguageProvider.Language.PoeTradeExchangeBaseUrl;
+                baseUri = gameLanguageProvider.Language?.PoeTradeExchangeBaseUrl;
             }
             else
             {
-                baseUri = gameLanguageProvider.Language.PoeTradeSearchBaseUrl;
+                baseUri = gameLanguageProvider.Language?.PoeTradeSearchBaseUrl;
+            }
+
+            if (baseUri == null)
+            {
+                throw new Exception("[Trade API] Could not find the trade uri.");
             }
 
             return new Uri(baseUri, $"{settings.LeagueId}/{queryId}");

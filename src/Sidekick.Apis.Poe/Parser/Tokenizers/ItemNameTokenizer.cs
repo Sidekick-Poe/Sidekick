@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -26,7 +25,7 @@ namespace Sidekick.Apis.Poe.Parser.Tokenizers
             while (!string.IsNullOrWhiteSpace(input))
             {
                 var match = FindMatch(ref input);
-                if (match.IsMatch)
+                if (match != null)
                 {
                     tokens.Add(new ItemNameToken(match.TokenType, match));
                 }
@@ -48,7 +47,7 @@ namespace Sidekick.Apis.Poe.Parser.Tokenizers
             return tokens;
         }
 
-        private ItemNameTokenMatch FindMatch(ref string input)
+        private ItemNameTokenMatch? FindMatch(ref string input)
         {
             foreach (var def in _tokenDefs)
             {
@@ -56,20 +55,21 @@ namespace Sidekick.Apis.Poe.Parser.Tokenizers
                 if (match.Success)
                 {
                     if (match.Length != input.Length)
-                        input = input[match.Length..];
-                    else
-                        input = string.Empty;
-
-                    return new ItemNameTokenMatch()
                     {
-                        IsMatch = true,
-                        TokenType = def.Key,
-                        Match = match
-                    };
+                        input = input[match.Length..];
+                    }
+                    else
+                    {
+                        input = string.Empty;
+                    }
+
+                    return new ItemNameTokenMatch(
+                        tokenType: def.Key,
+                        match: match);
                 }
             }
 
-            return new ItemNameTokenMatch() { IsMatch = false };
+            return null;
         }
 
         public string CleanString(string input)
@@ -80,6 +80,11 @@ namespace Sidekick.Apis.Poe.Parser.Tokenizers
 
             foreach (var token in tokens)
             {
+                if (token.Match == null)
+                {
+                    continue;
+                }
+
                 if (token.TokenType == ItemNameTokenType.Set)
                 {
                     langs.Add(token.Match.Match.Groups["LANG"].Value);

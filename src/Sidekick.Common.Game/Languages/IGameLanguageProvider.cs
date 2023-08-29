@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Sidekick.Common.Initialization;
 
 namespace Sidekick.Common.Game.Languages

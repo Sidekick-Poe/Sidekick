@@ -2,13 +2,13 @@ namespace Sidekick.Apis.Poe.Trade.Results
 {
     public class ErrorResult
     {
-        public Error Error { get; set; }
+        public Error? Error { get; set; }
     }
 
     public class Error
     {
         public ErrorResultCode Code { get; set; }
-        public string Message { get; set; }
+        public string? Message { get; set; }
     }
 
     public enum ErrorResultCode

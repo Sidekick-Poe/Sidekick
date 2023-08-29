@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Sidekick.Apis.Poe.Leagues;
 
 namespace Sidekick.Apis.Poe

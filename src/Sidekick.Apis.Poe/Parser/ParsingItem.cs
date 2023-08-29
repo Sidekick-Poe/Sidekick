@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Parser
@@ -26,7 +23,7 @@ namespace Sidekick.Apis.Poe.Parser
                 .ToList();
         }
 
-        public ItemMetadata Metadata { get; set; }
+        public ItemMetadata? Metadata { get; set; }
 
         /// <summary>
         /// Item sections seperated by dashes when copying an item in-game.

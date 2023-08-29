@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common.Game.GameLogs;
 using Sidekick.Common.Game.Items;

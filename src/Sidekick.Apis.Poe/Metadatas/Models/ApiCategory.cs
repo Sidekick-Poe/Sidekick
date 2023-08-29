@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Sidekick.Apis.Poe.Metadatas.Models
 {
     /// <summary>
@@ -14,7 +12,7 @@ namespace Sidekick.Apis.Poe.Metadatas.Models
     /// </summary>
     public class ApiCategory
     {
-        public string Label { get; set; }
-        public List<ApiItem> Entries { get; set; }
+        public string? Label { get; set; }
+        public List<ApiItem> Entries { get; set; } = new();
     }
 }

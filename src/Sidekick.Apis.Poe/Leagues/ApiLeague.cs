@@ -3,24 +3,21 @@ namespace Sidekick.Apis.Poe.Leagues
     /// <summary>
     /// A Path of Exile league
     /// </summary>
-    public class League
+    public class ApiLeague
     {
-        public League(
-            string id,
-            string text)
-        {
-            Id = id;
-            Text = text;
-        }
-
         /// <summary>
         /// The identifier of the league
         /// </summary>
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// The label of the league
         /// </summary>
-        public string Text { get; set; }
+        public string? Text { get; set; }
+
+        /// <summary>
+        /// Realm of the league
+        /// </summary>
+        public LeagueRealm Realm { get; set; }
     }
 }

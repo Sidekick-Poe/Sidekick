@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Common.Initialization;
 

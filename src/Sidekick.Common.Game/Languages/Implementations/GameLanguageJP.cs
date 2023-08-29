@@ -1,5 +1,3 @@
-using System;
-
 namespace Sidekick.Common.Game.Languages.Implementations
 {
     [GameLanguage("Japanese", "jp")]

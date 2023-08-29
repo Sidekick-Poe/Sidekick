@@ -5,10 +5,15 @@ namespace Sidekick.Common.Game.Items.Modifiers
     /// </summary>
     public class ModifierLine
     {
+        public ModifierLine(string text)
+        {
+            Text = text;
+        }
+
         /// <summary>
         /// Gets or sets the original line of text as it is in the game.
         /// </summary>
-        public string? Text { get; set; }
+        public string Text { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the modifier was found using a fuzzy search.

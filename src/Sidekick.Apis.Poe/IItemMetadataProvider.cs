@@ -6,6 +6,6 @@ namespace Sidekick.Apis.Poe
 {
     public interface IItemMetadataProvider : IInitializableService
     {
-        ItemMetadata Parse(ParsingItem parsingItem);
+        ItemMetadata? Parse(ParsingItem parsingItem);
     }
 }

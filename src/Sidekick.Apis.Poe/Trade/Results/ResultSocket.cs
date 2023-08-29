@@ -7,6 +7,6 @@ namespace Sidekick.Apis.Poe.Trade.Results
         public int Group { get; set; }
 
         [JsonPropertyName("sColour")]
-        public string ColourString { get; set; }
+        public string? ColourString { get; set; }
     }
 }

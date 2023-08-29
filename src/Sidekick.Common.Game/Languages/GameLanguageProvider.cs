@@ -52,7 +52,7 @@ namespace Sidekick.Common.Game.Languages
             foreach (var type in typeof(GameLanguageAttribute).GetTypesImplementingAttribute())
             {
                 var attribute = type.GetAttribute<GameLanguageAttribute>();
-                if(attribute == null)
+                if (attribute == null)
                 {
                     continue;
                 }

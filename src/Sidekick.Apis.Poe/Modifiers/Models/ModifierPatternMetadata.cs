@@ -1,16 +1,25 @@
-using System.Collections.Generic;
 using Sidekick.Common.Game.Items.Modifiers;
 
 namespace Sidekick.Apis.Poe.Modifiers.Models
 {
     public class ModifierPatternMetadata
     {
-        public string Id { get; set; }
+        public ModifierPatternMetadata(
+            ModifierCategory category,
+            string id,
+            bool isOption)
+        {
+            Category = category;
+            Id = id;
+            IsOption = isOption;
+        }
 
-        public ModifierCategory Category { get; set; }
+        public string Id { get; }
 
-        public bool IsOption { get; set; }
+        public ModifierCategory Category { get; }
 
-        public List<ModifierPattern> Patterns { get; set; } = new List<ModifierPattern>();
+        public bool IsOption { get; }
+
+        public List<ModifierPattern> Patterns { get; } = new();
     }
 }

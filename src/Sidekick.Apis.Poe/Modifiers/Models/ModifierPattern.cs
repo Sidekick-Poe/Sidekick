@@ -4,11 +4,21 @@ namespace Sidekick.Apis.Poe.Modifiers.Models
 {
     public class ModifierPattern
     {
-        public string Text { get; set; }
+        public ModifierPattern(
+            string text,
+            string fuzzyText,
+            Regex pattern)
+        {
+            Text = text;
+            FuzzyText = fuzzyText;
+            Pattern = pattern;
+        }
+
+        public string Text { get; }
 
         public string FuzzyText { get; set; }
 
-        public string OptionText { get; set; }
+        public string? OptionText { get; set; }
 
         public int LineCount => OptionText != null ? (OptionText?.Split('\n').Length ?? 1) : (Text?.Split('\n').Length ?? 1);
 

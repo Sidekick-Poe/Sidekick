@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SharpHook;
+using SharpHook.Logging;
 using SharpHook.Native;
 using Sidekick.Common.Initialization;
 
@@ -89,9 +90,9 @@ namespace Sidekick.Common.Platform.Keyboards
             { KeyCode.VcPeriod, "." },
             { KeyCode.VcSemicolon, ";" },
             { KeyCode.VcSlash, "/" },
-            { KeyCode.VcBackquote, "`" },
+            { KeyCode.VcBackQuote, "`" },
             { KeyCode.VcOpenBracket, "[" },
-            { KeyCode.VcBackSlash, "\\" },
+            { KeyCode.VcBackslash, "\\" },
             { KeyCode.VcCloseBracket, "]" },
             { KeyCode.VcQuote, "'" },
 
@@ -136,8 +137,9 @@ namespace Sidekick.Common.Platform.Keyboards
         private readonly IProcessProvider processProvider;
 
         private bool HasInitialized { get; set; } = false;
-        private TaskPoolGlobalHook? Hook { get; set; }
+        private SimpleGlobalHook? Hook { get; set; }
         private Task? HookTask { get; set; }
+        private LogSource? LogSource { get; set; }
 
         public KeyboardProvider(
             ILogger<KeyboardProvider> logger,
@@ -178,6 +180,10 @@ namespace Sidekick.Common.Platform.Keyboards
                 }
             }
 
+            // Configure hook logging
+            LogSource = LogSource.Register(minLevel: SharpHook.Native.LogLevel.Debug);
+            LogSource.MessageLogged += OnMessageLogged;
+
             // Initialize keyboard hook
             Hook = new();
             Hook.KeyPressed += OnKeyPressed;
@@ -187,6 +193,35 @@ namespace Sidekick.Common.Platform.Keyboards
             HasInitialized = true;
 
             return Task.CompletedTask;
+        }
+
+        private Regex IgnoreHookLogs = new Regex("(?:dispatch_mouse_move|hook_get_multi_click_time|dispatch_event|win_hook_event_proc|dispatch_mouse_wheel|dispatch_button_press|dispatch_button_release)", RegexOptions.Compiled);
+
+        private void OnMessageLogged(object? sender, LogEventArgs e)
+        {
+            if (IgnoreHookLogs.IsMatch(e.LogEntry.Function))
+            {
+                return;
+            }
+
+            switch (e.LogEntry.Level)
+            {
+                case SharpHook.Native.LogLevel.Debug:
+                    logger.LogDebug("[KeyboardHook] {0}", e.LogEntry.FullText);
+                    break;
+
+                case SharpHook.Native.LogLevel.Info:
+                    logger.LogInformation("[KeyboardHook] {0}", e.LogEntry.FullText);
+                    break;
+
+                case SharpHook.Native.LogLevel.Warn:
+                    logger.LogWarning("[KeyboardHook] {0}", e.LogEntry.FullText);
+                    break;
+
+                case SharpHook.Native.LogLevel.Error:
+                    logger.LogError("[KeyboardHook] {0}", e.LogEntry.FullText);
+                    break;
+            }
         }
 
         private void OnKeyPressed(object? sender, KeyboardHookEventArgs args)
@@ -240,6 +275,11 @@ namespace Sidekick.Common.Platform.Keyboards
         {
             var simulator = new EventSimulator();
 
+            if (Hook != null)
+            {
+                Hook.KeyPressed -= OnKeyPressed;
+            }
+
             foreach (var stroke in keyStrokes)
             {
                 logger.LogDebug("[Keyboard] Sending " + stroke);
@@ -270,6 +310,11 @@ namespace Sidekick.Common.Platform.Keyboards
                 {
                     simulator.SimulateKeyRelease(modifierKey);
                 }
+            }
+
+            if (Hook != null)
+            {
+                Hook.KeyPressed += OnKeyPressed;
             }
 
             return Task.CompletedTask;
@@ -326,6 +371,12 @@ namespace Sidekick.Common.Platform.Keyboards
 
         protected virtual void Dispose(bool disposing)
         {
+            if (LogSource != null)
+            {
+                LogSource.Dispose();
+                LogSource = null;
+            }
+
             if (Hook != null)
             {
                 Hook.KeyPressed -= OnKeyPressed;

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace Sidekick.Apis.Poe.Pseudo.Models
@@ -16,6 +15,5 @@ namespace Sidekick.Apis.Poe.Pseudo.Models
         public double Multiplier { get; set; }
 
         public List<PseudoPatternMatch> Matches { get; set; } = new List<PseudoPatternMatch>();
-
     }
 }

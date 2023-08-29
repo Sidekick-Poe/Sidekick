@@ -4,11 +4,11 @@ namespace Sidekick.Apis.Poe.Trade.Results
 {
     public class Extended
     {
-        public string Text { get; set; }
+        public string? Text { get; set; }
 
-        public Mods Mods { get; set; }
+        public Mods? Mods { get; set; }
 
-        public Hashes Hashes { get; set; }
+        public Hashes? Hashes { get; set; }
 
         [JsonPropertyName("dps")]
         public double DamagePerSecond { get; set; }

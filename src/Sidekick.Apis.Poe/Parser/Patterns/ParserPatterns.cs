@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
@@ -37,6 +33,11 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
 
         private void InitHeader()
         {
+            if (gameLanguageProvider.Language == null)
+            {
+                throw new Exception("[Parser Patterns] Could not find a valid language.");
+            }
+
             Rarity = new Dictionary<Rarity, Regex>
             {
                 { Common.Game.Items.Rarity.Normal, gameLanguageProvider.Language.RarityNormal.ToRegexEndOfLine() },
@@ -55,12 +56,12 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
             Scourged = gameLanguageProvider.Language.DescriptionScourged.ToRegexLine();
         }
 
-        public Dictionary<Rarity, Regex> Rarity { get; private set; }
-        public Regex ItemLevel { get; private set; }
-        public Regex Unidentified { get; private set; }
-        public Regex Corrupted { get; private set; }
-        public Regex Scourged { get; private set; }
-        public Regex IsRelic { get; private set; }
+        public Dictionary<Rarity, Regex> Rarity { get; private set; } = null!;
+        public Regex ItemLevel { get; private set; } = null!;
+        public Regex Unidentified { get; private set; } = null!;
+        public Regex Corrupted { get; private set; } = null!;
+        public Regex Scourged { get; private set; } = null!;
+        public Regex IsRelic { get; private set; } = null!;
 
         #endregion Header (Rarity, Name, Type)
 
@@ -68,6 +69,11 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
 
         private void InitProperties()
         {
+            if (gameLanguageProvider.Language == null)
+            {
+                throw new Exception("[Parser Patterns] Could not find a valid language.");
+            }
+
             Armor = gameLanguageProvider.Language.DescriptionArmour.ToRegexIntCapture();
             EnergyShield = gameLanguageProvider.Language.DescriptionEnergyShield.ToRegexIntCapture();
             Evasion = gameLanguageProvider.Language.DescriptionEvasion.ToRegexIntCapture();
@@ -91,24 +97,24 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
             Requirements = gameLanguageProvider.Language.DescriptionRequirements.ToRegexLine();
         }
 
-        public Regex Armor { get; private set; }
-        public Regex EnergyShield { get; private set; }
-        public Regex Evasion { get; private set; }
-        public Regex ChanceToBlock { get; private set; }
-        public Regex Quality { get; private set; }
-        public Regex AlternateQuality { get; private set; }
-        public Regex Level { get; private set; }
-        public Regex MapTier { get; private set; }
-        public Regex ItemQuantity { get; private set; }
-        public Regex ItemRarity { get; private set; }
-        public Regex MonsterPackSize { get; private set; }
-        public Regex AttacksPerSecond { get; private set; }
-        public Regex CriticalStrikeChance { get; private set; }
-        public Regex ElementalDamage { get; private set; }
-        public Regex PhysicalDamage { get; private set; }
-        public Regex Blighted { get; private set; }
-        public Regex BlightRavaged { get; private set; }
-        public Regex Requirements { get; private set; }
+        public Regex Armor { get; private set; } = null!;
+        public Regex EnergyShield { get; private set; } = null!;
+        public Regex Evasion { get; private set; } = null!;
+        public Regex ChanceToBlock { get; private set; } = null!;
+        public Regex Quality { get; private set; } = null!;
+        public Regex AlternateQuality { get; private set; } = null!;
+        public Regex Level { get; private set; } = null!;
+        public Regex MapTier { get; private set; } = null!;
+        public Regex ItemQuantity { get; private set; } = null!;
+        public Regex ItemRarity { get; private set; } = null!;
+        public Regex MonsterPackSize { get; private set; } = null!;
+        public Regex AttacksPerSecond { get; private set; } = null!;
+        public Regex CriticalStrikeChance { get; private set; } = null!;
+        public Regex ElementalDamage { get; private set; } = null!;
+        public Regex PhysicalDamage { get; private set; } = null!;
+        public Regex Blighted { get; private set; } = null!;
+        public Regex BlightRavaged { get; private set; } = null!;
+        public Regex Requirements { get; private set; } = null!;
 
         #endregion Properties (Armour, Evasion, Energy Shield, Quality, Level)
 
@@ -116,11 +122,16 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
 
         private void InitSockets()
         {
+            if (gameLanguageProvider.Language == null)
+            {
+                throw new Exception("[Parser Patterns] Could not find a valid language.");
+            }
+
             // We need 6 capturing groups as it is possible for a 6 socket unlinked item to exist
             Socket = new Regex($"{Regex.Escape(gameLanguageProvider.Language.DescriptionSockets)}.*?([-RGBWA]+)\\ ?([-RGBWA]*)\\ ?([-RGBWA]*)\\ ?([-RGBWA]*)\\ ?([-RGBWA]*)\\ ?([-RGBWA]*)");
         }
 
-        public Regex Socket { get; private set; }
+        public Regex Socket { get; private set; } = null!;
 
         #endregion Sockets
 
@@ -128,6 +139,11 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
 
         private void InitInfluences()
         {
+            if (gameLanguageProvider.Language == null)
+            {
+                throw new Exception("[Parser Patterns] Could not find a valid language.");
+            }
+
             Crusader = gameLanguageProvider.Language.InfluenceCrusader.ToRegexStartOfLine();
             Elder = gameLanguageProvider.Language.InfluenceElder.ToRegexStartOfLine();
             Hunter = gameLanguageProvider.Language.InfluenceHunter.ToRegexStartOfLine();
@@ -136,12 +152,12 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
             Warlord = gameLanguageProvider.Language.InfluenceWarlord.ToRegexStartOfLine();
         }
 
-        public Regex Crusader { get; private set; }
-        public Regex Elder { get; private set; }
-        public Regex Hunter { get; private set; }
-        public Regex Redeemer { get; private set; }
-        public Regex Shaper { get; private set; }
-        public Regex Warlord { get; private set; }
+        public Regex Crusader { get; private set; } = null!;
+        public Regex Elder { get; private set; } = null!;
+        public Regex Hunter { get; private set; } = null!;
+        public Regex Redeemer { get; private set; } = null!;
+        public Regex Shaper { get; private set; } = null!;
+        public Regex Warlord { get; private set; } = null!;
 
         #endregion Influences
 
@@ -151,6 +167,11 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
 
         private void InitClasses()
         {
+            if (gameLanguageProvider.Language == null)
+            {
+                throw new Exception("[Parser Patterns] Could not find a valid language.");
+            }
+
             Classes.Clear();
 
             if (gameLanguageProvider.Language.Classes == null) return;
@@ -161,7 +182,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
 
             foreach (var property in properties)
             {
-                var label = property.GetValue(gameLanguageProvider.Language.Classes).ToString();
+                var label = property.GetValue(gameLanguageProvider.Language.Classes)?.ToString();
                 if (string.IsNullOrEmpty(label)) continue;
 
                 Classes.Add(Enum.Parse<Class>(property.Name), $"{prefix}{label}".ToRegexLine());

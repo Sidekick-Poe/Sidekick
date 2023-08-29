@@ -4,19 +4,37 @@ namespace Sidekick.Common.Game.Items
 {
     public class Item
     {
-        public ItemMetadata Metadata { get; set; } = new();
+        public Item(
+            ItemMetadata metadata,
+            OriginalItem original,
+            Properties properties,
+            Influences influences,
+            List<Socket> sockets,
+            List<ModifierLine> modifierLines,
+            List<Modifier> pseudoModifiers)
+        {
+            Metadata = metadata;
+            Original = original;
+            Properties = properties;
+            Influences = influences;
+            Sockets = sockets;
+            ModifierLines = modifierLines;
+            PseudoModifiers = pseudoModifiers;
+        }
 
-        public OriginalItem Original { get; set; } = new();
+        public ItemMetadata Metadata { get; }
 
-        public Properties Properties { get; set; } = new();
+        public OriginalItem Original { get; }
 
-        public Influences Influences { get; set; } = new();
+        public Properties Properties { get; }
 
-        public List<Socket> Sockets { get; set; } = new();
+        public Influences Influences { get; }
 
-        public List<ModifierLine> ModifierLines { get; set; } = new();
+        public List<Socket> Sockets { get; }
 
-        public List<Modifier> PseudoModifiers { get; set; } = new();
+        public List<ModifierLine> ModifierLines { get; set; }
+
+        public List<Modifier> PseudoModifiers { get; }
 
         /// <inheritdoc/>
         public override string? ToString()
