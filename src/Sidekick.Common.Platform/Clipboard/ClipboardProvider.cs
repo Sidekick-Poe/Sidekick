@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Settings;
 
@@ -64,19 +65,65 @@ namespace Sidekick.Common.Platform.Clipboard
         }
 
         /// <inheritdoc/>
-        public async Task<string?> GetText()
+        public Task<string?> GetText()
         {
-            return await TextCopy.ClipboardService.GetTextAsync();
+            string? data = null;
+            Exception? exception = null;
+            var staThread = new Thread(
+                delegate ()
+                {
+                    try
+                    {
+                        data = TextCopy.ClipboardService.GetText();
+                    }
+                    catch (Exception ex)
+                    {
+                        exception = ex;
+                    }
+                });
+            staThread.SetApartmentState(ApartmentState.STA);
+            staThread.Start();
+            staThread.Join();
+
+            if (exception != null)
+            {
+                logger.LogError(exception, "[Clipboard] Failed to get the text value from the clipboard.");
+            }
+
+            return Task.FromResult(data);
         }
 
         /// <inheritdoc/>
-        public async Task SetText(string? text)
+        public Task SetText(string? text)
         {
             if (text == null)
             {
                 text = string.Empty;
             }
-            await TextCopy.ClipboardService.SetTextAsync(text);
+
+            Exception? exception = null;
+            var staThread = new Thread(
+                delegate ()
+                {
+                    try
+                    {
+                        TextCopy.ClipboardService.SetText(text);
+                    }
+                    catch (Exception ex)
+                    {
+                        exception = ex;
+                    }
+                });
+            staThread.SetApartmentState(ApartmentState.STA);
+            staThread.Start();
+            staThread.Join();
+
+            if (exception != null)
+            {
+                logger.LogError(exception, "[Clipboard] Failed to set the text value to the clipboard.");
+            }
+
+            return Task.CompletedTask;
         }
     }
 }
