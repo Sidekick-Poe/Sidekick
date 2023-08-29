@@ -233,16 +233,20 @@ namespace Sidekick.Common.Platform.Keyboards
             Task.Run(async () =>
             {
                 await keybindHandler.Execute(keybind);
-                ReleaseModifierKeys();
                 logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
             });
         }
 
-        public async Task PressKey(params string[] keyStrokes)
+        public Task PressKey(params string[] keyStrokes)
         {
             if (Simulator == null)
             {
-                return;
+                return Task.CompletedTask;
+            }
+
+            if (Hook != null)
+            {
+                Hook.KeyPressed -= OnKeyPressed;
             }
 
             foreach (var stroke in keyStrokes)
@@ -277,7 +281,12 @@ namespace Sidekick.Common.Platform.Keyboards
                 }
             }
 
-            ReleaseModifierKeys();
+            if (Hook != null)
+            {
+                Hook.KeyPressed += OnKeyPressed;
+            }
+
+            return Task.CompletedTask;
         }
 
         private void ReleaseModifierKeys()
