@@ -6,8 +6,7 @@ namespace Sidekick.Wpf
 {
     internal class OverlayControl : ContentControl, IDisposable
     {
-        private OverlayWindow window;
-        private HwndHostEx host;
+        private OverlayWindow? window;
 
         public OverlayControl()
         {
@@ -20,13 +19,12 @@ namespace Sidekick.Wpf
             window.Content = Content;
             window.Show();
 
-            IntPtr windowHandle = new WindowInteropHelper(window).Handle;
+            var windowHandle = new WindowInteropHelper(window).Handle;
             Content = new HwndHostEx(windowHandle);
         }
 
         public void Dispose()
         {
-            host?.Dispose();
             window?.Close();
         }
     }

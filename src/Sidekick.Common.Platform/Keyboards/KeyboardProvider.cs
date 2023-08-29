@@ -89,9 +89,9 @@ namespace Sidekick.Common.Platform.Keyboards
             { KeyCode.VcPeriod, "." },
             { KeyCode.VcSemicolon, ";" },
             { KeyCode.VcSlash, "/" },
-            { KeyCode.VcBackQuote, "`" },
+            { KeyCode.VcBackquote, "`" },
             { KeyCode.VcOpenBracket, "[" },
-            { KeyCode.VcBackslash, "\\" },
+            { KeyCode.VcBackSlash, "\\" },
             { KeyCode.VcCloseBracket, "]" },
             { KeyCode.VcQuote, "'" },
 
@@ -128,7 +128,7 @@ namespace Sidekick.Common.Platform.Keyboards
             { KeyCode.VcNumPad9, "Num9" },
         };
 
-        private static readonly Regex ModifierKeys = new("Ctrl|Shift|Alt");
+        private static readonly Regex ModifierKeys = new("^(?:Ctrl|Shift|Alt)$");
 
         private readonly ILogger<KeyboardProvider> logger;
         private readonly IOptions<SidekickConfiguration> configuration;
@@ -138,7 +138,6 @@ namespace Sidekick.Common.Platform.Keyboards
         private bool HasInitialized { get; set; } = false;
         private TaskPoolGlobalHook? Hook { get; set; }
         private Task? HookTask { get; set; }
-        private EventSimulator? Simulator { get; set; }
 
         public KeyboardProvider(
             ILogger<KeyboardProvider> logger,
@@ -180,10 +179,7 @@ namespace Sidekick.Common.Platform.Keyboards
             }
 
             // Initialize keyboard hook
-            Hook = new();
-            Hook.KeyPressed += OnKeyPressed;
-            HookTask = Hook.RunAsync();
-            Simulator = new EventSimulator();
+            Register();
 
             // Make sure we don't run this multiple times
             HasInitialized = true;
@@ -194,7 +190,7 @@ namespace Sidekick.Common.Platform.Keyboards
         private void OnKeyPressed(object? sender, KeyboardHookEventArgs args)
         {
             // Make sure the key is one we recognize and validate the event and keybinds
-            if (!Keys.TryGetValue(args.Data.KeyCode, out var key)
+            if (!Keys.TryGetValue(args.RawEvent.Keyboard.KeyCode, out var key)
              || ModifierKeys.IsMatch(key)
              || (!processProvider.IsPathOfExileInFocus && !processProvider.IsSidekickInFocus))
             {
@@ -221,6 +217,7 @@ namespace Sidekick.Common.Platform.Keyboards
             str.Append(key);
             var keybind = str.ToString();
             OnKeyDown?.Invoke(keybind);
+            logger.LogDebug($"[Keyboard] Received key pressed event {keybind}.");
 
             if (!KeybindHandlers.TryGetValue(keybind, out var keybindHandler) || !keybindHandler.IsValid())
             {
@@ -239,15 +236,7 @@ namespace Sidekick.Common.Platform.Keyboards
 
         public Task PressKey(params string[] keyStrokes)
         {
-            if (Simulator == null)
-            {
-                return Task.CompletedTask;
-            }
-
-            if (Hook != null)
-            {
-                Hook.KeyPressed -= OnKeyPressed;
-            }
+            var simulator = new EventSimulator();
 
             foreach (var stroke in keyStrokes)
             {
@@ -262,44 +251,26 @@ namespace Sidekick.Common.Platform.Keyboards
 
                 foreach (var modifierKey in modifiers)
                 {
-                    Simulator.SimulateKeyPress(modifierKey);
+                    simulator.SimulateKeyPress(modifierKey);
                 }
 
                 foreach (var key in keys)
                 {
-                    Simulator.SimulateKeyPress(key);
+                    simulator.SimulateKeyPress(key);
                 }
 
                 foreach (var key in keys)
                 {
-                    Simulator.SimulateKeyRelease(key);
+                    simulator.SimulateKeyRelease(key);
                 }
 
                 foreach (var modifierKey in modifiers)
                 {
-                    Simulator.SimulateKeyRelease(modifierKey);
+                    simulator.SimulateKeyRelease(modifierKey);
                 }
             }
 
-            if (Hook != null)
-            {
-                Hook.KeyPressed += OnKeyPressed;
-            }
-
             return Task.CompletedTask;
-        }
-
-        private void ReleaseModifierKeys()
-        {
-            if (Simulator == null)
-            {
-                return;
-            }
-
-            foreach (var modifierKey in Keys.Where(x => ModifierKeys.IsMatch(x.Value)))
-            {
-                Simulator.SimulateKeyRelease(modifierKey.Key);
-            }
         }
 
         private (List<KeyCode> Modifiers, List<KeyCode> Keys) FetchKeys(string stroke)
@@ -309,20 +280,32 @@ namespace Sidekick.Common.Platform.Keyboards
 
             foreach (var key in stroke.Split('+'))
             {
+                // Modifier keys;
+                if (ModifierKeys.IsMatch(key))
+                {
+                    var modifierKey = key switch
+                    {
+                        "Shift" => KeyCode.VcLeftShift,
+                        "Ctrl" => KeyCode.VcLeftControl,
+                        "Alt" => KeyCode.VcLeftAlt,
+                        _ => KeyCode.Vc0
+                    };
+
+                    if (modifierKey != KeyCode.Vc0)
+                    {
+                        modifierCodes.Add(modifierKey);
+                    }
+
+                    continue;
+                }
+
                 if (!Keys.Any(x => x.Value == key))
                 {
-                    return (new(), new());
+                    continue;
                 }
 
                 var validKey = Keys.First(x => x.Value == key);
-                if (ModifierKeys.IsMatch(key))
-                {
-                    modifierCodes.Add(validKey.Key);
-                }
-                else
-                {
-                    keyCodes.Add(validKey.Key);
-                }
+                keyCodes.Add(validKey.Key);
             }
 
             if (keyCodes.Count == 0)
@@ -333,6 +316,31 @@ namespace Sidekick.Common.Platform.Keyboards
             return (modifierCodes, keyCodes);
         }
 
+        public void Unregister()
+        {
+            if (Hook != null)
+            {
+                Hook.KeyPressed -= OnKeyPressed;
+                Hook.Dispose();
+                Hook = null;
+            }
+
+            if (HookTask != null)
+            {
+                HookTask.Dispose();
+                HookTask = null;
+            }
+        }
+
+        public void Register()
+        {
+            Unregister();
+
+            Hook = new();
+            Hook.KeyPressed += OnKeyPressed;
+            HookTask = Hook.RunAsync();
+        }
+
         public void Dispose()
         {
             Dispose(true);
@@ -341,16 +349,7 @@ namespace Sidekick.Common.Platform.Keyboards
 
         protected virtual void Dispose(bool disposing)
         {
-            if (Hook != null)
-            {
-                Hook.KeyPressed -= OnKeyPressed;
-                Hook.Dispose();
-            }
-
-            if (HookTask != null)
-            {
-                HookTask.Dispose();
-            }
+            Unregister();
         }
     }
 }

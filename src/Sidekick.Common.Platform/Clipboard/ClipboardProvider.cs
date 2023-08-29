@@ -1,4 +1,4 @@
-using System;
+using System.Runtime.InteropServices;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Settings;
 
@@ -81,7 +81,11 @@ namespace Sidekick.Common.Platform.Clipboard
                         exception = ex;
                     }
                 });
-            staThread.SetApartmentState(ApartmentState.STA);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                staThread.SetApartmentState(ApartmentState.STA);
+            }
+
             staThread.Start();
             staThread.Join();
 
@@ -114,7 +118,11 @@ namespace Sidekick.Common.Platform.Clipboard
                         exception = ex;
                     }
                 });
-            staThread.SetApartmentState(ApartmentState.STA);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                staThread.SetApartmentState(ApartmentState.STA);
+            }
+
             staThread.Start();
             staThread.Join();
 
