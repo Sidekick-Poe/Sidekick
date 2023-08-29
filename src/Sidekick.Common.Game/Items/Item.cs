@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Sidekick.Common.Game.Items.Modifiers;
 
 namespace Sidekick.Common.Game.Items
@@ -20,7 +19,7 @@ namespace Sidekick.Common.Game.Items
         public List<Modifier> PseudoModifiers { get; set; } = new();
 
         /// <inheritdoc/>
-        public override string ToString()
+        public override string? ToString()
         {
             if (Metadata == null)
             {

@@ -12,6 +12,6 @@ namespace Sidekick.Common.Game.Languages
 
         public string Name { get; private set; }
         public string LanguageCode { get; private set; }
-        public Type ImplementationType { get; set; }
+        public Type? ImplementationType { get; set; }
     }
 }

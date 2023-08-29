@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Sidekick.Common.Game.Items.Modifiers
 {
     /// <summary>
@@ -10,7 +8,7 @@ namespace Sidekick.Common.Game.Items.Modifiers
         /// <summary>
         /// Gets or sets the original line of text as it is in the game.
         /// </summary>
-        public string Text { get; set; }
+        public string? Text { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the modifier was found using a fuzzy search.
@@ -20,7 +18,7 @@ namespace Sidekick.Common.Game.Items.Modifiers
         /// <summary>
         /// Gets or sets the modifier associated with this line.
         /// </summary>
-        public Modifier Modifier { get; set; }
+        public Modifier? Modifier { get; set; }
 
         /// <summary>
         /// Gets or sets the list of modifiers that also matches the game text, or similar phrased modifiers if fuzzy search was used.
@@ -28,7 +26,7 @@ namespace Sidekick.Common.Game.Items.Modifiers
         public List<Modifier> Alternates { get; set; } = new();
 
         /// <inheritdoc/>
-        public override string ToString()
+        public override string? ToString()
         {
             return Text;
         }

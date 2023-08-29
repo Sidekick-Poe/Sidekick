@@ -1,5 +1,3 @@
-using System;
-
 namespace Sidekick.Common.Game.Languages
 {
     public interface IGameLanguage
@@ -57,6 +55,6 @@ namespace Sidekick.Common.Game.Languages
         string InfluenceRedeemer { get; }
         string InfluenceWarlord { get; }
 
-        ClassLanguage Classes { get; }
+        ClassLanguage? Classes { get; }
     }
 }
