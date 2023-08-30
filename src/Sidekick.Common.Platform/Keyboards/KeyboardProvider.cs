@@ -181,7 +181,7 @@ namespace Sidekick.Common.Platform.Keyboards
             }
 
             // Configure hook logging
-            LogSource = LogSource.Register(minLevel: SharpHook.Native.LogLevel.Debug);
+            LogSource = LogSource.Register(minLevel: SharpHook.Native.LogLevel.Info);
             LogSource.MessageLogged += OnMessageLogged;
 
             // Initialize keyboard hook
@@ -254,7 +254,7 @@ namespace Sidekick.Common.Platform.Keyboards
             str.Append(key);
             var keybind = str.ToString();
             OnKeyDown?.Invoke(keybind);
-            logger.LogDebug($"[Keyboard] Received key pressed event {keybind}.");
+            // logger.LogDebug($"[Keyboard] Received key pressed event {keybind}.");
 
             if (!KeybindHandlers.TryGetValue(keybind, out var keybindHandler) || !keybindHandler.IsValid(keybind))
             {
