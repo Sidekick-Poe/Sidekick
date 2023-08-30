@@ -26,7 +26,11 @@ builder.WebHost.UseElectron(args);
 
 #region Configuration
 
-builder.Configuration.AddJsonFile(SidekickPaths.GetDataFilePath(SettingsService.FileName), true, true);
+try
+{
+    builder.Configuration.AddJsonFile(SidekickPaths.GetDataFilePath(SettingsService.FileName), true, true);
+}
+catch (Exception) { }
 
 #endregion Configuration
 

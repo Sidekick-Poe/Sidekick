@@ -38,7 +38,8 @@ namespace Sidekick.Common.Game.Languages
 
             if (language == null || language.ImplementationType == null)
             {
-                logger.LogWarning("Couldn't find language matching {language}.", languageCode);
+                logger.LogWarning("[GameLanguage] Couldn't find language matching {language}. Setting language to English.", languageCode);
+                SetLanguage(EnglishLanguageCode);
                 return;
             }
 
