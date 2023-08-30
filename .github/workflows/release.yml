@@ -85,7 +85,7 @@ jobs:
     - name: .NET - Build
       run: dotnet build --no-restore
     - name: .NET - Tests
-      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+      run: dotnet test --no-build --verbosity normal
     - name: .NET - Tool Restore
       run: |
         cd ./src/Sidekick
