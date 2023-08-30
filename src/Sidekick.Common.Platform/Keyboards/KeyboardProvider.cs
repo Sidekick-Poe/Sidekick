@@ -176,7 +176,10 @@ namespace Sidekick.Common.Platform.Keyboards
                 var keybindHandler = (IKeybindHandler)serviceProvider.GetRequiredService(keybindType);
                 foreach (var keybind in keybindHandler.GetKeybinds())
                 {
-                    KeybindHandlers.Add(keybind, keybindHandler);
+                    if (!KeybindHandlers.TryAdd(keybind, keybindHandler))
+                    {
+                        logger.LogWarning("[Keyboard] Duplicate keybinding detected {0}.", keybind);
+                    }
                 }
             }
 
@@ -199,14 +202,14 @@ namespace Sidekick.Common.Platform.Keyboards
 
         private void OnMessageLogged(object? sender, LogEventArgs e)
         {
-            if (IgnoreHookLogs.IsMatch(e.LogEntry.Function))
-            {
-                return;
-            }
-
             switch (e.LogEntry.Level)
             {
                 case SharpHook.Native.LogLevel.Debug:
+                    if (IgnoreHookLogs.IsMatch(e.LogEntry.Function))
+                    {
+                        break;
+                    }
+
                     logger.LogDebug("[KeyboardHook] {0}", e.LogEntry.FullText);
                     break;
 

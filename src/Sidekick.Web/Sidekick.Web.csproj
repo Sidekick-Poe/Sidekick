@@ -4,22 +4,9 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <AssemblyName>$(MSBuildProjectName).Web</AssemblyName>
+    <AssemblyName>Sidekick</AssemblyName>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Assets\**\*" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\**\*">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="ElectronNET.API" Version="23.6.1" />
-  </ItemGroup>
-  
   <ItemGroup>
     <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
     <ProjectReference Include="..\Sidekick.Mock\Sidekick.Mock.csproj" />
@@ -33,4 +20,16 @@
     <ProjectReference Include="..\Sidekick.Modules.Trade\Sidekick.Modules.Trade.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <Target Name="Copywwwroot" BeforeTargets="PreBuildEvent">
+    <ItemGroup>
+      <wwwrootFolder Include="$(ProjectDir)..\Sidekick.Common.Blazor\wwwroot\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(wwwrootFolder)" DestinationFolder="$(ProjectDir)wwwroot\%(RecursiveDir)" />
+  </Target>
 </Project>

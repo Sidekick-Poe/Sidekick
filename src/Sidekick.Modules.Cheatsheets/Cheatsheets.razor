@@ -5,7 +5,7 @@
 
 @if (!string.IsNullOrEmpty(IFrameSrc))
 {
-    <iframe src="@IFrameSrc" style="height: 100%;"></iframe>
+    <iframe src="@IFrameSrc" style="height: calc(100vh - var(--mud-appbar-height) - 8px);"></iframe>
 }
 
 @code {
