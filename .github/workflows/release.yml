@@ -99,7 +99,7 @@ jobs:
       uses: actions/upload-artifact@v2.2.3
       with:
         name: Sidekick-windows
-        path: ./src/Sidekick/bin/Desktop/Sidekick-Setup.exe
+        path: ./src/Sidekick.Electron/bin/Desktop/Sidekick-Setup.exe
         
     # Manual release
     - name: Manual Release - Notes
@@ -115,7 +115,7 @@ jobs:
       if: github.ref != 'refs/heads/main'
       uses: xresloader/upload-to-github-release@v1.3.4
       with:
-        file: src/Sidekick/bin/Desktop/Sidekick-Setup.exe
+        file: src/Sidekick.Electron/bin/Desktop/Sidekick-Setup.exe
         tag_name: v${{ steps.gitversion.outputs.fullSemVer }}
         draft: true
         verbose: true
@@ -135,7 +135,7 @@ jobs:
       if: github.ref == 'refs/heads/main'
       uses: xresloader/upload-to-github-release@v1.3.4
       with:
-        file: src/Sidekick/bin/Desktop/Sidekick-Setup.exe
+        file: src/Sidekick.Electron/bin/Desktop/Sidekick-Setup.exe
         tag_name: v${{ steps.gitversion.outputs.majorMinorPatch }}
         draft: true
         verbose: true

@@ -32,7 +32,7 @@ namespace Sidekick.Electron
             });
         }
 
-        private List<BrowserWindow> Browsers { get; set; } = new();
+        private List<BrowserWindow> Browsers { get; } = new();
 
         private List<SidekickView> Views { get; } = new();
 
