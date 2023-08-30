@@ -49,7 +49,6 @@ namespace Sidekick.Electron
                 return;
             }
 
-            Views.Remove(view);
             Views.Add(view);
 
             browser.SetTitle(view.Title);
@@ -106,6 +105,8 @@ namespace Sidekick.Electron
             {
                 browser.OnBlur += () => Task.Run(() => Close(view));
             }
+
+            browser.OnClose += () => Browser_OnClose(browser, view);
         }
 
         public async Task Maximize(SidekickView view)
@@ -163,15 +164,11 @@ namespace Sidekick.Electron
 
             Views.Remove(view);
             Browsers.Remove(browser);
-
-            // Make sure we don't have orphaned views
-            var browserUrls = Browsers.Select(x => x.WebContents.GetUrl().Result);
-            Views.RemoveAll(x => !browserUrls.Contains(x.Url));
         }
 
         public async Task CloseAllOverlays()
         {
-            foreach (var overlay in Views.Where(x => x.ViewType == SidekickViewType.Overlay))
+            foreach (var overlay in Views.Where(x => x.ViewType == SidekickViewType.Overlay).ToList())
             {
                 await Close(overlay);
             }
@@ -264,6 +261,12 @@ namespace Sidekick.Electron
                 }
                 catch (Exception) { }
             });
+        }
+
+        private void Browser_OnClose(BrowserWindow browser, SidekickView view)
+        {
+            Browsers.Remove(browser);
+            Views.Remove(view);
         }
     }
 }
