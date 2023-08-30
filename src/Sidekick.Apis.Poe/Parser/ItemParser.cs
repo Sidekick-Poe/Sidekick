@@ -1,3 +1,4 @@
+using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
@@ -72,15 +73,21 @@ namespace Sidekick.Apis.Poe.Parser
                 parsingItem.Metadata = metadata;
                 ParseRequirements(parsingItem);
 
+                // Order of parsing is important
+                var original = ParseOriginal(parsingItem);
+                var properties = ParseProperties(parsingItem);
+                var influences = ParseInfluences(parsingItem);
+                var sockets = ParseSockets(parsingItem);
                 var modifierLines = ParseModifiers(parsingItem);
+                var pseudoModifiers = ParsePseudoModifiers(modifierLines);
                 return new Item(
-                    metadata: parsingItem.Metadata,
-                    original: ParseOriginal(parsingItem),
-                    properties: ParseProperties(parsingItem),
-                    influences: ParseInfluences(parsingItem),
-                    sockets: ParseSockets(parsingItem),
+                    metadata: metadata,
+                    original: original,
+                    properties: properties,
+                    influences: influences,
+                    sockets: sockets,
                     modifierLines: modifierLines,
-                    pseudoModifiers: ParsePseudoModifiers(modifierLines)
+                    pseudoModifiers: pseudoModifiers
                 );
             }
             catch (Exception e)
@@ -178,7 +185,7 @@ namespace Sidekick.Apis.Poe.Parser
         private Properties ParseArmourProperties(ParsingItem parsingItem)
         {
             var propertyBlock = parsingItem.Blocks[1];
-
+            
             return new Properties()
             {
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),

@@ -34,7 +34,7 @@ namespace Sidekick.Electron
 
         private List<BrowserWindow> Browsers { get; set; } = new();
 
-        private List<SidekickView> Views { get; set; } = new();
+        private List<SidekickView> Views { get; } = new();
 
         public async Task Initialize(SidekickView view)
         {
@@ -44,6 +44,8 @@ namespace Sidekick.Electron
                 logger.LogError("Unable to find view {viewUrl}", view.Url);
                 return;
             }
+
+            Views.Add(view);
 
             browser.SetTitle(view.Title);
             browser.SetMinimumSize(view.ViewWidth, view.ViewHeight);
@@ -99,6 +101,8 @@ namespace Sidekick.Electron
             {
                 browser.OnBlur += () => Task.Run(() => Close(view));
             }
+
+            browser.OnClose += () => Browser_OnClose(browser, view);
         }
 
         public async Task Maximize(SidekickView view)
@@ -154,15 +158,13 @@ namespace Sidekick.Electron
                 browser.Close();
             }
 
-            // Todo remove events
-
             Views.Remove(view);
             Browsers.Remove(browser);
         }
 
         public async Task CloseAllOverlays()
         {
-            foreach (var overlay in Views.Where(x => x.ViewType == SidekickViewType.Overlay))
+            foreach (var overlay in Views.Where(x => x.ViewType == SidekickViewType.Overlay).ToList())
             {
                 await Close(overlay);
             }
@@ -255,6 +257,12 @@ namespace Sidekick.Electron
                 }
                 catch (Exception) { }
             });
+        }
+
+        private void Browser_OnClose(BrowserWindow browser, SidekickView view)
+        {
+            Browsers.Remove(browser);
+            Views.Remove(view);
         }
     }
 }

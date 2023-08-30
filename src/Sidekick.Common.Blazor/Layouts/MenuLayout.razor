@@ -13,7 +13,8 @@
         </LeftContent>
     </SidekickAppBar>
 
-    <MudDrawer @bind-Open="@MenuOpened"
+    <MudDrawer Open="MenuOpened || !MenuIcon"
+               OpenChanged="MenuOpenedChanged"
                Anchor="Anchor.Left"
                Variant="@(MenuIcon ? DrawerVariant.Responsive : DrawerVariant.Persistent)"
                Breakpoint="Breakpoint.Lg"
@@ -31,7 +32,7 @@
     </MudDrawer>
 
     <MudMainContent>
-        <MudContainer MaxWidth="MaxWidth.False" Class="pa-0" Style="height: calc(100vh - var(--mud-appbar-height));">
+        <MudContainer MaxWidth="MaxWidth.False" Class="pa-0">
             <Sidekick.Common.Blazor.Update.UpdateBanner />
 
             @Body
@@ -66,5 +67,10 @@
     public void ToggleMenu()
     {
         MenuOpened = !MenuOpened;
+    }
+
+    public void MenuOpenedChanged(bool opened)
+    {
+        MenuOpened = opened;
     }
 }
