@@ -1,5 +1,6 @@
 using ElectronNET.API;
 using ElectronNET.API.Entities;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
@@ -35,9 +36,9 @@ namespace Sidekick.Electron
         /// <inheritdoc/>
         public bool IsElectron => true;
 
-        private List<BrowserWindow> Browsers { get; set; } = new();
+        private List<BrowserWindow> Browsers { get; } = new();
 
-        private List<SidekickView> Views { get; set; } = new();
+        private List<SidekickView> Views { get; } = new();
 
         public async Task Initialize(SidekickView view)
         {
@@ -47,6 +48,9 @@ namespace Sidekick.Electron
                 logger.LogError("Unable to find view {viewUrl}", view.Url);
                 return;
             }
+
+            Views.Remove(view);
+            Views.Add(view);
 
             browser.SetTitle(view.Title);
             browser.SetMinimumSize(view.ViewWidth, view.ViewHeight);
@@ -157,10 +161,12 @@ namespace Sidekick.Electron
                 browser.Close();
             }
 
-            // Todo remove events
-
             Views.Remove(view);
             Browsers.Remove(browser);
+
+            // Make sure we don't have orphaned views
+            var browserUrls = Browsers.Select(x => x.WebContents.GetUrl().Result);
+            Views.RemoveAll(x => !browserUrls.Contains(x.Url));
         }
 
         public async Task CloseAllOverlays()
