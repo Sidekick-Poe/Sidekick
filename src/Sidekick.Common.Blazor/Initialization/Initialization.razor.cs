@@ -42,8 +42,6 @@ namespace Sidekick.Common.Blazor.Initialization
 
         public async Task Handle()
         {
-            string? currentService = null;
-
             try
             {
                 Completed = 0;

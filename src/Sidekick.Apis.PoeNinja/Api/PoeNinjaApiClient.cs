@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoeNinja.Api.Models;
 using Sidekick.Apis.PoeNinja.Models;
 using Sidekick.Apis.PoeNinja.Repository;
-using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.PoeNinja.Api
@@ -23,7 +17,6 @@ namespace Sidekick.Apis.PoeNinja.Api
 
         private readonly HttpClient client;
         private readonly ILogger logger;
-        private readonly IGameLanguageProvider gameLanguageProvider;
         private readonly ISettings settings;
         private readonly IPoeNinjaRepository poeNinjaRepository;
         private readonly JsonSerializerOptions options;
@@ -31,12 +24,10 @@ namespace Sidekick.Apis.PoeNinja.Api
         public PoeNinjaApiClient(
             IHttpClientFactory httpClientFactory,
             ILogger<PoeNinjaClient> logger,
-            IGameLanguageProvider gameLanguageProvider,
             ISettings settings,
             IPoeNinjaRepository poeNinjaRepository)
         {
             this.logger = logger;
-            this.gameLanguageProvider = gameLanguageProvider;
             this.settings = settings;
             this.poeNinjaRepository = poeNinjaRepository;
             options = new JsonSerializerOptions()
@@ -53,7 +44,8 @@ namespace Sidekick.Apis.PoeNinja.Api
 
         public async Task<List<NinjaPrice>> FetchPrices(ItemType itemType)
         {
-            List<NinjaPrice> items;
+            List<NinjaPrice>? items;
+
             if (itemType == ItemType.Currency || itemType == ItemType.Fragment)
             {
                 var result = await FetchCurrencies(itemType);
@@ -70,10 +62,10 @@ namespace Sidekick.Apis.PoeNinja.Api
                 await poeNinjaRepository.SavePrices(itemType, items);
             }
 
-            return items;
+            return items ?? new();
         }
 
-        private async Task<List<NinjaPrice>> FetchItems(ItemType itemType)
+        private async Task<List<NinjaPrice>?> FetchItems(ItemType itemType)
         {
             var url = new Uri($"{POE_NINJA_API_BASE_URL}itemoverview?league={settings.LeagueId}&type={itemType}");
 
@@ -82,6 +74,11 @@ namespace Sidekick.Apis.PoeNinja.Api
                 var response = await client.GetAsync(url);
                 var responseStream = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaItem>>(responseStream, options);
+                if (result == null)
+                {
+                    return null;
+                }
+
                 return result.Lines
                         .Select(x => new NinjaPrice()
                         {
@@ -101,13 +98,13 @@ namespace Sidekick.Apis.PoeNinja.Api
             }
             catch (Exception)
             {
-                logger.LogInformation("Could not fetch {itemType} from poe.ninja", itemType);
+                logger.LogWarning("[PoeNinja] Could not fetch {itemType} from poe.ninja", itemType);
             }
 
             return null;
         }
 
-        private async Task<List<NinjaPrice>> FetchCurrencies(ItemType itemType)
+        private async Task<List<NinjaPrice>?> FetchCurrencies(ItemType itemType)
         {
             var url = new Uri($"{POE_NINJA_API_BASE_URL}currencyoverview?league={settings.LeagueId}&type={itemType}");
 
@@ -116,6 +113,11 @@ namespace Sidekick.Apis.PoeNinja.Api
                 var response = await client.GetAsync(url);
                 var responseStream = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaCurrency>>(responseStream, options);
+                if (result == null)
+                {
+                    return null;
+                }
+
                 return result.Lines
                         .Where(x => x.Receive?.Value != null)
                         .Select(x => new NinjaPrice()
@@ -132,7 +134,7 @@ namespace Sidekick.Apis.PoeNinja.Api
             }
             catch
             {
-                logger.LogInformation("Could not fetch {currency} from poe.ninja", itemType);
+                logger.LogInformation("[PoeNinja]Could not fetch {itemType} from poe.ninja", itemType);
             }
 
             return null;

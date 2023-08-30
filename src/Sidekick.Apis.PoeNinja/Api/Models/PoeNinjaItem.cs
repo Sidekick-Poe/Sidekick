@@ -6,7 +6,7 @@ namespace Sidekick.Apis.PoeNinja.Api.Models
     {
         //public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         //public Uri Icon { get; set; }
 
@@ -18,7 +18,6 @@ namespace Sidekick.Apis.PoeNinja.Api.Models
 
         //public string Variant { get; set; }
 
-
         //public string ArtFilename { get; set; }
 
         public int Links { get; set; }
@@ -26,10 +25,10 @@ namespace Sidekick.Apis.PoeNinja.Api.Models
         public int ItemClass { get; set; }
 
         [JsonPropertyName("Sparkline")]
-        public SparkLine SparkLine { get; set; }
+        public SparkLine? SparkLine { get; set; }
 
         [JsonPropertyName("lowConfidenceSparkline")]
-        public SparkLine LowConfidenceSparkLine { get; set; }
+        public SparkLine? LowConfidenceSparkLine { get; set; }
 
         //public List<Modifier> ImplicitModifiers { get; set; }
 
@@ -51,6 +50,6 @@ namespace Sidekick.Apis.PoeNinja.Api.Models
 
         //public int Count { get; set; }
 
-        public string DetailsId { get; set; }
+        public string? DetailsId { get; set; }
     }
 }

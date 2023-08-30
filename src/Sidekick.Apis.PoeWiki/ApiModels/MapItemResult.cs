@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Sidekick.Apis.PoeWiki.JsonConverters;
 
@@ -6,7 +5,7 @@ namespace Sidekick.Apis.PoeWiki.ApiModels
 {
     public class MapItemResult
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// "1" = true, "0" = false.
@@ -16,10 +15,10 @@ namespace Sidekick.Apis.PoeWiki.ApiModels
         public bool DropEnabled { get; set; }
 
         [JsonPropertyName("flavour text")]
-        public string FlavourText { get; set; }
+        public string? FlavourText { get; set; }
 
         [JsonPropertyName("drop text")]
-        public string DropText { get; set; }
+        public string? DropText { get; set; }
 
         [JsonPropertyName("drop monsters")]
         [JsonConverter(typeof(StringListToListOfStringsJsonConverter))]

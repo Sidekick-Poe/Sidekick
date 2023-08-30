@@ -11,11 +11,11 @@ namespace Sidekick.Apis.PoeNinja.Models
         /// The value of the translation
         /// </summary>
         [Key]
-        public string Translation { get; set; }
+        public string? Translation { get; set; }
 
         /// <summary>
         /// The english value
         /// </summary>
-        public string English { get; set; }
+        public string? English { get; set; }
     }
 }

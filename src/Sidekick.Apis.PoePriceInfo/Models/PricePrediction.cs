@@ -18,7 +18,7 @@ namespace Sidekick.Apis.PoePriceInfo.Models
         /// <summary>
         /// The currency in which the item is evaluated
         /// </summary>
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         /// <summary>
         /// How confident is the prediction. Higher is better.

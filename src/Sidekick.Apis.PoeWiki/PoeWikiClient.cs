@@ -1,16 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoeWiki.ApiModels;
 using Sidekick.Apis.PoeWiki.Extensions;
 using Sidekick.Apis.PoeWiki.Models;
 using Sidekick.Common.Browser;
-using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Items.Modifiers;
 using Sidekick.Common.Game.Languages;
@@ -59,7 +53,7 @@ namespace Sidekick.Apis.PoeWiki
 
         public bool IsEnabled => gameLanguageProvider.IsEnglish() && settings.PoeWikiData_Enable;
 
-        private async Task<MapResult> GetMapResult(Item item)
+        private async Task<MapResult?> GetMapResult(Item item)
         {
             try
             {
@@ -84,20 +78,22 @@ namespace Sidekick.Apis.PoeWiki
                 var response = await client.GetAsync(query.ToString());
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<MapResult>>(content, options);
-
-                return result.CargoQuery.Select(x => x.Title).FirstOrDefault();
+                return result?.CargoQuery.Select(x => x.Title).FirstOrDefault();
             }
             catch (Exception e)
             {
-                logger.LogWarning(e, "Error while trying to get map from poewiki.net.");
+                logger.LogWarning(e, "[PoeWiki] Error while trying to get map from poewiki.net.");
             }
 
             return null;
         }
 
-        private async Task<List<BossResult>> GetBossesResult(MapResult mapResult)
+        private async Task<List<BossResult>?> GetBossesResult(MapResult mapResult)
         {
-            if (mapResult.BossMonsterIds == null) return null;
+            if (mapResult.BossMonsterIds == null)
+            {
+                return null;
+            }
 
             try
             {
@@ -117,18 +113,33 @@ namespace Sidekick.Apis.PoeWiki
                 var response = await client.GetAsync(query.ToString());
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<BossResult>>(content, options);
+                if (result == null)
+                {
+                    return null;
+                }
 
-                return result.CargoQuery.Select(x => x.Title).ToList();
+                var list = new List<BossResult>();
+                foreach (var queryResult in result.CargoQuery)
+                {
+                    if (queryResult.Title == null)
+                    {
+                        continue;
+                    }
+
+                    list.Add(queryResult.Title);
+                }
+
+                return list;
             }
             catch (Exception e)
             {
-                logger.LogWarning(e, "Error while trying to get bosses from poewiki.net.");
+                logger.LogWarning(e, "[PoeWiki] Error while trying to get bosses from poewiki.net.");
             }
 
             return null;
         }
 
-        private async Task<List<MapItemResult>> GetItemsResult(MapResult mapResult)
+        private async Task<List<MapItemResult>?> GetItemsResult(MapResult mapResult)
         {
             try
             {
@@ -148,18 +159,33 @@ namespace Sidekick.Apis.PoeWiki
                 var response = await client.GetAsync(query.ToString());
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<MapItemResult>>(content, options);
+                if (result == null)
+                {
+                    return null;
+                }
 
-                return result.CargoQuery.Select(x => x.Title).ToList();
+                var list = new List<MapItemResult>();
+                foreach (var queryResult in result.CargoQuery)
+                {
+                    if (queryResult.Title == null)
+                    {
+                        continue;
+                    }
+
+                    list.Add(queryResult.Title);
+                }
+
+                return list;
             }
             catch (Exception e)
             {
-                logger.LogWarning(e, "Error while trying to get items from poewiki.net.");
+                logger.LogWarning(e, "[PoeWiki] Error while trying to get items from poewiki.net.");
             }
 
             return null;
         }
 
-        public async Task<List<string>> GetOilsMetadataIdsFromEnchantment(ModifierLine modifierLine)
+        public async Task<List<string>?> GetOilsMetadataIdsFromEnchantment(ModifierLine modifierLine)
         {
             try
             {
@@ -179,19 +205,33 @@ namespace Sidekick.Apis.PoeWiki
                 var response = await client.GetAsync(query.ToString());
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<ItemIdResult>>(content, options);
+                if (result == null)
+                {
+                    return null;
+                }
 
-                return result.CargoQuery.Select(x => x.Title.ItemId).ToList();
+                var list = new List<string>();
+                foreach (var queryResult in result.CargoQuery)
+                {
+                    if (queryResult.Title == null || queryResult.Title.ItemId == null)
+                    {
+                        continue;
+                    }
 
+                    list.Add(queryResult.Title.ItemId);
+                }
+
+                return list;
             }
             catch (Exception e)
             {
-                logger.LogWarning(e, "Error while trying to get oils from enchantment from poewiki.net.");
+                logger.LogWarning(e, "[PoeWiki] Error while trying to get oils from enchantment from poewiki.net.");
             }
 
             return null;
         }
 
-        public async Task<List<ItemNameMetadataIdResult>> GetMetadataIdsFromItemNames(List<string> itemNames)
+        public async Task<List<ItemNameMetadataIdResult>?> GetMetadataIdsFromItemNames(List<string> itemNames)
         {
             try
             {
@@ -211,25 +251,46 @@ namespace Sidekick.Apis.PoeWiki
                 var response = await client.GetAsync(query.ToString());
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<ItemNameMetadataIdResult>>(content, options);
+                if (result == null)
+                {
+                    return null;
+                }
 
-                return result.CargoQuery.Select(x => x.Title).ToList();
+                var list = new List<ItemNameMetadataIdResult>();
+                foreach (var queryResult in result.CargoQuery)
+                {
+                    if (queryResult.Title == null)
+                    {
+                        continue;
+                    }
+
+                    list.Add(queryResult.Title);
+                }
+
+                return list;
             }
             catch (Exception e)
             {
-                logger.LogWarning(e, "Error while trying to get item metadata ids from poewiki.net.");
+                logger.LogWarning(e, "[PoeWiki] Error while trying to get item metadata ids from poewiki.net.");
             }
 
             return null;
         }
 
-        public async Task<Map> GetMap(Item item)
+        public async Task<Map?> GetMap(Item item)
         {
             // Only maps.
-            if (item.Metadata.Category != Category.Map) return null;
+            if (item.Metadata.Category != Category.Map)
+            {
+                return null;
+            }
 
             var mapResult = await GetMapResult(item);
 
-            if (mapResult == null) return null;
+            if (mapResult == null)
+            {
+                return null;
+            }
 
             // Fetch bosses.
             var bossesResult = await GetBossesResult(mapResult) ?? new();
@@ -244,7 +305,7 @@ namespace Sidekick.Apis.PoeWiki
 
         public void OpenUri(Map map)
         {
-            var wikiLink = PoeWiki_SubUrl + map.Name.Replace(" ", "+");
+            var wikiLink = PoeWiki_SubUrl + map.Name?.Replace(" ", "+");
             var uri = new Uri(PoeWiki_BaseUri + wikiLink);
 
             browserProvider.OpenUri(uri);
