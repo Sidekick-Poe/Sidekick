@@ -256,7 +256,7 @@ namespace Sidekick.Common.Platform.Keyboards
             OnKeyDown?.Invoke(keybind);
             logger.LogDebug($"[Keyboard] Received key pressed event {keybind}.");
 
-            if (!KeybindHandlers.TryGetValue(keybind, out var keybindHandler) || !keybindHandler.IsValid())
+            if (!KeybindHandlers.TryGetValue(keybind, out var keybindHandler) || !keybindHandler.IsValid(keybind))
             {
                 return;
             }

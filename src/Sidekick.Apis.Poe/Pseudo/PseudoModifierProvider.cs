@@ -1,5 +1,4 @@
 using System.Text.RegularExpressions;
-using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Apis.Poe.Pseudo.Models;
@@ -12,14 +11,11 @@ namespace Sidekick.Apis.Poe.Pseudo
     {
         private readonly Regex ParseHashPattern = new("\\#");
 
-        private readonly ILogger<PseudoModifierProvider> logger;
         private readonly IEnglishModifierProvider englishModifierProvider;
 
         public PseudoModifierProvider(
-            ILogger<PseudoModifierProvider> logger,
             IEnglishModifierProvider englishModifierProvider)
         {
-            this.logger = logger;
             this.englishModifierProvider = englishModifierProvider;
         }
 
@@ -36,96 +32,84 @@ namespace Sidekick.Apis.Poe.Pseudo
                 return;
             }
 
-            try
+            var result = await englishModifierProvider.GetList();
+            var groups = InitGroups(result);
+
+            foreach (var category in result)
             {
-                logger.LogInformation($"Pseudo stat service initialization started.");
-
-                var result = await englishModifierProvider.GetList();
-
-                logger.LogInformation($"{result.Count} attributes fetched.");
-
-                var groups = InitGroups(result);
-
-                foreach (var category in result)
+                var first = category.Entries.FirstOrDefault();
+                if (first == null || first.Id?.Split('.').First() == "pseudo")
                 {
-                    var first = category.Entries.FirstOrDefault();
-                    if (first == null || first.Id?.Split('.').First() == "pseudo")
-                    {
-                        continue;
-                    }
+                    continue;
+                }
 
-                    foreach (var entry in category.Entries)
+                foreach (var entry in category.Entries)
+                {
+                    foreach (var group in groups)
                     {
-                        foreach (var group in groups)
+                        if (group.Exception != null && group.Exception.IsMatch(entry.Text ?? string.Empty))
                         {
-                            if (group.Exception != null && group.Exception.IsMatch(entry.Text ?? string.Empty))
+                            continue;
+                        }
+
+                        foreach (var pattern in group.Patterns)
+                        {
+                            if (entry.Id == null || entry.Type == null || entry.Text == null)
                             {
                                 continue;
                             }
 
-                            foreach (var pattern in group.Patterns)
+                            if (pattern.Pattern.IsMatch(entry.Text))
                             {
-                                if (entry.Id == null || entry.Type == null || entry.Text == null)
-                                {
-                                    continue;
-                                }
-
-                                if (pattern.Pattern.IsMatch(entry.Text))
-                                {
-                                    pattern.Matches.Add(new PseudoPatternMatch(entry.Id, entry.Type, entry.Text));
-                                }
+                                pattern.Matches.Add(new PseudoPatternMatch(entry.Id, entry.Type, entry.Text));
                             }
                         }
                     }
-                }
-
-                foreach (var group in groups)
-                {
-                    if (group.Text == null)
-                    {
-                        continue;
-                    }
-
-                    var definition = new PseudoDefinition(group.Id, group.Text);
-
-                    foreach (var pattern in group.Patterns)
-                    {
-                        PseudoDefinitionModifier? modifier = null;
-
-                        foreach (var match in pattern.Matches.OrderBy(x => x.Type).ThenBy(x => x.Text.Length))
-                        {
-                            if (modifier != null)
-                            {
-                                if (modifier.Type != match.Type)
-                                {
-                                    modifier = null;
-                                }
-                                else if (!match.Text.StartsWith(modifier.Text))
-                                {
-                                    modifier = null;
-                                }
-                            }
-
-                            if (modifier == null)
-                            {
-                                modifier = new PseudoDefinitionModifier(match.Type, match.Text, pattern.Multiplier);
-                            }
-
-                            modifier.Ids.Add(match.Id);
-
-                            if (!definition.Modifiers.Contains(modifier))
-                            {
-                                definition.Modifiers.Add(modifier);
-                            }
-                        }
-                    }
-
-                    Definitions.Add(definition);
                 }
             }
-            catch (Exception e)
+
+            foreach (var group in groups)
             {
-                logger.LogWarning(e, "Could not initialize pseudo service.");
+                if (group.Text == null)
+                {
+                    continue;
+                }
+
+                var definition = new PseudoDefinition(group.Id, group.Text);
+
+                foreach (var pattern in group.Patterns)
+                {
+                    PseudoDefinitionModifier? modifier = null;
+
+                    foreach (var match in pattern.Matches.OrderBy(x => x.Type).ThenBy(x => x.Text.Length))
+                    {
+                        if (modifier != null)
+                        {
+                            if (modifier.Type != match.Type)
+                            {
+                                modifier = null;
+                            }
+                            else if (!match.Text.StartsWith(modifier.Text))
+                            {
+                                modifier = null;
+                            }
+                        }
+
+                        if (modifier == null)
+                        {
+                            modifier = new PseudoDefinitionModifier(match.Type, match.Text, pattern.Multiplier);
+                        }
+
+                        modifier.Ids.Add(match.Id);
+
+                        if (!definition.Modifiers.Contains(modifier))
+                        {
+                            definition.Modifiers.Add(modifier);
+                        }
+                    }
+                }
+
+                Definitions.Add(definition);
             }
         }
 

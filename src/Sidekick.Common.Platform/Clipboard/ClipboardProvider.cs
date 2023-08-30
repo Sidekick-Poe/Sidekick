@@ -61,6 +61,11 @@ namespace Sidekick.Common.Platform.Clipboard
                 logger.LogDebug("[Clipboard] Reset clipboard to retained value.");
             }
 
+            if (string.IsNullOrEmpty(result))
+            {
+                return null;
+            }
+
             return result;
         }
 

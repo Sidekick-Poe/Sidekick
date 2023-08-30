@@ -38,7 +38,7 @@ namespace Sidekick.Modules.Chat.Keybinds
 
         public List<string> GetKeybinds() => settings.Chat_Commands.Select(x => x.Key).ToList();
 
-        public bool IsValid() => processProvider.IsPathOfExileInFocus;
+        public bool IsValid(string keybind) => processProvider.IsPathOfExileInFocus && settings.Chat_Commands.Any(x => x.Key == keybind);
 
         public async Task Execute(string keybind)
         {
