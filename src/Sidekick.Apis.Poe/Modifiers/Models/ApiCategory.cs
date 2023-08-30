@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Sidekick.Apis.Poe.Modifiers.Models
 {
     /// <summary>
@@ -7,9 +5,8 @@ namespace Sidekick.Apis.Poe.Modifiers.Models
     /// </summary>
     public class ApiCategory
     {
-        public string Label { get; set; }
+        public string? Label { get; set; }
 
-        public List<ApiModifier> Entries { get; set; }
-
+        public List<ApiModifier> Entries { get; set; } = new();
     }
 }

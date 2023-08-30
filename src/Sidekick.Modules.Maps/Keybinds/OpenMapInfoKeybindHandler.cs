@@ -14,27 +14,36 @@ namespace Sidekick.Modules.Maps.Keybinds
         private readonly IClipboardProvider clipboardProvider;
         private readonly IProcessProvider processProvider;
         private readonly ISettings settings;
+        private readonly IKeyboardProvider keyboard;
 
         public OpenMapInfoKeybindHandler(
             IViewLocator viewLocator,
             IClipboardProvider clipboardProvider,
             IProcessProvider processProvider,
-            ISettings settings)
+            ISettings settings,
+            IKeyboardProvider keyboard)
         {
             this.viewLocator = viewLocator;
             this.clipboardProvider = clipboardProvider;
             this.processProvider = processProvider;
             this.settings = settings;
+            this.keyboard = keyboard;
         }
 
         public List<string> GetKeybinds() => new() { settings.Map_Key_Check };
 
-        public bool IsValid() => processProvider.IsPathOfExileInFocus;
+        public bool IsValid(string _) => processProvider.IsPathOfExileInFocus;
 
-        public async Task Execute(string _)
+        public async Task Execute(string keybind)
         {
-            var itemText = await clipboardProvider.Copy();
-            await viewLocator.Open($"/map/{itemText.EncodeBase64Url()}");
+            var text = await clipboardProvider.Copy();
+            if (text == null)
+            {
+                await keyboard.PressKey(keybind);
+                return;
+            }
+
+            await viewLocator.Open($"/map/{text.EncodeBase64Url()}");
         }
     }
 }

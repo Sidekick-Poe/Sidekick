@@ -21,7 +21,7 @@ namespace Sidekick.Modules.General.Keybinds
 
         public List<string> GetKeybinds() => new() { "Esc" };
 
-        public bool IsValid() => settings.EscapeClosesOverlays && viewLocator.IsOverlayOpened();
+        public bool IsValid(string _) => settings.EscapeClosesOverlays && viewLocator.IsOverlayOpened();
 
         public Task Execute(string _)
         {

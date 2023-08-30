@@ -2,7 +2,7 @@ namespace Sidekick.Apis.Poe.Parser.Tokenizers
 {
     public class ItemNameToken
     {
-        public ItemNameToken(ItemNameTokenType tokenType, ItemNameTokenMatch value)
+        public ItemNameToken(ItemNameTokenType tokenType, ItemNameTokenMatch? value)
         {
             TokenType = tokenType;
             Match = value;
@@ -10,6 +10,6 @@ namespace Sidekick.Apis.Poe.Parser.Tokenizers
 
         public ItemNameTokenType TokenType { get; set; }
 
-        public ItemNameTokenMatch Match { get; set; }
+        public ItemNameTokenMatch? Match { get; set; }
     }
 }

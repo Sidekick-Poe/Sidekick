@@ -1,11 +1,17 @@
-using System.Collections.Generic;
-
 namespace Sidekick.Apis.Poe.Modifiers.Models
 {
     public class FuzzyResult
     {
-        public int Ratio { get; set; }
+        public FuzzyResult(
+            int ratio,
+            List<FuzzyEntry> entries)
+        {
+            Ratio = ratio;
+            Entries = entries;
+        }
 
-        public List<FuzzyEntry> Entries { get; set; }
+        public int Ratio { get; }
+
+        public List<FuzzyEntry> Entries { get; }
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Common.Game.Items;
 

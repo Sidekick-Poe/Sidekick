@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Initialization;
 
@@ -44,11 +41,20 @@ namespace Sidekick.Apis.PoeWiki
         /// <inheritdoc/>
         public async Task Initialize()
         {
-            var result = await cacheProvider.GetOrSet("PoeWikiBlightOils", () => poeWikiClient.GetMetadataIdsFromItemNames(oilNames));
+            var result = await cacheProvider.GetOrSet("PoeWikiBlightOils", async () =>
+            {
+                var result = await poeWikiClient.GetMetadataIdsFromItemNames(oilNames);
+                if (result == null)
+                {
+                    return new();
+                }
+
+                return result;
+            });
 
             if (result != null)
             {
-                BlightOilNamesByMetadataIds = result?.ToDictionary(x => x.MetadataId, x => x.Name);
+                BlightOilNamesByMetadataIds = result.ToDictionary(x => x.MetadataId ?? string.Empty, x => x.Name ?? string.Empty);
             }
         }
     }

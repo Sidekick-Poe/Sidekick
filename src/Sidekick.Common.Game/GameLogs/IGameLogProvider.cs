@@ -5,6 +5,6 @@ namespace Sidekick.Common.Game.GameLogs
         /// <summary>
         /// Gets the character name of the last whisper message that the player has received inside Path of Exile
         /// </summary>
-        string GetLatestWhisper();
+        string? GetLatestWhisper();
     }
 }

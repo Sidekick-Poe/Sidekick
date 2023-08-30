@@ -10,8 +10,9 @@ namespace Sidekick.Common
         /// <summary>
         /// When a keypress occurs, check if this keybind should be executed
         /// </summary>
+        /// <param name="keybind">The keybind that was pressed</param>
         /// <returns>True if we need to execute this keybind</returns>
-        bool IsValid();
+        bool IsValid(string keybind);
 
         /// <summary>
         /// Executes when a valid keybind is detected

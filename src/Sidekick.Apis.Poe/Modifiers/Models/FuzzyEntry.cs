@@ -2,8 +2,16 @@ namespace Sidekick.Apis.Poe.Modifiers.Models
 {
     public class FuzzyEntry
     {
-        public ModifierPatternMetadata Metadata { get; set; }
+        public FuzzyEntry(
+            ModifierPatternMetadata metadata,
+            ModifierPattern pattern)
+        {
+            Metadata = metadata;
+            Pattern = pattern;
+        }
 
-        public ModifierPattern Pattern { get; set; }
+        public ModifierPatternMetadata Metadata { get; }
+
+        public ModifierPattern Pattern { get; }
     }
 }

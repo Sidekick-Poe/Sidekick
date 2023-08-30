@@ -1,5 +1,3 @@
-using System;
-
 namespace Sidekick.Common.Game.Languages.Implementations
 {
     [GameLanguage("Traditional Chinese", "zh")]
@@ -58,6 +56,6 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string InfluenceRedeemer => "救贖者物品";
         public string InfluenceWarlord => "總督軍物品";
 
-        public ClassLanguage Classes => null;
+        public ClassLanguage? Classes => null;
     }
 }

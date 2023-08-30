@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Sidekick.Apis.PoeNinja.Api.Models;
 using Sidekick.Apis.PoeNinja.Models;
 using Sidekick.Common.Cache;
@@ -22,9 +18,9 @@ namespace Sidekick.Apis.PoeNinja.Repository
             this.settingsService = settingsService;
         }
 
-        public Task<List<NinjaPrice>> Load(ItemType itemType)
+        public async Task<List<NinjaPrice>> Load(ItemType itemType)
         {
-            return cacheProvider.Get<List<NinjaPrice>>(GetCacheKey(itemType));
+            return (await cacheProvider.Get<List<NinjaPrice>>(GetCacheKey(itemType))) ?? new List<NinjaPrice>();
         }
 
         public Task SavePrices(ItemType itemType, List<NinjaPrice> prices)

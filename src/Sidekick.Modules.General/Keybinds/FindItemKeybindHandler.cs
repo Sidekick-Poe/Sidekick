@@ -31,24 +31,25 @@ namespace Sidekick.Modules.General.Keybinds
 
         public List<string> GetKeybinds() => new() { settings.Key_FindItems };
 
-        public bool IsValid() => processProvider.IsPathOfExileInFocus;
+        public bool IsValid(string _) => processProvider.IsPathOfExileInFocus;
 
-        public async Task Execute(string _)
+        public async Task Execute(string keybind)
         {
             var text = await clipboardProvider.Copy();
-            var item = itemParser.ParseItem(text);
+            if (text == null)
+            {
+                await keyboard.PressKey(keybind);
+                return;
+            }
 
-            if (item != null)
+            var item = itemParser.ParseItem(text);
+            if (item == null)
             {
-                await clipboardProvider.SetText(item.Original.Name);
-                await keyboard.PressKey("Ctrl+F", "Ctrl+A", "Ctrl+V", "Enter");
+                return;
             }
-            else
-            {
-                // If we are not hovering over an item, we still want to put the focus in the search
-                // bar inside the game.
-                await keyboard.PressKey("Ctrl+F");
-            }
+
+            await clipboardProvider.SetText(item.Original.Name);
+            await keyboard.PressKey("Ctrl+F", "Ctrl+A", "Ctrl+V", "Enter");
         }
     }
 }

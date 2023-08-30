@@ -1,8 +1,5 @@
-using System;
-using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoePriceInfo.ApiModels;
 using Sidekick.Apis.PoePriceInfo.Models;
@@ -35,9 +32,10 @@ namespace Sidekick.Apis.PoePriceInfo
             this.settings = settings;
             this.logger = logger;
         }
-        public async Task<PricePrediction> GetPricePrediction(Item item)
+
+        public async Task<PricePrediction?> GetPricePrediction(Item item)
         {
-            if (item.Metadata.Rarity != Rarity.Rare)
+            if (item.Metadata.Rarity != Rarity.Rare || item.Original.Text == null)
             {
                 return null;
             }
@@ -48,6 +46,11 @@ namespace Sidekick.Apis.PoePriceInfo
                 var response = await client.GetAsync("?l=" + settings.LeagueId + "&i=" + encodedItem);
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<PriceInfoResult>(content, options);
+
+                if (result == null)
+                {
+                    return null;
+                }
 
                 if (result.Min == 0 && result.Max == 0)
                 {

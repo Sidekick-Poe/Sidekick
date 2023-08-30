@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Sidekick.Apis.PoeNinja.Api;
 using Sidekick.Apis.PoeNinja.Api.Models;
 using Sidekick.Apis.PoeNinja.Models;
@@ -89,7 +85,7 @@ namespace Sidekick.Apis.PoeNinja
             };
         }
 
-        public async Task<NinjaPrice> GetPriceInfo(OriginalItem originalItem, Item item)
+        public async Task<NinjaPrice?> GetPriceInfo(OriginalItem originalItem, Item item)
         {
             var name = originalItem.Name;
             var type = originalItem.Type;

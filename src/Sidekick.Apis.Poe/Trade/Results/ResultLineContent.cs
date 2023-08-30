@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -6,10 +5,10 @@ namespace Sidekick.Apis.Poe.Trade.Results
 {
     public class ResultLineContent
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [JsonPropertyName("values")]
-        public List<List<JsonElement>> Values { get; set; }
+        public List<List<JsonElement>> Values { get; set; } = new();
 
         public int DisplayMode { get; set; }
 

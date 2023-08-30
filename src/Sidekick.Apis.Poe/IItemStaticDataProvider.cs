@@ -5,8 +5,8 @@ namespace Sidekick.Apis.Poe
 {
     public interface IItemStaticDataProvider : IInitializableService
     {
-        string GetImage(string id);
+        string? GetImage(string id);
 
-        string GetId(Item item);
+        string? GetId(Item item);
     }
 }

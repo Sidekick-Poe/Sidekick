@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
@@ -20,9 +18,9 @@ namespace Sidekick.Common.Game.GameLogs
             this.logger = logger;
         }
 
-        public string GetLatestWhisper()
+        public string? GetLatestWhisper()
         {
-            var clientLogFile = processProvider?.ClientLogPath;
+            var clientLogFile = processProvider.ClientLogPath;
             if (clientLogFile == null || !processProvider.IsPathOfExileInFocus)
             {
                 return null;
@@ -61,7 +59,6 @@ namespace Sidekick.Common.Game.GameLogs
 
             return null;
         }
-
 
         /// <summary>
         /// Gets the line.

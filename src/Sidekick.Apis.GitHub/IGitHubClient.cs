@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-
 namespace Sidekick.Apis.GitHub
 {
     /// <summary>
@@ -17,6 +15,6 @@ namespace Sidekick.Apis.GitHub
         /// Downloads the latest release from github.
         /// </summary>
         /// <returns>The path where the file was downloaded.</returns>
-        Task<string> DownloadLatest();
+        Task<string?> DownloadLatest();
     }
 }

@@ -2,9 +2,8 @@ namespace Sidekick.Apis.Poe.Trade.Results
 {
     public class Price
     {
-        public string Type { get; set; }
+        public string? Type { get; set; }
         public decimal Amount { get; set; }
-        public string Currency { get; set; }
-
+        public string? Currency { get; set; }
     }
 }

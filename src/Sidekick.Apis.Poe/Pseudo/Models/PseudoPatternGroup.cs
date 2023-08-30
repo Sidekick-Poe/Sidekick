@@ -1,24 +1,42 @@
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace Sidekick.Apis.Poe.Pseudo.Models
 {
     public class PseudoPatternGroup
     {
-        public PseudoPatternGroup(string id, Regex exception, List<PseudoPattern> patterns)
+        public PseudoPatternGroup(
+            Modifiers.Models.ApiCategory apiCategory,
+            string id,
+            params PseudoPattern[] patterns)
+            : this(apiCategory, id, null, patterns)
+        {
+        }
+
+        public PseudoPatternGroup(
+            Modifiers.Models.ApiCategory apiCategory,
+            string id,
+            Regex? exception,
+            params PseudoPattern[] patterns)
         {
             Id = id;
             Exception = exception;
-            Patterns = patterns;
+            Patterns = patterns.ToList();
+
+            Text = apiCategory.Entries.First(x => x.Id == id).Text;
         }
 
-        public string Id { get; set; }
-        public Regex Exception { get; set; }
-        public List<PseudoPattern> Patterns { get; set; }
-        public string Text { get; set; }
+        public string Id { get; }
+        public Regex? Exception { get; }
+        public List<PseudoPattern> Patterns { get; }
+        public string? Text { get; }
 
         public override string ToString()
         {
+            if (Text == null)
+            {
+                return Id;
+            }
+
             return $"{Text} - {Id}";
         }
     }

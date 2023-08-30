@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Initialization;
@@ -23,7 +19,7 @@ namespace Sidekick.Common.Game.Languages
             this.settings = settings;
         }
 
-        public IGameLanguage Language { get; private set; }
+        public IGameLanguage? Language { get; private set; }
 
         /// <inheritdoc/>
         public InitializationPriority Priority => InitializationPriority.High;
@@ -40,13 +36,13 @@ namespace Sidekick.Common.Game.Languages
             var availableLanguages = GetList();
             var language = availableLanguages.Find(x => x.LanguageCode == languageCode);
 
-            if (language == null)
+            if (language == null || language.ImplementationType == null)
             {
                 logger.LogWarning("Couldn't find language matching {language}.", languageCode);
                 return;
             }
 
-            Language = (IGameLanguage)Activator.CreateInstance(language.ImplementationType);
+            Language = (IGameLanguage?)Activator.CreateInstance(language.ImplementationType);
         }
 
         public List<GameLanguageAttribute> GetList()
@@ -56,6 +52,11 @@ namespace Sidekick.Common.Game.Languages
             foreach (var type in typeof(GameLanguageAttribute).GetTypesImplementingAttribute())
             {
                 var attribute = type.GetAttribute<GameLanguageAttribute>();
+                if (attribute == null)
+                {
+                    continue;
+                }
+
                 attribute.ImplementationType = type;
                 result.Add(attribute);
             }
@@ -63,14 +64,14 @@ namespace Sidekick.Common.Game.Languages
             return result;
         }
 
-        public IGameLanguage Get(string code)
+        public IGameLanguage? Get(string code)
         {
             var languages = GetList();
 
             var implementationType = languages.FirstOrDefault(x => x.LanguageCode == code)?.ImplementationType;
             if (implementationType != default)
             {
-                return (IGameLanguage)Activator.CreateInstance(implementationType);
+                return (IGameLanguage?)Activator.CreateInstance(implementationType);
             }
 
             return null;
@@ -78,7 +79,7 @@ namespace Sidekick.Common.Game.Languages
 
         public bool IsEnglish()
         {
-            return Language.LanguageCode == EnglishLanguageCode;
+            return Language?.LanguageCode == EnglishLanguageCode;
         }
     }
 }

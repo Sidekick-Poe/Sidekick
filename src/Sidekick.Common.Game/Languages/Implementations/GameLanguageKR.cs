@@ -1,5 +1,3 @@
-using System;
-
 namespace Sidekick.Common.Game.Languages.Implementations
 {
     [GameLanguage("Korean", "kr")]
@@ -58,6 +56,6 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string InfluenceRedeemer => "대속자";
         public string InfluenceWarlord => "전쟁군주";
 
-        public ClassLanguage Classes => null;
+        public ClassLanguage? Classes => null;
     }
 }

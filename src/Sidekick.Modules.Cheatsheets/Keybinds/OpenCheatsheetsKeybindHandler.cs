@@ -26,7 +26,7 @@ namespace Sidekick.Modules.Cheatsheets.Keybinds
 
         public List<string> GetKeybinds() => new() { settings.Cheatsheets_Key_Open };
 
-        public bool IsValid() => (processProvider.IsPathOfExileInFocus || processProvider.IsSidekickInFocus) && settings.Cheatsheets_Pages.Any();
+        public bool IsValid(string _) => (processProvider.IsPathOfExileInFocus || processProvider.IsSidekickInFocus) && settings.Cheatsheets_Pages.Any();
 
         public Task Execute(string _)
         {

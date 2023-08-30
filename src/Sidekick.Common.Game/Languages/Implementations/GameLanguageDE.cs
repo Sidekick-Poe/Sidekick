@@ -1,5 +1,3 @@
-using System;
-
 namespace Sidekick.Common.Game.Languages.Implementations
 {
     [GameLanguage("German", "de")]
@@ -58,6 +56,6 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string InfluenceRedeemer => "Erlöserin";
         public string InfluenceWarlord => "Kriegsherrn";
 
-        public ClassLanguage Classes => null;
+        public ClassLanguage? Classes => null;
     }
 }

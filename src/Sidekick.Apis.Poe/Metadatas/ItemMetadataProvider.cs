@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Metadatas.Models;
 using Sidekick.Apis.Poe.Parser;
@@ -33,10 +29,9 @@ namespace Sidekick.Apis.Poe.Metadatas
             this.parserPatterns = parserPatterns;
         }
 
-        private Dictionary<string, List<ItemMetadata>> NameAndTypeDictionary { get; set; }
-        private List<(Regex Regex, ItemMetadata Item)> NameAndTypeRegex { get; set; }
-
-        private Regex Prefixes { get; set; }
+        private Dictionary<string, List<ItemMetadata>> NameAndTypeDictionary { get; } = new();
+        private List<(Regex Regex, ItemMetadata Item)> NameAndTypeRegex { get; } = new();
+        private Regex Prefixes { get; set; } = null!;
 
         /// <inheritdoc/>
         public InitializationPriority Priority => InitializationPriority.Medium;
@@ -46,8 +41,13 @@ namespace Sidekick.Apis.Poe.Metadatas
         /// <inheritdoc/>
         public async Task Initialize()
         {
-            NameAndTypeDictionary = new Dictionary<string, List<ItemMetadata>>();
-            NameAndTypeRegex = new List<(Regex Regex, ItemMetadata Item)>();
+            if (gameLanguageProvider.Language == null)
+            {
+                throw new Exception("[Item Metadata] Could not find a valid language.");
+            }
+
+            NameAndTypeDictionary.Clear();
+            NameAndTypeRegex.Clear();
 
             var result = await cacheProvider.GetOrSet(
                 "ItemMetadataProvider",
@@ -92,6 +92,10 @@ namespace Sidekick.Apis.Poe.Metadatas
                 };
 
                 var key = header.Name ?? header.Type;
+                if (key == null)
+                {
+                    continue;
+                }
 
                 // If the item is unique, exclude it from the regex dictionary
                 if (header.Rarity == Rarity.Unique)
@@ -121,7 +125,7 @@ namespace Sidekick.Apis.Poe.Metadatas
 
         private static Rarity GetRarityForCategory(Category category, ApiItem item)
         {
-            if (item.Flags.Unique)
+            if (item.Flags?.Unique ?? false)
             {
                 return Rarity.Unique;
             }
@@ -135,7 +139,7 @@ namespace Sidekick.Apis.Poe.Metadatas
             };
         }
 
-        public ItemMetadata Parse(ParsingItem parsingItem)
+        public ItemMetadata? Parse(ParsingItem parsingItem)
         {
             var parsingBlock = parsingItem.Blocks.First();
             var itemRarity = GetRarity(parsingBlock);
@@ -150,8 +154,8 @@ namespace Sidekick.Apis.Poe.Metadatas
             }
 
             // Get name and type text
-            string name = null;
-            string type = null;
+            string? name = null;
+            string? type = null;
             if (parsingBlock.Lines.Count >= 4)
             {
                 name = parsingBlock.Lines[2].Text;
@@ -217,25 +221,27 @@ namespace Sidekick.Apis.Poe.Metadatas
                 .ThenBy(x => x.Rarity == Rarity.Unknown ? 0 : 1)
                 .FirstOrDefault();
 
-            if (result != null)
+            if (result == null)
             {
-                parsingBlock.Parsed = true;
+                return null;
+            }
 
-                // If we don't have the rarity from the metadata, we set it to the value from the text
-                if (result.Rarity == Rarity.Unknown)
-                {
-                    result.Rarity = itemRarity;
-                }
+            parsingBlock.Parsed = true;
 
-                if (result.Category == Category.ItemisedMonster && result.Rarity == Rarity.Unique && string.IsNullOrEmpty(result.Name))
-                {
-                    result.Name = name;
-                }
+            // If we don't have the rarity from the metadata, we set it to the value from the text
+            if (result.Rarity == Rarity.Unknown)
+            {
+                result.Rarity = itemRarity;
+            }
 
-                if (result.Class == Class.Undefined)
-                {
-                    result.Class = GetClass(parsingBlock);
-                }
+            if (result.Category == Category.ItemisedMonster && result.Rarity == Rarity.Unique && string.IsNullOrEmpty(result.Name))
+            {
+                result.Name = name;
+            }
+
+            if (result.Class == Class.Undefined)
+            {
+                result.Class = GetClass(parsingBlock);
             }
 
             return result;

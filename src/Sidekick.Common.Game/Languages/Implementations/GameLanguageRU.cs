@@ -1,5 +1,3 @@
-using System;
-
 namespace Sidekick.Common.Game.Languages.Implementations
 {
     [GameLanguage("Russian", "ru")]
@@ -58,6 +56,6 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string InfluenceRedeemer => "Избавительницы";
         public string InfluenceWarlord => "Вождя";
 
-        public ClassLanguage Classes => null;
+        public ClassLanguage? Classes => null;
     }
 }

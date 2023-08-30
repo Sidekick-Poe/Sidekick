@@ -1,12 +1,7 @@
-using System;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub.Models;
 using Sidekick.Common;
@@ -46,7 +41,11 @@ namespace Sidekick.Apis.GitHub
                 logger.LogInformation("[Updater] Found " + release.Tag + " as latest version on GitHub.");
 
                 var latestVersion = new Version(Regex.Match(release.Tag, @"(\d+\.){2}\d+").ToString());
-                var currentVersion = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.FullName.Contains("Sidekick")).GetName().Version;
+                var currentVersion = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.FullName?.Contains("Sidekick") ?? false)?.GetName().Version;
+                if (currentVersion == null)
+                {
+                    return false;
+                }
 
                 var result = currentVersion.CompareTo(latestVersion);
                 UpdateAvailable = result < 0;
@@ -61,7 +60,7 @@ namespace Sidekick.Apis.GitHub
         }
 
         /// <inheritdoc/>
-        public async Task<string> DownloadLatest()
+        public async Task<string?> DownloadLatest()
         {
             var release = await GetLatestRelease();
 
@@ -81,21 +80,27 @@ namespace Sidekick.Apis.GitHub
             return downloadPath;
         }
 
-        private async Task<GitHubRelease> GetLatestRelease()
+        private async Task<GitHubRelease?> GetLatestRelease()
         {
             // Get List of releases
             var listResponse = await client.GetAsync("/repos/Sidekick-Poe/Sidekick/releases");
-            if (listResponse.IsSuccessStatusCode)
+            if (!listResponse.IsSuccessStatusCode)
             {
-                var githubReleaseList = await JsonSerializer.DeserializeAsync<GitHubRelease[]>(await listResponse.Content.ReadAsStreamAsync(), new JsonSerializerOptions
-                {
-                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                    PropertyNameCaseInsensitive = true
-                });
-                return githubReleaseList.FirstOrDefault(x => !x.Prerelease);
+                return null;
             }
 
-            return null;
+            var githubReleaseList = await JsonSerializer.DeserializeAsync<GitHubRelease[]>(await listResponse.Content.ReadAsStreamAsync(), new JsonSerializerOptions
+            {
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                PropertyNameCaseInsensitive = true
+            });
+
+            if (githubReleaseList == null)
+            {
+                return null;
+            }
+
+            return githubReleaseList.FirstOrDefault(x => !x.Prerelease);
         }
     }
 }

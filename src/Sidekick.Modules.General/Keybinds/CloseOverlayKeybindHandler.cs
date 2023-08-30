@@ -21,7 +21,7 @@ namespace Sidekick.Modules.General.Keybinds
 
         public List<string> GetKeybinds() => new() { settings.Key_Close };
 
-        public bool IsValid() => viewLocator.IsOverlayOpened();
+        public bool IsValid(string _) => viewLocator.IsOverlayOpened();
 
         public Task Execute(string _)
         {

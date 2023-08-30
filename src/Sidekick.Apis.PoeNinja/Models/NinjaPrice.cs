@@ -1,4 +1,3 @@
-using System;
 using Sidekick.Apis.PoeNinja.Api.Models;
 
 namespace Sidekick.Apis.PoeNinja.Models
@@ -11,7 +10,7 @@ namespace Sidekick.Apis.PoeNinja.Models
         /// <summary>
         /// The name of the item
         /// </summary>
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// If the item is corrupted or not
@@ -38,11 +37,11 @@ namespace Sidekick.Apis.PoeNinja.Models
         /// </summary>
         public DateTimeOffset LastUpdated { get; set; }
 
-        public string DetailsId { get; set; }
+        public string? DetailsId { get; set; }
 
         public ItemType ItemType { get; set; }
 
-        public SparkLine SparkLine { get; set; }
+        public SparkLine? SparkLine { get; set; }
 
         public bool IsRelic { get; set; }
         public int Links { get; set; }

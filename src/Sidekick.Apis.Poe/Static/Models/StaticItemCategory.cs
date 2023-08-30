@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Sidekick.Apis.Poe.Static.Models
 {
     /// <summary>
@@ -7,8 +5,8 @@ namespace Sidekick.Apis.Poe.Static.Models
     /// </summary>
     public class StaticItemCategory
     {
-        public string Id { get; set; }
-        public string Label { get; set; }
-        public List<StaticItem> Entries { get; set; }
+        public string? Id { get; set; }
+        public string? Label { get; set; }
+        public List<StaticItem> Entries { get; set; } = new();
     }
 }

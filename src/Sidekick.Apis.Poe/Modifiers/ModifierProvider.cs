@@ -1,8 +1,5 @@
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using FuzzySharp;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers.Models;
@@ -37,11 +34,10 @@ namespace Sidekick.Apis.Poe.Modifiers
             this.englishModifierProvider = englishModifierProvider;
         }
 
-        public Dictionary<ModifierCategory, List<ModifierPatternMetadata>> Patterns { get; set; } = new();
-        public List<ModifierPatternMetadata> IncursionRoomPatterns { get; set; }
-        public List<ModifierPatternMetadata> LogbookFactionPatterns { get; set; }
-
-        public Dictionary<string, List<FuzzyEntry>> FuzzyDictionary { get; set; } = new();
+        private Dictionary<ModifierCategory, List<ModifierPatternMetadata>> Patterns { get; } = new();
+        private List<ModifierPatternMetadata> IncursionRoomPatterns { get; } = new();
+        private List<ModifierPatternMetadata> LogbookFactionPatterns { get; } = new();
+        private Dictionary<string, List<FuzzyEntry>> FuzzyDictionary { get; } = new();
 
         /// <inheritdoc/>
         public InitializationPriority Priority => InitializationPriority.Low;
@@ -70,34 +66,41 @@ namespace Sidekick.Apis.Poe.Modifiers
                 var patterns = new List<ModifierPatternMetadata>();
                 foreach (var entry in category.Entries)
                 {
-                    var modifier = new ModifierPatternMetadata()
+                    if (entry.Text == null || entry.Id == null)
                     {
-                        Category = modifierCategory,
-                        Id = entry.Id,
-                        IsOption = entry.Option?.Options?.Any() ?? false,
-                    };
+                        continue;
+                    }
+
+                    var modifier = new ModifierPatternMetadata(
+                        category: modifierCategory,
+                        id: entry.Id,
+                        isOption: entry.Option?.Options?.Any() ?? false);
 
                     if (modifier.IsOption)
                     {
-                        for (var i = 0; i < entry.Option.Options.Count; i++)
+                        for (var i = 0; i < entry.Option?.Options.Count; i++)
                         {
-                            modifier.Patterns.Add(new ModifierPattern()
+                            var optionText = entry.Option.Options[i].Text;
+                            if (optionText == null)
                             {
-                                Text = ComputeOptionText(entry.Text, entry.Option.Options[i].Text),
-                                FuzzyText = ComputeFuzzyText(modifierCategory, entry.Text, entry.Option.Options[i].Text),
+                                continue;
+                            }
+
+                            modifier.Patterns.Add(new ModifierPattern(
+                                text: ComputeOptionText(entry.Text, optionText),
+                                fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text, optionText),
+                                pattern: ComputePattern(entry.Text, modifierCategory, optionText))
+                            {
                                 Value = entry.Option.Options[i].Id,
-                                Pattern = ComputePattern(entry.Text, modifierCategory, entry.Option.Options[i].Text),
                             });
                         }
                     }
                     else
                     {
-                        modifier.Patterns.Add(new ModifierPattern()
-                        {
-                            Text = entry.Text,
-                            FuzzyText = ComputeFuzzyText(modifierCategory, entry.Text),
-                            Pattern = ComputePattern(entry.Text, modifierCategory),
-                        });
+                        modifier.Patterns.Add(new ModifierPattern(
+                            text: entry.Text,
+                            fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text),
+                            pattern: ComputePattern(entry.Text, modifierCategory)));
                     }
 
                     patterns.Add(modifier);
@@ -116,16 +119,31 @@ namespace Sidekick.Apis.Poe.Modifiers
             }
 
             // Prepare special pseudo patterns
-            IncursionRoomPatterns = Patterns[ModifierCategory.Pseudo].Where(x => englishModifierProvider.IncursionRooms.Contains(x.Id)).ToList();
+            IncursionRoomPatterns.Clear();
+            Patterns[ModifierCategory.Pseudo]
+                .Where(x => englishModifierProvider.IncursionRooms.Contains(x.Id))
+                .ToList()
+                .ForEach(x =>
+                {
+                    IncursionRoomPatterns.Add(x);
+                });
             ComputeSpecialPseudoPattern(IncursionRoomPatterns);
-            LogbookFactionPatterns = Patterns[ModifierCategory.Pseudo].Where(x => englishModifierProvider.LogbookFactions.Contains(x.Id)).ToList();
+
+            LogbookFactionPatterns.Clear();
+            Patterns[ModifierCategory.Pseudo]
+                .Where(x => englishModifierProvider.LogbookFactions.Contains(x.Id))
+                .ToList()
+                .ForEach(x =>
+                {
+                    LogbookFactionPatterns.Add(x);
+                });
             ComputeSpecialPseudoPattern(LogbookFactionPatterns);
         }
 
         /// <inheritdoc/>
-        public ModifierCategory GetModifierCategory(string apiId)
+        public ModifierCategory GetModifierCategory(string? apiId)
         {
-            return apiId.Split('.').First() switch
+            return apiId?.Split('.').First() switch
             {
                 "crafted" => ModifierCategory.Crafted,
                 "delve" => ModifierCategory.Delve,
@@ -147,18 +165,18 @@ namespace Sidekick.Apis.Poe.Modifiers
             foreach (var pattern in patterns)
             {
                 var basePattern = pattern.Patterns.OrderBy(x => x.Value).First();
-                pattern.Patterns.Add(new ModifierPattern()
+                pattern.Patterns.Add(new ModifierPattern(
+                    text: basePattern.Text,
+                    fuzzyText: ComputeFuzzyText(ModifierCategory.Pseudo, basePattern.Text),
+                    pattern: ComputePattern(basePattern.Text.Split(':', 2).Last().Trim(), ModifierCategory.Pseudo))
                 {
-                    Text = basePattern.Text,
-                    FuzzyText = ComputeFuzzyText(ModifierCategory.Pseudo, basePattern.Text),
                     OptionText = basePattern.OptionText,
-                    Pattern = ComputePattern(basePattern.Text.Split(':', 2).Last().Trim(), ModifierCategory.Pseudo),
                     Value = basePattern.Value,
                 });
             }
         }
 
-        private Regex ComputePattern(string text, ModifierCategory? category = null, string optionText = null)
+        private Regex ComputePattern(string text, ModifierCategory? category = null, string? optionText = null)
         {
             // The notes in parentheses are never translated by the game.
             // We should be fine hardcoding them this way.
@@ -195,7 +213,7 @@ namespace Sidekick.Apis.Poe.Modifiers
             return new Regex($"^{patternValue}$", RegexOptions.None);
         }
 
-        private string ComputeFuzzyText(ModifierCategory category, string text, string optionText = null)
+        private string ComputeFuzzyText(ModifierCategory category, string text, string? optionText = null)
         {
             var fuzzyValue = text;
 
@@ -250,11 +268,10 @@ namespace Sidekick.Apis.Poe.Modifiers
                         FuzzyDictionary.Add(pattern.FuzzyText, new());
                     }
 
-                    FuzzyDictionary[pattern.FuzzyText].Add(new FuzzyEntry()
-                    {
-                        Metadata = patternMetadata,
-                        Pattern = pattern
-                    });
+                    FuzzyDictionary[pattern.FuzzyText].Add(new FuzzyEntry(
+                        metadata: patternMetadata,
+                        pattern: pattern
+                    ));
                 }
             }
         }
@@ -284,10 +301,8 @@ namespace Sidekick.Apis.Poe.Modifiers
                         continue;
                     }
 
-                    var modifierLine = new ModifierLine()
-                    {
-                        Text = CleanOriginalTextPattern.Replace(line.Text, string.Empty),
-                    };
+                    var modifierLine = new ModifierLine(
+                        text: CleanOriginalTextPattern.Replace(line.Text, string.Empty));
 
                     List<Modifier> modifiers = new();
 
@@ -324,7 +339,7 @@ namespace Sidekick.Apis.Poe.Modifiers
                     // If we reach this point we have not found the modifier through traditional Regex means.
                     // Text from the game sometimes differ from the text from the API. We do a fuzzy search here to find the most common text.
                     var fuzzyLine = CleanFuzzyText(line.Text);
-                    if (!line.Parsed && parsingItem.Metadata.Category != Category.Flask)
+                    if (!line.Parsed && parsingItem.Metadata?.Category != Category.Flask)
                     {
                         var fuzzies = new List<FuzzyResult>();
 
@@ -333,11 +348,10 @@ namespace Sidekick.Apis.Poe.Modifiers
                             var ratio = Fuzz.Ratio(fuzzyLine, x.Key, FuzzySharp.PreProcess.PreprocessMode.None);
                             if (ratio > 75)
                             {
-                                fuzzies.Add(new FuzzyResult()
-                                {
-                                    Ratio = ratio,
-                                    Entries = x.Value,
-                                });
+                                fuzzies.Add(new FuzzyResult(
+                                    ratio: ratio,
+                                    entries: x.Value
+                                ));
                             }
                         });
 
@@ -384,16 +398,16 @@ namespace Sidekick.Apis.Poe.Modifiers
 
         private void ParseMod(List<Modifier> modifiers, ModifierPatternMetadata metadata, ModifierPattern pattern, string text)
         {
-            var modifier = new Modifier()
+            var modifier = new Modifier(
+                text: pattern.Text)
             {
                 Id = metadata.Id,
-                Text = pattern.Text,
                 Category = metadata.Category,
             };
 
             if (metadata.IsOption)
             {
-                modifier.OptionValue = pattern.Value.Value;
+                modifier.OptionValue = pattern.Value;
             }
             else if (pattern.Value.HasValue)
             {
@@ -416,7 +430,7 @@ namespace Sidekick.Apis.Poe.Modifiers
 
         public bool IsMatch(string id, string text)
         {
-            ModifierPatternMetadata metadata = null;
+            ModifierPatternMetadata? metadata = null;
 
             foreach (var patternGroup in Patterns)
             {

@@ -16,32 +16,41 @@ namespace Sidekick.Modules.Trade.Keybinds
         private readonly IProcessProvider processProvider;
         private readonly ISettings settings;
         private readonly IItemParser itemParser;
+        private readonly IKeyboardProvider keyboard;
 
         public PriceCheckItemKeybindHandler(
             IViewLocator viewLocator,
             IClipboardProvider clipboardProvider,
             IProcessProvider processProvider,
             ISettings settings,
-            IItemParser itemParser)
+            IItemParser itemParser,
+            IKeyboardProvider keyboard)
         {
             this.viewLocator = viewLocator;
             this.clipboardProvider = clipboardProvider;
             this.processProvider = processProvider;
             this.settings = settings;
             this.itemParser = itemParser;
+            this.keyboard = keyboard;
         }
 
         public List<string> GetKeybinds() => new() { settings.Trade_Key_Check };
 
-        public bool IsValid() => processProvider.IsPathOfExileInFocus;
+        public bool IsValid(string _) => processProvider.IsPathOfExileInFocus;
 
-        public async Task Execute(string _)
+        public async Task Execute(string keybind)
         {
-            var itemText = await clipboardProvider.Copy();
+            var text = await clipboardProvider.Copy();
+            if (text == null)
+            {
+                await keyboard.PressKey(keybind);
+                return;
+            }
+
             var advancedItemText = await clipboardProvider.CopyAdvanced();
             var originalItem = itemParser.ParseOriginalItem(advancedItemText);
 
-            await viewLocator.Open($"/trade/{originalItem.ToString().EncodeBase64Url()}/{itemText.EncodeBase64Url()}");
+            await viewLocator.Open($"/trade/{originalItem.ToString().EncodeBase64Url()}/{text.EncodeBase64Url()}");
         }
     }
 }

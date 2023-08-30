@@ -1,14 +1,17 @@
-using System.Collections.Generic;
-
 namespace Sidekick.Common.Game.Items.Modifiers
 {
     public class Modifier
     {
-        public string Id { get; set; }
+        public Modifier(string text)
+        {
+            Text = text;
+        }
 
-        public string Tier { get; set; }
+        public string? Id { get; set; }
 
-        public string TierName { get; set; }
+        public string? Tier { get; set; }
+
+        public string? TierName { get; set; }
 
         public ModifierCategory Category { get; set; }
 

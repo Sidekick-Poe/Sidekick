@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Common.Cache;
@@ -21,9 +18,9 @@ namespace Sidekick.Apis.Poe.Modifiers
             this.poeTradeClient = poeTradeClient;
         }
 
-        public List<string> IncursionRooms { get; private set; }
+        public List<string> IncursionRooms { get; } = new();
 
-        public List<string> LogbookFactions { get; private set; }
+        public List<string> LogbookFactions { get; } = new();
 
         /// <inheritdoc/>
         public InitializationPriority Priority => InitializationPriority.Medium;
@@ -31,21 +28,37 @@ namespace Sidekick.Apis.Poe.Modifiers
         /// <inheritdoc/>
         public async Task Initialize()
         {
-            var result = await cacheProvider.GetOrSet(
-                "PseudoModifierProvider",
-                async () => (await poeTradeClient.Fetch<ApiCategory>("data/stats", useDefaultLanguage: true)).Result);
+            var result = await cacheProvider.GetOrSet("EnglishCategories", GetCategories);
+
+            IncursionRooms.Clear();
+            LogbookFactions.Clear();
 
             foreach (var category in result)
             {
                 var first = category.Entries.FirstOrDefault();
-                if (first?.Id.Split('.').First() == "pseudo")
+                if (first?.Id?.Split('.').First() == "pseudo")
                 {
-                    IncursionRooms = category.Entries.Where(x => x.Text.StartsWith("Has Room: ")).Select(x => x.Id).ToList();
-                    LogbookFactions = category.Entries.Where(x => x.Text.StartsWith("Has Logbook Faction: ")).Select(x => x.Id).ToList();
+                    IncursionRooms.AddRange(
+                        category.Entries
+                            .Where(x => x.Text?.StartsWith("Has Room: ") ?? false)
+                            .Select(x => x.Id ?? string.Empty)
+                            .ToList());
+
+                    LogbookFactions.AddRange(
+                        category.Entries
+                            .Where(x => x.Text?.StartsWith("Has Logbook Faction: ") ?? false)
+                            .Select(x => x.Id ?? string.Empty)
+                            .ToList());
                 }
             }
         }
 
-        public Task<List<ApiCategory>> GetList() => cacheProvider.Get<List<ApiCategory>>("PseudoModifierProvider");
+        public Task<List<ApiCategory>> GetList() => cacheProvider.GetOrSet("EnglishCategories", GetCategories);
+
+        private async Task<List<ApiCategory>> GetCategories()
+        {
+            var result = await poeTradeClient.Fetch<ApiCategory>("data/stats", useDefaultLanguage: true);
+            return result.Result;
+        }
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Static.Models;
 using Sidekick.Common.Cache;
@@ -21,8 +19,8 @@ namespace Sidekick.Apis.Poe.Static
             this.poeTradeClient = poeTradeClient;
         }
 
-        private Dictionary<string, string> ImageUrls { get; set; }
-        private Dictionary<string, string> Ids { get; set; }
+        private Dictionary<string, string> ImageUrls { get; set; } = new();
+        private Dictionary<string, string> Ids { get; set; } = new();
 
         /// <inheritdoc/>
         public InitializationPriority Priority => InitializationPriority.Medium;
@@ -34,12 +32,17 @@ namespace Sidekick.Apis.Poe.Static
                 "ItemStaticDataProvider",
                 () => poeTradeClient.Fetch<StaticItemCategory>("data/static"));
 
-            ImageUrls = new Dictionary<string, string>();
-            Ids = new Dictionary<string, string>();
+            ImageUrls.Clear();
+            Ids.Clear();
             foreach (var category in result.Result)
             {
                 foreach (var entry in category.Entries)
                 {
+                    if (entry.Id == null || entry.Image == null || entry.Text == null)
+                    {
+                        continue;
+                    }
+
                     ImageUrls.Add(entry.Id, entry.Image);
                     if (!Ids.ContainsKey(entry.Text))
                     {
@@ -49,7 +52,7 @@ namespace Sidekick.Apis.Poe.Static
             }
         }
 
-        public string GetImage(string id)
+        public string? GetImage(string id)
         {
             id = id switch
             {
@@ -65,10 +68,10 @@ namespace Sidekick.Apis.Poe.Static
             return null;
         }
 
-        public string GetId(Item item)
+        public string? GetId(Item item)
         {
             var text = item.Metadata.Name ?? item.Metadata.Type;
-            if (Ids.TryGetValue(text, out var result))
+            if (text != null && Ids.TryGetValue(text, out var result))
             {
                 return result;
             }

@@ -22,6 +22,7 @@ namespace Sidekick.Modules.General.Keybinds
         private readonly IItemParser itemParser;
         private readonly IGameLanguageProvider gameLanguageProvider;
         private readonly IBrowserProvider browserProvider;
+        private readonly IKeyboardProvider keyboard;
 
         public OpenWikiPageKeybindHandler(
             IClipboardProvider clipboardProvider,
@@ -30,7 +31,8 @@ namespace Sidekick.Modules.General.Keybinds
             IProcessProvider processProvider,
             IItemParser itemParser,
             IGameLanguageProvider gameLanguageProvider,
-            IBrowserProvider browserProvider)
+            IBrowserProvider browserProvider,
+            IKeyboardProvider keyboard)
         {
             this.clipboardProvider = clipboardProvider;
             this.viewLocator = viewLocator;
@@ -39,20 +41,27 @@ namespace Sidekick.Modules.General.Keybinds
             this.itemParser = itemParser;
             this.gameLanguageProvider = gameLanguageProvider;
             this.browserProvider = browserProvider;
+            this.keyboard = keyboard;
         }
 
         public List<string> GetKeybinds() => new() { settings.Wiki_Key_Open };
 
-        public bool IsValid() => processProvider.IsPathOfExileInFocus;
+        public bool IsValid(string _) => processProvider.IsPathOfExileInFocus;
 
-        public async Task Execute(string _)
+        public async Task Execute(string keybind)
         {
             var text = await clipboardProvider.Copy();
+            if (text == null)
+            {
+                await keyboard.PressKey(keybind);
+                return;
+            }
+
             var item = itemParser.ParseItem(text);
 
             if (item == null)
             {
-                // If the item can't be parsed, show an error
+                // If the item can't be parsed, show an error.
                 await viewLocator.Open(ErrorType.Unparsable.ToUrl());
                 return;
             }
