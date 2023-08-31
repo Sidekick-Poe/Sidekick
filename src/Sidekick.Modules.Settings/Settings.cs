@@ -34,6 +34,8 @@ namespace Sidekick.Modules.Settings
 
         public string LeagueId { get; set; } = "";
 
+        public string LeaguesHash { get; set; } = "";
+
         public WikiSetting Wiki_Preferred { get; set; } = WikiSetting.PoeWiki;
 
         public bool RetainClipboard { get; set; } = true;
