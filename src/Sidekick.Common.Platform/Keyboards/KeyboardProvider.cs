@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.DependencyInjection;
@@ -188,9 +189,12 @@ namespace Sidekick.Common.Platform.Keyboards
             LogSource.MessageLogged += OnMessageLogged;
 
             // Initialize keyboard hook
-            Hook = new();
-            Hook.KeyPressed += OnKeyPressed;
-            HookTask = Hook.RunAsync();
+            if (!Debugger.IsAttached)
+            {
+                Hook = new();
+                Hook.KeyPressed += OnKeyPressed;
+                HookTask = Hook.RunAsync();
+            }
 
             // Make sure we don't run this multiple times
             HasInitialized = true;

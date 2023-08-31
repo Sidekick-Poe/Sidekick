@@ -75,8 +75,6 @@ namespace Sidekick.Modules.Settings
 
         public string LeagueId { get; set; }
 
-        public string LeaguesHash { get; set; }
-
         public bool RetainClipboard { get; set; }
 
         public bool SendCrashReports { get; set; }
