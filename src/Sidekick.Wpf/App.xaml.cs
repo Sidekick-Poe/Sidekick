@@ -43,7 +43,11 @@ namespace Sidekick.Wpf
         public App()
         {
             var configurationManager = new ConfigurationManager();
-            configurationManager.AddJsonFile(SidekickPaths.GetDataFilePath(SettingsService.FileName), true, true);
+            try
+            {
+                configurationManager.AddJsonFile(SidekickPaths.GetDataFilePath(SettingsService.FileName), true, true);
+            }
+            catch (Exception) { }
 
             var services = new ServiceCollection();
             ConfigureServices(services, configurationManager);
