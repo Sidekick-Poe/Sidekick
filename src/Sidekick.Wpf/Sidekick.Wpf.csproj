@@ -42,6 +42,6 @@
     <ItemGroup>
       <wwwrootFolder Include="$(ProjectDir)..\Sidekick.Common.Blazor\wwwroot\**\*.*" />
     </ItemGroup>
-    <Copy SourceFiles="@(wwwrootFolder)" DestinationFolder="$(ProjectDir)wwwroot\%(RecursiveDir)" />
+    <Copy SourceFiles="@(wwwrootFolder)" DestinationFolder="$(OutDir)wwwroot\%(RecursiveDir)" />
   </Target>
 </Project>
