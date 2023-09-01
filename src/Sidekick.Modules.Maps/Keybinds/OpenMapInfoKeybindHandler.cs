@@ -43,6 +43,7 @@ namespace Sidekick.Modules.Maps.Keybinds
                 return;
             }
 
+            await viewLocator.CloseAllOverlays();
             await viewLocator.Open($"/map/{text.EncodeBase64Url()}");
         }
     }

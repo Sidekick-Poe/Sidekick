@@ -80,7 +80,6 @@ else
     protected override async Task OnParametersSetAsync()
     {
         Item = await ItemParser.ParseItemAsync(ItemText.DecodeBase64Url());
-
         if (Item == null)
         {
             NavigationManager.NavigateTo(ErrorType.Unparsable.ToUrl());
