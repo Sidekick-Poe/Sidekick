@@ -189,12 +189,9 @@ namespace Sidekick.Common.Platform.Keyboards
             LogSource.MessageLogged += OnMessageLogged;
 
             // Initialize keyboard hook
-            if (!Debugger.IsAttached)
-            {
-                Hook = new();
-                Hook.KeyPressed += OnKeyPressed;
-                HookTask = Hook.RunAsync();
-            }
+            Hook = new();
+            Hook.KeyPressed += OnKeyPressed;
+            HookTask = Hook.RunAsync();
 
             // Make sure we don't run this multiple times
             HasInitialized = true;
