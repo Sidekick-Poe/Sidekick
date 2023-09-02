@@ -334,7 +334,7 @@ namespace Sidekick.Apis.Poe.Parser
         {
             return parsingItem.Metadata?.Category switch
             {
-                Category.DivinationCard or Category.Currency or Category.Gem => new(),
+                Category.DivinationCard or Category.Gem => new(),
                 _ => modifierProvider.Parse(parsingItem),
             };
         }
