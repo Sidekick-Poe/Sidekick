@@ -27,9 +27,8 @@ namespace Sidekick.Apis.Poe.Trade
         {
             var result = new List<ModifierFilter>();
 
-            // No filters for currencies and divination cards, etc.
+            // No filters for divination cards, etc.
             if (item.Metadata.Category == Category.DivinationCard
-                || item.Metadata.Category == Category.Currency
                 || item.Metadata.Category == Category.Gem
                 || item.Metadata.Category == Category.ItemisedMonster
                 || item.Metadata.Category == Category.Leaguestone
@@ -41,6 +40,13 @@ namespace Sidekick.Apis.Poe.Trade
             List<string> enabledModifiers = new();
 
             InitializeModifierFilters(result, item.ModifierLines, enabledModifiers);
+
+            // No pseudo filters for currencies
+            if (item.Metadata.Category == Category.Currency)
+            {
+                return result;
+            }
+
             InitializePseudoFilters(result, item.PseudoModifiers, enabledModifiers);
 
             return result;
