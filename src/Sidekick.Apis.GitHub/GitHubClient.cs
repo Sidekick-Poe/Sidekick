@@ -24,7 +24,7 @@ namespace Sidekick.Apis.GitHub
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        private bool? UpdateAvailable { get; set; } = false;
+        private bool? UpdateAvailable { get; set; } = null;
 
         /// <inheritdoc/>
         public async Task<bool> IsUpdateAvailable()
