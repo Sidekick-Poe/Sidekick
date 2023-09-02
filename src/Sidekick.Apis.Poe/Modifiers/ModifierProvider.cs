@@ -283,7 +283,7 @@ namespace Sidekick.Apis.Poe.Modifiers
             {
                 optionLines.Add(ParseHashPattern.Replace(text, optionLine));
             }
-            return string.Join('\n', optionLines);
+            return string.Join('\n', optionLines).Trim('\r', '\n');
         }
 
         /// <inheritdoc/>

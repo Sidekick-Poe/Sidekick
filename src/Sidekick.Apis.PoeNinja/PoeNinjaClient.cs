@@ -93,12 +93,12 @@ namespace Sidekick.Apis.PoeNinja
             foreach (var itemType in GetItemTypes(item))
             {
                 var repositoryItems = await repository.Load(itemType);
-                if (repositoryItems == null)
+                if (repositoryItems == null || repositoryItems.Count == 0)
                 {
                     repositoryItems = await poeNinjaApiClient.FetchPrices(itemType);
                 }
 
-                if (repositoryItems == null)
+                if (repositoryItems == null || repositoryItems.Count == 0)
                 {
                     continue;
                 }
