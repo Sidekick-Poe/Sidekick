@@ -6,6 +6,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
 {
     public interface IParserPatterns : IInitializableService
     {
+        Regex AreaLevel { get; }
         Regex Armor { get; }
         Regex AttacksPerSecond { get; }
         Regex Blighted { get; }

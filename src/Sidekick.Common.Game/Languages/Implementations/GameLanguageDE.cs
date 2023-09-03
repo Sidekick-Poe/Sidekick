@@ -41,6 +41,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionChanceToBlock => "__TranslationRequired__";
         public string DescriptionLevel => "__TranslationRequired__";
         public string DescriptionRequirements => "__TranslationRequired__:";
+        public string DescriptionAreaLevel => "__TranslationRequired__:";
 
         public string PrefixSuperior => "(hochwertig)";
         public string PrefixBlighted => "Befallene";

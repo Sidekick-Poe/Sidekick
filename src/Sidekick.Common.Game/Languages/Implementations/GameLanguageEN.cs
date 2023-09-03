@@ -41,6 +41,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionItemRarity => "Item Rarity";
         public string DescriptionMonsterPackSize => "Monster Pack Size";
         public string DescriptionRequirements => "Requirements:";
+        public string DescriptionAreaLevel => "Area Level";
 
         public string PrefixSuperior => "Superior";
         public string PrefixBlighted => "Blighted";
@@ -110,7 +111,8 @@ namespace Sidekick.Common.Game.Languages.Implementations
             Trinkets = "Trinkets",
             Logbooks = "Expedition Logbooks",
             Sentinel = "Sentinel",
-            MemoryLine = "Memory"
+            MemoryLine = "Memory",
+            SanctumResearch = "Sanctum Research",
         };
     }
 }

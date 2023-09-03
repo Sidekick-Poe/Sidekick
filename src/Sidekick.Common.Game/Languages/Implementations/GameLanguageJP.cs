@@ -41,6 +41,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionChanceToBlock => "ブロック率";
         public string DescriptionLevel => "レベル";
         public string DescriptionRequirements => "装備要求";
+        public string DescriptionAreaLevel => "__TranslationRequired__:";
 
         public string PrefixSuperior => "上質な";
         public string PrefixBlighted => "ブライト";

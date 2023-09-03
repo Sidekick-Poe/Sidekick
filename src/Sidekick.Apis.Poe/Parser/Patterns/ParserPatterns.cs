@@ -88,6 +88,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
             AlternateQuality = gameLanguageProvider.Language.DescriptionAlternateQuality.ToRegexLine();
 
             MapTier = gameLanguageProvider.Language.DescriptionMapTier.ToRegexIntCapture();
+            AreaLevel = gameLanguageProvider.Language.DescriptionAreaLevel.ToRegexIntCapture();
             ItemQuantity = gameLanguageProvider.Language.DescriptionItemQuantity.ToRegexIntCapture();
             ItemRarity = gameLanguageProvider.Language.DescriptionItemRarity.ToRegexIntCapture();
             MonsterPackSize = gameLanguageProvider.Language.DescriptionMonsterPackSize.ToRegexIntCapture();
@@ -115,6 +116,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         public Regex Blighted { get; private set; } = null!;
         public Regex BlightRavaged { get; private set; } = null!;
         public Regex Requirements { get; private set; } = null!;
+        public Regex AreaLevel { get; private set; } = null!;
 
         #endregion Properties (Armour, Evasion, Energy Shield, Quality, Level)
 

@@ -10,6 +10,9 @@ namespace Sidekick.Apis.Poe.Trade.Filters
         [JsonPropertyName("map_iir")]
         public SearchFilterValue? ItemRarity { get; set; }
 
+        [JsonPropertyName("area_level")]
+        public SearchFilterValue? AreaLevel { get; set; }
+
         [JsonPropertyName("map_tier")]
         public SearchFilterValue? MapTier { get; set; }
 
