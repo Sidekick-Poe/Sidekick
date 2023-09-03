@@ -322,6 +322,10 @@ namespace Sidekick.Apis.Poe.Trade
                         filters.MapFilters.Filters.ItemRarity = new SearchFilterValue(propertyFilter);
                         break;
 
+                    case PropertyFilterType.Map_AreaLevel:
+                        filters.MapFilters.Filters.AreaLevel = new SearchFilterValue(propertyFilter);
+                        break;
+
                     case PropertyFilterType.Map_MonsterPackSize:
                         filters.MapFilters.Filters.MonsterPackSize = new SearchFilterValue(propertyFilter);
                         break;

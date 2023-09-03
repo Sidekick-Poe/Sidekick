@@ -69,5 +69,8 @@ namespace Sidekick.Common.Game.Items
         HeistGear = 703,
         HeistBrooch = 704,
         HeistTarget = 705,
+
+        // Sanctum
+        SanctumResearch = 801,
     }
 }

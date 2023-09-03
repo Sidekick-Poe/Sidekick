@@ -41,6 +41,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionItemRarity => "物品稀有度";
         public string DescriptionMonsterPackSize => "怪物群大小";
         public string DescriptionRequirements => "__TranslationRequired__:";
+        public string DescriptionAreaLevel => "__TranslationRequired__:";
 
         public string PrefixSuperior => "精良的";
         public string PrefixBlighted => "凋落的";

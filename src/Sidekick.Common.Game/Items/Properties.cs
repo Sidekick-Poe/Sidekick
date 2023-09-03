@@ -24,6 +24,8 @@ namespace Sidekick.Common.Game.Items
 
         public int MapTier { get; set; }
 
+        public int AreaLevel { get; set; }
+
         public int ItemQuantity { get; set; }
 
         public int ItemRarity { get; set; }

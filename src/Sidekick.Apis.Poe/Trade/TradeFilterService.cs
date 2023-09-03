@@ -249,6 +249,13 @@ namespace Sidekick.Apis.Poe.Trade
                 item.Properties.MapTier,
                 enabled: true,
                 min: item.Properties.MapTier);
+            // Area level
+            InitializePropertyFilter(result.Map,
+                PropertyFilterType.Map_AreaLevel,
+                gameLanguageProvider.Language?.DescriptionAreaLevel,
+                item.Properties.AreaLevel,
+                enabled: true,
+                min: item.Properties.AreaLevel);
 
             // Quality
             InitializePropertyFilter(result.Misc,

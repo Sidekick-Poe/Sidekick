@@ -17,7 +17,8 @@ namespace Sidekick.Common.Game.Items
         HeistEquipment = 12,
         Contract = 13,
         Logbook = 14,
-        Sentinel = 15,
-        MemoryLine = 16,
+        Sanctum = 15,
+        Sentinel = 16,
+        MemoryLine = 17,
     }
 }
