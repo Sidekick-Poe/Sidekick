@@ -1,17 +1,19 @@
 @if (Visible)
 {
-    <MudCheckBox T="bool"
-             Checked="Enabled"
-             Color="Color.Primary"
-             CheckedChanged="CheckedChanged"
-             Dense="true"
-             Size="Size.Small">
-        <div class="d-flex align-center flex-nowrap">
-            <ItemPropertyText Label="@Resources.Class"
-                          Value="ClassLabel" />
-            <Hint Text="@Resources.ClassHint" />
-        </div>
-    </MudCheckBox>
+    <div class="filter">
+        <MudCheckBox T="bool"
+                     Checked="Enabled"
+                     Color="Color.Primary"
+                     CheckedChanged="CheckedChanged"
+                     Dense="true"
+                     Size="Size.Small">
+            <div class="d-flex align-center flex-nowrap">
+                <ItemPropertyText Label="@Resources.Class"
+                                  Value="ClassLabel" />
+                <Hint Text="@Resources.ClassHint" />
+            </div>
+        </MudCheckBox>
+    </div>
 
     <ItemSeparator Rarity="Item.Metadata.Rarity" />
 }

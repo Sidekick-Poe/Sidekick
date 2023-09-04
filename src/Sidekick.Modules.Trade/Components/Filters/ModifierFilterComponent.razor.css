@@ -1,3 +1,12 @@
+.filter {
+    transition: background ease .3s;
+}
+
+    .filter:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+
 ::deep .filter-min,
 ::deep .filter-max {
     width: 6em;

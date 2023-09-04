@@ -114,8 +114,7 @@ namespace Sidekick.Apis.Poe.Trade
 
         private (double? Min, double? Max) NormalizeValues<T>(
             T value,
-            ModifierCategory category,
-            double delta = 5)
+            ModifierCategory category)
         {
             double? min = null;
             double? max = null;
@@ -129,7 +128,7 @@ namespace Sidekick.Apis.Poe.Trade
                     min = itemValue;
                     if (sidekickSettings.Trade_Normalize_Values && category != ModifierCategory.Enchant && category != ModifierCategory.Crucible)
                     {
-                        min = NormalizeMinValue(min, delta);
+                        min = NormalizeMinValue(min);
                     }
                 }
                 else
@@ -137,7 +136,7 @@ namespace Sidekick.Apis.Poe.Trade
                     max = itemValue;
                     if (sidekickSettings.Trade_Normalize_Values && category != ModifierCategory.Enchant && category != ModifierCategory.Crucible)
                     {
-                        max = NormalizeMaxValue(max, delta);
+                        max = NormalizeMaxValue(max);
                     }
                 }
 
@@ -184,8 +183,7 @@ namespace Sidekick.Apis.Poe.Trade
             InitializePropertyFilter(result.Armour,
                 PropertyFilterType.Armour_Block,
                 gameLanguageProvider.Language?.DescriptionChanceToBlock,
-                item.Properties.ChanceToBlock,
-                delta: 1);
+                item.Properties.ChanceToBlock);
 
             // Physical Dps
             InitializePropertyFilter(result.Weapon,
@@ -212,8 +210,7 @@ namespace Sidekick.Apis.Poe.Trade
             InitializePropertyFilter(result.Weapon,
                 PropertyFilterType.Weapon_CriticalStrikeChance,
                 gameLanguageProvider.Language?.DescriptionCriticalStrikeChance,
-                item.Properties.CriticalStrikeChance,
-                delta: 1);
+                item.Properties.CriticalStrikeChance);
 
             // Item quantity
             InitializePropertyFilter(result.Map,
@@ -335,7 +332,7 @@ namespace Sidekick.Apis.Poe.Trade
             PropertyFilterType type,
             string? label,
             T value,
-            double delta = 5,
+            double? delta = null,
             bool? enabled = false,
             double? min = null,
             double? max = null)
@@ -381,19 +378,19 @@ namespace Sidekick.Apis.Poe.Trade
         }
 
         /// <summary>
-        /// Smallest positive value between a -5 delta or 90%.
+        /// Smallest positive value between a -1 delta or 90%.
         /// </summary>
-        private static int? NormalizeMinValue(double? value, double delta)
+        private static int? NormalizeMinValue(double? value, double? delta = null)
         {
             if (value.HasValue)
             {
                 if (value.Value > 0)
                 {
-                    return (int)Math.Max(Math.Min(value.Value - delta, value.Value * 0.9), 0);
+                    return (int)Math.Max(Math.Min(value.Value - (delta ?? 1), value.Value * 0.9), 0);
                 }
                 else
                 {
-                    return (int)Math.Min(Math.Min(value.Value - delta, value.Value * 1.1), 0);
+                    return (int)Math.Min(Math.Min(value.Value - (delta ?? 1), value.Value * 1.1), 0);
                 }
             }
 
@@ -401,19 +398,19 @@ namespace Sidekick.Apis.Poe.Trade
         }
 
         /// <summary>
-        /// Smallest positive value between a +5 delta or 110%.
+        /// Smallest positive value between a +1 delta or 110%.
         /// </summary>
-        private static int? NormalizeMaxValue(double? value, double delta)
+        private static int? NormalizeMaxValue(double? value, double? delta = null)
         {
             if (value.HasValue)
             {
                 if (value.Value > 0)
                 {
-                    return (int)Math.Max(Math.Max(value.Value + delta, value.Value * 1.1), 0);
+                    return (int)Math.Max(Math.Max(value.Value + (delta ?? 1), value.Value * 1.1), 0);
                 }
                 else
                 {
-                    return (int)Math.Min(Math.Max(value.Value + delta, value.Value * 0.9), 0);
+                    return (int)Math.Min(Math.Max(value.Value + (delta ?? 1), value.Value * 0.9), 0);
                 }
             }
 
