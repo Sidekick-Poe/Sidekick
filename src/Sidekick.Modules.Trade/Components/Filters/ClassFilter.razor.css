@@ -1,5 +1,6 @@
 .filter {
     transition: background ease .3s;
+    padding: 0 4px;
 }
 
     .filter:hover {
