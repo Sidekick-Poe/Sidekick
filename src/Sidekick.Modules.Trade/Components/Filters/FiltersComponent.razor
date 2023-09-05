@@ -19,14 +19,21 @@
 
         <ClassFilter @bind-Value="PropertyFilters.Class" Item="Item" />
 
-        <PropertyFiltersComponent Filters="PropertyFilters.Armour"
-                                  Rarity="Item.Metadata.Rarity" />
-        <PropertyFiltersComponent Filters="PropertyFilters.Weapon"
-                                  Rarity="Item.Metadata.Rarity" />
-        <PropertyFiltersComponent Filters="PropertyFilters.Map"
-                                  Rarity="Item.Metadata.Rarity" />
-        <PropertyFiltersComponent Filters="PropertyFilters.Misc"
-                                  Rarity="Item.Metadata.Rarity" />
+        <CascadingValue Value="PropertyFilters.Armour" IsFixed="true">
+            <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
+        </CascadingValue>
+
+        <CascadingValue Value="PropertyFilters.Weapon" IsFixed="true">
+            <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
+        </CascadingValue>
+
+        <CascadingValue Value="PropertyFilters.Map" IsFixed="true">
+            <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
+        </CascadingValue>
+
+        <CascadingValue Value="PropertyFilters.Misc" IsFixed="true">
+            <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
+        </CascadingValue>
 
         <ModifierFiltersComponent Filters="ModifierFilters"
                                   Rarity="Item.Metadata.Rarity" />
@@ -46,11 +53,20 @@
 @code {
     [Inject] public TradeResources Resources { get; set; }
 
-    [Parameter] public Item Item { get; set; }
-    [Parameter] public string ItemName { get; set; }
-    [Parameter] public PropertyFilters PropertyFilters { get; set; }
-    [Parameter] public List<ModifierFilter> ModifierFilters { get; set; }
-    [Parameter] public EventCallback OnSearch { get; set; }
+    [CascadingParameter]
+    public Item Item { get; set; }
+
+    [Parameter]
+    public string ItemName { get; set; }
+
+    [Parameter]
+    public PropertyFilters PropertyFilters { get; set; }
+
+    [Parameter]
+    public List<ModifierFilter> ModifierFilters { get; set; }
+
+    [Parameter]
+    public EventCallback OnSearch { get; set; }
 
     private bool Expanded { get; set; } = false;
     private bool FiltersVisible { get; set; }

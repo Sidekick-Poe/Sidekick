@@ -5,13 +5,17 @@
 </div>
 
 @code {
-    [Parameter] public Rarity Rarity { get; set; }
+    [Parameter]
+    public Rarity Rarity { get; set; }
 
-    [Parameter] public bool IsRelic { get; set; }
+    [Parameter]
+    public bool IsRelic { get; set; }
 
-    [Parameter] public bool Double { get; set; }
+    [Parameter]
+    public bool Double { get; set; }
 
-    [Parameter] public RenderFragment<ItemHeaderBackground> ChildContent { get; set; }
+    [Parameter]
+    public RenderFragment<ItemHeaderBackground> ChildContent { get; set; }
 
     private string BackgroundClass
     {

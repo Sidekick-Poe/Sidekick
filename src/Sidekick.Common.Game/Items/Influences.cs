@@ -1,6 +1,6 @@
 namespace Sidekick.Common.Game.Items
 {
-    public class Influences
+    public struct Influences
     {
         public bool Crusader { get; set; }
 

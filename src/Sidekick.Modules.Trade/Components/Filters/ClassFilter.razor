@@ -7,9 +7,9 @@
                      CheckedChanged="CheckedChanged"
                      Dense="true"
                      Size="Size.Small">
-            <div class="d-flex align-center flex-nowrap">
+            <div class="d-flex align-center flex-nowrap justify-space-between">
                 <ItemPropertyText Label="@Resources.Class"
-                                  Value="ClassLabel" />
+                                  Value="@ClassLabel" />
                 <Hint Text="@Resources.ClassHint" />
             </div>
         </MudCheckBox>
@@ -19,12 +19,20 @@
 }
 
 @code {
-    [Inject] private IGameLanguageProvider GameLanguageProvider { get; set; }
-    [Inject] private TradeResources Resources { get; set; }
+    [Inject]
+    private IGameLanguageProvider GameLanguageProvider { get; set; }
 
-    [Parameter] public Item Item { get; set; }
-    [Parameter] public Class? Value { get; set; }
-    [Parameter] public EventCallback<Class?> ValueChanged { get; set; }
+    [Inject]
+    private TradeResources Resources { get; set; }
+
+    [Parameter]
+    public Item Item { get; set; }
+
+    [Parameter]
+    public Class? Value { get; set; }
+
+    [Parameter]
+    public EventCallback<Class?> ValueChanged { get; set; }
 
     private bool Visible => (Item?.Metadata.Rarity == Rarity.Rare || Item?.Metadata.Rarity == Rarity.Magic || Item?.Metadata.Rarity == Rarity.Normal) && Item.Metadata.Class != Class.Undefined && !string.IsNullOrEmpty(ClassLabel);
 

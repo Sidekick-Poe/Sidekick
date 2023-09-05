@@ -1,0 +1,146 @@
+@using Microsoft.AspNetCore.Components.Web;
+@using Sidekick.Modules.Trade.Localization;
+
+<div class="d-flex flex-nowrap align-center">
+    <MudIconButton Color="Color.Primary"
+                   OnClick="SwapValues"
+                   Class="pa-0 filter-swap"
+                   Variant="Variant.Text"
+                   Icon="@(IsMinimum ? Icons.Material.Filled.ChevronRight : Icons.Material.Filled.ChevronLeft)" />
+
+    @if (IsMinimum)
+    {
+        <div class="filter-value" @onwheel="OnWheelMin" @onwheel:preventDefault @oncontextmenu="ClearMin">
+            <MudTextField T="double?"
+                          Value="Min"
+                          ValueChanged="UpdateMin"
+                          Placeholder="@Resources.Filters_Min"
+                          Variant="Variant.Text"
+                          Margin="Margin.Dense" />
+        </div>
+    }
+    else
+    {
+        <div class="filter-value" @onwheel="OnWheelMax" @onwheel:preventDefault @oncontextmenu="ClearMax">
+            <MudTextField T="double?"
+                          Value="Max"
+                          ValueChanged="UpdateMax"
+                          Placeholder="@Resources.Filters_Max"
+                          Variant="Variant.Text"
+                          Margin="Margin.Dense" />
+        </div>
+    }
+</div>
+
+@code {
+    [Inject]
+    private TradeResources Resources { get; set; }
+
+    [Parameter]
+    public double? Min { get; set; }
+
+    [Parameter]
+    public EventCallback<double?> MinChanged { get; set; }
+
+    [Parameter]
+    public double? Max { get; set; }
+
+    [Parameter]
+    public EventCallback<double?> MaxChanged { get; set; }
+
+    [Parameter]
+    public EventCallback OnChanged { get; set; }
+
+    private bool IsMinimum { get; set; } = true;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        if (Min != null && Max != null)
+        {
+            await MaxChanged.InvokeAsync(null);
+        }
+
+        if (Max != null)
+        {
+            IsMinimum = false;
+        }
+
+        if (Min != null)
+        {
+            IsMinimum = true;
+        }
+    }
+
+    private async Task SwapValues(MouseEventArgs args)
+    {
+        var (min, max) = (Max, Min);
+
+        await MinChanged.InvokeAsync(min);
+        await MaxChanged.InvokeAsync(max);
+        IsMinimum = !IsMinimum;
+
+        await OnChanged.InvokeAsync();
+    }
+
+    private async Task OnWheelMin(WheelEventArgs args)
+    {
+        if (!Min.HasValue)
+        {
+            await MinChanged.InvokeAsync(0);
+        }
+        else if (args.DeltaY < 0)
+        {
+            await MinChanged.InvokeAsync(Min + 1);
+        }
+        else
+        {
+            await MinChanged.InvokeAsync(Min - 1);
+        }
+
+        await OnChanged.InvokeAsync();
+    }
+
+    private async Task UpdateMin(double? min)
+    {
+        await MinChanged.InvokeAsync(min);
+        await OnChanged.InvokeAsync();
+    }
+
+    private async Task ClearMin()
+    {
+        await MinChanged.InvokeAsync(null);
+        await OnChanged.InvokeAsync();
+    }
+
+    private async Task OnWheelMax(WheelEventArgs args)
+    {
+        if (!Max.HasValue)
+        {
+            await MaxChanged.InvokeAsync(0);
+        }
+        else if (args.DeltaY < 0)
+        {
+            await MaxChanged.InvokeAsync(Max + 1);
+        }
+        else
+        {
+            await MaxChanged.InvokeAsync(Max - 1);
+        }
+
+        await OnChanged.InvokeAsync();
+    }
+
+    private async Task UpdateMax(double? max)
+    {
+        await MaxChanged.InvokeAsync(max);
+        await OnChanged.InvokeAsync();
+    }
+
+    private async Task ClearMax()
+    {
+        await MaxChanged.InvokeAsync(null);
+        await OnChanged.InvokeAsync();
+    }
+}

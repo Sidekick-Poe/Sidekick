@@ -29,8 +29,11 @@
 @code {
     [Inject] private ErrorResources Resources { get; set; }
 
-    [Parameter] public string Type { get; set; }
-    [Parameter] public string AdditionalInformation { get; set; }
+    [Parameter]
+    public string Type { get; set; }
+
+    [Parameter]
+    public string AdditionalInformation { get; set; }
 
     public override string Title => Resources.Title;
     public override SidekickViewType ViewType => SidekickViewType.Modal;

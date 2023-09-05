@@ -7,34 +7,39 @@
 }
 else
 {
-    <FiltersComponent Item="Item" ItemName="@ItemName.DecodeBase64Url()" ModifierFilters="ModifierFilters" PropertyFilters="PropertyFilters" OnSearch="UpdateQuery" />
+    <CascadingValue Value="Item" IsFixed="true">
+        <FiltersComponent ItemName="@ItemName.DecodeBase64Url()"
+                          ModifierFilters="ModifierFilters"
+                          PropertyFilters="PropertyFilters"
+                          OnSearch="UpdateQuery" />
 
-    <div class="ml-0">
-        <PriceOptionsComponent Item="Item"
-                           QueryId="@QueryResult?.Id"
-                           @bind-Layout="Layout"
-                           Count="Results?.Count ?? 0"
-                           Total="QueryResult?.Total ?? 0"
-                           CanExpand="CanExpand" />
+        <div class="ml-0">
+            <PriceOptionsComponent Item="Item"
+                                   QueryId="@QueryResult?.Id"
+            @bind-Layout="Layout"
+                                   Count="Results?.Count ?? 0"
+                                   Total="QueryResult?.Total ?? 0"
+                                   CanExpand="CanExpand" />
 
-        @if (Results != null)
-        {
-            foreach (var result in Results)
+            @if (Results != null)
             {
-                <ItemComponent Item="result" Layout="Layout" CanExpand="CanExpand" />
+                foreach (var result in Results)
+                {
+                    <ItemComponent Item="result" Layout="Layout" CanExpand="CanExpand" />
+                }
             }
-        }
 
-        @if (IsFetching)
-        {
-            <LoadingAlert Text="Loading results" />
-        }
+            @if (IsFetching)
+            {
+                <LoadingAlert Text="Loading results" />
+            }
 
-        @if (!IsFetching && !FullyLoaded && Results != null)
-        {
-            <MudButton Variant="Variant.Outlined" Color="Color.Info" FullWidth="true" OnClick="LoadMoreData" Class="mt-2">@Resources.LoadMoreData</MudButton>
-        }
-    </div>
+            @if (!IsFetching && !FullyLoaded && Results != null)
+            {
+                <MudButton Variant="Variant.Outlined" Color="Color.Info" FullWidth="true" OnClick="LoadMoreData" Class="mt-2">@Resources.LoadMoreData</MudButton>
+            }
+        </div>
+    </CascadingValue>
 }
 
 @code {

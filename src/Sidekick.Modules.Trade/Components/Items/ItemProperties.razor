@@ -3,7 +3,7 @@
     <div class="properties">
         @if (Item.Properties.ItemLevel > 0)
         {
-            <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionItemLevel" Value="Item.Properties.ItemLevel" />
+            <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionItemLevel" Value="@Item.Properties.ItemLevel.ToString()" />
         }
         @if (Item.Properties.BaseDefencePercentile.HasValue)
         {

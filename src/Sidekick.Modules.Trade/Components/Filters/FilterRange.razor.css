@@ -1,0 +1,24 @@
+::deep .filter-swap {
+    color: #FFFF77 !important;
+}
+
+::deep .mud-input-control {
+    max-width: 2.5rem !important;
+    min-width: 2.5rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+::deep .mud-input {
+    margin: 0 !important;
+    color: #FFFF77 !important;
+}
+
+    ::deep .mud-input::before {
+        border-bottom: 1px solid #FFFF77;
+        border-bottom: none;
+    }
+
+::deep .mud-input-slot {
+    padding: 4px !important;
+}

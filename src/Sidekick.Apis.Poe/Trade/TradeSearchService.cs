@@ -399,7 +399,7 @@ namespace Sidekick.Apis.Poe.Trade
                 .Where(x => x.Line?.Modifier != null)
                 .Select(x => new StatFilter()
                 {
-                    Disabled = !x.Enabled,
+                    Disabled = !(x.Enabled ?? false),
                     Id = x.Line?.Modifier?.Id,
                     Value = new SearchFilterValue(x),
                 })

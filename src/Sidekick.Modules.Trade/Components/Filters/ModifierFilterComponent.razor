@@ -22,70 +22,29 @@
         <OilAnointment OilNames="EnchantmentOilNames" />
     }
 
-    @if (Filter.Enabled && (HasAlternateModifiers || HasModifierValues))
+    @if ((Filter.Enabled ?? false) && HasModifierValues)
     {
-        <MudButton Size="Size.Small"
-                   EndIcon="@(Opened ? Icons.Material.Filled.ChevronLeft : Icons.Material.Filled.ChevronRight)"
-                   Color="Color.Primary"
-                   OnClick="() => Opened = !Opened">
-            @if (HasModifierValues)
-            {
-                <FilterRangeText Min="@Filter.Min.ToString()"
-                                 Max="@Filter.Max.ToString()" />
-            }
-        </MudButton>
+        <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" OnChanged="StateHasChanged" />
+    }
 
-        <MudPopover Open="Opened" AnchorOrigin="Origin.TopRight" TransformOrigin="Origin.TopLeft">
-            <div class="pa-1" style="max-width: ">
-                @if (HasAlternateModifiers)
+    @if ((Filter.Enabled ?? false) && HasAlternateModifiers)
+    {
+        <MudMenu Color="Color.Info">
+            <ActivatorContent>
+                <Hint Text="@Resources.ModifierHint">
+                    <MudIconButton Variant="Variant.Text" Color="Color.Info" Icon="@Icons.Material.Filled.SwapHorizontalCircle" Class="pa-0" />
+                </Hint>
+            </ActivatorContent>
+            <ChildContent>
+                @foreach (var alternate in Filter.Line.Alternates)
                 {
-                    <div class="mb-2 d-flex align-center">
-                        <MudSelect T="Modifier"
-                                   Value="Filter.Line.Modifier"
-                                   ValueChanged="ModifierChanged"
-                                   Variant="Variant.Text"
-                                   Dense="true"
-                                   Margin="Margin.None">
-                            <MudSelectItem Value="Filter.Line.Modifier">
-                                <ItemModifierCategoryChip Category="Filter.Line.Modifier.Category" />
-                                <MudText Typo="Typo.caption">@Filter.Line.Modifier.Text</MudText>
-                            </MudSelectItem>
-                            @foreach (var alternate in Filter.Line.Alternates)
-                            {
-                                <MudSelectItem Value="alternate" Class="d-flex align-center">
-                                    <ItemModifierCategoryChip Category="alternate.Category" />
-                                    <MudText Typo="Typo.caption">@alternate.Text</MudText>
-                                </MudSelectItem>
-                            }
-                        </MudSelect>
-                        <Hint Text="@Resources.ModifierHint" />
-                    </div>
+                    <MudMenuItem OnClick="() => SelectAlternate(alternate)" Class="d-flex align-center">
+                        <ItemModifierCategoryChip Category="alternate.Category" />
+                        <MudText Typo="Typo.caption">@alternate.Text</MudText>
+                    </MudMenuItem>
                 }
-
-                @if (HasModifierValues)
-                {
-                    <div class="d-flex align-center justify-end">
-                        <MudIconButton Icon="@Icons.Material.Filled.SwapHoriz"
-                                       OnClick="SwapValues"
-                                       Size="Size.Small"
-                                       Class="mr-1" />
-                        <div class="filter-min" @onwheel="OnWheelMin" @onwheel:preventDefault @oncontextmenu="ClearMin">
-                            <MudTextField @bind-Value="Filter.Min"
-                                          Label="@Resources.Filters_Min"
-                                          Variant="Variant.Outlined"
-                                          Margin="Margin.Dense" />
-                        </div>
-                        <div class="filter-max" @onwheel="OnWheelMax" @onwheel:preventDefault @oncontextmenu="ClearMax">
-                            <MudTextField @bind-Value="Filter.Max"
-                                          Label="@Resources.Filters_Max"
-                                          Variant="Variant.Outlined"
-                                          Margin="Margin.Dense" />
-                        </div>
-                    </div>
-                }
-            </div>
-        </MudPopover>
-        <MudOverlay Visible="Opened" DarkBackground="true" OnClick="() => Opened = false" />
+            </ChildContent>
+        </MudMenu>
     }
 </div>
 
@@ -97,8 +56,6 @@
     [Parameter] public ModifierFilter Filter { get; set; }
 
     private List<string> EnchantmentOilNames { get; set; }
-
-    private bool Opened { get; set; }
 
     private bool HasAlternateModifiers => Filter.Line.Alternates.Count > 0;
 
@@ -113,40 +70,10 @@
             {
                 EnchantmentOilNames = oilMetadataIds.Select(x => PoeWikiDataProvider.BlightOilNamesByMetadataIds[x]).ToList();
             }
-
         }
     }
 
-    private void SwapValues(MouseEventArgs args)
-    {
-        (Filter.Min, Filter.Max) = (Filter.Max, Filter.Min);
-    }
-
-    private void OnWheelMin(WheelEventArgs args)
-    {
-        if (!Filter.Min.HasValue) Filter.Min = 0;
-        if (args.DeltaY < 0) Filter.Min += 1;
-        else Filter.Min -= 1;
-    }
-
-    private void ClearMin()
-    {
-        Filter.Min = null;
-    }
-
-    private void OnWheelMax(WheelEventArgs args)
-    {
-        if (!Filter.Max.HasValue) Filter.Max = 0;
-        if (args.DeltaY < 0) Filter.Max += 1;
-        else Filter.Max -= 1;
-    }
-
-    private void ClearMax()
-    {
-        Filter.Max = null;
-    }
-
-    private void ModifierChanged(Modifier newValue)
+    private void SelectAlternate(Modifier newValue)
     {
         Filter.Line.Alternates.Add(Filter.Line.Modifier);
         Filter.Line.Alternates.Remove(newValue);

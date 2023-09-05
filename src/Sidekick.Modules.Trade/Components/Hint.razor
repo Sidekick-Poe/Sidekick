@@ -1,7 +1,14 @@
 
 <MudTooltip Placement="Placement.Right">
     <ChildContent>
-        <MudIcon Icon="@Icons.Material.Filled.Help" Color="Color.Info" Size="Size.Small" Class="ml-2" />
+        @if (ChildContent == null)
+        {
+            <MudIcon Icon="@Icons.Material.Filled.Help" Color="Color.Info" Size="Size.Small" Class="ml-2" />
+        }
+        else
+        {
+            @ChildContent
+        }
     </ChildContent>
 
     <TooltipContent>
@@ -10,5 +17,9 @@
 </MudTooltip>
 
 @code {
-    [Parameter] public string Text { get; set; }
+    [Parameter]
+    public string Text { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
 }

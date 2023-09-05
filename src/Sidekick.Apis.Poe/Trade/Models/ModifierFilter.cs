@@ -2,11 +2,11 @@ using Sidekick.Common.Game.Items.Modifiers;
 
 namespace Sidekick.Apis.Poe.Trade.Models
 {
-    public class ModifierFilter
+    public class ModifierFilter : ITradeFilter
     {
         public ModifierLine? Line { get; set; }
 
-        public bool Enabled { get; set; }
+        public bool? Enabled { get; set; }
 
         public double? Min { get; set; }
 

@@ -1,11 +1,13 @@
 @using Sidekick.Common.Game.Items.Modifiers
 
 <span>
-    <MudChip Size="Size.Small" Class="@Category.ToString()">@Category</MudChip>
+    <MudChip Size="Size.Small"
+             Class="@Category.ToString()">@Category</MudChip>
 </span>
 
 @code {
-    [Parameter] public ModifierCategory? Category { get; set; }
+    [Parameter]
+    public ModifierCategory? Category { get; set; }
 
     private string Class => Category switch
     {
