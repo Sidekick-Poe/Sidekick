@@ -2,12 +2,21 @@
 
 <span>
     <MudChip Size="Size.Small"
-             Class="@Category.ToString()">@Category</MudChip>
+             Class="@Category.ToString()">
+        @Category
+        @if (Arrow)
+        {
+            <MudIcon Icon="@Icons.Material.Filled.ArrowDropDown" Size="Size.Small" />
+        }
+    </MudChip>
 </span>
 
 @code {
     [Parameter]
     public ModifierCategory? Category { get; set; }
+
+    [Parameter]
+    public bool Arrow { get; set; }
 
     private string Class => Category switch
     {

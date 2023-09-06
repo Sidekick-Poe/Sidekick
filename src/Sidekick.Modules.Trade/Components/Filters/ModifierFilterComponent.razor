@@ -1,51 +1,57 @@
 
-<div class="d-flex filter">
-    <div class="flex-grow-1">
-        <MudCheckBox @bind-Checked="Filter.Enabled"
-                     Color="Color.Primary"
-                     Dense="true"
-                     Size="Size.Small">
-            <div class="d-flex align-center">
-                @if (Filter.Line.Modifier.Category == ModifierCategory.Pseudo)
-                {
-                    <ItemModifierCategoryChip Category="Filter.Line.Modifier.Category" />
-                }
-                <ItemModifierText Text="@Filter.Line.Text"
-                                  Category="Filter.Line.Modifier?.Category" />
+<div class="filter">
+    <div class="d-flex align-center">
+        <div class="flex-grow-1">
+            <MudCheckBox @bind-Checked="Filter.Enabled"
+                         Color="Color.Primary"
+                         Dense="true"
+                         Size="Size.Small">
+                <div class="d-flex align-center">
+                    @if (Filter.Line.Modifier.Category == ModifierCategory.Pseudo)
+                    {
+                        <ItemModifierCategoryChip Category="Filter.Line.Modifier.Category" />
+                    }
+                    <ItemModifierText Text="@Filter.Line.Text"
+                                      Category="Filter.Line.Modifier?.Category" />
 
-            </div>
-        </MudCheckBox>
+                </div>
+            </MudCheckBox>
+        </div>
+
+        <div>
+            @if ((Filter.Enabled ?? false) && HasAlternateModifiers)
+            {
+                <div class="d-flex justify-content-end">
+                    <MudMenu Color="Color.Info">
+                        <ActivatorContent>
+                            <Hint Text="@Resources.ModifierHint">
+                                <ItemModifierCategoryChip Category="Filter.Line.Modifier.Category" Arrow="true" />
+                            </Hint>
+                        </ActivatorContent>
+                        <ChildContent>
+                            @foreach (var alternate in Filter.Line.Alternates)
+                            {
+                                <MudMenuItem OnClick="() => SelectAlternate(alternate)" Class="d-flex align-center">
+                                    <ItemModifierCategoryChip Category="alternate.Category" />
+                                    <MudText Typo="Typo.caption">@alternate.Text</MudText>
+                                </MudMenuItem>
+                            }
+                        </ChildContent>
+                    </MudMenu>
+                </div>
+            }
+
+            @if ((Filter.Enabled ?? false) && HasModifierValues)
+            {
+                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" OnChanged="StateHasChanged" />
+            }
+
+            @if (EnchantmentOilNames?.Any() == true)
+            {
+                <OilAnointment OilNames="EnchantmentOilNames" />
+            }
+        </div>
     </div>
-
-    @if (EnchantmentOilNames?.Any() == true)
-    {
-        <OilAnointment OilNames="EnchantmentOilNames" />
-    }
-
-    @if ((Filter.Enabled ?? false) && HasModifierValues)
-    {
-        <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" OnChanged="StateHasChanged" />
-    }
-
-    @if ((Filter.Enabled ?? false) && HasAlternateModifiers)
-    {
-        <MudMenu Color="Color.Info">
-            <ActivatorContent>
-                <Hint Text="@Resources.ModifierHint">
-                    <MudIconButton Variant="Variant.Text" Color="Color.Primary" Icon="@Icons.Material.Filled.SwapHorizontalCircle" Class="pa-0" />
-                </Hint>
-            </ActivatorContent>
-            <ChildContent>
-                @foreach (var alternate in Filter.Line.Alternates)
-                {
-                    <MudMenuItem OnClick="() => SelectAlternate(alternate)" Class="d-flex align-center">
-                        <ItemModifierCategoryChip Category="alternate.Category" />
-                        <MudText Typo="Typo.caption">@alternate.Text</MudText>
-                    </MudMenuItem>
-                }
-            </ChildContent>
-        </MudMenu>
-    }
 </div>
 
 @code {

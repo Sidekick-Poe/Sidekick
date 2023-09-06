@@ -4,35 +4,28 @@
 <div class="d-flex flex-nowrap align-center">
     <MudIconButton Color="Color.Primary"
                    OnClick="SwapValues"
-                   Class="pa-0 filter-swap"
+                   Class="pa-1 filter-swap"
                    Variant="Variant.Text"
-                   Icon="@(IsMinimum ? Icons.Material.Filled.ChevronRight : Icons.Material.Filled.ChevronLeft)" />
+                   Icon="@Icon" />
 
-    @if (IsMinimum)
-    {
-        <div class="filter-value" @onwheel="OnWheelMin" @onwheel:preventDefault @oncontextmenu="ClearMin">
-            <MudTextField T="double?"
-                          Value="Min"
-                          ValueChanged="UpdateMin"
-                          Placeholder="@Resources.Filters_Min"
-                          Variant="Variant.Text"
-                          Margin="Margin.Dense" />
-        </div>
-    }
-    else
-    {
-        <div class="filter-value" @onwheel="OnWheelMax" @onwheel:preventDefault @oncontextmenu="ClearMax">
-            <MudTextField T="double?"
-                          Value="Max"
-                          ValueChanged="UpdateMax"
-                          Placeholder="@Resources.Filters_Max"
-                          Variant="Variant.Text"
-                          Margin="Margin.Dense" />
-        </div>
-    }
+    <div class="filter-value" @onwheel="OnWheel" @onwheel:preventDefault @oncontextmenu="Clear">
+        <MudTextField T="double?"
+                      Value="Value"
+                      ValueChanged="UpdateValue"
+                      Placeholder="@Placeholder"
+                      Variant="Variant.Text"
+                      Margin="Margin.Dense" />
+    </div>
 </div>
 
 @code {
+    private enum RangeType
+    {
+        Minimum,
+        Maximum,
+        Equals,
+    }
+
     [Inject]
     private TradeResources Resources { get; set; }
 
@@ -51,7 +44,23 @@
     [Parameter]
     public EventCallback OnChanged { get; set; }
 
-    private bool IsMinimum { get; set; } = true;
+    private RangeType Type { get; set; } = RangeType.Minimum;
+
+    private double? Value { get; set; }
+
+    private string Icon => Type switch
+    {
+        RangeType.Maximum => @"<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 24 24""><title>less-than-or-equal</title><path d=""M18.5,2.27L5,10.14L18.5,18L19.5,16.27L8.97,10.14L19.5,4L18.5,2.27M5,20V22H20V20H5Z"" /></svg>",
+        RangeType.Equals => @"<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 24 24""><title>equal</title><path d=""M19,10H5V8H19V10M19,16H5V14H19V16Z"" /></svg>",
+        _ => @"<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 24 24""><title>greater-than-or-equal</title><path d=""M6.5,2.27L20,10.14L6.5,18L5.5,16.27L16.03,10.14L5.5,4L6.5,2.27M20,20V22H5V20H20Z"" /></svg>",
+    };
+
+    private string Placeholder => Type switch
+    {
+        RangeType.Maximum => Resources.Filters_Max,
+        RangeType.Equals => Resources.Filters_Equals,
+        _ => Resources.Filters_Min,
+    };
 
     protected override async Task OnParametersSetAsync()
     {
@@ -59,87 +68,108 @@
 
         if (Min != null && Max != null)
         {
-            await MaxChanged.InvokeAsync(null);
+            Value = Min;
+            Type = RangeType.Equals;
         }
-
-        if (Max != null)
+        else if (Max != null)
         {
-            IsMinimum = false;
+            Value = Max;
+            Type = RangeType.Maximum;
         }
-
-        if (Min != null)
+        else if (Min != null)
         {
-            IsMinimum = true;
+            Value = Min;
+            Type = RangeType.Minimum;
         }
     }
 
     private async Task SwapValues(MouseEventArgs args)
     {
-        var (min, max) = (Max, Min);
-
-        await MinChanged.InvokeAsync(min);
-        await MaxChanged.InvokeAsync(max);
-        IsMinimum = !IsMinimum;
+        switch (Type)
+        {
+            case RangeType.Maximum:
+                // Swap to equals
+                Type = RangeType.Equals;
+                await MinChanged.InvokeAsync(Value);
+                await MaxChanged.InvokeAsync(Value);
+                break;
+            case RangeType.Equals:
+                // Swap to minimum
+                Type = RangeType.Minimum;
+                await MinChanged.InvokeAsync(Value);
+                await MaxChanged.InvokeAsync(null);
+                break;
+            default:
+                // Swap to maximum
+                Type = RangeType.Maximum;
+                await MinChanged.InvokeAsync(null);
+                await MaxChanged.InvokeAsync(Value);
+                break;
+        }
 
         await OnChanged.InvokeAsync();
     }
 
-    private async Task OnWheelMin(WheelEventArgs args)
+    private async Task OnWheel(WheelEventArgs args)
     {
-        if (!Min.HasValue)
+        if (!Value.HasValue)
         {
-            await MinChanged.InvokeAsync(0);
+            Value = 0;
         }
         else if (args.DeltaY < 0)
         {
-            await MinChanged.InvokeAsync(Min + 1);
+            Value = Value + 1;
         }
         else
         {
-            await MinChanged.InvokeAsync(Min - 1);
+            Value = Value - 1;
+        }
+
+        switch (Type)
+        {
+            case RangeType.Maximum:
+                await MinChanged.InvokeAsync(null);
+                await MaxChanged.InvokeAsync(Value);
+                break;
+            case RangeType.Equals:
+                await MinChanged.InvokeAsync(Value);
+                await MaxChanged.InvokeAsync(Value);
+                break;
+            default:
+                await MinChanged.InvokeAsync(Value);
+                await MaxChanged.InvokeAsync(null);
+                break;
         }
 
         await OnChanged.InvokeAsync();
     }
 
-    private async Task UpdateMin(double? min)
+    private async Task UpdateValue(double? value)
     {
-        await MinChanged.InvokeAsync(min);
+        Value = value;
+        switch (Type)
+        {
+            case RangeType.Maximum:
+                await MinChanged.InvokeAsync(null);
+                await MaxChanged.InvokeAsync(value);
+                break;
+            case RangeType.Equals:
+                await MinChanged.InvokeAsync(value);
+                await MaxChanged.InvokeAsync(value);
+                break;
+            default:
+                await MinChanged.InvokeAsync(value);
+                await MaxChanged.InvokeAsync(null);
+                break;
+        }
+
         await OnChanged.InvokeAsync();
     }
 
-    private async Task ClearMin()
+    private async Task Clear()
     {
+        Value = null;
         await MinChanged.InvokeAsync(null);
-        await OnChanged.InvokeAsync();
-    }
-
-    private async Task OnWheelMax(WheelEventArgs args)
-    {
-        if (!Max.HasValue)
-        {
-            await MaxChanged.InvokeAsync(0);
-        }
-        else if (args.DeltaY < 0)
-        {
-            await MaxChanged.InvokeAsync(Max + 1);
-        }
-        else
-        {
-            await MaxChanged.InvokeAsync(Max - 1);
-        }
-
-        await OnChanged.InvokeAsync();
-    }
-
-    private async Task UpdateMax(double? max)
-    {
-        await MaxChanged.InvokeAsync(max);
-        await OnChanged.InvokeAsync();
-    }
-
-    private async Task ClearMax()
-    {
         await MaxChanged.InvokeAsync(null);
         await OnChanged.InvokeAsync();
     }

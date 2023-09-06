@@ -2,9 +2,14 @@
     color: var(--mud-palette-info) !important;
 }
 
+    ::deep .filter-swap .mud-icon-root {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+
 ::deep .mud-input-control {
-    max-width: 4rem !important;
-    min-width: 2.5rem !important;
+    max-width: 3rem !important;
+    min-width: 3rem !important;
     padding: 0 !important;
     margin: 0 !important;
 }
