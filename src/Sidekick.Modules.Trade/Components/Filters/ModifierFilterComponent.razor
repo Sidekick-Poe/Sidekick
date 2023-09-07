@@ -18,39 +18,43 @@
             </MudCheckBox>
         </div>
 
-        <div>
-            @if ((Filter.Enabled ?? false) && HasAlternateModifiers)
-            {
-                <div class="d-flex justify-content-end">
-                    <MudMenu Color="Color.Info">
-                        <ActivatorContent>
-                            <Hint Text="@Resources.ModifierHint">
-                                <ItemModifierCategoryChip Category="Filter.Line.Modifier.Category" Arrow="true" />
-                            </Hint>
-                        </ActivatorContent>
-                        <ChildContent>
-                            @foreach (var alternate in Filter.Line.Alternates)
-                            {
-                                <MudMenuItem OnClick="() => SelectAlternate(alternate)" Class="d-flex align-center">
-                                    <ItemModifierCategoryChip Category="alternate.Category" />
-                                    <MudText Typo="Typo.caption">@alternate.Text</MudText>
-                                </MudMenuItem>
-                            }
-                        </ChildContent>
-                    </MudMenu>
-                </div>
-            }
+        @if ((Filter.Enabled ?? false) && HasModifierValues)
+        {
+            <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" OnChanged="StateHasChanged" />
+        }
 
-            @if ((Filter.Enabled ?? false) && HasModifierValues)
-            {
-                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" OnChanged="StateHasChanged" />
-            }
+        @if (EnchantmentOilNames?.Any() == true)
+        {
+            <OilAnointment OilNames="EnchantmentOilNames" />
+        }
 
-            @if (EnchantmentOilNames?.Any() == true)
-            {
-                <OilAnointment OilNames="EnchantmentOilNames" />
-            }
-        </div>
+        @if ((Filter.Enabled ?? false) && HasAlternateModifiers)
+        {
+            <MudMenu Color="Color.Info"
+                     AnchorOrigin="Origin.CenterRight"
+                     TransformOrigin="Origin.CenterLeft"
+                     MaxHeight="200"
+                     Dense="true">
+                <ActivatorContent>
+                    <Hint Text="@Resources.ModifierHint">
+                        @*<ItemModifierCategoryChip Category="Filter.Line.Modifier.Category" Arrow="true" />*@
+                        <MudIconButton Color="Color.Info"
+                                       Icon="@Icons.Material.Filled.SwapHorizontalCircle"
+                                       Size="Size.Small"
+                                       Class="pa-0" />
+                    </Hint>
+                </ActivatorContent>
+                <ChildContent>
+                    @foreach (var alternate in Filter.Line.Alternates)
+                    {
+                        <MudMenuItem OnClick="() => SelectAlternate(alternate)" Class="d-flex align-center">
+                            <ItemModifierCategoryChip Category="alternate.Category" />
+                            <MudText Typo="Typo.caption">@alternate.Text</MudText>
+                        </MudMenuItem>
+                    }
+                </ChildContent>
+            </MudMenu>
+        }
     </div>
 </div>
 

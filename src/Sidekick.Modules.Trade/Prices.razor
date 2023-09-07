@@ -14,9 +14,9 @@ else
                           OnSearch="UpdateQuery" />
 
         <div class="ml-0">
-            <PriceOptionsComponent Item="Item"
+            <PriceOptionsComponent @bind-Layout="Layout"
+                                   Item="Item"
                                    QueryId="@QueryResult?.Id"
-            @bind-Layout="Layout"
                                    Count="Results?.Count ?? 0"
                                    Total="QueryResult?.Total ?? 0"
                                    CanExpand="CanExpand" />
