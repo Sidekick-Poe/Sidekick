@@ -1,6 +1,6 @@
 namespace Sidekick.Apis.Poe.Trade.Models
 {
-    public class PropertyFilter
+    public class PropertyFilter : ITradeFilter
     {
         public PropertyFilter(
             bool? enabled,

@@ -1,0 +1,176 @@
+@using Microsoft.AspNetCore.Components.Web;
+@using Sidekick.Modules.Trade.Localization;
+
+<div class="d-flex flex-nowrap align-center">
+    <MudIconButton Color="Color.Primary"
+                   OnClick="SwapValues"
+                   Class="pa-1 filter-swap"
+                   Variant="Variant.Text"
+                   Icon="@Icon" />
+
+    <div class="filter-value" @onwheel="OnWheel" @onwheel:preventDefault @oncontextmenu="Clear">
+        <MudTextField T="double?"
+                      Value="Value"
+                      ValueChanged="UpdateValue"
+                      Placeholder="@Placeholder"
+                      Variant="Variant.Text"
+                      Margin="Margin.Dense" />
+    </div>
+</div>
+
+@code {
+    private enum RangeType
+    {
+        Minimum,
+        Maximum,
+        Equals,
+    }
+
+    [Inject]
+    private TradeResources Resources { get; set; }
+
+    [Parameter]
+    public double? Min { get; set; }
+
+    [Parameter]
+    public EventCallback<double?> MinChanged { get; set; }
+
+    [Parameter]
+    public double? Max { get; set; }
+
+    [Parameter]
+    public EventCallback<double?> MaxChanged { get; set; }
+
+    [Parameter]
+    public EventCallback OnChanged { get; set; }
+
+    private RangeType Type { get; set; } = RangeType.Minimum;
+
+    private double? Value { get; set; }
+
+    private string Icon => Type switch
+    {
+        RangeType.Maximum => @"<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 24 24""><title>less-than-or-equal</title><path d=""M18.5,2.27L5,10.14L18.5,18L19.5,16.27L8.97,10.14L19.5,4L18.5,2.27M5,20V22H20V20H5Z"" /></svg>",
+        RangeType.Equals => @"<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 24 24""><title>equal</title><path d=""M19,10H5V8H19V10M19,16H5V14H19V16Z"" /></svg>",
+        _ => @"<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 24 24""><title>greater-than-or-equal</title><path d=""M6.5,2.27L20,10.14L6.5,18L5.5,16.27L16.03,10.14L5.5,4L6.5,2.27M20,20V22H5V20H20Z"" /></svg>",
+    };
+
+    private string Placeholder => Type switch
+    {
+        RangeType.Maximum => Resources.Filters_Max,
+        RangeType.Equals => Resources.Filters_Equals,
+        _ => Resources.Filters_Min,
+    };
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        if (Min != null && Max != null)
+        {
+            Value = Min;
+            Type = RangeType.Equals;
+        }
+        else if (Max != null)
+        {
+            Value = Max;
+            Type = RangeType.Maximum;
+        }
+        else if (Min != null)
+        {
+            Value = Min;
+            Type = RangeType.Minimum;
+        }
+    }
+
+    private async Task SwapValues(MouseEventArgs args)
+    {
+        switch (Type)
+        {
+            case RangeType.Maximum:
+                // Swap to equals
+                Type = RangeType.Equals;
+                await MinChanged.InvokeAsync(Value);
+                await MaxChanged.InvokeAsync(Value);
+                break;
+            case RangeType.Equals:
+                // Swap to minimum
+                Type = RangeType.Minimum;
+                await MinChanged.InvokeAsync(Value);
+                await MaxChanged.InvokeAsync(null);
+                break;
+            default:
+                // Swap to maximum
+                Type = RangeType.Maximum;
+                await MinChanged.InvokeAsync(null);
+                await MaxChanged.InvokeAsync(Value);
+                break;
+        }
+
+        await OnChanged.InvokeAsync();
+    }
+
+    private async Task OnWheel(WheelEventArgs args)
+    {
+        if (!Value.HasValue)
+        {
+            Value = 0;
+        }
+        else if (args.DeltaY < 0)
+        {
+            Value = Value + 1;
+        }
+        else
+        {
+            Value = Value - 1;
+        }
+
+        switch (Type)
+        {
+            case RangeType.Maximum:
+                await MinChanged.InvokeAsync(null);
+                await MaxChanged.InvokeAsync(Value);
+                break;
+            case RangeType.Equals:
+                await MinChanged.InvokeAsync(Value);
+                await MaxChanged.InvokeAsync(Value);
+                break;
+            default:
+                await MinChanged.InvokeAsync(Value);
+                await MaxChanged.InvokeAsync(null);
+                break;
+        }
+
+        await OnChanged.InvokeAsync();
+    }
+
+    private async Task UpdateValue(double? value)
+    {
+        Value = value;
+        switch (Type)
+        {
+            case RangeType.Maximum:
+                await MinChanged.InvokeAsync(null);
+                await MaxChanged.InvokeAsync(value);
+                break;
+            case RangeType.Equals:
+                await MinChanged.InvokeAsync(value);
+                await MaxChanged.InvokeAsync(value);
+                break;
+            default:
+                await MinChanged.InvokeAsync(value);
+                await MaxChanged.InvokeAsync(null);
+                break;
+        }
+
+        await OnChanged.InvokeAsync();
+    }
+
+    private async Task Clear()
+    {
+        Value = null;
+        await MinChanged.InvokeAsync(null);
+        await MaxChanged.InvokeAsync(null);
+        await OnChanged.InvokeAsync();
+    }
+}

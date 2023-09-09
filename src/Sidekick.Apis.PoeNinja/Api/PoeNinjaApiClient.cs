@@ -123,7 +123,7 @@ namespace Sidekick.Apis.PoeNinja.Api
                         .Select(x => new NinjaPrice()
                         {
                             Corrupted = false,
-                            Price = x.Receive.Value,
+                            Price = x.Receive?.Value ?? 0,
                             LastUpdated = DateTimeOffset.Now,
                             Name = x.CurrencyTypeName,
                             DetailsId = x.DetailsId,

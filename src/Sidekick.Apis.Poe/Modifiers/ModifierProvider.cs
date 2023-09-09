@@ -182,13 +182,13 @@ namespace Sidekick.Apis.Poe.Modifiers
             // We should be fine hardcoding them this way.
             var suffix = category switch
             {
-                ModifierCategory.Implicit => "(?:\\ \\(implicit\\))?",
-                ModifierCategory.Enchant => "(?:\\ \\(enchant\\))?",
-                ModifierCategory.Crafted => "(?:\\ \\(crafted\\))?",
+                ModifierCategory.Implicit => "(?:\\ \\(implicit\\))",
+                ModifierCategory.Enchant => "(?:\\ \\(enchant\\))",
+                ModifierCategory.Crafted => "(?:\\ \\(crafted\\))",
                 ModifierCategory.Veiled => "(?:\\ \\(veiled\\))?",
                 ModifierCategory.Fractured => "(?:\\ \\(fractured\\))?",
-                ModifierCategory.Scourge => "(?:\\ \\(scourge\\))?",
-                ModifierCategory.Crucible => "(?:\\ \\(crucible\\))?",
+                ModifierCategory.Scourge => "(?:\\ \\(scourge\\))",
+                ModifierCategory.Crucible => "(?:\\ \\(crucible\\))",
                 _ => "",
             };
 
@@ -304,84 +304,17 @@ namespace Sidekick.Apis.Poe.Modifiers
                     var modifierLine = new ModifierLine(
                         text: CleanOriginalTextPattern.Replace(line.Text, string.Empty));
 
-                    List<Modifier> modifiers = new();
+                    MatchLineToPattern(modifierLine, block, line, ref lineIndex);
+                    MatchLineWithFuzzy(parsingItem, modifierLine, line);
 
-                    foreach (var patternGroup in Patterns)
-                    {
-                        foreach (var metadata in patternGroup.Value)
-                        {
-                            foreach (var pattern in metadata.Patterns)
-                            {
-                                // Multiline modifiers
-                                if (pattern.LineCount > 1 && pattern.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount))))
-                                {
-                                    ParseMod(modifiers, metadata, pattern, string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount)));
-                                    line.Parsed = true;
-
-                                    foreach (var multiline in block.Lines.Skip(lineIndex + 1).Take(pattern.LineCount - 1))
-                                    {
-                                        modifierLine.Text += $"\n{line.Text}";
-                                        multiline.Parsed = true;
-                                    }
-
-                                    // Increment the line index by one less of the pattern count. The default lineIndex++ will take care of the remaining increment.
-                                    lineIndex += pattern.LineCount - 1;
-                                }
-                                else if (pattern.Pattern.IsMatch(line.Text))
-                                {
-                                    ParseMod(modifiers, metadata, pattern, line.Text);
-                                    line.Parsed = true;
-                                }
-                            }
-                        }
-                    }
-
-                    // If we reach this point we have not found the modifier through traditional Regex means.
-                    // Text from the game sometimes differ from the text from the API. We do a fuzzy search here to find the most common text.
                     var fuzzyLine = CleanFuzzyText(line.Text);
-                    if (!line.Parsed && parsingItem.Metadata?.Category != Category.Flask)
-                    {
-                        var fuzzies = new List<FuzzyResult>();
+                    modifierLine.Alternates = modifierLine.Alternates
+                        .OrderBy(x => x.Category == ModifierCategory.Pseudo)
+                        .ThenByDescending(x => Fuzz.Ratio(fuzzyLine, CleanFuzzyText(x.Text)))
+                        .ToList();
 
-                        Parallel.ForEach(FuzzyDictionary, (x) =>
-                        {
-                            var ratio = Fuzz.Ratio(fuzzyLine, x.Key, FuzzySharp.PreProcess.PreprocessMode.None);
-                            if (ratio > 75)
-                            {
-                                fuzzies.Add(new FuzzyResult(
-                                    ratio: ratio,
-                                    entries: x.Value
-                                ));
-                            }
-                        });
-
-                        if (fuzzies.Any())
-                        {
-                            fuzzies = fuzzies
-                                .OrderByDescending(x => x.Ratio)
-                                .ToList();
-
-                            foreach (var fuzzy in fuzzies)
-                            {
-                                foreach (var modifier in fuzzy.Entries)
-                                {
-                                    ParseMod(modifiers, modifier.Metadata, modifier.Pattern, line.Text);
-                                }
-                            }
-
-                            modifierLine.IsFuzzy = true;
-                            line.Parsed = true;
-                        }
-                    }
-                    else
-                    {
-                        modifiers = modifiers
-                            .OrderBy(x => x.Category == ModifierCategory.Pseudo) // Put pseudo mods at the end.
-                            .ThenByDescending(x => Fuzz.Ratio(fuzzyLine, CleanFuzzyText(x.Text))).ToList();
-                    }
-
-                    modifierLine.Modifier = modifiers.FirstOrDefault();
-                    modifierLine.Alternates = modifiers.Skip(1).ToList();
+                    modifierLine.Modifier = modifierLine.Alternates.FirstOrDefault();
+                    modifierLine.Alternates = modifierLine.Alternates.Skip(1).ToList();
 
                     modifierLines.Add(modifierLine);
                 }
@@ -394,6 +327,77 @@ namespace Sidekick.Apis.Poe.Modifiers
             modifierLines.RemoveAll(x => x.Modifier == null);
 
             return modifierLines;
+        }
+
+        private void MatchLineToPattern(ModifierLine modifierLine, ParsingBlock block, ParsingLine line, ref int lineIndex)
+        {
+            foreach (var metadata in Patterns.SelectMany(x => x.Value))
+            {
+                foreach (var pattern in metadata.Patterns)
+                {
+                    var isMultilineModifier = pattern.LineCount > 1 && pattern.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount)));
+                    if (isMultilineModifier)
+                    {
+                        ParseMod(modifierLine.Alternates, metadata, pattern, string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount)));
+                        line.Parsed = true;
+
+                        foreach (var multiline in block.Lines.Skip(lineIndex + 1).Take(pattern.LineCount - 1))
+                        {
+                            modifierLine.Text += $"\n{line.Text}";
+                            multiline.Parsed = true;
+                        }
+
+                        // Increment the line index by one less of the pattern count. The default lineIndex++ will take care of the remaining increment.
+                        lineIndex += pattern.LineCount - 1;
+                    }
+                    else if (pattern.Pattern.IsMatch(line.Text))
+                    {
+                        ParseMod(modifierLine.Alternates, metadata, pattern, line.Text);
+                        line.Parsed = true;
+                    }
+                }
+            }
+        }
+
+        private void MatchLineWithFuzzy(ParsingItem parsingItem, ModifierLine modifierLine, ParsingLine line)
+        {
+            // If we reach this point we have not found the modifier through traditional Regex means.
+            // Text from the game sometimes differ from the text from the API. We do a fuzzy search here to find the most common text.
+            var fuzzyLine = CleanFuzzyText(line.Text);
+            if (!line.Parsed && parsingItem.Metadata?.Category != Category.Flask)
+            {
+                var fuzzies = new List<FuzzyResult>();
+
+                Parallel.ForEach(FuzzyDictionary, (x) =>
+                {
+                    var ratio = Fuzz.Ratio(fuzzyLine, x.Key, FuzzySharp.PreProcess.PreprocessMode.None);
+                    if (ratio > 75)
+                    {
+                        fuzzies.Add(new FuzzyResult(
+                            ratio: ratio,
+                            entries: x.Value
+                        ));
+                    }
+                });
+
+                if (fuzzies.Any())
+                {
+                    fuzzies = fuzzies
+                        .OrderByDescending(x => x.Ratio)
+                        .ToList();
+
+                    foreach (var fuzzy in fuzzies)
+                    {
+                        foreach (var modifier in fuzzy.Entries)
+                        {
+                            ParseMod(modifierLine.Alternates, modifier.Metadata, modifier.Pattern, line.Text);
+                        }
+                    }
+
+                    modifierLine.IsFuzzy = true;
+                    line.Parsed = true;
+                }
+            }
         }
 
         private void ParseMod(List<Modifier> modifiers, ModifierPatternMetadata metadata, ModifierPattern pattern, string text)

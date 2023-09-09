@@ -27,6 +27,7 @@ namespace Sidekick.Modules.Trade.Localization
 
         public string Filters_Max => localizer["Filters_Max"];
         public string Filters_Min => localizer["Filters_Min"];
+        public string Filters_Equals => localizer["Filters_Equals"];
         public string Filters_Submit => localizer["Filters_Submit"];
         public string ItemLevel => localizer["ItemLevel"];
         public string Layout => localizer["Layout"];

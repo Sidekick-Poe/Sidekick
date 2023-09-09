@@ -5,8 +5,11 @@
     <MudText Typo="Typo.h3">@Max.ToString("0.#")</MudText>
     @if (ShowImage)
     {
-        <MudText Typo="Typo.body1" Class="mx-1">&times;</MudText>
         <img src="@ImageUrl" />
+    }
+    else
+    {
+        <MudText Typo="Typo.body1" Class="mx-1">&times; @Currency</MudText>
     }
 </div>
 

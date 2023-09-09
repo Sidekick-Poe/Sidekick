@@ -10,45 +10,63 @@
                          Influences="Item.Influences"
                          IsRelic="Item.Properties.IsRelic" />
 
-    @if (Item != null)
-    {
-        <PriceNinjaComponent Item="Item" ItemName="@ItemName" />
-        <PricePredictionComponent Item="Item" />
-    }
+    <div class="flex-grow-1" style="overflow-y:auto;">
+        @if (Item != null)
+        {
+            <PriceNinjaComponent Item="Item" ItemName="@ItemName" />
+            <PricePredictionComponent Item="Item" />
+        }
+
+        <ClassFilter @bind-Value="PropertyFilters.Class" Item="Item" />
+
+        <CascadingValue Value="PropertyFilters.Armour" IsFixed="true">
+            <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
+        </CascadingValue>
+
+        <CascadingValue Value="PropertyFilters.Weapon" IsFixed="true">
+            <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
+        </CascadingValue>
+
+        <CascadingValue Value="PropertyFilters.Map" IsFixed="true">
+            <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
+        </CascadingValue>
+
+        <CascadingValue Value="PropertyFilters.Misc" IsFixed="true">
+            <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
+        </CascadingValue>
+
+        <ModifierFiltersComponent Filters="ModifierFilters"
+                                  Rarity="Item.Metadata.Rarity" />
+    </div>
 
     @if (FiltersVisible)
     {
-        <ClassFilter @bind-Value="PropertyFilters.Class" Item="Item" />
-
-        <PropertyFiltersComponent Filters="PropertyFilters.Armour"
-                              Rarity="Item.Metadata.Rarity" />
-        <PropertyFiltersComponent Filters="PropertyFilters.Weapon"
-                              Rarity="Item.Metadata.Rarity" />
-        <PropertyFiltersComponent Filters="PropertyFilters.Map"
-                              Rarity="Item.Metadata.Rarity" />
-        <PropertyFiltersComponent Filters="PropertyFilters.Misc"
-                              Rarity="Item.Metadata.Rarity" />
-
-        <ModifierFiltersComponent Filters="ModifierFilters"
-                              Rarity="Item.Metadata.Rarity" />
-
         <div class="d-flex justify-center pa-2">
             <MudButton FullWidth
-                   Variant="Variant.Filled"
-                   Color="Color.Primary"
-                   OnClick="Search">@Resources.Filters_Submit</MudButton>
-        </div>
+                        Variant="Variant.Filled"
+                        Color="Color.Primary"
+                        OnClick="Search">@Resources.Filters_Submit</MudButton>
+         </div>
     }
 </MudDrawer>
 
 @code {
     [Inject] public TradeResources Resources { get; set; }
 
-    [Parameter] public Item Item { get; set; }
-    [Parameter] public string ItemName { get; set; }
-    [Parameter] public PropertyFilters PropertyFilters { get; set; }
-    [Parameter] public List<ModifierFilter> ModifierFilters { get; set; }
-    [Parameter] public EventCallback OnSearch { get; set; }
+    [CascadingParameter]
+    public Item Item { get; set; }
+
+    [Parameter]
+    public string ItemName { get; set; }
+
+    [Parameter]
+    public PropertyFilters PropertyFilters { get; set; }
+
+    [Parameter]
+    public List<ModifierFilter> ModifierFilters { get; set; }
+
+    [Parameter]
+    public EventCallback OnSearch { get; set; }
 
     private bool Expanded { get; set; } = false;
     private bool FiltersVisible { get; set; }

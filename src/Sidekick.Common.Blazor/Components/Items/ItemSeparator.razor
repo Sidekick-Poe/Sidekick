@@ -3,7 +3,8 @@
 <div class="separator @BackgroundClass"></div>
 
 @code {
-    [Parameter] public Rarity Rarity { get; set; }
+    [Parameter]
+    public Rarity Rarity { get; set; }
 
     private string BackgroundClass => Rarity switch
     {

@@ -2,8 +2,11 @@
 <span class="@Class font-smallcaps">@Text</span>
 
 @code {
-    [Parameter] public string Text { get; set; }
-    [Parameter] public ModifierCategory? Category { get; set; }
+    [Parameter]
+    public string Text { get; set; }
+
+    [Parameter]
+    public ModifierCategory? Category { get; set; }
 
     private string Class => Category switch
     {

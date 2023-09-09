@@ -1,0 +1,8 @@
+.filter {
+    transition: background ease .3s;
+    padding: 0 4px;
+}
+
+    .filter:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
