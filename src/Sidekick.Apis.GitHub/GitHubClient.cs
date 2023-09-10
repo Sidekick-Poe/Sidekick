@@ -29,32 +29,29 @@ namespace Sidekick.Apis.GitHub
         /// <inheritdoc/>
         public async Task<bool> IsUpdateAvailable()
         {
-            if (UpdateAvailable.HasValue)
+            if (UpdateAvailable != null)
             {
                 return UpdateAvailable.Value;
             }
 
             var release = await GetLatestRelease();
-
-            if (release != null)
-            {
-                logger.LogInformation("[Updater] Found " + release.Tag + " as latest version on GitHub.");
-
-                var latestVersion = new Version(Regex.Match(release.Tag, @"(\d+\.){2}\d+").ToString());
-                var currentVersion = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.FullName?.Contains("Sidekick") ?? false)?.GetName().Version;
-                if (currentVersion == null)
-                {
-                    return false;
-                }
-
-                var result = currentVersion.CompareTo(latestVersion);
-                UpdateAvailable = result < 0;
-            }
-            else
+            if (release == null || release.Tag == null)
             {
                 logger.LogInformation("[Updater] No latest release found on GitHub.");
                 UpdateAvailable = false;
+                return false;
             }
+
+            logger.LogInformation("[Updater] Found " + release.Tag + " as latest version on GitHub.");
+            var latestVersion = new Version(Regex.Match(release.Tag, @"(\d+\.){2}\d+").ToString());
+            var currentVersion = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.FullName?.Contains("Sidekick") ?? false)?.GetName().Version;
+            if (currentVersion == null)
+            {
+                return false;
+            }
+
+            var result = currentVersion.CompareTo(latestVersion);
+            UpdateAvailable = result < 0;
 
             return UpdateAvailable ?? false;
         }
@@ -69,7 +66,7 @@ namespace Sidekick.Apis.GitHub
             var downloadPath = SidekickPaths.GetDataFilePath("Sidekick-Update.exe");
             if (File.Exists(downloadPath)) File.Delete(downloadPath);
 
-            var downloadUrl = release.Assets.FirstOrDefault(x => x.Name == "Sidekick-Setup.exe")?.DownloadUrl;
+            var downloadUrl = release.Assets?.FirstOrDefault(x => x.Name == "Sidekick-Setup.exe")?.DownloadUrl;
             if (downloadUrl == null) return null;
 
             var response = await client.GetAsync(downloadUrl);

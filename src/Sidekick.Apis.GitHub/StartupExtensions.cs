@@ -7,7 +7,6 @@ namespace Sidekick.Apis.GitHub
         public static IServiceCollection AddSidekickGitHubApi(this IServiceCollection services)
         {
             services.AddHttpClient();
-
             services.AddTransient<IGitHubClient, GitHubClient>();
 
             return services;
