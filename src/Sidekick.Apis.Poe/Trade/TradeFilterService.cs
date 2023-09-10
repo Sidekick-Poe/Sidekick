@@ -23,10 +23,8 @@ namespace Sidekick.Apis.Poe.Trade
             this.sidekickSettings = sidekickSettings;
         }
 
-        public List<ModifierFilter> GetModifierFilters(Item item)
+        public IEnumerable<ModifierFilter> GetModifierFilters(Item item)
         {
-            var result = new List<ModifierFilter>();
-
             // No filters for divination cards, etc.
             if (item.Metadata.Category == Category.DivinationCard
                 || item.Metadata.Category == Category.Gem
@@ -34,27 +32,29 @@ namespace Sidekick.Apis.Poe.Trade
                 || item.Metadata.Category == Category.Leaguestone
                 || item.Metadata.Category == Category.Undefined)
             {
-                return result;
+                yield break;
             }
 
-            List<string> enabledModifiers = new();
-
-            InitializeModifierFilters(result, item.ModifierLines, enabledModifiers);
+            foreach (var modifier in BuildModifierFilters(item.ModifierLines))
+            {
+                yield return modifier;
+            }
 
             // No pseudo filters for currencies
             if (item.Metadata.Category == Category.Currency)
             {
-                return result;
+                yield break;
             }
 
-            InitializePseudoFilters(result, item.PseudoModifiers, enabledModifiers);
-
-            return result;
+            foreach (var modifier in BuildPseudoFilters(item.PseudoModifiers))
+            {
+                yield return modifier;
+            }
         }
 
-        private void InitializeModifierFilters(List<ModifierFilter> filters, List<ModifierLine> modifierLines, List<string> enabledModifiers)
+        private IEnumerable<ModifierFilter> BuildModifierFilters(List<ModifierLine> modifierLines)
         {
-            if (modifierLines.Count == 0) return;
+            if (modifierLines.Count == 0) yield break;
 
             foreach (var modifierLine in modifierLines)
             {
@@ -72,19 +72,19 @@ namespace Sidekick.Apis.Poe.Trade
                     }
                 }
 
-                filters.Add(new ModifierFilter()
+                yield return new ModifierFilter()
                 {
                     Enabled = false,
                     Line = modifierLine,
                     Min = min,
                     Max = max,
-                });
+                };
             }
         }
 
-        private void InitializePseudoFilters(List<ModifierFilter> filters, List<Modifier> modifiers, List<string> enabledModifiers)
+        private IEnumerable<ModifierFilter> BuildPseudoFilters(List<Modifier> modifiers)
         {
-            if (modifiers.Count == 0) return;
+            if (modifiers.Count == 0) yield break;
 
             foreach (var modifier in modifiers)
             {
@@ -99,7 +99,7 @@ namespace Sidekick.Apis.Poe.Trade
                     (min, max) = NormalizeValues(modifier.Values, modifier.Category);
                 }
 
-                filters.Add(new ModifierFilter()
+                yield return new ModifierFilter()
                 {
                     Enabled = false,
                     Line = new ModifierLine(modifier.Text)
@@ -108,7 +108,7 @@ namespace Sidekick.Apis.Poe.Trade
                     },
                     Min = min,
                     Max = max,
-                });
+                };
             }
         }
 
@@ -152,8 +152,6 @@ namespace Sidekick.Apis.Poe.Trade
 
         public PropertyFilters GetPropertyFilters(Item item)
         {
-            var result = new PropertyFilters();
-
             // No filters for currencies and divination cards, etc.
             if (item.Metadata.Category == Category.DivinationCard
                 || item.Metadata.Category == Category.Currency
@@ -161,8 +159,10 @@ namespace Sidekick.Apis.Poe.Trade
                 || item.Metadata.Category == Category.Leaguestone
                 || item.Metadata.Category == Category.Undefined)
             {
-                return result;
+                return new();
             }
+
+            var result = new PropertyFilters();
 
             // Armour
             InitializePropertyFilter(result.Armour,
@@ -274,7 +274,7 @@ namespace Sidekick.Apis.Poe.Trade
                 gameLanguageProvider.Language?.DescriptionItemLevel,
                 item.Properties.ItemLevel,
                 enabled: item.Properties.ItemLevel >= 80 && item.Properties.MapTier == 0 && item.Metadata.Rarity != Rarity.Unique,
-                min: item.Properties.ItemLevel >= 80 ? (double?)item.Properties.ItemLevel : null);
+                min: item.Properties.ItemLevel >= 80 ? item.Properties.ItemLevel : null);
             // Corrupted
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Corrupted,

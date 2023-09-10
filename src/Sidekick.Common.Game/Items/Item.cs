@@ -22,19 +22,19 @@ namespace Sidekick.Common.Game.Items
             PseudoModifiers = pseudoModifiers;
         }
 
-        public ItemMetadata Metadata { get; }
+        public ItemMetadata Metadata { get; init; }
 
-        public OriginalItem Original { get; }
+        public OriginalItem Original { get; init; }
 
-        public Properties Properties { get; }
+        public Properties Properties { get; init; }
 
-        public Influences Influences { get; }
+        public Influences Influences { get; init; }
 
-        public List<Socket> Sockets { get; }
+        public List<Socket> Sockets { get; init; }
 
         public List<ModifierLine> ModifierLines { get; set; }
 
-        public List<Modifier> PseudoModifiers { get; }
+        public List<Modifier> PseudoModifiers { get; init; }
 
         /// <inheritdoc/>
         public override string? ToString()

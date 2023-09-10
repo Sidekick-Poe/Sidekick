@@ -92,7 +92,7 @@ else
         }
 
         PropertyFilters = TradeFilterService.GetPropertyFilters(Item);
-        ModifierFilters = TradeFilterService.GetModifierFilters(Item);
+        ModifierFilters = TradeFilterService.GetModifierFilters(Item).ToList();
 
         if (Item.Metadata.Rarity != Rarity.Rare && Item.Metadata.Rarity != Rarity.Magic)
         {

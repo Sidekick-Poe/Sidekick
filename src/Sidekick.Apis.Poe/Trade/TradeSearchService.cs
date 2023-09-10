@@ -509,7 +509,7 @@ namespace Sidekick.Apis.Poe.Trade
                     original: original,
                     properties: properties,
                     influences: influences,
-                    sockets: ParseSockets(result.Item?.Sockets),
+                    sockets: ParseSockets(result.Item?.Sockets).ToList(),
                     modifierLines: new(),
                     pseudoModifiers: new())
             {
@@ -535,47 +535,40 @@ namespace Sidekick.Apis.Poe.Trade
                 AdditionalPropertyContents = ParseLineContents(result.Item?.AdditionalProperties, false),
             };
 
-            ParseMods(modifierProvider,
-                item.ModifierLines,
+            item.ModifierLines.AddRange(ParseModifierLines(
                 result.Item?.EnchantMods,
                 result.Item?.Extended?.Mods?.Enchant,
-                ParseHash(result.Item?.Extended?.Hashes?.Enchant));
+                ParseHash(result.Item?.Extended?.Hashes?.Enchant)));
 
-            ParseMods(modifierProvider,
-                item.ModifierLines,
+            item.ModifierLines.AddRange(ParseModifierLines(
                 result.Item?.ImplicitMods ?? result.Item?.LogbookMods.SelectMany(x => x.Mods).ToList(),
                 result.Item?.Extended?.Mods?.Implicit,
-                ParseHash(result.Item?.Extended?.Hashes?.Implicit));
+                ParseHash(result.Item?.Extended?.Hashes?.Implicit)));
 
-            ParseMods(modifierProvider,
-                item.ModifierLines,
+            item.ModifierLines.AddRange(ParseModifierLines(
                 result.Item?.CraftedMods,
                 result.Item?.Extended?.Mods?.Crafted,
-                ParseHash(result.Item?.Extended?.Hashes?.Crafted));
+                ParseHash(result.Item?.Extended?.Hashes?.Crafted)));
 
-            ParseMods(modifierProvider,
-                item.ModifierLines,
+            item.ModifierLines.AddRange(ParseModifierLines(
                 result.Item?.ExplicitMods,
                 result.Item?.Extended?.Mods?.Explicit,
-                ParseHash(result.Item?.Extended?.Hashes?.Explicit, result.Item?.Extended?.Hashes?.Monster));
+                ParseHash(result.Item?.Extended?.Hashes?.Explicit, result.Item?.Extended?.Hashes?.Monster)));
 
-            ParseMods(modifierProvider,
-                item.ModifierLines,
+            item.ModifierLines.AddRange(ParseModifierLines(
                 result.Item?.FracturedMods,
                 result.Item?.Extended?.Mods?.Fractured,
-                ParseHash(result.Item?.Extended?.Hashes?.Fractured));
+                ParseHash(result.Item?.Extended?.Hashes?.Fractured)));
 
-            ParseMods(modifierProvider,
-                item.ModifierLines,
+            item.ModifierLines.AddRange(ParseModifierLines(
                 result.Item?.ScourgeMods,
                 result.Item?.Extended?.Mods?.Scourge,
-                ParseHash(result.Item?.Extended?.Hashes?.Scourge));
+                ParseHash(result.Item?.Extended?.Hashes?.Scourge)));
 
-            ParseMods(modifierProvider,
-                item.PseudoModifiers,
+            item.PseudoModifiers.AddRange(ParseModifiers(
                 result.Item?.PseudoMods,
                 result.Item?.Extended?.Mods?.Pseudo,
-                ParseHash(result.Item?.Extended?.Hashes?.Pseudo));
+                ParseHash(result.Item?.Extended?.Hashes?.Pseudo)));
 
             item.ModifierLines = item.ModifierLines
                 .OrderBy(x => item.Original.Text?.IndexOf(x.Text ?? string.Empty))
@@ -684,11 +677,11 @@ namespace Sidekick.Apis.Poe.Trade
                 .ToList();
         }
 
-        private static void ParseMods(IModifierProvider modifierProvider, List<ModifierLine>? modifierLines, List<string>? texts, List<Mod>? mods, List<LineContentValue>? hashes)
+        private IEnumerable<ModifierLine> ParseModifierLines(List<string>? texts, List<Mod>? mods, List<LineContentValue>? hashes)
         {
-            if (modifierLines == null || texts == null || mods == null || hashes == null)
+            if (texts == null || mods == null || hashes == null)
             {
-                return;
+                yield break;
             }
 
             for (var index = 0; index < hashes.Count; index++)
@@ -702,7 +695,7 @@ namespace Sidekick.Apis.Poe.Trade
                 var text = texts.FirstOrDefault(x => modifierProvider.IsMatch(id, x)) ?? texts[index];
                 var mod = mods.FirstOrDefault(x => x.Magnitudes != null && x.Magnitudes.Any(y => y.Hash == id));
 
-                modifierLines.Add(new(
+                yield return new ModifierLine(
                     text: text)
                 {
                     Modifier = new Modifier(
@@ -713,15 +706,15 @@ namespace Sidekick.Apis.Poe.Trade
                         Tier = mod?.Tier,
                         TierName = mod?.Name,
                     },
-                });
+                };
             }
         }
 
-        private static void ParseMods(IModifierProvider modifierProvider, List<Modifier>? modifiers, List<string>? texts, List<Mod>? mods, List<LineContentValue>? hashes)
+        private IEnumerable<Modifier> ParseModifiers(List<string>? texts, List<Mod>? mods, List<LineContentValue>? hashes)
         {
-            if (modifiers == null || texts == null || mods == null || hashes == null)
+            if (texts == null || mods == null || hashes == null)
             {
-                return;
+                yield break;
             }
 
             for (var index = 0; index < hashes.Count; index++)
@@ -739,22 +732,22 @@ namespace Sidekick.Apis.Poe.Trade
                 }
 
                 var mod = mods.FirstOrDefault(x => x.Magnitudes != null && x.Magnitudes.Any(y => y.Hash == id));
-                modifiers.Add(new Modifier(
+                yield return new Modifier(
                     text: text)
                 {
                     Id = id,
                     Category = modifierProvider.GetModifierCategory(id),
                     Tier = mod?.Tier,
                     TierName = mod?.Name,
-                });
+                };
             }
         }
 
-        private static List<Socket> ParseSockets(List<ResultSocket>? sockets)
+        private static IEnumerable<Socket> ParseSockets(List<ResultSocket>? sockets)
         {
             if (sockets == null)
             {
-                return new();
+                return Enumerable.Empty<Socket>();
             }
 
             return sockets
@@ -771,8 +764,7 @@ namespace Sidekick.Apis.Poe.Trade
                         "A" => SocketColour.Abyss,
                         _ => throw new Exception("Invalid socket"),
                     }
-                })
-                .ToList();
+                });
         }
 
         public Uri GetTradeUri(Item item, string queryId)

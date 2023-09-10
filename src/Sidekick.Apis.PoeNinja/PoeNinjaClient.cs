@@ -56,13 +56,7 @@ namespace Sidekick.Apis.PoeNinja
             {
                 var repositoryItems = await GetItems(itemType);
 
-                if (repositoryItems == null || !repositoryItems.Any())
-                {
-                    continue;
-                }
-
                 var query = repositoryItems.Where(x => x.Name == originalItem.Name || x.Name == originalItem.Type);
-
                 if (item.Properties != null)
                 {
                     query = query.Where(x => x.GemLevel == item.Properties.GemLevel

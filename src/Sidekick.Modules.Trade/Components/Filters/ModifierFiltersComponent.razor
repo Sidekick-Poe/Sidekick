@@ -4,14 +4,29 @@
     {
         <ModifierFilterComponent Filter="Filters[i]" />
 
-        if (i + 1 < Filters.Count && Filters[i].Line.Modifier?.Category != Filters[i + 1].Line.Modifier?.Category)
+        var isLastFilter = i + 1 == Filters.Count;
+        if (!isLastFilter)
         {
-            <ItemSeparator Rarity="Rarity" />
+            var isDifferentCategoryThanNext = NormalizeModifierCategory(Filters[i].Line.Modifier?.Category) != NormalizeModifierCategory(Filters[i + 1].Line.Modifier?.Category);
+            if (isDifferentCategoryThanNext)
+            {
+                <ItemSeparator Rarity="Rarity" />
+            }
         }
     }
 }
 
 @code {
-    [Parameter] public List<ModifierFilter> Filters { get; set; }
-    [Parameter] public Rarity Rarity { get; set; }
+    [Parameter]
+    public List<ModifierFilter> Filters { get; set; }
+
+    [Parameter]
+    public Rarity Rarity { get; set; }
+
+    private ModifierCategory? NormalizeModifierCategory(ModifierCategory? category) => category switch
+    {
+        ModifierCategory.Fractured => ModifierCategory.Explicit,
+        ModifierCategory.Crafted => ModifierCategory.Explicit,
+        _ => category,
+    };
 }

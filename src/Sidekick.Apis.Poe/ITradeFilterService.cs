@@ -9,7 +9,7 @@ namespace Sidekick.Apis.Poe
         /// Gets a list of modifier filters for a specific item
         /// </summary>
         /// <param name="item">The item for which to get modifier filters</param>
-        List<ModifierFilter> GetModifierFilters(Item item);
+        IEnumerable<ModifierFilter> GetModifierFilters(Item item);
 
         /// <summary>
         /// Gets a list of property filters for a specific item
