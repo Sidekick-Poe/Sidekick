@@ -356,7 +356,7 @@ namespace Sidekick.Apis.Poe.Trade
                         break;
 
                     case PropertyFilterType.Misc_Corrupted:
-                        filters.MiscFilters.Filters.Corrupted = propertyFilter.Enabled.HasValue ? new SearchFilterOption(propertyFilter) : null;
+                        filters.MiscFilters.Filters.Corrupted = propertyFilter.Enabled == null || propertyFilter.Enabled == true ? new SearchFilterOption(propertyFilter) : null;
                         break;
 
                     case PropertyFilterType.Misc_Scourged:
