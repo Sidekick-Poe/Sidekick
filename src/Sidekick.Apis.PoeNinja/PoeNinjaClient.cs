@@ -52,9 +52,6 @@ namespace Sidekick.Apis.PoeNinja
         {
             await ClearCacheIfExpired();
 
-            var name = originalItem.Name;
-            var type = originalItem.Type;
-
             foreach (var itemType in GetApiItemTypes(item))
             {
                 var repositoryItems = await GetItems(itemType);
@@ -64,7 +61,7 @@ namespace Sidekick.Apis.PoeNinja
                     continue;
                 }
 
-                var query = repositoryItems.AsQueryable().Where(x => x.Name == name || x.Name == type);
+                var query = repositoryItems.Where(x => x.Name == originalItem.Name || x.Name == originalItem.Type);
 
                 if (item.Properties != null)
                 {
@@ -81,18 +78,16 @@ namespace Sidekick.Apis.PoeNinja
 
                     // Poe.ninja has pricings for <5, 5 and 6 links.
                     // <5 being 0 links in their API.
-                    var highestSocketLinks = item.Sockets.GroupBy(x => x.Group)
-                                                         .Select(x => x.Count())
-                                                         .OrderByDescending(x => x)
-                                                         .FirstOrDefault();
-
-                    query = query.Where(x => x.Links == (highestSocketLinks >= 5 ? highestSocketLinks : 0));
+                    var numberOfLinks = item.GetMaximumNumberOfLinks();
+                    query = query.Where(x => x.Links == (numberOfLinks >= 5 ? numberOfLinks : 0));
                 }
 
-                if (query.Any())
+                if (!query.Any())
                 {
-                    return query.OrderBy(x => x.Corrupted).FirstOrDefault();
+                    continue;
                 }
+
+                return query.OrderBy(x => x.Corrupted).FirstOrDefault();
             }
 
             return null;
