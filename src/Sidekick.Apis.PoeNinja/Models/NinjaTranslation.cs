@@ -5,17 +5,17 @@ namespace Sidekick.Apis.PoeNinja.Models
     /// <summary>
     /// Contains translation data from the Poe ninja api
     /// </summary>
-    public class NinjaTranslation
+    public record NinjaTranslation
     {
         /// <summary>
         /// The value of the translation
         /// </summary>
         [Key]
-        public string? Translation { get; set; }
+        public string? Translation { get; init; }
 
         /// <summary>
         /// The english value
         /// </summary>
-        public string? English { get; set; }
+        public string? English { get; init; }
     }
 }

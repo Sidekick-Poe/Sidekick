@@ -1,49 +1,50 @@
-using Sidekick.Apis.PoeNinja.Api.Models;
+using Sidekick.Apis.PoeNinja.Api;
 
 namespace Sidekick.Apis.PoeNinja.Models
 {
     /// <summary>
     /// Contains the result of a PriceFromNinjaQuery
     /// </summary>
-    public class NinjaPrice
+    public record NinjaPrice
     {
         /// <summary>
         /// The name of the item
         /// </summary>
-        public string? Name { get; set; }
+        public string? Name { get; init; }
 
         /// <summary>
         /// If the item is corrupted or not
         /// </summary>
-        public bool Corrupted { get; set; }
+        public bool Corrupted { get; init; }
 
         /// <summary>
         /// If it is a map, indicates the tier of the map
         /// </summary>
-        public int MapTier { get; set; }
+        public int MapTier { get; init; }
 
         /// <summary>
         /// If it is a gem, indicates the level of the gem
         /// </summary>
-        public int GemLevel { get; set; }
+        public int GemLevel { get; init; }
 
         /// <summary>
         /// The price in chaos of the item
         /// </summary>
-        public double Price { get; set; }
+        public double Price { get; init; }
 
         /// <summary>
         /// When was the data last updated from PoeNinja
         /// </summary>
-        public DateTimeOffset LastUpdated { get; set; }
+        public DateTimeOffset LastUpdated { get; init; }
 
-        public string? DetailsId { get; set; }
+        public string? DetailsId { get; init; }
 
-        public ItemType ItemType { get; set; }
+        public ItemType ItemType { get; init; }
 
-        public SparkLine? SparkLine { get; set; }
+        public SparkLine? SparkLine { get; init; }
 
-        public bool IsRelic { get; set; }
-        public int Links { get; set; }
+        public bool IsRelic { get; init; }
+
+        public int Links { get; init; }
     }
 }

@@ -1,9 +1,10 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoeNinja.Api;
-using Sidekick.Apis.PoeNinja.Api.Models;
 using Sidekick.Apis.PoeNinja.Models;
-using Sidekick.Apis.PoeNinja.Repository;
+using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.PoeNinja
@@ -13,92 +14,52 @@ namespace Sidekick.Apis.PoeNinja
     /// </summary>
     public class PoeNinjaClient : IPoeNinjaClient
     {
-        private readonly Uri POE_NINJA_BASE_URL = new("https://poe.ninja/");
-        private readonly string leagueUri;
-        private readonly ISettings settings;
-        private readonly IPoeNinjaRepository repository;
-        private readonly IPoeNinjaApiClient poeNinjaApiClient;
+        private static readonly Uri BASE_URL = new("https://poe.ninja/");
+        private static readonly Uri API_BASE_URL = new("https://poe.ninja/api/data/");
 
-        // Poe.ninja uses a different uri for each item type, always in English.
-        private readonly Dictionary<ItemType, string> ItemTypesUris = new()
-        {
-            { ItemType.Oil, "oils" },
-            { ItemType.Incubator, "incubators" },
-            { ItemType.Scarab, "scarabs" },
-            { ItemType.Fossil, "fossils" },
-            { ItemType.Resonator, "resonators" },
-            { ItemType.Essence, "essences" },
-            { ItemType.DivinationCard, "divination-cards" },
-            { ItemType.SkillGem, "skill-gems" },
-            { ItemType.UniqueMap, "unique-maps" },
-            { ItemType.Map, "maps" },
-            { ItemType.UniqueJewel, "unique-jewels" },
-            { ItemType.UniqueFlask, "unique-flasks" },
-            { ItemType.UniqueWeapon, "unique-weapons" },
-            { ItemType.UniqueArmour, "unique-armours" },
-            { ItemType.UniqueAccessory, "unique-accessories" },
-            { ItemType.Beast, "beasts" },
-            { ItemType.Currency, "currency" },
-            { ItemType.Fragment, "fragments" },
-            { ItemType.Invitation, "invitations" },
-            { ItemType.DeliriumOrb, "delirium-orbs" },
-            { ItemType.BlightedMap, "blighted-maps" },
-            { ItemType.BlightRavagedMap, "blight-ravaged-maps" },
-            { ItemType.Artifact, "artifacts" },
-        };
+        private readonly ISettings settings;
+        private readonly ICacheProvider cacheProvider;
+        private readonly ISettingsService settingsService;
+        private readonly ILogger<PoeNinjaClient> logger;
+        private readonly HttpClient client;
+        private readonly JsonSerializerOptions options;
 
         public PoeNinjaClient(
             ISettings settings,
-            IPoeNinjaRepository repository,
-            IPoeNinjaApiClient poeNinjaApiClient)
+            ICacheProvider cacheProvider,
+            ISettingsService settingsService,
+            IHttpClientFactory httpClientFactory,
+            ILogger<PoeNinjaClient> logger)
         {
             this.settings = settings;
-            this.repository = repository;
-            this.poeNinjaApiClient = poeNinjaApiClient;
+            this.cacheProvider = cacheProvider;
+            this.settingsService = settingsService;
+            this.logger = logger;
 
-            leagueUri = GetLeagueUriFromLeagueId(this.settings.LeagueId);
-        }
-
-        /// <inheritdoc/>
-        public InitializationPriority Priority => InitializationPriority.Medium;
-
-        /// <inheritdoc/>
-        public async Task Initialize()
-        {
-            if (!settings.PoeNinja_LastClear.HasValue || settings.PoeNinja_LastClear < DateTimeOffset.Now.AddHours(-8))
+            options = new JsonSerializerOptions()
             {
-                await repository.Clear();
-            }
-        }
-
-        /// <summary>
-        /// Get Poe.ninja's league uri from POE's API league id.
-        /// </summary>
-        public string GetLeagueUriFromLeagueId(string leagueId)
-        {
-            return leagueId switch
-            {
-                "Standard" => "standard",
-                "Hardcore" => "hardcore",
-                string x when x.Contains("Hardcore") => "challengehc",
-                _ => "challenge"
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             };
+            options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+
+            client = httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
+            client.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
         }
 
         public async Task<NinjaPrice?> GetPriceInfo(OriginalItem originalItem, Item item)
         {
+            await ClearCacheIfExpired();
+
             var name = originalItem.Name;
             var type = originalItem.Type;
 
-            foreach (var itemType in GetItemTypes(item))
+            foreach (var itemType in GetApiItemTypes(item))
             {
-                var repositoryItems = await repository.Load(itemType);
-                if (repositoryItems == null || repositoryItems.Count == 0)
-                {
-                    repositoryItems = await poeNinjaApiClient.FetchPrices(itemType);
-                }
+                var repositoryItems = await GetItems(itemType);
 
-                if (repositoryItems == null || repositoryItems.Count == 0)
+                if (repositoryItems == null || !repositoryItems.Any())
                 {
                     continue;
                 }
@@ -141,64 +102,236 @@ namespace Sidekick.Apis.PoeNinja
         {
             if (!string.IsNullOrWhiteSpace(ninjaPrice.DetailsId))
             {
-                return new Uri(POE_NINJA_BASE_URL, $"{leagueUri}/{ItemTypesUris[ninjaPrice.ItemType]}/{ninjaPrice.DetailsId}");
+                return new Uri(BASE_URL, $"{GetLeagueUri(settings.LeagueId)}/{ninjaPrice.ItemType}/{ninjaPrice.DetailsId}");
             }
 
-            return POE_NINJA_BASE_URL;
+            return BASE_URL;
         }
 
-        private List<ItemType> GetItemTypes(Item item)
+        /// <summary>
+        /// Get Poe.ninja's league uri from POE's API league id.
+        /// </summary>
+        private string GetLeagueUri(string leagueId)
         {
-            var result = new List<ItemType>();
+            return leagueId switch
+            {
+                "Standard" => "standard",
+                "Hardcore" => "hardcore",
+                string x when x.Contains("Hardcore") => "challengehc",
+                _ => "challenge"
+            };
+        }
 
-            if (item.Metadata.Category == Category.Currency)
+        private string GetCacheKey(ItemType itemType) => $"PoeNinja_{itemType}";
+
+        private async Task ClearCacheIfExpired()
+        {
+            var isCacheTimeValid = settings.PoeNinja_LastClear.HasValue && DateTimeOffset.Now - settings.PoeNinja_LastClear <= TimeSpan.FromHours(6);
+            if (isCacheTimeValid)
             {
-                result.Add(ItemType.Currency);
-                result.Add(ItemType.Fragment);
-                result.Add(ItemType.DeliriumOrb);
-                result.Add(ItemType.Incubator);
-                result.Add(ItemType.Oil);
-                result.Add(ItemType.Incubator);
-                result.Add(ItemType.Scarab);
-                result.Add(ItemType.Fossil);
-                result.Add(ItemType.Resonator);
-                result.Add(ItemType.Essence);
-                result.Add(ItemType.Resonator);
-                result.Add(ItemType.Artifact);
+                return;
             }
-            else if (item.Metadata.Rarity == Rarity.Unique)
+
+            foreach (var value in Enum.GetValues<ItemType>())
             {
-                switch (item.Metadata.Category)
+                cacheProvider.Delete(GetCacheKey(value));
+            }
+
+            await settingsService.Save(nameof(ISettings.PoeNinja_LastClear), DateTimeOffset.Now);
+        }
+
+        public Task SaveItemsToCache(ItemType itemType, List<NinjaPrice> prices)
+        {
+            prices = prices
+                .GroupBy(x => (x.Name,
+                               x.Corrupted,
+                               x.MapTier,
+                               x.GemLevel,
+                               x.Links))
+                .Select(x => x.OrderBy(x => x.Price).First())
+                .ToList();
+            return cacheProvider.Set(GetCacheKey(itemType), prices);
+        }
+
+        private async Task<IEnumerable<NinjaPrice>> GetItems(ItemType itemType)
+        {
+            var cachedItems = await cacheProvider.Get<List<NinjaPrice>>(GetCacheKey(itemType));
+            if (cachedItems != null && cachedItems.Count > 0)
+            {
+                return cachedItems;
+            }
+
+            var items = itemType switch
+            {
+                ItemType.Currency => await FetchCurrencies(itemType),
+                ItemType.Fragment => await FetchCurrencies(itemType),
+                _ => await FetchItems(itemType),
+            };
+
+            items = items
+                .GroupBy(x => (x.Name,
+                               x.Corrupted,
+                               x.MapTier,
+                               x.GemLevel,
+                               x.Links))
+                .Select(x => x.OrderBy(x => x.Price).First())
+                .ToList();
+
+            if (items.Any())
+            {
+                await SaveItemsToCache(itemType, items.ToList());
+            }
+
+            return items;
+        }
+
+        private async Task<IEnumerable<NinjaPrice>> FetchItems(ItemType itemType)
+        {
+            var url = new Uri($"{API_BASE_URL}itemoverview?league={settings.LeagueId}&type={itemType}");
+
+            try
+            {
+                var response = await client.GetAsync(url);
+                var responseStream = await response.Content.ReadAsStreamAsync();
+                var result = await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaItem>>(responseStream, options);
+                if (result == null)
                 {
-                    case Category.Accessory: result.Add(ItemType.UniqueAccessory); break;
-                    case Category.Armour: result.Add(ItemType.UniqueArmour); break;
-                    case Category.Flask: result.Add(ItemType.UniqueFlask); break;
-                    case Category.Jewel: result.Add(ItemType.UniqueJewel); break;
-                    case Category.Map: result.Add(ItemType.UniqueMap); break;
-                    case Category.Weapon: result.Add(ItemType.UniqueWeapon); break;
-                    case Category.ItemisedMonster: result.Add(ItemType.Beast); break;
+                    return Enumerable.Empty<NinjaPrice>();
                 }
+
+                return result.Lines
+                        .Select(x => new NinjaPrice()
+                        {
+                            Corrupted = x.Corrupted,
+                            Price = x.ChaosValue,
+                            LastUpdated = DateTimeOffset.Now,
+                            Name = x.Name,
+                            MapTier = x.MapTier,
+                            GemLevel = x.GemLevel,
+                            DetailsId = x.DetailsId,
+                            ItemType = itemType,
+                            SparkLine = x.SparkLine ?? x.LowConfidenceSparkLine,
+                            IsRelic = x.ItemClass == 9, // 3 for Unique, 9 for Relic Unique.
+                            Links = x.Links,
+                        });
             }
-            else
+            catch (Exception)
+            {
+                logger.LogWarning("[PoeNinja] Could not fetch {itemType} from poe.ninja", itemType);
+            }
+
+            return Enumerable.Empty<NinjaPrice>();
+        }
+
+        private async Task<IEnumerable<NinjaPrice>> FetchCurrencies(ItemType itemType)
+        {
+            var url = new Uri($"{API_BASE_URL}currencyoverview?league={settings.LeagueId}&type={itemType}");
+
+            try
+            {
+                var response = await client.GetAsync(url);
+                var responseStream = await response.Content.ReadAsStreamAsync();
+                var result = await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaCurrency>>(responseStream, options);
+                if (result == null)
+                {
+                    return Enumerable.Empty<NinjaPrice>();
+                }
+
+                return result.Lines
+                        .Where(x => x.Receive?.Value != null)
+                        .Select(x => new NinjaPrice()
+                        {
+                            Corrupted = false,
+                            Price = x.Receive?.Value ?? 0,
+                            LastUpdated = DateTimeOffset.Now,
+                            Name = x.CurrencyTypeName,
+                            DetailsId = x.DetailsId,
+                            ItemType = itemType,
+                            SparkLine = x.ReceiveSparkLine ?? x.LowConfidenceReceiveSparkLine,
+                        });
+            }
+            catch
+            {
+                logger.LogInformation("[PoeNinja] Could not fetch {itemType} from poe.ninja", itemType);
+            }
+
+            return Enumerable.Empty<NinjaPrice>();
+        }
+
+        private IEnumerable<ItemType> GetApiItemTypes(Item item)
+        {
+            if (item.Metadata.Rarity == Rarity.Unique)
             {
                 switch (item.Metadata.Category)
                 {
-                    case Category.DivinationCard: result.Add(ItemType.DivinationCard); break;
+                    case Category.Accessory:
+                        yield return ItemType.UniqueAccessory;
+                        yield break;
+
+                    case Category.Armour:
+                        yield return ItemType.UniqueArmour;
+                        yield break;
+
+                    case Category.Flask:
+                        yield return ItemType.UniqueFlask;
+                        yield break;
+
+                    case Category.Jewel:
+                        yield return ItemType.UniqueJewel;
+                        yield break;
+
                     case Category.Map:
-                        result.Add(ItemType.Map);
-                        result.Add(ItemType.Fragment);
-                        result.Add(ItemType.Scarab);
-                        result.Add(ItemType.Invitation);
-                        result.Add(ItemType.BlightedMap);
-                        result.Add(ItemType.BlightRavagedMap);
-                        break;
+                        yield return ItemType.UniqueMap;
+                        yield break;
 
-                    case Category.Gem: result.Add(ItemType.SkillGem); break;
-                    case Category.ItemisedMonster: result.Add(ItemType.Beast); break;
+                    case Category.Weapon:
+                        yield return ItemType.UniqueWeapon;
+                        yield break;
+
+                    case Category.ItemisedMonster:
+                        yield return ItemType.Beast;
+                        yield break;
                 }
             }
 
-            return result;
+            switch (item.Metadata.Category)
+            {
+                case Category.Currency:
+                    yield return ItemType.Currency;
+                    yield return ItemType.Fragment;
+                    yield return ItemType.DeliriumOrb;
+                    yield return ItemType.Incubator;
+                    yield return ItemType.Oil;
+                    yield return ItemType.Incubator;
+                    yield return ItemType.Scarab;
+                    yield return ItemType.Fossil;
+                    yield return ItemType.Resonator;
+                    yield return ItemType.Essence;
+                    yield return ItemType.Resonator;
+                    yield return ItemType.Artifact;
+                    yield break;
+
+                case Category.DivinationCard:
+                    yield return ItemType.DivinationCard;
+                    yield break;
+
+                case Category.Map:
+                    yield return ItemType.Map;
+                    yield return ItemType.Fragment;
+                    yield return ItemType.Scarab;
+                    yield return ItemType.Invitation;
+                    yield return ItemType.BlightedMap;
+                    yield return ItemType.BlightRavagedMap;
+                    yield break;
+
+                case Category.Gem:
+                    yield return ItemType.SkillGem;
+                    yield break;
+
+                case Category.ItemisedMonster:
+                    yield return ItemType.Beast;
+                    yield break;
+            }
         }
     }
 }

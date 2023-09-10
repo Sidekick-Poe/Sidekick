@@ -1,10 +1,9 @@
 using Sidekick.Apis.PoeNinja.Models;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.PoeNinja
 {
-    public interface IPoeNinjaClient : IInitializableService
+    public interface IPoeNinjaClient
     {
         Task<NinjaPrice?> GetPriceInfo(OriginalItem originalItem, Item item);
 

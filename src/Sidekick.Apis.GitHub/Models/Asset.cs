@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Sidekick.Apis.GitHub.Models
 {
-    public class Asset
+    public record Asset
     {
         public string? Url { get; init; }
 
