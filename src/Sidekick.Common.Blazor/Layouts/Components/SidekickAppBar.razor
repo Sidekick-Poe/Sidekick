@@ -9,17 +9,25 @@
 
         @if (View != null)
         {
+            if (View.ShowSettingsButton)
+            {
+                <MudIconButton Color="Color.Inherit"
+                               Variant="Variant.Text"
+                               Icon="@Icons.Material.Filled.Settings"
+                               OnClick="OpenSettings" />
+            }
+
             if (View.ViewType == SidekickViewType.Standard)
             {
                 <MudIconButton Color="Color.Inherit"
-                       Variant="Variant.Text"
-                       Icon="@Icons.Material.Filled.Minimize"
-                       @onclick="() => ViewLocator.Minimize(View)" />
+                               Variant="Variant.Text"
+                               Icon="@Icons.Material.Filled.Minimize"
+                               OnClick="() => ViewLocator.Minimize(View)" />
 
                 <MudIconButton Color="Color.Inherit"
-                       Variant="Variant.Text"
-                       Icon="@Icons.Material.Filled.CropSquare"
-                       @onclick="() => ViewLocator.Maximize(View)" />
+                               Variant="Variant.Text"
+                               Icon="@Icons.Material.Filled.CropSquare"
+                               OnClick="() => ViewLocator.Maximize(View)" />
             }
 
             <MudIconButton Class="close-button" Color="Color.Inherit" Variant="Variant.Text" Icon="@Icons.Material.Filled.Close" @onclick="View.Close" Edge="Edge.End" />
@@ -36,4 +44,10 @@
 
     [Parameter]
     public RenderFragment LeftContent { get; set; }
+
+    private async Task OpenSettings()
+    {
+        await ViewLocator.Open("/settings");
+        await ViewLocator.Close(View);
+    }
 }
