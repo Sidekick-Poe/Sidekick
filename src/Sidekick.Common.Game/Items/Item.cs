@@ -57,6 +57,6 @@ namespace Sidekick.Common.Game.Items
             return Metadata.Name;
         }
 
-        public int GetMaximumNumberOfLinks() => Sockets.GroupBy(x => x.Group).Max(x => x.Count());
+        public int GetMaximumNumberOfLinks() => Sockets.Any() ? Sockets.GroupBy(x => x.Group).Max(x => x.Count()) : 0;
     }
 }
