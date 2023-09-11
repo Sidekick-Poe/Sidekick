@@ -9,21 +9,27 @@ namespace Sidekick.Apis.GitHub
 {
     public class GitHubClient : IGitHubClient
     {
+        private readonly IHttpClientFactory httpClientFactory;
         private readonly ILogger<GitHubClient> logger;
-        private readonly HttpClient client;
 
         public GitHubClient(
             IHttpClientFactory httpClientFactory,
             ILogger<GitHubClient> logger)
         {
+            this.httpClientFactory = httpClientFactory;
             this.logger = logger;
-            client = httpClientFactory.CreateClient();
-            client.BaseAddress = new Uri("https://api.github.com");
-            client.DefaultRequestHeaders.UserAgent.TryParseAdd("request");
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         private bool? UpdateAvailable { get; set; } = null;
+
+        private HttpClient GetHttpClient()
+        {
+            var client = httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri("https://api.github.com");
+            client.DefaultRequestHeaders.UserAgent.TryParseAdd("request");
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            return client;
+        }
 
         /// <inheritdoc/>
         public async Task<bool> IsUpdateAvailable()
@@ -75,6 +81,7 @@ namespace Sidekick.Apis.GitHub
                 return false;
             }
 
+            using var client = GetHttpClient();
             var response = await client.GetAsync(downloadUrl);
             using var downloadStream = await response.Content.ReadAsStreamAsync();
             using var fileStream = new FileStream(downloadPath, FileMode.Create, FileAccess.Write, FileShare.None);
@@ -85,6 +92,7 @@ namespace Sidekick.Apis.GitHub
         private async Task<GitHubRelease?> GetLatestRelease()
         {
             // Get List of releases
+            using var client = GetHttpClient();
             var listResponse = await client.GetAsync("/repos/Sidekick-Poe/Sidekick/releases");
             if (!listResponse.IsSuccessStatusCode)
             {

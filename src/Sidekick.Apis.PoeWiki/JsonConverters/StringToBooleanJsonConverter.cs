@@ -1,4 +1,3 @@
-using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -10,6 +9,7 @@ namespace Sidekick.Apis.PoeWiki.JsonConverters
         {
             return reader.GetString() == "1" ? true : false;
         }
+
         public override void Write(Utf8JsonWriter writer, bool value, JsonSerializerOptions options)
         {
             writer.WriteStringValue(value ? "1" : "0");

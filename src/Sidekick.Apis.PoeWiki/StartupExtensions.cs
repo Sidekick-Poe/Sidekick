@@ -8,10 +8,7 @@ namespace Sidekick.Apis.PoeWiki
         public static IServiceCollection AddSidekickPoeWikiApi(this IServiceCollection services)
         {
             services.AddHttpClient();
-
-            services.AddTransient<IPoeWikiClient, PoeWikiClient>();
-
-            services.AddSidekickInitializableService<IPoeWikiDataProvider, PoeWikiDataProvider>();
+            services.AddSidekickInitializableService<IPoeWikiClient, PoeWikiClient>();
 
             return services;
         }

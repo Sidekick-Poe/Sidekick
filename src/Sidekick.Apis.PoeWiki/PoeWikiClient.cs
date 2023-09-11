@@ -1,13 +1,15 @@
 using System.Text.Json;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.PoeWiki.ApiModels;
+using Sidekick.Apis.PoeWiki.Api;
 using Sidekick.Apis.PoeWiki.Extensions;
 using Sidekick.Apis.PoeWiki.Models;
 using Sidekick.Common.Browser;
+using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Items.Modifiers;
 using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.PoeWiki
@@ -19,26 +21,39 @@ namespace Sidekick.Apis.PoeWiki
     public class PoeWikiClient : IPoeWikiClient
     {
         private readonly JsonSerializerOptions options;
-        private readonly HttpClient client;
         private readonly ILogger<PoeWikiClient> logger;
+        private readonly IHttpClientFactory httpClientFactory;
         private readonly IGameLanguageProvider gameLanguageProvider;
         private readonly IBrowserProvider browserProvider;
+        private readonly ICacheProvider cacheProvider;
         private readonly ISettings settings;
 
         private const string PoeWiki_BaseUri = "https://www.poewiki.net/";
         private const string PoeWiki_SubUrl = "w/index.php?search=";
 
+        private static readonly List<string> oilNames = new List<string>() {
+            "Clear Oil",
+            "Sepia Oil",
+            "Amber Oil",
+            "Verdant Oil",
+            "Teal Oil",
+            "Azure Oil",
+            "Indigo Oil",
+            "Violet Oil",
+            "Crimson Oil",
+            "Black Oil",
+            "Opalescent Oil",
+            "Silver Oil",
+            "Golden Oil",
+        };
+
         public PoeWikiClient(ILogger<PoeWikiClient> logger,
                              IHttpClientFactory httpClientFactory,
                              IGameLanguageProvider gameLanguageProvider,
                              IBrowserProvider browserProvider,
+                             ICacheProvider cacheProvider,
                              ISettings settings)
         {
-            client = httpClientFactory.CreateClient();
-            client.BaseAddress = new Uri("https://www.poewiki.net/w/api.php");
-            client.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
-            client.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
-            client.Timeout = TimeSpan.FromSeconds(30);
             options = new JsonSerializerOptions()
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -46,12 +61,49 @@ namespace Sidekick.Apis.PoeWiki
             };
 
             this.logger = logger;
+            this.httpClientFactory = httpClientFactory;
             this.gameLanguageProvider = gameLanguageProvider;
             this.browserProvider = browserProvider;
+            this.cacheProvider = cacheProvider;
             this.settings = settings;
         }
 
+        private HttpClient GetHttpClient()
+        {
+            var client = httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri("https://www.poewiki.net/w/api.php");
+            client.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
+            client.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
+            client.Timeout = TimeSpan.FromSeconds(30);
+            return client;
+        }
+
         public bool IsEnabled => gameLanguageProvider.IsEnglish() && settings.PoeWikiData_Enable;
+
+        public Dictionary<string, string> BlightOilNamesByMetadataIds { get; private set; } = new();
+
+        /// <inheritdoc/>
+        public InitializationPriority Priority => InitializationPriority.Low;
+
+        /// <inheritdoc/>
+        public async Task Initialize()
+        {
+            var result = await cacheProvider.GetOrSet("PoeWikiBlightOils", async () =>
+            {
+                var result = await GetMetadataIdsFromItemNames(oilNames);
+                if (result == null)
+                {
+                    return new();
+                }
+
+                return result;
+            });
+
+            if (result != null)
+            {
+                BlightOilNamesByMetadataIds = result.ToDictionary(x => x.MetadataId ?? string.Empty, x => x.Name ?? string.Empty);
+            }
+        }
 
         private async Task<MapResult?> GetMapResult(Item item)
         {
@@ -75,6 +127,7 @@ namespace Sidekick.Apis.PoeWiki
                     new("where", @$"items.name=""{mapName}"""),
                 });
 
+                using var client = GetHttpClient();
                 var response = await client.GetAsync(query.ToString());
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<MapResult>>(content, options);
@@ -110,6 +163,7 @@ namespace Sidekick.Apis.PoeWiki
                     new("where", @$"monsters.metadata_id IN ({mapResult.BossMonsterIds.ToQueryString()})"),
                 });
 
+                using var client = GetHttpClient();
                 var response = await client.GetAsync(query.ToString());
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<BossResult>>(content, options);
@@ -156,6 +210,7 @@ namespace Sidekick.Apis.PoeWiki
                     new("where", @$"items.drop_areas HOLDS '{mapResult.AreaId}'"),
                 });
 
+                using var client = GetHttpClient();
                 var response = await client.GetAsync(query.ToString());
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<MapItemResult>>(content, options);
@@ -202,6 +257,7 @@ namespace Sidekick.Apis.PoeWiki
                     new("where", @$"passive_skills.name='{enchantmentText}' OR mods.stat_text='{enchantmentText}'"),
                 });
 
+                using var client = GetHttpClient();
                 var response = await client.GetAsync(query.ToString());
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<ItemIdResult>>(content, options);
@@ -248,6 +304,7 @@ namespace Sidekick.Apis.PoeWiki
                     new("where", @$"items.name IN ({itemNames.ToQueryString()})"),
                 });
 
+                using var client = GetHttpClient();
                 var response = await client.GetAsync(query.ToString());
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<ItemNameMetadataIdResult>>(content, options);
@@ -313,7 +370,7 @@ namespace Sidekick.Apis.PoeWiki
 
         public void OpenUri(ItemDrop itemDrop)
         {
-            var wikiLink = PoeWiki_SubUrl + itemDrop.Name.Replace(" ", "+");
+            var wikiLink = PoeWiki_SubUrl + itemDrop.Name?.Replace(" ", "+");
             var uri = new Uri(PoeWiki_BaseUri + wikiLink);
 
             browserProvider.OpenUri(uri);
@@ -321,7 +378,7 @@ namespace Sidekick.Apis.PoeWiki
 
         public void OpenUri(Boss boss)
         {
-            var wikiLink = "wiki/Monster:" + boss.Id.Replace("_", "~");
+            var wikiLink = "wiki/Monster:" + boss.Id?.Replace("_", "~");
             var uri = new Uri(PoeWiki_BaseUri + wikiLink);
 
             browserProvider.OpenUri(uri);

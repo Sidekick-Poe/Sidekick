@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sidekick.Apis.PoeWiki.ApiModels;
+using Sidekick.Apis.PoeWiki.Api;
 
 namespace Sidekick.Apis.PoeWiki.Models
 {
-    public class Boss
+    public record Boss
     {
         public Boss(BossResult boss)
         {
@@ -15,7 +10,8 @@ namespace Sidekick.Apis.PoeWiki.Models
             Name = boss.Name;
         }
 
-        public string Id { get; set; }
-        public string Name { get; set; }
+        public string? Id { get; init; }
+
+        public string? Name { get; init; }
     }
 }

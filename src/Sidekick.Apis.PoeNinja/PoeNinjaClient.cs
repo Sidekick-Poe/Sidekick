@@ -20,8 +20,8 @@ namespace Sidekick.Apis.PoeNinja
         private readonly ISettings settings;
         private readonly ICacheProvider cacheProvider;
         private readonly ISettingsService settingsService;
+        private readonly IHttpClientFactory httpClientFactory;
         private readonly ILogger<PoeNinjaClient> logger;
-        private readonly HttpClient client;
         private readonly JsonSerializerOptions options;
 
         public PoeNinjaClient(
@@ -34,6 +34,7 @@ namespace Sidekick.Apis.PoeNinja
             this.settings = settings;
             this.cacheProvider = cacheProvider;
             this.settingsService = settingsService;
+            this.httpClientFactory = httpClientFactory;
             this.logger = logger;
 
             options = new JsonSerializerOptions()
@@ -42,10 +43,14 @@ namespace Sidekick.Apis.PoeNinja
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             };
             options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+        }
 
-            client = httpClientFactory.CreateClient();
+        private HttpClient GetHttpClient()
+        {
+            var client = httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
             client.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
+            return client;
         }
 
         public async Task<NinjaPrice?> GetPriceInfo(OriginalItem originalItem, Item item)
@@ -180,6 +185,7 @@ namespace Sidekick.Apis.PoeNinja
 
             try
             {
+                using var client = GetHttpClient();
                 var response = await client.GetAsync(url);
                 var responseStream = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaItem>>(responseStream, options);
@@ -218,6 +224,7 @@ namespace Sidekick.Apis.PoeNinja
 
             try
             {
+                using var client = GetHttpClient();
                 var response = await client.GetAsync(url);
                 var responseStream = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaCurrency>>(responseStream, options);

@@ -11,26 +11,32 @@ namespace Sidekick.Apis.PoePriceInfo
     public class PoePriceInfoClient : IPoePriceInfoClient
     {
         private readonly JsonSerializerOptions options;
-        private readonly HttpClient client;
         private readonly ISettings settings;
         private readonly ILogger<PoePriceInfoClient> logger;
+        private readonly IHttpClientFactory httpClientFactory;
 
         public PoePriceInfoClient(
             ISettings settings,
             ILogger<PoePriceInfoClient> logger,
             IHttpClientFactory httpClientFactory)
         {
-            client = httpClientFactory.CreateClient();
-            client.BaseAddress = new Uri("https://www.poeprices.info/api");
-            client.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
-            client.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
-            client.Timeout = TimeSpan.FromSeconds(60);
             options = new JsonSerializerOptions()
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             };
             this.settings = settings;
             this.logger = logger;
+            this.httpClientFactory = httpClientFactory;
+        }
+
+        private HttpClient GetHttpClient()
+        {
+            var client = httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri("https://www.poeprices.info/api");
+            client.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
+            client.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
+            client.Timeout = TimeSpan.FromSeconds(60);
+            return client;
         }
 
         public async Task<PricePrediction?> GetPricePrediction(Item item)
@@ -43,6 +49,7 @@ namespace Sidekick.Apis.PoePriceInfo
             try
             {
                 var encodedItem = Convert.ToBase64String(Encoding.UTF8.GetBytes(item.Original.Text));
+                using var client = GetHttpClient();
                 var response = await client.GetAsync("?l=" + settings.LeagueId + "&i=" + encodedItem);
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<PriceInfoResult>(content, options);

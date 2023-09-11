@@ -59,9 +59,11 @@
 </div>
 
 @code {
-    [Inject] public TradeResources Resources { get; set; }
-    [Inject] private IPoeWikiClient PoeWikiClient { get; set; }
-    [Inject] private IPoeWikiDataProvider PoeWikiDataProvider { get; set; }
+    [Inject]
+    public TradeResources Resources { get; set; }
+
+    [Inject]
+    private IPoeWikiClient PoeWikiClient { get; set; }
 
     [Parameter] public ModifierFilter Filter { get; set; }
 
@@ -78,7 +80,7 @@
             var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Line);
             if (oilMetadataIds != null)
             {
-                EnchantmentOilNames = oilMetadataIds.Select(x => PoeWikiDataProvider.BlightOilNamesByMetadataIds[x]).ToList();
+                EnchantmentOilNames = oilMetadataIds.Select(x => PoeWikiClient.BlightOilNamesByMetadataIds[x]).ToList();
             }
         }
     }
