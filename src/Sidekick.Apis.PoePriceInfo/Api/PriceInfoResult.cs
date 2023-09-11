@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Sidekick.Apis.PoePriceInfo.ApiModels
+namespace Sidekick.Apis.PoePriceInfo.Api
 {
     public class PriceInfoResult
     {

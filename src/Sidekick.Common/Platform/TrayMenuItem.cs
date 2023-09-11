@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Platform.Tray
+namespace Sidekick.Common.Platform
 {
     /// <summary>
     /// Represents a menu item that shows up when clicking on the tray icon

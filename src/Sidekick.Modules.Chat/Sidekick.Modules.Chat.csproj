@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sidekick.Common.Blazor\Sidekick.Common.Blazor.csproj" />
-    <ProjectReference Include="..\Sidekick.Common.Game\Sidekick.Common.Game.csproj" />
     <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
   </ItemGroup>
 

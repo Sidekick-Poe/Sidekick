@@ -1,17 +1,14 @@
-@if (Filters.Count > 0)
+@for (var i = 0; i < Filters.Count; i++)
 {
-    for (var i = 0; i < Filters.Count; i++)
-    {
-        <ModifierFilterComponent Filter="Filters[i]" />
+    <ModifierFilterComponent Filter="Filters[i]" />
 
-        var isLastFilter = i + 1 == Filters.Count;
-        if (!isLastFilter)
+    var isLastFilter = i + 1 == Filters.Count;
+    if (!isLastFilter)
+    {
+        var isDifferentCategoryThanNext = NormalizeModifierCategory(Filters[i].Line.Modifier?.Category) != NormalizeModifierCategory(Filters[i + 1].Line.Modifier?.Category);
+        if (isDifferentCategoryThanNext)
         {
-            var isDifferentCategoryThanNext = NormalizeModifierCategory(Filters[i].Line.Modifier?.Category) != NormalizeModifierCategory(Filters[i + 1].Line.Modifier?.Category);
-            if (isDifferentCategoryThanNext)
-            {
-                <ItemSeparator Rarity="Rarity" />
-            }
+            <ItemSeparator Rarity="Rarity" />
         }
     }
 }

@@ -3,7 +3,6 @@ using System.Windows.Controls;
 using Hardcodet.Wpf.TaskbarNotification;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Tray;
 
 namespace Sidekick.Wpf.Services
 {

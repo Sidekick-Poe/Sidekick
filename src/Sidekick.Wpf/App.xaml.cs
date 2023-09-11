@@ -13,7 +13,6 @@ using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Errors;
-using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
 using Sidekick.Mock;
 using Sidekick.Modules.About;
@@ -94,7 +93,6 @@ namespace Sidekick.Wpf
                 // Common
                 .AddSidekickCommon()
                 .AddSidekickCommonBlazor()
-                .AddSidekickCommonGame()
                 .AddSidekickCommonPlatform(o =>
                 {
                     o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");

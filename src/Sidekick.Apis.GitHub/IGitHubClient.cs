@@ -14,7 +14,8 @@ namespace Sidekick.Apis.GitHub
         /// <summary>
         /// Downloads the latest release from github.
         /// </summary>
-        /// <returns>The path where the file was downloaded.</returns>
-        Task<string?> DownloadLatest();
+        /// <param name="downloadPath">The path where the file is to be downloaded.</param>
+        /// <returns>True if the file downloaded successfully.</returns>
+        Task<bool> DownloadLatest(string downloadPath);
     }
 }

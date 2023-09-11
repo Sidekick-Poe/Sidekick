@@ -8,20 +8,32 @@ using Microsoft.Extensions.Options;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Tray;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Common.Blazor.Initialization
 {
     public partial class Initialization : SidekickView
     {
-        [Inject] private InitializationResources Resources { get; set; }
-        [Inject] private ISettings Settings { get; set; }
-        [Inject] private ILogger<Initialization> Logger { get; set; }
-        [Inject] private IApplicationService ApplicationService { get; set; }
-        [Inject] private ITrayProvider TrayProvider { get; set; }
-        [Inject] private IOptions<SidekickConfiguration> Configuration { get; set; }
-        [Inject] private IServiceProvider ServiceProvider { get; set; }
+        [Inject]
+        private InitializationResources Resources { get; set; }
+
+        [Inject]
+        private ISettings Settings { get; set; }
+
+        [Inject]
+        private ILogger<Initialization> Logger { get; set; }
+
+        [Inject]
+        private IApplicationService ApplicationService { get; set; }
+
+        [Inject]
+        private ITrayProvider TrayProvider { get; set; }
+
+        [Inject]
+        private IOptions<SidekickConfiguration> Configuration { get; set; }
+
+        [Inject]
+        private IServiceProvider ServiceProvider { get; set; }
 
         private int Count { get; set; } = 0;
         private int Completed { get; set; } = 0;
@@ -126,7 +138,7 @@ namespace Sidekick.Common.Blazor.Initialization
 
             menuItems.AddRange(new List<TrayMenuItem>()
             {
-                new (label: "Sidekick - " + typeof(StartupExtensions).Assembly.GetName().Version.ToString()),
+                new (label: "Sidekick - " + typeof(Initialization).Assembly.GetName().Version.ToString()),
                 new (label: "Cheatsheets", onClick: () => ViewLocator.Open("/cheatsheets")),
                 new (label: "About", onClick: () => ViewLocator.Open("/about")),
                 new (label: "Settings", onClick: () => ViewLocator.Open("/settings")),
