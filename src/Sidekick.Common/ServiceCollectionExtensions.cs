@@ -3,6 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Game.GameLogs;
+using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Localization;
 using Sidekick.Common.Logging;
@@ -21,9 +24,29 @@ namespace Sidekick.Common
         /// <returns>The services collection</returns>
         public static IServiceCollection AddSidekickCommon(this IServiceCollection services)
         {
+            services.AddSingleton<IBrowserProvider, BrowserProvider>();
             services.AddSingleton<ICacheProvider, CacheProvider>();
+            services.AddSingleton<IGameLogProvider, GameLogProvider>();
 
-            // Logging
+            services.AddSidekickInitializableService<IGameLanguageProvider, GameLanguageProvider>();
+
+            // Validate ClassLanguage implements correct properties
+            var properties = typeof(ClassLanguage).GetProperties().Where(x => x.Name != "Prefix");
+            foreach (var property in properties)
+            {
+                if (!Enum.IsDefined(typeof(Class), property.Name))
+                {
+                    throw new Exception($"ClassLanguage has a property {property.Name} that does not match any Class enum values.");
+                }
+            }
+
+            services.AddSidekickInitializableService<IUILanguageProvider, UILanguageProvider>();
+
+            return services.AddSidekickLogging();
+        }
+
+        private static IServiceCollection AddSidekickLogging(this IServiceCollection services)
+        {
             var sidekickPath = Environment.ExpandEnvironmentVariables("%AppData%\\sidekick");
             var logSink = new LogSink();
             Log.Logger = new LoggerConfiguration()
@@ -42,11 +65,7 @@ namespace Sidekick.Common
             {
                 builder.AddSerilog();
             });
-
             services.AddSingleton(logSink);
-            services.AddSingleton<IBrowserProvider, BrowserProvider>();
-
-            services.AddSidekickInitializableService<IUILanguageProvider, UILanguageProvider>();
 
             return services;
         }

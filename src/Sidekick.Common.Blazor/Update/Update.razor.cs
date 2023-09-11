@@ -53,8 +53,8 @@ namespace Sidekick.Common.Blazor.Update
                 // Downloading
                 Step = UpdateResources.Downloading;
                 StateHasChanged();
-                var path = await GitHubClient.DownloadLatest();
-                if (path == null)
+                var path = SidekickPaths.GetDataFilePath("Sidekick-Update.exe");
+                if (!await GitHubClient.DownloadLatest(path))
                 {
                     Step = UpdateResources.Failed;
                     StateHasChanged();

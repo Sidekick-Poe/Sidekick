@@ -20,7 +20,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
             Max = max;
         }
 
-        public PropertyFilterType Type { get; set; }
+        public PropertyFilterType Type { get; init; }
 
         public bool? Enabled { get; set; }
 
@@ -28,9 +28,9 @@ namespace Sidekick.Apis.Poe.Trade.Models
 
         public double? Max { get; set; }
 
-        public string Text { get; }
+        public string Text { get; init; }
 
-        public object Value { get; set; }
+        public object Value { get; init; }
 
         public FilterValueType ValueType { get; set; }
     }

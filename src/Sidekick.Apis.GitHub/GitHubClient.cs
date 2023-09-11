@@ -3,8 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.GitHub.Models;
-using Sidekick.Common;
+using Sidekick.Apis.GitHub.Api;
 
 namespace Sidekick.Apis.GitHub
 {
@@ -57,24 +56,30 @@ namespace Sidekick.Apis.GitHub
         }
 
         /// <inheritdoc/>
-        public async Task<string?> DownloadLatest()
+        public async Task<bool> DownloadLatest(string downloadPath)
         {
             var release = await GetLatestRelease();
+            if (release == null)
+            {
+                return false;
+            }
 
-            if (release == null) return null;
-
-            var downloadPath = SidekickPaths.GetDataFilePath("Sidekick-Update.exe");
-            if (File.Exists(downloadPath)) File.Delete(downloadPath);
+            if (File.Exists(downloadPath))
+            {
+                File.Delete(downloadPath);
+            }
 
             var downloadUrl = release.Assets?.FirstOrDefault(x => x.Name == "Sidekick-Setup.exe")?.DownloadUrl;
-            if (downloadUrl == null) return null;
+            if (downloadUrl == null)
+            {
+                return false;
+            }
 
             var response = await client.GetAsync(downloadUrl);
             using var downloadStream = await response.Content.ReadAsStreamAsync();
             using var fileStream = new FileStream(downloadPath, FileMode.Create, FileAccess.Write, FileShare.None);
             await downloadStream.CopyToAsync(fileStream);
-
-            return downloadPath;
+            return true;
         }
 
         private async Task<GitHubRelease?> GetLatestRelease()

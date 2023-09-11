@@ -14,13 +14,13 @@ namespace Sidekick.Common.Browser
 
         public void OpenUri(Uri uri)
         {
-            logger.LogInformation("Opening in browser: {uri}", uri.AbsoluteUri);
-            var psi = new ProcessStartInfo
+            logger.LogInformation("[Browser] Opening: {uri}", uri.AbsoluteUri);
+
+            Process.Start(new ProcessStartInfo
             {
                 FileName = uri.AbsoluteUri,
                 UseShellExecute = true
-            };
-            Process.Start(psi);
+            });
         }
     }
 }

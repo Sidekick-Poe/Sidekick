@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Sidekick.Apis.GitHub.Models
+namespace Sidekick.Apis.GitHub.Api
 {
     public record GitHubRelease
     {

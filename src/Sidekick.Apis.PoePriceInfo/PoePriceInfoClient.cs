@@ -1,7 +1,7 @@
 using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.PoePriceInfo.ApiModels;
+using Sidekick.Apis.PoePriceInfo.Api;
 using Sidekick.Apis.PoePriceInfo.Models;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;

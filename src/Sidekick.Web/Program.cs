@@ -7,7 +7,6 @@ using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Blazor.Views;
-using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
 using Sidekick.Mock;
 using Sidekick.Modules.About;
@@ -51,7 +50,6 @@ builder.Services
     // Common
     .AddSidekickCommon()
     .AddSidekickCommonBlazor()
-    .AddSidekickCommonGame()
     .AddSidekickCommonPlatform(o =>
     {
         o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
