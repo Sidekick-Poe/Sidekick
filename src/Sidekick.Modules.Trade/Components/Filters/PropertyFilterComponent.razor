@@ -16,7 +16,7 @@
 
     @if ((Filter.Enabled ?? false) && HasValueFilters)
     {
-        <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" OnChanged="StateHasChanged" />
+        <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged" />
     }
 </div>
 
@@ -26,4 +26,26 @@
     [Parameter] public PropertyFilter Filter { get; set; }
 
     private bool HasValueFilters => Filter.ValueType == FilterValueType.Double || Filter.ValueType == FilterValueType.Int;
+
+    private void TypeChanged(FilterRange.RangeType type)
+    {
+        switch (type)
+        {
+            case FilterRange.RangeType.Minimum:
+                Filter.NormalizeMinValue();
+                Filter.Max = null;
+                break;
+            case FilterRange.RangeType.Maximum:
+                Filter.NormalizeMaxValue();
+                Filter.Min = null;
+                break;
+            case FilterRange.RangeType.Equals:
+                Filter.SetExactValue();
+                break;
+            case FilterRange.RangeType.Range:
+                Filter.NormalizeMinValue();
+                Filter.NormalizeMaxValue();
+                break;
+        }
+    }
 }

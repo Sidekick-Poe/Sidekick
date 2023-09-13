@@ -59,7 +59,6 @@ namespace Sidekick.Modules.Settings.Localization
         public string Trade_CloseWithMouse => resources["Trade_CloseWithMouse"];
         public string Trade_Key_Check => resources["Trade_Key_Check"];
         public string Trade_Prediction_Enable => resources["Trade_Prediction_Enable"];
-        public string Trade_Normalize_Values => resources["Trade_Normalize_Values"];
         public string ResetCache => resources["ResetCache"];
         public string Save => resources["Save"];
         public string Stash => resources["Stash"];

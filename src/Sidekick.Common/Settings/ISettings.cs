@@ -16,7 +16,6 @@ namespace Sidekick.Common.Settings
         bool Trade_CloseWithMouse { get; set; }
         string Trade_Key_Check { get; set; }
         bool Trade_Prediction_Enable { get; set; }
-        bool Trade_Normalize_Values { get; set; }
         string Trade_Layout { get; set; }
 
         bool Map_CloseWithMouse { get; set; }

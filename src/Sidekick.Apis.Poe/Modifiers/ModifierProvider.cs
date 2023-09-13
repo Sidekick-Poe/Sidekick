@@ -186,7 +186,7 @@ namespace Sidekick.Apis.Poe.Modifiers
                 ModifierCategory.Enchant => "(?:\\ \\(enchant\\))",
                 ModifierCategory.Crafted => "(?:\\ \\(crafted\\))",
                 ModifierCategory.Veiled => "(?:\\ \\(veiled\\))",
-                ModifierCategory.Fractured => "(?:\\ \\(fractured\\))",
+                ModifierCategory.Fractured => "(?:\\ \\(fractured\\))?",
                 ModifierCategory.Scourge => "(?:\\ \\(scourge\\))",
                 ModifierCategory.Crucible => "(?:\\ \\(crucible\\))",
                 _ => "",
@@ -361,43 +361,52 @@ namespace Sidekick.Apis.Poe.Modifiers
 
         private void MatchLineWithFuzzy(ParsingItem parsingItem, ModifierLine modifierLine, ParsingLine line)
         {
+            if (line.Parsed)
+            {
+                return;
+            }
+
+            if (parsingItem.Metadata?.Category == Category.Flask)
+            {
+                return;
+            }
+
             // If we reach this point we have not found the modifier through traditional Regex means.
             // Text from the game sometimes differ from the text from the API. We do a fuzzy search here to find the most common text.
             var fuzzyLine = CleanFuzzyText(line.Text);
-            if (!line.Parsed && parsingItem.Metadata?.Category != Category.Flask)
+            var fuzzies = new List<FuzzyResult>();
+
+            Parallel.ForEach(FuzzyDictionary, (x) =>
             {
-                var fuzzies = new List<FuzzyResult>();
-
-                Parallel.ForEach(FuzzyDictionary, (x) =>
+                var ratio = Fuzz.Ratio(fuzzyLine, x.Key, FuzzySharp.PreProcess.PreprocessMode.None);
+                if (ratio > 75)
                 {
-                    var ratio = Fuzz.Ratio(fuzzyLine, x.Key, FuzzySharp.PreProcess.PreprocessMode.None);
-                    if (ratio > 75)
-                    {
-                        fuzzies.Add(new FuzzyResult(
-                            ratio: ratio,
-                            entries: x.Value
-                        ));
-                    }
-                });
+                    fuzzies.Add(new FuzzyResult(
+                        ratio: ratio,
+                        entries: x.Value
+                    ));
+                }
+            });
 
-                if (fuzzies.Any())
+            if (!fuzzies.Any())
+            {
+                return;
+            }
+
+            fuzzies = fuzzies
+                .OrderByDescending(x => x.Ratio)
+                .ToList();
+
+            foreach (var fuzzy in fuzzies)
+            {
+                foreach (var modifier in fuzzy.Entries)
                 {
-                    fuzzies = fuzzies
-                        .OrderByDescending(x => x.Ratio)
-                        .ToList();
-
-                    foreach (var fuzzy in fuzzies)
-                    {
-                        foreach (var modifier in fuzzy.Entries)
-                        {
-                            ParseMod(modifierLine.Alternates, modifier.Metadata, modifier.Pattern, line.Text);
-                        }
-                    }
-
-                    modifierLine.IsFuzzy = true;
-                    line.Parsed = true;
+                    ParseMod(modifierLine.Alternates, modifier.Metadata, modifier.Pattern, line.Text);
                 }
             }
+
+            modifierLine.IsFuzzy = true;
+            line.Parsed = true;
         }
 
         private void ParseMod(List<Modifier> modifiers, ModifierPatternMetadata metadata, ModifierPattern pattern, string text)

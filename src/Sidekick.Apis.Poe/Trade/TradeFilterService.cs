@@ -3,7 +3,6 @@ using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Items.Modifiers;
 using Sidekick.Common.Game.Languages;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade
 {
@@ -11,16 +10,13 @@ namespace Sidekick.Apis.Poe.Trade
     {
         private readonly IGameLanguageProvider gameLanguageProvider;
         private readonly FilterResources resources;
-        private readonly ISettings sidekickSettings;
 
         public TradeFilterService(
             IGameLanguageProvider gameLanguageProvider,
-            FilterResources resources,
-            ISettings sidekickSettings)
+            FilterResources resources)
         {
             this.gameLanguageProvider = gameLanguageProvider;
             this.resources = resources;
-            this.sidekickSettings = sidekickSettings;
         }
 
         public IEnumerable<ModifierFilter> GetModifierFilters(Item item)
@@ -58,27 +54,7 @@ namespace Sidekick.Apis.Poe.Trade
 
             foreach (var modifierLine in modifierLines)
             {
-                double? min = null, max = null;
-
-                if (modifierLine.Modifier != null && !modifierLine.IsFuzzy)
-                {
-                    if (modifierLine.Modifier.OptionValue != null)
-                    {
-                        (min, max) = NormalizeValues(modifierLine.Modifier.OptionValue, modifierLine.Modifier.Category);
-                    }
-                    else
-                    {
-                        (min, max) = NormalizeValues(modifierLine.Modifier.Values, modifierLine.Modifier.Category);
-                    }
-                }
-
-                yield return new ModifierFilter()
-                {
-                    Enabled = false,
-                    Line = modifierLine,
-                    Min = min,
-                    Max = max,
-                };
+                yield return new ModifierFilter(modifierLine);
             }
         }
 
@@ -88,66 +64,11 @@ namespace Sidekick.Apis.Poe.Trade
 
             foreach (var modifier in modifiers)
             {
-                double? min, max;
-
-                if (modifier.OptionValue != null)
+                yield return new ModifierFilter(new ModifierLine(modifier.Text)
                 {
-                    (min, max) = NormalizeValues(modifier.OptionValue, modifier.Category);
-                }
-                else
-                {
-                    (min, max) = NormalizeValues(modifier.Values, modifier.Category);
-                }
-
-                yield return new ModifierFilter()
-                {
-                    Enabled = false,
-                    Line = new ModifierLine(modifier.Text)
-                    {
-                        Modifier = modifier,
-                    },
-                    Min = min,
-                    Max = max,
-                };
+                    Modifier = modifier,
+                });
             }
-        }
-
-        private (double? Min, double? Max) NormalizeValues<T>(
-            T value,
-            ModifierCategory category)
-        {
-            double? min = null;
-            double? max = null;
-
-            if (value is List<double> groupValue)
-            {
-                var itemValue = groupValue.OrderBy(x => x).FirstOrDefault();
-
-                if (itemValue >= 0)
-                {
-                    min = itemValue;
-                    if (sidekickSettings.Trade_Normalize_Values && category != ModifierCategory.Enchant && category != ModifierCategory.Crucible)
-                    {
-                        min = NormalizeMinValue(min);
-                    }
-                }
-                else
-                {
-                    max = itemValue;
-                    if (sidekickSettings.Trade_Normalize_Values && category != ModifierCategory.Enchant && category != ModifierCategory.Crucible)
-                    {
-                        max = NormalizeMaxValue(max);
-                    }
-                }
-
-                if (!groupValue.Any())
-                {
-                    min = null;
-                    max = null;
-                }
-            }
-
-            return (min, max);
         }
 
         public PropertyFilters GetPropertyFilters(Item item)
@@ -328,93 +249,26 @@ namespace Sidekick.Apis.Poe.Trade
             return result;
         }
 
-        private void InitializePropertyFilter<T>(List<PropertyFilter> filters,
+        private void InitializePropertyFilter(List<PropertyFilter> filters,
             PropertyFilterType type,
             string? label,
-            T value,
+            object value,
             double? delta = null,
             bool? enabled = false,
-            double? min = null,
-            double? max = null)
+            double? min = null)
         {
-            if (label == null)
+            if (label == null || !double.TryParse(value.ToString(), out var doubleValue) || doubleValue == 0)
             {
                 return;
-            }
-
-            FilterValueType valueType;
-
-            switch (value)
-            {
-                case bool boolValue:
-                    valueType = FilterValueType.Boolean;
-                    if (!boolValue && enabled == false) return;
-                    break;
-
-                case int intValue:
-                    valueType = FilterValueType.Int;
-                    if (intValue == 0) return;
-                    min ??= sidekickSettings.Trade_Normalize_Values ? NormalizeMinValue(intValue, delta) : intValue;
-                    break;
-
-                case double doubleValue:
-                    valueType = FilterValueType.Double;
-                    if (doubleValue == 0) return;
-                    min ??= sidekickSettings.Trade_Normalize_Values ? NormalizeMinValue(doubleValue, delta) : doubleValue;
-                    break;
-
-                default: return;
             }
 
             filters.Add(new PropertyFilter(
                 enabled: enabled,
                 type: type,
                 value: value,
-                valueType: valueType,
                 text: label,
                 min: min,
-                max: max
-            ));
-        }
-
-        /// <summary>
-        /// Smallest positive value between a -1 delta or 90%.
-        /// </summary>
-        private static int? NormalizeMinValue(double? value, double? delta = null)
-        {
-            if (value.HasValue)
-            {
-                if (value.Value > 0)
-                {
-                    return (int)Math.Max(Math.Min(value.Value - (delta ?? 1), value.Value * 0.9), 0);
-                }
-                else
-                {
-                    return (int)Math.Min(Math.Min(value.Value - (delta ?? 1), value.Value * 1.1), 0);
-                }
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Smallest positive value between a +1 delta or 110%.
-        /// </summary>
-        private static int? NormalizeMaxValue(double? value, double? delta = null)
-        {
-            if (value.HasValue)
-            {
-                if (value.Value > 0)
-                {
-                    return (int)Math.Max(Math.Max(value.Value + (delta ?? 1), value.Value * 1.1), 0);
-                }
-                else
-                {
-                    return (int)Math.Min(Math.Max(value.Value + (delta ?? 1), value.Value * 0.9), 0);
-                }
-            }
-
-            return null;
+                delta: delta ?? 1));
         }
     }
 }

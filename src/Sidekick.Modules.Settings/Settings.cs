@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.Settings
@@ -45,8 +43,6 @@ namespace Sidekick.Modules.Settings
         public bool Map_CloseWithMouse { get; set; } = false;
 
         public bool Trade_Prediction_Enable { get; set; } = true;
-
-        public bool Trade_Normalize_Values { get; set; } = true;
 
         // public bool SendCrashReports { get; set; } = false;
 

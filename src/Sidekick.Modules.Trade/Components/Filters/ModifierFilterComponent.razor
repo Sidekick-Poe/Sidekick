@@ -1,4 +1,3 @@
-
 <div class="filter">
     <div class="d-flex align-center">
         <div class="flex-grow-1">
@@ -18,9 +17,9 @@
             </MudCheckBox>
         </div>
 
-        @if ((Filter.Enabled ?? false) && HasModifierValues)
+        @if (Filter.Enabled == true && Filter.Line.Modifier.HasValue)
         {
-            <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" OnChanged="StateHasChanged" />
+            <FilterRange @bind-Min="Filter.Min" @bind-Max="Filter.Max" TypeChanged="TypeChanged" />
         }
 
         @if (EnchantmentOilNames?.Any() == true)
@@ -28,7 +27,7 @@
             <OilAnointment OilNames="EnchantmentOilNames" />
         }
 
-        @if ((Filter.Enabled ?? false) && HasAlternateModifiers)
+        @if (Filter.Enabled == true && Filter.Line.Alternates.Any())
         {
             <MudMenu Color="Color.Info"
                      AnchorOrigin="Origin.CenterRight"
@@ -65,13 +64,10 @@
     [Inject]
     private IPoeWikiClient PoeWikiClient { get; set; }
 
-    [Parameter] public ModifierFilter Filter { get; set; }
+    [Parameter]
+    public ModifierFilter Filter { get; set; }
 
     private List<string> EnchantmentOilNames { get; set; }
-
-    private bool HasAlternateModifiers => Filter.Line.Alternates.Count > 0;
-
-    private bool HasModifierValues => Filter.Line.Modifier?.OptionValue == null && Filter.Line.Modifier?.Values.Count > 0;
 
     protected override async Task OnInitializedAsync()
     {
@@ -90,5 +86,27 @@
         Filter.Line.Alternates.Add(Filter.Line.Modifier);
         Filter.Line.Alternates.Remove(newValue);
         Filter.Line.Modifier = newValue;
+    }
+
+    private void TypeChanged(FilterRange.RangeType type)
+    {
+        switch (type)
+        {
+            case FilterRange.RangeType.Minimum:
+                Filter.NormalizeMinValue();
+                Filter.Max = null;
+                break;
+            case FilterRange.RangeType.Maximum:
+                Filter.NormalizeMaxValue();
+                Filter.Min = null;
+                break;
+            case FilterRange.RangeType.Equals:
+                Filter.SetExactValue();
+                break;
+            case FilterRange.RangeType.Range:
+                Filter.NormalizeMinValue();
+                Filter.NormalizeMaxValue();
+                break;
+        }
     }
 }
