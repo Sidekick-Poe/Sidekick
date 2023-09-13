@@ -79,9 +79,16 @@
         _ => Resources.Filters_Min,
     };
 
+    private bool IsChanging { get; set; }
+
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
+
+        if (IsChanging)
+        {
+            return;
+        }
 
         if (Min != null && Min == Max)
         {
@@ -124,12 +131,24 @@
 
     private async Task UpdateMinValue(double? value)
     {
+        IsChanging = true;
+
         await MinChanged.InvokeAsync(value);
+        if (Type == RangeType.Equals)
+        {
+            await MaxChanged.InvokeAsync(value);
+        }
+
+        IsChanging = false;
     }
 
     private async Task UpdateMaxValue(double? value)
     {
+        IsChanging = true;
+
         await MaxChanged.InvokeAsync(value);
+
+        IsChanging = false;
     }
 
     private async Task OnMinWheel(WheelEventArgs args)
@@ -144,7 +163,7 @@
             value = value - 1;
         }
 
-        await MinChanged.InvokeAsync(value);
+        await UpdateMinValue(value);
     }
 
     private async Task OnMaxWheel(WheelEventArgs args)
@@ -159,7 +178,7 @@
             value = value - 1;
         }
 
-        await MaxChanged.InvokeAsync(value);
+        await UpdateMaxValue(value);
     }
 
     private async Task Clear()
