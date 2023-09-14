@@ -1,6 +1,6 @@
 namespace Sidekick.Apis.PoeNinja.Api
 {
-    public record PoeNinjaQueryResultLanguage
+    internal record PoeNinjaQueryResultLanguage
     {
         public Dictionary<string, string> Translations { get; init; } = new();
     }

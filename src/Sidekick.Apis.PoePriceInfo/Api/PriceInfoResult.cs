@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Sidekick.Apis.PoePriceInfo.Api
 {
-    public record PriceInfoResult
+    internal record PriceInfoResult
     {
         public double? Min { get; init; }
 

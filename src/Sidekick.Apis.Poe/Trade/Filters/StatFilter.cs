@@ -1,6 +1,6 @@
 namespace Sidekick.Apis.Poe.Trade.Filters
 {
-    public class StatFilter
+    internal class StatFilter
     {
         public string? Id { get; set; }
         public SearchFilterValue? Value { get; set; }

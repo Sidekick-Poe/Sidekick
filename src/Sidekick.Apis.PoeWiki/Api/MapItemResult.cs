@@ -3,7 +3,7 @@ using Sidekick.Apis.PoeWiki.JsonConverters;
 
 namespace Sidekick.Apis.PoeWiki.Api
 {
-    public record MapItemResult
+    internal record MapItemResult
     {
         public string? Name { get; init; }
 

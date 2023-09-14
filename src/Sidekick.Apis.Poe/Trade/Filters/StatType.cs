@@ -1,6 +1,6 @@
 namespace Sidekick.Apis.Poe.Trade.Filters
 {
-    public enum StatType
+    internal enum StatType
     {
         And,
         Or,

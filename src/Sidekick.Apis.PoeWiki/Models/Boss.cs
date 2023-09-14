@@ -4,7 +4,7 @@ namespace Sidekick.Apis.PoeWiki.Models
 {
     public record Boss
     {
-        public Boss(BossResult boss)
+        internal Boss(BossResult boss)
         {
             Id = boss.MetadataId;
             Name = boss.Name;

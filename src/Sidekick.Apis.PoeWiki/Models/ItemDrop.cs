@@ -4,7 +4,7 @@ namespace Sidekick.Apis.PoeWiki.Models
 {
     public record ItemDrop
     {
-        public ItemDrop(MapItemResult itemResult)
+        internal ItemDrop(MapItemResult itemResult)
         {
             Name = itemResult.Name;
         }

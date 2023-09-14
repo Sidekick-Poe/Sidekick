@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Sidekick.Apis.Poe.Trade.Filters
 {
-    public class SocketFilterOption : SearchFilterValue
+    internal class SocketFilterOption : SearchFilterValue
     {
         [JsonPropertyName("r")]
         public int? Red { get; set; }

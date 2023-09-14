@@ -2,7 +2,7 @@ using Sidekick.Apis.Poe.Trade.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Filters
 {
-    public class SearchFilterOption
+    internal class SearchFilterOption
     {
         public SearchFilterOption(string option)
         {

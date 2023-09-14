@@ -1,6 +1,6 @@
 namespace Sidekick.Apis.PoeNinja.Api
 {
-    public record PoeNinjaCurrency
+    internal record PoeNinjaCurrency
     {
         public string? CurrencyTypeName { get; init; }
 

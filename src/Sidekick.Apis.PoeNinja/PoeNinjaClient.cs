@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoeNinja.Api;
 using Sidekick.Apis.PoeNinja.Models;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Enums;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
 
@@ -96,7 +97,7 @@ namespace Sidekick.Apis.PoeNinja
         {
             if (!string.IsNullOrWhiteSpace(ninjaPrice.DetailsId))
             {
-                return new Uri(BASE_URL, $"{GetLeagueUri(settings.LeagueId)}/{ninjaPrice.ItemType}/{ninjaPrice.DetailsId}");
+                return new Uri(BASE_URL, $"{GetLeagueUri(settings.LeagueId)}/{ninjaPrice.ItemType.GetValueAttribute()}/{ninjaPrice.DetailsId}");
             }
 
             return BASE_URL;

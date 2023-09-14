@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Sidekick.Apis.Poe.Trade.Filters
 {
-    public class MapFilter
+    internal class MapFilter
     {
         [JsonPropertyName("map_iiq")]
         public SearchFilterValue? ItemQuantity { get; set; }

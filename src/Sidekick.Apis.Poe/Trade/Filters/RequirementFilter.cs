@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Sidekick.Apis.Poe.Trade.Filters
 {
-    public class RequirementFilter
+    internal class RequirementFilter
     {
         [JsonPropertyName("lvl")]
         public SearchFilterValue? Level { get; set; }

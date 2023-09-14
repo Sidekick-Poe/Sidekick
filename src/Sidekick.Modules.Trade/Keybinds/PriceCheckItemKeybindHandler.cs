@@ -51,7 +51,7 @@ namespace Sidekick.Modules.Trade.Keybinds
             var originalItem = itemParser.ParseOriginalItem(advancedItemText);
 
             await viewLocator.CloseAllOverlays();
-            await viewLocator.Open($"/trade/{originalItem.ToString().EncodeBase64Url()}/{text.EncodeBase64Url()}");
+            await viewLocator.Open($"/trade/{originalItem?.ToString().EncodeBase64Url()}/{text.EncodeBase64Url()}");
         }
     }
 }

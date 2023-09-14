@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Sidekick.Apis.Poe.Trade.Filters
 {
-    public class SearchFilters
+    internal class SearchFilters
     {
         [JsonPropertyName("misc_filters")]
         public MiscFilterGroup MiscFilters { get; set; } = new();

@@ -1,6 +1,6 @@
 namespace Sidekick.Apis.PoeNinja.Api
 {
-    public record PoeNinjaCacheItem<T>
+    internal record PoeNinjaCacheItem<T>
     {
         public string? Type { get; init; }
 

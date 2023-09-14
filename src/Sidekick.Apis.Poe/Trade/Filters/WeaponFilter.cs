@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Sidekick.Apis.Poe.Trade.Filters
 {
-    public class WeaponFilter
+    internal class WeaponFilter
     {
         public SearchFilterValue? Damage { get; set; }
 

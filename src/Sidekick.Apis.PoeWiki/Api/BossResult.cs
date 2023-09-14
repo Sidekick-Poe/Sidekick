@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Sidekick.Apis.PoeWiki.Api
 {
-    public record BossResult
+    internal record BossResult
     {
         public string? Name { get; init; }
 

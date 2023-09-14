@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Sidekick.Apis.Poe.Trade.Filters
 {
-    public class ArmorFilter
+    internal class ArmorFilter
     {
         [JsonPropertyName("ar")]
         public SearchFilterValue? Armor { get; set; }

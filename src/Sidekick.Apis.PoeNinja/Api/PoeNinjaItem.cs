@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Sidekick.Apis.PoeNinja.Api
 {
-    public record PoeNinjaItem
+    internal record PoeNinjaItem
     {
         public string? Name { get; init; }
 

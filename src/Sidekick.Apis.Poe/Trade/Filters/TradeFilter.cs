@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Sidekick.Apis.Poe.Trade.Filters
 {
-    public class TradeFilter
+    internal class TradeFilter
     {
         public SearchFilterOption? Account { get; set; }
 
