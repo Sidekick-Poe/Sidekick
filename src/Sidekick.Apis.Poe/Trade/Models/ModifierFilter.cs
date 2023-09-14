@@ -24,9 +24,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void NormalizeMinValue()
         {
-            if (Line.Modifier?.Category == ModifierCategory.Enchant
-                || Line.Modifier?.Category == ModifierCategory.Crucible
-                || Line.Modifier?.OptionValue != null)
+            if (Line.Modifier?.OptionValue != null)
             {
                 return;
             }
@@ -52,9 +50,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void NormalizeMaxValue()
         {
-            if (Line.Modifier?.Category == ModifierCategory.Enchant
-                || Line.Modifier?.Category == ModifierCategory.Crucible
-                || Line.Modifier?.OptionValue != null)
+            if (Line.Modifier?.OptionValue != null)
             {
                 return;
             }
@@ -80,9 +76,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void SetExactValue()
         {
-            if (Line.Modifier?.Category == ModifierCategory.Enchant
-                || Line.Modifier?.Category == ModifierCategory.Crucible
-                || Line.Modifier?.OptionValue != null)
+            if (Line.Modifier?.OptionValue != null)
             {
                 return;
             }
