@@ -21,6 +21,7 @@ namespace Sidekick.Apis.Poe
 
             services.AddTransient<IPoeTradeClient, PoeTradeClient>();
             services.AddTransient<FilterResources>();
+            services.AddTransient<TradeCurrencyResources>();
 
             services.AddSingleton<IItemParser, ItemParser>();
             services.AddSingleton<ITradeSearchService, TradeSearchService>();
