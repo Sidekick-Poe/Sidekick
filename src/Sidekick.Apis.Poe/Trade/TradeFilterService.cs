@@ -257,18 +257,31 @@ namespace Sidekick.Apis.Poe.Trade
             bool? enabled = false,
             double? min = null)
         {
-            if (label == null || !double.TryParse(value.ToString(), out var doubleValue) || doubleValue == 0)
+            if (label == null)
             {
                 return;
             }
 
-            filters.Add(new PropertyFilter(
-                enabled: enabled,
-                type: type,
-                value: value,
-                text: label,
-                min: min,
-                delta: delta ?? 1));
+            if (double.TryParse(value.ToString(), out var doubleValue) && doubleValue != 0)
+            {
+                filters.Add(new PropertyFilter(
+                    enabled: enabled,
+                    type: type,
+                    value: value,
+                    text: label,
+                    min: min,
+                    delta: delta ?? 1));
+            }
+            else if (value is bool boolValue && boolValue)
+            {
+                filters.Add(new PropertyFilter(
+                    enabled: enabled,
+                    type: type,
+                    value: value,
+                    text: label,
+                    min: min,
+                    delta: delta ?? 1));
+            }
         }
     }
 }

@@ -50,6 +50,8 @@ namespace Sidekick.Modules.Settings
 
         public string Trade_Layout { get; set; }
 
+        public string Trade_Currency { get; set; }
+
         public string Key_Close { get; set; } = "Space";
 
         public bool EscapeClosesOverlays { get; set; } = true;

@@ -8,6 +8,7 @@ using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Results;
+using Sidekick.Common.Enums;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Items.Modifiers;
 using Sidekick.Common.Game.Languages;
@@ -39,7 +40,7 @@ namespace Sidekick.Apis.Poe.Trade
             this.modifierProvider = modifierProvider;
         }
 
-        public async Task<TradeSearchResult<string>> SearchBulk(Item item)
+        public async Task<TradeSearchResult<string>> SearchBulk(Item item, TradeOptions options)
         {
             try
             {
@@ -92,7 +93,7 @@ namespace Sidekick.Apis.Poe.Trade
             throw new Exception("[Trade API] Could not understand the API response.");
         }
 
-        public async Task<TradeSearchResult<string>> Search(Item item, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null)
+        public async Task<TradeSearchResult<string>> Search(Item item, TradeOptions options, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null)
         {
             try
             {
@@ -104,6 +105,7 @@ namespace Sidekick.Apis.Poe.Trade
                 }
 
                 var request = new QueryRequest();
+                request.Query.Filters.TradeFilters.Filters.Price.Option = options.Currency.GetValueAttribute();
 
                 if (item.Metadata.Category == Category.ItemisedMonster)
                 {
