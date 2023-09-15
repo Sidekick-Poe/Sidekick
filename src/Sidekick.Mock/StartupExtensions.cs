@@ -9,6 +9,7 @@ namespace Sidekick.Mock
     {
         public static IServiceCollection AddSidekickMocks(this IServiceCollection services)
         {
+            services.TryAddTransient<IClipboardProvider, MockClipboardProvider>();
             services.TryAddSingleton<IApplicationService, MockApplicationService>();
             services.TryAddSingleton<IProcessProvider, MockProcessProvider>();
             services.TryAddSingleton<IKeyboardProvider, MockKeyboardProvider>();

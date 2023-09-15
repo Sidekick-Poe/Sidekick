@@ -50,11 +50,11 @@ builder.Services
     // Common
     .AddSidekickCommon()
     .AddSidekickCommonBlazor()
-    .AddSidekickCommonPlatform(o =>
-    {
-        o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
-        o.OsxIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/apple-touch-icon.png");
-    })
+    // .AddSidekickCommonPlatform(o =>
+    // {
+    //     o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
+    //     o.OsxIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/apple-touch-icon.png");
+    // })
 
     // Apis
     .AddSidekickGitHubApi()
@@ -71,7 +71,10 @@ builder.Services
     .AddSidekickGeneral()
     .AddSidekickMaps()
     .AddSidekickSettings(builder.Configuration)
-    .AddSidekickTrade();
+    .AddSidekickTrade()
+
+    // Mocks
+    .AddSidekickMocks();
 
 builder.Services.AddSingleton<IApplicationService, MockApplicationService>();
 builder.Services.AddSingleton<ITrayProvider, MockTrayProvider>();
