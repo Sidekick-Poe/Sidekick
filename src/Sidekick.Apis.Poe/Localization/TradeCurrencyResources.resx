@@ -117,100 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Age_Day" xml:space="preserve">
-    <value>{0} day</value>
+  <data name="Alchemy" xml:space="preserve">
+    <value>Orb of Alchemy</value>
   </data>
-  <data name="Age_Days" xml:space="preserve">
-    <value>{0} days</value>
+  <data name="Alteration" xml:space="preserve">
+    <value>Orb of Alteration</value>
   </data>
-  <data name="Age_Hour" xml:space="preserve">
-    <value>{0} hour</value>
+  <data name="Blessed" xml:space="preserve">
+    <value>Blessed Orb</value>
   </data>
-  <data name="Age_Hours" xml:space="preserve">
-    <value>{0} hours</value>
+  <data name="Cartographer" xml:space="preserve">
+    <value>Cartographer's Chisel</value>
   </data>
-  <data name="Age_Minute" xml:space="preserve">
-    <value>{0} minute</value>
+  <data name="Chance" xml:space="preserve">
+    <value>Orb of Chance</value>
   </data>
-  <data name="Age_Minutes" xml:space="preserve">
-    <value>{0} minutes</value>
+  <data name="Chaos" xml:space="preserve">
+    <value>Chaos Orb</value>
   </data>
-  <data name="Age_Now" xml:space="preserve">
-    <value>now</value>
+  <data name="ChaosEquivalent" xml:space="preserve">
+    <value>Chaos Orb Equivalent</value>
   </data>
-  <data name="Age_Seconds" xml:space="preserve">
-    <value>{0} seconds</value>
+  <data name="ChaosOrDivine" xml:space="preserve">
+    <value>Chaos or Divine</value>
   </data>
-  <data name="Base_Percentile" xml:space="preserve">
-    <value>Base Percentile</value>
+  <data name="Chromatic" xml:space="preserve">
+    <value>Chromatic Orb</value>
   </data>
-  <data name="BuyoutPrice" xml:space="preserve">
-    <value>Buyout Price</value>
+  <data name="Divine" xml:space="preserve">
+    <value>Divine Orb</value>
   </data>
-  <data name="Class" xml:space="preserve">
-    <value>Item Class</value>
+  <data name="Exalted" xml:space="preserve">
+    <value>Exalted Orb</value>
   </data>
-  <data name="Class_Hint" xml:space="preserve">
-    <value>If checked, Sidekick will search for all items of this class. If left unchecked, Sidekick will search for this specific type. (e.g. Type: Prophet Crown vs Class: Helmet)</value>
+  <data name="Fusing" xml:space="preserve">
+    <value>Orb of Fusing</value>
   </data>
-  <data name="Corrupted" xml:space="preserve">
-    <value>Corrupted</value>
+  <data name="Gemcutter" xml:space="preserve">
+    <value>Gemcutter's Prism</value>
   </data>
-  <data name="CountString" xml:space="preserve">
-    <value>Showing {0} out of {1} items</value>
+  <data name="GoldCoin" xml:space="preserve">
+    <value>Gold Coin</value>
   </data>
-  <data name="Filters_Equals" xml:space="preserve">
-    <value>Val</value>
+  <data name="Jeweller" xml:space="preserve">
+    <value>Jeweller's Orb</value>
   </data>
-  <data name="Filters_Max" xml:space="preserve">
-    <value>Max</value>
+  <data name="Regal" xml:space="preserve">
+    <value>Regal Orb</value>
   </data>
-  <data name="Filters_Min" xml:space="preserve">
-    <value>Min</value>
+  <data name="Regret" xml:space="preserve">
+    <value>Orb of Regret</value>
   </data>
-  <data name="Filters_Submit" xml:space="preserve">
-    <value>Search</value>
+  <data name="Scouring" xml:space="preserve">
+    <value>Orb of Scouring</value>
   </data>
-  <data name="ItemLevel" xml:space="preserve">
-    <value>Item Level</value>
-  </data>
-  <data name="Layout" xml:space="preserve">
-    <value>Layout</value>
-  </data>
-  <data name="Layout_Cards_Maximized" xml:space="preserve">
-    <value>Detailed results</value>
-  </data>
-  <data name="Layout_Cards_Minimized" xml:space="preserve">
-    <value>Minimal details</value>
-  </data>
-  <data name="LoadMoreData" xml:space="preserve">
-    <value>Load More Data</value>
-  </data>
-  <data name="ModifierHint" xml:space="preserve">
-    <value>This drop down allows you to select an alternate modifier. Sidekick does its best to find the best fitting modifier, but sometimes it fails to find the correct modifier as the game text sometimes differs from the trade modifier text.</value>
-  </data>
-  <data name="OpenQueryInWebsite" xml:space="preserve">
-    <value>Open query in the official website</value>
-  </data>
-  <data name="Parsing" xml:space="preserve">
-    <value>Parsing your item</value>
-  </data>
-  <data name="Prediction" xml:space="preserve">
-    <value>PoePrices.info</value>
-  </data>
-  <data name="PredictionConfidence" xml:space="preserve">
-    <value>Confidence: {0}%</value>
-  </data>
-  <data name="Requires" xml:space="preserve">
-    <value>Requires</value>
-  </data>
-  <data name="Scourged" xml:space="preserve">
-    <value>Scourged</value>
-  </data>
-  <data name="Trade" xml:space="preserve">
-    <value>Trade</value>
-  </data>
-  <data name="Unidentified" xml:space="preserve">
-    <value>Unidentified</value>
+  <data name="Vaal" xml:space="preserve">
+    <value>Vaal Orb</value>
   </data>
 </root>

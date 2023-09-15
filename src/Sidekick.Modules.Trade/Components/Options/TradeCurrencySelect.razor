@@ -1,0 +1,73 @@
+@using Sidekick.Apis.Poe.Localization
+@using Sidekick.Common.Enums
+
+<MudMenu>
+    <ActivatorContent>
+        <span>
+            <MudChip Size="Size.Small" Color="Color.Info">
+                @Label
+                <MudIcon Icon="@Icons.Material.Filled.ArrowDropDown" Size="Size.Small" />
+            </MudChip>
+        </span>
+    </ActivatorContent>
+    <ChildContent>
+        @foreach (var option in Options)
+        {
+            <MudMenuItem OnClick="() => ValueChanged(option.Key)">@option.Value</MudMenuItem>
+        }
+    </ChildContent>
+</MudMenu>
+
+@code {
+    [Inject]
+    private ISettings Settings { get; set; }
+
+    [Inject]
+    private ISettingsService SettingsService { get; set; }
+
+    [Inject]
+    private TradeResources Resources { get; set; }
+
+    [Inject]
+    private IStringLocalizer<TradeCurrencyResources> OptionsLocalizer { get; set; }
+
+    [Parameter]
+    public EventCallback Changed { get; set; }
+
+    private string Value { get; set; } = "null";
+
+    private Dictionary<string, string> Options { get; set; }
+
+    private string Label => Options?.FirstOrDefault(x => x.Key == Value).Value;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        Value = Settings.Trade_Currency ?? "null";
+        Options = new();
+
+        foreach (var x in Enum.GetValues<TradeCurrency>())
+        {
+            Options.Add(x.GetValueAttribute() ?? "null", OptionsLocalizer[x.ToString()]);
+        }
+
+        if (Value == null || !Options.ContainsKey(Value))
+        {
+            await ValueChanged(Options.First().Key);
+        }
+    }
+
+    private async Task ValueChanged(string value)
+    {
+        Value = value;
+
+        if (value == "null")
+        {
+            value = null;
+        }
+
+        await SettingsService.Save(nameof(ISettings.Trade_Currency), value);
+        await Changed.InvokeAsync();
+    }
+}

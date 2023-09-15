@@ -25,10 +25,40 @@ namespace Sidekick.Common.Enums
         /// </summary>
         /// <param name="value">The enum to get the value for.</param>
         /// <returns>The value associated with the enum.</returns>
-        public static string GetValueAttribute(this Enum value)
+        public static string? GetValueAttribute(this Enum value)
         {
             var attribute = value.GetAttribute<EnumValueAttribute>();
             return attribute == null ? value.ToString() : attribute.Value;
+        }
+
+        /// <summary>
+        /// Gets the enum from an enum value.
+        /// </summary>
+        /// <typeparam name="T">The type of enum to return.</typeparam>
+        /// <param name="value">The value to match with.</param>
+        /// <returns>The enum if it is found, or null.</returns>
+        public static T? GetEnumFromValue<T>(this string? value)
+          where T : Enum
+        {
+            var type = typeof(T);
+            var attributeType = typeof(EnumValueAttribute);
+            var fields = type.GetFields();
+            foreach (var field in fields)
+            {
+                var attribute = field.GetCustomAttributes(attributeType, false);
+                if (attribute == null || attribute.Length == 0)
+                {
+                    continue;
+                }
+
+                var attributeValue = ((EnumValueAttribute)attribute[0]).Value;
+                if (attributeValue == value)
+                {
+                    return (T?)field.GetValue(null) ?? default;
+                }
+            }
+
+            return default;
         }
     }
 }

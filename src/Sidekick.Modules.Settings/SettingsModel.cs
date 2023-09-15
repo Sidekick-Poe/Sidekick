@@ -44,6 +44,8 @@ namespace Sidekick.Modules.Settings
 
         public string Trade_Key_Check { get; set; }
 
+        public string Trade_Currency { get; set; }
+
         public string Key_Close { get; set; }
 
         public bool EscapeClosesOverlays { get; set; }

@@ -1,9 +1,11 @@
 @if (QueryId != null)
 {
     <div class="d-flex flex-row align-center justify-space-between mb-2">
-        <MudText Color="Color.Info">@Settings.LeagueId</MudText>
         <div>
+            <MudText Color="Color.Info">@Settings.LeagueId</MudText>
             <CountString Count="Count" Total="Total" />
+        </div>
+        <div>
             <MudButtonGroup Size="@Size.Small">
                 <OpenWebsiteLink Item="Item" QueryId="@QueryId" />
                 @if (CanExpand)
@@ -11,6 +13,7 @@
                     <ToggleLayoutButton Layout="Layout" LayoutChanged="LayoutChanged" />
                 }
             </MudButtonGroup>
+            <TradeCurrencySelect Changed="Changed" />
         </div>
     </div>
 }
@@ -23,6 +26,8 @@
 
     [Parameter] public Layout Layout { get; set; }
     [Parameter] public EventCallback<Layout> LayoutChanged { get; set; }
+
+    [Parameter] public EventCallback Changed { get; set; }
 
     [Parameter] public int Count { get; set; }
     [Parameter] public int Total { get; set; }
