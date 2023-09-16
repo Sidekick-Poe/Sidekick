@@ -1,4 +1,4 @@
-using Sidekick.Common.Game.Items.Modifiers;
+using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Models
 {
@@ -7,7 +7,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
         public ModifierFilter(ModifierLine line)
         {
             Line = line;
-            Enabled = line.Modifier?.Category == ModifierCategory.Fractured;
+            Enabled = line.Modifiers.FirstOrDefault()?.Category == ModifierCategory.Fractured;
             NormalizeMinValue();
         }
 
@@ -24,24 +24,19 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void NormalizeMinValue()
         {
-            if (Line.Modifier?.OptionValue != null)
+            if (Line.OptionValue != null || !Line.Values.Any())
             {
                 return;
             }
 
-            var value = Line.Modifier?.Values.OrderBy(x => x).FirstOrDefault();
-            if (value == null)
+            var value = Line.Values.OrderBy(x => x).FirstOrDefault();
+            if (value > 0)
             {
-                return;
-            }
-
-            if (value.Value > 0)
-            {
-                Min = (int)Math.Max(Math.Min(value.Value - 1, value.Value * 0.9), 0);
+                Min = (int)Math.Max(Math.Min(value - 1, value * 0.9), 0);
             }
             else
             {
-                Min = (int)Math.Min(Math.Min(value.Value - 1, value.Value * 1.1), 0);
+                Min = (int)Math.Min(Math.Min(value - 1, value * 1.1), 0);
             }
         }
 
@@ -50,24 +45,19 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void NormalizeMaxValue()
         {
-            if (Line.Modifier?.OptionValue != null)
+            if (Line.OptionValue != null || !Line.Values.Any())
             {
                 return;
             }
 
-            var value = Line.Modifier?.Values.OrderBy(x => x).FirstOrDefault();
-            if (value == null)
+            var value = Line.Values.OrderBy(x => x).FirstOrDefault();
+            if (value > 0)
             {
-                return;
-            }
-
-            if (value.Value > 0)
-            {
-                Max = (int)Math.Max(Math.Max(value.Value + 1, value.Value * 1.1), 0);
+                Max = (int)Math.Max(Math.Max(value + 1, value * 1.1), 0);
             }
             else
             {
-                Max = (int)Math.Min(Math.Max(value.Value + 1, value.Value * 0.9), 0);
+                Max = (int)Math.Min(Math.Max(value + 1, value * 0.9), 0);
             }
         }
 
@@ -76,17 +66,12 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void SetExactValue()
         {
-            if (Line.Modifier?.OptionValue != null)
+            if (Line.OptionValue != null || !Line.Values.Any())
             {
                 return;
             }
 
-            var value = Line.Modifier?.Values.OrderBy(x => x).FirstOrDefault();
-            if (value == null)
-            {
-                return;
-            }
-
+            var value = Line.Values.OrderBy(x => x).FirstOrDefault();
             Min = (int)value;
             Max = (int)value;
         }

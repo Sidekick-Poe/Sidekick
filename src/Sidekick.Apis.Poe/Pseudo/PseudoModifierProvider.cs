@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Apis.Poe.Pseudo.Models;
-using Sidekick.Common.Game.Items.Modifiers;
+using Sidekick.Common.Game.Items;
 using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Pseudo
@@ -33,7 +33,7 @@ namespace Sidekick.Apis.Poe.Pseudo
             }
 
             var result = await englishModifierProvider.GetList();
-            var groups = InitGroups(result);
+            var groups = InitializeGroups(result);
 
             foreach (var category in result)
             {
@@ -113,7 +113,7 @@ namespace Sidekick.Apis.Poe.Pseudo
             }
         }
 
-        private static List<PseudoPatternGroup> InitGroups(List<ApiCategory> categories)
+        private static List<PseudoPatternGroup> InitializeGroups(List<ApiCategory> categories)
         {
             var pseudoCategory = categories
                 .FirstOrDefault(x => x.Entries.FirstOrDefault()?.Id?.Split('.').FirstOrDefault() == "pseudo");
@@ -605,61 +605,62 @@ namespace Sidekick.Apis.Poe.Pseudo
             return groups;
         }
 
-        public List<Modifier> Parse(List<ModifierLine> modifiers)
+        public List<PseudoModifier> Parse(List<ModifierLine> lines)
         {
-            var pseudo = new List<Modifier>();
+            var modifiers = new List<PseudoModifier>();
 
-            foreach (var line in modifiers)
+            foreach (var line in lines)
             {
-                if (line.Modifier == null)
+                var modifier = line.Modifiers.FirstOrDefault();
+                if (modifier == null)
                 {
                     continue;
                 }
 
-                FillPseudo(pseudo, line.Modifier);
+                FillPseudo(modifiers, line);
             }
 
-            pseudo.ForEach(x =>
+            modifiers.ForEach(x =>
             {
                 if (x.Text == null)
                 {
                     return;
                 }
 
-                x.Text = ParseHashPattern.Replace(x.Text, ((int)x.Values[0]).ToString(), 1);
+                x.Text = ParseHashPattern.Replace(x.Text, ((int)x.Value).ToString(), 1);
             });
 
-            return pseudo;
+            return modifiers;
         }
 
-        private void FillPseudo(List<Modifier> pseudoMods, Modifier modifier)
+        private void FillPseudo(List<PseudoModifier> modifiers, ModifierLine line)
         {
-            Modifier? pseudoMod;
             foreach (var pseudoDefinition in Definitions)
             {
                 foreach (var pseudoModifier in pseudoDefinition.Modifiers)
                 {
-                    if (pseudoModifier.Ids.Any(id => id == modifier.Id))
+                        var lineModifier = line.Modifiers.FirstOrDefault();
+                    if (lineModifier == null || !pseudoModifier.Ids.Any(id => id == lineModifier.Id))
                     {
-                        pseudoMod = pseudoMods.FirstOrDefault(x => x.Id == pseudoDefinition.Id);
-                        if (pseudoMod == null)
-                        {
-                            pseudoMod = new Modifier(
-                                text: pseudoDefinition.Text)
-                            {
-                                Id = pseudoDefinition.Id,
-                                Category = ModifierCategory.Pseudo,
-                            };
-                            pseudoMod.Values.Add((int)(modifier.Values.FirstOrDefault() * pseudoModifier.Multiplier));
-                            pseudoMods.Add(pseudoMod);
-                        }
-                        else
-                        {
-                            pseudoMod.Values[0] += (int)(modifier.Values.FirstOrDefault() * pseudoModifier.Multiplier);
-                        }
-
-                        break;
+                        continue;
                     }
+
+                    var modifier = modifiers.FirstOrDefault(x => x.Id == pseudoDefinition.Id);
+                    if (modifier == null)
+                    {
+                        modifiers.Add(new PseudoModifier(
+                            text: pseudoDefinition.Text)
+                        {
+                            Id = pseudoDefinition.Id,
+                            Value = (int)(line.Values.FirstOrDefault() * pseudoModifier.Multiplier),
+                        });
+                    }
+                    else
+                    {
+                        modifier.Value += (int)(line.Values.FirstOrDefault() * pseudoModifier.Multiplier);
+                    }
+
+                    break;
                 }
             }
         }

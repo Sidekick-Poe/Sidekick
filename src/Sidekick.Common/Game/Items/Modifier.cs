@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Game.Items.Modifiers
+namespace Sidekick.Common.Game.Items
 {
     public class Modifier
     {
@@ -16,11 +16,5 @@ namespace Sidekick.Common.Game.Items.Modifiers
         public ModifierCategory Category { get; set; }
 
         public string Text { get; set; }
-
-        public List<double> Values { get; set; } = new List<double>();
-
-        public int? OptionValue { get; set; }
-
-        public bool HasValue => OptionValue == null && Values.Count > 0;
     }
 }

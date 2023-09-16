@@ -1,7 +1,6 @@
 using Sidekick.Apis.Poe.Localization;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Items.Modifiers;
 using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Trade
@@ -31,43 +30,28 @@ namespace Sidekick.Apis.Poe.Trade
                 yield break;
             }
 
-            foreach (var modifier in BuildModifierFilters(item.ModifierLines))
-            {
-                yield return modifier;
-            }
-
-            // No pseudo filters for currencies
-            if (item.Metadata.Category == Category.Currency)
-            {
-                yield break;
-            }
-
-            foreach (var modifier in BuildPseudoFilters(item.PseudoModifiers))
-            {
-                yield return modifier;
-            }
-        }
-
-        private IEnumerable<ModifierFilter> BuildModifierFilters(List<ModifierLine> modifierLines)
-        {
-            if (modifierLines.Count == 0) yield break;
-
-            foreach (var modifierLine in modifierLines)
+            foreach (var modifierLine in item.ModifierLines)
             {
                 yield return new ModifierFilter(modifierLine);
             }
         }
 
-        private IEnumerable<ModifierFilter> BuildPseudoFilters(List<Modifier> modifiers)
+        public IEnumerable<PseudoModifierFilter> GetPseudoModifierFilters(Item item)
         {
-            if (modifiers.Count == 0) yield break;
-
-            foreach (var modifier in modifiers)
+            // No filters for divination cards, etc.
+            if (item.Metadata.Category == Category.DivinationCard
+                || item.Metadata.Category == Category.Gem
+                || item.Metadata.Category == Category.ItemisedMonster
+                || item.Metadata.Category == Category.Leaguestone
+                || item.Metadata.Category == Category.Undefined
+                || item.Metadata.Category == Category.Currency)
             {
-                yield return new ModifierFilter(new ModifierLine(modifier.Text)
-                {
-                    Modifier = modifier,
-                });
+                yield break;
+            }
+
+            foreach (var modifier in item.PseudoModifiers)
+            {
+                yield return new PseudoModifierFilter(modifier);
             }
         }
 

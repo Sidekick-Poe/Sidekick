@@ -7,7 +7,6 @@ using Sidekick.Apis.PoeWiki.Models;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Items.Modifiers;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;

@@ -1,6 +1,3 @@
-using System.Reflection.Emit;
-using Sidekick.Common.Game.Items.Modifiers;
-
 namespace Sidekick.Apis.Poe.Trade.Models
 {
     public class PropertyFilter : ITradeFilter
@@ -26,9 +23,11 @@ namespace Sidekick.Apis.Poe.Trade.Models
                 case bool:
                     ValueType = FilterValueType.Boolean;
                     break;
+
                 case int:
                     ValueType = FilterValueType.Int;
                     break;
+
                 case double:
                     ValueType = FilterValueType.Double;
                     break;

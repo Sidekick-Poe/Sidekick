@@ -1,4 +1,4 @@
-using Sidekick.Common.Game.Items.Modifiers;
+using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Modifiers.Models
 {

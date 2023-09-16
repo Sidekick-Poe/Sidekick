@@ -10,7 +10,6 @@ using Sidekick.Apis.Poe.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Items.Modifiers;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
 
@@ -60,8 +59,8 @@ namespace Sidekick.Apis.Poe.Trade
                 }
 
                 var model = new BulkQueryRequest();
-                model.Exchange.Want.Add(itemId);
-                model.Exchange.Have.Add("chaos");
+                // model.Exchange.Want.Add(itemId);
+                // model.Exchange.Have.Add("chaos");
 
                 var json = JsonSerializer.Serialize(model, poeTradeClient.Options);
                 var body = new StringContent(json, Encoding.UTF8, "application/json");
@@ -93,7 +92,7 @@ namespace Sidekick.Apis.Poe.Trade
             throw new Exception("[Trade API] Could not understand the API response.");
         }
 
-        public async Task<TradeSearchResult<string>> Search(Item item, TradeOptions options, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null)
+        public async Task<TradeSearchResult<string>> Search(Item item, TradeOptions options, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null, List<PseudoModifierFilter>? pseudoFilters = null)
         {
             try
             {
@@ -134,6 +133,7 @@ namespace Sidekick.Apis.Poe.Trade
 
                 SetPropertyFilters(request.Query, propertyFilters);
                 SetModifierFilters(request.Query.Stats, modifierFilters);
+                SetPseudoModifierFilters(request.Query.Stats, pseudoFilters);
                 SetSocketFilters(item, request.Query.Filters);
 
                 if (item.Properties.AlternateQuality)
@@ -396,18 +396,91 @@ namespace Sidekick.Apis.Poe.Trade
                 return;
             }
 
-            var group = new StatFilterGroup();
-            group.Filters.AddRange(modifierFilters
-                .Where(x => x.Line?.Modifier != null)
-                .Select(x => new StatFilter()
+            var andGroup = stats.FirstOrDefault(x => x.Type == StatType.And);
+            if (andGroup == null)
+            {
+                andGroup = new StatFilterGroup()
                 {
-                    Disabled = !(x.Enabled ?? false),
-                    Id = x.Line?.Modifier?.Id,
-                    Value = new SearchFilterValue(x),
-                })
-                .ToList());
+                    Type = StatType.And,
+                };
+                stats.Prepend(andGroup);
+            }
 
-            stats.Add(group);
+            foreach (var filter in modifierFilters)
+            {
+                if (filter.Line == null || filter.Enabled == false)
+                {
+                    continue;
+                }
+
+                if (filter.Line.Modifiers.Count() == 1)
+                {
+                    var modifier = filter.Line?.Modifiers?.FirstOrDefault();
+                    if (modifier == null)
+                    {
+                        continue;
+                    }
+
+                    andGroup.Filters.Add(new StatFilter()
+                    {
+                        Id = modifier.Id,
+                        Value = new SearchFilterValue(filter),
+                    });
+                    continue;
+                }
+
+                var group = new StatFilterGroup()
+                {
+                    Type = StatType.Count,
+                    Value = new SearchFilterValue()
+                    {
+                        Min = 1,
+                    },
+                };
+
+                foreach (var modifier in filter.Line.Modifiers)
+                {
+                    group.Filters.Add(new StatFilter()
+                    {
+                        Id = modifier.Id,
+                        Value = new SearchFilterValue(filter),
+                    });
+                }
+
+                stats.Add(group);
+            }
+        }
+
+        private static void SetPseudoModifierFilters(List<StatFilterGroup> stats, List<PseudoModifierFilter>? pseudoFilters)
+        {
+            if (pseudoFilters == null)
+            {
+                return;
+            }
+
+            var andGroup = stats.FirstOrDefault(x => x.Type == StatType.And);
+            if (andGroup == null)
+            {
+                andGroup = new StatFilterGroup()
+                {
+                    Type = StatType.And,
+                };
+                stats.Prepend(andGroup);
+            }
+
+            foreach (var filter in pseudoFilters)
+            {
+                if (filter.Enabled != true)
+                {
+                    continue;
+                }
+
+                andGroup.Filters.Add(new StatFilter()
+                {
+                    Id = filter.Modifier.Id,
+                    Value = new SearchFilterValue(filter),
+                });
+            }
         }
 
         private static void SetSocketFilters(Item item, SearchFilters filters)
@@ -427,7 +500,7 @@ namespace Sidekick.Apis.Poe.Trade
             }
         }
 
-        public async Task<List<TradeItem>> GetResults(string queryId, List<string> ids, List<ModifierFilter>? modifierFilters = null)
+        public async Task<List<TradeItem>> GetResults(string queryId, List<string> ids, List<PseudoModifierFilter>? pseudoFilters = null)
         {
             try
             {
@@ -439,11 +512,9 @@ namespace Sidekick.Apis.Poe.Trade
                 }
 
                 var pseudo = string.Empty;
-                if (modifierFilters != null)
+                if (pseudoFilters != null)
                 {
-                    pseudo = string.Join("", modifierFilters
-                        .Where(x => x.Line?.Modifier != null && x.Line.Modifier.Category == ModifierCategory.Pseudo)
-                        .Select(x => $"&pseudos[]={x.Line?.Modifier?.Id}"));
+                    pseudo = string.Join("", pseudoFilters.Select(x => $"&pseudos[]={x.Modifier?.Id}"));
                 }
 
                 var response = await poeTradeClient.HttpClient.GetAsync(gameLanguageProvider.Language.PoeTradeApiBaseUrl + "fetch/" + string.Join(",", ids) + "?query=" + queryId + pseudo);
@@ -567,7 +638,7 @@ namespace Sidekick.Apis.Poe.Trade
                 result.Item?.Extended?.Mods?.Scourge,
                 ParseHash(result.Item?.Extended?.Hashes?.Scourge)));
 
-            item.PseudoModifiers.AddRange(ParseModifiers(
+            item.PseudoModifiers.AddRange(ParsePseudoModifiers(
                 result.Item?.PseudoMods,
                 result.Item?.Extended?.Mods?.Pseudo,
                 ParseHash(result.Item?.Extended?.Hashes?.Pseudo)));
@@ -697,22 +768,22 @@ namespace Sidekick.Apis.Poe.Trade
                 var text = texts.FirstOrDefault(x => modifierProvider.IsMatch(id, x)) ?? texts[index];
                 var mod = mods.FirstOrDefault(x => x.Magnitudes != null && x.Magnitudes.Any(y => y.Hash == id));
 
-                yield return new ModifierLine(
-                    text: text)
+                yield return new ModifierLine(text: text)
                 {
-                    Modifier = new Modifier(
-                        text: text)
-                    {
-                        Id = id,
-                        Category = modifierProvider.GetModifierCategory(id),
-                        Tier = mod?.Tier,
-                        TierName = mod?.Name,
+                    Modifiers = new() {
+                        new Modifier(text: text)
+                        {
+                            Id = id,
+                            Category = modifierProvider.GetModifierCategory(id),
+                            Tier = mod?.Tier,
+                            TierName = mod?.Name,
+                        },
                     },
                 };
             }
         }
 
-        private IEnumerable<Modifier> ParseModifiers(List<string>? texts, List<Mod>? mods, List<LineContentValue>? hashes)
+        private IEnumerable<PseudoModifier> ParsePseudoModifiers(List<string>? texts, List<Mod>? mods, List<LineContentValue>? hashes)
         {
             if (texts == null || mods == null || hashes == null)
             {
@@ -734,13 +805,10 @@ namespace Sidekick.Apis.Poe.Trade
                 }
 
                 var mod = mods.FirstOrDefault(x => x.Magnitudes != null && x.Magnitudes.Any(y => y.Hash == id));
-                yield return new Modifier(
+                yield return new PseudoModifier(
                     text: text)
                 {
                     Id = id,
-                    Category = modifierProvider.GetModifierCategory(id),
-                    Tier = mod?.Tier,
-                    TierName = mod?.Name,
                 };
             }
         }

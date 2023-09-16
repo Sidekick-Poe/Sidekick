@@ -6,21 +6,17 @@
                          Dense="true"
                          Size="Size.Small">
                 <div class="d-flex align-center">
-                    <ItemModifierText Text="@Filter.Line.Text"
-                                      Category="Filter.Line.Modifiers.FirstOrDefault().Category" />
+                    <ItemModifierCategoryChip Category="ModifierCategory.Pseudo" />
+                    <ItemModifierText Text="@Filter.Modifier.Text"
+                                      Category="ModifierCategory.Pseudo" />
 
                 </div>
             </MudCheckBox>
         </div>
 
-        @if (Filter.Enabled == true && Filter.Line.HasValues)
+        @if (Filter.Enabled == true && Filter.Modifier.HasValue)
         {
             <FilterRange @bind-Min="Filter.Min" @bind-Max="Filter.Max" TypeChanged="TypeChanged" />
-        }
-
-        @if (EnchantmentOilNames?.Any() == true)
-        {
-            <OilAnointment OilNames="EnchantmentOilNames" />
         }
     </div>
 </div>
@@ -29,25 +25,10 @@
     [Inject]
     public TradeResources Resources { get; set; }
 
-    [Inject]
-    private IPoeWikiClient PoeWikiClient { get; set; }
-
     [Parameter]
-    public ModifierFilter Filter { get; set; }
+    public PseudoModifierFilter Filter { get; set; }
 
     private List<string> EnchantmentOilNames { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        if (Filter.Line.Modifiers.FirstOrDefault().Category == ModifierCategory.Enchant && PoeWikiClient.IsEnabled)
-        {
-            var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Line);
-            if (oilMetadataIds != null)
-            {
-                EnchantmentOilNames = oilMetadataIds.Select(x => PoeWikiClient.BlightOilNamesByMetadataIds[x]).ToList();
-            }
-        }
-    }
 
     private void TypeChanged(FilterRange.RangeType type)
     {

@@ -1,13 +1,5 @@
-using Sidekick.Common.Blazor;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
-using System.Reflection;
-using System.Xml;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Items.Modifiers;
 using Xunit;
-using static MudBlazor.CategoryTypes;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace Sidekick.Apis.Poe.Tests.Parser
 {

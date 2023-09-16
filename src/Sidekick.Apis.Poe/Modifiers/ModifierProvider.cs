@@ -6,7 +6,6 @@ using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Apis.Poe.Parser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Items.Modifiers;
 using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Modifiers
@@ -184,11 +183,12 @@ namespace Sidekick.Apis.Poe.Modifiers
             {
                 ModifierCategory.Implicit => "(?:\\ \\(implicit\\))",
                 ModifierCategory.Enchant => "(?:\\ \\(enchant\\))",
-                ModifierCategory.Crafted => "(?:\\ \\(crafted\\))",
+                ModifierCategory.Crafted => "(?:\\ \\(crafted\\))?",
                 ModifierCategory.Veiled => "(?:\\ \\(veiled\\))",
                 ModifierCategory.Fractured => "(?:\\ \\(fractured\\))?",
                 ModifierCategory.Scourge => "(?:\\ \\(scourge\\))",
                 ModifierCategory.Crucible => "(?:\\ \\(crucible\\))",
+                ModifierCategory.Explicit => "(?:\\ \\((?:crafted|fractured)\\))?",
                 _ => "",
             };
 
@@ -308,13 +308,10 @@ namespace Sidekick.Apis.Poe.Modifiers
                     MatchLineWithFuzzy(parsingItem, modifierLine, line);
 
                     var fuzzyLine = CleanFuzzyText(line.Text);
-                    modifierLine.Alternates = modifierLine.Alternates
+                    modifierLine.Modifiers = modifierLine.Modifiers
                         .OrderBy(x => x.Category == ModifierCategory.Pseudo)
                         .ThenByDescending(x => Fuzz.Ratio(fuzzyLine, CleanFuzzyText(x.Text)))
                         .ToList();
-
-                    modifierLine.Modifier = modifierLine.Alternates.FirstOrDefault();
-                    modifierLine.Alternates = modifierLine.Alternates.Skip(1).ToList();
 
                     modifierLines.Add(modifierLine);
                 }
@@ -324,7 +321,7 @@ namespace Sidekick.Apis.Poe.Modifiers
             modifierLines = modifierLines.OrderBy(x => parsingItem.Text.IndexOf(x.Text)).ToList();
 
             // Trim modifier lines
-            modifierLines.RemoveAll(x => x.Modifier == null);
+            modifierLines.RemoveAll(x => x.Modifiers.Count == 0);
 
             return modifierLines;
         }
@@ -338,7 +335,8 @@ namespace Sidekick.Apis.Poe.Modifiers
                     var isMultilineModifier = pattern.LineCount > 1 && pattern.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount)));
                     if (isMultilineModifier)
                     {
-                        ParseMod(modifierLine.Alternates, metadata, pattern, string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount)));
+                        modifierLine.Modifiers.Add(ParseModifier(metadata, pattern));
+                        ParseModifierValues(modifierLine, metadata, pattern, string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount)));
                         line.Parsed = true;
 
                         foreach (var multiline in block.Lines.Skip(lineIndex + 1).Take(pattern.LineCount - 1))
@@ -352,7 +350,8 @@ namespace Sidekick.Apis.Poe.Modifiers
                     }
                     else if (pattern.Pattern.IsMatch(line.Text))
                     {
-                        ParseMod(modifierLine.Alternates, metadata, pattern, line.Text);
+                        modifierLine.Modifiers.Add(ParseModifier(metadata, pattern));
+                        ParseModifierValues(modifierLine, metadata, pattern, line.Text);
                         line.Parsed = true;
                     }
                 }
@@ -401,7 +400,8 @@ namespace Sidekick.Apis.Poe.Modifiers
             {
                 foreach (var modifier in fuzzy.Entries)
                 {
-                    ParseMod(modifierLine.Alternates, modifier.Metadata, modifier.Pattern, line.Text);
+                    ParseModifier(modifier.Metadata, modifier.Pattern);
+                    ParseModifierValues(modifierLine, modifier.Metadata, modifier.Pattern, line.Text);
                 }
             }
 
@@ -409,22 +409,27 @@ namespace Sidekick.Apis.Poe.Modifiers
             line.Parsed = true;
         }
 
-        private void ParseMod(List<Modifier> modifiers, ModifierPatternMetadata metadata, ModifierPattern pattern, string text)
+        private Modifier ParseModifier(ModifierPatternMetadata metadata, ModifierPattern pattern)
         {
-            var modifier = new Modifier(
-                text: pattern.Text)
+            var modifier = new Modifier(text: pattern.Text)
             {
                 Id = metadata.Id,
                 Category = metadata.Category,
             };
 
+            return modifier;
+        }
+
+        private void ParseModifierValues(ModifierLine modifierLine, ModifierPatternMetadata metadata, ModifierPattern pattern, string text)
+        {
             if (metadata.IsOption)
             {
-                modifier.OptionValue = pattern.Value;
+                modifierLine.OptionValue = pattern.Value;
             }
-            else if (pattern.Value.HasValue)
+
+            if (pattern.Value.HasValue)
             {
-                modifier.Values.Add(pattern.Value.Value);
+                modifierLine.Values.Add(pattern.Value.Value);
             }
             else
             {
@@ -433,12 +438,10 @@ namespace Sidekick.Apis.Poe.Modifiers
                 {
                     if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
                     {
-                        modifier.Values.Add(parsedValue);
+                        modifierLine.Values.Add(parsedValue);
                     }
                 }
             }
-
-            modifiers.Add(modifier);
         }
 
         public bool IsMatch(string id, string text)

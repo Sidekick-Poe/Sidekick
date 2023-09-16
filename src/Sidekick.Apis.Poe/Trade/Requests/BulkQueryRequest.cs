@@ -2,12 +2,10 @@ namespace Sidekick.Apis.Poe.Trade.Requests
 {
     public class BulkQueryRequest
     {
-        public BulkQueryRequest()
-        {
-            Exchange.Status.Option = StatusType.Online;
-        }
+        public string Engine { get; } = "new";
 
-        public Exchange Exchange { get; } = new();
-        public Dictionary<string, SortType> Sort { get; } = new() { { "price", SortType.Asc } };
+        public BulkQuery Query { get; } = new();
+
+        public Dictionary<string, string> Sort { get; } = new() { { "have", "asc" } };
     }
 }

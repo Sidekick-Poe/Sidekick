@@ -18,7 +18,7 @@ namespace Sidekick.Common.Localization
         }
 
         /// <inheritdoc/>
-        public InitializationPriority Priority => InitializationPriority.High;
+        public InitializationPriority Priority => InitializationPriority.Critical;
 
         /// <inheritdoc/>
         public Task Initialize()

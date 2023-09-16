@@ -37,6 +37,9 @@
 
         <ModifierFiltersComponent Filters="ModifierFilters"
                                   Rarity="Item.Metadata.Rarity" />
+
+        <PseudoFiltersComponent Filters="PseudoFilters"
+                                Rarity="Item.Metadata.Rarity" />
     </div>
 
     @if (FiltersVisible)
@@ -61,9 +64,12 @@
 
     [Parameter]
     public PropertyFilters PropertyFilters { get; set; }
-
+    
     [Parameter]
     public List<ModifierFilter> ModifierFilters { get; set; }
+
+    [Parameter]
+    public List<PseudoModifierFilter> PseudoFilters { get; set; }
 
     [Parameter]
     public EventCallback OnSearch { get; set; }

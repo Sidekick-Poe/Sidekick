@@ -1,5 +1,3 @@
-using Sidekick.Common.Game.Items.Modifiers;
-
 namespace Sidekick.Common.Game.Items
 {
     public class Item
@@ -11,7 +9,7 @@ namespace Sidekick.Common.Game.Items
             Influences influences,
             List<Socket> sockets,
             List<ModifierLine> modifierLines,
-            List<Modifier> pseudoModifiers)
+            List<PseudoModifier> pseudoModifiers)
         {
             Metadata = metadata;
             Original = original;
@@ -34,7 +32,7 @@ namespace Sidekick.Common.Game.Items
 
         public List<ModifierLine> ModifierLines { get; set; }
 
-        public List<Modifier> PseudoModifiers { get; init; }
+        public List<PseudoModifier> PseudoModifiers { get; init; }
 
         /// <inheritdoc/>
         public override string? ToString()
