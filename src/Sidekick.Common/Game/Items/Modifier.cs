@@ -16,5 +16,7 @@ namespace Sidekick.Common.Game.Items
         public ModifierCategory Category { get; set; }
 
         public string Text { get; set; }
+
+        public override string ToString() => $"[{Id}] {Text}";
     }
 }

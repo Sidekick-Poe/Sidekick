@@ -2,9 +2,9 @@ using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Modifiers.Models
 {
-    public class ModifierPatternMetadata
+    public class ModifierPatternMetadata2
     {
-        public ModifierPatternMetadata(
+        public ModifierPatternMetadata2(
             ModifierCategory category,
             string id,
             bool isOption)

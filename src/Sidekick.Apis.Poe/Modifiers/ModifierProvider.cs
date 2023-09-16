@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Text;
 using System.Text.RegularExpressions;
 using FuzzySharp;
 using Sidekick.Apis.Poe.Clients;
@@ -33,10 +34,8 @@ namespace Sidekick.Apis.Poe.Modifiers
             this.englishModifierProvider = englishModifierProvider;
         }
 
-        private Dictionary<ModifierCategory, List<ModifierPatternMetadata>> Patterns { get; } = new();
-        private List<ModifierPatternMetadata> IncursionRoomPatterns { get; } = new();
-        private List<ModifierPatternMetadata> LogbookFactionPatterns { get; } = new();
-        private Dictionary<string, List<FuzzyEntry>> FuzzyDictionary { get; } = new();
+        private Dictionary<ModifierCategory, List<ModifierPattern>> Patterns { get; } = new();
+        private Dictionary<string, List<ModifierPattern>> FuzzyDictionary { get; } = new();
 
         /// <inheritdoc/>
         public InitializationPriority Priority => InitializationPriority.Low;
@@ -62,7 +61,7 @@ namespace Sidekick.Apis.Poe.Modifiers
                     continue;
                 }
 
-                var patterns = new List<ModifierPatternMetadata>();
+                var patterns = new List<ModifierPattern>();
                 foreach (var entry in category.Entries)
                 {
                     if (entry.Text == null || entry.Id == null)
@@ -70,12 +69,8 @@ namespace Sidekick.Apis.Poe.Modifiers
                         continue;
                     }
 
-                    var modifier = new ModifierPatternMetadata(
-                        category: modifierCategory,
-                        id: entry.Id,
-                        isOption: entry.Option?.Options?.Any() ?? false);
-
-                    if (modifier.IsOption)
+                    var isOption = entry.Option?.Options?.Any() ?? false;
+                    if (isOption)
                     {
                         for (var i = 0; i < entry.Option?.Options.Count; i++)
                         {
@@ -85,7 +80,10 @@ namespace Sidekick.Apis.Poe.Modifiers
                                 continue;
                             }
 
-                            modifier.Patterns.Add(new ModifierPattern(
+                            patterns.Add(new ModifierPattern(
+                                category: modifierCategory,
+                                id: entry.Id,
+                                isOption: entry.Option?.Options?.Any() ?? false,
                                 text: ComputeOptionText(entry.Text, optionText),
                                 fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text, optionText),
                                 pattern: ComputePattern(entry.Text, modifierCategory, optionText))
@@ -96,13 +94,14 @@ namespace Sidekick.Apis.Poe.Modifiers
                     }
                     else
                     {
-                        modifier.Patterns.Add(new ModifierPattern(
+                        patterns.Add(new ModifierPattern(
+                            category: modifierCategory,
+                            id: entry.Id,
+                            isOption: entry.Option?.Options?.Any() ?? false,
                             text: entry.Text,
                             fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text),
                             pattern: ComputePattern(entry.Text, modifierCategory)));
                     }
-
-                    patterns.Add(modifier);
                 }
 
                 if (Patterns.ContainsKey(modifierCategory))
@@ -118,25 +117,15 @@ namespace Sidekick.Apis.Poe.Modifiers
             }
 
             // Prepare special pseudo patterns
-            IncursionRoomPatterns.Clear();
-            Patterns[ModifierCategory.Pseudo]
+            var incursionPatterns = Patterns[ModifierCategory.Pseudo]
                 .Where(x => englishModifierProvider.IncursionRooms.Contains(x.Id))
-                .ToList()
-                .ForEach(x =>
-                {
-                    IncursionRoomPatterns.Add(x);
-                });
-            ComputeSpecialPseudoPattern(IncursionRoomPatterns);
+                .ToList();
+            ComputeSpecialPseudoPattern(incursionPatterns);
 
-            LogbookFactionPatterns.Clear();
-            Patterns[ModifierCategory.Pseudo]
+            var logbookPatterns = Patterns[ModifierCategory.Pseudo]
                 .Where(x => englishModifierProvider.LogbookFactions.Contains(x.Id))
-                .ToList()
-                .ForEach(x =>
-                {
-                    LogbookFactionPatterns.Add(x);
-                });
-            ComputeSpecialPseudoPattern(LogbookFactionPatterns);
+                .ToList();
+            ComputeSpecialPseudoPattern(logbookPatterns);
         }
 
         /// <inheritdoc/>
@@ -159,20 +148,28 @@ namespace Sidekick.Apis.Poe.Modifiers
             };
         }
 
-        private void ComputeSpecialPseudoPattern(List<ModifierPatternMetadata> patterns)
+        private void ComputeSpecialPseudoPattern(List<ModifierPattern> patterns)
         {
-            foreach (var pattern in patterns)
+            var specialPatterns = new List<ModifierPattern>();
+            foreach (var group in patterns.GroupBy(x => x.Id))
             {
-                var basePattern = pattern.Patterns.OrderBy(x => x.Value).First();
-                pattern.Patterns.Add(new ModifierPattern(
-                    text: basePattern.Text,
-                    fuzzyText: ComputeFuzzyText(ModifierCategory.Pseudo, basePattern.Text),
-                    pattern: ComputePattern(basePattern.Text.Split(':', 2).Last().Trim(), ModifierCategory.Pseudo))
+                var pattern = group.OrderBy(x => x.Value).First();
+                specialPatterns.Add(new ModifierPattern(
+                    category: pattern.Category,
+                    id: pattern.Id,
+                    isOption: pattern.IsOption,
+                    text: pattern.Text,
+                    fuzzyText: ComputeFuzzyText(ModifierCategory.Pseudo, pattern.Text),
+                    pattern: ComputePattern(pattern.Text.Split(':', 2).Last().Trim(), ModifierCategory.Pseudo))
                 {
-                    OptionText = basePattern.OptionText,
-                    Value = basePattern.Value,
+                    OptionText = pattern.OptionText,
+                    Value = pattern.Value,
                 });
             }
+
+            var ids = specialPatterns.Select(x => x.Id).Distinct().ToList();
+            Patterns[ModifierCategory.Pseudo].RemoveAll(x => ids.Contains(x.Id));
+            Patterns[ModifierCategory.Pseudo].AddRange(specialPatterns);
         }
 
         private Regex ComputePattern(string text, ModifierCategory? category = null, string? optionText = null)
@@ -257,22 +254,16 @@ namespace Sidekick.Apis.Poe.Modifiers
             return TrimPattern.Replace(text, " ").Trim();
         }
 
-        private void BuildFuzzyDictionary(List<ModifierPatternMetadata> patternMetadatas)
+        private void BuildFuzzyDictionary(List<ModifierPattern> patterns)
         {
-            foreach (var patternMetadata in patternMetadatas)
+            foreach (var pattern in patterns)
             {
-                foreach (var pattern in patternMetadata.Patterns)
+                if (!FuzzyDictionary.ContainsKey(pattern.FuzzyText))
                 {
-                    if (!FuzzyDictionary.ContainsKey(pattern.FuzzyText))
-                    {
-                        FuzzyDictionary.Add(pattern.FuzzyText, new());
-                    }
-
-                    FuzzyDictionary[pattern.FuzzyText].Add(new FuzzyEntry(
-                        metadata: patternMetadata,
-                        pattern: pattern
-                    ));
+                    FuzzyDictionary.Add(pattern.FuzzyText, new());
                 }
+
+                FuzzyDictionary[pattern.FuzzyText].Add(pattern);
             }
         }
 
@@ -291,30 +282,36 @@ namespace Sidekick.Apis.Poe.Modifiers
         {
             var modifierLines = new List<ModifierLine>();
 
-            foreach (var block in parsingItem.Blocks.Where(x => !x.AnyParsed))
+            foreach (var match in MatchModifiers(parsingItem))
             {
-                for (var lineIndex = 0; lineIndex < block.Lines.Count; lineIndex++)
+                var text = new StringBuilder();
+                foreach (var line in match.Lines)
                 {
-                    var line = block.Lines[lineIndex];
-                    if (line.Parsed)
+                    if (text.Length != 0)
                     {
-                        continue;
+                        text.Append('\n');
                     }
 
-                    var modifierLine = new ModifierLine(
-                        text: CleanOriginalTextPattern.Replace(line.Text, string.Empty));
-
-                    MatchLineToPattern(modifierLine, block, line, ref lineIndex);
-                    MatchLineWithFuzzy(parsingItem, modifierLine, line);
-
-                    var fuzzyLine = CleanFuzzyText(line.Text);
-                    modifierLine.Modifiers = modifierLine.Modifiers
-                        .OrderBy(x => x.Category == ModifierCategory.Pseudo)
-                        .ThenByDescending(x => Fuzz.Ratio(fuzzyLine, CleanFuzzyText(x.Text)))
-                        .ToList();
-
-                    modifierLines.Add(modifierLine);
+                    text.Append(line.Text);
+                    line.Parsed = true;
                 }
+
+                var modifierLine = new ModifierLine(text: CleanOriginalTextPattern.Replace(text.ToString(), string.Empty));
+                modifierLines.Add(modifierLine);
+
+                var fuzzyLine = CleanFuzzyText(text.ToString());
+                var patterns = match.Patterns.OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText));
+                foreach (var pattern in patterns)
+                {
+                    var modifier = new Modifier(text: pattern.Text)
+                    {
+                        Id = pattern.Id,
+                        Category = pattern.Category,
+                    };
+                    modifierLine.Modifiers.Add(modifier);
+                }
+
+                ParseModifierValues(modifierLine, patterns);
             }
 
             // Order the mods by the order they appear on the item.
@@ -326,52 +323,61 @@ namespace Sidekick.Apis.Poe.Modifiers
             return modifierLines;
         }
 
-        private void MatchLineToPattern(ModifierLine modifierLine, ParsingBlock block, ParsingLine line, ref int lineIndex)
+        private IEnumerable<ModifierMatch> MatchModifiers(ParsingItem parsingItem)
         {
-            foreach (var metadata in Patterns.SelectMany(x => x.Value))
+            foreach (var block in parsingItem.Blocks.Where(x => !x.AnyParsed))
             {
-                foreach (var pattern in metadata.Patterns)
+                for (var lineIndex = 0; lineIndex < block.Lines.Count; lineIndex++)
                 {
-                    var isMultilineModifier = pattern.LineCount > 1 && pattern.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount)));
-                    if (isMultilineModifier)
+                    var line = block.Lines[lineIndex];
+                    if (line.Parsed)
                     {
-                        modifierLine.Modifiers.Add(ParseModifier(metadata, pattern));
-                        ParseModifierValues(modifierLine, metadata, pattern, string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount)));
-                        line.Parsed = true;
-
-                        foreach (var multiline in block.Lines.Skip(lineIndex + 1).Take(pattern.LineCount - 1))
-                        {
-                            modifierLine.Text += $"\n{line.Text}";
-                            multiline.Parsed = true;
-                        }
-
-                        // Increment the line index by one less of the pattern count. The default lineIndex++ will take care of the remaining increment.
-                        lineIndex += pattern.LineCount - 1;
+                        continue;
                     }
-                    else if (pattern.Pattern.IsMatch(line.Text))
+
+                    var patterns = MatchModifierPatterns(block, line, lineIndex);
+                    if (!patterns.Any())
                     {
-                        modifierLine.Modifiers.Add(ParseModifier(metadata, pattern));
-                        ParseModifierValues(modifierLine, metadata, pattern, line.Text);
-                        line.Parsed = true;
+                        // If we reach this point we have not found the modifier through traditional Regex means.
+                        // Text from the game sometimes differ from the text from the API. We do a fuzzy search here to find the most common text.
+                        patterns = MatchModifierFuzzily(parsingItem, line);
                     }
+
+                    if (!patterns.Any())
+                    {
+                        continue;
+                    }
+
+                    var maxLineCount = patterns.Max(x => x.LineCount);
+                    lineIndex += maxLineCount - 1; // Increment the line index by one less of the pattern count. The default lineIndex++ will take care of the remaining increment.
+                    yield return new ModifierMatch(block, block.Lines.Skip(lineIndex).Take(maxLineCount), patterns.ToList());
+                    continue;
                 }
             }
         }
 
-        private void MatchLineWithFuzzy(ParsingItem parsingItem, ModifierLine modifierLine, ParsingLine line)
+        private IEnumerable<ModifierPattern> MatchModifierPatterns(ParsingBlock block, ParsingLine line, int lineIndex)
         {
-            if (line.Parsed)
+            foreach (var pattern in Patterns.SelectMany(x => x.Value))
             {
-                return;
+                var isMultilineModifierMatch = pattern.LineCount > 1 && pattern.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount)));
+                var isSingleModifierMatch = pattern.Pattern.IsMatch(line.Text);
+
+                if (isMultilineModifierMatch || isSingleModifierMatch)
+                {
+                    yield return pattern;
+                }
+            }
+        }
+
+        private IEnumerable<ModifierPattern> MatchModifierFuzzily(ParsingItem item, ParsingLine line)
+        {
+            if (line.Parsed
+                || item.Metadata?.Category == Category.Flask)
+            {
+                yield break;
             }
 
-            if (parsingItem.Metadata?.Category == Category.Flask)
-            {
-                return;
-            }
-
-            // If we reach this point we have not found the modifier through traditional Regex means.
-            // Text from the game sometimes differ from the text from the API. We do a fuzzy search here to find the most common text.
             var fuzzyLine = CleanFuzzyText(line.Text);
             var fuzzies = new List<FuzzyResult>();
 
@@ -382,86 +388,63 @@ namespace Sidekick.Apis.Poe.Modifiers
                 {
                     fuzzies.Add(new FuzzyResult(
                         ratio: ratio,
-                        entries: x.Value
+                        patterns: x.Value
                     ));
                 }
             });
 
             if (!fuzzies.Any())
             {
+                yield break;
+            }
+
+            foreach (var fuzzy in fuzzies.OrderByDescending(x => x.Ratio))
+            {
+                foreach (var modifier in fuzzy.Patterns)
+                {
+                    yield return modifier;
+                }
+            }
+        }
+
+        private void ParseModifierValues(ModifierLine modifierLine, IEnumerable<ModifierPattern> patterns)
+        {
+            var pattern = patterns.FirstOrDefault();
+            if (pattern == null)
+            {
                 return;
             }
 
-            fuzzies = fuzzies
-                .OrderByDescending(x => x.Ratio)
-                .ToList();
-
-            foreach (var fuzzy in fuzzies)
-            {
-                foreach (var modifier in fuzzy.Entries)
-                {
-                    ParseModifier(modifier.Metadata, modifier.Pattern);
-                    ParseModifierValues(modifierLine, modifier.Metadata, modifier.Pattern, line.Text);
-                }
-            }
-
-            modifierLine.IsFuzzy = true;
-            line.Parsed = true;
-        }
-
-        private Modifier ParseModifier(ModifierPatternMetadata metadata, ModifierPattern pattern)
-        {
-            var modifier = new Modifier(text: pattern.Text)
-            {
-                Id = metadata.Id,
-                Category = metadata.Category,
-            };
-
-            return modifier;
-        }
-
-        private void ParseModifierValues(ModifierLine modifierLine, ModifierPatternMetadata metadata, ModifierPattern pattern, string text)
-        {
-            if (metadata.IsOption)
+            if (pattern.IsOption)
             {
                 modifierLine.OptionValue = pattern.Value;
+                return;
             }
 
             if (pattern.Value.HasValue)
             {
                 modifierLine.Values.Add(pattern.Value.Value);
+                return;
             }
-            else
+
+            var matches = new Regex("([-+0-9,.]+)").Matches(modifierLine.Text);
+            foreach (Match match in matches)
             {
-                var matches = new Regex("([-+0-9,.]+)").Matches(text);
-                foreach (Match match in matches)
+                if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
                 {
-                    if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
-                    {
-                        modifierLine.Values.Add(parsedValue);
-                    }
+                    modifierLine.Values.Add(parsedValue);
                 }
             }
         }
 
         public bool IsMatch(string id, string text)
         {
-            ModifierPatternMetadata? metadata = null;
-
             foreach (var patternGroup in Patterns)
             {
-                metadata = patternGroup.Value.FirstOrDefault(x => x.Id == id);
-                if (metadata != null)
+                var pattern = patternGroup.Value.FirstOrDefault(x => x.Id == id);
+                if (pattern != null && pattern.Pattern != null && pattern.Pattern.IsMatch(text))
                 {
-                    foreach (var pattern in metadata.Patterns)
-                    {
-                        if (pattern.Pattern != null && pattern.Pattern.IsMatch(text))
-                        {
-                            return true;
-                        }
-                    }
-
-                    break;
+                    return true;
                 }
             }
 
