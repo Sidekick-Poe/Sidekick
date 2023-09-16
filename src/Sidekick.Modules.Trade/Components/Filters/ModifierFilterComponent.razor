@@ -13,10 +13,22 @@
             </MudCheckBox>
         </div>
 
-        @if (Filter.Enabled == true && Filter.Line.HasValues)
-        {
-            <FilterRange @bind-Min="Filter.Min" @bind-Max="Filter.Max" TypeChanged="TypeChanged" />
-        }
+        <div>
+            @if (Filter.Enabled == true && Filter.Line.HasValues)
+            {
+                <FilterRange @bind-Min="Filter.Min" @bind-Max="Filter.Max" TypeChanged="TypeChanged" />
+            }
+
+            @if (Filter.Enabled == true && Filter.HasMoreThanOneCategory && Filter.FirstCategory != ModifierCategory.Explicit)
+            {
+                <MudTooltip Text="@Resources.ForceCategory" Style="max-width: 25rem;">
+                    <ItemModifierCategoryChip Category="Filter.FirstCategory"
+                                              Checked="Filter.ForceFirstCategory"
+                                              ShowCheckbox="true"
+                                              OnClick="() => Filter.ForceFirstCategory = !Filter.ForceFirstCategory" />
+                </MudTooltip>
+            }
+        </div>
 
         @if (EnchantmentOilNames?.Any() == true)
         {

@@ -9,11 +9,22 @@ namespace Sidekick.Apis.Poe.Trade.Models
             Line = line;
             Enabled = line.Modifiers.FirstOrDefault()?.Category == ModifierCategory.Fractured;
             NormalizeMinValue();
+
+            if (HasMoreThanOneCategory && FirstCategory == ModifierCategory.Fractured)
+            {
+                ForceFirstCategory = true;
+            }
         }
 
         public ModifierLine Line { get; init; }
 
         public bool? Enabled { get; set; }
+
+        public bool ForceFirstCategory { get; set; }
+
+        public ModifierCategory FirstCategory => Line.Modifiers.FirstOrDefault()?.Category ?? ModifierCategory.Undefined;
+
+        public bool HasMoreThanOneCategory => Line.Modifiers.GroupBy(x => x.Category).Count() > 1;
 
         public double? Min { get; set; }
 

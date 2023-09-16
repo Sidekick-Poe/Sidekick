@@ -440,6 +440,11 @@ namespace Sidekick.Apis.Poe.Trade
 
                 foreach (var modifier in filter.Line.Modifiers)
                 {
+                    if (filter.ForceFirstCategory && modifier.Category != filter.FirstCategory)
+                    {
+                        continue;
+                    }
+
                     group.Filters.Add(new StatFilter()
                     {
                         Id = modifier.Id,
