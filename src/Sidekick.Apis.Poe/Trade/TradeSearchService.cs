@@ -403,7 +403,21 @@ namespace Sidekick.Apis.Poe.Trade
                 {
                     Type = StatType.And,
                 };
-                stats.Insert(0, andGroup);
+                stats.Add(andGroup);
+            }
+
+            var countGroup = stats.FirstOrDefault(x => x.Type == StatType.Count);
+            if (countGroup == null)
+            {
+                countGroup = new StatFilterGroup()
+                {
+                    Type = StatType.Count,
+                    Value = new SearchFilterValue()
+                    {
+                        Min = 0,
+                    },
+                };
+                stats.Add(countGroup);
             }
 
             foreach (var filter in modifierFilters)
@@ -429,30 +443,29 @@ namespace Sidekick.Apis.Poe.Trade
                     continue;
                 }
 
-                var group = new StatFilterGroup()
+                var modifiers = filter.Line.Modifiers.AsEnumerable();
+                if (filter.ForceFirstCategory)
                 {
-                    Type = StatType.Count,
-                    Value = new SearchFilterValue()
-                    {
-                        Min = 1,
-                    },
-                };
-
-                foreach (var modifier in filter.Line.Modifiers)
+                    modifiers = modifiers.Where(x => x.Category == filter.FirstCategory);
+                }
+                else if (modifiers.Any(x => x.Category == ModifierCategory.Explicit))
                 {
-                    if (filter.ForceFirstCategory && modifier.Category != filter.FirstCategory)
-                    {
-                        continue;
-                    }
+                    modifiers = modifiers.Where(x => x.Category == ModifierCategory.Explicit);
+                }
 
-                    group.Filters.Add(new StatFilter()
+                foreach (var modifier in modifiers)
+                {
+                    countGroup.Filters.Add(new StatFilter()
                     {
                         Id = modifier.Id,
                         Value = new SearchFilterValue(filter),
                     });
                 }
 
-                stats.Add(group);
+                if (countGroup.Value != null && modifiers.Any())
+                {
+                    countGroup.Value.Min += 1;
+                }
             }
         }
 
@@ -470,7 +483,7 @@ namespace Sidekick.Apis.Poe.Trade
                 {
                     Type = StatType.And,
                 };
-                stats.Insert(0, andGroup);
+                stats.Add(andGroup);
             }
 
             foreach (var filter in pseudoFilters)
