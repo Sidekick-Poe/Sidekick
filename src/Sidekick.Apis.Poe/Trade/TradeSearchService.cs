@@ -403,7 +403,7 @@ namespace Sidekick.Apis.Poe.Trade
                 {
                     Type = StatType.And,
                 };
-                stats.Prepend(andGroup);
+                stats.Insert(0, andGroup);
             }
 
             foreach (var filter in modifierFilters)
@@ -465,7 +465,7 @@ namespace Sidekick.Apis.Poe.Trade
                 {
                     Type = StatType.And,
                 };
-                stats.Prepend(andGroup);
+                stats.Insert(0, andGroup);
             }
 
             foreach (var filter in pseudoFilters)
@@ -760,7 +760,7 @@ namespace Sidekick.Apis.Poe.Trade
             for (var index = 0; index < hashes.Count; index++)
             {
                 var id = hashes[index].Value;
-                if (id == null)
+                if (id == null || index >= texts.Count || index >= mods.Count)
                 {
                     continue;
                 }
