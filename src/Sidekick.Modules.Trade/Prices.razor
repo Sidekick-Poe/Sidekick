@@ -121,7 +121,7 @@ else
         QueryResult = await TradeSearchService.Search(Item, new()
             {
                 Currency = Settings.Trade_Currency.GetEnumFromValue<TradeCurrency>(),
-            }, PropertyFilters, ModifierFilters);
+            }, PropertyFilters, ModifierFilters, PseudoFilters);
         //}
 
         IsFetching = false;
