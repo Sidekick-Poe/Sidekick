@@ -778,7 +778,7 @@ namespace Sidekick.Apis.Poe.Trade
             for (var index = 0; index < hashes.Count; index++)
             {
                 var id = hashes[index].Value;
-                if (id == null || index >= texts.Count || index >= mods.Count)
+                if (id == null || index >= texts.Count)
                 {
                     continue;
                 }
