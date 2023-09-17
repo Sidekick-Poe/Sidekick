@@ -1,4 +1,3 @@
-using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
@@ -7,7 +6,6 @@ using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Parser.Tokenizers;
 using Sidekick.Apis.Poe.Pseudo;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Items.Modifiers;
 
 namespace Sidekick.Apis.Poe.Parser
 {
@@ -348,7 +346,7 @@ namespace Sidekick.Apis.Poe.Parser
             };
         }
 
-        private List<Modifier> ParsePseudoModifiers(List<ModifierLine> modifierLines)
+        private List<PseudoModifier> ParsePseudoModifiers(List<ModifierLine> modifierLines)
         {
             if (modifierLines.Count == 0)
             {

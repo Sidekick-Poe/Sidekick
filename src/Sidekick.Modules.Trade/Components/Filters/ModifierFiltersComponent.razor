@@ -5,7 +5,7 @@
     var isLastFilter = i + 1 == Filters.Count;
     if (!isLastFilter)
     {
-        var isDifferentCategoryThanNext = NormalizeModifierCategory(Filters[i].Line.Modifier?.Category) != NormalizeModifierCategory(Filters[i + 1].Line.Modifier?.Category);
+        var isDifferentCategoryThanNext = NormalizeModifierCategory(Filters[i].Line.Modifiers.FirstOrDefault()?.Category) != NormalizeModifierCategory(Filters[i + 1].Line.Modifiers.FirstOrDefault()?.Category);
         if (isDifferentCategoryThanNext)
         {
             <ItemSeparator Rarity="Rarity" />

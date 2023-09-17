@@ -1,5 +1,4 @@
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Items.Modifiers;
 
 namespace Sidekick.Apis.Poe.Trade.Models
 {
@@ -12,7 +11,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
             Influences influences,
             List<Socket> sockets,
             List<ModifierLine> modifierLines,
-            List<Modifier> pseudoModifiers)
+            List<PseudoModifier> pseudoModifiers)
             : base(metadata, original, properties, influences, sockets, modifierLines, pseudoModifiers)
         {
         }

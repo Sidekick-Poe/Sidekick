@@ -4,8 +4,6 @@ namespace Sidekick.Apis.Poe.Trade.Filters
 {
     internal class WeaponFilter
     {
-        public SearchFilterValue? Damage { get; set; }
-
         [JsonPropertyName("crit")]
         public SearchFilterValue? CriticalStrikeChance { get; set; }
 

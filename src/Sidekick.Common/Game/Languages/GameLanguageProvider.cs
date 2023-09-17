@@ -22,7 +22,7 @@ namespace Sidekick.Common.Game.Languages
         public IGameLanguage? Language { get; private set; }
 
         /// <inheritdoc/>
-        public InitializationPriority Priority => InitializationPriority.High;
+        public InitializationPriority Priority => InitializationPriority.Critical;
 
         /// <inheritdoc/>
         public Task Initialize()

@@ -1,10 +1,22 @@
-@using Sidekick.Common.Game.Items.Modifiers
+@using Sidekick.Common.Game.Items
 
 <span>
     <MudChip Size="Size.Small"
-             Class="@Category.ToString()">
+             Class="@Category.ToString()"
+             OnClick="OnClick">
+        @if (ShowCheckbox)
+        {
+            if (Checked)
+            {
+                <MudIcon Icon="@Icons.Material.Filled.CheckBox" Size="Size.Small" />
+            }
+            else
+            {
+                <MudIcon Icon="@Icons.Material.Filled.CheckBoxOutlineBlank" Size="Size.Small" />
+            }
+        }
         @Category
-        @if (Arrow)
+        @if (ShowArrow)
         {
             <MudIcon Icon="@Icons.Material.Filled.ArrowDropDown" Size="Size.Small" />
         }
@@ -16,7 +28,16 @@
     public ModifierCategory? Category { get; set; }
 
     [Parameter]
-    public bool Arrow { get; set; }
+    public bool ShowArrow { get; set; }
+
+    [Parameter]
+    public bool ShowCheckbox { get; set; }
+
+    [Parameter]
+    public bool Checked { get; set; }
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
 
     private string Class => Category switch
     {

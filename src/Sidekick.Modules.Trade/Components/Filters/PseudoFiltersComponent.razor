@@ -1,0 +1,17 @@
+@if (Filters.Any())
+{
+    <ItemSeparator Rarity="Rarity" />
+}
+
+@foreach (var filter in Filters)
+{
+    <PseudoFilterComponent Filter="filter" />
+}
+
+@code {
+    [Parameter]
+    public List<PseudoModifierFilter> Filters { get; set; }
+
+    [Parameter]
+    public Rarity Rarity { get; set; }
+}

@@ -1,7 +1,6 @@
 using Sidekick.Apis.PoeWiki.Api;
 using Sidekick.Apis.PoeWiki.Models;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Items.Modifiers;
 using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.PoeWiki

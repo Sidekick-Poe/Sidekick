@@ -171,6 +171,9 @@
   <data name="Filters_Submit" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="ForceCategory" xml:space="preserve">
+    <value>Selecting this checkbox will force this specific category in the results. Unchecking allows for all modifier categories in the results (explicit, crafted, fractured, etc.).</value>
+  </data>
   <data name="ItemLevel" xml:space="preserve">
     <value>Item Level</value>
   </data>

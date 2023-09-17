@@ -1,12 +1,14 @@
-@if (ModifierLine?.Modifier != null)
+@if (ModifierLine.Modifiers.Any())
 {
+    var modifier = ModifierLine?.Modifiers.First();
+
     <div class="modifiers">
         <MudText Typo="Typo.body1" Class="modifier font-smallcaps" Align="Align.Center">
             <ItemModifierText Text="@ModifierLine.Text"
-                      Category="ModifierLine.Modifier?.Category" />
-            @if (!string.IsNullOrWhiteSpace(ModifierLine.Modifier.Tier))
+                              Category="modifier.Category" />
+            @if (!string.IsNullOrWhiteSpace(modifier.Tier))
             {
-                <span class="tier @GetTierClass(ModifierLine.Modifier.Tier)">@ModifierLine.Modifier.Tier</span>
+                <span class="tier @GetTierClass(modifier.Tier)">@modifier.Tier</span>
             }
         </MudText>
     </div>
@@ -21,7 +23,7 @@
     [Parameter] public Item Item { get; set; }
     [Parameter] public ModifierLine ModifierLine { get; set; }
 
-    private ModifierCategory Category => ModifierLine?.Modifier?.Category ?? ModifierCategory.Undefined;
+    private ModifierCategory Category => ModifierLine.Modifiers.FirstOrDefault()?.Category ?? ModifierCategory.Undefined;
 
     private bool IsLastOfCategory
     {
@@ -29,7 +31,7 @@
         {
             var index = Item.ModifierLines.IndexOf(ModifierLine);
             var next = Item.ModifierLines.ElementAtOrDefault(index + 1);
-            if (next != null && next.Modifier?.Category == Category)
+            if (next != null && next.Modifiers.FirstOrDefault().Category == Category)
             {
                 return false;
             }

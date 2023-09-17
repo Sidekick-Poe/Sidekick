@@ -6,53 +6,33 @@
                          Dense="true"
                          Size="Size.Small">
                 <div class="d-flex align-center">
-                    @if (Filter.Line.Modifier.Category == ModifierCategory.Pseudo)
-                    {
-                        <ItemModifierCategoryChip Category="Filter.Line.Modifier.Category" />
-                    }
                     <ItemModifierText Text="@Filter.Line.Text"
-                                      Category="Filter.Line.Modifier?.Category" />
+                                      Category="Filter.Line.Modifiers.FirstOrDefault().Category" />
 
                 </div>
             </MudCheckBox>
         </div>
 
-        @if (Filter.Enabled == true && Filter.Line.Modifier.HasValue)
-        {
-            <FilterRange @bind-Min="Filter.Min" @bind-Max="Filter.Max" TypeChanged="TypeChanged" />
-        }
+        <div>
+            @if (Filter.Enabled == true && Filter.Line.HasValues)
+            {
+                <FilterRange @bind-Min="Filter.Min" @bind-Max="Filter.Max" TypeChanged="TypeChanged" />
+            }
+
+            @if (Filter.Enabled == true && Filter.HasMoreThanOneCategory && Filter.FirstCategory != ModifierCategory.Explicit)
+            {
+                <MudTooltip Text="@Resources.ForceCategory" Style="max-width: 25rem;">
+                    <ItemModifierCategoryChip Category="Filter.FirstCategory"
+                                              Checked="Filter.ForceFirstCategory"
+                                              ShowCheckbox="true"
+                                              OnClick="() => Filter.ForceFirstCategory = !Filter.ForceFirstCategory" />
+                </MudTooltip>
+            }
+        </div>
 
         @if (EnchantmentOilNames?.Any() == true)
         {
             <OilAnointment OilNames="EnchantmentOilNames" />
-        }
-
-        @if (Filter.Enabled == true && Filter.Line.Alternates.Any())
-        {
-            <MudMenu Color="Color.Info"
-                     AnchorOrigin="Origin.CenterRight"
-                     TransformOrigin="Origin.CenterLeft"
-                     MaxHeight="200"
-                     Dense="true">
-                <ActivatorContent>
-                    <Hint Text="@Resources.ModifierHint">
-                        @*<ItemModifierCategoryChip Category="Filter.Line.Modifier.Category" Arrow="true" />*@
-                        <MudIconButton Color="Color.Info"
-                                       Icon="@Icons.Material.Filled.SwapHorizontalCircle"
-                                       Size="Size.Small"
-                                       Class="pa-0" />
-                    </Hint>
-                </ActivatorContent>
-                <ChildContent>
-                    @foreach (var alternate in Filter.Line.Alternates)
-                    {
-                        <MudMenuItem OnClick="() => SelectAlternate(alternate)" Class="d-flex align-center">
-                            <ItemModifierCategoryChip Category="alternate.Category" />
-                            <MudText Typo="Typo.caption">@alternate.Text</MudText>
-                        </MudMenuItem>
-                    }
-                </ChildContent>
-            </MudMenu>
         }
     </div>
 </div>
@@ -71,7 +51,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (Filter.Line.Modifier.Category == ModifierCategory.Enchant && PoeWikiClient.IsEnabled)
+        if (Filter.Line.Modifiers.FirstOrDefault().Category == ModifierCategory.Enchant && PoeWikiClient.IsEnabled)
         {
             var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Line);
             if (oilMetadataIds != null)
@@ -79,13 +59,6 @@
                 EnchantmentOilNames = oilMetadataIds.Select(x => PoeWikiClient.BlightOilNamesByMetadataIds[x]).ToList();
             }
         }
-    }
-
-    private void SelectAlternate(Modifier newValue)
-    {
-        Filter.Line.Alternates.Add(Filter.Line.Modifier);
-        Filter.Line.Alternates.Remove(newValue);
-        Filter.Line.Modifier = newValue;
     }
 
     private void TypeChanged(FilterRange.RangeType type)

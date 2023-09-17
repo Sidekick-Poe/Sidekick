@@ -12,6 +12,7 @@ else
         <FiltersComponent ItemName="@ItemName.DecodeBase64Url()"
                           ModifierFilters="ModifierFilters"
                           PropertyFilters="PropertyFilters"
+                          PseudoFilters="PseudoFilters"
                           OnSearch="UpdateQuery" />
 
         <div class="ml-0">
@@ -58,6 +59,7 @@ else
     private Item Item { get; set; }
     private PropertyFilters PropertyFilters { get; set; }
     private List<ModifierFilter> ModifierFilters { get; set; }
+    private List<PseudoModifierFilter> PseudoFilters { get; set; }
     private TradeSearchResult<string> QueryResult { get; set; }
     private List<TradeItem> Results { get; set; }
     private bool FullyLoaded => (Results?.Count ?? 0) == (QueryResult?.Result?.Count ?? 0);
@@ -95,6 +97,7 @@ else
 
         PropertyFilters = TradeFilterService.GetPropertyFilters(Item);
         ModifierFilters = TradeFilterService.GetModifierFilters(Item).ToList();
+        PseudoFilters = TradeFilterService.GetPseudoModifierFilters(Item).ToList();
 
         if (Item.Metadata.Rarity != Rarity.Rare && Item.Metadata.Rarity != Rarity.Magic)
         {
@@ -149,7 +152,7 @@ else
 
         IsFetching = true;
 
-        var result = await TradeSearchService.GetResults(QueryResult.Id, ids, ModifierFilters);
+        var result = await TradeSearchService.GetResults(QueryResult.Id, ids, PseudoFilters);
         if (result != null)
         {
             Results.AddRange(result);

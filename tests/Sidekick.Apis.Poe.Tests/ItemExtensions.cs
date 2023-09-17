@@ -1,6 +1,5 @@
 using System.Linq;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Items.Modifiers;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests
@@ -9,44 +8,54 @@ namespace Sidekick.Apis.Poe.Tests
     {
         public static void AssertHasModifier(this Item actual, ModifierCategory expectedCategory, string expectedText, params double[] expectedValues)
         {
-            var actualModifier = actual?.ModifierLines?.FirstOrDefault(x => expectedText == x.Modifier?.Text);
-            Assert.Equal(expectedText, actualModifier?.Modifier?.Text);
-            Assert.Equal(expectedCategory, actualModifier?.Modifier?.Category);
+            var modifiers = actual?.ModifierLines
+                .SelectMany(line => line.Modifiers.Select(modifier => new
+                {
+                    Line = line,
+                    Modifier = modifier,
+                }));
 
-            Assert.True(actualModifier.Modifier.Values.Count >= expectedValues.Length);
+            var actualModifier = modifiers.FirstOrDefault(x => expectedText == x.Modifier.Text);
+            Assert.Equal(expectedText, actualModifier?.Modifier.Text);
+            Assert.Equal(expectedCategory, actualModifier?.Modifier.Category);
+
+            Assert.True(actualModifier.Line.Values.Count == expectedValues.Length);
 
             for (var i = 0; i < expectedValues.Length; i++)
             {
-                Assert.Equal(expectedValues[i], actualModifier.Modifier.Values[i]);
+                Assert.Equal(expectedValues[i], actualModifier.Line.Values[i]);
             }
         }
 
         public static void AssertHasAlternateModifier(this Item actual, ModifierCategory expectedCategory, string expectedText, params double[] expectedValues)
         {
-            var alternates = actual?.ModifierLines?.SelectMany(x => x.Alternates);
-            var actualModifier = alternates?.FirstOrDefault(x => expectedCategory == x.Category && expectedText == x.Text);
-            Assert.Equal(expectedText, actualModifier?.Text);
-            Assert.Equal(expectedCategory, actualModifier?.Category);
+            var modifiers = actual?.ModifierLines
+                .SelectMany(line => line.Modifiers.Select(modifier => new
+                {
+                    Line = line,
+                    Modifier = modifier,
+                }));
 
-            Assert.True(actualModifier.Values.Count >= expectedValues.Length);
+            var actualModifier = modifiers?.FirstOrDefault(x => expectedCategory == x.Modifier.Category && expectedText == x.Modifier.Text);
+            Assert.Equal(expectedText, actualModifier?.Modifier.Text);
+            Assert.Equal(expectedCategory, actualModifier?.Modifier.Category);
+
+            Assert.True(actualModifier.Line.Values.Count >= expectedValues.Length);
 
             for (var i = 0; i < expectedValues.Length; i++)
             {
-                Assert.Equal(expectedValues[i], actualModifier.Values[i]);
+                Assert.Equal(expectedValues[i], actualModifier.Line.Values[i]);
             }
         }
 
-        public static void AssertHasPseudoModifier(this Item actual, string expectedText, params double[] expectedValues)
+        public static void AssertHasPseudoModifier(this Item actual, string expectedText, double? expectedValue = null)
         {
             var actualModifier = actual?.PseudoModifiers?.FirstOrDefault(x => expectedText == x.Text);
             Assert.Equal(expectedText, actualModifier.Text);
-            Assert.Equal(ModifierCategory.Pseudo, actualModifier.Category);
 
-            Assert.True(actualModifier.Values.Count >= expectedValues.Length);
-
-            for (var i = 0; i < expectedValues.Length; i++)
+            if (expectedValue != null)
             {
-                Assert.Equal(expectedValues[i], actualModifier.Values[i]);
+                Assert.Equal(expectedValue, actualModifier.Value);
             }
         }
     }

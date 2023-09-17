@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Game.Items.Modifiers
+namespace Sidekick.Common.Game.Items
 {
     public enum ModifierCategory
     {

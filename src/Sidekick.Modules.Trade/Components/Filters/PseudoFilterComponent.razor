@@ -1,0 +1,54 @@
+<div class="filter">
+    <div class="d-flex align-center">
+        <div class="flex-grow-1">
+            <MudCheckBox @bind-Checked="Filter.Enabled"
+                         Color="Color.Primary"
+                         Dense="true"
+                         Size="Size.Small">
+                <div class="d-flex align-center">
+                    <ItemModifierCategoryChip Category="ModifierCategory.Pseudo" />
+                    <ItemModifierText Text="@Filter.Modifier.Text"
+                                      Category="ModifierCategory.Pseudo" />
+
+                </div>
+            </MudCheckBox>
+        </div>
+
+        @if (Filter.Enabled == true && Filter.Modifier.HasValue)
+        {
+            <FilterRange @bind-Min="Filter.Min" @bind-Max="Filter.Max" TypeChanged="TypeChanged" />
+        }
+    </div>
+</div>
+
+@code {
+    [Inject]
+    public TradeResources Resources { get; set; }
+
+    [Parameter]
+    public PseudoModifierFilter Filter { get; set; }
+
+    private List<string> EnchantmentOilNames { get; set; }
+
+    private void TypeChanged(FilterRange.RangeType type)
+    {
+        switch (type)
+        {
+            case FilterRange.RangeType.Minimum:
+                Filter.NormalizeMinValue();
+                Filter.Max = null;
+                break;
+            case FilterRange.RangeType.Maximum:
+                Filter.NormalizeMaxValue();
+                Filter.Min = null;
+                break;
+            case FilterRange.RangeType.Equals:
+                Filter.SetExactValue();
+                break;
+            case FilterRange.RangeType.Range:
+                Filter.NormalizeMinValue();
+                Filter.NormalizeMaxValue();
+                break;
+        }
+    }
+}

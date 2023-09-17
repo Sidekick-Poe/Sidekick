@@ -1,7 +1,6 @@
 ::deep .mud-chip {
-    min-width: 70px;
-    padding: 0;
-    height: 16px !important;
+    padding-left:6px;
+    padding-right:6px;
 }
 
     ::deep .mud-chip.Crafted {

@@ -1,13 +1,5 @@
-using Sidekick.Common.Blazor;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
-using System.Reflection;
-using System.Xml;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Items.Modifiers;
 using Xunit;
-using static MudBlazor.CategoryTypes;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace Sidekick.Apis.Poe.Tests.Parser
 {
@@ -53,11 +45,11 @@ Corrupted
             Assert.True(actual.Properties.Identified);
             Assert.True(actual.Properties.Corrupted);
 
-            actual.AssertHasModifier(ModifierCategory.Implicit, "Anger has #% increased Aura Effect");
-            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to all Attributes");
-            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Intelligence");
-            actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage to Attacks");
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Mana Regeneration Rate");
+            actual.AssertHasModifier(ModifierCategory.Implicit, "Anger has #% increased Aura Effect", 18);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to all Attributes", 16);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Intelligence", 31);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage to Attacks", 8, 13);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Mana Regeneration Rate", 31);
         }
 
         [Fact]

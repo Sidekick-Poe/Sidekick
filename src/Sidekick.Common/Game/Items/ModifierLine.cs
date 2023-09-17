@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Game.Items.Modifiers
+namespace Sidekick.Common.Game.Items
 {
     /// <summary>
     /// Represents a line of text on an item. With the API being the way it is, each line of text can be represented by one or more api modifiers.
@@ -23,12 +23,22 @@ namespace Sidekick.Common.Game.Items.Modifiers
         /// <summary>
         /// Gets or sets the modifier associated with this line.
         /// </summary>
-        public Modifier? Modifier { get; set; }
+        public List<Modifier> Modifiers { get; set; } = new();
 
         /// <summary>
-        /// Gets or sets the list of modifiers that also matches the game text, or similar phrased modifiers if fuzzy search was used.
+        /// Gets or sets a list of values on this modifier line.
         /// </summary>
-        public List<Modifier> Alternates { get; set; } = new();
+        public List<double> Values { get; set; } = new List<double>();
+
+        /// <summary>
+        /// Gets or sets the option value of this modifier.
+        /// </summary>
+        public int? OptionValue { get; set; }
+
+        /// <summary>
+        /// Gets a value indicating whether this modifier has double values.
+        /// </summary>
+        public bool HasValues => OptionValue == null && Values.Count > 0;
 
         /// <inheritdoc/>
         public override string? ToString()

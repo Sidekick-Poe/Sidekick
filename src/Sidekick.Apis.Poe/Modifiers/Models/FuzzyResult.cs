@@ -4,14 +4,14 @@ namespace Sidekick.Apis.Poe.Modifiers.Models
     {
         public FuzzyResult(
             int ratio,
-            List<FuzzyEntry> entries)
+            List<ModifierPattern> patterns)
         {
             Ratio = ratio;
-            Entries = entries;
+            Patterns = patterns;
         }
 
         public int Ratio { get; }
 
-        public List<FuzzyEntry> Entries { get; }
+        public List<ModifierPattern> Patterns { get; }
     }
 }

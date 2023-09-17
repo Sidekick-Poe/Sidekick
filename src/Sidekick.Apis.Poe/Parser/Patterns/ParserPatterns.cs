@@ -15,7 +15,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         }
 
         /// <inheritdoc/>
-        public InitializationPriority Priority => InitializationPriority.Medium;
+        public InitializationPriority Priority => InitializationPriority.High;
 
         /// <inheritdoc/>
         public Task Initialize()
