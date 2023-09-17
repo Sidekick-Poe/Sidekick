@@ -303,17 +303,17 @@ namespace Sidekick.Apis.Poe.Modifiers
                 var patterns = match.Patterns.OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText));
                 foreach (var pattern in patterns)
                 {
-                    if (pattern.Category == ModifierCategory.Pseudo)
-                    {
-                        modifierLine.Text = pattern.Text;
-                    }
-
                     var modifier = new Modifier(text: pattern.Text)
                     {
                         Id = pattern.Id,
                         Category = pattern.Category,
                     };
                     modifierLine.Modifiers.Add(modifier);
+                }
+
+                if (modifierLine.Modifiers.All(x => x.Category == ModifierCategory.Pseudo))
+                {
+                    modifierLine.Text = modifierLine.Modifiers.FirstOrDefault()?.Text ?? modifierLine.Text;
                 }
 
                 ParseModifierValues(modifierLine, patterns);
@@ -397,11 +397,6 @@ namespace Sidekick.Apis.Poe.Modifiers
                     ));
                 }
             });
-
-            if (!fuzzies.Any())
-            {
-                yield break;
-            }
 
             foreach (var fuzzy in fuzzies.OrderByDescending(x => x.Ratio))
             {
