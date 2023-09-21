@@ -1,3 +1,4 @@
+@using Sidekick.Modules.Trade.Models;
 @* Root <div> element is required for ::deep CSS styles to be applied. *@
 <MudDrawer Open="true"
            Variant="@DrawerVariant.Persistent"
@@ -13,36 +14,34 @@
     <div class="flex-grow-1" style="overflow-y:auto;">
         @if (Item != null)
         {
-            <PriceNinjaComponent Item="Item" ItemName="@ItemName" />
-            <PricePredictionComponent Item="Item" />
+            <PriceNinjaComponent ItemName="@ItemName" />
+            <PricePredictionComponent />
         }
 
-        <ClassFilter @bind-Value="PropertyFilters.Class" Item="Item" />
+        <ClassFilter @bind-Value="Filters.PropertyFilters.Class" Item="Item" />
 
-        <CascadingValue Value="PropertyFilters.Armour" IsFixed="true">
+        <CascadingValue Value="Filters.PropertyFilters.Armour" IsFixed="true">
             <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
         </CascadingValue>
 
-        <CascadingValue Value="PropertyFilters.Weapon" IsFixed="true">
+        <CascadingValue Value="Filters.PropertyFilters.Weapon" IsFixed="true">
             <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
         </CascadingValue>
 
-        <CascadingValue Value="PropertyFilters.Map" IsFixed="true">
+        <CascadingValue Value="Filters.PropertyFilters.Map" IsFixed="true">
             <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
         </CascadingValue>
 
-        <CascadingValue Value="PropertyFilters.Misc" IsFixed="true">
+        <CascadingValue Value="Filters.PropertyFilters.Misc" IsFixed="true">
             <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
         </CascadingValue>
 
-        <ModifierFiltersComponent Filters="ModifierFilters"
-                                  Rarity="Item.Metadata.Rarity" />
+        <ModifierFiltersComponent Rarity="Item.Metadata.Rarity" />
 
-        <PseudoFiltersComponent Filters="PseudoFilters"
-                                Rarity="Item.Metadata.Rarity" />
+        <PseudoFiltersComponent Rarity="Item.Metadata.Rarity" />
     </div>
 
-    @if (FiltersVisible)
+    @if (Visible)
     {
         <div class="d-flex justify-center pa-2">
             <MudButton FullWidth
@@ -59,23 +58,17 @@
     [CascadingParameter]
     public Item Item { get; set; }
 
+    [CascadingParameter]
+    public FiltersModel Filters { get; set; }
+
     [Parameter]
     public string ItemName { get; set; }
-
-    [Parameter]
-    public PropertyFilters PropertyFilters { get; set; }
-    
-    [Parameter]
-    public List<ModifierFilter> ModifierFilters { get; set; }
-
-    [Parameter]
-    public List<PseudoModifierFilter> PseudoFilters { get; set; }
 
     [Parameter]
     public EventCallback OnSearch { get; set; }
 
     private bool Expanded { get; set; } = false;
-    private bool FiltersVisible { get; set; }
+    private bool Visible { get; set; }
     private bool IsInit { get; set; } = false;
 
     protected override void OnParametersSet()
@@ -86,15 +79,15 @@
         IsInit = Item != null;
 
         int propertyCount = 0;
-        propertyCount += PropertyFilters?.Armour?.Count ?? 0;
-        propertyCount += PropertyFilters?.Map?.Count ?? 0;
-        propertyCount += PropertyFilters?.Misc?.Count ?? 0;
-        propertyCount += PropertyFilters?.Weapon?.Count ?? 0;
+        propertyCount += Filters.PropertyFilters?.Armour?.Count ?? 0;
+        propertyCount += Filters.PropertyFilters?.Map?.Count ?? 0;
+        propertyCount += Filters.PropertyFilters?.Misc?.Count ?? 0;
+        propertyCount += Filters.PropertyFilters?.Weapon?.Count ?? 0;
 
         int modifierCount = 0;
-        modifierCount += ModifierFilters?.Count ?? 0;
+        modifierCount += Filters.ModifierFilters?.Count ?? 0;
 
-        FiltersVisible = (ModifierFilters?.Count ?? 0) + propertyCount > 0;
+        Visible = modifierCount + propertyCount > 0;
     }
 
     private void Expand()

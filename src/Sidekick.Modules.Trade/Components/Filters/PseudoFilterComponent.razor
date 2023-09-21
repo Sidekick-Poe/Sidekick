@@ -25,7 +25,7 @@
     [Inject]
     public TradeResources Resources { get; set; }
 
-    [Parameter]
+    [CascadingParameter]
     public PseudoModifierFilter Filter { get; set; }
 
     private List<string> EnchantmentOilNames { get; set; }

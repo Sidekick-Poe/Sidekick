@@ -45,7 +45,7 @@ else if (Price != null)
     [Inject] private IPoeNinjaClient Client { get; set; }
     [Inject] private IBrowserProvider BrowserProvider { get; set; }
 
-    [Parameter] public Item Item { get; set; }
+    [CascadingParameter] public Item Item { get; set; }
     [Parameter] public string ItemName { get; set; }
 
     private bool Loading { get; set; }

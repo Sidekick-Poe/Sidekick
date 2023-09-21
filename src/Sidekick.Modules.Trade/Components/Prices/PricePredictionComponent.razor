@@ -29,7 +29,7 @@
     [Inject] private ISettings Settings { get; set; }
     [Inject] private IPoePriceInfoClient Client { get; set; }
 
-    [Parameter] public Item Item { get; set; }
+    [CascadingParameter] public Item Item { get; set; }
 
     private bool Loading { get; set; }
     private bool IsInit { get; set; }
