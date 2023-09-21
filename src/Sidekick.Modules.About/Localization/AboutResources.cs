@@ -19,5 +19,6 @@ namespace Sidekick.Modules.About.Localization
         public string Contributors => localizer["Contributors"];
         public string Translators => localizer["Translators"];
         public string Third_Parties => localizer["Third_Parties"];
+        public string Disclaimer => localizer["Disclaimer"];
     }
 }
