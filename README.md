@@ -58,6 +58,9 @@ We accept most PR and ideas. If you want a feature included, create an issue and
 
 We are also available on [Discord](https://discord.gg/H4bg4GQ).
 
+## Notice
+This product isn't affiliated with or endorsed by Grinding Gear Games in any way.
+
 ## Thanks
 Community
 - [Contributors](https://github.com/Sidekick-Poe/Sidekick/graphs/contributors)
