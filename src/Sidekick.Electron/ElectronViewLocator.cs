@@ -47,7 +47,7 @@ namespace Sidekick.Electron
 
             Views.Add(view);
 
-            browser.SetTitle(view.Title);
+            browser.SetTitle($"Sidekick {view.Title}");
             browser.SetMinimumSize(view.ViewWidth, view.ViewHeight);
             browser.SetSize(view.ViewWidth, view.ViewHeight);
 
