@@ -1,4 +1,4 @@
-# [![](https://sidekick-poe.github.io/assets/images/orb_exalted.png)](#) Sidekick 2
+# [![](https://sidekick-poe.github.io/assets/images/orb_exalted.png)](#) Sidekick
 
 [![](https://img.shields.io/github/v/release/Sidekick-Poe/Sidekick?style=flat-square)](https://github.com/Sidekick-Poe/Sidekick/releases) [![](https://img.shields.io/github/downloads-pre/Sidekick-Poe/Sidekick/total?style=flat-square)](https://github.com/Sidekick-Poe/Sidekick/releases) [![](https://img.shields.io/discord/664252463188279300?color=%23738AD6&label=Discord&style=flat-square)](https://discord.gg/H4bg4GQ)
 
