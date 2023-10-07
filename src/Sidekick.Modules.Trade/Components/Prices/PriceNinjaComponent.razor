@@ -1,20 +1,22 @@
 @if (Loading || Item == null)
 {
-    <MudSkeleton Height="55px" />
+    <MudSkeleton Height="64px" />
     <ItemSeparator Rarity="Item.Metadata.Rarity" />
 }
 else if (Price != null)
 {
-    <MudGrid Spacing="0" Justify="Justify.Center" Class="align-center py-3">
+    <MudGrid Spacing="0" Justify="Justify.Center" Class="align-start py-2">
         <MudItem xs="6" Class="pr-2">
             <MudText Typo="Typo.subtitle1" Align="Align.Right">@Resources.PoeNinja</MudText>
-            <MudText Typo="Typo.caption" Align="Align.Right" Class="d-block">@Resources.LastUpdated:<br />@Price.LastUpdated.ToString("g")</MudText>
-            <MudText Align="Align.Right" Class="mt-1">
+            <MudText Typo="Typo.caption" Align="Align.Right" Class="d-block">
+                <MudTooltip Text="@Resources.LastUpdated">@Price.LastUpdated.ToString("g")</MudTooltip>
+            </MudText>
+            <MudText Align="Align.Right">
                 <MudButton Variant="Variant.Text"
-                       OnClick="OpenWebsite"
-                       Class="pa-0"
-                       Size="Size.Small"
-                       StartIcon="@Icons.Material.Filled.OpenInBrowser">
+                           OnClick="OpenWebsite"
+                           Class="pa-0"
+                           Size="Size.Small"
+                           StartIcon="@Icons.Material.Filled.OpenInBrowser">
                     @Resources.OpenInWebsite
                 </MudButton>
             </MudText>
@@ -82,7 +84,10 @@ else if (Price != null)
                 var min = Math.Abs(sparkLineData.Min());
                 var chartData = sparkLineData.Select(x => x + min).ToArray();
 
-                Series = new() { new ChartSeries() { Data = chartData } };
+                if (!chartData.All(x => x == 0))
+                {
+                    Series = new() { new ChartSeries() { Data = chartData } };
+                }
             }
         }
 
