@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using PipeMethodCalls;
 using PipeMethodCalls.NetJson;
+using Sidekick.Common;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Sidekick.Common.Platform.Interprocess
 {
@@ -38,9 +40,9 @@ namespace Sidekick.Common.Platform.Interprocess
                 {
                     try
                     {
-                        int randomNum = random.Next(0, 1000000);
-                        string pipeName = "sidekick-" + randomNum.ToString();
-                        using (StreamWriter f = File.CreateText(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "pipename"))
+                        string pipeName = "sidekick-" + random.Next(0, 1000000).ToString();
+
+                        using (StreamWriter f = File.CreateText(SidekickPaths.GetDataFilePath("pipename")))
                         {
                             f.Write(pipeName);
                         };

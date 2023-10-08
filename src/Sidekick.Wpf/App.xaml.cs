@@ -3,7 +3,6 @@ using System.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Win32;
 using MudBlazor.Services;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
@@ -75,30 +74,20 @@ namespace Sidekick.Wpf
 
             if (!EnsureSingleInstance())
             {
-                InterprocessClient.Start();
-                InterprocessClient.CustomProtocol(e.Args);
-                InterprocessClient.Dispose();
-
-                _ = viewLocator.Open(ErrorType.AlreadyRunning.ToUrl());
+                if (e.Args.Length > 0 && e.Args[0].ToUpper().StartsWith("SIDEKICK://"))
+                {
+                    InterprocessClient.Start();
+                    InterprocessClient.CustomProtocol(e.Args);
+                    InterprocessClient.Dispose();
+                } else {
+                    _ = viewLocator.Open(ErrorType.AlreadyRunning.ToUrl());
+                }
                 return;
-            } else
-            {
-                InterprocessService.CustomProtocolCallback(InterprocessService_CustomProtocolCallback);
+            } else {
                 InterprocessService.Start();
             }
 
             _ = viewLocator.Open("/");
-        }
-
-        public void InterprocessService_CustomProtocolCallback(string[] obj)
-        {
-            string messageBoxText = string.Join(", ", obj); ;
-            string caption = "Initial Instance Received?";
-            MessageBoxButton button = MessageBoxButton.OK;
-            MessageBoxImage icon = MessageBoxImage.Information;
-            MessageBoxResult result;
-
-            result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.OK);
         }
 
         private void ConfigureServices(ServiceCollection services, IConfiguration configuration)
@@ -151,26 +140,6 @@ namespace Sidekick.Wpf
             services.AddSingleton<ITrayProvider, WpfTrayProvider>();
             services.AddSingleton<IViewLocator, WpfViewLocator>();
             services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());
-
-
-            //string customProtocol = "SidekickProtocol";
-
-            //var a = System.AppDomain.CurrentDomain.BaseDirectory;
-            //var b = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
-            //var c = System.IO.Path.GetDirectoryName(b);
-
-            //RegistryKey key = Registry.ClassesRoot.OpenSubKey(customProtocol);
-            //if (key == null)
-            //{
-            //    key = Registry.ClassesRoot.CreateSubKey(customProtocol);
-            //    key.SetValue(string.Empty, "URL: " + customProtocol);
-            //    key.SetValue("URL Protocol", string.Empty);
-
-            //    key = key.CreateSubKey(@"shell\open\command");
-            //    key.SetValue(string.Empty, System.AppDomain.CurrentDomain.BaseDirectory + " " + "%1");
-            //    key.Close();
-            //}
-
 
         }
 

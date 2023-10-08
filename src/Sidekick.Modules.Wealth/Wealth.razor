@@ -1,30 +1,142 @@
 @page "/wealth"
 @inherits SidekickView
-
-<MudText Typo="Typo.h1">Wealth Tracker</MudText>
-<MudButton Variant="Variant.Filled"
-           Color="Color.Primary"
-           OnClick="Authenticate">
-    Authenticate
-</MudButton>
-
+<MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+    <MudTabPanel Text="Settings">
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   OnClick="Authenticate">
+            Authenticate
+        </MudButton>
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   OnClick="GetStashTabs">
+            Get Stash Tabs
+        </MudButton>
+        <br /><br />
+        <MudCard>
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Typo="Typo.h3">Authentication</MudText>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardContent>
+                <br />
+                @if (Username == "")
+                {
+                    <MudAlert Severity="Severity.Warning">Not Authenticated.</MudAlert>
+                }
+                else
+                {
+                    <MudAlert Severity="Severity.Success">Authenticated!</MudAlert>
+                }
+                <br/>
+                <MudText>CODEVERIFIER : @CodeVerifier </MudText>
+                <MudText>CODECHALLENGE : @CodeChallenge </MudText>
+                <MudText>STATE : @State </MudText>
+                <MudText>AUTHCODE : @AuthCode </MudText>
+                <MudText>ACCESSTOKEN : @AccessToken </MudText>
+                <MudText>EXPIRES : @Expires </MudText>
+                <MudText>USERNAME : @Username </MudText>
+            </MudCardContent>
+        </MudCard>
+        <MudCard>
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Typo="Typo.h3">Stash Tabs</MudText>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardContent>
+                <br />
+                @if (StashList != null) {
+                    foreach (var stashTab in StashList.stashes) {
+                        <MudCheckBox @bind-Checked="@stashTab.parse" Color="Color.Primary">@stashTab.name</MudCheckBox>
+                    }
+                } else {
+                    <MudAlert Severity="Severity.Warning">Stash Tabs not loaded.</MudAlert>
+                }
+            </MudCardContent>
+        </MudCard>
+    </MudTabPanel>
+    <MudTabPanel Text="Wealth Tracker">
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   OnClick="RefreshStashItems">
+            Refresh Stash Items
+        </MudButton>
+        <br /><br />
+        <MudCard>
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Typo="Typo.h3">Items</MudText>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardContent>
+                <br/>
+                @if (StashItems != null)
+                {
+                    foreach (var stashItem in StashItems)
+                    {
+                        <MudText><MudImage Src="@stashItem.icon" Class="rounded-lg" />@stashItem.getFriendlyName() : @stashItem.stackSize</MudText>
+                    }
+                }
+            </MudCardContent>
+        </MudCard>
+    </MudTabPanel>
+</MudTabs>
 @code {
     [Inject] private WealthResources Resources { get; set; }
     [Inject] private ILogger<Wealth> Logger { get; set; }
     [Inject] private IBrowserProvider Browser { get; set; }
     [Inject] private IBrowserProvider browserProvider { get; set; }
+    [Inject] private IInterprocessService InterprocessService { get; set; }
+    [Inject] private HttpClient Http { get; set; }
 
+    const string PoeAPIUrl = "https://api.pathofexile.com";
     const string AuthorizationUrl = "https://www.pathofexile.com/oauth/authorize";
+    const string TokenUrl = "https://www.pathofexile.com/oauth/token";
     const string ClientId = "sidekick";
     const string RedirectUrl = "https://sidekick-poe.github.io/oauth/poe";
     const string Scopes = "account:stashes";
-    const string State = "10ceb8104963e91e47a95f4138448ecf";
+    static string State = "";
+    static string AuthCode = "";
+    static string CodeVerifier = "";
+    static string CodeChallenge = "";
+    static string AccessToken = "";
+    static int Expires = 0;
+    static string Username = "";
 
+    static APIStashList StashList { get; set; }
+    static List<APIStashItem> StashItems { get; set; }
+
+    public override string Title => "Wealth Tracker";
+
+    protected override async Task OnInitializedAsync()
+    {
+        InterprocessService.CustomProtocolCallback(InterprocessService_CustomProtocolCallback);
+        await base.OnInitializedAsync();
+    }
+
+    private async void RefreshStashItems()
+    {
+        if (StashItems == null) { StashItems = new List<APIStashItem>(); }
+
+        StashItems.Clear();
+
+        StashItems = await GetStashItems();
+
+        StateHasChanged();
+
+    }
+
+    #region API Authentication
     private void Authenticate()
     {
-        string codeVerifier = GenerateCodeVerifier();
-        string codeChallenge = GenerateCodeChallenge(codeVerifier);
-            browserProvider.OpenUri(new Uri(GenerateAuthLink(codeChallenge)));
+        State = Guid.NewGuid().ToString();
+        AuthCode = "Retrieving";
+
+        CodeVerifier = GenerateCodeVerifier();
+        CodeChallenge = GenerateCodeChallenge(CodeVerifier);
+        browserProvider.OpenUri(new Uri(GenerateAuthLink(CodeChallenge)));
     }
 
     private string GenerateCodeVerifier()
@@ -64,11 +176,172 @@
         return authLink;
     }
 
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
+    public async void InterprocessService_CustomProtocolCallback(string[] obj)
+    {       
+        if (obj.Length > 0 && obj[0].ToUpper().StartsWith("SIDEKICK://OAUTH/POE"))
+        {
+            var queryDictionary = System.Web.HttpUtility.ParseQueryString(new System.Uri(obj[0]).Query);
+
+            var code = queryDictionary["code"];
+            var state = queryDictionary["state"];
+
+            if (state == State) {
+                await InvokeAsync(() =>
+                {
+                    AuthCode = code;
+                    StateHasChanged();
+                });
+            }
+        }
+
+        GetAccessToken();
     }
 
-    public override string Title => "Wealth Tracker";
+    private async void GetAccessToken()
+    {
+        var requestContent = new StringContent(
+            $"client_id={ClientId}&grant_type=authorization_code&code={AuthCode}&redirect_uri={RedirectUrl}&scope={Scopes}&code_verifier={CodeVerifier}",
+            Encoding.UTF8,
+            "application/x-www-form-urlencoded"
+        );
 
+        var response = await Http.PostAsync(TokenUrl, requestContent);
+        var responseContent = await response.Content.ReadAsStreamAsync();
+        var result = await JsonSerializer.DeserializeAsync<Oauth2TokenResponse>(responseContent);
+
+        await InvokeAsync(() =>
+        {
+            AccessToken = result.access_token;
+            Expires = result.expires_in;
+            Username = result.username;
+
+            StateHasChanged();
+        });
+
+    }
+
+    public class Oauth2TokenResponse
+    {
+
+        public string access_token { get; set; }
+        public int expires_in { get; set; }
+        public string token_type { get; set; }
+        public string scope { get; set; }
+        public string username { get; set; }
+        public string sub { get; set; }
+        public string refresh_token { get; set; }
+    }
+    #endregion
+
+    #region API Stash
+    private async Task<List<APIStashItem>> GetStashItems() {
+
+        List<APIStashItem> items = new List<APIStashItem>();
+
+        foreach (APIStashTab stashTab in StashList.stashes)
+        {
+            if (stashTab.parse == true)
+            {
+                APIStashTab stashDetails = await GetStashDetails(stashTab.id);
+
+                if (stashDetails != null)
+                {
+                    if (stashDetails.children != null)
+                    {
+                        foreach (APIStashTab childStashTab in stashDetails.children)
+                        {
+                            APIStashTab childStashDetails = await GetStashDetails($"{stashTab.id}/{childStashTab.id}");
+
+                            if (childStashDetails != null && childStashDetails.items != null)
+                            {
+                                items.AddRange(childStashDetails.items);
+                            }
+                        }
+
+                    }
+
+                    if (stashDetails.items != null)
+                    {
+                        items.AddRange(stashDetails.items);
+                    }
+                }
+            }
+        }
+
+        return items;
+    }
+
+    private async Task<APIStashTab> GetStashDetails(string stash)
+    {
+
+        Http.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", AccessToken);
+
+        var response = await Http.GetAsync($"{PoeAPIUrl}/stash/Ancestor/{stash}");
+        var responseContent = await response.Content.ReadAsStreamAsync();
+        var result = await JsonSerializer.DeserializeAsync<APIStashTabWrapper>(responseContent);
+
+
+        return result.stash;
+    }
+
+    private async Task<APIStashList> GetStashTabs()
+    {
+
+        Http.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", AccessToken);
+
+        var response = await Http.GetAsync($"{PoeAPIUrl}/stash/Ancestor");
+        var responseContent = await response.Content.ReadAsStreamAsync();
+        var result = await JsonSerializer.DeserializeAsync<APIStashList>(responseContent);
+
+        StashList = result;
+        return StashList;
+
+    }
+
+    public class APIStashList
+    {
+        public List<APIStashTab> stashes { get; set; }
+    }
+
+    public class APIStashTabWrapper
+    {
+        public APIStashTab stash { get; set; }
+    }
+
+    public class APIStashTab
+    {
+
+        public string id { get; set; }
+        public string? parent { get; set; }
+        public string name { get; set; }
+        public string type { get; set; }
+        public int index { get; set; }
+        public List<APIStashTab>? children { get; set; }
+        public List<APIStashItem>? items { get; set; }
+        public bool parse { get; set; } = false;
+
+    }
+
+    public class APIStashItem
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+        public string typeLine { get; set; }
+        public string baseType { get; set; }
+        public string icon { get; set; }
+        public int stackSize { get; set; }
+        public int maxStackSize { get; set; }
+
+        public string getFriendlyName()
+        {
+            if (name == "")
+            {
+                return typeLine;
+            }
+            return name;
+        }
+    }
+    #endregion
 }

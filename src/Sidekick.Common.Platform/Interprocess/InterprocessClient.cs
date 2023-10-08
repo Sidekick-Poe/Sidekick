@@ -23,8 +23,8 @@ namespace Sidekick.Common.Platform.Interprocess
 
         public void Start()
         {
-            logger.LogInformation("Client Startup Directory: " + System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));
-            string pipeName = File.ReadAllText(System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) + "pipename");
+      
+            string pipeName = File.ReadAllText(SidekickPaths.GetDataFilePath("pipename"));
 
             pipeClient = new PipeClient<IInterprocessService>(
                 new NetJsonPipeSerializer(),
