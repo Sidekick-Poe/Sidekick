@@ -3,6 +3,7 @@ using System.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Win32;
 using MudBlazor.Services;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
@@ -14,6 +15,7 @@ using Sidekick.Common.Blazor;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Errors;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Mock;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
@@ -23,6 +25,7 @@ using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
 using Sidekick.Modules.Settings;
 using Sidekick.Modules.Trade;
+using Sidekick.Modules.Wealth;
 using Sidekick.Wpf.Services;
 
 namespace Sidekick.Wpf
@@ -39,8 +42,13 @@ namespace Sidekick.Wpf
         private readonly ILogger<App> logger;
         private Mutex? Mutex { get; set; }
 
+        private IInterprocessService InterprocessService { get; set; }
+        private IInterprocessClient InterprocessClient { get; set; }
+
         public App()
         {
+
+
             var configurationManager = new ConfigurationManager();
             try
             {
@@ -52,10 +60,13 @@ namespace Sidekick.Wpf
             ConfigureServices(services, configurationManager);
             ServiceProvider = services.BuildServiceProvider();
             logger = ServiceProvider.GetRequiredService<ILogger<App>>();
+            InterprocessService = ServiceProvider.GetRequiredService<IInterprocessService>();
+            InterprocessClient = ServiceProvider.GetRequiredService<IInterprocessClient>();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
+
             base.OnStartup(e);
 
             AttachErrorHandlers();
@@ -64,11 +75,30 @@ namespace Sidekick.Wpf
 
             if (!EnsureSingleInstance())
             {
+                InterprocessClient.Start();
+                InterprocessClient.CustomProtocol(e.Args);
+                InterprocessClient.Dispose();
+
                 _ = viewLocator.Open(ErrorType.AlreadyRunning.ToUrl());
                 return;
+            } else
+            {
+                InterprocessService.CustomProtocolCallback(InterprocessService_CustomProtocolCallback);
+                InterprocessService.Start();
             }
 
             _ = viewLocator.Open("/");
+        }
+
+        public void InterprocessService_CustomProtocolCallback(string[] obj)
+        {
+            string messageBoxText = string.Join(", ", obj); ;
+            string caption = "Initial Instance Received?";
+            MessageBoxButton button = MessageBoxButton.OK;
+            MessageBoxImage icon = MessageBoxImage.Information;
+            MessageBoxResult result;
+
+            result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.OK);
         }
 
         private void ConfigureServices(ServiceCollection services, IConfiguration configuration)
@@ -108,6 +138,7 @@ namespace Sidekick.Wpf
 
                 // Modules
                 .AddSidekickAbout()
+                .AddSidekickWealth()
                 .AddSidekickChat()
                 .AddSidekickCheatsheets()
                 .AddSidekickDevelopment()
@@ -120,6 +151,27 @@ namespace Sidekick.Wpf
             services.AddSingleton<ITrayProvider, WpfTrayProvider>();
             services.AddSingleton<IViewLocator, WpfViewLocator>();
             services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());
+
+
+            //string customProtocol = "SidekickProtocol";
+
+            //var a = System.AppDomain.CurrentDomain.BaseDirectory;
+            //var b = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+            //var c = System.IO.Path.GetDirectoryName(b);
+
+            //RegistryKey key = Registry.ClassesRoot.OpenSubKey(customProtocol);
+            //if (key == null)
+            //{
+            //    key = Registry.ClassesRoot.CreateSubKey(customProtocol);
+            //    key.SetValue(string.Empty, "URL: " + customProtocol);
+            //    key.SetValue("URL Protocol", string.Empty);
+
+            //    key = key.CreateSubKey(@"shell\open\command");
+            //    key.SetValue(string.Empty, System.AppDomain.CurrentDomain.BaseDirectory + " " + "%1");
+            //    key.Close();
+            //}
+
+
         }
 
         protected override void OnExit(ExitEventArgs e)

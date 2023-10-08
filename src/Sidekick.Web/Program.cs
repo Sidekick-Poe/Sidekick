@@ -17,6 +17,7 @@ using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
 using Sidekick.Modules.Settings;
 using Sidekick.Modules.Trade;
+using Sidekick.Modules.Wealth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -66,6 +67,7 @@ builder.Services
     // Modules
     .AddSidekickAbout()
     .AddSidekickChat()
+    .AddSidekickWealth()
     .AddSidekickCheatsheets()
     .AddSidekickDevelopment()
     .AddSidekickGeneral()

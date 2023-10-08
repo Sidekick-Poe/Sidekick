@@ -1,0 +1,74 @@
+@page "/wealth"
+@inherits SidekickView
+
+<MudText Typo="Typo.h1">Wealth Tracker</MudText>
+<MudButton Variant="Variant.Filled"
+           Color="Color.Primary"
+           OnClick="Authenticate">
+    Authenticate
+</MudButton>
+
+@code {
+    [Inject] private WealthResources Resources { get; set; }
+    [Inject] private ILogger<Wealth> Logger { get; set; }
+    [Inject] private IBrowserProvider Browser { get; set; }
+    [Inject] private IBrowserProvider browserProvider { get; set; }
+
+    const string AuthorizationUrl = "https://www.pathofexile.com/oauth/authorize";
+    const string ClientId = "sidekick";
+    const string RedirectUrl = "https://sidekick-poe.github.io/oauth/poe";
+    const string Scopes = "account:stashes";
+    const string State = "10ceb8104963e91e47a95f4138448ecf";
+
+    private void Authenticate()
+    {
+        string codeVerifier = GenerateCodeVerifier();
+        string codeChallenge = GenerateCodeChallenge(codeVerifier);
+            browserProvider.OpenUri(new Uri(GenerateAuthLink(codeChallenge)));
+    }
+
+    private string GenerateCodeVerifier()
+    {
+        //Generate a random string for our code verifier
+        var rng = RandomNumberGenerator.Create();
+        var bytes = new byte[32];
+        rng.GetBytes(bytes);
+
+        var codeVerifier = Convert.ToBase64String(bytes)
+            .TrimEnd('=')
+            .Replace('+', '-')
+            .Replace('/', '_');
+        return codeVerifier;
+    }
+
+    private string GenerateCodeChallenge(string codeVerifier)
+    {
+        //generate the code challenge based on the verifier
+        string codeChallenge;
+        using (var sha256 = SHA256.Create())
+        {
+            var challengeBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(codeVerifier));
+            codeChallenge = Convert.ToBase64String(challengeBytes)
+                .TrimEnd('=')
+                .Replace('+', '-')
+                .Replace('/', '_');
+        }
+
+        return codeChallenge;
+    }
+
+    private string GenerateAuthLink(string codeChallenge)
+    {
+        string authLink = $"{AuthorizationUrl}?client_id={ClientId}&response_type=code&scope={Scopes}&state={State}&redirect_uri={RedirectUrl}&code_challenge={codeChallenge}&code_challenge_method=S256";
+
+        return authLink;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+    }
+
+    public override string Title => "Wealth Tracker";
+
+}

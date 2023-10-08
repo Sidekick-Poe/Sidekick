@@ -140,6 +140,7 @@ namespace Sidekick.Common.Blazor.Initialization
             {
                 new (label: "Sidekick - " + typeof(Initialization).Assembly.GetName().Version.ToString()),
                 new (label: "Cheatsheets", onClick: () => ViewLocator.Open("/cheatsheets")),
+                new (label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
                 new (label: "About", onClick: () => ViewLocator.Open("/about")),
                 new (label: "Settings", onClick: () => ViewLocator.Open("/settings")),
                 new (label: "Exit", onClick: () => { ApplicationService.Shutdown(); return Task.CompletedTask; }),
