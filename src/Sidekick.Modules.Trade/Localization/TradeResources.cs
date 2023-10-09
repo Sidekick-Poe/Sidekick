@@ -48,5 +48,8 @@ namespace Sidekick.Modules.Trade.Localization
         public string Unidentified => localizer["Unidentified"];
         public string BasePercentile => localizer["Base_Percentile"];
         public string BuyoutPrice => localizer["BuyoutPrice"];
+
+        public string Mode_Item => localizer["Mode_Item"];
+        public string Mode_Bulk => localizer["Mode_Bulk"];
     }
 }

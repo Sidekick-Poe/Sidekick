@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Sidekick.Apis.Poe.Trade.Models;
 
-namespace Sidekick.Modules.Trade.Models
+namespace Sidekick.Modules.Trade.Components.Filters
 {
     public class FiltersModel
     {

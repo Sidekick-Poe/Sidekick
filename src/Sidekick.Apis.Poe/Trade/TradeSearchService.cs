@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers;
@@ -59,8 +60,17 @@ namespace Sidekick.Apis.Poe.Trade
                 }
 
                 var model = new BulkQueryRequest();
-                // model.Exchange.Want.Add(itemId);
-                // model.Exchange.Have.Add("chaos");
+                model.Query.Want.Add(itemId);
+
+                var have = options.Currency.GetValueAttribute();
+                if (have == null || options.Currency == TradeCurrency.ChaosEquivalent || options.Currency == TradeCurrency.ChaosOrDivine)
+                {
+                    model.Query.Have.Add(TradeCurrency.Chaos.GetValueAttribute()!);
+                }
+                else
+                {
+                    model.Query.Have.Add(have);
+                }
 
                 var json = JsonSerializer.Serialize(model, poeTradeClient.Options);
                 var body = new StringContent(json, Encoding.UTF8, "application/json");

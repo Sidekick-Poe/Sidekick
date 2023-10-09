@@ -48,6 +48,11 @@ namespace Sidekick.Common.Enums
                 var attribute = field.GetCustomAttributes(attributeType, false);
                 if (attribute == null || attribute.Length == 0)
                 {
+                    if (field.Name == value)
+                    {
+                        return (T?)field.GetValue(null) ?? default;
+                    }
+
                     continue;
                 }
 

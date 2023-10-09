@@ -13,7 +13,6 @@
                     <ToggleLayoutButton Layout="Layout" LayoutChanged="LayoutChanged" />
                 }
             </MudButtonGroup>
-            <TradeCurrencySelect Changed="Changed" />
         </div>
     </div>
 }
@@ -26,8 +25,6 @@
 
     [Parameter] public Layout Layout { get; set; }
     [Parameter] public EventCallback<Layout> LayoutChanged { get; set; }
-
-    [Parameter] public EventCallback Changed { get; set; }
 
     [Parameter] public int Count { get; set; }
     [Parameter] public int Total { get; set; }

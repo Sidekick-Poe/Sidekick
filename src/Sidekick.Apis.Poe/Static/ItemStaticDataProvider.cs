@@ -2,6 +2,7 @@ using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Static.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Static
@@ -10,13 +11,16 @@ namespace Sidekick.Apis.Poe.Static
     {
         private readonly ICacheProvider cacheProvider;
         private readonly IPoeTradeClient poeTradeClient;
+        private readonly IGameLanguageProvider gameLanguageProvider;
 
         public ItemStaticDataProvider(
             ICacheProvider cacheProvider,
-            IPoeTradeClient poeTradeClient)
+            IPoeTradeClient poeTradeClient,
+            IGameLanguageProvider gameLanguageProvider)
         {
             this.cacheProvider = cacheProvider;
             this.poeTradeClient = poeTradeClient;
+            this.gameLanguageProvider = gameLanguageProvider;
         }
 
         private Dictionary<string, string> ImageUrls { get; set; } = new();
@@ -60,12 +64,12 @@ namespace Sidekick.Apis.Poe.Static
                 _ => id
             };
 
-            if (!string.IsNullOrEmpty(id) && ImageUrls.TryGetValue(id, out var result))
+            if (gameLanguageProvider.Language == null || string.IsNullOrEmpty(id) || !ImageUrls.TryGetValue(id, out var result))
             {
-                return result;
+                return null;
             }
 
-            return null;
+            return $"{gameLanguageProvider.Language.PoeCdnBaseUrl}{result.Trim('/')}";
         }
 
         public string? GetId(Item item)

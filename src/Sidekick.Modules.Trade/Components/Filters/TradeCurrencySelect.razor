@@ -1,0 +1,90 @@
+@using Sidekick.Apis.Poe.Localization
+@using Sidekick.Common.Enums
+
+<div>
+    <MudMenu AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.BottomLeft" MaxHeight="400">
+        <ActivatorContent>
+            <MudButton Color="Color.Info" EndIcon="@Icons.Material.Filled.ArrowDropDown" Style="text-wrap: nowrap;">
+                @if (SelectedOption != null)
+                {
+                    if (!string.IsNullOrEmpty(SelectedOption.Image))
+                    {
+                        <MudTooltip Text="@SelectedOption.Label" Inline="false">
+                            <img src="@SelectedOption.Image" class="ma-n1" />
+                        </MudTooltip>
+                    }
+                    else
+                    {
+                        @SelectedOption.Label
+                    }
+                }
+            </MudButton>
+        </ActivatorContent>
+        <ChildContent>
+            @foreach (var option in Options)
+            {
+                <MudMenuItem OnClick="() => ValueChanged.InvokeAsync(option.Value)">
+                    <div class="d-flex align-center">
+                        @if (!string.IsNullOrEmpty(option.Image))
+                        {
+                            <img src="@option.Image" class="ma-n1" />
+                        }
+
+                        <div class="pl-2">@option.Label</div>
+                    </div>
+                </MudMenuItem>
+            }
+        </ChildContent>
+    </MudMenu>
+</div>
+
+@code {
+    [Inject]
+    private ISettings Settings { get; set; }
+
+    [Inject]
+    private ISettingsService SettingsService { get; set; }
+
+    [Inject]
+    private TradeResources Resources { get; set; }
+
+    [Inject]
+    private IStringLocalizer<TradeCurrencyResources> OptionsLocalizer { get; set; }
+
+    [Inject]
+    private IItemStaticDataProvider StaticDataProvider { get; set; }
+    
+    [Parameter]
+    public TradeCurrency Value { get; set; }
+
+    [Parameter]
+    public EventCallback<TradeCurrency> ValueChanged { get; set; }
+
+    private List<TradeCurrencyOption> Options { get; set; }
+
+    private TradeCurrencyOption SelectedOption => Options?.FirstOrDefault(x => x.Value == Value);
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        Options = new();
+
+        foreach (var x in Enum.GetValues<TradeCurrency>())
+        {
+            var image = x switch
+            {
+                TradeCurrency.ChaosEquivalent => "/images/trade/ChaosOrbEquivalent.png",
+                TradeCurrency.ChaosOrDivine => "/images/trade/ChaosOrDivine.png",
+                _ => StaticDataProvider.GetImage(x.GetValueAttribute()),
+            };
+
+            Options.Add(new TradeCurrencyOption()
+                {
+                    Value = x,
+                    Label = OptionsLocalizer[x.ToString()],
+                    Image = image,
+                });
+        }
+    }
+}

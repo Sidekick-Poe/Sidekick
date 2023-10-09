@@ -44,7 +44,11 @@ namespace Sidekick.Modules.Settings
 
         public string Trade_Key_Check { get; set; }
 
-        public string Trade_Currency { get; set; }
+        public string Trade_Item_Currency { get; set; }
+
+        public string Trade_Bulk_Currency { get; set; }
+
+        public string Trade_Currency_PreferredMode { get; set; }
 
         public string Key_Close { get; set; }
 

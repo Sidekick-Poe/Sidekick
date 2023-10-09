@@ -1,7 +1,7 @@
 
 <div class="d-flex flex-row align-center @Class">
     <MudText Typo="Typo.h3">@Value.ToString("0.##")</MudText>
-    @if (ShowImage)
+    @if (ImageUrl != null)
     {
         <MudText Typo="Typo.body1" Class="mx-1">&times;</MudText>
         <img src="@ImageUrl" />
@@ -10,12 +10,10 @@
 
 @code {
     [Inject] private IItemStaticDataProvider ItemStaticDataProvider { get; set; }
-    [Inject] private IGameLanguageProvider GameLanguageProvider { get; set; }
 
     [Parameter] public string Currency { get; set; } = "chaos";
     [Parameter] public double Value { get; set; }
     [Parameter] public string Class { get; set; } = "justify-end";
 
-    private bool ShowImage => !string.IsNullOrEmpty(ItemStaticDataProvider.GetImage(Currency));
-    private string ImageUrl => $"{GameLanguageProvider.Language.PoeCdnBaseUrl}{ItemStaticDataProvider.GetImage(Currency).Trim('/')}";
+    private string ImageUrl => ItemStaticDataProvider.GetImage(Currency);
 }

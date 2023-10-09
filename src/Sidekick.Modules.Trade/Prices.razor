@@ -1,6 +1,5 @@
 @page "/trade/{itemName}/{itemText}"
 @using Sidekick.Common.Enums;
-@using Sidekick.Modules.Trade.Models;
 @inherits SidekickView
 
 @if (Item == null)
@@ -14,6 +13,7 @@ else
         {
             <CascadingValue Value="Filters" IsFixed="true">
                 <FiltersComponent ItemName="@ItemName.DecodeBase64Url()"
+                                  SupportsBulkRequest="SupportsBulk"
                                   OnSearch="UpdateQuery" />
             </CascadingValue>
         }
@@ -24,8 +24,7 @@ else
                                    QueryId="@QueryResult?.Id"
                                    Count="Results?.Count ?? 0"
                                    Total="QueryResult?.Total ?? 0"
-                                   CanExpand="CanExpand"
-                                   Changed="UpdateQuery" />
+                                   CanExpand="CanExpand" />
 
             @if (Results != null)
             {
@@ -59,17 +58,19 @@ else
     [Parameter] public string ItemName { get; set; }
     [Parameter] public string ItemText { get; set; }
 
-    public Item Item { get; set; }
-    public FiltersModel Filters { get; set; }
-    public TradeSearchResult<string> QueryResult { get; set; }
-    public List<TradeItem> Results { get; set; }
-    public bool FullyLoaded => (Results?.Count ?? 0) == (QueryResult?.Result?.Count ?? 0);
-    public bool IsFetching { get; set; }
+    private Item Item { get; set; }
+    private FiltersModel Filters { get; set; }
+    private TradeSearchResult<string> QueryResult { get; set; }
+    private List<TradeItem> Results { get; set; }
+    private bool FullyLoaded => (Results?.Count ?? 0) == (QueryResult?.Result?.Count ?? 0);
+    private bool IsFetching { get; set; }
     private Layout Layout { get; set; }
 
     public override string Title => Resources.Trade;
     public override bool CloseOnBlur => Settings.Trade_CloseWithMouse;
     public override SidekickViewType ViewType => SidekickViewType.Overlay;
+
+    private bool SupportsBulk => Item.Metadata.Rarity == Rarity.Currency && ItemStaticDataProvider.GetId(Item) != null;
 
     private bool CanExpand => Item?.Metadata?.Category switch
     {
@@ -116,17 +117,15 @@ else
         Results = new List<TradeItem>();
         IsFetching = true;
 
-        //if (Item.Metadata.Rarity == Rarity.Currency && ItemStaticDataProvider.GetId(Item) != null)
-        //{
-        //    QueryResult = await TradeSearchService.SearchBulk(Item);
-        //}
-        //else
-        //{
-        QueryResult = await TradeSearchService.Search(Item, new()
-            {
-                Currency = Settings.Trade_Currency.GetEnumFromValue<TradeCurrency>(),
-            }, Filters.PropertyFilters, Filters.ModifierFilters, Filters.PseudoFilters);
-        //}
+        var options = GetOptions();
+        if (options.Mode == TradeMode.Bulk)
+        {
+            QueryResult = await TradeSearchService.SearchBulk(Item, options);
+        }
+        else
+        {
+            QueryResult = await TradeSearchService.Search(Item, options, Filters.PropertyFilters, Filters.ModifierFilters, Filters.PseudoFilters);
+        }
 
         IsFetching = false;
 
@@ -139,6 +138,24 @@ else
         {
             await LoadMoreData();
         }
+    }
+
+    private TradeOptions GetOptions()
+    {
+        var options = new TradeOptions()
+            {
+                Currency = Settings.Trade_Item_Currency.GetEnumFromValue<TradeCurrency>(),
+                Mode = TradeMode.Item,
+            };
+
+        var isBulkPreferred = Settings.Trade_Currency_PreferredMode.GetEnumFromValue<TradeMode>() == TradeMode.Bulk;
+        if (SupportsBulk && isBulkPreferred)
+        {
+            options.Currency = Settings.Trade_Bulk_Currency.GetEnumFromValue<TradeCurrency>();
+            options.Mode = TradeMode.Bulk;
+        }
+
+        return options;
     }
 
     public async Task LoadMoreData()

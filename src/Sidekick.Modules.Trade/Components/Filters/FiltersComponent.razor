@@ -1,5 +1,5 @@
-@using Sidekick.Modules.Trade.Models;
-@* Root <div> element is required for ::deep CSS styles to be applied. *@
+@using Sidekick.Common.Enums
+
 <MudDrawer Open="true"
            Variant="@DrawerVariant.Persistent"
            Width="22em"
@@ -41,19 +41,43 @@
         <PseudoFiltersComponent Rarity="Item.Metadata.Rarity" />
     </div>
 
-    @if (Visible)
+    @if (SupportsBulkRequest)
     {
-        <div class="d-flex justify-center pa-2">
+        <MudButtonGroup Size="Size.Small" Variant="Variant.Filled" Color="Color.Info" Class="pt-2 px-2" Style="width: 100%;">
+            <MudButton OnClick="() => SelectModeButton(TradeMode.Item)"
+                       FullWidth="true"
+                       Class="@GetModeButtonClass(TradeMode.Item)">
+                @Resources.Mode_Item
+            </MudButton>
+            <MudButton OnClick="() => SelectModeButton(TradeMode.Bulk)"
+                       FullWidth="true"
+                       Class="@GetModeButtonClass(TradeMode.Bulk)">
+                @Resources.Mode_Bulk
+            </MudButton>
+        </MudButtonGroup>
+    }
+
+    @if (HasAnyFilter || SupportsBulkRequest)
+    {
+        <MudButtonGroup Variant="Variant.Filled" Color="Color.Primary" Class="pa-2" Style="width: 100%;">
             <MudButton FullWidth
                         Variant="Variant.Filled"
                         Color="Color.Primary"
                         OnClick="Search">@Resources.Filters_Submit</MudButton>
-         </div>
+             <TradeCurrencySelect @bind-Value="Currency" />
+         </MudButtonGroup>
     }
 </MudDrawer>
 
 @code {
-    [Inject] public TradeResources Resources { get; set; }
+    [Inject]
+    private TradeResources Resources { get; set; }
+
+    [Inject]
+    private ISettings Settings { get; set; }
+
+    [Inject]
+    private ISettingsService SettingsService { get; set; }
 
     [CascadingParameter]
     public Item Item { get; set; }
@@ -62,18 +86,27 @@
     public FiltersModel Filters { get; set; }
 
     [Parameter]
+    public bool SupportsBulkRequest { get; set; }
+
+    [Parameter]
     public string ItemName { get; set; }
 
     [Parameter]
     public EventCallback OnSearch { get; set; }
 
-    private bool Expanded { get; set; } = false;
-    private bool Visible { get; set; }
+    private bool HasAnyFilter { get; set; }
     private bool IsInit { get; set; } = false;
+
+    private TradeMode Mode { get; set; }
+
+    private TradeCurrency Currency { get; set; }
 
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
+
+        Mode = Settings.Trade_Currency_PreferredMode.GetEnumFromValue<TradeMode>();
+        SetInitialCurrencyValue();
 
         if (IsInit) return;
         IsInit = Item != null;
@@ -87,22 +120,53 @@
         int modifierCount = 0;
         modifierCount += Filters.ModifierFilters?.Count ?? 0;
 
-        Visible = modifierCount + propertyCount > 0;
+        HasAnyFilter = modifierCount + propertyCount > 0;
     }
 
-    private void Expand()
+    private void SetInitialCurrencyValue()
     {
-        Expanded = true;
+        if (Mode == TradeMode.Bulk)
+        {
+            Currency = Settings.Trade_Bulk_Currency.GetEnumFromValue<TradeCurrency>();
+        }
+        else
+        {
+            Currency = Settings.Trade_Item_Currency.GetEnumFromValue<TradeCurrency>();
+        }
     }
 
-    private void Collapse()
+    private string GetModeButtonClass(TradeMode value)
     {
-        Expanded = false;
+        if (Mode != value)
+        {
+            return "unselected";
+        }
+
+        return "";
     }
 
-    private Task Search()
+    private void SelectModeButton(TradeMode value)
     {
-        Expanded = false;
-        return OnSearch.InvokeAsync();
+        Mode = value;
+        SetInitialCurrencyValue();
+    }
+
+    private async Task Search()
+    {
+        if (SupportsBulkRequest)
+        {
+            await SettingsService.Save(nameof(ISettings.Trade_Currency_PreferredMode), Mode.GetValueAttribute());
+        }
+
+        if (Mode == TradeMode.Bulk)
+        {
+            await SettingsService.Save(nameof(ISettings.Trade_Bulk_Currency), Currency);
+        }
+        else
+        {
+            await SettingsService.Save(nameof(ISettings.Trade_Item_Currency), Currency);
+        }
+
+        await OnSearch.InvokeAsync();
     }
 }
