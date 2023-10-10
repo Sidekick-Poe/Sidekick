@@ -26,6 +26,10 @@ namespace Sidekick.Modules.Settings
             new CheatsheetPage("Vendor Recipes", "https://www.poewiki.net/wiki/Vendor_recipe_system"),
         };
 
+        public string Bearer_Token { get; set; } = "";
+
+        public DateTime? Bearer_Expiration { get; set; } = null;
+
         public string Language_UI { get; set; } = "en";
 
         public string Language_Parser { get; set; } = "";

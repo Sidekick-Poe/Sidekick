@@ -30,6 +30,11 @@ namespace Sidekick.Modules.Settings
             };
         }
 
+
+        public string Bearer_Token { get; set; }
+
+        public DateTime? Bearer_Expiration { get; set; }
+
         public Dictionary<WikiSetting, string> WikiOptions { get; private set; }
 
         public Guid? CurrentKey { get; set; }

@@ -8,8 +8,7 @@ namespace Sidekick.Common.Platform.Interprocess
 {
     public interface IInterprocessClient
     {
-        void CustomProtocol(string[] args);
-        void Dispose();
+        void SendMessage(string[] args);
         void Start();
     }
 }

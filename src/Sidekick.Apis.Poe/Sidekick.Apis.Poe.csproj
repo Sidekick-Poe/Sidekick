@@ -7,12 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Authentication\NewFile1.txt" />
+    <None Remove="Clients\NewFile1.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FuzzySharp" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+    <PackageReference Include="RateLimiter" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Stash\" />
   </ItemGroup>
 
 </Project>

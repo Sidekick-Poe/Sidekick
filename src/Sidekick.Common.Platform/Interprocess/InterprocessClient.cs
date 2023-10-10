@@ -11,19 +11,18 @@ using Serilog.Core;
 
 namespace Sidekick.Common.Platform.Interprocess
 {
-    public class InterprocessClient: IInterprocessClient
+    public class InterprocessClient : IInterprocessClient, IDisposable
     {
-
         internal PipeClient<IInterprocessService> pipeClient;
         internal readonly ILogger<InterprocessClient> logger;
 
-        public InterprocessClient(ILogger<InterprocessClient> logger) {
+        public InterprocessClient(ILogger<InterprocessClient> logger)
+        {
             this.logger = logger;
         }
 
         public void Start()
         {
-      
             string pipeName = File.ReadAllText(SidekickPaths.GetDataFilePath("pipename"));
 
             pipeClient = new PipeClient<IInterprocessService>(
@@ -33,16 +32,14 @@ namespace Sidekick.Common.Platform.Interprocess
             pipeClient.ConnectAsync();
         }
 
-        public void CustomProtocol(string[] args)
+        public void SendMessage(string[] args)
         {
-
-            pipeClient.InvokeAsync(x => x.CustomProtocol(args));
+            pipeClient.InvokeAsync(x => x.ReceiveMessage(args));
         }
 
         public void Dispose()
         {
             pipeClient.Dispose();
-
         }
     }
 }

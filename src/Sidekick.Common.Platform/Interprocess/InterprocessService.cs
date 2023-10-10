@@ -14,19 +14,14 @@ namespace Sidekick.Common.Platform.Interprocess
 {
     public class InterprocessService: IInterprocessService
     {
+        public static event Action<string[]> OnMessage;
 
         internal readonly ILogger<InterprocessService> logger;
-        private static Action<string[]>? _CustomProtocolCallback;
 
         public InterprocessService(ILogger<InterprocessService> logger)
         {
             this.logger = logger;
 
-        }
-
-        public void CustomProtocolCallback(Action<string[]> callback)
-        {
-            _CustomProtocolCallback += callback;
         }
 
         public void Start()
@@ -69,9 +64,9 @@ namespace Sidekick.Common.Platform.Interprocess
             });
         }
 
-        public void CustomProtocol(string[] args)
+        public void ReceiveMessage(string[] args)
         {
-            _CustomProtocolCallback?.Invoke(args);
+            OnMessage?.Invoke(args);
         }
 
     }

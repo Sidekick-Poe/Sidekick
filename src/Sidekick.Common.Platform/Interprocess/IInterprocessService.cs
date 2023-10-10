@@ -8,8 +8,10 @@ namespace Sidekick.Common.Platform.Interprocess
 {
     public interface IInterprocessService
     {
-        void CustomProtocolCallback(Action<string[]> callback);
-        void CustomProtocol(String[] args);
+        static event Action<string[]> OnMessage;
+
+        void ReceiveMessage(String[] args);
+
         void Start();
     }
 }

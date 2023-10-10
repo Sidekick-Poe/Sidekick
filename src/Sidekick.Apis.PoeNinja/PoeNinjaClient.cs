@@ -135,7 +135,7 @@ namespace Sidekick.Apis.PoeNinja
             await settingsService.Save(nameof(ISettings.PoeNinja_LastClear), DateTimeOffset.Now);
         }
 
-        public Task SaveItemsToCache(ItemType itemType, List<NinjaPrice> prices)
+        public async Task SaveItemsToCache(ItemType itemType, List<NinjaPrice> prices)
         {
             prices = prices
                 .GroupBy(x => (x.Name,
@@ -145,7 +145,8 @@ namespace Sidekick.Apis.PoeNinja
                                x.Links))
                 .Select(x => x.OrderBy(x => x.Price).First())
                 .ToList();
-            return cacheProvider.Set(GetCacheKey(itemType), prices);
+
+            await cacheProvider.Set(GetCacheKey(itemType), prices);
         }
 
         private async Task<IEnumerable<NinjaPrice>> GetItems(ItemType itemType)

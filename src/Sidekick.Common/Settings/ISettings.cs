@@ -2,6 +2,9 @@ namespace Sidekick.Common.Settings
 {
     public interface ISettings
     {
+        string Bearer_Token { get; set; }
+        DateTime? Bearer_Expiration { get; set; }
+
         string Language_Parser { get; set; }
         string Language_UI { get; set; }
 

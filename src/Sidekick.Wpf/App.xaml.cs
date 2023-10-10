@@ -65,7 +65,6 @@ namespace Sidekick.Wpf
 
         protected override void OnStartup(StartupEventArgs e)
         {
-
             base.OnStartup(e);
 
             AttachErrorHandlers();
@@ -77,13 +76,18 @@ namespace Sidekick.Wpf
                 if (e.Args.Length > 0 && e.Args[0].ToUpper().StartsWith("SIDEKICK://"))
                 {
                     InterprocessClient.Start();
-                    InterprocessClient.CustomProtocol(e.Args);
-                    InterprocessClient.Dispose();
-                } else {
+                    InterprocessClient.SendMessage(e.Args);
+                    Current.Shutdown();
+                }
+                else
+                {
                     _ = viewLocator.Open(ErrorType.AlreadyRunning.ToUrl());
                 }
+
                 return;
-            } else {
+            }
+            else
+            {
                 InterprocessService.Start();
             }
 
