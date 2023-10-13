@@ -25,6 +25,7 @@ namespace Sidekick.Apis.Poe.Clients
             HttpClient = httpClientFactory.CreateClient("PoeClient");
             HttpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
             HttpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
+            HttpClient.Timeout = TimeSpan.FromMinutes(360); // GGG API will rate limit us and we have to wait 5 minutes for the next request
 
             Options = new JsonSerializerOptions()
             {

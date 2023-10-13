@@ -30,6 +30,8 @@ namespace Sidekick.Modules.Settings
 
         public DateTime? Bearer_Expiration { get; set; } = null;
 
+        public bool Enable_WealthTracker { get; set; } = false;
+
         public string Language_UI { get; set; } = "en";
 
         public string Language_Parser { get; set; } = "";

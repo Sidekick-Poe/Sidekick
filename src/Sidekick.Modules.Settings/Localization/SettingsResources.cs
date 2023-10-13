@@ -67,5 +67,6 @@ namespace Sidekick.Modules.Settings.Localization
         public string Wiki_Key_Open => resources["Wiki_Key_Open"];
         public string Wiki_Preferred => resources["Wiki_Preferred"];
         public string PoeWikiData_Enable => resources["PoeWikiData_Enable"];
+        public string WealthTracker => resources["WealthTracker"];
     }
 }

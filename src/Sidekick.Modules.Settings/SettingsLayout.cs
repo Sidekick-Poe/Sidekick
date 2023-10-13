@@ -66,6 +66,11 @@ namespace Sidekick.Modules.Settings
                     Name= Resources.Chat,
                     Url="/settings/chat",
                 },
+                new()
+                {
+                    Name= Resources.WealthTracker,
+                    Url="/settings/wealth",
+                },
             };
 
             MenuIcon = false;

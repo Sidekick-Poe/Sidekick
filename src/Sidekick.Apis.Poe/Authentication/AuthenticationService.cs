@@ -113,7 +113,7 @@ namespace Sidekick.Apis.Poe.Authentication
             var responseContent = await response.Content.ReadAsStreamAsync();
             var result = await JsonSerializer.DeserializeAsync<Oauth2TokenResponse>(responseContent);
 
-            await _settingsService.Save("Bearer_Token", result.access_token);
+             await _settingsService.Save("Bearer_Token", result.access_token);
             await _settingsService.Save("Bearer_Expiration", DateTime.Now.AddSeconds(result.expires_in));
 
             _isAuthenticating = false;

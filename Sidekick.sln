@@ -69,7 +69,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Web", "src\Sidekic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Modules.Wealth", "src\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj", "{70B9893F-72F8-4B5F-A9CF-732E538D6C9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Protocol", "Sidekick.Protocol\Sidekick.Protocol.csproj", "{90CCE73B-CD45-44AB-917E-0B4B058B4170}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Protocol", "Sidekick.Protocol\Sidekick.Protocol.csproj", "{90CCE73B-CD45-44AB-917E-0B4B058B4170}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

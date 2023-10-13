@@ -35,6 +35,8 @@ namespace Sidekick.Modules.Settings
 
         public DateTime? Bearer_Expiration { get; set; }
 
+        public bool Enable_WealthTracker { get; set; }
+
         public Dictionary<WikiSetting, string> WikiOptions { get; private set; }
 
         public Guid? CurrentKey { get; set; }
@@ -98,5 +100,6 @@ namespace Sidekick.Modules.Settings
 
         public bool PoeWikiData_Enable { get; set; }
         public List<CheatsheetPage> Cheatsheets_Pages { get; set; }
+
     }
 }

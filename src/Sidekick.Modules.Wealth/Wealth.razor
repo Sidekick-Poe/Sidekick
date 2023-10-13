@@ -58,23 +58,44 @@
             Refresh Stash Items
         </MudButton>
         <br /><br />
-        <MudCard>
-            <MudCardHeader>
-                <CardHeaderContent>
-                    <MudText Typo="Typo.h3">Items</MudText>
-                </CardHeaderContent>
-            </MudCardHeader>
-            <MudCardContent>
-                <br/>
-                @if (StashItems != null)
-                {
-                    foreach (var stashItem in StashItems)
-                    {
-                        <MudText><MudImage Src="@stashItem.icon" Class="rounded-lg" />@stashItem.getFriendlyName() : @stashItem.stackSize</MudText>
-                    }
-                }
-            </MudCardContent>
-        </MudCard>
+            <div class="d-flex flex-grow-1 gap-4">
+                <MudPaper Class="flex-1 d-flex py-8" Elevation="0" Width="80%">
+                <MudCard Width="100%">
+                        <MudCardHeader>
+                            <CardHeaderContent>
+                                <MudText Typo="Typo.h3">Items</MudText>
+                            </CardHeaderContent>
+                        </MudCardHeader>
+                        <MudCardContent>
+                            <br />
+                            @if (StashItems != null)
+                            {
+                                foreach (var stashItem in StashItems)
+                                {
+                                    <MudText><MudImage Src="@stashItem.icon" Class="rounded-lg" />@stashItem.getFriendlyName() : @stashItem.stackSize</MudText>
+                                }
+                            }
+                        </MudCardContent>
+                    </MudCard>
+                </MudPaper>
+                <MudPaper Class="flex-1 d-flex py-8" Elevation="0" Width="20%">
+                    <MudCard Width="100%">
+                        <MudCardHeader>
+                            <CardHeaderContent>
+                                <MudText Typo="Typo.h3">Logs</MudText>
+                            </CardHeaderContent>
+                        </MudCardHeader>
+                        <MudCardContent>
+                            <br />   
+                            @foreach (var logitem in Log.OrderByDescending(x => x.Item1))
+                            {
+                            <MudAlert Severity="Severity.Info">@logitem.Item1.ToString("hh:h:s") - @logitem.Item2</MudAlert>
+                            }
+                        </MudCardContent>
+                    </MudCard>
+                </MudPaper>
+            </div>
+        
     </MudTabPanel>
 </MudTabs>
 @code {
@@ -88,6 +109,7 @@
     const string PoeAPIUrl = "https://api.pathofexile.com";
 
 
+    static List<Tuple<DateTime, String>> Log { get; set; } = new List<Tuple<DateTime, String>>();
     static APIStashList StashList { get; set; }
     static List<APIStashItem> StashItems { get; set; }
 
@@ -145,6 +167,11 @@
         {
             if (stashTab.parse == true)
             {
+                await InvokeAsync(() => { 
+                    Log.Add(new Tuple<DateTime, String>(DateTime.Now, $"Starting Parsing Tab: ${stashTab.name}"));
+                    StateHasChanged();
+                });
+
                 APIStashTab stashDetails = await GetStashDetails(stashTab.id);
 
                 if (stashDetails != null)
@@ -155,9 +182,20 @@
                         {
                             APIStashTab childStashDetails = await GetStashDetails($"{stashTab.id}/{childStashTab.id}");
 
+                            await InvokeAsync(() =>{
+                                Log.Add(new Tuple<DateTime, String>(DateTime.Now, $"Found Child Tab: ${childStashTab.id}"));
+                                StateHasChanged();
+                            });
+
                             if (childStashDetails != null && childStashDetails.items != null)
                             {
-                                items.AddRange(childStashDetails.items);
+                                await InvokeAsync(() =>{
+                                    items.AddRange(childStashDetails.items);
+                                    StashItems.AddRange(childStashDetails.items);
+                                    Log.Add(new Tuple<DateTime, String>(DateTime.Now, $"Tab Item Count: ${childStashDetails.items.Count()}"));
+                                    StateHasChanged();
+                                });
+
                             }
                         }
 
@@ -165,9 +203,20 @@
 
                     if (stashDetails.items != null)
                     {
-                        items.AddRange(stashDetails.items);
+                        await InvokeAsync(() =>{
+                            items.AddRange(stashDetails.items);
+                            StashItems.AddRange(stashDetails.items);
+                            Log.Add(new Tuple<DateTime, String>(DateTime.Now, $"Tab Item Count: ${stashDetails.items.Count()}"));
+                            StateHasChanged();
+                        });
                     }
                 }
+
+                await InvokeAsync(() =>
+                {
+                    Log.Add(new Tuple<DateTime, String>(DateTime.Now, $"Finished Parsing Tab: ${stashTab.name}"));
+                    StateHasChanged();
+                });
             }
         }
 
