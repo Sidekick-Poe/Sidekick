@@ -37,6 +37,8 @@ namespace Sidekick.Modules.Settings
 
         public bool Enable_WealthTracker { get; set; }
 
+        public List<String> WealthTrackerTabs { get; set; }
+
         public Dictionary<WikiSetting, string> WikiOptions { get; private set; }
 
         public Guid? CurrentKey { get; set; }

@@ -9,6 +9,7 @@ using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Pseudo;
+using Sidekick.Apis.Poe.Stash;
 using Sidekick.Apis.Poe.Static;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Common;
@@ -19,8 +20,9 @@ namespace Sidekick.Apis.Poe
     {
         public static IServiceCollection AddSidekickPoeApi(this IServiceCollection services)
         {
-            services.AddSingleton<PoeApiClient>();
+            services.AddSingleton<IPoeApiClient, PoeApiClient>();
             services.AddSingleton<IAuthenticationService, AuthenticationService>();
+            services.AddSingleton<IStashService, StashService>();
             services.AddSingleton<PoeApiHandler>();
 
             services.AddHttpClient("PoeTradeClient");

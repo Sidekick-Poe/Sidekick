@@ -11,6 +11,7 @@ namespace Sidekick.Modules.Wealth
             services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
             services.AddTransient<WealthResources>();
+            services.AddSingleton<WealthParser>();
 
             return services;
         }

@@ -32,7 +32,7 @@ namespace Sidekick.Apis.Poe.Clients
         {
             await timeConstraint;
 
-            var token = await authenticationService.GetAccessToken();
+            var token = authenticationService.GetAccessToken();
 
             if (String.IsNullOrEmpty(token))
             {

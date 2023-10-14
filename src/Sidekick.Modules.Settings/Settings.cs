@@ -32,6 +32,8 @@ namespace Sidekick.Modules.Settings
 
         public bool Enable_WealthTracker { get; set; } = false;
 
+        public List<String> WealthTrackerTabs { get; set; } = new List<String>();
+
         public string Language_UI { get; set; } = "en";
 
         public string Language_Parser { get; set; } = "";

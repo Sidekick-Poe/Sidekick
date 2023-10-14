@@ -67,38 +67,49 @@ namespace Sidekick.Apis.Poe.Authentication
             return Task.CompletedTask;
         }
 
-        public Task AuthenticationCallback(string code, string state)
+        public async Task<string> AuthenticationCallback(string code, string state)
         {
             if(_state == state) {
                 _code = code;
-                _token = RequestAccessToken().Result;
+                _token = await RequestAccessToken();
             } 
-            return Task.CompletedTask;
+            return _token;
         }
 
-        public async Task<string> GetAccessToken()
+        public string GetAccessToken()
         {
-            if(_isAuthenticating)
+            if(!IsAuthenticated())
             {
-                return String.Empty;
-            }
-
-            if (_settings.Bearer_Expiration == null || String.IsNullOrEmpty(_settings.Bearer_Token))
-            {
-                await Authenticate();
-                return String.Empty;
-            }
-
-            if(_settings.Bearer_Expiration?.AddMinutes(-1) < DateTime.Now)
-            {
-                await _settingsService.Save("Bearer_Token", null);
-                await _settingsService.Save("Bearer_Expiration", null);
-
-                await Authenticate();
                 return String.Empty;
             }
 
             return _settings.Bearer_Token;
+        }
+
+        public bool IsAuthenticated()
+        {
+            if (_isAuthenticating)
+            {
+                return false;
+            }
+
+            if (_settings.Bearer_Expiration == null || String.IsNullOrEmpty(_settings.Bearer_Token))
+            {
+                return false;
+            }
+
+            if (_settings.Bearer_Expiration?.AddMinutes(-1) < DateTime.Now)
+            {
+                _settingsService.Save("Bearer_Token", null);
+                _settingsService.Save("Bearer_Expiration", null);
+                return false;
+            }
+            return true;
+        }
+
+        public bool IsAuthenticating()
+        {
+            return _isAuthenticating;
         }
 
         private async Task<string> RequestAccessToken()
@@ -169,6 +180,4 @@ namespace Sidekick.Apis.Poe.Authentication
         }
 
     }
-
-
 }

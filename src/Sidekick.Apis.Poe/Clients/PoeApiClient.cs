@@ -7,8 +7,10 @@ using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Clients
 {
-    public class PoeApiClient
+    public class PoeApiClient: IPoeApiClient
     {
+        private const string POEAPIURL = "https://api.pathofexile.com/";
+
         private readonly ILogger logger;
         private readonly IGameLanguageProvider gameLanguageProvider;
         private readonly IAuthenticationService authenticationService;
@@ -22,10 +24,12 @@ namespace Sidekick.Apis.Poe.Clients
             this.logger = logger;
             this.gameLanguageProvider = gameLanguageProvider;
             this.authenticationService = authenticationService;
+
             HttpClient = httpClientFactory.CreateClient("PoeClient");
             HttpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
             HttpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
             HttpClient.Timeout = TimeSpan.FromMinutes(360); // GGG API will rate limit us and we have to wait 5 minutes for the next request
+            HttpClient.BaseAddress = new Uri(POEAPIURL);
 
             Options = new JsonSerializerOptions()
             {
@@ -37,16 +41,39 @@ namespace Sidekick.Apis.Poe.Clients
 
         public JsonSerializerOptions Options { get; }
 
-        public HttpClient HttpClient { get; set; }
+        private HttpClient HttpClient { get; set; }
 
-        public void Authenticate()
+        public async Task<TReturn> Fetch<TReturn>(string path)
         {
-            authenticationService.Authenticate();
+            var name = typeof(TReturn).Name;
+
+            try
+            {
+                var response = await HttpClient.GetAsync(path);
+
+                if(response.StatusCode == System.Net.HttpStatusCode.Unauthorized) {
+                    throw new Exception("Poe API: Unauthorized.");
+                }
+
+                if (response.StatusCode == System.Net.HttpStatusCode.TooManyRequests){
+                    throw new Exception("Poe API: Too Many Requests.");
+                }
+
+                var content = await response.Content.ReadAsStreamAsync();
+                var result = await JsonSerializer.DeserializeAsync<TReturn>(content, Options);
+                if (result != null)
+                {
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                logger.LogInformation($"[Poe Api Client] Could not fetch {name} at {HttpClient.BaseAddress + path}.");
+                throw;
+            }
+
+            throw new Exception("[Poe Api Client] Could not understand the API response.");
         }
 
-        public void AuthenticationCallback(string code, string state)
-        {
-            authenticationService.AuthenticationCallback(code, state);
-        }
     }
 }

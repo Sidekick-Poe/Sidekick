@@ -1,40 +1,174 @@
 @page "/settings/wealth"
 @layout SettingsLayout
 @inherits SidekickView
+@implements IDisposable
+<script>
+    function hideSettingsFooter() {
+        var settingsFooter = document.querySelector("body > div.sidekick-wrapper.has-appbar > div > div.mud-main-content > div > div.d-flex.pa-3.justify-end")''
+        settingsFooter.style.display = 'none';
+    }
+</script>
 <div class="pa-3">
-    <MudCard>
-        <MudCardContent>
-            <MudAlert Severity="Severity.Warning" Elevation="5">Wealth Tracker is an experimental feature and requires special privileges.</MudAlert>
-            <MudAlert Severity="Severity.Info" Elevation="5">
-                <MudText Typo="Typo.body2">
-                    Sidekick is register with GGG to use the Path Of Exile API and utilizes Oath2 Authorization Code Grant with Proof Key of Code Exchange to securely access the players account details.
-                    <MudLink Href="https://www.pathofexile.com/developer/docs/authorization">https://www.pathofexile.com/developer/docs/authorization</MudLink>
-                </MudText>
-            </MudAlert>
-            <MudPaper Class="pa-16 ma-2" Outlined="true">
-            <MudText Typo="Typo.body1">
-                The Sidekick Wealth Tracker is meant to help players track their overall wealth over time. In order to
-                to achieve this Sidekick requires access to the player's account stash data. When Wealth Tracker is enabled, Sidekick will take the following steps
-                to gain secure access to the players account stash data.
+    @if (!ViewModel.Enable_WealthTracker) {
+        <MudCard>
+            <MudCardContent>
+                <MudAlert Severity="Severity.Warning" Elevation="5">Wealth Tracker is an experimental feature and requires special privileges.</MudAlert>
+                <MudAlert Severity="Severity.Info" Elevation="5">
+                    <MudText Typo="Typo.body2">
+                        Sidekick is register with GGG to use the Path Of Exile API and utilizes Oath2 Authorization Code Grant with Proof Key of Code Exchange to securely access the players account details.
+                        <MudLink Href="https://www.pathofexile.com/developer/docs/authorization">https://www.pathofexile.com/developer/docs/authorization</MudLink>
+                    </MudText>
+                </MudAlert>
+                <MudPaper Class="pa-16 ma-2" Outlined="true">
+                <MudText Typo="Typo.body1">
+                    The Sidekick Wealth Tracker is meant to help players track their overall wealth over time. In order to
+                    to achieve this Sidekick requires access to the player's account stash data. When Wealth Tracker is enabled, Sidekick will take the following steps
+                    to gain secure access to the players account stash data.
 
-                <MudList>
-                    <MudListItem Text="Sidekick will launch a console window that requests Administrative Access. This is to register the custom protocol Sidekick:// on the players system. Sidekick uses this to securely receive Oauth data from GGG." Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Primary" />
-                    <MudListItem Text="Sidekick will launch a browser window to 'https://www.pathofexile.com/oauth/authorize'. The player will be asked to Authorize Sidekick and GGG will provide the players details to Sidekick required to read the players account stash data." Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Primary" />
-                    <MudListItem Text="Sidekick will cache the authentication details required to access the players account stash data until they are expired by GGG." Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Primary" />
-                    <MudListItem Text="Sidekick will automatically repeat step two in order to reauthenticate when the authentication details expire every 8 hours." Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Primary" />
-                </MudList>
-            </MudText>
-            </MudPaper>
-        </MudCardContent>
-        <MudCardActions>
-            <MudButton Variant="Variant.Filled" Color="Color.Primary">Enable Wealth Tracker</MudButton>
-        </MudCardActions>
-    </MudCard>
+                    <MudList>
+                        <MudListItem Text="Sidekick will launch a console window that requests Administrative Access. This is to register the custom protocol Sidekick:// on the players system. Sidekick uses this to securely receive Oauth data from GGG." Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Primary" />
+                        <MudListItem Text="Sidekick will launch a browser window to 'https://www.pathofexile.com/oauth/authorize'. The player will be asked to Authorize Sidekick and GGG will provide the players details to Sidekick required to read the players account stash data." Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Primary" />
+                        <MudListItem Text="Sidekick will cache the authentication details required to access the players account stash data until they are expired by GGG." Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Primary" />
+                        <MudListItem Text="Sidekick will automatically repeat step two in order to reauthenticate when the authentication details expire every 8 hours." Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Primary" />
+                    </MudList>
+                </MudText>
+                </MudPaper>
+            </MudCardContent>
+        </MudCard>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="ToggleWealthTracker">Enable Wealth Tracker</MudButton>
+    } else {
+        <MudCard>
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Typo="Typo.h3">Stash Tabs</MudText>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardContent>
+                <br />
+                @if (StashList != null)
+                {
+                    foreach (var stashTab in StashList)
+                    {
+                        <MudCheckBox @bind-Checked="@stashTab.parse" Color="Color.Primary">@stashTab.name</MudCheckBox>
+                    }
+                }
+                else
+                {
+                    <MudAlert Severity="Severity.Warning">Stash Tabs loading...</MudAlert>
+                }
+            </MudCardContent>
+        </MudCard>
+        <MudButton Variant="Variant.Filled" Class="pr-5" Color="Color.Primary" OnClick="SaveSettings">Save Settings</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="ToggleWealthTracker">Disable Wealth Tracker</MudButton>
+    }
 </div>
 
 @code {
     [Inject] private SettingsResources Resources { get; set; }
     [Inject] private SettingsModel ViewModel { get; set; }
+    [Inject] private IAuthenticationService AuthenticationService { get; set; }
+    [Inject] private IStashService StashService { get; set; }
+    [Inject] private ISettingsService SettingsService { get; set; }
+    [Inject] private IJSRuntime JsRuntime { get; set; }
+
+    private List<APIStashTab> StashList { get; set; }
 
     public override string Title => Resources.Title;
+
+    protected override async Task OnInitializedAsync()
+    {
+        InterprocessService.OnMessage += InterprocessService_CustomProtocolCallback;
+
+        if (ViewModel.Enable_WealthTracker)
+        {
+            if(AuthenticationService.IsAuthenticated()) {
+                LoadStashTabs();
+            } else {
+                await AuthenticationService.Authenticate();
+            }
+
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+    private void ToggleWealthTracker()
+    {
+        ViewModel.Enable_WealthTracker = !ViewModel.Enable_WealthTracker;
+
+        SettingsService.Save("Enable_WealthTracker", ViewModel.Enable_WealthTracker);
+
+        if (ViewModel.Enable_WealthTracker)
+        {
+            if (!AuthenticationService.IsAuthenticated()) {
+                AuthenticationService.Authenticate();
+            } else {
+                LoadStashTabs();
+            }
+        } else {
+            SettingsService.Save("Bearer_Token", null);
+            SettingsService.Save("Bearer_Expiration", null);
+        }
+
+        StateHasChanged();
+    }
+
+
+    private void SaveSettings()
+    {
+
+        var selectedTabs = new List<string>();
+
+        foreach (var stash in StashList)
+        {
+            if (stash.parse)
+            {
+                selectedTabs.Add(stash.id);
+            }
+        }
+        ViewModel.WealthTrackerTabs = selectedTabs;
+        SettingsService.Save("WealthTrackerTabs", selectedTabs);
+
+    }
+
+    private async void LoadStashTabs()
+    {
+        var results = await StashService.GetStashList();
+
+        StashList = results.stashes;
+
+        foreach(var stash in StashList)
+        {
+            if(ViewModel.WealthTrackerTabs.Contains(stash.id))
+            {
+                stash.parse = true;
+            }
+        }
+
+        await InvokeAsync(() => {
+            StateHasChanged();
+        });
+
+    }
+
+    public void InterprocessService_CustomProtocolCallback(string[] obj)
+    {
+        if (obj.Length > 0 && obj[0].ToUpper().StartsWith("SIDEKICK://OAUTH/POE"))
+        {
+            var queryDictionary = System.Web.HttpUtility.ParseQueryString(new System.Uri(obj[0]).Query);
+
+            var token = AuthenticationService.AuthenticationCallback(
+                queryDictionary["code"],
+                queryDictionary["state"]
+            ).Result;
+
+            LoadStashTabs();
+        }
+    }
+
+    public void Dispose()
+    {
+        InterprocessService.OnMessage -= InterprocessService_CustomProtocolCallback;
+    }
+
 }

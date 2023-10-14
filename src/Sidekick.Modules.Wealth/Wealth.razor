@@ -2,124 +2,66 @@
 @inherits SidekickView
 @implements IDisposable
 
-<MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
-    <MudTabPanel Text="Settings">
-        <MudButton Variant="Variant.Filled"
-                   Color="Color.Primary"
-                   OnClick="Authenticate">
-            Authenticate
-        </MudButton>
-        <MudButton Variant="Variant.Filled"
-                   Color="Color.Primary"
-                   OnClick="GetStashTabs">
-            Get Stash Tabs
-        </MudButton>
-        <br /><br />
-        <MudCard>
-            <MudCardHeader>
-                <CardHeaderContent>
-                    <MudText Typo="Typo.h3">Authentication</MudText>
-                </CardHeaderContent>
-            </MudCardHeader>
-            <MudCardContent>
-                <br />
-@*                 @if (Username == "")
-                {
-                    <MudAlert Severity="Severity.Warning">Not Authenticated.</MudAlert>
-                }
-                else
-                {
-                    <MudAlert Severity="Severity.Success">Authenticated!</MudAlert>
-                } *@
-            </MudCardContent>
-        </MudCard>
-        <MudCard>
-            <MudCardHeader>
-                <CardHeaderContent>
-                    <MudText Typo="Typo.h3">Stash Tabs</MudText>
-                </CardHeaderContent>
-            </MudCardHeader>
-            <MudCardContent>
-                <br />
-                @if (StashList != null) {
-                    foreach (var stashTab in StashList.stashes) {
-                        <MudCheckBox @bind-Checked="@stashTab.parse" Color="Color.Primary">@stashTab.name</MudCheckBox>
+
+    <div class="d-flex flex-grow-1 gap-4">
+        <MudPaper Class="flex-1 d-flex py-8" Elevation="0" Width="80%">
+        <MudCard Width="100%">
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h3">Items</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <br />
+                    @if (StashItems != null)
+                    {
+                        foreach (var stashItem in StashItems)
+                        {
+                            <MudText><MudImage Src="@stashItem.icon" Class="rounded-lg" />@stashItem.getFriendlyName() : @stashItem.stackSize</MudText>
+                        }
                     }
-                } else {
-                    <MudAlert Severity="Severity.Warning">Stash Tabs not loaded.</MudAlert>
-                }
-            </MudCardContent>
-        </MudCard>
-    </MudTabPanel>
-    <MudTabPanel Text="Wealth Tracker">
-        <MudButton Variant="Variant.Filled"
-                   Color="Color.Primary"
-                   OnClick="RefreshStashItems">
-            Refresh Stash Items
-        </MudButton>
-        <br /><br />
-            <div class="d-flex flex-grow-1 gap-4">
-                <MudPaper Class="flex-1 d-flex py-8" Elevation="0" Width="80%">
-                <MudCard Width="100%">
-                        <MudCardHeader>
-                            <CardHeaderContent>
-                                <MudText Typo="Typo.h3">Items</MudText>
-                            </CardHeaderContent>
-                        </MudCardHeader>
-                        <MudCardContent>
-                            <br />
-                            @if (StashItems != null)
-                            {
-                                foreach (var stashItem in StashItems)
-                                {
-                                    <MudText><MudImage Src="@stashItem.icon" Class="rounded-lg" />@stashItem.getFriendlyName() : @stashItem.stackSize</MudText>
-                                }
-                            }
-                        </MudCardContent>
-                    </MudCard>
-                </MudPaper>
-                <MudPaper Class="flex-1 d-flex py-8" Elevation="0" Width="20%">
-                    <MudCard Width="100%">
-                        <MudCardHeader>
-                            <CardHeaderContent>
-                                <MudText Typo="Typo.h3">Logs</MudText>
-                            </CardHeaderContent>
-                        </MudCardHeader>
-                        <MudCardContent>
-                            <br />   
-                            @foreach (var logitem in Log.OrderByDescending(x => x.Item1))
-                            {
-                            <MudAlert Severity="Severity.Info">@logitem.Item1.ToString("hh:h:s") - @logitem.Item2</MudAlert>
-                            }
-                        </MudCardContent>
-                    </MudCard>
-                </MudPaper>
-            </div>
+                </MudCardContent>
+            </MudCard>
+        </MudPaper>
+        <MudPaper Class="flex-1 d-flex py-8" Elevation="0" Width="20%">
+            <MudCard Width="100%">
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h3">Logs</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <br />   
+                    @foreach (var logitem in Log.OrderByDescending(x => x.Item1))
+                    {
+                    <MudAlert Severity="Severity.Info">@logitem.Item1.ToString("hh:h:s") - @logitem.Item2</MudAlert>
+                    }
+                </MudCardContent>
+            </MudCard>
+        </MudPaper>
+    </div>
         
-    </MudTabPanel>
-</MudTabs>
 @code {
     [Inject] private WealthResources Resources { get; set; }
     [Inject] private ILogger<Wealth> Logger { get; set; }
-    [Inject] private IBrowserProvider Browser { get; set; }
-    [Inject] private IBrowserProvider browserProvider { get; set; }
-    [Inject] private HttpClient Http { get; set; }
-    [Inject] private PoeApiClient client { get; set; }
-
-    const string PoeAPIUrl = "https://api.pathofexile.com";
-
+    [Inject] private StashService StashService { get; set; }
+    [Inject] private IAuthenticationService AuthorizationService { get; set; }
+    [Inject] private WealthParser WealthParser { get; set; }
 
     static List<Tuple<DateTime, String>> Log { get; set; } = new List<Tuple<DateTime, String>>();
-    static APIStashList StashList { get; set; }
     static List<APIStashItem> StashItems { get; set; }
 
     public override string Title => "Wealth Tracker";
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         InterprocessService.OnMessage += InterprocessService_CustomProtocolCallback;
-        await base.OnInitializedAsync();
+
+        //InvokeAsync(ParserLoop);
+
+        base.OnInitialized();
     }
+
 
     public void InterprocessService_CustomProtocolCallback(string[] obj)
     {
@@ -127,12 +69,19 @@
         {
             var queryDictionary = System.Web.HttpUtility.ParseQueryString(new System.Uri(obj[0]).Query);
 
-            client.AuthenticationCallback(
+            AuthorizationService.AuthenticationCallback(
                 queryDictionary["code"],
                 queryDictionary["state"]
             );
         }
     }
+
+    // private async void ParserLoop()
+    // {
+        
+    // }
+
+
 
     private async void RefreshStashItems()
     {
@@ -140,17 +89,11 @@
 
         StashItems.Clear();
 
-        StashItems = await GetStashItems();
+        //StashItems = await StashService.GetStashItems();
 
         StateHasChanged();
 
     }
-    private void Authenticate()
-    {
-        client.Authenticate();
-
-    }
-
 
     public void Dispose()
     {
@@ -159,141 +102,8 @@
 
 
     #region API Stash
-    private async Task<List<APIStashItem>> GetStashItems() {
+    
 
-        List<APIStashItem> items = new List<APIStashItem>();
-
-        foreach (APIStashTab stashTab in StashList.stashes)
-        {
-            if (stashTab.parse == true)
-            {
-                await InvokeAsync(() => { 
-                    Log.Add(new Tuple<DateTime, String>(DateTime.Now, $"Starting Parsing Tab: ${stashTab.name}"));
-                    StateHasChanged();
-                });
-
-                APIStashTab stashDetails = await GetStashDetails(stashTab.id);
-
-                if (stashDetails != null)
-                {
-                    if (stashDetails.children != null)
-                    {
-                        foreach (APIStashTab childStashTab in stashDetails.children)
-                        {
-                            APIStashTab childStashDetails = await GetStashDetails($"{stashTab.id}/{childStashTab.id}");
-
-                            await InvokeAsync(() =>{
-                                Log.Add(new Tuple<DateTime, String>(DateTime.Now, $"Found Child Tab: ${childStashTab.id}"));
-                                StateHasChanged();
-                            });
-
-                            if (childStashDetails != null && childStashDetails.items != null)
-                            {
-                                await InvokeAsync(() =>{
-                                    items.AddRange(childStashDetails.items);
-                                    StashItems.AddRange(childStashDetails.items);
-                                    Log.Add(new Tuple<DateTime, String>(DateTime.Now, $"Tab Item Count: ${childStashDetails.items.Count()}"));
-                                    StateHasChanged();
-                                });
-
-                            }
-                        }
-
-                    }
-
-                    if (stashDetails.items != null)
-                    {
-                        await InvokeAsync(() =>{
-                            items.AddRange(stashDetails.items);
-                            StashItems.AddRange(stashDetails.items);
-                            Log.Add(new Tuple<DateTime, String>(DateTime.Now, $"Tab Item Count: ${stashDetails.items.Count()}"));
-                            StateHasChanged();
-                        });
-                    }
-                }
-
-                await InvokeAsync(() =>
-                {
-                    Log.Add(new Tuple<DateTime, String>(DateTime.Now, $"Finished Parsing Tab: ${stashTab.name}"));
-                    StateHasChanged();
-                });
-            }
-        }
-
-        return items;
-    }
-
-    private async Task<APIStashTab> GetStashDetails(string stash)
-    {
-
-        // Http.DefaultRequestHeaders.Authorization =
-        //     new AuthenticationHeaderValue("Bearer", AccessToken);
-
-        var response = await client.HttpClient.GetAsync($"{PoeAPIUrl}/stash/Ancestor/{stash}");
-        var responseContent = await response.Content.ReadAsStreamAsync();
-        var result = await JsonSerializer.DeserializeAsync<APIStashTabWrapper>(responseContent);
-
-
-        return result.stash;
-    }
-
-    private async Task<APIStashList> GetStashTabs()
-    {
-
-        //Http.DefaultRequestHeaders.Authorization =
-        //    new AuthenticationHeaderValue("Bearer", AccessToken);
-
-        var response = await client.HttpClient.GetAsync($"{PoeAPIUrl}/stash/Ancestor");
-        var responseContent = await response.Content.ReadAsStreamAsync();
-        var result = await JsonSerializer.DeserializeAsync<APIStashList>(responseContent);
-
-        StashList = result;
-        return StashList;
-
-    }
-
-    public class APIStashList
-    {
-        public List<APIStashTab> stashes { get; set; }
-    }
-
-    public class APIStashTabWrapper
-    {
-        public APIStashTab stash { get; set; }
-    }
-
-    public class APIStashTab
-    {
-
-        public string id { get; set; }
-        public string? parent { get; set; }
-        public string name { get; set; }
-        public string type { get; set; }
-        public int index { get; set; }
-        public List<APIStashTab>? children { get; set; }
-        public List<APIStashItem>? items { get; set; }
-        public bool parse { get; set; } = false;
-
-    }
-
-    public class APIStashItem
-    {
-        public string id { get; set; }
-        public string name { get; set; }
-        public string typeLine { get; set; }
-        public string baseType { get; set; }
-        public string icon { get; set; }
-        public int stackSize { get; set; }
-        public int maxStackSize { get; set; }
-
-        public string getFriendlyName()
-        {
-            if (name == "")
-            {
-                return typeLine;
-            }
-            return name;
-        }
-    }
+   
     #endregion
 }
