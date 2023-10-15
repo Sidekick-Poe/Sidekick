@@ -19,6 +19,7 @@ namespace Sidekick.Common.Settings
         string Trade_Layout { get; set; }
         string Trade_Item_Currency { get; set; }
         string Trade_Bulk_Currency { get; set; }
+        int Trade_Bulk_MinStock { get; set; }
         string Trade_Currency_PreferredMode { get; set; }
 
         bool Map_CloseWithMouse { get; set; }

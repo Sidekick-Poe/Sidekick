@@ -1,8 +1,9 @@
-namespace Sidekick.Apis.Poe.Trade.Results
+namespace Sidekick.Apis.Poe.Bulk.Results
 {
-    public class Account
+    public class BulkAccount
     {
         public string? Name { get; set; }
+
         public string? LastCharacterName { get; set; }
     }
 }

@@ -1,0 +1,68 @@
+@if (QueryId != null)
+{
+    <div class="d-flex flex-row align-center justify-space-between mb-2">
+        <div>
+            <MudText Color="Color.Info">@Settings.LeagueId</MudText>
+            <CountString Count="Count" Total="Total" />
+        </div>
+        <div>
+            <MudButtonGroup Size="@Size.Small">
+                <OpenWebsiteLink QueryId="@QueryId" Mode="TradeMode.Item" />
+                @if (CanExpand)
+                {
+                    <ToggleLayoutButton Layout="Layout" LayoutChanged="LayoutChanged" />
+                }
+            </MudButtonGroup>
+        </div>
+    </div>
+}
+
+@code {
+    [Inject] private ISettings Settings { get; set; }
+
+    [CascadingParameter]
+    public Item Item { get; set; }
+
+    [Parameter]
+    public string QueryId { get; set; }
+
+    [Parameter]
+    public Layout Layout { get; set; }
+
+    [Parameter]
+    public EventCallback<Layout> LayoutChanged { get; set; }
+
+    [Parameter]
+    public int Count { get; set; }
+
+    [Parameter]
+    public int Total { get; set; }
+
+    private bool CanExpand => Item?.Metadata?.Category switch
+    {
+        Category.Accessory => true,
+        Category.Armour => true,
+        Category.Flask => true,
+        Category.Gem => true,
+        Category.Jewel => true,
+        Category.Map => Item.Metadata.Class != Class.MapFragments,
+        Category.Weapon => true,
+        Category.HeistEquipment => true,
+        Category.Contract => true,
+        Category.Logbook => true,
+        Category.Sentinel => true,
+        _ => false,
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var layout = Enum.Parse<Layout>(Settings.Trade_Layout);
+            await LayoutChanged.InvokeAsync(layout);
+        }
+        catch (Exception) { }
+
+        await base.OnInitializedAsync();
+    }
+}

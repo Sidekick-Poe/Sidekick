@@ -6,7 +6,7 @@ namespace Sidekick.Apis.Poe.Trade.Requests
 
         public List<string> Want { get; } = new();
 
-        public int Minimum { get; } = 5;
+        public int Minimum { get; set; } = 5;
 
         public Status Status { get; } = new();
     }

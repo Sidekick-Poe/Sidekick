@@ -1,4 +1,6 @@
 @page "/trade/{itemName}/{itemText}"
+@using Sidekick.Apis.Poe.Bulk;
+@using Sidekick.Apis.Poe.Trade.Results;
 @using Sidekick.Common.Enums;
 @inherits SidekickView
 
@@ -9,47 +11,24 @@
 else
 {
     <CascadingValue Value="Item" IsFixed="true">
-        @if (Filters != null)
-        {
-            <CascadingValue Value="Filters" IsFixed="true">
+        <CascadingValue Value="Filters" IsFixed="true">
+            @if (Filters != null)
+            {
                 <FiltersComponent ItemName="@ItemName.DecodeBase64Url()"
-                                  SupportsBulkRequest="SupportsBulk"
                                   OnSearch="UpdateQuery" />
-            </CascadingValue>
-        }
-
-        <div class="ml-0">
-            <PriceOptionsComponent @bind-Layout="Layout"
-                                   Item="Item"
-                                   QueryId="@QueryResult?.Id"
-                                   Count="Results?.Count ?? 0"
-                                   Total="QueryResult?.Total ?? 0"
-                                   CanExpand="CanExpand" />
-
-            @if (Results != null)
-            {
-                foreach (var result in Results)
-                {
-                    <ItemComponent @key="result.Id" Item="result" Layout="Layout" CanExpand="CanExpand" />
-                }
             }
 
-            @if (IsFetching)
-            {
-                <LoadingAlert Text="Loading results" />
-            }
+            <div class="ml-0">
+                <BulkResult @ref="BulkResult" Visible="Mode == TradeMode.Bulk" />
+                <ItemsResult @ref="ItemsResult" Visible="Mode == TradeMode.Item" />
+            </div>
 
-            @if (!IsFetching && !FullyLoaded && Results != null)
-            {
-                <MudButton Variant="Variant.Outlined" Color="Color.Info" FullWidth="true" OnClick="LoadMoreData" Class="mt-2">@Resources.LoadMoreData</MudButton>
-            }
-        </div>
+        </CascadingValue>
     </CascadingValue>
 }
 
 @code {
-    [Inject] private ITradeSearchService TradeSearchService { get; set; }
-    [Inject] private IItemStaticDataProvider ItemStaticDataProvider { get; set; }
+    [Inject] private IBulkTradeService BulkTradeService { get; set; }
     [Inject] private ISettings Settings { get; set; }
     [Inject] private TradeResources Resources { get; set; }
     [Inject] private IItemParser ItemParser { get; set; }
@@ -60,33 +39,16 @@ else
 
     private Item Item { get; set; }
     private FiltersModel Filters { get; set; }
-    private TradeSearchResult<string> QueryResult { get; set; }
-    private List<TradeItem> Results { get; set; }
-    private bool FullyLoaded => (Results?.Count ?? 0) == (QueryResult?.Result?.Count ?? 0);
-    private bool IsFetching { get; set; }
-    private Layout Layout { get; set; }
+
+    private ItemsResult ItemsResult { get; set; }
+    private BulkResult BulkResult { get; set; }
+
+    private TradeMode Mode => BulkTradeService.SupportsBulkTrade(Item) ? Settings.Trade_Currency_PreferredMode.GetEnumFromValue<TradeMode>() : TradeMode.Item;
+    private bool UpdateAfterRender { get; set; }
 
     public override string Title => Resources.Trade;
     public override bool CloseOnBlur => Settings.Trade_CloseWithMouse;
     public override SidekickViewType ViewType => SidekickViewType.Overlay;
-
-    private bool SupportsBulk => Item.Metadata.Rarity == Rarity.Currency && ItemStaticDataProvider.GetId(Item) != null;
-
-    private bool CanExpand => Item?.Metadata?.Category switch
-    {
-        Category.Accessory => true,
-        Category.Armour => true,
-        Category.Flask => true,
-        Category.Gem => true,
-        Category.Jewel => true,
-        Category.Map => Item.Metadata.Class != Class.MapFragments,
-        Category.Weapon => true,
-        Category.HeistEquipment => true,
-        Category.Contract => true,
-        Category.Logbook => true,
-        Category.Sentinel => true,
-        _ => false,
-    };
 
     protected override async Task OnParametersSetAsync()
     {
@@ -112,75 +74,32 @@ else
         await base.OnParametersSetAsync();
     }
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (UpdateAfterRender)
+        {
+            await UpdateQuery();
+        }
+    }
+
     public async Task UpdateQuery()
     {
-        Results = new List<TradeItem>();
-        IsFetching = true;
-
-        var options = GetOptions();
-        if (options.Mode == TradeMode.Bulk)
+        if (BulkResult == null || ItemsResult == null)
         {
-            QueryResult = await TradeSearchService.SearchBulk(Item, options);
+            UpdateAfterRender = true;
+            return;
+        }
+
+        UpdateAfterRender = false;
+        if (Mode == TradeMode.Bulk)
+        {
+            await BulkResult.Search();
         }
         else
         {
-            QueryResult = await TradeSearchService.Search(Item, options, Filters.PropertyFilters, Filters.ModifierFilters, Filters.PseudoFilters);
+            await ItemsResult.Search();
         }
-
-        IsFetching = false;
-
-        if (QueryResult == null || QueryResult?.Error != null)
-        {
-            NavigationManager.NavigateTo(ErrorType.ApiError.ToUrl(QueryResult?.Error?.Message));
-            return;
-        }
-        else
-        {
-            await LoadMoreData();
-        }
-    }
-
-    private TradeOptions GetOptions()
-    {
-        var options = new TradeOptions()
-            {
-                Currency = Settings.Trade_Item_Currency.GetEnumFromValue<TradeCurrency>(),
-                Mode = TradeMode.Item,
-            };
-
-        var isBulkPreferred = Settings.Trade_Currency_PreferredMode.GetEnumFromValue<TradeMode>() == TradeMode.Bulk;
-        if (SupportsBulk && isBulkPreferred)
-        {
-            options.Currency = Settings.Trade_Bulk_Currency.GetEnumFromValue<TradeCurrency>();
-            options.Mode = TradeMode.Bulk;
-        }
-
-        return options;
-    }
-
-    public async Task LoadMoreData()
-    {
-        if (IsFetching)
-        {
-            return;
-        }
-
-        var ids = QueryResult.Result.Skip(Results?.Count ?? 0).Take(10).ToList();
-        if (ids.Count == 0)
-        {
-            return;
-        }
-
-        IsFetching = true;
-
-        var result = await TradeSearchService.GetResults(QueryResult.Id, ids, Filters.PseudoFilters);
-        if (result != null)
-        {
-            Results.AddRange(result);
-        }
-
-        IsFetching = false;
-
-        StateHasChanged();
     }
 }

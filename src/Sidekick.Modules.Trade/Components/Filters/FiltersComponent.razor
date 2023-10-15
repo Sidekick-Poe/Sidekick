@@ -1,3 +1,4 @@
+@using Sidekick.Apis.Poe.Bulk;
 @using Sidekick.Common.Enums
 
 <MudDrawer Open="true"
@@ -43,18 +44,28 @@
 
     @if (SupportsBulkRequest)
     {
-        <MudButtonGroup Size="Size.Small" Variant="Variant.Filled" Color="Color.Info" Class="pt-2 px-2" Style="width: 100%;">
-            <MudButton OnClick="() => SelectModeButton(TradeMode.Item)"
-                       FullWidth="true"
-                       Class="@GetModeButtonClass(TradeMode.Item)">
-                @Resources.Mode_Item
-            </MudButton>
-            <MudButton OnClick="() => SelectModeButton(TradeMode.Bulk)"
-                       FullWidth="true"
-                       Class="@GetModeButtonClass(TradeMode.Bulk)">
-                @Resources.Mode_Bulk
-            </MudButton>
-        </MudButtonGroup>
+        <div class="mode-select">
+            <MudButtonGroup Size="Size.Small" Variant="Variant.Filled" Color="Color.Info" Class="pt-2 px-2" Style="width: 100%;">
+                <MudButton OnClick="() => SelectModeButton(TradeMode.Item)"
+                           FullWidth="true"
+                           Class="@GetModeButtonClass(TradeMode.Item)"
+                           StartIcon="@GetModeButtonIcon(TradeMode.Item)">
+                    @Resources.Mode_Item
+                </MudButton>
+                <MudButton OnClick="() => SelectModeButton(TradeMode.Bulk)"
+                           FullWidth="true"
+                           Class="@GetModeButtonClass(TradeMode.Bulk)"
+                           StartIcon="@GetModeButtonIcon(TradeMode.Bulk)">
+                    @Resources.Mode_Bulk
+                </MudButton>
+                @if (Mode == TradeMode.Bulk)
+                {
+                    <MudTooltip Text="@Resources.MinStock" Placement="Placement.Top">
+                        <MudInput T="string" Placeholder="Min" @bind-Value="MinStock" Variant="Variant.Outlined" />
+                    </MudTooltip>
+                }
+            </MudButtonGroup>
+        </div>
     }
 
     @if (HasAnyFilter || SupportsBulkRequest)
@@ -79,6 +90,9 @@
     [Inject]
     private ISettingsService SettingsService { get; set; }
 
+    [Inject]
+    private IBulkTradeService BulkTradeService { get; set; }
+
     [CascadingParameter]
     public Item Item { get; set; }
 
@@ -86,20 +100,18 @@
     public FiltersModel Filters { get; set; }
 
     [Parameter]
-    public bool SupportsBulkRequest { get; set; }
-
-    [Parameter]
     public string ItemName { get; set; }
 
     [Parameter]
     public EventCallback OnSearch { get; set; }
 
+    private bool SupportsBulkRequest => BulkTradeService.SupportsBulkTrade(Item);
     private bool HasAnyFilter { get; set; }
     private bool IsInit { get; set; } = false;
 
     private TradeMode Mode { get; set; }
-
     private TradeCurrency Currency { get; set; }
+    private string MinStock { get; set; }
 
     protected override void OnParametersSet()
     {
@@ -133,6 +145,8 @@
         {
             Currency = Settings.Trade_Item_Currency.GetEnumFromValue<TradeCurrency>();
         }
+
+        MinStock = Settings.Trade_Bulk_MinStock.ToString();
     }
 
     private string GetModeButtonClass(TradeMode value)
@@ -143,6 +157,16 @@
         }
 
         return "";
+    }
+
+    private string GetModeButtonIcon(TradeMode value)
+    {
+        if (Mode == value)
+        {
+            return Icons.Material.Filled.Check;
+        }
+
+        return null;
     }
 
     private void SelectModeButton(TradeMode value)
@@ -160,11 +184,15 @@
 
         if (Mode == TradeMode.Bulk)
         {
-            await SettingsService.Save(nameof(ISettings.Trade_Bulk_Currency), Currency);
+            await SettingsService.Save(nameof(ISettings.Trade_Bulk_Currency), Currency.GetValueAttribute());
+            if (int.TryParse(MinStock, out int minStock))
+            {
+                await SettingsService.Save(nameof(ISettings.Trade_Bulk_MinStock), minStock);
+            }
         }
         else
         {
-            await SettingsService.Save(nameof(ISettings.Trade_Item_Currency), Currency);
+            await SettingsService.Save(nameof(ISettings.Trade_Item_Currency), Currency.GetValueAttribute());
         }
 
         await OnSearch.InvokeAsync();

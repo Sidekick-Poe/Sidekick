@@ -35,6 +35,7 @@ namespace Sidekick.Modules.Trade.Localization
         public string Layout_Cards_Maximized => localizer["Layout_Cards_Maximized"];
         public string Layout_Cards_Minimized => localizer["Layout_Cards_Minimized"];
         public string LoadMoreData => localizer["LoadMoreData"];
+        public string MinStock => localizer["MinStock"];
         public string ModifierHint => localizer["ModifierHint"];
         public string OpenQueryInWebsite => localizer["OpenQueryInWebsite"];
         public string Parsing => localizer["Parsing"];
@@ -44,6 +45,7 @@ namespace Sidekick.Modules.Trade.Localization
 
         public string Requires => localizer["Requires"];
         public string Scourged => localizer["Scourged"];
+        public string Stock => localizer["Stock"];
         public string Trade => localizer["Trade"];
         public string Unidentified => localizer["Unidentified"];
         public string BasePercentile => localizer["Base_Percentile"];

@@ -48,6 +48,8 @@ namespace Sidekick.Modules.Settings
 
         public string Trade_Bulk_Currency { get; set; }
 
+        public int Trade_Bulk_MinStock { get; set; }
+
         public string Trade_Currency_PreferredMode { get; set; }
 
         public string Key_Close { get; set; }
