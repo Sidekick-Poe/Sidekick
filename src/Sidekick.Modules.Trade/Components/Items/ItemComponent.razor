@@ -106,17 +106,20 @@
 @code {
     [Inject] private TradeResources Resources { get; set; }
 
+    [CascadingParameter]
+    public Item PriceCheckItem { get; set; }
+
     [Parameter] public TradeItem Item { get; set; }
     [Parameter] public Layout Layout { get; set; }
 
-    private bool CanExpand => Item?.Metadata?.Category switch
+    private bool CanExpand => PriceCheckItem?.Metadata?.Category switch
     {
         Category.Accessory => true,
         Category.Armour => true,
         Category.Flask => true,
         Category.Gem => true,
         Category.Jewel => true,
-        Category.Map => Item.Metadata.Class != Class.MapFragments,
+        Category.Map => PriceCheckItem.Metadata.Class != Class.MapFragments,
         Category.Weapon => true,
         Category.HeistEquipment => true,
         Category.Contract => true,
