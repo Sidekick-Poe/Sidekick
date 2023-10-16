@@ -2,11 +2,21 @@
 @inherits SidekickView
 
 <MudText Typo="Typo.h1">Sidekick - @VersionNumber</MudText>
-<MudText Typo="Typo.subtitle1">@Resources.Operating_System - @OperatingSystem</MudText>
-<MudText Typo="Typo.subtitle1">@Resources.Environment_Versions - @EnvironmentVersion</MudText>
-<MudDivider Class="my-2" />
-<MudText Typo="Typo.subtitle2">@Resources.Project_Page - <MudLink @onclick="() => Navigate(ProjectUrl)">@ProjectUrl</MudLink></MudText>
-<MudText Typo="Typo.subtitle2">@Resources.Bug_Reports - <MudLink @onclick="() => Navigate(BugUrl)">@ProjectUrl</MudLink></MudText>
+<MudAlert Variant="Variant.Text" Severity="Severity.Info" Class="mt-2 mb-4">@Resources.Disclaimer</MudAlert>
+<MudPaper Class="pa-3 mb-3">
+    <div>
+        <MudText Typo="Typo.caption">@Resources.Operating_System - @OperatingSystem</MudText>
+    </div>
+    <div>
+        <MudText Typo="Typo.caption">@Resources.Environment_Versions - @EnvironmentVersion</MudText>
+    </div>
+    <div>
+        <MudText Typo="Typo.caption">@Resources.Project_Page - <MudLink @onclick="() => Navigate(ProjectUrl)">@ProjectUrl</MudLink></MudText>
+    </div>
+    <div>
+        <MudText Typo="Typo.caption">@Resources.Bug_Reports - <MudLink @onclick="() => Navigate(BugUrl)">@ProjectUrl</MudLink></MudText>
+    </div>
+</MudPaper>
 
 <MudCard>
     <MudCardHeader>
@@ -69,6 +79,7 @@
     {
         { "domialex", "https://github.com/domialex" },
         { "leMicin", "https://github.com/leMicin" },
+        { "mwardrop", "https://github.com/mwardrop" },
         { "Blinke", "https://github.com/Blinke" },
         { "Zalhera", "https://github.com/Zalhera" },
         { "cmos12345", "https://github.com/cmos12345" },
@@ -79,7 +90,6 @@
         { "lascoin", "https://github.com/lascoin" },
         { "vestakip", "https://github.com/vestakip" },
         { "PeteyPii", "https://github.com/PeteyPii" },
-        { "mwardrop", "https://github.com/mwardrop" }
     };
 
     public Dictionary<string, string> Translators { get; private set; } = new Dictionary<string, string>()
@@ -93,11 +103,8 @@
         { "poe.ninja", "https://poe.ninja/" },
         { "poeprices.info", "https://www.poeprices.info/" },
         { "MudBlazor", "https://github.com/Garderoben/MudBlazor" },
-        { "FluentAssertions", "https://fluentassertions.com" },
-        { "Electron", "https://www.electronjs.org/" },
-        { "Electron.NET", "https://github.com/ElectronNET/Electron.NET/" },
-        { "NeatInput", "https://github.com/LegendaryB/NeatInput" },
-        { "GregsStack.InputSimulatorStandard", "https://github.com/GregsStack/InputSimulatorStandard" },
+        { "SharpHook", "https://sharphook.tolik.io/" },
+        { "FuzzySharp", "https://github.com/JakeBayer/FuzzySharp" },
         { "TextCopy", "https://github.com/CopyText/TextCopy" },
     };
 
