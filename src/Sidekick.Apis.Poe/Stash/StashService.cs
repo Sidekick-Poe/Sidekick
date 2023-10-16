@@ -50,7 +50,9 @@ namespace Sidekick.Apis.Poe.Stash
 
         public async Task<APIStashTab> GetStashTab(string stashId)
         {
-            return await _client.Fetch<APIStashTab>($"stash/Ancestor/{stashId}");
+            var wrapper = await _client.Fetch<APIStashTabWrapper>($"stash/Ancestor/{stashId}");
+
+            return wrapper.stash;
         }
 
         public async Task<APIStashList> GetStashList()

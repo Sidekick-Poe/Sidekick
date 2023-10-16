@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common;
 using Sidekick.Modules.Wealth.Localization;
+using Sidekick.Modules.Wealth.Models;
 
 namespace Sidekick.Modules.Wealth
 {
@@ -12,6 +13,7 @@ namespace Sidekick.Modules.Wealth
 
             services.AddTransient<WealthResources>();
             services.AddSingleton<WealthParser>();
+            services.AddSingleton<WealthDbContext>();
 
             return services;
         }

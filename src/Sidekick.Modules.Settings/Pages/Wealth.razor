@@ -47,9 +47,14 @@
                 <br />
                 @if (StashList != null)
                 {
-                    foreach (var stashTab in StashList)
-                    {
-                        <MudCheckBox @bind-Checked="@stashTab.parse" Color="Color.Primary">@stashTab.name</MudCheckBox>
+                    foreach (var stashTab in StashList) {
+                        if(stashTab.children != null) {
+                            foreach (var childTab in stashTab.children) {
+                                <MudCheckBox @bind-Checked="@childTab.parse" Color="Color.Primary">@childTab.name</MudCheckBox>
+                            }                                
+                        } else {
+                            <MudCheckBox @bind-Checked="@stashTab.parse" Color="Color.Primary">@stashTab.name</MudCheckBox>
+                        }                 
                     }
                 }
                 else
@@ -59,6 +64,7 @@
             </MudCardContent>
         </MudCard>
         <MudButton Variant="Variant.Filled" Class="pr-5" Color="Color.Primary" OnClick="SaveSettings">Save Settings</MudButton>
+        <MudButton Variant="Variant.Filled" Class="pr-5" Color="Color.Primary" OnClick="ClearSelected">Clear Selected Stash Tabs</MudButton>
         <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="ToggleWealthTracker">Disable Wealth Tracker</MudButton>
     }
 </div>
@@ -121,14 +127,34 @@
 
         foreach (var stash in StashList)
         {
-            if (stash.parse)
+            if (stash.children != null)
             {
-                selectedTabs.Add(stash.id);
+                foreach (var child in stash.children)
+                {
+                    if (child.parse)
+                    {
+                        selectedTabs.Add(child.id);
+                    }
+                }
+            } else
+            {
+
+                if (stash.parse)
+                {
+                    selectedTabs.Add(stash.id);
+                }
             }
         }
         ViewModel.WealthTrackerTabs = selectedTabs;
         SettingsService.Save("WealthTrackerTabs", selectedTabs);
 
+    }
+
+    private void ClearSelected()
+    {
+        ViewModel.WealthTrackerTabs = new List<String>();
+        SettingsService.Save("WealthTrackerTabs", new List<String>());
+        StateHasChanged();
     }
 
     private async void LoadStashTabs()
@@ -139,10 +165,23 @@
 
         foreach(var stash in StashList)
         {
-            if(ViewModel.WealthTrackerTabs.Contains(stash.id))
+            if(stash.children != null)
             {
-                stash.parse = true;
+                foreach (var child in stash.children)
+                {
+                    if (ViewModel.WealthTrackerTabs.Contains(child.id))
+                    {
+                        child.parse = true;
+                    }
+
+                }
+            } else {
+                if (ViewModel.WealthTrackerTabs.Contains(stash.id))
+                {
+                    stash.parse = true;
+                }
             }
+
         }
 
         await InvokeAsync(() => {

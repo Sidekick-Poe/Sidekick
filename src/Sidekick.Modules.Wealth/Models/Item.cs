@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Sidekick.Modules.Wealth.Models
+{
+    public partial class Item
+    {
+        public string Id { get; set; }
+
+        public string Stash { get; set; }
+
+        public string Name { get; set; }
+
+        public ItemType Type { get; set; }
+
+        public string Icon { get; set; }
+
+        public string League { get; set; }
+
+        public int Level { get; set; }
+
+        public int Count { get; set; }
+
+        public double Price { get; set; }
+
+        public double Total { get; set; }
+
+        public bool Removed { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public DateTime UpdatedOn { get; set; }
+    }
+
+    public enum ItemType
+    {
+        Currency,
+        Unique,
+        Gem,
+        DivinationCard,
+        Map,
+        Other
+    }
+}
