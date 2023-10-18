@@ -65,7 +65,15 @@ else if (Price != null)
         if (Item != null)
         {
             IsInit = true;
-            Price = await Client.GetPriceInfo(OriginalItem.Parse(ItemName), Item);
+            var englishItem = OriginalItem.Parse(ItemName);
+            Price = await Client.GetPriceInfo(
+                englishItem.Name,
+                englishItem.Type,
+                Item.Metadata.Category,
+                gemLevel: Item.Properties.GemLevel,
+                mapTier: Item.Properties.MapTier,
+                isRelic: Item.Properties.IsRelic,
+                numberOfLinks: Item.GetMaximumNumberOfLinks());
 
             ChartOptions = new ChartOptions()
                 {

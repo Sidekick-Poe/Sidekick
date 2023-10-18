@@ -54,31 +54,47 @@ namespace Sidekick.Apis.PoeNinja
             return client;
         }
 
-        public async Task<NinjaPrice?> GetPriceInfo(OriginalItem originalItem, Item item)
+        public async Task<NinjaPrice?> GetPriceInfo(
+            string? englishName,
+            string? englishType,
+            Category category,
+            int? gemLevel = null,
+            int? mapTier = null,
+            bool? isRelic = null,
+            int? numberOfLinks = null)
         {
             await ClearCacheIfExpired();
 
-            foreach (var itemType in GetApiItemTypes(item))
+            foreach (var itemType in GetApiItemTypes(category))
             {
                 var repositoryItems = await GetItems(itemType);
+                var query = repositoryItems.Where(x => x.Name == englishName || x.Name == englishType);
 
-                var query = repositoryItems.Where(x => x.Name == originalItem.Name || x.Name == originalItem.Type);
-                if (item.Properties != null)
+                if (gemLevel != null)
                 {
-                    query = query.Where(x => x.GemLevel == item.Properties.GemLevel
-                                          && x.IsRelic == item.Properties.IsRelic);
+                    query = query.Where(x => x.GemLevel == gemLevel);
+                }
 
+                if (isRelic != null)
+                {
+                    query = query.Where(x => x.IsRelic == isRelic);
+                }
+
+                if (mapTier != null)
+                {
                     if (itemType == ItemType.Map
                      || itemType == ItemType.UniqueMap
                      || itemType == ItemType.BlightedMap
                      || itemType == ItemType.BlightRavagedMap)
                     {
-                        query = query.Where(x => x.MapTier == item.Properties.MapTier);
+                        query = query.Where(x => x.MapTier == mapTier);
                     }
+                }
 
+                if (numberOfLinks != null)
+                {
                     // Poe.ninja has pricings for <5, 5 and 6 links.
                     // <5 being 0 links in their API.
-                    var numberOfLinks = item.GetMaximumNumberOfLinks();
                     query = query.Where(x => x.Links == (numberOfLinks >= 5 ? numberOfLinks : 0));
                 }
 
@@ -255,44 +271,30 @@ namespace Sidekick.Apis.PoeNinja
             return Enumerable.Empty<NinjaPrice>();
         }
 
-        private IEnumerable<ItemType> GetApiItemTypes(Item item)
+        private IEnumerable<ItemType> GetApiItemTypes(Category category)
         {
-            if (item.Metadata.Rarity == Rarity.Unique)
+            switch (category)
             {
-                switch (item.Metadata.Category)
-                {
-                    case Category.Accessory:
-                        yield return ItemType.UniqueAccessory;
-                        yield break;
+                case Category.Accessory:
+                    yield return ItemType.UniqueAccessory;
+                    yield break;
 
-                    case Category.Armour:
-                        yield return ItemType.UniqueArmour;
-                        yield break;
+                case Category.Armour:
+                    yield return ItemType.UniqueArmour;
+                    yield break;
 
-                    case Category.Flask:
-                        yield return ItemType.UniqueFlask;
-                        yield break;
+                case Category.Flask:
+                    yield return ItemType.UniqueFlask;
+                    yield break;
 
-                    case Category.Jewel:
-                        yield return ItemType.UniqueJewel;
-                        yield break;
+                case Category.Jewel:
+                    yield return ItemType.UniqueJewel;
+                    yield break;
 
-                    case Category.Map:
-                        yield return ItemType.UniqueMap;
-                        yield break;
+                case Category.Weapon:
+                    yield return ItemType.UniqueWeapon;
+                    yield break;
 
-                    case Category.Weapon:
-                        yield return ItemType.UniqueWeapon;
-                        yield break;
-
-                    case Category.ItemisedMonster:
-                        yield return ItemType.Beast;
-                        yield break;
-                }
-            }
-
-            switch (item.Metadata.Category)
-            {
                 case Category.Currency:
                     yield return ItemType.Currency;
                     yield return ItemType.Fragment;
@@ -319,6 +321,7 @@ namespace Sidekick.Apis.PoeNinja
                     yield return ItemType.Invitation;
                     yield return ItemType.BlightedMap;
                     yield return ItemType.BlightRavagedMap;
+                    yield return ItemType.UniqueMap;
                     yield break;
 
                 case Category.Gem:
