@@ -148,8 +148,7 @@ namespace Sidekick.Apis.Poe.Metadatas
             var itemRarity = GetRarity(parsingBlock);
 
             var canBeVaalGem = itemRarity == Rarity.Gem && parsingItem.Blocks.Count > 7;
-            var vaalGemName = parsingItem.Blocks[5].Lines[0].Text;
-            if (canBeVaalGem && NameAndTypeDictionary.TryGetValue(vaalGemName, out var vaalGem))
+            if (canBeVaalGem && NameAndTypeDictionary.TryGetValue(parsingItem.Blocks[5].Lines[0].Text, out var vaalGem))
             {
                 return vaalGem.First();
             }
