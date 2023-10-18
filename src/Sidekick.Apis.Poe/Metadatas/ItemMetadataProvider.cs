@@ -185,6 +185,11 @@ namespace Sidekick.Apis.Poe.Metadatas
                 result.Rarity = itemRarity;
             }
 
+            if (result.Category == Category.ItemisedMonster && result.Rarity == Rarity.Unique && string.IsNullOrEmpty(result.Name))
+            {
+                result.Name = name;
+            }
+
             if (result.Class == Class.Undefined)
             {
                 result.Class = GetClass(parsingBlock);
@@ -246,11 +251,6 @@ namespace Sidekick.Apis.Poe.Metadatas
             if (result == null)
             {
                 return null;
-            }
-
-            if (result.Category == Category.ItemisedMonster && result.Rarity == Rarity.Unique && string.IsNullOrEmpty(result.Name))
-            {
-                result.Name = name;
             }
 
             return result;
