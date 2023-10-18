@@ -147,10 +147,9 @@ namespace Sidekick.Apis.Poe.Metadatas
 
             var itemRarity = GetRarity(parsingBlock);
 
-            // If we find a Vaal Gem, we don't care about any other results
-            if (itemRarity == Rarity.Gem &&
-                parsingItem.Blocks.Count > 7 && // If the items has more than 7 blocks, it could be a vaal gem
-                NameAndTypeDictionary.TryGetValue(parsingItem.Blocks[5].Lines[0].Text, out var vaalGem)) // The vaal gem name is always at the same position
+            var canBeVaalGem = itemRarity == Rarity.Gem && parsingItem.Blocks.Count > 7;
+            var vaalGemName = parsingItem.Blocks[5].Lines[0].Text;
+            if (canBeVaalGem && NameAndTypeDictionary.TryGetValue(vaalGemName, out var vaalGem))
             {
                 return vaalGem.First();
             }
