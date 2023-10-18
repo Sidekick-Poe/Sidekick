@@ -143,6 +143,8 @@ namespace Sidekick.Apis.Poe.Metadatas
         public ItemMetadata? Parse(ParsingItem parsingItem)
         {
             var parsingBlock = parsingItem.Blocks.First();
+            parsingBlock.Parsed = true;
+
             var itemRarity = GetRarity(parsingBlock);
 
             // If we find a Vaal Gem, we don't care about any other results
@@ -150,7 +152,6 @@ namespace Sidekick.Apis.Poe.Metadatas
                 parsingItem.Blocks.Count > 7 && // If the items has more than 7 blocks, it could be a vaal gem
                 NameAndTypeDictionary.TryGetValue(parsingItem.Blocks[5].Lines[0].Text, out var vaalGem)) // The vaal gem name is always at the same position
             {
-                parsingBlock.Parsed = true;
                 return vaalGem.First();
             }
 
@@ -174,6 +175,33 @@ namespace Sidekick.Apis.Poe.Metadatas
                 name = null;
             }
 
+            var result = Parse(name, type);
+            if (result == null)
+            {
+                return null;
+            }
+
+            // If we don't have the rarity from the metadata, we set it to the value from the text
+            if (result.Rarity == Rarity.Unknown)
+            {
+                result.Rarity = itemRarity;
+            }
+
+            if (result.Category == Category.ItemisedMonster && result.Rarity == Rarity.Unique && string.IsNullOrEmpty(result.Name))
+            {
+                result.Name = name;
+            }
+
+            if (result.Class == Class.Undefined)
+            {
+                result.Class = GetClass(parsingBlock);
+            }
+
+            return result;
+        }
+
+        public ItemMetadata? Parse(string? name, string? type)
+        {
             // We can find multiple matches while parsing. This will store all of them. We will figure out which result is correct at the end of this method.
             var results = new List<ItemMetadata>();
 
@@ -217,35 +245,10 @@ namespace Sidekick.Apis.Poe.Metadatas
             }
 
             // If we have a Unique item in our results, we sort for it so it comes first
-            var result = results
+            return results
                 .OrderBy(x => x.Rarity == Rarity.Unique ? 0 : 1)
                 .ThenBy(x => x.Rarity == Rarity.Unknown ? 0 : 1)
                 .FirstOrDefault();
-
-            if (result == null)
-            {
-                return null;
-            }
-
-            parsingBlock.Parsed = true;
-
-            // If we don't have the rarity from the metadata, we set it to the value from the text
-            if (result.Rarity == Rarity.Unknown)
-            {
-                result.Rarity = itemRarity;
-            }
-
-            if (result.Category == Category.ItemisedMonster && result.Rarity == Rarity.Unique && string.IsNullOrEmpty(result.Name))
-            {
-                result.Name = name;
-            }
-
-            if (result.Class == Class.Undefined)
-            {
-                result.Class = GetClass(parsingBlock);
-            }
-
-            return result;
         }
 
         private Rarity GetRarity(ParsingBlock parsingBlock)
