@@ -236,24 +236,20 @@ namespace Sidekick.Apis.Poe.Metadatas
                 }
             }
 
-            // If we have a matching type, we narrow down our results
             if (results.Any(x => x.Type == type))
             {
-                results = results.Where(x => x.Type == type).ToList();
+                return results.FirstOrDefault(x => x.Type == type);
             }
-
-            // If we have a Unique item in our results, we sort for it so it comes first
-            var result = results
-                .OrderBy(x => x.Rarity == Rarity.Unique ? 0 : 1)
-                .ThenBy(x => x.Rarity == Rarity.Unknown ? 0 : 1)
-                .FirstOrDefault();
-
-            if (result == null)
+            else if (results.Any(x => x.Rarity == Rarity.Unique))
             {
-                return null;
+                return results.FirstOrDefault(x => x.Rarity == Rarity.Unique);
+            }
+            else if (results.Any(x => x.Rarity == Rarity.Unknown))
+            {
+                return results.FirstOrDefault(x => x.Rarity == Rarity.Unknown);
             }
 
-            return result;
+            return results.FirstOrDefault();
         }
 
         private Rarity GetRarity(ParsingBlock parsingBlock)
