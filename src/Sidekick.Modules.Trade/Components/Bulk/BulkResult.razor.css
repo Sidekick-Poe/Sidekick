@@ -1,0 +1,23 @@
+img {
+    max-width: 100%;
+    height: auto;
+    max-height: 500px;
+}
+
+.item-content {
+    background-color: rgba(0, 0, 0, 0.65);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    color: rgba(255,255,255, 0.7);
+}
+
+::deep .stock,
+::deep .arrow {
+    color: #a38d6d;
+}
+
+::deep .arrow {
+    font-size: 1rem !important;
+    margin-left: 2px !important;
+    margin-right: 2px !important;
+}

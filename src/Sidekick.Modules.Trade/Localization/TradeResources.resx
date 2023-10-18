@@ -189,6 +189,15 @@
   <data name="LoadMoreData" xml:space="preserve">
     <value>Load More Data</value>
   </data>
+  <data name="MinStock" xml:space="preserve">
+    <value>Minimum Stock Size</value>
+  </data>
+  <data name="Mode_Bulk" xml:space="preserve">
+    <value>Bulk</value>
+  </data>
+  <data name="Mode_Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
   <data name="ModifierHint" xml:space="preserve">
     <value>This drop down allows you to select an alternate modifier. Sidekick does its best to find the best fitting modifier, but sometimes it fails to find the correct modifier as the game text sometimes differs from the trade modifier text.</value>
   </data>
@@ -209,6 +218,9 @@
   </data>
   <data name="Scourged" xml:space="preserve">
     <value>Scourged</value>
+  </data>
+  <data name="Stock" xml:space="preserve">
+    <value>Stock</value>
   </data>
   <data name="Trade" xml:space="preserve">
     <value>Trade</value>

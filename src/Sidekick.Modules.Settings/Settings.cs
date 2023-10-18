@@ -50,7 +50,13 @@ namespace Sidekick.Modules.Settings
 
         public string Trade_Layout { get; set; }
 
-        public string Trade_Currency { get; set; }
+        public string Trade_Item_Currency { get; set; }
+
+        public string Trade_Bulk_Currency { get; set; } = "divine";
+
+        public int Trade_Bulk_MinStock { get; set; } = 5;
+
+        public string Trade_Currency_PreferredMode { get; set; } = "Item";
 
         public string Key_Close { get; set; } = "Space";
 

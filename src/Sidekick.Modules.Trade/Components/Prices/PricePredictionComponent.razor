@@ -1,17 +1,16 @@
 @using System.Threading
-
 @implements IDisposable
 
 @if (Settings.Trade_Prediction_Enable)
 {
     if (Loading || Item == null)
     {
-        <MudSkeleton Height="55px" />
+        <MudSkeleton Height="56px" />
         <ItemSeparator Rarity="Item.Metadata.Rarity" />
     }
     else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
     {
-        <MudGrid Spacing="0" Justify="Justify.Center" Class="align-center py-3">
+        <MudGrid Spacing="0" Justify="Justify.Center" Class="align-start py-2">
             <MudItem xs="6" Class="pr-2">
                 <MudText Typo="Typo.subtitle2" Align="Align.Right">@Resources.Prediction</MudText>
                 <MudText Typo="Typo.caption" Align="Align.Right" Style="@($"color: {GetConfidenceColor()};")" Class="d-block">@Resources.PredictionConfidence(Prediction.ConfidenceScore)</MudText>
@@ -29,7 +28,7 @@
     [Inject] private ISettings Settings { get; set; }
     [Inject] private IPoePriceInfoClient Client { get; set; }
 
-    [Parameter] public Item Item { get; set; }
+    [CascadingParameter] public Item Item { get; set; }
 
     private bool Loading { get; set; }
     private bool IsInit { get; set; }

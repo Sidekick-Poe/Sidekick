@@ -1,4 +1,4 @@
-using Sidekick.Apis.Poe.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Requests.Filters;
 
 namespace Sidekick.Apis.Poe.Trade.Requests
 {

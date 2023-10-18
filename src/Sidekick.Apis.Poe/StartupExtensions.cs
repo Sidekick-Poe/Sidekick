@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Sidekick.Apis.Poe.Bulk;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Leagues;
 using Sidekick.Apis.Poe.Localization;
@@ -27,6 +28,7 @@ namespace Sidekick.Apis.Poe
             services.AddSingleton<ITradeSearchService, TradeSearchService>();
             services.AddSingleton<ILeagueProvider, LeagueProvider>();
             services.AddSingleton<ITradeFilterService, TradeFilterService>();
+            services.AddSingleton<IBulkTradeService, BulkTradeService>();
 
             services.AddSidekickInitializableService<IParserPatterns, ParserPatterns>();
             services.AddSidekickInitializableService<IItemMetadataProvider, ItemMetadataProvider>();

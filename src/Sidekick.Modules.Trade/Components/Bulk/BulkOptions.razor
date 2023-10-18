@@ -1,0 +1,31 @@
+@if (QueryId != null)
+{
+    <div class="d-flex flex-row align-center justify-space-between mb-2">
+        <div>
+            <MudText Color="Color.Info">@Settings.LeagueId</MudText>
+            <CountString Count="Count" Total="Total" />
+        </div>
+        <div>
+            <MudButtonGroup Size="@Size.Small">
+                <OpenWebsiteLink QueryId="@QueryId" Mode="TradeMode.Bulk" />
+            </MudButtonGroup>
+        </div>
+    </div>
+}
+
+@code {
+    [Inject]
+    private ISettings Settings { get; set; }
+
+    [CascadingParameter]
+    public Item Item { get; set; }
+
+    [Parameter]
+    public string QueryId { get; set; }
+
+    [Parameter]
+    public int Count { get; set; }
+
+    [Parameter]
+    public int Total { get; set; }
+}

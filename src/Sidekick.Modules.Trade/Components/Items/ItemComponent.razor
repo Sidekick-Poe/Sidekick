@@ -1,5 +1,5 @@
 
-<div class="item-content mb-2 @WrapperClass" style="@Style" @onclick="OnClick">
+<div class="item-content mb-2 @WrapperClass" @onclick="OnClick">
     @if (CanExpand && (Layout == Layout.Cards_Maximized || Expanded))
     {
         <ItemHeaderComponent Name="@Item.Original.Name"
@@ -106,10 +106,27 @@
 @code {
     [Inject] private TradeResources Resources { get; set; }
 
+    [CascadingParameter]
+    public Item PriceCheckItem { get; set; }
+
     [Parameter] public TradeItem Item { get; set; }
-    [Parameter] public string Style { get; set; }
     [Parameter] public Layout Layout { get; set; }
-    [Parameter] public bool CanExpand { get; set; }
+
+    private bool CanExpand => PriceCheckItem?.Metadata?.Category switch
+    {
+        Category.Accessory => true,
+        Category.Armour => true,
+        Category.Flask => true,
+        Category.Gem => true,
+        Category.Jewel => true,
+        Category.Map => PriceCheckItem.Metadata.Class != Class.MapFragments,
+        Category.Weapon => true,
+        Category.HeistEquipment => true,
+        Category.Contract => true,
+        Category.Logbook => true,
+        Category.Sentinel => true,
+        _ => false,
+    };
 
     private bool Expanded { get; set; }
 
