@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Sidekick.Apis.Poe;
 using Sidekick.Apis.Poe.Authentication;
+using Sidekick.Apis.Poe.Metadatas;
 using Sidekick.Apis.Poe.Stash;
 using Sidekick.Apis.Poe.Stash.Models;
+using Sidekick.Apis.PoeNinja;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
 using Sidekick.Modules.Wealth.Models;
@@ -26,6 +29,8 @@ namespace Sidekick.Modules.Wealth
         private IAuthenticationService AuthenticationService { get; set; }
         private readonly ISettings Settings;
         private IStashService StashService { get; set; }
+        private IPoeNinjaClient PoeNinjaClient { get; set; }
+        private IItemMetadataProvider ItemMetadataProvider { get; set; }
 
         public static event Action<string[]> OnStashParsing;
         public static event Action<string[]> OnStashParsed;
@@ -36,12 +41,17 @@ namespace Sidekick.Modules.Wealth
             IAuthenticationService _authenticationService,
             WealthDbContext _database,
             ISettings _settings,
-            IStashService _stashService)
+            IStashService _stashService,
+            IPoeNinjaClient _poeNinjaClient,
+            IItemMetadataProvider _itemMetadataProvider)
         {
             AuthenticationService = _authenticationService;
             Database = _database;
             Settings = _settings;
             StashService = _stashService;
+            PoeNinjaClient = _poeNinjaClient;
+            ItemMetadataProvider = _itemMetadataProvider;
+
 
             InterprocessService.OnMessage += InterprocessService_CustomProtocolCallback;
         }
@@ -120,7 +130,7 @@ namespace Sidekick.Modules.Wealth
 
             var items = await StashService.GetStashItems(stash);
 
-            // Remove Items (Traded, Used, Destroyed, etc.)
+            // Game Item Removed (Traded, Used, Destroyed, etc.)
             var itemList = Database.Items.Where(x => x.Stash == stash.id).ToList();
             foreach (var dbItem in itemList)
             {
@@ -136,7 +146,7 @@ namespace Sidekick.Modules.Wealth
             {
                 if (CanParse(item))
                 {
-                    var dbItem = ParseItem(item, stash);
+                    var dbItem = await ParseItem(item, stash);
                     dbStash.Total += dbItem.Total;
                 }
             }
@@ -148,7 +158,7 @@ namespace Sidekick.Modules.Wealth
             return dbStash;
         }
 
-        private Models.Item ParseItem(APIStashItem item, APIStashTab stash)
+        private async Task<Models.Item> ParseItem(APIStashItem item, APIStashTab stash)
         {
             OnItemParsing?.Invoke(new string[] { item.id, item.name });
 
@@ -172,7 +182,7 @@ namespace Sidekick.Modules.Wealth
             }
 
             dbItem.Count = GetItemCount(item);
-            dbItem.Price = GetItemPrice(item);
+            dbItem.Price = await GetItemPrice(item);
             dbItem.Total = dbItem.Count * dbItem.Price;
             dbItem.UpdatedOn = DateTime.Now;
 
@@ -185,13 +195,18 @@ namespace Sidekick.Modules.Wealth
 
         private ItemType GetItemType(APIStashItem item)
         {
+            // todo : any other item types
             return ItemType.Currency;
         }
 
-        private double GetItemPrice(APIStashItem item)
+        private async Task<double> GetItemPrice(APIStashItem item)
         {
-            Random rnd = new Random();
-            return rnd.Next(6);
+            var name = item.getFriendlyName();
+            var metadata = ItemMetadataProvider.Parse(name, item.typeLine);
+            var category = metadata.Category;
+            var price = await PoeNinjaClient.GetPriceInfo(name, item.typeLine, category);
+ 
+            return price.Price;
         }
 
         private int GetItemCount(APIStashItem item)
@@ -207,6 +222,21 @@ namespace Sidekick.Modules.Wealth
         {
             if(item.frameType == FrameType.Currency)
             {
+                if(item.getFriendlyName().ToUpper().Contains("SHARD"))
+                {
+                    //Todo: Implement Shard price tracking... PoeNinjaClient doesnt support shards :(
+                    return false;
+                }
+                if (item.getFriendlyName().ToUpper().Contains("FRAGMENT"))
+                {
+                    //Todo: Implement Fragment price tracking... PoeNinjaClient doesnt support fragments :(
+                    return false;
+                }
+                if (item.getFriendlyName().ToUpper().Contains("CHAOS ORB"))
+                {
+                    //Todo: Chaos orb == Chaos orb, need to hard code this somewhere
+                    return false;
+                }
                 return true;
             }
             return false;
