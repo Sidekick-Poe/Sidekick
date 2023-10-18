@@ -185,11 +185,6 @@ namespace Sidekick.Apis.Poe.Metadatas
                 result.Rarity = itemRarity;
             }
 
-            if (result.Category == Category.ItemisedMonster && result.Rarity == Rarity.Unique && string.IsNullOrEmpty(result.Name))
-            {
-                result.Name = name;
-            }
-
             if (result.Class == Class.Undefined)
             {
                 result.Class = GetClass(parsingBlock);
@@ -243,10 +238,22 @@ namespace Sidekick.Apis.Poe.Metadatas
             }
 
             // If we have a Unique item in our results, we sort for it so it comes first
-            return results
+            var result = results
                 .OrderBy(x => x.Rarity == Rarity.Unique ? 0 : 1)
                 .ThenBy(x => x.Rarity == Rarity.Unknown ? 0 : 1)
                 .FirstOrDefault();
+
+            if (result == null)
+            {
+                return null;
+            }
+
+            if (result.Category == Category.ItemisedMonster && result.Rarity == Rarity.Unique && string.IsNullOrEmpty(result.Name))
+            {
+                result.Name = name;
+            }
+
+            return result;
         }
 
         private Rarity GetRarity(ParsingBlock parsingBlock)
