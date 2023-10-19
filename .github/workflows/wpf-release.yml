@@ -43,7 +43,9 @@ jobs:
           
           # Parse tag into a three-number version.
           $version = $tag.Split('-')[0].TrimStart('v')
-          $version = "$version.0"
+          if ($version.Split('.').Count <= 3) {
+              $version = "$version.0"
+          }
           Write-Output "Version: $version"
           
           # Clean output directory.
@@ -51,6 +53,7 @@ jobs:
           if (Test-Path $publishDirectory) {
               Remove-Item -Path $publishDirectory -Recurse
           }
+          Write-Output "Publish directory: $publishDirectory"
           
           # Publish the application.
           Push-Location $projectDirectory
