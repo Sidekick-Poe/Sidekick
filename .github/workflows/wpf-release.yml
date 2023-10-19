@@ -11,7 +11,79 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
+  
+      - name: GitVersion - Install
+        uses: gittools/actions/gitversion/setup@v0.9.9
+        with:
+          versionSpec: '5.x'
+      - name: GitVersion - Execute
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0.9.9
+        with:
+          useConfigFile: true
+          additionalArguments: '/updateprojectfiles'
+          
+      - name: GitVersion - Output
+        run: |
+          echo "Major: ${{ steps.gitversion.outputs.major }}"
+          echo "Minor: ${{ steps.gitversion.outputs.minor }}"
+          echo "Patch: ${{ steps.gitversion.outputs.patch }}"
+          echo "PreReleaseTag: ${{ steps.gitversion.outputs.preReleaseTag }}"
+          echo "PreReleaseTagWithDash: ${{ steps.gitversion.outputs.preReleaseTagWithDash }}"
+          echo "PreReleaseLabel: ${{ steps.gitversion.outputs.preReleaseLabel }}"
+          echo "PreReleaseNumber: ${{ steps.gitversion.outputs.preReleaseNumber }}"
+          echo "WeightedPreReleaseNumber: ${{ steps.gitversion.outputs.weightedPreReleaseNumber }}"
+          echo "BuildMetaData: ${{ steps.gitversion.outputs.buildMetaData }}"
+          echo "BuildMetaDataPadded: ${{ steps.gitversion.outputs.buildMetaDataPadded }}"
+          echo "FullBuildMetaData: ${{ steps.gitversion.outputs.fullBuildMetaData }}"
+          echo "MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}"
+          echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
+          echo "LegacySemVer: ${{ steps.gitversion.outputs.legacySemVer }}"
+          echo "LegacySemVerPadded: ${{ steps.gitversion.outputs.legacySemVerPadded }}"
+          echo "AssemblySemVer: ${{ steps.gitversion.outputs.assemblySemVer }}"
+          echo "AssemblySemFileVer: ${{ steps.gitversion.outputs.assemblySemFileVer }}"
+          echo "FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}"
+          echo "InformationalVersion: ${{ steps.gitversion.outputs.informationalVersion }}"
+          echo "BranchName: ${{ steps.gitversion.outputs.branchName }}"
+          echo "EscapedBranchName: ${{ steps.gitversion.outputs.escapedBranchName }}"
+          echo "Sha: ${{ steps.gitversion.outputs.sha }}"
+          echo "ShortSha: ${{ steps.gitversion.outputs.shortSha }}"
+          echo "NuGetVersionV2: ${{ steps.gitversion.outputs.nuGetVersionV2 }}"
+          echo "NuGetVersion: ${{ steps.gitversion.outputs.nuGetVersion }}"
+          echo "NuGetPreReleaseTagV2: ${{ steps.gitversion.outputs.nuGetPreReleaseTagV2 }}"
+          echo "NuGetPreReleaseTag: ${{ steps.gitversion.outputs.nuGetPreReleaseTag }}"
+          echo "VersionSourceSha: ${{ steps.gitversion.outputs.versionSourceSha }}"
+          echo "CommitsSinceVersionSource: ${{ steps.gitversion.outputs.commitsSinceVersionSource }}"
+          echo "CommitsSinceVersionSourcePadded: ${{ steps.gitversion.outputs.commitsSinceVersionSourcePadded }}"
+          echo "UncommittedChanges: ${{ steps.gitversion.outputs.uncommittedChanges }}"
+          echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}"
+          
+      - name: Environment - Build Number
+        uses: myci-actions/export-env-var@1
+        with:
+          name: BUILD_NUMBER
+          value: ${{ steps.gitversion.outputs.fullSemVer }}
+          
+      - name: Environment - Github Token
+        uses: myci-actions/export-env-var@1
+        with:
+          name: GITHUB_TOKEN
+          value: ${{ github.token }}
+          
+      - name: .NET 7 - Setup
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 7.x
+            
+      - name: .NET - Restore
+        run: dotnet restore
+          
+      - name: .NET - Build
+        run: dotnet build --no-restore
+          
+      - name: .NET - Tests
+        run: dotnet test --no-build --verbosity normal
+        
       - name: Setup Git
         run: |
           git config --global url."https://user:${{ secrets.GITHUB_TOKEN }}@github".insteadOf https://github
@@ -21,13 +93,20 @@ jobs:
       - name: Run release script
         shell: pwsh
         run: |
-          # From https://janjones.me/posts/clickonce-installer-build-publish-github/.
-          $applicationName = "Sidekick" # 👈 Replace with your application project name.
-          $projectDirectory = "src/Sidekick.Wpf" # 👈 Replace with your project directory (where .csproj resides).
-          $deployRepository = "https://github.com/Sidekick-Poe/Sidekick-Release.git" # 👈 Replace with the deployment repository.
+          $applicationName = "Sidekick"
+          Write-Output "Application name: $applicationName"
           
-          Set-StrictMode -version 2.0
-          $ErrorActionPreference = "Stop"
+          $projectDirectory = "src/Sidekick.Wpf"
+          Write-Output "Project directory: $projectDirectory"
+          
+          $publishDirectory = "$projectDirectory/bin/publish"
+          Write-Output "Publish directory: $publishDirectory"
+          
+          $version = v${{ steps.gitversion.outputs.assemblySemFileVer }}
+          Write-Output "Version: $version"
+          
+          $deployRepository = "https://github.com/Sidekick-Poe/Sidekick-Release.git"
+          Write-Output "Deploy repository: $deployRepository"
           
           Write-Output "Working directory: $pwd"
           
@@ -35,44 +114,19 @@ jobs:
           $msBuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
               -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe `
               -prerelease | select-object -first 1
-          Write-Output "MSBuild: $((Get-Command $msBuildPath).Path)"
+          Write-Output "MSBuild path: $((Get-Command $msBuildPath).Path)"
           
-          # Load current Git tag.
-          $tag = $(git describe --tags)
-          Write-Output "Tag: $tag"
-          
-          # Parse tag into a three-number version.
-          $version = $tag.Split('-')[0].TrimStart('v')
-          if ($version.Split('.').Count -lt 4) {
-              $version = "$version.0"
-          }
-          Write-Output "Version: $version"
-          
-          # Clean output directory.
-          $publishDirectory = "$projectDirectory/bin/publish"
-          if (Test-Path $publishDirectory) {
-              Remove-Item -Path $publishDirectory -Recurse
-          }
-          Write-Output "Publish directory: $publishDirectory"
+          Set-StrictMode -version 2.0
+          $ErrorActionPreference = "Stop"
           
           # Publish the application.
           Push-Location $projectDirectory
           try {
-              Write-Output "Restoring:"
-              dotnet restore -r win-x64
               Write-Output "Publishing:"
-              $msBuildVerbosityArg = "/v:m"
-              if ($env:CI) {
-                  $msBuildVerbosityArg = ""
-              }
-              & $msBuildPath /target:publish /p:PublishProfile=ClickOnceProfile `
-                  /p:ApplicationVersion=$version /p:Configuration=Release `
-                  /p:PublishDir=bin/publish /p:PublishUrl=bin/publish `
-                  $msBuildVerbosityArg
+              & $msBuildPath /target:publish /p:PublishProfile=ClickOnceProfile /p:ApplicationVersion=$version /p:Configuration=Release /p:PublishDir=bin/publish /p:PublishUrl=bin/publish
           
               # Measure publish size.
-              $publishSize = (Get-ChildItem -Path "bin/publish/Application Files" -Recurse |
-                  Measure-Object -Property Length -Sum).Sum / 1Mb
+              $publishSize = (Get-ChildItem -Path "bin/publish/Application Files" -Recurse Measure-Object -Property Length -Sum).Sum / 1Mb
               Write-Output ("Published size: {0:N2} MB" -f $publishSize)
           }
           finally {
@@ -80,13 +134,9 @@ jobs:
           }
           
           # Clone `gh-pages` branch.
-          $ghPagesDir = "gh-pages"
-          if (-Not (Test-Path $ghPagesDir)) {
-              git clone $deployRepository -b gh-pages `
-                  --depth 1 --single-branch $ghPagesDir
-          }
+          git clone $deployRepository -b gh-pages --depth 1 --single-branch "dist"
           
-          Push-Location $ghPagesDir
+          Push-Location "dist"
           try {
               # Remove previous application files.
               Write-Output "Removing previous files..."
@@ -99,16 +149,14 @@ jobs:
           
               # Copy new application files.
               Write-Output "Copying new files..."
-              Copy-Item -Path "../$publishDirectory/Application Files","../$publishDirectory/$applicationName.application" `
-                  -Destination . -Recurse
+              Copy-Item -Path "../$publishDirectory/Application Files","../$publishDirectory/$applicationName.application" -Destination . -Recurse
           
               # Stage and commit.
               Write-Output "Staging..."
               git add -A
               Write-Output "Committing..."
               git commit -m "Update to v$version"
-          
-              # Push.
+              Write-Output "Pushing..."
               git push
           } finally {
               Pop-Location
