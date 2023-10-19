@@ -129,10 +129,6 @@ jobs:
           try {
               Write-Output "Publishing:"
               & $msBuildPath /target:publish /p:PublishProfile=ClickOnceProfile /p:ApplicationVersion=$version /p:Configuration=Release /p:PublishDir=bin/publish /p:PublishUrl=bin/publish
-          
-              # Measure publish size.
-              $publishSize = (Get-ChildItem -Path "bin/publish/Application Files" -Recurse Measure-Object -Property Length -Sum).Sum / 1Mb
-              Write-Output ("Published size: {0:N2} MB" -f $publishSize)
           }
           finally {
               Pop-Location
