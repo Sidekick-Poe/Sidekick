@@ -2,9 +2,7 @@ name: Sidekick WPF Release
 
 on:
   push:
-    branches:
-    - main
-  workflow_dispatch:
+    tags: [v*]
 
 jobs:
   release:
@@ -24,9 +22,9 @@ jobs:
         shell: pwsh
         run: |
           # From https://janjones.me/posts/clickonce-installer-build-publish-github/.
-          $appName = "Sidekick.Wpf" # 👈 Replace with your application project name.
-          $projDir = "Sidekick.Wpf" # 👈 Replace with your project directory (where .csproj resides).
-          $deployRepo = "https://github.com/Sidekick-Poe/Sidekick-Release.git" # 👈 Replace with the deployment repository.
+          $applicationName = "Sidekick.Wpf" # 👈 Replace with your application project name.
+          $projectDirectory = "Sidekick.Wpf" # 👈 Replace with your project directory (where .csproj resides).
+          $deployRepository = "https://github.com/Sidekick-Poe/Sidekick-Release.git" # 👈 Replace with the deployment repository.
           
           Set-StrictMode -version 2.0
           $ErrorActionPreference = "Stop"
@@ -49,14 +47,13 @@ jobs:
           Write-Output "Version: $version"
           
           # Clean output directory.
-          $publishDir = "bin/publish"
-          $outDir = "$projDir/$publishDir"
-          if (Test-Path $outDir) {
-              Remove-Item -Path $outDir -Recurse
+          $publishDirectory = "$projectDirectory/bin/publish"
+          if (Test-Path $publishDirectory) {
+              Remove-Item -Path $publishDirectory -Recurse
           }
           
           # Publish the application.
-          Push-Location $projDir
+          Push-Location $projectDirectory
           try {
               Write-Output "Restoring:"
               dotnet restore -r win-x64
@@ -67,11 +64,11 @@ jobs:
               }
               & $msBuildPath /target:publish /p:PublishProfile=ClickOnceProfile `
                   /p:ApplicationVersion=$version /p:Configuration=Release `
-                  /p:PublishDir=$publishDir /p:PublishUrl=$publishDir `
+                  /p:PublishDir=bin/publish /p:PublishUrl=bin/publish `
                   $msBuildVerbosityArg
           
               # Measure publish size.
-              $publishSize = (Get-ChildItem -Path "$publishDir/Application Files" -Recurse |
+              $publishSize = (Get-ChildItem -Path "bin/publish/Application Files" -Recurse |
                   Measure-Object -Property Length -Sum).Sum / 1Mb
               Write-Output ("Published size: {0:N2} MB" -f $publishSize)
           }
@@ -82,7 +79,7 @@ jobs:
           # Clone `gh-pages` branch.
           $ghPagesDir = "gh-pages"
           if (-Not (Test-Path $ghPagesDir)) {
-              git clone $deployRepo -b gh-pages `
+              git clone $deployRepository -b gh-pages `
                   --depth 1 --single-branch $ghPagesDir
           }
           
@@ -93,13 +90,13 @@ jobs:
               if (Test-Path "Application Files") {
                   Remove-Item -Path "Application Files" -Recurse
               }
-              if (Test-Path "$appName.application") {
-                  Remove-Item -Path "$appName.application"
+              if (Test-Path "$applicationName.application") {
+                  Remove-Item -Path "$applicationName.application"
               }
           
               # Copy new application files.
               Write-Output "Copying new files..."
-              Copy-Item -Path "../$outDir/Application Files","../$outDir/$appName.application" `
+              Copy-Item -Path "../$publishDirectory/Application Files","../$publishDirectory/$applicationName.application" `
                   -Destination . -Recurse
           
               # Stage and commit.
