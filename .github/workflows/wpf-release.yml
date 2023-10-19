@@ -43,7 +43,7 @@ jobs:
           
           # Parse tag into a three-number version.
           $version = $tag.Split('-')[0].TrimStart('v')
-          if ($version.Split('.').Count <= 3) {
+          if ($version.Split('.').Count -lt 4) {
               $version = "$version.0"
           }
           Write-Output "Version: $version"
