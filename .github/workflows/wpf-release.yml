@@ -152,12 +152,24 @@ jobs:
               Copy-Item -Path "../$publishDirectory/Application Files","../$publishDirectory/$applicationName.application" -Destination . -Recurse
           
               # Stage and commit.
-              Write-Output "Staging..."
-              git add -A
-              Write-Output "Committing..."
-              git commit -m "Update to v$version"
-              Write-Output "Pushing..."
-              git push
+              # Write-Output "Staging..."
+              # git add -A
+              # Write-Output "Committing..."
+              # git commit -m "Update to v$version"
+              # Write-Output "Pushing..."
+              # git push
           } finally {
               Pop-Location
           }
+      
+      - name: Pushes to release repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: 'dist'
+          destination-github-username: 'Sidekkick-Poe'
+          destination-repository-name: 'Sidekick-Release'
+          user-email: lemire.yanic@gmail.com
+          target-branch: gh-pages
