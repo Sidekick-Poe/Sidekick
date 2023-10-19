@@ -23,7 +23,7 @@ jobs:
         run: |
           # From https://janjones.me/posts/clickonce-installer-build-publish-github/.
           $applicationName = "Sidekick.Wpf" # 👈 Replace with your application project name.
-          $projectDirectory = "Sidekick.Wpf" # 👈 Replace with your project directory (where .csproj resides).
+          $projectDirectory = "src/Sidekick.Wpf" # 👈 Replace with your project directory (where .csproj resides).
           $deployRepository = "https://github.com/Sidekick-Poe/Sidekick-Release.git" # 👈 Replace with the deployment repository.
           
           Set-StrictMode -version 2.0
