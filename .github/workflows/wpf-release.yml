@@ -105,7 +105,7 @@ jobs:
           $publishDirectory = "$projectDirectory/bin/publish"
           Write-Output "Publish directory: $publishDirectory"
           
-          $version = v${{ steps.gitversion.outputs.assemblySemFileVer }}
+          $version = "v${{ steps.gitversion.outputs.assemblySemFileVer }}"
           Write-Output "Version: $version"
           
           $deployRepository = "https://github.com/Sidekick-Poe/Sidekick-Release.git"
