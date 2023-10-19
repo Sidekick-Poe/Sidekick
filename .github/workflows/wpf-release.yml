@@ -22,7 +22,7 @@ jobs:
         shell: pwsh
         run: |
           # From https://janjones.me/posts/clickonce-installer-build-publish-github/.
-          $applicationName = "Sidekick.Wpf" # 👈 Replace with your application project name.
+          $applicationName = "Sidekick" # 👈 Replace with your application project name.
           $projectDirectory = "src/Sidekick.Wpf" # 👈 Replace with your project directory (where .csproj resides).
           $deployRepository = "https://github.com/Sidekick-Poe/Sidekick-Release.git" # 👈 Replace with the deployment repository.
           
