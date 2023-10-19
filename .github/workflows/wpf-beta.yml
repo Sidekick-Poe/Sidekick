@@ -107,7 +107,7 @@ jobs:
           $publishDirectory = "$projectDirectory/bin/publish"
           Write-Output "Publish directory: $publishDirectory"
           
-          $version = "v${{ steps.gitversion.outputs.assemblySemFileVer }}"
+          $version = "${{ steps.gitversion.outputs.semVer }}.${{ steps.gitversion.outputs.buildMetaData }}"
           Write-Output "Version: $version"
           
           $deployRepository = "https://github.com/Sidekick-Poe/Sidekick-Release.git"
@@ -174,7 +174,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source-directory: 'dist'
-          destination-github-username: 'Sidekkick-Poe'
+          destination-github-username: 'Sidekick-Poe'
           destination-repository-name: 'Sidekick-Beta'
           user-email: lemire.yanic@gmail.com
           target-branch: gh-pages
