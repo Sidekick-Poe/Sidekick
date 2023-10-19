@@ -24,11 +24,6 @@ jobs:
         shell: pwsh
         run: |
           # From https://janjones.me/posts/clickonce-installer-build-publish-github/.
-          [CmdletBinding(PositionalBinding=$false)]
-          param (
-              [switch]$OnlyBuild=$false
-          )
-          
           $appName = "Sidekick.Wpf" # 👈 Replace with your application project name.
           $projDir = "Sidekick.Wpf" # 👈 Replace with your project directory (where .csproj resides).
           $deployRepo = "https://github.com/Sidekick-Poe/Sidekick-Release.git" # 👈 Replace with the deployment repository.
@@ -82,11 +77,6 @@ jobs:
           }
           finally {
               Pop-Location
-          }
-          
-          if ($OnlyBuild) {
-              Write-Output "Build finished."
-              exit
           }
           
           # Clone `gh-pages` branch.
