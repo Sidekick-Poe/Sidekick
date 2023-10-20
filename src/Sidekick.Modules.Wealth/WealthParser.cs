@@ -97,7 +97,6 @@ namespace Sidekick.Modules.Wealth
 
                         if (!Running) { break; }
 
-                        await Task.Delay(300000);
                     }
                 }
             }
@@ -225,6 +224,11 @@ namespace Sidekick.Modules.Wealth
                 if(item.getFriendlyName().ToUpper().Contains("SHARD"))
                 {
                     //Todo: Implement Shard price tracking... PoeNinjaClient doesnt support shards :(
+                    return false;
+                }
+                if (item.getFriendlyName().ToUpper().Contains("RITUAL SPLINTER"))
+                {
+                    //Todo: Implement Ritual Splinter tracking... PoeNinjaClient doesnt support shards :(
                     return false;
                 }
                 if (item.getFriendlyName().ToUpper().Contains("FRAGMENT"))

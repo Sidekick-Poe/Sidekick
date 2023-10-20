@@ -1,51 +1,53 @@
 @page "/wealth"
 @inherits SidekickView
-
-    <MudButton Variant="Variant.Filled" Class="pr-5" Color="Color.Primary" OnClick="StartParsing">Start Parsing</MudButton>
-    <MudButton Variant="Variant.Filled" Class="pr-5" Color="Color.Primary" OnClick="StopParsing">Stop Parsing</MudButton>
     <div class="d-flex flex-grow-1 gap-4">
-        <MudPaper Class="flex-1 d-flex py-8" Elevation="0" Width="80%">
-        <MudCard Width="100%">
-                <MudCardHeader>
-                    <CardHeaderContent>
-                        <MudText Typo="Typo.h3">Items</MudText>
-                    </CardHeaderContent>
-                </MudCardHeader>
-                <MudCardContent>
-                    <br />
-                    <MudTable Items="@StashItems.Where(x => !x.Removed)" Hover="true" Breakpoint="Breakpoint.Sm">
-                        <HeaderContent>
-                            <MudTh></MudTh>
-                            <MudTh>Name</MudTh>
-                            <MudTh>Count</MudTh>
-                            <MudTh>Price</MudTh>
-                            <MudTh>Total</MudTh>
-                        </HeaderContent>
-                        <RowTemplate>
-                            <MudTd DataLabel=""><MudImage Src="@context.Icon" Class="rounded-lg" /></MudTd>
-                            <MudTd DataLabel="Name">@context.Name</MudTd>
-                            <MudTd DataLabel="Count">@context.Count</MudTd>
-                            <MudTd DataLabel="Price">@context.Price</MudTd>
-                            <MudTd DataLabel="Total">@context.Total</MudTd>
-                        </RowTemplate>
-                    </MudTable>
-                </MudCardContent>
-            </MudCard>
-        </MudPaper>
-        <MudPaper Class="flex-1 d-flex py-8" Elevation="0" Width="20%">
-            <MudCard Width="100%">
-                <MudCardHeader>
-                    <CardHeaderContent>
-                        <MudText Typo="Typo.h3">Logs</MudText>
-                    </CardHeaderContent>
-                </MudCardHeader>
-                <MudCardContent>
-                    <br />   
+    <MudPaper Class="flex-none d-flex py-8" Elevation="0" Width="650px" Height="1px;">
+        <MudCard Width="100%" Height="800px">
+            <MudCardContent Style="height: 100%;">
+                <MudChart ChartType="ChartType.Line"  ChartSeries="@Series" ChartOptions="chartOptions" XAxisLabels="@XAxisLabels" Width="650px"></MudChart>
+                <MudTable Height="330px" Items="@StashItems" Dense="true" Hover="true" SortLabel="Sort By" Filter="new Func<ItemView,bool>(Search)" Breakpoint="Breakpoint.Sm" Width="650px">
+                    <ToolBarContent>
+                        <MudText Typo="Typo.h3">Stash Items</MudText>
+                        <MudSpacer />
+                        <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                     </ToolBarContent>
+                    <HeaderContent>
+                        <MudTh></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="new Func<ItemView, object>(x=>x.Name)">Name</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="new Func<ItemView, object>(x=>x.Count)">Count</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel InitialDirection="SortDirection.Descending" SortBy="new Func<ItemView, object>(x=>x.Price)">Price</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="new Func<ItemView, object>(x=>x.Total)">Total</MudTableSortLabel></MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd DataLabel=""><MudImage Width="30" Height="30" Src="@context.Icon" Class="rounded-lg" /></MudTd>
+                        <MudTd DataLabel="Name">@context.Name</MudTd>
+                        <MudTd DataLabel="Count">@context.Count</MudTd>
+                        <MudTd DataLabel="Price">@Math.Round(context.Price, 2)</MudTd>
+                        <MudTd DataLabel="Total">@Math.Round(context.Total, 2)</MudTd>
+                    </RowTemplate>
+                </MudTable>
+            </MudCardContent>
+            <MudCardActions>
+                <MudAlert Dense="true" Variant="Variant.Filled" Severity="Severity.Success">Parser Running</MudAlert>
+            </MudCardActions>
+        </MudCard>
+    </MudPaper>
+    <MudPaper Class="flex-none d-flex py-8" Elevation="0" Width="270px" Height="1px;">
+        <MudCard Width="100%" Height="800px">
+            <MudCardContent Style="height: 100%;">
+                <MudChart ChartType="ChartType.Pie" InputData="@data" InputLabels="@labels" Width="250px" Height="250px" />
+                <MudText Typo="Typo.h3">Logs</MudText>
+                <div style="height: 420px; overflow-y: scroll; ">
                     @foreach (var logitem in Log.OrderByDescending(x => x.Item1))
                     {
-                    <MudAlert Severity="Severity.Info">@logitem.Item1.ToString("hh:mm:ss") - @logitem.Item2</MudAlert>
+                    <MudAlert Dense="true" Severity="Severity.Info">@logitem.Item1.ToString("hh:mm:ss") - @logitem.Item2</MudAlert>
                     }
+                 </div>
                 </MudCardContent>
+                <MudCardActions>
+                    <MudButton Variant="Variant.Filled" Class="pr-5" Style="margin-left:100px;" Color="Color.Primary" OnClick="StartParsing">Start</MudButton>
+                <MudButton Variant="Variant.Filled" Class="pr-5" Style="margin-left:10px;" Color="Color.Primary" OnClick="StopParsing">Stop</MudButton>
+                </MudCardActions>
             </MudCard>
         </MudPaper>
     </div>
@@ -57,7 +59,25 @@
     [Inject] private WealthDbContext Database { get; set; }
 
     static List<Tuple<DateTime, String>> Log { get; set; } = new List<Tuple<DateTime, String>>();
-    static List<Item> StashItems = new List<Item>();
+    static List<ItemView> StashItems = new List<ItemView>();
+
+    public ChartOptions chartOptions = new ChartOptions();
+    static List<ChartSeries> Series = new List<ChartSeries>()
+    {
+        new ChartSeries() { Name = "Total", Data = new double[] { 10, 41, 35, 51, 49, 62, 69, 91, 148, 10, 41, 35, 51, 49, 62, 69, 91, 148 } },
+        new ChartSeries() { Name = "Currency", Data = new double[] { } },
+        new ChartSeries() { Name = "Fragments", Data = new double[] { } },
+        new ChartSeries() { Name = "Uniques", Data = new double[] { } },
+        new ChartSeries() { Name = "Stash Tab 1", Data = new double[] { } },
+        new ChartSeries() { Name = "Stash Tab 2", Data = new double[] { } }
+    };
+
+    static string[] XAxisLabels = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep" };
+
+    double[] data = { 77, 25, 20, 5, 77 };
+    string[] labels = { "Currency", "Fragments", "Uniques", "Stash Tab 1", "Stash Tab 2" };
+
+    private string _searchString = "";
 
     public override string Title => "Wealth Tracker";
 
@@ -67,6 +87,8 @@
         WealthParser.OnStashParsed += OnStashParsed;
 
         base.OnInitialized();
+
+        RetrieveStashItems();
 
     }
 
@@ -90,16 +112,54 @@
         });
     }
 
-    public async void OnStashParsed(string[] obj)
+    public void OnStashParsed(string[] obj)
     {
         Log.Add(Tuple.Create(DateTime.Now, $"Parsed Stash: ${obj[1].ToString()}"));
 
-        StashItems = Database.Items.ToList();
+        RetrieveStashItems();
+    }
+
+    public async void RetrieveStashItems()
+    {
+        StashItems = Database.Items
+            .Where(x => !x.Removed)
+            .GroupBy(x => x.Name)
+            .Select(y => new ItemView
+                {
+                    Icon = y.FirstOrDefault().Icon,
+                    Name = y.FirstOrDefault().Name,
+                    Count = y.Sum(i => i.Count),
+                    Price = y.FirstOrDefault().Price,
+                    Total = y.Sum(i => i.Total)
+                }
+            ).ToList();
 
         await InvokeAsync(() =>
         {
             StateHasChanged();
         });
+    }
+
+    private bool Search(ItemView element) => FilterFunc(element, _searchString);
+
+    private bool FilterFunc(ItemView element, string searchString)
+    {
+        if (string.IsNullOrWhiteSpace(searchString))
+            return true;
+        if (element.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+        return false;
+    }
+
+
+
+    class ItemView
+    {
+        public String Icon { get; set; }
+        public String Name { get; set; }
+        public int Count { get; set; }
+        public double Price { get; set; }
+        public double Total { get; set; }
     }
 
 

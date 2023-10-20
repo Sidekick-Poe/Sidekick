@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace Sidekick.Apis.Poe.Stash.Models
 {
@@ -77,6 +78,7 @@ namespace Sidekick.Apis.Poe.Stash.Models
     {
         public required string name { get; set; }
         public int? type { get; set; }
+        //public List<List<String>>? values { get; set; }
     }
 
 }
