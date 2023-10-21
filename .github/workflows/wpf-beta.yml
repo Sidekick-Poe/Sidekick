@@ -164,7 +164,7 @@ jobs:
           }
       
       - name: Pushes to release repository
-        uses: cpina/github-action-push-to-another-repository@main
+        uses: cpina/github-action-push-to-another-repository@composite-1.5.1
         env:
           SSH_DEPLOY_KEY: ${{ secrets.DEPLOY_BETA_KEY }}
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
