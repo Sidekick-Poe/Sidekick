@@ -37,12 +37,46 @@ namespace Sidekick.Apis.Poe.Stash
                     {
                         items.AddRange(childStashDetails.items);
                     }
+
+                    await Task.Delay(5000);
                 }
             }
 
             if (stashTab.items != null)
             {
                 items.AddRange(stashTab.items);
+            }
+
+            return items;
+        }
+
+
+        public async Task<List<APIStashItem>> GetMapStashItems(APIStashTab stashTab)
+        {
+            List<APIStashItem> items = new List<APIStashItem>();
+
+            if (stashTab.children != null)
+            {
+                foreach (APIStashTab childStashTab in stashTab.children)
+                {
+                    items.Add(new APIStashItem
+                    {
+                        id = childStashTab.id,
+                        typeLine = childStashTab.metadata.map.name,
+                        baseType = childStashTab.metadata.map.name,
+                        name = "",
+                        icon = childStashTab.metadata.map.image,
+                        league = "Ancestor",
+                        ilvl = -1,
+                        stackSize = childStashTab.metadata.items,
+                        properties = new List<APIItemProperty>() {
+                            new APIItemProperty() {
+                                name = "Map Tier",
+                                values = new List<List<object>>() { new List<object>() { childStashTab.metadata.map.tier } }
+                        } },
+                        frameType = FrameType.Normal                  
+                    });
+                }
             }
 
             return items;

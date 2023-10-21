@@ -22,7 +22,8 @@ namespace Sidekick.Apis.Poe.Clients
             if (timeConstraint == null)
             {
                 timeConstraint = TimeLimiter.Compose(
-                    new CountByIntervalAwaitableConstraint(10, TimeSpan.FromSeconds(15)),
+                    new CountByIntervalAwaitableConstraint(1, TimeSpan.FromSeconds(5)),
+                    //new CountByIntervalAwaitableConstraint(10, TimeSpan.FromSeconds(15)),
                     new CountByIntervalAwaitableConstraint(30, TimeSpan.FromSeconds(300))
                 );
             }

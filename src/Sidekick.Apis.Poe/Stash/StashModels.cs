@@ -43,6 +43,7 @@ namespace Sidekick.Apis.Poe.Stash.Models
         public List<APIStashTab>? children { get; set; }
         public List<APIStashItem>? items { get; set; }
         public bool parse { get; set; } = false;
+        public APIStashMetadata? metadata { get; set; }
 
     }
 
@@ -62,6 +63,13 @@ namespace Sidekick.Apis.Poe.Stash.Models
 
         public string getFriendlyName()
         {
+
+            var mapTier = getMapTier();
+
+            if (mapTier != 0)
+            {
+                return $"{typeLine} (Tier {mapTier})";
+            }
             if (name == "")
             {
                 if (typeLine == "")
@@ -72,13 +80,47 @@ namespace Sidekick.Apis.Poe.Stash.Models
             }
             return name;
         }
+
+        public int getMapTier()
+        {
+            if (properties != null)
+            {          
+                var property = properties.FirstOrDefault(x => x.name.ToUpper() == "MAP TIER");
+
+                if (property != null && property.values != null)
+                {
+                    var value = property.values[0];
+                    if(value != null)
+                    {
+                        return value[0] == null? 16: (int)value[0];
+                    }
+                
+                }
+            }
+            return 0;
+        }
     }
 
     public class APIItemProperty
     {
         public required string name { get; set; }
         public int? type { get; set; }
-        //public List<List<String>>? values { get; set; }
+        public List<List<object>>? values { get; set; }
+    }
+
+    public class APIStashMetadata
+    {
+        public int? items { get; set; }
+        public APIStashMapItem? map { get; set; }
+    }
+
+    public class APIStashMapItem
+    {
+        public string? section { get; set; }
+        public string? name { get; set; }
+        public string? image { get; set; }
+        public int? tier { get; set; }
+        public int? series { get; set; }
     }
 
 }

@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 using Sidekick.Apis.Poe;
 using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Apis.Poe.Metadatas;
 using Sidekick.Apis.Poe.Stash;
 using Sidekick.Apis.Poe.Stash.Models;
 using Sidekick.Apis.PoeNinja;
+using Sidekick.Apis.PoeNinja.Models;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
 using Sidekick.Modules.Wealth.Models;
@@ -127,7 +129,14 @@ namespace Sidekick.Modules.Wealth
                 dbStash.UpdatedOn = DateTime.Now;
             }
 
-            var items = await StashService.GetStashItems(stash);
+            var items = new List<APIStashItem>();
+            if (stash.type.ToUpper() == "MAPSTASH")
+            {
+                items = await StashService.GetMapStashItems(stash);
+            } else
+            {
+                items = await StashService.GetStashItems(stash);
+            }
 
             // Game Item Removed (Traded, Used, Destroyed, etc.)
             var itemList = Database.Items.Where(x => x.Stash == stash.id).ToList();
@@ -158,7 +167,7 @@ namespace Sidekick.Modules.Wealth
         }
 
         private async Task<Models.Item> ParseItem(APIStashItem item, APIStashTab stash)
-        {
+       {
             OnItemParsing?.Invoke(new string[] { item.id, item.name });
 
             var dbItem = Database.Items.FirstOrDefault(x => x.Id == item.id);
@@ -204,6 +213,10 @@ namespace Sidekick.Modules.Wealth
             var metadata = ItemMetadataProvider.Parse(name, item.typeLine);
             var category = metadata.Category;
             var price = await PoeNinjaClient.GetPriceInfo(name, item.typeLine, category);
+            var mapTier = item.getMapTier();
+            if (mapTier != 0) {
+                price = await PoeNinjaClient.GetPriceInfo(name, item.typeLine, category, null, mapTier);
+            }
  
             return price.Price;
         }
@@ -219,29 +232,30 @@ namespace Sidekick.Modules.Wealth
 
         private bool CanParse(APIStashItem item)
         {
-            if(item.frameType == FrameType.Currency)
+            var name = item.getFriendlyName().ToUpper();
+
+            switch(item.frameType)
             {
-                if(item.getFriendlyName().ToUpper().Contains("SHARD"))
-                {
-                    //Todo: Implement Shard price tracking... PoeNinjaClient doesnt support shards :(
+                case FrameType.Currency:
+
+                    string[] exceptions = {
+                        "SHARD", "RITUAL SPLINTER", "FRAGMENT", "CHAOS ORB" };
+
+                    if(exceptions.Any(name.Contains)) {
+                        return false;
+                    }
+                    return true;
+
+                case FrameType.Normal:
+                case FrameType.Magic:
+                case FrameType.Rare:
+                    string[] allowed = {
+                        "DIVINE VESSEL", "OFFERING OF THE GODDESS", "SCARAB", "MAP" };
+
+                    if (allowed.Any(name.Contains)) {
+                        return true;
+                    }
                     return false;
-                }
-                if (item.getFriendlyName().ToUpper().Contains("RITUAL SPLINTER"))
-                {
-                    //Todo: Implement Ritual Splinter tracking... PoeNinjaClient doesnt support shards :(
-                    return false;
-                }
-                if (item.getFriendlyName().ToUpper().Contains("FRAGMENT"))
-                {
-                    //Todo: Implement Fragment price tracking... PoeNinjaClient doesnt support fragments :(
-                    return false;
-                }
-                if (item.getFriendlyName().ToUpper().Contains("CHAOS ORB"))
-                {
-                    //Todo: Chaos orb == Chaos orb, need to hard code this somewhere
-                    return false;
-                }
-                return true;
             }
             return false;
         }
