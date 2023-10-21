@@ -135,7 +135,7 @@ jobs:
           }
           
           # Clone `gh-pages` branch.
-          git clone $deployRepository -b gh-pages --depth 1 --single-branch "dist"
+          git clone $deployRepository -b gh-pages --single-branch "dist"
           
           Push-Location "dist"
           try {
