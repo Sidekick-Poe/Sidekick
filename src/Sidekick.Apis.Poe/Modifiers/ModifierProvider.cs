@@ -303,6 +303,11 @@ namespace Sidekick.Apis.Poe.Modifiers
                 var patterns = match.Patterns.OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText));
                 foreach (var pattern in patterns)
                 {
+                    if (modifierLine.Modifiers.Any(x => x.Id == pattern.Id))
+                    {
+                        continue;
+                    }
+
                     var modifier = new Modifier(text: pattern.Text)
                     {
                         Id = pattern.Id,
