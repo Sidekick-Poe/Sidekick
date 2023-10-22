@@ -78,6 +78,18 @@
     width: 12px;
 }
 
+::-webkit-scrollbar-track {
+    background: #2f2b3a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #5e5a66;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #76737e;
+    }
+
 .text-center {
     text-align: center;
 }

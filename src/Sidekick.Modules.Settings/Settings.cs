@@ -18,12 +18,16 @@ namespace Sidekick.Modules.Settings
         public static List<CheatsheetPage> GetDefaultCheatsheets() =>
         new()
         {
-            new CheatsheetPage("Betrayal", "https://www.poewiki.net/wiki/Immortal_Syndicate"),
-            new CheatsheetPage("Blight", "https://www.poewiki.net/wiki/Oil"),
-            new CheatsheetPage("Delve", "https://www.poewiki.net/wiki/Delve"),
-            new CheatsheetPage("Heist", "https://www.poewiki.net/wiki/Heist"),
-            new CheatsheetPage("Incursion", "https://www.poewiki.net/wiki/Incursion_room"),
-            new CheatsheetPage("Vendor Recipes", "https://www.poewiki.net/wiki/Vendor_recipe_system"),
+            new CheatsheetPage("Wiki: Betrayal", "https://www.poewiki.net/wiki/Immortal_Syndicate"),
+            new CheatsheetPage("Wiki: Blight", "https://www.poewiki.net/wiki/Oil"),
+            new CheatsheetPage("Wiki: Delve", "https://www.poewiki.net/wiki/Delve"),
+            new CheatsheetPage("Wiki: Heist", "https://www.poewiki.net/wiki/Heist"),
+            new CheatsheetPage("Wiki: Incursion", "https://www.poewiki.net/wiki/Incursion_room"),
+            new CheatsheetPage("Wiki: Vendor Recipes", "https://www.poewiki.net/wiki/Vendor_recipe_system"),
+            new CheatsheetPage("Leveling", "https://poe-leveling.com/"),
+            new CheatsheetPage("Regex Tool", "https://poe.re/"),
+            new CheatsheetPage("Chromatic Calculator", "https://siveran.github.io/calc.html"),
+            new CheatsheetPage("Blight Anointments", "https://blight.raelys.com/"),
         };
 
         public string Language_UI { get; set; } = "en";
