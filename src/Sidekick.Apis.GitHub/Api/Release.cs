@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Sidekick.Apis.GitHub.Api
 {
-    internal record GitHubRelease
+    internal record Release
     {
         [JsonPropertyName("tag_name")]
         public string? Tag { get; init; }

@@ -1,35 +1,41 @@
 @using Sidekick.Apis.GitHub;
+@using Sidekick.Apis.GitHub.Models;
+@using Sidekick.Common.Blazor.Update;
+@using Sidekick.Common.Blazor.Views;
+@using Sidekick.Common.Browser;
 @using Sidekick.Common.Platform;
+@using Sidekick.Common;
 
-@if (UpdateAvailable)
+@if (Release != null && Release.IsNewerVersion)
 {
     <MudAlert Severity="Severity.Info" Dense="true" Variant="Variant.Filled">
-        @Resources.Available <MudLink OnClick="Download" Class="white-text" Style="text-decoration: underline;">@Resources.Download</MudLink>
+        @Resources.Available
+        @if (Release.IsExecutable)
+        {
+            <MudLink OnClick="Download" Class="white-text" Style="text-decoration: underline;">@Resources.Download</MudLink>
+        }
+        else
+        {
+            <MudLink OnClick="OpenWebsite" Class="white-text" Style="text-decoration: underline;">@Resources.Download</MudLink>
+        }
     </MudAlert>
 }
 
+@inject IGitHubClient GitHubClient;
+@inject UpdateResources Resources;
+@inject IViewLocator ViewLocator;
+@inject ISidekickDialogs DialogService;
+@inject IBrowserProvider Browser;
 @code {
-    [Inject]
-    private IGitHubClient GitHubClient { get; set; }
-
-    [Inject]
-    private UpdateResources Resources { get; set; }
-
-    [Inject]
-    private IViewLocator ViewLocator { get; set; }
-
-    [Inject]
-    private ISidekickDialogs DialogService { get; set; }
-
-    private bool UpdateAvailable { get; set; }
+    private GitHubRelease? Release { get; set; }
 
     /// <inheritdoc/>
     protected override async Task OnInitializedAsync()
     {
-        UpdateAvailable = await GitHubClient.IsUpdateAvailable();
+        Release = await GitHubClient.GetLatestRelease();
 
 #if DEBUG
-    UpdateAvailable = false;
+    Release = null;
 #endif
 
         await base.OnInitializedAsync();
@@ -43,5 +49,10 @@
         }
 
         await ViewLocator.Open("/update");
+    }
+
+    private void OpenWebsite()
+    {
+        Browser.OpenSidekickWebsite();
     }
 }

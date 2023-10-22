@@ -1,6 +1,4 @@
-using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub;
@@ -43,7 +41,8 @@ namespace Sidekick.Common.Blazor.Update
                 Step = UpdateResources.Downloading;
                 StateHasChanged();
 
-                if (!await GitHubClient.IsUpdateAvailable())
+                var release = await GitHubClient.GetLatestRelease();
+                if (!release.IsNewerVersion || !release.IsExecutable)
                 {
                     Step = UpdateResources.NotAvaialble;
                     StateHasChanged();
