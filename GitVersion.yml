@@ -1,7 +1,7 @@
-next-version: 2.9
+next-version: 2.10
 assembly-versioning-scheme: MajorMinorPatch
 assembly-file-versioning-scheme: MajorMinorPatchTag
-assembly-informational-format: '{Major}.{Minor}.{Patch}'
+assembly-informational-format: '{Major}.{Minor}.{Patch}.{BuildMetaData}'
 mode: ContinuousDelivery
 increment: Inherit
 continuous-delivery-fallback-tag: ci
