@@ -114,7 +114,7 @@ jobs:
           $version = "${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.buildMetaData }}"
           Write-Output "Version: $version"
           
-          $deployRepository = "https://github.com/Sidekick-Poe/Sidekick-Release.git"
+          $deployRepository = "git@github.com:Sidekick-Poe/Sidekick-Beta.git"
           Write-Output "Deploy repository: $deployRepository"
           
           Write-Output "Working directory: $pwd"
