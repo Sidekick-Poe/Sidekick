@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
@@ -138,7 +139,7 @@ namespace Sidekick.Common.Blazor.Initialization
 
             menuItems.AddRange(new List<TrayMenuItem>()
             {
-                new (label: "Sidekick - " + typeof(Initialization).Assembly.GetName().Version.ToString()),
+                new (label: "Sidekick - " + FileVersionInfo.GetVersionInfo(GetType().Assembly.Location).ProductVersion),
                 new (label: "Cheatsheets", onClick: () => ViewLocator.Open("/cheatsheets")),
                 new (label: "About", onClick: () => ViewLocator.Open("/about")),
                 new (label: "Settings", onClick: () => ViewLocator.Open("/settings")),
