@@ -75,10 +75,7 @@ namespace Sidekick.Wpf
         {
             services.AddLocalization();
             services.AddWpfBlazorWebView();
-
-#if DEBUG
             services.AddBlazorWebViewDeveloperTools();
-#endif
 
             services
                 // MudBlazor
