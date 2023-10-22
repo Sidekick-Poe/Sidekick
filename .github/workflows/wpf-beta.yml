@@ -95,6 +95,10 @@ jobs:
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com          
 
+      - uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_BETA_KEY }}
+
       - name: Run release script
         shell: pwsh
         run: |
@@ -110,7 +114,7 @@ jobs:
           $version = "${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.buildMetaData }}"
           Write-Output "Version: $version"
           
-          $deployRepository = "https://github.com/Sidekick-Poe/Sidekick-Release.git"
+          $deployRepository = "git@github.com:Sidekick-Poe/Sidekick-Beta.git"
           Write-Output "Deploy repository: $deployRepository"
           
           Write-Output "Working directory: $pwd"
@@ -135,7 +139,7 @@ jobs:
           }
           
           # Clone `gh-pages` branch.
-          git clone $deployRepository -b gh-pages --depth 1 --single-branch "dist"
+          git clone $deployRepository -b gh-pages --single-branch "dist"
           
           Push-Location "dist"
           try {
@@ -154,23 +158,11 @@ jobs:
           
               # Stage and commit.
               # Write-Output "Staging..."
-              # git add -A
+              git add -A
               # Write-Output "Committing..."
-              # git commit -m "Update to v$version"
+              git commit -m "Update to v$version"
               # Write-Output "Pushing..."
-              # git push
+              git push
           } finally {
               Pop-Location
           }
-      
-      - name: Pushes to release repository
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          SSH_DEPLOY_KEY: ${{ secrets.DEPLOY_BETA_KEY }}
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-directory: 'dist'
-          destination-github-username: 'Sidekick-Poe'
-          destination-repository-name: 'Sidekick-Beta'
-          user-email: lemire.yanic@gmail.com
-          target-branch: gh-pages
