@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Markup;
 
@@ -60,15 +61,17 @@ namespace Sidekick.Apis.Poe.Stash.Models
         public int? maxStackSize { get; set; }
         public List<APIItemProperty>? properties { get; set; }
         public FrameType? frameType { get; set; }
+        public List<APIItemSocket>? sockets { get; set; }
 
-        public string getFriendlyName()
+        public string getFriendlyName(bool includeMapTier = true)
         {
+            if (includeMapTier) { 
+                var mapTier = getMapTier();
 
-            var mapTier = getMapTier();
-
-            if (mapTier != 0)
-            {
-                return $"{typeLine} (Tier {mapTier})";
+                if (mapTier != null)
+                {
+                    return $"{typeLine} (Tier {mapTier})";
+                }
             }
             if (name == "")
             {
@@ -81,24 +84,34 @@ namespace Sidekick.Apis.Poe.Stash.Models
             return name;
         }
 
-        public int getMapTier()
+        public int? getMapTier()
         {
             if (properties != null)
-            {          
+            {
                 var property = properties.FirstOrDefault(x => x.name.ToUpper() == "MAP TIER");
 
                 if (property != null && property.values != null)
                 {
                     var value = property.values[0];
-                    if(value != null)
+                    if (value != null)
                     {
-                        return value[0] == null? 16: (int)value[0];
+                        return value[0] == null ? 16 : (int)value[0];
                     }
-                
+
                 }
             }
-            return 0;
+            return null;
         }
+
+        public int? getLinkCount()
+        {
+            if(sockets != null)
+            {
+                return sockets.GroupBy(x => x.group).Max(x => x.Key);
+            }
+            return null;
+        }
+
     }
 
     public class APIItemProperty
@@ -121,6 +134,13 @@ namespace Sidekick.Apis.Poe.Stash.Models
         public string? image { get; set; }
         public int? tier { get; set; }
         public int? series { get; set; }
+    }
+
+    public class APIItemSocket
+    {
+        public int group { get; set; }
+        public string attr { get; set; }
+        public string sColour { get; set; }
     }
 
 }

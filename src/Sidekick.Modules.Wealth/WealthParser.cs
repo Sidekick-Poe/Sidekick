@@ -1,21 +1,25 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Markup;
 using Sidekick.Apis.Poe;
 using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Apis.Poe.Metadatas;
 using Sidekick.Apis.Poe.Stash;
 using Sidekick.Apis.Poe.Stash.Models;
+using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeNinja.Models;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
 using Sidekick.Modules.Wealth.Models;
 using static MudBlazor.CategoryTypes;
+using Timer = System.Timers.Timer;
 
 namespace Sidekick.Modules.Wealth
 {
@@ -26,6 +30,7 @@ namespace Sidekick.Modules.Wealth
 
         private bool Running = false;
         private Thread ParsingThread { get; set; }
+        private Timer SnapshotTimer = new Timer(TimeSpan.FromMinutes(5));
 
         private WealthDbContext Database { get; set; }
         private IAuthenticationService AuthenticationService { get; set; }
@@ -36,8 +41,7 @@ namespace Sidekick.Modules.Wealth
 
         public static event Action<string[]> OnStashParsing;
         public static event Action<string[]> OnStashParsed;
-        public static event Action<string[]> OnItemParsing;
-        public static event Action<string[]> OnItemParsed;
+        public static event Action<string[]> OnSnapshotTaken;
 
         public WealthParser(
             IAuthenticationService _authenticationService,
@@ -56,6 +60,7 @@ namespace Sidekick.Modules.Wealth
 
 
             InterprocessService.OnMessage += InterprocessService_CustomProtocolCallback;
+            SnapshotTimer.Elapsed += new ElapsedEventHandler(TakeSnapshot);
         }
 
         public async Task Start()
@@ -66,6 +71,7 @@ namespace Sidekick.Modules.Wealth
                 Running = true;
                 ParsingThread = new Thread(ParseLoop);
                 ParsingThread.Start();
+                SnapshotTimer.Start();
             }
 
         }
@@ -74,6 +80,7 @@ namespace Sidekick.Modules.Wealth
         {
             if (Running)
             {
+                SnapshotTimer.Stop();
                 Running = false;
             }
         }
@@ -81,6 +88,45 @@ namespace Sidekick.Modules.Wealth
         public bool IsRunning()
         {
             return Running;
+        }
+
+        private void TakeSnapshot(object source, ElapsedEventArgs e)
+        {
+
+            var RunId = 0;
+
+            if(Database.Snapshots.Count() > 0)
+            {
+                RunId = Database.Snapshots.Select(x => x.RunId).Max() + 1;
+            }
+
+            var stashes = Database.Stashes.ToList();
+            var total = 0.0;
+
+            foreach (var stash in stashes)
+            {
+                Database.Snapshots.Add(new Snapshot
+                {
+                    RunId = RunId,
+                    StashId = stash.Id,
+                    Total = stash.Total,
+                    CreatedOn = DateTime.Now
+                });
+
+                total += stash.Total;
+            }
+
+            Database.Snapshots.Add(new Snapshot
+            {
+                RunId = RunId,
+                StashId = "SUMMARY",
+                Total = total,
+                CreatedOn = DateTime.Now
+            });
+
+            Database.SaveChanges();
+
+            OnSnapshotTaken?.Invoke(new string[] { RunId.ToString() });
         }
 
         private async void ParseLoop()
@@ -130,11 +176,9 @@ namespace Sidekick.Modules.Wealth
             }
 
             var items = new List<APIStashItem>();
-            if (stash.type.ToUpper() == "MAPSTASH")
-            {
+            if (stash.type.ToUpper() == "MAPSTASH") {
                 items = await StashService.GetMapStashItems(stash);
-            } else
-            {
+            } else {
                 items = await StashService.GetStashItems(stash);
             }
 
@@ -168,8 +212,6 @@ namespace Sidekick.Modules.Wealth
 
         private async Task<Models.Item> ParseItem(APIStashItem item, APIStashTab stash)
        {
-            OnItemParsing?.Invoke(new string[] { item.id, item.name });
-
             var dbItem = Database.Items.FirstOrDefault(x => x.Id == item.id);
 
             if (dbItem == null)
@@ -196,8 +238,6 @@ namespace Sidekick.Modules.Wealth
 
             Database.SaveChanges();
 
-            OnItemParsed?.Invoke(new string[] { item.id, item.name });
-
             return dbItem;
         }
 
@@ -209,15 +249,19 @@ namespace Sidekick.Modules.Wealth
 
         private async Task<double> GetItemPrice(APIStashItem item)
         {
-            var name = item.getFriendlyName();
+            var name = item.getFriendlyName(false);
             var metadata = ItemMetadataProvider.Parse(name, item.typeLine);
             var category = metadata.Category;
-            var price = await PoeNinjaClient.GetPriceInfo(name, item.typeLine, category);
-            var mapTier = item.getMapTier();
-            if (mapTier != 0) {
-                price = await PoeNinjaClient.GetPriceInfo(name, item.typeLine, category, null, mapTier);
-            }
- 
+            var price = await PoeNinjaClient.GetPriceInfo(
+                name,
+                item.typeLine,
+                category,
+                null,
+                item.getMapTier(),
+                null,
+                item.getLinkCount());
+
+            //if(price == null) { return 0.0; }
             return price.Price;
         }
 
@@ -256,6 +300,9 @@ namespace Sidekick.Modules.Wealth
                         return true;
                     }
                     return false;
+                case FrameType.Unique:
+                case FrameType.DivinationCard:
+                    return true;
             }
             return false;
         }
@@ -276,6 +323,7 @@ namespace Sidekick.Modules.Wealth
         public void Dispose()
         {
             InterprocessService.OnMessage -= InterprocessService_CustomProtocolCallback;
+            SnapshotTimer.Stop();
             Running = false;
         }
     }
