@@ -132,7 +132,7 @@ jobs:
           Push-Location $projectDirectory
           try {
               Write-Output "Publishing:"
-              & $msBuildPath /target:publish /p:PublishProfile=ClickOnceProfile /p:ApplicationVersion=$version /p:Configuration=Release /p:PublishDir=bin/publish /p:PublishUrl=bin/publish
+              & $msBuildPath /target:publish /p:PublishProfile=ClickOnceBeta /p:ApplicationVersion=$version /p:Configuration=Release /p:PublishDir=bin/publish /p:PublishUrl=bin/publish
           }
           finally {
               Pop-Location
