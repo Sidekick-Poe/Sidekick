@@ -45,7 +45,7 @@ jobs:
         run: |
           Push-Location "src/Sidekick.Wpf"
           try {
-              Copy-Item -Path "../Sidekick.Common.Blazor/wwwroot" -Destination ./wwwroot -Recurse
+              Copy-Item -Path "../Sidekick.Common.Blazor/wwwroot/*" -Destination "./wwwroot" -Recurse
           } finally {
               Pop-Location
           }
