@@ -1,4 +1,5 @@
 @page "/about"
+@using System.Diagnostics;
 @inherits SidekickView
 
 <MudText Typo="Typo.h1">Sidekick - @VersionNumber</MudText>
@@ -110,8 +111,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        VersionNumber = GetType().Assembly.GetName().Version.ToString();
-
+        VersionNumber = FileVersionInfo.GetVersionInfo(GetType().Assembly.Location).ProductVersion;
+        
         try
         {
             OperatingSystem = Environment.OSVersion.VersionString;
