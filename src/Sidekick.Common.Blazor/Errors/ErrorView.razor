@@ -26,19 +26,18 @@
     </MudButton>
 </div>
 
+@inject ErrorResources Resources;
 @code {
-    [Inject] private ErrorResources Resources { get; set; }
+    [Parameter]
+    public string? Type { get; set; }
 
     [Parameter]
-    public string Type { get; set; }
-
-    [Parameter]
-    public string AdditionalInformation { get; set; }
+    public string? AdditionalInformation { get; set; }
 
     public override string Title => Resources.Title;
     public override SidekickViewType ViewType => SidekickViewType.Modal;
 
-    private string Text => Enum.Parse<ErrorType>(Type) switch
+    private string Text => Enum.Parse<ErrorType>(Type ?? ErrorType.Unknown.ToString()) switch
     {
         ErrorType.InvalidItem => Resources.InvalidItemError,
         ErrorType.UnavailableTranslation => Resources.AvailableInEnglishError,

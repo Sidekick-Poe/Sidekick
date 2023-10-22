@@ -88,7 +88,7 @@ namespace Sidekick.Apis.Poe.Modifiers
                                 fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text, optionText),
                                 pattern: ComputePattern(entry.Text, modifierCategory, optionText))
                             {
-                                Value = entry.Option.Options[i].Id,
+                                Value = entry.Option?.Options[i].Id,
                             });
                         }
                     }

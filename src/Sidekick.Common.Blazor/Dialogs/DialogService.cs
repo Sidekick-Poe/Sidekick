@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Sidekick.Common.Blazor.Views;
 
 namespace Sidekick.Common.Blazor.Dialogs
@@ -12,7 +11,7 @@ namespace Sidekick.Common.Blazor.Dialogs
             this.viewLocator = viewLocator;
         }
 
-        private TaskCompletionSource<bool> ConfirmationResult { get; set; }
+        private TaskCompletionSource<bool>? ConfirmationResult { get; set; }
 
         /// <inheritdoc/>
         public Task<bool> OpenConfirmationModal(string message)

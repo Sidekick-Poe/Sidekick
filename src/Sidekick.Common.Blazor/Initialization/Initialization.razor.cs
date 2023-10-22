@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -16,33 +13,33 @@ namespace Sidekick.Common.Blazor.Initialization
     public partial class Initialization : SidekickView
     {
         [Inject]
-        private InitializationResources Resources { get; set; }
+        private InitializationResources Resources { get; set; } = null!;
 
         [Inject]
-        private ISettings Settings { get; set; }
+        private ISettings Settings { get; set; } = null!;
 
         [Inject]
-        private ILogger<Initialization> Logger { get; set; }
+        private ILogger<Initialization> Logger { get; set; } = null!;
 
         [Inject]
-        private IApplicationService ApplicationService { get; set; }
+        private IApplicationService ApplicationService { get; set; } = null!;
 
         [Inject]
-        private ITrayProvider TrayProvider { get; set; }
+        private ITrayProvider TrayProvider { get; set; } = null!;
 
         [Inject]
-        private IOptions<SidekickConfiguration> Configuration { get; set; }
+        private IOptions<SidekickConfiguration> Configuration { get; set; } = null!;
 
         [Inject]
-        private IServiceProvider ServiceProvider { get; set; }
+        private IServiceProvider ServiceProvider { get; set; } = null!;
 
         private int Count { get; set; } = 0;
         private int Completed { get; set; } = 0;
-        private string Step { get; set; }
+        private string? Step { get; set; }
         private int Percentage { get; set; }
         private bool Error { get; set; }
 
-        public Task InitializationTask { get; set; }
+        public Task? InitializationTask { get; set; }
         public override string Title => "Initialize";
         public override SidekickViewType ViewType => SidekickViewType.Modal;
 

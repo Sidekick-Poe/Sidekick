@@ -125,5 +125,24 @@ namespace Sidekick.Common
 
             return services;
         }
+
+        /// <summary>
+        /// Adds a keybind to the application
+        /// </summary>
+        /// <typeparam name="TKeybindHandler">The type of the keybind handler.</typeparam>
+        /// <param name="services">The service collection to add the keybind to</param>
+        /// <returns>The service collection</returns>
+        public static IServiceCollection AddSidekickSettings<TKeybindHandler>(this IServiceCollection services)
+            where TKeybindHandler : class, IKeybindHandler
+        {
+            services.AddSingleton<TKeybindHandler>();
+
+            services.Configure<SidekickConfiguration>(o =>
+            {
+                o.Keybinds.Add(typeof(TKeybindHandler));
+            });
+
+            return services;
+        }
     }
 }

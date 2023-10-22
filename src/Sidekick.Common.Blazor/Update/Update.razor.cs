@@ -11,24 +11,24 @@ namespace Sidekick.Common.Blazor.Update
     public partial class Update : SidekickView
     {
         [Inject]
-        private ILogger<Update> Logger { get; set; }
+        private ILogger<Update> Logger { get; set; } = null!;
 
         [Inject]
-        private IGitHubClient GitHubClient { get; set; }
+        private IGitHubClient GitHubClient { get; set; } = null!;
 
         [Inject]
-        private IApplicationService ApplicationService { get; set; }
+        private IApplicationService ApplicationService { get; set; } = null!;
 
         [Inject]
-        private UpdateResources UpdateResources { get; set; }
+        private UpdateResources UpdateResources { get; set; } = null!;
 
         [Inject]
-        private ICacheProvider CacheProvider { get; set; }
+        private ICacheProvider CacheProvider { get; set; } = null!;
 
         public override string Title => UpdateResources.Title;
         public override SidekickViewType ViewType => SidekickViewType.Modal;
 
-        private string Step { get; set; }
+        private string? Step { get; set; }
         private bool Error { get; set; }
 
         protected override async Task OnInitializedAsync()

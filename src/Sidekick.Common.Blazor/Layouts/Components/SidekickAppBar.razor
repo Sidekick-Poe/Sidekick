@@ -35,15 +35,13 @@
     </MudAppBar>
 </div>
 
+@inject IViewLocator ViewLocator;
 @code {
-    [Inject]
-    private IViewLocator ViewLocator { get; set; }
-
     [CascadingParameter]
-    public SidekickView View { get; set; }
+    public SidekickView View { get; set; } = null!;
 
     [Parameter]
-    public RenderFragment LeftContent { get; set; }
+    public RenderFragment LeftContent { get; set; } = null!;
 
     private async Task OpenSettings()
     {

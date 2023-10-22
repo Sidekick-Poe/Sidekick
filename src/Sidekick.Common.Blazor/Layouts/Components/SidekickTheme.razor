@@ -1,11 +1,9 @@
-@using Sidekick.Common.Settings
 
 <MudThemeProvider Theme="Theme" />
 
+@inject ISettings Settings
 @code {
-    [Inject] private ISettings Settings { get; set; }
-
-    private MudTheme Theme { get; set; }
+    private MudTheme? Theme { get; set; }
 
     protected override void OnInitialized()
     {

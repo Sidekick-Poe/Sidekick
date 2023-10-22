@@ -1,5 +1,3 @@
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Sidekick.Common.Blazor.Layouts.Components;
 
@@ -14,19 +12,19 @@ namespace Sidekick.Common.Blazor.Views
         /// Gets or sets the view locator service.
         /// </summary>
         [Inject]
-        protected IViewLocator ViewLocator { get; set; }
+        protected IViewLocator ViewLocator { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the navigation manager.
         /// </summary>
         [Inject]
-        public NavigationManager NavigationManager { get; set; }
+        public NavigationManager NavigationManager { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the sidekick wrapper.
         /// </summary>
         [CascadingParameter]
-        public SidekickWrapper Wrapper { get; set; }
+        public SidekickWrapper Wrapper { get; set; } = null!;
 
         /// <summary>
         /// Gets the current url of the view.
@@ -36,7 +34,7 @@ namespace Sidekick.Common.Blazor.Views
         /// <summary>
         /// Gets the key of the view.
         /// </summary>
-        public string Key => Url.Split('/', '\\').FirstOrDefault(x => !string.IsNullOrEmpty(x));
+        public string? Key => Url.Split('/', '\\').FirstOrDefault(x => !string.IsNullOrEmpty(x));
 
         /// <summary>
         /// Gets the title of the view.

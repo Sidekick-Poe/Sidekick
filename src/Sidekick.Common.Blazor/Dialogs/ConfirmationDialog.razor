@@ -24,15 +24,11 @@
     </MudButton>
 </div>
 
+@inject DialogResources Resources;
+@inject DialogService Service;
 @code {
     [Parameter]
-    public string Message { get; set; }
-
-    [Inject]
-    private DialogResources Resources { get; set; }
-
-    [Inject]
-    private DialogService Service { get; set; }
+    public string? Message { get; set; }
 
     public override string Title => Resources.Title;
     public override SidekickViewType ViewType => SidekickViewType.Modal;
