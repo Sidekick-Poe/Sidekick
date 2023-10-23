@@ -1,0 +1,60 @@
+<MudChart ChartType="ChartType.Donut" InputData="@Data" InputLabels="@Labels" Width="250px" Height="250px">
+    <CustomGraphics>
+        <text class="donut-inner-text" x="50%" y="35%" dominant-baseline="middle" text-anchor="middle" fill="grey" font-size="3">Total Wealth</text>
+        <text class="donut-inner-text" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="gold" font-size="5">@Math.Round(Database.Stashes.Sum(x => x.Total), 2)</text>
+    </CustomGraphics>
+</MudChart>
+@code {
+    private WealthDbContext Database { get; set; }
+    [Inject] private DbContextOptions<WealthDbContext> Options { get; set; }
+    [Inject] private ISettings Settings { get; set; }
+
+    static double[] Data = new double[] { };
+    static string[] Labels = new string[] { };
+
+    protected override void OnInitialized()
+    {
+        Database = new WealthDbContext(Options);
+
+        WealthParser.OnStashParsed += OnStashParsed;
+
+        LoadData();
+
+        base.OnInitialized();
+    }
+
+    public void OnStashParsed(string[] obj)
+    {
+        LoadData();
+    }
+
+    private async void LoadData()
+    {
+        var stashes = Database.Stashes.ToList();
+
+        if (stashes.Count() > 0) {
+
+            var data = new List<double>();
+            var labels = new List<string>();
+
+            foreach (var id in Settings.WealthTrackerTabs)
+            {
+                var stash = Database.Stashes.FirstOrDefault(x => x.Id == id);
+
+                if (stash != null)
+                {
+                    data.Add(stash.Total);
+                    labels.Add(stash.Name);
+                }
+
+            }
+
+            Data = data.ToArray();
+            Labels = labels.ToArray();
+        }
+
+        await InvokeAsync(() => { StateHasChanged(); });
+
+    }
+
+}

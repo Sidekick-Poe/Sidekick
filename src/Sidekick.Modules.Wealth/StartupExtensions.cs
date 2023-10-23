@@ -13,7 +13,7 @@ namespace Sidekick.Modules.Wealth
 
             services.AddTransient<WealthResources>();
             services.AddSingleton<WealthParser>();
-            services.AddSingleton<WealthDbContext>();
+            services.AddDbContext<WealthDbContext>();
 
             return services;
         }

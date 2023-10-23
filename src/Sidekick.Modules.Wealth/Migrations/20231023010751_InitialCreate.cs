@@ -40,7 +40,7 @@ namespace Sidekick.Modules.Wealth.Migrations
                 {
                     SnapshotId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    RunId = table.Column<int>(type: "INTEGER", nullable: false),
+                    BatchId = table.Column<int>(type: "INTEGER", nullable: false),
                     StashId = table.Column<string>(type: "TEXT", nullable: true),
                     Total = table.Column<double>(type: "REAL", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "TEXT", nullable: false)

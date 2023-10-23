@@ -1,0 +1,54 @@
+<MudText Typo="Typo.h3">Parser Logs</MudText>
+<div style="height: 420px; overflow-y: scroll; ">
+    @foreach (var logitem in Log.OrderByDescending(x => x.Item1))
+    {
+        if (logitem.Item3)
+        {
+            <MudAlert Style="margin-top:5px;" Dense="true" Severity="Severity.Warning">@logitem.Item1.ToString("hh:mm:ss") - @logitem.Item2</MudAlert>
+        } else
+        {
+            <MudAlert Style="margin-top:5px;" Dense="true" Severity="Severity.Info">@logitem.Item1.ToString("hh:mm:ss") - @logitem.Item2</MudAlert>
+        }
+        
+    }
+</div>
+
+@code {
+    static List<Tuple<DateTime, String, bool>> Log { get; set; } = new List<Tuple<DateTime, String, bool>>();
+
+    protected override void OnInitialized()
+    {
+        WealthParser.OnStashParsing += OnStashParsing;
+        WealthParser.OnStashParsed += OnStashParsed;
+        WealthParser.OnSnapshotTaken += OnSnapshotTaken;
+        WealthParser.OnParserStopped += OnParserStopped;
+
+        base.OnInitialized();
+
+    }
+
+    public async void OnStashParsing(string[] obj)
+    {
+        Log.Add(Tuple.Create(DateTime.Now, $"Parsing: {obj[1].ToString()}", false));
+
+        await InvokeAsync(() => { StateHasChanged(); });
+    }
+
+    public void OnStashParsed(string[] obj)
+    {
+        Log.Add(Tuple.Create(DateTime.Now, $"Parsed: {obj[1].ToString()}", false));
+    }
+
+    public async void OnSnapshotTaken(string[] obj)
+    {
+        Log.Add(Tuple.Create(DateTime.Now, $"Snapshot {obj[0]} Taken", false));
+
+        await InvokeAsync(() => { StateHasChanged(); });
+    }
+    public async void OnParserStopped(string[] obj)
+    {
+        Log.Add(Tuple.Create(DateTime.Now, $"Parser Stopped", true));
+        await InvokeAsync(() => { StateHasChanged(); });
+    }
+
+}

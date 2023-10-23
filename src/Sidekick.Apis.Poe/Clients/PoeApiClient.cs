@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Clients
 {
@@ -14,16 +15,19 @@ namespace Sidekick.Apis.Poe.Clients
         private readonly ILogger logger;
         private readonly IGameLanguageProvider gameLanguageProvider;
         private readonly IAuthenticationService authenticationService;
+        private readonly ISettingsService settingsService;
 
         public PoeApiClient(
             ILogger<PoeTradeClient> logger,
             IGameLanguageProvider gameLanguageProvider,
             IHttpClientFactory httpClientFactory,
-            IAuthenticationService authenticationService)
+            IAuthenticationService authenticationService,
+            ISettingsService settingsService)
         {                                
             this.logger = logger;
             this.gameLanguageProvider = gameLanguageProvider;
             this.authenticationService = authenticationService;
+            this.settingsService = settingsService;
 
             HttpClient = httpClientFactory.CreateClient("PoeClient");
             HttpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
@@ -52,10 +56,14 @@ namespace Sidekick.Apis.Poe.Clients
                 var response = await HttpClient.GetAsync(path);
 
                 if(response.StatusCode == System.Net.HttpStatusCode.Unauthorized) {
+                    await settingsService.Save("Bearer_Token", null);
+                    await settingsService.Save("Bearer_Expiration", null);
                     throw new Exception("Poe API: Unauthorized.");
                 }
 
                 if (response.StatusCode == System.Net.HttpStatusCode.TooManyRequests){
+                    await settingsService.Save("Bearer_Token", null);
+                    await settingsService.Save("Bearer_Expiration", null);
                     throw new Exception("Poe API: Too Many Requests.");
                 }
 

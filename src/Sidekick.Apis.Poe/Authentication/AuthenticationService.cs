@@ -29,12 +29,12 @@ namespace Sidekick.Apis.Poe.Authentication
         private const string CLIENTID = "sidekick";
         private const string SCOPES = "account:stashes";
 
-        private string _code { get; set; }
-        private string _state { get; set; }
-        private string _verifier { get; set; }
-        private string _challenge { get; set; }
-        private string _token { get; set; }
-        private bool _isAuthenticating { get; set; }
+        private static string _code { get; set; }
+        private static string _state { get; set; }
+        private static string _verifier { get; set; }
+        private static string _challenge { get; set; }
+        private static string _token { get; set; }
+        private static bool _isAuthenticating { get; set; }
 
         private ISettings _settings { get; set; }
         private ISettingsService _settingsService { get; set; }

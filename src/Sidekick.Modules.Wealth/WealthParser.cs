@@ -7,6 +7,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Markup;
+using Microsoft.AspNetCore.Components;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe;
 using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Apis.Poe.Metadatas;
@@ -30,9 +33,9 @@ namespace Sidekick.Modules.Wealth
 
         private bool Running = false;
         private Thread ParsingThread { get; set; }
-        private Timer SnapshotTimer = new Timer(TimeSpan.FromMinutes(5));
 
         private WealthDbContext Database { get; set; }
+        private DbContextOptions<WealthDbContext> Options { get; set; }
         private IAuthenticationService AuthenticationService { get; set; }
         private readonly ISettings Settings;
         private IStashService StashService { get; set; }
@@ -42,17 +45,18 @@ namespace Sidekick.Modules.Wealth
         public static event Action<string[]> OnStashParsing;
         public static event Action<string[]> OnStashParsed;
         public static event Action<string[]> OnSnapshotTaken;
+        public static event Action<string[]> OnParserStopped;
 
         public WealthParser(
             IAuthenticationService _authenticationService,
-            WealthDbContext _database,
+            DbContextOptions<WealthDbContext> _options,
             ISettings _settings,
             IStashService _stashService,
             IPoeNinjaClient _poeNinjaClient,
             IItemMetadataProvider _itemMetadataProvider)
         {
             AuthenticationService = _authenticationService;
-            Database = _database;
+            Database = new WealthDbContext(_options);
             Settings = _settings;
             StashService = _stashService;
             PoeNinjaClient = _poeNinjaClient;
@@ -60,7 +64,6 @@ namespace Sidekick.Modules.Wealth
 
 
             InterprocessService.OnMessage += InterprocessService_CustomProtocolCallback;
-            SnapshotTimer.Elapsed += new ElapsedEventHandler(TakeSnapshot);
         }
 
         public async Task Start()
@@ -68,10 +71,13 @@ namespace Sidekick.Modules.Wealth
 
             if (!Running)
             {
+                if(!AuthenticationService.IsAuthenticated()) {
+                    await AuthenticationService.Authenticate();
+                }
+
                 Running = true;
                 ParsingThread = new Thread(ParseLoop);
                 ParsingThread.Start();
-                SnapshotTimer.Start();
             }
 
         }
@@ -80,7 +86,6 @@ namespace Sidekick.Modules.Wealth
         {
             if (Running)
             {
-                SnapshotTimer.Stop();
                 Running = false;
             }
         }
@@ -90,14 +95,16 @@ namespace Sidekick.Modules.Wealth
             return Running;
         }
 
-        private void TakeSnapshot(object source, ElapsedEventArgs e)
+        private void TakeSnapshot()
         {
 
-            var RunId = 0;
+            var BatchId = 0;
 
-            if(Database.Snapshots.Count() > 0)
+            var Snapshots = Database.Snapshots.ToList();
+
+            if (Snapshots.Count() > 0)
             {
-                RunId = Database.Snapshots.Select(x => x.RunId).Max() + 1;
+                BatchId = Snapshots.Select(x => x.BatchId).Max() + 1;
             }
 
             var stashes = Database.Stashes.ToList();
@@ -107,7 +114,7 @@ namespace Sidekick.Modules.Wealth
             {
                 Database.Snapshots.Add(new Snapshot
                 {
-                    RunId = RunId,
+                    BatchId = BatchId,
                     StashId = stash.Id,
                     Total = stash.Total,
                     CreatedOn = DateTime.Now
@@ -118,7 +125,7 @@ namespace Sidekick.Modules.Wealth
 
             Database.Snapshots.Add(new Snapshot
             {
-                RunId = RunId,
+                BatchId = BatchId,
                 StashId = "SUMMARY",
                 Total = total,
                 CreatedOn = DateTime.Now
@@ -126,26 +133,40 @@ namespace Sidekick.Modules.Wealth
 
             Database.SaveChanges();
 
-            OnSnapshotTaken?.Invoke(new string[] { RunId.ToString() });
+            OnSnapshotTaken?.Invoke(new string[] { BatchId.ToString() });
         }
 
         private async void ParseLoop()
         {
             while (Running)
             {
-                if (!AuthenticationService.IsAuthenticated() && !AuthenticationService.IsAuthenticating())
-                {
-                    await AuthenticationService.Authenticate();
-                }
-                else
-                {
-                    foreach (var id in Settings.WealthTrackerTabs)
+                try {
+                    if (AuthenticationService.IsAuthenticated())
                     {
-                        await ParseStash(await StashService.GetStashTab(id));
+                        foreach (var id in Settings.WealthTrackerTabs)
+                        {
+                            await ParseStash(await StashService.GetStashTab(id));
 
-                        if (!Running) { break; }
+                            if (!Running) { break; }
+
+                        }
+
+                        TakeSnapshot();
 
                     }
+                    else if (!AuthenticationService.IsAuthenticating())
+                    {
+                        Running = false;
+                        OnParserStopped?.Invoke(new string[] { });
+                        //await AuthenticationService.Authenticate();
+                    }
+
+                    await Task.Delay(TimeSpan.FromSeconds(2));
+
+                } catch (Exception ex)  {
+                    Running = false;
+                    OnParserStopped?.Invoke(new string[] { });
+                    //await AuthenticationService.Authenticate();
                 }
             }
         }
@@ -232,11 +253,9 @@ namespace Sidekick.Modules.Wealth
             }
 
             dbItem.Count = GetItemCount(item);
-            dbItem.Price = await GetItemPrice(item);
+            dbItem.Price = item.getFriendlyName().ToUpper() == "CHAOS ORB" ? 1 : await GetItemPrice(item);
             dbItem.Total = dbItem.Count * dbItem.Price;
             dbItem.UpdatedOn = DateTime.Now;
-
-            Database.SaveChanges();
 
             return dbItem;
         }
@@ -283,7 +302,7 @@ namespace Sidekick.Modules.Wealth
                 case FrameType.Currency:
 
                     string[] exceptions = {
-                        "SHARD", "RITUAL SPLINTER", "FRAGMENT", "CHAOS ORB" };
+                        "SHARD", "RITUAL SPLINTER", "FRAGMENT"};
 
                     if(exceptions.Any(name.Contains)) {
                         return false;
@@ -323,7 +342,6 @@ namespace Sidekick.Modules.Wealth
         public void Dispose()
         {
             InterprocessService.OnMessage -= InterprocessService_CustomProtocolCallback;
-            SnapshotTimer.Stop();
             Running = false;
         }
     }

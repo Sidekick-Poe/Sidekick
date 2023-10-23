@@ -11,7 +11,7 @@ namespace Sidekick.Modules.Wealth.Models
 
         public int SnapshotId { get; set; }
 
-        public int RunId { get; set; }
+        public int BatchId { get; set; }
 
         public string StashId { get; set; }
 

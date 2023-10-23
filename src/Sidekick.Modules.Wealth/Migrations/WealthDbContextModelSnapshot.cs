@@ -69,11 +69,11 @@ namespace Sidekick.Modules.Wealth.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("BatchId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("RunId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("StashId")
                         .HasColumnType("TEXT");

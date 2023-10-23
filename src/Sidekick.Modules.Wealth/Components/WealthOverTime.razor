@@ -1,0 +1,104 @@
+@if (Series.Count() > 1)
+{
+    <MudChart ChartType="ChartType.Line" style="padding-left: 15px;" ChartSeries="@Series" XAxisLabels="@XAxisLabels" Width="635px">
+        <CustomGraphics>
+            <style>
+                .mud-chart-line {
+                overflow: visible;
+                }
+
+                .mud-charts-gridlines-yaxis > path {
+                stroke-dasharray: 1;
+                }
+            </style>
+        </CustomGraphics>
+    </MudChart>
+} else
+{
+    <MudAlert Dense="true" Style="width: 100%; margin-bottom: 350px;" Variant="Variant.Outlined" Severity="Severity.Info">Wealth Over Time Graph will display once atleast 2 snapshots are captured.</MudAlert>
+}
+@code {
+    private WealthDbContext Database { get; set; }
+    [Inject] private DbContextOptions<WealthDbContext> Options { get; set; }
+    [Inject] private ISettings Settings { get; set; }
+
+    static string[] XAxisLabels = new string[] { };
+    static List<ChartSeries> Series = new List<ChartSeries>();
+
+    protected override void OnInitialized()
+    {
+        Database = new WealthDbContext(Options);
+
+        WealthParser.OnSnapshotTaken += OnSnapshotTaken;
+
+        LoadData();
+
+        base.OnInitialized();
+
+    }
+
+    public void OnSnapshotTaken(string[] obj)
+    {
+        LoadData();
+    }
+
+    private async void LoadData()
+    {
+        var snapshots = Database.Snapshots.ToList();
+
+        if (snapshots.Count() > 0) {
+
+            XAxisLabels = snapshots
+                .OrderBy(x => x.BatchId)
+                .GroupBy(x => x.BatchId)
+                .Select(x => x.First())
+                .Select(x => x.BatchId.ToString() /*x.CreatedOn.ToString()*/)
+                .ToArray();
+
+            var seriesCollection = new List<ChartSeries>();
+
+            foreach (var stashId in Settings.WealthTrackerTabs)
+            {
+                var series = new ChartSeries();
+
+                var stash = Database.Stashes.FirstOrDefault(x => x.Id == stashId);
+
+                if (stash != null) {
+
+                    series.Name = Database.Stashes.FirstOrDefault(x => x.Id == stashId).Name;
+
+                    var data = new List<double>();
+
+                    var runs = Database.Snapshots.OrderBy(x => x.BatchId).Select(x => x.BatchId).Distinct();
+
+                    foreach (var run in runs)
+                    {
+                        var snapshot = snapshots.FirstOrDefault(x => x.BatchId == run && x.StashId == stashId);
+
+                        if (snapshot != null) {
+                            data.Add(snapshot.Total);
+                        } else {
+                            data.Add(0.0);
+                        }
+                    }
+
+                    series.Data = data.ToArray();
+
+                    seriesCollection.Add(series);
+                }
+            }
+
+            seriesCollection.Add(new ChartSeries
+                {
+                    Name = "Total Wealth",
+                    Data = snapshots.Where(x => x.StashId == "SUMMARY").OrderBy(x => x.BatchId).Select(x => x.Total).ToArray()
+                });
+
+            Series = seriesCollection.ToList();
+
+            await InvokeAsync(() => { StateHasChanged(); });
+
+        }
+    }
+
+}

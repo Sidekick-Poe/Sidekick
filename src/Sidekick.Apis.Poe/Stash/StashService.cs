@@ -17,6 +17,7 @@ namespace Sidekick.Apis.Poe.Stash
     public class StashService: IStashService
     {
         private IPoeApiClient _client;
+        private ILogger<IStashService> _logger;
 
         public StashService(IPoeApiClient PoeApiClient)
         {
@@ -38,7 +39,7 @@ namespace Sidekick.Apis.Poe.Stash
                         items.AddRange(childStashDetails.items);
                     }
 
-                    await Task.Delay(5000);
+                    //await Task.Delay(TimeSpan.FromSeconds(2));
                 }
             }
 
@@ -85,7 +86,6 @@ namespace Sidekick.Apis.Poe.Stash
         public async Task<APIStashTab> GetStashTab(string stashId)
         {
             var wrapper = await _client.Fetch<APIStashTabWrapper>($"stash/Ancestor/{stashId}");
-
             return wrapper.stash;
         }
 

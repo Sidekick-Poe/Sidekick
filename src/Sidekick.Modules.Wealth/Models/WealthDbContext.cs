@@ -15,6 +15,10 @@ namespace Sidekick.Modules.Wealth.Models
         {
             Database.Migrate();
         }
+        public WealthDbContext(DbContextOptions<WealthDbContext> options): base(options) {
+            Database.Migrate();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionbuilder)
         {
             optionbuilder.UseSqlite("Data Source=./Database/Wealth.db");

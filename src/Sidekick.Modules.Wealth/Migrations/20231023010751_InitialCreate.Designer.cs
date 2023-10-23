@@ -11,7 +11,7 @@ using Sidekick.Modules.Wealth.Models;
 namespace Sidekick.Modules.Wealth.Migrations
 {
     [DbContext(typeof(WealthDbContext))]
-    [Migration("20231022043557_InitialCreate")]
+    [Migration("20231023010751_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -72,11 +72,11 @@ namespace Sidekick.Modules.Wealth.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("BatchId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("RunId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("StashId")
                         .HasColumnType("TEXT");
