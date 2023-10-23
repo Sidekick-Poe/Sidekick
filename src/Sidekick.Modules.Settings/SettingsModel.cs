@@ -29,7 +29,7 @@ namespace Sidekick.Modules.Settings
                 { WikiSetting.PoeDb, "https://poedb.tw" }
             };
 
-            WealthTrackerTabs = sidekickSettings.Select(x => x).ToList();
+            WealthTrackerTabs = sidekickSettings.WealthTrackerTabs.Select(x => x).ToList();
         }
 
         public Dictionary<WikiSetting, string> WikiOptions { get; private set; }

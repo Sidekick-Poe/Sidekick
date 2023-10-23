@@ -1,4 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Apis.Poe.Bulk;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Leagues;
