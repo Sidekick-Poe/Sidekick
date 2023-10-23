@@ -4,9 +4,9 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers;
-using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Game.Items;
@@ -39,60 +39,7 @@ namespace Sidekick.Apis.Poe.Trade
             this.modifierProvider = modifierProvider;
         }
 
-        public async Task<TradeSearchResult<string>> SearchBulk(Item item, TradeOptions options)
-        {
-            try
-            {
-                logger.LogInformation("[Trade API] Querying Exchange API.");
-
-                if (gameLanguageProvider.Language == null)
-                {
-                    throw new Exception("[Trade API] Could not find a valid language.");
-                }
-
-                var uri = $"{gameLanguageProvider.Language.PoeTradeApiBaseUrl}exchange/{settings.LeagueId}";
-
-                var itemId = itemStaticDataProvider.GetId(item);
-                if (itemId == null)
-                {
-                    throw new Exception("[Trade API] Could not find a valid item.");
-                }
-
-                var model = new BulkQueryRequest();
-                // model.Exchange.Want.Add(itemId);
-                // model.Exchange.Have.Add("chaos");
-
-                var json = JsonSerializer.Serialize(model, poeTradeClient.Options);
-                var body = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await poeTradeClient.HttpClient.PostAsync(uri, body);
-
-                var content = await response.Content.ReadAsStreamAsync();
-                if (!response.IsSuccessStatusCode)
-                {
-                    var responseMessage = await response.Content.ReadAsStringAsync();
-                    logger.LogWarning("[Trade API] Querying failed: {responseCode} {responseMessage}", response.StatusCode, responseMessage);
-                    logger.LogWarning("[Trade API] Uri: {uri}", uri);
-                    logger.LogWarning("[Trade API] Query: {query}", json);
-
-                    var errorResult = await JsonSerializer.DeserializeAsync<ErrorResult>(content, poeTradeClient.Options);
-                    return new() { Error = errorResult?.Error };
-                }
-
-                var result = await JsonSerializer.DeserializeAsync<TradeSearchResult<string>?>(content, poeTradeClient.Options);
-                if (result != null)
-                {
-                    return result;
-                }
-            }
-            catch (Exception ex)
-            {
-                logger.LogWarning(ex, "[Trade API] Exception thrown while querying trade api.");
-            }
-
-            throw new Exception("[Trade API] Could not understand the API response.");
-        }
-
-        public async Task<TradeSearchResult<string>> Search(Item item, TradeOptions options, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null, List<PseudoModifierFilter>? pseudoFilters = null)
+        public async Task<TradeSearchResult<string>> Search(Item item, TradeCurrency currency, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null, List<PseudoModifierFilter>? pseudoFilters = null)
         {
             try
             {
@@ -104,7 +51,7 @@ namespace Sidekick.Apis.Poe.Trade
                 }
 
                 var request = new QueryRequest();
-                request.Query.Filters.TradeFilters.Filters.Price.Option = options.Currency.GetValueAttribute();
+                request.Query.Filters.TradeFilters.Filters.Price.Option = currency.GetValueAttribute();
 
                 if (item.Metadata.Category == Category.ItemisedMonster)
                 {
@@ -857,16 +804,7 @@ namespace Sidekick.Apis.Poe.Trade
 
         public Uri GetTradeUri(Item item, string queryId)
         {
-            Uri? baseUri;
-            if (item.Metadata.Rarity == Rarity.Currency && itemStaticDataProvider.GetId(item) != null)
-            {
-                baseUri = gameLanguageProvider.Language?.PoeTradeExchangeBaseUrl;
-            }
-            else
-            {
-                baseUri = gameLanguageProvider.Language?.PoeTradeSearchBaseUrl;
-            }
-
+            Uri? baseUri = gameLanguageProvider.Language?.PoeTradeSearchBaseUrl;
             if (baseUri == null)
             {
                 throw new Exception("[Trade API] Could not find the trade uri.");

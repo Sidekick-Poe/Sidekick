@@ -1,0 +1,7 @@
+div {
+    overflow: hidden;
+}
+
+iframe {
+    height: calc(100vh - var(--mud-appbar-height) - 8px);
+}

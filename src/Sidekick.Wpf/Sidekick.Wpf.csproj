@@ -6,14 +6,38 @@
     <ImplicitUsings>true</ImplicitUsings>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
     <PublishSingleFile>false</PublishSingleFile>
     <SelfContained>true</SelfContained>
     <PublishReadyToRun>true</PublishReadyToRun>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <AssemblyName>Sidekick</AssemblyName>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Title>Sidekick</Title>
+    <Authors>$(AssemblyName) Collaborators</Authors>
+    <Company>$(AssemblyName)</Company>
+    <Description>A Path of Exile companion tool.</Description>
+    <PackageProjectUrl>https://sidekick-poe.github.io/</PackageProjectUrl>
+    <PackageIcon>android-chrome-192x192.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/Sidekick-Poe/Sidekick</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\Sidekick.Common.Blazor\wwwroot\android-chrome-192x192.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
@@ -31,19 +55,19 @@
 
   <ItemGroup>
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.92" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.96" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <Content Update="wwwroot\**">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
-  <Target Name="Copywwwroot" BeforeTargets="PreBuildEvent">
+  <Target Name="Copywwwroot" BeforeTargets="Build">
     <ItemGroup>
-      <wwwrootFolder Include="$(ProjectDir)..\Sidekick.Common.Blazor\wwwroot\**\*.*" />
+      <WwwRootFiles Include="$(ProjectDir)..\Sidekick.Common.Blazor\wwwroot\**\*.*" />
     </ItemGroup>
-    <Copy SourceFiles="@(wwwrootFolder)" DestinationFolder="$(OutDir)wwwroot\%(RecursiveDir)" />
+    <Copy SourceFiles="@(WwwRootFiles)" DestinationFolder="$(ProjectDir)wwwroot\%(RecursiveDir)" />
   </Target>
 </Project>

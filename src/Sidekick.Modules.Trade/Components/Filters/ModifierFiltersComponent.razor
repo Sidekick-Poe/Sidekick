@@ -1,11 +1,13 @@
-@for (var i = 0; i < Filters.Count; i++)
+@for (var i = 0; i < Filters.ModifierFilters.Count; i++)
 {
-    <ModifierFilterComponent Filter="Filters[i]" />
+    <CascadingValue Value="Filters.ModifierFilters[i]" IsFixed="true">
+        <ModifierFilterComponent />
+    </CascadingValue>
 
-    var isLastFilter = i + 1 == Filters.Count;
+    var isLastFilter = i + 1 == Filters.ModifierFilters.Count;
     if (!isLastFilter)
     {
-        var isDifferentCategoryThanNext = NormalizeModifierCategory(Filters[i].Line.Modifiers.FirstOrDefault()?.Category) != NormalizeModifierCategory(Filters[i + 1].Line.Modifiers.FirstOrDefault()?.Category);
+        var isDifferentCategoryThanNext = NormalizeModifierCategory(Filters.ModifierFilters[i].Line.Modifiers.FirstOrDefault()?.Category) != NormalizeModifierCategory(Filters.ModifierFilters[i + 1].Line.Modifiers.FirstOrDefault()?.Category);
         if (isDifferentCategoryThanNext)
         {
             <ItemSeparator Rarity="Rarity" />
@@ -14,8 +16,8 @@
 }
 
 @code {
-    [Parameter]
-    public List<ModifierFilter> Filters { get; set; }
+    [CascadingParameter]
+    public FiltersModel Filters { get; set; }
 
     [Parameter]
     public Rarity Rarity { get; set; }

@@ -23,14 +23,14 @@
 
   <ItemGroup>
     <Content Update="wwwroot\**">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
-  <Target Name="Copywwwroot" BeforeTargets="PreBuildEvent">
+  <Target Name="Copywwwroot" BeforeTargets="Build">
     <ItemGroup>
-      <wwwrootFolder Include="$(ProjectDir)..\Sidekick.Common.Blazor\wwwroot\**\*.*" />
+      <WwwRootFiles Include="$(ProjectDir)..\Sidekick.Common.Blazor\wwwroot\**\*.*" />
     </ItemGroup>
-    <Copy SourceFiles="@(wwwrootFolder)" DestinationFolder="$(ProjectDir)wwwroot\%(RecursiveDir)" />
+    <Copy SourceFiles="@(WwwRootFiles)" DestinationFolder="$(ProjectDir)wwwroot\%(RecursiveDir)" />
   </Target>
 </Project>

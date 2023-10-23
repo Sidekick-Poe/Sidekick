@@ -1,4 +1,6 @@
-@* Root <div> element is required for ::deep CSS styles to be applied. *@
+@using Sidekick.Apis.Poe.Bulk;
+@using Sidekick.Common.Enums
+
 <MudDrawer Open="true"
            Variant="@DrawerVariant.Persistent"
            Width="22em"
@@ -13,103 +15,186 @@
     <div class="flex-grow-1" style="overflow-y:auto;">
         @if (Item != null)
         {
-            <PriceNinjaComponent Item="Item" ItemName="@ItemName" />
-            <PricePredictionComponent Item="Item" />
+            <PriceNinjaComponent ItemName="@ItemName" />
+            <PricePredictionComponent />
         }
 
-        <ClassFilter @bind-Value="PropertyFilters.Class" Item="Item" />
+        <ClassFilter @bind-Value="Filters.PropertyFilters.Class" Item="Item" />
 
-        <CascadingValue Value="PropertyFilters.Armour" IsFixed="true">
+        <CascadingValue Value="Filters.PropertyFilters.Armour" IsFixed="true">
             <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
         </CascadingValue>
 
-        <CascadingValue Value="PropertyFilters.Weapon" IsFixed="true">
+        <CascadingValue Value="Filters.PropertyFilters.Weapon" IsFixed="true">
             <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
         </CascadingValue>
 
-        <CascadingValue Value="PropertyFilters.Map" IsFixed="true">
+        <CascadingValue Value="Filters.PropertyFilters.Map" IsFixed="true">
             <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
         </CascadingValue>
 
-        <CascadingValue Value="PropertyFilters.Misc" IsFixed="true">
+        <CascadingValue Value="Filters.PropertyFilters.Misc" IsFixed="true">
             <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
         </CascadingValue>
 
-        <ModifierFiltersComponent Filters="ModifierFilters"
-                                  Rarity="Item.Metadata.Rarity" />
+        <ModifierFiltersComponent Rarity="Item.Metadata.Rarity" />
 
-        <PseudoFiltersComponent Filters="PseudoFilters"
-                                Rarity="Item.Metadata.Rarity" />
+        <PseudoFiltersComponent Rarity="Item.Metadata.Rarity" />
     </div>
 
-    @if (FiltersVisible)
+    @if (SupportsBulkRequest)
     {
-        <div class="d-flex justify-center pa-2">
+        <div class="mode-select">
+            <MudButtonGroup Size="Size.Small" Variant="Variant.Filled" Color="Color.Info" Class="pt-2 px-2" Style="width: 100%;">
+                <MudButton OnClick="() => SelectModeButton(TradeMode.Item)"
+                           FullWidth="true"
+                           Class="@GetModeButtonClass(TradeMode.Item)"
+                           StartIcon="@GetModeButtonIcon(TradeMode.Item)">
+                    @Resources.Mode_Item
+                </MudButton>
+                <MudButton OnClick="() => SelectModeButton(TradeMode.Bulk)"
+                           FullWidth="true"
+                           Class="@GetModeButtonClass(TradeMode.Bulk)"
+                           StartIcon="@GetModeButtonIcon(TradeMode.Bulk)">
+                    @Resources.Mode_Bulk
+                </MudButton>
+                @if (Mode == TradeMode.Bulk)
+                {
+                    <MudTooltip Text="@Resources.MinStock" Placement="Placement.Top">
+                        <MudInput T="string" Placeholder="Min" @bind-Value="MinStock" Variant="Variant.Outlined" />
+                    </MudTooltip>
+                }
+            </MudButtonGroup>
+        </div>
+    }
+
+    @if (HasAnyFilter || SupportsBulkRequest)
+    {
+        <MudButtonGroup Variant="Variant.Filled" Color="Color.Primary" Class="pa-2" Style="width: 100%;">
             <MudButton FullWidth
                         Variant="Variant.Filled"
                         Color="Color.Primary"
                         OnClick="Search">@Resources.Filters_Submit</MudButton>
-         </div>
+             <TradeCurrencySelect @bind-Value="Currency" />
+         </MudButtonGroup>
     }
 </MudDrawer>
 
 @code {
-    [Inject] public TradeResources Resources { get; set; }
+    [Inject]
+    private TradeResources Resources { get; set; }
+
+    [Inject]
+    private ISettings Settings { get; set; }
+
+    [Inject]
+    private ISettingsService SettingsService { get; set; }
+
+    [Inject]
+    private IBulkTradeService BulkTradeService { get; set; }
 
     [CascadingParameter]
     public Item Item { get; set; }
+
+    [CascadingParameter]
+    public FiltersModel Filters { get; set; }
 
     [Parameter]
     public string ItemName { get; set; }
 
     [Parameter]
-    public PropertyFilters PropertyFilters { get; set; }
-    
-    [Parameter]
-    public List<ModifierFilter> ModifierFilters { get; set; }
-
-    [Parameter]
-    public List<PseudoModifierFilter> PseudoFilters { get; set; }
-
-    [Parameter]
     public EventCallback OnSearch { get; set; }
 
-    private bool Expanded { get; set; } = false;
-    private bool FiltersVisible { get; set; }
+    private bool SupportsBulkRequest => BulkTradeService.SupportsBulkTrade(Item);
+    private bool HasAnyFilter { get; set; }
     private bool IsInit { get; set; } = false;
+
+    private TradeMode Mode { get; set; }
+    private TradeCurrency Currency { get; set; }
+    private string MinStock { get; set; }
 
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
 
+        Mode = Settings.Trade_Currency_PreferredMode.GetEnumFromValue<TradeMode>();
+        SetInitialCurrencyValue();
+
         if (IsInit) return;
         IsInit = Item != null;
 
         int propertyCount = 0;
-        propertyCount += PropertyFilters?.Armour?.Count ?? 0;
-        propertyCount += PropertyFilters?.Map?.Count ?? 0;
-        propertyCount += PropertyFilters?.Misc?.Count ?? 0;
-        propertyCount += PropertyFilters?.Weapon?.Count ?? 0;
+        propertyCount += Filters.PropertyFilters?.Armour?.Count ?? 0;
+        propertyCount += Filters.PropertyFilters?.Map?.Count ?? 0;
+        propertyCount += Filters.PropertyFilters?.Misc?.Count ?? 0;
+        propertyCount += Filters.PropertyFilters?.Weapon?.Count ?? 0;
 
         int modifierCount = 0;
-        modifierCount += ModifierFilters?.Count ?? 0;
+        modifierCount += Filters.ModifierFilters?.Count ?? 0;
 
-        FiltersVisible = (ModifierFilters?.Count ?? 0) + propertyCount > 0;
+        HasAnyFilter = modifierCount + propertyCount > 0;
     }
 
-    private void Expand()
+    private void SetInitialCurrencyValue()
     {
-        Expanded = true;
+        if (Mode == TradeMode.Bulk)
+        {
+            Currency = Settings.Trade_Bulk_Currency.GetEnumFromValue<TradeCurrency>();
+        }
+        else
+        {
+            Currency = Settings.Trade_Item_Currency.GetEnumFromValue<TradeCurrency>();
+        }
+
+        MinStock = Settings.Trade_Bulk_MinStock.ToString();
     }
 
-    private void Collapse()
+    private string GetModeButtonClass(TradeMode value)
     {
-        Expanded = false;
+        if (Mode != value)
+        {
+            return "unselected";
+        }
+
+        return "";
     }
 
-    private Task Search()
+    private string GetModeButtonIcon(TradeMode value)
     {
-        Expanded = false;
-        return OnSearch.InvokeAsync();
+        if (Mode == value)
+        {
+            return Icons.Material.Filled.Check;
+        }
+
+        return null;
+    }
+
+    private void SelectModeButton(TradeMode value)
+    {
+        Mode = value;
+        SetInitialCurrencyValue();
+    }
+
+    private async Task Search()
+    {
+        if (SupportsBulkRequest)
+        {
+            await SettingsService.Save(nameof(ISettings.Trade_Currency_PreferredMode), Mode.GetValueAttribute());
+        }
+
+        if (Mode == TradeMode.Bulk)
+        {
+            await SettingsService.Save(nameof(ISettings.Trade_Bulk_Currency), Currency.GetValueAttribute());
+            if (int.TryParse(MinStock, out int minStock))
+            {
+                await SettingsService.Save(nameof(ISettings.Trade_Bulk_MinStock), minStock);
+            }
+        }
+        else
+        {
+            await SettingsService.Save(nameof(ISettings.Trade_Item_Currency), Currency.GetValueAttribute());
+        }
+
+        await OnSearch.InvokeAsync();
     }
 }

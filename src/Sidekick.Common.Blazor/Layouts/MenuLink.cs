@@ -8,11 +8,11 @@ namespace Sidekick.Common.Blazor.Layouts
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
-        public string Name { get; set; }
+        public required string Name { get; init; }
 
         /// <summary>
         /// Gets or sets the url.
         /// </summary>
-        public string Url { get; set; }
+        public required string Url { get; init; }
     }
 }

@@ -1,11 +1,9 @@
-@using Sidekick.Common.Settings
 
 <MudThemeProvider Theme="Theme" />
 
+@inject ISettings Settings
 @code {
-    [Inject] private ISettings Settings { get; set; }
-
-    private MudTheme Theme { get; set; }
+    private MudTheme? Theme { get; set; }
 
     protected override void OnInitialized()
     {
@@ -59,34 +57,34 @@
     private PaletteDark GetPaletteDark() => new PaletteDark()
         {
             Black = "#000000",
-            Background = "#1C1C1C",
-            BackgroundGrey = "#161616",
-            Surface = "#292929",
-            Divider = "#757575",
-            DividerLight = "#E0E0E0",
+            Background = "#1e1e1e",
+            BackgroundGrey = "#1e1e1e",
+            Surface = "#333333",
+            Divider = "#494949",
+            DividerLight = "#929292",
 
             DrawerBackground = "#000000",
             DrawerText = "rgba(255,255,255, 0.90)",
-            DrawerIcon = "rgba(255,255,255, 0.90)",
+            DrawerIcon = "#ffffff",
 
             AppbarBackground = "#000000",
-            AppbarText = "rgba(255,255,255, 0.90)",
+            AppbarText = "#ffffff",
 
-            TextPrimary = "rgba(255,255,255, 0.80)",
-            TextSecondary = "rgba(255,255,255, 0.70)",
+            TextPrimary = "rgba(255,255,255, 0.70)",
+            TextSecondary = "rgba(255,255,255, 0.55)",
             TextDisabled = "rgba(255,255,255, 0.40)",
 
             ActionDefault = "#00ACC1",
             ActionDisabled = "rgba(255,255,255, 0.30)",
             ActionDisabledBackground = "rgba(255,255,255, 0.15)",
 
-            Primary = "#8888FF",
-            PrimaryContrastText = "rgba(255,255,255, 0.90)",
-            PrimaryLighten = "#5C6BC0",
-            PrimaryDarken = "#3949AB",
+            Primary = "#6b6ebe",
+            PrimaryContrastText = "#ffffff",
+            PrimaryLighten = "#9795d1",
+            PrimaryDarken = "#3949ab",
 
             Info = "#00BCD4",
-            InfoContrastText = "rgba(255,255,255, 0.90)",
+            InfoContrastText = "#ffffff",
             InfoLighten = "#26C6DA",
             InfoDarken = "#00ACC1",
         };

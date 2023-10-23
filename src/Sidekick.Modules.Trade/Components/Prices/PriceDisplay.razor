@@ -1,21 +1,32 @@
 
 <div class="d-flex flex-row align-center @Class">
-    <MudText Typo="Typo.h3">@Value.ToString("0.##")</MudText>
-    @if (ShowImage)
+    <MudText Typo="ValueTypo">@Value.ToString("0.##")</MudText>
+    @if (ImageUrl != null)
     {
-        <MudText Typo="Typo.body1" Class="mx-1">&times;</MudText>
-        <img src="@ImageUrl" />
+        <MudText Typo="TimesTypo" Class="ml-1 times">&times;</MudText>
+        <img src="@ImageUrl" class="@ImageClass" />
     }
 </div>
 
 @code {
-    [Inject] private IItemStaticDataProvider ItemStaticDataProvider { get; set; }
-    [Inject] private IGameLanguageProvider GameLanguageProvider { get; set; }
+    [Inject]
+    private IItemStaticDataProvider ItemStaticDataProvider { get; set; }
 
-    [Parameter] public string Currency { get; set; } = "chaos";
-    [Parameter] public double Value { get; set; }
-    [Parameter] public string Class { get; set; } = "justify-end";
+    [Parameter]
+    public string Currency { get; set; } = "chaos";
 
-    private bool ShowImage => !string.IsNullOrEmpty(ItemStaticDataProvider.GetImage(Currency));
-    private string ImageUrl => $"{GameLanguageProvider.Language.PoeCdnBaseUrl}{ItemStaticDataProvider.GetImage(Currency).Trim('/')}";
+    [Parameter]
+    public double Value { get; set; }
+
+    [Parameter]
+    public string Class { get; set; } = "justify-end";
+
+    [Parameter]
+    public bool Small { get; set; } = false;
+
+    private Typo ValueTypo => Small ? Typo.h4 : Typo.h3;
+    private Typo TimesTypo => Small ? Typo.caption : Typo.body1;
+    private string ImageClass => Small ? "small" : "";
+
+    private string ImageUrl => ItemStaticDataProvider.GetImage(Currency);
 }

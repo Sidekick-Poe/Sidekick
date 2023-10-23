@@ -44,7 +44,7 @@
     [Inject]
     private IPoeWikiClient PoeWikiClient { get; set; }
 
-    [Parameter]
+    [CascadingParameter]
     public ModifierFilter Filter { get; set; }
 
     private List<string> EnchantmentOilNames { get; set; }

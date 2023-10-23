@@ -1,3 +1,5 @@
+using Sidekick.Apis.GitHub.Models;
+
 namespace Sidekick.Apis.GitHub
 {
     /// <summary>
@@ -6,10 +8,10 @@ namespace Sidekick.Apis.GitHub
     public interface IGitHubClient
     {
         /// <summary>
-        /// Determines if there is a newer version available.
+        /// Gets the latest release.
         /// </summary>
         /// <returns>True if an update is available.</returns>
-        Task<bool> IsUpdateAvailable();
+        Task<GitHubRelease> GetLatestRelease();
 
         /// <summary>
         /// Downloads the latest release from github.

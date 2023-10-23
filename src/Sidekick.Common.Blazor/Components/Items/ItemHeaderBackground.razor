@@ -15,7 +15,7 @@
     public bool Double { get; set; }
 
     [Parameter]
-    public RenderFragment<ItemHeaderBackground> ChildContent { get; set; }
+    public RenderFragment<ItemHeaderBackground> ChildContent { get; set; } = null!;
 
     private string BackgroundClass
     {

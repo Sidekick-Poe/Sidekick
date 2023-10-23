@@ -25,12 +25,14 @@
     </ErrorContent>
 </SidekickErrorBoundary>
 
+@inject NavigationManager NavigationManager;
+@inject IJSRuntime JSRuntime;
 @code {
     /// <summary>
     /// Gets or sets the content of the wrapper.
     /// </summary>
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public RenderFragment ChildContent { get; set; } = null!;
 
     /// <summary>
     /// Gets or sets a value indicating whether the view has an app bar or not.
@@ -38,22 +40,16 @@
     [Parameter]
     public bool HasAppbar { get; set; } = true;
 
-    [Inject]
-    private NavigationManager NavigationManager { get; set; }
-
-    [Inject]
-    private IJSRuntime JSRuntime { get; set; }
-
     /// <summary>
     /// Gets or sets the current view.
     /// </summary>
-    public SidekickView View { get; set; }
+    public SidekickView? View { get; set; }
 
-    private SidekickErrorBoundary Boundary { get; set; }
+    private SidekickErrorBoundary? Boundary { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (Boundary.CurrentException != null)
+        if (Boundary?.CurrentException != null)
         {
             await JSRuntime.InvokeVoidAsync("console.error", Boundary.CurrentException.ToString());
         }

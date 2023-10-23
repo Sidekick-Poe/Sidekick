@@ -9,7 +9,11 @@ namespace Sidekick.Mock
     {
         public InitializationPriority Priority => InitializationPriority.Low;
 
+#pragma warning disable CS0067
+
         public event Action<string> OnKeyDown;
+
+#pragma warning restore CS0067
 
         public Task Initialize()
         {

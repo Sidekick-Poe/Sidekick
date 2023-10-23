@@ -44,7 +44,7 @@ namespace Sidekick.Modules.Settings
                 return;
             }
 
-            var newSettings = new Settings();
+            var newSettings = new Common.Settings.Settings();
             settings.CopyValuesTo(newSettings);
             propertyType.SetValue(newSettings, value);
             await Save(newSettings);
@@ -66,7 +66,7 @@ namespace Sidekick.Modules.Settings
 
             newSettings.CopyValuesTo(settings);
             var json = JsonSerializer.Serialize(settings);
-            var defaults = JsonSerializer.Serialize(new Settings());
+            var defaults = JsonSerializer.Serialize(new Common.Settings.Settings());
 
             using var memoryStream = new MemoryStream();
             using var writer = new Utf8JsonWriter(memoryStream, options: new JsonWriterOptions

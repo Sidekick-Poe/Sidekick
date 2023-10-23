@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub.Api;
+using Sidekick.Apis.GitHub.Models;
 
 namespace Sidekick.Apis.GitHub
 {
@@ -20,7 +21,7 @@ namespace Sidekick.Apis.GitHub
             this.logger = logger;
         }
 
-        private bool? UpdateAvailable { get; set; } = null;
+        private GitHubRelease? LatestRelease { get; set; } = null;
 
         private HttpClient GetHttpClient()
         {
@@ -32,19 +33,19 @@ namespace Sidekick.Apis.GitHub
         }
 
         /// <inheritdoc/>
-        public async Task<bool> IsUpdateAvailable()
+        public async Task<GitHubRelease> GetLatestRelease()
         {
-            if (UpdateAvailable != null)
+            if (LatestRelease != null)
             {
-                return UpdateAvailable.Value;
+                return LatestRelease;
             }
 
-            var release = await GetLatestRelease();
+            var release = await GetApiRelease();
             if (release == null || release.Tag == null)
             {
                 logger.LogInformation("[Updater] No latest release found on GitHub.");
-                UpdateAvailable = false;
-                return false;
+                LatestRelease = new();
+                return LatestRelease;
             }
 
             logger.LogInformation("[Updater] Found " + release.Tag + " as latest version on GitHub.");
@@ -52,19 +53,22 @@ namespace Sidekick.Apis.GitHub
             var currentVersion = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.FullName?.Contains("Sidekick") ?? false)?.GetName().Version;
             if (currentVersion == null)
             {
-                return false;
+                LatestRelease = new();
+                return LatestRelease;
             }
 
-            var result = currentVersion.CompareTo(latestVersion);
-            UpdateAvailable = result < 0;
-
-            return UpdateAvailable ?? false;
+            LatestRelease = new()
+            {
+                IsNewerVersion = currentVersion.CompareTo(latestVersion) < 0,
+                IsExecutable = release.Assets?.Any(x => x.Name == "Sidekick-Setup.exe") ?? false,
+            };
+            return LatestRelease;
         }
 
         /// <inheritdoc/>
         public async Task<bool> DownloadLatest(string downloadPath)
         {
-            var release = await GetLatestRelease();
+            var release = await GetApiRelease();
             if (release == null)
             {
                 return false;
@@ -89,7 +93,7 @@ namespace Sidekick.Apis.GitHub
             return true;
         }
 
-        private async Task<GitHubRelease?> GetLatestRelease()
+        private async Task<Release?> GetApiRelease()
         {
             // Get List of releases
             using var client = GetHttpClient();
@@ -99,7 +103,7 @@ namespace Sidekick.Apis.GitHub
                 return null;
             }
 
-            var githubReleaseList = await JsonSerializer.DeserializeAsync<GitHubRelease[]>(await listResponse.Content.ReadAsStreamAsync(), new JsonSerializerOptions
+            var githubReleaseList = await JsonSerializer.DeserializeAsync<Release[]>(await listResponse.Content.ReadAsStreamAsync(), new JsonSerializerOptions
             {
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 PropertyNameCaseInsensitive = true
