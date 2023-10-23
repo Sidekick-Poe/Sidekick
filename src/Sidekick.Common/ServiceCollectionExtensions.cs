@@ -1,4 +1,5 @@
 using System.Reflection;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Sidekick.Common.Browser;
@@ -9,6 +10,7 @@ using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Localization;
 using Sidekick.Common.Logging;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Common
 {
@@ -22,8 +24,15 @@ namespace Sidekick.Common
         /// </summary>
         /// <param name="services">The service collection to add services to</param>
         /// <returns>The services collection</returns>
-        public static IServiceCollection AddSidekickCommon(this IServiceCollection services)
+        public static IServiceCollection AddSidekickCommon(this IServiceCollection services, IConfiguration configuration)
         {
+            var settings = new Settings.Settings();
+            configuration.Bind(settings);
+            configuration.BindList(nameof(ISettings.Chat_Commands), settings.Chat_Commands);
+            configuration.BindList(nameof(ISettings.Cheatsheets_Pages), settings.Cheatsheets_Pages);
+            services.AddSingleton(settings);
+            services.AddSingleton<ISettings>(sp => sp.GetRequiredService<Settings.Settings>());
+
             services.AddSingleton<IBrowserProvider, BrowserProvider>();
             services.AddSingleton<ICacheProvider, CacheProvider>();
             services.AddSingleton<IGameLogProvider, GameLogProvider>();
@@ -43,6 +52,22 @@ namespace Sidekick.Common
             services.AddSidekickInitializableService<IUILanguageProvider, UILanguageProvider>();
 
             return services.AddSidekickLogging();
+        }
+
+        private static void BindList<TModel>(this IConfiguration configuration, string key, List<TModel> list)
+            where TModel : new()
+        {
+            var items = configuration.GetSection(key).GetChildren().ToList();
+            if (items.Count > 0)
+            {
+                list.Clear();
+            }
+            foreach (var item in items)
+            {
+                var model = new TModel();
+                item.Bind(model);
+                list.Add(model);
+            }
         }
 
         private static IServiceCollection AddSidekickLogging(this IServiceCollection services)

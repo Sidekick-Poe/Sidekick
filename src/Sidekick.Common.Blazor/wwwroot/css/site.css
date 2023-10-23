@@ -130,3 +130,18 @@ body {
     height: 100%;
     overflow: hidden;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.mud-typography-h1,
+.mud-typography-h2,
+.mud-typography-h3,
+.mud-typography-h4,
+.mud-typography-h5,
+.mud-typography-h6 {
+    color: #fff;
+}

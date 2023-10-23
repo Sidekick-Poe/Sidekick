@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using Sidekick.Common.Settings;
-
-namespace Sidekick.Modules.Settings
+namespace Sidekick.Common.Settings
 {
     public class Settings : ISettings
     {
@@ -52,9 +48,9 @@ namespace Sidekick.Modules.Settings
 
         public string Map_Dangerous_Regex { get; set; } = "reflect|regen";
 
-        public string Trade_Layout { get; set; }
+        public string? Trade_Layout { get; set; }
 
-        public string Trade_Item_Currency { get; set; }
+        public string? Trade_Item_Currency { get; set; }
 
         public string Trade_Bulk_Currency { get; set; } = "divine";
 

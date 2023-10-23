@@ -27,19 +27,19 @@ jobs:
         with:
           useConfigFile: true
           additionalArguments: '/updateprojectfiles'
-          
+
       - name: Environment - Build Number
         uses: myci-actions/export-env-var@1
         with:
           name: BUILD_NUMBER
           value: ${{ steps.gitversion.outputs.fullSemVer }}
-          
+
       - name: Environment - Github Token
         uses: myci-actions/export-env-var@1
         with:
           name: GITHUB_TOKEN
           value: ${{ github.token }}
-          
+
       - name: Copy files
         shell: pwsh
         run: |
@@ -54,21 +54,21 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 7.x
-            
+
       - name: .NET - Restore
         run: dotnet restore
-          
+
       - name: .NET - Build
         run: dotnet build --no-restore
-          
+
       - name: .NET - Tests
         run: dotnet test --no-build --verbosity normal
-        
+
       - name: Setup Git
         run: |
           git config --global url."https://user:${{ secrets.GITHUB_TOKEN }}@github".insteadOf https://github
           git config --global user.name github-actions
-          git config --global user.email github-actions@github.com          
+          git config --global user.email github-actions@github.com
 
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.7.0
@@ -80,30 +80,30 @@ jobs:
         run: |
           $applicationName = "Sidekick"
           Write-Output "Application name: $applicationName"
-          
+
           $projectDirectory = "src/Sidekick.Wpf"
           Write-Output "Project directory: $projectDirectory"
-          
+
           $publishDirectory = "$projectDirectory/bin/publish"
           Write-Output "Publish directory: $publishDirectory"
-          
+
           $version = "${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.buildMetaData }}"
           Write-Output "Version: $version"
-          
+
           $deployRepository = "git@github.com:Sidekick-Poe/Sidekick-Beta.git"
           Write-Output "Deploy repository: $deployRepository"
-          
+
           Write-Output "Working directory: $pwd"
-          
+
           # Find MSBuild.
           $msBuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
               -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe `
               -prerelease | select-object -first 1
           Write-Output "MSBuild path: $((Get-Command $msBuildPath).Path)"
-          
+
           Set-StrictMode -version 2.0
           $ErrorActionPreference = "Stop"
-          
+
           # Publish the application.
           Push-Location $projectDirectory
           try {
@@ -113,13 +113,12 @@ jobs:
           finally {
               Pop-Location
           }
-          
+
           # Clone `gh-pages` branch.
           git clone $deployRepository -b gh-pages --single-branch "dist"
-          
+
           Push-Location "dist"
           try {
-              # Remove previous application files.
               Write-Output "Removing previous files..."
               if (Test-Path "Application Files") {
                   Remove-Item -Path "Application Files" -Recurse
@@ -127,11 +126,10 @@ jobs:
               if (Test-Path "$applicationName.application") {
                   Remove-Item -Path "$applicationName.application"
               }
-          
-              # Copy new application files.
+
               Write-Output "Copying new files..."
               Copy-Item -Path "../$publishDirectory/Application Files","../$publishDirectory/$applicationName.application" -Destination . -Recurse
-          
+
               # Stage and commit.
               # Write-Output "Staging..."
               git add -A

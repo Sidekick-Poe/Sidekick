@@ -184,7 +184,7 @@ namespace Sidekick.Common.Platform.Keyboards
             }
 
             // Configure hook logging
-            LogSource = LogSource.Register(minLevel: SharpHook.Native.LogLevel.Info);
+            LogSource = LogSource.RegisterOrGet(minLevel: SharpHook.Native.LogLevel.Info);
             LogSource.MessageLogged += OnMessageLogged;
 
             // Initialize keyboard hook

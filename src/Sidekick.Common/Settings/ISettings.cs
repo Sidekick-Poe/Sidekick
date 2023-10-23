@@ -16,8 +16,8 @@ namespace Sidekick.Common.Settings
         bool Trade_CloseWithMouse { get; set; }
         string Trade_Key_Check { get; set; }
         bool Trade_Prediction_Enable { get; set; }
-        string Trade_Layout { get; set; }
-        string Trade_Item_Currency { get; set; }
+        string? Trade_Layout { get; set; }
+        string? Trade_Item_Currency { get; set; }
         string Trade_Bulk_Currency { get; set; }
         int Trade_Bulk_MinStock { get; set; }
         string Trade_Currency_PreferredMode { get; set; }

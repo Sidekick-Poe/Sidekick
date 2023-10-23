@@ -48,7 +48,7 @@ builder.Services
     .AddMudBlazorJsApi()
 
     // Common
-    .AddSidekickCommon()
+    .AddSidekickCommon(builder.Configuration)
     .AddSidekickCommonBlazor()
     // .AddSidekickCommonPlatform(o =>
     // {
@@ -70,7 +70,7 @@ builder.Services
     .AddSidekickDevelopment()
     .AddSidekickGeneral()
     .AddSidekickMaps()
-    .AddSidekickSettings(builder.Configuration)
+    .AddSidekickSettings()
     .AddSidekickTrade()
 
     // Mocks

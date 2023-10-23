@@ -33,7 +33,7 @@ namespace Sidekick.Apis.Poe.Tests
 
             ctx.Services
                 // Building blocks
-                .AddSidekickCommon()
+                .AddSidekickCommon(configuration)
                 .AddSidekickCommonBlazor()
 
                 // Apis
@@ -42,7 +42,7 @@ namespace Sidekick.Apis.Poe.Tests
                 .AddSidekickPoeWikiApi()
 
                 // Modules
-                .AddSidekickSettings(configuration)
+                .AddSidekickSettings()
 
                 // Mocks
                 .AddSidekickMocks();

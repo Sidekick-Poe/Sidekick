@@ -25,123 +25,98 @@ jobs:
         with:
           useConfigFile: true
           additionalArguments: '/updateprojectfiles'
-          
-      - name: GitVersion - Output
-        run: |
-          echo "Major: ${{ steps.gitversion.outputs.major }}"
-          echo "Minor: ${{ steps.gitversion.outputs.minor }}"
-          echo "Patch: ${{ steps.gitversion.outputs.patch }}"
-          echo "PreReleaseTag: ${{ steps.gitversion.outputs.preReleaseTag }}"
-          echo "PreReleaseTagWithDash: ${{ steps.gitversion.outputs.preReleaseTagWithDash }}"
-          echo "PreReleaseLabel: ${{ steps.gitversion.outputs.preReleaseLabel }}"
-          echo "PreReleaseNumber: ${{ steps.gitversion.outputs.preReleaseNumber }}"
-          echo "WeightedPreReleaseNumber: ${{ steps.gitversion.outputs.weightedPreReleaseNumber }}"
-          echo "BuildMetaData: ${{ steps.gitversion.outputs.buildMetaData }}"
-          echo "BuildMetaDataPadded: ${{ steps.gitversion.outputs.buildMetaDataPadded }}"
-          echo "FullBuildMetaData: ${{ steps.gitversion.outputs.fullBuildMetaData }}"
-          echo "MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}"
-          echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
-          echo "LegacySemVer: ${{ steps.gitversion.outputs.legacySemVer }}"
-          echo "LegacySemVerPadded: ${{ steps.gitversion.outputs.legacySemVerPadded }}"
-          echo "AssemblySemVer: ${{ steps.gitversion.outputs.assemblySemVer }}"
-          echo "AssemblySemFileVer: ${{ steps.gitversion.outputs.assemblySemFileVer }}"
-          echo "FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}"
-          echo "InformationalVersion: ${{ steps.gitversion.outputs.informationalVersion }}"
-          echo "BranchName: ${{ steps.gitversion.outputs.branchName }}"
-          echo "EscapedBranchName: ${{ steps.gitversion.outputs.escapedBranchName }}"
-          echo "Sha: ${{ steps.gitversion.outputs.sha }}"
-          echo "ShortSha: ${{ steps.gitversion.outputs.shortSha }}"
-          echo "NuGetVersionV2: ${{ steps.gitversion.outputs.nuGetVersionV2 }}"
-          echo "NuGetVersion: ${{ steps.gitversion.outputs.nuGetVersion }}"
-          echo "NuGetPreReleaseTagV2: ${{ steps.gitversion.outputs.nuGetPreReleaseTagV2 }}"
-          echo "NuGetPreReleaseTag: ${{ steps.gitversion.outputs.nuGetPreReleaseTag }}"
-          echo "VersionSourceSha: ${{ steps.gitversion.outputs.versionSourceSha }}"
-          echo "CommitsSinceVersionSource: ${{ steps.gitversion.outputs.commitsSinceVersionSource }}"
-          echo "CommitsSinceVersionSourcePadded: ${{ steps.gitversion.outputs.commitsSinceVersionSourcePadded }}"
-          echo "UncommittedChanges: ${{ steps.gitversion.outputs.uncommittedChanges }}"
-          echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}"
-          
+
       - name: Environment - Build Number
         uses: myci-actions/export-env-var@1
         with:
           name: BUILD_NUMBER
           value: ${{ steps.gitversion.outputs.fullSemVer }}
-          
+
       - name: Environment - Github Token
         uses: myci-actions/export-env-var@1
         with:
           name: GITHUB_TOKEN
           value: ${{ github.token }}
-          
+
+      - name: Copy files
+        shell: pwsh
+        run: |
+          Push-Location "src/Sidekick.Wpf"
+          try {
+              Copy-Item -Path "../Sidekick.Common.Blazor/wwwroot/*" -Destination "./wwwroot" -Recurse
+          } finally {
+              Pop-Location
+          }
+
       - name: .NET 7 - Setup
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 7.x
-            
+
       - name: .NET - Restore
         run: dotnet restore
-          
+
       - name: .NET - Build
         run: dotnet build --no-restore
-          
+
       - name: .NET - Tests
         run: dotnet test --no-build --verbosity normal
-        
+
       - name: Setup Git
         run: |
           git config --global url."https://user:${{ secrets.GITHUB_TOKEN }}@github".insteadOf https://github
           git config --global user.name github-actions
-          git config --global user.email github-actions@github.com          
+          git config --global user.email github-actions@github.com
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_RELEASE_KEY }}
 
       - name: Run release script
         shell: pwsh
         run: |
           $applicationName = "Sidekick"
           Write-Output "Application name: $applicationName"
-          
+
           $projectDirectory = "src/Sidekick.Wpf"
           Write-Output "Project directory: $projectDirectory"
-          
+
           $publishDirectory = "$projectDirectory/bin/publish"
           Write-Output "Publish directory: $publishDirectory"
-          
-          $version = "v${{ steps.gitversion.outputs.assemblySemFileVer }}"
+
+          $version = "${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.buildMetaData }}"
           Write-Output "Version: $version"
-          
-          $deployRepository = "https://github.com/Sidekick-Poe/Sidekick-Release.git"
+
+          $deployRepository = "git@github.com:Sidekick-Poe/Sidekick-Release.git"
           Write-Output "Deploy repository: $deployRepository"
-          
+
           Write-Output "Working directory: $pwd"
-          
+
           # Find MSBuild.
           $msBuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
               -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe `
               -prerelease | select-object -first 1
           Write-Output "MSBuild path: $((Get-Command $msBuildPath).Path)"
-          
+
           Set-StrictMode -version 2.0
           $ErrorActionPreference = "Stop"
-          
+
           # Publish the application.
           Push-Location $projectDirectory
           try {
               Write-Output "Publishing:"
-              & $msBuildPath /target:publish /p:PublishProfile=ClickOnceProfile /p:ApplicationVersion=$version /p:Configuration=Release /p:PublishDir=bin/publish /p:PublishUrl=bin/publish
-          
-              # Measure publish size.
-              $publishSize = (Get-ChildItem -Path "bin/publish/Application Files" -Recurse Measure-Object -Property Length -Sum).Sum / 1Mb
-              Write-Output ("Published size: {0:N2} MB" -f $publishSize)
+              & $msBuildPath /target:publish /p:PublishProfile=ClickOnceRelease /p:ApplicationVersion=$version /p:Configuration=Release /p:PublishDir=bin/publish /p:PublishUrl=bin/publish
           }
           finally {
               Pop-Location
           }
-          
+
           # Clone `gh-pages` branch.
-          git clone $deployRepository -b gh-pages --depth 1 --single-branch "dist"
-          
+          git clone $deployRepository -b gh-pages --single-branch "dist"
+
           Push-Location "dist"
           try {
-              # Remove previous application files.
               Write-Output "Removing previous files..."
               if (Test-Path "Application Files") {
                   Remove-Item -Path "Application Files" -Recurse
@@ -149,30 +124,17 @@ jobs:
               if (Test-Path "$applicationName.application") {
                   Remove-Item -Path "$applicationName.application"
               }
-          
-              # Copy new application files.
+
               Write-Output "Copying new files..."
               Copy-Item -Path "../$publishDirectory/Application Files","../$publishDirectory/$applicationName.application" -Destination . -Recurse
-          
+
               # Stage and commit.
               # Write-Output "Staging..."
-              # git add -A
+              git add -A
               # Write-Output "Committing..."
-              # git commit -m "Update to v$version"
+              git commit -m "Update to v$version"
               # Write-Output "Pushing..."
-              # git push
+              git push
           } finally {
               Pop-Location
           }
-      
-      - name: Pushes to release repository
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          SSH_DEPLOY_KEY: ${{ secrets.DEPLOY_RELEASE_KEY }}
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-directory: 'dist'
-          destination-github-username: 'Sidekkick-Poe'
-          destination-repository-name: 'Sidekick-Release'
-          user-email: lemire.yanic@gmail.com
-          target-branch: gh-pages
