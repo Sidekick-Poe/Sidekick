@@ -22,5 +22,10 @@ namespace Sidekick.Common.Browser
                 UseShellExecute = true
             });
         }
+
+        public void OpenSidekickWebsite()
+        {
+            OpenUri(new Uri("https://sidekick-poe.github.io/"));
+        }
     }
 }

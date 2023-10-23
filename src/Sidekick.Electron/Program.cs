@@ -48,10 +48,10 @@ builder.Services
     .AddMudBlazorResizeListener()
     .AddMudBlazorScrollListener()
     .AddMudBlazorScrollManager()
-    .AddMudBlazorJsApi()
+.AddMudBlazorJsApi()
 
-    // Common
-    .AddSidekickCommon()
+// Common
+    .AddSidekickCommon(builder.Configuration)
     .AddSidekickCommonBlazor()
     .AddSidekickCommonPlatform(o =>
     {
@@ -73,7 +73,7 @@ builder.Services
     .AddSidekickDevelopment()
     .AddSidekickGeneral()
     .AddSidekickMaps()
-    .AddSidekickSettings(builder.Configuration)
+    .AddSidekickSettings()
     .AddSidekickTrade();
 builder.Services.AddSingleton<IApplicationService, ElectronApplicationService>();
 builder.Services.AddSingleton<ITrayProvider, ElectronTrayProvider>();

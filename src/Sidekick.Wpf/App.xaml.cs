@@ -97,11 +97,10 @@ namespace Sidekick.Wpf
         private void ConfigureServices(ServiceCollection services, IConfiguration configuration)
         {
             services.AddLocalization();
+#pragma warning disable CA1416 // Validate platform compatibility
             services.AddWpfBlazorWebView();
-
-#if DEBUG
             services.AddBlazorWebViewDeveloperTools();
-#endif
+#pragma warning restore CA1416 // Validate platform compatibility
 
             services
                 // MudBlazor
@@ -114,7 +113,7 @@ namespace Sidekick.Wpf
                 .AddMudBlazorJsApi()
 
                 // Common
-                .AddSidekickCommon()
+                .AddSidekickCommon(configuration)
                 .AddSidekickCommonBlazor()
                 .AddSidekickCommonPlatform(o =>
                 {
@@ -137,7 +136,7 @@ namespace Sidekick.Wpf
                 .AddSidekickDevelopment()
                 .AddSidekickGeneral()
                 .AddSidekickMaps()
-                .AddSidekickSettings(configuration)
+                .AddSidekickSettings()
                 .AddSidekickTrade(); ;
 
             services.AddSingleton<IApplicationService, MockApplicationService>();

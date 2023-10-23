@@ -147,10 +147,8 @@ namespace Sidekick.Apis.Poe.Metadatas
 
             var itemRarity = GetRarity(parsingBlock);
 
-            // If we find a Vaal Gem, we don't care about any other results
-            if (itemRarity == Rarity.Gem &&
-                parsingItem.Blocks.Count > 7 && // If the items has more than 7 blocks, it could be a vaal gem
-                NameAndTypeDictionary.TryGetValue(parsingItem.Blocks[5].Lines[0].Text, out var vaalGem)) // The vaal gem name is always at the same position
+            var canBeVaalGem = itemRarity == Rarity.Gem && parsingItem.Blocks.Count > 7;
+            if (canBeVaalGem && NameAndTypeDictionary.TryGetValue(parsingItem.Blocks[5].Lines[0].Text, out var vaalGem))
             {
                 return vaalGem.First();
             }
@@ -238,17 +236,20 @@ namespace Sidekick.Apis.Poe.Metadatas
                 }
             }
 
-            // If we have a matching type, we narrow down our results
             if (results.Any(x => x.Type == type))
             {
-                results = results.Where(x => x.Type == type).ToList();
+                return results.FirstOrDefault(x => x.Type == type);
+            }
+            else if (results.Any(x => x.Rarity == Rarity.Unique))
+            {
+                return results.FirstOrDefault(x => x.Rarity == Rarity.Unique);
+            }
+            else if (results.Any(x => x.Rarity == Rarity.Unknown))
+            {
+                return results.FirstOrDefault(x => x.Rarity == Rarity.Unknown);
             }
 
-            // If we have a Unique item in our results, we sort for it so it comes first
-            return results
-                .OrderBy(x => x.Rarity == Rarity.Unique ? 0 : 1)
-                .ThenBy(x => x.Rarity == Rarity.Unknown ? 0 : 1)
-                .FirstOrDefault();
+            return results.FirstOrDefault();
         }
 
         private Rarity GetRarity(ParsingBlock parsingBlock)

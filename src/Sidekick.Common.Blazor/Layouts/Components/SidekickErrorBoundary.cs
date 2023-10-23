@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Components.Web;
 
 namespace Sidekick.Common.Blazor.Layouts
@@ -11,6 +10,6 @@ namespace Sidekick.Common.Blazor.Layouts
         /// <summary>
         /// Gets the current exception, or null if there is no exception.
         /// </summary>
-        public new Exception CurrentException => base.CurrentException;
+        public new Exception? CurrentException => base.CurrentException;
     }
 }
