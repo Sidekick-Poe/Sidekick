@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common;
 using Sidekick.Modules.Wealth.Localization;
@@ -13,7 +14,8 @@ namespace Sidekick.Modules.Wealth
 
             services.AddTransient<WealthResources>();
             services.AddSingleton<WealthParser>();
-            services.AddDbContext<WealthDbContext>();
+
+            services.AddDbContext<WealthDbContext>(o => o.UseSqlite("Data Source=" + SidekickPaths.GetDataFilePath("wealth.db")));
 
             return services;
         }

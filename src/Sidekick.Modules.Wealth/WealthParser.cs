@@ -270,6 +270,12 @@ namespace Sidekick.Modules.Wealth
         {
             var name = item.getFriendlyName(false);
             var metadata = ItemMetadataProvider.Parse(name, item.typeLine);
+            if(metadata == null)
+            {
+                // Log it
+                return 0;
+            }
+
             var category = metadata.Category;
             var price = await PoeNinjaClient.GetPriceInfo(
                 name,
@@ -280,8 +286,13 @@ namespace Sidekick.Modules.Wealth
                 null,
                 item.getLinkCount());
 
+            if(price == null)
+            {
+                // Log it
+            }
+
             //if(price == null) { return 0.0; }
-            return price.Price;
+            return price?.Price ?? 0;
         }
 
         private int GetItemCount(APIStashItem item)

@@ -69,7 +69,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Web", "src\Sidekic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Modules.Wealth", "src\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj", "{70B9893F-72F8-4B5F-A9CF-732E538D6C9E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Protocol", "Sidekick.Protocol\Sidekick.Protocol.csproj", "{90CCE73B-CD45-44AB-917E-0B4B058B4170}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Protocol", "src\Sidekick.Protocol\Sidekick.Protocol.csproj", "{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -165,10 +165,10 @@ Global
 		{70B9893F-72F8-4B5F-A9CF-732E538D6C9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70B9893F-72F8-4B5F-A9CF-732E538D6C9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70B9893F-72F8-4B5F-A9CF-732E538D6C9E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{90CCE73B-CD45-44AB-917E-0B4B058B4170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{90CCE73B-CD45-44AB-917E-0B4B058B4170}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{90CCE73B-CD45-44AB-917E-0B4B058B4170}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{90CCE73B-CD45-44AB-917E-0B4B058B4170}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

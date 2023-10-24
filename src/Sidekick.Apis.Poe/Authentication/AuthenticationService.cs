@@ -100,10 +100,11 @@ namespace Sidekick.Apis.Poe.Authentication
 
             if (_settings.Bearer_Expiration?.AddMinutes(-1) < DateTime.Now)
             {
-                _settingsService.Save("Bearer_Token", null);
-                _settingsService.Save("Bearer_Expiration", null);
+                _settingsService.Save(nameof(Settings.Bearer_Token), null);
+                _settingsService.Save(nameof(Settings.Bearer_Expiration), null);
                 return false;
             }
+
             return true;
         }
 
@@ -124,8 +125,8 @@ namespace Sidekick.Apis.Poe.Authentication
             var responseContent = await response.Content.ReadAsStreamAsync();
             var result = await JsonSerializer.DeserializeAsync<Oauth2TokenResponse>(responseContent);
 
-             await _settingsService.Save("Bearer_Token", result.access_token);
-            await _settingsService.Save("Bearer_Expiration", DateTime.Now.AddSeconds(result.expires_in));
+            await _settingsService.Save(nameof(Settings.Bearer_Token), result.access_token);
+            await _settingsService.Save(nameof(Settings.Bearer_Expiration), DateTime.Now.AddSeconds(result.expires_in));
 
             _isAuthenticating = false;
 
@@ -169,7 +170,6 @@ namespace Sidekick.Apis.Poe.Authentication
 
         private class Oauth2TokenResponse
         {
-
             public string access_token { get; set; }
             public int expires_in { get; set; }
             public string token_type { get; set; }

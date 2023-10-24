@@ -17,6 +17,9 @@ namespace Sidekick.Modules.Settings
         private ISettingsService SettingsService { get; set; }
 
         [Inject]
+        private ISettings Settings { get; set; }
+
+        [Inject]
         private NavigationManager NavigationManager { get; set; }
 
         [Inject]
@@ -104,6 +107,7 @@ namespace Sidekick.Modules.Settings
 
         public async Task Save()
         {
+            ViewModel.Bearer_Token = Settings.Bearer_Token; // Keep the token from the settings.
             await SettingsService.Save(ViewModel);
             await Wrapper.View.Close();
         }
