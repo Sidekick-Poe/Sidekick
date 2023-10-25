@@ -1,9 +1,6 @@
 name: Sidekick WPF Beta
 
 on:
-  pull_request:
-    branches:
-    - main
   push:
     branches:
     - main
@@ -46,12 +43,7 @@ jobs:
       - name: Copy files
         shell: pwsh
         run: |
-          Push-Location "src/Sidekick.Wpf"
-          try {
-              Copy-Item -Path "../Sidekick.Common.Blazor/wwwroot/*" -Destination "./wwwroot" -Recurse
-          } finally {
-              Pop-Location
-          }
+          Copy-Item -Path "src/Sidekick.Common.Blazor/wwwroot/*" -Destination "src/Sidekick.Wpf/wwwroot" -Recurse
 
       - name: .NET 7 - Setup
         uses: actions/setup-dotnet@v1
@@ -81,31 +73,6 @@ jobs:
       - name: Run release script
         shell: pwsh
         run: |
-          $version = "${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.buildMetaData }}"
-          Write-Output "Version: $version"
-          
-          # Find MSBuild.
-          $msBuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
-              -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe `
-              -prerelease | select-object -first 1
-          Write-Output "MSBuild path: $((Get-Command $msBuildPath).Path)"
-
-          Set-StrictMode -version 2.0
-          $ErrorActionPreference = "Stop"
-
-          # Publish the application.
-          Push-Location "src/Sidekick.Protocol"
-          try {
-              Write-Output "Publishing:"
-              & $msBuildPath /target:publish /p:PublishProfile=FolderProfile /p:ApplicationVersion=$version /p:Configuration=Release /p:PublishDir=bin/publish /p:PublishUrl=bin/publish
-          }
-          finally {
-              Pop-Location
-          }
-
-      - name: Run release script
-        shell: pwsh
-        run: |
           $applicationName = "Sidekick"
           Write-Output "Application name: $applicationName"
 
@@ -131,6 +98,16 @@ jobs:
 
           Set-StrictMode -version 2.0
           $ErrorActionPreference = "Stop"
+          
+          # Publish Protocol application.
+          Push-Location "src/Sidekick.Protocol"
+          try {
+              Write-Output "Publishing:"
+              & $msBuildPath /target:publish /p:PublishProfile=FolderProfile /p:ApplicationVersion=$version /p:Configuration=Release /p:PublishDir=bin/publish /p:PublishUrl=bin/publish
+          }
+          finally {
+              Pop-Location
+          }
 
           # Publish the application.
           Push-Location $projectDirectory
