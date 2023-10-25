@@ -286,7 +286,7 @@ namespace Sidekick.Apis.PoeWiki
             return null;
         }
 
-        public async Task<List<ItemNameMetadataIdResult>?> GetMetadataIdsFromItemNames(List<string> itemNames)
+        private async Task<List<ItemNameMetadataIdResult>?> GetMetadataIdsFromItemNames(List<string> itemNames)
         {
             try
             {
