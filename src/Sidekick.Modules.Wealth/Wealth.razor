@@ -12,22 +12,15 @@
                     <WealthInventory />
                 </MudCardContent>
                 <MudCardActions>
-                    @if (AuthenticationService.IsAuthenticated())
-                    {
-                        if (WealthParser.IsRunning())
-                        {
+                    @if (AuthenticationService.IsAuthenticated()) {
+                        if (WealthParser.IsRunning()) {
                             <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Success">Parser Running</MudAlert>
-                        }
-                        else
-                        {
+                        } else {
                             <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Error">Parser Stopped</MudAlert>
                         }
-                    }
-                    else
-                    {
+                    } else {
                         <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Error">Not Authenticated</MudAlert>
                     }
-                    <MudAlert Dense="true" Style="margin-left:150px; width: 330px;" Variant="Variant.Outlined" Severity="Severity.Normal">Total Wealth: @Math.Round(Database.Stashes.Sum(x => x.Total), 2)</MudAlert>
                 </MudCardActions>
             </MudCard>
         </MudPaper>
@@ -61,11 +54,9 @@
 
     protected override void OnInitialized()
     {
-        WealthParser.OnStashParsed += OnStashParsed;
         WealthParser.OnParserStopped += OnParserStopped;
 
         base.OnInitialized();
-
     }
 
     private async void StartParsing()
@@ -79,11 +70,6 @@
         WealthParser.Stop();
         StateHasChanged();
 
-    }
-
-    public async void OnStashParsed(string[] obj)
-    {
-        await InvokeAsync(() => { StateHasChanged(); });
     }
 
     public async void OnParserStopped(string[] obj)

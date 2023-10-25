@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Markup;
+using System.Xml.Linq;
 using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -41,6 +42,7 @@ namespace Sidekick.Modules.Wealth
         private IStashService StashService { get; set; }
         private IPoeNinjaClient PoeNinjaClient { get; set; }
         private IItemMetadataProvider ItemMetadataProvider { get; set; }
+        private ILogger<WealthParser> Logger { get; set; }
 
         public static event Action<string[]> OnStashParsing;
         public static event Action<string[]> OnStashParsed;
@@ -53,15 +55,17 @@ namespace Sidekick.Modules.Wealth
             ISettings _settings,
             IStashService _stashService,
             IPoeNinjaClient _poeNinjaClient,
-            IItemMetadataProvider _itemMetadataProvider)
+            IItemMetadataProvider _itemMetadataProvider,
+            ILogger<WealthParser> _logger)
         {
             AuthenticationService = _authenticationService;
             Database = new WealthDbContext(_options);
+            Options = _options;
             Settings = _settings;
             StashService = _stashService;
             PoeNinjaClient = _poeNinjaClient;
             ItemMetadataProvider = _itemMetadataProvider;
-
+            Logger = _logger;
 
             InterprocessService.OnMessage += InterprocessService_CustomProtocolCallback;
         }
@@ -93,6 +97,126 @@ namespace Sidekick.Modules.Wealth
         public bool IsRunning()
         {
             return Running;
+        }
+
+ 
+
+        private async void ParseLoop()
+        {
+            while (Running)
+            {
+                if (AuthenticationService.IsAuthenticated())
+                {
+
+                    Database = new WealthDbContext(Options);
+
+                    foreach (var id in Settings.WealthTrackerTabs)
+                    {
+                        await ParseStash(await StashService.GetStashTab(id));
+
+                        Database.SaveChanges();
+
+                        if (!Running) { break; }
+
+                    }
+
+                    TakeSnapshot();
+
+                    Database.SaveChanges();
+                    Database.Dispose();               
+
+                } else if (!AuthenticationService.IsAuthenticating()) {
+                    Running = false;
+                    OnParserStopped?.Invoke(new string[] { });
+                }
+
+                await Task.Delay(TimeSpan.FromSeconds(1));
+
+            }
+        }
+
+        private async Task<Models.Stash> ParseStash(APIStashTab stash)
+        {
+
+            OnStashParsing?.Invoke(new string[] { stash.id, stash.name });
+
+            var dbStash = Database.Stashes.FirstOrDefault(x => x.Id == stash.id);
+
+            if (dbStash == null) {
+                dbStash = new Models.Stash();
+                dbStash.Id = stash.id;
+                dbStash.Name = stash.name ?? "";
+                dbStash.Type = stash.type ?? "";
+                dbStash.Total = 0;
+                dbStash.CreatedOn = DateTime.Now;
+                dbStash.UpdatedOn = dbStash.CreatedOn;
+
+                Database.Stashes.Add(dbStash);
+            } else {          
+                dbStash.Total = 0; 
+            }
+
+            dbStash.UpdatedOn = DateTime.Now;
+
+            List<APIStashItem> items;
+            if (stash.type != null && stash.type.ToUpper() == "MAPSTASH") {
+                items = await StashService.GetMapStashItems(stash);
+            } else {
+                items = await StashService.GetStashItems(stash);
+            }
+
+            // Game Item Removed (Traded, Used, Destroyed, etc.)
+            var itemList = Database.Items.Where(x => x.Stash == stash.id);
+            foreach (var dbItem in itemList)
+            {
+                if (items.FirstOrDefault(x => x.id == dbItem.Id) == null)
+                {
+                    dbItem.Removed = true;
+                    dbItem.UpdatedOn = DateTime.Now;
+                }
+            }
+
+            // Add / Update Items
+            foreach (var item in items)
+            {
+                if (CanParse(item))
+                {
+                    var dbItem = await ParseItem(item, stash);
+                    dbStash.Total += dbItem.Total;
+                }
+            }
+
+            OnStashParsed?.Invoke(new string[] { stash.id, stash.name ?? "" });
+
+            return dbStash;
+        }
+
+        private async Task<Models.Item> ParseItem(APIStashItem item, APIStashTab stash)
+        {
+            var dbItem = Database.Items.FirstOrDefault(x => x.Id == item.id);
+
+            if (dbItem == null) {
+                dbItem = new Models.Item();
+                dbItem.Id = item.id;
+                dbItem.Name = item.getFriendlyName();
+                dbItem.Stash = stash.id;
+                dbItem.Icon = item.icon;
+                dbItem.League = item.league;
+                dbItem.Level = item.ilvl;
+                dbItem.Type = GetItemType(item);
+                dbItem.CreatedOn = DateTime.Now;
+
+                Database.Items.Add(dbItem);
+            } else {
+                dbItem.Removed = false; // Removed a full stack, added it back
+            }
+
+            dbItem.Count = GetItemCount(item);
+            dbItem.Price = item.getFriendlyName().ToUpper() == "CHAOS ORB" ? 1 : await GetItemPrice(item);
+            dbItem.Total = dbItem.Count * dbItem.Price;
+            dbItem.UpdatedOn = DateTime.Now;
+
+            return dbItem;
         }
 
         private void TakeSnapshot()
@@ -131,139 +255,31 @@ namespace Sidekick.Modules.Wealth
                 CreatedOn = DateTime.Now
             });
 
-            Database.SaveChanges();
-
             OnSnapshotTaken?.Invoke(new string[] { BatchId.ToString() });
-        }
-
-        private async void ParseLoop()
-        {
-            while (Running)
-            {
-                try {
-                    if (AuthenticationService.IsAuthenticated())
-                    {
-                        foreach (var id in Settings.WealthTrackerTabs)
-                        {
-                            await ParseStash(await StashService.GetStashTab(id));
-
-                            if (!Running) { break; }
-
-                        }
-
-                        TakeSnapshot();
-
-                    }
-                    else if (!AuthenticationService.IsAuthenticating())
-                    {
-                        Running = false;
-                        OnParserStopped?.Invoke(new string[] { });
-                        //await AuthenticationService.Authenticate();
-                    }
-
-                    await Task.Delay(TimeSpan.FromSeconds(2));
-
-                } catch (Exception ex)  {
-                    Running = false;
-                    OnParserStopped?.Invoke(new string[] { });
-                    //await AuthenticationService.Authenticate();
-                }
-            }
-        }
-
-        private async Task<Models.Stash> ParseStash(APIStashTab stash)
-        {
-
-            OnStashParsing?.Invoke(new string[] { stash.id, stash.name });
-
-            var dbStash = Database.Stashes.FirstOrDefault(x => x.Id == stash.id);
-
-            if (dbStash == null)
-            {
-                dbStash = new Models.Stash();
-                dbStash.Id = stash.id;
-                dbStash.Name = stash.name;
-                dbStash.Type = stash.type;
-                dbStash.Total = 0;
-                dbStash.CreatedOn = DateTime.Now;
-                dbStash.UpdatedOn = dbStash.CreatedOn;
-
-                Database.Stashes.Add(dbStash);
-            }
-            else
-            {
-                dbStash.Total = 0;
-                dbStash.UpdatedOn = DateTime.Now;
-            }
-
-            var items = new List<APIStashItem>();
-            if (stash.type.ToUpper() == "MAPSTASH") {
-                items = await StashService.GetMapStashItems(stash);
-            } else {
-                items = await StashService.GetStashItems(stash);
-            }
-
-            // Game Item Removed (Traded, Used, Destroyed, etc.)
-            var itemList = Database.Items.Where(x => x.Stash == stash.id).ToList();
-            foreach (var dbItem in itemList)
-            {
-                if (items.FirstOrDefault(x => x.id == dbItem.Id) == null)
-                {
-                    dbItem.Removed = true;
-                    dbItem.UpdatedOn = DateTime.Now;
-                }
-            }
-
-            // Add / Update Items
-            foreach (var item in items)
-            {
-                if (CanParse(item))
-                {
-                    var dbItem = await ParseItem(item, stash);
-                    dbStash.Total += dbItem.Total;
-                }
-            }
-
-            Database.SaveChanges();
-
-            OnStashParsed?.Invoke(new string[] { stash.id, stash.name });
-
-            return dbStash;
-        }
-
-        private async Task<Models.Item> ParseItem(APIStashItem item, APIStashTab stash)
-       {
-            var dbItem = Database.Items.FirstOrDefault(x => x.Id == item.id);
-
-            if (dbItem == null)
-            {
-                dbItem = new Models.Item();
-                dbItem.Id = item.id;
-                dbItem.Name = item.getFriendlyName();
-                dbItem.Stash = stash.id;
-                dbItem.Icon = item.icon;
-                dbItem.League = item.league;
-                dbItem.Level = item.ilvl;
-                dbItem.Type = GetItemType(item);
-                dbItem.CreatedOn = DateTime.Now;
-
-                Database.Items.Add(dbItem);
-            } else {
-                dbItem.Removed = false; // Removed a full stack, added it back
-            }
-
-            dbItem.Count = GetItemCount(item);
-            dbItem.Price = item.getFriendlyName().ToUpper() == "CHAOS ORB" ? 1 : await GetItemPrice(item);
-            dbItem.Total = dbItem.Count * dbItem.Price;
-            dbItem.UpdatedOn = DateTime.Now;
-
-            return dbItem;
         }
 
         private ItemType GetItemType(APIStashItem item)
         {
-            // todo : any other item types
-            return ItemType.Currency;
+
+            switch (item.frameType)
+            {
+                case FrameType.Currency:
+                    return ItemType.Currency;
+
+                case FrameType.Normal:
+                case FrameType.Magic:
+                case FrameType.Rare:
+                    if (item.name.ToUpper().EndsWith("MAP")) {
+                        return ItemType.Map;
+                    }
+                    return ItemType.Other;
+                case FrameType.Unique:
+                    return ItemType.Unique;
+                case FrameType.DivinationCard:
+                    return ItemType.Unique;
+            }
+
+            return ItemType.Other;
         }
 
         private async Task<double> GetItemPrice(APIStashItem item)
@@ -272,7 +288,7 @@ namespace Sidekick.Modules.Wealth
             var metadata = ItemMetadataProvider.Parse(name, item.typeLine);
             if(metadata == null)
             {
-                // Log it
+                Logger.LogError($"Could not retrieve metadeta: {item.getFriendlyName()}");
                 return 0;
             }
 
@@ -288,10 +304,9 @@ namespace Sidekick.Modules.Wealth
 
             if(price == null)
             {
-                // Log it
+                Logger.LogError($"Could not price: {item.getFriendlyName()}");
             }
 
-            //if(price == null) { return 0.0; }
             return price?.Price ?? 0;
         }
 

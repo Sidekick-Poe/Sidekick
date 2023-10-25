@@ -44,11 +44,6 @@ namespace Sidekick.Apis.Poe.Clients
 
             var response =  await base.SendAsync(request, cancellationToken);
 
-            var rateDef = response.Headers.GetValues("x-rate-limit-account").FirstOrDefault();
-            var rateState = response.Headers.GetValues("x-rate-limit-account-state").FirstOrDefault();
-
-            logger.LogInformation($"[PoeApiHandler] Rate Defi.: {rateDef}");
-            logger.LogInformation($"[PoeApiHandler] Rate State: {rateState}");
             return response;
 
         }

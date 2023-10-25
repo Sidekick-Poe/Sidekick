@@ -21,7 +21,6 @@
 </MudTable>
 
 @code {
-    private WealthDbContext Database { get; set; }
     [Inject] private DbContextOptions<WealthDbContext> Options { get; set; }
 
     static List<ItemView> StashItems = new List<ItemView>();
@@ -29,7 +28,6 @@
 
     protected override void OnInitialized()
     {
-        Database = new WealthDbContext(Options);
 
         WealthParser.OnStashParsed += OnStashParsed;
 
@@ -45,24 +43,27 @@
 
     public async void RetrieveStashItems()
     {
-        if (Database.Items.Count() > 0)
+        using (var database = new WealthDbContext(Options))
         {
-            StashItems = Database.Items
-                .Where(x => !x.Removed)
-                .GroupBy(x => x.Name)
-                .Select(y => new ItemView
-                    {
-                        Icon = y.FirstOrDefault().Icon,
-                        Name = y.FirstOrDefault().Name,
-                        Count = y.Sum(i => i.Count),
-                        Price = y.FirstOrDefault().Price,
-                        Total = y.Sum(i => i.Total)
-                    }
-                ).ToList();
+            if (database.Items.Count() > 0)
+            {
+                StashItems = database.Items
+                    .Where(x => !x.Removed)
+                    .GroupBy(x => x.Name)
+                    .Select(y => new ItemView
+                        {
+                            Icon = y.FirstOrDefault().Icon,
+                            Name = y.FirstOrDefault().Name,
+                            Count = y.Sum(i => i.Count),
+                            Price = y.FirstOrDefault().Price,
+                            Total = y.Sum(i => i.Total)
+                        }
+                    ).ToList();
 
-            await InvokeAsync(() => { StateHasChanged(); });
+                await InvokeAsync(() => { StateHasChanged(); });
 
-        }
+            }
+        }   
     }
 
     private bool Search(ItemView element) => FilterFunc(element, _searchString);
