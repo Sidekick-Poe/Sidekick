@@ -1,6 +1,9 @@
 name: Sidekick WPF Beta
 
 on:
+  pull_request:
+    branches:
+    - main
   push:
     branches:
     - main
