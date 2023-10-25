@@ -15,8 +15,6 @@ namespace Sidekick.Apis.PoeWiki
 
         public Task<List<string>?> GetOilsMetadataIdsFromEnchantment(ModifierLine modifierLine);
 
-        public Task<List<ItemNameMetadataIdResult>?> GetMetadataIdsFromItemNames(List<string> itemNames);
-
         public void OpenUri(Map map);
 
         public void OpenUri(ItemDrop itemDrop);
