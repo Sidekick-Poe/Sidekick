@@ -10,6 +10,7 @@ using System.Windows.Markup;
 using System.Xml.Linq;
 using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe;
 using Sidekick.Apis.Poe.Authentication;
@@ -19,6 +20,7 @@ using Sidekick.Apis.Poe.Stash.Models;
 using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeNinja.Models;
+using Sidekick.Common.Game.Items;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
 using Sidekick.Modules.Wealth.Models;
@@ -203,7 +205,7 @@ namespace Sidekick.Modules.Wealth
                 dbItem.Icon = item.icon;
                 dbItem.League = item.league;
                 dbItem.Level = item.ilvl;
-                dbItem.Type = GetItemType(item);
+                dbItem.Category = GetItemCategory(item);
                 dbItem.CreatedOn = DateTime.Now;
 
                 Database.Items.Add(dbItem);
@@ -212,7 +214,7 @@ namespace Sidekick.Modules.Wealth
             }
 
             dbItem.Count = GetItemCount(item);
-            dbItem.Price = item.getFriendlyName().ToUpper() == "CHAOS ORB" ? 1 : await GetItemPrice(item);
+            dbItem.Price = item.getFriendlyName().ToUpper() == "CHAOS ORB" ? 1 : await GetItemPrice(item, dbItem.Category);
             dbItem.Total = dbItem.Count * dbItem.Price;
             dbItem.UpdatedOn = DateTime.Now;
 
@@ -258,58 +260,34 @@ namespace Sidekick.Modules.Wealth
             OnSnapshotTaken?.Invoke(new string[] { BatchId.ToString() });
         }
 
-        private ItemType GetItemType(APIStashItem item)
-        {
-
-            switch (item.frameType)
-            {
-                case FrameType.Currency:
-                    return ItemType.Currency;
-
-                case FrameType.Normal:
-                case FrameType.Magic:
-                case FrameType.Rare:
-                    if (item.name.ToUpper().EndsWith("MAP")) {
-                        return ItemType.Map;
-                    }
-                    return ItemType.Other;
-                case FrameType.Unique:
-                    return ItemType.Unique;
-                case FrameType.DivinationCard:
-                    return ItemType.Unique;
-            }
-
-            return ItemType.Other;
-        }
-
-        private async Task<double> GetItemPrice(APIStashItem item)
+        private Category GetItemCategory(APIStashItem item)
         {
             var name = item.getFriendlyName(false);
             var metadata = ItemMetadataProvider.Parse(name, item.typeLine);
-            if(metadata == null)
+            if (metadata == null)
             {
-                Logger.LogError($"Could not retrieve metadeta: {item.getFriendlyName()}");
+                Logger.LogError($"Could not retrieve metadeta: {item.getFriendlyName(false)}");
                 return 0;
             }
-
-            var category = metadata.Category;
+            return metadata.Category;
+        }
+        private async Task<double> GetItemPrice(APIStashItem item, Category category)
+        {
+            var name = item.getFriendlyName(false);
             var price = await PoeNinjaClient.GetPriceInfo(
-                name,
-                item.typeLine,
-                category,
-                null,
-                item.getMapTier(),
-                null,
-                item.getLinkCount());
-
+            name,
+            item.typeLine,
+            category,
+            null,
+            item.getMapTier(),
+            null,
+            item.getLinkCount());
             if(price == null)
             {
                 Logger.LogError($"Could not price: {item.getFriendlyName()}");
             }
-
             return price?.Price ?? 0;
         }
-
         private int GetItemCount(APIStashItem item)
         {
             if(item.stackSize == null)
@@ -318,36 +296,31 @@ namespace Sidekick.Modules.Wealth
             }
             return (int)item.stackSize;
         }
-
         private bool CanParse(APIStashItem item)
         {
-            var name = item.getFriendlyName().ToUpper();
+            var category = GetItemCategory(item);
 
-            switch(item.frameType)
+            if(category != Category.Undefined)
             {
-                case FrameType.Currency:
-
-                    string[] exceptions = {
-                        "SHARD", "RITUAL SPLINTER", "FRAGMENT"};
-
-                    if(exceptions.Any(name.Contains)) {
+                switch (item.frameType)
+                {
+                    case FrameType.Currency:
+                        if (category == Category.Currency) {
+                            return true;
+                        }
                         return false;
-                    }
-                    return true;
-
-                case FrameType.Normal:
-                case FrameType.Magic:
-                case FrameType.Rare:
-                    string[] allowed = {
-                        "DIVINE VESSEL", "OFFERING OF THE GODDESS", "SCARAB", "MAP" };
-
-                    if (allowed.Any(name.Contains)) {
+                    case FrameType.Normal:
+                    case FrameType.Magic:
+                    case FrameType.Rare:
+                        Category[] valid = { Category.Currency, Category.Map };
+                        if (valid.Contains(category)) {
+                            return true;
+                        }
+                        return false;
+                    case FrameType.Unique:
+                    case FrameType.DivinationCard:
                         return true;
-                    }
-                    return false;
-                case FrameType.Unique:
-                case FrameType.DivinationCard:
-                    return true;
+                }
             }
             return false;
         }

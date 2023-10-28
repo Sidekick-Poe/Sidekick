@@ -95,7 +95,7 @@ namespace Sidekick.Apis.Poe.Stash.Models
                     var value = property.values[0];
                     if (value != null)
                     {
-                        return value[0] == null ? 16 : (int)value[0];
+                        return value[0] == null ? 16 : Convert.ToInt32(value[0].ToString());
                     }
 
                 }

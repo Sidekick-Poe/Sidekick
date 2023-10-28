@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Modules.Wealth.Models
 {
@@ -14,7 +10,7 @@ namespace Sidekick.Modules.Wealth.Models
 
         public string Name { get; set; }
 
-        public ItemType Type { get; set; }
+        public Category Category { get; set; }
 
         public string Icon { get; set; }
 
@@ -33,15 +29,5 @@ namespace Sidekick.Modules.Wealth.Models
         public DateTime CreatedOn { get; set; }
 
         public DateTime UpdatedOn { get; set; }
-    }
-
-    public enum ItemType
-    {
-        Currency,
-        Unique,
-        Gem,
-        DivinationCard,
-        Map,
-        Other
     }
 }

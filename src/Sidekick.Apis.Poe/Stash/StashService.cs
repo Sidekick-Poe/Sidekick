@@ -24,7 +24,7 @@ namespace Sidekick.Apis.Poe.Stash
             _client = PoeApiClient;
         }
 
-        public async Task<List<APIStashItem>> GetStashItems(APIStashTab stashTab)
+        public async Task<List<APIStashItem>> GetStashItems(APIStashTab stashTab, bool hasParent = false)
         {
             List<APIStashItem> items = new List<APIStashItem>();
  
@@ -38,8 +38,16 @@ namespace Sidekick.Apis.Poe.Stash
                     {
                         items.AddRange(childStashDetails.items);
                     }
+                }
+            }
 
-                    //await Task.Delay(TimeSpan.FromSeconds(2));
+            if(hasParent && !String.IsNullOrEmpty(stashTab.parent))
+            {
+                var stashDetails = await GetStashTab($"{stashTab.parent}/{stashTab.id}");
+
+                if (stashDetails != null && stashDetails.items != null)
+                {
+                    items.AddRange(stashDetails.items);
                 }
             }
 
@@ -60,23 +68,27 @@ namespace Sidekick.Apis.Poe.Stash
             {
                 foreach (APIStashTab childStashTab in stashTab.children)
                 {
-                    items.Add(new APIStashItem
-                    {
-                        id = childStashTab.id,
-                        typeLine = childStashTab.metadata.map.name,
-                        baseType = childStashTab.metadata.map.name,
-                        name = "",
-                        icon = childStashTab.metadata.map.image,
-                        league = "Ancestor",
-                        ilvl = -1,
-                        stackSize = childStashTab.metadata.items,
-                        properties = new List<APIItemProperty>() {
+                    if(childStashTab.metadata.map.section == "special") {
+                        items.AddRange(await GetStashItems(childStashTab, true));
+                    } else {
+                        items.Add(new APIStashItem
+                        {
+                            id = childStashTab.id,
+                            typeLine = childStashTab.metadata.map.name,
+                            baseType = childStashTab.metadata.map.name,
+                            name = "",
+                            icon = childStashTab.metadata.map.image,
+                            league = "Ancestor",
+                            ilvl = -1,
+                            stackSize = childStashTab.metadata.items,
+                            properties = new List<APIItemProperty>() {
                             new APIItemProperty() {
                                 name = "Map Tier",
                                 values = new List<List<object>>() { new List<object>() { childStashTab.metadata.map.tier } }
                         } },
-                        frameType = FrameType.Normal                  
-                    });
+                            frameType = FrameType.Normal
+                        });
+                    }
                 }
             }
 
