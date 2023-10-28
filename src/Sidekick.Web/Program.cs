@@ -67,7 +67,7 @@ builder.Services
     // Modules
     .AddSidekickAbout()
     .AddSidekickChat()
-    .AddSidekickWealth()
+    //.AddSidekickWealth()
     .AddSidekickCheatsheets()
     .AddSidekickDevelopment()
     .AddSidekickGeneral()

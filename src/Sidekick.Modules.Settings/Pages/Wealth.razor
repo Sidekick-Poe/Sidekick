@@ -35,37 +35,50 @@
                 </MudPaper>
             </MudCardContent>
         </MudCard>
+        <div class="d-flex justify-end" style="margin-bottom: -15px;">
         <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="ToggleWealthTracker">Enable Wealth Tracker</MudButton>
+        </div>
     } else {
-        <MudCard>
-            <MudCardHeader>
+        <MudCard Class="mb-3">
+            <MudCardHeader Class="pb-0">
                 <CardHeaderContent>
                     <MudText Typo="Typo.h3">Stash Tabs</MudText>
                 </CardHeaderContent>
             </MudCardHeader>
-            <MudCardContent>
+            <MudCardContent Class="pt-0">
                 <br />
-                @if (StashList != null)
-                {
-                    foreach (var stashTab in StashList) {
-                        if(stashTab.children != null) {
-                            foreach (var childTab in stashTab.children) {
-                                <MudCheckBox @bind-Checked="@childTab.parse" Color="Color.Primary">@childTab.name</MudCheckBox>
-                            }                                
-                        } else {
-                            <MudCheckBox @bind-Checked="@stashTab.parse" Color="Color.Primary">@stashTab.name</MudCheckBox>
-                        }                 
-                    }
-                }
-                else
-                {
+                @if (StashList != null) {
+                <MudGrid>
+                    <MudItem xs="12" sm="6">
+                            @foreach (var stashTab in StashList.Take(new Range(0, StashList.Count() / 2))) {
+                                <MudCheckBox
+                                    Style="display:block;"
+                                    T="bool"
+                                    Checked="@stashTab.parse"
+                                    CheckedChanged="@(async (isChecked) => CheckChanged(stashTab, isChecked))"
+                                    Color="Color.Primary">@stashTab.name</MudCheckBox>
+                            }
+                    </MudItem>
+                    <MudItem xs="12" sm="6">
+                            @foreach (var stashTab in StashList.Take(new Range(StashList.Count() / 2, StashList.Count()))) {
+                                <MudCheckBox
+                                    Style="display:block;"
+                                    T="bool"
+                                    Checked="@stashTab.parse"
+                                    CheckedChanged="@(async (isChecked) => CheckChanged(stashTab, isChecked))"
+                                    Color="Color.Primary">@stashTab.name</MudCheckBox>
+                            }
+                    </MudItem>
+                </MudGrid>
+                      
+                } else {
                     <MudAlert Severity="Severity.Warning">Stash Tabs loading...</MudAlert>
                 }
             </MudCardContent>
         </MudCard>
-        <MudButton Variant="Variant.Filled" Class="pr-5" Color="Color.Primary" OnClick="SaveSettings">Save Settings</MudButton>
-        <MudButton Variant="Variant.Filled" Class="pr-5" Color="Color.Primary" OnClick="ClearSelected">Clear Selected Stash Tabs</MudButton>
-        <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="ToggleWealthTracker">Disable Wealth Tracker</MudButton>
+        <div class="d-flex justify-end" style="margin-bottom: -15px;">
+            <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="ToggleWealthTracker">Disable Wealth Tracker</MudButton>
+        </div>
     }
 </div>
 
@@ -75,7 +88,6 @@
     [Inject] private IAuthenticationService AuthenticationService { get; set; }
     [Inject] private IStashService StashService { get; set; }
     [Inject] private ISettingsService SettingsService { get; set; }
-    [Inject] private IJSRuntime JsRuntime { get; set; }
 
     private List<APIStashTab> StashList { get; set; }
 
@@ -96,6 +108,22 @@
         }
 
         await base.OnInitializedAsync();
+    }
+
+    private void CheckChanged(APIStashTab stash, bool isChecked)
+    {
+        stash.parse = isChecked;
+
+        if (stash.parse) {
+            if (!ViewModel.WealthTrackerTabs.Contains(stash.id)){
+                ViewModel.WealthTrackerTabs.Add(stash.id);
+            }
+        }
+        else {
+            if (ViewModel.WealthTrackerTabs.Contains(stash.id)) {
+                ViewModel.WealthTrackerTabs.Remove(stash.id);
+            }
+        }
     }
 
     private void ToggleWealthTracker()
@@ -120,66 +148,29 @@
     }
 
 
-    private void SaveSettings()
-    {
-
-        var selectedTabs = new List<string>();
-
-        foreach (var stash in StashList)
-        {
-            if (stash.children != null)
-            {
-                foreach (var child in stash.children)
-                {
-                    if (child.parse)
-                    {
-                        selectedTabs.Add(child.id);
-                    }
-                }
-            } else
-            {
-
-                if (stash.parse)
-                {
-                    selectedTabs.Add(stash.id);
-                }
-            }
-        }
-        ViewModel.WealthTrackerTabs = selectedTabs;
-        SettingsService.Save("WealthTrackerTabs", selectedTabs);
-
-    }
-
-    private void ClearSelected()
-    {
-        ViewModel.WealthTrackerTabs = new List<String>();
-        SettingsService.Save("WealthTrackerTabs", new List<String>());
-        StateHasChanged();
-    }
-
     private async void LoadStashTabs()
     {
         var results = await StashService.GetStashList();
 
-        StashList = results.stashes;
+        StashList = new List<APIStashTab>();
 
-        foreach(var stash in StashList)
+        foreach (var stash in results.stashes)
         {
             if(stash.children != null)
             {
                 foreach (var child in stash.children)
-                {
-                    if (ViewModel.WealthTrackerTabs.Contains(child.id))
-                    {
+                {                
+                    if (ViewModel.WealthTrackerTabs.Contains(child.id)) {
                         child.parse = true;
                     }
 
+                    StashList.Add(child);
                 }
             } else {
-                if (ViewModel.WealthTrackerTabs.Contains(stash.id))
-                {
+                if (ViewModel.WealthTrackerTabs.Contains(stash.id)) {
                     stash.parse = true;
                 }
+                StashList.Add(stash);
             }
 
         }
