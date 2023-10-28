@@ -21,6 +21,7 @@ namespace Sidekick.Common.Settings
             new CheatsheetPage("Wiki: Incursion", "https://www.poewiki.net/wiki/Incursion_room"),
             new CheatsheetPage("Wiki: Vendor Recipes", "https://www.poewiki.net/wiki/Vendor_recipe_system"),
             new CheatsheetPage("Leveling", "https://poe-leveling.com/"),
+            new CheatsheetPage("Poe Labyrinth", "https://www.poelab.com/"),
             new CheatsheetPage("Regex Tool", "https://poe.re/"),
             new CheatsheetPage("Chromatic Calculator", "https://siveran.github.io/calc.html"),
             new CheatsheetPage("Blight Anointments", "https://blight.raelys.com/"),
