@@ -7,22 +7,22 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  tests:
     runs-on: windows-latest
     steps:
     - name: Git - Checkout
       uses: actions/checkout@v2
+
     - name: .NET - Setup
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 7.x
-    - name: NuGet - Setup
-      uses: NuGet/setup-nuget@v1.0.5
-    - name: NuGet - Source
-      uses: fabriciomurta/ensure-nuget-source@v1
+
     - name: Restore
       run: dotnet restore
+
     - name: Build
       run: dotnet build --no-restore
+
     - name: Tests
       run: dotnet test --no-build --verbosity normal

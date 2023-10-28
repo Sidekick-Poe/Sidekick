@@ -5,7 +5,7 @@ on:
     tags: [v*]
 
 jobs:
-  release:
+  wpf-release:
     runs-on: windows-latest
 
     steps:
