@@ -6,45 +6,41 @@
     }
     else if (Map != null)
     {
-        if (Map.Bosses.Any())
-        {
-            <MudPaper Class="mb-4">
-                <MudText Typo="Typo.subtitle2" Class="pt-4 px-4">@Resources.MapBossesTitle</MudText>
-                <MudList Clickable Dense>
+        <div class="ml-n2 mr-n2 mt-n2 mb-2">
+            @if (Map.Bosses.Any())
+            {
+                <div class="d-flex flex-wrap justify-center mb-2">
                     @foreach (var boss in Map.Bosses.OrderBy(x => x.Name))
                     {
-                        <MudListItem OnClick="@(() => PoeWikiClient.OpenUri(boss))">@boss.Name</MudListItem>
+                        <BossFrame Name="@boss.Name" />
                     }
-                </MudList>
-            </MudPaper>
-        }
+                </div>
+            }
 
-        <MudPaper Class="mb-4">
-            <MudText Typo="Typo.subtitle2" Class="pt-4 px-4">@Resources.DropsTitle</MudText>
             @if (Map.Drops.Any())
             {
-                <MudList Clickable Dense>
-                    @foreach (var drop in Map.Drops.OrderBy(x => x.Name))
+                <div class="d-flex flex-wrap justify-center">
+                    @foreach (var drop in Map.Drops)
                     {
-                        <MudListItem OnClick="@(() => PoeWikiClient.OpenUri(drop))">@drop.Name</MudListItem>
+                        <DivinationCard Name="@drop.Name" Description="@drop.Description" />
                     }
-                </MudList>
+                </div>
             }
             else
             {
                 <MudText Class="pa-4">@Resources.NoDropsTitle</MudText>
             }
-        </MudPaper>
+        </div>
 
         <div style="text-align:right;">
             <MudText Typo="Typo.caption" Color="Color.Info">
                 @Resources.PoeWikiTitle
             </MudText>
             <MudButton Class="pa-0 mt-2"
-               Variant="Variant.Text"
-               Size="Size.Small"
-               StartIcon="@Icons.Material.Filled.OpenInBrowser"
-               OnClick="@(() => PoeWikiClient.OpenUri(Map))">@Resources.OpenInPoeWiki</MudButton>
+                       Variant="Variant.Text"
+                       Size="Size.Small"
+                       StartIcon="@Icons.Material.Filled.OpenInBrowser"
+                       OnClick="@(() => PoeWikiClient.OpenUri(Map))">@Resources.OpenInPoeWiki</MudButton>
         </div>
     }
     else

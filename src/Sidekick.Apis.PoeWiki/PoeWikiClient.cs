@@ -114,20 +114,16 @@ namespace Sidekick.Apis.PoeWiki
                     new("action", "cargoquery"),
                     new("format", "json"),
                     new("limit", "1"),
-
                     new("tables", "maps,items,areas"),
-
                     new("join_on", "items._pageID=maps._pageID,maps.area_id=areas.id"),
-
                     new("fields", "items.name,maps.area_id,areas.boss_monster_ids,items.drop_monsters"),
-
                     new("group_by", "items.name"),
-
                     new("where", @$"items.name=""{mapName}"""),
                 });
 
                 using var client = GetHttpClient();
                 var response = await client.GetAsync(query.ToString());
+                var contentString = await response.Content.ReadAsStringAsync();
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<MapResult>>(content, options);
                 return result?.CargoQuery.Select(x => x.Title).FirstOrDefault();
@@ -154,11 +150,8 @@ namespace Sidekick.Apis.PoeWiki
                     new("action", "cargoquery"),
                     new("format", "json"),
                     new("limit", "500"),
-
                     new("tables", "monsters"),
-
                     new("fields", "monsters.name,monsters.metadata_id"),
-
                     new("where", @$"monsters.metadata_id IN ({mapResult.BossMonsterIds.ToQueryString()})"),
                 });
 
@@ -192,7 +185,7 @@ namespace Sidekick.Apis.PoeWiki
             return null;
         }
 
-        private async Task<List<MapItemResult>?> GetItemsResult(MapResult mapResult)
+        private async Task<List<ItemResult>?> GetItemsResult(MapResult mapResult)
         {
             try
             {
@@ -200,25 +193,23 @@ namespace Sidekick.Apis.PoeWiki
                 {
                     new("action", "cargoquery"),
                     new("format", "json"),
-                    new("limit", "500"),
-
+                    new("fields", "items.name,items.description,items.flavour_text,items.drop_level"),
                     new("tables", "items"),
-
-                    new("fields", "items.drop_areas,items.flavour_text,items.drop_text,items.class_id,items.drop_monsters,items.name,items.drop_enabled"),
-
-                    new("where", @$"items.drop_areas HOLDS '{mapResult.AreaId}'"),
+                    new("where", @$"items.drop_areas HOLDS '{mapResult.AreaId}' AND items.is_in_game = true AND items.drop_enabled = true"),
+                    new("order by", "items.drop_level DESC"),
+                    new("limit", "500"),
                 });
 
                 using var client = GetHttpClient();
                 var response = await client.GetAsync(query.ToString());
-                var content = await response.Content.ReadAsStreamAsync();
-                var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<MapItemResult>>(content, options);
+                var content = await response.Content.ReadAsStringAsync();
+                var result = JsonSerializer.Deserialize<CargoQueryResult<ItemResult>>(content, options);
                 if (result == null)
                 {
                     return null;
                 }
 
-                var list = new List<MapItemResult>();
+                var list = new List<ItemResult>();
                 foreach (var queryResult in result.CargoQuery)
                 {
                     if (queryResult.Title == null)

@@ -4,7 +4,7 @@ namespace Sidekick.Apis.PoeWiki.Models
 {
     public record Map
     {
-        internal Map(MapResult map, List<BossResult>? bosses, List<MapItemResult>? items)
+        internal Map(MapResult map, List<BossResult>? bosses, List<ItemResult>? items)
         {
             Id = map.AreaId;
             Name = map.Name;
