@@ -32,8 +32,9 @@ namespace Sidekick.Apis.Poe
 
             services.AddSidekickInitializableService<IParserPatterns, ParserPatterns>();
             services.AddSidekickInitializableService<IItemMetadataProvider, ItemMetadataProvider>();
+            services.AddSidekickInitializableService<IItemMetadataParser, ItemMetadataParser>();
             services.AddSidekickInitializableService<IItemStaticDataProvider, ItemStaticDataProvider>();
-            services.AddSidekickInitializableService<IEnglishModifierProvider, EnglishModifierProvider>();
+            services.AddSidekickInitializableService<IInvariantModifierProvider, InvariantModifierProvider>();
             services.AddSidekickInitializableService<IModifierProvider, ModifierProvider>();
             services.AddSidekickInitializableService<IPseudoModifierProvider, PseudoModifierProvider>();
 

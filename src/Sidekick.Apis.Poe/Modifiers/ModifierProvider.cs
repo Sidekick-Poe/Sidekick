@@ -15,7 +15,7 @@ namespace Sidekick.Apis.Poe.Modifiers
     {
         private readonly ICacheProvider cacheProvider;
         private readonly IPoeTradeClient poeTradeClient;
-        private readonly IEnglishModifierProvider englishModifierProvider;
+        private readonly IInvariantModifierProvider englishModifierProvider;
         private readonly Regex ParseHashPattern = new("\\#");
         private readonly Regex NewLinePattern = new("(?:\\\\)*[\\r\\n]+");
         private readonly Regex HashPattern = new("\\\\#");
@@ -27,7 +27,7 @@ namespace Sidekick.Apis.Poe.Modifiers
         public ModifierProvider(
             ICacheProvider cacheProvider,
             IPoeTradeClient poeTradeClient,
-            IEnglishModifierProvider englishModifierProvider)
+            IInvariantModifierProvider englishModifierProvider)
         {
             this.cacheProvider = cacheProvider;
             this.poeTradeClient = poeTradeClient;
@@ -118,12 +118,12 @@ namespace Sidekick.Apis.Poe.Modifiers
 
             // Prepare special pseudo patterns
             var incursionPatterns = Patterns[ModifierCategory.Pseudo]
-                .Where(x => englishModifierProvider.IncursionRooms.Contains(x.Id))
+                .Where(x => englishModifierProvider.IncursionRoomModifierIds.Contains(x.Id))
                 .ToList();
             ComputeSpecialPseudoPattern(incursionPatterns);
 
             var logbookPatterns = Patterns[ModifierCategory.Pseudo]
-                .Where(x => englishModifierProvider.LogbookFactions.Contains(x.Id))
+                .Where(x => englishModifierProvider.LogbookFactionModifierIds.Contains(x.Id))
                 .ToList();
             ComputeSpecialPseudoPattern(logbookPatterns);
         }

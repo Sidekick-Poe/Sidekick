@@ -4,7 +4,7 @@ using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe
 {
-    public interface IItemMetadataProvider : IInitializableService
+    public interface IItemMetadataParser : IInitializableService
     {
         ItemMetadata? Parse(string? name, string? type);
 

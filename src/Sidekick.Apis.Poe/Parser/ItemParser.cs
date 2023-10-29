@@ -11,14 +11,14 @@ namespace Sidekick.Apis.Poe.Parser
     public class ItemParser : IItemParser
     {
         private readonly ILogger<ItemParser> logger;
-        private readonly IItemMetadataProvider itemMetadataProvider;
+        private readonly IItemMetadataParser itemMetadataProvider;
         private readonly IModifierProvider modifierProvider;
         private readonly IPseudoModifierProvider pseudoModifierProvider;
         private readonly IParserPatterns patterns;
 
         public ItemParser(
             ILogger<ItemParser> logger,
-            IItemMetadataProvider itemMetadataProvider,
+            IItemMetadataParser itemMetadataProvider,
             IModifierProvider modifierProvider,
             IPseudoModifierProvider pseudoModifierProvider,
             IParserPatterns patterns)

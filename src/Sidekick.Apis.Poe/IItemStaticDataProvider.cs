@@ -1,4 +1,3 @@
-using Sidekick.Common.Game.Items;
 using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe
@@ -7,6 +6,6 @@ namespace Sidekick.Apis.Poe
     {
         string? GetImage(string id);
 
-        string? GetId(Item item);
+        string? GetId(string? name, string? type);
     }
 }

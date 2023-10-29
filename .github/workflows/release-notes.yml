@@ -33,6 +33,12 @@ jobs:
         name: BUILD_NUMBER
         value: ${{ steps.gitversion.outputs.fullSemVer }}
 
+    - name: Environment - Github Token
+      uses: myci-actions/export-env-var@1
+      with:
+        name: GITHUB_TOKEN
+        value: ${{ github.token }}
+
     # Manual release
     - name: Manual Release - Notes
       if: github.ref != 'refs/heads/main'
