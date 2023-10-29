@@ -10,7 +10,7 @@ namespace Sidekick.Apis.PoeWiki
 
         Dictionary<string, string> BlightOilNamesByMetadataIds { get; }
 
-        public Task<Map?> GetMap(Item item);
+        public Task<Map?> GetMap(string mapType);
 
         public Task<List<string>?> GetOilsMetadataIdsFromEnchantment(ModifierLine modifierLine);
 
