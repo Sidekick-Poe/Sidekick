@@ -12,6 +12,7 @@ namespace Sidekick.Modules.Chat.Keybinds
     public class ChatKeybindHandler : IKeybindHandler
     {
         private const string Token_LastWhisper_CharacterName = "{LastWhisper.CharacterName}";
+        private const string Token_Last = "@last";
 
         private readonly ISettings settings;
         private readonly IClipboardProvider clipboard;
@@ -65,6 +66,18 @@ namespace Sidekick.Modules.Chat.Keybinds
                 }
 
                 command = command.Replace(Token_LastWhisper_CharacterName, characterName);
+            }
+
+            if (command.Contains(Token_Last))
+            {
+                var characterName = gameLogProvider.GetLatestWhisper();
+                if (string.IsNullOrEmpty(characterName))
+                {
+                    logger.LogWarning(@"No last whisper was found in the log file.");
+                    return;
+                }
+
+                command = command.Replace(Token_LastWhisper_CharacterName, "@" + characterName);
             }
 
             await clipboard.SetText(command);

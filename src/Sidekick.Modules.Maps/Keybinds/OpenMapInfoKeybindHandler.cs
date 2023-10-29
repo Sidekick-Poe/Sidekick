@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Sidekick.Apis.Poe;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Extensions;
@@ -14,6 +15,7 @@ namespace Sidekick.Modules.Maps.Keybinds
         private readonly IClipboardProvider clipboardProvider;
         private readonly IProcessProvider processProvider;
         private readonly ISettings settings;
+        private readonly IItemParser itemParser;
         private readonly IKeyboardProvider keyboard;
 
         public OpenMapInfoKeybindHandler(
@@ -21,12 +23,14 @@ namespace Sidekick.Modules.Maps.Keybinds
             IClipboardProvider clipboardProvider,
             IProcessProvider processProvider,
             ISettings settings,
+            IItemParser itemParser,
             IKeyboardProvider keyboard)
         {
             this.viewLocator = viewLocator;
             this.clipboardProvider = clipboardProvider;
             this.processProvider = processProvider;
             this.settings = settings;
+            this.itemParser = itemParser;
             this.keyboard = keyboard;
         }
 
@@ -43,8 +47,11 @@ namespace Sidekick.Modules.Maps.Keybinds
                 return;
             }
 
+            var advancedItemText = await clipboardProvider.CopyAdvanced();
+            var originalItem = itemParser.ParseOriginalItem(advancedItemText);
+
             await viewLocator.CloseAllOverlays();
-            await viewLocator.Open($"/map/{text.EncodeBase64Url()}");
+            await viewLocator.Open($"/map/{originalItem?.ToString().EncodeBase64Url()}/{text.EncodeBase64Url()}");
         }
     }
 }

@@ -11,7 +11,7 @@ using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
-using Sidekick.Modules.Settings.Components;
+using Sidekick.Modules.Settings.General;
 using Sidekick.Modules.Settings.Localization;
 
 namespace Sidekick.Modules.Settings.Setup

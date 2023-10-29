@@ -44,6 +44,9 @@
     [Inject]
     private IPoeWikiClient PoeWikiClient { get; set; }
 
+    [Inject]
+    private IGameLanguageProvider GameLanguageProvider { get; set; }
+
     [CascadingParameter]
     public ModifierFilter Filter { get; set; }
 
@@ -51,7 +54,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (Filter.Line.Modifiers.FirstOrDefault().Category == ModifierCategory.Enchant && PoeWikiClient.IsEnabled)
+        if (Filter.Line.Modifiers.FirstOrDefault().Category == ModifierCategory.Enchant && PoeWikiClient.IsEnabled && GameLanguageProvider.IsEnglish())
         {
             var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Line);
             if (oilMetadataIds != null)
