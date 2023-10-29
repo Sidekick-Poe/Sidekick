@@ -278,7 +278,7 @@ namespace Sidekick.Modules.Wealth
             name,
             item.typeLine,
             category,
-            null,
+            item.getGemLevel(),
             item.getMapTier(),
             null,
             item.getLinkCount());
@@ -319,6 +319,7 @@ namespace Sidekick.Modules.Wealth
                         return false;
                     case FrameType.Unique:
                     case FrameType.DivinationCard:
+                    case FrameType.Gem:
                         return true;
                 }
             }
