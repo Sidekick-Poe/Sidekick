@@ -1,0 +1,39 @@
+
+<MudGrid Spacing="0">
+    <MudItem xs="4">
+        <KeybindEditor @bind-Value="ChatSetting.Key"
+                       Label="@Resources.Chat_Keybind" />
+    </MudItem>
+    <MudItem xs="8" Class="pl-2">
+        <MudTextField @bind-Value="ChatSetting.Command"
+                      Label="@Resources.Chat_Command"
+                      Variant="Variant.Filled" />
+    </MudItem>
+</MudGrid>
+
+<div class="d-flex justify-space-between mt-1">
+    <MudButton OnClick="ToggleSubmit"
+               StartIcon="@(ChatSetting.Submit ? Icons.Material.Filled.CheckBox : Icons.Material.Filled.CheckBoxOutlineBlank)"
+               Color="Color.Info"
+               Size="Size.Small"
+               IconSize="Size.Small"
+               Variant="Variant.Text">@Resources.Chat_Submit</MudButton>
+    <MudButton OnClick="OnRemove"
+               StartIcon="@Icons.Material.Filled.Delete"
+               Color="Color.Error"
+               Size="Size.Small"
+               IconSize="Size.Small"
+               Variant="Variant.Text">@Resources.Chat_Commands_Remove</MudButton>
+</div>
+
+@code {
+    [Inject] private SettingsResources Resources { get; set; }
+
+    [Parameter] public ChatSetting ChatSetting { get; set; }
+    [Parameter] public EventCallback<MouseEventArgs> OnRemove { get; set; }
+
+    private void ToggleSubmit()
+    {
+        ChatSetting.Submit = !ChatSetting.Submit;
+    }
+}

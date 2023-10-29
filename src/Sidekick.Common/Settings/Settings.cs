@@ -7,7 +7,7 @@ namespace Sidekick.Common.Settings
         {
             new ChatSetting("F5", "/hideout", true),
             new ChatSetting("F4", "/leave", true),
-            new ChatSetting("Ctrl+Enter", "@{LastWhisper.CharacterName} ", false),
+            new ChatSetting("Ctrl+Enter", "@last ", false),
             new ChatSetting("F9", "/exit", true),
         };
 

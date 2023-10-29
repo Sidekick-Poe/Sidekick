@@ -26,8 +26,11 @@ namespace Sidekick.Modules.Settings.Localization
         public string Chat_Wildcard => resources["Chat_Wildcard"];
         public string Chat_Wildcard_LastWhisper_CharacterName => resources["Chat_Wildcard_LastWhisper_CharacterName"];
         public string Chat_Commands => resources["Chat_Commands"];
+        public string Chat_Common_Commands => resources["Chat_Common_Commands"];
         public string Chat_Commands_Hideout => resources["Chat_Commands_Hideout"];
         public string Chat_Commands_Exit => resources["Chat_Commands_Exit"];
+        public string Chat_Commands_Leave => resources["Chat_Commands_Leave"];
+        public string Chat_Commands_Remove => resources["Chat_Commands_Remove"];
         public string Restore_Defaults => resources["Restore_Defaults"];
         public string Cheatsheets => resources["Cheatsheets"];
         public string Cheatsheets_Name => resources["Cheatsheets_Name"];

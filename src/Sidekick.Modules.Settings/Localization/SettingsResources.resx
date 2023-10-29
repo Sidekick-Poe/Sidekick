@@ -129,10 +129,10 @@
   <data name="Chat_Add" xml:space="preserve">
     <value>Add a new command</value>
   </data>
-  <data name="Chat_Command" xml:space="preserve">
-    <value>Chat Command</value>
+  <data name="Chat_Commandss" xml:space="preserve">
+    <value>Chat Commands</value>
   </data>
-  <data name="Chat_Commands" xml:space="preserve">
+  <data name="Chat_Common_Commands" xml:space="preserve">
     <value>Common Commands</value>
   </data>
   <data name="Chat_Commands_Exit" xml:space="preserve">
@@ -166,7 +166,7 @@
     <value>Wildcards</value>
   </data>
   <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
-    <value>{LastWhisper.CharacterName} - Character name of the last whisper message you received.</value>
+    <value>@last - Character name of the last whisper message you received.</value>
   </data>
   <data name="Cheatsheets" xml:space="preserve">
     <value>Cheatsheets</value>
@@ -290,5 +290,11 @@
   </data>
   <data name="Restore_Defaults" xml:space="preserve">
     <value>Restore Defaults</value>
+  </data>
+  <data name="Chat_Commands_Leave" xml:space="preserve">
+    <value>/leave - Leave the current party.</value>
+  </data>
+  <data name="Chat_Commands_Remove" xml:space="preserve">
+    <value>Remove this command</value>
   </data>
 </root>

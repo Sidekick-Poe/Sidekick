@@ -1,33 +1,28 @@
 
-<div class="d-flex align-center">
-    <div class="flex-grow-1 pr-4">
-        <MudField @onclick="Click"
-                  Label="@Label"
-                  Variant="Variant.Filled"
-                  Class="@Class">
-            @if (Active)
-            {
-                <MudText>@Resources.Key_Active</MudText>
-            }
-            else if (string.IsNullOrEmpty(Value))
-            {
-                <MudText>@Resources.Key_Unset</MudText>
-            }
-            else
-            {
-                <MudText>@Value</MudText>
-            }
-            @if (Duplicated)
-            {
-                <MudText Typo="Typo.caption" Color="Color.Error">@Resources.Key_Duplicated</MudText>
-            }
-        </MudField>
-    </div>
-    <div class="flex-grow-0">
-        <MudIconButton @onclick="Delete"
-                       Icon="@Icons.Material.Filled.Cancel" />
-    </div>
-</div>
+<MudField @onclick="Click"
+          Label="@Label"
+          Variant="Variant.Filled"
+          Class="@Class"
+          Adornment="Adornment.End"
+          AdornmentIcon="@Icons.Material.Filled.Cancel"
+          OnAdornmentClick="Delete">
+    @if (Active)
+    {
+        <MudText>@Resources.Key_Active</MudText>
+    }
+    else if (string.IsNullOrEmpty(Value))
+    {
+        <MudText>@Resources.Key_Unset</MudText>
+    }
+    else
+    {
+        <MudText>@Value</MudText>
+    }
+    @if (Duplicated)
+    {
+        <MudText Typo="Typo.caption" Color="Color.Error">@Resources.Key_Duplicated</MudText>
+    }
+</MudField>
 
 @implements IDisposable
 @code {
