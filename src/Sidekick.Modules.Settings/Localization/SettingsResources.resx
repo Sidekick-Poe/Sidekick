@@ -231,16 +231,16 @@
   <data name="Map_Key_Check" xml:space="preserve">
     <value>Check Map Mods</value>
   </data>
-  <data name="Trade" xml:space="preserve">
-    <value>Trade Information</value>
+  <data name="PriceCheck" xml:space="preserve">
+    <value>Price Check</value>
   </data>
-  <data name="Trade_CloseWithMouse" xml:space="preserve">
+  <data name="PriceCheck_CloseWithMouse" xml:space="preserve">
     <value>Close Overlay with Mouse Click</value>
   </data>
-  <data name="Trade_Key_Check" xml:space="preserve">
+  <data name="PriceCheck_Key_Check" xml:space="preserve">
     <value>Check Prices</value>
   </data>
-  <data name="Trade_Prediction_Enable" xml:space="preserve">
+  <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
     <value>Show price prediction from poeprices.info</value>
   </data>
   <data name="ResetCache" xml:space="preserve">
@@ -248,15 +248,6 @@
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
-  </data>
-  <data name="Stash" xml:space="preserve">
-    <value>Stash Commands</value>
-  </data>
-  <data name="Stash_Key_Left" xml:space="preserve">
-    <value>Tab Scroll Left</value>
-  </data>
-  <data name="Stash_Key_Right" xml:space="preserve">
-    <value>Tab Scroll Right</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Settings</value>

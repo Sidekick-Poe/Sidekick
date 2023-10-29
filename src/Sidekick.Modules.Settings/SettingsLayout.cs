@@ -43,7 +43,7 @@ namespace Sidekick.Modules.Settings
                 },
                 new()
                 {
-                    Name= Resources.Trade,
+                    Name= Resources.PriceCheck,
                     Url="/settings/price",
                 },
                 new()

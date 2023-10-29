@@ -59,13 +59,12 @@ namespace Sidekick.Modules.Settings.Localization
         public string Map_Dangerous => resources["Map_Dangerous"];
         public string Map_Dangerous_Regex => resources["Map_Dangerous_Regex"];
         public string Map_Key_Check => resources["Map_Key_Check"];
-        public string Trade => resources["Trade"];
-        public string Trade_CloseWithMouse => resources["Trade_CloseWithMouse"];
-        public string Trade_Key_Check => resources["Trade_Key_Check"];
-        public string Trade_Prediction_Enable => resources["Trade_Prediction_Enable"];
+        public string PriceCheck => resources["PriceCheck"];
+        public string PriceCheck_CloseWithMouse => resources["PriceCheck_CloseWithMouse"];
+        public string PriceCheck_Key_Check => resources["PriceCheck_Key_Check"];
+        public string PriceCheck_Prediction_Enable => resources["PriceCheck_Prediction_Enable"];
         public string ResetCache => resources["ResetCache"];
         public string Save => resources["Save"];
-        public string Stash => resources["Stash"];
         public string Title => resources["Title"];
         public string Wiki => resources["Wiki"];
         public string Wiki_Key_Open => resources["Wiki_Key_Open"];
