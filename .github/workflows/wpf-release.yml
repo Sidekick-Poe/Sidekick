@@ -1,11 +1,11 @@
-name: Sidekick WPF Release
+name: WPF Release
 
 on:
   push:
     tags: [v*]
 
 jobs:
-  release:
+  wpf-release:
     runs-on: windows-latest
 
     steps:
