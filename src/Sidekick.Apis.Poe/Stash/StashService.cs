@@ -1,16 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Stash.Models;
-using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Stash
 {
