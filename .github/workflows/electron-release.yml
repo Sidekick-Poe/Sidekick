@@ -91,7 +91,7 @@ jobs:
       uses: xresloader/upload-to-github-release@v1.3.4
       with:
         file: src/Sidekick.Electron/bin/Desktop/Sidekick-Setup.exe
-        tag_name: 'v${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.buildMetaData }}'
+        tag_name: 'v${{ steps.gitversion.outputs.majorMinorPatch }}'
         draft: true
         verbose: true
         overwrite: true
