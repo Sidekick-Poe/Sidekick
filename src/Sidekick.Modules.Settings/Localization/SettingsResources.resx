@@ -123,13 +123,10 @@
   <data name="Character_League" xml:space="preserve">
     <value>League</value>
   </data>
-  <data name="Chat" xml:space="preserve">
-    <value>Chat Commands</value>
-  </data>
   <data name="Chat_Add" xml:space="preserve">
     <value>Add a new command</value>
   </data>
-  <data name="Chat_Commandss" xml:space="preserve">
+  <data name="Chat_Commands" xml:space="preserve">
     <value>Chat Commands</value>
   </data>
   <data name="Chat_Common_Commands" xml:space="preserve">
@@ -296,5 +293,11 @@
   </data>
   <data name="Chat_Commands_Remove" xml:space="preserve">
     <value>Remove this command</value>
+  </data>
+  <data name="Cheatsheets_Pages" xml:space="preserve">
+    <value>Pages</value>
+  </data>
+  <data name="Cheatsheets_Remove" xml:space="preserve">
+    <value>Remove this page</value>
   </data>
 </root>

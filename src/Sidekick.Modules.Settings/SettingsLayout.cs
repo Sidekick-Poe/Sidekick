@@ -63,7 +63,7 @@ namespace Sidekick.Modules.Settings
                 },
                 new()
                 {
-                    Name= Resources.Chat,
+                    Name= Resources.Chat_Commands,
                     Url="/settings/chat",
                 },
             };

@@ -1,0 +1,82 @@
+@page "/settings/cheatsheets"
+@layout SettingsLayout
+@inherits SidekickView
+
+<div class="pa-3">
+    <MudText Typo="Typo.h1" Class="mb-3">@Resources.Cheatsheets</MudText>
+
+    <MudPaper Class="pa-3">
+        <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Keybinds</MudText>
+        <KeybindEditor @bind-Value="ViewModel.Cheatsheets_Key_Open"
+                       Label="@Resources.Cheatsheets_Key_Open" />
+    </MudPaper>
+
+    <MudPaper Class="mt-3">
+        <MudText Typo="Typo.h3" Class="px-3 pt-3">@Resources.Cheatsheets_Pages</MudText>
+
+        @foreach (var page in ViewModel.Cheatsheets_Pages)
+        {
+            <div class="pa-3">
+                <MudGrid Spacing="0">
+                    <MudItem xs="5">
+                        <MudTextField @bind-Value="page.Name"
+                                      Label="@Resources.Cheatsheets_Name"
+                                      Variant="Variant.Filled" />
+                    </MudItem>
+                    <MudItem xs="7" Class="pl-2">
+                        <MudTextField @bind-Value="page.Url"
+                                      Label="@Resources.Cheatsheets_Url"
+                                      Variant="Variant.Filled" />
+                    </MudItem>
+                </MudGrid>
+
+                <div class="d-flex justify-end mt-1">
+                    <MudButton OnClick="() => Remove(page.Name)"
+                               StartIcon="@Icons.Material.Filled.Delete"
+                               Color="Color.Error"
+                               Size="Size.Small"
+                               IconSize="Size.Small"
+                               Variant="Variant.Text">@Resources.Cheatsheets_Remove</MudButton>
+                </div>
+            </div>
+
+            <MudDivider />
+        }
+
+        <div class="d-flex justify-space-between pa-3">
+            <MudButton Variant="Variant.Text"
+                       Color="Color.Default"
+                       OnClick="RestoreDefaults">
+                @Resources.Restore_Defaults
+            </MudButton>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Secondary"
+                       OnClick="Add">
+                @Resources.Cheatsheets_Add
+            </MudButton>
+        </div>
+    </MudPaper>
+</div>
+
+@code {
+    [Inject] private SettingsResources Resources { get; set; }
+    [Inject] private SettingsModel ViewModel { get; set; }
+
+    public override string Title => Resources.Title;
+    public override bool ShowSettingsButton => false;
+
+    private void Remove(string name)
+    {
+        ViewModel.Cheatsheets_Pages.RemoveAll(x => x.Name == name);
+    }
+
+    private void Add()
+    {
+        ViewModel.Cheatsheets_Pages.Add(new("", ""));
+    }
+
+    private void RestoreDefaults()
+    {
+        ViewModel.Cheatsheets_Pages = Settings.GetDefaultCheatsheets();
+    }
+}

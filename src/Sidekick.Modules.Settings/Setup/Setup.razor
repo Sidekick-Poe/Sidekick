@@ -15,14 +15,14 @@
         </MudCardHeader>
         <MudCardContent>
             <MudProgressLinear Color="Color.Primary"
-                           Indeterminate="true" />
+                               Indeterminate="true" />
         </MudCardContent>
     </MudCard>
 
     <div class="d-flex justify-end">
         <MudButton OnClick="Exit"
-               Variant="Variant.Text"
-               Color="Color.Default">
+                   Variant="Variant.Text"
+                   Color="Color.Default">
             @Resources.Exit
         </MudButton>
     </div>
@@ -38,17 +38,17 @@ else
 
     <MudForm @ref="Form" @bind-IsValid="@Success">
         @*
-        <MudCard Class="mt-1">
-            <MudCardHeader>
-                <CardHeaderContent>
-                    <MudText Typo="Typo.h5">@SettingsResources.Language_Title</MudText>
-                </CardHeaderContent>
-            </MudCardHeader>
-            <MudCardContent>
-                <UILanguageSelect @bind-Value="ViewModel.Language_UI" />
-            </MudCardContent>
-        </MudCard>
-        *@
+    <MudCard Class="mt-1">
+    <MudCardHeader>
+    <CardHeaderContent>
+    <MudText Typo="Typo.h5">@SettingsResources.Language_Title</MudText>
+    </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+    <UILanguageSelect @bind-Value="ViewModel.Language_UI" />
+    </MudCardContent>
+    </MudCard>
+    *@
         <MudCard Class="mt-1">
             <MudCardHeader>
                 <CardHeaderContent>
@@ -63,13 +63,13 @@ else
 
         <div class="d-flex justify-end">
             <MudButton OnClick="Exit"
-                   Variant="Variant.Text"
-                   Color="Color.Default">
+                       Variant="Variant.Text"
+                       Color="Color.Default">
                 @Resources.Exit
             </MudButton>
             <MudButton Variant="Variant.Filled"
-                   Color="Color.Primary"
-                   OnClick="() => Save()">
+                       Color="Color.Primary"
+                       OnClick="() => Save()">
                 @SettingsResources.Save
             </MudButton>
         </div>

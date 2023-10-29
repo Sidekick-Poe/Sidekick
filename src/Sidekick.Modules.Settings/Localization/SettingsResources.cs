@@ -13,7 +13,6 @@ namespace Sidekick.Modules.Settings.Localization
 
         public string Cancel => resources["Cancel"];
         public string Character_League => resources["Character_League"];
-        public string Chat => resources["Chat"];
         public string Chat_Add => resources["Chat_Add"];
         public string Chat_Exit => resources["Chat_Exit"];
         public string Chat_Hideout => resources["Chat_Hideout"];
@@ -33,9 +32,11 @@ namespace Sidekick.Modules.Settings.Localization
         public string Chat_Commands_Remove => resources["Chat_Commands_Remove"];
         public string Restore_Defaults => resources["Restore_Defaults"];
         public string Cheatsheets => resources["Cheatsheets"];
+        public string Cheatsheets_Pages => resources["Cheatsheets_Pages"];
         public string Cheatsheets_Name => resources["Cheatsheets_Name"];
         public string Cheatsheets_Url => resources["Cheatsheets_Url"];
         public string Cheatsheets_Add => resources["Cheatsheets_Add"];
+        public string Cheatsheets_Remove => resources["Cheatsheets_Remove"];
         public string Cheatsheets_Key_Open => resources["Cheatsheets_Key_Open"];
         public string Game_Title => resources["Game_Title"];
         public string General => resources["General"];

@@ -1,0 +1,50 @@
+@page "/settings"
+@layout SettingsLayout
+@inherits SidekickView
+
+<div class="pa-3">
+    <MudText Typo="Typo.h1" Class="mb-3">@Resources.General</MudText>
+
+    @*
+    <MudCard>
+    <MudCardHeader>
+    <CardHeaderContent>
+    <MudText Typo="Typo.h3">@Resources.Language_Title</MudText>
+    </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+    <UILanguageSelect @bind-Value="ViewModel.Language_UI"></UILanguageSelect>
+    </MudCardContent>
+    </MudCard>
+    *@
+
+    <MudPaper Class="pa-3 mb-3">
+        <MudText Typo="Typo.h3" Class="mb-3">@Resources.Game_Title</MudText>
+
+        <GameLanguageSelect @bind-Value="ViewModel.Language_Parser" />
+        <LeagueSelect @bind-Value="ViewModel.LeagueId" />
+    </MudPaper>
+
+    <MudPaper Class="pa-3">
+        <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Other</MudText>
+
+        <div>
+            <MudCheckBox @bind-Checked="@ViewModel.PoeWikiData_Enable"
+                         Label="@Resources.PoeWikiData_Enable" />
+        </div>
+        <div>
+            <MudCheckBox @bind-Checked="@ViewModel.RetainClipboard"
+                         Label="@Resources.General_RetainClipboard" />
+        </div>
+        <KeybindEditor @bind-Value="ViewModel.Key_FindItems"
+                       Label="@Resources.Key_FindItems" />
+    </MudPaper>
+</div>
+
+@code {
+    [Inject] private SettingsResources Resources { get; set; }
+    [Inject] private SettingsModel ViewModel { get; set; }
+
+    public override string Title => Resources.Title;
+    public override bool ShowSettingsButton => false;
+}

@@ -3,43 +3,40 @@
 @inherits SidekickView
 
 <div class="pa-3">
-    <MudText Typo="Typo.h1" Class="mb-2">@Resources.Chat_Commands</MudText>
+    <MudText Typo="Typo.h1" Class="mb-3">@Resources.Chat_Commands</MudText>
 
     <MudText Typo="Typo.h5">@Resources.Chat_Common_Commands</MudText>
     <MudText>@Resources.Chat_Commands_Hideout</MudText>
     <MudText>@Resources.Chat_Commands_Leave</MudText>
     <MudText>@Resources.Chat_Commands_Exit</MudText>
 
-    <MudText Typo="Typo.h5" Class="mt-2">@Resources.Chat_Wildcard</MudText>
+    <MudText Typo="Typo.h5" Class="mt-3">@Resources.Chat_Wildcard</MudText>
     <MudText>@Resources.Chat_Wildcard_LastWhisper_CharacterName</MudText>
 
-    <MudPaper Class="mt-2">
+    <MudPaper Class="mt-3">
         @foreach (var chatSetting in ViewModel.Chat_Commands)
         {
-            if (ViewModel.Chat_Commands.IndexOf(chatSetting) > 0)
-            {
-                <MudDivider />
-            }
-
             <div class="pa-3">
                 <ChatCommandEditor ChatSetting="chatSetting"
                                    OnRemove="() => Remove(chatSetting)" />
             </div>
-        }
-    </MudPaper>
 
-    <div class="d-flex justify-space-between mt-2">
-        <MudButton Variant="Variant.Text"
-                   Color="Color.Default"
-                   OnClick="RestoreDefaults">
-            @Resources.Restore_Defaults
-        </MudButton>
-        <MudButton Variant="Variant.Filled"
-                   Color="Color.Secondary"
-                   OnClick="Add">
-            @Resources.Chat_Add
-        </MudButton>
-    </div>
+            <MudDivider />
+        }
+
+        <div class="d-flex justify-space-between pa-3">
+            <MudButton Variant="Variant.Text"
+                       Color="Color.Default"
+                       OnClick="RestoreDefaults">
+                @Resources.Restore_Defaults
+            </MudButton>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Secondary"
+                       OnClick="Add">
+                @Resources.Chat_Add
+            </MudButton>
+        </div>
+    </MudPaper>
 </div>
 
 @code {
