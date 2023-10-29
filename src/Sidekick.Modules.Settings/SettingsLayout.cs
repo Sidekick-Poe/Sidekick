@@ -46,7 +46,7 @@ namespace Sidekick.Modules.Settings
                 },
                 new()
                 {
-                    Name= Resources.Trade,
+                    Name= Resources.PriceCheck,
                     Url="/settings/price",
                 },
                 new()
@@ -66,7 +66,7 @@ namespace Sidekick.Modules.Settings
                 },
                 new()
                 {
-                    Name= Resources.Chat,
+                    Name= Resources.Chat_Commands,
                     Url="/settings/chat",
                 },
                 new()

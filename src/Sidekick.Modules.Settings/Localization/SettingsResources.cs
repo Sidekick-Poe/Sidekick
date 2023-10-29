@@ -13,7 +13,6 @@ namespace Sidekick.Modules.Settings.Localization
 
         public string Cancel => resources["Cancel"];
         public string Character_League => resources["Character_League"];
-        public string Chat => resources["Chat"];
         public string Chat_Add => resources["Chat_Add"];
         public string Chat_Exit => resources["Chat_Exit"];
         public string Chat_Hideout => resources["Chat_Hideout"];
@@ -26,13 +25,18 @@ namespace Sidekick.Modules.Settings.Localization
         public string Chat_Wildcard => resources["Chat_Wildcard"];
         public string Chat_Wildcard_LastWhisper_CharacterName => resources["Chat_Wildcard_LastWhisper_CharacterName"];
         public string Chat_Commands => resources["Chat_Commands"];
+        public string Chat_Common_Commands => resources["Chat_Common_Commands"];
         public string Chat_Commands_Hideout => resources["Chat_Commands_Hideout"];
         public string Chat_Commands_Exit => resources["Chat_Commands_Exit"];
+        public string Chat_Commands_Leave => resources["Chat_Commands_Leave"];
+        public string Chat_Commands_Remove => resources["Chat_Commands_Remove"];
         public string Restore_Defaults => resources["Restore_Defaults"];
         public string Cheatsheets => resources["Cheatsheets"];
+        public string Cheatsheets_Pages => resources["Cheatsheets_Pages"];
         public string Cheatsheets_Name => resources["Cheatsheets_Name"];
         public string Cheatsheets_Url => resources["Cheatsheets_Url"];
         public string Cheatsheets_Add => resources["Cheatsheets_Add"];
+        public string Cheatsheets_Remove => resources["Cheatsheets_Remove"];
         public string Cheatsheets_Key_Open => resources["Cheatsheets_Key_Open"];
         public string Game_Title => resources["Game_Title"];
         public string General => resources["General"];
@@ -55,13 +59,12 @@ namespace Sidekick.Modules.Settings.Localization
         public string Map_Dangerous => resources["Map_Dangerous"];
         public string Map_Dangerous_Regex => resources["Map_Dangerous_Regex"];
         public string Map_Key_Check => resources["Map_Key_Check"];
-        public string Trade => resources["Trade"];
-        public string Trade_CloseWithMouse => resources["Trade_CloseWithMouse"];
-        public string Trade_Key_Check => resources["Trade_Key_Check"];
-        public string Trade_Prediction_Enable => resources["Trade_Prediction_Enable"];
+        public string PriceCheck => resources["PriceCheck"];
+        public string PriceCheck_CloseWithMouse => resources["PriceCheck_CloseWithMouse"];
+        public string PriceCheck_Key_Check => resources["PriceCheck_Key_Check"];
+        public string PriceCheck_Prediction_Enable => resources["PriceCheck_Prediction_Enable"];
         public string ResetCache => resources["ResetCache"];
         public string Save => resources["Save"];
-        public string Stash => resources["Stash"];
         public string Title => resources["Title"];
         public string Wiki => resources["Wiki"];
         public string Wiki_Key_Open => resources["Wiki_Key_Open"];

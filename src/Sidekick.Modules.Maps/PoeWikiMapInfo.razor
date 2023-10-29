@@ -55,17 +55,15 @@
     [Inject] private MapInfoResources Resources { get; set; }
     [Inject] private IPoeWikiClient PoeWikiClient { get; set; }
 
-    [Parameter] public Item Item { get; set; }
+    [Parameter] public string ItemName { get; set; }
 
     private bool Loading { get; set; } = true;
     private Map Map { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        if (Loading)
-        {
-            Map = await PoeWikiClient.GetMap(Item);
-            Loading = false;
-        }
+        var englishItem = OriginalItem.Parse(ItemName);
+        Map = await PoeWikiClient.GetMap(englishItem.Type ?? englishItem.Name);
+        Loading = false;
     }
 }

@@ -77,7 +77,7 @@ namespace Sidekick.Apis.PoeWiki
             return client;
         }
 
-        public bool IsEnabled => gameLanguageProvider.IsEnglish() && settings.PoeWikiData_Enable;
+        public bool IsEnabled => settings.PoeWikiData_Enable;
 
         public Dictionary<string, string> BlightOilNamesByMetadataIds { get; private set; } = new();
 
@@ -104,11 +104,10 @@ namespace Sidekick.Apis.PoeWiki
             }
         }
 
-        private async Task<MapResult?> GetMapResult(Item item)
+        private async Task<MapResult?> GetMapResult(string mapType)
         {
             try
             {
-                var mapName = item.Metadata.Name ?? item.Metadata.Type;
                 var query = new QueryBuilder(new List<KeyValuePair<string, string>>
                 {
                     new("action", "cargoquery"),
@@ -118,7 +117,7 @@ namespace Sidekick.Apis.PoeWiki
                     new("join_on", "items._pageID=maps._pageID,maps.area_id=areas.id"),
                     new("fields", "items.name,maps.area_id,areas.boss_monster_ids,items.drop_monsters"),
                     new("group_by", "items.name"),
-                    new("where", @$"items.name=""{mapName}"""),
+                    new("where", @$"items.name=""{mapType}"""),
                 });
 
                 using var client = GetHttpClient();
@@ -324,16 +323,9 @@ namespace Sidekick.Apis.PoeWiki
             return null;
         }
 
-        public async Task<Map?> GetMap(Item item)
+        public async Task<Map?> GetMap(string mapType)
         {
-            // Only maps.
-            if (item.Metadata.Category != Category.Map)
-            {
-                return null;
-            }
-
-            var mapResult = await GetMapResult(item);
-
+            var mapResult = await GetMapResult(mapType);
             if (mapResult == null)
             {
                 return null;
