@@ -67,7 +67,7 @@ else if (Price != null)
         if (Item != null)
         {
             IsInit = true;
-            var englishItem = OriginalItem.Parse(ItemName);
+            var englishItem = Header.Parse(ItemName);
             Price = await Client.GetPriceInfo(
                 englishItem.Name,
                 englishItem.Type,

@@ -1,3 +1,4 @@
+using Sidekick.Apis.Poe.Parser.Tokenizers;
 using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Parser
@@ -15,7 +16,7 @@ namespace Sidekick.Apis.Poe.Parser
         /// <param name="text">The original text of the item</param>
         public ParsingItem(string text)
         {
-            Text = text;
+            Text = new ItemNameTokenizer().CleanString(text);
 
             Blocks = text
                 .Split(SEPARATOR_PATTERN, StringSplitOptions.RemoveEmptyEntries)

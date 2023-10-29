@@ -85,7 +85,7 @@ namespace Sidekick.Apis.Poe.Trade
 
                 if (item.Properties.AlternateQuality)
                 {
-                    request.Query.Term = item.Original.Name;
+                    request.Query.Term = item.Header.Name;
                 }
 
                 var uri = new Uri($"{gameLanguageProvider.Language.PoeTradeApiBaseUrl}search/{settings.LeagueId}");
@@ -517,10 +517,9 @@ namespace Sidekick.Apis.Poe.Trade
                 Type = result.Item?.TypeLine,
             };
 
-            var original = new OriginalItem()
+            var original = new Header()
             {
                 Name = result.Item?.Name,
-                Text = Encoding.UTF8.GetString(Convert.FromBase64String(result.Item?.Extended?.Text ?? string.Empty)),
                 Type = result.Item?.TypeLine,
             };
 
@@ -549,7 +548,8 @@ namespace Sidekick.Apis.Poe.Trade
                     influences: influences,
                     sockets: ParseSockets(result.Item?.Sockets).ToList(),
                     modifierLines: new(),
-                    pseudoModifiers: new())
+                    pseudoModifiers: new(),
+                    text: Encoding.UTF8.GetString(Convert.FromBase64String(result.Item?.Extended?.Text ?? string.Empty)))
             {
                 Id = result.Id,
 
@@ -609,7 +609,7 @@ namespace Sidekick.Apis.Poe.Trade
                 ParseHash(result.Item?.Extended?.Hashes?.Pseudo)));
 
             item.ModifierLines = item.ModifierLines
-                .OrderBy(x => item.Original.Text?.IndexOf(x.Text ?? string.Empty))
+                .OrderBy(x => item.Text?.IndexOf(x.Text ?? string.Empty))
                 .ToList();
 
             return item;

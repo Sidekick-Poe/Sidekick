@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Patterns;
-using Sidekick.Apis.Poe.Parser.Tokenizers;
 using Sidekick.Apis.Poe.Pseudo;
 using Sidekick.Common.Game.Items;
 
@@ -31,17 +30,6 @@ namespace Sidekick.Apis.Poe.Parser
             this.patterns = patterns;
         }
 
-        private ParsingItem? GetParsingItem(string itemText)
-        {
-            if (string.IsNullOrEmpty(itemText))
-            {
-                return null;
-            }
-
-            itemText = new ItemNameTokenizer().CleanString(itemText);
-            return new ParsingItem(itemText);
-        }
-
         public Task<Item?> ParseItemAsync(string itemText)
         {
             return Task.Run(() => ParseItem(itemText));
@@ -56,12 +44,7 @@ namespace Sidekick.Apis.Poe.Parser
 
             try
             {
-                var parsingItem = GetParsingItem(itemText);
-                if (parsingItem == null)
-                {
-                    throw new NotSupportedException("Item not found.");
-                }
-
+                var parsingItem = new ParsingItem(itemText);
                 var metadata = itemMetadataProvider.Parse(parsingItem);
                 if (metadata == null || (string.IsNullOrEmpty(metadata?.Name) && string.IsNullOrEmpty(metadata?.Type)))
                 {
@@ -72,7 +55,7 @@ namespace Sidekick.Apis.Poe.Parser
                 ParseRequirements(parsingItem);
 
                 // Order of parsing is important
-                var original = ParseOriginal(parsingItem);
+                var header = ParseHeader(parsingItem);
                 var properties = ParseProperties(parsingItem);
                 var influences = ParseInfluences(parsingItem);
                 var sockets = ParseSockets(parsingItem);
@@ -80,13 +63,13 @@ namespace Sidekick.Apis.Poe.Parser
                 var pseudoModifiers = ParsePseudoModifiers(modifierLines);
                 return new Item(
                     metadata: metadata,
-                    original: original,
+                    header: header,
                     properties: properties,
                     influences: influences,
                     sockets: sockets,
                     modifierLines: modifierLines,
-                    pseudoModifiers: pseudoModifiers
-                );
+                    pseudoModifiers: pseudoModifiers,
+                    text: parsingItem.Text);
             }
             catch (Exception e)
             {
@@ -95,7 +78,7 @@ namespace Sidekick.Apis.Poe.Parser
             }
         }
 
-        public OriginalItem? ParseOriginalItem(string itemText)
+        public Header? ParseHeader(string itemText)
         {
             if (string.IsNullOrEmpty(itemText))
             {
@@ -104,13 +87,7 @@ namespace Sidekick.Apis.Poe.Parser
 
             try
             {
-                var parsingItem = GetParsingItem(itemText);
-                if (parsingItem == null)
-                {
-                    return null;
-                }
-
-                return ParseOriginal(parsingItem);
+                return ParseHeader(new ParsingItem(itemText));
             }
             catch (Exception e)
             {
@@ -119,13 +96,12 @@ namespace Sidekick.Apis.Poe.Parser
             }
         }
 
-        private static OriginalItem ParseOriginal(ParsingItem parsingItem)
+        private static Header ParseHeader(ParsingItem parsingItem)
         {
-            return new OriginalItem()
+            return new Header()
             {
                 Name = parsingItem.Blocks[0].Lines.ElementAtOrDefault(2)?.Text,
                 Type = parsingItem.Blocks[0].Lines.ElementAtOrDefault(3)?.Text,
-                Text = parsingItem.Text,
             };
         }
 

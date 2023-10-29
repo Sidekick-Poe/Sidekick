@@ -34,7 +34,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree.Right click to re
             Assert.Equal(Category.Jewel, actual.Metadata.Category);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal("Cobalt Jewel", actual.Metadata.Type);
-            Assert.Equal("Blight Cut", actual.Original.Name);
+            Assert.Equal("Blight Cut", actual.Header.Name);
             Assert.Equal(68, actual.Properties.ItemLevel);
 
             actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Strength and Intelligence", 8);
@@ -73,7 +73,7 @@ Note: ~b/o 1 chaos
             Assert.Equal(Category.Jewel, actual.Metadata.Category);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal("Large Cluster Jewel", actual.Metadata.Type);
-            Assert.Equal("Chimeric Sliver", actual.Original.Name);
+            Assert.Equal("Chimeric Sliver", actual.Header.Name);
             Assert.Equal(69, actual.Properties.ItemLevel);
 
             actual.AssertHasModifier(ModifierCategory.Enchant, "Added Small Passive Skills grant: Axe Attacks deal 12% increased Damage with Hits and Ailments\nAdded Small Passive Skills grant: Sword Attacks deal 12% increased Damage with Hits and Ailments");

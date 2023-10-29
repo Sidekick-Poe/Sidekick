@@ -62,7 +62,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var englishItem = OriginalItem.Parse(ItemName);
+        var englishItem = Header.Parse(ItemName);
         Map = await PoeWikiClient.GetMap(englishItem.Type ?? englishItem.Name);
         Loading = false;
     }

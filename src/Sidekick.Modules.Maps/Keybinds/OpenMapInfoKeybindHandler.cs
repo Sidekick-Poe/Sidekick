@@ -48,7 +48,7 @@ namespace Sidekick.Modules.Maps.Keybinds
             }
 
             var advancedItemText = await clipboardProvider.CopyAdvanced();
-            var originalItem = itemParser.ParseOriginalItem(advancedItemText);
+            var originalItem = itemParser.ParseHeader(advancedItemText);
 
             await viewLocator.CloseAllOverlays();
             await viewLocator.Open($"/map/{originalItem?.ToString().EncodeBase64Url()}/{text.EncodeBase64Url()}");

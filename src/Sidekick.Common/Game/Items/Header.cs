@@ -1,12 +1,10 @@
 namespace Sidekick.Common.Game.Items
 {
-    public class OriginalItem
+    public class Header
     {
         public string? Name { get; set; }
 
         public string? Type { get; set; }
-
-        public string? Text { get; set; }
 
         /// <inheritdoc/>
         public override string? ToString()
@@ -24,19 +22,19 @@ namespace Sidekick.Common.Game.Items
             return Name;
         }
 
-        public static OriginalItem Parse(string value)
+        public static Header Parse(string value)
         {
             if (value.Contains("_"))
             {
                 var split = value.Split("_");
-                return new OriginalItem()
+                return new Header()
                 {
                     Name = split[1],
                     Type = split[0],
                 };
             }
 
-            return new OriginalItem()
+            return new Header()
             {
                 Name = value,
             };

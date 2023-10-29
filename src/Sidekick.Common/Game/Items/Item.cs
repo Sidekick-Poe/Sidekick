@@ -4,25 +4,27 @@ namespace Sidekick.Common.Game.Items
     {
         public Item(
             ItemMetadata metadata,
-            OriginalItem original,
+            Header header,
             Properties properties,
             Influences influences,
             List<Socket> sockets,
             List<ModifierLine> modifierLines,
-            List<PseudoModifier> pseudoModifiers)
+            List<PseudoModifier> pseudoModifiers,
+            string text)
         {
             Metadata = metadata;
-            Original = original;
+            Header = header;
             Properties = properties;
             Influences = influences;
             Sockets = sockets;
             ModifierLines = modifierLines;
             PseudoModifiers = pseudoModifiers;
+            Text = text;
         }
 
         public ItemMetadata Metadata { get; init; }
 
-        public OriginalItem Original { get; init; }
+        public Header Header { get; init; }
 
         public Properties Properties { get; init; }
 
@@ -33,6 +35,8 @@ namespace Sidekick.Common.Game.Items
         public List<ModifierLine> ModifierLines { get; set; }
 
         public List<PseudoModifier> PseudoModifiers { get; init; }
+
+        public string Text { get; set; }
 
         /// <inheritdoc/>
         public override string? ToString()

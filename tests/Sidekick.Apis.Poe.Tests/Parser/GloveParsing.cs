@@ -42,7 +42,7 @@ Item Level: 61
             Assert.Equal(Category.Armour, actual.Metadata.Category);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal("Assassin's Mitts", actual.Metadata.Type);
-            Assert.Equal("Death Nails", actual.Original.Name);
+            Assert.Equal("Death Nails", actual.Header.Name);
             Assert.Single(actual.Sockets);
 
             actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Intelligence", 18);

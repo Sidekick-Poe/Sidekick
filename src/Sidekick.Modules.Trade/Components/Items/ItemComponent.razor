@@ -2,8 +2,8 @@
 <div class="item-content mb-2 @WrapperClass" @onclick="OnClick">
     @if (CanExpand && (Layout == Layout.Cards_Maximized || Expanded))
     {
-        <ItemHeaderComponent Name="@Item.Original.Name"
-                         Type="@Item.Original.Type"
+        <ItemHeaderComponent Name="@Item.Header.Name"
+                         Type="@Item.Header.Type"
                          Influences="Item.Influences"
                          Rarity="Item.Metadata.Rarity"
                          IsRelic="Item.Properties.IsRelic" />
@@ -75,17 +75,17 @@
                         <ItemInfluencesComponent Influences="Item.Influences" />
                     </div>
                     <MudText Typo="Typo.h6" Align="Align.Center" Class="name font-smallcaps" Style="@context.LabelStyle">
-                        @if (!string.IsNullOrEmpty(Item.Original.Name))
+                        @if (!string.IsNullOrEmpty(Item.Header.Name))
                         {
-                            @Item.Original.Name
+                            @Item.Header.Name
                         }
-                        @if (!string.IsNullOrEmpty(Item.Original.Name) && !string.IsNullOrEmpty(Item.Original.Type))
+                        @if (!string.IsNullOrEmpty(Item.Header.Name) && !string.IsNullOrEmpty(Item.Header.Type))
                         {
                             @:,
                         }
-                        @if (!string.IsNullOrEmpty(Item.Original.Type))
+                        @if (!string.IsNullOrEmpty(Item.Header.Type))
                         {
-                            @Item.Original.Type
+                            @Item.Header.Type
                         }
                     </MudText>
                 </ItemHeaderBackground>
