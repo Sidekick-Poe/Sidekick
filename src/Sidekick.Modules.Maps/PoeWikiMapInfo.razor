@@ -1,54 +1,51 @@
-@if (PoeWikiClient.IsEnabled)
+@if (Loading)
 {
-    if (Loading)
-    {
-        <LoadingAlert Text="@Resources.Fetching" />
-    }
-    else if (Map != null)
-    {
-        <div class="ml-n2 mr-n2 mt-n2 mb-2">
-            @if (Map.Bosses.Any())
-            {
-                <div class="d-flex flex-wrap justify-center mb-2">
-                    @foreach (var boss in Map.Bosses.OrderBy(x => x.Name))
-                    {
-                        <BossFrame Name="@boss.Name" />
-                    }
-                </div>
-            }
+    <LoadingAlert Text="@Resources.Fetching" />
+}
+else if (Map != null)
+{
+    <div class="ml-n2 mr-n2 mt-n2 mb-2">
+        @if (Map.Bosses.Any())
+        {
+            <div class="d-flex flex-wrap justify-center mb-2">
+                @foreach (var boss in Map.Bosses.OrderBy(x => x.Name))
+                {
+                    <BossFrame Name="@boss.Name" />
+                }
+            </div>
+        }
 
-            @if (Map.Drops.Any())
-            {
-                <div class="d-flex flex-wrap justify-center">
-                    @foreach (var drop in Map.Drops)
-                    {
-                        <DivinationCard Name="@drop.Name" Description="@drop.Description" />
-                    }
-                </div>
-            }
-            else
-            {
-                <MudText Class="pa-4">@Resources.NoDropsTitle</MudText>
-            }
-        </div>
+        @if (Map.Drops.Any())
+        {
+            <div class="d-flex flex-wrap justify-center">
+                @foreach (var drop in Map.Drops)
+                {
+                    <DivinationCard Name="@drop.Name" Description="@drop.Description" />
+                }
+            </div>
+        }
+        else
+        {
+            <MudText Class="pa-4">@Resources.NoDropsTitle</MudText>
+        }
+    </div>
 
-        <div style="text-align:right;">
-            <MudText Typo="Typo.caption" Color="Color.Info">
-                @Resources.PoeWikiTitle
-            </MudText>
-            <MudButton Class="pa-0 mt-2"
-                       Variant="Variant.Text"
-                       Size="Size.Small"
-                       StartIcon="@Icons.Material.Filled.OpenInBrowser"
-                       OnClick="@(() => PoeWikiClient.OpenUri(Map))">@Resources.OpenInPoeWiki</MudButton>
-        </div>
-    }
-    else
-    {
-        <MudAlert Severity="Severity.Error" Variant="Variant.Filled">
-            @Resources.PoeWikiError
-        </MudAlert>
-    }
+    <div style="text-align:right;">
+        <MudText Typo="Typo.caption" Color="Color.Info">
+            @Resources.PoeWikiTitle
+        </MudText>
+        <MudButton Class="pa-0 mt-2"
+                   Variant="Variant.Text"
+                   Size="Size.Small"
+                   StartIcon="@Icons.Material.Filled.OpenInBrowser"
+                   OnClick="@(() => PoeWikiClient.OpenUri(Map))">@Resources.OpenInPoeWiki</MudButton>
+    </div>
+}
+else
+{
+    <MudAlert Severity="Severity.Error" Variant="Variant.Filled">
+        @Resources.PoeWikiError
+    </MudAlert>
 }
 
 @code {

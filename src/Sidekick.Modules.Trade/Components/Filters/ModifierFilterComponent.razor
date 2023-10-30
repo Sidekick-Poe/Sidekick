@@ -54,7 +54,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (Filter.Line.Modifiers.FirstOrDefault().Category == ModifierCategory.Enchant && PoeWikiClient.IsEnabled && GameLanguageProvider.IsEnglish())
+        if (Filter.Line.Modifiers.FirstOrDefault().Category == ModifierCategory.Enchant && GameLanguageProvider.IsEnglish())
         {
             var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Line);
             if (oilMetadataIds != null)
