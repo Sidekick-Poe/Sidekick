@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Modifiers;
+using Sidekick.Apis.Poe.Parser.AdditionalInformation;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Pseudo;
 using Sidekick.Common.Game.Items;
@@ -12,22 +12,25 @@ namespace Sidekick.Apis.Poe.Parser
     {
         private readonly ILogger<ItemParser> logger;
         private readonly IItemMetadataParser itemMetadataProvider;
-        private readonly IModifierProvider modifierProvider;
+        private readonly IModifierParser modifierParser;
         private readonly IPseudoModifierProvider pseudoModifierProvider;
         private readonly IParserPatterns patterns;
+        private readonly ClusterJewelParser clusterJewelParser;
 
         public ItemParser(
             ILogger<ItemParser> logger,
             IItemMetadataParser itemMetadataProvider,
-            IModifierProvider modifierProvider,
+            IModifierParser modifierParser,
             IPseudoModifierProvider pseudoModifierProvider,
-            IParserPatterns patterns)
+            IParserPatterns patterns,
+            ClusterJewelParser clusterJewelParser)
         {
             this.logger = logger;
             this.itemMetadataProvider = itemMetadataProvider;
-            this.modifierProvider = modifierProvider;
+            this.modifierParser = modifierParser;
             this.pseudoModifierProvider = pseudoModifierProvider;
             this.patterns = patterns;
+            this.clusterJewelParser = clusterJewelParser;
         }
 
         public Task<Item?> ParseItemAsync(string itemText)
@@ -61,7 +64,7 @@ namespace Sidekick.Apis.Poe.Parser
                 var sockets = ParseSockets(parsingItem);
                 var modifierLines = ParseModifiers(parsingItem);
                 var pseudoModifiers = ParsePseudoModifiers(modifierLines);
-                return new Item(
+                var item = new Item(
                     metadata: metadata,
                     header: header,
                     properties: properties,
@@ -70,6 +73,10 @@ namespace Sidekick.Apis.Poe.Parser
                     modifierLines: modifierLines,
                     pseudoModifiers: pseudoModifiers,
                     text: parsingItem.Text);
+
+                clusterJewelParser.Parse(item);
+
+                return item;
             }
             catch (Exception e)
             {
@@ -318,7 +325,7 @@ namespace Sidekick.Apis.Poe.Parser
             return parsingItem.Metadata?.Category switch
             {
                 Category.DivinationCard or Category.Gem => new(),
-                _ => modifierProvider.Parse(parsingItem),
+                _ => modifierParser.Parse(parsingItem),
             };
         }
 
@@ -421,6 +428,17 @@ namespace Sidekick.Apis.Poe.Parser
 
             match = null!;
             return false;
+        }
+
+        private static bool TrySetAdditionalInformation(Item item, object? additionalInformation)
+        {
+            if (additionalInformation == null)
+            {
+                return false;
+            }
+
+            item.AdditionalInformation = additionalInformation;
+            return true;
         }
 
         #endregion Helpers

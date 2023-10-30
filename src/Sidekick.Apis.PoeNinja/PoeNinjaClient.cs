@@ -70,7 +70,7 @@ namespace Sidekick.Apis.PoeNinja
                 var repositoryItems = await GetItems(itemType);
                 var query = repositoryItems.Where(x => x.Name == englishName || x.Name == englishType);
 
-                if (gemLevel != null)
+                if (category == Category.Gem && gemLevel != null)
                 {
                     query = query.Where(x => x.GemLevel == gemLevel);
                 }
@@ -80,7 +80,7 @@ namespace Sidekick.Apis.PoeNinja
                     query = query.Where(x => x.IsRelic == isRelic);
                 }
 
-                if (mapTier != null)
+                if (category == Category.Map && mapTier != null)
                 {
                     if (itemType == ItemType.Map
                      || itemType == ItemType.UniqueMap
@@ -225,6 +225,9 @@ namespace Sidekick.Apis.PoeNinja
                             SparkLine = x.SparkLine ?? x.LowConfidenceSparkLine,
                             IsRelic = x.ItemClass == 9, // 3 for Unique, 9 for Relic Unique.
                             Links = x.Links,
+                            BaseType = x.BaseType,
+                            ItemLevel = x.ItemLevel,
+                            SmallPassiveCount = x.ClusterSmallPassiveCount,
                         });
             }
             catch (Exception)
@@ -289,6 +292,7 @@ namespace Sidekick.Apis.PoeNinja
 
                 case Category.Jewel:
                     yield return ItemType.UniqueJewel;
+                    yield return ItemType.ClusterJewel;
                     yield break;
 
                 case Category.Weapon:

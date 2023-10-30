@@ -38,6 +38,8 @@ namespace Sidekick.Common.Game.Items
 
         public string Text { get; set; }
 
+        public object? AdditionalInformation { get; set; }
+
         /// <inheritdoc/>
         public override string? ToString()
         {

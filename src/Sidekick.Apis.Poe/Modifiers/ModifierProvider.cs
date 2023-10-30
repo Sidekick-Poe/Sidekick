@@ -1,10 +1,6 @@
-using System.Globalization;
-using System.Text;
 using System.Text.RegularExpressions;
-using FuzzySharp;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers.Models;
-using Sidekick.Apis.Poe.Parser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Initialization;
@@ -15,27 +11,26 @@ namespace Sidekick.Apis.Poe.Modifiers
     {
         private readonly ICacheProvider cacheProvider;
         private readonly IPoeTradeClient poeTradeClient;
-        private readonly IInvariantModifierProvider englishModifierProvider;
+        private readonly IInvariantModifierProvider invariantModifierProvider;
         private readonly Regex ParseHashPattern = new("\\#");
         private readonly Regex NewLinePattern = new("(?:\\\\)*[\\r\\n]+");
         private readonly Regex HashPattern = new("\\\\#");
         private readonly Regex ParenthesesPattern = new("((?:\\\\\\ )*\\\\\\([^\\(\\)]*\\\\\\))");
         private readonly Regex CleanFuzzyPattern = new("[-+0-9%#]");
         private readonly Regex TrimPattern = new(@"\s+");
-        private readonly Regex CleanOriginalTextPattern = new(" \\((?:implicit|enchant|crafted|veiled|fractured|scourge|crucible)\\)$");
 
         public ModifierProvider(
             ICacheProvider cacheProvider,
             IPoeTradeClient poeTradeClient,
-            IInvariantModifierProvider englishModifierProvider)
+            IInvariantModifierProvider invariantModifierProvider)
         {
             this.cacheProvider = cacheProvider;
             this.poeTradeClient = poeTradeClient;
-            this.englishModifierProvider = englishModifierProvider;
+            this.invariantModifierProvider = invariantModifierProvider;
         }
 
-        private Dictionary<ModifierCategory, List<ModifierPattern>> Patterns { get; } = new();
-        private Dictionary<string, List<ModifierPattern>> FuzzyDictionary { get; } = new();
+        public Dictionary<ModifierCategory, List<ModifierPattern>> Patterns { get; } = new();
+        public Dictionary<string, List<ModifierPattern>> FuzzyDictionary { get; } = new();
 
         /// <inheritdoc/>
         public InitializationPriority Priority => InitializationPriority.Low;
@@ -118,12 +113,12 @@ namespace Sidekick.Apis.Poe.Modifiers
 
             // Prepare special pseudo patterns
             var incursionPatterns = Patterns[ModifierCategory.Pseudo]
-                .Where(x => englishModifierProvider.IncursionRoomModifierIds.Contains(x.Id))
+                .Where(x => invariantModifierProvider.IncursionRoomModifierIds.Contains(x.Id))
                 .ToList();
             ComputeSpecialPseudoPattern(incursionPatterns);
 
             var logbookPatterns = Patterns[ModifierCategory.Pseudo]
-                .Where(x => englishModifierProvider.LogbookFactionModifierIds.Contains(x.Id))
+                .Where(x => invariantModifierProvider.LogbookFactionModifierIds.Contains(x.Id))
                 .ToList();
             ComputeSpecialPseudoPattern(logbookPatterns);
         }
@@ -275,171 +270,6 @@ namespace Sidekick.Apis.Poe.Modifiers
                 optionLines.Add(ParseHashPattern.Replace(text, optionLine));
             }
             return string.Join('\n', optionLines).Trim('\r', '\n');
-        }
-
-        /// <inheritdoc/>
-        public List<ModifierLine> Parse(ParsingItem parsingItem)
-        {
-            var modifierLines = new List<ModifierLine>();
-
-            foreach (var match in MatchModifiers(parsingItem))
-            {
-                var text = new StringBuilder();
-                foreach (var line in match.Lines)
-                {
-                    if (text.Length != 0)
-                    {
-                        text.Append('\n');
-                    }
-
-                    text.Append(line.Text);
-                    line.Parsed = true;
-                }
-
-                var modifierLine = new ModifierLine(text: CleanOriginalTextPattern.Replace(text.ToString(), string.Empty));
-                modifierLines.Add(modifierLine);
-
-                var fuzzyLine = CleanFuzzyText(text.ToString());
-                var patterns = match.Patterns.OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText));
-                foreach (var pattern in patterns)
-                {
-                    if (modifierLine.Modifiers.Any(x => x.Id == pattern.Id))
-                    {
-                        continue;
-                    }
-
-                    var modifier = new Modifier(text: pattern.Text)
-                    {
-                        Id = pattern.Id,
-                        Category = pattern.Category,
-                    };
-                    modifierLine.Modifiers.Add(modifier);
-                }
-
-                if (modifierLine.Modifiers.All(x => x.Category == ModifierCategory.Pseudo))
-                {
-                    modifierLine.Text = modifierLine.Modifiers.FirstOrDefault()?.Text ?? modifierLine.Text;
-                }
-
-                ParseModifierValues(modifierLine, patterns);
-            }
-
-            // Order the mods by the order they appear on the item.
-            modifierLines = modifierLines.OrderBy(x => parsingItem.Text.IndexOf(x.Text)).ToList();
-
-            // Trim modifier lines
-            modifierLines.RemoveAll(x => x.Modifiers.Count == 0);
-
-            return modifierLines;
-        }
-
-        private IEnumerable<ModifierMatch> MatchModifiers(ParsingItem parsingItem)
-        {
-            foreach (var block in parsingItem.Blocks.Where(x => !x.AnyParsed))
-            {
-                for (var lineIndex = 0; lineIndex < block.Lines.Count; lineIndex++)
-                {
-                    var line = block.Lines[lineIndex];
-                    if (line.Parsed)
-                    {
-                        continue;
-                    }
-
-                    var patterns = MatchModifierPatterns(block, line, lineIndex);
-                    if (!patterns.Any())
-                    {
-                        // If we reach this point we have not found the modifier through traditional Regex means.
-                        // Text from the game sometimes differ from the text from the API. We do a fuzzy search here to find the most common text.
-                        patterns = MatchModifierFuzzily(parsingItem, line);
-                    }
-
-                    if (!patterns.Any())
-                    {
-                        continue;
-                    }
-
-                    var maxLineCount = patterns.Max(x => x.LineCount);
-                    lineIndex += maxLineCount - 1; // Increment the line index by one less of the pattern count. The default lineIndex++ will take care of the remaining increment.
-                    yield return new ModifierMatch(block, block.Lines.Skip(lineIndex).Take(maxLineCount), patterns.ToList());
-                    continue;
-                }
-            }
-        }
-
-        private IEnumerable<ModifierPattern> MatchModifierPatterns(ParsingBlock block, ParsingLine line, int lineIndex)
-        {
-            foreach (var pattern in Patterns.SelectMany(x => x.Value))
-            {
-                var isMultilineModifierMatch = pattern.LineCount > 1 && pattern.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount)));
-                var isSingleModifierMatch = pattern.Pattern.IsMatch(line.Text);
-
-                if (isMultilineModifierMatch || isSingleModifierMatch)
-                {
-                    yield return pattern;
-                }
-            }
-        }
-
-        private IEnumerable<ModifierPattern> MatchModifierFuzzily(ParsingItem item, ParsingLine line)
-        {
-            if (line.Parsed
-                || item.Metadata?.Category == Category.Flask)
-            {
-                yield break;
-            }
-
-            var fuzzyLine = CleanFuzzyText(line.Text);
-            var fuzzies = new List<FuzzyResult>();
-
-            Parallel.ForEach(FuzzyDictionary, (x) =>
-            {
-                var ratio = Fuzz.Ratio(fuzzyLine, x.Key, FuzzySharp.PreProcess.PreprocessMode.None);
-                if (ratio > 75)
-                {
-                    fuzzies.Add(new FuzzyResult(
-                        ratio: ratio,
-                        patterns: x.Value
-                    ));
-                }
-            });
-
-            foreach (var fuzzy in fuzzies.OrderByDescending(x => x.Ratio))
-            {
-                foreach (var modifier in fuzzy.Patterns)
-                {
-                    yield return modifier;
-                }
-            }
-        }
-
-        private void ParseModifierValues(ModifierLine modifierLine, IEnumerable<ModifierPattern> patterns)
-        {
-            var pattern = patterns.FirstOrDefault();
-            if (pattern == null)
-            {
-                return;
-            }
-
-            if (pattern.IsOption)
-            {
-                modifierLine.OptionValue = pattern.Value;
-                return;
-            }
-
-            if (pattern.Value.HasValue)
-            {
-                modifierLine.Values.Add(pattern.Value.Value);
-                return;
-            }
-
-            var matches = new Regex("([-+0-9,.]+)").Matches(modifierLine.Text);
-            foreach (Match match in matches)
-            {
-                if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
-                {
-                    modifierLine.Values.Add(parsedValue);
-                }
-            }
         }
 
         public bool IsMatch(string id, string text)

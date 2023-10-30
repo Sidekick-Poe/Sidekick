@@ -4,6 +4,8 @@ namespace Sidekick.Apis.PoeNinja.Api
 {
     internal record PoeNinjaItem
     {
+        public string? BaseType { get; init; }
+
         public string? Name { get; init; }
 
         public int MapTier { get; init; }
@@ -24,8 +26,30 @@ namespace Sidekick.Apis.PoeNinja.Api
 
         public int GemQuality { get; init; }
 
+        [JsonPropertyName("levelRequired")]
+        public int ItemLevel { get; init; }
+
         public double ChaosValue { get; init; }
 
         public string? DetailsId { get; init; }
+
+        public string? Variant { get; init; }
+
+        public int? ClusterSmallPassiveCount
+        {
+            get
+            {
+                if (Variant != null && Variant.EndsWith(" passives"))
+                {
+                    var intPart = Variant.Split(" ")[0];
+                    if (int.TryParse(intPart, out var passiveCount))
+                    {
+                        return passiveCount;
+                    }
+                }
+
+                return null;
+            }
+        }
     }
 }

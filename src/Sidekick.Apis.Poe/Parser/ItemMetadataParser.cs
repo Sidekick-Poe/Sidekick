@@ -1,11 +1,11 @@
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Parser;
+using Sidekick.Apis.Poe.Metadatas;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 
-namespace Sidekick.Apis.Poe.Metadatas
+namespace Sidekick.Apis.Poe.Parser
 {
     public class ItemMetadataParser : IItemMetadataParser
     {

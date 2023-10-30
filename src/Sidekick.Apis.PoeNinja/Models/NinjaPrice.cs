@@ -7,6 +7,8 @@ namespace Sidekick.Apis.PoeNinja.Models
     /// </summary>
     public record NinjaPrice
     {
+        public string? BaseType { get; init; }
+
         /// <summary>
         /// The name of the item
         /// </summary>
@@ -46,5 +48,14 @@ namespace Sidekick.Apis.PoeNinja.Models
         public bool IsRelic { get; init; }
 
         public int Links { get; init; }
+
+        public int ItemLevel { get; init; }
+
+        /// <summary>
+        /// The number of small passives on a cluster jewel.
+        /// </summary>
+        public int? SmallPassiveCount { get; init; }
+
+        public bool IsClusterJewel => SmallPassiveCount >= 0;
     }
 }
