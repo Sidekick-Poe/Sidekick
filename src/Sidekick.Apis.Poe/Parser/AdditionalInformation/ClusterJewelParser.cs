@@ -4,7 +4,7 @@ using Sidekick.Common.Game.Items.AdditionalInformation;
 
 namespace Sidekick.Apis.Poe.Parser.AdditionalInformation
 {
-    public class ClusterJewelParser : IAdditionalInformationParser<ClusterJewelInformation>
+    public class ClusterJewelParser
     {
         private readonly IInvariantModifierProvider invariantModifierProvider;
 
@@ -13,18 +13,38 @@ namespace Sidekick.Apis.Poe.Parser.AdditionalInformation
             this.invariantModifierProvider = invariantModifierProvider;
         }
 
-        public void Parse(Item item)
+        public bool TryParse(Item item, out ClusterJewelInformation? information)
         {
+            information = null;
+
             if (item.Metadata.Class != Class.Jewel || item.Metadata.Rarity == Rarity.Unique)
             {
-                return;
+                return false;
             }
 
-            var result = new ClusterJewelInformation()
+            var smallPassiveCount = ParseSmallPassiveCount(item);
+            if (smallPassiveCount == 0)
+            {
+                return false;
+            }
+
+            var grants = ParseGrantTexts(item);
+            if (!grants.Any())
+            {
+                return false;
+            }
+
+            information = new ClusterJewelInformation()
             {
                 ItemLevel = item.Properties.ItemLevel,
+                SmallPassiveCount = smallPassiveCount,
+                GrantTexts = grants,
             };
+            return true;
+        }
 
+        public int ParseSmallPassiveCount(Item item)
+        {
             foreach (var modifierLine in item.ModifierLines)
             {
                 if (!modifierLine.HasValues)
@@ -34,14 +54,37 @@ namespace Sidekick.Apis.Poe.Parser.AdditionalInformation
 
                 foreach (var modifier in modifierLine.Modifiers)
                 {
-                    if (modifier.Id == invariantModifierProvider.ClusterJewelSmallPassiveModifierId)
+                    if (modifier.Id == invariantModifierProvider.ClusterJewelSmallPassiveCountModifierId)
                     {
-                        result.SmallPassiveCount = (int)modifierLine.Values.First();
+                        return (int)modifierLine.Values.First();
                     }
                 }
             }
 
-            item.AdditionalInformation = result;
+            return 0;
+        }
+
+        public List<string> ParseGrantTexts(Item item)
+        {
+            var grants = new List<string>();
+
+            foreach (var modifierLine in item.ModifierLines)
+            {
+                if (!modifierLine.OptionValue.HasValue)
+                {
+                    continue;
+                }
+
+                foreach (var modifier in modifierLine.Modifiers)
+                {
+                    if (modifier.Id == invariantModifierProvider.ClusterJewelSmallPassiveGrantModifierId)
+                    {
+                        grants.Add(invariantModifierProvider.ClusterJewelSmallPassiveGrantOptions[modifierLine.OptionValue.Value]);
+                    }
+                }
+            }
+
+            return grants;
         }
     }
 }

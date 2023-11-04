@@ -74,7 +74,10 @@ namespace Sidekick.Apis.Poe.Parser
                     pseudoModifiers: pseudoModifiers,
                     text: parsingItem.Text);
 
-                clusterJewelParser.Parse(item);
+                if (clusterJewelParser.TryParse(item, out var clusterInformation))
+                {
+                    item.AdditionalInformation = clusterInformation;
+                }
 
                 return item;
             }

@@ -1,23 +1,11 @@
 namespace Sidekick.Common.Game.Items.AdditionalInformation
 {
-    public class ClusterJewelInformation
+    public record ClusterJewelInformation
     {
-        public List<string> GrantTexts { get; } = new();
+        public required List<string> GrantTexts { get; init; }
 
-        public int SmallPassiveCount { get; set; }
+        public required int SmallPassiveCount { get; init; }
 
-        public int ItemLevel { get; set; }
-
-        public int NormalizedItemLevel
-        {
-            get
-            {
-                if (ItemLevel >= 84) return 84;
-                if (ItemLevel >= 75) return 75;
-                if (ItemLevel >= 68) return 68;
-                if (ItemLevel >= 50) return 50;
-                return 1;
-            }
-        }
+        public required int ItemLevel { get; init; }
     }
 }

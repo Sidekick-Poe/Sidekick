@@ -14,6 +14,13 @@ namespace Sidekick.Apis.PoeNinja
             bool? isRelic = null,
             int? numberOfLinks = null);
 
+        Task<NinjaPrice?> GetClusterPrice(
+            string englishName,
+            string englishType,
+            List<string> englishGrantTexts,
+            int passiveCount,
+            int itemLevel);
+
         Uri GetDetailsUri(NinjaPrice price);
     }
 }

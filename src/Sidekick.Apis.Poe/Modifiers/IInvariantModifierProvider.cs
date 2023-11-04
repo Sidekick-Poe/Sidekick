@@ -9,7 +9,11 @@ namespace Sidekick.Apis.Poe.Modifiers
 
         List<string> LogbookFactionModifierIds { get; }
 
-        string ClusterJewelSmallPassiveModifierId { get; }
+        string ClusterJewelSmallPassiveCountModifierId { get; }
+
+        string ClusterJewelSmallPassiveGrantModifierId { get; }
+
+        Dictionary<int, string> ClusterJewelSmallPassiveGrantOptions { get; }
 
         Task<List<ApiCategory>> GetList();
     }

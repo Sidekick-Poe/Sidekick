@@ -39,7 +39,7 @@ namespace Sidekick.Apis.Poe.Modifiers
         public async Task Initialize()
         {
             var result = await cacheProvider.GetOrSet(
-                "ModifierProvider",
+                "Modifiers",
                 () => poeTradeClient.Fetch<ApiCategory>("data/stats"));
             var categories = result.Result;
 

@@ -22,7 +22,11 @@ namespace Sidekick.Apis.Poe.Modifiers
 
         public List<string> LogbookFactionModifierIds { get; } = new();
 
-        public string ClusterJewelSmallPassiveModifierId { get; private set; } = null!;
+        public string ClusterJewelSmallPassiveCountModifierId { get; private set; } = null!;
+
+        public string ClusterJewelSmallPassiveGrantModifierId { get; private set; } = null!;
+
+        public Dictionary<int, string> ClusterJewelSmallPassiveGrantOptions { get; private set; } = null!;
 
         /// <inheritdoc/>
         public InitializationPriority Priority => InitializationPriority.Medium;
@@ -88,13 +92,24 @@ namespace Sidekick.Apis.Poe.Modifiers
                 {
                     if (apiModifier.Text == "Adds # Passive Skills")
                     {
-                        ClusterJewelSmallPassiveModifierId = apiModifier.Id;
+                        ClusterJewelSmallPassiveCountModifierId = apiModifier.Id;
+                    }
+
+                    if (apiModifier.Text == "Added Small Passive Skills grant: #")
+                    {
+                        ClusterJewelSmallPassiveGrantModifierId = apiModifier.Id;
+                        if (apiModifier.Option == null)
+                        {
+                            return;
+                        }
+
+                        ClusterJewelSmallPassiveGrantOptions = apiModifier.Option.Options.ToDictionary(x => x.Id, x => x.Text!);
                     }
                 }
             }
         }
 
-        public Task<List<ApiCategory>> GetList() => cacheProvider.GetOrSet("EnglishCategories", async () =>
+        public Task<List<ApiCategory>> GetList() => cacheProvider.GetOrSet("InvariantModifiers", async () =>
         {
             var result = await poeTradeClient.Fetch<ApiCategory>("data/stats", useDefaultLanguage: true);
             return result.Result;

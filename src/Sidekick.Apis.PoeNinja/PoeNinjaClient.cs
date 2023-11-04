@@ -64,49 +64,60 @@ namespace Sidekick.Apis.PoeNinja
             int? numberOfLinks = null)
         {
             await ClearCacheIfExpired();
+            var prices = await GetPrices(category);
 
-            foreach (var itemType in GetApiItemTypes(category))
+            var query = prices.Where(x => x.Name == englishName || x.Name == englishType);
+
+            if (category == Category.Gem && gemLevel != null)
             {
-                var repositoryItems = await GetItems(itemType);
-                var query = repositoryItems.Where(x => x.Name == englishName || x.Name == englishType);
-
-                if (category == Category.Gem && gemLevel != null)
-                {
-                    query = query.Where(x => x.GemLevel == gemLevel);
-                }
-
-                if (isRelic != null)
-                {
-                    query = query.Where(x => x.IsRelic == isRelic);
-                }
-
-                if (category == Category.Map && mapTier != null)
-                {
-                    if (itemType == ItemType.Map
-                     || itemType == ItemType.UniqueMap
-                     || itemType == ItemType.BlightedMap
-                     || itemType == ItemType.BlightRavagedMap)
-                    {
-                        query = query.Where(x => x.MapTier == mapTier);
-                    }
-                }
-
-                if (numberOfLinks != null)
-                {
-                    // Poe.ninja has pricings for <5, 5 and 6 links.
-                    // <5 being 0 links in their API.
-                    query = query.Where(x => x.Links == (numberOfLinks >= 5 ? numberOfLinks : 0));
-                }
-
-                if (!query.Any())
-                {
-                    continue;
-                }
-
-                return query.OrderBy(x => x.Corrupted).FirstOrDefault();
+                query = query.Where(x => x.GemLevel == gemLevel);
             }
 
-            return null;
+            if (isRelic != null)
+            {
+                query = query.Where(x => x.IsRelic == isRelic);
+            }
+
+            if (category == Category.Map && mapTier != null)
+            {
+                query = query.Where(x => x.MapTier == mapTier);
+            }
+
+            if (numberOfLinks != null)
+            {
+                // Poe.ninja has pricings for <5, 5 and 6 links.
+                // <5 being 0 links in their API.
+                query = query.Where(x => x.Links == (numberOfLinks >= 5 ? numberOfLinks : 0));
+            }
+
+            return query.OrderBy(x => x.Corrupted).FirstOrDefault();
+        }
+
+        public async Task<NinjaPrice?> GetClusterPrice(
+            string englishName,
+            string englishType,
+            List<string> englishGrantTexts,
+            int passiveCount,
+            int itemLevel)
+        {
+            var normalizedItemLevel = itemLevel switch
+            {
+                >= 84 => 84,
+                >= 75 => 75,
+                >= 68 => 68,
+                >= 50 => 50,
+                _ => 1,
+            };
+
+            await ClearCacheIfExpired();
+            var prices = await GetPrices(Category.Jewel);
+
+            var query = prices
+                .Where(x => x.Name == englishName || x.Name == englishType)
+                .Where(x => x.ItemLevel == normalizedItemLevel)
+                .Where(x => x.SmallPassiveCount == passiveCount);
+
+            return query.FirstOrDefault();
         }
 
         public Uri GetDetailsUri(NinjaPrice ninjaPrice)
@@ -162,6 +173,20 @@ namespace Sidekick.Apis.PoeNinja
                 .Select(x => x.OrderBy(x => x.Price).First())
                 .ToList();
             return cacheProvider.Set(GetCacheKey(itemType), prices);
+        }
+
+        private async Task<IEnumerable<NinjaPrice>> GetPrices(Category category)
+        {
+            var itemTypes = GetApiItemTypes(category);
+            var tasks = new List<Task<IEnumerable<NinjaPrice>>>();
+
+            foreach (var itemType in itemTypes)
+            {
+                tasks.Add(GetItems(itemType));
+            }
+
+            var prices = await Task.WhenAll(tasks);
+            return prices.SelectMany(x => x);
         }
 
         private async Task<IEnumerable<NinjaPrice>> GetItems(ItemType itemType)
