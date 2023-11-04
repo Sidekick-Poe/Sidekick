@@ -118,12 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Filters_Dps" xml:space="preserve">
-    <value>每秒造成傷害</value>
+    <value>Damage per second
+</value>
   </data>
   <data name="Filters_EDps" xml:space="preserve">
-    <value>每秒造成元素傷害</value>
+    <value>Elemental DPS</value>
   </data>
   <data name="Filters_PDps" xml:space="preserve">
-    <value>每秒造成物理傷害</value>
+    <value>Physical DPS</value>
   </data>
 </root>
