@@ -28,7 +28,7 @@ Replaces other quality types
 Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower-rarity jewellery. The maximum quality is 20%.
 ");
 
-            Assert.Equal(Class.StackableCurrency, actual.Metadata.Class);
+            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Noxious Catalyst", actual.Metadata.Type);
@@ -51,7 +51,7 @@ Drops additional Essences
 Combine this with four other different samples in Tane's Laboratory.
 ");
 
-            Assert.Equal(Class.MetamorphSample, actual.Metadata.Class);
+            Assert.Equal(Class.MetamorphSample, actual.Header.Class);
             Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
             Assert.Equal(Category.ItemisedMonster, actual.Metadata.Category);
             Assert.Equal("Merveil, the Returned", actual.Metadata.Type);
@@ -100,7 +100,7 @@ Drops additional Rare Armour
 --------
 Combine this with four other different samples in Tane's Laboratory.");
 
-            Assert.Equal(Class.MetamorphSample, actual.Metadata.Class);
+            Assert.Equal(Class.MetamorphSample, actual.Header.Class);
             Assert.Equal(Category.ItemisedMonster, actual.Metadata.Category);
             Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
             Assert.Equal("Portentia, the Foul's Heart", actual.Metadata.Name);

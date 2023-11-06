@@ -48,7 +48,6 @@ else if (Price != null)
     [Inject] private IBrowserProvider BrowserProvider { get; set; }
 
     [CascadingParameter] public Item Item { get; set; }
-    [Parameter] public string ItemName { get; set; }
 
     private bool Loading { get; set; }
     private NinjaPrice Price { get; set; }
@@ -67,10 +66,9 @@ else if (Price != null)
         if (Item != null)
         {
             IsInit = true;
-            var englishItem = Header.Parse(ItemName);
             Price = await Client.GetPriceInfo(
-                englishItem.Name,
-                englishItem.Type,
+                Item.Invariant.Name,
+                Item.Invariant.Type,
                 Item.Metadata.Category,
                 gemLevel: Item.Properties.GemLevel,
                 mapTier: Item.Properties.MapTier,

@@ -25,7 +25,7 @@ namespace Sidekick.Apis.Poe.Trade
                 || item.Metadata.Category == Category.Gem
                 || item.Metadata.Category == Category.ItemisedMonster
                 || item.Metadata.Category == Category.Leaguestone
-                || item.Metadata.Category == Category.Undefined)
+                || item.Metadata.Category == Category.Unknown)
             {
                 yield break;
             }
@@ -43,7 +43,7 @@ namespace Sidekick.Apis.Poe.Trade
                 || item.Metadata.Category == Category.Gem
                 || item.Metadata.Category == Category.ItemisedMonster
                 || item.Metadata.Category == Category.Leaguestone
-                || item.Metadata.Category == Category.Undefined
+                || item.Metadata.Category == Category.Unknown
                 || item.Metadata.Category == Category.Currency)
             {
                 yield break;
@@ -62,7 +62,7 @@ namespace Sidekick.Apis.Poe.Trade
                 || item.Metadata.Category == Category.Currency
                 || item.Metadata.Category == Category.ItemisedMonster
                 || item.Metadata.Category == Category.Leaguestone
-                || item.Metadata.Category == Category.Undefined)
+                || item.Metadata.Category == Category.Unknown)
             {
                 return new();
             }

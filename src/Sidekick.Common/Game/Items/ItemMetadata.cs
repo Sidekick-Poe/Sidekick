@@ -2,14 +2,14 @@ namespace Sidekick.Common.Game.Items
 {
     public class ItemMetadata
     {
-        public string? Name { get; set; }
+        public required string Id { get; init; }
 
-        public string? Type { get; set; }
+        public required string? Name { get; set; }
 
-        public Rarity Rarity { get; set; }
+        public required string? Type { get; init; }
 
-        public Category Category { get; set; }
+        public required Rarity Rarity { get; set; }
 
-        public Class Class { get; set; }
+        public required Category Category { get; init; }
     }
 }

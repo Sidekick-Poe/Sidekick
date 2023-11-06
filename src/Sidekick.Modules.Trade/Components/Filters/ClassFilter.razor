@@ -34,7 +34,7 @@
     [Parameter]
     public EventCallback<Class?> ValueChanged { get; set; }
 
-    private bool Visible => (Item?.Metadata.Rarity == Rarity.Rare || Item?.Metadata.Rarity == Rarity.Magic || Item?.Metadata.Rarity == Rarity.Normal) && Item.Metadata.Class != Class.Undefined && !string.IsNullOrEmpty(ClassLabel);
+    private bool Visible => (Item?.Metadata.Rarity == Rarity.Rare || Item?.Metadata.Rarity == Rarity.Magic || Item?.Metadata.Rarity == Rarity.Normal) && Item.Header.Class != Class.Undefined && !string.IsNullOrEmpty(ClassLabel);
 
     private bool Enabled => Value.HasValue;
     private string ClassLabel { get; set; }
@@ -48,7 +48,7 @@
             return;
         }
 
-        var property = GameLanguageProvider.Language.Classes?.GetType().GetProperties().FirstOrDefault(x => x.Name == Item.Metadata.Class.ToString());
+        var property = GameLanguageProvider.Language.Classes?.GetType().GetProperties().FirstOrDefault(x => x.Name == Item.Header.Class.ToString());
         ClassLabel = property?.GetValue(GameLanguageProvider.Language.Classes).ToString();
     }
 
@@ -56,7 +56,7 @@
     {
         if (value)
         {
-            ValueChanged.InvokeAsync(Item.Metadata.Class);
+            ValueChanged.InvokeAsync(Item.Header.Class);
         }
         else
         {

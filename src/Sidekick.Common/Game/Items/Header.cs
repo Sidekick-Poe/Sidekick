@@ -6,6 +6,8 @@ namespace Sidekick.Common.Game.Items
 
         public string? Type { get; set; }
 
+        public Class Class { get; set; }
+
         /// <inheritdoc/>
         public override string? ToString()
         {

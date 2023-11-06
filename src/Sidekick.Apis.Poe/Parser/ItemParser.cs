@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
+using Sidekick.Apis.Poe.Metadatas;
 using Sidekick.Apis.Poe.Parser.AdditionalInformation;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Pseudo;
@@ -16,6 +17,7 @@ namespace Sidekick.Apis.Poe.Parser
         private readonly IPseudoModifierProvider pseudoModifierProvider;
         private readonly IParserPatterns patterns;
         private readonly ClusterJewelParser clusterJewelParser;
+        private readonly IInvariantMetadataProvider invariantMetadataProvider;
 
         public ItemParser(
             ILogger<ItemParser> logger,
@@ -23,7 +25,8 @@ namespace Sidekick.Apis.Poe.Parser
             IModifierParser modifierParser,
             IPseudoModifierProvider pseudoModifierProvider,
             IParserPatterns patterns,
-            ClusterJewelParser clusterJewelParser)
+            ClusterJewelParser clusterJewelParser,
+            IInvariantMetadataProvider invariantMetadataProvider)
         {
             this.logger = logger;
             this.itemMetadataProvider = itemMetadataProvider;
@@ -31,6 +34,7 @@ namespace Sidekick.Apis.Poe.Parser
             this.pseudoModifierProvider = pseudoModifierProvider;
             this.patterns = patterns;
             this.clusterJewelParser = clusterJewelParser;
+            this.invariantMetadataProvider = invariantMetadataProvider;
         }
 
         public Task<Item?> ParseItemAsync(string itemText)
@@ -55,9 +59,9 @@ namespace Sidekick.Apis.Poe.Parser
                 }
 
                 parsingItem.Metadata = metadata;
-                ParseRequirements(parsingItem);
 
                 // Order of parsing is important
+                ParseRequirements(parsingItem);
                 var header = ParseHeader(parsingItem);
                 var properties = ParseProperties(parsingItem);
                 var influences = ParseInfluences(parsingItem);
@@ -73,6 +77,11 @@ namespace Sidekick.Apis.Poe.Parser
                     modifierLines: modifierLines,
                     pseudoModifiers: pseudoModifiers,
                     text: parsingItem.Text);
+
+                if (invariantMetadataProvider.IdDictionary.TryGetValue(item.Metadata.Id, out var invariantMetadata))
+                {
+                    item.Invariant = invariantMetadata;
+                }
 
                 if (clusterJewelParser.TryParse(item, out var clusterInformation))
                 {
@@ -106,12 +115,22 @@ namespace Sidekick.Apis.Poe.Parser
             }
         }
 
-        private static Header ParseHeader(ParsingItem parsingItem)
+        private Header ParseHeader(ParsingItem parsingItem)
         {
+            var itemClass = Class.Undefined;
+            foreach (var pattern in patterns.Classes)
+            {
+                if (pattern.Value.IsMatch(parsingItem.Blocks[0].Lines[0].Text))
+                {
+                    itemClass = pattern.Key;
+                }
+            }
+
             return new Header()
             {
                 Name = parsingItem.Blocks[0].Lines.ElementAtOrDefault(2)?.Text,
                 Type = parsingItem.Blocks[0].Lines.ElementAtOrDefault(3)?.Text,
+                Class = itemClass,
             };
         }
 

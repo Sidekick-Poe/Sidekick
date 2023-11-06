@@ -1,4 +1,4 @@
-@page "/map/{itemName}/{itemText}"
+@page "/map/{itemText}"
 @inherits SidekickView
 
 @if (Item == null)
@@ -48,7 +48,7 @@ else
     </MudDrawer>
 
     <div class="ml-0">
-        <PoeWikiMapInfo ItemName="@ItemName.DecodeBase64Url()" />
+        <PoeWikiMapInfo Type="@Item.Invariant.Type" Name="@Item.Invariant.Name" />
     </div>
 }
 
@@ -58,7 +58,6 @@ else
     [Inject] private ISettings Settings { get; set; }
     [Inject] private IPoeWikiClient PoeWikiClient { get; set; }
 
-    [Parameter] public string ItemName { get; set; }
     [Parameter] public string ItemText { get; set; }
 
     private List<string> DangerousMods { get; set; } = new();

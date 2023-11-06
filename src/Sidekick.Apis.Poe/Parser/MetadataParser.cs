@@ -7,16 +7,16 @@ using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Parser
 {
-    public class ItemMetadataParser : IItemMetadataParser
+    public class MetadataParser : IItemMetadataParser
     {
         private readonly IGameLanguageProvider gameLanguageProvider;
         private readonly IParserPatterns parserPatterns;
-        private readonly IItemMetadataProvider data;
+        private readonly IMetadataProvider data;
 
-        public ItemMetadataParser(
+        public MetadataParser(
             IGameLanguageProvider gameLanguageProvider,
             IParserPatterns parserPatterns,
-            IItemMetadataProvider data)
+            IMetadataProvider data)
         {
             this.gameLanguageProvider = gameLanguageProvider;
             this.parserPatterns = parserPatterns;
@@ -99,11 +99,6 @@ namespace Sidekick.Apis.Poe.Parser
                 result.Name = name;
             }
 
-            if (result.Class == Class.Undefined)
-            {
-                result.Class = GetClass(parsingBlock);
-            }
-
             return result;
         }
 
@@ -174,19 +169,6 @@ namespace Sidekick.Apis.Poe.Parser
             }
 
             throw new NotSupportedException("Item rarity is unknown.");
-        }
-
-        private Class GetClass(ParsingBlock parsingBlock)
-        {
-            foreach (var pattern in parserPatterns.Classes)
-            {
-                if (pattern.Value.IsMatch(parsingBlock.Lines[0].Text))
-                {
-                    return pattern.Key;
-                }
-            }
-
-            return Class.Undefined;
         }
     }
 }

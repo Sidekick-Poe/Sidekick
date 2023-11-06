@@ -512,9 +512,11 @@ namespace Sidekick.Apis.Poe.Trade
         {
             var metadata = new ItemMetadata()
             {
+                Id = "",
                 Name = result.Item?.Name,
                 Rarity = result.Item?.Rarity ?? Rarity.Unknown,
                 Type = result.Item?.TypeLine,
+                Category = Category.Unknown,
             };
 
             var original = new Header()

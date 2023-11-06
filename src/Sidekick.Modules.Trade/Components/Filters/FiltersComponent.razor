@@ -15,7 +15,7 @@
     <div class="flex-grow-1" style="overflow-y:auto;">
         @if (Item != null)
         {
-            <PriceNinjaComponent ItemName="@ItemName" />
+            <PriceNinjaComponent />
             <PricePredictionComponent />
         }
 
@@ -98,9 +98,6 @@
 
     [CascadingParameter]
     public FiltersModel Filters { get; set; }
-
-    [Parameter]
-    public string ItemName { get; set; }
 
     [Parameter]
     public EventCallback OnSearch { get; set; }

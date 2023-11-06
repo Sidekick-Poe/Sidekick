@@ -17,7 +17,7 @@ namespace Sidekick.Apis.Poe.Parser.AdditionalInformation
         {
             information = null;
 
-            if (item.Metadata.Class != Class.Jewel || item.Metadata.Rarity == Rarity.Unique)
+            if (item.Header.Class != Class.Jewel || item.Metadata.Rarity == Rarity.Unique)
             {
                 return false;
             }

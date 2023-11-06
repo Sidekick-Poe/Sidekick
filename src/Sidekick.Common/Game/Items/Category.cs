@@ -2,7 +2,7 @@ namespace Sidekick.Common.Game.Items
 {
     public enum Category
     {
-        Undefined = 0,
+        Unknown = 0,
         Accessory = 1,
         Armour = 2,
         DivinationCard = 3,

@@ -28,7 +28,7 @@ Your Maps contain Niko (enchant)
 Right click on this item then left click on a Voidstone to apply the itemised Sextant Modifier to the Voidstone.
 ");
 
-            Assert.Equal(Class.StackableCurrency, actual.Metadata.Class);
+            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
 

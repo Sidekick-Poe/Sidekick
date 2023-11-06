@@ -29,7 +29,7 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
 ");
 
             Assert.Equal(Category.Map, actual.Metadata.Category);
-            Assert.Equal(Class.Maps, actual.Metadata.Class);
+            Assert.Equal(Class.Maps, actual.Header.Class);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
             Assert.Equal("Arcade Map", actual.Metadata.Type);
             Assert.Equal(15, actual.Properties.MapTier);
@@ -66,7 +66,7 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
 ");
 
             Assert.Equal(Category.Map, actual.Metadata.Category);
-            Assert.Equal(Class.Maps, actual.Metadata.Class);
+            Assert.Equal(Class.Maps, actual.Header.Class);
             Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
             Assert.Equal("Maelström of Chaos", actual.Metadata.Name);
             Assert.Equal("Atoll Map", actual.Metadata.Type);

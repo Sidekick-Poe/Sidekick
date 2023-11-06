@@ -45,7 +45,7 @@ Note: ~price 1.29 exalted
 ");
 
             Assert.Equal(Category.Map, actual.Metadata.Category);
-            Assert.Equal(Class.MiscMapItems, actual.Metadata.Class);
+            Assert.Equal(Class.MiscMapItems, actual.Header.Class);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal("Chronicle of Atzoatl", actual.Metadata.Type);
 

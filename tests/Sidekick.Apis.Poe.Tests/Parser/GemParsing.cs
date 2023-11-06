@@ -68,7 +68,7 @@ Experience: 1/70
 This is a Support Gem. It does not grant a bonus to your character, but to skills in sockets connected to it. Place into an item socket connected to a socket containing the Active Skill Gem you wish to augment. Right click to remove from a socket.
 ");
 
-            Assert.Equal(Class.SupportSkillGems, actual.Metadata.Class);
+            Assert.Equal(Class.SupportSkillGems, actual.Header.Class);
             Assert.Equal(Rarity.Gem, actual.Metadata.Rarity);
             Assert.Equal(Category.Gem, actual.Metadata.Category);
             Assert.Equal("Arcane Surge Support", actual.Metadata.Type);
@@ -106,7 +106,7 @@ Experience: 1/252595
 Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
 ");
 
-            Assert.Equal(Class.ActiveSkillGems, actual.Metadata.Class);
+            Assert.Equal(Class.ActiveSkillGems, actual.Header.Class);
             Assert.Equal(Rarity.Gem, actual.Metadata.Rarity);
             Assert.Equal(Category.Gem, actual.Metadata.Category);
             Assert.Equal("Void Sphere", actual.Metadata.Type);

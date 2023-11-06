@@ -34,8 +34,9 @@ namespace Sidekick.Apis.Poe
             services.AddSingleton<ClusterJewelParser>();
 
             services.AddSidekickInitializableService<IParserPatterns, ParserPatterns>();
-            services.AddSidekickInitializableService<IItemMetadataProvider, ItemMetadataProvider>();
-            services.AddSidekickInitializableService<IItemMetadataParser, ItemMetadataParser>();
+            services.AddSidekickInitializableService<IInvariantMetadataProvider, InvariantMetadataProvider>();
+            services.AddSidekickInitializableService<IMetadataProvider, MetadataProvider>();
+            services.AddSidekickInitializableService<IItemMetadataParser, MetadataParser>();
             services.AddSidekickInitializableService<IItemStaticDataProvider, ItemStaticDataProvider>();
             services.AddSidekickInitializableService<IInvariantModifierProvider, InvariantModifierProvider>();
             services.AddSidekickInitializableService<IModifierProvider, ModifierProvider>();

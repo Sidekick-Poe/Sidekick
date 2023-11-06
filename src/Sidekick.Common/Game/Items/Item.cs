@@ -24,6 +24,8 @@ namespace Sidekick.Common.Game.Items
 
         public ItemMetadata Metadata { get; init; }
 
+        public ItemMetadata Invariant { get; set; }
+
         public Header Header { get; init; }
 
         public Properties Properties { get; init; }

@@ -29,7 +29,7 @@ Right click this item then left click a rare item to apply it.
 Note: ~b/o 2 blessed
 ");
 
-            Assert.Equal(Class.StackableCurrency, actual.Metadata.Class);
+            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Chaos Orb", actual.Metadata.Type);
