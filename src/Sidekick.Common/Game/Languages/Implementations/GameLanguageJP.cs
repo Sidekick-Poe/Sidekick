@@ -21,27 +21,25 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionUnidentified => "未鑑定";
         public string DescriptionQuality => "品質";
         public string DescriptionAlternateQuality => "代替品質";
-        public string DescriptionIsRelic => "ユニークレリック";
+        public string DescriptionLevel => "レベル";
         public string DescriptionCorrupted => "コラプト状態";
-        public string DescriptionScourged => "スカージ";
         public string DescriptionSockets => "ソケット";
         public string DescriptionItemLevel => "アイテムレベル";
         public string DescriptionExperience => "経験値";
-        public string DescriptionMapTier => "マップティア";
-        public string DescriptionItemQuantity => "アイテム数量";
-        public string DescriptionItemRarity => "アイテムレアリティ";
-        public string DescriptionMonsterPackSize => "モンスターパックサイズ";
         public string DescriptionPhysicalDamage => "物理ダメージ";
         public string DescriptionElementalDamage => "元素ダメージ";
-        public string DescriptionAttacksPerSecond => "秒間アタック回数";
-        public string DescriptionCriticalStrikeChance => "クリティカル率";
         public string DescriptionEnergyShield => "エナジーシールド";
         public string DescriptionArmour => "アーマー";
         public string DescriptionEvasion => "回避力";
         public string DescriptionChanceToBlock => "ブロック率";
-        public string DescriptionLevel => "レベル";
+        public string DescriptionAttacksPerSecond => "秒間アタック回数";
+        public string DescriptionCriticalStrikeChance => "クリティカル率";
+        public string DescriptionMapTier => "マップティア";
+        public string DescriptionItemQuantity => "アイテム数量";
+        public string DescriptionItemRarity => "アイテムレアリティ";
+        public string DescriptionMonsterPackSize => "モンスターパックサイズ";
         public string DescriptionRequirements => "装備要求";
-        public string DescriptionAreaLevel => "__TranslationRequired__:";
+        public string DescriptionAreaLevel => "エリアレベル";
 
         public string AffixSuperior => "上質な";
         public string AffixBlighted => "ブライト";
@@ -50,21 +48,21 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string AffixDivergent => "相違の";
         public string AffixPhantasmal => "幻想の";
 
-        public string InfluenceShaper => "シェイパー";
-        public string InfluenceElder => "エルダー";
-        public string InfluenceCrusader => "クルセイダー";
-        public string InfluenceHunter => "ハンター";
-        public string InfluenceRedeemer => "レディーマー";
-        public string InfluenceWarlord => "ウォーロード";
+        public string InfluenceShaper => "シェイパーアイテム";
+        public string InfluenceElder => "エルダーアイテム";
+        public string InfluenceCrusader => "クルセイダーアイテム";
+        public string InfluenceHunter => "ハンターアイテム";
+        public string InfluenceRedeemer => "レディーマーアイテム";
+        public string InfluenceWarlord => "ウォーロードアイテム";
 
-        public ClassLanguage Classes { get; } = new ClassLanguage()
+        public ClassLanguage Classes { get; } = new()
         {
-            Prefix = "アイテムクラス: ",
+            Prefix = "アイテムクラス",
             DivinationCard = "占いカード",
             StackableCurrency = "スタック可能カレンシー",
             Jewel = "ジュエル",
             DelveStackableSocketableCurrency = "デルヴスタック可能ソケット可能カレンシー",
-            MetamorphSample = "メタモルフの臓器",
+            MetamorphSample = "メタモルフサンプル",
             HeistTool = "ハイストツール",
             Amulet = "アミュレット",
             Ring = "指輪",
@@ -78,19 +76,19 @@ namespace Sidekick.Common.Game.Languages.Implementations
             LifeFlasks = "ライフフラスコ",
             ManaFlasks = "マナフラスコ",
             HybridFlasks = "ハイブリッドフラスコ",
-            UtilityFlasks = "ユーティリティフラスコ ユニーク",
-            ActiveSkillGems = "アクティブスキルジェム",
-            SupportSkillGems = "サポートスキルジェム",
+            UtilityFlasks = "ユーティリティフラスコ",
+            ActiveSkillGems = "スキルジェム",
+            SupportSkillGems = "サポートジェム",
             Maps = "マップ",
             MapFragments = "マップの断片",
-            Contract = "ハイスト依頼書",
-            Blueprint = "ハイスト計画書",
+            Contract = "依頼書",
+            Blueprint = "計画書",
             MiscMapItems = "その他マップアイテム",
             Claws = "鉤爪",
             Daggers = "短剣",
             Wands = "ワンド",
             OneHandSwords = "片手剣",
-            ThrustingOneHandSwords = "刺突用片手剣",
+            ThrustingOneHandSwords = "刺突剣",
             OneHandAxes = "片手斧",
             OneHandMaces = "片手メイス",
             Bows = "弓",
@@ -104,13 +102,13 @@ namespace Sidekick.Common.Game.Languages.Implementations
             FishingRods = "釣り竿",
             HeistGear = "ハイストギア",
             HeistBrooch = "ハイストブローチ",
-            HeistTarget = "ハイスト目標",
+            HeistTarget = "ハイストターゲット",
             HeistCloak = "ハイストクローク",
             AbyssJewel = "アビスジュエル",
             Trinkets = "トリンケット",
             Logbooks = "エクスペディションログブック",
-            MemoryLine = "メモリーライン",
-            SanctumResearch = "",
+            MemoryLine = "記憶",
+            SanctumResearch = "サンクタム調査書",
         };
     }
 }
