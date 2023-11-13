@@ -23,12 +23,12 @@ namespace Sidekick.Apis.Poe.Parser
             this.data = data;
         }
 
-        private Regex Prefixes { get; set; } = null!;
+        private Regex Affixes { get; set; } = null!;
 
         /// <inheritdoc/>
         public InitializationPriority Priority => InitializationPriority.Medium;
 
-        private string GetLineWithoutPrefixes(string line) => Prefixes.Replace(line, string.Empty);
+        private string GetLineWithoutAffixes(string line) => Affixes.Replace(line, string.Empty).Trim(' ', ',');
 
         /// <inheritdoc/>
         public Task Initialize()
@@ -38,13 +38,25 @@ namespace Sidekick.Apis.Poe.Parser
                 throw new Exception("[Item Metadata] Could not find a valid language.");
             }
 
-            Prefixes = new Regex("^(?:" +
-                gameLanguageProvider.Language.PrefixSuperior + " |" +
-                gameLanguageProvider.Language.PrefixBlighted + " |" +
-                gameLanguageProvider.Language.PrefixBlightRavaged + " |" +
-                gameLanguageProvider.Language.PrefixAnomalous + " |" +
-                gameLanguageProvider.Language.PrefixDivergent + " |" +
-                gameLanguageProvider.Language.PrefixPhantasmal + " )");
+            var getRegexLine = (string input) =>
+            {
+                if (input.StartsWith('/'))
+                {
+                    input = input.Trim('/');
+                    return new Regex($"^{input} | {input}$");
+                }
+
+                input = Regex.Escape(input);
+                return new Regex($"^{input} | {input}$");
+            };
+
+            Affixes = new Regex("(?:" +
+                getRegexLine(gameLanguageProvider.Language.AffixSuperior) + "|" +
+                getRegexLine(gameLanguageProvider.Language.AffixBlighted) + "|" +
+                getRegexLine(gameLanguageProvider.Language.AffixBlightRavaged) + "|" +
+                getRegexLine(gameLanguageProvider.Language.AffixAnomalous) + "|" +
+                getRegexLine(gameLanguageProvider.Language.AffixDivergent) + "|" +
+                getRegexLine(gameLanguageProvider.Language.AffixPhantasmal) + ")");
 
             return Task.CompletedTask;
         }
@@ -113,7 +125,7 @@ namespace Sidekick.Apis.Poe.Parser
                 results.AddRange(itemData);
             }
             // Here we check without any prefixes
-            else if (!string.IsNullOrEmpty(name) && data.NameAndTypeDictionary.TryGetValue(GetLineWithoutPrefixes(name), out itemData))
+            else if (!string.IsNullOrEmpty(name) && data.NameAndTypeDictionary.TryGetValue(GetLineWithoutAffixes(name), out itemData))
             {
                 results.AddRange(itemData);
             }

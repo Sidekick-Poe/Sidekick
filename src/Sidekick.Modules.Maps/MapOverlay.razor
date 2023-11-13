@@ -15,8 +15,7 @@ else
         <ItemHeaderComponent Name="@Item.Header.Name"
                          Type="@Item.Header.Type"
                          Rarity="Item.Metadata.Rarity"
-                         Influences="Item.Influences"
-                         IsRelic="Item.Properties.IsRelic" />
+                         Influences="Item.Influences" />
 
         <MudText Typo="Typo.h1" Align="Align.Center" Color="@(DangerousMods.Any() ? Color.Error: Color.Success)" Class="d-flex justify-center align-center pa-4">
             <MudIcon Icon="@(DangerousMods.Any() ? Icons.Material.Filled.ThumbDown : Icons.Material.Filled.ThumbUp)" Size="Size.Large" Class="mr-2" />

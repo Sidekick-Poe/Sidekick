@@ -28,18 +28,18 @@ namespace Sidekick.Apis.Poe.Parser.AdditionalInformation
                 return false;
             }
 
-            var grants = ParseGrantTexts(item);
-            if (!grants.Any())
+            var grant = ParseGrantTexts(item);
+            if (grant == null)
             {
                 return false;
             }
 
             information = new ClusterJewelInformation()
             {
-                ItemLevel = item.Properties.ItemLevel,
                 SmallPassiveCount = smallPassiveCount,
-                GrantTexts = grants,
+                GrantText = grant,
             };
+
             return true;
         }
 
@@ -64,10 +64,8 @@ namespace Sidekick.Apis.Poe.Parser.AdditionalInformation
             return 0;
         }
 
-        public List<string> ParseGrantTexts(Item item)
+        public string? ParseGrantTexts(Item item)
         {
-            var grants = new List<string>();
-
             foreach (var modifierLine in item.ModifierLines)
             {
                 if (!modifierLine.OptionValue.HasValue)
@@ -79,12 +77,12 @@ namespace Sidekick.Apis.Poe.Parser.AdditionalInformation
                 {
                     if (modifier.Id == invariantModifierProvider.ClusterJewelSmallPassiveGrantModifierId)
                     {
-                        grants.Add(invariantModifierProvider.ClusterJewelSmallPassiveGrantOptions[modifierLine.OptionValue.Value]);
+                        return invariantModifierProvider.ClusterJewelSmallPassiveGrantOptions[modifierLine.OptionValue.Value].Replace("\n", ", ");
                     }
                 }
             }
 
-            return grants;
+            return null;
         }
     }
 }

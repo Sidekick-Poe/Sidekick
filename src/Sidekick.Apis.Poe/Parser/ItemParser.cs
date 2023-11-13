@@ -59,6 +59,11 @@ namespace Sidekick.Apis.Poe.Parser
                 }
 
                 parsingItem.Metadata = metadata;
+                ItemMetadata? invariant = null;
+                if (invariantMetadataProvider.IdDictionary.TryGetValue(metadata.Id, out var invariantMetadata))
+                {
+                    invariant = invariantMetadata;
+                }
 
                 // Order of parsing is important
                 ParseRequirements(parsingItem);
@@ -70,6 +75,7 @@ namespace Sidekick.Apis.Poe.Parser
                 var pseudoModifiers = ParsePseudoModifiers(modifierLines);
                 var item = new Item(
                     metadata: metadata,
+                    invariant: invariant,
                     header: header,
                     properties: properties,
                     influences: influences,
@@ -77,11 +83,6 @@ namespace Sidekick.Apis.Poe.Parser
                     modifierLines: modifierLines,
                     pseudoModifiers: pseudoModifiers,
                     text: parsingItem.Text);
-
-                if (invariantMetadataProvider.IdDictionary.TryGetValue(item.Metadata.Id, out var invariantMetadata))
-                {
-                    item.Invariant = invariantMetadata;
-                }
 
                 if (clusterJewelParser.TryParse(item, out var clusterInformation))
                 {
@@ -170,9 +171,7 @@ namespace Sidekick.Apis.Poe.Parser
             {
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
-                IsRelic = GetBool(patterns.IsRelic, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
-                Scourged = GetBool(patterns.Scourged, parsingItem),
 
                 Quality = GetInt(patterns.Quality, propertyBlock),
                 AttacksPerSecond = GetDouble(patterns.AttacksPerSecond, propertyBlock),
@@ -194,9 +193,7 @@ namespace Sidekick.Apis.Poe.Parser
             {
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
-                IsRelic = GetBool(patterns.IsRelic, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
-                Scourged = GetBool(patterns.Scourged, parsingItem),
 
                 Quality = GetInt(patterns.Quality, propertyBlock),
                 Armor = GetInt(patterns.Armor, propertyBlock),
@@ -212,9 +209,7 @@ namespace Sidekick.Apis.Poe.Parser
             {
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
-                IsRelic = GetBool(patterns.IsRelic, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
-                Scourged = GetBool(patterns.Scourged, parsingItem),
             };
         }
 
@@ -226,9 +221,7 @@ namespace Sidekick.Apis.Poe.Parser
             {
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
-                IsRelic = GetBool(patterns.IsRelic, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
-                Scourged = GetBool(patterns.Scourged, parsingItem),
                 Blighted = patterns.Blighted.IsMatch(parsingItem.Blocks[0].Lines[^1].Text),
                 BlightRavaged = patterns.BlightRavaged.IsMatch(parsingItem.Blocks[0].Lines[^1].Text),
 
@@ -247,11 +240,14 @@ namespace Sidekick.Apis.Poe.Parser
             return new Properties()
             {
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
-                Scourged = GetBool(patterns.Scourged, parsingItem),
 
                 GemLevel = GetInt(patterns.Level, propertyBlock),
                 Quality = GetInt(patterns.Quality, propertyBlock),
+
                 AlternateQuality = GetBool(patterns.AlternateQuality, parsingItem),
+                Anomalous = GetBool(patterns.Anomalous, parsingItem),
+                Divergent = GetBool(patterns.Divergent, parsingItem),
+                Phantasmal = GetBool(patterns.Phantasmal, parsingItem),
             };
         }
 
@@ -261,7 +257,6 @@ namespace Sidekick.Apis.Poe.Parser
             {
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
-                IsRelic = GetBool(patterns.IsRelic, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
             };
         }
@@ -272,7 +267,6 @@ namespace Sidekick.Apis.Poe.Parser
             {
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
-                IsRelic = GetBool(patterns.IsRelic, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
                 Quality = GetInt(patterns.Quality, parsingItem),
             };
@@ -424,7 +418,7 @@ namespace Sidekick.Apis.Poe.Parser
 
         private static bool TryParseValue(Regex pattern, ParsingItem parsingItem, out Match match)
         {
-            foreach (var block in parsingItem.Blocks.Where(x => !x.Parsed))
+            foreach (var block in parsingItem.Blocks)
             {
                 if (TryParseValue(pattern, block, out match))
                 {
@@ -438,7 +432,7 @@ namespace Sidekick.Apis.Poe.Parser
 
         private static bool TryParseValue(Regex pattern, ParsingBlock block, out Match match)
         {
-            foreach (var line in block.Lines.Where(x => !x.Parsed))
+            foreach (var line in block.Lines)
             {
                 match = pattern.Match(line.Text);
                 if (match.Success)

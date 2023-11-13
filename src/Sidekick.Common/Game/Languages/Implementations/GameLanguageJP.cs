@@ -43,12 +43,12 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionRequirements => "装備要求";
         public string DescriptionAreaLevel => "__TranslationRequired__:";
 
-        public string PrefixSuperior => "上質な";
-        public string PrefixBlighted => "ブライト";
-        public string PrefixBlightRavaged => "ブライトに破壊された";
-        public string PrefixAnomalous => "異常な";
-        public string PrefixDivergent => "相違の";
-        public string PrefixPhantasmal => "幻想の";
+        public string AffixSuperior => "上質な";
+        public string AffixBlighted => "ブライト";
+        public string AffixBlightRavaged => "ブライトに破壊された";
+        public string AffixAnomalous => "異常な";
+        public string AffixDivergent => "相違の";
+        public string AffixPhantasmal => "幻想の";
 
         public string InfluenceShaper => "シェイパー";
         public string InfluenceElder => "エルダー";
@@ -79,7 +79,6 @@ namespace Sidekick.Common.Game.Languages.Implementations
             ManaFlasks = "マナフラスコ",
             HybridFlasks = "ハイブリッドフラスコ",
             UtilityFlasks = "ユーティリティフラスコ ユニーク",
-            CriticalUtilityFlasks = "クリティカルユーティリティフラスコ ユニーク",
             ActiveSkillGems = "アクティブスキルジェム",
             SupportSkillGems = "サポートスキルジェム",
             Maps = "マップ",
@@ -110,8 +109,8 @@ namespace Sidekick.Common.Game.Languages.Implementations
             AbyssJewel = "アビスジュエル",
             Trinkets = "トリンケット",
             Logbooks = "エクスペディションログブック",
-            Sentinel = "センチネル",
-            MemoryLine = "メモリーライン"
+            MemoryLine = "メモリーライン",
+            SanctumResearch = "",
         };
     }
 }

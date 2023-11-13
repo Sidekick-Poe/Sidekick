@@ -13,7 +13,7 @@ namespace Sidekick.Common.Game.Items
         {
             if (!string.IsNullOrEmpty(Type) && !string.IsNullOrEmpty(Name))
             {
-                return $"{Type}_{Name}";
+                return $"{Type} - {Name}";
             }
 
             if (!string.IsNullOrEmpty(Type))
@@ -22,24 +22,6 @@ namespace Sidekick.Common.Game.Items
             }
 
             return Name;
-        }
-
-        public static Header Parse(string value)
-        {
-            if (value.Contains("_"))
-            {
-                var split = value.Split("_");
-                return new Header()
-                {
-                    Name = split[1],
-                    Type = split[0],
-                };
-            }
-
-            return new Header()
-            {
-                Name = value,
-            };
         }
     }
 }

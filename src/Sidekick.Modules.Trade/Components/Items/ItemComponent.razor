@@ -5,8 +5,7 @@
         <ItemHeaderComponent Name="@Item.Header.Name"
                          Type="@Item.Header.Type"
                          Influences="Item.Influences"
-                         Rarity="Item.Metadata.Rarity"
-                         IsRelic="Item.Properties.IsRelic" />
+                         Rarity="Item.Metadata.Rarity" />
 
         <MudGrid Spacing="0" Class="py-2 px-4">
             <MudItem xs="9">
@@ -38,13 +37,6 @@
                         <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Corrupted</MudText>
                     </div>
                 }
-                @if (Item.Properties.Scourged)
-                {
-                    <ItemSeparator Rarity="Item.Metadata.Rarity" />
-                    <div class="scourge-text">
-                        <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Scourged</MudText>
-                    </div>
-                }
                 @if (!string.IsNullOrEmpty(Item.Price.Note))
                 {
                     <ItemSeparator Rarity="Item.Metadata.Rarity" />
@@ -68,9 +60,7 @@
     {
         <MudGrid Spacing="0" Class="align-start">
             <MudItem xs="9">
-                <ItemHeaderBackground Rarity="Item.Metadata.Rarity"
-                                  IsRelic="Item.Properties.IsRelic"
-                                  Double="false">
+                <ItemHeaderBackground Rarity="Item.Metadata.Rarity" Double="false">
                     <div class="influences left">
                         <ItemInfluencesComponent Influences="Item.Influences" />
                     </div>

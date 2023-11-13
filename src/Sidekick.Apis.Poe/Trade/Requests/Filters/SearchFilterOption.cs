@@ -15,5 +15,12 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
         }
 
         public string Option { get; set; }
+
+        internal class AlternateGemQualityOptions
+        {
+            public const string Anomalous = "1";
+            public const string Divergent = "2";
+            public const string Phantasmal = "3";
+        }
     }
 }

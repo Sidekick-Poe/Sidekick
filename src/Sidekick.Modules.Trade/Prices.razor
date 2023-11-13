@@ -14,9 +14,7 @@ else
         <CascadingValue Value="Filters" IsFixed="true">
             @if (Filters != null)
             {
-                <FiltersComponent Type="@Item.Invariant.Type"
-                Name="@Item.Invariant.Name"
-                                  OnSearch="UpdateQuery" />
+                <FiltersComponent OnSearch="UpdateQuery" />
             }
 
             <div class="ml-0">

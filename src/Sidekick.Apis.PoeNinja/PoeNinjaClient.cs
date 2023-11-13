@@ -60,7 +60,7 @@ namespace Sidekick.Apis.PoeNinja
             Category category,
             int? gemLevel = null,
             int? mapTier = null,
-            bool? isRelic = null,
+            bool? isRelic = false,
             int? numberOfLinks = null)
         {
             await ClearCacheIfExpired();
@@ -94,9 +94,7 @@ namespace Sidekick.Apis.PoeNinja
         }
 
         public async Task<NinjaPrice?> GetClusterPrice(
-            string englishName,
-            string englishType,
-            List<string> englishGrantTexts,
+            string englishGrantText,
             int passiveCount,
             int itemLevel)
         {
@@ -113,7 +111,7 @@ namespace Sidekick.Apis.PoeNinja
             var prices = await GetPrices(Category.Jewel);
 
             var query = prices
-                .Where(x => x.Name == englishName || x.Name == englishType)
+                .Where(x => x.Name == englishGrantText)
                 .Where(x => x.ItemLevel == normalizedItemLevel)
                 .Where(x => x.SmallPassiveCount == passiveCount);
 
@@ -203,15 +201,6 @@ namespace Sidekick.Apis.PoeNinja
                 ItemType.Fragment => await FetchCurrencies(itemType),
                 _ => await FetchItems(itemType),
             };
-
-            items = items
-                .GroupBy(x => (x.Name,
-                               x.Corrupted,
-                               x.MapTier,
-                               x.GemLevel,
-                               x.Links))
-                .Select(x => x.OrderBy(x => x.Price).First())
-                .ToList();
 
             if (items.Any())
             {

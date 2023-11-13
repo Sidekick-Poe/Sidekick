@@ -68,9 +68,7 @@ namespace Sidekick.Apis.Poe.Trade
                 {
                     request.Query.Name = item.Metadata.Name;
                     request.Query.Type = item.Metadata.Type;
-
-                    var rarity = item.Properties.IsRelic ? "uniquefoil" : "Unique";
-                    request.Query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption(rarity);
+                    request.Query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("Unique");
                 }
                 else
                 {
@@ -83,9 +81,19 @@ namespace Sidekick.Apis.Poe.Trade
                 SetPseudoModifierFilters(request.Query.Stats, pseudoFilters);
                 SetSocketFilters(item, request.Query.Filters);
 
-                if (item.Properties.AlternateQuality)
+                if (item.Properties.Anomalous)
                 {
-                    request.Query.Term = item.Header.Name;
+                    request.Query.Filters.MiscFilters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Anomalous);
+                }
+
+                if (item.Properties.Divergent)
+                {
+                    request.Query.Filters.MiscFilters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Divergent);
+                }
+
+                if (item.Properties.Phantasmal)
+                {
+                    request.Query.Filters.MiscFilters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Phantasmal);
                 }
 
                 var uri = new Uri($"{gameLanguageProvider.Language.PoeTradeApiBaseUrl}search/{settings.LeagueId}");
@@ -529,8 +537,6 @@ namespace Sidekick.Apis.Poe.Trade
             {
                 ItemLevel = result.Item?.ItemLevel ?? 0,
                 Corrupted = result.Item?.Corrupted ?? false,
-                Scourged = result.Item?.Scourged.Tier != 0,
-                IsRelic = result.Item?.IsRelic ?? false,
                 Identified = result.Item?.Identified ?? false,
                 Armor = result.Item?.Extended?.ArmourAtMax ?? 0,
                 EnergyShield = result.Item?.Extended?.EnergyShieldAtMax ?? 0,

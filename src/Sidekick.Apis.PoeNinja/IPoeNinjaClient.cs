@@ -11,13 +11,11 @@ namespace Sidekick.Apis.PoeNinja
             Category category,
             int? gemLevel = null,
             int? mapTier = null,
-            bool? isRelic = null,
+            bool? isRelic = false,
             int? numberOfLinks = null);
 
         Task<NinjaPrice?> GetClusterPrice(
-            string englishName,
-            string englishType,
-            List<string> englishGrantTexts,
+            string englishGrantText,
             int passiveCount,
             int itemLevel);
 

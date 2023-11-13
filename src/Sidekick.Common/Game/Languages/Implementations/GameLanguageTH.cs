@@ -43,12 +43,12 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionRequirements => "__TranslationRequired__:";
         public string DescriptionAreaLevel => "__TranslationRequired__:";
 
-        public string PrefixSuperior => "Superior";
-        public string PrefixBlighted => "Blighted";
-        public string PrefixBlightRavaged => "Blight-ravaged";
-        public string PrefixAnomalous => "Anomalous";
-        public string PrefixDivergent => "Divergent";
-        public string PrefixPhantasmal => "Phantasmal";
+        public string AffixSuperior => "Superior";
+        public string AffixBlighted => "Blighted";
+        public string AffixBlightRavaged => "Blight-ravaged";
+        public string AffixAnomalous => "Anomalous";
+        public string AffixDivergent => "Divergent";
+        public string AffixPhantasmal => "Phantasmal";
 
         public string InfluenceShaper => "เชปเปอร์";
         public string InfluenceElder => "เอลเดอร์";
@@ -57,6 +57,60 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string InfluenceRedeemer => "รีดีมเมอร์";
         public string InfluenceWarlord => "วอร์หลอด";
 
-        public ClassLanguage? Classes => null;
+        public ClassLanguage? Classes => new()
+        {
+            Prefix = "___",
+            DivinationCard = "___",
+            StackableCurrency = "___",
+            Jewel = "___",
+            DelveStackableSocketableCurrency = "___",
+            MetamorphSample = "___",
+            HeistTool = "___",
+            Amulet = "___",
+            Ring = "___",
+            Belt = "___",
+            Gloves = "___",
+            Boots = "___",
+            BodyArmours = "___",
+            Helmets = "___",
+            Shields = "___",
+            Quivers = "___",
+            LifeFlasks = "___",
+            ManaFlasks = "___",
+            HybridFlasks = "___",
+            UtilityFlasks = "___",
+            ActiveSkillGems = "___",
+            SupportSkillGems = "___",
+            Maps = "___",
+            MapFragments = "___",
+            Contract = "___",
+            Blueprint = "___",
+            MiscMapItems = "___",
+            Claws = "___",
+            Daggers = "___",
+            Wands = "___",
+            OneHandSwords = "___",
+            ThrustingOneHandSwords = "___",
+            OneHandAxes = "___",
+            OneHandMaces = "___",
+            Bows = "___",
+            Staves = "___",
+            TwoHandSwords = "___",
+            TwoHandAxes = "___",
+            TwoHandMaces = "___",
+            Sceptres = "___",
+            RuneDaggers = "___",
+            Warstaves = "___",
+            FishingRods = "___",
+            HeistGear = "___",
+            HeistBrooch = "___",
+            HeistTarget = "___",
+            HeistCloak = "___",
+            AbyssJewel = "___",
+            Trinkets = "___",
+            Logbooks = "___",
+            MemoryLine = "___",
+            SanctumResearch = "___",
+        };
     }
 }
