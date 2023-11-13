@@ -14,8 +14,12 @@
     <div class="flex-grow-1" style="overflow-y:auto;">
         @if (Item != null)
         {
-            <PriceNinjaComponent />
-            <PricePredictionComponent />
+            <ComponentErrorBoundary>
+                <PriceNinjaComponent />
+            </ComponentErrorBoundary>
+            <ComponentErrorBoundary>
+                <PricePredictionComponent />
+            </ComponentErrorBoundary>
         }
 
         <ClassFilter @bind-Value="Filters.PropertyFilters.Class" Item="Item" />

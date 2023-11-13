@@ -1,0 +1,40 @@
+@using Sidekick.Common.Blazor.Layouts;
+
+<SidekickErrorBoundary @ref="Boundary">
+    <ChildContent>
+        @ChildContent
+    </ChildContent>
+    <ErrorContent>
+        <div class="component-error">
+            <div class="content">
+                <MudText Typo="Typo.caption">
+                    @ErrorMessage
+                </MudText>
+            </div>
+        </div>
+    </ErrorContent>
+</SidekickErrorBoundary>
+
+@inject IJSRuntime JSRuntime;
+@code {
+    /// <summary>
+    /// Gets or sets the content of the wrapper.
+    /// </summary>
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = null!;
+
+    [Parameter]
+    public string ErrorMessage { get; set; } = "An error has occurred.";
+
+    private SidekickErrorBoundary? Boundary { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (Boundary?.CurrentException != null)
+        {
+            await JSRuntime.InvokeVoidAsync("console.error", Boundary.CurrentException.ToString());
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}
