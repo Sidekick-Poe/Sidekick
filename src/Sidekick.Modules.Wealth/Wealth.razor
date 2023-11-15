@@ -1,9 +1,18 @@
 @page "/wealth"
 @inherits SidekickView
 @using Sidekick.Modules.Wealth.Components
-@if (!Settings.Enable_WealthTracker){
-    <MudAlert Severity="Severity.Warning" Elevation="5">Wealth Tracker is an experimental feature and requires special privileges. Please enabled Wealth Tracker from the Settings screen.</MudAlert>
-} else {
+
+@if (!Settings.Enable_WealthTracker)
+{
+    <MudAlert Severity="Severity.Warning" Elevation="5">
+        Wealth Tracker is an experimental feature and requires special privileges. To use the Wealth Tracker feature, you must enable it in the settings first.
+        <div class="d-flex justify-center mt-3">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Href="/settings/wealth">Open Settings</MudButton>
+        </div>
+    </MudAlert>
+}
+else
+{
     <div class="d-flex flex-grow-1 gap-4">
         <MudPaper Class="flex-none d-flex py-8" Elevation="0" Width="650px" Height="1px;">
             <MudCard Width="100%" Height="800px">
@@ -12,13 +21,19 @@
                     <WealthInventory />
                 </MudCardContent>
                 <MudCardActions>
-                    @if (AuthenticationService.IsAuthenticated()) {
-                        if (WealthParser.IsRunning()) {
+                    @if (AuthenticationService.IsAuthenticated())
+                    {
+                        if (WealthParser.IsRunning())
+                        {
                             <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Success">Parser Running</MudAlert>
-                        } else {
+                        }
+                        else
+                        {
                             <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Error">Parser Stopped</MudAlert>
                         }
-                    } else {
+                    }
+                    else
+                    {
                         <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Error">Not Authenticated</MudAlert>
                     }
                 </MudCardActions>
@@ -38,7 +53,7 @@
         </MudPaper>
     </div>
 }
-       
+
 @code {
     [Inject] private WealthResources Resources { get; set; }
     [Inject] private ILogger<Wealth> Logger { get; set; }
