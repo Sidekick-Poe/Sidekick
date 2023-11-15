@@ -28,7 +28,7 @@ Shift click to unstack.
 Note: ~price 1 alch
 ");
 
-            Assert.Equal(Class.StackableCurrency, actual.Metadata.Class);
+            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Ritual Splinter", actual.Metadata.Type);
@@ -50,7 +50,7 @@ Right-click this item then left-click a Ritual Altar to store the monsters from 
 Note: ~price 8 chaos
 ");
 
-            Assert.Equal(Class.StackableCurrency, actual.Metadata.Class);
+            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Ritual Vessel", actual.Metadata.Type);

@@ -30,7 +30,7 @@ Can be used in a personal Map Device to add modifiers to a Map.
 Note: ~b/o .50 chaos
 ");
 
-            Assert.Equal(Class.MapFragments, actual.Metadata.Class);
+            Assert.Equal(Class.MapFragments, actual.Header.Class);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
             Assert.Equal(Category.Map, actual.Metadata.Category);
             Assert.Equal("Rusted Reliquary Scarab", actual.Metadata.Type);

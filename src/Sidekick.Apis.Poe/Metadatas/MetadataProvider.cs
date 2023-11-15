@@ -7,12 +7,12 @@ using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Metadatas
 {
-    public class ItemMetadataProvider : IItemMetadataProvider
+    public class MetadataProvider : IMetadataProvider
     {
         private readonly ICacheProvider cacheProvider;
         private readonly IPoeTradeClient poeTradeClient;
 
-        public ItemMetadataProvider(
+        public MetadataProvider(
             ICacheProvider cacheProvider,
             IPoeTradeClient poeTradeClient)
         {
@@ -33,7 +33,7 @@ namespace Sidekick.Apis.Poe.Metadatas
             NameAndTypeRegex.Clear();
 
             var result = await cacheProvider.GetOrSet(
-                "ItemMetadataProvider",
+                "Metadata",
                 () => poeTradeClient.Fetch<ApiCategory>("data/items"));
 
             FillPattern(result.Result[0].Entries, Category.Accessory, useRegex: true);
@@ -57,10 +57,13 @@ namespace Sidekick.Apis.Poe.Metadatas
 
         private void FillPattern(List<ApiItem> items, Category category, bool useRegex = false)
         {
-            foreach (var item in items)
+            for (var i = 0; i < items.Count; i++)
             {
+                var item = items[i];
+
                 var header = new ItemMetadata()
                 {
+                    Id = $"{category}.{i}",
                     Name = item.Name,
                     Type = item.Type,
                     Rarity = GetRarityForCategory(category, item),
@@ -96,6 +99,7 @@ namespace Sidekick.Apis.Poe.Metadatas
                 dictionaryEntry = new List<ItemMetadata>();
                 NameAndTypeDictionary.Add(key, dictionaryEntry);
             }
+
             dictionaryEntry.Add(metadata);
         }
 

@@ -239,7 +239,7 @@ And tore out her heart.
 Note: ~price 40 chaos
 ");
 
-            Assert.Equal(Class.FishingRods, actual.Metadata.Class);
+            Assert.Equal(Class.FishingRods, actual.Header.Class);
             Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
             Assert.Equal(Category.Weapon, actual.Metadata.Category);
             Assert.Equal("Reefbane", actual.Metadata.Name);
@@ -272,7 +272,7 @@ Unidentified
 --------
 Hunter Item");
 
-            Assert.Equal(Class.OneHandMaces, actual.Metadata.Class);
+            Assert.Equal(Class.OneHandMaces, actual.Header.Class);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal(Category.Weapon, actual.Metadata.Category);
             Assert.Equal("Ornate Mace", actual.Metadata.Type);

@@ -42,7 +42,7 @@ Triggers Level 20 Death Walk when Equipped
 Even the dead serve the Lightless.
 ");
 
-            Assert.Equal(Class.Boots, actual.Metadata.Class);
+            Assert.Equal(Class.Boots, actual.Header.Class);
             Assert.Equal(Category.Armour, actual.Metadata.Category);
             Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
             Assert.Equal("Bubonic Trail", actual.Metadata.Name);
@@ -76,7 +76,7 @@ Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the
 Note: ~price 1 alch
 ");
 
-            Assert.Equal(Class.AbyssJewel, actual.Metadata.Class);
+            Assert.Equal(Class.AbyssJewel, actual.Header.Class);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal(Category.Jewel, actual.Metadata.Category);
             Assert.Equal("Hypnotic Eye Jewel", actual.Metadata.Type);

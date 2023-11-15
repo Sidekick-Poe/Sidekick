@@ -4,6 +4,7 @@ namespace Sidekick.Common.Game.Items
     {
         public Item(
             ItemMetadata metadata,
+            ItemMetadata? invariant,
             Header header,
             Properties properties,
             Influences influences,
@@ -13,6 +14,7 @@ namespace Sidekick.Common.Game.Items
             string text)
         {
             Metadata = metadata;
+            Invariant = invariant;
             Header = header;
             Properties = properties;
             Influences = influences;
@@ -23,6 +25,8 @@ namespace Sidekick.Common.Game.Items
         }
 
         public ItemMetadata Metadata { get; init; }
+
+        public ItemMetadata? Invariant { get; set; }
 
         public Header Header { get; init; }
 
@@ -37,6 +41,8 @@ namespace Sidekick.Common.Game.Items
         public List<PseudoModifier> PseudoModifiers { get; init; }
 
         public string Text { get; set; }
+
+        public object? AdditionalInformation { get; set; }
 
         /// <inheritdoc/>
         public override string? ToString()

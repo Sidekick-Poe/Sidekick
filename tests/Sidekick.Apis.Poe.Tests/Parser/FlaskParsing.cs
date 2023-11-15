@@ -36,7 +36,7 @@ Grants Immunity to Corrupted Blood for 4 seconds if used while affected by Corru
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ");
 
-            Assert.Equal(Class.ManaFlasks, actual.Metadata.Class);
+            Assert.Equal(Class.ManaFlasks, actual.Header.Class);
             Assert.Equal(Category.Flask, actual.Metadata.Category);
             Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
             Assert.Equal("Sanctified Mana Flask", actual.Metadata.Type);
@@ -63,7 +63,7 @@ Item Level: 42
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ");
 
-            Assert.Equal(Class.LifeFlasks, actual.Metadata.Class);
+            Assert.Equal(Class.LifeFlasks, actual.Header.Class);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
             Assert.Equal(Category.Flask, actual.Metadata.Category);
             Assert.Equal("Hallowed Life Flask", actual.Metadata.Type);
@@ -90,7 +90,7 @@ Item Level: 76
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ");
 
-            Assert.Equal(Class.HybridFlasks, actual.Metadata.Class);
+            Assert.Equal(Class.HybridFlasks, actual.Header.Class);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
             Assert.Equal(Category.Flask, actual.Metadata.Category);
             Assert.Equal("Sacred Hybrid Flask", actual.Metadata.Type);

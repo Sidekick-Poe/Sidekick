@@ -38,7 +38,7 @@ Shift click to unstack.
 Note: ~price 1 fusing
 ");
 
-            Assert.Equal(Class.StackableCurrency, actual.Metadata.Class);
+            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Weeping Essence of Anger", actual.Metadata.Type);

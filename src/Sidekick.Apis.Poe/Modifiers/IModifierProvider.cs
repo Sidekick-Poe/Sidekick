@@ -1,4 +1,4 @@
-using Sidekick.Apis.Poe.Parser;
+using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Initialization;
 
@@ -13,13 +13,10 @@ namespace Sidekick.Apis.Poe.Modifiers
         /// <returns>The modifier category.</returns>
         ModifierCategory GetModifierCategory(string apiId);
 
-        /// <summary>
-        /// Parses the modifiers from the parsing item and returns a list of modifier lines.
-        /// </summary>
-        /// <param name="parsingItem">The item currently being parsed.</param>
-        /// <returns>The list of modifier lines. Each line may contain one or more modifiers which the user will then have to pick.</returns>
-        List<ModifierLine> Parse(ParsingItem parsingItem);
-
         bool IsMatch(string id, string text);
+
+        Dictionary<ModifierCategory, List<ModifierPattern>> Patterns { get; }
+
+        Dictionary<string, List<ModifierPattern>> FuzzyDictionary { get; }
     }
 }

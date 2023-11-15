@@ -38,8 +38,7 @@
 
     private void PriceCheck()
     {
-        var originalItem = ItemParser.ParseHeader(ItemText);
-        NavigationManager.NavigateTo($"/trade/{originalItem}/{ItemText.EncodeBase64Url()}");
+        NavigationManager.NavigateTo($"/trade/{ItemText.EncodeBase64Url()}");
     }
 
     private void MapCheck()

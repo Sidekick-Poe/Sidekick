@@ -99,7 +99,7 @@ Item Level: 85
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-            Assert.Equal(Class.Jewel, actual.Metadata.Class);
+            Assert.Equal(Class.Jewel, actual.Header.Class);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal(Category.Jewel, actual.Metadata.Category);
             Assert.Equal("Viridian Jewel", actual.Metadata.Type);

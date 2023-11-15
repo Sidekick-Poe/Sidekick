@@ -2,59 +2,57 @@ namespace Sidekick.Common.Game.Languages
 {
     public class ClassLanguage
     {
-        public string? Prefix { get; init; }
-        public string? DivinationCard { get; init; }
-        public string? StackableCurrency { get; init; }
-        public string? Jewel { get; init; }
-        public string? DelveStackableSocketableCurrency { get; init; }
-        public string? MetamorphSample { get; init; }
-        public string? HeistTool { get; init; }
-        public string? Amulet { get; init; }
-        public string? Ring { get; init; }
-        public string? Belt { get; init; }
-        public string? Gloves { get; init; }
-        public string? Boots { get; init; }
-        public string? BodyArmours { get; init; }
-        public string? Helmets { get; init; }
-        public string? Shields { get; init; }
-        public string? Quivers { get; init; }
-        public string? LifeFlasks { get; init; }
-        public string? ManaFlasks { get; init; }
-        public string? HybridFlasks { get; init; }
-        public string? UtilityFlasks { get; init; }
-        public string? CriticalUtilityFlasks { get; init; }
-        public string? ActiveSkillGems { get; init; }
-        public string? SupportSkillGems { get; init; }
-        public string? Maps { get; init; }
-        public string? MapFragments { get; init; }
-        public string? Contract { get; init; }
-        public string? Blueprint { get; init; }
-        public string? MiscMapItems { get; init; }
-        public string? Claws { get; init; }
-        public string? Daggers { get; init; }
-        public string? Wands { get; init; }
-        public string? OneHandSwords { get; init; }
-        public string? ThrustingOneHandSwords { get; init; }
-        public string? OneHandAxes { get; init; }
-        public string? OneHandMaces { get; init; }
-        public string? Bows { get; init; }
-        public string? Staves { get; init; }
-        public string? TwoHandSwords { get; init; }
-        public string? TwoHandAxes { get; init; }
-        public string? TwoHandMaces { get; init; }
-        public string? Sceptres { get; init; }
-        public string? RuneDaggers { get; init; }
-        public string? Warstaves { get; init; }
-        public string? FishingRods { get; init; }
-        public string? HeistGear { get; init; }
-        public string? HeistBrooch { get; init; }
-        public string? HeistTarget { get; init; }
-        public string? HeistCloak { get; init; }
-        public string? AbyssJewel { get; init; }
-        public string? Trinkets { get; init; }
-        public string? Logbooks { get; init; }
-        public string? Sentinel { get; init; }
-        public string? MemoryLine { get; init; }
-        public string? SanctumResearch { get; init; }
+        public required string Prefix { get; init; }
+        public required string DivinationCard { get; init; }
+        public required string StackableCurrency { get; init; }
+        public required string Jewel { get; init; }
+        public required string DelveStackableSocketableCurrency { get; init; }
+        public required string MetamorphSample { get; init; }
+        public required string HeistTool { get; init; }
+        public required string Amulet { get; init; }
+        public required string Ring { get; init; }
+        public required string Belt { get; init; }
+        public required string Gloves { get; init; }
+        public required string Boots { get; init; }
+        public required string BodyArmours { get; init; }
+        public required string Helmets { get; init; }
+        public required string Shields { get; init; }
+        public required string Quivers { get; init; }
+        public required string LifeFlasks { get; init; }
+        public required string ManaFlasks { get; init; }
+        public required string HybridFlasks { get; init; }
+        public required string UtilityFlasks { get; init; }
+        public required string ActiveSkillGems { get; init; }
+        public required string SupportSkillGems { get; init; }
+        public required string Maps { get; init; }
+        public required string MapFragments { get; init; }
+        public required string Contract { get; init; }
+        public required string Blueprint { get; init; }
+        public required string MiscMapItems { get; init; }
+        public required string Claws { get; init; }
+        public required string Daggers { get; init; }
+        public required string Wands { get; init; }
+        public required string OneHandSwords { get; init; }
+        public required string ThrustingOneHandSwords { get; init; }
+        public required string OneHandAxes { get; init; }
+        public required string OneHandMaces { get; init; }
+        public required string Bows { get; init; }
+        public required string Staves { get; init; }
+        public required string TwoHandSwords { get; init; }
+        public required string TwoHandAxes { get; init; }
+        public required string TwoHandMaces { get; init; }
+        public required string Sceptres { get; init; }
+        public required string RuneDaggers { get; init; }
+        public required string Warstaves { get; init; }
+        public required string FishingRods { get; init; }
+        public required string HeistGear { get; init; }
+        public required string HeistBrooch { get; init; }
+        public required string HeistTarget { get; init; }
+        public required string HeistCloak { get; init; }
+        public required string AbyssJewel { get; init; }
+        public required string Trinkets { get; init; }
+        public required string Logbooks { get; init; }
+        public required string MemoryLine { get; init; }
+        public required string SanctumResearch { get; init; }
     }
 }

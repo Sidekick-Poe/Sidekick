@@ -13,7 +13,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
             List<ModifierLine> modifierLines,
             List<PseudoModifier> pseudoModifiers,
             string text)
-            : base(metadata, original, properties, influences, sockets, modifierLines, pseudoModifiers, text)
+            : base(metadata, null, original, properties, influences, sockets, modifierLines, pseudoModifiers, text)
         {
         }
 

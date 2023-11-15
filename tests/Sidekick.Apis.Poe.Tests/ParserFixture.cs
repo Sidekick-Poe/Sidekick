@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Bunit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
@@ -15,6 +16,8 @@ namespace Sidekick.Apis.Poe.Tests
 {
     public class ParserFixture : IAsyncLifetime
     {
+        public IInvariantModifierProvider InvariantModifierProvider { get; private set; }
+
         public IItemParser Parser { get; private set; }
 
         public Task DisposeAsync()
@@ -56,6 +59,7 @@ namespace Sidekick.Apis.Poe.Tests
             await initComponent.Instance.InitializationTask;
 
             Parser = ctx.Services.GetRequiredService<IItemParser>();
+            InvariantModifierProvider = ctx.Services.GetRequiredService<IInvariantModifierProvider>();
         }
     }
 }

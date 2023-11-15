@@ -20,9 +20,7 @@ namespace Sidekick.Common.Game.Languages
         string DescriptionUnidentified { get; }
         string DescriptionQuality { get; }
         string DescriptionAlternateQuality { get; }
-        string DescriptionIsRelic { get; }
         string DescriptionCorrupted { get; }
-        string DescriptionScourged { get; }
         string DescriptionSockets { get; }
         string DescriptionItemLevel { get; }
         string DescriptionMapTier { get; }
@@ -42,12 +40,12 @@ namespace Sidekick.Common.Game.Languages
         string DescriptionLevel { get; }
         string DescriptionRequirements { get; }
 
-        string PrefixSuperior { get; }
-        string PrefixBlighted { get; }
-        string PrefixBlightRavaged { get; }
-        string PrefixAnomalous { get; }
-        string PrefixDivergent { get; }
-        string PrefixPhantasmal { get; }
+        string AffixSuperior { get; }
+        string AffixBlighted { get; }
+        string AffixBlightRavaged { get; }
+        string AffixAnomalous { get; }
+        string AffixDivergent { get; }
+        string AffixPhantasmal { get; }
 
         string InfluenceShaper { get; }
         string InfluenceElder { get; }

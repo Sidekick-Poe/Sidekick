@@ -12,9 +12,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         Regex Blighted { get; }
         Regex BlightRavaged { get; }
         Regex ChanceToBlock { get; }
-        Regex IsRelic { get; }
         Regex Corrupted { get; }
-        Regex Scourged { get; }
         Regex CriticalStrikeChance { get; }
         Regex Crusader { get; }
         Regex Elder { get; }
@@ -38,6 +36,9 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         Regex Socket { get; }
         Regex Unidentified { get; }
         Regex Warlord { get; }
+        Regex Anomalous { get; }
+        Regex Divergent { get; }
+        Regex Phantasmal { get; }
 
         Dictionary<Class, Regex> Classes { get; }
     }

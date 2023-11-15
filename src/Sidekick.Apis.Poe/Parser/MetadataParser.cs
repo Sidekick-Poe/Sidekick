@@ -1,34 +1,34 @@
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Parser;
+using Sidekick.Apis.Poe.Metadatas;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 
-namespace Sidekick.Apis.Poe.Metadatas
+namespace Sidekick.Apis.Poe.Parser
 {
-    public class ItemMetadataParser : IItemMetadataParser
+    public class MetadataParser : IItemMetadataParser
     {
         private readonly IGameLanguageProvider gameLanguageProvider;
         private readonly IParserPatterns parserPatterns;
-        private readonly IItemMetadataProvider data;
+        private readonly IMetadataProvider data;
 
-        public ItemMetadataParser(
+        public MetadataParser(
             IGameLanguageProvider gameLanguageProvider,
             IParserPatterns parserPatterns,
-            IItemMetadataProvider data)
+            IMetadataProvider data)
         {
             this.gameLanguageProvider = gameLanguageProvider;
             this.parserPatterns = parserPatterns;
             this.data = data;
         }
 
-        private Regex Prefixes { get; set; } = null!;
+        private Regex Affixes { get; set; } = null!;
 
         /// <inheritdoc/>
         public InitializationPriority Priority => InitializationPriority.Medium;
 
-        private string GetLineWithoutPrefixes(string line) => Prefixes.Replace(line, string.Empty);
+        private string GetLineWithoutAffixes(string line) => Affixes.Replace(line, string.Empty).Trim(' ', ',');
 
         /// <inheritdoc/>
         public Task Initialize()
@@ -38,13 +38,25 @@ namespace Sidekick.Apis.Poe.Metadatas
                 throw new Exception("[Item Metadata] Could not find a valid language.");
             }
 
-            Prefixes = new Regex("^(?:" +
-                gameLanguageProvider.Language.PrefixSuperior + " |" +
-                gameLanguageProvider.Language.PrefixBlighted + " |" +
-                gameLanguageProvider.Language.PrefixBlightRavaged + " |" +
-                gameLanguageProvider.Language.PrefixAnomalous + " |" +
-                gameLanguageProvider.Language.PrefixDivergent + " |" +
-                gameLanguageProvider.Language.PrefixPhantasmal + " )");
+            var getRegexLine = (string input) =>
+            {
+                if (input.StartsWith('/'))
+                {
+                    input = input.Trim('/');
+                    return new Regex($"^{input} | {input}$");
+                }
+
+                input = Regex.Escape(input);
+                return new Regex($"^{input} | {input}$");
+            };
+
+            Affixes = new Regex("(?:" +
+                getRegexLine(gameLanguageProvider.Language.AffixSuperior) + "|" +
+                getRegexLine(gameLanguageProvider.Language.AffixBlighted) + "|" +
+                getRegexLine(gameLanguageProvider.Language.AffixBlightRavaged) + "|" +
+                getRegexLine(gameLanguageProvider.Language.AffixAnomalous) + "|" +
+                getRegexLine(gameLanguageProvider.Language.AffixDivergent) + "|" +
+                getRegexLine(gameLanguageProvider.Language.AffixPhantasmal) + ")");
 
             return Task.CompletedTask;
         }
@@ -99,11 +111,6 @@ namespace Sidekick.Apis.Poe.Metadatas
                 result.Name = name;
             }
 
-            if (result.Class == Class.Undefined)
-            {
-                result.Class = GetClass(parsingBlock);
-            }
-
             return result;
         }
 
@@ -118,7 +125,7 @@ namespace Sidekick.Apis.Poe.Metadatas
                 results.AddRange(itemData);
             }
             // Here we check without any prefixes
-            else if (!string.IsNullOrEmpty(name) && data.NameAndTypeDictionary.TryGetValue(GetLineWithoutPrefixes(name), out itemData))
+            else if (!string.IsNullOrEmpty(name) && data.NameAndTypeDictionary.TryGetValue(GetLineWithoutAffixes(name), out itemData))
             {
                 results.AddRange(itemData);
             }
@@ -174,19 +181,6 @@ namespace Sidekick.Apis.Poe.Metadatas
             }
 
             throw new NotSupportedException("Item rarity is unknown.");
-        }
-
-        private Class GetClass(ParsingBlock parsingBlock)
-        {
-            foreach (var pattern in parserPatterns.Classes)
-            {
-                if (pattern.Value.IsMatch(parsingBlock.Lines[0].Text))
-                {
-                    return pattern.Key;
-                }
-            }
-
-            return Class.Undefined;
         }
     }
 }

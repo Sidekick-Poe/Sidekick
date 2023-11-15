@@ -22,9 +22,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionQuality => "Quality";
         public string DescriptionAlternateQuality => "Alternate Quality";
         public string DescriptionLevel => "Level";
-        public string DescriptionIsRelic => "Relic Unique";
         public string DescriptionCorrupted => "Corrupted";
-        public string DescriptionScourged => "Scourged";
         public string DescriptionSockets => "Sockets";
         public string DescriptionItemLevel => "Item Level";
         public string DescriptionExperience => "Experience";
@@ -40,26 +38,26 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionItemQuantity => "Item Quantity";
         public string DescriptionItemRarity => "Item Rarity";
         public string DescriptionMonsterPackSize => "Monster Pack Size";
-        public string DescriptionRequirements => "Requirements:";
+        public string DescriptionRequirements => "Requirements";
         public string DescriptionAreaLevel => "Area Level";
 
-        public string PrefixSuperior => "Superior";
-        public string PrefixBlighted => "Blighted";
-        public string PrefixBlightRavaged => "Blight-ravaged";
-        public string PrefixAnomalous => "Anomalous";
-        public string PrefixDivergent => "Divergent";
-        public string PrefixPhantasmal => "Phantasmal";
+        public string AffixSuperior => "Superior";
+        public string AffixBlighted => "Blighted";
+        public string AffixBlightRavaged => "Blight-ravaged";
+        public string AffixAnomalous => "Anomalous";
+        public string AffixDivergent => "Divergent";
+        public string AffixPhantasmal => "Phantasmal";
 
-        public string InfluenceShaper => "Shaper";
-        public string InfluenceElder => "Elder";
-        public string InfluenceCrusader => "Crusader";
-        public string InfluenceHunter => "Hunter";
-        public string InfluenceRedeemer => "Redeemer";
-        public string InfluenceWarlord => "Warlord";
+        public string InfluenceShaper => "Shaper Item";
+        public string InfluenceElder => "Elder Item";
+        public string InfluenceCrusader => "Crusader Item";
+        public string InfluenceHunter => "Hunter Item";
+        public string InfluenceRedeemer => "Redeemer Item";
+        public string InfluenceWarlord => "Warlord Item";
 
-        public ClassLanguage Classes { get; } = new ClassLanguage()
+        public ClassLanguage Classes { get; } = new()
         {
-            Prefix = "Item Class: ",
+            Prefix = "Item Class",
             DivinationCard = "Divination Cards",
             StackableCurrency = "Stackable Currency",
             Jewel = "Jewels",
@@ -79,13 +77,12 @@ namespace Sidekick.Common.Game.Languages.Implementations
             ManaFlasks = "Mana Flasks",
             HybridFlasks = "Hybrid Flasks",
             UtilityFlasks = "Utility Flasks",
-            CriticalUtilityFlasks = "Critical Utility Flasks",
-            ActiveSkillGems = "Active Skill Gems",
-            SupportSkillGems = "Support Skill Gems",
+            ActiveSkillGems = "Skill Gems",
+            SupportSkillGems = "Support Gems",
             Maps = "Maps",
             MapFragments = "Map Fragments",
-            Contract = "Contract",
-            Blueprint = "Blueprint",
+            Contract = "Contracts",
+            Blueprint = "Blueprints",
             MiscMapItems = "Misc Map Items",
             Claws = "Claws",
             Daggers = "Daggers",
@@ -110,8 +107,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
             AbyssJewel = "Abyss Jewels",
             Trinkets = "Trinkets",
             Logbooks = "Expedition Logbooks",
-            Sentinel = "Sentinel",
-            MemoryLine = "Memory",
+            MemoryLine = "Memories",
             SanctumResearch = "Sanctum Research",
         };
     }

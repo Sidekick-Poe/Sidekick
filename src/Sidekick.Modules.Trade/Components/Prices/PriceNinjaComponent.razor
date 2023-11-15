@@ -1,3 +1,4 @@
+@using Sidekick.Common.Game.Items.AdditionalInformation;
 @if (Loading || Item == null)
 {
     <MudSkeleton Height="64px" />
@@ -48,11 +49,9 @@ else if (Price != null)
     [Inject] private IBrowserProvider BrowserProvider { get; set; }
 
     [CascadingParameter] public Item Item { get; set; }
-    [Parameter] public string ItemName { get; set; }
 
     private bool Loading { get; set; }
     private NinjaPrice Price { get; set; }
-    private bool IsInit { get; set; }
     private ChartOptions ChartOptions { get; set; }
     private List<ChartSeries> Series { get; set; }
 
@@ -60,22 +59,27 @@ else if (Price != null)
     {
         await base.OnParametersSetAsync();
 
-        if (IsInit) return;
-
         Loading = true;
 
         if (Item != null)
         {
-            IsInit = true;
-            var englishItem = Header.Parse(ItemName);
-            Price = await Client.GetPriceInfo(
-                englishItem.Name,
-                englishItem.Type,
-                Item.Metadata.Category,
-                gemLevel: Item.Properties.GemLevel,
-                mapTier: Item.Properties.MapTier,
-                isRelic: Item.Properties.IsRelic,
-                numberOfLinks: Item.GetMaximumNumberOfLinks());
+            if (Item.AdditionalInformation is ClusterJewelInformation clusterJewelInformation)
+            {
+                Price = await Client.GetClusterPrice(
+                    clusterJewelInformation.GrantText,
+                    clusterJewelInformation.SmallPassiveCount,
+                    Item.Properties.ItemLevel);
+            }
+            else
+            {
+                Price = await Client.GetPriceInfo(
+                    Item.Invariant.Name,
+                    Item.Invariant.Type,
+                    Item.Metadata.Category,
+                    gemLevel: Item.Properties.GemLevel,
+                    mapTier: Item.Properties.MapTier,
+                    numberOfLinks: Item.GetMaximumNumberOfLinks());
+            }
 
             ChartOptions = new ChartOptions()
                 {

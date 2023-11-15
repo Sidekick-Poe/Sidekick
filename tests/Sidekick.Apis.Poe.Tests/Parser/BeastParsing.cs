@@ -88,7 +88,7 @@ Summons Apes from Trees
 Right-click to add this to your bestiary.
 ");
 
-            Assert.Equal(Class.StackableCurrency, actual.Metadata.Class);
+            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal(Category.ItemisedMonster, actual.Metadata.Category);
             Assert.Equal("Farric Chieftain", actual.Metadata.Type);

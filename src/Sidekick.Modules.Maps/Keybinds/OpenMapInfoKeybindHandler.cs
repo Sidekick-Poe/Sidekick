@@ -47,11 +47,8 @@ namespace Sidekick.Modules.Maps.Keybinds
                 return;
             }
 
-            var advancedItemText = await clipboardProvider.CopyAdvanced();
-            var originalItem = itemParser.ParseHeader(advancedItemText);
-
             await viewLocator.CloseAllOverlays();
-            await viewLocator.Open($"/map/{originalItem?.ToString().EncodeBase64Url()}/{text.EncodeBase64Url()}");
+            await viewLocator.Open($"/map/{text.EncodeBase64Url()}");
         }
     }
 }

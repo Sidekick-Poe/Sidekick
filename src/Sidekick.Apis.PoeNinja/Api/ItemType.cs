@@ -34,6 +34,9 @@ namespace Sidekick.Apis.PoeNinja.Api
         [EnumValue("maps")]
         Map,
 
+        [EnumValue("cluster-jewels")]
+        ClusterJewel,
+
         [EnumValue("unique-jewels")]
         UniqueJewel,
 

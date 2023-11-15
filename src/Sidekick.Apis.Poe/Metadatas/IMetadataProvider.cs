@@ -4,7 +4,7 @@ using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Metadatas
 {
-    public interface IItemMetadataProvider : IInitializableService
+    public interface IMetadataProvider : IInitializableService
     {
         Dictionary<string, List<ItemMetadata>> NameAndTypeDictionary { get; }
 

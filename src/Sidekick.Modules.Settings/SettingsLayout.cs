@@ -28,9 +28,6 @@ namespace Sidekick.Modules.Settings
         [Inject]
         private IViewLocator ViewLocator { get; set; }
 
-        [CascadingParameter]
-        public SidekickView View { get; set; }
-
         /// <inheritdoc/>
         protected override async Task OnInitializedAsync()
         {
@@ -107,7 +104,7 @@ namespace Sidekick.Modules.Settings
         {
             CacheProvider.Clear();
             await ViewLocator.Open("/initialize");
-            await View.Close();
+            await Wrapper.View?.Close();
         }
     }
 }

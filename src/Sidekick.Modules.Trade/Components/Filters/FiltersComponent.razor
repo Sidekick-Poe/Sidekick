@@ -9,14 +9,17 @@
     <ItemHeaderComponent Name="@Item.Header.Name"
                          Type="@Item.Header.Type"
                          Rarity="Item.Metadata.Rarity"
-                         Influences="Item.Influences"
-                         IsRelic="Item.Properties.IsRelic" />
+                         Influences="Item.Influences" />
 
     <div class="flex-grow-1" style="overflow-y:auto;">
         @if (Item != null)
         {
-            <PriceNinjaComponent ItemName="@ItemName" />
-            <PricePredictionComponent />
+            <SilentErrorBoundary>
+                <PriceNinjaComponent />
+            </SilentErrorBoundary>
+            <SilentErrorBoundary>
+                <PricePredictionComponent />
+            </SilentErrorBoundary>
         }
 
         <ClassFilter @bind-Value="Filters.PropertyFilters.Class" Item="Item" />
@@ -98,9 +101,6 @@
 
     [CascadingParameter]
     public FiltersModel Filters { get; set; }
-
-    [Parameter]
-    public string ItemName { get; set; }
 
     [Parameter]
     public EventCallback OnSearch { get; set; }
