@@ -2,11 +2,10 @@
 <div class="item-content mb-2 @WrapperClass" @onclick="OnClick">
     @if (CanExpand && (Layout == Layout.Cards_Maximized || Expanded))
     {
-        <ItemHeaderComponent Name="@Item.Original.Name"
-                         Type="@Item.Original.Type"
+        <ItemHeaderComponent Name="@Item.Header.Name"
+                         Type="@Item.Header.Type"
                          Influences="Item.Influences"
-                         Rarity="Item.Metadata.Rarity"
-                         IsRelic="Item.Properties.IsRelic" />
+                         Rarity="Item.Metadata.Rarity" />
 
         <MudGrid Spacing="0" Class="py-2 px-4">
             <MudItem xs="9">
@@ -38,13 +37,6 @@
                         <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Corrupted</MudText>
                     </div>
                 }
-                @if (Item.Properties.Scourged)
-                {
-                    <ItemSeparator Rarity="Item.Metadata.Rarity" />
-                    <div class="scourge-text">
-                        <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Scourged</MudText>
-                    </div>
-                }
                 @if (!string.IsNullOrEmpty(Item.Price.Note))
                 {
                     <ItemSeparator Rarity="Item.Metadata.Rarity" />
@@ -68,24 +60,22 @@
     {
         <MudGrid Spacing="0" Class="align-start">
             <MudItem xs="9">
-                <ItemHeaderBackground Rarity="Item.Metadata.Rarity"
-                                  IsRelic="Item.Properties.IsRelic"
-                                  Double="false">
+                <ItemHeaderBackground Rarity="Item.Metadata.Rarity" Double="false">
                     <div class="influences left">
                         <ItemInfluencesComponent Influences="Item.Influences" />
                     </div>
                     <MudText Typo="Typo.h6" Align="Align.Center" Class="name font-smallcaps" Style="@context.LabelStyle">
-                        @if (!string.IsNullOrEmpty(Item.Original.Name))
+                        @if (!string.IsNullOrEmpty(Item.Header.Name))
                         {
-                            @Item.Original.Name
+                            @Item.Header.Name
                         }
-                        @if (!string.IsNullOrEmpty(Item.Original.Name) && !string.IsNullOrEmpty(Item.Original.Type))
+                        @if (!string.IsNullOrEmpty(Item.Header.Name) && !string.IsNullOrEmpty(Item.Header.Type))
                         {
                             @:,
                         }
-                        @if (!string.IsNullOrEmpty(Item.Original.Type))
+                        @if (!string.IsNullOrEmpty(Item.Header.Type))
                         {
-                            @Item.Original.Type
+                            @Item.Header.Type
                         }
                     </MudText>
                 </ItemHeaderBackground>
@@ -119,7 +109,7 @@
         Category.Flask => true,
         Category.Gem => true,
         Category.Jewel => true,
-        Category.Map => PriceCheckItem.Metadata.Class != Class.MapFragments,
+        Category.Map => PriceCheckItem.Header.Class != Class.MapFragments,
         Category.Weapon => true,
         Category.HeistEquipment => true,
         Category.Contract => true,

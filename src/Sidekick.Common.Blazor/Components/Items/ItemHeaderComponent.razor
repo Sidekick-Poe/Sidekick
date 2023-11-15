@@ -1,7 +1,6 @@
 @using Sidekick.Common.Game.Items
 
 <ItemHeaderBackground Rarity="Rarity"
-                      IsRelic="IsRelic"
                       Double="Double">
     <div class="influences left">
         <ItemInfluencesComponent Influences="Influences" />
@@ -32,18 +31,10 @@
     [Parameter]
     public Influences Influences { get; set; }
 
-    [Parameter]
-    public bool IsRelic { get; set; }
-
     private bool Double
     {
         get
         {
-            if (IsRelic)
-            {
-                return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Type);
-            }
-
             switch (Rarity)
             {
                 case Rarity.Currency: return false;

@@ -41,14 +41,14 @@ namespace Sidekick.Apis.PoePriceInfo
 
         public async Task<PricePrediction?> GetPricePrediction(Item item)
         {
-            if (item.Metadata.Rarity != Rarity.Rare || item.Original.Text == null)
+            if (item.Metadata.Rarity != Rarity.Rare || item.Text == null)
             {
                 return null;
             }
 
             try
             {
-                var encodedItem = Convert.ToBase64String(Encoding.UTF8.GetBytes(item.Original.Text));
+                var encodedItem = Convert.ToBase64String(Encoding.UTF8.GetBytes(item.Text));
                 using var client = GetHttpClient();
                 var response = await client.GetAsync("?l=" + settings.LeagueId + "&i=" + encodedItem);
                 var content = await response.Content.ReadAsStreamAsync();

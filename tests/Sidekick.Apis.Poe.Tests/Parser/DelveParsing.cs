@@ -32,7 +32,7 @@ All sockets must be filled with Fossils before this item can be used.
 Note: ~price 1 chaos
 ");
 
-            Assert.Equal(Class.DelveStackableSocketableCurrency, actual.Metadata.Class);
+            Assert.Equal(Class.DelveStackableSocketableCurrency, actual.Header.Class);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal("Potent Chaotic Resonator", actual.Metadata.Type);
@@ -57,7 +57,7 @@ All sockets must be filled with Fossils before this item can be used.
 Note: ~price 4 chaos
 ");
 
-            Assert.Equal(Class.DelveStackableSocketableCurrency, actual.Metadata.Class);
+            Assert.Equal(Class.DelveStackableSocketableCurrency, actual.Header.Class);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Powerful Chaotic Resonator", actual.Metadata.Type);
@@ -80,7 +80,7 @@ Place in a Resonator to influence item crafting.
 Note: ~price 4 chaos
 ");
 
-            Assert.Equal(Class.StackableCurrency, actual.Metadata.Class);
+            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Perfect Fossil", actual.Metadata.Type);

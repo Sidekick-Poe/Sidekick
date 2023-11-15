@@ -51,9 +51,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
 
             ItemLevel = gameLanguageProvider.Language.DescriptionItemLevel.ToRegexIntCapture();
             Unidentified = gameLanguageProvider.Language.DescriptionUnidentified.ToRegexLine();
-            IsRelic = gameLanguageProvider.Language.DescriptionIsRelic.ToRegexLine();
             Corrupted = gameLanguageProvider.Language.DescriptionCorrupted.ToRegexLine();
-            Scourged = gameLanguageProvider.Language.DescriptionScourged.ToRegexLine();
         }
 
         public Dictionary<Rarity, Regex> Rarity { get; private set; } = null!;
@@ -92,8 +90,11 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
             ItemQuantity = gameLanguageProvider.Language.DescriptionItemQuantity.ToRegexIntCapture();
             ItemRarity = gameLanguageProvider.Language.DescriptionItemRarity.ToRegexIntCapture();
             MonsterPackSize = gameLanguageProvider.Language.DescriptionMonsterPackSize.ToRegexIntCapture();
-            Blighted = gameLanguageProvider.Language.PrefixBlighted.ToRegexStartOfLine();
-            BlightRavaged = gameLanguageProvider.Language.PrefixBlightRavaged.ToRegexStartOfLine();
+            Blighted = gameLanguageProvider.Language.AffixBlighted.ToRegexAffix();
+            BlightRavaged = gameLanguageProvider.Language.AffixBlightRavaged.ToRegexAffix();
+            Anomalous = gameLanguageProvider.Language.AffixAnomalous.ToRegexAffix();
+            Divergent = gameLanguageProvider.Language.AffixDivergent.ToRegexAffix();
+            Phantasmal = gameLanguageProvider.Language.AffixPhantasmal.ToRegexAffix();
 
             Requirements = gameLanguageProvider.Language.DescriptionRequirements.ToRegexLine();
         }
@@ -115,6 +116,9 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         public Regex PhysicalDamage { get; private set; } = null!;
         public Regex Blighted { get; private set; } = null!;
         public Regex BlightRavaged { get; private set; } = null!;
+        public Regex Anomalous { get; private set; } = null!;
+        public Regex Divergent { get; private set; } = null!;
+        public Regex Phantasmal { get; private set; } = null!;
         public Regex Requirements { get; private set; } = null!;
         public Regex AreaLevel { get; private set; } = null!;
 
@@ -146,12 +150,12 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
                 throw new Exception("[Parser Patterns] Could not find a valid language.");
             }
 
-            Crusader = gameLanguageProvider.Language.InfluenceCrusader.ToRegexStartOfLine();
-            Elder = gameLanguageProvider.Language.InfluenceElder.ToRegexStartOfLine();
-            Hunter = gameLanguageProvider.Language.InfluenceHunter.ToRegexStartOfLine();
-            Redeemer = gameLanguageProvider.Language.InfluenceRedeemer.ToRegexStartOfLine();
-            Shaper = gameLanguageProvider.Language.InfluenceShaper.ToRegexStartOfLine();
-            Warlord = gameLanguageProvider.Language.InfluenceWarlord.ToRegexStartOfLine();
+            Crusader = gameLanguageProvider.Language.InfluenceCrusader.ToRegexLine();
+            Elder = gameLanguageProvider.Language.InfluenceElder.ToRegexLine();
+            Hunter = gameLanguageProvider.Language.InfluenceHunter.ToRegexLine();
+            Redeemer = gameLanguageProvider.Language.InfluenceRedeemer.ToRegexLine();
+            Shaper = gameLanguageProvider.Language.InfluenceShaper.ToRegexLine();
+            Warlord = gameLanguageProvider.Language.InfluenceWarlord.ToRegexLine();
         }
 
         public Regex Crusader { get; private set; } = null!;
@@ -187,7 +191,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
                 var label = property.GetValue(gameLanguageProvider.Language.Classes)?.ToString();
                 if (string.IsNullOrEmpty(label)) continue;
 
-                Classes.Add(Enum.Parse<Class>(property.Name), $"{prefix}{label}".ToRegexLine());
+                Classes.Add(Enum.Parse<Class>(property.Name), new Regex($"^{Regex.Escape(prefix)}:* *{Regex.Escape(label)}$"));
             }
         }
 

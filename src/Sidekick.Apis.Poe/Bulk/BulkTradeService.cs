@@ -37,7 +37,7 @@ namespace Sidekick.Apis.Poe.Bulk
 
         public bool SupportsBulkTrade(Item item)
         {
-            return item.Metadata.Rarity == Rarity.Currency && itemStaticDataProvider.GetId(item) != null;
+            return item.Metadata.Rarity == Rarity.Currency && itemStaticDataProvider.GetId(item.Metadata.Name, item.Metadata.Type) != null;
         }
 
         public async Task<BulkResponseModel> SearchBulk(Item item, TradeCurrency currency, int minStock)
@@ -51,7 +51,7 @@ namespace Sidekick.Apis.Poe.Bulk
 
             var uri = $"{gameLanguageProvider.Language.PoeTradeApiBaseUrl}exchange/{settings.LeagueId}";
 
-            var itemId = itemStaticDataProvider.GetId(item);
+            var itemId = itemStaticDataProvider.GetId(item.Metadata.Name, item.Metadata.Type);
             if (itemId == null)
             {
                 throw new Exception("[Trade API] Could not find a valid item.");

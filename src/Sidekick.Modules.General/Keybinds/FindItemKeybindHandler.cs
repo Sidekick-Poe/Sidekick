@@ -48,7 +48,7 @@ namespace Sidekick.Modules.General.Keybinds
                 return;
             }
 
-            await clipboardProvider.SetText(item.Original.Name);
+            await clipboardProvider.SetText(item.Header.Name);
             await keyboard.PressKey("Ctrl+F", "Ctrl+A", "Ctrl+V", "Enter");
         }
     }

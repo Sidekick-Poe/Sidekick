@@ -1,4 +1,4 @@
-@page "/trade/{itemName}/{itemText}"
+@page "/trade/{itemText}"
 @using Sidekick.Apis.Poe.Bulk;
 @using Sidekick.Apis.Poe.Trade.Results;
 @using Sidekick.Common.Enums;
@@ -14,8 +14,7 @@ else
         <CascadingValue Value="Filters" IsFixed="true">
             @if (Filters != null)
             {
-                <FiltersComponent ItemName="@ItemName.DecodeBase64Url()"
-                                  OnSearch="UpdateQuery" />
+                <FiltersComponent OnSearch="UpdateQuery" />
             }
 
             <div class="ml-0">
@@ -34,7 +33,6 @@ else
     [Inject] private IItemParser ItemParser { get; set; }
     [Inject] private ITradeFilterService TradeFilterService { get; set; }
 
-    [Parameter] public string ItemName { get; set; }
     [Parameter] public string ItemText { get; set; }
 
     private Item Item { get; set; }

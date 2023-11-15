@@ -1,10 +1,10 @@
 namespace Sidekick.Apis.Poe.Modifiers.Models
 {
-    public class ApiModifier
+    public record ApiModifier
     {
-        public string? Id { get; set; }
-        public string? Text { get; set; }
-        public string? Type { get; set; }
+        public required string Id { get; init; }
+        public required string Text { get; init; }
+        public required string Type { get; init; }
 
         public ApiModifierOptions? Option { get; set; }
     }

@@ -60,53 +60,62 @@ namespace Sidekick.Apis.PoeNinja
             Category category,
             int? gemLevel = null,
             int? mapTier = null,
-            bool? isRelic = null,
+            bool? isRelic = false,
             int? numberOfLinks = null)
         {
             await ClearCacheIfExpired();
+            var prices = await GetPrices(category);
 
-            foreach (var itemType in GetApiItemTypes(category))
+            var query = prices.Where(x => x.Name == englishName || x.Name == englishType);
+
+            if (category == Category.Gem && gemLevel != null)
             {
-                var repositoryItems = await GetItems(itemType);
-                var query = repositoryItems.Where(x => x.Name == englishName || x.Name == englishType);
-
-                if (gemLevel != null)
-                {
-                    query = query.Where(x => x.GemLevel == gemLevel);
-                }
-
-                if (isRelic != null)
-                {
-                    query = query.Where(x => x.IsRelic == isRelic);
-                }
-
-                if (mapTier != null)
-                {
-                    if (itemType == ItemType.Map
-                     || itemType == ItemType.UniqueMap
-                     || itemType == ItemType.BlightedMap
-                     || itemType == ItemType.BlightRavagedMap)
-                    {
-                        query = query.Where(x => x.MapTier == mapTier);
-                    }
-                }
-
-                if (numberOfLinks != null)
-                {
-                    // Poe.ninja has pricings for <5, 5 and 6 links.
-                    // <5 being 0 links in their API.
-                    query = query.Where(x => x.Links == (numberOfLinks >= 5 ? numberOfLinks : 0));
-                }
-
-                if (!query.Any())
-                {
-                    continue;
-                }
-
-                return query.OrderBy(x => x.Corrupted).FirstOrDefault();
+                query = query.Where(x => x.GemLevel == gemLevel);
             }
 
-            return null;
+            if (isRelic != null)
+            {
+                query = query.Where(x => x.IsRelic == isRelic);
+            }
+
+            if (category == Category.Map && mapTier != null)
+            {
+                query = query.Where(x => x.MapTier == mapTier);
+            }
+
+            if (numberOfLinks != null)
+            {
+                // Poe.ninja has pricings for <5, 5 and 6 links.
+                // <5 being 0 links in their API.
+                query = query.Where(x => x.Links == (numberOfLinks >= 5 ? numberOfLinks : 0));
+            }
+
+            return query.OrderBy(x => x.Corrupted).FirstOrDefault();
+        }
+
+        public async Task<NinjaPrice?> GetClusterPrice(
+            string englishGrantText,
+            int passiveCount,
+            int itemLevel)
+        {
+            var normalizedItemLevel = itemLevel switch
+            {
+                >= 84 => 84,
+                >= 75 => 75,
+                >= 68 => 68,
+                >= 50 => 50,
+                _ => 1,
+            };
+
+            await ClearCacheIfExpired();
+            var prices = await GetPrices(Category.Jewel);
+
+            var query = prices
+                .Where(x => x.Name == englishGrantText)
+                .Where(x => x.ItemLevel == normalizedItemLevel)
+                .Where(x => x.SmallPassiveCount == passiveCount);
+
+            return query.FirstOrDefault();
         }
 
         public Uri GetDetailsUri(NinjaPrice ninjaPrice)
@@ -165,6 +174,20 @@ namespace Sidekick.Apis.PoeNinja
             await cacheProvider.Set(GetCacheKey(itemType), prices);
         }
 
+        private async Task<IEnumerable<NinjaPrice>> GetPrices(Category category)
+        {
+            var itemTypes = GetApiItemTypes(category);
+            var tasks = new List<Task<IEnumerable<NinjaPrice>>>();
+
+            foreach (var itemType in itemTypes)
+            {
+                tasks.Add(GetItems(itemType));
+            }
+
+            var prices = await Task.WhenAll(tasks);
+            return prices.SelectMany(x => x);
+        }
+
         private async Task<IEnumerable<NinjaPrice>> GetItems(ItemType itemType)
         {
             var cachedItems = await cacheProvider.Get<List<NinjaPrice>>(GetCacheKey(itemType));
@@ -179,15 +202,6 @@ namespace Sidekick.Apis.PoeNinja
                 ItemType.Fragment => await FetchCurrencies(itemType),
                 _ => await FetchItems(itemType),
             };
-
-            items = items
-                .GroupBy(x => (x.Name,
-                               x.Corrupted,
-                               x.MapTier,
-                               x.GemLevel,
-                               x.Links))
-                .Select(x => x.OrderBy(x => x.Price).First())
-                .ToList();
 
             if (items.Any())
             {
@@ -226,6 +240,9 @@ namespace Sidekick.Apis.PoeNinja
                             SparkLine = x.SparkLine ?? x.LowConfidenceSparkLine,
                             IsRelic = x.ItemClass == 9, // 3 for Unique, 9 for Relic Unique.
                             Links = x.Links,
+                            BaseType = x.BaseType,
+                            ItemLevel = x.ItemLevel,
+                            SmallPassiveCount = x.ClusterSmallPassiveCount,
                         });
             }
             catch (Exception)
@@ -290,6 +307,7 @@ namespace Sidekick.Apis.PoeNinja
 
                 case Category.Jewel:
                     yield return ItemType.UniqueJewel;
+                    yield return ItemType.ClusterJewel;
                     yield break;
 
                 case Category.Weapon:

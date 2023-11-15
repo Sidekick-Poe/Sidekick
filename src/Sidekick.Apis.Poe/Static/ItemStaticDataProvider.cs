@@ -1,7 +1,6 @@
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Static.Models;
 using Sidekick.Common.Cache;
-using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 
@@ -72,9 +71,9 @@ namespace Sidekick.Apis.Poe.Static
             return $"{gameLanguageProvider.Language.PoeCdnBaseUrl}{result.Trim('/')}";
         }
 
-        public string? GetId(Item item)
+        public string? GetId(string? name, string? type)
         {
-            var text = item.Metadata.Name ?? item.Metadata.Type;
+            var text = name ?? type;
             if (text != null && Ids.TryGetValue(text, out var result))
             {
                 return result;

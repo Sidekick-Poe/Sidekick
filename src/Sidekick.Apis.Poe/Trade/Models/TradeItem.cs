@@ -6,13 +6,14 @@ namespace Sidekick.Apis.Poe.Trade.Models
     {
         public TradeItem(
             ItemMetadata metadata,
-            OriginalItem original,
+            Header original,
             Properties properties,
             Influences influences,
             List<Socket> sockets,
             List<ModifierLine> modifierLines,
-            List<PseudoModifier> pseudoModifiers)
-            : base(metadata, original, properties, influences, sockets, modifierLines, pseudoModifiers)
+            List<PseudoModifier> pseudoModifiers,
+            string text)
+            : base(metadata, null, original, properties, influences, sockets, modifierLines, pseudoModifiers, text)
         {
         }
 

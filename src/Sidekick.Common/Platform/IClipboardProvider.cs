@@ -14,14 +14,6 @@ namespace Sidekick.Common.Platform
         Task<string?> Copy();
 
         /// <summary>
-        /// Sends an advanced copy command (Ctrl+Alt+C). If the setting to preserve the clipboard is turned on,
-        /// the clipboard is restored to the initial value. The text that was copied is returned by
-        /// this task.
-        /// </summary>
-        /// <returns>The text that was copied</returns>
-        Task<string?> CopyAdvanced();
-
-        /// <summary>
         /// Gets the text value of what is currently in the clipboard.
         /// </summary>
         /// <returns>The text that is in the clipboard.</returns>

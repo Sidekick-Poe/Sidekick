@@ -27,46 +27,13 @@ jobs:
         useConfigFile: true
         additionalArguments: '/updateprojectfiles'
 
-    - name: Environment - Build Number
-      uses: myci-actions/export-env-var@1
-      with:
-        name: BUILD_NUMBER
-        value: ${{ steps.gitversion.outputs.fullSemVer }}
-
-    # Manual release
-    - name: Manual Release - Notes
-      if: github.ref != 'refs/heads/main'
-      uses: release-drafter/release-drafter@v5.15.0
-      with:
-        name: 'Release v${{ steps.gitversion.outputs.fullSemVer }}'
-        tag: v${{ steps.gitversion.outputs.fullSemVer }}
-        version: v${{ steps.gitversion.outputs.fullSemVer }}
-        publish: false
-        prerelease: true
-    - name: Manual Release - Asset
-      if: github.ref != 'refs/heads/main'
-      uses: xresloader/upload-to-github-release@v1.3.4
-      with:
-        tag_name: v${{ steps.gitversion.outputs.fullSemVer }}
-        draft: true
-        verbose: true
-        overwrite: true
-
-    # Main release
     - name: Main Release - Notes
-      if: github.ref == 'refs/heads/main'
-      uses: release-drafter/release-drafter@v5.15.0
+      uses: release-drafter/release-drafter@v5
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
       with:
         name: 'Release v${{ steps.gitversion.outputs.majorMinorPatch }}'
-        tag: v${{ steps.gitversion.outputs.majorMinorPatch }}
-        version: v${{ steps.gitversion.outputs.majorMinorPatch }}
+        tag: 'v${{ steps.gitversion.outputs.majorMinorPatch }}'
+        version: 'v${{ steps.gitversion.outputs.majorMinorPatch }}'
         publish: false
         prerelease: false
-    - name: Main Release - Asset
-      if: github.ref == 'refs/heads/main'
-      uses: xresloader/upload-to-github-release@v1.3.4
-      with:
-        tag_name: v${{ steps.gitversion.outputs.majorMinorPatch }}
-        draft: true
-        verbose: true
-        overwrite: true

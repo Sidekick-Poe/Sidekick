@@ -25,7 +25,7 @@ namespace Sidekick.Apis.Poe.Trade
                 || item.Metadata.Category == Category.Gem
                 || item.Metadata.Category == Category.ItemisedMonster
                 || item.Metadata.Category == Category.Leaguestone
-                || item.Metadata.Category == Category.Undefined)
+                || item.Metadata.Category == Category.Unknown)
             {
                 yield break;
             }
@@ -43,7 +43,7 @@ namespace Sidekick.Apis.Poe.Trade
                 || item.Metadata.Category == Category.Gem
                 || item.Metadata.Category == Category.ItemisedMonster
                 || item.Metadata.Category == Category.Leaguestone
-                || item.Metadata.Category == Category.Undefined
+                || item.Metadata.Category == Category.Unknown
                 || item.Metadata.Category == Category.Currency)
             {
                 yield break;
@@ -62,7 +62,7 @@ namespace Sidekick.Apis.Poe.Trade
                 || item.Metadata.Category == Category.Currency
                 || item.Metadata.Category == Category.ItemisedMonster
                 || item.Metadata.Category == Category.Leaguestone
-                || item.Metadata.Category == Category.Undefined)
+                || item.Metadata.Category == Category.Unknown)
             {
                 return new();
             }
@@ -135,13 +135,13 @@ namespace Sidekick.Apis.Poe.Trade
             // Blighted
             InitializePropertyFilter(result.Map,
                 PropertyFilterType.Map_Blighted,
-                gameLanguageProvider.Language?.PrefixBlighted,
+                gameLanguageProvider.Language?.AffixBlighted,
                 item.Properties.Blighted,
                 enabled: item.Properties.Blighted);
             // Blight-ravaged
             InitializePropertyFilter(result.Map,
                 PropertyFilterType.Map_BlightRavaged,
-                gameLanguageProvider.Language?.PrefixBlightRavaged,
+                gameLanguageProvider.Language?.AffixBlightRavaged,
                 item.Properties.BlightRavaged,
                 enabled: item.Properties.BlightRavaged);
             // Map tier
@@ -222,13 +222,6 @@ namespace Sidekick.Apis.Poe.Trade
                 gameLanguageProvider.Language?.InfluenceWarlord,
                 item.Influences.Warlord,
                 enabled: item.Influences.Warlord);
-            // Scourged
-            InitializePropertyFilter(result.Misc,
-                PropertyFilterType.Misc_Scourged,
-                gameLanguageProvider.Language?.DescriptionScourged,
-                item.Properties.Scourged ? 1 : 0,
-                enabled: item.Properties.Scourged,
-                min: 1);
 
             return result;
         }

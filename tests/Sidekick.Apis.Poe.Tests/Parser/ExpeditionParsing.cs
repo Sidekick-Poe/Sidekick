@@ -50,7 +50,7 @@ Monsters' skills Chain 2 additional times
 Take this item to Dannig in your Hideout to open portals to an expedition.
 ");
 
-            Assert.Equal(Class.Logbooks, actual.Metadata.Class);
+            Assert.Equal(Class.Logbooks, actual.Header.Class);
             Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
             Assert.Equal(Category.Logbook, actual.Metadata.Category);
             Assert.Equal("Expedition Logbook", actual.Metadata.Type);

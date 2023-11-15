@@ -11,12 +11,12 @@ namespace Sidekick.Apis.Poe.Pseudo
     {
         private readonly Regex ParseHashPattern = new("\\#");
 
-        private readonly IEnglishModifierProvider englishModifierProvider;
+        private readonly IInvariantModifierProvider invariantModifierProvider;
 
         public PseudoModifierProvider(
-            IEnglishModifierProvider englishModifierProvider)
+            IInvariantModifierProvider invariantModifierProvider)
         {
-            this.englishModifierProvider = englishModifierProvider;
+            this.invariantModifierProvider = invariantModifierProvider;
         }
 
         private List<PseudoDefinition> Definitions { get; } = new();
@@ -32,7 +32,7 @@ namespace Sidekick.Apis.Poe.Pseudo
                 return;
             }
 
-            var result = await englishModifierProvider.GetList();
+            var result = await invariantModifierProvider.GetList();
             var groups = InitializeGroups(result);
 
             foreach (var category in result)
@@ -639,7 +639,7 @@ namespace Sidekick.Apis.Poe.Pseudo
             {
                 foreach (var pseudoModifier in pseudoDefinition.Modifiers)
                 {
-                        var lineModifier = line.Modifiers.FirstOrDefault();
+                    var lineModifier = line.Modifiers.FirstOrDefault();
                     if (lineModifier == null || !pseudoModifier.Ids.Any(id => id == lineModifier.Id))
                     {
                         continue;

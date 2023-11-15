@@ -68,9 +68,7 @@ namespace Sidekick.Apis.Poe.Trade
                 {
                     request.Query.Name = item.Metadata.Name;
                     request.Query.Type = item.Metadata.Type;
-
-                    var rarity = item.Properties.IsRelic ? "uniquefoil" : "Unique";
-                    request.Query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption(rarity);
+                    request.Query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("Unique");
                 }
                 else
                 {
@@ -83,9 +81,19 @@ namespace Sidekick.Apis.Poe.Trade
                 SetPseudoModifierFilters(request.Query.Stats, pseudoFilters);
                 SetSocketFilters(item, request.Query.Filters);
 
-                if (item.Properties.AlternateQuality)
+                if (item.Properties.Anomalous)
                 {
-                    request.Query.Term = item.Original.Name;
+                    request.Query.Filters.MiscFilters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Anomalous);
+                }
+
+                if (item.Properties.Divergent)
+                {
+                    request.Query.Filters.MiscFilters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Divergent);
+                }
+
+                if (item.Properties.Phantasmal)
+                {
+                    request.Query.Filters.MiscFilters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Phantasmal);
                 }
 
                 var uri = new Uri($"{gameLanguageProvider.Language.PoeTradeApiBaseUrl}search/{settings.LeagueId}");
@@ -512,15 +520,16 @@ namespace Sidekick.Apis.Poe.Trade
         {
             var metadata = new ItemMetadata()
             {
+                Id = "",
                 Name = result.Item?.Name,
                 Rarity = result.Item?.Rarity ?? Rarity.Unknown,
                 Type = result.Item?.TypeLine,
+                Category = Category.Unknown,
             };
 
-            var original = new OriginalItem()
+            var original = new Header()
             {
                 Name = result.Item?.Name,
-                Text = Encoding.UTF8.GetString(Convert.FromBase64String(result.Item?.Extended?.Text ?? string.Empty)),
                 Type = result.Item?.TypeLine,
             };
 
@@ -528,8 +537,6 @@ namespace Sidekick.Apis.Poe.Trade
             {
                 ItemLevel = result.Item?.ItemLevel ?? 0,
                 Corrupted = result.Item?.Corrupted ?? false,
-                Scourged = result.Item?.Scourged.Tier != 0,
-                IsRelic = result.Item?.IsRelic ?? false,
                 Identified = result.Item?.Identified ?? false,
                 Armor = result.Item?.Extended?.ArmourAtMax ?? 0,
                 EnergyShield = result.Item?.Extended?.EnergyShieldAtMax ?? 0,
@@ -549,7 +556,8 @@ namespace Sidekick.Apis.Poe.Trade
                     influences: influences,
                     sockets: ParseSockets(result.Item?.Sockets).ToList(),
                     modifierLines: new(),
-                    pseudoModifiers: new())
+                    pseudoModifiers: new(),
+                    text: Encoding.UTF8.GetString(Convert.FromBase64String(result.Item?.Extended?.Text ?? string.Empty)))
             {
                 Id = result.Id,
 
@@ -609,7 +617,7 @@ namespace Sidekick.Apis.Poe.Trade
                 ParseHash(result.Item?.Extended?.Hashes?.Pseudo)));
 
             item.ModifierLines = item.ModifierLines
-                .OrderBy(x => item.Original.Text?.IndexOf(x.Text ?? string.Empty))
+                .OrderBy(x => item.Text?.IndexOf(x.Text ?? string.Empty))
                 .ToList();
 
             return item;

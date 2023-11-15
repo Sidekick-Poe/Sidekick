@@ -6,8 +6,6 @@ namespace Sidekick.Apis.PoeWiki
 {
     public interface IPoeWikiClient : IInitializableService
     {
-        public bool IsEnabled { get; }
-
         Dictionary<string, string> BlightOilNamesByMetadataIds { get; }
 
         public Task<Map?> GetMap(string mapType);

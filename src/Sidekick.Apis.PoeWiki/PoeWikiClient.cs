@@ -77,8 +77,6 @@ namespace Sidekick.Apis.PoeWiki
             return client;
         }
 
-        public bool IsEnabled => settings.PoeWikiData_Enable;
-
         public Dictionary<string, string> BlightOilNamesByMetadataIds { get; private set; } = new();
 
         /// <inheritdoc/>

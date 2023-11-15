@@ -33,7 +33,7 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
 ");
 
             Assert.Equal(Category.Map, actual.Metadata.Category);
-            Assert.Equal(Class.Maps, actual.Metadata.Class);
+            Assert.Equal(Class.Maps, actual.Header.Class);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
             Assert.Equal("Atoll Map", actual.Metadata.Type);
             Assert.Equal(14, actual.Properties.MapTier);
@@ -55,7 +55,7 @@ Shift click to unstack.
 Note: ~price 1 blessed
 ");
 
-            Assert.Equal(Class.StackableCurrency, actual.Metadata.Class);
+            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Clear Oil", actual.Metadata.Type);
@@ -90,7 +90,7 @@ Players have 20% less Recovery Rate of Life and Energy Shield
 Travel to this Map by using it in a personal Map Device.Maps can only be used once.
 ");
 
-            Assert.Equal(Class.Maps, actual.Metadata.Class);
+            Assert.Equal(Class.Maps, actual.Header.Class);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal(Category.Map, actual.Metadata.Category);
             Assert.Equal("Spider Forest Map", actual.Metadata.Type);

@@ -22,6 +22,12 @@ namespace Sidekick.Common.Game.Items
 
         public int GemLevel { get; set; }
 
+        public bool Anomalous { get; set; }
+
+        public bool Divergent { get; set; }
+
+        public bool Phantasmal { get; set; }
+
         public int MapTier { get; set; }
 
         public int AreaLevel { get; set; }
@@ -45,10 +51,6 @@ namespace Sidekick.Common.Game.Items
         public double ElementalDps { get; set; }
 
         public double PhysicalDps { get; set; }
-
-        public bool IsRelic { get; set; }
-
-        public bool Scourged { get; set; }
 
         public int? BaseDefencePercentile { get; set; }
     }
