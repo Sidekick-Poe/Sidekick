@@ -1,39 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Timers;
-using System.Windows.Markup;
-using System.Xml.Linq;
-using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe;
 using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Apis.Poe.Metadatas;
 using Sidekick.Apis.Poe.Stash;
 using Sidekick.Apis.Poe.Stash.Models;
-using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Apis.PoeNinja;
-using Sidekick.Apis.PoeNinja.Models;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
 using Sidekick.Modules.Wealth.Models;
-using static MudBlazor.CategoryTypes;
-using Timer = System.Timers.Timer;
 
 namespace Sidekick.Modules.Wealth
 {
-
-
     internal class WealthParser : IDisposable
     {
-
         private bool Running = false;
         private Thread ParsingThread { get; set; }
 
@@ -41,14 +22,19 @@ namespace Sidekick.Modules.Wealth
         private DbContextOptions<WealthDbContext> Options { get; set; }
         private IAuthenticationService AuthenticationService { get; set; }
         private readonly ISettings Settings;
+        private readonly IItemMetadataParser itemMetadataParser;
+
         private IStashService StashService { get; set; }
         private IPoeNinjaClient PoeNinjaClient { get; set; }
-        private IItemMetadataProvider ItemMetadataProvider { get; set; }
+        private IMetadataProvider ItemMetadataProvider { get; set; }
         private ILogger<WealthParser> Logger { get; set; }
 
         public static event Action<string[]> OnStashParsing;
+
         public static event Action<string[]> OnStashParsed;
+
         public static event Action<string[]> OnSnapshotTaken;
+
         public static event Action<string[]> OnParserStopped;
 
         public WealthParser(
@@ -57,7 +43,8 @@ namespace Sidekick.Modules.Wealth
             ISettings _settings,
             IStashService _stashService,
             IPoeNinjaClient _poeNinjaClient,
-            IItemMetadataProvider _itemMetadataProvider,
+            IMetadataProvider _itemMetadataProvider,
+            IItemMetadataParser itemMetadataParser,
             ILogger<WealthParser> _logger)
         {
             AuthenticationService = _authenticationService;
@@ -67,6 +54,7 @@ namespace Sidekick.Modules.Wealth
             StashService = _stashService;
             PoeNinjaClient = _poeNinjaClient;
             ItemMetadataProvider = _itemMetadataProvider;
+            this.itemMetadataParser = itemMetadataParser;
             Logger = _logger;
 
             InterprocessService.OnMessage += InterprocessService_CustomProtocolCallback;
@@ -74,10 +62,10 @@ namespace Sidekick.Modules.Wealth
 
         public async Task Start()
         {
-
             if (!Running)
             {
-                if(!AuthenticationService.IsAuthenticated()) {
+                if (!AuthenticationService.IsAuthenticated())
+                {
                     await AuthenticationService.Authenticate();
                 }
 
@@ -85,7 +73,6 @@ namespace Sidekick.Modules.Wealth
                 ParsingThread = new Thread(ParseLoop);
                 ParsingThread.Start();
             }
-
         }
 
         public void Stop()
@@ -101,15 +88,12 @@ namespace Sidekick.Modules.Wealth
             return Running;
         }
 
- 
-
         private async void ParseLoop()
         {
             while (Running)
             {
                 if (AuthenticationService.IsAuthenticated())
                 {
-
                     Database = new WealthDbContext(Options);
 
                     foreach (var id in Settings.WealthTrackerTabs)
@@ -119,32 +103,31 @@ namespace Sidekick.Modules.Wealth
                         Database.SaveChanges();
 
                         if (!Running) { break; }
-
                     }
 
                     TakeSnapshot();
 
                     Database.SaveChanges();
-                    Database.Dispose();               
-
-                } else if (!AuthenticationService.IsAuthenticating()) {
+                    Database.Dispose();
+                }
+                else if (!AuthenticationService.IsAuthenticating())
+                {
                     Running = false;
                     OnParserStopped?.Invoke(new string[] { });
                 }
 
                 await Task.Delay(TimeSpan.FromSeconds(1));
-
             }
         }
 
         private async Task<Models.Stash> ParseStash(APIStashTab stash)
         {
-
             OnStashParsing?.Invoke(new string[] { stash.id, stash.name });
 
             var dbStash = Database.Stashes.FirstOrDefault(x => x.Id == stash.id);
 
-            if (dbStash == null) {
+            if (dbStash == null)
+            {
                 dbStash = new Models.Stash();
                 dbStash.Id = stash.id;
                 dbStash.Name = stash.name ?? "";
@@ -154,16 +137,21 @@ namespace Sidekick.Modules.Wealth
                 dbStash.UpdatedOn = dbStash.CreatedOn;
 
                 Database.Stashes.Add(dbStash);
-            } else {          
-                dbStash.Total = 0; 
+            }
+            else
+            {
+                dbStash.Total = 0;
             }
 
             dbStash.UpdatedOn = DateTime.Now;
 
             List<APIStashItem> items;
-            if (stash.type != null && stash.type.ToUpper() == "MAPSTASH") {
+            if (stash.type != null && stash.type.ToUpper() == "MAPSTASH")
+            {
                 items = await StashService.GetMapStashItems(stash);
-            } else {
+            }
+            else
+            {
                 items = await StashService.GetStashItems(stash);
             }
 
@@ -197,7 +185,8 @@ namespace Sidekick.Modules.Wealth
         {
             var dbItem = Database.Items.FirstOrDefault(x => x.Id == item.id);
 
-            if (dbItem == null) {
+            if (dbItem == null)
+            {
                 dbItem = new Models.Item();
                 dbItem.Id = item.id;
                 dbItem.Name = item.getFriendlyName();
@@ -209,7 +198,9 @@ namespace Sidekick.Modules.Wealth
                 dbItem.CreatedOn = DateTime.Now;
 
                 Database.Items.Add(dbItem);
-            } else {
+            }
+            else
+            {
                 dbItem.Removed = false; // Removed a full stack, added it back
             }
 
@@ -223,7 +214,6 @@ namespace Sidekick.Modules.Wealth
 
         private void TakeSnapshot()
         {
-
             var BatchId = 0;
 
             var Snapshots = Database.Snapshots.ToList();
@@ -263,7 +253,7 @@ namespace Sidekick.Modules.Wealth
         private Category GetItemCategory(APIStashItem item)
         {
             var name = item.getFriendlyName(false);
-            var metadata = ItemMetadataProvider.Parse(name, item.typeLine);
+            var metadata = itemMetadataParser.Parse(name, item.typeLine);
             if (metadata == null)
             {
                 Logger.LogError($"Could not retrieve metadeta: {item.getFriendlyName(false)}");
@@ -271,6 +261,7 @@ namespace Sidekick.Modules.Wealth
             }
             return metadata.Category;
         }
+
         private async Task<double> GetItemPrice(APIStashItem item, Category category)
         {
             var name = item.getFriendlyName(false);
@@ -282,41 +273,47 @@ namespace Sidekick.Modules.Wealth
             item.getMapTier(),
             null,
             item.getLinkCount());
-            if(price == null)
+            if (price == null)
             {
                 Logger.LogError($"Could not price: {item.getFriendlyName()}");
             }
             return price?.Price ?? 0;
         }
+
         private int GetItemCount(APIStashItem item)
         {
-            if(item.stackSize == null)
+            if (item.stackSize == null)
             {
                 return 1;
             }
             return (int)item.stackSize;
         }
+
         private bool CanParse(APIStashItem item)
         {
             var category = GetItemCategory(item);
 
-            if(category != Category.Undefined)
+            if (category != Category.Unknown)
             {
                 switch (item.frameType)
                 {
                     case FrameType.Currency:
-                        if (category == Category.Currency) {
+                        if (category == Category.Currency)
+                        {
                             return true;
                         }
                         return false;
+
                     case FrameType.Normal:
                     case FrameType.Magic:
                     case FrameType.Rare:
                         Category[] valid = { Category.Currency, Category.Map };
-                        if (valid.Contains(category)) {
+                        if (valid.Contains(category))
+                        {
                             return true;
                         }
                         return false;
+
                     case FrameType.Unique:
                     case FrameType.DivinationCard:
                     case FrameType.Gem:
