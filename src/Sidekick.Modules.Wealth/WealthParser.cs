@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe;
 using Sidekick.Apis.Poe.Authentication;
-using Sidekick.Apis.Poe.Metadatas;
 using Sidekick.Apis.Poe.Stash;
 using Sidekick.Apis.Poe.Stash.Models;
 using Sidekick.Apis.PoeNinja;
@@ -23,10 +22,10 @@ namespace Sidekick.Modules.Wealth
         private IAuthenticationService AuthenticationService { get; set; }
         private readonly ISettings Settings;
         private readonly IItemMetadataParser itemMetadataParser;
+        private readonly IInterprocessService interprocessService;
 
         private IStashService StashService { get; set; }
         private IPoeNinjaClient PoeNinjaClient { get; set; }
-        private IMetadataProvider ItemMetadataProvider { get; set; }
         private ILogger<WealthParser> Logger { get; set; }
 
         public static event Action<string[]> OnStashParsing;
@@ -43,9 +42,9 @@ namespace Sidekick.Modules.Wealth
             ISettings _settings,
             IStashService _stashService,
             IPoeNinjaClient _poeNinjaClient,
-            IMetadataProvider _itemMetadataProvider,
             IItemMetadataParser itemMetadataParser,
-            ILogger<WealthParser> _logger)
+            ILogger<WealthParser> _logger,
+            IInterprocessService interprocessService)
         {
             AuthenticationService = _authenticationService;
             Database = new WealthDbContext(_options);
@@ -53,11 +52,10 @@ namespace Sidekick.Modules.Wealth
             Settings = _settings;
             StashService = _stashService;
             PoeNinjaClient = _poeNinjaClient;
-            ItemMetadataProvider = _itemMetadataProvider;
             this.itemMetadataParser = itemMetadataParser;
             Logger = _logger;
-
-            InterprocessService.OnMessage += InterprocessService_CustomProtocolCallback;
+            this.interprocessService = interprocessService;
+            interprocessService.OnMessage += InterprocessService_CustomProtocolCallback;
         }
 
         public async Task Start()
@@ -120,7 +118,7 @@ namespace Sidekick.Modules.Wealth
             }
         }
 
-        private async Task<Models.Stash> ParseStash(APIStashTab stash)
+        private async Task<Models.Stash> ParseStash(ApiStashTab stash)
         {
             OnStashParsing?.Invoke(new string[] { stash.id, stash.name });
 
@@ -181,7 +179,7 @@ namespace Sidekick.Modules.Wealth
             return dbStash;
         }
 
-        private async Task<Models.Item> ParseItem(APIStashItem item, APIStashTab stash)
+        private async Task<Models.Item> ParseItem(APIStashItem item, ApiStashTab stash)
         {
             var dbItem = Database.Items.FirstOrDefault(x => x.Id == item.id);
 
@@ -338,7 +336,7 @@ namespace Sidekick.Modules.Wealth
 
         public void Dispose()
         {
-            InterprocessService.OnMessage -= InterprocessService_CustomProtocolCallback;
+            interprocessService.OnMessage -= InterprocessService_CustomProtocolCallback;
             Running = false;
         }
     }

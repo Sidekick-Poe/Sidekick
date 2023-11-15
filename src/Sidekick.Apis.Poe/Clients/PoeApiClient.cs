@@ -1,4 +1,3 @@
-using System.Net.Security;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
@@ -8,7 +7,7 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Clients
 {
-    public class PoeApiClient: IPoeApiClient
+    public class PoeApiClient : IPoeApiClient
     {
         private const string POEAPIURL = "https://api.pathofexile.com/";
 
@@ -23,7 +22,7 @@ namespace Sidekick.Apis.Poe.Clients
             IHttpClientFactory httpClientFactory,
             IAuthenticationService authenticationService,
             ISettingsService settingsService)
-        {                                
+        {
             this.logger = logger;
             this.gameLanguageProvider = gameLanguageProvider;
             this.authenticationService = authenticationService;
@@ -32,7 +31,6 @@ namespace Sidekick.Apis.Poe.Clients
             HttpClient = httpClientFactory.CreateClient("PoeClient");
             HttpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
             HttpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
-            HttpClient.Timeout = TimeSpan.FromMinutes(360); // GGG API will rate limit us and we have to wait 5 minutes for the next request
             HttpClient.BaseAddress = new Uri(POEAPIURL);
 
             Options = new JsonSerializerOptions()
@@ -55,13 +53,15 @@ namespace Sidekick.Apis.Poe.Clients
             {
                 var response = await HttpClient.GetAsync(path);
 
-                if(response.StatusCode == System.Net.HttpStatusCode.Unauthorized) {
+                if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
                     await settingsService.Save("Bearer_Token", null);
                     await settingsService.Save("Bearer_Expiration", null);
                     throw new Exception("Poe API: Unauthorized.");
                 }
 
-                if (response.StatusCode == System.Net.HttpStatusCode.TooManyRequests){
+                if (response.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
+                {
                     await settingsService.Save("Bearer_Token", null);
                     await settingsService.Save("Bearer_Expiration", null);
                     throw new Exception("Poe API: Too Many Requests.");
@@ -82,6 +82,5 @@ namespace Sidekick.Apis.Poe.Clients
 
             throw new Exception("[Poe Api Client] Could not understand the API response.");
         }
-
     }
 }

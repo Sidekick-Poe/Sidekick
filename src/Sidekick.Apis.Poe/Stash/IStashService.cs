@@ -1,18 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Sidekick.Apis.Poe.Stash.Models;
 
 namespace Sidekick.Apis.Poe.Stash
 {
     public interface IStashService
     {
+        Task<List<StashTab>> GetStashTabList();
 
-        Task<APIStashList> GetStashList();
-        Task<APIStashTab> GetStashTab(string stash);
-        Task<List<APIStashItem>> GetStashItems(APIStashTab stashTab, bool hasParent = false);
-        Task<List<APIStashItem>> GetMapStashItems(APIStashTab stashTab);
+        Task<ApiStashTab> GetStashTab(string stash);
+
+        Task<List<APIStashItem>> GetStashItems(ApiStashTab stashTab, bool hasParent = false);
+
+        Task<List<APIStashItem>> GetMapStashItems(ApiStashTab stashTab);
     }
 }

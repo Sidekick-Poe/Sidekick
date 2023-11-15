@@ -34,5 +34,10 @@ namespace Sidekick.Common.Errors
         /// Indicates the application is already running.
         /// </summary>
         AlreadyRunning,
+
+        /// <summary>
+        /// Indicates the module is disabled in the settings.
+        /// </summary>
+        DisabledModule,
     }
 }

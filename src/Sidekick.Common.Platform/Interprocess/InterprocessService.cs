@@ -1,27 +1,19 @@
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using PipeMethodCalls;
 using PipeMethodCalls.NetJson;
-using Sidekick.Common;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Sidekick.Common.Platform.Interprocess
 {
     public class InterprocessService: IInterprocessService
     {
-        public static event Action<string[]> OnMessage;
+        public event Action<string[]>? OnMessage;
 
         internal readonly ILogger<InterprocessService> logger;
 
         public InterprocessService(ILogger<InterprocessService> logger)
         {
             this.logger = logger;
-
         }
 
         public void Start()
@@ -35,7 +27,7 @@ namespace Sidekick.Common.Platform.Interprocess
                 {
                     try
                     {
-                        string pipeName = "sidekick-" + random.Next(0, 1000000).ToString();
+                        var pipeName = "sidekick-" + random.Next(0, 1000000).ToString();
 
                         using (StreamWriter f = File.CreateText(SidekickPaths.GetDataFilePath("pipename")))
                         {
@@ -49,7 +41,7 @@ namespace Sidekick.Common.Platform.Interprocess
 
                         await pipeServer.WaitForConnectionAsync();
 
-                        File.Delete(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "pipename");
+                        File.Delete(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule?.FileName) + "pipename");
 
                         await pipeServer.WaitForRemotePipeCloseAsync();
 
@@ -59,7 +51,6 @@ namespace Sidekick.Common.Platform.Interprocess
                     {
                         Debug.WriteLine(e.ToString());
                     }
-
                 }
             });
         }
@@ -68,6 +59,5 @@ namespace Sidekick.Common.Platform.Interprocess
         {
             OnMessage?.Invoke(args);
         }
-
     }
 }

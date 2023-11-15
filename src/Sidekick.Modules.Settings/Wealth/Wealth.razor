@@ -39,18 +39,18 @@
             <MudText Typo="Typo.h3" Class="mb-3">@Resources.WealthTracker_StashTabs</MudText>
             <MudText Typo="Typo.body1" Class="mb-3">@Resources.WealthTracker_StashTabsInstructions</MudText>
 
-            @if (StashList != null)
+            @if (StashTabs != null)
             {
                 <MudGrid Spacing="0">
-                    @foreach (var stashTab in StashList)
+                    @foreach (var stashTab in StashTabs)
                     {
                         <MudItem xs="6">
                             <MudCheckBox T="bool"
-                                         Checked="@stashTab.parse"
-                                         Dense
-                                         CheckedChanged="@(async (isChecked) => CheckChanged(stashTab, isChecked))"
-                                         Color="Color.Primary">@stashTab.name</MudCheckBox>
-                        </MudItem>
+                                         Checked="IsChecked(stashTab)"
+                                         CheckedChanged="(v) => Toggle(stashTab, v)"
+                                              Dense
+                                          Color="Color.Primary">@stashTab.Name</MudCheckBox>
+                         </MudItem>
                     }
                 </MudGrid>
 
@@ -73,8 +73,9 @@
     [Inject] private IAuthenticationService AuthenticationService { get; set; }
     [Inject] private IStashService StashService { get; set; }
     [Inject] private ISettingsService SettingsService { get; set; }
+    [Inject] private IInterprocessService InterprocessService { get; set; }
 
-    private List<APIStashTab> StashList { get; set; }
+    private List<StashTab> StashTabs { get; set; }
 
     public override string Title => Resources.Title;
 
@@ -98,89 +99,42 @@
         await base.OnInitializedAsync();
     }
 
-    private void CheckChanged(APIStashTab stash, bool isChecked)
-    {
-        stash.parse = isChecked;
-
-        if (stash.parse)
-        {
-            if (!ViewModel.WealthTrackerTabs.Contains(stash.id))
-            {
-                ViewModel.WealthTrackerTabs.Add(stash.id);
-            }
-        }
-        else
-        {
-            if (ViewModel.WealthTrackerTabs.Contains(stash.id))
-            {
-                ViewModel.WealthTrackerTabs.Remove(stash.id);
-            }
-        }
-    }
-
-    private void ToggleWealthTracker()
+    private async Task ToggleWealthTracker()
     {
         ViewModel.Enable_WealthTracker = !ViewModel.Enable_WealthTracker;
-
-        SettingsService.Save("Enable_WealthTracker", ViewModel.Enable_WealthTracker);
+        await SettingsService.Save("Enable_WealthTracker", ViewModel.Enable_WealthTracker);
 
         if (ViewModel.Enable_WealthTracker)
         {
             if (!AuthenticationService.IsAuthenticated())
             {
-                AuthenticationService.Authenticate();
+                await AuthenticationService.Authenticate();
             }
             else
             {
                 LoadStashTabs();
             }
         }
-        else
-        {
-            SettingsService.Save("Bearer_Token", null);
-            SettingsService.Save("Bearer_Expiration", null);
-        }
-
-        StateHasChanged();
     }
-
 
     private async void LoadStashTabs()
     {
-        var results = await StashService.GetStashList();
+        StashTabs = await StashService.GetStashTabList();
+        await InvokeAsync(StateHasChanged);
+    }
 
-        StashList = new List<APIStashTab>();
+    private bool IsChecked(StashTab tab) => ViewModel.WealthTrackerTabs.Contains(tab.Id);
 
-        foreach (var stash in results.stashes)
+    private void Toggle(StashTab tab, bool isChecked)
+    {
+        if (IsChecked(tab))
         {
-            if (stash.children != null)
-            {
-                foreach (var child in stash.children)
-                {
-                    if (ViewModel.WealthTrackerTabs.Contains(child.id))
-                    {
-                        child.parse = true;
-                    }
-
-                    StashList.Add(child);
-                }
-            }
-            else
-            {
-                if (ViewModel.WealthTrackerTabs.Contains(stash.id))
-                {
-                    stash.parse = true;
-                }
-                StashList.Add(stash);
-            }
-
+            ViewModel.WealthTrackerTabs.Remove(tab.Id);
         }
-
-        await InvokeAsync(() =>
+        else
         {
-            StateHasChanged();
-        });
-
+            ViewModel.WealthTrackerTabs.Add(tab.Id);
+        }
     }
 
     public void InterprocessService_CustomProtocolCallback(string[] obj)
@@ -202,5 +156,4 @@
     {
         InterprocessService.OnMessage -= InterprocessService_CustomProtocolCallback;
     }
-
 }

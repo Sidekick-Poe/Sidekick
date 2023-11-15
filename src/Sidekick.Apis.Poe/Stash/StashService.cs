@@ -1,30 +1,33 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Stash.Models;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Stash
 {
-    public class StashService: IStashService
+    public class StashService : IStashService
     {
-        private IPoeApiClient _client;
+        private IPoeApiClient client;
+        private readonly ISettings settings;
         private ILogger<IStashService> _logger;
 
-        public StashService(IPoeApiClient PoeApiClient)
+        public StashService(
+            IPoeApiClient client,
+            ISettings settings)
         {
-            _client = PoeApiClient;
+            this.client = client;
+            this.settings = settings;
         }
 
-        public async Task<List<APIStashItem>> GetStashItems(APIStashTab stashTab, bool hasParent = false)
+        public async Task<List<APIStashItem>> GetStashItems(ApiStashTab stashTab, bool hasParent = false)
         {
             List<APIStashItem> items = new List<APIStashItem>();
- 
+
             if (stashTab.children != null)
             {
-                foreach (APIStashTab childStashTab in stashTab.children)
+                foreach (ApiStashTab childStashTab in stashTab.children)
                 {
-                    APIStashTab childStashDetails = await GetStashTab($"{stashTab.id}/{childStashTab.id}");
+                    ApiStashTab childStashDetails = await GetStashTab($"{stashTab.id}/{childStashTab.id}");
 
                     if (childStashDetails != null && childStashDetails.items != null)
                     {
@@ -33,7 +36,7 @@ namespace Sidekick.Apis.Poe.Stash
                 }
             }
 
-            if(hasParent && !String.IsNullOrEmpty(stashTab.parent))
+            if (hasParent && !String.IsNullOrEmpty(stashTab.parent))
             {
                 var stashDetails = await GetStashTab($"{stashTab.parent}/{stashTab.id}");
 
@@ -51,18 +54,20 @@ namespace Sidekick.Apis.Poe.Stash
             return items;
         }
 
-
-        public async Task<List<APIStashItem>> GetMapStashItems(APIStashTab stashTab)
+        public async Task<List<APIStashItem>> GetMapStashItems(ApiStashTab stashTab)
         {
             List<APIStashItem> items = new List<APIStashItem>();
 
             if (stashTab.children != null)
             {
-                foreach (APIStashTab childStashTab in stashTab.children)
+                foreach (ApiStashTab childStashTab in stashTab.children)
                 {
-                    if(childStashTab.metadata.map.section == "special") {
+                    if (childStashTab.metadata.map.section == "special")
+                    {
                         items.AddRange(await GetStashItems(childStashTab, true));
-                    } else {
+                    }
+                    else
+                    {
                         items.Add(new APIStashItem
                         {
                             id = childStashTab.id,
@@ -70,7 +75,7 @@ namespace Sidekick.Apis.Poe.Stash
                             baseType = childStashTab.metadata.map.name,
                             name = "",
                             icon = childStashTab.metadata.map.image,
-                            league = "Ancestor",
+                            league = settings.LeagueId,
                             ilvl = -1,
                             stackSize = childStashTab.metadata.items,
                             properties = new List<APIItemProperty>() {
@@ -87,15 +92,42 @@ namespace Sidekick.Apis.Poe.Stash
             return items;
         }
 
-        public async Task<APIStashTab> GetStashTab(string stashId)
+        public async Task<ApiStashTab> GetStashTab(string stashId)
         {
-            var wrapper = await _client.Fetch<APIStashTabWrapper>($"stash/Ancestor/{stashId}");
+            var wrapper = await client.Fetch<ApiStashTabWrapper>($"stash/{settings.LeagueId}/{stashId}");
             return wrapper.stash;
         }
 
-        public async Task<APIStashList> GetStashList()
+        public async Task<List<StashTab>> GetStashTabList()
         {
-            return await _client.Fetch<APIStashList>($"stash/Ancestor");
+            var response = await client.Fetch<ApiStashTabList>($"stash/{settings.LeagueId}");
+
+            var result = new List<StashTab>();
+            FillStashTabs(result, response.StashTabs);
+
+            return result;
+        }
+
+        private void FillStashTabs(List<StashTab> list, List<ApiStashTab> apiStashTabs)
+        {
+            foreach (var stashTab in apiStashTabs)
+            {
+                if (!stashTab.IsFolder)
+                {
+                    list.Add(new()
+                    {
+                        Name = stashTab.name,
+                        Id = stashTab.id,
+                    });
+                }
+
+                if (stashTab.children == null)
+                {
+                    continue;
+                }
+
+                FillStashTabs(list, stashTab.children);
+            }
         }
     }
 }
