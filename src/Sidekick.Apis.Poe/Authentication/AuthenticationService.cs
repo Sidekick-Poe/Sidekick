@@ -1,128 +1,183 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using Sidekick.Apis.Poe.Authentication.Models;
 using Sidekick.Common.Browser;
+using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Authentication
 {
-    internal class AuthenticationService : IAuthenticationService
+    internal class AuthenticationService : IAuthenticationService, IDisposable
     {
-        private const string REDIRECTURL = "https://sidekick-poe.github.io/oauth/poe";
         private const string AUTHORIZATIONURL = "https://www.pathofexile.com/oauth/authorize";
-        private const string TOKENURL = "https://www.pathofexile.com/oauth/token";
+        private const string REDIRECTURL = "https://sidekick-poe.github.io/oauth/poe";
         private const string CLIENTID = "sidekick";
         private const string SCOPES = "account:stashes";
+        private const string TOKENURL = "https://www.pathofexile.com/oauth/token";
 
-        private static string _code { get; set; }
-        private static string _state { get; set; }
-        private static string _verifier { get; set; }
-        private static string _challenge { get; set; }
-        private static string _token { get; set; }
-        private static bool _isAuthenticating { get; set; }
+        private readonly ISettings settings;
+        private readonly ISettingsService settingsService;
+        private readonly IBrowserProvider browserProvider;
+        private readonly IInterprocessService interprocessService;
+        private readonly HttpClient client;
 
-        private ISettings _settings { get; set; }
-        private ISettingsService _settingsService { get; set; }
-        private IBrowserProvider _browser { get; set; }
-        private HttpClient _client { get; set; }
+        public event Action? OnStateChanged;
 
         public AuthenticationService(
             ISettings settings,
             ISettingsService settingsService,
-            IBrowserProvider browser,
-            IHttpClientFactory clientFactory)
+            IBrowserProvider browserProvider,
+            IHttpClientFactory clientFactory,
+            IInterprocessService interprocessService)
         {
-            _settings = settings;
-            _settingsService = settingsService;
-            _browser = browser;
-            _client = clientFactory.CreateClient();
-            _isAuthenticating = false;
+            this.settings = settings;
+            this.settingsService = settingsService;
+            this.browserProvider = browserProvider;
+            this.interprocessService = interprocessService;
+
+            client = clientFactory.CreateClient();
+            interprocessService.OnMessageReceived += InterprocessService_CustomProtocolCallback;
+        }
+
+        private string? State { get; set; }
+        private string? Verifier { get; set; }
+        private string? Challenge { get; set; }
+        private TaskCompletionSource? AuthenticateTask { get; set; }
+        private CancellationTokenSource? AuthenticateTokenSource { get; set; }
+
+        public AuthenticationState CurrentState
+        {
+            get
+            {
+                if(AuthenticateTask != null && AuthenticateTask.Task.Status == TaskStatus.Running && AuthenticateTokenSource != null && !AuthenticateTokenSource.IsCancellationRequested)
+                {
+                    return AuthenticationState.InProgress;
+                }
+
+                if (settings.Bearer_Expiration == null || string.IsNullOrEmpty(settings.Bearer_Token))
+                {
+                    return AuthenticationState.Unauthenticated;
+                }
+
+                if (DateTimeOffset.Now < settings.Bearer_Expiration)
+                {
+                    return AuthenticationState.Authenticated;
+                }
+
+                return AuthenticationState.Unauthenticated;
+            }
+        }
+
+        public string? GetToken()
+        {
+            OnStateChanged?.Invoke();
+
+            if (CurrentState == AuthenticationState.Authenticated)
+            {
+                return settings.Bearer_Token;
+            }
+
+            return null;
         }
 
         public Task Authenticate()
         {
-            if (!_isAuthenticating)
+            if (CurrentState == AuthenticationState.Authenticated)
             {
-                _isAuthenticating = true;
-                _state = Guid.NewGuid().ToString();
-                _verifier = GenerateCodeVerifier();
-                _challenge = GenerateCodeChallenge();
-                _browser.OpenUri(new Uri(GenerateUserLink()));
+                return Task.CompletedTask;
             }
-            return Task.CompletedTask;
+
+            if (CurrentState == AuthenticationState.InProgress)
+            {
+                return AuthenticateTask!.Task;
+            }
+
+            State = Guid.NewGuid().ToString();
+            Verifier = GenerateCodeVerifier();
+            Challenge = GenerateCodeChallenge(Verifier);
+
+            var authenticationLink = $"{AUTHORIZATIONURL}?client_id={CLIENTID}&response_type=code&scope={SCOPES}&state={State}&redirect_uri={REDIRECTURL}&code_challenge={Challenge}&code_challenge_method=S256";
+            browserProvider.OpenUri(new Uri(authenticationLink));
+
+            AuthenticateTask = new();
+            AuthenticateTokenSource = new(30000);
+            OnStateChanged?.Invoke();
+
+            return AuthenticateTask.Task;
         }
 
-        public async Task<string> AuthenticationCallback(string code, string state)
+        private void CancelAuthenticate()
         {
-            if (_state == state)
+            if (AuthenticateTask != null)
             {
-                _code = code;
-                _token = await RequestAccessToken();
+                AuthenticateTask.SetResult();
+                AuthenticateTask = null;
             }
-            return _token;
+
+            if (AuthenticateTokenSource != null)
+            {
+                AuthenticateTokenSource.Cancel();
+                AuthenticateTokenSource = null;
+            }
+
+            OnStateChanged?.Invoke();
         }
 
-        public string GetAccessToken()
+        private void InterprocessService_CustomProtocolCallback(string message)
         {
-            if (!IsAuthenticated())
+            if (!message.ToUpper().StartsWith("SIDEKICK://OAUTH/POE"))
             {
-                return string.Empty;
+                return;
             }
 
-            return _settings.Bearer_Token;
+            var queryDictionary = System.Web.HttpUtility.ParseQueryString(new Uri(message).Query);
+            var state = queryDictionary["state"];
+            var code = queryDictionary["code"];
+
+            if (string.IsNullOrEmpty(state) || string.IsNullOrEmpty(code))
+            {
+                CancelAuthenticate();
+                return;
+            }
+
+            _ = RequestAccessToken(state, code);
         }
 
-        public bool IsAuthenticated()
+        private async Task RequestAccessToken(string state, string code)
         {
-            if (_isAuthenticating)
+            if (state != State)
             {
-                return false;
+                CancelAuthenticate();
+                return;
             }
 
-            if (_settings.Bearer_Expiration == null || String.IsNullOrEmpty(_settings.Bearer_Token))
-            {
-                return false;
-            }
-
-            if (_settings.Bearer_Expiration?.AddMinutes(-1) < DateTime.Now)
-            {
-                _settingsService.Save(nameof(Settings.Bearer_Token), null);
-                _settingsService.Save(nameof(Settings.Bearer_Expiration), null);
-                return false;
-            }
-
-            return true;
-        }
-
-        public bool IsAuthenticating()
-        {
-            return _isAuthenticating;
-        }
-
-        private async Task<string> RequestAccessToken()
-        {
             var requestContent = new StringContent(
-                $"client_id={CLIENTID}&grant_type=authorization_code&code={_code}&redirect_uri={REDIRECTURL}&scope={SCOPES}&code_verifier={_verifier}",
+                $"client_id={CLIENTID}&grant_type=authorization_code&code={code}&redirect_uri={REDIRECTURL}&scope={SCOPES}&code_verifier={Verifier}",
                 Encoding.UTF8,
                 "application/x-www-form-urlencoded"
             );
-
-            var response = await _client.PostAsync(TOKENURL, requestContent);
-            // var responseString = await response.Content.ReadAsStringAsync();
+            var response = await client.PostAsync(TOKENURL, requestContent);
             var responseContent = await response.Content.ReadAsStreamAsync();
             var result = await JsonSerializer.DeserializeAsync<Oauth2TokenResponse>(responseContent);
 
-            await _settingsService.Save(nameof(Settings.Bearer_Token), result.access_token);
-            await _settingsService.Save(nameof(Settings.Bearer_Expiration), DateTime.Now.AddSeconds(result.expires_in));
+            if(result == null || result.access_token == null)
+            {
+                CancelAuthenticate();
+                return;
+            }
 
-            _isAuthenticating = false;
+            await settingsService.Save(nameof(Settings.Bearer_Token), result.access_token);
+            await settingsService.Save(nameof(Settings.Bearer_Expiration), DateTime.Now.AddSeconds(result.expires_in));
 
-            return result.access_token;
+            if (AuthenticateTask != null)
+            {
+                AuthenticateTask.SetResult();
+            }
         }
 
-        private string GenerateCodeVerifier()
+        private static string GenerateCodeVerifier()
         {
-            //Generate a random string for our code verifier
             var rng = RandomNumberGenerator.Create();
             var bytes = new byte[32];
             rng.GetBytes(bytes);
@@ -134,36 +189,22 @@ namespace Sidekick.Apis.Poe.Authentication
             return codeVerifier;
         }
 
-        private string GenerateCodeChallenge()
+        private static string GenerateCodeChallenge(string verifier)
         {
-            //generate the code challenge based on the verifier
             string codeChallenge;
-            using (var sha256 = SHA256.Create())
-            {
-                var challengeBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(_verifier));
-                codeChallenge = Convert.ToBase64String(challengeBytes)
-                    .TrimEnd('=')
-                    .Replace('+', '-')
-                    .Replace('/', '_');
-            }
+            using var sha256 = SHA256.Create();
+            var challengeBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(verifier));
+            codeChallenge = Convert.ToBase64String(challengeBytes)
+                .TrimEnd('=')
+                .Replace('+', '-')
+                .Replace('/', '_');
 
             return codeChallenge;
         }
 
-        private string GenerateUserLink()
+        public void Dispose()
         {
-            return $"{AUTHORIZATIONURL}?client_id={CLIENTID}&response_type=code&scope={SCOPES}&state={_state}&redirect_uri={REDIRECTURL}&code_challenge={_challenge}&code_challenge_method=S256";
-        }
-
-        private class Oauth2TokenResponse
-        {
-            public string access_token { get; set; }
-            public int expires_in { get; set; }
-            public string token_type { get; set; }
-            public string scope { get; set; }
-            public string username { get; set; }
-            public string sub { get; set; }
-            public string refresh_token { get; set; }
+            interprocessService.OnMessageReceived -= InterprocessService_CustomProtocolCallback;
         }
     }
 }

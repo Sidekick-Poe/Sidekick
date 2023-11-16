@@ -12,17 +12,15 @@ using Sidekick.Modules.Wealth.Models;
 
 namespace Sidekick.Modules.Wealth
 {
-    internal class WealthParser : IDisposable
+    internal class WealthParser
     {
         private bool Running = false;
         private Thread ParsingThread { get; set; }
 
         private WealthDbContext Database { get; set; }
         private DbContextOptions<WealthDbContext> Options { get; set; }
-        private IAuthenticationService AuthenticationService { get; set; }
         private readonly ISettings Settings;
         private readonly IItemMetadataParser itemMetadataParser;
-        private readonly IInterprocessService interprocessService;
 
         private IStashService StashService { get; set; }
         private IPoeNinjaClient PoeNinjaClient { get; set; }
@@ -46,7 +44,6 @@ namespace Sidekick.Modules.Wealth
             ILogger<WealthParser> _logger,
             IInterprocessService interprocessService)
         {
-            AuthenticationService = _authenticationService;
             Database = new WealthDbContext(_options);
             Options = _options;
             Settings = _settings;
@@ -54,19 +51,12 @@ namespace Sidekick.Modules.Wealth
             PoeNinjaClient = _poeNinjaClient;
             this.itemMetadataParser = itemMetadataParser;
             Logger = _logger;
-            this.interprocessService = interprocessService;
-            interprocessService.OnMessageReceived += InterprocessService_CustomProtocolCallback;
         }
 
         public async Task Start()
         {
             if (!Running)
             {
-                if (!AuthenticationService.IsAuthenticated())
-                {
-                    await AuthenticationService.Authenticate();
-                }
-
                 Running = true;
                 ParsingThread = new Thread(ParseLoop);
                 ParsingThread.Start();
@@ -90,29 +80,21 @@ namespace Sidekick.Modules.Wealth
         {
             while (Running)
             {
-                if (AuthenticationService.IsAuthenticated())
+                Database = new WealthDbContext(Options);
+
+                foreach (var id in Settings.WealthTrackerTabs)
                 {
-                    Database = new WealthDbContext(Options);
-
-                    foreach (var id in Settings.WealthTrackerTabs)
-                    {
-                        await ParseStash(await StashService.GetStashTab(id));
-
-                        Database.SaveChanges();
-
-                        if (!Running) { break; }
-                    }
-
-                    TakeSnapshot();
+                    await ParseStash(await StashService.GetStashTab(id));
 
                     Database.SaveChanges();
-                    Database.Dispose();
+
+                    if (!Running) { break; }
                 }
-                else if (!AuthenticationService.IsAuthenticating())
-                {
-                    Running = false;
-                    OnParserStopped?.Invoke(new string[] { });
-                }
+
+                TakeSnapshot();
+
+                Database.SaveChanges();
+                Database.Dispose();
 
                 await Task.Delay(TimeSpan.FromSeconds(1));
             }
@@ -319,25 +301,6 @@ namespace Sidekick.Modules.Wealth
                 }
             }
             return false;
-        }
-
-        public void InterprocessService_CustomProtocolCallback(string message)
-        {
-            if (message.ToUpper().StartsWith("SIDEKICK://OAUTH/POE"))
-            {
-                var queryDictionary = System.Web.HttpUtility.ParseQueryString(new System.Uri(message).Query);
-
-                AuthenticationService.AuthenticationCallback(
-                    queryDictionary["code"],
-                    queryDictionary["state"]
-                );
-            }
-        }
-
-        public void Dispose()
-        {
-            interprocessService.OnMessageReceived -= InterprocessService_CustomProtocolCallback;
-            Running = false;
         }
     }
 }

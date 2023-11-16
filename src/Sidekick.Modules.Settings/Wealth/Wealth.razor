@@ -1,7 +1,6 @@
 @page "/settings/wealth"
 @layout SettingsLayout
 @inherits SidekickView
-@implements IDisposable
 
 <div class="pa-3">
     <MudText Typo="Typo.h1" Class="mb-3">@Resources.WealthTracker</MudText>
@@ -81,19 +80,9 @@
 
     protected override async Task OnInitializedAsync()
     {
-        InterprocessService.OnMessageReceived += InterprocessService_CustomProtocolCallback;
-
         if (ViewModel.Enable_WealthTracker)
         {
-            if (AuthenticationService.IsAuthenticated())
-            {
                 LoadStashTabs();
-            }
-            else
-            {
-                await AuthenticationService.Authenticate();
-            }
-
         }
 
         await base.OnInitializedAsync();
@@ -106,19 +95,13 @@
 
         if (ViewModel.Enable_WealthTracker)
         {
-            if (!AuthenticationService.IsAuthenticated())
-            {
-                await AuthenticationService.Authenticate();
-            }
-            else
-            {
                 LoadStashTabs();
-            }
         }
     }
 
     private async void LoadStashTabs()
     {
+        await AuthenticationService.Authenticate();
         StashTabs = await StashService.GetStashTabList();
         await InvokeAsync(StateHasChanged);
     }
@@ -135,25 +118,5 @@
         {
             ViewModel.WealthTrackerTabs.Add(tab.Id);
         }
-    }
-
-    public void InterprocessService_CustomProtocolCallback(string message)
-    {
-        if (message.ToUpper().StartsWith("SIDEKICK://OAUTH/POE"))
-        {
-            var queryDictionary = System.Web.HttpUtility.ParseQueryString(new System.Uri(message).Query);
-
-            var token = AuthenticationService.AuthenticationCallback(
-                queryDictionary["code"],
-                queryDictionary["state"]
-            ).Result;
-
-            LoadStashTabs();
-        }
-    }
-
-    public void Dispose()
-    {
-        InterprocessService.OnMessageReceived -= InterprocessService_CustomProtocolCallback;
     }
 }

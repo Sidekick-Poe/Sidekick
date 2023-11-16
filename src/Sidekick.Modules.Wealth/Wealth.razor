@@ -21,20 +21,13 @@ else
                     <WealthInventory />
                 </MudCardContent>
                 <MudCardActions>
-                    @if (AuthenticationService.IsAuthenticated())
+                    @if (WealthParser.IsRunning())
                     {
-                        if (WealthParser.IsRunning())
-                        {
-                            <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Success">Parser Running</MudAlert>
-                        }
-                        else
-                        {
-                            <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Error">Parser Stopped</MudAlert>
-                        }
+                        <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Success">Parser Running</MudAlert>
                     }
                     else
                     {
-                        <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Error">Not Authenticated</MudAlert>
+                        <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Error">Parser Stopped</MudAlert>
                     }
                 </MudCardActions>
             </MudCard>

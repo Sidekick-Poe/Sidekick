@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Net.Http.Headers;
 using ComposableAsync;
 using Microsoft.Extensions.Logging;
@@ -33,19 +32,17 @@ namespace Sidekick.Apis.Poe.Clients
         {
             await timeConstraint;
 
-            var token = authenticationService.GetAccessToken();
-
-            if (String.IsNullOrEmpty(token))
+            var token = authenticationService.GetToken();
+            if (string.IsNullOrEmpty(token))
             {
-               return new HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+                return new HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
             }
 
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var response =  await base.SendAsync(request, cancellationToken);
+            var response = await base.SendAsync(request, cancellationToken);
 
             return response;
-
         }
     }
 }
