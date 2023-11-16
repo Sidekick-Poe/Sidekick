@@ -3,7 +3,7 @@ using System.IO;
 using Microsoft.Win32;
 
 var customProtocol = "Sidekick";
-RegistryKey? key = Registry.ClassesRoot.OpenSubKey(customProtocol);
+var key = Registry.ClassesRoot.OpenSubKey(customProtocol);
 if (key != null)
 {
     Console.WriteLine("Registry key is already installed. Closing the application...");

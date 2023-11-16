@@ -2,10 +2,10 @@ namespace Sidekick.Common.Platform.Interprocess
 {
     public interface IInterprocessService
     {
-        event Action<string[]> OnMessage;
+        event Action<string> OnMessageReceived;
 
-        void ReceiveMessage(string[] args);
+        void StartReceiving();
 
-        void Start();
+        Task SendMessage(string message);
     }
 }

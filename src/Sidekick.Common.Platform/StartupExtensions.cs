@@ -31,8 +31,6 @@ namespace Sidekick.Common.Platform
             }
 
             services.AddSidekickInitializableService<IKeyboardProvider, KeyboardProvider>();
-
-            services.AddSingleton<IInterprocessClient, InterprocessClient>();
             services.AddSingleton<IInterprocessService, InterprocessService>();
 
             return services;

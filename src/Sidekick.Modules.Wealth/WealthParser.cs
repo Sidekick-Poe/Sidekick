@@ -55,7 +55,7 @@ namespace Sidekick.Modules.Wealth
             this.itemMetadataParser = itemMetadataParser;
             Logger = _logger;
             this.interprocessService = interprocessService;
-            interprocessService.OnMessage += InterprocessService_CustomProtocolCallback;
+            interprocessService.OnMessageReceived += InterprocessService_CustomProtocolCallback;
         }
 
         public async Task Start()
@@ -321,11 +321,11 @@ namespace Sidekick.Modules.Wealth
             return false;
         }
 
-        public void InterprocessService_CustomProtocolCallback(string[] obj)
+        public void InterprocessService_CustomProtocolCallback(string message)
         {
-            if (obj.Length > 0 && obj[0].ToUpper().StartsWith("SIDEKICK://OAUTH/POE"))
+            if (message.ToUpper().StartsWith("SIDEKICK://OAUTH/POE"))
             {
-                var queryDictionary = System.Web.HttpUtility.ParseQueryString(new System.Uri(obj[0]).Query);
+                var queryDictionary = System.Web.HttpUtility.ParseQueryString(new System.Uri(message).Query);
 
                 AuthenticationService.AuthenticationCallback(
                     queryDictionary["code"],
@@ -336,7 +336,7 @@ namespace Sidekick.Modules.Wealth
 
         public void Dispose()
         {
-            interprocessService.OnMessage -= InterprocessService_CustomProtocolCallback;
+            interprocessService.OnMessageReceived -= InterprocessService_CustomProtocolCallback;
             Running = false;
         }
     }

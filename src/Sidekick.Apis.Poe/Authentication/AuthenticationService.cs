@@ -1,23 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Security.AccessControl;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Clients;
-using Sidekick.Apis.Poe.Modifiers;
-using Sidekick.Apis.Poe.Trade;
-using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Common.Browser;
-using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
-using static System.Formats.Asn1.AsnWriter;
-using static System.Net.WebRequestMethods;
 
 namespace Sidekick.Apis.Poe.Authentication
 {
@@ -40,7 +25,7 @@ namespace Sidekick.Apis.Poe.Authentication
         private ISettingsService _settingsService { get; set; }
         private IBrowserProvider _browser { get; set; }
         private HttpClient _client { get; set; }
-       
+
         public AuthenticationService(
             ISettings settings,
             ISettingsService settingsService,
@@ -69,18 +54,19 @@ namespace Sidekick.Apis.Poe.Authentication
 
         public async Task<string> AuthenticationCallback(string code, string state)
         {
-            if(_state == state) {
+            if (_state == state)
+            {
                 _code = code;
                 _token = await RequestAccessToken();
-            } 
+            }
             return _token;
         }
 
         public string GetAccessToken()
         {
-            if(!IsAuthenticated())
+            if (!IsAuthenticated())
             {
-                return String.Empty;
+                return string.Empty;
             }
 
             return _settings.Bearer_Token;
@@ -122,6 +108,7 @@ namespace Sidekick.Apis.Poe.Authentication
             );
 
             var response = await _client.PostAsync(TOKENURL, requestContent);
+            // var responseString = await response.Content.ReadAsStringAsync();
             var responseContent = await response.Content.ReadAsStreamAsync();
             var result = await JsonSerializer.DeserializeAsync<Oauth2TokenResponse>(responseContent);
 
@@ -161,8 +148,8 @@ namespace Sidekick.Apis.Poe.Authentication
             }
 
             return codeChallenge;
-           
         }
+
         private string GenerateUserLink()
         {
             return $"{AUTHORIZATIONURL}?client_id={CLIENTID}&response_type=code&scope={SCOPES}&state={_state}&redirect_uri={REDIRECTURL}&code_challenge={_challenge}&code_challenge_method=S256";
@@ -178,6 +165,5 @@ namespace Sidekick.Apis.Poe.Authentication
             public string sub { get; set; }
             public string refresh_token { get; set; }
         }
-
     }
 }

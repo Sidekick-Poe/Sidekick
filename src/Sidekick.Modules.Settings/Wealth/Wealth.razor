@@ -81,7 +81,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        InterprocessService.OnMessage += InterprocessService_CustomProtocolCallback;
+        InterprocessService.OnMessageReceived += InterprocessService_CustomProtocolCallback;
 
         if (ViewModel.Enable_WealthTracker)
         {
@@ -137,11 +137,11 @@
         }
     }
 
-    public void InterprocessService_CustomProtocolCallback(string[] obj)
+    public void InterprocessService_CustomProtocolCallback(string message)
     {
-        if (obj.Length > 0 && obj[0].ToUpper().StartsWith("SIDEKICK://OAUTH/POE"))
+        if (message.ToUpper().StartsWith("SIDEKICK://OAUTH/POE"))
         {
-            var queryDictionary = System.Web.HttpUtility.ParseQueryString(new System.Uri(obj[0]).Query);
+            var queryDictionary = System.Web.HttpUtility.ParseQueryString(new System.Uri(message).Query);
 
             var token = AuthenticationService.AuthenticationCallback(
                 queryDictionary["code"],
@@ -154,6 +154,6 @@
 
     public void Dispose()
     {
-        InterprocessService.OnMessage -= InterprocessService_CustomProtocolCallback;
+        InterprocessService.OnMessageReceived -= InterprocessService_CustomProtocolCallback;
     }
 }

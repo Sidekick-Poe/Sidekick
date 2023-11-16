@@ -42,12 +42,9 @@ namespace Sidekick.Wpf
         private Mutex? Mutex { get; set; }
 
         private IInterprocessService InterprocessService { get; set; }
-        private IInterprocessClient InterprocessClient { get; set; }
 
         public App()
         {
-
-
             var configurationManager = new ConfigurationManager();
             try
             {
@@ -60,37 +57,41 @@ namespace Sidekick.Wpf
             ServiceProvider = services.BuildServiceProvider();
             logger = ServiceProvider.GetRequiredService<ILogger<App>>();
             InterprocessService = ServiceProvider.GetRequiredService<IInterprocessService>();
-            InterprocessClient = ServiceProvider.GetRequiredService<IInterprocessClient>();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            AttachErrorHandlers();
-
             var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
 
-            if (!EnsureSingleInstance())
+            if (IsAlreadyRunning())
             {
                 if (e.Args.Length > 0 && e.Args[0].ToUpper().StartsWith("SIDEKICK://"))
                 {
-                    InterprocessClient.Start();
-                    InterprocessClient.SendMessage(e.Args);
-                    Current.Shutdown();
+                    Task.Run(async () =>
+                    {
+                        await InterprocessService.SendMessage(e.Args[0]);
+                    });
                 }
                 else
                 {
                     _ = viewLocator.Open(ErrorType.AlreadyRunning.ToUrl());
                 }
 
+                Task.Run(async () =>
+                {
+                    await Task.Delay(5000);
+                    Current.Dispatcher.Invoke(() =>
+                    {
+                        Current.Shutdown();
+                    });
+                });
                 return;
             }
-            else
-            {
-                InterprocessService.Start();
-            }
 
+            AttachErrorHandlers();
+            InterprocessService.StartReceiving();
             _ = viewLocator.Open("/");
         }
 
@@ -143,7 +144,6 @@ namespace Sidekick.Wpf
             services.AddSingleton<ITrayProvider, WpfTrayProvider>();
             services.AddSingleton<IViewLocator, WpfViewLocator>();
             services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());
-
         }
 
         protected override void OnExit(ExitEventArgs e)
@@ -153,24 +153,10 @@ namespace Sidekick.Wpf
             base.OnExit(e);
         }
 
-        private bool EnsureSingleInstance()
+        private bool IsAlreadyRunning()
         {
-            Mutex = new Mutex(true, APPLICATION_PROCESS_GUID, out var instanceResult);
-            if (!instanceResult)
-            {
-                Task.Run(async () =>
-                {
-                    await Task.Delay(5000);
-
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        Current.Shutdown();
-                    });
-                });
-                return false;
-            }
-
-            return true;
+            Mutex = new Mutex(true, APPLICATION_PROCESS_GUID, out var notRunning);
+            return !notRunning;
         }
 
         private void AttachErrorHandlers()

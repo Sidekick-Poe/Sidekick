@@ -1,63 +1,51 @@
-using System.Diagnostics;
-using Microsoft.Extensions.Logging;
 using PipeMethodCalls;
 using PipeMethodCalls.NetJson;
 
 namespace Sidekick.Common.Platform.Interprocess
 {
-    public class InterprocessService: IInterprocessService
+    public class InterprocessService : IInterprocessService, IDisposable
     {
-        public event Action<string[]>? OnMessage;
+        public event Action<string>? OnMessageReceived;
 
-        internal readonly ILogger<InterprocessService> logger;
-
-        public InterprocessService(ILogger<InterprocessService> logger)
+        public InterprocessService()
         {
-            this.logger = logger;
+            InterprocessMessaging.OnMessageReceived += InterprocessMessaging_OnMessageReceived;
         }
 
-        public void Start()
+        public void StartReceiving()
         {
             Task.Run(async () =>
             {
-                PipeServer<IInterprocessService> pipeServer;
-
-                Random random = new Random();
                 while (true)
                 {
                     try
                     {
-                        var pipeName = "sidekick-" + random.Next(0, 1000000).ToString();
-
-                        using (StreamWriter f = File.CreateText(SidekickPaths.GetDataFilePath("pipename")))
-                        {
-                            f.Write(pipeName);
-                        };
-
-                        pipeServer = new PipeServer<IInterprocessService>(
-                            new NetJsonPipeSerializer(),
-                            pipeName,
-                            () => new InterprocessService(logger));
-
+                        using var pipeServer = new PipeServer<InterprocessMessaging>(new NetJsonPipeSerializer(), InterprocessMessaging.Pipename, () => new InterprocessMessaging());
                         await pipeServer.WaitForConnectionAsync();
-
-                        File.Delete(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule?.FileName) + "pipename");
-
                         await pipeServer.WaitForRemotePipeCloseAsync();
-
-                        pipeServer.Dispose();
                     }
                     catch (Exception e)
                     {
-                        Debug.WriteLine(e.ToString());
                     }
                 }
             });
         }
 
-        public void ReceiveMessage(string[] args)
+        public async Task SendMessage(string message)
         {
-            OnMessage?.Invoke(args);
+            using var pipeClient = new PipeClient<InterprocessMessaging>(new NetJsonPipeSerializer(), InterprocessMessaging.Pipename);
+            await pipeClient.ConnectAsync();
+            await pipeClient.InvokeAsync(x => x.ReceiveMessage(message));
+        }
+
+        private void InterprocessMessaging_OnMessageReceived(string message)
+        {
+            OnMessageReceived?.Invoke(message);
+        }
+
+        public void Dispose()
+        {
+            InterprocessMessaging.OnMessageReceived -= InterprocessMessaging_OnMessageReceived;
         }
     }
 }
