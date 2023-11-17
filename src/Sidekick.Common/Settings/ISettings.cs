@@ -3,9 +3,9 @@ namespace Sidekick.Common.Settings
     public interface ISettings
     {
         string Bearer_Token { get; set; }
-        DateTime? Bearer_Expiration { get; set; }
+        DateTimeOffset? Bearer_Expiration { get; set; }
         bool Enable_WealthTracker { get; set; }
-        List<String> WealthTrackerTabs { get; set; }
+        List<string> WealthTrackerTabs { get; set; }
 
         string Language_Parser { get; set; }
         string Language_UI { get; set; }

@@ -29,11 +29,11 @@ namespace Sidekick.Common.Settings
 
         public string Bearer_Token { get; set; } = "";
 
-        public DateTime? Bearer_Expiration { get; set; } = null;
+        public DateTimeOffset? Bearer_Expiration { get; set; } = null;
 
         public bool Enable_WealthTracker { get; set; } = false;
 
-        public List<String> WealthTrackerTabs { get; set; } = new List<String>();
+        public List<string> WealthTrackerTabs { get; set; } = new();
 
         public string Language_UI { get; set; } = "en";
 

@@ -50,7 +50,7 @@ namespace Sidekick.Apis.Poe.Authentication
         {
             get
             {
-                if(AuthenticateTask != null && AuthenticateTask.Task.Status == TaskStatus.Running && AuthenticateTokenSource != null && !AuthenticateTokenSource.IsCancellationRequested)
+                if (AuthenticateTask != null && AuthenticateTask.Task.Status == TaskStatus.Running && AuthenticateTokenSource != null && !AuthenticateTokenSource.IsCancellationRequested)
                 {
                     return AuthenticationState.InProgress;
                 }
@@ -161,14 +161,14 @@ namespace Sidekick.Apis.Poe.Authentication
             var responseContent = await response.Content.ReadAsStreamAsync();
             var result = await JsonSerializer.DeserializeAsync<Oauth2TokenResponse>(responseContent);
 
-            if(result == null || result.access_token == null)
+            if (result == null || result.access_token == null)
             {
                 CancelAuthenticate();
                 return;
             }
 
             await settingsService.Save(nameof(Settings.Bearer_Token), result.access_token);
-            await settingsService.Save(nameof(Settings.Bearer_Expiration), DateTime.Now.AddSeconds(result.expires_in));
+            await settingsService.Save(nameof(Settings.Bearer_Expiration), DateTimeOffset.Now.AddSeconds(result.expires_in));
 
             if (AuthenticateTask != null)
             {
