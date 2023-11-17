@@ -22,6 +22,7 @@ namespace Sidekick.Apis.Poe.Authentication
         private readonly IInterprocessService interprocessService;
         private readonly HttpClient client;
 
+        public event Action? OnAuthenticated;
         public event Action? OnStateChanged;
 
         public AuthenticationService(
@@ -44,13 +45,12 @@ namespace Sidekick.Apis.Poe.Authentication
         private string? Verifier { get; set; }
         private string? Challenge { get; set; }
         private TaskCompletionSource? AuthenticateTask { get; set; }
-        private CancellationTokenSource? AuthenticateTokenSource { get; set; }
 
         public AuthenticationState CurrentState
         {
             get
             {
-                if (AuthenticateTask != null && AuthenticateTask.Task.Status == TaskStatus.Running && AuthenticateTokenSource != null && !AuthenticateTokenSource.IsCancellationRequested)
+                if (AuthenticateTask != null && AuthenticateTask.Task.Status != TaskStatus.RanToCompletion)
                 {
                     return AuthenticationState.InProgress;
                 }
@@ -81,9 +81,9 @@ namespace Sidekick.Apis.Poe.Authentication
             return null;
         }
 
-        public Task Authenticate()
+        public Task Authenticate(bool reauthenticate = false)
         {
-            if (CurrentState == AuthenticationState.Authenticated)
+            if (!reauthenticate && CurrentState == AuthenticationState.Authenticated)
             {
                 return Task.CompletedTask;
             }
@@ -101,8 +101,14 @@ namespace Sidekick.Apis.Poe.Authentication
             browserProvider.OpenUri(new Uri(authenticationLink));
 
             AuthenticateTask = new();
-            AuthenticateTokenSource = new(30000);
             OnStateChanged?.Invoke();
+
+            Task.Run(async () =>
+            {
+                await Task.Delay(30000);
+                AuthenticateTask = null;
+                OnStateChanged?.Invoke();
+            });
 
             return AuthenticateTask.Task;
         }
@@ -113,12 +119,6 @@ namespace Sidekick.Apis.Poe.Authentication
             {
                 AuthenticateTask.SetResult();
                 AuthenticateTask = null;
-            }
-
-            if (AuthenticateTokenSource != null)
-            {
-                AuthenticateTokenSource.Cancel();
-                AuthenticateTokenSource = null;
             }
 
             OnStateChanged?.Invoke();
@@ -174,6 +174,8 @@ namespace Sidekick.Apis.Poe.Authentication
             {
                 AuthenticateTask.SetResult();
             }
+
+            OnAuthenticated?.Invoke();
         }
 
         private static string GenerateCodeVerifier()

@@ -41,7 +41,6 @@ namespace Sidekick.Apis.Poe.Clients
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var response = await base.SendAsync(request, cancellationToken);
-
             return response;
         }
     }

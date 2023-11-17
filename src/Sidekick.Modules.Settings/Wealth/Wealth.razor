@@ -2,6 +2,11 @@
 @layout SettingsLayout
 @inherits SidekickView
 
+@if (ViewModel.Enable_WealthTracker)
+{
+    <Sidekick.Common.Blazor.Authentication.AuthenticationStatusBar />
+}
+
 <div class="pa-3">
     <MudText Typo="Typo.h1" Class="mb-3">@Resources.WealthTracker</MudText>
 
@@ -52,7 +57,6 @@
                          </MudItem>
                     }
                 </MudGrid>
-
             }
             else
             {
@@ -82,7 +86,7 @@
     {
         if (ViewModel.Enable_WealthTracker)
         {
-                LoadStashTabs();
+            await LoadStashTabs();
         }
 
         await base.OnInitializedAsync();
@@ -95,15 +99,15 @@
 
         if (ViewModel.Enable_WealthTracker)
         {
-                LoadStashTabs();
+            await LoadStashTabs();
         }
     }
 
-    private async void LoadStashTabs()
+    private async Task LoadStashTabs()
     {
         await AuthenticationService.Authenticate();
         StashTabs = await StashService.GetStashTabList();
-        await InvokeAsync(StateHasChanged);
+        StateHasChanged();
     }
 
     private bool IsChecked(StashTab tab) => ViewModel.WealthTrackerTabs.Contains(tab.Id);

@@ -98,14 +98,21 @@ namespace Sidekick.Apis.Poe.Stash
             return wrapper.stash;
         }
 
-        public async Task<List<StashTab>> GetStashTabList()
+        public async Task<List<StashTab>?> GetStashTabList()
         {
-            var response = await client.Fetch<ApiStashTabList>($"stash/{settings.LeagueId}");
+            try
+            {
+                var response = await client.Fetch<ApiStashTabList>($"stash/{settings.LeagueId}");
 
-            var result = new List<StashTab>();
-            FillStashTabs(result, response.StashTabs);
+                var result = new List<StashTab>();
+                FillStashTabs(result, response.StashTabs);
 
-            return result;
+                return result;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         private void FillStashTabs(List<StashTab> list, List<ApiStashTab> apiStashTabs)

@@ -47,8 +47,6 @@ namespace Sidekick.Apis.Poe.Clients
 
         public async Task<TReturn> Fetch<TReturn>(string path)
         {
-            var name = typeof(TReturn).Name;
-
             try
             {
                 var response = await HttpClient.GetAsync(path);
@@ -74,9 +72,9 @@ namespace Sidekick.Apis.Poe.Clients
                     return result;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                logger.LogInformation($"[Poe Api Client] Could not fetch {name} at {HttpClient.BaseAddress + path}.");
+                logger.LogError($"[Poe Api Client] Could not fetch {typeof(TReturn).Name} at {HttpClient.BaseAddress + path}.", e);
                 throw;
             }
 
