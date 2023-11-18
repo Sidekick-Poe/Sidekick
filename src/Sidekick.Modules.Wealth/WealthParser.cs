@@ -4,6 +4,7 @@ using MudBlazor;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Stash;
 using Sidekick.Apis.Poe.Stash.Models;
+using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
@@ -22,6 +23,8 @@ namespace Sidekick.Modules.Wealth
         public event Action<Severity, string>? OnLogEvent;
 
         public event Action<StashTabDetails>? OnStashParsed;
+
+        public event Action<StashTabDetails?>? OnSnapshotTaken;
 
         public WealthParser(
             DbContextOptions<WealthDbContext> dbContextOptions,
@@ -224,6 +227,7 @@ namespace Sidekick.Modules.Wealth
 
             await database.SaveChangesAsync();
             OnLogEvent?.Invoke(Severity.Info, $"[{stash.Name}] Snapshot Taken.");
+            OnSnapshotTaken?.Invoke(stash);
         }
 
         private async Task TakeFullSnapshot(WealthDbContext database)
@@ -241,6 +245,7 @@ namespace Sidekick.Modules.Wealth
 
             await database.SaveChangesAsync();
             OnLogEvent?.Invoke(Severity.Info, $"Full Snapshot Taken.");
+            OnSnapshotTaken?.Invoke(null);
         }
     }
 }

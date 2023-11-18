@@ -1,104 +1,129 @@
-@if (Series.Count() >= 2)
+@if (XAxisLabels != null && Series.Count() >= 2)
 {
     <MudChart ChartType="ChartType.Line" style="padding-left: 15px;" ChartSeries="@Series" XAxisLabels="@XAxisLabels" Width="635px">
         <CustomGraphics>
             <style>
                 .mud-chart-line {
-                overflow: visible;
+                    overflow: visible;
                 }
 
                 .mud-charts-gridlines-yaxis > path {
-                stroke-dasharray: 1;
+                    stroke-dasharray: 1;
                 }
             </style>
         </CustomGraphics>
     </MudChart>
-} else
+}
+else
 {
     <MudAlert Dense="true" Style="width: 100%; margin-bottom: 350px;" Variant="Variant.Outlined" Severity="Severity.Info">Wealth Over Time Graph will display once atleast 2 snapshots are captured.</MudAlert>
 }
+
+@inject DbContextOptions<WealthDbContext> DbContextOptions
+@inject ISettings Settings
+@inject WealthParser WealthParser
+@implements IDisposable
 @code {
+    private List<ChartSeries> Series { get; set; } = new();
+    private string[]? XAxisLabels { get; set; }
 
-    [Inject] private DbContextOptions<WealthDbContext> Options { get; set; }
-    [Inject] private ISettings Settings { get; set; }
-
-    static string[] XAxisLabels = new string[] { };
-    static List<ChartSeries> Series = new List<ChartSeries>();
-
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        // WealthParser.OnSnapshotTaken += OnSnapshotTaken;
-
-        LoadData();
-
-        base.OnInitialized();
-
+        WealthParser.OnSnapshotTaken += OnSnapshotTaken;
+        await LoadData();
+        await base.OnInitializedAsync();
     }
 
-    public void OnSnapshotTaken(string[] obj)
+    public void OnSnapshotTaken(StashTabDetails? stash)
     {
-        LoadData();
-    }
-
-    private async void LoadData()
-    {
-        using (var database = new WealthDbContext(Options))
+        _ = InvokeAsync(async () =>
         {
-            // var snapshots = database.Snapshots.ToList();
-            // 
-            // if (snapshots.Count() > 0) {
+            await LoadData();
+            StateHasChanged();
+        });
+    }
 
-              //  XAxisLabels = snapshots
-              //      .OrderBy(x => x.BatchId)
-              //      .GroupBy(x => x.BatchId)
-              //      .Select(x => x.First())
-              //      .Select(x => x.BatchId.ToString() /*x.CreatedOn.ToString()*/)
-              //      .ToArray();
-              //
-              //  var seriesCollection = new List<ChartSeries>();
-              //
-              //  foreach (var stashId in Settings.WealthTrackerTabs)
-              //  {
-              //      var series = new ChartSeries();
-              //
-              //      var stash = database.Stashes.FirstOrDefault(x => x.Id == stashId);
-              //
-              //      if (stash != null) {
-              //
-              //          series.Name = stash.Name;
-              //
-              //          var data = new List<double>();
-              //
-              //          var batchs = database.Snapshots.OrderBy(x => x.BatchId).Select(x => //x.BatchId).Distinct().ToList();
-              //
-              //          foreach (var batch in batchs)
-              //          {
-              //              var snapshot = snapshots.FirstOrDefault(x => x.BatchId == batch && x.StashId /== /stashId);
-              //
-              //              if (snapshot != null) {
-              //                  data.Add(snapshot.Total);
-              //              } else {
-              //                  data.Add(0.0);
-              //              }
-              //          }
-              //
-              //          series.Data = data.ToArray();
-              //
-              //          seriesCollection.Add(series);
-              //      }
-              //  }
-              //
-              //  seriesCollection.Add(new ChartSeries
-              //      {
-              //          Name = "Total Wealth",
-              //          Data = snapshots.Where(x => x.StashId == "SUMMARY").OrderBy(x => x.BatchId).Select/(x /=> x.Total).ToArray()
-              //      });
-              //
-              //  Series = seriesCollection.ToList();
-              //
-              //  await InvokeAsync(() => { StateHasChanged(); });
-            // }
+    private async Task LoadData()
+    {
+        using var database = new WealthDbContext(DbContextOptions);
+        var stashes = await database.Stashes
+            .Where(x => Settings.WealthTrackerTabs.Contains(x.Id))
+            .ToListAsync();
+        var stashIds = stashes.Select(x => x.Id).ToList();
+
+        var stashSnapshots = await database.StashSnapshots
+            .Where(x => stashIds.Contains(x.StashId))
+            .ToListAsync();
+
+        var fullSnapshots = await database.FullSnapshots
+            .Where(x => x.League == Settings.LeagueId)
+            .ToListAsync();
+
+        var dataPoints = stashSnapshots
+            .GroupBy(x => $"{x.StashId}-{x.Date.Year}-{x.Date.Month.ToString("00")}-{x.Date.Day.ToString("00")} {x.Date.Hour.ToString("00")}:{((int)(x.Date.Minute / 30) == 0 ? "00" : "30")}")
+            .Select(x => new DataPoint()
+                {
+                    DateString = x.Key.Substring(x.Key.IndexOf('-') + 1),
+                    Name = stashes.First(y => x.First().StashId == y.Id).Name,
+                    Value = x.OrderByDescending(y => y.Total).First().Total,
+                })
+            .ToList();
+
+        dataPoints.AddRange(fullSnapshots
+            .GroupBy(x => $"{x.Date.Year}-{x.Date.Month.ToString("00")}-{x.Date.Day.ToString("00")} {x.Date.Hour.ToString("00")}:{((int)(x.Date.Minute / 30) == 0 ? "00" : "30")}")
+            .Select(x => new DataPoint()
+                {
+                    DateString = x.Key,
+                    Name = "Total",
+                    Value = x.OrderByDescending(y => y.Total).First().Total,
+                })
+            .ToList());
+
+        var labels = dataPoints
+            .Select(x => x.DateString)
+            .Distinct()
+            .Order()
+            .ToArray();
+
+        XAxisLabels = labels
+            .Select(x => x.Substring(x.IndexOf('-') + 1))
+            .ToArray();
+
+        Series.Clear();
+        foreach (var serie in dataPoints.GroupBy(x => x.Name))
+        {
+            var nullableData = labels.Select(label => serie.FirstOrDefault(x => x.DateString == label)?.Value ?? null).ToArray();
+            var data = nullableData
+                .Select((x, index) =>
+                {
+                    if (x == null && index > 0)
+                    {
+                        return nullableData[index - 1] ?? 0;
+                    }
+
+                    return x ?? 0;
+                })
+                .ToArray();
+
+            Series.Add(new ChartSeries()
+                {
+                    Name = serie.First().Name,
+                    Data = data,
+                });
         }
     }
 
+    public void Dispose()
+    {
+        WealthParser.OnSnapshotTaken -= OnSnapshotTaken;
+    }
+
+    private class DataPoint
+    {
+        public required string DateString { get; init; }
+
+        public double Value { get; init; }
+
+        public required string Name { get; init; }
+    }
 }
