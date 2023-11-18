@@ -1,12 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe;
-using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Apis.Poe.Stash;
 using Sidekick.Apis.Poe.Stash.Models;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
 using Sidekick.Modules.Wealth.Models;
 
@@ -14,17 +11,11 @@ namespace Sidekick.Modules.Wealth
 {
     internal class WealthParser
     {
-        private bool Running = false;
-        private Thread ParsingThread { get; set; }
-
-        private WealthDbContext Database { get; set; }
-        private DbContextOptions<WealthDbContext> Options { get; set; }
-        private readonly ISettings Settings;
-        private readonly IItemMetadataParser itemMetadataParser;
-
-        private IStashService StashService { get; set; }
-        private IPoeNinjaClient PoeNinjaClient { get; set; }
-        private ILogger<WealthParser> Logger { get; set; }
+        private readonly DbContextOptions<WealthDbContext> dbContextOptions;
+        private readonly ISettings settings;
+        private readonly IStashService stashService;
+        private readonly IPoeNinjaClient poeNinjaClient;
+        private readonly ILogger<WealthParser> logger;
 
         public static event Action<string[]> OnStashParsing;
 
@@ -35,272 +26,204 @@ namespace Sidekick.Modules.Wealth
         public static event Action<string[]> OnParserStopped;
 
         public WealthParser(
-            IAuthenticationService _authenticationService,
-            DbContextOptions<WealthDbContext> _options,
-            ISettings _settings,
-            IStashService _stashService,
-            IPoeNinjaClient _poeNinjaClient,
-            IItemMetadataParser itemMetadataParser,
-            ILogger<WealthParser> _logger,
-            IInterprocessService interprocessService)
+            DbContextOptions<WealthDbContext> dbContextOptions,
+            ISettings settings,
+            IStashService stashService,
+            IPoeNinjaClient poeNinjaClient,
+            ILogger<WealthParser> logger)
         {
-            Database = new WealthDbContext(_options);
-            Options = _options;
-            Settings = _settings;
-            StashService = _stashService;
-            PoeNinjaClient = _poeNinjaClient;
-            this.itemMetadataParser = itemMetadataParser;
-            Logger = _logger;
+            this.dbContextOptions = dbContextOptions;
+            this.settings = settings;
+            this.stashService = stashService;
+            this.poeNinjaClient = poeNinjaClient;
+            this.logger = logger;
         }
 
-        public async Task Start()
+        private Thread? RunningThread { get; set; }
+        private CancellationTokenSource? CancellationTokenSource { get; set; }
+
+        public void Start()
         {
-            if (!Running)
+            if (IsRunning())
             {
-                Running = true;
-                ParsingThread = new Thread(ParseLoop);
-                ParsingThread.Start();
+                return;
             }
+
+            CancellationTokenSource = new CancellationTokenSource();
+            RunningThread = new Thread(ParseLoop);
+            RunningThread.Start();
         }
 
         public void Stop()
         {
-            if (Running)
+            if (CancellationTokenSource == null || !IsRunning())
             {
-                Running = false;
+                return;
             }
+
+            CancellationTokenSource.Cancel();
         }
 
         public bool IsRunning()
         {
-            return Running;
+            return CancellationTokenSource != null && !CancellationTokenSource.IsCancellationRequested;
         }
 
         private async void ParseLoop()
         {
-            while (Running)
+            if (CancellationTokenSource == null)
             {
-                Database = new WealthDbContext(Options);
+                return;
+            }
 
-                foreach (var id in Settings.WealthTrackerTabs)
+            while (!CancellationTokenSource.IsCancellationRequested)
+            {
+                using var database = new WealthDbContext(dbContextOptions);
+
+                foreach (var id in settings.WealthTrackerTabs)
                 {
-                    await ParseStash(await StashService.GetStashTab(id));
+                    if (CancellationTokenSource.IsCancellationRequested)
+                    {
+                        break;
+                    }
 
-                    Database.SaveChanges();
+                    var stash = await stashService.GetStashDetails(id);
+                    if (stash == null)
+                    {
+                        continue;
+                    }
 
-                    if (!Running) { break; }
+                    await ParseStash(database, stash);
+                    await TakeStashSnapshot(database, stash);
                 }
 
-                TakeSnapshot();
-
-                Database.SaveChanges();
-                Database.Dispose();
-
+                await TakeFullSnapshot(database);
                 await Task.Delay(TimeSpan.FromSeconds(1));
             }
         }
 
-        private async Task<Models.Stash> ParseStash(ApiStashTab stash)
+        private async Task<Models.Stash> ParseStash(WealthDbContext database, StashTabDetails stash)
         {
-            OnStashParsing?.Invoke(new string[] { stash.id, stash.name });
+            OnStashParsing?.Invoke(new string[] { stash.Id, stash.Name });
 
-            var dbStash = Database.Stashes.FirstOrDefault(x => x.Id == stash.id);
-
+            var dbStash = database.Stashes.FirstOrDefault(x => x.Id == stash.Id);
             if (dbStash == null)
             {
-                dbStash = new Models.Stash();
-                dbStash.Id = stash.id;
-                dbStash.Name = stash.name ?? "";
-                dbStash.Type = stash.type ?? "";
-                dbStash.Total = 0;
-                dbStash.CreatedOn = DateTime.Now;
-                dbStash.UpdatedOn = dbStash.CreatedOn;
-
-                Database.Stashes.Add(dbStash);
+                dbStash = new Models.Stash()
+                {
+                    Id = stash.Id,
+                    Name = stash.Name,
+                    Parent = stash.Parent,
+                    League = stash.League,
+                    Type = stash.Type,
+                    Total = 0,
+                    LastUpdate = DateTimeOffset.Now,
+                };
+                database.Stashes.Add(dbStash);
             }
             else
             {
+                dbStash.Name = stash.Name;
+                dbStash.Parent = stash.Parent;
+                dbStash.League = stash.League;
+                dbStash.Type = stash.Type;
                 dbStash.Total = 0;
-            }
-
-            dbStash.UpdatedOn = DateTime.Now;
-
-            List<APIStashItem> items;
-            if (stash.type != null && stash.type.ToUpper() == "MAPSTASH")
-            {
-                items = await StashService.GetMapStashItems(stash);
-            }
-            else
-            {
-                items = await StashService.GetStashItems(stash);
+                dbStash.LastUpdate = DateTimeOffset.Now;
             }
 
             // Game Item Removed (Traded, Used, Destroyed, etc.)
-            var itemList = Database.Items.Where(x => x.Stash == stash.id);
-            foreach (var dbItem in itemList)
-            {
-                if (items.FirstOrDefault(x => x.id == dbItem.Id) == null)
-                {
-                    dbItem.Removed = true;
-                    dbItem.UpdatedOn = DateTime.Now;
-                }
-            }
+            var dbItems = database.Items.Where(x => x.StashId == stash.Id);
+            database.Items.RemoveRange(dbItems);
+            await database.SaveChangesAsync();
 
             // Add / Update Items
-            foreach (var item in items)
+            foreach (var item in stash.Items)
             {
-                if (CanParse(item))
-                {
-                    var dbItem = await ParseItem(item, stash);
-                    dbStash.Total += dbItem.Total;
-                }
+                database.Items.Add(await ParseItem(item));
             }
 
-            OnStashParsed?.Invoke(new string[] { stash.id, stash.name ?? "" });
+            await database.SaveChangesAsync();
+
+            OnStashParsed?.Invoke(new string[] { stash.Id, stash.Name ?? "" });
 
             return dbStash;
         }
 
-        private async Task<Models.Item> ParseItem(APIStashItem item, ApiStashTab stash)
+        private async Task<Models.Item> ParseItem(StashItem item)
         {
-            var dbItem = Database.Items.FirstOrDefault(x => x.Id == item.id);
-
-            if (dbItem == null)
+            var dbItem = new Models.Item()
             {
-                dbItem = new Models.Item();
-                dbItem.Id = item.id;
-                dbItem.Name = item.getFriendlyName();
-                dbItem.Stash = stash.id;
-                dbItem.Icon = item.icon;
-                dbItem.League = item.league;
-                dbItem.Level = item.ilvl;
-                dbItem.Category = GetItemCategory(item);
-                dbItem.CreatedOn = DateTime.Now;
+                Id = item.Id,
+                Category = item.Category,
+                Count = item.Count,
+                Icon = item.Icon,
+                League = item.League,
+                ItemLevel = item.ItemLevel,
+                GemLevel = item.GemLevel,
+                MapTier = item.MapTier,
+                MaxLinks = item.MaxLinks,
+                Name = item.Name,
+                StashId = item.Stash,
+            };
 
-                Database.Items.Add(dbItem);
-            }
-            else
-            {
-                dbItem.Removed = false; // Removed a full stack, added it back
-            }
-
-            dbItem.Count = GetItemCount(item);
-            dbItem.Price = item.getFriendlyName().ToUpper() == "CHAOS ORB" ? 1 : await GetItemPrice(item, dbItem.Category);
+            dbItem.Price = await GetItemPrice(item, dbItem.Category);
             dbItem.Total = dbItem.Count * dbItem.Price;
-            dbItem.UpdatedOn = DateTime.Now;
 
             return dbItem;
         }
 
-        private void TakeSnapshot()
+        private async Task<double> GetItemPrice(StashItem item, Category category)
         {
-            var BatchId = 0;
+            var price = await poeNinjaClient.GetPriceInfo(
+                item.Name,
+                item.Name,
+                category,
+                item.GemLevel,
+                item.MapTier,
+                null,
+                item.MaxLinks
+            );
 
-            var Snapshots = Database.Snapshots.ToList();
-
-            if (Snapshots.Count() > 0)
-            {
-                BatchId = Snapshots.Select(x => x.BatchId).Max() + 1;
-            }
-
-            var stashes = Database.Stashes.ToList();
-            var total = 0.0;
-
-            foreach (var stash in stashes)
-            {
-                Database.Snapshots.Add(new Snapshot
-                {
-                    BatchId = BatchId,
-                    StashId = stash.Id,
-                    Total = stash.Total,
-                    CreatedOn = DateTime.Now
-                });
-
-                total += stash.Total;
-            }
-
-            Database.Snapshots.Add(new Snapshot
-            {
-                BatchId = BatchId,
-                StashId = "SUMMARY",
-                Total = total,
-                CreatedOn = DateTime.Now
-            });
-
-            OnSnapshotTaken?.Invoke(new string[] { BatchId.ToString() });
-        }
-
-        private Category GetItemCategory(APIStashItem item)
-        {
-            var name = item.getFriendlyName(false);
-            var metadata = itemMetadataParser.Parse(name, item.typeLine);
-            if (metadata == null)
-            {
-                Logger.LogError($"Could not retrieve metadeta: {item.getFriendlyName(false)}");
-                return 0;
-            }
-            return metadata.Category;
-        }
-
-        private async Task<double> GetItemPrice(APIStashItem item, Category category)
-        {
-            var name = item.getFriendlyName(false);
-            var price = await PoeNinjaClient.GetPriceInfo(
-            name,
-            item.typeLine,
-            category,
-            item.getGemLevel(),
-            item.getMapTier(),
-            null,
-            item.getLinkCount());
             if (price == null)
             {
-                Logger.LogError($"Could not price: {item.getFriendlyName()}");
+                logger.LogError($"[Wealth] Could not price: {item.Name}.");
             }
+
             return price?.Price ?? 0;
         }
 
-        private int GetItemCount(APIStashItem item)
+        private async Task TakeStashSnapshot(WealthDbContext database, StashTabDetails stash)
         {
-            if (item.stackSize == null)
+            var totalPrice = await database.Items
+                .Where(x => x.League == settings.LeagueId)
+                .Where(x => x.StashId == stash.Id)
+                .SumAsync(x => x.Total);
+
+            database.StashSnapshots.Add(new StashSnapshot()
             {
-                return 1;
-            }
-            return (int)item.stackSize;
+                Date = DateTimeOffset.Now,
+                League = settings.LeagueId,
+                StashId = stash.Id,
+                Total = totalPrice,
+            });
+
+            await database.SaveChangesAsync();
         }
 
-        private bool CanParse(APIStashItem item)
+        private async Task TakeFullSnapshot(WealthDbContext database)
         {
-            var category = GetItemCategory(item);
+            var totalPrice = await database.Items
+                .Where(x => x.League == settings.LeagueId)
+                .SumAsync(x => x.Total);
 
-            if (category != Category.Unknown)
+            database.FullSnapshots.Add(new FullSnapshot()
             {
-                switch (item.frameType)
-                {
-                    case FrameType.Currency:
-                        if (category == Category.Currency)
-                        {
-                            return true;
-                        }
-                        return false;
+                Date = DateTimeOffset.Now,
+                League = settings.LeagueId,
+                Total = totalPrice,
+            });
 
-                    case FrameType.Normal:
-                    case FrameType.Magic:
-                    case FrameType.Rare:
-                        Category[] valid = { Category.Currency, Category.Map };
-                        if (valid.Contains(category))
-                        {
-                            return true;
-                        }
-                        return false;
-
-                    case FrameType.Unique:
-                    case FrameType.DivinationCard:
-                    case FrameType.Gem:
-                        return true;
-                }
-            }
-            return false;
+            await database.SaveChangesAsync();
         }
     }
 }

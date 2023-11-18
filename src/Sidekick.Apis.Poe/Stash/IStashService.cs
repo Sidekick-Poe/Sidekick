@@ -6,10 +6,6 @@ namespace Sidekick.Apis.Poe.Stash
     {
         Task<List<StashTab>?> GetStashTabList();
 
-        Task<ApiStashTab> GetStashTab(string stash);
-
-        Task<List<APIStashItem>> GetStashItems(ApiStashTab stashTab, bool hasParent = false);
-
-        Task<List<APIStashItem>> GetMapStashItems(ApiStashTab stashTab);
+        Task<StashTabDetails?> GetStashDetails(string id);
     }
 }

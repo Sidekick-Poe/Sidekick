@@ -4,9 +4,9 @@ namespace Sidekick.Apis.Poe.Stash.Models
     {
         public required string id { get; set; }
         public required string name { get; set; }
-        public required string typeLine { get; set; }
-        public required string baseType { get; set; }
-        public required string icon { get; set; }
+        public required string? typeLine { get; set; }
+        public required string? baseType { get; set; }
+        public required string? icon { get; set; }
         public required string league { get; set; }
         public required int ilvl { get; set; }
         public int? stackSize { get; set; }
@@ -15,26 +15,19 @@ namespace Sidekick.Apis.Poe.Stash.Models
         public FrameType? frameType { get; set; }
         public List<APIItemSocket>? sockets { get; set; }
 
-        public string getFriendlyName(bool includeMapTier = true)
+        public string getFriendlyName()
         {
-            if (includeMapTier)
+            if (!string.IsNullOrEmpty(name))
             {
-                var mapTier = getMapTier();
-
-                if (mapTier != null)
-                {
-                    return $"{typeLine} (Tier {mapTier})";
-                }
+                return name;
             }
-            if (name == "")
+
+            if (!string.IsNullOrEmpty(typeLine))
             {
-                if (typeLine == "")
-                {
-                    return baseType;
-                }
                 return typeLine;
             }
-            return name;
+
+            return baseType ?? "";
         }
 
         public int? getMapTier()

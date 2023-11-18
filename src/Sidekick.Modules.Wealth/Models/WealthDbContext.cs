@@ -11,6 +11,7 @@ namespace Sidekick.Modules.Wealth.Models
 
         public DbSet<Item> Items { get; set; }
         public DbSet<Stash> Stashes { get; set; }
-        public DbSet<Snapshot> Snapshots { get; set; }
+        public DbSet<StashSnapshot> StashSnapshots { get; set; }
+        public DbSet<FullSnapshot> FullSnapshots { get; set; }
     }
 }

@@ -1,11 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-using Sidekick.Apis.Poe.Stash.Models;
-
-namespace Sidekick.Modules.Wealth.Models
+namespace Sidekick.Apis.Poe.Stash.Models
 {
-    public class Stash
+    public class StashTabDetails
     {
-        [Key]
         public required string Id { get; set; }
 
         public string? Parent { get; set; }
@@ -16,8 +12,6 @@ namespace Sidekick.Modules.Wealth.Models
 
         public required StashType Type { get; set; }
 
-        public double Total { get; set; }
-
-        public DateTimeOffset LastUpdate { get; set; }
+        public List<StashItem> Items { get; set; } = new();
     }
 }

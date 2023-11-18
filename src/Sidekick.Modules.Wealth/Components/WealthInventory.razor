@@ -43,27 +43,27 @@
 
     public async void RetrieveStashItems()
     {
-        using (var database = new WealthDbContext(Options))
-        {
-            if (database.Items.Count() > 0)
-            {
-                StashItems = database.Items
-                    .Where(x => !x.Removed)
-                    .GroupBy(x => x.Name)
-                    .Select(y => new ItemView
-                        {
-                            Icon = y.FirstOrDefault().Icon,
-                            Name = y.FirstOrDefault().Name,
-                            Count = y.Sum(i => i.Count),
-                            Price = y.FirstOrDefault().Price,
-                            Total = y.Sum(i => i.Total)
-                        }
-                    ).ToList();
-
-                await InvokeAsync(() => { StateHasChanged(); });
-
-            }
-        }   
+        // using (var database = new WealthDbContext(Options))
+        // {
+        //     if (database.Items.Count() > 0)
+        //     {
+        //         StashItems = database.Items
+        //             .Where(x => !x.Removed)
+        //             .GroupBy(x => x.Name)
+        //             .Select(y => new ItemView
+        //                 {
+        //                     Icon = y.FirstOrDefault().Icon,
+        //                     Name = y.FirstOrDefault().Name,
+        //                     Count = y.Sum(i => i.Count),
+        //                     Price = y.FirstOrDefault().Price,
+        //                     Total = y.Sum(i => i.Total)
+        //                 }
+        //             ).ToList();
+        // 
+        //         await InvokeAsync(() => { StateHasChanged(); });
+        // 
+        //     }
+        // }   
     }
 
     private bool Search(ItemView element) => FilterFunc(element, _searchString);

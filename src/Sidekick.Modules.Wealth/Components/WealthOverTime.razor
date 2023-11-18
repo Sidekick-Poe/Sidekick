@@ -44,60 +44,60 @@
     {
         using (var database = new WealthDbContext(Options))
         {
-            var snapshots = database.Snapshots.ToList();
-           
-            if (snapshots.Count() > 0) {
+            // var snapshots = database.Snapshots.ToList();
+            // 
+            // if (snapshots.Count() > 0) {
 
-                XAxisLabels = snapshots
-                    .OrderBy(x => x.BatchId)
-                    .GroupBy(x => x.BatchId)
-                    .Select(x => x.First())
-                    .Select(x => x.BatchId.ToString() /*x.CreatedOn.ToString()*/)
-                    .ToArray();
-
-                var seriesCollection = new List<ChartSeries>();
-
-                foreach (var stashId in Settings.WealthTrackerTabs)
-                {
-                    var series = new ChartSeries();
-
-                    var stash = database.Stashes.FirstOrDefault(x => x.Id == stashId);
-
-                    if (stash != null) {
-
-                        series.Name = stash.Name;
-
-                        var data = new List<double>();
-
-                        var batchs = database.Snapshots.OrderBy(x => x.BatchId).Select(x => x.BatchId).Distinct().ToList();
-
-                        foreach (var batch in batchs)
-                        {
-                            var snapshot = snapshots.FirstOrDefault(x => x.BatchId == batch && x.StashId == stashId);
-
-                            if (snapshot != null) {
-                                data.Add(snapshot.Total);
-                            } else {
-                                data.Add(0.0);
-                            }
-                        }
-
-                        series.Data = data.ToArray();
-
-                        seriesCollection.Add(series);
-                    }
-                }
-
-                seriesCollection.Add(new ChartSeries
-                    {
-                        Name = "Total Wealth",
-                        Data = snapshots.Where(x => x.StashId == "SUMMARY").OrderBy(x => x.BatchId).Select(x => x.Total).ToArray()
-                    });
-
-                Series = seriesCollection.ToList();
-
-                await InvokeAsync(() => { StateHasChanged(); });
-            }
+              //  XAxisLabels = snapshots
+              //      .OrderBy(x => x.BatchId)
+              //      .GroupBy(x => x.BatchId)
+              //      .Select(x => x.First())
+              //      .Select(x => x.BatchId.ToString() /*x.CreatedOn.ToString()*/)
+              //      .ToArray();
+              //
+              //  var seriesCollection = new List<ChartSeries>();
+              //
+              //  foreach (var stashId in Settings.WealthTrackerTabs)
+              //  {
+              //      var series = new ChartSeries();
+              //
+              //      var stash = database.Stashes.FirstOrDefault(x => x.Id == stashId);
+              //
+              //      if (stash != null) {
+              //
+              //          series.Name = stash.Name;
+              //
+              //          var data = new List<double>();
+              //
+              //          var batchs = database.Snapshots.OrderBy(x => x.BatchId).Select(x => //x.BatchId).Distinct().ToList();
+              //
+              //          foreach (var batch in batchs)
+              //          {
+              //              var snapshot = snapshots.FirstOrDefault(x => x.BatchId == batch && x.StashId /== /stashId);
+              //
+              //              if (snapshot != null) {
+              //                  data.Add(snapshot.Total);
+              //              } else {
+              //                  data.Add(0.0);
+              //              }
+              //          }
+              //
+              //          series.Data = data.ToArray();
+              //
+              //          seriesCollection.Add(series);
+              //      }
+              //  }
+              //
+              //  seriesCollection.Add(new ChartSeries
+              //      {
+              //          Name = "Total Wealth",
+              //          Data = snapshots.Where(x => x.StashId == "SUMMARY").OrderBy(x => x.BatchId).Select/(x /=> x.Total).ToArray()
+              //      });
+              //
+              //  Series = seriesCollection.ToList();
+              //
+              //  await InvokeAsync(() => { StateHasChanged(); });
+            // }
         }
     }
 

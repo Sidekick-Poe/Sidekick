@@ -39,49 +39,32 @@ else
                     <WealthParserLogs />
                 </MudCardContent>
                 <MudCardActions>
-                    <MudButton Variant="Variant.Filled" Class="pr-5" Style="margin-left:100px;" Color="Color.Primary" OnClick="StartParsing">Start</MudButton>
-                    <MudButton Variant="Variant.Filled" Class="pr-5" Style="margin-left:10px;" Color="Color.Primary" OnClick="StopParsing">Stop</MudButton>
+                    <MudButton Variant="Variant.Filled" Class="pr-5" Style="margin-left:100px;" Color="Color.Primary" OnClick="Start">Start</MudButton>
+                    <MudButton Variant="Variant.Filled" Class="pr-5" Style="margin-left:10px;" Color="Color.Primary" OnClick="Stop">Stop</MudButton>
                 </MudCardActions>
             </MudCard>
         </MudPaper>
     </div>
 }
 
+@inject WealthParser WealthParser
+@inject ISettings Settings
 @code {
-    [Inject] private ILogger<Wealth> Logger { get; set; }
-    [Inject] private WealthParser WealthParser { get; set; }
-    [Inject] private WealthDbContext Database { get; set; }
-    [Inject] private IAuthenticationService AuthenticationService { get; set; }
-    [Inject] private ISettings Settings { get; set; }
-
     public override string Title => "Wealth Tracker";
 
-    public override int ViewWidth => 1060;
-    public override int ViewHeight => 1000;
+    public override int ViewWidth => 1280;
 
-    protected override void OnInitialized()
+    public override int ViewHeight => 800;
+
+    private void Start()
     {
-        WealthParser.OnParserStopped += OnParserStopped;
-
-        base.OnInitialized();
+        WealthParser.Start();
+        StateHasChanged();
     }
 
-    private async void StartParsing()
-    {
-        await WealthParser.Start();
-        await InvokeAsync(() => { StateHasChanged(); });
-    }
-
-    private void StopParsing()
+    private void Stop()
     {
         WealthParser.Stop();
         StateHasChanged();
-
     }
-
-    public async void OnParserStopped(string[] obj)
-    {
-        await InvokeAsync(() => { StateHasChanged(); });
-    }
-
 }
