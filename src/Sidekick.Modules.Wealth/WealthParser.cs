@@ -150,11 +150,14 @@ namespace Sidekick.Modules.Wealth
             await database.SaveChangesAsync();
 
             // Add / Update Items
+            var items = new List<Models.Item>();
             foreach (var item in stash.Items)
             {
-                database.Items.Add(await ParseItem(item));
+                items.Add(await ParseItem(item));
             }
 
+            dbStash.Total = items.Sum(x => x.Total);
+            database.Items.AddRange(items);
             await database.SaveChangesAsync();
 
             OnLogEvent?.Invoke(Severity.Normal, $"[{stash.Name}] Completed Parsing.");

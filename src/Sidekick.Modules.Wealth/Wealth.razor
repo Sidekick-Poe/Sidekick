@@ -4,9 +4,14 @@
 @using Sidekick.Modules.Wealth.Components
 
 <MudGrid Spacing="0">
-    <MudItem xs="8">
+    <MudItem xs="9" Class="pa-3">
         <WealthOverTime />
         <WealthInventory />
+    </MudItem>
+    <MudItem xs="3" Class="pa-3">
+        <WealthDistribution />
+        <WealthParserLogs />
+
         @if (WealthParser.IsRunning())
         {
             <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Success">Parser Running</MudAlert>
@@ -15,20 +20,9 @@
         {
             <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Error">Parser Stopped</MudAlert>
         }
-    </MudItem>
-    <MudItem xs="4">
-        <MudPaper Class="flex-none d-flex py-8" Elevation="0" Width="270px" Height="1px;">
-            <MudCard Width="100%" Height="800px">
-                <MudCardContent Style="height: 100%;">
-                    <WealthDistribution />
-                    <WealthParserLogs />
-                </MudCardContent>
-                <MudCardActions>
-                    <MudButton Variant="Variant.Filled" Class="pr-5" Style="margin-left:100px;" Color="Color.Primary" OnClick="Start">Start</MudButton>
-                    <MudButton Variant="Variant.Filled" Class="pr-5" Style="margin-left:10px;" Color="Color.Primary" OnClick="Stop">Stop</MudButton>
-                </MudCardActions>
-            </MudCard>
-        </MudPaper>
+
+        <MudButton Variant="Variant.Filled" Class="pr-5" Style="margin-left:100px;" Color="Color.Primary" OnClick="Start">Start</MudButton>
+        <MudButton Variant="Variant.Filled" Class="pr-5" Style="margin-left:10px;" Color="Color.Primary" OnClick="Stop">Stop</MudButton>
     </MudItem>
 </MudGrid>
 

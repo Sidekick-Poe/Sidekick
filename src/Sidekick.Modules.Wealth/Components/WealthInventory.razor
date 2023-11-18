@@ -39,10 +39,10 @@
 
     public void OnStashParsed(StashTabDetails stash)
     {
-        _ = Task.Run(async () =>
+        _ = InvokeAsync(async () =>
         {
             await RetrieveStashItems();
-            await InvokeAsync(StateHasChanged);
+            StateHasChanged();
         });
     }
 

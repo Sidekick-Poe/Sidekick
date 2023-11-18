@@ -1,64 +1,53 @@
-<MudChart ChartType="ChartType.Donut" InputData="@Data" InputLabels="@Labels" Width="250px" Height="250px">
-    <CustomGraphics>
-        <text class="donut-inner-text" x="50%" y="35%" dominant-baseline="middle" text-anchor="middle" fill="grey" font-size="3">Total Wealth</text>
-        <text class="donut-inner-text" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="gold" font-size="5">@TotalWealth</text>
-    </CustomGraphics>
-</MudChart>
+@if (Data != null && Labels != null)
+{
+    <MudChart ChartType="ChartType.Donut" InputData="@Data" InputLabels="@Labels" Width="250px" Height="250px">
+        <CustomGraphics>
+            <text class="donut-inner-text" x="50%" y="35%" dominant-baseline="middle" text-anchor="middle" fill="grey" font-size="3">Total Wealth</text>
+            <text class="donut-inner-text" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="gold" font-size="5">@TotalWealth.ToString("N0")</text>
+        </CustomGraphics>
+    </MudChart>
+}
 
+@inject DbContextOptions<WealthDbContext> DbContextOptions
+@inject ISettings Settings
+@inject WealthParser WealthParser
+@implements IDisposable
 @code {
-    [Inject] private DbContextOptions<WealthDbContext> Options { get; set; }
-    [Inject] private ISettings Settings { get; set; }
+    private double[]? Data { get; set; }
+    private string[]? Labels { get; set; }
+    private double TotalWealth { get; set; }
 
-    static double[] Data = new double[] { };
-    static string[] Labels = new string[] { };
-    static double TotalWealth = 0.0;
-
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        // WealthParser.OnStashParsed += OnStashParsed;
-
-        LoadData();
-
-        base.OnInitialized();
+        WealthParser.OnStashParsed += OnStashParsed;
+        await LoadData();
+        await base.OnInitializedAsync();
     }
 
-    public void OnStashParsed(string[] obj)
+    public void OnStashParsed(StashTabDetails stash)
     {
-        LoadData();
-    }
-
-    private async void LoadData()
-    {
-        using (var database = new WealthDbContext(Options))
+        _ = InvokeAsync(async () =>
         {
-            var stashes = database.Stashes.ToList();
-
-            if (stashes.Count() > 0)
-            {
-
-                var data = new List<double>();
-                var labels = new List<string>();
-
-                foreach (var id in Settings.WealthTrackerTabs)
-                {
-                    var stash = database.Stashes.FirstOrDefault(x => x.Id == id);
-
-                    if (stash != null)
-                    {
-                        data.Add(stash.Total);
-                        labels.Add(stash.Name);
-                    }
-
-                }
-
-                Data = data.ToArray();
-                Labels = labels.ToArray();
-            }
-
-            TotalWealth = Math.Round(database.Stashes.Sum(x => x.Total), 2);
-
-            await InvokeAsync(() => { StateHasChanged(); });
-        }
+            await LoadData();
+            StateHasChanged();
+        });
     }
 
+    private async Task LoadData()
+    {
+        using var database = new WealthDbContext(DbContextOptions);
+        var stashes = await database.Stashes
+            .Where(x => Settings.WealthTrackerTabs.Contains(x.Id))
+            .OrderByDescending(x => x.Total)
+            .ToListAsync();
+
+        Data = stashes.Select(x => x.Total).ToArray();
+        Labels = stashes.Select(x => x.Name).ToArray();
+        TotalWealth = Data.Sum();
+    }
+
+    public void Dispose()
+    {
+        WealthParser.OnStashParsed -= OnStashParsed;
+    }
 }

@@ -15,19 +15,24 @@
 </div>
 
 @inject WealthParser WealthParser
+@implements IDisposable
 @code {
     private List<(Severity Severity, DateTime Date, String Message)> Logs { get; set; } = new();
 
     protected override void OnInitialized()
     {
         WealthParser.OnLogEvent += OnLogEvent;
-
         base.OnInitialized();
     }
 
     public void OnLogEvent(Severity severity, string message)
     {
         Logs.Add((severity, DateTime.Now, message));
-        _ = InvokeAsync(() => { StateHasChanged(); });
+        _ = InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        WealthParser.OnLogEvent -= OnLogEvent;
     }
 }
