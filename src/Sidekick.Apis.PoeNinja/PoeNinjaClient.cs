@@ -63,6 +63,17 @@ namespace Sidekick.Apis.PoeNinja
             bool? isRelic = false,
             int? numberOfLinks = null)
         {
+            if ((englishName ?? englishType) == "Chaos Orb")
+            {
+                return new NinjaPrice()
+                {
+                    BaseType = "Chaos Orb",
+                    LastUpdated = DateTimeOffset.Now,
+                    Name = "Chaos Orb",
+                    Price = 1,
+                };
+            }
+
             await ClearCacheIfExpired();
             var prices = await GetPrices(category);
 

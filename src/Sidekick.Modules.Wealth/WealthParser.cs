@@ -90,13 +90,18 @@ namespace Sidekick.Modules.Wealth
                         }
 
                         var stash = await stashService.GetStashDetails(id);
-                        if (stash == null)
+                        if (stash == null || CancellationTokenSource.IsCancellationRequested)
                         {
                             continue;
                         }
 
                         await ParseStash(database, stash);
                         await TakeStashSnapshot(database, stash);
+                    }
+
+                    if (CancellationTokenSource.IsCancellationRequested)
+                    {
+                        break;
                     }
 
                     await TakeFullSnapshot(database);
