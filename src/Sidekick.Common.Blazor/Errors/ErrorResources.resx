@@ -132,11 +132,17 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="DisabledModule" xml:space="preserve">
+    <value>This module is currently disabled. To use this module, you must first enable it in the settings.</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>An unknown error occured. If the problem persists, contact us on github or discord.</value>
   </data>
   <data name="InvalidItemError" xml:space="preserve">
     <value>This item is invalid for this feature.</value>
+  </data>
+  <data name="OpenSettings" xml:space="preserve">
+    <value>Open Settings</value>
   </data>
   <data name="ParserError" xml:space="preserve">
     <value>Unable to parse this item. Make sure you have set your game language correctly in the settings.</value>

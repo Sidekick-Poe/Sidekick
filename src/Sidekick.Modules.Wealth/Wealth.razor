@@ -1,37 +1,22 @@
 @page "/wealth"
 @inherits SidekickView
+@using Sidekick.Common.Errors;
 @using Sidekick.Modules.Wealth.Components
 
-@if (!Settings.Enable_WealthTracker)
-{
-    <MudAlert Severity="Severity.Warning" Elevation="5">
-        Wealth Tracker is an experimental feature and requires special privileges. To use the Wealth Tracker feature, you must enable it in the settings first.
-        <div class="d-flex justify-center mt-3">
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Href="/settings/wealth">Open Settings</MudButton>
-        </div>
-    </MudAlert>
-}
-else
-{
-    <div class="d-flex flex-grow-1 gap-4">
-        <MudPaper Class="flex-none d-flex py-8" Elevation="0" Width="650px" Height="1px;">
-            <MudCard Width="100%" Height="800px">
-                <MudCardContent Style="height: 100%;">
-                    <WealthOverTime />
-                    <WealthInventory />
-                </MudCardContent>
-                <MudCardActions>
-                    @if (WealthParser.IsRunning())
-                    {
-                        <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Success">Parser Running</MudAlert>
-                    }
-                    else
-                    {
-                        <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Error">Parser Stopped</MudAlert>
-                    }
-                </MudCardActions>
-            </MudCard>
-        </MudPaper>
+<MudGrid Spacing="0">
+    <MudItem xs="8">
+        <WealthOverTime />
+        <WealthInventory />
+        @if (WealthParser.IsRunning())
+        {
+            <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Success">Parser Running</MudAlert>
+        }
+        else
+        {
+            <MudAlert Dense="true" Style="width: 205px;" Variant="Variant.Filled" Severity="Severity.Error">Parser Stopped</MudAlert>
+        }
+    </MudItem>
+    <MudItem xs="4">
         <MudPaper Class="flex-none d-flex py-8" Elevation="0" Width="270px" Height="1px;">
             <MudCard Width="100%" Height="800px">
                 <MudCardContent Style="height: 100%;">
@@ -44,11 +29,12 @@ else
                 </MudCardActions>
             </MudCard>
         </MudPaper>
-    </div>
-}
+    </MudItem>
+</MudGrid>
 
 @inject WealthParser WealthParser
 @inject ISettings Settings
+@inject NavigationManager NavigationManager
 @code {
     public override string Title => "Wealth Tracker";
 
@@ -56,15 +42,23 @@ else
 
     public override int ViewHeight => 800;
 
+    protected override void OnInitialized()
+    {
+        if (!Settings.Enable_WealthTracker)
+        {
+            NavigationManager.NavigateTo(ErrorType.DisabledModule.ToUrl("wealth"));
+        }
+
+        base.OnInitialized();
+    }
+
     private void Start()
     {
         WealthParser.Start();
-        StateHasChanged();
     }
 
     private void Stop()
     {
         WealthParser.Stop();
-        StateHasChanged();
     }
 }
