@@ -34,7 +34,7 @@ namespace Sidekick.Apis.Poe
                 {
                     var logger = sp.GetRequiredService<ILogger<PoeApiHandler>>();
                     var authenticationService = sp.GetRequiredService<IAuthenticationService>();
-                    var handler = new PoeApiHandler(logger, authenticationService);
+                    var handler = new PoeApiHandler(authenticationService);
                     return handler;
                 });
 

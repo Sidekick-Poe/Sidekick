@@ -4,6 +4,7 @@
         <text class="donut-inner-text" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="gold" font-size="5">@TotalWealth</text>
     </CustomGraphics>
 </MudChart>
+
 @code {
     [Inject] private DbContextOptions<WealthDbContext> Options { get; set; }
     [Inject] private ISettings Settings { get; set; }
@@ -14,7 +15,7 @@
 
     protected override void OnInitialized()
     {
-        WealthParser.OnStashParsed += OnStashParsed;
+        // WealthParser.OnStashParsed += OnStashParsed;
 
         LoadData();
 

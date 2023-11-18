@@ -51,18 +51,11 @@ namespace Sidekick.Apis.Poe.Clients
             {
                 var response = await HttpClient.GetAsync(path);
 
-                if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized || response.StatusCode == System.Net.HttpStatusCode.Forbidden)
                 {
                     await settingsService.Save("Bearer_Token", null);
                     await settingsService.Save("Bearer_Expiration", null);
-                    throw new Exception("Poe API: Unauthorized.");
-                }
-
-                if (response.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
-                {
-                    await settingsService.Save("Bearer_Token", null);
-                    await settingsService.Save("Bearer_Expiration", null);
-                    throw new Exception("Poe API: Too Many Requests.");
+                    throw new PoeApiException("Poe API: Unauthorized.");
                 }
 
                 var content = await response.Content.ReadAsStreamAsync();
@@ -78,7 +71,7 @@ namespace Sidekick.Apis.Poe.Clients
                 throw;
             }
 
-            throw new Exception("[Poe Api Client] Could not understand the API response.");
+            throw new PoeApiException("[Poe Api Client] Could not understand the API response.");
         }
     }
 }

@@ -1,54 +1,33 @@
 <MudText Typo="Typo.h3">Parser Logs</MudText>
 <div style="height: 420px; overflow-y: scroll; ">
-    @foreach (var logitem in Log.OrderByDescending(x => x.Item1))
+    @for (var index = Logs.Count - 1; index >= 0; index--)
     {
-        if (logitem.Item3)
-        {
-            <MudAlert Style="margin-top:5px;" Dense="true" Severity="Severity.Warning">@logitem.Item1.ToString("hh:mm:ss") - @logitem.Item2</MudAlert>
-        } else
-        {
-            <MudAlert Style="margin-top:5px;" Dense="true" Severity="Severity.Info">@logitem.Item1.ToString("hh:mm:ss") - @logitem.Item2</MudAlert>
-        }
-        
+        var log = Logs[index];
+        <MudAlert @key="index"
+                  Class="mb-1 grey darken-4"
+                  Dense="true"
+                  Severity="log.Severity"
+                  Variant="Variant.Outlined">
+            <MudText Typo="Typo.caption">@log.Date.ToString("hh:mm:ss")</MudText><br />
+            @log.Message
+        </MudAlert>
     }
 </div>
 
+@inject WealthParser WealthParser
 @code {
-    static List<Tuple<DateTime, String, bool>> Log { get; set; } = new List<Tuple<DateTime, String, bool>>();
+    private List<(Severity Severity, DateTime Date, String Message)> Logs { get; set; } = new();
 
     protected override void OnInitialized()
     {
-        WealthParser.OnStashParsing += OnStashParsing;
-        WealthParser.OnStashParsed += OnStashParsed;
-        WealthParser.OnSnapshotTaken += OnSnapshotTaken;
-        WealthParser.OnParserStopped += OnParserStopped;
+        WealthParser.OnLogEvent += OnLogEvent;
 
         base.OnInitialized();
-
     }
 
-    public async void OnStashParsing(string[] obj)
+    public void OnLogEvent(Severity severity, string message)
     {
-        Log.Add(Tuple.Create(DateTime.Now, $"Parsing: {obj[1].ToString()}", false));
-
-        await InvokeAsync(() => { StateHasChanged(); });
+        Logs.Add((severity, DateTime.Now, message));
+        _ = InvokeAsync(() => { StateHasChanged(); });
     }
-
-    public void OnStashParsed(string[] obj)
-    {
-        Log.Add(Tuple.Create(DateTime.Now, $"Parsed: {obj[1].ToString()}", false));
-    }
-
-    public async void OnSnapshotTaken(string[] obj)
-    {
-        Log.Add(Tuple.Create(DateTime.Now, $"Snapshot {obj[0]} Taken", false));
-
-        await InvokeAsync(() => { StateHasChanged(); });
-    }
-    public async void OnParserStopped(string[] obj)
-    {
-        Log.Add(Tuple.Create(DateTime.Now, $"Parser Stopped", true));
-        await InvokeAsync(() => { StateHasChanged(); });
-    }
-
 }

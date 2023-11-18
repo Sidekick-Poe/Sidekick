@@ -70,6 +70,7 @@
     }
 </div>
 
+@implements IDisposable
 @code {
     [Inject] private SettingsResources Resources { get; set; }
     [Inject] private SettingsModel ViewModel { get; set; }
@@ -83,6 +84,8 @@
 
     protected override async Task OnInitializedAsync()
     {
+        AuthenticationService.OnAuthenticated += OnAuthenticated;
+
         if (ViewModel.Enable_WealthTracker)
         {
             await LoadStashTabs();
@@ -109,6 +112,11 @@
         StateHasChanged();
     }
 
+    private void OnAuthenticated()
+    {
+        _ = InvokeAsync(LoadStashTabs);
+    }
+
     private bool IsChecked(StashTab tab) => ViewModel.WealthTrackerTabs.Contains(tab.Id);
 
     private void Toggle(StashTab tab, bool isChecked)
@@ -121,5 +129,10 @@
         {
             ViewModel.WealthTrackerTabs.Add(tab.Id);
         }
+    }
+
+    public void Dispose()
+    {
+        AuthenticationService.OnAuthenticated -= OnAuthenticated;
     }
 }

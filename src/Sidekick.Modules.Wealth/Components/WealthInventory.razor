@@ -1,88 +1,72 @@
-<MudTable Height="330px" Items="@StashItems" Dense="true" Hover="true" SortLabel="Sort By" Filter="new Func<ItemView,bool>(Search)" Breakpoint="Breakpoint.Sm" Width="650px">
-    <ToolBarContent>
-        <MudText Typo="Typo.h3">Inventory</MudText>
-        <MudSpacer />
-        <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
-    </ToolBarContent>
-    <HeaderContent>
-        <MudTh></MudTh>
-        <MudTh><MudTableSortLabel SortBy="new Func<ItemView, object>(x=>x.Name)">Name</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel SortBy="new Func<ItemView, object>(x=>x.Count)">Count</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel InitialDirection="SortDirection.Descending" SortBy="new Func<ItemView, object>(x=>x.Price)">Price</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel SortBy="new Func<ItemView, object>(x=>x.Total)">Total</MudTableSortLabel></MudTh>
-    </HeaderContent>
-    <RowTemplate>
-        <MudTd DataLabel=""><MudImage Width="30" Height="30" Src="@context.Icon" Class="rounded-lg" /></MudTd>
-        <MudTd DataLabel="Name">@context.Name</MudTd>
-        <MudTd DataLabel="Count">@context.Count</MudTd>
-        <MudTd DataLabel="Price">@Math.Round(context.Price, 2)</MudTd>
-        <MudTd DataLabel="Total">@Math.Round(context.Total, 2)</MudTd>
-    </RowTemplate>
-</MudTable>
 
+<div>
+    <MudTable Height="330px" Items="@StashItems" Dense="true" Hover="true" SortLabel="Sort By" Filter="new Func<Models.Item,bool>(Search)" Breakpoint="Breakpoint.Sm" Width="650px">
+        <ToolBarContent>
+            <MudText Typo="Typo.h3">Inventory</MudText>
+            <MudSpacer />
+            <MudTextField @bind-Value="SearchString" DebounceInterval="500" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-n4" />
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Models.Item, object>(x=>x.Name)">Name</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Models.Item, object>(x=>x.Count)">Count</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Models.Item, object>(x=>x.Price)">Price</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Descending" SortBy="new Func<Models.Item, object>(x=>x.Total)">Total</MudTableSortLabel></MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel=""><MudImage Width="30" Height="30" Src="@context.Icon" Class="rounded-lg" /></MudTd>
+            <MudTd DataLabel="Name">@context.Name</MudTd>
+            <MudTd DataLabel="Count">@context.Count</MudTd>
+            <MudTd DataLabel="Price">@Math.Round(context.Price, 2)</MudTd>
+            <MudTd DataLabel="Total">@Math.Round(context.Total, 2)</MudTd>
+        </RowTemplate>
+    </MudTable>
+</div>
+
+@inject WealthParser WealthParser
+@inject DbContextOptions<WealthDbContext> DbContextOptions
+@implements IDisposable
 @code {
-    [Inject] private DbContextOptions<WealthDbContext> Options { get; set; }
+    static List<Models.Item> StashItems = new List<Models.Item>();
+    private string SearchString = "";
 
-    static List<ItemView> StashItems = new List<ItemView>();
-    private string _searchString = "";
-
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-
         WealthParser.OnStashParsed += OnStashParsed;
-
-        RetrieveStashItems();
-
-        base.OnInitialized();
+        await RetrieveStashItems();
+        await base.OnInitializedAsync();
     }
 
-    public void OnStashParsed(string[] obj)
+    public void OnStashParsed(StashTabDetails stash)
     {
-        RetrieveStashItems();
+        _ = Task.Run(async () =>
+        {
+            await RetrieveStashItems();
+            await InvokeAsync(StateHasChanged);
+        });
     }
 
-    public async void RetrieveStashItems()
+    public async Task RetrieveStashItems()
     {
-        // using (var database = new WealthDbContext(Options))
-        // {
-        //     if (database.Items.Count() > 0)
-        //     {
-        //         StashItems = database.Items
-        //             .Where(x => !x.Removed)
-        //             .GroupBy(x => x.Name)
-        //             .Select(y => new ItemView
-        //                 {
-        //                     Icon = y.FirstOrDefault().Icon,
-        //                     Name = y.FirstOrDefault().Name,
-        //                     Count = y.Sum(i => i.Count),
-        //                     Price = y.FirstOrDefault().Price,
-        //                     Total = y.Sum(i => i.Total)
-        //                 }
-        //             ).ToList();
-        // 
-        //         await InvokeAsync(() => { StateHasChanged(); });
-        // 
-        //     }
-        // }   
+        using var database = new WealthDbContext(DbContextOptions);
+        StashItems = await database.Items
+            .GroupBy(x => x.Name)
+            .Select(x => x.First())
+            .ToListAsync();
     }
 
-    private bool Search(ItemView element) => FilterFunc(element, _searchString);
-
-    private bool FilterFunc(ItemView element, string searchString)
+    private bool Search(Models.Item element)
     {
-        if (string.IsNullOrWhiteSpace(searchString))
+        if (string.IsNullOrWhiteSpace(SearchString))
+        {
             return true;
-        if (element.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-            return true;
-        return false;
+        }
+
+        return element.Name.Contains(SearchString, StringComparison.OrdinalIgnoreCase);
     }
 
-    class ItemView
+    public void Dispose()
     {
-        public String Icon { get; set; }
-        public String Name { get; set; }
-        public int Count { get; set; }
-        public double Price { get; set; }
-        public double Total { get; set; }
+        WealthParser.OnStashParsed -= OnStashParsed;
     }
 }

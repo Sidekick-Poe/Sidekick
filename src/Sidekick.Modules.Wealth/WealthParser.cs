@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using MudBlazor;
+using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Stash;
 using Sidekick.Apis.Poe.Stash.Models;
 using Sidekick.Apis.PoeNinja;
@@ -17,13 +19,9 @@ namespace Sidekick.Modules.Wealth
         private readonly IPoeNinjaClient poeNinjaClient;
         private readonly ILogger<WealthParser> logger;
 
-        public static event Action<string[]> OnStashParsing;
+        public event Action<Severity, string>? OnLogEvent;
 
-        public static event Action<string[]> OnStashParsed;
-
-        public static event Action<string[]> OnSnapshotTaken;
-
-        public static event Action<string[]> OnParserStopped;
+        public event Action<StashTabDetails>? OnStashParsed;
 
         public WealthParser(
             DbContextOptions<WealthDbContext> dbContextOptions,
@@ -52,6 +50,7 @@ namespace Sidekick.Modules.Wealth
             CancellationTokenSource = new CancellationTokenSource();
             RunningThread = new Thread(ParseLoop);
             RunningThread.Start();
+            OnLogEvent?.Invoke(Severity.Info, $"Tracker Started.");
         }
 
         public void Stop()
@@ -62,6 +61,7 @@ namespace Sidekick.Modules.Wealth
             }
 
             CancellationTokenSource.Cancel();
+            OnLogEvent?.Invoke(Severity.Info, $"Tracker Stopped.");
         }
 
         public bool IsRunning()
@@ -78,33 +78,41 @@ namespace Sidekick.Modules.Wealth
 
             while (!CancellationTokenSource.IsCancellationRequested)
             {
-                using var database = new WealthDbContext(dbContextOptions);
-
-                foreach (var id in settings.WealthTrackerTabs)
+                try
                 {
-                    if (CancellationTokenSource.IsCancellationRequested)
+                    using var database = new WealthDbContext(dbContextOptions);
+
+                    foreach (var id in settings.WealthTrackerTabs)
                     {
-                        break;
+                        if (CancellationTokenSource.IsCancellationRequested)
+                        {
+                            break;
+                        }
+
+                        var stash = await stashService.GetStashDetails(id);
+                        if (stash == null)
+                        {
+                            continue;
+                        }
+
+                        await ParseStash(database, stash);
+                        await TakeStashSnapshot(database, stash);
                     }
 
-                    var stash = await stashService.GetStashDetails(id);
-                    if (stash == null)
-                    {
-                        continue;
-                    }
-
-                    await ParseStash(database, stash);
-                    await TakeStashSnapshot(database, stash);
+                    await TakeFullSnapshot(database);
+                    await Task.Delay(TimeSpan.FromSeconds(1));
                 }
-
-                await TakeFullSnapshot(database);
-                await Task.Delay(TimeSpan.FromSeconds(1));
+                catch (PoeApiException)
+                {
+                    OnLogEvent?.Invoke(Severity.Error, $"Exception! Something wrong happened while working on the tracker. Are you authenticated?");
+                    Stop();
+                }
             }
         }
 
-        private async Task<Models.Stash> ParseStash(WealthDbContext database, StashTabDetails stash)
+        private async Task ParseStash(WealthDbContext database, StashTabDetails stash)
         {
-            OnStashParsing?.Invoke(new string[] { stash.Id, stash.Name });
+            OnLogEvent?.Invoke(Severity.Normal, $"[{stash.Name}] Started Parsing.");
 
             var dbStash = database.Stashes.FirstOrDefault(x => x.Id == stash.Id);
             if (dbStash == null)
@@ -144,9 +152,8 @@ namespace Sidekick.Modules.Wealth
 
             await database.SaveChangesAsync();
 
-            OnStashParsed?.Invoke(new string[] { stash.Id, stash.Name ?? "" });
-
-            return dbStash;
+            OnLogEvent?.Invoke(Severity.Normal, $"[{stash.Name}] Completed Parsing.");
+            OnStashParsed?.Invoke(stash);
         }
 
         private async Task<Models.Item> ParseItem(StashItem item)
@@ -208,6 +215,7 @@ namespace Sidekick.Modules.Wealth
             });
 
             await database.SaveChangesAsync();
+            OnLogEvent?.Invoke(Severity.Info, $"[{stash.Name}] Snapshot Taken.");
         }
 
         private async Task TakeFullSnapshot(WealthDbContext database)
@@ -224,6 +232,7 @@ namespace Sidekick.Modules.Wealth
             });
 
             await database.SaveChangesAsync();
+            OnLogEvent?.Invoke(Severity.Info, $"Full Snapshot Taken.");
         }
     }
 }

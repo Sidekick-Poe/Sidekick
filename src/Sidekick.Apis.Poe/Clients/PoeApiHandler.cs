@@ -1,6 +1,5 @@
 using System.Net.Http.Headers;
 using ComposableAsync;
-using Microsoft.Extensions.Logging;
 using RateLimiter;
 using Sidekick.Apis.Poe.Authentication;
 
@@ -8,15 +7,12 @@ namespace Sidekick.Apis.Poe.Clients
 {
     public class PoeApiHandler : HttpClientHandler
     {
-        private readonly ILogger<PoeApiHandler> logger;
         private readonly IAuthenticationService authenticationService;
         private static TimeLimiter? timeConstraint = null;
 
         public PoeApiHandler(
-            ILogger<PoeApiHandler> logger,
             IAuthenticationService authenticationService)
         {
-            this.logger = logger;
             this.authenticationService = authenticationService;
             if (timeConstraint == null)
             {
