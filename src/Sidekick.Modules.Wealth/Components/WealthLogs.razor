@@ -1,21 +1,24 @@
 <div class="pl-4">
-    <MudPaper Outlined="true" Class="d-flex flex-column" Style="@($"max-height:{WealthView.InventoryHeight}; background-color:transparent;")">
-        <MudText Typo="Typo.h3" Class="py-2 px-4">Logs</MudText>
-        <div class="flex-grow-1" style="overflow-y: scroll;">
-            @for (var index = Logs.Count - 1; index >= 0 && index > Logs.Count - 100; index--)
-            {
-                var log = Logs[index];
-                <div class="d-flex align-center flex-nowrap px-2 mt-3">
-                    <MudIcon Icon="@GetIcon(log.Severity)" Color="@GetColor(log.Severity)"></MudIcon>
-                    <div class="pl-2">
-                        <MudText Typo="Typo.caption">@log.Date.ToString("hh:mm:ss")</MudText>
-                        <br />
-                        @log.Message
+    @if (Logs.Any())
+    {
+        <MudPaper Outlined="true" Class="d-flex flex-column" Style="@($"max-height:{WealthView.InventoryHeight}; background-color:transparent;")">
+            <MudText Typo="Typo.h3" Class="py-2 px-4">Logs</MudText>
+            <div class="flex-grow-1" style="overflow-y: scroll;">
+                @for (var index = Logs.Count - 1; index >= 0 && index > Logs.Count - 100; index--)
+                {
+                    var log = Logs[index];
+                    <div class="d-flex align-center flex-nowrap px-2 my-2">
+                        <MudIcon Icon="@GetIcon(log.Severity)" Color="@GetColor(log.Severity)"></MudIcon>
+                        <div class="pl-2">
+                            <MudText Typo="Typo.caption">@log.Date.ToString("hh:mm:ss")</MudText>
+                            <br />
+                            @log.Message
+                        </div>
                     </div>
-                </div>
-            }
-        </div>
-    </MudPaper>
+                }
+            </div>
+        </MudPaper>
+    }
 </div>
 
 @inject WealthParser WealthParser

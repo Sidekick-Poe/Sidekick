@@ -19,14 +19,31 @@ else
 
 @inject WealthParser WealthParser
 @inject ISettings Settings
+@implements IDisposable
 @code {
+    protected override void OnInitialized()
+    {
+        WealthParser.OnLogEvent += Update;
+        base.OnInitialized();
+    }
+
     private void Start()
     {
         WealthParser.Start();
     }
 
+    private void Update(Severity severity, string message)
+    {
+        _ = InvokeAsync(StateHasChanged);
+    }
+
     private void Stop()
     {
         WealthParser.Stop();
+    }
+
+    public void Dispose()
+    {
+        WealthParser.OnLogEvent -= Update;
     }
 }

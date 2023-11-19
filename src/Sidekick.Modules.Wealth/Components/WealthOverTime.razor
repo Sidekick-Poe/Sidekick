@@ -1,12 +1,28 @@
-@if (XAxisLabels != null && Series.Count() >= 2)
-{
-    <MudChart ChartType="ChartType.Line" ChartSeries="@Series" XAxisLabels="@XAxisLabels" Width="100%" Height="@WealthView.ChartHeight">
-    </MudChart>
-}
-else
-{
-    <MudAlert Dense="true" Variant="Variant.Outlined" Severity="Severity.Info">The tracker needs to run for 30 minutes to start generating this graph.</MudAlert>
-}
+@using ApexCharts
+
+<div style="@($"height:{WealthView.ChartHeight}")" class="pb-2 pr-10">
+    @if (Series.Count() >= 1)
+    {
+        <ApexChart @ref="Chart"
+                   TItem="DataPoint"
+                   Options="Options"
+                   Height="@("100%")">
+            @foreach (var serie in Series)
+            {
+                <ApexPointSeries TItem="DataPoint"
+                                 Items="serie.Points"
+                                 Name="@serie.Name"
+                                 SeriesType="SeriesType.Line"
+                                 XValue="@(e => e.DateString)"
+                                 YValue="@(e => (decimal?)e.Value)" />
+            }
+        </ApexChart>
+    }
+    else
+    {
+        <MudAlert Dense="true" Variant="Variant.Outlined" Severity="Severity.Info">The tracker needs to run for 30 minutes to start generating this graph.</MudAlert>
+    }
+</div>
 
 @inject DbContextOptions<WealthDbContext> DbContextOptions
 @inject ISettings Settings
@@ -16,11 +32,93 @@ else
     [CascadingParameter]
     public WealthView View { get; set; } = null!;
 
-    private List<ChartSeries> Series { get; set; } = new();
-    private string[]? XAxisLabels { get; set; }
+    private List<DataSerie> Series { get; set; } = new();
+    private ApexChartOptions<DataPoint> Options { get; set; } = new();
+    private ApexChart<DataPoint>? Chart { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+        Options = new();
+
+        Options.Chart = new Chart
+            {
+                Background = "transparent",
+                Toolbar = new Toolbar
+                {
+                    Show = false
+                },
+            };
+
+        Options.Theme = new Theme
+            {
+                Mode = Mode.Dark,
+                Palette = PaletteType.Palette1,
+            };
+
+        Options.Legend = new Legend
+            {
+                Show = false,
+                Labels = new LegendLabels
+                {
+                    Colors = "#999",
+                }
+            };
+
+        Options.Yaxis = new List<YAxis>()
+            {
+                new YAxis
+                {
+                    Show = false,
+                }
+            };
+
+        Options.Xaxis = new XAxis
+            {
+                Labels = new XAxisLabels
+                {
+                    Show = false,
+                },
+                AxisTicks = new AxisTicks
+                {
+                    Color = "#666666",
+                },
+            };
+
+        Options.Grid = new Grid
+            {
+                Xaxis = new GridXAxis
+                {
+                    Lines = new Lines
+                    {
+                        Show = false,
+                    }
+                },
+                Yaxis = new GridYAxis
+                {
+                    Lines = new Lines
+                    {
+                        Show = false,
+                    }
+                },
+            };
+
+        Options.Tooltip = new Tooltip
+            {
+                Y = new TooltipY
+                {
+                    Formatter = @"
+                      function (value) {
+                        if (!value) return null;
+                        return parseInt(value);
+                      }"
+                },
+                Fixed = new TooltipFixed
+                {
+                    Enabled = true,
+                    Position = TooltipPosition.TopLeft,
+                }
+            };
+
         WealthParser.OnSnapshotTaken += Update;
         View.OnSelectedStashIdsChanged += Update;
         await LoadData();
@@ -33,11 +131,18 @@ else
         {
             await LoadData();
             StateHasChanged();
+
+            if (Chart != null)
+            {
+                await Chart.RenderAsync();
+            }
         });
     }
 
     private async Task LoadData()
     {
+        Series.Clear();
+
         using var database = new WealthDbContext(DbContextOptions);
         var stashes = await database.Stashes
             .Where(x => View.SelectedStashIds.Contains(x.Id))
@@ -48,63 +153,66 @@ else
             .Where(x => stashIds.Contains(x.StashId))
             .OrderByDescending(x => x.Total)
             .ToListAsync();
-
-        var fullSnapshots = await database.FullSnapshots
-            .Where(x => x.League == Settings.LeagueId)
-            .ToListAsync();
-
-        var dataPoints = stashSnapshots
-            .GroupBy(x => $"{x.StashId}-{x.Date.Year}-{x.Date.Month.ToString("00")}-{x.Date.Day.ToString("00")} {x.Date.Hour.ToString("00")}:{((int)(x.Date.Minute / 30) == 0 ? "00" : "30")}")
-            .Select(x => new DataPoint()
+        Series.AddRange(stashSnapshots
+            .GroupBy(x => x.StashId)
+            .Select(snapshot => new DataSerie()
                 {
-                    DateString = x.Key.Substring(x.Key.IndexOf('-') + 1),
-                    Name = stashes.First(y => x.First().StashId == y.Id).Name,
-                    Value = x.OrderByDescending(y => y.Total).First().Total,
-                })
-            .ToList();
-
-        dataPoints.AddRange(fullSnapshots
-            .GroupBy(x => $"{x.Date.Year}-{x.Date.Month.ToString("00")}-{x.Date.Day.ToString("00")} {x.Date.Hour.ToString("00")}:{((int)(x.Date.Minute / 30) == 0 ? "00" : "30")}")
-            .Select(x => new DataPoint()
-                {
-                    DateString = x.Key,
-                    Name = "Total",
-                    Value = x.OrderByDescending(y => y.Total).First().Total,
+                    Name = stashes.First(y => snapshot.First().StashId == y.Id).Name,
+                    Points = snapshot
+                        .GroupBy(x => $"{x.Date.Year}-{x.Date.Month.ToString("00")}-{x.Date.Day.ToString("00")} {x.Date.Hour.ToString("00")}:{((int)(x.Date.Minute / 30) == 0 ? "00" : "30")}")
+                        .Select(x => new DataPoint()
+                        {
+                            DateString = x.Key,
+                            Value = snapshot.OrderByDescending(y => y.Total).First().Total,
+                        })
+                        .ToList(),
                 })
             .ToList());
 
-        var labels = dataPoints
+        var labels = Series
+            .SelectMany(x => x.Points)
             .Select(x => x.DateString)
             .Distinct()
-            .Order()
-            .ToArray();
+            .ToList();
 
-        XAxisLabels = labels
-            .Select(x => x.Substring(x.IndexOf('-') + 1))
-            .ToArray();
-
-        Series.Clear();
-        foreach (var serie in dataPoints.GroupBy(x => x.Name))
+        Series.ForEach(serie =>
         {
-            var nullableData = labels.Select(label => serie.FirstOrDefault(x => x.DateString == label)?.Value ?? null).ToArray();
-            var data = nullableData
-                .Select((x, index) =>
+            labels.ForEach(label =>
+            {
+                if (!serie.Points.Any(x => x.DateString == label))
                 {
-                    if (x == null && index > 0)
-                    {
-                        return nullableData[index - 1] ?? 0;
-                    }
+                    serie.Points.Add(new DataPoint()
+                        {
+                            DateString = label,
+                            Value = null,
+                        });
+                }
+            });
 
-                    return x ?? 0;
+            serie.Points = serie.Points.OrderBy(x => x.DateString).ToList();
+            for (var i = 1; i < serie.Points.Count; i++)
+            {
+                if (serie.Points[i].Value == null)
+                {
+                    serie.Points[i].Value = serie.Points[i - 1].Value;
+                }
+            }
+        });
+
+        var totalPoints = Series
+            .SelectMany(x => x.Points)
+            .GroupBy(x => x.DateString)
+            .Select(x => new DataPoint()
+                {
+                    DateString = x.Key,
+                    Value = x.Sum(y => y.Value),
                 })
-                .ToArray();
-
-            Series.Add(new ChartSeries()
-                {
-                    Name = serie.First().Name,
-                    Data = data,
-                });
-        }
+            .ToList();
+        Series.Add(new DataSerie()
+            {
+                Name = "Total",
+                Points = totalPoints,
+            });
     }
 
     public void Dispose()
@@ -113,12 +221,17 @@ else
         View.OnSelectedStashIdsChanged -= Update;
     }
 
+    private class DataSerie
+    {
+        public required string Name { get; init; }
+
+        public required List<DataPoint> Points { get; set; }
+    }
+
     private class DataPoint
     {
         public required string DateString { get; init; }
 
-        public double Value { get; init; }
-
-        public required string Name { get; init; }
+        public double? Value { get; set; }
     }
 }

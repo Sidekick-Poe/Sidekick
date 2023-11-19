@@ -1,12 +1,21 @@
-@if (Data != null && Labels != null)
-{
-    <MudChart ChartType="ChartType.Donut" InputData="@Data" InputLabels="@Labels" Height="@WealthView.ChartHeight">
-        <CustomGraphics>
-            <text class="donut-inner-text" x="50%" y="35%" dominant-baseline="middle" text-anchor="middle" fill="grey" font-size="3">Total Wealth</text>
-            <text class="donut-inner-text" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="gold" font-size="5">@TotalWealth.ToString("N0")</text>
-        </CustomGraphics>
-    </MudChart>
-}
+@using ApexCharts
+
+<div style="@($"height:{WealthView.ChartHeight}")" class="pb-2">
+    @if (Stashes.Any())
+    {
+        <ApexChart @ref="Chart"
+                   TItem="Stash"
+                   Options="Options"
+                   Height="@("100%")">
+            <ApexPointSeries TItem="Stash"
+                             Items="Stashes"
+                             SeriesType="SeriesType.Donut"
+                             XValue="@(e => e.Name)"
+                             YAggregate="@(e => (decimal?)e.Sum(e => e.Total))"
+                             OrderByDescending="e=>e.Y" />
+        </ApexChart>
+    }
+</div>
 
 @inject DbContextOptions<WealthDbContext> DbContextOptions
 @inject WealthParser WealthParser
@@ -15,12 +24,62 @@
     [CascadingParameter]
     public WealthView View { get; set; } = null!;
 
-    private double[]? Data { get; set; }
-    private string[]? Labels { get; set; }
-    private double TotalWealth { get; set; }
+    private List<Stash> Stashes { get; set; } = new();
+    private ApexChartOptions<Stash> Options { get; set; } = new();
+    private ApexChart<Stash>? Chart { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+        Options = new();
+
+        Options.Chart = new Chart
+            {
+                Background = "transparent",
+            };
+
+        Options.Theme = new Theme
+            {
+                Mode = Mode.Dark,
+                Palette = PaletteType.Palette1,
+            };
+
+        Options.PlotOptions = new PlotOptions
+            {
+                Pie = new PlotOptionsPie
+                {
+                    Donut = new PlotOptionsDonut
+                    {
+                        Labels = new DonutLabels
+                        {
+                            Total = new DonutLabelTotal { FontSize = "18px", Color = "white", Formatter = @"function (w) { return parseInt(w.globals.seriesTotals.reduce((a, b) => { return (a + b) }, 0)) }" },
+                            Value = new DonutLabelValue { Color = "gold", Formatter = @"function (value) { return parseInt(value) }" }
+                        },
+                    }
+                }
+            };
+
+        Options.Tooltip = new Tooltip
+            {
+                Y = new TooltipY
+                {
+                    Formatter = @"function (value) { return parseInt(value) }"
+                },
+            };
+
+        Options.Stroke = new Stroke
+            {
+                Show = false,
+            };
+
+        Options.Legend = new Legend
+            {
+                Show = false,
+                Labels = new LegendLabels
+                {
+                    Colors = "#999",
+                }
+            };
+
         WealthParser.OnStashParsed += Update;
         View.OnSelectedStashIdsChanged += Update;
         await LoadData();
@@ -33,20 +92,22 @@
         {
             await LoadData();
             StateHasChanged();
+
+            if (Chart != null)
+            {
+                await Chart.RenderAsync();
+            }
         });
     }
 
     private async Task LoadData()
     {
         using var database = new WealthDbContext(DbContextOptions);
-        var stashes = await database.Stashes
+        Stashes = await database.Stashes
             .Where(x => View.SelectedStashIds.Contains(x.Id))
             .OrderByDescending(x => x.Total)
             .ToListAsync();
 
-        Data = stashes.Select(x => x.Total).ToArray();
-        Labels = stashes.Select(x => x.Name).ToArray();
-        TotalWealth = Data.Sum();
     }
 
     public void Dispose()
