@@ -46,6 +46,7 @@ else
 
         var stashSnapshots = await database.StashSnapshots
             .Where(x => stashIds.Contains(x.StashId))
+            .OrderByDescending(x => x.Total)
             .ToListAsync();
 
         var fullSnapshots = await database.FullSnapshots

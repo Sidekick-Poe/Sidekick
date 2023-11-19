@@ -54,15 +54,15 @@ namespace Sidekick.Apis.Poe.Stash.Models
             if (properties != null)
             {
                 var property = properties.FirstOrDefault(x => x.name.ToUpper() == name.ToUpper());
+                var value = property?.values?.FirstOrDefault()?.FirstOrDefault()?.ToString();
 
-                if (property != null && property.values != null)
+                if (value != null)
                 {
-                    var value = property.values[0];
-                    if (value != null)
-                    {
-                        return value[0] == null ? defaultValue : Convert.ToInt32(value[0].ToString());
-                    }
+                    value = value.Split(" ").First();
+                    return Convert.ToInt32(value);
                 }
+
+                return defaultValue;
             }
             return null;
         }
