@@ -1,6 +1,6 @@
 
 <div>
-    <MudTable Height="@WealthView.InventoryHeight" Items="@Items" Dense="true" Hover="true" SortLabel="Sort By" Filter="new Func<Models.Item,bool>(Search)" Breakpoint="Breakpoint.Sm">
+    <MudTable Height="@($"calc({WealthView.InventoryHeight} - 48px)")" Items="@Items" Dense="true" Hover="true" SortLabel="Sort By" Filter="new Func<Models.Item,bool>(Search)" Breakpoint="Breakpoint.Sm">
         <ToolBarContent>
             <MudText Typo="Typo.h3">Inventory</MudText>
             <MudSpacer />

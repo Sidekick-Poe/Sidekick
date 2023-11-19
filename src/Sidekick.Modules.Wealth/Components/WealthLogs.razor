@@ -1,17 +1,21 @@
-<MudText Typo="Typo.h3">Logs</MudText>
-<div style="height: 420px; overflow-y: scroll; ">
-    @for (var index = Logs.Count - 1; index >= 0; index--)
-    {
-        var log = Logs[index];
-        <MudAlert @key="index"
-                  Class="mb-1 grey darken-4"
-                  Dense="true"
-                  Severity="log.Severity"
-                  Variant="Variant.Outlined">
-            <MudText Typo="Typo.caption">@log.Date.ToString("hh:mm:ss")</MudText><br />
-            @log.Message
-        </MudAlert>
-    }
+<div class="pl-4">
+    <MudPaper Outlined="true" Class="d-flex flex-column" Style="@($"max-height:{WealthView.InventoryHeight}; background-color:transparent;")">
+        <MudText Typo="Typo.h3" Class="py-2 px-4">Logs</MudText>
+        <div class="flex-grow-1" style="overflow-y: scroll;">
+            @for (var index = Logs.Count - 1; index >= 0 && index > Logs.Count - 100; index--)
+            {
+                var log = Logs[index];
+                <div class="d-flex align-center flex-nowrap px-2 mt-3">
+                    <MudIcon Icon="@GetIcon(log.Severity)" Color="@GetColor(log.Severity)"></MudIcon>
+                    <div class="pl-2">
+                        <MudText Typo="Typo.caption">@log.Date.ToString("hh:mm:ss")</MudText>
+                        <br />
+                        @log.Message
+                    </div>
+                </div>
+            }
+        </div>
+    </MudPaper>
 </div>
 
 @inject WealthParser WealthParser
@@ -25,11 +29,29 @@
         base.OnInitialized();
     }
 
-    public void OnLogEvent(Severity severity, string message)
+    private void OnLogEvent(Severity severity, string message)
     {
         Logs.Add((severity, DateTime.Now, message));
         _ = InvokeAsync(StateHasChanged);
     }
+
+    private string GetIcon(Severity severity) => severity switch
+    {
+        Severity.Error => Icons.Material.Filled.Error,
+        Severity.Warning => Icons.Material.Filled.Warning,
+        Severity.Success => Icons.Material.Filled.Check,
+        Severity.Info => Icons.Material.Filled.Info,
+        _ => Icons.Material.Filled.Label,
+    };
+
+    private Color GetColor(Severity severity) => severity switch
+    {
+        Severity.Error => Color.Error,
+        Severity.Warning => Color.Warning,
+        Severity.Success => Color.Success,
+        Severity.Info => Color.Info,
+        _ => Color.Default,
+    };
 
     public void Dispose()
     {

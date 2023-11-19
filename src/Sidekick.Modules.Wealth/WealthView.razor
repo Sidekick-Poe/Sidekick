@@ -43,10 +43,10 @@
     @if (StashTabs.Any())
     {
         <MudGrid Spacing="0" Class="ml-0">
-            <MudItem xs="3">
+            <MudItem xs="4">
                 <WealthDistribution />
             </MudItem>
-            <MudItem xs="9">
+            <MudItem xs="8">
                 <WealthOverTime />
             </MudItem>
         </MudGrid>
@@ -55,9 +55,6 @@
                 <WealthInventory />
             </MudItem>
             <MudItem xs="3">
-                <MudText Typo="Typo.h3">
-                    Upcoming Updates
-                </MudText>
                 <WealthLogs />
             </MudItem>
         </MudGrid>
@@ -69,7 +66,7 @@
 @inject WealthParser WealthParser
 @code {
     public const string ChartHeight = "25vh";
-    public const string InventoryHeight = "55vh";
+    public const string InventoryHeight = "62vh";
 
     public override string Title => "Wealth Tracker";
 
