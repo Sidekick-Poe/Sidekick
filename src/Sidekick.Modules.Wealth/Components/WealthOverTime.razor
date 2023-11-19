@@ -1,22 +1,11 @@
 @if (XAxisLabels != null && Series.Count() >= 2)
 {
-    <MudChart ChartType="ChartType.Line" style="padding-left: 15px;" ChartSeries="@Series" XAxisLabels="@XAxisLabels" Width="635px">
-        <CustomGraphics>
-            <style>
-                .mud-chart-line {
-                    overflow: visible;
-                }
-
-                .mud-charts-gridlines-yaxis > path {
-                    stroke-dasharray: 1;
-                }
-            </style>
-        </CustomGraphics>
+    <MudChart ChartType="ChartType.Line" ChartSeries="@Series" XAxisLabels="@XAxisLabels" Width="100%" Height="@WealthView.ChartHeight">
     </MudChart>
 }
 else
 {
-    <MudAlert Dense="true" Style="width: 100%; margin-bottom: 350px;" Variant="Variant.Outlined" Severity="Severity.Info">Wealth Over Time Graph will display once atleast 2 snapshots are captured.</MudAlert>
+    <MudAlert Dense="true" Variant="Variant.Outlined" Severity="Severity.Info">The tracker needs to run for 30 minutes to start generating this graph.</MudAlert>
 }
 
 @inject DbContextOptions<WealthDbContext> DbContextOptions
@@ -24,17 +13,21 @@ else
 @inject WealthParser WealthParser
 @implements IDisposable
 @code {
+    [CascadingParameter]
+    public WealthView View { get; set; } = null!;
+
     private List<ChartSeries> Series { get; set; } = new();
     private string[]? XAxisLabels { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        WealthParser.OnSnapshotTaken += OnSnapshotTaken;
+        WealthParser.OnSnapshotTaken += Update;
+        View.OnSelectedStashIdsChanged += Update;
         await LoadData();
         await base.OnInitializedAsync();
     }
 
-    public void OnSnapshotTaken(StashTabDetails? stash)
+    public void Update()
     {
         _ = InvokeAsync(async () =>
         {
@@ -47,7 +40,7 @@ else
     {
         using var database = new WealthDbContext(DbContextOptions);
         var stashes = await database.Stashes
-            .Where(x => Settings.WealthTrackerTabs.Contains(x.Id))
+            .Where(x => View.SelectedStashIds.Contains(x.Id))
             .ToListAsync();
         var stashIds = stashes.Select(x => x.Id).ToList();
 
@@ -115,7 +108,8 @@ else
 
     public void Dispose()
     {
-        WealthParser.OnSnapshotTaken -= OnSnapshotTaken;
+        WealthParser.OnSnapshotTaken -= Update;
+        View.OnSelectedStashIdsChanged -= Update;
     }
 
     private class DataPoint

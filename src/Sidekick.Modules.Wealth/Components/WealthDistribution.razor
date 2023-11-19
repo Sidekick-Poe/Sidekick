@@ -1,6 +1,6 @@
 @if (Data != null && Labels != null)
 {
-    <MudChart ChartType="ChartType.Donut" InputData="@Data" InputLabels="@Labels" Width="250px" Height="250px">
+    <MudChart ChartType="ChartType.Donut" InputData="@Data" InputLabels="@Labels" Height="@WealthView.ChartHeight">
         <CustomGraphics>
             <text class="donut-inner-text" x="50%" y="35%" dominant-baseline="middle" text-anchor="middle" fill="grey" font-size="3">Total Wealth</text>
             <text class="donut-inner-text" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="gold" font-size="5">@TotalWealth.ToString("N0")</text>
@@ -9,22 +9,25 @@
 }
 
 @inject DbContextOptions<WealthDbContext> DbContextOptions
-@inject ISettings Settings
 @inject WealthParser WealthParser
 @implements IDisposable
 @code {
+    [CascadingParameter]
+    public WealthView View { get; set; } = null!;
+
     private double[]? Data { get; set; }
     private string[]? Labels { get; set; }
     private double TotalWealth { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        WealthParser.OnStashParsed += OnStashParsed;
+        WealthParser.OnStashParsed += Update;
+        View.OnSelectedStashIdsChanged += Update;
         await LoadData();
         await base.OnInitializedAsync();
     }
 
-    public void OnStashParsed(StashTabDetails stash)
+    public void Update()
     {
         _ = InvokeAsync(async () =>
         {
@@ -37,7 +40,7 @@
     {
         using var database = new WealthDbContext(DbContextOptions);
         var stashes = await database.Stashes
-            .Where(x => Settings.WealthTrackerTabs.Contains(x.Id))
+            .Where(x => View.SelectedStashIds.Contains(x.Id))
             .OrderByDescending(x => x.Total)
             .ToListAsync();
 
@@ -48,6 +51,7 @@
 
     public void Dispose()
     {
-        WealthParser.OnStashParsed -= OnStashParsed;
+        WealthParser.OnStashParsed -= Update;
+        View.OnSelectedStashIdsChanged -= Update;
     }
 }

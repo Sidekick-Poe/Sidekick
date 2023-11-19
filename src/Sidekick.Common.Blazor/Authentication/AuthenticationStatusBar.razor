@@ -2,9 +2,9 @@
 @if (AuthenticationService.CurrentState == AuthenticationState.Authenticated)
 {
     <MudAlert Severity="Severity.Normal" Variant="Variant.Filled" Square="true" Dense="true" Icon="@Icons.Material.Filled.Login">
-        <div class="d-flex align-center flex-nowrap">
-            <div class="mr-4">You are currently authenticated for the next @TokenRemainingString.</div>
-            <MudButton OnClick="() => AuthenticationService.Authenticate(true)" Size="Size.Small" DisableElevation="true" Color="Color.Primary" Variant="Variant.Filled">Re-authenticate</MudButton>
+        <div class="align-center d-flex flex-wrap justify-space-around">
+            <div class="ma-1">You are authenticated for the next @TokenRemainingString.</div>
+            <MudButton OnClick="() => AuthenticationService.Authenticate(true)" Size="Size.Small" DisableElevation="true" Color="Color.Primary" Variant="Variant.Filled" Class="ma-1">Re-authenticate</MudButton>
         </div>
     </MudAlert>
     <MudProgressLinear Color="Color.Primary" Value="TokenPercentRemaining" />
@@ -12,16 +12,16 @@
 
 @if (AuthenticationService.CurrentState == AuthenticationState.InProgress)
 {
-    <MudAlert Severity="Severity.Info" Variant="Variant.Filled" Square="true" Dense="true" Icon="@Icons.Material.Filled.HourglassTop">You are currently being authenticated.</MudAlert>
+    <MudAlert Severity="Severity.Info" Variant="Variant.Filled" Square="true" Dense="true" Icon="@Icons.Material.Filled.HourglassTop">You are currently authenticating.</MudAlert>
     <MudProgressLinear Color="Color.Info" Indeterminate="true" />
 }
 
 @if (AuthenticationService.CurrentState == AuthenticationState.Unauthenticated)
 {
     <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Square="true" Dense="true" Icon="@Icons.Material.Filled.Logout">
-        <div class="d-flex align-center flex-nowrap">
-            <div class="mr-4">You are currently unauthenticated.</div>
-            <MudButton OnClick="() => AuthenticationService.Authenticate(true)" Size="Size.Small" DisableElevation="true" Color="Color.Error" Variant="Variant.Filled">Authenticate</MudButton>
+        <div class="align-center d-flex flex-wrap justify-space-around">
+            <div class="ma-1">You are unauthenticated.</div>
+            <MudButton OnClick="() => AuthenticationService.Authenticate(true)" Size="Size.Small" DisableElevation="true" Color="Color.Error" Variant="Variant.Filled" Class="ma-1">Authenticate</MudButton>
         </div>
     </MudAlert>
 }
