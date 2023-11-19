@@ -6,6 +6,7 @@ namespace Sidekick.Common.Settings
         DateTimeOffset? Bearer_Expiration { get; set; }
         bool Enable_WealthTracker { get; set; }
         List<string> WealthTrackerTabs { get; set; }
+        int Wealth_MinimumItemTotal { get; set; }
 
         string Language_Parser { get; set; }
         string Language_UI { get; set; }

@@ -35,6 +35,8 @@ namespace Sidekick.Common.Settings
 
         public List<string> WealthTrackerTabs { get; set; } = new();
 
+        public int Wealth_MinimumItemTotal { get; set; } = 0;
+
         public string Language_UI { get; set; } = "en";
 
         public string Language_Parser { get; set; } = "";
@@ -52,8 +54,6 @@ namespace Sidekick.Common.Settings
         public bool Map_CloseWithMouse { get; set; } = false;
 
         public bool Trade_Prediction_Enable { get; set; } = true;
-
-        // public bool SendCrashReports { get; set; } = false;
 
         public string Map_Dangerous_Regex { get; set; } = "reflect|regen";
 
