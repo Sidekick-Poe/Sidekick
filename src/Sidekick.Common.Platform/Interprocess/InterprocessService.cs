@@ -5,11 +5,17 @@ namespace Sidekick.Common.Platform.Interprocess
 {
     public class InterprocessService : IInterprocessService, IDisposable
     {
+        private const string APPLICATION_PROCESS_GUID = "93c46709-7db2-4334-8aa3-28d473e66041";
+
+        private readonly Mutex mutex;
+        private readonly bool isMainInstance;
+
         public event Action<string>? OnMessageReceived;
 
         public InterprocessService()
         {
             InterprocessMessaging.OnMessageReceived += InterprocessMessaging_OnMessageReceived;
+            mutex = new Mutex(true, APPLICATION_PROCESS_GUID, out isMainInstance);
         }
 
         public void StartReceiving()
@@ -38,6 +44,8 @@ namespace Sidekick.Common.Platform.Interprocess
             await pipeClient.InvokeAsync(x => x.ReceiveMessage(message));
         }
 
+        public bool IsAlreadyRunning() => !isMainInstance;
+
         private void InterprocessMessaging_OnMessageReceived(string message)
         {
             OnMessageReceived?.Invoke(message);
@@ -45,6 +53,7 @@ namespace Sidekick.Common.Platform.Interprocess
 
         public void Dispose()
         {
+            mutex?.Close();
             InterprocessMessaging.OnMessageReceived -= InterprocessMessaging_OnMessageReceived;
         }
     }

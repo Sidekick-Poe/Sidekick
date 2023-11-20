@@ -6,6 +6,8 @@ namespace Sidekick.Common.Platform.Interprocess
 
         void StartReceiving();
 
+        bool IsAlreadyRunning();
+
         Task SendMessage(string message);
     }
 }

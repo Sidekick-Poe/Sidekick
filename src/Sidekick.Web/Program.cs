@@ -90,6 +90,8 @@ var app = builder.Build();
 
 #region Pipeline
 
+app.Services.GetRequiredService<IInterprocessService>().StartReceiving();
+
 app.UseStaticFiles();
 app.UseRouting();
 

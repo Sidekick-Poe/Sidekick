@@ -34,13 +34,9 @@ namespace Sidekick.Wpf
     /// </summary>
     public partial class App : Application
     {
-        private const string APPLICATION_PROCESS_GUID = "93c46709-7db2-4334-8aa3-28d473e66041";
-
         public static ServiceProvider ServiceProvider { get; set; } = null!;
 
         private readonly ILogger<App> logger;
-        private Mutex? Mutex { get; set; }
-
         private IInterprocessService InterprocessService { get; set; }
 
         public App()
@@ -63,24 +59,29 @@ namespace Sidekick.Wpf
         {
             base.OnStartup(e);
 
-            if (e.Args.Length > 0 && e.Args[0].ToUpper().StartsWith("SIDEKICK://"))
-            {
-                Task.Run(async () =>
-                {
-                    await InterprocessService.SendMessage(e.Args[0]);
-                    await Task.Delay(2000);
-                    Current.Dispatcher.Invoke(() =>
-                    {
-                        Current.Shutdown();
-                    });
-                });
-                return;
-            }
-
             var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
-
-            if (IsAlreadyRunning())
+            if (InterprocessService.IsAlreadyRunning())
             {
+                if (e.Args.Length > 0 && e.Args[0].ToUpper().StartsWith("SIDEKICK://"))
+                {
+                    Task.Run(async () =>
+                    {
+                        try
+                        {
+                            await InterprocessService.SendMessage(e.Args[0]);
+                        }
+                        finally
+                        {
+                            Current.Dispatcher.Invoke(() =>
+                            {
+                                Current.Shutdown();
+                            });
+                            Environment.Exit(0);
+                        }
+                    });
+                    return;
+                }
+
                 _ = viewLocator.Open(ErrorType.AlreadyRunning.ToUrl());
                 Task.Run(async () =>
                 {
@@ -151,15 +152,8 @@ namespace Sidekick.Wpf
 
         protected override void OnExit(ExitEventArgs e)
         {
-            Mutex?.Close();
             ServiceProvider?.Dispose();
             base.OnExit(e);
-        }
-
-        private bool IsAlreadyRunning()
-        {
-            Mutex = new Mutex(true, APPLICATION_PROCESS_GUID, out var notRunning);
-            return !notRunning;
         }
 
         private void AttachErrorHandlers()
