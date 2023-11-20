@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -15,7 +14,7 @@ namespace Sidekick.Modules.Wealth.Migrations
                 name: "FullSnapshots",
                 columns: table => new
                 {
-                    Date = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
+                    Date = table.Column<long>(type: "INTEGER", nullable: false),
                     League = table.Column<string>(type: "TEXT", nullable: false),
                     Total = table.Column<double>(type: "REAL", nullable: false)
                 },
@@ -57,7 +56,7 @@ namespace Sidekick.Modules.Wealth.Migrations
                     League = table.Column<string>(type: "TEXT", nullable: false),
                     Type = table.Column<int>(type: "INTEGER", nullable: false),
                     Total = table.Column<double>(type: "REAL", nullable: false),
-                    LastUpdate = table.Column<DateTimeOffset>(type: "TEXT", nullable: false)
+                    LastUpdate = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,7 +67,7 @@ namespace Sidekick.Modules.Wealth.Migrations
                 name: "StashSnapshots",
                 columns: table => new
                 {
-                    Date = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
+                    Date = table.Column<long>(type: "INTEGER", nullable: false),
                     StashId = table.Column<string>(type: "TEXT", nullable: false),
                     League = table.Column<string>(type: "TEXT", nullable: false),
                     Total = table.Column<double>(type: "REAL", nullable: false)

@@ -23,7 +23,7 @@ else
 @code {
     protected override void OnInitialized()
     {
-        WealthParser.OnLogEvent += Update;
+        WealthParser.OnLogsChanged += Update;
         base.OnInitialized();
     }
 
@@ -32,7 +32,7 @@ else
         WealthParser.Start();
     }
 
-    private void Update(Severity severity, string message)
+    private void Update()
     {
         _ = InvokeAsync(StateHasChanged);
     }
@@ -44,6 +44,6 @@ else
 
     public void Dispose()
     {
-        WealthParser.OnLogEvent -= Update;
+        WealthParser.OnLogsChanged -= Update;
     }
 }

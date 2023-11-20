@@ -19,8 +19,8 @@ namespace Sidekick.Modules.Wealth.Migrations
 
             modelBuilder.Entity("Sidekick.Modules.Wealth.Models.FullSnapshot", b =>
                 {
-                    b.Property<DateTimeOffset>("Date")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("Date")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("League")
                         .IsRequired()
@@ -88,8 +88,8 @@ namespace Sidekick.Modules.Wealth.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTimeOffset>("LastUpdate")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("LastUpdate")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("League")
                         .IsRequired()
@@ -115,8 +115,8 @@ namespace Sidekick.Modules.Wealth.Migrations
 
             modelBuilder.Entity("Sidekick.Modules.Wealth.Models.StashSnapshot", b =>
                 {
-                    b.Property<DateTimeOffset>("Date")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("Date")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("StashId")
                         .HasColumnType("TEXT");

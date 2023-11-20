@@ -1,27 +1,32 @@
 @using ApexCharts
 
-<div style="@($"height:{WealthView.ChartHeight}")" class="pb-2 pr-10">
-    @if (Series.Count() >= 1)
-    {
-        <ApexChart @ref="Chart"
-                   TItem="DataPoint"
-                   Options="Options"
-                   Height="@("100%")">
-            @foreach (var serie in Series)
-            {
-                <ApexPointSeries TItem="DataPoint"
-                                 Items="serie.Points"
-                                 Name="@serie.Name"
-                                 SeriesType="SeriesType.Line"
-                                 XValue="@(e => e.DateString)"
-                                 YValue="@(e => (decimal?)e.Value)" />
-            }
-        </ApexChart>
-    }
-    else
-    {
-        <MudAlert Dense="true" Variant="Variant.Outlined" Severity="Severity.Info">The tracker needs to run for 30 minutes to start generating this graph.</MudAlert>
-    }
+<div style="@($"height:{WealthView.ChartHeight}")" class="pb-2 pr-10 d-flex flex-column">
+    <div>
+        <WealthHourlyRate />
+    </div>
+    <div class="flex-grow-1">
+        @if (Series.Count() >= 1)
+        {
+            <ApexChart @ref="Chart"
+                       TItem="DataPoint"
+                       Options="Options"
+                       Height="@("100%")">
+                @foreach (var serie in Series)
+                {
+                    <ApexPointSeries TItem="DataPoint"
+                                     Items="serie.Points"
+                                     Name="@serie.Name"
+                                     SeriesType="SeriesType.Line"
+                                     XValue="@(e => e.DateString)"
+                                     YValue="@(e => (decimal?)e.Value)" />
+                }
+            </ApexChart>
+        }
+        else
+        {
+            <MudAlert Dense="true" Variant="Variant.Outlined" Severity="Severity.Info">The tracker needs to run for 30 minutes to start generating this graph.</MudAlert>
+        }
+    </div>
 </div>
 
 @inject DbContextOptions<WealthDbContext> DbContextOptions
@@ -159,13 +164,13 @@
                 {
                     Name = stashes.First(y => snapshot.First().StashId == y.Id).Name,
                     Points = snapshot
-                        .GroupBy(x => $"{x.Date.Year}-{x.Date.Month.ToString("00")}-{x.Date.Day.ToString("00")} {x.Date.Hour.ToString("00")}:{((int)(x.Date.Minute / 30) == 0 ? "00" : "30")}")
-                        .Select(x => new DataPoint()
-                        {
-                            DateString = x.Key,
-                            Value = snapshot.OrderByDescending(y => y.Total).First().Total,
-                        })
-                        .ToList(),
+                            .GroupBy(x => $"{x.Date.Year}-{x.Date.Month.ToString("00")}-{x.Date.Day.ToString("00")} {x.Date.Hour.ToString("00")}:{((int)(x.Date.Minute / 30) == 0 ? "00" : "30")}")
+                            .Select(x => new DataPoint()
+                            {
+                                DateString = x.Key,
+                                Value = snapshot.OrderByDescending(y => y.Total).First().Total,
+                            })
+                            .ToList(),
                 })
             .ToList());
 

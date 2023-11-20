@@ -8,6 +8,7 @@ using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Mock;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
@@ -51,6 +52,7 @@ builder.Services
     // Common
     .AddSidekickCommon(builder.Configuration)
     .AddSidekickCommonBlazor()
+    .AddSingleton<IInterprocessService, InterprocessService>()
     // .AddSidekickCommonPlatform(o =>
     // {
     //     o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
@@ -67,13 +69,13 @@ builder.Services
     // Modules
     .AddSidekickAbout()
     .AddSidekickChat()
-    //.AddSidekickWealth()
     .AddSidekickCheatsheets()
     .AddSidekickDevelopment()
     .AddSidekickGeneral()
     .AddSidekickMaps()
     .AddSidekickSettings()
     .AddSidekickTrade()
+    .AddSidekickWealth()
 
     // Mocks
     .AddSidekickMocks();

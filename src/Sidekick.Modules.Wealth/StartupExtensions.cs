@@ -12,7 +12,7 @@ namespace Sidekick.Modules.Wealth
             services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
             services.AddSingleton<WealthParser>();
-            services.AddDbContext<WealthDbContext>(o => o.UseSqlite("Data Source=" + SidekickPaths.GetDataFilePath("wealth.db")));
+            services.AddDbContextPool<WealthDbContext>(o => o.UseSqlite("Data Source=" + SidekickPaths.GetDataFilePath("wealth.db")));
 
             return services;
         }

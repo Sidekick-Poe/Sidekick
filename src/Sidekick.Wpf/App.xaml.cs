@@ -63,22 +63,25 @@ namespace Sidekick.Wpf
         {
             base.OnStartup(e);
 
+            if (e.Args.Length > 0 && e.Args[0].ToUpper().StartsWith("SIDEKICK://"))
+            {
+                Task.Run(async () =>
+                {
+                    await InterprocessService.SendMessage(e.Args[0]);
+                    await Task.Delay(2000);
+                    Current.Dispatcher.Invoke(() =>
+                    {
+                        Current.Shutdown();
+                    });
+                });
+                return;
+            }
+
             var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
 
             if (IsAlreadyRunning())
             {
-                if (e.Args.Length > 0 && e.Args[0].ToUpper().StartsWith("SIDEKICK://"))
-                {
-                    Task.Run(async () =>
-                    {
-                        await InterprocessService.SendMessage(e.Args[0]);
-                    });
-                }
-                else
-                {
-                    _ = viewLocator.Open(ErrorType.AlreadyRunning.ToUrl());
-                }
-
+                _ = viewLocator.Open(ErrorType.AlreadyRunning.ToUrl());
                 Task.Run(async () =>
                 {
                     await Task.Delay(5000);
@@ -131,14 +134,14 @@ namespace Sidekick.Wpf
 
                 // Modules
                 .AddSidekickAbout()
-                .AddSidekickWealth()
                 .AddSidekickChat()
                 .AddSidekickCheatsheets()
                 .AddSidekickDevelopment()
                 .AddSidekickGeneral()
                 .AddSidekickMaps()
                 .AddSidekickSettings()
-                .AddSidekickTrade(); ;
+                .AddSidekickTrade()
+                .AddSidekickWealth();
 
             services.AddSingleton<IApplicationService, MockApplicationService>();
             services.AddSingleton<ITrayProvider, WpfTrayProvider>();

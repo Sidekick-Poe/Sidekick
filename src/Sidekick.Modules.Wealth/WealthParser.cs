@@ -4,7 +4,6 @@ using MudBlazor;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Stash;
 using Sidekick.Apis.Poe.Stash.Models;
-using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
@@ -20,7 +19,7 @@ namespace Sidekick.Modules.Wealth
         private readonly IPoeNinjaClient poeNinjaClient;
         private readonly ILogger<WealthParser> logger;
 
-        public event Action<Severity, string>? OnLogEvent;
+        public event Action? OnLogsChanged;
 
         public event Action? OnStashParsed;
 
@@ -40,6 +39,8 @@ namespace Sidekick.Modules.Wealth
             this.logger = logger;
         }
 
+        public Queue<(Guid Id, DateTimeOffset Date, string Icon, Color Color, string Message)> Logs { get; set; } = new();
+
         private Thread? RunningThread { get; set; }
         private CancellationTokenSource? CancellationTokenSource { get; set; }
 
@@ -53,7 +54,7 @@ namespace Sidekick.Modules.Wealth
             CancellationTokenSource = new CancellationTokenSource();
             RunningThread = new Thread(ParseLoop);
             RunningThread.Start();
-            OnLogEvent?.Invoke(Severity.Info, $"Tracker Started.");
+            Log(Icons.Material.Filled.PlayCircle, Color.Success, $"Tracker Started.");
         }
 
         public void Stop()
@@ -64,12 +65,23 @@ namespace Sidekick.Modules.Wealth
             }
 
             CancellationTokenSource.Cancel();
-            OnLogEvent?.Invoke(Severity.Info, $"Tracker Stopped.");
+            Log(Icons.Material.Filled.StopCircle, Color.Warning, $"Tracker Stopped.");
         }
 
         public bool IsRunning()
         {
             return CancellationTokenSource != null && !CancellationTokenSource.IsCancellationRequested;
+        }
+
+        private void Log(string icon, Color color, string message)
+        {
+            Logs.Enqueue((Guid.NewGuid(), DateTimeOffset.Now, icon, color, message));
+            if (Logs.Count > 50)
+            {
+                Logs.Dequeue();
+            }
+
+            OnLogsChanged?.Invoke();
         }
 
         private async void ParseLoop()
@@ -98,8 +110,10 @@ namespace Sidekick.Modules.Wealth
                             continue;
                         }
 
+                        Log(Icons.Material.Filled.HourglassTop, Color.Info, $"[{stash.Name}] Updating...");
                         await ParseStash(database, stash);
                         await TakeStashSnapshot(database, stash);
+                        Log(Icons.Material.Filled.HourglassBottom, Color.Info, $"[{stash.Name}] Updated.");
                     }
 
                     if (CancellationTokenSource.IsCancellationRequested)
@@ -112,7 +126,7 @@ namespace Sidekick.Modules.Wealth
                 }
                 catch (PoeApiException)
                 {
-                    OnLogEvent?.Invoke(Severity.Error, $"Exception! Something wrong happened while working on the tracker. Are you authenticated?");
+                    Log(Icons.Material.Filled.Error, Color.Error, $"Exception! Something wrong happened while working on the tracker. Are you authenticated?");
                     Stop();
                 }
             }
@@ -120,8 +134,6 @@ namespace Sidekick.Modules.Wealth
 
         private async Task ParseStash(WealthDbContext database, StashTabDetails stash)
         {
-            OnLogEvent?.Invoke(Severity.Normal, $"[{stash.Name}] Started Parsing.");
-
             var dbStash = database.Stashes.FirstOrDefault(x => x.Id == stash.Id);
             if (dbStash == null)
             {
@@ -163,7 +175,6 @@ namespace Sidekick.Modules.Wealth
             database.Items.AddRange(items);
             await database.SaveChangesAsync();
 
-            OnLogEvent?.Invoke(Severity.Normal, $"[{stash.Name}] Completed Parsing.");
             OnStashParsed?.Invoke();
         }
 
@@ -226,7 +237,6 @@ namespace Sidekick.Modules.Wealth
             });
 
             await database.SaveChangesAsync();
-            OnLogEvent?.Invoke(Severity.Info, $"[{stash.Name}] Snapshot Taken.");
             OnSnapshotTaken?.Invoke();
         }
 
@@ -244,8 +254,22 @@ namespace Sidekick.Modules.Wealth
             });
 
             await database.SaveChangesAsync();
-            OnLogEvent?.Invoke(Severity.Info, $"Full Snapshot Taken.");
+            Log(Icons.Material.Filled.PhotoCamera, Color.Success, $"Snapshot Taken.");
             OnSnapshotTaken?.Invoke();
+
+            var oneHourAgo = DateTimeOffset.Now.AddHours(-1);
+            var thirtyMinutesAgo = DateTimeOffset.Now.AddMinutes(-30);
+            var oneHourAgoSnapshot = await database.FullSnapshots
+                .Where(x => x.Date > oneHourAgo)
+                .Where(x => x.Date < thirtyMinutesAgo)
+                .OrderBy(x => x.Date)
+                .FirstOrDefaultAsync();
+
+            if (oneHourAgoSnapshot?.Total == totalPrice)
+            {
+                Log(Icons.Material.Filled.Warning, Color.Warning, $"Wealth tracker was automatically stopped due to inactivity.");
+                Stop();
+            }
         }
     }
 }

@@ -1,14 +1,14 @@
 <div class="pl-4">
-    @if (Logs.Any())
+    @if (WealthParser.Logs.Any())
     {
         <MudPaper Outlined="true" Class="d-flex flex-column" Style="@($"max-height:{WealthView.InventoryHeight}; background-color:transparent;")">
             <MudText Typo="Typo.h3" Class="py-2 px-4">Logs</MudText>
             <div class="flex-grow-1" style="overflow-y: scroll;">
-                @for (var index = Logs.Count - 1; index >= 0 && index > Logs.Count - 100; index--)
+                @for (var index = WealthParser.Logs.Count - 1; index >= 0 && index > WealthParser.Logs.Count - 100; index--)
                 {
-                    var log = Logs[index];
-                    <div class="d-flex align-center flex-nowrap px-2 my-2">
-                        <MudIcon Icon="@GetIcon(log.Severity)" Color="@GetColor(log.Severity)"></MudIcon>
+                    var log = WealthParser.Logs.ElementAt(index);
+                    <div class="d-flex align-center flex-nowrap px-2 my-2" @key="@log.Id">
+                        <MudIcon Icon="@log.Icon" Color="@log.Color"></MudIcon>
                         <div class="pl-2">
                             <MudText Typo="Typo.caption">@log.Date.ToString("hh:mm:ss")</MudText>
                             <br />
@@ -24,40 +24,19 @@
 @inject WealthParser WealthParser
 @implements IDisposable
 @code {
-    private List<(Severity Severity, DateTime Date, String Message)> Logs { get; set; } = new();
-
     protected override void OnInitialized()
     {
-        WealthParser.OnLogEvent += OnLogEvent;
+        WealthParser.OnLogsChanged += OnLogEvent;
         base.OnInitialized();
     }
 
-    private void OnLogEvent(Severity severity, string message)
+    private void OnLogEvent()
     {
-        Logs.Add((severity, DateTime.Now, message));
         _ = InvokeAsync(StateHasChanged);
     }
 
-    private string GetIcon(Severity severity) => severity switch
-    {
-        Severity.Error => Icons.Material.Filled.Error,
-        Severity.Warning => Icons.Material.Filled.Warning,
-        Severity.Success => Icons.Material.Filled.Check,
-        Severity.Info => Icons.Material.Filled.Info,
-        _ => Icons.Material.Filled.Label,
-    };
-
-    private Color GetColor(Severity severity) => severity switch
-    {
-        Severity.Error => Color.Error,
-        Severity.Warning => Color.Warning,
-        Severity.Success => Color.Success,
-        Severity.Info => Color.Info,
-        _ => Color.Default,
-    };
-
     public void Dispose()
     {
-        WealthParser.OnLogEvent -= OnLogEvent;
+        WealthParser.OnLogsChanged -= OnLogEvent;
     }
 }

@@ -119,6 +119,7 @@
 
     public async Task RetrieveStashes()
     {
+        var previousStashIds = StashTabs.Select(x => x.Id).ToList();
         using var database = new WealthDbContext(DbContextOptions);
         StashTabs = await database.Stashes
             .Where(x => Settings.WealthTrackerTabs.Contains(x.Id))
@@ -126,6 +127,14 @@
             .ToListAsync();
 
         SelectedStashIds = SelectedStashIds.Where(x => StashTabs.Any(y => y.Id == x)).ToList();
+
+        foreach (var tab in StashTabs)
+        {
+            if (!previousStashIds.Contains(tab.Id))
+            {
+                SelectedStashIds.Add(tab.Id);
+            }
+        }
     }
 
     public void Dispose()
