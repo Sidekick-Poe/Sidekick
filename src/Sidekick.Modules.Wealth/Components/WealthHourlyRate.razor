@@ -1,13 +1,15 @@
 
-<div class="font-smallcaps">
-    <div>Currency per Hour: @CurrencyPerHour</div>
-    @if (CurrencyPerHour == null)
-    {
-        <MudTooltip Text="Currency per hour will be calculated at the next snapshot.">
-            <MudIcon Size="MudBlazor.Size.Small" Icon="@Icons.Material.Filled.Warning" Color="MudBlazor.Color.Warning" />
-        </MudTooltip>
-    }
-</div>
+@if (CurrencyPerHour == null)
+{
+    <div class="d-flex align-center flex-nowrap">
+        <MudIcon Size="MudBlazor.Size.Small" Icon="@Icons.Material.Filled.Warning" Color="MudBlazor.Color.Warning" />
+        <div class="ml-3 font-smallcaps">Chaos per Hour will be calculated at the next snapshot.</div>
+    </div>
+}
+else
+{
+    <div class="font-smallcaps"><span style="color:gold; font-size:1.5em;">@CurrencyPerHour</span> Chaos per Hour</div>
+}
 
 @inject DbContextOptions<WealthDbContext> DbContextOptions
 @inject WealthParser WealthParser
