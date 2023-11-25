@@ -1,14 +1,13 @@
-@if (CurrencyPerHour == null)
-{
-    <div class="d-flex align-center flex-nowrap">
-        <MudIcon Size="MudBlazor.Size.Small" Icon="@Icons.Material.Filled.Warning" Color="MudBlazor.Color.Warning" />
-        <div class="ml-3 font-smallcaps">Currency per hour will be calculated at the next snapshot.</div>
-    </div>
-}
-else
-{
-    <div class="font-smallcaps">Currency per Hour: @CurrencyPerHour</div>
-}
+
+<div class="font-smallcaps">
+    <div>Currency per Hour: @CurrencyPerHour</div>
+    @if (CurrencyPerHour == null)
+    {
+        <MudTooltip Text="Currency per hour will be calculated at the next snapshot.">
+            <MudIcon Size="MudBlazor.Size.Small" Icon="@Icons.Material.Filled.Warning" Color="MudBlazor.Color.Warning" />
+        </MudTooltip>
+    }
+</div>
 
 @inject DbContextOptions<WealthDbContext> DbContextOptions
 @inject WealthParser WealthParser
@@ -36,7 +35,7 @@ else
     {
         var oneHourAgo = DateTimeOffset.Now.AddHours(-1);
         using var database = new WealthDbContext(DbContextOptions);
-        
+
         var oneHourAgoSnapshot = await database.FullSnapshots
             .Where(x => x.Date > oneHourAgo)
             .OrderBy(x => x.Date)

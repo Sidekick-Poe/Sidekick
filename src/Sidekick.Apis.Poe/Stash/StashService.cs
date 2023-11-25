@@ -123,7 +123,7 @@ namespace Sidekick.Apis.Poe.Stash
             return items;
         }
 
-        public async Task<List<APIStashItem>> FetchMapStashItems(ApiStashTab tab)
+        private async Task<List<APIStashItem>> FetchMapStashItems(ApiStashTab tab)
         {
             if (tab.Children == null)
             {

@@ -1,9 +1,21 @@
 @using ApexCharts
 
 <div style="@($"height:{WealthView.ChartHeight}")" class="pb-2 pr-10 d-flex flex-column">
-    <div>
-        <WealthHourlyRate />
+    @*
+    <div class="d-flex">
+    <MudButtonGroup OverrideStyles="false">
+    <MudButton Color="MudBlazor.Color.Primary"
+    Variant="HourlyMode ? Variant.Outlined : Variant.Filled"
+    Size="MudBlazor.Size.Small"
+    OnClick="() => HourlyMode = false">Net Worth</MudButton>
+    <MudButton Color="MudBlazor.Color.Primary"
+    Variant="HourlyMode ? Variant.Filled : Variant.Outlined"
+    Size="MudBlazor.Size.Small"
+    OnClick="() => HourlyMode = true">Hourly</MudButton>
+    </MudButtonGroup>
+    <WealthHourlyRate />
     </div>
+    *@
     <div class="flex-grow-1">
         @if (Series.Count() >= 1)
         {
