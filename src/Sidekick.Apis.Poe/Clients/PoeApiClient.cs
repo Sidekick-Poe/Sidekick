@@ -1,8 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Authentication;
-using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Clients
@@ -12,26 +10,21 @@ namespace Sidekick.Apis.Poe.Clients
         private const string POEAPIURL = "https://api.pathofexile.com/";
 
         private readonly ILogger logger;
-        private readonly IGameLanguageProvider gameLanguageProvider;
-        private readonly IAuthenticationService authenticationService;
         private readonly ISettingsService settingsService;
 
         public PoeApiClient(
             ILogger<PoeTradeClient> logger,
-            IGameLanguageProvider gameLanguageProvider,
             IHttpClientFactory httpClientFactory,
-            IAuthenticationService authenticationService,
             ISettingsService settingsService)
         {
             this.logger = logger;
-            this.gameLanguageProvider = gameLanguageProvider;
-            this.authenticationService = authenticationService;
             this.settingsService = settingsService;
 
             HttpClient = httpClientFactory.CreateClient("PoeClient");
             HttpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
             HttpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
             HttpClient.BaseAddress = new Uri(POEAPIURL);
+            HttpClient.Timeout = TimeSpan.FromHours(1);
 
             Options = new JsonSerializerOptions()
             {
