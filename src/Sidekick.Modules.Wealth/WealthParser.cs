@@ -126,11 +126,12 @@ namespace Sidekick.Modules.Wealth
                     await Task.Delay(TimeSpan.FromSeconds(1));
 
                     var delay = (lastRun + TimeSpan.FromMinutes(10)) - DateTimeOffset.Now;
-                    lastRun = DateTimeOffset.Now;
                     if (delay.TotalMilliseconds > 0)
                     {
                         await Task.Delay(delay);
                     }
+
+                    lastRun = DateTimeOffset.Now;
                 }
                 catch (PoeApiException)
                 {
