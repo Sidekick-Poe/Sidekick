@@ -17,7 +17,7 @@ namespace Sidekick.Apis.Poe.Clients
         {
             this.logger = logger;
             this.gameLanguageProvider = gameLanguageProvider;
-            HttpClient = httpClientFactory.CreateClient("PoeTradeClient");
+            HttpClient = httpClientFactory.CreateClient(ClientNames.TRADECLIENT);
             HttpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
             HttpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
 

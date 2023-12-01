@@ -20,7 +20,7 @@ namespace Sidekick.Apis.Poe.Clients
             this.logger = logger;
             this.settingsService = settingsService;
 
-            HttpClient = httpClientFactory.CreateClient("PoeClient");
+            HttpClient = httpClientFactory.CreateClient(ClientNames.POECLIENT);
             HttpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
             HttpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
             HttpClient.BaseAddress = new Uri(POEAPIURL);
@@ -38,7 +38,7 @@ namespace Sidekick.Apis.Poe.Clients
 
         private HttpClient HttpClient { get; set; }
 
-        public async Task<TReturn> Fetch<TReturn>(string path)
+        public async Task<TReturn?> Fetch<TReturn>(string path)
         {
             try
             {
@@ -57,6 +57,11 @@ namespace Sidekick.Apis.Poe.Clients
                 {
                     return result;
                 }
+            }
+            catch (TimeoutException e)
+            {
+                logger.LogError($"[Poe Api Client] The API is timed out due to too many requests.", e);
+                return default;
             }
             catch (Exception e)
             {

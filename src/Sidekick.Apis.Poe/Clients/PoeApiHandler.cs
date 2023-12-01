@@ -2,22 +2,22 @@ using System.Net.Http.Headers;
 using System.Threading.RateLimiting;
 using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Apis.Poe.Clients.Limiter;
+using Sidekick.Apis.Poe.Clients.States;
 
 namespace Sidekick.Apis.Poe.Clients
 {
     public class PoeApiHandler : HttpClientHandler
     {
         private readonly IAuthenticationService authenticationService;
+        private readonly IApiStateProvider apiStateProvider;
 
         private readonly ConcurrencyLimiter concurrencyLimiter;
         private List<LimitRule> limitRules = new();
 
-        public ApiState State { get; set; }
-
-        public PoeApiHandler(IAuthenticationService authenticationService)
+        public PoeApiHandler(IAuthenticationService authenticationService, IApiStateProvider apiStateProvider)
         {
             this.authenticationService = authenticationService;
-
+            this.apiStateProvider = apiStateProvider;
             concurrencyLimiter = new ConcurrencyLimiter(new ConcurrencyLimiterOptions()
             {
                 PermitLimit = 1,
@@ -28,7 +28,7 @@ namespace Sidekick.Apis.Poe.Clients
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            State = ApiState.Throttled;
+            apiStateProvider.Update(ClientNames.POECLIENT, ApiState.Throttled);
 
             using var concurrencyLease = await concurrencyLimiter.AcquireAsync(cancellationToken: cancellationToken);
 
@@ -38,7 +38,7 @@ namespace Sidekick.Apis.Poe.Clients
                 leases.Add(await limitRule.Limiter.AcquireAsync(cancellationToken: cancellationToken));
             }
 
-            State = ApiState.Working;
+            apiStateProvider.Update(ClientNames.POECLIENT, ApiState.Working);
 
             var token = authenticationService.GetToken();
             if (string.IsNullOrEmpty(token))
@@ -112,8 +112,9 @@ namespace Sidekick.Apis.Poe.Clients
 
             if (response.Headers.TryGetValues("Retry-After", out var retryAfter))
             {
-                State = ApiState.TimedOut;
+                apiStateProvider.Update(ClientNames.POECLIENT, ApiState.TimedOut);
                 await Task.Delay(TimeSpan.FromSeconds(int.Parse(retryAfter.First()) + 5));
+                throw new TimeoutException();
             }
         }
     }

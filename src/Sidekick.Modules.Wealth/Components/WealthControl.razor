@@ -1,8 +1,32 @@
+@using Sidekick.Apis.Poe.Clients.States;
 @if (WealthParser.IsRunning())
 {
     <MudAlert Severity="Severity.Success" Variant="Variant.Filled" Square="true" Dense="true" Icon="@Icons.Material.Filled.PlayCircle">
-        <div class="align-center d-flex flex-wrap justify-space-around">
-            <div class="ma-1">The wealth tracker is running.</div>
+        <div class="align-center d-flex flex-wrap justify-center">
+            <div>The wealth tracker is running.</div>
+
+            <div class="d-flex flex-nowrap align-center justify-center" style="width: 100%;">
+                <div class="mr-2"><strong>API Status</strong></div>
+                @switch (ApiStateProvider.Get(ClientNames.POECLIENT))
+                {
+                    case ApiState.Working:
+                        <div>Working</div>
+                        break;
+                    case ApiState.Throttled:
+                        <div class="mr-2">Throttled</div>
+                        <MudIcon Icon="@Icons.Material.Filled.Warning" Color="Color.Warning" />
+                        break;
+                    case ApiState.TimedOut:
+                        <div class="mr-2">Timed Out</div>
+                        <MudIcon Icon="@Icons.Material.Filled.Error" Color="Color.Error" />
+                        break;
+                    default:
+                        <div class="mr-2">Unknown</div>
+                        <MudIcon Icon="@Icons.Material.Filled.QuestionMark" Color="Color.Error" />
+                        break;
+                }
+            </div>
+
             <MudButton OnClick="() => Stop()" Size="Size.Small" DisableElevation="true" Color="Color.Success" Variant="Variant.Text" StartIcon="@Icons.Material.Filled.Stop" Class="white ma-1">Stop</MudButton>
         </div>
     </MudAlert>
@@ -10,8 +34,8 @@
 else
 {
     <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Square="true" Dense="true" Icon="@Icons.Material.Filled.StopCircle">
-        <div class="align-center d-flex flex-wrap justify-space-around">
-            <div class="ma-1">The wealth tracker is stopped.</div>
+        <div class="align-center d-flex flex-wrap justify-center">
+            <div>The wealth tracker is stopped.</div>
             <MudButton OnClick="() => Start()" Size="Size.Large" DisableElevation="true" Color="Color.Error" Variant="Variant.Text" StartIcon="@Icons.Material.Filled.PlayArrow" Class="white ma-1">Start</MudButton>
         </div>
     </MudAlert>
@@ -19,11 +43,13 @@ else
 
 @inject WealthParser WealthParser
 @inject ISettings Settings
+@inject IApiStateProvider ApiStateProvider
 @implements IDisposable
 @code {
     protected override void OnInitialized()
     {
         WealthParser.OnLogsChanged += Update;
+        ApiStateProvider.OnChange += Update;
         base.OnInitialized();
     }
 
@@ -45,5 +71,6 @@ else
     public void Dispose()
     {
         WealthParser.OnLogsChanged -= Update;
+        ApiStateProvider.OnChange -= Update;
     }
 }

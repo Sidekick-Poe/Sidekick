@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Sidekick.Apis.Poe.Clients
 {
@@ -11,7 +6,6 @@ namespace Sidekick.Apis.Poe.Clients
     {
         JsonSerializerOptions Options { get; }
 
-        Task<TReturn> Fetch<TReturn>(string path);
-
+        Task<TReturn?> Fetch<TReturn>(string path);
     }
 }

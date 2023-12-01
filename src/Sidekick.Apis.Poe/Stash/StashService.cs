@@ -30,6 +30,10 @@ namespace Sidekick.Apis.Poe.Stash
             try
             {
                 var response = await client.Fetch<ApiStashTabList>($"stash/{settings.LeagueId}");
+                if (response == null)
+                {
+                    return null;
+                }
 
                 var result = new List<StashTab>();
                 FillStashTabs(result, response.StashTabs);
@@ -69,6 +73,11 @@ namespace Sidekick.Apis.Poe.Stash
         public async Task<StashTabDetails?> GetStashDetails(string id)
         {
             var wrapper = await client.Fetch<ApiStashTabWrapper>($"stash/{settings.LeagueId}/{id}");
+            if (wrapper == null)
+            {
+                return null;
+            }
+
             var details = new StashTabDetails()
             {
                 Id = wrapper.Stash.Id,
