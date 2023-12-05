@@ -32,7 +32,7 @@ namespace Sidekick.Apis.PoeNinja.Models
         /// <summary>
         /// The price in chaos of the item
         /// </summary>
-        public double Price { get; init; }
+        public double Price { get; set; }
 
         /// <summary>
         /// When was the data last updated from PoeNinja

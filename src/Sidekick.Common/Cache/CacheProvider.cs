@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Microsoft.Extensions.Logging;
 
 namespace Sidekick.Common.Cache
 {
@@ -8,6 +9,12 @@ namespace Sidekick.Common.Cache
     public class CacheProvider : ICacheProvider
     {
         private const string cachePath = "SidekickCache";
+        private readonly ILogger<CacheProvider> logger;
+
+        public CacheProvider(ILogger<CacheProvider> logger)
+        {
+            this.logger = logger;
+        }
 
         /// <inheritdoc/>
         public async Task<TModel?> Get<TModel>(string key)
@@ -37,17 +44,24 @@ namespace Sidekick.Common.Cache
         public async Task Set<TModel>(string key, TModel data)
             where TModel : class
         {
-            EnsureDirectory();
-
-            var fileName = GetCacheFileName(key);
-
-            if (File.Exists(fileName))
+            try
             {
-                File.Delete(fileName);
-            }
+                EnsureDirectory();
 
-            using var stream = File.Create(fileName);
-            await JsonSerializer.SerializeAsync(stream, data);
+                var fileName = GetCacheFileName(key);
+
+                if (File.Exists(fileName))
+                {
+                    File.Delete(fileName);
+                }
+
+                using var stream = File.Create(fileName);
+                await JsonSerializer.SerializeAsync(stream, data);
+            }
+            catch (IOException exception)
+            {
+                logger.LogError($"[Cache] Failed to set cache for key {key}.", exception);
+            }
         }
 
         /// <inheritdoc/>

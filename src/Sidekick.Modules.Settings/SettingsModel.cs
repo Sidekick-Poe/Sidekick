@@ -28,6 +28,10 @@ namespace Sidekick.Modules.Settings
                 { WikiSetting.PoeWiki, "https://www.poewiki.net" },
                 { WikiSetting.PoeDb, "https://poedb.tw" }
             };
+
+            WealthTrackerTabs = sidekickSettings.WealthTrackerTabs
+                .Select(x => $"{x}")
+                .ToList();
         }
 
         public Dictionary<WikiSetting, string> WikiOptions { get; private set; }

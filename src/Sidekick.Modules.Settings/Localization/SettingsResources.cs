@@ -69,5 +69,9 @@ namespace Sidekick.Modules.Settings.Localization
         public string Wiki => resources["Wiki"];
         public string Wiki_Key_Open => resources["Wiki_Key_Open"];
         public string Wiki_Preferred => resources["Wiki_Preferred"];
+        public string Wealth_Key_Open => resources["Wealth_Key_Open"];
+        public string WealthTracker => resources["WealthTracker"];
+        public string WealthTracker_StashTabs => resources["WealthTracker_StashTabs"];
+        public string WealthTracker_StashTabsInstructions => resources["WealthTracker_StashTabsInstructions"];
     }
 }

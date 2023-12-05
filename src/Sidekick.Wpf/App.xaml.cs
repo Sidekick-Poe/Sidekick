@@ -14,6 +14,7 @@ using Sidekick.Common.Blazor;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Errors;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Mock;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
@@ -23,6 +24,7 @@ using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
 using Sidekick.Modules.Settings;
 using Sidekick.Modules.Trade;
+using Sidekick.Modules.Wealth;
 using Sidekick.Wpf.Services;
 
 namespace Sidekick.Wpf
@@ -32,12 +34,10 @@ namespace Sidekick.Wpf
     /// </summary>
     public partial class App : Application
     {
-        private const string APPLICATION_PROCESS_GUID = "93c46709-7db2-4334-8aa3-28d473e66041";
-
         public static ServiceProvider ServiceProvider { get; set; } = null!;
 
         private readonly ILogger<App> logger;
-        private Mutex? Mutex { get; set; }
+        private IInterprocessService InterprocessService { get; set; }
 
         public App()
         {
@@ -52,22 +52,50 @@ namespace Sidekick.Wpf
             ConfigureServices(services, configurationManager);
             ServiceProvider = services.BuildServiceProvider();
             logger = ServiceProvider.GetRequiredService<ILogger<App>>();
+            InterprocessService = ServiceProvider.GetRequiredService<IInterprocessService>();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            AttachErrorHandlers();
-
             var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
-
-            if (!EnsureSingleInstance())
+            if (InterprocessService.IsAlreadyRunning())
             {
+                if (e.Args.Length > 0 && e.Args[0].ToUpper().StartsWith("SIDEKICK://"))
+                {
+                    Task.Run(async () =>
+                    {
+                        try
+                        {
+                            await InterprocessService.SendMessage(e.Args[0]);
+                        }
+                        finally
+                        {
+                            Current.Dispatcher.Invoke(() =>
+                            {
+                                Current.Shutdown();
+                            });
+                            Environment.Exit(0);
+                        }
+                    });
+                    return;
+                }
+
                 _ = viewLocator.Open(ErrorType.AlreadyRunning.ToUrl());
+                Task.Run(async () =>
+                {
+                    await Task.Delay(5000);
+                    Current.Dispatcher.Invoke(() =>
+                    {
+                        Current.Shutdown();
+                    });
+                });
                 return;
             }
 
+            AttachErrorHandlers();
+            InterprocessService.StartReceiving();
             _ = viewLocator.Open("/");
         }
 
@@ -113,7 +141,8 @@ namespace Sidekick.Wpf
                 .AddSidekickGeneral()
                 .AddSidekickMaps()
                 .AddSidekickSettings()
-                .AddSidekickTrade(); ;
+                .AddSidekickTrade()
+                .AddSidekickWealth();
 
             services.AddSingleton<IApplicationService, MockApplicationService>();
             services.AddSingleton<ITrayProvider, WpfTrayProvider>();
@@ -123,29 +152,8 @@ namespace Sidekick.Wpf
 
         protected override void OnExit(ExitEventArgs e)
         {
-            Mutex?.Close();
             ServiceProvider?.Dispose();
             base.OnExit(e);
-        }
-
-        private bool EnsureSingleInstance()
-        {
-            Mutex = new Mutex(true, APPLICATION_PROCESS_GUID, out var instanceResult);
-            if (!instanceResult)
-            {
-                Task.Run(async () =>
-                {
-                    await Task.Delay(5000);
-
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        Current.Shutdown();
-                    });
-                });
-                return false;
-            }
-
-            return true;
         }
 
         private void AttachErrorHandlers()

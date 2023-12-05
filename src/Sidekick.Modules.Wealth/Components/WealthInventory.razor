@@ -1,0 +1,109 @@
+
+<div class="relative">
+    <MudTable Height="@($"calc({WealthView.InventoryHeight} - 48px)")" Items="@Items" Dense="true" Hover="true" SortLabel="Sort By" Filter="new Func<Models.Item,bool>(Search)" Breakpoint="Breakpoint.Sm">
+        <ToolBarContent>
+            <MudText Typo="Typo.h3">Inventory</MudText>
+            <MudSpacer />
+            <MudTextField @bind-Value="SearchString" DebounceInterval="500" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-n4" />
+            <MudIconButton Icon="@Icons.Material.Filled.FilterAlt" OnClick="() => FilterOpened = true" />
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Models.Item, object>(x=>x.Name)">Name</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Models.Item, object>(x=>x.Count)">Count</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Models.Item, object>(x=>x.Price)">Price</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Descending" SortBy="new Func<Models.Item, object>(x=>x.Total)">Total</MudTableSortLabel></MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel=""><MudImage Width="30" Height="30" Src="@context.Icon" Class="rounded-lg" /></MudTd>
+            <MudTd DataLabel="Name">@context.Name</MudTd>
+            <MudTd DataLabel="Count">@context.Count</MudTd>
+            <MudTd DataLabel="Price">@Math.Round(context.Price, 2)</MudTd>
+            <MudTd DataLabel="Total">@Math.Round(context.Total, 2)</MudTd>
+        </RowTemplate>
+    </MudTable>
+    <MudPopover Open="FilterOpened"
+                Class="pa-4 black"
+                AnchorOrigin="Origin.TopRight"
+                TransformOrigin="Origin.TopRight">
+        <MudTextField T="int"
+                      Value="Settings.Wealth_MinimumItemTotal"
+                      ValueChanged="UpdateMinimumItemTotal"
+                      Label="Minimum Total Value" />
+
+        <div class="d-flex justify-end mt-4">
+            <MudButton OnClick="() => FilterOpened = false" Variant="Variant.Filled" Color="Color.Primary">Close</MudButton>
+        </div>
+    </MudPopover>
+</div>
+
+@inject WealthParser WealthParser
+@inject DbContextOptions<WealthDbContext> DbContextOptions
+@inject ISettings Settings
+@inject ISettingsService SettingsService
+@implements IDisposable
+@code {
+    [CascadingParameter]
+    public WealthView View { get; set; } = null!;
+
+    private List<Models.Item> Items { get; set; } = new();
+    private string SearchString { get; set; } = "";
+    private bool FilterOpened { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        WealthParser.OnStashParsed += Update;
+        View.OnSelectedStashIdsChanged += Update;
+        await RetrieveStashItems();
+        await base.OnInitializedAsync();
+    }
+
+    public void Update()
+    {
+        _ = InvokeAsync(async () =>
+        {
+            await RetrieveStashItems();
+            StateHasChanged();
+        });
+    }
+
+    public async Task RetrieveStashItems()
+    {
+        using var database = new WealthDbContext(DbContextOptions);
+
+        var stashIds = await database.Stashes
+            .Where(x => View.SelectedStashIds.Contains(x.Id))
+            .Select(x => x.Id)
+            .ToListAsync();
+
+        Items = await database.Items
+            .Where(x => stashIds.Contains(x.StashId))
+            .Where(x => x.Total > Settings.Wealth_MinimumItemTotal)
+            .GroupBy(x => x.Name)
+            .Select(x => x.First())
+            .ToListAsync();
+    }
+
+    private bool Search(Models.Item element)
+    {
+        if (string.IsNullOrWhiteSpace(SearchString))
+        {
+            return true;
+        }
+
+        return element.Name.Contains(SearchString, StringComparison.OrdinalIgnoreCase);
+    }
+
+
+    public async Task UpdateMinimumItemTotal(int value)
+    {
+        await SettingsService.Save(nameof(ISettings.Wealth_MinimumItemTotal), value);
+        await RetrieveStashItems();
+    }
+
+    public void Dispose()
+    {
+        WealthParser.OnStashParsed -= Update;
+        View.OnSelectedStashIdsChanged -= Update;
+    }
+}

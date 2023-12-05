@@ -80,7 +80,7 @@ namespace Sidekick.Common
                 .Enrich.FromLogContext()
                 .WriteTo.File(SidekickPaths.GetDataFilePath("Sidekick_log.log"),
                     rollingInterval: RollingInterval.Day,
-                    retainedFileCountLimit: 1,
+                    retainedFileCountLimit: 2,
                     fileSizeLimitBytes: 5242880,
                     rollOnFileSizeLimit: true)
                 .WriteTo.Sink(logSink)

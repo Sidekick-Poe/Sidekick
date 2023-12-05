@@ -276,6 +276,9 @@
   <data name="Restore_Defaults" xml:space="preserve">
     <value>Restore Defaults</value>
   </data>
+  <data name="WealthTracker" xml:space="preserve">
+    <value>Wealth Tracker</value>
+  </data>
   <data name="Chat_Commands_Leave" xml:space="preserve">
     <value>/leave - Leave the current party.</value>
   </data>
@@ -287,5 +290,14 @@
   </data>
   <data name="Cheatsheets_Remove" xml:space="preserve">
     <value>Remove this page</value>
+  </data>
+  <data name="WealthTracker_StashTabs" xml:space="preserve">
+    <value>Stash Tabs</value>
+  </data>
+  <data name="WealthTracker_StashTabsInstructions" xml:space="preserve">
+    <value>Select the stash tabs in the list below for which you want to track your wealth. Note that selecting too many tabs may result in a worse experience and refresh rate due to the high number of requests. Selecting the unique items or map stash tabs are not recommended.</value>
+  </data>
+  <data name="Wealth_Key_Open" xml:space="preserve">
+    <value>Open Wealth Tracker</value>
   </data>
 </root>

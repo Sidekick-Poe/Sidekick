@@ -1,0 +1,144 @@
+@page "/wealth"
+@inherits SidekickView
+@using Sidekick.Common.Errors;
+@using Sidekick.Modules.Wealth.Components
+
+<MudDrawer Open="true"
+           Variant="@DrawerVariant.Persistent"
+           Width="22em"
+           Class="black"
+           ClipMode="DrawerClipMode.Always">
+    <div class="flex-grow-1" style="overflow-y:auto;">
+        <div class="mt-4 d-flex justify-space-between align-center px-4 py-2">
+            <MudText Typo="Typo.h3">
+                Stash Tabs
+            </MudText>
+            <MudTooltip Text="Only the stash tabs selected in the settings are shown here. If you want to track more stash tabs, you have to do it from the settings." Style="max-width: 15rem;">
+                <MudIcon Icon="@Icons.Material.Filled.Info" Color="Color.Info" />
+            </MudTooltip>
+        </div>
+
+        @foreach (var stashTab in StashTabs)
+        {
+            <div class="d-flex align-center flex-nowrap justify-space-between px-4">
+                <MudCheckBox T="bool"
+                             Checked="SelectedStashIds.Contains(stashTab.Id)"
+                             CheckedChanged="(v) => Toggle(stashTab, v)"
+                             Dense="true"
+                             Color="Color.Primary">
+                    @stashTab.Name
+                </MudCheckBox>
+                <div style="color: gold;">
+                    @stashTab.Total.ToString("N0")
+                </div>
+            </div>
+        }
+    </div>
+
+    <Sidekick.Common.Blazor.Authentication.AuthenticationStatusBar />
+    <WealthControl />
+</MudDrawer>
+
+<CascadingValue Value="this" IsFixed="true">
+    @if (StashTabs.Any())
+    {
+        <MudGrid Spacing="0" Class="ml-0">
+            <MudItem xs="4">
+                <WealthDistribution />
+            </MudItem>
+            <MudItem xs="8">
+                <WealthOverTime />
+            </MudItem>
+        </MudGrid>
+        <MudGrid Spacing="0" Class="ml-0">
+            <MudItem xs="9">
+                <WealthInventory />
+            </MudItem>
+            <MudItem xs="3">
+                <WealthLogs />
+            </MudItem>
+        </MudGrid>
+    }
+</CascadingValue>
+
+@inject DbContextOptions<WealthDbContext> DbContextOptions
+@inject ISettings Settings
+@inject WealthParser WealthParser
+@code {
+    public const string ChartHeight = "24vh";
+    public const string InventoryHeight = "67vh";
+
+    public override string Title => "Wealth Tracker";
+
+    public override int ViewWidth => 1280;
+
+    public override int ViewHeight => 800;
+
+    private List<Models.Stash> StashTabs { get; set; } = new();
+
+    public List<string> SelectedStashIds { get; set; } = new();
+
+    public event Action? OnSelectedStashIdsChanged;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!Settings.Enable_WealthTracker)
+        {
+            NavigationManager.NavigateTo(ErrorType.DisabledModule.ToUrl("wealth"));
+        }
+
+        WealthParser.OnStashParsed += OnStashParsed;
+        await RetrieveStashes();
+        SelectedStashIds = StashTabs.Select(x => x.Id).ToList();
+
+        await base.OnInitializedAsync();
+    }
+
+    public void OnStashParsed()
+    {
+        _ = InvokeAsync(async () =>
+        {
+            await RetrieveStashes();
+            StateHasChanged();
+        });
+    }
+
+    private void Toggle(Stash tab, bool isChecked)
+    {
+        if (!isChecked)
+        {
+            SelectedStashIds.Remove(tab.Id);
+        }
+        else
+        {
+            SelectedStashIds.Add(tab.Id);
+        }
+
+        OnSelectedStashIdsChanged?.Invoke();
+    }
+
+    public async Task RetrieveStashes()
+    {
+        var previousStashIds = StashTabs.Select(x => x.Id).ToList();
+        using var database = new WealthDbContext(DbContextOptions);
+        StashTabs = await database.Stashes
+            .Where(x => Settings.WealthTrackerTabs.Contains(x.Id))
+            .OrderByDescending(x => x.Total)
+            .ToListAsync();
+
+        SelectedStashIds = SelectedStashIds.Where(x => StashTabs.Any(y => y.Id == x)).ToList();
+
+        foreach (var tab in StashTabs)
+        {
+            if (!previousStashIds.Contains(tab.Id))
+            {
+                SelectedStashIds.Add(tab.Id);
+            }
+        }
+    }
+
+    public void Dispose()
+    {
+        WealthParser.OnStashParsed -= OnStashParsed;
+    }
+}

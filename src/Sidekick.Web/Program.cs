@@ -8,6 +8,7 @@ using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Mock;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
@@ -17,6 +18,7 @@ using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
 using Sidekick.Modules.Settings;
 using Sidekick.Modules.Trade;
+using Sidekick.Modules.Wealth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +52,7 @@ builder.Services
     // Common
     .AddSidekickCommon(builder.Configuration)
     .AddSidekickCommonBlazor()
+    .AddSingleton<IInterprocessService, InterprocessService>()
     // .AddSidekickCommonPlatform(o =>
     // {
     //     o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
@@ -72,6 +75,7 @@ builder.Services
     .AddSidekickMaps()
     .AddSidekickSettings()
     .AddSidekickTrade()
+    .AddSidekickWealth()
 
     // Mocks
     .AddSidekickMocks();
@@ -85,6 +89,8 @@ builder.Services.AddSingleton<IViewLocator, MockViewLocator>();
 var app = builder.Build();
 
 #region Pipeline
+
+app.Services.GetRequiredService<IInterprocessService>().StartReceiving();
 
 app.UseStaticFiles();
 app.UseRouting();

@@ -2,6 +2,12 @@ namespace Sidekick.Common.Settings
 {
     public interface ISettings
     {
+        string Bearer_Token { get; set; }
+        DateTimeOffset? Bearer_Expiration { get; set; }
+        bool Enable_WealthTracker { get; set; }
+        List<string> WealthTrackerTabs { get; set; }
+        int Wealth_MinimumItemTotal { get; set; }
+
         string Language_Parser { get; set; }
         string Language_UI { get; set; }
 
@@ -44,5 +50,6 @@ namespace Sidekick.Common.Settings
         #endregion Cheatsheets
 
         DateTimeOffset? PoeNinja_LastClear { get; set; }
+        string Wealth_Key_Open { get; set; }
     }
 }

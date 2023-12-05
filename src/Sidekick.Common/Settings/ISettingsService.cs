@@ -7,7 +7,7 @@ namespace Sidekick.Common.Settings
         /// </summary>
         /// <param name="property">The property to update in the settings.</param>
         /// <param name="value">The value of the setting.</param>
-        Task Save(string property, object value);
+        Task Save(string property, object? value);
 
         /// <summary>
         /// Command to save the settings

@@ -43,12 +43,7 @@ jobs:
       - name: Copy files
         shell: pwsh
         run: |
-          Push-Location "src/Sidekick.Wpf"
-          try {
-              Copy-Item -Path "../Sidekick.Common.Blazor/wwwroot/*" -Destination "./wwwroot" -Recurse
-          } finally {
-              Pop-Location
-          }
+          Copy-Item -Path "src/Sidekick.Common.Blazor/wwwroot/*" -Destination "src/Sidekick.Wpf/wwwroot" -Recurse
 
       - name: .NET 7 - Setup
         uses: actions/setup-dotnet@v1
@@ -63,7 +58,7 @@ jobs:
 
       - name: .NET - Tests
         run: dotnet test --no-build --verbosity normal
-
+        
       - name: Setup Git
         run: |
           git config --global url."https://user:${{ secrets.GITHUB_TOKEN }}@github".insteadOf https://github
@@ -74,7 +69,7 @@ jobs:
         uses: webfactory/ssh-agent@v0.7.0
         with:
           ssh-private-key: ${{ secrets.DEPLOY_BETA_KEY }}
-
+          
       - name: Run release script
         shell: pwsh
         run: |
@@ -103,12 +98,25 @@ jobs:
 
           Set-StrictMode -version 2.0
           $ErrorActionPreference = "Stop"
+          
+          # Publish Protocol application.
+          Push-Location "src/Sidekick.Protocol"
+          try {
+              Write-Output "Publishing:"
+              & $msBuildPath /target:publish /p:PublishProfile=FolderProfile /p:ApplicationVersion=$version /p:Configuration=Release /p:PublishDir=bin/publish /p:PublishUrl=bin/publish
+          }
+          finally {
+              Pop-Location
+          }
 
           # Publish the application.
           Push-Location $projectDirectory
           try {
               Write-Output "Publishing:"
               & $msBuildPath /target:publish /p:PublishProfile=ClickOnceBeta /p:ApplicationVersion=$version /p:Configuration=Release /p:PublishDir=bin/publish /p:PublishUrl=bin/publish
+              
+              Write-Output "Copying Protocol Executable:"
+              Copy-Item -Path "../Sidekick.Protocol/bin/publish/Sidekick.Protocol.exe" -Destination ./bin/publish -Recurse
           }
           finally {
               Pop-Location
@@ -131,11 +139,8 @@ jobs:
               Copy-Item -Path "../$publishDirectory/Application Files","../$publishDirectory/$applicationName.application" -Destination . -Recurse
 
               # Stage and commit.
-              # Write-Output "Staging..."
               git add -A
-              # Write-Output "Committing..."
               git commit -m "Update to v$version"
-              # Write-Output "Pushing..."
               git push
           } finally {
               Pop-Location

@@ -12,6 +12,7 @@
     <PublishReadyToRun>true</PublishReadyToRun>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <AssemblyName>Sidekick</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
     <Title>Sidekick</Title>
     <Authors>$(AssemblyName) Collaborators</Authors>
     <Company>$(AssemblyName)</Company>
@@ -49,13 +50,14 @@
     <ProjectReference Include="..\Sidekick.Modules.Maps\Sidekick.Modules.Maps.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.Settings\Sidekick.Modules.Settings.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.Trade\Sidekick.Modules.Trade.csproj" />
+    <ProjectReference Include="..\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.96" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <Content Update="wwwroot\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

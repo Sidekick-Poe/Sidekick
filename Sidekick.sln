@@ -9,12 +9,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution", "_Solution", "{
 		.filenesting.json = .filenesting.json
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
-		.github\workflows\build.yml = .github\workflows\build.yml
 		CONTRIBUTING.md = CONTRIBUTING.md
+		.github\workflows\electron-release.yml = .github\workflows\electron-release.yml
 		GitVersion.yml = GitVersion.yml
 		LICENSE = LICENSE
 		README.md = README.md
-		.github\workflows\release.yml = .github\workflows\release.yml
+		.github\workflows\release-notes.yml = .github\workflows\release-notes.yml
+		.github\workflows\tests.yml = .github\workflows\tests.yml
+		.github\workflows\wpf-beta.yml = .github\workflows\wpf-beta.yml
+		.github\workflows\wpf-release.yml = .github\workflows\wpf-release.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}"
@@ -66,6 +69,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Electron", "src\Sidekick.Electron\Sidekick.Electron.csproj", "{F419682F-0794-4C39-9819-3A9BB5DB1C2A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Web", "src\Sidekick.Web\Sidekick.Web.csproj", "{9668241B-2FDC-46A6-9440-C4AE4B9AE39B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Modules.Wealth", "src\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj", "{70B9893F-72F8-4B5F-A9CF-732E538D6C9E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Protocol", "src\Sidekick.Protocol\Sidekick.Protocol.csproj", "{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -157,6 +164,14 @@ Global
 		{9668241B-2FDC-46A6-9440-C4AE4B9AE39B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9668241B-2FDC-46A6-9440-C4AE4B9AE39B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9668241B-2FDC-46A6-9440-C4AE4B9AE39B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70B9893F-72F8-4B5F-A9CF-732E538D6C9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70B9893F-72F8-4B5F-A9CF-732E538D6C9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70B9893F-72F8-4B5F-A9CF-732E538D6C9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70B9893F-72F8-4B5F-A9CF-732E538D6C9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -180,6 +195,7 @@ Global
 		{31645DEE-C169-4297-80A1-D3FC0B4AC4D0} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 		{877B6B69-57F2-4706-B5C1-3973ABFE39ED} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 		{4DAA5492-5947-4BDF-8857-67A633F94672} = {7285BD58-2544-44AA-8488-52EA8E55D239}
+		{70B9893F-72F8-4B5F-A9CF-732E538D6C9E} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17B5631D-95B3-4007-BE6B-C9BBE799D014}
