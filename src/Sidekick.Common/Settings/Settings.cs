@@ -37,6 +37,8 @@ namespace Sidekick.Common.Settings
 
         public int Wealth_MinimumItemTotal { get; set; } = 0;
 
+        public string Wealth_Key_Open { get; set; } = "F7";
+
         public string Language_UI { get; set; } = "en";
 
         public string Language_Parser { get; set; } = "";

@@ -50,5 +50,6 @@ namespace Sidekick.Common.Settings
         #endregion Cheatsheets
 
         DateTimeOffset? PoeNinja_LastClear { get; set; }
+        string Wealth_Key_Open { get; set; }
     }
 }

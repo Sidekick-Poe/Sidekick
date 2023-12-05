@@ -39,7 +39,13 @@
     }
     else
     {
-        <MudPaper Class="pa-3 mb-3">
+        <MudPaper Class="pa-3">
+            <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Keybinds</MudText>
+            <KeybindEditor @bind-Value="ViewModel.Wealth_Key_Open"
+                           Label="@Resources.Wealth_Key_Open" />
+        </MudPaper>
+
+        <MudPaper Class="pa-3 mb-3 mt-3">
             <MudText Typo="Typo.h3" Class="mb-3">@Resources.WealthTracker_StashTabs</MudText>
             <MudText Typo="Typo.body1" Class="mb-3">@Resources.WealthTracker_StashTabsInstructions</MudText>
 
