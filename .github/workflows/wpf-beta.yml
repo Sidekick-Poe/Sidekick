@@ -71,7 +71,7 @@ jobs:
           ssh-private-key: ${{ secrets.DEPLOY_BETA_KEY }}
 
       - name: Build Protocol
-        run: dotnet publish src/Sidekick.Protocol/Sidekick.Protocol.csproj --configuration Release --output src/Sidekick --runtime win-x64  --self-contained true -p:PublishTrimmed=true -p:PublishSingleFile=true
+        run: dotnet publish src/Sidekick.Protocol/Sidekick.Protocol.csproj -p:PublishProfile=Build
 
       - name: Run release script
         shell: pwsh
