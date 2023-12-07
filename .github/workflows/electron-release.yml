@@ -3,7 +3,7 @@ name: Electron Release
 on:
   push:
     branches:
-    - main
+    - 2.x
   workflow_dispatch:
 
 jobs:
