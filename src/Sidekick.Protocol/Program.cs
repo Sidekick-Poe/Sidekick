@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Threading.Tasks;
 using Microsoft.Win32;
 
 try
@@ -27,7 +26,6 @@ try
     key.Close();
 
     Console.WriteLine("Protocol Registered! Closing the application...");
-    await Task.Delay(3000);
 }
 catch (Exception e)
 {
@@ -35,6 +33,6 @@ catch (Exception e)
     Console.WriteLine("=============================");
     Console.WriteLine(e.StackTrace);
     Console.WriteLine("=============================");
-    Console.WriteLine($"An exception happened while configuring the sidekick:// protocol. If this issue persists, please contact us on Discord or Github. Press any key to close this message.");
+    Console.WriteLine($"An exception happened while configuring the Sidekick:// protocol. If this issue persists, please contact us on Discord or Github. Press any key to close this message.");
     Console.ReadKey();
 }
