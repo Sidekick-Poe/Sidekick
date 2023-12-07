@@ -103,7 +103,7 @@ jobs:
           Push-Location "src/Sidekick.Protocol"
           try {
               Write-Output "Publishing:"
-              & $msBuildPath /target:publish /p:PublishProfile=Build /p:ApplicationVersion=$version /p:Configuration=Release /p:PublishDir=bin/publish /p:PublishUrl=bin/publish
+              & $msBuildPath /target:publish /p:PublishProfile=Build /p:ApplicationVersion=$version /p:Configuration=Release
           }
           finally {
               Pop-Location
