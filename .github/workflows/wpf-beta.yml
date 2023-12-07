@@ -56,12 +56,7 @@ jobs:
 
       - name: Build - Sidekick.Protocol
         run: dotnet publish src/Sidekick.Protocol/Sidekick.Protocol.csproj -p:PublishProfile=Build
-
-     #  - name: Build - Copy files
-     #    shell: pwsh
-     #    run: |
-     #      Copy-Item -Path "src/Sidekick.Common.Blazor/wwwroot/*" -Destination "src/Sidekick.Wpf/wwwroot" -Recurse -Force
-
+        
       - name: Build - Sidekick.Wpf
         shell: pwsh
         run: |
@@ -74,38 +69,10 @@ jobs:
               -prerelease | select-object -first 1
 
           Push-Location "src/Sidekick.Wpf"
-          & $msBuildPath /target:Publish /property:PublishProfile=ClickOnceBeta /property:ApplicationVersion=$version
+          & $msBuildPath Sidekick.Wpf.csproj /target:Publish /property:PublishProfile=ClickOnceBeta /property:ApplicationVersion=$version /property:PublishDir=bin/publish
+          # & $msBuildPath /target:publish /p:PublishProfile=ClickOnceBeta /p:ApplicationVersion=$version /p:Configuration=Release /p:PublishDir=bin/publish /p:PublishUrl=bin/publish
           Pop-Location
-
-  #    - name: Build - Sidekick.Wpf
-  #      shell: pwsh
-  #      run: |
-  #        $publishDirectory = "src/Sidekick.Wpf/bin/publish"
-  #        Write-Output "Publish directory: $publishDirectory"
-#
-  #        $version = "${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.buildMetaData }}"
-  #        Write-Output "Version: $version"
-#
-  #        Write-Output "Working directory: $pwd"
-#
-  #        # Find MSBuild.
-  #        $msBuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
-  #            -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe `
-  #            -prerelease | select-object -first 1
-  #        Write-Output "MSBuild path: $((Get-Command $msBuildPath).Path)"
-#
-  #        Set-StrictMode -version 2.0
-  #        $ErrorActionPreference = "Stop"
-#
-  #        # Publish the application.
-  #        Push-Location "src/Sidekick.Wpf"
-  #        try {
-  #            Write-Output "Publishing:"
-  #            & $msBuildPath /target:publish /p:PublishProfile=ClickOnceBeta /p:ApplicationVersion=$version /p:Configuration=Release /p:PublishDir=bin/publish /p:PublishUrl=bin/publish
-  #        }
-  #        finally {
-  #            Pop-Location
-  #        }
+         
 
       - name: Git - Setup
         run: |
