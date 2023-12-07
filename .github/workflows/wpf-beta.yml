@@ -40,12 +40,7 @@ jobs:
           name: GITHUB_TOKEN
           value: ${{ github.token }}
 
-      - name: Copy files
-        shell: pwsh
-        run: |
-          Copy-Item -Path "src/Sidekick.Common.Blazor/wwwroot/*" -Destination "src/Sidekick.Wpf/wwwroot" -Recurse
-
-      - name: .NET 7 - Setup
+      - name: .NET - Setup
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 7.x
@@ -59,58 +54,70 @@ jobs:
       - name: .NET - Tests
         run: dotnet test --no-build --verbosity normal
 
-      - name: Setup Git
+      - name: Build - Sidekick.Protocol
+        run: dotnet publish src/Sidekick.Protocol/Sidekick.Protocol.csproj -p:PublishProfile=Build
+
+      - name: Build - Copy files
+        shell: pwsh
+        run: |
+          Copy-Item -Path "src/Sidekick.Common.Blazor/wwwroot/*" -Destination "src/Sidekick.Wpf/wwwroot" -Recurse
+
+      - name: Build - Sidekick.Wpf
+        shell: pwsh
+        run: |
+          $version = "${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.buildMetaData }}"
+          Write-Output "Version: $version"
+
+          Push-Location "src/Sidekick.Wpf"
+          dotnet msbuild -target:Publish -property:PublishProfile=ClickOnceBeta -property:ApplicationVersion=$version
+          Pop-Location
+
+  #    - name: Build - Sidekick.Wpf
+  #      shell: pwsh
+  #      run: |
+  #        $publishDirectory = "src/Sidekick.Wpf/bin/publish"
+  #        Write-Output "Publish directory: $publishDirectory"
+#
+  #        $version = "${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.buildMetaData }}"
+  #        Write-Output "Version: $version"
+#
+  #        Write-Output "Working directory: $pwd"
+#
+  #        # Find MSBuild.
+  #        $msBuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
+  #            -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe `
+  #            -prerelease | select-object -first 1
+  #        Write-Output "MSBuild path: $((Get-Command $msBuildPath).Path)"
+#
+  #        Set-StrictMode -version 2.0
+  #        $ErrorActionPreference = "Stop"
+#
+  #        # Publish the application.
+  #        Push-Location "src/Sidekick.Wpf"
+  #        try {
+  #            Write-Output "Publishing:"
+  #            & $msBuildPath /target:publish /p:PublishProfile=ClickOnceBeta /p:ApplicationVersion=$version /p:Configuration=Release /p:PublishDir=bin/publish /p:PublishUrl=bin/publish
+  #        }
+  #        finally {
+  #            Pop-Location
+  #        }
+
+      - name: Git - Setup
         run: |
           git config --global url."https://user:${{ secrets.GITHUB_TOKEN }}@github".insteadOf https://github
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
 
-      - name: Setup SSH
+      - name: Git - Setup SSH
         uses: webfactory/ssh-agent@v0.7.0
         with:
           ssh-private-key: ${{ secrets.DEPLOY_BETA_KEY }}
 
-      - name: Build Protocol
-        run: dotnet publish src/Sidekick.Protocol/Sidekick.Protocol.csproj -p:PublishProfile=Build
-
-      - name: Run release script
+      - name: Git - Push to repository
         shell: pwsh
         run: |
-          $applicationName = "Sidekick"
-          Write-Output "Application name: $applicationName"
-
-          $projectDirectory = "src/Sidekick.Wpf"
-          Write-Output "Project directory: $projectDirectory"
-
-          $publishDirectory = "$projectDirectory/bin/publish"
-          Write-Output "Publish directory: $publishDirectory"
-
-          $version = "${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.buildMetaData }}"
-          Write-Output "Version: $version"
-
           $deployRepository = "git@github.com:Sidekick-Poe/Sidekick-Beta.git"
           Write-Output "Deploy repository: $deployRepository"
-
-          Write-Output "Working directory: $pwd"
-
-          # Find MSBuild.
-          $msBuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
-              -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe `
-              -prerelease | select-object -first 1
-          Write-Output "MSBuild path: $((Get-Command $msBuildPath).Path)"
-
-          Set-StrictMode -version 2.0
-          $ErrorActionPreference = "Stop"
-
-          # Publish the application.
-          Push-Location $projectDirectory
-          try {
-              Write-Output "Publishing:"
-              & $msBuildPath /target:publish /p:PublishProfile=ClickOnceBeta /p:ApplicationVersion=$version /p:Configuration=Release /p:PublishDir=bin/publish /p:PublishUrl=bin/publish
-          }
-          finally {
-              Pop-Location
-          }
 
           # Clone `gh-pages` branch.
           git clone $deployRepository -b gh-pages --single-branch "dist"
@@ -121,12 +128,12 @@ jobs:
               if (Test-Path "Application Files") {
                   Remove-Item -Path "Application Files" -Recurse
               }
-              if (Test-Path "$applicationName.application") {
-                  Remove-Item -Path "$applicationName.application"
+              if (Test-Path "Sidekick.application") {
+                  Remove-Item -Path "Sidekick.application"
               }
 
               Write-Output "Copying new files..."
-              Copy-Item -Path "../$publishDirectory/Application Files","../$publishDirectory/$applicationName.application" -Destination . -Recurse
+              Copy-Item -Path "../src/Sidekick.Wpf/bin/publish/Application Files","../src/Sidekick.Wpf/bin/publish/Sidekick.application" -Destination . -Recurse
 
               # Stage and commit.
               git add -A
