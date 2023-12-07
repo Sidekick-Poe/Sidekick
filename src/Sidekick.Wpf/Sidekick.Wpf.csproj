@@ -12,7 +12,6 @@
     <PublishReadyToRun>true</PublishReadyToRun>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <AssemblyName>Sidekick</AssemblyName>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
     <Title>Sidekick</Title>
     <Authors>$(AssemblyName) Collaborators</Authors>
     <Company>$(AssemblyName)</Company>
