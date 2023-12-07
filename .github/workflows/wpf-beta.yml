@@ -60,7 +60,7 @@ jobs:
       - name: Build - Copy files
         shell: pwsh
         run: |
-          Copy-Item -Path "src/Sidekick.Common.Blazor/wwwroot/*" -Destination "src/Sidekick.Wpf/wwwroot" -Recurse
+          Copy-Item -Path "src/Sidekick.Common.Blazor/wwwroot/*" -Destination "src/Sidekick.Wpf/wwwroot" -Recurse -Force
 
       - name: Build - Sidekick.Wpf
         shell: pwsh
