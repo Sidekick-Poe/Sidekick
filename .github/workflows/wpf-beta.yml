@@ -73,15 +73,12 @@ jobs:
       - name: Build Protocol
         shell: pwsh
         run: |
-          # Find MSBuild.
-          $msBuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
-              -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe `
-              -prerelease | select-object -first 1
+          $version = "${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.buildMetaData }}"
+          Write-Output "Version: $version"
+          
+          $msBuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe -prerelease | select-object -first 1
           Write-Output "MSBuild path: $((Get-Command $msBuildPath).Path)"
-
-          Set-StrictMode -version 2.0
-          $ErrorActionPreference = "Stop"
-
+          
           # Publish
           Push-Location "src/Sidekick.Protocol"
           try {
