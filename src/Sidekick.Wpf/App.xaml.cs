@@ -41,6 +41,10 @@ namespace Sidekick.Wpf
 
         public App()
         {
+#if !DEBUG
+            DeleteStaticAssets();
+#endif
+
             var configurationManager = new ConfigurationManager();
             try
             {
@@ -175,6 +179,25 @@ namespace Sidekick.Wpf
                 LogUnhandledException(e.Exception);
                 e.SetObserved();
             };
+        }
+
+        private void DeleteStaticAssets()
+        {
+            try
+            {
+                var directory = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly()?.Location);
+                if (directory == null)
+                {
+                    return;
+                }
+
+                var path = Path.Combine(directory, "Sidekick.staticwebassets.runtime.json");
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+            }
+            catch (Exception) { }
         }
 
         private void LogUnhandledException(Exception ex)

@@ -56,7 +56,7 @@ jobs:
 
       - name: Build - Sidekick.Protocol
         run: dotnet publish src/Sidekick.Protocol/Sidekick.Protocol.csproj -p:PublishProfile=Build
-        
+
       - name: Build - Sidekick.Wpf
         shell: pwsh
         run: |
@@ -69,10 +69,10 @@ jobs:
               -prerelease | select-object -first 1
 
           Push-Location "src/Sidekick.Wpf"
-          & $msBuildPath Sidekick.Wpf.csproj /target:Publish /property:PublishProfile=ClickOnceBeta /property:ApplicationVersion=$version /property:PublishDir=bin/publish
+          & $msBuildPath Sidekick.Wpf.csproj /target:Publish /property:PublishProfile=ClickOnceBeta /property:ApplicationVersion=$version
           # & $msBuildPath /target:publish /p:PublishProfile=ClickOnceBeta /p:ApplicationVersion=$version /p:Configuration=Release /p:PublishDir=bin/publish /p:PublishUrl=bin/publish
           Pop-Location
-         
+
 
       - name: Git - Setup
         run: |
