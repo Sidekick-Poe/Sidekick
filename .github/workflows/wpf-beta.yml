@@ -57,10 +57,10 @@ jobs:
       - name: Build - Sidekick.Protocol
         run: dotnet publish src/Sidekick.Protocol/Sidekick.Protocol.csproj -p:PublishProfile=Build
 
-      - name: Build - Copy files
-        shell: pwsh
-        run: |
-          Copy-Item -Path "src/Sidekick.Common.Blazor/wwwroot/*" -Destination "src/Sidekick.Wpf/wwwroot" -Recurse -Force
+     #  - name: Build - Copy files
+     #    shell: pwsh
+     #    run: |
+     #      Copy-Item -Path "src/Sidekick.Common.Blazor/wwwroot/*" -Destination "src/Sidekick.Wpf/wwwroot" -Recurse -Force
 
       - name: Build - Sidekick.Wpf
         shell: pwsh
@@ -68,8 +68,13 @@ jobs:
           $version = "${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.buildMetaData }}"
           Write-Output "Version: $version"
 
+          # Find MSBuild.
+          $msBuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
+              -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe `
+              -prerelease | select-object -first 1
+
           Push-Location "src/Sidekick.Wpf"
-          dotnet msbuild -target:Publish -property:PublishProfile=ClickOnceBeta -property:ApplicationVersion=$version
+          & $msBuildPath -target:Publish -property:PublishProfile=ClickOnceBeta -property:ApplicationVersion=$version
           Pop-Location
 
   #    - name: Build - Sidekick.Wpf
