@@ -15,6 +15,7 @@ using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Errors;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Interprocess;
+using Sidekick.Common.Settings;
 using Sidekick.Mock;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
@@ -38,6 +39,8 @@ namespace Sidekick.Wpf
 
         private readonly ILogger<App> logger;
         private IInterprocessService InterprocessService { get; set; }
+        private ISettings Settings { get; set; }
+        private ISettingsService _SettingsService { get; set; }
 
         public App()
         {
@@ -57,12 +60,23 @@ namespace Sidekick.Wpf
             ServiceProvider = services.BuildServiceProvider();
             logger = ServiceProvider.GetRequiredService<ILogger<App>>();
             InterprocessService = ServiceProvider.GetRequiredService<IInterprocessService>();
+            Settings = ServiceProvider.GetRequiredService<ISettings>();
+            _SettingsService = ServiceProvider.GetRequiredService<ISettingsService>();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
+            var currentDirectory = Directory.GetCurrentDirectory();
+
+            if( string.IsNullOrEmpty(Settings.Current_Directory) || Settings.Current_Directory != currentDirectory) {
+
+                _SettingsService.Save("Current_Directory", currentDirectory);
+                _SettingsService.Save("Enable_WealthTracker", false);
+
+            }
+            
             var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
             if (InterprocessService.IsAlreadyRunning())
             {

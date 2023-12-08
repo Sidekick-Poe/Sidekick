@@ -107,6 +107,9 @@
 
         if (ViewModel.Enable_WealthTracker)
         {
+
+            System.Diagnostics.Process.Start(@"SideKick.Protocol.exe");
+
             await LoadStashTabs();
         }
     }

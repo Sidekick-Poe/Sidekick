@@ -51,5 +51,6 @@ namespace Sidekick.Common.Settings
 
         DateTimeOffset? PoeNinja_LastClear { get; set; }
         string Wealth_Key_Open { get; set; }
+        string Current_Directory { get; set; }
     }
 }
