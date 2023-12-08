@@ -92,5 +92,7 @@ namespace Sidekick.Common.Settings
         #endregion Cheatsheets
 
         public DateTimeOffset? PoeNinja_LastClear { get; set; } = null;
+
+        public string Current_Directory { get; set; } = "";
     }
 }

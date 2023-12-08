@@ -1,4 +1,5 @@
 @page "/settings/wealth"
+@using System.Diagnostics;
 @layout SettingsLayout
 @inherits SidekickView
 
@@ -107,6 +108,14 @@
 
         if (ViewModel.Enable_WealthTracker)
         {
+
+            ProcessStartInfo startInfo = new ProcessStartInfo(@"Sidekick.Protocol.exe");
+            startInfo.Verb = "runas";
+            startInfo.UseShellExecute = true;
+  
+            System.Diagnostics.Process.Start (startInfo);
+
+
             await LoadStashTabs();
         }
     }
