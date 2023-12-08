@@ -40,7 +40,7 @@ namespace Sidekick.Wpf
         private readonly ILogger<App> logger;
         private IInterprocessService InterprocessService { get; set; }
         private ISettings Settings { get; set; }
-        private ISettingsService _SettingsService { get; set; }
+        private ISettingsService settingsService { get; set; }
 
         public App()
         {
@@ -61,7 +61,7 @@ namespace Sidekick.Wpf
             logger = ServiceProvider.GetRequiredService<ILogger<App>>();
             InterprocessService = ServiceProvider.GetRequiredService<IInterprocessService>();
             Settings = ServiceProvider.GetRequiredService<ISettings>();
-            _SettingsService = ServiceProvider.GetRequiredService<ISettingsService>();
+            settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -72,8 +72,8 @@ namespace Sidekick.Wpf
 
             if( string.IsNullOrEmpty(Settings.Current_Directory) || Settings.Current_Directory != currentDirectory) {
 
-                _SettingsService.Save("Current_Directory", currentDirectory);
-                _SettingsService.Save("Enable_WealthTracker", false);
+                settingsService.Save("Current_Directory", currentDirectory);
+                settingsService.Save("Enable_WealthTracker", false);
 
             }
             
