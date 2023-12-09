@@ -182,7 +182,7 @@
                             .Select(x => new DataPoint()
                             {
                                 DateString = x.Key,
-                                Value = snapshot.OrderByDescending(y => y.Total).First().Total,
+                                Value =  x.Max(row => row.Total)
                             })
                             .ToList(),
                 })
