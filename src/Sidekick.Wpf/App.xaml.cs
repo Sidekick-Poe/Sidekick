@@ -70,13 +70,12 @@ namespace Sidekick.Wpf
 
             var currentDirectory = Directory.GetCurrentDirectory();
 
-            if( string.IsNullOrEmpty(Settings.Current_Directory) || Settings.Current_Directory != currentDirectory) {
-
+            if (string.IsNullOrEmpty(Settings.Current_Directory) || Settings.Current_Directory != currentDirectory)
+            {
                 settingsService.Save("Current_Directory", currentDirectory);
                 settingsService.Save("Enable_WealthTracker", false);
-
             }
-            
+
             var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
             if (InterprocessService.IsAlreadyRunning())
             {
@@ -195,6 +194,11 @@ namespace Sidekick.Wpf
             };
         }
 
+        /// <summary>
+        /// This method checks for the existence of the Sidekick.staticwebassets.runtime.json file. If the file is found, it deletes the file.
+        /// Having the file exist on a release build will mess with the Blazor FileProvider and provide wrong paths. This will make blazor unable to find .js, .css and other file types.
+        /// In the case of Sidekick, the app immediately crashes if this file is present, so we delete it.
+        /// </summary>
         private void DeleteStaticAssets()
         {
             try
