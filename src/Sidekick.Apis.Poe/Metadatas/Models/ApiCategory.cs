@@ -14,5 +14,7 @@ namespace Sidekick.Apis.Poe.Metadatas.Models
     {
         public string? Label { get; set; }
         public List<ApiItem> Entries { get; set; } = new();
+
+        public override string ToString() => $"{Label} - {Entries.Count} entries";
     }
 }

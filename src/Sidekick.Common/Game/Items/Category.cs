@@ -20,5 +20,6 @@ namespace Sidekick.Common.Game.Items
         Sanctum = 15,
         Sentinel = 16,
         MemoryLine = 17,
+        Affliction = 18,
     }
 }

@@ -108,6 +108,9 @@ namespace Sidekick.Common.Game.Languages.Implementations
             Trinkets = "Trinkets",
             Logbooks = "Expedition Logbooks",
             MemoryLine = "Memories",
+            AfflictionCharms = "Charms",
+            AfflictionTinctures = "Tinctures",
+            AfflictionCorpses = "Corpses",
             SanctumResearch = "Sanctum Research",
         };
     }

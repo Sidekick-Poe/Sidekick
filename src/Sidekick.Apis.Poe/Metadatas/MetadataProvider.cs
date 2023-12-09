@@ -53,6 +53,7 @@ namespace Sidekick.Apis.Poe.Metadatas
             FillPattern(result.Result[14].Entries, Category.Sanctum, useRegex: true);
             FillPattern(result.Result[15].Entries, Category.Sentinel, useRegex: true);
             FillPattern(result.Result[16].Entries, Category.MemoryLine, useRegex: true);
+            FillPattern(result.Result[17].Entries, Category.Affliction, useRegex: true);
         }
 
         private void FillPattern(List<ApiItem> items, Category category, bool useRegex = false)
