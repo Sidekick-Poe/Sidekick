@@ -40,7 +40,7 @@ namespace Sidekick.Apis.Poe.Stash
 
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }
