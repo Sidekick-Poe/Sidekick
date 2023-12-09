@@ -54,5 +54,8 @@ namespace Sidekick.Common.Game.Languages
         public required string Logbooks { get; init; }
         public required string MemoryLine { get; init; }
         public required string SanctumResearch { get; init; }
+        public string AfflictionCharms { get; init; } = "";
+        public string AfflictionTinctures { get; init; } = "";
+        public string AfflictionCorpses { get; init; } = "";
     }
 }

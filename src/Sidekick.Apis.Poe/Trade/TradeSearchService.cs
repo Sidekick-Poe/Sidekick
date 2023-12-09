@@ -196,6 +196,9 @@ namespace Sidekick.Apis.Poe.Trade
                     Class.Warstaves => "weapon.warstaff",
                     Class.Sentinel => "sentinel",
                     Class.MemoryLine => "memoryline",
+                    Class.AfflictionTinctures => "azmeri.tincture",
+                    Class.AfflictionCharms => "azmeri.charm",
+                    Class.AfflictionCorpses => "azmeri.corpse",
                     _ => null,
                 };
 
