@@ -15,12 +15,14 @@ namespace Sidekick.Common.Game.Items
 
         // Accessory
         Amulet = 101,
+
         Ring = 102,
         Belt = 103,
         Trinkets = 104,
 
         // Armour
         Gloves = 201,
+
         Boots = 202,
         BodyArmours = 203,
         Helmets = 204,
@@ -29,6 +31,7 @@ namespace Sidekick.Common.Game.Items
 
         // Flasks
         LifeFlasks = 301,
+
         ManaFlasks = 302,
         HybridFlasks = 303,
         UtilityFlasks = 304,
@@ -36,10 +39,12 @@ namespace Sidekick.Common.Game.Items
 
         // Gems
         ActiveSkillGems = 401,
+
         SupportSkillGems = 402,
 
         // Maps
         Maps = 501,
+
         MapFragments = 502,
         Contract = 503,
         Blueprint = 504,
@@ -47,6 +52,7 @@ namespace Sidekick.Common.Game.Items
 
         // Weapons
         Claws = 601,
+
         Daggers = 602,
         Wands = 603,
         OneHandSwords = 604,
@@ -65,6 +71,7 @@ namespace Sidekick.Common.Game.Items
 
         // Heist
         HeistTool = 701,
+
         HeistCloak = 702,
         HeistGear = 703,
         HeistBrooch = 704,
@@ -72,5 +79,11 @@ namespace Sidekick.Common.Game.Items
 
         // Sanctum
         SanctumResearch = 801,
+
+        // Affliction
+
+        AfflictionCharms = 901,
+        AfflictionTinctures = 902,
+        AfflictionCorpses = 903,
     }
 }
