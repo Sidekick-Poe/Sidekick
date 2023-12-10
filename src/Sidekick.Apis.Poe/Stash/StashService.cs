@@ -106,13 +106,16 @@ namespace Sidekick.Apis.Poe.Stash
         {
             var items = new List<APIStashItem>();
 
-            if (tab.Items == null)
+            if (tab.Items == null && tab.Children == null)
             {
-                var wrapper = await client.Fetch<ApiStashTabWrapper>($"stash/{settings.LeagueId}/{tab.Id}");
+                var uri = String.IsNullOrEmpty(tab.Parent) ?
+                    $"stash/{settings.LeagueId}/{tab.Id}" :
+                    $"stash/{settings.LeagueId}/{tab.Parent}/{tab.Id}";
+
+                var wrapper = await client.Fetch<ApiStashTabWrapper>(uri);
                 if (wrapper?.Stash?.Items != null)
                 {
                     tab = wrapper.Stash;
-                    items.AddRange(wrapper.Stash.Items);
                 }
             }
 
