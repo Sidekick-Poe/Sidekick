@@ -77,7 +77,7 @@ namespace Sidekick.Modules.Chat.Keybinds
                     return;
                 }
 
-                command = command.Replace(Token_LastWhisper_CharacterName, "@" + characterName);
+                command = command.Replace(Token_Last, "@" + characterName);
             }
 
             await clipboard.SetText(command);
