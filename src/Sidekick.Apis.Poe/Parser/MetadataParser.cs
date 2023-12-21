@@ -25,10 +25,14 @@ namespace Sidekick.Apis.Poe.Parser
 
         private Regex Affixes { get; set; } = null!;
 
+        private Regex SuperiorAffix { get; set; } = null!;
+
         /// <inheritdoc/>
         public InitializationPriority Priority => InitializationPriority.Medium;
 
         private string GetLineWithoutAffixes(string line) => Affixes.Replace(line, string.Empty).Trim(' ', ',');
+
+        public string GetLineWithoutSuperiorAffix(string line) => SuperiorAffix.Replace(line, string.Empty).Trim(' ', ',');
 
         /// <inheritdoc/>
         public Task Initialize()
@@ -57,6 +61,8 @@ namespace Sidekick.Apis.Poe.Parser
                 getRegexLine(gameLanguageProvider.Language.AffixAnomalous) + "|" +
                 getRegexLine(gameLanguageProvider.Language.AffixDivergent) + "|" +
                 getRegexLine(gameLanguageProvider.Language.AffixPhantasmal) + ")");
+
+            SuperiorAffix = new Regex("(?:" + getRegexLine(gameLanguageProvider.Language.AffixSuperior) + ")");
 
             return Task.CompletedTask;
         }
