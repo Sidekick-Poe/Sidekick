@@ -58,6 +58,12 @@ namespace Sidekick.Apis.Poe.Parser
                     throw new NotSupportedException("Item not found.");
                 }
 
+                // Strip the Superior affix from the name
+                parsingItem.Blocks.First().Lines.ForEach(x =>
+                {
+                    x.Text = itemMetadataProvider.GetLineWithoutSuperiorAffix(x.Text);
+                });
+
                 parsingItem.Metadata = metadata;
                 ItemMetadata? invariant = null;
                 if (invariantMetadataProvider.IdDictionary.TryGetValue(metadata.Id, out var invariantMetadata))
