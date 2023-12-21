@@ -42,6 +42,7 @@ namespace Sidekick.Apis.Poe.Stash
             }
             catch (Exception ex)
             {
+                logger.LogError(ex, "The GetStashTabList() method failed to fetch data successfully.");
                 return null;
             }
         }
@@ -72,34 +73,42 @@ namespace Sidekick.Apis.Poe.Stash
 
         public async Task<StashTabDetails?> GetStashDetails(string id)
         {
-            var wrapper = await client.Fetch<ApiStashTabWrapper>($"stash/{settings.LeagueId}/{id}");
-            if (wrapper == null)
+            try
             {
+                var wrapper = await client.Fetch<ApiStashTabWrapper>($"stash/{settings.LeagueId}/{id}");
+                if (wrapper == null)
+                {
+                    return null;
+                }
+
+                var details = new StashTabDetails()
+                {
+                    Id = wrapper.Stash.Id,
+                    Parent = wrapper.Stash.Parent,
+                    League = settings.LeagueId,
+                    Name = wrapper.Stash.Name,
+                    Type = wrapper.Stash.StashType
+                };
+
+                List<APIStashItem> items;
+                if (details.Type == StashType.Map)
+                {
+                    items = await FetchMapStashItems(wrapper.Stash);
+                }
+                else
+                {
+                    items = await FetchStashItems(wrapper.Stash);
+                }
+
+                ParseItems(details, items);
+
+                return details;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "The GetStashDetails() method failed to fetch data successfully.");
                 return null;
             }
-
-            var details = new StashTabDetails()
-            {
-                Id = wrapper.Stash.Id,
-                Parent = wrapper.Stash.Parent,
-                League = settings.LeagueId,
-                Name = wrapper.Stash.Name,
-                Type = wrapper.Stash.StashType
-            };
-
-            List<APIStashItem> items;
-            if (details.Type == StashType.Map)
-            {
-                items = await FetchMapStashItems(wrapper.Stash);
-            }
-            else
-            {
-                items = await FetchStashItems(wrapper.Stash);
-            }
-
-            ParseItems(details, items);
-
-            return details;
         }
 
         private async Task<List<APIStashItem>> FetchStashItems(ApiStashTab tab)
