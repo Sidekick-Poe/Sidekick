@@ -159,6 +159,7 @@ namespace Sidekick.Apis.Poe.Parser
                 Category.Jewel => ParseJewelProperties(parsingItem),
                 Category.Flask => ParseFlaskProperties(parsingItem),
                 Category.Sanctum => ParseSanctumProperties(parsingItem),
+                Category.Logbook => ParseLogbookProperties(parsingItem),
                 _ => new Properties(),
             };
         }
@@ -273,6 +274,14 @@ namespace Sidekick.Apis.Poe.Parser
         }
 
         private Properties ParseSanctumProperties(ParsingItem parsingItem)
+        {
+            return new Properties
+            {
+                AreaLevel = GetInt(patterns.AreaLevel, parsingItem),
+            };
+        }
+
+        private Properties ParseLogbookProperties(ParsingItem parsingItem)
         {
             return new Properties
             {

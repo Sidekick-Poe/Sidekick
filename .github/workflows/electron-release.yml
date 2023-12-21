@@ -87,7 +87,6 @@ jobs:
         prerelease: false
 
     - name: Main Release - Asset
-      if: github.ref == 'refs/heads/main'
       uses: xresloader/upload-to-github-release@v1.3.4
       with:
         file: src/Sidekick.Electron/bin/Desktop/Sidekick-Setup.exe
