@@ -6,6 +6,8 @@ namespace Sidekick.Apis.Poe
 {
     public interface IItemMetadataParser : IInitializableService
     {
+        string GetLineWithoutSuperiorAffix(string line);
+
         ItemMetadata? Parse(string? name, string? type);
 
         ItemMetadata? Parse(ParsingItem parsingItem);

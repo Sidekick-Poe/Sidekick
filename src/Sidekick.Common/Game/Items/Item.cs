@@ -44,6 +44,23 @@ namespace Sidekick.Common.Game.Items
 
         public object? AdditionalInformation { get; set; }
 
+        public bool CanHaveModifiers => Metadata?.Category switch
+        {
+            Category.Accessory => true,
+            Category.Armour => true,
+            Category.Flask => true,
+            Category.Gem => true,
+            Category.Jewel => true,
+            Category.Map => Header.Class != Class.MapFragments,
+            Category.Weapon => true,
+            Category.HeistEquipment => true,
+            Category.Contract => true,
+            Category.Logbook => true,
+            Category.Sentinel => true,
+            Category.Affliction => true,
+            _ => ModifierLines?.Any() ?? false,
+        };
+
         /// <inheritdoc/>
         public override string? ToString()
         {

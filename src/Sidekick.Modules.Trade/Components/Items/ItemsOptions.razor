@@ -8,7 +8,7 @@
         <div>
             <MudButtonGroup Size="@Size.Small">
                 <OpenWebsiteLink QueryId="@QueryId" Mode="TradeMode.Item" />
-                @if (CanExpand)
+                @if (Item.CanHaveModifiers)
                 {
                     <ToggleLayoutButton Layout="Layout" LayoutChanged="LayoutChanged" />
                 }
@@ -37,22 +37,6 @@
 
     [Parameter]
     public int Total { get; set; }
-
-    private bool CanExpand => Item?.Metadata?.Category switch
-    {
-        Category.Accessory => true,
-        Category.Armour => true,
-        Category.Flask => true,
-        Category.Gem => true,
-        Category.Jewel => true,
-        Category.Map => Item.Header.Class != Class.MapFragments,
-        Category.Weapon => true,
-        Category.HeistEquipment => true,
-        Category.Contract => true,
-        Category.Logbook => true,
-        Category.Sentinel => true,
-        _ => false,
-    };
 
     protected override async Task OnInitializedAsync()
     {

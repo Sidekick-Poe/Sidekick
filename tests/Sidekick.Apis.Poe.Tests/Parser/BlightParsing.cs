@@ -41,6 +41,35 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
         }
 
         [Fact]
+        public void ParseSuperiorBlightedMap()
+        {
+            var actual = parser.ParseItem(@"Item Class: Maps
+Rarity: Normal
+Superior Blighted Shore Map
+--------
+Map Tier: 6
+Item Quantity: +5% (augmented)
+Quality: +5% (augmented)
+--------
+Item Level: 74
+--------
+Area is infested with Fungal Growths (implicit)
+Map's Item Quantity Modifiers also affect Blight Chest count at 25% value (implicit)
+Can be Anointed up to 3 times (implicit)
+Natural inhabitants of this area have been removed (implicit)
+--------
+Travel to this Map by using it in a personal Map Device. Maps can only be used once.
+");
+
+            Assert.Equal(Category.Map, actual.Metadata.Category);
+            Assert.Equal(Class.Maps, actual.Header.Class);
+            Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
+            Assert.Equal("Shore Map", actual.Metadata.Type);
+            Assert.Equal(6, actual.Properties.MapTier);
+            Assert.True(actual.Properties.Blighted);
+        }
+
+        [Fact]
         public void ClearOil()
         {
             var actual = parser.ParseItem(@"Item Class: Stackable Currency
@@ -96,6 +125,5 @@ Travel to this Map by using it in a personal Map Device.Maps can only be used on
             Assert.Equal("Spider Forest Map", actual.Metadata.Type);
             Assert.True(actual.Properties.Blighted);
         }
-
     }
 }

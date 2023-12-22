@@ -1,6 +1,6 @@
 
 <div class="item-content mb-2 @WrapperClass" @onclick="OnClick">
-    @if (CanExpand && (Layout == Layout.Cards_Maximized || Expanded))
+    @if (Item.CanHaveModifiers && (Layout == Layout.Cards_Maximized || Expanded))
     {
         <ItemHeaderComponent Name="@Item.Header.Name"
                          Type="@Item.Header.Type"
@@ -102,25 +102,9 @@
     [Parameter] public TradeItem Item { get; set; }
     [Parameter] public Layout Layout { get; set; }
 
-    private bool CanExpand => PriceCheckItem?.Metadata?.Category switch
-    {
-        Category.Accessory => true,
-        Category.Armour => true,
-        Category.Flask => true,
-        Category.Gem => true,
-        Category.Jewel => true,
-        Category.Map => PriceCheckItem.Header.Class != Class.MapFragments,
-        Category.Weapon => true,
-        Category.HeistEquipment => true,
-        Category.Contract => true,
-        Category.Logbook => true,
-        Category.Sentinel => true,
-        _ => false,
-    };
-
     private bool Expanded { get; set; }
 
-    private string WrapperClass => Layout == Layout.Cards_Minimized && CanExpand ? "clickable" : "";
+    private string WrapperClass => Layout == Layout.Cards_Minimized && Item.CanHaveModifiers ? "clickable" : "";
 
     private void OnClick()
     {

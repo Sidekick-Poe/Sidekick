@@ -499,6 +499,7 @@ namespace Sidekick.Apis.Poe.Trade
                     return new();
                 }
 
+                var contentString = await response.Content.ReadAsStringAsync();
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<FetchResult<Result>>(content, new JsonSerializerOptions()
                 {
