@@ -22,7 +22,10 @@
 
                 <div class="d-flex align-center justify-center">
                     <a href="javascript:;" class="reload" @onclick="Reload">Reload</a>
-                    <a href="javascript:;" class="button" @onclick="Close">Close</a>
+                    @if (View != null)
+                    {
+                        <a href="javascript:;" class="button" @onclick="Close">Close</a>
+                    }
                 </div>
             </div>
         </div>
