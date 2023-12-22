@@ -25,7 +25,8 @@
     }
 
     #blazor-error-ui .reload,
-    .blazor-error .reload {
+    .blazor-error .reload,
+    .blazor-error .button {
         background: #fff;
         color: var(--mud-palette-error);
         padding: 1rem 2rem;
