@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components.Web;
 
-namespace Sidekick.Common.Blazor.Layouts
+namespace Sidekick.Common.Blazor.Errors
 {
     /// <summary>
     /// Captures errors thrown from its child content.

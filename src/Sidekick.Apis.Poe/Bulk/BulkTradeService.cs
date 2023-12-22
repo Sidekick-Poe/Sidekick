@@ -86,13 +86,21 @@ namespace Sidekick.Apis.Poe.Bulk
                 throw new Exception(errorResult?.Error?.Message);
             }
 
-            var result = JsonSerializer.Deserialize<BulkResponse?>(content, poeTradeClient.Options);
-            if (result == null)
+            try
             {
-                throw new Exception("[Trade API] Could not understand the API response.");
-            }
+                var result = JsonSerializer.Deserialize<BulkResponse?>(content, poeTradeClient.Options);
+                if (result == null)
+                {
+                    throw new Exception("[Trade API] Could not understand the API response.");
+                }
 
-            return new BulkResponseModel(result);
+                return new BulkResponseModel(result);
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e, "An exception occured while parsing the API response. {data}", content);
+                return new BulkResponseModel(new BulkResponse());
+            }
         }
 
         public Uri GetTradeUri(Item item, string queryId)
