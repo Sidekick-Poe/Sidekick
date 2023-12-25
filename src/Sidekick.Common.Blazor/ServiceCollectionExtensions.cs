@@ -19,9 +19,9 @@ namespace Sidekick.Common.Blazor
         public static IServiceCollection AddSidekickCommonBlazor(this IServiceCollection services)
         {
             services.AddTransient<DialogResources>();
-            services.AddTransient<ErrorResources>();
             services.AddTransient<InitializationResources>();
             services.AddTransient<UpdateResources>();
+            services.AddTransient<ErrorResources>();
 
             services.AddSingleton<ISidekickDialogs, DialogService>();
             services.AddSingleton((sp) => (DialogService)sp.GetRequiredService<ISidekickDialogs>());

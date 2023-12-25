@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Localization;
+using Sidekick.Common.Errors;
 
 namespace Sidekick.Common.Blazor.Errors
 {
@@ -20,5 +21,17 @@ namespace Sidekick.Common.Blazor.Errors
         public string Title => localizer["Title"];
         public string Close => localizer["Close"];
         public string Error => localizer["Error"];
+
+        public string GetText(string? type) => GetText(Enum.Parse<ErrorType>(type ?? ErrorType.Unknown.ToString()));
+
+        public string GetText(ErrorType type) => type switch
+        {
+            ErrorType.InvalidItem => InvalidItemError,
+            ErrorType.UnavailableTranslation => AvailableInEnglishError,
+            ErrorType.Unparsable => ParserError,
+            ErrorType.ApiError => ApiError,
+            ErrorType.AlreadyRunning => AlreadyRunning,
+            _ => Error,
+        };
     }
 }

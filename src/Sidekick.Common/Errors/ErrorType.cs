@@ -6,6 +6,11 @@ namespace Sidekick.Common.Errors
     public enum ErrorType
     {
         /// <summary>
+        /// Represents a silent error. When possible, do not show the error on the UI.
+        /// </summary>
+        Silent,
+
+        /// <summary>
         /// Translation is unavailable.
         /// </summary>
         UnavailableTranslation,

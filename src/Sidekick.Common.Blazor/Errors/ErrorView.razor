@@ -7,8 +7,7 @@
 
 <div class="d-flex justify-center pa-8">
     <MudAlert Severity="Severity.Error" Variant="Variant.Filled">
-        @Text
-
+        @Resources.GetText(Type)
         @if (!string.IsNullOrEmpty(AdditionalInformation))
         {
             <div class="mt-3">
@@ -36,14 +35,4 @@
 
     public override string Title => Resources.Title;
     public override SidekickViewType ViewType => SidekickViewType.Modal;
-
-    private string Text => Enum.Parse<ErrorType>(Type ?? ErrorType.Unknown.ToString()) switch
-    {
-        ErrorType.InvalidItem => Resources.InvalidItemError,
-        ErrorType.UnavailableTranslation => Resources.AvailableInEnglishError,
-        ErrorType.Unparsable => Resources.ParserError,
-        ErrorType.ApiError => Resources.ApiError,
-        ErrorType.AlreadyRunning => Resources.AlreadyRunning,
-        _ => Resources.Error,
-    };
 }
