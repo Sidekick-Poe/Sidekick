@@ -5,6 +5,7 @@ using Sidekick.Apis.Poe.Metadatas;
 using Sidekick.Apis.Poe.Parser.AdditionalInformation;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Pseudo;
+using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Parser
@@ -37,16 +38,16 @@ namespace Sidekick.Apis.Poe.Parser
             this.invariantMetadataProvider = invariantMetadataProvider;
         }
 
-        public Task<Item?> ParseItemAsync(string itemText)
+        public Task<Item> ParseItemAsync(string itemText)
         {
             return Task.Run(() => ParseItem(itemText));
         }
 
-        public Item? ParseItem(string itemText)
+        public Item ParseItem(string itemText)
         {
             if (string.IsNullOrEmpty(itemText))
             {
-                return null;
+                throw new UnparsableException();
             }
 
             try
@@ -55,7 +56,7 @@ namespace Sidekick.Apis.Poe.Parser
                 var metadata = itemMetadataProvider.Parse(parsingItem);
                 if (metadata == null || (string.IsNullOrEmpty(metadata?.Name) && string.IsNullOrEmpty(metadata?.Type)))
                 {
-                    throw new NotSupportedException("Item not found.");
+                    throw new UnparsableException("Item was not found in the metadata provider.");
                 }
 
                 // Strip the Superior affix from the name
@@ -100,15 +101,15 @@ namespace Sidekick.Apis.Poe.Parser
             catch (Exception e)
             {
                 logger.LogWarning(e, "Could not parse item.");
-                return null;
+                throw new UnparsableException();
             }
         }
 
-        public Header? ParseHeader(string itemText)
+        public Header ParseHeader(string itemText)
         {
             if (string.IsNullOrEmpty(itemText))
             {
-                return null;
+                throw new UnparsableException();
             }
 
             try
@@ -118,7 +119,7 @@ namespace Sidekick.Apis.Poe.Parser
             catch (Exception e)
             {
                 logger.LogWarning(e, "Could not parse item.");
-                return null;
+                throw new UnparsableException();
             }
         }
 

@@ -1,21 +1,26 @@
 @using Sidekick.Common.Blazor.Layouts;
-@using Sidekick.Common.Errors;
+@using Sidekick.Common.Exceptions;
 
-<LoggingErrorBoundary>
+<LoggingErrorBoundary @ref="Boundary">
     <ChildContent>
         @ChildContent
     </ChildContent>
     <ErrorContent>
-        @if (Type != ErrorType.Silent)
+        @if (ShowError)
         {
             <MudAlert Severity="Severity.Error" Variant="Variant.Filled">
-                @Resources.GetText(Type)
+                @Message
+                @if (!string.IsNullOrEmpty(AdditionalInformation))
+                {
+                    <div class="mt-3">
+                        Additional Information: <b>@AdditionalInformation</b>
+                    </div>
+                }
             </MudAlert>
         }
     </ErrorContent>
 </LoggingErrorBoundary>
 
-@inject ErrorResources Resources
 @code {
     /// <summary>
     /// Gets or sets the content of the wrapper.
@@ -23,11 +28,24 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; } = null!;
 
-    /// <summary>
-    /// Gets or sets the content of the error.
-    /// </summary>
-    [Parameter]
-    public ErrorType Type { get; set; } = ErrorType.Silent;
+    private LoggingErrorBoundary? Boundary { get; set; }
 
-    
+    private SidekickException? Exception
+    {
+        get
+        {
+            if (Boundary?.CurrentException is SidekickException sidekickException)
+            {
+                return sidekickException;
+            }
+
+            return null;
+        }
+    }
+
+    private bool ShowError => Exception?.GetType() != typeof(SilentException);
+
+    private string? Message => Exception?.Message;
+
+    private string? AdditionalInformation => Exception?.AdditionalInformation;
 }

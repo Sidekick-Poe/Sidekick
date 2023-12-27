@@ -30,7 +30,7 @@ public partial class MainWindow : Window
 
     internal SidekickView? SidekickView { get; set; }
 
-    internal string CurrentWebPath => WebUtility.UrlDecode(WebView.WebView.Source.ToString());
+    internal string? CurrentWebPath => WebUtility.UrlDecode(WebView.WebView?.Source?.ToString());
 
     public void Ready()
     {

@@ -5,7 +5,7 @@ using Sidekick.Apis.Poe;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Browser;
-using Sidekick.Common.Errors;
+using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Platform;
@@ -61,17 +61,14 @@ namespace Sidekick.Modules.General.Keybinds
 
             if (item == null)
             {
-                // If the item can't be parsed, show an error.
-                await viewLocator.Open(ErrorType.Unparsable.ToUrl());
-                return;
+                throw new UnparsableException();
             }
 
             if (settings.Wiki_Preferred == WikiSetting.PoeWiki)
             {
                 if (!gameLanguageProvider.IsEnglish())
                 {
-                    await viewLocator.Open(ErrorType.UnavailableTranslation.ToUrl());
-                    return;
+                    throw new UnavailableTranslationException();
                 }
 
                 OpenPoeWiki(item);

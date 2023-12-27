@@ -16,6 +16,8 @@ namespace Sidekick.Common.Blazor.Errors
         [Inject]
         private IJSRuntime JSRuntime { get; set; } = null!;
 
+        public new Exception? CurrentException { get; private set; }
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (CurrentException != null)

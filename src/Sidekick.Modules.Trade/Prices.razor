@@ -18,8 +18,10 @@ else
             }
 
             <div class="ml-0">
-                <BulkResult @ref="BulkResult" Visible="Mode == TradeMode.Bulk" />
-                <ItemsResult @ref="ItemsResult" Visible="Mode == TradeMode.Item" />
+                <SidekickErrorBoundary>
+                    <BulkResult @ref="BulkResult" Visible="Mode == TradeMode.Bulk" />
+                    <ItemsResult @ref="ItemsResult" Visible="Mode == TradeMode.Item" />
+                </SidekickErrorBoundary>
             </div>
 
         </CascadingValue>
@@ -51,11 +53,6 @@ else
     protected override async Task OnParametersSetAsync()
     {
         Item = await ItemParser.ParseItemAsync(ItemText.DecodeBase64Url());
-        if (Item == null)
-        {
-            NavigationManager.NavigateTo(ErrorType.Unparsable.ToUrl());
-            return;
-        }
 
         Filters = new FiltersModel()
             {

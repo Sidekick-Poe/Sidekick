@@ -67,12 +67,6 @@
         QueryResult = await TradeSearchService.Search(Item, Settings.Trade_Item_Currency.GetEnumFromValue<TradeCurrency>(), Filters.PropertyFilters, Filters.ModifierFilters, Filters.PseudoFilters);
         IsFetching = false;
 
-        if (QueryResult == null || QueryResult?.Error != null)
-        {
-            NavigationManager.NavigateTo(ErrorType.ApiError.ToUrl(QueryResult?.Error?.Message));
-            return;
-        }
-
         await LoadMoreData();
         StateHasChanged();
     }
