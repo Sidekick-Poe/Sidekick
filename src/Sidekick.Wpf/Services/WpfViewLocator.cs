@@ -149,7 +149,12 @@ namespace Sidekick.Wpf.Services
 
             Application.Current.Dispatcher.Invoke(() =>
             {
-                window.Close();
+                try {
+                    window.Close();
+                } catch(InvalidOperationException ex) {
+                    logger.LogWarning($"Error Closing {window.Name} Window - {ex.Message}");
+                }
+                
             });
             Windows.Remove(window);
             return Task.CompletedTask;
