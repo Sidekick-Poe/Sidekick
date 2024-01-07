@@ -30,8 +30,7 @@ namespace Sidekick.Common
             configuration.Bind(settings);
             configuration.BindList(nameof(ISettings.Chat_Commands), settings.Chat_Commands);
             configuration.BindList(nameof(ISettings.Cheatsheets_Pages), settings.Cheatsheets_Pages);
-            services.AddSingleton(settings);
-            services.AddSingleton<ISettings>(sp => sp.GetRequiredService<Settings.Settings>());
+            services.AddSingleton<ISettings>(_ => settings);
 
             services.AddSingleton<IBrowserProvider, BrowserProvider>();
             services.AddSingleton<ICacheProvider, CacheProvider>();
