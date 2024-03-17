@@ -4,10 +4,10 @@ namespace Sidekick.Apis.Poe
 {
     public interface IItemParser
     {
-        Task<Item?> ParseItemAsync(string itemText);
+        Task<Item> ParseItemAsync(string itemText);
 
-        Header? ParseHeader(string itemText);
+        Header ParseHeader(string itemText);
 
-        Item? ParseItem(string itemText);
+        Item ParseItem(string itemText);
     }
 }

@@ -2,10 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
     <VSTestLogger>trx%3bLogFileName=$(MSBuildProjectName).trx</VSTestLogger>
     <VSTestResultsDirectory>$(MSBuildThisFileDirectory)/TestResults/$(TargetFramework)</VSTestResultsDirectory>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <PackageReference Include="bunit.web" Version="1.25.3" />
     <PackageReference Include="coverlet.collector" Version="6.0.0">

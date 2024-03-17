@@ -8,6 +8,7 @@ using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Common.Enums;
+using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
@@ -46,7 +47,7 @@ namespace Sidekick.Apis.Poe.Bulk
 
             if (gameLanguageProvider.Language == null)
             {
-                throw new Exception("[Trade API] Could not find a valid language.");
+                throw new ApiErrorException("[Trade API] Could not find a valid language.");
             }
 
             var uri = $"{gameLanguageProvider.Language.PoeTradeApiBaseUrl}exchange/{settings.LeagueId}";
@@ -54,7 +55,7 @@ namespace Sidekick.Apis.Poe.Bulk
             var itemId = itemStaticDataProvider.GetId(item.Metadata.Name, item.Metadata.Type);
             if (itemId == null)
             {
-                throw new Exception("[Trade API] Could not find a valid item.");
+                throw new ApiErrorException("[Trade API] Could not find a valid item.");
             }
 
             var model = new BulkQueryRequest();
@@ -83,7 +84,7 @@ namespace Sidekick.Apis.Poe.Bulk
                 logger.LogWarning("[Trade API] Query: {query}", json);
 
                 var errorResult = JsonSerializer.Deserialize<ErrorResult>(content, poeTradeClient.Options);
-                throw new Exception(errorResult?.Error?.Message);
+                throw new ApiErrorException(errorResult?.Error?.Message);
             }
 
             try
@@ -91,7 +92,7 @@ namespace Sidekick.Apis.Poe.Bulk
                 var result = JsonSerializer.Deserialize<BulkResponse?>(content, poeTradeClient.Options);
                 if (result == null)
                 {
-                    throw new Exception("[Trade API] Could not understand the API response.");
+                    throw new ApiErrorException("[Trade API] Could not understand the API response.");
                 }
 
                 return new BulkResponseModel(result);
@@ -99,7 +100,7 @@ namespace Sidekick.Apis.Poe.Bulk
             catch (Exception e)
             {
                 logger.LogError(e, "An exception occured while parsing the API response. {data}", content);
-                return new BulkResponseModel(new BulkResponse());
+                throw new ApiErrorException("[Trade API] An exception occured while parsing the API response.");
             }
         }
 

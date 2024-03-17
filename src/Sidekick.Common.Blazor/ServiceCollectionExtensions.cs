@@ -1,6 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common.Blazor.Dialogs;
-using Sidekick.Common.Blazor.Errors;
 using Sidekick.Common.Blazor.Initialization;
 using Sidekick.Common.Blazor.Update;
 
@@ -19,7 +18,6 @@ namespace Sidekick.Common.Blazor
         public static IServiceCollection AddSidekickCommonBlazor(this IServiceCollection services)
         {
             services.AddTransient<DialogResources>();
-            services.AddTransient<ErrorResources>();
             services.AddTransient<InitializationResources>();
             services.AddTransient<UpdateResources>();
 

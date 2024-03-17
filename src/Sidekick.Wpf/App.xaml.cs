@@ -14,8 +14,6 @@ using Sidekick.Common.Blazor;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Errors;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Interprocess;
-using Sidekick.Common.Settings;
 using Sidekick.Mock;
 using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
@@ -25,7 +23,6 @@ using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
 using Sidekick.Modules.Settings;
 using Sidekick.Modules.Trade;
-using Sidekick.Modules.Wealth;
 using Sidekick.Wpf.Services;
 
 namespace Sidekick.Wpf
@@ -35,6 +32,8 @@ namespace Sidekick.Wpf
     /// </summary>
     public partial class App : Application
     {
+        private const string APPLICATION_PROCESS_GUID = "93c46709-7db2-4334-8aa3-28d473e66041";
+
         public static ServiceProvider ServiceProvider { get; set; } = null!;
 
         private readonly ILogger<App> logger;
@@ -44,10 +43,6 @@ namespace Sidekick.Wpf
 
         public App()
         {
-#if !DEBUG
-            DeleteStaticAssets();
-#endif
-
             var configurationManager = new ConfigurationManager();
             try
             {
@@ -59,9 +54,6 @@ namespace Sidekick.Wpf
             ConfigureServices(services, configurationManager);
             ServiceProvider = services.BuildServiceProvider();
             logger = ServiceProvider.GetRequiredService<ILogger<App>>();
-            InterprocessService = ServiceProvider.GetRequiredService<IInterprocessService>();
-            Settings = ServiceProvider.GetRequiredService<ISettings>();
-            settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -76,7 +68,7 @@ namespace Sidekick.Wpf
                 settingsService.Save("Enable_WealthTracker", false);
 
             }
-            
+
             var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
             if (InterprocessService.IsAlreadyRunning())
             {
@@ -100,16 +92,7 @@ namespace Sidekick.Wpf
                     return;
                 }
 
-                _ = viewLocator.Open(ErrorType.AlreadyRunning.ToUrl());
-                Task.Run(async () =>
-                {
-                    await Task.Delay(5000);
-                    Current.Dispatcher.Invoke(() =>
-                    {
-                        Current.Shutdown();
-                    });
-                });
-                return;
+                throw new AlreadyRunningException();
             }
 
             AttachErrorHandlers();
@@ -179,18 +162,18 @@ namespace Sidekick.Wpf
             AppDomain.CurrentDomain.UnhandledException += (s, e) =>
             {
                 var exception = (Exception)e.ExceptionObject;
-                LogUnhandledException(exception);
+                HandleException(exception);
             };
 
             DispatcherUnhandledException += (s, e) =>
             {
-                LogUnhandledException(e.Exception);
+                HandleException(e.Exception);
                 e.Handled = true;
             };
 
             TaskScheduler.UnobservedTaskException += (s, e) =>
             {
-                LogUnhandledException(e.Exception);
+                HandleException(e.Exception);
                 e.SetObserved();
             };
         }
@@ -214,11 +197,15 @@ namespace Sidekick.Wpf
             catch (Exception) { }
         }
 
-        private void LogUnhandledException(Exception ex)
+        private void HandleException(Exception ex)
         {
             logger.LogCritical(ex, "Unhandled exception.");
-            var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
-            viewLocator.Open(ErrorType.Unknown.ToUrl());
+
+            if (ex is SidekickException sidekickException)
+            {
+                var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
+                viewLocator.Open(sidekickException.ToUrl());
+            }
         }
     }
 }
