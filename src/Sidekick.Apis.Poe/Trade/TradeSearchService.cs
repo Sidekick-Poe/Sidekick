@@ -9,6 +9,7 @@ using Sidekick.Apis.Poe.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Common.Enums;
+using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
@@ -41,13 +42,14 @@ namespace Sidekick.Apis.Poe.Trade
 
         public async Task<TradeSearchResult<string>> Search(Item item, TradeCurrency currency, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null, List<PseudoModifierFilter>? pseudoFilters = null)
         {
+            throw new ApiErrorException("[Trade API] Could not find a valid language.");
             try
             {
                 logger.LogInformation("[Trade API] Querying Trade API.");
 
                 if (gameLanguageProvider.Language == null)
                 {
-                    throw new Exception("[Trade API] Could not find a valid language.");
+                    throw new ApiErrorException("[Trade API] Could not find a valid language.");
                 }
 
                 var request = new QueryRequest();
@@ -110,8 +112,7 @@ namespace Sidekick.Apis.Poe.Trade
                     logger.LogWarning("[Trade API] Query: {query}", json);
 
                     var errorResult = await JsonSerializer.DeserializeAsync<ErrorResult>(content, poeTradeClient.Options);
-
-                    return new() { Error = errorResult?.Error };
+                    throw new ApiErrorException("[Trade API] Querying failed. " + errorResult?.Error?.Message);
                 }
 
                 var result = await JsonSerializer.DeserializeAsync<TradeSearchResult<string>?>(content, poeTradeClient.Options);
@@ -125,7 +126,7 @@ namespace Sidekick.Apis.Poe.Trade
                 logger.LogWarning(ex, "[Trade API] Exception thrown while querying trade api.");
             }
 
-            throw new Exception("[Trade API] Could not understand the API response.");
+            throw new ApiErrorException("[Trade API] Could not understand the API response.");
         }
 
         private static void SetPropertyFilters(Query query, PropertyFilters? propertyFilters)

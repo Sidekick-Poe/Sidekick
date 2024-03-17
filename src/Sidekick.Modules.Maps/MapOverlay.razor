@@ -72,18 +72,11 @@ else
     {
         Item = await ItemParser.ParseItemAsync(ItemText.DecodeBase64Url());
 
-        if (Item == null)
-        {
-            NavigationManager.NavigateTo(ErrorType.Unparsable.ToUrl());
-            return;
-        }
-
         if (Item.Metadata.Category != Category.Map &&
             Item.Metadata.Category != Category.Contract &&
             Item.Metadata.Category != Category.Logbook)
         {
-            NavigationManager.NavigateTo(ErrorType.InvalidItem.ToUrl());
-            return;
+            throw new InvalidItemException();
         }
 
         DangerousMods.Clear();

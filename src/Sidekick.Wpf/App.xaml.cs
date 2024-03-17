@@ -12,7 +12,7 @@ using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Blazor.Views;
-using Sidekick.Common.Errors;
+using Sidekick.Common.Exceptions;
 using Sidekick.Common.Platform;
 using Sidekick.Mock;
 using Sidekick.Modules.About;
@@ -64,8 +64,7 @@ namespace Sidekick.Wpf
 
             if (!EnsureSingleInstance())
             {
-                _ = viewLocator.Open(ErrorType.AlreadyRunning.ToUrl());
-                return;
+                throw new AlreadyRunningException();
             }
 
             _ = viewLocator.Open("/");
@@ -153,27 +152,30 @@ namespace Sidekick.Wpf
             AppDomain.CurrentDomain.UnhandledException += (s, e) =>
             {
                 var exception = (Exception)e.ExceptionObject;
-                LogUnhandledException(exception);
+                HandleException(exception);
             };
 
             DispatcherUnhandledException += (s, e) =>
             {
-                LogUnhandledException(e.Exception);
+                HandleException(e.Exception);
                 e.Handled = true;
             };
 
             TaskScheduler.UnobservedTaskException += (s, e) =>
             {
-                LogUnhandledException(e.Exception);
+                HandleException(e.Exception);
                 e.SetObserved();
             };
         }
 
-        private void LogUnhandledException(Exception ex)
+        private void HandleException(Exception ex)
         {
             logger.LogCritical(ex, "Unhandled exception.");
-            var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
-            viewLocator.Open(ErrorType.Unknown.ToUrl());
+            if (ex is SidekickException sidekickException)
+            {
+                var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
+                viewLocator.Open(sidekickException.ToUrl());
+            }
         }
     }
 }

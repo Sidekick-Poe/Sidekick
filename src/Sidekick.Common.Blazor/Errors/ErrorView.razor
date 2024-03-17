@@ -1,18 +1,17 @@
-@page "/error/{type}"
-@page "/error/{type}/{additionalInformation}"
-@using Sidekick.Common.Errors;
+@page "/error/{message}"
+@page "/error/{message}/{additionalInformation}"
+@using Sidekick.Common.Exceptions;
 @using Sidekick.Common.Extensions;
 @layout ModalLayout
 @inherits SidekickView
 
 <div class="d-flex justify-center pa-8">
     <MudAlert Severity="Severity.Error" Variant="Variant.Filled">
-        @Text
-
+        @Message.DecodeBase64Url()
         @if (!string.IsNullOrEmpty(AdditionalInformation))
         {
             <div class="mt-3">
-                @Resources.AdditionalInformation <b>@AdditionalInformation.DecodeBase64Url()</b>
+                Additional Information: <b>@AdditionalInformation.DecodeBase64Url()</b>
             </div>
         }
     </MudAlert>
@@ -22,28 +21,17 @@
     <MudButton Variant="Variant.Filled"
                Color="Color.Primary"
                OnClick="Close">
-        @Resources.Close
+        Close
     </MudButton>
 </div>
 
-@inject ErrorResources Resources;
 @code {
     [Parameter]
-    public string? Type { get; set; }
+    public string? Message { get; set; }
 
     [Parameter]
     public string? AdditionalInformation { get; set; }
 
-    public override string Title => Resources.Title;
+    public override string Title => "Sidekick Error";
     public override SidekickViewType ViewType => SidekickViewType.Modal;
-
-    private string Text => Enum.Parse<ErrorType>(Type ?? ErrorType.Unknown.ToString()) switch
-    {
-        ErrorType.InvalidItem => Resources.InvalidItemError,
-        ErrorType.UnavailableTranslation => Resources.AvailableInEnglishError,
-        ErrorType.Unparsable => Resources.ParserError,
-        ErrorType.ApiError => Resources.ApiError,
-        ErrorType.AlreadyRunning => Resources.AlreadyRunning,
-        _ => Resources.Error,
-    };
 }

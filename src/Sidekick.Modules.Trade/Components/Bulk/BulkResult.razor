@@ -75,12 +75,6 @@
         Result = await BulkTradeService.SearchBulk(Item, Settings.Trade_Bulk_Currency.GetEnumFromValue<TradeCurrency>(), Settings.Trade_Bulk_MinStock);
         IsFetching = false;
 
-        if (Result == null)
-        {
-            NavigationManager.NavigateTo(ErrorType.ApiError.ToUrl());
-            return;
-        }
-
         StateHasChanged();
     }
 }
