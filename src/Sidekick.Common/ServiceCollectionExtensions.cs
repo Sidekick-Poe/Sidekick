@@ -29,7 +29,6 @@ namespace Sidekick.Common
             var settings = new Settings.Settings();
             configuration.Bind(settings);
             configuration.BindList(nameof(ISettings.Chat_Commands), settings.Chat_Commands);
-            configuration.BindList(nameof(ISettings.Cheatsheets_Pages), settings.Cheatsheets_Pages);
             services.AddTransient<ISettings>(_ => settings);
 
             services.AddSingleton<IBrowserProvider, BrowserProvider>();

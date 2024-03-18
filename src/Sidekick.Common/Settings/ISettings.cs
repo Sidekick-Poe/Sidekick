@@ -32,22 +32,10 @@ namespace Sidekick.Common.Settings
         string Map_Key_Check { get; }
         string Map_Dangerous_Regex { get; }
 
-        #region Cheatsheets
-
-        string Cheatsheets_Key_Open { get; }
-        string Cheatsheets_Selected { get; }
-        List<CheatsheetPage> Cheatsheets_Pages { get; }
-
-        #endregion Cheatsheets
-
         List<ChatSetting> Chat_Commands { get; }
-
-        #region Cheatsheets
 
         string Wiki_Key_Open { get; }
         WikiSetting Wiki_Preferred { get; }
-
-        #endregion Cheatsheets
 
         DateTimeOffset? PoeNinja_LastClear { get; }
         string Wealth_Key_Open { get; }

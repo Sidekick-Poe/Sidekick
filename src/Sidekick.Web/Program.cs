@@ -10,9 +10,7 @@ using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Mock;
-using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
-using Sidekick.Modules.Cheatsheets;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
@@ -67,9 +65,7 @@ builder.Services
     .AddSidekickPoeWikiApi()
 
     // Modules
-    .AddSidekickAbout()
     .AddSidekickChat()
-    .AddSidekickCheatsheets()
     .AddSidekickDevelopment()
     .AddSidekickGeneral()
     .AddSidekickMaps()
