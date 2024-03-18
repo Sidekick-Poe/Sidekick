@@ -1,7 +1,7 @@
 @page "/wealth"
 @inherits SidekickView
-@using Sidekick.Common.Errors;
 @using Sidekick.Modules.Wealth.Components
+@using Sidekick.Common.Exceptions
 
 <MudDrawer Open="true"
            Variant="@DrawerVariant.Persistent"
@@ -84,7 +84,7 @@
     {
         if (!Settings.Enable_WealthTracker)
         {
-            NavigationManager.NavigateTo(ErrorType.DisabledModule.ToUrl("wealth"));
+            throw new DisabledModuleException();
         }
 
         WealthParser.OnStashParsed += OnStashParsed;
