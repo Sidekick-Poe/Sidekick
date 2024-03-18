@@ -17,9 +17,7 @@ using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
 using Sidekick.Mock;
-using Sidekick.Modules.About;
 using Sidekick.Modules.Chat;
-using Sidekick.Modules.Cheatsheets;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
@@ -35,28 +33,26 @@ namespace Sidekick.Wpf
     /// </summary>
     public partial class App : Application
     {
-        private const string APPLICATION_PROCESS_GUID = "93c46709-7db2-4334-8aa3-28d473e66041";
-
         public static ServiceProvider ServiceProvider { get; set; } = null!;
 
         private readonly ILogger<App> logger;
-        private IInterprocessService InterprocessService { get; set; }
-        private ISettings Settings { get; set; }
-        private ISettingsService settingsService { get; set; }
+        private readonly ISettingsService settingsService;
+        private readonly ISettings settings;
+        private readonly IInterprocessService interprocessService;
 
         public App()
         {
             var configurationManager = new ConfigurationManager();
-            try
-            {
-                configurationManager.AddJsonFile(SidekickPaths.GetDataFilePath(SettingsService.FileName), true, true);
-            }
-            catch (Exception) { }
+            configurationManager.AddJsonFile(SidekickPaths.GetDataFilePath(SettingsService.FileName), true, true);
 
             var services = new ServiceCollection();
             ConfigureServices(services, configurationManager);
+
             ServiceProvider = services.BuildServiceProvider();
             logger = ServiceProvider.GetRequiredService<ILogger<App>>();
+            settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
+            settings = ServiceProvider.GetRequiredService<ISettings>();
+            interprocessService = ServiceProvider.GetRequiredService<IInterprocessService>();
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -64,42 +60,40 @@ namespace Sidekick.Wpf
             base.OnStartup(e);
 
             var currentDirectory = Directory.GetCurrentDirectory();
-
-            if( string.IsNullOrEmpty(Settings.Current_Directory) || Settings.Current_Directory != currentDirectory) {
-
+            if (string.IsNullOrEmpty(settings.Current_Directory) || settings.Current_Directory != currentDirectory)
+            {
                 settingsService.Save("Current_Directory", currentDirectory);
                 settingsService.Save("Enable_WealthTracker", false);
-
             }
 
             var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
-            if (InterprocessService.IsAlreadyRunning())
+            if (interprocessService.IsAlreadyRunning())
             {
-                if (e.Args.Length > 0 && e.Args[0].ToUpper().StartsWith("SIDEKICK://"))
+                if (e.Args.Length <= 0 || !e.Args[0].ToUpper().StartsWith("SIDEKICK://"))
                 {
-                    Task.Run(async () =>
-                    {
-                        try
-                        {
-                            await InterprocessService.SendMessage(e.Args[0]);
-                        }
-                        finally
-                        {
-                            Current.Dispatcher.Invoke(() =>
-                            {
-                                Current.Shutdown();
-                            });
-                            Environment.Exit(0);
-                        }
-                    });
-                    return;
+                    throw new AlreadyRunningException();
                 }
 
-                throw new AlreadyRunningException();
+                Task.Run(async () =>
+                {
+                    try
+                    {
+                        await interprocessService.SendMessage(e.Args[0]);
+                    }
+                    finally
+                    {
+                        Current.Dispatcher.Invoke(() =>
+                        {
+                            Current.Shutdown();
+                        });
+                        Environment.Exit(0);
+                    }
+                });
+                return;
             }
 
             AttachErrorHandlers();
-            InterprocessService.StartReceiving();
+            interprocessService.StartReceiving();
             _ = viewLocator.Open("/");
         }
 
@@ -112,6 +106,7 @@ namespace Sidekick.Wpf
 #pragma warning restore CA1416 // Validate platform compatibility
 
             services
+
                 // MudBlazor
                 .AddMudServices()
                 .AddMudBlazorDialog()
@@ -138,9 +133,7 @@ namespace Sidekick.Wpf
                 .AddSidekickPoeWikiApi()
 
                 // Modules
-                .AddSidekickAbout()
                 .AddSidekickChat()
-                .AddSidekickCheatsheets()
                 .AddSidekickDevelopment()
                 .AddSidekickGeneral()
                 .AddSidekickMaps()
@@ -197,7 +190,7 @@ namespace Sidekick.Wpf
                     File.Delete(path);
                 }
             }
-            catch (Exception) { }
+            catch (Exception) {}
         }
 
         private void HandleException(Exception ex)

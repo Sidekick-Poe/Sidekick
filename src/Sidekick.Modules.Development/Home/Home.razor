@@ -22,9 +22,7 @@
     </MudItem>
     <MudItem md="4" xs="12">
         <HomeButton Color="Color.Warning" Icon="@Icons.Material.Filled.Money" Label="Wealth" Link="/wealth" />
-        <HomeButton Color="Color.Success" Icon="@Icons.Material.Filled.StickyNote2" Label="Cheatsheets" Link="/cheatsheets" />
         <HomeButton Color="Color.Info" Icon="@Icons.Material.Filled.Settings" Label="Settings" Link="/settings" />
-        <HomeButton Color="Color.Secondary" Icon="@Icons.Material.Filled.Info" Label="About" Link="/about" />
         <HomeButton Color="Color.Tertiary" Icon="@Icons.Material.Filled.BugReport" Label="Development" Link="/development" />
     </MudItem>
 </MudGrid>
@@ -32,7 +30,7 @@
 @code {
     [Inject]
     private IItemParser ItemParser { get; set; }
-    
+
     private string ItemText { get; set; }
 
     public override string Title => "Development Home";

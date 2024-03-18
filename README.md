@@ -2,7 +2,7 @@
 
 [![Open Website](https://img.shields.io/badge/website-6b6ebe?style=flat-square)](https://sidekick-poe.github.io/) [![Download](https://img.shields.io/badge/download-00BCD4?style=flat-square)](https://sidekick-poe.github.io/) [![](https://img.shields.io/github/v/release/Sidekick-Poe/Sidekick?style=flat-square)](https://github.com/Sidekick-Poe/Sidekick/releases) [![](https://img.shields.io/github/downloads-pre/Sidekick-Poe/Sidekick/total?style=flat-square)](https://github.com/Sidekick-Poe/Sidekick/releases) [![](https://img.shields.io/discord/664252463188279300?color=%23738AD6&label=Discord&style=flat-square)](https://discord.gg/H4bg4GQ)
 
-A Path of Exile companion tool. Price check items, check for dangerous map modifiers, look at easily accessible cheatsheets, and more!
+A Path of Exile companion tool. Price check items, check for dangerous map modifiers, and more!
 
 [![Website](https://img.shields.io/badge/Website_and_Download-6b6ebe?style=for-the-badge)](https://sidekick-poe.github.io/)
 

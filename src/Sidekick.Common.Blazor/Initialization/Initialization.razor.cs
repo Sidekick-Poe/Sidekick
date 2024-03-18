@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common.Blazor.Views;
+using Sidekick.Common.Browser;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
@@ -33,8 +34,11 @@ namespace Sidekick.Common.Blazor.Initialization
         [Inject]
         private IServiceProvider ServiceProvider { get; set; } = null!;
 
-        private int Count { get; set; } = 0;
-        private int Completed { get; set; } = 0;
+        [Inject]
+        private IBrowserProvider BrowserProvider { get; set; } = null!;
+
+        private int Count { get; set; }
+        private int Completed { get; set; }
         private string? Step { get; set; }
         private int Percentage { get; set; }
         private bool Error { get; set; }
@@ -63,11 +67,13 @@ namespace Sidekick.Common.Blazor.Initialization
                 foreach (var serviceType in Configuration.Value.InitializableServices)
                 {
                     var service = ServiceProvider.GetRequiredService(serviceType);
-                    if (service is IInitializableService initializableService)
+                    if (service is not IInitializableService initializableService)
                     {
-                        Logger.LogInformation($"[Initiazation] Initializing {initializableService.GetType().FullName}");
-                        await Run(initializableService.Initialize);
+                        continue;
                     }
+
+                    Logger.LogInformation($"[Initiazation] Initializing {initializableService.GetType().FullName}");
+                    await Run(initializableService.Initialize);
                 }
 
                 await Run(() => InitializeTray());
@@ -137,9 +143,12 @@ namespace Sidekick.Common.Blazor.Initialization
             menuItems.AddRange(new List<TrayMenuItem>()
             {
                 new (label: "Sidekick - " + FileVersionInfo.GetVersionInfo(GetType().Assembly.Location).ProductVersion),
-                new (label: "Cheatsheets", onClick: () => ViewLocator.Open("/cheatsheets")),
+                new (label: "Open the Website", onClick: () =>
+                {
+                    BrowserProvider.OpenSidekickWebsite();
+                    return Task.CompletedTask;
+                }),
                 new (label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
-                new (label: "About", onClick: () => ViewLocator.Open("/about")),
                 new (label: "Settings", onClick: () => ViewLocator.Open("/settings")),
                 new (label: "Exit", onClick: () => { ApplicationService.Shutdown(); return Task.CompletedTask; }),
             });

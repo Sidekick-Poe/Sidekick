@@ -53,11 +53,6 @@ namespace Sidekick.Modules.Settings
                 },
                 new()
                 {
-                    Name= Resources.Cheatsheets,
-                    Url="/settings/cheatsheets",
-                },
-                new()
-                {
                     Name= Resources.Wiki,
                     Url="/settings/wiki",
                 },
@@ -92,12 +87,6 @@ namespace Sidekick.Modules.Settings
                     Color = MudBlazor.Color.Primary,
                 },
             };
-
-            var routeMatch = new System.Text.RegularExpressions.Regex("cheatsheets\\/([^\\\\\\/]*)").Match(NavigationManager.Uri);
-            if (routeMatch.Success)
-            {
-                await SettingsService.Save(nameof(ISettings.Cheatsheets_Selected), routeMatch.Groups[1].Value);
-            }
 
             await base.OnInitializedAsync();
         }
