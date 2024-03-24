@@ -1,15 +1,14 @@
-namespace Sidekick.Common.Exceptions
-{
-    public class SilentException : SidekickException
-    {
-        public SilentException() :
-            base("An exception occured.")
-        {
-        }
+namespace Sidekick.Common.Exceptions;
 
-        public SilentException(string? additionalInformation) :
-            base("An exception occured.", additionalInformation)
-        {
-        }
+public class SilentException : SidekickException
+{
+    public SilentException()
+        : base("An exception occured.")
+    {
+    }
+
+    public SilentException(string? additionalInformation)
+        : base("An exception occured.", additionalInformation)
+    {
     }
 }

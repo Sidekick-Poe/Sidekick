@@ -1,22 +1,26 @@
 @using Microsoft.Extensions.Options;
 @inject IOptions<SidekickConfiguration> Configuration;
 
-<Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="Configuration.Value.Modules">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(StandardLayout)" />
-    </Found>
-    <NotFound>
-        <LayoutView Layout="@typeof(StandardLayout)">
-            <MudPaper Class="pa-3 mb-4 d-flex flex-row align-center">
-                <MudIcon Size="Size.Large" Color="Color.Error" Icon="@Icons.Material.Filled.Error" Class="mr-3" />
-                <MudText Align="Align.Center">
-                    Page not found.
-                </MudText>
-            </MudPaper>
-        </LayoutView>
-    </NotFound>
-</Router>
+<SidekickErrorBoundary>
+    <Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="Configuration.Value.Modules">
+        <Found Context="routeData">
+            <SidekickErrorBoundary>
+                <RouteView RouteData="@routeData" DefaultLayout="@typeof(StandardLayout)"/>
+            </SidekickErrorBoundary>
+        </Found>
+        <NotFound>
+            <LayoutView Layout="@typeof(StandardLayout)">
+                <MudPaper Class="pa-3 mb-4 d-flex flex-row align-center">
+                    <MudIcon Size="Size.Large" Color="Color.Error" Icon="@Icons.Material.Filled.Error" Class="mr-3"/>
+                    <MudText Align="Align.Center">
+                        Page not found.
+                    </MudText>
+                </MudPaper>
+            </LayoutView>
+        </NotFound>
+    </Router>
 
-<MudDialogProvider />
-<MudSnackbarProvider />
-<SidekickTheme />
+    <MudDialogProvider/>
+    <MudSnackbarProvider/>
+    <SidekickTheme/>
+</SidekickErrorBoundary>

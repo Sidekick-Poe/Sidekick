@@ -14,7 +14,7 @@ namespace Sidekick.Common.Blazor.Errors
         private ILogger<LoggingErrorBoundary> Logger { get; set; } = null!;
 
         [Inject]
-        private IJSRuntime JSRuntime { get; set; } = null!;
+        private IJSRuntime JsRuntime { get; set; } = null!;
 
         public new Exception? CurrentException { get; private set; }
 
@@ -22,7 +22,7 @@ namespace Sidekick.Common.Blazor.Errors
         {
             if (CurrentException != null)
             {
-                await JSRuntime.InvokeVoidAsync("console.error", CurrentException.ToString());
+                await JsRuntime.InvokeVoidAsync("console.error", CurrentException.ToString());
                 Logger.LogError(CurrentException, "An error occured while executing a component.");
             }
 

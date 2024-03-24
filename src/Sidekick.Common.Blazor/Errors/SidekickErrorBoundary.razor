@@ -45,7 +45,7 @@
 
     private bool ShowError => Exception?.GetType() != typeof(SilentException);
 
-    private string? Message => Exception?.Message;
+    private string Message => Exception?.Message ?? "An error has occurred. This application may no longer respond until reloaded.\nIf this issue keeps reoccurring, please open a ticket on our github page.";
 
     private string? AdditionalInformation => Exception?.AdditionalInformation;
 }

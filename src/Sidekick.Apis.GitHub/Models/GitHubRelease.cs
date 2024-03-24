@@ -1,9 +1,8 @@
-namespace Sidekick.Apis.GitHub.Models
-{
-    public record GitHubRelease
-    {
-        public bool IsNewerVersion { get; set; }
+namespace Sidekick.Apis.GitHub.Models;
 
-        public bool IsExecutable { get; set; }
-    }
+public record GitHubRelease
+{
+    public bool IsNewerVersion { get; init; }
+
+    public bool IsExecutable { get; init; }
 }

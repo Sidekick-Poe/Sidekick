@@ -37,16 +37,16 @@ jobs:
         with:
           name: GITHUB_TOKEN
           value: ${{ github.token }}
-          
+
       - name: Copy files
         shell: pwsh
         run: |
           Copy-Item -Path "src/Sidekick.Common.Blazor/wwwroot/*" -Destination "src/Sidekick.Wpf/wwwroot" -Recurse
 
-      - name: .NET 7 - Setup
+      - name: .NET - Setup
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 7.x
+          dotnet-version: 8.x
 
       - name: .NET - Restore
         run: dotnet restore
@@ -67,7 +67,7 @@ jobs:
         uses: webfactory/ssh-agent@v0.7.0
         with:
           ssh-private-key: ${{ secrets.DEPLOY_RELEASE_KEY }}
-          
+
       - name: Run release script
         shell: pwsh
         run: |

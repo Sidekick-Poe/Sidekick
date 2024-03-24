@@ -31,9 +31,9 @@ namespace Sidekick.Wpf
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
-        public static ServiceProvider ServiceProvider { get; set; } = null!;
+        public static ServiceProvider ServiceProvider { get; private set; } = null!;
 
         private readonly ILogger<App> logger;
         private readonly ISettingsService settingsService;
@@ -42,6 +42,10 @@ namespace Sidekick.Wpf
 
         public App()
         {
+#if !DEBUG
+            DeleteStaticAssets();
+#endif
+
             var configurationManager = new ConfigurationManager();
             configurationManager.AddJsonFile(SidekickPaths.GetDataFilePath(SettingsService.FileName), true, true);
 
@@ -149,36 +153,40 @@ namespace Sidekick.Wpf
 
         protected override void OnExit(ExitEventArgs e)
         {
+            // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
             ServiceProvider?.Dispose();
             base.OnExit(e);
         }
 
         private void AttachErrorHandlers()
         {
-            AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+            AppDomain.CurrentDomain.UnhandledException += (_, e) =>
             {
                 var exception = (Exception)e.ExceptionObject;
                 HandleException(exception);
             };
 
-            DispatcherUnhandledException += (s, e) =>
+            DispatcherUnhandledException += (_, e) =>
             {
                 HandleException(e.Exception);
                 e.Handled = true;
             };
 
-            TaskScheduler.UnobservedTaskException += (s, e) =>
+            TaskScheduler.UnobservedTaskException += (_, e) =>
             {
                 HandleException(e.Exception);
                 e.SetObserved();
             };
         }
 
+        // ReSharper disable once UnusedMember.Local
         private void DeleteStaticAssets()
         {
             try
             {
-                var directory = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly()?.Location);
+                var directory = Path.GetDirectoryName(
+                    System.Reflection.Assembly.GetEntryAssembly()
+                          ?.Location);
                 if (directory == null)
                 {
                     return;
@@ -190,18 +198,23 @@ namespace Sidekick.Wpf
                     File.Delete(path);
                 }
             }
-            catch (Exception) {}
+            catch
+            {
+                // If we fail to delete static assets, the app should not be stopped from running.
+            }
         }
 
         private void HandleException(Exception ex)
         {
             logger.LogCritical(ex, "Unhandled exception.");
 
-            if (ex is SidekickException sidekickException)
+            if (ex is not SidekickException sidekickException)
             {
-                var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
-                viewLocator.Open(sidekickException.ToUrl());
+                sidekickException = new SidekickException("An unknown error occured. Details may be found in the Sidekick logs.");
             }
+
+            var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
+            viewLocator.Open(sidekickException.ToUrl());
         }
     }
 }

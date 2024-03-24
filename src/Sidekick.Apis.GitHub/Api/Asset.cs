@@ -1,14 +1,11 @@
 using System.Text.Json.Serialization;
 
-namespace Sidekick.Apis.GitHub.Api
+namespace Sidekick.Apis.GitHub.Api;
+
+internal record Asset
 {
-    internal record Asset
-    {
-        public string? Url { get; init; }
+    public string? Name { get; init; }
 
-        public string? Name { get; init; }
-
-        [JsonPropertyName("browser_download_url")]
-        public string? DownloadUrl { get; init; }
-    }
+    [JsonPropertyName("browser_download_url")]
+    public string? DownloadUrl { get; init; }
 }

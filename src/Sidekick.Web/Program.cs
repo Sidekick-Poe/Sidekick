@@ -17,6 +17,7 @@ using Sidekick.Modules.Maps;
 using Sidekick.Modules.Settings;
 using Sidekick.Modules.Trade;
 using Sidekick.Modules.Wealth;
+using Sidekick.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -87,6 +88,8 @@ var app = builder.Build();
 #region Pipeline
 
 app.Services.GetRequiredService<IInterprocessService>().StartReceiving();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseStaticFiles();
 app.UseRouting();
