@@ -1,9 +1,8 @@
-namespace Sidekick.Common.Game.Items
-{
-    public class Socket
-    {
-        public int Group { get; set; }
+namespace Sidekick.Common.Game.Items;
 
-        public SocketColour Colour { get; set; }
-    }
+public class Socket
+{
+    public int Group { get; init; }
+
+    public SocketColour Colour { get; init; }
 }

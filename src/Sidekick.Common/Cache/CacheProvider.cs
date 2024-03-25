@@ -6,15 +6,9 @@ namespace Sidekick.Common.Cache;
 /// <summary>
 ///     Implementation for the cache provider.
 /// </summary>
-public class CacheProvider : ICacheProvider
+public class CacheProvider(ILogger<CacheProvider> logger) : ICacheProvider
 {
     private const string CachePath = "SidekickCache";
-    private readonly ILogger<CacheProvider> logger;
-
-    public CacheProvider(ILogger<CacheProvider> logger)
-    {
-        this.logger = logger;
-    }
 
     /// <inheritdoc />
     public async Task<TModel?> Get<TModel>(string key)

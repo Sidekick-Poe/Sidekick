@@ -3,15 +3,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Sidekick.Common.Browser;
 
-public class BrowserProvider : IBrowserProvider
+public class BrowserProvider(ILogger<BrowserProvider> logger) : IBrowserProvider
 {
-    private readonly ILogger<BrowserProvider> logger;
-
-    public BrowserProvider(ILogger<BrowserProvider> logger)
-    {
-        this.logger = logger;
-    }
-
     public void OpenUri(Uri uri)
     {
         logger.LogInformation("[Browser] Opening: {uri}", uri.AbsoluteUri);

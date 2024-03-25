@@ -1,17 +1,16 @@
 using Sidekick.Common.Initialization;
 
-namespace Sidekick.Common.Game.Languages
+namespace Sidekick.Common.Game.Languages;
+
+public interface IGameLanguageProvider : IInitializableService
 {
-    public interface IGameLanguageProvider : IInitializableService
-    {
-        IGameLanguage? Language { get; }
+    IGameLanguage? Language { get; }
 
-        void SetLanguage(string languageCode);
+    void SetLanguage(string languageCode);
 
-        List<GameLanguageAttribute> GetList();
+    List<GameLanguageAttribute> GetList();
 
-        IGameLanguage? Get(string code);
+    IGameLanguage? Get(string code);
 
-        bool IsEnglish();
-    }
+    bool IsEnglish();
 }

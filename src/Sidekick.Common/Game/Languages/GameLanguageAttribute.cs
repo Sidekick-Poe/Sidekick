@@ -1,17 +1,12 @@
-namespace Sidekick.Common.Game.Languages
+namespace Sidekick.Common.Game.Languages;
+
+public class GameLanguageAttribute(
+    string name,
+    string languageCode) : Attribute
 {
-    public class GameLanguageAttribute : Attribute
-    {
-        public GameLanguageAttribute(string name, string languageCode)
-        {
-            Name = name;
-            LanguageCode = languageCode;
-        }
+    public string Name { get; private set; } = name;
 
-        public string Name { get; private set; }
+    public string LanguageCode { get; private set; } = languageCode;
 
-        public string LanguageCode { get; private set; }
-
-        public Type? ImplementationType { get; set; }
-    }
+    public Type? ImplementationType { get; set; }
 }

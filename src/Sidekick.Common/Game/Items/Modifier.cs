@@ -1,22 +1,19 @@
-namespace Sidekick.Common.Game.Items
+namespace Sidekick.Common.Game.Items;
+
+public class Modifier(string text)
 {
-    public class Modifier
+    public string? Id { get; init; }
+
+    public string? Tier { get; init; }
+
+    public string? TierName { get; set; }
+
+    public ModifierCategory Category { get; init; }
+
+    public string Text { get; set; } = text;
+
+    public override string ToString()
     {
-        public Modifier(string text)
-        {
-            Text = text;
-        }
-
-        public string? Id { get; set; }
-
-        public string? Tier { get; set; }
-
-        public string? TierName { get; set; }
-
-        public ModifierCategory Category { get; set; }
-
-        public string Text { get; set; }
-
-        public override string ToString() => $"[{Id}] {Text}";
+        return $"[{Id}] {Text}";
     }
 }

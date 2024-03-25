@@ -1,11 +1,10 @@
-namespace Sidekick.Common.Game.Items
+namespace Sidekick.Common.Game.Items;
+
+public enum SocketColour
 {
-    public enum SocketColour
-    {
-        Blue,
-        Green,
-        Red,
-        White,
-        Abyss
-    }
+    Blue,
+    Green,
+    Red,
+    White,
+    Abyss,
 }

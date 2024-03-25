@@ -1,13 +1,12 @@
-namespace Sidekick.Common.Platform
+namespace Sidekick.Common.Platform;
+
+/// <summary>
+///     Interface containing platform specific methods.
+/// </summary>
+public interface IApplicationService
 {
     /// <summary>
-    /// Interface containing platform specific methods.
+    ///     Shutdown the application.
     /// </summary>
-    public interface IApplicationService
-    {
-        /// <summary>
-        /// Shutdown the application.
-        /// </summary>
-        void Shutdown();
-    }
+    void Shutdown();
 }

@@ -8,19 +8,10 @@ using Sidekick.Apis.GitHub.Models;
 
 namespace Sidekick.Apis.GitHub;
 
-public class GitHubClient : IGitHubClient
+public class GitHubClient(
+    IHttpClientFactory httpClientFactory,
+    ILogger<GitHubClient> logger) : IGitHubClient
 {
-    private readonly IHttpClientFactory httpClientFactory;
-    private readonly ILogger<GitHubClient> logger;
-
-    public GitHubClient(
-        IHttpClientFactory httpClientFactory,
-        ILogger<GitHubClient> logger)
-    {
-        this.httpClientFactory = httpClientFactory;
-        this.logger = logger;
-    }
-
     private GitHubRelease? LatestRelease { get; set; }
 
     /// <inheritdoc />

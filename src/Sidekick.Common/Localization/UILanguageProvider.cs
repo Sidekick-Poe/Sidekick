@@ -2,55 +2,57 @@ using System.Globalization;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 
-namespace Sidekick.Common.Localization
+namespace Sidekick.Common.Localization;
+
+/// <summary>
+///     Implementation of the ui language provider.
+/// </summary>
+public class UILanguageProvider(ISettings settings) : IUILanguageProvider
 {
-    /// <summary>
-    /// Implementation of the ui language provider.
-    /// </summary>
-    public class UILanguageProvider : IUILanguageProvider
+    private static readonly string[] supportedLanguages =
     {
-        private static readonly string[] SupportedLanguages = new[] { "en", "fr", "de", "zh-tw" };
-        private readonly ISettings settings;
+        "en",
+        "fr",
+        "de",
+        "zh-tw",
+    };
 
-        public UILanguageProvider(ISettings settings)
+    /// <inheritdoc />
+    public InitializationPriority Priority => InitializationPriority.Critical;
+
+    /// <inheritdoc />
+    public Task Initialize()
+    {
+        Set(settings.Language_UI);
+        return Task.CompletedTask;
+    }
+
+    /// <inheritdoc />
+    public List<CultureInfo> GetList()
+    {
+        var languages = supportedLanguages
+                        .Select(CultureInfo.GetCultureInfo)
+                        .ToList();
+        return languages;
+    }
+
+    /// <inheritdoc />
+    public void Set(string name)
+    {
+        var languages = GetList();
+        var language = name;
+        if (languages.All(x => x.Name != language))
         {
-            this.settings = settings;
+            language = languages.FirstOrDefault()
+                                ?.Name;
         }
 
-        /// <inheritdoc/>
-        public InitializationPriority Priority => InitializationPriority.Critical;
-
-        /// <inheritdoc/>
-        public Task Initialize()
+        if (string.IsNullOrEmpty(language))
         {
-            Set(settings.Language_UI);
-            return Task.CompletedTask;
+            return;
         }
 
-        /// <inheritdoc/>
-        public List<CultureInfo> GetList()
-        {
-            var languages = SupportedLanguages
-                .Select(x => CultureInfo.GetCultureInfo(x))
-                .ToList();
-            return languages;
-        }
-
-        /// <inheritdoc/>
-        public void Set(string name)
-        {
-            var languages = GetList();
-            string? language = name;
-            if (!languages.Any(x => x.Name == language))
-            {
-                language = languages.FirstOrDefault()?.Name;
-            }
-
-            if (!string.IsNullOrEmpty(language))
-            {
-                CultureInfo.DefaultThreadCurrentCulture = CultureInfo.GetCultureInfo(language);
-                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo(language);
-            }
-        }
+        CultureInfo.DefaultThreadCurrentCulture = CultureInfo.GetCultureInfo(language);
+        CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo(language);
     }
 }

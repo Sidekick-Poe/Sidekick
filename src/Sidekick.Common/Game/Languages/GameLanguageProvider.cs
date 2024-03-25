@@ -3,84 +3,76 @@ using Sidekick.Common.Extensions;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 
-namespace Sidekick.Common.Game.Languages
+namespace Sidekick.Common.Game.Languages;
+
+public class GameLanguageProvider(
+    ILogger<GameLanguageProvider> logger,
+    ISettings settings) : IGameLanguageProvider
 {
-    public class GameLanguageProvider : IGameLanguageProvider
+    private const string EnglishLanguageCode = "en";
+
+    public IGameLanguage? Language { get; private set; }
+
+    /// <inheritdoc />
+    public InitializationPriority Priority => InitializationPriority.Critical;
+
+    /// <inheritdoc />
+    public Task Initialize()
     {
-        private const string EnglishLanguageCode = "en";
-        private readonly ILogger<GameLanguageProvider> logger;
-        private readonly ISettings settings;
+        SetLanguage(settings.Language_Parser);
+        return Task.CompletedTask;
+    }
 
-        public GameLanguageProvider(
-            ILogger<GameLanguageProvider> logger,
-            ISettings settings)
+    public void SetLanguage(string languageCode)
+    {
+        var availableLanguages = GetList();
+        var language = availableLanguages.Find(x => x.LanguageCode == languageCode);
+
+        if (language == null || language.ImplementationType == null)
         {
-            this.logger = logger;
-            this.settings = settings;
+            logger.LogWarning("[GameLanguage] Couldn't find language matching {language}. Setting language to English.", languageCode);
+            SetLanguage(EnglishLanguageCode);
+            return;
         }
 
-        public IGameLanguage? Language { get; private set; }
+        Language = (IGameLanguage?)Activator.CreateInstance(language.ImplementationType);
+    }
 
-        /// <inheritdoc/>
-        public InitializationPriority Priority => InitializationPriority.Critical;
+    public List<GameLanguageAttribute> GetList()
+    {
+        var result = new List<GameLanguageAttribute>();
 
-        /// <inheritdoc/>
-        public Task Initialize()
+        foreach (var type in typeof(GameLanguageAttribute).GetTypesImplementingAttribute())
         {
-            SetLanguage(settings.Language_Parser);
-            return Task.CompletedTask;
-        }
-
-        public void SetLanguage(string languageCode)
-        {
-            var availableLanguages = GetList();
-            var language = availableLanguages.Find(x => x.LanguageCode == languageCode);
-
-            if (language == null || language.ImplementationType == null)
+            var attribute = type.GetAttribute<GameLanguageAttribute>();
+            if (attribute == null)
             {
-                logger.LogWarning("[GameLanguage] Couldn't find language matching {language}. Setting language to English.", languageCode);
-                SetLanguage(EnglishLanguageCode);
-                return;
+                continue;
             }
 
-            Language = (IGameLanguage?)Activator.CreateInstance(language.ImplementationType);
+            attribute.ImplementationType = type;
+            result.Add(attribute);
         }
 
-        public List<GameLanguageAttribute> GetList()
+        return result;
+    }
+
+    public IGameLanguage? Get(string code)
+    {
+        var languages = GetList();
+
+        var implementationType = languages.FirstOrDefault(x => x.LanguageCode == code)
+                                          ?.ImplementationType;
+        if (implementationType != default)
         {
-            var result = new List<GameLanguageAttribute>();
-
-            foreach (var type in typeof(GameLanguageAttribute).GetTypesImplementingAttribute())
-            {
-                var attribute = type.GetAttribute<GameLanguageAttribute>();
-                if (attribute == null)
-                {
-                    continue;
-                }
-
-                attribute.ImplementationType = type;
-                result.Add(attribute);
-            }
-
-            return result;
+            return (IGameLanguage?)Activator.CreateInstance(implementationType);
         }
 
-        public IGameLanguage? Get(string code)
-        {
-            var languages = GetList();
+        return null;
+    }
 
-            var implementationType = languages.FirstOrDefault(x => x.LanguageCode == code)?.ImplementationType;
-            if (implementationType != default)
-            {
-                return (IGameLanguage?)Activator.CreateInstance(implementationType);
-            }
-
-            return null;
-        }
-
-        public bool IsEnglish()
-        {
-            return Language?.LanguageCode == EnglishLanguageCode;
-        }
+    public bool IsEnglish()
+    {
+        return Language?.LanguageCode == EnglishLanguageCode;
     }
 }

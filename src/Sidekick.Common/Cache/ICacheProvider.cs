@@ -8,9 +8,8 @@ public interface ICacheProvider
     /// <summary>
     ///     Gets the value of the cache if it is set. Otherwise returns null.
     /// </summary>
-    /// <typeparam name="TModel">THe type of the data</typeparam>
+    /// <typeparam name="TModel">The type of the data</typeparam>
     /// <param name="key">The key under which to save the cache</param>
-    /// <param name="func">The func to initialize the data, in the event that the data is not in the cache</param>
     /// <returns>Returns the cache data</returns>
     Task<TModel?> Get<TModel>(string key)
         where TModel : class;

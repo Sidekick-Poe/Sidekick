@@ -35,6 +35,5 @@ public class SidekickException : Exception
 
         var escapedAdditionalInformation = AdditionalInformation.EncodeBase64Url();
         return $"/error/{Message.EncodeBase64Url()}/{escapedAdditionalInformation}";
-
     }
 }

@@ -1,23 +1,17 @@
-namespace Sidekick.Common
+namespace Sidekick.Common;
+
+public static class SidekickPaths
 {
-    public static class SidekickPaths
+    public static string GetDataFilePath(string path = "")
     {
-        public static string GetDataFilePath(string path = "")
+        var environmentFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        var sidekickFolder = Path.Combine(environmentFolder, "sidekick");
+
+        if (!Directory.Exists(sidekickFolder))
         {
-            var environmentFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            var sidekickFolder = Path.Combine(environmentFolder, "sidekick");
-
-            if (!Directory.Exists(sidekickFolder))
-            {
-                Directory.CreateDirectory(sidekickFolder);
-            }
-
-            if (!string.IsNullOrEmpty(path))
-            {
-                return Path.Combine(sidekickFolder, path);
-            }
-
-            return sidekickFolder;
+            Directory.CreateDirectory(sidekickFolder);
         }
+
+        return !string.IsNullOrEmpty(path) ? Path.Combine(sidekickFolder, path) : sidekickFolder;
     }
 }
