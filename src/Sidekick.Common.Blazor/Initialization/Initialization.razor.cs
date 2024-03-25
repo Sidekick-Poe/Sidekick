@@ -76,7 +76,7 @@ namespace Sidekick.Common.Blazor.Initialization
                     await Run(initializableService.Initialize);
                 }
 
-                await Run(() => InitializeTray());
+                await Run(InitializeTray);
 
                 // If we have a successful initialization, we delay for half a second to show the
                 // "Ready" label on the UI before closing the view
