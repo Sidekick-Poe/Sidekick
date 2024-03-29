@@ -42,7 +42,6 @@ namespace Sidekick.Apis.Poe.Trade
 
         public async Task<TradeSearchResult<string>> Search(Item item, TradeCurrency currency, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null, List<PseudoModifierFilter>? pseudoFilters = null)
         {
-            throw new ApiErrorException("[Trade API] Could not find a valid language.");
             try
             {
                 logger.LogInformation("[Trade API] Querying Trade API.");
