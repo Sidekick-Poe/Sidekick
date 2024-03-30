@@ -56,7 +56,6 @@ namespace Sidekick.Common.Game.Items
             Category.HeistEquipment => true,
             Category.Contract => true,
             Category.Logbook => true,
-            Category.Sentinel => true,
             Category.Affliction => true,
             _ => ModifierLines?.Any() ?? false,
         };

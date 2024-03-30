@@ -93,6 +93,11 @@ namespace Sidekick.Apis.Poe.Parser
                 name = parsingBlock.Lines[2].Text;
                 type = parsingBlock.Lines[2].Text;
             }
+            else if (parsingBlock.Lines.Count == 2)
+            {
+                name = parsingBlock.Lines[1].Text;
+                type = parsingBlock.Lines[0].Text;
+            }
 
             // Rares may have conflicting names, so we don't want to search any unique items that may have that name. Like "Ancient Orb" which can be used by abyss jewels.
             if (itemRarity == Rarity.Rare || itemRarity == Rarity.Magic)
@@ -186,7 +191,7 @@ namespace Sidekick.Apis.Poe.Parser
                 }
             }
 
-            throw new NotSupportedException("Item rarity is unknown.");
+            return Rarity.Unknown;
         }
     }
 }

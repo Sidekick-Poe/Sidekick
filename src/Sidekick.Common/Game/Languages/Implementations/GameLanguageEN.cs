@@ -112,6 +112,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
             AfflictionTinctures = "Tinctures",
             AfflictionCorpses = "Corpses",
             SanctumResearch = "Sanctum Research",
+            EmbersOfTheAllflame = "Embers of the Allflame",
         };
     }
 }
