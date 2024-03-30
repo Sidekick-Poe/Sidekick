@@ -85,5 +85,9 @@ namespace Sidekick.Common.Game.Items
         AfflictionCharms = 901,
         AfflictionTinctures = 902,
         AfflictionCorpses = 903,
+
+        // Necropolis
+
+        EmbersOfTheAllflame = 1001,
     }
 }

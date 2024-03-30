@@ -57,5 +57,6 @@ namespace Sidekick.Common.Game.Languages
         public string AfflictionCharms { get; init; } = "";
         public string AfflictionTinctures { get; init; } = "";
         public string AfflictionCorpses { get; init; } = "";
+        public string EmbersOfTheAllflame { get; init; } = "";
     }
 }
