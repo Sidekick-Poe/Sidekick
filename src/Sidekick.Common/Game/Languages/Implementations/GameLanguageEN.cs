@@ -152,5 +152,6 @@ public class GameLanguageEN : IGameLanguage
         AfflictionTinctures = "Tinctures",
         AfflictionCorpses = "Corpses",
         SanctumResearch = "Sanctum Research",
+        EmbersOfTheAllflame = "Embers of the Allflame",
     };
 }

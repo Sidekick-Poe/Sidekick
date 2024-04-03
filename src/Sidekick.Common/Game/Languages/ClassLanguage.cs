@@ -111,4 +111,6 @@ public class ClassLanguage
     public string AfflictionTinctures { get; init; } = "";
 
     public string AfflictionCorpses { get; init; } = "";
+
+    public string EmbersOfTheAllflame { get; init; } = "";
 }

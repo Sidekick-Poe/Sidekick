@@ -18,7 +18,7 @@ public enum Category
     Contract = 13,
     Logbook = 14,
     Sanctum = 15,
-    Sentinel = 16,
-    MemoryLine = 17,
-    Affliction = 18,
+    MemoryLine = 16,
+    Affliction = 17,
+    EmbersOfTheAllflame = 18,
 }

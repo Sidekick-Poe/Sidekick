@@ -81,8 +81,11 @@ public enum Class
     SanctumResearch = 801,
 
     // Affliction
-
     AfflictionCharms = 901,
     AfflictionTinctures = 902,
     AfflictionCorpses = 903,
+
+    // Necropolis
+
+    EmbersOfTheAllflame = 1001,
 }
