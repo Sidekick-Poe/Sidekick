@@ -40,6 +40,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionMonsterPackSize => "Размер групп монстров";
         public string DescriptionRequirements => "Требования";
         public string DescriptionAreaLevel => "Уровень области";
+        public string DescriptionCorpseLevel => "Заполненный гроб";
 
         public string AffixSuperior => "высокого качества";
         public string AffixBlighted => "Заражённая";

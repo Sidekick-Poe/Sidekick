@@ -40,6 +40,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionMonsterPackSize => "ขนาดกองมอนสเตอร์";
         public string DescriptionRequirements => "เงื่อนไข";
         public string DescriptionAreaLevel => "ด่านเลเวล";
+        public string DescriptionCorpseLevel => "โลงบรรจุศพ";
 
         public string AffixSuperior => "Superior";
         public string AffixBlighted => "Blighted";

@@ -57,9 +57,8 @@ namespace Sidekick.Apis.Poe.Trade
 
         public PropertyFilters GetPropertyFilters(Item item)
         {
-            // No filters for currencies and divination cards, etc.
+            // No filters for divination cards, etc.
             if (item.Metadata.Category == Category.DivinationCard
-                || item.Metadata.Category == Category.Currency
                 || item.Metadata.Category == Category.ItemisedMonster
                 || item.Metadata.Category == Category.Leaguestone
                 || item.Metadata.Category == Category.Unknown)
@@ -181,11 +180,15 @@ namespace Sidekick.Apis.Poe.Trade
                 enabled: item.Properties.ItemLevel >= 80 && item.Properties.MapTier == 0 && item.Metadata.Rarity != Rarity.Unique,
                 min: item.Properties.ItemLevel >= 80 ? item.Properties.ItemLevel : null);
             // Corrupted
-            InitializePropertyFilter(result.Misc,
-                PropertyFilterType.Misc_Corrupted,
-                gameLanguageProvider.Language?.DescriptionCorrupted,
-                true,
-                enabled: item.Properties.Corrupted ? true : null);
+            if (item.Metadata.Category != Category.Currency)
+            {
+                InitializePropertyFilter(result.Misc,
+                    PropertyFilterType.Misc_Corrupted,
+                    gameLanguageProvider.Language?.DescriptionCorrupted,
+                    true,
+                    enabled: item.Properties.Corrupted ? true : null);
+            }
+
             // Crusader
             InitializePropertyFilter(result.Misc,
                 PropertyFilterType.Misc_Influence_Crusader,

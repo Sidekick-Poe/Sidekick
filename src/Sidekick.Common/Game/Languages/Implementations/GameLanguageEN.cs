@@ -40,6 +40,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionMonsterPackSize => "Monster Pack Size";
         public string DescriptionRequirements => "Requirements";
         public string DescriptionAreaLevel => "Area Level";
+        public string DescriptionCorpseLevel => "Corpse Level";
 
         public string AffixSuperior => "Superior";
         public string AffixBlighted => "Blighted";

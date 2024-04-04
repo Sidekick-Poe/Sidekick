@@ -7,7 +7,10 @@ namespace Sidekick.Apis.Poe.Trade.Models
         public ModifierFilter(ModifierLine line)
         {
             Line = line;
-            Enabled = line.Modifiers.FirstOrDefault()?.Category == ModifierCategory.Fractured;
+
+            var firstCategory = line.Modifiers.FirstOrDefault()?.Category;
+            Enabled = firstCategory == ModifierCategory.Fractured || firstCategory == ModifierCategory.Necropolis;
+
             NormalizeMinValue();
 
             if (HasMoreThanOneCategory && FirstCategory == ModifierCategory.Fractured)

@@ -593,7 +593,7 @@ namespace Sidekick.Apis.Poe.Trade
             item.ModifierLines.AddRange(ParseModifierLines(
                 result.Item?.ImplicitMods ?? result.Item?.LogbookMods.SelectMany(x => x.Mods).ToList(),
                 result.Item?.Extended?.Mods?.Implicit,
-                ParseHash(result.Item?.Extended?.Hashes?.Implicit)));
+                ParseHash(result.Item?.Extended?.Hashes?.Implicit, result.Item?.Extended?.Hashes?.Necropolis)));
 
             item.ModifierLines.AddRange(ParseModifierLines(
                 result.Item?.CraftedMods,
@@ -729,7 +729,7 @@ namespace Sidekick.Apis.Poe.Trade
 
         private IEnumerable<ModifierLine> ParseModifierLines(List<string>? texts, List<Mod>? mods, List<LineContentValue>? hashes)
         {
-            if (texts == null || mods == null || hashes == null)
+            if (texts == null || hashes == null)
             {
                 yield break;
             }
@@ -743,7 +743,7 @@ namespace Sidekick.Apis.Poe.Trade
                 }
 
                 var text = texts.FirstOrDefault(x => modifierProvider.IsMatch(id, x)) ?? texts[index];
-                var mod = mods.FirstOrDefault(x => x.Magnitudes != null && x.Magnitudes.Any(y => y.Hash == id));
+                var mod = mods?.FirstOrDefault(x => x.Magnitudes != null && x.Magnitudes.Any(y => y.Hash == id));
 
                 yield return new ModifierLine(text: text)
                 {

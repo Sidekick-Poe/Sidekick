@@ -28,5 +28,7 @@ namespace Sidekick.Apis.Poe.Trade.Results
 
         [JsonPropertyName("monster")]
         public List<List<JsonElement>> Monster { get; set; } = new();
+        [JsonPropertyName("necropolis")]
+        public List<List<JsonElement>> Necropolis { get; set; } = new();
     }
 }

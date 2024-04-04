@@ -139,6 +139,7 @@ namespace Sidekick.Apis.Poe.Modifiers
                 "scourge" => ModifierCategory.Scourge,
                 "veiled" => ModifierCategory.Veiled,
                 "crucible" => ModifierCategory.Crucible,
+                "necropolis" => ModifierCategory.Necropolis,
                 _ => ModifierCategory.Undefined,
             };
         }
@@ -181,6 +182,7 @@ namespace Sidekick.Apis.Poe.Modifiers
                 ModifierCategory.Scourge => "(?:\\ \\(scourge\\))",
                 ModifierCategory.Crucible => "(?:\\ \\(crucible\\))",
                 ModifierCategory.Explicit => "(?:\\ \\((?:crafted|fractured)\\))?",
+                ModifierCategory.Necropolis => "(?:\\ \\((necropolis)\\))?",
                 _ => "",
             };
 

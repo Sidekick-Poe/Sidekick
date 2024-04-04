@@ -42,6 +42,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionMonsterPackSize => "怪物群大小";
         public string DescriptionRequirements => "__TranslationRequired__:";
         public string DescriptionAreaLevel => "__TranslationRequired__:";
+        public string DescriptionCorpseLevel => "";
 
         public string AffixSuperior => "精良的";
         public string AffixBlighted => "凋落的";

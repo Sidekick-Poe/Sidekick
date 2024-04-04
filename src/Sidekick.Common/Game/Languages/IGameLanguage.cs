@@ -25,6 +25,7 @@ namespace Sidekick.Common.Game.Languages
         string DescriptionItemLevel { get; }
         string DescriptionMapTier { get; }
         string DescriptionAreaLevel { get; }
+        string DescriptionCorpseLevel { get; }
         string DescriptionItemQuantity { get; }
         string DescriptionItemRarity { get; }
         string DescriptionMonsterPackSize { get; }

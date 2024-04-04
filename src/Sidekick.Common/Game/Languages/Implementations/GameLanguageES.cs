@@ -40,6 +40,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionMonsterPackSize => "Tamaño de los grupos de monstruos";
         public string DescriptionRequirements => "Requisitos";
         public string DescriptionAreaLevel => "Nivel del área";
+        public string DescriptionCorpseLevel => "Ataúd ocupado";
 
         public string AffixSuperior => "Superior";
         public string AffixBlighted => "infestado";
