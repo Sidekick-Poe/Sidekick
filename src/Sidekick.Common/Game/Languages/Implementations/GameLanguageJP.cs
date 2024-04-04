@@ -40,6 +40,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionMonsterPackSize => "モンスターパックサイズ";
         public string DescriptionRequirements => "装備要求";
         public string DescriptionAreaLevel => "エリアレベル";
+        public string DescriptionCorpseLevel => "満たされた棺";
 
         public string AffixSuperior => "上質な";
         public string AffixBlighted => "ブライト";

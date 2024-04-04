@@ -39,6 +39,7 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         Regex Anomalous { get; }
         Regex Divergent { get; }
         Regex Phantasmal { get; }
+        Regex CorpseLevel { get; }
 
         Dictionary<Class, Regex> Classes { get; }
     }

@@ -14,5 +14,6 @@ namespace Sidekick.Common.Game.Items
         Scourge = 9,
         Veiled = 10,
         Crucible = 11,
+        Necropolis = 12,
     }
 }

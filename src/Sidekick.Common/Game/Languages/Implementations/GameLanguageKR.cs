@@ -40,6 +40,7 @@ namespace Sidekick.Common.Game.Languages.Implementations
         public string DescriptionMonsterPackSize => "몬스터 무리 규모";
         public string DescriptionRequirements => "요구사항";
         public string DescriptionAreaLevel => "지역 레벨";
+        public string DescriptionCorpseLevel => "채워진 관";
 
         public string AffixSuperior => "상";
         public string AffixBlighted => "역병";
