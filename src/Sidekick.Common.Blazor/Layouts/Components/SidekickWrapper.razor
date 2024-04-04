@@ -1,6 +1,6 @@
 @using Sidekick.Common.Blazor.Errors;
 
-<LoggingErrorBoundary>
+<SidekickErrorBoundary>
     <ChildContent>
         <CascadingValue Value="this" IsFixed="true">
             <CascadingValue Value="View">
@@ -16,21 +16,33 @@
         <div class="blazor-error">
             <div class="content">
                 <div>
-                    An error has occurred. This application may no longer respond until reloaded.<br />
-                    If this issue keeps reoccurring, please open a ticket on our github page.
+                    @if (!string.IsNullOrEmpty(context.Message))
+                    {
+                        @context.Message
+                        @if (!string.IsNullOrEmpty(context.AdditionalInformation))
+                        {
+                            <div class="mt-3">
+                                Additional Information: <b>@context.AdditionalInformation</b>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        @:An error has occurred. This application may no longer respond until reloaded.<br/> If this issue keeps reoccurring, please open a ticket on our github page.
+                    }
                 </div>
 
                 <div class="d-flex align-center justify-center">
-                    <a href="javascript:;" class="reload" @onclick="Reload">Reload</a>
+                    <a href="javascript:" class="reload" @onclick="Reload">Reload</a>
                     @if (View != null)
                     {
-                        <a href="javascript:;" class="button" @onclick="Close">Close</a>
+                        <a href="javascript:" class="button" @onclick="Close">Close</a>
                     }
                 </div>
             </div>
         </div>
     </ErrorContent>
-</LoggingErrorBoundary>
+</SidekickErrorBoundary>
 
 @inject NavigationManager NavigationManager;
 @code {

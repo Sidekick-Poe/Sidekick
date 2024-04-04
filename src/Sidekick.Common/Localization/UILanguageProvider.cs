@@ -10,12 +10,12 @@ namespace Sidekick.Common.Localization;
 public class UILanguageProvider(ISettings settings) : IUILanguageProvider
 {
     private static readonly string[] supportedLanguages =
-    {
+    [
         "en",
         "fr",
         "de",
         "zh-tw",
-    };
+    ];
 
     /// <inheritdoc />
     public InitializationPriority Priority => InitializationPriority.Critical;

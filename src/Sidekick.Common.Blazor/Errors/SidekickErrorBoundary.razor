@@ -6,7 +6,12 @@
         @ChildContent
     </ChildContent>
     <ErrorContent>
-        @if (ShowError)
+        @context.GetType()
+        @if (ErrorContent != null)
+        {
+            @ErrorContent(this)
+        }
+        else if (ShowError)
         {
             <MudAlert Severity="Severity.Error" Variant="Variant.Filled">
                 @Message
@@ -26,7 +31,16 @@
     /// Gets or sets the content of the wrapper.
     /// </summary>
     [Parameter]
-    public RenderFragment ChildContent { get; set; } = null!;
+    public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// Gets or sets the content of the wrapper.
+    /// </summary>
+    [Parameter]
+    public RenderFragment<SidekickErrorBoundary>? ErrorContent { get; set; }
+
+    [Parameter]
+    public bool Root { get; set; }
 
     private LoggingErrorBoundary? Boundary { get; set; }
 
@@ -45,7 +59,7 @@
 
     private bool ShowError => Exception?.GetType() != typeof(SilentException);
 
-    private string Message => Exception?.Message ?? "An error has occurred. This application may no longer respond until reloaded.\nIf this issue keeps reoccurring, please open a ticket on our github page.";
+    public string Message => Exception?.Message ?? "An error has occurred. This application may no longer respond until reloaded.\nIf this issue keeps reoccurring, please open a ticket on our github page.";
 
-    private string? AdditionalInformation => Exception?.AdditionalInformation;
+    public string? AdditionalInformation => Exception?.AdditionalInformation;
 }

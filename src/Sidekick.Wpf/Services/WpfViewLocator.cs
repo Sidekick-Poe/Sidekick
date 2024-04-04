@@ -3,27 +3,16 @@ using System.Windows;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Cache;
-using Sidekick.Common.Settings;
 using Sidekick.Wpf.Helpers;
 
 namespace Sidekick.Wpf.Services
 {
-    public class WpfViewLocator : IViewLocator
+    public class WpfViewLocator(
+        ICacheProvider cacheProvider,
+        ILogger<WpfViewLocator> logger) : IViewLocator
     {
-        internal readonly ICacheProvider cacheProvider;
-        internal readonly ISettings settings;
-        private readonly ILogger<WpfViewLocator> logger;
-
-        public WpfViewLocator(ICacheProvider cacheProvider,
-                              ISettings settings,
-                              ILogger<WpfViewLocator> logger)
-        {
-            this.cacheProvider = cacheProvider;
-            this.settings = settings;
-            this.logger = logger;
-        }
-
-        internal List<MainWindow> Windows { get; set; } = new();
+        internal readonly ICacheProvider cacheProvider = cacheProvider;
+        internal List<MainWindow> Windows { get; } = new();
 
         internal string? NextUrl { get; set; }
 
@@ -142,21 +131,24 @@ namespace Sidekick.Wpf.Services
         /// <inheritdoc/>
         public Task Close(SidekickView view)
         {
-            if (!TryGetWindow(view, out var window))
-            {
-                return Task.CompletedTask;
-            }
-
             Application.Current.Dispatcher.Invoke(() =>
             {
-                try {
+                try
+                {
+                    if (!TryGetWindow(view, out var window))
+                    {
+                        return;
+                    }
+
                     window.Close();
-                } catch(InvalidOperationException ex) {
-                    logger.LogWarning($"Error Closing {window.Name} Window - {ex.Message}");
+                    Windows.Remove(window);
                 }
-                
+                catch (InvalidOperationException ex)
+                {
+                    logger.LogWarning($"Error Closing Window - {ex.Message}");
+                }
             });
-            Windows.Remove(window);
+
             return Task.CompletedTask;
         }
 
@@ -208,13 +200,15 @@ namespace Sidekick.Wpf.Services
             });
 
             window = windowResult!;
-            if (window == null)
+
+            if (windowResult != null)
             {
-                logger.LogError("Unable to find view {viewUrl}", view.Url);
-                return false;
+                return true;
             }
 
-            return true;
+            logger.LogError("Unable to find view {viewUrl}", view.Url);
+            return false;
+
         }
     }
 }

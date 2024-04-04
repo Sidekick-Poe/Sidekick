@@ -18,15 +18,21 @@ namespace Sidekick.Common.Blazor.Errors
 
         public new Exception? CurrentException { get; private set; }
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        protected override async Task OnErrorAsync(Exception exception)
         {
-            if (CurrentException != null)
+            if (exception is AggregateException aggregateException)
             {
-                await JsRuntime.InvokeVoidAsync("console.error", CurrentException.ToString());
-                Logger.LogError(CurrentException, "An error occured while executing a component.");
+                CurrentException = aggregateException.InnerException;
+            }
+            else
+            {
+                CurrentException = exception;
             }
 
-            await base.OnAfterRenderAsync(firstRender);
+            await JsRuntime.InvokeVoidAsync("console.error", CurrentException.ToString());
+            Logger.LogError(CurrentException, "An error occured while executing a component.");
+
+            await base.OnErrorAsync(exception);
         }
     }
 }
