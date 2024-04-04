@@ -88,11 +88,11 @@ else if (Price != null)
                     YAxisLines = false,
                     ChartPalette = new string[] { "#ffffff" },
                 };
-
-            if (Price?.SparkLine?.Data?.All(x => x.HasValue) == true)
+            
+            if (Price?.SparkLine?.Data?.Any(x => x.HasValue) == true)
             {
                 // Normalize values above 0 since the chart doesn't show negative values in the viewbox.
-                var sparkLineData = Price.SparkLine.Data.Select(x => x.Value).ToArray();
+                var sparkLineData = Price.SparkLine.Data.Where(x => x.HasValue).Select(x => x.Value).ToArray();
                 var min = Math.Abs(sparkLineData.Min());
                 var chartData = sparkLineData.Select(x => x + min).ToArray();
 
