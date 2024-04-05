@@ -66,6 +66,9 @@ namespace Sidekick.Apis.Poe.Trade
                 return new();
             }
 
+            var canBeCorrupted = item.Metadata.Category != Category.Currency &&
+                                 item.Metadata.Category != Category.EmbersOfTheAllflame;
+
             var result = new PropertyFilters();
 
             // Armour
@@ -179,8 +182,9 @@ namespace Sidekick.Apis.Poe.Trade
                 item.Properties.ItemLevel,
                 enabled: item.Properties.ItemLevel >= 80 && item.Properties.MapTier == 0 && item.Metadata.Rarity != Rarity.Unique,
                 min: item.Properties.ItemLevel >= 80 ? item.Properties.ItemLevel : null);
+
             // Corrupted
-            if (item.Metadata.Category != Category.Currency)
+            if (canBeCorrupted)
             {
                 InitializePropertyFilter(result.Misc,
                     PropertyFilterType.Misc_Corrupted,

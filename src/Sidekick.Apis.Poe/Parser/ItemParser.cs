@@ -168,6 +168,7 @@ namespace Sidekick.Apis.Poe.Parser
                 Category.Sanctum => ParseSanctumProperties(parsingItem),
                 Category.Logbook => ParseLogbookProperties(parsingItem),
                 Category.Currency => ParseCurrencyProperties(parsingItem),
+                Category.EmbersOfTheAllflame => ParseEmbersOfTheAllflameProperties(parsingItem),
                 _ => new Properties(),
             };
         }
@@ -293,6 +294,7 @@ namespace Sidekick.Apis.Poe.Parser
         {
             return new Properties
             {
+                ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 AreaLevel = GetInt(patterns.AreaLevel, parsingItem),
             };
         }
@@ -302,6 +304,14 @@ namespace Sidekick.Apis.Poe.Parser
             return new Properties
             {
                 ItemLevel = GetInt(patterns.CorpseLevel, parsingItem),
+            };
+        }
+
+        private Properties ParseEmbersOfTheAllflameProperties(ParsingItem parsingItem)
+        {
+            return new Properties
+            {
+                ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
             };
         }
 
