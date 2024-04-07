@@ -76,9 +76,9 @@ else if (Price != null)
                     Item.Invariant.Name,
                     Item.Invariant.Type,
                     Item.Metadata.Category,
-                    gemLevel: Item.Properties.GemLevel,
-                    mapTier: Item.Properties.MapTier,
-                    numberOfLinks: Item.GetMaximumNumberOfLinks());
+                    Item.Properties,
+                    numberOfLinks: Item.GetMaximumNumberOfLinks(),
+                    firstModifierLine: Item.ModifierLines.FirstOrDefault()?.Text);
             }
 
             ChartOptions = new ChartOptions()

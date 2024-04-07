@@ -9,10 +9,9 @@ namespace Sidekick.Apis.PoeNinja
             string? englishName,
             string? englishType,
             Category category,
-            int? gemLevel = null,
-            int? mapTier = null,
-            bool? isRelic = false,
-            int? numberOfLinks = null);
+            Properties properties,
+            int? numberOfLinks = null,
+            string? firstModifierLine = null);
 
         Task<NinjaPrice?> GetClusterPrice(
             string englishGrantText,

@@ -45,8 +45,6 @@ namespace Sidekick.Apis.PoeNinja.Models
 
         public SparkLine? SparkLine { get; init; }
 
-        public bool IsRelic { get; init; }
-
         public int Links { get; init; }
 
         public int ItemLevel { get; init; }
