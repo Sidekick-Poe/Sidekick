@@ -75,8 +75,9 @@ namespace Sidekick.Apis.PoeNinja
             }
             else if (properties.Blighted || properties.BlightRavaged)
             {
+                var itemTypeToSearch = properties.Blighted ? ItemType.BlightedMap : ItemType.BlightRavagedMap;
                 var nameToSearch = englishName ?? englishType ?? string.Empty;
-                query = prices.Where(x => x.ItemType == ItemType.BlightedMap)
+                query = prices.Where(x => x.ItemType == itemTypeToSearch)
                               .Where(x => x.Name?.Contains(nameToSearch) == true);
             }
             else
