@@ -76,6 +76,12 @@ namespace Sidekick.Apis.PoeNinja.Api
         [EnumValue("artifacts")]
         Artifact,
 
+        [EnumValue("coffins")]
+        Coffin,
+
+        [EnumValue("unique-relics")]
+        UniqueRelic,
+
         // BaseType, // This is ~13mb of raw data, in memory it eats ~40mb.
         // HelmetEnchant,
     }

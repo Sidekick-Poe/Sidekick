@@ -287,6 +287,7 @@ namespace Sidekick.Apis.Poe.Parser
             return new Properties
             {
                 AreaLevel = GetInt(patterns.AreaLevel, parsingItem),
+                ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
             };
         }
 

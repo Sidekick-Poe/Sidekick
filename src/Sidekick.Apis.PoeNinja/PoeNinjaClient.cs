@@ -58,29 +58,40 @@ namespace Sidekick.Apis.PoeNinja
             string? englishName,
             string? englishType,
             Category category,
-            int? gemLevel = null,
-            int? mapTier = null,
-            bool? isRelic = false,
-            int? numberOfLinks = null)
+            Properties properties,
+            int? numberOfLinks = null,
+            string? firstModifierLine = null)
         {
             await ClearCacheIfExpired();
+
             var prices = await GetPrices(category);
 
-            var query = prices.Where(x => x.Name == englishName || x.Name == englishType);
+            IEnumerable<NinjaPrice> query;
 
-            if (category == Category.Gem && gemLevel != null)
+            // Currencies can have 1 modifier, the Name or BaseType will be the modifier.
+            if (category == Category.Currency && firstModifierLine != null)
             {
-                query = query.Where(x => x.GemLevel == gemLevel);
+                query = prices.Where(x => x.Name == firstModifierLine);
+            }
+            else if (properties.Blighted || properties.BlightRavaged)
+            {
+                var nameToSearch = englishName ?? englishType ?? string.Empty;
+                query = prices.Where(x => x.ItemType == ItemType.BlightedMap)
+                              .Where(x => x.Name?.Contains(nameToSearch) == true);
+            }
+            else
+            {
+                query = prices.Where(x => x.Name == englishName || x.Name == englishType);
             }
 
-            if (isRelic != null)
+            if (category == Category.Gem)
             {
-                query = query.Where(x => x.IsRelic == isRelic);
+                query = query.Where(x => x.GemLevel == properties.GemLevel);
             }
 
-            if (category == Category.Map && mapTier != null)
+            if (category == Category.Map)
             {
-                query = query.Where(x => x.MapTier == mapTier);
+                query = query.Where(x => x.MapTier == properties.MapTier);
             }
 
             if (numberOfLinks != null)
@@ -237,7 +248,6 @@ namespace Sidekick.Apis.PoeNinja
                             DetailsId = x.DetailsId,
                             ItemType = itemType,
                             SparkLine = x.SparkLine ?? x.LowConfidenceSparkLine,
-                            IsRelic = x.ItemClass == 9, // 3 for Unique, 9 for Relic Unique.
                             Links = x.Links,
                             BaseType = x.BaseType,
                             ItemLevel = x.ItemLevel,
@@ -326,6 +336,7 @@ namespace Sidekick.Apis.PoeNinja
                     yield return ItemType.Essence;
                     yield return ItemType.Resonator;
                     yield return ItemType.Artifact;
+                    yield return ItemType.Coffin;
                     yield break;
 
                 case Category.DivinationCard:
@@ -348,6 +359,10 @@ namespace Sidekick.Apis.PoeNinja
 
                 case Category.ItemisedMonster:
                     yield return ItemType.Beast;
+                    yield break;
+
+                case Category.Sanctum:
+                    yield return ItemType.UniqueRelic;
                     yield break;
             }
         }
