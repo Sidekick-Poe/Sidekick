@@ -78,7 +78,7 @@ else if (Price != null)
                     Item.Metadata.Category,
                     Item.Properties,
                     numberOfLinks: Item.GetMaximumNumberOfLinks(),
-                    firstModifierLine: Item.ModifierLines.FirstOrDefault()?.Text);
+                    firstModifierLine: Item.ModifierLines.Count() == 1 ? Item.ModifierLines.FirstOrDefault()?.Text : null);
             }
 
             ChartOptions = new ChartOptions()
