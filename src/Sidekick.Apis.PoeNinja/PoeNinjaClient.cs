@@ -68,11 +68,13 @@ namespace Sidekick.Apis.PoeNinja
 
             IEnumerable<NinjaPrice> query;
 
-            // Currencies can have 1 modifier, the Name or BaseType will be the modifier.
+            // Currencies such as Essences and Filled Coffins can have modifiers.
+            // For Filled Coffins, the name will be the only modifier they have.
             if (category == Category.Currency && firstModifierLine != null)
             {
                 query = prices.Where(x => x.Name == firstModifierLine);
             }
+            // Blight maps.
             else if (properties.Blighted || properties.BlightRavaged)
             {
                 var itemTypeToSearch = properties.Blighted ? ItemType.BlightedMap : ItemType.BlightRavagedMap;
