@@ -15,8 +15,7 @@ namespace Sidekick.Wpf
 
         private void OverlayControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            window = new OverlayWindow();
-            window.Content = Content;
+            window = new OverlayWindow { Content = Content, };
             window.Show();
 
             var windowHandle = new WindowInteropHelper(window).Handle;
@@ -25,6 +24,7 @@ namespace Sidekick.Wpf
 
         public void Dispose()
         {
+            Loaded -= OverlayControl_Loaded;
             window?.Close();
         }
     }

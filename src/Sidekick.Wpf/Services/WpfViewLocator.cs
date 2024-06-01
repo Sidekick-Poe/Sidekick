@@ -142,6 +142,9 @@ namespace Sidekick.Wpf.Services
 
                     window.Close();
                     Windows.Remove(window);
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    GC.Collect();
                 }
                 catch (InvalidOperationException ex)
                 {

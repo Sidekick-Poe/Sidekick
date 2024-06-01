@@ -143,7 +143,7 @@ namespace Sidekick.Common.Blazor.Initialization
             menuItems.AddRange(new List<TrayMenuItem>()
             {
                 new (label: "Sidekick - " + FileVersionInfo.GetVersionInfo(GetType().Assembly.Location).ProductVersion),
-                new (label: "Open the Website", onClick: () =>
+                new (label: "Open Website", onClick: () =>
                 {
                     BrowserProvider.OpenSidekickWebsite();
                     return Task.CompletedTask;
