@@ -1,21 +1,26 @@
 using System.ComponentModel.DataAnnotations;
-using Sidekick.Common.Game.Items;
 
-namespace Sidekick.Modules.Wealth.Models
+namespace Sidekick.Common.Database.Tables
 {
-    public partial class Item
+    public class WealthItem
     {
         [Key]
+        [MaxLength(64)]
         public required string Id { get; set; }
 
+        [MaxLength(64)]
         public required string StashId { get; set; }
 
+        [MaxLength(64)]
         public required string League { get; set; }
 
+        [MaxLength(128)]
         public required string Name { get; set; }
 
-        public Category Category { get; set; }
+        [MaxLength(64)]
+        public required string Category { get; set; }
 
+        [MaxLength(64)]
         public string? Icon { get; set; }
 
         public int? ItemLevel { get; set; }

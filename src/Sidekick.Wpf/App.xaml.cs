@@ -1,6 +1,5 @@
 using System.IO;
 using System.Windows;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MudBlazor.Services;
@@ -15,7 +14,6 @@ using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Interprocess;
-using Sidekick.Common.Settings;
 using Sidekick.Mock;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
@@ -37,7 +35,6 @@ namespace Sidekick.Wpf
 
         private readonly ILogger<App> logger;
         private readonly ISettingsService settingsService;
-        private readonly ISettings settings;
         private readonly IInterprocessService interprocessService;
 
         public App()
@@ -46,16 +43,12 @@ namespace Sidekick.Wpf
             DeleteStaticAssets();
 #endif
 
-            var configurationManager = new ConfigurationManager();
-            configurationManager.AddJsonFile(SidekickPaths.GetDataFilePath(SettingsService.FileName), true, true);
-
             var services = new ServiceCollection();
-            ConfigureServices(services, configurationManager);
+            ConfigureServices(services);
 
             ServiceProvider = services.BuildServiceProvider();
             logger = ServiceProvider.GetRequiredService<ILogger<App>>();
             settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-            settings = ServiceProvider.GetRequiredService<ISettings>();
             interprocessService = ServiceProvider.GetRequiredService<IInterprocessService>();
         }
 
@@ -64,6 +57,7 @@ namespace Sidekick.Wpf
             base.OnStartup(e);
 
             var currentDirectory = Directory.GetCurrentDirectory();
+            var settings = settingsService.GetSettings();
             if (string.IsNullOrEmpty(settings.Current_Directory) || settings.Current_Directory != currentDirectory)
             {
                 settingsService.Save("Current_Directory", currentDirectory);
@@ -101,7 +95,7 @@ namespace Sidekick.Wpf
             _ = viewLocator.Open("/");
         }
 
-        private void ConfigureServices(ServiceCollection services, IConfiguration configuration)
+        private void ConfigureServices(ServiceCollection services)
         {
             services.AddLocalization();
 #pragma warning disable CA1416 // Validate platform compatibility
@@ -121,7 +115,7 @@ namespace Sidekick.Wpf
                 .AddMudBlazorJsApi()
 
                 // Common
-                .AddSidekickCommon(configuration)
+                .AddSidekickCommon()
                 .AddSidekickCommonBlazor()
                 .AddSidekickCommonPlatform(o =>
                 {

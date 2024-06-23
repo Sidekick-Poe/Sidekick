@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sidekick.Common.Extensions;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.Settings
 {

@@ -7,7 +7,7 @@ namespace Sidekick.Common.Game.Languages;
 
 public class GameLanguageProvider(
     ILogger<GameLanguageProvider> logger,
-    ISettings settings) : IGameLanguageProvider
+    ISettingsService settingsService) : IGameLanguageProvider
 {
     private const string EnglishLanguageCode = "en";
 
@@ -17,14 +17,20 @@ public class GameLanguageProvider(
     public InitializationPriority Priority => InitializationPriority.Critical;
 
     /// <inheritdoc />
-    public Task Initialize()
+    public async Task Initialize()
     {
-        SetLanguage(settings.Language_Parser);
-        return Task.CompletedTask;
+        var language = await settingsService.GetString(SettingKeys.LanguageParser);
+        SetLanguage(language ?? EnglishLanguageCode);
     }
 
-    public void SetLanguage(string languageCode)
+    public void SetLanguage(string? languageCode)
     {
+        languageCode ??= EnglishLanguageCode;
+        if (Language?.LanguageCode == languageCode)
+        {
+            return;
+        }
+
         var availableLanguages = GetList();
         var language = availableLanguages.Find(x => x.LanguageCode == languageCode);
 

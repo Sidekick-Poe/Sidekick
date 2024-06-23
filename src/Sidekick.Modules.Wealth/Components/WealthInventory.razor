@@ -1,6 +1,6 @@
 
 <div class="relative">
-    <MudTable Height="@($"calc({WealthView.InventoryHeight} - 48px)")" Items="@Items" Dense="true" Hover="true" SortLabel="Sort By" Filter="new Func<Models.Item,bool>(Search)" Breakpoint="Breakpoint.Sm">
+    <MudTable Height="@($"calc({WealthView.InventoryHeight} - 48px)")" Items="@Items" Dense="true" Hover="true" SortLabel="Sort By" Filter="new Func<Item,bool>(Search)" Breakpoint="Breakpoint.Sm">
         <ToolBarContent>
             <MudText Typo="Typo.h3">Inventory</MudText>
             <MudSpacer />
@@ -9,10 +9,10 @@
         </ToolBarContent>
         <HeaderContent>
             <MudTh></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<Models.Item, object>(x=>x.Name)">Name</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<Models.Item, object>(x=>x.Count)">Count</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<Models.Item, object>(x=>x.Price)">Price</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Descending" SortBy="new Func<Models.Item, object>(x=>x.Total)">Total</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Item, object>(x=>x.Name)">Name</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Item, object>(x=>x.Count)">Count</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Item, object>(x=>x.Price)">Price</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Descending" SortBy="new Func<Item, object>(x=>x.Total)">Total</MudTableSortLabel></MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd DataLabel=""><MudImage Width="30" Height="30" Src="@context.Icon" Class="rounded-lg" /></MudTd>
@@ -27,7 +27,7 @@
                 AnchorOrigin="Origin.TopRight"
                 TransformOrigin="Origin.TopRight">
         <MudTextField T="int"
-                      Value="Settings.Wealth_MinimumItemTotal"
+                      Value="Settings.Wealth_MinimumItemTotal ?? 0"
                       ValueChanged="UpdateMinimumItemTotal"
                       Label="Minimum Total Value" />
 
@@ -46,7 +46,7 @@
     [CascadingParameter]
     public WealthView View { get; set; } = null!;
 
-    private List<Models.Item> Items { get; set; } = new();
+    private List<Item> Items { get; set; } = new();
     private string SearchString { get; set; } = "";
     private bool FilterOpened { get; set; }
 
@@ -69,7 +69,7 @@
 
     public async Task RetrieveStashItems()
     {
-        using var database = new WealthDbContext(DbContextOptions);
+        await using var database = new WealthDbContext(DbContextOptions);
 
         var stashIds = await database.Stashes
             .Where(x => View.SelectedStashIds.Contains(x.Id))
@@ -84,7 +84,7 @@
             .ToListAsync();
     }
 
-    private bool Search(Models.Item element)
+    private bool Search(Item element)
     {
         if (string.IsNullOrWhiteSpace(SearchString))
         {

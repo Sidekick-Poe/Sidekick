@@ -6,7 +6,7 @@ public interface IGameLanguageProvider : IInitializableService
 {
     IGameLanguage? Language { get; }
 
-    void SetLanguage(string languageCode);
+    void SetLanguage(string? languageCode);
 
     List<GameLanguageAttribute> GetList();
 

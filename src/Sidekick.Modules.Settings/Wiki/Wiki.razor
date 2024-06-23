@@ -16,7 +16,7 @@
         <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Other</MudText>
 
         <MudSelect @bind-Value="ViewModel.Wiki_Preferred"
-                   T="WikiSetting"
+                   T="WikiSetting?"
                    Label="@Resources.Wiki_Preferred"
                    Variant="Variant.Filled">
             @foreach (var option in ViewModel.WikiOptions)
@@ -27,10 +27,10 @@
     </MudPaper>
 </div>
 
-@code {
-    [Inject] private SettingsResources Resources { get; set; }
-    [Inject] private SettingsModel ViewModel { get; set; }
+@inject SettingsResources Resources
+@inject SettingsModel ViewModel
 
+@code {
     public override string Title => Resources.Title;
     public override bool ShowSettingsButton => false;
 }

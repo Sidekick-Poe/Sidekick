@@ -1,11 +1,8 @@
-@using System.Linq.Expressions;
-
-<MudSelect T="string"
+<MudSelect T="string?"
            Label="@Resources.Character_League"
            Variant="Variant.Filled"
            Value="Value"
            ValueChanged="ValueChanged"
-           OffsetY="true"
            Required="true"
            RequiredError="League is required!">
     @foreach (var option in Options)
@@ -14,12 +11,16 @@
     }
 </MudSelect>
 
-@code {
-    [Inject] private SettingsResources Resources { get; set; }
-    [Inject] private ILeagueProvider LeagueProvider { get; set; }
+@inject SettingsResources Resources
+@inject ILeagueProvider LeagueProvider
 
-    [Parameter] public string Value { get; set; }
-    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+@code {
+
+    [Parameter]
+    public string? Value { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> ValueChanged { get; set; }
 
     private Dictionary<string, string> Options { get; set; } = new Dictionary<string, string>();
 
@@ -33,11 +34,13 @@
     public async Task RefreshOptions()
     {
         var leagues = await LeagueProvider.GetList(true);
-        if (leagues != null)
-        {
-            Options = leagues
-                .GroupBy(x => x.Id)
-                .ToDictionary(x => x.First().Id, x => x.First().Text);
-        }
+        Options = leagues
+                  .GroupBy(x => x.Id)
+                  .ToDictionary(
+                      x => x.First()
+                            .Id,
+                      x => x.First()
+                            .Text);
     }
+
 }

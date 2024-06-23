@@ -1,11 +1,15 @@
-namespace Sidekick.Common;
+namespace Sidekick.Common.Keybinds;
 
 /// <summary>
 ///     Interface for keybind handlers
 /// </summary>
 public interface IKeybindHandler
 {
-    List<string> GetKeybinds();
+    /// <summary>
+    /// Gets the keybinds that this handler handles.
+    /// </summary>
+    /// <returns>The list of keybinds.</returns>
+    List<string?> GetKeybinds();
 
     /// <summary>
     ///     When a keypress occurs, check if this keybind should be executed

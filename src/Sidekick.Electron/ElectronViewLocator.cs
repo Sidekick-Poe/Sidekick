@@ -2,27 +2,20 @@ using ElectronNET.API;
 using ElectronNET.API.Entities;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Cache;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Electron
 {
     public class ElectronViewLocator : IViewLocator
     {
-        internal readonly ICacheProvider cacheProvider;
-        internal readonly ILogger<ElectronViewLocator> logger;
-        internal readonly ISettings settings;
-        internal readonly IHostEnvironment hostEnvironment;
-        private bool FirstView = true;
+        internal readonly ICacheProvider CacheProvider;
+        internal readonly ILogger<ElectronViewLocator> Logger;
+        private bool firstView = true;
 
         public ElectronViewLocator(ICacheProvider cacheProvider,
-                                   ILogger<ElectronViewLocator> logger,
-                                   ISettings settings,
-                                   IHostEnvironment hostEnvironment)
+                                   ILogger<ElectronViewLocator> logger)
         {
-            this.cacheProvider = cacheProvider;
-            this.logger = logger;
-            this.settings = settings;
-            this.hostEnvironment = hostEnvironment;
+            CacheProvider = cacheProvider;
+            Logger = logger;
 
             ElectronNET.API.Electron.IpcMain.OnSync("close", (viewName) =>
             {
@@ -41,7 +34,7 @@ namespace Sidekick.Electron
             var browser = Browsers.FirstOrDefault(x => x.WebContents.GetUrl().Result == view.Url);
             if (browser == null)
             {
-                logger.LogError("Unable to find view {viewUrl}", view.Url);
+                Logger.LogError("Unable to find view {viewUrl}", view.Url);
                 return;
             }
 
@@ -51,7 +44,7 @@ namespace Sidekick.Electron
             browser.SetMinimumSize(view.ViewWidth, view.ViewHeight);
             browser.SetSize(view.ViewWidth, view.ViewHeight);
 
-            var preferences = await cacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
+            var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
             if (view.ViewType != SidekickViewType.Modal && preferences != null)
             {
                 browser.SetSize(preferences.Width, preferences.Height);
@@ -119,7 +112,7 @@ namespace Sidekick.Electron
             }
             else
             {
-                var preferences = await cacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
+                var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
                 if (preferences != null)
                 {
                     browser.SetSize(preferences.Width, preferences.Height);
@@ -202,15 +195,15 @@ namespace Sidekick.Electron
                 }
             }, $"http://localhost:{BridgeSettings.WebPort}{url}");
 
-            window.WebContents.OnCrashed += (killed) =>
+            window.WebContents.OnCrashed += (_) =>
             {
-                logger.LogWarning("The view has crashed. Attempting to close the window.");
+                Logger.LogWarning("The view has crashed. Attempting to close the window.");
                 window.Close();
             };
 
             window.OnUnresponsive += () =>
             {
-                logger.LogWarning("The view has become unresponsive. Attempting to close the window.");
+                Logger.LogWarning("The view has become unresponsive. Attempting to close the window.");
                 window.Close();
             };
 
@@ -219,9 +212,9 @@ namespace Sidekick.Electron
             window.SetTitle("Sidekick");
             window.SetVisibleOnAllWorkspaces(true);
 
-            if (FirstView)
+            if (firstView)
             {
-                FirstView = false;
+                firstView = false;
                 await window.WebContents.Session.ClearCacheAsync();
             }
 
@@ -232,7 +225,7 @@ namespace Sidekick.Electron
             Browsers.Add(window);
         }
 
-        private ulong resizeBounce = 0;
+        private ulong resizeBounce;
 
         private void Browser_OnResize(BrowserWindow browser, SidekickView view)
         {
@@ -247,15 +240,20 @@ namespace Sidekick.Electron
                         if (!await browser.IsMaximizedAsync())
                         {
                             var bounds = await browser.GetBoundsAsync();
-                            await cacheProvider.Set($"view_preference_{view.Key}", new ViewPreferences()
-                            {
-                                Width = bounds.Width,
-                                Height = bounds.Height
-                            });
+                            await CacheProvider.Set(
+                                $"view_preference_{view.Key}",
+                                new ViewPreferences()
+                                {
+                                    Width = bounds.Width,
+                                    Height = bounds.Height
+                                });
                         }
                     }
                 }
-                catch (Exception) { }
+                catch (Exception)
+                {
+                    // Do not stop execution if something goes wrong here.
+                }
             });
         }
 

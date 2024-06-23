@@ -28,23 +28,21 @@
 
 @implements IDisposable
 @inject IAuthenticationService AuthenticationService
-@inject ISettings Settings
+@inject ISettingsService SettingsService
 @code {
+    private Timer? refreshTimer;
+
     private int TokenPercentRemaining
     {
         get
         {
-            if (Settings.Bearer_Expiration == null)
+            var settings = SettingsService.GetSettings();
+            if (settings.Bearer_Expiration == null)
             {
                 return 0;
             }
 
-            var remainingTime = Settings.Bearer_Expiration - DateTimeOffset.Now;
-            if (remainingTime == null)
-            {
-                return 0;
-            }
-
+            var remainingTime = settings.Bearer_Expiration - DateTimeOffset.Now;
             return (int)((remainingTime.Value.TotalMinutes / TimeSpan.FromHours(10).TotalMinutes) * 100);
         }
     }
@@ -53,18 +51,14 @@
     {
         get
         {
-            if (Settings.Bearer_Expiration == null)
+            var settings = SettingsService.GetSettings();
+            if (settings.Bearer_Expiration == null)
             {
                 return "";
             }
 
-            var remainingTime = Settings.Bearer_Expiration - DateTimeOffset.Now;
-            if (remainingTime == null)
-            {
-                return "";
-            }
-
-            return string.Format("{0:00}:{1:00}", remainingTime.Value.Hours, remainingTime.Value.Minutes);
+            var remainingTime = settings.Bearer_Expiration - DateTimeOffset.Now;
+            return $"{remainingTime.Value.Hours:00}:{remainingTime.Value.Minutes:00}";
         }
     }
 
@@ -72,8 +66,8 @@
     {
         AuthenticationService.OnStateChanged += OnChanged;
 
-        var timer = new System.Threading.Timer(
-            e => { InvokeAsync(StateHasChanged); },
+        refreshTimer = new Timer(
+            _ => { InvokeAsync(StateHasChanged); },
             null,
             TimeSpan.Zero,
             TimeSpan.FromMinutes(1)
@@ -89,6 +83,7 @@
 
     public void Dispose()
     {
+        refreshTimer?.Dispose();
         AuthenticationService.OnStateChanged -= OnChanged;
     }
 }

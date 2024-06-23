@@ -5,39 +5,17 @@ using Sidekick.Common.Settings;
 namespace Sidekick.Common.Platform.Clipboard
 {
     /// <inheritdoc/>
-    public class ClipboardProvider : IClipboardProvider
+    public class ClipboardProvider(
+        ISettingsService settingsService,
+        IKeyboardProvider keyboard,
+        ILogger<ClipboardProvider> logger) : IClipboardProvider
     {
-        private readonly ISettings settings;
-        private readonly IKeyboardProvider keyboard;
-        private readonly ILogger<ClipboardProvider> logger;
-
-        public ClipboardProvider(
-            ISettings settings,
-            IKeyboardProvider keyboard,
-            ILogger<ClipboardProvider> logger)
-        {
-            this.settings = settings;
-            this.keyboard = keyboard;
-            this.logger = logger;
-        }
-
         /// <inheritdoc/>
-        public Task<string?> Copy()
-        {
-            return ExecuteCopy("Ctrl+C");
-        }
-
-        /// <inheritdoc/>
-        public Task<string?> CopyAdvanced()
-        {
-            return ExecuteCopy("Ctrl+Alt+C");
-        }
-
-        /// <inheritdoc/>
-        private async Task<string?> ExecuteCopy(string keyStroke)
+        public async Task<string?> Copy()
         {
             var clipboardText = string.Empty;
-            if (settings.RetainClipboard)
+            var retainClipboard = await settingsService.GetBool(SettingKeys.RetainClipboard);
+            if (retainClipboard)
             {
                 clipboardText = await GetText();
                 logger.LogDebug("[Clipboard] Retained clipboard.");
@@ -45,8 +23,8 @@ namespace Sidekick.Common.Platform.Clipboard
 
             await SetText(string.Empty);
 
-            await keyboard.PressKey(keyStroke);
-            logger.LogDebug($"[Clipboard] Sent keystrokes {keyStroke}");
+            await keyboard.PressKey("Ctrl+C");
+            logger.LogDebug("[Clipboard] Sent keystrokes Ctrl+C");
 
             await Task.Delay(100);
 
@@ -54,7 +32,7 @@ namespace Sidekick.Common.Platform.Clipboard
             var result = await GetText();
             logger.LogDebug("[Clipboard] Fetched clipboard value.");
 
-            if (settings.RetainClipboard)
+            if (retainClipboard)
             {
                 await Task.Delay(100);
                 await SetText(clipboardText);
@@ -75,7 +53,7 @@ namespace Sidekick.Common.Platform.Clipboard
             string? data = null;
             Exception? exception = null;
             var staThread = new Thread(
-                delegate ()
+                delegate()
                 {
                     try
                     {
@@ -105,14 +83,10 @@ namespace Sidekick.Common.Platform.Clipboard
         /// <inheritdoc/>
         public Task SetText(string? text)
         {
-            if (text == null)
-            {
-                text = string.Empty;
-            }
-
+            text ??= string.Empty;
             Exception? exception = null;
             var staThread = new Thread(
-                delegate ()
+                delegate()
                 {
                     try
                     {

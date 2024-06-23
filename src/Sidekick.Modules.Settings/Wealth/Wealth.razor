@@ -3,15 +3,15 @@
 @layout SettingsLayout
 @inherits SidekickView
 
-@if (ViewModel.Enable_WealthTracker)
+@if (ViewModel.Enable_WealthTracker ?? false)
 {
-    <Sidekick.Common.Blazor.Authentication.AuthenticationStatusBar />
+    <Sidekick.Common.Blazor.Authentication.AuthenticationStatusBar/>
 }
 
 <div class="pa-3">
     <MudText Typo="Typo.h1" Class="mb-3">@Resources.WealthTracker</MudText>
 
-    @if (!ViewModel.Enable_WealthTracker)
+    @if (!(ViewModel.Enable_WealthTracker ?? false))
     {
         <MudAlert Severity="Severity.Warning" Elevation="0" Class="mb-3">Wealth Tracker is an experimental feature and requires special privileges.</MudAlert>
 
@@ -28,9 +28,9 @@
             </MudText>
 
             <MudList>
-                <MudListItem Text="Sidekick will request Administrative Access on your computer. This is to register a custom Sidekick:// protocol on your system. Sidekick uses this to securely receive Oauth data from GGG." Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Primary" />
-                <MudListItem Text="Sidekick will launch a browser window to 'https://www.pathofexile.com/oauth/authorize'. You will be asked to Authorize Sidekick and GGG will provide your details to Sidekick. Sidekick will then be able to securely access your account stash data." Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Primary" />
-                <MudListItem Text="If you get unauthenticated, Sidekick will automatically repeat the above steps in order to reauthenticate." Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Primary" />
+                <MudListItem Text="Sidekick will request Administrative Access on your computer. This is to register a custom Sidekick:// protocol on your system. Sidekick uses this to securely receive Oauth data from GGG." Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Primary"/>
+                <MudListItem Text="Sidekick will launch a browser window to 'https://www.pathofexile.com/oauth/authorize'. You will be asked to Authorize Sidekick and GGG will provide your details to Sidekick. Sidekick will then be able to securely access your account stash data." Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Primary"/>
+                <MudListItem Text="If you get unauthenticated, Sidekick will automatically repeat the above steps in order to reauthenticate." Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Primary"/>
             </MudList>
         </MudPaper>
 
@@ -43,7 +43,7 @@
         <MudPaper Class="pa-3">
             <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Keybinds</MudText>
             <KeybindEditor @bind-Value="ViewModel.Wealth_Key_Open"
-                           Label="@Resources.Wealth_Key_Open" />
+                           Label="@Resources.Wealth_Key_Open"/>
         </MudPaper>
 
         <MudPaper Class="pa-3 mb-3 mt-3">
@@ -57,17 +57,19 @@
                     {
                         <MudItem xs="6">
                             <MudCheckBox T="bool"
-                                         Checked="IsChecked(stashTab)"
-                                         CheckedChanged="(v) => Toggle(stashTab, v)"
-                                              Dense
-                                          Color="Color.Primary">@stashTab.Name</MudCheckBox>
-                         </MudItem>
+                                         Value="IsChecked(stashTab)"
+                                         ValueChanged="() => Toggle(stashTab)"
+                                         Dense
+                                         Color="Color.Primary">
+                                @stashTab.Name
+                            </MudCheckBox>
+                        </MudItem>
                     }
                 </MudGrid>
             }
             else
             {
-                <LoadingIcon />
+                <LoadingIcon/>
             }
         </MudPaper>
 
@@ -78,14 +80,15 @@
 </div>
 
 @implements IDisposable
-@code {
-    [Inject] private SettingsResources Resources { get; set; }
-    [Inject] private SettingsModel ViewModel { get; set; }
-    [Inject] private IAuthenticationService AuthenticationService { get; set; }
-    [Inject] private IStashService StashService { get; set; }
-    [Inject] private ISettingsService SettingsService { get; set; }
+@inject SettingsResources Resources
+@inject SettingsModel ViewModel
+@inject IAuthenticationService AuthenticationService
+@inject IStashService StashService
+@inject ISettingsService SettingsService
 
-    private List<StashTab> StashTabs { get; set; }
+@code {
+
+    private List<StashTab>? StashTabs { get; set; }
 
     public override string Title => Resources.Title;
 
@@ -93,7 +96,7 @@
     {
         AuthenticationService.OnAuthenticated += OnAuthenticated;
 
-        if (ViewModel.Enable_WealthTracker)
+        if (ViewModel.Enable_WealthTracker ?? false)
         {
             await LoadStashTabs();
         }
@@ -106,15 +109,15 @@
         ViewModel.Enable_WealthTracker = !ViewModel.Enable_WealthTracker;
         await SettingsService.Save("Enable_WealthTracker", ViewModel.Enable_WealthTracker);
 
-        if (ViewModel.Enable_WealthTracker)
+        if (ViewModel.Enable_WealthTracker ?? false)
         {
+            var startInfo = new ProcessStartInfo(@"Sidekick.Protocol.exe")
+            {
+                Verb = "runas",
+                UseShellExecute = true,
+            };
 
-            ProcessStartInfo startInfo = new ProcessStartInfo(@"Sidekick.Protocol.exe");
-            startInfo.Verb = "runas";
-            startInfo.UseShellExecute = true;
-  
-            System.Diagnostics.Process.Start (startInfo);
-
+            Process.Start(startInfo);
 
             await LoadStashTabs();
         }
@@ -132,10 +135,14 @@
         _ = InvokeAsync(LoadStashTabs);
     }
 
-    private bool IsChecked(StashTab tab) => ViewModel.WealthTrackerTabs.Contains(tab.Id);
+    private bool IsChecked(StashTab tab) => ViewModel.WealthTrackerTabs?.Contains(tab.Id) ?? false;
 
-    private void Toggle(StashTab tab, bool isChecked)
+    private void Toggle(StashTab tab)
     {
+        ViewModel.WealthTrackerTabs ??=
+        [
+        ];
+
         if (IsChecked(tab))
         {
             ViewModel.WealthTrackerTabs.Remove(tab.Id);
@@ -150,4 +157,5 @@
     {
         AuthenticationService.OnAuthenticated -= OnAuthenticated;
     }
+
 }

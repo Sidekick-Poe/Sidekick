@@ -21,4 +21,9 @@ public class SidekickConfiguration
     ///     The list of keybinds handled by this application
     /// </summary>
     public List<Type> Keybinds { get; } = new();
+
+    /// <summary>
+    ///     The list of settings handled by this application
+    /// </summary>
+    public List<Type> Settings { get; } = new();
 }

@@ -15,10 +15,9 @@ namespace Sidekick.Apis.PoeNinja
     /// </summary>
     public class PoeNinjaClient : IPoeNinjaClient
     {
-        private static readonly Uri BASE_URL = new("https://poe.ninja/");
-        private static readonly Uri API_BASE_URL = new("https://poe.ninja/api/data/");
+        private static readonly Uri baseUrl = new("https://poe.ninja/");
+        private static readonly Uri apiBaseUrl = new("https://poe.ninja/api/data/");
 
-        private readonly ISettings settings;
         private readonly ICacheProvider cacheProvider;
         private readonly ISettingsService settingsService;
         private readonly IHttpClientFactory httpClientFactory;
@@ -26,13 +25,11 @@ namespace Sidekick.Apis.PoeNinja
         private readonly JsonSerializerOptions options;
 
         public PoeNinjaClient(
-            ISettings settings,
             ICacheProvider cacheProvider,
             ISettingsService settingsService,
             IHttpClientFactory httpClientFactory,
             ILogger<PoeNinjaClient> logger)
         {
-            this.settings = settings;
             this.cacheProvider = cacheProvider;
             this.settingsService = settingsService;
             this.httpClientFactory = httpClientFactory;
@@ -101,7 +98,7 @@ namespace Sidekick.Apis.PoeNinja
                 query = query.Where(x => x.Links == (numberOfLinks >= 5 ? numberOfLinks : 0));
             }
 
-            return query.OrderBy(x => x.Corrupted).FirstOrDefault();
+            return query.MinBy(x => x.Corrupted);
         }
 
         public async Task<NinjaPrice?> GetClusterPrice(
@@ -129,26 +126,28 @@ namespace Sidekick.Apis.PoeNinja
             return query.FirstOrDefault();
         }
 
-        public Uri GetDetailsUri(NinjaPrice ninjaPrice)
+        public async Task<Uri> GetDetailsUri(NinjaPrice ninjaPrice)
         {
-            if (!string.IsNullOrWhiteSpace(ninjaPrice.DetailsId))
+            if (string.IsNullOrWhiteSpace(ninjaPrice.DetailsId))
             {
-                return new Uri(BASE_URL, $"{GetLeagueUri(settings.LeagueId)}/{ninjaPrice.ItemType.GetValueAttribute()}/{ninjaPrice.DetailsId}");
+                return baseUrl;
             }
 
-            return BASE_URL;
+            var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+            return new Uri(baseUrl, $"{GetLeagueUri(leagueId)}/{ninjaPrice.ItemType.GetValueAttribute()}/{ninjaPrice.DetailsId}");
+
         }
 
         /// <summary>
         /// Get Poe.ninja's league uri from POE's API league id.
         /// </summary>
-        private string GetLeagueUri(string leagueId)
+        private string GetLeagueUri(string? leagueId)
         {
             return leagueId switch
             {
                 "Standard" => "standard",
                 "Hardcore" => "hardcore",
-                string x when x.Contains("Hardcore") => "challengehc",
+                not null when leagueId.Contains("Hardcore") => "challengehc",
                 _ => "challenge"
             };
         }
@@ -157,7 +156,8 @@ namespace Sidekick.Apis.PoeNinja
 
         private async Task ClearCacheIfExpired()
         {
-            var isCacheTimeValid = settings.PoeNinja_LastClear.HasValue && DateTimeOffset.Now - settings.PoeNinja_LastClear <= TimeSpan.FromHours(6);
+            var lastClear = await settingsService.GetDateTime(SettingKeys.PoeNinjaLastClear);
+            var isCacheTimeValid = lastClear.HasValue && DateTimeOffset.Now - lastClear <= TimeSpan.FromHours(6);
             if (isCacheTimeValid)
             {
                 return;
@@ -168,7 +168,7 @@ namespace Sidekick.Apis.PoeNinja
                 cacheProvider.Delete(GetCacheKey(value));
             }
 
-            await settingsService.Save(nameof(ISettings.PoeNinja_LastClear), DateTimeOffset.Now);
+            await settingsService.Set(SettingKeys.PoeNinjaLastClear, DateTimeOffset.Now);
         }
 
         public async Task SaveItemsToCache(ItemType itemType, List<NinjaPrice> prices)
@@ -179,7 +179,7 @@ namespace Sidekick.Apis.PoeNinja
                                x.MapTier,
                                x.GemLevel,
                                x.Links))
-                .Select(x => x.OrderBy(x => x.Price).First())
+                .Select(grouping => grouping.OrderBy(x => x.Price).First())
                 .ToList();
 
             await cacheProvider.Set(GetCacheKey(itemType), prices);
@@ -188,7 +188,7 @@ namespace Sidekick.Apis.PoeNinja
         private async Task<IEnumerable<NinjaPrice>> GetPrices(Category category)
         {
             var itemTypes = GetApiItemTypes(category);
-            var tasks = new List<Task<IEnumerable<NinjaPrice>>>();
+            var tasks = new List<Task<IList<NinjaPrice>>>();
 
             foreach (var itemType in itemTypes)
             {
@@ -199,24 +199,27 @@ namespace Sidekick.Apis.PoeNinja
             return prices.SelectMany(x => x);
         }
 
-        private async Task<IEnumerable<NinjaPrice>> GetItems(ItemType itemType)
+        private async Task<IList<NinjaPrice>> GetItems(ItemType itemType)
         {
             var cachedItems = await cacheProvider.Get<List<NinjaPrice>>(GetCacheKey(itemType));
-            if (cachedItems != null && cachedItems.Count > 0)
+            if (cachedItems is
+                {
+                    Count: > 0
+                })
             {
                 return cachedItems;
             }
 
-            var items = itemType switch
+            var items = (itemType switch
             {
                 ItemType.Currency => await FetchCurrencies(itemType),
                 ItemType.Fragment => await FetchCurrencies(itemType),
                 _ => await FetchItems(itemType),
-            };
+            }).ToList();
 
-            if (items.Any())
+            if (items.Count != 0)
             {
-                await SaveItemsToCache(itemType, items.ToList());
+                await SaveItemsToCache(itemType, items);
             }
 
             return items;
@@ -224,7 +227,8 @@ namespace Sidekick.Apis.PoeNinja
 
         private async Task<IEnumerable<NinjaPrice>> FetchItems(ItemType itemType)
         {
-            var url = new Uri($"{API_BASE_URL}itemoverview?league={settings.LeagueId}&type={itemType}");
+            var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+            var url = new Uri($"{apiBaseUrl}itemoverview?league={leagueId}&type={itemType}");
 
             try
             {
@@ -234,7 +238,7 @@ namespace Sidekick.Apis.PoeNinja
                 var result = await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaItem>>(responseStream, options);
                 if (result == null)
                 {
-                    return Enumerable.Empty<NinjaPrice>();
+                    return [];
                 }
 
                 return result.Lines
@@ -261,12 +265,13 @@ namespace Sidekick.Apis.PoeNinja
                 logger.LogWarning("[PoeNinja] Could not fetch {itemType} from poe.ninja", itemType);
             }
 
-            return Enumerable.Empty<NinjaPrice>();
+            return [];
         }
 
         private async Task<IEnumerable<NinjaPrice>> FetchCurrencies(ItemType itemType)
         {
-            var url = new Uri($"{API_BASE_URL}currencyoverview?league={settings.LeagueId}&type={itemType}");
+            var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+            var url = new Uri($"{apiBaseUrl}currencyoverview?league={leagueId}&type={itemType}");
 
             try
             {
@@ -276,7 +281,7 @@ namespace Sidekick.Apis.PoeNinja
                 var result = await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaCurrency>>(responseStream, options);
                 if (result == null)
                 {
-                    return Enumerable.Empty<NinjaPrice>();
+                    return [];
                 }
 
                 return result.Lines
@@ -297,7 +302,7 @@ namespace Sidekick.Apis.PoeNinja
                 logger.LogInformation("[PoeNinja] Could not fetch {itemType} from poe.ninja", itemType);
             }
 
-            return Enumerable.Empty<NinjaPrice>();
+            return [];
         }
 
         private IEnumerable<ItemType> GetApiItemTypes(Category category)

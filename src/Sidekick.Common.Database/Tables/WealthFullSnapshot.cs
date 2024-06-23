@@ -1,12 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Sidekick.Modules.Wealth.Models
+namespace Sidekick.Common.Database.Tables
 {
-    public class FullSnapshot
+    public class WealthFullSnapshot
     {
         [Key]
         public DateTimeOffset Date { get; set; }
 
+        [MaxLength(64)]
         public required string League { get; set; }
 
         public double Total { get; set; }

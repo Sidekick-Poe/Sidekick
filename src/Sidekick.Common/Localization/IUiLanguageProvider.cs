@@ -6,7 +6,7 @@ namespace Sidekick.Common.Localization;
 /// <summary>
 ///     Interface to access ui language parameters.
 /// </summary>
-public interface IUILanguageProvider : IInitializableService
+public interface IUiLanguageProvider : IInitializableService
 {
     /// <summary>
     ///     Gets the list of available UI languages
@@ -17,5 +17,5 @@ public interface IUILanguageProvider : IInitializableService
     ///     Sets the Ui language
     /// </summary>
     /// <param name="name">The culture name of the desired language</param>
-    void Set(string name);
+    void Set(string? name);
 }

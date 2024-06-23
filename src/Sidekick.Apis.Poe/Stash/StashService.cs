@@ -1,34 +1,22 @@
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Stash.Models;
+using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Stash
 {
-    public class StashService : IStashService
+    public class StashService(
+        IPoeApiClient client,
+        ISettingsService settingsService,
+        IItemMetadataParser itemMetadataParser,
+        ILogger<StashService> logger) : IStashService
     {
-        private readonly IPoeApiClient client;
-        private readonly ISettings settings;
-        private readonly IItemMetadataParser itemMetadataParser;
-        private readonly ILogger<StashService> logger;
-
-        public StashService(
-            IPoeApiClient client,
-            ISettings settings,
-            IItemMetadataParser itemMetadataParser,
-            ILogger<StashService> logger)
-        {
-            this.client = client;
-            this.settings = settings;
-            this.itemMetadataParser = itemMetadataParser;
-            this.logger = logger;
-        }
-
         public async Task<List<StashTab>?> GetStashTabList()
         {
             try
             {
+                var settings = settingsService.GetSettings();
                 var response = await client.Fetch<ApiStashTabList>($"stash/{settings.LeagueId}");
                 if (response == null)
                 {
@@ -47,6 +35,8 @@ namespace Sidekick.Apis.Poe.Stash
             }
         }
 
+        private string GetLeagueId() => settingsService.GetSettings().LeagueId ?? throw new SidekickException("Could not find a valid league.");
+
         private void FillStashTabs(List<StashTab> list, List<ApiStashTab> apiStashTabs)
         {
             foreach (var stashTab in apiStashTabs)
@@ -57,7 +47,7 @@ namespace Sidekick.Apis.Poe.Stash
                     {
                         Name = stashTab.Name,
                         Id = stashTab.Id,
-                        League = settings.LeagueId,
+                        League = GetLeagueId(),
                         Type = stashTab.StashType,
                     });
                 }
@@ -75,7 +65,7 @@ namespace Sidekick.Apis.Poe.Stash
         {
             try
             {
-                var wrapper = await client.Fetch<ApiStashTabWrapper>($"stash/{settings.LeagueId}/{id}");
+                var wrapper = await client.Fetch<ApiStashTabWrapper>($"stash/{GetLeagueId()}/{id}");
                 if (wrapper == null)
                 {
                     return null;
@@ -85,7 +75,7 @@ namespace Sidekick.Apis.Poe.Stash
                 {
                     Id = wrapper.Stash.Id,
                     Parent = wrapper.Stash.Parent,
-                    League = settings.LeagueId,
+                    League = GetLeagueId(),
                     Name = wrapper.Stash.Name,
                     Type = wrapper.Stash.StashType
                 };
@@ -117,12 +107,12 @@ namespace Sidekick.Apis.Poe.Stash
 
             if (tab.Items == null && tab.Children == null)
             {
-                var uri = String.IsNullOrEmpty(tab.Parent) ?
-                    $"stash/{settings.LeagueId}/{tab.Id}" :
-                    $"stash/{settings.LeagueId}/{tab.Parent}/{tab.Id}";
+                var uri = string.IsNullOrEmpty(tab.Parent) ?
+                    $"stash/{GetLeagueId()}/{tab.Id}" :
+                    $"stash/{GetLeagueId()}/{tab.Parent}/{tab.Id}";
 
                 var wrapper = await client.Fetch<ApiStashTabWrapper>(uri);
-                if (wrapper?.Stash?.Items != null)
+                if (wrapper?.Stash.Items != null)
                 {
                     tab = wrapper.Stash;
                 }
@@ -133,12 +123,14 @@ namespace Sidekick.Apis.Poe.Stash
                 items.AddRange(tab.Items);
             }
 
-            if (tab.Children != null)
+            if (tab.Children == null)
             {
-                foreach (var childTab in tab.Children)
-                {
-                    items.AddRange(await FetchStashItems(childTab));
-                }
+                return items;
+            }
+
+            foreach (var childTab in tab.Children)
+            {
+                items.AddRange(await FetchStashItems(childTab));
             }
 
             return items;
@@ -167,19 +159,22 @@ namespace Sidekick.Apis.Poe.Stash
                         baseType = childTab.Metadata?.map?.name,
                         name = "",
                         icon = childTab.Metadata?.map?.image,
-                        league = settings.LeagueId,
+                        league = GetLeagueId(),
                         ilvl = -1,
                         stackSize = childTab.Metadata?.items,
-                        properties = new() {
-                            new() {
+                        properties =
+                        [
+                            new()
+                            {
                                 name = "Map Tier",
-                                values = new() {
-                                    new() {
-                                        childTab.Metadata?.map?.tier
-                                    }
-                                }
-                            }
-                        },
+                                values =
+                                [
+                                    [
+                                        childTab.Metadata?.map?.tier,
+                                    ],
+                                ]
+                            },
+                        ],
                         frameType = FrameType.Normal
                     });
                 }
@@ -213,13 +208,14 @@ namespace Sidekick.Apis.Poe.Stash
         {
             var name = item.getFriendlyName();
             var metadata = itemMetadataParser.Parse(name, item.typeLine);
-            if (metadata == null)
+            if (metadata != null)
             {
-                logger.LogError($"[Stash] Could not retrieve metadeta: {item.getFriendlyName()}");
-                return Category.Unknown;
+                return metadata.Category;
             }
 
-            return metadata.Category;
+            logger.LogError($"[Stash] Could not retrieve metadeta: {item.getFriendlyName()}");
+            return Category.Unknown;
+
         }
     }
 }

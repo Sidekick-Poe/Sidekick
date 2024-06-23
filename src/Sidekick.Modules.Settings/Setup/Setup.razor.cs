@@ -10,7 +10,6 @@ using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Settings;
 using Sidekick.Modules.Settings.General;
 using Sidekick.Modules.Settings.Localization;
 

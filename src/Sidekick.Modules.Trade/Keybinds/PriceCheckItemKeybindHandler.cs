@@ -4,8 +4,8 @@ using Sidekick.Apis.Poe;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Extensions;
+using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.Trade.Keybinds
 {

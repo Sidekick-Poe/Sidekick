@@ -4,7 +4,6 @@ using System.Text.Json;
 using Sidekick.Apis.Poe.Authentication.Models;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Platform.Interprocess;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Authentication
 {
@@ -16,7 +15,6 @@ namespace Sidekick.Apis.Poe.Authentication
         private const string SCOPES = "account:stashes";
         private const string TOKENURL = "https://www.pathofexile.com/oauth/token";
 
-        private readonly ISettings settings;
         private readonly ISettingsService settingsService;
         private readonly IBrowserProvider browserProvider;
         private readonly IInterprocessService interprocessService;
@@ -26,13 +24,11 @@ namespace Sidekick.Apis.Poe.Authentication
         public event Action? OnStateChanged;
 
         public AuthenticationService(
-            ISettings settings,
             ISettingsService settingsService,
             IBrowserProvider browserProvider,
             IHttpClientFactory clientFactory,
             IInterprocessService interprocessService)
         {
-            this.settings = settings;
             this.settingsService = settingsService;
             this.browserProvider = browserProvider;
             this.interprocessService = interprocessService;
@@ -55,6 +51,7 @@ namespace Sidekick.Apis.Poe.Authentication
                     return AuthenticationState.InProgress;
                 }
 
+                var settings = settingsService.GetSettings();
                 if (settings.Bearer_Expiration == null || string.IsNullOrEmpty(settings.Bearer_Token))
                 {
                     return AuthenticationState.Unauthenticated;
@@ -73,12 +70,14 @@ namespace Sidekick.Apis.Poe.Authentication
         {
             OnStateChanged?.Invoke();
 
-            if (CurrentState == AuthenticationState.Authenticated)
+            if (CurrentState != AuthenticationState.Authenticated)
             {
-                return settings.Bearer_Token;
+                return null;
             }
 
-            return null;
+            var settings = settingsService.GetSettings();
+            return settings.Bearer_Token;
+
         }
 
         public Task Authenticate(bool reauthenticate = false)

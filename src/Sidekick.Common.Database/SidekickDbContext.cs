@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using Sidekick.Modules.Wealth.Models.Converters;
+using Sidekick.Common.Database.Converters;
+using Sidekick.Common.Database.Tables;
 
-namespace Sidekick.Modules.Wealth.Models
+namespace Sidekick.Common.Database
 {
-    public class WealthDbContext : DbContext
+    public class SidekickDbContext : DbContext
     {
-        public WealthDbContext(DbContextOptions<WealthDbContext> options) : base(options)
+        public SidekickDbContext(DbContextOptions<SidekickDbContext> options) : base(options)
         {
             Database.Migrate();
         }
@@ -36,9 +37,10 @@ namespace Sidekick.Modules.Wealth.Models
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<Item> Items { get; set; }
-        public DbSet<Stash> Stashes { get; set; }
-        public DbSet<StashSnapshot> StashSnapshots { get; set; }
-        public DbSet<FullSnapshot> FullSnapshots { get; set; }
+        public DbSet<Setting> Settings { get; set; }
+        public DbSet<WealthItem> WealthItems { get; set; }
+        public DbSet<WealthStash> WealthStashes { get; set; }
+        public DbSet<WealthStashSnapshot> WealthStashSnapshots { get; set; }
+        public DbSet<WealthFullSnapshot> WealthFullSnapshots { get; set; }
     }
 }

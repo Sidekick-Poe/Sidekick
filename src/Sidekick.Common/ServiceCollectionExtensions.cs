@@ -1,5 +1,4 @@
 using System.Reflection;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Events;
@@ -9,9 +8,9 @@ using Sidekick.Common.Game.GameLogs;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
+using Sidekick.Common.Keybinds;
 using Sidekick.Common.Localization;
 using Sidekick.Common.Logging;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Common;
 
@@ -24,17 +23,10 @@ public static class ServiceCollectionExtensions
     ///     Adds common functionality to the service collection.
     /// </summary>
     /// <param name="services">The service collection to add services to.</param>
-    /// <param name="configuration">The configuration.</param>
     /// <returns>The services collection.</returns>
     public static IServiceCollection AddSidekickCommon(
-        this IServiceCollection services,
-        IConfiguration configuration)
+        this IServiceCollection services)
     {
-        var settings = new Settings.Settings();
-        configuration.Bind(settings);
-        configuration.BindList(key: nameof(ISettings.Chat_Commands), settings.Chat_Commands);
-        services.AddTransient<ISettings>(_ => settings);
-
         services.AddSingleton<IBrowserProvider, BrowserProvider>();
         services.AddSingleton<ICacheProvider, CacheProvider>();
         services.AddSingleton<IGameLogProvider, GameLogProvider>();
@@ -53,32 +45,9 @@ public static class ServiceCollectionExtensions
             }
         }
 
-        services.AddSidekickInitializableService<IUILanguageProvider, UILanguageProvider>();
+        services.AddSidekickInitializableService<IUiLanguageProvider, UiLanguageProvider>();
 
         return services.AddSidekickLogging();
-    }
-
-    private static void BindList<TModel>(
-        this IConfiguration configuration,
-        string key,
-        List<TModel> list)
-        where TModel : new()
-    {
-        var items = configuration
-                    .GetSection(key)
-                    .GetChildren()
-                    .ToList();
-        if (items.Count > 0)
-        {
-            list.Clear();
-        }
-
-        foreach (var item in items)
-        {
-            var model = new TModel();
-            item.Bind(model);
-            list.Add(model);
-        }
     }
 
     private static IServiceCollection AddSidekickLogging(this IServiceCollection services)
@@ -155,26 +124,6 @@ public static class ServiceCollectionExtensions
     /// <param name="services">The service collection to add the keybind to</param>
     /// <returns>The service collection</returns>
     public static IServiceCollection AddSidekickKeybind<TKeybindHandler>(this IServiceCollection services)
-        where TKeybindHandler : class, IKeybindHandler
-    {
-        services.AddSingleton<TKeybindHandler>();
-
-        services.Configure<SidekickConfiguration>(
-            o =>
-            {
-                o.Keybinds.Add(typeof(TKeybindHandler));
-            });
-
-        return services;
-    }
-
-    /// <summary>
-    ///     Adds a keybind to the application
-    /// </summary>
-    /// <typeparam name="TKeybindHandler">The type of the keybind handler.</typeparam>
-    /// <param name="services">The service collection to add the keybind to</param>
-    /// <returns>The service collection</returns>
-    public static IServiceCollection AddSidekickSettings<TKeybindHandler>(this IServiceCollection services)
         where TKeybindHandler : class, IKeybindHandler
     {
         services.AddSingleton<TKeybindHandler>();

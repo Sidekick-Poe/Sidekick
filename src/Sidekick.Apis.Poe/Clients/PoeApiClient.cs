@@ -1,7 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Clients
 {
@@ -60,7 +59,7 @@ namespace Sidekick.Apis.Poe.Clients
             }
             catch (TimeoutException e)
             {
-                logger.LogError($"[Poe Api Client] The API is timed out due to too many requests.", e);
+                logger.LogError(e, "[Poe Api Client] The API is timed out due to too many requests.");
                 return default;
             }
             catch (Exception e)

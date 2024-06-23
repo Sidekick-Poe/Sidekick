@@ -1,25 +1,18 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
-using Sidekick.Common.Settings;
+using Sidekick.Common.Keybinds;
 
 namespace Sidekick.Modules.General.Keybinds
 {
-    public class CloseOverlayKeybindHandler : IKeybindHandler
+    public class CloseOverlayKeybindHandler(
+        IViewLocator viewLocator,
+        ISettingsService settingsService) : IKeybindHandler
     {
-        private readonly IViewLocator viewLocator;
-        private readonly ISettings settings;
-
-        public CloseOverlayKeybindHandler(
-            IViewLocator viewLocator,
-            ISettings settings)
-        {
-            this.viewLocator = viewLocator;
-            this.settings = settings;
-        }
-
-        public List<string> GetKeybinds() => new() { settings.Key_Close };
+        public List<string?> GetKeybinds() =>
+        [
+            settingsService.GetSettings()
+                           .Key_Close,
+        ];
 
         public bool IsValid(string _) => viewLocator.IsOverlayOpened();
 

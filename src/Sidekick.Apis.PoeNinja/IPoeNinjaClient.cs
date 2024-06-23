@@ -19,6 +19,6 @@ namespace Sidekick.Apis.PoeNinja
             int passiveCount,
             int itemLevel);
 
-        Uri GetDetailsUri(NinjaPrice price);
+        Task<Uri> GetDetailsUri(NinjaPrice price);
     }
 }

@@ -1,7 +1,6 @@
 
 <MudThemeProvider Theme="Theme" />
 
-@inject ISettings Settings
 @code {
     private MudTheme? Theme { get; set; }
 
@@ -43,14 +42,12 @@
         where T : BaseTypography, new()
     {
         var typo = new T();
-        if (typo is BaseTypography baseTypo)
-        {
-            baseTypo.FontFamily = new[] { "fontin", "system-ui", "-apple-system", "Arial", "sans-serif" };
-            baseTypo.FontSize = fontSize;
-            baseTypo.FontWeight = 400;
-            baseTypo.LetterSpacing = "none";
-            baseTypo.LineHeight = 1.2;
-        }
+        if (typo is not BaseTypography baseTypo) return typo;
+        baseTypo.FontFamily = new[] { "fontin", "system-ui", "-apple-system", "Arial", "sans-serif" };
+        baseTypo.FontSize = fontSize;
+        baseTypo.FontWeight = 400;
+        baseTypo.LetterSpacing = "none";
+        baseTypo.LineHeight = 1.2;
         return typo;
     }
 

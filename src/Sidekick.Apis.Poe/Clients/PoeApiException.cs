@@ -1,5 +1,3 @@
-using System.Runtime.Serialization;
-
 namespace Sidekick.Apis.Poe.Clients
 {
     [Serializable]
@@ -14,10 +12,6 @@ namespace Sidekick.Apis.Poe.Clients
         }
 
         public PoeApiException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
-        protected PoeApiException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

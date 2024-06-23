@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Settings;
+namespace Sidekick.Common.Settings.Models;
 
 /// <summary>
 ///     Send a message in the chat

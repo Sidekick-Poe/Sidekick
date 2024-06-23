@@ -6,7 +6,6 @@ using Sidekick.Apis.Poe.Stash;
 using Sidekick.Apis.Poe.Stash.Models;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Settings;
 using Sidekick.Modules.Wealth.Models;
 
 namespace Sidekick.Modules.Wealth

@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Settings;
+namespace Sidekick.Common.Keybinds;
 
 /// <summary>
 ///     Extension methods to support settings.

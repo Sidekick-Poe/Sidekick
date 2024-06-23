@@ -7,6 +7,7 @@ using SharpHook;
 using SharpHook.Logging;
 using SharpHook.Native;
 using Sidekick.Common.Initialization;
+using Sidekick.Common.Keybinds;
 
 namespace Sidekick.Common.Platform.Keyboards
 {

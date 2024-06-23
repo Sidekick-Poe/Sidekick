@@ -8,7 +8,7 @@ namespace Sidekick.Apis.Poe.Bulk
     {
         Task<BulkResponseModel> SearchBulk(Item item, TradeCurrency currency, int minStock);
 
-        bool SupportsBulkTrade(Item item);
+        bool SupportsBulkTrade(Item? item);
 
         Uri GetTradeUri(Item item, string queryId);
     }

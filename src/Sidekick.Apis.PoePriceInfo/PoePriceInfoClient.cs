@@ -4,30 +4,18 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoePriceInfo.Api;
 using Sidekick.Apis.PoePriceInfo.Models;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.PoePriceInfo
 {
-    public class PoePriceInfoClient : IPoePriceInfoClient
+    public class PoePriceInfoClient(
+        ISettingsService settingsService,
+        ILogger<PoePriceInfoClient> logger,
+        IHttpClientFactory httpClientFactory) : IPoePriceInfoClient
     {
-        private readonly JsonSerializerOptions options;
-        private readonly ISettings settings;
-        private readonly ILogger<PoePriceInfoClient> logger;
-        private readonly IHttpClientFactory httpClientFactory;
-
-        public PoePriceInfoClient(
-            ISettings settings,
-            ILogger<PoePriceInfoClient> logger,
-            IHttpClientFactory httpClientFactory)
+        private readonly JsonSerializerOptions options = new()
         {
-            options = new JsonSerializerOptions()
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            };
-            this.settings = settings;
-            this.logger = logger;
-            this.httpClientFactory = httpClientFactory;
-        }
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
 
         private HttpClient GetHttpClient()
         {
@@ -41,13 +29,14 @@ namespace Sidekick.Apis.PoePriceInfo
 
         public async Task<PricePrediction?> GetPricePrediction(Item item)
         {
-            if (item.Metadata.Rarity != Rarity.Rare || item.Text == null)
+            if (item.Metadata.Rarity != Rarity.Rare)
             {
                 return null;
             }
 
             try
             {
+                var settings = settingsService.GetSettings();
                 var encodedItem = Convert.ToBase64String(Encoding.UTF8.GetBytes(item.Text));
                 using var client = GetHttpClient();
                 var response = await client.GetAsync("?l=" + settings.LeagueId + "&i=" + encodedItem);
@@ -59,7 +48,7 @@ namespace Sidekick.Apis.PoePriceInfo
                     return null;
                 }
 
-                if (result.Min == 0 && result.Max == 0)
+                if (result is { Min: 0, Max: 0 })
                 {
                     return null;
                 }

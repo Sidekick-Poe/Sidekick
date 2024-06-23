@@ -1,9 +1,7 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Sidekick.Common.Blazor.Layouts;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Cache;
-using Sidekick.Common.Settings;
 using Sidekick.Modules.Settings.Localization;
 
 namespace Sidekick.Modules.Settings
@@ -11,67 +9,70 @@ namespace Sidekick.Modules.Settings
     public class SettingsLayout : MenuLayout
     {
         [Inject]
-        private SettingsResources Resources { get; set; }
+        private SettingsResources Resources { get; set; } = null!;
 
         [Inject]
-        private ISettingsService SettingsService { get; set; }
+        private ISettingsService SettingsService { get; set; } = null!;
 
         [Inject]
-        private ISettings Settings { get; set; }
+        private ISettings Settings { get; set; } = null!;
 
         [Inject]
-        private NavigationManager NavigationManager { get; set; }
+        private SettingsModel ViewModel { get; set; } = null!;
 
         [Inject]
-        private SettingsModel ViewModel { get; set; }
+        private ICacheProvider CacheProvider { get; set; } = null!;
 
         [Inject]
-        private ICacheProvider CacheProvider { get; set; }
-
-        [Inject]
-        private IViewLocator ViewLocator { get; set; }
+        private IViewLocator ViewLocator { get; set; } = null!;
 
         /// <inheritdoc/>
         protected override async Task OnInitializedAsync()
         {
-            MenuLinks = new()
-            {
+            MenuLinks =
+            [
                 new()
                 {
-                    Name= Resources.General,
-                    Url="/settings",
+                    Name = Resources.General,
+                    Url = "/settings",
                 },
+
                 new()
                 {
-                    Name= Resources.PriceCheck,
-                    Url="/settings/price",
+                    Name = Resources.PriceCheck,
+                    Url = "/settings/price",
                 },
+
                 new()
                 {
-                    Name= Resources.Map,
-                    Url="/settings/map",
+                    Name = Resources.Map,
+                    Url = "/settings/map",
                 },
+
                 new()
                 {
-                    Name= Resources.Wiki,
-                    Url="/settings/wiki",
+                    Name = Resources.Wiki,
+                    Url = "/settings/wiki",
                 },
+
                 new()
                 {
-                    Name= Resources.Chat_Commands,
-                    Url="/settings/chat",
+                    Name = Resources.Chat_Commands,
+                    Url = "/settings/chat",
                 },
+
                 new()
                 {
-                    Name= Resources.WealthTracker,
-                    Url="/settings/wealth",
+                    Name = Resources.WealthTracker,
+                    Url = "/settings/wealth",
                 },
-            };
+
+            ];
 
             MenuIcon = false;
 
-            FooterActions = new()
-            {
+            FooterActions =
+            [
                 new()
                 {
                     Name = Resources.ResetCache,
@@ -79,6 +80,7 @@ namespace Sidekick.Modules.Settings
                     Variant = MudBlazor.Variant.Text,
                     Color = MudBlazor.Color.Default,
                 },
+
                 new()
                 {
                     Name = Resources.Save,
@@ -86,7 +88,8 @@ namespace Sidekick.Modules.Settings
                     Variant = MudBlazor.Variant.Filled,
                     Color = MudBlazor.Color.Primary,
                 },
-            };
+
+            ];
 
             await base.OnInitializedAsync();
         }
@@ -94,15 +97,31 @@ namespace Sidekick.Modules.Settings
         public async Task Save()
         {
             ViewModel.Bearer_Token = Settings.Bearer_Token; // Keep the token from the settings.
+
+            var leagueHasChanged = Settings.LeagueId != ViewModel.LeagueId;
+            var languageHasChanged = Settings.Language_Parser != ViewModel.Language_Parser;
+
             await SettingsService.Save(ViewModel);
-            await Wrapper.View.Close();
+            if (languageHasChanged || leagueHasChanged)
+            {
+                CacheProvider.Clear();
+                await ViewLocator.Open("/initialize");
+            }
+
+            if (Wrapper.View != null)
+            {
+                await Wrapper.View.Close();
+            }
         }
 
         public async Task ResetCache()
         {
             CacheProvider.Clear();
             await ViewLocator.Open("/initialize");
-            await Wrapper.View?.Close();
+            if (Wrapper.View != null)
+            {
+                await Wrapper.View.Close();
+            }
         }
     }
 }

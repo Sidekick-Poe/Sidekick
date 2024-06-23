@@ -1,20 +1,24 @@
 using System.ComponentModel.DataAnnotations;
-using Sidekick.Apis.Poe.Stash.Models;
 
-namespace Sidekick.Modules.Wealth.Models
+namespace Sidekick.Common.Database.Tables
 {
-    public class Stash
+    public class WealthStash
     {
         [Key]
+        [MaxLength(64)]
         public required string Id { get; set; }
 
+        [MaxLength(64)]
         public string? Parent { get; set; }
 
+        [MaxLength(64)]
         public required string Name { get; set; }
 
+        [MaxLength(64)]
         public required string League { get; set; }
 
-        public required StashType Type { get; set; }
+        [MaxLength(64)]
+        public required string Type { get; set; }
 
         public double Total { get; set; }
 

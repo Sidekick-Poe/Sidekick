@@ -12,33 +12,17 @@ using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade
 {
-    public class TradeSearchService : ITradeSearchService
+    public class TradeSearchService(
+        ILogger<TradeSearchService> logger,
+        IGameLanguageProvider gameLanguageProvider,
+        ISettingsService settingsService,
+        IPoeTradeClient poeTradeClient,
+        IModifierProvider modifierProvider) : ITradeSearchService
     {
-        private readonly ILogger logger;
-        private readonly IGameLanguageProvider gameLanguageProvider;
-        private readonly ISettings settings;
-        private readonly IPoeTradeClient poeTradeClient;
-        private readonly IItemStaticDataProvider itemStaticDataProvider;
-        private readonly IModifierProvider modifierProvider;
-
-        public TradeSearchService(ILogger<TradeSearchService> logger,
-            IGameLanguageProvider gameLanguageProvider,
-            ISettings settings,
-            IPoeTradeClient poeTradeClient,
-            IItemStaticDataProvider itemStaticDataProvider,
-            IModifierProvider modifierProvider)
-        {
-            this.logger = logger;
-            this.gameLanguageProvider = gameLanguageProvider;
-            this.settings = settings;
-            this.poeTradeClient = poeTradeClient;
-            this.itemStaticDataProvider = itemStaticDataProvider;
-            this.modifierProvider = modifierProvider;
-        }
+        private readonly ILogger logger = logger;
 
         public async Task<TradeSearchResult<string>> Search(Item item, TradeCurrency currency, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null, List<PseudoModifierFilter>? pseudoFilters = null)
         {
@@ -97,6 +81,7 @@ namespace Sidekick.Apis.Poe.Trade
                     request.Query.Filters.MiscFilters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Phantasmal);
                 }
 
+                var settings = settingsService.GetSettings();
                 var uri = new Uri($"{gameLanguageProvider.Language.PoeTradeApiBaseUrl}search/{settings.LeagueId}");
                 var json = JsonSerializer.Serialize(request, poeTradeClient.Options);
                 var body = new StringContent(json, Encoding.UTF8, "application/json");
@@ -380,14 +365,14 @@ namespace Sidekick.Apis.Poe.Trade
 
             foreach (var filter in modifierFilters)
             {
-                if (filter.Line == null || filter.Enabled == false)
+                if (filter.Enabled == false)
                 {
                     continue;
                 }
 
-                if (filter.Line.Modifiers.Count() == 1)
+                if (filter.Line.Modifiers.Count == 1)
                 {
-                    var modifier = filter.Line?.Modifiers?.FirstOrDefault();
+                    var modifier = filter.Line.Modifiers.FirstOrDefault();
                     if (modifier == null)
                     {
                         continue;
@@ -401,14 +386,14 @@ namespace Sidekick.Apis.Poe.Trade
                     continue;
                 }
 
-                var modifiers = filter.Line.Modifiers.AsEnumerable();
+                var modifiers = filter.Line.Modifiers;
                 if (filter.ForceFirstCategory)
                 {
-                    modifiers = modifiers.Where(x => x.Category == filter.FirstCategory);
+                    modifiers = modifiers.Where(x => x.Category == filter.FirstCategory).ToList();
                 }
                 else if (modifiers.Any(x => x.Category == ModifierCategory.Explicit))
                 {
-                    modifiers = modifiers.Where(x => x.Category == ModifierCategory.Explicit);
+                    modifiers = modifiers.Where(x => x.Category == ModifierCategory.Explicit).ToList();
                 }
 
                 foreach (var modifier in modifiers)
@@ -490,7 +475,7 @@ namespace Sidekick.Apis.Poe.Trade
                 var pseudo = string.Empty;
                 if (pseudoFilters != null)
                 {
-                    pseudo = string.Join("", pseudoFilters.Select(x => $"&pseudos[]={x.Modifier?.Id}"));
+                    pseudo = string.Join("", pseudoFilters.Select(x => $"&pseudos[]={x.Modifier.Id}"));
                 }
 
                 var response = await poeTradeClient.HttpClient.GetAsync(gameLanguageProvider.Language.PoeTradeApiBaseUrl + "fetch/" + string.Join(",", ids) + "?query=" + queryId + pseudo);
@@ -499,9 +484,8 @@ namespace Sidekick.Apis.Poe.Trade
                     return new();
                 }
 
-                var contentString = await response.Content.ReadAsStringAsync();
                 var content = await response.Content.ReadAsStreamAsync();
-                var result = await JsonSerializer.DeserializeAsync<FetchResult<Result>>(content, new JsonSerializerOptions()
+                var result = await JsonSerializer.DeserializeAsync<FetchResult<Result?>>(content, new JsonSerializerOptions()
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 });
@@ -510,7 +494,7 @@ namespace Sidekick.Apis.Poe.Trade
                     return new();
                 }
 
-                return result.Result.Where(x => x != null).ToList().ConvertAll(x => GetItem(x));
+                return result.Result.Where(x => x != null).ToList().ConvertAll(x => GetItem(x!));
             }
             catch (Exception ex)
             {
@@ -621,7 +605,7 @@ namespace Sidekick.Apis.Poe.Trade
                 ParseHash(result.Item?.Extended?.Hashes?.Pseudo)));
 
             item.ModifierLines = item.ModifierLines
-                .OrderBy(x => item.Text?.IndexOf(x.Text ?? string.Empty))
+                .OrderBy(x => item.Text.IndexOf(x.Text, StringComparison.InvariantCultureIgnoreCase))
                 .ToList();
 
             return item;
@@ -633,21 +617,23 @@ namespace Sidekick.Apis.Poe.Trade
 
             foreach (var values in hashes)
             {
-                if (values != null)
+                if (values == null)
                 {
-                    foreach (var value in values)
-                    {
-                        if (value.Count != 2)
-                        {
-                            continue;
-                        }
+                    continue;
+                }
 
-                        result.Add(new LineContentValue()
-                        {
-                            Value = value[0].GetString(),
-                            Type = value[1].ValueKind == JsonValueKind.Array ? (LineContentType)value[1][0].GetInt32() : LineContentType.Simple
-                        });
+                foreach (var value in values)
+                {
+                    if (value.Count != 2)
+                    {
+                        continue;
                     }
+
+                    result.Add(new LineContentValue()
+                    {
+                        Value = value[0].GetString(),
+                        Type = value[1].ValueKind == JsonValueKind.Array ? (LineContentType)value[1][0].GetInt32() : LineContentType.Simple
+                    });
                 }
             }
 
@@ -682,40 +668,46 @@ namespace Sidekick.Apis.Poe.Trade
 
                     var text = line.Name;
 
-                    if (values.Count > 0)
+                    if (values.Count <= 0)
                     {
-                        switch (line.DisplayMode)
+                        return new LineContent()
                         {
-                            case 0:
-                                text = line.Name;
-                                if (values.Count > 0)
+                            Text = text,
+                            Values = values,
+                        };
+                    }
+
+                    switch (line.DisplayMode)
+                    {
+                        case 0:
+                            text = line.Name;
+                            if (values.Count > 0)
+                            {
+                                if (!string.IsNullOrEmpty(line.Name))
                                 {
-                                    if (!string.IsNullOrEmpty(line.Name))
-                                    {
-                                        text += ": ";
-                                    }
-
-                                    text += string.Join(", ", values.Select(x => x.Value));
+                                    text += ": ";
                                 }
-                                break;
 
-                            case 1:
-                                text = $"{values[0].Value} {line.Name}";
-                                break;
+                                text += string.Join(", ", values.Select(x => x.Value));
+                            }
+                            break;
 
-                            case 2:
-                                text = $"{values[0].Value}";
-                                break;
+                        case 1:
+                            text = $"{values[0].Value} {line.Name}";
+                            break;
 
-                            case 3:
-                                var format = Regex.Replace(line.Name ?? string.Empty, "%(\\d)", "{$1}");
-                                text = string.Format(format, values.Select(x => x.Value).ToArray());
-                                break;
+                        case 2:
+                            text = $"{values[0].Value}";
+                            break;
 
-                            default:
-                                text = $"{line.Name} {string.Join(", ", values.Select(x => x.Value))}";
-                                break;
-                        }
+                        case 3:
+                            var format = Regex.Replace(line.Name ?? string.Empty, "%(\\d)", "{$1}");
+                            text = string.Format(format, values.Select(x => x.Value).ToArray());
+                            break;
+
+                        default:
+                            text = $"{line.Name} {string.Join(", ", values.Select(x => x.Value))}";
+                            break;
                     }
 
                     return new LineContent()
@@ -743,11 +735,12 @@ namespace Sidekick.Apis.Poe.Trade
                 }
 
                 var text = texts.FirstOrDefault(x => modifierProvider.IsMatch(id, x)) ?? texts[index];
-                var mod = mods.FirstOrDefault(x => x.Magnitudes != null && x.Magnitudes.Any(y => y.Hash == id));
+                var mod = mods.FirstOrDefault(x => x.Magnitudes.Any(y => y.Hash == id));
 
                 yield return new ModifierLine(text: text)
                 {
-                    Modifiers = new() {
+                    Modifiers =
+                    [
                         new Modifier(text: text)
                         {
                             Id = id,
@@ -755,7 +748,8 @@ namespace Sidekick.Apis.Poe.Trade
                             Tier = mod?.Tier,
                             TierName = mod?.Name,
                         },
-                    },
+
+                    ],
                 };
             }
         }
@@ -767,9 +761,9 @@ namespace Sidekick.Apis.Poe.Trade
                 yield break;
             }
 
-            for (var index = 0; index < hashes.Count; index++)
+            foreach (var hash in hashes)
             {
-                var id = hashes[index].Value;
+                var id = hash.Value;
                 if (id == null)
                 {
                     continue;
@@ -781,7 +775,6 @@ namespace Sidekick.Apis.Poe.Trade
                     continue;
                 }
 
-                var mod = mods.FirstOrDefault(x => x.Magnitudes != null && x.Magnitudes.Any(y => y.Hash == id));
                 yield return new PseudoModifier(
                     text: text)
                 {
@@ -794,7 +787,7 @@ namespace Sidekick.Apis.Poe.Trade
         {
             if (sockets == null)
             {
-                return Enumerable.Empty<Socket>();
+                return [];
             }
 
             return sockets
@@ -816,12 +809,13 @@ namespace Sidekick.Apis.Poe.Trade
 
         public Uri GetTradeUri(Item item, string queryId)
         {
-            Uri? baseUri = gameLanguageProvider.Language?.PoeTradeSearchBaseUrl;
+            var baseUri = gameLanguageProvider.Language?.PoeTradeSearchBaseUrl;
             if (baseUri == null)
             {
                 throw new Exception("[Trade API] Could not find the trade uri.");
             }
 
+            var settings = settingsService.GetSettings();
             return new Uri(baseUri, $"{settings.LeagueId}/{queryId}");
         }
     }

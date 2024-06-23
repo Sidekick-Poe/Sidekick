@@ -7,7 +7,7 @@ namespace Sidekick.Common.Localization;
 /// <summary>
 ///     Implementation of the ui language provider.
 /// </summary>
-public class UILanguageProvider(ISettings settings) : IUILanguageProvider
+public class UiLanguageProvider(ISettingsService settingsService) : IUiLanguageProvider
 {
     private static readonly string[] supportedLanguages =
     [
@@ -17,14 +17,16 @@ public class UILanguageProvider(ISettings settings) : IUILanguageProvider
         "zh-tw",
     ];
 
+    private string? currentLanguage;
+
     /// <inheritdoc />
     public InitializationPriority Priority => InitializationPriority.Critical;
 
     /// <inheritdoc />
-    public Task Initialize()
+    public async Task Initialize()
     {
-        Set(settings.Language_UI);
-        return Task.CompletedTask;
+        var language = await settingsService.GetString(SettingKeys.LanguageUi);
+        Set(language ?? "en");
     }
 
     /// <inheritdoc />
@@ -37,8 +39,14 @@ public class UILanguageProvider(ISettings settings) : IUILanguageProvider
     }
 
     /// <inheritdoc />
-    public void Set(string name)
+    public void Set(string? name)
     {
+        name ??= "en";
+        if (currentLanguage == name)
+        {
+            return;
+        }
+
         var languages = GetList();
         var language = name;
         if (languages.All(x => x.Name != language))
@@ -52,6 +60,7 @@ public class UILanguageProvider(ISettings settings) : IUILanguageProvider
             return;
         }
 
+        currentLanguage = name;
         CultureInfo.DefaultThreadCurrentCulture = CultureInfo.GetCultureInfo(language);
         CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo(language);
     }

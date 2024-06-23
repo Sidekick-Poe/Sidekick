@@ -7,7 +7,6 @@ using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Common.Blazor.Initialization
 {
@@ -15,9 +14,6 @@ namespace Sidekick.Common.Blazor.Initialization
     {
         [Inject]
         private InitializationResources Resources { get; set; } = null!;
-
-        [Inject]
-        private ISettings Settings { get; set; } = null!;
 
         [Inject]
         private ILogger<Initialization> Logger { get; set; } = null!;
@@ -37,11 +33,16 @@ namespace Sidekick.Common.Blazor.Initialization
         [Inject]
         private IBrowserProvider BrowserProvider { get; set; } = null!;
 
+        [Inject]
+        private ISettingsService SettingsService { get; set; } = null!;
+
         private int Count { get; set; }
         private int Completed { get; set; }
         private string? Step { get; set; }
         private int Percentage { get; set; }
         private bool Error { get; set; }
+
+        private ISettings Settings => SettingsService.GetSettings();
 
         public Task? InitializationTask { get; set; }
         public override string Title => "Initialize";

@@ -1,72 +1,86 @@
 @page "/trade/{itemText}"
 @using Sidekick.Apis.Poe.Bulk;
-@using Sidekick.Apis.Poe.Trade.Results;
 @using Sidekick.Common.Enums;
 @inherits SidekickView
 
 @if (Item == null)
 {
-    <LoadingAlert Text="@Resources.Parsing" />
+    <LoadingAlert Text="@Resources.Parsing"/>
+    return;
 }
-else
-{
-    <CascadingValue Value="Item" IsFixed="true">
-        <CascadingValue Value="Filters" IsFixed="true">
-            @if (Filters != null)
-            {
-                <FiltersComponent OnSearch="UpdateQuery" />
-            }
 
-            <div class="ml-0">
-                <SidekickErrorBoundary>
-                    <BulkResult @ref="BulkResult" Visible="Mode == TradeMode.Bulk" />
-                    <ItemsResult @ref="ItemsResult" Visible="Mode == TradeMode.Item" />
-                </SidekickErrorBoundary>
-            </div>
+<CascadingValue Value="Item" IsFixed="true">
+    <CascadingValue Value="Filters" IsFixed="true">
+        @if (Filters != null)
+        {
+            <FiltersComponent OnSearch="UpdateQuery"/>
+        }
 
-        </CascadingValue>
+        <div class="ml-0">
+            <SidekickErrorBoundary>
+                <BulkResult @ref="BulkResult" Visible="Mode == TradeMode.Bulk"/>
+                <ItemsResult @ref="ItemsResult" Visible="Mode == TradeMode.Item"/>
+            </SidekickErrorBoundary>
+        </div>
+
     </CascadingValue>
-}
+</CascadingValue>
+
+@inject IBulkTradeService BulkTradeService
+@inject ISettings Settings
+@inject TradeResources Resources
+@inject IItemParser ItemParser
+@inject ITradeFilterService TradeFilterService
 
 @code {
-    [Inject] private IBulkTradeService BulkTradeService { get; set; }
-    [Inject] private ISettings Settings { get; set; }
-    [Inject] private TradeResources Resources { get; set; }
-    [Inject] private IItemParser ItemParser { get; set; }
-    [Inject] private ITradeFilterService TradeFilterService { get; set; }
 
-    [Parameter] public string ItemText { get; set; }
+    [Parameter]
+    public required string ItemText { get; set; }
 
-    private Item Item { get; set; }
-    private FiltersModel Filters { get; set; }
+    private Item? Item { get; set; }
 
-    private ItemsResult ItemsResult { get; set; }
-    private BulkResult BulkResult { get; set; }
+    private FiltersModel? Filters { get; set; }
+
+    private ItemsResult? ItemsResult { get; set; }
+
+    private BulkResult? BulkResult { get; set; }
 
     private TradeMode Mode => BulkTradeService.SupportsBulkTrade(Item) ? Settings.Trade_Currency_PreferredMode.GetEnumFromValue<TradeMode>() : TradeMode.Item;
+
     private bool UpdateAfterRender { get; set; }
 
     public override string Title => Resources.Trade;
-    public override bool CloseOnBlur => Settings.Trade_CloseWithMouse;
+
+    public override bool CloseOnBlur => Settings.Trade_CloseWithMouse ?? false;
+
     public override SidekickViewType ViewType => SidekickViewType.Overlay;
 
     protected override async Task OnParametersSetAsync()
     {
-        Item = await ItemParser.ParseItemAsync(ItemText.DecodeBase64Url());
+        await base.OnParametersSetAsync();
+
+        if (string.IsNullOrEmpty(ItemText))
+        {
+            return;
+        }
+
+        Item = await ItemParser.ParseItemAsync(ItemText.DecodeBase64Url() ?? string.Empty);
 
         Filters = new FiltersModel()
-            {
-                PropertyFilters = TradeFilterService.GetPropertyFilters(Item),
-                ModifierFilters = TradeFilterService.GetModifierFilters(Item).ToList(),
-                PseudoFilters = TradeFilterService.GetPseudoModifierFilters(Item).ToList(),
-            };
+        {
+            PropertyFilters = TradeFilterService.GetPropertyFilters(Item),
+            ModifierFilters = TradeFilterService
+                              .GetModifierFilters(Item)
+                              .ToList(),
+            PseudoFilters = TradeFilterService
+                            .GetPseudoModifierFilters(Item)
+                            .ToList(),
+        };
 
         if (Item.Metadata.Rarity != Rarity.Rare && Item.Metadata.Rarity != Rarity.Magic)
         {
             await UpdateQuery();
         }
-
-        await base.OnParametersSetAsync();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -97,4 +111,5 @@ else
             await ItemsResult.Search();
         }
     }
+
 }

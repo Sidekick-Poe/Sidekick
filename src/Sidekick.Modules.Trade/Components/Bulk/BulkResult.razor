@@ -1,6 +1,5 @@
 @using Sidekick.Apis.Poe.Bulk;
 @using Sidekick.Apis.Poe.Bulk.Models;
-@using Sidekick.Apis.Poe.Trade.Results;
 @using Sidekick.Common.Enums;
 
 @if (Visible)
@@ -31,7 +30,7 @@
                         </MudText>
                     </MudItem>
                     <MudItem xs="3" Class="pa-2 align-self-center">
-                        <PriceDisplay Value="(double)offer.SaleUnitPrice" Currency="@offer.SaleCurrency" />
+                        <PriceDisplay Value="offer.SaleUnitPrice" Currency="@offer.SaleCurrency" />
                     </MudItem>
                 </MudGrid>
             </div>
@@ -44,26 +43,19 @@
     }
 }
 
+@inject IBulkTradeService BulkTradeService
+@inject ISettings Settings
+@inject NavigationManager NavigationManager
+@inject TradeResources Resources
+
 @code {
-    [Inject]
-    private IBulkTradeService BulkTradeService { get; set; }
-
-    [Inject]
-    private ISettings Settings { get; set; }
-
-    [Inject]
-    private NavigationManager NavigationManager { get; set; }
-
-    [Inject]
-    private TradeResources Resources { get; set; }
-
     [CascadingParameter]
-    public Item Item { get; set; }
+    public required Item Item { get; set; }
 
     [Parameter]
     public bool Visible { get; set; }
 
-    private BulkResponseModel Result { get; set; }
+    private BulkResponseModel? Result { get; set; }
     private bool IsFetching { get; set; }
 
     public async Task Search()
@@ -72,7 +64,7 @@
         IsFetching = true;
         StateHasChanged();
 
-        Result = await BulkTradeService.SearchBulk(Item, Settings.Trade_Bulk_Currency.GetEnumFromValue<TradeCurrency>(), Settings.Trade_Bulk_MinStock);
+        Result = await BulkTradeService.SearchBulk(Item, Settings.Trade_Bulk_Currency.GetEnumFromValue<TradeCurrency>(), Settings.Trade_Bulk_MinStock ?? 5);
         IsFetching = false;
 
         StateHasChanged();

@@ -1,47 +1,54 @@
 @using System.Threading
 @implements IDisposable
 
-@if (Settings.Trade_Prediction_Enable)
+@if (Settings.Trade_Prediction_Enable ?? false)
 {
-    if (Loading || Item == null)
-    {
-        <MudSkeleton Height="56px" />
-        <ItemSeparator Rarity="Item.Metadata.Rarity" />
-    }
-    else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
-    {
-        <MudGrid Spacing="0" Justify="Justify.Center" Class="align-start py-2">
-            <MudItem xs="6" Class="pr-2">
-                <MudText Typo="Typo.subtitle2" Align="Align.Right">@Resources.Prediction</MudText>
-                <MudText Typo="Typo.caption" Align="Align.Right" Style="@($"color: {GetConfidenceColor()};")" Class="d-block">@Resources.PredictionConfidence(Prediction.ConfidenceScore)</MudText>
-            </MudItem>
-            <MudItem xs="6" Class="pl-2">
-                <PriceRangeDisplay Min="Prediction.Min" Max="Prediction.Max" Currency="@Prediction.Currency" Class="justify-start" />
-            </MudItem>
-        </MudGrid>
-        <ItemSeparator Rarity="Item.Metadata.Rarity" />
-    }
+    return;
 }
 
-@code {
-    [Inject] private TradeResources Resources { get; set; }
-    [Inject] private ISettings Settings { get; set; }
-    [Inject] private IPoePriceInfoClient Client { get; set; }
+@if (Loading)
+{
+    <MudSkeleton Height="56px"/>
+    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+}
+else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
+{
+    <MudGrid Spacing="0" Justify="Justify.Center" Class="align-start py-2">
+        <MudItem xs="6" Class="pr-2">
+            <MudText Typo="Typo.subtitle2" Align="Align.Right">@Resources.Prediction</MudText>
+            <MudText Typo="Typo.caption" Align="Align.Right" Style="@($"color: {GetConfidenceColor()};")" Class="d-block">@Resources.PredictionConfidence(Prediction.ConfidenceScore)</MudText>
+        </MudItem>
+        <MudItem xs="6" Class="pl-2">
+            <PriceRangeDisplay Min="Prediction.Min" Max="Prediction.Max" Currency="@Prediction.Currency" Class="justify-start"/>
+        </MudItem>
+    </MudGrid>
+    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+}
 
-    [CascadingParameter] public Item Item { get; set; }
+@inject TradeResources Resources
+@inject ISettings Settings
+@inject IPoePriceInfoClient Client
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
 
     private bool Loading { get; set; }
+
     private bool IsInit { get; set; }
-    private PricePrediction Prediction { get; set; }
-    private CancellationTokenSource pricePredictionCancellationTokenSource = new CancellationTokenSource();
+
+    private PricePrediction? Prediction { get; set; }
+
+    private CancellationTokenSource pricePredictionCancellationTokenSource = new();
 
     private string GetConfidenceColor()
     {
-        return Prediction.ConfidenceScore switch
+        return Prediction?.ConfidenceScore switch
         {
-            (< 33) => MudBlazor.Colors.Red.Default,
-            (< 66) => MudBlazor.Colors.Yellow.Default,
-            _ => MudBlazor.Colors.Green.Default
+            (< 33) => Colors.Red.Default,
+            (< 66) => Colors.Yellow.Default,
+            _ => Colors.Green.Default
         };
     }
 
@@ -49,15 +56,12 @@
     {
         await base.OnParametersSetAsync();
 
-        if (IsInit || !Settings.Trade_Prediction_Enable) return;
+        if (IsInit || !(Settings.Trade_Prediction_Enable ?? false)) return;
 
         Loading = true;
 
-        if (Item != null)
-        {
-            IsInit = true;
-            Prediction = await Client.GetPricePrediction(Item);
-        }
+        IsInit = true;
+        Prediction = await Client.GetPricePrediction(Item);
 
         Loading = false;
     }
@@ -66,4 +70,5 @@
     {
         pricePredictionCancellationTokenSource.Cancel();
     }
+
 }

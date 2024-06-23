@@ -21,16 +21,6 @@ using Sidekick.Modules.Trade;
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseElectron(args);
 
-#region Configuration
-
-try
-{
-    builder.Configuration.AddJsonFile(SidekickPaths.GetDataFilePath(SettingsService.FileName), true, true);
-}
-catch (Exception) { }
-
-#endregion Configuration
-
 #region Services
 
 builder.Services.AddRazorPages();
@@ -49,7 +39,7 @@ builder.Services
 .AddMudBlazorJsApi()
 
 // Common
-    .AddSidekickCommon(builder.Configuration)
+    .AddSidekickCommon()
     .AddSidekickCommonBlazor()
     .AddSidekickCommonPlatform(o =>
     {

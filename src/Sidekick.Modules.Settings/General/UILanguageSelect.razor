@@ -1,11 +1,8 @@
-@using System.Linq.Expressions;
-
-<MudSelect T="string"
+<MudSelect T="string?"
            Label="@Resources.Language_UI"
            Variant="Variant.Filled"
            Value="Value"
            ValueChanged="ValueChanged"
-           OffsetY="true"
            Required="true"
            RequiredError="Language is required!">
     @foreach (var option in Options)
@@ -14,20 +11,31 @@
     }
 </MudSelect>
 
-@code {
-    [Inject] private SettingsResources Resources { get; set; }
-    [Inject] private IUILanguageProvider UILanguageProvider { get; set; }
+@inject SettingsResources Resources
+@inject IUiLanguageProvider UILanguageProvider
 
-    [Parameter] public string Value { get; set; }
-    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+@code {
+
+    [Parameter]
+    public string? Value { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> ValueChanged { get; set; }
 
     private Dictionary<string, string> Options { get; set; } = new Dictionary<string, string>();
 
     protected override async Task OnInitializedAsync()
     {
         var languages = UILanguageProvider.GetList();
-        Options = languages.ToDictionary(x => x.Name, x => x.NativeName.First().ToString().ToUpper() + x.NativeName[1..]);
+        Options = languages.ToDictionary(
+            x => x.Name,
+            x => x
+                 .NativeName.First()
+                 .ToString()
+                 .ToUpper()
+                 + x.NativeName[1..]);
 
         await base.OnInitializedAsync();
     }
+
 }

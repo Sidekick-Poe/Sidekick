@@ -30,8 +30,9 @@ namespace Sidekick.Common.Platform.Interprocess
                         await pipeServer.WaitForConnectionAsync();
                         await pipeServer.WaitForRemotePipeCloseAsync();
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
+                        // We do not want to stop execution when the above fails.
                     }
                 }
             });

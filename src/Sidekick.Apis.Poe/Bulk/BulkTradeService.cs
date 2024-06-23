@@ -11,34 +11,21 @@ using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Bulk
 {
-    public class BulkTradeService : IBulkTradeService
+    public class BulkTradeService(
+        ILogger<BulkTradeService> logger,
+        IGameLanguageProvider gameLanguageProvider,
+        ISettingsService settingsService,
+        IPoeTradeClient poeTradeClient,
+        IItemStaticDataProvider itemStaticDataProvider) : IBulkTradeService
     {
-        private readonly ILogger logger;
-        private readonly IGameLanguageProvider gameLanguageProvider;
-        private readonly ISettings settings;
-        private readonly IPoeTradeClient poeTradeClient;
-        private readonly IItemStaticDataProvider itemStaticDataProvider;
+        private readonly ILogger logger = logger;
 
-        public BulkTradeService(ILogger<BulkTradeService> logger,
-            IGameLanguageProvider gameLanguageProvider,
-            ISettings settings,
-            IPoeTradeClient poeTradeClient,
-            IItemStaticDataProvider itemStaticDataProvider)
+        public bool SupportsBulkTrade(Item? item)
         {
-            this.logger = logger;
-            this.gameLanguageProvider = gameLanguageProvider;
-            this.settings = settings;
-            this.poeTradeClient = poeTradeClient;
-            this.itemStaticDataProvider = itemStaticDataProvider;
-        }
-
-        public bool SupportsBulkTrade(Item item)
-        {
-            return item.Metadata.Rarity == Rarity.Currency && itemStaticDataProvider.GetId(item.Metadata.Name, item.Metadata.Type) != null;
+            return item?.Metadata.Rarity == Rarity.Currency && itemStaticDataProvider.GetId(item.Metadata.Name, item.Metadata.Type) != null;
         }
 
         public async Task<BulkResponseModel> SearchBulk(Item item, TradeCurrency currency, int minStock)
@@ -50,6 +37,7 @@ namespace Sidekick.Apis.Poe.Bulk
                 throw new ApiErrorException("[Trade API] Could not find a valid language.");
             }
 
+            var settings = settingsService.GetSettings();
             var uri = $"{gameLanguageProvider.Language.PoeTradeApiBaseUrl}exchange/{settings.LeagueId}";
 
             var itemId = itemStaticDataProvider.GetId(item.Metadata.Name, item.Metadata.Type);
@@ -106,12 +94,13 @@ namespace Sidekick.Apis.Poe.Bulk
 
         public Uri GetTradeUri(Item item, string queryId)
         {
-            Uri? baseUri = gameLanguageProvider.Language?.PoeTradeExchangeBaseUrl;
+            var baseUri = gameLanguageProvider.Language?.PoeTradeExchangeBaseUrl;
             if (baseUri == null)
             {
                 throw new Exception("[Trade API] Could not find the trade uri.");
             }
 
+            var settings = settingsService.GetSettings();
             return new Uri(baseUri, $"{settings.LeagueId}/{queryId}");
         }
     }
