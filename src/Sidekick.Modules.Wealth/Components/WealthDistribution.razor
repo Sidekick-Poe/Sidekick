@@ -1,49 +1,53 @@
+@using Sidekick.Common.Database.Tables
+@using Sidekick.Common.Database
 @using ApexCharts
 
 <div style="@($"height:{WealthView.ChartHeight}")" class="pb-2">
     @if (Stashes.Any())
     {
         <ApexChart @ref="Chart"
-                   TItem="Stash"
+                   TItem="WealthStash"
                    Options="Options"
                    Height="@("100%")">
-            <ApexPointSeries TItem="Stash"
+            <ApexPointSeries TItem="WealthStash"
                              Items="Stashes"
                              SeriesType="SeriesType.Donut"
                              XValue="@(e => e.Name)"
-                             YAggregate="@(e => (decimal?)e.Sum(e => e.Total))"
-                             OrderByDescending="e=>e.Y" />
+                             YAggregate="@(e => (decimal?)e.Sum(stash => stash.Total))"
+                             OrderByDescending="e => e.Y ?? 0"/>
         </ApexChart>
     }
 </div>
 
-@inject DbContextOptions<WealthDbContext> DbContextOptions
+@inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject WealthParser WealthParser
 @implements IDisposable
+
 @code {
+
     [CascadingParameter]
     public WealthView View { get; set; } = null!;
 
-    private List<Stash> Stashes { get; set; } = new();
-    private ApexChartOptions<Stash> Options { get; set; } = new();
-    private ApexChart<Stash>? Chart { get; set; }
+    private List<WealthStash> Stashes { get; set; } = new();
+
+    private ApexChartOptions<WealthStash> Options { get; set; } = new();
+
+    private ApexChart<WealthStash>? Chart { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        Options = new();
-
-        Options.Chart = new Chart
+        Options = new()
+        {
+            Chart = new Chart
             {
                 Background = "transparent",
-            };
-
-        Options.Theme = new Theme
+            },
+            Theme = new Theme
             {
                 Mode = Mode.Dark,
                 Palette = PaletteType.Palette1,
-            };
-
-        Options.PlotOptions = new PlotOptions
+            },
+            PlotOptions = new PlotOptions
             {
                 Pie = new PlotOptionsPie
                 {
@@ -51,34 +55,38 @@
                     {
                         Labels = new DonutLabels
                         {
-                            Total = new DonutLabelTotal { FontSize = "18px", Color = "white", Formatter = @"function (w) { return parseInt(w.globals.seriesTotals.reduce((a, b) => { return (a + b) }, 0)) }" },
-                            Value = new DonutLabelValue { Color = "gold", Formatter = @"function (value) { return parseInt(value) }" }
+                            Total = new DonutLabelTotal
+                            {
+                                FontSize = "18px",
+                                Color = "white",
+                                Formatter = @"function (w) { return parseInt(w.globals.seriesTotals.reduce((a, b) => { return (a + b) }, 0)) }"
+                            },
+                            Value = new DonutLabelValue
+                            {
+                                Color = "gold",
+                                Formatter = @"function (value) { return parseInt(value) }"
+                            }
                         },
                     }
                 }
-            };
-
-        Options.Tooltip = new Tooltip
+            },
+            Tooltip = new Tooltip
             {
-                Y = new TooltipY
-                {
-                    Formatter = @"function (value) { return parseInt(value) }"
-                },
-            };
-
-        Options.Stroke = new Stroke
+                Y = new TooltipY { Formatter = @"function (value) { return parseInt(value) }" },
+            },
+            Stroke = new Stroke
             {
                 Show = false,
-            };
-
-        Options.Legend = new Legend
+            },
+            Legend = new Legend
             {
                 Show = false,
                 Labels = new LegendLabels
                 {
                     Colors = "#999",
                 }
-            };
+            },
+        };
 
         WealthParser.OnStashParsed += Update;
         View.OnSelectedStashIdsChanged += Update;
@@ -88,26 +96,26 @@
 
     public void Update()
     {
-        _ = InvokeAsync(async () =>
-        {
-            await LoadData();
-            StateHasChanged();
-
-            if (Chart != null)
+        _ = InvokeAsync(
+            async () =>
             {
-                await Chart.RenderAsync();
-            }
-        });
+                await LoadData();
+                StateHasChanged();
+
+                if (Chart != null)
+                {
+                    await Chart.RenderAsync();
+                }
+            });
     }
 
     private async Task LoadData()
     {
-        using var database = new WealthDbContext(DbContextOptions);
-        Stashes = await database.Stashes
-            .Where(x => View.SelectedStashIds.Contains(x.Id))
-            .OrderByDescending(x => x.Total)
-            .ToListAsync();
-
+        await using var database = new SidekickDbContext(DbContextOptions);
+        Stashes = await database
+                        .WealthStashes.Where(x => View.SelectedStashIds.Contains(x.Id))
+                        .OrderByDescending(x => x.Total)
+                        .ToListAsync();
     }
 
     public void Dispose()
@@ -115,4 +123,5 @@
         WealthParser.OnStashParsed -= Update;
         View.OnSelectedStashIdsChanged -= Update;
     }
+
 }

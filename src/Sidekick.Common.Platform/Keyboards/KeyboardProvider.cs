@@ -11,9 +11,13 @@ using Sidekick.Common.Keybinds;
 
 namespace Sidekick.Common.Platform.Keyboards
 {
-    public class KeyboardProvider : IKeyboardProvider, IDisposable
+    public class KeyboardProvider(
+        ILogger<KeyboardProvider> logger,
+        IOptions<SidekickConfiguration> configuration,
+        IServiceProvider serviceProvider,
+        IProcessProvider processProvider) : IKeyboardProvider, IDisposable
     {
-        private static readonly Dictionary<KeyCode, string> Keys = new()
+        private static readonly Dictionary<KeyCode, string> keyMappings = new()
         {
             { KeyCode.VcLeftShift, "Shift" },
             { KeyCode.VcRightShift, "Shift" },
@@ -21,7 +25,6 @@ namespace Sidekick.Common.Platform.Keyboards
             { KeyCode.VcRightControl, "Ctrl" },
             { KeyCode.VcLeftAlt, "Alt" },
             { KeyCode.VcRightAlt, "Alt" },
-
             { KeyCode.VcF1, "F1" },
             { KeyCode.VcF2, "F2" },
             { KeyCode.VcF3, "F3" },
@@ -46,7 +49,6 @@ namespace Sidekick.Common.Platform.Keyboards
             { KeyCode.VcF22, "F22" },
             { KeyCode.VcF23, "F23" },
             { KeyCode.VcF24, "F24" },
-
             { KeyCode.Vc0, "0" },
             { KeyCode.Vc1, "1" },
             { KeyCode.Vc2, "2" },
@@ -57,7 +59,6 @@ namespace Sidekick.Common.Platform.Keyboards
             { KeyCode.Vc7, "7" },
             { KeyCode.Vc8, "8" },
             { KeyCode.Vc9, "9" },
-
             { KeyCode.VcA, "A" },
             { KeyCode.VcB, "B" },
             { KeyCode.VcC, "C" },
@@ -84,7 +85,6 @@ namespace Sidekick.Common.Platform.Keyboards
             { KeyCode.VcX, "X" },
             { KeyCode.VcY, "Y" },
             { KeyCode.VcZ, "Z" },
-
             { KeyCode.VcMinus, "-" },
             { KeyCode.VcEquals, "=" },
             { KeyCode.VcComma, "," },
@@ -96,14 +96,13 @@ namespace Sidekick.Common.Platform.Keyboards
             { KeyCode.VcBackslash, "\\" },
             { KeyCode.VcCloseBracket, "]" },
             { KeyCode.VcQuote, "'" },
-
             { KeyCode.VcEscape, "Esc" },
             { KeyCode.VcTab, "Tab" },
             { KeyCode.VcCapsLock, "CapsLock" },
             { KeyCode.VcSpace, "Space" },
             { KeyCode.VcBackspace, "Backspace" },
             { KeyCode.VcEnter, "Enter" },
-            { KeyCode.VcPrintScreen,"PrintScreen" },
+            { KeyCode.VcPrintScreen, "PrintScreen" },
             { KeyCode.VcScrollLock, "ScrollLock" },
             { KeyCode.VcInsert, "Insert" },
             { KeyCode.VcHome, "Home" },
@@ -111,12 +110,10 @@ namespace Sidekick.Common.Platform.Keyboards
             { KeyCode.VcEnd, "End" },
             { KeyCode.VcPageDown, "PageDown" },
             { KeyCode.VcPageUp, "PageUp" },
-
             { KeyCode.VcUp, "Up" },
             { KeyCode.VcDown, "Down" },
             { KeyCode.VcLeft, "Left" },
             { KeyCode.VcRight, "Right" },
-
             { KeyCode.VcNumLock, "NumLock" },
             { KeyCode.VcNumPad0, "Num0" },
             { KeyCode.VcNumPad1, "Num1" },
@@ -130,33 +127,19 @@ namespace Sidekick.Common.Platform.Keyboards
             { KeyCode.VcNumPad9, "Num9" },
         };
 
-        private static readonly Regex ModifierKeys = new("^(?:Ctrl|Shift|Alt)$");
+        private static readonly Regex modifierKeys = new("^(?:Ctrl|Shift|Alt)$");
 
-        private readonly ILogger<KeyboardProvider> logger;
-        private readonly IOptions<SidekickConfiguration> configuration;
-        private readonly IServiceProvider serviceProvider;
-        private readonly IProcessProvider processProvider;
+        private bool HasInitialized { get; set; }
 
-        private bool HasInitialized { get; set; } = false;
         private SimpleGlobalHook? Hook { get; set; }
-        private Task? HookTask { get; set; }
-        private LogSource? LogSource { get; set; }
 
-        public KeyboardProvider(
-            ILogger<KeyboardProvider> logger,
-            IOptions<SidekickConfiguration> configuration,
-            IServiceProvider serviceProvider,
-            IProcessProvider processProvider)
-        {
-            this.logger = logger;
-            this.configuration = configuration;
-            this.serviceProvider = serviceProvider;
-            this.processProvider = processProvider;
-        }
+        private Task? HookTask { get; set; }
+
+        private LogSource? LogSource { get; set; }
 
         public event Action<string>? OnKeyDown;
 
-        private Dictionary<string, IKeybindHandler> KeybindHandlers { get; init; } = new();
+        private Dictionary<string, KeybindHandler> KeybindHandlers { get; init; } = new();
 
         /// <inheritdoc/>
         public InitializationPriority Priority => InitializationPriority.Low;
@@ -174,10 +157,10 @@ namespace Sidekick.Common.Platform.Keyboards
             KeybindHandlers.Clear();
             foreach (var keybindType in configuration.Value.Keybinds)
             {
-                var keybindHandler = (IKeybindHandler)serviceProvider.GetRequiredService(keybindType);
-                foreach (var keybind in keybindHandler.GetKeybinds())
+                var keybindHandler = (KeybindHandler)serviceProvider.GetRequiredService(keybindType);
+                foreach (var keybind in keybindHandler.Keybinds)
                 {
-                    if (!KeybindHandlers.TryAdd(keybind, keybindHandler))
+                    if (keybind != null && KeybindHandlers.TryAdd(keybind, keybindHandler))
                     {
                         logger.LogWarning("[Keyboard] Duplicate keybinding detected {0}.", keybind);
                     }
@@ -199,14 +182,16 @@ namespace Sidekick.Common.Platform.Keyboards
             return Task.CompletedTask;
         }
 
-        private Regex IgnoreHookLogs = new Regex("(?:dispatch_mouse_move|hook_get_multi_click_time|dispatch_event|win_hook_event_proc|dispatch_mouse_wheel|dispatch_button_press|dispatch_button_release)", RegexOptions.Compiled);
+        private readonly Regex ignoreHookLogs = new Regex("(?:dispatch_mouse_move|hook_get_multi_click_time|dispatch_event|win_hook_event_proc|dispatch_mouse_wheel|dispatch_button_press|dispatch_button_release)", RegexOptions.Compiled);
 
-        private void OnMessageLogged(object? sender, LogEventArgs e)
+        private void OnMessageLogged(
+            object? sender,
+            LogEventArgs e)
         {
             switch (e.LogEntry.Level)
             {
                 case SharpHook.Native.LogLevel.Debug:
-                    if (IgnoreHookLogs.IsMatch(e.LogEntry.Function))
+                    if (ignoreHookLogs.IsMatch(e.LogEntry.Function))
                     {
                         break;
                     }
@@ -228,12 +213,18 @@ namespace Sidekick.Common.Platform.Keyboards
             }
         }
 
-        private void OnKeyPressed(object? sender, KeyboardHookEventArgs args)
+        private void OnKeyPressed(
+            object? sender,
+            KeyboardHookEventArgs args)
         {
             // Make sure the key is one we recognize and validate the event and keybinds
-            if (!Keys.TryGetValue(args.RawEvent.Keyboard.KeyCode, out var key)
-             || ModifierKeys.IsMatch(key)
-             || (!processProvider.IsPathOfExileInFocus && !processProvider.IsSidekickInFocus))
+            if (!keyMappings.TryGetValue(args.RawEvent.Keyboard.KeyCode, out var key)
+                || modifierKeys.IsMatch(key)
+                || processProvider is
+                {
+                    IsPathOfExileInFocus: false,
+                    IsSidekickInFocus: false
+                })
             {
                 return;
             }
@@ -258,6 +249,7 @@ namespace Sidekick.Common.Platform.Keyboards
             str.Append(key);
             var keybind = str.ToString();
             OnKeyDown?.Invoke(keybind);
+
             // logger.LogDebug($"[Keyboard] Received key pressed event {keybind}.");
 
             if (!KeybindHandlers.TryGetValue(keybind, out var keybindHandler) || !keybindHandler.IsValid(keybind))
@@ -268,11 +260,12 @@ namespace Sidekick.Common.Platform.Keyboards
             logger.LogDebug($"[Keyboard] Executing keybind handler for {str}.");
 
             args.SuppressEvent = true;
-            Task.Run(async () =>
-            {
-                await keybindHandler.Execute(keybind);
-                logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
-            });
+            Task.Run(
+                async () =>
+                {
+                    await keybindHandler.Execute(keybind);
+                    logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
+                });
         }
 
         public Task PressKey(params string[] keyStrokes)
@@ -332,7 +325,7 @@ namespace Sidekick.Common.Platform.Keyboards
             foreach (var key in stroke.Split('+'))
             {
                 // Modifier keys;
-                if (ModifierKeys.IsMatch(key))
+                if (modifierKeys.IsMatch(key))
                 {
                     var modifierKey = key switch
                     {
@@ -350,12 +343,12 @@ namespace Sidekick.Common.Platform.Keyboards
                     continue;
                 }
 
-                if (!Keys.Any(x => x.Value == key))
+                if (keyMappings.All(x => x.Value != key))
                 {
                     continue;
                 }
 
-                var validKey = Keys.First(x => x.Value == key);
+                var validKey = keyMappings.First(x => x.Value == key);
                 keyCodes.Add(validKey.Key);
             }
 
@@ -388,11 +381,13 @@ namespace Sidekick.Common.Platform.Keyboards
                 Hook = null;
             }
 
-            if (HookTask != null)
+            if (HookTask == null)
             {
-                HookTask.Dispose();
-                HookTask = null;
+                return;
             }
+
+            HookTask.Dispose();
+            HookTask = null;
         }
     }
 }

@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Stash.Models;
-using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Stash
 {
@@ -16,15 +16,15 @@ namespace Sidekick.Apis.Poe.Stash
         {
             try
             {
-                var settings = settingsService.GetSettings();
-                var response = await client.Fetch<ApiStashTabList>($"stash/{settings.LeagueId}");
-                if (response == null)
+                var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+                var response = await client.Fetch<ApiStashTabList>($"stash/{leagueId}");
+                if (response == null || leagueId == null)
                 {
                     return null;
                 }
 
                 var result = new List<StashTab>();
-                FillStashTabs(result, response.StashTabs);
+                FillStashTabs(leagueId, result, response.StashTabs);
 
                 return result;
             }
@@ -35,21 +35,23 @@ namespace Sidekick.Apis.Poe.Stash
             }
         }
 
-        private string GetLeagueId() => settingsService.GetSettings().LeagueId ?? throw new SidekickException("Could not find a valid league.");
-
-        private void FillStashTabs(List<StashTab> list, List<ApiStashTab> apiStashTabs)
+        private void FillStashTabs(
+            string leagueId,
+            List<StashTab> list,
+            List<ApiStashTab> apiStashTabs)
         {
             foreach (var stashTab in apiStashTabs)
             {
                 if (stashTab.StashType != StashType.Folder)
                 {
-                    list.Add(new()
-                    {
-                        Name = stashTab.Name,
-                        Id = stashTab.Id,
-                        League = GetLeagueId(),
-                        Type = stashTab.StashType,
-                    });
+                    list.Add(
+                        new()
+                        {
+                            Name = stashTab.Name,
+                            Id = stashTab.Id,
+                            League = leagueId,
+                            Type = stashTab.StashType,
+                        });
                 }
 
                 if (stashTab.Children == null)
@@ -57,7 +59,7 @@ namespace Sidekick.Apis.Poe.Stash
                     continue;
                 }
 
-                FillStashTabs(list, stashTab.Children);
+                FillStashTabs(leagueId, list, stashTab.Children);
             }
         }
 
@@ -65,8 +67,9 @@ namespace Sidekick.Apis.Poe.Stash
         {
             try
             {
-                var wrapper = await client.Fetch<ApiStashTabWrapper>($"stash/{GetLeagueId()}/{id}");
-                if (wrapper == null)
+                var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+                var wrapper = await client.Fetch<ApiStashTabWrapper>($"stash/{leagueId}/{id}");
+                if (wrapper == null || leagueId == null)
                 {
                     return null;
                 }
@@ -75,7 +78,7 @@ namespace Sidekick.Apis.Poe.Stash
                 {
                     Id = wrapper.Stash.Id,
                     Parent = wrapper.Stash.Parent,
-                    League = GetLeagueId(),
+                    League = leagueId,
                     Name = wrapper.Stash.Name,
                     Type = wrapper.Stash.StashType
                 };
@@ -107,9 +110,8 @@ namespace Sidekick.Apis.Poe.Stash
 
             if (tab.Items == null && tab.Children == null)
             {
-                var uri = string.IsNullOrEmpty(tab.Parent) ?
-                    $"stash/{GetLeagueId()}/{tab.Id}" :
-                    $"stash/{GetLeagueId()}/{tab.Parent}/{tab.Id}";
+                var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+                var uri = string.IsNullOrEmpty(tab.Parent) ? $"stash/{leagueId}/{tab.Id}" : $"stash/{leagueId}/{tab.Parent}/{tab.Id}";
 
                 var wrapper = await client.Fetch<ApiStashTabWrapper>(uri);
                 if (wrapper?.Stash.Items != null)
@@ -143,6 +145,14 @@ namespace Sidekick.Apis.Poe.Stash
                 return new();
             }
 
+            var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+            if (leagueId == null)
+            {
+                return
+                [
+                ];
+            }
+
             var items = new List<APIStashItem>();
             foreach (var childTab in tab.Children)
             {
@@ -152,55 +162,59 @@ namespace Sidekick.Apis.Poe.Stash
                 }
                 else
                 {
-                    items.Add(new APIStashItem
-                    {
-                        id = childTab.Id,
-                        typeLine = childTab.Metadata?.map?.name,
-                        baseType = childTab.Metadata?.map?.name,
-                        name = "",
-                        icon = childTab.Metadata?.map?.image,
-                        league = GetLeagueId(),
-                        ilvl = -1,
-                        stackSize = childTab.Metadata?.items,
-                        properties =
-                        [
-                            new()
-                            {
-                                name = "Map Tier",
-                                values =
-                                [
+                    items.Add(
+                        new APIStashItem
+                        {
+                            id = childTab.Id,
+                            typeLine = childTab.Metadata?.map?.name,
+                            baseType = childTab.Metadata?.map?.name,
+                            name = "",
+                            icon = childTab.Metadata?.map?.image,
+                            league = leagueId,
+                            ilvl = -1,
+                            stackSize = childTab.Metadata?.items,
+                            properties =
+                            [
+                                new()
+                                {
+                                    name = "Map Tier",
+                                    values =
                                     [
-                                        childTab.Metadata?.map?.tier,
-                                    ],
-                                ]
-                            },
-                        ],
-                        frameType = FrameType.Normal
-                    });
+                                        [
+                                            childTab.Metadata?.map?.tier,
+                                        ],
+                                    ]
+                                },
+                            ],
+                            frameType = FrameType.Normal
+                        });
                 }
             }
 
             return items;
         }
 
-        private void ParseItems(StashTabDetails details, List<APIStashItem> items)
+        private void ParseItems(
+            StashTabDetails details,
+            List<APIStashItem> items)
         {
             foreach (var item in items)
             {
-                details.Items.Add(new()
-                {
-                    Id = item.id,
-                    Name = item.getFriendlyName(),
-                    Stash = details.Id,
-                    Icon = item.icon,
-                    League = details.League,
-                    ItemLevel = item.ilvl,
-                    GemLevel = item.getGemLevel(),
-                    MapTier = item.getMapTier(),
-                    MaxLinks = item.getLinkCount(),
-                    Count = item.stackSize ?? 1,
-                    Category = GetItemCategory(item),
-                });
+                details.Items.Add(
+                    new()
+                    {
+                        Id = item.id,
+                        Name = item.getFriendlyName(),
+                        Stash = details.Id,
+                        Icon = item.icon,
+                        League = details.League,
+                        ItemLevel = item.ilvl,
+                        GemLevel = item.getGemLevel(),
+                        MapTier = item.getMapTier(),
+                        MaxLinks = item.getLinkCount(),
+                        Count = item.stackSize ?? 1,
+                        Category = GetItemCategory(item),
+                    });
             }
         }
 
@@ -215,7 +229,6 @@ namespace Sidekick.Apis.Poe.Stash
 
             logger.LogError($"[Stash] Could not retrieve metadeta: {item.getFriendlyName()}");
             return Category.Unknown;
-
         }
     }
 }

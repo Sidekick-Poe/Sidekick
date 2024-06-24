@@ -10,6 +10,6 @@ namespace Sidekick.Apis.Poe
 
         Task<List<TradeItem>> GetResults(string queryId, List<string> ids, List<PseudoModifierFilter>? pseudoFilters = null);
 
-        Uri GetTradeUri(Item item, string queryId);
+        Task<Uri> GetTradeUri(string queryId);
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoePriceInfo.Api;
 using Sidekick.Apis.PoePriceInfo.Models;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.PoePriceInfo
 {
@@ -36,10 +37,10 @@ namespace Sidekick.Apis.PoePriceInfo
 
             try
             {
-                var settings = settingsService.GetSettings();
+                var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
                 var encodedItem = Convert.ToBase64String(Encoding.UTF8.GetBytes(item.Text));
                 using var client = GetHttpClient();
-                var response = await client.GetAsync("?l=" + settings.LeagueId + "&i=" + encodedItem);
+                var response = await client.GetAsync("?l=" + leagueId + "&i=" + encodedItem);
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<PriceInfoResult>(content, options);
 

@@ -1,5 +1,3 @@
-using Sidekick.Common.Settings.Models;
-
 namespace Sidekick.Common.Settings;
 
 public static class DefaultSettings

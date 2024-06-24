@@ -9,7 +9,7 @@ using Sidekick.Common.Platform;
 
 namespace Sidekick.Modules.Trade.Keybinds
 {
-    public class PriceCheckItemKeybindHandler : IKeybindHandler
+    public class PriceCheckItemKeybindHandler : KeybindHandler
     {
         private readonly IViewLocator viewLocator;
         private readonly IClipboardProvider clipboardProvider;

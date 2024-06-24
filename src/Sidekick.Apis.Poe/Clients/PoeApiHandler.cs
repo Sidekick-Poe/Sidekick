@@ -6,27 +6,23 @@ using Sidekick.Apis.Poe.Clients.States;
 
 namespace Sidekick.Apis.Poe.Clients
 {
-    public class PoeApiHandler : HttpClientHandler
+    public class PoeApiHandler(
+        IAuthenticationService authenticationService,
+        IApiStateProvider apiStateProvider) : HttpClientHandler
     {
-        private readonly IAuthenticationService authenticationService;
-        private readonly IApiStateProvider apiStateProvider;
-
-        private readonly ConcurrencyLimiter concurrencyLimiter;
-        private List<LimitRule> limitRules = new();
-
-        public PoeApiHandler(IAuthenticationService authenticationService, IApiStateProvider apiStateProvider)
-        {
-            this.authenticationService = authenticationService;
-            this.apiStateProvider = apiStateProvider;
-            concurrencyLimiter = new ConcurrencyLimiter(new ConcurrencyLimiterOptions()
+        private readonly ConcurrencyLimiter concurrencyLimiter = new(
+            new ConcurrencyLimiterOptions()
             {
                 PermitLimit = 1,
                 QueueLimit = int.MaxValue,
                 QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
             });
-        }
 
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        private readonly List<LimitRule> limitRules = new();
+
+        protected override async Task<HttpResponseMessage> SendAsync(
+            HttpRequestMessage request,
+            CancellationToken cancellationToken)
         {
             apiStateProvider.Update(ClientNames.POECLIENT, ApiState.Throttled);
 
@@ -40,7 +36,7 @@ namespace Sidekick.Apis.Poe.Clients
 
             apiStateProvider.Update(ClientNames.POECLIENT, ApiState.Working);
 
-            var token = authenticationService.GetToken();
+            var token = await authenticationService.GetToken();
             if (string.IsNullOrEmpty(token))
             {
                 return new HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
@@ -63,35 +59,42 @@ namespace Sidekick.Apis.Poe.Clients
         {
             var headerRules = new List<HeaderRule>();
 
-            if (response.Headers.TryGetValues("X-Rate-Limit-Policy", out var headerPolicies)
-             && response.Headers.TryGetValues("X-Rate-Limit-Rules", out var headerRuleNames))
+            if (response.Headers.TryGetValues("X-Rate-Limit-Policy", out var _) && response.Headers.TryGetValues("X-Rate-Limit-Rules", out var headerRuleNames))
             {
-                var ruleNames = headerRuleNames.First().Split(',');
+                var ruleNames = headerRuleNames
+                                .First()
+                                .Split(',');
                 foreach (var ruleName in ruleNames)
                 {
-                    if (!response.Headers.TryGetValues($"X-Rate-Limit-{ruleName}", out var headerRule)
-                     || !response.Headers.TryGetValues($"X-Rate-Limit-{ruleName}-State", out var headerRuleState))
+                    if (!response.Headers.TryGetValues($"X-Rate-Limit-{ruleName}", out var headerRule) || !response.Headers.TryGetValues($"X-Rate-Limit-{ruleName}-State", out var headerRuleState))
                     {
                         continue;
                     }
 
-                    var definitions = headerRule.First().Split(',');
-                    var states = headerRuleState.First().Split(',');
+                    var definitions = headerRule
+                                      .First()
+                                      .Split(',');
+                    var states = headerRuleState
+                                 .First()
+                                 .Split(',');
                     for (var i = 0; i < definitions.Count(); i++)
                     {
-                        var definitionParts = definitions[i].Split(':');
-                        var stateParts = states[i].Split(':');
+                        var definitionParts = definitions[i]
+                            .Split(':');
+                        var stateParts = states[i]
+                            .Split(':');
 
-                        if (definitionParts.Count() != 3
-                         || !int.TryParse(definitionParts[0], out var maxHitCount)
-                         || !int.TryParse(definitionParts[1], out var timePeriod)
-                         || stateParts.Count() != 3
-                         || !int.TryParse(stateParts[0], out var currentHitCount))
+                        if (definitionParts.Count() != 3 || !int.TryParse(definitionParts[0], out var maxHitCount) || !int.TryParse(definitionParts[1], out var timePeriod) || stateParts.Count() != 3 || !int.TryParse(stateParts[0], out var currentHitCount))
                         {
                             continue;
                         }
 
-                        headerRules.Add(new HeaderRule(ruleName, currentHitCount, maxHitCount, timePeriod));
+                        headerRules.Add(
+                            new HeaderRule(
+                                ruleName,
+                                currentHitCount,
+                                maxHitCount,
+                                timePeriod));
                     }
                 }
             }

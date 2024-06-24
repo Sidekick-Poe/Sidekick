@@ -5,6 +5,7 @@ using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
+using Sidekick.Common.Settings;
 using Sidekick.Mock;
 using Sidekick.Modules.Settings;
 using Xunit;
@@ -44,9 +45,9 @@ namespace Sidekick.Apis.Poe.Tests
                 .AddSidekickMocks();
 
             var settingsService = ctx.Services.GetRequiredService<ISettingsService>();
-            await settingsService.Save(nameof(ISettings.Language_Parser), "en");
-            await settingsService.Save(nameof(ISettings.Language_UI), "en");
-            await settingsService.Save(nameof(ISettings.LeagueId), "Standard");
+            await settingsService.Set(SettingKeys.LanguageParser, "en");
+            await settingsService.Set(SettingKeys.LanguageUi, "en");
+            await settingsService.Set(SettingKeys.LeagueId, "Standard");
 
             var initComponent = ctx.RenderComponent<Common.Blazor.Initialization.Initialization>();
             if (initComponent.Instance.InitializationTask != null)

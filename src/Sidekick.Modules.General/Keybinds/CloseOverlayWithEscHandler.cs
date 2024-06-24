@@ -6,7 +6,7 @@ namespace Sidekick.Modules.General.Keybinds
 {
     public class CloseOverlayWithEscHandler(
         IViewLocator viewLocator,
-        ISettingsService settingsService) : IKeybindHandler
+        ISettingsService settingsService) : KeybindHandler
     {
         public List<string?> GetKeybinds() =>
         [

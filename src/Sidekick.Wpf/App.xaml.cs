@@ -14,6 +14,7 @@ using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Interprocess;
+using Sidekick.Common.Settings;
 using Sidekick.Mock;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
@@ -56,13 +57,17 @@ namespace Sidekick.Wpf
         {
             base.OnStartup(e);
 
-            var currentDirectory = Directory.GetCurrentDirectory();
-            var settings = settingsService.GetSettings();
-            if (string.IsNullOrEmpty(settings.Current_Directory) || settings.Current_Directory != currentDirectory)
-            {
-                settingsService.Save("Current_Directory", currentDirectory);
-                settingsService.Save("Enable_WealthTracker", false);
-            }
+            Task.Run(
+                async () =>
+                {
+                    var currentDirectory = Directory.GetCurrentDirectory();
+                    var settingDirectory = await settingsService.GetString(SettingKeys.CurrentDirectory);
+                    if (string.IsNullOrEmpty(settingDirectory) || settingDirectory != currentDirectory)
+                    {
+                        await settingsService.Set(SettingKeys.CurrentDirectory, currentDirectory);
+                        await settingsService.Set(SettingKeys.WealthEnabled, false);
+                    }
+                }).RunSynchronously();
 
             var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
             if (interprocessService.IsAlreadyRunning())

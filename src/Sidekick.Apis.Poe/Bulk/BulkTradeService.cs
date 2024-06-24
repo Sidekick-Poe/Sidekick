@@ -11,6 +11,7 @@ using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Bulk
 {
@@ -37,8 +38,8 @@ namespace Sidekick.Apis.Poe.Bulk
                 throw new ApiErrorException("[Trade API] Could not find a valid language.");
             }
 
-            var settings = settingsService.GetSettings();
-            var uri = $"{gameLanguageProvider.Language.PoeTradeApiBaseUrl}exchange/{settings.LeagueId}";
+            var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+            var uri = $"{gameLanguageProvider.Language.PoeTradeApiBaseUrl}exchange/{leagueId}";
 
             var itemId = itemStaticDataProvider.GetId(item.Metadata.Name, item.Metadata.Type);
             if (itemId == null)
@@ -92,7 +93,7 @@ namespace Sidekick.Apis.Poe.Bulk
             }
         }
 
-        public Uri GetTradeUri(Item item, string queryId)
+        public async Task<Uri> GetTradeUri(Item item, string queryId)
         {
             var baseUri = gameLanguageProvider.Language?.PoeTradeExchangeBaseUrl;
             if (baseUri == null)
@@ -100,8 +101,8 @@ namespace Sidekick.Apis.Poe.Bulk
                 throw new Exception("[Trade API] Could not find the trade uri.");
             }
 
-            var settings = settingsService.GetSettings();
-            return new Uri(baseUri, $"{settings.LeagueId}/{queryId}");
+            var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+            return new Uri(baseUri, $"{leagueId}/{queryId}");
         }
     }
 }

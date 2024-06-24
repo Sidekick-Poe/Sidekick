@@ -11,6 +11,8 @@ namespace Sidekick.Common.Settings
         DbContextOptions<SidekickDbContext> dbContextOptions,
         ILogger<SettingsService> logger) : ISettingsService
     {
+        public event Action? OnSettingsChanged;
+
         public async Task<bool> GetBool(string key)
         {
             await using var dbContext = new SidekickDbContext(dbContextOptions);
@@ -153,6 +155,8 @@ namespace Sidekick.Common.Settings
             }
 
             await dbContext.SaveChangesAsync();
+
+            OnSettingsChanged?.Invoke();
         }
 
         private string? GetStringValue(object? value)

@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Settings.Models;
+namespace Sidekick.Common.Settings;
 
 /// <summary>
 ///     Identifies the type of wiki

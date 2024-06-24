@@ -124,7 +124,7 @@ public static class ServiceCollectionExtensions
     /// <param name="services">The service collection to add the keybind to</param>
     /// <returns>The service collection</returns>
     public static IServiceCollection AddSidekickKeybind<TKeybindHandler>(this IServiceCollection services)
-        where TKeybindHandler : class, IKeybindHandler
+        where TKeybindHandler : KeybindHandler
     {
         services.AddSingleton<TKeybindHandler>();
 

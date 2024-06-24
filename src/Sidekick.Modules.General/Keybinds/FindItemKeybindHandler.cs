@@ -10,7 +10,7 @@ namespace Sidekick.Modules.General.Keybinds
         IClipboardProvider clipboardProvider,
         IProcessProvider processProvider,
         IItemParser itemParser,
-        ISettingsService settingsService) : IKeybindHandler
+        ISettingsService settingsService) : KeybindHandler
     {
         public List<string?> GetKeybinds() =>
         [

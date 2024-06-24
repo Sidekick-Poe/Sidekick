@@ -3,6 +3,11 @@ namespace Sidekick.Common.Settings;
 public interface ISettingsService
 {
     /// <summary>
+    /// Event when any setting is changed.
+    /// </summary>
+    event Action OnSettingsChanged;
+
+    /// <summary>
     /// Gets a setting by its key.
     /// </summary>
     /// <param name="key">The key of the setting to get.</param>

@@ -1,8 +1,7 @@
-
 @if (CurrencyPerHour == null)
 {
     <div class="d-flex align-center flex-nowrap">
-        <MudIcon Size="MudBlazor.Size.Small" Icon="@Icons.Material.Filled.Warning" Color="MudBlazor.Color.Warning" />
+        <MudIcon Size="Size.Small" Icon="@Icons.Material.Filled.Warning" Color="Color.Warning"/>
         <div class="ml-3 font-smallcaps">Chaos per Hour will be calculated at the next snapshot.</div>
     </div>
 }
@@ -11,10 +10,13 @@ else
     <div class="font-smallcaps"><span style="color:gold; font-size:1.5em;">@CurrencyPerHour</span> Chaos per Hour</div>
 }
 
-@inject DbContextOptions<WealthDbContext> DbContextOptions
+@using Sidekick.Common.Database
+@inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject WealthParser WealthParser
 @implements IDisposable
+
 @code {
+
     private int? CurrencyPerHour { get; set; }
 
     protected override async Task OnInitializedAsync()
@@ -26,26 +28,27 @@ else
 
     public void Update()
     {
-        _ = InvokeAsync(async () =>
-        {
-            await LoadData();
-            StateHasChanged();
-        });
+        _ = InvokeAsync(
+            async () =>
+            {
+                await LoadData();
+                StateHasChanged();
+            });
     }
 
     private async Task LoadData()
     {
         var oneHourAgo = DateTimeOffset.Now.AddHours(-1);
-        using var database = new WealthDbContext(DbContextOptions);
+        await using var database = new SidekickDbContext(DbContextOptions);
 
-        var oneHourAgoSnapshot = await database.FullSnapshots
-            .Where(x => x.Date > oneHourAgo)
-            .OrderBy(x => x.Date)
-            .FirstOrDefaultAsync();
+        var oneHourAgoSnapshot = await database
+                                       .WealthFullSnapshots.Where(x => x.Date > oneHourAgo)
+                                       .OrderBy(x => x.Date)
+                                       .FirstOrDefaultAsync();
 
-        var latestSnapshot = await database.FullSnapshots
-            .OrderByDescending(x => x.Date)
-            .FirstOrDefaultAsync();
+        var latestSnapshot = await database
+                                   .WealthFullSnapshots.OrderByDescending(x => x.Date)
+                                   .FirstOrDefaultAsync();
 
         if (oneHourAgoSnapshot == null || latestSnapshot == null)
         {
@@ -68,4 +71,5 @@ else
     {
         WealthParser.OnSnapshotTaken -= Update;
     }
+
 }

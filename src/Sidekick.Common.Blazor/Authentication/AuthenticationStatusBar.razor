@@ -1,5 +1,7 @@
 @using Sidekick.Apis.Poe.Authentication;
-@if (AuthenticationService.CurrentState == AuthenticationState.Authenticated)
+@using Sidekick.Common.Settings
+
+@if (CurrentState == AuthenticationState.Authenticated)
 {
     <MudAlert Severity="Severity.Normal" Variant="Variant.Filled" Square="true" Dense="true" Icon="@Icons.Material.Filled.Login">
         <div class="align-center d-flex flex-wrap justify-space-around">
@@ -7,16 +9,14 @@
             <MudButton OnClick="() => AuthenticationService.Authenticate(true)" Size="Size.Small" DisableElevation="true" Color="Color.Primary" Variant="Variant.Filled" Class="ma-1">Re-authenticate</MudButton>
         </div>
     </MudAlert>
-    <MudProgressLinear Color="Color.Primary" Value="TokenPercentRemaining" />
+    <MudProgressLinear Color="Color.Primary" Value="TokenPercentRemaining"/>
 }
-
-@if (AuthenticationService.CurrentState == AuthenticationState.InProgress)
+else if (CurrentState == AuthenticationState.InProgress)
 {
     <MudAlert Severity="Severity.Info" Variant="Variant.Filled" Square="true" Dense="true" Icon="@Icons.Material.Filled.HourglassTop">You are currently authenticating.</MudAlert>
-    <MudProgressLinear Color="Color.Info" Indeterminate="true" />
+    <MudProgressLinear Color="Color.Info" Indeterminate="true"/>
 }
-
-@if (AuthenticationService.CurrentState == AuthenticationState.Unauthenticated)
+else if (CurrentState == AuthenticationState.Unauthenticated)
 {
     <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Square="true" Dense="true" Icon="@Icons.Material.Filled.Logout">
         <div class="align-center d-flex flex-wrap justify-space-around">
@@ -29,56 +29,55 @@
 @implements IDisposable
 @inject IAuthenticationService AuthenticationService
 @inject ISettingsService SettingsService
+
 @code {
     private Timer? refreshTimer;
 
-    private int TokenPercentRemaining
-    {
-        get
-        {
-            var settings = SettingsService.GetSettings();
-            if (settings.Bearer_Expiration == null)
-            {
-                return 0;
-            }
+    private AuthenticationState CurrentState { get; set; }
 
-            var remainingTime = settings.Bearer_Expiration - DateTimeOffset.Now;
-            return (int)((remainingTime.Value.TotalMinutes / TimeSpan.FromHours(10).TotalMinutes) * 100);
-        }
-    }
+    private int TokenPercentRemaining { get; set; }
 
-    private string TokenRemainingString
-    {
-        get
-        {
-            var settings = SettingsService.GetSettings();
-            if (settings.Bearer_Expiration == null)
-            {
-                return "";
-            }
-
-            var remainingTime = settings.Bearer_Expiration - DateTimeOffset.Now;
-            return $"{remainingTime.Value.Hours:00}:{remainingTime.Value.Minutes:00}";
-        }
-    }
+    private string? TokenRemainingString { get; set; }
 
     protected override void OnInitialized()
     {
         AuthenticationService.OnStateChanged += OnChanged;
 
         refreshTimer = new Timer(
-            _ => { InvokeAsync(StateHasChanged); },
+            _ => { OnChanged(); },
             null,
             TimeSpan.Zero,
-            TimeSpan.FromMinutes(1)
-        );
+            TimeSpan.FromMinutes(1));
 
+        OnChanged();
         base.OnInitialized();
     }
 
     private void OnChanged()
     {
-        InvokeAsync(StateHasChanged);
+        InvokeAsync(
+            async () =>
+            {
+                CurrentState = await AuthenticationService.GetCurrentState();
+
+                var bearerExpiration = await SettingsService.GetDateTime(SettingKeys.BearerExpiration);
+                if (bearerExpiration == null)
+                {
+                    TokenPercentRemaining = 0;
+                    TokenRemainingString = "";
+                }
+                else
+                {
+                    var remainingTime = bearerExpiration - DateTimeOffset.Now;
+                    TokenPercentRemaining = (int)((remainingTime.Value.TotalMinutes
+                                                   / TimeSpan.FromHours(10)
+                                                             .TotalMinutes)
+                                                  * 100);
+                    TokenRemainingString = $"{remainingTime.Value.Hours:00}:{remainingTime.Value.Minutes:00}";
+                }
+
+                StateHasChanged();
+            });
     }
 
     public void Dispose()
@@ -86,4 +85,5 @@
         refreshTimer?.Dispose();
         AuthenticationService.OnStateChanged -= OnChanged;
     }
+
 }

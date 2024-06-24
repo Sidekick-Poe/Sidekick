@@ -12,6 +12,7 @@ using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade
 {
@@ -81,8 +82,8 @@ namespace Sidekick.Apis.Poe.Trade
                     request.Query.Filters.MiscFilters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Phantasmal);
                 }
 
-                var settings = settingsService.GetSettings();
-                var uri = new Uri($"{gameLanguageProvider.Language.PoeTradeApiBaseUrl}search/{settings.LeagueId}");
+                var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+                var uri = new Uri($"{gameLanguageProvider.Language.PoeTradeApiBaseUrl}search/{leagueId}");
                 var json = JsonSerializer.Serialize(request, poeTradeClient.Options);
                 var body = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await poeTradeClient.HttpClient.PostAsync(uri, body);
@@ -807,7 +808,7 @@ namespace Sidekick.Apis.Poe.Trade
                 });
         }
 
-        public Uri GetTradeUri(Item item, string queryId)
+        public async Task<Uri> GetTradeUri(string queryId)
         {
             var baseUri = gameLanguageProvider.Language?.PoeTradeSearchBaseUrl;
             if (baseUri == null)
@@ -815,8 +816,8 @@ namespace Sidekick.Apis.Poe.Trade
                 throw new Exception("[Trade API] Could not find the trade uri.");
             }
 
-            var settings = settingsService.GetSettings();
-            return new Uri(baseUri, $"{settings.LeagueId}/{queryId}");
+            var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+            return new Uri(baseUri, $"{leagueId}/{queryId}");
         }
     }
 }

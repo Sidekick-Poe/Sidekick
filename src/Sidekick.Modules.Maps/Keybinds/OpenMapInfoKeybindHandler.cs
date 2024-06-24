@@ -9,7 +9,7 @@ using Sidekick.Common.Platform;
 
 namespace Sidekick.Modules.Maps.Keybinds
 {
-    public class OpenMapInfoKeybindHandler : IKeybindHandler
+    public class OpenMapInfoKeybindHandler : KeybindHandler
     {
         private readonly IViewLocator viewLocator;
         private readonly IClipboardProvider clipboardProvider;

@@ -6,9 +6,9 @@ namespace Sidekick.Apis.Poe.Authentication
 
         event Action? OnStateChanged;
 
-        AuthenticationState CurrentState { get; }
+        Task<AuthenticationState> GetCurrentState();
 
-        string? GetToken();
+        Task<string?> GetToken();
 
         Task Authenticate(bool reauthenticate = false);
     }

@@ -6,7 +6,9 @@ using Microsoft.Extensions.Options;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Initialization;
+using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Common.Blazor.Initialization
 {
@@ -41,8 +43,7 @@ namespace Sidekick.Common.Blazor.Initialization
         private string? Step { get; set; }
         private int Percentage { get; set; }
         private bool Error { get; set; }
-
-        private ISettings Settings => SettingsService.GetSettings();
+        private string? WelcomeMessage { get; set; }
 
         public Task? InitializationTask { get; set; }
         public override string Title => "Initialize";
@@ -51,6 +52,9 @@ namespace Sidekick.Common.Blazor.Initialization
         protected override async Task OnInitializedAsync()
         {
             InitializationTask = Handle();
+            var keyOpenPriceCheck = await SettingsService.GetString(SettingKeys.KeyOpenPriceCheck);
+            var keyClose = await SettingsService.GetString(SettingKeys.KeyClose);
+            WelcomeMessage = string.Format(Resources.Notification, keyOpenPriceCheck.ToKeybindString(), keyClose.ToKeybindString());
             await base.OnInitializedAsync();
             await InitializationTask;
         }

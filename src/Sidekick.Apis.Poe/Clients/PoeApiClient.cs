@@ -1,12 +1,13 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Clients
 {
     public class PoeApiClient : IPoeApiClient
     {
-        private const string POEAPIURL = "https://api.pathofexile.com/";
+        private const string PoeApiUrl = "https://api.pathofexile.com/";
 
         private readonly ILogger logger;
         private readonly ISettingsService settingsService;
@@ -22,7 +23,7 @@ namespace Sidekick.Apis.Poe.Clients
             HttpClient = httpClientFactory.CreateClient(ClientNames.POECLIENT);
             HttpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
             HttpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
-            HttpClient.BaseAddress = new Uri(POEAPIURL);
+            HttpClient.BaseAddress = new Uri(PoeApiUrl);
             HttpClient.Timeout = TimeSpan.FromHours(1);
 
             Options = new JsonSerializerOptions()
@@ -45,8 +46,8 @@ namespace Sidekick.Apis.Poe.Clients
 
                 if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized || response.StatusCode == System.Net.HttpStatusCode.Forbidden)
                 {
-                    await settingsService.Save("Bearer_Token", null);
-                    await settingsService.Save("Bearer_Expiration", null);
+                    await settingsService.Set(SettingKeys.BearerToken, null);
+                    await settingsService.Set(SettingKeys.BearerExpiration, null);
                     throw new PoeApiException("Poe API: Unauthorized.");
                 }
 

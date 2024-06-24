@@ -10,6 +10,6 @@ namespace Sidekick.Apis.Poe.Bulk
 
         bool SupportsBulkTrade(Item? item);
 
-        Uri GetTradeUri(Item item, string queryId);
+        Task<Uri> GetTradeUri(Item item, string queryId);
     }
 }

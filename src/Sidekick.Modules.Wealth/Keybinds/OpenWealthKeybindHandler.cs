@@ -5,7 +5,7 @@ using Sidekick.Common.Platform;
 
 namespace Sidekick.Modules.Wealth.Keybinds
 {
-    public class OpenWealthKeybindHandler : IKeybindHandler
+    public class OpenWealthKeybindHandler : KeybindHandler
     {
         private readonly IViewLocator viewLocator;
         private readonly ISettings settings;

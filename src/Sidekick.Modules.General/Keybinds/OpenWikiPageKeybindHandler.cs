@@ -16,7 +16,7 @@ namespace Sidekick.Modules.General.Keybinds
         IItemParser itemParser,
         IGameLanguageProvider gameLanguageProvider,
         IBrowserProvider browserProvider,
-        IKeyboardProvider keyboard) : IKeybindHandler
+        IKeyboardProvider keyboard) : KeybindHandler
     {
         public List<string?> GetKeybinds() =>
         [
