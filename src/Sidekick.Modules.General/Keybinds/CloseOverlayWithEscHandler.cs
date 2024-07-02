@@ -1,23 +1,47 @@
-using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Keybinds;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.General.Keybinds
 {
-    public class CloseOverlayWithEscHandler(
-        IViewLocator viewLocator,
-        ISettingsService settingsService) : KeybindHandler
+    public class CloseOverlayWithEscHandler : KeybindHandler
     {
-        public List<string?> GetKeybinds() =>
+        private readonly ISettingsService settingsService;
+        private readonly IViewLocator viewLocator1;
+
+        public CloseOverlayWithEscHandler(
+            IViewLocator viewLocator,
+            ISettingsService settingsService)
+            : base(settingsService)
+        {
+            viewLocator1 = viewLocator;
+            this.settingsService = settingsService;
+            settingsService.OnSettingsChanged += OnSettingsChanged;
+            _ = UpdateIsValid();
+        }
+
+        private bool EscapeClosesOverlays { get; set; }
+
+        private async Task UpdateIsValid()
+        {
+            EscapeClosesOverlays = await settingsService.GetBool(SettingKeys.EscapeClosesOverlays);
+        }
+
+        private void OnSettingsChanged()
+        {
+            _ = UpdateIsValid();
+        }
+
+        protected override Task<List<string?>> GetKeybinds() => Task.FromResult<List<string?>>(
         [
             "Esc",
-        ];
+        ]);
 
-        public bool IsValid(string _) => (settingsService.GetSettings().EscapeClosesOverlays ?? false) && viewLocator.IsOverlayOpened();
+        public override bool IsValid(string _) => EscapeClosesOverlays && viewLocator1.IsOverlayOpened();
 
-        public Task Execute(string _)
+        public override Task Execute(string _)
         {
-            viewLocator.CloseAllOverlays();
+            viewLocator1.CloseAllOverlays();
             return Task.CompletedTask;
         }
     }

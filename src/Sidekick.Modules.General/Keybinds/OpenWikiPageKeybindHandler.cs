@@ -1,11 +1,11 @@
 using Sidekick.Apis.Poe;
-using Sidekick.Common;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.General.Keybinds
 {
@@ -16,17 +16,18 @@ namespace Sidekick.Modules.General.Keybinds
         IItemParser itemParser,
         IGameLanguageProvider gameLanguageProvider,
         IBrowserProvider browserProvider,
-        IKeyboardProvider keyboard) : KeybindHandler
+        IKeyboardProvider keyboard) : KeybindHandler(settingsService)
     {
-        public List<string?> GetKeybinds() =>
+        private readonly ISettingsService settingsService = settingsService;
+
+        protected override async Task<List<string?>> GetKeybinds() =>
         [
-            settingsService.GetSettings()
-                           .Wiki_Key_Open,
+            await settingsService.GetString(SettingKeys.KeyOpenWiki)
         ];
 
-        public bool IsValid(string _) => processProvider.IsPathOfExileInFocus;
+        public override bool IsValid(string _) => processProvider.IsPathOfExileInFocus;
 
-        public async Task Execute(string keybind)
+        public override async Task Execute(string keybind)
         {
             var text = await clipboardProvider.Copy();
             if (text == null)
@@ -37,8 +38,8 @@ namespace Sidekick.Modules.General.Keybinds
 
             var item = await itemParser.ParseItemAsync(text);
 
-            var settings = settingsService.GetSettings();
-            if (settings.Wiki_Preferred == WikiSetting.PoeWiki)
+            var wikiPreferred = await settingsService.GetEnum<WikiSetting>(SettingKeys.PreferredWiki);
+            if (wikiPreferred == WikiSetting.PoeWiki)
             {
                 if (!gameLanguageProvider.IsEnglish())
                 {
@@ -47,7 +48,7 @@ namespace Sidekick.Modules.General.Keybinds
 
                 OpenPoeWiki(item);
             }
-            else if (settings.Wiki_Preferred == WikiSetting.PoeDb)
+            else if (wikiPreferred == WikiSetting.PoeDb)
             {
                 OpenPoeDb(item);
             }

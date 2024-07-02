@@ -4,10 +4,10 @@ namespace Sidekick.Modules.Trade.Localization
 {
     public class TradeCurrencyOption
     {
-        public TradeCurrency Value { get; set; }
+        public TradeCurrency Value { get; init; }
 
-        public string Label { get; set; }
+        public required string Label { get; init; }
 
-        public string Image { get; set; }
+        public string? Image { get; init; }
     }
 }

@@ -1,7 +1,10 @@
 @page "/wealth"
 @inherits SidekickView
+@using Sidekick.Common.Database
+@using Sidekick.Common.Database.Tables
 @using Sidekick.Modules.Wealth.Components
 @using Sidekick.Common.Exceptions
+@using Sidekick.Common.Settings
 
 <MudDrawer Open="true"
            Variant="@DrawerVariant.Persistent"
@@ -62,8 +65,8 @@
 </CascadingValue>
 
 @implements IDisposable
-@inject DbContextOptions<WealthDbContext> DbContextOptions
-@inject ISettings Settings
+@inject DbContextOptions<SidekickDbContext> DbContextOptions
+@inject ISettingsService SettingsService
 @inject WealthParser WealthParser
 @code {
     public const string ChartHeight = "24vh";
@@ -75,7 +78,7 @@
 
     public override int ViewHeight => 800;
 
-    private List<Stash> StashTabs { get; set; } = new();
+    private List<WealthStash> StashTabs { get; set; } = new();
 
     public List<string> SelectedStashIds { get; set; } = new();
 
@@ -104,7 +107,7 @@
         });
     }
 
-    private void Toggle(Stash tab, bool isChecked)
+    private void Toggle(WealthStash tab, bool isChecked)
     {
         if (!isChecked)
         {
@@ -122,7 +125,7 @@
     {
         var previousStashIds = StashTabs.Select(x => x.Id).ToList();
         await using var database = new SidekickDbContext(DbContextOptions);
-        StashTabs = await database.Stashes
+        StashTabs = await database.WealthStashes
             .Where(x => Settings.WealthTrackerTabs != null && Settings.WealthTrackerTabs.Contains(x.Id))
             .OrderByDescending(x => x.Total)
             .ToListAsync();

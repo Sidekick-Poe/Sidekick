@@ -1,44 +1,28 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Sidekick.Apis.Poe;
-using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.Maps.Keybinds
 {
-    public class OpenMapInfoKeybindHandler : KeybindHandler
+    public class OpenMapInfoKeybindHandler(
+        IViewLocator viewLocator,
+        IClipboardProvider clipboardProvider,
+        IProcessProvider processProvider,
+        IKeyboardProvider keyboard,
+        ISettingsService settingsService) : KeybindHandler(settingsService)
     {
-        private readonly IViewLocator viewLocator;
-        private readonly IClipboardProvider clipboardProvider;
-        private readonly IProcessProvider processProvider;
-        private readonly ISettings settings;
-        private readonly IItemParser itemParser;
-        private readonly IKeyboardProvider keyboard;
+        private readonly ISettingsService settingsService = settingsService;
 
-        public OpenMapInfoKeybindHandler(
-            IViewLocator viewLocator,
-            IClipboardProvider clipboardProvider,
-            IProcessProvider processProvider,
-            ISettings settings,
-            IItemParser itemParser,
-            IKeyboardProvider keyboard)
-        {
-            this.viewLocator = viewLocator;
-            this.clipboardProvider = clipboardProvider;
-            this.processProvider = processProvider;
-            this.settings = settings;
-            this.itemParser = itemParser;
-            this.keyboard = keyboard;
-        }
+        protected override async Task<List<string?>> GetKeybinds() =>
+        [
+            await settingsService.GetString(SettingKeys.KeyOpenMapCheck)
+        ];
 
-        public List<string> GetKeybinds() => new() { settings.Map_Key_Check };
+        public override bool IsValid(string _) => processProvider.IsPathOfExileInFocus;
 
-        public bool IsValid(string _) => processProvider.IsPathOfExileInFocus;
-
-        public async Task Execute(string keybind)
+        public override async Task Execute(string keybind)
         {
             var text = await clipboardProvider.Copy();
             if (text == null)

@@ -1,10 +1,4 @@
-@using System.Threading
-@implements IDisposable
-
-@if (Settings.Trade_Prediction_Enable ?? false)
-{
-    return;
-}
+@using Sidekick.Common.Settings
 
 @if (Loading)
 {
@@ -26,7 +20,7 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
 }
 
 @inject TradeResources Resources
-@inject ISettings Settings
+@inject ISettingsService SettingsService
 @inject IPoePriceInfoClient Client
 
 @code {
@@ -36,11 +30,7 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
 
     private bool Loading { get; set; }
 
-    private bool IsInit { get; set; }
-
     private PricePrediction? Prediction { get; set; }
-
-    private CancellationTokenSource pricePredictionCancellationTokenSource = new();
 
     private string GetConfidenceColor()
     {
@@ -56,19 +46,16 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
     {
         await base.OnParametersSetAsync();
 
-        if (IsInit || !(Settings.Trade_Prediction_Enable ?? false)) return;
+        if (!await SettingsService.GetBool(SettingKeys.PriceCheckPredictionEnabled))
+        {
+            return;
+        }
 
         Loading = true;
+        StateHasChanged();
 
-        IsInit = true;
         Prediction = await Client.GetPricePrediction(Item);
-
         Loading = false;
+        StateHasChanged();
     }
-
-    public void Dispose()
-    {
-        pricePredictionCancellationTokenSource.Cancel();
-    }
-
 }

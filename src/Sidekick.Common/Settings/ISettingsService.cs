@@ -26,7 +26,22 @@ public interface ISettingsService
     /// </summary>
     /// <param name="key">The key of the setting to get.</param>
     /// <returns>The value of the setting.</returns>
+    Task<int> GetInt(string key);
+
+    /// <summary>
+    /// Gets a setting by its key.
+    /// </summary>
+    /// <param name="key">The key of the setting to get.</param>
+    /// <returns>The value of the setting.</returns>
     Task<DateTimeOffset?> GetDateTime(string key);
+
+    /// <summary>
+    /// Gets a setting by its key.
+    /// </summary>
+    /// <param name="key">The key of the setting to get.</param>
+    /// <returns>The value of the setting.</returns>
+    Task<TEnum?> GetEnum<TEnum>(string key)
+        where TEnum : struct, Enum;
 
     /// <summary>
     /// Gets a setting by its key.

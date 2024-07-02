@@ -1,5 +1,5 @@
 @using Sidekick.Apis.Poe.Bulk;
-@using Sidekick.Common.Enums
+@using Sidekick.Common.Settings
 
 <MudDrawer Open="true"
            Variant="@DrawerVariant.Persistent"
@@ -9,40 +9,37 @@
     <ItemHeaderComponent Name="@Item.Header.Name"
                          Type="@Item.Header.Type"
                          Rarity="Item.Metadata.Rarity"
-                         Influences="Item.Influences" />
+                         Influences="Item.Influences"/>
 
     <div class="flex-grow-1" style="overflow-y:auto;">
-        @if (Item != null)
-        {
-            <SidekickErrorBoundary>
-                <PriceNinjaComponent />
-            </SidekickErrorBoundary>
-            <SidekickErrorBoundary>
-                <PricePredictionComponent />
-            </SidekickErrorBoundary>
-        }
+        <SidekickErrorBoundary>
+            <PriceNinjaComponent/>
+        </SidekickErrorBoundary>
+        <SidekickErrorBoundary>
+            <PricePredictionComponent/>
+        </SidekickErrorBoundary>
 
-        <ClassFilter @bind-Value="Filters.PropertyFilters.Class" Item="Item" />
+        <ClassFilter @bind-Value="Filters.PropertyFilters.Class" Item="Item"/>
 
         <CascadingValue Value="Filters.PropertyFilters.Armour" IsFixed="true">
-            <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
+            <PropertyFiltersComponent Rarity="Item.Metadata.Rarity"/>
         </CascadingValue>
 
         <CascadingValue Value="Filters.PropertyFilters.Weapon" IsFixed="true">
-            <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
+            <PropertyFiltersComponent Rarity="Item.Metadata.Rarity"/>
         </CascadingValue>
 
         <CascadingValue Value="Filters.PropertyFilters.Map" IsFixed="true">
-            <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
+            <PropertyFiltersComponent Rarity="Item.Metadata.Rarity"/>
         </CascadingValue>
 
         <CascadingValue Value="Filters.PropertyFilters.Misc" IsFixed="true">
-            <PropertyFiltersComponent Rarity="Item.Metadata.Rarity" />
+            <PropertyFiltersComponent Rarity="Item.Metadata.Rarity"/>
         </CascadingValue>
 
-        <ModifierFiltersComponent Rarity="Item.Metadata.Rarity" />
+        <ModifierFiltersComponent Rarity="Item.Metadata.Rarity"/>
 
-        <PseudoFiltersComponent Rarity="Item.Metadata.Rarity" />
+        <PseudoFiltersComponent Rarity="Item.Metadata.Rarity"/>
     </div>
 
     @if (SupportsBulkRequest)
@@ -64,7 +61,7 @@
                 @if (Mode == TradeMode.Bulk)
                 {
                     <MudTooltip Text="@Resources.MinStock" Placement="Placement.Top">
-                        <MudInput T="string" Placeholder="Min" @bind-Value="MinStock" Variant="Variant.Outlined" />
+                        <MudInput T="string" Placeholder="Min" @bind-Value="MinStock" Variant="Variant.Outlined"/>
                     </MudTooltip>
                 }
             </MudButtonGroup>
@@ -75,126 +72,111 @@
     {
         <MudButtonGroup Variant="Variant.Filled" Color="Color.Primary" Class="pa-2" Style="width: 100%;">
             <MudButton FullWidth
-                        Variant="Variant.Filled"
-                        Color="Color.Primary"
-                        OnClick="Search">@Resources.Filters_Submit</MudButton>
-             <TradeCurrencySelect @bind-Value="Currency" />
-         </MudButtonGroup>
+                       Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       OnClick="Search">
+                @Resources.Filters_Submit
+            </MudButton>
+            <TradeCurrencySelect @bind-Value="Currency"/>
+        </MudButtonGroup>
     }
 </MudDrawer>
 
+@inject TradeResources Resources
+@inject ISettingsService SettingsService
+@inject IBulkTradeService BulkTradeService
+
 @code {
-    [Inject]
-    private TradeResources Resources { get; set; }
-
-    [Inject]
-    private ISettings Settings { get; set; }
-
-    [Inject]
-    private ISettingsService SettingsService { get; set; }
-
-    [Inject]
-    private IBulkTradeService BulkTradeService { get; set; }
 
     [CascadingParameter]
-    public Item Item { get; set; }
+    public required Item Item { get; set; }
 
     [CascadingParameter]
-    public FiltersModel Filters { get; set; }
+    public required FiltersModel Filters { get; set; }
 
     [Parameter]
     public EventCallback OnSearch { get; set; }
 
     private bool SupportsBulkRequest => BulkTradeService.SupportsBulkTrade(Item);
+
     private bool HasAnyFilter { get; set; }
-    private bool IsInit { get; set; } = false;
 
     private TradeMode Mode { get; set; }
+
     private TradeCurrency Currency { get; set; }
-    private string MinStock { get; set; }
 
-    protected override void OnParametersSet()
+    private string? MinStock { get; set; }
+
+    protected override async Task OnInitializedAsync()
     {
-        base.OnParametersSet();
+       await base.OnInitializedAsync();
 
-        Mode = Settings.Trade_Currency_PreferredMode.GetEnumFromValue<TradeMode>();
-        SetInitialCurrencyValue();
+        Mode = await SettingsService.GetEnum<TradeMode>(SettingKeys.PriceCheckCurrencyMode) ?? TradeMode.Item;
+        await SetInitialCurrencyValue();
 
-        if (IsInit) return;
-        IsInit = Item != null;
+        var propertyCount = 0;
+        propertyCount += Filters.PropertyFilters.Armour.Count;
+        propertyCount += Filters.PropertyFilters.Map.Count;
+        propertyCount += Filters.PropertyFilters.Misc.Count;
+        propertyCount += Filters.PropertyFilters.Weapon.Count;
 
-        int propertyCount = 0;
-        propertyCount += Filters.PropertyFilters?.Armour?.Count ?? 0;
-        propertyCount += Filters.PropertyFilters?.Map?.Count ?? 0;
-        propertyCount += Filters.PropertyFilters?.Misc?.Count ?? 0;
-        propertyCount += Filters.PropertyFilters?.Weapon?.Count ?? 0;
-
-        int modifierCount = 0;
-        modifierCount += Filters.ModifierFilters?.Count ?? 0;
+        var modifierCount = 0;
+        modifierCount += Filters.ModifierFilters.Count;
 
         HasAnyFilter = modifierCount + propertyCount > 0;
     }
 
-    private void SetInitialCurrencyValue()
+    private async Task SetInitialCurrencyValue()
     {
         if (Mode == TradeMode.Bulk)
         {
-            Currency = Settings.Trade_Bulk_Currency.GetEnumFromValue<TradeCurrency>();
+            Currency = await SettingsService.GetEnum<TradeCurrency>(SettingKeys.PriceCheckBulkCurrency) ?? TradeCurrency.Divine;
         }
         else
         {
-            Currency = Settings.Trade_Item_Currency.GetEnumFromValue<TradeCurrency>();
+            Currency = await SettingsService.GetEnum<TradeCurrency>(SettingKeys.PriceCheckItemCurrency) ?? TradeCurrency.ChaosEquivalent;
         }
 
-        MinStock = Settings.Trade_Bulk_MinStock.ToString();
+        MinStock = (await SettingsService.GetInt(SettingKeys.PriceCheckBulkMinimumStock)).ToString();
     }
 
     private string GetModeButtonClass(TradeMode value)
     {
-        if (Mode != value)
-        {
-            return "unselected";
-        }
-
-        return "";
+        return Mode != value ? "unselected" : "";
     }
 
-    private string GetModeButtonIcon(TradeMode value)
+    private string? GetModeButtonIcon(TradeMode value)
     {
-        if (Mode == value)
-        {
-            return Icons.Material.Filled.Check;
-        }
-
-        return null;
+        return Mode == value ? Icons.Material.Filled.Check : null;
     }
 
-    private void SelectModeButton(TradeMode value)
+    private async Task SelectModeButton(TradeMode value)
     {
         Mode = value;
-        SetInitialCurrencyValue();
+        await SetInitialCurrencyValue();
     }
 
     private async Task Search()
     {
         if (SupportsBulkRequest)
         {
-            await SettingsService.Save(nameof(ISettings.Trade_Currency_PreferredMode), Mode.GetValueAttribute());
+            await SettingsService.Set(SettingKeys.PriceCheckCurrencyMode, Currency);
         }
 
         if (Mode == TradeMode.Bulk)
         {
-            await SettingsService.Save(nameof(ISettings.Trade_Bulk_Currency), Currency.GetValueAttribute());
-            if (int.TryParse(MinStock, out int minStock))
+            await SettingsService.Set(SettingKeys.PriceCheckBulkCurrency, Currency);
+            if (int.TryParse(MinStock, out var minStock))
             {
-                await SettingsService.Save(nameof(ISettings.Trade_Bulk_MinStock), minStock);
+                await SettingsService.Set(SettingKeys.PriceCheckBulkMinimumStock, minStock);
             }
         }
         else
         {
-            await SettingsService.Save(nameof(ISettings.Trade_Item_Currency), Currency.GetValueAttribute());
+            await SettingsService.Set(SettingKeys.PriceCheckItemCurrency, Currency);
         }
 
         await OnSearch.InvokeAsync();
     }
+
 }

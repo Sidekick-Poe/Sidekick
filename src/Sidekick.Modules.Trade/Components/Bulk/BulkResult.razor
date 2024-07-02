@@ -1,12 +1,12 @@
 @using Sidekick.Apis.Poe.Bulk;
+@using Sidekick.Common.Settings
 @using Sidekick.Apis.Poe.Bulk.Models;
-@using Sidekick.Common.Enums;
 
 @if (Visible)
 {
     <BulkOptions QueryId="@Result?.QueryId"
                  Count="Result?.Offers.Count ?? 0"
-                 Total="Result?.TotalOffers ?? 0" />
+                 Total="Result?.TotalOffers ?? 0"/>
 
     @if (Result != null)
     {
@@ -16,13 +16,13 @@
                 <MudGrid Spacing="0" Class="align-center">
                     <MudItem xs="3" Class="pa-2">
                         <MudText Typo="Typo.body2" Align="Align.Left">@offer.AccountName</MudText>
-                        <PriceAge Date="offer.Date" Align="Align.Left" />
+                        <PriceAge Date="offer.Date" Align="Align.Left"/>
                     </MudItem>
                     <MudItem xs="6" Class="pa-2 align-self-center">
                         <div class="d-flex align-center mb-1 justify-center">
-                            <PriceDisplay Value="offer.SaleAmount" Currency="@offer.SaleCurrency" Small="true" />
-                            <MudIcon Size="Size.Small" Icon="@Icons.Material.Filled.ArrowForward" Class="arrow mx-1" />
-                            <PriceDisplay Value="offer.ItemAmount" Currency="@offer.ItemCurrency" Small="true" />
+                            <PriceDisplay Value="offer.SaleAmount" Currency="@offer.SaleCurrency" Small="true"/>
+                            <MudIcon Size="Size.Small" Icon="@Icons.Material.Filled.ArrowForward" Class="arrow mx-1"/>
+                            <PriceDisplay Value="offer.ItemAmount" Currency="@offer.ItemCurrency" Small="true"/>
                         </div>
                         <MudText Typo="Typo.body2" Align="Align.Center" Class="d-block font-smallcaps">
                             <span class="stock">@Resources.Stock:</span>
@@ -30,7 +30,7 @@
                         </MudText>
                     </MudItem>
                     <MudItem xs="3" Class="pa-2 align-self-center">
-                        <PriceDisplay Value="offer.SaleUnitPrice" Currency="@offer.SaleCurrency" />
+                        <PriceDisplay Value="offer.SaleUnitPrice" Currency="@offer.SaleCurrency"/>
                     </MudItem>
                 </MudGrid>
             </div>
@@ -39,16 +39,17 @@
 
     @if (IsFetching)
     {
-        <LoadingAlert Text="Loading results" />
+        <LoadingAlert Text="Loading results"/>
     }
 }
 
 @inject IBulkTradeService BulkTradeService
-@inject ISettings Settings
 @inject NavigationManager NavigationManager
 @inject TradeResources Resources
+@inject ISettingsService SettingsService
 
 @code {
+
     [CascadingParameter]
     public required Item Item { get; set; }
 
@@ -56,6 +57,7 @@
     public bool Visible { get; set; }
 
     private BulkResponseModel? Result { get; set; }
+
     private bool IsFetching { get; set; }
 
     public async Task Search()
@@ -64,9 +66,12 @@
         IsFetching = true;
         StateHasChanged();
 
-        Result = await BulkTradeService.SearchBulk(Item, Settings.Trade_Bulk_Currency.GetEnumFromValue<TradeCurrency>(), Settings.Trade_Bulk_MinStock ?? 5);
+        var currency = await SettingsService.GetEnum<TradeCurrency>(SettingKeys.PriceCheckBulkCurrency);
+        var minStock = await SettingsService.GetInt(SettingKeys.PriceCheckBulkMinimumStock);
+        Result = await BulkTradeService.SearchBulk(Item, currency ?? TradeCurrency.Divine, minStock);
         IsFetching = false;
 
         StateHasChanged();
     }
+
 }

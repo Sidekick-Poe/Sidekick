@@ -9,10 +9,10 @@ public abstract class KeybindHandler
 {
     protected KeybindHandler(ISettingsService settingsService)
     {
-        settingsService.OnSettingsChanged += OnOnSettingsChanged;
+        settingsService.OnSettingsChanged += OnSettingsChanged;
     }
 
-    private void OnOnSettingsChanged()
+    private void OnSettingsChanged()
     {
         _ = Task.Run(
             async () =>

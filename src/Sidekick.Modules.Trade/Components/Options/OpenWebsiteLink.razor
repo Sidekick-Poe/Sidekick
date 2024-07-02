@@ -1,6 +1,6 @@
 @using Sidekick.Apis.Poe.Bulk;
 
-@if (Item != null && !string.IsNullOrEmpty(QueryId))
+@if (!string.IsNullOrEmpty(QueryId))
 {
     <MudTooltip Text="@Resources.OpenQueryInWebsite"
                 Placement="Placement.Left">
@@ -9,31 +9,37 @@
     </MudTooltip>
 }
 
+@inject TradeResources Resources
+@inject ITradeSearchService TradeSearchService
+@inject IBulkTradeService BulkTradeService
+@inject IBrowserProvider BrowserProvider
+
 @code {
-    [Inject] private TradeResources Resources { get; set; }
-    [Inject] private ITradeSearchService TradeSearchService { get; set; }
-    [Inject] private IBulkTradeService BulkTradeService { get; set; }
-    [Inject] private IBrowserProvider BrowserProvider { get; set; }
 
     [CascadingParameter]
-    public Item Item { get; set; }
+    public required Item Item { get; set; }
 
     [Parameter]
-    public string QueryId { get; set; }
+    public string? QueryId { get; set; }
 
     [Parameter]
     public TradeMode Mode { get; set; }
 
-    private void OpenWebsite()
+    private async Task OpenWebsite()
     {
+        if (QueryId == null)
+        {
+            return;
+        }
+
         if (Mode == TradeMode.Bulk)
         {
-            var uri = BulkTradeService.GetTradeUri(Item, QueryId);
+            var uri = await BulkTradeService.GetTradeUri(Item, QueryId);
             BrowserProvider.OpenUri(uri);
         }
         else
         {
-            var uri = TradeSearchService.GetTradeUri(Item, QueryId);
+            var uri = await TradeSearchService.GetTradeUri(QueryId);
             BrowserProvider.OpenUri(uri);
         }
     }

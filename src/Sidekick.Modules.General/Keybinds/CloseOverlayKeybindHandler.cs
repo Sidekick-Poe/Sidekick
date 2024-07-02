@@ -1,22 +1,23 @@
-using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Keybinds;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.General.Keybinds
 {
     public class CloseOverlayKeybindHandler(
         IViewLocator viewLocator,
-        ISettingsService settingsService) : KeybindHandler
+        ISettingsService settingsService) : KeybindHandler(settingsService)
     {
-        public List<string?> GetKeybinds() =>
+        private readonly ISettingsService settingsService = settingsService;
+
+        protected override async Task<List<string?>> GetKeybinds() =>
         [
-            settingsService.GetSettings()
-                           .Key_Close,
+            await settingsService.GetString(SettingKeys.KeyClose)
         ];
 
-        public bool IsValid(string _) => viewLocator.IsOverlayOpened();
+        public override bool IsValid(string _) => viewLocator.IsOverlayOpened();
 
-        public Task Execute(string _)
+        public override Task Execute(string _)
         {
             viewLocator.CloseAllOverlays();
             return Task.CompletedTask;

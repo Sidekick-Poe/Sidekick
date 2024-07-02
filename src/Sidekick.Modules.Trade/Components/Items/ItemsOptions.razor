@@ -1,30 +1,34 @@
-@if (QueryId != null)
+@using Sidekick.Common.Settings
+@if (QueryId == null)
 {
-    <div class="d-flex flex-row align-center justify-space-between mb-2">
-        <div>
-            <MudText Color="Color.Info">@Settings.LeagueId</MudText>
-            <CountString Count="Count" Total="Total" />
-        </div>
-        <div>
-            <MudButtonGroup Size="@Size.Small">
-                <OpenWebsiteLink QueryId="@QueryId" Mode="TradeMode.Item" />
-                @if (Item.CanHaveModifiers)
-                {
-                    <ToggleLayoutButton Layout="Layout" LayoutChanged="LayoutChanged" />
-                }
-            </MudButtonGroup>
-        </div>
-    </div>
+    return;
 }
 
+<div class="d-flex flex-row align-center justify-space-between mb-2">
+    <div>
+        <MudText Color="Color.Info">@LeagueId</MudText>
+        <CountString Count="Count" Total="Total"/>
+    </div>
+    <div>
+        <MudButtonGroup Size="@Size.Small">
+            <OpenWebsiteLink QueryId="@QueryId" Mode="TradeMode.Item"/>
+            @if (Item.CanHaveModifiers)
+            {
+                <ToggleLayoutButton Layout="Layout" LayoutChanged="LayoutChanged"/>
+            }
+        </MudButtonGroup>
+    </div>
+</div>
+
+@inject ISettingsService SettingsService
+
 @code {
-    [Inject] private ISettings Settings { get; set; }
 
     [CascadingParameter]
-    public Item Item { get; set; }
+    public required Item Item { get; set; }
 
     [Parameter]
-    public string QueryId { get; set; }
+    public string? QueryId { get; set; }
 
     [Parameter]
     public Layout Layout { get; set; }
@@ -38,15 +42,15 @@
     [Parameter]
     public int Total { get; set; }
 
+    private string? LeagueId { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
-        try
-        {
-            var layout = Enum.Parse<Layout>(Settings.Trade_Layout);
-            await LayoutChanged.InvokeAsync(layout);
-        }
-        catch (Exception) { }
+        LeagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        var layout = await SettingsService.GetEnum<Layout>(SettingKeys.PriceCheckLayout);
+        await LayoutChanged.InvokeAsync(layout ?? Layout.Cards_Maximized);
 
         await base.OnInitializedAsync();
     }
+
 }

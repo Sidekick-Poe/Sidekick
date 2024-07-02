@@ -54,7 +54,7 @@ namespace Sidekick.Common.Blazor.Views
         /// <summary>
         /// Gets a value indicating whether to close the view when you click outside the window.
         /// </summary>
-        public virtual bool CloseOnBlur => false;
+        public virtual bool CloseOnBlur { get; set; } = false;
 
         /// <summary>
         /// Gets the minimum height of the view.

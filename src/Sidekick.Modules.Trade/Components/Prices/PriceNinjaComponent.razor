@@ -1,8 +1,8 @@
 @using Sidekick.Common.Game.Items.AdditionalInformation;
-@if (Loading || Item == null)
+@if (Loading)
 {
-    <MudSkeleton Height="64px" />
-    <ItemSeparator Rarity="Item.Metadata.Rarity" />
+    <MudSkeleton Height="64px"/>
+    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
 }
 else if (Price != null)
 {
@@ -28,87 +28,101 @@ else if (Price != null)
                 {
                     <MudText Typo="Typo.caption" Color="Color.Tertiary" Class="d-flex mr-4 align-self-center">@Price.Links @Resources.Links</MudText>
                 }
-                <PriceDisplay Value="Price.Price" Class="justify-start mr-4" />
+                <PriceDisplay Value="Price.Price" Class="justify-start mr-4"/>
             </div>
 
             @if (Series != null)
             {
                 <div>
-                    <MudChart ChartType="ChartType.Line" ChartOptions="@ChartOptions" ChartSeries="@Series" />
+                    <MudChart ChartType="ChartType.Line" ChartOptions="@ChartOptions" ChartSeries="@Series"/>
                 </div>
             }
         </MudItem>
     </MudGrid>
 
-    <ItemSeparator Rarity="Item.Metadata.Rarity" />
+    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
 }
 
-@code {
-    [Inject] private PoeNinjaResources Resources { get; set; }
-    [Inject] private IPoeNinjaClient Client { get; set; }
-    [Inject] private IBrowserProvider BrowserProvider { get; set; }
+@inject PoeNinjaResources Resources
+@inject IPoeNinjaClient Client
+@inject IBrowserProvider BrowserProvider
 
-    [CascadingParameter] public Item Item { get; set; }
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
 
     private bool Loading { get; set; }
-    private NinjaPrice Price { get; set; }
-    private ChartOptions ChartOptions { get; set; }
-    private List<ChartSeries> Series { get; set; }
+
+    private NinjaPrice? Price { get; set; }
+
+    private ChartOptions? ChartOptions { get; set; }
+
+    private List<ChartSeries>? Series { get; set; }
 
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
 
         Loading = true;
+        StateHasChanged();
 
-        if (Item != null)
+        if (Item.AdditionalInformation is ClusterJewelInformation clusterJewelInformation)
         {
-            if (Item.AdditionalInformation is ClusterJewelInformation clusterJewelInformation)
-            {
-                Price = await Client.GetClusterPrice(
-                    clusterJewelInformation.GrantText,
-                    clusterJewelInformation.SmallPassiveCount,
-                    Item.Properties.ItemLevel);
-            }
-            else
-            {
-                Price = await Client.GetPriceInfo(
-                    Item.Invariant.Name,
-                    Item.Invariant.Type,
-                    Item.Metadata.Category,
-                    gemLevel: Item.Properties.GemLevel,
-                    mapTier: Item.Properties.MapTier,
-                    numberOfLinks: Item.GetMaximumNumberOfLinks());
-            }
+            Price = await Client.GetClusterPrice(clusterJewelInformation.GrantText, clusterJewelInformation.SmallPassiveCount, Item.Properties.ItemLevel);
+        }
+        else
+        {
+            Price = await Client.GetPriceInfo(
+                Item.Invariant?.Name,
+                Item.Invariant?.Type,
+                Item.Metadata.Category,
+                gemLevel: Item.Properties.GemLevel,
+                mapTier: Item.Properties.MapTier,
+                numberOfLinks: Item.GetMaximumNumberOfLinks());
+        }
 
-            ChartOptions = new ChartOptions()
-                {
-                    DisableLegend = true,
-                    XAxisLines = false,
-                    YAxisLines = false,
-                    ChartPalette = new string[] { "#ffffff" },
-                };
+        ChartOptions = new ChartOptions()
+        {
+            DisableLegend = true,
+            XAxisLines = false,
+            YAxisLines = false,
+            ChartPalette = new string[] { "#ffffff" },
+        };
 
-            if (Price?.SparkLine?.Data?.All(x => x.HasValue) == true)
+        if (Price?.SparkLine?.Data.All(x => x.HasValue) == true)
+        {
+            // Normalize values above 0 since the chart doesn't show negative values in the viewbox.
+            var sparkLineData = Price
+                                .SparkLine.Data.Select(x => x ?? 0)
+                                .ToArray();
+            var min = Math.Abs(sparkLineData.Min());
+            var chartData = sparkLineData
+                            .Select(x => x + min)
+                            .ToArray();
+
+            if (chartData.Any(x => x != 0))
             {
-                // Normalize values above 0 since the chart doesn't show negative values in the viewbox.
-                var sparkLineData = Price.SparkLine.Data.Select(x => x.Value).ToArray();
-                var min = Math.Abs(sparkLineData.Min());
-                var chartData = sparkLineData.Select(x => x + min).ToArray();
-
-                if (!chartData.All(x => x == 0))
-                {
-                    Series = new() { new ChartSeries() { Data = chartData } };
-                }
+                Series =
+                [
+                    new ChartSeries() { Data = chartData },
+                ];
             }
         }
 
         Loading = false;
+        StateHasChanged();
     }
 
-    private void OpenWebsite()
+    private async Task OpenWebsite()
     {
-        var uri = Client.GetDetailsUri(Price);
+        if (Price == null)
+        {
+            return;
+        }
+
+        var uri = await Client.GetDetailsUri(Price);
         BrowserProvider.OpenUri(uri);
     }
+
 }

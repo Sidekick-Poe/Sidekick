@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
+using Sidekick.Common.Enums;
 
 namespace Sidekick.Common.Settings
 {
@@ -53,6 +54,26 @@ namespace Sidekick.Common.Settings
             return (string?)(defaultProperty.GetValue(null) ?? null);
         }
 
+        public async Task<int> GetInt(string key)
+        {
+            await using var dbContext = new SidekickDbContext(dbContextOptions);
+            var dbSetting = await dbContext
+                                  .Settings.Where(x => x.Key == key)
+                                  .FirstOrDefaultAsync();
+            if (dbSetting != null && int.TryParse(dbSetting.Value, out var intValue))
+            {
+                return intValue;
+            }
+
+            var defaultProperty = typeof(DefaultSettings).GetProperty(key);
+            if (defaultProperty == null)
+            {
+                return default;
+            }
+
+            return (int)(defaultProperty.GetValue(null) ?? 0);
+        }
+
         public async Task<DateTimeOffset?> GetDateTime(string key)
         {
             await using var dbContext = new SidekickDbContext(dbContextOptions);
@@ -100,6 +121,41 @@ namespace Sidekick.Common.Settings
             try
             {
                 return (TValue?)(defaultProperty.GetValue(null) ?? null);
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e, "[SettingsService] Could not cast the default setting value to the requested object.");
+                throw;
+            }
+        }
+
+        public async Task<TEnum?> GetEnum<TEnum>(string key)
+            where TEnum : struct, Enum
+        {
+            await using var dbContext = new SidekickDbContext(dbContextOptions);
+            var dbSetting = await dbContext
+                                  .Settings.Where(x => x.Key == key)
+                                  .FirstOrDefaultAsync();
+            if (dbSetting != null && Enum.TryParse<TEnum>(dbSetting.Value, out var enumValue))
+            {
+                return enumValue;
+            }
+
+            var enumFromAttribute = dbSetting?.Value.GetEnumFromValue<TEnum>();
+            if (enumFromAttribute != null)
+            {
+                return enumFromAttribute;
+            }
+
+            var defaultProperty = typeof(DefaultSettings).GetProperty(key);
+            if (defaultProperty == null)
+            {
+                return default;
+            }
+
+            try
+            {
+                return (TEnum?)(defaultProperty.GetValue(null) ?? null);
             }
             catch (Exception e)
             {
@@ -171,6 +227,7 @@ namespace Sidekick.Common.Settings
                 double x => x.ToString(CultureInfo.InvariantCulture),
                 int x => x.ToString(),
                 DateTimeOffset x => x.ToString(),
+                Enum x => x.GetValueAttribute(),
                 _ => JsonSerializer.Serialize(value),
             };
         }

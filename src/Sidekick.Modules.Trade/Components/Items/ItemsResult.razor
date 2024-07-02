@@ -1,25 +1,24 @@
-@using Sidekick.Apis.Poe.Bulk;
 @using Sidekick.Apis.Poe.Trade.Results;
-@using Sidekick.Common.Enums;
+@using Sidekick.Common.Settings
 
 @if (Visible)
 {
     <ItemsOptions @bind-Layout="Layout"
                   QueryId="@QueryResult?.Id"
                   Count="Results?.Count ?? 0"
-                  Total="QueryResult?.Total ?? 0" />
+                  Total="QueryResult?.Total ?? 0"/>
 
     @if (Results != null)
     {
         foreach (var result in Results)
         {
-            <ItemComponent @key="result.Id" Item="result" Layout="Layout" />
+            <ItemComponent @key="result.Id" Item="result" Layout="Layout"/>
         }
     }
 
     @if (IsFetching)
     {
-        <LoadingAlert Text="Loading results" />
+        <LoadingAlert Text="Loading results"/>
     }
     else if (!FullyLoaded && Results != null)
     {
@@ -27,35 +26,31 @@
     }
 }
 
+@inject  TradeResources Resources
+@inject  ITradeSearchService TradeSearchService
+@inject  ISettingsService SettingsService
+@inject  NavigationManager NavigationManager
+@inject  ITradeFilterService TradeFilterService
+
 @code {
-    [Inject]
-    private ITradeSearchService TradeSearchService { get; set; }
-
-    [Inject]
-    private ISettings Settings { get; set; }
-
-    [Inject]
-    private TradeResources Resources { get; set; }
-
-    [Inject]
-    private NavigationManager NavigationManager { get; set; }
-
-    [Inject]
-    private ITradeFilterService TradeFilterService { get; set; }
 
     [CascadingParameter]
-    public Item Item { get; set; }
+    public required Item Item { get; set; }
 
     [CascadingParameter]
-    private FiltersModel Filters { get; set; }
+    public required FiltersModel Filters { get; set; }
 
     [Parameter]
     public bool Visible { get; set; }
 
-    private TradeSearchResult<string> QueryResult { get; set; }
-    private List<TradeItem> Results { get; set; }
+    private TradeSearchResult<string>? QueryResult { get; set; }
+
+    private List<TradeItem>? Results { get; set; }
+
     private bool FullyLoaded => (Results?.Count ?? 0) == (QueryResult?.Result?.Count ?? 0);
+
     private bool IsFetching { get; set; }
+
     private Layout Layout { get; set; }
 
     public async Task Search()
@@ -64,7 +59,13 @@
         IsFetching = true;
         StateHasChanged();
 
-        QueryResult = await TradeSearchService.Search(Item, Settings.Trade_Item_Currency.GetEnumFromValue<TradeCurrency>(), Filters.PropertyFilters, Filters.ModifierFilters, Filters.PseudoFilters);
+        var tradeCurrency = await SettingsService.GetEnum<TradeCurrency>(SettingKeys.PriceCheckItemCurrency) ?? TradeCurrency.Chaos;
+        QueryResult = await TradeSearchService.Search(
+            Item,
+            tradeCurrency,
+            Filters.PropertyFilters,
+            Filters.ModifierFilters,
+            Filters.PseudoFilters);
         IsFetching = false;
 
         await LoadMoreData();
@@ -73,12 +74,15 @@
 
     public async Task LoadMoreData()
     {
-        if (IsFetching)
+        if (IsFetching || QueryResult?.Result == null || QueryResult?.Id == null)
         {
             return;
         }
 
-        var ids = QueryResult.Result.Skip(Results?.Count ?? 0).Take(10).ToList();
+        var ids = QueryResult
+                  .Result.Skip(Results?.Count ?? 0)
+                  .Take(10)
+                  .ToList();
         if (ids.Count == 0)
         {
             return;
@@ -87,10 +91,7 @@
         IsFetching = true;
 
         var result = await TradeSearchService.GetResults(QueryResult.Id, ids, Filters.PseudoFilters);
-        if (result != null)
-        {
-            Results.AddRange(result);
-        }
+        Results?.AddRange(result);
 
         IsFetching = false;
 
@@ -102,4 +103,5 @@
         Layout = layout;
         StateHasChanged();
     }
+
 }

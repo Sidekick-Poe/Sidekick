@@ -1,8 +1,9 @@
+@using Sidekick.Common.Settings
 @if (QueryId != null)
 {
     <div class="d-flex flex-row align-center justify-space-between mb-2">
         <div>
-            <MudText Color="Color.Info">@Settings.LeagueId</MudText>
+            <MudText Color="Color.Info">@LeagueId</MudText>
             <CountString Count="Count" Total="Total" />
         </div>
         <div>
@@ -13,19 +14,27 @@
     </div>
 }
 
-@code {
-    [Inject]
-    private ISettings Settings { get; set; }
+@inject ISettingsService SettingsService
 
+@code {
     [CascadingParameter]
-    public Item Item { get; set; }
+    public required Item Item { get; set; }
 
     [Parameter]
-    public string QueryId { get; set; }
+    public string? QueryId { get; set; }
 
     [Parameter]
     public int Count { get; set; }
 
     [Parameter]
     public int Total { get; set; }
+
+    private string? LeagueId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        LeagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        await base.OnInitializedAsync();
+    }
+
 }

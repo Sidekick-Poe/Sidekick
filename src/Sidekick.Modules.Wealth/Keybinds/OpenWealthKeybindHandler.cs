@@ -1,31 +1,25 @@
-using Sidekick.Common;
 using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.Wealth.Keybinds
 {
-    public class OpenWealthKeybindHandler : KeybindHandler
+    public class OpenWealthKeybindHandler(
+        IViewLocator viewLocator,
+        ISettingsService settingsService,
+        IProcessProvider processProvider) : KeybindHandler(settingsService)
     {
-        private readonly IViewLocator viewLocator;
-        private readonly ISettings settings;
-        private readonly IProcessProvider processProvider;
+        private readonly ISettingsService settingsService = settingsService;
 
-        public OpenWealthKeybindHandler(
-            IViewLocator viewLocator,
-            ISettings settings,
-            IProcessProvider processProvider)
-        {
-            this.viewLocator = viewLocator;
-            this.settings = settings;
-            this.processProvider = processProvider;
-        }
+        protected override async Task<List<string?>> GetKeybinds() =>
+        [
+            await settingsService.GetString(SettingKeys.KeyOpenWealth)
+        ];
 
-        public List<string> GetKeybinds() => new() { settings.Wealth_Key_Open };
+        public override bool IsValid(string _) => processProvider.IsPathOfExileInFocus || processProvider.IsSidekickInFocus;
 
-        public bool IsValid(string _) => (processProvider.IsPathOfExileInFocus || processProvider.IsSidekickInFocus);
-
-        public Task Execute(string _)
+        public override Task Execute(string _)
         {
             viewLocator.Open("/wealth");
             return Task.CompletedTask;

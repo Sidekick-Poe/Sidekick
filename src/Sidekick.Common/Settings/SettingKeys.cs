@@ -34,7 +34,7 @@ public static class SettingKeys
     public const string PriceCheckItemCurrency = "PriceCheckItemCurrency";
     public const string PriceCheckBulkCurrency = "PriceCheckBulkCurrency";
     public const string PriceCheckBulkMinimumStock = "PriceCheckBulkMinimumStock";
-    public const string PriceCheckCurrencyLayout = "PriceCheckCurrencyLayout";
+    public const string PriceCheckCurrencyMode = "PriceCheckCurrencyMode";
 
     public const string WealthEnabled = "WealthEnabled";
     public const string WealthTrackedTabs = "WealthTrackedTabs";

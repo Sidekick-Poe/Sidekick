@@ -1,4 +1,5 @@
 @page "/map/{itemText}"
+@using Sidekick.Common.Settings
 @inherits SidekickView
 
 @if (Item == null)
@@ -52,22 +53,26 @@
 
 @inject MapInfoResources Resources
 @inject IItemParser ItemParser
-@inject ISettings Settings
+@inject ISettingsService SettingsService
 
 @code {
 
     [Parameter]
     public required string ItemText { get; set; }
 
-    private List<string> DangerousMods { get; } = new();
+    private List<string> DangerousMods { get; } =
+    [
+    ];
 
-    private List<string> OkMods { get; } = new();
+    private List<string> OkMods { get; } =
+    [
+    ];
 
     private Item? Item { get; set; }
 
     public override string Title => Resources.Title;
 
-    public override bool CloseOnBlur => Settings.Map_CloseWithMouse ?? false;
+    public override bool CloseOnBlur { get; set; }
 
     public override SidekickViewType ViewType => SidekickViewType.Overlay;
 
@@ -82,6 +87,7 @@
             return;
         }
 
+        CloseOnBlur = await SettingsService.GetBool(SettingKeys.MapCheckCloseWithMouse);
         Item = await ItemParser.ParseItemAsync(ItemText.DecodeBase64Url() ?? string.Empty);
 
         if (Item.Metadata.Category != Category.Map && Item.Metadata.Category != Category.Contract && Item.Metadata.Category != Category.Logbook)
@@ -92,18 +98,23 @@
         DangerousMods.Clear();
         OkMods.Clear();
 
-        if (!string.IsNullOrEmpty(Settings.Map_Dangerous_Regex))
+        var dangerousRegex = await SettingsService.GetString(SettingKeys.MapCheckDangerousRegex);
+        if (!string.IsNullOrEmpty(dangerousRegex))
         {
-            var dangerousModsRegex = new Regex(Settings.Map_Dangerous_Regex, RegexOptions.IgnoreCase);
+            var dangerousModsRegex = new Regex(dangerousRegex, RegexOptions.IgnoreCase);
             FilterMods(dangerousModsRegex, Item.ModifierLines);
+        }
+        else
+        {
+            FilterMods(null, Item.ModifierLines);
         }
     }
 
     private void FilterMods(
-        Regex modRegex,
+        Regex? modRegex,
         List<ModifierLine> modifierLines)
     {
-        if (string.IsNullOrWhiteSpace(Settings.Map_Dangerous_Regex))
+        if (modRegex == null)
         {
             OkMods.AddRange(modifierLines.Select(x => x.Text));
             return;

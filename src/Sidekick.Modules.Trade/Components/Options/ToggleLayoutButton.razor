@@ -1,14 +1,14 @@
+@using Sidekick.Common.Settings
 <MudTooltip Text="@(Layout == Layout.Cards_Minimized ? Resources.Layout_Cards_Maximized : @Resources.Layout_Cards_Minimized)"
             Placement="Placement.Left">
     <MudIconButton Icon="@(Layout == Layout.Cards_Minimized ? Icons.Material.Filled.Expand : Icons.Material.Filled.Compress)"
                    OnClick="ToggleLayout" />
 </MudTooltip>
 
-@code {
-    [Inject] private ISettings Settings { get; set; }
-    [Inject] private ISettingsService SettingsService { get; set; }
-    [Inject] private TradeResources Resources { get; set; }
+@inject ISettingsService SettingsService
+@inject TradeResources Resources
 
+@code {
     [Parameter] public Layout Layout { get; set; }
     [Parameter] public EventCallback<Layout> LayoutChanged { get; set; }
 
@@ -20,7 +20,7 @@
     private async Task ToggleLayout()
     {
         var newLayout = Layout == Layout.Cards_Minimized ? Layout.Cards_Maximized : Layout.Cards_Minimized;
-        await SettingsService.Save(nameof(ISettings.Trade_Layout), newLayout.ToString());
+        await SettingsService.Set(SettingKeys.PriceCheckLayout, newLayout.ToString());
         await LayoutChanged.InvokeAsync(newLayout);
     }
 }

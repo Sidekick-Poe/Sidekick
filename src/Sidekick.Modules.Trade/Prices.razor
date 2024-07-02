@@ -1,6 +1,6 @@
 @page "/trade/{itemText}"
 @using Sidekick.Apis.Poe.Bulk;
-@using Sidekick.Common.Enums;
+@using Sidekick.Common.Settings
 @inherits SidekickView
 
 @if (Item == null)
@@ -27,7 +27,7 @@
 </CascadingValue>
 
 @inject IBulkTradeService BulkTradeService
-@inject ISettings Settings
+@inject ISettingsService SettingsService
 @inject TradeResources Resources
 @inject IItemParser ItemParser
 @inject ITradeFilterService TradeFilterService
@@ -45,13 +45,13 @@
 
     private BulkResult? BulkResult { get; set; }
 
-    private TradeMode Mode => BulkTradeService.SupportsBulkTrade(Item) ? Settings.Trade_Currency_PreferredMode.GetEnumFromValue<TradeMode>() : TradeMode.Item;
+    private TradeMode Mode { get; set; }
 
     private bool UpdateAfterRender { get; set; }
 
     public override string Title => Resources.Trade;
 
-    public override bool CloseOnBlur => Settings.Trade_CloseWithMouse ?? false;
+    public override bool CloseOnBlur { get; set; }
 
     public override SidekickViewType ViewType => SidekickViewType.Overlay;
 
@@ -64,6 +64,13 @@
             return;
         }
 
+        Mode = TradeMode.Item;
+        if (BulkTradeService.SupportsBulkTrade(Item))
+        {
+            Mode = await SettingsService.GetEnum<TradeMode>(SettingKeys.PriceCheckCurrencyMode) ?? TradeMode.Item;
+        }
+
+        CloseOnBlur = await SettingsService.GetBool(SettingKeys.PriceCheckCloseWithMouse);
         Item = await ItemParser.ParseItemAsync(ItemText.DecodeBase64Url() ?? string.Empty);
 
         Filters = new FiltersModel()

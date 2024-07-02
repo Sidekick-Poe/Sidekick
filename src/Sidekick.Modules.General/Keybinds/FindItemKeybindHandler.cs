@@ -1,7 +1,7 @@
 using Sidekick.Apis.Poe;
-using Sidekick.Common;
 using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.General.Keybinds
 {
@@ -10,17 +10,18 @@ namespace Sidekick.Modules.General.Keybinds
         IClipboardProvider clipboardProvider,
         IProcessProvider processProvider,
         IItemParser itemParser,
-        ISettingsService settingsService) : KeybindHandler
+        ISettingsService settingsService) : KeybindHandler(settingsService)
     {
-        public List<string?> GetKeybinds() =>
+        private readonly ISettingsService settingsService = settingsService;
+
+        protected override async Task<List<string?>> GetKeybinds() =>
         [
-            settingsService.GetSettings()
-                           .Key_FindItems,
+            await settingsService.GetString(SettingKeys.KeyFindItems)
         ];
 
-        public bool IsValid(string _) => processProvider.IsPathOfExileInFocus;
+        public override bool IsValid(string _) => processProvider.IsPathOfExileInFocus;
 
-        public async Task Execute(string keybind)
+        public override async Task Execute(string keybind)
         {
             var text = await clipboardProvider.Copy();
             if (text == null)
@@ -31,7 +32,11 @@ namespace Sidekick.Modules.General.Keybinds
 
             var item = await itemParser.ParseItemAsync(text);
             await clipboardProvider.SetText(item.Header.Name);
-            await keyboard.PressKey("Ctrl+F", "Ctrl+A", "Ctrl+V", "Enter");
+            await keyboard.PressKey(
+                "Ctrl+F",
+                "Ctrl+A",
+                "Ctrl+V",
+                "Enter");
         }
     }
 }

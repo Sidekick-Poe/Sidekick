@@ -1,4 +1,5 @@
 @using Sidekick.Apis.Poe.Localization
+@using Sidekick.Common.Settings
 @using Sidekick.Common.Enums
 
 <div>
@@ -38,31 +39,24 @@
     </MudMenu>
 </div>
 
+@inject ISettingsService SettingsService
+@inject TradeResources Resources
+@inject IStringLocalizer<TradeCurrencyResources> OptionsLocalizer
+@inject IItemStaticDataProvider StaticDataProvider
+
 @code {
-    [Inject]
-    private ISettings Settings { get; set; }
 
-    [Inject]
-    private ISettingsService SettingsService { get; set; }
-
-    [Inject]
-    private TradeResources Resources { get; set; }
-
-    [Inject]
-    private IStringLocalizer<TradeCurrencyResources> OptionsLocalizer { get; set; }
-
-    [Inject]
-    private IItemStaticDataProvider StaticDataProvider { get; set; }
-    
     [Parameter]
     public TradeCurrency Value { get; set; }
 
     [Parameter]
     public EventCallback<TradeCurrency> ValueChanged { get; set; }
 
-    private List<TradeCurrencyOption> Options { get; set; }
+    private List<TradeCurrencyOption> Options { get; set; } =
+    [
+    ];
 
-    private TradeCurrencyOption SelectedOption => Options?.FirstOrDefault(x => x.Value == Value);
+    private TradeCurrencyOption? SelectedOption => Options.FirstOrDefault(x => x.Value == Value);
 
     protected override void OnInitialized()
     {
@@ -76,10 +70,10 @@
             {
                 TradeCurrency.ChaosEquivalent => "/images/trade/ChaosOrbEquivalent.png",
                 TradeCurrency.ChaosOrDivine => "/images/trade/ChaosOrDivine.png",
-                _ => StaticDataProvider.GetImage(x.GetValueAttribute()),
+                _ => StaticDataProvider.GetImage(x.GetValueAttribute() ?? string.Empty),
             };
 
-            Options.Add(new TradeCurrencyOption()
+            Options.Add(new TradeCurrencyOption
                 {
                     Value = x,
                     Label = OptionsLocalizer[x.ToString()],

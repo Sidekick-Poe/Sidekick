@@ -5,38 +5,23 @@ using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Stash;
 using Sidekick.Apis.Poe.Stash.Models;
 using Sidekick.Apis.PoeNinja;
+using Sidekick.Common.Database;
+using Sidekick.Common.Database.Tables;
 using Sidekick.Common.Game.Items;
-using Sidekick.Modules.Wealth.Models;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.Wealth
 {
-    internal class WealthParser
+    internal class WealthParser(
+        DbContextOptions<SidekickDbContext> dbContextOptions,
+        ISettingsService settingsService,
+        IStashService stashService,
+        IPoeNinjaClient poeNinjaClient,
+        ILogger<WealthParser> logger)
     {
-        private readonly DbContextOptions<WealthDbContext> dbContextOptions;
-        private readonly ISettings settings;
-        private readonly IStashService stashService;
-        private readonly IPoeNinjaClient poeNinjaClient;
-        private readonly ILogger<WealthParser> logger;
-
         public event Action? OnLogsChanged;
-
         public event Action? OnStashParsed;
-
         public event Action? OnSnapshotTaken;
-
-        public WealthParser(
-            DbContextOptions<WealthDbContext> dbContextOptions,
-            ISettings settings,
-            IStashService stashService,
-            IPoeNinjaClient poeNinjaClient,
-            ILogger<WealthParser> logger)
-        {
-            this.dbContextOptions = dbContextOptions;
-            this.settings = settings;
-            this.stashService = stashService;
-            this.poeNinjaClient = poeNinjaClient;
-            this.logger = logger;
-        }
 
         public Queue<(Guid Id, DateTimeOffset Date, string Icon, Color Color, string Message)> Logs { get; set; } = new();
 
@@ -67,10 +52,7 @@ namespace Sidekick.Modules.Wealth
             Log(Icons.Material.Filled.StopCircle, Color.Warning, $"Tracker Stopped.");
         }
 
-        public bool IsRunning()
-        {
-            return CancellationTokenSource != null && !CancellationTokenSource.IsCancellationRequested;
-        }
+        public bool IsRunning() => CancellationTokenSource?.IsCancellationRequested == false;
 
         private void Log(string icon, Color color, string message)
         {
@@ -95,9 +77,10 @@ namespace Sidekick.Modules.Wealth
             {
                 try
                 {
-                    using var database = new WealthDbContext(dbContextOptions);
+                    await using var database = new SidekickDbContext(dbContextOptions);
+                    var tabs = await settingsService.GetString(SettingKeys.WealthTrackedTabs);
 
-                    foreach (var id in settings.WealthTrackerTabs)
+                    foreach (var id in tabs?.Split(',') ?? [])
                     {
                         if (CancellationTokenSource.IsCancellationRequested)
                         {
@@ -140,58 +123,58 @@ namespace Sidekick.Modules.Wealth
             }
         }
 
-        private async Task ParseStash(WealthDbContext database, StashTabDetails stash)
+        private async Task ParseStash(SidekickDbContext database, StashTabDetails stash)
         {
-            var dbStash = database.Stashes.FirstOrDefault(x => x.Id == stash.Id);
+            var dbStash = database.WealthStashes.FirstOrDefault(x => x.Id == stash.Id);
             if (dbStash == null)
             {
-                dbStash = new Models.Stash()
+                dbStash = new WealthStash()
                 {
                     Id = stash.Id,
                     Name = stash.Name,
                     Parent = stash.Parent,
                     League = stash.League,
-                    Type = stash.Type,
+                    Type = stash.Type.ToString(),
                     Total = 0,
                     LastUpdate = DateTimeOffset.Now,
                 };
-                database.Stashes.Add(dbStash);
+                database.WealthStashes.Add(dbStash);
             }
             else
             {
                 dbStash.Name = stash.Name;
                 dbStash.Parent = stash.Parent;
                 dbStash.League = stash.League;
-                dbStash.Type = stash.Type;
+                dbStash.Type = stash.Type.ToString();
                 dbStash.Total = 0;
                 dbStash.LastUpdate = DateTimeOffset.Now;
             }
 
             // Game Item Removed (Traded, Used, Destroyed, etc.)
-            var dbItems = database.Items.Where(x => x.StashId == stash.Id);
-            database.Items.RemoveRange(dbItems);
+            var dbItems = database.WealthItems.Where(x => x.StashId == stash.Id);
+            database.WealthItems.RemoveRange(dbItems);
             await database.SaveChangesAsync();
 
             // Add / Update Items
-            var items = new List<Models.Item>();
+            var items = new List<WealthItem>();
             foreach (var item in stash.Items)
             {
                 items.Add(await ParseItem(item));
             }
 
             dbStash.Total = items.Sum(x => x.Total);
-            database.Items.AddRange(items);
+            database.WealthItems.AddRange(items);
             await database.SaveChangesAsync();
 
             OnStashParsed?.Invoke();
         }
 
-        private async Task<Models.Item> ParseItem(StashItem item)
+        private async Task<WealthItem> ParseItem(StashItem item)
         {
-            var dbItem = new Models.Item()
+            var dbItem = new WealthItem
             {
                 Id = item.Id,
-                Category = item.Category,
+                Category = item.Category.ToString(),
                 Count = item.Count,
                 Icon = item.Icon,
                 League = item.League,
@@ -201,9 +184,9 @@ namespace Sidekick.Modules.Wealth
                 MaxLinks = item.MaxLinks,
                 Name = item.Name,
                 StashId = item.Stash,
+                Price = await GetItemPrice(item, item.Category),
             };
 
-            dbItem.Price = await GetItemPrice(item, dbItem.Category);
             dbItem.Total = dbItem.Count * dbItem.Price;
 
             return dbItem;
@@ -221,25 +204,33 @@ namespace Sidekick.Modules.Wealth
                 item.MaxLinks
             );
 
-            if (price == null)
+            if (price != null)
             {
-                logger.LogError($"[Wealth] Could not price: {item.Name}.");
+                return price.Price;
             }
 
-            return price?.Price ?? 0;
+            logger.LogError($"{nameof(WealthParser)}.{nameof(GetItemPrice)}() : Could not price: {item.Name}.");
+            return 0;
         }
 
-        private async Task TakeStashSnapshot(WealthDbContext database, StashTabDetails stash)
+        private async Task TakeStashSnapshot(SidekickDbContext database, StashTabDetails stash)
         {
-            var totalPrice = await database.Items
-                .Where(x => x.League == settings.LeagueId)
+            var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+            if (leagueId == null)
+            {
+                logger.LogError($"{nameof(WealthParser)}.{nameof(TakeStashSnapshot)}() : The league id is not set.");
+                return;
+            }
+
+            var totalPrice = await database.WealthItems
+                .Where(x => x.League == leagueId)
                 .Where(x => x.StashId == stash.Id)
                 .SumAsync(x => x.Total);
 
-            database.StashSnapshots.Add(new StashSnapshot()
+            database.WealthStashSnapshots.Add(new WealthStashSnapshot()
             {
                 Date = DateTimeOffset.Now,
-                League = settings.LeagueId,
+                League = leagueId,
                 StashId = stash.Id,
                 Total = totalPrice,
             });
@@ -248,16 +239,23 @@ namespace Sidekick.Modules.Wealth
             OnSnapshotTaken?.Invoke();
         }
 
-        private async Task TakeFullSnapshot(WealthDbContext database)
+        private async Task TakeFullSnapshot(SidekickDbContext database)
         {
-            var totalPrice = await database.Items
-                .Where(x => x.League == settings.LeagueId)
+            var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+            if (leagueId == null)
+            {
+                logger.LogError($"{nameof(WealthParser)}.{nameof(TakeFullSnapshot)}() : The league id is not set.");
+                return;
+            }
+
+            var totalPrice = await database.WealthItems
+                .Where(x => x.League == leagueId)
                 .SumAsync(x => x.Total);
 
-            database.FullSnapshots.Add(new FullSnapshot()
+            database.WealthFullSnapshots.Add(new WealthFullSnapshot()
             {
                 Date = DateTimeOffset.Now,
-                League = settings.LeagueId,
+                League = leagueId,
                 Total = totalPrice,
             });
 
@@ -267,13 +265,13 @@ namespace Sidekick.Modules.Wealth
 
             var oneHourAgo = DateTimeOffset.Now.AddHours(-1);
             var thirtyMinutesAgo = DateTimeOffset.Now.AddMinutes(-30);
-            var oneHourAgoSnapshot = await database.FullSnapshots
+            var oneHourAgoSnapshot = await database.WealthFullSnapshots
                 .Where(x => x.Date > oneHourAgo)
                 .Where(x => x.Date < thirtyMinutesAgo)
                 .OrderBy(x => x.Date)
                 .FirstOrDefaultAsync();
 
-            if (oneHourAgoSnapshot?.Total == totalPrice)
+            if (oneHourAgoSnapshot?.Total != null && Math.Abs(oneHourAgoSnapshot.Total - totalPrice) < 0.001)
             {
                 Log(Icons.Material.Filled.Warning, Color.Warning, $"Wealth tracker was automatically stopped due to inactivity.");
                 Stop();
