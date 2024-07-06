@@ -5,6 +5,7 @@ using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
+using Sidekick.Common.Database;
 using Sidekick.Common.Settings;
 using Sidekick.Mock;
 using Sidekick.Modules.Settings;
@@ -32,6 +33,7 @@ namespace Sidekick.Apis.Poe.Tests
                 // Building blocks
                 .AddSidekickCommon()
                 .AddSidekickCommonBlazor()
+                .AddSidekickCommonDatabase()
 
                 // Apis
                 .AddSidekickPoeApi()

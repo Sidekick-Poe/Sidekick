@@ -1,7 +1,8 @@
 @using Sidekick.Common.Settings
 
-<MudSelect Value="@PreferredWiki.ToString()"
-           ValueChanged="PreferredChanged"
+<MudSelect Value="@PreferredWiki"
+           ValueChanged="(string? v) => PreferredChanged(v)"
+           T="string?"
            Label="@Resources.Wiki_Preferred"
            Variant="Variant.Filled">
     @foreach (var option in WikiOptions)
@@ -15,7 +16,7 @@
 
 @code {
 
-    private WikiSetting PreferredWiki { get; set; }
+    private string? PreferredWiki { get; set; }
 
     private Dictionary<WikiSetting, string> WikiOptions { get; } = new()
     {
@@ -25,15 +26,14 @@
 
     protected override async Task OnInitializedAsync()
     {
-        PreferredWiki = await SettingsService.GetEnum<WikiSetting>(SettingKeys.PreferredWiki) ?? WikiSetting.PoeWiki;
+        PreferredWiki = (await SettingsService.GetEnum<WikiSetting>(SettingKeys.PreferredWiki) ?? WikiSetting.PoeWiki).ToString();
         await base.OnInitializedAsync();
     }
 
     private async Task PreferredChanged(string? value)
     {
-        PreferredWiki = Enum.TryParse<WikiSetting>(value, out var enumValue) ? enumValue : WikiSetting.PoeWiki;
-
-        await SettingsService.Set(SettingKeys.PreferredWiki, PreferredWiki);
+        PreferredWiki = value;
+        await SettingsService.Set(SettingKeys.PreferredWiki, Enum.TryParse<WikiSetting>(value, out var enumValue) ? enumValue : WikiSetting.PoeWiki);
     }
 
 }

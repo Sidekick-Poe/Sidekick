@@ -11,6 +11,7 @@ using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Blazor.Views;
+using Sidekick.Common.Database;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Interprocess;
@@ -57,41 +58,48 @@ namespace Sidekick.Wpf
         {
             base.OnStartup(e);
 
-            Task.Run(
-                async () =>
-                {
-                    var currentDirectory = Directory.GetCurrentDirectory();
-                    var settingDirectory = await settingsService.GetString(SettingKeys.CurrentDirectory);
-                    if (string.IsNullOrEmpty(settingDirectory) || settingDirectory != currentDirectory)
-                    {
-                        await settingsService.Set(SettingKeys.CurrentDirectory, currentDirectory);
-                        await settingsService.Set(SettingKeys.WealthEnabled, false);
-                    }
-                }).RunSynchronously();
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var settingDirectory = settingsService.GetString(SettingKeys.CurrentDirectory)
+                                                  .Result;
+            if (string.IsNullOrEmpty(settingDirectory) || settingDirectory != currentDirectory)
+            {
+                settingsService
+                    .Set(SettingKeys.CurrentDirectory, currentDirectory)
+                    .Wait();
+                settingsService
+                    .Set(SettingKeys.WealthEnabled, false)
+                    .Wait();
+            }
 
             var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
             if (interprocessService.IsAlreadyRunning())
             {
-                if (e.Args.Length <= 0 || !e.Args[0].ToUpper().StartsWith("SIDEKICK://"))
+                if (e.Args.Length <= 0
+                    || !e
+                        .Args[0]
+                        .ToUpper()
+                        .StartsWith("SIDEKICK://"))
                 {
                     throw new AlreadyRunningException();
                 }
 
-                Task.Run(async () =>
-                {
-                    try
+                Task.Run(
+                    async () =>
                     {
-                        await interprocessService.SendMessage(e.Args[0]);
-                    }
-                    finally
-                    {
-                        Current.Dispatcher.Invoke(() =>
+                        try
                         {
-                            Current.Shutdown();
-                        });
-                        Environment.Exit(0);
-                    }
-                });
+                            await interprocessService.SendMessage(e.Args[0]);
+                        }
+                        finally
+                        {
+                            Current.Dispatcher.Invoke(
+                                () =>
+                                {
+                                    Current.Shutdown();
+                                });
+                            Environment.Exit(0);
+                        }
+                    });
                 return;
             }
 
@@ -122,11 +130,13 @@ namespace Sidekick.Wpf
                 // Common
                 .AddSidekickCommon()
                 .AddSidekickCommonBlazor()
-                .AddSidekickCommonPlatform(o =>
-                {
-                    o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
-                    o.OsxIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/apple-touch-icon.png");
-                })
+                .AddSidekickCommonDatabase()
+                .AddSidekickCommonPlatform(
+                    o =>
+                    {
+                        o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
+                        o.OsxIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/apple-touch-icon.png");
+                    })
 
                 // Apis
                 .AddSidekickGitHubApi()
@@ -159,19 +169,25 @@ namespace Sidekick.Wpf
 
         private void AttachErrorHandlers()
         {
-            AppDomain.CurrentDomain.UnhandledException += (_, e) =>
+            AppDomain.CurrentDomain.UnhandledException += (
+                _,
+                e) =>
             {
                 var exception = (Exception)e.ExceptionObject;
                 HandleException(exception);
             };
 
-            DispatcherUnhandledException += (_, e) =>
+            DispatcherUnhandledException += (
+                _,
+                e) =>
             {
                 HandleException(e.Exception);
                 e.Handled = true;
             };
 
-            TaskScheduler.UnobservedTaskException += (_, e) =>
+            TaskScheduler.UnobservedTaskException += (
+                _,
+                e) =>
             {
                 HandleException(e.Exception);
                 e.SetObserved();

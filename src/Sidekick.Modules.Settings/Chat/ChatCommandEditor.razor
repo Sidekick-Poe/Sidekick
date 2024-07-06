@@ -12,6 +12,7 @@
             <MudItem xs="8" Class="pl-2">
                 <MudTextField Value="@chatSetting.Command"
                               ValueChanged="(v) => CommandChanged(chatSetting, v)"
+                              T="string?"
                               Label="@Resources.Chat_Command"
                               Variant="Variant.Filled"/>
             </MudItem>
@@ -54,7 +55,7 @@
 </div>
 
 @inject SettingsResources Resources
-@inject SettingsService SettingsService
+@inject ISettingsService SettingsService
 
 @code {
 

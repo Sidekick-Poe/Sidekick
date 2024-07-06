@@ -79,6 +79,7 @@ else
 @inject ILeagueProvider LeagueProvider
 @inject ICacheProvider CacheProvider
 @inject IStringLocalizer<SetupResources> StringLocalizer
+@inject IViewLocator ViewLocator
 
 @code {
 
@@ -92,9 +93,7 @@ else
 
     public override SidekickViewType ViewType => SidekickViewType.Modal;
 
-    public override int ViewHeight => NewLeagues ? 600 : base.ViewHeight;
-
-    public override int ViewWidth => NewLeagues ? 600 : base.ViewWidth;
+    public override int ViewHeight => NewLeagues ? 400 : 320;
 
     protected override async Task OnInitializedAsync()
     {
@@ -117,7 +116,8 @@ else
         }
         else
         {
-            NavigationManager.NavigateTo("/initialize");
+            await ViewLocator.Open("/initialize");
+            await Close();
         }
 
         await base.OnInitializedAsync();
@@ -138,6 +138,7 @@ else
             return;
         }
 
+        await ViewLocator.Open("/initialize");
         await Close();
     }
 

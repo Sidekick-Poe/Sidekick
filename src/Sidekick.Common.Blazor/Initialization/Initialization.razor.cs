@@ -39,15 +39,24 @@ namespace Sidekick.Common.Blazor.Initialization
         private ISettingsService SettingsService { get; set; } = null!;
 
         private int Count { get; set; }
+
         private int Completed { get; set; }
+
         private string? Step { get; set; }
+
         private int Percentage { get; set; }
+
         private bool Error { get; set; }
+
         private string? WelcomeMessage { get; set; }
 
         public Task? InitializationTask { get; set; }
+
         public override string Title => "Initialize";
+
         public override SidekickViewType ViewType => SidekickViewType.Modal;
+
+        public override int ViewHeight => 210;
 
         protected override async Task OnInitializedAsync()
         {
@@ -123,40 +132,55 @@ namespace Sidekick.Common.Blazor.Initialization
 
         private Task ReportProgress()
         {
-            return InvokeAsync(() =>
-            {
-                Percentage = Count == 0 ? 0 : Completed * 100 / Count;
-                if (Percentage >= 100)
+            return InvokeAsync(
+                () =>
                 {
-                    Step = Resources.Ready;
-                    Percentage = 100;
-                }
-                else
-                {
-                    Step = Resources.Title(Completed, Count);
-                }
+                    Percentage = Count == 0 ? 0 : Completed * 100 / Count;
+                    if (Percentage >= 100)
+                    {
+                        Step = Resources.Ready;
+                        Percentage = 100;
+                    }
+                    else
+                    {
+                        Step = Resources.Title(Completed, Count);
+                    }
 
-                StateHasChanged();
-                return Task.Delay(100);
-            });
+                    StateHasChanged();
+                    return Task.Delay(100);
+                });
         }
 
         private void InitializeTray()
         {
             var menuItems = new List<TrayMenuItem>();
 
-            menuItems.AddRange(new List<TrayMenuItem>()
-            {
-                new (label: "Sidekick - " + FileVersionInfo.GetVersionInfo(GetType().Assembly.Location).ProductVersion),
-                new (label: "Open Website", onClick: () =>
+            menuItems.AddRange(
+                new List<TrayMenuItem>()
                 {
-                    BrowserProvider.OpenSidekickWebsite();
-                    return Task.CompletedTask;
-                }),
-                new (label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
-                new (label: "Settings", onClick: () => ViewLocator.Open("/settings")),
-                new (label: "Exit", onClick: () => { ApplicationService.Shutdown(); return Task.CompletedTask; }),
-            });
+                    new(
+                        label: "Sidekick - "
+                               + FileVersionInfo.GetVersionInfo(
+                                                    GetType()
+                                                        .Assembly.Location)
+                                                .ProductVersion),
+                    new(
+                        label: "Open Website",
+                        onClick: () =>
+                        {
+                            BrowserProvider.OpenSidekickWebsite();
+                            return Task.CompletedTask;
+                        }),
+                    new(label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
+                    new(label: "Settings", onClick: () => ViewLocator.Open("/settings")),
+                    new(
+                        label: "Exit",
+                        onClick: () =>
+                        {
+                            ApplicationService.Shutdown();
+                            return Task.CompletedTask;
+                        }),
+                });
 
             TrayProvider.Initialize(menuItems);
         }

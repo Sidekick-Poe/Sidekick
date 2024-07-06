@@ -2,8 +2,9 @@
 
 <div>
     <MudCheckBox Value="@PriceCheckCloseWithMouse"
-                 ValueChanged="@PriceCheckCloseWithMouseChanged"
-                 Label="@Resources.PriceCheck_CloseWithMouse" />
+                 ValueChanged="PriceCheckCloseWithMouseChanged"
+                 T="bool"
+                 Label="@Resources.PriceCheck_CloseWithMouse"/>
 </div>
 
 @inject SettingsResources Resources

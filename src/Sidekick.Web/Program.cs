@@ -7,6 +7,7 @@ using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Blazor.Views;
+using Sidekick.Common.Database;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Mock;
@@ -41,6 +42,7 @@ builder.Services
     // Common
     .AddSidekickCommon()
     .AddSidekickCommonBlazor()
+    .AddSidekickCommonDatabase()
     .AddSingleton<IInterprocessService, InterprocessService>()
     // .AddSidekickCommonPlatform(o =>
     // {

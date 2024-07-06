@@ -156,13 +156,22 @@ namespace Sidekick.Modules.Settings
 
             try
             {
-                return (TEnum?)(defaultProperty.GetValue(null) ?? null);
+                if (Enum.TryParse<TEnum>(
+                        defaultProperty
+                            .GetValue(null)?
+                            .ToString(),
+                        out var defaultValue))
+                {
+                    return defaultValue;
+                }
             }
             catch (Exception e)
             {
                 logger.LogError(e, "[SettingsService] Could not cast the default setting value to the requested object.");
                 throw;
             }
+
+            return default;
         }
 
         public async Task Set(
@@ -229,6 +238,7 @@ namespace Sidekick.Modules.Settings
                 int x => x.ToString(),
                 DateTimeOffset x => x.ToString(),
                 Enum x => x.GetValueAttribute(),
+                string x => x,
                 _ => JsonSerializer.Serialize(value),
             };
         }
