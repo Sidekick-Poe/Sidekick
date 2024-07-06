@@ -1,3 +1,4 @@
+using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Common.Keybinds;
@@ -5,7 +6,7 @@ namespace Sidekick.Common.Keybinds;
 /// <summary>
 ///     Interface for keybind handlers
 /// </summary>
-public abstract class KeybindHandler
+public abstract class KeybindHandler : IInitializableService
 {
     protected KeybindHandler(ISettingsService settingsService)
     {
@@ -29,6 +30,13 @@ public abstract class KeybindHandler
     [
     ];
 
+    public InitializationPriority Priority => InitializationPriority.Low;
+
+    public async Task Initialize()
+    {
+        Keybinds = await GetKeybinds();
+    }
+
     /// <summary>
     /// Gets the keybinds that this handler handles.
     /// </summary>
@@ -48,4 +56,5 @@ public abstract class KeybindHandler
     /// <param name="keybind">The keybind that was pressed</param>
     /// <returns>A task</returns>
     public abstract Task Execute(string keybind);
+
 }

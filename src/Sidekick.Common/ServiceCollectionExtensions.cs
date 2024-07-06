@@ -1,5 +1,6 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Serilog;
 using Serilog.Events;
 using Sidekick.Common.Browser;
@@ -106,7 +107,7 @@ public static class ServiceCollectionExtensions
         where TService : class, IInitializableService
         where TImplementation : class, TService
     {
-        services.AddSingleton<TService, TImplementation>();
+        services.TryAddSingleton<TService, TImplementation>();
 
         services.Configure<SidekickConfiguration>(
             o =>
@@ -126,13 +127,15 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddSidekickKeybind<TKeybindHandler>(this IServiceCollection services)
         where TKeybindHandler : KeybindHandler
     {
-        services.AddSingleton<TKeybindHandler>();
+        services.TryAddSingleton<TKeybindHandler>();
 
         services.Configure<SidekickConfiguration>(
             o =>
             {
                 o.Keybinds.Add(typeof(TKeybindHandler));
             });
+
+        services.AddSidekickInitializableService<TKeybindHandler, TKeybindHandler>();
 
         return services;
     }

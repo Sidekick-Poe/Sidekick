@@ -139,7 +139,9 @@ namespace Sidekick.Common.Platform.Keyboards
 
         public event Action<string>? OnKeyDown;
 
-        private Dictionary<string, KeybindHandler> KeybindHandlers { get; init; } = new();
+        private List<KeybindHandler> KeybindHandlers { get; init; } =
+        [
+        ];
 
         /// <inheritdoc/>
         public InitializationPriority Priority => InitializationPriority.Low;
@@ -158,13 +160,7 @@ namespace Sidekick.Common.Platform.Keyboards
             foreach (var keybindType in configuration.Value.Keybinds)
             {
                 var keybindHandler = (KeybindHandler)serviceProvider.GetRequiredService(keybindType);
-                foreach (var keybind in keybindHandler.Keybinds)
-                {
-                    if (keybind != null && KeybindHandlers.TryAdd(keybind, keybindHandler))
-                    {
-                        logger.LogWarning("[Keyboard] Duplicate keybinding detected {0}.", keybind);
-                    }
-                }
+                KeybindHandlers.Add(keybindHandler);
             }
 
             // Configure hook logging
@@ -250,22 +246,17 @@ namespace Sidekick.Common.Platform.Keyboards
             var keybind = str.ToString();
             OnKeyDown?.Invoke(keybind);
 
-            // logger.LogDebug($"[Keyboard] Received key pressed event {keybind}.");
-
-            if (!KeybindHandlers.TryGetValue(keybind, out var keybindHandler) || !keybindHandler.IsValid(keybind))
+            foreach (var keybindHandler in KeybindHandlers.Where(keybindHandler => keybindHandler.Keybinds.Contains(keybind) && keybindHandler.IsValid(keybind)))
             {
-                return;
+                logger.LogDebug($"[Keyboard] Executing keybind handler for {str}.");
+                args.SuppressEvent = true;
+                Task.Run(
+                    async () =>
+                    {
+                        await keybindHandler.Execute(keybind);
+                        logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
+                    });
             }
-
-            logger.LogDebug($"[Keyboard] Executing keybind handler for {str}.");
-
-            args.SuppressEvent = true;
-            Task.Run(
-                async () =>
-                {
-                    await keybindHandler.Execute(keybind);
-                    logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
-                });
         }
 
         public Task PressKey(params string[] keyStrokes)
