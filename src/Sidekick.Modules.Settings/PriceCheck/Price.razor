@@ -7,35 +7,24 @@
 
     <MudPaper Class="pa-3 mb-3">
         <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Keybinds</MudText>
-
-        <KeybindEditor @bind-Value="ViewModel.Trade_Key_Check"
-                       Label="@Resources.PriceCheck_Key_Check" />
-        <KeybindEditor @bind-Value="ViewModel.Key_Close"
-                       Label="@Resources.Key_Close" />
+        <KeyOpenPriceCheckEditor/>
+        <KeyCloseEditor/>
     </MudPaper>
 
     <MudPaper Class="pa-3">
         <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Other</MudText>
-
-        <div>
-            <MudCheckBox @bind-Checked="@ViewModel.Trade_Prediction_Enable"
-                         Label="@Resources.PriceCheck_Prediction_Enable" />
-        </div>
-        <div>
-            <MudCheckBox @bind-Checked="@ViewModel.Trade_CloseWithMouse"
-                         Label="@Resources.PriceCheck_CloseWithMouse" />
-        </div>
-        <div>
-            <MudCheckBox @bind-Checked="@ViewModel.EscapeClosesOverlays"
-                         Label="@Resources.EscapeClosesOverlays" />
-        </div>
+        <PriceCheckPredictionEnabledEditor/>
+        <PriceCheckCloseWithMouseEditor/>
+        <EscapeClosesOverlaysEditor/>
     </MudPaper>
 </div>
 
+@inject SettingsResources Resources
+
 @code {
-    [Inject] private SettingsResources Resources { get; set; }
-    [Inject] private SettingsModel ViewModel { get; set; }
 
     public override string Title => Resources.Title;
+
     public override bool ShowSettingsButton => false;
+
 }

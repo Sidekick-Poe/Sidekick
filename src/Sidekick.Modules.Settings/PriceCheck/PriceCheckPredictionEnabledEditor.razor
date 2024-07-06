@@ -1,0 +1,28 @@
+@using Sidekick.Common.Settings
+
+<div>
+    <MudCheckBox Value="@PriceCheckPredictionEnabled"
+                 ValueChanged="@PriceCheckPredictionEnabledChanged"
+                 Label="@Resources.PriceCheck_Prediction_Enable" />
+</div>
+
+@inject SettingsResources Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private bool PriceCheckPredictionEnabled { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        PriceCheckPredictionEnabled = await SettingsService.GetBool(SettingKeys.PriceCheckPredictionEnabled);
+        await base.OnInitializedAsync();
+    }
+
+    private async Task PriceCheckPredictionEnabledChanged(bool value)
+    {
+        PriceCheckPredictionEnabled = value;
+        await SettingsService.Set(SettingKeys.PriceCheckPredictionEnabled, value);
+    }
+
+}

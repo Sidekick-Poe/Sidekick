@@ -1,0 +1,28 @@
+@using Sidekick.Common.Settings
+
+<div>
+    <MudCheckBox Value="@Retain"
+                 ValueChanged="@RetainChanged"
+                 Label="@Resources.General_RetainClipboard" />
+</div>
+
+@inject SettingsResources Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private bool Retain { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Retain = await SettingsService.GetBool(SettingKeys.RetainClipboard);
+        await base.OnInitializedAsync();
+    }
+
+    private async Task RetainChanged(bool value)
+    {
+        Retain = value;
+        await SettingsService.Set(SettingKeys.RetainClipboard, value);
+    }
+
+}

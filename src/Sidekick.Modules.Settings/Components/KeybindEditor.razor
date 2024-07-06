@@ -1,4 +1,3 @@
-
 <MudField @onclick="Click"
           Label="@Label"
           Variant="Variant.Filled"
@@ -18,26 +17,31 @@
     {
         <MudText>@Value</MudText>
     }
-    @if (Duplicated)
-    {
-        <MudText Typo="Typo.caption" Color="Color.Error">@Resources.Key_Duplicated</MudText>
-    }
 </MudField>
 
 @implements IDisposable
-@code {
-    [Inject] private SettingsResources Resources { get; set; }
-    [Inject] private SettingsModel ViewModel { get; set; }
-    [Inject] private IKeyboardProvider Keyboard { get; set; }
 
-    [Parameter] public string Label { get; set; }
-    [Parameter] public string Value { get; set; }
-    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+@inject SettingsResources Resources
+@inject IKeyboardProvider Keyboard
+
+@code {
+
+    private static Guid? CurrentEditorId { get; set; }
+
+    [Parameter]
+    public required string Label { get; set; }
+
+    [Parameter]
+    public string? Value { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> ValueChanged { get; set; }
 
     private Guid Id { get; } = Guid.NewGuid();
-    private bool Active => ViewModel.CurrentKey == Id;
-    private string Class => Active ? "mud-info" : null;
-    private bool Duplicated { get; set; }
+
+    private bool Active => CurrentEditorId == Id;
+
+    private string? Class => Active ? "mud-info" : null;
 
     protected override void OnInitialized()
     {
@@ -47,76 +51,32 @@
 
     public void Click()
     {
-        Duplicated = false;
-
-        if (ViewModel.CurrentKey == Id)
-        {
-            ViewModel.CurrentKey = null;
-        }
-        else
-        {
-            ViewModel.CurrentKey = Id;
-        }
-    }
-
-    private bool IsDuplicated(string key)
-    {
-        var count = 0;
-        foreach (var property in ViewModel.GetType().GetProperties())
-        {
-            if (property.GetValue(ViewModel)?.ToString() == key)
-            {
-                count++;
-            }
-        }
-
-        foreach (var chatCommand in ViewModel.Chat_Commands)
-        {
-            if (chatCommand.Key == key)
-            {
-                count++;
-            }
-        }
-
-        return count >= 2;
+        CurrentEditorId = CurrentEditorId == Id ? null : Id;
     }
 
     private void OnKeyDown(string key)
     {
-        this.InvokeAsync(async () =>
-        {
-            if (!Active)
+        InvokeAsync(
+            async () =>
             {
-                return;
-            }
-
-            if (key != "Esc")
-            {
-                var oldValue = Value;
-
-                await ValueChanged.InvokeAsync(key);
-                Duplicated = IsDuplicated(key);
-
-                if (Duplicated)
+                if (!Active)
                 {
-                    await ValueChanged.InvokeAsync(oldValue);
-                    _ = this.InvokeAsync(async () =>
-                    {
-                        await Task.Delay(3000);
-                        Duplicated = false;
-                        StateHasChanged();
-                    });
+                    return;
                 }
-            }
 
-            ViewModel.CurrentKey = null;
-            StateHasChanged();
-        });
+                if (key != "Esc")
+                {
+                    await ValueChanged.InvokeAsync(key);
+                }
+
+                CurrentEditorId = null;
+                StateHasChanged();
+            });
     }
 
     public async Task Delete()
     {
-        ViewModel.CurrentKey = null;
+        CurrentEditorId = null;
         await ValueChanged.InvokeAsync("");
     }
 
@@ -124,4 +84,5 @@
     {
         Keyboard.OnKeyDown -= OnKeyDown;
     }
+
 }

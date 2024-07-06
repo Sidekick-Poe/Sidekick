@@ -17,7 +17,7 @@
                 Stash Tabs
             </MudText>
             <MudTooltip Text="Only the stash tabs selected in the settings are shown here. If you want to track more stash tabs, you have to do it from the settings." Style="max-width: 15rem;">
-                <MudIcon Icon="@Icons.Material.Filled.Info" Color="Color.Info" />
+                <MudIcon Icon="@Icons.Material.Filled.Info" Color="Color.Info"/>
             </MudTooltip>
         </div>
 
@@ -38,8 +38,8 @@
         }
     </div>
 
-    <Sidekick.Common.Blazor.Authentication.AuthenticationStatusBar />
-    <WealthControl />
+    <Sidekick.Common.Blazor.Authentication.AuthenticationStatusBar/>
+    <WealthControl/>
 </MudDrawer>
 
 <CascadingValue Value="this" IsFixed="true">
@@ -47,18 +47,18 @@
     {
         <MudGrid Spacing="0" Class="ml-0">
             <MudItem xs="4">
-                <WealthDistribution />
+                <WealthDistribution/>
             </MudItem>
             <MudItem xs="8">
-                <WealthOverTime />
+                <WealthOverTime/>
             </MudItem>
         </MudGrid>
         <MudGrid Spacing="0" Class="ml-0">
             <MudItem xs="9">
-                <WealthInventory />
+                <WealthInventory/>
             </MudItem>
             <MudItem xs="3">
-                <WealthLogs />
+                <WealthLogs/>
             </MudItem>
         </MudGrid>
     }
@@ -68,6 +68,7 @@
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject ISettingsService SettingsService
 @inject WealthParser WealthParser
+
 @code {
     public const string ChartHeight = "24vh";
     public const string InventoryHeight = "67vh";
@@ -86,28 +87,34 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (!(Settings.Enable_WealthTracker ?? false))
+        var enabled = await SettingsService.GetBool(SettingKeys.WealthEnabled);
+        if (!enabled)
         {
             throw new DisabledModuleException();
         }
 
         WealthParser.OnStashParsed += OnStashParsed;
         await RetrieveStashes();
-        SelectedStashIds = StashTabs.Select(x => x.Id).ToList();
+        SelectedStashIds = StashTabs
+                           .Select(x => x.Id)
+                           .ToList();
 
         await base.OnInitializedAsync();
     }
 
     public void OnStashParsed()
     {
-        _ = InvokeAsync(async () =>
-        {
-            await RetrieveStashes();
-            StateHasChanged();
-        });
+        _ = InvokeAsync(
+            async () =>
+            {
+                await RetrieveStashes();
+                StateHasChanged();
+            });
     }
 
-    private void Toggle(WealthStash tab, bool isChecked)
+    private void Toggle(
+        WealthStash tab,
+        bool isChecked)
     {
         if (!isChecked)
         {
@@ -123,14 +130,22 @@
 
     public async Task RetrieveStashes()
     {
-        var previousStashIds = StashTabs.Select(x => x.Id).ToList();
+        var previousStashIds = StashTabs
+                               .Select(x => x.Id)
+                               .ToList();
+        var tabs = (await SettingsService.GetString(SettingKeys.WealthTrackedTabs))?.Split(',')
+                   ??
+                   [
+                   ];
         await using var database = new SidekickDbContext(DbContextOptions);
-        StashTabs = await database.WealthStashes
-            .Where(x => Settings.WealthTrackerTabs != null && Settings.WealthTrackerTabs.Contains(x.Id))
-            .OrderByDescending(x => x.Total)
-            .ToListAsync();
+        StashTabs = await database
+                          .WealthStashes.Where(x => tabs.Contains(x.Id))
+                          .OrderByDescending(x => x.Total)
+                          .ToListAsync();
 
-        SelectedStashIds = SelectedStashIds.Where(x => StashTabs.Any(y => y.Id == x)).ToList();
+        SelectedStashIds = SelectedStashIds
+                           .Where(x => StashTabs.Any(y => y.Id == x))
+                           .ToList();
 
         foreach (var tab in StashTabs)
         {
@@ -145,4 +160,5 @@
     {
         WealthParser.OnStashParsed -= OnStashParsed;
     }
+
 }

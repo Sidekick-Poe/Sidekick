@@ -14,61 +14,16 @@
     <MudText>@Resources.Chat_Wildcard_LastWhisper_CharacterName</MudText>
 
     <MudPaper Class="mt-3">
-        @if (ViewModel.Chat_Commands != null)
-        {
-            foreach (var chatSetting in ViewModel.Chat_Commands)
-            {
-                <div class="pa-3">
-                    <ChatCommandEditor ChatSetting="chatSetting"
-                                       OnRemove="() => Remove(chatSetting)"/>
-                </div>
-
-                <MudDivider/>
-            }
-        }
-        <div class="d-flex justify-space-between pa-3">
-            <MudButton Variant="Variant.Text"
-                       Color="Color.Default"
-                       OnClick="RestoreDefaults">
-                @Resources.Restore_Defaults
-            </MudButton>
-            <MudButton Variant="Variant.Filled"
-                       Color="Color.Secondary"
-                       OnClick="Add">
-                @Resources.Chat_Add
-            </MudButton>
-        </div>
+        <ChatCommandEditor/>
     </MudPaper>
 </div>
 
 @inject SettingsResources Resources
-@inject SettingsModel ViewModel
 
 @code {
 
     public override string Title => Resources.Title;
 
     public override bool ShowSettingsButton => false;
-
-    private void Remove(ChatSetting chatSetting)
-    {
-        if (ViewModel.Chat_Commands != null)
-        {
-            ViewModel.Chat_Commands.Remove(chatSetting);
-        }
-    }
-
-    private void Add()
-    {
-        if (ViewModel.Chat_Commands != null)
-        {
-            ViewModel.Chat_Commands.Add(new ChatSetting("", "", true));
-        }
-    }
-
-    private void RestoreDefaults()
-    {
-        ViewModel.Chat_Commands = DefaultSettings.GetDefaultChatCommands();
-    }
 
 }

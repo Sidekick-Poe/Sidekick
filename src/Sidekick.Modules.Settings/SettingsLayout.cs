@@ -12,15 +12,6 @@ namespace Sidekick.Modules.Settings
         private SettingsResources Resources { get; set; } = null!;
 
         [Inject]
-        private ISettingsService SettingsService { get; set; } = null!;
-
-        [Inject]
-        private ISettings Settings { get; set; } = null!;
-
-        [Inject]
-        private SettingsModel ViewModel { get; set; } = null!;
-
-        [Inject]
         private ICacheProvider CacheProvider { get; set; } = null!;
 
         [Inject]
@@ -80,38 +71,9 @@ namespace Sidekick.Modules.Settings
                     Variant = MudBlazor.Variant.Text,
                     Color = MudBlazor.Color.Default,
                 },
-
-                new()
-                {
-                    Name = Resources.Save,
-                    OnClick = Save,
-                    Variant = MudBlazor.Variant.Filled,
-                    Color = MudBlazor.Color.Primary,
-                },
-
             ];
 
             await base.OnInitializedAsync();
-        }
-
-        public async Task Save()
-        {
-            ViewModel.Bearer_Token = Settings.Bearer_Token; // Keep the token from the settings.
-
-            var leagueHasChanged = Settings.LeagueId != ViewModel.LeagueId;
-            var languageHasChanged = Settings.Language_Parser != ViewModel.Language_Parser;
-
-            await SettingsService.Save(ViewModel);
-            if (languageHasChanged || leagueHasChanged)
-            {
-                CacheProvider.Clear();
-                await ViewLocator.Open("/initialize");
-            }
-
-            if (Wrapper.View != null)
-            {
-                await Wrapper.View.Close();
-            }
         }
 
         public async Task ResetCache()

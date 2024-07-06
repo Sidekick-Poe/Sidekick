@@ -5,8 +5,9 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
 using Sidekick.Common.Enums;
+using Sidekick.Common.Settings;
 
-namespace Sidekick.Common.Settings
+namespace Sidekick.Modules.Settings
 {
     public class SettingsService(
         DbContextOptions<SidekickDbContext> dbContextOptions,

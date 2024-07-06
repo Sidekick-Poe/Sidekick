@@ -1,0 +1,28 @@
+@using Sidekick.Common.Settings
+
+<div>
+    <MudCheckBox Value="@PriceCheckCloseWithMouse"
+                 ValueChanged="@PriceCheckCloseWithMouseChanged"
+                 Label="@Resources.PriceCheck_CloseWithMouse" />
+</div>
+
+@inject SettingsResources Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private bool PriceCheckCloseWithMouse { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        PriceCheckCloseWithMouse = await SettingsService.GetBool(SettingKeys.PriceCheckCloseWithMouse);
+        await base.OnInitializedAsync();
+    }
+
+    private async Task PriceCheckCloseWithMouseChanged(bool value)
+    {
+        PriceCheckCloseWithMouse = value;
+        await SettingsService.Set(SettingKeys.PriceCheckCloseWithMouse, value);
+    }
+
+}

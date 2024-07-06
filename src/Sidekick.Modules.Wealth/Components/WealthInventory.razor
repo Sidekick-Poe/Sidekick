@@ -1,6 +1,9 @@
+@using Sidekick.Common.Database
+@using Sidekick.Common.Database.Tables
+@using Sidekick.Common.Settings
 
 <div class="relative">
-    <MudTable Height="@($"calc({WealthView.InventoryHeight} - 48px)")" Items="@Items" Dense="true" Hover="true" SortLabel="Sort By" Filter="new Func<Item,bool>(Search)" Breakpoint="Breakpoint.Sm">
+    <MudTable Height="@($"calc({WealthView.InventoryHeight} - 48px)")" Items="@Items" Dense="true" Hover="true" SortLabel="Sort By" Filter="new Func<WealthItem,bool>(Search)" Breakpoint="Breakpoint.Sm">
         <ToolBarContent>
             <MudText Typo="Typo.h3">Inventory</MudText>
             <MudSpacer />
@@ -9,10 +12,10 @@
         </ToolBarContent>
         <HeaderContent>
             <MudTh></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<Item, object>(x=>x.Name)">Name</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<Item, object>(x=>x.Count)">Count</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<Item, object>(x=>x.Price)">Price</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Descending" SortBy="new Func<Item, object>(x=>x.Total)">Total</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<WealthItem, object>(x=>x.Name)">Name</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<WealthItem, object>(x=>x.Count)">Count</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<WealthItem, object>(x=>x.Price)">Price</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Descending" SortBy="new Func<WealthItem, object>(x=>x.Total)">Total</MudTableSortLabel></MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd DataLabel=""><MudImage Width="30" Height="30" Src="@context.Icon" Class="rounded-lg" /></MudTd>
@@ -27,7 +30,7 @@
                 AnchorOrigin="Origin.TopRight"
                 TransformOrigin="Origin.TopRight">
         <MudTextField T="int"
-                      Value="Settings.Wealth_MinimumItemTotal ?? 0"
+                      Value="MinimumTotal"
                       ValueChanged="UpdateMinimumItemTotal"
                       Label="Minimum Total Value" />
 
@@ -38,17 +41,18 @@
 </div>
 
 @inject WealthParser WealthParser
-@inject DbContextOptions<WealthDbContext> DbContextOptions
-@inject ISettings Settings
+@inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject ISettingsService SettingsService
 @implements IDisposable
 @code {
     [CascadingParameter]
     public WealthView View { get; set; } = null!;
 
-    private List<Item> Items { get; set; } = new();
+    private List<WealthItem> Items { get; set; } = new();
     private string SearchString { get; set; } = "";
     private bool FilterOpened { get; set; }
+
+    private int MinimumTotal { get; set; } = 0;
 
     protected override async Task OnInitializedAsync()
     {
@@ -69,22 +73,24 @@
 
     public async Task RetrieveStashItems()
     {
-        await using var database = new WealthDbContext(DbContextOptions);
+        MinimumTotal = await SettingsService.GetInt(SettingKeys.WealthItemTotalMinimum);
 
-        var stashIds = await database.Stashes
+        await using var database = new SidekickDbContext(DbContextOptions);
+
+        var stashIds = await database.WealthStashes
             .Where(x => View.SelectedStashIds.Contains(x.Id))
             .Select(x => x.Id)
             .ToListAsync();
 
-        Items = await database.Items
+        Items = await database.WealthItems
             .Where(x => stashIds.Contains(x.StashId))
-            .Where(x => x.Total > Settings.Wealth_MinimumItemTotal)
+            .Where(x => x.Total > MinimumTotal)
             .GroupBy(x => x.Name)
             .Select(x => x.First())
             .ToListAsync();
     }
 
-    private bool Search(Item element)
+    private bool Search(WealthItem element)
     {
         if (string.IsNullOrWhiteSpace(SearchString))
         {
@@ -97,7 +103,8 @@
 
     public async Task UpdateMinimumItemTotal(int value)
     {
-        await SettingsService.Save(nameof(ISettings.Wealth_MinimumItemTotal), value);
+        MinimumTotal = value;
+        await SettingsService.Set(SettingKeys.WealthItemTotalMinimum, value);
         await RetrieveStashItems();
     }
 

@@ -1,9 +1,10 @@
 @page "/settings/wealth"
+@using Sidekick.Common.Settings
 @using System.Diagnostics;
 @layout SettingsLayout
 @inherits SidekickView
 
-@if (ViewModel.Enable_WealthTracker ?? false)
+@if (Enabled)
 {
     <Sidekick.Common.Blazor.Authentication.AuthenticationStatusBar/>
 }
@@ -11,7 +12,7 @@
 <div class="pa-3">
     <MudText Typo="Typo.h1" Class="mb-3">@Resources.WealthTracker</MudText>
 
-    @if (!(ViewModel.Enable_WealthTracker ?? false))
+    @if (!Enabled)
     {
         <MudAlert Severity="Severity.Warning" Elevation="0" Class="mb-3">Wealth Tracker is an experimental feature and requires special privileges.</MudAlert>
 
@@ -42,8 +43,7 @@
     {
         <MudPaper Class="pa-3">
             <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Keybinds</MudText>
-            <KeybindEditor @bind-Value="ViewModel.Wealth_Key_Open"
-                           Label="@Resources.Wealth_Key_Open"/>
+            <KeyOpenWealthEditor/>
         </MudPaper>
 
         <MudPaper Class="pa-3 mb-3 mt-3">
@@ -81,12 +81,17 @@
 
 @implements IDisposable
 @inject SettingsResources Resources
-@inject SettingsModel ViewModel
 @inject IAuthenticationService AuthenticationService
 @inject IStashService StashService
 @inject ISettingsService SettingsService
 
 @code {
+
+    private bool Enabled { get; set; }
+
+    private List<string> SelectedTabs { get; set; } =
+    [
+    ];
 
     private List<StashTab>? StashTabs { get; set; }
 
@@ -94,9 +99,16 @@
 
     protected override async Task OnInitializedAsync()
     {
+        Enabled = await SettingsService.GetBool(SettingKeys.WealthEnabled);
+        SelectedTabs = (await SettingsService.GetString(SettingKeys.WealthTrackedTabs))
+                       ?.Split(',')
+                       .ToList()
+                       ??
+                       [
+                       ];
         AuthenticationService.OnAuthenticated += OnAuthenticated;
 
-        if (ViewModel.Enable_WealthTracker ?? false)
+        if (Enabled)
         {
             await LoadStashTabs();
         }
@@ -106,10 +118,10 @@
 
     private async Task ToggleWealthTracker()
     {
-        ViewModel.Enable_WealthTracker = !ViewModel.Enable_WealthTracker;
-        await SettingsService.Save("Enable_WealthTracker", ViewModel.Enable_WealthTracker);
+        Enabled = !Enabled;
+        await SettingsService.Set(SettingKeys.WealthEnabled, Enabled);
 
-        if (ViewModel.Enable_WealthTracker ?? false)
+        if (Enabled)
         {
             var startInfo = new ProcessStartInfo(@"Sidekick.Protocol.exe")
             {
@@ -135,22 +147,20 @@
         _ = InvokeAsync(LoadStashTabs);
     }
 
-    private bool IsChecked(StashTab tab) => ViewModel.WealthTrackerTabs?.Contains(tab.Id) ?? false;
+    private bool IsChecked(StashTab tab) => SelectedTabs.Contains(tab.Id);
 
-    private void Toggle(StashTab tab)
+    private async Task Toggle(StashTab tab)
     {
-        ViewModel.WealthTrackerTabs ??=
-        [
-        ];
-
         if (IsChecked(tab))
         {
-            ViewModel.WealthTrackerTabs.Remove(tab.Id);
+            SelectedTabs.Remove(tab.Id);
         }
         else
         {
-            ViewModel.WealthTrackerTabs.Add(tab.Id);
+            SelectedTabs.Add(tab.Id);
         }
+
+        await SettingsService.Set(SettingKeys.WealthTrackedTabs, string.Join(',', SelectedTabs));
     }
 
     public void Dispose()

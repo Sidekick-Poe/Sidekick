@@ -1,4 +1,6 @@
-namespace Sidekick.Common.Settings;
+using Sidekick.Common.Settings;
+
+namespace Sidekick.Modules.Settings;
 
 public static class DefaultSettings
 {

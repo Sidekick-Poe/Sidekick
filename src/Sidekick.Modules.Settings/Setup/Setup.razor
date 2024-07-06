@@ -1,11 +1,14 @@
 @page "/setup"
 @page "/"
 @layout ModalLayout
+@using System.Text
+@using System.Text.Json
+@using Sidekick.Common.Settings
 @inherits SidekickView
 
 @if (!RequiresSetup)
 {
-    <SidekickLogo />
+    <SidekickLogo/>
 
     <MudCard Class="my-1">
         <MudCardHeader>
@@ -15,7 +18,7 @@
         </MudCardHeader>
         <MudCardContent>
             <MudProgressLinear Color="Color.Primary"
-                               Indeterminate="true" />
+                               Indeterminate="true"/>
         </MudCardContent>
     </MudCard>
 
@@ -29,26 +32,19 @@
 }
 else
 {
-    <SidekickLogo />
+    <SidekickLogo/>
 
     @if (NewLeagues)
     {
         <MudAlert Variant="Variant.Filled" Severity="Severity.Info" Class="mt-1 mb-3">@Resources.NewLeagues</MudAlert>
     }
 
-    <MudForm @ref="Form" @bind-IsValid="@Success">
-        @*
-    <MudCard Class="mt-1">
-    <MudCardHeader>
-    <CardHeaderContent>
-    <MudText Typo="Typo.h5">@SettingsResources.Language_Title</MudText>
-    </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-    <UILanguageSelect @bind-Value="ViewModel.Language_UI" />
-    </MudCardContent>
-    </MudCard>
-    *@
+    @if (HasError)
+    {
+        <MudAlert Variant="Variant.Filled" Severity="Severity.Error" Class="mt-1 mb-3">@StringLocalizer["You must select a valid language and league to continue."]</MudAlert>
+    }
+
+    <MudForm>
         <MudCard Class="mt-1">
             <MudCardHeader>
                 <CardHeaderContent>
@@ -56,8 +52,8 @@ else
                 </CardHeaderContent>
             </MudCardHeader>
             <MudCardContent>
-                <GameLanguageSelect Value="@ViewModel.Language_Parser" ValueChanged="OnGameLanguageChange" />
-                <LeagueSelect @bind-Value="ViewModel.LeagueId" @ref="RefLeagueSelect" />
+                <LanguageParserEditor/>
+                <LeagueIdEditor/>
             </MudCardContent>
         </MudCard>
 
@@ -74,4 +70,75 @@ else
             </MudButton>
         </div>
     </MudForm>
+}
+
+@inject SettingsResources SettingsResources
+@inject SetupResources Resources
+@inject ISettingsService SettingsService
+@inject IApplicationService ApplicationService
+@inject ILeagueProvider LeagueProvider
+@inject ICacheProvider CacheProvider
+@inject IStringLocalizer<SetupResources> StringLocalizer
+
+@code {
+
+    private bool RequiresSetup { get; set; }
+
+    private bool NewLeagues { get; set; }
+
+    private bool HasError { get; set; }
+
+    public override string Title => "Setup";
+
+    public override SidekickViewType ViewType => SidekickViewType.Modal;
+
+    public override int ViewHeight => NewLeagues ? 600 : base.ViewHeight;
+
+    public override int ViewWidth => NewLeagues ? 600 : base.ViewWidth;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var leagues = await LeagueProvider.GetList(false);
+        var apiLeaguesHash = Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(leagues)));
+        var settingsLeaguesHash = await SettingsService.GetString(SettingKeys.LeaguesHash);
+        if (!string.IsNullOrEmpty(settingsLeaguesHash) && apiLeaguesHash != settingsLeaguesHash)
+        {
+            NewLeagues = true;
+            CacheProvider.Clear();
+            await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
+        }
+
+        // Check to see if we should run Setup first before running the rest of the initialization process
+        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId))
+        {
+            RequiresSetup = true;
+            await ViewLocator.Initialize(this);
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/initialize");
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+    public void Exit()
+    {
+        ApplicationService.Shutdown();
+    }
+
+    public async Task Save()
+    {
+        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        var leagues = await LeagueProvider.GetList(true);
+        if (leagues.All(x => x.Id != leagueId))
+        {
+            HasError = true;
+            return;
+        }
+
+        await Close();
+    }
+
 }

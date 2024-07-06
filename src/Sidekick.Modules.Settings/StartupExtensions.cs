@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common;
+using Sidekick.Common.Settings;
 using Sidekick.Modules.Settings.Localization;
 
 namespace Sidekick.Modules.Settings
@@ -10,10 +11,9 @@ namespace Sidekick.Modules.Settings
         {
             services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
+            services.AddSingleton<ISettingsService, SettingsService>();
             services.AddTransient<SettingsResources>();
             services.AddTransient<SetupResources>();
-
-            services.AddScoped<SettingsModel>();
 
             return services;
         }

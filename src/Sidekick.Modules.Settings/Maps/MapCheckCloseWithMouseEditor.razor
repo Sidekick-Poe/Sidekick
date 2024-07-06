@@ -1,0 +1,28 @@
+@using Sidekick.Common.Settings
+
+<div>
+    <MudCheckBox Value="@MapCheckCloseWithMouse"
+                 ValueChanged="@MapCheckCloseWithMouseChanged"
+                 Label="@Resources.Map_CloseWithMouse" />
+</div>
+
+@inject SettingsResources Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private bool MapCheckCloseWithMouse { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        MapCheckCloseWithMouse = await SettingsService.GetBool(SettingKeys.MapCheckCloseWithMouse);
+        await base.OnInitializedAsync();
+    }
+
+    private async Task MapCheckCloseWithMouseChanged(bool value)
+    {
+        MapCheckCloseWithMouse = value;
+        await SettingsService.Set(SettingKeys.MapCheckCloseWithMouse, value);
+    }
+
+}

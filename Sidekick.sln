@@ -70,11 +70,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Modules.Wealth", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Protocol", "src\Sidekick.Protocol\Sidekick.Protocol.csproj", "{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ui", "Ui", "{AA983335-9EEB-4928-89FB-B6C12193D5C5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Database", "src\Sidekick.Common.Database\Sidekick.Common.Database.csproj", "{8C9915FA-EC66-47AA-B449-4833813B0D16}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Settings", "src\Sidekick.Common.Settings\Sidekick.Common.Settings.csproj", "{56C3CA6D-B515-4D70-87F4-29ACE473ABA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -170,10 +166,6 @@ Global
 		{8C9915FA-EC66-47AA-B449-4833813B0D16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C9915FA-EC66-47AA-B449-4833813B0D16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C9915FA-EC66-47AA-B449-4833813B0D16}.Release|Any CPU.Build.0 = Release|Any CPU
-		{56C3CA6D-B515-4D70-87F4-29ACE473ABA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{56C3CA6D-B515-4D70-87F4-29ACE473ABA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{56C3CA6D-B515-4D70-87F4-29ACE473ABA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{56C3CA6D-B515-4D70-87F4-29ACE473ABA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -197,7 +189,6 @@ Global
 		{4DAA5492-5947-4BDF-8857-67A633F94672} = {7285BD58-2544-44AA-8488-52EA8E55D239}
 		{70B9893F-72F8-4B5F-A9CF-732E538D6C9E} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 		{8C9915FA-EC66-47AA-B449-4833813B0D16} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
-		{56C3CA6D-B515-4D70-87F4-29ACE473ABA2} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17B5631D-95B3-4007-BE6B-C9BBE799D014}

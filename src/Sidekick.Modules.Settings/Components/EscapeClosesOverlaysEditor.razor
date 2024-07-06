@@ -1,0 +1,28 @@
+@using Sidekick.Common.Settings
+
+<div>
+    <MudCheckBox Value="@EscapeClosesOverlays"
+                 ValueChanged="@EscapeClosesOverlaysChanged"
+                 Label="@Resources.EscapeClosesOverlays" />
+</div>
+
+@inject SettingsResources Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private bool EscapeClosesOverlays { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        EscapeClosesOverlays = await SettingsService.GetBool(SettingKeys.EscapeClosesOverlays);
+        await base.OnInitializedAsync();
+    }
+
+    private async Task EscapeClosesOverlaysChanged(bool value)
+    {
+        EscapeClosesOverlays = value;
+        await SettingsService.Set(SettingKeys.EscapeClosesOverlays, value);
+    }
+
+}

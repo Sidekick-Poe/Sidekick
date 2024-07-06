@@ -7,39 +7,28 @@
 
     <MudPaper Class="pa-3 mb-3">
         <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Keybinds</MudText>
-
-        <KeybindEditor @bind-Value="ViewModel.Map_Key_Check"
-                       Label="@Resources.Map_Key_Check" />
-        <KeybindEditor @bind-Value="ViewModel.Key_Close"
-                       Label="@Resources.Key_Close" />
+        <KeyOpenMapCheckEditor/>
+        <KeyCloseEditor/>
     </MudPaper>
 
     <MudPaper Class="pa-3 mb-3">
         <MudText Typo="Typo.h3" Class="mb-3">@Resources.Map_Dangerous</MudText>
-
-        <MudTextField @bind-Value="ViewModel.Map_Dangerous_Regex"
-                      Label="@Resources.Map_Dangerous_Regex"
-                      Variant="Variant.Filled" />
+        <MapCheckDangerousRegexEditor/>
     </MudPaper>
 
     <MudPaper Class="pa-3">
         <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Other</MudText>
-
-        <div>
-            <MudCheckBox Label="@Resources.Map_CloseWithMouse"
-            @bind-Checked="@ViewModel.Map_CloseWithMouse"></MudCheckBox>
-        </div>
-        <div>
-            <MudCheckBox Label="@Resources.EscapeClosesOverlays"
-            @bind-Checked="@ViewModel.EscapeClosesOverlays"></MudCheckBox>
-        </div>
+        <MapCheckCloseWithMouseEditor/>
+        <MapCheckCloseWithMouseEditor/>
     </MudPaper>
 </div>
 
+@inject SettingsResources Resources
+
 @code {
-    [Inject] private SettingsResources Resources { get; set; }
-    [Inject] private SettingsModel ViewModel { get; set; }
 
     public override string Title => Resources.Title;
+
     public override bool ShowSettingsButton => false;
+
 }

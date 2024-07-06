@@ -1,8 +1,9 @@
+@using Sidekick.Common.Settings
 <MudSelect T="string?"
            Label="@Resources.Language_Parser"
            Variant="Variant.Filled"
-           Value="Value"
-           ValueChanged="ValueChanged"
+           Value="@Language"
+           ValueChanged="LanguageChanged"
            Required="true"
            RequiredError="Language is required.">
     @foreach (var option in Options)
@@ -13,23 +14,27 @@
 
 @inject SettingsResources Resources
 @inject IGameLanguageProvider GameLanguageProvider
+@inject ISettingsService SettingsService
 
 @code {
 
-    [Parameter]
-    public string? Value { get; set; }
-
-    [Parameter]
-    public EventCallback<string?> ValueChanged { get; set; }
+    private string? Language { get; set; }
 
     private Dictionary<string, string> Options { get; set; } = new Dictionary<string, string>();
 
     protected override async Task OnInitializedAsync()
     {
+        Language = await SettingsService.GetString(SettingKeys.LanguageParser);
         var languages = GameLanguageProvider.GetList();
         Options = languages.ToDictionary(x => x.LanguageCode, x => x.Name);
 
         await base.OnInitializedAsync();
+    }
+
+    private async Task LanguageChanged(string? value)
+    {
+        Language = value;
+        await SettingsService.Set(SettingKeys.LanguageParser, value);
     }
 
 }

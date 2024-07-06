@@ -1,0 +1,39 @@
+@using Sidekick.Common.Settings
+
+<MudSelect Value="@PreferredWiki.ToString()"
+           ValueChanged="PreferredChanged"
+           Label="@Resources.Wiki_Preferred"
+           Variant="Variant.Filled">
+    @foreach (var option in WikiOptions)
+    {
+        <MudSelectItem Value="@option.Key.ToString()">@option.Value</MudSelectItem>
+    }
+</MudSelect>
+
+@inject SettingsResources Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private WikiSetting PreferredWiki { get; set; }
+
+    private Dictionary<WikiSetting, string> WikiOptions { get; } = new()
+    {
+        { WikiSetting.PoeWiki, "poewiki.net" },
+        { WikiSetting.PoeDb, "poedb.tw" }
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        PreferredWiki = await SettingsService.GetEnum<WikiSetting>(SettingKeys.PreferredWiki) ?? WikiSetting.PoeWiki;
+        await base.OnInitializedAsync();
+    }
+
+    private async Task PreferredChanged(string? value)
+    {
+        PreferredWiki = Enum.TryParse<WikiSetting>(value, out var enumValue) ? enumValue : WikiSetting.PoeWiki;
+
+        await SettingsService.Set(SettingKeys.PreferredWiki, PreferredWiki);
+    }
+
+}

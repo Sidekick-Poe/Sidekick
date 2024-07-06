@@ -7,30 +7,21 @@
 
     <MudPaper Class="pa-3 mb-3">
         <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Keybinds</MudText>
-
-        <KeybindEditor @bind-Value="ViewModel.Wiki_Key_Open"
-                       Label="@Resources.Wiki_Key_Open" />
+        <KeyOpenWikiEditor/>
     </MudPaper>
 
     <MudPaper Class="pa-3">
         <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Other</MudText>
-
-        <MudSelect @bind-Value="ViewModel.Wiki_Preferred"
-                   T="WikiSetting?"
-                   Label="@Resources.Wiki_Preferred"
-                   Variant="Variant.Filled">
-            @foreach (var option in ViewModel.WikiOptions)
-            {
-                <MudSelectItem Value="@option.Key">@option.Value</MudSelectItem>
-            }
-        </MudSelect>
+        <PreferredWikiEditor/>
     </MudPaper>
 </div>
 
 @inject SettingsResources Resources
-@inject SettingsModel ViewModel
 
 @code {
+
     public override string Title => Resources.Title;
+
     public override bool ShowSettingsButton => false;
+
 }
