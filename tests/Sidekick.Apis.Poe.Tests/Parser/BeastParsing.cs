@@ -4,41 +4,37 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Parser
 {
     [Collection(Collections.Mediator)]
-    public class BeastParsing
+    public class BeastParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public BeastParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void ParseRareBeast()
         {
-            var parsedRareBeast = parser.ParseItem(@"Item Class: Stackable Currency
+            var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Rare
-Foulface the Ravager
-Farric Tiger Alpha
+Shadowchew
+Farric Flame Hellion Alpha
 --------
-Genus: Tigers
+Genus: Hellions
 Group: Felines
 Family: The Wilds
 --------
 Item Level: 82
 --------
-Tiger Prey
-Spectral Swipe
-Accurate
-Evasive
-Gains Endurance Charges
+Burning Ground on Death
+Hasted
+Fertile Presence
+Aspect of the Hellion
 --------
-Right-click to add this to your bestiary.");
+Right-click to add this to your bestiary.
+");
 
-            Assert.Equal(Category.ItemisedMonster, parsedRareBeast.Metadata.Category);
-            Assert.Equal(Rarity.Rare, parsedRareBeast.Metadata.Rarity);
-            Assert.Null(parsedRareBeast.Metadata.Name);
-            Assert.Equal("Farric Tiger Alpha", parsedRareBeast.Metadata.Type);
+            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
+            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
+            Assert.Equal(Category.ItemisedMonster, actual.Metadata.Category);
+            Assert.Null(actual.Metadata.Name);
+            Assert.Equal("Farric Flame Hellion Alpha", actual.Metadata.Type);
         }
 
         [Fact]
