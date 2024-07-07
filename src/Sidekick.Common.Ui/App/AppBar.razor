@@ -1,0 +1,20 @@
+<div class="bg-stone-900 flex items-center flex-wrap">
+    <img src="/images/orbs/ExaltedOrb.png" class="w-6 h-6"/>
+    <Heading4>
+        <span id="sidekick-appbar-title">@Title</span>
+    </Heading4>
+
+    <div class="ml-auto">
+        @RightContent
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public RenderFragment? RightContent { get; set; }
+
+}

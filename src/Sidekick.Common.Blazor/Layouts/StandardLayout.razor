@@ -1,11 +1,9 @@
+@using Sidekick.Common.Blazor.Update
 @inherits LayoutComponentBase
 
-<SidekickWrapper>
-    <SidekickAppBar />
-    <MudMainContent>
-        <MudContainer>
-            <Sidekick.Common.Blazor.Update.UpdateBanner />
-            @Body
-        </MudContainer>
-    </MudMainContent>
-</SidekickWrapper>
+<div class="h-screen flex flex-col">
+    <div class="grow overflow-y-auto overflow-x-hidden">
+        @Body
+    </div>
+    <UpdateBanner/>
+</div>

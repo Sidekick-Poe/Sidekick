@@ -1,8 +1,7 @@
 @page "/dialog/confirm/{message}"
-@layout ModalLayout
 @inherits SidekickView
 
-<SidekickLogo />
+<AppLogo />
 
 <MudCard Class="my-3 pa-3">
     <MudCardContent>
@@ -36,12 +35,12 @@
     private async Task Yes()
     {
         Service.SetConfirmationResult(true);
-        await Close();
+        await CurrentView.Close();
     }
 
     private async Task No()
     {
         Service.SetConfirmationResult(false);
-        await Close();
+        await CurrentView.Close();
     }
 }

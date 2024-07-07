@@ -97,7 +97,7 @@ namespace Sidekick.Common.Blazor.Initialization
                 Completed = Count;
                 await ReportProgress();
                 await Task.Delay(4000);
-                await Close();
+                await CurrentView.Close();
             }
             catch (Exception ex)
             {

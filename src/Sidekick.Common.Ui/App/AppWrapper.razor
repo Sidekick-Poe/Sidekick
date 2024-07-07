@@ -1,0 +1,10 @@
+﻿<div class="font-sans w-full h-screen overflow-y-auto overflow-x-hidden bg-stone-800 text-white">
+    @ChildContent
+</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+}

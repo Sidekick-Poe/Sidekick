@@ -33,7 +33,7 @@ public class ExceptionHandlingMiddleware
         catch (SidekickException ex)
         {
             logger.LogCritical(ex, "Unhandled exception.");
-            await viewLocator.Open(ex.ToUrl());
+            throw;
         }
     }
 }

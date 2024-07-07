@@ -1,0 +1,17 @@
+<button type="button"
+        @onclick="() => OnClick.InvokeAsync()"
+        @onclick:preventDefault="true"
+        @onclick:stopPropagation="true"
+        class="border">
+    @ChildContent
+</button>
+
+@code {
+
+    [Parameter]
+    public required RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+}

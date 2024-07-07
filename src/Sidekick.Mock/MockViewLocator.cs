@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Sidekick.Common.Blazor.Views;
 
 namespace Sidekick.Mock
@@ -6,6 +5,11 @@ namespace Sidekick.Mock
     public class MockViewLocator : IViewLocator
     {
         public Task Open(string url)
+        {
+            return Task.CompletedTask;
+        }
+
+        public Task CloseAll()
         {
             return Task.CompletedTask;
         }

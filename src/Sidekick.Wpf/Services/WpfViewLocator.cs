@@ -29,7 +29,7 @@ namespace Sidekick.Wpf.Services
 
             Application.Current.Dispatcher.Invoke(() =>
             {
-                window.Title = $"Sidekick {view.Title}";
+                window.Title = view.Title;
                 window.MinHeight = view.ViewHeight + 20;
                 window.MinWidth = view.ViewWidth + 20;
 
@@ -153,6 +153,20 @@ namespace Sidekick.Wpf.Services
             });
 
             return Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
+        public async Task CloseAll()
+        {
+            foreach (var window in Windows)
+            {
+                if (window.SidekickView == null)
+                {
+                    continue;
+                }
+
+                await Close(window.SidekickView);
+            }
         }
 
         /// <inheritdoc/>

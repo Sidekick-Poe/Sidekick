@@ -1,0 +1,11 @@
+﻿<div class="text-sm opacity-80 @Class">@ChildContent</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+}

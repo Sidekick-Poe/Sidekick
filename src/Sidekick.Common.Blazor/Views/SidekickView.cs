@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Components;
-using Sidekick.Common.Blazor.Layouts.Components;
 
 namespace Sidekick.Common.Blazor.Views
 {
@@ -15,21 +14,21 @@ namespace Sidekick.Common.Blazor.Views
         protected IViewLocator ViewLocator { get; set; } = null!;
 
         /// <summary>
+        /// Gets or sets the view instance service.
+        /// </summary>
+        [Inject]
+        protected ICurrentView CurrentView { get; set; } = null!;
+
+        /// <summary>
         /// Gets or sets the navigation manager.
         /// </summary>
         [Inject]
         public NavigationManager NavigationManager { get; set; } = null!;
 
         /// <summary>
-        /// Gets or sets the sidekick wrapper.
-        /// </summary>
-        [CascadingParameter]
-        public SidekickWrapper Wrapper { get; set; } = null!;
-
-        /// <summary>
         /// Gets the current url of the view.
         /// </summary>
-        public string Url => NavigationManager.Uri.ToString();
+        public string Url => NavigationManager.Uri;
 
         /// <summary>
         /// Gets the key of the view.
@@ -74,12 +73,6 @@ namespace Sidekick.Common.Blazor.Views
             _ => 768,
         };
 
-        /// <summary>
-        /// Closes the current view.
-        /// </summary>
-        /// <returns>A task.</returns>
-        public Task Close() => ViewLocator.Close(this);
-
         /// <inheritdoc/>
         protected override async Task OnInitializedAsync()
         {
@@ -89,10 +82,11 @@ namespace Sidekick.Common.Blazor.Views
 
         protected override void OnAfterRender(bool firstRender)
         {
-            if (firstRender && Wrapper != null)
+            if (firstRender)
             {
-                Wrapper.SetView(this);
+                CurrentView.SetCurrent(this);
             }
+
             base.OnAfterRender(firstRender);
         }
     }

@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Components;
 using Sidekick.Common.Blazor.Layouts;
-using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Cache;
 using Sidekick.Modules.Settings.Localization;
 
@@ -15,7 +14,7 @@ namespace Sidekick.Modules.Settings
         private ICacheProvider CacheProvider { get; set; } = null!;
 
         [Inject]
-        private IViewLocator ViewLocator { get; set; } = null!;
+        private NavigationManager NavigationManager { get; set; } = null!;
 
         /// <inheritdoc/>
         protected override async Task OnInitializedAsync()
@@ -56,9 +55,7 @@ namespace Sidekick.Modules.Settings
                 {
                     Name = Resources.WealthTracker,
                     Url = "/settings/wealth",
-                },
-
-            ];
+                },];
 
             MenuIcon = false;
 
@@ -70,20 +67,16 @@ namespace Sidekick.Modules.Settings
                     OnClick = ResetCache,
                     Variant = MudBlazor.Variant.Text,
                     Color = MudBlazor.Color.Default,
-                },
-            ];
+                },];
 
             await base.OnInitializedAsync();
         }
 
-        public async Task ResetCache()
+        public Task ResetCache()
         {
             CacheProvider.Clear();
-            await ViewLocator.Open("/initialize");
-            if (Wrapper.View != null)
-            {
-                await Wrapper.View.Close();
-            }
+            NavigationManager.NavigateTo("/initialize");
+            return Task.CompletedTask;
         }
     }
 }

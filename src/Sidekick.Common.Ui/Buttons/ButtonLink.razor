@@ -1,0 +1,17 @@
+﻿<button type="button"
+        @onclick="() => OnClick.InvokeAsync()"
+        @onclick:preventDefault="true"
+        @onclick:stopPropagation="true"
+        class="inline-flex p-1 -m-1 text-nowrap items-center transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:shadow-outline disabled:opacity-50 font-medium justify-center bg-transparent !border-transparent text-inherit underline focus:ring-sky-400 cursor-pointer hover:opacity-60">
+    @ChildContent
+</button>
+
+@code {
+
+    [Parameter]
+    public required RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+}

@@ -1,8 +1,8 @@
 @page "/home"
-@using Sidekick.Apis.Poe;
+@using Sidekick.Common.Ui.App
 @inherits SidekickView
 
-<SidekickLogo />
+<AppLogo />
 <MudGrid Class="mt-3" Spacing="2">
     <MudItem md="8" xs="12">
         <MudCard>
@@ -28,10 +28,8 @@
 </MudGrid>
 
 @code {
-    [Inject]
-    private IItemParser ItemParser { get; set; }
 
-    private string ItemText { get; set; }
+    private string? ItemText { get; set; }
 
     public override string Title => "Development Home";
 

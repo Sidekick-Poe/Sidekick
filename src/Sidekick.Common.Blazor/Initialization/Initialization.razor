@@ -1,56 +1,40 @@
 @page "/initialize"
-@layout ModalLayout
 @inherits SidekickView
 
-<SidekickLogo />
+<AppLogo/>
 
 @if (Error)
 {
-    <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Class="my-1">@Resources.Error</MudAlert>
+    <AlertError>@Resources.Error</AlertError>
 }
 else
 {
-    <MudCard Class="my-1">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.h5" Align="Align.Center">@Step</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent>
-            @if (Count != Completed)
-            {
-                <MudProgressLinear Color="Color.Primary"
-                           Value="Percentage"
-                           Min="0"
-                           Max="100" />
-            }
-            else
-            {
-                <MudText Typo="Typo.body1" Align="Align.Center">
-                    @WelcomeMessage
-                </MudText>
-            }
-        </MudCardContent>
-    </MudCard>
+    <div class="p-3">
+        <Heading5 Class="mb-1 text-center">@Step</Heading5>
+        @if (Count != Completed)
+        {
+            <ProgressBar Percent="Percentage"/>
+        }
+        else
+        {
+            <Heading6 Class="text-center">
+                @WelcomeMessage
+            </Heading6>
+        }
+    </div>
 }
 
-@if (Count != Completed)
-{
-    <div class="d-flex justify-end">
-        <MudButton OnClick="Exit"
-               Variant="Variant.Text"
-               Color="Color.Default">
+<div class="flex justify-center mt-2">
+    @if (Count != Completed)
+    {
+        <ButtonPrimary OnClick="Exit">
             @Resources.Exit
-        </MudButton>
-    </div>
-}
-else
-{
-    <div class="d-flex justify-end">
-        <MudButton OnClick="Close"
-               Variant="Variant.Text"
-               Color="Color.Default">
+        </ButtonPrimary>
+    }
+    else
+    {
+        <ButtonPrimary OnClick="CurrentView.Close">
             @Resources.Close
-        </MudButton>
-    </div>
-}
+        </ButtonPrimary>
+    }
+</div>

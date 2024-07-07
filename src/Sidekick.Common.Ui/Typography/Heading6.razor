@@ -1,0 +1,11 @@
+﻿<h6 class="font-medium leading-none tracking-tight text-base @Class">@ChildContent</h6>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+}

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 
-namespace Sidekick.Common.Blazor.Errors
+namespace Sidekick.Common.Ui.Errors
 {
     /// <summary>
     /// Captures errors thrown from its child content.
@@ -29,7 +29,7 @@ namespace Sidekick.Common.Blazor.Errors
                 CurrentException = exception;
             }
 
-            await JsRuntime.InvokeVoidAsync("console.error", CurrentException.ToString());
+            await JsRuntime.InvokeVoidAsync("console.error", CurrentException?.ToString());
             Logger.LogError(CurrentException, "An error occured while executing a component.");
 
             await base.OnErrorAsync(exception);

@@ -173,24 +173,21 @@ namespace Sidekick.Wpf
                 _,
                 e) =>
             {
-                var exception = (Exception)e.ExceptionObject;
-                HandleException(exception);
+                LogException((Exception)e.ExceptionObject);
             };
 
             DispatcherUnhandledException += (
                 _,
                 e) =>
             {
-                HandleException(e.Exception);
-                e.Handled = true;
+                LogException(e.Exception);
             };
 
             TaskScheduler.UnobservedTaskException += (
                 _,
                 e) =>
             {
-                HandleException(e.Exception);
-                e.SetObserved();
+                LogException(e.Exception);
             };
         }
 
@@ -219,17 +216,9 @@ namespace Sidekick.Wpf
             }
         }
 
-        private void HandleException(Exception ex)
+        private void LogException(Exception ex)
         {
             logger.LogCritical(ex, "Unhandled exception.");
-
-            if (ex is not SidekickException sidekickException)
-            {
-                sidekickException = new SidekickException("An unknown error occured. Details may be found in the Sidekick logs.");
-            }
-
-            var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
-            viewLocator.Open(sidekickException.ToUrl());
         }
     }
 }

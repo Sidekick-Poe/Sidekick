@@ -40,7 +40,7 @@ namespace Sidekick.Electron
 
             Views.Add(view);
 
-            browser.SetTitle($"Sidekick {view.Title}");
+            browser.SetTitle(view.Title);
             browser.SetMinimumSize(view.ViewWidth, view.ViewHeight);
             browser.SetSize(view.ViewWidth, view.ViewHeight);
 
@@ -153,6 +153,14 @@ namespace Sidekick.Electron
 
             Views.Remove(view);
             Browsers.Remove(browser);
+        }
+
+        public async Task CloseAll()
+        {
+            foreach (var view in Views.ToList())
+            {
+                await Close(view);
+            }
         }
 
         public async Task CloseAllOverlays()
