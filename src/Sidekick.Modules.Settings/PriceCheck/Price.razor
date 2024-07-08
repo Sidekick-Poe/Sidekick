@@ -2,27 +2,21 @@
 @layout SettingsLayout
 @inherits SidekickView
 
-<div class="pa-3">
-    <MudText Typo="Typo.h1" Class="mb-3">@Resources.PriceCheck</MudText>
+<Heading2 Class="mb-3">@Resources["Keybindings"]</Heading2>
+<KeyOpenPriceCheckEditor/>
+<KeyCloseEditor/>
 
-    <MudPaper Class="pa-3 mb-3">
-        <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Keybinds</MudText>
-        <KeyOpenPriceCheckEditor/>
-        <KeyCloseEditor/>
-    </MudPaper>
+<LayoutDivider/>
 
-    <MudPaper Class="pa-3">
-        <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Other</MudText>
-        <PriceCheckPredictionEnabledEditor/>
-        <PriceCheckCloseWithMouseEditor/>
-        <EscapeClosesOverlaysEditor/>
-    </MudPaper>
-</div>
+<Heading2 Class="mb-3">@Resources["Other Settings"]</Heading2>
+<PriceCheckPredictionEnabledEditor/>
+<PriceCheckCloseWithMouseEditor/>
+<EscapeClosesOverlaysEditor/>
 
-@inject SettingsResources Resources
+@inject IStringLocalizer<SettingsResources> Resources
 
 @code {
 
-    public override string Title => Resources.Title;
+    public override string Title => Resources["Settings"];
 
 }

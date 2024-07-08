@@ -21,7 +21,7 @@ namespace Sidekick.Common.Blazor.Update
         private IApplicationService ApplicationService { get; set; } = null!;
 
         [Inject]
-        private IStringLocalizer<Update> Resources { get; set; } = null!;
+        private IStringLocalizer<UpdateResources> Resources { get; set; } = null!;
 
         [Inject]
         private ICacheProvider CacheProvider { get; set; } = null!;

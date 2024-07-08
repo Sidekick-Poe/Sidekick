@@ -1,11 +1,8 @@
 @using Sidekick.Common.Settings
 
-<div>
-    <MudCheckBox Value="@MapCheckCloseWithMouse"
-                 ValueChanged="@MapCheckCloseWithMouseChanged"
-                 T="bool"
-                 Label="@Resources.Map_CloseWithMouse"/>
-</div>
+<FormCheckbox Value="@MapCheckCloseWithMouse"
+              ValueChanged="@MapCheckCloseWithMouseChanged"
+              Label="@Resources.Map_CloseWithMouse"/>
 
 @inject SettingsResources Resources
 @inject ISettingsService SettingsService

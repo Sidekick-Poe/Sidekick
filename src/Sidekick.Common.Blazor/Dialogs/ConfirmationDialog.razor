@@ -15,16 +15,16 @@
     <BottomContent>
         <div class="px-3 py-2 flex justify-center gap-2">
             <ButtonSecondary OnClick="No">
-                @Resources.No
+                @Resources["Cancel"]
             </ButtonSecondary>
             <ButtonPrimary OnClick="Yes">
-                @Resources.Yes
+                @Resources["Confirm"]
             </ButtonPrimary>
         </div>
     </BottomContent>
 </LayoutSimple>
 
-@inject DialogResources Resources;
+@inject IStringLocalizer<DialogResources> Resources;
 @inject DialogService Service;
 
 @code {
@@ -32,7 +32,7 @@
     [Parameter]
     public string? Message { get; set; }
 
-    public override string Title => Resources.Title;
+    public override string Title => Resources["Confirmation Required"];
 
     public override SidekickViewType ViewType => SidekickViewType.Modal;
 

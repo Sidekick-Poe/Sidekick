@@ -1,11 +1,8 @@
 @using Sidekick.Common.Settings
 
-<div>
-    <MudCheckBox Value="@PriceCheckPredictionEnabled"
-                 ValueChanged="@PriceCheckPredictionEnabledChanged"
-                 T="bool"
-                 Label="@Resources.PriceCheck_Prediction_Enable"/>
-</div>
+<FormCheckBox Value="@PriceCheckPredictionEnabled"
+              ValueChanged="@PriceCheckPredictionEnabledChanged"
+              Label="@Resources.PriceCheck_Prediction_Enable"/>
 
 @inject SettingsResources Resources
 @inject ISettingsService SettingsService

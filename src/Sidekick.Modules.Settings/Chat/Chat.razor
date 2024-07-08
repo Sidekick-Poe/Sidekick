@@ -2,26 +2,22 @@
 @layout SettingsLayout
 @inherits SidekickView
 
-<div class="pa-3">
-    <MudText Typo="Typo.h1" Class="mb-3">@Resources.Chat_Commands</MudText>
+<Heading2 Class="mb-3">@Resources["Common Commands"]</Heading2>
+<TextBase>@Resources["/hideout - Go to your hideout"]</TextBase>
+<TextBase>@Resources["/leave - Leave the current party"]</TextBase>
+<TextBase>@Resources["/exit - Exit to character screen"]</TextBase>
 
-    <MudText Typo="Typo.h5">@Resources.Chat_Common_Commands</MudText>
-    <MudText>@Resources.Chat_Commands_Hideout</MudText>
-    <MudText>@Resources.Chat_Commands_Leave</MudText>
-    <MudText>@Resources.Chat_Commands_Exit</MudText>
+<Heading3 Class="my-3">@Resources["Wildcards"]</Heading3>
+<TextBase>@Resources["@last - Character name of the last whisper message you received"]</TextBase>
 
-    <MudText Typo="Typo.h5" Class="mt-3">@Resources.Chat_Wildcard</MudText>
-    <MudText>@Resources.Chat_Wildcard_LastWhisper_CharacterName</MudText>
+<LayoutDivider/>
 
-    <MudPaper Class="mt-3">
-        <ChatCommandEditor/>
-    </MudPaper>
-</div>
+<ChatCommandEditor/>
 
-@inject SettingsResources Resources
+@inject IStringLocalizer<SettingsResources> Resources
 
 @code {
 
-    public override string Title => Resources.Title;
+    public override string Title => Resources["Settings"];
 
 }

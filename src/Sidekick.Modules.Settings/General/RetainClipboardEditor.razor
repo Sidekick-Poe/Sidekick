@@ -1,11 +1,8 @@
 @using Sidekick.Common.Settings
 
-<div>
-    <MudCheckBox Value="@Retain"
-                 ValueChanged="@RetainChanged"
-                 T="bool"
-                 Label="@Resources.General_RetainClipboard"/>
-</div>
+<FormCheckbox Value="@Retain"
+              ValueChanged="@RetainChanged"
+              Label="@Resources.General_RetainClipboard"/>
 
 @inject SettingsResources Resources
 @inject ISettingsService SettingsService

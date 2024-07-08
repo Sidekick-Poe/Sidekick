@@ -6,26 +6,15 @@
     </label>
 }
 
-<select id="@Id"
-        @onchange="OnChange"
-        class="@UiClasses.FormInputClasses w-full mb-3">
-    @if (Options.All(x => x.Value != Value))
-    {
-        <option selected></option>
-    }
-
-    @foreach (var option in Options)
-    {
-        if (option.Value == Value)
-        {
-            <option selected value="@option.Value">@option.Label</option>
-        }
-        else
-        {
-            <option value="@option.Value">@option.Label</option>
-        }
-    }
-</select>
+<div class="flex flex-nowrap gap-1 mb-3">
+    <input id="@Id"
+           @onchange="OnChange"
+           @onfocus="OnFocus"
+           @onblur="OnBlur"
+           value="@Value"
+           class="@UiClasses.FormInputClasses min-w-0 grow"/>
+    @AdornmentContent
+</div>
 
 @code {
 
@@ -39,9 +28,13 @@
     public EventCallback<string?> ValueChanged { get; set; }
 
     [Parameter]
-    public List<SelectOption> Options { get; set; } =
-    [
-    ];
+    public EventCallback<FocusEventArgs> OnFocus { get; set; }
+
+    [Parameter]
+    public EventCallback<FocusEventArgs> OnBlur { get; set; }
+
+    [Parameter]
+    public RenderFragment? AdornmentContent { get; set; }
 
     private string Id { get; } = UiUtilities.GenerateId();
 
@@ -49,4 +42,5 @@
     {
         await ValueChanged.InvokeAsync(args.Value?.ToString());
     }
+
 }

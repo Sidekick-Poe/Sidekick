@@ -1,11 +1,8 @@
 @using Sidekick.Common.Settings
 
-<div>
-    <MudCheckBox Value="@EscapeClosesOverlays"
-                 ValueChanged="@EscapeClosesOverlaysChanged"
-                 T="bool"
-                 Label="@Resources.EscapeClosesOverlays"/>
-</div>
+<FormCheckbox Value="@EscapeClosesOverlays"
+              ValueChanged="@EscapeClosesOverlaysChanged"
+              Label="@Resources.EscapeClosesOverlays"/>
 
 @inject SettingsResources Resources
 @inject ISettingsService SettingsService

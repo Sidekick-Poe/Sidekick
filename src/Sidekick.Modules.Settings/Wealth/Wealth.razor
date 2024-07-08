@@ -56,13 +56,9 @@
                     @foreach (var stashTab in StashTabs)
                     {
                         <MudItem xs="6">
-                            <MudCheckBox T="bool"
-                                         Value="IsChecked(stashTab)"
-                                         ValueChanged="() => Toggle(stashTab)"
-                                         Dense
-                                         Color="Color.Primary">
-                                @stashTab.Name
-                            </MudCheckBox>
+                            <FormCheckBox Value="IsChecked(stashTab)"
+                                          ValueChanged="() => Toggle(stashTab)"
+                                          Label="@stashTab.Name"/>
                         </MudItem>
                     }
                 </MudGrid>

@@ -29,7 +29,7 @@ namespace Sidekick.Wpf.Services
 
             Application.Current.Dispatcher.Invoke(() =>
             {
-                window.Title = view.Title;
+                window.Title = $"Sidekick {view.Title}";
                 window.MinHeight = view.ViewHeight + 20;
                 window.MinWidth = view.ViewWidth + 20;
 

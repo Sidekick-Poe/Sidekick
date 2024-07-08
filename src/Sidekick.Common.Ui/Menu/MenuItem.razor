@@ -1,4 +1,9 @@
-﻿<h3>@ChildContent</h3>
+﻿<a href="@Href"
+   class="@UiClasses.FocusClasses px-4 py-2 text-base font-medium tracking-wide text-white transition-colors duration-200 @(IsActive ? "bg-purple-700 hover:bg-purple-500" : "bg-transparent hover:text-purple-500")">
+    @ChildContent
+</a>
+
+@inject NavigationManager NavigationManager
 
 @code {
 
@@ -7,5 +12,9 @@
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    private bool IsActive => NavigationManager.ToAbsoluteUri(NavigationManager.Uri)
+                                              .AbsolutePath
+                             == Href;
 
 }

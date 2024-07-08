@@ -24,6 +24,8 @@ public static class DefaultSettings
 
     public static bool RetainClipboard => true;
 
+    public static bool WealthEnabled => false;
+
     public static string PreferredWiki => WikiSetting.PoeWiki.ToString();
 
     public static bool PriceCheckPredictionEnabled => true;

@@ -2,59 +2,41 @@
 
 @foreach (var chatSetting in ChatSettings)
 {
-    <div class="pa-3">
-        <MudGrid Spacing="0">
-            <MudItem xs="4">
-                <KeybindEditor Value="@chatSetting.Key"
-                               ValueChanged="(v) => KeyChanged(chatSetting, v)"
-                               Label="@Resources.Chat_Keybind"/>
-            </MudItem>
-            <MudItem xs="8" Class="pl-2">
-                <MudTextField Value="@chatSetting.Command"
-                              ValueChanged="(v) => CommandChanged(chatSetting, v)"
-                              T="string?"
-                              Label="@Resources.Chat_Command"
-                              Variant="Variant.Filled"/>
-            </MudItem>
-        </MudGrid>
-
-        <div class="d-flex justify-space-between mt-1">
-            <MudButton OnClick="() => ToggleSubmit(chatSetting)"
-                       StartIcon="@(chatSetting.Submit ? Icons.Material.Filled.CheckBox : Icons.Material.Filled.CheckBoxOutlineBlank)"
-                       Color="Color.Info"
-                       Size="Size.Small"
-                       IconSize="Size.Small"
-                       Variant="Variant.Text">
-                @Resources.Chat_Submit
-            </MudButton>
-            <MudButton OnClick="() => Remove(chatSetting)"
-                       StartIcon="@Icons.Material.Filled.Delete"
-                       Color="Color.Error"
-                       Size="Size.Small"
-                       IconSize="Size.Small"
-                       Variant="Variant.Text">
-                @Resources.Chat_Commands_Remove
-            </MudButton>
+    <div class="grid grid-cols-12 gap-2">
+        <div class="col-span-6">
+            <FormInput Label="@Resources["Command"]"
+                       Value="@chatSetting.Command"
+                       ValueChanged="(v) => CommandChanged(chatSetting, v)"/>
+        </div>
+        <div class="col-span-6">
+            <KeybindEditor Value="@chatSetting.Key"
+                           ValueChanged="(v) => KeyChanged(chatSetting, v)"
+                           Label="@Resources["Keybind"]"/>
         </div>
     </div>
 
-    <MudDivider/>
+    <div class="flex items-center justify-between">
+        <FormCheckbox Value="chatSetting.Submit"
+                      ValueChanged="() => ToggleSubmit(chatSetting)"
+                      Label="@Resources["Submit the command"]"/>
+        <ButtonPrimary OnClick="() => Remove(chatSetting)">
+            @Resources["Delete Command"]
+        </ButtonPrimary>
+    </div>
+
+    <LayoutDivider/>
 }
 
-<div class="d-flex justify-space-between pa-3">
-    <MudButton Variant="Variant.Text"
-               Color="Color.Default"
-               OnClick="RestoreDefaults">
-        @Resources.Restore_Defaults
-    </MudButton>
-    <MudButton Variant="Variant.Filled"
-               Color="Color.Secondary"
-               OnClick="Add">
-        @Resources.Chat_Add
-    </MudButton>
+<div class="flex justify-between mb-3">
+    <ButtonSecondary OnClick="RestoreDefaults">
+        @Resources["Restore Defaults"]
+    </ButtonSecondary>
+    <ButtonPrimary OnClick="Add">
+        @Resources["Add a New Command"]
+    </ButtonPrimary>
 </div>
 
-@inject SettingsResources Resources
+@inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 
 @code {
