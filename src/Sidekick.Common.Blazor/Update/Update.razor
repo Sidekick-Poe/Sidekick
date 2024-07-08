@@ -1,31 +1,28 @@
 @page "/update"
 @inherits SidekickView
 
-<AppLogo />
+<AppScrollArea>
+    <TopContent>
+        <AppLogo/>
+    </TopContent>
 
-@if (Error)
-{
-    <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Class="my-1">@Resources["The update has failed to install automatically. You should try to download and install the update manually from https://sidekick-poe.github.io/"]</MudAlert>
-}
-else
-{
-    <MudCard Class="my-1">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.h5" Align="Align.Center">@Step</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent>
-            <MudProgressLinear Color="Color.Primary"
-                           Indeterminate="true" />
-        </MudCardContent>
-    </MudCard>
-}
+    <ChildContent>
+        @if (Error)
+        {
+            <AlertError>@Resources["The update has failed to install automatically. You should try to download and install the update manually from https://sidekick-poe.github.io/"]</AlertError>
+        }
+        else
+        {
+            <AppContainer>
+                <Heading3 Class="mb-2 text-center">@Step</Heading3>
+                <ProgressBar Indeterminate="true"/>
+            </AppContainer>
+        }
 
-<div class="d-flex justify-end">
-    <MudButton OnClick="CurrentView.Close"
-               Variant="Variant.Text"
-               Color="Color.Default">
-        @Resources["Close"]
-    </MudButton>
-</div>
+        <div class="flex justify-center mb-3">
+            <ButtonPrimary OnClick="CurrentView.Close">
+                @Resources["Close"]
+            </ButtonPrimary>
+        </div>
+    </ChildContent>
+</AppScrollArea>

@@ -1,4 +1,5 @@
 using Sidekick.Common.Blazor.Views;
+using Sidekick.Common.Extensions;
 
 namespace Sidekick.Common.Blazor.Dialogs;
 
@@ -14,7 +15,7 @@ public class DialogService(IViewLocator viewLocator) : ISidekickDialogs
         _ = Task.Factory.StartNew(
             async () =>
             {
-                await viewLocator.Open($"/dialog/confirm/{message}");
+                await viewLocator.Open($"/dialog/confirm/{message.EncodeBase64Url()}");
             });
 
         ConfirmationResult = new TaskCompletionSource<bool>();

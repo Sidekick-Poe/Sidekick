@@ -1,35 +1,38 @@
 @page "/dialog/confirm/{message}"
+@using Sidekick.Common.Extensions
 @inherits SidekickView
 
-<AppLogo />
+<AppScrollArea>
+    <TopContent>
+        <AppLogo/>
+    </TopContent>
 
-<MudCard Class="my-3 pa-3">
-    <MudCardContent>
-        <MudText Typo="Typo.h5" Align="Align.Center">@Message</MudText>
-    </MudCardContent>
-</MudCard>
+    <ChildContent>
+        <AppContainer>
+            <Heading3 Class="mb-3 text-center">@Message.DecodeBase64Url()</Heading3>
 
-<div class="d-flex justify-end">
-    <MudButton OnClick="No"
-               Variant="Variant.Text"
-               Color="Color.Default">
-        @Resources.No
-    </MudButton>
-    <MudButton OnClick="Yes"
-               Variant="Variant.Filled"
-               Color="Color.Primary"
-               Class="ml-3">
-        @Resources.Yes
-    </MudButton>
-</div>
+            <div class="flex justify-center gap-2">
+                <ButtonSecondary OnClick="No">
+                    @Resources.No
+                </ButtonSecondary>
+                <ButtonPrimary OnClick="Yes">
+                    @Resources.Yes
+                </ButtonPrimary>
+            </div>
+        </AppContainer>
+    </ChildContent>
+</AppScrollArea>
 
 @inject DialogResources Resources;
 @inject DialogService Service;
+
 @code {
+
     [Parameter]
     public string? Message { get; set; }
 
     public override string Title => Resources.Title;
+
     public override SidekickViewType ViewType => SidekickViewType.Modal;
 
     private async Task Yes()
@@ -43,4 +46,5 @@
         Service.SetConfirmationResult(false);
         await CurrentView.Close();
     }
+
 }

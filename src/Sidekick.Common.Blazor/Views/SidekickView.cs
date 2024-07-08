@@ -46,11 +46,6 @@ namespace Sidekick.Common.Blazor.Views
         public virtual SidekickViewType ViewType => SidekickViewType.Standard;
 
         /// <summary>
-        /// Gets a value indicating whether to show the settings button in the appbar.
-        /// </summary>
-        public virtual bool ShowSettingsButton => true;
-
-        /// <summary>
         /// Gets a value indicating whether to close the view when you click outside the window.
         /// </summary>
         public virtual bool CloseOnBlur { get; set; } = false;
