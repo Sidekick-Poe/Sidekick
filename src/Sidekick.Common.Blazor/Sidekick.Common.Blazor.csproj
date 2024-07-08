@@ -22,6 +22,8 @@
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Errors\SidekickErrorBoundary.razor" />
+    <UpToDateCheckInput Remove="Layouts\MenuLayout.razor" />
+    <UpToDateCheckInput Remove="Layouts\StandardLayout.razor" />
   </ItemGroup>
 
 </Project>

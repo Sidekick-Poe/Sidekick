@@ -2,7 +2,7 @@
 @using Sidekick.Common.Extensions
 @inherits SidekickView
 
-<AppScrollArea>
+<LayoutSimple>
     <TopContent>
         <AppLogo/>
     </TopContent>
@@ -10,18 +10,19 @@
     <ChildContent>
         <AppContainer>
             <Heading3 Class="mb-3 text-center">@Message.DecodeBase64Url()</Heading3>
-
-            <div class="flex justify-center gap-2">
-                <ButtonSecondary OnClick="No">
-                    @Resources.No
-                </ButtonSecondary>
-                <ButtonPrimary OnClick="Yes">
-                    @Resources.Yes
-                </ButtonPrimary>
-            </div>
         </AppContainer>
     </ChildContent>
-</AppScrollArea>
+    <BottomContent>
+        <div class="px-3 py-2 flex justify-center gap-2">
+            <ButtonSecondary OnClick="No">
+                @Resources.No
+            </ButtonSecondary>
+            <ButtonPrimary OnClick="Yes">
+                @Resources.Yes
+            </ButtonPrimary>
+        </div>
+    </BottomContent>
+</LayoutSimple>
 
 @inject DialogResources Resources;
 @inject DialogService Service;

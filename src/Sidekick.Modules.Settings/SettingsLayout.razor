@@ -1,0 +1,45 @@
+@using Sidekick.Common.Blazor.Update
+@inherits LayoutComponentBase
+
+<LayoutTwoColumn>
+    <TopContent>
+        <AppLogo/>
+    </TopContent>
+    <LeftContent>
+        <div class="h-full flex flex-col">
+            <MenuItem Href="/settings">@Resources["General"]</MenuItem>
+            <MenuItem Href="/settings/price">@Resources["Price Check"]</MenuItem>
+            <MenuItem Href="/settings/map">@Resources["Map Check"]</MenuItem>
+            <MenuItem Href="/settings/wiki">@Resources["Wiki"]</MenuItem>
+            <MenuItem Href="/settings/chat">@Resources["Chat Commands"]</MenuItem>
+            <MenuItem Href="/settings/wealth">@Resources["Wealth Tracker"]</MenuItem>
+
+            <div class="grow"></div>
+
+            <div class="py-2">
+                <ButtonSecondary OnClick="ResetCache">@Resources["Reset Cache"]</ButtonSecondary>
+            </div>
+        </div>
+    </LeftContent>
+    <ChildContent>
+        @Body
+    </ChildContent>
+    <BottomContent>
+        <UpdateBanner/>
+    </BottomContent>
+</LayoutTwoColumn>
+
+@inject IStringLocalizer<SettingsLayout> Resources
+@inject ICacheProvider CacheProvider
+@inject NavigationManager NavigationManager
+
+@code {
+
+    public Task ResetCache()
+    {
+        CacheProvider.Clear();
+        NavigationManager.NavigateTo("/initialize");
+        return Task.CompletedTask;
+    }
+
+}

@@ -1,9 +1,13 @@
 <div class="h-full flex flex-col">
-    @TopContent
+    <div class="dark:bg-stone-900">
+        @TopContent
+    </div>
     <div class="grow overflow-y-auto overflow-x-hidden">
         @ChildContent
     </div>
-    @BottomContent
+    <div class="dark:bg-stone-900">
+        @BottomContent
+    </div>
 </div>
 
 @code {

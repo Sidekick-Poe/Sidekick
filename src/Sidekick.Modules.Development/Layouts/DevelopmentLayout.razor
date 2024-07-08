@@ -1,0 +1,16 @@
+@inherits LayoutComponentBase
+
+<LayoutTwoColumn>
+    <TopContent>
+        <AppLogo/>
+    </TopContent>
+    <LeftContent>
+        <MenuItem Href="/development/typography">@Resources["Typography"]</MenuItem>
+        <MenuItem Href="/development/tests">@Resources["Tests"]</MenuItem>
+    </LeftContent>
+    <ChildContent>
+        @Body
+    </ChildContent>
+</LayoutTwoColumn>
+
+@inject IStringLocalizer<DevelopmentLayout> Resources

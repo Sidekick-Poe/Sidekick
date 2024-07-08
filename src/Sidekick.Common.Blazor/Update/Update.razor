@@ -1,7 +1,7 @@
 @page "/update"
 @inherits SidekickView
 
-<AppScrollArea>
+<LayoutSimple>
     <TopContent>
         <AppLogo/>
     </TopContent>
@@ -18,11 +18,13 @@
                 <ProgressBar Indeterminate="true"/>
             </AppContainer>
         }
+    </ChildContent>
 
-        <div class="flex justify-center mb-3">
+    <BottomContent>
+        <div class="px-3 py-2 flex justify-center gap-2">
             <ButtonPrimary OnClick="CurrentView.Close">
                 @Resources["Close"]
             </ButtonPrimary>
         </div>
-    </ChildContent>
-</AppScrollArea>
+    </BottomContent>
+</LayoutSimple>

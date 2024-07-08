@@ -5,7 +5,7 @@
 @using Sidekick.Common.Settings
 @inherits SidekickView
 
-<AppScrollArea>
+<LayoutSimple>
     <TopContent>
         <AppLogo/>
     </TopContent>
@@ -26,29 +26,31 @@
             <AppContainer>
                 <LanguageParserEditor/>
                 <LeagueIdEditor/>
-
-                <div class="flex justify-end gap-2">
-                    <ButtonSecondary OnClick="Exit">
-                        @Resources["Exit"]
-                    </ButtonSecondary>
-                    <ButtonPrimary OnClick="() => Save()">
-                        @Resources["Save"]
-                    </ButtonPrimary>
-                </div>
-            </AppContainer>
-        }
-        else
-        {
-            <AppContainer>
-                <div class="flex justify-end">
-                    <ButtonPrimary OnClick="Exit">
-                        @Resources["Exit"]
-                    </ButtonPrimary>
-                </div>
             </AppContainer>
         }
     </ChildContent>
-</AppScrollArea>
+    <BottomContent>
+        @if (RequiresSetup)
+        {
+            <div class="px-3 py-2 flex justify-center gap-2">
+                <ButtonSecondary OnClick="Exit">
+                    @Resources["Exit"]
+                </ButtonSecondary>
+                <ButtonPrimary OnClick="() => Save()">
+                    @Resources["Save"]
+                </ButtonPrimary>
+            </div>
+        }
+        else
+        {
+            <div class="px-3 py-2 flex justify-center gap-2">
+                <ButtonPrimary OnClick="Exit">
+                    @Resources["Exit"]
+                </ButtonPrimary>
+            </div>
+        }
+    </BottomContent>
+</LayoutSimple>
 
 @inject ISettingsService SettingsService
 @inject IApplicationService ApplicationService
@@ -68,7 +70,7 @@
 
     public override SidekickViewType ViewType => SidekickViewType.Modal;
 
-    public override int ViewHeight => 320;
+    public override int ViewHeight => 360;
 
     protected override async Task OnInitializedAsync()
     {
