@@ -1,0 +1,20 @@
+<div class="h-full flex flex-col">
+    @TopContent
+    <div class="grow overflow-y-auto overflow-x-hidden">
+        @ChildContent
+    </div>
+    @BottomContent
+</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? TopContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? BottomContent { get; set; }
+
+}

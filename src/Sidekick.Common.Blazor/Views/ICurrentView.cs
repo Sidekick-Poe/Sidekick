@@ -6,6 +6,11 @@ namespace Sidekick.Common.Blazor.Views;
 public interface ICurrentView
 {
     /// <summary>
+    /// Gets a unique id associated with this view.
+    /// </summary>
+    Guid Id { get; }
+
+    /// <summary>
     /// Gets the current sidekick view.
     /// </summary>
     SidekickView? Current { get; }

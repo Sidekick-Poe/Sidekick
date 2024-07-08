@@ -8,6 +8,9 @@ namespace Sidekick.Common.Blazor.Views;
 public class CurrentView(IViewLocator viewLocator) : ICurrentView
 {
     /// <inheritdoc/>
+    public Guid Id { get; } = Guid.NewGuid();
+
+    /// <inheritdoc/>
     public SidekickView? Current { get; private set; }
 
     /// <inheritdoc/>

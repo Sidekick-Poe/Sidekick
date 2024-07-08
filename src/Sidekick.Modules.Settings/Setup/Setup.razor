@@ -5,44 +5,50 @@
 @using Sidekick.Common.Settings
 @inherits SidekickView
 
-<AppLogo/>
+<AppScrollArea>
+    <TopContent>
+        <AppLogo/>
+    </TopContent>
 
-@if (RequiresSetup)
-{
-    @if (NewLeagues)
-    {
-        <AlertInfo>@Resources["New leagues are available! Please make sure you have the desired league selected in the settings."]</AlertInfo>
-    }
+    <ChildContent>
+        @if (RequiresSetup)
+        {
+            if (NewLeagues)
+            {
+                <AlertInfo>@Resources["New leagues are available! Please make sure you have the desired league selected in the settings."]</AlertInfo>
+            }
 
-    @if (HasError)
-    {
-        <AlertError>@Resources["You must select a valid language and league to continue."]</AlertError>
-    }
+            @if (HasError)
+            {
+                <AlertError>@Resources["You must select a valid language and league to continue."]</AlertError>
+            }
 
-    <AppContainer>
-        <LanguageParserEditor/>
-        <LeagueIdEditor/>
+            <AppContainer>
+                <LanguageParserEditor/>
+                <LeagueIdEditor/>
 
-        <div class="flex justify-end gap-2">
-            <ButtonSecondary OnClick="Exit">
-                @Resources["Exit"]
-            </ButtonSecondary>
-            <ButtonPrimary OnClick="() => Save()">
-                @Resources["Save"]
-            </ButtonPrimary>
-        </div>
-    </AppContainer>
-}
-else
-{
-    <AppContainer>
-        <div class="flex justify-end">
-            <ButtonPrimary OnClick="Exit">
-                @Resources["Exit"]
-            </ButtonPrimary>
-        </div>
-    </AppContainer>
-}
+                <div class="flex justify-end gap-2">
+                    <ButtonSecondary OnClick="Exit">
+                        @Resources["Exit"]
+                    </ButtonSecondary>
+                    <ButtonPrimary OnClick="() => Save()">
+                        @Resources["Save"]
+                    </ButtonPrimary>
+                </div>
+            </AppContainer>
+        }
+        else
+        {
+            <AppContainer>
+                <div class="flex justify-end">
+                    <ButtonPrimary OnClick="Exit">
+                        @Resources["Exit"]
+                    </ButtonPrimary>
+                </div>
+            </AppContainer>
+        }
+    </ChildContent>
+</AppScrollArea>
 
 @inject ISettingsService SettingsService
 @inject IApplicationService ApplicationService
@@ -62,11 +68,10 @@ else
 
     public override SidekickViewType ViewType => SidekickViewType.Modal;
 
-    public override int ViewHeight => NewLeagues ? 400 : 320;
+    public override int ViewHeight => 320;
 
     protected override async Task OnInitializedAsync()
     {
-        NewLeagues = true;
         var leagues = await LeagueProvider.GetList(false);
         var apiLeaguesHash = Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(leagues)));
         var settingsLeaguesHash = await SettingsService.GetString(SettingKeys.LeaguesHash);
@@ -74,8 +79,9 @@ else
         {
             NewLeagues = true;
             CacheProvider.Clear();
-            await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
         }
+
+        await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
 
         // Check to see if we should run Setup first before running the rest of the initialization process
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);

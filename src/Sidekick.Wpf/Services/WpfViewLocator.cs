@@ -11,7 +11,7 @@ namespace Sidekick.Wpf.Services
         ICacheProvider cacheProvider,
         ILogger<WpfViewLocator> logger) : IViewLocator
     {
-        internal readonly ICacheProvider cacheProvider = cacheProvider;
+        internal readonly ICacheProvider CacheProvider = cacheProvider;
         internal List<MainWindow> Windows { get; } = new();
 
         internal string? NextUrl { get; set; }
@@ -25,7 +25,7 @@ namespace Sidekick.Wpf.Services
             }
 
             window.SidekickView = view;
-            var preferences = await cacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
+            var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
 
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -77,7 +77,7 @@ namespace Sidekick.Wpf.Services
                 return;
             }
 
-            var preferences = await cacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
+            var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
 
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -208,18 +208,23 @@ namespace Sidekick.Wpf.Services
 
         private bool TryGetWindow(SidekickView view, out MainWindow window)
         {
-            MainWindow? windowResult = null;
+            var windowResult = Windows.FirstOrDefault(x => x.Id == view.CurrentView.Id);
 
-            Application.Current.Dispatcher.Invoke(() =>
+            if (windowResult == null)
             {
-                var viewUrl = WebUtility.UrlDecode(view.Url);
-                windowResult = Windows.FirstOrDefault(x => x.CurrentWebPath == viewUrl)!;
-            });
+                Application.Current.Dispatcher.Invoke(
+                    () =>
+                    {
+                        var viewUrl = WebUtility.UrlDecode(view.Url);
+                        windowResult = Windows.FirstOrDefault(x => x.CurrentWebPath == viewUrl)!;
+                    });
+            }
 
             window = windowResult!;
 
             if (windowResult != null)
             {
+                windowResult.Id = view.CurrentView.Id;
                 return true;
             }
 

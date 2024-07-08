@@ -9,6 +9,11 @@
 <select id="@Id"
         @onchange="OnChange"
         class="@UiClasses.FormInputClasses mb-3">
+    @if (Options.All(x => x.Value != Value))
+    {
+        <option selected></option>
+    }
+
     @foreach (var option in Options)
     {
         if (option.Value == Value)

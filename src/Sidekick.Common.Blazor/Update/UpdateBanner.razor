@@ -9,17 +9,19 @@
      })
 {
     <AlertInfo>
-        <TextBase>@Resources["A new update is available!"]</TextBase>
-        <TextCaption>
-            @if (Release.IsExecutable)
-            {
-                <ButtonLink OnClick="Download">@Resources["Download and Install"]</ButtonLink>
-            }
-            else
-            {
-                <ButtonLink OnClick="OpenWebsite">@Resources["Open Website"]</ButtonLink>
-            }
-        </TextCaption>
+        <div class="flex items-center gap-2">
+            <TextBase>@Resources["A new update is available!"]</TextBase>
+            <TextCaption>
+                @if (Release.IsExecutable)
+                {
+                    <ButtonLink OnClick="Download">@Resources["Download and Install"]</ButtonLink>
+                }
+                else
+                {
+                    <ButtonLink OnClick="OpenWebsite">@Resources["Open Website"]</ButtonLink>
+                }
+            </TextCaption>
+        </div>
     </AlertInfo>
 }
 
@@ -41,7 +43,7 @@
 #if DEBUG
         Release = new GitHubRelease()
         {
-            IsNewerVersion = false,
+            IsNewerVersion = true,
         };
 #endif
 

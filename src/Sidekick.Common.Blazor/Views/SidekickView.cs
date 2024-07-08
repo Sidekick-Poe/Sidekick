@@ -17,7 +17,7 @@ namespace Sidekick.Common.Blazor.Views
         /// Gets or sets the view instance service.
         /// </summary>
         [Inject]
-        protected ICurrentView CurrentView { get; set; } = null!;
+        public ICurrentView CurrentView { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the navigation manager.

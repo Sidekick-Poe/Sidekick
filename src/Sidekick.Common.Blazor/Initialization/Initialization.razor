@@ -1,38 +1,44 @@
 @page "/initialize"
 @inherits SidekickView
 
-<AppLogo/>
+<AppScrollArea>
+    <TopContent>
+        <AppLogo/>
+    </TopContent>
 
-@if (Error)
-{
-    <AlertError>@Resources.Error</AlertError>
-}
-else
-{
-    <AppContainer>
-        <Heading3 Class="mb-2 text-center">@Step</Heading3>
-        @if (Count != Completed)
+    <ChildContent>
+        @if (Error)
         {
-            <ProgressBar Percent="Percentage"/>
+            <AlertError>@Resources.Error</AlertError>
         }
         else
         {
-            <TextBase Class="text-center">@WelcomeMessage</TextBase>
+            <AppContainer>
+                <Heading3 Class="mb-2 text-center">@Step</Heading3>
+                @if (Count != Completed)
+                {
+                    <ProgressBar Percent="Percentage"/>
+                }
+                else
+                {
+                    <TextBase Class="text-center">@WelcomeMessage</TextBase>
+                }
+            </AppContainer>
         }
-    </AppContainer>
-}
 
-<div class="flex justify-center mt-2">
-    @if (Count != Completed)
-    {
-        <ButtonPrimary OnClick="Exit">
-            @Resources.Exit
-        </ButtonPrimary>
-    }
-    else
-    {
-        <ButtonPrimary OnClick="CurrentView.Close">
-            @Resources.Close
-        </ButtonPrimary>
-    }
-</div>
+        <div class="flex justify-center mb-3">
+            @if (Count != Completed)
+            {
+                <ButtonPrimary OnClick="Exit">
+                    @Resources.Exit
+                </ButtonPrimary>
+            }
+            else
+            {
+                <ButtonPrimary OnClick="CurrentView.Close">
+                    @Resources.Close
+                </ButtonPrimary>
+            }
+        </div>
+    </ChildContent>
+</AppScrollArea>

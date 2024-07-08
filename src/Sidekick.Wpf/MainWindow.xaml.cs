@@ -20,6 +20,8 @@ public partial class MainWindow
 
     private IServiceScope Scope { get; set; }
 
+    public Guid Id { get; set; }
+
     public MainWindow(WpfViewLocator viewLocator)
     {
         Scope = App.ServiceProvider.CreateScope();
@@ -64,7 +66,7 @@ public partial class MainWindow
 
         try
         {
-            await viewLocator.cacheProvider.Set(
+            await viewLocator.CacheProvider.Set(
                 $"view_preference_{SidekickView?.Key}",
                 new ViewPreferences()
                 {
