@@ -9,19 +9,17 @@
 }
 else
 {
-    <div class="p-3">
-        <Heading5 Class="mb-1 text-center">@Step</Heading5>
+    <AppContainer>
+        <Heading3 Class="mb-2 text-center">@Step</Heading3>
         @if (Count != Completed)
         {
             <ProgressBar Percent="Percentage"/>
         }
         else
         {
-            <Heading6 Class="text-center">
-                @WelcomeMessage
-            </Heading6>
+            <TextBase Class="text-center">@WelcomeMessage</TextBase>
         }
-    </div>
+    </AppContainer>
 }
 
 <div class="flex justify-center mt-2">

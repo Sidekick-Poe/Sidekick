@@ -1,16 +1,8 @@
 @using Sidekick.Common.Settings
-<MudSelect T="string?"
-           Label="@Resources.Character_League"
-           Variant="Variant.Filled"
-           Value="LeagueId"
-           ValueChanged="LeagueChanged"
-           Required="true"
-           RequiredError="League is required!">
-    @foreach (var option in Options)
-    {
-        <MudSelectItem Value="@option.Key">@option.Value</MudSelectItem>
-    }
-</MudSelect>
+<FormSelect Label="@Resources.Character_League"
+            Value="@LeagueId"
+            ValueChanged="LeagueChanged"
+            Options="Options"/>
 
 @inject SettingsResources Resources
 @inject ISettingsService SettingsService
@@ -20,7 +12,9 @@
 
     private string? LeagueId { get; set; }
 
-    private Dictionary<string, string> Options { get; set; } = [];
+    private List<SelectOption> Options { get; set; } =
+    [
+    ];
 
     protected override async Task OnInitializedAsync()
     {
@@ -34,11 +28,15 @@
         var leagues = await LeagueProvider.GetList(true);
         Options = leagues
                   .GroupBy(x => x.Id)
-                  .ToDictionary(
-                      x => x.First()
-                            .Id,
-                      x => x.First()
-                            .Text);
+                  .Select(
+                      x => new SelectOption()
+                      {
+                          Value = x.First()
+                                   .Id,
+                          Label = x.First()
+                                   .Text,
+                      })
+                  .ToList();
     }
 
     private async Task LeagueChanged(string? value)

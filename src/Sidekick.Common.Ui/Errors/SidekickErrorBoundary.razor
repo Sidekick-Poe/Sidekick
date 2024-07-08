@@ -13,14 +13,12 @@
         else if (ShowError)
         {
             <AlertError>
-                <Heading5>An error occured!</Heading5>
-                <Caption>@Message</Caption>
+                <Heading3>An error occured!</Heading3>
+                <TextBase>@Message</TextBase>
 
                 @if (!string.IsNullOrEmpty(AdditionalInformation))
                 {
-                    <div class="mt-2">
-                        Additional Information: <b>@AdditionalInformation</b>
-                    </div>
+                    <TextCaption class="mt-2">Additional Information: <b>@AdditionalInformation</b></TextCaption>
                 }
             </AlertError>
         }

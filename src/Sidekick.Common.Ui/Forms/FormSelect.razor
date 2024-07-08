@@ -1,18 +1,25 @@
 ﻿@if (!string.IsNullOrEmpty(Label))
 {
     <label for="@Id"
-           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+           class="block mb-1 text-base font-medium dark:text-white">
         @Label
     </label>
 }
 
 <select id="@Id"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-    <option selected>Choose a country</option>
-    <option value="US">United States</option>
-    <option value="CA">Canada</option>
-    <option value="FR">France</option>
-    <option value="DE">Germany</option>
+        @onchange="OnChange"
+        class="@UiClasses.FormInputClasses mb-3">
+    @foreach (var option in Options)
+    {
+        if (option.Value == Value)
+        {
+            <option selected value="@option.Value">@option.Label</option>
+        }
+        else
+        {
+            <option value="@option.Value">@option.Label</option>
+        }
+    }
 </select>
 
 @code {
@@ -20,6 +27,21 @@
     [Parameter]
     public string? Label { get; set; }
 
+    [Parameter]
+    public string? Value { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> ValueChanged { get; set; }
+
+    [Parameter]
+    public List<SelectOption> Options { get; set; } =
+    [
+    ];
+
     private string Id { get; } = UiUtilities.GenerateId();
 
+    private async Task OnChange(ChangeEventArgs args)
+    {
+        await ValueChanged.InvokeAsync(args.Value?.ToString());
+    }
 }

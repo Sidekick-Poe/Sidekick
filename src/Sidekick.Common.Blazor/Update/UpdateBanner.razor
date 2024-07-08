@@ -9,8 +9,8 @@
      })
 {
     <AlertInfo>
-        <Heading5>@Resources["A new update is available!"]</Heading5>
-        <Caption>
+        <TextBase>@Resources["A new update is available!"]</TextBase>
+        <TextCaption>
             @if (Release.IsExecutable)
             {
                 <ButtonLink OnClick="Download">@Resources["Download and Install"]</ButtonLink>
@@ -19,7 +19,7 @@
             {
                 <ButtonLink OnClick="OpenWebsite">@Resources["Open Website"]</ButtonLink>
             }
-        </Caption>
+        </TextCaption>
     </AlertInfo>
 }
 
@@ -41,7 +41,7 @@
 #if DEBUG
         Release = new GitHubRelease()
         {
-            IsNewerVersion = false,
+            IsNewerVersion = true,
         };
 #endif
 

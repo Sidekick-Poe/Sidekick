@@ -19,37 +19,31 @@
         <AlertError>@Resources["You must select a valid language and league to continue."]</AlertError>
     }
 
-    <MudCard Class="mt-1">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.h5">@SettingsResources.Game_Title</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent>
-            <LanguageParserEditor/>
-            <LeagueIdEditor/>
-        </MudCardContent>
-    </MudCard>
+    <AppContainer>
+        <LanguageParserEditor/>
+        <LeagueIdEditor/>
 
-    <div class="flex justify-end gap-2">
-        <ButtonSecondary OnClick="Exit">
-            @Resources["Exit"]
-        </ButtonSecondary>
-        <ButtonPrimary OnClick="() => Save()">
-            @SettingsResources.Save
-        </ButtonPrimary>
-    </div>
+        <div class="flex justify-end gap-2">
+            <ButtonSecondary OnClick="Exit">
+                @Resources["Exit"]
+            </ButtonSecondary>
+            <ButtonPrimary OnClick="() => Save()">
+                @Resources["Save"]
+            </ButtonPrimary>
+        </div>
+    </AppContainer>
 }
 else
 {
-    <div class="flex justify-end">
-        <ButtonPrimary OnClick="Exit">
-            @Resources["Exit"]
-        </ButtonPrimary>
-    </div>
+    <AppContainer>
+        <div class="flex justify-end">
+            <ButtonPrimary OnClick="Exit">
+                @Resources["Exit"]
+            </ButtonPrimary>
+        </div>
+    </AppContainer>
 }
 
-@inject SettingsResources SettingsResources
 @inject ISettingsService SettingsService
 @inject IApplicationService ApplicationService
 @inject ILeagueProvider LeagueProvider
@@ -72,6 +66,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        NewLeagues = true;
         var leagues = await LeagueProvider.GetList(false);
         var apiLeaguesHash = Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(leagues)));
         var settingsLeaguesHash = await SettingsService.GetString(SettingKeys.LeaguesHash);
@@ -84,7 +79,7 @@ else
 
         // Check to see if we should run Setup first before running the rest of the initialization process
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
-        if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId) || true)
+        if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId))
         {
             RequiresSetup = true;
             await ViewLocator.Initialize(this);
