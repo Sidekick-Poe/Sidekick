@@ -2,16 +2,18 @@
 @layout SettingsLayout
 @inherits SidekickView
 
-<Heading2 Class="mb-3">@Resources["Game Settings"]</Heading2>
-<LanguageParserEditor/>
-<LeagueIdEditor/>
+<AppContainer>
+    <Heading2 Class="mb-3">@Resources["Game Settings"]</Heading2>
+    <LanguageParserEditor/>
+    <LeagueIdEditor/>
 
-<LayoutDivider/>
+    <LayoutDivider/>
 
-<Heading2 Class="mb-3">@Resources["Other Settings"]</Heading2>
-<RetainClipboardEditor/>
-<EscapeClosesOverlaysEditor/>
-<KeyFindItemsEditor/>
+    <Heading2 Class="mb-3">@Resources["Other Settings"]</Heading2>
+    <RetainClipboardEditor/>
+    <EscapeClosesOverlaysEditor/>
+    <KeyFindItemsEditor/>
+</AppContainer>
 
 @inject IStringLocalizer<SettingsResources> Resources
 
