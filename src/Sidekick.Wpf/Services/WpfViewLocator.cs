@@ -1,8 +1,8 @@
 using System.Net;
 using System.Windows;
 using Microsoft.Extensions.Logging;
-using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Ui.Views;
 using Sidekick.Wpf.Helpers;
 
 namespace Sidekick.Wpf.Services
@@ -19,17 +19,18 @@ namespace Sidekick.Wpf.Services
         /// <inheritdoc/>
         public async Task Initialize(SidekickView view)
         {
-            if (!TryGetWindow(view, out var window))
+            if (!TryGetWindow(view.CurrentView, out var window))
             {
                 return;
             }
 
             window.SidekickView = view;
-            var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
+            view.CurrentView.ViewChanged += CurrentViewOnViewChanged;
+            var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.CurrentView.Key}");
 
             Application.Current.Dispatcher.Invoke(() =>
             {
-                window.Title = $"Sidekick {view.Title}";
+                window.Title = view.CurrentView.Title;
                 window.MinHeight = view.ViewHeight + 20;
                 window.MinWidth = view.ViewWidth + 20;
 
@@ -69,15 +70,29 @@ namespace Sidekick.Wpf.Services
             });
         }
 
-        /// <inheritdoc/>
-        public async Task Maximize(SidekickView view)
+        private void CurrentViewOnViewChanged(ICurrentView view)
         {
             if (!TryGetWindow(view, out var window))
             {
                 return;
             }
 
-            var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
+            Application.Current.Dispatcher.Invoke(
+                () =>
+                {
+                    window.Title = $"Sidekick {view.Title}";
+                });
+        }
+
+        /// <inheritdoc/>
+        public async Task Maximize(SidekickView view)
+        {
+            if (!TryGetWindow(view.CurrentView, out var window))
+            {
+                return;
+            }
+
+            var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.CurrentView.Key}");
 
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -108,7 +123,7 @@ namespace Sidekick.Wpf.Services
         /// <inheritdoc/>
         public Task Minimize(SidekickView view)
         {
-            if (!TryGetWindow(view, out var window))
+            if (!TryGetWindow(view.CurrentView, out var window))
             {
                 return Task.CompletedTask;
             }
@@ -135,7 +150,7 @@ namespace Sidekick.Wpf.Services
             {
                 try
                 {
-                    if (!TryGetWindow(view, out var window))
+                    if (!TryGetWindow(view.CurrentView, out var window))
                     {
                         return;
                     }
@@ -206,9 +221,9 @@ namespace Sidekick.Wpf.Services
             return Task.CompletedTask;
         }
 
-        private bool TryGetWindow(SidekickView view, out MainWindow window)
+        private bool TryGetWindow(ICurrentView view, out MainWindow window)
         {
-            var windowResult = Windows.FirstOrDefault(x => x.Id == view.CurrentView.Id);
+            var windowResult = Windows.FirstOrDefault(x => x.Id == view.Id);
 
             if (windowResult == null)
             {
@@ -224,7 +239,7 @@ namespace Sidekick.Wpf.Services
 
             if (windowResult != null)
             {
-                windowResult.Id = view.CurrentView.Id;
+                windowResult.Id = view.Id;
                 return true;
             }
 

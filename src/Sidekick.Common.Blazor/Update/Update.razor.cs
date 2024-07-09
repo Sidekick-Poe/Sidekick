@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub;
-using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Common.Blazor.Update
 {
@@ -26,7 +26,6 @@ namespace Sidekick.Common.Blazor.Update
         [Inject]
         private ICacheProvider CacheProvider { get; set; } = null!;
 
-        public override string Title => Resources["Update"];
         public override SidekickViewType ViewType => SidekickViewType.Modal;
 
         private string? Step { get; set; }

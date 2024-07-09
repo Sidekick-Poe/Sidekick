@@ -1,7 +1,7 @@
 using ElectronNET.API;
 using ElectronNET.API.Entities;
-using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Electron
 {
@@ -31,20 +31,20 @@ namespace Sidekick.Electron
 
         public async Task Initialize(SidekickView view)
         {
-            var browser = Browsers.FirstOrDefault(x => x.WebContents.GetUrl().Result == view.Url);
+            var browser = Browsers.FirstOrDefault(x => x.WebContents.GetUrl().Result == view.CurrentView.Url);
             if (browser == null)
             {
-                Logger.LogError("Unable to find view {viewUrl}", view.Url);
+                Logger.LogError("Unable to find view {viewUrl}", view.CurrentView.Url);
                 return;
             }
 
             Views.Add(view);
 
-            browser.SetTitle($"Sidekick {view.Title}");
+            browser.SetTitle("Sidekick");
             browser.SetMinimumSize(view.ViewWidth, view.ViewHeight);
             browser.SetSize(view.ViewWidth, view.ViewHeight);
 
-            var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
+            var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.CurrentView.Key}");
             if (view.ViewType != SidekickViewType.Modal && preferences != null)
             {
                 browser.SetSize(preferences.Width, preferences.Height);
@@ -100,7 +100,7 @@ namespace Sidekick.Electron
 
         public async Task Maximize(SidekickView view)
         {
-            var browser = Browsers.FirstOrDefault(x => x.WebContents.GetUrl().Result == view.Url);
+            var browser = Browsers.FirstOrDefault(x => x.WebContents.GetUrl().Result == view.CurrentView.Url);
             if (browser == null)
             {
                 return;
@@ -112,7 +112,7 @@ namespace Sidekick.Electron
             }
             else
             {
-                var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.Key}");
+                var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.CurrentView.Key}");
                 if (preferences != null)
                 {
                     browser.SetSize(preferences.Width, preferences.Height);
@@ -128,7 +128,7 @@ namespace Sidekick.Electron
 
         public Task Minimize(SidekickView view)
         {
-            var browser = Browsers.FirstOrDefault(x => x.WebContents.GetUrl().Result == view.Url);
+            var browser = Browsers.FirstOrDefault(x => x.WebContents.GetUrl().Result == view.CurrentView.Url);
             if (browser == null)
             {
                 return Task.CompletedTask;
@@ -140,7 +140,7 @@ namespace Sidekick.Electron
 
         public async Task Close(SidekickView view)
         {
-            var browser = Browsers.FirstOrDefault(x => x.WebContents.GetUrl().Result == view.Url);
+            var browser = Browsers.FirstOrDefault(x => x.WebContents.GetUrl().Result == view.CurrentView.Url);
             if (browser == null)
             {
                 return;
@@ -249,7 +249,7 @@ namespace Sidekick.Electron
                         {
                             var bounds = await browser.GetBoundsAsync();
                             await CacheProvider.Set(
-                                $"view_preference_{view.Key}",
+                                $"view_preference_{view.CurrentView.Key}",
                                 new ViewPreferences()
                                 {
                                     Width = bounds.Width,

@@ -1,7 +1,8 @@
 @page "/settings/chat"
 @layout SettingsLayout
-@inherits SidekickView
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
+<AppTitle Title="@Resources["Settings"]"/>
 <AppContainer>
     <Heading2 Class="mb-3">@Resources["Common Commands"]</Heading2>
     <TextBase>@Resources["/hideout - Go to your hideout"]</TextBase>
@@ -17,9 +18,3 @@
 </AppContainer>
 
 @inject IStringLocalizer<SettingsResources> Resources
-
-@code {
-
-    public override string Title => Resources["Settings"];
-
-}

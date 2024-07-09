@@ -1,5 +1,5 @@
-﻿using Sidekick.Common.Blazor.Views;
-using Sidekick.Common.Exceptions;
+﻿using Sidekick.Common.Exceptions;
+using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Web;
 

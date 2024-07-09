@@ -1,5 +1,5 @@
-using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Extensions;
+using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Common.Blazor.Dialogs;
 

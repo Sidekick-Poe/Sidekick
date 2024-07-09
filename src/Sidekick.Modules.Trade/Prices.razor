@@ -1,8 +1,9 @@
 @page "/trade/{itemText}"
 @using Sidekick.Apis.Poe.Bulk;
 @using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Views
 @using Sidekick.Common.Ui.Errors
-@inherits SidekickView
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
 @if (Item == null)
 {
@@ -10,6 +11,7 @@
     return;
 }
 
+<AppTitle Title="@Resources.Trade"/>
 <CascadingValue Value="Item" IsFixed="true">
     <CascadingValue Value="Filters" IsFixed="true">
         @if (Filters != null)
@@ -49,8 +51,6 @@
     private TradeMode Mode { get; set; }
 
     private bool UpdateAfterRender { get; set; }
-
-    public override string Title => Resources.Trade;
 
     public override bool CloseOnBlur { get; set; }
 

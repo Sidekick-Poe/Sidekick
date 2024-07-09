@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Mock
 {

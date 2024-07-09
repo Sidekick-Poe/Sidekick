@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
+using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Common.Blazor.Initialization
 {
@@ -51,8 +51,6 @@ namespace Sidekick.Common.Blazor.Initialization
         private string? WelcomeMessage { get; set; }
 
         public Task? InitializationTask { get; set; }
-
-        public override string Title => "Initialize";
 
         public override SidekickViewType ViewType => SidekickViewType.Modal;
 

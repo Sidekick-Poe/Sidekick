@@ -1,11 +1,12 @@
 @page "/wealth"
-@inherits SidekickView
+@inherits Sidekick.Common.Ui.Views.SidekickView
 @using Sidekick.Common.Database
 @using Sidekick.Common.Database.Tables
 @using Sidekick.Modules.Wealth.Components
 @using Sidekick.Common.Exceptions
 @using Sidekick.Common.Settings
 
+<AppTitle Title="Wealth Tracker"/>
 <MudDrawer Open="true"
            Variant="@DrawerVariant.Persistent"
            Width="22em"
@@ -72,8 +73,6 @@
 @code {
     public const string ChartHeight = "24vh";
     public const string InventoryHeight = "67vh";
-
-    public override string Title => "Wealth Tracker";
 
     public override int ViewWidth => 1280;
 

@@ -1,7 +1,8 @@
 @page "/map/{itemText}"
 @using Sidekick.Common.Settings
-@inherits SidekickView
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
+<AppTitle Title="@Resources.Title"/>
 @if (Item == null)
 {
     <LoadingAlert Text="@Resources.Parsing"/>
@@ -69,8 +70,6 @@
     ];
 
     private Item? Item { get; set; }
-
-    public override string Title => Resources.Title;
 
     public override bool CloseOnBlur { get; set; }
 

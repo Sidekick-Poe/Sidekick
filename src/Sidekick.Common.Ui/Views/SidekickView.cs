@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace Sidekick.Common.Blazor.Views
+namespace Sidekick.Common.Ui.Views
 {
     /// <summary>
     /// Base class for sidekick views.
@@ -24,21 +24,6 @@ namespace Sidekick.Common.Blazor.Views
         /// </summary>
         [Inject]
         public NavigationManager NavigationManager { get; set; } = null!;
-
-        /// <summary>
-        /// Gets the current url of the view.
-        /// </summary>
-        public string Url => NavigationManager.Uri;
-
-        /// <summary>
-        /// Gets the key of the view.
-        /// </summary>
-        public string? Key => Url.Split('/', '\\').FirstOrDefault(x => !string.IsNullOrEmpty(x));
-
-        /// <summary>
-        /// Gets the title of the view.
-        /// </summary>
-        public abstract string Title { get; }
 
         /// <summary>
         /// Gets the type of the view.

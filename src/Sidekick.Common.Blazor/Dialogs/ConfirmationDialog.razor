@@ -1,6 +1,7 @@
 @page "/dialog/confirm/{message}"
 @using Sidekick.Common.Extensions
-@inherits SidekickView
+@using Sidekick.Common.Ui.Views
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
 <LayoutSimple>
     <TopContent>
@@ -31,8 +32,6 @@
 
     [Parameter]
     public string? Message { get; set; }
-
-    public override string Title => Resources["Confirmation Required"];
 
     public override SidekickViewType ViewType => SidekickViewType.Modal;
 

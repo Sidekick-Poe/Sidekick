@@ -1,7 +1,7 @@
 @page "/development"
 @page "/development/typography"
 @layout DevelopmentLayout
-@inherits SidekickView
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
 <div class="pa-3">
     <MudText Typo="Typo.h1">h1. Heading</MudText>
@@ -18,7 +18,3 @@
     <MudText Typo="Typo.caption">caption text</MudText>
     <MudText Typo="Typo.overline">OVERLINE TEXT</MudText>
 </div>
-
-@code {
-    public override string Title => "Typography";
-}

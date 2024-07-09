@@ -3,13 +3,14 @@
 @using System.Diagnostics;
 @using Sidekick.Common.Blazor.Authentication
 @layout SettingsLayout
-@inherits SidekickView
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
 @if (Enabled)
 {
     <AuthenticationStatusBar/>
 }
 
+<AppTitle Title="@Resources["Settings"]"/>
 <AppContainer>
     <Heading2 Class="mb-3">Wealth Tracker</Heading2>
     <TextBase>
@@ -95,8 +96,6 @@
     ];
 
     private List<StashTab>? StashTabs { get; set; }
-
-    public override string Title => Resources["Settings"];
 
     protected override async Task OnInitializedAsync()
     {

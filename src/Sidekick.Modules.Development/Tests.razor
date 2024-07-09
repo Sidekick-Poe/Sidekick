@@ -1,6 +1,6 @@
 @page "/development/tests"
 @layout DevelopmentLayout
-@inherits SidekickView
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
 <div class="pa-3">
     <MudCard Class="mt-6">
@@ -16,8 +16,6 @@
 </div>
 
 @code {
-    public override string Title => "Tests";
-
     public void ThrowException()
     {
 #pragma warning disable S112 // General exceptions should never be thrown

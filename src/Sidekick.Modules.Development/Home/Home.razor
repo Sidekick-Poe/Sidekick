@@ -1,7 +1,7 @@
 @page "/home"
 @using MudBlazor
 @using Sidekick.Common.Extensions
-@inherits SidekickView
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
 <AppLogo />
 <MudGrid Class="mt-3" Spacing="2">
@@ -31,8 +31,6 @@
 @code {
 
     private string? ItemText { get; set; }
-
-    public override string Title => "Development Home";
 
     private void PriceCheck()
     {

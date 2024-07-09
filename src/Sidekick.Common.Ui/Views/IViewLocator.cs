@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Blazor.Views;
+namespace Sidekick.Common.Ui.Views;
 
 /// <summary>
 /// Interface to manage views

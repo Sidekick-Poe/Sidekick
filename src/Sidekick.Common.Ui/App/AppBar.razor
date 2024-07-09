@@ -1,20 +1,36 @@
-<div class="dark:bg-stone-900 flex items-center flex-wrap">
+<div class="dark:bg-stone-900 flex items-center flex-wrap py-2 pl-4">
     <img src="/images/orbs/ExaltedOrb.png" class="w-6 h-6"/>
-    <Heading4>
-        <span id="sidekick-appbar-title">@Title</span>
-    </Heading4>
+    <h1 class="font-medium leading-none text-lg ml-4">
+        <span id="sidekick-appbar-title">@CurrentView.Title</span>
+    </h1>
 
-    <div class="ml-auto">
-        @RightContent
+    <div class="ml-auto -my-2 flex items-center flex-nowrap">
+        @ChildContent
     </div>
 </div>
+
+@implements IDisposable
+@inject ICurrentView CurrentView
 
 @code {
 
     [Parameter]
-    public string? Title { get; set; }
+    public RenderFragment? ChildContent { get; set; }
 
-    [Parameter]
-    public RenderFragment? RightContent { get; set; }
+    protected override void OnInitialized()
+    {
+        CurrentView.ViewChanged += CurrentViewOnViewChanged;
+        base.OnInitialized();
+    }
+
+    private void CurrentViewOnViewChanged(ICurrentView obj)
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        CurrentView.ViewChanged -= CurrentViewOnViewChanged;
+    }
 
 }

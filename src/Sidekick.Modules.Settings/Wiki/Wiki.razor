@@ -1,7 +1,8 @@
 @page "/settings/wiki"
 @layout SettingsLayout
-@inherits SidekickView
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
+<AppTitle Title="@Resources["Settings"]"/>
 <AppContainer>
     <Heading2 Class="mb-3">@Resources["Keybindings"]</Heading2>
     <KeyOpenWikiEditor/>
@@ -13,9 +14,3 @@
 </AppContainer>
 
 @inject IStringLocalizer<SettingsResources> Resources
-
-@code {
-
-    public override string Title => Resources["Settings"];
-
-}

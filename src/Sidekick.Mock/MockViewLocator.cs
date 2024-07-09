@@ -1,4 +1,4 @@
-using Sidekick.Common.Blazor.Views;
+using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Mock
 {

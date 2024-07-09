@@ -2,9 +2,11 @@
 @page "/"
 @using System.Text
 @using System.Text.Json
+@using Sidekick.Common.Ui.Views
 @using Sidekick.Common.Settings
-@inherits SidekickView
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
+<AppTitle Title="@Resources["Setup"]"/>
 <LayoutSimple>
     <TopContent>
         <AppLogo/>
@@ -65,8 +67,6 @@
     private bool NewLeagues { get; set; }
 
     private bool HasError { get; set; }
-
-    public override string Title => Resources["Setup"];
 
     public override SidekickViewType ViewType => SidekickViewType.Modal;
 
