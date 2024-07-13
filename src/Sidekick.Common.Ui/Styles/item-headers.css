@@ -1,40 +1,40 @@
 
-.header-currency {
+.item-header-currency {
     background: url("/images/items/header-currency-left.png") top left repeat-y, url("/images/items/header-currency-right.png") top right repeat-y, url("/images/items/header-currency-middle.png") top center repeat;
 }
 
-.header-gem {
+.item-header-gem {
     background: url("/images/items/header-gem-left.png") top left repeat-y, url("/images/items/header-gem-right.png") top right repeat-y, url("/images/items/header-gem-middle.png") top center repeat;
 }
 
-.header-relic {
+.item-header-relic {
     background: url("/images/items/header-relic-left.png") top left repeat-y, url("/images/items/header-relic-right.png") top right repeat-y, url("/images/items/header-relic-middle.png") top center repeat;
 }
 
-.header-double-relic {
+.item-header-double-relic {
     background: url("/images/items/header-double-relic-left.png") top left repeat-y, url("/images/items/header-double-relic-right.png") top right repeat-y, url("/images/items/header-double-relic-middle.png") top center repeat;
 }
 
-.header-double-rare {
+.item-header-double-rare {
     background: url("/images/items/header-double-rare-left.png") top left repeat-y, url("/images/items/header-double-rare-right.png") top right repeat-y, url("/images/items/header-double-rare-middle.png") top center repeat;
 }
 
-.header-double-unique {
+.item-header-double-unique {
     background: url("/images/items/header-double-unique-left.png") top left repeat-y, url("/images/items/header-double-unique-right.png") top right repeat-y, url("/images/items/header-double-unique-middle.png") top center repeat;
 }
 
-.header-magic {
+.item-header-magic {
     background: url("/images/items/header-magic-left.png") top left repeat-y, url("/images/items/header-magic-right.png") top right repeat-y, url("/images/items/header-magic-middle.png") top center repeat;
 }
 
-.header-normal {
+.item-header-normal {
     background: url("/images/items/header-normal-left.png") top left repeat-y, url("/images/items/header-normal-right.png") top right repeat-y, url("/images/items/header-normal-middle.png") top center repeat;
 }
 
-.header-rare {
+.item-header-rare {
     background: url("/images/items/header-rare-left.png") top left repeat-y, url("/images/items/header-rare-right.png") top right repeat-y, url("/images/items/header-rare-middle.png") top center repeat;
 }
 
-.header-unique {
+.item-header-unique {
     background: url("/images/items/header-unique-left.png") top left repeat-y, url("/images/items/header-unique-right.png") top right repeat-y, url("/images/items/header-unique-middle.png") top center repeat;
 }

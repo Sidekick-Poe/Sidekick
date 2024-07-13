@@ -2,7 +2,6 @@
 @using System.Text.RegularExpressions
 @using Sidekick.Apis.Poe
 @using Sidekick.Common.Settings
-@using Sidekick.Common.Blazor.Components.Items
 @using Sidekick.Common.Exceptions
 @using Sidekick.Common.Game.Items
 @using Sidekick.Modules.Maps.Localization
@@ -21,8 +20,7 @@
     <LeftContent>
         @if (Item == null)
         {
-            <Heading2>@Resources["Parsing your item..."]</Heading2>
-            <ProgressBar Indeterminate="true"/>
+            <AppLoading/>
         }
         else
         {
@@ -31,47 +29,57 @@
                         Rarity="Item.Metadata.Rarity"
                         Influences="Item.Influences"/>
 
-            @if (DangerousMods.Any())
-            {
-                <Heading1 Class="text-red-500 flex flex-nowrap items-center justify-center gap-2">
-                    <IconLarge Icon="@UiIcons.ThumbDown"/>
-                    @Resources["Unsafe"]
-                </Heading1>
-            }
-            else
-            {
-                <Heading1 Class="text-green-500 flex flex-nowrap items-center justify-center gap-2">
-                    <IconLarge Icon="@UiIcons.ThumbUp"/>
-                    @Resources["Safe"]
-                </Heading1>
-            }
+            <AppContainer>
+                @if (DangerousMods.Any())
+                {
+                    <Heading1 Class="text-red-500 flex flex-nowrap items-center justify-center gap-2 mb-2">
+                        <IconMedium Icon="@UiIcons.ThumbDown"/>
+                        @Resources["Unsafe"]
+                    </Heading1>
+                }
+                else
+                {
+                    <Heading1 Class="text-green-500 flex flex-nowrap items-center justify-center gap-2 mb-2">
+                        <IconMedium Icon="@UiIcons.ThumbUp"/>
+                        @Resources["Safe"]
+                    </Heading1>
+                }
 
-            <ItemSeparator Rarity="Item.Metadata.Rarity"/>
-
-            @foreach (var mod in DangerousMods)
-            {
-                <div class="d-flex align-center px-4 py-1">
-                    <IconLarge Icon="@UiIcons.ThumbDown"/>
-                    <ItemModifierText Text="@mod"/>
-                </div>
-            }
-
-            @if (DangerousMods.Any() && OkMods.Any())
-            {
                 <ItemSeparator Rarity="Item.Metadata.Rarity"/>
-            }
 
-            @foreach (var mod in OkMods)
-            {
-                <div class="d-flex align-center px-4 py-1">
-                    <IconLarge Icon="@UiIcons.ThumbUp"/>
-                    <ItemModifierText Text="@mod"/>
-                </div>
-            }
+                @foreach (var mod in DangerousMods)
+                {
+                    <div class="flex items-center flex-nowrap p-1 -mx-1 duration-200 transition-colors bg-transparent hover:bg-stone-300/15 rounded">
+                        <div class="text-red-500">
+                            <IconMedium Icon="@UiIcons.ThumbDown"/>
+                        </div>
+                        <ItemModifierText Class="ml-2 text-center grow" Text="@mod"/>
+                    </div>
+                }
+
+                @if (DangerousMods.Any() && OkMods.Any())
+                {
+                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+                }
+
+                @foreach (var mod in OkMods)
+                {
+                    <div class="flex items-center flex-nowrap p-1 -mx-1 duration-200 transition-colors bg-transparent hover:bg-stone-300/15 rounded">
+                        <div class="text-green-500">
+                            <IconMedium Icon="@UiIcons.ThumbUp"/>
+                        </div>
+                        <ItemModifierText Class="ml-2 text-center grow" Text="@mod"/>
+                    </div>
+                }
+            </AppContainer>
         }
     </LeftContent>
     <ChildContent>
-        @if (Item != null)
+        @if (Item == null)
+        {
+            <AppLoading/>
+        }
+        else
         {
             <PoeWikiMapInfo Type="@Item.Invariant?.Type" Name="@Item.Invariant?.Name"/>
         }

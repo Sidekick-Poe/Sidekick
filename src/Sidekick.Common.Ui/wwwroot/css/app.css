@@ -1,3 +1,43 @@
+.item-header-currency {
+  background: url("/images/items/header-currency-left.png") top left repeat-y, url("/images/items/header-currency-right.png") top right repeat-y, url("/images/items/header-currency-middle.png") top center repeat;
+}
+
+.item-header-gem {
+  background: url("/images/items/header-gem-left.png") top left repeat-y, url("/images/items/header-gem-right.png") top right repeat-y, url("/images/items/header-gem-middle.png") top center repeat;
+}
+
+.item-header-relic {
+  background: url("/images/items/header-relic-left.png") top left repeat-y, url("/images/items/header-relic-right.png") top right repeat-y, url("/images/items/header-relic-middle.png") top center repeat;
+}
+
+.item-header-double-relic {
+  background: url("/images/items/header-double-relic-left.png") top left repeat-y, url("/images/items/header-double-relic-right.png") top right repeat-y, url("/images/items/header-double-relic-middle.png") top center repeat;
+}
+
+.item-header-double-rare {
+  background: url("/images/items/header-double-rare-left.png") top left repeat-y, url("/images/items/header-double-rare-right.png") top right repeat-y, url("/images/items/header-double-rare-middle.png") top center repeat;
+}
+
+.item-header-double-unique {
+  background: url("/images/items/header-double-unique-left.png") top left repeat-y, url("/images/items/header-double-unique-right.png") top right repeat-y, url("/images/items/header-double-unique-middle.png") top center repeat;
+}
+
+.item-header-magic {
+  background: url("/images/items/header-magic-left.png") top left repeat-y, url("/images/items/header-magic-right.png") top right repeat-y, url("/images/items/header-magic-middle.png") top center repeat;
+}
+
+.item-header-normal {
+  background: url("/images/items/header-normal-left.png") top left repeat-y, url("/images/items/header-normal-right.png") top right repeat-y, url("/images/items/header-normal-middle.png") top center repeat;
+}
+
+.item-header-rare {
+  background: url("/images/items/header-rare-left.png") top left repeat-y, url("/images/items/header-rare-right.png") top right repeat-y, url("/images/items/header-rare-middle.png") top center repeat;
+}
+
+.item-header-unique {
+  background: url("/images/items/header-unique-left.png") top left repeat-y, url("/images/items/header-unique-right.png") top right repeat-y, url("/images/items/header-unique-middle.png") top center repeat;
+}
+
 :root {
   --poe-color-default: rgb(127,127,127);
   --poe-color-valuedefault: rgb(255,255,255);
@@ -1279,6 +1319,11 @@ video {
   margin: 1rem;
 }
 
+.-mx-1 {
+  margin-left: -0.25rem;
+  margin-right: -0.25rem;
+}
+
 .-my-2 {
   margin-top: -0.5rem;
   margin-bottom: -0.5rem;
@@ -1297,6 +1342,11 @@ video {
 .my-0 {
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 
 .my-2 {
@@ -1356,10 +1406,6 @@ video {
 
 .mr-2 {
   margin-right: 0.5rem;
-}
-
-.mr-3 {
-  margin-right: 0.75rem;
 }
 
 .mr-4 {
@@ -3779,6 +3825,10 @@ video {
 .hover\:bg-slate-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(100 116 139 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-stone-300\/15:hover {
+  background-color: rgb(214 211 209 / 0.15);
 }
 
 .hover\:bg-stone-700:hover {

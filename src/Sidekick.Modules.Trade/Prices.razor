@@ -1,8 +1,15 @@
 @page "/trade/{itemText}"
+@using Sidekick.Apis.Poe
 @using Sidekick.Apis.Poe.Bulk;
+@using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Common.Extensions
+@using Sidekick.Common.Game.Items
 @using Sidekick.Common.Settings
-@using Sidekick.Common.Ui.Views
-@using Sidekick.Common.Ui.Errors
+@using Sidekick.Modules.Trade.Components.Items
+@using Sidekick.Modules.Trade.Localization
+
+@using Sidekick.Modules.Trade.Components.Filters
+@using Sidekick.Modules.Trade.Components.Bulk
 @inherits Sidekick.Common.Ui.Views.SidekickView
 
 @if (Item == null)

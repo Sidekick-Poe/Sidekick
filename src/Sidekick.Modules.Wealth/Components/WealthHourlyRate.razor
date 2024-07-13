@@ -10,6 +10,8 @@ else
     <div class="font-smallcaps"><span style="color:gold; font-size:1.5em;">@CurrencyPerHour</span> Chaos per Hour</div>
 }
 
+@using Microsoft.EntityFrameworkCore
+@using MudBlazor
 @using Sidekick.Common.Database
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject WealthParser WealthParser

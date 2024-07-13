@@ -22,6 +22,14 @@
   <ItemGroup>
     <AdditionalFiles Include="Dialogs\ConfirmationDialog.razor" />
     <AdditionalFiles Include="Layouts\StandardLayout.razor" />
+    <AdditionalFiles Include="Poe\Items\BossFrame.razor" />
+    <AdditionalFiles Include="Poe\Items\DivinationCard.razor" />
+    <AdditionalFiles Include="Poe\Items\ItemHeader.razor" />
+    <AdditionalFiles Include="Poe\Items\ItemInfluencesComponent.razor" />
+    <AdditionalFiles Include="Poe\Items\ItemModifierCategoryChip.razor" />
+    <AdditionalFiles Include="Poe\Items\ItemModifierText.razor" />
+    <AdditionalFiles Include="Poe\Items\ItemPropertyText.razor" />
+    <AdditionalFiles Include="Poe\Items\ItemSeparator.razor" />
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">

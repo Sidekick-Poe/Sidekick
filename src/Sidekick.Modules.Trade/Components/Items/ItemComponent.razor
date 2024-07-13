@@ -1,53 +1,57 @@
-
+@using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Common.Game.Items
+@using Sidekick.Modules.Trade.Localization
+@using MudBlazor
+@using Sidekick.Modules.Trade.Components.Prices
 <div class="item-content mb-2 @WrapperClass" @onclick="OnClick">
     @if (Item.CanHaveModifiers && (Layout == Layout.Cards_Maximized || Expanded))
     {
         <ItemHeader Name="@Item.Header.Name"
-                         Type="@Item.Header.Type"
-                         Influences="Item.Influences"
-                         Rarity="Item.Metadata.Rarity" />
+                    Type="@Item.Header.Type"
+                    Influences="Item.Influences"
+                    Rarity="Item.Metadata.Rarity"/>
 
         <MudGrid Spacing="0" Class="py-2 px-4">
             <MudItem xs="9">
-                <ItemLineContentsComponent Item="Item" LineContents="Item.PropertyContents" />
-                <ItemLineContentsComponent Item="Item" LineContents="Item.AdditionalPropertyContents" />
+                <ItemLineContentsComponent Item="Item" LineContents="Item.PropertyContents"/>
+                <ItemLineContentsComponent Item="Item" LineContents="Item.AdditionalPropertyContents"/>
 
-                <ItemProperties Item="Item" />
+                <ItemProperties Item="Item"/>
 
                 @if (Item.ModifierLines.Count > 0)
                 {
-                    <ItemSeparator Rarity="Item.Metadata.Rarity" />
+                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
                     @foreach (var line in Item.ModifierLines)
                     {
-                        <ItemModifierLineComponent Item="Item" ModifierLine="line" />
+                        <ItemModifierLineComponent Item="Item" ModifierLine="line"/>
                     }
                 }
 
                 @if (!Item.Properties.Identified)
                 {
-                    <ItemSeparator Rarity="Item.Metadata.Rarity" />
+                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
                     <ItemModifierText Category="ModifierCategory.Unidentified">@Resources.Unidentified</ItemModifierText>
                 }
                 @if (Item.Properties.Corrupted)
                 {
-                    <ItemSeparator Rarity="Item.Metadata.Rarity" />
+                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
                     <ItemModifierText Category="ModifierCategory.Corrupted">@Resources.Corrupted</ItemModifierText>
                 }
                 @if (!string.IsNullOrEmpty(Item.Price.Note))
                 {
-                    <ItemSeparator Rarity="Item.Metadata.Rarity" />
+                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
                     <div class="note-text">
                         <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Item.Price.Note</MudText>
                     </div>
                 }
             </MudItem>
             <MudItem xs="3">
-                <PriceDisplay Value="(double)Item.Price.Amount" Currency="@Item.Price.Currency" />
+                <PriceDisplay Value="(double)Item.Price.Amount" Currency="@Item.Price.Currency"/>
                 <MudText Typo="Typo.body2" Align="Align.Right">@Item.Price.AccountName</MudText>
-                <PriceAge Date="Item.Price.Date" Align="Align.Right" />
+                <PriceAge Date="Item.Price.Date" Align="Align.Right"/>
 
                 <div class="d-flex justify-end mt-2">
-                    <ItemImageComponent Item="Item" />
+                    <ItemImageComponent Item="Item"/>
                 </div>
             </MudItem>
         </MudGrid>
@@ -56,47 +60,38 @@
     {
         <MudGrid Spacing="0" Class="align-start">
             <MudItem xs="9">
-                <ItemHeaderBackground Rarity="Item.Metadata.Rarity" Double="false">
-                    <div class="influences left">
-                        <ItemInfluencesComponent Influences="Item.Influences" />
-                    </div>
-                    <MudText Typo="Typo.h6" Align="Align.Center" Class="@($"{context.LabelClass} name font-caps")">
-                        @if (!string.IsNullOrEmpty(Item.Header.Name))
-                        {
-                            @Item.Header.Name
-                        }
-                        @if (!string.IsNullOrEmpty(Item.Header.Name) && !string.IsNullOrEmpty(Item.Header.Type))
-                        {
-                            @:,
-                        }
-                        @if (!string.IsNullOrEmpty(Item.Header.Type))
-                        {
-                            @Item.Header.Type
-                        }
-                    </MudText>
-                </ItemHeaderBackground>
+                <ItemHeader Name="@Item.Header.Name"
+                            Type="@Item.Header.Type"
+                            Influences="Item.Influences"
+                            Rarity="Item.Metadata.Rarity"
+                            SingleLine="true"/>
 
                 <div class="d-flex align-center pa-2">
                     <MudText Typo="Typo.body2" Align="Align.Left">@Item.Price.AccountName</MudText>
                     <div>,&nbsp;</div>
-                    <PriceAge Date="Item.Price.Date" Align="Align.Left" />
+                    <PriceAge Date="Item.Price.Date" Align="Align.Left"/>
                 </div>
             </MudItem>
             <MudItem xs="3" Class="pa-2 align-self-center">
-                <PriceDisplay Value="(double)Item.Price.Amount" Currency="@Item.Price.Currency" />
+                <PriceDisplay Value="(double)Item.Price.Amount" Currency="@Item.Price.Currency"/>
             </MudItem>
         </MudGrid>
     }
 </div>
 
 @code {
-    [Inject] private TradeResources Resources { get; set; }
+
+    [Inject]
+    private TradeResources Resources { get; set; }
 
     [CascadingParameter]
     public Item PriceCheckItem { get; set; }
 
-    [Parameter] public TradeItem Item { get; set; }
-    [Parameter] public Layout Layout { get; set; }
+    [Parameter]
+    public TradeItem Item { get; set; }
+
+    [Parameter]
+    public Layout Layout { get; set; }
 
     private bool Expanded { get; set; }
 
@@ -109,4 +104,5 @@
             Expanded = !Expanded;
         }
     }
+
 }

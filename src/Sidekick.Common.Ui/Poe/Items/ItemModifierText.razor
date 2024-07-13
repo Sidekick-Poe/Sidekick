@@ -1,15 +1,19 @@
 @using Sidekick.Common.Game.Items
 
-<div class="@Class text-center font-caps">@Text</div>
+<div class="@Class @ColorClass text-center font-caps">@Text</div>
 
 @code {
+
     [Parameter]
     public string? Text { get; set; }
 
     [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
     public ModifierCategory? Category { get; set; }
 
-    private string Class => Category switch
+    private string ColorClass => Category switch
     {
         ModifierCategory.Scourge => "text-[#FF6E25]",
         ModifierCategory.Fractured => "text-[#A29162]",
@@ -20,4 +24,5 @@
         ModifierCategory.Unidentified => "text-[#D20000]",
         _ => "text-[#8888FF]",
     };
+
 }

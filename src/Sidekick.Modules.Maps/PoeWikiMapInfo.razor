@@ -2,69 +2,73 @@
 @using Sidekick.Apis.PoeWiki
 @using Sidekick.Apis.PoeWiki.Models
 @using Sidekick.Modules.Maps.Localization
+
 @if (Loading)
 {
-    <LoadingAlert Text="@Resources.Fetching" />
+    <AppLoading/>
 }
 else if (Map != null)
 {
-    <div class="ml-n2 mr-n2 mt-n2 mb-2">
-        @if (Map.Bosses.Any())
-        {
-            <div class="d-flex flex-wrap justify-center mb-2">
-                @foreach (var boss in Map.Bosses.OrderBy(x => x.Name))
-                {
-                    <BossFrame Name="@boss.Name" />
-                }
-            </div>
-        }
+    <AppContainer>
+        <div class="flex flex-col w-full items-stretch gap-2">
+            @if (Map.Bosses?.Any() ?? false)
+            {
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    @foreach (var boss in Map.Bosses.OrderBy(x => x.Name))
+                    {
+                        <BossFrame Name="@boss.Name"/>
+                    }
+                </div>
+            }
 
-        @if (Map.Drops.Any())
-        {
-            <div class="d-flex flex-wrap justify-center">
-                @foreach (var drop in Map.Drops)
-                {
-                    <DivinationCard Name="@drop.Name" Description="@drop.Description" />
-                }
-            </div>
-        }
-        else
-        {
-            <MudText Class="pa-4">@Resources.NoDropsTitle</MudText>
-        }
-    </div>
+            @if (Map.Drops?.Any() ?? false)
+            {
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    @foreach (var drop in Map.Drops)
+                    {
+                        <DivinationCard Name="@drop.Name" Description="@drop.Description"/>
+                    }
+                </div>
+            }
+            else
+            {
+                <MudText Class="pa-4">@Resources["This map drops nothing."]</MudText>
+            }
 
-    <div style="text-align:right;">
-        <MudText Typo="Typo.caption" Color="Color.Info">
-            @Resources.PoeWikiTitle
-        </MudText>
-        <MudButton Class="pa-0 mt-2"
-                   Variant="Variant.Text"
-                   Size="Size.Small"
-                   StartIcon="@Icons.Material.Filled.OpenInBrowser"
-                   OnClick="@(() => PoeWikiClient.OpenUri(Map))">@Resources.OpenInPoeWiki</MudButton>
-    </div>
+            <div class="text-center">
+                <ButtonLink OnClick="@(() => PoeWikiClient.OpenUri(Map))">
+                    @Resources["Information provided by poewiki.net"]
+                </ButtonLink>
+            </div>
+        </div>
+    </AppContainer>
 }
 else
 {
-    <MudAlert Severity="Severity.Error" Variant="Variant.Filled">
-        @Resources.PoeWikiError
-    </MudAlert>
+    <AppContainer>
+        <AlertError>@Resources["Could not fetch information from the wiki."]</AlertError>
+    </AppContainer>
 }
 
-@code {
-    [Inject] private MapInfoResources Resources { get; set; }
-    [Inject] private IPoeWikiClient PoeWikiClient { get; set; }
+@inject IStringLocalizer<MapInfoResources> Resources
+@inject IPoeWikiClient PoeWikiClient
 
-    [Parameter] public string Name { get; set; }
-    [Parameter] public string Type { get; set; }
+@code {
+
+    [Parameter]
+    public string? Name { get; set; }
+
+    [Parameter]
+    public string? Type { get; set; }
 
     private bool Loading { get; set; } = true;
-    private Map Map { get; set; }
+
+    private Map? Map { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         Map = await PoeWikiClient.GetMap(Type ?? Name);
         Loading = false;
     }
+
 }

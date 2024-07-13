@@ -8,16 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="Blazor-ApexCharts" Version="3.3.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.6">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="SQLite" Version="3.13.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,4 +17,11 @@
     <ProjectReference Include="..\Sidekick.Common.Database\Sidekick.Common.Database.csproj" />
     <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\Sidekick.Common.Ui\_Imports.razor">
+      <Link>_Imports.razor</Link>
+    </Content>
+  </ItemGroup>
+
 </Project>

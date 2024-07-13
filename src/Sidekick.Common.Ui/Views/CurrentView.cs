@@ -42,7 +42,7 @@ public class CurrentView(
             return;
         }
 
-        Title = $"Sidekick {title}".Trim();
+        Title = title?.Trim() ?? "Sidekick";
         ViewChanged?.Invoke(this);
     }
 

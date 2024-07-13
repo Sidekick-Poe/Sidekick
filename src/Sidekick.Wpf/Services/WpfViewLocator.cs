@@ -30,7 +30,7 @@ namespace Sidekick.Wpf.Services
 
             Application.Current.Dispatcher.Invoke(() =>
             {
-                window.Title = view.CurrentView.Title;
+                window.Title = $"Sidekick {view.CurrentView.Title}".Trim();
                 window.MinHeight = view.ViewHeight + 20;
                 window.MinWidth = view.ViewWidth + 20;
 
@@ -80,7 +80,7 @@ namespace Sidekick.Wpf.Services
             Application.Current.Dispatcher.Invoke(
                 () =>
                 {
-                    window.Title = $"Sidekick {view.Title}";
+                    window.Title = $"Sidekick {view.Title}".Trim();
                 });
         }
 
