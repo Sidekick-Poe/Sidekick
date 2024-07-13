@@ -25,6 +25,8 @@
     </ErrorContent>
 </LoggingErrorBoundary>
 
+@inject ICurrentView CurrentView
+
 @code {
 
     /// <summary>
@@ -55,6 +57,19 @@
 
             return null;
         }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (Boundary?.CurrentException != null)
+        {
+            if (!CurrentView.IsInitialized)
+            {
+                await CurrentView.Close();
+            }
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
     }
 
     private bool ShowError => Exception?.GetType() != typeof(SilentException);

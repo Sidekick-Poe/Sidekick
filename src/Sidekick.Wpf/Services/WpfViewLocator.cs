@@ -173,7 +173,7 @@ namespace Sidekick.Wpf.Services
         /// <inheritdoc/>
         public async Task CloseAll()
         {
-            foreach (var window in Windows)
+            foreach (var window in Windows.ToList())
             {
                 if (window.SidekickView == null)
                 {

@@ -36,16 +36,21 @@ public interface ICurrentView
     SidekickView? Current { get; }
 
     /// <summary>
-    /// Sets the current sidekick view.
+    /// Gets a value indicating whether the current view is initialized.
     /// </summary>
-    /// <param name="view">The current view.</param>
-    void SetCurrent(SidekickView view);
+    bool IsInitialized { get; }
 
     /// <summary>
     /// Sets the current view title.
     /// </summary>
     /// <param name="title"></param>
     void SetTitle(string? title);
+
+    /// <summary>
+    /// Initializes a view that was previously opened.
+    /// </summary>
+    /// <param name="view">The view to initialize.</param>
+    Task Initialize(SidekickView view);
 
     /// <summary>
     /// Closes the current view.

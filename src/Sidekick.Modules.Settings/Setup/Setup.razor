@@ -93,7 +93,7 @@
         if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId))
         {
             RequiresSetup = true;
-            await ViewLocator.Initialize(this);
+            await CurrentView.Initialize(this);
         }
         else
         {

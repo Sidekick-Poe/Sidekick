@@ -88,6 +88,8 @@
 
     protected override async Task OnInitializedAsync()
     {
+        await base.OnInitializedAsync();
+
         var enabled = await SettingsService.GetBool(SettingKeys.WealthEnabled);
         if (!enabled)
         {
@@ -99,8 +101,6 @@
         SelectedStashIds = StashTabs
                            .Select(x => x.Id)
                            .ToList();
-
-        await base.OnInitializedAsync();
     }
 
     public void OnStashParsed()

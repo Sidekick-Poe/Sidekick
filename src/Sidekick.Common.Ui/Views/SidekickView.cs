@@ -56,18 +56,8 @@ namespace Sidekick.Common.Ui.Views
         /// <inheritdoc/>
         protected override async Task OnInitializedAsync()
         {
-            await ViewLocator.Initialize(this);
+            await CurrentView.Initialize(this);
             await base.OnInitializedAsync();
-        }
-
-        protected override void OnAfterRender(bool firstRender)
-        {
-            if (firstRender)
-            {
-                CurrentView.SetCurrent(this);
-            }
-
-            base.OnAfterRender(firstRender);
         }
     }
 }

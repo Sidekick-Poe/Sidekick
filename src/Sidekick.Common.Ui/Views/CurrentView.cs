@@ -29,10 +29,7 @@ public class CurrentView(
     public SidekickView? Current { get; private set; }
 
     /// <inheritdoc/>
-    public void SetCurrent(SidekickView view)
-    {
-        Current = view;
-    }
+    public bool IsInitialized { get; private set; }
 
     /// <inheritdoc/>
     public void SetTitle(string? title)
@@ -46,17 +43,17 @@ public class CurrentView(
         ViewChanged?.Invoke(this);
     }
 
-    /// <summary>
-    /// Closes the current view.
-    /// </summary>
-    /// <returns>A task.</returns>
+    /// <inheritdoc/>
+    public async Task Initialize(SidekickView view)
+    {
+        IsInitialized = true;
+        Current = view;
+        await viewLocator.Initialize(view);
+    }
+
+    /// <inheritdoc/>
     public Task Close()
     {
-        if (Current == null)
-        {
-            throw new SidekickException("The view could not be closed.");
-        }
-
-        return viewLocator.Close(Current);
+        return Current == null ? Task.CompletedTask : viewLocator.Close(Current);
     }
 }
