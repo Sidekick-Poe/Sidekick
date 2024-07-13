@@ -5,10 +5,15 @@
         <AppLogo/>
     </TopContent>
     <LeftContent>
-        <MenuItem Href="/development/typography">Typography</MenuItem>
-        <MenuItem Href="/development/tests">Tests</MenuItem>
+        <MenuList>
+            <MenuItem Href="/development">Development</MenuItem>
+            <MenuItem Href="/development/typography">Typography</MenuItem>
+            <MenuItem Href="/development/tests">Tests</MenuItem>
+        </MenuList>
     </LeftContent>
     <ChildContent>
-        @Body
+        <div class="max-w-[800px] mx-auto">
+            @Body
+        </div>
     </ChildContent>
 </LayoutTwoColumn>

@@ -1,0 +1,10 @@
+﻿<div class="h-full flex flex-col">
+    @ChildContent
+</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+}

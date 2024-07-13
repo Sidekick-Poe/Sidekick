@@ -1,7 +1,7 @@
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Ui.Views;
 
-namespace Sidekick.Common.Blazor.Dialogs;
+namespace Sidekick.Common.Ui.Dialogs;
 
 public class DialogService(IViewLocator viewLocator) : ISidekickDialogs
 {

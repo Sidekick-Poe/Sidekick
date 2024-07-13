@@ -2,13 +2,13 @@
     <div class="dark:bg-stone-900">
         @TopContent
     </div>
-    <div class="grow grid grid-cols-12 items-stretch">
-        <div class="col-span-4 relative">
+    <div class="grow flex flex-nowrap items-stretch">
+        <div class="w-[22em] relative">
             <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden dark:bg-stone-900">
                 @LeftContent
             </div>
         </div>
-        <div class="col-span-8 relative">
+        <div class="grow relative">
             <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden">
                 @ChildContent
             </div>

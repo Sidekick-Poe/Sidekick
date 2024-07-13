@@ -1,3 +1,7 @@
+@using MudBlazor
+@using Sidekick.Apis.PoeWiki
+@using Sidekick.Apis.PoeWiki.Models
+@using Sidekick.Modules.Maps.Localization
 @if (Loading)
 {
     <LoadingAlert Text="@Resources.Fetching" />
@@ -51,7 +55,7 @@ else
 @code {
     [Inject] private MapInfoResources Resources { get; set; }
     [Inject] private IPoeWikiClient PoeWikiClient { get; set; }
-    
+
     [Parameter] public string Name { get; set; }
     [Parameter] public string Type { get; set; }
 

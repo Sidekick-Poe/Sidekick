@@ -2,7 +2,7 @@
 <div class="item-content mb-2 @WrapperClass" @onclick="OnClick">
     @if (Item.CanHaveModifiers && (Layout == Layout.Cards_Maximized || Expanded))
     {
-        <ItemHeaderComponent Name="@Item.Header.Name"
+        <ItemHeader Name="@Item.Header.Name"
                          Type="@Item.Header.Type"
                          Influences="Item.Influences"
                          Rarity="Item.Metadata.Rarity" />
@@ -14,7 +14,7 @@
 
                 <ItemProperties Item="Item" />
 
-                @if (Item.ModifierLines != null && Item.ModifierLines.Count > 0)
+                @if (Item.ModifierLines.Count > 0)
                 {
                     <ItemSeparator Rarity="Item.Metadata.Rarity" />
                     @foreach (var line in Item.ModifierLines)
@@ -26,16 +26,12 @@
                 @if (!Item.Properties.Identified)
                 {
                     <ItemSeparator Rarity="Item.Metadata.Rarity" />
-                    <div class="unidentified-text">
-                        <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Unidentified</MudText>
-                    </div>
+                    <ItemModifierText Category="ModifierCategory.Unidentified">@Resources.Unidentified</ItemModifierText>
                 }
                 @if (Item.Properties.Corrupted)
                 {
                     <ItemSeparator Rarity="Item.Metadata.Rarity" />
-                    <div class="corrupted-text">
-                        <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Corrupted</MudText>
-                    </div>
+                    <ItemModifierText Category="ModifierCategory.Corrupted">@Resources.Corrupted</ItemModifierText>
                 }
                 @if (!string.IsNullOrEmpty(Item.Price.Note))
                 {
@@ -64,7 +60,7 @@
                     <div class="influences left">
                         <ItemInfluencesComponent Influences="Item.Influences" />
                     </div>
-                    <MudText Typo="Typo.h6" Align="Align.Center" Class="name font-smallcaps" Style="@context.LabelStyle">
+                    <MudText Typo="Typo.h6" Align="Align.Center" Class="@($"{context.LabelClass} name font-caps")">
                         @if (!string.IsNullOrEmpty(Item.Header.Name))
                         {
                             @Item.Header.Name

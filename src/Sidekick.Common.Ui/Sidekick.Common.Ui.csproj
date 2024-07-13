@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AdditionalFiles Include="Dialogs\ConfirmationDialog.razor" />
     <AdditionalFiles Include="Layouts\StandardLayout.razor" />
   </ItemGroup>
 

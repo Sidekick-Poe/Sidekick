@@ -1,58 +1,84 @@
 @page "/map/{itemText}"
+@using System.Text.RegularExpressions
+@using Sidekick.Apis.Poe
 @using Sidekick.Common.Settings
+@using Sidekick.Common.Blazor.Components.Items
+@using Sidekick.Common.Exceptions
+@using Sidekick.Common.Game.Items
+@using Sidekick.Modules.Maps.Localization
+
+@using Sidekick.Common.Extensions
 @inherits Sidekick.Common.Ui.Views.SidekickView
 
-<AppTitle Title="@Resources.Title"/>
-@if (Item == null)
-{
-    <LoadingAlert Text="@Resources.Parsing"/>
-    return;
-}
+<AppTitle Title="@Resources["Map Check"]"/>
 
-<MudDrawer Open="true"
-           Variant="@DrawerVariant.Persistent"
-           Width="22em"
-           Class="black"
-           ClipMode="DrawerClipMode.Always">
-    <ItemHeaderComponent Name="@Item.Header.Name"
-                         Type="@Item.Header.Type"
-                         Rarity="Item.Metadata.Rarity"
-                         Influences="Item.Influences"/>
+<LayoutTwoColumn>
+    <TopContent>
+        <AppBar>
+            <AppClose/>
+        </AppBar>
+    </TopContent>
+    <LeftContent>
+        @if (Item == null)
+        {
+            <Heading2>@Resources["Parsing your item..."]</Heading2>
+            <ProgressBar Indeterminate="true"/>
+        }
+        else
+        {
+            <ItemHeader Name="@Item.Header.Name"
+                        Type="@Item.Header.Type"
+                        Rarity="Item.Metadata.Rarity"
+                        Influences="Item.Influences"/>
 
-    <MudText Typo="Typo.h1" Align="Align.Center" Color="@(DangerousMods.Any() ? Color.Error : Color.Success)" Class="d-flex justify-center align-center pa-4">
-        <MudIcon Icon="@(DangerousMods.Any() ? Icons.Material.Filled.ThumbDown : Icons.Material.Filled.ThumbUp)" Size="Size.Large" Class="mr-2"/>
-        @(DangerousMods.Any() ? Resources.Is_Unsafe : Resources.Is_Safe)
-    </MudText>
+            @if (DangerousMods.Any())
+            {
+                <Heading1 Class="text-red-500 flex flex-nowrap items-center justify-center gap-2">
+                    <IconLarge Icon="@UiIcons.ThumbDown"/>
+                    @Resources["Unsafe"]
+                </Heading1>
+            }
+            else
+            {
+                <Heading1 Class="text-green-500 flex flex-nowrap items-center justify-center gap-2">
+                    <IconLarge Icon="@UiIcons.ThumbUp"/>
+                    @Resources["Safe"]
+                </Heading1>
+            }
 
-    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+            <ItemSeparator Rarity="Item.Metadata.Rarity"/>
 
-    @foreach (var mod in DangerousMods)
-    {
-        <div class="d-flex align-center px-4 py-1">
-            <MudIcon Icon="@Icons.Material.Filled.ThumbDown" Size="Size.Small" Color="Color.Error" Class="mr-2"/>
-            <ItemModifierText Text="@mod"/>
-        </div>
-    }
+            @foreach (var mod in DangerousMods)
+            {
+                <div class="d-flex align-center px-4 py-1">
+                    <IconLarge Icon="@UiIcons.ThumbDown"/>
+                    <ItemModifierText Text="@mod"/>
+                </div>
+            }
 
-    @if (DangerousMods.Any() && OkMods.Any())
-    {
-        <ItemSeparator Rarity="Item.Metadata.Rarity"/>
-    }
+            @if (DangerousMods.Any() && OkMods.Any())
+            {
+                <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+            }
 
-    @foreach (var mod in OkMods)
-    {
-        <div class="d-flex align-center px-4 py-1">
-            <MudIcon Icon="@Icons.Material.Filled.ThumbUp" Size="Size.Small" Color="Color.Success" Class="mr-2"/>
-            <ItemModifierText Text="@mod"/>
-        </div>
-    }
-</MudDrawer>
+            @foreach (var mod in OkMods)
+            {
+                <div class="d-flex align-center px-4 py-1">
+                    <IconLarge Icon="@UiIcons.ThumbUp"/>
+                    <ItemModifierText Text="@mod"/>
+                </div>
+            }
+        }
+    </LeftContent>
+    <ChildContent>
+        @if (Item != null)
+        {
+            <PoeWikiMapInfo Type="@Item.Invariant?.Type" Name="@Item.Invariant?.Name"/>
+        }
+    </ChildContent>
+</LayoutTwoColumn>
 
-<div class="ml-0">
-    <PoeWikiMapInfo Type="@Item.Invariant?.Type" Name="@Item.Invariant?.Name"/>
-</div>
-
-@inject MapInfoResources Resources
+@inject IStringLocalizer<MapInfoResources> Resources
 @inject IItemParser ItemParser
 @inject ISettingsService SettingsService
 

@@ -1,6 +1,6 @@
 @using Sidekick.Common.Game.Items
 
-<div class="header @BackgroundClass">
+<div class="relative py-0 px-[7px] @BackgroundClass">
     @ChildContent(this)
 </div>
 
@@ -27,6 +27,7 @@
                 {
                     return "header-relic";
                 }
+
                 return "header-double-relic";
             }
 
@@ -52,13 +53,13 @@
         }
     }
 
-    public string LabelStyle => Rarity switch
+    public string LabelClass => Rarity switch
     {
-        Rarity.Currency => "color:#AA9E82;",
-        Rarity.Magic => "color:#8888FF;",
-        Rarity.Rare => "color:#FFFF77;",
-        Rarity.Unique => "color:#AF6025;",
-        Rarity.Gem => "color:#1BA29B",
-        _ => "color:#C8C8C8",
+        Rarity.Currency => "text-[#AA9E82]",
+        Rarity.Magic => "text-[#8888FF]",
+        Rarity.Rare => "text-[#FFFF77]",
+        Rarity.Unique => "text-[#AF6025]",
+        Rarity.Gem => "text-[#1BA29B]",
+        _ => "text-[#C8C8C8]",
     };
 }

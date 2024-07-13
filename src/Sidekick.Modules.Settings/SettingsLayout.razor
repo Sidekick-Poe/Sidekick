@@ -10,7 +10,7 @@
         </AppBar>
     </TopContent>
     <LeftContent>
-        <div class="h-full flex flex-col">
+        <MenuList>
             <MenuItem Href="/settings">@Resources["General"]</MenuItem>
             <MenuItem Href="/settings/price">@Resources["Price Check"]</MenuItem>
             <MenuItem Href="/settings/map">@Resources["Map Check"]</MenuItem>
@@ -23,10 +23,12 @@
             <div class="py-2">
                 <ButtonSecondary OnClick="ResetCache">@Resources["Reset Cache"]</ButtonSecondary>
             </div>
-        </div>
+        </MenuList>
     </LeftContent>
     <ChildContent>
-        @Body
+        <div class="max-w-[800px]">
+            @Body
+        </div>
     </ChildContent>
     <BottomContent>
         <UpdateBanner/>

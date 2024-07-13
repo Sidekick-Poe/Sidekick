@@ -1,6 +1,6 @@
 @using Sidekick.Common.Game.Items
 
-<div class="separator @BackgroundClass"></div>
+<div class="separator [&+.separator]:hidden bg-center bg-no-repeat h-[8px] @BackgroundClass"></div>
 
 @code {
     [Parameter]
@@ -8,10 +8,10 @@
 
     private string BackgroundClass => Rarity switch
     {
-        Rarity.Currency => "separator-currency",
-        Rarity.Magic => "separator-magic",
-        Rarity.Rare => "separator-rare",
-        Rarity.Unique => "separator-unique",
-        _ => "separator-normal",
+        Rarity.Currency => "bg-[url('/images/items/seperator-currency.png')]",
+        Rarity.Magic => "bg-[url('/images/items/seperator-magic.png')]",
+        Rarity.Rare => "bg-[url('/images/items/seperator-rare.png')]",
+        Rarity.Unique => "bg-[url('/images/items/seperator-unique.png')]",
+        _ => "bg-[url('/images/items/seperator-normal.png')]",
     };
 }

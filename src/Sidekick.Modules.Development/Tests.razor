@@ -2,24 +2,19 @@
 @layout DevelopmentLayout
 @inherits Sidekick.Common.Ui.Views.SidekickView
 
-<div class="pa-3">
-    <MudCard Class="mt-6">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.h6">General</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent>
-            <MudButton Variant="Variant.Filled" OnClick="ThrowException">Throw an exception</MudButton>
-        </MudCardContent>
-    </MudCard>
-</div>
+<AppContainer>
+    <div class="flex items-center justify-center gap-2">
+        <ButtonPrimary OnClick="ThrowException">Throw an exception</ButtonPrimary>
+    </div>
+</AppContainer>
 
 @code {
+
     public void ThrowException()
     {
 #pragma warning disable S112 // General exceptions should never be thrown
         throw new Exception("Developper test from the exception page.");
 #pragma warning restore S112 // General exceptions should never be thrown
     }
+
 }

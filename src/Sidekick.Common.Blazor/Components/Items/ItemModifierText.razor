@@ -1,6 +1,6 @@
 @using Sidekick.Common.Game.Items
 
-<span class="@Class font-smallcaps">@Text</span>
+<div class="@Class text-center font-caps">@Text</div>
 
 @code {
     [Parameter]
@@ -11,11 +11,13 @@
 
     private string Class => Category switch
     {
-        ModifierCategory.Scourge => "scourge-text",
-        ModifierCategory.Fractured => "fractured-text",
-        ModifierCategory.Enchant => "enchant-text",
-        ModifierCategory.Crafted => "crafted-text",
-        ModifierCategory.Crucible => "crucible-text",
-        _ => "",
+        ModifierCategory.Scourge => "text-[#FF6E25]",
+        ModifierCategory.Fractured => "text-[#A29162]",
+        ModifierCategory.Enchant => "text-[#B4B4FF]",
+        ModifierCategory.Crafted => "text-[#B4B4FF]",
+        ModifierCategory.Crucible => "text-[#FF7339]",
+        ModifierCategory.Corrupted => "text-[#D20000]",
+        ModifierCategory.Unidentified => "text-[#D20000]",
+        _ => "text-[#8888FF]",
     };
 }
