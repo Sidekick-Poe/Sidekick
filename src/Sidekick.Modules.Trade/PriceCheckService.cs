@@ -22,6 +22,8 @@ public class PriceCheckService(
 
     public Item? Item { get; set; }
 
+    public TradeMode CurrentMode { get; set; }
+
     public PropertyFilters? PropertyFilters { get; set; }
 
     public List<ModifierFilter> ModifierFilters { get; set; } =
@@ -68,13 +70,13 @@ public class PriceCheckService(
 
     public async Task Search()
     {
-        var mode = TradeMode.Item;
+        CurrentMode = TradeMode.Item;
         if (bulkTradeService.SupportsBulkTrade(Item))
         {
-            mode = await settingsService.GetEnum<TradeMode>(SettingKeys.PriceCheckCurrencyMode) ?? TradeMode.Item;
+            CurrentMode = await settingsService.GetEnum<TradeMode>(SettingKeys.PriceCheckCurrencyMode) ?? TradeMode.Item;
         }
 
-        if (mode == TradeMode.Bulk)
+        if (CurrentMode == TradeMode.Bulk)
         {
             await BulkSearch();
         }

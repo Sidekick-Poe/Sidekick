@@ -3,6 +3,7 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Filters
+@using Sidekick.Modules.Trade.Components.Bulk
 
 @inherits Sidekick.Common.Ui.Views.SidekickView
 
@@ -26,8 +27,10 @@
     </LeftContent>
     <ChildContent>
         <SidekickErrorBoundary>
-            <BulkResult/>
-            <ItemsResult/>
+            <AppContainer>
+                <BulkResult/>
+                <ItemsResult/>
+            </AppContainer>
         </SidekickErrorBoundary>
     </ChildContent>
 </LayoutTwoColumn>

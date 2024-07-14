@@ -30,7 +30,6 @@ public static class SettingKeys
 
     public const string PriceCheckCloseWithMouse = nameof(PriceCheckCloseWithMouse);
     public const string PriceCheckPredictionEnabled = nameof(PriceCheckPredictionEnabled);
-    public const string PriceCheckLayout = nameof(PriceCheckLayout);
     public const string PriceCheckItemCurrency = nameof(PriceCheckItemCurrency);
     public const string PriceCheckBulkCurrency = nameof(PriceCheckBulkCurrency);
     public const string PriceCheckBulkMinimumStock = nameof(PriceCheckBulkMinimumStock);

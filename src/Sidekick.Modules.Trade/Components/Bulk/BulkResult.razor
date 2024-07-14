@@ -1,70 +1,76 @@
-@using MudBlazor
-@using Sidekick.Apis.Poe.Bulk;
 @using Sidekick.Common.Settings
-@using Sidekick.Apis.Poe.Bulk.Models;
 @using Sidekick.Apis.Poe.Trade.Models
-@using Sidekick.Common.Game.Items
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Prices
+@using Sidekick.Modules.Trade.Components.Options
 
-@if (PriceCheckService.Mode != TradeMode.Bulk)
+@if (PriceCheckService.CurrentMode != TradeMode.Bulk)
 {
     return;
 }
 
-@if (Visible)
+@if (PriceCheckService.BulkTradeResult == null)
 {
-    <BulkOptions QueryId="@Result?.QueryId"
-                 Count="Result?.Offers.Count ?? 0"
-                 Total="Result?.TotalOffers ?? 0"/>
+    <AppLoading/>
+}
+else
+{
+    <div class="max-w-[800px] mx-auto">
+        <div class="flex items-center w-full justify-between mb-3">
+            <TextBase Class="text-teal-500">@LeagueId</TextBase>
+            <div class="flex flex-nowrap gap-3">
+                <CountString Count="PriceCheckService.BulkTradeResult.Offers.Count"
+                             Total="PriceCheckService.BulkTradeResult.TotalOffers"/>
+                <OpenWebsiteLink QueryId="@PriceCheckService.BulkTradeResult.QueryId"/>
+            </div>
+        </div>
 
-    @if (Result != null)
-    {
-        foreach (var offer in Result.Offers)
+        @foreach (var offer in PriceCheckService.BulkTradeResult.Offers)
         {
-            <div class="item-content mb-2">
-                <MudGrid Spacing="0" Class="align-center">
-                    <MudItem xs="3" Class="pa-2">
-                        <MudText Typo="Typo.body2" Align="Align.Left">@offer.AccountName</MudText>
-                        <PriceAge Date="offer.Date" Align="Align.Left"/>
-                    </MudItem>
-                    <MudItem xs="6" Class="pa-2 align-self-center">
-                        <div class="d-flex align-center mb-1 justify-center">
-                            <PriceDisplay Value="offer.SaleAmount" Currency="@offer.SaleCurrency" Small="true"/>
-                            <MudIcon Size="Size.Small" Icon="@Icons.Material.Filled.ArrowForward" Class="arrow mx-1"/>
-                            <PriceDisplay Value="offer.ItemAmount" Currency="@offer.ItemCurrency" Small="true"/>
-                        </div>
-                        <MudText Typo="Typo.body2" Align="Align.Center" Class="d-block font-smallcaps">
-                            <span class="stock">@Resources.Stock:</span>
-                            @offer.ItemStock
-                        </MudText>
-                    </MudItem>
-                    <MudItem xs="3" Class="pa-2 align-self-center">
-                        <PriceDisplay Value="offer.SaleUnitPrice" Currency="@offer.SaleCurrency"/>
-                    </MudItem>
-                </MudGrid>
+            <div class="mb-2 flex flex-nowrap items-center w-full bg-stone-900 rounded-lg">
+                <div class="w-1/4 p-2 text-center">
+                    <TextBase>@offer.AccountName</TextBase>
+                    <PriceAge Date="offer.Date"/>
+                </div>
+                <div class="w-1/2 p-2">
+                    <div class="flex items-center w-full justify-center">
+                        <PriceDisplay Value="offer.SaleAmount" Currency="@offer.SaleCurrency" Small="true"/>
+                        <IconMedium Icon="@UiIcons.ArrowForward" Class="mx-1 text-[#a38d6d]"/>
+                        <PriceDisplay Value="offer.ItemAmount" Currency="@offer.ItemCurrency" Small="true"/>
+                    </div>
+                    <TextBase Class="text-center">
+                        <span class="text-[#a38d6d]">@Resources.Stock:</span>
+                        @offer.ItemStock
+                    </TextBase>
+                </div>
+                <div class="w-1/4 p-2 flex justify-center items-center">
+                    <PriceDisplay Value="offer.SaleUnitPrice" Currency="@offer.SaleCurrency"/>
+                </div>
             </div>
         }
-    }
-
-    @if (IsFetching)
-    {
-        <LoadingAlert Text="Loading results"/>
-    }
+    </div>
 }
 
-@inject IBulkTradeService BulkTradeService
-@inject NavigationManager NavigationManager
+@implements IDisposable
+
 @inject TradeResources Resources
 @inject ISettingsService SettingsService
 @inject PriceCheckService PriceCheckService
 
 @code {
 
-    [CascadingParameter]
-    public required Item Item { get; set; }
+    private string? LeagueId { get; set; }
 
-    [Parameter]
-    public bool Visible { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        LeagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        PriceCheckService.LoadingChanged += StateHasChanged;
+        await base.OnInitializedAsync();
+    }
+
+    public void Dispose()
+    {
+        PriceCheckService.LoadingChanged -= StateHasChanged;
+    }
 
 }
