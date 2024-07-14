@@ -1,12 +1,24 @@
-<div>
+<div class="flex flex-nowrap items-center mx-1">
     @foreach (var oilName in OilNames)
     {
-        <MudTooltip Text="@oilName">
-            <img src="/images/blight/@(oilName.Replace(" ", "_")).png" alt="@oilName" />
-        </MudTooltip>
+        <div class="-mx-1">
+            <TooltipTopRight>
+                <ChildContent>
+                    <img src="/images/blight/@(oilName.Replace(" ", "_")).png" class="w-6" alt="@oilName"/>
+                </ChildContent>
+                <TooltipContent>
+                    @oilName
+                </TooltipContent>
+            </TooltipTopRight>
+        </div>
     }
 </div>
 
 @code {
-    [Parameter] public List<string> OilNames { get; set; }
+
+    [Parameter]
+    public List<string> OilNames { get; set; } =
+    [
+    ];
+
 }

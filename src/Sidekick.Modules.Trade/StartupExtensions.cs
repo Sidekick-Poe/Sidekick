@@ -12,7 +12,7 @@ namespace Sidekick.Modules.Trade
             services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
             services.AddTransient<TradeResources>();
-            services.AddTransient<PoeNinjaResources>();
+            services.AddScoped<PriceCheckService>();
 
             services.AddSidekickKeybind<PriceCheckItemKeybindHandler>();
 

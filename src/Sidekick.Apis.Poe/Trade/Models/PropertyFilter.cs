@@ -7,7 +7,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
             PropertyFilterType type,
             string text,
             object value,
-            double? min = null,
+            decimal? min = null,
             double delta = 1)
         {
             Enabled = enabled;
@@ -43,9 +43,9 @@ namespace Sidekick.Apis.Poe.Trade.Models
 
         public bool? Enabled { get; set; }
 
-        public double? Min { get; set; }
+        public decimal? Min { get; set; }
 
-        public double? Max { get; set; }
+        public decimal? Max { get; set; }
 
         public string Text { get; init; }
 
@@ -53,7 +53,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
 
         public double Delta { get; }
 
-        private double? MinimumValueForNormalization { get; }
+        private decimal? MinimumValueForNormalization { get; }
 
         public FilterValueType ValueType { get; set; }
 
@@ -107,7 +107,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void SetExactValue()
         {
-            if (!double.TryParse(Value.ToString(), out var value))
+            if (!decimal.TryParse(Value.ToString(), out var value))
             {
                 return;
             }

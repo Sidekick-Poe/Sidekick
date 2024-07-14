@@ -3,69 +3,79 @@
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Game.Languages
 @using Sidekick.Modules.Trade.Localization
-@using MudBlazor
-<div class="filter">
-    <div class="d-flex align-center">
-        <div class="flex-grow-1">
-            <MudCheckBox @bind-Checked="Filter.Enabled"
-                         Color="Color.Primary"
-                         Dense="true"
-                         Size="Size.Small">
-                <div class="d-flex align-center">
-                    <ItemModifierText Text="@Filter.Line.Text"
-                                      Category="Filter.Line.Modifiers.FirstOrDefault().Category" />
 
-                </div>
-            </MudCheckBox>
+<FilterWrapper>
+    <div class="flex flex-nowrap items-center">
+        <div class="grow">
+            <FormCheckbox Value="Filter.Enabled ?? false"
+                          NoMargin="true"
+                          ValueChanged="(v) => Filter.Enabled = v">
+                <ItemModifierText Class="text-left"
+                                  Text="@Filter.Line.Text"
+                                  Category="Filter.Line.Modifiers.FirstOrDefault()?.Category"/>
+            </FormCheckbox>
         </div>
 
-        <div>
-            @if (Filter.Enabled == true && Filter.Line.HasValues)
-            {
-                <FilterRange @bind-Min="Filter.Min" @bind-Max="Filter.Max" TypeChanged="TypeChanged" />
-            }
-
-            @if (Filter.Enabled == true && Filter.HasMoreThanOneCategory && Filter.FirstCategory != ModifierCategory.Explicit)
-            {
-                <MudTooltip Text="@Resources.ForceCategory" Style="max-width: 25rem;">
-                    <ItemModifierCategoryChip Category="Filter.FirstCategory"
-                                              Checked="Filter.ForceFirstCategory"
-                                              ShowCheckbox="true"
-                                              OnClick="() => Filter.ForceFirstCategory = !Filter.ForceFirstCategory" />
-                </MudTooltip>
-            }
-        </div>
-
-        @if (EnchantmentOilNames?.Any() == true)
+        @if (EnchantmentOilNames?.Any() ?? false)
         {
-            <OilAnointment OilNames="EnchantmentOilNames" />
+            <OilAnointment OilNames="EnchantmentOilNames"/>
         }
+
+        <div class="flex flex-col items-end justify-between">
+            @if (Filter is
+                 {
+                     Enabled: true,
+                     HasMoreThanOneCategory: true
+                 }
+                 && Filter.FirstCategory != ModifierCategory.Explicit)
+            {
+                <TooltipTopRight>
+                    <ChildContent>
+                        <ItemModifierCategoryChip Category="Filter.FirstCategory"
+                                                  Checked="Filter.ForceFirstCategory"
+                                                  ShowCheckbox="true"
+                                                  OnClick="() => Filter.ForceFirstCategory = !Filter.ForceFirstCategory"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        @Resources["Selecting this checkbox will force this specific category in the results. Unchecking allows for all modifier categories in the results (explicit, crafted, fractured, etc.)."]
+                    </TooltipContent>
+                </TooltipTopRight>
+            }
+
+            <div class="h-[2px]"></div>
+
+            @if ((Filter.Enabled ?? false) && Filter.Line.HasValues)
+            {
+                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged"/>
+            }
+        </div>
     </div>
-</div>
+</FilterWrapper>
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject IPoeWikiClient PoeWikiClient
+@inject IGameLanguageProvider GameLanguageProvider
 
 @code {
-    [Inject]
-    public TradeResources Resources { get; set; }
-
-    [Inject]
-    private IPoeWikiClient PoeWikiClient { get; set; }
-
-    [Inject]
-    private IGameLanguageProvider GameLanguageProvider { get; set; }
 
     [CascadingParameter]
-    public ModifierFilter Filter { get; set; }
+    public required ModifierFilter Filter { get; set; }
 
-    private List<string> EnchantmentOilNames { get; set; }
+    private List<string>? EnchantmentOilNames { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        if (Filter.Line.Modifiers.FirstOrDefault().Category == ModifierCategory.Enchant && GameLanguageProvider.IsEnglish())
+        if (Filter.Line.Modifiers.FirstOrDefault()
+                  ?.Category
+            == ModifierCategory.Enchant
+            && GameLanguageProvider.IsEnglish())
         {
             var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Line);
             if (oilMetadataIds != null)
             {
-                EnchantmentOilNames = oilMetadataIds.Select(x => PoeWikiClient.BlightOilNamesByMetadataIds[x]).ToList();
+                EnchantmentOilNames = oilMetadataIds
+                                      .Select(x => PoeWikiClient.BlightOilNamesByMetadataIds[x])
+                                      .ToList();
             }
         }
     }
@@ -78,17 +88,21 @@
                 Filter.NormalizeMinValue();
                 Filter.Max = null;
                 break;
+
             case FilterRange.RangeType.Maximum:
                 Filter.NormalizeMaxValue();
                 Filter.Min = null;
                 break;
+
             case FilterRange.RangeType.Equals:
                 Filter.SetExactValue();
                 break;
+
             case FilterRange.RangeType.Range:
                 Filter.NormalizeMinValue();
                 Filter.NormalizeMaxValue();
                 break;
         }
     }
+
 }

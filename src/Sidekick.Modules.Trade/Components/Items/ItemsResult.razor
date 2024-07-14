@@ -7,6 +7,11 @@
 @using Sidekick.Common.Game.Items
 @using MudBlazor
 
+@if (PriceCheckService.Mode != TradeMode.Item)
+{
+return;
+}
+
 @if (Visible)
 {
     <ItemsOptions @bind-Layout="Layout"
@@ -37,14 +42,9 @@
 @inject  ISettingsService SettingsService
 @inject  NavigationManager NavigationManager
 @inject  ITradeFilterService TradeFilterService
+@inject PriceCheckService PriceCheckService
 
 @code {
-
-    [CascadingParameter]
-    public required Item Item { get; set; }
-
-    [CascadingParameter]
-    public required FiltersModel Filters { get; set; }
 
     [Parameter]
     public bool Visible { get; set; }
@@ -55,54 +55,7 @@
 
     private bool FullyLoaded => (Results?.Count ?? 0) == (QueryResult?.Result?.Count ?? 0);
 
-    private bool IsFetching { get; set; }
-
     private Layout Layout { get; set; }
-
-    public async Task Search()
-    {
-        Results = new List<TradeItem>();
-        IsFetching = true;
-        StateHasChanged();
-
-        var tradeCurrency = await SettingsService.GetEnum<TradeCurrency>(SettingKeys.PriceCheckItemCurrency) ?? TradeCurrency.Chaos;
-        QueryResult = await TradeSearchService.Search(
-            Item,
-            tradeCurrency,
-            Filters.PropertyFilters,
-            Filters.ModifierFilters,
-            Filters.PseudoFilters);
-        IsFetching = false;
-
-        await LoadMoreData();
-        StateHasChanged();
-    }
-
-    public async Task LoadMoreData()
-    {
-        if (IsFetching || QueryResult?.Result == null || QueryResult?.Id == null)
-        {
-            return;
-        }
-
-        var ids = QueryResult
-                  .Result.Skip(Results?.Count ?? 0)
-                  .Take(10)
-                  .ToList();
-        if (ids.Count == 0)
-        {
-            return;
-        }
-
-        IsFetching = true;
-
-        var result = await TradeSearchService.GetResults(QueryResult.Id, ids, Filters.PseudoFilters);
-        Results?.AddRange(result);
-
-        IsFetching = false;
-
-        StateHasChanged();
-    }
 
     private void LayoutChanged(Layout layout)
     {

@@ -1,3 +1,4 @@
+@using Sidekick.Common.Enums
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Settings.Localization
 
@@ -17,12 +18,12 @@
     {
         new SelectOption()
         {
-            Value = WikiSetting.PoeWiki.ToString(),
+            Value = WikiSetting.PoeWiki.GetValueAttribute(),
             Label = "poewiki.net",
         },
         new SelectOption()
         {
-            Value = WikiSetting.PoeDb.ToString(),
+            Value = WikiSetting.PoeDb.GetValueAttribute(),
             Label = "poedb.tw",
         },
     };

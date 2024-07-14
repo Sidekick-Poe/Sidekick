@@ -28,7 +28,7 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
         }
 
         public object? Option { get; set; }
-        public double? Min { get; set; }
-        public double? Max { get; set; }
+        public decimal? Min { get; set; }
+        public decimal? Max { get; set; }
     }
 }

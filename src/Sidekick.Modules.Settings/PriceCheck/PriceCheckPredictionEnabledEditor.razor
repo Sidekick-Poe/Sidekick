@@ -2,8 +2,9 @@
 @using Sidekick.Modules.Settings.Localization
 
 <FormCheckbox Value="@PriceCheckPredictionEnabled"
-              ValueChanged="@PriceCheckPredictionEnabledChanged"
-              Label="@Resources.PriceCheck_Prediction_Enable"/>
+              ValueChanged="@PriceCheckPredictionEnabledChanged">
+    @Resources.PriceCheck_Prediction_Enable
+</FormCheckbox>
 
 @inject SettingsResources Resources
 @inject ISettingsService SettingsService

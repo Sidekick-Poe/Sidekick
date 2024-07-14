@@ -52,7 +52,7 @@
     {
         LeagueId = await SettingsService.GetString(SettingKeys.LeagueId);
         var layout = await SettingsService.GetEnum<Layout>(SettingKeys.PriceCheckLayout);
-        await LayoutChanged.InvokeAsync(layout ?? Layout.Cards_Maximized);
+        await LayoutChanged.InvokeAsync(layout ?? Layout.CardsMaximized);
 
         await base.OnInitializedAsync();
     }

@@ -2,8 +2,9 @@
 @using Sidekick.Modules.Settings.Localization
 
 <FormCheckbox Value="@Retain"
-              ValueChanged="@RetainChanged"
-              Label="@Resources.General_RetainClipboard"/>
+              ValueChanged="@RetainChanged">
+    @Resources.General_RetainClipboard
+</FormCheckbox>
 
 @inject SettingsResources Resources
 @inject ISettingsService SettingsService

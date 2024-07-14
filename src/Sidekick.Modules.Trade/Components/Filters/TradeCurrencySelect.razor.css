@@ -1,8 +1,0 @@
-img {
-    max-width: 2rem;
-    max-height: 2rem;
-}
-
-::deep .mud-tooltip-root {
-    line-height: 1 !important;
-}

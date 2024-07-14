@@ -11,16 +11,6 @@ namespace Sidekick.Modules.Trade.Localization
             this.localizer = localizer;
         }
 
-        public string Age_Day => localizer["Age_Day"];
-        public string Age_Days => localizer["Age_Days"];
-        public string Age_Hour => localizer["Age_Hour"];
-        public string Age_Hours => localizer["Age_Hours"];
-        public string Age_Minute => localizer["Age_Minute"];
-        public string Age_Minutes => localizer["Age_Minutes"];
-        public string Age_Now => localizer["Age_Now"];
-        public string Age_Seconds => localizer["Age_Seconds"];
-        public string Class => localizer["Class"];
-        public string ClassHint => localizer["Class_Hint"];
         public string Corrupted => localizer["Corrupted"];
         public string ForceCategory => localizer["ForceCategory"];
 

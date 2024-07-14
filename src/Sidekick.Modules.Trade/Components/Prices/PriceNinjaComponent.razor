@@ -5,58 +5,46 @@
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Game.Items.AdditionalInformation;
 @using Sidekick.Modules.Trade.Localization
+
 @if (Loading)
 {
-    <MudSkeleton Height="64px"/>
-    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+    <AppLoading/>
 }
 else if (Price != null)
 {
-    <MudGrid Spacing="0" Justify="Justify.Center" Class="align-start py-2">
-        <MudItem xs="6" Class="pr-2">
-            <MudText Typo="Typo.subtitle1" Align="Align.Right">@Resources.PoeNinja</MudText>
-            <MudText Typo="Typo.caption" Align="Align.Right" Class="d-block">
-                <MudTooltip Text="@Resources.LastUpdated">@Price.LastUpdated.ToString("g")</MudTooltip>
-            </MudText>
-            <MudText Align="Align.Right">
-                <MudButton Variant="Variant.Text"
-                           OnClick="OpenWebsite"
-                           Class="pa-0"
-                           Size="Size.Small"
-                           StartIcon="@Icons.Material.Filled.OpenInBrowser">
-                    @Resources.OpenInWebsite
-                </MudButton>
-            </MudText>
-        </MudItem>
-        <MudItem xs="6" Class="pl-2">
-            <div class="d-flex flex-row">
-                @if (Price.Links >= 5)
-                {
-                    <MudText Typo="Typo.caption" Color="Color.Tertiary" Class="d-flex mr-4 align-self-center">@Price.Links @Resources.Links</MudText>
-                }
-                <PriceDisplay Value="Price.Price" Class="justify-start mr-4"/>
-            </div>
-
-            @if (Series != null)
+    <div class="flex flex-nowrap items-center pt-2">
+        <div class="text-right w-1/2 pr-2">
+            <Heading3>@Resources["Poe.Ninja"]</Heading3>
+            <TooltipTopRight>
+                <ChildContent>
+                    <TextCaption>@Price.LastUpdated.ToString("g")</TextCaption>
+                </ChildContent>
+                <TooltipContent>
+                    @Resources["Last Updated"]
+                </TooltipContent>
+            </TooltipTopRight>
+            <ButtonLink OnClick="OpenWebsite">
+                <TextCaption>@Resources["Open Website"]</TextCaption>
+            </ButtonLink>
+        </div>
+        <div class="text-left w-1/2 pl-2">
+            <PriceDisplay Value="Price.Price"/>
+            @if (Price.Links >= 5)
             {
-                <div>
-                    <MudChart ChartType="ChartType.Line" ChartOptions="@ChartOptions" ChartSeries="@Series"/>
-                </div>
+                <TextCaption>@Price.Links @Resources["Links"]</TextCaption>
             }
-        </MudItem>
-    </MudGrid>
+        </div>
+    </div>
 
-    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+    <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown"/>
 }
 
-@inject PoeNinjaResources Resources
+@inject IStringLocalizer<TradeResources> Resources
 @inject IPoeNinjaClient Client
 @inject IBrowserProvider BrowserProvider
+@inject PriceCheckService PriceCheckService
 
 @code {
-
-    [CascadingParameter]
-    public required Item Item { get; set; }
 
     private bool Loading { get; set; }
 
@@ -73,19 +61,19 @@ else if (Price != null)
         Loading = true;
         StateHasChanged();
 
-        if (Item.AdditionalInformation is ClusterJewelInformation clusterJewelInformation)
+        if (PriceCheckService.Item?.AdditionalInformation is ClusterJewelInformation clusterJewelInformation)
         {
-            Price = await Client.GetClusterPrice(clusterJewelInformation.GrantText, clusterJewelInformation.SmallPassiveCount, Item.Properties.ItemLevel);
+            Price = await Client.GetClusterPrice(clusterJewelInformation.GrantText, clusterJewelInformation.SmallPassiveCount, PriceCheckService.Item.Properties.ItemLevel);
         }
         else
         {
             Price = await Client.GetPriceInfo(
-                Item.Invariant?.Name,
-                Item.Invariant?.Type,
-                Item.Metadata.Category,
-                gemLevel: Item.Properties.GemLevel,
-                mapTier: Item.Properties.MapTier,
-                numberOfLinks: Item.GetMaximumNumberOfLinks());
+                PriceCheckService.Item?.Invariant?.Name,
+                PriceCheckService.Item?.Invariant?.Type,
+                PriceCheckService.Item?.Metadata.Category ?? Category.Unknown,
+                gemLevel: PriceCheckService.Item?.Properties.GemLevel,
+                mapTier: PriceCheckService.Item?.Properties.MapTier,
+                numberOfLinks: PriceCheckService.Item?.GetMaximumNumberOfLinks());
         }
 
         ChartOptions = new ChartOptions()

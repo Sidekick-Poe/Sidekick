@@ -1,4 +1,7 @@
-﻿<div class="relative grid select-none items-center whitespace-nowrap rounded-lg py-1.5 px-3 font-sans text-xs font-bold uppercase text-white @Class">
+﻿<div class="relative grid select-none items-center whitespace-nowrap rounded-lg py-0.5 px-1 font-sans text-xs font-bold uppercase text-white @Class @(OnClick.HasDelegate ? "duration-200 transition-opacity opacity-100 hover:opacity-75 cursor-pointer" : "")"
+     @onclick="() => OnClick.InvokeAsync()"
+     @onclick:preventDefault="true"
+     @onclick:stopPropagation="true">
     <span>@ChildContent</span>
 </div>
 
@@ -9,5 +12,8 @@
 
     [Parameter]
     public string? Class { get; set; }
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
 
 }

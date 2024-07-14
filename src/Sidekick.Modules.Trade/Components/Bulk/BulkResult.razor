@@ -7,6 +7,11 @@
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Prices
 
+@if (PriceCheckService.Mode != TradeMode.Bulk)
+{
+    return;
+}
+
 @if (Visible)
 {
     <BulkOptions QueryId="@Result?.QueryId"
@@ -52,6 +57,7 @@
 @inject NavigationManager NavigationManager
 @inject TradeResources Resources
 @inject ISettingsService SettingsService
+@inject PriceCheckService PriceCheckService
 
 @code {
 
@@ -60,23 +66,5 @@
 
     [Parameter]
     public bool Visible { get; set; }
-
-    private BulkResponseModel? Result { get; set; }
-
-    private bool IsFetching { get; set; }
-
-    public async Task Search()
-    {
-        Result = null;
-        IsFetching = true;
-        StateHasChanged();
-
-        var currency = await SettingsService.GetEnum<TradeCurrency>(SettingKeys.PriceCheckBulkCurrency);
-        var minStock = await SettingsService.GetInt(SettingKeys.PriceCheckBulkMinimumStock);
-        Result = await BulkTradeService.SearchBulk(Item, currency ?? TradeCurrency.Divine, minStock);
-        IsFetching = false;
-
-        StateHasChanged();
-    }
 
 }

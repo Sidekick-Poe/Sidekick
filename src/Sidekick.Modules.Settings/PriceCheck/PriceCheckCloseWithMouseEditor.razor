@@ -2,8 +2,9 @@
 @using Sidekick.Modules.Settings.Localization
 
 <FormCheckbox Value="@PriceCheckCloseWithMouse"
-              ValueChanged="PriceCheckCloseWithMouseChanged"
-              Label="@Resources.PriceCheck_CloseWithMouse"/>
+              ValueChanged="PriceCheckCloseWithMouseChanged">
+    @Resources.PriceCheck_CloseWithMouse
+</FormCheckbox>
 
 @inject SettingsResources Resources
 @inject ISettingsService SettingsService

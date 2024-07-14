@@ -8,7 +8,7 @@
 
 <select id="@Id"
         @onchange="OnChange"
-        class="@UiClasses.FormInputClasses w-full mb-3">
+        class="@UiClasses.FormInputClasses p-2 text-base w-full mb-3">
     @if (Options.All(x => x.Value != Value))
     {
         <option selected></option>

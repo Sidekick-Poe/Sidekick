@@ -1,6 +1,6 @@
 @using Sidekick.Common.Game.Items
 
-<div class="@Class @ColorClass text-center font-caps">@Text</div>
+<div class="@Class @ColorClass font-caps">@Text</div>
 
 @code {
 
@@ -8,7 +8,7 @@
     public string? Text { get; set; }
 
     [Parameter]
-    public string? Class { get; set; }
+    public string? Class { get; set; } = "text-center";
 
     [Parameter]
     public ModifierCategory? Category { get; set; }

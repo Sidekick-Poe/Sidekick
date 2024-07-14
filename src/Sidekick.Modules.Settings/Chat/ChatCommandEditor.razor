@@ -19,8 +19,9 @@
 
     <div class="flex items-center justify-between">
         <FormCheckbox Value="chatSetting.Submit"
-                      ValueChanged="() => ToggleSubmit(chatSetting)"
-                      Label="@Resources["Submit the command"]"/>
+                      ValueChanged="() => ToggleSubmit(chatSetting)">
+            @Resources["Submit the command"]
+        </FormCheckbox>
         <ButtonPrimary OnClick="() => Remove(chatSetting)">
             @Resources["Delete Command"]
         </ButtonPrimary>

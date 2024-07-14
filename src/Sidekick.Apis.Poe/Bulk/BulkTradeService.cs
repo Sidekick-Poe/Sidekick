@@ -52,7 +52,7 @@ namespace Sidekick.Apis.Poe.Bulk
             model.Query.Minimum = minStock;
 
             var have = currency.GetValueAttribute();
-            if (have == null || currency == TradeCurrency.ChaosEquivalent || currency == TradeCurrency.ChaosOrDivine)
+            if (currency == TradeCurrency.ChaosEquivalent || currency == TradeCurrency.ChaosOrDivine)
             {
                 model.Query.Have.Add(TradeCurrency.Chaos.GetValueAttribute()!);
             }

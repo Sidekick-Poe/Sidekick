@@ -1,41 +1,57 @@
-@using Microsoft.AspNetCore.Components.Web;
 @using Sidekick.Modules.Trade.Localization;
 
-<div class="d-flex flex-nowrap align-center">
-    <MudIconButton Color="Color.Primary"
-                   OnClick="ToggleType"
-                   Class="pa-1 filter-swap"
-                   Variant="Variant.Text"
-                   Icon="@Icon" />
+<div class="relative group/filter self-end">
+    <ButtonIcon OnClick="ToggleType">
+        <div class="flex flex-nowrap items-center gap-[2px]">
+            <IconMedium Icon="@Icon"/>
+            @if (Type == RangeType.Minimum || Type == RangeType.Equals || Type == RangeType.Range)
+            {
+                <span>@Min</span>
+            }
 
-    <div>
+            @if (Type == RangeType.Range)
+            {
+                <span>-</span>
+            }
+
+            @if (Type == RangeType.Maximum || Type == RangeType.Range)
+            {
+                <span>@Max</span>
+            }
+        </div>
+    </ButtonIcon>
+
+    <div class="group-hover/filter:flex flex-nowrap items-center gap-2 absolute top-full -right-2 bg-stone-800 rounded-b-lg py-1 px-2 hidden opacity-0 group-hover/filter:opacity-100 transition-opacity duration-200 z-10"
+         id="@Id">
         @if (Type == RangeType.Minimum || Type == RangeType.Equals || Type == RangeType.Range)
         {
-            <div class="filter-value" @onwheel="OnMinWheel" @onwheel:preventDefault @oncontextmenu="Clear">
-                <MudTextField T="double?"
-                              Value="Min"
-                              ValueChanged="UpdateMinValue"
-                              Placeholder="@Placeholder"
-                              Variant="Variant.Text"
-                              Margin="Margin.Dense" />
+            <div class="w-[5rem]"
+                 @onwheel="OnMinWheel"
+                 @oncontextmenu="Clear">
+                <FormNumberSmall Value="Min"
+                                 ValueChanged="UpdateMinValue"
+                                 Label="@Resources["Min"]"/>
             </div>
         }
 
         @if (Type == RangeType.Maximum || Type == RangeType.Range)
         {
-            <div class="filter-value" @onwheel="OnMaxWheel" @onwheel:preventDefault @oncontextmenu="Clear">
-                <MudTextField T="double?"
-                              Value="Max"
-                              ValueChanged="UpdateMaxValue"
-                              Placeholder="@Placeholder"
-                              Variant="Variant.Text"
-                              Margin="Margin.Dense" />
+            <div class="w-[5rem]"
+                 @onwheel="OnMaxWheel"
+                 @oncontextmenu="Clear">
+                <FormNumberSmall Value="Max"
+                                 ValueChanged="UpdateMaxValue"
+                                 Label="@Resources["Max"]"/>
             </div>
         }
     </div>
 </div>
 
+@inject IStringLocalizer<TradeResources> Resources
+@inject IJSRuntime JsRuntime
+
 @code {
+
     public enum RangeType
     {
         Minimum,
@@ -44,25 +60,24 @@
         Range,
     }
 
-    [Inject]
-    private TradeResources Resources { get; set; }
+    [Parameter]
+    public decimal? Min { get; set; }
 
     [Parameter]
-    public double? Min { get; set; }
+    public EventCallback<decimal?> MinChanged { get; set; }
 
     [Parameter]
-    public EventCallback<double?> MinChanged { get; set; }
+    public decimal? Max { get; set; }
 
     [Parameter]
-    public double? Max { get; set; }
-
-    [Parameter]
-    public EventCallback<double?> MaxChanged { get; set; }
+    public EventCallback<decimal?> MaxChanged { get; set; }
 
     [Parameter]
     public EventCallback<RangeType> TypeChanged { get; set; }
 
     private RangeType Type { get; set; } = RangeType.Minimum;
+
+    private string Id { get; } = UiUtilities.GenerateId();
 
     private string Icon => Type switch
     {
@@ -70,13 +85,6 @@
         RangeType.Equals => @"<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 24 24""><title>equal</title><path d=""M19,10H5V8H19V10M19,16H5V14H19V16Z"" /></svg>",
         RangeType.Range => @"<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 24 24""><title>code-braces</title><path d=""M8,3A2,2 0 0,0 6,5V9A2,2 0 0,1 4,11H3V13H4A2,2 0 0,1 6,15V19A2,2 0 0,0 8,21H10V19H8V14A2,2 0 0,0 6,12A2,2 0 0,0 8,10V5H10V3M16,3A2,2 0 0,1 18,5V9A2,2 0 0,0 20,11H21V13H20A2,2 0 0,0 18,15V19A2,2 0 0,1 16,21H14V19H16V14A2,2 0 0,1 18,12A2,2 0 0,1 16,10V5H14V3H16Z"" /></svg>",
         _ => @"<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 24 24""><title>greater-than-or-equal</title><path d=""M6.5,2.27L20,10.14L6.5,18L5.5,16.27L16.03,10.14L5.5,4L6.5,2.27M20,20V22H5V20H20Z"" /></svg>",
-    };
-
-    private string Placeholder => Type switch
-    {
-        RangeType.Maximum => Resources.Filters_Max,
-        RangeType.Equals => Resources.Filters_Equals,
-        _ => Resources.Filters_Min,
     };
 
     private bool IsChanging { get; set; }
@@ -108,19 +116,40 @@
         }
     }
 
-    private async Task ToggleType(MouseEventArgs args)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JsRuntime.InvokeVoidAsync(
+                "eval",
+                @"
+                document.getElementById("""
+                + Id
+                + @""")?.addEventListener(""wheel"",function(e) {
+                    e.preventDefault();
+                }, { passive: false });
+            ");
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    private async Task ToggleType()
     {
         switch (Type)
         {
             case RangeType.Minimum:
                 Type = RangeType.Maximum;
                 break;
+
             case RangeType.Maximum:
                 Type = RangeType.Equals;
                 break;
+
             case RangeType.Equals:
                 Type = RangeType.Range;
                 break;
+
             case RangeType.Range:
                 Type = RangeType.Minimum;
                 break;
@@ -129,7 +158,7 @@
         await TypeChanged.InvokeAsync(Type);
     }
 
-    private async Task UpdateMinValue(double? value)
+    private async Task UpdateMinValue(decimal? value)
     {
         IsChanging = true;
 
@@ -142,7 +171,7 @@
         IsChanging = false;
     }
 
-    private async Task UpdateMaxValue(double? value)
+    private async Task UpdateMaxValue(decimal? value)
     {
         IsChanging = true;
 
@@ -186,4 +215,5 @@
         await MinChanged.InvokeAsync(null);
         await MaxChanged.InvokeAsync(null);
     }
+
 }

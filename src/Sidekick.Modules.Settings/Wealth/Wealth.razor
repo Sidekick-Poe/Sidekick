@@ -68,8 +68,9 @@
             foreach (var stashTab in StashTabs)
             {
                 <FormCheckbox Value="IsChecked(stashTab)"
-                              ValueChanged="() => Toggle(stashTab)"
-                              Label="@stashTab.Name"/>
+                              ValueChanged="() => Toggle(stashTab)">
+                    @stashTab.Name
+                </FormCheckbox>
             }
         }
         else

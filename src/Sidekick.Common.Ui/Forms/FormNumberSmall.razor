@@ -1,0 +1,49 @@
+﻿<div class="flex items-center flex-nowrap gap-1">
+@if (!string.IsNullOrEmpty(Label))
+{
+    <label for="@Id"
+           class="block text-base font-medium dark:text-zinc-200">
+        @Label
+    </label>
+}
+
+    <input id="@Id"
+           @onchange="OnChange"
+           value="@InternalValue"
+           class="@UiClasses.FormInputClasses p-[2px] text-sm min-w-0 grow"/>
+</div>
+
+@code {
+
+    [Parameter]
+    public string? Label { get; set; }
+
+    [Parameter]
+    public decimal? Value { get; set; }
+
+    [Parameter]
+    public EventCallback<decimal?> ValueChanged { get; set; }
+
+    private string Id { get; } = UiUtilities.GenerateId();
+
+    private string InternalValue { get; set; } = string.Empty;
+
+    protected override void OnParametersSet()
+    {
+        InternalValue = Value?.ToString() ?? string.Empty;
+        base.OnParametersSet();
+    }
+
+    private async Task OnChange(ChangeEventArgs args)
+    {
+        if (decimal.TryParse(args.Value?.ToString(), out var decimalValue))
+        {
+            await ValueChanged.InvokeAsync(decimalValue);
+        }
+        else
+        {
+            await ValueChanged.InvokeAsync(null);
+        }
+    }
+
+}

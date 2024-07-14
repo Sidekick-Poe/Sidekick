@@ -1,0 +1,10 @@
+<div class="duration-200 transition-colors bg-transparent hover:bg-stone-800 px-2 py-1">
+    @ChildContent
+</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+}

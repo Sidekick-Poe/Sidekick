@@ -12,6 +12,7 @@ namespace Sidekick.Wpf.Services
         ILogger<WpfViewLocator> logger) : IViewLocator
     {
         internal readonly ICacheProvider CacheProvider = cacheProvider;
+
         internal List<MainWindow> Windows { get; } = new();
 
         internal string? NextUrl { get; set; }
@@ -28,46 +29,47 @@ namespace Sidekick.Wpf.Services
             view.CurrentView.ViewChanged += CurrentViewOnViewChanged;
             var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.CurrentView.Key}");
 
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                window.Title = $"Sidekick {view.CurrentView.Title}".Trim();
-                window.MinHeight = view.ViewHeight + 20;
-                window.MinWidth = view.ViewWidth + 20;
+            Application.Current.Dispatcher.Invoke(
+                () =>
+                {
+                    window.Title = view.CurrentView.Title.StartsWith("Sidekick") ? view.CurrentView.Title.Trim() : $"Sidekick {view.CurrentView.Title}".Trim();
+                    window.MinHeight = view.ViewHeight + 20;
+                    window.MinWidth = view.ViewWidth + 20;
 
-                if (view.ViewType != SidekickViewType.Modal && preferences != null)
-                {
-                    window.Height = preferences.Height;
-                    window.Width = preferences.Width;
-                }
-                else
-                {
-                    window.Height = view.ViewHeight + 20;
-                    window.Width = view.ViewWidth + 20;
-                }
+                    if (view.ViewType != SidekickViewType.Modal && preferences != null)
+                    {
+                        window.Height = preferences.Height;
+                        window.Width = preferences.Width;
+                    }
+                    else
+                    {
+                        window.Height = view.ViewHeight + 20;
+                        window.Width = view.ViewWidth + 20;
+                    }
 
-                if (view.ViewType == SidekickViewType.Overlay)
-                {
-                    window.Topmost = true;
-                    window.ShowInTaskbar = false;
-                    window.ResizeMode = ResizeMode.CanResize;
-                }
-                else if (view.ViewType == SidekickViewType.Modal)
-                {
-                    window.Topmost = true;
-                    window.ShowInTaskbar = true;
-                    window.ResizeMode = ResizeMode.NoResize;
-                }
-                else
-                {
-                    window.Topmost = false;
-                    window.ShowInTaskbar = true;
-                    window.ResizeMode = ResizeMode.CanResize;
-                }
+                    if (view.ViewType == SidekickViewType.Overlay)
+                    {
+                        window.Topmost = true;
+                        window.ShowInTaskbar = false;
+                        window.ResizeMode = ResizeMode.CanResize;
+                    }
+                    else if (view.ViewType == SidekickViewType.Modal)
+                    {
+                        window.Topmost = true;
+                        window.ShowInTaskbar = true;
+                        window.ResizeMode = ResizeMode.NoResize;
+                    }
+                    else
+                    {
+                        window.Topmost = false;
+                        window.ShowInTaskbar = true;
+                        window.ResizeMode = ResizeMode.CanResize;
+                    }
 
-                WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
+                    WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
 
-                window.Ready();
-            });
+                    window.Ready();
+                });
         }
 
         private void CurrentViewOnViewChanged(ICurrentView view)
@@ -94,30 +96,31 @@ namespace Sidekick.Wpf.Services
 
             var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.CurrentView.Key}");
 
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                if (window.WindowState == WindowState.Normal)
+            Application.Current.Dispatcher.Invoke(
+                () =>
                 {
-                    window.WindowState = WindowState.Maximized;
-                }
-                else
-                {
-                    window.WindowState = WindowState.Normal;
-
-                    if (preferences != null)
+                    if (window.WindowState == WindowState.Normal)
                     {
-                        window.Height = preferences.Height;
-                        window.Width = preferences.Width;
+                        window.WindowState = WindowState.Maximized;
                     }
                     else
                     {
-                        window.Height = view.ViewHeight;
-                        window.Width = view.ViewWidth;
-                    }
+                        window.WindowState = WindowState.Normal;
 
-                    WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
-                }
-            });
+                        if (preferences != null)
+                        {
+                            window.Height = preferences.Height;
+                            window.Width = preferences.Width;
+                        }
+                        else
+                        {
+                            window.Height = view.ViewHeight;
+                            window.Width = view.ViewWidth;
+                        }
+
+                        WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
+                    }
+                });
         }
 
         /// <inheritdoc/>
@@ -128,44 +131,46 @@ namespace Sidekick.Wpf.Services
                 return Task.CompletedTask;
             }
 
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                if (window.WindowState == WindowState.Normal)
+            Application.Current.Dispatcher.Invoke(
+                () =>
                 {
-                    window.WindowState = WindowState.Minimized;
-                }
-                else
-                {
-                    window.WindowState = WindowState.Normal;
-                    WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
-                }
-            });
+                    if (window.WindowState == WindowState.Normal)
+                    {
+                        window.WindowState = WindowState.Minimized;
+                    }
+                    else
+                    {
+                        window.WindowState = WindowState.Normal;
+                        WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
+                    }
+                });
             return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
         public Task Close(SidekickView view)
         {
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                try
+            Application.Current.Dispatcher.Invoke(
+                () =>
                 {
-                    if (!TryGetWindow(view.CurrentView, out var window))
+                    try
                     {
-                        return;
-                    }
+                        if (!TryGetWindow(view.CurrentView, out var window))
+                        {
+                            return;
+                        }
 
-                    window.Close();
-                    Windows.Remove(window);
-                    GC.Collect();
-                    GC.WaitForPendingFinalizers();
-                    GC.Collect();
-                }
-                catch (InvalidOperationException ex)
-                {
-                    logger.LogWarning($"Error Closing Window - {ex.Message}");
-                }
-            });
+                        window.Close();
+                        Windows.Remove(window);
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
+                        GC.Collect();
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        logger.LogWarning($"Error Closing Window - {ex.Message}");
+                    }
+                });
 
             return Task.CompletedTask;
         }
@@ -187,7 +192,9 @@ namespace Sidekick.Wpf.Services
         /// <inheritdoc/>
         public async Task CloseAllOverlays()
         {
-            foreach (var overlay in Windows.Where(x => x.SidekickView?.ViewType == SidekickViewType.Overlay).ToList())
+            foreach (var overlay in Windows
+                                    .Where(x => x.SidekickView?.ViewType == SidekickViewType.Overlay)
+                                    .ToList())
             {
                 if (overlay.SidekickView == null)
                 {
@@ -211,17 +218,20 @@ namespace Sidekick.Wpf.Services
 
             NextUrl = url;
 
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                var window = new MainWindow(this);
-                Windows.Add(window);
-                window.Show();
-            });
+            Application.Current.Dispatcher.Invoke(
+                () =>
+                {
+                    var window = new MainWindow(this);
+                    Windows.Add(window);
+                    window.Show();
+                });
 
             return Task.CompletedTask;
         }
 
-        private bool TryGetWindow(ICurrentView view, out MainWindow window)
+        private bool TryGetWindow(
+            ICurrentView view,
+            out MainWindow window)
         {
             var windowResult = Windows.FirstOrDefault(x => x.Id == view.Id);
 
@@ -245,7 +255,6 @@ namespace Sidekick.Wpf.Services
 
             logger.LogError("Unable to find view {viewUrl}", view.Url);
             return false;
-
         }
     }
 }

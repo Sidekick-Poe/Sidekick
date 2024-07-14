@@ -2,8 +2,9 @@
 @using Sidekick.Modules.Settings.Localization
 
 <FormCheckbox Value="@EscapeClosesOverlays"
-              ValueChanged="@EscapeClosesOverlaysChanged"
-              Label="@Resources.EscapeClosesOverlays"/>
+              ValueChanged="@EscapeClosesOverlaysChanged">
+    @Resources.EscapeClosesOverlays
+</FormCheckbox>
 
 @inject SettingsResources Resources
 @inject ISettingsService SettingsService
