@@ -18,19 +18,6 @@
     <Content Include="..\Sidekick.Common.Ui\_Imports.razor">
       <Link>_Imports.razor</Link>
     </Content>
-    <Content Remove="Components\Items\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Components\Items\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Remove="Components\Items\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Components\Items\**" />
   </ItemGroup>
 
 </Project>

@@ -31,7 +31,7 @@ public class Item(
 
     public object? AdditionalInformation { get; set; }
 
-    public bool CanHaveModifiers => Metadata?.Category switch
+    public bool CanHaveModifiers => Metadata.Category switch
     {
         Category.Accessory => true,
         Category.Armour => true,

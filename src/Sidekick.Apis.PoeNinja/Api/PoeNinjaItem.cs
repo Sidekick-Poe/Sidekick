@@ -29,7 +29,7 @@ namespace Sidekick.Apis.PoeNinja.Api
         [JsonPropertyName("levelRequired")]
         public int ItemLevel { get; init; }
 
-        public double ChaosValue { get; init; }
+        public decimal ChaosValue { get; init; }
 
         public string? DetailsId { get; init; }
 

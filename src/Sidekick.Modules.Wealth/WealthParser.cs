@@ -192,7 +192,7 @@ namespace Sidekick.Modules.Wealth
             return dbItem;
         }
 
-        private async Task<double> GetItemPrice(StashItem item, Category category)
+        private async Task<decimal> GetItemPrice(StashItem item, Category category)
         {
             var price = await poeNinjaClient.GetPriceInfo(
                 item.Name,
@@ -271,7 +271,7 @@ namespace Sidekick.Modules.Wealth
                 .OrderBy(x => x.Date)
                 .FirstOrDefaultAsync();
 
-            if (oneHourAgoSnapshot?.Total != null && Math.Abs(oneHourAgoSnapshot.Total - totalPrice) < 0.001)
+            if (oneHourAgoSnapshot?.Total != null && Math.Abs(oneHourAgoSnapshot.Total - totalPrice) < (decimal)0.001)
             {
                 Log(Icons.Material.Filled.Warning, Color.Warning, $"Wealth tracker was automatically stopped due to inactivity.");
                 Stop();

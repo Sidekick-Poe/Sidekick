@@ -16,6 +16,6 @@ namespace Sidekick.Common.Database.Tables
         [MaxLength(64)]
         public required string League { get; set; }
 
-        public double Total { get; set; }
+        public decimal Total { get; set; }
     }
 }

@@ -40,7 +40,7 @@ public class PriceCheckService(
 
     public TradeSearchResult<string>? ItemTradeResult { get; set; }
 
-    private List<TradeItem>? TradeItems { get; set; }
+    public List<TradeItem>? TradeItems { get; set; }
 
     public BulkResponseModel? BulkTradeResult { get; set; }
 
@@ -105,9 +105,9 @@ public class PriceCheckService(
             ModifierFilters,
             PseudoFilters);
 
+        IsLoading = false;
         await LoadMoreItems();
 
-        IsLoading = false;
         LoadingChanged?.Invoke();
     }
 

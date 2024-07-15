@@ -1,11 +1,14 @@
 @using Sidekick.Common.Game.Items
 
-<div class="@Class @ColorClass font-caps">@Text</div>
+<TextBase Class="@($"{Class} {ColorClass} leading-none py-0.5 font-caps")">@ChildContent</TextBase>
 
 @code {
 
     [Parameter]
     public string? Text { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
 
     [Parameter]
     public string? Class { get; set; } = "text-center";

@@ -1,43 +1,52 @@
 @using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Common.Game.Items
 
-@if (LineContents != null && LineContents.Count > 0)
+@if (LineContents.Count > 0)
 {
-    <div class="line-contents">
-        @foreach (var property in LineContents)
-        {
-            <MudText Typo="Typo.body1" Class="font-smallcaps" Align="Align.Center">@((MarkupString)GetLine(property))</MudText>
-        }
-    </div>
+    @foreach (var property in LineContents)
+    {
+        <TextBase Class="text-[#7f7f7f] font-caps text-center leading-none py-0.5">@((MarkupString)GetLine(property))</TextBase>
+    }
 
-    <ItemSeparator Rarity="Item.Metadata.Rarity" />
+    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
 }
 
 @code {
-    [Parameter] public Item Item { get; set; }
-    [Parameter] public List<LineContent> LineContents { get; set; }
+
+    [Parameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public List<LineContent> LineContents { get; set; } =
+    [
+    ];
 
     private string GetLine(LineContent property)
     {
-        var highlightMatches = new Dictionary<int, (string Value, LineContentType Type)>();
-        var text = property.Text;
+        var text = property.Text ?? string.Empty;
 
         foreach (var value in property.Values)
         {
+            if (value.Value == null)
+            {
+                continue;
+            }
+
             var color = value.Type switch
             {
-                LineContentType.Augmented => "#8888FF",
-                LineContentType.Fire => "#960000",
-                LineContentType.Cold => "#366492",
-                LineContentType.Chaos => "#D02090",
-                LineContentType.Lightning => "#FFD700",
-                LineContentType.BlockedIncursionRoom => "#5A5A5A",
-                _ => "#FFFFFF",
+                LineContentType.Augmented => "text-[#8888FF]",
+                LineContentType.Fire => "text-[#960000]",
+                LineContentType.Cold => "text-[#366492]",
+                LineContentType.Chaos => "text-[#D02090]",
+                LineContentType.Lightning => "text-[#FFD700]",
+                LineContentType.BlockedIncursionRoom => "text-[#5A5A5A]",
+                _ => "text-[#FFFFFF]",
             };
 
-            text = text.Replace(value.Value, $"<span style=\"color:{color};\">{value.Value}</span>");
+            text = text.Replace(value.Value, $"<span class=\"{color};\">{value.Value}</span>");
         }
 
         return text;
     }
+
 }

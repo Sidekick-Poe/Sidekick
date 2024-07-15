@@ -11,8 +11,7 @@
                           NoMargin="true"
                           ValueChanged="(v) => Filter.Enabled = v">
                 <ItemModifierText Class="text-left"
-                                  Text="@Filter.Line.Text"
-                                  Category="Filter.Line.Modifiers.FirstOrDefault()?.Category"/>
+                                  Category="Filter.Line.Modifiers.FirstOrDefault()?.Category">@Filter.Line.Text</ItemModifierText>
             </FormCheckbox>
         </div>
 

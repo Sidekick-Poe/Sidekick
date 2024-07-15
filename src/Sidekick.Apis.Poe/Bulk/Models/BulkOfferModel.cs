@@ -11,15 +11,17 @@ namespace Sidekick.Apis.Poe.Bulk.Models
             Date = listing.Indexed;
 
             var offer = listing.Offers.FirstOrDefault();
-            if (offer != null)
+            if (offer == null)
             {
-                SaleAmount = offer.Exchange?.Amount ?? 0;
-                SaleCurrency = offer.Exchange?.Currency;
-
-                ItemAmount = offer.Item?.Amount ?? 0;
-                ItemCurrency = offer.Item?.Currency;
-                ItemStock = offer.Item?.Stock ?? 0;
+                return;
             }
+
+            SaleAmount = offer.Exchange?.Amount ?? 0;
+            SaleCurrency = offer.Exchange?.Currency;
+
+            ItemAmount = offer.Item?.Amount ?? 0;
+            ItemCurrency = offer.Item?.Currency;
+            ItemStock = offer.Item?.Stock ?? 0;
         }
 
         public string? AccountName { get; }
@@ -30,14 +32,14 @@ namespace Sidekick.Apis.Poe.Bulk.Models
 
         public string? SaleCurrency { get; }
 
-        public double SaleAmount { get; }
+        public decimal SaleAmount { get; }
 
         public string? ItemCurrency { get; }
 
-        public double ItemAmount { get; }
+        public decimal ItemAmount { get; }
 
         public int ItemStock { get; }
 
-        public double SaleUnitPrice => SaleAmount / ItemAmount;
+        public decimal SaleUnitPrice => SaleAmount / ItemAmount;
     }
 }

@@ -21,23 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Errors\SidekickErrorBoundary.razor" />
-    <UpToDateCheckInput Remove="Layouts\MenuLayout.razor" />
-    <UpToDateCheckInput Remove="Layouts\StandardLayout.razor" />
-    <UpToDateCheckInput Remove="Dialogs\ConfirmationDialog.razor" />
-    <UpToDateCheckInput Remove="Components\Items\BossFrame.razor" />
-    <UpToDateCheckInput Remove="Components\Items\DivinationCard.razor" />
-    <UpToDateCheckInput Remove="Components\Items\ItemHeader.razor" />
-    <UpToDateCheckInput Remove="Components\Items\ItemHeaderBackground.razor" />
-    <UpToDateCheckInput Remove="Components\Items\ItemInfluencesComponent.razor" />
-    <UpToDateCheckInput Remove="Components\Items\ItemModifierCategoryChip.razor" />
-    <UpToDateCheckInput Remove="Components\Items\ItemModifierText.razor" />
-    <UpToDateCheckInput Remove="Components\Items\ItemPropertyText.razor" />
-    <UpToDateCheckInput Remove="Components\Items\ItemSeparator.razor" />
-    <UpToDateCheckInput Remove="Components\LoadingAlert.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="..\Sidekick.Common.Ui\_Imports.razor">
       <Link>_Imports.razor</Link>
     </Content>

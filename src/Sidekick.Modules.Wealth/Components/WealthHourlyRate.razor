@@ -58,7 +58,7 @@ else
             return;
         }
 
-        var minutesBetweenSnapshots = (latestSnapshot.Date - oneHourAgoSnapshot.Date).TotalMinutes;
+        var minutesBetweenSnapshots = (decimal)(latestSnapshot.Date - oneHourAgoSnapshot.Date).TotalMinutes;
         if (minutesBetweenSnapshots == 0)
         {
             CurrencyPerHour = null;
