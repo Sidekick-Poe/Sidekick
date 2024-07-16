@@ -8,13 +8,9 @@
     return;
 }
 
-@if (PriceCheckService.IsLoading)
-{
-    <AppLoading/>
-}
-else if (PriceCheckService.ItemTradeResult != null)
-{
-    <div class="max-w-[800px] mx-auto">
+<div class="max-w-[800px] mx-auto">
+    @if (PriceCheckService.ItemTradeResult != null)
+    {
         <div class="flex items-center w-full justify-between mb-3">
             <TextBase Class="text-teal-500">@LeagueId</TextBase>
             <div class="flex flex-nowrap gap-3">
@@ -32,20 +28,24 @@ else if (PriceCheckService.ItemTradeResult != null)
             }
         }
 
-        @if (!FullyLoaded && PriceCheckService.TradeItems != null)
+        @if (!PriceCheckService.IsLoading && !FullyLoaded && PriceCheckService.TradeItems != null)
         {
             <div class="flex justify-center">
                 <ButtonPrimary OnClick="PriceCheckService.LoadMoreItems">@Resources.LoadMoreData</ButtonPrimary>
             </div>
         }
+    }
 
-    </div>
-}
+    @if (PriceCheckService.IsLoading)
+    {
+        <AppLoading/>
+    }
+</div>
 
 @implements IDisposable
 
-@inject  TradeResources Resources
-@inject  ISettingsService SettingsService
+@inject TradeResources Resources
+@inject ISettingsService SettingsService
 @inject PriceCheckService PriceCheckService
 
 @code {

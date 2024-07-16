@@ -1,15 +1,15 @@
 @using Sidekick.Apis.Poe.Trade.Models
 
-@if (Item != null)
-{
-    <div class="image-container">
-        <img src="@Item.Image" />
-        <div class="sockets">
-            <ItemSocketsComponent Item="Item" />
-        </div>
+<div class="relative text-center">
+    <img src="@Item.Image"/>
+    <div class="absolute top-0 left-0 right-0 bottom-0">
+        <ItemSocketsComponent Item="Item"/>
     </div>
-}
+</div>
 
 @code {
-    [Parameter] public TradeItem Item { get; set; }
+
+    [Parameter]
+    public required TradeItem Item { get; set; }
+
 }
