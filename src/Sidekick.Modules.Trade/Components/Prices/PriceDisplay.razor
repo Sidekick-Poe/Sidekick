@@ -1,4 +1,3 @@
-@using MudBlazor
 @using Sidekick.Apis.Poe
 
 @if (Small)
@@ -36,8 +35,6 @@ else
 
     [Parameter]
     public bool Small { get; set; }
-
-    private Typo ValueTypo => Small ? Typo.h4 : Typo.h3;
 
     private string? ImageUrl => ItemStaticDataProvider.GetImage(Currency);
 }

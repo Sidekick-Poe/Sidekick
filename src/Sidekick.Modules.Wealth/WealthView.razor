@@ -1,7 +1,6 @@
 @page "/wealth"
 @inherits Sidekick.Common.Ui.Views.SidekickView
 @using Microsoft.EntityFrameworkCore
-@using MudBlazor
 @using Sidekick.Common.Database
 @using Sidekick.Common.Database.Tables
 @using Sidekick.Modules.Wealth.Components
@@ -10,7 +9,7 @@
 
 <AppTitle Title="Wealth Tracker"/>
 <MudDrawer Open="true"
-           Variant="@DrawerVariant.Persistent"
+           Variant="DrawerVariant.Persistent"
            Width="22em"
            Class="black"
            ClipMode="DrawerClipMode.Always">
@@ -20,7 +19,7 @@
                 Stash Tabs
             </MudText>
             <MudTooltip Text="Only the stash tabs selected in the settings are shown here. If you want to track more stash tabs, you have to do it from the settings." Style="max-width: 15rem;">
-                <MudIcon Icon="@Icons.Material.Filled.Info" Color="Color.Info"/>
+                <MudIcon Icon="Icons.Material.Filled.Info" Color="Color.Info"/>
             </MudTooltip>
         </div>
 

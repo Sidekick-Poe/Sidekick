@@ -1,7 +1,7 @@
 @if (CurrencyPerHour == null)
 {
     <div class="d-flex align-center flex-nowrap">
-        <MudIcon Size="Size.Small" Icon="@Icons.Material.Filled.Warning" Color="Color.Warning"/>
+        <MudIcon Size="Size.Small" Icon="Icons.Material.Filled.Warning" Color="Color.Warning"/>
         <div class="ml-3 font-smallcaps">Chaos per Hour will be calculated at the next snapshot.</div>
     </div>
 }
@@ -11,7 +11,6 @@ else
 }
 
 @using Microsoft.EntityFrameworkCore
-@using MudBlazor
 @using Sidekick.Common.Database
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject WealthParser WealthParser

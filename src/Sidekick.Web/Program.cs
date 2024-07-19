@@ -1,4 +1,3 @@
-using MudBlazor.Services;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
 using Sidekick.Apis.PoeNinja;
@@ -30,14 +29,6 @@ builder.Services.AddHttpClient();
 builder.Services.AddLocalization();
 
 builder.Services
-    // MudBlazor
-    .AddMudServices()
-    .AddMudBlazorDialog()
-    .AddMudBlazorSnackbar()
-    .AddMudBlazorResizeListener()
-    .AddMudBlazorScrollListener()
-    .AddMudBlazorScrollManager()
-    .AddMudBlazorJsApi()
 
     // Common
     .AddSidekickCommon()

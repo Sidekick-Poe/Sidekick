@@ -1,5 +1,4 @@
 @using Microsoft.EntityFrameworkCore
-@using MudBlazor
 @using Sidekick.Common.Database
 @using Sidekick.Common.Database.Tables
 @using Sidekick.Common.Settings
@@ -9,8 +8,8 @@
         <ToolBarContent>
             <MudText Typo="Typo.h3">Inventory</MudText>
             <MudSpacer />
-            <MudTextField @bind-Value="SearchString" DebounceInterval="500" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-n4" />
-            <MudIconButton Icon="@Icons.Material.Filled.FilterAlt" OnClick="() => FilterOpened = true" />
+            <MudTextField bind-Value="SearchString" DebounceInterval="500" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-n4" />
+            <MudIconButton Icon="Icons.Material.Filled.FilterAlt" OnClick="() => FilterOpened = true" />
         </ToolBarContent>
         <HeaderContent>
             <MudTh></MudTh>
@@ -20,11 +19,11 @@
             <MudTh><MudTableSortLabel InitialDirection="SortDirection.Descending" SortBy="new Func<WealthItem, object>(x=>x.Total)">Total</MudTableSortLabel></MudTh>
         </HeaderContent>
         <RowTemplate>
-            <MudTd DataLabel=""><MudImage Width="30" Height="30" Src="@context.Icon" Class="rounded-lg" /></MudTd>
-            <MudTd DataLabel="Name">@context.Name</MudTd>
-            <MudTd DataLabel="Count">@context.Count</MudTd>
-            <MudTd DataLabel="Price">@Math.Round(context.Price, 2)</MudTd>
-            <MudTd DataLabel="Total">@Math.Round(context.Total, 2)</MudTd>
+            <MudTd DataLabel=""><MudImage Width="30" Height="30" Src="context.Icon" Class="rounded-lg" /></MudTd>
+            <MudTd DataLabel="Name">context.Name</MudTd>
+            <MudTd DataLabel="Count">context.Count</MudTd>
+            <MudTd DataLabel="Price">Math.Round(context.Price, 2)</MudTd>
+            <MudTd DataLabel="Total">Math.Round(context.Total, 2)</MudTd>
         </RowTemplate>
     </MudTable>
     <MudPopover Open="FilterOpened"

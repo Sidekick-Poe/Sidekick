@@ -1,6 +1,5 @@
 using ElectronNET.API;
 using ElectronNET.API.Entities;
-using MudBlazor.Services;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
 using Sidekick.Apis.PoeNinja;
@@ -31,15 +30,6 @@ builder.Services.AddLocalization();
 
 builder
     .Services
-
-    // MudBlazor
-    .AddMudServices()
-    .AddMudBlazorDialog()
-    .AddMudBlazorSnackbar()
-    .AddMudBlazorResizeListener()
-    .AddMudBlazorScrollListener()
-    .AddMudBlazorScrollManager()
-    .AddMudBlazorJsApi()
 
     // Common
     .AddSidekickCommon()

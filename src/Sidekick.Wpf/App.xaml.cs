@@ -2,7 +2,6 @@ using System.IO;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MudBlazor.Services;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
 using Sidekick.Apis.PoeNinja;
@@ -120,15 +119,6 @@ namespace Sidekick.Wpf
 #pragma warning restore CA1416 // Validate platform compatibility
 
             services
-
-                // MudBlazor
-                .AddMudServices()
-                .AddMudBlazorDialog()
-                .AddMudBlazorSnackbar()
-                .AddMudBlazorResizeListener()
-                .AddMudBlazorScrollListener()
-                .AddMudBlazorScrollManager()
-                .AddMudBlazorJsApi()
 
                 // Common
                 .AddSidekickCommon()
