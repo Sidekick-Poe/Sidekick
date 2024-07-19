@@ -1,5 +1,6 @@
 @using Sidekick.Common.Database
 @using ApexCharts
+@using Microsoft.EntityFrameworkCore
 @using Sidekick.Common.Settings
 
 <div style="@($"height:{WealthView.ChartHeight}")" class="pb-2 pr-10 d-flex flex-column">
@@ -264,7 +265,7 @@
     {
         public required string DateString { get; init; }
 
-        public double? Value { get; set; }
+        public decimal? Value { get; set; }
     }
 
 }

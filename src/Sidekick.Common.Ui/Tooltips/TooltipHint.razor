@@ -1,0 +1,39 @@
+
+@if (Bottom)
+{
+    <TooltipBottomRight>
+        <ChildContent>
+            <div class="text-teal-500">
+                <IconMedium Icon="@UiIcons.Help"></IconMedium>
+            </div>
+        </ChildContent>
+
+        <TooltipContent>
+            <TextBase Class="max-w-[15rem]">@Text</TextBase>
+        </TooltipContent>
+    </TooltipBottomRight>
+}
+else
+{
+    <TooltipTopRight>
+        <ChildContent>
+            <div class="text-teal-500">
+                <IconMedium Icon="@UiIcons.Help"></IconMedium>
+            </div>
+        </ChildContent>
+
+        <TooltipContent>
+            @Text
+        </TooltipContent>
+    </TooltipTopRight>
+}
+
+@code {
+
+    [Parameter]
+    public required string Text { get; set; }
+
+    [Parameter]
+    public bool Bottom { get; set; }
+
+}

@@ -149,10 +149,20 @@ namespace Sidekick.Common.Platform.Keyboards
         /// <inheritdoc/>
         public Task Initialize()
         {
+#if DEBUG
+            return Task.CompletedTask;
+#endif
+
+            RegisterHooks();
+            return Task.CompletedTask;
+        }
+
+        public void RegisterHooks()
+        {
             // We can't initialize twice
             if (HasInitialized)
             {
-                return Task.CompletedTask;
+                return;
             }
 
             // Initialize keybindings
@@ -174,8 +184,6 @@ namespace Sidekick.Common.Platform.Keyboards
 
             // Make sure we don't run this multiple times
             HasInitialized = true;
-
-            return Task.CompletedTask;
         }
 
         private readonly Regex ignoreHookLogs = new Regex("(?:dispatch_mouse_move|hook_get_multi_click_time|dispatch_event|win_hook_event_proc|dispatch_mouse_wheel|dispatch_button_press|dispatch_button_release)", RegexOptions.Compiled);

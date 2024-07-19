@@ -6,9 +6,18 @@ namespace Sidekick.Common.Database
 {
     public class SidekickDbContext : DbContext
     {
-        public SidekickDbContext(DbContextOptions<SidekickDbContext> options) : base(options)
+        private static bool hasMigrated;
+
+        public SidekickDbContext(DbContextOptions<SidekickDbContext> options)
+            : base(options)
         {
+            if (hasMigrated)
+            {
+                return;
+            }
+
             Database.Migrate();
+            hasMigrated = true;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -23,7 +32,9 @@ namespace Sidekick.Common.Database
                 // This only supports millisecond precision, but should be sufficient for most use cases.
                 foreach (var entityType in modelBuilder.Model.GetEntityTypes())
                 {
-                    var properties = entityType.ClrType.GetProperties().Where(p => p.PropertyType == typeof(DateTimeOffset) || p.PropertyType == typeof(DateTimeOffset?));
+                    var properties = entityType
+                                     .ClrType.GetProperties()
+                                     .Where(p => p.PropertyType == typeof(DateTimeOffset) || p.PropertyType == typeof(DateTimeOffset?));
                     foreach (var property in properties)
                     {
                         modelBuilder
@@ -37,10 +48,14 @@ namespace Sidekick.Common.Database
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<Setting> Settings { get; set; }
-        public DbSet<WealthItem> WealthItems { get; set; }
-        public DbSet<WealthStash> WealthStashes { get; set; }
-        public DbSet<WealthStashSnapshot> WealthStashSnapshots { get; set; }
-        public DbSet<WealthFullSnapshot> WealthFullSnapshots { get; set; }
+        public DbSet<Setting> Settings { get; init; }
+
+        public DbSet<WealthItem> WealthItems { get; init; }
+
+        public DbSet<WealthStash> WealthStashes { get; init; }
+
+        public DbSet<WealthStashSnapshot> WealthStashSnapshots { get; init; }
+
+        public DbSet<WealthFullSnapshot> WealthFullSnapshots { get; init; }
     }
 }

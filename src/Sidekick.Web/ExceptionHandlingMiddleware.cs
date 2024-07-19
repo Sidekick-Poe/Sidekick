@@ -1,5 +1,5 @@
-﻿using Sidekick.Common.Blazor.Views;
-using Sidekick.Common.Exceptions;
+﻿using Sidekick.Common.Exceptions;
+using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Web;
 
@@ -33,7 +33,7 @@ public class ExceptionHandlingMiddleware
         catch (SidekickException ex)
         {
             logger.LogCritical(ex, "Unhandled exception.");
-            await viewLocator.Open(ex.ToUrl());
+            throw;
         }
     }
 }

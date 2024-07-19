@@ -29,7 +29,7 @@ public static class EnumExtensions
     public static string? GetValueAttribute(this Enum value)
     {
         var attribute = value.GetAttribute<EnumValueAttribute>();
-        return attribute == null ? value.ToString() : attribute.Value;
+        return attribute != null ? attribute.Value : value.ToString();
     }
 
     /// <summary>

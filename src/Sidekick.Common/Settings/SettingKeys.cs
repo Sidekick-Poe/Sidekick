@@ -2,41 +2,40 @@ namespace Sidekick.Common.Settings;
 
 public static class SettingKeys
 {
-    public const string CurrentDirectory = "CurrentDirectory";
+    public const string CurrentDirectory = nameof(CurrentDirectory);
 
-    public const string BearerToken = "BearerToken";
-    public const string BearerExpiration = "BearerExpiration";
+    public const string BearerToken = nameof(BearerToken);
+    public const string BearerExpiration = nameof(BearerExpiration);
 
-    public const string LanguageParser = "LanguageParser";
-    public const string LanguageUi = "LanguageUi";
-    public const string LeagueId = "LeagueId";
-    public const string LeaguesHash = "LeaguesHash";
+    public const string LanguageParser = nameof(LanguageParser);
+    public const string LanguageUi = nameof(LanguageUi);
+    public const string LeagueId = nameof(LeagueId);
+    public const string LeaguesHash = nameof(LeaguesHash);
 
-    public const string KeyClose = "KeyClose";
-    public const string KeyFindItems = "KeyFindItems";
-    public const string KeyOpenMapCheck = "KeyOpenMapCheck";
-    public const string KeyOpenPriceCheck = "KeyOpenPriceCheck";
-    public const string KeyOpenWealth = "KeyOpenWealth";
-    public const string KeyOpenWiki = "KeyOpenWiki";
+    public const string KeyClose = nameof(KeyClose);
+    public const string KeyFindItems = nameof(KeyFindItems);
+    public const string KeyOpenMapCheck = nameof(KeyOpenMapCheck);
+    public const string KeyOpenPriceCheck = nameof(KeyOpenPriceCheck);
+    public const string KeyOpenWealth = nameof(KeyOpenWealth);
+    public const string KeyOpenWiki = nameof(KeyOpenWiki);
 
-    public const string EscapeClosesOverlays = "EscapeClosesOverlays";
-    public const string RetainClipboard = "RetainClipboard";
-    public const string ChatCommands = "ChatCommands";
-    public const string PreferredWiki = "PreferredWiki";
-    public const string PoeNinjaLastClear = "PoeNinjaLastClear";
+    public const string EscapeClosesOverlays = nameof(EscapeClosesOverlays);
+    public const string RetainClipboard = nameof(RetainClipboard);
+    public const string ChatCommands = nameof(ChatCommands);
+    public const string PreferredWiki = nameof(PreferredWiki);
+    public const string PoeNinjaLastClear = nameof(PoeNinjaLastClear);
 
-    public const string MapCheckCloseWithMouse = "MapCheckCloseWithMouse";
-    public const string MapCheckDangerousRegex = "MapCheckDangerousRegex";
+    public const string MapCheckCloseWithMouse = nameof(MapCheckCloseWithMouse);
+    public const string MapCheckDangerousRegex = nameof(MapCheckDangerousRegex);
 
-    public const string PriceCheckCloseWithMouse = "PriceCheckCloseWithMouse";
-    public const string PriceCheckPredictionEnabled = "PriceCheckPredictionEnabled";
-    public const string PriceCheckLayout = "PriceCheckLayout";
-    public const string PriceCheckItemCurrency = "PriceCheckItemCurrency";
-    public const string PriceCheckBulkCurrency = "PriceCheckBulkCurrency";
-    public const string PriceCheckBulkMinimumStock = "PriceCheckBulkMinimumStock";
-    public const string PriceCheckCurrencyMode = "PriceCheckCurrencyMode";
+    public const string PriceCheckCloseWithMouse = nameof(PriceCheckCloseWithMouse);
+    public const string PriceCheckPredictionEnabled = nameof(PriceCheckPredictionEnabled);
+    public const string PriceCheckItemCurrency = nameof(PriceCheckItemCurrency);
+    public const string PriceCheckBulkCurrency = nameof(PriceCheckBulkCurrency);
+    public const string PriceCheckBulkMinimumStock = nameof(PriceCheckBulkMinimumStock);
+    public const string PriceCheckCurrencyMode = nameof(PriceCheckCurrencyMode);
 
-    public const string WealthEnabled = "WealthEnabled";
-    public const string WealthTrackedTabs = "WealthTrackedTabs";
-    public const string WealthItemTotalMinimum = "WealthItemTotalMinimum";
+    public const string WealthEnabled = nameof(WealthEnabled);
+    public const string WealthTrackedTabs = nameof(WealthTrackedTabs);
+    public const string WealthItemTotalMinimum = nameof(WealthItemTotalMinimum);
 }

@@ -1,0 +1,52 @@
+﻿@if (!string.IsNullOrEmpty(Label))
+{
+    <label for="@Id"
+           class="block mb-1 text-base font-medium dark:text-zinc-200">
+        @Label
+    </label>
+}
+
+<select id="@Id"
+        @onchange="OnChange"
+        class="@UiClasses.FormInputClasses p-2 text-base w-full mb-3">
+    @if (Options.All(x => x.Value != Value))
+    {
+        <option selected></option>
+    }
+
+    @foreach (var option in Options)
+    {
+        if (option.Value == Value)
+        {
+            <option selected value="@option.Value">@option.Label</option>
+        }
+        else
+        {
+            <option value="@option.Value">@option.Label</option>
+        }
+    }
+</select>
+
+@code {
+
+    [Parameter]
+    public string? Label { get; set; }
+
+    [Parameter]
+    public string? Value { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> ValueChanged { get; set; }
+
+    [Parameter]
+    public List<SelectOption> Options { get; set; } =
+    [
+    ];
+
+    private string Id { get; } = UiUtilities.GenerateId();
+
+    private async Task OnChange(ChangeEventArgs args)
+    {
+        await ValueChanged.InvokeAsync(args.Value?.ToString());
+    }
+}

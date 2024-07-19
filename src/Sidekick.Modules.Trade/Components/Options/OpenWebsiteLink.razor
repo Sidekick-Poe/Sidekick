@@ -1,40 +1,37 @@
-@using Sidekick.Apis.Poe.Bulk;
+@using Sidekick.Apis.Poe
+@using Sidekick.Apis.Poe.Bulk
+@using Sidekick.Common.Browser
+@using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Modules.Trade.Localization
 
 @if (!string.IsNullOrEmpty(QueryId))
 {
-    <MudTooltip Text="@Resources.OpenQueryInWebsite"
-                Placement="Placement.Left">
-        <MudIconButton Icon="@Icons.Material.Filled.OpenInBrowser"
-                       OnClick="OpenWebsite" />
-    </MudTooltip>
+    <ButtonLink OnClick="OpenWebsite">
+        <TextCaption>@Resources["Open Website"]</TextCaption>
+    </ButtonLink>
 }
 
-@inject TradeResources Resources
+@inject IStringLocalizer<TradeResources> Resources
 @inject ITradeSearchService TradeSearchService
 @inject IBulkTradeService BulkTradeService
 @inject IBrowserProvider BrowserProvider
+@inject PriceCheckService PriceCheckService
 
 @code {
-
-    [CascadingParameter]
-    public required Item Item { get; set; }
 
     [Parameter]
     public string? QueryId { get; set; }
 
-    [Parameter]
-    public TradeMode Mode { get; set; }
-
     private async Task OpenWebsite()
     {
-        if (QueryId == null)
+        if (QueryId == null || PriceCheckService.Item == null)
         {
             return;
         }
 
-        if (Mode == TradeMode.Bulk)
+        if (PriceCheckService.CurrentMode == TradeMode.Bulk)
         {
-            var uri = await BulkTradeService.GetTradeUri(Item, QueryId);
+            var uri = await BulkTradeService.GetTradeUri(PriceCheckService.Item, QueryId);
             BrowserProvider.OpenUri(uri);
         }
         else
@@ -43,4 +40,7 @@
             BrowserProvider.OpenUri(uri);
         }
     }
+
 }
+
+

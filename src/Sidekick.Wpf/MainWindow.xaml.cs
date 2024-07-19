@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Common.Blazor.Views;
+using Sidekick.Common.Ui.Views;
 using Sidekick.Wpf.Services;
 
 namespace Sidekick.Wpf;
@@ -19,6 +19,8 @@ public partial class MainWindow
     private bool isClosing;
 
     private IServiceScope Scope { get; set; }
+
+    public Guid Id { get; set; }
 
     public MainWindow(WpfViewLocator viewLocator)
     {
@@ -64,8 +66,8 @@ public partial class MainWindow
 
         try
         {
-            await viewLocator.cacheProvider.Set(
-                $"view_preference_{SidekickView?.Key}",
+            await viewLocator.CacheProvider.Set(
+                $"view_preference_{SidekickView?.CurrentView.Key}",
                 new ViewPreferences()
                 {
                     Width = (int)ActualWidth,

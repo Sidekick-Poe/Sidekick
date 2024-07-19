@@ -1,13 +1,15 @@
 @page "/wealth"
-@inherits SidekickView
+@inherits Sidekick.Common.Ui.Views.SidekickView
+@using Microsoft.EntityFrameworkCore
 @using Sidekick.Common.Database
 @using Sidekick.Common.Database.Tables
 @using Sidekick.Modules.Wealth.Components
 @using Sidekick.Common.Exceptions
 @using Sidekick.Common.Settings
 
+<AppTitle Title="Wealth Tracker"/>
 <MudDrawer Open="true"
-           Variant="@DrawerVariant.Persistent"
+           Variant="DrawerVariant.Persistent"
            Width="22em"
            Class="black"
            ClipMode="DrawerClipMode.Always">
@@ -17,7 +19,7 @@
                 Stash Tabs
             </MudText>
             <MudTooltip Text="Only the stash tabs selected in the settings are shown here. If you want to track more stash tabs, you have to do it from the settings." Style="max-width: 15rem;">
-                <MudIcon Icon="@Icons.Material.Filled.Info" Color="Color.Info"/>
+                <MudIcon Icon="Icons.Material.Filled.Info" Color="Color.Info"/>
             </MudTooltip>
         </div>
 
@@ -73,8 +75,6 @@
     public const string ChartHeight = "24vh";
     public const string InventoryHeight = "67vh";
 
-    public override string Title => "Wealth Tracker";
-
     public override int ViewWidth => 1280;
 
     public override int ViewHeight => 800;
@@ -87,6 +87,8 @@
 
     protected override async Task OnInitializedAsync()
     {
+        await base.OnInitializedAsync();
+
         var enabled = await SettingsService.GetBool(SettingKeys.WealthEnabled);
         if (!enabled)
         {
@@ -98,8 +100,6 @@
         SelectedStashIds = StashTabs
                            .Select(x => x.Id)
                            .ToList();
-
-        await base.OnInitializedAsync();
     }
 
     public void OnStashParsed()

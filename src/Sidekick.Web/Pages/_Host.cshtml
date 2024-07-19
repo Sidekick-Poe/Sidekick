@@ -17,25 +17,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-    <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
-    <link href="Sidekick.styles.css" rel="stylesheet" />
-    <link href="/css/site.css" rel="stylesheet" />
+    <link href="/css/app.css" rel="stylesheet"/>
 </head>
-<body>
-    <component type="typeof(Sidekick.Common.Blazor.Main)" render-mode="Server" />
-
-    <div id="blazor-error-ui">
-        <div class="content">
-            <div>
-                An error has occurred. This application may no longer respond until reloaded.<br />
-                If this issue keeps reoccurring, please open a ticket on our github page.
-            </div>
-
-            <a href="" class="reload">Reload</a>
-        </div>
-    </div>
+<body class="dark bg-stone-800">
+    <component type="typeof(Common.Blazor.Main)" render-mode="Server" />
 
     <script src="_framework/blazor.server.js"></script>
-    <script src="_content/MudBlazor/MudBlazor.min.js"></script>
 </body>
 </html>

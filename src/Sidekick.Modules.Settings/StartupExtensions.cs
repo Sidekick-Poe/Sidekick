@@ -13,7 +13,6 @@ namespace Sidekick.Modules.Settings
 
             services.AddSingleton<ISettingsService, SettingsService>();
             services.AddTransient<SettingsResources>();
-            services.AddTransient<SetupResources>();
 
             return services;
         }

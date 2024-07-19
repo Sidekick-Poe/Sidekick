@@ -10,13 +10,19 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.6" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.6" />
-    <PackageReference Include="MudBlazor" Version="6.20.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Sidekick.Apis.GitHub\Sidekick.Apis.GitHub.csproj" />
     <ProjectReference Include="..\Sidekick.Apis.Poe\Sidekick.Apis.Poe.csproj" />
+    <ProjectReference Include="..\Sidekick.Common.Ui\Sidekick.Common.Ui.csproj" />
     <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\Sidekick.Common.Ui\_Imports.razor">
+      <Link>_Imports.razor</Link>
+    </Content>
   </ItemGroup>
 
 </Project>

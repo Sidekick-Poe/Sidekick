@@ -1,7 +1,7 @@
-using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
+using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Modules.Wealth.Keybinds
 {

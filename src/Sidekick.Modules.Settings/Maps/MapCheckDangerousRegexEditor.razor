@@ -1,10 +1,9 @@
 @using Sidekick.Common.Settings
+@using Sidekick.Modules.Settings.Localization
 
-<MudTextField Value="@MapCheckDangerousRegex"
-              ValueChanged="@MapCheckDangerousRegexChanged"
-              T="string?"
-              Label="@Resources.Map_Dangerous_Regex"
-              Variant="Variant.Filled"/>
+<FormInput Value="@MapCheckDangerousRegex"
+           ValueChanged="@MapCheckDangerousRegexChanged"
+           Label="@Resources.Map_Dangerous_Regex"/>
 
 @inject SettingsResources Resources
 @inject ISettingsService SettingsService

@@ -1,5 +1,3 @@
-using Sidekick.Common.Extensions;
-
 namespace Sidekick.Common.Exceptions;
 
 /// <summary>
@@ -21,19 +19,4 @@ public class SidekickException : Exception
     }
 
     public string? AdditionalInformation { get; }
-
-    /// <summary>
-    ///     Grabs the relevent url from the error type value.
-    /// </summary>
-    /// <returns>The url.</returns>
-    public string ToUrl()
-    {
-        if (string.IsNullOrEmpty(AdditionalInformation))
-        {
-            return $"/error/{Message.EncodeBase64Url()}";
-        }
-
-        var escapedAdditionalInformation = AdditionalInformation.EncodeBase64Url();
-        return $"/error/{Message.EncodeBase64Url()}/{escapedAdditionalInformation}";
-    }
 }

@@ -1,52 +1,51 @@
+@using Sidekick.Apis.PoePriceInfo
+@using Sidekick.Apis.PoePriceInfo.Models
+@using Sidekick.Common.Game.Items
 @using Sidekick.Common.Settings
+@using Sidekick.Modules.Trade.Localization
 
 @if (Loading)
 {
-    <MudSkeleton Height="56px"/>
-    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+    <AppLoading/>
 }
 else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
 {
-    <MudGrid Spacing="0" Justify="Justify.Center" Class="align-start py-2">
-        <MudItem xs="6" Class="pr-2">
-            <MudText Typo="Typo.subtitle2" Align="Align.Right">@Resources.Prediction</MudText>
-            <MudText Typo="Typo.caption" Align="Align.Right" Style="@($"color: {GetConfidenceColor()};")" Class="d-block">@Resources.PredictionConfidence(Prediction.ConfidenceScore)</MudText>
-        </MudItem>
-        <MudItem xs="6" Class="pl-2">
-            <PriceRangeDisplay Min="Prediction.Min" Max="Prediction.Max" Currency="@Prediction.Currency" Class="justify-start"/>
-        </MudItem>
-    </MudGrid>
-    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+    <div class="flex flex-nowrap items-center pt-2">
+        <div class="text-right w-1/2 pr-2">
+            <Heading3>@Resources["PoePrices.info"]</Heading3>
+            <TextCaption Class="@ConfidenceColorClass">@Resources["Confidence: {0:0.#}%", Prediction.ConfidenceScore]</TextCaption>
+        </div>
+        <div class="text-left w-1/2 pl-2">
+            <PriceRangeDisplay Min="Prediction.Min" Max="Prediction.Max" Currency="@Prediction.Currency"/>
+        </div>
+    </div>
+
+    <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown"/>
 }
 
-@inject TradeResources Resources
+@inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
 @inject IPoePriceInfoClient Client
+@inject PriceCheckService PriceCheckService
 
 @code {
-
-    [CascadingParameter]
-    public required Item Item { get; set; }
 
     private bool Loading { get; set; }
 
     private PricePrediction? Prediction { get; set; }
 
-    private string GetConfidenceColor()
+    private string ConfidenceColorClass => Prediction?.ConfidenceScore switch
     {
-        return Prediction?.ConfidenceScore switch
-        {
-            (< 33) => Colors.Red.Default,
-            (< 66) => Colors.Yellow.Default,
-            _ => Colors.Green.Default
-        };
-    }
+        (< 33) => "text-red-500",
+        (< 66) => "text-yellow-500",
+        _ => "text-green-500"
+    };
 
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
 
-        if (!await SettingsService.GetBool(SettingKeys.PriceCheckPredictionEnabled))
+        if (PriceCheckService.Item == null || !await SettingsService.GetBool(SettingKeys.PriceCheckPredictionEnabled))
         {
             return;
         }
@@ -54,8 +53,9 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
         Loading = true;
         StateHasChanged();
 
-        Prediction = await Client.GetPricePrediction(Item);
+        Prediction = await Client.GetPricePrediction(PriceCheckService.Item);
         Loading = false;
         StateHasChanged();
     }
+
 }

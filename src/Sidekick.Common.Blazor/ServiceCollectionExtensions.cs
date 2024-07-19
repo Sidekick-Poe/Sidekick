@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Common.Blazor.Dialogs;
 using Sidekick.Common.Blazor.Initialization;
-using Sidekick.Common.Blazor.Update;
+using Sidekick.Common.Ui.Dialogs;
+using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Common.Blazor
 {
@@ -19,7 +19,8 @@ namespace Sidekick.Common.Blazor
         {
             services.AddTransient<DialogResources>();
             services.AddTransient<InitializationResources>();
-            services.AddTransient<UpdateResources>();
+
+            services.AddScoped<ICurrentView, CurrentView>();
 
             services.AddSingleton<ISidekickDialogs, DialogService>();
             services.AddSingleton((sp) => (DialogService)sp.GetRequiredService<ISidekickDialogs>());

@@ -1,3 +1,5 @@
+using Sidekick.Apis.Poe.Trade.Models;
+using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.Settings;
@@ -24,17 +26,21 @@ public static class DefaultSettings
 
     public static bool RetainClipboard => true;
 
-    public static string PreferredWiki => WikiSetting.PoeWiki.ToString();
+    public static bool WealthEnabled => false;
+
+    public static string PreferredWiki => WikiSetting.PoeWiki.GetValueAttribute() ?? "poewiki";
 
     public static bool PriceCheckPredictionEnabled => true;
 
     public static string MapCheckDangerousRegex => "reflect|regen";
 
-    public static string PriceCheckBulkCurrency => "divine";
+    public static string PriceCheckItemCurrency => "";
+
+    public static string PriceCheckBulkCurrency => TradeCurrency.Divine.GetValueAttribute() ?? "divine";
 
     public static int PriceCheckBulkMinimumStock => 5;
 
-    public static string PriceCheckCurrencyLayout => "Item";
+    public static string PriceCheckCurrencyMode => TradeMode.Bulk.GetValueAttribute() ?? "bulk";
 
     public static List<ChatSetting> ChatCommands =>
     [

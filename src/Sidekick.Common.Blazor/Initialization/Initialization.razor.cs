@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
+using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Common.Blazor.Initialization
 {
@@ -52,8 +52,6 @@ namespace Sidekick.Common.Blazor.Initialization
 
         public Task? InitializationTask { get; set; }
 
-        public override string Title => "Initialize";
-
         public override SidekickViewType ViewType => SidekickViewType.Modal;
 
         public override int ViewHeight => 210;
@@ -96,8 +94,14 @@ namespace Sidekick.Common.Blazor.Initialization
                 // "Ready" label on the UI before closing the view
                 Completed = Count;
                 await ReportProgress();
+
+#if DEBUG
+                await ViewLocator.Open("/development");
+                await CurrentView.Close();
+#else
                 await Task.Delay(4000);
-                await Close();
+                await CurrentView.Close();
+#endif
             }
             catch (Exception ex)
             {
@@ -171,7 +175,9 @@ namespace Sidekick.Common.Blazor.Initialization
                             BrowserProvider.OpenSidekickWebsite();
                             return Task.CompletedTask;
                         }),
-                    new(label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
+
+                    // new(label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
+
                     new(label: "Settings", onClick: () => ViewLocator.Open("/settings")),
                     new(
                         label: "Exit",

@@ -232,14 +232,14 @@ namespace Sidekick.Apis.Poe.Trade
             object value,
             double? delta = null,
             bool? enabled = false,
-            double? min = null)
+            decimal? min = null)
         {
             if (label == null)
             {
                 return;
             }
 
-            if (double.TryParse(value.ToString(), out var doubleValue) && doubleValue != 0)
+            if (decimal.TryParse(value.ToString(), out var doubleValue) && doubleValue != 0)
             {
                 filters.Add(new PropertyFilter(
                     enabled: enabled,

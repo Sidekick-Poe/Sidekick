@@ -1,0 +1,81 @@
+@using Sidekick.Common.Exceptions
+
+<LoggingErrorBoundary @ref="Boundary">
+    <ChildContent>
+        @ChildContent
+    </ChildContent>
+    <ErrorContent>
+        @context.GetType()
+        @if (ErrorContent != null)
+        {
+            @ErrorContent(this)
+        }
+        else if (ShowError)
+        {
+            <AlertError>
+                <Heading3>An error occured!</Heading3>
+                <TextBase>@Message</TextBase>
+
+                @if (!string.IsNullOrEmpty(AdditionalInformation))
+                {
+                    <TextCaption class="mt-2">Additional Information: <b>@AdditionalInformation</b></TextCaption>
+                }
+            </AlertError>
+        }
+    </ErrorContent>
+</LoggingErrorBoundary>
+
+@inject ICurrentView CurrentView
+
+@code {
+
+    /// <summary>
+    /// Gets or sets the content of the wrapper.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// Gets or sets the content of the wrapper.
+    /// </summary>
+    [Parameter]
+    public RenderFragment<SidekickErrorBoundary>? ErrorContent { get; set; }
+
+    [Parameter]
+    public bool Root { get; set; }
+
+    private LoggingErrorBoundary? Boundary { get; set; }
+
+    private SidekickException? Exception
+    {
+        get
+        {
+            if (Boundary?.CurrentException is SidekickException sidekickException)
+            {
+                return sidekickException;
+            }
+
+            return null;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (Boundary?.CurrentException != null)
+        {
+            if (!CurrentView.IsInitialized)
+            {
+                await CurrentView.Close();
+            }
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    private bool ShowError => Exception?.GetType() != typeof(SilentException);
+
+    public string Message => Exception?.Message ?? "An error has occurred. This application may no longer respond until reloaded.\nIf this issue keeps reoccurring, please open a ticket on our github page.";
+
+    public string? AdditionalInformation => Exception?.AdditionalInformation;
+
+}

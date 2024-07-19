@@ -1,56 +1,47 @@
 @page "/initialize"
-@layout ModalLayout
-@inherits SidekickView
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
-<SidekickLogo />
+<AppTitle Title="@null"/>
+<LayoutSimple>
+    <TopContent>
+        <AppLogo/>
+    </TopContent>
 
-@if (Error)
-{
-    <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Class="my-1">@Resources.Error</MudAlert>
-}
-else
-{
-    <MudCard Class="my-1">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.h5" Align="Align.Center">@Step</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent>
+    <ChildContent>
+        @if (Error)
+        {
+            <AlertError>@Resources.Error</AlertError>
+        }
+        else
+        {
+            <AppContainer>
+                <Heading3 Class="mb-2 text-center">@Step</Heading3>
+                @if (Count != Completed)
+                {
+                    <ProgressBar Percent="Percentage"/>
+                }
+                else
+                {
+                    <TextBase Class="text-center">@WelcomeMessage</TextBase>
+                }
+            </AppContainer>
+        }
+    </ChildContent>
+
+    <BottomContent>
+        <div class="px-3 py-2 flex justify-center gap-2">
             @if (Count != Completed)
             {
-                <MudProgressLinear Color="Color.Primary"
-                           Value="Percentage"
-                           Min="0"
-                           Max="100" />
+            <ButtonPrimary OnClick="Exit">
+                @Resources.Exit
+            </ButtonPrimary>
             }
             else
             {
-                <MudText Typo="Typo.body1" Align="Align.Center">
-                    @WelcomeMessage
-                </MudText>
+            <ButtonPrimary OnClick="CurrentView.Close">
+                @Resources.Close
+            </ButtonPrimary>
             }
-        </MudCardContent>
-    </MudCard>
-}
-
-@if (Count != Completed)
-{
-    <div class="d-flex justify-end">
-        <MudButton OnClick="Exit"
-               Variant="Variant.Text"
-               Color="Color.Default">
-            @Resources.Exit
-        </MudButton>
-    </div>
-}
-else
-{
-    <div class="d-flex justify-end">
-        <MudButton OnClick="Close"
-               Variant="Variant.Text"
-               Color="Color.Default">
-            @Resources.Close
-        </MudButton>
-    </div>
-}
+        </div>
+    </BottomContent>
+</LayoutSimple>

@@ -1,34 +1,26 @@
 @page "/settings/map"
 @layout SettingsLayout
-@inherits SidekickView
+@using Sidekick.Modules.Settings.Localization
+@using Sidekick.Modules.Settings.Components
+@using Sidekick.Modules.Settings.General
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
-<div class="pa-3">
-    <MudText Typo="Typo.h1" Class="mb-3">@Resources.Map</MudText>
+<AppTitle Title="@Resources["Settings"]"/>
+<AppContainer>
+    <Heading2 Class="mb-3">@Resources["Keybindings"]</Heading2>
+    <KeyOpenMapCheckEditor/>
+    <KeyCloseEditor/>
 
-    <MudPaper Class="pa-3 mb-3">
-        <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Keybinds</MudText>
-        <KeyOpenMapCheckEditor/>
-        <KeyCloseEditor/>
-    </MudPaper>
+    <LayoutDivider/>
 
-    <MudPaper Class="pa-3 mb-3">
-        <MudText Typo="Typo.h3" Class="mb-3">@Resources.Map_Dangerous</MudText>
-        <MapCheckDangerousRegexEditor/>
-    </MudPaper>
+    <Heading2 Class="mb-3">@Resources["Dangerous Modifiers"]</Heading2>
+    <MapCheckDangerousRegexEditor/>
 
-    <MudPaper Class="pa-3">
-        <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Other</MudText>
-        <MapCheckCloseWithMouseEditor/>
-        <EscapeClosesOverlaysEditor/>
-    </MudPaper>
-</div>
+    <LayoutDivider/>
 
-@inject SettingsResources Resources
+    <Heading2 Class="mb-3">@Resources["Other Settings"]</Heading2>
+    <MapCheckCloseWithMouseEditor/>
+    <EscapeClosesOverlaysEditor/>
+</AppContainer>
 
-@code {
-
-    public override string Title => Resources.Title;
-
-    public override bool ShowSettingsButton => false;
-
-}
+@inject IStringLocalizer<SettingsResources> Resources

@@ -156,13 +156,16 @@ namespace Sidekick.Modules.Settings
 
             try
             {
-                if (Enum.TryParse<TEnum>(
-                        defaultProperty
-                            .GetValue(null)?
-                            .ToString(),
-                        out var defaultValue))
+                var propertyValue = defaultProperty.GetValue(null)?.ToString();
+                if (Enum.TryParse<TEnum>(propertyValue, out var defaultValue))
                 {
                     return defaultValue;
+                }
+
+                var defaultEnumValueFromAttribute = propertyValue?.GetEnumFromValue<TEnum>();
+                if (defaultEnumValueFromAttribute != null)
+                {
+                    return defaultEnumValueFromAttribute;
                 }
             }
             catch (Exception e)

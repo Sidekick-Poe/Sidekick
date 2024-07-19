@@ -1,29 +1,34 @@
+@using Sidekick.Common.Game.Items
+
 @if (ModifierLine.Modifiers.Any())
 {
-    var modifier = ModifierLine?.Modifiers.First();
+    var modifier = ModifierLine.Modifiers.FirstOrDefault();
 
-    <div class="modifiers">
-        <MudText Typo="Typo.body1" Class="modifier font-smallcaps" Align="Align.Center">
-            <ItemModifierText Text="@ModifierLine.Text"
-                              Category="modifier.Category" />
-            @if (!string.IsNullOrWhiteSpace(modifier.Tier))
-            {
-                <span class="tier @GetTierClass(modifier.Tier)">@modifier.Tier</span>
-            }
-        </MudText>
-    </div>
+    <TextBase Class="relative px-2 font-caps text-center text-[##8888FF] leading-none py-0.5">
+        <ItemModifierText Category="modifier?.Category">@ModifierLine.Text</ItemModifierText>
+        @if (!string.IsNullOrWhiteSpace(modifier?.Tier))
+        {
+            <span class="absolute top-0.5 left-[-6px] @GetTierClass(modifier.Tier)">@modifier.Tier</span>
+        }
+    </TextBase>
 
-    if (IsLastOfCategory && (Category == ModifierCategory.Implicit || Category == ModifierCategory.Enchant))
+    if (IsLastOfCategory && Category is ModifierCategory.Implicit or ModifierCategory.Enchant)
     {
-        <ItemSeparator Rarity="Item.Metadata.Rarity" />
+        <ItemSeparator Rarity="Item.Metadata.Rarity"/>
     }
 }
 
 @code {
-    [Parameter] public Item Item { get; set; }
-    [Parameter] public ModifierLine ModifierLine { get; set; }
 
-    private ModifierCategory Category => ModifierLine.Modifiers.FirstOrDefault()?.Category ?? ModifierCategory.Undefined;
+    [Parameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public required ModifierLine ModifierLine { get; set; }
+
+    private ModifierCategory Category => ModifierLine.Modifiers.FirstOrDefault()
+                                                     ?.Category
+                                         ?? ModifierCategory.Undefined;
 
     private bool IsLastOfCategory
     {
@@ -31,7 +36,10 @@
         {
             var index = Item.ModifierLines.IndexOf(ModifierLine);
             var next = Item.ModifierLines.ElementAtOrDefault(index + 1);
-            if (next != null && next.Modifiers.FirstOrDefault().Category == Category)
+            if (next != null
+                && next.Modifiers.FirstOrDefault()
+                       ?.Category
+                == Category)
             {
                 return false;
             }
@@ -40,5 +48,6 @@
         }
     }
 
-    private string GetTierClass(string tier) => tier.StartsWith("P") ? "prefix" : "suffix";
+    private string GetTierClass(string tier) => tier.StartsWith("P") ? "text-[#ec7676]" : "text-[#7aaff1]";
+
 }

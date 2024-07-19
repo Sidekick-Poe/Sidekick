@@ -1,25 +1,30 @@
+@using Sidekick.Apis.Poe
 
-<div class="d-flex flex-row align-center @Class">
-    <MudText Typo="Typo.h3">@Min.ToString("0.#")</MudText>
-    <MudText Typo="Typo.body1" Class="mx-1">-</MudText>
-    <MudText Typo="Typo.h3">@Max.ToString("0.#")</MudText>
+<div class="flex flex-nowrap gap-1 items-center">
+    <Heading2>@Min.ToString("0.#")</Heading2>
+    <TextCaption Class="mx-1 text-[#a38d6d]">-</TextCaption>
+    <Heading2>@Max.ToString("0.#")</Heading2>
+
     @if (ImageUrl != null)
     {
-        <img src="@ImageUrl" />
-    }
-    else
-    {
-        <MudText Typo="Typo.body1" Class="mx-1">&times; @Currency</MudText>
+        <TextBase Class="text-[#a38d6d]">&times;</TextBase>
+        <img src="@ImageUrl" class="max-h-10" alt="@Currency"/>
     }
 </div>
 
+@inject IItemStaticDataProvider ItemStaticDataProvider
+
 @code {
-    [Inject] private IItemStaticDataProvider ItemStaticDataProvider { get; set; }
 
-    [Parameter] public string Currency { get; set; }
-    [Parameter] public double Min { get; set; }
-    [Parameter] public double Max { get; set; }
-    [Parameter] public string Class { get; set; } = "justify-end";
+    [Parameter]
+    public string Currency { get; set; } = "chaos";
 
-    private string ImageUrl => ItemStaticDataProvider.GetImage(Currency);
+    [Parameter]
+    public double Min { get; set; }
+
+    [Parameter]
+    public double Max { get; set; }
+
+    private string? ImageUrl => ItemStaticDataProvider.GetImage(Currency);
+
 }

@@ -1,107 +1,69 @@
-@using Sidekick.Apis.Poe.Trade.Results;
+@using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Common.Settings
+@using Sidekick.Modules.Trade.Localization
+@using Sidekick.Modules.Trade.Components.Options
 
-@if (Visible)
+@if (PriceCheckService.CurrentMode != TradeMode.Item)
 {
-    <ItemsOptions @bind-Layout="Layout"
-                  QueryId="@QueryResult?.Id"
-                  Count="Results?.Count ?? 0"
-                  Total="QueryResult?.Total ?? 0"/>
+    return;
+}
 
-    @if (Results != null)
+<div class="max-w-[800px] mx-auto">
+    @if (PriceCheckService.ItemTradeResult != null)
     {
-        foreach (var result in Results)
+        <div class="flex items-center w-full justify-between mb-3">
+            <TextBase Class="text-teal-500">@LeagueId</TextBase>
+            <div class="flex flex-nowrap gap-3">
+                <CountString Count="PriceCheckService.TradeItems?.Count ?? 0"
+                             Total="PriceCheckService.ItemTradeResult.Total"/>
+                <OpenWebsiteLink QueryId="@PriceCheckService.ItemTradeResult.Id"/>
+            </div>
+        </div>
+
+        @if (PriceCheckService.TradeItems != null)
         {
-            <ItemComponent @key="result.Id" Item="result" Layout="Layout"/>
+            foreach (var result in PriceCheckService.TradeItems)
+            {
+                <ItemComponent @key="result.Id" Item="result"/>
+            }
+        }
+
+        @if (!PriceCheckService.IsLoading && !FullyLoaded && PriceCheckService.TradeItems != null)
+        {
+            <div class="flex justify-center">
+                <ButtonPrimary OnClick="PriceCheckService.LoadMoreItems">@Resources.LoadMoreData</ButtonPrimary>
+            </div>
         }
     }
 
-    @if (IsFetching)
+    @if (PriceCheckService.IsLoading)
     {
-        <LoadingAlert Text="Loading results"/>
+        <AppLoading/>
     }
-    else if (!FullyLoaded && Results != null)
-    {
-        <MudButton Variant="Variant.Outlined" Color="Color.Info" FullWidth="true" OnClick="LoadMoreData" Class="mt-2">@Resources.LoadMoreData</MudButton>
-    }
-}
+</div>
 
-@inject  TradeResources Resources
-@inject  ITradeSearchService TradeSearchService
-@inject  ISettingsService SettingsService
-@inject  NavigationManager NavigationManager
-@inject  ITradeFilterService TradeFilterService
+@implements IDisposable
+
+@inject TradeResources Resources
+@inject ISettingsService SettingsService
+@inject PriceCheckService PriceCheckService
 
 @code {
 
-    [CascadingParameter]
-    public required Item Item { get; set; }
+    private string? LeagueId { get; set; }
 
-    [CascadingParameter]
-    public required FiltersModel Filters { get; set; }
+    private bool FullyLoaded => (PriceCheckService.TradeItems?.Count ?? 0) == (PriceCheckService.ItemTradeResult?.Result?.Count ?? 0);
 
-    [Parameter]
-    public bool Visible { get; set; }
-
-    private TradeSearchResult<string>? QueryResult { get; set; }
-
-    private List<TradeItem>? Results { get; set; }
-
-    private bool FullyLoaded => (Results?.Count ?? 0) == (QueryResult?.Result?.Count ?? 0);
-
-    private bool IsFetching { get; set; }
-
-    private Layout Layout { get; set; }
-
-    public async Task Search()
+    protected override async Task OnInitializedAsync()
     {
-        Results = new List<TradeItem>();
-        IsFetching = true;
-        StateHasChanged();
-
-        var tradeCurrency = await SettingsService.GetEnum<TradeCurrency>(SettingKeys.PriceCheckItemCurrency) ?? TradeCurrency.Chaos;
-        QueryResult = await TradeSearchService.Search(
-            Item,
-            tradeCurrency,
-            Filters.PropertyFilters,
-            Filters.ModifierFilters,
-            Filters.PseudoFilters);
-        IsFetching = false;
-
-        await LoadMoreData();
-        StateHasChanged();
+        LeagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        PriceCheckService.LoadingChanged += StateHasChanged;
+        await base.OnInitializedAsync();
     }
 
-    public async Task LoadMoreData()
+    public void Dispose()
     {
-        if (IsFetching || QueryResult?.Result == null || QueryResult?.Id == null)
-        {
-            return;
-        }
-
-        var ids = QueryResult
-                  .Result.Skip(Results?.Count ?? 0)
-                  .Take(10)
-                  .ToList();
-        if (ids.Count == 0)
-        {
-            return;
-        }
-
-        IsFetching = true;
-
-        var result = await TradeSearchService.GetResults(QueryResult.Id, ids, Filters.PseudoFilters);
-        Results?.AddRange(result);
-
-        IsFetching = false;
-
-        StateHasChanged();
-    }
-
-    private void LayoutChanged(Layout layout)
-    {
-        Layout = layout;
-        StateHasChanged();
+        PriceCheckService.LoadingChanged -= StateHasChanged;
     }
 
 }

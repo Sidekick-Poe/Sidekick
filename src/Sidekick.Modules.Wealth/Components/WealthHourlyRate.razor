@@ -1,7 +1,7 @@
 @if (CurrencyPerHour == null)
 {
     <div class="d-flex align-center flex-nowrap">
-        <MudIcon Size="Size.Small" Icon="@Icons.Material.Filled.Warning" Color="Color.Warning"/>
+        <MudIcon Size="Size.Small" Icon="Icons.Material.Filled.Warning" Color="Color.Warning"/>
         <div class="ml-3 font-smallcaps">Chaos per Hour will be calculated at the next snapshot.</div>
     </div>
 }
@@ -10,6 +10,7 @@ else
     <div class="font-smallcaps"><span style="color:gold; font-size:1.5em;">@CurrencyPerHour</span> Chaos per Hour</div>
 }
 
+@using Microsoft.EntityFrameworkCore
 @using Sidekick.Common.Database
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject WealthParser WealthParser
@@ -56,7 +57,7 @@ else
             return;
         }
 
-        var minutesBetweenSnapshots = (latestSnapshot.Date - oneHourAgoSnapshot.Date).TotalMinutes;
+        var minutesBetweenSnapshots = (decimal)(latestSnapshot.Date - oneHourAgoSnapshot.Date).TotalMinutes;
         if (minutesBetweenSnapshots == 0)
         {
             CurrencyPerHour = null;

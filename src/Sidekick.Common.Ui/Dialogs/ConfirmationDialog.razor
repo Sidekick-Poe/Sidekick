@@ -1,0 +1,49 @@
+@page "/dialog/confirm/{message}"
+@using Sidekick.Common.Extensions
+@inherits SidekickView
+
+<LayoutSimple>
+    <TopContent>
+        <AppLogo/>
+    </TopContent>
+
+    <ChildContent>
+        <AppContainer>
+            <Heading3 Class="mb-3 text-center">@Message.DecodeBase64Url()</Heading3>
+        </AppContainer>
+    </ChildContent>
+    <BottomContent>
+        <div class="px-3 py-2 flex justify-center gap-2">
+            <ButtonSecondary OnClick="No">
+                @Resources["Cancel"]
+            </ButtonSecondary>
+            <ButtonPrimary OnClick="Yes">
+                @Resources["Confirm"]
+            </ButtonPrimary>
+        </div>
+    </BottomContent>
+</LayoutSimple>
+
+@inject IStringLocalizer<DialogResources> Resources;
+@inject DialogService Service;
+
+@code {
+
+    [Parameter]
+    public string? Message { get; set; }
+
+    public override SidekickViewType ViewType => SidekickViewType.Modal;
+
+    private async Task Yes()
+    {
+        Service.SetConfirmationResult(true);
+        await CurrentView.Close();
+    }
+
+    private async Task No()
+    {
+        Service.SetConfirmationResult(false);
+        await CurrentView.Close();
+    }
+
+}

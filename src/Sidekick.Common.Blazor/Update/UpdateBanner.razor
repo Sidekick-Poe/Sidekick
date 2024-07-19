@@ -1,32 +1,39 @@
 @using Sidekick.Apis.GitHub;
 @using Sidekick.Apis.GitHub.Models;
-@using Sidekick.Common.Blazor.Update;
-@using Sidekick.Common.Blazor.Views;
 @using Sidekick.Common.Browser;
-@using Sidekick.Common.Platform;
+@using Sidekick.Common.Ui.Views
 @using Sidekick.Common;
 
-@if (Release != null && Release.IsNewerVersion)
+@if (Release is
+     {
+         IsNewerVersion: true
+     })
 {
-    <MudAlert Severity="Severity.Info" Dense="true" Variant="Variant.Filled">
-        @Resources.Available
-        @if (Release.IsExecutable)
-        {
-            <MudLink OnClick="Download" Class="white-text" Style="text-decoration: underline;">@Resources.Download</MudLink>
-        }
-        else
-        {
-            <MudLink OnClick="OpenWebsite" Class="white-text" Style="text-decoration: underline;">@Resources.Download</MudLink>
-        }
-    </MudAlert>
+    <AlertInfo>
+        <div class="flex items-center gap-2">
+            <TextBase>@Resources["A new update is available!"]</TextBase>
+            <TextCaption>
+                @if (Release.IsExecutable)
+                {
+                    <ButtonLink OnClick="Download">@Resources["Download and Install"]</ButtonLink>
+                }
+                else
+                {
+                    <ButtonLink OnClick="OpenWebsite">@Resources["Open Website"]</ButtonLink>
+                }
+            </TextCaption>
+        </div>
+    </AlertInfo>
 }
 
-@inject IGitHubClient GitHubClient;
-@inject UpdateResources Resources;
-@inject IViewLocator ViewLocator;
-@inject ISidekickDialogs DialogService;
-@inject IBrowserProvider Browser;
+@inject IGitHubClient GitHubClient
+@inject IViewLocator ViewLocator
+@inject ISidekickDialogs DialogService
+@inject IBrowserProvider Browser
+@inject IStringLocalizer<UpdateResources> Resources
+
 @code {
+
     private GitHubRelease? Release { get; set; }
 
     /// <inheritdoc/>
@@ -35,7 +42,11 @@
         Release = await GitHubClient.GetLatestRelease();
 
 #if DEBUG
-    Release = null;
+        Release = new GitHubRelease()
+        {
+            IsNewerVersion = true,
+            IsExecutable = true,
+        };
 #endif
 
         await base.OnInitializedAsync();
@@ -43,7 +54,7 @@
 
     private async Task Download()
     {
-        if (!await DialogService.OpenConfirmationModal(Resources.Confirm))
+        if (!await DialogService.OpenConfirmationModal(Resources["Are you sure you want to download and install this update?"]))
         {
             return;
         }
@@ -55,4 +66,5 @@
     {
         Browser.OpenSidekickWebsite();
     }
+
 }

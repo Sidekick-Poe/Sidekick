@@ -1,0 +1,66 @@
+﻿<div class="relative w-full h-3 overflow-hidden @(Square ? "" : "rounded-full") bg-neutral-700">
+    <span style="@(Indeterminate ? $"margin-left: {Value - 22}%; width: 30%;" : $"width: {Value}%")" class="absolute w-24 h-full duration-300 ease-linear bg-violet-600" x-cloak></span>
+</div>
+
+@using System.Timers
+@implements IDisposable
+
+@code {
+
+    [Parameter]
+    public int Percent { get; set; }
+
+    [Parameter]
+    public bool Indeterminate { get; set; }
+
+    [Parameter]
+    public bool Square { get; set; }
+
+    private int Value { get; set; }
+
+    private Timer? Timer { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        Value = Percent;
+
+        if (Indeterminate)
+        {
+            Timer = new Timer(100);
+            Timer.Elapsed += TimerOnElapsed;
+            Timer.Start();
+        }
+        else if (Timer != null)
+        {
+            Timer.Elapsed -= TimerOnElapsed;
+            Timer.Dispose();
+        }
+
+        base.OnParametersSet();
+    }
+
+    private void TimerOnElapsed(
+        object? sender,
+        ElapsedEventArgs e)
+    {
+        InvokeAsync(
+            () =>
+            {
+                Value += 5;
+                if (Value > 100)
+                {
+                    Value = 0;
+                }
+
+                StateHasChanged();
+            });
+    }
+
+    public void Dispose()
+    {
+        if (Timer == null) return;
+        Timer.Elapsed -= TimerOnElapsed;
+        Timer.Dispose();
+    }
+
+}

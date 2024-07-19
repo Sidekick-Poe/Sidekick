@@ -1,6 +1,5 @@
 using ElectronNET.API;
 using ElectronNET.API.Entities;
-using MudBlazor.Services;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
 using Sidekick.Apis.PoeNinja;
@@ -8,9 +7,9 @@ using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
-using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Database;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Ui.Views;
 using Sidekick.Electron;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
@@ -31,15 +30,6 @@ builder.Services.AddLocalization();
 
 builder
     .Services
-
-    // MudBlazor
-    .AddMudServices()
-    .AddMudBlazorDialog()
-    .AddMudBlazorSnackbar()
-    .AddMudBlazorResizeListener()
-    .AddMudBlazorScrollListener()
-    .AddMudBlazorScrollManager()
-    .AddMudBlazorJsApi()
 
     // Common
     .AddSidekickCommon()

@@ -1,7 +1,8 @@
+@using Sidekick.Apis.Poe.Clients
 @using Sidekick.Apis.Poe.Clients.States;
 @if (WealthParser.IsRunning())
 {
-    <MudAlert Severity="Severity.Success" Variant="Variant.Filled" Square="true" Dense="true" Icon="@Icons.Material.Filled.PlayCircle">
+    <MudAlert Severity="Severity.Success" Variant="Variant.Filled" Square="true" Dense="true" Icon="Icons.Material.Filled.PlayCircle">
         <div class="align-center d-flex flex-wrap justify-center">
             <div>The wealth tracker is running.</div>
 
@@ -14,29 +15,29 @@
                         break;
                     case ApiState.Throttled:
                         <div class="mr-2">Throttled</div>
-                        <MudIcon Icon="@Icons.Material.Filled.Warning" Color="Color.Warning" />
+                        <MudIcon Icon="Icons.Material.Filled.Warning" Color="Color.Warning" />
                         break;
                     case ApiState.TimedOut:
                         <div class="mr-2">Timed Out</div>
-                        <MudIcon Icon="@Icons.Material.Filled.Error" Color="Color.Error" />
+                        <MudIcon Icon="Icons.Material.Filled.Error" Color="Color.Error" />
                         break;
                     default:
                         <div class="mr-2">Unknown</div>
-                        <MudIcon Icon="@Icons.Material.Filled.QuestionMark" Color="Color.Error" />
+                        <MudIcon Icon="Icons.Material.Filled.QuestionMark" Color="Color.Error" />
                         break;
                 }
             </div>
 
-            <MudButton OnClick="() => Stop()" Size="Size.Small" DisableElevation="true" Color="Color.Success" Variant="Variant.Text" StartIcon="@Icons.Material.Filled.Stop" Class="white ma-1">Stop</MudButton>
+            <MudButton OnClick="() => Stop()" Size="Size.Small" DisableElevation="true" Color="Color.Success" Variant="Variant.Text" StartIcon="Icons.Material.Filled.Stop" Class="white ma-1">Stop</MudButton>
         </div>
     </MudAlert>
 }
 else
 {
-    <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Square="true" Dense="true" Icon="@Icons.Material.Filled.StopCircle">
+    <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Square="true" Dense="true" Icon="Icons.Material.Filled.StopCircle">
         <div class="align-center d-flex flex-wrap justify-center">
             <div>The wealth tracker is stopped.</div>
-            <MudButton OnClick="() => Start()" Size="Size.Large" DisableElevation="true" Color="Color.Error" Variant="Variant.Text" StartIcon="@Icons.Material.Filled.PlayArrow" Class="white ma-1">Start</MudButton>
+            <MudButton OnClick="() => Start()" Size="Size.Large" DisableElevation="true" Color="Color.Error" Variant="Variant.Text" StartIcon="Icons.Material.Filled.PlayArrow" Class="white ma-1">Start</MudButton>
         </div>
     </MudAlert>
 }

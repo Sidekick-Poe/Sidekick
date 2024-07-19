@@ -1,0 +1,36 @@
+<div class="h-full flex flex-col">
+    <div class="dark:bg-stone-900">
+        @TopContent
+    </div>
+    <div class="grow flex flex-nowrap items-stretch">
+        <div class="w-[22em] relative">
+            <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden dark:bg-stone-900">
+                @LeftContent
+            </div>
+        </div>
+        <div class="grow relative">
+            <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden">
+                @ChildContent
+            </div>
+        </div>
+    </div>
+    <div class="dark:bg-stone-900">
+        @BottomContent
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? TopContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? LeftContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? BottomContent { get; set; }
+
+}

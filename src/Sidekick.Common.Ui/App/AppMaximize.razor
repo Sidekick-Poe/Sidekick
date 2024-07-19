@@ -1,0 +1,28 @@
+<button type="button"
+        @onclick="OnClick"
+        @onclick:preventDefault="true"
+        @onclick:stopPropagation="true"
+        tabindex="-1"
+        title="Maximize"
+        class="p-2 text-base font-medium border-l tracking-wide text-white transition-colors duration-200 border-stone-700 bg-stone-950 hover:bg-stone-700 hover:border-stone-600">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 fill-current">
+        <path d="M4,4H20V20H4V4M6,8V18H18V8H6Z"/>
+    </svg>
+</button>
+
+@inject IViewLocator ViewLocator
+@inject ICurrentView CurrentView
+
+@code {
+
+    private async Task OnClick()
+    {
+        if (CurrentView.Current == null)
+        {
+            return;
+        }
+
+        await ViewLocator.Maximize(CurrentView.Current);
+    }
+
+}

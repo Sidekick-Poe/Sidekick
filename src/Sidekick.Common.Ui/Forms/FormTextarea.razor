@@ -1,0 +1,50 @@
+﻿@if (!string.IsNullOrEmpty(Label))
+{
+    <label for="@Id"
+           class="block mb-1 text-base font-medium dark:text-zinc-200">
+        @Label
+    </label>
+}
+
+<div class="flex flex-nowrap gap-1 mb-3">
+    <textarea id="@Id"
+              @onchange="OnChange"
+              @onfocus="OnFocus"
+              @onblur="OnBlur"
+              class="@UiClasses.FormInputClasses p-2 text-base min-w-0 grow min-h-24">
+
+          @Value
+
+    </textarea>
+
+    @AdornmentContent
+</div>
+
+@code {
+
+    [Parameter]
+    public string? Label { get; set; }
+
+    [Parameter]
+    public string? Value { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> ValueChanged { get; set; }
+
+    [Parameter]
+    public EventCallback<FocusEventArgs> OnFocus { get; set; }
+
+    [Parameter]
+    public EventCallback<FocusEventArgs> OnBlur { get; set; }
+
+    [Parameter]
+    public RenderFragment? AdornmentContent { get; set; }
+
+    private string Id { get; } = UiUtilities.GenerateId();
+
+    private async Task OnChange(ChangeEventArgs args)
+    {
+        await ValueChanged.InvokeAsync(args.Value?.ToString());
+    }
+
+}

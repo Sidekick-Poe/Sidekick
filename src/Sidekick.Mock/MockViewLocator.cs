@@ -1,11 +1,15 @@
-using System.Threading.Tasks;
-using Sidekick.Common.Blazor.Views;
+using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Mock
 {
     public class MockViewLocator : IViewLocator
     {
         public Task Open(string url)
+        {
+            return Task.CompletedTask;
+        }
+
+        public Task CloseAll()
         {
             return Task.CompletedTask;
         }
@@ -22,7 +26,7 @@ namespace Sidekick.Mock
 
         public Task Close(SidekickView view)
         {
-            view.NavigationManager.NavigateTo("/home");
+            view.NavigationManager.NavigateTo("/development");
             return Task.CompletedTask;
         }
 

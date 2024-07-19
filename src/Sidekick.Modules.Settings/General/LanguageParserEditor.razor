@@ -1,16 +1,10 @@
+@using Sidekick.Common.Game.Languages
 @using Sidekick.Common.Settings
-<MudSelect T="string?"
-           Label="@Resources.Language_Parser"
-           Variant="Variant.Filled"
-           Value="@Language"
-           ValueChanged="LanguageChanged"
-           Required="true"
-           RequiredError="Language is required.">
-    @foreach (var option in Options)
-    {
-        <MudSelectItem Value="@option.Key">@option.Value</MudSelectItem>
-    }
-</MudSelect>
+@using Sidekick.Modules.Settings.Localization
+<FormSelect Label="@Resources.Language_Parser"
+            Value="@Language"
+            ValueChanged="LanguageChanged"
+            Options="Options"/>
 
 @inject SettingsResources Resources
 @inject IGameLanguageProvider GameLanguageProvider
@@ -20,13 +14,22 @@
 
     private string? Language { get; set; }
 
-    private Dictionary<string, string> Options { get; set; } = new Dictionary<string, string>();
+    private List<SelectOption> Options { get; set; } =
+    [
+    ];
 
     protected override async Task OnInitializedAsync()
     {
         Language = await SettingsService.GetString(SettingKeys.LanguageParser);
         var languages = GameLanguageProvider.GetList();
-        Options = languages.ToDictionary(x => x.LanguageCode, x => x.Name);
+        Options = languages
+                  .Select(
+                      x => new SelectOption()
+                      {
+                          Value = x.LanguageCode,
+                          Label = x.Name,
+                      })
+                  .ToList();
 
         await base.OnInitializedAsync();
     }

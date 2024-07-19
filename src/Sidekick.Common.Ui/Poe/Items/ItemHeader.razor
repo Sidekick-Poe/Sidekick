@@ -1,0 +1,160 @@
+@using Sidekick.Common.Game.Items
+
+<div class="relative py-0 px-[7px] @BackgroundClass">
+    <div class="absolute top-0 bottom-0 flex items-center left-[2px]">
+        <ItemInfluencesComponent Influences="Influences"/>
+    </div>
+    @if (SingleLine)
+    {
+        <div class="text-lg text-center font-caps @NameClass @LabelClass">
+            @if (!string.IsNullOrEmpty(Name))
+            {
+                @Name
+            }
+            @if (!string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Type))
+            {
+                @:,
+            }
+            @if (!string.IsNullOrEmpty(Type))
+            {
+                @Type
+            }
+        </div>
+    }
+    else
+    {
+        @if (!string.IsNullOrEmpty(Name))
+        {
+            <div class="text-lg text-center font-caps @NameClass @LabelClass">@Name</div>
+        }
+
+        @if (!string.IsNullOrEmpty(Type))
+        {
+            <div class="text-lg text-center font-caps @TypeClass @LabelClass">@Type</div>
+        }
+
+        <div class="absolute top-0 bottom-0 flex items-center right-[2px]">
+            <ItemInfluencesComponent Influences="Influences"/>
+        </div>
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public Rarity Rarity { get; set; }
+
+    [Parameter]
+    public string? Name { get; set; }
+
+    [Parameter]
+    public string? Type { get; set; }
+
+    [Parameter]
+    public bool IsRelic { get; set; }
+
+    [Parameter]
+    public Influences Influences { get; set; }
+
+    [Parameter]
+    public bool SingleLine { get; set; }
+
+    private bool Double
+    {
+        get
+        {
+            if (SingleLine)
+            {
+                return false;
+            }
+
+            switch (Rarity)
+            {
+                case Rarity.Currency: return false;
+                case Rarity.Magic: return false;
+                case Rarity.Gem: return false;
+                case Rarity.Rare: return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Type);
+                case Rarity.Unique: return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Type);
+                default: return false;
+            }
+        }
+    }
+
+    private string BackgroundClass
+    {
+        get
+        {
+            if (IsRelic)
+            {
+                if (!Double)
+                {
+                    return "item-header-relic";
+                }
+
+                return "item-header-double-relic";
+            }
+
+            switch (Rarity)
+            {
+                case Rarity.Currency: return "item-header-currency";
+                case Rarity.Magic: return "item-header-magic";
+                case Rarity.Gem: return "item-header-gem";
+
+                case Rarity.Rare:
+                    if (!Double)
+                    {
+                        return "item-header-rare";
+                    }
+
+                    return "item-header-double-rare";
+
+                case Rarity.Unique:
+                    if (!Double)
+                    {
+                        return "item-header-unique";
+                    }
+
+                    return "item-header-double-unique";
+
+                default: return "item-header-normal";
+            }
+        }
+    }
+
+    private string NameClass
+    {
+        get
+        {
+            if (Double)
+            {
+                return "h-[27px] leading-[23px] pt-[4px] whitespace-nowrap overflow-hidden text-ellipsis";
+            }
+
+            return "h-[34px] leading-[34px] whitespace-nowrap overflow-hidden text-ellipsis";
+        }
+    }
+
+    private string TypeClass
+    {
+        get
+        {
+            if (Double)
+            {
+                return "h-[27px] leading-[23px] pb-[4px] whitespace-nowrap overflow-hidden text-ellipsis";
+            }
+
+            return "h-[34px] leading-[34px] whitespace-nowrap overflow-hidden text-ellipsis";
+        }
+    }
+
+    public string LabelClass => Rarity switch
+    {
+        Rarity.Currency => "text-[#AA9E82]",
+        Rarity.Magic => "text-[#8888FF]",
+        Rarity.Rare => "text-[#FFFF77]",
+        Rarity.Unique => "text-[#AF6025]",
+        Rarity.Gem => "text-[#1BA29B]",
+        _ => "text-[#C8C8C8]",
+    };
+
+}

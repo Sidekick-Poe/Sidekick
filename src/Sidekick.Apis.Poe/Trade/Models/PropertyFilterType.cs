@@ -9,6 +9,8 @@ namespace Sidekick.Apis.Poe.Trade.Models
 
         Category,
 
+        Socket_Links,
+
         Map_AreaLevel,
         Map_ItemQuantity,
         Map_ItemRarity,

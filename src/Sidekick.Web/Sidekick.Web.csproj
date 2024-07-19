@@ -27,7 +27,7 @@
 
   <Target Name="Copywwwroot" BeforeTargets="Build">
     <ItemGroup>
-      <WwwRootFiles Include="$(ProjectDir)..\Sidekick.Common.Blazor\wwwroot\**\*.*" />
+      <WwwRootFiles Include="$(ProjectDir)..\Sidekick.Common.Ui\wwwroot\**\*.*" />
     </ItemGroup>
     <Copy SourceFiles="@(WwwRootFiles)" DestinationFolder="$(ProjectDir)wwwroot\%(RecursiveDir)" />
   </Target>

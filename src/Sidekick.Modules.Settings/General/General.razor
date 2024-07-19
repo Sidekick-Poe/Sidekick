@@ -1,29 +1,20 @@
 @page "/settings"
 @layout SettingsLayout
-@inherits SidekickView
+@using Sidekick.Modules.Settings.Localization
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
-<div class="pa-3">
-    <MudText Typo="Typo.h1" Class="mb-3">@Resources.General</MudText>
+<AppTitle Title="@Resources["Settings"]"/>
+<AppContainer>
+    <Heading2 Class="mb-3">@Resources["Game Settings"]</Heading2>
+    <LanguageParserEditor/>
+    <LeagueIdEditor/>
 
-    <MudPaper Class="pa-3 mb-3">
-        <MudText Typo="Typo.h3" Class="mb-3">@Resources.Game_Title</MudText>
-        <LanguageParserEditor/>
-        <LeagueIdEditor/>
-    </MudPaper>
+    <LayoutDivider/>
 
-    <MudPaper Class="pa-3">
-        <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Other</MudText>
-        <EscapeClosesOverlaysEditor/>
-        <KeyFindItemsEditor/>
-    </MudPaper>
-</div>
+    <Heading2 Class="mb-3">@Resources["Other Settings"]</Heading2>
+    <RetainClipboardEditor/>
+    <EscapeClosesOverlaysEditor/>
+    <KeyFindItemsEditor/>
+</AppContainer>
 
-@inject SettingsResources Resources
-
-@code {
-
-    public override string Title => Resources.Title;
-
-    public override bool ShowSettingsButton => false;
-
-}
+@inject IStringLocalizer<SettingsResources> Resources

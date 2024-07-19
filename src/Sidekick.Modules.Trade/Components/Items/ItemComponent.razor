@@ -1,116 +1,102 @@
+@using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Common.Game.Items
+@using Sidekick.Modules.Trade.Localization
+@using Sidekick.Modules.Trade.Components.Prices
 
-<div class="item-content mb-2 @WrapperClass" @onclick="OnClick">
-    @if (Item.CanHaveModifiers && (Layout == Layout.Cards_Maximized || Expanded))
-    {
-        <ItemHeaderComponent Name="@Item.Header.Name"
-                         Type="@Item.Header.Type"
-                         Influences="Item.Influences"
-                         Rarity="Item.Metadata.Rarity" />
+@if (Item.CanHaveModifiers)
+{
+    <div class="mb-2 rounded-b-lg bg-stone-900">
+        <ItemHeader Name="@Item.Header.Name"
+                    Type="@Item.Header.Type"
+                    Influences="Item.Influences"
+                    Rarity="Item.Metadata.Rarity"/>
 
-        <MudGrid Spacing="0" Class="py-2 px-4">
-            <MudItem xs="9">
-                <ItemLineContentsComponent Item="Item" LineContents="Item.PropertyContents" />
-                <ItemLineContentsComponent Item="Item" LineContents="Item.AdditionalPropertyContents" />
+        <div class="flex items-start flex-nowrap">
+            <div class="w-3/4 p-2">
+                <ItemLineContentsComponent Item="Item" LineContents="Item.PropertyContents"/>
+                <ItemLineContentsComponent Item="Item" LineContents="Item.AdditionalPropertyContents"/>
 
-                <ItemProperties Item="Item" />
+                <ItemProperties Item="Item"/>
+                <ItemRequirements Item="Item"/>
 
-                @if (Item.ModifierLines != null && Item.ModifierLines.Count > 0)
+                @if (Item.ModifierLines.Count > 0)
                 {
-                    <ItemSeparator Rarity="Item.Metadata.Rarity" />
+                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
                     @foreach (var line in Item.ModifierLines)
                     {
-                        <ItemModifierLineComponent Item="Item" ModifierLine="line" />
+                        <ItemModifierLineComponent Item="Item" ModifierLine="line"/>
                     }
                 }
 
                 @if (!Item.Properties.Identified)
                 {
-                    <ItemSeparator Rarity="Item.Metadata.Rarity" />
-                    <div class="unidentified-text">
-                        <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Unidentified</MudText>
-                    </div>
+                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+                    <ItemModifierText Category="ModifierCategory.Unidentified">@Resources["Unidentified"]</ItemModifierText>
                 }
                 @if (Item.Properties.Corrupted)
                 {
-                    <ItemSeparator Rarity="Item.Metadata.Rarity" />
-                    <div class="corrupted-text">
-                        <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Resources.Corrupted</MudText>
-                    </div>
+                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+                    <ItemModifierText Category="ModifierCategory.Corrupted">@Resources["Corrupted"]</ItemModifierText>
                 }
-                @if (!string.IsNullOrEmpty(Item.Price.Note))
+                @if (!string.IsNullOrEmpty(Item.Price?.Note))
                 {
-                    <ItemSeparator Rarity="Item.Metadata.Rarity" />
-                    <div class="note-text">
-                        <MudText Typo="Typo.body1" Align="Align.Center" Class="font-smallcaps">@Item.Price.Note</MudText>
+                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+                    <TextCaption Class="font-caps text-[#AA9E82] text-center leading-none py-0.5">@Item.Price.Note</TextCaption>
+                }
+            </div>
+            <div class="w-1/4 p-2">
+                @if (Item.Price != null)
+                {
+                    <div class="flex flex-col w-full items-center">
+                        <PriceDisplay Value="Item.Price.Amount" Currency="@Item.Price.Currency"/>
+                        <TextBase Class="text-ellipsis w-full overflow-hidden text-center">@Item.Price.AccountName</TextBase>
+                        <PriceAge Date="Item.Price.Date"/>
                     </div>
                 }
-            </MudItem>
-            <MudItem xs="3">
-                <PriceDisplay Value="(double)Item.Price.Amount" Currency="@Item.Price.Currency" />
-                <MudText Typo="Typo.body2" Align="Align.Right">@Item.Price.AccountName</MudText>
-                <PriceAge Date="Item.Price.Date" Align="Align.Right" />
 
-                <div class="d-flex justify-end mt-2">
-                    <ItemImageComponent Item="Item" />
+                <div class="mt-3">
+                    <ItemImageComponent Item="Item"/>
                 </div>
-            </MudItem>
-        </MudGrid>
-    }
-    else
-    {
-        <MudGrid Spacing="0" Class="align-start">
-            <MudItem xs="9">
-                <ItemHeaderBackground Rarity="Item.Metadata.Rarity" Double="false">
-                    <div class="influences left">
-                        <ItemInfluencesComponent Influences="Item.Influences" />
-                    </div>
-                    <MudText Typo="Typo.h6" Align="Align.Center" Class="name font-smallcaps" Style="@context.LabelStyle">
-                        @if (!string.IsNullOrEmpty(Item.Header.Name))
-                        {
-                            @Item.Header.Name
-                        }
-                        @if (!string.IsNullOrEmpty(Item.Header.Name) && !string.IsNullOrEmpty(Item.Header.Type))
-                        {
-                            @:,
-                        }
-                        @if (!string.IsNullOrEmpty(Item.Header.Type))
-                        {
-                            @Item.Header.Type
-                        }
-                    </MudText>
-                </ItemHeaderBackground>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="flex items-start flex-nowrap rounded-b-lg bg-stone-900 mb-2 rounded-tr-lg">
+        <div class="w-3/4">
+            <ItemHeader Name="@Item.Header.Name"
+                        Type="@Item.Header.Type"
+                        Influences="Item.Influences"
+                        Rarity="Item.Metadata.Rarity"
+                        SingleLine="true"/>
 
-                <div class="d-flex align-center pa-2">
-                    <MudText Typo="Typo.body2" Align="Align.Left">@Item.Price.AccountName</MudText>
-                    <div>,&nbsp;</div>
-                    <PriceAge Date="Item.Price.Date" Align="Align.Left" />
+            @if (Item.Price != null)
+            {
+                <div class="flex items-center p-2">
+                    <TextBase>@Item.Price.AccountName</TextBase>
+                    <div class="text-[#a38d6d]">,&nbsp;</div>
+                    <PriceAge Date="Item.Price.Date"/>
                 </div>
-            </MudItem>
-            <MudItem xs="3" Class="pa-2 align-self-center">
-                <PriceDisplay Value="(double)Item.Price.Amount" Currency="@Item.Price.Currency" />
-            </MudItem>
-        </MudGrid>
-    }
-</div>
+            }
+        </div>
+        <div class="w-1/4 p-2 self-center">
+            @if (Item.Price != null)
+            {
+                <PriceDisplay Value="Item.Price.Amount" Currency="@Item.Price.Currency"/>
+            }
+        </div>
+    </div>
+}
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject PriceCheckService PriceCheckService
 
 @code {
-    [Inject] private TradeResources Resources { get; set; }
 
-    [CascadingParameter]
-    public Item PriceCheckItem { get; set; }
+    [Parameter]
+    public required TradeItem Item { get; set; }
 
-    [Parameter] public TradeItem Item { get; set; }
-    [Parameter] public Layout Layout { get; set; }
-
-    private bool Expanded { get; set; }
-
-    private string WrapperClass => Layout == Layout.Cards_Minimized && Item.CanHaveModifiers ? "clickable" : "";
-
-    private void OnClick()
-    {
-        if (Layout == Layout.Cards_Minimized)
-        {
-            Expanded = !Expanded;
-        }
-    }
 }
+
+

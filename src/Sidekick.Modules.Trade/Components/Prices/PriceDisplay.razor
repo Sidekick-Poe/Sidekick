@@ -1,32 +1,40 @@
+@using Sidekick.Apis.Poe
 
-<div class="d-flex flex-row align-center @Class">
-    <MudText Typo="ValueTypo">@Value.ToString("0.##")</MudText>
-    @if (ImageUrl != null)
-    {
-        <MudText Typo="TimesTypo" Class="ml-1 times">&times;</MudText>
-        <img src="@ImageUrl" class="@ImageClass" />
-    }
-</div>
+@if (Small)
+{
+    <div class="flex flex-nowrap gap-1 items-center">
+        <Heading3>@Value.ToString("0.##")</Heading3>
+        @if (ImageUrl != null)
+        {
+            <TextCaption Class="text-[#a38d6d]">&times;</TextCaption>
+            <img src="@ImageUrl" class="max-h-5" alt="@Currency" />
+        }
+    </div>
+}
+else
+{
+    <div class="flex flex-nowrap gap-1 items-center">
+        <Heading2>@Value.ToString("0.##")</Heading2>
+        @if (ImageUrl != null)
+        {
+            <TextBase Class="text-[#a38d6d]">&times;</TextBase>
+            <img src="@ImageUrl" class="max-h-10" alt="@Currency" />
+        }
+    </div>
+}
+
+@inject IItemStaticDataProvider ItemStaticDataProvider
 
 @code {
-    [Inject]
-    private IItemStaticDataProvider ItemStaticDataProvider { get; set; }
 
     [Parameter]
     public string Currency { get; set; } = "chaos";
 
     [Parameter]
-    public double Value { get; set; }
+    public decimal Value { get; set; }
 
     [Parameter]
-    public string Class { get; set; } = "justify-end";
+    public bool Small { get; set; }
 
-    [Parameter]
-    public bool Small { get; set; } = false;
-
-    private Typo ValueTypo => Small ? Typo.h4 : Typo.h3;
-    private Typo TimesTypo => Small ? Typo.caption : Typo.body1;
-    private string ImageClass => Small ? "small" : "";
-
-    private string ImageUrl => ItemStaticDataProvider.GetImage(Currency);
+    private string? ImageUrl => ItemStaticDataProvider.GetImage(Currency);
 }

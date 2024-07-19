@@ -1,32 +1,31 @@
 @page "/update"
-@layout ModalLayout
-@inherits SidekickView
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
-<SidekickLogo />
+<AppTitle Title="@Resources["Update"]"/>
+<LayoutSimple>
+    <TopContent>
+        <AppLogo/>
+    </TopContent>
 
-@if (Error)
-{
-    <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Class="my-1">@UpdateResources.Failed</MudAlert>
-}
-else
-{
-    <MudCard Class="my-1">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.h5" Align="Align.Center">@Step</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent>
-            <MudProgressLinear Color="Color.Primary"
-                           Indeterminate="true" />
-        </MudCardContent>
-    </MudCard>
-}
+    <ChildContent>
+        @if (Error)
+        {
+            <AlertError>@Resources["The update has failed to install automatically. You should try to download and install the update manually from https://sidekick-poe.github.io/"]</AlertError>
+        }
+        else
+        {
+            <AppContainer>
+                <Heading3 Class="mb-2 text-center">@Step</Heading3>
+                <ProgressBar Indeterminate="true"/>
+            </AppContainer>
+        }
+    </ChildContent>
 
-<div class="d-flex justify-end">
-    <MudButton OnClick="Close"
-               Variant="Variant.Text"
-               Color="Color.Default">
-        @UpdateResources.Close
-    </MudButton>
-</div>
+    <BottomContent>
+        <div class="px-3 py-2 flex justify-center gap-2">
+            <ButtonPrimary OnClick="CurrentView.Close">
+                @Resources["Close"]
+            </ButtonPrimary>
+        </div>
+    </BottomContent>
+</LayoutSimple>

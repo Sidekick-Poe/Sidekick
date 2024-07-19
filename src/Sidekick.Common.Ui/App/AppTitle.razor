@@ -1,0 +1,14 @@
+@inject ICurrentView CurrentView
+
+@code {
+
+    [Parameter]
+    public string? Title { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        CurrentView.SetTitle(Title);
+        base.OnParametersSet();
+    }
+
+}

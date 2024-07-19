@@ -3,12 +3,13 @@ using System.Text;
 using System.Text.Json;
 using Sidekick.Apis.Poe.Authentication.Models;
 using Sidekick.Common.Browser;
+using Sidekick.Common.Initialization;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Authentication
 {
-    internal class AuthenticationService : IAuthenticationService, IDisposable
+    internal class AuthenticationService : IAuthenticationService, IInitializableService, IDisposable
     {
         private const string Authorizationurl = "https://www.pathofexile.com/oauth/authorize";
         private const string Redirecturl = "https://sidekick-poe.github.io/oauth/poe";
@@ -20,8 +21,6 @@ namespace Sidekick.Apis.Poe.Authentication
         private readonly IBrowserProvider browserProvider;
         private readonly IInterprocessService interprocessService;
         private readonly HttpClient client;
-
-        public event Action? OnAuthenticated;
 
         public event Action? OnStateChanged;
 
@@ -46,6 +45,13 @@ namespace Sidekick.Apis.Poe.Authentication
         private string? Challenge { get; set; }
 
         private TaskCompletionSource? AuthenticateTask { get; set; }
+
+        public InitializationPriority Priority => InitializationPriority.Low;
+
+        public Task Initialize()
+        {
+            return Task.CompletedTask;
+        }
 
         public async Task<AuthenticationState> GetCurrentState()
         {
@@ -165,6 +171,12 @@ namespace Sidekick.Apis.Poe.Authentication
 
             var requestContent = new StringContent($"client_id={Clientid}&grant_type=authorization_code&code={code}&redirect_uri={Redirecturl}&scope={Scopes}&code_verifier={Verifier}", Encoding.UTF8, "application/x-www-form-urlencoded");
             var response = await client.PostAsync(Tokenurl, requestContent);
+            if (!response.IsSuccessStatusCode)
+            {
+                CancelAuthenticate();
+                return;
+            }
+
             var responseContent = await response.Content.ReadAsStreamAsync();
             var result = await JsonSerializer.DeserializeAsync<Oauth2TokenResponse>(responseContent);
 
@@ -182,7 +194,7 @@ namespace Sidekick.Apis.Poe.Authentication
                 AuthenticateTask.SetResult();
             }
 
-            OnAuthenticated?.Invoke();
+            OnStateChanged?.Invoke();
         }
 
         private static string GenerateCodeVerifier()

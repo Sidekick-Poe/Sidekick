@@ -1,59 +1,63 @@
 @page "/trade/{itemText}"
-@using Sidekick.Apis.Poe.Bulk;
+@using Sidekick.Common.Extensions
 @using Sidekick.Common.Settings
-@inherits SidekickView
+@using Sidekick.Modules.Trade.Localization
+@using Sidekick.Modules.Trade.Components.Filters
+@using Sidekick.Modules.Trade.Components.Bulk
+@using Sidekick.Modules.Trade.Components.Items
 
-@if (Item == null)
-{
-    <LoadingAlert Text="@Resources.Parsing"/>
-    return;
-}
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
-<CascadingValue Value="Item" IsFixed="true">
-    <CascadingValue Value="Filters" IsFixed="true">
-        @if (Filters != null)
+<AppTitle Title="@Resources.Trade"/>
+
+<LayoutTwoColumn>
+    <TopContent>
+        <AppBar>
+            <AppSettings Href="/settings/price"/>
+            <AppClose/>
+        </AppBar>
+    </TopContent>
+    <LeftContent>
+        @if (PriceCheckService.IsFilterLoading)
         {
-            <FiltersComponent OnSearch="UpdateQuery"/>
+            <AppLoading/>
         }
+        else
+        {
+            <FiltersComponent/>
+        }
+    </LeftContent>
+    <ChildContent>
+        <SidekickErrorBoundary>
+            <AppContainer>
+                <BulkResult/>
+                <ItemsResult/>
+            </AppContainer>
+        </SidekickErrorBoundary>
+    </ChildContent>
+</LayoutTwoColumn>
 
-        <div class="ml-0">
-            <SidekickErrorBoundary>
-                <BulkResult @ref="BulkResult" Visible="Mode == TradeMode.Bulk"/>
-                <ItemsResult @ref="ItemsResult" Visible="Mode == TradeMode.Item"/>
-            </SidekickErrorBoundary>
-        </div>
+@implements IDisposable
 
-    </CascadingValue>
-</CascadingValue>
-
-@inject IBulkTradeService BulkTradeService
 @inject ISettingsService SettingsService
 @inject TradeResources Resources
-@inject IItemParser ItemParser
-@inject ITradeFilterService TradeFilterService
+@inject PriceCheckService PriceCheckService
 
 @code {
 
     [Parameter]
     public required string ItemText { get; set; }
 
-    private Item? Item { get; set; }
-
-    private FiltersModel? Filters { get; set; }
-
-    private ItemsResult? ItemsResult { get; set; }
-
-    private BulkResult? BulkResult { get; set; }
-
-    private TradeMode Mode { get; set; }
-
-    private bool UpdateAfterRender { get; set; }
-
-    public override string Title => Resources.Trade;
-
     public override bool CloseOnBlur { get; set; }
 
     public override SidekickViewType ViewType => SidekickViewType.Overlay;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        PriceCheckService.FilterLoadingChanged += StateHasChanged;
+        CloseOnBlur = await SettingsService.GetBool(SettingKeys.PriceCheckCloseWithMouse);
+    }
 
     protected override async Task OnParametersSetAsync()
     {
@@ -64,59 +68,12 @@
             return;
         }
 
-        Mode = TradeMode.Item;
-        if (BulkTradeService.SupportsBulkTrade(Item))
-        {
-            Mode = await SettingsService.GetEnum<TradeMode>(SettingKeys.PriceCheckCurrencyMode) ?? TradeMode.Item;
-        }
-
-        CloseOnBlur = await SettingsService.GetBool(SettingKeys.PriceCheckCloseWithMouse);
-        Item = await ItemParser.ParseItemAsync(ItemText.DecodeBase64Url() ?? string.Empty);
-
-        Filters = new FiltersModel()
-        {
-            PropertyFilters = TradeFilterService.GetPropertyFilters(Item),
-            ModifierFilters = TradeFilterService
-                              .GetModifierFilters(Item)
-                              .ToList(),
-            PseudoFilters = TradeFilterService
-                            .GetPseudoModifierFilters(Item)
-                            .ToList(),
-        };
-
-        if (Item.Metadata.Rarity != Rarity.Rare && Item.Metadata.Rarity != Rarity.Magic)
-        {
-            await UpdateQuery();
-        }
+        await PriceCheckService.Initialize(ItemText.DecodeBase64Url() ?? string.Empty);
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    public void Dispose()
     {
-        await base.OnAfterRenderAsync(firstRender);
-
-        if (UpdateAfterRender)
-        {
-            await UpdateQuery();
-        }
-    }
-
-    public async Task UpdateQuery()
-    {
-        if (BulkResult == null || ItemsResult == null)
-        {
-            UpdateAfterRender = true;
-            return;
-        }
-
-        UpdateAfterRender = false;
-        if (Mode == TradeMode.Bulk)
-        {
-            await BulkResult.Search();
-        }
-        else
-        {
-            await ItemsResult.Search();
-        }
+        PriceCheckService.FilterLoadingChanged -= StateHasChanged;
     }
 
 }

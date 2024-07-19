@@ -1,85 +1,67 @@
 @page "/setup"
 @page "/"
-@layout ModalLayout
 @using System.Text
 @using System.Text.Json
+@using Sidekick.Apis.Poe
+@using Sidekick.Common.Cache
+@using Sidekick.Common.Platform
+@using Sidekick.Common.Ui.Views
 @using Sidekick.Common.Settings
-@inherits SidekickView
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
-@if (!RequiresSetup)
-{
-    <SidekickLogo/>
+<AppTitle Title="@Resources["Setup"]"/>
+<LayoutSimple>
+    <TopContent>
+        <AppLogo/>
+    </TopContent>
 
-    <MudCard Class="my-1">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.h5" Align="Align.Center">@Resources.Title</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent>
-            <MudProgressLinear Color="Color.Primary"
-                               Indeterminate="true"/>
-        </MudCardContent>
-    </MudCard>
+    <ChildContent>
+        @if (RequiresSetup)
+        {
+            if (NewLeagues)
+            {
+                <AlertInfo>@Resources["New leagues are available! Please make sure you have the desired league selected in the settings."]</AlertInfo>
+            }
 
-    <div class="d-flex justify-end">
-        <MudButton OnClick="Exit"
-                   Variant="Variant.Text"
-                   Color="Color.Default">
-            @Resources.Exit
-        </MudButton>
-    </div>
-}
-else
-{
-    <SidekickLogo/>
+            @if (HasError)
+            {
+                <AlertError>@Resources["You must select a valid language and league to continue."]</AlertError>
+            }
 
-    @if (NewLeagues)
-    {
-        <MudAlert Variant="Variant.Filled" Severity="Severity.Info" Class="mt-1 mb-3">@Resources.NewLeagues</MudAlert>
-    }
-
-    @if (HasError)
-    {
-        <MudAlert Variant="Variant.Filled" Severity="Severity.Error" Class="mt-1 mb-3">@StringLocalizer["You must select a valid language and league to continue."]</MudAlert>
-    }
-
-    <MudForm>
-        <MudCard Class="mt-1">
-            <MudCardHeader>
-                <CardHeaderContent>
-                    <MudText Typo="Typo.h5">@SettingsResources.Game_Title</MudText>
-                </CardHeaderContent>
-            </MudCardHeader>
-            <MudCardContent>
+            <AppContainer>
                 <LanguageParserEditor/>
                 <LeagueIdEditor/>
-            </MudCardContent>
-        </MudCard>
+            </AppContainer>
+        }
+    </ChildContent>
+    <BottomContent>
+        @if (RequiresSetup)
+        {
+            <div class="px-3 py-2 flex justify-center gap-2">
+                <ButtonSecondary OnClick="Exit">
+                    @Resources["Exit"]
+                </ButtonSecondary>
+                <ButtonPrimary OnClick="() => Save()">
+                    @Resources["Save"]
+                </ButtonPrimary>
+            </div>
+        }
+        else
+        {
+            <div class="px-3 py-2 flex justify-center gap-2">
+                <ButtonPrimary OnClick="Exit">
+                    @Resources["Exit"]
+                </ButtonPrimary>
+            </div>
+        }
+    </BottomContent>
+</LayoutSimple>
 
-        <div class="d-flex justify-end">
-            <MudButton OnClick="Exit"
-                       Variant="Variant.Text"
-                       Color="Color.Default">
-                @Resources.Exit
-            </MudButton>
-            <MudButton Variant="Variant.Filled"
-                       Color="Color.Primary"
-                       OnClick="() => Save()">
-                @SettingsResources.Save
-            </MudButton>
-        </div>
-    </MudForm>
-}
-
-@inject SettingsResources SettingsResources
-@inject SetupResources Resources
 @inject ISettingsService SettingsService
 @inject IApplicationService ApplicationService
 @inject ILeagueProvider LeagueProvider
 @inject ICacheProvider CacheProvider
-@inject IStringLocalizer<SetupResources> StringLocalizer
-@inject IViewLocator ViewLocator
+@inject IStringLocalizer<Setup> Resources
 
 @code {
 
@@ -89,11 +71,9 @@ else
 
     private bool HasError { get; set; }
 
-    public override string Title => "Setup";
-
     public override SidekickViewType ViewType => SidekickViewType.Modal;
 
-    public override int ViewHeight => NewLeagues ? 400 : 320;
+    public override int ViewHeight => 360;
 
     protected override async Task OnInitializedAsync()
     {
@@ -104,20 +84,20 @@ else
         {
             NewLeagues = true;
             CacheProvider.Clear();
-            await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
         }
+
+        await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
 
         // Check to see if we should run Setup first before running the rest of the initialization process
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
         if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId))
         {
             RequiresSetup = true;
-            await ViewLocator.Initialize(this);
+            await CurrentView.Initialize(this);
         }
         else
         {
-            await ViewLocator.Open("/initialize");
-            await Close();
+            NavigationManager.NavigateTo("/initialize");
         }
 
         await base.OnInitializedAsync();
@@ -138,8 +118,7 @@ else
             return;
         }
 
-        await ViewLocator.Open("/initialize");
-        await Close();
+        NavigationManager.NavigateTo("/initialize");
     }
 
 }

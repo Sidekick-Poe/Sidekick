@@ -1,30 +1,34 @@
 @page "/settings/price"
 @layout SettingsLayout
-@inherits SidekickView
+@using Sidekick.Modules.Settings.Localization
+@using Sidekick.Modules.Settings.Components
+@using Sidekick.Modules.Settings.General
+@inherits Sidekick.Common.Ui.Views.SidekickView
 
-<div class="pa-3">
-    <MudText Typo="Typo.h1" Class="mb-3">@Resources.PriceCheck</MudText>
+<AppTitle Title="@Resources["Settings"]"/>
+<AppContainer>
+    <Heading2 Class="mb-3">@Resources["Keybindings"]</Heading2>
+    <KeyOpenPriceCheckEditor/>
+    <KeyCloseEditor/>
 
-    <MudPaper Class="pa-3 mb-3">
-        <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Keybinds</MudText>
-        <KeyOpenPriceCheckEditor/>
-        <KeyCloseEditor/>
-    </MudPaper>
+    <LayoutDivider/>
 
-    <MudPaper Class="pa-3">
-        <MudText Typo="Typo.h3" Class="mb-3">@Resources.Group_Other</MudText>
-        <PriceCheckPredictionEnabledEditor/>
-        <PriceCheckCloseWithMouseEditor/>
-        <EscapeClosesOverlaysEditor/>
-    </MudPaper>
-</div>
+    <Heading2 Class="mb-3">@Resources["Item Trade Settings"]</Heading2>
+    <PriceCheckItemCurrencyEditor/>
+    <PriceCheckPredictionEnabledEditor/>
 
-@inject SettingsResources Resources
+    <LayoutDivider/>
 
-@code {
+    <Heading2 Class="mb-3">@Resources["Bulk Trade Settings"]</Heading2>
+    <PriceCheckCurrencyModeEditor/>
+    <PriceCheckBulkCurrencyEditor/>
+    <PriceCheckBulkMinimumStockEditor/>
 
-    public override string Title => Resources.Title;
+    <LayoutDivider/>
 
-    public override bool ShowSettingsButton => false;
+    <Heading2 Class="mb-3">@Resources["Other Settings"]</Heading2>
+    <PriceCheckCloseWithMouseEditor/>
+    <EscapeClosesOverlaysEditor/>
+</AppContainer>
 
-}
+@inject IStringLocalizer<SettingsResources> Resources

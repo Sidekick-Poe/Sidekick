@@ -37,7 +37,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="..\Sidekick.Common.Blazor\wwwroot\android-chrome-192x192.png">
+    <None Include="..\Sidekick.Common.Ui\wwwroot\android-chrome-192x192.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
@@ -74,7 +74,7 @@
 
   <Target Name="Copywwwroot" BeforeTargets="Build">
     <ItemGroup>
-      <WwwRootFiles Include="$(ProjectDir)..\Sidekick.Common.Blazor\wwwroot\**\*.*" />
+      <WwwRootFiles Include="$(ProjectDir)..\Sidekick.Common.Ui\wwwroot\**\*.*" />
     </ItemGroup>
     <Copy SourceFiles="@(WwwRootFiles)" DestinationFolder="$(ProjectDir)wwwroot\%(RecursiveDir)" />
   </Target>

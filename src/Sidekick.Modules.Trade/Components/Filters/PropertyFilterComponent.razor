@@ -1,31 +1,41 @@
+@using Sidekick.Apis.Poe.Trade.Models
 
-<div class="d-flex filter">
-    <div class="flex-grow-1">
-        <MudCheckBox @bind-Checked="Filter.Enabled"
-                     Color="Color.Primary"
-                     Dense="true"
-                     Size="Size.Small"
-                     TriState="Filter.ValueType == FilterValueType.Boolean">
-            <div class="d-flex align-center">
-                <ItemPropertyText Label="@Filter.Text"
-                                  Value="@Filter.Value.ToString()"
-                                  OnlyShowLabel="Filter.ValueType == FilterValueType.Boolean" />
-            </div>
-        </MudCheckBox>
+<FilterWrapper>
+    <div class="flex flex-nowrap items-center">
+        <div class="grow">
+            @if (Filter.ValueType == FilterValueType.Boolean)
+            {
+                <FormTriStateCheckbox @bind-Value="Filter.Enabled"
+                                      NoMargin="true">
+                    <ItemPropertyText Label="@Filter.Text"
+                                      Value="@Filter.Value.ToString()"
+                                      OnlyShowLabel="true"/>
+                </FormTriStateCheckbox>
+            }
+            else
+            {
+                <FormCheckbox Value="Filter.Enabled ?? false"
+                              NoMargin="true"
+                              ValueChanged="(v) => Filter.Enabled = v">
+                    <ItemPropertyText Label="@Filter.Text"
+                                      Value="@Filter.Value.ToString()"/>
+                </FormCheckbox>
+            }
+        </div>
+
+        @if ((Filter.Enabled ?? false) && HasValueFilters)
+        {
+            <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged"/>
+        }
     </div>
-
-    @if ((Filter.Enabled ?? false) && HasValueFilters)
-    {
-        <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged" />
-    }
-</div>
+</FilterWrapper>
 
 @code {
-    [Inject] public TradeResources Resources { get; set; }
 
-    [Parameter] public PropertyFilter Filter { get; set; }
+    [Parameter]
+    public required PropertyFilter Filter { get; set; }
 
-    private bool HasValueFilters => Filter.ValueType == FilterValueType.Double || Filter.ValueType == FilterValueType.Int;
+    private bool HasValueFilters => Filter.ValueType is FilterValueType.Double or FilterValueType.Int;
 
     private void TypeChanged(FilterRange.RangeType type)
     {
@@ -35,17 +45,21 @@
                 Filter.NormalizeMinValue();
                 Filter.Max = null;
                 break;
+
             case FilterRange.RangeType.Maximum:
                 Filter.NormalizeMaxValue();
                 Filter.Min = null;
                 break;
+
             case FilterRange.RangeType.Equals:
                 Filter.SetExactValue();
                 break;
+
             case FilterRange.RangeType.Range:
                 Filter.NormalizeMinValue();
                 Filter.NormalizeMaxValue();
                 break;
         }
     }
+
 }

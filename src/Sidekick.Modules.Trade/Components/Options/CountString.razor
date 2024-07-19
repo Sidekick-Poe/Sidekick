@@ -1,12 +1,18 @@
+@using Sidekick.Modules.Trade.Localization
 
 @if (Total > 0 && Count > 0)
 {
-    <MudText Class="mr-4" Typo="Typo.caption">@Resources.CountString(Count, Total)</MudText>
+    <TextCaption>@Resources["Showing {0} out of {1} items", Count, Total]</TextCaption>
 }
 
-@code {
-    [Inject] private TradeResources Resources { get; set; }
+@inject IStringLocalizer<TradeResources> Resources
 
-    [Parameter] public int Total { get; set; }
-    [Parameter] public int Count { get; set; }
+@code {
+
+    [Parameter]
+    public int Total { get; set; }
+
+    [Parameter]
+    public int Count { get; set; }
+
 }

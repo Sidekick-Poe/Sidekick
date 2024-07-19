@@ -65,41 +65,46 @@ namespace Sidekick.Apis.PoeWiki
         /// <inheritdoc/>
         public async Task Initialize()
         {
-            var result = await cacheProvider.GetOrSet("PoeWikiBlightOils", async () =>
-            {
-                var result = await GetMetadataIdsFromItemNames(oilNames);
-                if (result == null)
+            var result = await cacheProvider.GetOrSet(
+                "PoeWikiBlightOils",
+                async () =>
                 {
-                    return new();
-                }
+                    var result = await GetMetadataIdsFromItemNames(oilNames);
+                    if (result == null)
+                    {
+                        return new();
+                    }
 
-                return result;
-            });
+                    return result;
+                });
 
-                BlightOilNamesByMetadataIds = result.ToDictionary(x => x.MetadataId ?? string.Empty, x => x.Name ?? string.Empty);
+            BlightOilNamesByMetadataIds = result.ToDictionary(x => x.MetadataId ?? string.Empty, x => x.Name ?? string.Empty);
         }
 
         private async Task<MapResult?> GetMapResult(string mapType)
         {
             try
             {
-                var query = new QueryBuilder(new List<KeyValuePair<string, string>>
-                {
-                    new("action", "cargoquery"),
-                    new("format", "json"),
-                    new("limit", "1"),
-                    new("tables", "maps,items,areas"),
-                    new("join_on", "items._pageID=maps._pageID,maps.area_id=areas.id"),
-                    new("fields", "items.name,maps.area_id,areas.boss_monster_ids,items.drop_monsters"),
-                    new("group_by", "items.name"),
-                    new("where", @$"items.name=""{mapType}"""),
-                });
+                var query = new QueryBuilder(
+                    new List<KeyValuePair<string, string>>
+                    {
+                        new("action", "cargoquery"),
+                        new("format", "json"),
+                        new("limit", "1"),
+                        new("tables", "maps,items,areas"),
+                        new("join_on", "items._pageID=maps._pageID,maps.area_id=areas.id"),
+                        new("fields", "items.name,maps.area_id,areas.boss_monster_ids,items.drop_monsters"),
+                        new("group_by", "items.name"),
+                        new("where", @$"items.name=""{mapType}"""),
+                    });
 
                 using var client = GetHttpClient();
                 var response = await client.GetAsync(query.ToString());
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<MapResult>>(content, options);
-                return result?.CargoQuery.Select(x => x.Title).FirstOrDefault();
+                return result
+                       ?.CargoQuery.Select(x => x.Title)
+                       .FirstOrDefault();
             }
             catch (Exception e)
             {
@@ -113,15 +118,16 @@ namespace Sidekick.Apis.PoeWiki
         {
             try
             {
-                var query = new QueryBuilder(new List<KeyValuePair<string, string>>
-                {
-                    new("action", "cargoquery"),
-                    new("format", "json"),
-                    new("limit", "500"),
-                    new("tables", "monsters"),
-                    new("fields", "monsters.name,monsters.metadata_id"),
-                    new("where", @$"monsters.metadata_id IN ({mapResult.BossMonsterIds.ToQueryString()})"),
-                });
+                var query = new QueryBuilder(
+                    new List<KeyValuePair<string, string>>
+                    {
+                        new("action", "cargoquery"),
+                        new("format", "json"),
+                        new("limit", "500"),
+                        new("tables", "monsters"),
+                        new("fields", "monsters.name,monsters.metadata_id"),
+                        new("where", @$"monsters.metadata_id IN ({mapResult.BossMonsterIds.ToQueryString()})"),
+                    });
 
                 using var client = GetHttpClient();
                 var response = await client.GetAsync(query.ToString());
@@ -157,16 +163,17 @@ namespace Sidekick.Apis.PoeWiki
         {
             try
             {
-                var query = new QueryBuilder(new List<KeyValuePair<string, string>>
-                {
-                    new("action", "cargoquery"),
-                    new("format", "json"),
-                    new("fields", "items.name,items.description,items.flavour_text,items.drop_level"),
-                    new("tables", "items"),
-                    new("where", @$"items.drop_areas HOLDS '{mapResult.AreaId}' AND items.is_in_game = true AND items.drop_enabled = true"),
-                    new("order by", "items.drop_level DESC"),
-                    new("limit", "500"),
-                });
+                var query = new QueryBuilder(
+                    new List<KeyValuePair<string, string>>
+                    {
+                        new("action", "cargoquery"),
+                        new("format", "json"),
+                        new("fields", "items.name,items.description,items.flavour_text,items.drop_level"),
+                        new("tables", "items"),
+                        new("where", @$"items.drop_areas HOLDS '{mapResult.AreaId}' AND items.is_in_game = true AND items.drop_enabled = true"),
+                        new("order by", "items.drop_level DESC"),
+                        new("limit", "500"),
+                    });
 
                 using var client = GetHttpClient();
                 var response = await client.GetAsync(query.ToString());
@@ -204,16 +211,17 @@ namespace Sidekick.Apis.PoeWiki
             {
                 var enchantmentText = modifierLine.Text.Replace("Allocates ", string.Empty);
 
-                var query = new QueryBuilder(new List<KeyValuePair<string, string>>
-                {
-                    new("action", "cargoquery"),
-                    new("format", "json"),
-                    new("limit", "500"),
-                    new("tables", "blight_crafting_recipes,blight_crafting_recipes_items,mods,passive_skills"),
-                    new("join_on", "blight_crafting_recipes_items.recipe_id=blight_crafting_recipes.id,blight_crafting_recipes.modifier_id=mods.id,blight_crafting_recipes.passive_id=passive_skills.id"),
-                    new("fields", "blight_crafting_recipes_items.item_id"),
-                    new("where", @$"passive_skills.name='{enchantmentText}' OR mods.stat_text='{enchantmentText}'"),
-                });
+                var query = new QueryBuilder(
+                    new List<KeyValuePair<string, string>>
+                    {
+                        new("action", "cargoquery"),
+                        new("format", "json"),
+                        new("limit", "500"),
+                        new("tables", "blight_crafting_recipes,blight_crafting_recipes_items,mods,passive_skills"),
+                        new("join_on", "blight_crafting_recipes_items.recipe_id=blight_crafting_recipes.id,blight_crafting_recipes.modifier_id=mods.id,blight_crafting_recipes.passive_id=passive_skills.id"),
+                        new("fields", "blight_crafting_recipes_items.item_id"),
+                        new("where", @$"passive_skills.name='{enchantmentText}' OR mods.stat_text='{enchantmentText}'"),
+                    });
 
                 using var client = GetHttpClient();
                 var response = await client.GetAsync(query.ToString());
@@ -249,18 +257,16 @@ namespace Sidekick.Apis.PoeWiki
         {
             try
             {
-                var query = new QueryBuilder(new List<KeyValuePair<string, string>>
-                {
-                    new("action", "cargoquery"),
-                    new("format", "json"),
-                    new("limit", "500"),
-
-                    new("tables", "items"),
-
-                    new("fields", "items.name,items.metadata_id"),
-
-                    new("where", @$"items.name IN ({itemNames.ToQueryString()})"),
-                });
+                var query = new QueryBuilder(
+                    new List<KeyValuePair<string, string>>
+                    {
+                        new("action", "cargoquery"),
+                        new("format", "json"),
+                        new("limit", "500"),
+                        new("tables", "items"),
+                        new("fields", "items.name,items.metadata_id"),
+                        new("where", @$"items.name IN ({itemNames.ToQueryString()})"),
+                    });
 
                 using var client = GetHttpClient();
                 var response = await client.GetAsync(query.ToString());
@@ -292,8 +298,13 @@ namespace Sidekick.Apis.PoeWiki
             return null;
         }
 
-        public async Task<Map?> GetMap(string mapType)
+        public async Task<Map?> GetMap(string? mapType)
         {
+            if (string.IsNullOrEmpty(mapType))
+            {
+                return null;
+            }
+
             var mapResult = await GetMapResult(mapType);
             if (mapResult == null)
             {

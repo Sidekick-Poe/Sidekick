@@ -1,34 +1,37 @@
-<div class="filter">
-    <div class="d-flex align-center">
-        <div class="flex-grow-1">
-            <MudCheckBox @bind-Checked="Filter.Enabled"
-                         Color="Color.Primary"
-                         Dense="true"
-                         Size="Size.Small">
-                <div class="d-flex align-center">
-                    <ItemModifierCategoryChip Category="ModifierCategory.Pseudo" />
-                    <ItemModifierText Text="@Filter.Modifier.Text"
-                                      Category="ModifierCategory.Pseudo" />
+@using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Common.Game.Items
+@using Sidekick.Modules.Trade.Localization
 
-                </div>
-            </MudCheckBox>
+<FilterWrapper>
+    <div class="flex flex-nowrap items-center">
+        <div class="grow">
+            <FormCheckbox Value="Filter.Enabled ?? false"
+                          NoMargin="true"
+                          ValueChanged="(v) => Filter.Enabled = v">
+                <ItemModifierText Class="text-left"
+                                  Category="ModifierCategory.Pseudo">@Filter.Modifier.Text</ItemModifierText>
+            </FormCheckbox>
         </div>
 
-        @if (Filter.Enabled == true && Filter.Modifier.HasValue)
-        {
-            <FilterRange @bind-Min="Filter.Min" @bind-Max="Filter.Max" TypeChanged="TypeChanged" />
-        }
+        <div class="flex flex-col items-end justify-between">
+            <ItemModifierCategoryChip Category="ModifierCategory.Pseudo"/>
+
+            <div class="h-[2px]"></div>
+
+            @if ((Filter.Enabled ?? false) && Filter.Modifier.HasValue)
+            {
+                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged"/>
+            }
+        </div>
     </div>
-</div>
+</FilterWrapper>
+
+@inject IStringLocalizer<TradeResources> Resources
 
 @code {
-    [Inject]
-    public TradeResources Resources { get; set; }
 
     [CascadingParameter]
-    public PseudoModifierFilter Filter { get; set; }
-
-    private List<string> EnchantmentOilNames { get; set; }
+    public required PseudoModifierFilter Filter { get; set; }
 
     private void TypeChanged(FilterRange.RangeType type)
     {
@@ -38,17 +41,21 @@
                 Filter.NormalizeMinValue();
                 Filter.Max = null;
                 break;
+
             case FilterRange.RangeType.Maximum:
                 Filter.NormalizeMaxValue();
                 Filter.Min = null;
                 break;
+
             case FilterRange.RangeType.Equals:
                 Filter.SetExactValue();
                 break;
+
             case FilterRange.RangeType.Range:
                 Filter.NormalizeMinValue();
                 Filter.NormalizeMaxValue();
                 break;
         }
     }
+
 }

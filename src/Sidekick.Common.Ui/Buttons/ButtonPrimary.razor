@@ -1,0 +1,17 @@
+﻿<button type="button"
+        @onclick="() => OnClick.InvokeAsync()"
+        @onclick:preventDefault="true"
+        @onclick:stopPropagation="true"
+        class="px-4 py-2 text-base font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-violet-700 hover:bg-violet-500 @UiClasses.FocusClasses">
+    @ChildContent
+</button>
+
+@code {
+
+    [Parameter]
+    public required RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+}

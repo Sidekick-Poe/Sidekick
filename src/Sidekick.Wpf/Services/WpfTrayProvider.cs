@@ -1,63 +1,77 @@
-using System.Windows;
 using System.Windows.Controls;
 using Hardcodet.Wpf.TaskbarNotification;
-using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Ui.Views;
 
-namespace Sidekick.Wpf.Services
+namespace Sidekick.Wpf.Services;
+
+public class WpfTrayProvider(IViewLocator viewLocator) : ITrayProvider, IDisposable
 {
-    public class WpfTrayProvider : ITrayProvider, IDisposable
+    private bool Initialized { get; set; }
+
+    private TaskbarIcon? Icon { get; set; }
+
+    public void Initialize(List<TrayMenuItem> items)
     {
-        private readonly IViewLocator viewLocator;
-
-        public WpfTrayProvider(IViewLocator viewLocator)
+        if (Initialized)
         {
-            this.viewLocator = viewLocator;
+            return;
         }
 
-        private bool Initialized { get; set; }
+        Icon = new TaskbarIcon();
+        Icon.Icon = new System.Drawing.Icon(@"wwwroot/favicon.ico");
+        Icon.ToolTipText = "Sidekick";
+        Icon.ContextMenu = new ContextMenu();
+        Icon.DoubleClickCommand = new SimpleCommand(() => viewLocator.Open("/settings"));
 
-        private TaskbarIcon? Icon { get; set; }
+        #if DEBUG
 
-        public void Initialize(List<TrayMenuItem> items)
+        var developmentMenuItem = new MenuItem
         {
-            if (Initialized)
+            Header = "Development",
+            IsEnabled = true,
+        };
+
+        developmentMenuItem.Click += async (
+            _,
+            _) =>
+        {
+            await viewLocator.Open("/development");
+        };
+
+        Icon.ContextMenu.Items.Add(developmentMenuItem);
+
+        #endif
+
+        foreach (var item in items)
+        {
+            var menuItem = new MenuItem
             {
-                return;
-            }
+                Header = item.Label,
+                IsEnabled = !item.Disabled,
+            };
 
-            Icon = new TaskbarIcon();
-            Icon.Icon = new System.Drawing.Icon(@"wwwroot/favicon.ico");
-            Icon.ToolTipText = "Sidekick";
-            Icon.ContextMenu = new ContextMenu();
-            Icon.DoubleClickCommand = new SimpleCommand(() => viewLocator.Open("/settings"));
-
-            foreach (var item in items)
+            menuItem.Click += async (
+                _,
+                _) =>
             {
-                var menuItem = new MenuItem();
-                menuItem.Header = item.Label;
-                menuItem.IsEnabled = !item.Disabled;
-
-                menuItem.Click += new RoutedEventHandler(async (sender, args) =>
+                if (item.OnClick != null)
                 {
-                    if (item.OnClick != null)
-                    {
-                        await item.OnClick();
-                    }
-                });
+                    await item.OnClick();
+                }
+            };
 
-                Icon.ContextMenu.Items.Add(menuItem);
-            }
-
-            Initialized = true;
+            Icon.ContextMenu.Items.Add(menuItem);
         }
 
-        public void Dispose()
+        Initialized = true;
+    }
+
+    public void Dispose()
+    {
+        if (Icon != null)
         {
-            if (Icon != null)
-            {
-                Icon.Dispose();
-            }
+            Icon.Dispose();
         }
     }
 }

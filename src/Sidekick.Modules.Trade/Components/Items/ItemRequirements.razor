@@ -1,0 +1,41 @@
+@using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Modules.Trade.Localization
+
+<TextBase Class="text-[#7f7f7f] font-caps text-center leading-none py-0.5">@Resources["Requires"] @((MarkupString)Text)</TextBase>
+
+@inject IStringLocalizer<TradeResources> Resources
+
+@code {
+
+    [Parameter]
+    public required TradeItem Item { get; set; }
+
+    private string Text { get; set; } = string.Empty;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        Text = string.Join(", ", Item.RequirementContents.Select(x => x.Text));
+
+        foreach (var requirement in Item.RequirementContents)
+        {
+            foreach (var value in requirement.Values)
+            {
+                if (value.Value == null)
+                {
+                    continue;
+                }
+
+                var color = value.Type switch
+                {
+                    LineContentType.Augmented => "text-[#8888FF]",
+                    _ => "text-[#FFFFFF]",
+                };
+
+                Text = Text.Replace(value.Value, $"<span class=\"{color};\">{value.Value}</span>");
+            }
+        }
+    }
+
+}

@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using MudBlazor;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Stash;
 using Sidekick.Apis.Poe.Stash.Models;
@@ -23,7 +22,7 @@ namespace Sidekick.Modules.Wealth
         public event Action? OnStashParsed;
         public event Action? OnSnapshotTaken;
 
-        public Queue<(Guid Id, DateTimeOffset Date, string Icon, Color Color, string Message)> Logs { get; set; } = new();
+        public Queue<(Guid Id, DateTimeOffset Date, string Icon, string Color, string Message)> Logs { get; set; } = new();
 
         private Thread? RunningThread { get; set; }
         private CancellationTokenSource? CancellationTokenSource { get; set; }
@@ -38,7 +37,7 @@ namespace Sidekick.Modules.Wealth
             CancellationTokenSource = new CancellationTokenSource();
             RunningThread = new Thread(ParseLoop);
             RunningThread.Start();
-            Log(Icons.Material.Filled.PlayCircle, Color.Success, $"Tracker Started.");
+            Log("Icons.Material.Filled.PlayCircle", "Color.Success", $"Tracker Started.");
         }
 
         public void Stop()
@@ -49,12 +48,12 @@ namespace Sidekick.Modules.Wealth
             }
 
             CancellationTokenSource.Cancel();
-            Log(Icons.Material.Filled.StopCircle, Color.Warning, $"Tracker Stopped.");
+            Log("Icons.Material.Filled.StopCircle", "Color.Warning", $"Tracker Stopped.");
         }
 
         public bool IsRunning() => CancellationTokenSource?.IsCancellationRequested == false;
 
-        private void Log(string icon, Color color, string message)
+        private void Log(string icon, string color, string message)
         {
             Logs.Enqueue((Guid.NewGuid(), DateTimeOffset.Now, icon, color, message));
             if (Logs.Count > 50)
@@ -93,10 +92,10 @@ namespace Sidekick.Modules.Wealth
                             continue;
                         }
 
-                        Log(Icons.Material.Filled.HourglassTop, Color.Info, $"[{stash.Name}] Updating...");
+                        Log("Icons.Material.Filled.HourglassTop", "Color.Info", $"[{stash.Name}] Updating...");
                         await ParseStash(database, stash);
                         await TakeStashSnapshot(database, stash);
-                        Log(Icons.Material.Filled.HourglassBottom, Color.Info, $"[{stash.Name}] Updated.");
+                        Log("Icons.Material.Filled.HourglassBottom", "Color.Info", $"[{stash.Name}] Updated.");
                     }
 
                     if (CancellationTokenSource.IsCancellationRequested)
@@ -117,7 +116,7 @@ namespace Sidekick.Modules.Wealth
                 }
                 catch (PoeApiException)
                 {
-                    Log(Icons.Material.Filled.Error, Color.Error, $"Exception! Something wrong happened while working on the tracker. Are you authenticated?");
+                    Log("Icons.Material.Filled.Error", "Color.Error", $"Exception! Something wrong happened while working on the tracker. Are you authenticated?");
                     Stop();
                 }
             }
@@ -192,7 +191,7 @@ namespace Sidekick.Modules.Wealth
             return dbItem;
         }
 
-        private async Task<double> GetItemPrice(StashItem item, Category category)
+        private async Task<decimal> GetItemPrice(StashItem item, Category category)
         {
             var price = await poeNinjaClient.GetPriceInfo(
                 item.Name,
@@ -260,7 +259,7 @@ namespace Sidekick.Modules.Wealth
             });
 
             await database.SaveChangesAsync();
-            Log(Icons.Material.Filled.PhotoCamera, Color.Success, $"Snapshot Taken.");
+            Log("Icons.Material.Filled.PhotoCamera", "Color.Success", $"Snapshot Taken.");
             OnSnapshotTaken?.Invoke();
 
             var oneHourAgo = DateTimeOffset.Now.AddHours(-1);
@@ -271,9 +270,9 @@ namespace Sidekick.Modules.Wealth
                 .OrderBy(x => x.Date)
                 .FirstOrDefaultAsync();
 
-            if (oneHourAgoSnapshot?.Total != null && Math.Abs(oneHourAgoSnapshot.Total - totalPrice) < 0.001)
+            if (oneHourAgoSnapshot?.Total != null && Math.Abs(oneHourAgoSnapshot.Total - totalPrice) < (decimal)0.001)
             {
-                Log(Icons.Material.Filled.Warning, Color.Warning, $"Wealth tracker was automatically stopped due to inactivity.");
+                Log("Icons.Material.Filled.Warning", "Color.Warning", $"Wealth tracker was automatically stopped due to inactivity.");
                 Stop();
             }
         }

@@ -1,6 +1,6 @@
 using ElectronNET.API.Entities;
-using Sidekick.Common.Blazor.Views;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Electron
 {

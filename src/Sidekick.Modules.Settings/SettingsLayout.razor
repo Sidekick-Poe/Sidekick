@@ -1,0 +1,57 @@
+@using System.Diagnostics
+@using Sidekick.Common.Blazor.Update
+@using Sidekick.Common.Cache
+@inherits LayoutComponentBase
+
+<LayoutTwoColumn>
+    <TopContent>
+        <AppBar>
+            <AppMinimize/>
+            <AppMaximize/>
+            <AppClose/>
+        </AppBar>
+    </TopContent>
+    <LeftContent>
+        <MenuList>
+            <MenuItem Href="/settings">@Resources["General"]</MenuItem>
+            <MenuItem Href="/settings/price">@Resources["Price Check"]</MenuItem>
+            <MenuItem Href="/settings/map">@Resources["Map Check"]</MenuItem>
+            <MenuItem Href="/settings/wiki">@Resources["Wiki"]</MenuItem>
+            <MenuItem Href="/settings/chat">@Resources["Chat Commands"]</MenuItem>
+
+            @if (Debugger.IsAttached)
+            {
+                <MenuItem Href="/settings/wealth">@Resources["Wealth Tracker"]</MenuItem>
+            }
+
+            <div class="grow"></div>
+
+            <div class="py-2">
+                <ButtonSecondary OnClick="ResetCache">@Resources["Reset Cache"]</ButtonSecondary>
+            </div>
+        </MenuList>
+    </LeftContent>
+    <ChildContent>
+        <div class="max-w-[800px] mx-auto">
+            @Body
+        </div>
+    </ChildContent>
+    <BottomContent>
+        <UpdateBanner/>
+    </BottomContent>
+</LayoutTwoColumn>
+
+@inject IStringLocalizer<SettingsLayout> Resources
+@inject ICacheProvider CacheProvider
+@inject NavigationManager NavigationManager
+
+@code {
+
+    public Task ResetCache()
+    {
+        CacheProvider.Clear();
+        NavigationManager.NavigateTo("/initialize");
+        return Task.CompletedTask;
+    }
+
+}

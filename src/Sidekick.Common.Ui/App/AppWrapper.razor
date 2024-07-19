@@ -1,0 +1,12 @@
+﻿<ErrorFullScreenBoundary>
+    <div class="font-sans w-full h-screen overflow-y-auto overflow-x-hidden dark:bg-stone-800 text-white text-base">
+        @ChildContent
+    </div>
+</ErrorFullScreenBoundary>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+}

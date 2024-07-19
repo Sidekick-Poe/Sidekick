@@ -33,8 +33,8 @@ namespace Sidekick.Common.Database.Tables
 
         public int Count { get; set; }
 
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
-        public double Total { get; set; }
+        public decimal Total { get; set; }
     }
 }
