@@ -13,6 +13,11 @@ public interface IKeyboardProvider : IInitializableService
     event Action<string> OnKeyDown;
 
     /// <summary>
+    /// Register keyboard hooks to capture keybinds.
+    /// </summary>
+    void RegisterHooks();
+
+    /// <summary>
     ///     Command to send keystrokes to the system
     /// </summary>
     /// <param name="keys">The keys to send</param>

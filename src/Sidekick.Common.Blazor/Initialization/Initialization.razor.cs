@@ -94,8 +94,14 @@ namespace Sidekick.Common.Blazor.Initialization
                 // "Ready" label on the UI before closing the view
                 Completed = Count;
                 await ReportProgress();
+
+#if DEBUG
+                await ViewLocator.Open("/development");
+                await CurrentView.Close();
+#else
                 await Task.Delay(4000);
                 await CurrentView.Close();
+#endif
             }
             catch (Exception ex)
             {
@@ -169,7 +175,9 @@ namespace Sidekick.Common.Blazor.Initialization
                             BrowserProvider.OpenSidekickWebsite();
                             return Task.CompletedTask;
                         }),
-                    new(label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
+
+                    // new(label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
+
                     new(label: "Settings", onClick: () => ViewLocator.Open("/settings")),
                     new(
                         label: "Exit",

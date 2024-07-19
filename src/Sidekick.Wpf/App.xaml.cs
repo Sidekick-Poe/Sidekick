@@ -63,6 +63,7 @@ namespace Sidekick.Wpf
                                                   .Result;
             if (string.IsNullOrEmpty(settingDirectory) || settingDirectory != currentDirectory)
             {
+                logger.LogDebug("[Startup] Current Directory set to: {0}", currentDirectory);
                 settingsService
                     .Set(SettingKeys.CurrentDirectory, currentDirectory)
                     .Wait();
@@ -74,6 +75,7 @@ namespace Sidekick.Wpf
             var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
             if (interprocessService.IsAlreadyRunning())
             {
+                logger.LogDebug("[Startup] Application is already running.");
                 if (e.Args.Length <= 0
                     || !e
                         .Args[0]
@@ -92,6 +94,7 @@ namespace Sidekick.Wpf
                         }
                         finally
                         {
+                            logger.LogDebug("[Startup] Application is shutting down due to another instance running.");
                             Current.Dispatcher.Invoke(
                                 () =>
                                 {

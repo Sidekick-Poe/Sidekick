@@ -1,3 +1,4 @@
+@using System.Diagnostics
 @using Sidekick.Common.Blazor.Update
 @using Sidekick.Common.Cache
 @inherits LayoutComponentBase
@@ -17,7 +18,11 @@
             <MenuItem Href="/settings/map">@Resources["Map Check"]</MenuItem>
             <MenuItem Href="/settings/wiki">@Resources["Wiki"]</MenuItem>
             <MenuItem Href="/settings/chat">@Resources["Chat Commands"]</MenuItem>
-            <MenuItem Href="/settings/wealth">@Resources["Wealth Tracker"]</MenuItem>
+
+            @if (Debugger.IsAttached)
+            {
+                <MenuItem Href="/settings/wealth">@Resources["Wealth Tracker"]</MenuItem>
+            }
 
             <div class="grow"></div>
 

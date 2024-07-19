@@ -1,5 +1,6 @@
 @page "/development"
 @using Sidekick.Common.Extensions
+@using Sidekick.Common.Platform
 @using Sidekick.Modules.Development.Components
 @using Sidekick.Modules.Development.Layouts
 @inherits SidekickView
@@ -23,9 +24,13 @@
             <Heading2 Class="mb-3">Other Pages</Heading2>
             <HomeButton Class="bg-emerald-700 hover:bg-emerald-500 mb-3" OnClick="@(() => NavigationManager.NavigateTo("/wealth"))">Wealth</HomeButton>
             <HomeButton Class="bg-slate-700 hover:bg-slate-500 mb-3" OnClick="@(() => NavigationManager.NavigateTo("/settings"))">Settings</HomeButton>
+            <Heading2 Class="mb-3">Keybinds</Heading2>
+            <HomeButton Class="bg-amber-700 hover:bg-amber-500 mb-3" OnClick="RegisterHooks">Register Hooks</HomeButton>
         </div>
     </div>
 </AppContainer>
+
+@inject IKeyboardProvider KeyboardProvider
 
 @code {
 
@@ -39,6 +44,11 @@
     private void MapCheck()
     {
         NavigationManager.NavigateTo($"/map/{ItemText.EncodeBase64Url()}");
+    }
+
+    private void RegisterHooks()
+    {
+        KeyboardProvider.RegisterHooks();
     }
 
 }

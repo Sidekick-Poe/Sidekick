@@ -20,6 +20,10 @@ namespace Sidekick.Mock
             return Task.CompletedTask;
         }
 
+        public void RegisterHooks()
+        {
+        }
+
         public Task PressKey(params string[] keys)
         {
             return Task.CompletedTask;

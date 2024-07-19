@@ -1,4 +1,3 @@
-@using MudBlazor
 @using Sidekick.Apis.PoeWiki
 @using Sidekick.Apis.PoeWiki.Models
 @using Sidekick.Modules.Maps.Localization
@@ -32,10 +31,10 @@ else if (Map != null)
             }
             else
             {
-                <MudText Class="pa-4">@Resources["This map drops nothing."]</MudText>
+                <TextBase Class="text-center">@Resources["This map drops nothing."]</TextBase>
             }
 
-            <div class="text-center">
+            <div class="text-center mt-2">
                 <ButtonLink OnClick="@(() => PoeWikiClient.OpenUri(Map))">
                     @Resources["Information provided by poewiki.net"]
                 </ButtonLink>

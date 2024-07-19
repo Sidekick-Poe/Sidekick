@@ -59,12 +59,12 @@
 
         <LayoutDivider/>
 
-        <Heading2 Class="mb-3">@Resources["Stash Tabs"]</Heading2>
-        <TextBase Class="mb-1">@Resources["Note that selecting too many tabs may result in a worse experience and refresh rate due to the high number of requests."]</TextBase>
-        <TextBase Class="mb-3">@Resources["Selecting the unique items or map stash tabs are not recommended due to very low performance on these tabs."]</TextBase>
-
         @if (StashTabs != null)
         {
+            <Heading2 Class="mb-3">@Resources["Stash Tabs"]</Heading2>
+            <TextBase Class="mb-1">@Resources["Note that selecting too many tabs may result in a worse experience and refresh rate due to the high number of requests."]</TextBase>
+            <TextBase Class="mb-3">@Resources["Selecting the unique items or map stash tabs are not recommended due to very low performance on these tabs."]</TextBase>
+
             foreach (var stashTab in StashTabs)
             {
                 <FormCheckbox Value="IsChecked(stashTab)"
@@ -75,10 +75,12 @@
         }
         else
         {
-            <ProgressBar Indeterminate="true"/>
+            <div class="my-3">
+                <ProgressBar Indeterminate="true"/>
+            </div>
         }
 
-        <div class="flex justify-end mb-3">
+        <div class="flex justify-center mt-3">
             <ButtonPrimary OnClick="ToggleWealthTracker">
                 @Resources["Disable Wealth Tracker"]
             </ButtonPrimary>
@@ -111,7 +113,8 @@
                        ??
                        [
                        ];
-        AuthenticationService.OnAuthenticated += OnAuthenticated;
+        AuthenticationService.OnStateChanged += OnAuthenticationChanged;
+        OnAuthenticationChanged();
 
         if (Enabled)
         {
@@ -147,9 +150,16 @@
         StateHasChanged();
     }
 
-    private void OnAuthenticated()
+    private void OnAuthenticationChanged()
     {
-        _ = InvokeAsync(LoadStashTabs);
+        _ = InvokeAsync(
+            async () =>
+            {
+                if (await AuthenticationService.GetCurrentState() == AuthenticationState.Authenticated)
+                {
+                    await LoadStashTabs();
+                }
+            });
     }
 
     private bool IsChecked(StashTab tab) => SelectedTabs.Contains(tab.Id);
@@ -170,7 +180,7 @@
 
     public void Dispose()
     {
-        AuthenticationService.OnAuthenticated -= OnAuthenticated;
+        AuthenticationService.OnStateChanged -= OnAuthenticationChanged;
     }
 
 }

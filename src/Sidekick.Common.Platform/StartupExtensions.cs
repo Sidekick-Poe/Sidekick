@@ -14,10 +14,11 @@ namespace Sidekick.Common.Platform
     public static class StartupExtensions
     {
         /// <summary>
-        /// Adds platform (operating system) functions to the service collection
+        /// Adds platform (operating system) functions to the service collection.
         /// </summary>
-        /// <param name="services">The services collection to add services to</param>
-        /// <returns>The service collection with services added</returns>
+        /// <param name="services">The services collection to add services to.</param>
+        /// <param name="options">The platform options.</param>
+        /// <returns>The service collection with services added.</returns>
         public static IServiceCollection AddSidekickCommonPlatform(this IServiceCollection services, Action<PlatformOptions> options)
         {
             services.Configure(options);
