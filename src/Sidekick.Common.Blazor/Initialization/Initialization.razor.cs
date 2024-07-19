@@ -95,13 +95,16 @@ namespace Sidekick.Common.Blazor.Initialization
                 Completed = Count;
                 await ReportProgress();
 
-#if DEBUG
-                await ViewLocator.Open("/development");
-                await CurrentView.Close();
-#else
-                await Task.Delay(4000);
-                await CurrentView.Close();
-#endif
+                if (Debugger.IsAttached)
+                {
+                    await ViewLocator.Open("/development");
+                    await CurrentView.Close();
+                }
+                else
+                {
+                    await Task.Delay(4000);
+                    await CurrentView.Close();
+                }
             }
             catch (Exception ex)
             {

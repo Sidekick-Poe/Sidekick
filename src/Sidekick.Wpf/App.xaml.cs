@@ -40,9 +40,7 @@ namespace Sidekick.Wpf
 
         public App()
         {
-#if !DEBUG
             DeleteStaticAssets();
-#endif
 
             var services = new ServiceCollection();
             ConfigureServices(services);

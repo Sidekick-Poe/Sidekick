@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.DependencyInjection;
@@ -149,9 +150,10 @@ namespace Sidekick.Common.Platform.Keyboards
         /// <inheritdoc/>
         public Task Initialize()
         {
-#if DEBUG
-            return Task.CompletedTask;
-#endif
+            if (Debugger.IsAttached)
+            {
+                return Task.CompletedTask;
+            }
 
             RegisterHooks();
             return Task.CompletedTask;

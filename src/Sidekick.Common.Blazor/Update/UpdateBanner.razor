@@ -1,3 +1,4 @@
+@using System.Diagnostics
 @using Sidekick.Apis.GitHub;
 @using Sidekick.Apis.GitHub.Models;
 @using Sidekick.Common.Browser;
@@ -41,13 +42,14 @@
     {
         Release = await GitHubClient.GetLatestRelease();
 
-#if DEBUG
-        Release = new GitHubRelease()
+        if (Debugger.IsAttached)
         {
-            IsNewerVersion = true,
-            IsExecutable = true,
-        };
-#endif
+            Release = new GitHubRelease()
+            {
+                IsNewerVersion = true,
+                IsExecutable = true,
+            };
+        }
 
         await base.OnInitializedAsync();
     }

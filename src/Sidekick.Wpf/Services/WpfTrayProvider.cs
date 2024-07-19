@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Windows.Controls;
 using Hardcodet.Wpf.TaskbarNotification;
 using Sidekick.Common.Platform;
@@ -24,24 +25,23 @@ public class WpfTrayProvider(IViewLocator viewLocator) : ITrayProvider, IDisposa
         Icon.ContextMenu = new ContextMenu();
         Icon.DoubleClickCommand = new SimpleCommand(() => viewLocator.Open("/settings"));
 
-        #if DEBUG
-
-        var developmentMenuItem = new MenuItem
+        if (Debugger.IsAttached)
         {
-            Header = "Development",
-            IsEnabled = true,
-        };
+            var developmentMenuItem = new MenuItem
+            {
+                Header = "Development",
+                IsEnabled = true,
+            };
 
-        developmentMenuItem.Click += async (
-            _,
-            _) =>
-        {
-            await viewLocator.Open("/development");
-        };
+            developmentMenuItem.Click += async (
+                _,
+                _) =>
+            {
+                await viewLocator.Open("/development");
+            };
 
-        Icon.ContextMenu.Items.Add(developmentMenuItem);
-
-        #endif
+            Icon.ContextMenu.Items.Add(developmentMenuItem);
+        }
 
         foreach (var item in items)
         {
