@@ -40,7 +40,7 @@ public static class DefaultSettings
 
     public static int PriceCheckBulkMinimumStock => 5;
 
-    public static string PriceCheckCurrencyMode => TradeMode.Bulk.GetValueAttribute() ?? "bulk";
+    public static string PriceCheckCurrencyMode => TradeMode.Item.GetValueAttribute() ?? "item";
 
     public static List<ChatSetting> ChatCommands =>
     [

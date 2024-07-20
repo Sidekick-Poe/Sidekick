@@ -84,7 +84,7 @@ namespace Sidekick.Common.Blazor.Initialization
                         continue;
                     }
 
-                    Logger.LogInformation($"[Initiazation] Initializing {initializableService.GetType().FullName}");
+                    Logger.LogInformation($"[Initialization] Initializing {initializableService.GetType().FullName}");
                     await Run(initializableService.Initialize);
                 }
 
@@ -108,7 +108,7 @@ namespace Sidekick.Common.Blazor.Initialization
             }
             catch (Exception ex)
             {
-                Logger.LogError(ex.Message, "[Initiazation] An initialization step failed.");
+                Logger.LogError(ex.Message, "[Initialization] An initialization step failed.");
                 Error = true;
             }
         }

@@ -44,6 +44,8 @@ public class PriceCheckService(
 
     public BulkResponseModel? BulkTradeResult { get; set; }
 
+    public bool ShowSearchButton => Item?.Metadata.Category != Category.Currency && Item?.Metadata.Category != Category.DivinationCard;
+
     public async Task Initialize(string itemText)
     {
         IsFilterLoading = true;

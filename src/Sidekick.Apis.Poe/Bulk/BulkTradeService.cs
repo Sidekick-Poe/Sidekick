@@ -51,14 +51,21 @@ namespace Sidekick.Apis.Poe.Bulk
             model.Query.Want.Add(itemId);
             model.Query.Minimum = minStock;
 
-            var have = currency.GetValueAttribute();
             if (currency == TradeCurrency.ChaosEquivalent || currency == TradeCurrency.ChaosOrDivine)
             {
-                model.Query.Have.Add(TradeCurrency.Chaos.GetValueAttribute()!);
+                if (model.Query.Want.Any(x => x == TradeCurrency.Chaos.GetValueAttribute()))
+                {
+                    model.Query.Have.Add(TradeCurrency.Divine.GetValueAttribute()!);
+                }
+                else
+                {
+                    model.Query.Have.Add(TradeCurrency.Chaos.GetValueAttribute()!);
+                }
             }
             else
             {
-                model.Query.Have.Add(have);
+                var have = currency.GetValueAttribute();
+                model.Query.Have.Add(have!);
             }
 
             var json = JsonSerializer.Serialize(model, poeTradeClient.Options);

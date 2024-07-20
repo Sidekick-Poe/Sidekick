@@ -9,7 +9,7 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Authentication
 {
-    internal class AuthenticationService : IAuthenticationService, IInitializableService, IDisposable
+    internal class AuthenticationService : IAuthenticationService, IDisposable
     {
         private const string Authorizationurl = "https://www.pathofexile.com/oauth/authorize";
         private const string Redirecturl = "https://sidekick-poe.github.io/oauth/poe";

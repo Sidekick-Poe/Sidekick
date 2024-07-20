@@ -40,9 +40,12 @@
         <PseudoFiltersComponent/>
     </div>
 
-    <div class="flex flex-col items-stretch text-center py-1 px-2">
-        <ButtonPrimary OnClick="PriceCheckService.Search">@Resources["Search"]</ButtonPrimary>
-    </div>
+    @if (PriceCheckService.ShowSearchButton)
+    {
+        <div class="flex flex-col items-stretch text-center py-1 px-2">
+            <ButtonPrimary OnClick="PriceCheckService.Search">@Resources["Search"]</ButtonPrimary>
+        </div>
+    }
 </div>
 
 @inject IStringLocalizer<TradeResources> Resources
