@@ -221,7 +221,12 @@ namespace Sidekick.Wpf.Services
             Application.Current.Dispatcher.Invoke(
                 () =>
                 {
-                    var window = new MainWindow(this);
+                    var window = new MainWindow(this)
+                    {
+                        Topmost = true,
+                        ShowInTaskbar = false,
+                        ResizeMode = ResizeMode.NoResize,
+                    };
                     Windows.Add(window);
                     window.Show();
                 });
