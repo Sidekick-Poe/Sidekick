@@ -18,7 +18,7 @@
                     Influences="PriceCheckService.Item.Influences"/>
     </div>
 
-    <div class="grow overflow-y-auto pb-8">
+    <div class="grow overflow-y-auto pb-9">
         <SidekickErrorBoundary>
             <PriceNinjaComponent/>
         </SidekickErrorBoundary>
@@ -40,13 +40,20 @@
         <PseudoFiltersComponent/>
     </div>
 
-    @if (PriceCheckService.ShowSearchButton)
-    {
-        <div class="flex flex-col items-stretch text-center py-1 px-2">
-            <ButtonPrimary OnClick="PriceCheckService.Search">@Resources["Search"]</ButtonPrimary>
+    <div class="flex flex-nowrap w-full">
+        <div class="flex flex-col items-stretch text-center p-2 @(PriceCheckService.SupportsBulk ? "w-1/2" : "w-full")">
+            <ButtonPrimary OnClick="PriceCheckService.ItemSearch">@Resources["Search"]</ButtonPrimary>
         </div>
-    }
+        @if (PriceCheckService.SupportsBulk)
+        {
+            <div class="w-1/2 flex flex-col items-stretch text-center p-2">
+                <ButtonSecondary OnClick="PriceCheckService.BulkSearch">@Resources["Bulk Search"]</ButtonSecondary>
+            </div>
+        }
+    </div>
 </div>
+
+@implements  IDisposable
 
 @inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
@@ -71,6 +78,8 @@
 
     protected override async Task OnInitializedAsync()
     {
+        PriceCheckService.FilterLoadingChanged += StateHasChanged;
+
         await base.OnInitializedAsync();
 
         var propertyCount = 0;
@@ -83,6 +92,11 @@
         modifierCount += PriceCheckService.ModifierFilters.Count;
 
         HasAnyFilter = modifierCount + propertyCount > 0;
+    }
+
+    public void Dispose()
+    {
+        PriceCheckService.FilterLoadingChanged -= StateHasChanged;
     }
 
 }

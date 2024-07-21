@@ -27,7 +27,10 @@ else if (Price != null)
             </ButtonLink>
         </div>
         <div class="text-left w-1/2 pl-2">
-            <PriceDisplay Value="Price.Price"/>
+            <div class="flex">
+                <PriceDisplay Value="Price.Price"/>
+            </div>
+
             @if (Price.Links >= 5)
             {
                 <TextCaption>@Price.Links @Resources["Links"]</TextCaption>
@@ -70,35 +73,35 @@ else if (Price != null)
                 mapTier: PriceCheckService.Item?.Properties.MapTier,
                 numberOfLinks: PriceCheckService.Item?.GetMaximumNumberOfLinks());
         }
-/*
-        ChartOptions = new ChartOptions()
-        {
-            DisableLegend = true,
-            XAxisLines = false,
-            YAxisLines = false,
-            ChartPalette = new string[] { "#ffffff" },
-        };
-        if (Price?.SparkLine?.Data.All(x => x.HasValue) == true)
-        {
-            // Normalize values above 0 since the chart doesn't show negative values in the viewbox.
-            var sparkLineData = Price
-                                .SparkLine.Data.Select(x => x ?? 0)
-                                .ToArray();
-            var min = Math.Abs(sparkLineData.Min());
-            var chartData = sparkLineData
-                            .Select(x => x + min)
-                            .ToArray();
+        /*
+                ChartOptions = new ChartOptions()
+                {
+                    DisableLegend = true,
+                    XAxisLines = false,
+                    YAxisLines = false,
+                    ChartPalette = new string[] { "#ffffff" },
+                };
+                if (Price?.SparkLine?.Data.All(x => x.HasValue) == true)
+                {
+                    // Normalize values above 0 since the chart doesn't show negative values in the viewbox.
+                    var sparkLineData = Price
+                                        .SparkLine.Data.Select(x => x ?? 0)
+                                        .ToArray();
+                    var min = Math.Abs(sparkLineData.Min());
+                    var chartData = sparkLineData
+                                    .Select(x => x + min)
+                                    .ToArray();
 
-            if (chartData.Any(x => x != 0))
-            {
-                Series =
-                [
-                    new ChartSeries() { Data = chartData },
-                ];
-            }
-        }
+                    if (chartData.Any(x => x != 0))
+                    {
+                        Series =
+                        [
+                            new ChartSeries() { Data = chartData },
+                        ];
+                    }
+                }
 
-*/
+        */
 
         Loading = false;
         StateHasChanged();

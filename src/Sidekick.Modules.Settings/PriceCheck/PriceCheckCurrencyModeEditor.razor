@@ -3,7 +3,7 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Settings.Localization
 
-<FormSelect Label="@Resources["Search to use for currency items"]"
+<FormSelect Label="@Resources["Preferred search mode for currency items"]"
             Value="@Mode"
             ValueChanged="ModeChanged"
             Options="Options"/>
@@ -25,14 +25,15 @@
         [
             new SelectOption()
             {
-                Value = TradeMode.Bulk.GetValueAttribute(),
-                Label = Resources["Bulk Trade"],
+                Value = TradeMode.Item.GetValueAttribute(),
+                Label = Resources["Item Trade"],
             },
             new SelectOption()
             {
-                Value = TradeMode.Item.GetValueAttribute(),
-                Label = Resources["Item Trade"],
-            },];
+                Value = TradeMode.Bulk.GetValueAttribute(),
+                Label = Resources["Bulk Trade"],
+            }
+        ];
 
         Mode = await SettingsService.GetString(SettingKeys.PriceCheckCurrencyMode);
 

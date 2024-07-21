@@ -20,31 +20,31 @@ public class PriceCheckService(
 
     public event Action? FilterLoadingChanged;
 
-    public Item? Item { get; set; }
+    public Item? Item { get; private set; }
 
-    public TradeMode CurrentMode { get; set; }
+    public TradeMode CurrentMode { get; private set; }
 
-    public PropertyFilters? PropertyFilters { get; set; }
+    public PropertyFilters? PropertyFilters { get; private set; }
 
-    public List<ModifierFilter> ModifierFilters { get; set; } =
+    public List<ModifierFilter> ModifierFilters { get; private set; } =
     [
     ];
 
-    public List<PseudoModifierFilter> PseudoFilters { get; set; } =
+    public List<PseudoModifierFilter> PseudoFilters { get; private set; } =
     [
     ];
 
-    public bool IsLoading { get; set; }
+    public bool IsLoading { get; private set; }
 
-    public bool IsFilterLoading { get; set; }
+    public bool IsFilterLoading { get; private set; }
 
-    public TradeSearchResult<string>? ItemTradeResult { get; set; }
+    public TradeSearchResult<string>? ItemTradeResult { get; private set; }
 
-    public List<TradeItem>? TradeItems { get; set; }
+    public List<TradeItem>? TradeItems { get; private set; }
 
-    public BulkResponseModel? BulkTradeResult { get; set; }
+    public BulkResponseModel? BulkTradeResult { get; private set; }
 
-    public bool ShowSearchButton => Item?.Metadata.Category != Category.Currency && Item?.Metadata.Category != Category.DivinationCard;
+    public bool SupportsBulk { get; private set; }
 
     public async Task Initialize(string itemText)
     {
@@ -61,40 +61,40 @@ public class PriceCheckService(
                         .GetPseudoModifierFilters(Item)
                         .ToList();
 
+        SupportsBulk = bulkTradeService.SupportsBulkTrade(Item);
+        if (SupportsBulk)
+        {
+            CurrentMode = await settingsService.GetEnum<TradeMode>(SettingKeys.PriceCheckCurrencyMode) ?? TradeMode.Item;
+        }
+        else
+        {
+            CurrentMode = TradeMode.Item;
+        }
+
         IsFilterLoading = false;
         FilterLoadingChanged?.Invoke();
 
         if (Item.Metadata.Rarity != Rarity.Rare && Item.Metadata.Rarity != Rarity.Magic)
         {
-            await Search();
+            if (CurrentMode == TradeMode.Bulk)
+            {
+                await BulkSearch();
+            }
+            else
+            {
+                await ItemSearch();
+            }
         }
     }
 
-    public async Task Search()
-    {
-        CurrentMode = TradeMode.Item;
-        if (bulkTradeService.SupportsBulkTrade(Item))
-        {
-            CurrentMode = await settingsService.GetEnum<TradeMode>(SettingKeys.PriceCheckCurrencyMode) ?? TradeMode.Item;
-        }
-
-        if (CurrentMode == TradeMode.Bulk)
-        {
-            await BulkSearch();
-        }
-        else
-        {
-            await ItemSearch();
-        }
-    }
-
-    private async Task ItemSearch()
+    public async Task ItemSearch()
     {
         if (Item == null)
         {
             return;
         }
 
+        CurrentMode = TradeMode.Item;
         TradeItems = new List<TradeItem>();
         IsLoading = true;
         LoadingChanged?.Invoke();
@@ -139,13 +139,14 @@ public class PriceCheckService(
         LoadingChanged?.Invoke();
     }
 
-    private async Task BulkSearch()
+    public async Task BulkSearch()
     {
         if (Item == null)
         {
             return;
         }
 
+        CurrentMode = TradeMode.Bulk;
         BulkTradeResult = null;
         IsLoading = true;
         LoadingChanged?.Invoke();
