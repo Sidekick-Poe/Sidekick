@@ -3,6 +3,7 @@ name: WPF Release
 on:
   push:
     tags: [v*]
+  workflow_dispatch:
 
 jobs:
   wpf-release:
