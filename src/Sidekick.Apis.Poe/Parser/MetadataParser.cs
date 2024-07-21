@@ -7,22 +7,11 @@ using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Parser
 {
-    public class MetadataParser : IItemMetadataParser
+    public class MetadataParser(
+        IGameLanguageProvider gameLanguageProvider,
+        IParserPatterns parserPatterns,
+        IMetadataProvider data) : IItemMetadataParser
     {
-        private readonly IGameLanguageProvider gameLanguageProvider;
-        private readonly IParserPatterns parserPatterns;
-        private readonly IMetadataProvider data;
-
-        public MetadataParser(
-            IGameLanguageProvider gameLanguageProvider,
-            IParserPatterns parserPatterns,
-            IMetadataProvider data)
-        {
-            this.gameLanguageProvider = gameLanguageProvider;
-            this.parserPatterns = parserPatterns;
-            this.data = data;
-        }
-
         private Regex Affixes { get; set; } = null!;
 
         private Regex SuperiorAffix { get; set; } = null!;

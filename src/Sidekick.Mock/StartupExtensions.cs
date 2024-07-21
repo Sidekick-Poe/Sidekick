@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Mock
@@ -15,6 +16,7 @@ namespace Sidekick.Mock
             services.TryAddSingleton<IKeyboardProvider, MockKeyboardProvider>();
             services.TryAddSingleton<ITrayProvider, MockTrayProvider>();
             services.TryAddSingleton<IViewLocator, MockViewLocator>();
+            services.TryAddSingleton<IInterprocessService, MockInterprocessService>();
 
             return services;
         }
