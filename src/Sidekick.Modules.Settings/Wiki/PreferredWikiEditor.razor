@@ -30,7 +30,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        PreferredWiki = (await SettingsService.GetEnum<WikiSetting>(SettingKeys.PreferredWiki) ?? WikiSetting.PoeWiki).ToString();
+        PreferredWiki = await SettingsService.GetString(SettingKeys.PreferredWiki);
         await base.OnInitializedAsync();
     }
 
