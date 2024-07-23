@@ -68,7 +68,7 @@ jobs:
               -prerelease | select-object -first 1
 
           Push-Location "src/Sidekick.Wpf"
-          & $msBuildPath Sidekick.Wpf.csproj /target:Publish /property:PublishProfile=ClickOnceBeta /property:ApplicationVersion=$version
+          & $msBuildPath Sidekick.Wpf.csproj /target:Publish /property:PublishProfile=ClickOnceRelease /property:ApplicationVersion=$version
           Pop-Location
 
       - name: Git - Setup

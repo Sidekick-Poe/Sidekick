@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Components;
-using Sidekick.Common.Exceptions;
 
 namespace Sidekick.Common.Ui.Views;
 
@@ -23,7 +22,7 @@ public class CurrentView(
     public string Url => navigationManager.Uri;
 
     /// <inheritdoc/>
-    public string? Key => Url.Split('/', '\\').FirstOrDefault(x => !string.IsNullOrEmpty(x));
+    public string? Key => new Uri(Url).AbsolutePath.Split('/', '\\').FirstOrDefault(x => !string.IsNullOrEmpty(x));
 
     /// <inheritdoc/>
     public SidekickView? Current { get; private set; }
