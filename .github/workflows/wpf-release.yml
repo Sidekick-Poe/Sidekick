@@ -57,7 +57,7 @@ jobs:
       - name: Build - Sidekick.Wpf
         shell: pwsh
         run: |
-          $version = "${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.buildMetaData }}"
+          $version = "${{ steps.gitversion.outputs.fullSemVer }}"
           Write-Output "Version: $version"
 
           # Find MSBuild.
