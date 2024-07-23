@@ -27,7 +27,7 @@ else if (PriceCheckService.BulkTradeResult != null)
 
         @foreach (var offer in PriceCheckService.BulkTradeResult.Offers)
         {
-            <div class="mb-2 flex flex-nowrap items-center w-full bg-stone-900 rounded-lg">
+            <div class="mb-2 flex flex-nowrap items-center w-full bg-stone-950 rounded-lg">
                 <div class="w-1/4 p-2 text-center">
                     <TextBase Class="text-ellipsis overflow-hidden">@offer.AccountName</TextBase>
                     <PriceAge Date="offer.Date"/>

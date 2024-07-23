@@ -3003,11 +3003,6 @@ video {
   background-color: rgb(41 37 36 / var(--tw-bg-opacity));
 }
 
-.bg-stone-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(28 25 23 / var(--tw-bg-opacity));
-}
-
 .bg-stone-950 {
   --tw-bg-opacity: 1;
   background-color: rgb(12 10 9 / var(--tw-bg-opacity));
@@ -4264,11 +4259,6 @@ video {
 .dark\:border-zinc-600:where(.dark, .dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(82 82 91 / var(--tw-border-opacity));
-}
-
-.dark\:bg-stone-800:where(.dark, .dark *) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(41 37 36 / var(--tw-bg-opacity));
 }
 
 .dark\:bg-stone-900:where(.dark, .dark *) {
