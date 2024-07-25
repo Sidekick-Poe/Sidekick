@@ -6,7 +6,7 @@ namespace Sidekick.Mock
 {
     public class MockClipboardProvider : IClipboardProvider
     {
-        public Task<string> Copy()
+        public Task<string?> Copy()
         {
             throw new NotImplementedException();
         }
@@ -16,12 +16,12 @@ namespace Sidekick.Mock
             throw new NotImplementedException();
         }
 
-        public Task<string> GetText()
+        public Task<string?> GetText()
         {
             throw new NotImplementedException();
         }
 
-        public Task SetText(string text)
+        public Task SetText(string? text)
         {
             return Task.CompletedTask;
         }

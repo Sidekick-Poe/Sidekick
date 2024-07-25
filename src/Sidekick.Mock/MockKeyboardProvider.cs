@@ -11,7 +11,7 @@ namespace Sidekick.Mock
 
 #pragma warning disable CS0067
 
-        public event Action<string> OnKeyDown;
+        public event Action<string>? OnKeyDown;
 
 #pragma warning restore CS0067
 

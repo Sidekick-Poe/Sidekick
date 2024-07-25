@@ -11,9 +11,9 @@ namespace Sidekick.Mock
     {
         public string ClientLogPath => string.Empty;
 
-        public event Action OnFocus;
+        public event Action? OnFocus;
 
-        public event Action OnBlur;
+        public event Action? OnBlur;
 
         public bool IsPathOfExileInFocus => true;
         public bool IsSidekickInFocus => false;
