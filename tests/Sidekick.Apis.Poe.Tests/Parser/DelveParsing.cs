@@ -68,22 +68,20 @@ Note: ~price 4 chaos
         {
             var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Currency
-Perfect Fossil
+Opulent Fossil
 --------
 Stack Size: 1/20
-Applies to: Weapons, Body Armour, Gloves, Boots, Helmets, Shields, Maps
 --------
-Improved Quality
+More Drop modifiers
+No Tagless modifiers
 --------
 Place in a Resonator to influence item crafting.
---------
-Note: ~price 4 chaos
 ");
 
             Assert.Equal(Class.StackableCurrency, actual.Header.Class);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
-            Assert.Equal("Perfect Fossil", actual.Metadata.Type);
+            Assert.Equal("Opulent Fossil", actual.Metadata.Type);
         }
     }
 }
