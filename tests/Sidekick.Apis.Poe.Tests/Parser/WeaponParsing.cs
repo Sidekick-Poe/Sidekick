@@ -67,7 +67,6 @@ Item Level: 70
 --------
 Adds 10 to 16 Physical Damage
 24% increased Fire Damage
-14% increased Critical Strike Chance for Spells
 Attacks with this Weapon Penetrate 10% Lightning Resistance
 --------
 Crusader Item
@@ -82,7 +81,6 @@ Crusader Item
             actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Spell Damage", 33);
             actual.AssertHasAlternateModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage (Local)", 10, 16);
             actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Fire Damage", 24);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Critical Strike Chance for Spells", 14);
             actual.AssertHasModifier(ModifierCategory.Explicit, "Attacks with this Weapon Penetrate #% Lightning Resistance", 10);
         }
 

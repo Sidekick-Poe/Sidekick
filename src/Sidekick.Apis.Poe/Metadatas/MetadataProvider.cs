@@ -41,24 +41,24 @@ namespace Sidekick.Apis.Poe.Metadatas
                 "Metadata",
                 () => poeTradeClient.Fetch<ApiCategory>("data/items"));
 
-            FillPattern(result.Result, "accessories", Category.Accessory, useRegex: true);
+            FillPattern(result.Result, "accessory", Category.Accessory, useRegex: true);
             FillPattern(result.Result, "armour", Category.Armour, useRegex: true);
-            FillPattern(result.Result, "cards", Category.DivinationCard);
+            FillPattern(result.Result, "card", Category.DivinationCard);
             FillPattern(result.Result, "currency", Category.Currency);
-            FillPattern(result.Result, "flasks", Category.Flask, useRegex: true);
-            FillPattern(result.Result, "gems", Category.Gem);
-            FillPattern(result.Result, "jewels", Category.Jewel, useRegex: true);
-            FillPattern(result.Result, "maps", Category.Map, useRegex: true);
-            FillPattern(result.Result, "weapons", Category.Weapon, useRegex: true);
-            FillPattern(result.Result, "leaguestones", Category.Leaguestone);
-            FillPattern(result.Result, "monsters", Category.ItemisedMonster, useRegex: true);
+            FillPattern(result.Result, "flask", Category.Flask, useRegex: true);
+            FillPattern(result.Result, "gem", Category.Gem);
+            FillPattern(result.Result, "jewel", Category.Jewel, useRegex: true);
+            FillPattern(result.Result, "map", Category.Map, useRegex: true);
+            FillPattern(result.Result, "weapon", Category.Weapon, useRegex: true);
+            FillPattern(result.Result, "leaguestone", Category.Leaguestone);
+            FillPattern(result.Result, "monster", Category.ItemisedMonster, useRegex: true);
             FillPattern(result.Result, "heistequipment", Category.HeistEquipment, useRegex: true);
             FillPattern(result.Result, "heistmission", Category.Contract, useRegex: true);
             FillPattern(result.Result, "logbook", Category.Logbook, useRegex: true);
             FillPattern(result.Result, "sanctum", Category.Sanctum, useRegex: true);
             FillPattern(result.Result, "memoryline", Category.MemoryLine, useRegex: true);
-            FillPattern(result.Result, "azmeri", Category.Affliction, useRegex: true);
-            FillPattern(result.Result, "necropolis", Category.EmbersOfTheAllflame, useRegex: true);
+            //FillPattern(result.Result, "azmeri", Category.Affliction, useRegex: true);
+            //FillPattern(result.Result, "necropolis", Category.EmbersOfTheAllflame, useRegex: true);
         }
 
         private void FillPattern(List<ApiCategory> categories, string id, Category category, bool useRegex = false)
