@@ -736,7 +736,7 @@ namespace Sidekick.Apis.Poe.Trade
                 }
 
                 var text = texts.FirstOrDefault(x => modifierProvider.IsMatch(id, x)) ?? texts[index];
-                var mod = mods.FirstOrDefault(x => x.Magnitudes.Any(y => y.Hash == id));
+                var mod = mods.FirstOrDefault(x => x.Magnitudes?.Any(y => y.Hash == id) == true);
 
                 yield return new ModifierLine(text: text)
                 {
