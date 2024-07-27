@@ -11,7 +11,7 @@ namespace Sidekick.Modules.Wealth
             services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
             services.AddSingleton<WealthParser>();
-            services.AddSidekickKeybind<OpenWealthKeybindHandler>();
+            // services.AddSidekickKeybind<OpenWealthKeybindHandler>();
 
             return services;
         }
