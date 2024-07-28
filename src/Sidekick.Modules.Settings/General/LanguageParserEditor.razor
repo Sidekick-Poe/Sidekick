@@ -9,6 +9,7 @@
 @inject SettingsResources Resources
 @inject IGameLanguageProvider GameLanguageProvider
 @inject ISettingsService SettingsService
+@inject NavigationManager NavigationManager
 
 @code {
 
@@ -38,6 +39,9 @@
     {
         Language = value;
         await SettingsService.Set(SettingKeys.LanguageParser, value);
+        NavigationManager.NavigateTo("/initialize");
     }
 
 }
+
+

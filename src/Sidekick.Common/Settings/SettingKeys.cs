@@ -2,6 +2,8 @@ namespace Sidekick.Common.Settings;
 
 public static class SettingKeys
 {
+    public const string Version = nameof(Version);
+
     public const string CurrentDirectory = nameof(CurrentDirectory);
 
     public const string BearerToken = nameof(BearerToken);
