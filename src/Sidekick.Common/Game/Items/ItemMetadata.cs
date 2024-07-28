@@ -6,7 +6,7 @@ public class ItemMetadata
 
     public string? Name { get; set; }
 
-    public string? Type { get; init; }
+    public string? Type { get; set; }
 
     /// <summary>
     /// String that identifies variants of the same item name on the API.

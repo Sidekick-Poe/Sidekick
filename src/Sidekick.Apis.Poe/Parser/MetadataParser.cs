@@ -19,9 +19,13 @@ namespace Sidekick.Apis.Poe.Parser
         /// <inheritdoc/>
         public InitializationPriority Priority => InitializationPriority.Medium;
 
-        private string GetLineWithoutAffixes(string line) => Affixes.Replace(line, string.Empty).Trim(' ', ',');
+        private string GetLineWithoutAffixes(string line) => Affixes
+                                                             .Replace(line, string.Empty)
+                                                             .Trim(' ', ',');
 
-        public string GetLineWithoutSuperiorAffix(string line) => SuperiorAffix.Replace(line, string.Empty).Trim(' ', ',');
+        public string GetLineWithoutSuperiorAffix(string line) => SuperiorAffix
+                                                                  .Replace(line, string.Empty)
+                                                                  .Trim(' ', ',');
 
         /// <inheritdoc/>
         public Task Initialize()
@@ -43,13 +47,7 @@ namespace Sidekick.Apis.Poe.Parser
                 return new Regex($"^{input} | {input}$");
             };
 
-            Affixes = new Regex("(?:" +
-                getRegexLine(gameLanguageProvider.Language.AffixSuperior) + "|" +
-                getRegexLine(gameLanguageProvider.Language.AffixBlighted) + "|" +
-                getRegexLine(gameLanguageProvider.Language.AffixBlightRavaged) + "|" +
-                getRegexLine(gameLanguageProvider.Language.AffixAnomalous) + "|" +
-                getRegexLine(gameLanguageProvider.Language.AffixDivergent) + "|" +
-                getRegexLine(gameLanguageProvider.Language.AffixPhantasmal) + ")");
+            Affixes = new Regex("(?:" + getRegexLine(gameLanguageProvider.Language.AffixSuperior) + "|" + getRegexLine(gameLanguageProvider.Language.AffixBlighted) + "|" + getRegexLine(gameLanguageProvider.Language.AffixBlightRavaged) + "|" + getRegexLine(gameLanguageProvider.Language.AffixAnomalous) + "|" + getRegexLine(gameLanguageProvider.Language.AffixDivergent) + "|" + getRegexLine(gameLanguageProvider.Language.AffixPhantasmal) + ")");
 
             SuperiorAffix = new Regex("(?:" + getRegexLine(gameLanguageProvider.Language.AffixSuperior) + ")");
 
@@ -64,7 +62,12 @@ namespace Sidekick.Apis.Poe.Parser
             var itemRarity = GetRarity(parsingBlock);
 
             var canBeVaalGem = itemRarity == Rarity.Gem && parsingItem.Blocks.Count > 7;
-            if (canBeVaalGem && data.NameAndTypeDictionary.TryGetValue(parsingItem.Blocks[5].Lines[0].Text, out var vaalGem))
+            if (canBeVaalGem
+                && data.NameAndTypeDictionary.TryGetValue(
+                    parsingItem
+                        .Blocks[5]
+                        .Lines[0].Text,
+                    out var vaalGem))
             {
                 return vaalGem.First();
             }
@@ -106,6 +109,11 @@ namespace Sidekick.Apis.Poe.Parser
                 result.Rarity = itemRarity;
             }
 
+            if (result.Rarity == Rarity.Unique)
+            {
+                result.Type = result.ApiType;
+            }
+
             if (result.Category == Category.ItemisedMonster && result.Rarity == Rarity.Unique && string.IsNullOrEmpty(result.Name))
             {
                 result.Name = name;
@@ -114,7 +122,9 @@ namespace Sidekick.Apis.Poe.Parser
             return result;
         }
 
-        public ItemMetadata? Parse(string? name, string? type)
+        public ItemMetadata? Parse(
+            string? name,
+            string? type)
         {
             // We can find multiple matches while parsing. This will store all of them. We will figure out which result is correct at the end of this method.
             var results = new List<ItemMetadata>();
@@ -124,31 +134,36 @@ namespace Sidekick.Apis.Poe.Parser
             {
                 results.AddRange(itemData);
             }
+
             // Here we check without any prefixes
             else if (!string.IsNullOrEmpty(name) && data.NameAndTypeDictionary.TryGetValue(GetLineWithoutAffixes(name), out itemData))
             {
                 results.AddRange(itemData);
             }
+
             // Now we check the type
             else if (!string.IsNullOrEmpty(type) && data.NameAndTypeDictionary.TryGetValue(type, out itemData))
             {
                 results.AddRange(itemData);
             }
+
             // Finally. if we don't have any matches, we will look into our regex dictionary
             else
             {
                 if (!string.IsNullOrEmpty(name))
                 {
-                    results.AddRange(data.NameAndTypeRegex
-                        .Where(pattern => pattern.Regex.IsMatch(name))
-                        .Select(x => x.Item));
+                    results.AddRange(
+                        data
+                            .NameAndTypeRegex.Where(pattern => pattern.Regex.IsMatch(name))
+                            .Select(x => x.Item));
                 }
 
                 if (!string.IsNullOrEmpty(type))
                 {
-                    results.AddRange(data.NameAndTypeRegex
-                        .Where(pattern => pattern.Regex.IsMatch(type))
-                        .Select(x => x.Item));
+                    results.AddRange(
+                        data
+                            .NameAndTypeRegex.Where(pattern => pattern.Regex.IsMatch(type))
+                            .Select(x => x.Item));
                 }
             }
 
