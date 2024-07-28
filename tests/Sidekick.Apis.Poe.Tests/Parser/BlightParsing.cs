@@ -35,7 +35,7 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
             Assert.Equal(Category.Map, actual.Metadata.Category);
             Assert.Equal(Class.Maps, actual.Header.Class);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
-            Assert.Equal("Atoll Map", actual.Metadata.Type);
+            Assert.Equal("Blighted Atoll Map", actual.Metadata.Type);
             Assert.Equal(14, actual.Properties.MapTier);
             Assert.True(actual.Properties.Blighted);
         }
@@ -64,7 +64,7 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
             Assert.Equal(Category.Map, actual.Metadata.Category);
             Assert.Equal(Class.Maps, actual.Header.Class);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
-            Assert.Equal("Shore Map", actual.Metadata.Type);
+            Assert.Equal("Blighted Shore Map", actual.Metadata.Type);
             Assert.Equal(6, actual.Properties.MapTier);
             Assert.True(actual.Properties.Blighted);
         }
@@ -122,7 +122,7 @@ Travel to this Map by using it in a personal Map Device.Maps can only be used on
             Assert.Equal(Class.Maps, actual.Header.Class);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal(Category.Map, actual.Metadata.Category);
-            Assert.Equal("Spider Forest Map", actual.Metadata.Type);
+            Assert.Equal("Blighted Spider Forest Map", actual.Metadata.Type);
             Assert.True(actual.Properties.Blighted);
         }
     }
