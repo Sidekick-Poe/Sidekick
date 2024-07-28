@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common.Browser;
+using Sidekick.Common.Cache;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
@@ -37,6 +38,9 @@ namespace Sidekick.Common.Blazor.Initialization
 
         [Inject]
         private ISettingsService SettingsService { get; set; } = null!;
+
+        [Inject]
+        private ICacheProvider CacheProvider { get; set; } = null!;
 
         private int Count { get; set; }
 
@@ -72,6 +76,13 @@ namespace Sidekick.Common.Blazor.Initialization
             {
                 Completed = 0;
                 Count = Configuration.Value.InitializableServices.Count + 1;
+                var version = GetVersion();
+                var perviousVersion = await SettingsService.GetString(SettingKeys.Version);
+                if (version != perviousVersion)
+                {
+                    CacheProvider.Clear();
+                    await SettingsService.Set(SettingKeys.Version, version);
+                }
 
                 // Report initial progress
                 await ReportProgress();
@@ -158,6 +169,14 @@ namespace Sidekick.Common.Blazor.Initialization
                 });
         }
 
+        private string? GetVersion()
+        {
+            return FileVersionInfo.GetVersionInfo(
+                                      GetType()
+                                          .Assembly.Location)
+                                  .ProductVersion;
+        }
+
         private void InitializeTray()
         {
             var menuItems = new List<TrayMenuItem>();
@@ -165,12 +184,7 @@ namespace Sidekick.Common.Blazor.Initialization
             menuItems.AddRange(
                 new List<TrayMenuItem>()
                 {
-                    new(
-                        label: "Sidekick - "
-                               + FileVersionInfo.GetVersionInfo(
-                                                    GetType()
-                                                        .Assembly.Location)
-                                                .ProductVersion),
+                    new(label: "Sidekick - " + GetVersion()),
                     new(
                         label: "Open Website",
                         onClick: () =>
