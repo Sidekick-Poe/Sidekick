@@ -6,6 +6,7 @@ using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
+using Sidekick.Common.Cache;
 using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
@@ -68,6 +69,9 @@ namespace Sidekick.Apis.Poe.Tests
 
         private async Task Initialize(IServiceProvider serviceProvider)
         {
+            var  cache = serviceProvider.GetRequiredService<ICacheProvider>();
+            cache.Clear();
+
             var  configuration = serviceProvider.GetRequiredService<IOptions<SidekickConfiguration>>();
             var  logger = serviceProvider.GetRequiredService<ILogger<ParserFixture>>();
             foreach (var serviceType in configuration.Value.InitializableServices)

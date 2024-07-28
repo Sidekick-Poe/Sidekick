@@ -54,7 +54,7 @@ namespace Sidekick.Apis.Poe.Parser
             {
                 var parsingItem = new ParsingItem(itemText);
                 var metadata = itemMetadataProvider.Parse(parsingItem);
-                if (metadata == null || (string.IsNullOrEmpty(metadata?.Name) && string.IsNullOrEmpty(metadata?.Type)))
+                if (metadata == null || (string.IsNullOrEmpty(metadata.Name) && string.IsNullOrEmpty(metadata.Type)))
                 {
                     throw new UnparsableException("Item was not found in the metadata provider.");
                 }

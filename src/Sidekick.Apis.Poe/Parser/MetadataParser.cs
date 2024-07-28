@@ -89,7 +89,7 @@ namespace Sidekick.Apis.Poe.Parser
             }
 
             // Rares may have conflicting names, so we don't want to search any unique items that may have that name. Like "Ancient Orb" which can be used by abyss jewels.
-            if (itemRarity == Rarity.Rare || itemRarity == Rarity.Magic)
+            if (itemRarity is Rarity.Rare or Rarity.Magic)
             {
                 name = null;
             }
@@ -155,6 +155,11 @@ namespace Sidekick.Apis.Poe.Parser
             if (results.Any(x => x.Type == type))
             {
                 return results.FirstOrDefault(x => x.Type == type);
+            }
+
+            if (results.Any(x => x.ApiType == type))
+            {
+                return results.FirstOrDefault(x => x.ApiType == type);
             }
 
             if (results.Any(x => x.Rarity == Rarity.Unique))

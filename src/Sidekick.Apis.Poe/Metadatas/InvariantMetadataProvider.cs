@@ -77,7 +77,8 @@ namespace Sidekick.Apis.Poe.Metadatas
                 {
                     Id = $"{category}.{i}",
                     Name = item.Name,
-                    Type = item.Type,
+                    Type = item.Text ?? item.Type,
+                    ApiType = item.Type,
                     Rarity = GetRarityForCategory(category, item),
                     Category = category,
                 });
