@@ -93,6 +93,18 @@ namespace Sidekick.Apis.Poe.Metadatas
                 Category.MemoryLine,
                 useRegex: true);
 
+            FillPattern(
+                result.Result,
+                "tincture",
+                Category.Tincture,
+                useRegex: true);
+
+            FillPattern(
+                result.Result,
+                "corpse",
+                Category.Corpse,
+                useRegex: true);
+
             //FillPattern(result.Result, "azmeri", Category.Affliction, useRegex: true);
             //FillPattern(result.Result, "necropolis", Category.EmbersOfTheAllflame, useRegex: true);
         }

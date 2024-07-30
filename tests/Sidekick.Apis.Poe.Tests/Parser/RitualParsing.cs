@@ -55,5 +55,32 @@ Note: ~price 8 chaos
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Ritual Vessel", actual.Metadata.Type);
         }
+
+        [Fact]
+        public void Corpse()
+        {
+            var actual = parser.ParseItem(@"Item Class: Corpses
+Rarity: Currency
+Perfect Needle Horror
+--------
+Corpse Level: 83
+Monster Category: Demon
+--------
+Item Level: 83
+--------
+Throws Physical Projectiles (implicit)
+100% increased Impale Effect (implicit)
+Owner gains 10% increased Impale Effect (implicit)
+--------
+Right click this item to create this corpse.
+--------
+Note: ~price 3 chaos
+");
+
+            Assert.Equal(Class.AfflictionCorpses, actual.Header.Class);
+            Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
+            Assert.Equal(Category.Corpse, actual.Metadata.Category);
+            Assert.Equal("Perfect Needle Horror", actual.Metadata.Type);
+        }
     }
 }

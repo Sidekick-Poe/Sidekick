@@ -21,4 +21,6 @@ public enum Category
     MemoryLine = 16,
     Affliction = 17,
     EmbersOfTheAllflame = 18,
+    Tincture = 19,
+    Corpse = 20,
 }

@@ -96,5 +96,32 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
             Assert.Equal("Sacred Hybrid Flask", actual.Metadata.Type);
             Assert.Equal(13, actual.Properties.Quality);
         }
+
+        [Fact]
+        public void Tincture()
+        {
+            var actual = parser.ParseItem(@"Item Class: Tinctures
+Rarity: Normal
+Poisonberry Tincture
+--------
+Inflicts Mana Burn every 0.70 Seconds
+6 Second Cooldown when Deactivated
+--------
+Requirements:
+Level: 45
+--------
+Item Level: 82
+--------
+20% chance to Poison with Melee Weapons (implicit)
+70% increased Damage with Poison from Melee Weapons (implicit)
+--------
+Right click to activate. Only one Tincture in your belt can be active at a time. Mana Burn causes you to lose 1% of your maximum Mana per stack per second. Can be deactivated manually, or will automatically deactivate when you reach 0 Mana.
+");
+
+            Assert.Equal(Class.AfflictionTinctures, actual.Header.Class);
+            Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
+            Assert.Equal(Category.Tincture, actual.Metadata.Category);
+            Assert.Equal("Poisonberry Tincture", actual.Metadata.Type);
+        }
     }
 }
