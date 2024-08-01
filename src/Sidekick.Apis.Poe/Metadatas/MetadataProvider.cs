@@ -28,82 +28,24 @@ namespace Sidekick.Apis.Poe.Metadatas
 
             var result = await cacheProvider.GetOrSet("Metadata", () => poeTradeClient.Fetch<ApiCategory>("data/items"));
 
-            FillPattern(
-                result.Result,
-                "accessory",
-                Category.Accessory,
-                useRegex: true);
-            FillPattern(
-                result.Result,
-                "armour",
-                Category.Armour,
-                useRegex: true);
+            FillPattern(result.Result, "accessory", Category.Accessory, useRegex: true);
+            FillPattern(result.Result, "armour", Category.Armour, useRegex: true);
             FillPattern(result.Result, "card", Category.DivinationCard);
             FillPattern(result.Result, "currency", Category.Currency);
-            FillPattern(
-                result.Result,
-                "flask",
-                Category.Flask,
-                useRegex: true);
+            FillPattern(result.Result, "flask", Category.Flask, useRegex: true);
             FillPattern(result.Result, "gem", Category.Gem);
-            FillPattern(
-                result.Result,
-                "jewel",
-                Category.Jewel,
-                useRegex: true);
-            FillPattern(
-                result.Result,
-                "map",
-                Category.Map,
-                useRegex: true);
-            FillPattern(
-                result.Result,
-                "weapon",
-                Category.Weapon,
-                useRegex: true);
+            FillPattern(result.Result, "jewel", Category.Jewel, useRegex: true);
+            FillPattern(result.Result, "map", Category.Map, useRegex: true);
+            FillPattern(result.Result, "weapon", Category.Weapon, useRegex: true);
             FillPattern(result.Result, "leaguestone", Category.Leaguestone);
-            FillPattern(
-                result.Result,
-                "monster",
-                Category.ItemisedMonster,
-                useRegex: true);
-            FillPattern(
-                result.Result,
-                "heistequipment",
-                Category.HeistEquipment,
-                useRegex: true);
-            FillPattern(
-                result.Result,
-                "heistmission",
-                Category.Contract,
-                useRegex: true);
-            FillPattern(
-                result.Result,
-                "logbook",
-                Category.Logbook,
-                useRegex: true);
-            FillPattern(
-                result.Result,
-                "sanctum",
-                Category.Sanctum,
-                useRegex: true);
-            FillPattern(
-                result.Result,
-                "memoryline",
-                Category.MemoryLine,
-                useRegex: true);
-
-            FillPattern(
-                result.Result,
-                "tincture",
-                Category.Tincture,
-                useRegex: true);
-
-            FillPattern(
-                result.Result,
-                "corpse",
-                Category.Corpse,
-                useRegex: true);
+            FillPattern(result.Result, "monster", Category.ItemisedMonster, useRegex: true);
+            FillPattern(result.Result, "heistequipment", Category.HeistEquipment, useRegex: true);
+            FillPattern(result.Result, "heistmission", Category.Contract, useRegex: true);
+            FillPattern(result.Result, "logbook", Category.Logbook, useRegex: true);
+            FillPattern(result.Result, "sanctum", Category.Sanctum, useRegex: true);
+            FillPattern(result.Result, "memoryline", Category.MemoryLine, useRegex: true);
+            FillPattern(result.Result, "tincture", Category.Tincture, useRegex: true);
+            FillPattern(result.Result, "corpse", Category.Corpse, useRegex: true);
 
             //FillPattern(result.Result, "azmeri", Category.Affliction, useRegex: true);
             //FillPattern(result.Result, "necropolis", Category.EmbersOfTheAllflame, useRegex: true);
