@@ -95,7 +95,7 @@ namespace Sidekick.Apis.PoeWiki
                         new("join_on", "items._pageID=maps._pageID,maps.area_id=areas.id"),
                         new("fields", "items.name,maps.area_id,areas.boss_monster_ids,items.drop_monsters"),
                         new("group_by", "items.name"),
-                        new("where", @$"items.name=""{mapType}"""),
+                        new("where", @$"items.name=""{mapType}"" AND items.drop_enabled = true"),
                     });
 
                 using var client = GetHttpClient();
