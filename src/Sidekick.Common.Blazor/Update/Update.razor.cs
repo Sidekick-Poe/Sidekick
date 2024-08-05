@@ -60,7 +60,7 @@ namespace Sidekick.Common.Blazor.Update
                     return;
                 }
 
-                CacheProvider.Clear();
+                await CacheProvider.Clear();
 
                 // Downloaded
                 Step = Resources["Download ready! Starting installer..."];

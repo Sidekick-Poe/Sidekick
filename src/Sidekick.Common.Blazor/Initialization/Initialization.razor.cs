@@ -77,10 +77,10 @@ namespace Sidekick.Common.Blazor.Initialization
                 Completed = 0;
                 Count = Configuration.Value.InitializableServices.Count + 1;
                 var version = GetVersion();
-                var perviousVersion = await SettingsService.GetString(SettingKeys.Version);
-                if (version != perviousVersion)
+                var previousVersion = await SettingsService.GetString(SettingKeys.Version);
+                if (version != previousVersion)
                 {
-                    CacheProvider.Clear();
+                    await CacheProvider.Clear();
                     await SettingsService.Set(SettingKeys.Version, version);
                 }
 
@@ -96,7 +96,10 @@ namespace Sidekick.Common.Blazor.Initialization
                     }
 
                     Logger.LogInformation($"[Initialization] Initializing {initializableService.GetType().FullName}");
-                    await Run(initializableService.Initialize);
+
+                    await initializableService.Initialize();
+                    Completed += 1;
+                    await ReportProgress();
                 }
 
                 await Run(InitializeTray);
@@ -122,18 +125,6 @@ namespace Sidekick.Common.Blazor.Initialization
                 Logger.LogError(ex.Message, "[Initialization] An initialization step failed.");
                 Error = true;
             }
-        }
-
-        private async Task Run(Func<Task> func)
-        {
-            // Send the command
-            await func.Invoke();
-
-            // Make sure that after all handlers run, the Completed count is updated
-            Completed += 1;
-
-            // Report progress
-            await ReportProgress();
         }
 
         private async Task Run(Action action)

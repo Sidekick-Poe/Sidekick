@@ -46,5 +46,5 @@ public interface ICacheProvider
     /// <summary>
     ///     Clears the cache
     /// </summary>
-    void Clear();
+    Task Clear();
 }

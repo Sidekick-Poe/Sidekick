@@ -47,11 +47,10 @@
 
 @code {
 
-    public Task ResetCache()
+    public async Task ResetCache()
     {
-        CacheProvider.Clear();
+        await CacheProvider.Clear();
         NavigationManager.NavigateTo("/initialize");
-        return Task.CompletedTask;
     }
 
 }

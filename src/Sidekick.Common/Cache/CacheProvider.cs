@@ -61,11 +61,11 @@ public class CacheProvider(ILogger<CacheProvider> logger) : ICacheProvider
     }
 
     /// <inheritdoc />
-    public void Clear()
+    public async Task Clear()
     {
         EnsureDirectory();
-
         Directory.Delete(path: Path.Combine(path1: SidekickPaths.GetDataFilePath(), CachePath), true);
+        await Task.Delay(100);
     }
 
     /// <inheritdoc />
