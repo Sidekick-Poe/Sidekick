@@ -13,5 +13,9 @@ namespace Sidekick.Apis.PoeWiki.Api
         [JsonPropertyName("boss monster ids")]
         [JsonConverter(typeof(StringListToListOfStringsJsonConverter))]
         public List<string> BossMonsterIds { get; init; } = new();
+
+        [JsonPropertyName("area type tags")]
+        [JsonConverter(typeof(StringListToListOfStringsJsonConverter))]
+        public List<string> AreaTypeTags { get; init; } = new();
     }
 }

@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoeWiki.Api;
@@ -81,6 +82,37 @@ namespace Sidekick.Apis.PoeWiki
             BlightOilNamesByMetadataIds = result.ToDictionary(x => x.MetadataId ?? string.Empty, x => x.Name ?? string.Empty);
         }
 
+        private async Task<Uri?> GetMapScreenshotUri(string mapType)
+        {
+            try
+            {
+                var query = new QueryBuilder(
+                    new List<KeyValuePair<string, string>>
+                    {
+                        new("action", "query"),
+                        new("format", "json"),
+                        new("titles", $"File:{mapType} area screenshot.png|File:{mapType} area screenshot.jpg"),
+                        new("prop", "imageinfo"),
+                        new("iiprop", "url"),
+                    });
+
+                using var client = GetHttpClient();
+                var response = await client.GetAsync(query.ToString());
+                var content = await response.Content.ReadAsStreamAsync();
+                var json = await JsonNode.ParseAsync(content);
+
+                var screenshotUrl = json!["query"]!
+                                         ["pages"]!.AsObject()?.First(x => x.Key != "-1").Value!
+                                         ["imageinfo"]?.AsArray()?.First()!
+                                         ["url"]?.AsValue().GetValue<string>()!;
+
+                return new Uri(screenshotUrl);
+            }
+            catch (Exception) { }
+
+            return null;
+        }
+
         private async Task<MapResult?> GetMapResult(string mapType)
         {
             try
@@ -93,7 +125,7 @@ namespace Sidekick.Apis.PoeWiki
                         new("limit", "1"),
                         new("tables", "maps,items,areas"),
                         new("join_on", "items._pageID=maps._pageID,maps.area_id=areas.id"),
-                        new("fields", "items.name,maps.area_id,areas.boss_monster_ids,items.drop_monsters"),
+                        new("fields", "items.name,maps.area_id,areas.boss_monster_ids,items.drop_monsters,areas.area_type_tags"),
                         new("group_by", "items.name"),
                         new("where", @$"items.name=""{mapType}"" AND items.drop_enabled = true"),
                     });
@@ -317,7 +349,10 @@ namespace Sidekick.Apis.PoeWiki
             // Fetch dropped items.
             var itemsResult = await GetItemsResult(mapResult) ?? new();
 
-            var map = new Map(mapResult, bossesResult, itemsResult);
+            // Fetch map screenshot.
+            var mapScreenshotUri = await GetMapScreenshotUri(mapType);
+
+            var map = new Map(mapResult, bossesResult, itemsResult, mapScreenshotUri);
 
             return map;
         }
