@@ -70,7 +70,7 @@ namespace Sidekick.Apis.Poe.Tests
         private async Task Initialize(IServiceProvider serviceProvider)
         {
             var  cache = serviceProvider.GetRequiredService<ICacheProvider>();
-            cache.Clear();
+            await cache.Clear();
 
             var  configuration = serviceProvider.GetRequiredService<IOptions<SidekickConfiguration>>();
             var  logger = serviceProvider.GetRequiredService<ILogger<ParserFixture>>();

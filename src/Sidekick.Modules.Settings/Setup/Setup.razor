@@ -83,7 +83,7 @@
         if (!string.IsNullOrEmpty(settingsLeaguesHash) && apiLeaguesHash != settingsLeaguesHash)
         {
             NewLeagues = true;
-            CacheProvider.Clear();
+            await CacheProvider.Clear();
         }
 
         await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
