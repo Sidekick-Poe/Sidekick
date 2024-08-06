@@ -34,6 +34,20 @@ else if (Map != null)
                 <TextBase Class="text-center">@Resources["This map drops nothing."]</TextBase>
             }
 
+
+            @if (Map.Screenshot != null)
+            {
+                <figure class="max-w-lg">
+                    @if (Map.AreaTypeTags?.Any() ?? false)
+                    {
+                        <figcaption class="mb-2 text-center">
+                            @Map.AreaTypeTags.Aggregate((a, b) => System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(a) + ", " + System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(b))
+                        </figcaption>
+                    }
+                    <img class="h-auto max-w-full rounded-lg mx-auto" src="@Map.Screenshot" alt="@(Name ?? Type)">
+                </figure>
+            }
+
             <div class="text-center mt-2">
                 <ButtonLink OnClick="@(() => PoeWikiClient.OpenUri(Map))">
                     @Resources["Information provided by poewiki.net"]
