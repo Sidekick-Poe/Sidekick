@@ -28,24 +28,24 @@
 
     <LayoutDivider/>
 
+    <Heading2 Class="mb-3">Authentication Process</Heading2>
+    <TextBase Class="mb-1">Sidekick is registered with GGG to allow the use of the Path Of Exile API.</TextBase>
+
+    <ul class="text-gray-500 list-disc dark:text-gray-400 mb-1 ml-6">
+        <li>Sidekick will request administrative access on your computer. Sidekick needs this to securely receive Oauth data from GGG.</li>
+        <li>You will then be asked to authenticate on Path of Exile' website.</li>
+        <li>You will be asked to authorize the Sidekick application.</li>
+    </ul>
+
+    <TextCaption>
+        Read more information from the Path of Exile developer website.
+        <a href="https://www.pathofexile.com/developer/docs/authorization">https://www.pathofexile.com/developer/docs/authorization</a>
+    </TextCaption>
+
+    <LayoutDivider/>
+
     @if (!Enabled)
     {
-        <Heading2 Class="mb-3">Authentication Process</Heading2>
-        <TextBase Class="mb-1">Sidekick is registered with GGG to allow the use of the Path Of Exile API.</TextBase>
-
-        <ul class="text-gray-500 list-disc dark:text-gray-400 mb-1 ml-6">
-            <li>Sidekick will request administrative access on your computer. Sidekick needs this to securely receive Oauth data from GGG.</li>
-            <li>You will then be asked to authenticate on Path of Exile' website.</li>
-            <li>You will be asked to authorize the Sidekick application.</li>
-        </ul>
-
-        <TextCaption>
-            Read more information from the Path of Exile developer website.
-            <a href="https://www.pathofexile.com/developer/docs/authorization">https://www.pathofexile.com/developer/docs/authorization</a>
-        </TextCaption>
-
-        <LayoutDivider/>
-
         <div class="flex justify-center">
             <ButtonPrimary OnClick="ToggleWealthTracker">
                 @Resources["Enable Wealth Tracker"]
@@ -59,9 +59,10 @@
 
         <LayoutDivider/>
 
+        <Heading2 Class="mb-3">@Resources["Stash Tabs"]</Heading2>
+
         @if (StashTabs != null)
         {
-            <Heading2 Class="mb-3">@Resources["Stash Tabs"]</Heading2>
             <TextBase Class="mb-1">@Resources["Note that selecting too many tabs may result in a worse experience and refresh rate due to the high number of requests."]</TextBase>
             <TextBase Class="mb-3">@Resources["Selecting the unique items or map stash tabs are not recommended due to very low performance on these tabs."]</TextBase>
 
@@ -72,13 +73,16 @@
                     @stashTab.Name
                 </FormCheckbox>
             }
+
         }
-        else
+        else if (TabsLoading)
         {
             <div class="my-3">
                 <ProgressBar Indeterminate="true"/>
             </div>
         }
+
+        <LayoutDivider/>
 
         <div class="flex justify-center mt-3">
             <ButtonPrimary OnClick="ToggleWealthTracker">
@@ -104,6 +108,8 @@
     ];
 
     private List<StashTab>? StashTabs { get; set; }
+
+    private bool TabsLoading { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -159,7 +165,13 @@
             {
                 if (await AuthenticationService.GetCurrentState() == AuthenticationState.Authenticated)
                 {
+                    TabsLoading = true;
+                    StateHasChanged();
+
                     await LoadStashTabs();
+
+                    TabsLoading = false;
+                    StateHasChanged();
                 }
             });
     }
