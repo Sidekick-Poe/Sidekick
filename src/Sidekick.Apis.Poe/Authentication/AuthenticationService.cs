@@ -11,11 +11,11 @@ namespace Sidekick.Apis.Poe.Authentication
 {
     internal class AuthenticationService : IAuthenticationService, IDisposable
     {
-        private const string Authorizationurl = "https://www.pathofexile.com/oauth/authorize";
-        private const string Redirecturl = "https://sidekick-poe.github.io/oauth/poe";
-        private const string Clientid = "sidekick";
+        private const string AuthorizationUrl = "https://www.pathofexile.com/oauth/authorize";
+        private const string RedirectUrl = "https://sidekick-poe.github.io/oauth/poe";
+        private const string ClientId = "sidekick";
         private const string Scopes = "account:stashes";
-        private const string Tokenurl = "https://www.pathofexile.com/oauth/token";
+        private const string TokenUrl = "https://www.pathofexile.com/oauth/token";
 
         private readonly ISettingsService settingsService;
         private readonly IBrowserProvider browserProvider;
@@ -109,7 +109,7 @@ namespace Sidekick.Apis.Poe.Authentication
             Verifier = GenerateCodeVerifier();
             Challenge = GenerateCodeChallenge(Verifier);
 
-            var authenticationLink = $"{Authorizationurl}?client_id={Clientid}&response_type=code&scope={Scopes}&state={State}&redirect_uri={Redirecturl}&code_challenge={Challenge}&code_challenge_method=S256";
+            var authenticationLink = $"{AuthorizationUrl}?client_id={ClientId}&response_type=code&scope={Scopes}&state={State}&redirect_uri={RedirectUrl}&code_challenge={Challenge}&code_challenge_method=S256";
             browserProvider.OpenUri(new Uri(authenticationLink));
 
             AuthenticateTask = new();
@@ -169,8 +169,8 @@ namespace Sidekick.Apis.Poe.Authentication
                 return;
             }
 
-            var requestContent = new StringContent($"client_id={Clientid}&grant_type=authorization_code&code={code}&redirect_uri={Redirecturl}&scope={Scopes}&code_verifier={Verifier}", Encoding.UTF8, "application/x-www-form-urlencoded");
-            var response = await client.PostAsync(Tokenurl, requestContent);
+            var requestContent = new StringContent($"client_id={ClientId}&grant_type=authorization_code&code={code}&redirect_uri={RedirectUrl}&scope={Scopes}&code_verifier={Verifier}", Encoding.UTF8, "application/x-www-form-urlencoded");
+            var response = await client.PostAsync(TokenUrl, requestContent);
             if (!response.IsSuccessStatusCode)
             {
                 CancelAuthenticate();
