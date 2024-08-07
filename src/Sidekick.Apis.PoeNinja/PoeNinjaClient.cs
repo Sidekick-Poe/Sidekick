@@ -343,6 +343,7 @@ namespace Sidekick.Apis.PoeNinja
                     yield return ItemType.Essence;
                     yield return ItemType.Resonator;
                     yield return ItemType.Artifact;
+                    yield return ItemType.KalguuranRune;
                     yield break;
 
                 case Category.DivinationCard:
