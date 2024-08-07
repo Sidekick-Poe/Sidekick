@@ -1718,6 +1718,10 @@ video {
   height: 8px;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .h-full {
   height: 100%;
 }
@@ -1853,6 +1857,14 @@ video {
 
 .max-w-\[800px\] {
   max-width: 800px;
+}
+
+.max-w-full {
+  max-width: 100%;
+}
+
+.max-w-lg {
+  max-width: 32rem;
 }
 
 .flex-shrink {
