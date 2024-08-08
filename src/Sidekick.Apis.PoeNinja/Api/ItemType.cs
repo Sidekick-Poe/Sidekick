@@ -4,6 +4,9 @@ namespace Sidekick.Apis.PoeNinja.Api
 {
     public enum ItemType
     {
+        // BaseType, // This is ~13mb of raw data, in memory it eats ~40mb.
+        // HelmetEnchant,
+
         [EnumValue("oils")]
         Oil,
 
@@ -79,7 +82,10 @@ namespace Sidekick.Apis.PoeNinja.Api
         [EnumValue("kalguuran-runes")]
         KalguuranRune,
 
-        // BaseType, // This is ~13mb of raw data, in memory it eats ~40mb.
-        // HelmetEnchant,
+        [EnumValue("omens")]
+        Omen,
+
+        [EnumValue("tattoos")]
+        Tattoo,
     }
 }
