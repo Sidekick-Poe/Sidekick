@@ -1,13 +1,15 @@
 @using Sidekick.Apis.PoeNinja
+@using Sidekick.Apis.PoeNinja.Api
 @using Sidekick.Apis.PoeNinja.Models
 @using Sidekick.Common.Browser
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Game.Items.AdditionalInformation;
 @using Sidekick.Modules.Trade.Localization
+@using ApexCharts
 
 @if (Loading)
 {
-    <AppLoading/>
+    <AppLoading />
 }
 else if (Price != null)
 {
@@ -28,7 +30,7 @@ else if (Price != null)
         </div>
         <div class="text-left w-1/2 pl-2">
             <div class="flex">
-                <PriceDisplay Value="Price.Price"/>
+                <PriceDisplay Value="Price.Price" />
             </div>
 
             @if (Price.Links >= 5)
@@ -36,9 +38,23 @@ else if (Price != null)
                 <TextCaption>@Price.Links @Resources["Links"]</TextCaption>
             }
         </div>
+
     </div>
 
-    <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown"/>
+    @if (Series != null)
+    {
+        <div class="py-2">
+            <ApexChart TItem="DataPoint" Options="options">
+                <ApexPointSeries TItem="DataPoint"
+                                 Items="Series"
+                                 XValue="(x => x.Index)"
+                                 YValue="(x => x.Value)"
+                                 SeriesType="SeriesType.Line" />
+            </ApexChart>
+        </div>
+    }
+
+    <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown" />
 }
 
 @inject IStringLocalizer<TradeResources> Resources
@@ -51,6 +67,9 @@ else if (Price != null)
     private bool Loading { get; set; }
 
     private NinjaPrice? Price { get; set; }
+
+    private List<DataPoint> Series { get; set; }
+    private ApexChartOptions<DataPoint> options { get; set; }
 
     protected override async Task OnParametersSetAsync()
     {
@@ -73,38 +92,27 @@ else if (Price != null)
                 mapTier: PriceCheckService.Item?.Properties.MapTier,
                 numberOfLinks: PriceCheckService.Item?.GetMaximumNumberOfLinks());
         }
-        /*
-                ChartOptions = new ChartOptions()
-                {
-                    DisableLegend = true,
-                    XAxisLines = false,
-                    YAxisLines = false,
-                    ChartPalette = new string[] { "#ffffff" },
-                };
-                if (Price?.SparkLine?.Data.All(x => x.HasValue) == true)
-                {
-                    // Normalize values above 0 since the chart doesn't show negative values in the viewbox.
-                    var sparkLineData = Price
-                                        .SparkLine.Data.Select(x => x ?? 0)
-                                        .ToArray();
-                    var min = Math.Abs(sparkLineData.Min());
-                    var chartData = sparkLineData
-                                    .Select(x => x + min)
-                                    .ToArray();
 
-                    if (chartData.Any(x => x != 0))
-                    {
-                        Series =
-                        [
-                            new ChartSeries() { Data = chartData },
-                        ];
-                    }
-                }
-
-        */
+        if (Price?.SparkLine?.Data.All(x => x.HasValue) == true)
+        {
+            Series = Price.SparkLine.Data.Select((value, index) => new DataPoint { Index = index, Value = (decimal?)value }).ToList();
+            options = new();
+            options.PlotOptions = new() { Line = new() { IsSlopeChart = true } };
+            options.Tooltip = new() { Enabled = false };
+            options.Chart.Sparkline = new() { Enabled = true };
+            options.Markers = new() { Size = 0 };
+            options.Chart.Height = 40;
+            options.Stroke = new() { Curve = Curve.Smooth, Width = 2, Colors = new() { "#8888ff" } };
+        }
 
         Loading = false;
         StateHasChanged();
+    }
+
+    class DataPoint
+    {
+        public int Index { get; set; }
+        public decimal? Value { get; set; }
     }
 
     private async Task OpenWebsite()
@@ -117,5 +125,4 @@ else if (Price != null)
         var uri = await Client.GetDetailsUri(Price);
         BrowserProvider.OpenUri(uri);
     }
-
 }
