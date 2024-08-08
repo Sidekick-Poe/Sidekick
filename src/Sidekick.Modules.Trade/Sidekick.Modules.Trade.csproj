@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Blazor-ApexCharts" Version="3.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Sidekick.Apis.PoeNinja\Sidekick.Apis.PoeNinja.csproj" />
     <ProjectReference Include="..\Sidekick.Apis.PoePriceInfo\Sidekick.Apis.PoePriceInfo.csproj" />
     <ProjectReference Include="..\Sidekick.Apis.PoeWiki\Sidekick.Apis.PoeWiki.csproj" />
