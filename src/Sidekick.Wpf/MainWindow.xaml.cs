@@ -13,7 +13,7 @@ namespace Sidekick.Wpf;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow
+public partial class MainWindow : IDisposable
 {
     private readonly WpfViewLocator viewLocator;
     private bool isClosing;
@@ -48,10 +48,10 @@ public partial class MainWindow
 
     protected override void OnClosed(EventArgs e)
     {
-        base.OnClosed(e);
         Resources.Remove("services");
         Scope.Dispose();
         viewLocator.Windows.Remove(this);
+        base.OnClosed(e);
     }
 
     protected override async void OnClosing(CancelEventArgs e)
@@ -238,4 +238,21 @@ public partial class MainWindow
     #endregion Code to make maximizing the window take the taskbar into account. https: //stackoverflow.com/questions/20941443/properly-maximizing-wpf-window-with-windowstyle-none
 
     // ReSharper enable All
+
+    public void Dispose()
+    {
+        OverlayContainer?.Dispose();
+        if (WebView is IDisposable webViewDisposable)
+        {
+            webViewDisposable.Dispose();
+        }
+        else if (WebView != null)
+        {
+            _ = WebView
+                .DisposeAsync()
+                .AsTask();
+        }
+
+        Scope.Dispose();
+    }
 }
