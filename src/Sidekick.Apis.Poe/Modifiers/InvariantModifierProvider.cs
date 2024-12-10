@@ -2,13 +2,15 @@ using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Game;
+using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Modifiers;
 
 public class InvariantModifierProvider(
     ICacheProvider cacheProvider,
-    IPoeTradeClient poeTradeClient) : IInvariantModifierProvider
+    IPoeTradeClient poeTradeClient,
+    IGameLanguageProvider gameLanguageProvider) : IInvariantModifierProvider
 {
     public List<string> IncursionRoomModifierIds { get; } = new();
 
@@ -105,7 +107,7 @@ public class InvariantModifierProvider(
 
     public Task<List<ApiCategory>> GetList() => cacheProvider.GetOrSet("InvariantModifiers", async () =>
     {
-        var result = await poeTradeClient.Fetch<ApiCategory>(GameType.PathOfExile, "data/stats", useDefaultLanguage: true);
+        var result = await poeTradeClient.Fetch<ApiCategory>(GameType.PathOfExile, gameLanguageProvider.InvariantLanguage, "data/stats");
         return result.Result;
     });
 }

@@ -1,12 +1,14 @@
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Game;
+using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Leagues;
 
 public class LeagueProvider(
     ICacheProvider cacheProvider,
-    IPoeTradeClient poeTradeClient) : ILeagueProvider
+    IPoeTradeClient poeTradeClient,
+    IGameLanguageProvider gameLanguageProvider) : ILeagueProvider
 {
     public async Task<List<League>> GetList(bool fromCache)
     {
@@ -36,7 +38,7 @@ public class LeagueProvider(
 
     private async Task<List<League>> Fetch(GameType game)
     {
-        var response = await poeTradeClient.Fetch<ApiLeague>(game, "data/leagues");
+        var response = await poeTradeClient.Fetch<ApiLeague>(game, gameLanguageProvider.InvariantLanguage, "data/leagues");
         var leagues = new List<League>();
         foreach (var apiLeague in response.Result)
         {

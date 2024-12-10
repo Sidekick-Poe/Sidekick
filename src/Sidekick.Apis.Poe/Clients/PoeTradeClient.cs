@@ -10,15 +10,12 @@ namespace Sidekick.Apis.Poe.Clients
     public class PoeTradeClient : IPoeTradeClient
     {
         private readonly ILogger logger;
-        private readonly IGameLanguageProvider gameLanguageProvider;
 
         public PoeTradeClient(
             ILogger<PoeTradeClient> logger,
-            IGameLanguageProvider gameLanguageProvider,
             IHttpClientFactory httpClientFactory)
         {
             this.logger = logger;
-            this.gameLanguageProvider = gameLanguageProvider;
             HttpClient = httpClientFactory.CreateClient(ClientNames.TradeClient);
             HttpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
             HttpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
@@ -35,20 +32,13 @@ namespace Sidekick.Apis.Poe.Clients
 
         public HttpClient HttpClient { get; }
 
-        public async Task<FetchResult<TReturn>> Fetch<TReturn>(GameType game, string path, bool useDefaultLanguage = false)
+        public async Task<FetchResult<TReturn>> Fetch<TReturn>(GameType game, IGameLanguage language, string path)
         {
             var name = typeof(TReturn).Name;
 
-            var language = gameLanguageProvider.Language;
-
-            if (useDefaultLanguage || language == null)
-            {
-                language = gameLanguageProvider.Get("en");
-            }
-
             try
             {
-                var response = await HttpClient.GetAsync(language?.GetTradeApiBaseUrl(game) + path);
+                var response = await HttpClient.GetAsync(language.GetTradeApiBaseUrl(game) + path);
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<FetchResult<TReturn>>(content, Options);
                 if (result != null)
@@ -58,7 +48,7 @@ namespace Sidekick.Apis.Poe.Clients
             }
             catch (Exception)
             {
-                logger.LogInformation($"[Trade Client] Could not fetch {name} at {language?.GetTradeApiBaseUrl(game) + path}.");
+                logger.LogInformation($"[Trade Client] Could not fetch {name} at {language.GetTradeApiBaseUrl(game) + path}.");
                 throw;
             }
 

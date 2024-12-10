@@ -4,6 +4,7 @@ using Sidekick.Apis.Poe.Metadatas.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Metadatas
@@ -11,7 +12,8 @@ namespace Sidekick.Apis.Poe.Metadatas
     public class InvariantMetadataProvider(
         ICacheProvider cacheProvider,
         IPoeTradeClient poeTradeClient,
-        ILogger<InvariantMetadataProvider> logger) : IInvariantMetadataProvider
+        ILogger<InvariantMetadataProvider> logger,
+        IGameLanguageProvider gameLanguageProvider) : IInvariantMetadataProvider
     {
         public Dictionary<string, ItemMetadata> IdDictionary { get; } = new();
 
@@ -25,7 +27,7 @@ namespace Sidekick.Apis.Poe.Metadatas
 
             var result = await cacheProvider.GetOrSet(
                 "InvariantMetadata",
-                () => poeTradeClient.Fetch<ApiCategory>(GameType.PathOfExile, "data/items", true));
+                () => poeTradeClient.Fetch<ApiCategory>(GameType.PathOfExile, gameLanguageProvider.InvariantLanguage, "data/items"));
 
             FillPattern(result.Result, "accessory", Category.Accessory);
             FillPattern(result.Result, "armour", Category.Armour);
