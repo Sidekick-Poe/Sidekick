@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Metadatas.Models;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Initialization;
 
@@ -26,7 +27,7 @@ namespace Sidekick.Apis.Poe.Metadatas
             NameAndTypeDictionary.Clear();
             NameAndTypeRegex.Clear();
 
-            var result = await cacheProvider.GetOrSet("Metadata", () => poeTradeClient.Fetch<ApiCategory>("data/items"));
+            var result = await cacheProvider.GetOrSet("Metadata", () => poeTradeClient.Fetch<ApiCategory>(GameType.PathOfExile, "data/items"));
 
             FillPattern(result.Result, "accessory", Category.Accessory, useRegex: true);
             FillPattern(result.Result, "armour", Category.Armour, useRegex: true);
@@ -80,6 +81,7 @@ namespace Sidekick.Apis.Poe.Metadatas
                     ApiTypeDiscriminator = item.Discriminator,
                     Rarity = GetRarityForCategory(category, item),
                     Category = category,
+                    Game = GameType.PathOfExile,
                 };
 
                 var key = header.Name ?? header.Type ?? header.ApiType;

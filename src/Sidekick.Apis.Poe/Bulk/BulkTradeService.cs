@@ -39,7 +39,7 @@ namespace Sidekick.Apis.Poe.Bulk
             }
 
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var uri = $"{gameLanguageProvider.Language.PoeTradeApiBaseUrl}exchange/{leagueId}";
+            var uri = $"{gameLanguageProvider.Language.GetTradeApiBaseUrl(item.Metadata.Game)}exchange/{leagueId}";
 
             var itemId = itemStaticDataProvider.GetId(item.Metadata);
             if (itemId == null)
@@ -102,12 +102,13 @@ namespace Sidekick.Apis.Poe.Bulk
 
         public async Task<Uri> GetTradeUri(Item item, string queryId)
         {
-            var baseUri = gameLanguageProvider.Language?.PoeTradeExchangeBaseUrl;
-            if (baseUri == null)
+            var baseUrl = gameLanguageProvider.Language?.GetTradeApiBaseUrl(item.Metadata.Game);
+            if (baseUrl == null)
             {
                 throw new Exception("[Trade API] Could not find the trade uri.");
             }
 
+            var baseUri = new Uri(baseUrl + "exchange/");
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             return new Uri(baseUri, $"{leagueId}/{queryId}");
         }

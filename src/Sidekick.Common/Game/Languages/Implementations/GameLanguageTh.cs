@@ -1,15 +1,13 @@
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Thai", "th")]
-public class GameLanguageTH : IGameLanguage
+public class GameLanguageTh : IGameLanguage
 {
     public string LanguageCode => "th";
 
-    public Uri PoeTradeSearchBaseUrl => new("https://th.pathofexile.com/trade/search/");
+    public string PoeTradeApiBaseUrl => new("https://th.pathofexile.com/api/trade/");
 
-    public Uri PoeTradeExchangeBaseUrl => new("https://th.pathofexile.com/trade/exchange/");
-
-    public Uri PoeTradeApiBaseUrl => new("https://th.pathofexile.com/api/trade/");
+    public string Poe2TradeApiBaseUrl => new("https://th.pathofexile.com/api/trade2/");
 
     public Uri PoeCdnBaseUrl => new("https://web.poecdn.com/");
 

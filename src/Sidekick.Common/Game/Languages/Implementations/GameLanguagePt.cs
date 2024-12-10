@@ -1,15 +1,13 @@
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Portuguese", "pt")]
-public class GameLanguagePT : IGameLanguage
+public class GameLanguagePt : IGameLanguage
 {
     public string LanguageCode => "pt";
 
-    public Uri PoeTradeSearchBaseUrl => new("https://br.pathofexile.com/trade/search/");
+    public string PoeTradeApiBaseUrl => "https://br.pathofexile.com/api/trade/";
 
-    public Uri PoeTradeExchangeBaseUrl => new("https://br.pathofexile.com/trade/exchange/");
-
-    public Uri PoeTradeApiBaseUrl => new("https://br.pathofexile.com/api/trade/");
+    public string Poe2TradeApiBaseUrl => "https://br.pathofexile.com/api/trade2/";
 
     public Uri PoeCdnBaseUrl => new("https://web.poecdn.com/");
 

@@ -1,4 +1,5 @@
 @using Sidekick.Apis.Poe.Clients
+@using Sidekick.Apis.Poe.Clients.Models
 @using Sidekick.Apis.Poe.Clients.States;
 @if (WealthParser.IsRunning())
 {
@@ -8,7 +9,7 @@
 
             <div class="d-flex flex-nowrap align-center justify-center" style="width: 100%;">
                 <div class="mr-2"><strong>API Status</strong></div>
-                @switch (ApiStateProvider.Get(ClientNames.POECLIENT))
+                @switch (ApiStateProvider.Get(ClientNames.PoeClient))
                 {
                     case ApiState.Working:
                         <div>Working</div>

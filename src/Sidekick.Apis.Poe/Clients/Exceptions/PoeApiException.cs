@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.Poe.Clients
+namespace Sidekick.Apis.Poe.Clients.Exceptions
 {
     [Serializable]
     public class PoeApiException : Exception

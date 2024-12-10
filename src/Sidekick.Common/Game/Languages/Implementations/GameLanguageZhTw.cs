@@ -1,19 +1,13 @@
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Traditional Chinese", "zh")]
-public class GameLanguageZHTW : IGameLanguage
+public class GameLanguageZhTw : IGameLanguage
 {
-    public string DescriptionIsRelic => "古典傳奇";
-
-    public string DescriptionScourged => "災魘";
-
     public string LanguageCode => "zh";
 
-    public Uri PoeTradeSearchBaseUrl => new("http://web.poe.garena.tw/trade/search/");
+    public string PoeTradeApiBaseUrl => new("http://web.poe.garena.tw/api/trade/");
 
-    public Uri PoeTradeExchangeBaseUrl => new("http://web.poe.garena.tw/trade/exchange/");
-
-    public Uri PoeTradeApiBaseUrl => new("http://web.poe.garena.tw/api/trade/");
+    public string Poe2TradeApiBaseUrl => new("http://web.poe.garena.tw/api/trade2/");
 
     public Uri PoeCdnBaseUrl => new("https://web.poecdn.com/");
 
@@ -99,7 +93,7 @@ public class GameLanguageZHTW : IGameLanguage
 
     public string InfluenceWarlord => "總督軍物品";
 
-    public ClassLanguage? Classes => new()
+    public ClassLanguage Classes => new()
     {
         Prefix = "___",
         DivinationCard = "___",

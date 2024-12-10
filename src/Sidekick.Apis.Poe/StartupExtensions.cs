@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Apis.Poe.Bulk;
 using Sidekick.Apis.Poe.Clients;
+using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Clients.States;
 using Sidekick.Apis.Poe.Leagues;
 using Sidekick.Apis.Poe.Localization;
@@ -28,9 +29,9 @@ namespace Sidekick.Apis.Poe
             services.AddSingleton<IApiStateProvider, ApiStateProvider>();
             services.AddSingleton<PoeApiHandler>();
 
-            services.AddHttpClient(ClientNames.TRADECLIENT);
+            services.AddHttpClient(ClientNames.TradeClient);
 
-            services.AddHttpClient(ClientNames.POECLIENT)
+            services.AddHttpClient(ClientNames.PoeClient)
                 .ConfigurePrimaryHttpMessageHandler((sp) =>
                 {
                     var logger = sp.GetRequiredService<ILogger<PoeApiHandler>>();

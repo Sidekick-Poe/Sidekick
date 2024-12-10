@@ -1,6 +1,7 @@
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Static.Models;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
@@ -23,7 +24,7 @@ namespace Sidekick.Apis.Poe.Static
         {
             var result = await cacheProvider.GetOrSet(
                 "ItemStaticDataProvider",
-                () => poeTradeClient.Fetch<StaticItemCategory>("data/static"));
+                () => poeTradeClient.Fetch<StaticItemCategory>(GameType.PathOfExile, "data/static"));
 
             ImageUrls.Clear();
             Ids.Clear();

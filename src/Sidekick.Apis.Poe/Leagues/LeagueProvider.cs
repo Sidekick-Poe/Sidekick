@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Game;
 
 namespace Sidekick.Apis.Poe.Leagues
 {
@@ -30,7 +31,7 @@ namespace Sidekick.Apis.Poe.Leagues
 
         private async Task<List<League>> GetList()
         {
-            var response = await poeTradeClient.Fetch<ApiLeague>("data/leagues");
+            var response = await poeTradeClient.Fetch<ApiLeague>(GameType.PathOfExile, "data/leagues");
             var leagues = new List<League>();
             foreach (var apiLeague in response.Result)
             {
