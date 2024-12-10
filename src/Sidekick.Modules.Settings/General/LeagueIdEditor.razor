@@ -1,14 +1,27 @@
 @using Sidekick.Apis.Poe
+@using Sidekick.Common.Cache
+@using Sidekick.Common.Extensions
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Settings.Localization
-<FormSelect Label="@Resources.Character_League"
-            Value="@LeagueId"
-            ValueChanged="LeagueChanged"
-            Options="Options"/>
+
+<div class="flex items-start gap-2">
+    <div class="grow">
+        <FormSelect Label="@Resources.Character_League"
+                    Value="@LeagueId"
+                    ValueChanged="LeagueChanged"
+                    Options="Options"/>
+    </div>
+    <div class="mt-9">
+        <TooltipHint
+            Text="For convenience, Sidekick supports both Path of Exile 2 and Path of Exile 1, simply choose the appropriate league when playing either of them."></TooltipHint>
+    </div>
+</div>
 
 @inject SettingsResources Resources
 @inject ISettingsService SettingsService
 @inject ILeagueProvider LeagueProvider
+@inject ICacheProvider CacheProvider
+@inject NavigationManager NavigationManager
 
 @code {
 
@@ -43,8 +56,17 @@
 
     private async Task LeagueChanged(string? value)
     {
+        var currentGame = LeagueId.GetGameFromLeagueId();
+        var newGame = value.GetGameFromLeagueId();
+
         LeagueId = value;
         await SettingsService.Set(SettingKeys.LeagueId, value);
+
+        if (currentGame != newGame)
+        {
+            await CacheProvider.Clear();
+            NavigationManager.NavigateTo("/initialize");
+        }
     }
 
 }

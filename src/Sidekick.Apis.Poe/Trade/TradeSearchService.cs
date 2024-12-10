@@ -12,6 +12,7 @@ using Sidekick.Apis.Poe.Trade.Requests.Models;
 using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
@@ -100,7 +101,7 @@ public class TradeSearchService(
             }
 
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var uri = new Uri($"{gameLanguageProvider.Language.GetTradeApiBaseUrl(item.Metadata.Game)}search/{leagueId}");
+            var uri = new Uri($"{gameLanguageProvider.Language.GetTradeApiBaseUrl(item.Metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
 
             var json = JsonSerializer.Serialize(
                 new QueryRequest()
@@ -819,6 +820,6 @@ public class TradeSearchService(
 
         var baseUri = new Uri(baseUrl + "search/");
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        return new Uri(baseUri, $"{leagueId}/{queryId}");
+        return new Uri(baseUri, $"{leagueId.GetUrlSlugForLeague()}/{queryId}");
     }
 }

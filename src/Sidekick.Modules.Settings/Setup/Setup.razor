@@ -1,6 +1,5 @@
 @page "/setup"
 @page "/"
-@using System.Text
 @using System.Text.Json
 @using Sidekick.Apis.Poe
 @using Sidekick.Common.Cache
@@ -78,19 +77,17 @@
     protected override async Task OnInitializedAsync()
     {
         var leagues = await LeagueProvider.GetList(false);
-        var apiLeaguesHash = Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(leagues)));
-        var settingsLeaguesHash = await SettingsService.GetString(SettingKeys.LeaguesHash);
-        if (!string.IsNullOrEmpty(settingsLeaguesHash) && apiLeaguesHash != settingsLeaguesHash)
+        var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetHashCode();
+        var settingsLeaguesHash = await SettingsService.GetInt(SettingKeys.LeaguesHash);
+        if (apiLeaguesHash != settingsLeaguesHash)
         {
             NewLeagues = true;
             await CacheProvider.Clear();
         }
 
-        await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
-
         // Check to see if we should run Setup first before running the rest of the initialization process
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
-        if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId))
+        if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId) || NewLeagues)
         {
             RequiresSetup = true;
             await CurrentView.Initialize(this);
@@ -112,11 +109,15 @@
     {
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
         var leagues = await LeagueProvider.GetList(true);
+
         if (leagues.All(x => x.Id != leagueId))
         {
             HasError = true;
             return;
         }
+
+        var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetHashCode();
+        await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
 
         NavigationManager.NavigateTo("/initialize");
     }

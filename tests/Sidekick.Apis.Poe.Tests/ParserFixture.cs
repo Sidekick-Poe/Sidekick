@@ -53,7 +53,7 @@ namespace Sidekick.Apis.Poe.Tests
             var settingsService = ctx.Services.GetRequiredService<ISettingsService>();
             await settingsService.Set(SettingKeys.LanguageParser, "en");
             await settingsService.Set(SettingKeys.LanguageUi, "en");
-            await settingsService.Set(SettingKeys.LeagueId, "Standard");
+            await settingsService.Set(SettingKeys.LeagueId, "poe1.Standard");
 
             if (InitializationTask == null)
             {

@@ -1,5 +1,6 @@
 using System.Text;
 using System.Web;
+using Sidekick.Common.Game;
 
 namespace Sidekick.Common.Extensions;
 
@@ -103,5 +104,21 @@ public static class StringExtensions
     public static bool HasInvalidUrlCharacters(this string input)
     {
         return input.EncodeUrl() != input;
+    }
+
+    public static string? GetUrlSlugForLeague(this string? leagueId)
+    {
+        return leagueId?.Split('.').ElementAtOrDefault(1);
+    }
+
+    public static GameType GetGameFromLeagueId(this string? leagueId)
+    {
+        return leagueId
+            ?.Split('.')
+            .ElementAtOrDefault(0) switch
+        {
+            "poe2" => GameType.PathOfExile2,
+            _ => GameType.PathOfExile,
+        };
     }
 }

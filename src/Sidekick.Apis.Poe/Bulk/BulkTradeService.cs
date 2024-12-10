@@ -9,6 +9,7 @@ using Sidekick.Apis.Poe.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
@@ -39,7 +40,7 @@ namespace Sidekick.Apis.Poe.Bulk
             }
 
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var uri = $"{gameLanguageProvider.Language.GetTradeApiBaseUrl(item.Metadata.Game)}exchange/{leagueId}";
+            var uri = $"{gameLanguageProvider.Language.GetTradeApiBaseUrl(item.Metadata.Game)}exchange/{leagueId.GetUrlSlugForLeague()}";
 
             var itemId = itemStaticDataProvider.GetId(item.Metadata);
             if (itemId == null)
@@ -110,7 +111,7 @@ namespace Sidekick.Apis.Poe.Bulk
 
             var baseUri = new Uri(baseUrl + "exchange/");
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            return new Uri(baseUri, $"{leagueId}/{queryId}");
+            return new Uri(baseUri, $"{leagueId.GetUrlSlugForLeague()}/{queryId}");
         }
     }
 }
