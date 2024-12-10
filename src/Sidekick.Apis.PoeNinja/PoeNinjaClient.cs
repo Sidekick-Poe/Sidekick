@@ -5,6 +5,7 @@ using Sidekick.Apis.PoeNinja.Api;
 using Sidekick.Apis.PoeNinja.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
+using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
 
@@ -143,6 +144,7 @@ namespace Sidekick.Apis.PoeNinja
         /// </summary>
         private string GetLeagueUri(string? leagueId)
         {
+            leagueId = leagueId.GetUrlSlugForLeague();
             return leagueId switch
             {
                 "Standard" => "standard",
@@ -228,7 +230,7 @@ namespace Sidekick.Apis.PoeNinja
         private async Task<IEnumerable<NinjaPrice>> FetchItems(ItemType itemType)
         {
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var url = new Uri($"{apiBaseUrl}itemoverview?league={leagueId}&type={itemType}");
+            var url = new Uri($"{apiBaseUrl}itemoverview?league={leagueId.GetUrlSlugForLeague()}&type={itemType}");
 
             try
             {
@@ -271,7 +273,7 @@ namespace Sidekick.Apis.PoeNinja
         private async Task<IEnumerable<NinjaPrice>> FetchCurrencies(ItemType itemType)
         {
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var url = new Uri($"{apiBaseUrl}currencyoverview?league={leagueId}&type={itemType}");
+            var url = new Uri($"{apiBaseUrl}currencyoverview?league={leagueId.GetUrlSlugForLeague()}&type={itemType}");
 
             try
             {

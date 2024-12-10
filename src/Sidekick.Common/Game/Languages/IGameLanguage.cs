@@ -4,11 +4,13 @@ public interface IGameLanguage
 {
     string LanguageCode { get; }
 
-    Uri PoeTradeSearchBaseUrl { get; }
+    string PoeTradeBaseUrl { get; }
 
-    Uri PoeTradeExchangeBaseUrl { get; }
+    string PoeTradeApiBaseUrl { get; }
 
-    Uri PoeTradeApiBaseUrl { get; }
+    string Poe2TradeBaseUrl { get; }
+
+    string Poe2TradeApiBaseUrl { get; }
 
     Uri PoeCdnBaseUrl { get; }
 
@@ -94,5 +96,17 @@ public interface IGameLanguage
 
     string InfluenceWarlord { get; }
 
-    ClassLanguage? Classes { get; }
+    ClassLanguage Classes { get; }
+
+    public string GetTradeBaseUrl(GameType game) => game switch
+    {
+        GameType.PathOfExile2 => Poe2TradeBaseUrl,
+        _ => PoeTradeBaseUrl,
+    };
+
+    public string GetTradeApiBaseUrl(GameType game) => game switch
+    {
+        GameType.PathOfExile2 => Poe2TradeApiBaseUrl,
+        _ => PoeTradeApiBaseUrl,
+    };
 }

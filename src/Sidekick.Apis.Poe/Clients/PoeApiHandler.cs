@@ -2,6 +2,7 @@ using System.Net.Http.Headers;
 using System.Threading.RateLimiting;
 using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Apis.Poe.Clients.Limiter;
+using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Clients.States;
 
 namespace Sidekick.Apis.Poe.Clients
@@ -24,7 +25,7 @@ namespace Sidekick.Apis.Poe.Clients
             HttpRequestMessage request,
             CancellationToken cancellationToken)
         {
-            apiStateProvider.Update(ClientNames.POECLIENT, ApiState.Throttled);
+            apiStateProvider.Update(ClientNames.PoeClient, ApiState.Throttled);
 
             using var concurrencyLease = await concurrencyLimiter.AcquireAsync(cancellationToken: cancellationToken);
 
@@ -34,7 +35,7 @@ namespace Sidekick.Apis.Poe.Clients
                 leases.Add(await limitRule.Limiter.AcquireAsync(cancellationToken: cancellationToken));
             }
 
-            apiStateProvider.Update(ClientNames.POECLIENT, ApiState.Working);
+            apiStateProvider.Update(ClientNames.PoeClient, ApiState.Working);
 
             var token = await authenticationService.GetToken();
             if (string.IsNullOrEmpty(token))
@@ -115,7 +116,7 @@ namespace Sidekick.Apis.Poe.Clients
 
             if (response.Headers.TryGetValues("Retry-After", out var retryAfter))
             {
-                apiStateProvider.Update(ClientNames.POECLIENT, ApiState.TimedOut);
+                apiStateProvider.Update(ClientNames.PoeClient, ApiState.TimedOut);
                 await Task.Delay(TimeSpan.FromSeconds(int.Parse(retryAfter.First()) + 5));
                 throw new TimeoutException();
             }

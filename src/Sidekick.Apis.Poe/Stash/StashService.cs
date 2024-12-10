@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Stash.Models;
+using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
 
@@ -17,7 +18,7 @@ namespace Sidekick.Apis.Poe.Stash
             try
             {
                 var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-                var response = await client.Fetch<ApiStashTabList>($"stash/{leagueId}");
+                var response = await client.Fetch<ApiStashTabList>($"stash/{leagueId.GetUrlSlugForLeague()}");
                 if (response == null || leagueId == null)
                 {
                     return null;
@@ -68,7 +69,7 @@ namespace Sidekick.Apis.Poe.Stash
             try
             {
                 var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-                var wrapper = await client.Fetch<ApiStashTabWrapper>($"stash/{leagueId}/{id}");
+                var wrapper = await client.Fetch<ApiStashTabWrapper>($"stash/{leagueId.GetUrlSlugForLeague()}/{id}");
                 if (wrapper == null || leagueId == null)
                 {
                     return null;
@@ -111,7 +112,7 @@ namespace Sidekick.Apis.Poe.Stash
             if (tab.Items == null && tab.Children == null)
             {
                 var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-                var uri = string.IsNullOrEmpty(tab.Parent) ? $"stash/{leagueId}/{tab.Id}" : $"stash/{leagueId}/{tab.Parent}/{tab.Id}";
+                var uri = string.IsNullOrEmpty(tab.Parent) ? $"stash/{leagueId.GetUrlSlugForLeague()}/{tab.Id}" : $"stash/{leagueId}/{tab.Parent}/{tab.Id}";
 
                 var wrapper = await client.Fetch<ApiStashTabWrapper>(uri);
                 if (wrapper?.Stash.Items != null)

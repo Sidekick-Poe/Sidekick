@@ -4,6 +4,7 @@ using Sidekick.Apis.Poe.Bulk.Models;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Common.Extensions;
+using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
 
@@ -132,7 +133,7 @@ public class PriceCheckService(
         IsLoading = true;
         LoadingChanged?.Invoke();
 
-        var result = await tradeSearchService.GetResults(ItemTradeResult.Id, ids, PseudoFilters);
+        var result = await tradeSearchService.GetResults(GameType.PathOfExile, ItemTradeResult.Id, ids, PseudoFilters);
         TradeItems?.AddRange(result);
 
         IsLoading = false;

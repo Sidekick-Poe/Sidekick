@@ -1,26 +1,27 @@
-namespace Sidekick.Apis.Poe.Leagues
+using Sidekick.Common.Game;
+
+namespace Sidekick.Apis.Poe.Leagues;
+
+/// <summary>
+/// A Path of Exile league
+/// </summary>
+public class League(
+    GameType game,
+    string id,
+    string text)
 {
     /// <summary>
-    /// A Path of Exile league
+    /// The game this league belongs to
     /// </summary>
-    public class League
-    {
-        public League(
-            string id,
-            string text)
-        {
-            Id = id;
-            Text = text;
-        }
+    public GameType Game { get; set; } = game;
 
-        /// <summary>
-        /// The identifier of the league
-        /// </summary>
-        public string Id { get; set; }
+    /// <summary>
+    /// The identifier of the league
+    /// </summary>
+    public string Id { get; set; } = id;
 
-        /// <summary>
-        /// The label of the league
-        /// </summary>
-        public string Text { get; set; }
-    }
+    /// <summary>
+    /// The label of the league
+    /// </summary>
+    public string Text { get; set; } = text;
 }

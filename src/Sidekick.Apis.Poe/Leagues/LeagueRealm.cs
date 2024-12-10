@@ -7,6 +7,7 @@ namespace Sidekick.Apis.Poe.Leagues
     {
         PC,
         Xbox,
-        Sony
+        Sony,
+        Poe2,
     }
 }

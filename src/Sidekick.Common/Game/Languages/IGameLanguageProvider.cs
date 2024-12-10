@@ -4,13 +4,11 @@ namespace Sidekick.Common.Game.Languages;
 
 public interface IGameLanguageProvider : IInitializableService
 {
-    IGameLanguage? Language { get; }
+    IGameLanguage Language { get; }
 
-    void SetLanguage(string? languageCode);
+    IGameLanguage InvariantLanguage { get; }
 
     List<GameLanguageAttribute> GetList();
-
-    IGameLanguage? Get(string code);
 
     bool IsEnglish();
 }
