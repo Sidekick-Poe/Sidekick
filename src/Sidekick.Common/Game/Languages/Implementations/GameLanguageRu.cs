@@ -5,7 +5,11 @@ public class GameLanguageRu : IGameLanguage
 {
     public string LanguageCode => "ru";
 
+    public string PoeTradeBaseUrl => new("https://ru.pathofexile.com/trade/");
+
     public string PoeTradeApiBaseUrl => new("https://ru.pathofexile.com/api/trade/");
+
+    public string Poe2TradeBaseUrl => new("https://ru.pathofexile.com/trade2/");
 
     public string Poe2TradeApiBaseUrl => new("https://ru.pathofexile.com/api/trade2/");
 

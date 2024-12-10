@@ -812,7 +812,7 @@ public class TradeSearchService(
         GameType game,
         string queryId)
     {
-        var baseUrl = gameLanguageProvider.Language?.GetTradeApiBaseUrl(game);
+        var baseUrl = gameLanguageProvider.Language?.GetTradeBaseUrl(game);
         if (baseUrl == null)
         {
             throw new Exception("[Trade API] Could not find the trade uri.");

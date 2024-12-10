@@ -5,7 +5,11 @@ public class GameLanguageZhTw : IGameLanguage
 {
     public string LanguageCode => "zh";
 
+    public string PoeTradeBaseUrl => new("http://web.poe.garena.tw/trade/");
+
     public string PoeTradeApiBaseUrl => new("http://web.poe.garena.tw/api/trade/");
+
+    public string Poe2TradeBaseUrl => new("http://web.poe.garena.tw/trade2/");
 
     public string Poe2TradeApiBaseUrl => new("http://web.poe.garena.tw/api/trade2/");
 

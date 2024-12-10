@@ -5,7 +5,11 @@ public class GameLanguageFr : IGameLanguage
 {
     public string LanguageCode => "fr";
 
+    public string PoeTradeBaseUrl => "https://fr.pathofexile.com/trade/";
+
     public string PoeTradeApiBaseUrl => "https://fr.pathofexile.com/api/trade/";
+
+    public string Poe2TradeBaseUrl => "https://fr.pathofexile.com/trade2/";
 
     public string Poe2TradeApiBaseUrl => "https://fr.pathofexile.com/api/trade2/";
 

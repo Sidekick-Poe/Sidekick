@@ -103,7 +103,7 @@ namespace Sidekick.Apis.Poe.Bulk
 
         public async Task<Uri> GetTradeUri(Item item, string queryId)
         {
-            var baseUrl = gameLanguageProvider.Language?.GetTradeApiBaseUrl(item.Metadata.Game);
+            var baseUrl = gameLanguageProvider.Language?.GetTradeBaseUrl(item.Metadata.Game);
             if (baseUrl == null)
             {
                 throw new Exception("[Trade API] Could not find the trade uri.");

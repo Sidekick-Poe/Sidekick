@@ -5,7 +5,11 @@ public class GameLanguageKr : IGameLanguage
 {
     public string LanguageCode => "kr";
 
+    public string PoeTradeBaseUrl => "https://poe.game.daum.net/trade/";
+
     public string PoeTradeApiBaseUrl => "https://poe.game.daum.net/api/trade/";
+
+    public string Poe2TradeBaseUrl => "https://poe.game.daum.net/trade2/";
 
     public string Poe2TradeApiBaseUrl => "https://poe.game.daum.net/api/trade2/";
 

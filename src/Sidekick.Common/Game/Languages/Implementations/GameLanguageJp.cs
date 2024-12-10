@@ -5,7 +5,11 @@ public class GameLanguageJp : IGameLanguage
 {
     public string LanguageCode => "jp";
 
+    public string PoeTradeBaseUrl => "https://jp.pathofexile.com/trade/";
+
     public string PoeTradeApiBaseUrl => "https://jp.pathofexile.com/api/trade/";
+
+    public string Poe2TradeBaseUrl => "https://jp.pathofexile.com/trade2/";
 
     public string Poe2TradeApiBaseUrl => "https://jp.pathofexile.com/api/trade2/";
 
