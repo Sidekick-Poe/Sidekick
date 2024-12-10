@@ -2,15 +2,8 @@ using System.Windows.Input;
 
 namespace Sidekick.Wpf.Services
 {
-    public class SimpleCommand : ICommand
+    public class SimpleCommand(Action execute) : ICommand
     {
-        private readonly Action execute;
-
-        public SimpleCommand(Action execute)
-        {
-            this.execute = execute;
-        }
-
         public bool CanExecute(object? parameter) => true;
 
         public void Execute(object? parameter) => execute.Invoke();
