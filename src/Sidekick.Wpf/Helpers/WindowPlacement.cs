@@ -14,7 +14,7 @@ namespace Sidekick.Wpf.Helpers
         /// Resize window to fit screen, then center window to screen.
         /// </summary>
         /// <param name="window">Window to be centered.</param>
-        public static void ConstrainAndCenterWindowToScreen(Window window)
+        public static void ConstrainAndCenterWindowToScreen(Window? window)
         {
             if (window == null
                 || double.IsNaN(window.ActualHeight)

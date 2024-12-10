@@ -1,3 +1,4 @@
+using ApexCharts;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
 using Sidekick.Apis.PoeNinja;
@@ -59,6 +60,8 @@ builder.Services
 
     // Mocks
     .AddSidekickMocks();
+
+builder.Services.AddApexCharts();
 
 builder.Services.AddSingleton<IApplicationService, MockApplicationService>();
 builder.Services.AddSingleton<ITrayProvider, MockTrayProvider>();

@@ -1,5 +1,6 @@
 using System.IO;
 using System.Windows;
+using ApexCharts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub;
@@ -40,12 +41,8 @@ namespace Sidekick.Wpf
 
         public App()
         {
-            DeleteStaticAssets();
-
-            var services = new ServiceCollection();
-            ConfigureServices(services);
-
-            ServiceProvider = services.BuildServiceProvider();
+            // DeleteStaticAssets();
+            ServiceProvider = GetServiceProvider();
             logger = ServiceProvider.GetRequiredService<ILogger<App>>();
             settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
             interprocessService = ServiceProvider.GetRequiredService<IInterprocessService>();
@@ -108,13 +105,11 @@ namespace Sidekick.Wpf
             _ = viewLocator.Open("/");
         }
 
-        private void ConfigureServices(ServiceCollection services)
+        private ServiceProvider GetServiceProvider()
         {
+            var services = new ServiceCollection();
+
             services.AddLocalization();
-#pragma warning disable CA1416 // Validate platform compatibility
-            services.AddWpfBlazorWebView();
-            services.AddBlazorWebViewDeveloperTools();
-#pragma warning restore CA1416 // Validate platform compatibility
 
             services
 
@@ -149,12 +144,24 @@ namespace Sidekick.Wpf
             services.AddSingleton<ITrayProvider, WpfTrayProvider>();
             services.AddSingleton<IViewLocator, WpfViewLocator>();
             services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());
+
+            services.AddApexCharts();
+
+#pragma warning disable CA1416 // Validate platform compatibility
+            services.AddWpfBlazorWebView();
+            services.AddBlazorWebViewDeveloperTools();
+#pragma warning restore CA1416 // Validate platform compatibility
+
+            return services.BuildServiceProvider();
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
-            // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
-            ServiceProvider?.Dispose();
+            if (ServiceProvider != null!)
+            {
+                ServiceProvider.Dispose();
+            }
+
             base.OnExit(e);
         }
 
@@ -182,7 +189,6 @@ namespace Sidekick.Wpf
             };
         }
 
-        // ReSharper disable once UnusedMember.Local
         private void DeleteStaticAssets()
         {
             try
