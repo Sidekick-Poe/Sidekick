@@ -3,6 +3,7 @@
 @using System.Text.Json
 @using Sidekick.Apis.Poe
 @using Sidekick.Common.Cache
+@using Sidekick.Common.Extensions
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Settings.General
@@ -77,7 +78,7 @@
     protected override async Task OnInitializedAsync()
     {
         var leagues = await LeagueProvider.GetList(false);
-        var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetHashCode();
+        var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
         var settingsLeaguesHash = await SettingsService.GetInt(SettingKeys.LeaguesHash);
         if (apiLeaguesHash != settingsLeaguesHash)
         {
@@ -109,14 +110,13 @@
     {
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
         var leagues = await LeagueProvider.GetList(true);
-
         if (leagues.All(x => x.Id != leagueId))
         {
             HasError = true;
             return;
         }
 
-        var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetHashCode();
+        var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
         await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
 
         NavigationManager.NavigateTo("/initialize");
