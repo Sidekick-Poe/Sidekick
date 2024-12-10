@@ -17,7 +17,7 @@ else if (PriceCheckService.BulkTradeResult != null)
 {
     <div class="max-w-[800px] mx-auto">
         <div class="flex items-center w-full justify-between mb-3">
-            <TextBase Class="text-teal-500">@LeagueId</TextBase>
+            <LeagueText />
             <div class="flex flex-nowrap gap-3">
                 <CountString Count="PriceCheckService.BulkTradeResult.Offers.Count"
                              Total="PriceCheckService.BulkTradeResult.TotalOffers"/>
@@ -59,11 +59,8 @@ else if (PriceCheckService.BulkTradeResult != null)
 
 @code {
 
-    private string? LeagueId { get; set; }
-
     protected override async Task OnInitializedAsync()
     {
-        LeagueId = await SettingsService.GetString(SettingKeys.LeagueId);
         PriceCheckService.LoadingChanged += StateHasChanged;
         await base.OnInitializedAsync();
     }
