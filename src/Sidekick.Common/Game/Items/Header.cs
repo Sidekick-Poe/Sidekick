@@ -8,6 +8,8 @@ public class Header
 
     public Class Class { get; init; }
 
+    public string? ItemCategory { get; init; }
+
     /// <inheritdoc />
     public override string? ToString()
     {

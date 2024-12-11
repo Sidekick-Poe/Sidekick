@@ -1,12 +1,17 @@
 using System.Globalization;
+using System.Reflection.Emit;
 using System.Text.RegularExpressions;
+using FuzzySharp;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Metadata;
+using Sidekick.Apis.Poe.Metadata.Models;
 using Sidekick.Apis.Poe.Parser.AdditionalInformation;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Pseudo;
+using Sidekick.Apis.Poe.Trade.Requests;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Parser
 {
@@ -19,7 +24,9 @@ namespace Sidekick.Apis.Poe.Parser
         IParserPatterns patterns,
         ClusterJewelParser clusterJewelParser,
         IInvariantMetadataProvider invariantMetadataProvider,
-        SocketParser socketParser
+        SocketParser socketParser,
+        IMetadataProvider metadataProvider,
+        IGameLanguageProvider gameLanguageProvider
     ) : IItemParser
     {
         public Task<Item> ParseItemAsync(string itemText)
@@ -57,8 +64,9 @@ namespace Sidekick.Apis.Poe.Parser
                     invariant = invariantMetadata;
                 }
 
-                // Order of parsing is important
+                // Order of parsing is important    
                 ParseRequirements(parsingItem);
+
                 var header = ParseHeader(parsingItem);
                 var properties = ParseProperties(parsingItem);
                 var influences = ParseInfluences(parsingItem);
@@ -109,6 +117,19 @@ namespace Sidekick.Apis.Poe.Parser
 
         private Header ParseHeader(ParsingItem parsingItem)
         {
+            var firstLine = parsingItem.Blocks[0].Lines[0].Text;
+            string? apiItemCategoryId;
+
+            if (firstLine.StartsWith(gameLanguageProvider.Language.Classes.Prefix))
+            {
+                var categoryToMatch = new ApiFilterOption { Text = $"{gameLanguageProvider.Language.Classes.Prefix}: {parsingItem.Blocks[0].Lines[0].Text}" };
+                apiItemCategoryId = Process.ExtractOne(categoryToMatch, metadataProvider.ApiItemCategories, x => x.Text)?.Value?.Id ?? null;
+            }
+            else
+            {
+                apiItemCategoryId = null;
+            }
+
             var itemClass = Class.Undefined;
             foreach (var pattern in patterns.Classes)
             {
@@ -123,6 +144,7 @@ namespace Sidekick.Apis.Poe.Parser
                 Name = parsingItem.Blocks[0].Lines.ElementAtOrDefault(2)?.Text,
                 Type = parsingItem.Blocks[0].Lines.ElementAtOrDefault(3)?.Text,
                 Class = itemClass,
+                ItemCategory = apiItemCategoryId
             };
         }
 
