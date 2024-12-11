@@ -42,7 +42,6 @@ namespace Sidekick.Apis.Poe.Parser
             };
 
             Affixes = new Regex("(?:" + getRegexLine(gameLanguageProvider.Language.AffixSuperior) + "|" + getRegexLine(gameLanguageProvider.Language.AffixBlighted) + "|" + getRegexLine(gameLanguageProvider.Language.AffixBlightRavaged) + "|" + getRegexLine(gameLanguageProvider.Language.AffixAnomalous) + "|" + getRegexLine(gameLanguageProvider.Language.AffixDivergent) + "|" + getRegexLine(gameLanguageProvider.Language.AffixPhantasmal) + ")");
-
             SuperiorAffix = new Regex("(?:" + getRegexLine(gameLanguageProvider.Language.AffixSuperior) + ")");
 
             return Task.CompletedTask;
