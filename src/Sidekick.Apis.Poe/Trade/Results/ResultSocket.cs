@@ -8,5 +8,11 @@ namespace Sidekick.Apis.Poe.Trade.Results
 
         [JsonPropertyName("sColour")]
         public string? ColourString { get; set; }
+
+        [JsonPropertyName("type")]
+        public string? Type { get; set; }
+
+        [JsonPropertyName("item")]
+        public string? Item { get; set; }
     }
 }

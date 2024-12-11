@@ -4,6 +4,7 @@
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Game.Items.AdditionalInformation;
 @using Sidekick.Modules.Trade.Localization
+@using Sidekick.Common.Game
 @using ApexCharts
 
 @if (Loading)
@@ -73,6 +74,11 @@ else if (Price != null)
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
+
+        if (PriceCheckService.Item?.Metadata.Game == GameType.PathOfExile2)
+        {
+            return;
+        }
 
         Loading = true;
         StateHasChanged();

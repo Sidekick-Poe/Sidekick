@@ -2,7 +2,6 @@
 @using Sidekick.Apis.Poe.Bulk
 @using Sidekick.Common.Browser
 @using Sidekick.Apis.Poe.Trade.Models
-@using Sidekick.Common.Game
 @using Sidekick.Modules.Trade.Localization
 
 @if (!string.IsNullOrEmpty(QueryId))
@@ -37,7 +36,7 @@
         }
         else
         {
-            var uri = await TradeSearchService.GetTradeUri(GameType.PathOfExile, QueryId);
+            var uri = await TradeSearchService.GetTradeUri(PriceCheckService.Item.Metadata.Game, QueryId);
             BrowserProvider.OpenUri(uri);
         }
     }

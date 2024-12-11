@@ -116,7 +116,7 @@ public class PriceCheckService(
 
     public async Task LoadMoreItems()
     {
-        if (IsLoading || ItemTradeResult?.Result == null || ItemTradeResult?.Id == null)
+        if (IsLoading || ItemTradeResult?.Result == null || ItemTradeResult?.Id == null || Item == null)
         {
             return;
         }
@@ -133,7 +133,7 @@ public class PriceCheckService(
         IsLoading = true;
         LoadingChanged?.Invoke();
 
-        var result = await tradeSearchService.GetResults(GameType.PathOfExile, ItemTradeResult.Id, ids, PseudoFilters);
+        var result = await tradeSearchService.GetResults(Item.Metadata.Game, ItemTradeResult.Id, ids, PseudoFilters);
         TradeItems?.AddRange(result);
 
         IsLoading = false;

@@ -17,6 +17,9 @@ namespace Sidekick.Apis.Poe.Trade.Results
         [JsonPropertyName("enchant")]
         public List<List<JsonElement>> Enchant { get; set; } = new();
 
+        [JsonPropertyName("rune")]
+        public List<List<JsonElement>> Rune { get; set; } = new();
+
         [JsonPropertyName("pseudo")]
         public List<List<JsonElement>> Pseudo { get; set; } = new();
 

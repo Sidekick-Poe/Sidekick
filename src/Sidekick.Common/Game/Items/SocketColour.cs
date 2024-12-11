@@ -7,5 +7,7 @@ public enum SocketColour
     Red,
     White,
     Abyss,
+    PathOfExile2,
     Soulcore,
+    Rune,
 }

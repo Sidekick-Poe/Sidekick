@@ -20,21 +20,18 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade;
 
-public class TradeSearchService(
+public class TradeSearchService
+(
     ILogger<TradeSearchService> logger,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
     IPoeTradeClient poeTradeClient,
-    IModifierProvider modifierProvider) : ITradeSearchService
+    IModifierProvider modifierProvider
+) : ITradeSearchService
 {
     private readonly ILogger logger = logger;
 
-    public async Task<TradeSearchResult<string>> Search(
-        Item item,
-        TradeCurrency currency,
-        PropertyFilters? propertyFilters = null,
-        List<ModifierFilter>? modifierFilters = null,
-        List<PseudoModifierFilter>? pseudoFilters = null)
+    public async Task<TradeSearchResult<string>> Search(Item item, TradeCurrency currency, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null, List<PseudoModifierFilter>? pseudoFilters = null)
     {
         try
         {
@@ -75,35 +72,27 @@ public class TradeSearchService(
                 query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("nonunique");
             }
 
-            SetPropertyFilters(query, propertyFilters);
             SetModifierFilters(query.Stats, modifierFilters);
             SetPseudoModifierFilters(query.Stats, pseudoFilters);
             SetSocketFilters(item, query.Filters);
 
-            if (item.Properties.Anomalous)
+            if (propertyFilters != null)
             {
-                query.Filters.MiscFilters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Anomalous);
-            }
-
-            if (item.Properties.Divergent)
-            {
-                query.Filters.MiscFilters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Divergent);
-            }
-
-            if (item.Properties.Phantasmal)
-            {
-                query.Filters.MiscFilters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Phantasmal);
+                query.Filters.TypeFilters.Filters.Category = GetCategoryFilter(propertyFilters.ItemCategory);
+                query.Filters.WeaponFilters = GetWeaponFilters(propertyFilters.Weapon);
+                query.Filters.ArmourFilters = GetArmourFilters(propertyFilters.Armour);
+                query.Filters.MapFilters = GetMapFilters(propertyFilters.Map);
+                query.Filters.MiscFilters = GetMiscFilters(item, propertyFilters.Misc);
             }
 
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             var uri = new Uri($"{gameLanguageProvider.Language.GetTradeApiBaseUrl(item.Metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
 
-            var json = JsonSerializer.Serialize(
-                new QueryRequest()
-                {
-                    Query = query,
-                },
-                poeTradeClient.Options);
+            var json = JsonSerializer.Serialize(new QueryRequest()
+                                                {
+                                                    Query = query,
+                                                },
+                                                poeTradeClient.Options);
 
             var body = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await poeTradeClient.HttpClient.PostAsync(uri, body);
@@ -134,102 +123,248 @@ public class TradeSearchService(
         throw new ApiErrorException("[Trade API] Could not understand the API response.");
     }
 
-    private static void SetPropertyFilters(
-        Query query,
-        PropertyFilters? propertyFilters)
+    private SearchFilterOption? GetCategoryFilter(string? itemCategory)
     {
-        if (propertyFilters == null)
+        if (string.IsNullOrEmpty(itemCategory))
         {
-            return;
+            return null;
         }
 
-        SetPropertyFilters(query.Filters, propertyFilters.Armour);
-        SetPropertyFilters(query.Filters, propertyFilters.Weapon);
-        SetPropertyFilters(query.Filters, propertyFilters.Map);
-        SetPropertyFilters(query.Filters, propertyFilters.Misc);
+        return new SearchFilterOption(itemCategory);
     }
 
-    private static void SetPropertyFilters(
-        SearchFilters filters,
-        List<PropertyFilter> propertyFilters)
+    private WeaponFilterGroup? GetWeaponFilters(List<PropertyFilter> propertyFilters)
     {
+        var filters = new WeaponFilterGroup();
+        var hasValue = false;
+
         foreach (var propertyFilter in propertyFilters)
         {
-            if (!propertyFilter.Enabled == true && propertyFilter.Type != PropertyFilterType.Misc_Corrupted)
+            if (!propertyFilter.Enabled == true)
             {
                 continue;
             }
 
             switch (propertyFilter.Type)
             {
-                // Armour
-                case PropertyFilterType.Armour_Armour: filters.ArmourFilters.Filters.Armor = new SearchFilterValue(propertyFilter); break;
+                case PropertyFilterType.Weapon_PhysicalDps:
+                    filters.Filters.PhysicalDps = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
 
-                case PropertyFilterType.Armour_Block: filters.ArmourFilters.Filters.Block = new SearchFilterValue(propertyFilter); break;
+                case PropertyFilterType.Weapon_ElementalDps:
+                    filters.Filters.ElementalDps = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
 
-                case PropertyFilterType.Armour_EnergyShield: filters.ArmourFilters.Filters.EnergyShield = new SearchFilterValue(propertyFilter); break;
+                case PropertyFilterType.Weapon_Dps:
+                    filters.Filters.DamagePerSecond = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
 
-                case PropertyFilterType.Armour_Evasion: filters.ArmourFilters.Filters.Evasion = new SearchFilterValue(propertyFilter); break;
+                case PropertyFilterType.Weapon_AttacksPerSecond:
+                    filters.Filters.AttacksPerSecond = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
 
-                // Category
-                case PropertyFilterType.Category: filters.TypeFilters.Filters.Category = new SearchFilterOption(propertyFilter); break;
-
-                // Influence
-                case PropertyFilterType.Misc_Influence_Crusader: filters.MiscFilters.Filters.CrusaderItem = new SearchFilterOption(propertyFilter); break;
-
-                case PropertyFilterType.Misc_Influence_Elder: filters.MiscFilters.Filters.ElderItem = new SearchFilterOption(propertyFilter); break;
-
-                case PropertyFilterType.Misc_Influence_Hunter: filters.MiscFilters.Filters.HunterItem = new SearchFilterOption(propertyFilter); break;
-
-                case PropertyFilterType.Misc_Influence_Redeemer: filters.MiscFilters.Filters.RedeemerItem = new SearchFilterOption(propertyFilter); break;
-
-                case PropertyFilterType.Misc_Influence_Shaper: filters.MiscFilters.Filters.ShaperItem = new SearchFilterOption(propertyFilter); break;
-
-                case PropertyFilterType.Misc_Influence_Warlord: filters.MiscFilters.Filters.WarlordItem = new SearchFilterOption(propertyFilter); break;
-
-                // Map
-                case PropertyFilterType.Map_ItemQuantity: filters.MapFilters.Filters.ItemQuantity = new SearchFilterValue(propertyFilter); break;
-
-                case PropertyFilterType.Map_ItemRarity: filters.MapFilters.Filters.ItemRarity = new SearchFilterValue(propertyFilter); break;
-
-                case PropertyFilterType.Map_AreaLevel: filters.MapFilters.Filters.AreaLevel = new SearchFilterValue(propertyFilter); break;
-
-                case PropertyFilterType.Map_MonsterPackSize: filters.MapFilters.Filters.MonsterPackSize = new SearchFilterValue(propertyFilter); break;
-
-                case PropertyFilterType.Map_Blighted: filters.MapFilters.Filters.Blighted = new SearchFilterOption(propertyFilter); break;
-
-                case PropertyFilterType.Map_BlightRavaged: filters.MapFilters.Filters.BlightRavavaged = new SearchFilterOption(propertyFilter); break;
-
-                case PropertyFilterType.Map_Tier: filters.MapFilters.Filters.MapTier = new SearchFilterValue(propertyFilter); break;
-
-                // Misc
-                case PropertyFilterType.Misc_Quality: filters.MiscFilters.Filters.Quality = new SearchFilterValue(propertyFilter); break;
-
-                case PropertyFilterType.Misc_GemLevel: filters.MiscFilters.Filters.GemLevel = new SearchFilterValue(propertyFilter); break;
-
-                case PropertyFilterType.Misc_ItemLevel: filters.MiscFilters.Filters.ItemLevel = new SearchFilterValue(propertyFilter); break;
-
-                case PropertyFilterType.Misc_Corrupted: filters.MiscFilters.Filters.Corrupted = propertyFilter.Enabled.HasValue ? new SearchFilterOption(propertyFilter) : null; break;
-
-                case PropertyFilterType.Misc_Scourged: filters.MiscFilters.Filters.Scourged = new SearchFilterValue(propertyFilter); break;
-
-                // Weapon
-                case PropertyFilterType.Weapon_PhysicalDps: filters.WeaponFilters.Filters.PhysicalDps = new SearchFilterValue(propertyFilter); break;
-
-                case PropertyFilterType.Weapon_ElementalDps: filters.WeaponFilters.Filters.ElementalDps = new SearchFilterValue(propertyFilter); break;
-
-                case PropertyFilterType.Weapon_Dps: filters.WeaponFilters.Filters.DamagePerSecond = new SearchFilterValue(propertyFilter); break;
-
-                case PropertyFilterType.Weapon_AttacksPerSecond: filters.WeaponFilters.Filters.AttacksPerSecond = new SearchFilterValue(propertyFilter); break;
-
-                case PropertyFilterType.Weapon_CriticalStrikeChance: filters.WeaponFilters.Filters.CriticalStrikeChance = new SearchFilterValue(propertyFilter); break;
+                case PropertyFilterType.Weapon_CriticalStrikeChance:
+                    filters.Filters.CriticalStrikeChance = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
             }
         }
+
+        return hasValue ? filters : null;
     }
 
-    private static void SetModifierFilters(
-        List<StatFilterGroup> stats,
-        List<ModifierFilter>? modifierFilters)
+    private ArmorFilterGroup? GetArmourFilters(List<PropertyFilter> propertyFilters)
+    {
+        var filters = new ArmorFilterGroup();
+        var hasValue = false;
+
+        foreach (var propertyFilter in propertyFilters)
+        {
+            if (!propertyFilter.Enabled == true)
+            {
+                continue;
+            }
+
+            switch (propertyFilter.Type)
+            {
+                case PropertyFilterType.Armour_Armour:
+                    filters.Filters.Armor = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Armour_Block:
+                    filters.Filters.Block = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Armour_EnergyShield:
+                    filters.Filters.EnergyShield = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Armour_Evasion:
+                    filters.Filters.Evasion = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+            }
+        }
+
+        return hasValue ? filters : null;
+    }
+
+    private MapFilterGroup? GetMapFilters(List<PropertyFilter> propertyFilters)
+    {
+        var filters = new MapFilterGroup();
+        var hasValue = false;
+
+        foreach (var propertyFilter in propertyFilters)
+        {
+            if (!propertyFilter.Enabled == true)
+            {
+                continue;
+            }
+
+            switch (propertyFilter.Type)
+            {
+                case PropertyFilterType.Map_ItemQuantity:
+                    filters.Filters.ItemQuantity = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Map_ItemRarity:
+                    filters.Filters.ItemRarity = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Map_AreaLevel:
+                    filters.Filters.AreaLevel = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Map_MonsterPackSize:
+                    filters.Filters.MonsterPackSize = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Map_Blighted:
+                    filters.Filters.Blighted = new SearchFilterOption(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Map_BlightRavaged:
+                    filters.Filters.BlightRavavaged = new SearchFilterOption(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Map_Tier:
+                    filters.Filters.MapTier = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+            }
+        }
+
+        return hasValue ? filters : null;
+    }
+
+    private MiscFilterGroup? GetMiscFilters(Item item, List<PropertyFilter> propertyFilters)
+    {
+        var filters = new MiscFilterGroup();
+        var hasValue = false;
+
+        if (item.Properties.Anomalous)
+        {
+            filters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Anomalous);
+            hasValue = true;
+        }
+
+        if (item.Properties.Divergent)
+        {
+            filters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Divergent);
+            hasValue = true;
+        }
+
+        if (item.Properties.Phantasmal)
+        {
+            filters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Phantasmal);
+            hasValue = true;
+        }
+
+        foreach (var propertyFilter in propertyFilters)
+        {
+            if (!propertyFilter.Enabled == true)
+            {
+                continue;
+            }
+
+            switch (propertyFilter.Type)
+            {
+                // Influence
+                case PropertyFilterType.Misc_Influence_Crusader:
+                    filters.Filters.CrusaderItem = new SearchFilterOption(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Misc_Influence_Elder:
+                    filters.Filters.ElderItem = new SearchFilterOption(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Misc_Influence_Hunter:
+                    filters.Filters.HunterItem = new SearchFilterOption(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Misc_Influence_Redeemer:
+                    filters.Filters.RedeemerItem = new SearchFilterOption(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Misc_Influence_Shaper:
+                    filters.Filters.ShaperItem = new SearchFilterOption(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Misc_Influence_Warlord:
+                    filters.Filters.WarlordItem = new SearchFilterOption(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                // Misc
+                case PropertyFilterType.Misc_Quality:
+                    filters.Filters.Quality = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Misc_GemLevel:
+                    filters.Filters.GemLevel = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Misc_ItemLevel:
+                    filters.Filters.ItemLevel = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Misc_Corrupted:
+                    filters.Filters.Corrupted = propertyFilter.Enabled.HasValue ? new SearchFilterOption(propertyFilter) : null;
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Misc_Scourged:
+                    filters.Filters.Scourged = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+            }
+        }
+
+        return hasValue ? filters : null;
+    }
+
+    private static void SetModifierFilters(List<StatFilterGroup> stats, List<ModifierFilter>? modifierFilters)
     {
         if (modifierFilters == null)
         {
@@ -275,37 +410,31 @@ public class TradeSearchService(
                     continue;
                 }
 
-                andGroup.Filters.Add(
-                    new StatFilter()
-                    {
-                        Id = modifier.Id,
-                        Value = new SearchFilterValue(filter),
-                    });
+                andGroup.Filters.Add(new StatFilter()
+                {
+                    Id = modifier.Id,
+                    Value = new SearchFilterValue(filter),
+                });
                 continue;
             }
 
             var modifiers = filter.Line.Modifiers;
             if (filter.ForceFirstCategory)
             {
-                modifiers = modifiers
-                            .Where(x => x.Category == filter.FirstCategory)
-                            .ToList();
+                modifiers = modifiers.Where(x => x.Category == filter.FirstCategory).ToList();
             }
             else if (modifiers.Any(x => x.Category == ModifierCategory.Explicit))
             {
-                modifiers = modifiers
-                            .Where(x => x.Category == ModifierCategory.Explicit)
-                            .ToList();
+                modifiers = modifiers.Where(x => x.Category == ModifierCategory.Explicit).ToList();
             }
 
             foreach (var modifier in modifiers)
             {
-                countGroup.Filters.Add(
-                    new StatFilter()
-                    {
-                        Id = modifier.Id,
-                        Value = new SearchFilterValue(filter),
-                    });
+                countGroup.Filters.Add(new StatFilter()
+                {
+                    Id = modifier.Id,
+                    Value = new SearchFilterValue(filter),
+                });
             }
 
             if (countGroup.Value != null && modifiers.Any())
@@ -315,9 +444,7 @@ public class TradeSearchService(
         }
     }
 
-    private static void SetPseudoModifierFilters(
-        List<StatFilterGroup> stats,
-        List<PseudoModifierFilter>? pseudoFilters)
+    private static void SetPseudoModifierFilters(List<StatFilterGroup> stats, List<PseudoModifierFilter>? pseudoFilters)
     {
         if (pseudoFilters == null)
         {
@@ -341,46 +468,43 @@ public class TradeSearchService(
                 continue;
             }
 
-            andGroup.Filters.Add(
-                new StatFilter()
-                {
-                    Id = filter.Modifier.Id,
-                    Value = new SearchFilterValue(filter),
-                });
+            andGroup.Filters.Add(new StatFilter()
+            {
+                Id = filter.Modifier.Id,
+                Value = new SearchFilterValue(filter),
+            });
         }
     }
 
-    private static void SetSocketFilters(
-        Item item,
-        SearchFilters filters)
+    private static void SetSocketFilters(Item item, SearchFilters filters)
     {
         // Auto Search 5+ Links
-        var highestCount = item
-                           .Sockets.GroupBy(x => x.Group)
-                           .Select(x => x.Count())
-                           .OrderByDescending(x => x)
-                           .FirstOrDefault();
-        if (highestCount >= 5)
+        var highestCount = item.Sockets.GroupBy(x => x.Group).Select(x => x.Count()).OrderByDescending(x => x).FirstOrDefault();
+        if (highestCount < 5)
         {
-            filters.SocketFilters.Filters.Links = new SocketFilterOption()
-            {
-                Min = highestCount,
-            };
+            return;
         }
+
+        filters.SocketFilters = new()
+        {
+            Filters =
+            {
+                Links = new SocketFilterOption()
+                {
+                    Min = highestCount,
+                },
+            },
+        };
     }
 
-    public async Task<List<TradeItem>> GetResults(
-        GameType game,
-        string queryId,
-        List<string> ids,
-        List<PseudoModifierFilter>? pseudoFilters = null)
+    public async Task<List<TradeItem>> GetResults(GameType game, string queryId, List<string> ids, List<PseudoModifierFilter>? pseudoFilters = null)
     {
         try
         {
             logger.LogInformation($"[Trade API] Fetching Trade API Listings from Query {queryId}.");
 
             var pseudo = string.Empty;
-            if (pseudoFilters != null)
+            if (pseudoFilters?.Count > 0)
             {
                 pseudo = string.Join("", pseudoFilters.Select(x => $"&pseudos[]={x.Modifier.Id}"));
             }
@@ -392,21 +516,17 @@ public class TradeSearchService(
             }
 
             var content = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<FetchResult<Result?>>(
-                content,
-                new JsonSerializerOptions()
-                {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                });
+            var result = await JsonSerializer.DeserializeAsync<FetchResult<Result?>>(content,
+                                                                                     new JsonSerializerOptions()
+                                                                                     {
+                                                                                         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                                                                                     });
             if (result == null)
             {
                 return new();
             }
 
-            return result
-                   .Result.Where(x => x != null)
-                   .ToList()
-                   .ConvertAll(x => GetItem(game, x!));
+            return result.Result.Where(x => x != null).ToList().ConvertAll(x => GetItem(game, x!));
         }
         catch (Exception ex)
         {
@@ -451,16 +571,14 @@ public class TradeSearchService(
 
         var influences = result.Item?.Influences ?? new();
 
-        var item = new TradeItem(
-            metadata: metadata,
-            original: original,
-            properties: properties,
-            influences: influences,
-            sockets: ParseSockets(result.Item?.Sockets)
-                .ToList(),
-            modifierLines: new(),
-            pseudoModifiers: new(),
-            text: Encoding.UTF8.GetString(Convert.FromBase64String(result.Item?.Extended?.Text ?? string.Empty)))
+        var item = new TradeItem(metadata: metadata,
+                                 original: original,
+                                 properties: properties,
+                                 influences: influences,
+                                 sockets: ParseSockets(result.Item?.Sockets).ToList(),
+                                 modifierLines: new(),
+                                 pseudoModifiers: new(),
+                                 text: Encoding.UTF8.GetString(Convert.FromBase64String(result.Item?.Extended?.Text ?? string.Empty)))
         {
             Id = result.Id,
             Price = new TradePrice()
@@ -483,14 +601,9 @@ public class TradeSearchService(
 
         item.ModifierLines.AddRange(ParseModifierLines(result.Item?.EnchantMods, result.Item?.Extended?.Mods?.Enchant, ParseHash(result.Item?.Extended?.Hashes?.Enchant)));
 
-        item.ModifierLines.AddRange(
-            ParseModifierLines(
-                result.Item?.ImplicitMods
-                ?? result
-                   .Item?.LogbookMods.SelectMany(x => x.Mods)
-                   .ToList(),
-                result.Item?.Extended?.Mods?.Implicit,
-                ParseHash(result.Item?.Extended?.Hashes?.Implicit)));
+        item.ModifierLines.AddRange(ParseModifierLines(result.Item?.RuneMods, result.Item?.Extended?.Mods?.Rune, ParseHash(result.Item?.Extended?.Hashes?.Rune)));
+
+        item.ModifierLines.AddRange(ParseModifierLines(result.Item?.ImplicitMods ?? result.Item?.LogbookMods.SelectMany(x => x.Mods).ToList(), result.Item?.Extended?.Mods?.Implicit, ParseHash(result.Item?.Extended?.Hashes?.Implicit)));
 
         item.ModifierLines.AddRange(ParseModifierLines(result.Item?.CraftedMods, result.Item?.Extended?.Mods?.Crafted, ParseHash(result.Item?.Extended?.Hashes?.Crafted)));
 
@@ -502,9 +615,7 @@ public class TradeSearchService(
 
         item.PseudoModifiers.AddRange(ParsePseudoModifiers(result.Item?.PseudoMods, result.Item?.Extended?.Mods?.Pseudo, ParseHash(result.Item?.Extended?.Hashes?.Pseudo)));
 
-        item.ModifierLines = item
-                             .ModifierLines.OrderBy(x => item.Text.IndexOf(x.Text, StringComparison.InvariantCultureIgnoreCase))
-                             .ToList();
+        item.ModifierLines = item.ModifierLines.OrderBy(x => item.Text.IndexOf(x.Text, StringComparison.InvariantCultureIgnoreCase)).ToList();
 
         return item;
     }
@@ -527,110 +638,93 @@ public class TradeSearchService(
                     continue;
                 }
 
-                result.Add(
-                    new LineContentValue()
-                    {
-                        Value = value[0]
-                            .GetString(),
-                        Type = value[1].ValueKind == JsonValueKind.Array ?
-                            (LineContentType)value[1][0]
-                                .GetInt32() :
-                            LineContentType.Simple
-                    });
+                result.Add(new LineContentValue()
+                {
+                    Value = value[0].GetString(),
+                    Type = value[1].ValueKind == JsonValueKind.Array ? (LineContentType)value[1][0].GetInt32() : LineContentType.Simple
+                });
             }
         }
 
         return result;
     }
 
-    private static List<LineContent> ParseLineContents(
-        List<ResultLineContent>? lines,
-        bool executeOrderBy = true)
+    private static List<LineContent> ParseLineContents(List<ResultLineContent>? lines, bool executeOrderBy = true)
     {
         if (lines == null)
         {
             return new();
         }
 
-        return lines
-               .OrderBy(x => executeOrderBy ? x.Order : 0)
-               .Select(
-                   line =>
-                   {
-                       var values = new List<LineContentValue>();
-                       foreach (var value in line.Values)
-                       {
-                           if (value.Count != 2)
-                           {
-                               continue;
-                           }
+        return lines.OrderBy(x => executeOrderBy ? x.Order : 0)
+            .Select(line =>
+            {
+                var values = new List<LineContentValue>();
+                foreach (var value in line.Values)
+                {
+                    if (value.Count != 2)
+                    {
+                        continue;
+                    }
 
-                           values.Add(
-                               new LineContentValue()
-                               {
-                                   Value = value[0]
-                                       .GetString(),
-                                   Type = (LineContentType)value[1]
-                                       .GetInt32()
-                               });
-                       }
+                    values.Add(new LineContentValue()
+                    {
+                        Value = value[0].GetString(),
+                        Type = (LineContentType)value[1].GetInt32()
+                    });
+                }
 
-                       var text = line.Name;
+                var text = line.Name;
 
-                       if (values.Count <= 0)
-                       {
-                           return new LineContent()
-                           {
-                               Text = text,
-                               Values = values,
-                           };
-                       }
+                if (values.Count <= 0)
+                {
+                    return new LineContent()
+                    {
+                        Text = text,
+                        Values = values,
+                    };
+                }
 
-                       switch (line.DisplayMode)
-                       {
-                           case 0:
-                               text = line.Name;
-                               if (values.Count > 0)
-                               {
-                                   if (!string.IsNullOrEmpty(line.Name))
-                                   {
-                                       text += ": ";
-                                   }
+                switch (line.DisplayMode)
+                {
+                    case 0:
+                        text = line.Name;
+                        if (values.Count > 0)
+                        {
+                            if (!string.IsNullOrEmpty(line.Name))
+                            {
+                                text += ": ";
+                            }
 
-                                   text += string.Join(", ", values.Select(x => x.Value));
-                               }
+                            text += string.Join(", ", values.Select(x => x.Value));
+                        }
 
-                               break;
+                        break;
 
-                           case 1: text = $"{values[0].Value} {line.Name}"; break;
+                    case 1: text = $"{values[0].Value} {line.Name}"; break;
 
-                           case 2: text = $"{values[0].Value}"; break;
+                    case 2: text = $"{values[0].Value}"; break;
 
-                           case 3:
-                               var format = Regex.Replace(line.Name ?? string.Empty, "%(\\d)", "{$1}");
-                               text = string.Format(
-                                   format,
-                                   values
-                                       .Select(x => x.Value)
-                                       .ToArray());
-                               break;
+                    case 3:
+                        var format = Regex.Replace(line.Name ?? string.Empty, "%(\\d)", "{$1}");
+                        text = string.Format(format, values.Select(x => x.Value).ToArray());
+                        break;
 
-                           default: text = $"{line.Name} {string.Join(", ", values.Select(x => x.Value))}"; break;
-                       }
+                    default: text = $"{line.Name} {string.Join(", ", values.Select(x => x.Value))}"; break;
+                }
 
-                       return new LineContent()
-                       {
-                           Text = text,
-                           Values = values,
-                       };
-                   })
-               .ToList();
+                if (text != null) text = ModifierProvider.RemoveSquareBrackets(text);
+
+                return new LineContent()
+                {
+                    Text = text,
+                    Values = values,
+                };
+            })
+            .ToList();
     }
 
-    private IEnumerable<ModifierLine> ParseModifierLines(
-        List<string>? texts,
-        List<Mod>? mods,
-        List<LineContentValue>? hashes)
+    private IEnumerable<ModifierLine> ParseModifierLines(List<string>? texts, List<Mod>? mods, List<LineContentValue>? hashes)
     {
         if (texts == null || mods == null || hashes == null)
         {
@@ -646,6 +740,8 @@ public class TradeSearchService(
             }
 
             var text = texts.FirstOrDefault(x => modifierProvider.IsMatch(id, x)) ?? texts[index];
+            text = ModifierProvider.RemoveSquareBrackets(text);
+
             var mod = mods.FirstOrDefault(x => x.Magnitudes?.Any(y => y.Hash == id) == true);
 
             yield return new ModifierLine(text: text)
@@ -658,15 +754,13 @@ public class TradeSearchService(
                         Category = modifierProvider.GetModifierCategory(id),
                         Tier = mod?.Tier,
                         TierName = mod?.Name,
-                    },],
+                    },
+                ],
             };
         }
     }
 
-    private IEnumerable<PseudoModifier> ParsePseudoModifiers(
-        List<string>? texts,
-        List<Mod>? mods,
-        List<LineContentValue>? hashes)
+    private IEnumerable<PseudoModifier> ParsePseudoModifiers(List<string>? texts, List<Mod>? mods, List<LineContentValue>? hashes)
     {
         if (texts == null || mods == null || hashes == null)
         {
@@ -703,27 +797,28 @@ public class TradeSearchService(
             ];
         }
 
-        return sockets
-               .Where(x => x.ColourString != "DV") // Remove delve resonator sockets
-               .Select(
-                   x => new Socket()
-                   {
-                       Group = x.Group,
-                       Colour = x.ColourString switch
-                       {
-                           "B" => SocketColour.Blue,
-                           "G" => SocketColour.Green,
-                           "R" => SocketColour.Red,
-                           "W" => SocketColour.White,
-                           "A" => SocketColour.Abyss,
-                           _ => throw new Exception("Invalid socket"),
-                       }
-                   });
+        return sockets.Where(x => x.ColourString != "DV") // Remove delve resonator sockets
+            .Select(x => new Socket()
+            {
+                Group = x.Group,
+                Colour = x.ColourString switch
+                {
+                    "B" => SocketColour.Blue,
+                    "G" => SocketColour.Green,
+                    "R" => SocketColour.Red,
+                    "W" => SocketColour.White,
+                    "A" => SocketColour.Abyss,
+                    "S" => SocketColour.Soulcore,
+                    _ => x.Type switch
+                    {
+                        "rune" => x.Item == "rune" ? SocketColour.Rune : SocketColour.PathOfExile2,
+                        _ => throw new Exception("Invalid socket"),
+                    }
+                }
+            });
     }
 
-    public async Task<Uri> GetTradeUri(
-        GameType game,
-        string queryId)
+    public async Task<Uri> GetTradeUri(GameType game, string queryId)
     {
         var baseUrl = gameLanguageProvider.Language.GetTradeBaseUrl(game);
         var baseUri = new Uri(baseUrl + "search/");

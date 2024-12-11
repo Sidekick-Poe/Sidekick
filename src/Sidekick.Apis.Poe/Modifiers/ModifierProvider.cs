@@ -29,7 +29,17 @@ public class ModifierProvider
     /// [ItemRarity|Rarity of Items] => Rarity of Items
     /// [Spell] => Spell
     /// </example>
-    internal static readonly Regex parseSquareBracketPattern = new("\\[.*?\\|?([^\\|\\[\\]]*)\\]");
+    private static readonly Regex parseSquareBracketPattern = new("\\[.*?\\|?([^\\|\\[\\]]*)\\]");
+
+    public static string RemoveSquareBrackets(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            return text;
+        }
+
+        return parseSquareBracketPattern.Replace(text, "$1");
+    }
 
     private readonly Regex newLinePattern = new("(?:\\\\)*[\\r\\n]+");
     private readonly Regex hashPattern = new("\\\\#");
@@ -85,7 +95,7 @@ public class ModifierProvider
         var patterns = new List<ModifierPattern>();
         foreach (var entry in apiCategory.Entries)
         {
-            entry.Text = parseSquareBracketPattern.Replace(entry.Text, "$1");
+            entry.Text = RemoveSquareBrackets(entry.Text);
 
             var options = entry.Option?.Options ?? [];
             if (options.Count > 0)
@@ -98,8 +108,7 @@ public class ModifierProvider
                         continue;
                     }
 
-                    optionText = parseSquareBracketPattern.Replace(optionText, "$1");
-
+                    optionText = RemoveSquareBrackets(optionText);
                     patterns.Add(new ModifierPattern(modifierCategory, entry.Id, options.Any(), text: ComputeOptionText(entry.Text, optionText), fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text, optionText), pattern: ComputePattern(entry.Text, modifierCategory, optionText))
                     {
                         Value = option.Id,
@@ -154,8 +163,8 @@ public class ModifierProvider
 
     private Regex ComputePattern(string text, ModifierCategory? category = null, string? optionText = null)
     {
-        text = parseSquareBracketPattern.Replace(text, "$1");
-        if (optionText != null) optionText = parseSquareBracketPattern.Replace(optionText, "$1");
+        text = RemoveSquareBrackets(text);
+        if (optionText != null) optionText = RemoveSquareBrackets(optionText);
 
         // The notes in parentheses are never translated by the game.
         // We should be fine hardcoding them this way.
@@ -197,8 +206,8 @@ public class ModifierProvider
 
     private string ComputeFuzzyText(ModifierCategory category, string text, string? optionText = null)
     {
-        text = parseSquareBracketPattern.Replace(text, "$1");
-        if (optionText != null) optionText = parseSquareBracketPattern.Replace(optionText, "$1");
+        text = RemoveSquareBrackets(text);
+        if (optionText != null) optionText = RemoveSquareBrackets(optionText);
 
         var fuzzyValue = text;
 

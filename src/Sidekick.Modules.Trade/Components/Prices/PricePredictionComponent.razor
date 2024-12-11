@@ -1,5 +1,6 @@
 @using Sidekick.Apis.PoePriceInfo
 @using Sidekick.Apis.PoePriceInfo.Models
+@using Sidekick.Common.Game
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
@@ -44,6 +45,11 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
+
+        if (PriceCheckService.Item?.Metadata.Game == GameType.PathOfExile2)
+        {
+            return;
+        }
 
         if (PriceCheckService.Item == null || !await SettingsService.GetBool(SettingKeys.PriceCheckPredictionEnabled))
         {
