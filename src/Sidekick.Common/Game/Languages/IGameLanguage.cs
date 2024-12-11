@@ -2,8 +2,6 @@ namespace Sidekick.Common.Game.Languages;
 
 public interface IGameLanguage
 {
-    string LanguageCode { get; }
-
     string PoeTradeBaseUrl { get; }
 
     string PoeTradeApiBaseUrl { get; }

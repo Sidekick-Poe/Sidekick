@@ -151,5 +151,17 @@ public class GameLanguageKr : IGameLanguage
         Logbooks = "탐험 일지",
         MemoryLine = "기억",
         SanctumResearch = "성역 연구",
+        SanctumRelics = "__",
+        Tinctures = "__",
+        Corpses = "__",
+        Charms = "__",
+        Crossbows = "__",
+        Focus = "__",
+        Quarterstaves = "__",
+        Socketable = "__",
+        Tablets = "__",
+        Waystones = "__",
+        InscribedUltimatum = "__",
+        TrialCoins = "__",
     };
 }

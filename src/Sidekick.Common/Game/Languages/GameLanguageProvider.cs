@@ -69,6 +69,6 @@ public class GameLanguageProvider(ISettingsService settingsService) : IGameLangu
 
     public bool IsEnglish()
     {
-        return Language.LanguageCode == EnglishLanguageCode;
+        return Language.GetType() == InvariantLanguage.GetType();
     }
 }

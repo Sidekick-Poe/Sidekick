@@ -151,5 +151,17 @@ public class GameLanguagePt : IGameLanguage
         Logbooks = "Diários de Bordo Expedition",
         MemoryLine = "Memórias",
         SanctumResearch = "Pesquisa Sanctum",
+        SanctumRelics = "__",
+        Tinctures = "__",
+        Corpses = "__",
+        Charms = "__",
+        Crossbows = "__",
+        Focus = "__",
+        Quarterstaves = "__",
+        Socketable = "__",
+        Tablets = "__",
+        Waystones = "__",
+        InscribedUltimatum = "__",
+        TrialCoins = "__",
     };
 }

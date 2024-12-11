@@ -47,5 +47,12 @@ Corrupted
         Assert.Equal(Class.Boots, actual.Header.Class);
         Assert.Equal("Steeltoe Boots", actual.Metadata.Type);
         Assert.Equal("Thunderstep", actual.Metadata.Name);
+
+        Assert.Single(actual.Sockets);
+
+        actual.AssertHasModifier(ModifierCategory.Enchant, "#% increased Evasion Rating", 22);
+        actual.AssertHasModifier(ModifierCategory.Rune, "+#% to Fire Resistance", 12);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Evasion Rating", 41);
+        // Ass
     }
 }

@@ -151,5 +151,17 @@ public class GameLanguageRu : IGameLanguage
         Logbooks = "Журналы экспедиции",
         MemoryLine = "Воспоминания",
         SanctumResearch = "Исследования Святилища",
+        SanctumRelics = "__",
+        Tinctures = "__",
+        Corpses = "__",
+        Charms = "__",
+        Crossbows = "__",
+        Focus = "__",
+        Quarterstaves = "__",
+        Socketable = "__",
+        Tablets = "__",
+        Waystones = "__",
+        InscribedUltimatum = "__",
+        TrialCoins = "__",
     };
 }

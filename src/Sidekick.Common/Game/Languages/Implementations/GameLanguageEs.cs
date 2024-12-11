@@ -151,5 +151,17 @@ public class GameLanguageEs : IGameLanguage
         Logbooks = "Registros de expedición",
         MemoryLine = "Recuerdos",
         SanctumResearch = "Investigación del santuario",
+        SanctumRelics = "__",
+        Tinctures = "__",
+        Corpses = "__",
+        Charms = "__",
+        Crossbows = "__",
+        Focus = "__",
+        Quarterstaves = "__",
+        Socketable = "__",
+        Tablets = "__",
+        Waystones = "__",
+        InscribedUltimatum = "__",
+        TrialCoins = "__",
     };
 }

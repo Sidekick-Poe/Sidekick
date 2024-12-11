@@ -151,5 +151,17 @@ public class GameLanguageJp : IGameLanguage
         Logbooks = "エクスペディションログブック",
         MemoryLine = "記憶",
         SanctumResearch = "サンクタム調査書",
+        SanctumRelics = "__",
+        Tinctures = "__",
+        Corpses = "__",
+        Charms = "__",
+        Crossbows = "__",
+        Focus = "__",
+        Quarterstaves = "__",
+        Socketable = "__",
+        Tablets = "__",
+        Waystones = "__",
+        InscribedUltimatum = "__",
+        TrialCoins = "__",
     };
 }

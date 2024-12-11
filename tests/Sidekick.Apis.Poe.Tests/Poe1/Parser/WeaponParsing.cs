@@ -79,7 +79,7 @@ Crusader Item
             Assert.True(actual.Influences.Crusader);
 
             actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Spell Damage", 33);
-            actual.AssertHasAlternateModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage (Local)", 10, 16);
+            actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage (Local)", 10, 16);
             actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Fire Damage", 24);
             actual.AssertHasModifier(ModifierCategory.Explicit, "Attacks with this Weapon Penetrate #% Lightning Resistance", 10);
         }

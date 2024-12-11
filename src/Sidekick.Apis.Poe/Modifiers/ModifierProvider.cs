@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers.Models;
@@ -57,6 +58,11 @@ public class ModifierProvider
             var patterns = new List<ModifierPattern>();
             foreach (var entry in apiCategory.Entries)
             {
+                if (entry.Text.EndsWith("to Maximum Lightning Resistance"))
+                {
+                    Debugger.Break();
+                }
+
                 var isOption = entry.Option?.Options.Any() ?? false;
                 if (isOption)
                 {
@@ -80,9 +86,9 @@ public class ModifierProvider
                 }
             }
 
-            if (Patterns.ContainsKey(modifierCategory))
+            if (Patterns.TryGetValue(modifierCategory, out var pattern))
             {
-                Patterns[modifierCategory].AddRange(patterns);
+                pattern.AddRange(patterns);
             }
             else
             {
@@ -116,6 +122,8 @@ public class ModifierProvider
         "scourge" => ModifierCategory.Scourge,
         "veiled" => ModifierCategory.Veiled,
         "crucible" => ModifierCategory.Crucible,
+        "rune" => ModifierCategory.Rune,
+        "sanctum" => ModifierCategory.Sanctum,
         _ => ModifierCategory.Undefined,
     };
 
@@ -150,6 +158,7 @@ public class ModifierProvider
             ModifierCategory.Fractured => "(?:\\ \\(fractured\\))?",
             ModifierCategory.Scourge => "(?:\\ \\(scourge\\))",
             ModifierCategory.Crucible => "(?:\\ \\(crucible\\))",
+            ModifierCategory.Rune => "(?:\\ \\(rune\\))",
             ModifierCategory.Explicit => "(?:\\ \\((?:crafted|fractured)\\))?",
             _ => "",
         };
@@ -208,6 +217,7 @@ public class ModifierProvider
             ModifierCategory.Scourge => " (scourge)",
             ModifierCategory.Pseudo => " (pseudo)",
             ModifierCategory.Crucible => " (crucible)",
+            ModifierCategory.Rune => " (rune)",
             _ => "",
         };
 
