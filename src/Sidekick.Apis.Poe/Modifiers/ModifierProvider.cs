@@ -29,7 +29,7 @@ public class ModifierProvider
     /// [ItemRarity|Rarity of Items] => Rarity of Items
     /// [Spell] => Spell
     /// </example>
-    private readonly Regex parseSquareBracketPattern = new("\\[.*?\\|?([^\\|\\[\\]]*)\\]");
+    internal static readonly Regex parseSquareBracketPattern = new("\\[.*?\\|?([^\\|\\[\\]]*)\\]");
 
     private readonly Regex newLinePattern = new("(?:\\\\)*[\\r\\n]+");
     private readonly Regex hashPattern = new("\\\\#");
@@ -54,8 +54,8 @@ public class ModifierProvider
 
         foreach (var apiCategory in apiCategories.Result)
         {
-            var patterns = ComputeCategoryPatterns(apiCategory);
             var modifierCategory = GetModifierCategory(apiCategory.Entries[0].Id);
+            var patterns = ComputeCategoryPatterns(apiCategory, modifierCategory);
 
             if (!Patterns.TryAdd(modifierCategory, patterns))
             {
@@ -75,15 +75,9 @@ public class ModifierProvider
         ComputeSpecialPseudoPattern(pseudoPatterns, logbookPatterns);
     }
 
-    private List<ModifierPattern> ComputeCategoryPatterns(ApiCategory apiCategory)
+    private List<ModifierPattern> ComputeCategoryPatterns(ApiCategory apiCategory, ModifierCategory modifierCategory)
     {
-        if (apiCategory.Entries.Count == 0)
-        {
-            return [];
-        }
-
-        var modifierCategory = GetModifierCategory(apiCategory.Entries[0].Id);
-        if (modifierCategory == ModifierCategory.Undefined)
+        if (apiCategory.Entries.Count == 0 || modifierCategory == ModifierCategory.Undefined)
         {
             return [];
         }
@@ -91,6 +85,8 @@ public class ModifierProvider
         var patterns = new List<ModifierPattern>();
         foreach (var entry in apiCategory.Entries)
         {
+            entry.Text = parseSquareBracketPattern.Replace(entry.Text, "$1");
+
             var options = entry.Option?.Options ?? [];
             if (options.Count > 0)
             {
@@ -101,6 +97,8 @@ public class ModifierProvider
                     {
                         continue;
                     }
+
+                    optionText = parseSquareBracketPattern.Replace(optionText, "$1");
 
                     patterns.Add(new ModifierPattern(modifierCategory, entry.Id, options.Any(), text: ComputeOptionText(entry.Text, optionText), fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text, optionText), pattern: ComputePattern(entry.Text, modifierCategory, optionText))
                     {
