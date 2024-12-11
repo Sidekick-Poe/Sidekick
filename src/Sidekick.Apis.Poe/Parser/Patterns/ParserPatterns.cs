@@ -14,7 +14,6 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         {
             InitHeader();
             InitProperties();
-            InitSockets();
             InitInfluences();
             InitClasses();
 
@@ -105,23 +104,6 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         public Regex AreaLevel { get; private set; } = null!;
 
         #endregion Properties (Armour, Evasion, Energy Shield, Quality, Level)
-
-        #region Sockets
-
-        private void InitSockets()
-        {
-            if (gameLanguageProvider.Language == null)
-            {
-                throw new Exception("[Parser Patterns] Could not find a valid language.");
-            }
-
-            // We need 6 capturing groups as it is possible for a 6 socket unlinked item to exist
-            Socket = new Regex($"{Regex.Escape(gameLanguageProvider.Language.DescriptionSockets)}.*?([-RGBWAS]+)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)");
-        }
-
-        public Regex Socket { get; private set; } = null!;
-
-        #endregion Sockets
 
         #region Influences
 

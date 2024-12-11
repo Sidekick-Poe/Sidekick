@@ -43,7 +43,7 @@ Corrupted
 ");
 
         Assert.Equal(Category.Armour, actual.Metadata.Category);
-        Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
+        Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
         Assert.Equal(Class.Boots, actual.Header.Class);
         Assert.Equal("Steeltoe Boots", actual.Metadata.Type);
         Assert.Equal("Thunderstep", actual.Metadata.Name);

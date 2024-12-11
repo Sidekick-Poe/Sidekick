@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Parser.Tokenizers;
 using Sidekick.Common.Game.Items;
 
@@ -8,7 +9,7 @@ namespace Sidekick.Apis.Poe.Parser
     /// </summary>
     public class ParsingItem
     {
-        private const string SEPARATOR_PATTERN = "--------";
+        private const string SeparatorPattern = "--------";
 
         /// <summary>
         /// Stores data about the state of the parsing process for the item
@@ -19,7 +20,7 @@ namespace Sidekick.Apis.Poe.Parser
             Text = new ItemNameTokenizer().CleanString(text);
 
             Blocks = text
-                .Split(SEPARATOR_PATTERN, StringSplitOptions.RemoveEmptyEntries)
+                .Split(SeparatorPattern, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => new ParsingBlock(x.Trim('\r', '\n')))
                 .ToList();
         }
@@ -35,6 +36,20 @@ namespace Sidekick.Apis.Poe.Parser
         /// The original text of the item
         /// </summary>
         public string Text { get; }
+
+        public bool TryParseRegex(Regex pattern, out Match match)
+        {
+            foreach (var block in Blocks)
+            {
+                if (block.TryParseRegex(pattern, out match))
+                {
+                    return true;
+                }
+            }
+
+            match = null!;
+            return false;
+        }
 
         public override string ToString()
         {

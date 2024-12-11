@@ -33,7 +33,6 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         Dictionary<Rarity, Regex> Rarity { get; }
         Regex Redeemer { get; }
         Regex Shaper { get; }
-        Regex Socket { get; }
         Regex Unidentified { get; }
         Regex Warlord { get; }
         Regex Anomalous { get; }

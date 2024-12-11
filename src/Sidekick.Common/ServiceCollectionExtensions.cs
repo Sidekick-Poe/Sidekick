@@ -101,6 +101,18 @@ public static class ServiceCollectionExtensions
     /// </summary>
     /// <param name="services">The service collection to add an initializable service.</param>
     /// <typeparam name="TService">The type of service to add to the application.</typeparam>
+    /// <returns>The service collection.</returns>
+    public static IServiceCollection AddSidekickInitializableService<TService>(this IServiceCollection services)
+        where TService : class, IInitializableService
+    {
+        return services.AddSidekickInitializableService<TService, TService>();
+    }
+
+    /// <summary>
+    ///     Adds an initializable service to the application.
+    /// </summary>
+    /// <param name="services">The service collection to add an initializable service.</param>
+    /// <typeparam name="TService">The type of service to add to the application.</typeparam>
     /// <typeparam name="TImplementation">The type of the implementation of the service.</typeparam>
     /// <returns>The service collection.</returns>
     public static IServiceCollection AddSidekickInitializableService<TService, TImplementation>(this IServiceCollection services)
