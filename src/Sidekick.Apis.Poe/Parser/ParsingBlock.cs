@@ -34,7 +34,7 @@ namespace Sidekick.Apis.Poe.Parser
         /// </summary>
         public bool Parsed
         {
-            get => false; // Lines.All(x => x.Parsed);
+            get => Lines.All(x => x.Parsed);
             set
             {
                 foreach (var line in Lines)

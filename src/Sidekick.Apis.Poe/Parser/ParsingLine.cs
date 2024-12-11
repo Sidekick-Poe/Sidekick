@@ -17,7 +17,7 @@ namespace Sidekick.Apis.Poe.Parser
         /// <summary>
         /// Indicates if this line has been successfully parsed
         /// </summary>
-        public bool Parsed { get => false; set{} }// = false;
+        public bool Parsed { get; set; }
 
         /// <summary>
         /// The line of the item description
