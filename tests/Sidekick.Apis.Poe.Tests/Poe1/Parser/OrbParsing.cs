@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class OrbParsing
+    public class OrbParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public OrbParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void ChaosOrb()
@@ -29,7 +24,7 @@ Right click this item then left click a rare item to apply it.
 Note: ~b/o 2 blessed
 ");
 
-            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
+            Assert.Equal("currency", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Chaos Orb", actual.Metadata.Type);

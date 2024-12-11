@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class PantheonParsing
+    public class PantheonParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public PantheonParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void DivineVessel()
@@ -34,7 +29,7 @@ Can be used in a personal Map Device, allowing you to capture the Soul of the Ma
 Note: ~price 1 chaos
 ");
 
-            Assert.Equal(Class.MapFragments, actual.Header.Class);
+            Assert.Equal("map.fragment", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
             Assert.Equal(Category.Map, actual.Metadata.Category);
             Assert.Equal("Divine Vessel", actual.Metadata.Type);

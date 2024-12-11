@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class RitualParsing
+    public class RitualParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public RitualParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void RitualSplinter()
@@ -28,7 +23,7 @@ Shift click to unstack.
 Note: ~price 1 alch
 ");
 
-            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
+            Assert.Equal("currency", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Ritual Splinter", actual.Metadata.Type);
@@ -50,7 +45,7 @@ Right-click this item then left-click a Ritual Altar to store the monsters from 
 Note: ~price 8 chaos
 ");
 
-            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
+            Assert.Equal("currency", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Ritual Vessel", actual.Metadata.Type);
@@ -77,7 +72,7 @@ Right click this item to create this corpse.
 Note: ~price 3 chaos
 ");
 
-            Assert.Equal(Class.Corpses, actual.Header.Class);
+            Assert.Equal("corpse", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Corpse, actual.Metadata.Category);
             Assert.Equal("Perfect Needle Horror", actual.Metadata.Type);

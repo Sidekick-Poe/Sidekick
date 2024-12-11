@@ -1,3 +1,4 @@
+@using Sidekick.Apis.Poe.Metadata
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Game.Languages
 @using Sidekick.Modules.Trade.Localization
@@ -5,7 +6,7 @@
 {
     <FilterWrapper>
         <div class="flex items-center flex-nowrap justify-between">
-            <FormCheckbox Value="PriceCheckService.PropertyFilters?.Class.HasValue ?? false"
+            <FormCheckbox Value="!string.IsNullOrEmpty(PriceCheckService.PropertyFilters?.ItemCategory)"
                           ValueChanged="CheckedChanged"
                           NoMargin="true">
                 <ItemPropertyText Label="@Resources["Item Class"]"
@@ -22,10 +23,11 @@
 @inject IGameLanguageProvider GameLanguageProvider
 @inject IStringLocalizer<TradeResources> Resources
 @inject PriceCheckService PriceCheckService
+@inject IMetadataProvider MetadataProvider
 
 @code {
 
-    private bool Visible => PriceCheckService.Item?.Metadata.Rarity is Rarity.Rare or Rarity.Magic or Rarity.Normal && PriceCheckService.Item.Header.Class != Class.Undefined && !string.IsNullOrEmpty(ClassLabel);
+    private bool Visible => PriceCheckService.Item?.Metadata.Rarity is Rarity.Rare or Rarity.Magic or Rarity.Normal && !string.IsNullOrEmpty(PriceCheckService.Item.Header.ItemCategory) && !string.IsNullOrEmpty(ClassLabel);
 
     private string? ClassLabel { get; set; }
 
@@ -38,19 +40,7 @@
             return;
         }
 
-        var property = GameLanguageProvider
-                       .Language?.Classes?.GetType()
-                       .GetProperties()
-                       .FirstOrDefault(x => x.Name == PriceCheckService.Item.Header.Class.ToString());
-
-        if (GameLanguageProvider.Language?.Classes == null)
-        {
-            return;
-        }
-
-        ClassLabel = property
-                     ?.GetValue(GameLanguageProvider.Language.Classes)
-                     ?.ToString();
+        ClassLabel = MetadataProvider.ApiItemCategories.FirstOrDefault(x => x.Id == PriceCheckService.Item?.Header.ItemCategory)?.Text;
     }
 
     private void CheckedChanged(bool value)
@@ -62,11 +52,11 @@
 
         if (value)
         {
-            PriceCheckService.PropertyFilters.Class = PriceCheckService.Item?.Header.Class;
+            PriceCheckService.PropertyFilters.ItemCategory = PriceCheckService.Item?.Header.ItemCategory;
         }
         else
         {
-            PriceCheckService.PropertyFilters.Class = null;
+            PriceCheckService.PropertyFilters.ItemCategory = null;
         }
     }
 

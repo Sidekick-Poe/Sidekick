@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class BetrayalParsing
+    public class BetrayalParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public BetrayalParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void RustedReliquaryScarab()
@@ -30,7 +25,7 @@ Can be used in a personal Map Device to add modifiers to a Map.
 Note: ~b/o .50 chaos
 ");
 
-            Assert.Equal(Class.MapFragments, actual.Header.Class);
+            Assert.Equal("map.fragment", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
             Assert.Equal(Category.Map, actual.Metadata.Category);
             Assert.Equal("Rusted Reliquary Scarab", actual.Metadata.Type);

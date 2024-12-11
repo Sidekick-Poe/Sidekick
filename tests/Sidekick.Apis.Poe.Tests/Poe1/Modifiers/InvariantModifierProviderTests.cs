@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Modifiers
 {
     [Collection(Collections.Poe1Parser)]
-    public class InvariantModifierProviderTests
+    public class InvariantModifierProviderTests(ParserFixture fixture)
     {
-        private readonly IInvariantModifierProvider provider;
-
-        public InvariantModifierProviderTests(ParserFixture fixture)
-        {
-            provider = fixture.InvariantModifierProvider;
-        }
+        private readonly IInvariantModifierProvider provider = fixture.InvariantModifierProvider;
 
         [Fact]
         public void ClusterJewelSmallPassiveCountModifierIdIsDefined()

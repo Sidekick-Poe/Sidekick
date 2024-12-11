@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class IncursionParsing
+    public class IncursionParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public IncursionParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void LocusOfCorruption()
@@ -44,8 +39,8 @@ Can be used in a personal Map Device to open portals to the Temple of Atzoatl in
 Note: ~price 1.29 exalted
 ");
 
+            Assert.Equal("map.fragment", actual.Header.ItemCategory);
             Assert.Equal(Category.Map, actual.Metadata.Category);
-            Assert.Equal(Class.MiscMapItems, actual.Header.Class);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal("Chronicle of Atzoatl", actual.Metadata.Type);
 

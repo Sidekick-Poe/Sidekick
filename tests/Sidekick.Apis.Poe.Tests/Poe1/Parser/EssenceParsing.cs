@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class EssenceParsing
+    public class EssenceParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public EssenceParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void ParseWeepingEssenceOfAnger()
@@ -38,7 +33,7 @@ Shift click to unstack.
 Note: ~price 1 fusing
 ");
 
-            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
+            Assert.Equal("currency", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Weeping Essence of Anger", actual.Metadata.Type);

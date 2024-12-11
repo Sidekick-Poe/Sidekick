@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class WeaponParsing
+    public class WeaponParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public WeaponParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void ParseUnidentifiedUnique()
@@ -237,7 +232,7 @@ And tore out her heart.
 Note: ~price 40 chaos
 ");
 
-            Assert.Equal(Class.FishingRods, actual.Header.Class);
+            Assert.Equal("weapon.rod", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
             Assert.Equal(Category.Weapon, actual.Metadata.Category);
             Assert.Equal("Reefbane", actual.Metadata.Name);
@@ -270,7 +265,7 @@ Unidentified
 --------
 Hunter Item");
 
-            Assert.Equal(Class.OneHandMaces, actual.Header.Class);
+            Assert.Equal("weapon.onemace", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal(Category.Weapon, actual.Metadata.Category);
             Assert.Equal("Ornate Mace", actual.Metadata.Type);

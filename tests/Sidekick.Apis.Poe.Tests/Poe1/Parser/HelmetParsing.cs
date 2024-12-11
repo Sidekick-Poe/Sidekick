@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class HelmetParsing
+    public class HelmetParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public HelmetParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void ParseBlightGuardian()

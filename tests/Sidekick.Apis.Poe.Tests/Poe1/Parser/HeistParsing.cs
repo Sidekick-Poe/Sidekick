@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class HeistParsing
+    public class HeistParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public HeistParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void HeistTool()
@@ -36,7 +31,7 @@ Item Level: 69
 Can only be equipped to Heist members.
 ");
 
-            Assert.Equal(Class.HeistTool, actual.Header.Class);
+            Assert.Equal("heistequipment.heisttool", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
             Assert.Equal(Category.HeistEquipment, actual.Metadata.Category);
             Assert.Equal("Basic Disguise Kit", actual.Metadata.Type);
@@ -61,7 +56,7 @@ Item Level: 67
 Can only be equipped to Heist members.
 ");
 
-            Assert.Equal(Class.HeistCloak, actual.Header.Class);
+            Assert.Equal("heistequipment.heistutility", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
             Assert.Equal(Category.HeistEquipment, actual.Metadata.Category);
             Assert.Equal("Torn Cloak", actual.Metadata.Type);
@@ -86,7 +81,7 @@ Item Level: 73
 Can only be equipped to Heist members.
 ");
 
-            Assert.Equal(Class.HeistBrooch, actual.Header.Class);
+            Assert.Equal("heistequipment.heistreward", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
             Assert.Equal(Category.HeistEquipment, actual.Metadata.Category);
             Assert.Equal("Silver Brooch", actual.Metadata.Type);
@@ -118,7 +113,7 @@ Grants Level 10 Anger Skill
 Can only be equipped to Heist members.
 ");
 
-            Assert.Equal(Class.HeistGear, actual.Header.Class);
+            Assert.Equal("heistequipment.heistweapon", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal(Category.HeistEquipment, actual.Metadata.Category);
             Assert.Equal("Rough Sharpening Stone", actual.Metadata.Type);
@@ -138,7 +133,7 @@ Such a gift will set me apart from all other suitors.""
 Can be exchanged with Faustus, the Fence in The Rogue Harbour
 ");
 
-            Assert.Equal(Class.HeistTarget, actual.Header.Class);
+            Assert.Equal("currency.heistobjective", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Golden Napuatzi Idol", actual.Metadata.Type);
@@ -166,7 +161,7 @@ You must find the sculpture The Catch in a Smuggler's Den or Underbelly Blueprin
 Corrupted
 ");
 
-            Assert.Equal(Class.Trinkets, actual.Header.Class);
+            Assert.Equal("accessory.trinket", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal(Category.Accessory, actual.Metadata.Category);
             Assert.Equal("Thief's Trinket", actual.Metadata.Type);

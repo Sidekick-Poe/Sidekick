@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class DivinationCardParsing
+    public class DivinationCardParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public DivinationCardParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void ParseSaintTreasure()
@@ -27,7 +22,7 @@ Stack Size: 1/10
 Publicly, he lived a pious and chaste life of poverty. Privately, tithes and tributes made him and his lascivious company very comfortable indeed.
 ");
 
-            Assert.Equal(Class.DivinationCard, actual.Header.Class);
+            Assert.Equal("card", actual.Header.ItemCategory);
             Assert.Equal(Category.DivinationCard, actual.Metadata.Category);
             Assert.Equal(Rarity.DivinationCard, actual.Metadata.Rarity);
             Assert.Null(actual.Metadata.Name);
@@ -48,7 +43,7 @@ Shaper Item
 --------
 Though they were a pack of elite combatants, the Emperor's royal guards were not ready to face one of his notorious parties.");
 
-            Assert.Equal(Class.DivinationCard, actual.Header.Class);
+            Assert.Equal("card", actual.Header.ItemCategory);
             Assert.Equal(Category.DivinationCard, actual.Metadata.Category);
             Assert.Equal(Rarity.DivinationCard, actual.Metadata.Rarity);
             Assert.Null(actual.Metadata.Name);
@@ -77,7 +72,7 @@ Some gifts are obligations while others are simply opportunities.
 Note: ~price 1 blessed
 ");
 
-            Assert.Equal(Class.DivinationCard, actual.Header.Class);
+            Assert.Equal("card", actual.Header.ItemCategory);
             Assert.Equal(Rarity.DivinationCard, actual.Metadata.Rarity);
             Assert.Equal(Category.DivinationCard, actual.Metadata.Category);
             Assert.Equal("Boon of Justice", actual.Metadata.Type);

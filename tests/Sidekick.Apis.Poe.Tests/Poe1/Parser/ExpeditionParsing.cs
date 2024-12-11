@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class ExpeditionParsing
+    public class ExpeditionParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public ExpeditionParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void ParseMagicLogbook()
@@ -50,7 +45,7 @@ Monsters' skills Chain 2 additional times
 Take this item to Dannig in your Hideout to open portals to an expedition.
 ");
 
-            Assert.Equal(Class.Logbooks, actual.Header.Class);
+            Assert.Equal("logbook", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
             Assert.Equal(Category.Logbook, actual.Metadata.Category);
             Assert.Equal("Expedition Logbook", actual.Metadata.Type);

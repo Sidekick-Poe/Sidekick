@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class SanctumParsing
+    public class SanctumParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public SanctumParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void ParseFloor()
@@ -31,7 +26,7 @@ Take this item to the Relic Altar in the Forbidden Sanctum to enter.
 ");
 
             Assert.Equal(Category.Sanctum, actual.Metadata.Category);
-            Assert.Equal(Class.SanctumResearch, actual.Header.Class);
+            Assert.Equal("sanctum.research", actual.Header.ItemCategory);
             Assert.Equal("Forbidden Tome", actual.Metadata.Type);
             Assert.Equal(83, actual.Properties.AreaLevel);
         }

@@ -26,7 +26,7 @@ Place this item on the Relic Altar at the start of the Trial of the Sekhemas
 
         Assert.Equal(Category.Sanctum, actual.Metadata.Category);
         Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
-        Assert.Equal(Class.SanctumRelics, actual.Header.Class);
+        Assert.Equal("sanctum.relic", actual.Header.ItemCategory);
         Assert.Equal("Urn Relic", actual.Metadata.Type);
         Assert.Null(actual.Metadata.Name);
 

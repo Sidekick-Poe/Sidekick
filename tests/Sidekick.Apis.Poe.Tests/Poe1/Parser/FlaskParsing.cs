@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class FlaskParsing
+    public class FlaskParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public FlaskParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void ParseSanctifiedManaFlask()
@@ -36,7 +31,7 @@ Grants Immunity to Corrupted Blood for 4 seconds if used while affected by Corru
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ");
 
-            Assert.Equal(Class.ManaFlasks, actual.Header.Class);
+            Assert.Equal("flask", actual.Header.ItemCategory);
             Assert.Equal(Category.Flask, actual.Metadata.Category);
             Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
             Assert.Equal("Sanctified Mana Flask", actual.Metadata.Type);
@@ -63,7 +58,7 @@ Item Level: 42
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ");
 
-            Assert.Equal(Class.LifeFlasks, actual.Header.Class);
+            Assert.Equal("flask", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
             Assert.Equal(Category.Flask, actual.Metadata.Category);
             Assert.Equal("Hallowed Life Flask", actual.Metadata.Type);
@@ -90,7 +85,7 @@ Item Level: 76
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ");
 
-            Assert.Equal(Class.HybridFlasks, actual.Header.Class);
+            Assert.Equal("flask", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
             Assert.Equal(Category.Flask, actual.Metadata.Category);
             Assert.Equal("Sacred Hybrid Flask", actual.Metadata.Type);
@@ -118,7 +113,7 @@ Item Level: 82
 Right click to activate. Only one Tincture in your belt can be active at a time. Mana Burn causes you to lose 1% of your maximum Mana per stack per second. Can be deactivated manually, or will automatically deactivate when you reach 0 Mana.
 ");
 
-            Assert.Equal(Class.Tinctures, actual.Header.Class);
+            Assert.Equal("tincture", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
             Assert.Equal(Category.Tincture, actual.Metadata.Category);
             Assert.Equal("Poisonberry Tincture", actual.Metadata.Type);

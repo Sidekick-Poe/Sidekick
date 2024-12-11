@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class ChargedCompassParsing
+    public class ChargedCompassParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public ChargedCompassParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void ParseNikoModifier()
@@ -28,7 +23,7 @@ Your Maps contain Niko (enchant)
 Right click on this item then left click on a Voidstone to apply the itemised Sextant Modifier to the Voidstone.
 ");
 
-            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
+            Assert.Equal("currency", actual.Header.ItemCategory);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
 

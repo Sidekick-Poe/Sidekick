@@ -25,6 +25,9 @@
 
 @code {
 
+    [Parameter]
+    public bool AutoRefresh { get; set; } = true;
+
     private string? LeagueId { get; set; }
 
     private List<SelectOption> Options { get; set; } =
@@ -62,7 +65,7 @@
         LeagueId = value;
         await SettingsService.Set(SettingKeys.LeagueId, value);
 
-        if (currentGame != newGame)
+        if (AutoRefresh && currentGame != newGame)
         {
             await CacheProvider.Clear();
             NavigationManager.NavigateTo("/initialize");

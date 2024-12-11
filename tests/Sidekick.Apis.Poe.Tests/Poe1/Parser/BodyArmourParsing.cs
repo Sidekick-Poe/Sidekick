@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class BodyArmourParsing
+    public class BodyArmourParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public BodyArmourParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void ParseSixLinkUniqueBodyArmor()
@@ -107,7 +102,7 @@ Unbridled, overwhelming violence.""
 Note: ~price 2 chaos
 ");
 
-            Assert.Equal(Class.BodyArmours, actual.Header.Class);
+            Assert.Equal("armour.chest", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
             Assert.Equal(Category.Armour, actual.Metadata.Category);
             Assert.Equal("Daresso's Defiance", actual.Metadata.Name);

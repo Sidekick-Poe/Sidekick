@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class DelveParsing
+    public class DelveParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public DelveParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void ParsePotentChaoticResonator()
@@ -32,7 +27,7 @@ All sockets must be filled with Fossils before this item can be used.
 Note: ~price 1 chaos
 ");
 
-            Assert.Equal(Class.DelveStackableSocketableCurrency, actual.Header.Class);
+            Assert.Equal("currency", actual.Header.ItemCategory);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal("Potent Chaotic Resonator", actual.Metadata.Type);
@@ -57,7 +52,7 @@ All sockets must be filled with Fossils before this item can be used.
 Note: ~price 4 chaos
 ");
 
-            Assert.Equal(Class.DelveStackableSocketableCurrency, actual.Header.Class);
+            Assert.Equal("currency", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Powerful Chaotic Resonator", actual.Metadata.Type);
@@ -78,7 +73,7 @@ No Tagless modifiers
 Place in a Resonator to influence item crafting.
 ");
 
-            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
+            Assert.Equal("currency", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Opulent Fossil", actual.Metadata.Type);

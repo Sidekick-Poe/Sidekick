@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class DeliriumParsing
+    public class DeliriumParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public DeliriumParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void SimulacrumSplinter()
@@ -28,7 +23,7 @@ Shift click to unstack.
 Note: ~price .5 chaos
 ");
 
-            Assert.Equal(Class.StackableCurrency, actual.Header.Class);
+            Assert.Equal("currency", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Currency, actual.Metadata.Category);
             Assert.Equal("Simulacrum Splinter", actual.Metadata.Type);
@@ -56,7 +51,7 @@ Place into an allocated Small, Medium or Large Jewel Socket on the Passive Skill
 Note: ~b/o 1 chance
 ");
 
-            Assert.Equal(Class.Jewel, actual.Header.Class);
+            Assert.Equal("jewel", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal(Category.Jewel, actual.Metadata.Category);
             Assert.Equal("Small Cluster Jewel", actual.Metadata.Type);

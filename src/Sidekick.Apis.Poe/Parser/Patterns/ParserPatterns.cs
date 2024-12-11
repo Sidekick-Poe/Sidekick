@@ -15,7 +15,6 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
             InitHeader();
             InitProperties();
             InitInfluences();
-            InitClasses();
 
             return Task.CompletedTask;
         }
@@ -125,33 +124,5 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         public Regex Warlord { get; private set; } = null!;
 
         #endregion Influences
-
-        #region Classes
-
-        public Dictionary<Class, Regex> Classes { get; } = new Dictionary<Class, Regex>();
-
-        private void InitClasses()
-        {
-            if (gameLanguageProvider.Language == null)
-            {
-                throw new Exception("[Parser Patterns] Could not find a valid language.");
-            }
-
-            Classes.Clear();
-
-            var type = gameLanguageProvider.Language.Classes.GetType();
-            var properties = type.GetProperties().Where(x => x.Name != nameof(ClassLanguage.Prefix));
-            var prefix = gameLanguageProvider.Language.Classes.Prefix;
-
-            foreach (var property in properties)
-            {
-                var label = property.GetValue(gameLanguageProvider.Language.Classes)?.ToString();
-                if (string.IsNullOrEmpty(label)) continue;
-
-                Classes.Add(Enum.Parse<Class>(property.Name), new Regex($"^{Regex.Escape(prefix)}:* *{Regex.Escape(label)}$"));
-            }
-        }
-
-        #endregion Classes
     }
 }

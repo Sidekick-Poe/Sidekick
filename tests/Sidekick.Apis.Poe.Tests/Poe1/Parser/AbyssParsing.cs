@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class AbyssParsing
+    public class AbyssParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public AbyssParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void BulbonicTrail()
@@ -42,7 +37,7 @@ Triggers Level 20 Death Walk when Equipped
 Even the dead serve the Lightless.
 ");
 
-            Assert.Equal(Class.Boots, actual.Header.Class);
+            Assert.Equal("armour.boots", actual.Header.ItemCategory);
             Assert.Equal(Category.Armour, actual.Metadata.Category);
             Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
             Assert.Equal("Bubonic Trail", actual.Metadata.Name);
@@ -76,7 +71,7 @@ Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the
 Note: ~price 1 alch
 ");
 
-            Assert.Equal(Class.AbyssJewel, actual.Header.Class);
+            Assert.Equal("jewel.abyss", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal(Category.Jewel, actual.Metadata.Category);
             Assert.Equal("Hypnotic Eye Jewel", actual.Metadata.Type);

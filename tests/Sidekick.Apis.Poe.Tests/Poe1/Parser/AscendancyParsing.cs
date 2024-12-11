@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class AscendancyParsing
+    public class AscendancyParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public AscendancyParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void ParseEnchantWithAdditionalProjectiles()
@@ -58,7 +53,7 @@ but justice favours only the truly worthy.
 Travel to the Aspirants' Plaza and spend this item to open the Eternal Labyrinth of Fortune. You must have completed the six different Trials of Ascendancy found in Maps in order to access this area.
 ");
 
-            Assert.Equal(Class.MapFragments, actual.Header.Class);
+            Assert.Equal("map.fragment", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
             Assert.Equal(Category.Map, actual.Metadata.Category);
             Assert.Equal("Tribute to the Goddess", actual.Metadata.Type);

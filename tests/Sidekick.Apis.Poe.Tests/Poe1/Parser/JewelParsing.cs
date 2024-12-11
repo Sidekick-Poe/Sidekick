@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class JewelParsing
+    public class JewelParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public JewelParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void ParseJewelBlightCut()
@@ -99,7 +94,7 @@ Item Level: 85
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-            Assert.Equal(Class.Jewel, actual.Header.Class);
+            Assert.Equal("jewel", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal(Category.Jewel, actual.Metadata.Category);
             Assert.Equal("Viridian Jewel", actual.Metadata.Type);

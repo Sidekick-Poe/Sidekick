@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class MapParsing
+    public class MapParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public MapParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void ParseArcadeMap()
@@ -28,8 +23,8 @@ Item Level: 84
 Travel to this Map by using it in a personal Map Device. Maps can only be used once.
 ");
 
+            Assert.Equal("map", actual.Header.ItemCategory);
             Assert.Equal(Category.Map, actual.Metadata.Category);
-            Assert.Equal(Class.Maps, actual.Header.Class);
             Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
             Assert.Equal("Arcade Map", actual.Metadata.Type);
             Assert.Equal(15, actual.Properties.MapTier);
@@ -65,8 +60,8 @@ Will they grant me strength or doom?
 Travel to this Map by using it in a personal Map Device. Maps can only be used once.
 ");
 
+            Assert.Equal("map", actual.Header.ItemCategory);
             Assert.Equal(Category.Map, actual.Metadata.Category);
-            Assert.Equal(Class.Maps, actual.Header.Class);
             Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
             Assert.Equal("Maelström of Chaos", actual.Metadata.Name);
             Assert.Equal("Atoll Map", actual.Metadata.Type);

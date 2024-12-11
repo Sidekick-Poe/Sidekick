@@ -4,14 +4,9 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
 {
     [Collection(Collections.Poe1Parser)]
-    public class RingParsing
+    public class RingParsing(ParserFixture fixture)
     {
-        private readonly IItemParser parser;
-
-        public RingParsing(ParserFixture fixture)
-        {
-            parser = fixture.Parser;
-        }
+        private readonly IItemParser parser = fixture.Parser;
 
         [Fact]
         public void ParseBroodCircle()
@@ -36,7 +31,7 @@ Adds 8 to 13 Physical Damage to Attacks
 Corrupted
 ");
 
-            Assert.Equal(Class.Ring, actual.Header.Class);
+            Assert.Equal("accessory.ring", actual.Header.ItemCategory);
             Assert.Equal(Category.Accessory, actual.Metadata.Category);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
             Assert.Equal("Ruby Ring", actual.Metadata.Type);
