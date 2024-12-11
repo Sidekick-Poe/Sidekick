@@ -6,6 +6,9 @@ A Path of Exile companion tool. Price check items, check for dangerous map modif
 
 [![Website](https://img.shields.io/badge/Website_and_Download-6b6ebe?style=for-the-badge)](https://sidekick-poe.github.io/)
 
+## Path of Exile 2
+Sidekick does not currently support Path of Exile 2. The development to add support for Path of Exile 2 has begun and we should have a version ready soon.
+
 ## Development
 We accept most PR and ideas. If you want a feature included, create an issue and we will discuss it.
 
