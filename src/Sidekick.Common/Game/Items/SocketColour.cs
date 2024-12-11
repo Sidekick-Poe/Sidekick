@@ -7,7 +7,14 @@ public enum SocketColour
     Red,
     White,
     Abyss,
+
+    // The following three socket colours are to support Path of Exile 2
+    // This socket represents an empty socket.
     PathOfExile2,
+
+    // This socket represents a socket with a soulcore socketed in it.
     Soulcore,
+
+    // This socket represents a socket with a rune socketed in it.
     Rune,
 }
