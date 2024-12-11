@@ -7,4 +7,5 @@ public enum SocketColour
     Red,
     White,
     Abyss,
+    Soulcore,
 }
