@@ -47,7 +47,7 @@ public class TradeSearchService
                     Discriminator = item.Metadata.ApiTypeDiscriminator,
                 };
             }
-            else
+            else if (string.IsNullOrEmpty(propertyFilters?.ItemCategory))
             {
                 query.Type = item.Metadata.ApiType;
             }
