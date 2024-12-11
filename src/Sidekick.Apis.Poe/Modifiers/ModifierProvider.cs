@@ -2,10 +2,13 @@ using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Enums;
+using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Modifiers;
 
@@ -13,7 +16,8 @@ public class ModifierProvider(
     ICacheProvider cacheProvider,
     IPoeTradeClient poeTradeClient,
     IInvariantModifierProvider invariantModifierProvider,
-    IGameLanguageProvider gameLanguageProvider) : IModifierProvider
+    IGameLanguageProvider gameLanguageProvider,
+    ISettingsService settingsService) : IModifierProvider
 {
     private readonly Regex ParseHashPattern = new("\\#");
     private readonly Regex NewLinePattern = new("(?:\\\\)*[\\r\\n]+");
@@ -27,12 +31,16 @@ public class ModifierProvider(
     public Dictionary<string, List<ModifierPattern>> FuzzyDictionary { get; } = new();
 
     /// <inheritdoc/>
-    public InitializationPriority Priority => InitializationPriority.Low;
+    public int Priority => 200;
 
     /// <inheritdoc/>
     public async Task Initialize()
     {
-        var result = await cacheProvider.GetOrSet("Modifiers", () => poeTradeClient.Fetch<ApiCategory>(GameType.PathOfExile, gameLanguageProvider.Language, "data/stats"));
+        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+        var game = leagueId.GetGameFromLeagueId();
+        var cacheKey = $"{game.GetValueAttribute()}_Modifiers";
+
+        var result = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.Language, "data/stats"));
         var categories = result.Result;
 
         foreach (var category in categories)

@@ -24,6 +24,8 @@ public class LeagueProvider(
 
     private async Task<List<League>> FetchAll()
     {
+        await gameLanguageProvider.Initialize();
+
         List<Task<List<League>>> tasks =
         [
             Fetch(GameType.PathOfExile2),

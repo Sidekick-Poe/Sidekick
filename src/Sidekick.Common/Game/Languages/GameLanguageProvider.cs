@@ -1,6 +1,5 @@
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
-using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Common.Game.Languages;
@@ -13,10 +12,10 @@ public class GameLanguageProvider(ISettingsService settingsService) : IGameLangu
 
     public IGameLanguage Language => language ?? throw new SidekickException("The game language could not be found.");
 
-    public IGameLanguage InvariantLanguage => invariantLanguage ?? throw new SidekickException("The english language could not be found.");
+    public IGameLanguage InvariantLanguage => invariantLanguage ?? throw new SidekickException("The English language could not be found.");
 
     /// <inheritdoc />
-    public InitializationPriority Priority => InitializationPriority.Critical;
+    public int Priority => 0;
 
     /// <inheritdoc />
     public async Task Initialize()
@@ -54,7 +53,7 @@ public class GameLanguageProvider(ISettingsService settingsService) : IGameLangu
                                           ?.ImplementationType
                                  ?? throw new SidekickException("The game language could not be found.");
 
-        return (IGameLanguage?)Activator.CreateInstance(implementationType) ?? throw new SidekickException("The english language could not be found.");
+        return (IGameLanguage?)Activator.CreateInstance(implementationType) ?? throw new SidekickException("The game language could not be found.");
     }
 
     private IGameLanguage GetInvariantLanguage()
@@ -63,9 +62,9 @@ public class GameLanguageProvider(ISettingsService settingsService) : IGameLangu
 
         var implementationType = languages.FirstOrDefault(x => x.LanguageCode == EnglishLanguageCode)
                                           ?.ImplementationType
-                                 ?? throw new SidekickException("The english language could not be found.");
+                                 ?? throw new SidekickException("The English language could not be found.");
 
-        return (IGameLanguage?)Activator.CreateInstance(implementationType) ?? throw new SidekickException("The english language could not be found.");
+        return (IGameLanguage?)Activator.CreateInstance(implementationType) ?? throw new SidekickException("The English language could not be found.");
     }
 
     public bool IsEnglish()

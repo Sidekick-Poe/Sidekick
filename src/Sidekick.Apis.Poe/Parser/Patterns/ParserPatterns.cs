@@ -1,21 +1,13 @@
 using System.Text.RegularExpressions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
-using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Parser.Patterns
 {
-    public class ParserPatterns : IParserPatterns
+    public class ParserPatterns(IGameLanguageProvider gameLanguageProvider) : IParserPatterns
     {
-        private readonly IGameLanguageProvider gameLanguageProvider;
-
-        public ParserPatterns(IGameLanguageProvider gameLanguageProvider)
-        {
-            this.gameLanguageProvider = gameLanguageProvider;
-        }
-
         /// <inheritdoc/>
-        public InitializationPriority Priority => InitializationPriority.High;
+        public int Priority => 100;
 
         /// <inheritdoc/>
         public Task Initialize()
@@ -33,11 +25,6 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
 
         private void InitHeader()
         {
-            if (gameLanguageProvider.Language == null)
-            {
-                throw new Exception("[Parser Patterns] Could not find a valid language.");
-            }
-
             Rarity = new Dictionary<Rarity, Regex>
             {
                 { Common.Game.Items.Rarity.Normal, gameLanguageProvider.Language.RarityNormal.ToRegexEndOfLine() },
@@ -67,11 +54,6 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
 
         private void InitProperties()
         {
-            if (gameLanguageProvider.Language == null)
-            {
-                throw new Exception("[Parser Patterns] Could not find a valid language.");
-            }
-
             Armor = gameLanguageProvider.Language.DescriptionArmour.ToRegexIntCapture();
             EnergyShield = gameLanguageProvider.Language.DescriptionEnergyShield.ToRegexIntCapture();
             Evasion = gameLanguageProvider.Language.DescriptionEvasion.ToRegexIntCapture();
@@ -145,11 +127,6 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
 
         private void InitInfluences()
         {
-            if (gameLanguageProvider.Language == null)
-            {
-                throw new Exception("[Parser Patterns] Could not find a valid language.");
-            }
-
             Crusader = gameLanguageProvider.Language.InfluenceCrusader.ToRegexLine();
             Elder = gameLanguageProvider.Language.InfluenceElder.ToRegexLine();
             Hunter = gameLanguageProvider.Language.InfluenceHunter.ToRegexLine();
@@ -179,8 +156,6 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
             }
 
             Classes.Clear();
-
-            if (gameLanguageProvider.Language.Classes == null) return;
 
             var type = gameLanguageProvider.Language.Classes.GetType();
             var properties = type.GetProperties().Where(x => x.Name != nameof(ClassLanguage.Prefix));

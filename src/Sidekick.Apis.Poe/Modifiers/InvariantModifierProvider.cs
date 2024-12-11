@@ -1,16 +1,22 @@
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Enums;
+using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Modifiers;
 
-public class InvariantModifierProvider(
+public class InvariantModifierProvider
+(
     ICacheProvider cacheProvider,
     IPoeTradeClient poeTradeClient,
-    IGameLanguageProvider gameLanguageProvider) : IInvariantModifierProvider
+    IGameLanguageProvider gameLanguageProvider,
+    ISettingsService settingsService
+) : IInvariantModifierProvider
 {
     public List<string> IncursionRoomModifierIds { get; } = new();
 
@@ -23,7 +29,7 @@ public class InvariantModifierProvider(
     public Dictionary<int, string> ClusterJewelSmallPassiveGrantOptions { get; private set; } = null!;
 
     /// <inheritdoc/>
-    public InitializationPriority Priority => InitializationPriority.Medium;
+    public int Priority => 100;
 
     /// <inheritdoc/>
     public async Task Initialize()
@@ -40,16 +46,17 @@ public class InvariantModifierProvider(
         foreach (var apiCategory in apiCategories)
         {
             var first = apiCategory.Entries.FirstOrDefault();
-            if (first?.Id.Split('.')[0] != "pseudo")
+            if (first
+                    ?.Id.Split('.')[0]
+                != "pseudo")
             {
                 return;
             }
 
-            IncursionRoomModifierIds.AddRange(
-                apiCategory.Entries
-                           .Where(x => x.Text.StartsWith("Has Room: "))
-                           .Select(x => x.Id)
-                           .ToList());
+            IncursionRoomModifierIds.AddRange(apiCategory
+                                                  .Entries.Where(x => x.Text.StartsWith("Has Room: "))
+                                                  .Select(x => x.Id)
+                                                  .ToList());
         }
     }
 
@@ -59,16 +66,17 @@ public class InvariantModifierProvider(
         foreach (var apiCategory in apiCategories)
         {
             var first = apiCategory.Entries.FirstOrDefault();
-            if (first?.Id.Split('.')[0] != "pseudo")
+            if (first
+                    ?.Id.Split('.')[0]
+                != "pseudo")
             {
                 return;
             }
 
-            LogbookFactionModifierIds.AddRange(
-                apiCategory.Entries
-                           .Where(x => x.Text.StartsWith("Has Logbook Faction: "))
-                           .Select(x => x.Id)
-                           .ToList());
+            LogbookFactionModifierIds.AddRange(apiCategory
+                                                   .Entries.Where(x => x.Text.StartsWith("Has Logbook Faction: "))
+                                                   .Select(x => x.Id)
+                                                   .ToList());
         }
     }
 
@@ -77,7 +85,9 @@ public class InvariantModifierProvider(
         foreach (var apiCategory in apiCategories)
         {
             var first = apiCategory.Entries.FirstOrDefault();
-            if (first?.Id.Split('.')[0] != "enchant")
+            if (first
+                    ?.Id.Split('.')[0]
+                != "enchant")
             {
                 continue;
             }
@@ -105,9 +115,17 @@ public class InvariantModifierProvider(
         }
     }
 
-    public Task<List<ApiCategory>> GetList() => cacheProvider.GetOrSet("InvariantModifiers", async () =>
+    public async Task<List<ApiCategory>> GetList()
     {
-        var result = await poeTradeClient.Fetch<ApiCategory>(GameType.PathOfExile, gameLanguageProvider.InvariantLanguage, "data/stats");
-        return result.Result;
-    });
+        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+        var game = leagueId.GetGameFromLeagueId();
+        var cacheKey = $"{game.GetValueAttribute()}_InvariantModifiers";
+
+        return await cacheProvider.GetOrSet(cacheKey,
+                                            async () =>
+                                            {
+                                                var result = await poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "data/stats");
+                                                return result.Result;
+                                            });
+    }
 }

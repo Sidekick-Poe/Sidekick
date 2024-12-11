@@ -34,11 +34,6 @@ namespace Sidekick.Apis.Poe.Bulk
         {
             logger.LogInformation("[Trade API] Querying Exchange API.");
 
-            if (gameLanguageProvider.Language == null)
-            {
-                throw new ApiErrorException("[Trade API] Could not find a valid language.");
-            }
-
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             var uri = $"{gameLanguageProvider.Language.GetTradeApiBaseUrl(item.Metadata.Game)}exchange/{leagueId.GetUrlSlugForLeague()}";
 

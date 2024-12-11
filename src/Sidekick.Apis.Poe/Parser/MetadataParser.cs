@@ -1,9 +1,8 @@
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Metadatas;
+using Sidekick.Apis.Poe.Metadata;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
-using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Parser
 {
@@ -17,7 +16,7 @@ namespace Sidekick.Apis.Poe.Parser
         private Regex SuperiorAffix { get; set; } = null!;
 
         /// <inheritdoc/>
-        public InitializationPriority Priority => InitializationPriority.Medium;
+        public int Priority => 200;
 
         private string GetLineWithoutAffixes(string line) => Affixes
                                                              .Replace(line, string.Empty)
@@ -30,11 +29,6 @@ namespace Sidekick.Apis.Poe.Parser
         /// <inheritdoc/>
         public Task Initialize()
         {
-            if (gameLanguageProvider.Language == null)
-            {
-                throw new Exception("[Item Metadata] Could not find a valid language.");
-            }
-
             var getRegexLine = (string input) =>
             {
                 if (input.StartsWith('/'))

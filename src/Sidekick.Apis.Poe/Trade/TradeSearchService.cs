@@ -40,11 +40,6 @@ public class TradeSearchService(
         {
             logger.LogInformation("[Trade API] Querying Trade API.");
 
-            if (gameLanguageProvider.Language == null)
-            {
-                throw new ApiErrorException("[Trade API] Could not find a valid language.");
-            }
-
             var hasTypeDiscriminator = !string.IsNullOrEmpty(item.Metadata.ApiTypeDiscriminator);
             var query = new Query();
             if (hasTypeDiscriminator)

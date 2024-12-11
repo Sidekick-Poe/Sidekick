@@ -1,5 +1,3 @@
-@page "/setup"
-@page "/"
 @using System.Text.Json
 @using Sidekick.Apis.Poe
 @using Sidekick.Common.Cache
@@ -7,7 +5,6 @@
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Settings.General
-@inherits Sidekick.Common.Ui.Views.SidekickView
 
 <AppTitle Title="@Resources["Setup"]"/>
 <LayoutSimple>
@@ -62,6 +59,7 @@
 @inject ILeagueProvider LeagueProvider
 @inject ICacheProvider CacheProvider
 @inject IStringLocalizer<Setup> Resources
+@inject NavigationManager NavigationManager
 
 @code {
 
@@ -70,10 +68,6 @@
     private bool NewLeagues { get; set; }
 
     private bool HasError { get; set; }
-
-    public override SidekickViewType ViewType => SidekickViewType.Modal;
-
-    public override int ViewHeight => 360;
 
     protected override async Task OnInitializedAsync()
     {
@@ -91,7 +85,6 @@
         if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId) || NewLeagues)
         {
             RequiresSetup = true;
-            await CurrentView.Initialize(this);
         }
         else
         {

@@ -2,7 +2,7 @@ using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Authentication
 {
-    public interface IAuthenticationService : IInitializableService
+    public interface IAuthenticationService
     {
         event Action? OnStateChanged;
 

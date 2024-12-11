@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Initialization;
 
-namespace Sidekick.Apis.Poe.Metadatas
+namespace Sidekick.Apis.Poe.Metadata
 {
     public interface IMetadataProvider : IInitializableService
     {

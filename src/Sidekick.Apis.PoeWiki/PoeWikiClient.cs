@@ -8,7 +8,6 @@ using Sidekick.Apis.PoeWiki.Models;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.PoeWiki
 {
@@ -61,7 +60,7 @@ namespace Sidekick.Apis.PoeWiki
         public Dictionary<string, string> BlightOilNamesByMetadataIds { get; private set; } = new();
 
         /// <inheritdoc/>
-        public InitializationPriority Priority => InitializationPriority.Low;
+        public int Priority => 0;
 
         /// <inheritdoc/>
         public async Task Initialize()

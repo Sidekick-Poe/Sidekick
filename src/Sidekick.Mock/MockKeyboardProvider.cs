@@ -1,13 +1,10 @@
-using System;
-using System.Threading.Tasks;
-using Sidekick.Common.Initialization;
 using Sidekick.Common.Platform;
 
 namespace Sidekick.Mock
 {
     public class MockKeyboardProvider : IKeyboardProvider
     {
-        public InitializationPriority Priority => InitializationPriority.Low;
+        public int Priority => 0;
 
 #pragma warning disable CS0067
 

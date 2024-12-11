@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.Poe.Metadatas.Models
+namespace Sidekick.Apis.Poe.Metadata.Models
 {
     /// <summary>
     /// Items from /trade/data/items.

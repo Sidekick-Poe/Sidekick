@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Sidekick.Apis.Poe.Metadatas.Models
+namespace Sidekick.Apis.Poe.Metadata.Models
 {
     public class ApiItem
     {

@@ -1,5 +1,4 @@
 using System.Globalization;
-using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Common.Localization;
@@ -20,7 +19,7 @@ public class UiLanguageProvider(ISettingsService settingsService) : IUiLanguageP
     private string? currentLanguage;
 
     /// <inheritdoc />
-    public InitializationPriority Priority => InitializationPriority.Critical;
+    public int Priority => 0;
 
     /// <inheritdoc />
     public async Task Initialize()
