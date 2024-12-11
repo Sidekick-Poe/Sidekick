@@ -461,11 +461,6 @@ public class TradeSearchService(
         {
             logger.LogInformation($"[Trade API] Fetching Trade API Listings from Query {queryId}.");
 
-            if (gameLanguageProvider.Language == null)
-            {
-                return new();
-            }
-
             var pseudo = string.Empty;
             if (pseudoFilters != null)
             {
@@ -812,12 +807,7 @@ public class TradeSearchService(
         GameType game,
         string queryId)
     {
-        var baseUrl = gameLanguageProvider.Language?.GetTradeBaseUrl(game);
-        if (baseUrl == null)
-        {
-            throw new Exception("[Trade API] Could not find the trade uri.");
-        }
-
+        var baseUrl = gameLanguageProvider.Language.GetTradeBaseUrl(game);
         var baseUri = new Uri(baseUrl + "search/");
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         return new Uri(baseUri, $"{leagueId.GetUrlSlugForLeague()}/{queryId}");
