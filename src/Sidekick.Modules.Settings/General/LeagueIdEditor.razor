@@ -1,6 +1,8 @@
 @using Sidekick.Apis.Poe
+@using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Common.Cache
 @using Sidekick.Common.Extensions
+@using Sidekick.Common.Game
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Settings.Localization
 
@@ -64,6 +66,19 @@
 
         LeagueId = value;
         await SettingsService.Set(SettingKeys.LeagueId, value);
+
+        if (currentGame != newGame)
+        {
+            if (newGame == GameType.PathOfExile2)
+            {
+                await SettingsService.Set(SettingKeys.PriceCheckBulkCurrency, TradeCurrency.Exalted);
+                await SettingsService.Set(SettingKeys.PriceCheckItemCurrency, TradeCurrency.ChaosEquivalent);
+            }
+            else if (newGame == GameType.PathOfExile)
+            {
+                await SettingsService.Set(SettingKeys.PriceCheckBulkCurrency, TradeCurrency.Divine);
+            }
+        }
 
         if (AutoRefresh && currentGame != newGame)
         {
