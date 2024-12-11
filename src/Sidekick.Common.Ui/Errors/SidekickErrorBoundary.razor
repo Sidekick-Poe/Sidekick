@@ -54,7 +54,7 @@
 
     private LoggingErrorBoundary? Boundary { get; set; }
 
-    private Exception? Exception => Boundary?.CurrentException;
+    public Exception? Exception => Boundary?.CurrentException;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

@@ -145,7 +145,7 @@ namespace Sidekick.Common.Platform.Keyboards
         ];
 
         /// <inheritdoc/>
-        public InitializationPriority Priority => InitializationPriority.Low;
+        public int Priority => 100;
 
         /// <inheritdoc/>
         public Task Initialize()

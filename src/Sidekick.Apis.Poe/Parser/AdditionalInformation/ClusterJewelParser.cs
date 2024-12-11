@@ -4,20 +4,13 @@ using Sidekick.Common.Game.Items.AdditionalInformation;
 
 namespace Sidekick.Apis.Poe.Parser.AdditionalInformation
 {
-    public class ClusterJewelParser
+    public class ClusterJewelParser(IInvariantModifierProvider invariantModifierProvider)
     {
-        private readonly IInvariantModifierProvider invariantModifierProvider;
-
-        public ClusterJewelParser(IInvariantModifierProvider invariantModifierProvider)
-        {
-            this.invariantModifierProvider = invariantModifierProvider;
-        }
-
         public bool TryParse(Item item, out ClusterJewelInformation? information)
         {
             information = null;
 
-            if (item.Header.Class != Class.Jewel || item.Metadata.Rarity == Rarity.Unique)
+            if (item.Metadata.Category != Category.Jewel || item.Metadata.Rarity == Rarity.Unique)
             {
                 return false;
             }

@@ -30,7 +30,7 @@ public abstract class KeybindHandler : IInitializableService
     [
     ];
 
-    public InitializationPriority Priority => InitializationPriority.Low;
+    public int Priority => 0;
 
     public async Task Initialize()
     {

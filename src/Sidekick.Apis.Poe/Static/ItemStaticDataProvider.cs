@@ -1,6 +1,7 @@
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Static.Models;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
@@ -16,14 +17,14 @@ namespace Sidekick.Apis.Poe.Static
         private Dictionary<string, string> Ids { get; set; } = new();
 
         /// <inheritdoc/>
-        public InitializationPriority Priority => InitializationPriority.Medium;
+        public int Priority => 100;
 
         /// <inheritdoc/>
         public async Task Initialize()
         {
             var result = await cacheProvider.GetOrSet(
                 "ItemStaticDataProvider",
-                () => poeTradeClient.Fetch<StaticItemCategory>("data/static"));
+                () => poeTradeClient.Fetch<StaticItemCategory>(GameType.PathOfExile, gameLanguageProvider.Language, "data/static"));
 
             ImageUrls.Clear();
             Ids.Clear();
@@ -53,7 +54,7 @@ namespace Sidekick.Apis.Poe.Static
                 _ => id
             };
 
-            if (gameLanguageProvider.Language == null || string.IsNullOrEmpty(id) || !ImageUrls.TryGetValue(id, out var result))
+            if (string.IsNullOrEmpty(id) || !ImageUrls.TryGetValue(id, out var result))
             {
                 return null;
             }

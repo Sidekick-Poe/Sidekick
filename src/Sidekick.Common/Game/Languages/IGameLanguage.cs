@@ -2,13 +2,13 @@ namespace Sidekick.Common.Game.Languages;
 
 public interface IGameLanguage
 {
-    string LanguageCode { get; }
+    string PoeTradeBaseUrl { get; }
 
-    Uri PoeTradeSearchBaseUrl { get; }
+    string PoeTradeApiBaseUrl { get; }
 
-    Uri PoeTradeExchangeBaseUrl { get; }
+    string Poe2TradeBaseUrl { get; }
 
-    Uri PoeTradeApiBaseUrl { get; }
+    string Poe2TradeApiBaseUrl { get; }
 
     Uri PoeCdnBaseUrl { get; }
 
@@ -94,5 +94,17 @@ public interface IGameLanguage
 
     string InfluenceWarlord { get; }
 
-    ClassLanguage? Classes { get; }
+    ClassLanguage Classes { get; }
+
+    public string GetTradeBaseUrl(GameType game) => game switch
+    {
+        GameType.PathOfExile2 => Poe2TradeBaseUrl,
+        _ => PoeTradeBaseUrl,
+    };
+
+    public string GetTradeApiBaseUrl(GameType game) => game switch
+    {
+        GameType.PathOfExile2 => Poe2TradeApiBaseUrl,
+        _ => PoeTradeApiBaseUrl,
+    };
 }

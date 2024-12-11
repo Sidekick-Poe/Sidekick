@@ -64,6 +64,9 @@ namespace Sidekick.Apis.Poe.Trade.Results
         [JsonPropertyName("enchantMods")]
         public List<string> EnchantMods { get; set; } = new();
 
+        [JsonPropertyName("runeMods")]
+        public List<string> RuneMods { get; set; } = new();
+
         [JsonPropertyName("fracturedMods")]
         public List<string> FracturedMods { get; set; } = new();
 

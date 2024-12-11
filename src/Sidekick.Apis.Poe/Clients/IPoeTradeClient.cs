@@ -1,13 +1,15 @@
 using System.Text.Json;
+using Sidekick.Apis.Poe.Clients.Models;
+using Sidekick.Common.Game;
+using Sidekick.Common.Game.Languages;
 
-namespace Sidekick.Apis.Poe.Clients
+namespace Sidekick.Apis.Poe.Clients;
+
+public interface IPoeTradeClient
 {
-    public interface IPoeTradeClient
-    {
-        HttpClient HttpClient { get; set; }
+    HttpClient HttpClient { get; }
 
-        JsonSerializerOptions Options { get; }
+    JsonSerializerOptions Options { get; }
 
-        Task<FetchResult<TReturn>> Fetch<TReturn>(string path, bool useDefaultLanguage = false);
-    }
+    Task<FetchResult<TReturn>> Fetch<TReturn>(GameType game, IGameLanguage language, string path);
 }

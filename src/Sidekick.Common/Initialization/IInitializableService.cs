@@ -8,7 +8,7 @@ public interface IInitializableService
     /// <summary>
     ///     Gets the priority of execution for this service during the initialization process.
     /// </summary>
-    InitializationPriority Priority { get; }
+    int Priority { get; }
 
     /// <summary>
     ///     Initializes the service during startup.

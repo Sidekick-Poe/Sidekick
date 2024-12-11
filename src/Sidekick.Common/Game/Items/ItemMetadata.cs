@@ -21,4 +21,6 @@ public class ItemMetadata
     public required Rarity Rarity { get; set; }
 
     public required Category Category { get; init; }
+
+    public required GameType Game { get; init; }
 }

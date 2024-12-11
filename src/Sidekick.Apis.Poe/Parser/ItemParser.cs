@@ -1,43 +1,35 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
+using FuzzySharp;
+using FuzzySharp.SimilarityRatio;
+using FuzzySharp.SimilarityRatio.Scorer.StrategySensitive;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Metadatas;
+using Sidekick.Apis.Poe.Metadata;
+using Sidekick.Apis.Poe.Metadata.Models;
 using Sidekick.Apis.Poe.Parser.AdditionalInformation;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Pseudo;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Parser
 {
-    public class ItemParser : IItemParser
+    public class ItemParser
+    (
+        ILogger<ItemParser> logger,
+        IItemMetadataParser itemMetadataProvider,
+        IModifierParser modifierParser,
+        IPseudoModifierProvider pseudoModifierProvider,
+        IParserPatterns patterns,
+        ClusterJewelParser clusterJewelParser,
+        IInvariantMetadataProvider invariantMetadataProvider,
+        SocketParser socketParser,
+        IMetadataProvider metadataProvider,
+        IGameLanguageProvider gameLanguageProvider
+    ) : IItemParser
     {
-        private readonly ILogger<ItemParser> logger;
-        private readonly IItemMetadataParser itemMetadataProvider;
-        private readonly IModifierParser modifierParser;
-        private readonly IPseudoModifierProvider pseudoModifierProvider;
-        private readonly IParserPatterns patterns;
-        private readonly ClusterJewelParser clusterJewelParser;
-        private readonly IInvariantMetadataProvider invariantMetadataProvider;
-
-        public ItemParser(
-            ILogger<ItemParser> logger,
-            IItemMetadataParser itemMetadataProvider,
-            IModifierParser modifierParser,
-            IPseudoModifierProvider pseudoModifierProvider,
-            IParserPatterns patterns,
-            ClusterJewelParser clusterJewelParser,
-            IInvariantMetadataProvider invariantMetadataProvider)
-        {
-            this.logger = logger;
-            this.itemMetadataProvider = itemMetadataProvider;
-            this.modifierParser = modifierParser;
-            this.pseudoModifierProvider = pseudoModifierProvider;
-            this.patterns = patterns;
-            this.clusterJewelParser = clusterJewelParser;
-            this.invariantMetadataProvider = invariantMetadataProvider;
-        }
-
         public Task<Item> ParseItemAsync(string itemText)
         {
             return Task.Run(() => ParseItem(itemText));
@@ -60,10 +52,11 @@ namespace Sidekick.Apis.Poe.Parser
                 }
 
                 // Strip the Superior affix from the name
-                parsingItem.Blocks.First().Lines.ForEach(x =>
-                {
-                    x.Text = itemMetadataProvider.GetLineWithoutSuperiorAffix(x.Text);
-                });
+                parsingItem.Blocks.First()
+                    .Lines.ForEach(x =>
+                    {
+                        x.Text = itemMetadataProvider.GetLineWithoutSuperiorAffix(x.Text);
+                    });
 
                 parsingItem.Metadata = metadata;
                 ItemMetadata? invariant = null;
@@ -72,24 +65,24 @@ namespace Sidekick.Apis.Poe.Parser
                     invariant = invariantMetadata;
                 }
 
-                // Order of parsing is important
+                // Order of parsing is important    
                 ParseRequirements(parsingItem);
+
                 var header = ParseHeader(parsingItem);
                 var properties = ParseProperties(parsingItem);
                 var influences = ParseInfluences(parsingItem);
-                var sockets = ParseSockets(parsingItem);
+                var sockets = socketParser.Parse(parsingItem);
                 var modifierLines = ParseModifiers(parsingItem);
-                var pseudoModifiers = ParsePseudoModifiers(modifierLines);
-                var item = new Item(
-                    metadata: metadata,
-                    invariant: invariant,
-                    header: header,
-                    properties: properties,
-                    influences: influences,
-                    sockets: sockets,
-                    modifierLines: modifierLines,
-                    pseudoModifiers: pseudoModifiers,
-                    text: parsingItem.Text);
+                var pseudoModifiers = parsingItem.Metadata.Game == GameType.PathOfExile ? ParsePseudoModifiers(modifierLines) : [];
+                var item = new Item(metadata: metadata,
+                                    invariant: invariant,
+                                    header: header,
+                                    properties: properties,
+                                    influences: influences,
+                                    sockets: sockets,
+                                    modifierLines: modifierLines,
+                                    pseudoModifiers: pseudoModifiers,
+                                    text: parsingItem.Text);
 
                 if (clusterJewelParser.TryParse(item, out var clusterInformation))
                 {
@@ -125,20 +118,25 @@ namespace Sidekick.Apis.Poe.Parser
 
         private Header ParseHeader(ParsingItem parsingItem)
         {
-            var itemClass = Class.Undefined;
-            foreach (var pattern in patterns.Classes)
+            var firstLine = parsingItem.Blocks[0].Lines[0].Text;
+            string? apiItemCategoryId;
+
+            if (firstLine.StartsWith(gameLanguageProvider.Language.Classes.Prefix))
             {
-                if (pattern.Value.IsMatch(parsingItem.Blocks[0].Lines[0].Text))
-                {
-                    itemClass = pattern.Key;
-                }
+                var classLine = firstLine.Replace(gameLanguageProvider.Language.Classes.Prefix, "").Trim();
+                var categoryToMatch = new ApiFilterOption { Text = classLine };
+                apiItemCategoryId = Process.ExtractOne(categoryToMatch, metadataProvider.ApiItemCategories, x => x.Text, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
+            }
+            else
+            {
+                apiItemCategoryId = null;
             }
 
             return new Header()
             {
                 Name = parsingItem.Blocks[0].Lines.ElementAtOrDefault(2)?.Text,
                 Type = parsingItem.Blocks[0].Lines.ElementAtOrDefault(3)?.Text,
-                Class = itemClass,
+                ItemCategory = apiItemCategoryId
             };
         }
 
@@ -146,11 +144,13 @@ namespace Sidekick.Apis.Poe.Parser
         {
             foreach (var block in parsingItem.Blocks.Where(x => !x.Parsed))
             {
-                if (TryParseValue(patterns.Requirements, block, out var match))
+                if (!block.TryParseRegex(patterns.Requirements, out _))
                 {
-                    block.Parsed = true;
-                    return;
+                    continue;
                 }
+
+                block.Parsed = true;
+                return;
             }
         }
 
@@ -180,7 +180,6 @@ namespace Sidekick.Apis.Poe.Parser
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
-
                 Quality = GetInt(patterns.Quality, propertyBlock),
                 AttacksPerSecond = GetDouble(patterns.AttacksPerSecond, propertyBlock),
                 CriticalStrikeChance = GetDouble(patterns.CriticalStrikeChance, propertyBlock)
@@ -202,7 +201,6 @@ namespace Sidekick.Apis.Poe.Parser
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
-
                 Quality = GetInt(patterns.Quality, propertyBlock),
                 Armor = GetInt(patterns.Armor, propertyBlock),
                 EnergyShield = GetInt(patterns.EnergyShield, propertyBlock),
@@ -232,7 +230,6 @@ namespace Sidekick.Apis.Poe.Parser
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
                 Blighted = patterns.Blighted.IsMatch(parsingItem.Blocks[0].Lines[^1].Text),
                 BlightRavaged = patterns.BlightRavaged.IsMatch(parsingItem.Blocks[0].Lines[^1].Text),
-
                 ItemQuantity = GetInt(patterns.ItemQuantity, propertyBlock),
                 ItemRarity = GetInt(patterns.ItemRarity, propertyBlock),
                 MonsterPackSize = GetInt(patterns.MonsterPackSize, propertyBlock),
@@ -248,10 +245,8 @@ namespace Sidekick.Apis.Poe.Parser
             return new Properties()
             {
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
-
                 GemLevel = GetInt(patterns.Level, propertyBlock),
                 Quality = GetInt(patterns.Quality, propertyBlock),
-
                 AlternateQuality = GetBool(patterns.AlternateQuality, parsingItem),
                 Anomalous = GetBool(patterns.Anomalous, parsingItem),
                 Divergent = GetBool(patterns.Divergent, parsingItem),
@@ -296,45 +291,6 @@ namespace Sidekick.Apis.Poe.Parser
             };
         }
 
-        private List<Socket> ParseSockets(ParsingItem parsingItem)
-        {
-            if (TryParseValue(patterns.Socket, parsingItem, out var match))
-            {
-                var groups = match.Groups.Values
-                    .Where(x => !string.IsNullOrEmpty(x.Value))
-                    .Skip(1)
-                    .Select((x, Index) => new
-                    {
-                        x.Value,
-                        Index,
-                    })
-                    .ToList();
-
-                var result = new List<Socket>();
-
-                foreach (var group in groups)
-                {
-                    var groupValue = group.Value.Replace("-", "").Trim();
-                    while (groupValue.Length > 0)
-                    {
-                        switch (groupValue[0])
-                        {
-                            case 'B': result.Add(new Socket() { Group = group.Index, Colour = SocketColour.Blue }); break;
-                            case 'G': result.Add(new Socket() { Group = group.Index, Colour = SocketColour.Green }); break;
-                            case 'R': result.Add(new Socket() { Group = group.Index, Colour = SocketColour.Red }); break;
-                            case 'W': result.Add(new Socket() { Group = group.Index, Colour = SocketColour.White }); break;
-                            case 'A': result.Add(new Socket() { Group = group.Index, Colour = SocketColour.Abyss }); break;
-                        }
-                        groupValue = groupValue[1..];
-                    }
-                }
-
-                return result;
-            }
-
-            return new List<Socket>();
-        }
-
         private Influences ParseInfluences(ParsingItem parsingItem)
         {
             return parsingItem.Metadata?.Category switch
@@ -375,12 +331,12 @@ namespace Sidekick.Apis.Poe.Parser
 
         private static bool GetBool(Regex pattern, ParsingItem parsingItem)
         {
-            return TryParseValue(pattern, parsingItem, out var _);
+            return parsingItem.TryParseRegex(pattern, out _);
         }
 
         private static int GetInt(Regex pattern, ParsingItem parsingItem)
         {
-            if (TryParseValue(pattern, parsingItem, out var match) && int.TryParse(match.Groups[1].Value, out var result))
+            if (parsingItem.TryParseRegex(pattern, out var match) && int.TryParse(match.Groups[1].Value, out var result))
             {
                 return result;
             }
@@ -390,7 +346,7 @@ namespace Sidekick.Apis.Poe.Parser
 
         private static int GetInt(Regex pattern, ParsingBlock parsingBlock)
         {
-            if (TryParseValue(pattern, parsingBlock, out var match) && int.TryParse(match.Groups[1].Value, out var result))
+            if (parsingBlock.TryParseRegex(pattern, out var match) && int.TryParse(match.Groups[1].Value, out var result))
             {
                 return result;
             }
@@ -400,7 +356,7 @@ namespace Sidekick.Apis.Poe.Parser
 
         private static double GetDouble(Regex pattern, ParsingBlock parsingBlock)
         {
-            if (TryParseValue(pattern, parsingBlock, out var match) && double.TryParse(match.Groups[1].Value.Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture, out var result))
+            if (parsingBlock.TryParseRegex(pattern, out var match) && double.TryParse(match.Groups[1].Value.Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture, out var result))
             {
                 return result;
             }
@@ -410,56 +366,24 @@ namespace Sidekick.Apis.Poe.Parser
 
         private static double GetDps(Regex pattern, ParsingBlock parsingBlock, double attacksPerSecond)
         {
-            if (TryParseValue(pattern, parsingBlock, out var match))
+            if (!parsingBlock.TryParseRegex(pattern, out var match))
             {
-                var matches = new Regex("(\\d+-\\d+)").Matches(match.Value);
-                var dps = matches
-                    .Select(x => x.Value.Split("-"))
-                    .Sum(split =>
+                return default;
+            }
+
+            var matches = new Regex("(\\d+-\\d+)").Matches(match.Value);
+            var dps = matches.Select(x => x.Value.Split("-"))
+                .Sum(split =>
+                {
+                    if (double.TryParse(split[0], NumberStyles.Any, CultureInfo.InvariantCulture, out var minValue) && double.TryParse(split[1], NumberStyles.Any, CultureInfo.InvariantCulture, out var maxValue))
                     {
-                        if (double.TryParse(split[0], NumberStyles.Any, CultureInfo.InvariantCulture, out var minValue)
-                         && double.TryParse(split[1], NumberStyles.Any, CultureInfo.InvariantCulture, out var maxValue))
-                        {
-                            return (minValue + maxValue) / 2d;
-                        }
+                        return (minValue + maxValue) / 2d;
+                    }
 
-                        return 0d;
-                    });
+                    return 0d;
+                });
 
-                return Math.Round(dps * attacksPerSecond, 2);
-            }
-
-            return default;
-        }
-
-        private static bool TryParseValue(Regex pattern, ParsingItem parsingItem, out Match match)
-        {
-            foreach (var block in parsingItem.Blocks)
-            {
-                if (TryParseValue(pattern, block, out match))
-                {
-                    return true;
-                }
-            }
-
-            match = null!;
-            return false;
-        }
-
-        private static bool TryParseValue(Regex pattern, ParsingBlock block, out Match match)
-        {
-            foreach (var line in block.Lines)
-            {
-                match = pattern.Match(line.Text);
-                if (match.Success)
-                {
-                    line.Parsed = true;
-                    return true;
-                }
-            }
-
-            match = null!;
-            return false;
+            return Math.Round(dps * attacksPerSecond, 2);
         }
 
         private static bool TrySetAdditionalInformation(Item item, object? additionalInformation)

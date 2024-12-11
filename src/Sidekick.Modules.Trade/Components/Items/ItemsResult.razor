@@ -1,5 +1,4 @@
 @using Sidekick.Apis.Poe.Trade.Models
-@using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Options
 
@@ -12,7 +11,7 @@
     @if (PriceCheckService.ItemTradeResult != null)
     {
         <div class="flex items-center w-full justify-between mb-3">
-            <TextBase Class="text-teal-500">@LeagueId</TextBase>
+            <LeagueText />
             <div class="flex flex-nowrap gap-3">
                 <CountString Count="PriceCheckService.TradeItems?.Count ?? 0"
                              Total="PriceCheckService.ItemTradeResult.Total"/>
@@ -45,18 +44,14 @@
 @implements IDisposable
 
 @inject TradeResources Resources
-@inject ISettingsService SettingsService
 @inject PriceCheckService PriceCheckService
 
 @code {
-
-    private string? LeagueId { get; set; }
 
     private bool FullyLoaded => (PriceCheckService.TradeItems?.Count ?? 0) == (PriceCheckService.ItemTradeResult?.Result?.Count ?? 0);
 
     protected override async Task OnInitializedAsync()
     {
-        LeagueId = await SettingsService.GetString(SettingKeys.LeagueId);
         PriceCheckService.LoadingChanged += StateHasChanged;
         await base.OnInitializedAsync();
     }

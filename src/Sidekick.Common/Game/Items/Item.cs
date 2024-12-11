@@ -38,7 +38,7 @@ public class Item(
         Category.Flask => true,
         Category.Gem => true,
         Category.Jewel => true,
-        Category.Map => Header.Class != Class.MapFragments,
+        Category.Map => Metadata.Rarity != Rarity.Currency,
         Category.Weapon => true,
         Category.HeistEquipment => true,
         Category.Contract => true,

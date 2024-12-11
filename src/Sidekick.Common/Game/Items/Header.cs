@@ -6,7 +6,7 @@ public class Header
 
     public string? Type { get; init; }
 
-    public Class Class { get; init; }
+    public string? ItemCategory { get; init; }
 
     /// <inheritdoc />
     public override string? ToString()

@@ -14,6 +14,8 @@ public enum ModifierCategory
     Scourge = 9,
     Veiled = 10,
     Crucible = 11,
+    Rune = 12,
+    Sanctum = 13,
 
     // Meta modifiers
     Corrupted = 101,

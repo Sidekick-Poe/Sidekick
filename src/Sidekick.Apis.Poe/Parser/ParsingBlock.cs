@@ -7,7 +7,7 @@ namespace Sidekick.Apis.Poe.Parser
     /// </summary>
     public class ParsingBlock
     {
-        private static readonly Regex NEWLINEPATTERN = new("[\\r\\n]+");
+        private static readonly Regex newLinePattern = new("[\\r\\n]+");
 
         /// <summary>
         /// Represents a single item section seperated by dashes when copying an item in-game.
@@ -17,7 +17,7 @@ namespace Sidekick.Apis.Poe.Parser
         {
             Text = text;
 
-            Lines = NEWLINEPATTERN
+            Lines = newLinePattern
                 .Split(Text)
                 .Where(x => !string.IsNullOrEmpty(x))
                 .Select((x) => new ParsingLine(x))
@@ -34,7 +34,7 @@ namespace Sidekick.Apis.Poe.Parser
         /// </summary>
         public bool Parsed
         {
-            get => !Lines.Any(x => !x.Parsed);
+            get => Lines.All(x => x.Parsed);
             set
             {
                 foreach (var line in Lines)
@@ -58,6 +58,24 @@ namespace Sidekick.Apis.Poe.Parser
         /// The text of the whole block
         /// </summary>
         public string Text { get; }
+
+        public bool TryParseRegex(Regex pattern, out Match match)
+        {
+            foreach (var line in Lines)
+            {
+                match = pattern.Match(line.Text);
+                if (!match.Success)
+                {
+                    continue;
+                }
+
+                line.Parsed = true;
+                return true;
+            }
+
+            match = null!;
+            return false;
+        }
 
         public override string ToString()
         {

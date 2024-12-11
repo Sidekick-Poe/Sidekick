@@ -3,10 +3,11 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Apis.Poe.Bulk;
 using Sidekick.Apis.Poe.Clients;
+using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Clients.States;
 using Sidekick.Apis.Poe.Leagues;
 using Sidekick.Apis.Poe.Localization;
-using Sidekick.Apis.Poe.Metadatas;
+using Sidekick.Apis.Poe.Metadata;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser;
 using Sidekick.Apis.Poe.Parser.AdditionalInformation;
@@ -28,9 +29,9 @@ namespace Sidekick.Apis.Poe
             services.AddSingleton<IApiStateProvider, ApiStateProvider>();
             services.AddSingleton<PoeApiHandler>();
 
-            services.AddHttpClient(ClientNames.TRADECLIENT);
+            services.AddHttpClient(ClientNames.TradeClient);
 
-            services.AddHttpClient(ClientNames.POECLIENT)
+            services.AddHttpClient(ClientNames.PoeClient)
                 .ConfigurePrimaryHttpMessageHandler((sp) =>
                 {
                     var logger = sp.GetRequiredService<ILogger<PoeApiHandler>>();
@@ -45,6 +46,7 @@ namespace Sidekick.Apis.Poe
             services.AddTransient<FilterResources>();
             services.AddTransient<TradeCurrencyResources>();
 
+            services.AddSingleton<IAuthenticationService, AuthenticationService>();
             services.AddSingleton<IItemParser, ItemParser>();
             services.AddSingleton<ITradeSearchService, TradeSearchService>();
             services.AddSingleton<ILeagueProvider, LeagueProvider>();
@@ -53,8 +55,8 @@ namespace Sidekick.Apis.Poe
             services.AddSingleton<IModifierParser, ModifierParser>();
             services.AddSingleton<ClusterJewelParser>();
 
-            services.AddSidekickInitializableService<IAuthenticationService, AuthenticationService>();
             services.AddSidekickInitializableService<IParserPatterns, ParserPatterns>();
+            services.AddSidekickInitializableService<SocketParser>();
             services.AddSidekickInitializableService<IInvariantMetadataProvider, InvariantMetadataProvider>();
             services.AddSidekickInitializableService<IMetadataProvider, MetadataProvider>();
             services.AddSidekickInitializableService<IItemMetadataParser, MetadataParser>();

@@ -6,7 +6,6 @@ using Serilog.Events;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Game.GameLogs;
-using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Keybinds;
@@ -33,19 +32,6 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IGameLogProvider, GameLogProvider>();
 
         services.AddSidekickInitializableService<IGameLanguageProvider, GameLanguageProvider>();
-
-        // Validate ClassLanguage implements correct properties
-        var properties = typeof(ClassLanguage)
-                         .GetProperties()
-                         .Where(x => x.Name != "Prefix");
-        foreach (var property in properties)
-        {
-            if (!Enum.IsDefined(enumType: typeof(Class), property.Name))
-            {
-                throw new Exception($"ClassLanguage has a property {property.Name} that does not match any Class enum values.");
-            }
-        }
-
         services.AddSidekickInitializableService<IUiLanguageProvider, UiLanguageProvider>();
 
         return services.AddSidekickLogging();
@@ -94,6 +80,18 @@ public static class ServiceCollectionExtensions
             });
 
         return services;
+    }
+
+    /// <summary>
+    ///     Adds an initializable service to the application.
+    /// </summary>
+    /// <param name="services">The service collection to add an initializable service.</param>
+    /// <typeparam name="TService">The type of service to add to the application.</typeparam>
+    /// <returns>The service collection.</returns>
+    public static IServiceCollection AddSidekickInitializableService<TService>(this IServiceCollection services)
+        where TService : class, IInitializableService
+    {
+        return services.AddSidekickInitializableService<TService, TService>();
     }
 
     /// <summary>

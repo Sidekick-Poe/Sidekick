@@ -87,17 +87,19 @@ namespace Sidekick.Common.Blazor.Initialization
                 // Report initial progress
                 await ReportProgress();
 
-                foreach (var serviceType in Configuration.Value.InitializableServices)
-                {
-                    var service = ServiceProvider.GetRequiredService(serviceType);
-                    if (service is not IInitializableService initializableService)
+                var services = Configuration.Value.InitializableServices.Select(serviceType =>
                     {
-                        continue;
-                    }
+                        var service = ServiceProvider.GetRequiredService(serviceType);
+                        return service as IInitializableService;
+                    })
+                    .Where(x => x != null)
+                    .Select(x => x!)
+                    .OrderBy(x => x.Priority);
 
-                    Logger.LogInformation($"[Initialization] Initializing {initializableService.GetType().FullName}");
-
-                    await initializableService.Initialize();
+                foreach (var service in services)
+                {
+                    Logger.LogInformation($"[Initialization] Initializing {service.GetType().FullName}");
+                    await service.Initialize();
                     Completed += 1;
                     await ReportProgress();
                 }
@@ -141,60 +143,53 @@ namespace Sidekick.Common.Blazor.Initialization
 
         private Task ReportProgress()
         {
-            return InvokeAsync(
-                () =>
+            return InvokeAsync(() =>
+            {
+                Percentage = Count == 0 ? 0 : Completed * 100 / Count;
+                if (Percentage >= 100)
                 {
-                    Percentage = Count == 0 ? 0 : Completed * 100 / Count;
-                    if (Percentage >= 100)
-                    {
-                        Step = Resources.Ready;
-                        Percentage = 100;
-                    }
-                    else
-                    {
-                        Step = Resources.Title(Completed, Count);
-                    }
+                    Step = Resources.Ready;
+                    Percentage = 100;
+                }
+                else
+                {
+                    Step = Resources.Title(Completed, Count);
+                }
 
-                    StateHasChanged();
-                    return Task.Delay(100);
-                });
+                StateHasChanged();
+                return Task.Delay(100);
+            });
         }
 
         private string? GetVersion()
         {
-            return FileVersionInfo.GetVersionInfo(
-                                      GetType()
-                                          .Assembly.Location)
-                                  .ProductVersion;
+            return FileVersionInfo.GetVersionInfo(GetType().Assembly.Location).ProductVersion;
         }
 
         private void InitializeTray()
         {
             var menuItems = new List<TrayMenuItem>();
 
-            menuItems.AddRange(
-                new List<TrayMenuItem>()
-                {
-                    new(label: "Sidekick - " + GetVersion()),
-                    new(
-                        label: "Open Website",
-                        onClick: () =>
-                        {
-                            BrowserProvider.OpenSidekickWebsite();
-                            return Task.CompletedTask;
-                        }),
+            menuItems.AddRange(new List<TrayMenuItem>()
+            {
+                new(label: "Sidekick - " + GetVersion()),
+                new(label: "Open Website",
+                    onClick: () =>
+                    {
+                        BrowserProvider.OpenSidekickWebsite();
+                        return Task.CompletedTask;
+                    }),
 
-                    // new(label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
+                // new(label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
 
-                    new(label: "Settings", onClick: () => ViewLocator.Open("/settings")),
-                    new(
-                        label: "Exit",
-                        onClick: () =>
-                        {
-                            ApplicationService.Shutdown();
-                            return Task.CompletedTask;
-                        }),
-                });
+                new(label: "Settings", onClick: () => ViewLocator.Open("/settings")),
+                new(label: "Exit",
+                    onClick: () =>
+                    {
+                        ApplicationService.Shutdown();
+                        return Task.CompletedTask;
+                    }),
+            });
 
             TrayProvider.Initialize(menuItems);
         }

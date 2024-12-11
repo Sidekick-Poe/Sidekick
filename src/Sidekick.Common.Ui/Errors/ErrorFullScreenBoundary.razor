@@ -23,6 +23,15 @@
                     }
                 </div>
 
+                <div class="hidden mt-1">
+                    <div>
+                        @context.Exception?.Message
+                    </div>
+                    <div>
+                        @((MarkupString)(context.Exception?.StackTrace?.Replace("\n", "<br/>") ?? ""))
+                    </div>
+                </div>
+
                 <div class="flex items-center justify-center">
                     <a href="javascript:" class="bg-white text-red-700 px-8 py-4 m-4" @onclick="CurrentView.Close">Close</a>
                 </div>

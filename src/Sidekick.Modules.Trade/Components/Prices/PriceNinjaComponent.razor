@@ -1,10 +1,10 @@
 @using Sidekick.Apis.PoeNinja
-@using Sidekick.Apis.PoeNinja.Api
 @using Sidekick.Apis.PoeNinja.Models
 @using Sidekick.Common.Browser
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Game.Items.AdditionalInformation;
 @using Sidekick.Modules.Trade.Localization
+@using Sidekick.Common.Game
 @using ApexCharts
 
 @if (Loading)
@@ -44,7 +44,7 @@ else if (Price != null)
     @if (Series != null)
     {
         <div class="py-2">
-            <ApexChart TItem="DataPoint" Options="options">
+            <ApexChart TItem="DataPoint" Options="Options">
                 <ApexPointSeries TItem="DataPoint"
                                  Items="Series"
                                  XValue="(x => x.Index)"
@@ -68,12 +68,17 @@ else if (Price != null)
 
     private NinjaPrice? Price { get; set; }
 
-    private List<DataPoint> Series { get; set; }
-    private ApexChartOptions<DataPoint> options { get; set; }
+    private List<DataPoint>? Series { get; set; }
+    private ApexChartOptions<DataPoint>? Options { get; set; }
 
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
+
+        if (PriceCheckService.Item?.Metadata.Game == GameType.PathOfExile2)
+        {
+            return;
+        }
 
         Loading = true;
         StateHasChanged();
@@ -96,13 +101,13 @@ else if (Price != null)
         if (Price?.SparkLine?.Data.All(x => x.HasValue) == true)
         {
             Series = Price.SparkLine.Data.Select((value, index) => new DataPoint { Index = index, Value = (decimal?)value }).ToList();
-            options = new();
-            options.PlotOptions = new() { Line = new() { IsSlopeChart = true } };
-            options.Tooltip = new() { Enabled = false };
-            options.Chart.Sparkline = new() { Enabled = true };
-            options.Markers = new() { Size = 0 };
-            options.Chart.Height = 40;
-            options.Stroke = new() { Curve = Curve.Smooth, Width = 2, Colors = new() { "#8888ff" } };
+            Options = new();
+            Options.PlotOptions = new() { Line = new() { IsSlopeChart = true } };
+            Options.Tooltip = new() { Enabled = false };
+            Options.Chart.Sparkline = new() { Enabled = true };
+            Options.Markers = new() { Size = 0 };
+            Options.Chart.Height = 40;
+            Options.Stroke = new() { Curve = Curve.Smooth, Width = 2, Colors = new() { "#8888ff" } };
         }
 
         Loading = false;

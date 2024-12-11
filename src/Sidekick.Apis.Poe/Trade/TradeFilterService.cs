@@ -5,19 +5,12 @@ using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Trade
 {
-    public class TradeFilterService : ITradeFilterService
+    public class TradeFilterService
+    (
+        IGameLanguageProvider gameLanguageProvider,
+        FilterResources resources
+    ) : ITradeFilterService
     {
-        private readonly IGameLanguageProvider gameLanguageProvider;
-        private readonly FilterResources resources;
-
-        public TradeFilterService(
-            IGameLanguageProvider gameLanguageProvider,
-            FilterResources resources)
-        {
-            this.gameLanguageProvider = gameLanguageProvider;
-            this.resources = resources;
-        }
-
         public IEnumerable<ModifierFilter> GetModifierFilters(Item item)
         {
             // No filters for divination cards, etc.

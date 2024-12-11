@@ -5,17 +5,30 @@ using System.Diagnostics;
 using System.Security.Principal;
 using System.Text;
 using Microsoft.Extensions.Logging;
-using Sidekick.Common.Initialization;
 using Sidekick.Common.Platform.Windows.DllImport;
 using Sidekick.Common.Platforms.Localization;
 
 namespace Sidekick.Common.Platform.Windows.Processes
 {
-    public class ProcessProvider : IProcessProvider, IDisposable
+    public class ProcessProvider
+    (
+        ILogger<ProcessProvider> logger,
+        IApplicationService applicationService,
+        ISidekickDialogs dialogService,
+        PlatformResources platformResources
+    ) : IProcessProvider, IDisposable
     {
         private const string PATH_OF_EXILE_TITLE = "Path of Exile";
+        private const string PATH_OF_EXILE_2_TITLE = "Path of Exile 2";
         private const string SIDEKICK_TITLE = "Sidekick";
-        private static readonly List<string> PossibleProcessNames = new() { "PathOfExile", "PathOfExile_x64", "PathOfExileSteam", "PathOfExile_x64Steam" };
+
+        private static readonly List<string> PossibleProcessNames = new()
+        {
+            "PathOfExile",
+            "PathOfExile_x64",
+            "PathOfExileSteam",
+            "PathOfExile_x64Steam"
+        };
 
         public string? ClientLogPath
         {
@@ -43,16 +56,16 @@ namespace Sidekick.Common.Platform.Windows.Processes
         private const int TOKEN_ADJUST_DEFAULT = 0x80;
         private const int TOKEN_ALL_ACCESS = STANDARD_RIGHTS_REQUIRED | TOKEN_ASSIGN_PRIMARY | TOKEN_DUPLICATE | TOKEN_IMPERSONATE | TOKEN_QUERY | TOKEN_QUERY_SOURCE | TOKEN_ADJUST_PRIVILEGES | TOKEN_ADJUST_GROUPS | TOKEN_ADJUST_SESSIONID | TOKEN_ADJUST_DEFAULT;
 
-        private readonly ILogger logger;
-        private readonly IApplicationService applicationService;
-        private readonly ISidekickDialogs dialogService;
-        private readonly PlatformResources platformResources;
+        private readonly ILogger logger = logger;
 
         private bool PermissionChecked { get; set; } = false;
+
         private bool HasInitialized { get; set; } = false;
+
         private CancellationTokenSource? WindowsHook { get; set; }
 
         private DateTimeOffset PreviousFocusedWindowAttempt { get; set; }
+
         private string? PreviousFocusedWindow { get; set; }
 
         private string? GetFocusedWindow()
@@ -81,25 +94,20 @@ namespace Sidekick.Common.Platform.Windows.Processes
         }
 
         /// <inheritdoc/>
-        public bool IsPathOfExileInFocus => GetFocusedWindow() == PATH_OF_EXILE_TITLE;
+        public bool IsPathOfExileInFocus
+        {
+            get
+            {
+                var focusedWindow = GetFocusedWindow();
+                return focusedWindow is PATH_OF_EXILE_TITLE or PATH_OF_EXILE_2_TITLE;
+            }
+        }
 
         /// <inheritdoc/>
         public bool IsSidekickInFocus => GetFocusedWindow()?.StartsWith(SIDEKICK_TITLE) ?? false;
 
-        public ProcessProvider(
-            ILogger<ProcessProvider> logger,
-            IApplicationService applicationService,
-            ISidekickDialogs dialogService,
-            PlatformResources platformResources)
-        {
-            this.logger = logger;
-            this.applicationService = applicationService;
-            this.dialogService = dialogService;
-            this.platformResources = platformResources;
-        }
-
         /// <inheritdoc/>
-        public InitializationPriority Priority => InitializationPriority.Low;
+        public int Priority => 0;
 
         /// <inheritdoc/>
         public Task Initialize()
@@ -110,13 +118,26 @@ namespace Sidekick.Common.Platform.Windows.Processes
                 return Task.CompletedTask;
             }
 
-            WindowsHook = EventLoop.Run(WinEvent.EVENT_SYSTEM_FOREGROUND, WinEvent.EVENT_SYSTEM_CAPTURESTART, IntPtr.Zero, OnWindowsEvent, 0, 0, WinEvent.WINEVENT_OUTOFCONTEXT);
+            WindowsHook = EventLoop.Run(WinEvent.EVENT_SYSTEM_FOREGROUND,
+                                        WinEvent.EVENT_SYSTEM_CAPTURESTART,
+                                        IntPtr.Zero,
+                                        OnWindowsEvent,
+                                        0,
+                                        0,
+                                        WinEvent.WINEVENT_OUTOFCONTEXT);
             HasInitialized = true;
 
             return Task.CompletedTask;
         }
 
-        private void OnWindowsEvent(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
+        private void OnWindowsEvent(
+            IntPtr hWinEventHook,
+            uint eventType,
+            IntPtr hwnd,
+            int idObject,
+            int idChild,
+            uint dwEventThread,
+            uint dwmsEventTime)
         {
             if (eventType == WinEvent.EVENT_SYSTEM_MINIMIZEEND || eventType == WinEvent.EVENT_SYSTEM_FOREGROUND)
             {

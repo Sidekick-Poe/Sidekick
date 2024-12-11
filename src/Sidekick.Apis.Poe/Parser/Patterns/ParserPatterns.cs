@@ -1,30 +1,20 @@
 using System.Text.RegularExpressions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
-using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Parser.Patterns
 {
-    public class ParserPatterns : IParserPatterns
+    public class ParserPatterns(IGameLanguageProvider gameLanguageProvider) : IParserPatterns
     {
-        private readonly IGameLanguageProvider gameLanguageProvider;
-
-        public ParserPatterns(IGameLanguageProvider gameLanguageProvider)
-        {
-            this.gameLanguageProvider = gameLanguageProvider;
-        }
-
         /// <inheritdoc/>
-        public InitializationPriority Priority => InitializationPriority.High;
+        public int Priority => 100;
 
         /// <inheritdoc/>
         public Task Initialize()
         {
             InitHeader();
             InitProperties();
-            InitSockets();
             InitInfluences();
-            InitClasses();
 
             return Task.CompletedTask;
         }
@@ -33,11 +23,6 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
 
         private void InitHeader()
         {
-            if (gameLanguageProvider.Language == null)
-            {
-                throw new Exception("[Parser Patterns] Could not find a valid language.");
-            }
-
             Rarity = new Dictionary<Rarity, Regex>
             {
                 { Common.Game.Items.Rarity.Normal, gameLanguageProvider.Language.RarityNormal.ToRegexEndOfLine() },
@@ -67,11 +52,6 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
 
         private void InitProperties()
         {
-            if (gameLanguageProvider.Language == null)
-            {
-                throw new Exception("[Parser Patterns] Could not find a valid language.");
-            }
-
             Armor = gameLanguageProvider.Language.DescriptionArmour.ToRegexIntCapture();
             EnergyShield = gameLanguageProvider.Language.DescriptionEnergyShield.ToRegexIntCapture();
             Evasion = gameLanguageProvider.Language.DescriptionEvasion.ToRegexIntCapture();
@@ -124,32 +104,10 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
 
         #endregion Properties (Armour, Evasion, Energy Shield, Quality, Level)
 
-        #region Sockets
-
-        private void InitSockets()
-        {
-            if (gameLanguageProvider.Language == null)
-            {
-                throw new Exception("[Parser Patterns] Could not find a valid language.");
-            }
-
-            // We need 6 capturing groups as it is possible for a 6 socket unlinked item to exist
-            Socket = new Regex($"{Regex.Escape(gameLanguageProvider.Language.DescriptionSockets)}.*?([-RGBWA]+)\\ ?([-RGBWA]*)\\ ?([-RGBWA]*)\\ ?([-RGBWA]*)\\ ?([-RGBWA]*)\\ ?([-RGBWA]*)");
-        }
-
-        public Regex Socket { get; private set; } = null!;
-
-        #endregion Sockets
-
         #region Influences
 
         private void InitInfluences()
         {
-            if (gameLanguageProvider.Language == null)
-            {
-                throw new Exception("[Parser Patterns] Could not find a valid language.");
-            }
-
             Crusader = gameLanguageProvider.Language.InfluenceCrusader.ToRegexLine();
             Elder = gameLanguageProvider.Language.InfluenceElder.ToRegexLine();
             Hunter = gameLanguageProvider.Language.InfluenceHunter.ToRegexLine();
@@ -166,35 +124,5 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         public Regex Warlord { get; private set; } = null!;
 
         #endregion Influences
-
-        #region Classes
-
-        public Dictionary<Class, Regex> Classes { get; } = new Dictionary<Class, Regex>();
-
-        private void InitClasses()
-        {
-            if (gameLanguageProvider.Language == null)
-            {
-                throw new Exception("[Parser Patterns] Could not find a valid language.");
-            }
-
-            Classes.Clear();
-
-            if (gameLanguageProvider.Language.Classes == null) return;
-
-            var type = gameLanguageProvider.Language.Classes.GetType();
-            var properties = type.GetProperties().Where(x => x.Name != nameof(ClassLanguage.Prefix));
-            var prefix = gameLanguageProvider.Language.Classes.Prefix;
-
-            foreach (var property in properties)
-            {
-                var label = property.GetValue(gameLanguageProvider.Language.Classes)?.ToString();
-                if (string.IsNullOrEmpty(label)) continue;
-
-                Classes.Add(Enum.Parse<Class>(property.Name), new Regex($"^{Regex.Escape(prefix)}:* *{Regex.Escape(label)}$"));
-            }
-        }
-
-        #endregion Classes
     }
 }

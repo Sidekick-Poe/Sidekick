@@ -19,8 +19,4 @@
     <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Game\" />
-  </ItemGroup>
-
 </Project>

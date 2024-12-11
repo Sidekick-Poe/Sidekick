@@ -3,7 +3,6 @@ using System.Text;
 using System.Text.Json;
 using Sidekick.Apis.Poe.Authentication.Models;
 using Sidekick.Common.Browser;
-using Sidekick.Common.Initialization;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
 
@@ -45,13 +44,6 @@ namespace Sidekick.Apis.Poe.Authentication
         private string? Challenge { get; set; }
 
         private TaskCompletionSource? AuthenticateTask { get; set; }
-
-        public InitializationPriority Priority => InitializationPriority.Low;
-
-        public Task Initialize()
-        {
-            return Task.CompletedTask;
-        }
 
         public async Task<AuthenticationState> GetCurrentState()
         {

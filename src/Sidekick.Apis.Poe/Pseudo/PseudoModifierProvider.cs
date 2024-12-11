@@ -3,26 +3,17 @@ using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Apis.Poe.Pseudo.Models;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Pseudo
 {
-    public class PseudoModifierProvider : IPseudoModifierProvider
+    public class PseudoModifierProvider(IInvariantModifierProvider invariantModifierProvider) : IPseudoModifierProvider
     {
         private readonly Regex ParseHashPattern = new("\\#");
-
-        private readonly IInvariantModifierProvider invariantModifierProvider;
-
-        public PseudoModifierProvider(
-            IInvariantModifierProvider invariantModifierProvider)
-        {
-            this.invariantModifierProvider = invariantModifierProvider;
-        }
 
         private List<PseudoDefinition> Definitions { get; } = new();
 
         /// <inheritdoc/>
-        public InitializationPriority Priority => InitializationPriority.Low;
+        public int Priority => 200;
 
         /// <inheritdoc/>
         public async Task Initialize()
