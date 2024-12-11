@@ -47,11 +47,11 @@ namespace Sidekick.Apis.Poe.Metadata
             };
             foreach (var category in categories)
             {
-                FillPattern(result.Result, category.Key, category.Value.Category, category.Value.UseRegex);
+                FillPattern(game, result.Result, category.Key, category.Value.Category, category.Value.UseRegex);
             }
         }
 
-        private void FillPattern(List<ApiCategory> categories, string id, Category category, bool useRegex = false)
+        private void FillPattern(GameType game, List<ApiCategory> categories, string id, Category category, bool useRegex = false)
         {
             var categoryItems = categories.SingleOrDefault(x => x.Id == id);
 
@@ -75,7 +75,7 @@ namespace Sidekick.Apis.Poe.Metadata
                     ApiTypeDiscriminator = item.Discriminator,
                     Rarity = GetRarityForCategory(category, item),
                     Category = category,
-                    Game = GameType.PathOfExile,
+                    Game = game,
                 };
 
                 var key = header.Name ?? header.Type ?? header.ApiType;

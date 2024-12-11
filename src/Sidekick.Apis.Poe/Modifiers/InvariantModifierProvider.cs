@@ -3,9 +3,7 @@ using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Extensions;
-using Sidekick.Common.Game;
 using Sidekick.Common.Game.Languages;
-using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Modifiers;
@@ -45,18 +43,9 @@ public class InvariantModifierProvider
         IncursionRoomModifierIds.Clear();
         foreach (var apiCategory in apiCategories)
         {
-            var first = apiCategory.Entries.FirstOrDefault();
-            if (first
-                    ?.Id.Split('.')[0]
-                != "pseudo")
-            {
-                return;
-            }
+            if (!IsCategory(apiCategory, "pseudo")) { continue; }
 
-            IncursionRoomModifierIds.AddRange(apiCategory
-                                                  .Entries.Where(x => x.Text.StartsWith("Has Room: "))
-                                                  .Select(x => x.Id)
-                                                  .ToList());
+            IncursionRoomModifierIds.AddRange(apiCategory.Entries.Where(x => x.Text.StartsWith("Has Room: ")).Select(x => x.Id).ToList());
         }
     }
 
@@ -65,18 +54,9 @@ public class InvariantModifierProvider
         LogbookFactionModifierIds.Clear();
         foreach (var apiCategory in apiCategories)
         {
-            var first = apiCategory.Entries.FirstOrDefault();
-            if (first
-                    ?.Id.Split('.')[0]
-                != "pseudo")
-            {
-                return;
-            }
+            if (!IsCategory(apiCategory, "pseudo")) { continue; }
 
-            LogbookFactionModifierIds.AddRange(apiCategory
-                                                   .Entries.Where(x => x.Text.StartsWith("Has Logbook Faction: "))
-                                                   .Select(x => x.Id)
-                                                   .ToList());
+            LogbookFactionModifierIds.AddRange(apiCategory.Entries.Where(x => x.Text.StartsWith("Has Logbook Faction: ")).Select(x => x.Id).ToList());
         }
     }
 
@@ -84,13 +64,7 @@ public class InvariantModifierProvider
     {
         foreach (var apiCategory in apiCategories)
         {
-            var first = apiCategory.Entries.FirstOrDefault();
-            if (first
-                    ?.Id.Split('.')[0]
-                != "enchant")
-            {
-                continue;
-            }
+            if (!IsCategory(apiCategory, "enchant")) { continue; }
 
             foreach (var apiModifier in apiCategory.Entries)
             {
@@ -113,6 +87,12 @@ public class InvariantModifierProvider
                 ClusterJewelSmallPassiveGrantOptions = apiModifier.Option.Options.ToDictionary(x => x.Id, x => x.Text!);
             }
         }
+    }
+
+    private bool IsCategory(ApiCategory apiCategory, string? key)
+    {
+        var first = apiCategory.Entries.FirstOrDefault();
+        return first?.Id.Split('.')[0] == key;
     }
 
     public async Task<List<ApiCategory>> GetList()

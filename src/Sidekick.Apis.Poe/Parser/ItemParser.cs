@@ -10,34 +10,17 @@ using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Parser
 {
-    public class ItemParser : IItemParser
+    public class ItemParser
+    (
+        ILogger<ItemParser> logger,
+        IItemMetadataParser itemMetadataProvider,
+        IModifierParser modifierParser,
+        IPseudoModifierProvider pseudoModifierProvider,
+        IParserPatterns patterns,
+        ClusterJewelParser clusterJewelParser,
+        IInvariantMetadataProvider invariantMetadataProvider
+    ) : IItemParser
     {
-        private readonly ILogger<ItemParser> logger;
-        private readonly IItemMetadataParser itemMetadataProvider;
-        private readonly IModifierParser modifierParser;
-        private readonly IPseudoModifierProvider pseudoModifierProvider;
-        private readonly IParserPatterns patterns;
-        private readonly ClusterJewelParser clusterJewelParser;
-        private readonly IInvariantMetadataProvider invariantMetadataProvider;
-
-        public ItemParser(
-            ILogger<ItemParser> logger,
-            IItemMetadataParser itemMetadataProvider,
-            IModifierParser modifierParser,
-            IPseudoModifierProvider pseudoModifierProvider,
-            IParserPatterns patterns,
-            ClusterJewelParser clusterJewelParser,
-            IInvariantMetadataProvider invariantMetadataProvider)
-        {
-            this.logger = logger;
-            this.itemMetadataProvider = itemMetadataProvider;
-            this.modifierParser = modifierParser;
-            this.pseudoModifierProvider = pseudoModifierProvider;
-            this.patterns = patterns;
-            this.clusterJewelParser = clusterJewelParser;
-            this.invariantMetadataProvider = invariantMetadataProvider;
-        }
-
         public Task<Item> ParseItemAsync(string itemText)
         {
             return Task.Run(() => ParseItem(itemText));
@@ -146,11 +129,13 @@ namespace Sidekick.Apis.Poe.Parser
         {
             foreach (var block in parsingItem.Blocks.Where(x => !x.Parsed))
             {
-                if (TryParseValue(patterns.Requirements, block, out var match))
+                if (!TryParseValue(patterns.Requirements, block, out var match))
                 {
-                    block.Parsed = true;
-                    return;
+                    continue;
                 }
+
+                block.Parsed = true;
+                return;
             }
         }
 
@@ -300,15 +285,6 @@ namespace Sidekick.Apis.Poe.Parser
         {
             if (!TryParseValue(patterns.Socket, parsingItem, out var match))
             {
-                var groups = match.Groups.Values
-                    .Where(x => !string.IsNullOrEmpty(x.Value))
-                    .Skip(1)
-                    .Select((x, Index) => new
-                    {
-                        x.Value,
-                        Index,
-                    })
-                    .ToList();
                 return [];
             }
 
@@ -342,10 +318,7 @@ namespace Sidekick.Apis.Poe.Parser
                 }
             }
 
-                return result;
-            }
-
-            return new List<Socket>();
+            return result;
         }
 
         private Influences ParseInfluences(ParsingItem parsingItem)

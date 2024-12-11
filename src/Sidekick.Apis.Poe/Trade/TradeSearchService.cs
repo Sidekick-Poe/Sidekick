@@ -483,7 +483,7 @@ public class TradeSearchService(
             return result
                    .Result.Where(x => x != null)
                    .ToList()
-                   .ConvertAll(x => GetItem(x!));
+                   .ConvertAll(x => GetItem(game, x!));
         }
         catch (Exception ex)
         {
@@ -493,7 +493,7 @@ public class TradeSearchService(
         return new();
     }
 
-    private TradeItem GetItem(Result result)
+    private TradeItem GetItem(GameType game, Result result)
     {
         var metadata = new ItemMetadata()
         {
@@ -503,7 +503,7 @@ public class TradeSearchService(
             Type = result.Item?.TypeLine,
             ApiType = result.Item?.TypeLine,
             Category = Category.Unknown,
-            Game = GameType.PathOfExile,
+            Game = game,
         };
 
         var original = new Header()

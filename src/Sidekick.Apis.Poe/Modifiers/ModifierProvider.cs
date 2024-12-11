@@ -4,20 +4,20 @@ using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Extensions;
-using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
-using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Modifiers;
 
-public class ModifierProvider(
+public class ModifierProvider
+(
     ICacheProvider cacheProvider,
     IPoeTradeClient poeTradeClient,
     IInvariantModifierProvider invariantModifierProvider,
     IGameLanguageProvider gameLanguageProvider,
-    ISettingsService settingsService) : IModifierProvider
+    ISettingsService settingsService
+) : IModifierProvider
 {
     private readonly Regex ParseHashPattern = new("\\#");
     private readonly Regex NewLinePattern = new("(?:\\\\)*[\\r\\n]+");
@@ -39,25 +39,23 @@ public class ModifierProvider(
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_Modifiers";
+        var apiCategories = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.Language, "data/stats"));
 
-        var result = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.Language, "data/stats"));
-        var categories = result.Result;
-
-        foreach (var category in categories)
+        foreach (var apiCategory in apiCategories.Result)
         {
-            if (!category.Entries.Any())
+            if (apiCategory.Entries.Count == 0)
             {
                 continue;
             }
 
-            var modifierCategory = GetModifierCategory(category.Entries[0].Id);
+            var modifierCategory = GetModifierCategory(apiCategory.Entries[0].Id);
             if (modifierCategory == ModifierCategory.Undefined)
             {
                 continue;
             }
 
             var patterns = new List<ModifierPattern>();
-            foreach (var entry in category.Entries)
+            foreach (var entry in apiCategory.Entries)
             {
                 var isOption = entry.Option?.Options.Any() ?? false;
                 if (isOption)
@@ -70,36 +68,21 @@ public class ModifierProvider(
                             continue;
                         }
 
-                        patterns.Add(
-                            new ModifierPattern(
-                                category: modifierCategory,
-                                id: entry.Id,
-                                isOption: entry.Option?.Options?.Any() ?? false,
-                                text: ComputeOptionText(entry.Text, optionText),
-                                fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text, optionText),
-                                pattern: ComputePattern(entry.Text, modifierCategory, optionText))
-                            {
-                                Value = entry.Option?.Options[i].Id,
-                            });
+                        patterns.Add(new ModifierPattern(category: modifierCategory, id: entry.Id, isOption: entry.Option?.Options?.Any() ?? false, text: ComputeOptionText(entry.Text, optionText), fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text, optionText), pattern: ComputePattern(entry.Text, modifierCategory, optionText))
+                        {
+                            Value = entry.Option?.Options[i].Id,
+                        });
                     }
                 }
                 else
                 {
-                    patterns.Add(
-                        new ModifierPattern(
-                            category: modifierCategory,
-                            id: entry.Id,
-                            isOption: entry.Option?.Options?.Any() ?? false,
-                            text: entry.Text,
-                            fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text),
-                            pattern: ComputePattern(entry.Text, modifierCategory)));
+                    patterns.Add(new ModifierPattern(category: modifierCategory, id: entry.Id, isOption: entry.Option?.Options?.Any() ?? false, text: entry.Text, fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text), pattern: ComputePattern(entry.Text, modifierCategory)));
                 }
             }
 
             if (Patterns.ContainsKey(modifierCategory))
             {
-                Patterns[modifierCategory]
-                    .AddRange(patterns);
+                Patterns[modifierCategory].AddRange(patterns);
             }
             else
             {
@@ -110,80 +93,51 @@ public class ModifierProvider(
         }
 
         // Prepare special pseudo patterns
-        var incursionPatterns = Patterns[ModifierCategory.Pseudo]
-                                .Where(x => invariantModifierProvider.IncursionRoomModifierIds.Contains(x.Id))
-                                .ToList();
-        ComputeSpecialPseudoPattern(incursionPatterns);
+        var pseudoPatterns = Patterns.GetValueOrDefault(ModifierCategory.Pseudo) ?? [];
 
-        var logbookPatterns = Patterns[ModifierCategory.Pseudo]
-                              .Where(x => invariantModifierProvider.LogbookFactionModifierIds.Contains(x.Id))
-                              .ToList();
-        ComputeSpecialPseudoPattern(logbookPatterns);
+        var incursionPatterns = pseudoPatterns.Where(x => invariantModifierProvider.IncursionRoomModifierIds.Contains(x.Id)).ToList();
+        ComputeSpecialPseudoPattern(pseudoPatterns, incursionPatterns);
+
+        var logbookPatterns = pseudoPatterns.Where(x => invariantModifierProvider.LogbookFactionModifierIds.Contains(x.Id)).ToList();
+        ComputeSpecialPseudoPattern(pseudoPatterns, logbookPatterns);
     }
 
     /// <inheritdoc/>
-    public ModifierCategory GetModifierCategory(string? apiId)
+    public ModifierCategory GetModifierCategory(string? apiId) => apiId?.Split('.').First() switch
     {
-        return apiId
-            ?.Split('.')
-            .First() switch
-        {
-            "crafted" => ModifierCategory.Crafted,
-            "delve" => ModifierCategory.Delve,
-            "enchant" => ModifierCategory.Enchant,
-            "explicit" => ModifierCategory.Explicit,
-            "fractured" => ModifierCategory.Fractured,
-            "implicit" => ModifierCategory.Implicit,
-            "monster" => ModifierCategory.Monster,
-            "pseudo" => ModifierCategory.Pseudo,
-            "scourge" => ModifierCategory.Scourge,
-            "veiled" => ModifierCategory.Veiled,
-            "crucible" => ModifierCategory.Crucible,
-            _ => ModifierCategory.Undefined,
-        };
-    }
+        "crafted" => ModifierCategory.Crafted,
+        "delve" => ModifierCategory.Delve,
+        "enchant" => ModifierCategory.Enchant,
+        "explicit" => ModifierCategory.Explicit,
+        "fractured" => ModifierCategory.Fractured,
+        "implicit" => ModifierCategory.Implicit,
+        "monster" => ModifierCategory.Monster,
+        "pseudo" => ModifierCategory.Pseudo,
+        "scourge" => ModifierCategory.Scourge,
+        "veiled" => ModifierCategory.Veiled,
+        "crucible" => ModifierCategory.Crucible,
+        _ => ModifierCategory.Undefined,
+    };
 
-    private void ComputeSpecialPseudoPattern(List<ModifierPattern> patterns)
+    private void ComputeSpecialPseudoPattern(List<ModifierPattern> pseudoPatterns, List<ModifierPattern> patterns)
     {
         var specialPatterns = new List<ModifierPattern>();
         foreach (var group in patterns.GroupBy(x => x.Id))
         {
-            var pattern = group
-                          .OrderBy(x => x.Value)
-                          .First();
-            specialPatterns.Add(
-                new ModifierPattern(
-                    category: pattern.Category,
-                    id: pattern.Id,
-                    isOption: pattern.IsOption,
-                    text: pattern.Text,
-                    fuzzyText: ComputeFuzzyText(ModifierCategory.Pseudo, pattern.Text),
-                    pattern: ComputePattern(
-                        pattern
-                            .Text.Split(':', 2)
-                            .Last()
-                            .Trim(),
-                        ModifierCategory.Pseudo))
-                {
-                    OptionText = pattern.OptionText,
-                    Value = pattern.Value,
-                });
+            var pattern = group.OrderBy(x => x.Value).First();
+            specialPatterns.Add(new ModifierPattern(category: pattern.Category, id: pattern.Id, isOption: pattern.IsOption, text: pattern.Text, fuzzyText: ComputeFuzzyText(ModifierCategory.Pseudo, pattern.Text), pattern: ComputePattern(pattern.Text.Split(':', 2).Last().Trim(), ModifierCategory.Pseudo))
+            {
+                OptionText = pattern.OptionText,
+                Value = pattern.Value,
+            });
         }
 
-        var ids = specialPatterns
-                  .Select(x => x.Id)
-                  .Distinct()
-                  .ToList();
-        Patterns[ModifierCategory.Pseudo]
-            .RemoveAll(x => ids.Contains(x.Id));
-        Patterns[ModifierCategory.Pseudo]
-            .AddRange(specialPatterns);
+        var ids = specialPatterns.Select(x => x.Id).Distinct().ToList();
+        pseudoPatterns.RemoveAll(x => ids.Contains(x.Id));
+        pseudoPatterns.AddRange(specialPatterns);
     }
 
-    private Regex ComputePattern(
-        string text,
-        ModifierCategory? category = null,
-        string? optionText = null)
+    private Regex ComputePattern(string text, ModifierCategory? category = null, string? optionText = null)
     {
         // The notes in parentheses are never translated by the game.
         // We should be fine hardcoding them this way.
@@ -222,10 +176,7 @@ public class ModifierProvider(
         return new Regex($"^{patternValue}$", RegexOptions.None);
     }
 
-    private string ComputeFuzzyText(
-        ModifierCategory category,
-        string text,
-        string? optionText = null)
+    private string ComputeFuzzyText(ModifierCategory category, string text, string? optionText = null)
     {
         var fuzzyValue = text;
 
@@ -266,9 +217,7 @@ public class ModifierProvider(
     private string CleanFuzzyText(string text)
     {
         text = CleanFuzzyPattern.Replace(text, string.Empty);
-        return TrimPattern
-               .Replace(text, " ")
-               .Trim();
+        return TrimPattern.Replace(text, " ").Trim();
     }
 
     private void BuildFuzzyDictionary(List<ModifierPattern> patterns)
@@ -280,14 +229,11 @@ public class ModifierProvider(
                 FuzzyDictionary.Add(pattern.FuzzyText, new());
             }
 
-            FuzzyDictionary[pattern.FuzzyText]
-                .Add(pattern);
+            FuzzyDictionary[pattern.FuzzyText].Add(pattern);
         }
     }
 
-    private string ComputeOptionText(
-        string text,
-        string optionText)
+    private string ComputeOptionText(string text, string optionText)
     {
         var optionLines = new List<string>();
         foreach (var optionLine in NewLinePattern.Split(optionText))
@@ -295,19 +241,15 @@ public class ModifierProvider(
             optionLines.Add(ParseHashPattern.Replace(text, optionLine));
         }
 
-        return string
-               .Join('\n', optionLines)
-               .Trim('\r', '\n');
+        return string.Join('\n', optionLines).Trim('\r', '\n');
     }
 
-    public bool IsMatch(
-        string id,
-        string text)
+    public bool IsMatch(string id, string text)
     {
         foreach (var patternGroup in Patterns)
         {
             var pattern = patternGroup.Value.FirstOrDefault(x => x.Id == id);
-            if (pattern != null && pattern.Pattern != null && pattern.Pattern.IsMatch(text))
+            if (pattern != null && pattern.Pattern.IsMatch(text))
             {
                 return true;
             }

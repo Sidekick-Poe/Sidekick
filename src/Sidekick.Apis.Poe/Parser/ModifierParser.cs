@@ -8,18 +8,11 @@ using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Parser
 {
-    public class ModifierParser : IModifierParser
+    public class ModifierParser(IModifierProvider modifierProvider) : IModifierParser
     {
-        private readonly IModifierProvider modifierProvider;
         private readonly Regex CleanFuzzyPattern = new("[-+0-9%#]");
         private readonly Regex TrimPattern = new(@"\s+");
         private readonly Regex CleanOriginalTextPattern = new(" \\((?:implicit|enchant|crafted|veiled|fractured|scourge|crucible)\\)$");
-
-        public ModifierParser(
-            IModifierProvider modifierProvider)
-        {
-            this.modifierProvider = modifierProvider;
-        }
 
         private string CleanFuzzyText(string text)
         {
