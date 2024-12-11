@@ -4,7 +4,7 @@ using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2.Parser;
 
 [Collection(Collections.Poe2Parser)]
-public class BootParsing(ParserFixture fixture)
+public class ArmourParsing(ParserFixture fixture)
 {
     private readonly IItemParser parser = fixture.Parser;
 
