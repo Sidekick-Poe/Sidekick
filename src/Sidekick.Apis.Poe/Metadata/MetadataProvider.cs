@@ -25,6 +25,8 @@ namespace Sidekick.Apis.Poe.Metadata
 
         public List<(Regex Regex, ItemMetadata Item)> NameAndTypeRegex { get; } = new();
 
+        public List<ApiFilterOption> ApiItemCategories { get; set; } = new();
+
         /// <inheritdoc/>
         public int Priority => 100;
 
@@ -49,6 +51,11 @@ namespace Sidekick.Apis.Poe.Metadata
             {
                 FillPattern(game, result.Result, category.Key, category.Value.Category, category.Value.UseRegex);
             }
+
+            // The /filters API endpoint provides all the item categories.
+            var filters = await poeTradeClient.Fetch<ApiFilter>(game, gameLanguageProvider.Language, "data/filters");
+            ApiItemCategories = filters.Result.First(x => x.Id == "type_filters").Filters
+                                              .First(x => x.Id == "category").Option!.Options;
         }
 
         private void FillPattern(GameType game, List<ApiCategory> categories, string id, Category category, bool useRegex = false)
