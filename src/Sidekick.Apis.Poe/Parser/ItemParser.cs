@@ -10,6 +10,7 @@ using Sidekick.Apis.Poe.Parser.AdditionalInformation;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Pseudo;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 
@@ -72,7 +73,7 @@ namespace Sidekick.Apis.Poe.Parser
                 var influences = ParseInfluences(parsingItem);
                 var sockets = socketParser.Parse(parsingItem);
                 var modifierLines = ParseModifiers(parsingItem);
-                var pseudoModifiers = ParsePseudoModifiers(modifierLines);
+                var pseudoModifiers = parsingItem.Metadata.Game == GameType.PathOfExile ? ParsePseudoModifiers(modifierLines) : [];
                 var item = new Item(metadata: metadata,
                                     invariant: invariant,
                                     header: header,
@@ -383,7 +384,6 @@ namespace Sidekick.Apis.Poe.Parser
                 });
 
             return Math.Round(dps * attacksPerSecond, 2);
-
         }
 
         private static bool TrySetAdditionalInformation(Item item, object? additionalInformation)
