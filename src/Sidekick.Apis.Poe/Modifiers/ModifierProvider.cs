@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers.Models;
@@ -20,16 +19,27 @@ public class ModifierProvider
     ISettingsService settingsService
 ) : IModifierProvider
 {
-    private readonly Regex ParseHashPattern = new("\\#");
-    private readonly Regex NewLinePattern = new("(?:\\\\)*[\\r\\n]+");
-    private readonly Regex HashPattern = new("\\\\#");
-    private readonly Regex ParenthesesPattern = new("((?:\\\\\\ )*\\\\\\([^\\(\\)]*\\\\\\))");
-    private readonly Regex CleanFuzzyPattern = new("[-+0-9%#]");
-    private readonly Regex TrimPattern = new(@"\s+");
+    private readonly Regex parseHashPattern = new("\\#");
+
+    /// <summary>
+    /// A regular expression used to extract and process text within square brackets,
+    /// optionally separated by pipes, for parsing modifier patterns within game data.
+    /// </summary>
+    /// <example>
+    /// [ItemRarity|Rarity of Items] => Rarity of Items
+    /// [Spell] => Spell
+    /// </example>
+    private readonly Regex parseSquareBracketPattern = new("\\[.*?\\|?([^\\|\\[\\]]*)\\]");
+
+    private readonly Regex newLinePattern = new("(?:\\\\)*[\\r\\n]+");
+    private readonly Regex hashPattern = new("\\\\#");
+    private readonly Regex parenthesesPattern = new("((?:\\\\\\ )*\\\\\\([^\\(\\)]*\\\\\\))");
+    private readonly Regex cleanFuzzyPattern = new("[-+0-9%#]");
+    private readonly Regex trimPattern = new(@"\s+");
 
     public Dictionary<ModifierCategory, List<ModifierPattern>> Patterns { get; } = new();
 
-    public Dictionary<string, List<ModifierPattern>> FuzzyDictionary { get; } = new();
+    public Dictionary<string, List<ModifierPattern>> FuzzyDictionary { get; private set; } = new();
 
     /// <inheritdoc/>
     public int Priority => 200;
@@ -44,59 +54,16 @@ public class ModifierProvider
 
         foreach (var apiCategory in apiCategories.Result)
         {
-            if (apiCategory.Entries.Count == 0)
-            {
-                continue;
-            }
-
+            var patterns = ComputeCategoryPatterns(apiCategory);
             var modifierCategory = GetModifierCategory(apiCategory.Entries[0].Id);
-            if (modifierCategory == ModifierCategory.Undefined)
+
+            if (!Patterns.TryAdd(modifierCategory, patterns))
             {
-                continue;
+                Patterns[modifierCategory].AddRange(patterns);
             }
-
-            var patterns = new List<ModifierPattern>();
-            foreach (var entry in apiCategory.Entries)
-            {
-                if (entry.Text.EndsWith("to Maximum Lightning Resistance"))
-                {
-                    Debugger.Break();
-                }
-
-                var isOption = entry.Option?.Options.Any() ?? false;
-                if (isOption)
-                {
-                    for (var i = 0; i < entry.Option?.Options.Count; i++)
-                    {
-                        var optionText = entry.Option.Options[i].Text;
-                        if (optionText == null)
-                        {
-                            continue;
-                        }
-
-                        patterns.Add(new ModifierPattern(category: modifierCategory, id: entry.Id, isOption: entry.Option?.Options?.Any() ?? false, text: ComputeOptionText(entry.Text, optionText), fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text, optionText), pattern: ComputePattern(entry.Text, modifierCategory, optionText))
-                        {
-                            Value = entry.Option?.Options[i].Id,
-                        });
-                    }
-                }
-                else
-                {
-                    patterns.Add(new ModifierPattern(category: modifierCategory, id: entry.Id, isOption: entry.Option?.Options?.Any() ?? false, text: entry.Text, fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text), pattern: ComputePattern(entry.Text, modifierCategory)));
-                }
-            }
-
-            if (Patterns.TryGetValue(modifierCategory, out var pattern))
-            {
-                pattern.AddRange(patterns);
-            }
-            else
-            {
-                Patterns.Add(modifierCategory, patterns);
-            }
-
-            BuildFuzzyDictionary(patterns);
         }
+
+        FuzzyDictionary = ComputeFuzzyDictionary(Patterns.SelectMany(x => x.Value));
 
         // Prepare special pseudo patterns
         var pseudoPatterns = Patterns.GetValueOrDefault(ModifierCategory.Pseudo) ?? [];
@@ -106,6 +73,48 @@ public class ModifierProvider
 
         var logbookPatterns = pseudoPatterns.Where(x => invariantModifierProvider.LogbookFactionModifierIds.Contains(x.Id)).ToList();
         ComputeSpecialPseudoPattern(pseudoPatterns, logbookPatterns);
+    }
+
+    private List<ModifierPattern> ComputeCategoryPatterns(ApiCategory apiCategory)
+    {
+        if (apiCategory.Entries.Count == 0)
+        {
+            return [];
+        }
+
+        var modifierCategory = GetModifierCategory(apiCategory.Entries[0].Id);
+        if (modifierCategory == ModifierCategory.Undefined)
+        {
+            return [];
+        }
+
+        var patterns = new List<ModifierPattern>();
+        foreach (var entry in apiCategory.Entries)
+        {
+            var options = entry.Option?.Options ?? [];
+            if (options.Count > 0)
+            {
+                foreach (var option in options)
+                {
+                    var optionText = option.Text;
+                    if (optionText == null)
+                    {
+                        continue;
+                    }
+
+                    patterns.Add(new ModifierPattern(modifierCategory, entry.Id, options.Any(), text: ComputeOptionText(entry.Text, optionText), fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text, optionText), pattern: ComputePattern(entry.Text, modifierCategory, optionText))
+                    {
+                        Value = option.Id,
+                    });
+                }
+            }
+            else
+            {
+                patterns.Add(new ModifierPattern(modifierCategory, entry.Id, options.Any(), entry.Text, fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text), pattern: ComputePattern(entry.Text, modifierCategory)));
+            }
+        }
+
+        return patterns;
     }
 
     /// <inheritdoc/>
@@ -147,6 +156,9 @@ public class ModifierProvider
 
     private Regex ComputePattern(string text, ModifierCategory? category = null, string? optionText = null)
     {
+        text = parseSquareBracketPattern.Replace(text, "$1");
+        if (optionText != null) optionText = parseSquareBracketPattern.Replace(optionText, "$1");
+
         // The notes in parentheses are never translated by the game.
         // We should be fine hardcoding them this way.
         var suffix = category switch
@@ -164,19 +176,19 @@ public class ModifierProvider
         };
 
         var patternValue = Regex.Escape(text);
-        patternValue = ParenthesesPattern.Replace(patternValue, "(?:$1)?");
-        patternValue = NewLinePattern.Replace(patternValue, "\\n");
+        patternValue = parenthesesPattern.Replace(patternValue, "(?:$1)?");
+        patternValue = newLinePattern.Replace(patternValue, "\\n");
 
         if (string.IsNullOrEmpty(optionText))
         {
-            patternValue = HashPattern.Replace(patternValue, "[-+0-9,.]+") + suffix;
+            patternValue = hashPattern.Replace(patternValue, "[-+0-9,.]+") + suffix;
         }
         else
         {
             var optionLines = new List<string>();
-            foreach (var optionLine in NewLinePattern.Split(optionText))
+            foreach (var optionLine in newLinePattern.Split(optionText))
             {
-                optionLines.Add(HashPattern.Replace(patternValue, Regex.Escape(optionLine)) + suffix);
+                optionLines.Add(hashPattern.Replace(patternValue, Regex.Escape(optionLine)) + suffix);
             }
 
             patternValue = string.Join('\n', optionLines);
@@ -187,15 +199,18 @@ public class ModifierProvider
 
     private string ComputeFuzzyText(ModifierCategory category, string text, string? optionText = null)
     {
+        text = parseSquareBracketPattern.Replace(text, "$1");
+        if (optionText != null) optionText = parseSquareBracketPattern.Replace(optionText, "$1");
+
         var fuzzyValue = text;
 
         if (!string.IsNullOrEmpty(optionText))
         {
-            foreach (var optionLine in NewLinePattern.Split(optionText))
+            foreach (var optionLine in newLinePattern.Split(optionText))
             {
-                if (ParseHashPattern.IsMatch(fuzzyValue))
+                if (parseHashPattern.IsMatch(fuzzyValue))
                 {
-                    fuzzyValue = ParseHashPattern.Replace(fuzzyValue, optionLine);
+                    fuzzyValue = parseHashPattern.Replace(fuzzyValue, optionLine);
                 }
                 else
                 {
@@ -226,29 +241,33 @@ public class ModifierProvider
 
     private string CleanFuzzyText(string text)
     {
-        text = CleanFuzzyPattern.Replace(text, string.Empty);
-        return TrimPattern.Replace(text, " ").Trim();
+        text = cleanFuzzyPattern.Replace(text, string.Empty);
+        return trimPattern.Replace(text, " ").Trim();
     }
 
-    private void BuildFuzzyDictionary(List<ModifierPattern> patterns)
+    private Dictionary<string, List<ModifierPattern>> ComputeFuzzyDictionary(IEnumerable<ModifierPattern> patterns)
     {
+        var result = new Dictionary<string, List<ModifierPattern>>();
+
         foreach (var pattern in patterns)
         {
-            if (!FuzzyDictionary.ContainsKey(pattern.FuzzyText))
+            if (!result.ContainsKey(pattern.FuzzyText))
             {
-                FuzzyDictionary.Add(pattern.FuzzyText, new());
+                result.Add(pattern.FuzzyText, new());
             }
 
-            FuzzyDictionary[pattern.FuzzyText].Add(pattern);
+            result[pattern.FuzzyText].Add(pattern);
         }
+
+        return result;
     }
 
     private string ComputeOptionText(string text, string optionText)
     {
         var optionLines = new List<string>();
-        foreach (var optionLine in NewLinePattern.Split(optionText))
+        foreach (var optionLine in newLinePattern.Split(optionText))
         {
-            optionLines.Add(ParseHashPattern.Replace(text, optionLine));
+            optionLines.Add(parseHashPattern.Replace(text, optionLine));
         }
 
         return string.Join('\n', optionLines).Trim('\r', '\n');

@@ -85,4 +85,17 @@ public enum Class
     AfflictionCharms = 901,
     AfflictionTinctures = 902,
     AfflictionCorpses = 903,
+
+    // Temporary values
+    Tinctures = 1001,
+    Corpses = 1002,
+    Crossbows = 1003,
+    Quarterstaves = 1004,
+    Focus = 1005,
+    Charms = 1006,
+    Waystones = 1007,
+    Tablets = 1008,
+    Socketable = 1009,
+    InscribedUltimatum = 1010,
+    TrialCoins = 1011,
 }

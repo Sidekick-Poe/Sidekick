@@ -77,7 +77,7 @@ Right click this item to create this corpse.
 Note: ~price 3 chaos
 ");
 
-            Assert.Equal(Class.AfflictionCorpses, actual.Header.Class);
+            Assert.Equal(Class.Corpses, actual.Header.Class);
             Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
             Assert.Equal(Category.Corpse, actual.Metadata.Category);
             Assert.Equal("Perfect Needle Horror", actual.Metadata.Type);
