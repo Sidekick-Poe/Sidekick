@@ -1,6 +1,6 @@
 namespace Sidekick.Common.Game.Languages.Implementations;
 
-[GameLanguage("Traditional Chinese", "zh")]
+// [GameLanguage("Traditional Chinese", "zh")]
 public class GameLanguageZhTw : IGameLanguage
 {
     public string LanguageCode => "zh";
