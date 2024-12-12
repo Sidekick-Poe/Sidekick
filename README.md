@@ -9,7 +9,7 @@ A Path of Exile companion tool. Price check items, check for dangerous map modif
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/sidekickpoe)
 
 ## Path of Exile 2
-Sidekick does not currently support Path of Exile 2. The development to add support for Path of Exile 2 has begun and we should have a version ready soon.
+Sidekick now supports Path of Exile 2, and of course still supports Path of Exile 1. **Make sure to download the beta version.**
 
 ## Development
 We accept most PR and ideas. If you want a feature included, create an issue and we will discuss it.
