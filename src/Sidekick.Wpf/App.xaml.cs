@@ -41,7 +41,7 @@ namespace Sidekick.Wpf
 
         public App()
         {
-            // DeleteStaticAssets();
+            DeleteStaticAssets();
             ServiceProvider = GetServiceProvider();
             logger = ServiceProvider.GetRequiredService<ILogger<App>>();
             settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
