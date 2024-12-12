@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Sidekick.Apis.Poe.Trade.Requests.Filters
 {
-    internal class WeaponFilter
+    internal class WeaponFilters
     {
         [JsonPropertyName("crit")]
         public SearchFilterValue? CriticalStrikeChance { get; set; }
