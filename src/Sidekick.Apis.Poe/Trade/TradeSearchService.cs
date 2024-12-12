@@ -79,8 +79,9 @@ public class TradeSearchService
             if (propertyFilters != null)
             {
                 query.Filters.TypeFilters.Filters.Category = GetCategoryFilter(propertyFilters.ItemCategory);
-                query.Filters.WeaponFilters = GetWeaponFilters(propertyFilters.Weapon);
-                query.Filters.ArmourFilters = GetArmourFilters(propertyFilters.Armour);
+                query.Filters.EquipmentFilters = GetEquipmentFilters(item, propertyFilters.Weapon);
+                query.Filters.WeaponFilters = GetWeaponFilters(item, propertyFilters.Weapon);
+                query.Filters.ArmourFilters = GetArmourFilters(item, propertyFilters.Armour);
                 query.Filters.MapFilters = GetMapFilters(propertyFilters.Map);
                 query.Filters.MiscFilters = GetMiscFilters(item, propertyFilters.Misc);
             }
@@ -133,8 +134,13 @@ public class TradeSearchService
         return new SearchFilterOption(itemCategory);
     }
 
-    private WeaponFilterGroup? GetWeaponFilters(List<PropertyFilter> propertyFilters)
+    private WeaponFilterGroup? GetWeaponFilters(Item item, List<PropertyFilter> propertyFilters)
     {
+        if (item.Metadata.Game == GameType.PathOfExile2)
+        {
+            return null;
+        }
+
         var filters = new WeaponFilterGroup();
         var hasValue = false;
 
@@ -177,9 +183,14 @@ public class TradeSearchService
         return hasValue ? filters : null;
     }
 
-    private ArmorFilterGroup? GetArmourFilters(List<PropertyFilter> propertyFilters)
+    private ArmourFilterGroup? GetArmourFilters(Item item, List<PropertyFilter> propertyFilters)
     {
-        var filters = new ArmorFilterGroup();
+        if (item.Metadata.Game == GameType.PathOfExile2)
+        {
+            return null;
+        }
+
+        var filters = new ArmourFilterGroup();
         var hasValue = false;
 
         foreach (var propertyFilter in propertyFilters)
@@ -191,6 +202,75 @@ public class TradeSearchService
 
             switch (propertyFilter.Type)
             {
+                case PropertyFilterType.Armour_Armour:
+                    filters.Filters.Armor = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Armour_Block:
+                    filters.Filters.Block = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Armour_EnergyShield:
+                    filters.Filters.EnergyShield = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Armour_Evasion:
+                    filters.Filters.Evasion = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+            }
+        }
+
+        return hasValue ? filters : null;
+    }
+
+    private EquipmentFilterGroup? GetEquipmentFilters(Item item, List<PropertyFilter> propertyFilters)
+    {
+        if (item.Metadata.Game == GameType.PathOfExile)
+        {
+            return null;
+        }
+
+        var filters = new EquipmentFilterGroup();
+        var hasValue = false;
+
+        foreach (var propertyFilter in propertyFilters)
+        {
+            if (!propertyFilter.Enabled == true)
+            {
+                continue;
+            }
+
+            switch (propertyFilter.Type)
+            {
+                case PropertyFilterType.Weapon_PhysicalDps:
+                    filters.Filters.PhysicalDps = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Weapon_ElementalDps:
+                    filters.Filters.ElementalDps = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Weapon_Dps:
+                    filters.Filters.DamagePerSecond = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Weapon_AttacksPerSecond:
+                    filters.Filters.AttacksPerSecond = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Weapon_CriticalStrikeChance:
+                    filters.Filters.CriticalStrikeChance = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
                 case PropertyFilterType.Armour_Armour:
                     filters.Filters.Armor = new SearchFilterValue(propertyFilter);
                     hasValue = true;
@@ -410,7 +490,7 @@ public class TradeSearchService
                     continue;
                 }
 
-                andGroup.Filters.Add(new StatFilter()
+                andGroup.Filters.Add(new StatFilters()
                 {
                     Id = modifier.Id,
                     Value = new SearchFilterValue(filter),
@@ -430,7 +510,7 @@ public class TradeSearchService
 
             foreach (var modifier in modifiers)
             {
-                countGroup.Filters.Add(new StatFilter()
+                countGroup.Filters.Add(new StatFilters()
                 {
                     Id = modifier.Id,
                     Value = new SearchFilterValue(filter),
@@ -468,7 +548,7 @@ public class TradeSearchService
                 continue;
             }
 
-            andGroup.Filters.Add(new StatFilter()
+            andGroup.Filters.Add(new StatFilters()
             {
                 Id = filter.Modifier.Id,
                 Value = new SearchFilterValue(filter),

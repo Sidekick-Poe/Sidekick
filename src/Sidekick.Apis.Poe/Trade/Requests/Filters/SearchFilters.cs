@@ -17,7 +17,10 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
         public WeaponFilterGroup? WeaponFilters { get; set; }
 
         [JsonPropertyName("armour_filters")]
-        public ArmorFilterGroup? ArmourFilters { get; set; }
+        public ArmourFilterGroup? ArmourFilters { get; set; }
+
+        [JsonPropertyName("equipment_filters")]
+        public EquipmentFilterGroup? EquipmentFilters { get; set; }
 
         [JsonPropertyName("socket_filters")]
         public SocketFilterGroup? SocketFilters { get; set; }

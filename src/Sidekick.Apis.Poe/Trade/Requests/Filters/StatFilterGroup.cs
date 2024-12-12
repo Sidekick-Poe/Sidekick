@@ -11,7 +11,7 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
         [JsonPropertyName("type")]
         public string? TypeAsString => Type.GetValueAttribute() ?? StatType.And.GetValueAttribute();
 
-        public List<StatFilter> Filters { get; set; } = new();
+        public List<StatFilters> Filters { get; set; } = new();
 
         public SearchFilterValue? Value { get; set; }
     }
