@@ -77,31 +77,33 @@ namespace Sidekick.Common.Platform.Windows.Processes
                 return PreviousFocusedWindow;
             }
 
-            // Create the variable
-            const int nChar = 256;
-            var ss = new StringBuilder(nChar);
+            try
+            {
+                // Create the variable
+                const int nChar = 256;
+                var ss = new StringBuilder(nChar);
 
-            // Run GetForeGroundWindows and get active window information
-            // assign them into handle pointer variable
-            if (User32.GetWindowText(User32.GetForegroundWindow(), ss, nChar) > 0)
-            {
-                PreviousFocusedWindow = ss.ToString();
-            }
-            else
-            {
-                // Try to get the process name as a fallback
-                try
+                // Run GetForeGroundWindows and get active window information
+                // assign them into handle pointer variable
+                var hWnd = User32.GetForegroundWindow();
+                if (User32.GetWindowText(hWnd, ss, nChar) > 0)
                 {
-                    var hWnd = User32.GetForegroundWindow();
+                    PreviousFocusedWindow = ss.ToString();
+                    logger.LogDebug("[ProcessProvider] Current focused window title: {0}", PreviousFocusedWindow);
+                }
+                else
+                {
+                    // Try to get the process name as a fallback
                     User32.GetWindowThreadProcessId(hWnd, out var processId);
-                    var process = Process.GetProcessById((int)processId);
-                    logger.LogDebug("Fallback to process name: {0}", process.ProcessName);
+                    var process = Process.GetProcessById(processId);
                     PreviousFocusedWindow = process.ProcessName;
+                    logger.LogDebug("[ProcessProvider] Fallback to process name: {0}", PreviousFocusedWindow);
                 }
-                catch (Exception)
-                {
-                    PreviousFocusedWindow = null;
-                }
+            }
+            catch (Exception e)
+            {
+                logger.LogWarning(e,"[ProcessProvider] Failed to grab the focused window: {0}", e.Message);
+                PreviousFocusedWindow = null;
             }
 
             return PreviousFocusedWindow;
@@ -113,8 +115,6 @@ namespace Sidekick.Common.Platform.Windows.Processes
             get
             {
                 var focusedWindow = GetFocusedWindow();
-
-                logger.LogDebug("[ProcessProvider] Current focused window title: {0}", focusedWindow);
                 return focusedWindow is PATH_OF_EXILE_TITLE or PATH_OF_EXILE_2_TITLE;
             }
         }
