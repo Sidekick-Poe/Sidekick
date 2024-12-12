@@ -89,7 +89,19 @@ namespace Sidekick.Common.Platform.Windows.Processes
             }
             else
             {
-                PreviousFocusedWindow = null;
+                // Try to get the process name as a fallback
+                try
+                {
+                    var hWnd = User32.GetForegroundWindow();
+                    User32.GetWindowThreadProcessId(hWnd, out var processId);
+                    var process = Process.GetProcessById((int)processId);
+                    logger.LogDebug("Fallback to process name: {0}", process.ProcessName);
+                    PreviousFocusedWindow = process.ProcessName;
+                }
+                catch (Exception)
+                {
+                    PreviousFocusedWindow = null;
+                }
             }
 
             return PreviousFocusedWindow;
@@ -102,7 +114,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
             {
                 var focusedWindow = GetFocusedWindow();
 
-                // logger.LogDebug("[ProcessProvider] Current focused window title: {0}", focusedWindow);
+                logger.LogDebug("[ProcessProvider] Current focused window title: {0}", focusedWindow);
                 return focusedWindow is PATH_OF_EXILE_TITLE or PATH_OF_EXILE_2_TITLE;
             }
         }
