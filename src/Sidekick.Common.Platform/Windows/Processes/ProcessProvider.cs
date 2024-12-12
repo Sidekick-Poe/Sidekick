@@ -81,7 +81,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
             const int nChar = 256;
             var ss = new StringBuilder(nChar);
 
-            // Run GetForeGroundWindows and get active window informations
+            // Run GetForeGroundWindows and get active window information
             // assign them into handle pointer variable
             if (User32.GetWindowText(User32.GetForegroundWindow(), ss, nChar) > 0)
             {
@@ -102,7 +102,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
             {
                 var focusedWindow = GetFocusedWindow();
 
-                logger.LogDebug("[ProcessProvider] Current focused window title: {0}", focusedWindow);
+                // logger.LogDebug("[ProcessProvider] Current focused window title: {0}", focusedWindow);
                 return focusedWindow is PATH_OF_EXILE_TITLE or PATH_OF_EXILE_2_TITLE;
             }
         }
