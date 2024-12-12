@@ -26,6 +26,8 @@ namespace Sidekick.Common.Platform.Windows.Processes
         {
             "PathOfExile",
             "PathOfExile_x64",
+            "PathOfExile_KG",
+            "PathOfExile_x64_KG",
             "PathOfExileSteam",
             "PathOfExile_x64Steam"
         };
