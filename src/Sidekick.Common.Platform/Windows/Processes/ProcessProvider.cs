@@ -60,9 +60,9 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
         private readonly ILogger logger = logger;
 
-        private bool PermissionChecked { get; set; } = false;
+        private bool PermissionChecked { get; set; }
 
-        private bool HasInitialized { get; set; } = false;
+        private bool HasInitialized { get; set; }
 
         private CancellationTokenSource? WindowsHook { get; set; }
 
@@ -80,13 +80,13 @@ namespace Sidekick.Common.Platform.Windows.Processes
             try
             {
                 // Create the variable
-                const int nChar = 256;
-                var ss = new StringBuilder(nChar);
+                const int NChar = 256;
+                var ss = new StringBuilder(NChar);
 
                 // Run GetForeGroundWindows and get active window information
                 // assign them into handle pointer variable
                 var hWnd = User32.GetForegroundWindow();
-                if (User32.GetWindowText(hWnd, ss, nChar) > 0)
+                if (User32.GetWindowText(hWnd, ss, NChar) > 0)
                 {
                     PreviousFocusedWindow = ss.ToString();
                     logger.LogDebug("[ProcessProvider] Current focused window title: {0}", PreviousFocusedWindow);
@@ -155,24 +155,28 @@ namespace Sidekick.Common.Platform.Windows.Processes
             uint dwEventThread,
             uint dwmsEventTime)
         {
-            if (eventType == WinEvent.EVENT_SYSTEM_MINIMIZEEND || eventType == WinEvent.EVENT_SYSTEM_FOREGROUND)
+            if (eventType != WinEvent.EVENT_SYSTEM_MINIMIZEEND && eventType != WinEvent.EVENT_SYSTEM_FOREGROUND)
             {
-                // If the game is run as administrator, Sidekick also needs administrator privileges.
-                if (!PermissionChecked && IsPathOfExileInFocus)
-                {
-                    Task.Run(async () =>
-                    {
-                        if (!IsUserRunAsAdmin() && IsPathOfExileRunAsAdmin())
-                        {
-                            await RestartAsAdmin();
-                        }
-                    });
-
-                    // Once permission has been checked, we can stop this hook from running.
-                    PermissionChecked = true;
-                    WindowsHook?.Cancel();
-                }
+                return;
             }
+
+            // If the game is run as administrator, Sidekick also needs administrator privileges.
+            if (PermissionChecked || !IsPathOfExileInFocus)
+            {
+                return;
+            }
+
+            Task.Run(async () =>
+            {
+                if (!IsUserRunAsAdmin() && IsPathOfExileRunAsAdmin())
+                {
+                    await RestartAsAdmin();
+                }
+            });
+
+            // Once permission has been checked, we can stop this hook from running.
+            PermissionChecked = true;
+            WindowsHook?.Cancel();
         }
 
         private static Process? GetPathOfExileProcess()
@@ -227,44 +231,46 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
             try
             {
-                User32.GetWindowThreadProcessId(User32.GetForegroundWindow(), out var processID);
-                var proc = Process.GetProcessById(processID);
+                User32.GetWindowThreadProcessId(User32.GetForegroundWindow(), out var processId);
+                var proc = Process.GetProcessById(processId);
 
                 User32.OpenProcessToken(proc.Handle, TOKEN_ALL_ACCESS, out var ph);
-                using (var iden = new WindowsIdentity(ph))
+                using var windowsIdentity = new WindowsIdentity(ph);
+                if (windowsIdentity.Groups != null)
                 {
-                    if (iden.Groups != null)
+                    foreach (var role in windowsIdentity.Groups)
                     {
-                        foreach (var role in iden.Groups)
+                        if (!role.IsValidTargetType(typeof(SecurityIdentifier)))
                         {
-                            if (role.IsValidTargetType(typeof(SecurityIdentifier)))
-                            {
-                                var sid = role as SecurityIdentifier;
-                                if (sid == null)
-                                {
-                                    continue;
-                                }
-
-                                if (sid.IsWellKnown(WellKnownSidType.AccountAdministratorSid) || sid.IsWellKnown(WellKnownSidType.BuiltinAdministratorsSid))
-                                {
-                                    result = true;
-                                    break;
-                                }
-                            }
+                            continue;
                         }
-                    }
 
-                    User32.CloseHandle(ph);
+                        var sid = role as SecurityIdentifier;
+                        if (sid == null)
+                        {
+                            continue;
+                        }
+
+                        if (!sid.IsWellKnown(WellKnownSidType.AccountAdministratorSid) && !sid.IsWellKnown(WellKnownSidType.BuiltinAdministratorsSid))
+                        {
+                            continue;
+                        }
+
+                        result = true;
+                        break;
+                    }
                 }
+
+                User32.CloseHandle(ph);
 
                 return result;
             }
             catch (Exception e)
             {
                 logger.LogWarning(e, e.Message);
+                logger.LogWarning(e,"[ProcessProvider] Failed to determine if Path of Exile is run as admin successfully. We are going to assume that it is at this point.");
+                return true;
             }
-
-            return result;
         }
 
         public void Dispose()
