@@ -89,6 +89,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
                 if (User32.GetWindowText(hWnd, ss, NChar) > 0)
                 {
                     PreviousFocusedWindow = ss.ToString();
+
                     // logger.LogDebug("[ProcessProvider] Current focused window title: {0}", PreviousFocusedWindow);
                 }
                 else
@@ -97,6 +98,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
                     User32.GetWindowThreadProcessId(hWnd, out var processId);
                     var process = Process.GetProcessById(processId);
                     PreviousFocusedWindow = process.ProcessName;
+
                     // logger.LogDebug("[ProcessProvider] Fallback to process name: {0}", PreviousFocusedWindow);
                 }
             }
@@ -202,15 +204,27 @@ namespace Sidekick.Common.Platform.Windows.Processes
 
             try
             {
-                using var p = new Process();
-                p.StartInfo.FileName = "Sidekick.exe";
-                p.StartInfo.UseShellExecute = true;
-                p.StartInfo.Verb = "runas";
-                p.Start();
+                 using var p = new Process();
+                 p.StartInfo = new ProcessStartInfo
+                 {
+                     FileName = "Sidekick.exe",
+                     UseShellExecute = true,
+                     Verb = "runas",
+                     WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory,
+                 };
+
+                 if (p.Start())
+                 {
+                     logger.LogInformation("[ProcessProvider] Restarting application as administrator.");
+                 }
+                 else
+                 {
+                     logger.LogWarning("[ProcessProvider] Failed to start the Sidekick process as admin.");
+                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                logger.LogWarning(e, "This application must be run as administrator.");
+                logger.LogWarning(ex, "[ProcessProvider] Failed to restart the application as administrator.");
             }
             finally
             {

@@ -53,56 +53,49 @@ namespace Sidekick.Wpf
             base.OnStartup(e);
 
             var currentDirectory = Directory.GetCurrentDirectory();
-            var settingDirectory = settingsService.GetString(SettingKeys.CurrentDirectory)
-                                                  .Result;
+            var settingDirectory = settingsService.GetString(SettingKeys.CurrentDirectory).Result;
             if (string.IsNullOrEmpty(settingDirectory) || settingDirectory != currentDirectory)
             {
                 logger.LogDebug("[Startup] Current Directory set to: {0}", currentDirectory);
-                settingsService
-                    .Set(SettingKeys.CurrentDirectory, currentDirectory)
-                    .Wait();
-                settingsService
-                    .Set(SettingKeys.WealthEnabled, false)
-                    .Wait();
+                settingsService.Set(SettingKeys.CurrentDirectory, currentDirectory).Wait();
+                settingsService.Set(SettingKeys.WealthEnabled, false).Wait();
             }
 
+            _ = HandleInterprocessCommunications(e);
+
+            AttachErrorHandlers();
+            interprocessService.StartReceiving();
             var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
+            _ = viewLocator.Open("/");
+        }
+
+        private async Task HandleInterprocessCommunications(StartupEventArgs e)
+        {
+            // Wait a second before starting to listen to interprocess communications.
+            // This is necessary as when we are restarting as admin, the old non-admin instance is still running for a fraction of a second.
+            await Task.Delay(1000);
             if (interprocessService.IsAlreadyRunning())
             {
                 logger.LogDebug("[Startup] Application is already running.");
-                if (e.Args.Length <= 0
-                    || !e
-                        .Args[0]
-                        .ToUpper()
-                        .StartsWith("SIDEKICK://"))
+                if (e.Args.Length <= 0 || !e.Args[0].ToUpper().StartsWith("SIDEKICK://"))
                 {
                     throw new AlreadyRunningException();
                 }
 
-                Task.Run(
-                    async () =>
+                try
+                {
+                    await interprocessService.SendMessage(e.Args[0]);
+                }
+                finally
+                {
+                    logger.LogDebug("[Startup] Application is shutting down due to another instance running.");
+                    Current.Dispatcher.Invoke(() =>
                     {
-                        try
-                        {
-                            await interprocessService.SendMessage(e.Args[0]);
-                        }
-                        finally
-                        {
-                            logger.LogDebug("[Startup] Application is shutting down due to another instance running.");
-                            Current.Dispatcher.Invoke(
-                                () =>
-                                {
-                                    Current.Shutdown();
-                                });
-                            Environment.Exit(0);
-                        }
+                        Current.Shutdown();
                     });
-                return;
+                    Environment.Exit(0);
+                }
             }
-
-            AttachErrorHandlers();
-            interprocessService.StartReceiving();
-            _ = viewLocator.Open("/");
         }
 
         private ServiceProvider GetServiceProvider()
@@ -117,12 +110,11 @@ namespace Sidekick.Wpf
                 .AddSidekickCommon()
                 .AddSidekickCommonBlazor()
                 .AddSidekickCommonDatabase()
-                .AddSidekickCommonPlatform(
-                    o =>
-                    {
-                        o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
-                        o.OsxIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/apple-touch-icon.png");
-                    })
+                .AddSidekickCommonPlatform(o =>
+                {
+                    o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
+                    o.OsxIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/apple-touch-icon.png");
+                })
 
                 // Apis
                 .AddSidekickGitHubApi()
@@ -167,23 +159,17 @@ namespace Sidekick.Wpf
 
         private void AttachErrorHandlers()
         {
-            AppDomain.CurrentDomain.UnhandledException += (
-                _,
-                e) =>
+            AppDomain.CurrentDomain.UnhandledException += (_, e) =>
             {
                 LogException((Exception)e.ExceptionObject);
             };
 
-            DispatcherUnhandledException += (
-                _,
-                e) =>
+            DispatcherUnhandledException += (_, e) =>
             {
                 LogException(e.Exception);
             };
 
-            TaskScheduler.UnobservedTaskException += (
-                _,
-                e) =>
+            TaskScheduler.UnobservedTaskException += (_, e) =>
             {
                 LogException(e.Exception);
             };
@@ -193,9 +179,7 @@ namespace Sidekick.Wpf
         {
             try
             {
-                var directory = Path.GetDirectoryName(
-                    System.Reflection.Assembly.GetEntryAssembly()
-                          ?.Location);
+                var directory = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly()?.Location);
                 if (directory == null)
                 {
                     return;
