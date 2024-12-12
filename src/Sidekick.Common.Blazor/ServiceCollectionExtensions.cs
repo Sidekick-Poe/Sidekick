@@ -25,6 +25,9 @@ namespace Sidekick.Common.Blazor
             services.AddSingleton<ISidekickDialogs, DialogService>();
             services.AddSingleton((sp) => (DialogService)sp.GetRequiredService<ISidekickDialogs>());
 
+            services.AddSidekickModule(typeof(Initialization.Initialization).Assembly);
+            services.AddSidekickModule(typeof(ConfirmationDialog).Assembly);
+
             return services;
         }
     }

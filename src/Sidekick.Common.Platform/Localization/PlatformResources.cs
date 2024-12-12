@@ -1,19 +1,12 @@
 using Microsoft.Extensions.Localization;
 
-namespace Sidekick.Common.Platforms.Localization
+namespace Sidekick.Common.Platform.Localization
 {
-    public class PlatformResources
+    public class PlatformResources(IStringLocalizer<PlatformResources> localizer)
     {
-        private readonly IStringLocalizer<PlatformResources> localizer;
-
-        public PlatformResources(IStringLocalizer<PlatformResources> localizer)
-        {
-            this.localizer = localizer;
-        }
-
         /// <summary>
         /// Error message for when the application is not run as administrator, but the game is.
         /// </summary>
-        public string RestartAsAdminText => localizer["RestartText"];
+        public string RestartAsAdminText => localizer["RestartAsAdminText"];
     }
 }

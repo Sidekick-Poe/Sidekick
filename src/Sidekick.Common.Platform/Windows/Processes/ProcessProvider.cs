@@ -5,8 +5,8 @@ using System.Diagnostics;
 using System.Security.Principal;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using Sidekick.Common.Platform.Localization;
 using Sidekick.Common.Platform.Windows.DllImport;
-using Sidekick.Common.Platforms.Localization;
 
 namespace Sidekick.Common.Platform.Windows.Processes
 {
@@ -89,7 +89,7 @@ namespace Sidekick.Common.Platform.Windows.Processes
                 if (User32.GetWindowText(hWnd, ss, NChar) > 0)
                 {
                     PreviousFocusedWindow = ss.ToString();
-                    logger.LogDebug("[ProcessProvider] Current focused window title: {0}", PreviousFocusedWindow);
+                    // logger.LogDebug("[ProcessProvider] Current focused window title: {0}", PreviousFocusedWindow);
                 }
                 else
                 {
@@ -97,12 +97,12 @@ namespace Sidekick.Common.Platform.Windows.Processes
                     User32.GetWindowThreadProcessId(hWnd, out var processId);
                     var process = Process.GetProcessById(processId);
                     PreviousFocusedWindow = process.ProcessName;
-                    logger.LogDebug("[ProcessProvider] Fallback to process name: {0}", PreviousFocusedWindow);
+                    // logger.LogDebug("[ProcessProvider] Fallback to process name: {0}", PreviousFocusedWindow);
                 }
             }
             catch (Exception e)
             {
-                logger.LogWarning(e,"[ProcessProvider] Failed to grab the focused window: {0}", e.Message);
+                logger.LogWarning(e, "[ProcessProvider] Failed to grab the focused window: {0}", e.Message);
                 PreviousFocusedWindow = null;
             }
 
@@ -228,13 +228,14 @@ namespace Sidekick.Common.Platform.Windows.Processes
         private bool IsPathOfExileRunAsAdmin()
         {
             var result = false;
+            var ph = IntPtr.Zero;
 
             try
             {
                 User32.GetWindowThreadProcessId(User32.GetForegroundWindow(), out var processId);
                 var proc = Process.GetProcessById(processId);
 
-                User32.OpenProcessToken(proc.Handle, TOKEN_ALL_ACCESS, out var ph);
+                User32.OpenProcessToken(proc.Handle, TOKEN_ALL_ACCESS, out ph);
                 using var windowsIdentity = new WindowsIdentity(ph);
                 if (windowsIdentity.Groups != null)
                 {
@@ -268,8 +269,12 @@ namespace Sidekick.Common.Platform.Windows.Processes
             catch (Exception e)
             {
                 logger.LogWarning(e, e.Message);
-                logger.LogWarning(e,"[ProcessProvider] Failed to determine if Path of Exile is run as admin successfully. We are going to assume that it is at this point.");
+                logger.LogWarning(e, "[ProcessProvider] Failed to determine if Path of Exile is run as admin successfully. We are going to assume that it is at this point.");
                 return true;
+            }
+            finally
+            {
+                User32.CloseHandle(ph);
             }
         }
 

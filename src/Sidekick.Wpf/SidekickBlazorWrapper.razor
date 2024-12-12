@@ -6,15 +6,10 @@
     <Sidekick.Common.Blazor.Main />
 }
 
+@inject WpfViewLocator ViewLocator
+@inject IJSRuntime JsRuntime
+
 @code {
-    [Inject]
-    private NavigationManager NavigationManager { get; set; } = null!;
-
-    [Inject]
-    private WpfViewLocator ViewLocator { get; set; } = null!;
-
-    [Inject]
-    private IJSRuntime JSRuntime { get; set; } = null!;
 
     private bool Ready { get; set; }
 
@@ -22,7 +17,7 @@
     {
         if (!string.IsNullOrEmpty(ViewLocator.NextUrl))
         {
-            await JSRuntime.InvokeVoidAsync("eval", $"window.location = '{ViewLocator.NextUrl}'");
+            await JsRuntime.InvokeVoidAsync("eval", $"window.location = '{ViewLocator.NextUrl}'");
             ViewLocator.NextUrl = null;
         }
         else

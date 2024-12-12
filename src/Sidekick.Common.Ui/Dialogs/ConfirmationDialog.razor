@@ -2,6 +2,7 @@
 @using Sidekick.Common.Extensions
 @inherits SidekickView
 
+<AppTitle Title="@null"/>
 <LayoutSimple>
     <TopContent>
         <AppLogo/>
@@ -9,7 +10,8 @@
 
     <ChildContent>
         <AppContainer>
-            <Heading3 Class="mb-3 text-center">@Message.DecodeBase64Url()</Heading3>
+            <Heading3
+                Class="mb-3 text-center">@((MarkupString)(Message.DecodeBase64Url()?.Replace("\\n", "<br />") ?? "Confirmation required"))</Heading3>
         </AppContainer>
     </ChildContent>
     <BottomContent>
