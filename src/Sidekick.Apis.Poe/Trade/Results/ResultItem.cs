@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Sidekick.Common.Converters;
 using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Results
@@ -18,6 +19,7 @@ namespace Sidekick.Apis.Poe.Trade.Results
         public Rarity Rarity { get; set; }
 
         public bool Corrupted { get; set; }
+
         public Scourged Scourged { get; set; } = new Scourged();
 
         public bool Fractured { get; set; }
@@ -75,6 +77,8 @@ namespace Sidekick.Apis.Poe.Trade.Results
 
         public List<ResultSocket> Sockets { get; set; } = new();
 
+        [JsonPropertyName("extended")]
+        [JsonConverter(typeof(ObjectOrArrayConverter<Extended>))]
         public Extended? Extended { get; set; }
 
         public List<LogbookMod> LogbookMods { get; set; } = new();
