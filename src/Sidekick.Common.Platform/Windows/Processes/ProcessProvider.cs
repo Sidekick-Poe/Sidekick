@@ -101,6 +101,8 @@ namespace Sidekick.Common.Platform.Windows.Processes
             get
             {
                 var focusedWindow = GetFocusedWindow();
+
+                logger.LogDebug("[ProcessProvider] Current focused window title: {0}", focusedWindow);
                 return focusedWindow is PATH_OF_EXILE_TITLE or PATH_OF_EXILE_2_TITLE;
             }
         }
