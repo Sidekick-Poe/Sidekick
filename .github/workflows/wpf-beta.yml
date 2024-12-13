@@ -16,23 +16,45 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: GitVersion - Install
-        uses: gittools/actions/gitversion/setup@v0.9.9
-        with:
-          versionSpec: '5.x'
+      - name: Version
+        id: version
+        run: |
+          # Get the current date
+          DATE=$(date +'%Y.%m.%d')
+        
+          # Get the current time (hour-minutes-seconds)
+          TIME=$(date +'%k%M%S' | sed 's/^ //') # Removes leading space for single-digit hours
+        
+          # Get existing tags for the current date
+          TAGS=$(git tag --list "${DATE}.*")
+          
+          # Calculate the next incremental number
+          if [ -z "$TAGS" ]; then
+          NUMBER=1
+          else
+          NUMBER=$(echo "$TAGS" | sed -E "s/${DATE}.//" | sort -n | tail -n1)
+          NUMBER=$((NUMBER + 1))  # Increment without padding
+          fi
+          
+          # Construct the version
+          # VERSION="${DATE}.${NUMBER}"
+          VERSION="${DATE}.${TIME}"
+          echo "Generated version: $VERSION"
+          
+          # Export version as an output
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: GitVersion - Execute
-        id: gitversion
-        uses: gittools/actions/gitversion/execute@v0.9.9
+      - name: Version - Update project files
+        uses: vers-one/dotnet-project-version-updater@v1.7
         with:
-          useConfigFile: true
-          additionalArguments: '/updateprojectfiles'
+          file: "src/**/*.csproj"
+          version: ${{ steps.version.outputs.version }}
 
       - name: Environment - Build Number
         uses: myci-actions/export-env-var@1
         with:
           name: BUILD_NUMBER
-          value: ${{ steps.gitversion.outputs.fullSemVer }}
+          value: ${{ steps.version.outputs.version }}
 
       - name: Environment - Github Token
         uses: myci-actions/export-env-var@1
@@ -60,7 +82,7 @@ jobs:
       - name: Build - Sidekick.Wpf
         shell: pwsh
         run: |
-          $version = "${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.buildMetaData }}"
+          $version = "${{ steps.version.outputs.version }}"
           Write-Output "Version: $version"
 
           # Find MSBuild.
