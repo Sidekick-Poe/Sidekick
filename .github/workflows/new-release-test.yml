@@ -19,14 +19,18 @@ jobs:
         run: |
           # Get the current date
           $DATE = Get-Date -Format "yyyy.M.d"
-          
-          # Get the current time (hour-minutes-seconds without leading zeros)
-          $TIME = (Get-Date -Format "Hms")
-          
-          # Construct the version using DATE and TIME
-          $VERSION = "$DATE.$TIME"
+   
+          # Get the current time
+          $NOW = Get-Date
+   
+          # Calculate the seconds since midnight
+          $MIDNIGHT = $NOW.Date
+          $SECONDS = ($NOW - $MIDNIGHT).TotalSeconds -as [int]
+   
+          # Construct the version using DATE and SECONDS
+          $VERSION = "$DATE.$SECONDS"
           Write-Output "Generated version: $VERSION"
-          
+   
           # Export version as an output
           echo "version=$VERSION" >> $env:GITHUB_OUTPUT
 
