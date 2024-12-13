@@ -86,7 +86,7 @@ namespace Sidekick.Wpf
 
             // Wait a second before starting to listen to interprocess communications.
             // This is necessary as when we are restarting as admin, the old non-admin instance is still running for a fraction of a second.
-            await Task.Delay(1000);
+            await Task.Delay(2000);
             if (interprocessService.IsAlreadyRunning())
             {
                 logger.LogDebug("[Startup] Application is already running.");

@@ -6,7 +6,11 @@ namespace Sidekick.Wpf.Services
     {
         public void Shutdown()
         {
-            System.Windows.Application.Current.Shutdown();
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+            {
+                System.Windows.Application.Current.Shutdown();
+            });
+            Environment.Exit(0);
         }
     }
 }
