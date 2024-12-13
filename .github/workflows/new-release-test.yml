@@ -17,17 +17,17 @@ jobs:
         id: version
         run: |
           # Get the current date
-          DATE=$(date +'%Y.%m.%d')
+          $DATE = Get-Date -Format "yyyy.M.d"
           
-          # Get the current time (hour-minutes-seconds)
-          TIME=$(date +'%k%M%S' | sed 's/^ //') # Removes leading space for single-digit hours
+          # Get the current time (hour-minutes-seconds without leading zeros)
+          $TIME = (Get-Date -Format "Hms")
           
-          # Construct the version
-          VERSION="${DATE}.${TIME}"
-          echo "Generated version: $VERSION"
+          # Construct the version using DATE and TIME
+          $VERSION = "$DATE.$TIME"
+          Write-Output "Generated version: $VERSION"
           
           # Export version as an output
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> $env:GITHUB_OUTPUT
 
       - name: Version - Update project files
         uses: vers-one/dotnet-project-version-updater@v1.7
