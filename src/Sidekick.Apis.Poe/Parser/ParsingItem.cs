@@ -1,6 +1,7 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Parser.Tokenizers;
 using Sidekick.Common.Game.Items;
+using Sidekick.Apis.Poe.Modifiers;
 
 namespace Sidekick.Apis.Poe.Parser
 {
@@ -18,8 +19,8 @@ namespace Sidekick.Apis.Poe.Parser
         public ParsingItem(string text)
         {
             Text = new ItemNameTokenizer().CleanString(text);
-
-            Blocks = text
+            Text = ModifierProvider.RemoveSquareBrackets(Text);
+            Blocks = Text
                 .Split(SeparatorPattern, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => new ParsingBlock(x.Trim('\r', '\n')))
                 .ToList();
