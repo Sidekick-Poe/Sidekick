@@ -7,6 +7,8 @@ public class DialogService(IViewLocator viewLocator) : ISidekickDialogs
 {
     private TaskCompletionSource<bool>? ConfirmationResult { get; set; }
 
+    private TaskCompletionSource<bool>? OkResult { get; set; }
+
     /// <inheritdoc/>
     public Task<bool> OpenConfirmationModal(string message)
     {
@@ -22,6 +24,21 @@ public class DialogService(IViewLocator viewLocator) : ISidekickDialogs
         return ConfirmationResult.Task;
     }
 
+    /// <inheritdoc/>
+    public Task<bool> OpenOkModal(string message)
+    {
+        SetOkResult(false);
+
+        _ = Task.Factory.StartNew(
+            async () =>
+            {
+                await viewLocator.Open($"/dialog/ok/{message.EncodeBase64Url()}");
+            });
+
+        OkResult = new TaskCompletionSource<bool>();
+        return OkResult.Task;
+    }
+
     internal void SetConfirmationResult(bool result)
     {
         if (ConfirmationResult == null)
@@ -31,5 +48,16 @@ public class DialogService(IViewLocator viewLocator) : ISidekickDialogs
 
         ConfirmationResult.SetResult(result);
         ConfirmationResult = null;
+    }
+
+    internal void SetOkResult(bool result)
+    {
+        if (OkResult == null)
+        {
+            return;
+        }
+
+        OkResult.SetResult(result);
+        OkResult = null;
     }
 }

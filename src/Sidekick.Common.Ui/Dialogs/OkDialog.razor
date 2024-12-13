@@ -1,0 +1,42 @@
+@page "/dialog/ok/{message}"
+@using Sidekick.Common.Extensions
+@inherits SidekickView
+
+<AppTitle Title="@null"/>
+<LayoutSimple>
+    <TopContent>
+        <AppLogo/>
+    </TopContent>
+
+    <ChildContent>
+        <AppContainer>
+            <Heading3
+                Class="mb-3 text-center">@((MarkupString)(Message.DecodeBase64Url()?.Replace("\\n", "<br />") ?? ""))</Heading3>
+        </AppContainer>
+    </ChildContent>
+    <BottomContent>
+        <div class="px-3 py-2 flex justify-center gap-2">
+            <ButtonPrimary OnClick="Ok">
+                @Resources["Ok"]
+            </ButtonPrimary>
+        </div>
+    </BottomContent>
+</LayoutSimple>
+
+@inject IStringLocalizer<DialogResources> Resources;
+@inject DialogService Service;
+
+@code {
+
+    [Parameter]
+    public string? Message { get; set; }
+
+    public override SidekickViewType ViewType => SidekickViewType.Modal;
+
+    private async Task Ok()
+    {
+        Service.SetOkResult(true);
+        await CurrentView.Close();
+    }
+
+}
