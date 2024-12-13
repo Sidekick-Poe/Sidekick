@@ -36,7 +36,7 @@ namespace Sidekick.Common.Platform.Interprocess
                         }
                         catch (Exception e)
                         {
-                            logger.LogError(e, "[Interprocess] Failed to listen for messages. Watingn");
+                            logger.LogError(e, "[Interprocess] Failed to listen for messages. Waiting 30 seconds before trying again.");
                         }
 
                         await Task.Delay(TimeSpan.FromSeconds(30));
