@@ -11,7 +11,6 @@ using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Database;
-using Sidekick.Common.Exceptions;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
@@ -71,17 +70,9 @@ namespace Sidekick.Wpf
 
         private async Task HandleInterprocessCommunications(StartupEventArgs e)
         {
-            // Wait a second before starting to listen to interprocess communications.
-            // This is necessary as when we are restarting as admin, the old non-admin instance is still running for a fraction of a second.
-            await Task.Delay(1000);
-            if (interprocessService.IsAlreadyRunning())
+            if (HasApplicationStartedUsingSidekickProtocol(e) && interprocessService.IsAlreadyRunning())
             {
-                logger.LogDebug("[Startup] Application is already running.");
-                if (e.Args.Length <= 0 || !e.Args[0].ToUpper().StartsWith("SIDEKICK://"))
-                {
-                    throw new AlreadyRunningException();
-                }
-
+                // If we reach here, that means the application was started using a sidekick:// link. We send a message to the already running instance in this case and close this new instance after.
                 try
                 {
                     await interprocessService.SendMessage(e.Args[0]);
@@ -89,13 +80,37 @@ namespace Sidekick.Wpf
                 finally
                 {
                     logger.LogDebug("[Startup] Application is shutting down due to another instance running.");
-                    Current.Dispatcher.Invoke(() =>
-                    {
-                        Current.Shutdown();
-                    });
-                    Environment.Exit(0);
+                    ShutdownAndExit();
                 }
             }
+
+            // Wait a second before starting to listen to interprocess communications.
+            // This is necessary as when we are restarting as admin, the old non-admin instance is still running for a fraction of a second.
+            await Task.Delay(1000);
+            if (interprocessService.IsAlreadyRunning())
+            {
+                logger.LogDebug("[Startup] Application is already running.");
+                var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
+                await viewLocator.CloseAll();
+                var sidekickDialogs = ServiceProvider.GetRequiredService<ISidekickDialogs>();
+                await sidekickDialogs.OpenOkModal("Another instance of Sidekick is already running. Make sure to close all instances of Sidekick inside the Task Manager.");
+                logger.LogDebug("[Startup] Application is shutting down due to another instance running.");
+                ShutdownAndExit();
+            }
+        }
+
+        private bool HasApplicationStartedUsingSidekickProtocol(StartupEventArgs e)
+        {
+            return e.Args.Length > 0 && e.Args[0].ToUpper().StartsWith("SIDEKICK://");
+        }
+
+        private void ShutdownAndExit()
+        {
+            Current.Dispatcher.Invoke(() =>
+            {
+                Current.Shutdown();
+            });
+            Environment.Exit(0);
         }
 
         private ServiceProvider GetServiceProvider()
