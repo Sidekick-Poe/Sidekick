@@ -1,0 +1,68 @@
+name: Test new flow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  wpf-release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Git - Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Version
+        id: version
+        run: |
+          # Get the current date
+          DATE=$(date +'%Y.%m.%d')
+          
+          # Get the current time (hour-minutes-seconds)
+          TIME=$(date +'%k%M%S' | sed 's/^ //') # Removes leading space for single-digit hours
+          
+          # Get existing tags for the current date
+          TAGS=$(git tag --list "${DATE}.*")
+          
+          # Calculate the next incremental number
+          if [ -z "$TAGS" ]; then
+          NUMBER=1
+          else
+          NUMBER=$(echo "$TAGS" | sed -E "s/${DATE}.//" | sort -n | tail -n1)
+          NUMBER=$((NUMBER + 1))  # Increment without padding
+          fi
+          
+          # Construct the version
+          # VERSION="${DATE}.${NUMBER}"
+          VERSION="${DATE}.${TIME}"
+          echo "Generated version: $VERSION"
+          
+          # Export version as an output
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Version - Update project files
+        uses: vers-one/dotnet-project-version-updater@v1.7
+        with:
+          file: "src/**/*.csproj"
+          version: ${{ steps.version.outputs.version }}
+
+      - name: Release - Notes
+        uses: release-drafter/release-drafter@v6
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          name: 'Release v${{ steps.version.outputs.version }}'
+          tag: 'v${{ steps.version.outputs.version }}'
+          version: 'v${{ steps.version.outputs.version }}'
+          publish: false
+          prerelease: false
+
+      - name: Release - Asset
+        uses: xresloader/upload-to-github-release@v1.3.4
+        with:
+          file: 'download-instructions.txt'
+          tag_name: 'v${{ steps.version.outputs.version }}'
+          draft: true
+          verbose: true
+          overwrite: true
