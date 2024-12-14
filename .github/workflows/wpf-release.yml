@@ -47,7 +47,7 @@ jobs:
           name: GITHUB_TOKEN
           value: ${{ github.token }}
 
-      - name: Release Notes
+      - name: Release - Notes
         uses: release-drafter/release-drafter@v6
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -57,6 +57,15 @@ jobs:
           version: 'v${{ steps.version.outputs.version }}'
           publish: false
           prerelease: false
+
+      - name: Release - Asset
+        uses: xresloader/upload-to-github-release@v1.3.4
+        with:
+          file: 'download-instructions.txt'
+          tag_name: 'v${{ steps.version.outputs.version }}'
+          draft: true
+          verbose: true
+          overwrite: true
 
       - name: .NET - Setup
         uses: actions/setup-dotnet@v1
@@ -130,3 +139,23 @@ jobs:
           } finally {
               Pop-Location
           }
+
+      - name: Archive - Zip Published Files
+        shell: pwsh
+        run: |
+          $publishPath = "src/Sidekick.Wpf/bin/publish/Sidekick.application"
+          $zipFilePath = "Sidekick_v${{ steps.version.outputs.version }}.zip"
+          if (Test-Path -Path $zipFilePath) {
+              Remove-Item -Path $zipFilePath -Force
+          }
+          Compress-Archive -Path $publishPath\* -DestinationPath $zipFilePath
+          Write-Host "Files zipped successfully to $zipFilePath"
+
+      - name: Release - Zip
+        uses: xresloader/upload-to-github-release@v1.3.4
+        with:
+          file: 'Sidekick_v${{ steps.version.outputs.version }}.zip'
+          tag_name: 'v${{ steps.version.outputs.version }}'
+          draft: true
+          verbose: true
+          overwrite: true
