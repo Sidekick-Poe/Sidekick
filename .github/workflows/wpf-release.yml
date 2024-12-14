@@ -138,7 +138,7 @@ jobs:
           Write-Output "Version: $version"
       
           # Define the publish path
-          $publishPath = "src/Sidekick.Wpf/bin/zip-publish"
+          $publishPath = "bin/zip-publish"
       
           # Remove existing files if the folder exists
           if (Test-Path -Path $publishPath) {
@@ -157,12 +157,16 @@ jobs:
           -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe `
           -prerelease | Select-Object -First 1
       
+          Push-Location "src/Sidekick.Wpf"
+      
           # Run the build command with a self-contained mode
-          & $msBuildPath src/Sidekick.Wpf/Sidekick.Wpf.csproj `
+          & $msBuildPath Sidekick.Wpf.csproj `
           /target:Publish `
           /property:PublishDir=$publishPath\ `
           /property:SelfContained=true `
           /property:ApplicationVersion=$version
+      
+          Pop-Location
 
       - name: Zip - Archive
         shell: pwsh
