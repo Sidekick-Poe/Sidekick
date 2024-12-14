@@ -61,6 +61,7 @@ namespace Sidekick.Wpf
             }
 
             _ = HandleInterprocessCommunications(e);
+            _ = DownloadGitHubDownloadIndicatorFile();
 
             AttachErrorHandlers();
             interprocessService.StartReceiving();
@@ -102,6 +103,13 @@ namespace Sidekick.Wpf
         private bool HasApplicationStartedUsingSidekickProtocol(StartupEventArgs e)
         {
             return e.Args.Length > 0 && e.Args[0].ToUpper().StartsWith("SIDEKICK://");
+        }
+
+        private async Task DownloadGitHubDownloadIndicatorFile()
+        {
+            await Task.Delay(10000);
+            var client = ServiceProvider.GetRequiredService<IGitHubClient>();
+            await client.DownloadGitHubDownloadIndicatorFile();
         }
 
         private void ShutdownAndExit()

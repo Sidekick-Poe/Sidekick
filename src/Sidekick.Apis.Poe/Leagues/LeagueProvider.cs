@@ -1,5 +1,7 @@
+using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Languages;
 
@@ -8,8 +10,11 @@ namespace Sidekick.Apis.Poe.Leagues;
 public class LeagueProvider(
     ICacheProvider cacheProvider,
     IPoeTradeClient poeTradeClient,
-    IGameLanguageProvider gameLanguageProvider) : ILeagueProvider
+    IGameLanguageProvider gameLanguageProvider,
+    ILogger<LeagueProvider> logger) : ILeagueProvider
 {
+    private readonly ILogger logger = logger;
+
     public async Task<List<League>> GetList(bool fromCache)
     {
         if (fromCache)
@@ -17,9 +22,17 @@ public class LeagueProvider(
             return await cacheProvider.GetOrSet("Leagues", FetchAll);
         }
 
-        var result = await FetchAll();
-        await cacheProvider.Set("Leagues", result);
-        return result;
+        try
+        {
+            var result = await FetchAll();
+            await cacheProvider.Set("Leagues", result);
+            return result;
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "[LeagueProvider] Error fetching leagues.");
+            throw new ApiErrorException("Failed to load league data.");
+        }
     }
 
     private async Task<List<League>> FetchAll()

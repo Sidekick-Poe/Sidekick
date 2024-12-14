@@ -10,13 +10,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution", "_Solution", "{
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		CONTRIBUTING.md = CONTRIBUTING.md
-		GitVersion.yml = GitVersion.yml
 		LICENSE = LICENSE
 		README.md = README.md
-		.github\workflows\release-notes.yml = .github\workflows\release-notes.yml
 		.github\workflows\tests.yml = .github\workflows\tests.yml
 		.github\workflows\wpf-beta.yml = .github\workflows\wpf-beta.yml
 		.github\workflows\wpf-release.yml = .github\workflows\wpf-release.yml
+		download-instructions.txt = download-instructions.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}"
