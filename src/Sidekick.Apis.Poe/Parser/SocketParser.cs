@@ -11,11 +11,6 @@ public class SocketParser(IGameLanguageProvider gameLanguageProvider) : IInitial
 
     public Task Initialize()
     {
-        if (gameLanguageProvider.Language == null)
-        {
-            throw new Exception("[Parser Patterns] Could not find a valid language.");
-        }
-
         // We need 6 capturing groups as it is possible for a 6 socket unlinked item to exist
         Pattern = new Regex($"{Regex.Escape(gameLanguageProvider.Language.DescriptionSockets)}.*?([-RGBWAS]+)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)");
 
