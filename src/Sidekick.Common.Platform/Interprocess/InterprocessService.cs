@@ -9,8 +9,8 @@ namespace Sidekick.Common.Platform.Interprocess
         private readonly ILogger<InterprocessService> logger;
         private const string APPLICATION_PROCESS_GUID = "93c46709-7db2-4334-8aa3-28d473e66041";
 
-        private readonly Mutex mutex;
-        private readonly bool isMainInstance;
+        private Mutex? mutex;
+        private bool isMainInstance;
 
         public event Action<string>? OnMessageReceived;
 
@@ -18,30 +18,28 @@ namespace Sidekick.Common.Platform.Interprocess
         {
             this.logger = logger;
             InterprocessMessaging.OnMessageReceived += InterprocessMessaging_OnMessageReceived;
-            mutex = new Mutex(true, APPLICATION_PROCESS_GUID, out isMainInstance);
         }
 
         public void StartReceiving()
         {
-            Task.Run(
-                async () =>
+            Task.Run(async () =>
+            {
+                while (true)
                 {
-                    while (true)
+                    try
                     {
-                        try
-                        {
-                            using var pipeServer = new PipeServer<InterprocessMessaging>(new NetJsonPipeSerializer(), InterprocessMessaging.Pipename, () => new InterprocessMessaging());
-                            await pipeServer.WaitForConnectionAsync();
-                            await pipeServer.WaitForRemotePipeCloseAsync();
-                        }
-                        catch (Exception e)
-                        {
-                            logger.LogError(e, "[Interprocess] Failed to listen for messages. Waiting 30 seconds before trying again.");
-                        }
-
-                        await Task.Delay(TimeSpan.FromSeconds(30));
+                        using var pipeServer = new PipeServer<InterprocessMessaging>(new NetJsonPipeSerializer(), InterprocessMessaging.Pipename, () => new InterprocessMessaging());
+                        await pipeServer.WaitForConnectionAsync();
+                        await pipeServer.WaitForRemotePipeCloseAsync();
                     }
-                });
+                    catch (Exception e)
+                    {
+                        logger.LogError(e, "[Interprocess] Failed to listen for messages. Waiting 30 seconds before trying again.");
+                    }
+
+                    await Task.Delay(TimeSpan.FromSeconds(30));
+                }
+            });
         }
 
         public async Task SendMessage(string message)
@@ -53,7 +51,11 @@ namespace Sidekick.Common.Platform.Interprocess
             logger.LogDebug("[Interprocess] Message sent.");
         }
 
-        public bool IsAlreadyRunning() => !isMainInstance;
+        public bool IsAlreadyRunning()
+        {
+            mutex ??= new Mutex(true, APPLICATION_PROCESS_GUID, out isMainInstance);
+            return !isMainInstance;
+        }
 
         private void InterprocessMessaging_OnMessageReceived(string message)
         {
