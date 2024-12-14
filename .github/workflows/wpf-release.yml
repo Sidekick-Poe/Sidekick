@@ -20,7 +20,7 @@ jobs:
           $DATE = Get-Date -Format "yyyy.M.d"
 
           # Get the current time in hours and minutes (24-hour format)
-          $TIME = Get-Date -Format "HHmm"
+          $TIME = Get-Date -Format "Hmm"
 
           # Construct the version using DATE and TIME
           $VERSION = "$DATE.$TIME"
