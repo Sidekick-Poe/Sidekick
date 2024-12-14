@@ -8,6 +8,12 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
         And,
 
         [EnumValue("count")]
-        Count
+        Count,
+
+        [EnumValue("not")]
+        Not,
+
+        [EnumValue("if")]
+        If
     }
 }

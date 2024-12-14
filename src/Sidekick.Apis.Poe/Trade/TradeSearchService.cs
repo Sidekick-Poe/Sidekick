@@ -39,6 +39,7 @@ public class TradeSearchService
 
             var hasTypeDiscriminator = !string.IsNullOrEmpty(item.Metadata.ApiTypeDiscriminator);
             var query = new Query();
+            
             if (hasTypeDiscriminator)
             {
                 query.Type = new TypeDiscriminator()
@@ -52,7 +53,15 @@ public class TradeSearchService
                 query.Type = item.Metadata.ApiType;
             }
 
-            query.Filters.TradeFilters.Filters.Price.Option = currency.GetValueAttribute();
+            if (item.Metadata.Rarity != Rarity.Unique)
+            {
+                query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("nonunique");
+            }
+
+            if (!string.IsNullOrEmpty(currency.GetValueAttribute()))
+            {
+                query.Filters.TradeFilters.Filters.Price.Option = currency.GetValueAttribute();
+            }
 
             if (item.Metadata.Category == Category.ItemisedMonster)
             {
@@ -67,14 +76,22 @@ public class TradeSearchService
                 query.Name = item.Metadata.Name;
                 query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("Unique");
             }
-            else
-            {
-                query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("nonunique");
-            }
 
-            SetModifierFilters(query.Stats, modifierFilters);
-            SetPseudoModifierFilters(query.Stats, pseudoFilters);
-            SetSocketFilters(item, query.Filters);
+            // Set stats
+            query.Stats = modifierFilters?.Where(x => x.Enabled == true)
+                .Select(x => new StatFilterGroup 
+                { 
+                    Type = StatType.And,
+                    Filters = new List<StatFilters> 
+                    {
+                        new() 
+                        {
+                            Id = x.Line.Modifiers[0].Id,
+                            Value = new SearchFilterValue(x)
+                        }
+                    }
+                })
+                .ToList();
 
             if (propertyFilters != null)
             {
@@ -88,13 +105,8 @@ public class TradeSearchService
 
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             var uri = new Uri($"{gameLanguageProvider.Language.GetTradeApiBaseUrl(item.Metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
-
-            var json = JsonSerializer.Serialize(new QueryRequest()
-                                                {
-                                                    Query = query,
-                                                },
-                                                poeTradeClient.Options);
-
+            
+            var json = JsonSerializer.Serialize(new QueryRequest() { Query = query }, poeTradeClient.Options);
             var body = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await poeTradeClient.HttpClient.PostAsync(uri, body);
 
