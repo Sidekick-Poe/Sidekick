@@ -41,7 +41,6 @@
     protected override async Task OnInitializedAsync()
     {
         Release = await GitHubClient.GetLatestRelease();
-        await GitHubClient.DownloadGitHubDownloadIndicatorFile();
 
         if (Debugger.IsAttached)
         {

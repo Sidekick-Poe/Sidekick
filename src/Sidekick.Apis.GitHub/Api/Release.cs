@@ -22,7 +22,7 @@ internal record Release
                 return null;
             }
 
-            return new Version(Regex.Match(Tag, @"(\d+\.){2}\d+").ToString());
+            return new Version(Regex.Match(Tag, @"(\d+\.)*\d+").ToString());
         }
     }
 

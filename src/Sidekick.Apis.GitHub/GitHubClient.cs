@@ -22,21 +22,31 @@ public class GitHubClient(
     public async Task DownloadGitHubDownloadIndicatorFile()
     {
         var version = GetCurrentVersion();
-        if (version == null || HasIndicatorFile(version))
+        if (version == null)
         {
+            logger.LogInformation("[GitHubClient] Could not get current version.");
             return;
         }
 
+        if (HasIndicatorFile(version))
+        {
+            logger.LogInformation("[GitHubClient] GitHub download indicator file already exists.");
+            return;
+        }
+
+        logger.LogInformation("[GitHubClient] Checking for GitHub download indicator file.");
         var apiReleases = await GetApiReleases();
         var apiRelease = apiReleases?.FirstOrDefault(x => x.Version == version);
         if (apiRelease == null)
         {
+            logger.LogInformation("[GitHubClient] Could not find GitHub release for current version.");
             return;
         }
 
         var downloadUrl = apiRelease.Assets?.FirstOrDefault(x => x.Name == "download-instructions.txt")?.DownloadUrl;
         if (string.IsNullOrEmpty(downloadUrl))
         {
+            logger.LogInformation("[GitHubClient] Could not find download indicator file for current version on GitHub.");
             return;
         }
 
@@ -49,6 +59,8 @@ public class GitHubClient(
             FileAccess.Write,
             FileShare.None);
         await downloadStream.CopyToAsync(fileStream);
+
+        logger.LogInformation("[GitHubClient] Downloaded indicator file for current version on GitHub.");
     }
 
     /// <inheritdoc />
@@ -174,6 +186,7 @@ public class GitHubClient(
 
     private Version? GetCurrentVersion()
     {
+        return new Version("3.0.8");
         return AppDomain
             .CurrentDomain.GetAssemblies()
             .FirstOrDefault(x => x.FullName?.Contains("Sidekick") ?? false)
