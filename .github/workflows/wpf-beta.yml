@@ -16,23 +16,33 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: GitVersion - Install
-        uses: gittools/actions/gitversion/setup@v0.9.9
-        with:
-          versionSpec: '5.x'
+      - name: Version
+        id: version
+        run: |
+          # Get the current date
+          $DATE = Get-Date -Format "yyyy.M.d"
 
-      - name: GitVersion - Execute
-        id: gitversion
-        uses: gittools/actions/gitversion/execute@v0.9.9
+          # Get the current time in hours and minutes (24-hour format)
+          $TIME = Get-Date -Format "Hmm"
+
+          # Construct the version using DATE and TIME
+          $VERSION = "$DATE.$TIME"
+          Write-Output "Generated version: $VERSION"
+
+          # Export version as an output
+          echo "version=$VERSION" >> $env:GITHUB_OUTPUT
+
+      - name: Version - Update project files
+        uses: vers-one/dotnet-project-version-updater@v1.7
         with:
-          useConfigFile: true
-          additionalArguments: '/updateprojectfiles'
+          file: "src/**/*.csproj"
+          version: ${{ steps.version.outputs.version }}
 
       - name: Environment - Build Number
         uses: myci-actions/export-env-var@1
         with:
           name: BUILD_NUMBER
-          value: ${{ steps.gitversion.outputs.fullSemVer }}
+          value: ${{ steps.version.outputs.version }}
 
       - name: Environment - Github Token
         uses: myci-actions/export-env-var@1
@@ -60,7 +70,7 @@ jobs:
       - name: Build - Sidekick.Wpf
         shell: pwsh
         run: |
-          $version = "${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.buildMetaData }}"
+          $version = "${{ steps.version.outputs.version }}"
           Write-Output "Version: $version"
 
           # Find MSBuild.

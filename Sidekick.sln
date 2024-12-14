@@ -10,14 +10,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution", "_Solution", "{
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		CONTRIBUTING.md = CONTRIBUTING.md
-		.github\workflows\electron-release.yml = .github\workflows\electron-release.yml
-		GitVersion.yml = GitVersion.yml
 		LICENSE = LICENSE
 		README.md = README.md
-		.github\workflows\release-notes.yml = .github\workflows\release-notes.yml
 		.github\workflows\tests.yml = .github\workflows\tests.yml
 		.github\workflows\wpf-beta.yml = .github\workflows\wpf-beta.yml
 		.github\workflows\wpf-release.yml = .github\workflows\wpf-release.yml
+		download-instructions.txt = download-instructions.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}"
@@ -61,8 +59,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Apis.PoeWiki", "src\Sidekick.Apis.PoeWiki\Sidekick.Apis.PoeWiki.csproj", "{4DAA5492-5947-4BDF-8857-67A633F94672}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Wpf", "src\Sidekick.Wpf\Sidekick.Wpf.csproj", "{0E8A5165-AFEE-42BB-9C96-EA288F613BDE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Electron", "src\Sidekick.Electron\Sidekick.Electron.csproj", "{F419682F-0794-4C39-9819-3A9BB5DB1C2A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Web", "src\Sidekick.Web\Sidekick.Web.csproj", "{9668241B-2FDC-46A6-9440-C4AE4B9AE39B}"
 EndProject
@@ -148,10 +144,6 @@ Global
 		{0E8A5165-AFEE-42BB-9C96-EA288F613BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E8A5165-AFEE-42BB-9C96-EA288F613BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E8A5165-AFEE-42BB-9C96-EA288F613BDE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F419682F-0794-4C39-9819-3A9BB5DB1C2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F419682F-0794-4C39-9819-3A9BB5DB1C2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F419682F-0794-4C39-9819-3A9BB5DB1C2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F419682F-0794-4C39-9819-3A9BB5DB1C2A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9668241B-2FDC-46A6-9440-C4AE4B9AE39B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9668241B-2FDC-46A6-9440-C4AE4B9AE39B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9668241B-2FDC-46A6-9440-C4AE4B9AE39B}.Release|Any CPU.ActiveCfg = Release|Any CPU
