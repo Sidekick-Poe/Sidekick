@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,6 +44,7 @@ public partial class MainWindow : IDisposable
         Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
         Opacity = 0.01;
 
+        CenterOnScreen();
         Activate();
     }
 
@@ -66,13 +68,12 @@ public partial class MainWindow : IDisposable
 
         try
         {
-            await viewLocator.CacheProvider.Set(
-                $"view_preference_{SidekickView?.CurrentView.Key}",
-                new ViewPreferences()
-                {
-                    Width = (int)ActualWidth,
-                    Height = (int)ActualHeight,
-                });
+            await viewLocator.CacheProvider.Set($"view_preference_{SidekickView?.CurrentView.Key}",
+                                                new ViewPreferences()
+                                                {
+                                                    Width = (int)ActualWidth,
+                                                    Height = (int)ActualHeight,
+                                                });
         }
         catch (Exception)
         {
@@ -102,9 +103,40 @@ public partial class MainWindow : IDisposable
         Grid.Margin = WindowState == WindowState.Maximized ? new Thickness(0) : new Thickness(5);
     }
 
-    private void TopBorder_MouseLeftButtonDown(
-        object sender,
-        System.Windows.Input.MouseButtonEventArgs e)
+    private void CenterOnScreen()
+    {
+        // Get the window's handle
+        var windowHandle = new WindowInteropHelper(this).Handle;
+
+        // Get the screen containing the window
+        var currentScreen = Screen.FromHandle(windowHandle);
+
+        // Get the working area of the screen (excluding taskbar, DPI-aware)
+        var workingArea = currentScreen.WorkingArea;
+
+        // Get the DPI scaling factor for the monitor
+        var dpi = VisualTreeHelper.GetDpi(this);
+
+        // Convert physical pixels (from working area) to WPF device-independent units (DIPs)
+        var workingAreaWidthInDips = workingArea.Width / (dpi.PixelsPerInchX / 96.0);
+        var workingAreaHeightInDips = workingArea.Height / (dpi.PixelsPerInchY / 96.0);
+        var workingAreaLeftInDips = workingArea.Left / (dpi.PixelsPerInchX / 96.0);
+        var workingAreaTopInDips = workingArea.Top / (dpi.PixelsPerInchY / 96.0);
+
+        // Get the actual size of the window in DIPs
+        var actualWidth = Width;
+        var actualHeight = Height;
+
+        // Calculate centered position within the working area
+        var left = workingAreaLeftInDips + (workingAreaWidthInDips - actualWidth) / 2;
+        var top = workingAreaTopInDips + (workingAreaHeightInDips - actualHeight) / 2;
+
+        // Set the window's position
+        Left = left;
+        Top = top;
+    }
+
+    private void TopBorder_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
         DragMove();
     }
@@ -125,12 +157,7 @@ public partial class MainWindow : IDisposable
         hwndSource.AddHook(HookProc);
     }
 
-    public static IntPtr HookProc(
-        IntPtr hwnd,
-        int msg,
-        IntPtr wParam,
-        IntPtr lParam,
-        ref bool handled)
+    public static IntPtr HookProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
         if (msg != WM_GETMINMAXINFO)
         {
@@ -169,14 +196,10 @@ public partial class MainWindow : IDisposable
     private const uint MONITOR_DEFAULTTONEAREST = 0x00000002;
 
     [DllImport("user32.dll")]
-    private static extern IntPtr MonitorFromWindow(
-        IntPtr handle,
-        uint flags);
+    private static extern IntPtr MonitorFromWindow(IntPtr handle, uint flags);
 
     [DllImport("user32.dll")]
-    private static extern bool GetMonitorInfo(
-        IntPtr hMonitor,
-        ref MONITORINFO lpmi);
+    private static extern bool GetMonitorInfo(IntPtr hMonitor, ref MONITORINFO lpmi);
 
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
@@ -187,11 +210,7 @@ public partial class MainWindow : IDisposable
         public int Right;
         public int Bottom;
 
-        public RECT(
-            int left,
-            int top,
-            int right,
-            int bottom)
+        public RECT(int left, int top, int right, int bottom)
         {
             this.Left = left;
             this.Top = top;
@@ -216,9 +235,7 @@ public partial class MainWindow : IDisposable
         public int X;
         public int Y;
 
-        public POINT(
-            int x,
-            int y)
+        public POINT(int x, int y)
         {
             this.X = x;
             this.Y = y;
@@ -248,9 +265,7 @@ public partial class MainWindow : IDisposable
         }
         else if (WebView != null)
         {
-            _ = WebView
-                .DisposeAsync()
-                .AsTask();
+            _ = WebView.DisposeAsync().AsTask();
         }
 
         Scope.Dispose();
