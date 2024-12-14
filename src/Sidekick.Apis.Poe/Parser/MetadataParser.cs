@@ -1,6 +1,7 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Metadata;
 using Sidekick.Apis.Poe.Parser.Patterns;
+using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 
@@ -82,6 +83,31 @@ namespace Sidekick.Apis.Poe.Parser
             {
                 name = parsingBlock.Lines[1].Text;
                 type = parsingBlock.Lines[0].Text;
+            }
+
+            // For magic items, strip off the suffix from the name
+            if (itemRarity == Rarity.Magic && name != null)
+            {
+                var parts = name.Split(" of ");
+                if (parts.Length > 1)
+                {
+                    name = parts[0];
+                }
+            }
+
+            // Handle bow types directly
+            if (parsingBlock.Lines[0].Text.Contains("Item Class: Bows") || 
+                (parsingItem.Blocks.Count > 1 && parsingItem.Blocks[1].Lines.Any(x => x.Text == "Bow")))
+            {
+                return new ItemMetadata
+                {
+                    Id = "weapon.bow",
+                    Type = name,  // For magic items, use the stripped name as the type
+                    Name = name,
+                    Category = Category.Weapon,
+                    Rarity = itemRarity,
+                    Game = GameType.PathOfExile
+                };
             }
 
             // Rares may have conflicting names, so we don't want to search any unique items that may have that name. Like "Ancient Orb" which can be used by abyss jewels.

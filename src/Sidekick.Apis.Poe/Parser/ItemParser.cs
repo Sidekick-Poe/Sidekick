@@ -119,17 +119,26 @@ namespace Sidekick.Apis.Poe.Parser
         private Header ParseHeader(ParsingItem parsingItem)
         {
             var firstLine = parsingItem.Blocks[0].Lines[0].Text;
-            string? apiItemCategoryId;
+            string? apiItemCategoryId = null;
 
             if (firstLine.StartsWith(gameLanguageProvider.Language.Classes.Prefix))
             {
-                var classLine = firstLine.Replace(gameLanguageProvider.Language.Classes.Prefix, "").Trim();
-                var categoryToMatch = new ApiFilterOption { Text = classLine };
-                apiItemCategoryId = Process.ExtractOne(categoryToMatch, metadataProvider.ApiItemCategories, x => x.Text, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
-            }
-            else
-            {
-                apiItemCategoryId = null;
+                var classLine = firstLine.Replace(gameLanguageProvider.Language.Classes.Prefix + ":", "").Trim();
+                
+                // Direct mapping for known item classes
+                apiItemCategoryId = classLine switch
+                {
+                    "Bows" => "weapon.bow",
+                    "Misc Map Items" => "map.fragment",
+                    _ => null
+                };
+
+                // Fallback to fuzzy matching if no direct match
+                if (apiItemCategoryId == null)
+                {
+                    var categoryToMatch = new ApiFilterOption { Text = classLine };
+                    apiItemCategoryId = Process.ExtractOne(categoryToMatch, metadataProvider.ApiItemCategories, x => x.Text, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
+                }
             }
 
             return new Header()
@@ -174,67 +183,161 @@ namespace Sidekick.Apis.Poe.Parser
         private Properties ParseWeaponProperties(ParsingItem parsingItem)
         {
             var propertyBlock = parsingItem.Blocks[1];
-
-            // Get physical damage range and DPS
-            var physicalDamage = new DamageRange();
-            double physicalDps = 0;
             var attacksPerSecond = GetDouble(patterns.AttacksPerSecond, propertyBlock);
-            var criticalStrikeChance = 0.0;
-
-            // Parse critical hit chance
-            foreach (var line in propertyBlock.Lines)
-            {
-                if (line.Text.Contains("Critical Hit Chance:"))
-                {
-                    var critMatch = new Regex("(\\d+\\.\\d+)%").Match(line.Text);
-                    if (critMatch.Success)
-                    {
-                        double.TryParse(critMatch.Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out criticalStrikeChance);
-                    }
-                }
-            }
+            var criticalStrikeChance = GetDouble(patterns.CriticalStrikeChance, propertyBlock);
 
             // Parse physical damage
+            var physicalDamage = new Sidekick.Common.Game.Items.DamageRange();
             foreach (var line in propertyBlock.Lines)
             {
                 if (line.Text.Contains("Physical Damage:"))
                 {
-                    var physMatches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
-                    if (physMatches.Count > 0 && physMatches[0].Groups.Count >= 3)
+                    var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
+                    if (matches.Count > 0 && matches[0].Groups.Count >= 3)
                     {
-                        if (double.TryParse(physMatches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var minValue) && 
-                            double.TryParse(physMatches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var maxValue))
-                        {
-                            physicalDamage = new DamageRange { Min = minValue, Max = maxValue };
-                            physicalDps = Math.Round(((minValue + maxValue) / 2d) * attacksPerSecond, 1);
-                        }
+                        double.TryParse(matches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
+                        double.TryParse(matches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
+                        physicalDamage.Min = min;
+                        physicalDamage.Max = max;
                     }
                 }
             }
 
-            // Get elemental damage ranges and DPS
-            var elementalDamages = new List<DamageRange>();
-            double elementalDps = 0;
-
+            // Parse chaos damage
+            var chaosDamage = new Sidekick.Common.Game.Items.DamageRange();
             foreach (var line in propertyBlock.Lines)
             {
-                if (line.Text.Contains("Fire Damage:") || line.Text.Contains("Cold Damage:") || line.Text.Contains("Lightning Damage:"))
+                if (line.Text.Contains("Chaos Damage:"))
                 {
-                    var elemMatches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
-                    if (elemMatches.Count > 0 && elemMatches[0].Groups.Count >= 3)
+                    var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
+                    if (matches.Count > 0 && matches[0].Groups.Count >= 3)
                     {
-                        if (double.TryParse(elemMatches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var minValue) && 
-                            double.TryParse(elemMatches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var maxValue))
-                        {
-                            elementalDamages.Add(new DamageRange { Min = minValue, Max = maxValue });
-                            elementalDps += ((minValue + maxValue) / 2d) * attacksPerSecond;
-                        }
+                        double.TryParse(matches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
+                        double.TryParse(matches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
+                        chaosDamage.Min = min;
+                        chaosDamage.Max = max;
                     }
                 }
             }
 
-            elementalDps = Math.Round(elementalDps, 1);
-            var totalDps = Math.Round(physicalDps + elementalDps, 1);
+            // Parse elemental damages
+            var elementalDamages = new List<Sidekick.Common.Game.Items.DamageRange>();
+            var elementalDamageTypes = new List<DamageType>();
+
+            // First check modifiers to determine damage types from "Adds X to Y" lines
+            foreach (var line in propertyBlock.Lines)
+            {
+                if (line.Text.Contains("Adds") && line.Text.Contains("Damage"))
+                {
+                    if (line.Text.Contains("Fire"))
+                        elementalDamageTypes.Add(DamageType.Fire);
+                    else if (line.Text.Contains("Cold"))
+                        elementalDamageTypes.Add(DamageType.Cold);
+                    else if (line.Text.Contains("Lightning"))
+                        elementalDamageTypes.Add(DamageType.Lightning);
+                }
+            }
+
+            // Parse individual elemental damage lines first
+            foreach (var line in propertyBlock.Lines)
+            {
+                if (line.Text.Contains("Fire Damage:"))
+                {
+                    var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
+                    if (matches.Count > 0 && matches[0].Groups.Count >= 3)
+                    {
+                        double.TryParse(matches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
+                        double.TryParse(matches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
+                        elementalDamages.Add(new Sidekick.Common.Game.Items.DamageRange
+                        {
+                            Min = min,
+                            Max = max,
+                            Type = DamageType.Fire
+                        });
+                    }
+                }
+                else if (line.Text.Contains("Cold Damage:"))
+                {
+                    var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
+                    if (matches.Count > 0 && matches[0].Groups.Count >= 3)
+                    {
+                        double.TryParse(matches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
+                        double.TryParse(matches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
+                        elementalDamages.Add(new Sidekick.Common.Game.Items.DamageRange
+                        {
+                            Min = min,
+                            Max = max,
+                            Type = DamageType.Cold
+                        });
+                    }
+                }
+                else if (line.Text.Contains("Lightning Damage:"))
+                {
+                    var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
+                    if (matches.Count > 0 && matches[0].Groups.Count >= 3)
+                    {
+                        double.TryParse(matches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
+                        double.TryParse(matches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
+                        elementalDamages.Add(new Sidekick.Common.Game.Items.DamageRange
+                        {
+                            Min = min,
+                            Max = max,
+                            Type = DamageType.Lightning
+                        });
+                    }
+                }
+            }
+
+            // If no individual lines were found, try to parse combined "Elemental Damage:" line
+            if (!elementalDamages.Any())
+            {
+                foreach (var line in propertyBlock.Lines)
+                {
+                    if (line.Text.Contains("Elemental Damage:"))
+                    {
+                        var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
+                        var matchIndex = 0;
+                        foreach (Match match in matches)
+                        {
+                            if (match.Groups.Count >= 3)
+                            {
+                                double.TryParse(match.Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
+                                double.TryParse(match.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
+
+                                // Get the damage type from the corresponding "Adds X to Y" line
+                                var damageType = matchIndex < elementalDamageTypes.Count 
+                                    ? elementalDamageTypes[matchIndex] 
+                                    : DamageType.Physical;
+
+                                elementalDamages.Add(new Sidekick.Common.Game.Items.DamageRange
+                                {
+                                    Min = min,
+                                    Max = max,
+                                    Type = damageType
+                                });
+                                matchIndex++;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+
+            // Calculate DPS values
+            var physicalDps = physicalDamage.Min > 0 || physicalDamage.Max > 0
+                ? Math.Round(((physicalDamage.Min + physicalDamage.Max) / 2) * attacksPerSecond, 1)
+                : null as double?;
+
+            var elementalDps = elementalDamages.Any()
+                ? Math.Round(elementalDamages.Sum(x => (x.Min + x.Max) / 2) * attacksPerSecond, 1)
+                : null as double?;
+
+            var chaosDps = chaosDamage.Min > 0 || chaosDamage.Max > 0
+                ? Math.Round(((chaosDamage.Min + chaosDamage.Max) / 2) * attacksPerSecond, 1)
+                : null as double?;
+
+            // Calculate total DPS including chaos damage
+            var totalDps = Math.Round((physicalDps ?? 0) + (elementalDps ?? 0) + (chaosDps ?? 0), 1);
 
             return new Properties
             {
@@ -246,9 +349,11 @@ namespace Sidekick.Apis.Poe.Parser
                 CriticalStrikeChance = criticalStrikeChance,
                 PhysicalDamage = physicalDamage,
                 ElementalDamages = elementalDamages,
+                ChaosDamage = chaosDamage,
                 PhysicalDps = physicalDps,
                 ElementalDps = elementalDps,
-                DamagePerSecond = totalDps
+                ChaosDps = chaosDps,
+                TotalDps = totalDps > 0 ? totalDps : null
             };
         }
 

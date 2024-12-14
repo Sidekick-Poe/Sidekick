@@ -1,6 +1,8 @@
 @using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Poe.Items
+@using System.Text.Json
 
 <FilterWrapper>
     <div class="flex flex-nowrap items-center w-full">
@@ -10,7 +12,7 @@
                 <FormTriStateCheckbox @bind-Value="Filter.Enabled"
                                     NoMargin="true">
                     <ItemPropertyText Label="@Filter.Text"
-                                    Value="@Filter.Value?.ToString()"
+                                    Value="@GetDisplayValue()"
                                     OnlyShowLabel="true" />
                 </FormTriStateCheckbox>
             }
@@ -19,8 +21,9 @@
                 <FormCheckbox Value="Filter.Enabled ?? false"
                              NoMargin="true"
                              ValueChanged="(v) => Filter.Enabled = v">
-                    <ItemPropertyText Label="@Filter.Text"
-                                    Value="@GetDisplayValue()" />
+                    <ItemPropertyText Label="@Filter.Text.Replace("DamageRange", "")"
+                                    Value="@GetDisplayValue()"
+                                    OnlyShowLabel="false" />
                 </FormCheckbox>
             }
         </div>
@@ -40,7 +43,7 @@
     [Parameter]
     public required PropertyFilter Filter { get; set; }
 
-    private bool HasValueFilters => Filter.ValueType is FilterValueType.Double or FilterValueType.Int;
+    private bool HasValueFilters => Filter.ValueType is FilterValueType.Double or FilterValueType.Int or FilterValueType.DamageRange;
 
     private void TypeChanged(FilterRange.RangeType type)
     {
@@ -69,10 +72,42 @@
 
     private string GetDisplayValue()
     {
-        if (Filter.Value is DamageRange range)
+        try 
         {
-            return range.ToDisplayString();
+            if (Filter.Value == null) return string.Empty;
+
+            return Filter.Value switch
+            {
+                DamageRange range => FormatDamageRange(range),
+                IEnumerable<DamageRange> ranges => string.Join(" + ", ranges.Select(FormatDamageRange)),
+                _ => Filter.Value?.ToString() ?? string.Empty
+            };
         }
-        return Filter.Value?.ToString() ?? string.Empty;
+        catch (JsonException)
+        {
+            // Handle JSON deserialization errors gracefully
+            return string.Empty;
+        }
+    }
+
+    private string FormatDamageRange(DamageRange range)
+    {
+        try
+        {
+            if (range == null) return string.Empty;
+            
+            var damageRange = $"{range.Min:F0}-{range.Max:F0}";
+            return range.Type switch
+            {
+                DamageType.Fire => $"<span class=\"text-[#c23c2a]\">{damageRange}</span>",
+                DamageType.Cold => $"<span class=\"text-[#3f6db3]\">{damageRange}</span>",
+                DamageType.Lightning => $"<span class=\"text-[#e8b631]\">{damageRange}</span>",
+                _ => damageRange
+            };
+        }
+        catch
+        {
+            return string.Empty;
+        }
     }
 }

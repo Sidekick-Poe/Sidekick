@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Models
@@ -37,7 +38,8 @@ namespace Sidekick.Apis.Poe.Trade.Models
                     break;
 
                 case DamageRange:
-                    ValueType = FilterValueType.Double;
+                case IEnumerable<DamageRange>:
+                    ValueType = FilterValueType.DamageRange;
                     break;
             }
 
@@ -61,6 +63,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
 
         public string Text { get; init; }
 
+        [JsonIgnore]
         public object Value { get; }
 
         public double Delta { get; }
@@ -74,7 +77,15 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void NormalizeMinValue()
         {
-            if (Value is DamageRange damageRange)
+            if (Value is IEnumerable<DamageRange> ranges)
+            {
+                if (ranges.Any(x => x.Min > 0 || x.Max > 0))
+                {
+                    Min = Convert.ToDecimal(ranges.Sum(x => x.Min));
+                }
+                return;
+            }
+            else if (Value is DamageRange damageRange)
             {
                 if (damageRange.Min > 0 || damageRange.Max > 0)
                 {
@@ -108,7 +119,15 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void NormalizeMaxValue()
         {
-            if (Value is DamageRange damageRange)
+            if (Value is IEnumerable<DamageRange> ranges)
+            {
+                if (ranges.Any(x => x.Min > 0 || x.Max > 0))
+                {
+                    Max = Convert.ToDecimal(ranges.Sum(x => x.Max));
+                }
+                return;
+            }
+            else if (Value is DamageRange damageRange)
             {
                 if (damageRange.Min > 0 || damageRange.Max > 0)
                 {
@@ -137,7 +156,16 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void SetExactValue()
         {
-            if (Value is DamageRange damageRange)
+            if (Value is IEnumerable<DamageRange> ranges)
+            {
+                if (ranges.Any(x => x.Min > 0 || x.Max > 0))
+                {
+                    Min = Convert.ToDecimal(ranges.Sum(x => x.Min));
+                    Max = Convert.ToDecimal(ranges.Sum(x => x.Max));
+                }
+                return;
+            }
+            else if (Value is DamageRange damageRange)
             {
                 if (damageRange.Min > 0 || damageRange.Max > 0)
                 {

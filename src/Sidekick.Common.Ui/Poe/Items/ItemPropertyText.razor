@@ -1,9 +1,14 @@
+@using Microsoft.AspNetCore.Components
+
 <TextBase Class="font-caps leading-none py-0.5">
     @Label
     @if (OnlyShowLabel == false)
     {
         <span class="text-[#7f7f7f]">: </span>
-        <span class="text-white">@Value</span>
+        @if (Value != null)
+        {
+            <span>@((MarkupString)Value)</span>
+        }
     }
 </TextBase>
 

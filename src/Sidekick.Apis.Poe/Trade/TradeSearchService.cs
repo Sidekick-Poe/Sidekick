@@ -133,8 +133,15 @@ public class TradeSearchService
 
             if (propertyFilters != null)
             {
-                query.Filters.EquipmentFilters = GetEquipmentFilters(item, propertyFilters.Armour.Concat(propertyFilters.Weapon).ToList());
-                query.Filters.WeaponFilters = GetWeaponFilters(item, propertyFilters.Weapon);
+                // Handle elemental damage separately
+                var elementalDamageFilter = propertyFilters.Weapon.FirstOrDefault(x => x.Type == PropertyFilterType.Weapon_ElementalDamage);
+                if (elementalDamageFilter != null)
+                {
+                    AddElementalDamageStats(query, elementalDamageFilter);
+                }
+
+                query.Filters.EquipmentFilters = GetEquipmentFilters(item, propertyFilters.Armour.Concat(propertyFilters.Weapon.Where(x => x.Type != PropertyFilterType.Weapon_ElementalDamage)).ToList());
+                query.Filters.WeaponFilters = GetWeaponFilters(item, propertyFilters.Weapon.Where(x => x.Type != PropertyFilterType.Weapon_ElementalDamage).ToList());
                 query.Filters.ArmourFilters = GetArmourFilters(item, propertyFilters.Armour);
                 query.Filters.MapFilters = GetMapFilters(propertyFilters.Map);
                 query.Filters.MiscFilters = GetMiscFilters(item, propertyFilters.Misc);
@@ -210,11 +217,6 @@ public class TradeSearchService
                     hasValue = true;
                     break;
 
-                case PropertyFilterType.Weapon_ElementalDps:
-                    filters.Filters.ElementalDps = new SearchFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
                 case PropertyFilterType.Weapon_Dps:
                     filters.Filters.DamagePerSecond = new SearchFilterValue(propertyFilter);
                     hasValue = true;
@@ -232,11 +234,6 @@ public class TradeSearchService
 
                 case PropertyFilterType.Weapon_PhysicalDamage:
                     filters.Filters.PhysicalDamage = new SearchFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Weapon_ElementalDamage:
-                    filters.Filters.ElementalDamage = new SearchFilterValue(propertyFilter);
                     hasValue = true;
                     break;
             }
@@ -343,11 +340,6 @@ public class TradeSearchService
                     hasValue = true;
                     break;
 
-                case PropertyFilterType.Weapon_ElementalDps:
-                    filters.Filters.ElementalDps = new SearchFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
                 case PropertyFilterType.Weapon_Dps:
                     filters.Filters.DamagePerSecond = new SearchFilterValue(propertyFilter);
                     hasValue = true;
@@ -365,11 +357,6 @@ public class TradeSearchService
 
                 case PropertyFilterType.Weapon_PhysicalDamage:
                     filters.Filters.PhysicalDps = new SearchFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Weapon_ElementalDamage:
-                    filters.Filters.ElementalDps = new SearchFilterValue(propertyFilter);
                     hasValue = true;
                     break;
             }
@@ -832,12 +819,24 @@ public class TradeSearchService
             Armor = result.Item?.Extended?.ArmourAtMax ?? 0,
             EnergyShield = result.Item?.Extended?.EnergyShieldAtMax ?? 0,
             Evasion = result.Item?.Extended?.EvasionAtMax ?? 0,
-            DamagePerSecond = totalDps,
+            TotalDps = totalDps,
             ElementalDps = elementalDps,
             PhysicalDps = physicalDps,
             BaseDefencePercentile = result.Item?.Extended?.BaseDefencePercentile,
-            PhysicalDamage = physicalDamage,
-            ElementalDamages = elementalDamages.ToList(),
+            PhysicalDamage = result.Item?.Extended?.PhysicalDamage != null 
+                ? new Sidekick.Common.Game.Items.DamageRange 
+                { 
+                    Min = result.Item.Extended.PhysicalDamage.Min, 
+                    Max = result.Item.Extended.PhysicalDamage.Max 
+                } 
+                : new Sidekick.Common.Game.Items.DamageRange(),
+            ElementalDamages = (result.Item?.Extended?.ElementalDamage ?? new List<DamageRange>())
+                .Select(d => new Sidekick.Common.Game.Items.DamageRange 
+                { 
+                    Min = d.Min, 
+                    Max = d.Max 
+                })
+                .ToList(),
             CriticalStrikeChance = criticalStrikeChance,
             AttacksPerSecond = attacksPerSecond
         };
@@ -1095,5 +1094,27 @@ public class TradeSearchService
         var baseUri = new Uri(baseUrl + "search/");
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         return new Uri(baseUri, $"{leagueId.GetUrlSlugForLeague()}/{queryId}");
+    }
+
+    private void AddElementalDamageStats(Query query, PropertyFilter filter)
+    {
+        if (!filter.Enabled == true)
+        {
+            return;
+        }
+
+        var countGroup = new StatFilterGroup
+        {
+            Type = StatType.Count,
+            Value = new SearchFilterValue { Min = 1 },
+            Filters = new List<StatFilters>
+            {
+                new() { Id = "explicit.stat_709508406", Value = new SearchFilterValue { Min = filter.Min, Max = filter.Max } },  // Fire
+                new() { Id = "explicit.stat_3336890334", Value = new SearchFilterValue { Min = filter.Min, Max = filter.Max } }, // Lightning
+                new() { Id = "explicit.stat_1037193709", Value = new SearchFilterValue { Min = filter.Min, Max = filter.Max } }  // Cold
+            }
+        };
+
+        query.Stats.Add(countGroup);
     }
 }

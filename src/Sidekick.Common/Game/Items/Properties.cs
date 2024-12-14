@@ -48,15 +48,19 @@ public class Properties
 
     public double AttacksPerSecond { get; init; }
 
-    public double DamagePerSecond { get; set; }
+    public double? TotalDps { get; set; }
 
-    public double ElementalDps { get; set; }
+    public double? ElementalDps { get; set; }
 
-    public double PhysicalDps { get; set; }
+    public double? PhysicalDps { get; set; }
 
     public DamageRange PhysicalDamage { get; init; } = new();
 
     public List<DamageRange> ElementalDamages { get; init; } = new();
+
+    public DamageRange ChaosDamage { get; init; } = new();
+
+    public double? ChaosDps { get; set; }
 
     public int? BaseDefencePercentile { get; init; }
 }

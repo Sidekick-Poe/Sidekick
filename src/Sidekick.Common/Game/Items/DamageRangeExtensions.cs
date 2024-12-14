@@ -22,4 +22,15 @@ public static class DamageRangeExtensions
     {
         return Convert.ToDecimal(value);
     }
+
+    public static double CalculateElementalDps(this IEnumerable<DamageRange> ranges, double attacksPerSecond)
+    {
+        if (ranges == null || !ranges.Any())
+        {
+            return 0;
+        }
+
+        var elementalDamage = ranges.Sum(x => (x.Min + x.Max) / 2.0);
+        return elementalDamage * attacksPerSecond;
+    }
 } 

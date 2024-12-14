@@ -5,5 +5,6 @@ namespace Sidekick.Apis.Poe.Trade.Models
         Boolean,
         Int,
         Double,
+        DamageRange,
     }
 }

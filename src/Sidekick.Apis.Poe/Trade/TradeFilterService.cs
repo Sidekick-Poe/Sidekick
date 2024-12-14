@@ -69,19 +69,55 @@ namespace Sidekick.Apis.Poe.Trade
             InitializeNumericFilter(result.Armour, PropertyFilterType.Armour_Block, gameLanguageProvider.Language?.DescriptionChanceToBlock, item.Properties.ChanceToBlock);
 
             // Weapon properties
+            InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_Dps, resources.Filters_Dps, item.Properties.TotalDps, enabled: false);
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_PhysicalDps, resources.Filters_PDps, item.Properties.PhysicalDps, enabled: false);
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_ElementalDps, resources.Filters_EDps, item.Properties.ElementalDps, enabled: false);
-            InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_Dps, resources.Filters_Dps, item.Properties.DamagePerSecond, enabled: false);
-            InitializeDamageRangeFilter(result.Weapon, PropertyFilterType.Weapon_PhysicalDamage, gameLanguageProvider.Language?.DescriptionPhysicalDamage, item.Properties.PhysicalDamage, enabled: false);
-            
+            InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_ChaosDps, "Chaos DPS", item.Properties.ChaosDps, enabled: false);
+
+            InitializeDamageRangeFilter(result.Weapon, PropertyFilterType.Weapon_PhysicalDamage, gameLanguageProvider.Language?.DescriptionPhysicalDamage, ConvertFromCommonDamageRange(item.Properties.PhysicalDamage), enabled: false);
+
             if (item.Properties.ElementalDamages.Any(x => x.HasValue()))
             {
                 var totalMin = item.Properties.ElementalDamages.Sum(x => x.Min);
                 var totalMax = item.Properties.ElementalDamages.Sum(x => x.Max);
-                InitializeDamageRangeFilter(result.Weapon, 
-                    PropertyFilterType.Weapon_ElementalDamage, 
-                    gameLanguageProvider.Language?.DescriptionElementalDamage, 
-                    new DamageRange { Min = totalMin, Max = totalMax },
+
+                // Create a display value with individual ranges
+                var displayRanges = item.Properties.ElementalDamages.ToList();
+
+                // Try to match damage types from modifiers
+                var damageTypes = new List<DamageType>();
+                foreach (var modifier in item.ModifierLines)
+                {
+                    if (modifier.Text.Contains("Fire Damage"))
+                        damageTypes.Add(DamageType.Fire);
+                    else if (modifier.Text.Contains("Cold Damage"))
+                        damageTypes.Add(DamageType.Cold);
+                    else if (modifier.Text.Contains("Lightning Damage"))
+                        damageTypes.Add(DamageType.Lightning);
+                }
+
+                // Assign damage types if we found matches
+                for (int i = 0; i < displayRanges.Count && i < damageTypes.Count; i++)
+                {
+                    displayRanges[i].Type = damageTypes[i];
+                }
+
+                // Create a custom property filter that uses different values for display vs filtering
+                InitializePropertyFilter(result.Weapon,
+                    PropertyFilterType.Weapon_ElementalDamage,
+                    gameLanguageProvider.Language?.DescriptionElementalDamage,
+                    displayRanges,
+                    enabled: false,
+                    min: totalMin.ToDecimal(),
+                    max: totalMax.ToDecimal());
+            }
+
+            if (item.Properties.ChaosDamage.HasValue())
+            {
+                InitializeDamageRangeFilter(result.Weapon,
+                    PropertyFilterType.Weapon_ChaosDamage,
+                    "Chaos Damage",
+                    ConvertFromCommonDamageRange(item.Properties.ChaosDamage),
                     enabled: false);
             }
 
@@ -146,7 +182,7 @@ namespace Sidekick.Apis.Poe.Trade
             DamageRange range,
             bool enabled = true)
         {
-            if (range.HasValue())
+            if (range.Min > 0 || range.Max > 0)
             {
                 InitializePropertyFilter(filters,
                     type,
@@ -161,7 +197,7 @@ namespace Sidekick.Apis.Poe.Trade
         private void InitializeNumericFilter(List<PropertyFilter> filters,
             PropertyFilterType type,
             string? label,
-            double value,
+            double? value,
             bool enabled = false,
             double? delta = null)
         {
@@ -170,7 +206,7 @@ namespace Sidekick.Apis.Poe.Trade
                 InitializePropertyFilter(filters,
                     type,
                     label,
-                    value,
+                    value.Value,
                     enabled: enabled,
                     delta: delta);
             }
@@ -189,6 +225,16 @@ namespace Sidekick.Apis.Poe.Trade
                     value,
                     enabled: value);
             }
+        }
+
+        private DamageRange ConvertFromCommonDamageRange(Sidekick.Common.Game.Items.DamageRange range)
+        {
+            if (range == null) return new DamageRange();
+            return new DamageRange 
+            { 
+                Min = range.Min, 
+                Max = range.Max 
+            };
         }
     }
 }
