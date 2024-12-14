@@ -58,15 +58,6 @@ jobs:
           publish: false
           prerelease: false
 
-      - name: Release - Asset
-        uses: xresloader/upload-to-github-release@v1.3.4
-        with:
-          file: 'download-instructions.txt'
-          tag_name: 'v${{ steps.version.outputs.version }}'
-          draft: true
-          verbose: true
-          overwrite: true
-
       - name: .NET - Setup
         uses: actions/setup-dotnet@v1
         with:
@@ -133,9 +124,9 @@ jobs:
               Copy-Item -Path "../src/Sidekick.Wpf/bin/publish/Application Files","../src/Sidekick.Wpf/bin/publish/Sidekick.application" -Destination . -Recurse
 
               # Stage and commit.
-              git add -A
-              git commit -m "Update to v$version"
-              git push
+              # git add -A
+              # git commit -m "Update to v$version"
+              # git push
           } finally {
               Pop-Location
           }
@@ -150,6 +141,17 @@ jobs:
           }
           Compress-Archive -Path $publishPath\* -DestinationPath $zipFilePath
           Write-Host "Files zipped successfully to $zipFilePath"
+
+      - name: Release - Asset
+        uses: xresloader/upload-to-github-release@v1.3.4
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          file: 'download-instructions.txt'
+          tag_name: 'v${{ steps.version.outputs.version }}'
+          draft: true
+          verbose: true
+          overwrite: true
 
       - name: Release - Zip
         uses: xresloader/upload-to-github-release@v1.3.4
