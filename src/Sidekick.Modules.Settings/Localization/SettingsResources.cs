@@ -11,7 +11,6 @@ public class SettingsResources(IStringLocalizer<SettingsResources> resources)
     public string EscapeClosesOverlays => resources["EscapeClosesOverlays"];
     public string Key_FindItems => resources["Key_FindItems"];
     public string Language_Parser => resources["Language_Parser"];
-    public string Language_UI => resources["Language_UI"];
     public string Map_CloseWithMouse => resources["Map_CloseWithMouse"];
     public string Map_Dangerous_Regex => resources["Map_Dangerous_Regex"];
     public string Map_Key_Check => resources["Map_Key_Check"];
