@@ -45,65 +45,75 @@
             <PricePredictionComponent/>
         </SidekickErrorBoundary>
 
-        <div class="flex flex-col gap-2">
-            <FormCheckbox Value="@(PriceCheckService.PropertyFilters?.TypeFilterEnabled ?? false)"
-                        NoMargin="true"
-                        ValueChanged="(v) => PriceCheckService.UpdateTypeFilter(v)">
-                <ItemPropertyText Label="Item Category"
-                                Value="@(GetItemClass() ?? PriceCheckService.Item.Header.Type)" />
-            </FormCheckbox>
-            @if (PriceCheckService.PropertyFilters?.TypeFilterEnabled ?? false)
-            {
-                <FormCheckbox Value="@(PriceCheckService.PropertyFilters?.UseSpecificType ?? false)"
-                            NoMargin="true"
-                            ValueChanged="(v) => PriceCheckService.UpdateUseSpecificType(v)">
-                    <ItemPropertyText Label="Use Specific Type"
-                                    Value="@PriceCheckService.Item.Metadata.Type" />
-                </FormCheckbox>
-            }
-            <FormCheckbox Value="@(PriceCheckService.PropertyFilters?.RarityFilterEnabled ?? false)"
-                        NoMargin="true"
-                        ValueChanged="(v) => PriceCheckService.UpdateRarityFilter(v)">
-                <ItemPropertyText Label="Rarity"
-                                Value="@PriceCheckService.Item.Metadata.Rarity.ToString()" />
-            </FormCheckbox>
+        <div class="flex flex-col">
+            <div class="pl-2 flex flex-col">
+                <FilterWrapper>
+                    <FormCheckbox Value="@(PriceCheckService.PropertyFilters?.TypeFilterEnabled ?? false)"
+                                NoMargin="true"
+                                ValueChanged="(v) => PriceCheckService.UpdateTypeFilter(v)">
+                        <ItemPropertyText Label="Item Category"
+                                        Value="@(GetItemClass() ?? PriceCheckService.Item.Header.Type)" />
+                    </FormCheckbox>
+                </FilterWrapper>
+                @if (PriceCheckService.PropertyFilters?.TypeFilterEnabled ?? false)
+                {
+                    <FilterWrapper>
+                        <FormCheckbox Value="@(PriceCheckService.PropertyFilters?.UseSpecificType ?? false)"
+                                    NoMargin="true"
+                                    ValueChanged="(v) => PriceCheckService.UpdateUseSpecificType(v)">
+                            <ItemPropertyText Label="Use Specific Type"
+                                            Value="@PriceCheckService.Item.Metadata.Type" />
+                        </FormCheckbox>
+                    </FilterWrapper>
+                }
+                <FilterWrapper>
+                    <FormCheckbox Value="@(PriceCheckService.PropertyFilters?.RarityFilterEnabled ?? false)"
+                                NoMargin="true"
+                                ValueChanged="(v) => PriceCheckService.UpdateRarityFilter(v)">
+                        <ItemPropertyText Label="Rarity"
+                                        Value="@PriceCheckService.Item.Metadata.Rarity.ToString()" />
+                    </FormCheckbox>
+                </FilterWrapper>
+            </div>
 
             @if (PriceCheckService.PropertyFilters != null)
             {
                 <ItemSeparator Rarity="PriceCheckService.Item.Metadata.Rarity"/>
-                @if (PriceCheckService.PropertyFilters.Armour.Any())
-                {
-                    @foreach (var filter in PriceCheckService.PropertyFilters.Armour)
+                <div class="pl-2 flex flex-col">
+                    @if (PriceCheckService.PropertyFilters.Armour.Any())
                     {
-                        <PropertyFilterComponent Filter="filter" />
+                        @foreach (var filter in PriceCheckService.PropertyFilters.Armour)
+                        {
+                            <PropertyFilterComponent Filter="filter" />
+                        }
                     }
-                }
 
-                @if (PriceCheckService.PropertyFilters.Weapon.Any())
-                {
-                    @foreach (var filter in PriceCheckService.PropertyFilters.Weapon)
+                    @if (PriceCheckService.PropertyFilters.Weapon.Any())
                     {
-                        <PropertyFilterComponent Filter="filter" />
+                        @foreach (var filter in PriceCheckService.PropertyFilters.Weapon)
+                        {
+                            <PropertyFilterComponent Filter="filter" />
+                        }
                     }
-                }
 
-                @if (PriceCheckService.PropertyFilters.Map.Any())
-                {
-                    @foreach (var filter in PriceCheckService.PropertyFilters.Map)
+                    @if (PriceCheckService.PropertyFilters.Map.Any())
                     {
-                        <PropertyFilterComponent Filter="filter" />
+                        @foreach (var filter in PriceCheckService.PropertyFilters.Map)
+                        {
+                            <PropertyFilterComponent Filter="filter" />
+                        }
                     }
-                }
 
-                @if (PriceCheckService.PropertyFilters.Misc.Any())
-                {
+                    @if (PriceCheckService.PropertyFilters.Misc.Any())
+                    {
+                        <ItemSeparator Rarity="PriceCheckService.Item.Metadata.Rarity"/>
+                        @foreach (var filter in PriceCheckService.PropertyFilters.Misc)
+                        {
+                            <PropertyFilterComponent Filter="filter" />
+                        }
+                    }
                     <ItemSeparator Rarity="PriceCheckService.Item.Metadata.Rarity"/>
-                    @foreach (var filter in PriceCheckService.PropertyFilters.Misc)
-                    {
-                        <PropertyFilterComponent Filter="filter" />
-                    }
-                }
-                <ItemSeparator Rarity="PriceCheckService.Item.Metadata.Rarity"/>
+                </div>
             }
 
             @if (PriceCheckService.SupportsBulk)

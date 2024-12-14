@@ -3,8 +3,8 @@
 @using Sidekick.Common.Ui.Forms
 
 <FilterWrapper>
-    <div class="flex flex-nowrap items-center">
-        <div class="grow">
+    <div class="flex flex-nowrap items-center w-full">
+        <div class="grow min-w-0">
             @if (Filter.ValueType == FilterValueType.Boolean)
             {
                 <FormTriStateCheckbox @bind-Value="Filter.Enabled"
@@ -27,9 +27,11 @@
 
         @if ((Filter.Enabled ?? false) && HasValueFilters)
         {
-            <FilterRange @bind-Min="Filter.Min" 
-                        @bind-Max="Filter.Max" 
-                        TypeChanged="TypeChanged" />
+            <div class="ml-4">
+                <FilterRange @bind-Min="Filter.Min" 
+                            @bind-Max="Filter.Max" 
+                            TypeChanged="TypeChanged" />
+            </div>
         }
     </div>
 </FilterWrapper>
