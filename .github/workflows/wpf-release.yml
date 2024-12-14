@@ -134,8 +134,8 @@ jobs:
       - name: Archive - Zip Published Files
         shell: pwsh
         run: |
-          $publishPath = "src/Sidekick.Wpf/bin/publish/Sidekick.application"
-          $zipFilePath = "Sidekick_v${{ steps.version.outputs.version }}.zip"
+          $publishPath = "src/Sidekick.Wpf/bin/publish/Application Files"
+          $zipFilePath = "dist/Sidekick_v${{ steps.version.outputs.version }}.zip"
           if (Test-Path -Path $zipFilePath) {
               Remove-Item -Path $zipFilePath -Force
           }
@@ -156,7 +156,7 @@ jobs:
       - name: Release - Zip
         uses: xresloader/upload-to-github-release@v1.3.4
         with:
-          file: 'Sidekick_v${{ steps.version.outputs.version }}.zip'
+          file: 'dist/Sidekick_v${{ steps.version.outputs.version }}.zip'
           tag_name: 'v${{ steps.version.outputs.version }}'
           draft: true
           verbose: true
