@@ -1,5 +1,6 @@
 @using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Common.Game.Languages
+@using Sidekick.Common.Game.Items
 @using Sidekick.Modules.Trade.Localization
 
 <div class="text-center text-[#7f7f7f]">
@@ -13,12 +14,13 @@
     }
 </div>
 
-@inject IGameLanguageProvider GameLanguageProvider
-@inject IStringLocalizer<TradeResources> Resources
-
 @code {
-
     [Parameter]
-    public required TradeItem Item { get; set; }
+    public required Item Item { get; set; }
 
+    [Inject]
+    public required IGameLanguageProvider GameLanguageProvider { get; set; }
+
+    [Inject]
+    public required IStringLocalizer<TradeResources> Resources { get; set; }
 }

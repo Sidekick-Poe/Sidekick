@@ -1,63 +1,45 @@
-@using Sidekick.Apis.Poe.Metadata
-@using Sidekick.Common.Game.Items
-@using Sidekick.Common.Game.Languages
+@using Microsoft.Extensions.Localization
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Poe.Items
+@using Sidekick.Common.Ui.Errors
+@using Sidekick.Common.Ui.Tooltips
 @using Sidekick.Modules.Trade.Localization
-@if (Visible)
-{
-    <FilterWrapper>
-        <div class="flex items-center flex-nowrap justify-between">
-            <FormCheckbox Value="!string.IsNullOrEmpty(PriceCheckService.PropertyFilters?.ItemCategory)"
-                          ValueChanged="CheckedChanged"
-                          NoMargin="true">
-                <ItemPropertyText Label="@Resources["Item Category"]"
-                                  Value="@ClassLabel"/>
-            </FormCheckbox>
-            <TooltipHint Bottom="true"
-                         Text="@Resources["If checked, Sidekick will search for all items of this class. If left unchecked, Sidekick will search for this specific type. (e.g. Type: Prophet Crown vs Class: Helmet)"]"/>
+@using Sidekick.Apis.Poe.Trade.Models
+
+<div class="flex flex-col gap-2">
+    <FormCheckbox Value="Filter.Enabled ?? false"
+                 NoMargin="true"
+                 ValueChanged="(v) => Filter.Enabled = v">
+        <ItemPropertyText Label="@Resources["Class"]"
+                         Value="@Filter.Value?.ToString()"
+                         OnlyShowLabel="true" />
+    </FormCheckbox>
+
+    @if (Filter.Enabled ?? false)
+    {
+        <div class="flex flex-col gap-2">
+            <ItemPropertyText Label="@Resources["Class"]"
+                            Value="@Filter.Value?.ToString()" />
+            <TooltipHint>@Resources["Class_Hint"]</TooltipHint>
+            <ItemSeparator />
+            <SidekickErrorBoundary>
+                <ButtonPrimary OnClick="() => Filter.Enabled = false">
+                    @Resources["Clear"]
+                </ButtonPrimary>
+                <ButtonSecondary OnClick="() => Filter.Enabled = null">
+                    @Resources["Reset"]
+                </ButtonSecondary>
+            </SidekickErrorBoundary>
+            <ItemSeparator />
         </div>
-    </FilterWrapper>
-
-    <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown"/>
-}
-
-@inject IGameLanguageProvider GameLanguageProvider
-@inject IStringLocalizer<TradeResources> Resources
-@inject PriceCheckService PriceCheckService
-@inject IMetadataProvider MetadataProvider
+    }
+</div>
 
 @code {
+    [Parameter]
+    public required PropertyFilter Filter { get; set; }
 
-    private bool Visible => PriceCheckService.Item?.Metadata.Rarity is Rarity.Rare or Rarity.Magic or Rarity.Normal && !string.IsNullOrEmpty(PriceCheckService.Item.Header.ItemCategory) && !string.IsNullOrEmpty(ClassLabel);
-
-    private string? ClassLabel { get; set; }
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
-
-        if (PriceCheckService.Item == null)
-        {
-            return;
-        }
-
-        ClassLabel = MetadataProvider.ApiItemCategories.FirstOrDefault(x => x.Id == PriceCheckService.Item?.Header.ItemCategory)?.Text;
-    }
-
-    private void CheckedChanged(bool value)
-    {
-        if (PriceCheckService.PropertyFilters == null)
-        {
-            return;
-        }
-
-        if (value)
-        {
-            PriceCheckService.PropertyFilters.ItemCategory = PriceCheckService.Item?.Header.ItemCategory;
-        }
-        else
-        {
-            PriceCheckService.PropertyFilters.ItemCategory = null;
-        }
-    }
-
+    [Inject]
+    public required IStringLocalizer<TradeResources> Resources { get; set; }
 }

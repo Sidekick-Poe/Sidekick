@@ -1,4 +1,6 @@
 @using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Common.Game.Items
+@using Sidekick.Common.Ui.Forms
 
 <FilterWrapper>
     <div class="flex flex-nowrap items-center">
@@ -6,32 +8,33 @@
             @if (Filter.ValueType == FilterValueType.Boolean)
             {
                 <FormTriStateCheckbox @bind-Value="Filter.Enabled"
-                                      NoMargin="true">
+                                    NoMargin="true">
                     <ItemPropertyText Label="@Filter.Text"
-                                      Value="@Filter.Value.ToString()"
-                                      OnlyShowLabel="true"/>
+                                    Value="@Filter.Value?.ToString()"
+                                    OnlyShowLabel="true" />
                 </FormTriStateCheckbox>
             }
             else
             {
                 <FormCheckbox Value="Filter.Enabled ?? false"
-                              NoMargin="true"
-                              ValueChanged="(v) => Filter.Enabled = v">
+                             NoMargin="true"
+                             ValueChanged="(v) => Filter.Enabled = v">
                     <ItemPropertyText Label="@Filter.Text"
-                                      Value="@Filter.Value.ToString()"/>
+                                    Value="@GetDisplayValue()" />
                 </FormCheckbox>
             }
         </div>
 
         @if ((Filter.Enabled ?? false) && HasValueFilters)
         {
-            <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged"/>
+            <FilterRange @bind-Min="Filter.Min" 
+                        @bind-Max="Filter.Max" 
+                        TypeChanged="TypeChanged" />
         }
     </div>
 </FilterWrapper>
 
 @code {
-
     [Parameter]
     public required PropertyFilter Filter { get; set; }
 
@@ -62,4 +65,12 @@
         }
     }
 
+    private string GetDisplayValue()
+    {
+        if (Filter.Value is DamageRange range)
+        {
+            return range.ToDisplayString();
+        }
+        return Filter.Value?.ToString() ?? string.Empty;
+    }
 }

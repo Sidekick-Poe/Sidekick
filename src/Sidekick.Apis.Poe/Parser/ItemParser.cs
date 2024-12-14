@@ -175,21 +175,81 @@ namespace Sidekick.Apis.Poe.Parser
         {
             var propertyBlock = parsingItem.Blocks[1];
 
-            var properties = new Properties
+            // Get physical damage range and DPS
+            var physicalDamage = new DamageRange();
+            double physicalDps = 0;
+            var attacksPerSecond = GetDouble(patterns.AttacksPerSecond, propertyBlock);
+            var criticalStrikeChance = 0.0;
+
+            // Parse critical hit chance
+            foreach (var line in propertyBlock.Lines)
+            {
+                if (line.Text.Contains("Critical Hit Chance:"))
+                {
+                    var critMatch = new Regex("(\\d+\\.\\d+)%").Match(line.Text);
+                    if (critMatch.Success)
+                    {
+                        double.TryParse(critMatch.Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out criticalStrikeChance);
+                    }
+                }
+            }
+
+            // Parse physical damage
+            foreach (var line in propertyBlock.Lines)
+            {
+                if (line.Text.Contains("Physical Damage:"))
+                {
+                    var physMatches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
+                    if (physMatches.Count > 0 && physMatches[0].Groups.Count >= 3)
+                    {
+                        if (double.TryParse(physMatches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var minValue) && 
+                            double.TryParse(physMatches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var maxValue))
+                        {
+                            physicalDamage = new DamageRange { Min = minValue, Max = maxValue };
+                            physicalDps = Math.Round(((minValue + maxValue) / 2d) * attacksPerSecond, 1);
+                        }
+                    }
+                }
+            }
+
+            // Get elemental damage ranges and DPS
+            var elementalDamages = new List<DamageRange>();
+            double elementalDps = 0;
+
+            foreach (var line in propertyBlock.Lines)
+            {
+                if (line.Text.Contains("Fire Damage:") || line.Text.Contains("Cold Damage:") || line.Text.Contains("Lightning Damage:"))
+                {
+                    var elemMatches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
+                    if (elemMatches.Count > 0 && elemMatches[0].Groups.Count >= 3)
+                    {
+                        if (double.TryParse(elemMatches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var minValue) && 
+                            double.TryParse(elemMatches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var maxValue))
+                        {
+                            elementalDamages.Add(new DamageRange { Min = minValue, Max = maxValue });
+                            elementalDps += ((minValue + maxValue) / 2d) * attacksPerSecond;
+                        }
+                    }
+                }
+            }
+
+            elementalDps = Math.Round(elementalDps, 1);
+            var totalDps = Math.Round(physicalDps + elementalDps, 1);
+
+            return new Properties
             {
                 ItemLevel = GetInt(patterns.ItemLevel, parsingItem),
                 Identified = !GetBool(patterns.Unidentified, parsingItem),
                 Corrupted = GetBool(patterns.Corrupted, parsingItem),
                 Quality = GetInt(patterns.Quality, propertyBlock),
-                AttacksPerSecond = GetDouble(patterns.AttacksPerSecond, propertyBlock),
-                CriticalStrikeChance = GetDouble(patterns.CriticalStrikeChance, propertyBlock)
+                AttacksPerSecond = attacksPerSecond,
+                CriticalStrikeChance = criticalStrikeChance,
+                PhysicalDamage = physicalDamage,
+                ElementalDamages = elementalDamages,
+                PhysicalDps = physicalDps,
+                ElementalDps = elementalDps,
+                DamagePerSecond = totalDps
             };
-
-            properties.ElementalDps = GetDps(patterns.ElementalDamage, propertyBlock, properties.AttacksPerSecond);
-            properties.PhysicalDps = GetDps(patterns.PhysicalDamage, propertyBlock, properties.AttacksPerSecond);
-            properties.DamagePerSecond = properties.ElementalDps + properties.PhysicalDps;
-
-            return properties;
         }
 
         private Properties ParseArmourProperties(ParsingItem parsingItem)
@@ -356,9 +416,17 @@ namespace Sidekick.Apis.Poe.Parser
 
         private static double GetDouble(Regex pattern, ParsingBlock parsingBlock)
         {
-            if (parsingBlock.TryParseRegex(pattern, out var match) && double.TryParse(match.Groups[1].Value.Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture, out var result))
+            if (parsingBlock.TryParseRegex(pattern, out var match))
             {
-                return result;
+                var value = match.Groups[1].Value.Replace(",", ".");
+                if (value.EndsWith("%"))
+                {
+                    value = value.TrimEnd('%');
+                }
+                if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var result))
+                {
+                    return result;
+                }
             }
 
             return default;

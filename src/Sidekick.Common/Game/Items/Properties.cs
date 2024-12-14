@@ -1,3 +1,5 @@
+using Sidekick.Common.Game.Items;
+
 namespace Sidekick.Common.Game.Items;
 
 public class Properties
@@ -51,6 +53,10 @@ public class Properties
     public double ElementalDps { get; set; }
 
     public double PhysicalDps { get; set; }
+
+    public DamageRange PhysicalDamage { get; init; } = new();
+
+    public List<DamageRange> ElementalDamages { get; init; } = new();
 
     public int? BaseDefencePercentile { get; init; }
 }

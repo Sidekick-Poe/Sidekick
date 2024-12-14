@@ -1,3 +1,5 @@
+using Sidekick.Common.Game.Items;
+
 namespace Sidekick.Apis.Poe.Trade.Models
 {
     public class PropertyFilter : ITradeFilter
@@ -8,6 +10,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
             string text,
             object value,
             decimal? min = null,
+            decimal? max = null,
             double delta = 1)
         {
             Enabled = enabled;
@@ -16,6 +19,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
             Value = value;
             Delta = delta;
             MinimumValueForNormalization = min;
+            Max = max;
             NormalizeMinValue();
 
             switch (value)
@@ -31,11 +35,19 @@ namespace Sidekick.Apis.Poe.Trade.Models
                 case double:
                     ValueType = FilterValueType.Double;
                     break;
+
+                case DamageRange:
+                    ValueType = FilterValueType.Double;
+                    break;
             }
 
             if (min.HasValue)
             {
                 Min = min;
+            }
+            if (max.HasValue)
+            {
+                Max = max;
             }
         }
 
@@ -62,6 +74,15 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void NormalizeMinValue()
         {
+            if (Value is DamageRange damageRange)
+            {
+                if (damageRange.Min > 0 || damageRange.Max > 0)
+                {
+                    Min = Convert.ToDecimal(damageRange.Min);
+                }
+                return;
+            }
+
             if (!double.TryParse(Value.ToString(), out var value) || value == 0)
             {
                 return;
@@ -69,11 +90,11 @@ namespace Sidekick.Apis.Poe.Trade.Models
 
             if (value > 0)
             {
-                Min = (int)Math.Max(Math.Min(value - Delta, value * 0.9), 0);
+                Min = Convert.ToDecimal(Math.Max(Math.Min(value - Delta, value * 0.9), 0));
             }
             else
             {
-                Min = (int)Math.Min(Math.Min(value - Delta, value * 1.1), 0);
+                Min = Convert.ToDecimal(Math.Min(Math.Min(value - Delta, value * 1.1), 0));
             }
 
             if (MinimumValueForNormalization.HasValue && Min < MinimumValueForNormalization)
@@ -87,6 +108,15 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void NormalizeMaxValue()
         {
+            if (Value is DamageRange damageRange)
+            {
+                if (damageRange.Min > 0 || damageRange.Max > 0)
+                {
+                    Max = Convert.ToDecimal(damageRange.Max);
+                }
+                return;
+            }
+
             if (!double.TryParse(Value.ToString(), out var value) || value == 0)
             {
                 return;
@@ -94,11 +124,11 @@ namespace Sidekick.Apis.Poe.Trade.Models
 
             if (value > 0)
             {
-                Max = (int)Math.Max(Math.Max(value + Delta, value * 1.1), 0);
+                Max = Convert.ToDecimal(Math.Max(Math.Max(value + Delta, value * 1.1), 0));
             }
             else
             {
-                Max = (int)Math.Min(Math.Max(value + Delta, value * 0.9), 0);
+                Max = Convert.ToDecimal(Math.Min(Math.Max(value + Delta, value * 0.9), 0));
             }
         }
 
@@ -107,6 +137,16 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void SetExactValue()
         {
+            if (Value is DamageRange damageRange)
+            {
+                if (damageRange.Min > 0 || damageRange.Max > 0)
+                {
+                    Min = Convert.ToDecimal(damageRange.Min);
+                    Max = Convert.ToDecimal(damageRange.Max);
+                }
+                return;
+            }
+
             if (!decimal.TryParse(Value.ToString(), out var value))
             {
                 return;

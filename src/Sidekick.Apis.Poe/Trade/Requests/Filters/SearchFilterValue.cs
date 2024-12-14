@@ -9,7 +9,10 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
 
         public SearchFilterValue(PropertyFilter filter)
         {
-            Option = filter.Enabled == true ? "true" : "false";
+            if (filter.ValueType == FilterValueType.Boolean)
+            {
+                Option = filter.Enabled == true ? "true" : "false";
+            }
             Min = filter.Min;
             Max = filter.Max;
         }

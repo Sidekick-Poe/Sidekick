@@ -1,6 +1,9 @@
+using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe;
 using Sidekick.Apis.Poe.Bulk;
 using Sidekick.Apis.Poe.Bulk.Models;
+using Sidekick.Apis.Poe.Parser;
+using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Common.Extensions;
@@ -11,11 +14,12 @@ using Sidekick.Common.Settings;
 namespace Sidekick.Modules.Trade;
 
 public class PriceCheckService(
-    ISettingsService settingsService,
-    IBulkTradeService bulkTradeService,
+    ILogger<PriceCheckService> logger,
     IItemParser itemParser,
     ITradeFilterService tradeFilterService,
-    ITradeSearchService tradeSearchService)
+    ITradeSearchService tradeSearchService,
+    IBulkTradeService bulkTradeService,
+    ISettingsService settingsService)
 {
     public event Action? LoadingChanged;
 
@@ -47,20 +51,67 @@ public class PriceCheckService(
 
     public bool SupportsBulk { get; private set; }
 
+    public void UpdateTypeFilter(bool enabled)
+    {
+        if (PropertyFilters != null)
+        {
+            PropertyFilters.TypeFilterEnabled = enabled;
+        }
+    }
+
+    public void UpdateUseSpecificType(bool enabled)
+    {
+        if (PropertyFilters != null)
+        {
+            PropertyFilters.UseSpecificType = enabled;
+        }
+    }
+
+    public void UpdateRarityFilter(bool enabled)
+    {
+        if (PropertyFilters != null)
+        {
+            PropertyFilters.RarityFilterEnabled = enabled;
+        }
+    }
+
     public async Task Initialize(string itemText)
     {
+        logger.LogInformation("[PriceCheck] Starting initialization");
         IsFilterLoading = true;
         FilterLoadingChanged?.Invoke();
 
         Item = await itemParser.ParseItemAsync(itemText.DecodeBase64Url() ?? string.Empty);
+        logger.LogInformation($"[PriceCheck] Parsed item: {Item?.Header.Name} {Item?.Header.Type}");
+        if (Item?.Properties.PhysicalDamage != null)
+        {
+            logger.LogInformation($"[PriceCheck] Physical Damage: {Item.Properties.PhysicalDamage.Min}-{Item.Properties.PhysicalDamage.Max}");
+        }
+        if (Item?.Properties.ElementalDamages != null)
+        {
+            foreach (var damage in Item.Properties.ElementalDamages)
+            {
+                logger.LogInformation($"[PriceCheck] Elemental Damage: {damage.Min}-{damage.Max}");
+            }
+        }
 
-        PropertyFilters = tradeFilterService.GetPropertyFilters(Item);
-        ModifierFilters = tradeFilterService
-                          .GetModifierFilters(Item)
-                          .ToList();
-        PseudoFilters = tradeFilterService
-                        .GetPseudoModifierFilters(Item)
-                        .ToList();
+        if (Item != null)
+        {
+            PropertyFilters = tradeFilterService.GetPropertyFilters(Item);
+            PropertyFilters.TypeFilterEnabled = true;
+            ModifierFilters = tradeFilterService
+                              .GetModifierFilters(Item)
+                              .ToList();
+            PseudoFilters = tradeFilterService
+                            .GetPseudoModifierFilters(Item)
+                            .ToList();
+        }
+        else
+        {
+            PropertyFilters = null;
+            ModifierFilters = [];
+            PseudoFilters = [];
+        }
 
         SupportsBulk = bulkTradeService.SupportsBulkTrade(Item);
         if (SupportsBulk)
@@ -75,42 +126,31 @@ public class PriceCheckService(
         IsFilterLoading = false;
         FilterLoadingChanged?.Invoke();
 
-        if (Item.Metadata.Rarity != Rarity.Rare && Item.Metadata.Rarity != Rarity.Magic)
-        {
-            if (CurrentMode == TradeMode.Bulk)
-            {
-                await BulkSearch();
-            }
-            else
-            {
-                await ItemSearch();
-            }
-        }
+        await Search();
     }
 
-    public async Task ItemSearch()
+    public async Task Search()
     {
         if (Item == null)
         {
             return;
         }
 
-        CurrentMode = TradeMode.Item;
-        TradeItems = new List<TradeItem>();
+        logger.LogInformation("[PriceCheck] Starting search");
+        ItemTradeResult = null;
+        TradeItems = new();
         IsLoading = true;
         LoadingChanged?.Invoke();
 
-        var tradeCurrency = await settingsService.GetEnum<TradeCurrency>(SettingKeys.PriceCheckItemCurrency) ?? TradeCurrency.Chaos;
-        ItemTradeResult = await tradeSearchService.Search(
-            Item,
-            tradeCurrency,
-            PropertyFilters,
-            ModifierFilters,
-            PseudoFilters);
+        var currency = await settingsService.GetEnum<TradeCurrency>(SettingKeys.PriceCheckItemCurrency);
+        ItemTradeResult = await tradeSearchService.Search(Item, currency ?? TradeCurrency.Divine, PropertyFilters, ModifierFilters, PseudoFilters);
+
+        if (ItemTradeResult?.Result != null)
+        {
+            await LoadMoreItems();
+        }
 
         IsLoading = false;
-        await LoadMoreItems();
-
         LoadingChanged?.Invoke();
     }
 
@@ -134,7 +174,25 @@ public class PriceCheckService(
         LoadingChanged?.Invoke();
 
         var result = await tradeSearchService.GetResults(Item.Metadata.Game, ItemTradeResult.Id, ids, PseudoFilters);
-        TradeItems?.AddRange(result);
+        if (result != null)
+        {
+            logger.LogInformation($"[PriceCheck] Got {result.Count} results");
+            foreach (var item in result)
+            {
+                if (item.Properties.PhysicalDamage != null)
+                {
+                    logger.LogInformation($"[PriceCheck] Result Physical Damage: {item.Properties.PhysicalDamage.Min}-{item.Properties.PhysicalDamage.Max}");
+                }
+                if (item.Properties.ElementalDamages != null)
+                {
+                    foreach (var damage in item.Properties.ElementalDamages)
+                    {
+                        logger.LogInformation($"[PriceCheck] Result Elemental Damage: {damage.Min}-{damage.Max}");
+                    }
+                }
+            }
+            TradeItems?.AddRange(result);
+        }
 
         IsLoading = false;
         LoadingChanged?.Invoke();
@@ -142,21 +200,60 @@ public class PriceCheckService(
 
     public async Task BulkSearch()
     {
+        if (Item == null || !SupportsBulk)
+        {
+            return;
+        }
+
+        try
+        {
+            IsLoading = true;
+            LoadingChanged?.Invoke();
+
+            logger.LogInformation("[PriceCheck] Starting bulk search");
+            var currency = await settingsService.GetEnum<TradeCurrency>(SettingKeys.PriceCheckBulkCurrency);
+            var minStock = await settingsService.GetInt(SettingKeys.PriceCheckBulkMinimumStock);
+            BulkTradeResult = await bulkTradeService.SearchBulk(Item, currency ?? TradeCurrency.Divine, minStock);
+            CurrentMode = TradeMode.Bulk;
+        }
+        finally
+        {
+            IsLoading = false;
+            LoadingChanged?.Invoke();
+        }
+    }
+
+    public async Task ItemSearch()
+    {
         if (Item == null)
         {
             return;
         }
 
-        CurrentMode = TradeMode.Bulk;
-        BulkTradeResult = null;
-        IsLoading = true;
-        LoadingChanged?.Invoke();
+        try
+        {
+            IsLoading = true;
+            LoadingChanged?.Invoke();
 
-        var currency = await settingsService.GetEnum<TradeCurrency>(SettingKeys.PriceCheckBulkCurrency);
-        var minStock = await settingsService.GetInt(SettingKeys.PriceCheckBulkMinimumStock);
-        BulkTradeResult = await bulkTradeService.SearchBulk(Item, currency ?? TradeCurrency.Divine, minStock);
+            logger.LogInformation("[PriceCheck] Starting item search");
+            var currency = await settingsService.GetEnum<TradeCurrency>(SettingKeys.PriceCheckItemCurrency);
+            ItemTradeResult = await tradeSearchService.Search(Item, currency ?? TradeCurrency.Divine, PropertyFilters, ModifierFilters, PseudoFilters);
+            
+            if (ItemTradeResult?.Result?.Count > 0 && ItemTradeResult?.Id != null)
+            {
+                TradeItems = await tradeSearchService.GetResults(Item.Metadata.Game, ItemTradeResult.Id, ItemTradeResult.Result.Take(10).ToList(), PseudoFilters);
+            }
+            else
+            {
+                TradeItems = [];
+            }
 
-        IsLoading = false;
-        LoadingChanged?.Invoke();
+            CurrentMode = TradeMode.Item;
+        }
+        finally
+        {
+            IsLoading = false;
+            LoadingChanged?.Invoke();
+        }
     }
 }

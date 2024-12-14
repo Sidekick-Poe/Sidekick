@@ -1,36 +1,33 @@
 @using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Common.Game.Items
 @using Sidekick.Modules.Trade.Localization
+@using Microsoft.Extensions.Localization
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Poe.Items
+@using Sidekick.Common.Ui.Buttons
 
 <FilterWrapper>
     <div class="flex flex-nowrap items-center">
         <div class="grow">
             <FormCheckbox Value="Filter.Enabled ?? false"
-                          NoMargin="true"
-                          ValueChanged="(v) => Filter.Enabled = v">
-                <ItemModifierText Class="text-left"
-                                  Category="ModifierCategory.Pseudo">@Filter.Modifier.Text</ItemModifierText>
+                         NoMargin="true"
+                         ValueChanged="(v) => Filter.Enabled = v">
+                <ItemPropertyText Label="@Filter.Modifier.Text"
+                                Value="@GetModifierValue()" />
             </FormCheckbox>
         </div>
 
-        <div class="flex flex-col items-end justify-between">
-            <ItemModifierCategoryChip Category="ModifierCategory.Pseudo"/>
-
-            <div class="h-[2px]"></div>
-
-            @if ((Filter.Enabled ?? false) && Filter.Modifier.HasValue)
-            {
-                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged"/>
-            }
-        </div>
+        @if ((Filter.Enabled ?? false) && Filter.Modifier.HasValue)
+        {
+            <FilterRange @bind-Min="Filter.Min" 
+                        @bind-Max="Filter.Max" 
+                        TypeChanged="TypeChanged" />
+        }
     </div>
 </FilterWrapper>
 
-@inject IStringLocalizer<TradeResources> Resources
-
 @code {
-
-    [CascadingParameter]
+    [Parameter]
     public required PseudoModifierFilter Filter { get; set; }
 
     private void TypeChanged(FilterRange.RangeType type)
@@ -58,4 +55,8 @@
         }
     }
 
+    private string GetModifierValue()
+    {
+        return Filter.Modifier.Value.ToString("0.0");
+    }
 }

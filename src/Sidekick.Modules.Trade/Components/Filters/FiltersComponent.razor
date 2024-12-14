@@ -4,6 +4,17 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Prices
+@using Sidekick.Modules.Trade.Components.Items
+@using Sidekick.Modules.Trade.Components.Bulk
+@using Sidekick.Modules.Trade.Components.Filters
+@using Microsoft.Extensions.Logging
+@using Microsoft.Extensions.Localization
+@using Sidekick.Common.Game.Languages
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Poe.Items
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Errors
+@using Sidekick.Common.Ui.Tooltips
 
 @if (PriceCheckService.Item == null)
 {
@@ -16,6 +27,14 @@
                     Type="@PriceCheckService.Item.Header.Type"
                     Rarity="PriceCheckService.Item.Metadata.Rarity"
                     Influences="PriceCheckService.Item.Influences"/>
+        
+        <div class="text-center text-[#7f7f7f]">
+            @if (PriceCheckService.Item.Properties.BaseDefencePercentile.HasValue)
+            {
+                <ItemPropertyText Label="@Resources["Base Percentile"]" Value="@(PriceCheckService.Item.Properties.BaseDefencePercentile + "%")"/>
+            }
+        </div>
+        <ItemSeparator Rarity="PriceCheckService.Item.Metadata.Rarity"/>
     </div>
 
     <div class="grow overflow-y-auto pb-9">
@@ -26,15 +45,72 @@
             <PricePredictionComponent/>
         </SidekickErrorBoundary>
 
-        @if (PriceCheckService.PropertyFilters != null)
-        {
-            <ClassFilter/>
+        <div class="flex flex-col gap-2">
+            <FormCheckbox Value="@(PriceCheckService.PropertyFilters?.TypeFilterEnabled ?? false)"
+                        NoMargin="true"
+                        ValueChanged="(v) => PriceCheckService.UpdateTypeFilter(v)">
+                <ItemPropertyText Label="Item Category"
+                                Value="@(GetItemClass() ?? PriceCheckService.Item.Header.Type)" />
+            </FormCheckbox>
+            @if (PriceCheckService.PropertyFilters?.TypeFilterEnabled ?? false)
+            {
+                <FormCheckbox Value="@(PriceCheckService.PropertyFilters?.UseSpecificType ?? false)"
+                            NoMargin="true"
+                            ValueChanged="(v) => PriceCheckService.UpdateUseSpecificType(v)">
+                    <ItemPropertyText Label="Use Specific Type"
+                                    Value="@PriceCheckService.Item.Metadata.Type" />
+                </FormCheckbox>
+            }
+            <FormCheckbox Value="@(PriceCheckService.PropertyFilters?.RarityFilterEnabled ?? false)"
+                        NoMargin="true"
+                        ValueChanged="(v) => PriceCheckService.UpdateRarityFilter(v)">
+                <ItemPropertyText Label="Rarity"
+                                Value="@PriceCheckService.Item.Metadata.Rarity.ToString()" />
+            </FormCheckbox>
 
-            @RenderPropertyFilters(PriceCheckService.PropertyFilters.Armour)
-            @RenderPropertyFilters(PriceCheckService.PropertyFilters.Weapon)
-            @RenderPropertyFilters(PriceCheckService.PropertyFilters.Map)
-            @RenderPropertyFilters(PriceCheckService.PropertyFilters.Misc)
-        }
+            @if (PriceCheckService.PropertyFilters != null)
+            {
+                <ItemSeparator Rarity="PriceCheckService.Item.Metadata.Rarity"/>
+                @if (PriceCheckService.PropertyFilters.Armour.Any())
+                {
+                    @foreach (var filter in PriceCheckService.PropertyFilters.Armour)
+                    {
+                        <PropertyFilterComponent Filter="filter" />
+                    }
+                }
+
+                @if (PriceCheckService.PropertyFilters.Weapon.Any())
+                {
+                    @foreach (var filter in PriceCheckService.PropertyFilters.Weapon)
+                    {
+                        <PropertyFilterComponent Filter="filter" />
+                    }
+                }
+
+                @if (PriceCheckService.PropertyFilters.Map.Any())
+                {
+                    @foreach (var filter in PriceCheckService.PropertyFilters.Map)
+                    {
+                        <PropertyFilterComponent Filter="filter" />
+                    }
+                }
+
+                @if (PriceCheckService.PropertyFilters.Misc.Any())
+                {
+                    <ItemSeparator Rarity="PriceCheckService.Item.Metadata.Rarity"/>
+                    @foreach (var filter in PriceCheckService.PropertyFilters.Misc)
+                    {
+                        <PropertyFilterComponent Filter="filter" />
+                    }
+                }
+                <ItemSeparator Rarity="PriceCheckService.Item.Metadata.Rarity"/>
+            }
+
+            @if (PriceCheckService.SupportsBulk)
+            {
+                <BulkFiltersComponent />
+            }
+        </div>
 
         <ModifierFiltersComponent/>
         <PseudoFiltersComponent/>
@@ -59,39 +135,14 @@
 @inject ISettingsService SettingsService
 @inject IBulkTradeService BulkTradeService
 @inject PriceCheckService PriceCheckService
+@inject IGameLanguageProvider GameLanguageProvider
+@inject ILogger<FiltersComponent> Logger
 
 @code {
-
-    private bool HasAnyFilter { get; set; }
-
-    private RenderFragment RenderPropertyFilters(List<PropertyFilter> filters) => @<div>
-                                                                                      @foreach (var filter in filters)
-                                                                                      {
-                                                                                          <PropertyFilterComponent Filter="filter"/>
-                                                                                      }
-
-                                                                                      @if (filters.Count > 0)
-                                                                                      {
-                                                                                          <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown"/>
-                                                                                      }
-                                                                                  </div>;
-
     protected override async Task OnInitializedAsync()
     {
         PriceCheckService.FilterLoadingChanged += StateHasChanged;
-
         await base.OnInitializedAsync();
-
-        var propertyCount = 0;
-        propertyCount += PriceCheckService.PropertyFilters?.Armour.Count ?? 0;
-        propertyCount += PriceCheckService.PropertyFilters?.Map.Count ?? 0;
-        propertyCount += PriceCheckService.PropertyFilters?.Misc.Count ?? 0;
-        propertyCount += PriceCheckService.PropertyFilters?.Weapon.Count ?? 0;
-
-        var modifierCount = 0;
-        modifierCount += PriceCheckService.ModifierFilters.Count;
-
-        HasAnyFilter = modifierCount + propertyCount > 0;
     }
 
     public void Dispose()
@@ -99,4 +150,50 @@
         PriceCheckService.FilterLoadingChanged -= StateHasChanged;
     }
 
+    private string? GetItemClass()
+    {
+        var itemClass = PriceCheckService.Item.Header.ItemCategory;
+        if (string.IsNullOrEmpty(itemClass))
+        {
+            return null;
+        }
+
+        var classLanguage = GameLanguageProvider.Language.Classes;
+        return itemClass switch
+        {
+            "armour.chest" => classLanguage.BodyArmours,
+            "armour.boots" => classLanguage.Boots,
+            "armour.gloves" => classLanguage.Gloves,
+            "armour.helmet" => classLanguage.Helmets,
+            "armour.shield" => classLanguage.Shields,
+            "armour.quiver" => classLanguage.Quivers,
+            "weapon.bow" => classLanguage.Bows,
+            "weapon.claw" => classLanguage.Claws,
+            "weapon.dagger" => classLanguage.Daggers,
+            "weapon.runedagger" => classLanguage.RuneDaggers,
+            "weapon.wand" => classLanguage.Wands,
+            "weapon.oneaxe" => classLanguage.OneHandAxes,
+            "weapon.onemace" => classLanguage.OneHandMaces,
+            "weapon.onesword" => classLanguage.OneHandSwords,
+            "weapon.sceptre" => classLanguage.Sceptres,
+            "weapon.staff" => classLanguage.Staves,
+            "weapon.warstaff" => classLanguage.Warstaves,
+            "weapon.twoaxe" => classLanguage.TwoHandAxes,
+            "weapon.twomace" => classLanguage.TwoHandMaces,
+            "weapon.twosword" => classLanguage.TwoHandSwords,
+            "accessory.amulet" => classLanguage.Amulet,
+            "accessory.belt" => classLanguage.Belt,
+            "accessory.ring" => classLanguage.Ring,
+            "accessory.trinket" => classLanguage.Trinkets,
+            "flask.life" => classLanguage.LifeFlasks,
+            "flask.mana" => classLanguage.ManaFlasks,
+            "flask.hybrid" => classLanguage.HybridFlasks,
+            "flask.utility" => classLanguage.UtilityFlasks,
+            "gem.activegem" => classLanguage.ActiveSkillGems,
+            "gem.supportgem" => classLanguage.SupportSkillGems,
+            "jewel" => classLanguage.Jewel,
+            "jewel.abyss" => classLanguage.AbyssJewel,
+            _ => null
+        };
+    }
 }
