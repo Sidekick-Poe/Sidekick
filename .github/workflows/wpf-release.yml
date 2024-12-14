@@ -124,9 +124,9 @@ jobs:
               Copy-Item -Path "../src/Sidekick.Wpf/bin/publish/Application Files","../src/Sidekick.Wpf/bin/publish/Sidekick.application" -Destination . -Recurse
 
               # Stage and commit.
-              # git add -A
-              # git commit -m "Update to v$version"
-              # git push
+              git add -A
+              git commit -m "Update to v$version"
+              git push
           } finally {
               Pop-Location
           }
