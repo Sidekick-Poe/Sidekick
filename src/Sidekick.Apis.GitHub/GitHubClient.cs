@@ -186,11 +186,6 @@ public class GitHubClient(
 
     private Version? GetCurrentVersion()
     {
-        return new Version("3.0.8");
-        return AppDomain
-            .CurrentDomain.GetAssemblies()
-            .FirstOrDefault(x => x.FullName?.Contains("Sidekick") ?? false)
-            ?.GetName()
-            .Version;
+        return AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).FirstOrDefault(x => x.Name == "Sidekick")?.Version;
     }
 }

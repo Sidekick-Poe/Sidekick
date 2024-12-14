@@ -163,7 +163,8 @@ namespace Sidekick.Common.Blazor.Initialization
 
         private string? GetVersion()
         {
-            return FileVersionInfo.GetVersionInfo(GetType().Assembly.Location).ProductVersion;
+            var version = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).FirstOrDefault(x => x.Name == "Sidekick")?.Version;
+            return version?.ToString();
         }
 
         private void InitializeTray()
