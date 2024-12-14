@@ -13,38 +13,42 @@
 @if (implicitFilters.Any())
 {
     <TextCaption Class="font-caps text-[#AA9E82] text-center leading-none py-0.5">Implicit Modifiers</TextCaption>
-    @foreach (var filter in implicitFilters)
-    {
-        <CascadingValue Value="filter" IsFixed="true">
-            <ModifierFilterComponent/>
-        </CascadingValue>
-    }
+    <div class="pl-2">
+        @foreach (var filter in implicitFilters)
+        {
+            <CascadingValue Value="filter" IsFixed="true">
+                <ModifierFilterComponent/>
+            </CascadingValue>
+        }
+    </div>
     <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown"/>
 }
 
-@for (var i = 0; i < explicitFilters.Count; i++)
-{
-    <CascadingValue Value="explicitFilters[i]" IsFixed="true">
-        <ModifierFilterComponent/>
-    </CascadingValue>
-
-    var isLastFilter = i + 1 == explicitFilters.Count;
-    if (!isLastFilter)
+<div class="pl-2">
+    @for (var i = 0; i < explicitFilters.Count; i++)
     {
-        var isDifferentCategoryThanNext = NormalizeModifierCategory(
-                                            explicitFilters[i]
-                                                .Line.Modifiers.FirstOrDefault()
-                                                ?.Category)
-                                        != NormalizeModifierCategory(
-                                            explicitFilters[i + 1]
-                                                .Line.Modifiers.FirstOrDefault()
-                                                ?.Category);
-        if (isDifferentCategoryThanNext)
+        <CascadingValue Value="explicitFilters[i]" IsFixed="true">
+            <ModifierFilterComponent/>
+        </CascadingValue>
+
+        var isLastFilter = i + 1 == explicitFilters.Count;
+        if (!isLastFilter)
         {
-            <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown"/>
+            var isDifferentCategoryThanNext = NormalizeModifierCategory(
+                                                explicitFilters[i]
+                                                    .Line.Modifiers.FirstOrDefault()
+                                                    ?.Category)
+                                            != NormalizeModifierCategory(
+                                                explicitFilters[i + 1]
+                                                    .Line.Modifiers.FirstOrDefault()
+                                                    ?.Category);
+            if (isDifferentCategoryThanNext)
+            {
+                <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown"/>
+            }
         }
     }
-}
+</div>
 
 @inject PriceCheckService PriceCheckService
 
