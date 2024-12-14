@@ -5,6 +5,8 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub.Api;
 using Sidekick.Apis.GitHub.Models;
+using Sidekick.Common;
+using Sidekick.Common.Cache;
 
 namespace Sidekick.Apis.GitHub;
 
@@ -12,7 +14,42 @@ public class GitHubClient(
     IHttpClientFactory httpClientFactory,
     ILogger<GitHubClient> logger) : IGitHubClient
 {
+    private const string IndicatorPath = "SidekickGitHub";
+
     private GitHubRelease? LatestRelease { get; set; }
+
+    /// <inheritdoc />
+    public async Task DownloadGitHubDownloadIndicatorFile()
+    {
+        var version = GetCurrentVersion();
+        if (version == null || HasIndicatorFile(version))
+        {
+            return;
+        }
+
+        var apiReleases = await GetApiReleases();
+        var apiRelease = apiReleases?.FirstOrDefault(x => x.Version == version);
+        if (apiRelease == null)
+        {
+            return;
+        }
+
+        var downloadUrl = apiRelease.Assets?.FirstOrDefault(x => x.Name == "download-instructions.txt")?.DownloadUrl;
+        if (string.IsNullOrEmpty(downloadUrl))
+        {
+            return;
+        }
+
+        using var client = GetHttpClient();
+        var response = await client.GetAsync(downloadUrl);
+        await using var downloadStream = await response.Content.ReadAsStreamAsync();
+        await using var fileStream = new FileStream(
+            GetDownloadIndicatorFileName(version),
+            FileMode.Create,
+            FileAccess.Write,
+            FileShare.None);
+        await downloadStream.CopyToAsync(fileStream);
+    }
 
     /// <inheritdoc />
     public async Task<GitHubRelease> GetLatestRelease()
@@ -22,7 +59,7 @@ public class GitHubClient(
             return LatestRelease;
         }
 
-        var release = await GetApiRelease();
+        var release = await GetLatestApiRelease();
         if (release == null || release.Tag == null)
         {
             logger.LogInformation("[Updater] No latest release found on GitHub.");
@@ -35,11 +72,7 @@ public class GitHubClient(
             Regex
                 .Match(release.Tag, @"(\d+\.){2}\d+")
                 .ToString());
-        var currentVersion = AppDomain
-                             .CurrentDomain.GetAssemblies()
-                             .FirstOrDefault(x => x.FullName?.Contains("Sidekick") ?? false)
-                             ?.GetName()
-                             .Version;
+        var currentVersion = GetCurrentVersion();
         if (currentVersion == null)
         {
             LatestRelease = new GitHubRelease();
@@ -57,7 +90,7 @@ public class GitHubClient(
     /// <inheritdoc />
     public async Task<bool> DownloadLatest(string downloadPath)
     {
-        var release = await GetApiRelease();
+        var release = await GetLatestApiRelease();
         if (release == null)
         {
             return false;
@@ -96,29 +129,55 @@ public class GitHubClient(
         return client;
     }
 
-    private async Task<Release?> GetApiRelease()
+    private async Task<Release[]?> GetApiReleases()
     {
         // Get List of releases
         using var client = GetHttpClient();
         var listResponse = await client.GetAsync("/repos/Sidekick-Poe/Sidekick/releases");
         if (!listResponse.IsSuccessStatusCode)
         {
-            return null;
+            return [];
         }
 
-        var githubReleaseList = await JsonSerializer.DeserializeAsync<Release[]>(
+        return await JsonSerializer.DeserializeAsync<Release[]>(
             utf8Json: await listResponse.Content.ReadAsStreamAsync(),
             options: new JsonSerializerOptions
             {
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 PropertyNameCaseInsensitive = true,
             });
+    }
 
-        if (githubReleaseList == null)
-        {
-            return null;
-        }
+    private async Task<Release?> GetLatestApiRelease()
+    {
+        var githubReleaseList = await GetApiReleases();
+        return githubReleaseList?.FirstOrDefault(x => !x.Prerelease);
+    }
 
-        return githubReleaseList.FirstOrDefault(x => !x.Prerelease);
+    private bool HasIndicatorFile(Version version)
+    {
+        EnsureIndicatorDirectory();
+        var fileName = GetDownloadIndicatorFileName(version);
+        return File.Exists(fileName);
+    }
+
+    private static void EnsureIndicatorDirectory()
+    {
+        Directory.CreateDirectory(Path.Combine(path1: SidekickPaths.GetDataFilePath(), IndicatorPath));
+    }
+
+    private static string GetDownloadIndicatorFileName(Version version)
+    {
+        var fileName = $"{version.ToString()}.txt";
+        return Path.Combine(path1: SidekickPaths.GetDataFilePath(), IndicatorPath, fileName);
+    }
+
+    private Version? GetCurrentVersion()
+    {
+        return AppDomain
+            .CurrentDomain.GetAssemblies()
+            .FirstOrDefault(x => x.FullName?.Contains("Sidekick") ?? false)
+            ?.GetName()
+            .Version;
     }
 }

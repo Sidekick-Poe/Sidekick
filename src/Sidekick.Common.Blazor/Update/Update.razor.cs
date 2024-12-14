@@ -9,7 +9,7 @@ using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Common.Blazor.Update
 {
-    public partial class Update : SidekickView
+    public partial class Update
     {
         [Inject]
         private ILogger<Update> Logger { get; set; } = null!;
@@ -26,7 +26,8 @@ namespace Sidekick.Common.Blazor.Update
         [Inject]
         private ICacheProvider CacheProvider { get; set; } = null!;
 
-        public override SidekickViewType ViewType => SidekickViewType.Modal;
+        [Inject]
+        private ICurrentView CurrentView { get; set; } = null!;
 
         private string? Step { get; set; }
         private bool Error { get; set; }
@@ -37,6 +38,19 @@ namespace Sidekick.Common.Blazor.Update
 
             try
             {
+                // Checking release
+                Step = Resources["Checking for updates..."];
+                StateHasChanged();
+
+                var release = await GitHubClient.GetLatestRelease();
+                if (!release.IsNewerVersion)
+                {
+                    Step = Resources["Could not download the update automatically. You can try to download the latest version from https://sidekick-poe.github.io/"];
+                    StateHasChanged();
+                }
+
+                /*
+
                 // Checking release
                 Step = Resources["Downloading the latest version..."];
                 StateHasChanged();
@@ -68,6 +82,8 @@ namespace Sidekick.Common.Blazor.Update
                 await Task.Delay(1500);
                 Process.Start(path);
                 ApplicationService.Shutdown();
+
+                 */
             }
             catch (Exception ex)
             {

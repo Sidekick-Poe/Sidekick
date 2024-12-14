@@ -2,7 +2,6 @@
 @using Sidekick.Apis.GitHub;
 @using Sidekick.Apis.GitHub.Models;
 @using Sidekick.Common.Browser;
-@using Sidekick.Common.Ui.Views
 @using Sidekick.Common;
 
 @if (Release is
@@ -14,14 +13,15 @@
         <div class="flex items-center gap-2">
             <TextBase>@Resources["A new update is available!"]</TextBase>
             <TextCaption>
-                @if (Release.IsExecutable)
+                @if (Release is
+                     {
+                         IsExecutable: true
+                     } && false)
                 {
                     <ButtonLink OnClick="Download">@Resources["Download and Install"]</ButtonLink>
                 }
-                else
-                {
-                    <ButtonLink OnClick="OpenWebsite">@Resources["Open Website"]</ButtonLink>
-                }
+
+                <ButtonLink OnClick="OpenWebsite">@Resources["Open Website"]</ButtonLink>
             </TextCaption>
         </div>
     </AlertInfo>
@@ -41,6 +41,7 @@
     protected override async Task OnInitializedAsync()
     {
         Release = await GitHubClient.GetLatestRelease();
+        await GitHubClient.DownloadGitHubDownloadIndicatorFile();
 
         if (Debugger.IsAttached)
         {
