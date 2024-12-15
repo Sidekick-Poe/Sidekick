@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Results
 {
@@ -40,17 +39,5 @@ namespace Sidekick.Apis.Poe.Trade.Results
 
         [JsonPropertyName("base_defence_percentile")]
         public int? BaseDefencePercentile { get; set; }
-
-        [JsonPropertyName("physical_damage")]
-        public DamageRange PhysicalDamage { get; set; } = new();
-
-        [JsonPropertyName("elemental_damage")]
-        public List<DamageRange> ElementalDamage { get; set; } = new();
-
-        [JsonPropertyName("crit")]
-        public double CriticalStrikeChance { get; set; }
-
-        [JsonPropertyName("aps")]
-        public double AttacksPerSecond { get; set; }
     }
 }
