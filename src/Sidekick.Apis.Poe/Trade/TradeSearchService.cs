@@ -116,7 +116,7 @@ public class TradeSearchService
 
             // Set stats
             query.Stats = (modifierFilters ?? Enumerable.Empty<ModifierFilter>())
-                .Where(x => x.Enabled == true)
+                .Where(x => x.Checked == true)
                 .Select(x => new StatFilterGroup 
                 { 
                     Type = StatType.And,
@@ -205,7 +205,7 @@ public class TradeSearchService
 
         foreach (var propertyFilter in propertyFilters)
         {
-            if (!propertyFilter.Enabled == true)
+            if (!propertyFilter.Checked == true)
             {
                 continue;
             }
@@ -255,7 +255,7 @@ public class TradeSearchService
 
         foreach (var propertyFilter in propertyFilters)
         {
-            if (propertyFilter.Enabled != true)
+            if (propertyFilter.Checked != true)
             {
                 continue;
             }
@@ -284,13 +284,7 @@ public class TradeSearchService
             }
         }
 
-        if (hasValue)
-        {
-            filters.Disabled = false;
-            return filters;
-        }
-
-        return null;
+        return hasValue ? filters : null;
     }
 
     private EquipmentFilterGroup? GetEquipmentFilters(Item item, List<PropertyFilter> propertyFilters)
@@ -306,7 +300,7 @@ public class TradeSearchService
 
         foreach (var propertyFilter in propertyFilters)
         {
-            if (propertyFilter.Enabled != true)
+            if (propertyFilter.Checked != true)
             {
                 continue;
             }
@@ -363,13 +357,7 @@ public class TradeSearchService
             }
         }
 
-        if (hasValue)
-        {
-            filters.Disabled = false;
-            return filters;
-        }
-
-        return null;
+        return hasValue ? filters : null;
     }
 
     private MapFilterGroup? GetMapFilters(List<PropertyFilter> propertyFilters)
@@ -379,7 +367,7 @@ public class TradeSearchService
 
         foreach (var propertyFilter in propertyFilters)
         {
-            if (!propertyFilter.Enabled == true)
+            if (!propertyFilter.Checked == true)
             {
                 continue;
             }
@@ -451,7 +439,7 @@ public class TradeSearchService
 
         foreach (var propertyFilter in propertyFilters)
         {
-            if (!propertyFilter.Enabled == true)
+            if (!propertyFilter.Checked == true)
             {
                 continue;
             }
@@ -506,7 +494,7 @@ public class TradeSearchService
                     break;
 
                 case PropertyFilterType.Misc_Corrupted:
-                    filters.Filters.Corrupted = propertyFilter.Enabled.HasValue ? new SearchFilterOption(propertyFilter) : null;
+                    filters.Filters.Corrupted = propertyFilter.Checked.HasValue ? new SearchFilterOption(propertyFilter) : null;
                     hasValue = true;
                     break;
 
@@ -553,7 +541,7 @@ public class TradeSearchService
 
         foreach (var filter in modifierFilters)
         {
-            if (filter.Enabled == false)
+            if (filter.Checked == false)
             {
                 continue;
             }
@@ -619,7 +607,7 @@ public class TradeSearchService
 
         foreach (var filter in pseudoFilters)
         {
-            if (filter.Enabled != true)
+            if (filter.Checked != true)
             {
                 continue;
             }
@@ -1099,7 +1087,7 @@ public class TradeSearchService
 
     private void AddElementalDamageStats(Query query, PropertyFilter filter)
     {
-        if (!filter.Enabled == true)
+        if (!filter.Checked == true)
         {
             return;
         }

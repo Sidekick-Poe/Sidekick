@@ -9,7 +9,7 @@
         <div class="grow min-w-0">
             @if (Filter.ValueType == FilterValueType.Boolean)
             {
-                <FormTriStateCheckbox @bind-Value="Filter.Enabled"
+                <FormTriStateCheckbox @bind-Value="Filter.Checked"
                                     NoMargin="true">
                     <ItemPropertyText Label="@Filter.Text"
                                     Value="@GetDisplayValue()"
@@ -18,9 +18,9 @@
             }
             else
             {
-                <FormCheckbox Value="Filter.Enabled ?? false"
+                <FormCheckbox Value="Filter.Checked ?? false"
                              NoMargin="true"
-                             ValueChanged="(v) => Filter.Enabled = v">
+                             ValueChanged="(v) => Filter.Checked = v">
                     <ItemPropertyText Label="@Filter.Text.Replace("DamageRange", "")"
                                     Value="@GetDisplayValue()"
                                     OnlyShowLabel="false" />
@@ -28,7 +28,7 @@
             }
         </div>
 
-        @if ((Filter.Enabled ?? false) && HasValueFilters)
+        @if ((Filter.Checked ?? false) && HasValueFilters)
         {
             <div class="ml-4">
                 <FilterRange @bind-Min="Filter.Min" 

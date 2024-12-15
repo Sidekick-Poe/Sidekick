@@ -11,7 +11,7 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
         {
             if (filter.ValueType == FilterValueType.Boolean)
             {
-                Option = filter.Enabled == true ? "true" : "false";
+                Option = filter.Checked == true ? "true" : "false";
             }
             Min = filter.Min;
             Max = filter.Max;

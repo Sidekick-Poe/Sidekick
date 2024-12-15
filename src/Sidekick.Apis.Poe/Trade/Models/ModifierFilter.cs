@@ -7,7 +7,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
         public ModifierFilter(ModifierLine line)
         {
             Line = line;
-            Enabled = line.Modifiers.FirstOrDefault()?.Category == ModifierCategory.Fractured;
+            Checked = line.Modifiers.FirstOrDefault()?.Category == ModifierCategory.Fractured;
             NormalizeMinValue();
 
             if (HasMoreThanOneCategory && FirstCategory == ModifierCategory.Fractured)
@@ -16,9 +16,9 @@ namespace Sidekick.Apis.Poe.Trade.Models
             }
         }
 
-        public ModifierLine Line { get; init; }
+        public ModifierLine Line { get; }
 
-        public bool? Enabled { get; set; }
+        public bool? @Checked { get; set; }
 
         public bool ForceFirstCategory { get; set; }
 

@@ -9,15 +9,15 @@
 <FilterWrapper>
     <div class="flex flex-nowrap items-center">
         <div class="grow">
-            <FormCheckbox Value="Filter.Enabled ?? false"
+            <FormCheckbox Value="Filter.Checked ?? false"
                          NoMargin="true"
-                         ValueChanged="(v) => Filter.Enabled = v">
+                         ValueChanged="(v) => Filter.Checked = v">
                 <ItemPropertyText Label="@Filter.Modifier.Text"
                                 Value="@GetModifierValue()" />
             </FormCheckbox>
         </div>
 
-        @if ((Filter.Enabled ?? false) && Filter.Modifier.HasValue)
+        @if ((Filter.Checked ?? false) && Filter.Modifier.HasValue)
         {
             <FilterRange @bind-Min="Filter.Min" 
                         @bind-Max="Filter.Max" 

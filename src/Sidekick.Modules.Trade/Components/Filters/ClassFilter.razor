@@ -8,15 +8,15 @@
 @using Sidekick.Apis.Poe.Trade.Models
 
 <div class="flex flex-col gap-2">
-    <FormCheckbox Value="Filter.Enabled ?? false"
+    <FormCheckbox Value="Filter.Checked ?? false"
                  NoMargin="true"
-                 ValueChanged="(v) => Filter.Enabled = v">
+                 ValueChanged="(v) => Filter.Checked = v">
         <ItemPropertyText Label="@Resources["Class"]"
                          Value="@Filter.Value?.ToString()"
                          OnlyShowLabel="true" />
     </FormCheckbox>
 
-    @if (Filter.Enabled ?? false)
+    @if (Filter.Checked ?? false)
     {
         <div class="flex flex-col gap-2">
             <ItemPropertyText Label="@Resources["Class"]"
@@ -24,10 +24,10 @@
             <TooltipHint>@Resources["Class_Hint"]</TooltipHint>
             <ItemSeparator />
             <SidekickErrorBoundary>
-                <ButtonPrimary OnClick="() => Filter.Enabled = false">
+                <ButtonPrimary OnClick="() => Filter.Checked = false">
                     @Resources["Clear"]
                 </ButtonPrimary>
-                <ButtonSecondary OnClick="() => Filter.Enabled = null">
+                <ButtonSecondary OnClick="() => Filter.Checked = null">
                     @Resources["Reset"]
                 </ButtonSecondary>
             </SidekickErrorBoundary>

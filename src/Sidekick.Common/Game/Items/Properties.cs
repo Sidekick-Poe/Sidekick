@@ -56,6 +56,19 @@ public class Properties
 
     public DamageRange? ChaosDamage { get; set; }
 
+    public double? ElementalDps
+    {
+        get
+        {
+            var total = 0d;
+            if (FireDamage != null) total += FireDamage.GetDps(AttacksPerSecond);
+            if (ColdDamage != null) total += ColdDamage.GetDps(AttacksPerSecond);
+            if (LightningDamage != null) total += LightningDamage.GetDps(AttacksPerSecond);
+
+            return total;
+        }
+    }
+
     public double? TotalDps
     {
         get
