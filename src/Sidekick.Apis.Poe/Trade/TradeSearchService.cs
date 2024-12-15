@@ -49,7 +49,7 @@ public class TradeSearchService
                         Discriminator = item.Metadata.ApiTypeDiscriminator,
                     };
                 }
-                else if (string.IsNullOrEmpty(item.Header.ItemCategory))
+                else if (!string.IsNullOrEmpty(item.Header.ItemCategory))
                 {
                     query.Type = item.Metadata.ApiType;
                 }
@@ -57,34 +57,6 @@ public class TradeSearchService
             else if (propertyFilters.ClassFilterApplied)
             {
                 query.Filters.TypeFilters.Filters.Category = GetCategoryFilter(item.Header.ItemCategory);
-            }
-
-            if (propertyFilters?.RarityFilterApplied ?? false)
-            {
-                var rarity = item.Metadata.Rarity switch
-                {
-                    Rarity.Normal => "normal",
-                    Rarity.Magic => "magic",
-                    Rarity.Rare => "rare",
-                    Rarity.Unique => "unique",
-                    _ => null,
-                };
-                if (rarity != null)
-                {
-                    query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption(rarity);
-                }
-            }
-
-            var currencyValue = currency.GetValueAttribute();
-            if (!string.IsNullOrEmpty(currencyValue))
-            {
-                query.Filters.TradeFilters = new TradeFilterGroup
-                {
-                    Filters =
-                    {
-                        Price = new SearchFilterValue(currencyValue),
-                    },
-                };
             }
 
             if (item.Metadata.Category == Category.ItemisedMonster)
@@ -100,9 +72,34 @@ public class TradeSearchService
                 query.Name = item.Metadata.Name;
                 query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("Unique");
             }
+            else if (propertyFilters?.RarityFilterApplied ?? false)
+            {
+                var rarity = item.Metadata.Rarity switch
+                {
+                    Rarity.Normal => "normal",
+                    Rarity.Magic => "magic",
+                    Rarity.Rare => "rare",
+                    Rarity.Unique => "unique",
+                    _ => "nonunique",
+                };
+
+                query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption(rarity);
+            }
             else
             {
                 query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("nonunique");
+            }
+
+            var currencyValue = currency.GetValueAttribute();
+            if (!string.IsNullOrEmpty(currencyValue))
+            {
+                query.Filters.TradeFilters = new TradeFilterGroup
+                {
+                    Filters =
+                    {
+                        Price = new SearchFilterValue(currencyValue),
+                    },
+                };
             }
 
             SetModifierFilters(query.Stats, modifierFilters);
@@ -185,6 +182,11 @@ public class TradeSearchService
 
             switch (propertyFilter.Type)
             {
+                case PropertyFilterType.Weapon_Damage:
+                    filters.Filters.Damage = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
                 case PropertyFilterType.Weapon_PhysicalDps:
                     filters.Filters.PhysicalDps = new SearchFilterValue(propertyFilter);
                     hasValue = true;
@@ -278,6 +280,11 @@ public class TradeSearchService
 
             switch (propertyFilter.Type)
             {
+                case PropertyFilterType.Weapon_Damage:
+                    filters.Filters.Damage = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
                 case PropertyFilterType.Weapon_PhysicalDps:
                     filters.Filters.PhysicalDps = new SearchFilterValue(propertyFilter);
                     hasValue = true;
@@ -790,6 +797,7 @@ public class TradeSearchService
 
                 if (values.Count <= 0)
                 {
+                    if (text != null) text = ModifierProvider.RemoveSquareBrackets(text);
                     return new LineContent()
                     {
                         Text = text,

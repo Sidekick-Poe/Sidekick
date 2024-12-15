@@ -4,6 +4,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
     {
         Simple = 0,
         Augmented = 1,
+        Physical = 3,
         Fire = 4,
         Cold = 5,
         Lightning = 6,

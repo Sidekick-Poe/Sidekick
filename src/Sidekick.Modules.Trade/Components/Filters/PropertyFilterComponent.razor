@@ -1,4 +1,5 @@
 @using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Common.Game.Languages
 
 <FilterWrapper>
     <div class="flex flex-nowrap items-center">
@@ -17,8 +18,44 @@
                 <FormCheckbox Value="Filter.Checked ?? false"
                               NoMargin="true"
                               ValueChanged="(v) => Filter.Checked = v">
-                    <ItemPropertyText Label="@Filter.Text"
-                                      Value="@Filter.Value.ToString()"/>
+                    @if (Filter.Type == PropertyFilterType.Weapon_Damage)
+                    {
+                        if (PriceCheckService.Item?.Properties.PhysicalDamage != null)
+                        {
+                            <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionPhysicalDamage"
+                                              Value="@PriceCheckService.Item.Properties.PhysicalDamage.ToDisplayString()"
+                                              ContentType="LineContentType.Physical"/>
+                        }
+                        if (PriceCheckService.Item?.Properties.FireDamage != null)
+                        {
+                            <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionFireDamage"
+                                              Value="@PriceCheckService.Item.Properties.FireDamage.ToDisplayString()"
+                                              ContentType="LineContentType.Fire"/>
+                        }
+                        if (PriceCheckService.Item?.Properties.ColdDamage != null)
+                        {
+                            <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionColdDamage"
+                                              Value="@PriceCheckService.Item.Properties.ColdDamage.ToDisplayString()"
+                                              ContentType="LineContentType.Cold"/>
+                        }
+                        if (PriceCheckService.Item?.Properties.LightningDamage != null)
+                        {
+                            <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionLightningDamage"
+                                              Value="@PriceCheckService.Item.Properties.LightningDamage.ToDisplayString()"
+                                              ContentType="LineContentType.Lightning"/>
+                        }
+                        if (PriceCheckService.Item?.Properties.ChaosDamage != null)
+                        {
+                            <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionChaosDamage"
+                                              Value="@PriceCheckService.Item.Properties.ChaosDamage.ToDisplayString()"
+                                              ContentType="LineContentType.Chaos"/>
+                        }
+                    }
+                    else
+                    {
+                        <ItemPropertyText Label="@Filter.Text"
+                                          Value="@Filter.Value.ToString()"/>
+                    }
                 </FormCheckbox>
             }
         </div>
@@ -29,6 +66,9 @@
         }
     </div>
 </FilterWrapper>
+
+@inject PriceCheckService PriceCheckService
+@inject IGameLanguageProvider GameLanguageProvider
 
 @code {
 
@@ -51,9 +91,7 @@
                 Filter.Min = null;
                 break;
 
-            case FilterRange.RangeType.Equals:
-            Filter.SetExactValue();
-            break;
+            case FilterRange.RangeType.Equals: Filter.SetExactValue(); break;
 
             case FilterRange.RangeType.Range:
                 Filter.NormalizeMinValue();

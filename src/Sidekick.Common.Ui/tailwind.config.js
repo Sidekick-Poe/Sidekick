@@ -2,7 +2,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-    content: ["../**/*.{razor,html,cshtml}", "./**/*.js"],
+    content: ["../**/*.{razor,html,cshtml,cs}", "./**/*.js"],
     darkMode: 'selector',
     theme: {
         fontFamily: {

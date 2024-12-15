@@ -32,18 +32,8 @@
                 continue;
             }
 
-            var color = value.Type switch
-            {
-                LineContentType.Augmented => "text-[#8888FF]",
-                LineContentType.Fire => "text-[#960000]",
-                LineContentType.Cold => "text-[#366492]",
-                LineContentType.Chaos => "text-[#D02090]",
-                LineContentType.Lightning => "text-[#FFD700]",
-                LineContentType.BlockedIncursionRoom => "text-[#5A5A5A]",
-                _ => "text-[#FFFFFF]",
-            };
-
-            text = text.Replace(value.Value, $"<span class=\"{color};\">{value.Value}</span>");
+            var color = value.Type.GetColour();
+            text = text.Replace(value.Value, $"<span class=\"{color}\">{value.Value}</span>");
         }
 
         return text;

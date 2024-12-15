@@ -1,14 +1,11 @@
-@using Microsoft.AspNetCore.Components
+@using Sidekick.Apis.Poe.Trade.Models
 
 <TextBase Class="font-caps leading-none py-0.5">
     @Label
     @if (OnlyShowLabel == false)
     {
         <span class="text-[#7f7f7f]">: </span>
-        @if (Value != null)
-        {
-            <span>@((MarkupString)Value)</span>
-        }
+        <span class="@ContentType.GetColour()">@Value</span>
     }
 </TextBase>
 
@@ -19,6 +16,9 @@
 
     [Parameter]
     public string? Value { get; set; }
+
+    [Parameter]
+    public LineContentType ContentType { get; set; } = LineContentType.Simple;
 
     [Parameter]
     public bool OnlyShowLabel { get; set; }
