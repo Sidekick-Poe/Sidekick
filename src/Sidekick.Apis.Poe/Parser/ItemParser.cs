@@ -119,26 +119,17 @@ namespace Sidekick.Apis.Poe.Parser
         private Header ParseHeader(ParsingItem parsingItem)
         {
             var firstLine = parsingItem.Blocks[0].Lines[0].Text;
-            string? apiItemCategoryId = null;
+            string? apiItemCategoryId;
 
             if (firstLine.StartsWith(gameLanguageProvider.Language.Classes.Prefix))
             {
                 var classLine = firstLine.Replace(gameLanguageProvider.Language.Classes.Prefix + ":", "").Trim();
-
-                // Direct mapping for known item classes
-                apiItemCategoryId = classLine switch
-                {
-                    "Bows" => "weapon.bow",
-                    "Misc Map Items" => "map.fragment",
-                    _ => null
-                };
-
-                // Fallback to fuzzy matching if no direct match
-                if (apiItemCategoryId == null)
-                {
-                    var categoryToMatch = new ApiFilterOption { Text = classLine };
-                    apiItemCategoryId = Process.ExtractOne(categoryToMatch, metadataProvider.ApiItemCategories, x => x.Text, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
-                }
+                var categoryToMatch = new ApiFilterOption { Text = classLine };
+                apiItemCategoryId = Process.ExtractOne(categoryToMatch, metadataProvider.ApiItemCategories, x => x.Text, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
+            }
+            else
+            {
+                apiItemCategoryId = null;
             }
 
             return new Header()
