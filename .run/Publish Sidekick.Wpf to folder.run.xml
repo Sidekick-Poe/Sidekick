@@ -1,6 +1,0 @@
-﻿<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Publish Sidekick.Wpf to folder" type="DotNetFolderPublish" factoryName="Publish to folder">
-    <riderPublish configuration="Release" delete_existing_files="true" platform="Any CPU" runtime="win-x64" self_contained="true" target_folder="$PROJECT_DIR$/src/Sidekick.Wpf/bin/Zip-Release" target_framework="net8.0-windows" uuid_high="1047739360502235835" uuid_low="-7163280697361089570" />
-    <method v="2" />
-  </configuration>
-</component>
