@@ -217,6 +217,11 @@ public class TradeSearchService
                     hasValue = true;
                     break;
 
+                case PropertyFilterType.Weapon_ElementalDps:
+                    filters.Filters.ElementalDps = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
                 case PropertyFilterType.Weapon_Dps:
                     filters.Filters.DamagePerSecond = new SearchFilterValue(propertyFilter);
                     hasValue = true;
@@ -232,8 +237,8 @@ public class TradeSearchService
                     hasValue = true;
                     break;
 
-                case PropertyFilterType.Weapon_PhysicalDamage:
-                    filters.Filters.PhysicalDamage = new SearchFilterValue(propertyFilter);
+                case PropertyFilterType.Weapon_Damage:
+                    filters.Filters.Damage = new SearchFilterValue(propertyFilter);
                     hasValue = true;
                     break;
             }
