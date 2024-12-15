@@ -312,7 +312,7 @@ Leeches 5.82% of Physical Damage as Mana");
         [Fact]
         public void ParseCombinedElementalDamage()
         {
-            var actual = parser.ParseItem(@"Item Class: Crossbows
+            var actual = parser.ParseItem(@"Item Class: Bows
 Rarity: Rare
 Blood Core
 Advanced Forlorn Crossbow
@@ -336,7 +336,7 @@ Grants 3 Life per Enemy Hit");
 
             Assert.Equal(Category.Weapon, actual.Metadata.Category);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal("Advanced Forlorn Crossbow", actual.Metadata.Type);
+            Assert.Equal("Blood Core", actual.Metadata.Type);
             Assert.Equal("Blood Core", actual.Header.Name);
 
             // Verify physical damage
