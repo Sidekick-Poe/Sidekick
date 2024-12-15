@@ -56,10 +56,30 @@ public class Properties
 
     public DamageRange? ChaosDamage { get; set; }
 
+    private readonly double? physicalDpsOverride;
+
+    public double? PhysicalDps
+    {
+        get
+        {
+            if (physicalDpsOverride != null) return physicalDpsOverride;
+
+            var total = 0d;
+            if (PhysicalDamage != null) total += PhysicalDamage.GetDps(AttacksPerSecond);
+
+            return total;
+        }
+        init => physicalDpsOverride = value;
+    }
+
+    private readonly double? elementalDpsOverride;
+
     public double? ElementalDps
     {
         get
         {
+            if (elementalDpsOverride != null) return elementalDpsOverride;
+
             var total = 0d;
             if (FireDamage != null) total += FireDamage.GetDps(AttacksPerSecond);
             if (ColdDamage != null) total += ColdDamage.GetDps(AttacksPerSecond);
@@ -67,12 +87,17 @@ public class Properties
 
             return total;
         }
+        init => elementalDpsOverride = value;
     }
+
+    private readonly double? totalDpsOverride;
 
     public double? TotalDps
     {
         get
         {
+            if (totalDpsOverride != null) return totalDpsOverride;
+
             var total = 0d;
             if (PhysicalDamage != null) total += PhysicalDamage.GetDps(AttacksPerSecond);
             if (FireDamage != null) total += FireDamage.GetDps(AttacksPerSecond);
@@ -82,6 +107,7 @@ public class Properties
 
             return total;
         }
+        init => totalDpsOverride = value;
     }
 
     public double? TotalDamage

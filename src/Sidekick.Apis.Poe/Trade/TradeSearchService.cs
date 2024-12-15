@@ -1,7 +1,6 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using System.Globalization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Clients.Models;
@@ -38,11 +37,10 @@ public class TradeSearchService
         {
             logger.LogInformation("[Trade API] Querying Trade API.");
 
-            var hasTypeDiscriminator = !string.IsNullOrEmpty(item.Metadata.ApiTypeDiscriminator);
             var query = new Query();
-            
-            if (propertyFilters?.TypeFilterEnabled ?? false)
+            if (propertyFilters?.BaseTypeFilterApplied ?? true)
             {
+                var hasTypeDiscriminator = !string.IsNullOrEmpty(item.Metadata.ApiTypeDiscriminator);
                 if (hasTypeDiscriminator)
                 {
                     query.Type = new TypeDiscriminator()
@@ -51,54 +49,42 @@ public class TradeSearchService
                         Discriminator = item.Metadata.ApiTypeDiscriminator,
                     };
                 }
-                else if (propertyFilters?.UseSpecificType ?? false)
+                else if (string.IsNullOrEmpty(item.Header.ItemCategory))
                 {
-                    query.Type = item.Metadata.Type;
-                    var itemClass = item.Header.ItemCategory;
-                    if (!string.IsNullOrEmpty(itemClass))
-                    {
-                        query.Filters.TypeFilters.Filters.Category = new SearchFilterOption(itemClass);
-                    }
+                    query.Type = item.Metadata.ApiType;
                 }
-                else
-                {
-                    var itemClass = item.Header.ItemCategory;
-                    if (!string.IsNullOrEmpty(itemClass))
-                    {
-                        query.Filters.TypeFilters.Filters.Category = new SearchFilterOption(itemClass);
-                        query.Type = null;
-                    }
-                    else
-                    {
-                        var words = item.Metadata.Type.Split(' ');
-                        query.Type = words.Length > 0 ? words[words.Length - 1] : item.Metadata.Type;
-                    }
-                }
+            }
+            else if (propertyFilters.ClassFilterApplied)
+            {
+                query.Filters.TypeFilters.Filters.Category = GetCategoryFilter(item.Header.ItemCategory);
             }
 
             if (propertyFilters?.RarityFilterApplied ?? false)
             {
-                switch (item.Metadata.Rarity)
+                var rarity = item.Metadata.Rarity switch
                 {
-                    case Rarity.Normal:
-                        query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("normal");
-                        break;
-                    case Rarity.Magic:
-                        query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("magic");
-                        break;
-                    case Rarity.Rare:
-                        query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("rare");
-                        break;
-                    case Rarity.Unique:
-                        query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("unique");
-                        break;
+                    Rarity.Normal => "normal",
+                    Rarity.Magic => "magic",
+                    Rarity.Rare => "rare",
+                    Rarity.Unique => "unique",
+                    _ => null,
+                };
+                if (rarity != null)
+                {
+                    query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption(rarity);
                 }
             }
 
             var currencyValue = currency.GetValueAttribute();
             if (!string.IsNullOrEmpty(currencyValue))
             {
-                query.Filters.TradeFilters.Filters.Price.Option = currencyValue;
+                query.Filters.TradeFilters = new TradeFilterGroup
+                {
+                    Filters =
+                    {
+                        Price = new SearchFilterValue(currencyValue),
+                    },
+                };
             }
 
             if (item.Metadata.Category == Category.ItemisedMonster)
@@ -112,36 +98,21 @@ public class TradeSearchService
             else if (item.Metadata.Rarity == Rarity.Unique)
             {
                 query.Name = item.Metadata.Name;
+                query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("Unique");
+            }
+            else
+            {
+                query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("nonunique");
             }
 
-            // Set stats
-            query.Stats = (modifierFilters ?? Enumerable.Empty<ModifierFilter>())
-                .Where(x => x.Checked == true)
-                .Select(x => new StatFilterGroup 
-                { 
-                    Type = StatType.And,
-                    Filters = new List<StatFilters> 
-                    {
-                        new() 
-                        {
-                            Id = x.Line.Modifiers[0].Id ?? string.Empty,
-                            Value = new SearchFilterValue(x)
-                        }
-                    }
-                })
-                .ToList();
+            SetModifierFilters(query.Stats, modifierFilters);
+            SetPseudoModifierFilters(query.Stats, pseudoFilters);
+            SetSocketFilters(item, query.Filters);
 
             if (propertyFilters != null)
             {
-                // Handle elemental damage separately
-                var elementalDamageFilter = propertyFilters.Weapon.FirstOrDefault(x => x.Type == PropertyFilterType.Weapon_ElementalDamage);
-                if (elementalDamageFilter != null)
-                {
-                    AddElementalDamageStats(query, elementalDamageFilter);
-                }
-
-                query.Filters.EquipmentFilters = GetEquipmentFilters(item, propertyFilters.Armour.Concat(propertyFilters.Weapon.Where(x => x.Type != PropertyFilterType.Weapon_ElementalDamage)).ToList());
-                query.Filters.WeaponFilters = GetWeaponFilters(item, propertyFilters.Weapon.Where(x => x.Type != PropertyFilterType.Weapon_ElementalDamage).ToList());
+                query.Filters.EquipmentFilters = GetEquipmentFilters(item, propertyFilters.Weapon);
+                query.Filters.WeaponFilters = GetWeaponFilters(item, propertyFilters.Weapon);
                 query.Filters.ArmourFilters = GetArmourFilters(item, propertyFilters.Armour);
                 query.Filters.MapFilters = GetMapFilters(propertyFilters.Map);
                 query.Filters.MiscFilters = GetMiscFilters(item, propertyFilters.Misc);
@@ -149,8 +120,13 @@ public class TradeSearchService
 
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             var uri = new Uri($"{gameLanguageProvider.Language.GetTradeApiBaseUrl(item.Metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
-            
-            var json = JsonSerializer.Serialize(new QueryRequest() { Query = query }, poeTradeClient.Options);
+
+            var json = JsonSerializer.Serialize(new QueryRequest()
+                                                {
+                                                    Query = query,
+                                                },
+                                                poeTradeClient.Options);
+
             var body = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await poeTradeClient.HttpClient.PostAsync(uri, body);
 
@@ -171,8 +147,6 @@ public class TradeSearchService
             {
                 return result;
             }
-
-            throw new ApiErrorException("[Trade API] Could not understand the API response.");
         }
         catch (Exception ex)
         {
@@ -194,7 +168,6 @@ public class TradeSearchService
 
     private WeaponFilterGroup? GetWeaponFilters(Item item, List<PropertyFilter> propertyFilters)
     {
-        // For PoE2, weapon filters are handled in equipment filters
         if (item.Metadata.Game == GameType.PathOfExile2)
         {
             return null;
@@ -205,7 +178,7 @@ public class TradeSearchService
 
         foreach (var propertyFilter in propertyFilters)
         {
-            if (!propertyFilter.Checked == true)
+            if (propertyFilter.Checked != true)
             {
                 continue;
             }
@@ -236,11 +209,6 @@ public class TradeSearchService
                     filters.Filters.CriticalStrikeChance = new SearchFilterValue(propertyFilter);
                     hasValue = true;
                     break;
-
-                case PropertyFilterType.Weapon_Damage:
-                    filters.Filters.Damage = new SearchFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
             }
         }
 
@@ -249,7 +217,6 @@ public class TradeSearchService
 
     private ArmourFilterGroup? GetArmourFilters(Item item, List<PropertyFilter> propertyFilters)
     {
-        // For PoE2, armor filters are handled in equipment filters
         if (item.Metadata.Game == GameType.PathOfExile2)
         {
             return null;
@@ -294,8 +261,7 @@ public class TradeSearchService
 
     private EquipmentFilterGroup? GetEquipmentFilters(Item item, List<PropertyFilter> propertyFilters)
     {
-        // Only use equipment filters for PoE2
-        if (item.Metadata.Game != GameType.PathOfExile2)
+        if (item.Metadata.Game == GameType.PathOfExile)
         {
             return null;
         }
@@ -312,30 +278,13 @@ public class TradeSearchService
 
             switch (propertyFilter.Type)
             {
-                // Armor stats
-                case PropertyFilterType.Armour_EnergyShield:
-                    filters.Filters.EnergyShield = new SearchFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Armour_Armour:
-                    filters.Filters.Armor = new SearchFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Armour_Evasion:
-                    filters.Filters.Evasion = new SearchFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Armour_Block:
-                    filters.Filters.Block = new SearchFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                // Weapon stats
                 case PropertyFilterType.Weapon_PhysicalDps:
                     filters.Filters.PhysicalDps = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Weapon_ElementalDps:
+                    filters.Filters.ElementalDps = new SearchFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
@@ -354,9 +303,23 @@ public class TradeSearchService
                     hasValue = true;
                     break;
 
-                case PropertyFilterType.Weapon_PhysicalDamage:
-                case PropertyFilterType.Weapon_Damage:
-                    filters.Filters.Damage = new SearchFilterValue(propertyFilter);
+                case PropertyFilterType.Armour_Armour:
+                    filters.Filters.Armor = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Armour_Block:
+                    filters.Filters.Block = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Armour_EnergyShield:
+                    filters.Filters.EnergyShield = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
+                case PropertyFilterType.Armour_Evasion:
+                    filters.Filters.Evasion = new SearchFilterValue(propertyFilter);
                     hasValue = true;
                     break;
             }
@@ -372,7 +335,7 @@ public class TradeSearchService
 
         foreach (var propertyFilter in propertyFilters)
         {
-            if (!propertyFilter.Checked == true)
+            if (propertyFilter.Checked != true)
             {
                 continue;
             }
@@ -444,7 +407,7 @@ public class TradeSearchService
 
         foreach (var propertyFilter in propertyFilters)
         {
-            if (!propertyFilter.Checked == true)
+            if (propertyFilter.Checked != true)
             {
                 continue;
             }
@@ -546,7 +509,7 @@ public class TradeSearchService
 
         foreach (var filter in modifierFilters)
         {
-            if (filter.Checked == false)
+            if (filter.Checked != true)
             {
                 continue;
             }
@@ -689,157 +652,34 @@ public class TradeSearchService
     {
         var metadata = new ItemMetadata()
         {
-            Id = string.Empty,
+            Id = "",
             Name = result.Item?.Name,
             Rarity = result.Item?.Rarity ?? Rarity.Unknown,
-            Type = result.Item?.TypeLine ?? string.Empty,
-            ApiType = result.Item?.TypeLine ?? string.Empty,
+            Type = result.Item?.TypeLine,
+            ApiType = result.Item?.TypeLine,
             Category = Category.Unknown,
             Game = game,
         };
 
         var original = new Header()
         {
-            Name = result.Item?.Name ?? string.Empty,
-            Type = result.Item?.TypeLine ?? string.Empty,
+            Name = result.Item?.Name,
+            Type = result.Item?.TypeLine,
         };
-
-        // Parse damage values from properties
-        var physicalDamage = new DamageRange();
-        var elementalDamages = new List<DamageRange>();
-        var criticalStrikeChance = 0.0;
-        var attacksPerSecond = 0.0;
-        var physicalDps = 0.0;
-        var elementalDps = 0.0;
-
-        logger.LogDebug("[Trade API] Starting to parse damage values");
-
-        // Get attacks per second first
-        foreach (var prop in result.Item?.Properties ?? new())
-        {
-            if (prop.Name == "Attacks per Second")
-            {
-                var values = prop.Values.FirstOrDefault();
-                if (values?.Count >= 1)
-                {
-                    var apsText = values[0].GetString() ?? "";
-                    double.TryParse(apsText, NumberStyles.Any, CultureInfo.InvariantCulture, out attacksPerSecond);
-                    logger.LogDebug($"[Trade API] Found attacks per second: {attacksPerSecond}");
-                }
-                break;
-            }
-        }
-
-        // Then parse other properties
-        foreach (var prop in result.Item?.Properties ?? new())
-        {
-            if (prop.Name == "Physical Damage")
-            {
-                var values = prop.Values.FirstOrDefault();
-                if (values?.Count >= 1)
-                {
-                    var damageText = values[0].GetString() ?? "";
-                    logger.LogDebug($"[Trade API] Found physical damage text: {damageText}");
-                    var parts = damageText.Split('-');
-                    if (parts.Length == 2 && 
-                        double.TryParse(parts[0], NumberStyles.Any, CultureInfo.InvariantCulture, out var min) && 
-                        double.TryParse(parts[1], NumberStyles.Any, CultureInfo.InvariantCulture, out var max))
-                    {
-                        physicalDamage = new DamageRange { Min = min, Max = max };
-                        physicalDps = Math.Round(((min + max) / 2d) * attacksPerSecond, 1);
-                        logger.LogDebug($"[Trade API] Parsed physical damage: {min}-{max}, DPS: {physicalDps}");
-                    }
-                }
-            }
-            else if (prop.Name?.Contains("Fire Damage") == true || 
-                    prop.Name?.Contains("Cold Damage") == true || 
-                    prop.Name?.Contains("Lightning Damage") == true)
-            {
-                var values = prop.Values.FirstOrDefault();
-                if (values?.Count >= 1)
-                {
-                    var damageText = values[0].GetString() ?? "";
-                    logger.LogDebug($"[Trade API] Found elemental damage text: {damageText} for {prop.Name}");
-                    var parts = damageText.Split('-');
-                    if (parts.Length == 2 && 
-                        double.TryParse(parts[0], NumberStyles.Any, CultureInfo.InvariantCulture, out var min) && 
-                        double.TryParse(parts[1], NumberStyles.Any, CultureInfo.InvariantCulture, out var max))
-                    {
-                        elementalDamages.Add(new DamageRange { Min = min, Max = max });
-                        elementalDps += ((min + max) / 2d) * attacksPerSecond;
-                        logger.LogDebug($"[Trade API] Parsed elemental damage: {min}-{max}");
-                    }
-                }
-            }
-        }
-
-        elementalDps = Math.Round(elementalDps, 1);
-        var totalDps = Math.Round(physicalDps + elementalDps, 1);
-
-        logger.LogDebug($"[Trade API] DPS - Physical: {physicalDps}, Elemental: {elementalDps}, Total: {totalDps}");
-
-        // Get damage values from the API response, but preserve parsed values if API data is missing, zero, or averaged
-        var apiPhysicalDamage = result.Item?.Extended?.PhysicalDamage;
-        var apiElementalDamages = result.Item?.Extended?.ElementalDamage;
-
-        // Only use API values if they are present, non-zero, and not averaged (min != max)
-        if (apiPhysicalDamage != null && 
-            (apiPhysicalDamage.Min > 0 || apiPhysicalDamage.Max > 0) && 
-            apiPhysicalDamage.Min != apiPhysicalDamage.Max)
-        {
-            physicalDamage = apiPhysicalDamage;
-        }
-        if (apiElementalDamages != null && 
-            apiElementalDamages.Any(d => d.Min > 0 || d.Max > 0) && 
-            apiElementalDamages.All(d => d.Min != d.Max))
-        {
-            elementalDamages = apiElementalDamages;
-        }
-
-        logger.LogInformation($"API Physical Damage: Min={apiPhysicalDamage?.Min ?? 0}, Max={apiPhysicalDamage?.Max ?? 0}");
-        if (apiElementalDamages != null)
-        {
-            foreach (var damage in apiElementalDamages)
-            {
-                logger.LogInformation($"API Elemental Damage: Min={damage.Min}, Max={damage.Max}");
-            }
-        }
 
         var properties = new Properties()
         {
-            Identified = result.Item?.Identified ?? true,
-            Corrupted = result.Item?.Corrupted ?? false,
             ItemLevel = result.Item?.ItemLevel ?? 0,
+            Corrupted = result.Item?.Corrupted ?? false,
+            Identified = result.Item?.Identified ?? false,
             Armor = result.Item?.Extended?.ArmourAtMax ?? 0,
             EnergyShield = result.Item?.Extended?.EnergyShieldAtMax ?? 0,
             Evasion = result.Item?.Extended?.EvasionAtMax ?? 0,
-            TotalDps = totalDps,
-            ElementalDps = elementalDps,
-            PhysicalDps = physicalDps,
+            TotalDps = result.Item?.Extended?.DamagePerSecond ?? 0,
+            ElementalDps = result.Item?.Extended?.ElementalDps ?? 0,
+            PhysicalDps = result.Item?.Extended?.PhysicalDps ?? 0,
             BaseDefencePercentile = result.Item?.Extended?.BaseDefencePercentile,
-            PhysicalDamage = result.Item?.Extended?.PhysicalDamage != null 
-                ? new Sidekick.Common.Game.Items.DamageRange 
-                { 
-                    Min = result.Item.Extended.PhysicalDamage.Min, 
-                    Max = result.Item.Extended.PhysicalDamage.Max 
-                } 
-                : new Sidekick.Common.Game.Items.DamageRange(),
-            ElementalDamages = (result.Item?.Extended?.ElementalDamage ?? new List<DamageRange>())
-                .Select(d => new Sidekick.Common.Game.Items.DamageRange 
-                { 
-                    Min = d.Min, 
-                    Max = d.Max 
-                })
-                .ToList(),
-            CriticalStrikeChance = criticalStrikeChance,
-            AttacksPerSecond = attacksPerSecond
         };
-
-        logger.LogInformation($"Properties Physical Damage: Min={properties.PhysicalDamage.Min}, Max={properties.PhysicalDamage.Max}");
-        foreach (var damage in properties.ElementalDamages)
-        {
-            logger.LogInformation($"Properties Elemental Damage: Min={damage.Min}, Max={damage.Max}");
-        }
 
         var influences = result.Item?.Influences ?? new();
 
@@ -872,14 +712,22 @@ public class TradeSearchService
         };
 
         item.ModifierLines.AddRange(ParseModifierLines(result.Item?.EnchantMods, result.Item?.Extended?.Mods?.Enchant, ParseHash(result.Item?.Extended?.Hashes?.Enchant)));
+
         item.ModifierLines.AddRange(ParseModifierLines(result.Item?.RuneMods, result.Item?.Extended?.Mods?.Rune, ParseHash(result.Item?.Extended?.Hashes?.Rune)));
+
         item.ModifierLines.AddRange(ParseModifierLines(result.Item?.ImplicitMods ?? result.Item?.LogbookMods.SelectMany(x => x.Mods).ToList(), result.Item?.Extended?.Mods?.Implicit, ParseHash(result.Item?.Extended?.Hashes?.Implicit)));
+
         item.ModifierLines.AddRange(ParseModifierLines(result.Item?.CraftedMods, result.Item?.Extended?.Mods?.Crafted, ParseHash(result.Item?.Extended?.Hashes?.Crafted)));
+
         item.ModifierLines.AddRange(ParseModifierLines(result.Item?.ExplicitMods, result.Item?.Extended?.Mods?.Explicit, ParseHash(result.Item?.Extended?.Hashes?.Explicit, result.Item?.Extended?.Hashes?.Monster)));
+
         item.ModifierLines.AddRange(ParseModifierLines(result.Item?.FracturedMods, result.Item?.Extended?.Mods?.Fractured, ParseHash(result.Item?.Extended?.Hashes?.Fractured)));
+
         item.ModifierLines.AddRange(ParseModifierLines(result.Item?.ScourgeMods, result.Item?.Extended?.Mods?.Scourge, ParseHash(result.Item?.Extended?.Hashes?.Scourge)));
 
         item.PseudoModifiers.AddRange(ParsePseudoModifiers(result.Item?.PseudoMods, result.Item?.Extended?.Mods?.Pseudo, ParseHash(result.Item?.Extended?.Hashes?.Pseudo)));
+
+        item.ModifierLines = item.ModifierLines.OrderBy(x => item.Text.IndexOf(x.Text, StringComparison.InvariantCultureIgnoreCase)).ToList();
 
         return item;
     }
@@ -1088,27 +936,5 @@ public class TradeSearchService
         var baseUri = new Uri(baseUrl + "search/");
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         return new Uri(baseUri, $"{leagueId.GetUrlSlugForLeague()}/{queryId}");
-    }
-
-    private void AddElementalDamageStats(Query query, PropertyFilter filter)
-    {
-        if (!filter.Checked == true)
-        {
-            return;
-        }
-
-        var countGroup = new StatFilterGroup
-        {
-            Type = StatType.Count,
-            Value = new SearchFilterValue { Min = 1 },
-            Filters = new List<StatFilters>
-            {
-                new() { Id = "explicit.stat_709508406", Value = new SearchFilterValue { Min = filter.Min, Max = filter.Max } },  // Fire
-                new() { Id = "explicit.stat_3336890334", Value = new SearchFilterValue { Min = filter.Min, Max = filter.Max } }, // Lightning
-                new() { Id = "explicit.stat_1037193709", Value = new SearchFilterValue { Min = filter.Min, Max = filter.Max } }  // Cold
-            }
-        };
-
-        query.Stats.Add(countGroup);
     }
 }

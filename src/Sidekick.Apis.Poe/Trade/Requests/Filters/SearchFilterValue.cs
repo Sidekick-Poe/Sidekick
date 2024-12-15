@@ -8,13 +8,14 @@ internal class SearchFilterValue
     {
     }
 
+    public SearchFilterValue(string? option)
+    {
+        Option = option;
+    }
+
     public SearchFilterValue(PropertyFilter filter)
     {
-        if (filter.ValueType == FilterValueType.Boolean)
-        {
-            Option = filter.Checked == true ? "true" : "false";
-        }
-
+        Option = filter.Checked == true ? "true" : "false";
         Min = filter.Min;
         Max = filter.Max;
     }

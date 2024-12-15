@@ -1,3 +1,5 @@
+using Sidekick.Common.Enums;
+
 namespace Sidekick.Common.Game.Items;
 
 public enum Rarity
