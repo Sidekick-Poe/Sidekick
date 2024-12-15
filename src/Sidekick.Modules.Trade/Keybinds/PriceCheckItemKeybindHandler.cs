@@ -6,12 +6,14 @@ using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Modules.Trade.Keybinds;
 
-public class PriceCheckItemKeybindHandler(
+public class PriceCheckItemKeybindHandler
+(
     IViewLocator viewLocator,
     IClipboardProvider clipboardProvider,
     IProcessProvider processProvider,
     ISettingsService settingsService,
-    IKeyboardProvider keyboard) : KeybindHandler(settingsService)
+    IKeyboardProvider keyboard
+) : KeybindHandler(settingsService)
 {
     private readonly ISettingsService settingsService = settingsService;
 

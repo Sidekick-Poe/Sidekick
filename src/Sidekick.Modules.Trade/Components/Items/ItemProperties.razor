@@ -1,11 +1,11 @@
+@using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Common.Game.Languages
-@using Sidekick.Common.Game.Items
 @using Sidekick.Modules.Trade.Localization
 
 <div class="text-center text-[#7f7f7f]">
     @if (Item.Properties.ItemLevel > 0)
     {
-        <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionItemLevel" Value="@Item.Properties.ItemLevel.ToString()"/>
+        <ItemPropertyText Label="@GameLanguageProvider.Language?.DescriptionItemLevel" Value="@Item.Properties.ItemLevel.ToString()"/>
     }
     @if (Item.Properties.BaseDefencePercentile.HasValue)
     {
@@ -13,13 +13,12 @@
     }
 </div>
 
+@inject IGameLanguageProvider GameLanguageProvider
+@inject IStringLocalizer<TradeResources> Resources
+
 @code {
+
     [Parameter]
-    public required Item Item { get; set; }
+    public required TradeItem Item { get; set; }
 
-    [Inject]
-    public required IGameLanguageProvider GameLanguageProvider { get; set; }
-
-    [Inject]
-    public required IStringLocalizer<TradeResources> Resources { get; set; }
 }

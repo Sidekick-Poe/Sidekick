@@ -2,118 +2,99 @@
 @using Sidekick.Common.Game.Items
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Prices
-@using Microsoft.Extensions.Logging
-@using Microsoft.Extensions.Localization
-@using Sidekick.Common.Ui.Forms
-@using Sidekick.Common.Ui.Poe.Items
-@using Sidekick.Common.Ui.Buttons
 
-<div class="flex flex-col gap-2">
-    @if (Item.CanHaveModifiers)
-    {
-        <div class="mb-2 rounded-b-lg bg-stone-950">
-            <ItemHeader Name="@Item.Header.Name"
-                        Type="@Item.Header.Type"
-                        Influences="Item.Influences"
-                        Rarity="Item.Metadata.Rarity"/>
+@if (Item.CanHaveModifiers)
+{
+    <div class="mb-2 rounded-b-lg bg-stone-950">
+        <ItemHeader Name="@Item.Header.Name"
+                    Type="@Item.Header.Type"
+                    Influences="Item.Influences"
+                    Rarity="Item.Metadata.Rarity"/>
 
-            <div class="flex items-start flex-nowrap">
-                <div class="w-3/4 p-2">
-                    <ItemLineContentsComponent Item="Item" LineContents="Item.PropertyContents"/>
-                    <ItemLineContentsComponent Item="Item" LineContents="Item.AdditionalPropertyContents"/>
+        <div class="flex items-start flex-nowrap">
+            <div class="w-3/4 p-2">
+                <ItemLineContentsComponent Item="Item" LineContents="Item.PropertyContents"/>
+                <ItemLineContentsComponent Item="Item" LineContents="Item.AdditionalPropertyContents"/>
 
-                    <ItemProperties Item="Item"/>
-                    <ItemRequirements Item="Item"/>
+                <ItemProperties Item="Item"/>
+                <ItemRequirements Item="Item"/>
 
-                    @if (Item.ModifierLines.Count > 0)
-                    {
-                        <ItemSeparator Rarity="Item.Metadata.Rarity"/>
-                        @foreach (var line in Item.ModifierLines)
-                        {
-                            <ItemModifierLineComponent Item="Item" ModifierLine="line"/>
-                        }
-                    }
-
-                    @if (!Item.Properties.Identified)
-                    {
-                        <ItemSeparator Rarity="Item.Metadata.Rarity"/>
-                        <ItemModifierText Category="ModifierCategory.Unidentified">@Resources["Unidentified"]</ItemModifierText>
-                    }
-                    @if (Item.Properties.Corrupted)
-                    {
-                        <ItemSeparator Rarity="Item.Metadata.Rarity"/>
-                        <div class="text-center">
-                            <ItemModifierText Category="ModifierCategory.Corrupted">@Resources["Corrupted"]</ItemModifierText>
-                        </div>
-                    }
-                    @if (!string.IsNullOrEmpty(Item.Price?.Note))
-                    {
-                        <ItemSeparator Rarity="Item.Metadata.Rarity"/>
-                        <TextCaption Class="font-caps text-[#AA9E82] text-center leading-none py-0.5">@Item.Price.Note</TextCaption>
-                    }
-                </div>
-                <div class="w-1/4 p-2">
-                    @if (Item.Price != null)
-                    {
-                        <div class="flex flex-col w-full items-center">
-                            <PriceDisplay Value="Item.Price.Amount" Currency="@Item.Price.Currency"/>
-                            <TextBase Class="text-ellipsis w-full overflow-hidden text-center">@Item.Price.AccountName</TextBase>
-                            <PriceAge Date="Item.Price.Date"/>
-                        </div>
-                    }
-
-                    <div class="mt-3">
-                        <ItemImageComponent Item="Item"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-    else
-    {
-        <div class="flex items-start flex-nowrap rounded-b-lg bg-stone-950 mb-2 rounded-tr-lg">
-            <div class="w-3/4">
-                <ItemHeader Name="@Item.Header.Name"
-                            Type="@Item.Header.Type"
-                            Influences="Item.Influences"
-                            Rarity="Item.Metadata.Rarity"
-                            SingleLine="true"/>
-
-                @if (Item.Price != null)
+                @if (Item.ModifierLines.Count > 0)
                 {
-                    <div class="flex items-center p-2">
-                        <TextBase>@Item.Price.AccountName</TextBase>
-                        <div class="text-[#a38d6d]">,&nbsp;</div>
-                        <PriceAge Date="Item.Price.Date"/>
-                    </div>
+                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+                    @foreach (var line in Item.ModifierLines)
+                    {
+                        <ItemModifierLineComponent Item="Item" ModifierLine="line"/>
+                    }
+                }
+
+                @if (!Item.Properties.Identified)
+                {
+                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+                    <ItemModifierText Category="ModifierCategory.Unidentified">@Resources["Unidentified"]</ItemModifierText>
                 }
                 @if (Item.Properties.Corrupted)
                 {
                     <ItemSeparator Rarity="Item.Metadata.Rarity"/>
-                    <div class="text-center pb-2">
-                        <ItemModifierText Category="ModifierCategory.Corrupted">@Resources["Corrupted"]</ItemModifierText>
-                    </div>
+                    <ItemModifierText Category="ModifierCategory.Corrupted">@Resources["Corrupted"]</ItemModifierText>
+                }
+                @if (!string.IsNullOrEmpty(Item.Price?.Note))
+                {
+                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+                    <TextCaption Class="font-caps text-[#AA9E82] text-center leading-none py-0.5">@Item.Price.Note</TextCaption>
                 }
             </div>
-            <div class="w-1/4 p-2 self-center">
+            <div class="w-1/4 p-2">
                 @if (Item.Price != null)
                 {
-                    <PriceDisplay Value="Item.Price.Amount" Currency="@Item.Price.Currency"/>
+                    <div class="flex flex-col w-full items-center">
+                        <PriceDisplay Value="Item.Price.Amount" Currency="@Item.Price.Currency"/>
+                        <TextBase Class="text-ellipsis w-full overflow-hidden text-center">@Item.Price.AccountName</TextBase>
+                        <PriceAge Date="Item.Price.Date"/>
+                    </div>
                 }
+
+                <div class="mt-3">
+                    <ItemImageComponent Item="Item"/>
+                </div>
             </div>
         </div>
-    }
-</div>
+    </div>
+}
+else
+{
+    <div class="flex items-start flex-nowrap rounded-b-lg bg-stone-950 mb-2 rounded-tr-lg">
+        <div class="w-3/4">
+            <ItemHeader Name="@Item.Header.Name"
+                        Type="@Item.Header.Type"
+                        Influences="Item.Influences"
+                        Rarity="Item.Metadata.Rarity"
+                        SingleLine="true"/>
+
+            @if (Item.Price != null)
+            {
+                <div class="flex items-center p-2">
+                    <TextBase>@Item.Price.AccountName</TextBase>
+                    <div class="text-[#a38d6d]">,&nbsp;</div>
+                    <PriceAge Date="Item.Price.Date"/>
+                </div>
+            }
+        </div>
+        <div class="w-1/4 p-2 self-center">
+            @if (Item.Price != null)
+            {
+                <PriceDisplay Value="Item.Price.Amount" Currency="@Item.Price.Currency"/>
+            }
+        </div>
+    </div>
+}
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject PriceCheckService PriceCheckService
 
 @code {
+
     [Parameter]
     public required TradeItem Item { get; set; }
 
-    [Inject]
-    public required ILogger<ItemComponent> Logger { get; set; }
-
-    [Inject]
-    public required IStringLocalizer<TradeResources> Resources { get; set; }
 }
-
-
