@@ -160,42 +160,81 @@ Fire and Anarchy are the most reliable agents of change.");
         }
 
         [Fact]
-        public void ParseWeaponWithMultipleElementalDamages()
+        public void ParseDaressoPassion()
         {
-            var actual = parser.ParseItem(@"Item Class: Unknown
-Rarity: Rare
-Honour Beak
-Ancient Sword
+            var actual = parser.ParseItem(@"Item Class: Thrusting One Hand Swords
+Rarity: Unique
+Daresso's Passion
+Estoc
 --------
 One Handed Sword
-Quality: +20% (augmented)
-Physical Damage: 22-40 (augmented)
-Fire Damage: 26-48 (augmented)
-Cold Damage: 47-81 (augmented)
-Lightning Damage: 4-155 (augmented)
-Critical Strike Chance: 5.00%
-Attacks per Second: 1.74 (augmented)
-Weapon Range: 11
+Physical Damage: 58-90 (augmented)
+Elemental Damage: 36-43 (augmented)
+Critical Strike Chance: 5.50%
+Attacks per Second: 1.50
+Weapon Range: 1.4 metres
 --------
 Requirements:
-Level: 50
-Str: 44
-Dex: 44
+Level: 43
+Dex: 140 (unmet)
 --------
-Sockets: R-R B
+Sockets: B-G 
 --------
-Item Level: 68
+Item Level: 84
 --------
-Attribute Modifiers have 8% increased Effect (enchant)
++25% to Global Critical Strike Multiplier (implicit)
 --------
-+165 to Accuracy Rating (implicit)
+Adds 37 to 40 Physical Damage
+Adds 36 to 43 Cold Damage
+20% reduced Frenzy Charge Duration
+25% chance to gain a Frenzy Charge on Kill
+76% increased Damage while you have no Frenzy Charges
 --------
-+37 to Dexterity
-Adds 26 to 48 Fire Damage
-Adds 47 to 81 Cold Damage
-Adds 4 to 155 Lightning Damage
-20% increased Attack Speed
-+21% to Global Critical Strike Multiplier");
+It doesn't matter how well the young swordsman trains.
+All form and finesse are forgotten when blood first hits the ground.
+");
+
+            Assert.Equal(Category.Weapon, actual.Metadata.Category);
+            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
+            Assert.Equal("Ancient Sword", actual.Metadata.Type);
+
+            Assert.Equal(53.9, actual.Properties.PhysicalDps);
+            Assert.Equal(314.1, actual.Properties.ElementalDps);
+            Assert.Equal(368.0, actual.Properties.TotalDps);
+        }
+
+        [Fact]
+        public void ParseWeaponWithMultipleElementalDamages()
+        {
+            var actual = parser.ParseItem(@"Item Class: One Hand Swords
+Rarity: Rare
+Storm Sever
+Gemstone Sword
+--------
+One Handed Sword
+Physical Damage: 39-83
+Elemental Damage: 5-87 (augmented)
+Critical Strike Chance: 5.00%
+Attacks per Second: 1.30
+Weapon Range: 1.1 metres
+--------
+Requirements:
+Level: 56
+Str: 96
+Dex: 96
+--------
+Sockets: G 
+--------
+Item Level: 62
+--------
++400 to Accuracy Rating (implicit)
+--------
++1 to Level of Socketed Melee Gems
++24 to Strength
+Adds 5 to 87 Lightning Damage
+6% reduced Enemy Stun Threshold
+11% increased Stun Duration on Enemies
+");
 
             Assert.Equal(Category.Weapon, actual.Metadata.Category);
             Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
