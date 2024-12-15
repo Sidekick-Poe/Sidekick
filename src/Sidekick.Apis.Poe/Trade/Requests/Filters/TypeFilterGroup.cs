@@ -1,8 +1,6 @@
-namespace Sidekick.Apis.Poe.Trade.Requests.Filters
+namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
+
+internal class TypeFilterGroup
 {
-    internal class TypeFilterGroup
-    {
-        public bool Disabled { get; set; }
-        public TypeFilters Filters { get; set; } = new();
-    }
+    public TypeFilters Filters { get; set; } = new();
 }

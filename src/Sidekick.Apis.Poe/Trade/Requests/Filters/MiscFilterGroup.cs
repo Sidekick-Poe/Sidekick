@@ -1,7 +1,6 @@
-namespace Sidekick.Apis.Poe.Trade.Requests.Filters
+namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
+
+internal class MiscFilterGroup
 {
-    internal class MiscFilterGroup
-    {
-        public MiscFilters Filters { get; set; } = new();
-    }
+    public MiscFilters Filters { get; set; } = new();
 }
