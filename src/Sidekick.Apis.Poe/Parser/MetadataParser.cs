@@ -122,7 +122,7 @@ namespace Sidekick.Apis.Poe.Parser
                     Name = name,
                     Category = Category.Weapon,
                     Rarity = itemRarity,
-                    Game = Game  // Use the game type from the league ID
+                    Game = GameType.PathOfExile2  // Always use trade2 API for bows
                 };
             }
 

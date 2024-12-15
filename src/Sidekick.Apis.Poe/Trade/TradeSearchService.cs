@@ -356,7 +356,8 @@ public class TradeSearchService
                     break;
 
                 case PropertyFilterType.Weapon_PhysicalDamage:
-                    filters.Filters.PhysicalDps = new SearchFilterValue(propertyFilter);
+                case PropertyFilterType.Weapon_Damage:
+                    filters.Filters.Damage = new SearchFilterValue(propertyFilter);
                     hasValue = true;
                     break;
             }

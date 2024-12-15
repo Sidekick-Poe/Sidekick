@@ -38,6 +38,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
         Weapon_AttacksPerSecond,
         Weapon_CriticalStrikeChance,
         Weapon_PhysicalDamage,
+        Weapon_Damage,
         Weapon_ElementalDamage,
         Weapon_ChaosDamage,
     }

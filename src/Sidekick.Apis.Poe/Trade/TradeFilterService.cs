@@ -74,7 +74,27 @@ namespace Sidekick.Apis.Poe.Trade
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_ElementalDps, resources.Filters_EDps, item.Properties.ElementalDps, enabled: false);
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_ChaosDps, "Chaos DPS", item.Properties.ChaosDps, enabled: false);
 
-            InitializeDamageRangeFilter(result.Weapon, PropertyFilterType.Weapon_PhysicalDamage, gameLanguageProvider.Language?.DescriptionPhysicalDamage, ConvertFromCommonDamageRange(item.Properties.PhysicalDamage), enabled: false);
+            // Handle base damage values
+            if (item.Properties.PhysicalDamage.HasValue())
+            {
+                InitializeDamageRangeFilter(result.Weapon, 
+                    PropertyFilterType.Weapon_Damage, 
+                    gameLanguageProvider.Language?.DescriptionDamage, 
+                    ConvertFromCommonDamageRange(item.Properties.PhysicalDamage), 
+                    enabled: false);
+            }
+            else if (item.Properties.ElementalDamages.Any(x => x.HasValue()) || item.Properties.ChaosDamage.HasValue())
+            {
+                // For non-physical weapons, use total damage for the damage filter
+                var totalMin = item.Properties.ElementalDamages.Sum(x => x.Min) + (item.Properties.ChaosDamage?.Min ?? 0);
+                var totalMax = item.Properties.ElementalDamages.Sum(x => x.Max) + (item.Properties.ChaosDamage?.Max ?? 0);
+                
+                InitializePropertyFilter(result.Weapon,
+                    PropertyFilterType.Weapon_Damage,
+                    gameLanguageProvider.Language?.DescriptionDamage,
+                    new DamageRange { Min = totalMin, Max = totalMax },
+                    enabled: false);
+            }
 
             if (item.Properties.ElementalDamages.Any(x => x.HasValue()))
             {
