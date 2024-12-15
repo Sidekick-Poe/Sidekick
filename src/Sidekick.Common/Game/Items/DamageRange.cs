@@ -25,5 +25,4 @@ public class DamageRange(double min, double max)
     {
         return Math.Round(((Min + Max) / 2) * attacksPerSecond, 1);
     }
-
-} 
+}
