@@ -71,7 +71,7 @@ public class PriceCheckService(
     {
         if (PropertyFilters != null)
         {
-            PropertyFilters.RarityFilterEnabled = enabled;
+            PropertyFilters.RarityFilterApplied = enabled;
         }
     }
 

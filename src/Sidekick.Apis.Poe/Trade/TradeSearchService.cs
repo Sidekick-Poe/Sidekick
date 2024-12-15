@@ -76,7 +76,7 @@ public class TradeSearchService
                 }
             }
 
-            if (propertyFilters?.RarityFilterEnabled ?? false)
+            if (propertyFilters?.RarityFilterApplied ?? false)
             {
                 switch (item.Metadata.Rarity)
                 {

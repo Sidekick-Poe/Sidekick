@@ -67,7 +67,7 @@
                     </FilterWrapper>
                 }
                 <FilterWrapper>
-                    <FormCheckbox Value="@(PriceCheckService.PropertyFilters?.RarityFilterEnabled ?? false)"
+                    <FormCheckbox Value="@(PriceCheckService.PropertyFilters?.RarityFilterApplied ?? false)"
                                 NoMargin="true"
                                 ValueChanged="(v) => PriceCheckService.UpdateRarityFilter(v)">
                         <ItemPropertyText Label="Rarity"
