@@ -20,9 +20,6 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
         public SearchFilterValue? PhysicalDps { get; set; }
 
         [JsonPropertyName("damage")]
-        public SearchFilterValue? PhysicalDamage { get; set; }
-
-        [JsonPropertyName("damage")]
         public SearchFilterValue? Damage { get; set; }
     }
 }
