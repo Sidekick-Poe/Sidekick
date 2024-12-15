@@ -1,62 +1,30 @@
 @using Sidekick.Common.Game.Items
-
-@{
-    var implicitFilters = PriceCheckService.ModifierFilters
-        .Where(x => x.Line.Modifiers.FirstOrDefault()?.Category == ModifierCategory.Implicit)
-        .ToList();
-
-    var explicitFilters = PriceCheckService.ModifierFilters
-        .Where(x => x.Line.Modifiers.FirstOrDefault()?.Category != ModifierCategory.Implicit)
-        .ToList();
-}
-
-@if (implicitFilters.Any())
+@for (var i = 0; i < PriceCheckService.ModifierFilters.Count; i++)
 {
-    <TextCaption Class="font-caps text-[#AA9E82] text-center leading-none py-0.5">Implicit Modifiers</TextCaption>
-    <div class="pl-2">
-        @foreach (var filter in implicitFilters)
-        {
-            <CascadingValue Value="filter" IsFixed="true">
-                <ModifierFilterComponent/>
-            </CascadingValue>
-        }
-    </div>
-    <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown"/>
-}
+    <CascadingValue Value="PriceCheckService.ModifierFilters[i]" IsFixed="true">
+        <ModifierFilterComponent/>
+    </CascadingValue>
 
-<div class="pl-2">
-    @for (var i = 0; i < explicitFilters.Count; i++)
+    var isLastFilter = i + 1 == PriceCheckService.ModifierFilters.Count;
+    if (!isLastFilter)
     {
-        <CascadingValue Value="explicitFilters[i]" IsFixed="true">
-            <ModifierFilterComponent/>
-        </CascadingValue>
-
-        var isLastFilter = i + 1 == explicitFilters.Count;
-        if (!isLastFilter)
+        var isDifferentCategoryThanNext = NormalizeModifierCategory(PriceCheckService.ModifierFilters[i].Line.Modifiers.FirstOrDefault()?.Category) != NormalizeModifierCategory(PriceCheckService.ModifierFilters[i + 1].Line.Modifiers.FirstOrDefault()?.Category);
+        if (isDifferentCategoryThanNext)
         {
-            var isDifferentCategoryThanNext = NormalizeModifierCategory(
-                                                explicitFilters[i]
-                                                    .Line.Modifiers.FirstOrDefault()
-                                                    ?.Category)
-                                            != NormalizeModifierCategory(
-                                                explicitFilters[i + 1]
-                                                    .Line.Modifiers.FirstOrDefault()
-                                                    ?.Category);
-            if (isDifferentCategoryThanNext)
-            {
-                <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown"/>
-            }
+            <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown"/>
         }
     }
-</div>
+}
 
 @inject PriceCheckService PriceCheckService
 
 @code {
+
     private ModifierCategory? NormalizeModifierCategory(ModifierCategory? category) => category switch
     {
         ModifierCategory.Fractured => ModifierCategory.Explicit,
         ModifierCategory.Crafted => ModifierCategory.Explicit,
         _ => category,
     };
+
 }
