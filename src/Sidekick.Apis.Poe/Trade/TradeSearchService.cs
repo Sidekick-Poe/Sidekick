@@ -108,7 +108,7 @@ public class TradeSearchService
 
             if (propertyFilters != null)
             {
-                query.Filters.EquipmentFilters = GetEquipmentFilters(item, propertyFilters.Weapon);
+                query.Filters.EquipmentFilters = GetEquipmentFilters(item, propertyFilters.Weapon.Concat(propertyFilters.Armour).ToList());
                 query.Filters.WeaponFilters = GetWeaponFilters(item, propertyFilters.Weapon);
                 query.Filters.ArmourFilters = GetArmourFilters(item, propertyFilters.Armour);
                 query.Filters.MapFilters = GetMapFilters(propertyFilters.Map);
