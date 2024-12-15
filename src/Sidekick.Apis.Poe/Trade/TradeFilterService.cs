@@ -57,10 +57,10 @@ namespace Sidekick.Apis.Poe.Trade
 
             // Weapon properties
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_Damage, resources.Filters_Damage, item.Properties.TotalDamage, @checked: false);
-            InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_Dps, resources.Filters_Dps, item.Properties.TotalDps, @checked: false);
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_PhysicalDps, resources.Filters_PDps, item.Properties.PhysicalDamage?.GetDps(item.Properties.AttacksPerSecond), @checked: false);
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_ElementalDps, resources.Filters_EDps, item.Properties.ElementalDps, @checked: false);
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_ChaosDps, resources.Filters_ChaosDps, item.Properties.ChaosDamage?.GetDps(item.Properties.AttacksPerSecond), @checked: false);
+            InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_Dps, resources.Filters_Dps, item.Properties.TotalDps, @checked: false);
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_AttacksPerSecond, gameLanguageProvider.Language.DescriptionAttacksPerSecond, item.Properties.AttacksPerSecond, delta: (decimal?)0.1, @checked: false);
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_CriticalStrikeChance, gameLanguageProvider.Language.DescriptionCriticalStrikeChance, item.Properties.CriticalStrikeChance, @checked: false);
 
@@ -77,7 +77,7 @@ namespace Sidekick.Apis.Poe.Trade
             InitializeNumericFilter(result.Misc, PropertyFilterType.Misc_Quality, gameLanguageProvider.Language.DescriptionQuality, item.Properties.Quality, @checked: item.Metadata.Rarity == Rarity.Gem);
             InitializeNumericFilter(result.Misc, PropertyFilterType.Misc_GemLevel, gameLanguageProvider.Language.DescriptionLevel, item.Properties.GemLevel, @checked: true);
             InitializeNumericFilter(result.Misc, PropertyFilterType.Misc_ItemLevel, gameLanguageProvider.Language.DescriptionItemLevel, item.Properties.ItemLevel, @checked: item.Properties.ItemLevel >= 80 && item.Properties.MapTier == 0 && item.Metadata.Rarity != Rarity.Unique);
-            InitializeBooleanFilter(result.Misc, PropertyFilterType.Misc_Corrupted, gameLanguageProvider.Language.DescriptionCorrupted, item.Properties.Corrupted);
+            InitializeBooleanFilter(result.Misc, PropertyFilterType.Misc_Corrupted, gameLanguageProvider.Language.DescriptionCorrupted, item.Properties.Corrupted, true);
 
             // Influence properties
             InitializeBooleanFilter(result.Misc, PropertyFilterType.Misc_Influence_Crusader, gameLanguageProvider.Language.InfluenceCrusader, item.Influences.Crusader);
@@ -122,9 +122,9 @@ namespace Sidekick.Apis.Poe.Trade
             }
         }
 
-        private void InitializeBooleanFilter(List<PropertyFilter> filters, PropertyFilterType type, string? label, bool @checked)
+        private void InitializeBooleanFilter(List<PropertyFilter> filters, PropertyFilterType type, string? label, bool @checked, bool force = false)
         {
-            if (@checked)
+            if (force || @checked)
             {
                 InitializePropertyFilter(filters, type, label, @checked, @checked: @checked);
             }
