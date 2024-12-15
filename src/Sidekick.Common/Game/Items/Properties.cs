@@ -84,5 +84,20 @@ public class Properties
         }
     }
 
+    public double? TotalDamage
+    {
+        get
+        {
+            var total = 0d;
+            if (PhysicalDamage != null) total += (PhysicalDamage.Min + PhysicalDamage.Max) / 2;
+            if (FireDamage != null) total += (FireDamage.Min + FireDamage.Max) / 2;
+            if (ColdDamage != null) total += (ColdDamage.Min + ColdDamage.Max) / 2;
+            if (LightningDamage != null) total += (LightningDamage.Min + LightningDamage.Max) / 2;
+            if (ChaosDamage != null) total += (ChaosDamage.Min + ChaosDamage.Max) / 2;
+
+            return total;
+        }
+    }
+
     public int? BaseDefencePercentile { get; init; }
 }

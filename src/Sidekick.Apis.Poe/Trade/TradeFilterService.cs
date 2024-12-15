@@ -56,6 +56,7 @@ namespace Sidekick.Apis.Poe.Trade
             InitializeNumericFilter(result.Armour, PropertyFilterType.Armour_Block, gameLanguageProvider.Language.DescriptionChanceToBlock, item.Properties.ChanceToBlock);
 
             // Weapon properties
+            InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_Damage, resources.Filters_Damage, item.Properties.TotalDamage, @checked: false);
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_Dps, resources.Filters_Dps, item.Properties.TotalDps, @checked: false);
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_PhysicalDps, resources.Filters_PDps, item.Properties.PhysicalDamage?.GetDps(item.Properties.AttacksPerSecond), @checked: false);
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_ElementalDps, resources.Filters_EDps, item.Properties.ElementalDps, @checked: false);

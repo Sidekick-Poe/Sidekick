@@ -31,6 +31,7 @@ public enum PropertyFilterType
     Misc_Influence_Shaper,
     Misc_Influence_Warlord,
 
+    Weapon_Damage,
     Weapon_PhysicalDps,
     Weapon_ElementalDps,
     Weapon_ChaosDps,

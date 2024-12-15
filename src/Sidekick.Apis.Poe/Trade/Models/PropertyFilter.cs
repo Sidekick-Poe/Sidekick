@@ -22,7 +22,6 @@ public class PropertyFilter : ITradeFilter
         Max = max;
         NormalizeMinValue();
 
-
         if (min.HasValue)
         {
             Min = min;
