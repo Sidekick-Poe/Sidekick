@@ -1,4 +1,5 @@
 using System.Reflection;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Common;
 
@@ -21,9 +22,4 @@ public class SidekickConfiguration
     ///     The list of keybinds handled by this application
     /// </summary>
     public List<Type> Keybinds { get; } = new();
-
-    /// <summary>
-    ///     The list of settings handled by this application
-    /// </summary>
-    public List<Type> Settings { get; } = new();
 }

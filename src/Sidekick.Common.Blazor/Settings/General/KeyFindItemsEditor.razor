@@ -1,0 +1,27 @@
+@using Sidekick.Common.Settings
+@using Sidekick.Common.Blazor.Settings.Components
+
+<KeybindEditor Value="@KeyOpen"
+               ValueChanged="KeyChanged"
+               Label="@Resources.Key_FindItems"/>
+
+@inject SettingsResources Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private string? KeyOpen { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        KeyOpen = await SettingsService.GetString(SettingKeys.KeyFindItems);
+        await base.OnInitializedAsync();
+    }
+
+    private async Task KeyChanged(string? value)
+    {
+        KeyOpen = value;
+        await SettingsService.Set(SettingKeys.KeyFindItems, value);
+    }
+
+}

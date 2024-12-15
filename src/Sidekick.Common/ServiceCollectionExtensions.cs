@@ -11,6 +11,7 @@ using Sidekick.Common.Initialization;
 using Sidekick.Common.Keybinds;
 using Sidekick.Common.Localization;
 using Sidekick.Common.Logging;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Common;
 
@@ -30,6 +31,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IBrowserProvider, BrowserProvider>();
         services.AddSingleton<ICacheProvider, CacheProvider>();
         services.AddSingleton<IGameLogProvider, GameLogProvider>();
+        services.AddSingleton<ISettingsService, SettingsService>();
 
         services.AddSidekickInitializableService<IGameLanguageProvider, GameLanguageProvider>();
         services.AddSidekickInitializableService<IUiLanguageProvider, UiLanguageProvider>();

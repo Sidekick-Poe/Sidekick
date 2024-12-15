@@ -1,0 +1,20 @@
+@page "/settings/chat"
+@layout SettingsLayout
+@inherits Sidekick.Common.Ui.Views.SidekickView
+
+<AppTitle Title="@Resources["Settings"]"/>
+<AppContainer>
+    <Heading2 Class="mb-3">@Resources["Common Commands"]</Heading2>
+    <TextBase>@Resources["/hideout - Go to your hideout"]</TextBase>
+    <TextBase>@Resources["/leave - Leave the current party"]</TextBase>
+    <TextBase>@Resources["/exit - Exit to character screen"]</TextBase>
+
+    <Heading3 Class="my-3">@Resources["Wildcards"]</Heading3>
+    <TextBase>@Resources["@last - Character name of the last whisper message you received"]</TextBase>
+
+    <LayoutDivider/>
+
+    <ChatCommandEditor/>
+</AppContainer>
+
+@inject IStringLocalizer<SettingsResources> Resources

@@ -1,0 +1,27 @@
+@using Sidekick.Common.Settings
+
+<FormCheckbox Value="@EscapeClosesOverlays"
+              ValueChanged="@EscapeClosesOverlaysChanged">
+    @Resources.EscapeClosesOverlays
+</FormCheckbox>
+
+@inject SettingsResources Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private bool EscapeClosesOverlays { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        EscapeClosesOverlays = await SettingsService.GetBool(SettingKeys.EscapeClosesOverlays);
+        await base.OnInitializedAsync();
+    }
+
+    private async Task EscapeClosesOverlaysChanged(bool value)
+    {
+        EscapeClosesOverlays = value;
+        await SettingsService.Set(SettingKeys.EscapeClosesOverlays, value);
+    }
+
+}

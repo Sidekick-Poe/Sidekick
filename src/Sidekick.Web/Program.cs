@@ -15,7 +15,6 @@ using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
-using Sidekick.Modules.Settings;
 using Sidekick.Modules.Trade;
 using Sidekick.Modules.Wealth;
 using Sidekick.Web;
@@ -34,7 +33,7 @@ builder.Services
     // Common
     .AddSidekickCommon()
     .AddSidekickCommonBlazor()
-    .AddSidekickCommonDatabase()
+    .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
     .AddSingleton<IInterprocessService, InterprocessService>()
     // .AddSidekickCommonPlatform(o =>
     // {
@@ -54,7 +53,6 @@ builder.Services
     .AddSidekickDevelopment()
     .AddSidekickGeneral()
     .AddSidekickMaps()
-    .AddSidekickSettings()
     .AddSidekickTrade()
     .AddSidekickWealth()
 
