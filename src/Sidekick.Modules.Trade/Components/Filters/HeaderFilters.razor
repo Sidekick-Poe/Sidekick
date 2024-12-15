@@ -1,0 +1,112 @@
+@using Sidekick.Apis.Poe.Metadata
+@using Sidekick.Common.Game.Items
+@using Sidekick.Common.Game.Languages
+@using Sidekick.Modules.Trade.Localization
+@if (Visible)
+{
+    <FilterWrapper>
+        <div class="flex items-center flex-nowrap justify-between">
+            <FormCheckbox Value="PriceCheckService.PropertyFilters?.BaseTypeFilterApplied ?? false"
+                          ValueChanged="TypeFilterChanged"
+                          NoMargin="true">
+                <ItemPropertyText Label="@Resources["Base Type"]"
+                                  Value="@PriceCheckService.Item?.Metadata.Type"/>
+            </FormCheckbox>
+        </div>
+    </FilterWrapper>
+
+    <FilterWrapper>
+        <div class="flex items-center flex-nowrap justify-between">
+            <FormCheckbox Value="PriceCheckService.PropertyFilters?.ClassFilterApplied ?? false"
+                          ValueChanged="ClassFilterChanged"
+                          NoMargin="true">
+                <ItemPropertyText Label="@Resources["Item Class"]"
+                                  Value="@ClassLabel"/>
+            </FormCheckbox>
+        </div>
+    </FilterWrapper>
+
+    @if (!string.IsNullOrEmpty(RarityLabel))
+    {
+        <FilterWrapper>
+            <div class="flex items-center flex-nowrap justify-between">
+                <FormCheckbox Value="PriceCheckService.PropertyFilters?.RarityFilterApplied ?? false"
+                              ValueChanged="RarityFilterChanged"
+                              NoMargin="true">
+                    <ItemPropertyText Label="@Resources["Rarity"]"
+                                      Value="@RarityLabel"/>
+                </FormCheckbox>
+            </div>
+        </FilterWrapper>
+    }
+
+    <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown"/>
+}
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject PriceCheckService PriceCheckService
+@inject IMetadataProvider MetadataProvider
+@inject IGameLanguageProvider GameLanguageProvider
+
+@code {
+
+    private bool Visible => PriceCheckService.Item?.Metadata.Rarity is Rarity.Rare or Rarity.Magic or Rarity.Normal && !string.IsNullOrEmpty(PriceCheckService.Item.Header.ItemCategory) && !string.IsNullOrEmpty(ClassLabel);
+
+    private string? ClassLabel { get; set; }
+
+    private string? RarityLabel { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        if (PriceCheckService.Item == null)
+        {
+            return;
+        }
+
+        ClassLabel = MetadataProvider.ApiItemCategories.FirstOrDefault(x => x.Id == PriceCheckService.Item?.Header.ItemCategory)?.Text;
+        RarityLabel = PriceCheckService.Item.Metadata.Rarity switch
+        {
+            Rarity.Currency => GameLanguageProvider.Language.RarityCurrency,
+            Rarity.Normal => GameLanguageProvider.Language.RarityNormal,
+            Rarity.Magic => GameLanguageProvider.Language.RarityMagic,
+            Rarity.Rare => GameLanguageProvider.Language.RarityRare,
+            Rarity.Unique => GameLanguageProvider.Language.RarityUnique,
+            _ => null
+        };
+    }
+
+    private void TypeFilterChanged(bool value)
+    {
+        if (PriceCheckService.PropertyFilters == null)
+        {
+            return;
+        }
+
+        PriceCheckService.PropertyFilters.ClassFilterApplied = !value;
+        PriceCheckService.PropertyFilters.BaseTypeFilterApplied = value;
+    }
+
+    private void ClassFilterChanged(bool value)
+    {
+        if (PriceCheckService.PropertyFilters == null)
+        {
+            return;
+        }
+
+        PriceCheckService.PropertyFilters.ClassFilterApplied = value;
+        PriceCheckService.PropertyFilters.BaseTypeFilterApplied = !value;
+    }
+
+    private void RarityFilterChanged(bool value)
+    {
+        if (PriceCheckService.PropertyFilters == null)
+        {
+            return;
+        }
+
+        PriceCheckService.PropertyFilters.RarityFilterApplied = value;
+    }
+
+}
