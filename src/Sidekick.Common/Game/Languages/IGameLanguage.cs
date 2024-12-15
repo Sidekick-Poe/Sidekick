@@ -54,6 +54,14 @@ public interface IGameLanguage
 
     string DescriptionElementalDamage { get; }
 
+    string DescriptionFireDamage { get; }
+
+    string DescriptionColdDamage { get; }
+
+    string DescriptionLightningDamage { get; }
+
+    string DescriptionChaosDamage { get; }
+
     string DescriptionAttacksPerSecond { get; }
 
     string DescriptionCriticalStrikeChance { get; }
