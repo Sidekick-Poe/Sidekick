@@ -13,8 +13,9 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         public Task Initialize()
         {
             InitHeader();
-            InitProperties();
             InitInfluences();
+
+            Requirements = gameLanguageProvider.Language.DescriptionRequirements.ToRegexLine();
 
             return Task.CompletedTask;
         }
@@ -34,75 +35,17 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
                 { Common.Game.Items.Rarity.DivinationCard, gameLanguageProvider.Language.RarityDivinationCard.ToRegexEndOfLine() }
             };
 
-            ItemLevel = gameLanguageProvider.Language.DescriptionItemLevel.ToRegexIntCapture();
-            Unidentified = gameLanguageProvider.Language.DescriptionUnidentified.ToRegexLine();
-            Corrupted = gameLanguageProvider.Language.DescriptionCorrupted.ToRegexLine();
         }
 
         public Dictionary<Rarity, Regex> Rarity { get; private set; } = null!;
-        public Regex ItemLevel { get; private set; } = null!;
-        public Regex Unidentified { get; private set; } = null!;
-        public Regex Corrupted { get; private set; } = null!;
+
         public Regex Scourged { get; private set; } = null!;
+
         public Regex IsRelic { get; private set; } = null!;
 
-        #endregion Header (Rarity, Name, Type)
-
-        #region Properties (Armour, Evasion, Energy Shield, Quality, Level)
-
-        private void InitProperties()
-        {
-            Armor = gameLanguageProvider.Language.DescriptionArmour.ToRegexIntCapture();
-            EnergyShield = gameLanguageProvider.Language.DescriptionEnergyShield.ToRegexIntCapture();
-            Evasion = gameLanguageProvider.Language.DescriptionEvasion.ToRegexIntCapture();
-            ChanceToBlock = gameLanguageProvider.Language.DescriptionChanceToBlock.ToRegexIntCapture();
-            Level = gameLanguageProvider.Language.DescriptionLevel.ToRegexIntCapture();
-            AttacksPerSecond = gameLanguageProvider.Language.DescriptionAttacksPerSecond.ToRegexDecimalCapture();
-            CriticalStrikeChance = gameLanguageProvider.Language.DescriptionCriticalStrikeChance.ToRegexDecimalCapture();
-            ElementalDamage = gameLanguageProvider.Language.DescriptionElementalDamage.ToRegexStartOfLine();
-            PhysicalDamage = gameLanguageProvider.Language.DescriptionPhysicalDamage.ToRegexStartOfLine();
-
-            Quality = gameLanguageProvider.Language.DescriptionQuality.ToRegexIntCapture();
-            AlternateQuality = gameLanguageProvider.Language.DescriptionAlternateQuality.ToRegexLine();
-
-            MapTier = gameLanguageProvider.Language.DescriptionMapTier.ToRegexIntCapture();
-            AreaLevel = gameLanguageProvider.Language.DescriptionAreaLevel.ToRegexIntCapture();
-            ItemQuantity = gameLanguageProvider.Language.DescriptionItemQuantity.ToRegexIntCapture();
-            ItemRarity = gameLanguageProvider.Language.DescriptionItemRarity.ToRegexIntCapture();
-            MonsterPackSize = gameLanguageProvider.Language.DescriptionMonsterPackSize.ToRegexIntCapture();
-            Blighted = gameLanguageProvider.Language.AffixBlighted.ToRegexAffix();
-            BlightRavaged = gameLanguageProvider.Language.AffixBlightRavaged.ToRegexAffix();
-            Anomalous = gameLanguageProvider.Language.AffixAnomalous.ToRegexAffix();
-            Divergent = gameLanguageProvider.Language.AffixDivergent.ToRegexAffix();
-            Phantasmal = gameLanguageProvider.Language.AffixPhantasmal.ToRegexAffix();
-
-            Requirements = gameLanguageProvider.Language.DescriptionRequirements.ToRegexLine();
-        }
-
-        public Regex Armor { get; private set; } = null!;
-        public Regex EnergyShield { get; private set; } = null!;
-        public Regex Evasion { get; private set; } = null!;
-        public Regex ChanceToBlock { get; private set; } = null!;
-        public Regex Quality { get; private set; } = null!;
-        public Regex AlternateQuality { get; private set; } = null!;
-        public Regex Level { get; private set; } = null!;
-        public Regex MapTier { get; private set; } = null!;
-        public Regex ItemQuantity { get; private set; } = null!;
-        public Regex ItemRarity { get; private set; } = null!;
-        public Regex MonsterPackSize { get; private set; } = null!;
-        public Regex AttacksPerSecond { get; private set; } = null!;
-        public Regex CriticalStrikeChance { get; private set; } = null!;
-        public Regex ElementalDamage { get; private set; } = null!;
-        public Regex PhysicalDamage { get; private set; } = null!;
-        public Regex Blighted { get; private set; } = null!;
-        public Regex BlightRavaged { get; private set; } = null!;
-        public Regex Anomalous { get; private set; } = null!;
-        public Regex Divergent { get; private set; } = null!;
-        public Regex Phantasmal { get; private set; } = null!;
         public Regex Requirements { get; private set; } = null!;
-        public Regex AreaLevel { get; private set; } = null!;
 
-        #endregion Properties (Armour, Evasion, Energy Shield, Quality, Level)
+        #endregion Header (Rarity, Name, Type)
 
         #region Influences
 
@@ -117,10 +60,15 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         }
 
         public Regex Crusader { get; private set; } = null!;
+
         public Regex Elder { get; private set; } = null!;
+
         public Regex Hunter { get; private set; } = null!;
+
         public Regex Redeemer { get; private set; } = null!;
+
         public Regex Shaper { get; private set; } = null!;
+
         public Regex Warlord { get; private set; } = null!;
 
         #endregion Influences

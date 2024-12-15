@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Apis.Poe.Bulk;
 using Sidekick.Apis.Poe.Clients;
@@ -34,7 +33,6 @@ namespace Sidekick.Apis.Poe
             services.AddHttpClient(ClientNames.PoeClient)
                 .ConfigurePrimaryHttpMessageHandler((sp) =>
                 {
-                    var logger = sp.GetRequiredService<ILogger<PoeApiHandler>>();
                     var authenticationService = sp.GetRequiredService<IAuthenticationService>();
                     var apiStateProvider = sp.GetRequiredService<IApiStateProvider>();
                     var handler = new PoeApiHandler(authenticationService, apiStateProvider);
@@ -57,6 +55,7 @@ namespace Sidekick.Apis.Poe
 
             services.AddSidekickInitializableService<IParserPatterns, ParserPatterns>();
             services.AddSidekickInitializableService<SocketParser>();
+            services.AddSidekickInitializableService<PropertyParser>();
             services.AddSidekickInitializableService<IInvariantMetadataProvider, InvariantMetadataProvider>();
             services.AddSidekickInitializableService<IMetadataProvider, MetadataProvider>();
             services.AddSidekickInitializableService<IItemMetadataParser, MetadataParser>();
