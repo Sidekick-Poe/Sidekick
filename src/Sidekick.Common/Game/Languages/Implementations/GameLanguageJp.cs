@@ -49,6 +49,14 @@ public class GameLanguageJp : IGameLanguage
 
     public string DescriptionElementalDamage => "元素ダメージ";
 
+    public string DescriptionFireDamage => "__";
+
+    public string DescriptionColdDamage => "__";
+
+    public string DescriptionLightningDamage => "__";
+
+    public string DescriptionChaosDamage => "__";
+
     public string DescriptionEnergyShield => "エナジーシールド";
 
     public string DescriptionArmour => "アーマー";

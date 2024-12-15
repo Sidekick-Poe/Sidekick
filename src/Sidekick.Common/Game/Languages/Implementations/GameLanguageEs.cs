@@ -49,6 +49,14 @@ public class GameLanguageEs : IGameLanguage
 
     public string DescriptionElementalDamage => "Daño elemental";
 
+    public string DescriptionFireDamage => "__";
+
+    public string DescriptionColdDamage => "__";
+
+    public string DescriptionLightningDamage => "__";
+
+    public string DescriptionChaosDamage => "__";
+
     public string DescriptionEnergyShield => "Escudo de energía";
 
     public string DescriptionArmour => "Armadura";

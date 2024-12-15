@@ -49,6 +49,14 @@ public class GameLanguageRu : IGameLanguage
 
     public string DescriptionElementalDamage => "Урон от стихий";
 
+    public string DescriptionFireDamage => "__";
+
+    public string DescriptionColdDamage => "__";
+
+    public string DescriptionLightningDamage => "__";
+
+    public string DescriptionChaosDamage => "__";
+
     public string DescriptionEnergyShield => "Энерг. щит";
 
     public string DescriptionArmour => "Броня";

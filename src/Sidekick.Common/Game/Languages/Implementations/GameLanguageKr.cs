@@ -49,6 +49,14 @@ public class GameLanguageKr : IGameLanguage
 
     public string DescriptionElementalDamage => "원소 피해";
 
+    public string DescriptionFireDamage => "__";
+
+    public string DescriptionColdDamage => "__";
+
+    public string DescriptionLightningDamage => "__";
+
+    public string DescriptionChaosDamage => "__";
+
     public string DescriptionEnergyShield => "에너지 보호막";
 
     public string DescriptionArmour => "방어도";

@@ -49,6 +49,14 @@ public class GameLanguageEn : IGameLanguage
 
     public string DescriptionElementalDamage => "Elemental Damage";
 
+    public string DescriptionFireDamage => "Fire Damage";
+
+    public string DescriptionColdDamage => "Cold Damage";
+
+    public string DescriptionLightningDamage => "Lightning Damage";
+
+    public string DescriptionChaosDamage => "Chaos Damage";
+
     public string DescriptionEnergyShield => "Energy Shield";
 
     public string DescriptionArmour => "Armour";

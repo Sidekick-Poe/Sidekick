@@ -47,6 +47,14 @@ public class GameLanguageZhTw : IGameLanguage
 
     public string DescriptionElementalDamage => "元素傷害";
 
+    public string DescriptionFireDamage => "__";
+
+    public string DescriptionColdDamage => "__";
+
+    public string DescriptionLightningDamage => "__";
+
+    public string DescriptionChaosDamage => "__";
+
     public string DescriptionAttacksPerSecond => "每秒攻擊次數";
 
     public string DescriptionCriticalStrikeChance => "暴擊率";

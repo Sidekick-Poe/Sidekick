@@ -49,6 +49,14 @@ public class GameLanguagePt : IGameLanguage
 
     public string DescriptionElementalDamage => "Dano Elemental";
 
+    public string DescriptionFireDamage => "__";
+
+    public string DescriptionColdDamage => "__";
+
+    public string DescriptionLightningDamage => "__";
+
+    public string DescriptionChaosDamage => "__";
+
     public string DescriptionEnergyShield => "Escudo de Energia";
 
     public string DescriptionArmour => "Armadura";

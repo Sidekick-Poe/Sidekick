@@ -49,6 +49,14 @@ public class GameLanguageTh : IGameLanguage
 
     public string DescriptionElementalDamage => "ความเสียหายธาตุ";
 
+    public string DescriptionFireDamage => "__";
+
+    public string DescriptionColdDamage => "__";
+
+    public string DescriptionLightningDamage => "__";
+
+    public string DescriptionChaosDamage => "__";
+
     public string DescriptionEnergyShield => "โล่พลังงาน";
 
     public string DescriptionArmour => "ค่าเกราะ";
