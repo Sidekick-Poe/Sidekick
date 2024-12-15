@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.Text.RegularExpressions;
 using FuzzySharp;
 using FuzzySharp.SimilarityRatio;
@@ -70,10 +69,10 @@ namespace Sidekick.Apis.Poe.Parser
                 ParseRequirements(parsingItem);
 
                 var header = ParseHeader(parsingItem);
-                var properties = propertyParser.Parse(parsingItem);
                 var influences = ParseInfluences(parsingItem);
                 var sockets = socketParser.Parse(parsingItem);
                 var modifierLines = ParseModifiers(parsingItem);
+                var properties = propertyParser.Parse(parsingItem, modifierLines);
                 var pseudoModifiers = parsingItem.Metadata.Game == GameType.PathOfExile ? ParsePseudoModifiers(modifierLines) : [];
                 var item = new Item(metadata: metadata,
                                     invariant: invariant,
@@ -125,7 +124,7 @@ namespace Sidekick.Apis.Poe.Parser
             if (firstLine.StartsWith(gameLanguageProvider.Language.Classes.Prefix))
             {
                 var classLine = firstLine.Replace(gameLanguageProvider.Language.Classes.Prefix + ":", "").Trim();
-                
+
                 // Direct mapping for known item classes
                 apiItemCategoryId = classLine switch
                 {

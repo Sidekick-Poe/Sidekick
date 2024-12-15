@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
+using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
@@ -7,9 +8,13 @@ using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Parser;
 
-public class PropertyParser(IGameLanguageProvider gameLanguageProvider) : IInitializableService
+public class PropertyParser
+(
+    IGameLanguageProvider gameLanguageProvider,
+    IInvariantModifierProvider invariantModifierProvider
+) : IInitializableService
 {
-    public int Priority => 100;
+    public int Priority => 200;
 
     private Regex? Armor { get; set; }
 
@@ -92,7 +97,7 @@ public class PropertyParser(IGameLanguageProvider gameLanguageProvider) : IIniti
         return Task.CompletedTask;
     }
 
-    public Properties Parse(ParsingItem parsingItem)
+    public Properties Parse(ParsingItem parsingItem, List<ModifierLine> modifierLines)
     {
         return parsingItem.Metadata?.Category switch
         {
@@ -100,7 +105,7 @@ public class PropertyParser(IGameLanguageProvider gameLanguageProvider) : IIniti
             Category.Map or Category.Contract => ParseMapProperties(parsingItem),
             Category.Accessory => ParseAccessoryProperties(parsingItem),
             Category.Armour => ParseArmourProperties(parsingItem),
-            Category.Weapon => ParseWeaponProperties(parsingItem),
+            Category.Weapon => ParseWeaponProperties(parsingItem, modifierLines),
             Category.Jewel => ParseJewelProperties(parsingItem),
             Category.Flask => ParseFlaskProperties(parsingItem),
             Category.Sanctum => ParseSanctumProperties(parsingItem),
@@ -109,178 +114,13 @@ public class PropertyParser(IGameLanguageProvider gameLanguageProvider) : IIniti
         };
     }
 
-    private Properties ParseWeaponProperties(ParsingItem parsingItem)
+    private Properties ParseWeaponProperties(ParsingItem parsingItem, List<ModifierLine> modifierLines)
     {
         var propertyBlock = parsingItem.Blocks[1];
         var attacksPerSecond = GetDouble(AttacksPerSecond, propertyBlock);
         var criticalStrikeChance = GetDouble(CriticalStrikeChance, propertyBlock);
 
-        // Parse physical damage
-        var physicalDamage = new DamageRange();
-        foreach (var line in propertyBlock.Lines)
-        {
-            if (!line.Text.Contains("Physical Damage:"))
-            {
-                continue;
-            }
-
-            var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
-            if (matches.Count <= 0 || matches[0].Groups.Count < 3)
-            {
-                continue;
-            }
-
-            double.TryParse(matches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
-            double.TryParse(matches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
-            physicalDamage.Min = min;
-            physicalDamage.Max = max;
-        }
-
-        // Parse chaos damage
-        var chaosDamage = new DamageRange();
-        foreach (var line in propertyBlock.Lines)
-        {
-            if (!line.Text.Contains("Chaos Damage:"))
-            {
-                continue;
-            }
-
-            var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
-            if (matches.Count <= 0 || matches[0].Groups.Count < 3)
-            {
-                continue;
-            }
-
-            double.TryParse(matches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
-            double.TryParse(matches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
-            chaosDamage.Min = min;
-            chaosDamage.Max = max;
-        }
-
-        // Parse elemental damages
-        var elementalDamages = new List<DamageRange>();
-        var elementalDamageTypes = new List<DamageType>();
-
-        // First check modifiers to determine damage types from "Adds X to Y" lines
-        foreach (var line in propertyBlock.Lines)
-        {
-            if (!line.Text.Contains("Adds") || !line.Text.Contains("Damage"))
-            {
-                continue;
-            }
-
-            if (line.Text.Contains("Fire"))
-                elementalDamageTypes.Add(DamageType.Fire);
-            else if (line.Text.Contains("Cold"))
-                elementalDamageTypes.Add(DamageType.Cold);
-            else if (line.Text.Contains("Lightning")) elementalDamageTypes.Add(DamageType.Lightning);
-        }
-
-        // Parse individual elemental damage lines first
-        foreach (var line in propertyBlock.Lines)
-        {
-            if (line.Text.Contains("Fire Damage:"))
-            {
-                var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
-                if (matches.Count <= 0 || matches[0].Groups.Count < 3)
-                {
-                    continue;
-                }
-
-                double.TryParse(matches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
-                double.TryParse(matches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
-                elementalDamages.Add(new DamageRange
-                {
-                    Min = min,
-                    Max = max,
-                    Type = DamageType.Fire
-                });
-            }
-            else if (line.Text.Contains("Cold Damage:"))
-            {
-                var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
-                if (matches.Count <= 0 || matches[0].Groups.Count < 3)
-                {
-                    continue;
-                }
-
-                double.TryParse(matches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
-                double.TryParse(matches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
-                elementalDamages.Add(new DamageRange
-                {
-                    Min = min,
-                    Max = max,
-                    Type = DamageType.Cold
-                });
-            }
-            else if (line.Text.Contains("Lightning Damage:"))
-            {
-                var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
-                if (matches.Count <= 0 || matches[0].Groups.Count < 3)
-                {
-                    continue;
-                }
-
-                double.TryParse(matches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
-                double.TryParse(matches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
-                elementalDamages.Add(new DamageRange
-                {
-                    Min = min,
-                    Max = max,
-                    Type = DamageType.Lightning
-                });
-            }
-        }
-
-        // If no individual lines were found, try to parse combined "Elemental Damage:" line
-        if (!elementalDamages.Any())
-        {
-            foreach (var line in propertyBlock.Lines)
-            {
-                if (!line.Text.Contains("Elemental Damage:"))
-                {
-                    continue;
-                }
-
-                var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
-                var matchIndex = 0;
-                foreach (Match match in matches)
-                {
-                    if (match.Groups.Count < 3)
-                    {
-                        continue;
-                    }
-
-                    double.TryParse(match.Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
-                    double.TryParse(match.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
-
-                    // Get the damage type from the corresponding "Adds X to Y" line
-                    var damageType = matchIndex < elementalDamageTypes.Count ? elementalDamageTypes[matchIndex] : DamageType.Physical;
-
-                    elementalDamages.Add(new DamageRange
-                    {
-                        Min = min,
-                        Max = max,
-                        Type = damageType
-                    });
-                    matchIndex++;
-                }
-
-                break;
-            }
-        }
-
-        // Calculate DPS values
-        var physicalDps = physicalDamage.Min > 0 || physicalDamage.Max > 0 ? Math.Round(((physicalDamage.Min + physicalDamage.Max) / 2) * attacksPerSecond, 1) : null as double?;
-
-        var elementalDps = elementalDamages.Any() ? Math.Round(elementalDamages.Sum(x => (x.Min + x.Max) / 2) * attacksPerSecond, 1) : null as double?;
-
-        var chaosDps = chaosDamage.Min > 0 || chaosDamage.Max > 0 ? Math.Round(((chaosDamage.Min + chaosDamage.Max) / 2) * attacksPerSecond, 1) : null as double?;
-
-        // Calculate total DPS including chaos damage
-        var totalDps = Math.Round((physicalDps ?? 0) + (elementalDps ?? 0) + (chaosDps ?? 0), 1);
-
-        return new Properties
+        var properties = new Properties
         {
             ItemLevel = GetInt(ItemLevel, parsingItem),
             Identified = !GetBool(Unidentified, parsingItem),
@@ -288,14 +128,93 @@ public class PropertyParser(IGameLanguageProvider gameLanguageProvider) : IIniti
             Quality = GetInt(Quality, propertyBlock),
             AttacksPerSecond = attacksPerSecond,
             CriticalStrikeChance = criticalStrikeChance,
-            PhysicalDamage = physicalDamage,
-            ElementalDamages = elementalDamages,
-            ChaosDamage = chaosDamage,
-            PhysicalDps = physicalDps,
-            ElementalDps = elementalDps,
-            ChaosDps = chaosDps,
-            TotalDps = totalDps > 0 ? totalDps : null
         };
+
+        // Parse damage ranges
+        foreach (var line in propertyBlock.Lines)
+        {
+            var isElemental = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionElementalDamage);
+            if (isElemental)
+            {
+                ParseElementalDamage(line, properties, modifierLines);
+                continue;
+            }
+
+            var isPhysical = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionPhysicalDamage);
+            var isChaos = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionChaosDamage);
+            var isFire = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionFireDamage);
+            var isCold = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionColdDamage);
+            var isLightning = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionLightningDamage);
+
+            if (!isPhysical && !isChaos && !isFire && !isCold && !isLightning)
+            {
+                continue;
+            }
+
+            var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
+            if (matches.Count <= 0 || matches[0].Groups.Count < 3)
+            {
+                continue;
+            }
+
+            double.TryParse(matches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
+            double.TryParse(matches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
+
+            var range = new DamageRange(min, max);
+            if (isPhysical) properties.PhysicalDamage = range;
+            if (isChaos) properties.ChaosDamage = range;
+            if (isFire) properties.FireDamage = range;
+            if (isCold) properties.ColdDamage = range;
+            if (isLightning) properties.LightningDamage = range;
+        }
+
+        return properties;
+    }
+
+    private void ParseElementalDamage(ParsingLine line, Properties properties, List<ModifierLine> modifierLines)
+    {
+        var damageMods = invariantModifierProvider.FireWeaponDamageIds.ToList();
+        damageMods.AddRange(invariantModifierProvider.ColdWeaponDamageIds);
+        damageMods.AddRange(invariantModifierProvider.LightningWeaponDamageIds);
+
+        var itemMods = modifierLines.Where(x => x.Modifiers.Any(y => damageMods.Contains(y.Id ?? string.Empty))).ToList();
+
+        var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
+        var matchIndex = 0;
+        foreach (Match match in matches)
+        {
+            if (match.Groups.Count < 3)
+            {
+                continue;
+            }
+
+            double.TryParse(match.Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
+            double.TryParse(match.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
+            var range = new DamageRange(min, max);
+
+            var isFire = itemMods[matchIndex].Modifiers.Any(x => invariantModifierProvider.FireWeaponDamageIds.Contains(x.Id ?? string.Empty));
+            if (isFire)
+            {
+                properties.FireDamage = range;
+                continue;
+            }
+
+            var isCold = itemMods[matchIndex].Modifiers.Any(x => invariantModifierProvider.FireWeaponDamageIds.Contains(x.Id ?? string.Empty));
+            if (isCold)
+            {
+                properties.ColdDamage = range;
+                continue;
+            }
+
+            var isLightning = itemMods[matchIndex].Modifiers.Any(x => invariantModifierProvider.FireWeaponDamageIds.Contains(x.Id ?? string.Empty));
+            if (isLightning)
+            {
+                properties.LightningDamage = range;
+                continue;
+            }
+
+            matchIndex++;
+        }
     }
 
     private Properties ParseArmourProperties(ParsingItem parsingItem)

@@ -1,5 +1,3 @@
-using Sidekick.Common.Game.Items;
-
 namespace Sidekick.Common.Game.Items;
 
 public class Properties
@@ -48,19 +46,30 @@ public class Properties
 
     public double AttacksPerSecond { get; init; }
 
-    public double? TotalDps { get; set; }
+    public DamageRange? PhysicalDamage { get; set; }
 
-    public double? ElementalDps { get; set; }
+    public DamageRange? FireDamage { get; set; }
 
-    public double? PhysicalDps { get; set; }
+    public DamageRange? ColdDamage { get; set; }
 
-    public DamageRange PhysicalDamage { get; init; } = new();
+    public DamageRange? LightningDamage { get; set; }
 
-    public List<DamageRange> ElementalDamages { get; init; } = new();
+    public DamageRange? ChaosDamage { get; set; }
 
-    public DamageRange ChaosDamage { get; init; } = new();
+    public double? TotalDps
+    {
+        get
+        {
+            var total = 0d;
+            if (PhysicalDamage != null) total += PhysicalDamage.GetDps(AttacksPerSecond);
+            if (FireDamage != null) total += FireDamage.GetDps(AttacksPerSecond);
+            if (ColdDamage != null) total += ColdDamage.GetDps(AttacksPerSecond);
+            if (LightningDamage != null) total += LightningDamage.GetDps(AttacksPerSecond);
+            if (ChaosDamage != null) total += ChaosDamage.GetDps(AttacksPerSecond);
 
-    public double? ChaosDps { get; set; }
+            return total;
+        }
+    }
 
     public int? BaseDefencePercentile { get; init; }
 }
