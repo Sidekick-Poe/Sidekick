@@ -1,7 +1,6 @@
-namespace Sidekick.Apis.Poe.Trade.Requests.Filters
+namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
+
+internal class SocketFilterGroup
 {
-    internal class SocketFilterGroup
-    {
-        public SocketFilters Filters { get; set; } = new();
-    }
+    public SocketFilters Filters { get; set; } = new();
 }

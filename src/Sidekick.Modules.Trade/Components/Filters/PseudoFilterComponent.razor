@@ -5,9 +5,9 @@
 <FilterWrapper>
     <div class="flex flex-nowrap items-center">
         <div class="grow">
-            <FormCheckbox Value="Filter.Enabled ?? false"
+            <FormCheckbox Value="Filter.Checked ?? false"
                           NoMargin="true"
-                          ValueChanged="(v) => Filter.Enabled = v">
+                          ValueChanged="(v) => Filter.Checked = v">
                 <ItemModifierText Class="text-left"
                                   Category="ModifierCategory.Pseudo">@Filter.Modifier.Text</ItemModifierText>
             </FormCheckbox>
@@ -18,7 +18,7 @@
 
             <div class="h-[2px]"></div>
 
-            @if ((Filter.Enabled ?? false) && Filter.Modifier.HasValue)
+            @if ((Filter.Checked ?? false) && Filter.Modifier.HasValue)
             {
                 <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged"/>
             }
@@ -47,9 +47,7 @@
                 Filter.Min = null;
                 break;
 
-            case FilterRange.RangeType.Equals:
-                Filter.SetExactValue();
-                break;
+            case FilterRange.RangeType.Equals: Filter.SetExactValue(); break;
 
             case FilterRange.RangeType.Range:
                 Filter.NormalizeMinValue();

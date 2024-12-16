@@ -8,16 +8,7 @@
     var isLastFilter = i + 1 == PriceCheckService.ModifierFilters.Count;
     if (!isLastFilter)
     {
-        var isDifferentCategoryThanNext = NormalizeModifierCategory(
-                                              PriceCheckService
-                                                  .ModifierFilters[i]
-                                                  .Line.Modifiers.FirstOrDefault()
-                                                  ?.Category)
-                                          != NormalizeModifierCategory(
-                                              PriceCheckService
-                                                  .ModifierFilters[i + 1]
-                                                  .Line.Modifiers.FirstOrDefault()
-                                                  ?.Category);
+        var isDifferentCategoryThanNext = NormalizeModifierCategory(PriceCheckService.ModifierFilters[i].Line.Modifiers.FirstOrDefault()?.Category) != NormalizeModifierCategory(PriceCheckService.ModifierFilters[i + 1].Line.Modifiers.FirstOrDefault()?.Category);
         if (isDifferentCategoryThanNext)
         {
             <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown"/>

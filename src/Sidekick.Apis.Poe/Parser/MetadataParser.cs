@@ -6,10 +6,12 @@ using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Parser
 {
-    public class MetadataParser(
+    public class MetadataParser
+    (
         IGameLanguageProvider gameLanguageProvider,
         IParserPatterns parserPatterns,
-        IMetadataProvider data) : IItemMetadataParser
+        IMetadataProvider data
+    ) : IItemMetadataParser
     {
         private Regex Affixes { get; set; } = null!;
 
@@ -18,13 +20,9 @@ namespace Sidekick.Apis.Poe.Parser
         /// <inheritdoc/>
         public int Priority => 200;
 
-        private string GetLineWithoutAffixes(string line) => Affixes
-                                                             .Replace(line, string.Empty)
-                                                             .Trim(' ', ',');
+        private string GetLineWithoutAffixes(string line) => Affixes.Replace(line, string.Empty).Trim(' ', ',');
 
-        public string GetLineWithoutSuperiorAffix(string line) => SuperiorAffix
-                                                                  .Replace(line, string.Empty)
-                                                                  .Trim(' ', ',');
+        public string GetLineWithoutSuperiorAffix(string line) => SuperiorAffix.Replace(line, string.Empty).Trim(' ', ',');
 
         /// <inheritdoc/>
         public Task Initialize()
@@ -55,12 +53,7 @@ namespace Sidekick.Apis.Poe.Parser
             var itemRarity = GetRarity(parsingBlock);
 
             var canBeVaalGem = itemRarity == Rarity.Gem && parsingItem.Blocks.Count > 7;
-            if (canBeVaalGem
-                && data.NameAndTypeDictionary.TryGetValue(
-                    parsingItem
-                        .Blocks[5]
-                        .Lines[0].Text,
-                    out var vaalGem))
+            if (canBeVaalGem && data.NameAndTypeDictionary.TryGetValue(parsingItem.Blocks[5].Lines[0].Text, out var vaalGem))
             {
                 return vaalGem.First();
             }
@@ -115,9 +108,7 @@ namespace Sidekick.Apis.Poe.Parser
             return result;
         }
 
-        public ItemMetadata? Parse(
-            string? name,
-            string? type)
+        public ItemMetadata? Parse(string? name, string? type)
         {
             // We can find multiple matches while parsing. This will store all of them. We will figure out which result is correct at the end of this method.
             var results = new List<ItemMetadata>();
@@ -145,42 +136,38 @@ namespace Sidekick.Apis.Poe.Parser
             {
                 if (!string.IsNullOrEmpty(name))
                 {
-                    results.AddRange(
-                        data
-                            .NameAndTypeRegex.Where(pattern => pattern.Regex.IsMatch(name))
-                            .Select(x => x.Item));
+                    results.AddRange(data.NameAndTypeRegex.Where(pattern => pattern.Regex.IsMatch(name)).Select(x => x.Item));
                 }
 
                 if (!string.IsNullOrEmpty(type))
                 {
-                    results.AddRange(
-                        data
-                            .NameAndTypeRegex.Where(pattern => pattern.Regex.IsMatch(type))
-                            .Select(x => x.Item));
+                    results.AddRange(data.NameAndTypeRegex.Where(pattern => pattern.Regex.IsMatch(type)).Select(x => x.Item));
                 }
             }
 
-            if (results.Any(x => x.Type == type))
+            var orderedResults = results.OrderByDescending(x=>x.Type?.Length ?? x.Name?.Length ?? 0).ToList();
+
+            if (orderedResults.Any(x => x.Type == type))
             {
-                return results.FirstOrDefault(x => x.Type == type);
+                return orderedResults.FirstOrDefault(x => x.Type == type);
             }
 
-            if (results.Any(x => x.ApiType == type))
+            if (orderedResults.Any(x => x.ApiType == type))
             {
-                return results.FirstOrDefault(x => x.ApiType == type);
+                return orderedResults.FirstOrDefault(x => x.ApiType == type);
             }
 
-            if (results.Any(x => x.Rarity == Rarity.Unique))
+            if (orderedResults.Any(x => x.Rarity == Rarity.Unique))
             {
-                return results.FirstOrDefault(x => x.Rarity == Rarity.Unique);
+                return orderedResults.FirstOrDefault(x => x.Rarity == Rarity.Unique);
             }
 
-            if (results.Any(x => x.Rarity == Rarity.Unknown))
+            if (orderedResults.Any(x => x.Rarity == Rarity.Unknown))
             {
-                return results.FirstOrDefault(x => x.Rarity == Rarity.Unknown);
+                return orderedResults.FirstOrDefault(x => x.Rarity == Rarity.Unknown);
             }
 
-            return results.FirstOrDefault();
+            return orderedResults.FirstOrDefault();
         }
 
         private Rarity GetRarity(ParsingBlock parsingBlock)

@@ -1,9 +1,11 @@
+@using Sidekick.Apis.Poe.Trade.Models
+
 <TextBase Class="font-caps leading-none py-0.5">
-    @Label
+    <span class="text-[#7f7f7f]">@Label</span>
     @if (OnlyShowLabel == false)
     {
         <span class="text-[#7f7f7f]">: </span>
-        <span class="text-white">@Value</span>
+        <span class="@ContentType.GetColour()">@Value</span>
     }
 </TextBase>
 
@@ -14,6 +16,9 @@
 
     [Parameter]
     public string? Value { get; set; }
+
+    [Parameter]
+    public LineContentType ContentType { get; set; } = LineContentType.Simple;
 
     [Parameter]
     public bool OnlyShowLabel { get; set; }

@@ -1,100 +1,61 @@
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Thai", "th")]
-public class GameLanguageTh : IGameLanguage
+public class GameLanguageTH : IGameLanguage
 {
-    public string LanguageCode => "th";
-
-    public string PoeTradeBaseUrl => new("https://th.pathofexile.com/trade/");
-
-    public string PoeTradeApiBaseUrl => new("https://th.pathofexile.com/api/trade/");
-
-    public string Poe2TradeBaseUrl => new("https://th.pathofexile.com/trade2/");
-
-    public string Poe2TradeApiBaseUrl => new("https://th.pathofexile.com/api/trade2/");
-
+    public string PoeTradeBaseUrl => "https://th.pathofexile.com/trade/";
+    public string PoeTradeApiBaseUrl => "https://th.pathofexile.com/api/trade/";
+    public string Poe2TradeBaseUrl => "https://th.pathofexile.com/trade2/";
+    public string Poe2TradeApiBaseUrl => "https://th.pathofexile.com/api/trade2/";
     public Uri PoeCdnBaseUrl => new("https://web.poecdn.com/");
 
     public string RarityUnique => "ยูนิค";
-
     public string RarityRare => "แรร์";
-
     public string RarityMagic => "เมจิก";
-
     public string RarityNormal => "ปกติ";
-
     public string RarityCurrency => "เงินตรา";
-
     public string RarityGem => "หิน";
-
     public string RarityDivinationCard => "ไพ่พยากรณ์";
 
     public string DescriptionUnidentified => "ยังไม่ได้ตรวจสอบ";
-
     public string DescriptionQuality => "ค่าคุณภาพ";
-
     public string DescriptionAlternateQuality => "ค่าคุณภาพแบบพิเศษ";
-
     public string DescriptionLevel => "เลเวล";
-
     public string DescriptionCorrupted => "มีมลทิน";
-
     public string DescriptionSockets => "รู";
-
     public string DescriptionItemLevel => "เลเวลไอเทม";
-
     public string DescriptionExperience => "ค่าประสบการณ์";
-
     public string DescriptionPhysicalDamage => "ความเสียหายกายภาพ";
-
     public string DescriptionElementalDamage => "ความเสียหายธาตุ";
-
+    public string DescriptionFireDamage => "ความเสียหายไฟ";
+    public string DescriptionColdDamage => "ความเสียหายน้ำแข็ง";
+    public string DescriptionLightningDamage => "ความเสียหายน้ำสายฟ้า";
+    public string DescriptionChaosDamage => "ความเสียหายเคออส";
     public string DescriptionEnergyShield => "โล่พลังงาน";
-
     public string DescriptionArmour => "ค่าเกราะ";
-
     public string DescriptionEvasion => "อัตราการหลบหลีก";
-
     public string DescriptionChanceToBlock => "โอกาสบล็อค";
-
     public string DescriptionAttacksPerSecond => "จำนวนครั้งการโจมตีต่อวินาที";
-
     public string DescriptionCriticalStrikeChance => "โอกาสคริติคอล";
-
     public string DescriptionMapTier => "ระดับแผนที่";
-
     public string DescriptionItemQuantity => "จำนวนของไอเทม";
-
     public string DescriptionItemRarity => "ระดับความหายากของไอเทม";
-
     public string DescriptionMonsterPackSize => "ขนาดกองมอนสเตอร์";
-
     public string DescriptionRequirements => "เงื่อนไข";
-
     public string DescriptionAreaLevel => "ด่านเลเวล";
 
     public string AffixSuperior => "Superior";
-
     public string AffixBlighted => "Blighted";
-
     public string AffixBlightRavaged => "Blight-ravaged";
-
     public string AffixAnomalous => "Anomalous";
-
     public string AffixDivergent => "Divergent";
-
     public string AffixPhantasmal => "Phantasmal";
 
     public string InfluenceShaper => "ไอเทมเชปเปอร์";
-
     public string InfluenceElder => "ไอเทมเอลเดอร์";
-
     public string InfluenceCrusader => "ไอเทมผู้พิชิตอธรรม";
-
     public string InfluenceHunter => "ไอเทมผู้พิชิตเหยื่อ";
-
     public string InfluenceRedeemer => "ไอเทมผู้พิชิตบาป";
-
     public string InfluenceWarlord => "ไอเทมผู้พิชิตศึก";
 
     public ClassLanguage Classes { get; } = new()
@@ -150,18 +111,10 @@ public class GameLanguageTh : IGameLanguage
         Trinkets = "เครื่องประดับโจร",
         Logbooks = "สมุดปูมเดินทางกองสำรวจ",
         MemoryLine = "ความทรงจำ",
+        SanctumRelics = "วัตถุตกทอด",
+        Tinctures = "ยาเคลือบอาวุธ",
+        Corpses = "ศพ",
         SanctumResearch = "บทวิจัยเทวสถาน",
-        SanctumRelics = "__",
-        Tinctures = "__",
-        Corpses = "__",
-        Charms = "__",
-        Crossbows = "__",
-        Focus = "__",
-        Quarterstaves = "__",
-        Socketable = "__",
-        Tablets = "__",
-        Waystones = "__",
-        InscribedUltimatum = "__",
-        TrialCoins = "__",
     };
 }
+

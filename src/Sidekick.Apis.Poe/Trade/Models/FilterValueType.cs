@@ -1,9 +1,8 @@
-namespace Sidekick.Apis.Poe.Trade.Models
+namespace Sidekick.Apis.Poe.Trade.Models;
+
+public enum FilterValueType
 {
-    public enum FilterValueType
-    {
-        Boolean,
-        Int,
-        Double,
-    }
+    Boolean,
+    Int,
+    Double,
 }

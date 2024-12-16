@@ -16,9 +16,15 @@ public class InvariantModifierProvider
     ISettingsService settingsService
 ) : IInvariantModifierProvider
 {
-    public List<string> IncursionRoomModifierIds { get; } = new();
+    public List<string> IncursionRoomModifierIds { get; } = [];
 
-    public List<string> LogbookFactionModifierIds { get; } = new();
+    public List<string> LogbookFactionModifierIds { get; } = [];
+
+    public List<string> FireWeaponDamageIds { get; } = [];
+
+    public List<string> ColdWeaponDamageIds { get; } = [];
+
+    public List<string> LightningWeaponDamageIds { get; } = [];
 
     public string ClusterJewelSmallPassiveCountModifierId { get; private set; } = null!;
 
@@ -36,6 +42,7 @@ public class InvariantModifierProvider
         InitializeIncursionRooms(result);
         InitializeLogbookFactions(result);
         InitializeClusterJewel(result);
+        InitializeWeaponDamageIds(result);
     }
 
     private void InitializeIncursionRooms(List<ApiCategory> apiCategories)
@@ -85,6 +92,26 @@ public class InvariantModifierProvider
                 }
 
                 ClusterJewelSmallPassiveGrantOptions = apiModifier.Option.Options.ToDictionary(x => x.Id, x => x.Text!);
+            }
+        }
+    }
+
+    private void InitializeWeaponDamageIds(List<ApiCategory> apiCategories)
+    {
+        FireWeaponDamageIds.Clear();
+        ColdWeaponDamageIds.Clear();
+        LightningWeaponDamageIds.Clear();
+        foreach (var apiCategory in apiCategories)
+        {
+            if (IsCategory(apiCategory, "pseudo")) { continue; }
+
+            foreach (var apiModifier in apiCategory.Entries)
+            {
+                var text = ModifierProvider.RemoveSquareBrackets(apiModifier.Text);
+
+                if (text == "Adds # to # Fire Damage") FireWeaponDamageIds.Add(apiModifier.Id);
+                if (text == "Adds # to # Cold Damage") ColdWeaponDamageIds.Add(apiModifier.Id);
+                if (text == "Adds # to # Lightning Damage") LightningWeaponDamageIds.Add(apiModifier.Id);
             }
         }
     }

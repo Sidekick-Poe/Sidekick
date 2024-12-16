@@ -1,100 +1,61 @@
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Portuguese", "pt")]
-public class GameLanguagePt : IGameLanguage
+public class GameLanguagePT : IGameLanguage
 {
-    public string LanguageCode => "pt";
-
     public string PoeTradeBaseUrl => "https://br.pathofexile.com/trade/";
-
     public string PoeTradeApiBaseUrl => "https://br.pathofexile.com/api/trade/";
-
     public string Poe2TradeBaseUrl => "https://br.pathofexile.com/trade2/";
-
     public string Poe2TradeApiBaseUrl => "https://br.pathofexile.com/api/trade2/";
-
     public Uri PoeCdnBaseUrl => new("https://web.poecdn.com/");
 
     public string RarityUnique => "Único";
-
     public string RarityRare => "Raro";
-
     public string RarityMagic => "Mágico";
-
     public string RarityNormal => "Normal";
-
     public string RarityCurrency => "Moeda";
-
     public string RarityGem => "Gema";
-
     public string RarityDivinationCard => "Carta de Adivinhação";
 
     public string DescriptionUnidentified => "Não Identificado";
-
     public string DescriptionQuality => "Qualidade";
-
     public string DescriptionAlternateQuality => "Qualidade Alternativa";
-
     public string DescriptionLevel => "Nível";
-
     public string DescriptionCorrupted => "Corrompido";
-
     public string DescriptionSockets => "Encaixes";
-
     public string DescriptionItemLevel => "Nível do Item";
-
     public string DescriptionExperience => "Experiência";
-
     public string DescriptionPhysicalDamage => "Dano Físico";
-
     public string DescriptionElementalDamage => "Dano Elemental";
-
+    public string DescriptionFireDamage => "Dano de Fogo";
+    public string DescriptionColdDamage => "Dano de Gelo";
+    public string DescriptionLightningDamage => "Dano de Raio";
+    public string DescriptionChaosDamage => "Dano de Caos";
     public string DescriptionEnergyShield => "Escudo de Energia";
-
     public string DescriptionArmour => "Armadura";
-
     public string DescriptionEvasion => "Evasão";
-
     public string DescriptionChanceToBlock => "Chance de Bloquear";
-
     public string DescriptionAttacksPerSecond => "Ataques por Segundo";
-
     public string DescriptionCriticalStrikeChance => "Chance de Crítico";
-
     public string DescriptionMapTier => "Tier do Mapa";
-
     public string DescriptionItemQuantity => "Quantidade de Itens";
-
     public string DescriptionItemRarity => "Raridade de Itens";
-
     public string DescriptionMonsterPackSize => "Tamanho do Grupo de Monstros";
-
     public string DescriptionRequirements => "Requisitos";
-
     public string DescriptionAreaLevel => "Nível da Área";
 
     public string AffixSuperior => "Superior";
-
     public string AffixBlighted => "Infestado";
-
     public string AffixBlightRavaged => "Devastado";
-
     public string AffixAnomalous => "Anômalo";
-
     public string AffixDivergent => "Divergente";
-
     public string AffixPhantasmal => "Fantasmal";
 
     public string InfluenceShaper => "Item do Criador";
-
     public string InfluenceElder => "Item do Ancião";
-
     public string InfluenceCrusader => "Item do Cruzado";
-
     public string InfluenceHunter => "Item do Caçador";
-
     public string InfluenceRedeemer => "Item do Redentor";
-
     public string InfluenceWarlord => "Item do Senhor da Guerra";
 
     public ClassLanguage Classes { get; } = new()
@@ -150,18 +111,10 @@ public class GameLanguagePt : IGameLanguage
         Trinkets = "Adornos",
         Logbooks = "Diários de Bordo Expedition",
         MemoryLine = "Memórias",
+        SanctumRelics = "Relíquias",
+        Tinctures = "Tintura",
+        Corpses = "Patuá",
         SanctumResearch = "Pesquisa Sanctum",
-        SanctumRelics = "__",
-        Tinctures = "__",
-        Corpses = "__",
-        Charms = "__",
-        Crossbows = "__",
-        Focus = "__",
-        Quarterstaves = "__",
-        Socketable = "__",
-        Tablets = "__",
-        Waystones = "__",
-        InscribedUltimatum = "__",
-        TrialCoins = "__",
     };
 }
+

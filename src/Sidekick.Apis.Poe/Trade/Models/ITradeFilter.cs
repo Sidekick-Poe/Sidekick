@@ -5,7 +5,7 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// <summary>
         /// Gets or sets a value indicating whether the filter is checked for filtering or not.
         /// </summary>
-        bool? Enabled { get; set; }
+        bool? @Checked { get; set; }
 
         /// <summary>
         /// Gets or sets the minimum value for the filter.

@@ -1,17 +1,17 @@
 namespace Sidekick.Common.Game.Languages.Implementations;
 
-// [GameLanguage("Traditional Chinese", "zh")]
+[GameLanguage("Traditional Chinese", "zh")]
 public class GameLanguageZhTw : IGameLanguage
 {
     public string LanguageCode => "zh";
 
-    public string PoeTradeBaseUrl => new("http://web.poe.garena.tw/trade/");
+    public string PoeTradeBaseUrl => new("http://www.pathofexile.tw/trade/");
 
-    public string PoeTradeApiBaseUrl => new("http://web.poe.garena.tw/api/trade/");
+    public string PoeTradeApiBaseUrl => new("http://www.pathofexile.tw/api/trade/");
 
-    public string Poe2TradeBaseUrl => new("http://web.poe.garena.tw/trade2/");
+    public string Poe2TradeBaseUrl => new("http://www.pathofexile.tw/trade2/");
 
-    public string Poe2TradeApiBaseUrl => new("http://web.poe.garena.tw/api/trade2/");
+    public string Poe2TradeApiBaseUrl => new("http://www.pathofexile.tw/api/trade2/");
 
     public Uri PoeCdnBaseUrl => new("https://web.poecdn.com/");
 
@@ -46,6 +46,14 @@ public class GameLanguageZhTw : IGameLanguage
     public string DescriptionPhysicalDamage => "物理傷害";
 
     public string DescriptionElementalDamage => "元素傷害";
+
+    public string DescriptionFireDamage => "__";
+
+    public string DescriptionColdDamage => "__";
+
+    public string DescriptionLightningDamage => "__";
+
+    public string DescriptionChaosDamage => "__";
 
     public string DescriptionAttacksPerSecond => "每秒攻擊次數";
 
@@ -151,17 +159,8 @@ public class GameLanguageZhTw : IGameLanguage
         Logbooks = "___",
         MemoryLine = "___",
         SanctumResearch = "___",
-        SanctumRelics = "__",
-        Tinctures = "__",
-        Corpses = "__",
-        Charms = "__",
-        Crossbows = "__",
-        Focus = "__",
-        Quarterstaves = "__",
-        Socketable = "__",
-        Tablets = "__",
-        Waystones = "__",
-        InscribedUltimatum = "__",
-        TrialCoins = "__",
+        SanctumRelics = "___",
+        Tinctures = "___",
+        Corpses = "___",
     };
 }
