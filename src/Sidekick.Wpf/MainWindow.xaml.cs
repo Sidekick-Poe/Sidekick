@@ -14,7 +14,7 @@ namespace Sidekick.Wpf;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : IDisposable
+public partial class MainWindow
 {
     private readonly WpfViewLocator viewLocator;
     private bool isClosing;
@@ -48,18 +48,9 @@ public partial class MainWindow : IDisposable
         Activate();
     }
 
-    protected override void OnClosed(EventArgs e)
-    {
-        Resources.Remove("services");
-        Scope.Dispose();
-        viewLocator.Windows.Remove(this);
-        base.OnClosed(e);
-    }
-
-    protected override async void OnClosing(CancelEventArgs e)
+    protected override void OnClosing(CancelEventArgs e)
     {
         base.OnClosing(e);
-        OverlayContainer.Dispose();
 
         if (isClosing || !IsVisible || ResizeMode != ResizeMode.CanResize && ResizeMode != ResizeMode.CanResizeWithGrip || WindowState == WindowState.Maximized)
         {
@@ -68,17 +59,38 @@ public partial class MainWindow : IDisposable
 
         try
         {
-            await viewLocator.CacheProvider.Set($"view_preference_{SidekickView?.CurrentView.Key}",
-                                                new ViewPreferences()
-                                                {
-                                                    Width = (int)ActualWidth,
-                                                    Height = (int)ActualHeight,
-                                                });
+            var width = (int)ActualWidth;
+            var height = (int)ActualHeight;
+            _ = viewLocator.CacheProvider.Set($"view_preference_{SidekickView?.CurrentView.Key}",
+                                              new ViewPreferences()
+                                              {
+                                                  Width = width,
+                                                  Height = height,
+                                              });
         }
         catch (Exception)
         {
             // If the save fails, we don't want to stop the execution.
         }
+
+        Resources.Remove("services");
+        OverlayContainer?.Dispose();
+        WebView.Visibility = Visibility.Hidden;
+        viewLocator.Windows.Remove(this);
+        Scope.Dispose();
+
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                await WebView.WebView.EnsureCoreWebView2Async();
+                await WebView.DisposeAsync();
+            }
+            catch (Exception)
+            {
+                // If the dispose fails, we don't want to stop the execution.
+            }
+        });
 
         isClosing = true;
     }
@@ -255,19 +267,4 @@ public partial class MainWindow : IDisposable
     #endregion Code to make maximizing the window take the taskbar into account. https: //stackoverflow.com/questions/20941443/properly-maximizing-wpf-window-with-windowstyle-none
 
     // ReSharper enable All
-
-    public void Dispose()
-    {
-        OverlayContainer?.Dispose();
-        if (WebView is IDisposable webViewDisposable)
-        {
-            webViewDisposable.Dispose();
-        }
-        else if (WebView != null)
-        {
-            _ = WebView.DisposeAsync().AsTask();
-        }
-
-        Scope.Dispose();
-    }
 }
