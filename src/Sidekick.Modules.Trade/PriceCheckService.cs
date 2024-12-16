@@ -4,7 +4,6 @@ using Sidekick.Apis.Poe.Bulk.Models;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Common.Extensions;
-using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
 

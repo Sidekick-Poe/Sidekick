@@ -5,7 +5,7 @@
 <div class="text-center text-[#7f7f7f]">
     @if (Item.Properties.ItemLevel > 0)
     {
-        <ItemPropertyText Label="@GameLanguageProvider.Language?.DescriptionItemLevel" Value="@Item.Properties.ItemLevel.ToString()"/>
+        <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionItemLevel" Value="@Item.Properties.ItemLevel.ToString()"/>
     }
     @if (Item.Properties.BaseDefencePercentile.HasValue)
     {

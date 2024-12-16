@@ -1,7 +1,6 @@
-namespace Sidekick.Apis.Poe.Trade.Requests.Filters
+namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
+
+internal class RequirementFilterGroup
 {
-    internal class RequirementFilterGroup
-    {
-        public RequirementFilters Filters { get; set; } = new();
-    }
+    public RequirementFilters Filters { get; set; } = new();
 }

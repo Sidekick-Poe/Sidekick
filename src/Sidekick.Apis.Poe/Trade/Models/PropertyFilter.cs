@@ -1,119 +1,132 @@
-namespace Sidekick.Apis.Poe.Trade.Models
+using Sidekick.Common.Exceptions;
+
+namespace Sidekick.Apis.Poe.Trade.Models;
+
+public class PropertyFilter : ITradeFilter
 {
-    public class PropertyFilter : ITradeFilter
+    public PropertyFilter(
+        bool? @checked,
+        PropertyFilterType type,
+        string text,
+        object value,
+        decimal? min = null,
+        decimal? max = null,
+        decimal delta = 1)
     {
-        public PropertyFilter(
-            bool? enabled,
-            PropertyFilterType type,
-            string text,
-            object value,
-            decimal? min = null,
-            double delta = 1)
+        Checked = @checked;
+        Type = type;
+        Text = text;
+        Value = value;
+        Delta = delta;
+        MinimumValueForNormalization = min;
+        Max = max;
+        NormalizeMinValue();
+
+        if (min.HasValue)
         {
-            Enabled = enabled;
-            Type = type;
-            Text = text;
-            Value = value;
-            Delta = delta;
-            MinimumValueForNormalization = min;
-            NormalizeMinValue();
-
-            switch (value)
-            {
-                case bool:
-                    ValueType = FilterValueType.Boolean;
-                    break;
-
-                case int:
-                    ValueType = FilterValueType.Int;
-                    break;
-
-                case double:
-                    ValueType = FilterValueType.Double;
-                    break;
-            }
-
-            if (min.HasValue)
-            {
-                Min = min;
-            }
+            Min = min;
         }
 
-        public PropertyFilterType Type { get; init; }
-
-        public bool? Enabled { get; set; }
-
-        public decimal? Min { get; set; }
-
-        public decimal? Max { get; set; }
-
-        public string Text { get; init; }
-
-        public object Value { get; }
-
-        public double Delta { get; }
-
-        private decimal? MinimumValueForNormalization { get; }
-
-        public FilterValueType ValueType { get; set; }
-
-        /// <summary>
-        /// Normalizes the Min value between a -1 delta or 90%.
-        /// </summary>
-        public void NormalizeMinValue()
+        if (max.HasValue)
         {
-            if (!double.TryParse(Value.ToString(), out var value) || value == 0)
-            {
-                return;
-            }
+            Max = max;
+        }
+    }
 
-            if (value > 0)
-            {
-                Min = (int)Math.Max(Math.Min(value - Delta, value * 0.9), 0);
-            }
-            else
-            {
-                Min = (int)Math.Min(Math.Min(value - Delta, value * 1.1), 0);
-            }
+    public PropertyFilterType Type { get; }
 
-            if (MinimumValueForNormalization.HasValue && Min < MinimumValueForNormalization)
+    public bool? Checked { get; set; }
+
+    public decimal? Min { get; set; }
+
+    public decimal? Max { get; set; }
+
+    public string Text { get; }
+
+    public object Value { get; }
+
+    public decimal Delta { get; }
+
+    private decimal? MinimumValueForNormalization { get; }
+
+    public FilterValueType ValueType
+    {
+        get
+        {
+            switch (Value)
             {
-                Min = MinimumValueForNormalization;
+                case bool: return FilterValueType.Boolean;
+                case int: return FilterValueType.Int;
+                case double: return FilterValueType.Double;
+                default : throw new SidekickException("[PropertyFilter] Unknown value type: " + Value.GetType().Name);
             }
         }
+    }
 
-        /// <summary>
-        /// Normalizes the Max value between a +1 delta or 90%.
-        /// </summary>
-        public void NormalizeMaxValue()
+    public bool ShowCheckbox
+    {
+        get
         {
-            if (!double.TryParse(Value.ToString(), out var value) || value == 0)
-            {
-                return;
-            }
+            return Type != PropertyFilterType.Weapon_ChaosDps;
+        }
+    }
 
-            if (value > 0)
-            {
-                Max = (int)Math.Max(Math.Max(value + Delta, value * 1.1), 0);
-            }
-            else
-            {
-                Max = (int)Math.Min(Math.Max(value + Delta, value * 0.9), 0);
-            }
+    /// <summary>
+    /// Normalizes the Min value between a -1 delta or 90%.
+    /// </summary>
+    public void NormalizeMinValue()
+    {
+        if (!decimal.TryParse(Value.ToString(), out var value) || value == 0)
+        {
+            return;
         }
 
-        /// <summary>
-        /// Sets the filter to be the exact value.
-        /// </summary>
-        public void SetExactValue()
+        if (value > 0)
         {
-            if (!decimal.TryParse(Value.ToString(), out var value))
-            {
-                return;
-            }
-
-            Min = value;
-            Max = value;
+            Min = Math.Max(Math.Min(value - Delta, value * (decimal)0.9), 0);
         }
+        else
+        {
+            Min = Math.Min(Math.Min(value - Delta, value * (decimal)1.1), 0);
+        }
+
+        if (MinimumValueForNormalization.HasValue && Min < MinimumValueForNormalization)
+        {
+            Min = MinimumValueForNormalization;
+        }
+    }
+
+    /// <summary>
+    /// Normalizes the Max value between a +1 delta or 90%.
+    /// </summary>
+    public void NormalizeMaxValue()
+    {
+        if (!decimal.TryParse(Value.ToString(), out var value) || value == 0)
+        {
+            return;
+        }
+
+        if (value > 0)
+        {
+            Max = Math.Max(Math.Max(value + Delta, value * (decimal)1.1), 0);
+        }
+        else
+        {
+            Max = Math.Min(Math.Max(value + Delta, value * (decimal)0.9), 0);
+        }
+    }
+
+    /// <summary>
+    /// Sets the filter to be the exact value.
+    /// </summary>
+    public void SetExactValue()
+    {
+        if (!decimal.TryParse(Value.ToString(), out var value))
+        {
+            return;
+        }
+
+        Min = value;
+        Max = value;
     }
 }

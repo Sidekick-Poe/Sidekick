@@ -8,7 +8,7 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
         public TypeFilterGroup TypeFilters { get; set; } = new();
 
         [JsonPropertyName("trade_filters")]
-        public TradeFilterGroup TradeFilters { get; set; } = new();
+        public TradeFilterGroup? TradeFilters { get; set; }
 
         [JsonPropertyName("misc_filters")]
         public MiscFilterGroup? MiscFilters { get; set; }

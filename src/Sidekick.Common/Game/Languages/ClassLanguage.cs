@@ -111,22 +111,4 @@ public class ClassLanguage
     public required string Tinctures { get; init; }
 
     public required string Corpses { get; init; }
-
-    public required string Crossbows { get; init; }
-
-    public required string Quarterstaves { get; init; }
-
-    public required string Focus { get; init; }
-
-    public required string Charms { get; init; }
-
-    public required string Waystones { get; init; }
-
-    public required string Tablets { get; init; }
-
-    public required string Socketable { get; init; }
-
-    public required string InscribedUltimatum { get; init; }
-
-    public required string TrialCoins { get; init; }
 }

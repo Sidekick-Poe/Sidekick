@@ -7,13 +7,13 @@ namespace Sidekick.Apis.Poe.Trade.Models
         public PseudoModifierFilter(PseudoModifier modifier)
         {
             Modifier = modifier;
-            Enabled = false;
+            Checked = false;
             NormalizeMinValue();
         }
 
-        public PseudoModifier Modifier { get; init; }
+        public PseudoModifier Modifier { get; }
 
-        public bool? Enabled { get; set; }
+        public bool? @Checked { get; set; }
 
         public decimal? Min { get; set; }
 

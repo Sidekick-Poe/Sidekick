@@ -47,6 +47,14 @@ public class GameLanguageZhTw : IGameLanguage
 
     public string DescriptionElementalDamage => "元素傷害";
 
+    public string DescriptionFireDamage => "__";
+
+    public string DescriptionColdDamage => "__";
+
+    public string DescriptionLightningDamage => "__";
+
+    public string DescriptionChaosDamage => "__";
+
     public string DescriptionAttacksPerSecond => "每秒攻擊次數";
 
     public string DescriptionCriticalStrikeChance => "暴擊率";
@@ -151,17 +159,8 @@ public class GameLanguageZhTw : IGameLanguage
         Logbooks = "___",
         MemoryLine = "___",
         SanctumResearch = "___",
-        SanctumRelics = "__",
-        Tinctures = "__",
-        Corpses = "__",
-        Charms = "__",
-        Crossbows = "__",
-        Focus = "__",
-        Quarterstaves = "__",
-        Socketable = "__",
-        Tablets = "__",
-        Waystones = "__",
-        InscribedUltimatum = "__",
-        TrialCoins = "__",
+        SanctumRelics = "___",
+        Tinctures = "___",
+        Corpses = "___",
     };
 }

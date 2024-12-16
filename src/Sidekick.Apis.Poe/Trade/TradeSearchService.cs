@@ -37,22 +37,27 @@ public class TradeSearchService
         {
             logger.LogInformation("[Trade API] Querying Trade API.");
 
-            var hasTypeDiscriminator = !string.IsNullOrEmpty(item.Metadata.ApiTypeDiscriminator);
             var query = new Query();
-            if (hasTypeDiscriminator)
+            if (propertyFilters?.BaseTypeFilterApplied ?? true)
             {
-                query.Type = new TypeDiscriminator()
+                var hasTypeDiscriminator = !string.IsNullOrEmpty(item.Metadata.ApiTypeDiscriminator);
+                if (hasTypeDiscriminator)
                 {
-                    Option = item.Metadata.ApiType,
-                    Discriminator = item.Metadata.ApiTypeDiscriminator,
-                };
+                    query.Type = new TypeDiscriminator()
+                    {
+                        Option = item.Metadata.ApiType,
+                        Discriminator = item.Metadata.ApiTypeDiscriminator,
+                    };
+                }
+                else if (!string.IsNullOrEmpty(item.Header.ItemCategory))
+                {
+                    query.Type = item.Metadata.ApiType;
+                }
             }
-            else if (string.IsNullOrEmpty(propertyFilters?.ItemCategory))
+            else if (propertyFilters.ClassFilterApplied)
             {
-                query.Type = item.Metadata.ApiType;
+                query.Filters.TypeFilters.Filters.Category = GetCategoryFilter(item.Header.ItemCategory);
             }
-
-            query.Filters.TradeFilters.Filters.Price.Option = currency.GetValueAttribute();
 
             if (item.Metadata.Category == Category.ItemisedMonster)
             {
@@ -67,9 +72,34 @@ public class TradeSearchService
                 query.Name = item.Metadata.Name;
                 query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("Unique");
             }
+            else if (propertyFilters?.RarityFilterApplied ?? false)
+            {
+                var rarity = item.Metadata.Rarity switch
+                {
+                    Rarity.Normal => "normal",
+                    Rarity.Magic => "magic",
+                    Rarity.Rare => "rare",
+                    Rarity.Unique => "unique",
+                    _ => "nonunique",
+                };
+
+                query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption(rarity);
+            }
             else
             {
                 query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("nonunique");
+            }
+
+            var currencyValue = currency.GetValueAttribute();
+            if (!string.IsNullOrEmpty(currencyValue))
+            {
+                query.Filters.TradeFilters = new TradeFilterGroup
+                {
+                    Filters =
+                    {
+                        Price = new SearchFilterValue(currencyValue),
+                    },
+                };
             }
 
             SetModifierFilters(query.Stats, modifierFilters);
@@ -78,8 +108,7 @@ public class TradeSearchService
 
             if (propertyFilters != null)
             {
-                query.Filters.TypeFilters.Filters.Category = GetCategoryFilter(propertyFilters.ItemCategory);
-                query.Filters.EquipmentFilters = GetEquipmentFilters(item, propertyFilters.Weapon);
+                query.Filters.EquipmentFilters = GetEquipmentFilters(item, propertyFilters.Weapon.Concat(propertyFilters.Armour).ToList());
                 query.Filters.WeaponFilters = GetWeaponFilters(item, propertyFilters.Weapon);
                 query.Filters.ArmourFilters = GetArmourFilters(item, propertyFilters.Armour);
                 query.Filters.MapFilters = GetMapFilters(propertyFilters.Map);
@@ -146,13 +175,18 @@ public class TradeSearchService
 
         foreach (var propertyFilter in propertyFilters)
         {
-            if (!propertyFilter.Enabled == true)
+            if (propertyFilter.Checked != true)
             {
                 continue;
             }
 
             switch (propertyFilter.Type)
             {
+                case PropertyFilterType.Weapon_Damage:
+                    filters.Filters.Damage = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
                 case PropertyFilterType.Weapon_PhysicalDps:
                     filters.Filters.PhysicalDps = new SearchFilterValue(propertyFilter);
                     hasValue = true;
@@ -195,7 +229,7 @@ public class TradeSearchService
 
         foreach (var propertyFilter in propertyFilters)
         {
-            if (!propertyFilter.Enabled == true)
+            if (propertyFilter.Checked != true)
             {
                 continue;
             }
@@ -239,13 +273,18 @@ public class TradeSearchService
 
         foreach (var propertyFilter in propertyFilters)
         {
-            if (!propertyFilter.Enabled == true)
+            if (propertyFilter.Checked != true)
             {
                 continue;
             }
 
             switch (propertyFilter.Type)
             {
+                case PropertyFilterType.Weapon_Damage:
+                    filters.Filters.Damage = new SearchFilterValue(propertyFilter);
+                    hasValue = true;
+                    break;
+
                 case PropertyFilterType.Weapon_PhysicalDps:
                     filters.Filters.PhysicalDps = new SearchFilterValue(propertyFilter);
                     hasValue = true;
@@ -303,7 +342,7 @@ public class TradeSearchService
 
         foreach (var propertyFilter in propertyFilters)
         {
-            if (!propertyFilter.Enabled == true)
+            if (propertyFilter.Checked != true)
             {
                 continue;
             }
@@ -375,7 +414,7 @@ public class TradeSearchService
 
         foreach (var propertyFilter in propertyFilters)
         {
-            if (!propertyFilter.Enabled == true)
+            if (propertyFilter.Checked != true)
             {
                 continue;
             }
@@ -430,7 +469,7 @@ public class TradeSearchService
                     break;
 
                 case PropertyFilterType.Misc_Corrupted:
-                    filters.Filters.Corrupted = propertyFilter.Enabled.HasValue ? new SearchFilterOption(propertyFilter) : null;
+                    filters.Filters.Corrupted = propertyFilter.Checked.HasValue ? new SearchFilterOption(propertyFilter) : null;
                     hasValue = true;
                     break;
 
@@ -477,7 +516,7 @@ public class TradeSearchService
 
         foreach (var filter in modifierFilters)
         {
-            if (filter.Enabled == false)
+            if (filter.Checked != true)
             {
                 continue;
             }
@@ -543,7 +582,7 @@ public class TradeSearchService
 
         foreach (var filter in pseudoFilters)
         {
-            if (filter.Enabled != true)
+            if (filter.Checked != true)
             {
                 continue;
             }
@@ -643,7 +682,7 @@ public class TradeSearchService
             Armor = result.Item?.Extended?.ArmourAtMax ?? 0,
             EnergyShield = result.Item?.Extended?.EnergyShieldAtMax ?? 0,
             Evasion = result.Item?.Extended?.EvasionAtMax ?? 0,
-            DamagePerSecond = result.Item?.Extended?.DamagePerSecond ?? 0,
+            TotalDps = result.Item?.Extended?.DamagePerSecond ?? 0,
             ElementalDps = result.Item?.Extended?.ElementalDps ?? 0,
             PhysicalDps = result.Item?.Extended?.PhysicalDps ?? 0,
             BaseDefencePercentile = result.Item?.Extended?.BaseDefencePercentile,
@@ -758,6 +797,7 @@ public class TradeSearchService
 
                 if (values.Count <= 0)
                 {
+                    if (text != null) text = ModifierProvider.RemoveSquareBrackets(text);
                     return new LineContent()
                     {
                         Text = text,
