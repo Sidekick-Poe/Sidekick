@@ -1,0 +1,19 @@
+@using Sidekick.Common.Blazor.Settings.General
+@inherits Sidekick.Common.Ui.Views.SidekickView
+
+<Heading2 Class="mb-3">@Resources["Keybindings"]</Heading2>
+<KeyOpenMapCheckEditor/>
+<KeyCloseEditor/>
+
+<LayoutDivider/>
+
+<Heading2 Class="mb-3">@Resources["Dangerous Modifiers"]</Heading2>
+<MapCheckDangerousRegexEditor/>
+
+<LayoutDivider/>
+
+<Heading2 Class="mb-3">@Resources["Other Settings"]</Heading2>
+<MapCheckCloseWithMouseEditor/>
+<EscapeClosesOverlaysEditor/>
+
+@inject IStringLocalizer<SettingsContent> Resources
