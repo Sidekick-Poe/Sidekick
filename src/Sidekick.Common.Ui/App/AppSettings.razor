@@ -2,11 +2,11 @@
 
 <div class="relative">
     <button type="button"
-            @onclick="OnClick"
+            @onclick="ToggleDrawer"
             @onclick:preventDefault="true"
             @onclick:stopPropagation="true"
             tabindex="-1"
-            title="Maximize"
+            title="Open Settings"
             class="p-2 text-base font-medium border-l tracking-wide text-white transition-colors duration-200 border-stone-700 bg-stone-950 hover:bg-stone-700 hover:border-stone-600">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 fill-current">
             <path
@@ -21,13 +21,24 @@
                 class="dark:bg-stone-950 shadow-lg text-white fixed top-0 right-0 bottom-0 w-[450px] z-30 flex flex-col">
                 <div class="w-full flex justify-end">
                     <button type="button"
-                            @onclick="OnClick"
+                            @onclick="OpenSettings"
                             @onclick:preventDefault="true"
                             @onclick:stopPropagation="true"
                             tabindex="-1"
-                            title="Maximize"
+                            title="All Settings"
+                            class="p-2 text-base font-medium tracking-wide text-white border-r transition-colors duration-200 border-stone-700 bg-stone-950 hover:bg-stone-700 hover:border-stone-600 flex items-center gap-2">
+                        <span>@Localizer["All Settings"]</span>
+                    </button>
+                    <button type="button"
+                            @onclick="ToggleDrawer"
+                            @onclick:preventDefault="true"
+                            @onclick:stopPropagation="true"
+                            tabindex="-1"
+                            title="Close"
                             class="p-2 text-base font-medium tracking-wide text-white transition-colors duration-200 border-stone-700 bg-stone-950 hover:bg-stone-700 hover:border-stone-600 flex items-center gap-2">
-                        <IconMedium Icon="@UiIcons.Close" />
+                        <span class="fill-current inline-block w-[1em] h-[1em] min-w-[1em] min-h-[1em]"><svg
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path
+                                    d="M4,2H2V22H4V13H18.17L12.67,18.5L14.08,19.92L22,12L14.08,4.08L12.67,5.5L18.17,11H4V2Z"/></svg></span>
                         <span>@Localizer["Close"]</span>
                     </button>
                 </div>
@@ -47,17 +58,32 @@
 
 @inject ICurrentView CurrentView
 @inject IStringLocalizer<AppSettings> Localizer
+@inject IViewLocator ViewLocator
 
 @code {
+
+    [Parameter]
+    public required string Href { get; set; }
 
     [Parameter]
     public required RenderFragment ChildContent { get; set; }
 
     private bool Visible { get; set; }
 
-    private void OnClick()
+    private void ToggleDrawer()
     {
         Visible = !Visible;
+    }
+
+    private async Task OpenSettings()
+    {
+        if (string.IsNullOrEmpty(Href) || CurrentView.Current == null)
+        {
+            return;
+        }
+
+        await ViewLocator.Open(Href);
+        await ViewLocator.Close(CurrentView.Current);
     }
 
 }
