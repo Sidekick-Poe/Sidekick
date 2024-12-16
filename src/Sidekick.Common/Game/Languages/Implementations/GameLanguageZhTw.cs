@@ -47,13 +47,13 @@ public class GameLanguageZhTw : IGameLanguage
 
     public string DescriptionElementalDamage => "元素傷害";
 
-    public string DescriptionFireDamage => "__";
+    public string DescriptionFireDamage => "火焰傷害";
 
-    public string DescriptionColdDamage => "__";
+    public string DescriptionColdDamage => "冰冷傷害";
 
-    public string DescriptionLightningDamage => "__";
+    public string DescriptionLightningDamage => "閃電傷害";
 
-    public string DescriptionChaosDamage => "__";
+    public string DescriptionChaosDamage => "混沌傷害";
 
     public string DescriptionAttacksPerSecond => "每秒攻擊次數";
 
@@ -77,15 +77,15 @@ public class GameLanguageZhTw : IGameLanguage
 
     public string DescriptionMonsterPackSize => "怪物群大小";
 
-    public string DescriptionRequirements => "__TranslationRequired__:";
+    public string DescriptionRequirements => "需求";
 
-    public string DescriptionAreaLevel => "__TranslationRequired__:";
+    public string DescriptionAreaLevel => "區域等級";
 
     public string AffixSuperior => "精良的";
 
     public string AffixBlighted => "凋落的";
 
-    public string AffixBlightRavaged => "__TranslationRequired__";
+    public string AffixBlightRavaged => "凋落蔓延";
 
     public string AffixAnomalous => "異常的";
 
@@ -107,60 +107,60 @@ public class GameLanguageZhTw : IGameLanguage
 
     public ClassLanguage Classes => new()
     {
-        Prefix = "___",
-        DivinationCard = "___",
-        StackableCurrency = "___",
-        Jewel = "___",
-        DelveStackableSocketableCurrency = "___",
-        MetamorphSample = "___",
-        HeistTool = "___",
-        Amulet = "___",
-        Ring = "___",
-        Belt = "___",
-        Gloves = "___",
-        Boots = "___",
-        BodyArmours = "___",
-        Helmets = "___",
-        Shields = "___",
-        Quivers = "___",
-        LifeFlasks = "___",
-        ManaFlasks = "___",
-        HybridFlasks = "___",
-        UtilityFlasks = "___",
-        ActiveSkillGems = "___",
-        SupportSkillGems = "___",
-        Maps = "___",
-        MapFragments = "___",
-        Contract = "___",
-        Blueprint = "___",
-        MiscMapItems = "___",
-        Claws = "___",
-        Daggers = "___",
-        Wands = "___",
-        OneHandSwords = "___",
-        ThrustingOneHandSwords = "___",
-        OneHandAxes = "___",
-        OneHandMaces = "___",
-        Bows = "___",
-        Staves = "___",
-        TwoHandSwords = "___",
-        TwoHandAxes = "___",
-        TwoHandMaces = "___",
-        Sceptres = "___",
-        RuneDaggers = "___",
-        Warstaves = "___",
-        FishingRods = "___",
-        HeistGear = "___",
-        HeistBrooch = "___",
-        HeistTarget = "___",
-        HeistCloak = "___",
-        AbyssJewel = "___",
-        Trinkets = "___",
-        Logbooks = "___",
-        MemoryLine = "___",
-        SanctumResearch = "___",
-        SanctumRelics = "___",
-        Tinctures = "___",
-        Corpses = "___",
+        Prefix = "物品種類",
+        DivinationCard = "命運卡",
+        StackableCurrency = "可堆疊通貨",
+        Jewel = "珠寶",
+        DelveStackableSocketableCurrency = "掘獄可堆疊有插槽通貨",
+        MetamorphSample = "鍊魔樣本",
+        HeistTool = "劫盜工具",
+        Amulet = "項鍊",
+        Ring = "戒指",
+        Belt = "腰帶",
+        Gloves = "手套",
+        Boots = "鞋子",
+        BodyArmours = "胸甲",
+        Helmets = "頭部",
+        Shields = "盾",
+        Quivers = "箭袋",
+        LifeFlasks = "生命藥劑",
+        ManaFlasks = "魔力藥劑",
+        HybridFlasks = "複合藥劑",
+        UtilityFlasks = "功能藥劑",
+        ActiveSkillGems = "技能寶石",
+        SupportSkillGems = "輔助寶石",
+        Maps = "地圖",
+        MapFragments = "地圖碎片",
+        Contract = "契約書",
+        Blueprint = "藍圖",
+        MiscMapItems = "其它",
+        Claws = "爪",
+        Daggers = "匕首",
+        Wands = "法杖",
+        OneHandSwords = "單手劍",
+        ThrustingOneHandSwords = "細劍",
+        OneHandAxes = "單手斧",
+        OneHandMaces = "單手錘",
+        Bows = "弓",
+        Staves = "長杖",
+        TwoHandSwords = "雙手劍",
+        TwoHandAxes = "雙手斧",
+        TwoHandMaces = "雙手錘",
+        Sceptres = "權杖",
+        RuneDaggers = "符紋匕首",
+        Warstaves = "征戰長杖",
+        FishingRods = "魚竿",
+        HeistGear = "劫盜裝備",
+        HeistBrooch = "劫盜胸針",
+        HeistTarget = "劫盜目標",
+        HeistCloak = "劫盜披風",
+        AbyssJewel = "深淵珠寶",
+        Trinkets = "飾品",
+        Logbooks = "探險日誌",
+        MemoryLine = "記憶",
+        SanctumResearch = "聖域研究",
+        SanctumRelics = "聖物",
+        Tinctures = "萃取物",
+        Corpses = "屍體",
     };
 }
