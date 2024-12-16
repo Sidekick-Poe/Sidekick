@@ -19,8 +19,4 @@
     <PackageReference Include="SQLite" Version="3.13.0"/>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj"/>
-  </ItemGroup>
-
 </Project>

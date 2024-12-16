@@ -1,0 +1,27 @@
+@using Sidekick.Common.Settings
+
+<FormCheckbox Value="@Retain"
+              ValueChanged="@RetainChanged">
+    @Resources.General_RetainClipboard
+</FormCheckbox>
+
+@inject SettingsResources Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private bool Retain { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Retain = await SettingsService.GetBool(SettingKeys.RetainClipboard);
+        await base.OnInitializedAsync();
+    }
+
+    private async Task RetainChanged(bool value)
+    {
+        Retain = value;
+        await SettingsService.Set(SettingKeys.RetainClipboard, value);
+    }
+
+}

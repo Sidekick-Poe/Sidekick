@@ -1,0 +1,12 @@
+@page "/settings/map"
+@layout SettingsLayout
+@using Sidekick.Common.Blazor.Settings
+@inherits Sidekick.Common.Ui.Views.SidekickView
+
+<AppTitle Title="@Resources["Settings"]"/>
+<AppContainer>
+    <SettingsContent />
+</AppContainer>
+
+@inject IStringLocalizer<SettingsResources> Resources
+

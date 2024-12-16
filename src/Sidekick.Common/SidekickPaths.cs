@@ -14,4 +14,6 @@ public static class SidekickPaths
 
         return !string.IsNullOrEmpty(path) ? Path.Combine(sidekickFolder, path) : sidekickFolder;
     }
+
+    public static string DatabasePath => GetDataFilePath("sidekick.db");
 }

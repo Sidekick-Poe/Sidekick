@@ -1,0 +1,28 @@
+@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Settings
+
+<FormCheckbox Value="@MapCheckCloseWithMouse"
+              ValueChanged="@MapCheckCloseWithMouseChanged">
+    @Resources.Map_CloseWithMouse
+</FormCheckbox>
+
+@inject SettingsResources Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private bool MapCheckCloseWithMouse { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        MapCheckCloseWithMouse = await SettingsService.GetBool(SettingKeys.MapCheckCloseWithMouse);
+        await base.OnInitializedAsync();
+    }
+
+    private async Task MapCheckCloseWithMouseChanged(bool value)
+    {
+        MapCheckCloseWithMouse = value;
+        await SettingsService.Set(SettingKeys.MapCheckCloseWithMouse, value);
+    }
+
+}

@@ -1,0 +1,107 @@
+@using Sidekick.Common.Settings
+@using Sidekick.Common.Blazor.Settings.Components
+
+@foreach (var chatSetting in ChatSettings)
+{
+    <div class="grid grid-cols-12 gap-2">
+        <div class="col-span-6">
+            <FormInput Label="@Resources["Command"]"
+                       Value="@chatSetting.Command"
+                       ValueChanged="(v) => CommandChanged(chatSetting, v)"/>
+        </div>
+        <div class="col-span-6">
+            <KeybindEditor Value="@chatSetting.Key"
+                           ValueChanged="(v) => KeyChanged(chatSetting, v)"
+                           Label="@Resources["Keybind"]"/>
+        </div>
+    </div>
+
+    <div class="flex items-center justify-between">
+        <FormCheckbox Value="chatSetting.Submit"
+                      ValueChanged="() => ToggleSubmit(chatSetting)">
+            @Resources["Submit the command"]
+        </FormCheckbox>
+        <ButtonPrimary OnClick="() => Remove(chatSetting)">
+            @Resources["Delete Command"]
+        </ButtonPrimary>
+    </div>
+
+    <LayoutDivider/>
+}
+
+<div class="flex justify-between mb-3">
+    <ButtonSecondary OnClick="RestoreDefaults">
+        @Resources["Restore Defaults"]
+    </ButtonSecondary>
+    <ButtonPrimary OnClick="Add">
+        @Resources["Add a New Command"]
+    </ButtonPrimary>
+</div>
+
+@inject IStringLocalizer<SettingsResources> Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private List<ChatSetting> ChatSettings { get; set; } =
+    [
+    ];
+
+    protected override async Task OnInitializedAsync()
+    {
+        ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands)
+                       ??
+                       [
+                       ];
+        await base.OnInitializedAsync();
+    }
+
+    private async Task Remove(ChatSetting chatSetting)
+    {
+        ChatSettings.Remove(chatSetting);
+        await Save();
+    }
+
+    private async Task Add()
+    {
+        ChatSettings.Add(new ChatSetting("", "", true));
+        await Save();
+    }
+
+    private async Task KeyChanged(
+        ChatSetting chatSetting,
+        string? key)
+    {
+        chatSetting.Key = key;
+        await Save();
+    }
+
+    private async Task CommandChanged(
+        ChatSetting chatSetting,
+        string? command)
+    {
+        chatSetting.Command = command;
+        await Save();
+    }
+
+    private async Task ToggleSubmit(ChatSetting chatSetting)
+    {
+        chatSetting.Submit = !chatSetting.Submit;
+        await Save();
+    }
+
+    private async Task RestoreDefaults()
+    {
+        ChatSettings =
+        [
+            ..DefaultSettings.ChatCommands,
+        ];
+        await Save();
+    }
+
+    protected async Task Save()
+    {
+        await SettingsService.Set(SettingKeys.ChatCommands, ChatSettings);
+    }
+
+}

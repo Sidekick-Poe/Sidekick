@@ -1,5 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common.Blazor.Initialization;
+using Sidekick.Common.Blazor.Settings;
+using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Dialogs;
 using Sidekick.Common.Ui.Views;
 
@@ -27,6 +29,8 @@ namespace Sidekick.Common.Blazor
 
             services.AddSidekickModule(typeof(Initialization.Initialization).Assembly);
             services.AddSidekickModule(typeof(ConfirmationDialog).Assembly);
+
+            services.AddTransient<SettingsResources>();
 
             return services;
         }

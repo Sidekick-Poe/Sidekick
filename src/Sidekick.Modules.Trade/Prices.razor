@@ -5,6 +5,7 @@
 @using Sidekick.Modules.Trade.Components.Filters
 @using Sidekick.Modules.Trade.Components.Bulk
 @using Sidekick.Modules.Trade.Components.Items
+@using Sidekick.Modules.Trade.Settings
 
 @inherits Sidekick.Common.Ui.Views.SidekickView
 
@@ -13,7 +14,9 @@
 <LayoutTwoColumn>
     <TopContent>
         <AppBar>
-            <AppSettings Href="/settings/price"/>
+            <AppSettings Href="/settings/price">
+                <SettingsContent/>
+            </AppSettings>
             <AppClose/>
         </AppBar>
     </TopContent>

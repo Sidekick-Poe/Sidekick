@@ -1,0 +1,27 @@
+@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Settings
+
+<FormInput Value="@MapCheckDangerousRegex"
+           ValueChanged="@MapCheckDangerousRegexChanged"
+           Label="@Resources.Map_Dangerous_Regex"/>
+
+@inject SettingsResources Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private string? MapCheckDangerousRegex { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        MapCheckDangerousRegex = await SettingsService.GetString(SettingKeys.MapCheckDangerousRegex);
+        await base.OnInitializedAsync();
+    }
+
+    private async Task MapCheckDangerousRegexChanged(string? value)
+    {
+        MapCheckDangerousRegex = value;
+        await SettingsService.Set(SettingKeys.MapCheckDangerousRegex, value);
+    }
+
+}

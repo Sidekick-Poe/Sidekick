@@ -20,6 +20,11 @@
     <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Popovers\SidekickOverlay.razor" />
+    <UpToDateCheckInput Remove="Popovers\SidekickPopover.razor" />
+  </ItemGroup>
+
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="npm install &amp;&amp; npm run build"/>
   </Target>

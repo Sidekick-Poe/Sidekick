@@ -21,7 +21,6 @@ using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
 using Sidekick.Modules.Wealth;
-using Sidekick.Modules.Settings;
 using Sidekick.Modules.Trade;
 using Sidekick.Wpf.Services;
 
@@ -132,7 +131,7 @@ namespace Sidekick.Wpf
                 // Common
                 .AddSidekickCommon()
                 .AddSidekickCommonBlazor()
-                .AddSidekickCommonDatabase()
+                .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
                 .AddSidekickCommonPlatform(o =>
                 {
                     o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
@@ -151,7 +150,6 @@ namespace Sidekick.Wpf
                 .AddSidekickDevelopment()
                 .AddSidekickGeneral()
                 .AddSidekickMaps()
-                .AddSidekickSettings()
                 .AddSidekickTrade()
                 .AddSidekickWealth();
 

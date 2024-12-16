@@ -11,7 +11,6 @@ using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Mock;
-using Sidekick.Modules.Settings;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Poe2
@@ -37,15 +36,12 @@ namespace Sidekick.Apis.Poe.Tests.Poe2
             ctx.Services
                 // Building blocks
                 .AddSidekickCommon()
-                .AddSidekickCommonDatabase()
+                .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
 
                 // Apis
                 .AddSidekickPoeApi()
                 .AddSidekickPoeNinjaApi()
                 .AddSidekickPoeWikiApi()
-
-                // Modules
-                .AddSidekickSettings()
 
                 // Mocks
                 .AddSidekickMocks();
