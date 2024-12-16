@@ -98,16 +98,20 @@ public class InvariantModifierProvider
 
     private void InitializeWeaponDamageIds(List<ApiCategory> apiCategories)
     {
-        IncursionRoomModifierIds.Clear();
+        FireWeaponDamageIds.Clear();
+        ColdWeaponDamageIds.Clear();
+        LightningWeaponDamageIds.Clear();
         foreach (var apiCategory in apiCategories)
         {
             if (IsCategory(apiCategory, "pseudo")) { continue; }
 
             foreach (var apiModifier in apiCategory.Entries)
             {
-                if (apiModifier.Text == "Adds # to # Fire Damage") FireWeaponDamageIds.Add(apiModifier.Id);
-                if (apiModifier.Text == "Adds # to # Cold Damage") ColdWeaponDamageIds.Add(apiModifier.Id);
-                if (apiModifier.Text == "Adds # to # Lightning Damage") LightningWeaponDamageIds.Add(apiModifier.Id);
+                var text = ModifierProvider.RemoveSquareBrackets(apiModifier.Text);
+
+                if (text == "Adds # to # Fire Damage") FireWeaponDamageIds.Add(apiModifier.Id);
+                if (text == "Adds # to # Cold Damage") ColdWeaponDamageIds.Add(apiModifier.Id);
+                if (text == "Adds # to # Lightning Damage") LightningWeaponDamageIds.Add(apiModifier.Id);
             }
         }
     }

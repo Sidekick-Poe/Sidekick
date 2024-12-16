@@ -145,27 +145,29 @@ namespace Sidekick.Apis.Poe.Parser
                 }
             }
 
-            if (results.Any(x => x.Type == type))
+            var orderedResults = results.OrderByDescending(x=>x.Type?.Length ?? x.Name?.Length ?? 0).ToList();
+
+            if (orderedResults.Any(x => x.Type == type))
             {
-                return results.FirstOrDefault(x => x.Type == type);
+                return orderedResults.FirstOrDefault(x => x.Type == type);
             }
 
-            if (results.Any(x => x.ApiType == type))
+            if (orderedResults.Any(x => x.ApiType == type))
             {
-                return results.FirstOrDefault(x => x.ApiType == type);
+                return orderedResults.FirstOrDefault(x => x.ApiType == type);
             }
 
-            if (results.Any(x => x.Rarity == Rarity.Unique))
+            if (orderedResults.Any(x => x.Rarity == Rarity.Unique))
             {
-                return results.FirstOrDefault(x => x.Rarity == Rarity.Unique);
+                return orderedResults.FirstOrDefault(x => x.Rarity == Rarity.Unique);
             }
 
-            if (results.Any(x => x.Rarity == Rarity.Unknown))
+            if (orderedResults.Any(x => x.Rarity == Rarity.Unknown))
             {
-                return results.FirstOrDefault(x => x.Rarity == Rarity.Unknown);
+                return orderedResults.FirstOrDefault(x => x.Rarity == Rarity.Unknown);
             }
 
-            return results.FirstOrDefault();
+            return orderedResults.FirstOrDefault();
         }
 
         private Rarity GetRarity(ParsingBlock parsingBlock)

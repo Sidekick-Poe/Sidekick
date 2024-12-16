@@ -183,7 +183,7 @@ public class PropertyParser
         var matchIndex = 0;
         foreach (Match match in matches)
         {
-            if (match.Groups.Count < 3)
+            if (match.Groups.Count < 3 || itemMods.Count <= matchIndex)
             {
                 continue;
             }
@@ -192,24 +192,28 @@ public class PropertyParser
             double.TryParse(match.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
             var range = new DamageRange(min, max);
 
-            var isFire = itemMods[matchIndex].Modifiers.Any(x => invariantModifierProvider.FireWeaponDamageIds.Contains(x.Id ?? string.Empty));
+            var ids = itemMods[matchIndex].Modifiers.Where(x => x.Id != null).Select(x => x.Id!).ToList();
+            var isFire = invariantModifierProvider.FireWeaponDamageIds.Any(x => ids.Contains(x));
             if (isFire)
             {
                 properties.FireDamage = range;
+                matchIndex++;
                 continue;
             }
 
-            var isCold = itemMods[matchIndex].Modifiers.Any(x => invariantModifierProvider.FireWeaponDamageIds.Contains(x.Id ?? string.Empty));
+            var isCold = invariantModifierProvider.ColdWeaponDamageIds.Any(x => ids.Contains(x));
             if (isCold)
             {
                 properties.ColdDamage = range;
+                matchIndex++;
                 continue;
             }
 
-            var isLightning = itemMods[matchIndex].Modifiers.Any(x => invariantModifierProvider.FireWeaponDamageIds.Contains(x.Id ?? string.Empty));
+            var isLightning = invariantModifierProvider.LightningWeaponDamageIds.Any(x => ids.Contains(x));
             if (isLightning)
             {
                 properties.LightningDamage = range;
+                matchIndex++;
                 continue;
             }
 

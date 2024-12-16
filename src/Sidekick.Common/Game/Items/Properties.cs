@@ -90,6 +90,22 @@ public class Properties
         init => elementalDpsOverride = value;
     }
 
+    private readonly double? chaosDpsOverride;
+
+    public double? ChaosDps
+    {
+        get
+        {
+            if (chaosDpsOverride != null) return chaosDpsOverride;
+
+            var total = 0d;
+            if (ChaosDamage != null) total += ChaosDamage.GetDps(AttacksPerSecond);
+
+            return total;
+        }
+        init => chaosDpsOverride = value;
+    }
+
     private readonly double? totalDpsOverride;
 
     public double? TotalDps

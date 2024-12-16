@@ -123,7 +123,12 @@ namespace Sidekick.Apis.Poe.Parser
 
             if (firstLine.StartsWith(gameLanguageProvider.Language.Classes.Prefix))
             {
-                var classLine = firstLine.Replace(gameLanguageProvider.Language.Classes.Prefix + ":", "").Trim();
+                var classLine = firstLine.Replace(gameLanguageProvider.Language.Classes.Prefix, "").Trim(' ', ':');
+                if (classLine == "Misc Map Items")
+                {
+                    classLine = "Map Fragment";
+                }
+
                 var categoryToMatch = new ApiFilterOption { Text = classLine };
                 apiItemCategoryId = Process.ExtractOne(categoryToMatch, metadataProvider.ApiItemCategories, x => x.Text, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
             }

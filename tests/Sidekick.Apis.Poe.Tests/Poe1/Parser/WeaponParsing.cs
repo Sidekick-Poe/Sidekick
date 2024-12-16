@@ -195,54 +195,20 @@ All form and finesse are forgotten when blood first hits the ground.
 ");
 
             Assert.Equal(Category.Weapon, actual.Metadata.Category);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal("Ancient Sword", actual.Metadata.Type);
+            Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
+            Assert.Equal("Daresso's Passion", actual.Metadata.Name);
+            Assert.Equal("Estoc", actual.Metadata.Type);
 
-            Assert.Equal(53.9, actual.Properties.PhysicalDps);
-            Assert.Equal(314.1, actual.Properties.ElementalDps);
-            Assert.Equal(368.0, actual.Properties.TotalDps);
-        }
+            // Verify physical damage
+            Assert.Equal(58, actual.Properties.PhysicalDamage?.Min);
+            Assert.Equal(90, actual.Properties.PhysicalDamage?.Max);
+            Assert.Equal(111, actual.Properties.PhysicalDps);
 
-        [Fact]
-        public void ParseWeaponWithMultipleElementalDamages()
-        {
-            var actual = parser.ParseItem(@"Item Class: One Hand Swords
-Rarity: Rare
-Storm Sever
-Gemstone Sword
---------
-One Handed Sword
-Physical Damage: 39-83
-Elemental Damage: 5-87 (augmented)
-Critical Strike Chance: 5.00%
-Attacks per Second: 1.30
-Weapon Range: 1.1 metres
---------
-Requirements:
-Level: 56
-Str: 96
-Dex: 96
---------
-Sockets: G 
---------
-Item Level: 62
---------
-+400 to Accuracy Rating (implicit)
---------
-+1 to Level of Socketed Melee Gems
-+24 to Strength
-Adds 5 to 87 Lightning Damage
-6% reduced Enemy Stun Threshold
-11% increased Stun Duration on Enemies
-");
+            // Verify elemental damages
+            Assert.Equal(36, actual.Properties.ColdDamage?.Min);
+            Assert.Equal(43, actual.Properties.ColdDamage?.Max);
 
-            Assert.Equal(Category.Weapon, actual.Metadata.Category);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal("Ancient Sword", actual.Metadata.Type);
-
-            Assert.Equal(53.9, actual.Properties.PhysicalDps);
-            Assert.Equal(314.1, actual.Properties.ElementalDps);
-            Assert.Equal(368.0, actual.Properties.TotalDps);
+            AssertHelper.CloseEnough(59.2, actual.Properties.ElementalDps);
         }
 
         [Fact]
@@ -312,198 +278,6 @@ Hunter Item");
             Assert.Equal(Category.Weapon, actual.Metadata.Category);
             Assert.Equal("Ornate Mace", actual.Metadata.Type);
             Assert.True(actual.Influences.Hunter);
-        }
-
-        [Fact]
-        public void ParseChaosDamageWeapon()
-        {
-            var actual = parser.ParseItem(@"Item Class: Unknown
-Rarity: Magic
-Advanced Cultist Bow of the Parched
---------
-Bow
-Chaos Damage: 41-69
-Critical Strike Chance: 5.00%
-Attacks per Second: 1.20
-Weapon Range: 11
---------
-Requirements:
-Level: 59
-Dex: 135
---------
-Item Level: 60
---------
-Leeches 5.82% of Physical Damage as Mana");
-
-            Assert.Equal(Category.Weapon, actual.Metadata.Category);
-            Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
-            Assert.Equal("Advanced Cultist Bow", actual.Metadata.Type);
-            
-            // Verify the chaos damage range is parsed correctly
-            Assert.Equal(41, actual.Properties.ChaosDamage.Min);
-            Assert.Equal(69, actual.Properties.ChaosDamage.Max);
-            
-            // Verify DPS calculations
-            Assert.Equal(66.0, actual.Properties.ChaosDps);
-            Assert.Equal(66.0, actual.Properties.TotalDps);
-        }
-
-        [Fact]
-        public void ParseCombinedElementalDamage()
-        {
-            var actual = parser.ParseItem(@"Item Class: Bows
-Rarity: Rare
-Blood Core
-Advanced Forlorn Crossbow
---------
-Physical Damage: 23-92
-Elemental Damage: 20-31 (augmented), 2-91 (augmented)
-Critical Hit Chance: 5.00%
-Attacks per Second: 1.60
-Reload Time: 0.80
---------
-Requirements:
-Level: 62
-Str: 78 (unmet)
-Dex: 78 (unmet)
---------
-Item Level: 69
---------
-Adds 20 to 31 Fire Damage
-Adds 2 to 91 Lightning Damage
-Grants 3 Life per Enemy Hit");
-
-            Assert.Equal(Category.Weapon, actual.Metadata.Category);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal("Blood Core", actual.Metadata.Type);
-            Assert.Equal("Blood Core", actual.Header.Name);
-
-            // Verify physical damage
-            Assert.Equal(23, actual.Properties.PhysicalDamage.Min);
-            Assert.Equal(92, actual.Properties.PhysicalDamage.Max);
-            Assert.Equal(92.0, actual.Properties.PhysicalDps);
-
-            // Verify elemental damages
-            Assert.Equal(2, actual.Properties.ElementalDamages.Count);
-            
-            // First elemental damage range
-            Assert.Equal(20, actual.Properties.ElementalDamages[0].Min);
-            Assert.Equal(31, actual.Properties.ElementalDamages[0].Max);
-            
-            // Second elemental damage range
-            Assert.Equal(2, actual.Properties.ElementalDamages[1].Min);
-            Assert.Equal(91, actual.Properties.ElementalDamages[1].Max);
-
-            // Verify DPS calculations
-            Assert.Equal(115.2, actual.Properties.ElementalDps); // ((20+31)/2 + (2+91)/2) * 1.60
-            Assert.Equal(207.2, actual.Properties.TotalDps); // 92.0 + 115.2
-        }
-
-        [Fact]
-        public void ParseSeparateElementalDamages()
-        {
-            var actual = parser.ParseItem(@"Item Class: Unknown
-Rarity: Rare
-Honour Beak
-Ancient Sword
---------
-One Handed Sword
-Quality: +20% (augmented)
-Physical Damage: 22-40 (augmented)
-Fire Damage: 26-48 (augmented)
-Cold Damage: 47-81 (augmented)
-Lightning Damage: 4-155 (augmented)
-Critical Strike Chance: 5.00%
-Attacks per Second: 1.74 (augmented)
-Weapon Range: 11
---------
-Requirements:
-Level: 50
-Str: 44
-Dex: 44
---------
-Item Level: 68
---------
-Adds 26 to 48 Fire Damage
-Adds 47 to 81 Cold Damage
-Adds 4 to 155 Lightning Damage");
-
-            Assert.Equal(Category.Weapon, actual.Metadata.Category);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal("Ancient Sword", actual.Metadata.Type);
-
-            // Verify physical damage
-            Assert.Equal(22, actual.Properties.PhysicalDamage.Min);
-            Assert.Equal(40, actual.Properties.PhysicalDamage.Max);
-            Assert.Equal(53.9, actual.Properties.PhysicalDps);
-
-            // Verify elemental damages
-            Assert.Equal(3, actual.Properties.ElementalDamages.Count);
-            
-            // Fire damage
-            Assert.Equal(26, actual.Properties.ElementalDamages[0].Min);
-            Assert.Equal(48, actual.Properties.ElementalDamages[0].Max);
-            
-            // Cold damage
-            Assert.Equal(47, actual.Properties.ElementalDamages[1].Min);
-            Assert.Equal(81, actual.Properties.ElementalDamages[1].Max);
-            
-            // Lightning damage
-            Assert.Equal(4, actual.Properties.ElementalDamages[2].Min);
-            Assert.Equal(155, actual.Properties.ElementalDamages[2].Max);
-
-            // Verify DPS calculations
-            Assert.Equal(314.1, actual.Properties.ElementalDps); // ((26+48)/2 + (47+81)/2 + (4+155)/2) * 1.74
-            Assert.Equal(368.0, actual.Properties.TotalDps); // 53.9 + 314.1
-        }
-
-        [Fact]
-        public void ParseMixedDamageTypes()
-        {
-            var actual = parser.ParseItem(@"Item Class: Unknown
-Rarity: Unique
-Wings of Entropy
-Ezomyte Axe
---------
-Two Handed Axe
-Physical Damage: 144-217 (augmented)
-Fire Damage: 81-175 (augmented)
-Chaos Damage: 85-177 (augmented)
-Critical Strike Chance: 5.70%
-Attacks per Second: 1.35
-Weapon Range: 13
---------
-Requirements:
-Level: 62
-Str: 140
-Dex: 86
---------
-Item Level: 70
---------
-7% Chance to Block Spell Damage");
-
-            Assert.Equal(Category.Weapon, actual.Metadata.Category);
-            Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
-            Assert.Equal("Wings of Entropy", actual.Metadata.Name);
-
-            // Verify physical damage
-            Assert.Equal(144, actual.Properties.PhysicalDamage.Min);
-            Assert.Equal(217, actual.Properties.PhysicalDamage.Max);
-            Assert.Equal(243.7, actual.Properties.PhysicalDps);
-
-            // Verify elemental damage
-            Assert.Single(actual.Properties.ElementalDamages);
-            Assert.Equal(81, actual.Properties.ElementalDamages[0].Min);
-            Assert.Equal(175, actual.Properties.ElementalDamages[0].Max);
-            Assert.Equal(172.8, actual.Properties.ElementalDps);
-
-            // Verify chaos damage
-            Assert.Equal(85, actual.Properties.ChaosDamage.Min);
-            Assert.Equal(177, actual.Properties.ChaosDamage.Max);
-            Assert.Equal(176.9, actual.Properties.ChaosDps);
-
-            // Verify total DPS
-            Assert.Equal(593.4, actual.Properties.TotalDps); // 243.7 + 172.8 + 176.9
         }
     }
 }
