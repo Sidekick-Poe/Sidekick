@@ -16,11 +16,6 @@ public class DamageRange(double min, double max)
         return $"{Min:F0}-{Max:F0}";
     }
 
-    public bool HasValue()
-    {
-        return Min > 0 || Max > 0;
-    }
-
     public double GetDps(double attacksPerSecond)
     {
         return Math.Round(((Min + Max) / 2) * attacksPerSecond, 1);
