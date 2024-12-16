@@ -124,9 +124,11 @@ namespace Sidekick.Apis.Poe.Parser
             if (firstLine.StartsWith(gameLanguageProvider.Language.Classes.Prefix))
             {
                 var classLine = firstLine.Replace(gameLanguageProvider.Language.Classes.Prefix, "").Trim(' ', ':');
-                if (classLine == "Misc Map Items")
+
+                // There is a weird thing where the API says Map Fragment and the game says Misc Map Items. I thought we could hardcode it here.
+                if (classLine == gameLanguageProvider.Language.Classes.MiscMapItems)
                 {
-                    classLine = "Map Fragment";
+                    classLine = gameLanguageProvider.Language.Classes.MapFragments;
                 }
 
                 var categoryToMatch = new ApiFilterOption { Text = classLine };
