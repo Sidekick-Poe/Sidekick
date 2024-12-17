@@ -8,6 +8,8 @@ public static class DefaultSettings
 
     public static string LanguageUi => "en";
 
+    public static bool UseInvariantTradeResults => false;
+    
     public static string KeyClose => "Space";
 
     public static string KeyOpenWealth => "F7";
