@@ -20,7 +20,7 @@ jobs:
         id: version
         run: |
           # Get the current date
-          $DATE = Get-Date -Format "yyyy.M.d"
+          $DATE = Get-Date -Format "yyyy.Md"
 
           # Get the current time in hours and minutes (24-hour format)
           $TIME = Get-Date -Format "Hmm"

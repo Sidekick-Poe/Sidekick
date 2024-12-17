@@ -16,8 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution", "_Solution", "{
 		.github\workflows\wpf-beta.yml = .github\workflows\wpf-beta.yml
 		.github\workflows\wpf-release.yml = .github\workflows\wpf-release.yml
 		download-instructions.txt = download-instructions.txt
-		.github\workflows\velopack-beta.yml = .github\workflows\velopack-beta.yml
-		.github\workflows\velopack-release.yml = .github\workflows\velopack-release.yml
+		.github\workflows\beta.yml = .github\workflows\beta.yml
+		.github\workflows\release.yml = .github\workflows\release.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}"
