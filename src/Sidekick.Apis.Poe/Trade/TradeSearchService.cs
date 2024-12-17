@@ -38,7 +38,7 @@ public class TradeSearchService
             logger.LogInformation("[Trade API] Querying Trade API.");
 
             var query = new Query();
-            var metadata = GetMetadata(item);
+            var metadata = await GetMetadata(item);
             if (propertyFilters?.BaseTypeFilterApplied ?? true)
             {
                 var hasTypeDiscriminator = !string.IsNullOrEmpty(metadata.ApiTypeDiscriminator);
@@ -117,7 +117,7 @@ public class TradeSearchService
             }
 
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var uri = new Uri($"{GetBaseApiUrl(metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
+            var uri = new Uri($"{await GetBaseApiUrl(metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
 
             var json = JsonSerializer.Serialize(new QueryRequest()
                                                 {
@@ -629,7 +629,7 @@ public class TradeSearchService
                 pseudo = string.Join("", pseudoFilters.Select(x => $"&pseudos[]={x.Modifier.Id}"));
             }
 
-            var response = await poeTradeClient.HttpClient.GetAsync(GetBaseApiUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId + pseudo);
+            var response = await poeTradeClient.HttpClient.GetAsync(await GetBaseApiUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId + pseudo);
             if (!response.IsSuccessStatusCode)
             {
                 return new();
@@ -941,23 +941,26 @@ public class TradeSearchService
 
     public async Task<Uri> GetTradeUri(GameType game, string queryId)
     {
-        var baseUri = new Uri(GetBaseUrl(game) + "search/");
+        var baseUri = new Uri(await GetBaseUrl(game) + "search/");
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         return new Uri(baseUri, $"{leagueId.GetUrlSlugForLeague()}/{queryId}");
     }
 
-    private string GetBaseApiUrl(GameType game)
+    private async Task<string> GetBaseApiUrl(GameType game)
     {
-        return gameLanguageProvider.Language.UseInvariantTradeResults ? gameLanguageProvider.InvariantLanguage.GetTradeApiBaseUrl(game) : gameLanguageProvider.Language.GetTradeApiBaseUrl(game);
+        var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
+        return useInvariant ? gameLanguageProvider.InvariantLanguage.GetTradeApiBaseUrl(game) : gameLanguageProvider.Language.GetTradeApiBaseUrl(game);
     }
 
-    private string GetBaseUrl(GameType game)
+    private async Task<string> GetBaseUrl(GameType game)
     {
-        return gameLanguageProvider.Language.UseInvariantTradeResults ? gameLanguageProvider.InvariantLanguage.GetTradeBaseUrl(game) : gameLanguageProvider.Language.GetTradeBaseUrl(game);
+        var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
+        return useInvariant ? gameLanguageProvider.InvariantLanguage.GetTradeBaseUrl(game) : gameLanguageProvider.Language.GetTradeBaseUrl(game);
     }
 
-    private ItemMetadata GetMetadata(Item item)
+    private async Task<ItemMetadata> GetMetadata(Item item)
     {
-        return gameLanguageProvider.Language.UseInvariantTradeResults ? item.Invariant ?? item.Metadata : item.Metadata;
+        var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
+        return useInvariant ? item.Invariant ?? item.Metadata : item.Metadata;
     }
 }
