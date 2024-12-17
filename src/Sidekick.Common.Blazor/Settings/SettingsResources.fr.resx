@@ -118,162 +118,162 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annuler</value>
   </data>
   <data name="Character_League" xml:space="preserve">
-    <value>League</value>
+    <value>Ligue</value>
   </data>
   <data name="Chat_Add" xml:space="preserve">
-    <value>Add a new command</value>
+    <value>Ajouter une nouvelle commande</value>
   </data>
   <data name="Chat_Commands" xml:space="preserve">
-    <value>Chat Commands</value>
+    <value>Commandes de chat</value>
   </data>
   <data name="Chat_Common_Commands" xml:space="preserve">
-    <value>Common Commands</value>
+    <value>Commandes communes</value>
   </data>
   <data name="Chat_Commands_Exit" xml:space="preserve">
-    <value>/exit - Exit to character screen</value>
+    <value>/exit - Quitter vers la sélection du personnage</value>
   </data>
   <data name="Chat_Commands_Hideout" xml:space="preserve">
-    <value>/hideout - Go to your hideout</value>
+    <value>/hideout - Aller au repaire</value>
   </data>
   <data name="Chat_Custom" xml:space="preserve">
-    <value>Custom Command</value>
+    <value>Commandes personalisées</value>
   </data>
   <data name="Chat_Exit" xml:space="preserve">
-    <value>Exit</value>
+    <value>Quitter</value>
   </data>
   <data name="Chat_Hideout" xml:space="preserve">
-    <value>Go to Hideout</value>
+    <value>Aller au repaire</value>
   </data>
   <data name="Chat_Keybind" xml:space="preserve">
-    <value>Keybind</value>
+    <value>Raccourci</value>
   </data>
   <data name="Chat_Kick" xml:space="preserve">
-    <value>Kick from party</value>
+    <value>Expulser du groupe</value>
   </data>
   <data name="Chat_Submit" xml:space="preserve">
-    <value>Submit the command</value>
+    <value>Soumettre la commande</value>
   </data>
   <data name="Chat_Whisper" xml:space="preserve">
-    <value>Whisper</value>
+    <value>Message privé</value>
   </data>
   <data name="Chat_Wildcard" xml:space="preserve">
     <value>Wildcards</value>
   </data>
   <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
-    <value>@last - Character name of the last whisper message you received.</value>
+    <value>@last - Nom de personne du dernier échange</value>
   </data>
   <data name="Game_Title" xml:space="preserve">
-    <value>Game Settings</value>
+    <value>Configuration du jeu</value>
   </data>
   <data name="General" xml:space="preserve">
-    <value>General</value>
+    <value>Général</value>
   </data>
   <data name="General_RetainClipboard" xml:space="preserve">
-    <value>Retain Clipboard Data</value>
+    <value>Conserver la valeur de votre presse-papier (clipboard)</value>
   </data>
   <data name="Group_Custom_Keybinds" xml:space="preserve">
-    <value>Custom Keybinds</value>
+    <value>Raccourci personnalisés</value>
   </data>
   <data name="Group_Keybinds" xml:space="preserve">
-    <value>Keybindings</value>
+    <value>Raccourcis clavier</value>
   </data>
   <data name="Group_Other" xml:space="preserve">
-    <value>Other Settings</value>
+    <value>Autres configurations</value>
   </data>
   <data name="Key_Active" xml:space="preserve">
-    <value>&lt;Press a key&gt;</value>
+    <value>&lt;Appuyez sur une touche&gt;</value>
   </data>
   <data name="Key_Close" xml:space="preserve">
-    <value>Close Window</value>
+    <value>Fermer la fenêtre</value>
   </data>
   <data name="Key_Duplicated" xml:space="preserve">
-    <value>The keybind you tried is already in use.</value>
+    <value>Ce raccourci est déjà utilisé.</value>
   </data>
   <data name="Key_FindItems" xml:space="preserve">
-    <value>Find Items</value>
+    <value>Rechercher des items</value>
   </data>
   <data name="Key_Unset" xml:space="preserve">
-    <value>&lt;Unset&gt;</value>
+    <value>&lt;Non défini&gt;</value>
   </data>
   <data name="Language_Parser" xml:space="preserve">
-    <value>Game Language</value>
+    <value>Langue du jeu</value>
   </data>
   <data name="Language_Title" xml:space="preserve">
-    <value>Language Settings</value>
+    <value>Configuration des langues</value>
   </data>
   <data name="Language_UI" xml:space="preserve">
-    <value>UI Language</value>
+    <value>Langue de l'interface</value>
   </data>
   <data name="Map" xml:space="preserve">
-    <value>Map Information</value>
+    <value>Information de la carte</value>
   </data>
   <data name="Map_CloseWithMouse" xml:space="preserve">
-    <value>Close Overlay with Mouse Click</value>
+    <value>Fermer la fenêtre sur un clic de la souris</value>
   </data>
   <data name="Map_Dangerous" xml:space="preserve">
-    <value>Dangerous Modifiers</value>
+    <value>Modificateurs à éviter</value>
   </data>
   <data name="Map_Dangerous_Regex" xml:space="preserve">
     <value>Regex</value>
   </data>
   <data name="Map_Key_Check" xml:space="preserve">
-    <value>Check Map Mods</value>
+    <value>Vérifier les modificateurs de la carte</value>
   </data>
   <data name="PriceCheck" xml:space="preserve">
-    <value>Price Check</value>
+    <value>Vérifier le prix</value>
   </data>
   <data name="PriceCheck_CloseWithMouse" xml:space="preserve">
-    <value>Close Overlay with Mouse Click</value>
+    <value>Fermer la fenêtre sur un clic de la souris</value>
   </data>
   <data name="PriceCheck_Key_Check" xml:space="preserve">
-    <value>Check Prices</value>
+    <value>Vérifier les prix</value>
   </data>
   <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
-    <value>Show price prediction from poeprices.info</value>
+    <value>Afficher les prédictions de poeprices.info</value>
   </data>
   <data name="ResetCache" xml:space="preserve">
-    <value>Reset Cache</value>
+    <value>Réinitialiser la cache</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Sauvegarder</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Settings</value>
+    <value>Configurations</value>
   </data>
   <data name="Wiki" xml:space="preserve">
-    <value>Wiki Settings</value>
+    <value>Configurations Wiki</value>
   </data>
   <data name="Wiki_Key_Open" xml:space="preserve">
-    <value>Open Wiki</value>
+    <value>Ouvrir le Wiki</value>
   </data>
   <data name="Wiki_Preferred" xml:space="preserve">
-    <value>Preferred Wiki</value>
+    <value>Wiki de préférence</value>
   </data>
   <data name="EscapeClosesOverlays" xml:space="preserve">
-    <value>Close Overlay with Escape</value>
+    <value>Fermer la fenêtre avec la touche Échapper</value>
   </data>
   <data name="Restore_Defaults" xml:space="preserve">
-    <value>Restore Defaults</value>
+    <value>Restaurer les valeurs par défaut</value>
   </data>
   <data name="WealthTracker" xml:space="preserve">
     <value>Wealth Tracker</value>
   </data>
   <data name="Chat_Commands_Leave" xml:space="preserve">
-    <value>/leave - Leave the current party.</value>
+    <value>/leave - Quitter le groupe</value>
   </data>
   <data name="Chat_Commands_Remove" xml:space="preserve">
-    <value>Remove this command</value>
+    <value>Retirer cette commande</value>
   </data>
   <data name="WealthTracker_StashTabs" xml:space="preserve">
-    <value>Stash Tabs</value>
+    <value>Onglets de réserve</value>
   </data>
   <data name="WealthTracker_StashTabsInstructions" xml:space="preserve">
-    <value>Select the stash tabs in the list below for which you want to track your wealth. Note that selecting too many tabs may result in a worse experience and refresh rate due to the high number of requests. Selecting the unique items or map stash tabs are not recommended.</value>
+    <value>Sélectionnez les onglets de réserve à suivre pour le Wealth Tracker. Veuillez noter que sélectionner trop d'onglets pourrait entraîner un ralentissement au niveau de la performance dû au nombre de requêtes possibles. Il n'est pas recommandé de sélectionner les onglets d'uniques et/ou cartes.</value>
   </data>
   <data name="Wealth_Key_Open" xml:space="preserve">
-    <value>Open Wealth Tracker</value>
+    <value>Ouvrir le Wealth Tracker</value>
   </data>
 </root>
