@@ -1,0 +1,31 @@
+@*page "/update"*@
+@inherits Sidekick.Common.Ui.Views.SidekickView
+
+<AppTitle Title="@Resources["Update"]"/>
+<LayoutSimple>
+    <TopContent>
+        <AppLogo/>
+    </TopContent>
+
+    <ChildContent>
+        @if (Error)
+        {
+            <AlertError>@Resources["The update has failed to install automatically. You should try to download and install the update manually from https://sidekick-poe.github.io/"]</AlertError>
+        }
+        else
+        {
+            <AppContainer>
+                <Heading3 Class="mb-2 text-center">@Step</Heading3>
+                <ProgressBar Indeterminate="true"/>
+            </AppContainer>
+        }
+    </ChildContent>
+
+    <BottomContent>
+        <div class="px-3 py-2 flex justify-center gap-2">
+            <ButtonPrimary OnClick="CurrentView.Close">
+                @Resources["Close"]
+            </ButtonPrimary>
+        </div>
+    </BottomContent>
+</LayoutSimple>

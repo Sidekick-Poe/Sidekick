@@ -1,15 +1,13 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Common.Blazor.Update
 {
-    public partial class Update
+    public partial class UpdateOld
     {
         [Inject]
         private ILogger<Update> Logger { get; set; } = null!;
@@ -25,9 +23,6 @@ namespace Sidekick.Common.Blazor.Update
 
         [Inject]
         private ICacheProvider CacheProvider { get; set; } = null!;
-
-        [Inject]
-        private ICurrentView CurrentView { get; set; } = null!;
 
         private string? Step { get; set; }
         private bool Error { get; set; }

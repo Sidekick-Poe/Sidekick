@@ -1,4 +1,8 @@
 @page "/update"
+@page "/"
+@using Sidekick.Apis.Velopack
+@using Sidekick.Common.Browser
+@using Sidekick.Common.Platform
 @inherits Sidekick.Common.Ui.Views.SidekickView
 
 <AppTitle Title="@Resources["Update"]"/>
@@ -8,24 +12,106 @@
     </TopContent>
 
     <ChildContent>
-        @if (Error)
-        {
-            <AlertError>@Resources["The update has failed to install automatically. You should try to download and install the update manually from https://sidekick-poe.github.io/"]</AlertError>
-        }
-        else
-        {
-            <AppContainer>
-                <Heading3 Class="mb-2 text-center">@Step</Heading3>
+        <AppContainer>
+            @if (Error)
+            {
+                <AlertError>@Resources["The update has failed to install automatically. You should try to download and install the update manually from https://sidekick-poe.github.io/"]</AlertError>
+            }
+            else if (NewLauncher)
+            {
+                <Heading3 Class="mb-2 text-center">@Resources["New launcher available!"]</Heading3>
+                <TextBase
+                    Class="text-center">@Resources["A new and improved launcher is available. Open the website to grab it. You can uninstall this version."]</TextBase>
+            }
+            else
+            {
+                <Heading3 Class="mb-2 text-center"> @Resources["Checking for updates..."] </Heading3>
                 <ProgressBar Indeterminate="true"/>
-            </AppContainer>
-        }
+            }
+        </AppContainer>
     </ChildContent>
 
     <BottomContent>
         <div class="px-3 py-2 flex justify-center gap-2">
-            <ButtonPrimary OnClick="CurrentView.Close">
-                @Resources["Close"]
-            </ButtonPrimary>
+            @if (NewLauncher)
+            {
+                <ButtonSecondary OnClick="Exit">
+                    @Resources["Exit"]
+                </ButtonSecondary>
+                <ButtonSecondary OnClick="Continue">
+                    @Resources["Continue"]
+                </ButtonSecondary>
+                <ButtonPrimary OnClick="OpenWebsite">
+                    @Resources["Open Website"]
+                </ButtonPrimary>
+            }
+            else
+            {
+                <ButtonPrimary OnClick="Exit">
+                    @Resources["Exit"]
+                </ButtonPrimary>
+            }
         </div>
     </BottomContent>
 </LayoutSimple>
+
+@inject ILogger<Update> Logger
+@inject IStringLocalizer<UpdateResources> Resources
+@inject IApplicationService ApplicationService
+@inject IAutoUpdater AutoUpdater
+@inject IBrowserProvider BrowserProvider
+
+@code {
+
+    private bool Error { get; set; }
+
+    private bool NewLauncher { get; set; }
+
+    public override SidekickViewType ViewType => SidekickViewType.Modal;
+
+    public override int ViewHeight => 210;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CurrentView.Initialize(this);
+        await base.OnInitializedAsync();
+
+        try
+        {
+            await AutoUpdater.CheckForUpdates();
+            NavigationManager.NavigateTo("/setup");
+        }
+        catch (Exception ex)
+        {
+            if (ex.Message == "Cannot perform this operation in an application which is not installed.")
+            {
+                NewLauncher = true;
+            }
+            else
+            {
+                Logger.LogError(ex.Message);
+                Error = true;
+                StateHasChanged();
+
+                await Task.Delay(1500);
+                NavigationManager.NavigateTo("/setup");
+            }
+        }
+    }
+
+    public void Continue()
+    {
+        NavigationManager.NavigateTo("/setup");
+    }
+
+    public void OpenWebsite()
+    {
+        BrowserProvider.OpenSidekickWebsite();
+    }
+
+    public void Exit()
+    {
+        ApplicationService.Shutdown();
+    }
+
+}
