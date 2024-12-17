@@ -2,7 +2,10 @@ namespace Sidekick.Common.Game.Languages;
 
 public interface IGameLanguage
 {
-    bool UseInvariantTradeResults { get; }
+    /// <summary>
+    /// Serves the purpose of having the game localized, but wanting to trade in english when there is no trade site in the game language.
+    /// </summary>
+    bool UseInvariantTradeResults => false;
 
     string PoeTradeBaseUrl { get; }
 
