@@ -3,8 +3,6 @@ namespace Sidekick.Common.Game.Languages.Implementations;
 [GameLanguage("Portuguese", "pt")]
 public class GameLanguagePT : IGameLanguage
 {
-    public bool UseInvariantTradeResults => false;
-
     public string PoeTradeBaseUrl => "https://br.pathofexile.com/trade/";
     public string PoeTradeApiBaseUrl => "https://br.pathofexile.com/api/trade/";
     public string Poe2TradeBaseUrl => "https://br.pathofexile.com/trade2/";

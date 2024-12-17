@@ -49,9 +49,8 @@ public class GameLanguageProvider(ISettingsService settingsService) : IGameLangu
         languageCode ??= EnglishLanguageCode;
 
         var languages = GetList();
-        var implementationType = languages.FirstOrDefault(x => x.LanguageCode == languageCode)
-                                          ?.ImplementationType
-                                 ?? throw new SidekickException("The game language could not be found.");
+        var implementationType = languages.FirstOrDefault(x => x.LanguageCode == languageCode)?.ImplementationType;
+        implementationType ??= GetInvariantLanguage().GetType();
 
         return (IGameLanguage?)Activator.CreateInstance(implementationType) ?? throw new SidekickException("The game language could not be found.");
     }
@@ -59,10 +58,7 @@ public class GameLanguageProvider(ISettingsService settingsService) : IGameLangu
     private IGameLanguage GetInvariantLanguage()
     {
         var languages = GetList();
-
-        var implementationType = languages.FirstOrDefault(x => x.LanguageCode == EnglishLanguageCode)
-                                          ?.ImplementationType
-                                 ?? throw new SidekickException("The English language could not be found.");
+        var implementationType = languages.FirstOrDefault(x => x.LanguageCode == EnglishLanguageCode)?.ImplementationType ?? throw new SidekickException("The English language could not be found.");
 
         return (IGameLanguage?)Activator.CreateInstance(implementationType) ?? throw new SidekickException("The English language could not be found.");
     }
