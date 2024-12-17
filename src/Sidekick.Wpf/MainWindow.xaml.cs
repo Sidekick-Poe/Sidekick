@@ -3,6 +3,7 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,14 @@ namespace Sidekick.Wpf;
 /// </summary>
 public partial class MainWindow
 {
+    [DllImport("user32.dll")]
+    private static extern IntPtr GetForegroundWindow();
+
+    [DllImport("user32.dll")]
+    private static extern bool SetForegroundWindow(IntPtr hWnd);
+
+    private IntPtr previousWindowHandle;
+
     private readonly WpfViewLocator viewLocator;
     private bool isClosing;
 
@@ -51,6 +60,15 @@ public partial class MainWindow
     protected override void OnClosing(CancelEventArgs e)
     {
         base.OnClosing(e);
+
+        // Remove focus explicitly from WebView
+        Keyboard.ClearFocus();
+
+        // Optionally, set focus to a parent element or another default element
+        FocusManager.SetFocusedElement(this, this);
+
+        // Get the handle of the currently focused window (likely the WPF window itself)
+        previousWindowHandle = GetForegroundWindow();
 
         if (isClosing || !IsVisible || ResizeMode != ResizeMode.CanResize && ResizeMode != ResizeMode.CanResizeWithGrip || WindowState == WindowState.Maximized)
         {
@@ -93,6 +111,17 @@ public partial class MainWindow
         });
 
         isClosing = true;
+    }
+
+    protected override void OnClosed(EventArgs e)
+    {
+        base.OnClosed(e);
+
+        // Explicitly set focus back to the previous window
+        if (previousWindowHandle != IntPtr.Zero)
+        {
+            SetForegroundWindow(previousWindowHandle);
+        }
     }
 
     protected override void OnDeactivated(EventArgs e)
