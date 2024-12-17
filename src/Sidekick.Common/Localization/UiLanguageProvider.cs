@@ -12,7 +12,7 @@ public class UiLanguageProvider(ISettingsService settingsService) : IUiLanguageP
     [
         "en",
         "fr",
-        //"kr",
+        "ko",
     ];
 
     private string? currentLanguage;
