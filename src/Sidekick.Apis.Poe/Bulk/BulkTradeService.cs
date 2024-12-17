@@ -36,7 +36,7 @@ namespace Sidekick.Apis.Poe.Bulk
             logger.LogInformation("[Trade API] Querying Exchange API.");
 
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var uri = $"{GetBaseUrl(item.Metadata.Game)}exchange/{leagueId.GetUrlSlugForLeague()}";
+            var uri = $"{GetBaseApiUrl(item.Metadata.Game)}exchange/{leagueId.GetUrlSlugForLeague()}";
 
             var itemId = itemStaticDataProvider.GetId(item.Metadata);
             if (itemId == null)
@@ -104,9 +104,14 @@ namespace Sidekick.Apis.Poe.Bulk
             return new Uri(baseUri, $"{leagueId.GetUrlSlugForLeague()}/{queryId}");
         }
 
-        private string GetBaseUrl(GameType game)
+        private string GetBaseApiUrl(GameType game)
         {
             return gameLanguageProvider.Language.UseInvariantTradeResults ? gameLanguageProvider.InvariantLanguage.GetTradeApiBaseUrl(game) : gameLanguageProvider.Language.GetTradeApiBaseUrl(game);
+        }
+
+        private string GetBaseUrl(GameType game)
+        {
+            return gameLanguageProvider.Language.UseInvariantTradeResults ? gameLanguageProvider.InvariantLanguage.GetTradeBaseUrl(game) : gameLanguageProvider.Language.GetTradeBaseUrl(game);
         }
     }
 }

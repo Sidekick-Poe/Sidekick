@@ -116,7 +116,7 @@ public class TradeSearchService
             }
 
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var uri = new Uri($"{GetBaseUrl(item.Metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
+            var uri = new Uri($"{GetBaseApiUrl(item.Metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
 
             var json = JsonSerializer.Serialize(new QueryRequest()
                                                 {
@@ -628,7 +628,7 @@ public class TradeSearchService
                 pseudo = string.Join("", pseudoFilters.Select(x => $"&pseudos[]={x.Modifier.Id}"));
             }
 
-            var response = await poeTradeClient.HttpClient.GetAsync(GetBaseUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId + pseudo);
+            var response = await poeTradeClient.HttpClient.GetAsync(GetBaseApiUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId + pseudo);
             if (!response.IsSuccessStatusCode)
             {
                 return new();
@@ -945,8 +945,13 @@ public class TradeSearchService
         return new Uri(baseUri, $"{leagueId.GetUrlSlugForLeague()}/{queryId}");
     }
 
-    private string GetBaseUrl(GameType game)
+    private string GetBaseApiUrl(GameType game)
     {
         return gameLanguageProvider.Language.UseInvariantTradeResults ? gameLanguageProvider.InvariantLanguage.GetTradeApiBaseUrl(game) : gameLanguageProvider.Language.GetTradeApiBaseUrl(game);
+    }
+
+    private string GetBaseUrl(GameType game)
+    {
+        return gameLanguageProvider.Language.UseInvariantTradeResults ? gameLanguageProvider.InvariantLanguage.GetTradeBaseUrl(game) : gameLanguageProvider.Language.GetTradeBaseUrl(game);
     }
 }
