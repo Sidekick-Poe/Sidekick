@@ -28,7 +28,12 @@ namespace Sidekick.Apis.Poe
             services.AddSingleton<IApiStateProvider, ApiStateProvider>();
             services.AddSingleton<PoeApiHandler>();
 
-            services.AddHttpClient(ClientNames.TradeClient);
+            services.AddHttpClient(ClientNames.TradeClient)
+                .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+                {
+                    AllowAutoRedirect = true,
+                    UseCookies = true,
+                });
 
             services.AddHttpClient(ClientNames.PoeClient)
                 .ConfigurePrimaryHttpMessageHandler((sp) =>
