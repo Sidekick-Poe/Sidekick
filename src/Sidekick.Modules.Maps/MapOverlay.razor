@@ -12,7 +12,7 @@
 
 <AppTitle Title="@Resources["Map Check"]"/>
 
-<LayoutTwoColumn>
+<LayoutSimple>
     <TopContent>
         <AppBar>
             <AppSettings Href="/settings/map">
@@ -21,7 +21,7 @@
             <AppClose/>
         </AppBar>
     </TopContent>
-    <LeftContent>
+    <ChildContent>
         @if (Item == null)
         {
             <AppLoading/>
@@ -79,18 +79,9 @@
                 }
             </AppContainer>
         }
-    </LeftContent>
-    <ChildContent>
-        @if (Item == null)
-        {
-            <AppLoading/>
-        }
-        else
-        {
-            <PoeWikiMapInfo Type="@Item.Invariant?.Type" Name="@Item.Invariant?.Name"/>
-        }
     </ChildContent>
-</LayoutTwoColumn>
+</LayoutSimple>
+
 
 @inject IStringLocalizer<MapInfoResources> Resources
 @inject IItemParser ItemParser
