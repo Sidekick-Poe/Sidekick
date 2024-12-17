@@ -177,7 +177,7 @@
   <data name="Group_Custom_Keybinds" xml:space="preserve">
     <value>Raccourci personnalisés</value>
   </data>
-  <data name="Group_Keybinds" xml:space="preserve">
+  <data name="Keybindings" xml:space="preserve">
     <value>Raccourcis clavier</value>
   </data>
   <data name="Other_Settings" xml:space="preserve">
@@ -284,5 +284,14 @@
   </data>
   <data name="Map_Check" xml:space="preserve">
     <value>Vérificateur de carte</value>
+  </data>
+  <data name="Dangerous_Modifiers" xml:space="preserve">
+    <value>Modificateurs à éviter</value>
+  </data>
+  <data name="Item_Trade_Settings" xml:space="preserve">
+    <value>Configurations de l'échange</value>
+  </data>
+  <data name="Bulk_Trade_Settings" xml:space="preserve">
+    <value>Configurations de l'échange en gros</value>
   </data>
 </root>
