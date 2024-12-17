@@ -1,0 +1,51 @@
+@using Sidekick.Common.Cache
+@using Sidekick.Common.Game.Languages
+@using Sidekick.Common.Localization
+@using Sidekick.Common.Settings
+
+<FormSelect Label="@Resources["Language_UI"]"
+            Value="@Language"
+            ValueChanged="LanguageChanged"
+            Options="Options"/>
+
+@inject IUiLanguageProvider UiLanguageProvider
+@inject ISettingsService SettingsService
+@inject NavigationManager NavigationManager
+@inject ICacheProvider CacheProvider
+@inject IStringLocalizer<SettingsResources> Resources
+
+@code {
+
+    private string? Language { get; set; }
+
+    private List<SelectOption> Options { get; set; } =
+    [
+    ];
+
+    protected override async Task OnInitializedAsync()
+    {
+        Language = await SettingsService.GetString(SettingKeys.LanguageUi);
+        var languages = UiLanguageProvider.GetList();
+        Options = languages
+                  .Select(
+                      x => new SelectOption()
+                      {
+                          Value = x.TwoLetterISOLanguageName,
+                          Label = x.DisplayName,
+                      })
+                  .ToList();
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task LanguageChanged(string? value)
+    {
+        Language = value;
+        await SettingsService.Set(SettingKeys.LanguageUi, value);
+        await UiLanguageProvider.Initialize();
+        NavigationManager.NavigateTo("/settings", true);
+    }
+
+}
+
+

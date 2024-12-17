@@ -165,7 +165,7 @@
   <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
     <value>@last - Character name of the last whisper message you received.</value>
   </data>
-  <data name="Game_Title" xml:space="preserve">
+  <data name="Game_Settings" xml:space="preserve">
     <value>Game Settings</value>
   </data>
   <data name="General" xml:space="preserve">
@@ -180,7 +180,7 @@
   <data name="Group_Keybinds" xml:space="preserve">
     <value>Keybindings</value>
   </data>
-  <data name="Group_Other" xml:space="preserve">
+  <data name="Other_Settings" xml:space="preserve">
     <value>Other Settings</value>
   </data>
   <data name="Key_Active" xml:space="preserve">
@@ -222,7 +222,7 @@
   <data name="Map_Key_Check" xml:space="preserve">
     <value>Check Map Mods</value>
   </data>
-  <data name="PriceCheck" xml:space="preserve">
+  <data name="Price_Check" xml:space="preserve">
     <value>Price Check</value>
   </data>
   <data name="PriceCheck_CloseWithMouse" xml:space="preserve">
@@ -234,7 +234,7 @@
   <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
     <value>Show price prediction from poeprices.info</value>
   </data>
-  <data name="ResetCache" xml:space="preserve">
+  <data name="Reset_Cache" xml:space="preserve">
     <value>Reset Cache</value>
   </data>
   <data name="Save" xml:space="preserve">
@@ -277,6 +277,12 @@
     <value>Open Wealth Tracker</value>
   </data>
   <data name="UseInvariantForTradeResults" xml:space="preserve">
-      <value>Use English Trade Website</value>
+    <value>Use English Trade Website</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Map_Check" xml:space="preserve">
+    <value>Map Check</value>
   </data>
 </root>

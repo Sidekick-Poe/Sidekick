@@ -17,12 +17,12 @@
         {
             if (NewLeagues)
             {
-                <AlertInfo>@Resources["New leagues are available! Please make sure you have the desired league selected in the settings."]</AlertInfo>
+                <AlertInfo>@Resources["New_League_Alert"]</AlertInfo>
             }
 
             @if (HasError)
             {
-                <AlertError>@Resources["You must select a valid language and league to continue."]</AlertError>
+                <AlertError>@Resources["Valid_Language_Alert"]</AlertError>
             }
 
             <AppContainer>
