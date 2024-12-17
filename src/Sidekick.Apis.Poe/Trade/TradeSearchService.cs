@@ -38,20 +38,21 @@ public class TradeSearchService
             logger.LogInformation("[Trade API] Querying Trade API.");
 
             var query = new Query();
+            var metadata = GetMetadata(item);
             if (propertyFilters?.BaseTypeFilterApplied ?? true)
             {
-                var hasTypeDiscriminator = !string.IsNullOrEmpty(item.Metadata.ApiTypeDiscriminator);
+                var hasTypeDiscriminator = !string.IsNullOrEmpty(metadata.ApiTypeDiscriminator);
                 if (hasTypeDiscriminator)
                 {
                     query.Type = new TypeDiscriminator()
                     {
-                        Option = item.Metadata.ApiType,
-                        Discriminator = item.Metadata.ApiTypeDiscriminator,
+                        Option = metadata.ApiType,
+                        Discriminator = metadata.ApiTypeDiscriminator,
                     };
                 }
                 else if (!string.IsNullOrEmpty(item.Header.ItemCategory))
                 {
-                    query.Type = item.Metadata.ApiType;
+                    query.Type = metadata.ApiType;
                 }
             }
             else if (propertyFilters.ClassFilterApplied)
@@ -59,22 +60,22 @@ public class TradeSearchService
                 query.Filters.TypeFilters.Filters.Category = GetCategoryFilter(item.Header.ItemCategory);
             }
 
-            if (item.Metadata.Category == Category.ItemisedMonster)
+            if (metadata.Category == Category.ItemisedMonster)
             {
-                if (!string.IsNullOrEmpty(item.Metadata.Name))
+                if (!string.IsNullOrEmpty(metadata.Name))
                 {
-                    query.Term = item.Metadata.Name;
+                    query.Term = metadata.Name;
                     query.Type = null;
                 }
             }
-            else if (item.Metadata.Rarity == Rarity.Unique)
+            else if (metadata.Rarity == Rarity.Unique)
             {
-                query.Name = item.Metadata.Name;
+                query.Name = metadata.Name;
                 query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("Unique");
             }
             else if (propertyFilters?.RarityFilterApplied ?? false)
             {
-                var rarity = item.Metadata.Rarity switch
+                var rarity = metadata.Rarity switch
                 {
                     Rarity.Normal => "normal",
                     Rarity.Magic => "magic",
@@ -116,7 +117,7 @@ public class TradeSearchService
             }
 
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var uri = new Uri($"{GetBaseApiUrl(item.Metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
+            var uri = new Uri($"{GetBaseApiUrl(metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
 
             var json = JsonSerializer.Serialize(new QueryRequest()
                                                 {
@@ -953,5 +954,10 @@ public class TradeSearchService
     private string GetBaseUrl(GameType game)
     {
         return gameLanguageProvider.Language.UseInvariantTradeResults ? gameLanguageProvider.InvariantLanguage.GetTradeBaseUrl(game) : gameLanguageProvider.Language.GetTradeBaseUrl(game);
+    }
+
+    private ItemMetadata GetMetadata(Item item)
+    {
+        return gameLanguageProvider.Language.UseInvariantTradeResults ? item.Invariant ?? item.Metadata : item.Metadata;
     }
 }
