@@ -30,6 +30,13 @@
                 <LeagueIdEditor AutoRefresh="false"/>
             </AppContainer>
         }
+        else
+        {
+            <AppContainer>
+                <Heading3 Class="mb-2 text-center">@Resources["Loading league data..."]</Heading3>
+                <ProgressBar Indeterminate="true"/>
+            </AppContainer>
+        }
     </ChildContent>
     <BottomContent>
         @if (RequiresSetup)
@@ -60,6 +67,7 @@
 @inject ICacheProvider CacheProvider
 @inject IStringLocalizer<Setup> Resources
 @inject NavigationManager NavigationManager
+@inject ICurrentView CurrentView
 
 @code {
 
@@ -71,24 +79,33 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var leagues = await LeagueProvider.GetList(false);
-        var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
-        var settingsLeaguesHash = await SettingsService.GetInt(SettingKeys.LeaguesHash);
-        if (apiLeaguesHash != settingsLeaguesHash)
+        try
         {
-            NewLeagues = true;
-            await CacheProvider.Clear();
-        }
+            var leagues = await LeagueProvider.GetList(false);
+            var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
+            var settingsLeaguesHash = await SettingsService.GetInt(SettingKeys.LeaguesHash);
+            if (apiLeaguesHash != settingsLeaguesHash)
+            {
+                NewLeagues = true;
+                await CacheProvider.Clear();
+            }
 
-        // Check to see if we should run Setup first before running the rest of the initialization process
-        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
-        if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId) || NewLeagues)
-        {
-            RequiresSetup = true;
+            // Check to see if we should run Setup first before running the rest of the initialization process
+            var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+            if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId) || NewLeagues)
+            {
+                CurrentView.SetHeight(360);
+                RequiresSetup = true;
+            }
+            else
+            {
+                NavigationManager.NavigateTo("/initialize");
+            }
         }
-        else
+        catch (Exception)
         {
-            NavigationManager.NavigateTo("/initialize");
+            CurrentView.SetHeight(360);
+            throw;
         }
 
         await base.OnInitializedAsync();

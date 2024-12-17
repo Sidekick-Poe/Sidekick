@@ -82,6 +82,12 @@ namespace Sidekick.Wpf.Services
             Application.Current.Dispatcher.Invoke(
                 () =>
                 {
+                    if (view.Height != null)
+                    {
+                        window.Height = view.Height.Value;
+                        window.CenterOnScreen();
+                    }
+
                     window.Title = $"Sidekick {view.Title}".Trim();
                 });
         }
