@@ -3,7 +3,7 @@ name: Velopack Beta
 on:
   push:
     branches:
-    - main
+      - main
   workflow_dispatch:
 
 jobs:
@@ -75,7 +75,7 @@ jobs:
 
           dotnet tool update -g vpk
           dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release --self-contained -r win-x64 -o .\velopack-publish
-          vpk pack -u Sidekick -v $version -p .\velopack-publish -e Sidekick.exe
+          vpk pack -u Sidekick -v $version -p .\velopack-publish --channel win-beta -e Sidekick.exe
 
       - name: Git - Setup
         run: |
