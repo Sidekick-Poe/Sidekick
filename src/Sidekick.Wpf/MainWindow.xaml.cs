@@ -53,11 +53,7 @@ public partial class MainWindow
     {
         base.OnClosing(e);
 
-        // Remove focus explicitly from WebView
-        Keyboard.ClearFocus();
-
-        // Optionally, set focus to a parent element or another default element
-        FocusManager.SetFocusedElement(this, this);
+        ClearFocusOnClosing();
 
         if (isClosing || !IsVisible || ResizeMode != ResizeMode.CanResize && ResizeMode != ResizeMode.CanResizeWithGrip || WindowState == WindowState.Maximized)
         {
@@ -82,7 +78,6 @@ public partial class MainWindow
 
         Resources.Remove("services");
         OverlayContainer?.Dispose();
-        WebView.Visibility = Visibility.Hidden;
         viewLocator.Windows.Remove(this);
         Scope.Dispose();
 
@@ -96,6 +91,10 @@ public partial class MainWindow
             catch (Exception)
             {
                 // If the dispose fails, we don't want to stop the execution.
+            }
+            finally
+            {
+                WebView = null;
             }
         });
 
@@ -159,6 +158,45 @@ public partial class MainWindow
     {
         DragMove();
     }
+
+    #region Code to make sure the focus is lost correctly when the window is closed.
+
+    [DllImport("user32.dll")]
+    private static extern IntPtr GetForegroundWindow();
+
+    [DllImport("user32.dll")]
+    private static extern bool SetForegroundWindow(IntPtr hWnd);
+
+    private IntPtr previousWindowHandle;
+
+    private void ClearFocusOnClosing()
+    {
+        // Get the handle of the currently focused window (likely the WPF window itself)
+        previousWindowHandle = GetForegroundWindow();
+
+        // Remove focus explicitly from WebView
+        Keyboard.ClearFocus();
+
+        // Optionally, set focus to a parent element or another default element
+        FocusManager.SetFocusedElement(this, this);
+
+        // Ensure the WebView is removed from the visual tree
+        WebView.Visibility = Visibility.Collapsed;
+
+    }
+
+    protected override void OnClosed(EventArgs e)
+    {
+        base.OnClosed(e);
+
+        // Explicitly set focus back to the previous window
+        if (previousWindowHandle != IntPtr.Zero)
+        {
+            SetForegroundWindow(previousWindowHandle);
+        }
+    }
+
+    #endregion
 
     // ReSharper disable All
 
