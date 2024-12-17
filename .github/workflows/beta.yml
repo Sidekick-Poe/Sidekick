@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  wpf-beta:
+  beta:
     runs-on: windows-latest
 
     steps:
