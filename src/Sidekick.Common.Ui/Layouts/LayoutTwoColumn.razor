@@ -3,16 +3,19 @@
         @TopContent
     </div>
     <div class="grow flex flex-nowrap items-stretch">
-        <div class="w-[22em] relative">
+        <div class="@(HasChildContent ? "w-[22em]" : "grow") relative">
             <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden dark:bg-stone-950">
                 @LeftContent
             </div>
         </div>
-        <div class="grow relative">
-            <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden">
-                @ChildContent
+        @if (HasChildContent)
+        {
+            <div class="grow relative">
+                <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden">
+                    @ChildContent
+                </div>
             </div>
-        </div>
+        }
     </div>
     <div class="dark:bg-stone-950">
         @BottomContent
@@ -29,6 +32,9 @@
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public bool HasChildContent { get; set; } = true;
 
     [Parameter]
     public RenderFragment? BottomContent { get; set; }

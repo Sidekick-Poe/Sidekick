@@ -3,8 +3,6 @@ namespace Sidekick.Common.Game.Languages.Implementations;
 [GameLanguage("Traditional Chinese", "zh")]
 public class GameLanguageZhTw : IGameLanguage
 {
-    public string LanguageCode => "zh";
-
     public string PoeTradeBaseUrl => new("http://www.pathofexile.tw/trade/");
 
     public string PoeTradeApiBaseUrl => new("http://www.pathofexile.tw/api/trade/");

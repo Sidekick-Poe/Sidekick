@@ -21,7 +21,9 @@ This product isn't affiliated with or endorsed by Grinding Gear Games in any way
 
 ## Thanks
 #### Community
-[Contributors](https://github.com/Sidekick-Poe/Sidekick/graphs/contributors), [Path of Exile Trade](https://www.pathofexile.com/trade), [poe.ninja](https://poe.ninja/), [poeprices.info](https://www.poeprices.info/), [poewiki.net](https://www.poewiki.net/), [POE-TradeMacro (Original Idea)](https://github.com/PoE-TradeMacro/POE-TradeMacro)
+[Contributors](https://github.com/Sidekick-Poe/Sidekick/graphs/contributors), [Path of Exile Trade](https://www.pathofexile.com/trade), [poe.ninja](https://poe.ninja/), [poeprices.info](https://www.poeprices.info/), [poewiki.net](https://www.poewiki.net/), [poedb.tw](https://poedb.tw/us/), [Awakened PoE Trade](https://github.com/SnosMe/awakened-poe-trade), [POE-TradeMacro (Original Idea)](https://github.com/PoE-TradeMacro/POE-TradeMacro)
 
 #### Technology
-[MudBlazor](https://mudblazor.com/), [FluentAssertions](https://fluentassertions.com), [Electron](https://www.electronjs.org/), [Electron.NET](https://github.com/ElectronNET/Electron.NET/), [NeatInput](https://github.com/LegendaryB/NeatInput), [GregsStack.InputSimulatorStandard](https://github.com/GregsStack/InputSimulatorStandard), [TextCopy](https://github.com/CopyText/TextCopy)
+[FuzzySharp](https://github.com/JakeBayer/FuzzySharp), [Hardcodet NotifyIcon for WPF](https://github.com/hardcodet/wpf-notifyicon), [SharpHook](https://github.com/TolikPylypchuk/SharpHook), [TextCopy](https://github.com/CopyText/TextCopy)
+
+#### And more

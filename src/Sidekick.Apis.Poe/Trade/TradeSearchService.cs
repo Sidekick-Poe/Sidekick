@@ -38,20 +38,21 @@ public class TradeSearchService
             logger.LogInformation("[Trade API] Querying Trade API.");
 
             var query = new Query();
+            var metadata = await GetMetadata(item);
             if (propertyFilters?.BaseTypeFilterApplied ?? true)
             {
-                var hasTypeDiscriminator = !string.IsNullOrEmpty(item.Metadata.ApiTypeDiscriminator);
+                var hasTypeDiscriminator = !string.IsNullOrEmpty(metadata.ApiTypeDiscriminator);
                 if (hasTypeDiscriminator)
                 {
                     query.Type = new TypeDiscriminator()
                     {
-                        Option = item.Metadata.ApiType,
-                        Discriminator = item.Metadata.ApiTypeDiscriminator,
+                        Option = metadata.ApiType,
+                        Discriminator = metadata.ApiTypeDiscriminator,
                     };
                 }
                 else if (!string.IsNullOrEmpty(item.Header.ItemCategory))
                 {
-                    query.Type = item.Metadata.ApiType;
+                    query.Type = metadata.ApiType;
                 }
             }
             else if (propertyFilters.ClassFilterApplied)
@@ -59,22 +60,22 @@ public class TradeSearchService
                 query.Filters.TypeFilters.Filters.Category = GetCategoryFilter(item.Header.ItemCategory);
             }
 
-            if (item.Metadata.Category == Category.ItemisedMonster)
+            if (metadata.Category == Category.ItemisedMonster)
             {
-                if (!string.IsNullOrEmpty(item.Metadata.Name))
+                if (!string.IsNullOrEmpty(metadata.Name))
                 {
-                    query.Term = item.Metadata.Name;
+                    query.Term = metadata.Name;
                     query.Type = null;
                 }
             }
-            else if (item.Metadata.Rarity == Rarity.Unique)
+            else if (metadata.Rarity == Rarity.Unique)
             {
-                query.Name = item.Metadata.Name;
+                query.Name = metadata.Name;
                 query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("Unique");
             }
             else if (propertyFilters?.RarityFilterApplied ?? false)
             {
-                var rarity = item.Metadata.Rarity switch
+                var rarity = metadata.Rarity switch
                 {
                     Rarity.Normal => "normal",
                     Rarity.Magic => "magic",
@@ -116,7 +117,7 @@ public class TradeSearchService
             }
 
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var uri = new Uri($"{gameLanguageProvider.Language.GetTradeApiBaseUrl(item.Metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
+            var uri = new Uri($"{await GetBaseApiUrl(metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
 
             var json = JsonSerializer.Serialize(new QueryRequest()
                                                 {
@@ -628,7 +629,7 @@ public class TradeSearchService
                 pseudo = string.Join("", pseudoFilters.Select(x => $"&pseudos[]={x.Modifier.Id}"));
             }
 
-            var response = await poeTradeClient.HttpClient.GetAsync(gameLanguageProvider.Language.GetTradeApiBaseUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId + pseudo);
+            var response = await poeTradeClient.HttpClient.GetAsync(await GetBaseApiUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId + pseudo);
             if (!response.IsSuccessStatusCode)
             {
                 return new();
@@ -940,9 +941,26 @@ public class TradeSearchService
 
     public async Task<Uri> GetTradeUri(GameType game, string queryId)
     {
-        var baseUrl = gameLanguageProvider.Language.GetTradeBaseUrl(game);
-        var baseUri = new Uri(baseUrl + "search/");
+        var baseUri = new Uri(await GetBaseUrl(game) + "search/");
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         return new Uri(baseUri, $"{leagueId.GetUrlSlugForLeague()}/{queryId}");
+    }
+
+    private async Task<string> GetBaseApiUrl(GameType game)
+    {
+        var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
+        return useInvariant ? gameLanguageProvider.InvariantLanguage.GetTradeApiBaseUrl(game) : gameLanguageProvider.Language.GetTradeApiBaseUrl(game);
+    }
+
+    private async Task<string> GetBaseUrl(GameType game)
+    {
+        var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
+        return useInvariant ? gameLanguageProvider.InvariantLanguage.GetTradeBaseUrl(game) : gameLanguageProvider.Language.GetTradeBaseUrl(game);
+    }
+
+    private async Task<ItemMetadata> GetMetadata(Item item)
+    {
+        var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
+        return useInvariant ? item.Invariant ?? item.Metadata : item.Metadata;
     }
 }

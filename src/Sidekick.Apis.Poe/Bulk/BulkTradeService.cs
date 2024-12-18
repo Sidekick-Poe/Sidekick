@@ -10,6 +10,7 @@ using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
+using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
@@ -35,7 +36,7 @@ namespace Sidekick.Apis.Poe.Bulk
             logger.LogInformation("[Trade API] Querying Exchange API.");
 
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var uri = $"{gameLanguageProvider.Language.GetTradeApiBaseUrl(item.Metadata.Game)}exchange/{leagueId.GetUrlSlugForLeague()}";
+            var uri = $"{await GetBaseApiUrl(item.Metadata.Game)}exchange/{leagueId.GetUrlSlugForLeague()}";
 
             var itemId = itemStaticDataProvider.GetId(item.Metadata);
             if (itemId == null)
@@ -98,10 +99,22 @@ namespace Sidekick.Apis.Poe.Bulk
 
         public async Task<Uri> GetTradeUri(Item item, string queryId)
         {
-            var baseUrl = gameLanguageProvider.Language.GetTradeBaseUrl(item.Metadata.Game);
-            var baseUri = new Uri(baseUrl + "exchange/");
+            var baseUri = new Uri(await GetBaseUrl(item.Metadata.Game) + "exchange/");
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             return new Uri(baseUri, $"{leagueId.GetUrlSlugForLeague()}/{queryId}");
         }
+
+        private async Task<string> GetBaseApiUrl(GameType game)
+        {
+            var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
+            return useInvariant ? gameLanguageProvider.InvariantLanguage.GetTradeApiBaseUrl(game) : gameLanguageProvider.Language.GetTradeApiBaseUrl(game);
+        }
+
+        private async Task<string> GetBaseUrl(GameType game)
+        {
+            var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
+            return useInvariant ? gameLanguageProvider.InvariantLanguage.GetTradeBaseUrl(game) : gameLanguageProvider.Language.GetTradeBaseUrl(game);
+        }
+
     }
 }

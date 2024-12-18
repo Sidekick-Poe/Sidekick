@@ -1,0 +1,50 @@
+@using Sidekick.Common.Game.Languages
+@using Sidekick.Common.Settings
+
+@if (!Visible)
+{
+    return;
+}
+
+<FormCheckbox Value="@UseInvariantTradeResults"
+              ValueChanged="@UseInvariantTradeResultsChanged">
+    @Resources.UseInvariantForTradeResults
+</FormCheckbox>
+
+@inject SettingsResources Resources
+@inject IGameLanguageProvider LanguageProvider
+@inject ISettingsService SettingsService
+@implements IDisposable
+
+@code {
+
+    private bool UseInvariantTradeResults { get; set; }
+
+    private bool Visible { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Visible = !LanguageProvider.IsEnglish();
+        SettingsService.OnSettingsChanged += SettingsServiceOnOnSettingsChanged;
+        UseInvariantTradeResults = await SettingsService.GetBool(SettingKeys.UseInvariantTradeResults);
+        await base.OnInitializedAsync();
+    }
+
+    private void SettingsServiceOnOnSettingsChanged()
+    {
+        Visible = !LanguageProvider.IsEnglish();
+        StateHasChanged();
+    }
+
+    private async Task UseInvariantTradeResultsChanged(bool value)
+    {
+        UseInvariantTradeResults = value;
+        await SettingsService.Set(SettingKeys.UseInvariantTradeResults, value);
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= SettingsServiceOnOnSettingsChanged;
+    }
+
+}

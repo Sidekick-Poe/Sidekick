@@ -3,6 +3,7 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +15,7 @@ namespace Sidekick.Wpf;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : IDisposable
+public partial class MainWindow
 {
     private readonly WpfViewLocator viewLocator;
     private bool isClosing;
@@ -48,18 +49,11 @@ public partial class MainWindow : IDisposable
         Activate();
     }
 
-    protected override void OnClosed(EventArgs e)
-    {
-        Resources.Remove("services");
-        Scope.Dispose();
-        viewLocator.Windows.Remove(this);
-        base.OnClosed(e);
-    }
-
-    protected override async void OnClosing(CancelEventArgs e)
+    protected override void OnClosing(CancelEventArgs e)
     {
         base.OnClosing(e);
-        OverlayContainer.Dispose();
+
+        ClearFocusOnClosing();
 
         if (isClosing || !IsVisible || ResizeMode != ResizeMode.CanResize && ResizeMode != ResizeMode.CanResizeWithGrip || WindowState == WindowState.Maximized)
         {
@@ -68,17 +62,41 @@ public partial class MainWindow : IDisposable
 
         try
         {
-            await viewLocator.CacheProvider.Set($"view_preference_{SidekickView?.CurrentView.Key}",
-                                                new ViewPreferences()
-                                                {
-                                                    Width = (int)ActualWidth,
-                                                    Height = (int)ActualHeight,
-                                                });
+            var width = (int)ActualWidth;
+            var height = (int)ActualHeight;
+            _ = viewLocator.CacheProvider.Set($"view_preference_{SidekickView?.CurrentView.Key}",
+                                              new ViewPreferences()
+                                              {
+                                                  Width = width,
+                                                  Height = height,
+                                              });
         }
         catch (Exception)
         {
             // If the save fails, we don't want to stop the execution.
         }
+
+        Resources.Remove("services");
+        OverlayContainer?.Dispose();
+        viewLocator.Windows.Remove(this);
+        Scope.Dispose();
+
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                await WebView.WebView.EnsureCoreWebView2Async();
+                await WebView.DisposeAsync();
+            }
+            catch (Exception)
+            {
+                // If the dispose fails, we don't want to stop the execution.
+            }
+            finally
+            {
+                WebView = null;
+            }
+        });
 
         isClosing = true;
     }
@@ -140,6 +158,45 @@ public partial class MainWindow : IDisposable
     {
         DragMove();
     }
+
+    #region Code to make sure the focus is lost correctly when the window is closed.
+
+    [DllImport("user32.dll")]
+    private static extern IntPtr GetForegroundWindow();
+
+    [DllImport("user32.dll")]
+    private static extern bool SetForegroundWindow(IntPtr hWnd);
+
+    private IntPtr previousWindowHandle;
+
+    private void ClearFocusOnClosing()
+    {
+        // Get the handle of the currently focused window (likely the WPF window itself)
+        previousWindowHandle = GetForegroundWindow();
+
+        // Remove focus explicitly from WebView
+        Keyboard.ClearFocus();
+
+        // Optionally, set focus to a parent element or another default element
+        FocusManager.SetFocusedElement(this, this);
+
+        // Ensure the WebView is removed from the visual tree
+        WebView.Visibility = Visibility.Collapsed;
+
+    }
+
+    protected override void OnClosed(EventArgs e)
+    {
+        base.OnClosed(e);
+
+        // Explicitly set focus back to the previous window
+        if (previousWindowHandle != IntPtr.Zero)
+        {
+            SetForegroundWindow(previousWindowHandle);
+        }
+    }
+
+    #endregion
 
     // ReSharper disable All
 
@@ -255,19 +312,4 @@ public partial class MainWindow : IDisposable
     #endregion Code to make maximizing the window take the taskbar into account. https: //stackoverflow.com/questions/20941443/properly-maximizing-wpf-window-with-windowstyle-none
 
     // ReSharper enable All
-
-    public void Dispose()
-    {
-        OverlayContainer?.Dispose();
-        if (WebView is IDisposable webViewDisposable)
-        {
-            webViewDisposable.Dispose();
-        }
-        else if (WebView != null)
-        {
-            _ = WebView.DisposeAsync().AsTask();
-        }
-
-        Scope.Dispose();
-    }
 }
