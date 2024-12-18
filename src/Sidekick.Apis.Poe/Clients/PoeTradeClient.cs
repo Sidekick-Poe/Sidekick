@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients.Models;
+using Sidekick.Apis.Poe.CloudFlare;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Languages;
 
@@ -12,12 +13,15 @@ namespace Sidekick.Apis.Poe.Clients;
 public class PoeTradeClient : IPoeTradeClient
 {
     private readonly ILogger logger;
+    private readonly ICloudflareService cloudflareService;
 
     public PoeTradeClient(
         ILogger<PoeTradeClient> logger,
-        IHttpClientFactory httpClientFactory)
+        IHttpClientFactory httpClientFactory,
+        ICloudflareService cloudflareService)
     {
         this.logger = logger;
+        this.cloudflareService = cloudflareService;
         HttpClient = httpClientFactory.CreateClient(ClientNames.TradeClient);
         HttpClient.DefaultRequestHeaders.Accept.Clear();
         HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/html"));
@@ -59,7 +63,7 @@ public class PoeTradeClient : IPoeTradeClient
             {
                 var contentString = await response.Content.ReadAsStringAsync();
                 logger.LogError($"[Trade Client] Response Error! Status: {response.StatusCode}, Content: {contentString}");
-                throw new Exception($"[Trade Client] Could not understand the API response.");
+                throw new Exception("[Trade Client] Could not understand the API response.");
             }
 
             var content = await response.Content.ReadAsStreamAsync();

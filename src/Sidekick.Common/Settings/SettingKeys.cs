@@ -9,6 +9,9 @@ public static class SettingKeys
     public const string BearerToken = nameof(BearerToken);
     public const string BearerExpiration = nameof(BearerExpiration);
 
+    // Cloudflare settings
+    public const string CloudflareCookie = nameof(CloudflareCookie);
+
     public const string LanguageParser = nameof(LanguageParser);
     public const string LanguageUi = nameof(LanguageUi);
     public const string LeagueId = nameof(LeagueId);

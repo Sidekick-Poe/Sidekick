@@ -4,6 +4,7 @@ using Sidekick.Apis.Poe.Bulk;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Clients.States;
+using Sidekick.Apis.Poe.CloudFlare;
 using Sidekick.Apis.Poe.Leagues;
 using Sidekick.Apis.Poe.Localization;
 using Sidekick.Apis.Poe.Metadata;
@@ -27,13 +28,15 @@ namespace Sidekick.Apis.Poe
             services.AddSingleton<IStashService, StashService>();
             services.AddSingleton<IApiStateProvider, ApiStateProvider>();
             services.AddSingleton<PoeApiHandler>();
+            services.AddSingleton<CloudflareHandler>();
 
             services.AddHttpClient(ClientNames.TradeClient)
                 .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
                 {
                     AllowAutoRedirect = true,
                     UseCookies = true,
-                });
+                })
+                .AddHttpMessageHandler<CloudflareHandler>();;
 
             services.AddHttpClient(ClientNames.PoeClient)
                 .ConfigurePrimaryHttpMessageHandler((sp) =>
@@ -49,6 +52,7 @@ namespace Sidekick.Apis.Poe
             services.AddTransient<FilterResources>();
             services.AddTransient<TradeCurrencyResources>();
 
+            services.AddSingleton<ICloudflareService, CloudflareService>();
             services.AddSingleton<IAuthenticationService, AuthenticationService>();
             services.AddSingleton<IItemParser, ItemParser>();
             services.AddSingleton<ITradeSearchService, TradeSearchService>();

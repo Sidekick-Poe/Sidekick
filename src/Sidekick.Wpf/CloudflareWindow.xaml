@@ -1,0 +1,36 @@
+<Window x:Class="Sidekick.Wpf.CloudflareWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        xmlns:local="clr-namespace:Sidekick.Wpf"
+        mc:Ignorable="d"
+        Title="Sidekick - CloudFlare Challenge"
+        Height="600"
+        Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Name="Grid">
+        <local:OverlayControl x:Name="OverlayContainer" Height="40" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+            <!-- Border used for dragging the window. -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="30*" />
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0"
+                        Name="TopBorder"
+                        Background="Black"
+                        Opacity="0.01"
+                        MouseLeftButtonDown="TopBorder_MouseLeftButtonDown"></Border>
+            </Grid>
+        </local:OverlayControl>
+
+        <wv2:WebView2 x:Name="WebView" Visibility="Hidden"></wv2:WebView2>
+    </Grid>
+</Window>

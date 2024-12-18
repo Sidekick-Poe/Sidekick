@@ -75,6 +75,14 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="CloudflareWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
   <Target Name="Copywwwroot" BeforeTargets="Build">
     <ItemGroup>
       <WwwRootFiles Include="$(ProjectDir)..\Sidekick.Common.Ui\wwwroot\**\*.*" />

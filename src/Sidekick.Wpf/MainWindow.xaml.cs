@@ -64,7 +64,7 @@ public partial class MainWindow
         {
             var width = (int)ActualWidth;
             var height = (int)ActualHeight;
-            _ = viewLocator.CacheProvider.Set($"view_preference_{SidekickView?.CurrentView.Key}",
+            _ = viewLocator.cacheProvider.Set($"view_preference_{SidekickView?.CurrentView.Key}",
                                               new ViewPreferences()
                                               {
                                                   Width = width,
