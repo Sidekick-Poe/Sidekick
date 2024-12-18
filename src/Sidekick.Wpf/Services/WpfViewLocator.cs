@@ -224,10 +224,8 @@ namespace Sidekick.Wpf.Services
                     return;
                 }
 
-                CultureInfo.CurrentCulture = new CultureInfo(culture);
-                CultureInfo.CurrentUICulture = new CultureInfo(culture);
-                CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
-                CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(culture);
+                CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo(culture);
+                CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo(culture);
             });
 
             Application.Current.Dispatcher.Invoke(() =>
