@@ -8,31 +8,12 @@
         Title="Sidekick - Cloudflare Challenge"
         Height="600"
         Width="800"
-        WindowStyle="None"
+        WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize"
-        AllowsTransparency="True"
-        Background="Transparent"
+        AllowsTransparency="False"
+        Background="Black"
         WindowStartupLocation="CenterScreen">
-
     <Grid Name="Grid">
-        <!-- Black Bar with Title at the Top
-        <Border Background="Black" Height="40" VerticalAlignment="Top">
-            <TextBlock Text="Cloudflare Challenge"
-                       Foreground="White"
-                       FontSize="16"
-                       FontWeight="Bold"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center" />
-        </Border>
-
-        <Grid Margin="0,40,0,40"> -->
-            <wv2:WebView2 x:Name="WebView" Visibility="Hidden"></wv2:WebView2>
-        <!-- </Grid>
-
-        <Border Background="Black" Height="40" VerticalAlignment="Bottom">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
-                <Button Content="Exit Sidekick" Width="80" Height="30" Click="ExitButton_Click" />
-            </StackPanel>
-        </Border> -->
+        <wv2:WebView2 x:Name="WebView" Visibility="Hidden"></wv2:WebView2>
     </Grid>
 </Window>

@@ -13,12 +13,11 @@ public class CloudflareHandler
 {
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        await AddCookieToRequest(request);
-
         // First try with existing cookies
+        await AddCookieToRequest(request);
         var response = await base.SendAsync(request, cancellationToken);
 
-        // If we get a 403 and it's not already handling a challenge, we might need to solve one
+        // If we don't get a 403, there is nothing else to do in this handler
         if (response.StatusCode != HttpStatusCode.Forbidden)
         {
             return response;

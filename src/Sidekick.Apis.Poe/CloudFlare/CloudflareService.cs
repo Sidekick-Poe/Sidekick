@@ -38,9 +38,6 @@ public class CloudflareService
 
     public async Task CaptchaChallengeCompleted(string cookie)
     {
-        // Allows time to view the window
-        await Task.Delay(5000);
-
         logger.LogInformation("[CloudflareService] Cloudflare challenge completed.");
         await settingsService.Set(SettingKeys.CloudflareCookie, cookie);
 

@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Interop;
@@ -15,6 +16,7 @@ public partial class CloudflareWindow
     private readonly ILogger logger;
     private readonly ICloudflareService cloudflareService;
     private readonly Uri uri;
+    private bool challengeCompleted;
 
     public CloudflareWindow(ILogger logger, ICloudflareService cloudflareService, Uri uri)
     {
@@ -35,9 +37,6 @@ public partial class CloudflareWindow
             WindowPlacement.ConstrainAndCenterWindowToScreen(window: this);
 
             await WebView.EnsureCoreWebView2Async();
-
-            // Handle navigation events to detect challenge completion
-            WebView.NavigationCompleted += WebView_NavigationCompleted;
 
             // Handle cookie changes by checking cookies after navigation
             WebView.CoreWebView2.NavigationCompleted += CoreWebView2_NavigationCompleted;
@@ -89,6 +88,17 @@ public partial class CloudflareWindow
         Top = top;
     }
 
+    protected override void OnClosing(CancelEventArgs e)
+    {
+        if (!challengeCompleted)
+        {
+            logger.LogInformation("[CloudflareWindow] Closing the window without completing the challenge, marking as failed");
+            _ = cloudflareService.CaptchaChallengeFailed();
+        }
+
+        base.OnClosing(e);
+    }
+
     private async void CoreWebView2_NavigationCompleted(object? sender, CoreWebView2NavigationCompletedEventArgs e)
     {
         try
@@ -101,32 +111,15 @@ public partial class CloudflareWindow
             }
 
             // Store the Cloudflare cookie
+            challengeCompleted = true;
             _ = cloudflareService.CaptchaChallengeCompleted(cfCookie.Value);
             logger.LogInformation("[CloudflareWindow] Cookie check completed, challenge likely completed");
+
             Dispatcher.Invoke(Close);
         }
         catch (Exception ex)
         {
             logger.LogError(ex, "[CloudflareWindow] Error handling cookie check");
-        }
-    }
-
-    private void ExitButton_Click(object sender, RoutedEventArgs e)
-    {
-        Application.Current.Dispatcher.Invoke(() =>
-        {
-            Application.Current.Shutdown();
-        });
-        Environment.Exit(0);
-    }
-
-    private void WebView_NavigationCompleted(object? sender, CoreWebView2NavigationCompletedEventArgs e)
-    {
-        // Check if we're still on a Cloudflare page or if we've been redirected to the actual content
-        var currentUri = WebView.Source;
-        if (currentUri == null || currentUri.AbsolutePath.Contains("/cdn-cgi/"))
-        {
-            return;
         }
     }
 }
