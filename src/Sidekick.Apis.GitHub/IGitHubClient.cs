@@ -1,11 +1,12 @@
 using Sidekick.Apis.GitHub.Models;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.GitHub;
 
 /// <summary>
 ///     Interface to communicate with GitHub.
 /// </summary>
-public interface IGitHubClient
+public interface IGitHubClient : IInitializableService
 {
     /// <summary>
     ///     Gets the latest release.
@@ -19,10 +20,4 @@ public interface IGitHubClient
     /// <param name="downloadPath">The path where the file is to be downloaded.</param>
     /// <returns>True if the file downloaded successfully.</returns>
     Task<bool> DownloadLatest(string downloadPath);
-
-    /// <summary>
-    /// Downloads the GitHub download indicator file. This file serves no purpose other than having an accurate download counter. If the file was previously downloaded, it won't be downloaded again.
-    /// </summary>
-    /// <returns>A task representing the operation.</returns>
-    Task DownloadGitHubDownloadIndicatorFile();
 }
