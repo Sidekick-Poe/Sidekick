@@ -91,24 +91,25 @@ jobs:
       - name: Git - Push to repository
         shell: pwsh
         run: |
+          $version = "${{ steps.version.outputs.version }}"
           $deployRepository = "git@github.com:Sidekick-Poe/Sidekick-Velopack.git"
           Write-Output "Deploy repository: $deployRepository"
 
           # Clone `gh-pages` branch.
-          git clone $deployRepository -b gh-pages --single-branch "dist"
+          git clone $deployRepository -b gh-pages --single-branch "Velopack"
 
-          Push-Location "dist"
+          Push-Location "Velopack"
           try {
               Write-Output "Removing previous files..."
-              if (Test-Path "Application Files") {
-                  Remove-Item -Path "Application Files" -Recurse
+              if (Test-Path "velopack-publish") {
+                  Remove-Item -Path "velopack-publish" -Recurse
               }
               if (Test-Path "Sidekick.application") {
                   Remove-Item -Path "Sidekick.application"
               }
 
               Write-Output "Copying new files..."
-              Copy-Item -Path "../velopack-publish" -Destination . -Recurse
+              Copy-Item -Path "../Releases" -Destination ./Releases -Recurse
 
               # Stage and commit.
               git add -A
