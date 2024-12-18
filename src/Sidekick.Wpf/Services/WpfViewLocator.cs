@@ -66,8 +66,6 @@ namespace Sidekick.Wpf.Services
                         window.ResizeMode = ResizeMode.CanResize;
                     }
 
-                    WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
-
                     window.Ready();
                 });
         }
@@ -123,9 +121,9 @@ namespace Sidekick.Wpf.Services
                             window.Height = view.ViewHeight;
                             window.Width = view.ViewWidth;
                         }
-
-                        WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
                     }
+
+                    window.CenterOnScreen();
                 });
         }
 
@@ -147,7 +145,7 @@ namespace Sidekick.Wpf.Services
                     else
                     {
                         window.WindowState = WindowState.Normal;
-                        WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
+                        window.CenterOnScreen();
                     }
                 });
             return Task.CompletedTask;
