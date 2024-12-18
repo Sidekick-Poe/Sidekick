@@ -74,8 +74,8 @@ jobs:
           Write-Output "Version: $version"
 
           dotnet tool update -g vpk
-          dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release --self-contained -r win-x64 -o .\velopack-publish
-          vpk pack -u Sidekick -v $version -p .\velopack-publish --channel beta-win -e Sidekick.exe
+          dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release --self-contained false -r win-x64 -o .\Publish
+          vpk pack -u Sidekick -v $version -p .\Publish --channel beta-win -e Sidekick.exe
 
       - name: Git - Setup
         run: |
@@ -96,7 +96,7 @@ jobs:
           Write-Output "Deploy repository: $deployRepository"
 
           # Clone `gh-pages` branch.
-          git clone $deployRepository -b gh-pages --single-branch "Velopack"
+          git clone $deployRepository -b gh-pages --single-branch "Publish-Repository"
 
           Push-Location "Velopack"
           try {
@@ -109,7 +109,7 @@ jobs:
               }
 
               Write-Output "Copying new files..."
-              Copy-Item -Path "../Releases" -Destination ./Releases -Recurse
+              Copy-Item -Path "../Releases" -Destination ./Publish-Repository -Recurse
 
               # Stage and commit.
               git add -A
