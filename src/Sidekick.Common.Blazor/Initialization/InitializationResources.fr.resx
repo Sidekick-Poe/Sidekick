@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,19 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Filters_Dps" xml:space="preserve">
-    <value>Damage per Second</value>
+  <data name="Close" xml:space="preserve">
+    <value>Fermer</value>
   </data>
-  <data name="Filters_EDps" xml:space="preserve">
-    <value>Elemental DPS</value>
+  <data name="Error" xml:space="preserve">
+    <value>Une erreur s'est produite lors de l'initialisation! Il est possible que les services de Path of Exile soient inaccessibles. Veuillez réessayer plus tard.</value>
   </data>
-  <data name="Filters_PDps" xml:space="preserve">
-    <value>Physical DPS</value>
+  <data name="Exit" xml:space="preserve">
+    <value>Quitter</value>
   </data>
-  <data name="Filters_ChaosDps" xml:space="preserve">
-    <value>Chaos DPS</value>
+  <data name="Notification" xml:space="preserve">
+    <value>Faites {0} sur un item dans le jeu et {1} pour fermer la fenêtre.</value>
   </data>
-  <data name="Filters_Damage" xml:space="preserve">
-    <value>Damage</value>
+  <data name="Ready" xml:space="preserve">
+    <value>Prêt</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Initialisation ({0} de {1})</value>
   </data>
 </root>

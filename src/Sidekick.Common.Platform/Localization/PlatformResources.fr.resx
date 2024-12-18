@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,19 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Filters_Dps" xml:space="preserve">
-    <value>Damage per Second</value>
-  </data>
-  <data name="Filters_EDps" xml:space="preserve">
-    <value>Elemental DPS</value>
-  </data>
-  <data name="Filters_PDps" xml:space="preserve">
-    <value>Physical DPS</value>
-  </data>
-  <data name="Filters_ChaosDps" xml:space="preserve">
-    <value>Chaos DPS</value>
-  </data>
-  <data name="Filters_Damage" xml:space="preserve">
-    <value>Damage</value>
+  <data name="RestartAsAdminText" xml:space="preserve">
+    <value>Cette application a besoin de rouler en mode administrateur afin de bien fonctionner.\nConfirmez pour relancer en mode administrateur automatiquement.</value>
   </data>
 </root>
