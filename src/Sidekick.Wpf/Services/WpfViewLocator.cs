@@ -70,10 +70,8 @@ namespace Sidekick.Wpf.Services
                     window.ResizeMode = ResizeMode.CanResize;
                 }
 
-                WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
-
-                window.Ready();
-            });
+                    window.Ready();
+                });
         }
 
         private void CurrentViewOnViewChanged(ICurrentView view)
@@ -85,6 +83,12 @@ namespace Sidekick.Wpf.Services
 
             Application.Current.Dispatcher.Invoke(() =>
             {
+                if (view.Height != null)
+                {
+                    window.Height = view.Height.Value;
+                    window.CenterOnScreen();
+                }
+
                 window.Title = $"Sidekick {view.Title}".Trim();
             });
         }
@@ -109,19 +113,19 @@ namespace Sidekick.Wpf.Services
                 {
                     window.WindowState = WindowState.Normal;
 
-                    if (preferences != null)
-                    {
-                        window.Height = preferences.Height;
-                        window.Width = preferences.Width;
-                    }
-                    else
-                    {
-                        window.Height = view.ViewHeight;
-                        window.Width = view.ViewWidth;
+                        if (preferences != null)
+                        {
+                            window.Height = preferences.Height;
+                            window.Width = preferences.Width;
+                        }
+                        else
+                        {
+                            window.Height = view.ViewHeight;
+                            window.Width = view.ViewWidth;
+                        }
                     }
 
-                    WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
-                }
+                    window.CenterOnScreen();
             });
         }
 
@@ -142,7 +146,7 @@ namespace Sidekick.Wpf.Services
                 else
                 {
                     window.WindowState = WindowState.Normal;
-                    WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
+                    window.CenterOnScreen();
                 }
             });
             return Task.CompletedTask;
