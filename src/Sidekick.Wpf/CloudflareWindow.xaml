@@ -4,9 +4,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
-        xmlns:local="clr-namespace:Sidekick.Wpf"
         mc:Ignorable="d"
-        Title="Sidekick - CloudFlare Challenge"
+        Title="Sidekick - Cloudflare Challenge"
         Height="600"
         Width="800"
         WindowStyle="None"
@@ -16,21 +15,24 @@
         WindowStartupLocation="CenterScreen">
 
     <Grid Name="Grid">
-        <local:OverlayControl x:Name="OverlayContainer" Height="40" VerticalAlignment="Top" HorizontalAlignment="Stretch">
-            <!-- Border used for dragging the window. -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="30*" />
-                </Grid.ColumnDefinitions>
-                <Border Grid.Column="0"
-                        Name="TopBorder"
-                        Background="Black"
-                        Opacity="0.01"
-                        MouseLeftButtonDown="TopBorder_MouseLeftButtonDown"></Border>
-            </Grid>
-        </local:OverlayControl>
+        <!-- Black Bar with Title at the Top
+        <Border Background="Black" Height="40" VerticalAlignment="Top">
+            <TextBlock Text="Cloudflare Challenge"
+                       Foreground="White"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center" />
+        </Border>
 
-        <wv2:WebView2 x:Name="WebView" Visibility="Hidden"></wv2:WebView2>
+        <Grid Margin="0,40,0,40"> -->
+            <wv2:WebView2 x:Name="WebView" Visibility="Hidden"></wv2:WebView2>
+        <!-- </Grid>
+
+        <Border Background="Black" Height="40" VerticalAlignment="Bottom">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
+                <Button Content="Exit Sidekick" Width="80" Height="30" Click="ExitButton_Click" />
+            </StackPanel>
+        </Border> -->
     </Grid>
 </Window>

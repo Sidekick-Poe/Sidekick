@@ -11,57 +11,59 @@ public class CloudflareHandler
     ICloudflareService cloudflareService
 ) : DelegatingHandler
 {
-    private readonly SemaphoreSlim challengeSemaphore = new(1, 1);
-    private bool isHandlingChallenge;
-
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        // TODO : Set cf cookie
+        await AddCookieToRequest(request);
 
         // First try with existing cookies
         var response = await base.SendAsync(request, cancellationToken);
 
         // If we get a 403 and it's not already handling a challenge, we might need to solve one
-        if (response.StatusCode == HttpStatusCode.Forbidden && !isHandlingChallenge)
+        if (response.StatusCode != HttpStatusCode.Forbidden)
         {
-            logger.LogInformation("[CloudflareHandler] Received 403 response, attempting to handle Cloudflare challenge");
-
-            try
-            {
-                await challengeSemaphore.WaitAsync(cancellationToken);
-                isHandlingChallenge = true;
-
-                // Show WebView2 window and wait for challenge completion
-                var success = await cloudflareService.StartCaptchaChallenge(request.RequestUri!, cancellationToken);
-                if (!success)
-                {
-                    logger.LogWarning("[CloudflareHandler] Failed to complete Cloudflare challenge");
-                    return response;
-                }
-
-                // Retry the request with new cookies
-                var retryResponse = await base.SendAsync(request, cancellationToken);
-                if (retryResponse.IsSuccessStatusCode)
-                {
-                    logger.LogInformation("[CloudflareHandler] Successfully completed Cloudflare challenge and retried request");
-                    return retryResponse;
-                }
-
-                logger.LogWarning("[CloudflareHandler] Request still failed after completing Cloudflare challenge: {StatusCode}", retryResponse.StatusCode);
-                return retryResponse;
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, "[CloudflareHandler] Error handling Cloudflare challenge");
-                return response;
-            }
-            finally
-            {
-                isHandlingChallenge = false;
-                challengeSemaphore.Release();
-            }
+            return response;
         }
 
-        return response;
+        logger.LogInformation("[CloudflareHandler] Received 403 response, attempting to handle Cloudflare challenge");
+
+        // Show WebView2 window and wait for challenge completion
+        var success = await cloudflareService.StartCaptchaChallenge(request.RequestUri!, cancellationToken);
+        if (!success)
+        {
+            logger.LogWarning("[CloudflareHandler] Failed to complete Cloudflare challenge");
+            return response;
+        }
+
+        // Retry the request with new cookies
+        await AddCookieToRequest(request);
+        var retryResponse = await base.SendAsync(request, cancellationToken);
+        if (retryResponse.IsSuccessStatusCode)
+        {
+            logger.LogInformation("[CloudflareHandler] Successfully completed Cloudflare challenge and retried request");
+        }
+        else
+        {
+            logger.LogWarning("[CloudflareHandler] Request still failed after completing Cloudflare challenge: {StatusCode}", retryResponse.StatusCode);
+        }
+
+        return retryResponse;
+    }
+
+    private async Task AddCookieToRequest(HttpRequestMessage request)
+    {
+        var cookie = await settingsService.GetString(SettingKeys.CloudflareCookie);
+        if (!string.IsNullOrEmpty(cookie))
+        {
+            // Append the cookie to the `Cookie` header
+            if (!request.Headers.Contains("Cookie"))
+            {
+                request.Headers.Add("Cookie", $"cf_clearance={cookie}");
+            }
+            else
+            {
+                request.Headers.Remove("Cookie");
+                request.Headers.Add("Cookie", $"cf_clearance={cookie}");
+            }
+        }
     }
 }

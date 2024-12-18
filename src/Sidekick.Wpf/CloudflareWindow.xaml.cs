@@ -56,11 +56,6 @@ public partial class CloudflareWindow
         });
     }
 
-    private void TopBorder_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-    {
-        DragMove();
-    }
-
     private void CenterOnScreen()
     {
         // Get the window's handle
@@ -116,6 +111,15 @@ public partial class CloudflareWindow
         }
     }
 
+    private void ExitButton_Click(object sender, RoutedEventArgs e)
+    {
+        Application.Current.Dispatcher.Invoke(() =>
+        {
+            Application.Current.Shutdown();
+        });
+        Environment.Exit(0);
+    }
+
     private void WebView_NavigationCompleted(object? sender, CoreWebView2NavigationCompletedEventArgs e)
     {
         // Check if we're still on a Cloudflare page or if we've been redirected to the actual content
@@ -124,7 +128,5 @@ public partial class CloudflareWindow
         {
             return;
         }
-
-        logger.LogInformation("[CloudflareWindow] Navigation completed to non-Cloudflare page, challenge likely completed");
     }
 }

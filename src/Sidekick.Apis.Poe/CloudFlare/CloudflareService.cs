@@ -12,6 +12,7 @@ public class CloudflareService
     public event Action<Uri>? ChallengeStarted;
 
     private TaskCompletionSource<bool>? challengeCompletion;
+    private bool isHandlingChallenge;
 
     public Task<bool> StartCaptchaChallenge(Uri? uri = null, CancellationToken cancellationToken = default)
     {
@@ -23,6 +24,12 @@ public class CloudflareService
             return Task.FromResult(false);
         }
 
+        if (isHandlingChallenge && challengeCompletion != null)
+        {
+            return challengeCompletion.Task;
+        }
+
+        isHandlingChallenge = true;
         ChallengeStarted?.Invoke(uri);
 
         challengeCompletion = new TaskCompletionSource<bool>();
@@ -31,13 +38,21 @@ public class CloudflareService
 
     public async Task CaptchaChallengeCompleted(string cookie)
     {
+        // Allows time to view the window
+        await Task.Delay(5000);
+
         logger.LogInformation("[CloudflareService] Cloudflare challenge completed.");
         await settingsService.Set(SettingKeys.CloudflareCookie, cookie);
+
         challengeCompletion?.TrySetResult(true);
+        isHandlingChallenge = false;
     }
 
-    public async Task CaptchaChallengeFailed()
+    public Task CaptchaChallengeFailed()
     {
+        logger.LogInformation("[CloudflareService] Cloudflare challenge failed.");
         challengeCompletion?.TrySetResult(false);
+        isHandlingChallenge = false;
+        return Task.CompletedTask;
     }
 }
