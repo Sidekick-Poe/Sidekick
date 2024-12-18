@@ -74,7 +74,8 @@ jobs:
           Write-Output "Version: $version"
 
           dotnet tool update -g vpk
-          dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release --self-contained -r win-x64 -o .\velopack-publish
+          # dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release --self-contained -r win-x64 -o .\velopack-publish
+          dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release -r win-x64 -o .\velopack-publish
           vpk pack -u Sidekick -v $version -p .\velopack-publish --channel win-beta -e Sidekick.exe
 
       - name: Git - Setup
