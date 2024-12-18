@@ -19,4 +19,6 @@ public class SidekickException : Exception
     }
 
     public string? AdditionalInformation { get; }
+
+    public bool ExitApplication { get; set; }
 }

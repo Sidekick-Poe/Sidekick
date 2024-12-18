@@ -5,6 +5,7 @@
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Blazor.Settings.General
+@using Sidekick.Common.Exceptions
 
 <AppTitle Title="@Resources["Setup"]"/>
 <LayoutSimple>
@@ -102,10 +103,19 @@
                 NavigationManager.NavigateTo("/initialize");
             }
         }
-        catch (Exception)
+        catch (SidekickException e)
         {
             CurrentView.SetHeight(360);
+            e.ExitApplication = true;
             throw;
+        }
+        catch (Exception e)
+        {
+            CurrentView.SetHeight(360);
+            throw new SidekickException(e.Message)
+            {
+                ExitApplication = true,
+            };
         }
 
         await base.OnInitializedAsync();

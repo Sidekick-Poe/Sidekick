@@ -1,3 +1,5 @@
+@using Sidekick.Common.Exceptions
+@using Sidekick.Common.Platform
 
 <SidekickErrorBoundary>
     <ChildContent>
@@ -32,15 +34,28 @@
                     </div>
                 </div>
 
-                <div class="flex items-center justify-center">
-                    <a href="javascript:" class="bg-white text-red-700 px-8 py-4 m-4" @onclick="CurrentView.Close">Close</a>
-                </div>
+                @if (context.Exception is SidekickException
+                     {
+                         ExitApplication: true
+                     })
+                {
+                    <div class="flex items-center justify-center">
+                        <a href="javascript:" class="bg-white text-red-700 px-8 py-4 m-4" @onclick="ApplicationService.Shutdown">Exit Application</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="flex items-center justify-center">
+                        <a href="javascript:" class="bg-white text-red-700 px-8 py-4 m-4" @onclick="CurrentView.Close">Close</a>
+                    </div>
+                }
             </div>
         </div>
     </ErrorContent>
 </SidekickErrorBoundary>
 
 @inject ICurrentView CurrentView
+@inject IApplicationService ApplicationService
 
 @code {
 
