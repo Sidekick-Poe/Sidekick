@@ -163,7 +163,7 @@
     <value>Wildcards</value>
   </data>
   <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
-    <value>@last - Nom de personne du dernier échange</value>
+    <value>@last - Nom de la personne du dernier échange</value>
   </data>
   <data name="General_Settings" xml:space="preserve">
     <value>Configurations générales</value>
@@ -293,5 +293,20 @@
   </data>
   <data name="Bulk_Trade_Settings" xml:space="preserve">
     <value>Configurations de l'échange en gros</value>
+  </data>
+  <data name="Preferred_search_mode_for_currency_items" xml:space="preserve">
+    <value>Mode de recherche pour les devises</value>
+  </data>
+  <data name="Item _Trade" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="Bulk_Trade" xml:space="preserve">
+    <value>Vente en gros</value>
+  </data>
+  <data name="Currency_of_Bulk_Offers" xml:space="preserve">
+    <value>Devise de la vente en gros</value>
+  </data>
+  <data name="Minimum_Stock_in_Bulk_Trade" xml:space="preserve">
+    <value>Stock disponible de la vente en gros</value>
   </data>
 </root>
