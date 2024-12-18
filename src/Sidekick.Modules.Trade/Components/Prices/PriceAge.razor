@@ -14,15 +14,15 @@
         {
             var span = DateTimeOffset.Now - Date;
 
-            if (span.Days > 1) return Resources["{0} days", span.Days];
-            if (span.Days == 1) return Resources["{0} day", span.Days];
-            if (span.Hours > 1) return Resources["{0} hours", span.Hours];
-            if (span.Hours == 1) return Resources["{0} hour", span.Hours];
-            if (span.Minutes > 1) return Resources["{0} minutes", span.Minutes];
-            if (span.Minutes == 1) return Resources["{0} minute", span.Minutes];
-            if (span.Seconds > 10) return Resources["{0} seconds", span.Seconds];
+            if (span.Days > 1) return Resources["Age_Days", span.Days];
+            if (span.Days == 1) return Resources["Age_Day", span.Days];
+            if (span.Hours > 1) return Resources["Age_Hours", span.Hours];
+            if (span.Hours == 1) return Resources["Age_Hour", span.Hours];
+            if (span.Minutes > 1) return Resources["Age_Minutes", span.Minutes];
+            if (span.Minutes == 1) return Resources["Age_Minute", span.Minutes];
+            if (span.Seconds > 10) return Resources["Age_Seconds", span.Seconds];
 
-            return Resources["now"];
+            return Resources["Age_Now"];
         }
     }
 }

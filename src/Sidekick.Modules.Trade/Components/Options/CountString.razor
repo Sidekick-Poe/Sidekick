@@ -2,7 +2,7 @@
 
 @if (Total > 0 && Count > 0)
 {
-    <TextCaption>@Resources["Showing {0} out of {1} items", Count, Total]</TextCaption>
+    <TextCaption>@Resources["CountString", Count, Total]</TextCaption>
 }
 
 @inject IStringLocalizer<TradeResources> Resources

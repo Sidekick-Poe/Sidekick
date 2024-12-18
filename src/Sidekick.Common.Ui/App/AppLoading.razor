@@ -1,5 +1,6 @@
+@inject IStringLocalizer<AppResources> Resources
 
 <AppContainer>
-    <Heading3 Class="text-center mb-3">Loading</Heading3>
+    <Heading3 Class="text-center mb-3">@Resources["Loading"]</Heading3>
     <ProgressBar Indeterminate="true"/>
 </AppContainer>

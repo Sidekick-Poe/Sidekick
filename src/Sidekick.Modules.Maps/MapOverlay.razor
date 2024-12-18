@@ -1,6 +1,7 @@
 @page "/map/{itemText}"
 @using System.Text.RegularExpressions
 @using Sidekick.Apis.Poe
+@using Sidekick.Common.Game
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Exceptions
 @using Sidekick.Common.Game.Items
@@ -12,7 +13,7 @@
 
 <AppTitle Title="@Resources["Map Check"]"/>
 
-<LayoutTwoColumn>
+<LayoutTwoColumn HasChildContent="@(Item == null || Item.Metadata.Game == GameType.PathOfExile)">
     <TopContent>
         <AppBar>
             <AppSettings Href="/settings/map">
@@ -85,12 +86,13 @@
         {
             <AppLoading/>
         }
-        else
+        else if (Item.Metadata.Game == GameType.PathOfExile)
         {
             <PoeWikiMapInfo Type="@Item.Invariant?.Type" Name="@Item.Invariant?.Name"/>
         }
     </ChildContent>
 </LayoutTwoColumn>
+
 
 @inject IStringLocalizer<MapInfoResources> Resources
 @inject IItemParser ItemParser

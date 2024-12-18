@@ -25,21 +25,21 @@
                             @onclick:preventDefault="true"
                             @onclick:stopPropagation="true"
                             tabindex="-1"
-                            title="All Settings"
+                            title="@Resources["All_Settings"]"
                             class="p-2 text-base font-medium tracking-wide text-white border-r transition-colors duration-200 border-stone-700 bg-stone-950 hover:bg-stone-700 hover:border-stone-600 flex items-center gap-2">
-                        <span>@Localizer["All Settings"]</span>
+                        <span>@Resources["All_Settings"]</span>
                     </button>
                     <button type="button"
                             @onclick="ToggleDrawer"
                             @onclick:preventDefault="true"
                             @onclick:stopPropagation="true"
                             tabindex="-1"
-                            title="Close"
+                            title="@Resources["All_Settings"]"
                             class="p-2 text-base font-medium tracking-wide text-white transition-colors duration-200 border-stone-700 bg-stone-950 hover:bg-stone-700 hover:border-stone-600 flex items-center gap-2">
                         <span class="fill-current inline-block w-[1em] h-[1em] min-w-[1em] min-h-[1em]"><svg
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path
                                     d="M4,2H2V22H4V13H18.17L12.67,18.5L14.08,19.92L22,12L14.08,4.08L12.67,5.5L18.17,11H4V2Z"/></svg></span>
-                        <span>@Localizer["Close"]</span>
+                        <span>@Resources["Close"]</span>
                     </button>
                 </div>
                 <div class="h-full w-full overflow-y-auto overflow-x-hidden p-4 grow">
@@ -57,7 +57,7 @@
 </div>
 
 @inject ICurrentView CurrentView
-@inject IStringLocalizer<AppSettings> Localizer
+@inject IStringLocalizer<AppResources> Resources
 @inject IViewLocator ViewLocator
 
 @code {

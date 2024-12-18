@@ -14,20 +14,20 @@
     <LeftContent>
         <MenuList>
             <MenuItem Href="/settings">@Resources["General"]</MenuItem>
-            <MenuItem Href="/settings/price">@Resources["Price Check"]</MenuItem>
-            <MenuItem Href="/settings/map">@Resources["Map Check"]</MenuItem>
+            <MenuItem Href="/settings/price">@Resources["Price_Check"]</MenuItem>
+            <MenuItem Href="/settings/map">@Resources["Map_Check"]</MenuItem>
             <MenuItem Href="/settings/wiki">@Resources["Wiki"]</MenuItem>
-            <MenuItem Href="/settings/chat">@Resources["Chat Commands"]</MenuItem>
+            <MenuItem Href="/settings/chat">@Resources["Chat_Commands"]</MenuItem>
 
             @if (Debugger.IsAttached)
             {
-                <MenuItem Href="/settings/wealth">@Resources["Wealth Tracker"]</MenuItem>
+                <MenuItem Href="/settings/wealth">@Resources["WealthTracker"]</MenuItem>
             }
 
             <div class="grow"></div>
 
             <div class="py-2">
-                <ButtonSecondary OnClick="ResetCache">@Resources["Reset Cache"]</ButtonSecondary>
+                <ButtonSecondary OnClick="ResetCache">@Resources["Reset_Cache"]</ButtonSecondary>
             </div>
         </MenuList>
     </LeftContent>
@@ -41,7 +41,7 @@
     </BottomContent>
 </LayoutTwoColumn>
 
-@inject IStringLocalizer<SettingsLayout> Resources
+@inject IStringLocalizer<SettingsResources> Resources
 @inject ICacheProvider CacheProvider
 @inject NavigationManager NavigationManager
 
