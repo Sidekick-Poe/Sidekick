@@ -9,6 +9,7 @@ using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Wpf.Services;
+using Velopack;
 
 namespace Sidekick.Wpf;
 
@@ -26,6 +27,8 @@ public partial class MainWindow
 
     public MainWindow(WpfViewLocator viewLocator)
     {
+        VelopackApp.Build().Run();
+
         Scope = App.ServiceProvider.CreateScope();
         Resources.Add("services", Scope.ServiceProvider);
         InitializeComponent();
