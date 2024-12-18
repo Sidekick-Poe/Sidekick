@@ -117,4 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Exit" xml:space="preserve">
+      <value>나가기</value>
+  </data>
+  <data name="New_League_Alert" xml:space="preserve">
+      <value>새로운 리그 선택이 가능합니다! 세팅에서 원하시는 리그를 선택해주세요.</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+      <value>저장</value>
+  </data>
+  <data name="Setup" xml:space="preserve">
+      <value>설치</value>
+  </data>
+  <data name="Valid_Language_Alert" xml:space="preserve">
+      <value>계속하기위해서 언어와 리그를 다시 선택해주세요.</value>
+  </data>
 </root>

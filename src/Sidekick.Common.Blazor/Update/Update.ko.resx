@@ -117,4 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Confirm_Update" xml:space="preserve">
+      <value>업데이트를 다운로드하고 설치하는걸 동의해주세요.</value>
+  </data>
+  <data name="Download_And_Install" xml:space="preserve">
+      <value>다운로드 및 설치</value>
+  </data>
+  <data name="New_Update_Alert" xml:space="preserve">
+      <value>새 업데이트가 있습니다!</value>
+  </data>
+  <data name="Open_Website" xml:space="preserve">
+      <value>거래소 열기</value>
+  </data>
 </root>
