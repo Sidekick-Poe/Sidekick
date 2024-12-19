@@ -48,7 +48,7 @@ namespace Sidekick.Apis.Poe.Parser
                 var metadata = itemMetadataProvider.Parse(parsingItem);
                 if (metadata == null || (string.IsNullOrEmpty(metadata.Name) && string.IsNullOrEmpty(metadata.Type)))
                 {
-                    throw new UnparsableException("Item was not found in the metadata provider.");
+                    throw new UnparsableException();
                 }
 
                 // Strip the Superior affix from the name
@@ -94,7 +94,7 @@ namespace Sidekick.Apis.Poe.Parser
             catch (Exception e)
             {
                 logger.LogWarning(e, "Could not parse item.");
-                throw new UnparsableException();
+                throw;
             }
         }
 
