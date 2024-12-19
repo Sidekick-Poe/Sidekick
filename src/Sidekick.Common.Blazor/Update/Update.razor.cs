@@ -26,9 +26,6 @@ namespace Sidekick.Common.Blazor.Update
         [Inject]
         private ICacheProvider CacheProvider { get; set; } = null!;
 
-        [Inject]
-        private ICurrentView CurrentView { get; set; } = null!;
-
         private string? Step { get; set; }
         private bool Error { get; set; }
 
