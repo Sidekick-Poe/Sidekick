@@ -10,17 +10,13 @@ public class PropertyFilter : ITradeFilter
         string text,
         object value,
         decimal? min = null,
-        decimal? max = null,
-        decimal delta = 1)
+        decimal? max = null)
     {
         Checked = @checked;
         Type = type;
         Text = text;
         Value = value;
-        Delta = delta;
-        MinimumValueForNormalization = min;
         Max = max;
-        NormalizeMinValue();
 
         if (min.HasValue)
         {
@@ -44,10 +40,7 @@ public class PropertyFilter : ITradeFilter
     public string Text { get; }
 
     public object Value { get; }
-
-    public decimal Delta { get; }
-
-    private decimal? MinimumValueForNormalization { get; }
+    public double NormalizeValue { get; set; }
 
     public FilterValueType ValueType
     {
@@ -72,7 +65,7 @@ public class PropertyFilter : ITradeFilter
     }
 
     /// <summary>
-    /// Normalizes the Min value between a -1 delta or 90%.
+    /// Normalize the Min value with NormalizeValue.
     /// </summary>
     public void NormalizeMinValue()
     {
@@ -83,21 +76,16 @@ public class PropertyFilter : ITradeFilter
 
         if (value > 0)
         {
-            Min = Math.Max(Math.Min(value - Delta, value * (decimal)0.9), 0);
+            Min = Math.Max((1 - (decimal)NormalizeValue) * value, 0);
         }
         else
         {
-            Min = Math.Min(Math.Min(value - Delta, value * (decimal)1.1), 0);
-        }
-
-        if (MinimumValueForNormalization.HasValue && Min < MinimumValueForNormalization)
-        {
-            Min = MinimumValueForNormalization;
+            Min = Math.Min((1 + (decimal)NormalizeValue) * value, 0);
         }
     }
 
     /// <summary>
-    /// Normalizes the Max value between a +1 delta or 90%.
+    /// Normalize the Max value, +1 and/or NormalizeValue.
     /// </summary>
     public void NormalizeMaxValue()
     {
@@ -108,11 +96,11 @@ public class PropertyFilter : ITradeFilter
 
         if (value > 0)
         {
-            Max = Math.Max(Math.Max(value + Delta, value * (decimal)1.1), 0);
+            Max = Math.Max(Math.Max(value + 1, (1 + (decimal)NormalizeValue) * value), 0);
         }
         else
         {
-            Max = Math.Min(Math.Max(value + Delta, value * (decimal)0.9), 0);
+            Max = Math.Min(Math.Max(value + 1, (1 - (decimal)NormalizeValue) * value), 0);
         }
     }
 

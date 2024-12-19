@@ -22,7 +22,7 @@
     {
         var values = new List<double> { 0, .05, .1, .15, .2, .25 };
 
-        Value = (await SettingsService.GetObject<double?>(SettingKeys.PriceCheckNormalizeValue) ?? 0).ToString();
+        Value = (await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue)).ToString();
 
         Options = values.Select(x => new SelectOption
             {

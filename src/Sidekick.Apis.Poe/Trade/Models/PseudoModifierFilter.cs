@@ -8,7 +8,6 @@ namespace Sidekick.Apis.Poe.Trade.Models
         {
             Modifier = modifier;
             Checked = false;
-            NormalizeMinValue();
         }
 
         public PseudoModifier Modifier { get; }
@@ -19,33 +18,35 @@ namespace Sidekick.Apis.Poe.Trade.Models
 
         public decimal? Max { get; set; }
 
+        public double NormalizeValue { get; set; }
+
         /// <summary>
-        /// Normalizes the Min value between a -1 delta or 90%.
+        /// Normalize the Min value with NormalizeValue.
         /// </summary>
         public void NormalizeMinValue()
         {
             if (Modifier.Value > 0)
             {
-                Min = (int)Math.Max(Math.Min(Modifier.Value - 1, Modifier.Value * 0.9), 0);
+                Min = (int)Math.Max((1 - NormalizeValue) * Modifier.Value, 0);
             }
             else
             {
-                Min = (int)Math.Min(Math.Min(Modifier.Value - 1, Modifier.Value * 1.1), 0);
+                Min = (int)Math.Min((1 + NormalizeValue) * Modifier.Value, 0);
             }
         }
 
         /// <summary>
-        /// Normalizes the Max value between a +1 delta or 90%.
+        /// Normalize the Max value, +1 and/or NormalizeValue.
         /// </summary>
         public void NormalizeMaxValue()
         {
             if (Modifier.Value > 0)
             {
-                Max = (int)Math.Max(Math.Max(Modifier.Value + 1, Modifier.Value * 1.1), 0);
+                Max = (int)Math.Max(Math.Max(Modifier.Value + 1, (1 + NormalizeValue) * Modifier.Value), 0);
             }
             else
             {
-                Max = (int)Math.Min(Math.Max(Modifier.Value + 1, Modifier.Value * 0.9), 0);
+                Max = (int)Math.Min(Math.Max(Modifier.Value + 1, (1 - NormalizeValue) * Modifier.Value), 0);
             }
         }
 
