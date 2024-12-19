@@ -11,17 +11,17 @@
 {
     <AlertInfo>
         <div class="flex items-center gap-2">
-            <TextBase>@Resources["A new update is available!"]</TextBase>
+            <TextBase>@Resources["New_Update_Alert"]</TextBase>
             <TextCaption>
                 @if (Release is
                      {
                          IsExecutable: true
                      } && false)
                 {
-                    <ButtonLink OnClick="Download">@Resources["Download and Install"]</ButtonLink>
+                    <ButtonLink OnClick="Download">@Resources["Download_And_Install"]</ButtonLink>
                 }
 
-                <ButtonLink OnClick="OpenWebsite">@Resources["Open Website"]</ButtonLink>
+                <ButtonLink OnClick="OpenWebsite">@Resources["Open_Website"]</ButtonLink>
             </TextCaption>
         </div>
     </AlertInfo>
@@ -31,7 +31,7 @@
 @inject IViewLocator ViewLocator
 @inject ISidekickDialogs DialogService
 @inject IBrowserProvider Browser
-@inject IStringLocalizer<UpdateResources> Resources
+@inject IStringLocalizer<Update> Resources
 
 @code {
 
@@ -56,7 +56,7 @@
 
     private async Task Download()
     {
-        if (!await DialogService.OpenConfirmationModal(Resources["Are you sure you want to download and install this update?"]))
+        if (!await DialogService.OpenConfirmationModal(Resources["Confirm_Update"]))
         {
             return;
         }

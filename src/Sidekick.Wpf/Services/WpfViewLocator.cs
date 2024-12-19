@@ -1,8 +1,10 @@
+using System.Globalization;
 using System.Net;
 using System.Windows;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.CloudFlare;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Wpf.Helpers;
 
@@ -74,7 +76,7 @@ namespace Sidekick.Wpf.Services
                     window.ResizeMode = ResizeMode.CanResize;
                 }
 
-                WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
+
 
                 window.Ready();
             });
@@ -89,6 +91,12 @@ namespace Sidekick.Wpf.Services
 
             Application.Current.Dispatcher.Invoke(() =>
             {
+                if (view.Height != null)
+                {
+                    window.Height = view.Height.Value;
+                    window.CenterOnScreen();
+                }
+
                 window.Title = $"Sidekick {view.Title}".Trim();
             });
         }
@@ -123,9 +131,8 @@ namespace Sidekick.Wpf.Services
                         window.Height = view.ViewHeight;
                         window.Width = view.ViewWidth;
                     }
-
-                    WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
-                }
+}
+                     window.CenterOnScreen();
             });
         }
 
@@ -146,7 +153,7 @@ namespace Sidekick.Wpf.Services
                 else
                 {
                     window.WindowState = WindowState.Normal;
-                    WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
+                    window.CenterOnScreen();
                 }
             });
             return Task.CompletedTask;
@@ -211,14 +218,26 @@ namespace Sidekick.Wpf.Services
         public bool IsOverlayOpened() => Windows.Any(x => x.SidekickView?.ViewType == SidekickViewType.Overlay);
 
         /// <inheritdoc/>
-        public Task Open(string url)
+        public async Task Open(string url)
         {
             if (string.IsNullOrEmpty(url))
             {
-                return Task.CompletedTask;
+                return;
             }
 
             NextUrl = url;
+
+            var culture = await settingsService.GetString(SettingKeys.LanguageUi);
+            await Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                if (string.IsNullOrEmpty(culture))
+                {
+                    return;
+                }
+
+                CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo(culture);
+                CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo(culture);
+            });
 
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -231,8 +250,6 @@ namespace Sidekick.Wpf.Services
                 Windows.Add(window);
                 window.Show();
             });
-
-            return Task.CompletedTask;
         }
 
         private void CloudflareServiceOnChallengeStarted(Uri uri)

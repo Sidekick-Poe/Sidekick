@@ -121,7 +121,7 @@ public partial class MainWindow
         Grid.Margin = WindowState == WindowState.Maximized ? new Thickness(0) : new Thickness(5);
     }
 
-    private void CenterOnScreen()
+    public void CenterOnScreen()
     {
         // Get the window's handle
         var windowHandle = new WindowInteropHelper(this).Handle;

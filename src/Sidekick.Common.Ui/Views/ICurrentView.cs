@@ -21,6 +21,11 @@ public interface ICurrentView
     string Title { get; }
 
     /// <summary>
+    /// Gets the height of the view.
+    /// </summary>
+    int? Height { get; }
+
+    /// <summary>
     /// Gets the current Url of the view.
     /// </summary>
     string Url { get; }
@@ -45,6 +50,12 @@ public interface ICurrentView
     /// </summary>
     /// <param name="title"></param>
     void SetTitle(string? title);
+
+    /// <summary>
+    /// Sets the current view height.
+    /// </summary>
+    /// <param name="height">The height to set for the current view.</param>
+    void SetHeight(int height);
 
     /// <summary>
     /// Initializes a view that was previously opened.

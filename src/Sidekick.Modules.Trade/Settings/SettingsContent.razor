@@ -1,3 +1,4 @@
+@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Blazor.Settings.General
 @inherits Sidekick.Common.Ui.Views.SidekickView
 
@@ -7,21 +8,21 @@
 
 <LayoutDivider/>
 
-<Heading2 Class="mb-3">@Resources["Item Trade Settings"]</Heading2>
+<Heading2 Class="mb-3">@Resources["Item_Trade_Settings"]</Heading2>
 <PriceCheckItemCurrencyEditor/>
 <PriceCheckPredictionEnabledEditor/>
 
 <LayoutDivider/>
 
-<Heading2 Class="mb-3">@Resources["Bulk Trade Settings"]</Heading2>
+<Heading2 Class="mb-3">@Resources["Bulk_Trade_Settings"]</Heading2>
 <PriceCheckCurrencyModeEditor/>
 <PriceCheckBulkCurrencyEditor/>
 <PriceCheckBulkMinimumStockEditor/>
 
 <LayoutDivider/>
 
-<Heading2 Class="mb-3">@Resources["Other Settings"]</Heading2>
+<Heading2 Class="mb-3">@Resources["Other_Settings"]</Heading2>
 <PriceCheckCloseWithMouseEditor/>
 <EscapeClosesOverlaysEditor/>
 
-@inject IStringLocalizer<SettingsContent> Resources
+@inject IStringLocalizer<SettingsResources> Resources
