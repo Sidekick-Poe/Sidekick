@@ -41,6 +41,7 @@ public static class SettingKeys
     public const string PriceCheckBulkCurrency = nameof(PriceCheckBulkCurrency);
     public const string PriceCheckBulkMinimumStock = nameof(PriceCheckBulkMinimumStock);
     public const string PriceCheckCurrencyMode = nameof(PriceCheckCurrencyMode);
+    public const string PriceCheckNormalizeValue = nameof(PriceCheckNormalizeValue);
 
     public const string WealthEnabled = nameof(WealthEnabled);
     public const string WealthTrackedTabs = nameof(WealthTrackedTabs);

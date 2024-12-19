@@ -1,5 +1,6 @@
 @using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Common.Game.Languages
+@using Sidekick.Common.Settings
 
 <FilterWrapper>
     <div class="flex flex-nowrap items-center">
@@ -17,7 +18,7 @@
             {
                 <FormCheckbox Value="Filter.Checked ?? false"
                               NoMargin="true"
-                              ValueChanged="(v) => Filter.Checked = v">
+                              ValueChanged="CheckedChanged">
                     @if (Filter.Type == PropertyFilterType.Weapon_Damage)
                     {
                         if (PriceCheckService.Item?.Properties.PhysicalDamage != null)
@@ -69,6 +70,7 @@
 
 @inject PriceCheckService PriceCheckService
 @inject IGameLanguageProvider GameLanguageProvider
+@inject ISettingsService SettingsService
 
 @code {
 
@@ -76,6 +78,15 @@
     public required PropertyFilter Filter { get; set; }
 
     private bool HasValueFilters => Filter.ValueType is FilterValueType.Double or FilterValueType.Int;
+
+    private async void CheckedChanged(bool value)
+    {
+        Filter.Checked = value;
+
+        // We can change the settings in the Trade window, so we should fetch here every time.
+        Filter.NormalizeValue = await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
+        Filter.NormalizeMinValue();
+    }
 
     private void TypeChanged(FilterRange.RangeType type)
     {

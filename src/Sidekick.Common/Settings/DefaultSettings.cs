@@ -42,6 +42,8 @@ public static class DefaultSettings
 
     public static string PriceCheckCurrencyMode => "item";
 
+    public static double PriceCheckNormalizeValue => .1;
+
     public static List<ChatSetting> ChatCommands =>
     [
         new ChatSetting("F5", "/hideout", true),
