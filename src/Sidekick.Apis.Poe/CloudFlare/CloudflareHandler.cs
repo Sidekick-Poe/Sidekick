@@ -42,7 +42,7 @@ public class CloudflareHandler
         }
         else
         {
-            logger.LogWarning("[CloudflareHandler] Request still failed after completing Cloudflare challenge: {StatusCode}", retryResponse.StatusCode);
+            logger.LogWarning("[CloudflareHandler] Request still failed after completing Cloudflare challenge: {StatusCode}, {RequestHeaders}", retryResponse.StatusCode, request.Headers.ToString());
         }
 
         return retryResponse;
@@ -53,6 +53,7 @@ public class CloudflareHandler
         var cookie = await settingsService.GetString(SettingKeys.CloudflareCookie);
         if (!string.IsNullOrEmpty(cookie))
         {
+            logger.LogInformation("[CloudflareHandler] Adding cookie to request");
             // Append the cookie to the `Cookie` header
             if (!request.Headers.Contains("Cookie"))
             {

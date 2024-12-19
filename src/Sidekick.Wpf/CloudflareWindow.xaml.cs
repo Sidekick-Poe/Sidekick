@@ -5,6 +5,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using Microsoft.Extensions.Logging;
 using Microsoft.Web.WebView2.Core;
+using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.CloudFlare;
 using Application=System.Windows.Application;
 
@@ -35,6 +36,7 @@ public partial class CloudflareWindow
             ResizeMode = ResizeMode.NoResize;
 
             await WebView.EnsureCoreWebView2Async();
+            WebView.CoreWebView2.Settings.UserAgent = PoeTradeClient.UserAgent;
 
             // Handle cookie changes by checking cookies after navigation
             WebView.CoreWebView2.NavigationCompleted += CoreWebView2_NavigationCompleted;

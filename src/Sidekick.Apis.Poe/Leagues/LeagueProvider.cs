@@ -39,16 +39,12 @@ public class LeagueProvider(
     {
         await gameLanguageProvider.Initialize();
 
-        List<Task<List<League>>> tasks =
-        [
-            Fetch(GameType.PathOfExile2),
-            Fetch(GameType.PathOfExile),
-        ];
+        List<League> leagues = [];
 
-        var allLeagues = await Task.WhenAll(tasks);
-        return allLeagues
-               .SelectMany(leagues => leagues)
-               .ToList();
+        leagues.AddRange(await Fetch(GameType.PathOfExile2));
+        leagues.AddRange(await Fetch(GameType.PathOfExile));
+
+        return leagues;
     }
 
     private async Task<List<League>> Fetch(GameType game)

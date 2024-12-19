@@ -15,6 +15,8 @@ public class PoeTradeClient : IPoeTradeClient
     private readonly ILogger logger;
     private readonly ICloudflareService cloudflareService;
 
+    public const string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36";
+
     public PoeTradeClient(
         ILogger<PoeTradeClient> logger,
         IHttpClientFactory httpClientFactory,
@@ -24,9 +26,9 @@ public class PoeTradeClient : IPoeTradeClient
         this.cloudflareService = cloudflareService;
         HttpClient = httpClientFactory.CreateClient(ClientNames.TradeClient);
         HttpClient.DefaultRequestHeaders.Accept.Clear();
-        HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/html"));
+        HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
         HttpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue("en-US"));
-        HttpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36");
+        HttpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
         HttpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
         HttpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
 
