@@ -10,7 +10,7 @@ public static class SettingKeys
     public const string BearerExpiration = nameof(BearerExpiration);
 
     // Cloudflare settings
-    public const string CloudflareCookie = nameof(CloudflareCookie);
+    public const string CloudflareCookies = nameof(CloudflareCookies);
 
     public const string LanguageParser = nameof(LanguageParser);
     public const string LanguageUi = nameof(LanguageUi);

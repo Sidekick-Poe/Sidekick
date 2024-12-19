@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Apis.Poe.Bulk;
 using Sidekick.Apis.Poe.Clients;
@@ -28,15 +29,16 @@ namespace Sidekick.Apis.Poe
             services.AddSingleton<IStashService, StashService>();
             services.AddSingleton<IApiStateProvider, ApiStateProvider>();
             services.AddSingleton<PoeApiHandler>();
-            services.AddSingleton<CloudflareHandler>();
+            services.AddSingleton<PoeTradeHandler>();
 
             services.AddHttpClient(ClientNames.TradeClient)
-                .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+                .ConfigurePrimaryHttpMessageHandler((sp) =>
                 {
-                    AllowAutoRedirect = true,
-                    UseCookies = true,
-                })
-                .AddHttpMessageHandler<CloudflareHandler>();;
+                    var logger = sp.GetRequiredService<ILogger<PoeTradeHandler>>();
+                    var cloudflareService = sp.GetRequiredService<ICloudflareService>();
+                    var handler = new PoeTradeHandler(logger, cloudflareService);
+                    return handler;
+                });
 
             services.AddHttpClient(ClientNames.PoeClient)
                 .ConfigurePrimaryHttpMessageHandler((sp) =>

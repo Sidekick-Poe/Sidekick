@@ -36,7 +36,7 @@ public partial class CloudflareWindow
             ResizeMode = ResizeMode.NoResize;
 
             await WebView.EnsureCoreWebView2Async();
-            WebView.CoreWebView2.Settings.UserAgent = PoeTradeClient.UserAgent;
+            WebView.CoreWebView2.Settings.UserAgent = PoeTradeHandler.UserAgent;
 
             // Handle cookie changes by checking cookies after navigation
             WebView.CoreWebView2.NavigationCompleted += CoreWebView2_NavigationCompleted;
@@ -112,7 +112,7 @@ public partial class CloudflareWindow
 
             // Store the Cloudflare cookie
             challengeCompleted = true;
-            _ = cloudflareService.CaptchaChallengeCompleted(cfCookie.Value);
+            _ = cloudflareService.CaptchaChallengeCompleted(cookies.ToDictionary(c => c.Name, c => c.Value));
             logger.LogInformation("[CloudflareWindow] Cookie check completed, challenge likely completed");
 
             Dispatcher.Invoke(Close);

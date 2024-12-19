@@ -36,10 +36,11 @@ public class CloudflareService
         return challengeCompletion.Task;
     }
 
-    public async Task CaptchaChallengeCompleted(string cookie)
+    public async Task CaptchaChallengeCompleted(Dictionary<string, string> cookies)
     {
         logger.LogInformation("[CloudflareService] Cloudflare challenge completed.");
-        await settingsService.Set(SettingKeys.CloudflareCookie, cookie);
+        var cookieString = string.Join("; ", cookies.Select(c => $"{c.Key}={c.Value}"));
+        await settingsService.Set(SettingKeys.CloudflareCookies, cookieString);
 
         challengeCompletion?.TrySetResult(true);
         isHandlingChallenge = false;
@@ -51,5 +52,24 @@ public class CloudflareService
         challengeCompletion?.TrySetResult(false);
         isHandlingChallenge = false;
         return Task.CompletedTask;
+    }
+
+    public async Task AddCookieToRequest(HttpRequestMessage request)
+    {
+        var cookies = await settingsService.GetString(SettingKeys.CloudflareCookies);
+        if (!string.IsNullOrEmpty(cookies))
+        {
+            logger.LogInformation("[CloudflareHandler] Adding cookie to request");
+            // Append the cookie to the `Cookie` header
+            if (!request.Headers.Contains("Cookie"))
+            {
+                request.Headers.Add("Cookie", cookies);
+            }
+            else
+            {
+                request.Headers.Remove("Cookie");
+                request.Headers.Add("Cookie", cookies);
+            }
+        }
     }
 }
