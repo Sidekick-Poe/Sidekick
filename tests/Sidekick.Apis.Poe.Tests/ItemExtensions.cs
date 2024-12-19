@@ -15,13 +15,13 @@ namespace Sidekick.Apis.Poe.Tests
                 }));
 
             var actualModifier = modifiers.FirstOrDefault(x => expectedCategory == x.Modifier.Category &&  expectedText == x.Modifier.Text);
-            Assert.NotNull(actualModifier);
-            Assert.True(actualModifier?.Line.Values.Count == expectedValues.Length);
-
             for (var i = 0; i < expectedValues.Length; i++)
             {
-                Assert.Equal(expectedValues[i], actualModifier.Line.Values[i]);
+                Assert.Equal(expectedValues[i], actualModifier?.Line.Values[i]);
             }
+
+            Assert.True(actualModifier?.Line.Values.Count == expectedValues.Length);
+            Assert.NotNull(actualModifier);
         }
 
         public static void AssertHasPseudoModifier(this Item actual, string expectedText, double? expectedValue = null)
