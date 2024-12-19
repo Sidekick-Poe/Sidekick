@@ -6,7 +6,6 @@ using System.Windows.Media;
 using Microsoft.Extensions.Logging;
 using Microsoft.Web.WebView2.Core;
 using Sidekick.Apis.Poe.CloudFlare;
-using Sidekick.Wpf.Helpers;
 using Application=System.Windows.Application;
 
 namespace Sidekick.Wpf;
@@ -34,7 +33,6 @@ public partial class CloudflareWindow
             Topmost = true;
             ShowInTaskbar = true;
             ResizeMode = ResizeMode.NoResize;
-            WindowPlacement.ConstrainAndCenterWindowToScreen(window: this);
 
             await WebView.EnsureCoreWebView2Async();
 

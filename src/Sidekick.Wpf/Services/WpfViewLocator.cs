@@ -6,7 +6,6 @@ using Sidekick.Apis.Poe.CloudFlare;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
-using Sidekick.Wpf.Helpers;
 
 namespace Sidekick.Wpf.Services
 {
@@ -15,16 +14,18 @@ namespace Sidekick.Wpf.Services
         internal readonly ICacheProvider cacheProvider;
         private readonly ILogger<WpfViewLocator> logger;
         private readonly ICloudflareService cloudflareService;
+        private readonly ISettingsService settingsService;
 
         internal List<MainWindow> Windows { get; } = new();
 
         internal string? NextUrl { get; set; }
 
-        public WpfViewLocator(ICacheProvider cacheProvider, ILogger<WpfViewLocator> logger, ICloudflareService cloudflareService)
+        public WpfViewLocator(ICacheProvider cacheProvider, ILogger<WpfViewLocator> logger, ICloudflareService cloudflareService, ISettingsService settingsService)
         {
             this.cacheProvider = cacheProvider;
             this.logger = logger;
             this.cloudflareService = cloudflareService;
+            this.settingsService = settingsService;
             cloudflareService.ChallengeStarted += CloudflareServiceOnChallengeStarted;
         }
 
@@ -75,8 +76,6 @@ namespace Sidekick.Wpf.Services
                     window.ShowInTaskbar = true;
                     window.ResizeMode = ResizeMode.CanResize;
                 }
-
-
 
                 window.Ready();
             });
@@ -131,8 +130,9 @@ namespace Sidekick.Wpf.Services
                         window.Height = view.ViewHeight;
                         window.Width = view.ViewWidth;
                     }
-}
-                     window.CenterOnScreen();
+                }
+
+                window.CenterOnScreen();
             });
         }
 
