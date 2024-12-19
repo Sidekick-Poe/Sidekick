@@ -10,16 +10,85 @@ using Sidekick.Common.Cache;
 
 namespace Sidekick.Apis.GitHub;
 
-public class GitHubClient(
+public class GitHubClient
+(
     IHttpClientFactory httpClientFactory,
-    ILogger<GitHubClient> logger) : IGitHubClient
+    ILogger<GitHubClient> logger
+) : IGitHubClient
 {
     private const string IndicatorPath = "SidekickGitHub";
 
     private GitHubRelease? LatestRelease { get; set; }
 
+    public int Priority => 0;
+
+    public Task Initialize()
+    {
+        return DownloadGitHubDownloadIndicatorFile();
+    }
+
     /// <inheritdoc />
-    public async Task DownloadGitHubDownloadIndicatorFile()
+    public async Task<GitHubRelease> GetLatestRelease()
+    {
+        if (LatestRelease != null)
+        {
+            return LatestRelease;
+        }
+
+        var release = await GetLatestApiRelease();
+        if (release == null || release.Tag == null)
+        {
+            logger.LogInformation("[Updater] No latest release found on GitHub.");
+            LatestRelease = new GitHubRelease();
+            return LatestRelease;
+        }
+
+        logger.LogInformation("[Updater] Found " + release.Tag + " as latest version on GitHub.");
+        var latestVersion = new Version(Regex.Match(release.Tag, @"(\d+\.){2}\d+").ToString());
+        var currentVersion = GetCurrentVersion();
+        if (currentVersion == null)
+        {
+            LatestRelease = new GitHubRelease();
+            return LatestRelease;
+        }
+
+        LatestRelease = new GitHubRelease
+        {
+            IsNewerVersion = currentVersion.CompareTo(latestVersion) < 0,
+            IsExecutable = release.Assets?.Any(x => x.Name == "Sidekick-Setup.exe") ?? false,
+        };
+        return LatestRelease;
+    }
+
+    /// <inheritdoc />
+    public async Task<bool> DownloadLatest(string downloadPath)
+    {
+        var release = await GetLatestApiRelease();
+        if (release == null)
+        {
+            return false;
+        }
+
+        if (File.Exists(downloadPath))
+        {
+            File.Delete(downloadPath);
+        }
+
+        var downloadUrl = release.Assets?.FirstOrDefault(x => x.Name == "Sidekick-Setup.exe")?.DownloadUrl;
+        if (downloadUrl == null)
+        {
+            return false;
+        }
+
+        using var client = GetHttpClient();
+        var response = await client.GetAsync(downloadUrl);
+        await using var downloadStream = await response.Content.ReadAsStreamAsync();
+        await using var fileStream = new FileStream(downloadPath, FileMode.Create, FileAccess.Write, FileShare.None);
+        await downloadStream.CopyToAsync(fileStream);
+        return true;
+    }
+
+    private async Task DownloadGitHubDownloadIndicatorFile()
     {
         var version = GetCurrentVersion();
         if (version == null)
@@ -53,83 +122,10 @@ public class GitHubClient(
         using var client = GetHttpClient();
         var response = await client.GetAsync(downloadUrl);
         await using var downloadStream = await response.Content.ReadAsStreamAsync();
-        await using var fileStream = new FileStream(
-            GetDownloadIndicatorFileName(version),
-            FileMode.Create,
-            FileAccess.Write,
-            FileShare.None);
+        await using var fileStream = new FileStream(GetDownloadIndicatorFileName(version), FileMode.Create, FileAccess.Write, FileShare.None);
         await downloadStream.CopyToAsync(fileStream);
 
         logger.LogInformation("[GitHubClient] Downloaded indicator file for current version on GitHub.");
-    }
-
-    /// <inheritdoc />
-    public async Task<GitHubRelease> GetLatestRelease()
-    {
-        if (LatestRelease != null)
-        {
-            return LatestRelease;
-        }
-
-        var release = await GetLatestApiRelease();
-        if (release == null || release.Tag == null)
-        {
-            logger.LogInformation("[Updater] No latest release found on GitHub.");
-            LatestRelease = new GitHubRelease();
-            return LatestRelease;
-        }
-
-        logger.LogInformation("[Updater] Found " + release.Tag + " as latest version on GitHub.");
-        var latestVersion = new Version(
-            Regex
-                .Match(release.Tag, @"(\d+\.){2}\d+")
-                .ToString());
-        var currentVersion = GetCurrentVersion();
-        if (currentVersion == null)
-        {
-            LatestRelease = new GitHubRelease();
-            return LatestRelease;
-        }
-
-        LatestRelease = new GitHubRelease
-        {
-            IsNewerVersion = currentVersion.CompareTo(latestVersion) < 0,
-            IsExecutable = release.Assets?.Any(x => x.Name == "Sidekick-Setup.exe") ?? false,
-        };
-        return LatestRelease;
-    }
-
-    /// <inheritdoc />
-    public async Task<bool> DownloadLatest(string downloadPath)
-    {
-        var release = await GetLatestApiRelease();
-        if (release == null)
-        {
-            return false;
-        }
-
-        if (File.Exists(downloadPath))
-        {
-            File.Delete(downloadPath);
-        }
-
-        var downloadUrl = release.Assets?.FirstOrDefault(x => x.Name == "Sidekick-Setup.exe")
-                                 ?.DownloadUrl;
-        if (downloadUrl == null)
-        {
-            return false;
-        }
-
-        using var client = GetHttpClient();
-        var response = await client.GetAsync(downloadUrl);
-        await using var downloadStream = await response.Content.ReadAsStreamAsync();
-        await using var fileStream = new FileStream(
-            downloadPath,
-            FileMode.Create,
-            FileAccess.Write,
-            FileShare.None);
-        await downloadStream.CopyToAsync(fileStream);
-        return true;
     }
 
     private HttpClient GetHttpClient()
@@ -151,13 +147,12 @@ public class GitHubClient(
             return [];
         }
 
-        return await JsonSerializer.DeserializeAsync<Release[]>(
-            utf8Json: await listResponse.Content.ReadAsStreamAsync(),
-            options: new JsonSerializerOptions
-            {
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                PropertyNameCaseInsensitive = true,
-            });
+        return await JsonSerializer.DeserializeAsync<Release[]>(utf8Json: await listResponse.Content.ReadAsStreamAsync(),
+                                                                options: new JsonSerializerOptions
+                                                                {
+                                                                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                                                                    PropertyNameCaseInsensitive = true,
+                                                                });
     }
 
     private async Task<Release?> GetLatestApiRelease()
