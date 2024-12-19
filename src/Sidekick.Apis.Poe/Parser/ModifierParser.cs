@@ -43,7 +43,7 @@ namespace Sidekick.Apis.Poe.Parser
                 modifierLines.Add(modifierLine);
 
                 var fuzzyLine = CleanFuzzyText(text.ToString());
-                var patterns = match.Patterns.OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText));
+                var patterns = match.Patterns.OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText)).ToList();
                 foreach (var pattern in patterns)
                 {
                     if (modifierLine.Modifiers.Any(x => x.Id == pattern.Id))
@@ -68,7 +68,7 @@ namespace Sidekick.Apis.Poe.Parser
             }
 
             // Order the mods by the order they appear on the item.
-            modifierLines = modifierLines.OrderBy(x => parsingItem.Text.IndexOf(x.Text)).ToList();
+            modifierLines = modifierLines.OrderBy(x => parsingItem.Text.IndexOf(x.Text, StringComparison.InvariantCulture)).ToList();
 
             // Trim modifier lines
             modifierLines.RemoveAll(x => x.Modifiers.Count == 0);
@@ -88,12 +88,12 @@ namespace Sidekick.Apis.Poe.Parser
                         continue;
                     }
 
-                    var patterns = MatchModifierPatterns(block, line, lineIndex);
+                    var patterns = MatchModifierPatterns(block, line, lineIndex).ToList();
                     if (!patterns.Any())
                     {
                         // If we reach this point we have not found the modifier through traditional Regex means.
                         // Text from the game sometimes differ from the text from the API. We do a fuzzy search here to find the most common text.
-                        patterns = MatchModifierFuzzily(parsingItem, line);
+                        patterns = MatchModifierFuzzily(parsingItem, line).ToList();
                     }
 
                     if (!patterns.Any())
@@ -104,7 +104,6 @@ namespace Sidekick.Apis.Poe.Parser
                     var maxLineCount = patterns.Max(x => x.LineCount);
                     lineIndex += maxLineCount - 1; // Increment the line index by one less of the pattern count. The default lineIndex++ will take care of the remaining increment.
                     yield return new ModifierMatch(block, block.Lines.Skip(lineIndex).Take(maxLineCount), patterns.ToList());
-                    continue;
                 }
             }
         }
@@ -125,8 +124,7 @@ namespace Sidekick.Apis.Poe.Parser
 
         private IEnumerable<ModifierPattern> MatchModifierFuzzily(ParsingItem item, ParsingLine line)
         {
-            if (line.Parsed
-                || item.Metadata?.Category == Category.Flask)
+            if (line.Parsed)
             {
                 yield break;
             }
