@@ -35,7 +35,7 @@ public class PoeTradeHandler
         }
 
         // Sidekick does not support authentication yet.
-        if (response.StatusCode != HttpStatusCode.Unauthorized)
+        if (response.StatusCode == HttpStatusCode.Unauthorized)
         {
             throw new SidekickException("Sidekick failed to communicate with the trade API.", "The trade website requires authentication, which Sidekick does not support currently.", "Try using a different game language and/or force to search using English only in the settings.");
         }
