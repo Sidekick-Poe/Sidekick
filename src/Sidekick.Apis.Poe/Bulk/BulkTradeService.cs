@@ -4,10 +4,9 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Bulk.Models;
 using Sidekick.Apis.Poe.Bulk.Results;
 using Sidekick.Apis.Poe.Clients;
-using Sidekick.Apis.Poe.Trade.Models;
+using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Results;
-using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
@@ -22,6 +21,7 @@ namespace Sidekick.Apis.Poe.Bulk
         IGameLanguageProvider gameLanguageProvider,
         ISettingsService settingsService,
         IPoeTradeClient poeTradeClient,
+        IFilterProvider filterProvider,
         IItemStaticDataProvider itemStaticDataProvider) : IBulkTradeService
     {
         private readonly ILogger logger = logger;
@@ -45,6 +45,7 @@ namespace Sidekick.Apis.Poe.Bulk
             }
 
             var currency = item.Metadata.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckBulkCurrency) : await settingsService.GetString(SettingKeys.PriceCheckBulkCurrencyPoE2);
+            currency = filterProvider.GetPriceOption(currency);
             var minStock = await settingsService.GetInt(SettingKeys.PriceCheckBulkMinimumStock);
 
             var model = new BulkQueryRequest();

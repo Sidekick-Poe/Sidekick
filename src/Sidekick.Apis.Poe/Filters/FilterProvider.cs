@@ -39,7 +39,7 @@ public class FilterProvider
             .First(x => x.Id == "price").Option!.Options;
     }
 
-    public string? GetPriceOption(string price)
+    public string? GetPriceOption(string? price)
     {
         var option = PriceOptions.SingleOrDefault(x => x.Id == price);
         return option?.Id;

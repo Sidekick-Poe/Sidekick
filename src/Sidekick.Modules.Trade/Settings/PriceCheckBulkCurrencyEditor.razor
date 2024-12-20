@@ -1,8 +1,6 @@
 @using Sidekick.Apis.Poe.Filters
 @using Sidekick.Apis.Poe.Localization
-@using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Common.Blazor.Settings
-@using Sidekick.Common.Enums
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Game
 @using Sidekick.Common.Settings
@@ -30,6 +28,7 @@
         var league = await SettingsService.GetString(SettingKeys.LeagueId);
         var game = league.GetGameFromLeagueId();
         Currency = game == GameType.PathOfExile ? await SettingsService.GetString(SettingKeys.PriceCheckBulkCurrency) : await SettingsService.GetString(SettingKeys.PriceCheckBulkCurrencyPoE2);
+        Currency = FilterProvider.GetPriceOption(Currency);
 
         Options = FilterProvider.PriceOptions.ConvertAll(x => new SelectOption()
         {

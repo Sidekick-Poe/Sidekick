@@ -9,5 +9,5 @@ public interface IFilterProvider : IInitializableService
 
     List<ApiFilterOption> PriceOptions { get; }
 
-    string? GetPriceOption(string price);
+    string? GetPriceOption(string? price);
 }

@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Clients.Models;
+using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests;
@@ -25,7 +26,8 @@ public class TradeSearchService
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
     IPoeTradeClient poeTradeClient,
-    IModifierProvider modifierProvider
+    IModifierProvider modifierProvider,
+    IFilterProvider filterProvider
 ) : ITradeSearchService
 {
     private readonly ILogger logger = logger;
@@ -91,6 +93,7 @@ public class TradeSearchService
             }
 
             var currency = item.Metadata.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckItemCurrency) : await settingsService.GetString(SettingKeys.PriceCheckItemCurrencyPoE2);
+            currency = filterProvider.GetPriceOption(currency);
             if (!string.IsNullOrEmpty(currency))
             {
                 query.Filters.TradeFilters = new TradeFilterGroup

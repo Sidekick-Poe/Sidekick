@@ -28,6 +28,7 @@
         var league = await SettingsService.GetString(SettingKeys.LeagueId);
         var game = league.GetGameFromLeagueId();
         Currency = game == GameType.PathOfExile ? await SettingsService.GetString(SettingKeys.PriceCheckItemCurrency) : await SettingsService.GetString(SettingKeys.PriceCheckItemCurrencyPoE2);
+        Currency = FilterProvider.GetPriceOption(Currency);
 
         Options = FilterProvider.PriceOptions.ConvertAll(x => new SelectOption()
         {
