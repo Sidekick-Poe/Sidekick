@@ -34,7 +34,6 @@ namespace Sidekick.Modules.Trade.Localization
         public string PredictionConfidence(double confidence) => localizer["PredictionConfidence", confidence.ToString("0.##")];
 
         public string Requires => localizer["Requires"];
-        public string Scourged => localizer["Scourged"];
         public string Stock => localizer["Stock"];
         public string Trade => localizer["Trade"];
         public string Unidentified => localizer["Unidentified"];

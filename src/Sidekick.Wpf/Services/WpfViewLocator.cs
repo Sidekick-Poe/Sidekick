@@ -1,17 +1,23 @@
+using System.Globalization;
 using System.Net;
 using System.Windows;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
-using Sidekick.Wpf.Helpers;
 
 namespace Sidekick.Wpf.Services
 {
-    public class WpfViewLocator(
+    public class WpfViewLocator
+    (
         ICacheProvider cacheProvider,
-        ILogger<WpfViewLocator> logger) : IViewLocator
+        IViewPreferenceService viewPreferenceService,
+        ISettingsService settingsService,
+        ILogger<WpfViewLocator> logger
+    ) : IViewLocator
     {
         internal readonly ICacheProvider CacheProvider = cacheProvider;
+        internal readonly IViewPreferenceService ViewPreferenceService = viewPreferenceService;
 
         internal List<MainWindow> Windows { get; } = new();
 
@@ -27,49 +33,46 @@ namespace Sidekick.Wpf.Services
 
             window.SidekickView = view;
             view.CurrentView.ViewChanged += CurrentViewOnViewChanged;
-            var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.CurrentView.Key}");
+            var preferences = await ViewPreferenceService.Get(view.CurrentView.Key);
 
-            Application.Current.Dispatcher.Invoke(
-                () =>
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                window.Title = view.CurrentView.Title.StartsWith("Sidekick") ? view.CurrentView.Title.Trim() : $"Sidekick {view.CurrentView.Title}".Trim();
+                window.MinHeight = view.ViewHeight + 20;
+                window.MinWidth = view.ViewWidth + 20;
+
+                if (view.ViewType != SidekickViewType.Modal && preferences != null)
                 {
-                    window.Title = view.CurrentView.Title.StartsWith("Sidekick") ? view.CurrentView.Title.Trim() : $"Sidekick {view.CurrentView.Title}".Trim();
-                    window.MinHeight = view.ViewHeight + 20;
-                    window.MinWidth = view.ViewWidth + 20;
+                    window.Height = preferences.Height;
+                    window.Width = preferences.Width;
+                }
+                else
+                {
+                    window.Height = view.ViewHeight + 20;
+                    window.Width = view.ViewWidth + 20;
+                }
 
-                    if (view.ViewType != SidekickViewType.Modal && preferences != null)
-                    {
-                        window.Height = preferences.Height;
-                        window.Width = preferences.Width;
-                    }
-                    else
-                    {
-                        window.Height = view.ViewHeight + 20;
-                        window.Width = view.ViewWidth + 20;
-                    }
+                if (view.ViewType == SidekickViewType.Overlay)
+                {
+                    window.Topmost = true;
+                    window.ShowInTaskbar = false;
+                    window.ResizeMode = ResizeMode.CanResize;
+                }
+                else if (view.ViewType == SidekickViewType.Modal)
+                {
+                    window.Topmost = true;
+                    window.ShowInTaskbar = true;
+                    window.ResizeMode = ResizeMode.NoResize;
+                }
+                else
+                {
+                    window.Topmost = false;
+                    window.ShowInTaskbar = true;
+                    window.ResizeMode = ResizeMode.CanResize;
+                }
 
-                    if (view.ViewType == SidekickViewType.Overlay)
-                    {
-                        window.Topmost = true;
-                        window.ShowInTaskbar = false;
-                        window.ResizeMode = ResizeMode.CanResize;
-                    }
-                    else if (view.ViewType == SidekickViewType.Modal)
-                    {
-                        window.Topmost = true;
-                        window.ShowInTaskbar = true;
-                        window.ResizeMode = ResizeMode.NoResize;
-                    }
-                    else
-                    {
-                        window.Topmost = false;
-                        window.ShowInTaskbar = true;
-                        window.ResizeMode = ResizeMode.CanResize;
-                    }
-
-                    WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
-
-                    window.Ready();
-                });
+                window.Ready();
+            });
         }
 
         private void CurrentViewOnViewChanged(ICurrentView view)
@@ -79,11 +82,16 @@ namespace Sidekick.Wpf.Services
                 return;
             }
 
-            Application.Current.Dispatcher.Invoke(
-                () =>
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                if (view.Height != null)
                 {
-                    window.Title = $"Sidekick {view.Title}".Trim();
-                });
+                    window.Height = view.Height.Value;
+                    window.CenterOnScreen();
+                }
+
+                window.Title = $"Sidekick {view.Title}".Trim();
+            });
         }
 
         /// <inheritdoc/>
@@ -94,33 +102,32 @@ namespace Sidekick.Wpf.Services
                 return;
             }
 
-            var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.CurrentView.Key}");
+            var preferences = await ViewPreferenceService.Get($"view_preference_{view.CurrentView.Key}");
 
-            Application.Current.Dispatcher.Invoke(
-                () =>
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                if (window.WindowState == WindowState.Normal)
                 {
-                    if (window.WindowState == WindowState.Normal)
+                    window.WindowState = WindowState.Maximized;
+                }
+                else
+                {
+                    window.WindowState = WindowState.Normal;
+
+                    if (preferences != null)
                     {
-                        window.WindowState = WindowState.Maximized;
+                        window.Height = preferences.Height;
+                        window.Width = preferences.Width;
                     }
                     else
                     {
-                        window.WindowState = WindowState.Normal;
-
-                        if (preferences != null)
-                        {
-                            window.Height = preferences.Height;
-                            window.Width = preferences.Width;
-                        }
-                        else
-                        {
-                            window.Height = view.ViewHeight;
-                            window.Width = view.ViewWidth;
-                        }
-
-                        WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
+                        window.Height = view.ViewHeight;
+                        window.Width = view.ViewWidth;
                     }
-                });
+                }
+
+                window.CenterOnScreen();
+            });
         }
 
         /// <inheritdoc/>
@@ -131,46 +138,44 @@ namespace Sidekick.Wpf.Services
                 return Task.CompletedTask;
             }
 
-            Application.Current.Dispatcher.Invoke(
-                () =>
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                if (window.WindowState == WindowState.Normal)
                 {
-                    if (window.WindowState == WindowState.Normal)
-                    {
-                        window.WindowState = WindowState.Minimized;
-                    }
-                    else
-                    {
-                        window.WindowState = WindowState.Normal;
-                        WindowPlacement.ConstrainAndCenterWindowToScreen(window: window);
-                    }
-                });
+                    window.WindowState = WindowState.Minimized;
+                }
+                else
+                {
+                    window.WindowState = WindowState.Normal;
+                    window.CenterOnScreen();
+                }
+            });
             return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
         public Task Close(SidekickView view)
         {
-            Application.Current.Dispatcher.Invoke(
-                () =>
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                try
                 {
-                    try
+                    if (!TryGetWindow(view.CurrentView, out var window))
                     {
-                        if (!TryGetWindow(view.CurrentView, out var window))
-                        {
-                            return;
-                        }
+                        return;
+                    }
 
-                        window.Close();
-                        Windows.Remove(window);
-                        GC.Collect();
-                        GC.WaitForPendingFinalizers();
-                        GC.Collect();
-                    }
-                    catch (InvalidOperationException ex)
-                    {
-                        logger.LogWarning($"Error Closing Window - {ex.Message}");
-                    }
-                });
+                    window.Close();
+                    Windows.Remove(window);
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    GC.Collect();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    logger.LogWarning($"Error Closing Window - {ex.Message}");
+                }
+            });
 
             return Task.CompletedTask;
         }
@@ -192,9 +197,7 @@ namespace Sidekick.Wpf.Services
         /// <inheritdoc/>
         public async Task CloseAllOverlays()
         {
-            foreach (var overlay in Windows
-                                    .Where(x => x.SidekickView?.ViewType == SidekickViewType.Overlay)
-                                    .ToList())
+            foreach (var overlay in Windows.Where(x => x.SidekickView?.ViewType == SidekickViewType.Overlay).ToList())
             {
                 if (overlay.SidekickView == null)
                 {
@@ -209,45 +212,51 @@ namespace Sidekick.Wpf.Services
         public bool IsOverlayOpened() => Windows.Any(x => x.SidekickView?.ViewType == SidekickViewType.Overlay);
 
         /// <inheritdoc/>
-        public Task Open(string url)
+        public async Task Open(string url)
         {
             if (string.IsNullOrEmpty(url))
             {
-                return Task.CompletedTask;
+                return;
             }
 
             NextUrl = url;
 
-            Application.Current.Dispatcher.Invoke(
-                () =>
+            var culture = await settingsService.GetString(SettingKeys.LanguageUi);
+            await Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                if (string.IsNullOrEmpty(culture))
                 {
-                    var window = new MainWindow(this)
-                    {
-                        Topmost = true,
-                        ShowInTaskbar = false,
-                        ResizeMode = ResizeMode.NoResize,
-                    };
-                    Windows.Add(window);
-                    window.Show();
-                });
+                    return;
+                }
 
-            return Task.CompletedTask;
+                CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo(culture);
+                CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo(culture);
+            });
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var window = new MainWindow(this)
+                {
+                    Topmost = true,
+                    ShowInTaskbar = false,
+                    ResizeMode = ResizeMode.NoResize,
+                };
+                Windows.Add(window);
+                window.Show();
+            });
         }
 
-        private bool TryGetWindow(
-            ICurrentView view,
-            out MainWindow window)
+        private bool TryGetWindow(ICurrentView view, out MainWindow window)
         {
             var windowResult = Windows.FirstOrDefault(x => x.Id == view.Id);
 
             if (windowResult == null)
             {
-                Application.Current.Dispatcher.Invoke(
-                    () =>
-                    {
-                        var viewUrl = WebUtility.UrlDecode(view.Url);
-                        windowResult = Windows.FirstOrDefault(x => x.CurrentWebPath == viewUrl)!;
-                    });
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    var viewUrl = WebUtility.UrlDecode(view.Url);
+                    windowResult = Windows.FirstOrDefault(x => x.CurrentWebPath == viewUrl)!;
+                });
             }
 
             window = windowResult!;

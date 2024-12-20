@@ -3,6 +3,7 @@ using FuzzySharp;
 using FuzzySharp.SimilarityRatio;
 using FuzzySharp.SimilarityRatio.Scorer.StrategySensitive;
 using Microsoft.Extensions.Logging;
+using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Metadata;
 using Sidekick.Apis.Poe.Metadata.Models;
 using Sidekick.Apis.Poe.Parser.AdditionalInformation;
@@ -26,8 +27,8 @@ namespace Sidekick.Apis.Poe.Parser
         IInvariantMetadataProvider invariantMetadataProvider,
         SocketParser socketParser,
         PropertyParser propertyParser,
-        IMetadataProvider metadataProvider,
-        IGameLanguageProvider gameLanguageProvider
+        IGameLanguageProvider gameLanguageProvider,
+        IFilterProvider filterProvider
     ) : IItemParser
     {
         public Task<Item> ParseItemAsync(string itemText)
@@ -48,7 +49,7 @@ namespace Sidekick.Apis.Poe.Parser
                 var metadata = itemMetadataProvider.Parse(parsingItem);
                 if (metadata == null || (string.IsNullOrEmpty(metadata.Name) && string.IsNullOrEmpty(metadata.Type)))
                 {
-                    throw new UnparsableException("Item was not found in the metadata provider.");
+                    throw new UnparsableException();
                 }
 
                 // Strip the Superior affix from the name
@@ -94,7 +95,7 @@ namespace Sidekick.Apis.Poe.Parser
             catch (Exception e)
             {
                 logger.LogWarning(e, "Could not parse item.");
-                throw new UnparsableException();
+                throw;
             }
         }
 
@@ -132,7 +133,7 @@ namespace Sidekick.Apis.Poe.Parser
                 }
 
                 var categoryToMatch = new ApiFilterOption { Text = classLine };
-                apiItemCategoryId = Process.ExtractOne(categoryToMatch, metadataProvider.ApiItemCategories, x => x.Text, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
+                apiItemCategoryId = Process.ExtractOne(categoryToMatch, filterProvider.ApiItemCategories, x => x.Text, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
             }
             else
             {
@@ -202,17 +203,6 @@ namespace Sidekick.Apis.Poe.Parser
         private static bool GetBool(Regex pattern, ParsingItem parsingItem)
         {
             return parsingItem.TryParseRegex(pattern, out _);
-        }
-
-        private static bool TrySetAdditionalInformation(Item item, object? additionalInformation)
-        {
-            if (additionalInformation == null)
-            {
-                return false;
-            }
-
-            item.AdditionalInformation = additionalInformation;
-            return true;
         }
 
         #endregion Helpers

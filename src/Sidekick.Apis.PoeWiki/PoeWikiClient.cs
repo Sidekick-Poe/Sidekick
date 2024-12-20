@@ -1,6 +1,5 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoeWiki.Api;
 using Sidekick.Apis.PoeWiki.Extensions;
@@ -15,11 +14,13 @@ namespace Sidekick.Apis.PoeWiki
     /// PoeWiki.net API.
     /// https://www.poewiki.net/wiki/Path_of_Exile_Wiki:Data_query_API
     /// </summary>
-    public class PoeWikiClient(
+    public class PoeWikiClient
+    (
         ILogger<PoeWikiClient> logger,
         IHttpClientFactory httpClientFactory,
         IBrowserProvider browserProvider,
-        ICacheProvider cacheProvider) : IPoeWikiClient
+        ICacheProvider cacheProvider
+    ) : IPoeWikiClient
     {
         private readonly JsonSerializerOptions options = new()
         {
@@ -65,18 +66,17 @@ namespace Sidekick.Apis.PoeWiki
         /// <inheritdoc/>
         public async Task Initialize()
         {
-            var result = await cacheProvider.GetOrSet(
-                "PoeWikiBlightOils",
-                async () =>
-                {
-                    var result = await GetMetadataIdsFromItemNames(oilNames);
-                    if (result == null)
-                    {
-                        return new();
-                    }
+            var result = await cacheProvider.GetOrSet("PoeWikiBlightOils",
+                                                      async () =>
+                                                      {
+                                                          var result = await GetMetadataIdsFromItemNames(oilNames);
+                                                          if (result == null)
+                                                          {
+                                                              return new();
+                                                          }
 
-                    return result;
-                });
+                                                          return result;
+                                                      });
 
             BlightOilNamesByMetadataIds = result.ToDictionary(x => x.MetadataId ?? string.Empty, x => x.Name ?? string.Empty);
         }
@@ -85,29 +85,28 @@ namespace Sidekick.Apis.PoeWiki
         {
             try
             {
-                var query = new QueryBuilder(
-                    new List<KeyValuePair<string, string>>
-                    {
-                        new("action", "query"),
-                        new("format", "json"),
-                        new("titles", $"File:{mapType} area screenshot.png|File:{mapType} area screenshot.jpg"),
-                        new("prop", "imageinfo"),
-                        new("iiprop", "url"),
-                    });
+                var query = new List<KeyValuePair<string, string>>
+                {
+                    new("action", "query"),
+                    new("format", "json"),
+                    new("titles", $"File:{mapType} area screenshot.png|File:{mapType} area screenshot.jpg"),
+                    new("prop", "imageinfo"),
+                    new("iiprop", "url"),
+                };
 
                 using var client = GetHttpClient();
-                var response = await client.GetAsync(query.ToString());
+                var response = await client.GetAsync(QueryStringHelper.ToQueryString(query));
                 var content = await response.Content.ReadAsStreamAsync();
                 var json = await JsonNode.ParseAsync(content);
 
-                var screenshotUrl = json!["query"]!
-                                         ["pages"]!.AsObject()?.First(x => x.Key != "-1").Value!
-                                         ["imageinfo"]?.AsArray()?.First()!
-                                         ["url"]?.AsValue().GetValue<string>()!;
+                var screenshotUrl = json!["query"]!["pages"]!.AsObject().First(x => x.Key != "-1").Value!["imageinfo"]?.AsArray().First()!["url"]?.AsValue().GetValue<string>()!;
 
                 return new Uri(screenshotUrl);
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                // Not having a map screenshot is not exception worthy.
+            }
 
             return null;
         }
@@ -116,26 +115,23 @@ namespace Sidekick.Apis.PoeWiki
         {
             try
             {
-                var query = new QueryBuilder(
-                    new List<KeyValuePair<string, string>>
-                    {
-                        new("action", "cargoquery"),
-                        new("format", "json"),
-                        new("limit", "1"),
-                        new("tables", "maps,items,areas"),
-                        new("join_on", "items._pageID=maps._pageID,maps.area_id=areas.id"),
-                        new("fields", "items.name,maps.area_id,areas.boss_monster_ids,items.drop_monsters,areas.area_type_tags"),
-                        new("group_by", "items.name"),
-                        new("where", @$"items.name=""{mapType}"" AND items.drop_enabled = true"),
-                    });
+                var query = new List<KeyValuePair<string, string>>
+                {
+                    new("action", "cargoquery"),
+                    new("format", "json"),
+                    new("limit", "1"),
+                    new("tables", "maps,items,areas"),
+                    new("join_on", "items._pageID=maps._pageID,maps.area_id=areas.id"),
+                    new("fields", "items.name,maps.area_id,areas.boss_monster_ids,items.drop_monsters,areas.area_type_tags"),
+                    new("group_by", "items.name"),
+                    new("where", @$"items.name=""{mapType}"" AND items.drop_enabled = true"),
+                };
 
                 using var client = GetHttpClient();
-                var response = await client.GetAsync(query.ToString());
+                var response = await client.GetAsync(QueryStringHelper.ToQueryString(query));
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<MapResult>>(content, options);
-                return result
-                       ?.CargoQuery.Select(x => x.Title)
-                       .FirstOrDefault();
+                return result?.CargoQuery.Select(x => x.Title).FirstOrDefault();
             }
             catch (Exception e)
             {
@@ -149,19 +145,18 @@ namespace Sidekick.Apis.PoeWiki
         {
             try
             {
-                var query = new QueryBuilder(
-                    new List<KeyValuePair<string, string>>
-                    {
-                        new("action", "cargoquery"),
-                        new("format", "json"),
-                        new("limit", "500"),
-                        new("tables", "monsters"),
-                        new("fields", "monsters.name,monsters.metadata_id"),
-                        new("where", @$"monsters.metadata_id IN ({mapResult.BossMonsterIds.ToQueryString()})"),
-                    });
+                var query = new List<KeyValuePair<string, string>>
+                {
+                    new("action", "cargoquery"),
+                    new("format", "json"),
+                    new("limit", "500"),
+                    new("tables", "monsters"),
+                    new("fields", "monsters.name,monsters.metadata_id"),
+                    new("where", @$"monsters.metadata_id IN ({mapResult.BossMonsterIds.ToQueryString()})"),
+                };
 
                 using var client = GetHttpClient();
-                var response = await client.GetAsync(query.ToString());
+                var response = await client.GetAsync(QueryStringHelper.ToQueryString(query));
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<BossResult>>(content, options);
                 if (result == null)
@@ -194,20 +189,19 @@ namespace Sidekick.Apis.PoeWiki
         {
             try
             {
-                var query = new QueryBuilder(
-                    new List<KeyValuePair<string, string>>
-                    {
-                        new("action", "cargoquery"),
-                        new("format", "json"),
-                        new("fields", "items.name,items.description,items.flavour_text,items.drop_level"),
-                        new("tables", "items"),
-                        new("where", @$"items.drop_areas HOLDS '{mapResult.AreaId}' AND items.is_in_game = true AND items.drop_enabled = true"),
-                        new("order by", "items.drop_level DESC"),
-                        new("limit", "500"),
-                    });
+                var query = new List<KeyValuePair<string, string>>
+                {
+                    new("action", "cargoquery"),
+                    new("format", "json"),
+                    new("fields", "items.name,items.description,items.flavour_text,items.drop_level"),
+                    new("tables", "items"),
+                    new("where", @$"items.drop_areas HOLDS '{mapResult.AreaId}' AND items.is_in_game = true AND items.drop_enabled = true"),
+                    new("order by", "items.drop_level DESC"),
+                    new("limit", "500"),
+                };
 
                 using var client = GetHttpClient();
-                var response = await client.GetAsync(query.ToString());
+                var response = await client.GetAsync(QueryStringHelper.ToQueryString(query));
                 var content = await response.Content.ReadAsStringAsync();
                 var result = JsonSerializer.Deserialize<CargoQueryResult<ItemResult>>(content, options);
                 if (result == null)
@@ -242,20 +236,19 @@ namespace Sidekick.Apis.PoeWiki
             {
                 var enchantmentText = modifierLine.Text.Replace("Allocates ", string.Empty);
 
-                var query = new QueryBuilder(
-                    new List<KeyValuePair<string, string>>
-                    {
-                        new("action", "cargoquery"),
-                        new("format", "json"),
-                        new("limit", "500"),
-                        new("tables", "blight_crafting_recipes,blight_crafting_recipes_items,mods,passive_skills"),
-                        new("join_on", "blight_crafting_recipes_items.recipe_id=blight_crafting_recipes.id,blight_crafting_recipes.modifier_id=mods.id,blight_crafting_recipes.passive_id=passive_skills.id"),
-                        new("fields", "blight_crafting_recipes_items.item_id"),
-                        new("where", @$"passive_skills.name='{enchantmentText}' OR mods.stat_text='{enchantmentText}'"),
-                    });
+                var query = new List<KeyValuePair<string, string>>
+                {
+                    new("action", "cargoquery"),
+                    new("format", "json"),
+                    new("limit", "500"),
+                    new("tables", "blight_crafting_recipes,blight_crafting_recipes_items,mods,passive_skills"),
+                    new("join_on", "blight_crafting_recipes_items.recipe_id=blight_crafting_recipes.id,blight_crafting_recipes.modifier_id=mods.id,blight_crafting_recipes.passive_id=passive_skills.id"),
+                    new("fields", "blight_crafting_recipes_items.item_id"),
+                    new("where", @$"passive_skills.name='{enchantmentText}' OR mods.stat_text='{enchantmentText}'"),
+                };
 
                 using var client = GetHttpClient();
-                var response = await client.GetAsync(query.ToString());
+                var response = await client.GetAsync(QueryStringHelper.ToQueryString(query));
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<ItemIdResult>>(content, options);
                 if (result == null)
@@ -288,19 +281,18 @@ namespace Sidekick.Apis.PoeWiki
         {
             try
             {
-                var query = new QueryBuilder(
-                    new List<KeyValuePair<string, string>>
-                    {
-                        new("action", "cargoquery"),
-                        new("format", "json"),
-                        new("limit", "500"),
-                        new("tables", "items"),
-                        new("fields", "items.name,items.metadata_id"),
-                        new("where", @$"items.name IN ({itemNames.ToQueryString()})"),
-                    });
+                var query = new List<KeyValuePair<string, string>>
+                {
+                    new("action", "cargoquery"),
+                    new("format", "json"),
+                    new("limit", "500"),
+                    new("tables", "items"),
+                    new("fields", "items.name,items.metadata_id"),
+                    new("where", @$"items.name IN ({itemNames.ToQueryString()})"),
+                };
 
                 using var client = GetHttpClient();
-                var response = await client.GetAsync(query.ToString());
+                var response = await client.GetAsync(QueryStringHelper.ToQueryString(query));
                 var content = await response.Content.ReadAsStreamAsync();
                 var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<ItemNameMetadataIdResult>>(content, options);
                 if (result == null)

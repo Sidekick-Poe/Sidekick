@@ -67,12 +67,7 @@ public partial class MainWindow
         {
             var width = (int)ActualWidth;
             var height = (int)ActualHeight;
-            _ = viewLocator.CacheProvider.Set($"view_preference_{SidekickView?.CurrentView.Key}",
-                                              new ViewPreferences()
-                                              {
-                                                  Width = width,
-                                                  Height = height,
-                                              });
+            _ = viewLocator.ViewPreferenceService.Set(SidekickView?.CurrentView.Key, width, height);
         }
         catch (Exception)
         {
@@ -124,7 +119,7 @@ public partial class MainWindow
         Grid.Margin = WindowState == WindowState.Maximized ? new Thickness(0) : new Thickness(5);
     }
 
-    private void CenterOnScreen()
+    public void CenterOnScreen()
     {
         // Get the window's handle
         var windowHandle = new WindowInteropHelper(this).Handle;
@@ -157,7 +152,7 @@ public partial class MainWindow
         Top = top;
     }
 
-    private void TopBorder_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    private void TopBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
         DragMove();
     }
@@ -174,6 +169,16 @@ public partial class MainWindow
 
     private void ClearFocusOnClosing()
     {
+        // Get the handle for the foreground window (current active window)
+        var foregroundWindow = GetForegroundWindow();
+
+        // Check if the window currently active belongs to our application
+        if (new WindowInteropHelper(this).Handle != foregroundWindow)
+        {
+            // Just in case, set the focus back to the application
+            SetForegroundWindow(new WindowInteropHelper(this).Handle);
+        }
+
         // Get the handle of the currently focused window (likely the WPF window itself)
         previousWindowHandle = GetForegroundWindow();
 
@@ -185,7 +190,6 @@ public partial class MainWindow
 
         // Ensure the WebView is removed from the visual tree
         WebView.Visibility = Visibility.Collapsed;
-
     }
 
     protected override void OnClosed(EventArgs e)

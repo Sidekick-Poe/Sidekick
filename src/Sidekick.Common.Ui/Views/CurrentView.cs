@@ -19,6 +19,9 @@ public class CurrentView(
     public string Title { get; private set; } = "Sidekick";
 
     /// <inheritdoc/>
+    public int? Height { get; private set; }
+
+    /// <inheritdoc/>
     public string Url => navigationManager.Uri;
 
     /// <inheritdoc/>
@@ -39,6 +42,13 @@ public class CurrentView(
         }
 
         Title = title?.Trim() ?? "Sidekick";
+        ViewChanged?.Invoke(this);
+    }
+
+    /// <inheritdoc/>
+    public void SetHeight(int height)
+    {
+        Height = height;
         ViewChanged?.Invoke(this);
     }
 

@@ -165,14 +165,11 @@
   <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
     <value>@last - Character name of the last whisper message you received.</value>
   </data>
-  <data name="Game_Title" xml:space="preserve">
-    <value>Game Settings</value>
+  <data name="General_Settings" xml:space="preserve">
+    <value>General Settings</value>
   </data>
   <data name="General" xml:space="preserve">
     <value>General</value>
-  </data>
-  <data name="General_CopyUserIdToClipboard" xml:space="preserve">
-    <value>Copy your unique id to clipboard</value>
   </data>
   <data name="General_RetainClipboard" xml:space="preserve">
     <value>Retain Clipboard Data</value>
@@ -180,10 +177,10 @@
   <data name="Group_Custom_Keybinds" xml:space="preserve">
     <value>Custom Keybinds</value>
   </data>
-  <data name="Group_Keybinds" xml:space="preserve">
+  <data name="Keybindings" xml:space="preserve">
     <value>Keybindings</value>
   </data>
-  <data name="Group_Other" xml:space="preserve">
+  <data name="Other_Settings" xml:space="preserve">
     <value>Other Settings</value>
   </data>
   <data name="Key_Active" xml:space="preserve">
@@ -225,7 +222,7 @@
   <data name="Map_Key_Check" xml:space="preserve">
     <value>Check Map Mods</value>
   </data>
-  <data name="PriceCheck" xml:space="preserve">
+  <data name="Price_Check" xml:space="preserve">
     <value>Price Check</value>
   </data>
   <data name="PriceCheck_CloseWithMouse" xml:space="preserve">
@@ -237,7 +234,7 @@
   <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
     <value>Show price prediction from poeprices.info</value>
   </data>
-  <data name="ResetCache" xml:space="preserve">
+  <data name="Reset_Cache" xml:space="preserve">
     <value>Reset Cache</value>
   </data>
   <data name="Save" xml:space="preserve">
@@ -280,6 +277,48 @@
     <value>Open Wealth Tracker</value>
   </data>
   <data name="UseInvariantForTradeResults" xml:space="preserve">
-      <value>Use English Trade Website</value>
+    <value>Use English Trade Website</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Map_Check" xml:space="preserve">
+    <value>Map Check</value>
+  </data>
+  <data name="Dangerous_Modifiers" xml:space="preserve">
+    <value>Dangerous Modifiers</value>
+  </data>
+  <data name="Item_Trade_Settings" xml:space="preserve">
+    <value>Item Trade Settings</value>
+  </data>
+  <data name="Bulk_Trade_Settings" xml:space="preserve">
+    <value>Bulk Trade Settings</value>
+  </data>
+  <data name="Preferred_search_mode_for_currency_items" xml:space="preserve">
+    <value>Preferred search mode for currency items</value>
+  </data>
+  <data name="Item_Trade" xml:space="preserve">
+    <value>Item Trade</value>
+  </data>
+  <data name="Bulk_Trade" xml:space="preserve">
+    <value>Bulk Trade</value>
+  </data>
+  <data name="Currency_of_Bulk_Offers" xml:space="preserve">
+    <value>Currency of Bulk Offers</value>
+  </data>
+  <data name="Minimum_Stock_in_Bulk_Trade" xml:space="preserve">
+    <value>Minimum Stock in Bulk Trade</value>
+  </data>
+  <data name="Currency_of_Listed_Items" xml:space="preserve">
+    <value>Currency of Listed Items</value>
+  </data>
+  <data name="Normalize_Values" xml:space="preserve">
+    <value>Normalize item values. Leave at 0% for exact values.</value>
+  </data>
+  <data name="PathOfExile" xml:space="preserve">
+    <value>Path of Exile 1</value>
+  </data>
+  <data name="PathOfExile2" xml:space="preserve">
+    <value>Path of Exile 2</value>
   </data>
 </root>

@@ -1,0 +1,41 @@
+@using Sidekick.Apis.Poe.Localization
+@using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Enums
+@using Sidekick.Common.Settings
+
+<FormSelect Label="@Resources["Normalize_Values"]"
+            Value="@Value"
+            ValueChanged="ValueChanged"
+            Options="Options" />
+
+@inject IStringLocalizer<SettingsResources> Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private string? Value { get; set; }
+
+    private List<SelectOption> Options { get; set; } = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        var values = new List<double> { 0, .05, .1, .15, .2, .25 };
+
+        Value = (await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue)).ToString();
+
+        Options = values.Select(x => new SelectOption
+            {
+                Value = x.ToString(),
+                Label = x.ToString("P0")
+            }).ToList();
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task ValueChanged(string? value)
+    {
+        Value = value;
+        await SettingsService.Set(SettingKeys.PriceCheckNormalizeValue, value);
+    }
+}

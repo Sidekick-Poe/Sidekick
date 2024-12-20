@@ -61,7 +61,7 @@ namespace Sidekick.Apis.Poe.Trade
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_ElementalDps, resources.Filters_EDps, item.Properties.ElementalDps, @checked: false);
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_ChaosDps, resources.Filters_ChaosDps, item.Properties.ChaosDps, @checked: false);
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_Dps, resources.Filters_Dps, item.Properties.TotalDps, @checked: false);
-            InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_AttacksPerSecond, gameLanguageProvider.Language.DescriptionAttacksPerSecond, item.Properties.AttacksPerSecond, delta: (decimal?)0.1, @checked: false);
+            InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_AttacksPerSecond, gameLanguageProvider.Language.DescriptionAttacksPerSecond, item.Properties.AttacksPerSecond, @checked: false);
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_CriticalStrikeChance, gameLanguageProvider.Language.DescriptionCriticalStrikeChance, item.Properties.CriticalStrikeChance, @checked: false);
 
             // Map properties
@@ -95,7 +95,6 @@ namespace Sidekick.Apis.Poe.Trade
             PropertyFilterType type,
             string? label,
             object value,
-            decimal? delta = null,
             bool? @checked = null,
             decimal? min = null,
             decimal? max = null)
@@ -105,20 +104,14 @@ namespace Sidekick.Apis.Poe.Trade
                 return;
             }
 
-            filters.Add(new PropertyFilter(@checked,
-                                           type,
-                                           label,
-                                           value,
-                                           min,
-                                           max,
-                                           delta: delta ?? 1));
+            filters.Add(new PropertyFilter(@checked, type, label, value, min, max));
         }
 
-        private void InitializeNumericFilter(List<PropertyFilter> filters, PropertyFilterType type, string? label, double? value, bool @checked = false, decimal? delta = null)
+        private void InitializeNumericFilter(List<PropertyFilter> filters, PropertyFilterType type, string? label, double? value, bool @checked = false)
         {
             if (value > 0)
             {
-                InitializePropertyFilter(filters, type, label, value.Value, @checked: @checked, delta: delta);
+                InitializePropertyFilter(filters, type, label, value.Value, @checked: @checked);
             }
         }
 

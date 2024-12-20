@@ -7,7 +7,6 @@ using Microsoft.Extensions.Options;
 using SharpHook;
 using SharpHook.Logging;
 using SharpHook.Native;
-using Sidekick.Common.Initialization;
 using Sidekick.Common.Keybinds;
 
 namespace Sidekick.Common.Platform.Keyboards
@@ -369,26 +368,42 @@ namespace Sidekick.Common.Platform.Keyboards
 
         protected virtual void Dispose(bool disposing)
         {
-            if (LogSource != null)
-            {
-                LogSource.Dispose();
-                LogSource = null;
-            }
-
-            if (Hook != null)
-            {
-                Hook.KeyPressed -= OnKeyPressed;
-                Hook.Dispose();
-                Hook = null;
-            }
-
-            if (HookTask == null)
+            if (!disposing)
             {
                 return;
             }
 
-            HookTask.Dispose();
-            HookTask = null;
+            try
+            {
+                // Dispose of the LogSource
+                LogSource?.Dispose();
+                LogSource = null;
+
+                // Stop the global hook task if it exists
+                if (HookTask != null && Hook != null)
+                {
+                    // Cancel the hook task to ensure it's stopped gracefully
+                    Hook.Dispose(); // This disposes internal resources of SimpleGlobalHook
+                    HookTask.Wait(); // Wait until the hook task completes fully
+                    HookTask.Dispose();
+                    HookTask = null;
+                }
+
+                if (Hook == null)
+                {
+                    return;
+                }
+
+                // Ensure hook itself is set to null
+                Hook.KeyPressed -= OnKeyPressed;
+                Hook.Dispose();
+                Hook = null;
+            }
+            catch (Exception ex)
+            {
+                // Log any errors during disposal, as they could be valuable for debugging
+                logger.LogError(ex, "[KeyboardProvider] Error during disposal.");
+            }
         }
     }
 }

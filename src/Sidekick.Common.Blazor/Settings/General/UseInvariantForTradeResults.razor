@@ -33,7 +33,7 @@
     private void SettingsServiceOnOnSettingsChanged()
     {
         Visible = !LanguageProvider.IsEnglish();
-        StateHasChanged();
+        InvokeAsync(StateHasChanged);
     }
 
     private async Task UseInvariantTradeResultsChanged(bool value)

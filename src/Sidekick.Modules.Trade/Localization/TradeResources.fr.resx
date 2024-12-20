@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Age_Day" xml:space="preserve">
+    <value>{0} journée</value>
+  </data>
+  <data name="Age_Days" xml:space="preserve">
+    <value>{0} jours</value>
+  </data>
+  <data name="Age_Hour" xml:space="preserve">
+    <value>{0} heure</value>
+  </data>
+  <data name="Age_Hours" xml:space="preserve">
+    <value>{0} heures</value>
+  </data>
+  <data name="Age_Minute" xml:space="preserve">
+    <value>{0} minute</value>
+  </data>
+  <data name="Age_Minutes" xml:space="preserve">
+    <value>{0} minutes</value>
+  </data>
+  <data name="Age_Now" xml:space="preserve">
+    <value>maintenant</value>
+  </data>
+  <data name="Age_Seconds" xml:space="preserve">
+    <value>{0} secondes</value>
+  </data>
+  <data name="Base_Percentile" xml:space="preserve">
+    <value>Centile de base</value>
+  </data>
+  <data name="BuyoutPrice" xml:space="preserve">
+    <value>Prix</value>
+  </data>
+  <data name="Class" xml:space="preserve">
+    <value>Classe d'item</value>
+  </data>
+  <data name="Class_Hint" xml:space="preserve">
+    <value>Si activé, Sidekick va rechercher les items de cette classe. Si désactivé, Sidekick va rechercher les items de ce type. (ex : Type: Couronne de prophète vs Class: Casques)</value>
+  </data>
+  <data name="Corrupted" xml:space="preserve">
+    <value>Corrompu</value>
+  </data>
+  <data name="CountString" xml:space="preserve">
+    <value>Affiche {0} sur {1} items</value>
+  </data>
+  <data name="Filters_Equals" xml:space="preserve">
+    <value>Val</value>
+  </data>
+  <data name="Filters_Max" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="Filters_Min" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="Filters_Submit" xml:space="preserve">
+    <value>Chercher</value>
+  </data>
+  <data name="ForceCategory" xml:space="preserve">
+    <value>Sélectionner cette case va limiter les recherches à cette catégorie. La désélectionner va permettre toutes les catégories dans les résultats (explicite, fabriqué, fracturé, etc.).</value>
+  </data>
+  <data name="ItemLevel" xml:space="preserve">
+    <value>Niveau de l'objet</value>
+  </data>
+  <data name="Layout" xml:space="preserve">
+    <value>Disposition</value>
+  </data>
+  <data name="Layout_Cards_Maximized" xml:space="preserve">
+    <value>Résultats détaillés</value>
+  </data>
+  <data name="Layout_Cards_Minimized" xml:space="preserve">
+    <value>Détails minimes</value>
+  </data>
+  <data name="LoadMoreData" xml:space="preserve">
+    <value>Charger plus de résultats</value>
+  </data>
+  <data name="MinStock" xml:space="preserve">
+    <value>Stock minimum</value>
+  </data>
+  <data name="Mode_Bulk" xml:space="preserve">
+    <value>Vente en gros</value>
+  </data>
+  <data name="Mode_Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="ModifierHint" xml:space="preserve">
+    <value>Ceci permet de choisir une modificateur alternatif. Sidekick ne peut pas déterminer avec exactitude le type de modificateur dans certains cas puisque le jeu peut retourner des valeurs ambiguës comparées au site d'échange.</value>
+  </data>
+  <data name="OpenQueryInWebsite" xml:space="preserve">
+    <value>Ouvrir la requête dans le site officiel</value>
+  </data>
+  <data name="Parsing" xml:space="preserve">
+    <value>Analyse de l'item</value>
+  </data>
+  <data name="Prediction" xml:space="preserve">
+    <value>PoePrices.info</value>
+  </data>
+  <data name="PredictionConfidence" xml:space="preserve">
+    <value>Confiance : {0}%</value>
+  </data>
+  <data name="Requires" xml:space="preserve">
+    <value>Nécessite</value>
+  </data>
+  <data name="Stock" xml:space="preserve">
+    <value>Stock</value>
+  </data>
+  <data name="Trade" xml:space="preserve">
+    <value>Trade</value>
+  </data>
+  <data name="Unidentified" xml:space="preserve">
+    <value>Non identifié</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Rechercher</value>
+  </data>
+  <data name="Bulk_Search" xml:space="preserve">
+    <value>Vente en gros</value>
+  </data>
+  <data name="Links" xml:space="preserve">
+    <value>Liens</value>
+  </data>
+  <data name="Last_Updated" xml:space="preserve">
+    <value>Dernière mise à jour</value>
+  </data>
+  <data name="Open_Website" xml:space="preserve">
+    <value>Ouvrir le site web</value>
+  </data>
+</root>

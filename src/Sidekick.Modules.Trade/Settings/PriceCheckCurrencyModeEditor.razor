@@ -3,7 +3,7 @@
 @using Sidekick.Common.Enums
 @using Sidekick.Common.Settings
 
-<FormSelect Label="@Resources["Preferred search mode for currency items"]"
+<FormSelect Label="@Resources["Preferred_search_mode_for_currency_items"]"
             Value="@Mode"
             ValueChanged="ModeChanged"
             Options="Options"/>
@@ -26,12 +26,12 @@
             new SelectOption()
             {
                 Value = TradeMode.Item.GetValueAttribute(),
-                Label = Resources["Item Trade"],
+                Label = Resources["Item_Trade"],
             },
             new SelectOption()
             {
                 Value = TradeMode.Bulk.GetValueAttribute(),
-                Label = Resources["Bulk Trade"],
+                Label = Resources["Bulk_Trade"],
             }
         ];
 

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -216,9 +216,6 @@
   <data name="Requires" xml:space="preserve">
     <value>Requires</value>
   </data>
-  <data name="Scourged" xml:space="preserve">
-    <value>Scourged</value>
-  </data>
   <data name="Stock" xml:space="preserve">
     <value>Stock</value>
   </data>
@@ -227,5 +224,20 @@
   </data>
   <data name="Unidentified" xml:space="preserve">
     <value>Unidentified</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Bulk_Search" xml:space="preserve">
+    <value>Bulk Search</value>
+  </data>
+  <data name="Links" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="Last_Updated" xml:space="preserve">
+    <value>Last Updated</value>
+  </data>
+  <data name="Open_Website" xml:space="preserve">
+    <value>Open Website</value>
   </data>
 </root>
