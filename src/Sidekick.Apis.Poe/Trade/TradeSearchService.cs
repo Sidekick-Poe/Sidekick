@@ -10,7 +10,6 @@ using Sidekick.Apis.Poe.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Models;
 using Sidekick.Apis.Poe.Trade.Results;
-using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
@@ -31,7 +30,7 @@ public class TradeSearchService
 {
     private readonly ILogger logger = logger;
 
-    public async Task<TradeSearchResult<string>> Search(Item item, TradeCurrency currency, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null, List<PseudoModifierFilter>? pseudoFilters = null)
+    public async Task<TradeSearchResult<string>> Search(Item item, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null, List<PseudoModifierFilter>? pseudoFilters = null)
     {
         try
         {
@@ -91,14 +90,14 @@ public class TradeSearchService
                 query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("nonunique");
             }
 
-            var currencyValue = currency.GetValueAttribute();
-            if (!string.IsNullOrEmpty(currencyValue))
+            var currency = item.Metadata.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckItemCurrency) : await settingsService.GetString(SettingKeys.PriceCheckItemCurrencyPoE2);
+            if (!string.IsNullOrEmpty(currency))
             {
                 query.Filters.TradeFilters = new TradeFilterGroup
                 {
                     Filters =
                     {
-                        Price = new SearchFilterValue(currencyValue),
+                        Price = new SearchFilterValue(currency),
                     },
                 };
             }
