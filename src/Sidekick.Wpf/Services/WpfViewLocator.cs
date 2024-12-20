@@ -11,21 +11,21 @@ namespace Sidekick.Wpf.Services
 {
     public class WpfViewLocator : IViewLocator
     {
-        internal readonly ICacheProvider cacheProvider;
         private readonly ILogger<WpfViewLocator> logger;
         private readonly ICloudflareService cloudflareService;
         private readonly ISettingsService settingsService;
+        internal readonly IViewPreferenceService viewPreferenceService;
 
         internal List<MainWindow> Windows { get; } = new();
 
         internal string? NextUrl { get; set; }
 
-        public WpfViewLocator(ICacheProvider cacheProvider, ILogger<WpfViewLocator> logger, ICloudflareService cloudflareService, ISettingsService settingsService)
+        public WpfViewLocator(ILogger<WpfViewLocator> logger, ICloudflareService cloudflareService, ISettingsService settingsService, IViewPreferenceService viewPreferenceService)
         {
-            this.cacheProvider = cacheProvider;
             this.logger = logger;
             this.cloudflareService = cloudflareService;
             this.settingsService = settingsService;
+            this.viewPreferenceService = viewPreferenceService;
             cloudflareService.ChallengeStarted += CloudflareServiceOnChallengeStarted;
         }
 
@@ -39,7 +39,7 @@ namespace Sidekick.Wpf.Services
 
             window.SidekickView = view;
             view.CurrentView.ViewChanged += CurrentViewOnViewChanged;
-            var preferences = await ViewPreferenceService.Get(view.CurrentView.Key);
+            var preferences = await viewPreferenceService.Get(view.CurrentView.Key);
 
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -108,7 +108,7 @@ namespace Sidekick.Wpf.Services
                 return;
             }
 
-            var preferences = await ViewPreferenceService.Get($"view_preference_{view.CurrentView.Key}");
+            var preferences = await viewPreferenceService.Get($"view_preference_{view.CurrentView.Key}");
 
             Application.Current.Dispatcher.Invoke(() =>
             {
