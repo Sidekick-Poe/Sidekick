@@ -8,7 +8,6 @@ namespace Sidekick.Apis.Poe.Trade.Models
         {
             Line = line;
             Checked = line.Modifiers.FirstOrDefault()?.Category == ModifierCategory.Fractured;
-            NormalizeMinValue();
 
             if (HasMoreThanOneCategory && FirstCategory == ModifierCategory.Fractured)
             {
@@ -30,8 +29,10 @@ namespace Sidekick.Apis.Poe.Trade.Models
 
         public decimal? Max { get; set; }
 
+        public double NormalizeValue { get; set; }
+
         /// <summary>
-        /// Normalizes the Min value between a -1 delta or 90%.
+        /// Normalize the Min value with NormalizeValue.
         /// </summary>
         public void NormalizeMinValue()
         {
@@ -43,16 +44,16 @@ namespace Sidekick.Apis.Poe.Trade.Models
             var value = Line.Values.OrderBy(x => x).FirstOrDefault();
             if (value > 0)
             {
-                Min = (int)Math.Max(Math.Min(value - 1, value * 0.9), 0);
+                Min = (int)Math.Max((1 - NormalizeValue) * value, 0);
             }
             else
             {
-                Min = (int)Math.Min(Math.Min(value - 1, value * 1.1), 0);
+                Min = (int)Math.Min((1 + NormalizeValue) * value, 0);
             }
         }
 
         /// <summary>
-        /// Normalizes the Max value between a +1 delta or 90%.
+        /// Normalize the Max value, +1 and/or NormalizeValue.
         /// </summary>
         public void NormalizeMaxValue()
         {
@@ -64,11 +65,11 @@ namespace Sidekick.Apis.Poe.Trade.Models
             var value = Line.Values.OrderBy(x => x).FirstOrDefault();
             if (value > 0)
             {
-                Max = (int)Math.Max(Math.Max(value + 1, value * 1.1), 0);
+                Max = (int)Math.Max(Math.Max(value + 1, (1 + NormalizeValue) * value), 0);
             }
             else
             {
-                Max = (int)Math.Min(Math.Max(value + 1, value * 0.9), 0);
+                Max = (int)Math.Min(Math.Max(value + 1, (1 - NormalizeValue) * value), 0);
             }
         }
 

@@ -154,7 +154,7 @@ public partial class MainWindow
         Top = top;
     }
 
-    private void TopBorder_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    private void TopBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
         DragMove();
     }
@@ -171,6 +171,16 @@ public partial class MainWindow
 
     private void ClearFocusOnClosing()
     {
+        // Get the handle for the foreground window (current active window)
+        var foregroundWindow = GetForegroundWindow();
+
+        // Check if the window currently active belongs to our application
+        if (new WindowInteropHelper(this).Handle != foregroundWindow)
+        {
+            // Just in case, set the focus back to the application
+            SetForegroundWindow(new WindowInteropHelper(this).Handle);
+        }
+
         // Get the handle of the currently focused window (likely the WPF window itself)
         previousWindowHandle = GetForegroundWindow();
 

@@ -12,13 +12,15 @@ public class SidekickException : Exception
 
     public SidekickException(
         string message,
-        string? additionalInformation)
+        params string[] additionalInformation)
         : base(message)
     {
-        AdditionalInformation = additionalInformation;
+        AdditionalInformation = additionalInformation.ToList();
     }
 
-    public string? AdditionalInformation { get; }
+    public List<string> AdditionalInformation { get; } = [];
+
+    public virtual bool IsCritical => true;
 
     /// <summary>
     /// Gets or sets a value indicating whether the application should exit in response to an exception. This changes the button on the error screen from 'Close' to 'Exit Application'.

@@ -12,12 +12,17 @@
         else if (ShowError)
         {
             <AlertError>
-                <Heading3>An error occured!</Heading3>
-                <TextBase Class="mt-1">@Message</TextBase>
+                <TextBase>@Message</TextBase>
 
-                @if (!string.IsNullOrEmpty(AdditionalInformation))
+                @if (AdditionalInformation.Any())
                 {
-                    <TextCaption Class="mt-1">Additional Information: <b>@AdditionalInformation</b></TextCaption>
+                    <Heading3 Class="mt-2">Additional Information</Heading3>
+                    @foreach (var additionalInformation in AdditionalInformation)
+                    {
+                        <div>
+                            <TextCaption Class="mt-1">@additionalInformation</TextCaption>
+                        </div>
+                    }
                 }
 
                 <div class="hidden mt-1">
@@ -84,7 +89,7 @@
         }
     }
 
-    public string? AdditionalInformation
+    public List<string> AdditionalInformation
     {
         get
         {
@@ -93,7 +98,20 @@
                 return sidekickException.AdditionalInformation;
             }
 
-            return null;
+            return [];
+        }
+    }
+
+    public bool IsCritical
+    {
+        get
+        {
+            if (Boundary?.CurrentException is SidekickException sidekickException)
+            {
+                return sidekickException.IsCritical;
+            }
+
+            return true;
         }
     }
 

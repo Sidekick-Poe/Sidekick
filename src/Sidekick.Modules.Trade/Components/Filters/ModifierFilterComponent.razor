@@ -2,6 +2,7 @@
 @using Sidekick.Apis.PoeWiki
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Game.Languages
+@using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
 
 <FilterWrapper>
@@ -9,7 +10,7 @@
         <div class="grow">
             <FormCheckbox Value="Filter.Checked ?? false"
                           NoMargin="true"
-                          ValueChanged="(v) => Filter.Checked = v">
+                          ValueChanged="CheckedChanged">
                 <ItemModifierText Class="text-left"
                                   Category="Filter.Line.Modifiers.FirstOrDefault()?.Category">@Filter.Line.Text</ItemModifierText>
             </FormCheckbox>
@@ -54,6 +55,7 @@
 @inject IStringLocalizer<TradeResources> Resources
 @inject IPoeWikiClient PoeWikiClient
 @inject IGameLanguageProvider GameLanguageProvider
+@inject ISettingsService SettingsService
 
 @code {
 
@@ -77,6 +79,15 @@
                                       .ToList();
             }
         }
+    }
+
+    private async void CheckedChanged(bool value)
+    {
+        Filter.Checked = value;
+
+        // We can change the settings in the Trade window, so we should fetch here every time.
+        Filter.NormalizeValue = await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
+        Filter.NormalizeMinValue();
     }
 
     private void TypeChanged(FilterRange.RangeType type)
