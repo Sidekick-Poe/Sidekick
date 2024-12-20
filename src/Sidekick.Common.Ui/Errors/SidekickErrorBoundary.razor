@@ -9,7 +9,7 @@
         {
             @ErrorContent(this)
         }
-        else if (ShowError)
+        else
         {
             <AlertError>
                 <TextBase>@Message</TextBase>
@@ -73,8 +73,6 @@
 
         await base.OnAfterRenderAsync(firstRender);
     }
-
-    private bool ShowError => Exception?.GetType() != typeof(SilentException);
 
     public string Message
     {

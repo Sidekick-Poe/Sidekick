@@ -40,7 +40,7 @@ namespace Sidekick.Apis.Poe.Bulk
             var itemId = itemStaticDataProvider.GetId(item.Metadata);
             if (itemId == null)
             {
-                throw new ApiErrorException("Could not find a valid item.");
+                throw new ApiErrorException { AdditionalInformation = ["Sidekick could not find a valid item."], };
             }
 
             var currency = item.Metadata.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckBulkCurrency) : await settingsService.GetString(SettingKeys.PriceCheckBulkCurrencyPoE2);

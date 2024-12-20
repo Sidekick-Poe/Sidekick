@@ -32,7 +32,7 @@ public class LeagueProvider(
         catch (Exception e)
         {
             logger.LogError(e, "[LeagueProvider] Error fetching leagues.");
-            throw;
+            throw new ApiErrorException { AdditionalInformation = ["If the official trade website is down, Sidekick will not work.", "Please try again later or open a ticket on GitHub."], };
         }
     }
 
