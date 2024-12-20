@@ -42,15 +42,6 @@
     {
         Release = await GitHubClient.GetLatestRelease();
 
-        if (Debugger.IsAttached)
-        {
-            Release = new GitHubRelease()
-            {
-                IsNewerVersion = true,
-                IsExecutable = true,
-            };
-        }
-
         await base.OnInitializedAsync();
     }
 
