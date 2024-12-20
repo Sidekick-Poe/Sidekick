@@ -40,7 +40,7 @@ public class PoeTradeHandler
             throw new SidekickException("Sidekick failed to communicate with the trade API.", "The trade website requires authentication, which Sidekick does not support currently.", "Try using a different game language and/or force to search using English only in the settings.");
         }
 
-        // If we don't get a 403, there is nothing else to do in this handler
+        // 403 probably means a cloudflare issue.
         if (response.StatusCode == HttpStatusCode.Forbidden)
         {
             logger.LogInformation("[PoeTradeHandler] Received 403 response, attempting to handle Cloudflare challenge");
