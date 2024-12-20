@@ -7,18 +7,18 @@
 
 <div class="flex items-start gap-2">
     <div class="grow">
-        <FormSelect Label="@Resources.Character_League"
-                    Value="@LeagueId"
-                    ValueChanged="LeagueChanged"
-                    Options="Options"/>
+        <FormSelect Label="@Resources["Character_League"]"
+        Value="@LeagueId"
+        ValueChanged="LeagueChanged"
+        Options="Options"/>
     </div>
     <div class="mt-9">
         <TooltipHint
-            Text="For convenience, Sidekick supports both Path of Exile 2 and Path of Exile 1, simply choose the appropriate league when playing either of them."></TooltipHint>
+        Text="For convenience, Sidekick supports both Path of Exile 2 and Path of Exile 1, simply choose the appropriate league when playing either of them."></TooltipHint>
     </div>
 </div>
 
-@inject SettingsResources Resources
+@inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 @inject ILeagueProvider LeagueProvider
 @inject ICacheProvider CacheProvider
@@ -31,9 +31,7 @@
 
     private string? LeagueId { get; set; }
 
-    private List<SelectOption> Options { get; set; } =
-    [
-    ];
+    private List<SelectOption> Options { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -49,14 +47,13 @@
                   .GroupBy(x => x.Id)
                   .Select(
                       x => new SelectOption()
-                      {
-                          Value = x.First()
-                                   .Id,
-                          Label = x.First()
-                                   .Text,
-                      })
+                          {
+                              Value = x.First().Id,
+                              Label = x.First().Text,
+                              Group = Resources[x.First().Game.ToString()]
+                          })
                   .ToList();
-    }
+}
 
     private async Task LeagueChanged(string? value)
     {

@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Languages;
@@ -67,19 +68,7 @@ public class LeagueProvider(
                 continue;
             }
 
-            var text = game switch
-            {
-                GameType.PathOfExile2 => $"PoE2 - {apiLeague.Text}",
-                _ => $"PoE1 - {apiLeague.Text}",
-            };
-
-            var id = game switch
-            {
-                GameType.PathOfExile2 => $"poe2.{apiLeague.Id}",
-                _ => $"poe1.{apiLeague.Id}",
-            };
-
-            leagues.Add(new(game, id, text));
+            leagues.Add(new(game, $"{game.GetValueAttribute()}.{apiLeague.Id}", apiLeague.Text));
         }
 
         return leagues;
