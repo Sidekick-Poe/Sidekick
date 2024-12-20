@@ -5,18 +5,19 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
-using Sidekick.Wpf.Helpers;
 
 namespace Sidekick.Wpf.Services
 {
     public class WpfViewLocator
     (
         ICacheProvider cacheProvider,
+        IViewPreferenceService viewPreferenceService,
         ISettingsService settingsService,
         ILogger<WpfViewLocator> logger
     ) : IViewLocator
     {
         internal readonly ICacheProvider CacheProvider = cacheProvider;
+        internal readonly IViewPreferenceService ViewPreferenceService = viewPreferenceService;
 
         internal List<MainWindow> Windows { get; } = new();
 
@@ -32,7 +33,7 @@ namespace Sidekick.Wpf.Services
 
             window.SidekickView = view;
             view.CurrentView.ViewChanged += CurrentViewOnViewChanged;
-            var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.CurrentView.Key}");
+            var preferences = await ViewPreferenceService.Get(view.CurrentView.Key);
 
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -70,8 +71,8 @@ namespace Sidekick.Wpf.Services
                     window.ResizeMode = ResizeMode.CanResize;
                 }
 
-                    window.Ready();
-                });
+                window.Ready();
+            });
         }
 
         private void CurrentViewOnViewChanged(ICurrentView view)
@@ -101,7 +102,7 @@ namespace Sidekick.Wpf.Services
                 return;
             }
 
-            var preferences = await CacheProvider.Get<ViewPreferences>($"view_preference_{view.CurrentView.Key}");
+            var preferences = await ViewPreferenceService.Get($"view_preference_{view.CurrentView.Key}");
 
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -113,19 +114,19 @@ namespace Sidekick.Wpf.Services
                 {
                     window.WindowState = WindowState.Normal;
 
-                        if (preferences != null)
-                        {
-                            window.Height = preferences.Height;
-                            window.Width = preferences.Width;
-                        }
-                        else
-                        {
-                            window.Height = view.ViewHeight;
-                            window.Width = view.ViewWidth;
-                        }
+                    if (preferences != null)
+                    {
+                        window.Height = preferences.Height;
+                        window.Width = preferences.Width;
                     }
+                    else
+                    {
+                        window.Height = view.ViewHeight;
+                        window.Width = view.ViewWidth;
+                    }
+                }
 
-                    window.CenterOnScreen();
+                window.CenterOnScreen();
             });
         }
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sidekick.Common.Database;
 
@@ -10,9 +11,11 @@ using Sidekick.Common.Database;
 namespace Sidekick.Common.Database.Migrations
 {
     [DbContext(typeof(SidekickDbContext))]
-    partial class SidekickDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241220162035_AddViewPreference")]
+    partial class AddViewPreference
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.11");

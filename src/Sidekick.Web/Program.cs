@@ -9,6 +9,7 @@ using Sidekick.Common.Blazor;
 using Sidekick.Common.Database;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Interprocess;
+using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Mock;
 using Sidekick.Modules.Chat;
@@ -34,6 +35,7 @@ builder.Services
     .AddSidekickCommon()
     .AddSidekickCommonBlazor()
     .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
+    .AddSidekickCommonUi()
     .AddSingleton<IInterprocessService, InterprocessService>()
     // .AddSidekickCommonPlatform(o =>
     // {
