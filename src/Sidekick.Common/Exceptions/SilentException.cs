@@ -8,7 +8,7 @@ public class SilentException : SidekickException
     }
 
     public SilentException(string? additionalInformation)
-        : base("An exception occured.", additionalInformation)
+        : base("An exception occured.", additionalInformation ?? string.Empty)
     {
     }
 }

@@ -4,7 +4,9 @@ namespace Sidekick.Mock
 {
     public class MockInterprocessService : IInterprocessService
     {
+#pragma warning disable CS0067
         public event Action<string>? OnMessageReceived;
+#pragma warning disable CS0067
 
         public void StartReceiving()
         {
@@ -17,7 +19,7 @@ namespace Sidekick.Mock
 
         public Task SendMessage(string message)
         {
-            return Task.CompletedTask;;
+            return Task.CompletedTask;
         }
     }
 }
