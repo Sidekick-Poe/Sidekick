@@ -5,6 +5,7 @@ using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Clients.States;
 using Sidekick.Apis.Poe.CloudFlare;
+using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Leagues;
 using Sidekick.Apis.Poe.Localization;
 using Sidekick.Apis.Poe.Metadata;
@@ -72,6 +73,7 @@ public static class StartupExtensions
         services.AddSidekickInitializableService<IInvariantModifierProvider, InvariantModifierProvider>();
         services.AddSidekickInitializableService<IModifierProvider, ModifierProvider>();
         services.AddSidekickInitializableService<IPseudoModifierProvider, PseudoModifierProvider>();
+        services.AddSidekickInitializableService<IFilterProvider, FilterProvider>();
 
         return services;
     }

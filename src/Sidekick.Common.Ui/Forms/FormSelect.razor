@@ -9,7 +9,7 @@
 <select id="@Id"
         @onchange="OnChange"
         class="@UiClasses.FormInputClasses p-2 text-base w-full mb-3">
-    @if (Options.All(x => x.Value != Value))
+    @if (Options.All(x => GetOptionValue(x.Value) != GetOptionValue(Value)))
     {
         <option selected></option>
     }
@@ -21,7 +21,7 @@
             <optgroup label="@group.Key">
                 @foreach (var option in group)
                 {
-                    <option selected="@(option.Value == Value)" value="@option.Value" disabled="@option.Disabled">@option.Label</option>
+                    <option selected="@(GetOptionValue(option.Value) == GetOptionValue(Value))" value="@GetOptionValue(option.Value)" disabled="@option.Disabled">@option.Label</option>
                 }
             </optgroup>
         }
@@ -30,7 +30,7 @@
     {
         foreach (var option in Options)
         {
-            <option selected="@(option.Value == Value)" value="@option.Value" disabled="@option.Disabled">@option.Label</option>
+            <option selected="@(GetOptionValue(option.Value) == GetOptionValue(Value))" value="@GetOptionValue(option.Value)" disabled="@option.Disabled">@option.Label</option>
         }
     }
 </select>
@@ -51,8 +51,16 @@
 
     private string Id { get; } = UiUtilities.GenerateId();
 
+    private string GetOptionValue(string? value) => value ?? "null";
+
     private async Task OnChange(ChangeEventArgs args)
     {
-        await ValueChanged.InvokeAsync(args.Value?.ToString());
+        var newValue = args.Value?.ToString();
+        if (newValue == "null")
+        {
+            newValue = null;
+        }
+
+        await ValueChanged.InvokeAsync(newValue);
     }
 }

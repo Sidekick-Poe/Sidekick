@@ -1,4 +1,4 @@
-@using Sidekick.Apis.Poe.Metadata
+@using Sidekick.Apis.Poe.Filters
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Game.Languages
 @using Sidekick.Modules.Trade.Localization
@@ -45,7 +45,7 @@
 
 @inject IStringLocalizer<TradeResources> Resources
 @inject PriceCheckService PriceCheckService
-@inject IMetadataProvider MetadataProvider
+@inject IFilterProvider FilterProvider
 @inject IGameLanguageProvider GameLanguageProvider
 
 @code {
@@ -65,7 +65,7 @@
             return;
         }
 
-        ClassLabel = MetadataProvider.ApiItemCategories.FirstOrDefault(x => x.Id == PriceCheckService.Item?.Header.ItemCategory)?.Text;
+        ClassLabel = FilterProvider.ApiItemCategories.FirstOrDefault(x => x.Id == PriceCheckService.Item?.Header.ItemCategory)?.Text;
         RarityLabel = PriceCheckService.Item.Metadata.Rarity switch
         {
             Rarity.Currency => GameLanguageProvider.Language.RarityCurrency,

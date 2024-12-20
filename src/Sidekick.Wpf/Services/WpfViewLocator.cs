@@ -39,7 +39,7 @@ namespace Sidekick.Wpf.Services
 
             window.SidekickView = view;
             view.CurrentView.ViewChanged += CurrentViewOnViewChanged;
-            var preferences = await cacheProvider.Get<ViewPreferences>($"view_preference_{view.CurrentView.Key}");
+            var preferences = await ViewPreferenceService.Get(view.CurrentView.Key);
 
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -108,7 +108,7 @@ namespace Sidekick.Wpf.Services
                 return;
             }
 
-            var preferences = await cacheProvider.Get<ViewPreferences>($"view_preference_{view.CurrentView.Key}");
+            var preferences = await ViewPreferenceService.Get($"view_preference_{view.CurrentView.Key}");
 
             Application.Current.Dispatcher.Invoke(() =>
             {

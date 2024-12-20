@@ -1,7 +1,8 @@
+@using Sidekick.Apis.Poe.Filters
 @using Sidekick.Apis.Poe.Localization
-@using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Common.Blazor.Settings
-@using Sidekick.Common.Enums
+@using Sidekick.Common.Extensions
+@using Sidekick.Common.Game
 @using Sidekick.Common.Settings
 
 <FormSelect Label="@Resources["Currency_of_Bulk_Offers"]"
@@ -12,6 +13,7 @@
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 @inject IStringLocalizer<TradeCurrencyResources> OptionsLocalizer
+@inject IFilterProvider FilterProvider
 
 @code {
 
@@ -23,19 +25,16 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Currency = await SettingsService.GetString(SettingKeys.PriceCheckBulkCurrency);
-        Options =
-        [
-        ];
+        var league = await SettingsService.GetString(SettingKeys.LeagueId);
+        var game = league.GetGameFromLeagueId();
+        Currency = game == GameType.PathOfExile ? await SettingsService.GetString(SettingKeys.PriceCheckBulkCurrency) : await SettingsService.GetString(SettingKeys.PriceCheckBulkCurrencyPoE2);
+        Currency = FilterProvider.GetPriceOption(Currency);
 
-        foreach (var x in Enum.GetValues<TradeCurrency>())
+        Options = FilterProvider.PriceOptions.ConvertAll(x => new SelectOption()
         {
-            Options.Add(new SelectOption
-            {
-                Value = x.GetValueAttribute(),
-                Label = OptionsLocalizer[x.ToString()],
-            });
-        }
+            Label = x.Text ?? string.Empty,
+            Value = x.Id,
+        });
 
         await base.OnInitializedAsync();
     }
@@ -43,7 +42,17 @@
     private async Task CurrencyChanged(string? value)
     {
         Currency = value;
-        await SettingsService.Set(SettingKeys.PriceCheckBulkCurrency, value);
+
+        var league = await SettingsService.GetString(SettingKeys.LeagueId);
+        var game = league.GetGameFromLeagueId();
+        if (game == GameType.PathOfExile)
+        {
+            await SettingsService.Set(SettingKeys.PriceCheckBulkCurrency, value);
+        }
+        else
+        {
+            await SettingsService.Set(SettingKeys.PriceCheckBulkCurrencyPoE2, value);
+        }
     }
 
 }

@@ -8,7 +8,7 @@ public class UnavailableTranslationException : SidekickException
     }
 
     public UnavailableTranslationException(string? additionalInformation)
-        : base("This feature is only available when the game is running in english.", additionalInformation)
+        : base("This feature is only available when the game is running in english.", additionalInformation ?? string.Empty)
     {
     }
 }

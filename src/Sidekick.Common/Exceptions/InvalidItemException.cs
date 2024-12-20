@@ -8,7 +8,7 @@ public class InvalidItemException : SidekickException
     }
 
     public InvalidItemException(string? additionalInformation)
-        : base("This item is invalid for this feature.", additionalInformation)
+        : base("This item is invalid for this feature.", additionalInformation ?? string.Empty)
     {
     }
 }

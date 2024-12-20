@@ -63,19 +63,6 @@
         LeagueId = value;
         await SettingsService.Set(SettingKeys.LeagueId, value);
 
-        if (currentGame != newGame)
-        {
-            if (newGame == GameType.PathOfExile2)
-            {
-                await SettingsService.Set(SettingKeys.PriceCheckBulkCurrency, TradeCurrency.Exalted);
-                await SettingsService.Set(SettingKeys.PriceCheckItemCurrency, TradeCurrency.ChaosEquivalent);
-            }
-            else if (newGame == GameType.PathOfExile)
-            {
-                await SettingsService.Set(SettingKeys.PriceCheckBulkCurrency, TradeCurrency.Divine);
-            }
-        }
-
         if (AutoRefresh && currentGame != newGame)
         {
             await CacheProvider.Clear();

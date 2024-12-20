@@ -99,10 +99,8 @@ public class PriceCheckService(
         IsLoading = true;
         LoadingChanged?.Invoke();
 
-        var tradeCurrency = await settingsService.GetEnum<TradeCurrency>(SettingKeys.PriceCheckItemCurrency) ?? TradeCurrency.Chaos;
         ItemTradeResult = await tradeSearchService.Search(
             Item,
-            tradeCurrency,
             PropertyFilters,
             ModifierFilters,
             PseudoFilters);
@@ -151,9 +149,7 @@ public class PriceCheckService(
         IsLoading = true;
         LoadingChanged?.Invoke();
 
-        var currency = await settingsService.GetEnum<TradeCurrency>(SettingKeys.PriceCheckBulkCurrency);
-        var minStock = await settingsService.GetInt(SettingKeys.PriceCheckBulkMinimumStock);
-        BulkTradeResult = await bulkTradeService.SearchBulk(Item, currency ?? TradeCurrency.Divine, minStock);
+        BulkTradeResult = await bulkTradeService.SearchBulk(Item);
 
         IsLoading = false;
         LoadingChanged?.Invoke();
