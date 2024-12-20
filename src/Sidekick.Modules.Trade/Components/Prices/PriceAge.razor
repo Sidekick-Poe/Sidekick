@@ -1,6 +1,6 @@
 @using Sidekick.Modules.Trade.Localization
 
-<TextCaption>@Text</TextCaption>
+<TextCaption><span title="@(Date.ToLocalTime().ToString("F"))">@Text</span></TextCaption>
 
 @inject IStringLocalizer<TradeResources> Resources
 
