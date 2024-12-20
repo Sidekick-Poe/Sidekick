@@ -4,6 +4,7 @@ using Sidekick.Apis.Poe.Bulk;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Clients.States;
+using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Leagues;
 using Sidekick.Apis.Poe.Localization;
 using Sidekick.Apis.Poe.Metadata;
@@ -63,6 +64,7 @@ namespace Sidekick.Apis.Poe
             services.AddSidekickInitializableService<IInvariantModifierProvider, InvariantModifierProvider>();
             services.AddSidekickInitializableService<IModifierProvider, ModifierProvider>();
             services.AddSidekickInitializableService<IPseudoModifierProvider, PseudoModifierProvider>();
+            services.AddSidekickInitializableService<IFilterProvider, FilterProvider>();
 
             return services;
         }

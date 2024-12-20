@@ -10,7 +10,5 @@ namespace Sidekick.Apis.Poe.Metadata
         Dictionary<string, List<ItemMetadata>> NameAndTypeDictionary { get; }
 
         List<(Regex Regex, ItemMetadata Item)> NameAndTypeRegex { get; }
-
-        List<ApiFilterOption> ApiItemCategories { get; set; }
     }
 }
