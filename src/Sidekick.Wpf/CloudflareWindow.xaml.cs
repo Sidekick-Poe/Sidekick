@@ -103,7 +103,7 @@ public partial class CloudflareWindow
     {
         try
         {
-            var cookies = await WebView.CoreWebView2.CookieManager.GetCookiesAsync("https://www.pathofexile.com");
+            var cookies = await WebView.CoreWebView2.CookieManager.GetCookiesAsync(uri.GetLeftPart(UriPartial.Authority));
             var cfCookie = cookies.FirstOrDefault(c => c.Name == "cf_clearance");
             if (cfCookie == null)
             {

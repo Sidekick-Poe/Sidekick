@@ -2,6 +2,7 @@
 using System.Net.Http.Headers;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.CloudFlare;
+using Sidekick.Common.Exceptions;
 
 namespace Sidekick.Apis.Poe.Clients;
 
@@ -28,34 +29,55 @@ public class PoeTradeHandler
         await cloudflareService.AddCookieToRequest(request);
         var response = await base.SendAsync(request, cancellationToken);
 
+        if (response.IsSuccessStatusCode)
+        {
+            return response;
+        }
+
+        // Sidekick does not support authentication yet.
+        if (response.StatusCode != HttpStatusCode.Unauthorized)
+        {
+            throw new SidekickException("Sidekick failed to communicate with the trade API.", "The trade website requires authentication, which Sidekick does not support currently.", "Try using a different game language and/or force to search using English only in the settings.");
+        }
+
         // If we don't get a 403, there is nothing else to do in this handler
-        if (response.StatusCode != HttpStatusCode.Forbidden)
+        if (response.StatusCode == HttpStatusCode.Forbidden)
         {
-            return response;
+            logger.LogInformation("[PoeTradeHandler] Received 403 response, attempting to handle Cloudflare challenge");
+
+            // Show WebView2 window and wait for challenge completion
+            var success = await cloudflareService.StartCaptchaChallenge(request.RequestUri!, cancellationToken);
+            if (!success)
+            {
+                logger.LogWarning("[PoeTradeHandler] Failed to complete Cloudflare challenge");
+                return response;
+            }
+
+            // Retry the request with new cookies
+            await cloudflareService.AddCookieToRequest(request);
+            var retryResponse = await base.SendAsync(request, cancellationToken);
+            if (retryResponse.IsSuccessStatusCode)
+            {
+                logger.LogInformation("[PoeTradeHandler] Successfully completed Cloudflare challenge and retried request");
+            }
+            else
+            {
+                logger.LogWarning("[PoeTradeHandler] Request still failed after completing Cloudflare challenge: {StatusCode}, {RequestHeaders}", retryResponse.StatusCode, request.Headers.ToString());
+            }
+
+            return retryResponse;
         }
 
-        logger.LogInformation("[PoeTradeHandler] Received 403 response, attempting to handle Cloudflare challenge");
-
-        // Show WebView2 window and wait for challenge completion
-        var success = await cloudflareService.StartCaptchaChallenge(request.RequestUri!, cancellationToken);
-        if (!success)
+        var content = await response.Content.ReadAsStringAsync(cancellationToken);
+        string? body = null;
+        if (request.Content != null)
         {
-            logger.LogWarning("[PoeTradeHandler] Failed to complete Cloudflare challenge");
-            return response;
+            body = await request.Content.ReadAsStringAsync(cancellationToken);
         }
 
-        // Retry the request with new cookies
-        await cloudflareService.AddCookieToRequest(request);
-        var retryResponse = await base.SendAsync(request, cancellationToken);
-        if (retryResponse.IsSuccessStatusCode)
-        {
-            logger.LogInformation("[PoeTradeHandler] Successfully completed Cloudflare challenge and retried request");
-        }
-        else
-        {
-            logger.LogWarning("[PoeTradeHandler] Request still failed after completing Cloudflare challenge: {StatusCode}, {RequestHeaders}", retryResponse.StatusCode, request.Headers.ToString());
-        }
-
-        return retryResponse;
+        logger.LogWarning("[PoeTradeHandler] Query Failed: {responseCode} {responseMessage}", response.StatusCode, content);
+        logger.LogWarning("[PoeTradeHandler] Uri: {uri}", request.RequestUri);
+        logger.LogWarning("[PoeTradeHandler] Body: {uri}", body);
+        throw new ApiErrorException();
     }
 }

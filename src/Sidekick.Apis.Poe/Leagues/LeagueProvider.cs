@@ -32,7 +32,7 @@ public class LeagueProvider(
         catch (Exception e)
         {
             logger.LogError(e, "[LeagueProvider] Error fetching leagues.");
-            throw new ApiErrorException("Failed to load league data.");
+            throw;
         }
     }
 

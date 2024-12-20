@@ -131,17 +131,6 @@ public class TradeSearchService
             var response = await poeTradeClient.HttpClient.PostAsync(uri, body);
 
             var content = await response.Content.ReadAsStreamAsync();
-            if (!response.IsSuccessStatusCode)
-            {
-                var responseMessage = await response.Content.ReadAsStringAsync();
-                logger.LogWarning("[Trade API] Querying failed: {responseCode} {responseMessage}", response.StatusCode, responseMessage);
-                logger.LogWarning("[Trade API] Uri: {uri}", uri);
-                logger.LogWarning("[Trade API] Query: {query}", json);
-
-                var errorResult = await JsonSerializer.DeserializeAsync<ErrorResult>(content, poeTradeClient.Options);
-                throw new ApiErrorException("[Trade API] Querying failed. " + errorResult?.Error?.Message);
-            }
-
             var result = await JsonSerializer.DeserializeAsync<TradeSearchResult<string>?>(content, poeTradeClient.Options);
             if (result != null)
             {
@@ -153,7 +142,7 @@ public class TradeSearchService
             logger.LogWarning(ex, "[Trade API] Exception thrown while querying trade api.");
         }
 
-        throw new ApiErrorException("[Trade API] Could not understand the API response.");
+        throw new ApiErrorException();
     }
 
     private SearchFilterOption? GetCategoryFilter(string? itemCategory)
