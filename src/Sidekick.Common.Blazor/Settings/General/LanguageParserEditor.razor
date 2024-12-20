@@ -25,6 +25,7 @@
         Language = await SettingsService.GetString(SettingKeys.LanguageParser);
         var languages = GameLanguageProvider.GetList();
         Options = languages
+                  .OrderBy(x => x.Name)
                   .Select(
                       x => new SelectOption()
                       {
