@@ -1,4 +1,4 @@
-﻿@if (!string.IsNullOrEmpty(Label))
+@if (!string.IsNullOrEmpty(Label))
 {
     <label for="@Id"
            class="block mb-1 text-base font-medium dark:text-zinc-200">
@@ -14,15 +14,23 @@
         <option selected></option>
     }
 
-    @foreach (var option in Options)
+    @if (Options.All(x => x.Group != null))
     {
-        if (option.Value == Value)
+        foreach (var group in Options.GroupBy(x => x.Group))
         {
-            <option selected value="@option.Value">@option.Label</option>
+            <optgroup label="@group.Key">
+                @foreach (var option in group)
+                {
+                    <option selected="@(option.Value == Value)" value="@option.Value" disabled="@option.Disabled">@option.Label</option>
+                }
+            </optgroup>
         }
-        else
+    }
+    else
+    {
+        foreach (var option in Options)
         {
-            <option value="@option.Value">@option.Label</option>
+            <option selected="@(option.Value == Value)" value="@option.Value" disabled="@option.Disabled">@option.Label</option>
         }
     }
 </select>
@@ -39,9 +47,7 @@
     public EventCallback<string?> ValueChanged { get; set; }
 
     [Parameter]
-    public List<SelectOption> Options { get; set; } =
-    [
-    ];
+    public List<SelectOption> Options { get; set; } = new();
 
     private string Id { get; } = UiUtilities.GenerateId();
 
