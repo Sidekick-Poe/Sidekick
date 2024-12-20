@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Apis.Poe.Bulk;
 using Sidekick.Apis.Poe.Clients;
@@ -19,63 +18,61 @@ using Sidekick.Apis.Poe.Static;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Common;
 
-namespace Sidekick.Apis.Poe
+namespace Sidekick.Apis.Poe;
+
+public static class StartupExtensions
 {
-    public static class StartupExtensions
+    public static IServiceCollection AddSidekickPoeApi(this IServiceCollection services)
     {
-        public static IServiceCollection AddSidekickPoeApi(this IServiceCollection services)
-        {
-            services.AddSingleton<IPoeApiClient, PoeApiClient>();
-            services.AddSingleton<IStashService, StashService>();
-            services.AddSingleton<IApiStateProvider, ApiStateProvider>();
-            services.AddSingleton<PoeApiHandler>();
-            services.AddSingleton<PoeTradeHandler>();
+        services.AddSingleton<IPoeApiClient, PoeApiClient>();
+        services.AddSingleton<IStashService, StashService>();
+        services.AddSingleton<IApiStateProvider, ApiStateProvider>();
+        services.AddSingleton<PoeApiHandler>();
+        services.AddSingleton<PoeTradeHandler>();
 
-            services.AddHttpClient(ClientNames.TradeClient)
-                .ConfigurePrimaryHttpMessageHandler((sp) =>
-                {
-                    var logger = sp.GetRequiredService<ILogger<PoeTradeHandler>>();
-                    var cloudflareService = sp.GetRequiredService<ICloudflareService>();
-                    var handler = new PoeTradeHandler(logger, cloudflareService);
-                    return handler;
-                });
+        services.AddHttpClient(ClientNames.TradeClient)
+            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+            {
+                AllowAutoRedirect = true,
+                UseCookies = true,
+            })
+            .AddHttpMessageHandler<PoeTradeHandler>();
 
-            services.AddHttpClient(ClientNames.PoeClient)
-                .ConfigurePrimaryHttpMessageHandler((sp) =>
-                {
-                    var authenticationService = sp.GetRequiredService<IAuthenticationService>();
-                    var apiStateProvider = sp.GetRequiredService<IApiStateProvider>();
-                    var handler = new PoeApiHandler(authenticationService, apiStateProvider);
-                    return handler;
-                });
+        services.AddHttpClient(ClientNames.PoeClient)
+            .ConfigurePrimaryHttpMessageHandler((sp) =>
+            {
+                var authenticationService = sp.GetRequiredService<IAuthenticationService>();
+                var apiStateProvider = sp.GetRequiredService<IApiStateProvider>();
+                var handler = new PoeApiHandler(authenticationService, apiStateProvider);
+                return handler;
+            });
 
-            services.AddTransient<IPoeTradeClient, PoeTradeClient>();
+        services.AddTransient<IPoeTradeClient, PoeTradeClient>();
 
-            services.AddTransient<FilterResources>();
-            services.AddTransient<TradeCurrencyResources>();
+        services.AddTransient<FilterResources>();
+        services.AddTransient<TradeCurrencyResources>();
 
-            services.AddSingleton<ICloudflareService, CloudflareService>();
-            services.AddSingleton<IAuthenticationService, AuthenticationService>();
-            services.AddSingleton<IItemParser, ItemParser>();
-            services.AddSingleton<ITradeSearchService, TradeSearchService>();
-            services.AddSingleton<ILeagueProvider, LeagueProvider>();
-            services.AddSingleton<ITradeFilterService, TradeFilterService>();
-            services.AddSingleton<IBulkTradeService, BulkTradeService>();
-            services.AddSingleton<IModifierParser, ModifierParser>();
-            services.AddSingleton<ClusterJewelParser>();
+        services.AddSingleton<ICloudflareService, CloudflareService>();
+        services.AddSingleton<IAuthenticationService, AuthenticationService>();
+        services.AddSingleton<IItemParser, ItemParser>();
+        services.AddSingleton<ITradeSearchService, TradeSearchService>();
+        services.AddSingleton<ILeagueProvider, LeagueProvider>();
+        services.AddSingleton<ITradeFilterService, TradeFilterService>();
+        services.AddSingleton<IBulkTradeService, BulkTradeService>();
+        services.AddSingleton<IModifierParser, ModifierParser>();
+        services.AddSingleton<ClusterJewelParser>();
 
-            services.AddSidekickInitializableService<IParserPatterns, ParserPatterns>();
-            services.AddSidekickInitializableService<SocketParser>();
-            services.AddSidekickInitializableService<PropertyParser>();
-            services.AddSidekickInitializableService<IInvariantMetadataProvider, InvariantMetadataProvider>();
-            services.AddSidekickInitializableService<IMetadataProvider, MetadataProvider>();
-            services.AddSidekickInitializableService<IItemMetadataParser, MetadataParser>();
-            services.AddSidekickInitializableService<IItemStaticDataProvider, ItemStaticDataProvider>();
-            services.AddSidekickInitializableService<IInvariantModifierProvider, InvariantModifierProvider>();
-            services.AddSidekickInitializableService<IModifierProvider, ModifierProvider>();
-            services.AddSidekickInitializableService<IPseudoModifierProvider, PseudoModifierProvider>();
+        services.AddSidekickInitializableService<IParserPatterns, ParserPatterns>();
+        services.AddSidekickInitializableService<SocketParser>();
+        services.AddSidekickInitializableService<PropertyParser>();
+        services.AddSidekickInitializableService<IInvariantMetadataProvider, InvariantMetadataProvider>();
+        services.AddSidekickInitializableService<IMetadataProvider, MetadataProvider>();
+        services.AddSidekickInitializableService<IItemMetadataParser, MetadataParser>();
+        services.AddSidekickInitializableService<IItemStaticDataProvider, ItemStaticDataProvider>();
+        services.AddSidekickInitializableService<IInvariantModifierProvider, InvariantModifierProvider>();
+        services.AddSidekickInitializableService<IModifierProvider, ModifierProvider>();
+        services.AddSidekickInitializableService<IPseudoModifierProvider, PseudoModifierProvider>();
 
-            return services;
-        }
+        return services;
     }
 }

@@ -34,13 +34,13 @@ public class PoeTradeHandler
             return response;
         }
 
-        logger.LogInformation("[CloudflareHandler] Received 403 response, attempting to handle Cloudflare challenge");
+        logger.LogInformation("[PoeTradeHandler] Received 403 response, attempting to handle Cloudflare challenge");
 
         // Show WebView2 window and wait for challenge completion
         var success = await cloudflareService.StartCaptchaChallenge(request.RequestUri!, cancellationToken);
         if (!success)
         {
-            logger.LogWarning("[CloudflareHandler] Failed to complete Cloudflare challenge");
+            logger.LogWarning("[PoeTradeHandler] Failed to complete Cloudflare challenge");
             return response;
         }
 
@@ -49,14 +49,13 @@ public class PoeTradeHandler
         var retryResponse = await base.SendAsync(request, cancellationToken);
         if (retryResponse.IsSuccessStatusCode)
         {
-            logger.LogInformation("[CloudflareHandler] Successfully completed Cloudflare challenge and retried request");
+            logger.LogInformation("[PoeTradeHandler] Successfully completed Cloudflare challenge and retried request");
         }
         else
         {
-            logger.LogWarning("[CloudflareHandler] Request still failed after completing Cloudflare challenge: {StatusCode}, {RequestHeaders}", retryResponse.StatusCode, request.Headers.ToString());
+            logger.LogWarning("[PoeTradeHandler] Request still failed after completing Cloudflare challenge: {StatusCode}, {RequestHeaders}", retryResponse.StatusCode, request.Headers.ToString());
         }
 
         return retryResponse;
     }
-
 }

@@ -59,7 +59,7 @@ public class CloudflareService
         var cookies = await settingsService.GetString(SettingKeys.CloudflareCookies);
         if (!string.IsNullOrEmpty(cookies))
         {
-            logger.LogInformation("[CloudflareHandler] Adding cookie to request");
+            logger.LogInformation("[CloudflareService] Adding cookie to request");
             // Append the cookie to the `Cookie` header
             if (!request.Headers.Contains("Cookie"))
             {
@@ -70,6 +70,10 @@ public class CloudflareService
                 request.Headers.Remove("Cookie");
                 request.Headers.Add("Cookie", cookies);
             }
+        }
+        else
+        {
+            logger.LogInformation("[CloudflareService] No cookies found");
         }
     }
 }
