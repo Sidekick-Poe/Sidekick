@@ -14,6 +14,7 @@ using Sidekick.Common.Database;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
+using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Mock;
 using Sidekick.Modules.Chat;
@@ -124,6 +125,7 @@ namespace Sidekick.Wpf
                 .AddSidekickCommon()
                 .AddSidekickCommonBlazor()
                 .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
+                .AddSidekickCommonUi()
                 .AddSidekickCommonPlatform(o =>
                 {
                     o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");

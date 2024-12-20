@@ -64,12 +64,7 @@ public partial class MainWindow
         {
             var width = (int)ActualWidth;
             var height = (int)ActualHeight;
-            _ = viewLocator.CacheProvider.Set($"view_preference_{SidekickView?.CurrentView.Key}",
-                                              new ViewPreferences()
-                                              {
-                                                  Width = width,
-                                                  Height = height,
-                                              });
+            _ = viewLocator.ViewPreferenceService.Set(SidekickView?.CurrentView.Key, width, height);
         }
         catch (Exception)
         {
@@ -192,7 +187,6 @@ public partial class MainWindow
 
         // Ensure the WebView is removed from the visual tree
         WebView.Visibility = Visibility.Collapsed;
-
     }
 
     protected override void OnClosed(EventArgs e)
