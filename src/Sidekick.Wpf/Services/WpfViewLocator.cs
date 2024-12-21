@@ -3,9 +3,9 @@ using System.Net;
 using System.Windows;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.CloudFlare;
-using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
+using Sidekick.Wpf.Helpers;
 
 namespace Sidekick.Wpf.Services
 {
@@ -14,7 +14,7 @@ namespace Sidekick.Wpf.Services
         private readonly ILogger<WpfViewLocator> logger;
         private readonly ICloudflareService cloudflareService;
         private readonly ISettingsService settingsService;
-        internal readonly IViewPreferenceService viewPreferenceService;
+        internal readonly IViewPreferenceService ViewPreferenceService;
 
         internal List<MainWindow> Windows { get; } = new();
 
@@ -25,7 +25,7 @@ namespace Sidekick.Wpf.Services
             this.logger = logger;
             this.cloudflareService = cloudflareService;
             this.settingsService = settingsService;
-            this.viewPreferenceService = viewPreferenceService;
+            this.ViewPreferenceService = viewPreferenceService;
             cloudflareService.ChallengeStarted += CloudflareServiceOnChallengeStarted;
         }
 
@@ -39,7 +39,7 @@ namespace Sidekick.Wpf.Services
 
             window.SidekickView = view;
             view.CurrentView.ViewChanged += CurrentViewOnViewChanged;
-            var preferences = await viewPreferenceService.Get(view.CurrentView.Key);
+            var preferences = await ViewPreferenceService.Get(view.CurrentView.Key);
 
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -93,7 +93,7 @@ namespace Sidekick.Wpf.Services
                 if (view.Height != null)
                 {
                     window.Height = view.Height.Value;
-                    window.CenterOnScreen();
+                    CenterHelper.Center(window);
                 }
 
                 window.Title = $"Sidekick {view.Title}".Trim();
@@ -108,7 +108,7 @@ namespace Sidekick.Wpf.Services
                 return;
             }
 
-            var preferences = await viewPreferenceService.Get($"view_preference_{view.CurrentView.Key}");
+            var preferences = await ViewPreferenceService.Get($"view_preference_{view.CurrentView.Key}");
 
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -132,7 +132,7 @@ namespace Sidekick.Wpf.Services
                     }
                 }
 
-                window.CenterOnScreen();
+                CenterHelper.Center(window);
             });
         }
 
@@ -153,7 +153,7 @@ namespace Sidekick.Wpf.Services
                 else
                 {
                     window.WindowState = WindowState.Normal;
-                    window.CenterOnScreen();
+                    CenterHelper.Center(window);
                 }
             });
             return Task.CompletedTask;
