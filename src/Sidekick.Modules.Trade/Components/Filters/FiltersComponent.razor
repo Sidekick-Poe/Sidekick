@@ -42,12 +42,12 @@
 
     <div class="flex flex-nowrap w-full">
         <div class="flex flex-col items-stretch text-center p-2 @(PriceCheckService.SupportsBulk ? "w-1/2" : "w-full")">
-            <ButtonPrimary OnClick="PriceCheckService.ItemSearch">@Resources["Search"]</ButtonPrimary>
+            <ButtonPrimary OnClick="PriceCheckService.ItemSearch" Disabled="PriceCheckService.IsLoading">@Resources["Search"]</ButtonPrimary>
         </div>
         @if (PriceCheckService.SupportsBulk)
         {
             <div class="w-1/2 flex flex-col items-stretch text-center p-2">
-                <ButtonSecondary OnClick="PriceCheckService.BulkSearch">@Resources["Bulk_Search"]</ButtonSecondary>
+                <ButtonSecondary OnClick="PriceCheckService.BulkSearch" Disabled="PriceCheckService.IsLoading">@Resources["Bulk_Search"]</ButtonSecondary>
             </div>
         }
     </div>
