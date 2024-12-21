@@ -1,8 +1,9 @@
 ﻿<button type="button"
+        disabled="@Disabled"
         @onclick="() => OnClick.InvokeAsync()"
         @onclick:preventDefault="true"
         @onclick:stopPropagation="true"
-        class="inline-flex items-center justify-center p-1 -m-1 text-base font-medium tracking-wide dark:text-violet-500 transition-colors duration-200 rounded-md bg-transparent hover:text-violet-400 @UiClasses.FocusClasses">
+        class="disabled:opacity-50 inline-flex items-center justify-center p-1 -m-1 text-base font-medium tracking-wide dark:text-violet-500 transition-colors duration-200 rounded-md bg-transparent hover:text-violet-400 @UiClasses.FocusClasses">
     @ChildContent
 </button>
 
@@ -13,5 +14,8 @@
 
     [Parameter]
     public EventCallback OnClick { get; set; }
+
+    [Parameter]
+    public bool Disabled { get; set; }
 
 }
