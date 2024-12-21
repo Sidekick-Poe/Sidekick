@@ -2,26 +2,32 @@ using System.Globalization;
 using System.Net;
 using System.Windows;
 using Microsoft.Extensions.Logging;
+using Sidekick.Apis.Poe.CloudFlare;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Wpf.Services
 {
-    public class WpfViewLocator
-    (
-        ICacheProvider cacheProvider,
-        IViewPreferenceService viewPreferenceService,
-        ISettingsService settingsService,
-        ILogger<WpfViewLocator> logger
-    ) : IViewLocator
+    public class WpfViewLocator : IViewLocator
     {
-        internal readonly ICacheProvider CacheProvider = cacheProvider;
-        internal readonly IViewPreferenceService ViewPreferenceService = viewPreferenceService;
+        private readonly ILogger<WpfViewLocator> logger;
+        private readonly ICloudflareService cloudflareService;
+        private readonly ISettingsService settingsService;
+        internal readonly IViewPreferenceService viewPreferenceService;
 
         internal List<MainWindow> Windows { get; } = new();
 
         internal string? NextUrl { get; set; }
+
+        public WpfViewLocator(ILogger<WpfViewLocator> logger, ICloudflareService cloudflareService, ISettingsService settingsService, IViewPreferenceService viewPreferenceService)
+        {
+            this.logger = logger;
+            this.cloudflareService = cloudflareService;
+            this.settingsService = settingsService;
+            this.viewPreferenceService = viewPreferenceService;
+            cloudflareService.ChallengeStarted += CloudflareServiceOnChallengeStarted;
+        }
 
         /// <inheritdoc/>
         public async Task Initialize(SidekickView view)
@@ -33,7 +39,7 @@ namespace Sidekick.Wpf.Services
 
             window.SidekickView = view;
             view.CurrentView.ViewChanged += CurrentViewOnViewChanged;
-            var preferences = await ViewPreferenceService.Get(view.CurrentView.Key);
+            var preferences = await viewPreferenceService.Get(view.CurrentView.Key);
 
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -102,7 +108,7 @@ namespace Sidekick.Wpf.Services
                 return;
             }
 
-            var preferences = await ViewPreferenceService.Get($"view_preference_{view.CurrentView.Key}");
+            var preferences = await viewPreferenceService.Get($"view_preference_{view.CurrentView.Key}");
 
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -242,6 +248,20 @@ namespace Sidekick.Wpf.Services
                     ResizeMode = ResizeMode.NoResize,
                 };
                 Windows.Add(window);
+                window.Show();
+            });
+        }
+
+        private void CloudflareServiceOnChallengeStarted(Uri uri)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var window = new CloudflareWindow(logger, cloudflareService, uri)
+                {
+                    Topmost = true,
+                    ShowInTaskbar = false,
+                    ResizeMode = ResizeMode.NoResize,
+                };
                 window.Show();
             });
         }

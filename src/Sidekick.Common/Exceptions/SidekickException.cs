@@ -18,7 +18,7 @@ public class SidekickException : Exception
         AdditionalInformation = additionalInformation.ToList();
     }
 
-    public List<string> AdditionalInformation { get; } = [];
+    public List<string> AdditionalInformation { get; set; } = [];
 
     public virtual bool IsCritical => true;
 
