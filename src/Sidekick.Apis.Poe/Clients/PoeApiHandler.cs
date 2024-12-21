@@ -9,7 +9,7 @@ namespace Sidekick.Apis.Poe.Clients
 {
     public class PoeApiHandler(
         IAuthenticationService authenticationService,
-        IApiStateProvider apiStateProvider) : HttpClientHandler
+        IApiStateProvider apiStateProvider) : DelegatingHandler
     {
         private readonly ConcurrencyLimiter concurrencyLimiter = new(
             new ConcurrencyLimiterOptions()

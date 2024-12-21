@@ -28,8 +28,8 @@ public static class StartupExtensions
         services.AddSingleton<IPoeApiClient, PoeApiClient>();
         services.AddSingleton<IStashService, StashService>();
         services.AddSingleton<IApiStateProvider, ApiStateProvider>();
-        services.AddSingleton<PoeApiHandler>();
-        services.AddSingleton<PoeTradeHandler>();
+        services.AddTransient<PoeApiHandler>();
+        services.AddTransient<PoeTradeHandler>();
 
         services.AddHttpClient(ClientNames.TradeClient)
             .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
@@ -40,13 +40,7 @@ public static class StartupExtensions
             .AddHttpMessageHandler<PoeTradeHandler>();
 
         services.AddHttpClient(ClientNames.PoeClient)
-            .ConfigurePrimaryHttpMessageHandler((sp) =>
-            {
-                var authenticationService = sp.GetRequiredService<IAuthenticationService>();
-                var apiStateProvider = sp.GetRequiredService<IApiStateProvider>();
-                var handler = new PoeApiHandler(authenticationService, apiStateProvider);
-                return handler;
-            });
+            .AddHttpMessageHandler<PoeApiHandler>();
 
         services.AddTransient<IPoeTradeClient, PoeTradeClient>();
 
