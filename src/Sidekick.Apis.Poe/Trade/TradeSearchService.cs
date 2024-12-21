@@ -406,6 +406,13 @@ public class TradeSearchService
 
         foreach (var propertyFilter in propertyFilters)
         {
+            if (propertyFilter.Type == PropertyFilterType.Misc_Corrupted)
+            {
+                filters.Filters.Corrupted = propertyFilter.Checked.HasValue ? new SearchFilterOption(propertyFilter) : null;
+                hasValue = filters.Filters.Corrupted != null;
+                break;
+            }
+
             if (propertyFilter.Checked != true)
             {
                 continue;
@@ -457,11 +464,6 @@ public class TradeSearchService
 
                 case PropertyFilterType.Misc_ItemLevel:
                     filters.Filters.ItemLevel = new SearchFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Misc_Corrupted:
-                    filters.Filters.Corrupted = propertyFilter.Checked.HasValue ? new SearchFilterOption(propertyFilter) : null;
                     hasValue = true;
                     break;
 

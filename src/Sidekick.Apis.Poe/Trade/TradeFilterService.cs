@@ -119,7 +119,7 @@ namespace Sidekick.Apis.Poe.Trade
         {
             if (force || @checked)
             {
-                InitializePropertyFilter(filters, type, label, @checked, @checked: @checked);
+                InitializePropertyFilter(filters, type, label, @checked || force, @checked: @checked);
             }
         }
     }
