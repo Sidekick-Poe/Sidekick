@@ -101,7 +101,20 @@ public class PoeTradeHandler
 
         logger.LogInformation("[PoeTradeHandler] Redirecting to {redirectUri}.", redirectUri);
 
-        request.RequestUri = redirectUri;
-        return await base.SendAsync(request, cancellationToken);
+        var redirectRequest = new HttpRequestMessage(request.Method, redirectUri);
+
+        // Copy headers from the original request
+        foreach (var header in request.Headers)
+        {
+            redirectRequest.Headers.TryAddWithoutValidation(header.Key, header.Value);
+        }
+
+        if (request.Content != null)
+        {
+            redirectRequest.Content = request.Content;
+        }
+
+        // Retry the request with the new URI
+        return await base.SendAsync(redirectRequest, cancellationToken);
     }
 }
