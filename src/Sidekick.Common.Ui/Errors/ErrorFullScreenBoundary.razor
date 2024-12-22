@@ -1,12 +1,12 @@
 @using Sidekick.Common.Exceptions
 @using Sidekick.Common.Platform
 
-<SidekickErrorBoundary>
+<SidekickErrorBoundary OnUpdate="OnUpdate">
     <ChildContent>
         @ChildContent
     </ChildContent>
     <ErrorContent>
-        <div class="fixed top-0 left-0 right-0 bottom-0 @BackgroundClass(context.IsCritical) text-xl">
+        <div class="fixed top-0 left-0 h-full w-full @BackgroundClass(context.IsCritical) text-xl overflow-auto">
             <div class="flex w-full h-full items-center justify-center text-center p-4 flex-col">
                 <div>
                     @if (!string.IsNullOrEmpty(context.Message))
@@ -41,22 +41,26 @@
                     </div>
                 </div>
 
-                @if (context.Exception is SidekickException
-                         {
-                             ExitApplication: true
-                         })
-                {
-                    <div class="flex items-center justify-center">
+                @{
+                    var actions = ExceptionActions.CloseWindow;
+                    if (context.Exception is SidekickException sidekickException)
+                    {
+                        actions = sidekickException.Actions;
+                    }
+                }
+
+                <div class="flex items-center justify-center gap-2">
+                    @if (actions.HasFlag(ExceptionActions.ExitApplication))
+                    {
                         <a href="javascript:" class="@ButtonClass(context.IsCritical) px-8 py-4 m-4"
                            @onclick="ApplicationService.Shutdown">Exit Application</a>
-                    </div>
-                }
-                else
-                {
-                    <div class="flex items-center justify-center">
-                        <a href="javascript:" class="@ButtonClass(context.IsCritical) px-8 py-4 m-4" @onclick="CurrentView.Close">Close</a>
-                    </div>
-                }
+                    }
+                    @if (actions.HasFlag(ExceptionActions.CloseWindow))
+                    {
+                        <a href="javascript:" class="@ButtonClass(context.IsCritical) px-8 py-4 m-4"
+                           @onclick="CurrentView.Close">Close</a>
+                    }
+                </div>
             </div>
         </div>
     </ErrorContent>
@@ -73,5 +77,15 @@
     private string BackgroundClass(bool isCritical) => isCritical ? "bg-red-700 text-white" : "bg-orange-700 text-white";
 
     private string ButtonClass(bool isCritical) => isCritical ? "bg-white text-red-700" : "bg-white text-orange-700";
+
+    private SidekickErrorBoundary? ErrorBoundary { get; set; }
+
+    protected void OnUpdate(SidekickErrorBoundary boundary)
+    {
+        if (boundary.Exception != null)
+        {
+            CurrentView.SetMinHeight(360);
+        }
+    }
 
 }

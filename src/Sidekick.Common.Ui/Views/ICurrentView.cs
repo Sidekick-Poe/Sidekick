@@ -26,6 +26,11 @@ public interface ICurrentView
     int? Height { get; }
 
     /// <summary>
+    /// Gets the minimum height of the view.
+    /// </summary>
+    int? MinHeight { get; }
+
+    /// <summary>
     /// Gets the current Url of the view.
     /// </summary>
     string Url { get; }
@@ -56,6 +61,12 @@ public interface ICurrentView
     /// </summary>
     /// <param name="height">The height to set for the current view.</param>
     void SetHeight(int height);
+
+    /// <summary>
+    /// Sets the minimum height of the current view.
+    /// </summary>
+    /// <param name="minHeight">The minimum height to set.</param>
+    void SetMinHeight(int minHeight);
 
     /// <summary>
     /// Initializes a view that was previously opened.

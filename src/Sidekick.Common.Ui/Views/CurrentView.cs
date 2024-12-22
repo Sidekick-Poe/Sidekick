@@ -22,6 +22,9 @@ public class CurrentView(
     public int? Height { get; private set; }
 
     /// <inheritdoc/>
+    public int? MinHeight { get; private set; }
+
+    /// <inheritdoc/>
     public string Url => navigationManager.Uri;
 
     /// <inheritdoc/>
@@ -49,6 +52,13 @@ public class CurrentView(
     public void SetHeight(int height)
     {
         Height = height;
+        ViewChanged?.Invoke(this);
+    }
+
+    /// <inheritdoc/>
+    public void SetMinHeight(int minHeight)
+    {
+        MinHeight = minHeight;
         ViewChanged?.Invoke(this);
     }
 

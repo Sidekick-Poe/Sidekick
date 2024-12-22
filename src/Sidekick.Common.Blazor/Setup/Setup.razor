@@ -106,7 +106,7 @@
         catch (SidekickException e)
         {
             CurrentView.SetHeight(360);
-            e.ExitApplication = true;
+            e.Actions = ExceptionActions.ExitApplication;
             throw;
         }
         catch (Exception e)
@@ -114,7 +114,7 @@
             CurrentView.SetHeight(360);
             throw new SidekickException(e.Message)
             {
-                ExitApplication = true,
+                Actions = ExceptionActions.ExitApplication,
             };
         }
 
