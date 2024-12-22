@@ -2,5 +2,5 @@
 
 public interface IFuzzyService
 {
-    string CleanFuzzyText(string text);
+    string? CleanFuzzyText(string? text);
 }

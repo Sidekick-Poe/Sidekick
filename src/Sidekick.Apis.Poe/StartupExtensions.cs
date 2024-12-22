@@ -13,7 +13,12 @@ using Sidekick.Apis.Poe.Metadata;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser;
 using Sidekick.Apis.Poe.Parser.AdditionalInformation;
+using Sidekick.Apis.Poe.Parser.Headers;
+using Sidekick.Apis.Poe.Parser.Metadata;
+using Sidekick.Apis.Poe.Parser.Modifiers;
 using Sidekick.Apis.Poe.Parser.Patterns;
+using Sidekick.Apis.Poe.Parser.Properties;
+using Sidekick.Apis.Poe.Parser.Sockets;
 using Sidekick.Apis.Poe.Pseudo;
 using Sidekick.Apis.Poe.Stash;
 using Sidekick.Apis.Poe.Static;
@@ -61,16 +66,17 @@ public static class StartupExtensions
         services.AddSingleton<IFuzzyService, FuzzyService>();
 
         services.AddSidekickInitializableService<IParserPatterns, ParserPatterns>();
-        services.AddSidekickInitializableService<SocketParser>();
-        services.AddSidekickInitializableService<PropertyParser>();
+        services.AddSidekickInitializableService<ISocketParser, SocketParser>();
+        services.AddSidekickInitializableService<IPropertyParser, PropertyParser>();
         services.AddSidekickInitializableService<IInvariantMetadataProvider, InvariantMetadataProvider>();
         services.AddSidekickInitializableService<IMetadataProvider, MetadataProvider>();
-        services.AddSidekickInitializableService<IItemMetadataParser, MetadataParser>();
+        services.AddSidekickInitializableService<IMetadataParser, MetadataParser>();
         services.AddSidekickInitializableService<IItemStaticDataProvider, ItemStaticDataProvider>();
         services.AddSidekickInitializableService<IInvariantModifierProvider, InvariantModifierProvider>();
         services.AddSidekickInitializableService<IModifierProvider, ModifierProvider>();
         services.AddSidekickInitializableService<IPseudoModifierProvider, PseudoModifierProvider>();
         services.AddSidekickInitializableService<IFilterProvider, FilterProvider>();
+        services.AddSidekickInitializableService<IHeaderParser, HeaderParser>();
 
         return services;
     }

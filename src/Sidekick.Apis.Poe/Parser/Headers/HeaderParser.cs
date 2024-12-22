@@ -1,37 +1,58 @@
-using System.Text.RegularExpressions;
 using FuzzySharp;
 using FuzzySharp.SimilarityRatio;
 using FuzzySharp.SimilarityRatio.Scorer.StrategySensitive;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Filters;
-using Sidekick.Apis.Poe.Metadata;
-using Sidekick.Apis.Poe.Metadata.Models;
-using Sidekick.Apis.Poe.Parser.AdditionalInformation;
-using Sidekick.Apis.Poe.Parser.Patterns;
-using Sidekick.Apis.Poe.Pseudo;
+using Sidekick.Apis.Poe.Fuzzy;
+using Sidekick.Apis.Poe.Parser.Headers.Models;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 
-namespace Sidekick.Apis.Poe.Parser;
+namespace Sidekick.Apis.Poe.Parser.Headers;
 
 public class HeaderParser
 (
-    ILogger<HeaderParser> logger,
-    IItemMetadataParser itemMetadataProvider,
-    IModifierParser modifierParser,
-    IPseudoModifierProvider pseudoModifierProvider,
-    IParserPatterns patterns,
-    ClusterJewelParser clusterJewelParser,
-    IInvariantMetadataProvider invariantMetadataProvider,
-    SocketParser socketParser,
-    PropertyParser propertyParser,
     IGameLanguageProvider gameLanguageProvider,
-    IFilterProvider filterProvider
-)
+    IFuzzyService fuzzyService,
+    IFilterProvider filterProvider,
+    ILogger<HeaderParser> logger
+) : IHeaderParser
 {
-    
+    public int Priority => 100;
+
+    private List<ItemCategory> ItemCategories { get; set; } = [];
+
+    public Task Initialize()
+    {
+        ItemCategories = filterProvider.TypeCategoryOptions.ConvertAll(x => new ItemCategory()
+        {
+            Id = x.Id,
+            Text = x.Text,
+            FuzzyText = fuzzyService.CleanFuzzyText(x.Text),
+        });
+
+        return Task.CompletedTask;
+    }
+
+    public Header Parse(string itemText)
+    {
+        if (string.IsNullOrEmpty(itemText))
+        {
+            throw new UnparsableException();
+        }
+
+        try
+        {
+            return Parse(new ParsingItem(itemText));
+        }
+        catch (Exception e)
+        {
+            logger.LogWarning(e, "Could not parse item.");
+            throw new UnparsableException();
+        }
+    }
+
     public Header Parse(ParsingItem parsingItem)
     {
         var firstLine = parsingItem.Blocks[0].Lines[0].Text;
@@ -47,8 +68,8 @@ public class HeaderParser
                 classLine = gameLanguageProvider.Language.Classes.MapFragments;
             }
 
-            var categoryToMatch = new ApiFilterOption { Text = classLine };
-            apiItemCategoryId = Process.ExtractOne(categoryToMatch, filterProvider.ApiItemCategories, x => x.Text, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
+            var categoryToMatch = new ItemCategory() { Text = classLine, FuzzyText = fuzzyService.CleanFuzzyText(classLine) };
+            apiItemCategoryId = Process.ExtractOne(categoryToMatch, ItemCategories, x => x.Text, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
         }
         else
         {

@@ -30,7 +30,7 @@
         Currency = game == GameType.PathOfExile ? await SettingsService.GetString(SettingKeys.PriceCheckItemCurrency) : await SettingsService.GetString(SettingKeys.PriceCheckItemCurrencyPoE2);
         Currency = FilterProvider.GetPriceOption(Currency);
 
-        Options = FilterProvider.PriceOptions.ConvertAll(x => new SelectOption()
+        Options = FilterProvider.TradePriceOptions.ConvertAll(x => new SelectOption()
         {
             Label = x.Text ?? string.Empty,
             Value = x.Id,

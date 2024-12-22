@@ -7,7 +7,7 @@ using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Common.Game.Items;
 
-namespace Sidekick.Apis.Poe.Parser
+namespace Sidekick.Apis.Poe.Parser.Modifiers
 {
     public class ModifierParser
     (

@@ -11,7 +11,9 @@ public class FuzzyService(IGameLanguageProvider gameLanguageProvider) : IFuzzySe
     public string CleanFuzzyText(string text)
     {
         text = CleanFuzzyPattern.Replace(text, string.Empty);
-        return TrimPattern.Replace(text, " ").Trim();
+        text = TrimPattern.Replace(text, " ").Trim();
+        text = gameLanguageProvider.Language.GetFuzzyText(text) ?? string.Empty;
+        return text;
     }
 
 }

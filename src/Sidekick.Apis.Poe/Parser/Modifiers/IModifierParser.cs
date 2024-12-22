@@ -1,7 +1,6 @@
-using Sidekick.Apis.Poe.Parser;
 using Sidekick.Common.Game.Items;
 
-namespace Sidekick.Apis.Poe
+namespace Sidekick.Apis.Poe.Parser.Modifiers
 {
     public interface IModifierParser
     {

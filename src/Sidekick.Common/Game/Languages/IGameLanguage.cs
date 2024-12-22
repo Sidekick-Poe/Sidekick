@@ -121,5 +121,5 @@ public interface IGameLanguage
     /// </summary>
     /// <param name="text">The input text to transform using a fuzzy logic mechanism.</param>
     /// <returns>Returns a transformed string based on fuzzy logic.</returns>
-    string GetFuzzyText(string text) => text;
+    string? GetFuzzyText(string? text) => text;
 }

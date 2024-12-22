@@ -4,14 +4,14 @@ using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 
-namespace Sidekick.Apis.Poe.Parser
+namespace Sidekick.Apis.Poe.Parser.Metadata
 {
     public class MetadataParser
     (
         IGameLanguageProvider gameLanguageProvider,
         IParserPatterns parserPatterns,
         IMetadataProvider data
-    ) : IItemMetadataParser
+    ) : IMetadataParser
     {
         private Regex Affixes { get; set; } = null!;
 
