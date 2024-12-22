@@ -166,9 +166,18 @@ public class GameLanguageZhTw : IGameLanguage
 
     private static Chinese.HanyuPinyin? Romanization { get; set; }
 
-    public string GetFuzzyText(string text)
+    public string? GetFuzzyText(string? text)
     {
         Romanization ??= new Chinese.HanyuPinyin();
-        return Romanization.Process(text);
+        try
+        {
+            text = Romanization.Process(text);
+        }
+        catch (Exception)
+        {
+            // Do nothing if the romanization fails.
+        }
+
+        return text;
     }
 }
