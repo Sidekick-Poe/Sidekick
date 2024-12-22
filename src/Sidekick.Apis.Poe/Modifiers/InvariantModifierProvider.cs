@@ -133,6 +133,6 @@ public class InvariantModifierProvider
                                             {
                                                 var result = await poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "data/stats");
                                                 return result.Result;
-                                            });
+                                            }, (cache) => cache.Any());
     }
 }

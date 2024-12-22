@@ -30,7 +30,7 @@ namespace Sidekick.Apis.Poe.Static
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             var game = leagueId.GetGameFromLeagueId();
             var cacheKey = $"{game.GetValueAttribute()}_StaticData";
-            var result = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<StaticItemCategory>(game, gameLanguageProvider.Language, "data/static"));
+            var result = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<StaticItemCategory>(game, gameLanguageProvider.Language, "data/static"), (cache) => cache.Result.Any());
 
             ImageUrls.Clear();
             Ids.Clear();

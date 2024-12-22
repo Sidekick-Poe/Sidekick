@@ -76,7 +76,7 @@ namespace Sidekick.Apis.PoeWiki
                                                           }
 
                                                           return result;
-                                                      });
+                                                      }, (cache) => cache.Any());
 
             BlightOilNamesByMetadataIds = result.ToDictionary(x => x.MetadataId ?? string.Empty, x => x.Name ?? string.Empty);
         }
