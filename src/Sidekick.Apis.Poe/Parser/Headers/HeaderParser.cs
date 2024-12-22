@@ -69,7 +69,7 @@ public class HeaderParser
             }
 
             var categoryToMatch = new ItemCategory() { Text = classLine, FuzzyText = fuzzyService.CleanFuzzyText(classLine) };
-            apiItemCategoryId = Process.ExtractOne(categoryToMatch, ItemCategories, x => x.Text, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
+            apiItemCategoryId = Process.ExtractOne(categoryToMatch, ItemCategories, x => x.FuzzyText, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
         }
         else
         {
