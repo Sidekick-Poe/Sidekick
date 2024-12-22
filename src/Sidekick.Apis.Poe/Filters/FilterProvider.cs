@@ -31,7 +31,11 @@ public class FilterProvider
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_Filters";
 
-        var result = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<ApiFilter>(game, gameLanguageProvider.Language, "data/filters"));
+        var result = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<ApiFilter>(game, gameLanguageProvider.Language, "data/filters"),
+                                                  (cache) =>
+                                                  {
+                                                      return cache.Result.Any(x => x.Id == "type_filters") && cache.Result.Any(x => x.Id == "trade_filters");
+                                                  });
 
         TypeCategoryOptions = result.Result.First(x => x.Id == "type_filters").Filters
             .First(x => x.Id == "category").Option!.Options;

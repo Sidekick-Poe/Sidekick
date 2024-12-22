@@ -52,7 +52,6 @@ public static class StartupExtensions
         services.AddTransient<IPoeTradeClient, PoeTradeClient>();
 
         services.AddTransient<FilterResources>();
-        services.AddTransient<TradeCurrencyResources>();
 
         services.AddSingleton<ICloudflareService, CloudflareService>();
         services.AddSingleton<IAuthenticationService, AuthenticationService>();

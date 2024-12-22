@@ -25,6 +25,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/Sidekick-Poe/Sidekick</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <EnableWindowsFormsInterop>false</EnableWindowsFormsInterop>
   </PropertyGroup>
 
   <ItemGroup>

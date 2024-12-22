@@ -2,15 +2,15 @@
 @layout SettingsLayout
 @inherits Sidekick.Common.Ui.Views.SidekickView
 
-<AppTitle Title="@Resources["Settings"]"/>
+<AppTitle Title="@Resources["Settings"]" />
 <AppContainer>
-    <Heading2 Class="mb-3">@Resources["Keybindings"]</Heading2>
-    <KeyOpenWikiEditor/>
+    <Fieldset Legend="@Resources["Keybindings"]">
+        <KeyOpenWikiEditor />
+    </Fieldset>
 
-    <LayoutDivider/>
-
-    <Heading2 Class="mb-3">@Resources["Other_Settings"]</Heading2>
-    <PreferredWikiEditor/>
+    <Fieldset Legend="@Resources["Other_Settings"]">
+        <PreferredWikiEditor />
+    </Fieldset>
 </AppContainer>
 
 @inject IStringLocalizer<SettingsResources> Resources

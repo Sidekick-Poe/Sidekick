@@ -3,30 +3,30 @@
 
 @foreach (var chatSetting in ChatSettings)
 {
-    <div class="grid grid-cols-12 gap-2">
-        <div class="col-span-6">
-            <FormInput Label="@Resources["Command"]"
-                       Value="@chatSetting.Command"
-                       ValueChanged="(v) => CommandChanged(chatSetting, v)"/>
+    <div class="border border-solid dark:border-stone-800 p-3 mb-3">
+        <div class="grid grid-cols-12 gap-2">
+            <div class="col-span-6">
+                <FormInput Label="@Resources["Command"]"
+                           Value="@chatSetting.Command"
+                           ValueChanged="(v) => CommandChanged(chatSetting, v)" />
+            </div>
+            <div class="col-span-6">
+                <KeybindEditor Value="@chatSetting.Key"
+                               ValueChanged="(v) => KeyChanged(chatSetting, v)"
+                               Label="@Resources["Keybind"]" />
+            </div>
         </div>
-        <div class="col-span-6">
-            <KeybindEditor Value="@chatSetting.Key"
-                           ValueChanged="(v) => KeyChanged(chatSetting, v)"
-                           Label="@Resources["Keybind"]"/>
+
+        <div class="flex items-center justify-between">
+            <FormCheckbox Value="chatSetting.Submit"
+                          ValueChanged="() => ToggleSubmit(chatSetting)">
+                @Resources["Submit the command"]
+            </FormCheckbox>
+            <ButtonPrimary OnClick="() => Remove(chatSetting)">
+                @Resources["Delete Command"]
+            </ButtonPrimary>
         </div>
     </div>
-
-    <div class="flex items-center justify-between">
-        <FormCheckbox Value="chatSetting.Submit"
-                      ValueChanged="() => ToggleSubmit(chatSetting)">
-            @Resources["Submit the command"]
-        </FormCheckbox>
-        <ButtonPrimary OnClick="() => Remove(chatSetting)">
-            @Resources["Delete Command"]
-        </ButtonPrimary>
-    </div>
-
-    <LayoutDivider/>
 }
 
 <div class="flex justify-between mb-3">
@@ -95,7 +95,7 @@
         ChatSettings =
         [
             ..DefaultSettings.ChatCommands,
-        ];
+    ];
         await Save();
     }
 
