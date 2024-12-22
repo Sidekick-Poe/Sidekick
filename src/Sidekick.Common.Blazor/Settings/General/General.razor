@@ -2,20 +2,20 @@
 @layout SettingsLayout
 @inherits Sidekick.Common.Ui.Views.SidekickView
 
-<AppTitle Title="@Resources["Settings"]"/>
+<AppTitle Title="@Resources["Settings"]" />
 <AppContainer>
-    <Heading2 Class="mb-3">@Resources["General_Settings"]</Heading2>
-    <LanguageParserEditor/>
-    <UseInvariantForTradeResults/>
-    <LeagueIdEditor/>
-    <InterfaceLanguageEditor/>
+    <Fieldset Legend="@Resources["General_Settings"]">
+        <LanguageParserEditor />
+        <UseInvariantForTradeResults />
+        <LeagueIdEditor />
+        <InterfaceLanguageEditor />
+    </Fieldset>
 
-    <LayoutDivider/>
-
-    <Heading2 Class="mb-3">@Resources["Other_Settings"]</Heading2>
-    <RetainClipboardEditor/>
-    <EscapeClosesOverlaysEditor/>
-    <KeyFindItemsEditor/>
+    <Fieldset Legend="@Resources["Other_Settings"]">
+        <RetainClipboardEditor />
+        <EscapeClosesOverlaysEditor />
+        <KeyFindItemsEditor />
+    </Fieldset>
 </AppContainer>
 
 @inject IStringLocalizer<SettingsResources> Resources
