@@ -34,6 +34,13 @@ public class PoeTradeHandler
             return response;
         }
 
+        if (response.StatusCode == HttpStatusCode.Moved ||
+            response.StatusCode == HttpStatusCode.Redirect ||
+            response.StatusCode == HttpStatusCode.RedirectKeepVerb)
+        {
+            return await HandleRedirect(request, response, cancellationToken);
+        }
+
         // Sidekick does not support authentication yet.
         if (response.StatusCode == HttpStatusCode.Unauthorized)
         {
@@ -79,5 +86,22 @@ public class PoeTradeHandler
         logger.LogWarning("[PoeTradeHandler] Uri: {uri}", request.RequestUri);
         logger.LogWarning("[PoeTradeHandler] Body: {uri}", body);
         throw new ApiErrorException();
+    }
+
+    private async Task<HttpResponseMessage> HandleRedirect(HttpRequestMessage request, HttpResponseMessage response, CancellationToken cancellationToken)
+    {
+        // Get redirect URL from the "Location" header
+        var redirectUri = response.Headers.Location;
+        logger.LogInformation("[PoeTradeHandler] Redirection status code detected.");
+
+        if (redirectUri == null)
+        {
+            return response;
+        }
+
+        logger.LogInformation("[PoeTradeHandler] Redirecting to {redirectUri}.", redirectUri);
+
+        request.RequestUri = redirectUri;
+        return await base.SendAsync(request, cancellationToken);
     }
 }
