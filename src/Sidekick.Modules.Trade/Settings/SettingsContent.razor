@@ -2,28 +2,26 @@
 @using Sidekick.Common.Blazor.Settings.General
 @inherits Sidekick.Common.Ui.Views.SidekickView
 
-<Heading2 Class="mb-3">@Resources["Keybindings"]</Heading2>
-<KeyOpenPriceCheckEditor/>
-<KeyCloseEditor/>
+<Fieldset Legend="@Resources["Keybindings"]">
+    <KeyOpenPriceCheckEditor />
+    <KeyCloseEditor />
+</Fieldset>
 
-<LayoutDivider/>
+<Fieldset Legend="@Resources["Item_Trade_Settings"]">
+    <PriceCheckItemCurrencyEditor />
+    <PriceCheckNormalizeValueEditor />
+    <PriceCheckPredictionEnabledEditor />
+</Fieldset>
 
-<Heading2 Class="mb-3">@Resources["Item_Trade_Settings"]</Heading2>
-<PriceCheckItemCurrencyEditor/>
-<PriceCheckNormalizeValueEditor/>
-<PriceCheckPredictionEnabledEditor/>
+<Fieldset Legend="@Resources["Bulk_Trade_Settings"]">
+    <PriceCheckCurrencyModeEditor />
+    <PriceCheckBulkCurrencyEditor />
+    <PriceCheckBulkMinimumStockEditor />
+</Fieldset>
 
-<LayoutDivider/>
-
-<Heading2 Class="mb-3">@Resources["Bulk_Trade_Settings"]</Heading2>
-<PriceCheckCurrencyModeEditor/>
-<PriceCheckBulkCurrencyEditor/>
-<PriceCheckBulkMinimumStockEditor/>
-
-<LayoutDivider/>
-
-<Heading2 Class="mb-3">@Resources["Other_Settings"]</Heading2>
-<PriceCheckCloseWithMouseEditor/>
-<EscapeClosesOverlaysEditor/>
+<Fieldset Legend="@Resources["Other_Settings"]">
+    <PriceCheckCloseWithMouseEditor />
+    <EscapeClosesOverlaysEditor />
+</Fieldset>
 
 @inject IStringLocalizer<SettingsResources> Resources
