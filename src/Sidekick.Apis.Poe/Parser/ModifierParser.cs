@@ -2,23 +2,20 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 using FuzzySharp;
+using Sidekick.Apis.Poe.Fuzzy;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Parser
 {
-    public class ModifierParser(IModifierProvider modifierProvider) : IModifierParser
+    public class ModifierParser
+    (
+        IModifierProvider modifierProvider,
+        IFuzzyService fuzzyService
+    ) : IModifierParser
     {
-        private readonly Regex CleanFuzzyPattern = new("[-+0-9%#]");
-        private readonly Regex TrimPattern = new(@"\s+");
         private readonly Regex CleanOriginalTextPattern = new(" \\((?:implicit|enchant|crafted|veiled|fractured|scourge|crucible)\\)$");
-
-        private string CleanFuzzyText(string text)
-        {
-            text = CleanFuzzyPattern.Replace(text, string.Empty);
-            return TrimPattern.Replace(text, " ").Trim();
-        }
 
         /// <inheritdoc/>
         public List<ModifierLine> Parse(ParsingItem parsingItem)
@@ -42,7 +39,7 @@ namespace Sidekick.Apis.Poe.Parser
                 var modifierLine = new ModifierLine(text: CleanOriginalTextPattern.Replace(text.ToString(), string.Empty));
                 modifierLines.Add(modifierLine);
 
-                var fuzzyLine = CleanFuzzyText(text.ToString());
+                var fuzzyLine = fuzzyService.CleanFuzzyText(text.ToString());
                 var patterns = match.Patterns.OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText)).ToList();
                 foreach (var pattern in patterns)
                 {
@@ -93,7 +90,7 @@ namespace Sidekick.Apis.Poe.Parser
                     {
                         // If we reach this point we have not found the modifier through traditional Regex means.
                         // Text from the game sometimes differ from the text from the API. We do a fuzzy search here to find the most common text.
-                        patterns = MatchModifierFuzzily(parsingItem, line).ToList();
+                        patterns = MatchModifierFuzzily(line).ToList();
                     }
 
                     if (!patterns.Any())
@@ -122,34 +119,29 @@ namespace Sidekick.Apis.Poe.Parser
             }
         }
 
-        private IEnumerable<ModifierPattern> MatchModifierFuzzily(ParsingItem item, ParsingLine line)
+        private IEnumerable<ModifierPattern> MatchModifierFuzzily(ParsingLine line)
         {
             if (line.Parsed)
             {
                 yield break;
             }
 
-            var fuzzyLine = CleanFuzzyText(line.Text);
-            var fuzzies = new List<FuzzyResult>();
+            var fuzzyLine = fuzzyService.CleanFuzzyText(line.Text);
 
-            Parallel.ForEach(modifierProvider.FuzzyDictionary, (x) =>
-            {
-                var ratio = Fuzz.Ratio(fuzzyLine, x.Key, FuzzySharp.PreProcess.PreprocessMode.None);
-                if (ratio > 75)
-                {
-                    fuzzies.Add(new FuzzyResult(
-                        ratio: ratio,
-                        patterns: x.Value
-                    ));
-                }
-            });
+            var results = new List<(int Ratio, ModifierPattern Pattern)>();
+            Parallel.ForEach(modifierProvider.Patterns.SelectMany(x => x.Value),
+                             (x) =>
+                             {
+                                 var ratio = Fuzz.Ratio(fuzzyLine, x.FuzzyText, FuzzySharp.PreProcess.PreprocessMode.None);
+                                 if (ratio > 75)
+                                 {
+                                     results.Add((ratio, x));
+                                 }
+                             });
 
-            foreach (var fuzzy in fuzzies.OrderByDescending(x => x.Ratio))
+            foreach (var result in results.OrderByDescending(x => x.Ratio))
             {
-                foreach (var modifier in fuzzy.Patterns)
-                {
-                    yield return modifier;
-                }
+                yield return result.Pattern;
             }
         }
 

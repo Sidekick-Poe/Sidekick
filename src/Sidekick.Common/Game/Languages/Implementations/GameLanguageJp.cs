@@ -1,3 +1,5 @@
+using Romanization;
+
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Japanese", "jp")]
@@ -116,5 +118,13 @@ public class GameLanguageJP : IGameLanguage
         Corpses = "死体",
         SanctumResearch = "サンクタム調査書",
     };
+
+    private static Japanese.KanjiReadings? Romanization { get; set; }
+
+    public string GetFuzzyText(string text)
+    {
+        Romanization ??= new Japanese.KanjiReadings();
+        return Romanization.Process(text);
+    }
 }
 

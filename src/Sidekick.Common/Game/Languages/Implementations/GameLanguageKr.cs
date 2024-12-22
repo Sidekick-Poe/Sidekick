@@ -1,3 +1,5 @@
+using Romanization;
+
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Korean", "kr")]
@@ -116,5 +118,13 @@ public class GameLanguageKR : IGameLanguage
         Corpses = "시신",
         SanctumResearch = "성역 연구",
     };
+
+    private static Korean.RevisedRomanization? Romanization { get; set; }
+
+    public string GetFuzzyText(string text)
+    {
+        Romanization ??= new Korean.RevisedRomanization();
+        return Romanization.Process(text);
+    }
 }
 

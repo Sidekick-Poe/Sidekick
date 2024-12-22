@@ -6,6 +6,7 @@ using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Clients.States;
 using Sidekick.Apis.Poe.CloudFlare;
 using Sidekick.Apis.Poe.Filters;
+using Sidekick.Apis.Poe.Fuzzy;
 using Sidekick.Apis.Poe.Leagues;
 using Sidekick.Apis.Poe.Localization;
 using Sidekick.Apis.Poe.Metadata;
@@ -34,6 +35,7 @@ public static class StartupExtensions
         services.AddHttpClient(ClientNames.TradeClient)
             .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
             {
+                UseProxy = false,
                 AllowAutoRedirect = true,
                 UseCookies = true,
             })
@@ -56,6 +58,7 @@ public static class StartupExtensions
         services.AddSingleton<IBulkTradeService, BulkTradeService>();
         services.AddSingleton<IModifierParser, ModifierParser>();
         services.AddSingleton<ClusterJewelParser>();
+        services.AddSingleton<IFuzzyService, FuzzyService>();
 
         services.AddSidekickInitializableService<IParserPatterns, ParserPatterns>();
         services.AddSidekickInitializableService<SocketParser>();

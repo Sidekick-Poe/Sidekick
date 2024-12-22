@@ -16,7 +16,5 @@ namespace Sidekick.Apis.Poe.Modifiers
         bool IsMatch(string id, string text);
 
         Dictionary<ModifierCategory, List<ModifierPattern>> Patterns { get; }
-
-        Dictionary<string, List<ModifierPattern>> FuzzyDictionary { get; }
     }
 }
