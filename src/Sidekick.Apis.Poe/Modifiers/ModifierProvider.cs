@@ -60,7 +60,7 @@ public class ModifierProvider
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_Modifiers";
-        var apiCategories = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.Language, "data/stats"));
+        var apiCategories = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.Language, "data/stats"), (cache) => cache.Result.Any());
 
         foreach (var apiCategory in apiCategories.Result)
         {

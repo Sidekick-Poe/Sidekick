@@ -35,7 +35,7 @@ namespace Sidekick.Apis.Poe.Metadata
             var game = leagueId.GetGameFromLeagueId();
             var cacheKey = $"{game.GetValueAttribute()}_InvariantMetadata";
 
-            var result = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "data/items"));
+            var result = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "data/items"), (cache) => cache.Result.Any());
 
             var categories = game switch
             {
