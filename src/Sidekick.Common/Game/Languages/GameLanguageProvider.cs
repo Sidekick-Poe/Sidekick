@@ -67,4 +67,11 @@ public class GameLanguageProvider(ISettingsService settingsService) : IGameLangu
     {
         return Language.GetType() == InvariantLanguage.GetType();
     }
+
+    public bool IsChinese()
+    {
+        var languages = GetList();
+        var chineseLanguage = languages.FirstOrDefault(x=>x.LanguageCode == "zh");
+        return chineseLanguage?.ImplementationType == Language.GetType();
+    }
 }

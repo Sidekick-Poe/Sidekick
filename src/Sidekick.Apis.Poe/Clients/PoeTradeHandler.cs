@@ -3,13 +3,17 @@ using System.Net.Http.Headers;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.CloudFlare;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Clients;
 
 public class PoeTradeHandler
 (
     ILogger<PoeTradeHandler> logger,
-    ICloudflareService cloudflareService
+    ICloudflareService cloudflareService,
+    ISettingsService settingsService,
+    IGameLanguageProvider gameLanguageProvider
 ) : DelegatingHandler
 {
     public const string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36";
@@ -34,11 +38,23 @@ public class PoeTradeHandler
             return response;
         }
 
-        if (response.StatusCode == HttpStatusCode.Moved ||
-            response.StatusCode == HttpStatusCode.Redirect ||
-            response.StatusCode == HttpStatusCode.RedirectKeepVerb)
+        if (response.StatusCode == HttpStatusCode.Moved || response.StatusCode == HttpStatusCode.Redirect || response.StatusCode == HttpStatusCode.RedirectKeepVerb)
         {
-            return await HandleRedirect(request, response, cancellationToken);
+            logger.LogWarning("[PoeTradeHandler] Received redirect response.");
+
+            var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
+            if (responseContent.Contains("cloudflare"))
+            {
+                var useInvariantTradeResults = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
+                var isChinese = gameLanguageProvider.IsChinese();
+                if (isChinese && !useInvariantTradeResults)
+                {
+                    logger.LogWarning("[PoeTradeHandler] Invalid chinese settings. Throwing exception.");
+                    throw new SidekickException("Sidekick failed to communicate with the trade API.", "The trade website requires authentication, which Sidekick does not support currently.", "Try using a different game language and/or force to search using English only in the settings.");
+                }
+
+                logger.LogWarning("[PoeTradeHandler] Received a cloudflare redirect. Letting the handler continue.");
+            }
         }
 
         // Sidekick does not support authentication yet.
@@ -86,35 +102,5 @@ public class PoeTradeHandler
         logger.LogWarning("[PoeTradeHandler] Uri: {uri}", request.RequestUri);
         logger.LogWarning("[PoeTradeHandler] Body: {uri}", body);
         throw new ApiErrorException();
-    }
-
-    private async Task<HttpResponseMessage> HandleRedirect(HttpRequestMessage request, HttpResponseMessage response, CancellationToken cancellationToken)
-    {
-        // Get redirect URL from the "Location" header
-        var redirectUri = response.Headers.Location;
-        logger.LogInformation("[PoeTradeHandler] Redirection status code detected.");
-
-        if (redirectUri == null)
-        {
-            return response;
-        }
-
-        logger.LogInformation("[PoeTradeHandler] Redirecting to {redirectUri}.", redirectUri);
-
-        var redirectRequest = new HttpRequestMessage(request.Method, redirectUri);
-
-        // Copy headers from the original request
-        foreach (var header in request.Headers)
-        {
-            redirectRequest.Headers.TryAddWithoutValidation(header.Key, header.Value);
-        }
-
-        if (request.Content != null)
-        {
-            redirectRequest.Content = request.Content;
-        }
-
-        // Retry the request with the new URI
-        return await base.SendAsync(redirectRequest, cancellationToken);
     }
 }
