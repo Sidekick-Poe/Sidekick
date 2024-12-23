@@ -1,3 +1,5 @@
+using Romanization;
+
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 // [GameLanguage("Traditional Chinese", "zh")]
@@ -161,4 +163,21 @@ public class GameLanguageZhTw : IGameLanguage
         Tinctures = "萃取物",
         Corpses = "屍體",
     };
+
+    private static Chinese.HanyuPinyin? Romanization { get; set; }
+
+    public string? GetFuzzyText(string? text)
+    {
+        Romanization ??= new Chinese.HanyuPinyin();
+        try
+        {
+            text = Romanization.Process(text);
+        }
+        catch (Exception)
+        {
+            // Do nothing if the romanization fails.
+        }
+
+        return text;
+    }
 }

@@ -65,7 +65,7 @@
             return;
         }
 
-        ClassLabel = FilterProvider.ApiItemCategories.FirstOrDefault(x => x.Id == PriceCheckService.Item?.Header.ItemCategory)?.Text;
+        ClassLabel = FilterProvider.TypeCategoryOptions.FirstOrDefault(x => x.Id == PriceCheckService.Item?.Header.ItemCategory)?.Text;
         RarityLabel = PriceCheckService.Item.Metadata.Rarity switch
         {
             Rarity.Currency => GameLanguageProvider.Language.RarityCurrency,

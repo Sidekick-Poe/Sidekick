@@ -4,15 +4,14 @@ using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
-using Sidekick.Common.Initialization;
 
-namespace Sidekick.Apis.Poe.Parser;
+namespace Sidekick.Apis.Poe.Parser.Properties;
 
 public class PropertyParser
 (
     IGameLanguageProvider gameLanguageProvider,
     IInvariantModifierProvider invariantModifierProvider
-) : IInitializableService
+) : IPropertyParser
 {
     public int Priority => 200;
 
@@ -97,7 +96,7 @@ public class PropertyParser
         return Task.CompletedTask;
     }
 
-    public Properties Parse(ParsingItem parsingItem, List<ModifierLine> modifierLines)
+    public Common.Game.Items.Properties Parse(ParsingItem parsingItem, List<ModifierLine> modifierLines)
     {
         return parsingItem.Metadata?.Category switch
         {
@@ -110,17 +109,17 @@ public class PropertyParser
             Category.Flask => ParseFlaskProperties(parsingItem),
             Category.Sanctum => ParseSanctumProperties(parsingItem),
             Category.Logbook => ParseLogbookProperties(parsingItem),
-            _ => new Properties(),
+            _ => new Common.Game.Items.Properties(),
         };
     }
 
-    private Properties ParseWeaponProperties(ParsingItem parsingItem, List<ModifierLine> modifierLines)
+    private Common.Game.Items.Properties ParseWeaponProperties(ParsingItem parsingItem, List<ModifierLine> modifierLines)
     {
         var propertyBlock = parsingItem.Blocks[1];
         var attacksPerSecond = GetDouble(AttacksPerSecond, propertyBlock);
         var criticalStrikeChance = GetDouble(CriticalStrikeChance, propertyBlock);
 
-        var properties = new Properties
+        var properties = new Common.Game.Items.Properties
         {
             ItemLevel = GetInt(ItemLevel, parsingItem),
             Identified = !GetBool(Unidentified, parsingItem),
@@ -171,7 +170,7 @@ public class PropertyParser
         return properties;
     }
 
-    private void ParseElementalDamage(ParsingLine line, Properties properties, List<ModifierLine> modifierLines)
+    private void ParseElementalDamage(ParsingLine line, Common.Game.Items.Properties properties, List<ModifierLine> modifierLines)
     {
         var damageMods = invariantModifierProvider.FireWeaponDamageIds.ToList();
         damageMods.AddRange(invariantModifierProvider.ColdWeaponDamageIds);
@@ -221,11 +220,11 @@ public class PropertyParser
         }
     }
 
-    private Properties ParseArmourProperties(ParsingItem parsingItem)
+    private Common.Game.Items.Properties ParseArmourProperties(ParsingItem parsingItem)
     {
         var propertyBlock = parsingItem.Blocks[1];
 
-        return new Properties()
+        return new Common.Game.Items.Properties()
         {
             ItemLevel = GetInt(ItemLevel, parsingItem),
             Identified = !GetBool(Unidentified, parsingItem),
@@ -238,9 +237,9 @@ public class PropertyParser
         };
     }
 
-    private Properties ParseAccessoryProperties(ParsingItem parsingItem)
+    private Common.Game.Items.Properties ParseAccessoryProperties(ParsingItem parsingItem)
     {
-        return new Properties()
+        return new Common.Game.Items.Properties()
         {
             ItemLevel = GetInt(ItemLevel, parsingItem),
             Identified = !GetBool(Unidentified, parsingItem),
@@ -248,11 +247,11 @@ public class PropertyParser
         };
     }
 
-    private Properties ParseMapProperties(ParsingItem parsingItem)
+    private Common.Game.Items.Properties ParseMapProperties(ParsingItem parsingItem)
     {
         var propertyBlock = parsingItem.Blocks[1];
 
-        return new Properties()
+        return new Common.Game.Items.Properties()
         {
             ItemLevel = GetInt(ItemLevel, parsingItem),
             Identified = !GetBool(Unidentified, parsingItem),
@@ -267,11 +266,11 @@ public class PropertyParser
         };
     }
 
-    private Properties ParseGemProperties(ParsingItem parsingItem)
+    private Common.Game.Items.Properties ParseGemProperties(ParsingItem parsingItem)
     {
         var propertyBlock = parsingItem.Blocks[1];
 
-        return new Properties()
+        return new Common.Game.Items.Properties()
         {
             Corrupted = GetBool(Corrupted, parsingItem),
             GemLevel = GetInt(Level, propertyBlock),
@@ -283,9 +282,9 @@ public class PropertyParser
         };
     }
 
-    private Properties ParseJewelProperties(ParsingItem parsingItem)
+    private Common.Game.Items.Properties ParseJewelProperties(ParsingItem parsingItem)
     {
-        return new Properties()
+        return new Common.Game.Items.Properties()
         {
             ItemLevel = GetInt(ItemLevel, parsingItem),
             Identified = !GetBool(Unidentified, parsingItem),
@@ -293,9 +292,9 @@ public class PropertyParser
         };
     }
 
-    private Properties ParseFlaskProperties(ParsingItem parsingItem)
+    private Common.Game.Items.Properties ParseFlaskProperties(ParsingItem parsingItem)
     {
-        return new Properties()
+        return new Common.Game.Items.Properties()
         {
             ItemLevel = GetInt(ItemLevel, parsingItem),
             Identified = !GetBool(Unidentified, parsingItem),
@@ -304,17 +303,17 @@ public class PropertyParser
         };
     }
 
-    private Properties ParseSanctumProperties(ParsingItem parsingItem)
+    private Common.Game.Items.Properties ParseSanctumProperties(ParsingItem parsingItem)
     {
-        return new Properties
+        return new Common.Game.Items.Properties
         {
             AreaLevel = GetInt(AreaLevel, parsingItem),
         };
     }
 
-    private Properties ParseLogbookProperties(ParsingItem parsingItem)
+    private Common.Game.Items.Properties ParseLogbookProperties(ParsingItem parsingItem)
     {
-        return new Properties
+        return new Common.Game.Items.Properties
         {
             AreaLevel = GetInt(AreaLevel, parsingItem),
         };

@@ -6,8 +6,6 @@ namespace Sidekick.Apis.Poe
     {
         Task<Item> ParseItemAsync(string itemText);
 
-        Header ParseHeader(string itemText);
-
         Item ParseItem(string itemText);
     }
 }

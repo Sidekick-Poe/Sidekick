@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.Poe.Metadata.Models;
+namespace Sidekick.Apis.Poe.Filters.Models;
 
 public class ApiFilterOptions
 {
