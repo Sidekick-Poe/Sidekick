@@ -20,13 +20,7 @@ public class PoeTradeHandler
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
-        request.Headers.AcceptLanguage.Add(new StringWithQualityHeaderValue("en-US", 0.9));
-        request.Headers.Connection.Add("keep-alive");
-        request.Headers.CacheControl = new CacheControlHeaderValue() { NoCache = true };
-        request.Headers.Host = request.RequestUri?.Host;
         request.Headers.UserAgent.ParseAdd(UserAgent);
-        request.Headers.Add("Upgrade-Insecure-Requests", "1");
         request.Headers.TryAddWithoutValidation("X-Powered-By", "Sidekick");
 
         // First try with existing cookies
@@ -38,12 +32,19 @@ public class PoeTradeHandler
             return response;
         }
 
+        if (response.StatusCode == HttpStatusCode.Moved ||
+            response.StatusCode == HttpStatusCode.Redirect ||
+            response.StatusCode == HttpStatusCode.RedirectKeepVerb)
+        {
+            response = await HandleRedirect(request, response, cancellationToken);
+        }
+
         if (response.StatusCode == HttpStatusCode.Moved || response.StatusCode == HttpStatusCode.Redirect || response.StatusCode == HttpStatusCode.RedirectKeepVerb)
         {
             logger.LogWarning("[PoeTradeHandler] Received redirect response.");
 
             var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
-            if (responseContent.Contains("cloudflare"))
+            if (responseContent.Contains("<center>cloudflare</center>"))
             {
                 var useInvariantTradeResults = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
                 var isChinese = gameLanguageProvider.IsChinese();
@@ -102,5 +103,23 @@ public class PoeTradeHandler
         logger.LogWarning("[PoeTradeHandler] Uri: {uri}", request.RequestUri);
         logger.LogWarning("[PoeTradeHandler] Body: {uri}", body);
         throw new ApiErrorException();
+    }
+
+    private async Task<HttpResponseMessage> HandleRedirect(HttpRequestMessage request, HttpResponseMessage response, CancellationToken cancellationToken)
+    {
+        // Get redirect URL from the "Location" header
+        var redirectUri = response.Headers.Location;
+        logger.LogInformation("[PoeTradeHandler] Redirection status code detected.");
+        if (redirectUri == null)
+        {
+            return response;
+        }
+
+        logger.LogInformation("[PoeTradeHandler] Redirecting to {redirectUri}.", redirectUri);
+
+        request.RequestUri = redirectUri;
+
+        // Retry the request with the new URI
+        return await base.SendAsync(request, cancellationToken);
     }
 }
