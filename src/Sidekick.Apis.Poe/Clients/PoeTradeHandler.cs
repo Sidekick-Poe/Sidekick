@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using System.Net.Http.Headers;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.CloudFlare;
 using Sidekick.Common.Exceptions;
