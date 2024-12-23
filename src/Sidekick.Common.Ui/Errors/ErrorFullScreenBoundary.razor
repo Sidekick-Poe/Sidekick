@@ -47,6 +47,11 @@
                     {
                         actions = sidekickException.Actions;
                     }
+
+                    if (actions == 0)
+                    {
+                        actions = ExceptionActions.CloseWindow;
+                    }
                 }
 
                 <div class="flex items-center justify-center gap-2">
