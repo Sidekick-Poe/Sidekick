@@ -82,6 +82,10 @@ namespace Sidekick.Apis.Poe.Bulk
 
                 return new BulkResponseModel(result);
             }
+            catch (SidekickException)
+            {
+                throw;
+            }
             catch (Exception e)
             {
                 logger.LogError(e, "An exception occured while parsing the API response. {data}", content);
