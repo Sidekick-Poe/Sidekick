@@ -44,9 +44,6 @@ namespace Sidekick.Common.Blazor.Initialization
         [Inject]
         private ICacheProvider CacheProvider { get; set; } = null!;
 
-        [Inject]
-        private IGameLanguageProvider GameLanguageProvider { get; set; } = null!;
-
         private int Count { get; set; }
 
         private int Completed { get; set; }
