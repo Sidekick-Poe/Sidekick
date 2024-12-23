@@ -92,9 +92,23 @@ namespace Sidekick.Wpf.Services
             {
                 var center = false;
 
+                if (view.Width != null)
+                {
+                    window.Width = view.Width.Value;
+                    window.MinWidth = view.Width.Value;
+                    center = true;
+                }
+
                 if (view.Height != null)
                 {
                     window.Height = view.Height.Value;
+                    window.MinHeight = view.Height.Value;
+                    center = true;
+                }
+
+                if (view.MinWidth != null)
+                {
+                    window.MinWidth = view.MinWidth.Value;
                     center = true;
                 }
 
