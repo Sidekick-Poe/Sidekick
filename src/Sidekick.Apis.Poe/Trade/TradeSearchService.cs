@@ -137,6 +137,10 @@ public class TradeSearchService
                 return result;
             }
         }
+        catch (SidekickException)
+        {
+            throw;
+        }
         catch (Exception ex)
         {
             logger.LogWarning(ex, "[Trade API] Exception thrown while querying trade api.");
