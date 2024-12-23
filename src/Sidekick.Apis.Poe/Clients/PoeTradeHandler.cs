@@ -1,5 +1,8 @@
 ﻿using System.Net;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
+using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.CloudFlare;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Languages;
@@ -31,9 +34,13 @@ public class PoeTradeHandler
             return response;
         }
 
-        if (response.StatusCode == HttpStatusCode.Moved ||
-            response.StatusCode == HttpStatusCode.Redirect ||
-            response.StatusCode == HttpStatusCode.RedirectKeepVerb)
+        if (response.StatusCode == HttpStatusCode.TooManyRequests)
+        {
+            var errorResponse = await ParseErrorResponse(response);
+            throw new SidekickException("Rate limit exceeded.", "The official trade website has a rate limit to avoid spam. Sidekick cannot change this.", errorResponse?.Error?.Message ?? string.Empty);
+        }
+
+        if (response.StatusCode == HttpStatusCode.Moved || response.StatusCode == HttpStatusCode.Redirect || response.StatusCode == HttpStatusCode.RedirectKeepVerb)
         {
             response = await HandleRedirect(request, response, cancellationToken);
         }
@@ -120,5 +127,25 @@ public class PoeTradeHandler
 
         // Retry the request with the new URI
         return await base.SendAsync(request, cancellationToken);
+    }
+
+    private async Task<ApiErrorResponse?> ParseErrorResponse(HttpResponseMessage response)
+    {
+        try
+        {
+            var options = new JsonSerializerOptions()
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            };
+            var content = await response.Content.ReadAsStreamAsync();
+            return await JsonSerializer.DeserializeAsync<ApiErrorResponse>(content, options);
+        }
+        catch (Exception)
+        {
+            logger.LogWarning("[PoeTradeHandler] Failed to parse the error response.");
+        }
+
+        return null;
     }
 }
