@@ -93,7 +93,8 @@
 
             // Check to see if we should run Setup first before running the rest of the initialization process
             var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
-            if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId) || NewLeagues)
+            var parserLanguage = await SettingsService.GetString(SettingKeys.LanguageParser);
+            if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId) || NewLeagues || parserLanguage == null)
             {
                 CurrentView.SetSize(height: 360);
                 RequiresSetup = true;
