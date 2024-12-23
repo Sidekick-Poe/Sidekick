@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
@@ -123,6 +124,7 @@ namespace Sidekick.Common.Blazor.Initialization
             }
             catch (SidekickException e)
             {
+                await SettingsService.Set(SettingKeys.LanguageParser, null);
                 e.Actions = ExceptionActions.ExitApplication;
                 throw;
             }
