@@ -1,0 +1,33 @@
+@page "/settings/about"
+@layout SettingsLayout
+@inherits Sidekick.Common.Ui.Views.SidekickView
+@using Sidekick.Common.Browser
+@using Sidekick.Common.Folder
+
+<AppTitle Title="@Resources["About"]" />
+
+<AppContainer>
+    <Fieldset Legend="@($"{Resources["Sidekick"]} - {Title}")">
+        <div class="mb-3"><span class="text-lg underline text-blue-500 cursor-pointer" onclick="@(() => BrowserProvider.OpenSidekickWebsite())">@Resources["Official_Website"]</span></div>
+        <div class="mb-3"><span class="text-lg underline text-blue-500 cursor-pointer" onclick="@(() => BrowserProvider.OpenGitHubRepository())">@Resources["GitHub_Repository"]</span></div>
+
+        <LayoutDivider/>
+
+        <div class="mb-3"><ButtonPrimary OnClick="@(() => FolderProvider.OpenDataFolderPath())">@Resources["Open_Settings_Folder"]</ButtonPrimary></div>
+        <i>@FolderProvider.GetDataFolderPath()</i>
+    </Fieldset>
+</AppContainer>
+
+@inject IStringLocalizer<SettingsResources> Resources
+@inject IBrowserProvider BrowserProvider
+@inject IFolderProvider FolderProvider
+
+@code
+{
+    private string? Title { get; set; } = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        Title = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).FirstOrDefault(x => x.Name == "Sidekick")?.Version?.ToString();
+    }
+}

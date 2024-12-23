@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common.Browser;
@@ -16,7 +17,7 @@ namespace Sidekick.Common.Blazor.Initialization
     public partial class Initialization : SidekickView
     {
         [Inject]
-        private InitializationResources Resources { get; set; } = null!;
+        private IStringLocalizer<InitializationResources> Resources { get; set; } = null!;
 
         [Inject]
         private ILogger<Initialization> Logger { get; set; } = null!;
@@ -65,7 +66,7 @@ namespace Sidekick.Common.Blazor.Initialization
             InitializationTask = Handle();
             var keyOpenPriceCheck = await SettingsService.GetString(SettingKeys.KeyOpenPriceCheck);
             var keyClose = await SettingsService.GetString(SettingKeys.KeyClose);
-            WelcomeMessage = string.Format(Resources.Notification, keyOpenPriceCheck.ToKeybindString(), keyClose.ToKeybindString());
+            WelcomeMessage = string.Format(Resources["Notification"], keyOpenPriceCheck.ToKeybindString(), keyClose.ToKeybindString());
             await base.OnInitializedAsync();
             await InitializationTask;
         }
@@ -148,12 +149,12 @@ namespace Sidekick.Common.Blazor.Initialization
                 Percentage = Count == 0 ? 0 : Completed * 100 / Count;
                 if (Percentage >= 100)
                 {
-                    Step = Resources.Ready;
+                    Step = Resources["Ready"];
                     Percentage = 100;
                 }
                 else
                 {
-                    Step = Resources.Title(Completed, Count);
+                    Step = Resources["Title", Completed, Count];
                 }
 
                 StateHasChanged();
@@ -174,7 +175,7 @@ namespace Sidekick.Common.Blazor.Initialization
             menuItems.AddRange(new List<TrayMenuItem>()
             {
                 new(label: "Sidekick - " + GetVersion()),
-                new(label: "Open Website",
+                new(label: Resources["Open_Website"],
                     onClick: () =>
                     {
                         BrowserProvider.OpenSidekickWebsite();

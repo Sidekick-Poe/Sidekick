@@ -12,4 +12,9 @@ public interface IBrowserProvider
     ///     Opens the sidekick website in the user's browser.
     /// </summary>
     void OpenSidekickWebsite();
+
+    /// <summary>
+    ///    Opens the Sidekick GitHub repository in the user's browser.
+    /// </summary>
+    void OpenGitHubRepository();
 }
