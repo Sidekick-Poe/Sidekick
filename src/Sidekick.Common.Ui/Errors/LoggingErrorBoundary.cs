@@ -30,7 +30,7 @@ namespace Sidekick.Common.Ui.Errors
             }
 
             await JsRuntime.InvokeVoidAsync("console.error", CurrentException?.ToString());
-            Logger.LogError(CurrentException, "An error occured while executing a component.");
+            Logger.LogError(CurrentException, "[ErrorBoundary] An error occured.");
 
             await base.OnErrorAsync(exception);
         }

@@ -25,7 +25,7 @@ namespace Sidekick.Wpf.Services
             this.logger = logger;
             this.cloudflareService = cloudflareService;
             this.settingsService = settingsService;
-            this.ViewPreferenceService = viewPreferenceService;
+            ViewPreferenceService = viewPreferenceService;
             cloudflareService.ChallengeStarted += CloudflareServiceOnChallengeStarted;
         }
 
@@ -90,11 +90,35 @@ namespace Sidekick.Wpf.Services
 
             Application.Current.Dispatcher.Invoke(() =>
             {
+                var center = false;
+
+                if (view.Width != null)
+                {
+                    window.Width = view.Width.Value;
+                    window.MinWidth = view.Width.Value;
+                    center = true;
+                }
+
                 if (view.Height != null)
                 {
                     window.Height = view.Height.Value;
-                    CenterHelper.Center(window);
+                    window.MinHeight = view.Height.Value;
+                    center = true;
                 }
+
+                if (view.MinWidth != null)
+                {
+                    window.MinWidth = view.MinWidth.Value;
+                    center = true;
+                }
+
+                if (view.MinHeight != null)
+                {
+                    window.MinHeight = view.MinHeight.Value;
+                    center = true;
+                }
+
+                if (center) CenterHelper.Center(window);
 
                 window.Title = $"Sidekick {view.Title}".Trim();
             });

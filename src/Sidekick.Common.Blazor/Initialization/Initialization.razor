@@ -8,39 +8,32 @@
     </TopContent>
 
     <ChildContent>
-        @if (Error)
-        {
-            <AlertError>@Resources.Error</AlertError>
-        }
-        else
-        {
-            <AppContainer>
-                <Heading3 Class="mb-2 text-center">@Step</Heading3>
-                @if (Count != Completed)
-                {
-                    <ProgressBar Percent="Percentage"/>
-                }
-                else
-                {
-                    <TextBase Class="text-center">@WelcomeMessage</TextBase>
-                }
-            </AppContainer>
-        }
+        <AppContainer>
+            <Heading3 Class="mb-2 text-center">@Step</Heading3>
+            @if (Count != Completed)
+            {
+                <ProgressBar Percent="Percentage"/>
+            }
+            else
+            {
+                <TextBase Class="text-center">@WelcomeMessage</TextBase>
+            }
+        </AppContainer>
     </ChildContent>
 
     <BottomContent>
         <div class="px-3 py-2 flex justify-center gap-2">
             @if (Count != Completed)
             {
-            <ButtonPrimary OnClick="Exit">
-                @Resources.Exit
-            </ButtonPrimary>
+                <ButtonPrimary OnClick="Exit">
+                    @Resources.Exit
+                </ButtonPrimary>
             }
             else
             {
-            <ButtonPrimary OnClick="CurrentView.Close">
-                @Resources.Close
-            </ButtonPrimary>
+                <ButtonPrimary OnClick="CurrentView.Close">
+                    @Resources.Close
+                </ButtonPrimary>
             }
         </div>
     </BottomContent>
