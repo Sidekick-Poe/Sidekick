@@ -185,8 +185,8 @@ namespace Sidekick.Common.Blazor.Initialization
 
                 // new(label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
 
-                new(label: "Settings", onClick: () => ViewLocator.Open("/settings")),
-                new(label: "Exit",
+                new(label: Resources["Settings"], onClick: () => ViewLocator.Open("/settings")),
+                new(label: Resources["Exit"],
                     onClick: () =>
                     {
                         ApplicationService.Shutdown();
