@@ -1,7 +1,11 @@
 @using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Modules.Trade.Localization
 
-<TextBase Class="text-[#7f7f7f] font-caps text-center leading-none py-0.5">@Resources["Requires"] @((MarkupString)Text)</TextBase>
+@if (!string.IsNullOrEmpty(Text))
+{
+    <TextBase
+        Class="text-[#7f7f7f] font-caps text-center leading-none py-0.5">@Resources["Requires"] @((MarkupString)Text)</TextBase>
+}
 
 @inject IStringLocalizer<TradeResources> Resources
 
@@ -36,6 +40,8 @@
                 Text = Text.Replace(value.Value, $"<span class=\"{color};\">{value.Value}</span>");
             }
         }
+
+        Text = Text.Trim();
     }
 
 }

@@ -9,23 +9,18 @@ public class PropertyFilter : ITradeFilter
         PropertyFilterType type,
         string text,
         object value,
-        decimal? min = null,
-        decimal? max = null)
+        double? normalizeValue)
     {
         Checked = @checked;
         Type = type;
         Text = text;
         Value = value;
-        Max = max;
+        NormalizeEnabled = normalizeValue != null;
+        NormalizeValue = normalizeValue ?? 0;
 
-        if (min.HasValue)
+        if (@checked == true)
         {
-            Min = min;
-        }
-
-        if (max.HasValue)
-        {
-            Max = max;
+            NormalizeMinValue();
         }
     }
 
@@ -40,6 +35,9 @@ public class PropertyFilter : ITradeFilter
     public string Text { get; }
 
     public object Value { get; }
+
+    private bool NormalizeEnabled { get; }
+
     public double NormalizeValue { get; set; }
 
     public FilterValueType ValueType

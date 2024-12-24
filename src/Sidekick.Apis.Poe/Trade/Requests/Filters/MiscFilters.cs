@@ -12,6 +12,9 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
         [JsonPropertyName("gem_alternate_quality")]
         public SearchFilterOption? GemQualityType { get; set; }
 
+        /// <remarks>
+        /// The item level filter for Path of Exile 1 is inside the misc filters instead of the type filters.
+        /// </remarks>
         [JsonPropertyName("ilvl")]
         public SearchFilterValue? ItemLevel { get; set; }
 

@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Filters;
+using Sidekick.Apis.Poe.Metadata;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests;
@@ -27,7 +28,8 @@ public class TradeSearchService
     ISettingsService settingsService,
     IPoeTradeClient poeTradeClient,
     IModifierProvider modifierProvider,
-    IFilterProvider filterProvider
+    IFilterProvider filterProvider,
+    IInvariantMetadataProvider invariantMetadataProvider
 ) : ITradeSearchService
 {
     private readonly ILogger logger = logger;
@@ -51,7 +53,7 @@ public class TradeSearchService
                         Discriminator = metadata.ApiTypeDiscriminator,
                     };
                 }
-                else if (!string.IsNullOrEmpty(item.Header.ItemCategory))
+                else
                 {
                     query.Type = metadata.ApiType;
                 }
@@ -116,6 +118,16 @@ public class TradeSearchService
                 query.Filters.ArmourFilters = GetArmourFilters(item, propertyFilters.Armour);
                 query.Filters.MapFilters = GetMapFilters(propertyFilters.Map);
                 query.Filters.MiscFilters = GetMiscFilters(item, propertyFilters.Misc);
+            }
+
+            // The item level filter for Path of Exile 2 is inside the type filters instead of the misc filters.
+            if (item.Metadata.Game == GameType.PathOfExile2)
+            {
+                query.Filters.TypeFilters.Filters.ItemLevel = query.Filters.MiscFilters?.Filters.ItemLevel;
+                if (query.Filters.MiscFilters != null)
+                {
+                    query.Filters.MiscFilters.Filters.ItemLevel = null;
+                }
             }
 
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
@@ -462,7 +474,15 @@ public class TradeSearchService
                     break;
 
                 case PropertyFilterType.Misc_GemLevel:
-                    filters.Filters.GemLevel = new SearchFilterValue(propertyFilter);
+                    if (invariantMetadataProvider.UncutGemIds.Contains(item.Metadata.Id))
+                    {
+                        filters.Filters.ItemLevel = new SearchFilterValue(propertyFilter);
+                    }
+                    else
+                    {
+                        filters.Filters.GemLevel = new SearchFilterValue(propertyFilter);
+                    }
+
                     hasValue = true;
                     break;
 
