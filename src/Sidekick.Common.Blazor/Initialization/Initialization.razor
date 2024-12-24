@@ -26,13 +26,13 @@
             @if (Count != Completed)
             {
                 <ButtonPrimary OnClick="Exit">
-                    @Resources.Exit
+                    @Resources["Exit"]
                 </ButtonPrimary>
             }
             else
             {
                 <ButtonPrimary OnClick="CurrentView.Close">
-                    @Resources.Close
+                    @Resources["Close"]
                 </ButtonPrimary>
             }
         </div>
