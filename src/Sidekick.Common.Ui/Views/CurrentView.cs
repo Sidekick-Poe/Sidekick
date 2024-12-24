@@ -19,7 +19,16 @@ public class CurrentView(
     public string Title { get; private set; } = "Sidekick";
 
     /// <inheritdoc/>
+    public int? Width { get; private set; }
+
+    /// <inheritdoc/>
     public int? Height { get; private set; }
+
+    /// <inheritdoc/>
+    public int? MinWidth { get; private set; }
+
+    /// <inheritdoc/>
+    public int? MinHeight { get; private set; }
 
     /// <inheritdoc/>
     public string Url => navigationManager.Uri;
@@ -46,9 +55,12 @@ public class CurrentView(
     }
 
     /// <inheritdoc/>
-    public void SetHeight(int height)
+    public void SetSize(int? width = null, int? height = null, int? minWidth = null, int? minHeight = null)
     {
+        Width = width;
         Height = height;
+        MinWidth = minWidth;
+        MinHeight = minHeight;
         ViewChanged?.Invoke(this);
     }
 

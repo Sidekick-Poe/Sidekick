@@ -32,15 +32,15 @@
         <div class="px-3 py-2 flex justify-center gap-2">
             @if (Count != Completed)
             {
-            <ButtonPrimary OnClick="Exit">
-                @Resources["Exit"]
-            </ButtonPrimary>
+                <ButtonPrimary OnClick="Exit">
+                    @Resources["Exit"]
+                </ButtonPrimary>
             }
             else
             {
-            <ButtonPrimary OnClick="CurrentView.Close">
-                @Resources["Close"]
-            </ButtonPrimary>
+                <ButtonPrimary OnClick="CurrentView.Close">
+                    @Resources["Close"]
+                </ButtonPrimary>
             }
         </div>
     </BottomContent>

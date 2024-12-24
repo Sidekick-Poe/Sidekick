@@ -93,9 +93,10 @@
 
             // Check to see if we should run Setup first before running the rest of the initialization process
             var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
-            if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId) || NewLeagues)
+            var parserLanguage = await SettingsService.GetString(SettingKeys.LanguageParser);
+            if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId) || NewLeagues || parserLanguage == null)
             {
-                CurrentView.SetHeight(360);
+                CurrentView.SetSize(height: 360);
                 RequiresSetup = true;
             }
             else
@@ -105,16 +106,16 @@
         }
         catch (SidekickException e)
         {
-            CurrentView.SetHeight(360);
-            e.ExitApplication = true;
+            CurrentView.SetSize(height: 360);
+            e.Actions = ExceptionActions.ExitApplication;
             throw;
         }
         catch (Exception e)
         {
-            CurrentView.SetHeight(360);
+            CurrentView.SetSize(height: 360);
             throw new SidekickException(e.Message)
             {
-                ExitApplication = true,
+                Actions = ExceptionActions.ExitApplication,
             };
         }
 
@@ -139,6 +140,7 @@
         var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
         await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
 
+        CurrentView.SetSize(height: 210);
         NavigationManager.NavigateTo("/initialize");
     }
 
