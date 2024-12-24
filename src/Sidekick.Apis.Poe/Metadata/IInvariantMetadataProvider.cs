@@ -1,10 +1,11 @@
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Initialization;
 
-namespace Sidekick.Apis.Poe.Metadata
+namespace Sidekick.Apis.Poe.Metadata;
+
+public interface IInvariantMetadataProvider : IInitializableService
 {
-    public interface IInvariantMetadataProvider : IInitializableService
-    {
-        Dictionary<string, ItemMetadata> IdDictionary { get; }
-    }
+    Dictionary<string, ItemMetadata> IdDictionary { get; }
+
+    List<string> UncutGemIds { get; }
 }

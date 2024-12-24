@@ -53,7 +53,7 @@ public class PriceCheckService(
 
         Item = await itemParser.ParseItemAsync(itemText.DecodeBase64Url() ?? string.Empty);
 
-        PropertyFilters = tradeFilterService.GetPropertyFilters(Item);
+        PropertyFilters = await tradeFilterService.GetPropertyFilters(Item);
         ModifierFilters = tradeFilterService
                           .GetModifierFilters(Item)
                           .ToList();
@@ -74,7 +74,7 @@ public class PriceCheckService(
         IsFilterLoading = false;
         FilterLoadingChanged?.Invoke();
 
-        if (Item.Metadata.Rarity != Rarity.Rare && Item.Metadata.Rarity != Rarity.Magic)
+        if (Item.Metadata.Rarity != Rarity.Rare && Item.Metadata.Rarity != Rarity.Magic && Item.Metadata.Category != Category.Gem)
         {
             if (CurrentMode == TradeMode.Bulk)
             {

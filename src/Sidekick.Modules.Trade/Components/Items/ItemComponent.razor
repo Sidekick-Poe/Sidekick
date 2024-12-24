@@ -3,7 +3,7 @@
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Prices
 
-@if (Item.CanHaveModifiers)
+@if (Item.CanHaveModifiers || PriceCheckService.Item?.Metadata.Category == Category.Gem)
 {
     <div class="mb-2 rounded-b-lg bg-stone-950">
         <ItemHeader Name="@Item.Header.Name"
@@ -54,7 +54,7 @@
                     </div>
                 }
 
-                <div class="mt-3">
+                <div class="mt-3 flex flex-col w-full items-center">
                     <ItemImageComponent Item="Item"/>
                 </div>
             </div>

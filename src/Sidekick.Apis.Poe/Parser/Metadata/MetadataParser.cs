@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Metadata;
-using Sidekick.Apis.Poe.Parser.Patterns;
+using Sidekick.Apis.Poe.Parser.Headers;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 
@@ -9,7 +9,7 @@ namespace Sidekick.Apis.Poe.Parser.Metadata
     public class MetadataParser
     (
         IGameLanguageProvider gameLanguageProvider,
-        IParserPatterns parserPatterns,
+        IHeaderParser headerParser,
         IMetadataProvider data
     ) : IMetadataParser
     {
@@ -50,7 +50,7 @@ namespace Sidekick.Apis.Poe.Parser.Metadata
             var parsingBlock = parsingItem.Blocks.First();
             parsingBlock.Parsed = true;
 
-            var itemRarity = GetRarity(parsingBlock);
+            var itemRarity = headerParser.ParseRarity(parsingItem);
 
             var canBeVaalGem = itemRarity == Rarity.Gem && parsingItem.Blocks.Count > 7;
             if (canBeVaalGem && data.NameAndTypeDictionary.TryGetValue(parsingItem.Blocks[5].Lines[0].Text, out var vaalGem))
@@ -168,19 +168,6 @@ namespace Sidekick.Apis.Poe.Parser.Metadata
             }
 
             return orderedResults.FirstOrDefault();
-        }
-
-        private Rarity GetRarity(ParsingBlock parsingBlock)
-        {
-            foreach (var pattern in parserPatterns.Rarity)
-            {
-                if (pattern.Value.IsMatch(parsingBlock.Lines[1].Text))
-                {
-                    return pattern.Key;
-                }
-            }
-
-            return Rarity.Unknown;
         }
     }
 }

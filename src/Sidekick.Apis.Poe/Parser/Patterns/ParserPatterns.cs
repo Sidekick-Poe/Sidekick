@@ -12,7 +12,6 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         /// <inheritdoc/>
         public Task Initialize()
         {
-            InitHeader();
             InitInfluences();
 
             Requirements = gameLanguageProvider.Language.DescriptionRequirements.ToRegexLine();
@@ -21,27 +20,6 @@ namespace Sidekick.Apis.Poe.Parser.Patterns
         }
 
         #region Header (Rarity, Name, Type)
-
-        private void InitHeader()
-        {
-            Rarity = new Dictionary<Rarity, Regex>
-            {
-                { Common.Game.Items.Rarity.Normal, gameLanguageProvider.Language.RarityNormal.ToRegexEndOfLine() },
-                { Common.Game.Items.Rarity.Magic, gameLanguageProvider.Language.RarityMagic.ToRegexEndOfLine() },
-                { Common.Game.Items.Rarity.Rare, gameLanguageProvider.Language.RarityRare.ToRegexEndOfLine() },
-                { Common.Game.Items.Rarity.Unique, gameLanguageProvider.Language.RarityUnique.ToRegexEndOfLine() },
-                { Common.Game.Items.Rarity.Currency, gameLanguageProvider.Language.RarityCurrency.ToRegexEndOfLine() },
-                { Common.Game.Items.Rarity.Gem, gameLanguageProvider.Language.RarityGem.ToRegexEndOfLine() },
-                { Common.Game.Items.Rarity.DivinationCard, gameLanguageProvider.Language.RarityDivinationCard.ToRegexEndOfLine() }
-            };
-
-        }
-
-        public Dictionary<Rarity, Regex> Rarity { get; private set; } = null!;
-
-        public Regex Scourged { get; private set; } = null!;
-
-        public Regex IsRelic { get; private set; } = null!;
 
         public Regex Requirements { get; private set; } = null!;
 

@@ -44,7 +44,9 @@ public class Item(
         Category.Contract => true,
         Category.Logbook => true,
         Category.Affliction => true,
-        _ => ModifierLines.Count != 0,
+
+        // In PoE2, the uncut gems are currency. But we still want to display the gem levels.
+        _ => ModifierLines.Count != 0 || Properties.GemLevel > 0,
     };
 
     /// <inheritdoc />
