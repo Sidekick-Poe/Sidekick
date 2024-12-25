@@ -76,7 +76,6 @@ public partial class MainWindow
         }
 
         Resources.Remove("services");
-        OverlayContainer?.Dispose();
         viewLocator.Windows.Remove(this);
         Scope.Dispose();
 
@@ -96,6 +95,11 @@ public partial class MainWindow
                 WebView = null;
             }
         });
+
+        UnregisterName("Grid");
+        UnregisterName("OverlayContainer");
+        UnregisterName("TopBorder");
+        UnregisterName("WebView");
 
         isClosing = true;
     }

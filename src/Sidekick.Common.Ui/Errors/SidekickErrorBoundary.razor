@@ -57,9 +57,6 @@
     [Parameter]
     public bool Root { get; set; }
 
-    [Parameter]
-    public EventCallback<SidekickErrorBoundary> OnUpdate { get; set; }
-
     private LoggingErrorBoundary? Boundary { get; set; }
 
     public Exception? Exception => Boundary?.CurrentException;
@@ -75,8 +72,6 @@
         }
 
         await base.OnAfterRenderAsync(firstRender);
-
-        await OnUpdate.InvokeAsync(this);
     }
 
     public string Message
