@@ -1774,6 +1774,10 @@ video {
   min-height: 1em;
 }
 
+.min-h-full {
+  min-height: 100%;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -1873,6 +1877,10 @@ video {
 
 .min-w-\[1em\] {
   min-width: 1em;
+}
+
+.min-w-full {
+  min-width: 100%;
 }
 
 .max-w-\[15rem\] {

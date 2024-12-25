@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
+using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Common.Ui.Errors
 {
@@ -15,6 +16,9 @@ namespace Sidekick.Common.Ui.Errors
 
         [Inject]
         private IJSRuntime JsRuntime { get; set; } = null!;
+
+        [Inject]
+        private ICurrentView CurrentView { get; set; } = null!;
 
         public new Exception? CurrentException { get; private set; }
 
@@ -33,6 +37,8 @@ namespace Sidekick.Common.Ui.Errors
             Logger.LogError(CurrentException, "[ErrorBoundary] An error occured.");
 
             await base.OnErrorAsync(exception);
+
+            CurrentView.SetSize(minHeight: 360);
         }
     }
 }
