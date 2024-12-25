@@ -4,7 +4,7 @@ using Sidekick.Apis.Poe;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
-using Sidekick.Apis.Velopack;
+using Sidekick.Common.Updater;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Database;
@@ -38,6 +38,7 @@ builder.Services
     .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
     .AddSidekickCommonUi()
     .AddSingleton<IInterprocessService, InterprocessService>()
+
     // .AddSidekickCommonPlatform(o =>
     // {
     //     o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
@@ -50,7 +51,7 @@ builder.Services
     .AddSidekickPoeNinjaApi()
     .AddSidekickPoePriceInfoApi()
     .AddSidekickPoeWikiApi()
-    .AddSidekickVelopack()
+    .AddSidekickUpdater()
 
     // Modules
     .AddSidekickChat()

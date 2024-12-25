@@ -70,7 +70,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Database", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Ui", "src\Sidekick.Common.Ui\Sidekick.Common.Ui.csproj", "{F5B003D8-BE39-419A-A02A-4328A4FBDD10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Apis.Velopack", "src\Sidekick.Apis.Velopack\Sidekick.Apis.Velopack.csproj", "{2F2F03B3-213A-40D7-B818-8E618DDF01AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Updater", "src\Sidekick.Common.Updater\Sidekick.Common.Updater.csproj", "{2F2F03B3-213A-40D7-B818-8E618DDF01AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -189,7 +189,7 @@ Global
 		{70B9893F-72F8-4B5F-A9CF-732E538D6C9E} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 		{8C9915FA-EC66-47AA-B449-4833813B0D16} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
 		{F5B003D8-BE39-419A-A02A-4328A4FBDD10} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
-		{2F2F03B3-213A-40D7-B818-8E618DDF01AF} = {7285BD58-2544-44AA-8488-52EA8E55D239}
+		{2F2F03B3-213A-40D7-B818-8E618DDF01AF} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17B5631D-95B3-4007-BE6B-C9BBE799D014}

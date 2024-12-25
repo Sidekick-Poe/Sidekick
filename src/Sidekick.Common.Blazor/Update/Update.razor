@@ -1,6 +1,6 @@
 @page "/update"
 @page "/"
-@using Sidekick.Apis.Velopack
+@using Sidekick.Common.Updater
 @using Sidekick.Common.Browser
 @using Sidekick.Common.Platform
 @inherits Sidekick.Common.Ui.Views.SidekickView
@@ -73,7 +73,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await CurrentView.Initialize(this);
         await base.OnInitializedAsync();
 
         try

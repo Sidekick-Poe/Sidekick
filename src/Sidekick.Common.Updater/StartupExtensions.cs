@@ -1,10 +1,10 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Sidekick.Apis.Velopack;
+namespace Sidekick.Common.Updater;
 
 public static class StartupExtensions
 {
-    public static IServiceCollection AddSidekickVelopack(this IServiceCollection services)
+    public static IServiceCollection AddSidekickUpdater(this IServiceCollection services)
     {
         services.AddTransient<IAutoUpdater, AutoUpdater>();
 

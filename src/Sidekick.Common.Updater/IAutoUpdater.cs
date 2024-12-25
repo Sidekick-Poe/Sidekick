@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.Velopack;
+namespace Sidekick.Common.Updater;
 
 /// <summary>
 /// Provides functionality to check for, download, and apply updates.
