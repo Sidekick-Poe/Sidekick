@@ -58,7 +58,7 @@ namespace Sidekick.Modules.Chat.Keybinds
                     return;
                 }
 
-                command = command.Replace(TokenLast, "@" + characterName);
+                command = command.Replace(TokenLast, command.StartsWith("@") ? "@" + characterName : characterName);
             }
 
             await clipboard.SetText(command);
