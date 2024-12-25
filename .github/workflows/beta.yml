@@ -89,8 +89,8 @@ jobs:
           Write-Output "Version: $version"
 
           dotnet tool install -g vpk
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick
-          vpk pack -u Sidekick -v $version -p Publish
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-beta
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-beta
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-beta --pre --merge --releaseName "Sidekick v$version" --tag v$version
 
       - name: ClickOnce - Git Key

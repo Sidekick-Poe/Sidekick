@@ -86,9 +86,9 @@ jobs:
           Write-Output "Version: $version"
 
           dotnet tool install -g vpk
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick
-          vpk pack -u Sidekick -v $version -p Publish
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel win-beta --pre --merge --releaseName "Sidekick v$version" --tag v$version
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows --merge --releaseName "Sidekick v$version" --tag v$version
 
       - name: ClickOnce - Git Key
         uses: webfactory/ssh-agent@v0.7.0
