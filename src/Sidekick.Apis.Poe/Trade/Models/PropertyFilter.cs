@@ -40,6 +40,20 @@ public class PropertyFilter : ITradeFilter
 
     public double NormalizeValue { get; set; }
 
+    public string ValueString
+    {
+        get
+        {
+            return Value switch
+            {
+                bool b => b ? "true" : "false",
+                int i => i.ToString(),
+                double d => d.ToString("0.##"),
+                _ => Value?.ToString() ?? string.Empty
+            };
+        }
+    }
+
     public FilterValueType ValueType
     {
         get

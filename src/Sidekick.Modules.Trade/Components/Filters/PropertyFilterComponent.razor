@@ -10,7 +10,7 @@
                 <FormTriStateCheckbox @bind-Value="Filter.Checked"
                                       NoMargin="true">
                     <ItemPropertyText Label="@Filter.Text"
-                                      Value="@Filter.Value.ToString()"
+                                      Value="@Filter.ValueString"
                                       OnlyShowLabel="true"/>
                 </FormTriStateCheckbox>
             }
@@ -55,7 +55,7 @@
                     else
                     {
                         <ItemPropertyText Label="@Filter.Text"
-                                          Value="@Filter.Value.ToString()"/>
+                                          Value="@Filter.ValueString"/>
                     }
                 </FormCheckbox>
             }
