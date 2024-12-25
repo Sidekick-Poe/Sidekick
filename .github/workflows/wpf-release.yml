@@ -52,7 +52,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          name: 'Release v${{ steps.version.outputs.version }}'
+          name: 'Sidekick v${{ steps.version.outputs.version }}'
           tag: 'v${{ steps.version.outputs.version }}'
           version: 'v${{ steps.version.outputs.version }}'
           publish: false

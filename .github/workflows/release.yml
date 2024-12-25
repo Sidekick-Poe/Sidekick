@@ -1,10 +1,10 @@
-name: Release
+name: Beta
 
 on:
   workflow_dispatch:
 
 jobs:
-  wpf-release:
+  beta:
     runs-on: windows-latest
 
     steps:
@@ -17,7 +17,7 @@ jobs:
         id: version
         run: |
           # Get the current date
-          $DATE = Get-Date -Format "yyyy.M.d"
+          $DATE = Get-Date -Format "yyyy.Md"
 
           # Get the current time in hours and minutes (24-hour format)
           $TIME = Get-Date -Format "Hmm"
@@ -35,6 +35,17 @@ jobs:
           file: "src/**/*.csproj"
           version: ${{ steps.version.outputs.version }}
 
+      - name: Release Notes
+        uses: release-drafter/release-drafter@v6
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          name: 'Sidekick v${{ steps.version.outputs.version }}'
+          tag: 'v${{ steps.version.outputs.version }}'
+          version: 'v${{ steps.version.outputs.version }}'
+          publish: false
+          prerelease: false
+
       - name: Environment - Build Number
         uses: myci-actions/export-env-var@1
         with:
@@ -47,64 +58,63 @@ jobs:
           name: GITHUB_TOKEN
           value: ${{ github.token }}
 
-      - name: Release - Notes
-        uses: release-drafter/release-drafter@v6
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          name: 'Release v${{ steps.version.outputs.version }}'
-          tag: 'v${{ steps.version.outputs.version }}'
-          version: 'v${{ steps.version.outputs.version }}'
-          publish: false
-          prerelease: false
-
       - name: .NET - Setup
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 8.x
 
-      - name: .NET - Restore
-        run: dotnet restore
-
-      - name: .NET - Build
-        run: dotnet build --no-restore
-
       - name: .NET - Tests
-        run: dotnet test --no-build --verbosity normal
+        shell: pwsh
+        run: |
+          dotnet restore
+          dotnet build --no-restore
+          dotnet test --no-build --verbosity normal
 
-      - name: Build - Sidekick.Protocol
-        run: dotnet publish src/Sidekick.Protocol/Sidekick.Protocol.csproj -p:PublishProfile=Build
-
-      - name: ClickOnce - Build
+      - name: .NET - Publish
         shell: pwsh
         run: |
           $version = "${{ steps.version.outputs.version }}"
           Write-Output "Version: $version"
 
+          dotnet publish src/Sidekick.Protocol/Sidekick.Protocol.csproj -p:PublishProfile=Build
+          dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release --self-contained false -r win-x64 -o ./Publish
+
+      - name: Velopack
+        shell: pwsh
+        run: |
+          $version = "${{ steps.version.outputs.version }}"
+          Write-Output "Version: $version"
+
+          dotnet tool install -g vpk
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick
+          vpk pack -u Sidekick -v $version -p Publish
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel win-beta --pre --merge --releaseName "Sidekick v$version" --tag v$version
+
+      - name: ClickOnce - Git Key
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_BETA_KEY }}
+
+      - name: ClickOnce
+        shell: pwsh
+        run: |
+          $version = "${{ steps.version.outputs.version }}"
+          Write-Output "Version: $version"
+
+          git config --global url."https://user:${{ secrets.GITHUB_TOKEN }}@github".insteadOf https://github
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+          
           # Find MSBuild.
           $msBuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
               -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe `
               -prerelease | select-object -first 1
 
           Push-Location "src/Sidekick.Wpf"
-          & $msBuildPath Sidekick.Wpf.csproj /target:Publish /property:PublishProfile=ClickOnceRelease /property:ApplicationVersion=$version
+          & $msBuildPath Sidekick.Wpf.csproj /target:Publish /property:PublishProfile=ClickOnceBeta /property:ApplicationVersion=$version
           Pop-Location
-
-      - name: ClickOnce - Git Setup
-        run: |
-          git config --global url."https://user:${{ secrets.GITHUB_TOKEN }}@github".insteadOf https://github
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
-
-      - name: ClickOnce - Git Setup SSH
-        uses: webfactory/ssh-agent@v0.7.0
-        with:
-          ssh-private-key: ${{ secrets.DEPLOY_RELEASE_KEY }}
-
-      - name: ClickOnce - Git Push
-        shell: pwsh
-        run: |
-          $deployRepository = "git@github.com:Sidekick-Poe/Sidekick-Release.git"
+          
+          $deployRepository = "git@github.com:Sidekick-Poe/Sidekick-Beta.git"
           Write-Output "Deploy repository: $deployRepository"
 
           # Clone `gh-pages` branch.
@@ -126,75 +136,7 @@ jobs:
               # Stage and commit.
               git add -A
               git commit -m "Update to v$version"
-              git push
+              # git push
           } finally {
               Pop-Location
           }
-
-      - name: Zip - Build
-        shell: pwsh
-        run: |
-          $version = "${{ steps.version.outputs.version }}"
-          Write-Output "Version: $version"
-      
-          # Define the publish path
-          $publishPath = "bin/zip-publish"
-      
-          # Remove existing files if the folder exists
-          if (Test-Path -Path $publishPath) {
-            Write-Output "Removing existing files from $publishPath..."
-            Remove-Item -Path $publishPath -Recurse -Force
-          }
-      
-          # Create the folder if it doesn't exist
-          if (!(Test-Path -Path $publishPath)) {
-            New-Item -ItemType Directory -Force -Path $publishPath | Out-Null
-            Write-Output "$publishPath created"
-          }
-      
-          # Find MSBuild.
-          $msBuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
-          -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe `
-          -prerelease | Select-Object -First 1
-      
-          Push-Location "src/Sidekick.Wpf"
-      
-          # Run the build command with a self-contained mode
-          & $msBuildPath Sidekick.Wpf.csproj `
-          /target:Publish `
-          /property:PublishDir=$publishPath\ `
-          /property:SelfContained=true `
-          /property:ApplicationVersion=$version
-      
-          Pop-Location
-
-      - name: Zip - Archive
-        shell: pwsh
-        run: |
-          $publishPath = "src/Sidekick.Wpf/bin/zip-publish"
-          $zipFilePath = "dist/Sidekick_v${{ steps.version.outputs.version }}.zip"
-          if (Test-Path -Path $zipFilePath) {
-              Remove-Item -Path $zipFilePath -Force
-          }
-          Compress-Archive -Path $publishPath\* -DestinationPath $zipFilePath
-          Write-Host "Files zipped successfully to $zipFilePath"
-
-      - name: Release - Asset
-        uses: xresloader/upload-to-github-release@v1.3.4
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          file: 'download-instructions.txt'
-          tag_name: 'v${{ steps.version.outputs.version }}'
-          draft: true
-          verbose: true
-          overwrite: true
-
-      - name: Release - Zip
-        uses: xresloader/upload-to-github-release@v1.3.4
-        with:
-          file: 'dist/Sidekick_v${{ steps.version.outputs.version }}.zip'
-          tag_name: 'v${{ steps.version.outputs.version }}'
-          draft: true
-          verbose: true
-          overwrite: true
