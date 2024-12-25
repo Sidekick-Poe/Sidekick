@@ -88,7 +88,7 @@ jobs:
           dotnet tool install -g vpk
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows
           vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows --merge --releaseName "Sidekick v$version" --tag v$version
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows --merge --releaseName "Sidekick v$version" --tag v$version${{ github.token }}
 
       - name: ClickOnce - Git Key
         uses: webfactory/ssh-agent@v0.7.0
