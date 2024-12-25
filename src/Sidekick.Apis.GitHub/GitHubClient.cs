@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub.Api;
 using Sidekick.Apis.GitHub.Models;
 using Sidekick.Common;
-using Sidekick.Common.Cache;
 
 namespace Sidekick.Apis.GitHub;
 
@@ -27,7 +26,8 @@ public class GitHubClient
 
     public Task Initialize()
     {
-        return DownloadGitHubDownloadIndicatorFile();
+        return Task.CompletedTask;
+        // return DownloadGitHubDownloadIndicatorFile();
     }
 
     /// <inheritdoc />

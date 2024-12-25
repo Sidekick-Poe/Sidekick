@@ -80,7 +80,7 @@ jobs:
           Write-Output "Version: $version"
 
           dotnet publish src/Sidekick.Protocol/Sidekick.Protocol.csproj -p:PublishProfile=Build
-          dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release --self-contained false -r win-x64 -o ./Publish
+          dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release --self-contained true -r win-x64 -o ./Publish
 
       - name: Velopack
         shell: pwsh
@@ -89,9 +89,9 @@ jobs:
           Write-Output "Version: $version"
 
           dotnet tool install -g vpk
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-beta
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-beta
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-beta --pre --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Windows-Beta
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel Windows-Beta
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Windows-Beta --pre --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
       - name: ClickOnce - Git Key
         uses: webfactory/ssh-agent@v0.7.0
@@ -114,32 +114,27 @@ jobs:
               -prerelease | select-object -first 1
 
           Push-Location "src/Sidekick.Wpf"
-          & $msBuildPath Sidekick.Wpf.csproj /target:Publish /property:PublishProfile=ClickOnceBeta /property:ApplicationVersion=$version
+          & $msBuildPath src/Sidekick.Wpf/Sidekick.Wpf.csproj /target:Publish /property:PublishProfile=ClickOnceBeta /property:ApplicationVersion=$version
           Pop-Location
           
           $deployRepository = "git@github.com:Sidekick-Poe/Sidekick-Beta.git"
           Write-Output "Deploy repository: $deployRepository"
 
           # Clone `gh-pages` branch.
-          git clone $deployRepository -b gh-pages --single-branch "dist"
+          git clone $deployRepository -b gh-pages --single-branch "ClickOnce"
 
-          Push-Location "dist"
-          try {
-              Write-Output "Removing previous files..."
-              if (Test-Path "Application Files") {
-                  Remove-Item -Path "Application Files" -Recurse
-              }
-              if (Test-Path "Sidekick.application") {
-                  Remove-Item -Path "Sidekick.application"
-              }
-
-              Write-Output "Copying new files..."
-              Copy-Item -Path "../src/Sidekick.Wpf/bin/publish/Application Files","../src/Sidekick.Wpf/bin/publish/Sidekick.application" -Destination . -Recurse
-
-              # Stage and commit.
-              git add -A
-              git commit -m "Update to v$version"
-              # git push
-          } finally {
-              Pop-Location
+          Write-Output "Removing previous files..."
+          if (Test-Path "Application Files") {
+              Remove-Item -Path "ClickOnce/Application Files" -Recurse
           }
+          if (Test-Path "Sidekick.application") {
+              Remove-Item -Path "ClickOnce/Sidekick.application"
+          }
+
+          Write-Output "Copying new files..."
+          Copy-Item -Path "./src/Sidekick.Wpf/bin/publish/Application Files","./src/Sidekick.Wpf/bin/publish/Sidekick.application" -Destination ./ClickOnce -Recurse
+
+          # Stage and commit.
+          git add -A
+          git commit -m "Update to v$version"
+          # git push
