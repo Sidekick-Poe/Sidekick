@@ -11,7 +11,7 @@ public class CacheProvider(ILogger<CacheProvider> logger) : ICacheProvider
     private const string CachePath = "SidekickCache";
 
     /// <inheritdoc />
-    public async Task<TModel?> Get<TModel>(string key)
+    public async Task<TModel?> Get<TModel>(string key, Func<TModel, bool> cacheValidator)
         where TModel : class
     {
         EnsureDirectory();
@@ -26,7 +26,13 @@ public class CacheProvider(ILogger<CacheProvider> logger) : ICacheProvider
         await using var stream = File.OpenRead(fileName);
         try
         {
-            return await JsonSerializer.DeserializeAsync<TModel>(stream);
+            var value = await JsonSerializer.DeserializeAsync<TModel>(stream);
+            if (value == null) return null;
+
+            var valid = cacheValidator.Invoke(value);
+            if (!valid) return null;
+
+            return value;
         }
         catch (Exception)
         {
@@ -35,9 +41,7 @@ public class CacheProvider(ILogger<CacheProvider> logger) : ICacheProvider
     }
 
     /// <inheritdoc />
-    public async Task Set<TModel>(
-        string key,
-        TModel data)
+    public async Task Set<TModel>(string key, TModel data)
         where TModel : class
     {
         try
@@ -81,14 +85,12 @@ public class CacheProvider(ILogger<CacheProvider> logger) : ICacheProvider
     }
 
     /// <inheritdoc />
-    public async Task<TModel> GetOrSet<TModel>(
-        string key,
-        Func<Task<TModel>> func)
+    public async Task<TModel> GetOrSet<TModel>(string key, Func<Task<TModel>> func, Func<TModel, bool> cacheValidator)
         where TModel : class
     {
         EnsureDirectory();
 
-        var result = await Get<TModel>(key);
+        var result = await Get(key, cacheValidator);
 
         if (result != null)
         {

@@ -1,11 +1,10 @@
 using System.Text.RegularExpressions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
-using Sidekick.Common.Initialization;
 
-namespace Sidekick.Apis.Poe.Parser;
+namespace Sidekick.Apis.Poe.Parser.Sockets;
 
-public class SocketParser(IGameLanguageProvider gameLanguageProvider) : IInitializableService
+public class SocketParser(IGameLanguageProvider gameLanguageProvider) : ISocketParser
 {
     public int Priority => 100;
 

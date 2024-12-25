@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Filters;
+using Sidekick.Apis.Poe.Metadata;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests;
@@ -27,7 +28,8 @@ public class TradeSearchService
     ISettingsService settingsService,
     IPoeTradeClient poeTradeClient,
     IModifierProvider modifierProvider,
-    IFilterProvider filterProvider
+    IFilterProvider filterProvider,
+    IInvariantMetadataProvider invariantMetadataProvider
 ) : ITradeSearchService
 {
     private readonly ILogger logger = logger;
@@ -51,7 +53,7 @@ public class TradeSearchService
                         Discriminator = metadata.ApiTypeDiscriminator,
                     };
                 }
-                else if (!string.IsNullOrEmpty(item.Header.ItemCategory))
+                else
                 {
                     query.Type = metadata.ApiType;
                 }
@@ -118,6 +120,16 @@ public class TradeSearchService
                 query.Filters.MiscFilters = GetMiscFilters(item, propertyFilters.Misc);
             }
 
+            // The item level filter for Path of Exile 2 is inside the type filters instead of the misc filters.
+            if (item.Metadata.Game == GameType.PathOfExile2)
+            {
+                query.Filters.TypeFilters.Filters.ItemLevel = query.Filters.MiscFilters?.Filters.ItemLevel;
+                if (query.Filters.MiscFilters != null)
+                {
+                    query.Filters.MiscFilters.Filters.ItemLevel = null;
+                }
+            }
+
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             var uri = new Uri($"{await GetBaseApiUrl(metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
 
@@ -131,29 +143,22 @@ public class TradeSearchService
             var response = await poeTradeClient.HttpClient.PostAsync(uri, body);
 
             var content = await response.Content.ReadAsStreamAsync();
-            if (!response.IsSuccessStatusCode)
-            {
-                var responseMessage = await response.Content.ReadAsStringAsync();
-                logger.LogWarning("[Trade API] Querying failed: {responseCode} {responseMessage}", response.StatusCode, responseMessage);
-                logger.LogWarning("[Trade API] Uri: {uri}", uri);
-                logger.LogWarning("[Trade API] Query: {query}", json);
-
-                var errorResult = await JsonSerializer.DeserializeAsync<ErrorResult>(content, poeTradeClient.Options);
-                throw new ApiErrorException("[Trade API] Querying failed. " + errorResult?.Error?.Message);
-            }
-
             var result = await JsonSerializer.DeserializeAsync<TradeSearchResult<string>?>(content, poeTradeClient.Options);
             if (result != null)
             {
                 return result;
             }
         }
+        catch (SidekickException)
+        {
+            throw;
+        }
         catch (Exception ex)
         {
             logger.LogWarning(ex, "[Trade API] Exception thrown while querying trade api.");
         }
 
-        throw new ApiErrorException("[Trade API] Could not understand the API response.");
+        throw new ApiErrorException();
     }
 
     private SearchFilterOption? GetCategoryFilter(string? itemCategory)
@@ -417,6 +422,13 @@ public class TradeSearchService
 
         foreach (var propertyFilter in propertyFilters)
         {
+            if (propertyFilter.Type == PropertyFilterType.Misc_Corrupted)
+            {
+                filters.Filters.Corrupted = propertyFilter.Checked.HasValue ? new SearchFilterOption(propertyFilter) : null;
+                hasValue = filters.Filters.Corrupted != null;
+                break;
+            }
+
             if (propertyFilter.Checked != true)
             {
                 continue;
@@ -462,17 +474,20 @@ public class TradeSearchService
                     break;
 
                 case PropertyFilterType.Misc_GemLevel:
-                    filters.Filters.GemLevel = new SearchFilterValue(propertyFilter);
+                    if (invariantMetadataProvider.UncutGemIds.Contains(item.Metadata.Id))
+                    {
+                        filters.Filters.ItemLevel = new SearchFilterValue(propertyFilter);
+                    }
+                    else
+                    {
+                        filters.Filters.GemLevel = new SearchFilterValue(propertyFilter);
+                    }
+
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Misc_ItemLevel:
                     filters.Filters.ItemLevel = new SearchFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Misc_Corrupted:
-                    filters.Filters.Corrupted = propertyFilter.Checked.HasValue ? new SearchFilterOption(propertyFilter) : null;
                     hasValue = true;
                     break;
 

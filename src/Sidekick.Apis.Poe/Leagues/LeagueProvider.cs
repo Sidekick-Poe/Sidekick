@@ -20,7 +20,7 @@ public class LeagueProvider(
     {
         if (fromCache)
         {
-            return await cacheProvider.GetOrSet("Leagues", FetchAll);
+            return await cacheProvider.GetOrSet("Leagues", FetchAll, (cache) => cache.Any());
         }
 
         try
@@ -32,7 +32,7 @@ public class LeagueProvider(
         catch (Exception e)
         {
             logger.LogError(e, "[LeagueProvider] Error fetching leagues.");
-            throw new ApiErrorException("Failed to load league data.");
+            throw new ApiErrorException { AdditionalInformation = ["If the official trade website is down, Sidekick will not work.", "Please try again later or open a ticket on GitHub."], };
         }
     }
 
@@ -40,16 +40,12 @@ public class LeagueProvider(
     {
         await gameLanguageProvider.Initialize();
 
-        List<Task<List<League>>> tasks =
-        [
-            Fetch(GameType.PathOfExile2),
-            Fetch(GameType.PathOfExile),
-        ];
+        List<League> leagues = [];
 
-        var allLeagues = await Task.WhenAll(tasks);
-        return allLeagues
-               .SelectMany(leagues => leagues)
-               .ToList();
+        leagues.AddRange(await Fetch(GameType.PathOfExile2));
+        leagues.AddRange(await Fetch(GameType.PathOfExile));
+
+        return leagues;
     }
 
     private async Task<List<League>> Fetch(GameType game)

@@ -1,10 +1,13 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Exceptions;
+using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
@@ -16,7 +19,7 @@ namespace Sidekick.Common.Blazor.Initialization
     public partial class Initialization : SidekickView
     {
         [Inject]
-        private InitializationResources Resources { get; set; } = null!;
+        private IStringLocalizer<InitializationResources> Resources { get; set; } = null!;
 
         [Inject]
         private ILogger<Initialization> Logger { get; set; } = null!;
@@ -50,8 +53,6 @@ namespace Sidekick.Common.Blazor.Initialization
 
         private int Percentage { get; set; }
 
-        private bool Error { get; set; }
-
         private string? WelcomeMessage { get; set; }
 
         public Task? InitializationTask { get; set; }
@@ -65,7 +66,7 @@ namespace Sidekick.Common.Blazor.Initialization
             InitializationTask = Handle();
             var keyOpenPriceCheck = await SettingsService.GetString(SettingKeys.KeyOpenPriceCheck);
             var keyClose = await SettingsService.GetString(SettingKeys.KeyClose);
-            WelcomeMessage = string.Format(Resources.Notification, keyOpenPriceCheck.ToKeybindString(), keyClose.ToKeybindString());
+            WelcomeMessage = string.Format(Resources["Notification"], keyOpenPriceCheck.ToKeybindString(), keyClose.ToKeybindString());
             await base.OnInitializedAsync();
             await InitializationTask;
         }
@@ -122,10 +123,11 @@ namespace Sidekick.Common.Blazor.Initialization
                     await CurrentView.Close();
                 }
             }
-            catch (Exception ex)
+            catch (SidekickException e)
             {
-                Logger.LogError(ex.Message, "[Initialization] An initialization step failed.");
-                Error = true;
+                await SettingsService.Set(SettingKeys.LanguageParser, null);
+                e.Actions = ExceptionActions.ExitApplication;
+                throw;
             }
         }
 
@@ -148,12 +150,12 @@ namespace Sidekick.Common.Blazor.Initialization
                 Percentage = Count == 0 ? 0 : Completed * 100 / Count;
                 if (Percentage >= 100)
                 {
-                    Step = Resources.Ready;
+                    Step = Resources["Ready"];
                     Percentage = 100;
                 }
                 else
                 {
-                    Step = Resources.Title(Completed, Count);
+                    Step = Resources["Title", Completed, Count];
                 }
 
                 StateHasChanged();
@@ -174,7 +176,7 @@ namespace Sidekick.Common.Blazor.Initialization
             menuItems.AddRange(new List<TrayMenuItem>()
             {
                 new(label: "Sidekick - " + GetVersion()),
-                new(label: "Open Website",
+                new(label: Resources["Open_Website"],
                     onClick: () =>
                     {
                         BrowserProvider.OpenSidekickWebsite();
@@ -183,8 +185,8 @@ namespace Sidekick.Common.Blazor.Initialization
 
                 // new(label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
 
-                new(label: "Settings", onClick: () => ViewLocator.Open("/settings")),
-                new(label: "Exit",
+                new(label: Resources["Settings"], onClick: () => ViewLocator.Open("/settings")),
+                new(label: Resources["Exit"],
                     onClick: () =>
                     {
                         ApplicationService.Shutdown();

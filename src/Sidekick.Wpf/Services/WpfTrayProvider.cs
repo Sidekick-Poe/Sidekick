@@ -20,7 +20,7 @@ public class WpfTrayProvider(IViewLocator viewLocator) : ITrayProvider, IDisposa
         }
 
         Icon = new TaskbarIcon();
-        Icon.Icon = new System.Drawing.Icon(@"wwwroot/favicon.ico");
+        Icon.Icon = new System.Drawing.Icon(System.IO.Path.Combine(AppContext.BaseDirectory, "wwwroot/favicon.ico"));
         Icon.ToolTipText = "Sidekick";
         Icon.ContextMenu = new ContextMenu();
         Icon.DoubleClickCommand = new SimpleCommand(() => viewLocator.Open("/settings"));
@@ -33,9 +33,7 @@ public class WpfTrayProvider(IViewLocator viewLocator) : ITrayProvider, IDisposa
                 IsEnabled = true,
             };
 
-            developmentMenuItem.Click += async (
-                _,
-                _) =>
+            developmentMenuItem.Click += async (_, _) =>
             {
                 await viewLocator.Open("/development");
             };
@@ -51,9 +49,7 @@ public class WpfTrayProvider(IViewLocator viewLocator) : ITrayProvider, IDisposa
                 IsEnabled = !item.Disabled,
             };
 
-            menuItem.Click += async (
-                _,
-                _) =>
+            menuItem.Click += async (_, _) =>
             {
                 if (item.OnClick != null)
                 {

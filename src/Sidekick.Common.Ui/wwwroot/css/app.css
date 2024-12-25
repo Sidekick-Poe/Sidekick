@@ -4322,6 +4322,11 @@ video {
   border-color: rgb(87 83 78 / var(--tw-border-opacity));
 }
 
+.dark\:border-stone-800:where(.dark, .dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(41 37 36 / var(--tw-border-opacity));
+}
+
 .dark\:border-zinc-600:where(.dark, .dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(82 82 91 / var(--tw-border-opacity));

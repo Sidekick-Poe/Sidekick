@@ -21,9 +21,24 @@ public interface ICurrentView
     string Title { get; }
 
     /// <summary>
+    /// Gets the width of the view.
+    /// </summary>
+    int? Width { get; }
+
+    /// <summary>
     /// Gets the height of the view.
     /// </summary>
     int? Height { get; }
+
+    /// <summary>
+    /// Gets the minimum width of the view.
+    /// </summary>
+    int? MinWidth { get; }
+
+    /// <summary>
+    /// Gets the minimum height of the view.
+    /// </summary>
+    int? MinHeight { get; }
 
     /// <summary>
     /// Gets the current Url of the view.
@@ -52,10 +67,13 @@ public interface ICurrentView
     void SetTitle(string? title);
 
     /// <summary>
-    /// Sets the current view height.
+    /// Sets the dimensions and minimum size constraints for the current view.
     /// </summary>
-    /// <param name="height">The height to set for the current view.</param>
-    void SetHeight(int height);
+    /// <param name="width">The desired width of the view. Null if not specified.</param>
+    /// <param name="height">The desired height of the view. Null if not specified.</param>
+    /// <param name="minWidth">The minimum allowable width of the view. Null if not specified.</param>
+    /// <param name="minHeight">The minimum allowable height of the view. Null if not specified.</param>
+    void SetSize(int? width = null, int? height = null, int? minWidth = null, int? minHeight = null);
 
     /// <summary>
     /// Initializes a view that was previously opened.

@@ -9,7 +9,7 @@
         {
             @ErrorContent(this)
         }
-        else if (ShowError)
+        else
         {
             <AlertError>
                 <TextBase>@Message</TextBase>
@@ -57,6 +57,9 @@
     [Parameter]
     public bool Root { get; set; }
 
+    [Parameter]
+    public EventCallback<SidekickErrorBoundary> OnUpdate { get; set; }
+
     private LoggingErrorBoundary? Boundary { get; set; }
 
     public Exception? Exception => Boundary?.CurrentException;
@@ -72,9 +75,9 @@
         }
 
         await base.OnAfterRenderAsync(firstRender);
-    }
 
-    private bool ShowError => Exception?.GetType() != typeof(SilentException);
+        await OnUpdate.InvokeAsync(this);
+    }
 
     public string Message
     {

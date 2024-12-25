@@ -203,7 +203,7 @@ namespace Sidekick.Apis.PoeNinja
 
         private async Task<IList<NinjaPrice>> GetItems(ItemType itemType)
         {
-            var cachedItems = await cacheProvider.Get<List<NinjaPrice>>(GetCacheKey(itemType));
+            var cachedItems = await cacheProvider.Get<List<NinjaPrice>>(GetCacheKey(itemType), (cache) => cache.Any());
             if (cachedItems is
                 {
                     Count: > 0

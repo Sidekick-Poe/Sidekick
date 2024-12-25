@@ -8,11 +8,11 @@ public interface IInitializableService
     /// <summary>
     ///     Gets the priority of execution for this service during the initialization process.
     /// </summary>
-    int Priority { get; }
+    public int Priority { get; }
 
     /// <summary>
     ///     Initializes the service during startup.
     /// </summary>
     /// <returns>A task.</returns>
-    Task Initialize();
+    public Task Initialize();
 }

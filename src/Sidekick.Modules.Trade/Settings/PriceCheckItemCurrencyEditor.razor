@@ -1,5 +1,4 @@
 @using Sidekick.Apis.Poe.Filters
-@using Sidekick.Apis.Poe.Localization
 @using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Game
@@ -12,7 +11,6 @@
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
-@inject IStringLocalizer<TradeCurrencyResources> OptionsLocalizer
 @inject IFilterProvider FilterProvider
 
 @code {
@@ -30,7 +28,7 @@
         Currency = game == GameType.PathOfExile ? await SettingsService.GetString(SettingKeys.PriceCheckItemCurrency) : await SettingsService.GetString(SettingKeys.PriceCheckItemCurrencyPoE2);
         Currency = FilterProvider.GetPriceOption(Currency);
 
-        Options = FilterProvider.PriceOptions.ConvertAll(x => new SelectOption()
+        Options = FilterProvider.TradePriceOptions.ConvertAll(x => new SelectOption()
         {
             Label = x.Text ?? string.Empty,
             Value = x.Id,

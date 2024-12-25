@@ -315,4 +315,20 @@
   <data name="Normalize_Values" xml:space="preserve">
     <value>Normaliser les valeurs. Laisser à 0% pour les valeurs exactes.</value>
   </data>
+  <data name="League_Hint" xml:space="preserve">
+    <value>Sidekick supporte à la fois Path of Exile 1 et Path of Exile 2, veuillez choisir la ligue correspondante lorsque vous jouez à l'un ou l'autre.</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>À propos</value>
+  </data>
+  <data name="Official_Website" xml:space="preserve">
+    <value>Site officiel</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="GitHub_Repository" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Open_Settings_Folder" xml:space="preserve">
+    <value>Ouvrir le répertoire des configurations</value>
+  </data>
 </root>

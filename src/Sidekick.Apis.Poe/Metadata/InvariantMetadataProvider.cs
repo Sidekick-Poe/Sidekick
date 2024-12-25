@@ -23,6 +23,8 @@ namespace Sidekick.Apis.Poe.Metadata
     {
         public Dictionary<string, ItemMetadata> IdDictionary { get; } = new();
 
+        public List<string> UncutGemIds { get; } = [];
+
         /// <inheritdoc/>
         public int Priority => 100;
 
@@ -35,7 +37,7 @@ namespace Sidekick.Apis.Poe.Metadata
             var game = leagueId.GetGameFromLeagueId();
             var cacheKey = $"{game.GetValueAttribute()}_InvariantMetadata";
 
-            var result = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "data/items"));
+            var result = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "data/items"), (cache) => cache.Result.Any());
 
             var categories = game switch
             {
@@ -46,6 +48,8 @@ namespace Sidekick.Apis.Poe.Metadata
             {
                 FillPattern(game, result.Result, category.Key, category.Value.Category);
             }
+
+            InitializeUncutGemIds();
         }
 
         private void FillPattern(GameType game, List<ApiCategory> categories, string id, Category category)
@@ -92,6 +96,19 @@ namespace Sidekick.Apis.Poe.Metadata
                 Category.Currency => Rarity.Currency,
                 _ => Rarity.Unknown
             };
+        }
+
+        private void InitializeUncutGemIds()
+        {
+            UncutGemIds.Clear();
+
+            foreach (var item in IdDictionary.Values)
+            {
+                if(item.Type == "Uncut Skill Gem" || item.Type == "Uncut Spirit Gem" || item.Type == "Uncut Support Gem")
+                {
+                    UncutGemIds.Add(item.Id);
+                }
+            }
         }
     }
 }

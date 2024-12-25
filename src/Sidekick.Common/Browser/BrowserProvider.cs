@@ -21,4 +21,9 @@ public class BrowserProvider(ILogger<BrowserProvider> logger) : IBrowserProvider
     {
         OpenUri(new Uri("https://sidekick-poe.github.io/"));
     }
+
+    public void OpenGitHubRepository()
+    {
+        OpenUri(new Uri("https://github.com/Sidekick-Poe/Sidekick"));
+    }
 }

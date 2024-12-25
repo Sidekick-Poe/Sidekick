@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Clients;
+using Sidekick.Apis.Poe.Fuzzy;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
@@ -16,7 +17,8 @@ public class ModifierProvider
     IPoeTradeClient poeTradeClient,
     IInvariantModifierProvider invariantModifierProvider,
     IGameLanguageProvider gameLanguageProvider,
-    ISettingsService settingsService
+    ISettingsService settingsService,
+    IFuzzyService fuzzyService
 ) : IModifierProvider
 {
     private readonly Regex parseHashPattern = new("\\#");
@@ -44,12 +46,8 @@ public class ModifierProvider
     private readonly Regex newLinePattern = new("(?:\\\\)*[\\r\\n]+");
     private readonly Regex hashPattern = new("\\\\#");
     private readonly Regex parenthesesPattern = new("((?:\\\\\\ )*\\\\\\([^\\(\\)]*\\\\\\))");
-    private readonly Regex cleanFuzzyPattern = new("[-+0-9%#]");
-    private readonly Regex trimPattern = new(@"\s+");
 
     public Dictionary<ModifierCategory, List<ModifierPattern>> Patterns { get; } = new();
-
-    public Dictionary<string, List<ModifierPattern>> FuzzyDictionary { get; private set; } = new();
 
     /// <inheritdoc/>
     public int Priority => 200;
@@ -60,7 +58,7 @@ public class ModifierProvider
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_Modifiers";
-        var apiCategories = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.Language, "data/stats"));
+        var apiCategories = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.Language, "data/stats"), (cache) => cache.Result.Any());
 
         foreach (var apiCategory in apiCategories.Result)
         {
@@ -72,8 +70,6 @@ public class ModifierProvider
                 Patterns[modifierCategory].AddRange(patterns);
             }
         }
-
-        FuzzyDictionary = ComputeFuzzyDictionary(Patterns.SelectMany(x => x.Value));
 
         // Prepare special pseudo patterns
         var pseudoPatterns = Patterns.GetValueOrDefault(ModifierCategory.Pseudo) ?? [];
@@ -243,30 +239,7 @@ public class ModifierProvider
             _ => "",
         };
 
-        return CleanFuzzyText(fuzzyValue);
-    }
-
-    private string CleanFuzzyText(string text)
-    {
-        text = cleanFuzzyPattern.Replace(text, string.Empty);
-        return trimPattern.Replace(text, " ").Trim();
-    }
-
-    private Dictionary<string, List<ModifierPattern>> ComputeFuzzyDictionary(IEnumerable<ModifierPattern> patterns)
-    {
-        var result = new Dictionary<string, List<ModifierPattern>>();
-
-        foreach (var pattern in patterns)
-        {
-            if (!result.ContainsKey(pattern.FuzzyText))
-            {
-                result.Add(pattern.FuzzyText, new());
-            }
-
-            result[pattern.FuzzyText].Add(pattern);
-        }
-
-        return result;
+        return fuzzyService.CleanFuzzyText(fuzzyValue);
     }
 
     private string ComputeOptionText(string text, string optionText)

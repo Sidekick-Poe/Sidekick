@@ -2,26 +2,32 @@ using System.Globalization;
 using System.Net;
 using System.Windows;
 using Microsoft.Extensions.Logging;
-using Sidekick.Common.Cache;
+using Sidekick.Apis.Poe.CloudFlare;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
+using Sidekick.Wpf.Helpers;
 
 namespace Sidekick.Wpf.Services
 {
-    public class WpfViewLocator
-    (
-        ICacheProvider cacheProvider,
-        IViewPreferenceService viewPreferenceService,
-        ISettingsService settingsService,
-        ILogger<WpfViewLocator> logger
-    ) : IViewLocator
+    public class WpfViewLocator : IViewLocator
     {
-        internal readonly ICacheProvider CacheProvider = cacheProvider;
-        internal readonly IViewPreferenceService ViewPreferenceService = viewPreferenceService;
+        private readonly ILogger<WpfViewLocator> logger;
+        private readonly ICloudflareService cloudflareService;
+        private readonly ISettingsService settingsService;
+        internal readonly IViewPreferenceService ViewPreferenceService;
 
         internal List<MainWindow> Windows { get; } = new();
 
         internal string? NextUrl { get; set; }
+
+        public WpfViewLocator(ILogger<WpfViewLocator> logger, ICloudflareService cloudflareService, ISettingsService settingsService, IViewPreferenceService viewPreferenceService)
+        {
+            this.logger = logger;
+            this.cloudflareService = cloudflareService;
+            this.settingsService = settingsService;
+            ViewPreferenceService = viewPreferenceService;
+            cloudflareService.ChallengeStarted += CloudflareServiceOnChallengeStarted;
+        }
 
         /// <inheritdoc/>
         public async Task Initialize(SidekickView view)
@@ -84,11 +90,35 @@ namespace Sidekick.Wpf.Services
 
             Application.Current.Dispatcher.Invoke(() =>
             {
+                var center = false;
+
+                if (view.Width != null)
+                {
+                    window.Width = view.Width.Value;
+                    window.MinWidth = view.Width.Value;
+                    center = true;
+                }
+
                 if (view.Height != null)
                 {
                     window.Height = view.Height.Value;
-                    window.CenterOnScreen();
+                    window.MinHeight = view.Height.Value;
+                    center = true;
                 }
+
+                if (view.MinWidth != null)
+                {
+                    window.MinWidth = view.MinWidth.Value;
+                    center = true;
+                }
+
+                if (view.MinHeight != null)
+                {
+                    window.MinHeight = view.MinHeight.Value;
+                    center = true;
+                }
+
+                if (center) CenterHelper.Center(window);
 
                 window.Title = $"Sidekick {view.Title}".Trim();
             });
@@ -126,7 +156,7 @@ namespace Sidekick.Wpf.Services
                     }
                 }
 
-                window.CenterOnScreen();
+                CenterHelper.Center(window);
             });
         }
 
@@ -147,7 +177,7 @@ namespace Sidekick.Wpf.Services
                 else
                 {
                     window.WindowState = WindowState.Normal;
-                    window.CenterOnScreen();
+                    CenterHelper.Center(window);
                 }
             });
             return Task.CompletedTask;
@@ -242,6 +272,20 @@ namespace Sidekick.Wpf.Services
                     ResizeMode = ResizeMode.NoResize,
                 };
                 Windows.Add(window);
+                window.Show();
+            });
+        }
+
+        private void CloudflareServiceOnChallengeStarted(Uri uri)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var window = new CloudflareWindow(logger, cloudflareService, uri)
+                {
+                    Topmost = true,
+                    ShowInTaskbar = false,
+                    ResizeMode = ResizeMode.NoResize,
+                };
                 window.Show();
             });
         }
