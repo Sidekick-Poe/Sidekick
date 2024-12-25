@@ -5,7 +5,7 @@ using Sidekick.Apis.GitHub;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Platform;
 
-namespace Sidekick.Common.Blazor.Update
+namespace Sidekick.Common.Updater.Components
 {
     public partial class UpdateOld
     {

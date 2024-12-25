@@ -1,5 +1,4 @@
 @using System.Diagnostics
-@using Sidekick.Common.Blazor.Update
 @using Sidekick.Common.Cache
 @inherits LayoutComponentBase
 
@@ -37,9 +36,6 @@
             @Body
         </div>
     </ChildContent>
-    <BottomContent>
-        <AppUpdate/>
-    </BottomContent>
 </LayoutTwoColumn>
 
 @inject IStringLocalizer<SettingsResources> Resources
