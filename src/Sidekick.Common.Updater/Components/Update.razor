@@ -15,17 +15,17 @@
         <AppContainer>
             @if (Error)
             {
-                <AlertError>@Resources["The update has failed to install automatically. You should try to download and install the update manually from https://sidekick-poe.github.io/"]</AlertError>
+                <AlertError>@Resources["Update_Cant_Download"]</AlertError>
             }
             else if (NewLauncher)
             {
-                <Heading3 Class="mb-2 text-center">@Resources["New launcher available!"]</Heading3>
+                <Heading3 Class="mb-2 text-center">@Resources["NewLauncher"]</Heading3>
                 <TextBase
-                    Class="text-center">@Resources["A new and improved launcher is available. Open the website to grab it. You can uninstall this version."]</TextBase>
+                    Class="text-center">@Resources["NewLauncherText"]</TextBase>
             }
             else
             {
-                <Heading3 Class="mb-2 text-center"> @Resources["Checking for updates..."] </Heading3>
+                <Heading3 Class="mb-2 text-center"> @Resources["Checking_For_Updates"] </Heading3>
                 <ProgressBar Indeterminate="true"/>
             }
         </AppContainer>
@@ -42,7 +42,7 @@
                     @Resources["Continue"]
                 </ButtonSecondary>
                 <ButtonPrimary OnClick="OpenWebsite">
-                    @Resources["Open Website"]
+                    @Resources["Open_Website"]
                 </ButtonPrimary>
             }
             else
@@ -100,7 +100,14 @@
 
     public void Continue()
     {
-        NavigationManager.NavigateTo("/setup");
+        if (NavigationManager.Uri.Contains("/update"))
+        {
+            CurrentView.Close();
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/setup");
+        }
     }
 
     public void OpenWebsite()

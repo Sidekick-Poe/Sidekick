@@ -22,8 +22,8 @@
 }
 
 @inject IGitHubClient GitHubClient
-@inject IBrowserProvider Browser
 @inject IStringLocalizer<AppResources> Resources
+@inject IViewLocator ViewLocator
 
 @code {
 
@@ -39,7 +39,7 @@
 
     private void OnClick()
     {
-        Browser.OpenSidekickWebsite();
+        ViewLocator.Open("/update");
     }
 
 }
