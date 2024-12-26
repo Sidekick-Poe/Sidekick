@@ -35,7 +35,13 @@ jobs:
           file: "src/**/*.csproj"
           version: ${{ steps.version.outputs.version }}
 
-      - name: Release Notes
+      - name: Release - Delete previous assets
+        uses: andreaswilli/delete-release-assets-action@<version>
+        with:
+          github_token: ${{ github.token }}
+          tag: 'v${{ steps.version.outputs.version }}'
+
+      - name: Release - Notes
         uses: release-drafter/release-drafter@v6
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -86,9 +92,9 @@ jobs:
           Write-Output "Version: $version"
 
           dotnet tool install -g vpk
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Windows-Stable
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel Windows-Stable
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel Windows-Stable --merge --releaseName "Sidekick v$version" --tag v$version${{ github.token }}
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-stable
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-stable
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-stable --merge --releaseName "Sidekick v$version" --tag v$version${{ github.token }}
 
       - name: ClickOnce - Git Key
         uses: webfactory/ssh-agent@v0.7.0
