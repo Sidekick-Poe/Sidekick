@@ -36,7 +36,7 @@ jobs:
           version: ${{ steps.version.outputs.version }}
 
       - name: Release - Delete previous assets
-        uses: andreaswilli/delete-release-assets-action@<version>
+        uses: andreaswilli/delete-release-assets-action@v4.0.0
         with:
           github_token: ${{ github.token }}
           tag: 'v${{ steps.version.outputs.version }}'
