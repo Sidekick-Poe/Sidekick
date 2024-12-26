@@ -6,9 +6,21 @@
 
 @if (!string.IsNullOrEmpty(QueryId))
 {
-    <ButtonLink OnClick="OpenWebsite">
-        <TextCaption>@Resources["OpenQueryInWebsite"]</TextCaption>
-    </ButtonLink>
+    <TooltipBottomRight>
+        <ChildContent>
+            <button type="button"
+                    @onclick="@OpenWebsite"
+                    @onclick:preventDefault="true"
+                    @onclick:stopPropagation="true"
+                    class="inline-flex items-center justify-center p-1 -m-1 text-xl font-medium tracking-wide transition-colors duration-200 rounded-md bg-transparent">
+                <IconMedium Icon="@UiIcons.External"/>
+            </button>
+        </ChildContent>
+
+        <TooltipContent>
+            <TextBase Class="max-w-[15rem]">@Resources["OpenQueryInWebsite"]</TextBase>
+        </TooltipContent>
+    </TooltipBottomRight>
 }
 
 @inject IStringLocalizer<TradeResources> Resources

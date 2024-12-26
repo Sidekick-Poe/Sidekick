@@ -2486,6 +2486,10 @@ video {
   gap: 0.75rem;
 }
 
+.gap-4 {
+  gap: 1rem;
+}
+
 .gap-\[2px\] {
   gap: 2px;
 }
