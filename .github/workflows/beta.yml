@@ -49,11 +49,10 @@ jobs:
           file: "src/**/*.csproj"
           version: ${{ steps.version.outputs.version }}
 
-      - name: Release - Delete previous assets
-        uses: andreaswilli/delete-release-assets-action@v4.0.0
-        with:
-          github_token: ${{ github.token }}
-          tag: 'v${{ steps.version.outputs.version }}'
+      - name: Release - Delete unpublished
+        uses: hugo19941994/delete-draft-releases@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
       - name: Release - Notes
         uses: release-drafter/release-drafter@v6
@@ -108,6 +107,10 @@ jobs:
           dotnet tool install -g vpk
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-beta
           vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-beta
+          
+          # Delete the nupkg file
+          Get-ChildItem -Path ./Releases -Filter *.nupkg -Recurse | Remove-Item -Force
+          
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-beta --pre --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
       - name: ClickOnce - Git Key
@@ -121,37 +124,44 @@ jobs:
           $version = "${{ steps.version.outputs.version }}"
           Write-Output "Version: $version"
 
-          git config --global url."https://user:${{ secrets.GITHUB_TOKEN }}@github".insteadOf https://github
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
-          
           # Find MSBuild.
           $msBuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
               -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe `
               -prerelease | select-object -first 1
 
           Push-Location "src/Sidekick.Wpf"
-          & $msBuildPath src/Sidekick.Wpf/Sidekick.Wpf.csproj /target:Publish /property:PublishProfile=ClickOnceBeta /property:ApplicationVersion=$version
+          & $msBuildPath Sidekick.Wpf.csproj /target:Publish /property:PublishProfile=ClickOnceBeta /property:ApplicationVersion=$version
           Pop-Location
-          
+
+          # Clone `gh-pages` branch.
+          git config --global url."https://user:${{ secrets.GITHUB_TOKEN }}@github".insteadOf https://github
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+          git clone $deployRepository -b gh-pages --single-branch "ClickOnce"
+
           $deployRepository = "git@github.com:Sidekick-Poe/Sidekick-Beta.git"
           Write-Output "Deploy repository: $deployRepository"
 
           # Clone `gh-pages` branch.
-          git clone $deployRepository -b gh-pages --single-branch "ClickOnce"
+          git clone $deployRepository -b gh-pages --single-branch "dist"
 
-          Write-Output "Removing previous files..."
-          if (Test-Path "Application Files") {
-              Remove-Item -Path "ClickOnce/Application Files" -Recurse
+          Push-Location "dist"
+          try {
+              Write-Output "Removing previous files..."
+              if (Test-Path "Application Files") {
+                  Remove-Item -Path "Application Files" -Recurse
+              }
+              if (Test-Path "Sidekick.application") {
+                  Remove-Item -Path "Sidekick.application"
+              }
+
+              Write-Output "Copying new files..."
+              Copy-Item -Path "../src/Sidekick.Wpf/bin/publish/Application Files","../src/Sidekick.Wpf/bin/publish/Sidekick.application" -Destination . -Recurse
+
+              # Stage and commit.
+              git add -A
+              git commit -m "Update to v$version"
+              # git push
+          } finally {
+              Pop-Location
           }
-          if (Test-Path "Sidekick.application") {
-              Remove-Item -Path "ClickOnce/Sidekick.application"
-          }
-
-          Write-Output "Copying new files..."
-          Copy-Item -Path "./src/Sidekick.Wpf/bin/publish/Application Files","./src/Sidekick.Wpf/bin/publish/Sidekick.application" -Destination ./ClickOnce -Recurse
-
-          # Stage and commit.
-          git add -A
-          git commit -m "Update to v$version"
-          # git push
