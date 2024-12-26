@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
+using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Wpf.Helpers;
 using Sidekick.Wpf.Services;
@@ -45,7 +46,6 @@ public partial class MainWindow
         Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
         Opacity = 0.01;
 
-        CenterHelper.Center(this);
         Activate();
     }
 
@@ -61,12 +61,17 @@ public partial class MainWindow
             return;
         }
 
+        // Save the window position and size.
         try
         {
             var width = (int)ActualWidth;
             var height = (int)ActualHeight;
-            int? x, y = null;
-            if (true)
+
+            var settingsService = Scope.ServiceProvider.GetRequiredService<ISettingsService>();
+            var saveWindowPosition = settingsService.GetBool(SettingKeys.SaveWindowPositions).GetAwaiter().GetResult();
+
+            int? x = null, y = null;
+            if (saveWindowPosition)
             {
                 x = (int)Left;
                 y = (int)Top;
