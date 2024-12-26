@@ -1,13 +1,10 @@
-name: WPF Beta
+name: ClickOnce Release
 
 on:
-  push:
-    branches:
-    - main
   workflow_dispatch:
 
 jobs:
-  wpf-beta:
+  wpf-release:
     runs-on: windows-latest
 
     steps:
@@ -67,7 +64,7 @@ jobs:
       - name: Build - Sidekick.Protocol
         run: dotnet publish src/Sidekick.Protocol/Sidekick.Protocol.csproj -p:PublishProfile=Build
 
-      - name: Build - Sidekick.Wpf
+      - name: ClickOnce - Build
         shell: pwsh
         run: |
           $version = "${{ steps.version.outputs.version }}"
@@ -79,24 +76,24 @@ jobs:
               -prerelease | select-object -first 1
 
           Push-Location "src/Sidekick.Wpf"
-          & $msBuildPath Sidekick.Wpf.csproj /target:Publish /property:PublishProfile=ClickOnceBeta /property:ApplicationVersion=$version
+          & $msBuildPath Sidekick.Wpf.csproj /target:Publish /property:PublishProfile=ClickOnceRelease /property:ApplicationVersion=$version
           Pop-Location
 
-      - name: Git - Setup
+      - name: ClickOnce - Git Setup
         run: |
           git config --global url."https://user:${{ secrets.GITHUB_TOKEN }}@github".insteadOf https://github
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
 
-      - name: Git - Setup SSH
+      - name: ClickOnce - Git Setup SSH
         uses: webfactory/ssh-agent@v0.7.0
         with:
-          ssh-private-key: ${{ secrets.DEPLOY_BETA_KEY }}
+          ssh-private-key: ${{ secrets.DEPLOY_RELEASE_KEY }}
 
-      - name: Git - Push to repository
+      - name: ClickOnce - Git Push
         shell: pwsh
         run: |
-          $deployRepository = "git@github.com:Sidekick-Poe/Sidekick-Beta.git"
+          $deployRepository = "git@github.com:Sidekick-Poe/Sidekick-Release.git"
           Write-Output "Deploy repository: $deployRepository"
 
           # Clone `gh-pages` branch.
