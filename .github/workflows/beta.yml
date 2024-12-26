@@ -121,6 +121,8 @@ jobs:
           $version = "${{ steps.version.outputs.version }}"
           Write-Output "Version: $version"
 
+          dotnet clean
+
           # Find MSBuild.
           $msBuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
               -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe `
@@ -140,9 +142,9 @@ jobs:
           Write-Output "Deploy repository: $deployRepository"
 
           # Clone `gh-pages` branch.
-          git clone $deployRepository -b gh-pages --single-branch "dist"
+          git clone $deployRepository -b gh-pages --single-branch "ClickOnce"
 
-          Push-Location "dist"
+          Push-Location "ClickOnce"
           try {
               Write-Output "Removing previous files..."
               if (Test-Path "Application Files") {
@@ -173,3 +175,11 @@ jobs:
           draft: true
           verbose: true
           overwrite: true
+
+      - name: Release - Remove .nupkg
+        uses: flcdrg/remove-release-asset-action@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          release_id: ${{ steps.release.outputs.id }}
+          asset_name: Sidekick-${{ steps.version.outputs.version }}-windows-beta-full.nupkg
