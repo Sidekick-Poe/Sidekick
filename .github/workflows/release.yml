@@ -20,10 +20,19 @@ jobs:
           $DATE = Get-Date -Format "yyyy.Md"
 
           # Get the current hour and minute without leading zero for the hour
-          $HOUR = [int](Get-Date -Format "HH") # Convert to integer to remove any leading zero
-          $MINUTE = Get-Date -Format "mm"
+          # Get the current hour and minute
+          $HOUR = [int](Get-Date -Format "HH") # Convert hour to integer to strip any leading zero
+      
+          # If the hour is 0 (midnight), set it to an empty string
+          if ($HOUR -eq 0) {
+            $HOUR = ''
+          }
+                
+          $MINUTE = Get-Date -Format "mm" # Keep minutes as-is
+      
+          # Construct the time, omitting hour if it's empty
           $TIME = "$HOUR$MINUTE"
-
+          
           # Construct the version using DATE and TIME
           $VERSION = "$DATE.$TIME"
           Write-Output "Generated version: $VERSION"
