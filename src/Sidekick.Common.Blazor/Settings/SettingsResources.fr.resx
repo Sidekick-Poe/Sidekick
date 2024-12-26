@@ -232,7 +232,7 @@
     <value>Vérifier les prix</value>
   </data>
   <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
-    <value>Afficher les prédictions de poeprices.info</value>
+    <value>Afficher les prédictions de poeprices.info (PoE1 seulement)</value>
   </data>
   <data name="Reset_Cache" xml:space="preserve">
     <value>Réinitialiser la cache</value>
@@ -323,10 +323,6 @@
   </data>
   <data name="Official_Website" xml:space="preserve">
     <value>Site officiel</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="GitHub_Repository" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="Open_Settings_Folder" xml:space="preserve">
     <value>Ouvrir le répertoire des configurations</value>
