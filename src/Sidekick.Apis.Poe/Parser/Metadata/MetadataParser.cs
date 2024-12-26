@@ -53,9 +53,9 @@ namespace Sidekick.Apis.Poe.Parser.Metadata
             var itemRarity = headerParser.ParseRarity(parsingItem);
             
             var canBeVaalGem = itemRarity == Rarity.Gem && parsingItem.Blocks.Count > 7;
-            if (parsingItem.Blocks[5].Lines.Count > 0 && canBeVaalGem)
+            if (canBeVaalGem && parsingItem.Blocks[5].Lines.Count > 0)
             {
-                data.NameAndTypeDictionary.TryGetValue(parsingItem.Blocks[5].Lines[0].Text, value: out var vaalGem);
+                data.NameAndTypeDictionary.TryGetValue(parsingItem.Blocks[5].Lines[0].Text, out var vaalGem);
                 if (vaalGem != null)
                 {
                     return vaalGem.First();
