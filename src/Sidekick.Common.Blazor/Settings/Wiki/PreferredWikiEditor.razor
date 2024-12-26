@@ -3,40 +3,38 @@
 
 <FormSelect Value="@PreferredWiki"
             ValueChanged="(string? v) => PreferredChanged(v)"
-            Label="@Resources.Wiki_Preferred"
-            Options="Options"/>
+            Label="@Resources["Wiki_Preferred"]"
+            Options="Options" />
 
-@inject SettingsResources Resources
+@inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 
 @code {
 
     private string? PreferredWiki { get; set; }
 
-    private List<SelectOption> Options { get; } = new()
-    {
-        new SelectOption()
-        {
-            Value = WikiSetting.PoeWiki.GetValueAttribute(),
-            Label = "poewiki.net",
-        },
-        new SelectOption()
-        {
-            Value = WikiSetting.PoeDb.GetValueAttribute(),
-            Label = "poedb.tw",
-        },
-    };
+    private List<SelectOption> Options { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
         PreferredWiki = await SettingsService.GetString(SettingKeys.PreferredWiki);
+        Options = Enum.GetValues<WikiSetting>()
+                  .Select(x => new SelectOption()
+                      {
+                          Value = x.GetValueAttribute().ToString(),
+                          Label = Resources[x.GetValueAttribute()],
+                      })
+                  .ToList();
+
         await base.OnInitializedAsync();
     }
 
     private async Task PreferredChanged(string? value)
     {
         PreferredWiki = value;
-        await SettingsService.Set(SettingKeys.PreferredWiki, Enum.TryParse<WikiSetting>(value, out var enumValue) ? enumValue : WikiSetting.PoeWiki);
+        if (PreferredWiki.GetEnumFromValue<WikiSetting> != null)
+        {
+            await SettingsService.Set(SettingKeys.PreferredWiki, PreferredWiki);
+        }
     }
-
 }

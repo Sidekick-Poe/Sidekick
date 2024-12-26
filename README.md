@@ -12,6 +12,16 @@ A Path of Exile companion tool. Price check items, check for dangerous map modif
 Sidekick now supports Path of Exile 2, and of course still supports Path of Exile 1.
 
 ## Development
+To run the code:
+
+1. Install **.NET SDK**
+2. Install **NPM** (for the stylesheets)
+3. Clone the repository
+4. Open **.sln** with **Visual Studio 2022** or open the folder with **Visual Studio Code**
+5. Choose to run **WPF** (vs2022 only) or **Web** version. Can also be done with **dotnet CLI**
+
+The interface is done in Blazor, running in a webview2 provided by WPF. For Linux, you can run the web project in your browser.
+
 We accept most PR and ideas. If you want a feature included, create an issue and we will discuss it.
 
 We are also available on [Discord](https://discord.gg/H4bg4GQ).
