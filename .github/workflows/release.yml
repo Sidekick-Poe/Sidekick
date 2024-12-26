@@ -19,8 +19,10 @@ jobs:
           # Get the current date
           $DATE = Get-Date -Format "yyyy.Md"
 
-          # Get the current time in hours and minutes (24-hour format)
-          $TIME = Get-Date -Format "Hmm"
+          # Get the current hour and minute without leading zero for the hour
+          $HOUR = [int](Get-Date -Format "HH") # Convert to integer to remove any leading zero
+          $MINUTE = Get-Date -Format "mm"
+          $TIME = "$HOUR$MINUTE"
 
           # Construct the version using DATE and TIME
           $VERSION = "$DATE.$TIME"
