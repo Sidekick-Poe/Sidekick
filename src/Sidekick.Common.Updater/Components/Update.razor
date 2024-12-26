@@ -91,9 +91,6 @@
                 Logger.LogError(ex.Message);
                 Error = true;
                 StateHasChanged();
-
-                await Task.Delay(1500);
-                NavigationManager.NavigateTo("/setup");
             }
         }
     }

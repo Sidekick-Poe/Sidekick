@@ -26,8 +26,7 @@ public class GitHubClient
 
     public Task Initialize()
     {
-        return Task.CompletedTask;
-        // return DownloadGitHubDownloadIndicatorFile();
+        return DownloadGitHubDownloadIndicatorFile();
     }
 
     /// <inheritdoc />

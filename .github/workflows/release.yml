@@ -104,10 +104,6 @@ jobs:
           dotnet tool install -g vpk
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-stable
           vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-stable
-          
-          # Delete the nupkg file
-          Get-ChildItem -Path ./Releases -Filter *.nupkg -Recurse | Remove-Item -Force
-          
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-stable --merge --releaseName "Sidekick v$version" --tag v$version${{ github.token }}
 
       - name: ClickOnce - Git Key
