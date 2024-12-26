@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
 
@@ -18,7 +18,7 @@ public class ViewPreferenceService(DbContextOptions<SidekickDbContext> dbOptions
         return viewPreference;
     }
 
-    public async Task Set(string? key, int width, int height)
+    public async Task Set(string? key, int width, int height, int? x = null, int? y = null)
     {
         if (string.IsNullOrEmpty(key))
         {
@@ -33,7 +33,9 @@ public class ViewPreferenceService(DbContextOptions<SidekickDbContext> dbOptions
             {
                 Key = key,
                 Width = width,
-                Height = height
+                Height = height,
+                X = x,
+                Y = y
             };
             dbContext.ViewPreferences.Add(viewPreference);
             await dbContext.SaveChangesAsync();
@@ -42,6 +44,8 @@ public class ViewPreferenceService(DbContextOptions<SidekickDbContext> dbOptions
         {
             viewPreference.Width = width;
             viewPreference.Height = height;
+            viewPreference.X = x;
+            viewPreference.Y = y;
             await dbContext.SaveChangesAsync();
         }
     }

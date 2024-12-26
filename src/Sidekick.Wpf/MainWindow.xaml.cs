@@ -65,7 +65,13 @@ public partial class MainWindow
         {
             var width = (int)ActualWidth;
             var height = (int)ActualHeight;
-            _ = viewLocator.ViewPreferenceService.Set(SidekickView?.CurrentView.Key, width, height);
+            int? x, y = null;
+            if (true)
+            {
+                x = (int)Left;
+                y = (int)Top;
+            }
+            _ = viewLocator.ViewPreferenceService.Set(SidekickView?.CurrentView.Key, width, height, x, y);
         }
         catch (Exception)
         {
