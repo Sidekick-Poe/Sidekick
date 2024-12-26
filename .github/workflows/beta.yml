@@ -110,17 +110,6 @@ jobs:
           vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-beta
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-beta --pre --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
-      - name: Release - Download Instructions
-        uses: xresloader/upload-to-github-release@v1.3.4
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          file: 'download-instructions.txt'
-          tag_name: 'v${{ steps.version.outputs.version }}'
-          draft: true
-          verbose: true
-          overwrite: true
-
       - name: Release - Remove .nupkg
         uses: flcdrg/remove-release-asset-action@v1
         env:
