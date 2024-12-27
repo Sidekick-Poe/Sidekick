@@ -232,7 +232,7 @@
     <value>Check Prices</value>
   </data>
   <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
-    <value>Show price prediction from poeprices.info</value>
+    <value>Show price prediction from poeprices.info (PoE1 only)</value>
   </data>
   <data name="Reset_Cache" xml:space="preserve">
     <value>Reset Cache</value>
@@ -341,5 +341,8 @@
   </data>
   <data name="poedb" xml:space="preserve">
     <value>poedb.tw / poe2db.tw</value>
+  </data>
+  <data name="SaveWindowPositions" xml:space="preserve">
+    <value>Save the positions of the overlays. If unchecked, they will be centered.</value>
   </data>
 </root>

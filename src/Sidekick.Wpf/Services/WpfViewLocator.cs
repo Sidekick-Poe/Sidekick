@@ -41,7 +41,7 @@ namespace Sidekick.Wpf.Services
             view.CurrentView.ViewChanged += CurrentViewOnViewChanged;
             var preferences = await ViewPreferenceService.Get(view.CurrentView.Key);
 
-            Application.Current.Dispatcher.Invoke(() =>
+            _ = Application.Current.Dispatcher.Invoke(async () =>
             {
                 window.Title = view.CurrentView.Title.StartsWith("Sidekick") ? view.CurrentView.Title.Trim() : $"Sidekick {view.CurrentView.Title}".Trim();
                 window.MinHeight = view.ViewHeight + 20;
@@ -75,6 +75,18 @@ namespace Sidekick.Wpf.Services
                     window.Topmost = false;
                     window.ShowInTaskbar = true;
                     window.ResizeMode = ResizeMode.CanResize;
+                }
+
+                // Set the window position.
+                var saveWindowPositions = await settingsService.GetBool(SettingKeys.SaveWindowPositions);
+                if (saveWindowPositions && preferences != null && preferences.X.HasValue && preferences.Y.HasValue)
+                {
+                    window.Left = preferences.X.Value!;
+                    window.Top = preferences.Y.Value!;
+                }
+                else
+                {
+                    CenterHelper.Center(window);
                 }
 
                 window.Ready();
@@ -118,7 +130,10 @@ namespace Sidekick.Wpf.Services
                     center = true;
                 }
 
-                if (center) CenterHelper.Center(window);
+                if (center)
+                {
+                    CenterHelper.Center(window);
+                }
 
                 window.Title = $"Sidekick {view.Title}".Trim();
             });
