@@ -1,4 +1,4 @@
-﻿@if (!string.IsNullOrEmpty(Label))
+@if (!string.IsNullOrEmpty(Label))
 {
     <label for="@Id"
            class="block mb-1 text-base font-medium dark:text-zinc-200">
@@ -8,6 +8,7 @@
 
 <div class="flex flex-nowrap gap-1 mb-3">
     <input id="@Id"
+           @attributes="InputAttributes"
            @onchange="OnChange"
            @onfocus="OnFocus"
            @onblur="OnBlur"
@@ -35,6 +36,9 @@
 
     [Parameter]
     public RenderFragment? AdornmentContent { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? InputAttributes { get; set; }
 
     private string Id { get; } = UiUtilities.GenerateId();
 
