@@ -21,7 +21,7 @@
 
     private async Task MinimumChanged(decimal? value)
     {
-        Minimum = value ?? 0;
+        Minimum = value ?? DefaultSettings.PriceCheckBulkMinimumStock;
         await SettingsService.Set(SettingKeys.PriceCheckBulkMinimumStock, (int)Minimum);
     }
 
