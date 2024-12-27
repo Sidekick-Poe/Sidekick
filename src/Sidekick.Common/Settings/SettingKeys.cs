@@ -48,6 +48,8 @@ public static class SettingKeys
     public const string PriceCheckCurrencyMode = nameof(PriceCheckCurrencyMode);
     public const string PriceCheckNormalizeValue = nameof(PriceCheckNormalizeValue);
 
+    public const string SaveWindowPositions = nameof(SaveWindowPositions);
+
     public const string WealthEnabled = nameof(WealthEnabled);
     public const string WealthTrackedTabs = nameof(WealthTrackedTabs);
     public const string WealthItemTotalMinimum = nameof(WealthItemTotalMinimum);

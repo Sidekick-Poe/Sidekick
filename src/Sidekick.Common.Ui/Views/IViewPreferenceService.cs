@@ -6,5 +6,5 @@ public interface IViewPreferenceService
 {
     Task<ViewPreference?> Get(string? key);
 
-    Task Set(string? key, int width, int height);
+    Task Set(string? key, int width, int height, int? x, int? y);
 }

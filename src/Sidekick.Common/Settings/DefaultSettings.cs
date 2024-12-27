@@ -51,4 +51,6 @@ public static class DefaultSettings
         new ChatSetting("Ctrl+Enter", "@last ", false),
         new ChatSetting("F9", "/exit", true),
     ];
+
+    public static bool SaveWindowPositions => false;
 }
