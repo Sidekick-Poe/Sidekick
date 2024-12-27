@@ -1,12 +1,5 @@
-﻿<div class="flex items-center min-h-5 @(NoMargin ? "" : "mb-3")">
-    @if (Value)
-    {
-        <input name="custom-checkbox" id="@Id" type="checkbox" class="hidden peer" checked @onchange="OnChange">
-    }
-    else
-    {
-        <input name="custom-checkbox" id="@Id" type="checkbox" class="hidden peer" @onchange="OnChange">
-    }
+<div class="flex items-center min-h-5 @(NoMargin ? "" : "mb-3")">
+    <input name="custom-checkbox" id="@Id" type="checkbox" class="hidden peer" checked="@Value" @onchange="OnChange">
     <label for="@Id"
            @onmouseenter="OnMouseEnter"
            @onmousedown="OnMouseDown"

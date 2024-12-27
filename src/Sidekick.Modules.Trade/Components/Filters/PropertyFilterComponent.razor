@@ -1,6 +1,7 @@
 @using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Common.Game.Languages
 @using Sidekick.Common.Settings
+@using Sidekick.Modules.Trade.Localization;
 
 <FilterWrapper>
     <div class="flex flex-nowrap items-center">
@@ -9,9 +10,15 @@
             {
                 <FormTriStateCheckbox @bind-Value="Filter.Checked"
                                       NoMargin="true">
-                    <ItemPropertyText Label="@Filter.Text"
-                                      Value="@Filter.ValueString"
-                                      OnlyShowLabel="true"/>
+                    <div class="flex items-center gap-1">
+                        <ItemPropertyText Label="@Filter.Text"
+                                          Value="@Filter.ValueString"
+                                          OnlyShowLabel="true"/>
+                        @if (Filter.Checked == null)
+                        {
+                        <span class="dark:text-zinc-200 text-sm">(@Resources["Any"])</span>
+                        }
+                    </div>
                 </FormTriStateCheckbox>
             }
             else
@@ -71,6 +78,7 @@
 @inject PriceCheckService PriceCheckService
 @inject IGameLanguageProvider GameLanguageProvider
 @inject ISettingsService SettingsService
+@inject IStringLocalizer<TradeResources> Resources
 
 @code {
 
