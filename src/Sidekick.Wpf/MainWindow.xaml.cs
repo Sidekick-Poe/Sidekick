@@ -6,7 +6,6 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Wpf.Helpers;
 using Sidekick.Wpf.Services;
@@ -66,16 +65,9 @@ public partial class MainWindow
         {
             var width = (int)ActualWidth;
             var height = (int)ActualHeight;
+            var x = (int)Left;
+            var y = (int)Top;
 
-            var settingsService = Scope.ServiceProvider.GetRequiredService<ISettingsService>();
-            var saveWindowPosition = settingsService.GetBool(SettingKeys.SaveWindowPositions).GetAwaiter().GetResult();
-
-            int? x = null, y = null;
-            if (saveWindowPosition)
-            {
-                x = (int)Left;
-                y = (int)Top;
-            }
             _ = viewLocator.ViewPreferenceService.Set(SidekickView?.CurrentView.Key, width, height, x, y);
         }
         catch (Exception)
@@ -131,7 +123,6 @@ public partial class MainWindow
 
         Grid.Margin = WindowState == WindowState.Maximized ? new Thickness(0) : new Thickness(5);
     }
-
 
     private void TopBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
