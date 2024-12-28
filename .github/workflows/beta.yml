@@ -109,11 +109,3 @@ jobs:
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-beta
           vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-beta
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-beta --pre --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
-
-      - name: Release - Remove .nupkg
-        uses: flcdrg/remove-release-asset-action@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          release_id: ${{ steps.release.outputs.id }}
-          asset_name: Sidekick-${{ steps.version.outputs.version }}-windows-beta-full.nupkg
