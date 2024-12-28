@@ -39,10 +39,10 @@
         {
             if (Active)
             {
-                return "<" + Resources["Press a Key"] + ">";
+                return Resources["Key_Active"];
             }
 
-            return string.IsNullOrEmpty(Value) ? "<" + Resources["Unset"] + ">" : Value;
+            return string.IsNullOrEmpty(Value) ? Resources["Key_Unset"]: Value;
         }
     }
 

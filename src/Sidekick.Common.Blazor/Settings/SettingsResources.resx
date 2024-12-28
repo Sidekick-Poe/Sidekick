@@ -123,7 +123,7 @@
   <data name="Character_League" xml:space="preserve">
     <value>League</value>
   </data>
-  <data name="Chat_Add" xml:space="preserve">
+  <data name="Chat_Add_New_Command" xml:space="preserve">
     <value>Add a new command</value>
   </data>
   <data name="Chat_Commands" xml:space="preserve">
@@ -133,13 +133,10 @@
     <value>Common Commands</value>
   </data>
   <data name="Chat_Commands_Exit" xml:space="preserve">
-    <value>/exit - Exit to character screen</value>
+    <value>Exit to character screen</value>
   </data>
   <data name="Chat_Commands_Hideout" xml:space="preserve">
-    <value>/hideout - Go to your hideout</value>
-  </data>
-  <data name="Chat_Custom" xml:space="preserve">
-    <value>Custom Command</value>
+    <value>Go to your hideout</value>
   </data>
   <data name="Chat_Exit" xml:space="preserve">
     <value>Exit</value>
@@ -153,17 +150,11 @@
   <data name="Chat_Kick" xml:space="preserve">
     <value>Kick from party</value>
   </data>
-  <data name="Chat_Submit" xml:space="preserve">
+  <data name="Chat_Submit_The_Command" xml:space="preserve">
     <value>Submit the command</value>
   </data>
-  <data name="Chat_Whisper" xml:space="preserve">
-    <value>Whisper</value>
-  </data>
-  <data name="Chat_Wildcard" xml:space="preserve">
-    <value>Wildcards</value>
-  </data>
   <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
-    <value>@last - Character name of the last whisper message you received.</value>
+    <value>Character name of the last whisper message you received.</value>
   </data>
   <data name="General_Settings" xml:space="preserve">
     <value>General Settings</value>
@@ -262,7 +253,7 @@
     <value>Wealth Tracker</value>
   </data>
   <data name="Chat_Commands_Leave" xml:space="preserve">
-    <value>/leave - Leave the current party.</value>
+    <value>Leave the current party</value>
   </data>
   <data name="Chat_Commands_Remove" xml:space="preserve">
     <value>Remove this command</value>
@@ -344,5 +335,17 @@
   </data>
   <data name="SaveWindowPositions" xml:space="preserve">
     <value>Save the positions of the overlays. If unchecked, they will be centered.</value>
+  </data>
+  <data name="Chat_Command" xml:space="preserve">
+    <value>Command</value>
+  </data>
+  <data name="Keybind" xml:space="preserve">
+    <value>Keybind</value>
+  </data>
+  <data name="Submit_The_Command" xml:space="preserve">
+    <value>Submit the command</value>
+  </data>
+  <data name="Chat_Restore_Defaults" xml:space="preserve">
+    <value>Restore default commands</value>
   </data>
 </root>
