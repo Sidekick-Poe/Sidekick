@@ -3,7 +3,7 @@
         @TopContent
     </div>
     <div class="grow flex flex-nowrap items-stretch">
-        <div class="@(HasChildContent ? "w-[22em]" : "grow") relative">
+        <div id="@LeftContentId" class="@LeftContentClasses" style="@($"width: {LeftContentWidth}px")">
             <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden dark:bg-stone-950">
                 @LeftContent
             </div>
@@ -22,6 +22,35 @@
     </div>
 </div>
 
+<script>
+    /**
+     * https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore?tab=readme-ov-file#_debounce
+     */
+    function debounce(func, wait, immediate) {
+        var timeout;
+        return function () {
+            var context = this, args = arguments;
+            clearTimeout(timeout);
+            if (immediate && !timeout) func.apply(context, args);
+            timeout = setTimeout(function () {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            }, wait);
+        };
+    }
+
+    function attachResizeObserver(elementId, callbackName, dotNetHelper) {
+        try {
+            const resizeObserver = new ResizeObserver(debounce(async (e) => await dotNetHelper.invokeMethodAsync(callbackName, e[0].contentRect.width), 100));
+            const element = document.getElementById(elementId);
+            resizeObserver.observe(element);
+            element.classList.add("resize-x");
+        } catch { }
+    }
+</script>
+
+@inject IJSRuntime JSRuntime
+
 @code {
 
     [Parameter]
@@ -29,6 +58,9 @@
 
     [Parameter]
     public RenderFragment? LeftContent { get; set; }
+
+    [Parameter]
+    public int LeftContentWidth { get; set; }
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
@@ -39,4 +71,43 @@
     [Parameter]
     public RenderFragment? BottomContent { get; set; }
 
+    [Parameter]
+    public EventCallback<int> OnLeftContentResize { get; set; }
+
+    private string LeftContentId { get; } = UiUtilities.GenerateId();
+
+    private string LeftContentClasses
+    {
+        get
+        {
+            var classes = new List<string> { "relative", "overflow-auto", "min-w-[22em]", };
+
+            if (HasChildContent) classes.Add("max-w-[35em]");
+            else classes.Add("w-full");
+
+            return string.Join(" ", classes);
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && HasChildContent && OnLeftContentResize.HasDelegate)
+        {
+            try
+            {
+                var dotNetReference = DotNetObjectReference.Create(this);
+                await JSRuntime.InvokeVoidAsync("attachResizeObserver", LeftContentId, nameof(ResizeLeftContent), dotNetReference);
+            }
+            catch { }
+        }
+    }
+
+    [JSInvokable]
+    public void ResizeLeftContent(int width)
+    {
+        if (width != 0)
+        {
+            OnLeftContentResize.InvokeAsync(width);
+        }
+    }
 }
