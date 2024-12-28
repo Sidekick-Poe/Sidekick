@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -6,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub.Api;
 using Sidekick.Apis.GitHub.Models;
 using Sidekick.Common;
-using Sidekick.Common.Cache;
 
 namespace Sidekick.Apis.GitHub;
 
@@ -17,6 +17,8 @@ public class GitHubClient
 ) : IGitHubClient
 {
     private const string IndicatorPath = "SidekickGitHub";
+
+    private DateTimeOffset? LastUpdateCheck { get; set; }
 
     private GitHubRelease? LatestRelease { get; set; }
 
@@ -30,9 +32,20 @@ public class GitHubClient
     /// <inheritdoc />
     public async Task<GitHubRelease> GetLatestRelease()
     {
-        if (LatestRelease != null)
+        if (LatestRelease != null && LastUpdateCheck >= DateTimeOffset.Now.AddHours(-6))
         {
             return LatestRelease;
+        }
+
+        LastUpdateCheck = DateTimeOffset.Now;
+
+        if (Debugger.IsAttached)
+        {
+            return new GitHubRelease()
+            {
+                IsNewerVersion = true,
+                IsExecutable = true,
+            };
         }
 
         var release = await GetLatestApiRelease();

@@ -201,15 +201,15 @@ namespace Sidekick.Wpf.Services
         /// <inheritdoc/>
         public Task Close(SidekickView view)
         {
+            if (!TryGetWindow(view.CurrentView, out var window))
+            {
+                return Task.CompletedTask;
+            }
+
             Application.Current.Dispatcher.Invoke(() =>
             {
                 try
                 {
-                    if (!TryGetWindow(view.CurrentView, out var window))
-                    {
-                        return;
-                    }
-
                     window.Close();
                     Windows.Remove(window);
                     GC.Collect();
@@ -308,13 +308,12 @@ namespace Sidekick.Wpf.Services
         private bool TryGetWindow(ICurrentView view, out MainWindow window)
         {
             var windowResult = Windows.FirstOrDefault(x => x.Id == view.Id);
-
             if (windowResult == null)
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     var viewUrl = WebUtility.UrlDecode(view.Url);
-                    windowResult = Windows.FirstOrDefault(x => x.CurrentWebPath == viewUrl)!;
+                    windowResult = Windows.FirstOrDefault(x => x.CurrentWebPath == viewUrl);
                 });
             }
 

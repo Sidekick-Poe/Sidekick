@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Velopack" Version="0.0.1023" />
+    </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sidekick.Common.Ui\Sidekick.Common.Ui.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\Sidekick.Common.Ui\_Imports.razor">
+      <Link>_Imports.razor</Link>
+    </Content>
+  </ItemGroup>
+  
+</Project>

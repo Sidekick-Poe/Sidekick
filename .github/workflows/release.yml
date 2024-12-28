@@ -1,9 +1,6 @@
 name: Beta
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
@@ -25,14 +22,14 @@ jobs:
           # Get the current hour and minute without leading zero for the hour
           # Get the current hour and minute
           $HOUR = [int](Get-Date -Format "HH") # Convert hour to integer to strip any leading zero
-          
+      
           # If the hour is 0 (midnight), set it to an empty string
           if ($HOUR -eq 0) {
             $HOUR = ''
           }
-          
+                
           $MINUTE = Get-Date -Format "mm" # Keep minutes as-is
-          
+      
           # Construct the time, omitting hour if it's empty
           $TIME = "$HOUR$MINUTE"
           
@@ -55,7 +52,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
 
       - name: Release - Notes
-        id: release
         uses: release-drafter/release-drafter@v6
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -64,7 +60,7 @@ jobs:
           tag: 'v${{ steps.version.outputs.version }}'
           version: 'v${{ steps.version.outputs.version }}'
           publish: false
-          prerelease: true
+          prerelease: false
 
       - name: Environment - Build Number
         uses: myci-actions/export-env-var@1
@@ -106,6 +102,6 @@ jobs:
           Write-Output "Version: $version"
 
           dotnet tool install -g vpk
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-beta
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-beta
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-beta --pre --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-stable
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-stable
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-stable --merge --releaseName "Sidekick v$version" --tag v$version${{ github.token }}

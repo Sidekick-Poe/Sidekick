@@ -1,0 +1,120 @@
+@page "/update"
+@page "/"
+@using Sidekick.Common.Updater
+@using Sidekick.Common.Browser
+@using Sidekick.Common.Platform
+@inherits Sidekick.Common.Ui.Views.SidekickView
+
+<AppTitle Title="@Resources["Update"]"/>
+<LayoutSimple>
+    <TopContent>
+        <AppLogo/>
+    </TopContent>
+
+    <ChildContent>
+        <AppContainer>
+            @if (Error)
+            {
+                <AlertError>@Resources["Update_Cant_Download"]</AlertError>
+            }
+            else if (NewLauncher)
+            {
+                <Heading3 Class="mb-2 text-center">@Resources["NewLauncher"]</Heading3>
+                <TextBase
+                    Class="text-center">@Resources["NewLauncherText"]</TextBase>
+            }
+            else
+            {
+                <Heading3 Class="mb-2 text-center"> @Resources["Checking_For_Updates"] </Heading3>
+                <ProgressBar Indeterminate="true"/>
+            }
+        </AppContainer>
+    </ChildContent>
+
+    <BottomContent>
+        <div class="px-3 py-2 flex justify-center gap-2">
+            @if (NewLauncher)
+            {
+                <ButtonSecondary OnClick="Exit">
+                    @Resources["Exit"]
+                </ButtonSecondary>
+                <ButtonSecondary OnClick="Continue">
+                    @Resources["Continue"]
+                </ButtonSecondary>
+                <ButtonPrimary OnClick="OpenWebsite">
+                    @Resources["Open_Website"]
+                </ButtonPrimary>
+            }
+            else
+            {
+                <ButtonPrimary OnClick="Exit">
+                    @Resources["Exit"]
+                </ButtonPrimary>
+            }
+        </div>
+    </BottomContent>
+</LayoutSimple>
+
+@inject ILogger<Update> Logger
+@inject IStringLocalizer<Update> Resources
+@inject IApplicationService ApplicationService
+@inject IAutoUpdater AutoUpdater
+@inject IBrowserProvider BrowserProvider
+
+@code {
+
+    private bool Error { get; set; }
+
+    private bool NewLauncher { get; set; }
+
+    public override SidekickViewType ViewType => SidekickViewType.Modal;
+
+    public override int ViewHeight => 210;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        try
+        {
+            await AutoUpdater.CheckForUpdates();
+            NavigationManager.NavigateTo("/setup");
+        }
+        catch (Exception ex)
+        {
+            if (ex.Message == "Cannot perform this operation in an application which is not installed.")
+            {
+                NewLauncher = true;
+            }
+            else
+            {
+                Logger.LogError(ex.Message);
+                Error = true;
+                StateHasChanged();
+            }
+        }
+    }
+
+    public void Continue()
+    {
+        if (NavigationManager.Uri.Contains("/update"))
+        {
+            CurrentView.Close();
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/setup");
+        }
+    }
+
+    public void OpenWebsite()
+    {
+        BrowserProvider.OpenSidekickWebsite();
+    }
+
+    public void Exit()
+    {
+        ApplicationService.Shutdown();
+    }
+
+}

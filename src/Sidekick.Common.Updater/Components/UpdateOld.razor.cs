@@ -1,15 +1,13 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Ui.Views;
 
-namespace Sidekick.Common.Blazor.Update
+namespace Sidekick.Common.Updater.Components
 {
-    public partial class Update
+    public partial class UpdateOld
     {
         [Inject]
         private ILogger<Update> Logger { get; set; } = null!;

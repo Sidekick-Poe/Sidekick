@@ -10,6 +10,7 @@ using Sidekick.Apis.Poe;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
+using Sidekick.Common.Updater;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Database;
@@ -141,6 +142,7 @@ namespace Sidekick.Wpf
                 .AddSidekickPoeNinjaApi()
                 .AddSidekickPoePriceInfoApi()
                 .AddSidekickPoeWikiApi()
+                .AddSidekickUpdater()
 
                 // Modules
                 .AddSidekickChat()
