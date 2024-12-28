@@ -49,7 +49,7 @@
     }
 </script>
 
-@inject IJSRuntime jsRuntime
+@inject IJSRuntime JSRuntime
 
 @code {
 
@@ -96,7 +96,7 @@
             try
             {
                 var dotNetReference = DotNetObjectReference.Create(this);
-                await jsRuntime.InvokeVoidAsync("attachResizeObserver", LeftContentId, nameof(ResizeLeftContent), dotNetReference);
+                await JSRuntime.InvokeVoidAsync("attachResizeObserver", LeftContentId, nameof(ResizeLeftContent), dotNetReference);
             }
             catch { }
         }
