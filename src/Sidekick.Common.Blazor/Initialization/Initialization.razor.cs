@@ -175,7 +175,7 @@ namespace Sidekick.Common.Blazor.Initialization
 
             menuItems.AddRange(new List<TrayMenuItem>()
             {
-                new(label: "Sidekick - " + GetVersion()),
+                new(label: "Sidekick Beta - " + GetVersion()),
                 new(label: Resources["Open_Website"],
                     onClick: () =>
                     {
