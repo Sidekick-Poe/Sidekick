@@ -4,9 +4,9 @@
 @inherits SidekickView
 
 <AppContainer>
-    <div class="flex items-center justify-center gap-2">
+    <Fieldset Legend="Custom actions">
         <ButtonPrimary OnClick="ThrowException">Throw an exception</ButtonPrimary>
-    </div>
+    </Fieldset>
 </AppContainer>
 
 @code {
@@ -14,7 +14,7 @@
     public void ThrowException()
     {
 #pragma warning disable S112 // General exceptions should never be thrown
-        throw new Exception("Developper test from the exception page.");
+        throw new Exception("[Development] This is a test exception.");
 #pragma warning restore S112 // General exceptions should never be thrown
     }
 
