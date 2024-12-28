@@ -8,7 +8,7 @@ public class AutoUpdater(
 {
     public async Task CheckForUpdates()
     {
-        var source = new Velopack.Sources.GithubSource("https://github.com/Sidekick-Poe/Sidekick", null, false);
+        var source = new Velopack.Sources.GithubSource("https://github.com/Sidekick-Poe/Sidekick", null, true);
         var updateManager = new UpdateManager(source);
 
         logger.LogInformation("[AutoUpdater] Checking for updates.");
