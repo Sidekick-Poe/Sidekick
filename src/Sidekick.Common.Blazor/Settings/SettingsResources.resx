@@ -123,9 +123,6 @@
   <data name="Character_League" xml:space="preserve">
     <value>League</value>
   </data>
-  <data name="Chat_Add_New_Command" xml:space="preserve">
-    <value>Add a new command</value>
-  </data>
   <data name="Chat_Commands" xml:space="preserve">
     <value>Chat Commands</value>
   </data>
@@ -150,11 +147,8 @@
   <data name="Chat_Kick" xml:space="preserve">
     <value>Kick from party</value>
   </data>
-  <data name="Chat_Submit_The_Command" xml:space="preserve">
-    <value>Submit the command</value>
-  </data>
   <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
-    <value>Character name of the last whisper message you received.</value>
+    <value>Character name of the last whisper message you received</value>
   </data>
   <data name="General_Settings" xml:space="preserve">
     <value>General Settings</value>
@@ -336,6 +330,12 @@
   <data name="SaveWindowPositions" xml:space="preserve">
     <value>Save the positions of the overlays. If unchecked, they will be centered.</value>
   </data>
+  <data name="Chat_Add_New_Command" xml:space="preserve">
+    <value>Add a new command</value>
+  </data>
+  <data name="Chat_Submit_The_Command" xml:space="preserve">
+    <value>Submit the command</value>
+  </data>
   <data name="Chat_Command" xml:space="preserve">
     <value>Command</value>
   </data>
@@ -347,5 +347,11 @@
   </data>
   <data name="Chat_Restore_Defaults" xml:space="preserve">
     <value>Restore default commands</value>
+  </data>
+  <data name="Chat_Commands_Invite" xml:space="preserve">
+    <value>Invite a player</value>
+  </data>
+  <data name="Chat_Commands_Kick" xml:space="preserve">
+    <value>Kick a player</value>
   </data>
 </root>

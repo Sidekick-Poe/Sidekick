@@ -5,24 +5,35 @@
 
 <AppTitle Title="@Resources["Settings"]" />
 <AppContainer>
-    <Fieldset Legend="@Resources["Chat_Common_Commands"]">
+    <Fieldset Legend="@Resources["Chat_Commands"]">
         <ButtonLink OnClick="OpenWikiChatCommands">@WikiChatCommands.ToString()</ButtonLink>
 
-        <div class="flex gap-3 mt-3 mb-1"><code class="bg-stone-950 px-1 min-w-[6em]">/hideout</code>
+        <div class="my-3">
+            <TextBase>@Resources["Chat_Common_Commands"]</TextBase>
+        </div>
+
+        <div class="flex gap-3 mb-1"><code class="bg-stone-950 px-1 min-w-[8em]">/hideout</code>
             <TextBase>@Resources["Chat_Commands_Hideout"]</TextBase>
         </div>
-        <div class="flex gap-3 mb-1"><code class="bg-stone-950 px-1 min-w-[6em]">/leave</code>
+        <div class="flex gap-3 mb-1"><code class="bg-stone-950 px-1 min-w-[8em]">/leave</code>
             <TextBase>@Resources["Chat_Commands_Leave"]</TextBase>
         </div>
-        <div class="flex gap-3 mb-1"><code class="bg-stone-950 px-1 min-w-[6em]">/exit</code>
+        <div class="flex gap-3 mb-1"><code class="bg-stone-950 px-1 min-w-[8em]">/exit</code>
             <TextBase>@Resources["Chat_Commands_Exit"]</TextBase>
         </div>
-        <div class="flex gap-3 mb-1"><code class="bg-stone-950 px-1 min-w-[6em]">/invite</code></div>
-        <div class="flex gap-3 mb-3"><code class="bg-stone-950 px-1 min-w-[6em]">/kick</code></div>
+        <div class="flex gap-3 mb-1">
+            <code class="bg-stone-950 px-1 min-w-[8em]">/invite @@last</code>
+            <TextBase>@Resources["Chat_Commands_Invite"]</TextBase>
+        </div>
+        <div class="flex gap-3 mb-3">
+            <code class="bg-stone-950 px-1 min-w-[8em]">/kick @@last</code>
+            <TextBase>@Resources["Chat_Commands_Kick"]</TextBase>
+        </div>
 
-        <div class="flex gap-3"><code class="bg-stone-950 px-1 min-w-[6em]">@@last</code>
+        <div class="flex gap-3"><code class="bg-stone-950 px-1 min-w-[8em]">@@last</code>
             <TextBase>@Resources["Chat_Wildcard_LastWhisper_CharacterName"]</TextBase>
         </div>
+
     </Fieldset>
 
     <ChatCommandEditor />

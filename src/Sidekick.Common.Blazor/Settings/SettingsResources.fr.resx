@@ -123,9 +123,6 @@
   <data name="Character_League" xml:space="preserve">
     <value>Ligue</value>
   </data>
-  <data name="Chat_Add_New_Command" xml:space="preserve">
-    <value>Ajouter une nouvelle commande</value>
-  </data>
   <data name="Chat_Commands" xml:space="preserve">
     <value>Commandes de chat</value>
   </data>
@@ -149,9 +146,6 @@
   </data>
   <data name="Chat_Kick" xml:space="preserve">
     <value>Expulser du groupe</value>
-  </data>
-  <data name="Chat_Submit_The_Command" xml:space="preserve">
-    <value>Soumettre la commande</value>
   </data>
   <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
     <value>Nom de la personne du dernier échange</value>
@@ -321,6 +315,12 @@
   <data name="SaveWindowPositions" xml:space="preserve">
     <value>Conserver la position des fenêtres. Si désactivé, les fenêtres seront centrées.</value>
   </data>
+  <data name="Chat_Add_New_Command" xml:space="preserve">
+    <value>Ajouter une nouvelle commande</value>
+  </data>
+  <data name="Chat_Submit_The_Command" xml:space="preserve">
+    <value>Soumettre la commande</value>
+  </data>
   <data name="Chat_Command" xml:space="preserve">
     <value>Commande</value>
   </data>
@@ -332,5 +332,11 @@
   </data>
   <data name="Chat_Restore_Defaults" xml:space="preserve">
     <value>Restaurer les commandes par défaut</value>
+  </data>
+  <data name="Chat_Commands_Invite" xml:space="preserve">
+    <value>Inviter un joueur</value>
+  </data>
+  <data name="Chat_Commands_Kick" xml:space="preserve">
+    <value>Expulser un joueur</value>
   </data>
 </root>
