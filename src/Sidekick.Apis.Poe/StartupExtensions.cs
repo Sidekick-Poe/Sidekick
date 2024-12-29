@@ -18,8 +18,8 @@ using Sidekick.Apis.Poe.Parser.Metadata;
 using Sidekick.Apis.Poe.Parser.Modifiers;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Parser.Properties;
+using Sidekick.Apis.Poe.Parser.Pseudo;
 using Sidekick.Apis.Poe.Parser.Sockets;
-using Sidekick.Apis.Poe.Pseudo;
 using Sidekick.Apis.Poe.Stash;
 using Sidekick.Apis.Poe.Static;
 using Sidekick.Apis.Poe.Trade;
@@ -73,7 +73,7 @@ public static class StartupExtensions
         services.AddSidekickInitializableService<IItemStaticDataProvider, ItemStaticDataProvider>();
         services.AddSidekickInitializableService<IInvariantModifierProvider, InvariantModifierProvider>();
         services.AddSidekickInitializableService<IModifierProvider, ModifierProvider>();
-        services.AddSidekickInitializableService<IPseudoModifierProvider, PseudoModifierProvider>();
+        services.AddSidekickInitializableService<IPseudoParser, PseudoParser>();
         services.AddSidekickInitializableService<IFilterProvider, FilterProvider>();
         services.AddSidekickInitializableService<IHeaderParser, HeaderParser>();
 

@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.Poe.Pseudo
+namespace Sidekick.Apis.Poe.Parser.Pseudo
 {
     public class PseudoModifierDefinition
     (

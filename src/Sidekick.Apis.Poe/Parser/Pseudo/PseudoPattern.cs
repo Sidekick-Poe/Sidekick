@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Sidekick.Apis.Poe.Pseudo;
+namespace Sidekick.Apis.Poe.Parser.Pseudo;
 
 public class PseudoPattern
 (

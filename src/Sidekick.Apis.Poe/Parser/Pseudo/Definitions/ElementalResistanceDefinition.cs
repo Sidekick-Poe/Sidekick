@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Sidekick.Apis.Poe.Pseudo.Definitions;
+namespace Sidekick.Apis.Poe.Parser.Pseudo.Definitions;
 
 public class ElementalResistanceDefinition : PseudoDefinition
 {
