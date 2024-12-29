@@ -128,11 +128,21 @@ public class InvariantModifierProvider
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_InvariantModifiers";
 
-        return await cacheProvider.GetOrSet(cacheKey,
+        var apiCategories = await cacheProvider.GetOrSet(cacheKey,
                                             async () =>
                                             {
                                                 var result = await poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "data/stats");
                                                 return result.Result;
                                             }, (cache) => cache.Any());
+
+        apiCategories.ForEach(category =>
+        {
+            category.Entries.ForEach(entry =>
+            {
+                entry.Text = ModifierProvider.RemoveSquareBrackets(entry.Text);
+            });
+        });
+
+        return apiCategories;
     }
 }

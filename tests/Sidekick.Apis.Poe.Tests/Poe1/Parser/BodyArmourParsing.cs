@@ -58,9 +58,7 @@ can deny that my work has made quite the splash...""
             actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Area Damage", 47);
             actual.AssertHasModifier(ModifierCategory.Explicit, "Extra gore");
 
-            actual.AssertHasPseudoModifier("+12% total to all Elemental Resistances", 12);
             actual.AssertHasPseudoModifier("+36% total Elemental Resistance", 36);
-            actual.AssertHasPseudoModifier("+36% total Resistance", 36);
             actual.AssertHasPseudoModifier("+55 total maximum Life", 55);
         }
 

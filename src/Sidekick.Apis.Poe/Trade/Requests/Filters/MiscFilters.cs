@@ -4,10 +4,10 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
 {
     internal class MiscFilters
     {
-        public SearchFilterValue? Quality { get; set; }
+        public StatFilterValue? Quality { get; set; }
 
         [JsonPropertyName("gem_level")]
-        public SearchFilterValue? GemLevel { get; set; }
+        public StatFilterValue? GemLevel { get; set; }
 
         [JsonPropertyName("gem_alternate_quality")]
         public SearchFilterOption? GemQualityType { get; set; }
@@ -16,12 +16,12 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
         /// The item level filter for Path of Exile 1 is inside the misc filters instead of the type filters.
         /// </remarks>
         [JsonPropertyName("ilvl")]
-        public SearchFilterValue? ItemLevel { get; set; }
+        public StatFilterValue? ItemLevel { get; set; }
 
         public SearchFilterOption? Corrupted { get; set; }
 
         [JsonPropertyName("scourge_tier")]
-        public SearchFilterValue? Scourged { get; set; }
+        public StatFilterValue? Scourged { get; set; }
 
         [JsonPropertyName("elder_item")]
         public SearchFilterOption? ElderItem { get; set; }
