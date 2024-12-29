@@ -6,8 +6,25 @@ namespace Sidekick.Apis.Poe.Parser.Pseudo;
 
 public abstract class PseudoDefinition
 {
+    protected abstract bool Enabled { get; }
+
+    protected abstract string? ModifierId { get; }
+
+    protected abstract List<PseudoPattern> Patterns { get; }
+
+    protected abstract Regex? Exception { get; }
+
+    public string Text => Modifiers.FirstOrDefault()?.Text ?? string.Empty;
+
+    public List<PseudoModifierDefinition> Modifiers { get; set; } = new();
+
     internal void AddModifierIfMatch(ApiModifier entry)
     {
+        if (!Enabled)
+        {
+            return;
+        }
+
         if (Exception != null && Exception.IsMatch(entry.Text))
         {
             return;
@@ -29,19 +46,23 @@ public abstract class PseudoDefinition
 
     internal PseudoModifier? Parse(List<ModifierLine> itemModifierLines)
     {
-        if (!HasPseudoMods(itemModifierLines))
+        if (!Enabled || !HasPseudoMods(itemModifierLines))
         {
             return null;
         }
 
         var result = new PseudoModifier()
         {
+            PseudoModifierId = ModifierId,
             Text = Text,
         };
 
-        foreach (var definitionModifier in Modifiers)
+        if (string.IsNullOrEmpty(ModifierId))
         {
-            result.Modifiers.Add(definitionModifier.Id, definitionModifier.Multiplier);
+            foreach (var definitionModifier in Modifiers)
+            {
+                result.WeightedSumModifiers.Add(definitionModifier.Id, definitionModifier.Multiplier);
+            }
         }
 
         foreach (var itemModifierLine in itemModifierLines)
@@ -76,12 +97,4 @@ public abstract class PseudoDefinition
 
         return false;
     }
-
-    protected abstract List<PseudoPattern> Patterns { get; }
-
-    protected abstract Regex? Exception { get; }
-
-    public string Text => Modifiers.FirstOrDefault()?.Text ?? string.Empty;
-
-    public List<PseudoModifierDefinition> Modifiers { get; set; } = new();
 }

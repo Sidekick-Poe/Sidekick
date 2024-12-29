@@ -107,9 +107,15 @@ public class TradeSearchService
                 };
             }
 
-            SetModifierFilters(query.Stats, modifierFilters);
             SetSocketFilters(item, query.Filters);
-            query.Stats.AddRange(GetPseudoStatFilterGroups(pseudoFilters));
+
+            var andGroup = GetAndStats(modifierFilters, pseudoFilters);
+            if (andGroup != null) query.Stats.Add(andGroup);
+
+            var countGroup = GetCountStats(modifierFilters);
+            if (countGroup != null) query.Stats.Add(countGroup);
+
+            query.Stats.AddRange(GetWeightedSumStats(pseudoFilters));
 
             if (propertyFilters != null)
             {
@@ -501,18 +507,61 @@ public class TradeSearchService
         return hasValue ? filters : null;
     }
 
-    private static void SetModifierFilters(List<StatFilterGroup> stats, List<ModifierFilter>? modifierFilters)
+    private StatFilterGroup? GetAndStats(List<ModifierFilter>? modifierFilters, List<PseudoModifierFilter>? pseudoFilters)
     {
-        if (modifierFilters == null)
-        {
-            return;
-        }
-
         var andGroup = new StatFilterGroup()
         {
             Type = StatType.And,
         };
 
+        if (modifierFilters != null)
+        {
+            foreach (var filter in modifierFilters)
+            {
+                if (filter.Checked != true || filter.Line.Modifiers.Count != 1)
+                {
+                    continue;
+                }
+
+                andGroup.Filters.Add(new StatFilters()
+                {
+                    Id = filter.Line.Modifiers.First().Id,
+                    Value = new SearchFilterValue(filter),
+                });
+            }
+        }
+
+        if (pseudoFilters != null)
+        {
+            foreach (var pseudoFilter in pseudoFilters)
+            {
+                if (pseudoFilter.Checked != true || string.IsNullOrEmpty(pseudoFilter.PseudoModifierId))
+                {
+                    continue;
+                }
+
+                andGroup.Filters.Add(new StatFilters()
+                {
+                    Id = pseudoFilter.PseudoModifierId,
+                    Value = new SearchFilterValue()
+                    {
+                        Min = pseudoFilter.Min,
+                        Max = pseudoFilter.Max,
+                    },
+                });
+            }
+        }
+
+        if (andGroup.Filters.Count == 0)
+        {
+            return null;
+        }
+
+        return andGroup;
+    }
+
+    private StatFilterGroup? GetCountStats(List<ModifierFilter>? modifierFilters)
+    {
         var countGroup = new StatFilterGroup()
         {
             Type = StatType.Count,
@@ -522,66 +571,50 @@ public class TradeSearchService
             },
         };
 
-        foreach (var filter in modifierFilters)
+        if (modifierFilters != null)
         {
-            if (filter.Checked != true)
+            foreach (var filter in modifierFilters)
             {
-                continue;
-            }
-
-            if (filter.Line.Modifiers.Count == 1)
-            {
-                var modifier = filter.Line.Modifiers.FirstOrDefault();
-                if (modifier == null)
+                if (filter.Checked != true || filter.Line.Modifiers.Count <= 1)
                 {
                     continue;
                 }
 
-                andGroup.Filters.Add(new StatFilters()
+                var modifiers = filter.Line.Modifiers;
+                if (filter.ForceFirstCategory)
                 {
-                    Id = modifier.Id,
-                    Value = new SearchFilterValue(filter),
-                });
-                continue;
-            }
-
-            var modifiers = filter.Line.Modifiers;
-            if (filter.ForceFirstCategory)
-            {
-                modifiers = modifiers.Where(x => x.Category == filter.FirstCategory).ToList();
-            }
-            else if (modifiers.Any(x => x.Category == ModifierCategory.Explicit))
-            {
-                modifiers = modifiers.Where(x => x.Category == ModifierCategory.Explicit).ToList();
-            }
-
-            foreach (var modifier in modifiers)
-            {
-                countGroup.Filters.Add(new StatFilters()
+                    modifiers = modifiers.Where(x => x.Category == filter.FirstCategory).ToList();
+                }
+                else if (modifiers.Any(x => x.Category == ModifierCategory.Explicit))
                 {
-                    Id = modifier.Id,
-                    Value = new SearchFilterValue(filter),
-                });
+                    modifiers = modifiers.Where(x => x.Category == ModifierCategory.Explicit).ToList();
+                }
+
+                foreach (var modifier in modifiers)
+                {
+                    countGroup.Filters.Add(new StatFilters()
+                    {
+                        Id = modifier.Id,
+                        Value = new SearchFilterValue(filter),
+                    });
+                }
+
+                if (countGroup.Value != null && modifiers.Any())
+                {
+                    countGroup.Value.Min += 1;
+                }
             }
-
-            if (countGroup.Value != null && modifiers.Any())
-            {
-                countGroup.Value.Min += 1;
-            }
         }
 
-        if (andGroup.Filters.Count > 0)
+        if (countGroup.Filters.Count == 0)
         {
-            stats.Add(andGroup);
+            return null;
         }
 
-        if (countGroup.Filters.Count > 0)
-        {
-            stats.Add(countGroup);
-        }
+        return countGroup;
     }
 
-    private List<StatFilterGroup> GetPseudoStatFilterGroups(List<PseudoModifierFilter>? pseudoFilters)
+    private List<StatFilterGroup> GetWeightedSumStats(List<PseudoModifierFilter>? pseudoFilters)
     {
         if (pseudoFilters == null)
         {
@@ -592,7 +625,7 @@ public class TradeSearchService
 
         foreach (var filter in pseudoFilters)
         {
-            if (filter.Checked != true)
+            if (filter.Checked != true || filter.WeightedSumModifiers.Count == 0)
             {
                 continue;
             }
@@ -600,9 +633,14 @@ public class TradeSearchService
             var group = new StatFilterGroup()
             {
                 Type = StatType.WeightedSum,
+                Value = new SearchFilterValue()
+                {
+                    Min = filter.Min,
+                    Max = filter.Max,
+                },
             };
 
-            foreach (var modifier in filter.Modifiers)
+            foreach (var modifier in filter.WeightedSumModifiers)
             {
                 group.Filters.Add(new StatFilters()
                 {

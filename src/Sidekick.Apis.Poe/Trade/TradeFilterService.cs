@@ -42,7 +42,7 @@ namespace Sidekick.Apis.Poe.Trade
                     Text = modifier.Text,
                     Checked = false,
                     Value = modifier.Value,
-                    Modifiers = modifier.Modifiers,
+                    WeightedSumModifiers = modifier.WeightedSumModifiers,
                 };
             }
         }
