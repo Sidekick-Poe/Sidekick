@@ -24,7 +24,11 @@ using Microsoft.Extensions.FileProviders;
 using System.Reflection;
 using Velopack;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    Args = args,
+    ContentRootPath = AppDomain.CurrentDomain.BaseDirectory,
+});
 
 #region Services
 
@@ -77,12 +81,7 @@ app.Services.GetRequiredService<IInterprocessService>().StartReceiving();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-var wwwRootPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, "wwwroot");
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(wwwRootPath),
-});
-
+app.UseStaticFiles();
 app.UseRouting();
 
 app.MapBlazorHub();
