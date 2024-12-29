@@ -24,9 +24,9 @@ Note: ~price 1 alch
 ");
 
             Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
-            Assert.Equal(Category.Currency, actual.Metadata.Category);
-            Assert.Equal("Ritual Splinter", actual.Metadata.Type);
+            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+            Assert.Equal(Category.Currency, actual.Header.Category);
+            Assert.Equal("Ritual Splinter", actual.Header.ApiType);
         }
 
         [Fact]
@@ -46,9 +46,9 @@ Note: ~price 8 chaos
 ");
 
             Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
-            Assert.Equal(Category.Currency, actual.Metadata.Category);
-            Assert.Equal("Ritual Vessel", actual.Metadata.Type);
+            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+            Assert.Equal(Category.Currency, actual.Header.Category);
+            Assert.Equal("Ritual Vessel", actual.Header.ApiType);
         }
 
         [Fact]
@@ -73,9 +73,9 @@ Note: ~price 3 chaos
 ");
 
             Assert.Equal("corpse", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
-            Assert.Equal(Category.Corpse, actual.Metadata.Category);
-            Assert.Equal("Perfect Needle Horror", actual.Metadata.Type);
+            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+            Assert.Equal(Category.Corpse, actual.Header.Category);
+            Assert.Equal("Perfect Needle Horror", actual.Header.ApiType);
         }
     }
 }

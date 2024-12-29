@@ -16,7 +16,7 @@ namespace Sidekick.Apis.Poe.Trade
         public IEnumerable<ModifierFilter> GetModifierFilters(Item item)
         {
             // No filters for divination cards, etc.
-            if (item.Metadata.Category == Category.DivinationCard || item.Metadata.Category == Category.Gem || item.Metadata.Category == Category.ItemisedMonster || item.Metadata.Category == Category.Leaguestone || item.Metadata.Category == Category.Unknown)
+            if (item.Header.Category == Category.DivinationCard || item.Header.Category == Category.Gem || item.Header.Category == Category.ItemisedMonster || item.Header.Category == Category.Leaguestone || item.Header.Category == Category.Unknown)
             {
                 yield break;
             }
@@ -30,7 +30,7 @@ namespace Sidekick.Apis.Poe.Trade
         public IEnumerable<PseudoModifierFilter> GetPseudoModifierFilters(Item item)
         {
             // No filters for divination cards, etc.
-            if (item.Metadata.Category == Category.DivinationCard || item.Metadata.Category == Category.Gem || item.Metadata.Category == Category.ItemisedMonster || item.Metadata.Category == Category.Leaguestone || item.Metadata.Category == Category.Unknown || item.Metadata.Category == Category.Currency)
+            if (item.Header.Category == Category.DivinationCard || item.Header.Category == Category.Gem || item.Header.Category == Category.ItemisedMonster || item.Header.Category == Category.Leaguestone || item.Header.Category == Category.Unknown || item.Header.Category == Category.Currency)
             {
                 yield break;
             }
@@ -48,7 +48,7 @@ namespace Sidekick.Apis.Poe.Trade
         public async Task<PropertyFilters> GetPropertyFilters(Item item)
         {
             // No filters for currencies and divination cards, etc.
-            if (item.Metadata.Category == Category.DivinationCard || item.Metadata.Category == Category.Currency || item.Metadata.Category == Category.ItemisedMonster || item.Metadata.Category == Category.Leaguestone || item.Metadata.Category == Category.Unknown)
+            if (item.Header.Category == Category.DivinationCard || item.Header.Category == Category.Currency || item.Header.Category == Category.ItemisedMonster || item.Header.Category == Category.Leaguestone || item.Header.Category == Category.Unknown)
             {
                 return new();
             }
@@ -81,9 +81,9 @@ namespace Sidekick.Apis.Poe.Trade
             InitializeNumericFilter(result.Map, PropertyFilterType.Map_AreaLevel, gameLanguageProvider.Language.DescriptionAreaLevel, item.Properties.AreaLevel, @checked: true, null);
 
             // Misc properties
-            InitializeNumericFilter(result.Misc, PropertyFilterType.Misc_Quality, gameLanguageProvider.Language.DescriptionQuality, item.Properties.Quality, @checked: item.Metadata.Rarity == Rarity.Gem, null);
+            InitializeNumericFilter(result.Misc, PropertyFilterType.Misc_Quality, gameLanguageProvider.Language.DescriptionQuality, item.Properties.Quality, @checked: item.Header.Rarity == Rarity.Gem, null);
             InitializeNumericFilter(result.Misc, PropertyFilterType.Misc_GemLevel, gameLanguageProvider.Language.DescriptionLevel, item.Properties.GemLevel, @checked: true, null);
-            InitializeNumericFilter(result.Misc, PropertyFilterType.Misc_ItemLevel, gameLanguageProvider.Language.DescriptionItemLevel, item.Properties.ItemLevel, @checked: item.Properties.ItemLevel >= 80 && item.Properties.MapTier == 0 && item.Metadata.Rarity != Rarity.Unique, null);
+            InitializeNumericFilter(result.Misc, PropertyFilterType.Misc_ItemLevel, gameLanguageProvider.Language.DescriptionItemLevel, item.Properties.ItemLevel, @checked: item.Properties.ItemLevel >= 80 && item.Properties.MapTier == 0 && item.Header.Rarity != Rarity.Unique, null);
             InitializeBooleanFilter(result.Misc, PropertyFilterType.Misc_Corrupted, gameLanguageProvider.Language.DescriptionCorrupted, item.Properties.Corrupted, true);
 
             // Influence properties

@@ -2,7 +2,7 @@
 
 @if (PriceCheckService.PseudoFilters.Any())
 {
-    <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown"/>
+    <ItemSeparator Rarity="PriceCheckService.Item?.Header.Rarity ?? Rarity.Unknown"/>
 }
 
 @foreach (var filter in PriceCheckService.PseudoFilters)

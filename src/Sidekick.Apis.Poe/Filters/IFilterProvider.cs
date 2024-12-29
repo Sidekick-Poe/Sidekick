@@ -1,5 +1,4 @@
 using Sidekick.Apis.Poe.Filters.Models;
-using Sidekick.Apis.Poe.Metadata.Models;
 using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Filters;

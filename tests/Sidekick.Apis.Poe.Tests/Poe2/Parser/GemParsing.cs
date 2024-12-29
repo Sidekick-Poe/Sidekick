@@ -24,9 +24,9 @@ Creates a Persistent Buff Skill Gem or Level an existing gem to Level 14
 Right Click to engrave a Persistent Buff Skill Gem.
 ");
 
-        Assert.Equal(Category.Gem, actual.Metadata.Category);
-        Assert.Equal("Uncut Spirit Gem", actual.Metadata.Type);
-        Assert.Null(actual.Metadata.Name);
+        Assert.Equal(Category.Gem, actual.Header.Category);
+        Assert.Equal("Uncut Spirit Gem", actual.Header.ApiType);
+        Assert.Null(actual.Header.ApiName);
         Assert.Equal(14, actual.Properties.GemLevel);
     }
 
@@ -46,9 +46,9 @@ Creates a Support Gem up to level 3
 Right Click to engrave a Support Gem.
 ");
 
-        Assert.Equal(Category.Gem, actual.Metadata.Category);
-        Assert.Equal("Uncut Support Gem", actual.Metadata.Type);
-        Assert.Null(actual.Metadata.Name);
+        Assert.Equal(Category.Gem, actual.Header.Category);
+        Assert.Equal("Uncut Support Gem", actual.Header.ApiType);
+        Assert.Null(actual.Header.ApiName);
         Assert.Equal(3, actual.Properties.GemLevel);
     }
 }

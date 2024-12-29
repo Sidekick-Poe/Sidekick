@@ -10,7 +10,7 @@ namespace Sidekick.Apis.Poe.Parser.AdditionalInformation
         {
             information = null;
 
-            if (item.Metadata.Category != Category.Jewel || item.Metadata.Rarity == Rarity.Unique)
+            if (item.Header.Category != Category.Jewel || item.Header.Rarity == Rarity.Unique)
             {
                 return false;
             }

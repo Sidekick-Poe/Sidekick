@@ -54,9 +54,9 @@ Corrupted
 Note: ~price 2 chaos
 ");
 
-            Assert.Equal(Category.Gem, actual.Metadata.Category);
-            Assert.Equal(Rarity.Gem, actual.Metadata.Rarity);
-            Assert.Equal("Vaal Double Strike", actual.Metadata.Type);
+            Assert.Equal(Category.Gem, actual.Header.Category);
+            Assert.Equal(Rarity.Gem, actual.Header.Rarity);
+            Assert.Equal("Vaal Double Strike", actual.Header.ApiType);
             Assert.Equal(1, actual.Properties.GemLevel);
             Assert.Equal(0, actual.Properties.Quality);
             Assert.False(actual.Properties.AlternateQuality);
@@ -98,9 +98,9 @@ Experience: 1/15249
 Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
 ");
 
-            Assert.Equal(Category.Gem, actual.Metadata.Category);
-            Assert.Equal(Rarity.Gem, actual.Metadata.Rarity);
-            Assert.Equal("Static Strike", actual.Metadata.Type);
+            Assert.Equal(Category.Gem, actual.Header.Category);
+            Assert.Equal(Rarity.Gem, actual.Header.Rarity);
+            Assert.Equal("Static Strike", actual.Header.ApiType);
             Assert.Equal(1, actual.Properties.GemLevel);
             Assert.Equal(17, actual.Properties.Quality);
             Assert.True(actual.Properties.AlternateQuality);
@@ -136,9 +136,9 @@ This is a Support Gem. It does not grant a bonus to your character, but to skill
 ");
 
             Assert.Equal("gem.supportgem", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Gem, actual.Metadata.Rarity);
-            Assert.Equal(Category.Gem, actual.Metadata.Category);
-            Assert.Equal("Arcane Surge Support", actual.Metadata.Type);
+            Assert.Equal(Rarity.Gem, actual.Header.Rarity);
+            Assert.Equal(Category.Gem, actual.Header.Category);
+            Assert.Equal("Arcane Surge Support", actual.Header.ApiType);
         }
 
         [Fact]
@@ -174,9 +174,9 @@ Place into an item socket of the right colour to gain this skill. Right click to
 ");
 
             Assert.Equal("gem.activegem", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Gem, actual.Metadata.Rarity);
-            Assert.Equal(Category.Gem, actual.Metadata.Category);
-            Assert.Equal("Void Sphere", actual.Metadata.Type);
+            Assert.Equal(Rarity.Gem, actual.Header.Rarity);
+            Assert.Equal(Category.Gem, actual.Header.Category);
+            Assert.Equal("Void Sphere", actual.Header.ApiType);
         }
 
         [Fact]
@@ -214,9 +214,9 @@ Transfigured
 ");
 
             Assert.Equal("gem.activegem", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Gem, actual.Metadata.Rarity);
-            Assert.Equal(Category.Gem, actual.Metadata.Category);
-            Assert.Equal("Kinetic Blast of Clustering", actual.Metadata.Type);
+            Assert.Equal(Rarity.Gem, actual.Header.Rarity);
+            Assert.Equal(Category.Gem, actual.Header.Category);
+            Assert.Equal("Kinetic Blast of Clustering", actual.Header.ApiType);
         }
     }
 }

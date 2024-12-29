@@ -4,6 +4,8 @@ using FuzzySharp.SimilarityRatio;
 using FuzzySharp.SimilarityRatio.Scorer.StrategySensitive;
 using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Fuzzy;
+using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Items.Models;
 using Sidekick.Apis.Poe.Parser.Headers.Models;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Common.Extensions;
@@ -19,14 +21,23 @@ public class HeaderParser
     IGameLanguageProvider gameLanguageProvider,
     IFuzzyService fuzzyService,
     IFilterProvider filterProvider,
-    ISettingsService settingsService
+    ISettingsService settingsService,
+    IApiItemProvider apiItemProvider
 ) : IHeaderParser
 {
-    public int Priority => 100;
+    public int Priority => 200;
+
+    private Regex Affixes { get; set; } = null!;
+
+    private Regex SuperiorAffix { get; set; } = null!;
 
     private List<ItemCategory> ItemCategories { get; set; } = [];
 
     private Dictionary<Rarity, Regex> RarityPatterns { get; set; } = [];
+
+    private string GetLineWithoutAffixes(string line) => Affixes.Replace(line, string.Empty).Trim(' ', ',');
+
+    private string GetLineWithoutSuperiorAffix(string line) => SuperiorAffix.Replace(line, string.Empty).Trim(' ', ',');
 
     public async Task Initialize()
     {
@@ -35,6 +46,21 @@ public class HeaderParser
 
         InitializeItemCategories(game);
         InitializeRarityPatterns();
+
+        Regex GetRegexLine(string input)
+        {
+            if (input.StartsWith('/'))
+            {
+                input = input.Trim('/');
+                return new Regex($"^{input} | {input}$");
+            }
+
+            input = Regex.Escape(input);
+            return new Regex($"^{input} | {input}$");
+        }
+
+        Affixes = new Regex("(?:" + GetRegexLine(gameLanguageProvider.Language.AffixSuperior) + "|" + GetRegexLine(gameLanguageProvider.Language.AffixBlighted) + "|" + GetRegexLine(gameLanguageProvider.Language.AffixBlightRavaged) + "|" + GetRegexLine(gameLanguageProvider.Language.AffixAnomalous) + "|" + GetRegexLine(gameLanguageProvider.Language.AffixDivergent) + "|" + GetRegexLine(gameLanguageProvider.Language.AffixPhantasmal) + ")");
+        SuperiorAffix = new Regex("(?:" + GetRegexLine(gameLanguageProvider.Language.AffixSuperior) + ")");
     }
 
     private void InitializeItemCategories(GameType game)
@@ -87,21 +113,25 @@ public class HeaderParser
             "armour.quiver" => BuildRegex(gameLanguageProvider.Language.Classes.Quivers),
             "armour.shield" => BuildRegex(gameLanguageProvider.Language.Classes.Shields),
             "armour.focus" => BuildRegex(gameLanguageProvider.Language.Classes.Focus),
+
             // "armour.buckler" => BuildRegex(gameLanguageProvider.Language.Classes.Bucklers),
 
             "card" => BuildRegex(gameLanguageProvider.Language.Classes.DivinationCard),
 
             "currency.resonator" => BuildRegex(gameLanguageProvider.Language.Classes.DelveStackableSocketableCurrency),
+
             // "currency.piece" => BuildRegex(gameLanguageProvider.Language.Classes.UniqueFragment),
             // "currency.fossil" => BuildRegex(gameLanguageProvider.Language.Classes.Fossil),
             // "currency.incubator" => BuildRegex(gameLanguageProvider.Language.Classes.Incubator),
             "currency.heistobjective" => BuildRegex(gameLanguageProvider.Language.Classes.HeistTarget),
             "currency.omen" => BuildRegex(gameLanguageProvider.Language.Classes.Omen),
+
             // "currency.tattoo" => BuildRegex(gameLanguageProvider.Language.Classes.Tattoo),
             "currency.socketable" => BuildRegex(gameLanguageProvider.Language.Classes.Socketable),
 
             "gem.activegem" => BuildRegex(gameLanguageProvider.Language.Classes.ActiveSkillGems),
             "gem.supportgem" => BuildRegex(gameLanguageProvider.Language.Classes.SupportSkillGems),
+
             // "gem.supportgemplus" => BuildRegex(gameLanguageProvider.Language.Classes.AwakenedSupportSkillGems),
 
             "heistmission.blueprint" => BuildRegex(gameLanguageProvider.Language.Classes.Blueprint),
@@ -113,6 +143,7 @@ public class HeaderParser
 
             "jewel" => BuildRegex(gameLanguageProvider.Language.Classes.Jewel),
             "jewel.abyss" => BuildRegex(gameLanguageProvider.Language.Classes.AbyssJewel),
+
             // "jewel.cluster" => BuildRegex(gameLanguageProvider.Language.Classes.ClusterJewel),
 
             "logbook" => BuildRegex(gameLanguageProvider.Language.Classes.Logbooks),
@@ -139,6 +170,7 @@ public class HeaderParser
             "weapon.onesword" => BuildRegex(gameLanguageProvider.Language.Classes.OneHandSwords),
             "weapon.sceptre" => BuildRegex(gameLanguageProvider.Language.Classes.Sceptres),
             "weapon.staff" => BuildRegex(gameLanguageProvider.Language.Classes.Staves),
+
             // "weapon.spear" => BuildRegex(gameLanguageProvider.Language.Classes.Spears),
             // "weapon.flail" => BuildRegex(gameLanguageProvider.Language.Classes.Flails),
             // "weapon.rapier" => BuildRegex(gameLanguageProvider.Language.Classes.Rapiers),
@@ -189,11 +221,32 @@ public class HeaderParser
             name = parsingItem.Blocks[0].Lines[^2].Text;
         }
 
+        var rarity = ParseRarity(parsingItem);
+
+        // Rares may have conflicting names, so we don't want to search any unique items that may have that name. Like "Ancient Orb" which can be used by abyss jewels.
+        if (rarity is Rarity.Rare or Rarity.Magic)
+        {
+            name = null;
+        }
+
+        name = name != null ? GetLineWithoutSuperiorAffix(name) : null;
+        type = type != null ? GetLineWithoutSuperiorAffix(type) : null;
+        var apiItem = ParseApiItem(name, type);
+
+        parsingItem.Blocks[0].Parsed = true;
+
         return new Header()
         {
             Name = name,
             Type = type,
-            ItemCategory = apiItemCategoryId
+            ItemCategory = apiItemCategoryId,
+            Rarity = rarity,
+            ApiType = apiItem?.Type,
+            Category = apiItem?.Category ?? Category.Unknown,
+            Game = apiItem?.Game ?? GameType.PathOfExile,
+            ApiItemId = apiItem?.Id,
+            ApiName = apiItem?.Name,
+            ApiTypeDiscriminator = apiItem?.Discriminator,
         };
     }
 
@@ -236,7 +289,64 @@ public class HeaderParser
         return apiItemCategoryId;
     }
 
-    public Rarity ParseRarity(ParsingItem parsingItem)
+    private ApiItem? ParseApiItem(string? name, string? type)
+    {
+        // We can find multiple matches while parsing. This will store all of them. We will figure out which result is correct at the end of this method.
+        var results = new List<ApiItem>();
+
+        // There are some items which have prefixes which we don't want to remove, like the "Blighted Delirium Orb".
+        if (!string.IsNullOrEmpty(name) && apiItemProvider.NameAndTypeDictionary.TryGetValue(name, out var itemData))
+        {
+            results.AddRange(itemData);
+        }
+
+        // Here we check without any prefixes
+        else if (!string.IsNullOrEmpty(name) && apiItemProvider.NameAndTypeDictionary.TryGetValue(GetLineWithoutAffixes(name), out itemData))
+        {
+            results.AddRange(itemData);
+        }
+
+        // Now we check the type
+        else if (!string.IsNullOrEmpty(type) && apiItemProvider.NameAndTypeDictionary.TryGetValue(type, out itemData))
+        {
+            results.AddRange(itemData);
+        }
+
+        // Finally. if we don't have any matches, we will look into our regex dictionary
+        else
+        {
+            if (!string.IsNullOrEmpty(name))
+            {
+                results.AddRange(apiItemProvider.NameAndTypeRegex.Where(pattern => pattern.Regex.IsMatch(name)).Select(x => x.Item));
+            }
+
+            if (!string.IsNullOrEmpty(type))
+            {
+                results.AddRange(apiItemProvider.NameAndTypeRegex.Where(pattern => pattern.Regex.IsMatch(type)).Select(x => x.Item));
+            }
+        }
+
+        var orderedResults = results.OrderByDescending(x => x.Type?.Length ?? x.Name?.Length ?? 0).ToList();
+
+        if (orderedResults.Any(x => x.Type == type))
+        {
+            return orderedResults.FirstOrDefault(x => x.Type == type);
+        }
+
+        if (orderedResults.Any(x => x.Type == type))
+        {
+            return orderedResults.FirstOrDefault(x => x.Type == type);
+        }
+
+        if (orderedResults.Any(x => x.IsUnique))
+        {
+            return orderedResults.FirstOrDefault(x => x.IsUnique);
+        }
+
+        return orderedResults.FirstOrDefault();
+    }
+
+    private Rarity ParseRarity(ParsingItem parsingItem)
     {
         foreach (var pattern in RarityPatterns)
         {

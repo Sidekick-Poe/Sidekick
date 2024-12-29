@@ -31,7 +31,7 @@ namespace Sidekick.Apis.PoePriceInfo
 
         public async Task<PricePrediction?> GetPricePrediction(Item item)
         {
-            if (item.Metadata.Rarity != Rarity.Rare)
+            if (item.Header.Rarity != Rarity.Rare)
             {
                 return null;
             }

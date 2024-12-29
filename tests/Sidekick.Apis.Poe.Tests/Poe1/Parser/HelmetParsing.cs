@@ -36,9 +36,9 @@ You have Shocking Conflux for 3 seconds every 8 seconds
 Hunter Item
 ");
 
-            Assert.Equal(Category.Armour, actual.Metadata.Category);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal("Hunter Hood", actual.Metadata.Type);
+            Assert.Equal(Category.Armour, actual.Header.Category);
+            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+            Assert.Equal("Hunter Hood", actual.Header.ApiType);
 
             actual.AssertHasModifier(ModifierCategory.Explicit, "You have Shocking Conflux for 3 seconds every 8 seconds");
         }
@@ -75,10 +75,10 @@ but merely a long sleep made eternal.
 Note: ~price 1 chaos
 ");
 
-            Assert.Equal(Category.Armour, actual.Metadata.Category);
-            Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
-            Assert.Equal("Starkonja's Head", actual.Metadata.Name);
-            Assert.Equal("Silken Hood", actual.Metadata.Type);
+            Assert.Equal(Category.Armour, actual.Header.Category);
+            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+            Assert.Equal("Starkonja's Head", actual.Header.ApiName);
+            Assert.Equal("Silken Hood", actual.Header.ApiType);
 
             Assert.True(actual.Properties.Identified);
             Assert.Equal(63, actual.Properties.ItemLevel);

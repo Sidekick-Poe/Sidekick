@@ -30,9 +30,9 @@ Note: ~price 1 chaos
 ");
 
             Assert.Equal("map.fragment", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
-            Assert.Equal(Category.Map, actual.Metadata.Category);
-            Assert.Equal("Divine Vessel", actual.Metadata.Type);
+            Assert.Equal(Rarity.Normal, actual.Header.Rarity);
+            Assert.Equal(Category.Map, actual.Header.Category);
+            Assert.Equal("Divine Vessel", actual.Header.ApiType);
         }
     }
 }

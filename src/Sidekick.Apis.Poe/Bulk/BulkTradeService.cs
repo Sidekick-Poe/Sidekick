@@ -27,7 +27,7 @@ namespace Sidekick.Apis.Poe.Bulk
 
         public bool SupportsBulkTrade(Item? item)
         {
-            return item?.Metadata.Rarity == Rarity.Currency && itemStaticDataProvider.GetId(item.Metadata) != null;
+            return item?.Header.Rarity == Rarity.Currency && itemStaticDataProvider.GetId(item.Header) != null;
         }
 
         public async Task<BulkResponseModel> SearchBulk(Item item)
@@ -35,15 +35,15 @@ namespace Sidekick.Apis.Poe.Bulk
             logger.LogInformation("[Trade API] Querying Exchange API.");
 
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var uri = $"{await GetBaseApiUrl(item.Metadata.Game)}exchange/{leagueId.GetUrlSlugForLeague()}";
+            var uri = $"{await GetBaseApiUrl(item.Header.Game)}exchange/{leagueId.GetUrlSlugForLeague()}";
 
-            var itemId = itemStaticDataProvider.GetId(item.Metadata);
+            var itemId = itemStaticDataProvider.GetId(item.Header);
             if (itemId == null)
             {
                 throw new ApiErrorException { AdditionalInformation = ["Sidekick could not find a valid item."], };
             }
 
-            var currency = item.Metadata.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckBulkCurrency) : await settingsService.GetString(SettingKeys.PriceCheckBulkCurrencyPoE2);
+            var currency = item.Header.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckBulkCurrency) : await settingsService.GetString(SettingKeys.PriceCheckBulkCurrencyPoE2);
             currency = filterProvider.GetPriceOption(currency);
             var minStock = await settingsService.GetInt(SettingKeys.PriceCheckBulkMinimumStock);
 
@@ -53,7 +53,7 @@ namespace Sidekick.Apis.Poe.Bulk
 
             if (currency == null || currency == "chaos_divine")
             {
-                if (item.Metadata.Game == GameType.PathOfExile)
+                if (item.Header.Game == GameType.PathOfExile)
                 {
                     model.Query.Have.Add(model.Query.Want.Any(x => x == "chaos") ? "divine" : "chaos");
                 }
@@ -95,7 +95,7 @@ namespace Sidekick.Apis.Poe.Bulk
 
         public async Task<Uri> GetTradeUri(Item item, string queryId)
         {
-            var baseUri = new Uri(await GetBaseUrl(item.Metadata.Game) + "exchange/");
+            var baseUri = new Uri(await GetBaseUrl(item.Header.Game) + "exchange/");
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             return new Uri(baseUri, $"{leagueId.GetUrlSlugForLeague()}/{queryId}");
         }

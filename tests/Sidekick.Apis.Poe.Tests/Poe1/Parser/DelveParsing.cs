@@ -28,9 +28,9 @@ Note: ~price 1 chaos
 ");
 
             Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Category.Currency, actual.Metadata.Category);
-            Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
-            Assert.Equal("Potent Chaotic Resonator", actual.Metadata.Type);
+            Assert.Equal(Category.Currency, actual.Header.Category);
+            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+            Assert.Equal("Potent Chaotic Resonator", actual.Header.ApiType);
         }
 
         [Fact]
@@ -53,9 +53,9 @@ Note: ~price 4 chaos
 ");
 
             Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
-            Assert.Equal(Category.Currency, actual.Metadata.Category);
-            Assert.Equal("Powerful Chaotic Resonator", actual.Metadata.Type);
+            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+            Assert.Equal(Category.Currency, actual.Header.Category);
+            Assert.Equal("Powerful Chaotic Resonator", actual.Header.ApiType);
         }
 
         [Fact]
@@ -74,9 +74,9 @@ Place in a Resonator to influence item crafting.
 ");
 
             Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
-            Assert.Equal(Category.Currency, actual.Metadata.Category);
-            Assert.Equal("Opulent Fossil", actual.Metadata.Type);
+            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+            Assert.Equal(Category.Currency, actual.Header.Category);
+            Assert.Equal("Opulent Fossil", actual.Header.ApiType);
         }
     }
 }

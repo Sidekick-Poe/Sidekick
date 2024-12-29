@@ -98,7 +98,7 @@ public class PropertyParser
 
     public Common.Game.Items.Properties Parse(ParsingItem parsingItem, List<ModifierLine> modifierLines)
     {
-        return parsingItem.Metadata?.Category switch
+        return parsingItem.Header?.Category switch
         {
             Category.Gem => ParseGemProperties(parsingItem),
             Category.Map or Category.Contract => ParseMapProperties(parsingItem),
