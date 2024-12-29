@@ -14,6 +14,16 @@ public abstract class PseudoDefinition
 
     protected abstract List<PseudoPattern> Patterns { get; }
 
+    /// <summary>
+    /// Represents a regular expression pattern used to exclude certain modifier texts
+    /// during the processing of pseudo-modifier definitions in the Path of Exile API.
+    /// </summary>
+    /// <remarks>
+    /// This property defines a regular expression that matches modifier texts
+    /// which should be excluded from further processing. Each derived class provides
+    /// a specific implementation of this property. It is utilized within the
+    /// initialization and parsing processes to filter out unwanted modifier entries.
+    /// </remarks>
     protected abstract Regex? Exception { get; }
 
     private string? Text { get; set; }
