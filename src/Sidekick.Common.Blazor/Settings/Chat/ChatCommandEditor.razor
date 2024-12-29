@@ -6,53 +6,46 @@
     <div class="border border-solid dark:border-stone-800 p-3 mb-3">
         <div class="grid grid-cols-12 gap-2">
             <div class="col-span-6">
-                <FormInput Label="@Resources["Command"]"
-                           Value="@chatSetting.Command"
-                           ValueChanged="(v) => CommandChanged(chatSetting, v)" />
+                <FormInput Label="@Resources["Chat_Command"]" Value="@chatSetting.Command"
+                    ValueChanged="(v) => CommandChanged(chatSetting, v)" />
             </div>
             <div class="col-span-6">
-                <KeybindEditor Value="@chatSetting.Key"
-                               ValueChanged="(v) => KeyChanged(chatSetting, v)"
-                               Label="@Resources["Keybind"]" />
+                <KeybindEditor Value="@chatSetting.Key" ValueChanged="(v) => KeyChanged(chatSetting, v)"
+                    Label="@Resources["Keybind"]" />
             </div>
         </div>
 
         <div class="flex items-center justify-between">
-            <FormCheckbox Value="chatSetting.Submit"
-                          ValueChanged="() => ToggleSubmit(chatSetting)">
-                @Resources["Submit the command"]
+            <FormCheckbox Value="chatSetting.Submit" ValueChanged="() => ToggleSubmit(chatSetting)">
+                @Resources["Chat_Submit_The_Command"]
             </FormCheckbox>
             <ButtonPrimary OnClick="() => Remove(chatSetting)">
-                @Resources["Delete Command"]
+                @Resources["Chat_Commands_Remove"]
             </ButtonPrimary>
         </div>
     </div>
 }
 
-<div class="flex justify-between mb-3">
-    <ButtonSecondary OnClick="RestoreDefaults">
-        @Resources["Restore Defaults"]
-    </ButtonSecondary>
-    <ButtonPrimary OnClick="Add">
-        @Resources["Add a New Command"]
-    </ButtonPrimary>
-</div>
+<Fieldset>
+    <div class="flex justify-between">
+        <ButtonSecondary OnClick="RestoreDefaults">
+            @Resources["Chat_Restore_Defaults"]
+        </ButtonSecondary>
+        <ButtonPrimary OnClick="Add">
+            @Resources["Chat_Add_New_Command"]
+        </ButtonPrimary>
+    </div>
+</Fieldset>
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 
 @code {
 
-    private List<ChatSetting> ChatSettings { get; set; } =
-    [
-    ];
-
+    private List<ChatSetting> ChatSettings { get; set; } = [];
     protected override async Task OnInitializedAsync()
     {
-        ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands)
-                       ??
-                       [
-                       ];
+        ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands) ?? [];
         await base.OnInitializedAsync();
     }
 
@@ -68,17 +61,13 @@
         await Save();
     }
 
-    private async Task KeyChanged(
-        ChatSetting chatSetting,
-        string? key)
+    private async Task KeyChanged(ChatSetting chatSetting, string? key)
     {
         chatSetting.Key = key;
         await Save();
     }
 
-    private async Task CommandChanged(
-        ChatSetting chatSetting,
-        string? command)
+    private async Task CommandChanged(ChatSetting chatSetting, string? command)
     {
         chatSetting.Command = command;
         await Save();
@@ -92,10 +81,7 @@
 
     private async Task RestoreDefaults()
     {
-        ChatSettings =
-        [
-            ..DefaultSettings.ChatCommands,
-    ];
+        ChatSettings = [.. DefaultSettings.ChatCommands];
         await Save();
     }
 

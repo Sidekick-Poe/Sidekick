@@ -123,7 +123,7 @@
   <data name="Character_League" xml:space="preserve">
     <value>리그</value>
   </data>
-  <data name="Chat_Add" xml:space="preserve">
+  <data name="Chat_Add_New_Command" xml:space="preserve">
     <value>새로운 명령어 추가</value>
   </data>
   <data name="Chat_Commands" xml:space="preserve">
@@ -133,13 +133,10 @@
     <value>자주 사용되는 명령어</value>
   </data>
   <data name="Chat_Commands_Exit" xml:space="preserve">
-    <value>/exit - 캐릭터 선택창으로 이동</value>
+    <value>캐릭터 선택창으로 이동</value>
   </data>
   <data name="Chat_Commands_Hideout" xml:space="preserve">
-    <value>/hideout - 플레이어의 은신처로 이동</value>
-  </data>
-  <data name="Chat_Custom" xml:space="preserve">
-    <value>사용자 지정 명령어</value>
+    <value>플레이어의 은신처로 이동</value>
   </data>
   <data name="Chat_Exit" xml:space="preserve">
     <value>캐릭터 선택창으로 이동</value>
@@ -153,17 +150,11 @@
   <data name="Chat_Kick" xml:space="preserve">
     <value>파티 탈퇴</value>
   </data>
-  <data name="Chat_Submit" xml:space="preserve">
+  <data name="Chat_Submit_The_Command" xml:space="preserve">
     <value>명령어 제출</value>
   </data>
-  <data name="Chat_Whisper" xml:space="preserve">
-    <value>귓속말</value>
-  </data>
-  <data name="Chat_Wildcard" xml:space="preserve">
-    <value>특수 명령어</value>
-  </data>
   <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
-    <value>@last - 마지막에 귓말을 받은 사람에게 답장할 수 있는 명령어입니다</value>
+    <value>마지막에 귓말을 받은 사람에게 답장할 수 있는 명령어입니다</value>
   </data>
   <data name="General_Settings" xml:space="preserve">
     <value>일반 세팅</value>
@@ -262,7 +253,7 @@
     <value>Wealth Tracker</value>
   </data>
   <data name="Chat_Commands_Leave" xml:space="preserve">
-    <value>/leave - 현재 파티 탈퇴.</value>
+    <value>현재 파티 탈퇴</value>
   </data>
   <data name="Chat_Commands_Remove" xml:space="preserve">
     <value>명령어 삭제</value>
