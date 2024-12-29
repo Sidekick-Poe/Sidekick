@@ -10,6 +10,6 @@ internal enum StatType
     [EnumValue("count")]
     Count,
 
-    [EnumValue("weight")]
+    [EnumValue("weight2")]
     WeightedSum,
 }

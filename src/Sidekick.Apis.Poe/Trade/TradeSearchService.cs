@@ -508,29 +508,19 @@ public class TradeSearchService
             return;
         }
 
-        var andGroup = stats.FirstOrDefault(x => x.Type == StatType.And);
-        if (andGroup == null)
+        var andGroup = new StatFilterGroup()
         {
-            andGroup = new StatFilterGroup()
-            {
-                Type = StatType.And,
-            };
-            stats.Add(andGroup);
-        }
+            Type = StatType.And,
+        };
 
-        var countGroup = stats.FirstOrDefault(x => x.Type == StatType.Count);
-        if (countGroup == null)
+        var countGroup = new StatFilterGroup()
         {
-            countGroup = new StatFilterGroup()
+            Type = StatType.Count,
+            Value = new SearchFilterValue()
             {
-                Type = StatType.Count,
-                Value = new SearchFilterValue()
-                {
-                    Min = 0,
-                },
-            };
-            stats.Add(countGroup);
-        }
+                Min = 0,
+            },
+        };
 
         foreach (var filter in modifierFilters)
         {
@@ -578,6 +568,16 @@ public class TradeSearchService
             {
                 countGroup.Value.Min += 1;
             }
+        }
+
+        if (andGroup.Filters.Count > 0)
+        {
+            stats.Add(andGroup);
+        }
+
+        if (countGroup.Filters.Count > 0)
+        {
+            stats.Add(countGroup);
         }
     }
 

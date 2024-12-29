@@ -29,24 +29,7 @@ public abstract class PseudoDefinition
 
     internal PseudoModifier? Parse(List<ModifierLine> itemModifierLines)
     {
-        var hasPseudo = false;
-        foreach (var definitionModifier in Modifiers)
-        {
-            foreach (var itemModifierLine in itemModifierLines)
-            {
-                foreach (var modifier in itemModifierLine.Modifiers)
-                {
-                    hasPseudo = hasPseudo || modifier.Id == definitionModifier.Id;
-                    if (hasPseudo) break;
-                }
-
-                if (hasPseudo) break;
-            }
-
-            if (hasPseudo) break;
-        }
-
-        if (!hasPseudo)
+        if (!HasPseudoMods(itemModifierLines))
         {
             return null;
         }
@@ -76,6 +59,22 @@ public abstract class PseudoDefinition
         }
 
         return result;
+    }
+
+    private bool HasPseudoMods(List<ModifierLine> itemModifierLines)
+    {
+        foreach (var definitionModifier in Modifiers)
+        {
+            foreach (var itemModifierLine in itemModifierLines)
+            {
+                foreach (var modifier in itemModifierLine.Modifiers)
+                {
+                    if (modifier.Id == definitionModifier.Id) return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     protected abstract List<PseudoPattern> Patterns { get; }
