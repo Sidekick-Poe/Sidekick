@@ -9,4 +9,7 @@ internal enum StatType
 
     [EnumValue("count")]
     Count,
+
+    [EnumValue("weight")]
+    WeightedSum,
 }

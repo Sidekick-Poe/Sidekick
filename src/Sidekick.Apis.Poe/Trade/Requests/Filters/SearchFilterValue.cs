@@ -2,7 +2,7 @@ using Sidekick.Apis.Poe.Trade.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
 
-internal class SearchFilterValue
+internal class SearchFilterValue : IStatFilter
 {
     internal SearchFilterValue()
     {
@@ -23,12 +23,6 @@ internal class SearchFilterValue
     public SearchFilterValue(ModifierFilter filter)
     {
         Option = filter.Line.OptionValue;
-        Min = filter.Min;
-        Max = filter.Max;
-    }
-
-    public SearchFilterValue(PseudoModifierFilter filter)
-    {
         Min = filter.Min;
         Max = filter.Max;
     }

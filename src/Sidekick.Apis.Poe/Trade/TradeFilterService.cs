@@ -37,7 +37,13 @@ namespace Sidekick.Apis.Poe.Trade
 
             foreach (var modifier in item.PseudoModifiers)
             {
-                yield return new PseudoModifierFilter(modifier);
+                yield return new PseudoModifierFilter()
+                {
+                    Text = modifier.Text,
+                    Checked = false,
+                    Value = modifier.Value,
+                    Modifiers = modifier.Modifiers,
+                };
             }
         }
 

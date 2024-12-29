@@ -108,8 +108,8 @@ public class TradeSearchService
             }
 
             SetModifierFilters(query.Stats, modifierFilters);
-            SetPseudoModifierFilters(query.Stats, pseudoFilters);
             SetSocketFilters(item, query.Filters);
+            query.Stats.AddRange(GetPseudoStatFilterGroups(pseudoFilters));
 
             if (propertyFilters != null)
             {
@@ -581,22 +581,14 @@ public class TradeSearchService
         }
     }
 
-    private static void SetPseudoModifierFilters(List<StatFilterGroup> stats, List<PseudoModifierFilter>? pseudoFilters)
+    private List<StatFilterGroup> GetPseudoStatFilterGroups(List<PseudoModifierFilter>? pseudoFilters)
     {
         if (pseudoFilters == null)
         {
-            return;
+            return [];
         }
 
-        var andGroup = stats.FirstOrDefault(x => x.Type == StatType.And);
-        if (andGroup == null)
-        {
-            andGroup = new StatFilterGroup()
-            {
-                Type = StatType.And,
-            };
-            stats.Add(andGroup);
-        }
+        var stats = new List<StatFilterGroup>();
 
         foreach (var filter in pseudoFilters)
         {
@@ -605,12 +597,30 @@ public class TradeSearchService
                 continue;
             }
 
-            andGroup.Filters.Add(new StatFilters()
+            var group = new StatFilterGroup()
             {
-                Id = filter.Modifier.Id,
-                Value = new SearchFilterValue(filter),
-            });
+                Type = StatType.WeightedSum,
+            };
+
+            foreach (var modifier in filter.Modifiers)
+            {
+                group.Filters.Add(new StatFilters()
+                {
+                    Id = modifier.Key,
+                    Value = new WeightedStatFilter()
+                    {
+                        Weight = modifier.Value,
+                    },
+                });
+            }
+
+            if (group.Filters.Count > 0)
+            {
+                stats.Add(group);
+            }
         }
+
+        return stats;
     }
 
     private static void SetSocketFilters(Item item, SearchFilters filters)
@@ -640,13 +650,7 @@ public class TradeSearchService
         {
             logger.LogInformation($"[Trade API] Fetching Trade API Listings from Query {queryId}.");
 
-            var pseudo = string.Empty;
-            if (pseudoFilters?.Count > 0)
-            {
-                pseudo = string.Join("", pseudoFilters.Select(x => $"&pseudos[]={x.Modifier.Id}"));
-            }
-
-            var response = await poeTradeClient.HttpClient.GetAsync(await GetBaseApiUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId + pseudo);
+            var response = await poeTradeClient.HttpClient.GetAsync(await GetBaseApiUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId);
             if (!response.IsSuccessStatusCode)
             {
                 return new();
@@ -749,8 +753,6 @@ public class TradeSearchService
         item.ModifierLines.AddRange(ParseModifierLines(result.Item?.FracturedMods, result.Item?.Extended?.Mods?.Fractured, ParseHash(result.Item?.Extended?.Hashes?.Fractured)));
 
         item.ModifierLines.AddRange(ParseModifierLines(result.Item?.ScourgeMods, result.Item?.Extended?.Mods?.Scourge, ParseHash(result.Item?.Extended?.Hashes?.Scourge)));
-
-        item.PseudoModifiers.AddRange(ParsePseudoModifiers(result.Item?.PseudoMods, result.Item?.Extended?.Mods?.Pseudo, ParseHash(result.Item?.Extended?.Hashes?.Pseudo)));
 
         item.ModifierLines = item.ModifierLines.OrderBy(x => item.Text.IndexOf(x.Text, StringComparison.InvariantCultureIgnoreCase)).ToList();
 
@@ -894,34 +896,6 @@ public class TradeSearchService
                         TierName = mod?.Name,
                     },
                 ],
-            };
-        }
-    }
-
-    private IEnumerable<PseudoModifier> ParsePseudoModifiers(List<string>? texts, List<Mod>? mods, List<LineContentValue>? hashes)
-    {
-        if (texts == null || mods == null || hashes == null)
-        {
-            yield break;
-        }
-
-        foreach (var hash in hashes)
-        {
-            var id = hash.Value;
-            if (id == null)
-            {
-                continue;
-            }
-
-            var text = texts.FirstOrDefault(x => modifierProvider.IsMatch(id, x));
-            if (text == null)
-            {
-                continue;
-            }
-
-            yield return new PseudoModifier(text: text)
-            {
-                Id = id,
             };
         }
     }

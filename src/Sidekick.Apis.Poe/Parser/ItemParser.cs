@@ -10,7 +10,6 @@ using Sidekick.Apis.Poe.Parser.Properties;
 using Sidekick.Apis.Poe.Parser.Sockets;
 using Sidekick.Apis.Poe.Pseudo;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Parser
@@ -72,7 +71,7 @@ namespace Sidekick.Apis.Poe.Parser
                 var sockets = socketParser.Parse(parsingItem);
                 var modifierLines = ParseModifiers(parsingItem);
                 var properties = propertyParser.Parse(parsingItem, modifierLines);
-                var pseudoModifiers = parsingItem.Metadata.Game == GameType.PathOfExile ? ParsePseudoModifiers(modifierLines) : [];
+                var pseudoModifiers = pseudoModifierProvider.Parse(modifierLines);
                 var item = new Item(metadata: metadata,
                                     invariant: invariant,
                                     header: header,
@@ -135,16 +134,6 @@ namespace Sidekick.Apis.Poe.Parser
                 Category.DivinationCard or Category.Gem => new(),
                 _ => modifierParser.Parse(parsingItem),
             };
-        }
-
-        private List<PseudoModifier> ParsePseudoModifiers(List<ModifierLine> modifierLines)
-        {
-            if (modifierLines.Count == 0)
-            {
-                return new();
-            }
-
-            return pseudoModifierProvider.Parse(modifierLines);
         }
 
         #region Helpers

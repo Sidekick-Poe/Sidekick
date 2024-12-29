@@ -1,15 +1,13 @@
 namespace Sidekick.Common.Game.Items;
 
-public class PseudoModifier(string text)
+public class PseudoModifier
 {
-    public string? Id { get; init; }
+    /// <summary>
+    /// Gets or sets a dictionary of modifiers. The key represents the modifier id from the API. The value represents its weighted sum value.
+    /// </summary>
+    public Dictionary<string, double> Modifiers { get; init; } = [];
 
-    public string Text { get; set; } = text;
+    public required string Text { get; set; }
 
     public double Value { get; set; }
-
-    /// <summary>
-    ///     Gets a value indicating whether this modifier has value.
-    /// </summary>
-    public bool HasValue => Value != 0;
 }
