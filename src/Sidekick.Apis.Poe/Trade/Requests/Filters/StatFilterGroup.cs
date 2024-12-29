@@ -13,5 +13,5 @@ internal class StatFilterGroup
 
     public List<StatFilters> Filters { get; set; } = new();
 
-    public SearchFilterValue? Value { get; set; }
+    public StatFilterValue? Value { get; set; }
 }

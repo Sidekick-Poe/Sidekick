@@ -5,19 +5,19 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
     internal class MapFilters
     {
         [JsonPropertyName("map_iiq")]
-        public SearchFilterValue? ItemQuantity { get; set; }
+        public StatFilterValue? ItemQuantity { get; set; }
 
         [JsonPropertyName("map_iir")]
-        public SearchFilterValue? ItemRarity { get; set; }
+        public StatFilterValue? ItemRarity { get; set; }
 
         [JsonPropertyName("area_level")]
-        public SearchFilterValue? AreaLevel { get; set; }
+        public StatFilterValue? AreaLevel { get; set; }
 
         [JsonPropertyName("map_tier")]
-        public SearchFilterValue? MapTier { get; set; }
+        public StatFilterValue? MapTier { get; set; }
 
         [JsonPropertyName("map_packsize")]
-        public SearchFilterValue? MonsterPackSize { get; set; }
+        public StatFilterValue? MonsterPackSize { get; set; }
 
         [JsonPropertyName("map_blighted")]
         public SearchFilterOption? Blighted { get; set; }

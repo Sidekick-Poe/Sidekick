@@ -1,9 +1,9 @@
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Initialization;
 
-namespace Sidekick.Apis.Poe.Pseudo
+namespace Sidekick.Apis.Poe.Parser.Pseudo
 {
-    public interface IPseudoModifierProvider : IInitializableService
+    public interface IPseudoParser : IInitializableService
     {
         List<PseudoModifier> Parse(List<ModifierLine> modifiers);
     }

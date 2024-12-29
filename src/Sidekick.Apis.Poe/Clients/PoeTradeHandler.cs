@@ -34,17 +34,6 @@ public class PoeTradeHandler
             return response;
         }
 
-        if (response.StatusCode == HttpStatusCode.TooManyRequests)
-        {
-            var errorResponse = await ParseErrorResponse(response);
-            throw new SidekickException("Rate limit exceeded.", "The official trade website has a rate limit to avoid spam. Sidekick cannot change this.", errorResponse?.Error?.Message ?? string.Empty);
-        }
-
-        if (response.StatusCode == HttpStatusCode.Moved || response.StatusCode == HttpStatusCode.Redirect || response.StatusCode == HttpStatusCode.RedirectKeepVerb)
-        {
-            response = await HandleRedirect(request, response, cancellationToken);
-        }
-
         if (response.StatusCode == HttpStatusCode.Moved || response.StatusCode == HttpStatusCode.Redirect || response.StatusCode == HttpStatusCode.RedirectKeepVerb)
         {
             logger.LogWarning("[PoeTradeHandler] Received redirect response.");
@@ -64,10 +53,9 @@ public class PoeTradeHandler
             }
         }
 
-        // Sidekick does not support authentication yet.
-        if (response.StatusCode == HttpStatusCode.Unauthorized)
+        if (response.StatusCode == HttpStatusCode.Moved || response.StatusCode == HttpStatusCode.Redirect || response.StatusCode == HttpStatusCode.RedirectKeepVerb)
         {
-            throw new SidekickException("Sidekick failed to communicate with the trade API.", "The trade website requires authentication, which Sidekick does not support currently.", "Try using a different game language and/or force to search using English only in the settings.");
+            response = await HandleRedirect(request, response, cancellationToken);
         }
 
         // 403 probably means a cloudflare issue.
@@ -108,6 +96,27 @@ public class PoeTradeHandler
         logger.LogWarning("[PoeTradeHandler] Query Failed: {responseCode} {responseMessage}", response.StatusCode, content);
         logger.LogWarning("[PoeTradeHandler] Uri: {uri}", request.RequestUri);
         logger.LogWarning("[PoeTradeHandler] Body: {uri}", body);
+
+        var errorResponse = await ParseErrorResponse(response);
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+        {
+            if (errorResponse?.Error?.Message?.StartsWith("Query is too complex.") ?? false)
+            {
+                throw new SidekickException("Query is too complex.", "The official trade website has limit on complex queries. Sidekick cannot change this.", "Use the official website to search for your current item.");
+            }
+        }
+
+        if (response.StatusCode == HttpStatusCode.TooManyRequests)
+        {
+            throw new SidekickException("Rate limit exceeded.", "The official trade website has a rate limit to avoid spam. Sidekick cannot change this.", errorResponse?.Error?.Message ?? string.Empty);
+        }
+
+        // Sidekick does not support authentication yet.
+        if (response.StatusCode == HttpStatusCode.Unauthorized)
+        {
+            throw new SidekickException("Sidekick failed to communicate with the trade API.", "The trade website requires authentication, which Sidekick does not support currently.", "Try using a different game language and/or force to search using English only in the settings.");
+        }
+
         throw new ApiErrorException();
     }
 
