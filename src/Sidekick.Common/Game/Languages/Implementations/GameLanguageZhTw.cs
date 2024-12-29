@@ -59,6 +59,8 @@ public class GameLanguageZhTw : IGameLanguage
 
     public string DescriptionCriticalStrikeChance => "暴擊率";
 
+    public string DescriptionCriticalHitChance => "暴擊率";
+
     public string DescriptionEnergyShield => "能量護盾";
 
     public string DescriptionArmour => "護甲";
@@ -66,6 +68,8 @@ public class GameLanguageZhTw : IGameLanguage
     public string DescriptionEvasion => "閃避值";
 
     public string DescriptionChanceToBlock => "格擋率";
+
+    public string DescriptionBlockChance => "格擋機率";
 
     public string DescriptionLevel => "物品等級";
 
@@ -162,6 +166,16 @@ public class GameLanguageZhTw : IGameLanguage
         SanctumRelics = "聖物",
         Tinctures = "萃取物",
         Corpses = "屍體",
+        Socketable = "可鑲嵌",
+        Focus = "法器",
+        Waystone = "換界石",
+        Barya = "試煉代幣",
+        Ultimatum = "最後通牒雕刻",
+        Tablet = "面板",
+        Crossbows = "十字弓",
+        Omen = "預兆",
+        Breachstone = "裂痕石",
+        BossKey = "巔峰鑰匙",
     };
 
     private static Chinese.HanyuPinyin? Romanization { get; set; }

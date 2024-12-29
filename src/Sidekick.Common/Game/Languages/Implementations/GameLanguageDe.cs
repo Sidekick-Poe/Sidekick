@@ -1,7 +1,7 @@
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("German", "de")]
-public class GameLanguageDE : IGameLanguage
+public class GameLanguageDe : IGameLanguage
 {
     public string PoeTradeBaseUrl => "https://de.pathofexile.com/trade/";
     public string PoeTradeApiBaseUrl => "https://de.pathofexile.com/api/trade/";
@@ -35,8 +35,10 @@ public class GameLanguageDE : IGameLanguage
     public string DescriptionArmour => "Rüstung";
     public string DescriptionEvasion => "Ausweichwert";
     public string DescriptionChanceToBlock => "Chance auf Blocken";
+    public string DescriptionBlockChance => "Blockchance";
     public string DescriptionAttacksPerSecond => "Angriffe pro Sekunde";
     public string DescriptionCriticalStrikeChance => "Kritische Trefferchance";
+    public string DescriptionCriticalHitChance => "Kritische Trefferchance";
     public string DescriptionMapTier => "Kartenlevel";
     public string DescriptionItemQuantity => "Gegenstandsmenge";
     public string DescriptionItemRarity => "Gegenstandsseltenheit";
@@ -63,6 +65,8 @@ public class GameLanguageDE : IGameLanguage
         Prefix = "Gegenstandsklasse",
         DivinationCard = "Weissagungskarten",
         StackableCurrency = "Stapelbare Währung",
+        Socketable = "Einfassbar",
+        Omen = "Omen",
         Jewel = "Juwelen",
         DelveStackableSocketableCurrency = "Delve: Stapelbare, einfassbare Währung",
         MetamorphSample = "Metamorph-Proben",
@@ -76,6 +80,7 @@ public class GameLanguageDE : IGameLanguage
         Helmets = "Helme",
         Shields = "Schilde",
         Quivers = "Köcher",
+        Focus = "Fokusse",
         LifeFlasks = "Lebensfläschchen",
         ManaFlasks = "Manafläschchen",
         HybridFlasks = "Hybridfläschchen",
@@ -87,6 +92,12 @@ public class GameLanguageDE : IGameLanguage
         Contract = "Aufträge",
         Blueprint = "Grundrisse",
         MiscMapItems = "Sonstige Kartengegenstände",
+        Waystone = "Wegsteine",
+        Barya = "Prüfungsmünzen",
+        Ultimatum = "Inschrift des Ultimatums",
+        Tablet = "Tafel",
+        Breachstone = "Riss-Steine",
+        BossKey = "Zinnenschhlüssel",
         Claws = "Klauen",
         Daggers = "Dolche",
         Wands = "Zauberstäbe",
@@ -95,6 +106,7 @@ public class GameLanguageDE : IGameLanguage
         OneHandAxes = "Einhandäxte",
         OneHandMaces = "Einhandstreitkolben",
         Bows = "Bögen",
+        Crossbows = "Armbrüste",
         Staves = "Stäbe",
         TwoHandSwords = "Zweihandschwerter",
         TwoHandAxes = "Zweihandäxte",

@@ -3,7 +3,7 @@ using Romanization;
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Japanese", "jp")]
-public class GameLanguageJP : IGameLanguage
+public class GameLanguageJp : IGameLanguage
 {
     public string PoeTradeBaseUrl => "https://jp.pathofexile.com/trade/";
     public string PoeTradeApiBaseUrl => "https://jp.pathofexile.com/api/trade/";
@@ -37,8 +37,10 @@ public class GameLanguageJP : IGameLanguage
     public string DescriptionArmour => "アーマー";
     public string DescriptionEvasion => "回避力";
     public string DescriptionChanceToBlock => "ブロック率";
+    public string DescriptionBlockChance => "ブロック率";
     public string DescriptionAttacksPerSecond => "秒間アタック回数";
     public string DescriptionCriticalStrikeChance => "クリティカル率";
+    public string DescriptionCriticalHitChance => "クリティカルヒット率";
     public string DescriptionMapTier => "マップティア";
     public string DescriptionItemQuantity => "アイテム数量";
     public string DescriptionItemRarity => "アイテムレアリティ";
@@ -65,6 +67,8 @@ public class GameLanguageJP : IGameLanguage
         Prefix = "アイテムクラス",
         DivinationCard = "占いカード",
         StackableCurrency = "スタック可能カレンシー",
+        Socketable = "ソケット可能",
+        Omen = "お告げ",
         Jewel = "ジュエル",
         DelveStackableSocketableCurrency = "デルヴスタック可能ソケット可能カレンシー",
         MetamorphSample = "メタモルフサンプル",
@@ -78,6 +82,7 @@ public class GameLanguageJP : IGameLanguage
         Helmets = "兜",
         Shields = "盾",
         Quivers = "矢筒",
+        Focus = "フォーカス",
         LifeFlasks = "ライフフラスコ",
         ManaFlasks = "マナフラスコ",
         HybridFlasks = "ハイブリッドフラスコ",
@@ -89,6 +94,12 @@ public class GameLanguageJP : IGameLanguage
         Contract = "依頼書",
         Blueprint = "計画書",
         MiscMapItems = "その他マップアイテム",
+        Waystone = "ウェイストーン",
+        Barya = "試練のコイン",
+        Ultimatum = "刻印されたアルティメイタム",
+        Tablet = "石板",
+        Breachstone = "ブリーチストーン",
+        BossKey = "ピナクルキー",
         Claws = "鉤爪",
         Daggers = "短剣",
         Wands = "ワンド",
@@ -97,6 +108,7 @@ public class GameLanguageJP : IGameLanguage
         OneHandAxes = "片手斧",
         OneHandMaces = "片手メイス",
         Bows = "弓",
+        Crossbows = "クロスボウ",
         Staves = "スタッフ",
         TwoHandSwords = "両手剣",
         TwoHandAxes = "両手斧",

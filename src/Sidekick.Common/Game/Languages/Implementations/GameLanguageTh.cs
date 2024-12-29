@@ -1,7 +1,7 @@
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Thai", "th")]
-public class GameLanguageTH : IGameLanguage
+public class GameLanguageTh : IGameLanguage
 {
     public string PoeTradeBaseUrl => "https://th.pathofexile.com/trade/";
     public string PoeTradeApiBaseUrl => "https://th.pathofexile.com/api/trade/";
@@ -35,8 +35,10 @@ public class GameLanguageTH : IGameLanguage
     public string DescriptionArmour => "ค่าเกราะ";
     public string DescriptionEvasion => "อัตราการหลบหลีก";
     public string DescriptionChanceToBlock => "โอกาสบล็อค";
+    public string DescriptionBlockChance => "โอกาสบล็อค";
     public string DescriptionAttacksPerSecond => "จำนวนครั้งการโจมตีต่อวินาที";
     public string DescriptionCriticalStrikeChance => "โอกาสคริติคอล";
+    public string DescriptionCriticalHitChance => "โอกาสปะทะคริติคอล";
     public string DescriptionMapTier => "ระดับแผนที่";
     public string DescriptionItemQuantity => "จำนวนของไอเทม";
     public string DescriptionItemRarity => "ระดับความหายากของไอเทม";
@@ -63,6 +65,8 @@ public class GameLanguageTH : IGameLanguage
         Prefix = "ชนิดไอเทม",
         DivinationCard = "ไพ่พยากรณ์",
         StackableCurrency = "เงินตรารวมกองได้",
+        Socketable = "ไอเทมใส่รู",
+        Omen = "ลางบอกเหตุ",
         Jewel = "จิวเวล",
         DelveStackableSocketableCurrency = "เงินตรามีรูของเหมืองแบบรวมกองได้",
         MetamorphSample = "ชิ้นส่วนตัวอย่างเมตามอร์ฟ",
@@ -76,6 +80,7 @@ public class GameLanguageTH : IGameLanguage
         Helmets = "หมวก",
         Shields = "โล่",
         Quivers = "ซองธนู",
+        Focus = "โฟกัส",
         LifeFlasks = "ขวดยาพลังชีวิต",
         ManaFlasks = "ขวดยามานา",
         HybridFlasks = "ขวดยาผสม",
@@ -87,6 +92,12 @@ public class GameLanguageTH : IGameLanguage
         Contract = "สัญญาจ้าง",
         Blueprint = "พิมพ์เขียว",
         MiscMapItems = "ไอเทมแผนที่อื่นๆ",
+        Waystone = "ศิลานำทาง",
+        Barya = "เหรียญบททดสอบ",
+        Ultimatum = "คำขาดจารึก",
+        Tablet = "แผ่นหิน",
+        Breachstone = "ศิลาบรีช",
+        BossKey = "กุญแจอภิมหาบอส",
         Claws = "กรงเล็บ",
         Daggers = "มีด",
         Wands = "ไม้กายสิทธิ์",
@@ -95,6 +106,7 @@ public class GameLanguageTH : IGameLanguage
         OneHandAxes = "ขวานมือเดียว",
         OneHandMaces = "กระบองมือเดียว",
         Bows = "ธนู",
+        Crossbows = "หน้าไม้",
         Staves = "ไม้พลอง",
         TwoHandSwords = "ดาบสองมือ",
         TwoHandAxes = "ขวานสองมือ",

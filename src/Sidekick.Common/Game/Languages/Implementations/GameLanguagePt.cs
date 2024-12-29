@@ -1,7 +1,7 @@
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Portuguese", "pt")]
-public class GameLanguagePT : IGameLanguage
+public class GameLanguagePt : IGameLanguage
 {
     public string PoeTradeBaseUrl => "https://br.pathofexile.com/trade/";
     public string PoeTradeApiBaseUrl => "https://br.pathofexile.com/api/trade/";
@@ -35,8 +35,10 @@ public class GameLanguagePT : IGameLanguage
     public string DescriptionArmour => "Armadura";
     public string DescriptionEvasion => "Evasão";
     public string DescriptionChanceToBlock => "Chance de Bloquear";
+    public string DescriptionBlockChance => "Chance de Bloqueio";
     public string DescriptionAttacksPerSecond => "Ataques por Segundo";
     public string DescriptionCriticalStrikeChance => "Chance de Crítico";
+    public string DescriptionCriticalHitChance => "Chance de Acerto Crítico";
     public string DescriptionMapTier => "Tier do Mapa";
     public string DescriptionItemQuantity => "Quantidade de Itens";
     public string DescriptionItemRarity => "Raridade de Itens";
@@ -63,6 +65,8 @@ public class GameLanguagePT : IGameLanguage
         Prefix = "Classe do Item",
         DivinationCard = "Cartas de Adivinhação",
         StackableCurrency = "Moedas Empilháveis",
+        Socketable = "Encaixável",
+        Omen = "Presságio",
         Jewel = "Joias",
         DelveStackableSocketableCurrency = "Item Monetário Aglomerável e Encaixável Delve",
         MetamorphSample = "Amostras Metamorfas",
@@ -76,6 +80,7 @@ public class GameLanguagePT : IGameLanguage
         Helmets = "Elmos",
         Shields = "Escudos",
         Quivers = "Aljavas",
+        Focus = "Focos",
         LifeFlasks = "Frascos de Vida",
         ManaFlasks = "Frascos de Mana",
         HybridFlasks = "Frascos Híbridos",
@@ -87,6 +92,12 @@ public class GameLanguagePT : IGameLanguage
         Contract = "Contratos",
         Blueprint = "Plantas",
         MiscMapItems = "Itens Mapas Variados",
+        Waystone = "Pedras Guia",
+        Barya = "Moedas da Provação",
+        Ultimatum = "Ultimato Talhado",
+        Tablet = "Tábua",
+        Breachstone = "Pedras de Fenda",
+        BossKey = "Chaves Supremas",
         Claws = "Garras",
         Daggers = "Adagas",
         Wands = "Varinhas",
@@ -95,6 +106,7 @@ public class GameLanguagePT : IGameLanguage
         OneHandAxes = "Machados de Uma Mão",
         OneHandMaces = "Maças de Uma Mão",
         Bows = "Arcos",
+        Crossbows = "Bestas",
         Staves = "Cajados",
         TwoHandSwords = "Espadas de Duas Mãos",
         TwoHandAxes = "Machados de Duas Mãos",

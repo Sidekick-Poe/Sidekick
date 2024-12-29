@@ -6,8 +6,11 @@ using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Fuzzy;
 using Sidekick.Apis.Poe.Parser.Headers.Models;
 using Sidekick.Apis.Poe.Parser.Patterns;
+using Sidekick.Common.Extensions;
+using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Parser.Headers;
 
@@ -15,7 +18,8 @@ public class HeaderParser
 (
     IGameLanguageProvider gameLanguageProvider,
     IFuzzyService fuzzyService,
-    IFilterProvider filterProvider
+    IFilterProvider filterProvider,
+    ISettingsService settingsService
 ) : IHeaderParser
 {
     public int Priority => 100;
@@ -24,75 +28,136 @@ public class HeaderParser
 
     private Dictionary<Rarity, Regex> RarityPatterns { get; set; } = [];
 
-    public Task Initialize()
+    public async Task Initialize()
     {
-        InitializeItemCategories();
+        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+        var game = leagueId.GetGameFromLeagueId();
+
+        InitializeItemCategories(game);
         InitializeRarityPatterns();
-        return Task.CompletedTask;
     }
 
-    private void InitializeItemCategories()
+    private void InitializeItemCategories(GameType game)
     {
         ItemCategories = filterProvider.TypeCategoryOptions.ConvertAll(x => new ItemCategory()
         {
             Id = x.Id,
             Text = x.Text,
-            Pattern = GetItemCategoryPattern(x.Id),
+            Pattern = GetItemCategoryPattern(x.Id, game),
             FuzzyText = fuzzyService.CleanFuzzyText(x.Text),
         });
     }
 
     private Regex BuildRegex(params string[] labels) => new($"^{Regex.Escape(gameLanguageProvider.Language.Classes.Prefix)}:* *(?:{string.Join("|", labels.Select(Regex.Escape))})$");
 
-    private Regex? GetItemCategoryPattern(string? id) => id switch
+    private Regex? GetItemCategoryPattern(string? id, GameType game)
     {
-        "jewel.abyss" => BuildRegex(gameLanguageProvider.Language.Classes.AbyssJewel),
-        "gem.activegem" => BuildRegex(gameLanguageProvider.Language.Classes.ActiveSkillGems),
-        "accessory.amulet" => BuildRegex(gameLanguageProvider.Language.Classes.Amulet),
-        "accessory.belt" => BuildRegex(gameLanguageProvider.Language.Classes.Belt),
-        "heistmission.blueprint" => BuildRegex(gameLanguageProvider.Language.Classes.Blueprint),
-        "armour.chest" => BuildRegex(gameLanguageProvider.Language.Classes.BodyArmours),
-        "armour.boots" => BuildRegex(gameLanguageProvider.Language.Classes.Boots),
-        "weapon.bow" => BuildRegex(gameLanguageProvider.Language.Classes.Bows),
-        "weapon.claw" => BuildRegex(gameLanguageProvider.Language.Classes.Claws),
-        "heistmission.contract" => BuildRegex(gameLanguageProvider.Language.Classes.Contract),
-        "weapon.dagger" => BuildRegex(gameLanguageProvider.Language.Classes.Daggers),
-        "currency.resonator" => BuildRegex(gameLanguageProvider.Language.Classes.DelveStackableSocketableCurrency),
-        "card" => BuildRegex(gameLanguageProvider.Language.Classes.DivinationCard),
-        "armour.gloves" => BuildRegex(gameLanguageProvider.Language.Classes.Gloves),
-        "heistequipment.heistreward" => BuildRegex(gameLanguageProvider.Language.Classes.HeistBrooch),
-        "heistequipment.heistutility" => BuildRegex(gameLanguageProvider.Language.Classes.HeistCloak),
-        "heistequipment.heistweapon" => BuildRegex(gameLanguageProvider.Language.Classes.HeistGear),
-        "currency.heistobjective" => BuildRegex(gameLanguageProvider.Language.Classes.HeistTarget),
-        "heistequipment.heisttool" => BuildRegex(gameLanguageProvider.Language.Classes.HeistTool),
-        "armour.helmet" => BuildRegex(gameLanguageProvider.Language.Classes.Helmets),
-        "jewel.base" => BuildRegex(gameLanguageProvider.Language.Classes.Jewel),
-        "logbook" => BuildRegex(gameLanguageProvider.Language.Classes.Logbooks),
-        "map.fragment" => BuildRegex(gameLanguageProvider.Language.Classes.MapFragments),
-        "map" => BuildRegex(gameLanguageProvider.Language.Classes.Maps),
-        "monster.sample" => BuildRegex(gameLanguageProvider.Language.Classes.MetamorphSample),
-        "weapon.oneaxe" => BuildRegex(gameLanguageProvider.Language.Classes.OneHandAxes),
-        "weapon.onemace" => BuildRegex(gameLanguageProvider.Language.Classes.OneHandMaces),
-        "weapon.onesword" => BuildRegex(gameLanguageProvider.Language.Classes.OneHandSwords),
-        "armour.quiver" => BuildRegex(gameLanguageProvider.Language.Classes.Quivers),
-        "accessory.ring" => BuildRegex(gameLanguageProvider.Language.Classes.Ring),
-        "weapon.runedagger" => BuildRegex(gameLanguageProvider.Language.Classes.RuneDaggers),
-        "weapon.sceptre" => BuildRegex(gameLanguageProvider.Language.Classes.Sceptres),
-        "armour.shield" => BuildRegex(gameLanguageProvider.Language.Classes.Shields),
-        "weapon.staff" => BuildRegex(gameLanguageProvider.Language.Classes.Staves),
-        "gem.supportgem" => BuildRegex(gameLanguageProvider.Language.Classes.SupportSkillGems),
-        "accessory.trinket" => BuildRegex(gameLanguageProvider.Language.Classes.Trinkets),
-        "weapon.twoaxe" => BuildRegex(gameLanguageProvider.Language.Classes.TwoHandAxes),
-        "weapon.twomace" => BuildRegex(gameLanguageProvider.Language.Classes.TwoHandMaces),
-        "weapon.twosword" => BuildRegex(gameLanguageProvider.Language.Classes.TwoHandSwords),
-        "flask" => BuildRegex(gameLanguageProvider.Language.Classes.HybridFlasks, gameLanguageProvider.Language.Classes.LifeFlasks, gameLanguageProvider.Language.Classes.ManaFlasks, gameLanguageProvider.Language.Classes.UtilityFlasks),
-        "weapon.wand" => BuildRegex(gameLanguageProvider.Language.Classes.Wands),
-        "weapon.warstaff" => BuildRegex(gameLanguageProvider.Language.Classes.Warstaves),
-        "memoryline" => BuildRegex(gameLanguageProvider.Language.Classes.MemoryLine),
-        "azmeri.tincture" => BuildRegex(gameLanguageProvider.Language.Classes.Tinctures),
-        "azmeri.corpse" => BuildRegex(gameLanguageProvider.Language.Classes.Corpses),
-        _ => null,
-    };
+        if (game == GameType.PathOfExile2)
+        {
+            switch (id)
+            {
+                case "flask.life": return BuildRegex(gameLanguageProvider.Language.Classes.LifeFlasks);
+                case "flask.mana": return BuildRegex(gameLanguageProvider.Language.Classes.ManaFlasks);
+
+                // case "gem.metagem": return BuildRegex(gameLanguageProvider.Language.Classes.MetaGems);
+                // case "currency.rune": return BuildRegex(gameLanguageProvider.Language.Classes.Rune);
+                // case "currency.soulcore": return BuildRegex(gameLanguageProvider.Language.Classes.Soulcore);
+            }
+        }
+
+        if (game == GameType.PathOfExile)
+        {
+            switch (id)
+            {
+                case "flask": return BuildRegex(gameLanguageProvider.Language.Classes.HybridFlasks, gameLanguageProvider.Language.Classes.LifeFlasks, gameLanguageProvider.Language.Classes.ManaFlasks, gameLanguageProvider.Language.Classes.UtilityFlasks);
+            }
+        }
+
+        return id switch
+        {
+            "accessory.amulet" => BuildRegex(gameLanguageProvider.Language.Classes.Amulet),
+            "accessory.belt" => BuildRegex(gameLanguageProvider.Language.Classes.Belt),
+            "accessory.ring" => BuildRegex(gameLanguageProvider.Language.Classes.Ring),
+            "accessory.trinket" => BuildRegex(gameLanguageProvider.Language.Classes.Trinkets),
+
+            "armour.chest" => BuildRegex(gameLanguageProvider.Language.Classes.BodyArmours),
+            "armour.boots" => BuildRegex(gameLanguageProvider.Language.Classes.Boots),
+            "armour.gloves" => BuildRegex(gameLanguageProvider.Language.Classes.Gloves),
+            "armour.helmet" => BuildRegex(gameLanguageProvider.Language.Classes.Helmets),
+            "armour.quiver" => BuildRegex(gameLanguageProvider.Language.Classes.Quivers),
+            "armour.shield" => BuildRegex(gameLanguageProvider.Language.Classes.Shields),
+            "armour.focus" => BuildRegex(gameLanguageProvider.Language.Classes.Focus),
+            // "armour.buckler" => BuildRegex(gameLanguageProvider.Language.Classes.Bucklers),
+
+            "card" => BuildRegex(gameLanguageProvider.Language.Classes.DivinationCard),
+
+            "currency.resonator" => BuildRegex(gameLanguageProvider.Language.Classes.DelveStackableSocketableCurrency),
+            // "currency.piece" => BuildRegex(gameLanguageProvider.Language.Classes.UniqueFragment),
+            // "currency.fossil" => BuildRegex(gameLanguageProvider.Language.Classes.Fossil),
+            // "currency.incubator" => BuildRegex(gameLanguageProvider.Language.Classes.Incubator),
+            "currency.heistobjective" => BuildRegex(gameLanguageProvider.Language.Classes.HeistTarget),
+            "currency.omen" => BuildRegex(gameLanguageProvider.Language.Classes.Omen),
+            // "currency.tattoo" => BuildRegex(gameLanguageProvider.Language.Classes.Tattoo),
+            "currency.socketable" => BuildRegex(gameLanguageProvider.Language.Classes.Socketable),
+
+            "gem.activegem" => BuildRegex(gameLanguageProvider.Language.Classes.ActiveSkillGems),
+            "gem.supportgem" => BuildRegex(gameLanguageProvider.Language.Classes.SupportSkillGems),
+            // "gem.supportgemplus" => BuildRegex(gameLanguageProvider.Language.Classes.AwakenedSupportSkillGems),
+
+            "heistmission.blueprint" => BuildRegex(gameLanguageProvider.Language.Classes.Blueprint),
+            "heistmission.contract" => BuildRegex(gameLanguageProvider.Language.Classes.Contract),
+            "heistequipment.heistreward" => BuildRegex(gameLanguageProvider.Language.Classes.HeistBrooch),
+            "heistequipment.heistutility" => BuildRegex(gameLanguageProvider.Language.Classes.HeistCloak),
+            "heistequipment.heistweapon" => BuildRegex(gameLanguageProvider.Language.Classes.HeistGear),
+            "heistequipment.heisttool" => BuildRegex(gameLanguageProvider.Language.Classes.HeistTool),
+
+            "jewel" => BuildRegex(gameLanguageProvider.Language.Classes.Jewel),
+            "jewel.abyss" => BuildRegex(gameLanguageProvider.Language.Classes.AbyssJewel),
+            // "jewel.cluster" => BuildRegex(gameLanguageProvider.Language.Classes.ClusterJewel),
+
+            "logbook" => BuildRegex(gameLanguageProvider.Language.Classes.Logbooks),
+
+            "map.waystone" => BuildRegex(gameLanguageProvider.Language.Classes.Waystone),
+            "map.breachstone" => BuildRegex(gameLanguageProvider.Language.Classes.Breachstone),
+            "map.barya" => BuildRegex(gameLanguageProvider.Language.Classes.Barya),
+            "map.bosskey" => BuildRegex(gameLanguageProvider.Language.Classes.BossKey),
+            "map.ultimatum" => BuildRegex(gameLanguageProvider.Language.Classes.Ultimatum),
+            "map.tablet" => BuildRegex(gameLanguageProvider.Language.Classes.Tablet),
+            "map.fragment" => BuildRegex(gameLanguageProvider.Language.Classes.MapFragments),
+            "map" => BuildRegex(gameLanguageProvider.Language.Classes.Maps),
+
+            "memoryline" => BuildRegex(gameLanguageProvider.Language.Classes.MemoryLine),
+            "monster.sample" => BuildRegex(gameLanguageProvider.Language.Classes.MetamorphSample),
+
+            "weapon.bow" => BuildRegex(gameLanguageProvider.Language.Classes.Bows),
+            "weapon.crossbow" => BuildRegex(gameLanguageProvider.Language.Classes.Crossbows),
+            "weapon.claw" => BuildRegex(gameLanguageProvider.Language.Classes.Claws),
+            "weapon.dagger" => BuildRegex(gameLanguageProvider.Language.Classes.Daggers),
+            "weapon.runedagger" => BuildRegex(gameLanguageProvider.Language.Classes.RuneDaggers),
+            "weapon.oneaxe" => BuildRegex(gameLanguageProvider.Language.Classes.OneHandAxes),
+            "weapon.onemace" => BuildRegex(gameLanguageProvider.Language.Classes.OneHandMaces),
+            "weapon.onesword" => BuildRegex(gameLanguageProvider.Language.Classes.OneHandSwords),
+            "weapon.sceptre" => BuildRegex(gameLanguageProvider.Language.Classes.Sceptres),
+            "weapon.staff" => BuildRegex(gameLanguageProvider.Language.Classes.Staves),
+            // "weapon.spear" => BuildRegex(gameLanguageProvider.Language.Classes.Spears),
+            // "weapon.flail" => BuildRegex(gameLanguageProvider.Language.Classes.Flails),
+            // "weapon.rapier" => BuildRegex(gameLanguageProvider.Language.Classes.Rapiers),
+            "weapon.rod" => BuildRegex(gameLanguageProvider.Language.Classes.FishingRods),
+            "weapon.twoaxe" => BuildRegex(gameLanguageProvider.Language.Classes.TwoHandAxes),
+            "weapon.twomace" => BuildRegex(gameLanguageProvider.Language.Classes.TwoHandMaces),
+            "weapon.twosword" => BuildRegex(gameLanguageProvider.Language.Classes.TwoHandSwords),
+            "weapon.wand" => BuildRegex(gameLanguageProvider.Language.Classes.Wands),
+            "weapon.warstaff" => BuildRegex(gameLanguageProvider.Language.Classes.Warstaves),
+
+            "tincture" => BuildRegex(gameLanguageProvider.Language.Classes.Tinctures),
+            "corpse" => BuildRegex(gameLanguageProvider.Language.Classes.Corpses),
+
+            "sanctum.relic" => BuildRegex(gameLanguageProvider.Language.Classes.SanctumRelics),
+            "sanctum.research" => BuildRegex(gameLanguageProvider.Language.Classes.SanctumResearch),
+
+            _ => null,
+        };
+    }
 
     private void InitializeRarityPatterns()
     {

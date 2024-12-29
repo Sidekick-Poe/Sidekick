@@ -1,7 +1,7 @@
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("English", "en")]
-public class GameLanguageEN : IGameLanguage
+public class GameLanguageEn : IGameLanguage
 {
     public string PoeTradeBaseUrl => "https://www.pathofexile.com/trade/";
     public string PoeTradeApiBaseUrl => "https://www.pathofexile.com/api/trade/";
@@ -35,8 +35,10 @@ public class GameLanguageEN : IGameLanguage
     public string DescriptionArmour => "Armour";
     public string DescriptionEvasion => "Evasion Rating";
     public string DescriptionChanceToBlock => "Chance to Block";
+    public string DescriptionBlockChance => "Block chance";
     public string DescriptionAttacksPerSecond => "Attacks per Second";
     public string DescriptionCriticalStrikeChance => "Critical Strike Chance";
+    public string DescriptionCriticalHitChance => "Critical Hit Chance";
     public string DescriptionMapTier => "Map Tier";
     public string DescriptionItemQuantity => "Item Quantity";
     public string DescriptionItemRarity => "Item Rarity";
@@ -63,6 +65,8 @@ public class GameLanguageEN : IGameLanguage
         Prefix = "Item Class",
         DivinationCard = "Divination Cards",
         StackableCurrency = "Stackable Currency",
+        Socketable = "Socketable",
+        Omen = "Omen",
         Jewel = "Jewels",
         DelveStackableSocketableCurrency = "Delve Stackable Socketable Currency",
         MetamorphSample = "Metamorph Samples",
@@ -76,6 +80,7 @@ public class GameLanguageEN : IGameLanguage
         Helmets = "Helmets",
         Shields = "Shields",
         Quivers = "Quivers",
+        Focus = "Foci",
         LifeFlasks = "Life Flasks",
         ManaFlasks = "Mana Flasks",
         HybridFlasks = "Hybrid Flasks",
@@ -87,6 +92,12 @@ public class GameLanguageEN : IGameLanguage
         Contract = "Contracts",
         Blueprint = "Blueprints",
         MiscMapItems = "Misc Map Items",
+        Waystone = "Waystones",
+        Barya = "Trial Coins",
+        Ultimatum = "Inscribed Ultimatum",
+        Tablet = "Tablet",
+        Breachstone = "Breachstones",
+        BossKey = "Pinnacle Keys",
         Claws = "Claws",
         Daggers = "Daggers",
         Wands = "Wands",
@@ -95,6 +106,7 @@ public class GameLanguageEN : IGameLanguage
         OneHandAxes = "One Hand Axes",
         OneHandMaces = "One Hand Maces",
         Bows = "Bows",
+        Crossbows = "Crossbows",
         Staves = "Staves",
         TwoHandSwords = "Two Hand Swords",
         TwoHandAxes = "Two Hand Axes",

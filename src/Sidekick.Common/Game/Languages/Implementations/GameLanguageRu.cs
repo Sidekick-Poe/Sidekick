@@ -1,7 +1,7 @@
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Russian", "ru")]
-public class GameLanguageRU : IGameLanguage
+public class GameLanguageRu : IGameLanguage
 {
     public string PoeTradeBaseUrl => "https://ru.pathofexile.com/trade/";
     public string PoeTradeApiBaseUrl => "https://ru.pathofexile.com/api/trade/";
@@ -35,8 +35,10 @@ public class GameLanguageRU : IGameLanguage
     public string DescriptionArmour => "Броня";
     public string DescriptionEvasion => "Уклонение";
     public string DescriptionChanceToBlock => "Шанс заблокировать удар";
+    public string DescriptionBlockChance => "Шанс блока";
     public string DescriptionAttacksPerSecond => "Атак в секунду";
     public string DescriptionCriticalStrikeChance => "Шанс критического удара";
+    public string DescriptionCriticalHitChance => "Шанс крит. попадания";
     public string DescriptionMapTier => "Уровень карты";
     public string DescriptionItemQuantity => "Количество предметов";
     public string DescriptionItemRarity => "Редкость предметов";
@@ -63,6 +65,8 @@ public class GameLanguageRU : IGameLanguage
         Prefix = "Класс предмета",
         DivinationCard = "Гадальные карты",
         StackableCurrency = "Валюта",
+        Socketable = "Размещаемое",
+        Omen = "Предзнаменования",
         Jewel = "Самоцветы",
         DelveStackableSocketableCurrency = "Валюта Спуска",
         MetamorphSample = "Образцы Метаморфа",
@@ -76,6 +80,7 @@ public class GameLanguageRU : IGameLanguage
         Helmets = "Шлемы",
         Shields = "Щиты",
         Quivers = "Колчаны",
+        Focus = "Фокусы",
         LifeFlasks = "Флаконы жизни",
         ManaFlasks = "Флаконы маны",
         HybridFlasks = "Флаконы равновесия",
@@ -87,6 +92,12 @@ public class GameLanguageRU : IGameLanguage
         Contract = "Контракты",
         Blueprint = "Чертежи",
         MiscMapItems = "Прочие предметы карт",
+        Waystone = "Путевые камни",
+        Barya = "Монеты Испытания",
+        Ultimatum = "Начертанные Ультиматумы",
+        Tablet = "Плитки",
+        Breachstone = "Камни Разлома",
+        BossKey = "Древние ключи",
         Claws = "Когти",
         Daggers = "Кинжалы",
         Wands = "Жезлы",
@@ -95,6 +106,7 @@ public class GameLanguageRU : IGameLanguage
         OneHandAxes = "Одноручные топоры",
         OneHandMaces = "Одноручные булавы",
         Bows = "Луки",
+        Crossbows = "Самострелы",
         Staves = "Посохи",
         TwoHandSwords = "Двуручные мечи",
         TwoHandAxes = "Двуручные топоры",
