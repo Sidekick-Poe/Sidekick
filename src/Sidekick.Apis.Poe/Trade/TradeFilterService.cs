@@ -39,10 +39,8 @@ namespace Sidekick.Apis.Poe.Trade
             {
                 yield return new PseudoModifierFilter()
                 {
-                    Text = modifier.Text,
+                    PseudoModifier = modifier,
                     Checked = false,
-                    Value = modifier.Value,
-                    WeightedSumModifiers = modifier.WeightedSumModifiers,
                 };
             }
         }

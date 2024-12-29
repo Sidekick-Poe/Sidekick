@@ -5,21 +5,21 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
     internal class WeaponFilters
     {
         [JsonPropertyName("crit")]
-        public SearchFilterValue? CriticalStrikeChance { get; set; }
+        public StatFilterValue? CriticalStrikeChance { get; set; }
 
         [JsonPropertyName("aps")]
-        public SearchFilterValue? AttacksPerSecond { get; set; }
+        public StatFilterValue? AttacksPerSecond { get; set; }
 
         [JsonPropertyName("dps")]
-        public SearchFilterValue? DamagePerSecond { get; set; }
+        public StatFilterValue? DamagePerSecond { get; set; }
 
         [JsonPropertyName("edps")]
-        public SearchFilterValue? ElementalDps { get; set; }
+        public StatFilterValue? ElementalDps { get; set; }
 
         [JsonPropertyName("pdps")]
-        public SearchFilterValue? PhysicalDps { get; set; }
+        public StatFilterValue? PhysicalDps { get; set; }
 
         [JsonPropertyName("damage")]
-        public SearchFilterValue? Damage { get; set; }
+        public StatFilterValue? Damage { get; set; }
     }
 }

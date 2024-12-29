@@ -2,8 +2,10 @@ using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Models
 {
-    public class PseudoModifierFilter : PseudoModifier, ITradeFilter
+    public class PseudoModifierFilter : ITradeFilter
     {
+        public required PseudoModifier PseudoModifier { get; set; }
+
         public bool? @Checked { get; set; } = false;
 
         public decimal? Min { get; set; }
@@ -17,13 +19,13 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void NormalizeMinValue()
         {
-            if (Value > 0)
+            if (PseudoModifier.Value > 0)
             {
-                Min = (int)Math.Max((1 - NormalizeValue) * Value, 0);
+                Min = (int)Math.Max((1 - NormalizeValue) * PseudoModifier.Value, 0);
             }
             else
             {
-                Min = (int)Math.Min((1 + NormalizeValue) * Value, 0);
+                Min = (int)Math.Min((1 + NormalizeValue) * PseudoModifier.Value, 0);
             }
         }
 
@@ -32,13 +34,13 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void NormalizeMaxValue()
         {
-            if (Value > 0)
+            if (PseudoModifier.Value > 0)
             {
-                Max = (int)Math.Max(Math.Max(Value + 1, (1 + NormalizeValue) * Value), 0);
+                Max = (int)Math.Max(Math.Max(PseudoModifier.Value + 1, (1 + NormalizeValue) * PseudoModifier.Value), 0);
             }
             else
             {
-                Max = (int)Math.Min(Math.Max(Value + 1, (1 - NormalizeValue) * Value), 0);
+                Max = (int)Math.Min(Math.Max(PseudoModifier.Value + 1, (1 - NormalizeValue) * PseudoModifier.Value), 0);
             }
         }
 
@@ -47,8 +49,8 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void SetExactValue()
         {
-            Min = (int)Value;
-            Max = (int)Value;
+            Min = (int)PseudoModifier.Value;
+            Max = (int)PseudoModifier.Value;
         }
     }
 }

@@ -102,7 +102,7 @@ public class TradeSearchService
                 {
                     Filters =
                     {
-                        Price = new SearchFilterValue(currency),
+                        Price = new StatFilterValue(currency),
                     },
                 };
             }
@@ -197,32 +197,32 @@ public class TradeSearchService
             switch (propertyFilter.Type)
             {
                 case PropertyFilterType.Weapon_Damage:
-                    filters.Filters.Damage = new SearchFilterValue(propertyFilter);
+                    filters.Filters.Damage = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Weapon_PhysicalDps:
-                    filters.Filters.PhysicalDps = new SearchFilterValue(propertyFilter);
+                    filters.Filters.PhysicalDps = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Weapon_ElementalDps:
-                    filters.Filters.ElementalDps = new SearchFilterValue(propertyFilter);
+                    filters.Filters.ElementalDps = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Weapon_Dps:
-                    filters.Filters.DamagePerSecond = new SearchFilterValue(propertyFilter);
+                    filters.Filters.DamagePerSecond = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Weapon_AttacksPerSecond:
-                    filters.Filters.AttacksPerSecond = new SearchFilterValue(propertyFilter);
+                    filters.Filters.AttacksPerSecond = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Weapon_CriticalStrikeChance:
-                    filters.Filters.CriticalStrikeChance = new SearchFilterValue(propertyFilter);
+                    filters.Filters.CriticalStrikeChance = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
             }
@@ -251,22 +251,22 @@ public class TradeSearchService
             switch (propertyFilter.Type)
             {
                 case PropertyFilterType.Armour_Armour:
-                    filters.Filters.Armor = new SearchFilterValue(propertyFilter);
+                    filters.Filters.Armor = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Armour_Block:
-                    filters.Filters.Block = new SearchFilterValue(propertyFilter);
+                    filters.Filters.Block = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Armour_EnergyShield:
-                    filters.Filters.EnergyShield = new SearchFilterValue(propertyFilter);
+                    filters.Filters.EnergyShield = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Armour_Evasion:
-                    filters.Filters.Evasion = new SearchFilterValue(propertyFilter);
+                    filters.Filters.Evasion = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
             }
@@ -295,52 +295,52 @@ public class TradeSearchService
             switch (propertyFilter.Type)
             {
                 case PropertyFilterType.Weapon_Damage:
-                    filters.Filters.Damage = new SearchFilterValue(propertyFilter);
+                    filters.Filters.Damage = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Weapon_PhysicalDps:
-                    filters.Filters.PhysicalDps = new SearchFilterValue(propertyFilter);
+                    filters.Filters.PhysicalDps = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Weapon_ElementalDps:
-                    filters.Filters.ElementalDps = new SearchFilterValue(propertyFilter);
+                    filters.Filters.ElementalDps = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Weapon_Dps:
-                    filters.Filters.DamagePerSecond = new SearchFilterValue(propertyFilter);
+                    filters.Filters.DamagePerSecond = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Weapon_AttacksPerSecond:
-                    filters.Filters.AttacksPerSecond = new SearchFilterValue(propertyFilter);
+                    filters.Filters.AttacksPerSecond = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Weapon_CriticalStrikeChance:
-                    filters.Filters.CriticalStrikeChance = new SearchFilterValue(propertyFilter);
+                    filters.Filters.CriticalStrikeChance = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Armour_Armour:
-                    filters.Filters.Armor = new SearchFilterValue(propertyFilter);
+                    filters.Filters.Armor = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Armour_Block:
-                    filters.Filters.Block = new SearchFilterValue(propertyFilter);
+                    filters.Filters.Block = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Armour_EnergyShield:
-                    filters.Filters.EnergyShield = new SearchFilterValue(propertyFilter);
+                    filters.Filters.EnergyShield = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Armour_Evasion:
-                    filters.Filters.Evasion = new SearchFilterValue(propertyFilter);
+                    filters.Filters.Evasion = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
             }
@@ -364,22 +364,22 @@ public class TradeSearchService
             switch (propertyFilter.Type)
             {
                 case PropertyFilterType.Map_ItemQuantity:
-                    filters.Filters.ItemQuantity = new SearchFilterValue(propertyFilter);
+                    filters.Filters.ItemQuantity = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Map_ItemRarity:
-                    filters.Filters.ItemRarity = new SearchFilterValue(propertyFilter);
+                    filters.Filters.ItemRarity = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Map_AreaLevel:
-                    filters.Filters.AreaLevel = new SearchFilterValue(propertyFilter);
+                    filters.Filters.AreaLevel = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Map_MonsterPackSize:
-                    filters.Filters.MonsterPackSize = new SearchFilterValue(propertyFilter);
+                    filters.Filters.MonsterPackSize = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
@@ -394,7 +394,7 @@ public class TradeSearchService
                     break;
 
                 case PropertyFilterType.Map_Tier:
-                    filters.Filters.MapTier = new SearchFilterValue(propertyFilter);
+                    filters.Filters.MapTier = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
             }
@@ -475,30 +475,30 @@ public class TradeSearchService
 
                 // Misc
                 case PropertyFilterType.Misc_Quality:
-                    filters.Filters.Quality = new SearchFilterValue(propertyFilter);
+                    filters.Filters.Quality = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Misc_GemLevel:
                     if (invariantMetadataProvider.UncutGemIds.Contains(item.Metadata.Id))
                     {
-                        filters.Filters.ItemLevel = new SearchFilterValue(propertyFilter);
+                        filters.Filters.ItemLevel = new StatFilterValue(propertyFilter);
                     }
                     else
                     {
-                        filters.Filters.GemLevel = new SearchFilterValue(propertyFilter);
+                        filters.Filters.GemLevel = new StatFilterValue(propertyFilter);
                     }
 
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Misc_ItemLevel:
-                    filters.Filters.ItemLevel = new SearchFilterValue(propertyFilter);
+                    filters.Filters.ItemLevel = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Misc_Scourged:
-                    filters.Filters.Scourged = new SearchFilterValue(propertyFilter);
+                    filters.Filters.Scourged = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
             }
@@ -526,7 +526,7 @@ public class TradeSearchService
                 andGroup.Filters.Add(new StatFilters()
                 {
                     Id = filter.Line.Modifiers.First().Id,
-                    Value = new SearchFilterValue(filter),
+                    Value = new StatFilterValue(filter),
                 });
             }
         }
@@ -535,15 +535,15 @@ public class TradeSearchService
         {
             foreach (var pseudoFilter in pseudoFilters)
             {
-                if (pseudoFilter.Checked != true || string.IsNullOrEmpty(pseudoFilter.PseudoModifierId))
+                if (pseudoFilter.Checked != true || string.IsNullOrEmpty(pseudoFilter.PseudoModifier.ModifierId))
                 {
                     continue;
                 }
 
                 andGroup.Filters.Add(new StatFilters()
                 {
-                    Id = pseudoFilter.PseudoModifierId,
-                    Value = new SearchFilterValue()
+                    Id = pseudoFilter.PseudoModifier.ModifierId,
+                    Value = new StatFilterValue()
                     {
                         Min = pseudoFilter.Min,
                         Max = pseudoFilter.Max,
@@ -565,7 +565,7 @@ public class TradeSearchService
         var countGroup = new StatFilterGroup()
         {
             Type = StatType.Count,
-            Value = new SearchFilterValue()
+            Value = new StatFilterValue()
             {
                 Min = 0,
             },
@@ -595,7 +595,7 @@ public class TradeSearchService
                     countGroup.Filters.Add(new StatFilters()
                     {
                         Id = modifier.Id,
-                        Value = new SearchFilterValue(filter),
+                        Value = new StatFilterValue(filter),
                     });
                 }
 
@@ -625,7 +625,7 @@ public class TradeSearchService
 
         foreach (var filter in pseudoFilters)
         {
-            if (filter.Checked != true || filter.WeightedSumModifiers.Count == 0)
+            if (filter.Checked != true || filter.PseudoModifier.WeightedSumModifiers.Count == 0)
             {
                 continue;
             }
@@ -633,19 +633,19 @@ public class TradeSearchService
             var group = new StatFilterGroup()
             {
                 Type = StatType.WeightedSum,
-                Value = new SearchFilterValue()
+                Value = new StatFilterValue()
                 {
                     Min = filter.Min,
                     Max = filter.Max,
                 },
             };
 
-            foreach (var modifier in filter.WeightedSumModifiers)
+            foreach (var modifier in filter.PseudoModifier.WeightedSumModifiers)
             {
                 group.Filters.Add(new StatFilters()
                 {
                     Id = modifier.Key,
-                    Value = new WeightedStatFilter()
+                    Value = new StatFilterValue()
                     {
                         Weight = modifier.Value,
                     },

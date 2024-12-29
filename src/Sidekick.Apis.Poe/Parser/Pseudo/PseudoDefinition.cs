@@ -6,6 +6,8 @@ namespace Sidekick.Apis.Poe.Parser.Pseudo;
 
 public abstract class PseudoDefinition
 {
+    private static readonly Regex parseHashPattern = new("\\#");
+
     protected abstract bool Enabled { get; }
 
     protected abstract string? ModifierId { get; }
@@ -14,33 +16,63 @@ public abstract class PseudoDefinition
 
     protected abstract Regex? Exception { get; }
 
-    public string Text => Modifiers.FirstOrDefault()?.Text ?? string.Empty;
+    private string? Text { get; set; }
 
-    public List<PseudoModifierDefinition> Modifiers { get; set; } = new();
+    public List<PseudoModifierDefinition> Modifiers { get; private set; } = new();
 
-    internal void AddModifierIfMatch(ApiModifier entry)
+    internal void InitializeDefinition(List<ApiCategory> apiCategories, List<ModifierPattern>? localizedPseudoModifiers)
     {
-        if (!Enabled)
+        foreach (var apiCategory in apiCategories)
         {
-            return;
+            foreach (var apiModifier in apiCategory.Entries)
+            {
+                if (!Enabled)
+                {
+                    return;
+                }
+
+                if (Exception != null && Exception.IsMatch(apiModifier.Text))
+                {
+                    continue;
+                }
+
+                foreach (var pattern in Patterns)
+                {
+                    if (apiModifier.Id == null || apiModifier.Type == null || apiModifier.Text == null)
+                    {
+                        continue;
+                    }
+
+                    if (pattern.Pattern.IsMatch(apiModifier.Text))
+                    {
+                        Modifiers.Add(new PseudoModifierDefinition(apiModifier.Id, apiModifier.Type, apiModifier.Text, pattern.Multiplier));
+                    }
+                }
+            }
         }
 
-        if (Exception != null && Exception.IsMatch(entry.Text))
+        Modifiers = Modifiers.OrderBy(x => x.Type switch
+            {
+                "pseudo" => 0,
+                "explicit" => 1,
+                "implicit" => 2,
+                "crafted" => 3,
+                "enchant" => 4,
+                "fractured" => 5,
+                "veiled" => 6,
+                _ => 7,
+            })
+            .ThenBy(x => x.Text)
+            .ToList();
+
+        if (localizedPseudoModifiers != null && !string.IsNullOrEmpty(ModifierId))
         {
-            return;
+            Text = localizedPseudoModifiers.FirstOrDefault(x => x.Id == ModifierId)?.Text ?? "";
         }
 
-        foreach (var pattern in Patterns)
+        if (string.IsNullOrEmpty(Text))
         {
-            if (entry.Id == null || entry.Type == null || entry.Text == null)
-            {
-                continue;
-            }
-
-            if (pattern.Pattern.IsMatch(entry.Text))
-            {
-                Modifiers.Add(new PseudoModifierDefinition(entry.Id, entry.Type, entry.Text, pattern.Multiplier));
-            }
+            Text = string.Join(", ", Modifiers.Select(x => x.Text).Distinct().ToList());
         }
     }
 
@@ -53,8 +85,8 @@ public abstract class PseudoDefinition
 
         var result = new PseudoModifier()
         {
-            PseudoModifierId = ModifierId,
-            Text = Text,
+            ModifierId = ModifierId,
+            Text = Text ?? string.Empty,
         };
 
         if (string.IsNullOrEmpty(ModifierId))
@@ -79,6 +111,8 @@ public abstract class PseudoDefinition
             }
         }
 
+        result.Value = (int)result.Value;
+        result.Text = parseHashPattern.Replace(result.Text, ((int)result.Value).ToString(), 1);
         return result;
     }
 

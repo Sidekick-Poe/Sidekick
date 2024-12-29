@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Pseudo.Definitions;
 using Sidekick.Common.Extensions;
@@ -10,11 +9,10 @@ namespace Sidekick.Apis.Poe.Parser.Pseudo;
 public class PseudoParser
 (
     IInvariantModifierProvider invariantModifierProvider,
+    IModifierProvider modifierProvider,
     ISettingsService settingsService
 ) : IPseudoParser
 {
-    private readonly Regex parseHashPattern = new("\\#");
-
     private List<PseudoDefinition> Definitions { get; } = new();
 
     /// <inheritdoc/>
@@ -38,32 +36,13 @@ public class PseudoParser
         ]);
 
         var categories = await invariantModifierProvider.GetList();
-        foreach (var category in categories)
-        {
-            foreach (var entry in category.Entries)
-            {
-                foreach (var definition in Definitions)
-                {
-                    definition.AddModifierIfMatch(entry);
-                }
-            }
-        }
+        categories.RemoveAll(x => x.Entries.FirstOrDefault()?.Id.StartsWith("pseudo") == true);
+
+        var localizedPseudoModifiers = modifierProvider.Patterns.GetValueOrDefault(ModifierCategory.Pseudo);
 
         foreach (var definition in Definitions)
         {
-            definition.Modifiers = definition.Modifiers.OrderBy(x => x.Type switch
-                {
-                    "pseudo" => 0,
-                    "explicit" => 1,
-                    "implicit" => 2,
-                    "crafted" => 3,
-                    "enchant" => 4,
-                    "fractured" => 5,
-                    "veiled" => 6,
-                    _ => 7,
-                })
-                .ThenBy(x => x.Text)
-                .ToList();
+            definition.InitializeDefinition(categories, localizedPseudoModifiers);
         }
     }
 
@@ -76,12 +55,6 @@ public class PseudoParser
             var result = definition.Parse(lines);
             if (result != null) results.Add(result);
         }
-
-        results.ForEach(x =>
-        {
-            x.Value = (int)x.Value;
-            x.Text = parseHashPattern.Replace(x.Text, ((int)x.Value).ToString(), 1);
-        });
 
         return results;
     }

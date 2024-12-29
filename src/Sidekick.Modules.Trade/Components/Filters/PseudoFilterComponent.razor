@@ -10,7 +10,7 @@
                           NoMargin="true"
                           ValueChanged="CheckedChanged">
                 <ItemModifierText Class="text-left"
-                                  Category="ModifierCategory.Pseudo">@Filter.Text</ItemModifierText>
+                                  Category="ModifierCategory.Pseudo">@Filter.PseudoModifier.Text</ItemModifierText>
             </FormCheckbox>
         </div>
 
@@ -19,7 +19,7 @@
 
             <div class="h-[2px]"></div>
 
-            @if ((Filter.Checked ?? false) && Filter.Value != 0)
+            @if ((Filter.Checked ?? false) && Filter.PseudoModifier.Value != 0)
             {
                 <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged"/>
             }
