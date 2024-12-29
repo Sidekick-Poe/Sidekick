@@ -1,5 +1,6 @@
 @page "/update"
 @page "/"
+@using System.Diagnostics
 @using Sidekick.Common.Updater
 @using Sidekick.Common.Browser
 @using Sidekick.Common.Platform
@@ -82,6 +83,12 @@
         }
         catch (Exception ex)
         {
+            if (Debugger.IsAttached)
+            {
+                Continue();
+                return;
+            }
+
             if (ex.Message == "Cannot perform this operation in an application which is not installed.")
             {
                 NewLauncher = true;
