@@ -61,6 +61,8 @@ namespace Sidekick.Common.Blazor.Initialization
 
         public override int ViewHeight => 210;
 
+        private int TimeLeftToCloseView { get; set; } = 4;
+
         protected override async Task OnInitializedAsync()
         {
             InitializationTask = Handle();
@@ -119,8 +121,7 @@ namespace Sidekick.Common.Blazor.Initialization
                 }
                 else
                 {
-                    await Task.Delay(4000);
-                    await CurrentView.Close();
+                    await StartCountdownToClose();
                 }
             }
             catch (SidekickException e)
@@ -129,6 +130,17 @@ namespace Sidekick.Common.Blazor.Initialization
                 e.Actions = ExceptionActions.ExitApplication;
                 throw;
             }
+        }
+
+        private async Task StartCountdownToClose()
+        {
+            while (TimeLeftToCloseView > 0)
+            {
+                StateHasChanged();
+                await Task.Delay(1000);
+                TimeLeftToCloseView--;
+            }
+            await CurrentView.Close();
         }
 
         private async Task Run(Action action)

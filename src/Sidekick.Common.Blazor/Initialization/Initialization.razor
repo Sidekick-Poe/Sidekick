@@ -32,7 +32,7 @@
             else
             {
                 <ButtonPrimary OnClick="CurrentView.Close">
-                    @Resources["Close"]
+                    @Resources["Close"] @($"({TimeLeftToCloseView}s)")
                 </ButtonPrimary>
             }
         </div>
