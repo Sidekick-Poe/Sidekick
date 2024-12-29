@@ -101,7 +101,7 @@ public abstract class PseudoDefinition
         {
             foreach (var definitionModifier in Modifiers)
             {
-                if (itemModifierLine.Modifiers.All(itemModifier => definitionModifier.Id != itemModifier.Id))
+                if (itemModifierLine.Modifiers.All(itemModifier => definitionModifier.Id != itemModifier.Id) || itemModifierLine.Values.Count == 0)
                 {
                     continue;
                 }
