@@ -19,10 +19,4 @@
     <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="..\Sidekick.Common.Ui\_Imports.razor">
-      <Link>_Imports.razor</Link>
-    </Content>
-  </ItemGroup>
-
 </Project>
