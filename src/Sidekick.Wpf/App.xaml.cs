@@ -27,6 +27,7 @@ using Sidekick.Modules.Maps;
 using Sidekick.Modules.Wealth;
 using Sidekick.Modules.Trade;
 using Sidekick.Wpf.Services;
+using Velopack;
 
 namespace Sidekick.Wpf
 {
@@ -43,6 +44,8 @@ namespace Sidekick.Wpf
 
         public App()
         {
+            VelopackApp.Build().Run();
+
             DeleteStaticAssets();
             DisableWindowsTheme();
             ServiceProvider = GetServiceProvider();
