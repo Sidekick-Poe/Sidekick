@@ -6,7 +6,7 @@ namespace Sidekick.Apis.GitHub;
 /// <summary>
 ///     Interface to communicate with GitHub.
 /// </summary>
-public interface IGitHubClient : IInitializableService
+public interface IGitHubClient
 {
     /// <summary>
     ///     Gets the latest release.
