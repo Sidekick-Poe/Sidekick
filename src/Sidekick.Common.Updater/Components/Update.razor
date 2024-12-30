@@ -89,7 +89,6 @@
 
         try
         {
-            throw new Exception();
             await AutoUpdater.CheckForUpdates();
             NavigationManager.NavigateTo("/setup");
         }
@@ -97,8 +96,8 @@
         {
             if (Debugger.IsAttached)
             {
-                // Continue();
-                // return;
+                Continue();
+                return;
             }
 
             if (ex.Message == "Cannot perform this operation in an application which is not installed.")
