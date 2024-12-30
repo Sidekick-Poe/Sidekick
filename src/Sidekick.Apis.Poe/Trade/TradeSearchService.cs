@@ -44,13 +44,13 @@ public class TradeSearchService
             var metadata = await GetHeader(item);
             if (propertyFilters?.BaseTypeFilterApplied ?? true)
             {
-                var hasTypeDiscriminator = !string.IsNullOrEmpty(metadata.ApiTypeDiscriminator);
+                var hasTypeDiscriminator = !string.IsNullOrEmpty(metadata.ApiDiscriminator);
                 if (hasTypeDiscriminator)
                 {
                     query.Type = new TypeDiscriminator()
                     {
                         Option = metadata.ApiType,
-                        Discriminator = metadata.ApiTypeDiscriminator,
+                        Discriminator = metadata.ApiDiscriminator,
                     };
                 }
                 else

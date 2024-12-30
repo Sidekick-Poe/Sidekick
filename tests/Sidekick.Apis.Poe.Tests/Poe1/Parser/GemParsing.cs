@@ -216,7 +216,9 @@ Transfigured
             Assert.Equal("gem.activegem", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Gem, actual.Header.Rarity);
             Assert.Equal(Category.Gem, actual.Header.Category);
-            Assert.Equal("Kinetic Blast of Clustering", actual.Header.ApiType);
+            Assert.Equal("Kinetic Blast of Clustering", actual.Header.ApiText);
+            Assert.Equal("Kinetic Blast", actual.Header.ApiType);
+            Assert.Equal("alt_x", actual.Header.ApiDiscriminator);
         }
     }
 }

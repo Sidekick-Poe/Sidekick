@@ -30,7 +30,10 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
             Assert.Equal(Category.Map, actual.Header.Category);
             Assert.Equal("map", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-            Assert.Equal("Blighted Atoll Map", actual.Header.ApiType);
+            Assert.Equal("Blighted Atoll Map", actual.Header.Type);
+            Assert.Equal("Blighted Atoll Map", actual.Header.ApiText);
+            Assert.Equal("Atoll Map", actual.Header.ApiType);
+            Assert.Equal("blighted", actual.Header.ApiDiscriminator);
             Assert.Equal(14, actual.Properties.MapTier);
             Assert.True(actual.Properties.Blighted);
         }
@@ -59,7 +62,10 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
             Assert.Equal(Category.Map, actual.Header.Category);
             Assert.Equal("map", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-            Assert.Equal("Blighted Shore Map", actual.Header.ApiType);
+            Assert.Equal("Blighted Shore Map", actual.Header.ApiText);
+            Assert.Equal("Shore Map", actual.Header.ApiType);
+            Assert.Equal("blighted", actual.Header.ApiDiscriminator);
+            Assert.Null(actual.Header.Name);
             Assert.Equal(6, actual.Properties.MapTier);
             Assert.True(actual.Properties.Blighted);
         }
@@ -117,7 +123,10 @@ Travel to this Map by using it in a personal Map Device.Maps can only be used on
             Assert.Equal("map", actual.Header.ItemCategory);
             Assert.Equal(Rarity.Rare, actual.Header.Rarity);
             Assert.Equal(Category.Map, actual.Header.Category);
-            Assert.Equal("Blighted Spider Forest Map", actual.Header.ApiType);
+            Assert.Equal("Blighted Spider Forest Map", actual.Header.ApiText);
+            Assert.Equal("Spider Forest Map", actual.Header.ApiType);
+            Assert.Equal("blighted", actual.Header.ApiDiscriminator);
+            Assert.Equal("Nightmare Spires", actual.Header.Name);
             Assert.True(actual.Properties.Blighted);
         }
     }

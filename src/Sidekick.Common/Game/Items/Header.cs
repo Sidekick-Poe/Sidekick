@@ -2,13 +2,13 @@ namespace Sidekick.Common.Game.Items;
 
 public class Header
 {
-    public string? Name { get; init; }
+    public string? Name { get; set; }
 
-    public string? Type { get; init; }
+    public string? Type { get; set; }
 
-    public string? ItemCategory { get; init; }
+    public string? ItemCategory { get; set; }
 
-    public required Rarity Rarity { get; set; }
+    public Rarity Rarity { get; set; } = Rarity.Unknown;
 
     public string? ApiItemId { get; init; }
 
@@ -16,11 +16,13 @@ public class Header
 
     public string? ApiType { get; init; }
 
-    public string? ApiTypeDiscriminator { get; init; }
+    public string? ApiDiscriminator { get; init; }
 
-    public required Category Category { get; init; }
+    public string? ApiText { get; init; }
 
-    public required GameType Game { get; init; }
+    public Category Category { get; init; } = Category.Unknown;
+
+    public GameType Game { get; init; } = GameType.Unknown;
 
     /// <inheritdoc />
     public override string? ToString()

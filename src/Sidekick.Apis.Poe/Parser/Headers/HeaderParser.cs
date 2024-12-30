@@ -207,47 +207,39 @@ public class HeaderParser
 
     public Header Parse(ParsingItem parsingItem)
     {
-        var apiItemCategoryId = ParseItemCategory(parsingItem);
+        var rarity = ParseRarity(parsingItem);
 
         string? type = null;
         if (parsingItem.Blocks[0].Lines.Count >= 2)
         {
             type = parsingItem.Blocks[0].Lines[^1].Text;
+            parsingItem.Blocks[0].Lines[^1].Parsed = true;
         }
 
         string? name = null;
         if (parsingItem.Blocks[0].Lines.Count >= 3 && !parsingItem.Blocks[0].Lines[^2].Parsed)
         {
             name = parsingItem.Blocks[0].Lines[^2].Text;
+            parsingItem.Blocks[0].Lines[^2].Parsed = true;
         }
 
-        var rarity = ParseRarity(parsingItem);
-
-        // Rares may have conflicting names, so we don't want to search any unique items that may have that name. Like "Ancient Orb" which can be used by abyss jewels.
-        if (rarity is Rarity.Rare or Rarity.Magic)
+        var vaalGem = ParseVaalGem(parsingItem, rarity);
+        if (vaalGem != null)
         {
-            name = null;
+            name = vaalGem.Name;
+            type = vaalGem.Type;
         }
 
-        name = name != null ? GetLineWithoutSuperiorAffix(name) : null;
-        type = type != null ? GetLineWithoutSuperiorAffix(type) : null;
-        var apiItem = ParseApiItem(name, type);
+        var apiItem = ParseApiItem(rarity, name, type);
+        var header = apiItem?.ToHeader() ?? new Header();
+        header.Name = name;
+        header.Type = type;
+        header.ItemCategory = ParseItemCategory(parsingItem);
+        if (header.Rarity == Rarity.Unknown) header.Rarity = rarity;
 
         parsingItem.Blocks[0].Parsed = true;
 
-        return new Header()
-        {
-            Name = name,
-            Type = type,
-            ItemCategory = apiItemCategoryId,
-            Rarity = rarity,
-            ApiType = apiItem?.Type,
-            Category = apiItem?.Category ?? Category.Unknown,
-            Game = apiItem?.Game ?? GameType.PathOfExile,
-            ApiItemId = apiItem?.Id,
-            ApiName = apiItem?.Name,
-            ApiTypeDiscriminator = apiItem?.Discriminator,
-        };
+        return header;
     }
 
     private string? ParseItemCategory(ParsingItem parsingItem)
@@ -289,8 +281,14 @@ public class HeaderParser
         return apiItemCategoryId;
     }
 
-    private ApiItem? ParseApiItem(string? name, string? type)
+    private ApiItem? ParseApiItem(Rarity rarity, string? name, string? type)
     {
+        // Rares may have conflicting names, so we don't want to search any unique items that may have that name. Like "Ancient Orb" which can be used by abyss jewels.
+        name = rarity is Rarity.Rare or Rarity.Magic ? null : name;
+        name = name != null ? GetLineWithoutSuperiorAffix(name) : null;
+
+        type = type != null ? GetLineWithoutSuperiorAffix(type) : null;
+
         // We can find multiple matches while parsing. This will store all of them. We will figure out which result is correct at the end of this method.
         var results = new List<ApiItem>();
 
@@ -308,6 +306,11 @@ public class HeaderParser
 
         // Now we check the type
         else if (!string.IsNullOrEmpty(type) && apiItemProvider.NameAndTypeDictionary.TryGetValue(type, out itemData))
+        {
+            results.AddRange(itemData);
+        }
+
+        else if (!string.IsNullOrEmpty(type) && apiItemProvider.NameAndTypeDictionary.TryGetValue(GetLineWithoutAffixes(type), out itemData))
         {
             results.AddRange(itemData);
         }
@@ -344,6 +347,18 @@ public class HeaderParser
         }
 
         return orderedResults.FirstOrDefault();
+    }
+
+    private ApiItem? ParseVaalGem(ParsingItem parsingItem, Rarity rarity)
+    {
+        var canBeVaalGem = rarity == Rarity.Gem && parsingItem.Blocks.Count > 7;
+        if (!canBeVaalGem || parsingItem.Blocks[5].Lines.Count <= 0)
+        {
+            return null;
+        }
+
+        apiItemProvider.NameAndTypeDictionary.TryGetValue(parsingItem.Blocks[5].Lines[0].Text, out var vaalGem);
+        return vaalGem?.First();
     }
 
     private Rarity ParseRarity(ParsingItem parsingItem)

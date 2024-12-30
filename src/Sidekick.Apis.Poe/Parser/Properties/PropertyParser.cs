@@ -84,11 +84,11 @@ public class PropertyParser
         ItemQuantity = gameLanguageProvider.Language.DescriptionItemQuantity.ToRegexIntCapture();
         ItemRarity = gameLanguageProvider.Language.DescriptionItemRarity.ToRegexIntCapture();
         MonsterPackSize = gameLanguageProvider.Language.DescriptionMonsterPackSize.ToRegexIntCapture();
-        Blighted = gameLanguageProvider.Language.AffixBlighted.ToRegexAffix();
-        BlightRavaged = gameLanguageProvider.Language.AffixBlightRavaged.ToRegexAffix();
-        Anomalous = gameLanguageProvider.Language.AffixAnomalous.ToRegexAffix();
-        Divergent = gameLanguageProvider.Language.AffixDivergent.ToRegexAffix();
-        Phantasmal = gameLanguageProvider.Language.AffixPhantasmal.ToRegexAffix();
+        Blighted = gameLanguageProvider.Language.AffixBlighted.ToRegexAffix(gameLanguageProvider.Language.AffixSuperior);
+        BlightRavaged = gameLanguageProvider.Language.AffixBlightRavaged.ToRegexAffix(gameLanguageProvider.Language.AffixSuperior);
+        Anomalous = gameLanguageProvider.Language.AffixAnomalous.ToRegexAffix(gameLanguageProvider.Language.AffixSuperior);
+        Divergent = gameLanguageProvider.Language.AffixDivergent.ToRegexAffix(gameLanguageProvider.Language.AffixSuperior);
+        Phantasmal = gameLanguageProvider.Language.AffixPhantasmal.ToRegexAffix(gameLanguageProvider.Language.AffixSuperior);
 
         Unidentified = gameLanguageProvider.Language.DescriptionUnidentified.ToRegexLine();
         Corrupted = gameLanguageProvider.Language.DescriptionCorrupted.ToRegexLine();
