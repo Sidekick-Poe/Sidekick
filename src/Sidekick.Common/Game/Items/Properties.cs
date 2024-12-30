@@ -22,12 +22,6 @@ public class Properties
 
     public int GemLevel { get; init; }
 
-    public bool Anomalous { get; init; }
-
-    public bool Divergent { get; init; }
-
-    public bool Phantasmal { get; init; }
-
     public int MapTier { get; init; }
 
     public int AreaLevel { get; init; }

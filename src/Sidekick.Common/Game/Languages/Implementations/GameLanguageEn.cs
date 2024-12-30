@@ -49,9 +49,6 @@ public class GameLanguageEn : IGameLanguage
     public string AffixSuperior => "Superior";
     public string AffixBlighted => "Blighted";
     public string AffixBlightRavaged => "Blight-ravaged";
-    public string AffixAnomalous => "Anomalous";
-    public string AffixDivergent => "Divergent";
-    public string AffixPhantasmal => "Phantasmal";
 
     public string InfluenceShaper => "Shaper Item";
     public string InfluenceElder => "Elder Item";

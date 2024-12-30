@@ -51,9 +51,6 @@ public class GameLanguageJp : IGameLanguage
     public string AffixSuperior => "上質な";
     public string AffixBlighted => "ブライト";
     public string AffixBlightRavaged => "ブライトに破壊された";
-    public string AffixAnomalous => "異常な";
-    public string AffixDivergent => "相違の";
-    public string AffixPhantasmal => "幻想の";
 
     public string InfluenceShaper => "シェイパーアイテム";
     public string InfluenceElder => "エルダーアイテム";

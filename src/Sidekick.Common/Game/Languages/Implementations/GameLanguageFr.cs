@@ -49,9 +49,6 @@ public class GameLanguageFr : IGameLanguage
     public string AffixSuperior => "supérieur";
     public string AffixBlighted => "Carte infestée";
     public string AffixBlightRavaged => "Carte ravagée par l'Infestation";
-    public string AffixAnomalous => "/anormale?s?/";
-    public string AffixDivergent => "/divergente?s?/";
-    public string AffixPhantasmal => "/fantasmatiques?/";
 
     public string InfluenceShaper => "Objet du Façonneur";
     public string InfluenceElder => "Objet de l'Ancien";

@@ -64,50 +64,6 @@ Note: ~price 2 chaos
         }
 
         [Fact]
-        public void ParseAnomalousGem()
-        {
-            var actual = parser.ParseItem(@"Item Class: Unknown
-Rarity: Gem
-Anomalous Static Strike
---------
-Attack, Melee, Strike, AoE, Duration, Lightning, Chaining
-Level: 1
-Mana Cost: 6
-Effectiveness of Added Damage: 110%
-Quality: +17% (augmented)
-Alternate Quality
---------
-Requirements:
-Level: 12
-Str: 21
-Int: 14
---------
-Attack with a melee weapon, gaining static energy for a duration if you hit an enemy. While you have static energy, you'll frequently hit a number of nearby enemies with beams, dealing attack damage.
---------
-Beams Hit Enemies every 0.40 seconds
-50% of Physical Damage Converted to Lightning Damage
-Deals 110% of Base Damage
-Base duration is 2.00 seconds
-Chains +1 Times
-17% increased Damage
-Beams deal 40% less Damage
-4 maximum Beam Targets
---------
-Experience: 1/15249
---------
-Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
-");
-
-            Assert.Equal(Category.Gem, actual.Header.Category);
-            Assert.Equal(Rarity.Gem, actual.Header.Rarity);
-            Assert.Equal("Static Strike", actual.Header.ApiType);
-            Assert.Equal(1, actual.Properties.GemLevel);
-            Assert.Equal(17, actual.Properties.Quality);
-            Assert.True(actual.Properties.AlternateQuality);
-            Assert.False(actual.Properties.Corrupted);
-        }
-
-        [Fact]
         public void ArcaneSurgeSupport()
         {
             var actual = parser.ParseItem(@"Item Class: Support Gems

@@ -88,12 +88,6 @@ public interface IGameLanguage
 
     string AffixBlightRavaged { get; }
 
-    string AffixAnomalous { get; }
-
-    string AffixDivergent { get; }
-
-    string AffixPhantasmal { get; }
-
     string InfluenceShaper { get; }
 
     string InfluenceElder { get; }

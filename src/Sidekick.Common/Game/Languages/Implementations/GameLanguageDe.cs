@@ -49,9 +49,6 @@ public class GameLanguageDe : IGameLanguage
     public string AffixSuperior => "(hochwertig)";
     public string AffixBlighted => "Befallene";
     public string AffixBlightRavaged => "Extrem befallene";
-    public string AffixAnomalous => "(anormal)";
-    public string AffixDivergent => "(abweichend)";
-    public string AffixPhantasmal => "(illusorisch)";
 
     public string InfluenceShaper => "Schöpfer-Gegenstand";
     public string InfluenceElder => "Ältesten-Gegenstand";

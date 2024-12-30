@@ -51,9 +51,6 @@ public class GameLanguageKr : IGameLanguage
     public string AffixSuperior => "상";
     public string AffixBlighted => "역병";
     public string AffixBlightRavaged => "역병에 유린당한";
-    public string AffixAnomalous => "기묘한";
-    public string AffixDivergent => "분기하는";
-    public string AffixPhantasmal => "환영의";
 
     public string InfluenceShaper => "쉐이퍼 아이템";
     public string InfluenceElder => "엘더 아이템";

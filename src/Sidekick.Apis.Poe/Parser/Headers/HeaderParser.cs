@@ -59,7 +59,7 @@ public class HeaderParser
             return new Regex($"^{input} | {input}$");
         }
 
-        Affixes = new Regex("(?:" + GetRegexLine(gameLanguageProvider.Language.AffixSuperior) + "|" + GetRegexLine(gameLanguageProvider.Language.AffixBlighted) + "|" + GetRegexLine(gameLanguageProvider.Language.AffixBlightRavaged) + "|" + GetRegexLine(gameLanguageProvider.Language.AffixAnomalous) + "|" + GetRegexLine(gameLanguageProvider.Language.AffixDivergent) + "|" + GetRegexLine(gameLanguageProvider.Language.AffixPhantasmal) + ")");
+        Affixes = new Regex("(?:" + GetRegexLine(gameLanguageProvider.Language.AffixSuperior) + "|" + GetRegexLine(gameLanguageProvider.Language.AffixBlighted) + "|" + GetRegexLine(gameLanguageProvider.Language.AffixBlightRavaged) + ")");
         SuperiorAffix = new Regex("(?:" + GetRegexLine(gameLanguageProvider.Language.AffixSuperior) + ")");
     }
 

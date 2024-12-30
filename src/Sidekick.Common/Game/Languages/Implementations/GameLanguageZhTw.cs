@@ -91,12 +91,6 @@ public class GameLanguageZhTw : IGameLanguage
 
     public string AffixBlightRavaged => "凋落蔓延";
 
-    public string AffixAnomalous => "異常的";
-
-    public string AffixDivergent => "相異的";
-
-    public string AffixPhantasmal => "幻影的";
-
     public string InfluenceShaper => "塑者之物";
 
     public string InfluenceElder => "尊師之物";

@@ -49,9 +49,6 @@ public class GameLanguageEs : IGameLanguage
     public string AffixSuperior => "Superior";
     public string AffixBlighted => "infestado";
     public string AffixBlightRavaged => "devastado por la plaga";
-    public string AffixAnomalous => "anómala";
-    public string AffixDivergent => "divergente";
-    public string AffixPhantasmal => "fantasmal";
 
     public string InfluenceShaper => "Objeto del Creador";
     public string InfluenceElder => "Objeto del Antiguo";

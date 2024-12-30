@@ -408,24 +408,6 @@ public class TradeSearchService
         var filters = new MiscFilterGroup();
         var hasValue = false;
 
-        if (item.Properties.Anomalous)
-        {
-            filters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Anomalous);
-            hasValue = true;
-        }
-
-        if (item.Properties.Divergent)
-        {
-            filters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Divergent);
-            hasValue = true;
-        }
-
-        if (item.Properties.Phantasmal)
-        {
-            filters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Phantasmal);
-            hasValue = true;
-        }
-
         foreach (var propertyFilter in propertyFilters)
         {
             if (propertyFilter.Type == PropertyFilterType.Misc_Corrupted)

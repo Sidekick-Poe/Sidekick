@@ -49,9 +49,6 @@ public class GameLanguageRu : IGameLanguage
     public string AffixSuperior => "высокого качества";
     public string AffixBlighted => "Заражённая";
     public string AffixBlightRavaged => "Разорённая Скверной";
-    public string AffixAnomalous => "Аномальный:";
-    public string AffixDivergent => "Искривлённый:";
-    public string AffixPhantasmal => "Фантомный:";
 
     public string InfluenceShaper => "Предмет Создателя";
     public string InfluenceElder => "Древний предмет";
