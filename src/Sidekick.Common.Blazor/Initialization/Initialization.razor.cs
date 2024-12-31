@@ -58,7 +58,7 @@ namespace Sidekick.Common.Blazor.Initialization
 
         public override SidekickViewType ViewType => SidekickViewType.Modal;
 
-        private int TimeLeftToCloseView { get; set; } = 4;
+        private int TimeLeftToCloseView { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -123,6 +123,8 @@ namespace Sidekick.Common.Blazor.Initialization
 
         private async Task StartCountdownToClose()
         {
+            TimeLeftToCloseView = Debugger.IsAttached ? 1 : 4;
+
             while (TimeLeftToCloseView > 0)
             {
                 StateHasChanged();
