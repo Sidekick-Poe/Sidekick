@@ -109,9 +109,9 @@ namespace Sidekick.Common.Blazor.Initialization
                 // If we have a successful initialization, we delay for half a second to show the
                 // "Ready" label on the UI before closing the view
                 Completed = Count;
-                await ReportProgress();
 
                 await StartCountdownToClose();
+                await ReportProgress();
             }
             catch (SidekickException e)
             {
