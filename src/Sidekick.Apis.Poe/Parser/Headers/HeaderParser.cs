@@ -98,7 +98,6 @@ public class HeaderParser
         };
     }
 
-
     public Rarity ParseRarity(ParsingItem parsingItem)
     {
         foreach (var pattern in RarityPatterns)
