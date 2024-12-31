@@ -699,7 +699,7 @@ public class TradeSearchService
 
     private TradeItem GetItem(GameType game, Result result)
     {
-        var header = new Header()
+        var header = new ItemHeader()
         {
             Name = result.Item?.Name,
             Type = result.Item?.TypeLine,
@@ -711,7 +711,7 @@ public class TradeSearchService
             Rarity = result.Item?.Rarity ?? Rarity.Unknown,
         };
 
-        var properties = new Properties()
+        var properties = new ItemProperties()
         {
             ItemLevel = result.Item?.ItemLevel ?? 0,
             Corrupted = result.Item?.Corrupted ?? false,
@@ -727,8 +727,8 @@ public class TradeSearchService
 
         var influences = result.Item?.Influences ?? new();
 
-        var item = new TradeItem(header: header,
-                                 properties: properties,
+        var item = new TradeItem(itemHeader: header,
+                                 itemProperties: properties,
                                  influences: influences,
                                  sockets: ParseSockets(result.Item?.Sockets).ToList(),
                                  modifierLines: new(),
@@ -963,7 +963,7 @@ public class TradeSearchService
         return useInvariant ? gameLanguageProvider.InvariantLanguage.GetTradeBaseUrl(game) : gameLanguageProvider.Language.GetTradeBaseUrl(game);
     }
 
-    private async Task<Header> GetHeader(Item item)
+    private async Task<ItemHeader> GetHeader(Item item)
     {
         var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
         return useInvariant ? item.Invariant ?? item.Header : item.Header;

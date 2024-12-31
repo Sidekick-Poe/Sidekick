@@ -4,16 +4,16 @@ namespace Sidekick.Apis.Poe.Trade.Models
 {
     public class TradeItem
     (
-        Header header,
-        Properties properties,
+        ItemHeader itemHeader,
+        ItemProperties itemProperties,
         Influences influences,
         List<Socket> sockets,
         List<ModifierLine> modifierLines,
         List<PseudoModifier> pseudoModifiers,
         string text
     ) : Item(null,
-             header,
-             properties,
+             itemHeader,
+             itemProperties,
              influences,
              sockets,
              modifierLines,

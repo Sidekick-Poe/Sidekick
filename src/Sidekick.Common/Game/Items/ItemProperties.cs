@@ -1,44 +1,44 @@
 namespace Sidekick.Common.Game.Items;
 
-public class Properties
+public class ItemProperties
 {
-    public bool Identified { get; init; }
+    public bool Identified { get; set; }
 
-    public int ItemLevel { get; init; }
+    public int ItemLevel { get; set; }
 
-    public bool Corrupted { get; init; }
+    public bool Corrupted { get; set; }
 
-    public int Armor { get; init; }
+    public int Armor { get; set; }
 
-    public int EnergyShield { get; init; }
+    public int EnergyShield { get; set; }
 
-    public int Evasion { get; init; }
+    public int Evasion { get; set; }
 
-    public int ChanceToBlock { get; init; }
+    public int ChanceToBlock { get; set; }
 
-    public int Quality { get; init; }
+    public int Quality { get; set; }
 
-    public bool AlternateQuality { get; init; }
+    public bool AlternateQuality { get; set; }
 
-    public int GemLevel { get; init; }
+    public int GemLevel { get; set; }
 
-    public int MapTier { get; init; }
+    public int MapTier { get; set; }
 
-    public int AreaLevel { get; init; }
+    public int AreaLevel { get; set; }
 
-    public int ItemQuantity { get; init; }
+    public int ItemQuantity { get; set; }
 
-    public int ItemRarity { get; init; }
+    public int ItemRarity { get; set; }
 
-    public int MonsterPackSize { get; init; }
+    public int MonsterPackSize { get; set; }
 
-    public bool Blighted { get; init; }
+    public bool Blighted { get; set; }
 
-    public bool BlightRavaged { get; init; }
+    public bool BlightRavaged { get; set; }
 
-    public double CriticalStrikeChance { get; init; }
+    public double CriticalStrikeChance { get; set; }
 
-    public double AttacksPerSecond { get; init; }
+    public double AttacksPerSecond { get; set; }
 
     public DamageRange? PhysicalDamage { get; set; }
 

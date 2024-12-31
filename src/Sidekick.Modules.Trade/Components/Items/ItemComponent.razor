@@ -2,6 +2,7 @@
 @using Sidekick.Common.Game.Items
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Prices
+@using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 
 @if (!IsCompact && (Item.CanHaveModifiers || PriceCheckService.Item?.Header.Category == Category.Gem))
 {

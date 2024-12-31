@@ -13,6 +13,8 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
         [JsonPropertyName("misc_filters")]
         public MiscFilterGroup? MiscFilters { get; set; }
 
+        public MiscFilterGroup GetOrCreateMiscFilters() => MiscFilters ??= new();
+
         [JsonPropertyName("weapon_filters")]
         public WeaponFilterGroup? WeaponFilters { get; set; }
 

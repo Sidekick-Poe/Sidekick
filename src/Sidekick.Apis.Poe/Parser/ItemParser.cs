@@ -47,7 +47,7 @@ public class ItemParser
                 throw new UnparsableException();
             }
 
-            Header? invariant = null;
+            ItemHeader? invariant = null;
             if (parsingItem.Header.ApiItemId != null && apiInvariantItemProvider.IdDictionary.TryGetValue(parsingItem.Header.ApiItemId, out var invariantMetadata))
             {
                 invariant = invariantMetadata.ToHeader();
@@ -62,8 +62,8 @@ public class ItemParser
             var properties = propertyParser.Parse(parsingItem, modifierLines);
             var pseudoModifiers = pseudoParser.Parse(modifierLines);
             var item = new Item(invariant: invariant,
-                                header: parsingItem.Header,
-                                properties: properties,
+                                itemHeader: parsingItem.Header,
+                                itemProperties: properties,
                                 influences: influences,
                                 sockets: sockets,
                                 modifierLines: modifierLines,

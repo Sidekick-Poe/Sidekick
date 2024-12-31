@@ -1,6 +1,6 @@
 namespace Sidekick.Common.Game.Items;
 
-public class Header
+public class ItemHeader
 {
     public string? Name { get; set; }
 

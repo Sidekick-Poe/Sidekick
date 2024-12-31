@@ -1,5 +1,4 @@
 ﻿using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Parser;
 using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
@@ -7,22 +6,29 @@ using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 
-namespace Sidekick.Apis.Poe.ItemProperties;
+namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
-public class GemLevelProperty(IGameLanguageProvider gameLanguageProvider)
+public class GemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameType game) : PropertyDefinition
 {
     private Regex? Pattern { get; set; }
 
-    public Task Initialize()
+    public override bool Enabled => true;
+
+    public override void Initialize()
     {
         Pattern = gameLanguageProvider.Language.DescriptionLevel.ToRegexIntCapture();
-        return Task.CompletedTask;
     }
 
-    public void Parse(Item item, ParsingItem parsingItem)
+    public override void ParseBeforeModifiers(ItemProperties itemProperties, ParsingItem parsingItem)
     {
+        if (parsingItem.Header?.Category != Category.Gem) return;
+
         var propertyBlock = parsingItem.Blocks[1];
-        item.Properties.GemLevel = GetInt(Pattern, propertyBlock);
+        itemProperties.GemLevel = GetInt(Pattern, propertyBlock);
+    }
+
+    public override void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines)
+    {
     }
 
     public PropertyFilter? GetFilter(Item item)
@@ -33,7 +39,6 @@ public class GemLevelProperty(IGameLanguageProvider gameLanguageProvider)
         }
 
         var filter = new PropertyFilter(true, PropertyFilterType.Misc_GemLevel, gameLanguageProvider.Language.DescriptionLevel, item.Properties.GemLevel, null);
-
         return filter;
     }
 
@@ -44,11 +49,15 @@ public class GemLevelProperty(IGameLanguageProvider gameLanguageProvider)
             return;
         }
 
-        if (item.Metadata.Game == GameType.PathOfExile)
+        if (item.Header.Game == GameType.PathOfExile)
         {
-            searchFilters.MiscFilters.Filters.GemLevel = filter.Value;
+            searchFilters.GetOrCreateMiscFilters().Filters.GemLevel = new StatFilterValue()
+            {
+                Min = filter.Value,
+
+            }
         }
-        else if (item.Metadata.Game == GameType.PathOfExile2)
+        else if (item.Header.Game == GameType.PathOfExile2)
         {
             searchFilters.TypeFilters.Filters.ItemLevel = filter.Value;
         }
