@@ -7,7 +7,6 @@ using Microsoft.Extensions.Options;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
@@ -59,9 +58,7 @@ namespace Sidekick.Common.Blazor.Initialization
 
         public override SidekickViewType ViewType => SidekickViewType.Modal;
 
-        public override int ViewHeight => 210;
-
-        private int TimeLeftToCloseView { get; set; } = 4;
+        private int TimeLeftToCloseView { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -112,17 +109,9 @@ namespace Sidekick.Common.Blazor.Initialization
                 // If we have a successful initialization, we delay for half a second to show the
                 // "Ready" label on the UI before closing the view
                 Completed = Count;
-                await ReportProgress();
 
-                if (Debugger.IsAttached)
-                {
-                    await ViewLocator.Open("/development");
-                    await CurrentView.Close();
-                }
-                else
-                {
-                    await StartCountdownToClose();
-                }
+                await StartCountdownToClose();
+                await ReportProgress();
             }
             catch (SidekickException e)
             {
@@ -134,13 +123,23 @@ namespace Sidekick.Common.Blazor.Initialization
 
         private async Task StartCountdownToClose()
         {
+            TimeLeftToCloseView = Debugger.IsAttached ? 1 : 4;
+
             while (TimeLeftToCloseView > 0)
             {
                 StateHasChanged();
                 await Task.Delay(1000);
                 TimeLeftToCloseView--;
             }
-            await CurrentView.Close();
+
+            if (Debugger.IsAttached)
+            {
+                NavigationManager.NavigateTo("/development");
+            }
+            else
+            {
+                await CurrentView.Close();
+            }
         }
 
         private async Task Run(Action action)

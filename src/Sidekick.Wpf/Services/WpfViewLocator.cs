@@ -66,7 +66,7 @@ namespace Sidekick.Wpf.Services
                 }
                 else if (view.ViewType == SidekickViewType.Modal)
                 {
-                    window.Topmost = true;
+                    window.Topmost = false;
                     window.ShowInTaskbar = true;
                     window.ResizeMode = ResizeMode.NoResize;
                 }

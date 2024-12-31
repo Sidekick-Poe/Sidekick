@@ -13,28 +13,39 @@
     </TopContent>
 
     <ChildContent>
-        <AppContainer>
-            @if (Error)
-            {
-                <AlertError>@Resources["Update_Cant_Download"]</AlertError>
-            }
-            else if (NewLauncher)
-            {
+        @if (Error)
+        {
+            <AlertError>@Resources["Update_Cant_Download"]</AlertError>
+        }
+        else if (NewLauncher)
+        {
+            <AppContainer>
                 <Heading3 Class="mb-2 text-center">@Resources["NewLauncher"]</Heading3>
                 <TextBase
                     Class="text-center">@Resources["NewLauncherText"]</TextBase>
-            }
-            else
-            {
+            </AppContainer>
+        }
+        else
+        {
+            <AppContainer>
                 <Heading3 Class="mb-2 text-center"> @Resources["Checking_For_Updates"] </Heading3>
                 <ProgressBar Indeterminate="true"/>
-            }
-        </AppContainer>
+            </AppContainer>
+        }
     </ChildContent>
 
     <BottomContent>
         <div class="px-3 py-2 flex justify-center gap-2">
-            @if (NewLauncher)
+            @if (Error)
+            {
+                <ButtonSecondary OnClick="Exit">
+                    @Resources["Exit"]
+                </ButtonSecondary>
+                <ButtonPrimary OnClick="Continue">
+                    @Resources["Continue"]
+                </ButtonPrimary>
+            }
+            else if (NewLauncher)
             {
                 <ButtonSecondary OnClick="Exit">
                     @Resources["Exit"]
@@ -69,8 +80,6 @@
     private bool NewLauncher { get; set; }
 
     public override SidekickViewType ViewType => SidekickViewType.Modal;
-
-    public override int ViewHeight => 210;
 
     protected override async Task OnInitializedAsync()
     {
