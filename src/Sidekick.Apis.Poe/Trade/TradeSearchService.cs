@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Filters;
-using Sidekick.Apis.Poe.Metadata;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests;
@@ -29,7 +29,7 @@ public class TradeSearchService
     IPoeTradeClient poeTradeClient,
     IModifierProvider modifierProvider,
     IFilterProvider filterProvider,
-    IInvariantMetadataProvider invariantMetadataProvider
+    IApiInvariantItemProvider apiInvariantItemProvider
 ) : ITradeSearchService
 {
     private readonly ILogger logger = logger;
@@ -41,16 +41,16 @@ public class TradeSearchService
             logger.LogInformation("[Trade API] Querying Trade API.");
 
             var query = new Query();
-            var metadata = await GetMetadata(item);
+            var metadata = await GetHeader(item);
             if (propertyFilters?.BaseTypeFilterApplied ?? true)
             {
-                var hasTypeDiscriminator = !string.IsNullOrEmpty(metadata.ApiTypeDiscriminator);
+                var hasTypeDiscriminator = !string.IsNullOrEmpty(metadata.ApiDiscriminator);
                 if (hasTypeDiscriminator)
                 {
                     query.Type = new TypeDiscriminator()
                     {
                         Option = metadata.ApiType,
-                        Discriminator = metadata.ApiTypeDiscriminator,
+                        Discriminator = metadata.ApiDiscriminator,
                     };
                 }
                 else
@@ -63,22 +63,22 @@ public class TradeSearchService
                 query.Filters.TypeFilters.Filters.Category = GetCategoryFilter(item.Header.ItemCategory);
             }
 
-            if (metadata.Category == Category.ItemisedMonster)
+            if (item.Header.Category == Category.ItemisedMonster)
             {
-                if (!string.IsNullOrEmpty(metadata.Name))
+                if (!string.IsNullOrEmpty(item.Header.ApiName))
                 {
-                    query.Term = metadata.Name;
+                    query.Term = item.Header.ApiName;
                     query.Type = null;
                 }
             }
-            else if (metadata.Rarity == Rarity.Unique)
+            else if (item.Header.Rarity == Rarity.Unique)
             {
-                query.Name = metadata.Name;
+                query.Name = item.Header.ApiName;
                 query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("Unique");
             }
             else if (propertyFilters?.RarityFilterApplied ?? false)
             {
-                var rarity = metadata.Rarity switch
+                var rarity = item.Header.Rarity switch
                 {
                     Rarity.Normal => "normal",
                     Rarity.Magic => "magic",
@@ -94,7 +94,7 @@ public class TradeSearchService
                 query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("nonunique");
             }
 
-            var currency = item.Metadata.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckItemCurrency) : await settingsService.GetString(SettingKeys.PriceCheckItemCurrencyPoE2);
+            var currency = item.Header.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckItemCurrency) : await settingsService.GetString(SettingKeys.PriceCheckItemCurrencyPoE2);
             currency = filterProvider.GetPriceOption(currency);
             if (!string.IsNullOrEmpty(currency))
             {
@@ -127,7 +127,7 @@ public class TradeSearchService
             }
 
             // The item level filter for Path of Exile 2 is inside the type filters instead of the misc filters.
-            if (item.Metadata.Game == GameType.PathOfExile2)
+            if (item.Header.Game == GameType.PathOfExile2)
             {
                 query.Filters.TypeFilters.Filters.ItemLevel = query.Filters.MiscFilters?.Filters.ItemLevel;
                 if (query.Filters.MiscFilters != null)
@@ -179,7 +179,7 @@ public class TradeSearchService
 
     private WeaponFilterGroup? GetWeaponFilters(Item item, List<PropertyFilter> propertyFilters)
     {
-        if (item.Metadata.Game == GameType.PathOfExile2)
+        if (item.Header.Game == GameType.PathOfExile2)
         {
             return null;
         }
@@ -233,7 +233,7 @@ public class TradeSearchService
 
     private ArmourFilterGroup? GetArmourFilters(Item item, List<PropertyFilter> propertyFilters)
     {
-        if (item.Metadata.Game == GameType.PathOfExile2)
+        if (item.Header.Game == GameType.PathOfExile2)
         {
             return null;
         }
@@ -277,7 +277,7 @@ public class TradeSearchService
 
     private EquipmentFilterGroup? GetEquipmentFilters(Item item, List<PropertyFilter> propertyFilters)
     {
-        if (item.Metadata.Game == GameType.PathOfExile)
+        if (item.Header.Game == GameType.PathOfExile)
         {
             return null;
         }
@@ -408,24 +408,6 @@ public class TradeSearchService
         var filters = new MiscFilterGroup();
         var hasValue = false;
 
-        if (item.Properties.Anomalous)
-        {
-            filters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Anomalous);
-            hasValue = true;
-        }
-
-        if (item.Properties.Divergent)
-        {
-            filters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Divergent);
-            hasValue = true;
-        }
-
-        if (item.Properties.Phantasmal)
-        {
-            filters.Filters.GemQualityType = new SearchFilterOption(SearchFilterOption.AlternateGemQualityOptions.Phantasmal);
-            hasValue = true;
-        }
-
         foreach (var propertyFilter in propertyFilters)
         {
             if (propertyFilter.Type == PropertyFilterType.Misc_Corrupted)
@@ -480,7 +462,7 @@ public class TradeSearchService
                     break;
 
                 case PropertyFilterType.Misc_GemLevel:
-                    if (invariantMetadataProvider.UncutGemIds.Contains(item.Metadata.Id))
+                    if (apiInvariantItemProvider.UncutGemIds.Contains(item.Header.ApiItemId))
                     {
                         filters.Filters.ItemLevel = new StatFilterValue(propertyFilter);
                     }
@@ -717,21 +699,16 @@ public class TradeSearchService
 
     private TradeItem GetItem(GameType game, Result result)
     {
-        var metadata = new ItemMetadata()
+        var header = new Header()
         {
-            Id = "",
             Name = result.Item?.Name,
-            Rarity = result.Item?.Rarity ?? Rarity.Unknown,
             Type = result.Item?.TypeLine,
+            ApiItemId = "",
+            ApiName = result.Item?.Name,
             ApiType = result.Item?.TypeLine,
             Category = Category.Unknown,
             Game = game,
-        };
-
-        var original = new Header()
-        {
-            Name = result.Item?.Name,
-            Type = result.Item?.TypeLine,
+            Rarity = result.Item?.Rarity ?? Rarity.Unknown,
         };
 
         var properties = new Properties()
@@ -750,8 +727,7 @@ public class TradeSearchService
 
         var influences = result.Item?.Influences ?? new();
 
-        var item = new TradeItem(metadata: metadata,
-                                 original: original,
+        var item = new TradeItem(header: header,
                                  properties: properties,
                                  influences: influences,
                                  sockets: ParseSockets(result.Item?.Sockets).ToList(),
@@ -987,9 +963,9 @@ public class TradeSearchService
         return useInvariant ? gameLanguageProvider.InvariantLanguage.GetTradeBaseUrl(game) : gameLanguageProvider.Language.GetTradeBaseUrl(game);
     }
 
-    private async Task<ItemMetadata> GetMetadata(Item item)
+    private async Task<Header> GetHeader(Item item)
     {
         var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
-        return useInvariant ? item.Invariant ?? item.Metadata : item.Metadata;
+        return useInvariant ? item.Invariant ?? item.Header : item.Header;
     }
 }

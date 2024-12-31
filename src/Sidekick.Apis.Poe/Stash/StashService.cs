@@ -1,6 +1,5 @@
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
-using Sidekick.Apis.Poe.Parser.Metadata;
 using Sidekick.Apis.Poe.Stash.Models;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
@@ -11,7 +10,6 @@ namespace Sidekick.Apis.Poe.Stash
     public class StashService(
         IPoeApiClient client,
         ISettingsService settingsService,
-        IMetadataParser metadataParser,
         ILogger<StashService> logger) : IStashService
     {
         public async Task<List<StashTab>?> GetStashTabList()
@@ -223,13 +221,13 @@ namespace Sidekick.Apis.Poe.Stash
         private Category GetItemCategory(APIStashItem item)
         {
             var name = item.getFriendlyName();
-            var metadata = metadataParser.Parse(name, item.typeLine);
-            if (metadata != null)
-            {
-                return metadata.Category;
-            }
+            // var metadata = metadataParser.Parse(name, item.typeLine);
+            // if (metadata != null)
+            // {
+            //     return metadata.Category;
+            // }
 
-            logger.LogError($"[Stash] Could not retrieve metadeta: {item.getFriendlyName()}");
+            logger.LogError($"[Stash] Could not retrieve metadata: {item.getFriendlyName()}");
             return Category.Unknown;
         }
     }

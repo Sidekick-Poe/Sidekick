@@ -74,7 +74,7 @@ public class PriceCheckService(
         IsFilterLoading = false;
         FilterLoadingChanged?.Invoke();
 
-        if (Item.Metadata.Rarity != Rarity.Rare && Item.Metadata.Rarity != Rarity.Magic && Item.Metadata.Category != Category.Gem)
+        if (Item.Header.Rarity != Rarity.Rare && Item.Header.Rarity != Rarity.Magic && Item.Header.Category != Category.Gem)
         {
             if (CurrentMode == TradeMode.Bulk)
             {
@@ -130,7 +130,7 @@ public class PriceCheckService(
         IsLoading = true;
         LoadingChanged?.Invoke();
 
-        var result = await tradeSearchService.GetResults(Item.Metadata.Game, ItemTradeResult.Id, ids, PseudoFilters);
+        var result = await tradeSearchService.GetResults(Item.Header.Game, ItemTradeResult.Id, ids, PseudoFilters);
         TradeItems?.AddRange(result);
 
         IsLoading = false;

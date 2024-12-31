@@ -26,9 +26,9 @@ Item Level: 68
 Place into an allocated Jewel Socket on the Passive Skill Tree.Right click to remove from the Socket.
 ");
 
-            Assert.Equal(Category.Jewel, actual.Metadata.Category);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal("Cobalt Jewel", actual.Metadata.Type);
+            Assert.Equal(Category.Jewel, actual.Header.Category);
+            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+            Assert.Equal("Cobalt Jewel", actual.Header.ApiType);
             Assert.Equal("Blight Cut", actual.Header.Name);
             Assert.Equal(68, actual.Properties.ItemLevel);
 
@@ -65,9 +65,9 @@ Place into an allocated Large Jewel Socket on the Passive Skill Tree. Added pass
 Note: ~b/o 1 chaos
 ");
 
-            Assert.Equal(Category.Jewel, actual.Metadata.Category);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal("Large Cluster Jewel", actual.Metadata.Type);
+            Assert.Equal(Category.Jewel, actual.Header.Category);
+            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+            Assert.Equal("Large Cluster Jewel", actual.Header.ApiType);
             Assert.Equal("Chimeric Sliver", actual.Header.Name);
             Assert.Equal(69, actual.Properties.ItemLevel);
 
@@ -95,9 +95,9 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
 ");
 
             Assert.Equal("jewel", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal(Category.Jewel, actual.Metadata.Category);
-            Assert.Equal("Viridian Jewel", actual.Metadata.Type);
+            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+            Assert.Equal(Category.Jewel, actual.Header.Category);
+            Assert.Equal("Viridian Jewel", actual.Header.ApiType);
         }
     }
 }

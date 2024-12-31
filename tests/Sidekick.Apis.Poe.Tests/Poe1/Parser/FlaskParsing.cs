@@ -32,9 +32,9 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
 ");
 
             Assert.Equal("flask", actual.Header.ItemCategory);
-            Assert.Equal(Category.Flask, actual.Metadata.Category);
-            Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
-            Assert.Equal("Sanctified Mana Flask", actual.Metadata.Type);
+            Assert.Equal(Category.Flask, actual.Header.Category);
+            Assert.Equal(Rarity.Magic, actual.Header.Rarity);
+            Assert.Equal("Sanctified Mana Flask", actual.Header.ApiType);
 
             actual.AssertHasModifier(ModifierCategory.Explicit, "Grants Immunity to Bleeding for 4 seconds if used while Bleeding\nGrants Immunity to Corrupted Blood for 4 seconds if used while affected by Corrupted Blood", 4);
         }
@@ -59,9 +59,9 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
 ");
 
             Assert.Equal("flask", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
-            Assert.Equal(Category.Flask, actual.Metadata.Category);
-            Assert.Equal("Hallowed Life Flask", actual.Metadata.Type);
+            Assert.Equal(Rarity.Normal, actual.Header.Rarity);
+            Assert.Equal(Category.Flask, actual.Header.Category);
+            Assert.Equal("Hallowed Life Flask", actual.Header.ApiType);
         }
 
         [Fact]
@@ -86,9 +86,9 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
 ");
 
             Assert.Equal("flask", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
-            Assert.Equal(Category.Flask, actual.Metadata.Category);
-            Assert.Equal("Sacred Hybrid Flask", actual.Metadata.Type);
+            Assert.Equal(Rarity.Normal, actual.Header.Rarity);
+            Assert.Equal(Category.Flask, actual.Header.Category);
+            Assert.Equal("Sacred Hybrid Flask", actual.Header.ApiType);
             Assert.Equal(13, actual.Properties.Quality);
         }
 
@@ -114,9 +114,9 @@ Right click to activate. Only one Tincture in your belt can be active at a time.
 ");
 
             Assert.Equal("tincture", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
-            Assert.Equal(Category.Tincture, actual.Metadata.Category);
-            Assert.Equal("Poisonberry Tincture", actual.Metadata.Type);
+            Assert.Equal(Rarity.Normal, actual.Header.Rarity);
+            Assert.Equal(Category.Tincture, actual.Header.Category);
+            Assert.Equal("Poisonberry Tincture", actual.Header.ApiType);
         }
     }
 }

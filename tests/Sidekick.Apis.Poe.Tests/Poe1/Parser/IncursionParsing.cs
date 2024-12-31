@@ -40,9 +40,9 @@ Note: ~price 1.29 exalted
 ");
 
             Assert.Equal("map.fragment", actual.Header.ItemCategory);
-            Assert.Equal(Category.Map, actual.Metadata.Category);
-            Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
-            Assert.Equal("Chronicle of Atzoatl", actual.Metadata.Type);
+            Assert.Equal(Category.Map, actual.Header.Category);
+            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+            Assert.Equal("Chronicle of Atzoatl", actual.Header.ApiType);
 
             actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)");
         }

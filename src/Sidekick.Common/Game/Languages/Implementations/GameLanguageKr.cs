@@ -3,7 +3,7 @@ using Romanization;
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Korean", "kr")]
-public class GameLanguageKR : IGameLanguage
+public class GameLanguageKr : IGameLanguage
 {
     public string PoeTradeBaseUrl => "https://poe.game.daum.net/trade/";
     public string PoeTradeApiBaseUrl => "https://poe.game.daum.net/api/trade/";
@@ -37,8 +37,10 @@ public class GameLanguageKR : IGameLanguage
     public string DescriptionArmour => "방어도";
     public string DescriptionEvasion => "회피";
     public string DescriptionChanceToBlock => "막기 확률";
+    public string DescriptionBlockChance => "막기 확률";
     public string DescriptionAttacksPerSecond => "초당 공격 횟수";
     public string DescriptionCriticalStrikeChance => "치명타 확률";
+    public string DescriptionCriticalHitChance => "치명타 명중 확률";
     public string DescriptionMapTier => "지도 등급";
     public string DescriptionItemQuantity => "아이템 수량";
     public string DescriptionItemRarity => "아이템 희귀도";
@@ -49,9 +51,6 @@ public class GameLanguageKR : IGameLanguage
     public string AffixSuperior => "상";
     public string AffixBlighted => "역병";
     public string AffixBlightRavaged => "역병에 유린당한";
-    public string AffixAnomalous => "기묘한";
-    public string AffixDivergent => "분기하는";
-    public string AffixPhantasmal => "환영의";
 
     public string InfluenceShaper => "쉐이퍼 아이템";
     public string InfluenceElder => "엘더 아이템";
@@ -65,6 +64,8 @@ public class GameLanguageKR : IGameLanguage
         Prefix = "아이템 종류",
         DivinationCard = "점술 카드",
         StackableCurrency = "중첩 가능 화폐",
+        Socketable = "홈에 장착 가능",
+        Omen = "징조",
         Jewel = "주얼",
         DelveStackableSocketableCurrency = "탐광 중첩 및 결합형 화폐",
         MetamorphSample = "변형 샘플",
@@ -78,6 +79,7 @@ public class GameLanguageKR : IGameLanguage
         Helmets = "투구",
         Shields = "방패",
         Quivers = "화살통",
+        Focus = "집중구",
         LifeFlasks = "생명력 플라스크",
         ManaFlasks = "마나 플라스크",
         HybridFlasks = "하이브리드 플라스크",
@@ -89,6 +91,12 @@ public class GameLanguageKR : IGameLanguage
         Contract = "계약",
         Blueprint = "도면",
         MiscMapItems = "기타 지도 아이템",
+        Waystone = "경로석",
+        Barya = "시련 주화",
+        Ultimatum = "새겨진 결전",
+        Tablet = "서판",
+        Breachstone = "균열석",
+        BossKey = "최종 열쇠",
         Claws = "클로",
         Daggers = "단검",
         Wands = "마법봉",
@@ -97,6 +105,7 @@ public class GameLanguageKR : IGameLanguage
         OneHandAxes = "한손 도끼",
         OneHandMaces = "한손 철퇴",
         Bows = "활",
+        Crossbows = "쇠뇌",
         Staves = "지팡이",
         TwoHandSwords = "양손 검",
         TwoHandAxes = "양손 도끼",

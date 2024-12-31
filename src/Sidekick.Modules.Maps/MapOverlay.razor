@@ -13,7 +13,7 @@
 
 <AppTitle Title="@Resources["Map Check"]"/>
 
-<LayoutTwoColumn HasChildContent="@(Item == null || Item.Metadata.Game == GameType.PathOfExile)">
+<LayoutTwoColumn HasChildContent="@(Item == null || Item.Header.Game == GameType.PathOfExile)">
     <TopContent>
         <AppBar>
             <AppSettings Href="/settings/map">
@@ -31,7 +31,7 @@
         {
             <ItemHeader Name="@Item.Header.Name"
                         Type="@Item.Header.Type"
-                        Rarity="Item.Metadata.Rarity"
+                        Rarity="Item.Header.Rarity"
                         Influences="Item.Influences"/>
 
             <AppContainer>
@@ -50,7 +50,7 @@
                     </Heading1>
                 }
 
-                <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+                <ItemSeparator Rarity="Item.Header.Rarity"/>
 
                 @foreach (var mod in DangerousMods)
                 {
@@ -65,7 +65,7 @@
 
                 @if (DangerousMods.Any() && OkMods.Any())
                 {
-                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+                    <ItemSeparator Rarity="Item.Header.Rarity"/>
                 }
 
                 @foreach (var mod in OkMods)
@@ -86,7 +86,7 @@
         {
             <AppLoading/>
         }
-        else if (Item.Metadata.Game == GameType.PathOfExile)
+        else if (Item.Header.Game == GameType.PathOfExile)
         {
             <PoeWikiMapInfo Type="@Item.Invariant?.Type" Name="@Item.Invariant?.Name"/>
         }
@@ -151,7 +151,7 @@
         CloseOnBlur = await SettingsService.GetBool(SettingKeys.MapCheckCloseWithMouse);
         Item = await ItemParser.ParseItemAsync(ItemText.DecodeBase64Url() ?? string.Empty);
 
-        if (Item.Metadata.Category != Category.Map && Item.Metadata.Category != Category.Contract && Item.Metadata.Category != Category.Logbook)
+        if (Item.Header.Category != Category.Map && Item.Header.Category != Category.Contract && Item.Header.Category != Category.Logbook)
         {
             throw new InvalidItemException();
         }

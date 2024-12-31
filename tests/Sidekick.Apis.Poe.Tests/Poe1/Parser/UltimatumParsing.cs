@@ -24,9 +24,9 @@ Right click this item then left click a ring, amulet or belt to apply it. Has gr
 ");
 
             Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
-            Assert.Equal(Category.Currency, actual.Metadata.Category);
-            Assert.Equal("Noxious Catalyst", actual.Metadata.Type);
+            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+            Assert.Equal(Category.Currency, actual.Header.Category);
+            Assert.Equal("Noxious Catalyst", actual.Header.ApiType);
         }
     }
 }
