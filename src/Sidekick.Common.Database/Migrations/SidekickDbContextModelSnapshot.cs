@@ -38,10 +38,16 @@ namespace Sidekick.Common.Database.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("Height")
+                    b.Property<int>("Height")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("Width")
+                    b.Property<int>("Width")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("X")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("Y")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Key");

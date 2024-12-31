@@ -1,21 +1,32 @@
 @page "/development/tests"
 @layout DevelopmentLayout
 @using Sidekick.Modules.Development.Layouts
+@using Sidekick.Common.Platform
 @inherits SidekickView
 
 <AppContainer>
-    <div class="flex items-center justify-center gap-2">
-        <ButtonPrimary OnClick="ThrowException">Throw an exception</ButtonPrimary>
-    </div>
+    <Fieldset Legend="Custom actions">
+        <div class="flex gap-3">
+            <ButtonPrimary OnClick="RegisterHooks">Bind keyboard hooks</ButtonPrimary>
+            <ButtonPrimary OnClick="ThrowException">Throw an exception</ButtonPrimary>
+        </div>
+    </Fieldset>
 </AppContainer>
+
+@inject IKeyboardProvider KeyboardProvider
 
 @code {
 
-    public void ThrowException()
+    private void ThrowException()
     {
 #pragma warning disable S112 // General exceptions should never be thrown
-        throw new Exception("Developper test from the exception page.");
+        throw new Exception("[Development] This is a test exception.");
 #pragma warning restore S112 // General exceptions should never be thrown
+    }
+
+    private void RegisterHooks()
+    {
+        KeyboardProvider.RegisterHooks();
     }
 
 }

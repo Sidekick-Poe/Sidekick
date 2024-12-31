@@ -4,15 +4,9 @@ namespace Sidekick.Apis.Poe.Trade.Models
 {
     public class PseudoModifierFilter : ITradeFilter
     {
-        public PseudoModifierFilter(PseudoModifier modifier)
-        {
-            Modifier = modifier;
-            Checked = false;
-        }
+        public required PseudoModifier PseudoModifier { get; set; }
 
-        public PseudoModifier Modifier { get; }
-
-        public bool? @Checked { get; set; }
+        public bool? @Checked { get; set; } = false;
 
         public decimal? Min { get; set; }
 
@@ -25,13 +19,13 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void NormalizeMinValue()
         {
-            if (Modifier.Value > 0)
+            if (PseudoModifier.Value > 0)
             {
-                Min = (int)Math.Max((1 - NormalizeValue) * Modifier.Value, 0);
+                Min = (int)Math.Max((1 - NormalizeValue) * PseudoModifier.Value, 0);
             }
             else
             {
-                Min = (int)Math.Min((1 + NormalizeValue) * Modifier.Value, 0);
+                Min = (int)Math.Min((1 + NormalizeValue) * PseudoModifier.Value, 0);
             }
         }
 
@@ -40,13 +34,13 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void NormalizeMaxValue()
         {
-            if (Modifier.Value > 0)
+            if (PseudoModifier.Value > 0)
             {
-                Max = (int)Math.Max(Math.Max(Modifier.Value + 1, (1 + NormalizeValue) * Modifier.Value), 0);
+                Max = (int)Math.Max(Math.Max(PseudoModifier.Value + 1, (1 + NormalizeValue) * PseudoModifier.Value), 0);
             }
             else
             {
-                Max = (int)Math.Min(Math.Max(Modifier.Value + 1, (1 - NormalizeValue) * Modifier.Value), 0);
+                Max = (int)Math.Min(Math.Max(PseudoModifier.Value + 1, (1 - NormalizeValue) * PseudoModifier.Value), 0);
             }
         }
 
@@ -55,8 +49,8 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// </summary>
         public void SetExactValue()
         {
-            Min = (int)Modifier.Value;
-            Max = (int)Modifier.Value;
+            Min = (int)PseudoModifier.Value;
+            Max = (int)PseudoModifier.Value;
         }
     }
 }

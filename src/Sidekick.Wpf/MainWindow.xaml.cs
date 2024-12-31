@@ -45,7 +45,6 @@ public partial class MainWindow
         Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
         Opacity = 0.01;
 
-        CenterHelper.Center(this);
         Activate();
     }
 
@@ -61,11 +60,15 @@ public partial class MainWindow
             return;
         }
 
+        // Save the window position and size.
         try
         {
             var width = (int)ActualWidth;
             var height = (int)ActualHeight;
-            _ = viewLocator.ViewPreferenceService.Set(SidekickView?.CurrentView.Key, width, height);
+            var x = (int)Left;
+            var y = (int)Top;
+
+            _ = viewLocator.ViewPreferenceService.Set(SidekickView?.CurrentView.Key, width, height, x, y);
         }
         catch (Exception)
         {
@@ -73,7 +76,6 @@ public partial class MainWindow
         }
 
         Resources.Remove("services");
-        OverlayContainer?.Dispose();
         viewLocator.Windows.Remove(this);
         Scope.Dispose();
 
@@ -93,6 +95,11 @@ public partial class MainWindow
                 WebView = null;
             }
         });
+
+        UnregisterName("Grid");
+        UnregisterName("OverlayContainer");
+        UnregisterName("TopBorder");
+        UnregisterName("WebView");
 
         isClosing = true;
     }
@@ -116,7 +123,6 @@ public partial class MainWindow
 
         Grid.Margin = WindowState == WindowState.Maximized ? new Thickness(0) : new Thickness(5);
     }
-
 
     private void TopBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {

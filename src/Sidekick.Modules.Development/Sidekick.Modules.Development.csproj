@@ -12,10 +12,4 @@
     <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="..\Sidekick.Common.Ui\_Imports.razor">
-      <Link>_Imports.razor</Link>
-    </Content>
-  </ItemGroup>
-
 </Project>

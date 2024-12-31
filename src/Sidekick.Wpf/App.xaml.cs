@@ -10,6 +10,7 @@ using Sidekick.Apis.Poe;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
+using Sidekick.Common.Updater;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Database;
@@ -26,6 +27,7 @@ using Sidekick.Modules.Maps;
 using Sidekick.Modules.Wealth;
 using Sidekick.Modules.Trade;
 using Sidekick.Wpf.Services;
+using Velopack;
 
 namespace Sidekick.Wpf
 {
@@ -42,6 +44,8 @@ namespace Sidekick.Wpf
 
         public App()
         {
+            VelopackApp.Build().Run();
+
             DeleteStaticAssets();
             DisableWindowsTheme();
             ServiceProvider = GetServiceProvider();
@@ -141,6 +145,7 @@ namespace Sidekick.Wpf
                 .AddSidekickPoeNinjaApi()
                 .AddSidekickPoePriceInfoApi()
                 .AddSidekickPoeWikiApi()
+                .AddSidekickUpdater()
 
                 // Modules
                 .AddSidekickChat()

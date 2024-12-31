@@ -118,22 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="New_Update_Alert" xml:space="preserve">
-    <value>Une mise à jour est disponible!</value>
+    <value>A new update is available!</value>
   </data>
   <data name="Download_And_Install" xml:space="preserve">
-    <value>Télécharger et installer</value>
+    <value>Download and Install</value>
   </data>
   <data name="Open_Website" xml:space="preserve">
-    <value>Ouvrir le site web</value>
+    <value>Open Website</value>
   </data>
   <data name="Confirm_Update" xml:space="preserve">
-    <value>Confirmer la mise à jour?</value>
+    <value>Confirm you want to download and install this update?</value>
   </data>
   <data name="Checking_For_Updates" xml:space="preserve">
-    <value>Vérification de mise à jour</value>
+    <value>Checking for updates...</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Update_Cant_Download" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="Update_Cant_Download" xml:space="preserve">
+    <value>Could not download the update automatically. You can try to download the latest version from https://sidekick-poe.github.io/</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+      <value>Continue</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+      <value>Exit</value>
+  </data>
+  <data name="NewLauncher" xml:space="preserve">
+      <value>New launcher available!</value>
+  </data>
+  <data name="NewLauncherText" xml:space="preserve">
+      <value>A new and improved launcher is available. Open the website to grab it. You can uninstall this version.</value>
   </data>
 </root>

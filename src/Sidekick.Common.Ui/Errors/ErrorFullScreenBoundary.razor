@@ -1,13 +1,13 @@
 @using Sidekick.Common.Exceptions
 @using Sidekick.Common.Platform
 
-<SidekickErrorBoundary OnUpdate="OnUpdate">
+<SidekickErrorBoundary>
     <ChildContent>
         @ChildContent
     </ChildContent>
     <ErrorContent>
         <div class="fixed top-0 left-0 h-full w-full @BackgroundClass(context.IsCritical) text-xl overflow-auto">
-            <div class="flex w-full h-full items-center justify-center text-center p-4 flex-col">
+            <div class="flex min-w-full min-h-full items-center justify-center text-center p-4 flex-col">
                 <div>
                     @if (!string.IsNullOrEmpty(context.Message))
                     {
@@ -84,13 +84,4 @@
     private string ButtonClass(bool isCritical) => isCritical ? "bg-white text-red-700" : "bg-white text-orange-700";
 
     private SidekickErrorBoundary? ErrorBoundary { get; set; }
-
-    protected void OnUpdate(SidekickErrorBoundary boundary)
-    {
-        if (boundary.Exception != null)
-        {
-            CurrentView.SetSize(minWidth: 360);
-        }
-    }
-
 }

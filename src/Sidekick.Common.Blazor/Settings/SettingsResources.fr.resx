@@ -123,9 +123,6 @@
   <data name="Character_League" xml:space="preserve">
     <value>Ligue</value>
   </data>
-  <data name="Chat_Add" xml:space="preserve">
-    <value>Ajouter une nouvelle commande</value>
-  </data>
   <data name="Chat_Commands" xml:space="preserve">
     <value>Commandes de chat</value>
   </data>
@@ -133,13 +130,10 @@
     <value>Commandes communes</value>
   </data>
   <data name="Chat_Commands_Exit" xml:space="preserve">
-    <value>/exit - Quitter vers la sélection du personnage</value>
+    <value>Quitter vers la sélection du personnage</value>
   </data>
   <data name="Chat_Commands_Hideout" xml:space="preserve">
-    <value>/hideout - Aller au repaire</value>
-  </data>
-  <data name="Chat_Custom" xml:space="preserve">
-    <value>Commandes personalisées</value>
+    <value>Aller au repaire</value>
   </data>
   <data name="Chat_Exit" xml:space="preserve">
     <value>Quitter</value>
@@ -153,17 +147,8 @@
   <data name="Chat_Kick" xml:space="preserve">
     <value>Expulser du groupe</value>
   </data>
-  <data name="Chat_Submit" xml:space="preserve">
-    <value>Soumettre la commande</value>
-  </data>
-  <data name="Chat_Whisper" xml:space="preserve">
-    <value>Message privé</value>
-  </data>
-  <data name="Chat_Wildcard" xml:space="preserve">
-    <value>Wildcards</value>
-  </data>
   <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
-    <value>@last - Nom de la personne du dernier échange</value>
+    <value>Nom de la personne du dernier échange</value>
   </data>
   <data name="General_Settings" xml:space="preserve">
     <value>Configurations générales</value>
@@ -232,7 +217,7 @@
     <value>Vérifier les prix</value>
   </data>
   <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
-    <value>Afficher les prédictions de poeprices.info</value>
+    <value>Afficher les prédictions de poeprices.info (PoE1 seulement)</value>
   </data>
   <data name="Reset_Cache" xml:space="preserve">
     <value>Réinitialiser la cache</value>
@@ -262,7 +247,7 @@
     <value>Wealth Tracker</value>
   </data>
   <data name="Chat_Commands_Leave" xml:space="preserve">
-    <value>/leave - Quitter le groupe</value>
+    <value>Quitter le groupe</value>
   </data>
   <data name="Chat_Commands_Remove" xml:space="preserve">
     <value>Retirer cette commande</value>
@@ -324,11 +309,34 @@
   <data name="Official_Website" xml:space="preserve">
     <value>Site officiel</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="GitHub_Repository" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="Open_Settings_Folder" xml:space="preserve">
     <value>Ouvrir le répertoire des configurations</value>
+  </data>
+  <data name="SaveWindowPositions" xml:space="preserve">
+    <value>Conserver la position des fenêtres. Si désactivé, les fenêtres seront centrées.</value>
+  </data>
+  <data name="Chat_Add_New_Command" xml:space="preserve">
+    <value>Ajouter une nouvelle commande</value>
+  </data>
+  <data name="Chat_Submit_The_Command" xml:space="preserve">
+    <value>Soumettre la commande</value>
+  </data>
+  <data name="Chat_Command" xml:space="preserve">
+    <value>Commande</value>
+  </data>
+  <data name="Keybind" xml:space="preserve">
+    <value>Raccourci</value>
+  </data>
+  <data name="Submit_The_Command" xml:space="preserve">
+    <value>Soumettre la commande</value>
+  </data>
+  <data name="Chat_Restore_Defaults" xml:space="preserve">
+    <value>Restaurer les commandes par défaut</value>
+  </data>
+  <data name="Chat_Commands_Invite" xml:space="preserve">
+    <value>Inviter un joueur</value>
+  </data>
+  <data name="Chat_Commands_Kick" xml:space="preserve">
+    <value>Expulser un joueur</value>
   </data>
 </root>

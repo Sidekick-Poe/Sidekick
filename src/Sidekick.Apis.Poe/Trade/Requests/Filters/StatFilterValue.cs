@@ -2,33 +2,27 @@ using Sidekick.Apis.Poe.Trade.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
 
-internal class SearchFilterValue
+internal class StatFilterValue
 {
-    internal SearchFilterValue()
+    internal StatFilterValue()
     {
     }
 
-    public SearchFilterValue(string? option)
+    public StatFilterValue(string? option)
     {
         Option = option;
     }
 
-    public SearchFilterValue(PropertyFilter filter)
+    public StatFilterValue(PropertyFilter filter)
     {
         Option = filter.Checked == true ? "true" : "false";
         Min = filter.Min;
         Max = filter.Max;
     }
 
-    public SearchFilterValue(ModifierFilter filter)
+    public StatFilterValue(ModifierFilter filter)
     {
         Option = filter.Line.OptionValue;
-        Min = filter.Min;
-        Max = filter.Max;
-    }
-
-    public SearchFilterValue(PseudoModifierFilter filter)
-    {
         Min = filter.Min;
         Max = filter.Max;
     }
@@ -38,4 +32,6 @@ internal class SearchFilterValue
     public decimal? Min { get; set; }
 
     public decimal? Max { get; set; }
+
+    public double? Weight { get; set; }
 }

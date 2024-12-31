@@ -11,7 +11,7 @@
 }
 else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
 {
-    <div class="flex flex-nowrap items-center pt-2">
+    <div class="flex flex-nowrap items-center">
         <div class="text-right w-1/2 pr-2">
             <Heading3>@Resources["PoePrices.info"]</Heading3>
             <TextCaption Class="@ConfidenceColorClass">@Resources["Confidence: {0:0.#}%", Prediction.ConfidenceScore]</TextCaption>

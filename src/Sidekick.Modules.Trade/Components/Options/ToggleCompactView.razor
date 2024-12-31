@@ -1,0 +1,29 @@
+@using Sidekick.Modules.Trade.Localization
+
+<TooltipBottomRight>
+    <ChildContent>
+        <button type="button"
+                @onclick="@OnClick"
+                @onclick:preventDefault="true"
+                @onclick:stopPropagation="true"
+                class="inline-flex items-center justify-center p-1 -m-1 text-xl font-medium tracking-wide transition-colors duration-200 rounded-md bg-transparent">
+            <IconMedium Icon="@(IsCompact ? UiIcons.Expand : UiIcons.Collapse)"/>
+        </button>
+    </ChildContent>
+
+    <TooltipContent>
+        <TextBase Class="max-w-[15rem]">@(IsCompact ? Resources["Layout_Cards_Maximized"] : Resources["Layout_Cards_Minimized"])</TextBase>
+    </TooltipContent>
+</TooltipBottomRight>
+
+@inject IStringLocalizer<TradeResources> Resources
+
+@code {
+
+    [Parameter]
+    public required bool IsCompact { get; set; }
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+}

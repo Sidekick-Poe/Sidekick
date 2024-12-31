@@ -62,6 +62,9 @@ public partial class CloudflareWindow
             _ = cloudflareService.CaptchaChallengeFailed();
         }
 
+        UnregisterName("Grid");
+        UnregisterName("WebView");
+
         base.OnClosing(e);
     }
 

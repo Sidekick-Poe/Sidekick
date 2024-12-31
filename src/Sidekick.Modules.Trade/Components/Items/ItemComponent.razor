@@ -3,7 +3,7 @@
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Prices
 
-@if (Item.CanHaveModifiers || PriceCheckService.Item?.Metadata.Category == Category.Gem)
+@if (!IsCompact && (Item.CanHaveModifiers || PriceCheckService.Item?.Metadata.Category == Category.Gem))
 {
     <div class="mb-2 rounded-b-lg bg-stone-950">
         <ItemHeader Name="@Item.Header.Name"
@@ -96,5 +96,8 @@ else
 
     [Parameter]
     public required TradeItem Item { get; set; }
+
+    [Parameter]
+    public bool IsCompact { get; set; } = false;
 
 }

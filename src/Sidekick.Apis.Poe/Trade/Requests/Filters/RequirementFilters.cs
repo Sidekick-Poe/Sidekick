@@ -5,15 +5,15 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
     internal class RequirementFilters
     {
         [JsonPropertyName("lvl")]
-        public SearchFilterValue? Level { get; set; }
+        public StatFilterValue? Level { get; set; }
 
         [JsonPropertyName("dex")]
-        public SearchFilterValue? Dexterity { get; set; }
+        public StatFilterValue? Dexterity { get; set; }
 
         [JsonPropertyName("str")]
-        public SearchFilterValue? Strength { get; set; }
+        public StatFilterValue? Strength { get; set; }
 
         [JsonPropertyName("int")]
-        public SearchFilterValue? Intelligence { get; set; }
+        public StatFilterValue? Intelligence { get; set; }
     }
 }

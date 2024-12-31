@@ -1,20 +1,24 @@
 # [![](https://sidekick-poe.github.io/assets/images/orb_exalted.png)](#) Sidekick
 
-[![Open Website](https://img.shields.io/badge/website-6b6ebe?style=flat-square)](https://sidekick-poe.github.io/) [![Download](https://img.shields.io/badge/download-00BCD4?style=flat-square)](https://sidekick-poe.github.io/) [![](https://img.shields.io/github/v/release/Sidekick-Poe/Sidekick?style=flat-square)](https://github.com/Sidekick-Poe/Sidekick/releases) [![Download Statistics](https://img.shields.io/github/downloads-pre/Sidekick-Poe/Sidekick/latest/total?style=flat-square&color=15803d)](https://tooomm.github.io/github-release-stats/?username=Sidekick-Poe&repository=Sidekick) [![Download Statistics](https://img.shields.io/github/downloads-pre/Sidekick-Poe/Sidekick/total?style=flat-square&color=22c55e)](https://tooomm.github.io/github-release-stats/?username=Sidekick-Poe&repository=Sidekick) [![](https://img.shields.io/discord/664252463188279300?color=%23738AD6&label=Discord&style=flat-square)](https://discord.gg/H4bg4GQ)
+[![](https://img.shields.io/github/v/release/Sidekick-Poe/Sidekick?style=flat-square)](https://github.com/Sidekick-Poe/Sidekick/releases/latest) [![Download Statistics](https://img.shields.io/github/downloads/Sidekick-Poe/Sidekick/latest/total?style=flat-square&color=15803d)](https://tooomm.github.io/github-release-stats/?username=Sidekick-Poe&repository=Sidekick) [![Download Statistics](https://img.shields.io/github/downloads/Sidekick-Poe/Sidekick/total?style=flat-square&color=22c55e)](https://tooomm.github.io/github-release-stats/?username=Sidekick-Poe&repository=Sidekick) [![](https://img.shields.io/discord/664252463188279300?color=%23738AD6&label=Discord&style=flat-square)](https://discord.gg/H4bg4GQ)
 
-A Path of Exile companion tool. Price check items, check for dangerous map modifiers, and more!
+A Path of Exile and Path of Exile 2 companion tool. Price check items, check for dangerous map modifiers, and more!
 
-[![Website](https://img.shields.io/badge/Website_and_Download-6b6ebe?style=for-the-badge)](https://sidekick-poe.github.io/)
+[![Website](https://img.shields.io/badge/Website-6b6ebe?style=for-the-badge)](https://sidekick-poe.github.io/) [![Website](https://img.shields.io/badge/Download-00BCD4?style=for-the-badge)](https://github.com/Sidekick-Poe/Sidekick/releases/latest)
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/sidekickpoe)
 
-## Path of Exile 2
-Sidekick now supports Path of Exile 2, and of course still supports Path of Exile 1.
-
 ## Development
-We accept most PR and ideas. If you want a feature included, create an issue and we will discuss it.
+We accept most PR and ideas. If you want a feature included, create an issue and we will discuss it. We are also available on [Discord](https://discord.gg/H4bg4GQ).
+#### Running the code:
+1. Install **.NET SDK**
+2. Install **Node** and **NPM** (for the stylesheets)
+3. Clone the repository
+4. Open **.sln** with your IDE of choice. Recommended IDEs are: **Visual Studio 2022**, **Rider** or **Visual Studio Code**
+5. Run the **WPF** project (VS2022 or Rider) or **Web** project. Can also be done with **dotnet CLI**
 
-We are also available on [Discord](https://discord.gg/H4bg4GQ).
+#### Implementation Notes
+The application is a web application that is running inside a WebView2 provided by WPF. Development can also be done using the Web project.
 
 ## Notice
 This product isn't affiliated with or endorsed by Grinding Gear Games in any way.

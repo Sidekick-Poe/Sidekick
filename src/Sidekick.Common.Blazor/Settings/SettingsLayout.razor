@@ -1,5 +1,4 @@
 @using System.Diagnostics
-@using Sidekick.Common.Blazor.Update
 @using Sidekick.Common.Cache
 @inherits LayoutComponentBase
 
@@ -22,6 +21,7 @@
 
             @if (Debugger.IsAttached)
             {
+                <MenuItem Href="/development">Development</MenuItem>
                 <MenuItem Href="/settings/wealth">@Resources["WealthTracker"]</MenuItem>
             }
 
@@ -37,9 +37,6 @@
             @Body
         </div>
     </ChildContent>
-    <BottomContent>
-        <UpdateBanner/>
-    </BottomContent>
 </LayoutTwoColumn>
 
 @inject IStringLocalizer<SettingsResources> Resources

@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -5,8 +6,6 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub.Api;
 using Sidekick.Apis.GitHub.Models;
-using Sidekick.Common;
-using Sidekick.Common.Cache;
 
 namespace Sidekick.Apis.GitHub;
 
@@ -16,23 +15,27 @@ public class GitHubClient
     ILogger<GitHubClient> logger
 ) : IGitHubClient
 {
-    private const string IndicatorPath = "SidekickGitHub";
+    private DateTimeOffset? LastUpdateCheck { get; set; }
 
     private GitHubRelease? LatestRelease { get; set; }
-
-    public int Priority => 0;
-
-    public Task Initialize()
-    {
-        return DownloadGitHubDownloadIndicatorFile();
-    }
 
     /// <inheritdoc />
     public async Task<GitHubRelease> GetLatestRelease()
     {
-        if (LatestRelease != null)
+        if (LatestRelease != null && LastUpdateCheck >= DateTimeOffset.Now.AddHours(-6))
         {
             return LatestRelease;
+        }
+
+        LastUpdateCheck = DateTimeOffset.Now;
+
+        if (Debugger.IsAttached)
+        {
+            return new GitHubRelease()
+            {
+                IsNewerVersion = true,
+                IsExecutable = true,
+            };
         }
 
         var release = await GetLatestApiRelease();
@@ -88,46 +91,6 @@ public class GitHubClient
         return true;
     }
 
-    private async Task DownloadGitHubDownloadIndicatorFile()
-    {
-        var version = GetCurrentVersion();
-        if (version == null)
-        {
-            logger.LogInformation("[GitHubClient] Could not get current version.");
-            return;
-        }
-
-        if (HasIndicatorFile(version))
-        {
-            logger.LogInformation("[GitHubClient] GitHub download indicator file already exists.");
-            return;
-        }
-
-        logger.LogInformation("[GitHubClient] Checking for GitHub download indicator file.");
-        var apiReleases = await GetApiReleases();
-        var apiRelease = apiReleases?.FirstOrDefault(x => x.Version == version);
-        if (apiRelease == null)
-        {
-            logger.LogInformation("[GitHubClient] Could not find GitHub release for current version.");
-            return;
-        }
-
-        var downloadUrl = apiRelease.Assets?.FirstOrDefault(x => x.Name == "download-instructions.txt")?.DownloadUrl;
-        if (string.IsNullOrEmpty(downloadUrl))
-        {
-            logger.LogInformation("[GitHubClient] Could not find download indicator file for current version on GitHub.");
-            return;
-        }
-
-        using var client = GetHttpClient();
-        var response = await client.GetAsync(downloadUrl);
-        await using var downloadStream = await response.Content.ReadAsStreamAsync();
-        await using var fileStream = new FileStream(GetDownloadIndicatorFileName(version), FileMode.Create, FileAccess.Write, FileShare.None);
-        await downloadStream.CopyToAsync(fileStream);
-
-        logger.LogInformation("[GitHubClient] Downloaded indicator file for current version on GitHub.");
-    }
-
     private HttpClient GetHttpClient()
     {
         var client = httpClientFactory.CreateClient();
@@ -159,24 +122,6 @@ public class GitHubClient
     {
         var githubReleaseList = await GetApiReleases();
         return githubReleaseList?.FirstOrDefault(x => !x.Prerelease);
-    }
-
-    private bool HasIndicatorFile(Version version)
-    {
-        EnsureIndicatorDirectory();
-        var fileName = GetDownloadIndicatorFileName(version);
-        return File.Exists(fileName);
-    }
-
-    private static void EnsureIndicatorDirectory()
-    {
-        Directory.CreateDirectory(Path.Combine(path1: SidekickPaths.GetDataFilePath(), IndicatorPath));
-    }
-
-    private static string GetDownloadIndicatorFileName(Version version)
-    {
-        var fileName = $"{version.ToString()}.txt";
-        return Path.Combine(path1: SidekickPaths.GetDataFilePath(), IndicatorPath, fileName);
     }
 
     private Version? GetCurrentVersion()
