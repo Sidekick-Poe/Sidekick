@@ -42,12 +42,12 @@ public class ApiItem
         return new Header()
         {
             Name = Name,
-            Type = Type,
+            Type = Text ?? Type,
             ApiItemId = Id ?? string.Empty,
             ApiName = Name,
             ApiType = Type,
-            ApiDiscriminator = Discriminator,
             ApiText = Text,
+            ApiDiscriminator = Discriminator,
             Game = Game,
             Category = Category ?? Common.Game.Items.Category.Unknown,
             Rarity = IsUnique ? Rarity.Unique : categoryRarity,

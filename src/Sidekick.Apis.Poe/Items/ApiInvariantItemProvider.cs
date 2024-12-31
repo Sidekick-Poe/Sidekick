@@ -62,12 +62,11 @@ namespace Sidekick.Apis.Poe.Items
 
             for (var i = 0; i < categoryItems.Entries.Count; i++)
             {
-                var item = categoryItems.Entries[i];
-
-                item.Id = $"{categoryId}.{i}";
-                item.Game = game;
-                item.Category = category;
-                IdDictionary.Add($"{category}.{i}", item);
+                var entry = categoryItems.Entries[i];
+                entry.Id = $"{categoryId}.{i}";
+                entry.Game = game;
+                entry.Category = category;
+                IdDictionary.Add(entry.Id, entry);
             }
         }
 
