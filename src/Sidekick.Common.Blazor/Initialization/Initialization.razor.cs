@@ -7,7 +7,6 @@ using Microsoft.Extensions.Options;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
@@ -58,8 +57,6 @@ namespace Sidekick.Common.Blazor.Initialization
         public Task? InitializationTask { get; set; }
 
         public override SidekickViewType ViewType => SidekickViewType.Modal;
-
-        public override int ViewHeight => 210;
 
         private int TimeLeftToCloseView { get; set; } = 4;
 
@@ -114,15 +111,7 @@ namespace Sidekick.Common.Blazor.Initialization
                 Completed = Count;
                 await ReportProgress();
 
-                if (Debugger.IsAttached)
-                {
-                    await ViewLocator.Open("/development");
-                    await CurrentView.Close();
-                }
-                else
-                {
-                    await StartCountdownToClose();
-                }
+                await StartCountdownToClose();
             }
             catch (SidekickException e)
             {
@@ -140,7 +129,15 @@ namespace Sidekick.Common.Blazor.Initialization
                 await Task.Delay(1000);
                 TimeLeftToCloseView--;
             }
-            await CurrentView.Close();
+
+            if (Debugger.IsAttached)
+            {
+                NavigationManager.NavigateTo("/development");
+            }
+            else
+            {
+                await CurrentView.Close();
+            }
         }
 
         private async Task Run(Action action)

@@ -38,6 +38,8 @@ public partial class MainWindow
 
     public void Ready()
     {
+        var wasAlreadyVisible = WebView.Visibility == Visibility.Visible;
+
         // This avoids the white flicker which is caused by the page content not being loaded initially. We show the webview control only when the content is ready.
         WebView.Visibility = Visibility.Visible;
 
@@ -45,7 +47,10 @@ public partial class MainWindow
         Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
         Opacity = 0.01;
 
-        Activate();
+        if (!wasAlreadyVisible)
+        {
+            Activate();
+        }
     }
 
     protected override void OnClosing(CancelEventArgs e)

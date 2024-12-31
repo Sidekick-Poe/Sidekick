@@ -40,7 +40,7 @@ namespace Sidekick.Common.Ui.Views
         /// </summary>
         public virtual int ViewHeight => ViewType switch
         {
-            SidekickViewType.Modal => 260,
+            SidekickViewType.Modal => 220,
             _ => 600,
         };
 
