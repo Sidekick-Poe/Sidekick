@@ -377,3 +377,4 @@ public class HeaderParser
         return Rarity.Unknown;
     }
 }
+

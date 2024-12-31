@@ -140,7 +140,7 @@
         var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
         await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
 
-        CurrentView.SetSize(height: 210);
+        CurrentView.SetSize(height: 220);
         NavigationManager.NavigateTo("/initialize");
     }
 
