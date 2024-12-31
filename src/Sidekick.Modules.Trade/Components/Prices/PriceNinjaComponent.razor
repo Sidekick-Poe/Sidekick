@@ -54,7 +54,7 @@ else if (Price != null)
         </div>
     }
 
-    <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown" />
+    <ItemSeparator Rarity="PriceCheckService.Item?.Header.Rarity ?? Rarity.Unknown" />
 }
 
 @inject IStringLocalizer<TradeResources> Resources
@@ -75,7 +75,7 @@ else if (Price != null)
     {
         await base.OnParametersSetAsync();
 
-        if (PriceCheckService.Item?.Metadata.Game == GameType.PathOfExile2)
+        if (PriceCheckService.Item?.Header.Game == GameType.PathOfExile2)
         {
             return;
         }
@@ -92,7 +92,7 @@ else if (Price != null)
             Price = await Client.GetPriceInfo(
                 PriceCheckService.Item?.Invariant?.Name,
                 PriceCheckService.Item?.Invariant?.Type,
-                PriceCheckService.Item?.Metadata.Category ?? Category.Unknown,
+                PriceCheckService.Item?.Header.Category ?? Category.Unknown,
                 gemLevel: PriceCheckService.Item?.Properties.GemLevel,
                 mapTier: PriceCheckService.Item?.Properties.MapTier,
                 numberOfLinks: PriceCheckService.Item?.GetMaximumNumberOfLinks());

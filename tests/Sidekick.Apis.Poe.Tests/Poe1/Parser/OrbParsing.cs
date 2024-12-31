@@ -25,9 +25,9 @@ Note: ~b/o 2 blessed
 ");
 
             Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
-            Assert.Equal(Category.Currency, actual.Metadata.Category);
-            Assert.Equal("Chaos Orb", actual.Metadata.Type);
+            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+            Assert.Equal(Category.Currency, actual.Header.Category);
+            Assert.Equal("Chaos Orb", actual.Header.ApiType);
 
             Assert.Empty(actual.ModifierLines);
         }

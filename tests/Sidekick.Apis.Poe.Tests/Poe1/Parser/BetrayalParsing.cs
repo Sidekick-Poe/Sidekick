@@ -26,9 +26,9 @@ Note: ~b/o .50 chaos
 ");
 
             Assert.Equal("map.fragment", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Normal, actual.Metadata.Rarity);
-            Assert.Equal(Category.Map, actual.Metadata.Category);
-            Assert.Equal("Rusted Reliquary Scarab", actual.Metadata.Type);
+            Assert.Equal(Rarity.Normal, actual.Header.Rarity);
+            Assert.Equal(Category.Map, actual.Header.Category);
+            Assert.Equal("Rusted Reliquary Scarab", actual.Header.ApiType);
         }
 
     }

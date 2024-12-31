@@ -27,9 +27,9 @@ Damage Penetrates 5% Lightning Resistance
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-        Assert.Equal(Category.Jewel, actual.Metadata.Category);
-        Assert.Equal("Emerald", actual.Metadata.Type);
-        Assert.Null(actual.Metadata.Name);
+        Assert.Equal(Category.Jewel, actual.Header.Category);
+        Assert.Equal("Emerald", actual.Header.ApiType);
+        Assert.Null(actual.Header.ApiName);
         Assert.Equal(26, actual.Properties.ItemLevel);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Attack Speed", 3);
@@ -57,10 +57,10 @@ Notable Passive Skills in Radius also grant 7% increased Stun Buildup with Maces
 --------
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.");
 
-        Assert.Equal(Category.Jewel, actual.Metadata.Category);
-        Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-        Assert.Equal("Time-Lost Ruby", actual.Metadata.Type);
-        Assert.Null(actual.Metadata.Name);
+        Assert.Equal(Category.Jewel, actual.Header.Category);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal("Time-Lost Ruby", actual.Header.ApiType);
+        Assert.Null(actual.Header.ApiName);
         Assert.Equal(64, actual.Properties.ItemLevel);
     }
 }

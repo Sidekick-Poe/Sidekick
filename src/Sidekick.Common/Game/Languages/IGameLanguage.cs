@@ -66,6 +66,8 @@ public interface IGameLanguage
 
     string DescriptionCriticalStrikeChance { get; }
 
+    string DescriptionCriticalHitChance { get; }
+
     string DescriptionEnergyShield { get; }
 
     string DescriptionArmour { get; }
@@ -73,6 +75,8 @@ public interface IGameLanguage
     string DescriptionEvasion { get; }
 
     string DescriptionChanceToBlock { get; }
+
+    string DescriptionBlockChance { get; }
 
     string DescriptionLevel { get; }
 
@@ -83,12 +87,6 @@ public interface IGameLanguage
     string AffixBlighted { get; }
 
     string AffixBlightRavaged { get; }
-
-    string AffixAnomalous { get; }
-
-    string AffixDivergent { get; }
-
-    string AffixPhantasmal { get; }
 
     string InfluenceShaper { get; }
 

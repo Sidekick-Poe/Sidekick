@@ -26,7 +26,7 @@ namespace Sidekick.Apis.Poe.Parser
                 .ToList();
         }
 
-        public ItemMetadata? Metadata { get; set; }
+        public Header? Header { get; set; }
 
         /// <summary>
         /// Item sections seperated by dashes when copying an item in-game.

@@ -54,57 +54,13 @@ Corrupted
 Note: ~price 2 chaos
 ");
 
-            Assert.Equal(Category.Gem, actual.Metadata.Category);
-            Assert.Equal(Rarity.Gem, actual.Metadata.Rarity);
-            Assert.Equal("Vaal Double Strike", actual.Metadata.Type);
+            Assert.Equal(Category.Gem, actual.Header.Category);
+            Assert.Equal(Rarity.Gem, actual.Header.Rarity);
+            Assert.Equal("Vaal Double Strike", actual.Header.ApiType);
             Assert.Equal(1, actual.Properties.GemLevel);
             Assert.Equal(0, actual.Properties.Quality);
             Assert.False(actual.Properties.AlternateQuality);
             Assert.True(actual.Properties.Corrupted);
-        }
-
-        [Fact]
-        public void ParseAnomalousGem()
-        {
-            var actual = parser.ParseItem(@"Item Class: Unknown
-Rarity: Gem
-Anomalous Static Strike
---------
-Attack, Melee, Strike, AoE, Duration, Lightning, Chaining
-Level: 1
-Mana Cost: 6
-Effectiveness of Added Damage: 110%
-Quality: +17% (augmented)
-Alternate Quality
---------
-Requirements:
-Level: 12
-Str: 21
-Int: 14
---------
-Attack with a melee weapon, gaining static energy for a duration if you hit an enemy. While you have static energy, you'll frequently hit a number of nearby enemies with beams, dealing attack damage.
---------
-Beams Hit Enemies every 0.40 seconds
-50% of Physical Damage Converted to Lightning Damage
-Deals 110% of Base Damage
-Base duration is 2.00 seconds
-Chains +1 Times
-17% increased Damage
-Beams deal 40% less Damage
-4 maximum Beam Targets
---------
-Experience: 1/15249
---------
-Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
-");
-
-            Assert.Equal(Category.Gem, actual.Metadata.Category);
-            Assert.Equal(Rarity.Gem, actual.Metadata.Rarity);
-            Assert.Equal("Static Strike", actual.Metadata.Type);
-            Assert.Equal(1, actual.Properties.GemLevel);
-            Assert.Equal(17, actual.Properties.Quality);
-            Assert.True(actual.Properties.AlternateQuality);
-            Assert.False(actual.Properties.Corrupted);
         }
 
         [Fact]
@@ -136,9 +92,9 @@ This is a Support Gem. It does not grant a bonus to your character, but to skill
 ");
 
             Assert.Equal("gem.supportgem", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Gem, actual.Metadata.Rarity);
-            Assert.Equal(Category.Gem, actual.Metadata.Category);
-            Assert.Equal("Arcane Surge Support", actual.Metadata.Type);
+            Assert.Equal(Rarity.Gem, actual.Header.Rarity);
+            Assert.Equal(Category.Gem, actual.Header.Category);
+            Assert.Equal("Arcane Surge Support", actual.Header.ApiType);
         }
 
         [Fact]
@@ -174,9 +130,9 @@ Place into an item socket of the right colour to gain this skill. Right click to
 ");
 
             Assert.Equal("gem.activegem", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Gem, actual.Metadata.Rarity);
-            Assert.Equal(Category.Gem, actual.Metadata.Category);
-            Assert.Equal("Void Sphere", actual.Metadata.Type);
+            Assert.Equal(Rarity.Gem, actual.Header.Rarity);
+            Assert.Equal(Category.Gem, actual.Header.Category);
+            Assert.Equal("Void Sphere", actual.Header.ApiType);
         }
 
         [Fact]
@@ -214,9 +170,11 @@ Transfigured
 ");
 
             Assert.Equal("gem.activegem", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Gem, actual.Metadata.Rarity);
-            Assert.Equal(Category.Gem, actual.Metadata.Category);
-            Assert.Equal("Kinetic Blast of Clustering", actual.Metadata.Type);
+            Assert.Equal(Rarity.Gem, actual.Header.Rarity);
+            Assert.Equal(Category.Gem, actual.Header.Category);
+            Assert.Equal("Kinetic Blast of Clustering", actual.Header.ApiText);
+            Assert.Equal("Kinetic Blast", actual.Header.ApiType);
+            Assert.Equal("alt_x", actual.Header.ApiDiscriminator);
         }
     }
 }

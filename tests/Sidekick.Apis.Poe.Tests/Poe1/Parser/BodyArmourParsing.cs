@@ -42,10 +42,10 @@ can deny that my work has made quite the splash...""
 - Maligaro's Journal
 ");
 
-            Assert.Equal(Category.Armour, actual.Metadata.Category);
-            Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
-            Assert.Equal("Carcass Jack", actual.Metadata.Name);
-            Assert.Equal("Varnished Coat", actual.Metadata.Type);
+            Assert.Equal(Category.Armour, actual.Header.Category);
+            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+            Assert.Equal("Carcass Jack", actual.Header.ApiName);
+            Assert.Equal("Varnished Coat", actual.Header.ApiType);
             Assert.Equal(20, actual.Properties.Quality);
             Assert.Equal(960, actual.Properties.Evasion);
             Assert.Equal(186, actual.Properties.EnergyShield);
@@ -101,10 +101,10 @@ Note: ~price 2 chaos
 ");
 
             Assert.Equal("armour.chest", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
-            Assert.Equal(Category.Armour, actual.Metadata.Category);
-            Assert.Equal("Daresso's Defiance", actual.Metadata.Name);
-            Assert.Equal("Full Dragonscale", actual.Metadata.Type);
+            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+            Assert.Equal(Category.Armour, actual.Header.Category);
+            Assert.Equal("Daresso's Defiance", actual.Header.ApiName);
+            Assert.Equal("Full Dragonscale", actual.Header.ApiType);
         }
     }
 }

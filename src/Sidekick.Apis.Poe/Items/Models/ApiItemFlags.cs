@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.Poe.Metadata.Models
+namespace Sidekick.Apis.Poe.Items.Models
 {
     public class ApiItemFlags
     {

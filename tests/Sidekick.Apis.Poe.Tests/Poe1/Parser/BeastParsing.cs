@@ -31,10 +31,10 @@ Right-click to add this to your bestiary.
 ");
 
             Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal(Category.ItemisedMonster, actual.Metadata.Category);
-            Assert.Null(actual.Metadata.Name);
-            Assert.Equal("Farric Flame Hellion Alpha", actual.Metadata.Type);
+            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+            Assert.Equal(Category.ItemisedMonster, actual.Header.Category);
+            Assert.Null(actual.Header.ApiName);
+            Assert.Equal("Farric Flame Hellion Alpha", actual.Header.ApiType);
         }
 
         [Fact]
@@ -54,10 +54,10 @@ Cannot be fully Slowed
 --------
 Right-click to add this to your bestiary.");
 
-            Assert.Equal(Category.ItemisedMonster, parsedRareBeast.Metadata.Category);
-            Assert.Equal(Rarity.Unique, parsedRareBeast.Metadata.Rarity);
-            Assert.Equal("Saqawal, First of the Sky", parsedRareBeast.Metadata.Name);
-            Assert.Equal("Saqawal, First of the Sky", parsedRareBeast.Metadata.Type);
+            Assert.Equal(Category.ItemisedMonster, parsedRareBeast.Header.Category);
+            Assert.Equal(Rarity.Unique, parsedRareBeast.Header.Rarity);
+            Assert.Equal("Saqawal, First of the Sky", parsedRareBeast.Header.ApiType);
+            Assert.Null(parsedRareBeast.Header.ApiName);
         }
 
         [Fact]
@@ -85,9 +85,9 @@ Right-click to add this to your bestiary.
 ");
 
             Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal(Category.ItemisedMonster, actual.Metadata.Category);
-            Assert.Equal("Farric Chieftain", actual.Metadata.Type);
+            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+            Assert.Equal(Category.ItemisedMonster, actual.Header.Category);
+            Assert.Equal("Farric Chieftain", actual.Header.ApiType);
         }
     }
 }

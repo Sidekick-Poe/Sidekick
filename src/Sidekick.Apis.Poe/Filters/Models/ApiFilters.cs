@@ -1,8 +1,6 @@
-using Sidekick.Apis.Poe.Filters.Models;
+namespace Sidekick.Apis.Poe.Filters.Models;
 
-namespace Sidekick.Apis.Poe.Metadata.Models;
-
-public class ApiFilterFilters
+public class ApiFilters
 {
     public string? Id { get; set; }
     public string? Text { get; set; }

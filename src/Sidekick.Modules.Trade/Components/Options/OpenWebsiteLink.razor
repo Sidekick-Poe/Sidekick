@@ -48,7 +48,7 @@
         }
         else
         {
-            var uri = await TradeSearchService.GetTradeUri(PriceCheckService.Item.Metadata.Game, QueryId);
+            var uri = await TradeSearchService.GetTradeUri(PriceCheckService.Item.Header.Game, QueryId);
             BrowserProvider.OpenUri(uri);
         }
     }

@@ -60,8 +60,8 @@ namespace Sidekick.Modules.General.Keybinds
 
         private void OpenPoeWiki(Item item)
         {
-            var searchLink = item.Metadata.Name ?? item.Metadata.Type;
-            var baseUrl = item.Metadata.Game == Common.Game.GameType.PathOfExile ? PoeWikiBaseUri : Poe2WikiBaseUri;
+            var searchLink = item.Header.ApiName ?? item.Header.ApiType;
+            var baseUrl = item.Header.Game == Common.Game.GameType.PathOfExile ? PoeWikiBaseUri : Poe2WikiBaseUri;
             var wikiLink = PoeWikiSubUrl + searchLink?.Replace(" ", "+");
             var uri = new Uri(baseUrl + wikiLink);
 
@@ -74,8 +74,8 @@ namespace Sidekick.Modules.General.Keybinds
 
         private void OpenPoeDb(Item item)
         {
-            var searchLink = item.Metadata.Name ?? item.Metadata.Type;
-            var baseUrl = item.Metadata.Game == Common.Game.GameType.PathOfExile ? PoeDbBaseUri : Poe2DbBaseUri;
+            var searchLink = item.Header.ApiName ?? item.Header.ApiType;
+            var baseUrl = item.Header.Game == Common.Game.GameType.PathOfExile ? PoeDbBaseUri : Poe2DbBaseUri;
             var wikiLink = PoeDbSubUrl + searchLink?.Replace(" ", "+");
             var uri = new Uri(baseUrl + wikiLink);
 
