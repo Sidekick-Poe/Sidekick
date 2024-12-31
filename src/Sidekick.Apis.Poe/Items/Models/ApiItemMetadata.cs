@@ -1,9 +1,9 @@
-namespace Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items;
 
-public class ItemMetadata
+namespace Sidekick.Apis.Poe.Items.Models;
+
+public class ApiItemMetadata2
 {
-    public required string Id { get; init; }
-
     public string? Name { get; set; }
 
     public string? Type { get; set; }
@@ -18,9 +18,7 @@ public class ItemMetadata
     /// </summary>
     public string? ApiType { get; init; }
 
-    public required Rarity Rarity { get; set; }
-
     public required Category Category { get; init; }
 
-    public required GameType Game { get; init; }
+    public required Rarity Rarity { get; set; }
 }

@@ -30,9 +30,9 @@ Regenerate 1.9 Life per second
 Fractured Item
 ");
 
-            Assert.Equal(Category.Armour, actual.Metadata.Category);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal("Iron Greaves", actual.Metadata.Type);
+            Assert.Equal(Category.Armour, actual.Header.Category);
+            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+            Assert.Equal("Iron Greaves", actual.Header.ApiType);
 
             actual.AssertHasModifier(ModifierCategory.Fractured, "#% increased Movement Speed", 10);
         }

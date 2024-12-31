@@ -51,12 +51,6 @@ public class PropertyParser
 
     private Regex? BlightRavaged { get; set; }
 
-    private Regex? Anomalous { get; set; }
-
-    private Regex? Divergent { get; set; }
-
-    private Regex? Phantasmal { get; set; }
-
     private Regex? AreaLevel { get; set; }
 
     private Regex? Unidentified { get; set; }
@@ -84,11 +78,8 @@ public class PropertyParser
         ItemQuantity = gameLanguageProvider.Language.DescriptionItemQuantity.ToRegexIntCapture();
         ItemRarity = gameLanguageProvider.Language.DescriptionItemRarity.ToRegexIntCapture();
         MonsterPackSize = gameLanguageProvider.Language.DescriptionMonsterPackSize.ToRegexIntCapture();
-        Blighted = gameLanguageProvider.Language.AffixBlighted.ToRegexAffix();
-        BlightRavaged = gameLanguageProvider.Language.AffixBlightRavaged.ToRegexAffix();
-        Anomalous = gameLanguageProvider.Language.AffixAnomalous.ToRegexAffix();
-        Divergent = gameLanguageProvider.Language.AffixDivergent.ToRegexAffix();
-        Phantasmal = gameLanguageProvider.Language.AffixPhantasmal.ToRegexAffix();
+        Blighted = gameLanguageProvider.Language.AffixBlighted.ToRegexAffix(gameLanguageProvider.Language.AffixSuperior);
+        BlightRavaged = gameLanguageProvider.Language.AffixBlightRavaged.ToRegexAffix(gameLanguageProvider.Language.AffixSuperior);
 
         Unidentified = gameLanguageProvider.Language.DescriptionUnidentified.ToRegexLine();
         Corrupted = gameLanguageProvider.Language.DescriptionCorrupted.ToRegexLine();
@@ -98,7 +89,7 @@ public class PropertyParser
 
     public Common.Game.Items.Properties Parse(ParsingItem parsingItem, List<ModifierLine> modifierLines)
     {
-        return parsingItem.Metadata?.Category switch
+        return parsingItem.Header?.Category switch
         {
             Category.Gem => ParseGemProperties(parsingItem),
             Category.Map or Category.Contract => ParseMapProperties(parsingItem),
@@ -276,9 +267,6 @@ public class PropertyParser
             GemLevel = GetInt(Level, propertyBlock),
             Quality = GetInt(Quality, propertyBlock),
             AlternateQuality = GetBool(AlternateQuality, parsingItem),
-            Anomalous = GetBool(Anomalous, parsingItem),
-            Divergent = GetBool(Divergent, parsingItem),
-            Phantasmal = GetBool(Phantasmal, parsingItem),
         };
     }
 
@@ -383,32 +371,5 @@ public class PropertyParser
         }
 
         return 0;
-    }
-
-    private static double GetDps(Regex? pattern, ParsingBlock parsingBlock, double attacksPerSecond)
-    {
-        if (pattern == null)
-        {
-            return 0;
-        }
-
-        if (!parsingBlock.TryParseRegex(pattern, out var match))
-        {
-            return 0;
-        }
-
-        var matches = new Regex("(\\d+-\\d+)").Matches(match.Value);
-        var dps = matches.Select(x => x.Value.Split("-"))
-            .Sum(split =>
-            {
-                if (double.TryParse(split[0], NumberStyles.Any, CultureInfo.InvariantCulture, out var minValue) && double.TryParse(split[1], NumberStyles.Any, CultureInfo.InvariantCulture, out var maxValue))
-                {
-                    return (minValue + maxValue) / 2d;
-                }
-
-                return 0d;
-            });
-
-        return Math.Round(dps * attacksPerSecond, 2);
     }
 }

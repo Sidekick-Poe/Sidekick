@@ -34,9 +34,9 @@ Item Level: 61
 0.23% of Physical Attack Damage Leeched as Mana
 ");
 
-            Assert.Equal(Category.Armour, actual.Metadata.Category);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal("Assassin's Mitts", actual.Metadata.Type);
+            Assert.Equal(Category.Armour, actual.Header.Category);
+            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+            Assert.Equal("Assassin's Mitts", actual.Header.ApiType);
             Assert.Equal("Death Nails", actual.Header.Name);
             Assert.Single(actual.Sockets);
 

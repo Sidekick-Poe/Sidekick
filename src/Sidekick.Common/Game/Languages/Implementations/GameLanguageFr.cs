@@ -1,7 +1,7 @@
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("French", "fr")]
-public class GameLanguageFR : IGameLanguage
+public class GameLanguageFr : IGameLanguage
 {
     public string PoeTradeBaseUrl => "https://fr.pathofexile.com/trade/";
     public string PoeTradeApiBaseUrl => "https://fr.pathofexile.com/api/trade/";
@@ -35,8 +35,10 @@ public class GameLanguageFR : IGameLanguage
     public string DescriptionArmour => "Armure";
     public string DescriptionEvasion => "Score d'Évasion";
     public string DescriptionChanceToBlock => "Chances de blocage";
+    public string DescriptionBlockChance => "Chances de Blocage";
     public string DescriptionAttacksPerSecond => "Attaques par seconde";
     public string DescriptionCriticalStrikeChance => "Chances de coup critique";
+    public string DescriptionCriticalHitChance => "Chances de Touche critique";
     public string DescriptionMapTier => "Palier de Carte";
     public string DescriptionItemQuantity => "Quantité d'objets";
     public string DescriptionItemRarity => "Rareté des objets";
@@ -47,9 +49,6 @@ public class GameLanguageFR : IGameLanguage
     public string AffixSuperior => "supérieur";
     public string AffixBlighted => "Carte infestée";
     public string AffixBlightRavaged => "Carte ravagée par l'Infestation";
-    public string AffixAnomalous => "/anormale?s?/";
-    public string AffixDivergent => "/divergente?s?/";
-    public string AffixPhantasmal => "/fantasmatiques?/";
 
     public string InfluenceShaper => "Objet du Façonneur";
     public string InfluenceElder => "Objet de l'Ancien";
@@ -63,6 +62,8 @@ public class GameLanguageFR : IGameLanguage
         Prefix = "Classe d'objet",
         DivinationCard = "Cartes divinatoires",
         StackableCurrency = "Objets monétaires empilables",
+        Socketable = "Enchâssable",
+        Omen = "Présage",
         Jewel = "Joyaux",
         DelveStackableSocketableCurrency = "Objets enchâssables et empilables Delve",
         MetamorphSample = "Organes de Métamorphe",
@@ -76,6 +77,7 @@ public class GameLanguageFR : IGameLanguage
         Helmets = "Casques",
         Shields = "Boucliers",
         Quivers = "Carquois",
+        Focus = "Focus",
         LifeFlasks = "Flacons de Vie",
         ManaFlasks = "Flacons de Mana",
         HybridFlasks = "Flacons hybrides",
@@ -87,6 +89,12 @@ public class GameLanguageFR : IGameLanguage
         Contract = "Contrats",
         Blueprint = "Plans",
         MiscMapItems = "Objets de Carte divers",
+        Waystone = "Pierres de téléportation",
+        Barya = "Pièces de l'Épreuve",
+        Ultimatum = "Ultimatum gravé",
+        Tablet = "Tablette",
+        Breachstone = "Pierres de Brèche",
+        BossKey = "Clés de la Finalité",
         Claws = "Griffes",
         Daggers = "Dagues",
         Wands = "Baguettes",
@@ -95,6 +103,7 @@ public class GameLanguageFR : IGameLanguage
         OneHandAxes = "Haches à une main",
         OneHandMaces = "Masses à une main",
         Bows = "Arcs",
+        Crossbows = "Arbalètes",
         Staves = "Bâtons",
         TwoHandSwords = "Épées à deux mains",
         TwoHandAxes = "Haches à deux mains",

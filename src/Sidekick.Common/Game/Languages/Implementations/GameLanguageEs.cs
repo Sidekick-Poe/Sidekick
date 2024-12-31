@@ -1,7 +1,7 @@
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Spanish", "es")]
-public class GameLanguageES : IGameLanguage
+public class GameLanguageEs : IGameLanguage
 {
     public string PoeTradeBaseUrl => "https://es.pathofexile.com/trade/";
     public string PoeTradeApiBaseUrl => "https://es.pathofexile.com/api/trade/";
@@ -35,8 +35,10 @@ public class GameLanguageES : IGameLanguage
     public string DescriptionArmour => "Armadura";
     public string DescriptionEvasion => "Evasión";
     public string DescriptionChanceToBlock => "Probabilidad de bloqueo";
+    public string DescriptionBlockChance => "Probabilidad de bloqueo";
     public string DescriptionAttacksPerSecond => "Ataques por segundo";
     public string DescriptionCriticalStrikeChance => "Daño de golpe crítico";
+    public string DescriptionCriticalHitChance => "Probabilidad de impacto crítico";
     public string DescriptionMapTier => "Grado del mapa";
     public string DescriptionItemQuantity => "Cantidad de objetos";
     public string DescriptionItemRarity => "Rareza de objetos";
@@ -47,9 +49,6 @@ public class GameLanguageES : IGameLanguage
     public string AffixSuperior => "Superior";
     public string AffixBlighted => "infestado";
     public string AffixBlightRavaged => "devastado por la plaga";
-    public string AffixAnomalous => "anómala";
-    public string AffixDivergent => "divergente";
-    public string AffixPhantasmal => "fantasmal";
 
     public string InfluenceShaper => "Objeto del Creador";
     public string InfluenceElder => "Objeto del Antiguo";
@@ -63,6 +62,8 @@ public class GameLanguageES : IGameLanguage
         Prefix = "Clase de objeto",
         DivinationCard = "Cartas de adivinación",
         StackableCurrency = "Objetos monetarios apilables",
+        Socketable = "Engarzable",
+        Omen = "Augurio",
         Jewel = "Joyas",
         DelveStackableSocketableCurrency = "Objetos monetarios apilables y engarzables de Delve",
         MetamorphSample = "Muestras de metamorfo",
@@ -76,6 +77,7 @@ public class GameLanguageES : IGameLanguage
         Helmets = "Cascos",
         Shields = "Escudos",
         Quivers = "Carcajes",
+        Focus = "Focos",
         LifeFlasks = "Frascos de vida",
         ManaFlasks = "Frascos de maná",
         HybridFlasks = "Frascos híbridos",
@@ -87,6 +89,12 @@ public class GameLanguageES : IGameLanguage
         Contract = "Contratos",
         Blueprint = "Planos",
         MiscMapItems = "Objetos misceláneos de mapa",
+        Waystone = "Piedras guía",
+        Barya = "Monedas de la prueba",
+        Ultimatum = "Ultimátum inscrito",
+        Tablet = "Tablilla",
+        Breachstone = "Piedras de fisura",
+        BossKey = "Llaves de jefes finales",
         Claws = "Garras",
         Daggers = "Dagas",
         Wands = "Varitas",
@@ -95,6 +103,7 @@ public class GameLanguageES : IGameLanguage
         OneHandAxes = "Hachas a una mano",
         OneHandMaces = "Mazas a una mano",
         Bows = "Arcos",
+        Crossbows = "Ballestas",
         Staves = "Báculos",
         TwoHandSwords = "Espadas a dos manos",
         TwoHandAxes = "Hachas a dos manos",

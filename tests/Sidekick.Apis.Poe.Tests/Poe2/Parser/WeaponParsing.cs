@@ -26,9 +26,9 @@ Item Level: 60
 +20 to Intelligence
 ");
 
-        Assert.Equal(Category.Weapon, actual.Metadata.Category);
-        Assert.Equal("Ashen Staff", actual.Metadata.Type);
-        Assert.Null(actual.Metadata.Name);
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal("Ashen Staff", actual.Header.ApiType);
+        Assert.Null(actual.Header.ApiName);
         Assert.Equal(60, actual.Properties.ItemLevel);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "# to maximum Mana", 148);
@@ -68,9 +68,9 @@ Adds 39 to 75 Cold Damage
 Leeches 4.02% of Physical Damage as Mana
 ");
 
-        Assert.Equal(Category.Weapon, actual.Metadata.Category);
-        Assert.Equal("Expert Composite Bow", actual.Metadata.Type);
-        Assert.Null(actual.Metadata.Name);
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal("Expert Composite Bow", actual.Header.ApiType);
+        Assert.Null(actual.Header.ApiName);
         Assert.Equal(76, actual.Properties.ItemLevel);
 
         // Verify physical damage
@@ -118,9 +118,9 @@ Adds 2 to 91 Lightning Damage
 Grants 3 Life per Enemy Hit
 ");
 
-        Assert.Equal(Category.Weapon, actual.Metadata.Category);
-        Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-        Assert.Equal("Advanced Forlorn Crossbow", actual.Metadata.Type);
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal("Advanced Forlorn Crossbow", actual.Header.ApiType);
         Assert.Equal("Blood Core", actual.Header.Name);
 
         // Verify physical damage
@@ -161,9 +161,9 @@ Item Level: 60
 --------
 Leeches 5.82% of Physical Damage as Mana");
 
-        Assert.Equal(Category.Weapon, actual.Metadata.Category);
-        Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
-        Assert.Equal("Advanced Cultist Bow", actual.Metadata.Type);
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal(Rarity.Magic, actual.Header.Rarity);
+        Assert.Equal("Advanced Cultist Bow", actual.Header.ApiType);
 
         // Verify the chaos damage range is parsed correctly
         Assert.Equal(41, actual.Properties.ChaosDamage?.Min);

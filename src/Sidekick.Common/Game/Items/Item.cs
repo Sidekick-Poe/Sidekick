@@ -1,8 +1,7 @@
 namespace Sidekick.Common.Game.Items;
 
 public class Item(
-    ItemMetadata metadata,
-    ItemMetadata? invariant,
+    Header? invariant,
     Header header,
     Properties properties,
     Influences influences,
@@ -11,9 +10,7 @@ public class Item(
     List<PseudoModifier> pseudoModifiers,
     string text)
 {
-    public ItemMetadata Metadata { get; init; } = metadata;
-
-    public ItemMetadata? Invariant { get; set; } = invariant;
+    public Header? Invariant { get; set; } = invariant;
 
     public Header Header { get; init; } = header;
 
@@ -31,14 +28,14 @@ public class Item(
 
     public object? AdditionalInformation { get; set; }
 
-    public bool CanHaveModifiers => Metadata.Category switch
+    public bool CanHaveModifiers => Header.Category switch
     {
         Category.Accessory => true,
         Category.Armour => true,
         Category.Flask => true,
         Category.Gem => true,
         Category.Jewel => true,
-        Category.Map => Metadata.Rarity != Rarity.Currency,
+        Category.Map => Header.Rarity != Rarity.Currency,
         Category.Weapon => true,
         Category.HeistEquipment => true,
         Category.Contract => true,
@@ -52,17 +49,17 @@ public class Item(
     /// <inheritdoc />
     public override string? ToString()
     {
-        if (!string.IsNullOrEmpty(Metadata.Name) && !string.IsNullOrEmpty(Metadata.Type) && Metadata.Name != Metadata.Type)
+        if (!string.IsNullOrEmpty(Header.Name) && !string.IsNullOrEmpty(Header.Type) && Header.Name != Header.Type)
         {
-            return $"{Metadata.Name} - {Metadata.Type}";
+            return $"{Header.Name} - {Header.Type}";
         }
 
-        if (!string.IsNullOrEmpty(Metadata.Type))
+        if (!string.IsNullOrEmpty(Header.Type))
         {
-            return Metadata.Type;
+            return Header.Type;
         }
 
-        return Metadata.Name;
+        return Header.Name;
     }
 
     public int GetMaximumNumberOfLinks()

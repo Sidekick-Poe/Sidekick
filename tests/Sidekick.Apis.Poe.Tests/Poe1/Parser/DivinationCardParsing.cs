@@ -23,10 +23,10 @@ Publicly, he lived a pious and chaste life of poverty. Privately, tithes and tri
 ");
 
             Assert.Equal("card", actual.Header.ItemCategory);
-            Assert.Equal(Category.DivinationCard, actual.Metadata.Category);
-            Assert.Equal(Rarity.DivinationCard, actual.Metadata.Rarity);
-            Assert.Null(actual.Metadata.Name);
-            Assert.Equal("The Saint's Treasure", actual.Metadata.Type);
+            Assert.Equal(Category.DivinationCard, actual.Header.Category);
+            Assert.Equal(Rarity.DivinationCard, actual.Header.Rarity);
+            Assert.Null(actual.Header.ApiName);
+            Assert.Equal("The Saint's Treasure", actual.Header.ApiType);
         }
 
         [Fact]
@@ -44,10 +44,10 @@ Shaper Item
 Though they were a pack of elite combatants, the Emperor's royal guards were not ready to face one of his notorious parties.");
 
             Assert.Equal("card", actual.Header.ItemCategory);
-            Assert.Equal(Category.DivinationCard, actual.Metadata.Category);
-            Assert.Equal(Rarity.DivinationCard, actual.Metadata.Rarity);
-            Assert.Null(actual.Metadata.Name);
-            Assert.Equal("The Lord of Celebration", actual.Metadata.Type);
+            Assert.Equal(Category.DivinationCard, actual.Header.Category);
+            Assert.Equal(Rarity.DivinationCard, actual.Header.Rarity);
+            Assert.Null(actual.Header.ApiName);
+            Assert.Equal("The Lord of Celebration", actual.Header.ApiType);
             Assert.False(actual.Influences.Crusader);
             Assert.False(actual.Influences.Elder);
             Assert.False(actual.Influences.Hunter);
@@ -73,9 +73,9 @@ Note: ~price 1 blessed
 ");
 
             Assert.Equal("card", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.DivinationCard, actual.Metadata.Rarity);
-            Assert.Equal(Category.DivinationCard, actual.Metadata.Category);
-            Assert.Equal("Boon of Justice", actual.Metadata.Type);
+            Assert.Equal(Rarity.DivinationCard, actual.Header.Rarity);
+            Assert.Equal(Category.DivinationCard, actual.Header.Category);
+            Assert.Equal("Boon of Justice", actual.Header.ApiType);
         }
     }
 }

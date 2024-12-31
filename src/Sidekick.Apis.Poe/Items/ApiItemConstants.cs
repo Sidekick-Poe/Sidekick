@@ -1,8 +1,8 @@
 ﻿using Sidekick.Common.Game.Items;
 
-namespace Sidekick.Apis.Poe.Metadata;
+namespace Sidekick.Apis.Poe.Items;
 
-public class MetadataConstants
+public class ApiItemConstants
 {
     public static Dictionary<string, (Category Category, bool UseRegex)> Poe1Categories = new()
     {

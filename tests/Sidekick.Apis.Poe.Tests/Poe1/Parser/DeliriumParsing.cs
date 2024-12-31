@@ -24,9 +24,9 @@ Note: ~price .5 chaos
 ");
 
             Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Metadata.Rarity);
-            Assert.Equal(Category.Currency, actual.Metadata.Category);
-            Assert.Equal("Simulacrum Splinter", actual.Metadata.Type);
+            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+            Assert.Equal(Category.Currency, actual.Header.Category);
+            Assert.Equal("Simulacrum Splinter", actual.Header.ApiType);
         }
 
         [Fact]
@@ -52,9 +52,9 @@ Note: ~b/o 1 chance
 ");
 
             Assert.Equal("jewel", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal(Category.Jewel, actual.Metadata.Category);
-            Assert.Equal("Small Cluster Jewel", actual.Metadata.Type);
+            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+            Assert.Equal(Category.Jewel, actual.Header.Category);
+            Assert.Equal("Small Cluster Jewel", actual.Header.ApiType);
         }
 
     }

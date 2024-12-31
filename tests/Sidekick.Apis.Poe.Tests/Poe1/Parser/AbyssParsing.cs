@@ -38,10 +38,10 @@ Even the dead serve the Lightless.
 ");
 
             Assert.Equal("armour.boots", actual.Header.ItemCategory);
-            Assert.Equal(Category.Armour, actual.Metadata.Category);
-            Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
-            Assert.Equal("Bubonic Trail", actual.Metadata.Name);
-            Assert.Equal("Murder Boots", actual.Metadata.Type);
+            Assert.Equal(Category.Armour, actual.Header.Category);
+            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+            Assert.Equal("Bubonic Trail", actual.Header.ApiName);
+            Assert.Equal("Murder Boots", actual.Header.ApiType);
 
             actual.AssertHasModifier(ModifierCategory.Explicit, "Has # Abyssal Sockets", 1);
         }
@@ -72,9 +72,9 @@ Note: ~price 1 alch
 ");
 
             Assert.Equal("jewel.abyss", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal(Category.Jewel, actual.Metadata.Category);
-            Assert.Equal("Hypnotic Eye Jewel", actual.Metadata.Type);
+            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+            Assert.Equal(Category.Jewel, actual.Header.Category);
+            Assert.Equal("Hypnotic Eye Jewel", actual.Header.ApiType);
         }
     }
 }

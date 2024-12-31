@@ -31,9 +31,9 @@ Item Level: 71
 Unidentified
 ;");
 
-            Assert.Equal(Category.Weapon, actual.Metadata.Category);
-            Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
-            Assert.Equal("Jade Hatchet", actual.Metadata.Type);
+            Assert.Equal(Category.Weapon, actual.Header.Category);
+            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+            Assert.Equal("Jade Hatchet", actual.Header.ApiType);
             Assert.False(actual.Properties.Identified);
         }
 
@@ -67,9 +67,9 @@ Attacks with this Weapon Penetrate 10% Lightning Resistance
 Crusader Item
 ");
 
-            Assert.Equal(Category.Weapon, actual.Metadata.Category);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal("Imbued Wand", actual.Metadata.Type);
+            Assert.Equal(Category.Weapon, actual.Header.Category);
+            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+            Assert.Equal("Imbued Wand", actual.Header.ApiType);
             Assert.Equal("Miracle Chant", actual.Header.Name);
             Assert.True(actual.Influences.Crusader);
 
@@ -104,9 +104,9 @@ Item Level: 50
 11% reduced Enemy Stun Threshold
 ");
 
-            Assert.Equal(Category.Weapon, actual.Metadata.Category);
-            Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
-            Assert.Equal("Shadow Axe", actual.Metadata.Type);
+            Assert.Equal(Category.Weapon, actual.Header.Category);
+            Assert.Equal(Rarity.Magic, actual.Header.Rarity);
+            Assert.Equal("Shadow Axe", actual.Header.ApiType);
 
             actual.AssertHasModifier(ModifierCategory.Explicit, "#% reduced Enemy Stun Threshold", 11);
         }
@@ -148,10 +148,10 @@ Counts as Dual Wielding
 --------
 Fire and Anarchy are the most reliable agents of change.");
 
-            Assert.Equal(Category.Weapon, actual.Metadata.Category);
-            Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
-            Assert.Equal("Wings of Entropy", actual.Metadata.Name);
-            Assert.Equal("Ezomyte Axe", actual.Metadata.Type);
+            Assert.Equal(Category.Weapon, actual.Header.Category);
+            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+            Assert.Equal("Wings of Entropy", actual.Header.ApiName);
+            Assert.Equal("Ezomyte Axe", actual.Header.ApiType);
 
             Assert.Equal(243.7, actual.Properties.PhysicalDps);
             Assert.Equal(172.80, actual.Properties.ElementalDps);
@@ -194,10 +194,10 @@ It doesn't matter how well the young swordsman trains.
 All form and finesse are forgotten when blood first hits the ground.
 ");
 
-            Assert.Equal(Category.Weapon, actual.Metadata.Category);
-            Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
-            Assert.Equal("Daresso's Passion", actual.Metadata.Name);
-            Assert.Equal("Estoc", actual.Metadata.Type);
+            Assert.Equal(Category.Weapon, actual.Header.Category);
+            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+            Assert.Equal("Daresso's Passion", actual.Header.ApiName);
+            Assert.Equal("Estoc", actual.Header.ApiType);
 
             // Verify physical damage
             Assert.Equal(58, actual.Properties.PhysicalDamage?.Min);
@@ -241,10 +241,10 @@ Note: ~price 40 chaos
 ");
 
             Assert.Equal("weapon.rod", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Unique, actual.Metadata.Rarity);
-            Assert.Equal(Category.Weapon, actual.Metadata.Category);
-            Assert.Equal("Reefbane", actual.Metadata.Name);
-            Assert.Equal("Fishing Rod", actual.Metadata.Type);
+            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+            Assert.Equal(Category.Weapon, actual.Header.Category);
+            Assert.Equal("Reefbane", actual.Header.ApiName);
+            Assert.Equal("Fishing Rod", actual.Header.ApiType);
         }
 
         [Fact]
@@ -274,9 +274,9 @@ Unidentified
 Hunter Item");
 
             Assert.Equal("weapon.onemace", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Rare, actual.Metadata.Rarity);
-            Assert.Equal(Category.Weapon, actual.Metadata.Category);
-            Assert.Equal("Ornate Mace", actual.Metadata.Type);
+            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+            Assert.Equal(Category.Weapon, actual.Header.Category);
+            Assert.Equal("Ornate Mace", actual.Header.ApiType);
             Assert.True(actual.Influences.Hunter);
         }
     }

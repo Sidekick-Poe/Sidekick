@@ -14,7 +14,7 @@
     <div>
         <ItemHeader Name="@PriceCheckService.Item.Header.Name"
                     Type="@PriceCheckService.Item.Header.Type"
-                    Rarity="PriceCheckService.Item.Metadata.Rarity"
+                    Rarity="PriceCheckService.Item.Header.Rarity"
                     Influences="PriceCheckService.Item.Influences"/>
     </div>
 
@@ -72,7 +72,7 @@
 
                                                                                       @if (filters.Count > 0)
                                                                                       {
-                                                                                          <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown"/>
+                                                                                          <ItemSeparator Rarity="PriceCheckService.Item?.Header.Rarity ?? Rarity.Unknown"/>
                                                                                       }
                                                                                   </div>;
 

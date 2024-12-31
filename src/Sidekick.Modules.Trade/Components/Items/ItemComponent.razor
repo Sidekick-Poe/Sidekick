@@ -3,13 +3,13 @@
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Prices
 
-@if (!IsCompact && (Item.CanHaveModifiers || PriceCheckService.Item?.Metadata.Category == Category.Gem))
+@if (!IsCompact && (Item.CanHaveModifiers || PriceCheckService.Item?.Header.Category == Category.Gem))
 {
     <div class="mb-2 rounded-b-lg bg-stone-950">
         <ItemHeader Name="@Item.Header.Name"
                     Type="@Item.Header.Type"
                     Influences="Item.Influences"
-                    Rarity="Item.Metadata.Rarity"/>
+                    Rarity="Item.Header.Rarity"/>
 
         <div class="flex items-start flex-nowrap">
             <div class="w-3/4 p-2">
@@ -21,7 +21,7 @@
 
                 @if (Item.ModifierLines.Count > 0)
                 {
-                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+                    <ItemSeparator Rarity="Item.Header.Rarity"/>
                     @foreach (var line in Item.ModifierLines)
                     {
                         <ItemModifierLineComponent Item="Item" ModifierLine="line"/>
@@ -30,17 +30,17 @@
 
                 @if (!Item.Properties.Identified)
                 {
-                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+                    <ItemSeparator Rarity="Item.Header.Rarity"/>
                     <ItemModifierText Category="ModifierCategory.Unidentified">@Resources["Unidentified"]</ItemModifierText>
                 }
                 @if (Item.Properties.Corrupted)
                 {
-                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+                    <ItemSeparator Rarity="Item.Header.Rarity"/>
                     <ItemModifierText Category="ModifierCategory.Corrupted">@Resources["Corrupted"]</ItemModifierText>
                 }
                 @if (!string.IsNullOrEmpty(Item.Price?.Note))
                 {
-                    <ItemSeparator Rarity="Item.Metadata.Rarity"/>
+                    <ItemSeparator Rarity="Item.Header.Rarity"/>
                     <TextCaption Class="font-caps text-[#AA9E82] text-center leading-none py-0.5">@Item.Price.Note</TextCaption>
                 }
             </div>
@@ -68,7 +68,7 @@ else
             <ItemHeader Name="@Item.Header.Name"
                         Type="@Item.Header.Type"
                         Influences="Item.Influences"
-                        Rarity="Item.Metadata.Rarity"
+                        Rarity="Item.Header.Rarity"
                         SingleLine="true"/>
 
             @if (Item.Price != null)

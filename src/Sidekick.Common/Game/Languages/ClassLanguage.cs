@@ -111,4 +111,24 @@ public class ClassLanguage
     public required string Tinctures { get; init; }
 
     public required string Corpses { get; init; }
+
+    public required string Socketable { get; init; }
+
+    public required string Focus { get; init; }
+
+    public required string Waystone { get; init; }
+
+    public required string Barya { get; init; }
+
+    public required string Ultimatum { get; init; }
+
+    public required string Tablet { get; init; }
+
+    public required string Crossbows { get; init; }
+
+    public required string Omen { get; set; }
+
+    public required string Breachstone { get; set; }
+
+    public required string BossKey { get; set; }
 }

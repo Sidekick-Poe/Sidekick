@@ -30,11 +30,11 @@ Item Level: 66
 --------
 Right click to drink. Can only hold charges while in belt. Refill at Wells or by killing monsters.");
 
-        Assert.Equal(Category.Flask, actual.Metadata.Category);
-        Assert.Equal(Rarity.Magic, actual.Metadata.Rarity);
+        Assert.Equal(Category.Flask, actual.Header.Category);
+        Assert.Equal(Rarity.Magic, actual.Header.Rarity);
         Assert.Equal("flask.life", actual.Header.ItemCategory);
-        Assert.Equal("Ultimate Life Flask", actual.Metadata.Type);
-        Assert.Null(actual.Metadata.Name);
+        Assert.Equal("Ultimate Life Flask", actual.Header.ApiType);
+        Assert.Null(actual.Header.ApiName);
 
         Assert.Equal(66, actual.Properties.ItemLevel);
 

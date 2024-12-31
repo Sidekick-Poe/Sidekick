@@ -129,11 +129,18 @@ namespace Sidekick.Apis.Poe.Parser.Modifiers
             var fuzzyLine = fuzzyService.CleanFuzzyText(line.Text);
 
             var results = new List<(int Ratio, ModifierPattern Pattern)>();
+            var resultsLock = new object(); // Lock object to synchronize access to results
+
             Parallel.ForEach(modifierProvider.Patterns.SelectMany(x => x.Value),
                              (x) =>
                              {
                                  var ratio = Fuzz.Ratio(fuzzyLine, x.FuzzyText, FuzzySharp.PreProcess.PreprocessMode.None);
-                                 if (ratio > 75)
+                                 if (ratio <= 75)
+                                 {
+                                     return;
+                                 }
+
+                                 lock (resultsLock) // Lock before accessing the shared list
                                  {
                                      results.Add((ratio, x));
                                  }

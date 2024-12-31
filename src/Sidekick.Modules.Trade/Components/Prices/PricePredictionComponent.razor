@@ -21,7 +21,7 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
         </div>
     </div>
 
-    <ItemSeparator Rarity="PriceCheckService.Item?.Metadata.Rarity ?? Rarity.Unknown"/>
+    <ItemSeparator Rarity="PriceCheckService.Item?.Header.Rarity ?? Rarity.Unknown"/>
 }
 
 @inject IStringLocalizer<TradeResources> Resources
@@ -46,7 +46,7 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
     {
         await base.OnParametersSetAsync();
 
-        if (PriceCheckService.Item?.Metadata.Game == GameType.PathOfExile2)
+        if (PriceCheckService.Item?.Header.Game == GameType.PathOfExile2)
         {
             return;
         }
