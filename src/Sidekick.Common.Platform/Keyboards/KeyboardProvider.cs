@@ -259,12 +259,11 @@ namespace Sidekick.Common.Platform.Keyboards
             {
                 logger.LogDebug($"[Keyboard] Executing keybind handler for {str}.");
                 args.SuppressEvent = true;
-                Task.Run(
-                    async () =>
-                    {
-                        await keybindHandler.Execute(keybind);
-                        logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
-                    });
+                Task.Run(async () =>
+                {
+                    await keybindHandler.Execute(keybind);
+                    logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
+                });
             }
         }
 
@@ -404,6 +403,13 @@ namespace Sidekick.Common.Platform.Keyboards
                 // Log any errors during disposal, as they could be valuable for debugging
                 logger.LogError(ex, "[KeyboardProvider] Error during disposal.");
             }
+        }
+
+        public void ReleaseAltModifier()
+        {
+            var simulator = new EventSimulator();
+            simulator.SimulateKeyRelease(KeyCode.VcLeftAlt);
+            simulator.SimulateKeyRelease(KeyCode.VcRightAlt);
         }
     }
 }
