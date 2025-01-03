@@ -42,6 +42,11 @@ public class TradeSearchService
 
             var query = new Query();
             var metadata = await GetHeader(item);
+
+            // If the English trade is used, we must use the invariant name.
+            var useInvariantTradeResults = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
+            string? itemApiNameToUse = useInvariantTradeResults ? item.Invariant?.ApiName : item.Header.ApiName;
+
             if (propertyFilters?.BaseTypeFilterApplied ?? true)
             {
                 var hasTypeDiscriminator = !string.IsNullOrEmpty(metadata.ApiDiscriminator);
@@ -63,17 +68,14 @@ public class TradeSearchService
                 query.Filters.TypeFilters.Filters.Category = GetCategoryFilter(item.Header.ItemCategory);
             }
 
-            if (item.Header.Category == Category.ItemisedMonster)
+            if (item.Header.Category == Category.ItemisedMonster && !string.IsNullOrEmpty(itemApiNameToUse))
             {
-                if (!string.IsNullOrEmpty(item.Header.ApiName))
-                {
-                    query.Term = item.Header.ApiName;
-                    query.Type = null;
-                }
+                query.Term = itemApiNameToUse;
+                query.Type = null;
             }
-            else if (item.Header.Rarity == Rarity.Unique)
+            else if (item.Header.Rarity == Rarity.Unique && !string.IsNullOrEmpty(itemApiNameToUse))
             {
-                query.Name = item.Header.ApiName;
+                query.Name = itemApiNameToUse;
                 query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("Unique");
             }
             else if (propertyFilters?.RarityFilterApplied ?? false)
@@ -139,11 +141,7 @@ public class TradeSearchService
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             var uri = new Uri($"{await GetBaseApiUrl(metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
 
-            var json = JsonSerializer.Serialize(new QueryRequest()
-                                                {
-                                                    Query = query,
-                                                },
-                                                poeTradeClient.Options);
+            var json = JsonSerializer.Serialize(new QueryRequest() { Query = query, }, poeTradeClient.Options);
 
             var body = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await poeTradeClient.HttpClient.PostAsync(uri, body);

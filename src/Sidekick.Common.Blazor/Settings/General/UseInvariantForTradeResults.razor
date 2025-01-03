@@ -8,10 +8,13 @@
 
 <FormCheckbox Value="@UseInvariantTradeResults"
               ValueChanged="@UseInvariantTradeResultsChanged">
-    @Resources.UseInvariantForTradeResults
+    <div class="flex gap-2">
+        @Resources["UseInvariantForTradeResults"]
+        <TooltipHint Text="@Resources["UseInvariantForTradeResultsTip"]" />
+    </div>
 </FormCheckbox>
 
-@inject SettingsResources Resources
+@inject IStringLocalizer<SettingsResources> Resources
 @inject IGameLanguageProvider LanguageProvider
 @inject ISettingsService SettingsService
 @implements IDisposable
