@@ -6,7 +6,7 @@ public static class RegexExtensions
 {
     public static Regex ToRegexIntCapture(this string input) => new($"^{Regex.Escape(input)}[^\\d]*(\\d+)");
 
-    public static Regex ToRegexDecimalCapture(this string input) => new($"^{Regex.Escape(input)}[^\\d]*([\\d,\\.]+)");
+    public static Regex ToRegexDoubleCapture(this string input) => new($"^{Regex.Escape(input)}[^\\d]*([\\d,\\.]+)");
 
     public static Regex ToRegexAffix(this string input, string superior)
     {

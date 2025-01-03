@@ -48,7 +48,7 @@ Corrupted
         Assert.Equal("Steeltoe Boots", actual.Header.ApiType);
         Assert.Equal("Thunderstep", actual.Header.ApiName);
 
-        Assert.Equal(129, actual.Properties.Evasion);
+        Assert.Equal(129, actual.Properties.EvasionRating);
 
         Assert.Single(actual.Sockets);
 

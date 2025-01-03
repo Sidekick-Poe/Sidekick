@@ -1,5 +1,4 @@
 using System.Text.RegularExpressions;
-using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Parser.Patterns

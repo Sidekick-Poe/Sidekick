@@ -34,7 +34,7 @@ Unidentified
             Assert.Equal(Category.Weapon, actual.Header.Category);
             Assert.Equal(Rarity.Unique, actual.Header.Rarity);
             Assert.Equal("Jade Hatchet", actual.Header.ApiType);
-            Assert.False(actual.Properties.Identified);
+            Assert.False(actual.Properties.Unidentified);
         }
 
         [Fact]

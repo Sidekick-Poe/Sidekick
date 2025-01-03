@@ -1,3 +1,4 @@
+using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
@@ -16,6 +17,13 @@ internal class StatFilterValue
     public StatFilterValue(PropertyFilter filter)
     {
         Option = filter.Checked == true ? "true" : "false";
+        Min = filter.Min;
+        Max = filter.Max;
+    }
+
+    public StatFilterValue(IntPropertyFilter filter)
+    {
+        Option = filter.Checked ? "true" : "false";
         Min = filter.Min;
         Max = filter.Max;
     }

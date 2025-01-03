@@ -47,7 +47,7 @@ can deny that my work has made quite the splash...""
             Assert.Equal("Carcass Jack", actual.Header.ApiName);
             Assert.Equal("Varnished Coat", actual.Header.ApiType);
             Assert.Equal(20, actual.Properties.Quality);
-            Assert.Equal(960, actual.Properties.Evasion);
+            Assert.Equal(960, actual.Properties.EvasionRating);
             Assert.Equal(186, actual.Properties.EnergyShield);
             Assert.Equal(6, actual.Sockets.Count(x => x.Group == 0));
 

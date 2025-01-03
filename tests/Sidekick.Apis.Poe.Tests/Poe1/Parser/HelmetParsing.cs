@@ -80,9 +80,9 @@ Note: ~price 1 chaos
             Assert.Equal("Starkonja's Head", actual.Header.ApiName);
             Assert.Equal("Silken Hood", actual.Header.ApiType);
 
-            Assert.True(actual.Properties.Identified);
+            Assert.True(actual.Properties.Unidentified);
             Assert.Equal(63, actual.Properties.ItemLevel);
-            Assert.Equal(793, actual.Properties.Evasion);
+            Assert.Equal(793, actual.Properties.EvasionRating);
 
             actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Dexterity", 53);
             actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Damage when on Low Life", 50);

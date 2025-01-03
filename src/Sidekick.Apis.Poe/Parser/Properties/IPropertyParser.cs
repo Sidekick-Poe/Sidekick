@@ -5,5 +5,7 @@ namespace Sidekick.Apis.Poe.Parser.Properties;
 
 public interface IPropertyParser: IInitializableService
 {
-    ItemProperties Parse(ParsingItem parsingItem, List<ModifierLine> modifierLines);
+    ItemProperties Parse(ParsingItem parsingItem);
+    
+    void ParseAfterModifiers(ParsingItem parsingItem, ItemProperties properties, List<ModifierLine> modifierLines);
 }

@@ -68,14 +68,6 @@ public class PropertyFilter : ITradeFilter
         }
     }
 
-    public bool ShowCheckbox
-    {
-        get
-        {
-            return Type != PropertyFilterType.Weapon_ChaosDps;
-        }
-    }
-
     /// <summary>
     /// Normalize the Min value with NormalizeValue.
     /// </summary>

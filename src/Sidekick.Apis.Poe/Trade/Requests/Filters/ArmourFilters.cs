@@ -5,15 +5,15 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters
     internal class ArmourFilters
     {
         [JsonPropertyName("ar")]
-        public StatFilterValue? Armor { get; set; }
+        public StatFilterValue? Armour { get; set; }
 
         [JsonPropertyName("es")]
         public StatFilterValue? EnergyShield { get; set; }
 
         [JsonPropertyName("ev")]
-        public StatFilterValue? Evasion { get; set; }
+        public StatFilterValue? EvasionRating { get; set; }
 
         [JsonPropertyName("block")]
-        public StatFilterValue? Block { get; set; }
+        public StatFilterValue? BlockChance { get; set; }
     }
 }

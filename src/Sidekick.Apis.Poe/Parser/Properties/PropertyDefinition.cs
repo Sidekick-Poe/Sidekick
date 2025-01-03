@@ -1,20 +1,24 @@
 ﻿using System.Globalization;
 using System.Text.RegularExpressions;
+using Sidekick.Apis.Poe.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Parser.Properties;
 
 public abstract class PropertyDefinition
 {
-    private static readonly Regex parseHashPattern = new("\\#");
-
-    public abstract bool Enabled { get; }
+    public abstract List<Category> ValidCategories { get; }
 
     public abstract void Initialize();
 
-    public abstract void ParseBeforeModifiers(ItemProperties itemProperties, ParsingItem parsingItem);
+    public abstract void Parse(ItemProperties itemProperties, ParsingItem parsingItem);
 
-    public abstract void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines);
+    public virtual void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines) {}
+
+    public abstract BooleanPropertyFilter? GetFilter(Item item, double normalizeValue);
+
+    internal abstract void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter);
 
     protected static bool GetBool(Regex? pattern, ParsingItem parsingItem)
     {

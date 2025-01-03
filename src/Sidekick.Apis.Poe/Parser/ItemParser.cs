@@ -58,8 +58,9 @@ public class ItemParser
 
             var influences = ParseInfluences(parsingItem);
             var sockets = socketParser.Parse(parsingItem);
+            var properties = propertyParser.Parse(parsingItem);
             var modifierLines = ParseModifiers(parsingItem);
-            var properties = propertyParser.Parse(parsingItem, modifierLines);
+            propertyParser.ParseAfterModifiers(parsingItem, properties, modifierLines);
             var pseudoModifiers = pseudoParser.Parse(modifierLines);
             var item = new Item(invariant: invariant,
                                 itemHeader: parsingItem.Header,

@@ -2,23 +2,21 @@ namespace Sidekick.Common.Game.Items;
 
 public class ItemProperties
 {
-    public bool Identified { get; set; }
+    public bool Unidentified { get; set; }
 
     public int ItemLevel { get; set; }
 
     public bool Corrupted { get; set; }
 
-    public int Armor { get; set; }
+    public int Armour { get; set; }
 
     public int EnergyShield { get; set; }
 
-    public int Evasion { get; set; }
+    public int EvasionRating { get; set; }
 
-    public int ChanceToBlock { get; set; }
+    public int BlockChance { get; set; }
 
     public int Quality { get; set; }
-
-    public bool AlternateQuality { get; set; }
 
     public int GemLevel { get; set; }
 

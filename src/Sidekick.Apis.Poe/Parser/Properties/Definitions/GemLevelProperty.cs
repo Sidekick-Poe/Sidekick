@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Parser.Patterns;
-using Sidekick.Apis.Poe.Trade.Models;
+using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
@@ -8,58 +9,56 @@ using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
-public class GemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameType game) : PropertyDefinition
+public class GemLevelProperty
+(
+    IGameLanguageProvider gameLanguageProvider,
+    GameType game,
+    IApiInvariantItemProvider apiInvariantItemProvider
+) : PropertyDefinition
 {
     private Regex? Pattern { get; set; }
 
-    public override bool Enabled => true;
+    public override List<Category> ValidCategories { get; } = [Category.Gem];
 
     public override void Initialize()
     {
         Pattern = gameLanguageProvider.Language.DescriptionLevel.ToRegexIntCapture();
     }
 
-    public override void ParseBeforeModifiers(ItemProperties itemProperties, ParsingItem parsingItem)
+    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {
-        if (parsingItem.Header?.Category != Category.Gem) return;
-
         var propertyBlock = parsingItem.Blocks[1];
         itemProperties.GemLevel = GetInt(Pattern, propertyBlock);
+        if (itemProperties.GemLevel > 0) propertyBlock.Parsed = true;
     }
 
-    public override void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines)
+    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue)
     {
-    }
+        if (item.Properties.GemLevel <= 0) return null;
 
-    public PropertyFilter? GetFilter(Item item)
-    {
-        if (item.Properties.GemLevel <= 0)
+        var filter = new IntPropertyFilter(this)
         {
-            return null;
-        }
-
-        var filter = new PropertyFilter(true, PropertyFilterType.Misc_GemLevel, gameLanguageProvider.Language.DescriptionLevel, item.Properties.GemLevel, null);
+            ShowCheckbox = true,
+            Text = gameLanguageProvider.Language.DescriptionLevel,
+            NormalizeEnabled = false,
+            NormalizeValue = normalizeValue,
+            Value = item.Properties.GemLevel,
+            Checked = true,
+        };
         return filter;
     }
 
-    public void SetTradeRequest(SearchFilters searchFilters, PropertyFilter filter, Item item)
+    internal override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
     {
-        if (filter.Type != PropertyFilterType.Misc_GemLevel || filter.Checked != true)
-        {
-            return;
-        }
+        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
-        if (item.Header.Game == GameType.PathOfExile)
+        switch (game)
         {
-            searchFilters.GetOrCreateMiscFilters().Filters.GemLevel = new StatFilterValue()
-            {
-                Min = filter.Value,
+            case GameType.PathOfExile: searchFilters.GetOrCreateMiscFilters().Filters.GemLevel = new StatFilterValue(intFilter); break;
 
-            }
-        }
-        else if (item.Header.Game == GameType.PathOfExile2)
-        {
-            searchFilters.TypeFilters.Filters.ItemLevel = filter.Value;
+            case GameType.PathOfExile2 when apiInvariantItemProvider.UncutGemIds.Contains(item.Header.ApiItemId ?? string.Empty): searchFilters.TypeFilters.Filters.ItemLevel = new StatFilterValue(intFilter); break;
+
+            case GameType.PathOfExile2: searchFilters.GetOrCreateMiscFilters().Filters.GemLevel = new StatFilterValue(intFilter); break;
         }
     }
 }

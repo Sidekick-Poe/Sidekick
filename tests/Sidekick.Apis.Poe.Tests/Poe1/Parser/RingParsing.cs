@@ -37,7 +37,7 @@ Corrupted
             Assert.Equal("Ruby Ring", actual.Header.ApiType);
 
             Assert.Equal(76, actual.Properties.ItemLevel);
-            Assert.True(actual.Properties.Identified);
+            Assert.True(actual.Properties.Unidentified);
             Assert.True(actual.Properties.Corrupted);
 
             actual.AssertHasModifier(ModifierCategory.Implicit, "Anger has #% increased Aura Effect", 18);
@@ -76,7 +76,7 @@ While Berek slept.""
 - Berek and the Untamed
 ");
 
-            Assert.True(actual.Properties.Identified);
+            Assert.True(actual.Properties.Unidentified);
         }
     }
 }

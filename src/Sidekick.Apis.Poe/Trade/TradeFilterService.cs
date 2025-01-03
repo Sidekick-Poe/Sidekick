@@ -56,18 +56,7 @@ namespace Sidekick.Apis.Poe.Trade
             var normalizeValue = await settingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
             var result = new PropertyFilters();
 
-            // Armour properties
-            InitializeNumericFilter(result.Armour, PropertyFilterType.Armour_Armour, gameLanguageProvider.Language.DescriptionArmour, item.Properties.Armor, false, normalizeValue);
-            InitializeNumericFilter(result.Armour, PropertyFilterType.Armour_Evasion, gameLanguageProvider.Language.DescriptionEvasion, item.Properties.Evasion, false, normalizeValue);
-            InitializeNumericFilter(result.Armour, PropertyFilterType.Armour_EnergyShield, gameLanguageProvider.Language.DescriptionEnergyShield, item.Properties.EnergyShield, false, normalizeValue);
-            InitializeNumericFilter(result.Armour, PropertyFilterType.Armour_Block, gameLanguageProvider.Language.DescriptionChanceToBlock, item.Properties.ChanceToBlock, false, normalizeValue);
-
             // Weapon properties
-            InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_Damage, resources.Filters_Damage, item.Properties.TotalDamage, @checked: false, normalizeValue);
-            InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_PhysicalDps, resources.Filters_PDps, item.Properties.PhysicalDps, @checked: false, normalizeValue);
-            InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_ElementalDps, resources.Filters_EDps, item.Properties.ElementalDps, @checked: false, normalizeValue);
-            InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_ChaosDps, resources.Filters_ChaosDps, item.Properties.ChaosDps, @checked: false, normalizeValue);
-            InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_Dps, resources.Filters_Dps, item.Properties.TotalDps, @checked: false, normalizeValue);
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_AttacksPerSecond, gameLanguageProvider.Language.DescriptionAttacksPerSecond, item.Properties.AttacksPerSecond, false, normalizeValue);
             InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_CriticalStrikeChance, gameLanguageProvider.Language.DescriptionCriticalStrikeChance, item.Properties.CriticalStrikeChance, false, normalizeValue);
 

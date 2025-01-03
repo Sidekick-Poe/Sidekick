@@ -251,12 +251,12 @@ public class TradeSearchService
             switch (propertyFilter.Type)
             {
                 case PropertyFilterType.Armour_Armour:
-                    filters.Filters.Armor = new StatFilterValue(propertyFilter);
+                    filters.Filters.Armour = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
                 case PropertyFilterType.Armour_Block:
-                    filters.Filters.Block = new StatFilterValue(propertyFilter);
+                    filters.Filters.BlockChance = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
 
@@ -266,7 +266,7 @@ public class TradeSearchService
                     break;
 
                 case PropertyFilterType.Armour_Evasion:
-                    filters.Filters.Evasion = new StatFilterValue(propertyFilter);
+                    filters.Filters.EvasionRating = new StatFilterValue(propertyFilter);
                     hasValue = true;
                     break;
             }
@@ -410,13 +410,6 @@ public class TradeSearchService
 
         foreach (var propertyFilter in propertyFilters)
         {
-            if (propertyFilter.Type == PropertyFilterType.Misc_Corrupted)
-            {
-                filters.Filters.Corrupted = propertyFilter.Checked.HasValue ? new SearchFilterOption(propertyFilter) : null;
-                hasValue = filters.Filters.Corrupted != null;
-                break;
-            }
-
             if (propertyFilter.Checked != true)
             {
                 continue;
@@ -715,10 +708,10 @@ public class TradeSearchService
         {
             ItemLevel = result.Item?.ItemLevel ?? 0,
             Corrupted = result.Item?.Corrupted ?? false,
-            Identified = result.Item?.Identified ?? false,
-            Armor = result.Item?.Extended?.ArmourAtMax ?? 0,
+            Unidentified = result.Item?.Identified ?? false,
+            Armour = result.Item?.Extended?.ArmourAtMax ?? 0,
             EnergyShield = result.Item?.Extended?.EnergyShieldAtMax ?? 0,
-            Evasion = result.Item?.Extended?.EvasionAtMax ?? 0,
+            EvasionRating = result.Item?.Extended?.EvasionAtMax ?? 0,
             TotalDps = result.Item?.Extended?.DamagePerSecond ?? 0,
             ElementalDps = result.Item?.Extended?.ElementalDps ?? 0,
             PhysicalDps = result.Item?.Extended?.PhysicalDps ?? 0,
