@@ -31,7 +31,8 @@ namespace Sidekick.Modules.General.Keybinds
             }
 
             var item = await itemParser.ParseItemAsync(text);
-            await clipboardProvider.SetText(item.Header.Name);
+            await clipboardProvider.SetText(item.Header.ApiName ?? item.Header.ApiType);
+            keyboard.ReleaseAltModifier();
             await keyboard.PressKey(
                 "Ctrl+F",
                 "Ctrl+A",
