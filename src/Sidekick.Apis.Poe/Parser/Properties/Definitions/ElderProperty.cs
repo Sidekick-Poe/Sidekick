@@ -28,7 +28,6 @@ public class ElderProperty(IGameLanguageProvider gameLanguageProvider) : Propert
 
         var filter = new BooleanPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.InfluenceElder,
             Checked = true,
         };

@@ -26,7 +26,6 @@ public class CorruptedProperty(IGameLanguageProvider gameLanguageProvider) : Pro
     {
         var filter = new TriStatePropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.DescriptionCorrupted,
             Checked = null,
         };

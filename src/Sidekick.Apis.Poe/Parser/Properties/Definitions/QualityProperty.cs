@@ -30,7 +30,6 @@ public class QualityProperty(IGameLanguageProvider gameLanguageProvider) : Prope
 
         var filter = new IntPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.DescriptionQuality,
             NormalizeEnabled = false,
             NormalizeValue = normalizeValue,

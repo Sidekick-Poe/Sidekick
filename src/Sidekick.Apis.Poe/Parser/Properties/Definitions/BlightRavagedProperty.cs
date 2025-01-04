@@ -28,7 +28,6 @@ public class BlightRavagedProperty(IGameLanguageProvider gameLanguageProvider) :
 
         var filter = new BooleanPropertyFilter(this)
         {
-            ShowCheckbox = true,
             ShowRow = false,
             Text = gameLanguageProvider.Language.AffixBlightRavaged,
             Checked = true,

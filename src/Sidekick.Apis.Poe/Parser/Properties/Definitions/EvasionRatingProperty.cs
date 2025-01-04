@@ -31,7 +31,6 @@ public class EvasionRatingProperty(IGameLanguageProvider gameLanguageProvider, G
 
         var filter = new IntPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.DescriptionEvasion,
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,

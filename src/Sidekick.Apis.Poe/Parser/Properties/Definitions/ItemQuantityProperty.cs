@@ -30,7 +30,6 @@ public class ItemQuantityProperty(IGameLanguageProvider gameLanguageProvider) : 
 
         var filter = new IntPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.DescriptionItemQuantity,
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,

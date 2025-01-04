@@ -28,7 +28,6 @@ public class WarlordProperty(IGameLanguageProvider gameLanguageProvider) : Prope
 
         var filter = new BooleanPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.InfluenceWarlord,
             Checked = true,
         };

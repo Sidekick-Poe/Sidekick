@@ -30,7 +30,6 @@ public class AreaLevelProperty(IGameLanguageProvider gameLanguageProvider) : Pro
 
         var filter = new IntPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.DescriptionAreaLevel,
             NormalizeEnabled = false,
             NormalizeValue = normalizeValue,

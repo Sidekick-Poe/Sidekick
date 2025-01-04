@@ -35,7 +35,6 @@ public class ArmourProperty
 
         var filter = new IntPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.DescriptionArmour,
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,

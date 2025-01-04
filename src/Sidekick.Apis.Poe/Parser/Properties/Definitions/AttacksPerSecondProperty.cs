@@ -31,7 +31,6 @@ public class AttacksPerSecondProperty(IGameLanguageProvider gameLanguageProvider
 
         var filter = new DoublePropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.DescriptionAttacksPerSecond,
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,

@@ -28,7 +28,6 @@ public class RedeemerProperty(IGameLanguageProvider gameLanguageProvider) : Prop
 
         var filter = new BooleanPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.InfluenceRedeemer,
             Checked = true,
         };

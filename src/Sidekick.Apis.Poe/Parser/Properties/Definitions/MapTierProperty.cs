@@ -30,7 +30,6 @@ public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : Prope
 
         var filter = new IntPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.DescriptionMapTier,
             NormalizeEnabled = false,
             NormalizeValue = normalizeValue,

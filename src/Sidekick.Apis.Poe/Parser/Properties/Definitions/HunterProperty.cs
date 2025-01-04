@@ -28,7 +28,6 @@ public class HunterProperty(IGameLanguageProvider gameLanguageProvider) : Proper
 
         var filter = new BooleanPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.InfluenceHunter,
             Checked = true,
         };

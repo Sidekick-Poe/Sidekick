@@ -31,7 +31,6 @@ public class EnergyShieldProperty(IGameLanguageProvider gameLanguageProvider, Ga
 
         var filter = new IntPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.DescriptionEnergyShield,
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,

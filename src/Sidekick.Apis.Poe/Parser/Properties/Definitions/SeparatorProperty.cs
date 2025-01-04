@@ -18,7 +18,6 @@ public class SeparatorProperty() : PropertyDefinition
     {
         return new BooleanPropertyFilter(this)
         {
-            ShowCheckbox = false,
             Text = Text,
             Checked = true,
         };

@@ -39,7 +39,6 @@ public class BlockChanceProperty(IGameLanguageProvider gameLanguageProvider, Gam
         var text = game == GameType.PathOfExile ? gameLanguageProvider.Language.DescriptionChanceToBlock : gameLanguageProvider.Language.DescriptionBlockChance;
         var filter = new IntPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = text,
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,

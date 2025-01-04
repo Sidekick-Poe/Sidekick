@@ -127,7 +127,6 @@ public class WeaponDamageProperty
         {
             results.Add(new DoublePropertyFilter(this)
             {
-                ShowCheckbox = true,
                 Text = localizer["Damage"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
@@ -141,7 +140,6 @@ public class WeaponDamageProperty
         {
             results.Add(new DoublePropertyFilter(this)
             {
-                ShowCheckbox = true,
                 Text = localizer["PhysicalDps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
@@ -154,7 +152,6 @@ public class WeaponDamageProperty
         {
             results.Add(new DoublePropertyFilter(this)
             {
-                ShowCheckbox = true,
                 Text = localizer["ElementalDps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
@@ -167,7 +164,6 @@ public class WeaponDamageProperty
         {
             results.Add(new DoublePropertyFilter(this)
             {
-                ShowCheckbox = true,
                 Text = localizer["ChaosDps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
@@ -180,7 +176,6 @@ public class WeaponDamageProperty
         {
             results.Add(new DoublePropertyFilter(this)
             {
-                ShowCheckbox = true,
                 Text = localizer["Dps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,

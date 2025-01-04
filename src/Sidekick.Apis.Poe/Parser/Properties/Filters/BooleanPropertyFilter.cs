@@ -7,8 +7,6 @@ public class BooleanPropertyFilter(PropertyDefinition definition)
     /// </summary>
     public string? IndentifyingKey { get; init; }
 
-    public required bool ShowCheckbox { get; init; }
-
     public bool ShowRow { get; init; } = true;
 
     public bool Checked { get; set; }

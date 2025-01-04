@@ -28,7 +28,6 @@ public class ShaperProperty(IGameLanguageProvider gameLanguageProvider) : Proper
 
         var filter = new BooleanPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.InfluenceShaper,
             Checked = true,
         };

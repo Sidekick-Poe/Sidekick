@@ -28,7 +28,6 @@ public class CrusaderProperty(IGameLanguageProvider gameLanguageProvider) : Prop
 
         var filter = new BooleanPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.InfluenceCrusader,
             Checked = true,
         };

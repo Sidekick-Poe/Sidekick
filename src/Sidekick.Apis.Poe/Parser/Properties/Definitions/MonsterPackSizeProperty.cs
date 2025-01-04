@@ -30,7 +30,6 @@ public class MonsterPackSizeProperty(IGameLanguageProvider gameLanguageProvider)
 
         var filter = new IntPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.DescriptionMonsterPackSize,
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,

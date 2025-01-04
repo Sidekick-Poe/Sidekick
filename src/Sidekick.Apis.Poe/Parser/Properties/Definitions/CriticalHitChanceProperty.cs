@@ -39,7 +39,6 @@ public class CriticalHitChanceProperty(IGameLanguageProvider gameLanguageProvide
         var text = game == GameType.PathOfExile ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance : gameLanguageProvider.Language.DescriptionCriticalHitChance;
         var filter = new DoublePropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = text,
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,

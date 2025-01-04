@@ -28,7 +28,6 @@ public class BlightedProperty(IGameLanguageProvider gameLanguageProvider) : Prop
 
         var filter = new BooleanPropertyFilter(this)
         {
-            ShowCheckbox = true,
             ShowRow = false,
             Text = gameLanguageProvider.Language.AffixBlighted,
             Checked = true,

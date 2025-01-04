@@ -37,7 +37,6 @@ public class GemLevelProperty
 
         var filter = new IntPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.DescriptionLevel,
             NormalizeEnabled = false,
             NormalizeValue = normalizeValue,

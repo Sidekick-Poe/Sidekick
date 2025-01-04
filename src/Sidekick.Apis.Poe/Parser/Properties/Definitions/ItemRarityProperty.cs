@@ -30,7 +30,6 @@ public class ItemRarityProperty(IGameLanguageProvider gameLanguageProvider) : Pr
 
         var filter = new IntPropertyFilter(this)
         {
-            ShowCheckbox = true,
             Text = gameLanguageProvider.Language.DescriptionItemRarity,
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,
