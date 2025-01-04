@@ -10,7 +10,7 @@ public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : Prope
 {
     private Regex? Pattern { get; set; }
 
-    public override List<Category> ValidCategories { get; } = [Category.Map, Category.Contract];
+    public override List<Category> ValidCategories { get; } = [Category.Map];
 
     public override void Initialize()
     {
@@ -44,6 +44,6 @@ public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : Prope
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
-        searchFilters.GetOrCreateMapFilters().Filters.MapTier = intFilter.Checked ? new StatFilterValue(intFilter) : null;
+        searchFilters.GetOrCreateMapFilters().Filters.MapTier = new StatFilterValue(intFilter);
     }
 }

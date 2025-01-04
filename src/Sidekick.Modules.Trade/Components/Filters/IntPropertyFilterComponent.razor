@@ -10,7 +10,7 @@
             <FormCheckbox Value="Filter.Checked"
                           NoMargin="true"
                           ValueChanged="CheckedChanged">
-                @if (Filter.Definition is WeaponDamageProperty)
+                @if (Filter.IndentifyingKey == WeaponDamageProperty.DamageKey)
                 {
                     if (PriceCheckService.Item?.Properties.PhysicalDamage != null)
                     {

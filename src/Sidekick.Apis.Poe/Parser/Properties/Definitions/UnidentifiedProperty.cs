@@ -42,6 +42,6 @@ public class UnidentifiedProperty(IGameLanguageProvider gameLanguageProvider) : 
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
-        searchFilters.GetOrCreateMiscFilters().Filters.Quality = intFilter.Checked ? new StatFilterValue(intFilter) : null;
+        searchFilters.GetOrCreateMiscFilters().Filters.Quality = new StatFilterValue(intFilter);
     }
 }

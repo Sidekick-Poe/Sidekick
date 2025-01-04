@@ -39,6 +39,6 @@ public class ShaperProperty(IGameLanguageProvider gameLanguageProvider) : Proper
     {
         if (!filter.Checked) return;
 
-        searchFilters.GetOrCreateMiscFilters().Filters.ShaperItem = filter.Checked ? new SearchFilterOption(filter) : null;
+        searchFilters.GetOrCreateMiscFilters().Filters.ShaperItem = new SearchFilterOption(filter);
     }
 }

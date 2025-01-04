@@ -1,12 +1,17 @@
 ﻿using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
+using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
-public class ArmourProperty(IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+public class ArmourProperty
+(
+    IGameLanguageProvider gameLanguageProvider,
+    GameType game
+) : PropertyDefinition
 {
     private Regex? Pattern { get; set; }
 
@@ -44,6 +49,10 @@ public class ArmourProperty(IGameLanguageProvider gameLanguageProvider) : Proper
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
-        searchFilters.GetOrCreateArmourFilters().Filters.Armour = intFilter.Checked ? new StatFilterValue(intFilter) : null;
+        switch (game)
+        {
+            case GameType.PathOfExile: searchFilters.GetOrCreateArmourFilters().Filters.Armour = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.Armour = new StatFilterValue(intFilter); break;
+        }
     }
 }

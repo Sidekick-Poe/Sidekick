@@ -4,6 +4,7 @@ using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
+using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 
@@ -12,20 +13,17 @@ namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 public class WeaponDamageProperty
 (
     IGameLanguageProvider gameLanguageProvider,
+    GameType game,
     IInvariantModifierProvider invariantModifierProvider,
     IStringLocalizer<FilterResources> localizer
 ) : PropertyDefinition
 {
-    private Regex? PhysicalDamagePattern { get; set; }
-
-    private Regex? ElementalDamagePattern { get; set; }
+    public const string DamageKey = "Damage";
 
     public override List<Category> ValidCategories { get; } = [Category.Weapon];
 
     public override void Initialize()
     {
-        PhysicalDamagePattern = gameLanguageProvider.Language.DescriptionPhysicalDamage.ToRegexStartOfLine();
-        ElementalDamagePattern = gameLanguageProvider.Language.DescriptionElementalDamage.ToRegexStartOfLine();
     }
 
     public override void ParseAfterModifiers(ItemProperties properties, ParsingItem parsingItem, List<ModifierLine> modifierLines)
@@ -135,6 +133,7 @@ public class WeaponDamageProperty
                 NormalizeValue = normalizeValue,
                 Value = item.Properties.TotalDamage ?? 0,
                 Checked = false,
+                IndentifyingKey = DamageKey,
             });
         }
 
@@ -169,7 +168,7 @@ public class WeaponDamageProperty
             results.Add(new DoublePropertyFilter(this)
             {
                 ShowCheckbox = true,
-                Text = localizer["Damage"],
+                Text = localizer["ChaosDps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
                 Value = item.Properties.ChaosDps ?? 0,
@@ -195,5 +194,47 @@ public class WeaponDamageProperty
 
     public override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
     {
+        if(!filter.Checked) return;
+
+        if (filter.Text == localizer["Damage"] && filter is DoublePropertyFilter damageFilter)
+        {
+            switch (game)
+            {
+                case GameType.PathOfExile: searchFilters.GetOrCreateWeaponFilters().Filters.Damage = new StatFilterValue(damageFilter); break;
+                case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.Damage = new StatFilterValue(damageFilter); break;
+            }
+        }
+
+        if (filter.Text == localizer["PhysicalDps"] && filter is DoublePropertyFilter physicalDpsFilter)
+        {
+            switch (game)
+            {
+                case GameType.PathOfExile: searchFilters.GetOrCreateWeaponFilters().Filters.PhysicalDps = new StatFilterValue(physicalDpsFilter); break;
+                case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.PhysicalDps = new StatFilterValue(physicalDpsFilter); break;
+            }
+        }
+
+        if (filter.Text == localizer["ElementalDps"] && filter is DoublePropertyFilter elementalDpsFilter)
+        {
+            switch (game)
+            {
+                case GameType.PathOfExile: searchFilters.GetOrCreateWeaponFilters().Filters.ElementalDps = new StatFilterValue(elementalDpsFilter); break;
+                case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.ElementalDps = new StatFilterValue(elementalDpsFilter); break;
+            }
+        }
+
+        if (filter.Text == localizer["ChaosDps"] && filter is DoublePropertyFilter chaosDpsFilter)
+        {
+            // searchFilters.GetOrCreateWeaponFilters().Filters.ChaosDps = new StatFilterValue(chaosDpsFilter);
+        }
+
+        if (filter.Text == localizer["Dps"] && filter is DoublePropertyFilter dpsFilter)
+        {
+            switch (game)
+            {
+                case GameType.PathOfExile: searchFilters.GetOrCreateWeaponFilters().Filters.DamagePerSecond = new StatFilterValue(dpsFilter); break;
+                case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.DamagePerSecond = new StatFilterValue(dpsFilter); break;
+            }
+        }
     }
 }

@@ -4,7 +4,6 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
@@ -49,13 +48,13 @@ public class PropertyParser
         Definitions.AddRange([
             new QualityProperty(gameLanguageProvider),
 
-            new ArmourProperty(gameLanguageProvider),
-            new EvasionRatingProperty(gameLanguageProvider),
-            new EnergyShieldProperty(gameLanguageProvider),
+            new ArmourProperty(gameLanguageProvider, game),
+            new EvasionRatingProperty(gameLanguageProvider, game),
+            new EnergyShieldProperty(gameLanguageProvider, game),
             new BlockChanceProperty(gameLanguageProvider, game),
 
-            new WeaponDamageProperty(gameLanguageProvider, invariantModifierProvider, filterLocalizer),
-            new AttacksPerSecondProperty(gameLanguageProvider),
+            new WeaponDamageProperty(gameLanguageProvider, game, invariantModifierProvider, filterLocalizer),
+            new AttacksPerSecondProperty(gameLanguageProvider, game),
             new CriticalHitChanceProperty(gameLanguageProvider, game),
 
             new ItemQuantityProperty(gameLanguageProvider),
@@ -168,12 +167,9 @@ public class PropertyParser
 
     public void PrepareTradeRequest(SearchFilters searchFilters, Item item, PropertyFilters propertyFilters)
     {
-        foreach (var definition in Definitions)
+        foreach (var filter in propertyFilters.Filters)
         {
-            foreach (var filter in propertyFilters.Filters)
-            {
-                definition.PrepareTradeRequest(searchFilters, item, filter);
-            }
+            filter.Definition.PrepareTradeRequest(searchFilters, item, filter);
         }
     }
 }

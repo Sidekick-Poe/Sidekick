@@ -39,6 +39,6 @@ public class ElderProperty(IGameLanguageProvider gameLanguageProvider) : Propert
     {
         if (!filter.Checked) return;
 
-        searchFilters.GetOrCreateMiscFilters().Filters.ElderItem = filter.Checked ? new SearchFilterOption(filter) : null;
+        searchFilters.GetOrCreateMiscFilters().Filters.ElderItem = new SearchFilterOption(filter);
     }
 }

@@ -28,6 +28,8 @@ public class SearchFilters
     [JsonPropertyName("equipment_filters")]
     public EquipmentFilterGroup? EquipmentFilters { get; set; }
 
+    public EquipmentFilterGroup GetOrCreateEquipmentFilters() => EquipmentFilters ??= new();
+
     [JsonPropertyName("socket_filters")]
     public SocketFilterGroup? SocketFilters { get; set; }
 

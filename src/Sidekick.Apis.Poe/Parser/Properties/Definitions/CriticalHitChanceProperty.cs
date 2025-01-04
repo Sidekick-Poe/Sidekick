@@ -53,6 +53,10 @@ public class CriticalHitChanceProperty(IGameLanguageProvider gameLanguageProvide
     {
         if (!filter.Checked || filter is not DoublePropertyFilter doubleFilter) return;
 
-        searchFilters.GetOrCreateWeaponFilters().Filters.CriticalHitChance = doubleFilter.Checked ? new StatFilterValue(doubleFilter) : null;
+        switch (game)
+        {
+            case GameType.PathOfExile: searchFilters.GetOrCreateWeaponFilters().Filters.CriticalHitChance = new StatFilterValue(doubleFilter); break;
+            case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.CriticalHitChance = new StatFilterValue(doubleFilter); break;
+        }
     }
 }

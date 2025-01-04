@@ -35,11 +35,11 @@ public class CorruptedProperty(IGameLanguageProvider gameLanguageProvider) : Pro
 
     public override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
     {
-        if (!filter.Checked || filter is not TriStatePropertyFilter triStateFilter)
+        if (filter is not TriStatePropertyFilter triStateFilter || triStateFilter.Checked == null)
         {
             return;
         }
 
-        searchFilters.GetOrCreateMiscFilters().Filters.Corrupted = triStateFilter.Checked.HasValue ? new SearchFilterOption(triStateFilter) : null;
+        searchFilters.GetOrCreateMiscFilters().Filters.Corrupted = new SearchFilterOption(triStateFilter);
     }
 }

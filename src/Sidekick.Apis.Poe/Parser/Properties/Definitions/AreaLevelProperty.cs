@@ -10,7 +10,7 @@ public class AreaLevelProperty(IGameLanguageProvider gameLanguageProvider) : Pro
 {
     private Regex? Pattern { get; set; }
 
-    public override List<Category> ValidCategories { get; } = [Category.Sanctum, Category.Logbook];
+    public override List<Category> ValidCategories { get; } = [Category.Sanctum, Category.Logbook, Category.Contract];
 
     public override void Initialize()
     {

@@ -1,12 +1,13 @@
 ﻿using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
+using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
-public class AttacksPerSecondProperty(IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+public class AttacksPerSecondProperty(IGameLanguageProvider gameLanguageProvider, GameType game) : PropertyDefinition
 {
     private Regex? Pattern { get; set; }
 
@@ -44,6 +45,10 @@ public class AttacksPerSecondProperty(IGameLanguageProvider gameLanguageProvider
     {
         if (!filter.Checked || filter is not DoublePropertyFilter doubleFilter) return;
 
-        searchFilters.GetOrCreateWeaponFilters().Filters.AttacksPerSecond = doubleFilter.Checked ? new StatFilterValue(doubleFilter) : null;
+        switch (game)
+        {
+            case GameType.PathOfExile: searchFilters.GetOrCreateWeaponFilters().Filters.AttacksPerSecond = new StatFilterValue(doubleFilter); break;
+            case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.AttacksPerSecond = new StatFilterValue(doubleFilter); break;
+        }
     }
 }

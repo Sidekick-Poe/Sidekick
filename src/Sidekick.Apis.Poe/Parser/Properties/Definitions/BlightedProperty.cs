@@ -40,6 +40,6 @@ public class BlightedProperty(IGameLanguageProvider gameLanguageProvider) : Prop
     {
         if (!filter.Checked) return;
 
-        searchFilters.GetOrCreateMapFilters().Filters.Blighted = filter.Checked ? new SearchFilterOption(filter) : null;
+        searchFilters.GetOrCreateMapFilters().Filters.Blighted = new SearchFilterOption(filter);
     }
 }

@@ -53,6 +53,10 @@ public class BlockChanceProperty(IGameLanguageProvider gameLanguageProvider, Gam
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
-        searchFilters.GetOrCreateArmourFilters().Filters.BlockChance = intFilter.Checked ? new StatFilterValue(intFilter) : null;
+        switch (game)
+        {
+            case GameType.PathOfExile: searchFilters.GetOrCreateArmourFilters().Filters.BlockChance = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.BlockChance = new StatFilterValue(intFilter); break;
+        }
     }
 }
