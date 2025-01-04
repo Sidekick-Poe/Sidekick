@@ -7,7 +7,6 @@ using Sidekick.Apis.Poe.Fuzzy;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Items.Models;
 using Sidekick.Apis.Poe.Parser.Headers.Models;
-using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;

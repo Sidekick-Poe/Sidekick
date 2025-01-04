@@ -1,12 +1,11 @@
-using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Parser.AdditionalInformation;
 using Sidekick.Apis.Poe.Parser.Headers;
 using Sidekick.Apis.Poe.Parser.Modifiers;
-using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Parser.Properties;
 using Sidekick.Apis.Poe.Parser.Pseudo;
+using Sidekick.Apis.Poe.Parser.Requirements;
 using Sidekick.Apis.Poe.Parser.Sockets;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
@@ -18,7 +17,7 @@ public class ItemParser
     ILogger<ItemParser> logger,
     IModifierParser modifierParser,
     IPseudoParser pseudoParser,
-    IParserPatterns patterns,
+    IRequirementsParser requirementsParser,
     ClusterJewelParser clusterJewelParser,
     IApiInvariantItemProvider apiInvariantItemProvider,
     ISocketParser socketParser,
@@ -54,18 +53,15 @@ public class ItemParser
             }
 
             // Order of parsing is important
-            ParseRequirements(parsingItem);
-
-            var influences = ParseInfluences(parsingItem);
+            requirementsParser.Parse(parsingItem);
             var sockets = socketParser.Parse(parsingItem);
             var properties = propertyParser.Parse(parsingItem);
-            var modifierLines = ParseModifiers(parsingItem);
+            var modifierLines = modifierParser.Parse(parsingItem);
             propertyParser.ParseAfterModifiers(parsingItem, properties, modifierLines);
             var pseudoModifiers = pseudoParser.Parse(modifierLines);
             var item = new Item(invariant: invariant,
                                 itemHeader: parsingItem.Header,
                                 itemProperties: properties,
-                                influences: influences,
                                 sockets: sockets,
                                 modifierLines: modifierLines,
                                 pseudoModifiers: pseudoModifiers,
@@ -84,53 +80,4 @@ public class ItemParser
             throw;
         }
     }
-
-    private void ParseRequirements(ParsingItem parsingItem)
-    {
-        foreach (var block in parsingItem.Blocks.Where(x => !x.Parsed))
-        {
-            if (!block.TryParseRegex(patterns.Requirements, out _))
-            {
-                continue;
-            }
-
-            block.Parsed = true;
-            return;
-        }
-    }
-
-    private Influences ParseInfluences(ParsingItem parsingItem)
-    {
-        return parsingItem.Header?.Category switch
-        {
-            Category.Accessory or Category.Armour or Category.Weapon => new Influences()
-            {
-                Crusader = GetBool(patterns.Crusader, parsingItem),
-                Elder = GetBool(patterns.Elder, parsingItem),
-                Hunter = GetBool(patterns.Hunter, parsingItem),
-                Redeemer = GetBool(patterns.Redeemer, parsingItem),
-                Shaper = GetBool(patterns.Shaper, parsingItem),
-                Warlord = GetBool(patterns.Warlord, parsingItem),
-            },
-            _ => new Influences(),
-        };
-    }
-
-    private List<ModifierLine> ParseModifiers(ParsingItem parsingItem)
-    {
-        return parsingItem.Header?.Category switch
-        {
-            Category.DivinationCard or Category.Gem => new(),
-            _ => modifierParser.Parse(parsingItem),
-        };
-    }
-
-    #region Helpers
-
-    private static bool GetBool(Regex pattern, ParsingItem parsingItem)
-    {
-        return parsingItem.TryParseRegex(pattern, out _);
-    }
-
-    #endregion Helpers
 }

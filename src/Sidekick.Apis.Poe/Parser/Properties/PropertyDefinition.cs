@@ -12,13 +12,15 @@ public abstract class PropertyDefinition
 
     public abstract void Initialize();
 
-    public abstract void Parse(ItemProperties itemProperties, ParsingItem parsingItem);
+    public virtual void Parse(ItemProperties itemProperties, ParsingItem parsingItem) {}
 
     public virtual void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines) {}
 
-    public abstract BooleanPropertyFilter? GetFilter(Item item, double normalizeValue);
+    public virtual BooleanPropertyFilter? GetFilter(Item item, double normalizeValue) { return null; }
 
-    internal abstract void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter);
+    public virtual List<BooleanPropertyFilter>? GetFilters(Item item, double normalizeValue) { return null; }
+
+    public abstract void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter);
 
     protected static bool GetBool(Regex? pattern, ParsingItem parsingItem)
     {
@@ -32,12 +34,7 @@ public abstract class PropertyDefinition
 
     protected static int GetInt(Regex? pattern, ParsingItem parsingItem)
     {
-        if (pattern == null)
-        {
-            return 0;
-        }
-
-        if (parsingItem.TryParseRegex(pattern, out var match) && int.TryParse(match.Groups[1].Value, out var result))
+        if (pattern != null && parsingItem.TryParseRegex(pattern, out var match) && int.TryParse(match.Groups[1].Value, out var result))
         {
             return result;
         }
@@ -47,12 +44,7 @@ public abstract class PropertyDefinition
 
     protected static int GetInt(Regex? pattern, ParsingBlock parsingBlock)
     {
-        if (pattern == null)
-        {
-            return 0;
-        }
-
-        if (parsingBlock.TryParseRegex(pattern, out var match) && int.TryParse(match.Groups[1].Value, out var result))
+        if (pattern != null && parsingBlock.TryParseRegex(pattern, out var match) && int.TryParse(match.Groups[1].Value, out var result))
         {
             return result;
         }
@@ -62,12 +54,7 @@ public abstract class PropertyDefinition
 
     protected static double GetDouble(Regex? pattern, ParsingBlock parsingBlock)
     {
-        if (pattern == null)
-        {
-            return 0;
-        }
-
-        if (!parsingBlock.TryParseRegex(pattern, out var match))
+        if (pattern == null || !parsingBlock.TryParseRegex(pattern, out var match))
         {
             return 0;
         }

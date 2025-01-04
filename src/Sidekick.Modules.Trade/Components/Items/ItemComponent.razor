@@ -9,7 +9,7 @@
     <div class="mb-2 rounded-b-lg bg-stone-950">
         <ItemHeader Name="@Item.Header.Name"
                     Type="@Item.Header.Type"
-                    Influences="Item.Influences"
+                    Influences="Item.Properties.Influences"
                     Rarity="Item.Header.Rarity"/>
 
         <div class="flex items-start flex-nowrap">
@@ -68,7 +68,7 @@ else
         <div class="w-3/4">
             <ItemHeader Name="@Item.Header.Name"
                         Type="@Item.Header.Type"
-                        Influences="Item.Influences"
+                        Influences="Item.Properties.Influences"
                         Rarity="Item.Header.Rarity"
                         SingleLine="true"/>
 

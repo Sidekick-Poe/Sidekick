@@ -34,7 +34,7 @@ Unidentified
             Assert.Equal(Category.Weapon, actual.Header.Category);
             Assert.Equal(Rarity.Unique, actual.Header.Rarity);
             Assert.Equal("Jade Hatchet", actual.Header.ApiType);
-            Assert.False(actual.Properties.Unidentified);
+            Assert.True(actual.Properties.Unidentified);
         }
 
         [Fact]
@@ -71,7 +71,7 @@ Crusader Item
             Assert.Equal(Rarity.Rare, actual.Header.Rarity);
             Assert.Equal("Imbued Wand", actual.Header.ApiType);
             Assert.Equal("Miracle Chant", actual.Header.Name);
-            Assert.True(actual.Influences.Crusader);
+            Assert.True(actual.Properties.Influences.Crusader);
 
             actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Spell Damage", 33);
             actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage (Local)", 10, 16);
@@ -277,7 +277,7 @@ Hunter Item");
             Assert.Equal(Rarity.Rare, actual.Header.Rarity);
             Assert.Equal(Category.Weapon, actual.Header.Category);
             Assert.Equal("Ornate Mace", actual.Header.ApiType);
-            Assert.True(actual.Influences.Hunter);
+            Assert.True(actual.Properties.Influences.Hunter);
         }
     }
 }

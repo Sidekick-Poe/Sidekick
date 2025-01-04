@@ -1,5 +1,6 @@
 @using Sidekick.Apis.Poe.Bulk;
-@using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Apis.Poe.Parser.Properties.Definitions
+@using Sidekick.Apis.Poe.Parser.Properties.Filters
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
@@ -16,7 +17,7 @@
         <ItemHeader Name="@PriceCheckService.Item.Header.Name"
                     Type="@PriceCheckService.Item.Header.Type"
                     Rarity="PriceCheckService.Item.Header.Rarity"
-                    Influences="PriceCheckService.Item.Influences"/>
+                    Influences="PriceCheckService.Item.Properties.Influences"/>
     </div>
 
     <div class="grow overflow-y-auto py-2">
@@ -31,10 +32,24 @@
         {
             <HeaderFilters/>
 
-            @RenderPropertyFilters(PriceCheckService.PropertyFilters.Armour)
-            @RenderPropertyFilters(PriceCheckService.PropertyFilters.Weapon)
-            @RenderPropertyFilters(PriceCheckService.PropertyFilters.Map)
-            @RenderPropertyFilters(PriceCheckService.PropertyFilters.Misc)
+            <div>
+                @foreach (var filter in PriceCheckService.PropertyFilters.Filters)
+                {
+                    switch (filter)
+                    {
+                        case IntPropertyFilter intFilter: <IntPropertyFilterComponent Filter="intFilter"/> break;
+                        case DoublePropertyFilter doubleFilter: <DoublePropertyFilterComponent Filter="doubleFilter"/> break;
+                        case TriStatePropertyFilter triStateFilter: <TriStatePropertyFilterComponent Filter="triStateFilter"/> break;
+                        case not null when filter.Definition is SeparatorProperty: <ItemSeparator Rarity="PriceCheckService.Item?.Header.Rarity ?? Rarity.Unknown"/> break;
+                        default: <BooleanPropertyFilterComponent Filter="filter"/> break;
+                    }
+                }
+
+                @if (PriceCheckService.PropertyFilters.Filters.Count > 0)
+                {
+                    <ItemSeparator Rarity="PriceCheckService.Item?.Header.Rarity ?? Rarity.Unknown"/>
+                }
+            </div>
         }
 
         <ModifierFiltersComponent/>
@@ -65,33 +80,14 @@
 
     private bool HasAnyFilter { get; set; }
 
-    private RenderFragment RenderPropertyFilters(List<PropertyFilter> filters) => @<div>
-                                                                                      @foreach (var filter in filters)
-                                                                                      {
-                                                                                          <PropertyFilterComponent Filter="filter"/>
-                                                                                      }
-
-                                                                                      @if (filters.Count > 0)
-                                                                                      {
-                                                                                          <ItemSeparator Rarity="PriceCheckService.Item?.Header.Rarity ?? Rarity.Unknown"/>
-                                                                                      }
-                                                                                  </div>;
-
     protected override async Task OnInitializedAsync()
     {
         PriceCheckService.FilterLoadingChanged += StateHasChanged;
 
         await base.OnInitializedAsync();
 
-        var propertyCount = 0;
-        propertyCount += PriceCheckService.PropertyFilters?.Armour.Count ?? 0;
-        propertyCount += PriceCheckService.PropertyFilters?.Map.Count ?? 0;
-        propertyCount += PriceCheckService.PropertyFilters?.Misc.Count ?? 0;
-        propertyCount += PriceCheckService.PropertyFilters?.Weapon.Count ?? 0;
-
-        var modifierCount = 0;
-        modifierCount += PriceCheckService.ModifierFilters.Count;
-
+        var propertyCount = PriceCheckService.PropertyFilters?.Filters.Count ?? 0;
+        var modifierCount = PriceCheckService.ModifierFilters.Count;
         HasAnyFilter = modifierCount + propertyCount > 0;
     }
 

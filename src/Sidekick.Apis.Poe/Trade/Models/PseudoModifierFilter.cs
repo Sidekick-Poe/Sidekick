@@ -8,9 +8,9 @@ namespace Sidekick.Apis.Poe.Trade.Models
 
         public bool? @Checked { get; set; } = false;
 
-        public decimal? Min { get; set; }
+        public double? Min { get; set; }
 
-        public decimal? Max { get; set; }
+        public double? Max { get; set; }
 
         public double NormalizeValue { get; set; }
 

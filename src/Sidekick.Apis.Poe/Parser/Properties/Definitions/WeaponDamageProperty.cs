@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Modifiers;
-using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game.Items;
@@ -12,7 +12,8 @@ namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 public class WeaponDamageProperty
 (
     IGameLanguageProvider gameLanguageProvider,
-    IInvariantModifierProvider invariantModifierProvider
+    IInvariantModifierProvider invariantModifierProvider,
+    IStringLocalizer<FilterResources> localizer
 ) : PropertyDefinition
 {
     private Regex? PhysicalDamagePattern { get; set; }
@@ -25,10 +26,6 @@ public class WeaponDamageProperty
     {
         PhysicalDamagePattern = gameLanguageProvider.Language.DescriptionPhysicalDamage.ToRegexStartOfLine();
         ElementalDamagePattern = gameLanguageProvider.Language.DescriptionElementalDamage.ToRegexStartOfLine();
-    }
-
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
-    {
     }
 
     public override void ParseAfterModifiers(ItemProperties properties, ParsingItem parsingItem, List<ModifierLine> modifierLines)
@@ -124,17 +121,79 @@ public class WeaponDamageProperty
         }
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue)
+    public override List<BooleanPropertyFilter>? GetFilters(Item item, double normalizeValue)
     {
-        InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_Damage, resources.Filters_Damage, item.Properties.TotalDamage, @checked: false, normalizeValue);
-        InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_PhysicalDps, resources.Filters_PDps, item.Properties.PhysicalDps, @checked: false, normalizeValue);
-        InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_ElementalDps, resources.Filters_EDps, item.Properties.ElementalDps, @checked: false, normalizeValue);
-        InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_ChaosDps, resources.Filters_ChaosDps, item.Properties.ChaosDps, @checked: false, normalizeValue);
-        InitializeNumericFilter(result.Weapon, PropertyFilterType.Weapon_Dps, resources.Filters_Dps, item.Properties.TotalDps, @checked: false, normalizeValue);
+        var results = new List<BooleanPropertyFilter>();
 
+        if (item.Properties.TotalDamage > 0)
+        {
+            results.Add(new DoublePropertyFilter(this)
+            {
+                ShowCheckbox = true,
+                Text = localizer["Damage"],
+                NormalizeEnabled = true,
+                NormalizeValue = normalizeValue,
+                Value = item.Properties.TotalDamage ?? 0,
+                Checked = false,
+            });
+        }
+
+        if (item.Properties.PhysicalDps > 0)
+        {
+            results.Add(new DoublePropertyFilter(this)
+            {
+                ShowCheckbox = true,
+                Text = localizer["PhysicalDps"],
+                NormalizeEnabled = true,
+                NormalizeValue = normalizeValue,
+                Value = item.Properties.PhysicalDps ?? 0,
+                Checked = false,
+            });
+        }
+
+        if (item.Properties.ElementalDps > 0)
+        {
+            results.Add(new DoublePropertyFilter(this)
+            {
+                ShowCheckbox = true,
+                Text = localizer["ElementalDps"],
+                NormalizeEnabled = true,
+                NormalizeValue = normalizeValue,
+                Value = item.Properties.ElementalDps ?? 0,
+                Checked = false,
+            });
+        }
+
+        if (item.Properties.ChaosDps > 0)
+        {
+            results.Add(new DoublePropertyFilter(this)
+            {
+                ShowCheckbox = true,
+                Text = localizer["Damage"],
+                NormalizeEnabled = true,
+                NormalizeValue = normalizeValue,
+                Value = item.Properties.ChaosDps ?? 0,
+                Checked = false,
+            });
+        }
+
+        if (item.Properties.TotalDps > 0)
+        {
+            results.Add(new DoublePropertyFilter(this)
+            {
+                ShowCheckbox = true,
+                Text = localizer["Dps"],
+                NormalizeEnabled = true,
+                NormalizeValue = normalizeValue,
+                Value = item.Properties.TotalDps ?? 0,
+                Checked = false,
+            });
+        }
+
+        return results.Count > 0 ? results : null;
     }
 
-    internal override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
     {
     }
 }

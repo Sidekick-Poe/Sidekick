@@ -1,5 +1,4 @@
 ﻿using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game;
@@ -50,7 +49,7 @@ public class BlockChanceProperty(IGameLanguageProvider gameLanguageProvider, Gam
         return filter;
     }
 
-    internal override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 

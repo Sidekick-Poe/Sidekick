@@ -4,7 +4,6 @@ public class Item(
     ItemHeader? invariant,
     ItemHeader itemHeader,
     ItemProperties itemProperties,
-    Influences influences,
     List<Socket> sockets,
     List<ModifierLine> modifierLines,
     List<PseudoModifier> pseudoModifiers,
@@ -15,8 +14,6 @@ public class Item(
     public ItemHeader Header { get; init; } = itemHeader;
 
     public ItemProperties Properties { get; init; } = itemProperties;
-
-    public Influences Influences { get; init; } = influences;
 
     public List<Socket> Sockets { get; init; } = sockets;
 

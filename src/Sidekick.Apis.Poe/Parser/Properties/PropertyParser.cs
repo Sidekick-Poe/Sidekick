@@ -1,9 +1,11 @@
-using System.Globalization;
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Modifiers;
-using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Parser.Properties.Definitions;
+using Sidekick.Apis.Poe.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Models;
+using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
@@ -16,7 +18,8 @@ public class PropertyParser
     IGameLanguageProvider gameLanguageProvider,
     IInvariantModifierProvider invariantModifierProvider,
     IApiInvariantItemProvider apiInvariantItemProvider,
-    ISettingsService settingsService
+    ISettingsService settingsService,
+    IStringLocalizer<FilterResources> filterLocalizer
 ) : IPropertyParser
 {
     public int Priority => 200;
@@ -31,10 +34,6 @@ public class PropertyParser
 
     private Regex? MonsterPackSize { get; set; }
 
-    private Regex? AttacksPerSecond { get; set; }
-
-    private Regex? CriticalStrikeChance { get; set; }
-
     private Regex? Blighted { get; set; }
 
     private Regex? BlightRavaged { get; set; }
@@ -48,25 +47,44 @@ public class PropertyParser
 
         Definitions.Clear();
         Definitions.AddRange([
+            new QualityProperty(gameLanguageProvider),
+
             new ArmourProperty(gameLanguageProvider),
-            new BlockChanceProperty(gameLanguageProvider, game),
             new EvasionRatingProperty(gameLanguageProvider),
             new EnergyShieldProperty(gameLanguageProvider),
+            new BlockChanceProperty(gameLanguageProvider, game),
+
+            new WeaponDamageProperty(gameLanguageProvider, invariantModifierProvider, filterLocalizer),
+            new AttacksPerSecondProperty(gameLanguageProvider),
+            new CriticalHitChanceProperty(gameLanguageProvider, game),
+
+            new ItemQuantityProperty(gameLanguageProvider),
+            new ItemRarityProperty(gameLanguageProvider),
+            new MonsterPackSizeProperty(gameLanguageProvider),
+            new BlightedProperty(gameLanguageProvider),
+            new BlightRavagedProperty(gameLanguageProvider),
+            new MapTierProperty(gameLanguageProvider),
+            new AreaLevelProperty(gameLanguageProvider),
+
+            new SeparatorProperty(),
+
             new GemLevelProperty(gameLanguageProvider, game, apiInvariantItemProvider),
-            new CorruptedProperty(gameLanguageProvider),
             new ItemLevelProperty(gameLanguageProvider, game),
-            new QualityProperty(gameLanguageProvider),
+            new CorruptedProperty(gameLanguageProvider),
             new UnidentifiedProperty(gameLanguageProvider),
-            new WeaponDamageProperty(gameLanguageProvider, invariantModifierProvider),
+
+            new ElderProperty(gameLanguageProvider),
+            new ShaperProperty(gameLanguageProvider),
+            new CrusaderProperty(gameLanguageProvider),
+            new HunterProperty(gameLanguageProvider),
+            new RedeemerProperty(gameLanguageProvider),
+            new WarlordProperty(gameLanguageProvider),
         ]);
 
         foreach (var definition in Definitions)
         {
             definition.Initialize();
         }
-
-        AttacksPerSecond = gameLanguageProvider.Language.DescriptionAttacksPerSecond.ToRegexDecimalCapture();
-        CriticalStrikeChance = gameLanguageProvider.Language.DescriptionCriticalStrikeChance.ToRegexDecimalCapture();
 
         MapTier = gameLanguageProvider.Language.DescriptionMapTier.ToRegexIntCapture();
         AreaLevel = gameLanguageProvider.Language.DescriptionAreaLevel.ToRegexIntCapture();
@@ -82,61 +100,80 @@ public class PropertyParser
         var properties = new ItemProperties();
         foreach (var definition in Definitions)
         {
-            if (!definition.ValidCategories.Contains(parsingItem.Header?.Category ?? Category.Unknown)) continue;
+            if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(parsingItem.Header?.Category ?? Category.Unknown)) continue;
 
             definition.Parse(properties, parsingItem);
         }
 
         return properties;
-        return parsingItem.Header?.Category switch
-        {
-            Category.Map or Category.Contract => ParseMapProperties(parsingItem),
-            Category.Weapon => ParseWeaponProperties(parsingItem, modifierLines),
-            Category.Sanctum => ParseSanctumProperties(parsingItem),
-            Category.Logbook => ParseLogbookProperties(parsingItem),
-            _ => new ItemProperties(),
-        };
     }
-
 
     public void ParseAfterModifiers(ParsingItem parsingItem, ItemProperties properties, List<ModifierLine> modifierLines)
     {
         foreach (var definition in Definitions)
         {
-            if (!definition.ValidCategories.Contains(parsingItem.Header?.Category ?? Category.Unknown)) continue;
+            if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(parsingItem.Header?.Category ?? Category.Unknown)) continue;
 
             definition.ParseAfterModifiers(properties, parsingItem, modifierLines);
         }
     }
 
-    private ItemProperties ParseMapProperties(ParsingItem parsingItem)
+    public async Task<List<BooleanPropertyFilter>> GetFilters(Item item)
     {
-        var propertyBlock = parsingItem.Blocks[1];
+        var normalizeValue = await settingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
+        var results = new List<BooleanPropertyFilter>();
 
-        return new ItemProperties()
+        foreach (var definition in Definitions)
         {
-            Blighted = Blighted?.IsMatch(parsingItem.Blocks[0].Lines[^1].Text) ?? false,
-            BlightRavaged = BlightRavaged?.IsMatch(parsingItem.Blocks[0].Lines[^1].Text) ?? false,
-            ItemQuantity = GetInt(ItemQuantity, propertyBlock),
-            ItemRarity = GetInt(ItemRarity, propertyBlock),
-            MonsterPackSize = GetInt(MonsterPackSize, propertyBlock),
-            MapTier = GetInt(MapTier, propertyBlock),
-        };
+            if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(item.Header.Category)) continue;
+
+            var filter = definition.GetFilter(item, normalizeValue);
+            if (filter != null) results.Add(filter);
+
+            var filters = definition.GetFilters(item, normalizeValue);
+            if (filters != null) results.AddRange(filters);
+        }
+
+        CleanUpSeparatorFilters(results);
+
+        return results;
     }
 
-    private ItemProperties ParseSanctumProperties(ParsingItem parsingItem)
+    private void CleanUpSeparatorFilters(List<BooleanPropertyFilter> results)
     {
-        return new ItemProperties
+        // Remove leading SeparatorProperty filters
+        while (results.Count > 0 && results[0].Definition is SeparatorProperty)
         {
-            AreaLevel = GetInt(AreaLevel, parsingItem),
-        };
+            results.RemoveAt(0);
+        }
+
+        // Remove trailing SeparatorProperty filters
+        while (results.Count > 0 && results[^1].Definition is SeparatorProperty)
+        {
+            results.RemoveAt(results.Count - 1);
+        }
+
+        // Remove consecutive SeparatorProperty filters
+        for (var i = 1; i < results.Count; i++)
+        {
+            if (results[i].Definition is not SeparatorProperty || results[i - 1].Definition is not SeparatorProperty)
+            {
+                continue;
+            }
+
+            results.RemoveAt(i);
+            i--; // Adjust index to recheck current position
+        }
     }
 
-    private ItemProperties ParseLogbookProperties(ParsingItem parsingItem)
+    public void PrepareTradeRequest(SearchFilters searchFilters, Item item, PropertyFilters propertyFilters)
     {
-        return new ItemProperties
+        foreach (var definition in Definitions)
         {
-            AreaLevel = GetInt(AreaLevel, parsingItem),
-        };
+            foreach (var filter in propertyFilters.Filters)
+            {
+                definition.PrepareTradeRequest(searchFilters, item, filter);
+            }
+        }
     }
 }

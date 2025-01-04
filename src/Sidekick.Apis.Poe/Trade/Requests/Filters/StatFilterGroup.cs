@@ -3,7 +3,7 @@ using Sidekick.Common.Enums;
 
 namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
 
-internal class StatFilterGroup
+public class StatFilterGroup
 {
     [JsonIgnore]
     public StatType Type { get; set; }

@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
 
-internal class SearchFilters
+public class SearchFilters
 {
     [JsonPropertyName("type_filters")]
     public TypeFilterGroup TypeFilters { get; set; } = new();
@@ -17,6 +17,8 @@ internal class SearchFilters
 
     [JsonPropertyName("weapon_filters")]
     public WeaponFilterGroup? WeaponFilters { get; set; }
+
+    public WeaponFilterGroup GetOrCreateWeaponFilters() => WeaponFilters ??= new();
 
     [JsonPropertyName("armour_filters")]
     public ArmourFilterGroup? ArmourFilters { get; set; }
@@ -34,4 +36,7 @@ internal class SearchFilters
 
     [JsonPropertyName("map_filters")]
     public MapFilterGroup? MapFilters { get; set; }
+
+    public MapFilterGroup GetOrCreateMapFilters() => MapFilters ??= new();
+
 }

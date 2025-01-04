@@ -80,7 +80,7 @@ Note: ~price 1 chaos
             Assert.Equal("Starkonja's Head", actual.Header.ApiName);
             Assert.Equal("Silken Hood", actual.Header.ApiType);
 
-            Assert.True(actual.Properties.Unidentified);
+            Assert.False(actual.Properties.Unidentified);
             Assert.Equal(63, actual.Properties.ItemLevel);
             Assert.Equal(793, actual.Properties.EvasionRating);
 

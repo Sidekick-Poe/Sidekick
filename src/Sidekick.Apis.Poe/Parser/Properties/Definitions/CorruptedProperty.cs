@@ -1,5 +1,4 @@
 ﻿using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game.Items;
@@ -11,7 +10,7 @@ public class CorruptedProperty(IGameLanguageProvider gameLanguageProvider) : Pro
 {
     private Regex? Pattern { get; set; }
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Map, Category.Contract, Category.Jewel, Category.Flask];
+    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Map, Category.Contract, Category.Jewel, Category.Flask, Category.Gem];
 
     public override void Initialize()
     {
@@ -28,13 +27,13 @@ public class CorruptedProperty(IGameLanguageProvider gameLanguageProvider) : Pro
         var filter = new TriStatePropertyFilter(this)
         {
             ShowCheckbox = true,
-            Text = gameLanguageProvider.Language.DescriptionLevel,
+            Text = gameLanguageProvider.Language.DescriptionCorrupted,
             Checked = null,
         };
         return filter;
     }
 
-    internal override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
     {
         if (!filter.Checked || filter is not TriStatePropertyFilter triStateFilter)
         {

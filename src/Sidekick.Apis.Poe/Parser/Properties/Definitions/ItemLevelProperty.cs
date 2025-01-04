@@ -1,5 +1,4 @@
 ﻿using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game;
@@ -12,7 +11,7 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
 {
     private Regex? Pattern { get; set; }
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Flask, Category.Jewel, Category.Accessory];
+    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Flask, Category.Jewel, Category.Accessory, Category.Map, Category.Contract];
 
     public override void Initialize()
     {
@@ -21,11 +20,7 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {
-        if (parsingItem.Header?.Category != Category.Armour && parsingItem.Header?.Category != Category.Accessory && parsingItem.Header?.Category != Category.Map && parsingItem.Header?.Category != Category.Contract) return;
-
-        var propertyBlock = parsingItem.Blocks[1];
-        itemProperties.ItemLevel = GetInt(Pattern, propertyBlock);
-        if (itemProperties.ItemLevel > 0) propertyBlock.Parsed = true;
+        itemProperties.ItemLevel = GetInt(Pattern, parsingItem);
     }
 
     public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue)
@@ -44,7 +39,7 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
         return filter;
     }
 
-    internal override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 

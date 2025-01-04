@@ -1,25 +1,24 @@
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Models;
 
-namespace Sidekick.Apis.Poe.Trade.Requests.Filters
+namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
+
+public class SearchFilterOption
 {
-    internal class SearchFilterOption
+    public SearchFilterOption(string option)
     {
-        public SearchFilterOption(string option)
-        {
-            Option = option;
-        }
-
-        public SearchFilterOption(PropertyFilter filter)
-        {
-            Option = filter.Checked == true ? "true" : "false";
-        }
-
-        public SearchFilterOption(TriStatePropertyFilter filter)
-        {
-            Option = filter.Checked == true ? "true" : "false";
-        }
-
-        public string Option { get; set; }
+        Option = option;
     }
+
+    public SearchFilterOption(BooleanPropertyFilter filter)
+    {
+        Option = filter.Checked ? "true" : "false";
+    }
+
+    public SearchFilterOption(TriStatePropertyFilter filter)
+    {
+        Option = filter.Checked == true ? "true" : "false";
+    }
+
+    public string Option { get; set; }
 }

@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Sidekick.Apis.Poe.Parser.Patterns;
+namespace Sidekick.Apis.Poe.Parser;
 
 public static class RegexExtensions
 {

@@ -34,7 +34,9 @@ public class ItemProperties
 
     public bool BlightRavaged { get; set; }
 
-    public double CriticalStrikeChance { get; set; }
+    public Influences Influences { get; init; } = new();
+
+    public double CriticalHitChance { get; set; }
 
     public double AttacksPerSecond { get; set; }
 

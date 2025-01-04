@@ -5,8 +5,9 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Filters;
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Modifiers;
+using Sidekick.Apis.Poe.Parser.Properties;
+using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
@@ -29,7 +30,7 @@ public class TradeSearchService
     IPoeTradeClient poeTradeClient,
     IModifierProvider modifierProvider,
     IFilterProvider filterProvider,
-    IApiInvariantItemProvider apiInvariantItemProvider
+    IPropertyParser propertyParser
 ) : ITradeSearchService
 {
     private readonly ILogger logger = logger;
@@ -119,11 +120,7 @@ public class TradeSearchService
 
             if (propertyFilters != null)
             {
-                query.Filters.EquipmentFilters = GetEquipmentFilters(item, propertyFilters.Weapon.Concat(propertyFilters.Armour).ToList());
-                query.Filters.WeaponFilters = GetWeaponFilters(item, propertyFilters.Weapon);
-                query.Filters.ArmourFilters = GetArmourFilters(item, propertyFilters.Armour);
-                query.Filters.MapFilters = GetMapFilters(propertyFilters.Map);
-                query.Filters.MiscFilters = GetMiscFilters(item, propertyFilters.Misc);
+                propertyParser.PrepareTradeRequest(query.Filters, item, propertyFilters);
             }
 
             // The item level filter for Path of Exile 2 is inside the type filters instead of the misc filters.
@@ -175,311 +172,6 @@ public class TradeSearchService
         }
 
         return new SearchFilterOption(itemCategory);
-    }
-
-    private WeaponFilterGroup? GetWeaponFilters(Item item, List<PropertyFilter> propertyFilters)
-    {
-        if (item.Header.Game == GameType.PathOfExile2)
-        {
-            return null;
-        }
-
-        var filters = new WeaponFilterGroup();
-        var hasValue = false;
-
-        foreach (var propertyFilter in propertyFilters)
-        {
-            if (propertyFilter.Checked != true)
-            {
-                continue;
-            }
-
-            switch (propertyFilter.Type)
-            {
-                case PropertyFilterType.Weapon_Damage:
-                    filters.Filters.Damage = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Weapon_PhysicalDps:
-                    filters.Filters.PhysicalDps = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Weapon_ElementalDps:
-                    filters.Filters.ElementalDps = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Weapon_Dps:
-                    filters.Filters.DamagePerSecond = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Weapon_AttacksPerSecond:
-                    filters.Filters.AttacksPerSecond = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Weapon_CriticalStrikeChance:
-                    filters.Filters.CriticalStrikeChance = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-            }
-        }
-
-        return hasValue ? filters : null;
-    }
-
-    private ArmourFilterGroup? GetArmourFilters(Item item, List<PropertyFilter> propertyFilters)
-    {
-        if (item.Header.Game == GameType.PathOfExile2)
-        {
-            return null;
-        }
-
-        var filters = new ArmourFilterGroup();
-        var hasValue = false;
-
-        foreach (var propertyFilter in propertyFilters)
-        {
-            if (propertyFilter.Checked != true)
-            {
-                continue;
-            }
-
-            switch (propertyFilter.Type)
-            {
-                case PropertyFilterType.Armour_Armour:
-                    filters.Filters.Armour = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Armour_Block:
-                    filters.Filters.BlockChance = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Armour_EnergyShield:
-                    filters.Filters.EnergyShield = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Armour_Evasion:
-                    filters.Filters.EvasionRating = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-            }
-        }
-
-        return hasValue ? filters : null;
-    }
-
-    private EquipmentFilterGroup? GetEquipmentFilters(Item item, List<PropertyFilter> propertyFilters)
-    {
-        if (item.Header.Game == GameType.PathOfExile)
-        {
-            return null;
-        }
-
-        var filters = new EquipmentFilterGroup();
-        var hasValue = false;
-
-        foreach (var propertyFilter in propertyFilters)
-        {
-            if (propertyFilter.Checked != true)
-            {
-                continue;
-            }
-
-            switch (propertyFilter.Type)
-            {
-                case PropertyFilterType.Weapon_Damage:
-                    filters.Filters.Damage = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Weapon_PhysicalDps:
-                    filters.Filters.PhysicalDps = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Weapon_ElementalDps:
-                    filters.Filters.ElementalDps = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Weapon_Dps:
-                    filters.Filters.DamagePerSecond = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Weapon_AttacksPerSecond:
-                    filters.Filters.AttacksPerSecond = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Weapon_CriticalStrikeChance:
-                    filters.Filters.CriticalStrikeChance = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Armour_Armour:
-                    filters.Filters.Armor = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Armour_Block:
-                    filters.Filters.Block = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Armour_EnergyShield:
-                    filters.Filters.EnergyShield = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Armour_Evasion:
-                    filters.Filters.Evasion = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-            }
-        }
-
-        return hasValue ? filters : null;
-    }
-
-    private MapFilterGroup? GetMapFilters(List<PropertyFilter> propertyFilters)
-    {
-        var filters = new MapFilterGroup();
-        var hasValue = false;
-
-        foreach (var propertyFilter in propertyFilters)
-        {
-            if (propertyFilter.Checked != true)
-            {
-                continue;
-            }
-
-            switch (propertyFilter.Type)
-            {
-                case PropertyFilterType.Map_ItemQuantity:
-                    filters.Filters.ItemQuantity = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Map_ItemRarity:
-                    filters.Filters.ItemRarity = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Map_AreaLevel:
-                    filters.Filters.AreaLevel = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Map_MonsterPackSize:
-                    filters.Filters.MonsterPackSize = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Map_Blighted:
-                    filters.Filters.Blighted = new SearchFilterOption(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Map_BlightRavaged:
-                    filters.Filters.BlightRavavaged = new SearchFilterOption(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Map_Tier:
-                    filters.Filters.MapTier = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-            }
-        }
-
-        return hasValue ? filters : null;
-    }
-
-    private MiscFilterGroup? GetMiscFilters(Item item, List<PropertyFilter> propertyFilters)
-    {
-        var filters = new MiscFilterGroup();
-        var hasValue = false;
-
-        foreach (var propertyFilter in propertyFilters)
-        {
-            if (propertyFilter.Checked != true)
-            {
-                continue;
-            }
-
-            switch (propertyFilter.Type)
-            {
-                // Influence
-                case PropertyFilterType.Misc_Influence_Crusader:
-                    filters.Filters.CrusaderItem = new SearchFilterOption(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Misc_Influence_Elder:
-                    filters.Filters.ElderItem = new SearchFilterOption(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Misc_Influence_Hunter:
-                    filters.Filters.HunterItem = new SearchFilterOption(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Misc_Influence_Redeemer:
-                    filters.Filters.RedeemerItem = new SearchFilterOption(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Misc_Influence_Shaper:
-                    filters.Filters.ShaperItem = new SearchFilterOption(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Misc_Influence_Warlord:
-                    filters.Filters.WarlordItem = new SearchFilterOption(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                // Misc
-                case PropertyFilterType.Misc_Quality:
-                    filters.Filters.Quality = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Misc_GemLevel:
-                    if (apiInvariantItemProvider.UncutGemIds.Contains(item.Header.ApiItemId))
-                    {
-                        filters.Filters.ItemLevel = new StatFilterValue(propertyFilter);
-                    }
-                    else
-                    {
-                        filters.Filters.GemLevel = new StatFilterValue(propertyFilter);
-                    }
-
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Misc_ItemLevel:
-                    filters.Filters.ItemLevel = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-
-                case PropertyFilterType.Misc_Scourged:
-                    filters.Filters.Scourged = new StatFilterValue(propertyFilter);
-                    hasValue = true;
-                    break;
-            }
-        }
-
-        return hasValue ? filters : null;
     }
 
     private StatFilterGroup? GetAndStats(List<ModifierFilter>? modifierFilters, List<PseudoModifierFilter>? pseudoFilters)
@@ -716,13 +408,11 @@ public class TradeSearchService
             ElementalDps = result.Item?.Extended?.ElementalDps ?? 0,
             PhysicalDps = result.Item?.Extended?.PhysicalDps ?? 0,
             BaseDefencePercentile = result.Item?.Extended?.BaseDefencePercentile,
+            Influences = result.Item?.Influences ?? new(),
         };
-
-        var influences = result.Item?.Influences ?? new();
 
         var item = new TradeItem(itemHeader: header,
                                  itemProperties: properties,
-                                 influences: influences,
                                  sockets: ParseSockets(result.Item?.Sockets).ToList(),
                                  modifierLines: new(),
                                  pseudoModifiers: new(),

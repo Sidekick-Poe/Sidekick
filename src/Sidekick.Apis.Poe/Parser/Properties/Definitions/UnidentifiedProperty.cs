@@ -1,5 +1,4 @@
 ﻿using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game.Items;
@@ -20,8 +19,6 @@ public class UnidentifiedProperty(IGameLanguageProvider gameLanguageProvider) : 
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {
-        if (parsingItem.Header?.Category != Category.Armour) return;
-
         itemProperties.Unidentified = GetBool(Pattern, parsingItem);
     }
 
@@ -41,7 +38,7 @@ public class UnidentifiedProperty(IGameLanguageProvider gameLanguageProvider) : 
         return filter;
     }
 
-    internal override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 

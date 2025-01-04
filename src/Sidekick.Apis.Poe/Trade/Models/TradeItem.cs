@@ -6,7 +6,6 @@ namespace Sidekick.Apis.Poe.Trade.Models
     (
         ItemHeader itemHeader,
         ItemProperties itemProperties,
-        Influences influences,
         List<Socket> sockets,
         List<ModifierLine> modifierLines,
         List<PseudoModifier> pseudoModifiers,
@@ -14,7 +13,6 @@ namespace Sidekick.Apis.Poe.Trade.Models
     ) : Item(null,
              itemHeader,
              itemProperties,
-             influences,
              sockets,
              modifierLines,
              pseudoModifiers,
