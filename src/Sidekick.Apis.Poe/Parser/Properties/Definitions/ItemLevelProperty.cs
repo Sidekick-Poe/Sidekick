@@ -11,7 +11,7 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
 {
     private Regex? Pattern { get; set; }
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Flask, Category.Jewel, Category.Accessory, Category.Map, Category.Contract];
+    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Flask, Category.Jewel, Category.Accessory, Category.Map, Category.Contract, Category.Sanctum, Category.Logbook];
 
     public override void Initialize()
     {

@@ -1,7 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
-using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 
@@ -20,8 +19,6 @@ public class AreaLevelProperty(IGameLanguageProvider gameLanguageProvider) : Pro
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {
-        if (parsingItem.Header?.Category != Category.Armour && parsingItem.Header?.Category != Category.Accessory && parsingItem.Header?.Category != Category.Map && parsingItem.Header?.Category != Category.Contract) return;
-
         var propertyBlock = parsingItem.Blocks[1];
         itemProperties.AreaLevel = GetInt(Pattern, propertyBlock);
         if (itemProperties.AreaLevel > 0) propertyBlock.Parsed = true;
