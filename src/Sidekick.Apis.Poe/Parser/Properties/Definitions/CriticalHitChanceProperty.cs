@@ -45,6 +45,7 @@ public class CriticalHitChanceProperty(IGameLanguageProvider gameLanguageProvide
             Value = item.Properties.CriticalHitChance,
             Checked = false,
         };
+        filter.NormalizeMinValue();
         return filter;
     }
 

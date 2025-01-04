@@ -36,6 +36,7 @@ public class AreaLevelProperty(IGameLanguageProvider gameLanguageProvider) : Pro
             Value = item.Properties.AreaLevel,
             Checked = true,
         };
+        filter.NormalizeMinValue();
         return filter;
     }
 

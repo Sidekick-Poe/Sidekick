@@ -36,6 +36,7 @@ public class ItemRarityProperty(IGameLanguageProvider gameLanguageProvider) : Pr
             Value = item.Properties.ItemRarity,
             Checked = false,
         };
+        filter.NormalizeMinValue();
         return filter;
     }
 

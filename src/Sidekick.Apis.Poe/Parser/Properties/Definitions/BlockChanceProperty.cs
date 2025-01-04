@@ -45,6 +45,7 @@ public class BlockChanceProperty(IGameLanguageProvider gameLanguageProvider, Gam
             Value = item.Properties.BlockChance,
             Checked = false,
         };
+        filter.NormalizeMinValue();
         return filter;
     }
 

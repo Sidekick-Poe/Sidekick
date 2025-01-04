@@ -36,6 +36,7 @@ public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : Prope
             Value = item.Properties.MapTier,
             Checked = true,
         };
+        filter.NormalizeMinValue();
         return filter;
     }
 

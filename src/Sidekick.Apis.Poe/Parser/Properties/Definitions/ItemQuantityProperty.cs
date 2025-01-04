@@ -36,6 +36,7 @@ public class ItemQuantityProperty(IGameLanguageProvider gameLanguageProvider) : 
             Value = item.Properties.ItemQuantity,
             Checked = false,
         };
+        filter.NormalizeMinValue();
         return filter;
     }
 

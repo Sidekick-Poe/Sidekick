@@ -37,6 +37,7 @@ public class AttacksPerSecondProperty(IGameLanguageProvider gameLanguageProvider
             Value = item.Properties.AttacksPerSecond,
             Checked = false,
         };
+        filter.NormalizeMinValue();
         return filter;
     }
 

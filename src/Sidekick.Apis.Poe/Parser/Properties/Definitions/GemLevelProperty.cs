@@ -43,6 +43,7 @@ public class GemLevelProperty
             Value = item.Properties.GemLevel,
             Checked = true,
         };
+        filter.NormalizeMinValue();
         return filter;
     }
 

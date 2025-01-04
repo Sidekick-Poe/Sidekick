@@ -30,11 +30,12 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
         var filter = new IntPropertyFilter(this)
         {
             Text = gameLanguageProvider.Language.DescriptionItemLevel,
-            NormalizeEnabled = true,
+            NormalizeEnabled = false,
             NormalizeValue = normalizeValue,
             Value = item.Properties.ItemLevel,
             Checked = game == GameType.PathOfExile && item.Properties.ItemLevel >= 80 && item.Properties.MapTier == 0 && item.Header.Rarity != Rarity.Unique,
         };
+        filter.NormalizeMinValue();
         return filter;
     }
 

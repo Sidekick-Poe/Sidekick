@@ -36,6 +36,7 @@ public class MonsterPackSizeProperty(IGameLanguageProvider gameLanguageProvider)
             Value = item.Properties.MonsterPackSize,
             Checked = false,
         };
+        filter.NormalizeMinValue();
         return filter;
     }
 

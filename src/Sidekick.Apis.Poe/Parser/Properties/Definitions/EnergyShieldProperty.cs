@@ -37,6 +37,7 @@ public class EnergyShieldProperty(IGameLanguageProvider gameLanguageProvider, Ga
             Value = item.Properties.EnergyShield,
             Checked = false,
         };
+        filter.NormalizeMinValue();
         return filter;
     }
 

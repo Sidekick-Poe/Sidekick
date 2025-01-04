@@ -37,6 +37,7 @@ public class EvasionRatingProperty(IGameLanguageProvider gameLanguageProvider, G
             Value = item.Properties.EvasionRating,
             Checked = false,
         };
+        filter.NormalizeMinValue();
         return filter;
     }
 

@@ -125,7 +125,7 @@ public class WeaponDamageProperty
 
         if (item.Properties.TotalDamage > 0)
         {
-            results.Add(new DoublePropertyFilter(this)
+            var filter = new DoublePropertyFilter(this)
             {
                 Text = localizer["Damage"],
                 NormalizeEnabled = true,
@@ -133,55 +133,65 @@ public class WeaponDamageProperty
                 Value = item.Properties.TotalDamage ?? 0,
                 Checked = false,
                 IndentifyingKey = DamageKey,
-            });
+            };
+            filter.NormalizeMinValue();
+            results.Add(filter);
         }
 
         if (item.Properties.PhysicalDps > 0)
         {
-            results.Add(new DoublePropertyFilter(this)
+            var filter = new DoublePropertyFilter(this)
             {
                 Text = localizer["PhysicalDps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
                 Value = item.Properties.PhysicalDps ?? 0,
                 Checked = false,
-            });
+            };
+            filter.NormalizeMinValue();
+            results.Add(filter);
         }
 
         if (item.Properties.ElementalDps > 0)
         {
-            results.Add(new DoublePropertyFilter(this)
+            var filter = new DoublePropertyFilter(this)
             {
                 Text = localizer["ElementalDps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
                 Value = item.Properties.ElementalDps ?? 0,
                 Checked = false,
-            });
+            };
+            filter.NormalizeMinValue();
+            results.Add(filter);
         }
 
         if (item.Properties.ChaosDps > 0)
         {
-            results.Add(new DoublePropertyFilter(this)
+            var filter = new DoublePropertyFilter(this)
             {
                 Text = localizer["ChaosDps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
                 Value = item.Properties.ChaosDps ?? 0,
                 Checked = false,
-            });
+            };
+            filter.NormalizeMinValue();
+            results.Add(filter);
         }
 
         if (item.Properties.TotalDps > 0)
         {
-            results.Add(new DoublePropertyFilter(this)
+            var filter = new DoublePropertyFilter(this)
             {
                 Text = localizer["Dps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
                 Value = item.Properties.TotalDps ?? 0,
                 Checked = false,
-            });
+            };
+            filter.NormalizeMinValue();
+            results.Add(filter);
         }
 
         return results.Count > 0 ? results : null;
@@ -189,7 +199,7 @@ public class WeaponDamageProperty
 
     public override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
     {
-        if(!filter.Checked) return;
+        if (!filter.Checked) return;
 
         if (filter.Text == localizer["Damage"] && filter is DoublePropertyFilter damageFilter)
         {

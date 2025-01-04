@@ -36,6 +36,7 @@ public class QualityProperty(IGameLanguageProvider gameLanguageProvider) : Prope
             Value = item.Properties.Quality,
             Checked = item.Header.Rarity == Rarity.Gem,
         };
+        filter.NormalizeMinValue();
         return filter;
     }
 

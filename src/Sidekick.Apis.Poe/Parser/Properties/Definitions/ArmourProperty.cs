@@ -41,6 +41,7 @@ public class ArmourProperty
             Value = item.Properties.Armour,
             Checked = false,
         };
+        filter.NormalizeMinValue();
         return filter;
     }
 
