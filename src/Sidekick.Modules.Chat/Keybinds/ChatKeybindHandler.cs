@@ -63,6 +63,9 @@ namespace Sidekick.Modules.Chat.Keybinds
 
             await clipboard.SetText(command);
 
+            // Make sure Alt is not pressed. Alt+Enter in-game will toggle fullscreen mode.
+            keyboard.ReleaseAltModifier();
+
             if (chatCommand.Submit)
             {
                 await keyboard.PressKey(

@@ -25,5 +25,9 @@ namespace Sidekick.Mock
         {
             return Task.CompletedTask;
         }
+
+        public void ReleaseAltModifier()
+        {
+        }
     }
 }
