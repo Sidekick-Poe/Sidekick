@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -38,6 +39,13 @@ public partial class MainWindow
 
     public void Ready()
     {
+        if (!Debugger.IsAttached)
+        {
+            WebView.WebView.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+            WebView.WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
+            WebView.WebView.CoreWebView2.Settings.AreDevToolsEnabled = false;
+        }
+
         var wasAlreadyVisible = WebView.Visibility == Visibility.Visible;
 
         // This avoids the white flicker which is caused by the page content not being loaded initially. We show the webview control only when the content is ready.
