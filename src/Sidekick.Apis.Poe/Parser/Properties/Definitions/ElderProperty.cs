@@ -10,7 +10,7 @@ public class ElderProperty(IGameLanguageProvider gameLanguageProvider) : Propert
 {
     private Regex? Pattern { get; set; }
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Jewel, Category.Flask];
+    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Jewel];
 
     public override void Initialize()
     {
