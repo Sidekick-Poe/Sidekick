@@ -1,6 +1,7 @@
 using Sidekick.Apis.Poe;
 using Sidekick.Apis.Poe.Bulk;
 using Sidekick.Apis.Poe.Bulk.Models;
+using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Common.Extensions;

@@ -29,6 +29,7 @@ Take this item to the Relic Altar in the Forbidden Sanctum to enter.
             Assert.Equal("sanctum.research", actual.Header.ItemCategory);
             Assert.Equal("Forbidden Tome", actual.Header.ApiType);
             Assert.Equal(83, actual.Properties.AreaLevel);
+            Assert.Equal(84, actual.Properties.ItemLevel);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace Sidekick.Apis.Poe.Items;
 
 public class ApiItemConstants
 {
-    public static Dictionary<string, (Category Category, bool UseRegex)> Poe1Categories = new()
+    public static readonly Dictionary<string, (Category Category, bool UseRegex)> Poe1Categories = new()
     {
         { "accessory", (Category.Accessory, true) },
         { "armour", (Category.Armour, true) },
@@ -26,7 +26,7 @@ public class ApiItemConstants
         { "corpse", (Category.Corpse, true) },
     };
 
-    public static Dictionary<string, (Category Category, bool UseRegex)> Poe2Categories = new()
+    public static readonly Dictionary<string, (Category Category, bool UseRegex)> Poe2Categories = new()
     {
         { "accessory", (Category.Accessory, true) },
         { "armour", (Category.Armour, true) },

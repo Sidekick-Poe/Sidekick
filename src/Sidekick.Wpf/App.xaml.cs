@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Interop;
@@ -200,6 +201,12 @@ namespace Sidekick.Wpf
 
         private void DeleteStaticAssets()
         {
+            // While debugging, we do not want to delete static assets as the environment is different than when deployed.
+            if (Debugger.IsAttached)
+            {
+                return;
+            }
+
             try
             {
                 var directory = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly()?.Location);

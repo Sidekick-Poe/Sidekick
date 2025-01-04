@@ -1,3 +1,4 @@
+using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Common.Game.Items;
 

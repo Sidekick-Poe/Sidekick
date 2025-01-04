@@ -68,9 +68,9 @@ namespace Sidekick.Apis.Poe.Static
             return $"{gameLanguageProvider.Language.PoeCdnBaseUrl}{result.Trim('/')}";
         }
 
-        public string? GetId(Header header)
+        public string? GetId(ItemHeader itemHeader)
         {
-            var text = header.Name ?? header.Type ?? header.ApiType;
+            var text = itemHeader.Name ?? itemHeader.Type ?? itemHeader.ApiType;
             if (text != null && Ids.TryGetValue(text, out var result))
             {
                 return result;

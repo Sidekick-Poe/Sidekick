@@ -20,6 +20,11 @@ namespace Sidekick.Apis.Poe.Parser.Modifiers
         /// <inheritdoc/>
         public List<ModifierLine> Parse(ParsingItem parsingItem)
         {
+            if (parsingItem.Header?.Category is Category.DivinationCard or Category.Gem)
+            {
+                return [];
+            }
+
             var modifierLines = new List<ModifierLine>();
 
             foreach (var match in MatchModifiers(parsingItem))

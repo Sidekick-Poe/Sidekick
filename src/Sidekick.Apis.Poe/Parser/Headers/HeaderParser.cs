@@ -7,7 +7,6 @@ using Sidekick.Apis.Poe.Fuzzy;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Items.Models;
 using Sidekick.Apis.Poe.Parser.Headers.Models;
-using Sidekick.Apis.Poe.Parser.Patterns;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
@@ -205,7 +204,7 @@ public class HeaderParser
         };
     }
 
-    public Header Parse(ParsingItem parsingItem)
+    public ItemHeader Parse(ParsingItem parsingItem)
     {
         var rarity = ParseRarity(parsingItem);
 
@@ -231,7 +230,7 @@ public class HeaderParser
         }
 
         var apiItem = ParseApiItem(rarity, name, type);
-        var header = apiItem?.ToHeader() ?? new Header();
+        var header = apiItem?.ToHeader() ?? new ItemHeader();
         header.Name = name;
         header.Type = type;
         header.ItemCategory = ParseItemCategory(parsingItem);

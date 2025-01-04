@@ -72,16 +72,16 @@
     }
 
     [Parameter]
-    public decimal? Min { get; set; }
+    public double? Min { get; set; }
 
     [Parameter]
-    public EventCallback<decimal?> MinChanged { get; set; }
+    public EventCallback<double?> MinChanged { get; set; }
 
     [Parameter]
-    public decimal? Max { get; set; }
+    public double? Max { get; set; }
 
     [Parameter]
-    public EventCallback<decimal?> MaxChanged { get; set; }
+    public EventCallback<double?> MaxChanged { get; set; }
 
     [Parameter]
     public EventCallback<RangeType> TypeChanged { get; set; }
@@ -169,7 +169,7 @@
         await TypeChanged.InvokeAsync(Type);
     }
 
-    private async Task UpdateMinValue(decimal? value)
+    private async Task UpdateMinValue(double? value)
     {
         IsChanging = true;
 
@@ -182,7 +182,7 @@
         IsChanging = false;
     }
 
-    private async Task UpdateMaxValue(decimal? value)
+    private async Task UpdateMaxValue(double? value)
     {
         IsChanging = true;
 

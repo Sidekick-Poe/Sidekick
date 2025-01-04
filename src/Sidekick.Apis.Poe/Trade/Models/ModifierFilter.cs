@@ -25,9 +25,9 @@ namespace Sidekick.Apis.Poe.Trade.Models
 
         public bool HasMoreThanOneCategory => Line.Modifiers.GroupBy(x => x.Category).Count() > 1;
 
-        public decimal? Min { get; set; }
+        public double? Min { get; set; }
 
-        public decimal? Max { get; set; }
+        public double? Max { get; set; }
 
         public double NormalizeValue { get; set; }
 

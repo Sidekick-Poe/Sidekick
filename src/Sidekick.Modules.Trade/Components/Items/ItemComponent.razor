@@ -2,13 +2,14 @@
 @using Sidekick.Common.Game.Items
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Prices
+@using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 
 @if (!IsCompact && (Item.CanHaveModifiers || PriceCheckService.Item?.Header.Category == Category.Gem))
 {
     <div class="mb-2 rounded-b-lg bg-stone-950">
         <ItemHeader Name="@Item.Header.Name"
                     Type="@Item.Header.Type"
-                    Influences="Item.Influences"
+                    Influences="Item.Properties.Influences"
                     Rarity="Item.Header.Rarity"/>
 
         <div class="flex items-start flex-nowrap">
@@ -28,7 +29,7 @@
                     }
                 }
 
-                @if (!Item.Properties.Identified)
+                @if (!Item.Properties.Unidentified)
                 {
                     <ItemSeparator Rarity="Item.Header.Rarity"/>
                     <ItemModifierText Category="ModifierCategory.Unidentified">@Resources["Unidentified"]</ItemModifierText>
@@ -67,7 +68,7 @@ else
         <div class="w-3/4">
             <ItemHeader Name="@Item.Header.Name"
                         Type="@Item.Header.Type"
-                        Influences="Item.Influences"
+                        Influences="Item.Properties.Influences"
                         Rarity="Item.Header.Rarity"
                         SingleLine="true"/>
 

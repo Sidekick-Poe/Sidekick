@@ -10,11 +10,11 @@ namespace Sidekick.Apis.Poe.Trade.Models
         /// <summary>
         /// Gets or sets the minimum value for the filter.
         /// </summary>
-        decimal? Min { get; set; }
+        double? Min { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum value for the filter.
         /// </summary>
-        decimal? Max { get; set; }
+        double? Max { get; set; }
     }
 }

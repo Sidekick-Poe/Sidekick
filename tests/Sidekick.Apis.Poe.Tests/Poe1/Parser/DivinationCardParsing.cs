@@ -48,12 +48,12 @@ Though they were a pack of elite combatants, the Emperor's royal guards were not
             Assert.Equal(Rarity.DivinationCard, actual.Header.Rarity);
             Assert.Null(actual.Header.ApiName);
             Assert.Equal("The Lord of Celebration", actual.Header.ApiType);
-            Assert.False(actual.Influences.Crusader);
-            Assert.False(actual.Influences.Elder);
-            Assert.False(actual.Influences.Hunter);
-            Assert.False(actual.Influences.Redeemer);
-            Assert.False(actual.Influences.Shaper);
-            Assert.False(actual.Influences.Warlord);
+            Assert.False(actual.Properties.Influences.Crusader);
+            Assert.False(actual.Properties.Influences.Elder);
+            Assert.False(actual.Properties.Influences.Hunter);
+            Assert.False(actual.Properties.Influences.Redeemer);
+            Assert.False(actual.Properties.Influences.Shaper);
+            Assert.False(actual.Properties.Influences.Warlord);
         }
 
         [Fact]

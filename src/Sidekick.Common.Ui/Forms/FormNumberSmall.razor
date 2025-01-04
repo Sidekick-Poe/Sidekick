@@ -19,10 +19,10 @@
     public string? Label { get; set; }
 
     [Parameter]
-    public decimal? Value { get; set; }
+    public double? Value { get; set; }
 
     [Parameter]
-    public EventCallback<decimal?> ValueChanged { get; set; }
+    public EventCallback<double?> ValueChanged { get; set; }
 
     private string Id { get; } = UiUtilities.GenerateId();
 
@@ -36,9 +36,9 @@
 
     private async Task OnChange(ChangeEventArgs args)
     {
-        if (decimal.TryParse(args.Value?.ToString(), out var decimalValue))
+        if (double.TryParse(args.Value?.ToString(), out var doubleValue))
         {
-            await ValueChanged.InvokeAsync(decimalValue);
+            await ValueChanged.InvokeAsync(doubleValue);
         }
         else
         {

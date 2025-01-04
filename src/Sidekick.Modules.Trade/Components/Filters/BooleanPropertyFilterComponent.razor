@@ -1,0 +1,23 @@
+@using Sidekick.Apis.Poe.Parser.Properties.Filters
+
+<FilterWrapper>
+    <div class="flex flex-nowrap items-center">
+        <div class="grow">
+            <FormCheckbox @bind-Value="Filter.Checked"
+                          NoMargin="true">
+                <div class="flex items-center gap-1">
+                    <ItemPropertyText Label="@Filter.Text"
+                                      Value="@(Filter.Checked ? "true" : "false")"
+                                      OnlyShowLabel="true"/>
+                </div>
+            </FormCheckbox>
+        </div>
+    </div>
+</FilterWrapper>
+
+@code {
+
+    [Parameter]
+    public required BooleanPropertyFilter Filter { get; set; }
+
+}

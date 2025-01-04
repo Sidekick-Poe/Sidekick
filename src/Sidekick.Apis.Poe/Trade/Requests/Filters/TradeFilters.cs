@@ -1,7 +1,6 @@
-namespace Sidekick.Apis.Poe.Trade.Requests.Filters
+namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
+
+public class TradeFilters
 {
-    internal class TradeFilters
-    {
-        public StatFilterValue? Price { get; set; }
-    }
+    public StatFilterValue? Price { get; set; }
 }
