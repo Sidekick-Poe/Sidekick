@@ -3,12 +3,12 @@ using Sidekick.Common.Initialization;
 namespace Sidekick.Common.Platform;
 
 /// <summary>
-///     Service providing keyboard functions
+/// Service providing keyboard functions
 /// </summary>
 public interface IKeyboardProvider : IInitializableService
 {
     /// <summary>
-    ///     Event that indicates that a key was pressed
+    /// Event that indicates that a key was pressed
     /// </summary>
     event Action<string> OnKeyDown;
 
@@ -18,8 +18,13 @@ public interface IKeyboardProvider : IInitializableService
     void RegisterHooks();
 
     /// <summary>
-    ///     Command to send keystrokes to the system
+    /// Command to send keystrokes to the system
     /// </summary>
     /// <param name="keys">The keys to send</param>
     Task PressKey(params string[] keys);
+
+    /// <summary>
+    /// Simulate alt key release to prevent undesired behaviors such as Alt+Enter toggling fullscreen mode.
+    /// </summary>
+    void ReleaseAltModifier();
 }
