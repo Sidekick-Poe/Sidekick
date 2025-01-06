@@ -59,7 +59,6 @@ Note: ~price 2 chaos
             Assert.Equal("Vaal Double Strike", actual.Header.ApiType);
             Assert.Equal(1, actual.Properties.GemLevel);
             Assert.Equal(0, actual.Properties.Quality);
-            Assert.False(actual.Properties.AlternateQuality);
             Assert.True(actual.Properties.Corrupted);
         }
 

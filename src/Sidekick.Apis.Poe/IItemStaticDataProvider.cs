@@ -7,6 +7,6 @@ namespace Sidekick.Apis.Poe
     {
         string? GetImage(string id);
 
-        string? GetId(Header header);
+        string? GetId(ItemHeader itemHeader);
     }
 }

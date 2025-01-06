@@ -29,7 +29,7 @@ public class ApiItem
     [JsonIgnore]
     public bool IsUnique => Flags?.Unique ?? false;
 
-    public Header ToHeader()
+    public ItemHeader ToHeader()
     {
         var categoryRarity = Category switch
         {
@@ -39,15 +39,15 @@ public class ApiItem
             _ => Rarity.Unknown
         };
 
-        return new Header()
+        return new ItemHeader()
         {
             Name = Name,
-            Type = Text ?? Type,
+            Type = Type,
             ApiItemId = Id ?? string.Empty,
             ApiName = Name,
             ApiType = Type,
-            ApiText = Text,
             ApiDiscriminator = Discriminator,
+            ApiText = Text,
             Game = Game,
             Category = Category ?? Common.Game.Items.Category.Unknown,
             Rarity = IsUnique ? Rarity.Unique : categoryRarity,

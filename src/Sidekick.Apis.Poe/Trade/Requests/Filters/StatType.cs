@@ -2,7 +2,7 @@ using Sidekick.Common.Enums;
 
 namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
 
-internal enum StatType
+public enum StatType
 {
     [EnumValue("and")]
     And,

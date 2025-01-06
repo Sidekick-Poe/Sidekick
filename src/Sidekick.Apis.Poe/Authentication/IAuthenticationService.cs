@@ -1,5 +1,3 @@
-using Sidekick.Common.Initialization;
-
 namespace Sidekick.Apis.Poe.Authentication
 {
     public interface IAuthenticationService

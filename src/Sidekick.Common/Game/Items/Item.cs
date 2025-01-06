@@ -1,22 +1,19 @@
 namespace Sidekick.Common.Game.Items;
 
 public class Item(
-    Header? invariant,
-    Header header,
-    Properties properties,
-    Influences influences,
+    ItemHeader? invariant,
+    ItemHeader itemHeader,
+    ItemProperties itemProperties,
     List<Socket> sockets,
     List<ModifierLine> modifierLines,
     List<PseudoModifier> pseudoModifiers,
     string text)
 {
-    public Header? Invariant { get; set; } = invariant;
+    public ItemHeader? Invariant { get; set; } = invariant;
 
-    public Header Header { get; init; } = header;
+    public ItemHeader Header { get; init; } = itemHeader;
 
-    public Properties Properties { get; init; } = properties;
-
-    public Influences Influences { get; init; } = influences;
+    public ItemProperties Properties { get; init; } = itemProperties;
 
     public List<Socket> Sockets { get; init; } = sockets;
 

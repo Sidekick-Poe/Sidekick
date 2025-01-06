@@ -8,6 +8,7 @@
 @using Sidekick.Modules.Maps.Localization
 
 @using Sidekick.Common.Extensions
+@using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 @using Sidekick.Modules.Maps.Settings
 @inherits Sidekick.Common.Ui.Views.SidekickView
 
@@ -32,7 +33,7 @@
             <ItemHeader Name="@Item.Header.Name"
                         Type="@Item.Header.Type"
                         Rarity="Item.Header.Rarity"
-                        Influences="Item.Influences"/>
+                        Influences="Item.Properties.Influences"/>
 
             <AppContainer>
                 @if (DangerousMods.Any())

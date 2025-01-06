@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Authentication\NewFile1.txt" />
-    <None Remove="Clients\NewFile1.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="FuzzySharp" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
     <PackageReference Include="System.Threading.RateLimiting" Version="8.0.0" />

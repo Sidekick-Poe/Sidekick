@@ -43,6 +43,7 @@ Note: ~price 1.29 exalted
             Assert.Equal(Category.Map, actual.Header.Category);
             Assert.Equal(Rarity.Currency, actual.Header.Rarity);
             Assert.Equal("Chronicle of Atzoatl", actual.Header.ApiType);
+            Assert.Equal(81, actual.Properties.AreaLevel);
 
             actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)");
         }

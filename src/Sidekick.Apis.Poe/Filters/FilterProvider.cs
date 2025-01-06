@@ -1,6 +1,5 @@
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Filters.Models;
-using Sidekick.Apis.Poe.Items.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Extensions;

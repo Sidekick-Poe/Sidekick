@@ -1,19 +1,18 @@
 using System.Text.Json.Serialization;
 
-namespace Sidekick.Apis.Poe.Trade.Requests.Filters
+namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
+
+public class ArmourFilters
 {
-    internal class ArmourFilters
-    {
-        [JsonPropertyName("ar")]
-        public StatFilterValue? Armor { get; set; }
+    [JsonPropertyName("ar")]
+    public StatFilterValue? Armour { get; set; }
 
-        [JsonPropertyName("es")]
-        public StatFilterValue? EnergyShield { get; set; }
+    [JsonPropertyName("es")]
+    public StatFilterValue? EnergyShield { get; set; }
 
-        [JsonPropertyName("ev")]
-        public StatFilterValue? Evasion { get; set; }
+    [JsonPropertyName("ev")]
+    public StatFilterValue? EvasionRating { get; set; }
 
-        [JsonPropertyName("block")]
-        public StatFilterValue? Block { get; set; }
-    }
+    [JsonPropertyName("block")]
+    public StatFilterValue? BlockChance { get; set; }
 }
