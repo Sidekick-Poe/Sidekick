@@ -3806,6 +3806,10 @@ video {
   -moz-osx-font-smoothing: auto;
 }
 
+.caret-transparent {
+  caret-color: transparent;
+}
+
 .opacity-0 {
   opacity: 0;
 }
