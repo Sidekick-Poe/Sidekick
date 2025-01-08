@@ -1,16 +1,16 @@
-﻿<div class="flex items-center flex-nowrap gap-1">
-@if (!string.IsNullOrEmpty(Label))
-{
-    <label for="@Id"
-           class="block text-base font-medium dark:text-zinc-200">
-        @Label
-    </label>
-}
+<div class="flex items-center flex-nowrap gap-1">
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label for="@Id"
+               class="block text-base font-medium dark:text-zinc-200">
+            @Label
+        </label>
+    }
 
     <input id="@Id"
            @onchange="OnChange"
            value="@InternalValue"
-           class="@UiClasses.FormInputClasses p-[2px] text-sm min-w-0 grow"/>
+           class="@UiClasses.FormInputClasses p-[2px] text-sm min-w-0 grow" />
 </div>
 
 @code {
@@ -38,7 +38,7 @@
     {
         if (double.TryParse(args.Value?.ToString(), out var doubleValue))
         {
-            await ValueChanged.InvokeAsync(doubleValue);
+            await ValueChanged.InvokeAsync(Math.Round(doubleValue, 2));
         }
         else
         {
