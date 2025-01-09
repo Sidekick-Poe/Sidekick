@@ -12,7 +12,6 @@ namespace Sidekick.Modules.Trade.Localization
         }
 
         public string Corrupted => localizer["Corrupted"];
-        public string ForceCategory => localizer["ForceCategory"];
 
         public string CountString(int count, int total) => localizer["CountString", count, total];
 

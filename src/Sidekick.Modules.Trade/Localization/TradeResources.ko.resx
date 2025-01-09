@@ -171,7 +171,7 @@
   <data name="Filters_Submit" xml:space="preserve">
     <value>검색</value>
   </data>
-  <data name="ForceCategory" xml:space="preserve">
+  <data name="ForceCategoryHint" xml:space="preserve">
     <value>이 체크박스를 선택하면 선택된 접사와 관련된 결과에 등장합니다. 체크해제시 모든 접사가 등장합니다.</value>
   </data>
   <data name="ItemLevel" xml:space="preserve">
@@ -202,7 +202,7 @@
     <value>이 드랍다운은 다른 접사를 선택할 수 있게 해줍니다. Sidekick은 선택하신 접사에 가장 근접한 아이템을 찾습니다만, 인게임과 거래소 접사의 명칭이 다를 수가 있어 종종 다른 결과가 있을 수 있습니다.</value>
   </data>
   <data name="OpenQueryInWebsite" xml:space="preserve">
-      <value>거래소에서 보기</value>
+    <value>거래소에서 보기</value>
   </data>
   <data name="Parsing" xml:space="preserve">
     <value>Parsing your item</value>
