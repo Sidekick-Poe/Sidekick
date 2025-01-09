@@ -171,7 +171,7 @@
   <data name="Filters_Submit" xml:space="preserve">
     <value>Chercher</value>
   </data>
-  <data name="ForceCategory" xml:space="preserve">
+  <data name="ForceCategoryHint" xml:space="preserve">
     <value>Sélectionner cette case va limiter les recherches à cette catégorie. La désélectionner va permettre toutes les catégories dans les résultats (explicite, fabriqué, fracturé, etc.).</value>
   </data>
   <data name="ItemLevel" xml:space="preserve">
@@ -244,9 +244,9 @@
     <value>Tous</value>
   </data>
   <data name="Yes" xml:space="preserve">
-      <value>Oui</value>
+    <value>Oui</value>
   </data>
   <data name="No" xml:space="preserve">
-      <value>Non</value>
+    <value>Non</value>
   </data>
 </root>

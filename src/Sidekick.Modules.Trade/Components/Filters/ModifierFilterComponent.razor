@@ -18,26 +18,21 @@
 
         @if (EnchantmentOilNames?.Any() ?? false)
         {
-            <OilAnointment OilNames="EnchantmentOilNames"/>
+            <OilAnointment OilNames="EnchantmentOilNames" />
         }
 
         <div class="flex flex-col items-end justify-between">
-            @if (Filter is
-                 {
-                     Checked: true,
-                     HasMoreThanOneCategory: true
-                 }
-                 && Filter.FirstCategory != ModifierCategory.Explicit)
+            @if (Filter is { Checked: true, HasMoreThanOneCategory: true } && Filter.FirstCategory != ModifierCategory.Explicit)
             {
                 <TooltipTopRight>
                     <ChildContent>
                         <ItemModifierCategoryChip Category="Filter.FirstCategory"
                                                   Checked="Filter.ForceFirstCategory"
                                                   ShowCheckbox="true"
-                                                  OnClick="() => Filter.ForceFirstCategory = !Filter.ForceFirstCategory"/>
+                                                  OnClick="() => Filter.ForceFirstCategory = !Filter.ForceFirstCategory" />
                     </ChildContent>
                     <TooltipContent>
-                        @Resources["Selecting this checkbox will force this specific category in the results. Unchecking allows for all modifier categories in the results (explicit, crafted, fractured, etc.)."]
+                        @Resources["ForceCategoryHint"]
                     </TooltipContent>
                 </TooltipTopRight>
             }
@@ -46,7 +41,7 @@
 
             @if ((Filter.Checked ?? false) && Filter.Line.HasValues)
             {
-                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged"/>
+                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged" />
             }
         </div>
     </div>
@@ -66,10 +61,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (Filter.Line.Modifiers.FirstOrDefault()
-                  ?.Category
-            == ModifierCategory.Enchant
-            && GameLanguageProvider.IsEnglish())
+        if (Filter.Line.Modifiers.FirstOrDefault()?.Category == ModifierCategory.Enchant && GameLanguageProvider.IsEnglish())
         {
             var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Line);
             if (oilMetadataIds != null)
@@ -78,6 +70,11 @@
                                       .Select(x => PoeWikiClient.BlightOilNamesByMetadataIds[x])
                                       .ToList();
             }
+        }
+
+        if (Filter.Checked == true)
+        {
+            CheckedChanged(true);
         }
     }
 
