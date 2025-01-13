@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Net;
 using System.Windows;
 using System.Windows.Media;
 using Microsoft.Extensions.Logging;
@@ -36,6 +37,7 @@ public partial class CloudflareWindow
 
             await WebView.EnsureCoreWebView2Async();
             WebView.CoreWebView2.Settings.UserAgent = PoeTradeHandler.UserAgent;
+            WebView.CoreWebView2.CookieManager.DeleteAllCookies();
 
             // Handle cookie changes by checking cookies after navigation
             WebView.CoreWebView2.NavigationCompleted += CoreWebView2_NavigationCompleted;
@@ -72,10 +74,13 @@ public partial class CloudflareWindow
     {
         try
         {
+            logger.LogInformation("[CloudflareWindow] Checking for Cloudflare cookie at " + WebUtility.UrlDecode(WebView.Source?.ToString()));
+
             var cookies = await WebView.CoreWebView2.CookieManager.GetCookiesAsync(uri.GetLeftPart(UriPartial.Authority));
             var cfCookie = cookies.FirstOrDefault(c => c.Name == "cf_clearance");
             if (cfCookie == null)
             {
+                logger.LogInformation("[CloudflareWindow] Cookie not found");
                 return;
             }
 
