@@ -17,12 +17,12 @@
                                       Value="@PriceCheckService.Item.Properties.PhysicalDamageWithQuality.ToDisplayString()"
                                       HasAdditionalInformation="PriceCheckService.Item.Properties.PhysicalDamageWithQuality.ToDisplayString() != PriceCheckService.Item.Properties.PhysicalDamage.ToDisplayString() && Filter.OriginalValue > 0">
                         <AdditionalInformation>
-                            <ItemPropertyText Label="@(Resources["Original_Value"])"
+                            <ItemPropertyText Label="@($"{GameLanguageProvider.Language.DescriptionQuality} {PriceCheckService.Item?.Properties.Quality}%")"
                                               ContentType="LineContentType.Physical"
-                                              Value="@PriceCheckService.Item.Properties.PhysicalDamage.ToDisplayString()"/>
-                            <ItemPropertyText Label="@(Resources["Value_With_Quality"])"
+                                              Value="@PriceCheckService.Item?.Properties.PhysicalDamage.ToDisplayString()"/>
+                            <ItemPropertyText Label="@($"{GameLanguageProvider.Language.DescriptionQuality} 20%")"
                                               ContentType="LineContentType.Physical"
-                                              Value="@PriceCheckService.Item.Properties.PhysicalDamageWithQuality.ToDisplayString()"/>
+                                              Value="@PriceCheckService.Item?.Properties.PhysicalDamageWithQuality.ToDisplayString()"/>
                         </AdditionalInformation>
                     </ItemPropertyText>
                 }
