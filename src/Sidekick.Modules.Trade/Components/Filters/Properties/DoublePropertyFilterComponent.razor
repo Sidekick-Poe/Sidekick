@@ -1,0 +1,74 @@
+@using Sidekick.Apis.Poe.Parser.Properties.Filters
+@using Sidekick.Common.Game.Languages
+@using Sidekick.Modules.Trade.Localization
+@using Sidekick.Common.Settings
+
+<FilterWrapper>
+    <div class="flex flex-nowrap items-center">
+        <div class="grow">
+            <FormCheckbox Value="Filter.Checked"
+                          NoMargin="true"
+                          ValueChanged="CheckedChanged">
+                <ItemPropertyText Label="@Filter.Text"
+                                  Value="@($"{Filter.ValuePrefix}{Filter.Value:0.00}{Filter.ValueSuffix}")"
+                                  HasAdditionalInformation="Math.Abs(Filter.Value - Filter.OriginalValue) > 0.001 && Filter.OriginalValue > 0">
+                    <AdditionalInformation>
+                        <ItemPropertyText Label="@($"{GameLanguageProvider.Language.DescriptionQuality} {PriceCheckService.Item?.Properties.Quality}%")"
+                                          Value="@($"{Filter.ValuePrefix}{Filter.OriginalValue:0.00}{Filter.ValueSuffix}")"/>
+                        <ItemPropertyText Label="@($"{GameLanguageProvider.Language.DescriptionQuality} 20%")"
+                                          Value="@($"{Filter.ValuePrefix}{Filter.Value:0.00}{Filter.ValueSuffix}")"/>
+                    </AdditionalInformation>
+                </ItemPropertyText>
+            </FormCheckbox>
+        </div>
+
+        @if (Filter.Checked)
+        {
+            <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged"/>
+        }
+    </div>
+</FilterWrapper>
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject PriceCheckService PriceCheckService
+@inject IGameLanguageProvider GameLanguageProvider
+@inject ISettingsService SettingsService
+
+@code {
+
+    [Parameter]
+    public required DoublePropertyFilter Filter { get; set; }
+
+    private async void CheckedChanged(bool value)
+    {
+        Filter.Checked = value;
+
+        // We can change the settings in the Trade window, so we should fetch here every time.
+        Filter.NormalizeValue = await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
+        Filter.NormalizeMinValue();
+    }
+
+    private void TypeChanged(FilterRange.RangeType type)
+    {
+        switch (type)
+        {
+            case FilterRange.RangeType.Minimum:
+                Filter.NormalizeMinValue();
+                Filter.Max = null;
+                break;
+
+            case FilterRange.RangeType.Maximum:
+                Filter.NormalizeMaxValue();
+                Filter.Min = null;
+                break;
+
+            case FilterRange.RangeType.Equals: Filter.SetExactValue(); break;
+
+            case FilterRange.RangeType.Range:
+                Filter.NormalizeMinValue();
+                Filter.NormalizeMaxValue();
+                break;
+        }
+    }
+
+}

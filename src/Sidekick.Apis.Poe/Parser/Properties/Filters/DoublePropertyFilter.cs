@@ -11,7 +11,13 @@ public class DoublePropertyFilter : BooleanPropertyFilter
 
     public required double NormalizeValue { get; set; }
 
+    public string? ValuePrefix { get; set; }
+
+    public string? ValueSuffix { get; set; }
+
     public required double Value { get; set; }
+
+    public double OriginalValue { get; set; }
 
     public double? Min { get; set; }
 

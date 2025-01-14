@@ -1,0 +1,11 @@
+﻿@code {
+
+  [Parameter]
+  public required string Icon { get; set; }
+
+  [Parameter]
+  public string Class { get; set; } = "";
+
+}
+
+<span class="@Class fill-current inline-block w-[0.8em] h-[0.8em] min-w-[0.8em] min-h-[0.8em]">@((MarkupString)Icon)</span>

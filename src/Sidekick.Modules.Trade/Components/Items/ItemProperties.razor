@@ -7,7 +7,7 @@
     {
         <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionItemLevel" Value="@Item.Properties.ItemLevel.ToString()"/>
     }
-    @if (Item.Properties.BaseDefencePercentile.HasValue)
+    @if (Item.Properties.BaseDefencePercentile > 0)
     {
         <ItemPropertyText Label="@Resources["Base Percentile"]" Value="@(Item.Properties.BaseDefencePercentile + "%")"/>
     }

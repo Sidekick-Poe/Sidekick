@@ -34,7 +34,8 @@ public class EnergyShieldProperty(IGameLanguageProvider gameLanguageProvider, Ga
             Text = gameLanguageProvider.Language.DescriptionEnergyShield,
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,
-            Value = item.Properties.EnergyShield,
+            Value = item.Properties.EnergyShieldWithQuality,
+            OriginalValue = item.Properties.EnergyShield,
             Checked = false,
         };
         filter.NormalizeMinValue();

@@ -38,7 +38,8 @@ public class ArmourProperty
             Text = gameLanguageProvider.Language.DescriptionArmour,
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,
-            Value = item.Properties.Armour,
+            Value = item.Properties.ArmourWithQuality,
+            OriginalValue = item.Properties.Armour,
             Checked = false,
         };
         filter.NormalizeMinValue();

@@ -1,5 +1,6 @@
 @using Microsoft.Extensions.Options;
 @using Sidekick.Common.Ui.Views
+@using MudBlazor
 @inject IOptions<SidekickConfiguration> Configuration;
 @inject IViewLocator ViewLocator
 
@@ -25,3 +26,8 @@
         </NotFound>
     </Router>
 </AppWrapper>
+
+<MudThemeProvider IsDarkMode="true" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+<MudPopoverProvider />

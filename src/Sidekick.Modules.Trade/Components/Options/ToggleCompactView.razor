@@ -1,6 +1,6 @@
 @using Sidekick.Modules.Trade.Localization
 
-<TooltipBottomRight>
+<TooltipRight>
     <ChildContent>
         <button type="button"
                 @onclick="@OnClick"
@@ -14,7 +14,7 @@
     <TooltipContent>
         <TextBase Class="max-w-[15rem]">@(IsCompact ? Resources["Layout_Cards_Maximized"] : Resources["Layout_Cards_Minimized"])</TextBase>
     </TooltipContent>
-</TooltipBottomRight>
+</TooltipRight>
 
 @inject IStringLocalizer<TradeResources> Resources
 

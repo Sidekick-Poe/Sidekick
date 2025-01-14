@@ -43,6 +43,7 @@ public class BlockChanceProperty(IGameLanguageProvider gameLanguageProvider, Gam
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,
             Value = item.Properties.BlockChance,
+            ValueSuffix = "%",
             Checked = false,
         };
         filter.NormalizeMinValue();

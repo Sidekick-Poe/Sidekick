@@ -1,10 +1,10 @@
 namespace Sidekick.Common.Game.Items;
 
-public class DamageRange(double min, double max)
+public class DamageRange(int min, int max)
 {
-    public double Min { get; init; } = min;
+    public int Min { get; init; } = min;
 
-    public double Max { get; init; } = max;
+    public int Max { get; init; } = max;
 
     public override string ToString()
     {
@@ -18,6 +18,6 @@ public class DamageRange(double min, double max)
 
     public double GetDps(double attacksPerSecond)
     {
-        return Math.Round(((Min + Max) / 2) * attacksPerSecond, 1);
+        return Math.Round(((Min + Max) / 2d) * attacksPerSecond, 1);
     }
 }

@@ -6,7 +6,7 @@
 
 @if (!string.IsNullOrEmpty(QueryId))
 {
-    <TooltipBottomRight>
+    <TooltipRight>
         <ChildContent>
             <button type="button"
                     @onclick="@OpenWebsite"
@@ -20,7 +20,7 @@
         <TooltipContent>
             <TextBase Class="max-w-[15rem]">@Resources["OpenQueryInWebsite"]</TextBase>
         </TooltipContent>
-    </TooltipBottomRight>
+    </TooltipRight>
 }
 
 @inject IStringLocalizer<TradeResources> Resources

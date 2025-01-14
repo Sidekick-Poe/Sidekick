@@ -26,7 +26,7 @@ public class QualityProperty(IGameLanguageProvider gameLanguageProvider) : Prope
 
     public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue)
     {
-        if (item.Properties.GemLevel <= 0) return null;
+        if (item.Properties.Quality <= 0) return null;
 
         var filter = new IntPropertyFilter(this)
         {
@@ -34,6 +34,8 @@ public class QualityProperty(IGameLanguageProvider gameLanguageProvider) : Prope
             NormalizeEnabled = false,
             NormalizeValue = normalizeValue,
             Value = item.Properties.Quality,
+            ValuePrefix = "+",
+            ValueSuffix = "%",
             Checked = item.Header.Rarity == Rarity.Gem,
         };
         filter.NormalizeMinValue();
