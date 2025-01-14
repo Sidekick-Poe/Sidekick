@@ -21,7 +21,7 @@ public class DoublePropertyFilter : BooleanPropertyFilter
 
     public double? Min { get; set; }
 
-    public double? Max { get; set;}
+    public double? Max { get; set; }
 
     /// <summary>
     /// Normalize the Min value with NormalizeValue.
@@ -35,11 +35,11 @@ public class DoublePropertyFilter : BooleanPropertyFilter
 
         if (value > 0)
         {
-            Min = (int)Math.Max((1 - (decimal)NormalizeValue) * value, 0);
+            Min = Math.Round((double)Math.Max((1 - (decimal)NormalizeValue) * value, 0), 2);
         }
         else
         {
-            Min = (int)Math.Min((1 + (decimal)NormalizeValue) * value, 0);
+            Min = Math.Round((double)Math.Min((1 + (decimal)NormalizeValue) * value, 0), 2);
         }
     }
 
@@ -55,11 +55,11 @@ public class DoublePropertyFilter : BooleanPropertyFilter
 
         if (value > 0)
         {
-            Max = Math.Max(Math.Max(value + 1, (1 + (double)NormalizeValue) * value), 0);
+            Max = Math.Round(Math.Max(Math.Max(value + 1, (1 + (double)NormalizeValue) * value), 0), 2);
         }
         else
         {
-            Max = Math.Min(Math.Max(value + 1, (1 - (double)NormalizeValue) * value), 0);
+            Max = Math.Round(Math.Min(Math.Max(value + 1, (1 - (double)NormalizeValue) * value), 0), 2);
         }
     }
 
