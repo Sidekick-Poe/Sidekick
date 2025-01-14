@@ -3,7 +3,7 @@
         @TopContent
     </div>
     <div class="grow flex flex-nowrap items-stretch">
-        <div id="@LeftContentId" class="@LeftContentClasses" style="@($"width: {LeftContentWidth}px")">
+        <div id="@LeftContentId" class="@LeftContentClasses" style="@(LeftContentWidth != 0 ? $"width: {LeftContentWidth}px" : string.Empty)">
             <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden dark:bg-stone-950">
                 @LeftContent
             </div>
