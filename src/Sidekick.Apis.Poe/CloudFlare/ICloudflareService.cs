@@ -11,4 +11,6 @@ public interface ICloudflareService
     Task CaptchaChallengeFailed();
 
     Task AddCookieToRequest(HttpRequestMessage request);
+
+    Task SetUserAgent(string userAgent);
 }

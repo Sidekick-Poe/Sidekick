@@ -18,11 +18,12 @@ public class PoeTradeHandler
     IGameLanguageProvider gameLanguageProvider
 ) : DelegatingHandler
 {
-    public const string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0";
+    private const string DefaultUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36";
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        request.Headers.UserAgent.ParseAdd(UserAgent);
+        var userAgent = await settingsService.GetString(SettingKeys.CloudflareUserAgent);
+        request.Headers.UserAgent.ParseAdd(userAgent ?? DefaultUserAgent);
         request.Headers.TryAddWithoutValidation("X-Powered-By", "Sidekick");
 
         // First try with existing cookies
@@ -73,6 +74,10 @@ public class PoeTradeHandler
 
             // Retry the request with new cookies
             await cloudflareService.AddCookieToRequest(request);
+            userAgent = await settingsService.GetString(SettingKeys.CloudflareUserAgent);
+            request.Headers.UserAgent.Clear();
+            request.Headers.UserAgent.ParseAdd(userAgent ?? DefaultUserAgent);
+
             var retryResponse = await base.SendAsync(request, cancellationToken);
             if (retryResponse.IsSuccessStatusCode)
             {

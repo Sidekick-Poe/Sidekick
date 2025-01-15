@@ -76,4 +76,10 @@ public class CloudflareService
             logger.LogInformation("[CloudflareService] No cookies found");
         }
     }
+
+    public async Task SetUserAgent(string userAgent)
+    {
+        logger.LogInformation("[CloudflareService] Setting user agent to: " + userAgent);
+        await settingsService.Set(SettingKeys.CloudflareUserAgent, userAgent);
+    }
 }

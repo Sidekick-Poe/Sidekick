@@ -36,7 +36,12 @@ public partial class CloudflareWindow
             ResizeMode = ResizeMode.NoResize;
 
             await WebView.EnsureCoreWebView2Async();
-            WebView.CoreWebView2.Settings.UserAgent = PoeTradeHandler.UserAgent;
+
+            // Get the actual user agent the browser uses and save it.
+            var userAgent = await WebView.CoreWebView2.ExecuteScriptAsync("navigator.userAgent");
+            userAgent = userAgent.Trim('\"');
+            await cloudflareService.SetUserAgent(userAgent);
+
             WebView.CoreWebView2.CookieManager.DeleteAllCookies();
 
             // Handle cookie changes by checking cookies after navigation
@@ -77,17 +82,22 @@ public partial class CloudflareWindow
             logger.LogInformation("[CloudflareWindow] Checking for Cloudflare cookie at " + WebUtility.UrlDecode(WebView.Source?.ToString()));
 
             var cookies = await WebView.CoreWebView2.CookieManager.GetCookiesAsync(uri.GetLeftPart(UriPartial.Authority));
-            var cfCookie = cookies.FirstOrDefault(c => c.Name == "cf_clearance");
-            if (cfCookie == null)
+            if (cookies.FirstOrDefault(c => c.Name == "cf_clearance") == null)
             {
                 logger.LogInformation("[CloudflareWindow] Cookie not found");
-                return;
+
+                var isJsonContent = await CheckIfContentIsJson();
+                if (!isJsonContent)
+                {
+                    logger.LogInformation("[CloudflareWindow] Content is not JSON, checking for Cloudflare challenge");
+                    return;
+                }
             }
 
-            // Store the Cloudflare cookie
+            // Store the Cloudflare cookies
             challengeCompleted = true;
             _ = cloudflareService.CaptchaChallengeCompleted(cookies.ToDictionary(c => c.Name, c => c.Value));
-            logger.LogInformation("[CloudflareWindow] Cookie check completed, challenge likely completed");
+            logger.LogInformation("[CloudflareWindow] Navigation completed, challenge likely completed");
 
             Dispatcher.Invoke(Close);
         }
@@ -95,5 +105,48 @@ public partial class CloudflareWindow
         {
             logger.LogError(ex, "[CloudflareWindow] Error handling cookie check");
         }
+    }
+
+    private async Task<bool> CheckIfContentIsJson()
+    {
+        try
+        {
+            // Inject JavaScript to check if the page content is JSON
+            var script = @"
+            (function() {
+                try {
+                    // Get the content of the body or response
+                    const content = document.body.innerText || document.body.textContent;
+                    
+                    // Attempt to parse JSON
+                    JSON.parse(content);
+                    
+                    // If successful, return true
+                    return true;
+                } catch {
+                    // If parsing fails, return false
+                    return false;
+                }
+            })();
+        ";
+
+            // Execute the script in the WebView's context
+            var result = await WebView.CoreWebView2.ExecuteScriptAsync(script);
+
+            // Handle the result
+            if (bool.TryParse(result, out var isJson) && isJson)
+            {
+                logger.LogInformation("[CloudflareWindow] The content is JSON.");
+                return true;
+            }
+
+            logger.LogInformation("[CloudflareWindow] The content is not JSON.");
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "[CloudflareWindow] Error determining if content is JSON.");
+        }
+
+        return false;
     }
 }
