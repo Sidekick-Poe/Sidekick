@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.CloudFlare;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
+using Sidekick.Wpf.Cloudflare;
 using Sidekick.Wpf.Helpers;
 
 namespace Sidekick.Wpf.Services
@@ -295,12 +296,7 @@ namespace Sidekick.Wpf.Services
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                var window = new CloudflareWindow(logger, cloudflareService, uri)
-                {
-                    Topmost = true,
-                    ShowInTaskbar = false,
-                    ResizeMode = ResizeMode.NoResize,
-                };
+                var window = new CloudflareWindow(logger, cloudflareService, uri);
                 window.Show();
             });
         }

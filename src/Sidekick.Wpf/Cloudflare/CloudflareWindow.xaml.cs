@@ -1,15 +1,15 @@
 using System.ComponentModel;
 using System.Net;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Media;
 using Microsoft.Extensions.Logging;
 using Microsoft.Web.WebView2.Core;
-using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.CloudFlare;
 using Sidekick.Wpf.Helpers;
 using Application=System.Windows.Application;
 
-namespace Sidekick.Wpf;
+namespace Sidekick.Wpf.Cloudflare;
 
 public partial class CloudflareWindow
 {
@@ -41,6 +41,8 @@ public partial class CloudflareWindow
             var userAgent = await WebView.CoreWebView2.ExecuteScriptAsync("navigator.userAgent");
             userAgent = userAgent.Trim('\"');
             await cloudflareService.SetUserAgent(userAgent);
+
+            await UseDevToolsNetworkProtocolAsync();
 
             WebView.CoreWebView2.CookieManager.DeleteAllCookies();
 
@@ -116,7 +118,7 @@ public partial class CloudflareWindow
             (function() {
                 try {
                     // Get the content of the body or response
-                    const content = document.body.innerText || document.body.textContent;
+                    const content = document.body.childNodes.length > 0 ? document.body.childNodes[0].innerHTML : document.body.innerHTML;
                     
                     // Attempt to parse JSON
                     JSON.parse(content);
@@ -140,7 +142,8 @@ public partial class CloudflareWindow
                 return true;
             }
 
-            logger.LogInformation("[CloudflareWindow] The content is not JSON.");
+            var html = await WebView.CoreWebView2.ExecuteScriptAsync("document.body.childNodes.length > 0 ? document.body.childNodes[0].innerHTML : document.body.innerHTML");
+            logger.LogInformation("[CloudflareWindow] The content is not JSON. \n" + html);
         }
         catch (Exception ex)
         {
@@ -148,5 +151,23 @@ public partial class CloudflareWindow
         }
 
         return false;
+    }
+
+    private async Task UseDevToolsNetworkProtocolAsync()
+    {
+        await WebView.CoreWebView2.CallDevToolsProtocolMethodAsync("Network.enable", "{}");
+
+        WebView.CoreWebView2.GetDevToolsProtocolEventReceiver("Network.requestWillBeSent").DevToolsProtocolEventReceived += (_, e) =>
+        {
+            var json = e.ParameterObjectAsJson;
+            logger.LogInformation("[CloudflareWindow] DevTools Network Parameters \n" + json);
+
+            // Deserialize the JSON to extract request headers
+            var parameters = JsonSerializer.Deserialize<DevToolsParameters>(json, JsonSerializerOptions.Default);
+            if (parameters?.Request != null)
+            {
+                logger.LogInformation("[CloudflareWindow] Deserialized " + parameters.Request.Headers.Count + " headers");
+            }
+        };
     }
 }
