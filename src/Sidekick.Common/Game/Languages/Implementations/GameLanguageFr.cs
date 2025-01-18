@@ -32,6 +32,7 @@ public class GameLanguageFr : IGameLanguage
     public string DescriptionLightningDamage => "Dégâts de foudre";
     public string DescriptionChaosDamage => "Dégâts de Chaos";
     public string DescriptionEnergyShield => "Bouclier d'énergie";
+    public string DescriptionEnergyShieldAlternate => "";
     public string DescriptionArmour => "Armure";
     public string DescriptionEvasion => "Score d'Évasion";
     public string DescriptionChanceToBlock => "Chances de blocage";

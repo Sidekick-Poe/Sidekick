@@ -70,6 +70,8 @@ public interface IGameLanguage
 
     string DescriptionEnergyShield { get; }
 
+    string DescriptionEnergyShieldAlternate { get; }
+
     string DescriptionArmour { get; }
 
     string DescriptionEvasion { get; }
