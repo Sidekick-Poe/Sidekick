@@ -62,6 +62,7 @@ public class GameLanguageZhTw : IGameLanguage
     public string DescriptionCriticalHitChance => "暴擊率";
 
     public string DescriptionEnergyShield => "能量護盾";
+    public string DescriptionEnergyShieldAlternate => "";
 
     public string DescriptionArmour => "護甲";
 

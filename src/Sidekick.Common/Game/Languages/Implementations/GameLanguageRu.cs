@@ -32,6 +32,7 @@ public class GameLanguageRu : IGameLanguage
     public string DescriptionLightningDamage => "Урон от молнии";
     public string DescriptionChaosDamage => "Урон хаосом";
     public string DescriptionEnergyShield => "Энерг. щит";
+    public string DescriptionEnergyShieldAlternate => "Энергетический щит";
     public string DescriptionArmour => "Броня";
     public string DescriptionEvasion => "Уклонение";
     public string DescriptionChanceToBlock => "Шанс заблокировать удар";
