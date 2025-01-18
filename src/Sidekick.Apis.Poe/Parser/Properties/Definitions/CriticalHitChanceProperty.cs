@@ -43,6 +43,7 @@ public class CriticalHitChanceProperty(IGameLanguageProvider gameLanguageProvide
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,
             Value = item.Properties.CriticalHitChance,
+            ValueSuffix = "%",
             Checked = false,
         };
         filter.NormalizeMinValue();

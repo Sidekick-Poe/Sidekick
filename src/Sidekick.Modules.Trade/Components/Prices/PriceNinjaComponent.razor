@@ -16,14 +16,14 @@ else if (Price != null)
     <div class="flex flex-nowrap items-center">
         <div class="text-right w-1/2 pr-2">
             <Heading3>Poe.Ninja</Heading3>
-            <TooltipTopRight>
+            <TooltipRight>
                 <ChildContent>
                     <TextCaption>@Price.LastUpdated.ToString("g")</TextCaption>
                 </ChildContent>
                 <TooltipContent>
                     @Resources["Last_Updated"]
                 </TooltipContent>
-            </TooltipTopRight>
+            </TooltipRight>
             <ButtonLink OnClick="OpenWebsite">
                 <TextCaption>@Resources["Open_Website"]</TextCaption>
             </ButtonLink>

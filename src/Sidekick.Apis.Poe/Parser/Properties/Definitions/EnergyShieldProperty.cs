@@ -51,7 +51,8 @@ public class EnergyShieldProperty
             Text = text,
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,
-            Value = item.Properties.EnergyShield,
+            Value = item.Properties.EnergyShieldWithQuality,
+            OriginalValue = item.Properties.EnergyShield,
             Checked = false,
         };
         filter.NormalizeMinValue();

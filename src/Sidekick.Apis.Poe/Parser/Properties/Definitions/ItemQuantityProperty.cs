@@ -34,6 +34,8 @@ public class ItemQuantityProperty(IGameLanguageProvider gameLanguageProvider) : 
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,
             Value = item.Properties.ItemQuantity,
+            ValuePrefix = "+",
+            ValueSuffix = "%",
             Checked = false,
         };
         filter.NormalizeMinValue();

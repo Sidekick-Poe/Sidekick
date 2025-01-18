@@ -34,6 +34,8 @@ public class MonsterPackSizeProperty(IGameLanguageProvider gameLanguageProvider)
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,
             Value = item.Properties.MonsterPackSize,
+            ValuePrefix = "+",
+            ValueSuffix = "%",
             Checked = false,
         };
         filter.NormalizeMinValue();

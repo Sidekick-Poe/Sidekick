@@ -34,6 +34,8 @@ public class ItemRarityProperty(IGameLanguageProvider gameLanguageProvider) : Pr
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,
             Value = item.Properties.ItemRarity,
+            ValuePrefix = "+",
+            ValueSuffix = "%",
             Checked = false,
         };
         filter.NormalizeMinValue();

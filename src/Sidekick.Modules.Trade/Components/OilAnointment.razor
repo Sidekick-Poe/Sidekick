@@ -2,14 +2,14 @@
     @foreach (var oilName in OilNames)
     {
         <div class="-mx-1">
-            <TooltipTopRight>
+            <TooltipRight>
                 <ChildContent>
                     <img src="/images/blight/@(oilName.Replace(" ", "_")).png" class="w-6" alt="@oilName"/>
                 </ChildContent>
                 <TooltipContent>
                     @oilName
                 </TooltipContent>
-            </TooltipTopRight>
+            </TooltipRight>
         </div>
     }
 </div>
