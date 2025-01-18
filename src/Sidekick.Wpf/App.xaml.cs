@@ -47,7 +47,6 @@ namespace Sidekick.Wpf
         {
             VelopackApp.Build().Run();
 
-            DeleteStaticAssets();
             DisableWindowsTheme();
             ServiceProvider = GetServiceProvider();
             logger = ServiceProvider.GetRequiredService<ILogger<App>>();
@@ -197,34 +196,6 @@ namespace Sidekick.Wpf
             {
                 LogException(e.Exception);
             };
-        }
-
-        private void DeleteStaticAssets()
-        {
-            // While debugging, we do not want to delete static assets as the environment is different than when deployed.
-            if (Debugger.IsAttached)
-            {
-                return;
-            }
-
-            try
-            {
-                var directory = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly()?.Location);
-                if (directory == null)
-                {
-                    return;
-                }
-
-                var path = Path.Combine(directory, "Sidekick.staticwebassets.runtime.json");
-                if (File.Exists(path))
-                {
-                    File.Delete(path);
-                }
-            }
-            catch
-            {
-                // If we fail to delete static assets, the app should not be stopped from running.
-            }
         }
 
         private void DisableWindowsTheme()
