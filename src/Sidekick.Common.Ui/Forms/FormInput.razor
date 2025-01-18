@@ -13,7 +13,7 @@
            @onfocus="OnFocus"
            @onblur="OnBlur"
            value="@Value"
-           class="@UiClasses.FormInputClasses p-2 text-base min-w-0 grow"/>
+           class="@UiClasses.FormInputClasses p-2 text-base min-w-0 grow @AdditionalClasses" />
     @AdornmentContent
 </div>
 
@@ -39,6 +39,9 @@
 
     [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object>? InputAttributes { get; set; }
+
+    [Parameter]
+    public string? AdditionalClasses { get; set; }
 
     private string Id { get; } = UiUtilities.GenerateId();
 
