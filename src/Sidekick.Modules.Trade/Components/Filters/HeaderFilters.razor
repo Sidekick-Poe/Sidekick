@@ -6,22 +6,22 @@
 {
     <FilterWrapper>
         <div class="flex items-center flex-nowrap justify-between">
-            <FormCheckbox Value="PriceCheckService.PropertyFilters?.BaseTypeFilterApplied ?? false"
-                          ValueChanged="TypeFilterChanged"
+            <FormCheckbox Value="PriceCheckService.PropertyFilters?.ClassFilterApplied ?? false"
+                          ValueChanged="ClassFilterChanged"
                           NoMargin="true">
-                <ItemPropertyText Label="@Resources["Base Type"]"
-                                  Value="@PriceCheckService.Item?.Header.ApiType"/>
+                <ItemPropertyText Label="@Resources["Item Class"]"
+                                  Value="@ClassLabel"/>
             </FormCheckbox>
         </div>
     </FilterWrapper>
 
     <FilterWrapper>
         <div class="flex items-center flex-nowrap justify-between">
-            <FormCheckbox Value="PriceCheckService.PropertyFilters?.ClassFilterApplied ?? false"
-                          ValueChanged="ClassFilterChanged"
+            <FormCheckbox Value="PriceCheckService.PropertyFilters?.BaseTypeFilterApplied ?? false"
+                          ValueChanged="TypeFilterChanged"
                           NoMargin="true">
-                <ItemPropertyText Label="@Resources["Item Class"]"
-                                  Value="@ClassLabel"/>
+                <ItemPropertyText Label="@Resources["Base Type"]"
+                                  Value="@PriceCheckService.Item?.Header.ApiType"/>
             </FormCheckbox>
         </div>
     </FilterWrapper>
