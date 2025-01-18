@@ -32,6 +32,7 @@ public class GameLanguagePt : IGameLanguage
     public string DescriptionLightningDamage => "Dano de Raio";
     public string DescriptionChaosDamage => "Dano de Caos";
     public string DescriptionEnergyShield => "Escudo de Energia";
+    public string DescriptionEnergyShieldAlternate => "";
     public string DescriptionArmour => "Armadura";
     public string DescriptionEvasion => "Evasão";
     public string DescriptionChanceToBlock => "Chance de Bloquear";

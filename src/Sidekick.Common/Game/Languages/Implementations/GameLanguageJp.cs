@@ -34,6 +34,7 @@ public class GameLanguageJp : IGameLanguage
     public string DescriptionLightningDamage => "雷ダメージ";
     public string DescriptionChaosDamage => "混沌ダメージ";
     public string DescriptionEnergyShield => "エナジーシールド";
+    public string DescriptionEnergyShieldAlternate => "";
     public string DescriptionArmour => "アーマー";
     public string DescriptionEvasion => "回避力";
     public string DescriptionChanceToBlock => "ブロック率";

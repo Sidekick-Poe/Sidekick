@@ -32,6 +32,7 @@ public class GameLanguageDe : IGameLanguage
     public string DescriptionLightningDamage => "Blitzschaden";
     public string DescriptionChaosDamage => "Chaosschaden";
     public string DescriptionEnergyShield => "Energieschild";
+    public string DescriptionEnergyShieldAlternate => "";
     public string DescriptionArmour => "Rüstung";
     public string DescriptionEvasion => "Ausweichwert";
     public string DescriptionChanceToBlock => "Chance auf Blocken";

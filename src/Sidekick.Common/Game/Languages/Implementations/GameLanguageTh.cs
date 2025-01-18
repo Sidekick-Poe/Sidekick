@@ -32,6 +32,7 @@ public class GameLanguageTh : IGameLanguage
     public string DescriptionLightningDamage => "ความเสียหายน้ำสายฟ้า";
     public string DescriptionChaosDamage => "ความเสียหายเคออส";
     public string DescriptionEnergyShield => "โล่พลังงาน";
+    public string DescriptionEnergyShieldAlternate => "";
     public string DescriptionArmour => "ค่าเกราะ";
     public string DescriptionEvasion => "อัตราการหลบหลีก";
     public string DescriptionChanceToBlock => "โอกาสบล็อค";
