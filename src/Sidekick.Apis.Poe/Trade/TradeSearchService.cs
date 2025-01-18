@@ -396,6 +396,7 @@ public class TradeSearchService
 
         var properties = new ItemProperties()
         {
+            Quality = 20,
             ItemLevel = result.Item?.ItemLevel ?? 0,
             Corrupted = result.Item?.Corrupted ?? false,
             Unidentified = result.Item?.Identified ?? false,

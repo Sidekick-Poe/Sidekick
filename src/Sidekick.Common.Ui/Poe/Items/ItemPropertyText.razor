@@ -1,6 +1,6 @@
 @using Sidekick.Apis.Poe.Trade.Models
 
-<TextBase Class="font-caps leading-none py-0.5 flex items-center">
+<TextBase Class="@($"font-caps leading-none py-0.5 flex items-center {Class}")">
     <span class="text-[#7f7f7f] whitespace-nowrap">@Label</span>
     @if (OnlyShowLabel == false)
     {
@@ -33,6 +33,9 @@
 
     [Parameter]
     public bool HasAdditionalInformation { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
 
     [Parameter]
     public RenderFragment? AdditionalInformation { get; set; }

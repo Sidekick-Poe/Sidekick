@@ -143,7 +143,8 @@ public class WeaponDamageProperty
                 Text = localizer["PhysicalDps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
-                Value = item.Properties.PhysicalDps ?? 0,
+                Value = item.Properties.PhysicalDpsWithQuality ?? 0,
+                OriginalValue = item.Properties.PhysicalDps ?? 0,
                 Checked = false,
             };
             filter.NormalizeMinValue();
@@ -185,7 +186,8 @@ public class WeaponDamageProperty
                 Text = localizer["Dps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
-                Value = item.Properties.TotalDps ?? 0,
+                Value = item.Properties.TotalDpsWithQuality ?? 0,
+                OriginalValue = item.Properties.TotalDps ?? 0,
                 Checked = false,
             };
             filter.NormalizeMinValue();

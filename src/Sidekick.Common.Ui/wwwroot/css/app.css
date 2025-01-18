@@ -4401,6 +4401,14 @@ video {
   background-color: rgb(113 113 122 / var(--tw-bg-opacity));
 }
 
+.\[\&_\.mud-popover\]\:left-0 .mud-popover {
+  left: 0px;
+}
+
+.\[\&_\.mud-popover\]\:top-0 .mud-popover {
+  top: 0px;
+}
+
 .\[\&_svg\.check\]\:scale-0 svg.check {
   --tw-scale-x: 0;
   --tw-scale-y: 0;

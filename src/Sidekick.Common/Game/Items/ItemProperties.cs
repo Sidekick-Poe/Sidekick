@@ -79,6 +79,20 @@ public class ItemProperties
             if (physicalDpsOverride != null) return physicalDpsOverride;
 
             var total = 0d;
+            if (PhysicalDamage != null) total += PhysicalDamage.GetDps(AttacksPerSecond);
+
+            return total;
+        }
+        init => physicalDpsOverride = value;
+    }
+
+    public double? PhysicalDpsWithQuality
+    {
+        get
+        {
+            if (physicalDpsOverride != null) return physicalDpsOverride;
+
+            var total = 0d;
             if (PhysicalDamageWithQuality != null) total += PhysicalDamageWithQuality.GetDps(AttacksPerSecond);
 
             return total;
@@ -123,6 +137,24 @@ public class ItemProperties
     private readonly double? totalDpsOverride;
 
     public double? TotalDps
+    {
+        get
+        {
+            if (totalDpsOverride != null) return totalDpsOverride;
+
+            var total = 0d;
+            if (PhysicalDamage != null) total += PhysicalDamage.GetDps(AttacksPerSecond);
+            if (FireDamage != null) total += FireDamage.GetDps(AttacksPerSecond);
+            if (ColdDamage != null) total += ColdDamage.GetDps(AttacksPerSecond);
+            if (LightningDamage != null) total += LightningDamage.GetDps(AttacksPerSecond);
+            if (ChaosDamage != null) total += ChaosDamage.GetDps(AttacksPerSecond);
+
+            return total;
+        }
+        init => totalDpsOverride = value;
+    }
+
+    public double? TotalDpsWithQuality
     {
         get
         {
