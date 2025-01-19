@@ -24,7 +24,7 @@
         <div class="flex flex-col items-end justify-between">
             @if (Filter is { Checked: true, HasMoreThanOneCategory: true } && Filter.FirstCategory != ModifierCategory.Explicit)
             {
-                <TooltipTopRight>
+                <TooltipRight>
                     <ChildContent>
                         <ItemModifierCategoryChip Category="Filter.FirstCategory"
                                                   Checked="Filter.ForceFirstCategory"
@@ -34,7 +34,7 @@
                     <TooltipContent>
                         @Resources["ForceCategoryHint"]
                     </TooltipContent>
-                </TooltipTopRight>
+                </TooltipRight>
             }
 
             <div class="h-[2px]"></div>

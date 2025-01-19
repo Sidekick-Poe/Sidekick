@@ -396,6 +396,7 @@ public class TradeSearchService
 
         var properties = new ItemProperties()
         {
+            Quality = 20,
             ItemLevel = result.Item?.ItemLevel ?? 0,
             Corrupted = result.Item?.Corrupted ?? false,
             Unidentified = result.Item?.Identified ?? false,
@@ -405,7 +406,7 @@ public class TradeSearchService
             TotalDps = result.Item?.Extended?.DamagePerSecond ?? 0,
             ElementalDps = result.Item?.Extended?.ElementalDps ?? 0,
             PhysicalDps = result.Item?.Extended?.PhysicalDps ?? 0,
-            BaseDefencePercentile = result.Item?.Extended?.BaseDefencePercentile,
+            BaseDefencePercentile = result.Item?.Extended?.BaseDefencePercentile ?? 0,
             Influences = result.Item?.Influences ?? new(),
         };
 

@@ -18,8 +18,6 @@ public class WeaponDamageProperty
     IStringLocalizer<FilterResources> localizer
 ) : PropertyDefinition
 {
-    public const string DamageKey = "Damage";
-
     public override List<Category> ValidCategories { get; } = [Category.Weapon];
 
     public override void Initialize()
@@ -57,8 +55,8 @@ public class WeaponDamageProperty
                 continue;
             }
 
-            double.TryParse(matches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
-            double.TryParse(matches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
+            int.TryParse(matches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
+            int.TryParse(matches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
 
             var range = new DamageRange(min, max);
             if (isPhysical) properties.PhysicalDamage = range;
@@ -86,8 +84,8 @@ public class WeaponDamageProperty
                 continue;
             }
 
-            double.TryParse(match.Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
-            double.TryParse(match.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
+            int.TryParse(match.Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
+            int.TryParse(match.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
             var range = new DamageRange(min, max);
 
             var ids = itemMods[matchIndex].Modifiers.Where(x => x.Id != null).Select(x => x.Id!).ToList();
@@ -125,14 +123,14 @@ public class WeaponDamageProperty
 
         if (item.Properties.TotalDamage > 0)
         {
-            var filter = new DoublePropertyFilter(this)
+            var filter = new WeaponDamagePropertyFilter(this)
             {
                 Text = localizer["Damage"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
-                Value = item.Properties.TotalDamage ?? 0,
+                Value = item.Properties.TotalDamageWithQuality ?? 0,
+                OriginalValue = item.Properties.TotalDamage ?? 0,
                 Checked = false,
-                IndentifyingKey = DamageKey,
             };
             filter.NormalizeMinValue();
             results.Add(filter);
@@ -145,7 +143,8 @@ public class WeaponDamageProperty
                 Text = localizer["PhysicalDps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
-                Value = item.Properties.PhysicalDps ?? 0,
+                Value = item.Properties.PhysicalDpsWithQuality ?? 0,
+                OriginalValue = item.Properties.PhysicalDps ?? 0,
                 Checked = false,
             };
             filter.NormalizeMinValue();
@@ -187,7 +186,8 @@ public class WeaponDamageProperty
                 Text = localizer["Dps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
-                Value = item.Properties.TotalDps ?? 0,
+                Value = item.Properties.TotalDpsWithQuality ?? 0,
+                OriginalValue = item.Properties.TotalDps ?? 0,
                 Checked = false,
             };
             filter.NormalizeMinValue();

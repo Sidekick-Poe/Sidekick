@@ -34,6 +34,7 @@ public class GameLanguageKr : IGameLanguage
     public string DescriptionLightningDamage => "번개 피해";
     public string DescriptionChaosDamage => "카오스 피해";
     public string DescriptionEnergyShield => "에너지 보호막";
+    public string DescriptionEnergyShieldAlternate => "";
     public string DescriptionArmour => "방어도";
     public string DescriptionEvasion => "회피";
     public string DescriptionChanceToBlock => "막기 확률";

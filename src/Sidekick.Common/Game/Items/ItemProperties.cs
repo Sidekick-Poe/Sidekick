@@ -10,9 +10,17 @@ public class ItemProperties
 
     public int Armour { get; set; }
 
+    public int ArmourWithQuality => CalculateValueWithQuality(Armour);
+
     public int EnergyShield { get; set; }
 
+    public int EnergyShieldWithQuality => CalculateValueWithQuality(EnergyShield);
+
     public int EvasionRating { get; set; }
+
+    public int EvasionRatingWithQuality => CalculateValueWithQuality(EvasionRating);
+
+    public int BaseDefencePercentile { get; init; }
 
     public int BlockChance { get; set; }
 
@@ -42,6 +50,18 @@ public class ItemProperties
 
     public DamageRange? PhysicalDamage { get; set; }
 
+    public DamageRange? PhysicalDamageWithQuality
+    {
+        get
+        {
+            if(PhysicalDamage == null) return null;
+
+            var min = CalculateValueWithQuality(PhysicalDamage.Min);
+            var max = CalculateValueWithQuality(PhysicalDamage.Max);
+            return new DamageRange(min, max);
+        }
+    }
+
     public DamageRange? FireDamage { get; set; }
 
     public DamageRange? ColdDamage { get; set; }
@@ -60,6 +80,20 @@ public class ItemProperties
 
             var total = 0d;
             if (PhysicalDamage != null) total += PhysicalDamage.GetDps(AttacksPerSecond);
+
+            return total;
+        }
+        init => physicalDpsOverride = value;
+    }
+
+    public double? PhysicalDpsWithQuality
+    {
+        get
+        {
+            if (physicalDpsOverride != null) return physicalDpsOverride;
+
+            var total = 0d;
+            if (PhysicalDamageWithQuality != null) total += PhysicalDamageWithQuality.GetDps(AttacksPerSecond);
 
             return total;
         }
@@ -120,20 +154,65 @@ public class ItemProperties
         init => totalDpsOverride = value;
     }
 
+    public double? TotalDpsWithQuality
+    {
+        get
+        {
+            if (totalDpsOverride != null) return totalDpsOverride;
+
+            var total = 0d;
+            if (PhysicalDamageWithQuality != null) total += PhysicalDamageWithQuality.GetDps(AttacksPerSecond);
+            if (FireDamage != null) total += FireDamage.GetDps(AttacksPerSecond);
+            if (ColdDamage != null) total += ColdDamage.GetDps(AttacksPerSecond);
+            if (LightningDamage != null) total += LightningDamage.GetDps(AttacksPerSecond);
+            if (ChaosDamage != null) total += ChaosDamage.GetDps(AttacksPerSecond);
+
+            return total;
+        }
+        init => totalDpsOverride = value;
+    }
+
     public double? TotalDamage
     {
         get
         {
             var total = 0d;
-            if (PhysicalDamage != null) total += (PhysicalDamage.Min + PhysicalDamage.Max) / 2;
-            if (FireDamage != null) total += (FireDamage.Min + FireDamage.Max) / 2;
-            if (ColdDamage != null) total += (ColdDamage.Min + ColdDamage.Max) / 2;
-            if (LightningDamage != null) total += (LightningDamage.Min + LightningDamage.Max) / 2;
-            if (ChaosDamage != null) total += (ChaosDamage.Min + ChaosDamage.Max) / 2;
+            if (PhysicalDamage != null) total += (PhysicalDamage.Min + PhysicalDamage.Max) / 2d;
+            if (FireDamage != null) total += (FireDamage.Min + FireDamage.Max) / 2d;
+            if (ColdDamage != null) total += (ColdDamage.Min + ColdDamage.Max) / 2d;
+            if (LightningDamage != null) total += (LightningDamage.Min + LightningDamage.Max) / 2d;
+            if (ChaosDamage != null) total += (ChaosDamage.Min + ChaosDamage.Max) / 2d;
 
             return total;
         }
     }
 
-    public int? BaseDefencePercentile { get; init; }
+    public double? TotalDamageWithQuality
+    {
+        get
+        {
+            var total = 0d;
+            if (PhysicalDamageWithQuality != null) total += (PhysicalDamageWithQuality.Min + PhysicalDamageWithQuality.Max) / 2d;
+            if (FireDamage != null) total += (FireDamage.Min + FireDamage.Max) / 2d;
+            if (ColdDamage != null) total += (ColdDamage.Min + ColdDamage.Max) / 2d;
+            if (LightningDamage != null) total += (LightningDamage.Min + LightningDamage.Max) / 2d;
+            if (ChaosDamage != null) total += (ChaosDamage.Min + ChaosDamage.Max) / 2d;
+
+            return total;
+        }
+    }
+
+    public int CalculateValueWithQuality(int value)
+    {
+        if (Quality >= 20)
+        {
+            return value;
+        }
+
+        // Step 1: Calculate the base value (value at 0% quality)
+        var baseValue = Math.Round(value / (1 + Quality / 100d), MidpointRounding.ToPositiveInfinity);
+
+        // Step 2: Adjust the base value for the target quality
+        return (int)(baseValue * 1.2);
+    }
 }

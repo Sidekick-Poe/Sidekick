@@ -5,11 +5,11 @@
 <div class="text-center text-[#7f7f7f]">
     @if (Item.Properties.ItemLevel > 0)
     {
-        <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionItemLevel" Value="@Item.Properties.ItemLevel.ToString()"/>
+        <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionItemLevel" Value="@Item.Properties.ItemLevel.ToString()" Class="text-center justify-center"/>
     }
-    @if (Item.Properties.BaseDefencePercentile.HasValue)
+    @if (Item.Properties.BaseDefencePercentile > 0)
     {
-        <ItemPropertyText Label="@Resources["Base Percentile"]" Value="@(Item.Properties.BaseDefencePercentile + "%")"/>
+        <ItemPropertyText Label="@Resources["Base Percentile"]" Value="@(Item.Properties.BaseDefencePercentile + "%")" Class="text-center justify-center"/>
     }
 </div>
 

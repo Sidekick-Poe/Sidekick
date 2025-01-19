@@ -1,5 +1,7 @@
 @using Microsoft.Extensions.Options;
 @using Sidekick.Common.Ui.Views
+@using MudBlazor.Utilities
+@using MudBlazor
 @inject IOptions<SidekickConfiguration> Configuration;
 @inject IViewLocator ViewLocator
 
@@ -25,3 +27,130 @@
         </NotFound>
     </Router>
 </AppWrapper>
+
+<MudThemeProvider IsDarkMode="true" Theme="@theme"/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+<div class="[&_.mud-popover]:left-0 [&_.mud-popover]:top-0">
+    <MudPopoverProvider/>
+</div>
+
+@code {
+
+    private MudTheme theme = new MudTheme()
+    {
+        PaletteDark = new PaletteDark()
+        {
+            Background = new MudColor("#1c1917"),
+            Black = new MudColor("#000000"),
+            Dark = new MudColor("#44403c"),
+            Error = new MudColor("#b91c1c"),
+            Info = new MudColor("#14b8a6"),
+            Primary = new MudColor("#6d28d9"),
+            AppbarText = new MudColor("#ffffff"),
+        },
+        Typography = new Typography()
+        {
+            Body1 = new Body1()
+            {
+                FontSize = "14px",
+                FontFamily = ["fontin", "sans", "serif", "mono"],
+                FontWeight = 400,
+                LetterSpacing = "0",
+                LineHeight = 1.2,
+                TextTransform = "none",
+            },
+            Body2 = new Body2()
+            {
+                FontSize = "14px",
+                FontFamily = ["fontin", "sans", "serif", "mono"],
+                FontWeight = 400,
+                LetterSpacing = "0",
+                LineHeight = 1.2,
+                TextTransform = "none",
+            },
+            Subtitle1 = new Subtitle1()
+            {
+                FontSize = "16px",
+                FontFamily = ["fontin", "sans", "serif", "mono"],
+                FontWeight = 400,
+                LetterSpacing = "0",
+                LineHeight = 1.2,
+                TextTransform = "none",
+            },
+            Subtitle2 = new Subtitle2()
+            {
+                FontSize = "16px",
+                FontFamily = ["fontin", "sans", "serif", "mono"],
+                FontWeight = 400,
+                LetterSpacing = "0",
+                LineHeight = 1.2,
+                TextTransform = "none",
+            },
+            H6 = new H6()
+            {
+                FontSize = "16px",
+                FontFamily = ["fontin", "sans", "serif", "mono"],
+                FontWeight = 400,
+                LetterSpacing = "0",
+                LineHeight = 1.2,
+                TextTransform = "none",
+            },
+            H5 = new H5()
+            {
+                FontSize = "16px",
+                FontFamily = ["fontin", "sans", "serif", "mono"],
+                FontWeight = 400,
+                LetterSpacing = "0",
+                LineHeight = 1.2,
+                TextTransform = "none",
+            },
+            H4 = new H4()
+            {
+                FontSize = "16px",
+                FontFamily = ["fontin", "sans", "serif", "mono"],
+                FontWeight = 400,
+                LetterSpacing = "0",
+                LineHeight = 1.2,
+                TextTransform = "none",
+            },
+            H3 = new H3()
+            {
+                FontSize = "18px",
+                FontFamily = ["fontin", "sans", "serif", "mono"],
+                FontWeight = 400,
+                LetterSpacing = "0",
+                LineHeight = 1.2,
+                TextTransform = "none",
+            },
+            H2 = new H2()
+            {
+                FontSize = "24px",
+                FontFamily = ["fontin", "sans", "serif", "mono"],
+                FontWeight = 400,
+                LetterSpacing = "0",
+                LineHeight = 1.2,
+                TextTransform = "none",
+            },
+            H1 = new H1()
+            {
+                FontSize = "30px",
+                FontFamily = ["fontin", "sans", "serif", "mono"],
+                FontWeight = 400,
+                LetterSpacing = "0",
+                LineHeight = 1.2,
+                TextTransform = "none",
+            },
+            Default = new Default()
+            {
+                FontSize = "14px",
+                FontFamily = ["fontin", "sans", "serif", "mono"],
+                FontWeight = 400,
+                LetterSpacing = "0",
+                LineHeight = 1.2,
+                TextTransform = "none",
+            },
+        }
+    };
+
+}

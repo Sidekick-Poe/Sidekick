@@ -1,11 +1,25 @@
 @using Sidekick.Apis.Poe.Trade.Models
 
-<TextBase Class="font-caps leading-none py-0.5">
-    <span class="text-[#7f7f7f]">@Label</span>
+<TextBase Class="@($"font-caps leading-none py-0.5 flex items-center {Class}")">
+    <span class="text-[#7f7f7f] whitespace-nowrap">@Label</span>
     @if (OnlyShowLabel == false)
     {
-        <span class="text-[#7f7f7f]">: </span>
+        <span class="text-[#7f7f7f]">:&nbsp;</span>
         <span class="@ContentType.GetColour()">@Value</span>
+    }
+
+    @if (HasAdditionalInformation && AdditionalInformation != null)
+    {
+        <TooltipRight>
+            <ChildContent>
+                <span class="text-[#7f7f7f] inline-block ml-1">
+                    <IconSmall Icon="@UiIcons.PlusBox"></IconSmall>
+                </span>
+            </ChildContent>
+            <TooltipContent>
+                @AdditionalInformation
+            </TooltipContent>
+        </TooltipRight>
     }
 </TextBase>
 
@@ -16,6 +30,15 @@
 
     [Parameter]
     public string? Value { get; set; }
+
+    [Parameter]
+    public bool HasAdditionalInformation { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public RenderFragment? AdditionalInformation { get; set; }
 
     [Parameter]
     public LineContentType ContentType { get; set; } = LineContentType.Simple;
