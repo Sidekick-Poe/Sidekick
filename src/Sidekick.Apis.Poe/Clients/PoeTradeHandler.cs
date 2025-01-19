@@ -18,15 +18,12 @@ public class PoeTradeHandler
     IGameLanguageProvider gameLanguageProvider
 ) : DelegatingHandler
 {
-    public const string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0";
-
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        request.Headers.UserAgent.ParseAdd(UserAgent);
         request.Headers.TryAddWithoutValidation("X-Powered-By", "Sidekick");
+        await cloudflareService.InitializeHttpRequest(request);
 
         // First try with existing cookies
-        await cloudflareService.AddCookieToRequest(request);
         var response = await base.SendAsync(request, cancellationToken);
 
         if (response.IsSuccessStatusCode)
@@ -72,7 +69,8 @@ public class PoeTradeHandler
             }
 
             // Retry the request with new cookies
-            await cloudflareService.AddCookieToRequest(request);
+            await cloudflareService.InitializeHttpRequest(request);
+
             var retryResponse = await base.SendAsync(request, cancellationToken);
             if (retryResponse.IsSuccessStatusCode)
             {
@@ -80,7 +78,7 @@ public class PoeTradeHandler
             }
             else
             {
-                logger.LogWarning("[PoeTradeHandler] Request still failed after completing Cloudflare challenge: {StatusCode}, {RequestHeaders}", retryResponse.StatusCode, request.Headers.ToString());
+                logger.LogWarning("[PoeTradeHandler] Request still failed after completing Cloudflare challenge: {StatusCode},\n{RequestHeaders}", retryResponse.StatusCode, request.Headers.ToString());
             }
 
             return retryResponse;

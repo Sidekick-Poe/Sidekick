@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Text.Json;
+using Microsoft.Extensions.Logging;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.CloudFlare;
@@ -9,6 +10,8 @@ public class CloudflareService
     ILogger<CloudflareService> logger
 ) : ICloudflareService
 {
+    private const string DefaultUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36";
+
     public event Action<Uri>? ChallengeStarted;
 
     private TaskCompletionSource<bool>? challengeCompletion;
@@ -54,8 +57,21 @@ public class CloudflareService
         return Task.CompletedTask;
     }
 
-    public async Task AddCookieToRequest(HttpRequestMessage request)
+    public async Task InitializeHttpRequest(HttpRequestMessage request)
     {
+        request.Headers.UserAgent.Clear();
+
+        var userAgent = await settingsService.GetString(SettingKeys.CloudflareUserAgent);
+        if (!string.IsNullOrEmpty(userAgent))
+        {
+            request.Headers.UserAgent.ParseAdd(userAgent);
+        }
+        else
+        {
+            request.Headers.UserAgent.ParseAdd(DefaultUserAgent);
+        }
+
+
         var cookies = await settingsService.GetString(SettingKeys.CloudflareCookies);
         if (!string.IsNullOrEmpty(cookies))
         {
@@ -75,5 +91,11 @@ public class CloudflareService
         {
             logger.LogInformation("[CloudflareService] No cookies found");
         }
+    }
+
+    public async Task SetUserAgent(string userAgent)
+    {
+        logger.LogInformation("[CloudflareService] Setting user agent to: " + userAgent);
+        await settingsService.Set(SettingKeys.CloudflareUserAgent, userAgent);
     }
 }

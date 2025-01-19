@@ -11,6 +11,7 @@ public static class SettingKeys
 
     // Cloudflare settings
     public const string CloudflareCookies = nameof(CloudflareCookies);
+    public const string CloudflareUserAgent = nameof(CloudflareUserAgent);
 
     public const string LanguageParser = nameof(LanguageParser);
     public const string LanguageUi = nameof(LanguageUi);
