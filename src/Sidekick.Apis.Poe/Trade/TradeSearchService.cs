@@ -125,16 +125,6 @@ public class TradeSearchService
                 propertyParser.PrepareTradeRequest(query.Filters, item, propertyFilters);
             }
 
-            // The item level filter for Path of Exile 2 is inside the type filters instead of the misc filters.
-            if (item.Header.Game == GameType.PathOfExile2)
-            {
-                query.Filters.TypeFilters.Filters.ItemLevel = query.Filters.MiscFilters?.Filters.ItemLevel;
-                if (query.Filters.MiscFilters != null)
-                {
-                    query.Filters.MiscFilters.Filters.ItemLevel = null;
-                }
-            }
-
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             var uri = new Uri($"{await GetBaseApiUrl(metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
 
