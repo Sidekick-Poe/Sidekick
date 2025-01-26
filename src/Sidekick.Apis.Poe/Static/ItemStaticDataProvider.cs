@@ -17,9 +17,9 @@ namespace Sidekick.Apis.Poe.Static
         ISettingsService settingsService
     ) : IItemStaticDataProvider
     {
-        private Dictionary<string, string> ImageUrls { get; set; } = new();
+        private Dictionary<string, StaticItem> ByIds { get; } = new();
 
-        private Dictionary<string, string> Ids { get; set; } = new();
+        private Dictionary<string, StaticItem> ByTexts { get; } = new();
 
         /// <inheritdoc/>
         public int Priority => 100;
@@ -32,27 +32,32 @@ namespace Sidekick.Apis.Poe.Static
             var cacheKey = $"{game.GetValueAttribute()}_StaticData";
             var result = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<StaticItemCategory>(game, gameLanguageProvider.Language, "data/static"), (cache) => cache.Result.Any());
 
-            ImageUrls.Clear();
-            Ids.Clear();
+            ByTexts.Clear();
+            ByIds.Clear();
             foreach (var category in result.Result)
             {
                 foreach (var entry in category.Entries)
                 {
-                    if (entry.Id == null || entry.Image == null || entry.Text == null)
+                    if (entry.Id == null! || entry.Image == null || entry.Text == null)
                     {
                         continue;
                     }
 
-                    ImageUrls.Add(entry.Id, entry.Image);
-                    if (!Ids.ContainsKey(entry.Text))
-                    {
-                        Ids.Add(entry.Text, entry.Id);
-                    }
+                    ByIds.Add(entry.Id, entry);
+                    ByTexts.TryAdd(entry.Text, entry);
                 }
             }
         }
 
         public string? GetImage(string id)
+        {
+            var result = Get(id);
+            if (result?.Image == null) return null;
+
+            return $"{gameLanguageProvider.Language.PoeCdnBaseUrl}{result.Image.Trim('/')}";
+        }
+
+        public StaticItem? Get(string id)
         {
             id = id switch
             {
@@ -60,23 +65,15 @@ namespace Sidekick.Apis.Poe.Static
                 _ => id
             };
 
-            if (string.IsNullOrEmpty(id) || !ImageUrls.TryGetValue(id, out var result))
-            {
-                return null;
-            }
-
-            return $"{gameLanguageProvider.Language.PoeCdnBaseUrl}{result.Trim('/')}";
+            return ByIds.GetValueOrDefault(id);
         }
 
-        public string? GetId(ItemHeader itemHeader)
+        public StaticItem? Get(ItemHeader itemHeader)
         {
             var text = itemHeader.Name ?? itemHeader.Type ?? itemHeader.ApiType;
-            if (text != null && Ids.TryGetValue(text, out var result))
-            {
-                return result;
-            }
+            if (text == null) return null;
 
-            return null;
+            return ByTexts.GetValueOrDefault(text);
         }
     }
 }

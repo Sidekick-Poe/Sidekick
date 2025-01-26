@@ -1,3 +1,4 @@
+@using Sidekick.Apis.Poe.Static
 @using Sidekick.Apis.Poe
 
 <div class="flex flex-nowrap gap-1 items-center">
@@ -8,7 +9,12 @@
     @if (ImageUrl != null)
     {
         <TextBase Class="text-[#a38d6d]">&times;</TextBase>
-        <img src="@ImageUrl" class="max-h-10" alt="@Currency"/>
+        <TooltipRight>
+            <ChildContent>
+                <img src="@ImageUrl" class="max-h-10" alt="@Currency"/>
+            </ChildContent>
+            <TooltipContent>@CurrencyText</TooltipContent>
+        </TooltipRight>
     }
 </div>
 
@@ -26,5 +32,7 @@
     public double Max { get; set; }
 
     private string? ImageUrl => ItemStaticDataProvider.GetImage(Currency);
+
+    private string? CurrencyText => ItemStaticDataProvider.Get(Currency)?.Text;
 
 }
