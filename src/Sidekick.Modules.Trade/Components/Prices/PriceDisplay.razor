@@ -8,12 +8,12 @@
         @if (ImageUrl != null)
         {
             <TextCaption Class="text-[#a38d6d]">&times;</TextCaption>
-            <TooltipRight>
+            <TooltipLeft>
                 <ChildContent>
                     <img src="@ImageUrl" class="max-h-5" alt="@Currency"/>
                 </ChildContent>
                 <TooltipContent>@CurrencyText</TooltipContent>
-            </TooltipRight>
+            </TooltipLeft>
         }
     </div>
 }
@@ -24,12 +24,12 @@ else
         @if (ImageUrl != null)
         {
             <TextBase Class="text-[#a38d6d]">&times;</TextBase>
-            <TooltipRight>
+            <TooltipLeft>
                 <ChildContent>
                     <img src="@ImageUrl" class="max-h-10" alt="@Currency"/>
                 </ChildContent>
                 <TooltipContent>@CurrencyText</TooltipContent>
-            </TooltipRight>
+            </TooltipLeft>
         }
     </div>
 }
