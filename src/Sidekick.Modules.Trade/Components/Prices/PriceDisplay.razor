@@ -1,3 +1,4 @@
+@using Sidekick.Apis.Poe.Static
 @using Sidekick.Apis.Poe
 
 @if (Small)
@@ -7,7 +8,12 @@
         @if (ImageUrl != null)
         {
             <TextCaption Class="text-[#a38d6d]">&times;</TextCaption>
-            <img src="@ImageUrl" class="max-h-5" alt="@Currency" />
+            <TooltipLeft>
+                <ChildContent>
+                    <img src="@ImageUrl" class="max-h-5" alt="@Currency"/>
+                </ChildContent>
+                <TooltipContent>@CurrencyText</TooltipContent>
+            </TooltipLeft>
         }
     </div>
 }
@@ -18,7 +24,12 @@ else
         @if (ImageUrl != null)
         {
             <TextBase Class="text-[#a38d6d]">&times;</TextBase>
-            <img src="@ImageUrl" class="max-h-10" alt="@Currency" />
+            <TooltipLeft>
+                <ChildContent>
+                    <img src="@ImageUrl" class="max-h-10" alt="@Currency"/>
+                </ChildContent>
+                <TooltipContent>@CurrencyText</TooltipContent>
+            </TooltipLeft>
         }
     </div>
 }
@@ -37,4 +48,7 @@ else
     public bool Small { get; set; }
 
     private string? ImageUrl => ItemStaticDataProvider.GetImage(Currency);
+
+    private string? CurrencyText => ItemStaticDataProvider.Get(Currency)?.Text;
+
 }

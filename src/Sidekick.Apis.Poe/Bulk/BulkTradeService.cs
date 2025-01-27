@@ -5,6 +5,7 @@ using Sidekick.Apis.Poe.Bulk.Models;
 using Sidekick.Apis.Poe.Bulk.Results;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Filters;
+using Sidekick.Apis.Poe.Static;
 using Sidekick.Apis.Poe.Trade.Requests;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
@@ -27,7 +28,7 @@ namespace Sidekick.Apis.Poe.Bulk
 
         public bool SupportsBulkTrade(Item? item)
         {
-            return item?.Header.Rarity == Rarity.Currency && itemStaticDataProvider.GetId(item.Header) != null;
+            return item?.Header.Rarity == Rarity.Currency && itemStaticDataProvider.Get(item.Header) != null;
         }
 
         public async Task<BulkResponseModel> SearchBulk(Item item)
@@ -37,8 +38,8 @@ namespace Sidekick.Apis.Poe.Bulk
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             var uri = $"{await GetBaseApiUrl(item.Header.Game)}exchange/{leagueId.GetUrlSlugForLeague()}";
 
-            var itemId = itemStaticDataProvider.GetId(item.Header);
-            if (itemId == null)
+            var staticItem = itemStaticDataProvider.Get(item.Header);
+            if (staticItem == null)
             {
                 throw new ApiErrorException { AdditionalInformation = ["Sidekick could not find a valid item."], };
             }
@@ -48,7 +49,7 @@ namespace Sidekick.Apis.Poe.Bulk
             var minStock = await settingsService.GetInt(SettingKeys.PriceCheckBulkMinimumStock);
 
             var model = new BulkQueryRequest();
-            model.Query.Want.Add(itemId);
+            model.Query.Want.Add(staticItem.Id);
             model.Query.Minimum = minStock;
 
             if (currency == null || currency == "chaos_divine")
