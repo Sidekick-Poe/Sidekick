@@ -20,6 +20,12 @@ We accept most PR and ideas. If you want a feature included, create an issue and
 #### Implementation Notes
 The application is a web application that is running inside a WebView2 provided by WPF. Development can also be done using the Web project.
 
+#### Running webapp in docker
+1. Clone the repository
+2. Build an image using `docker build --tag sidekickpoe:latest --file Dockerfile .`
+3. Run it with `docker run -p 5000:5000 -v ./sidekick-data:/app/src/Sidekick.Web/sidekick sidekickpoe:latest`
+4. Access through http://localhost:5000
+
 ## Notice
 This product isn't affiliated with or endorsed by Grinding Gear Games in any way.
 
