@@ -2,6 +2,7 @@
 @using Sidekick.Apis.Poe.Bulk
 @using Sidekick.Common.Browser
 @using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Common.Platform
 @using Sidekick.Modules.Trade.Localization
 
 @if (!string.IsNullOrEmpty(QueryId))
@@ -12,8 +13,11 @@
                     @onclick="@OpenWebsite"
                     @onclick:preventDefault="true"
                     @onclick:stopPropagation="true"
+                    @oncontextmenu="@CopyQuery"
+                    @oncontextmenu:preventDefault="true"
+                    @oncontextmenu:stopPropagation="true"
                     class="inline-flex items-center justify-center p-1 -m-1 text-xl font-medium tracking-wide transition-colors duration-200 rounded-md bg-transparent">
-                <IconMedium Icon="@UiIcons.External"/>
+                <IconMedium Icon="@UiIcons.External" />
             </button>
         </ChildContent>
 
@@ -28,6 +32,7 @@
 @inject IBulkTradeService BulkTradeService
 @inject IBrowserProvider BrowserProvider
 @inject PriceCheckService PriceCheckService
+@inject IClipboardProvider ClipboardProvider
 
 @code {
 
@@ -50,6 +55,25 @@
         {
             var uri = await TradeSearchService.GetTradeUri(PriceCheckService.Item.Header.Game, QueryId);
             BrowserProvider.OpenUri(uri);
+        }
+    }
+
+    private async Task CopyQuery()
+    {
+        if (QueryId == null || PriceCheckService.Item == null)
+        {
+            return;
+        }
+
+        if (PriceCheckService.CurrentMode == TradeMode.Bulk)
+        {
+            var uri = await BulkTradeService.GetTradeUri(PriceCheckService.Item, QueryId);
+            await ClipboardProvider.SetText(uri.ToString());
+        }
+        else
+        {
+            var uri = await TradeSearchService.GetTradeUri(PriceCheckService.Item.Header.Game, QueryId);
+            await ClipboardProvider.SetText(uri.ToString());
         }
     }
 
