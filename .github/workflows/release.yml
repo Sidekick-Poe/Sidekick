@@ -17,7 +17,7 @@ jobs:
         id: version
         run: |
           # Get the current date
-          $DATE = Get-Date -Format "yyyy.Md"
+          $DATE = Get-Date -Format "yyyy.Mdd"
 
           # Get the current hour and minute without leading zero for the hour
           # Get the current hour and minute
