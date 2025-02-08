@@ -1,7 +1,9 @@
-namespace Sidekick.Apis.Poe.Trade.Requests
+namespace Sidekick.Apis.Poe.Trade.Requests;
+
+public class Status
 {
-    public class Status
-    {
-        public string Option => "online";
-    }
+    public const string Online = "online";
+    public const string Any = "any";
+
+    public string Option { get; set; } = Online;
 }

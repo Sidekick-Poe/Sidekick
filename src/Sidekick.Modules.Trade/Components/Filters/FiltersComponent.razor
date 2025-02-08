@@ -58,16 +58,19 @@
         <PseudoFiltersComponent/>
     </div>
 
-    <div class="flex flex-nowrap w-full">
-        <div class="flex flex-col items-stretch text-center p-2 @(PriceCheckService.SupportsBulk ? "w-1/2" : "w-full")">
+    <div class="flex flex-nowrap items-center w-full py-2 px-1">
+        <div class="flex flex-col items-stretch text-center px-1 grow">
             <ButtonPrimary OnClick="PriceCheckService.ItemSearch" Disabled="PriceCheckService.IsLoading">@Resources["Search"]</ButtonPrimary>
         </div>
         @if (PriceCheckService.SupportsBulk)
         {
-            <div class="w-1/2 flex flex-col items-stretch text-center p-2">
+            <div class="flex flex-col items-stretch text-center px-1 grow">
                 <ButtonSecondary OnClick="PriceCheckService.BulkSearch" Disabled="PriceCheckService.IsLoading">@Resources["Bulk_Search"]</ButtonSecondary>
             </div>
         }
+        <div class="px-1">
+            <TradeFilters />
+        </div>
     </div>
 </div>
 

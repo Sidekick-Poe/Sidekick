@@ -1,0 +1,32 @@
+﻿@using MudBlazor
+
+@code {
+
+    [Parameter]
+    public bool Visible { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> VisibleChanged { get; set; }
+
+    [Parameter]
+    public required RenderFragment ChildContent { get; set; }
+
+}
+
+<MudPopover AnchorOrigin="Origin.TopLeft"
+            Class="!bg-transparent !rounded-none !shadow-none"
+            Fixed="true"
+            Open="Visible"
+            OverflowBehavior="OverflowBehavior.FlipAlways"
+            TransformOrigin="Origin.TopLeft">
+    <div
+        class="bg-black grow min-h-8 min-w-36 overflow-auto p-2 rounded-lg shadow-lg">
+        @ChildContent
+    </div>
+</MudPopover>
+
+<MudOverlay Visible="Visible"
+            VisibleChanged="VisibleChanged"
+            DarkBackground="true"
+            AutoClose="true"
+            OnClosed="() => VisibleChanged.InvokeAsync(false)"/>

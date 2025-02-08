@@ -1,0 +1,30 @@
+﻿@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Ui.Popovers
+@using Sidekick.Modules.Trade.Settings
+
+<div class="relative">
+    <ButtonIcon OnClick="() => Visible = !Visible">
+        <IconLarge Icon="@UiIcons.FilterSettings"/>
+    </ButtonIcon>
+    <Popover @bind-Visible="Visible">
+        <PriceCheckStatusEditor />
+
+        <Fieldset Legend="@Resources["Item_Trade_Settings"]">
+            <PriceCheckItemCurrencyEditor/>
+        </Fieldset>
+
+        <Fieldset Legend="@Resources["Bulk_Trade_Settings"]">
+            <PriceCheckCurrencyModeEditor/>
+            <PriceCheckBulkCurrencyEditor/>
+            <PriceCheckBulkMinimumStockEditor/>
+        </Fieldset>
+    </Popover>
+</div>
+
+@inject IStringLocalizer<SettingsResources> Resources
+
+@code {
+
+    private bool Visible { get; set; }
+
+}

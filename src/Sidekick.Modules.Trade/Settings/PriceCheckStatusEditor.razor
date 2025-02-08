@@ -1,0 +1,48 @@
+@using Sidekick.Apis.Poe.Trade.Requests
+@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Settings
+
+<FormSelect Label="@Resources["Player_Status"]"
+            Value="@Value"
+            ValueChanged="ValueChanged"
+            Options="Options"/>
+
+@inject IStringLocalizer<SettingsResources> Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private string? Value { get; set; }
+
+    private List<SelectOption> Options { get; set; } =
+    [
+    ];
+
+    protected override async Task OnInitializedAsync()
+    {
+        Value = await SettingsService.GetString(SettingKeys.PriceCheckStatus);
+
+        Options =
+        [
+            new SelectOption()
+            {
+                Label = Resources["Player_Status_Online"],
+                Value = Status.Online,
+            },
+            new SelectOption()
+            {
+                Label = Resources["Player_Status_Any"],
+                Value = Status.Any,
+            },
+        ];
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task ValueChanged(string? value)
+    {
+        Value = value;
+        await SettingsService.Set(SettingKeys.PriceCheckStatus, value);
+    }
+
+}

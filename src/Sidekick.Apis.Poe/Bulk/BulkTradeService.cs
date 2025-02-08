@@ -68,6 +68,10 @@ namespace Sidekick.Apis.Poe.Bulk
                 model.Query.Have.Add(currency);
             }
 
+            // Trade Settings
+            var status = await settingsService.GetString(SettingKeys.PriceCheckStatus);
+            model.Query.Status.Option = status ?? Status.Online;
+
             var json = JsonSerializer.Serialize(model, poeTradeClient.Options);
             var body = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await poeTradeClient.HttpClient.PostAsync(uri, body);

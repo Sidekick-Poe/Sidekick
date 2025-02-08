@@ -46,7 +46,7 @@ public class TradeSearchService
 
             // If the English trade is used, we must use the invariant name.
             var useInvariantTradeResults = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
-            string? itemApiNameToUse = useInvariantTradeResults ? item.Invariant?.ApiName : item.Header.ApiName;
+            var itemApiNameToUse = useInvariantTradeResults ? item.Invariant?.ApiName : item.Header.ApiName;
 
             if (propertyFilters?.BaseTypeFilterApplied ?? true)
             {
@@ -112,6 +112,7 @@ public class TradeSearchService
 
             SetSocketFilters(item, query.Filters);
 
+            // Stats
             var andGroup = GetAndStats(modifierFilters, pseudoFilters);
             if (andGroup != null) query.Stats.Add(andGroup);
 
@@ -120,10 +121,15 @@ public class TradeSearchService
 
             query.Stats.AddRange(GetWeightedSumStats(pseudoFilters));
 
+            // Properties
             if (propertyFilters != null)
             {
                 propertyParser.PrepareTradeRequest(query.Filters, item, propertyFilters);
             }
+
+            // Trade Settings
+            var status = await settingsService.GetString(SettingKeys.PriceCheckStatus);
+            query.Status.Option = status ?? Status.Online;
 
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             var uri = new Uri($"{await GetBaseApiUrl(metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
