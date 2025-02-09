@@ -2,18 +2,18 @@
 @using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Settings
 
-<div class="flex flex-wrap items-center gap-2 mb-2">
-    <label class="block text-base font-medium pr-2 mr-auto dark:text-zinc-300">
-        @Resources["Player_Status"]
-    </label>
-    @foreach (var option in Options)
-    {
-        <FormCheckbox Value="option.Value == Value"
-                      NoMargin="true"
-                      Dense="true"
-                      ValueChanged="@(() => ValueChanged(option.Value))">@option.Label</FormCheckbox>
-    }
-</div>
+<FormFieldset Legend="@Resources["Player_Status"]"
+              Dense="true">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+        @foreach (var option in Options)
+        {
+            <FormCheckbox Value="option.Value == Value"
+                          NoMargin="true"
+                          Dense="true"
+                          ValueChanged="@(() => ValueChanged(option.Value))">@option.Label</FormCheckbox>
+        }
+    </div>
+</FormFieldset>
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService

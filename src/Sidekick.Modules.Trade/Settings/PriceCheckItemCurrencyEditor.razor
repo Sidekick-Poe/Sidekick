@@ -5,45 +5,45 @@
 @using Sidekick.Common.Game
 @using Sidekick.Common.Settings
 
-<label class="block mb-1 text-base font-medium dark:text-zinc-300">
-    @Resources["Currency"]
-</label>
-<div class="flex flex-wrap items-center gap-[2px] mb-3 pl-4">
-    @foreach (var option in CheckboxOptions)
-    {
-        <div class="mr-2">
-            <FormCheckbox Value="option.Value == Currency"
-                          NoMargin="true"
-                          Dense="true"
-                          ValueChanged="@(() => CurrencyChanged(option.Value))">@option.Label</FormCheckbox>
-        </div>
-    }
-
-    <div class="w-full"></div>
-
-    @foreach (var option in ImageOptions)
-    {
-        var image = option.Value != null ? ItemStaticDataProvider.GetImage(option.Value) : null;
-        var wrapperClass = "rounded-sm duration-200 transition-colors cursor-pointer p-[2px] leading-[0]";
-        if (option.Value == Currency)
+<FormFieldset Legend="@Resources["Currency_of_Results"]"
+              Dense="true">
+    <div class="flex flex-wrap items-center gap-1 mb-2">
+        @foreach (var option in CheckboxOptions)
         {
-            wrapperClass += " bg-violet-700 hover:bg-violet-500";
-        }
-        else
-        {
-            wrapperClass += " bg-transparent hover:bg-stone-800";
+            <div class="mr-2">
+                <FormCheckbox Value="option.Value == Currency"
+                              NoMargin="true"
+                              Dense="true"
+                              ValueChanged="@(() => CurrencyChanged(option.Value))">@option.Label</FormCheckbox>
+            </div>
         }
 
-        <div class="@wrapperClass" @onclick="@(() => CurrencyChanged(option.Value))">
-            <TooltipRight>
-                <ChildContent>
-                    <img src="@image" class="h-6 w-6" alt="@option.Label"/>
-                </ChildContent>
-                <TooltipContent>@option.Label</TooltipContent>
-            </TooltipRight>
-        </div>
-    }
-</div>
+        <div class="w-full"></div>
+
+        @foreach (var option in ImageOptions)
+        {
+            var image = option.Value != null ? ItemStaticDataProvider.GetImage(option.Value) : null;
+            var wrapperClass = "rounded-sm duration-200 transition-colors cursor-pointer p-[2px] leading-[0] -m-[1px]";
+            if (option.Value == Currency)
+            {
+                wrapperClass += " bg-violet-700 hover:bg-violet-500";
+            }
+            else
+            {
+                wrapperClass += " bg-transparent hover:bg-stone-800";
+            }
+
+            <div class="@wrapperClass" @onclick="@(() => CurrencyChanged(option.Value))">
+                <TooltipRight>
+                    <ChildContent>
+                        <img src="@image" class="h-6 w-6" alt="@option.Label"/>
+                    </ChildContent>
+                    <TooltipContent>@option.Label</TooltipContent>
+                </TooltipRight>
+            </div>
+        }
+    </div>
+</FormFieldset>
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
@@ -66,7 +66,7 @@
     {
         var league = await SettingsService.GetString(SettingKeys.LeagueId);
         var game = league.GetGameFromLeagueId();
-        Currency = game == GameType.PathOfExile ? await SettingsService.GetString(SettingKeys.PriceCheckItemCurrency) : await SettingsService.GetString(SettingKeys.PriceCheckItemCurrencyPoE2);
+        Currency = game == GameType.PathOfExile ? await SettingsService.GetString(SettingKeys.PriceCheckCurrency) : await SettingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
         Currency = FilterProvider.GetPriceOption(Currency);
 
         Options = FilterProvider.TradePriceOptions.ConvertAll(x => new SelectOption()
@@ -86,11 +86,11 @@
         var game = league.GetGameFromLeagueId();
         if (game == GameType.PathOfExile)
         {
-            await SettingsService.Set(SettingKeys.PriceCheckItemCurrency, value);
+            await SettingsService.Set(SettingKeys.PriceCheckCurrency, value);
         }
         else
         {
-            await SettingsService.Set(SettingKeys.PriceCheckItemCurrencyPoE2, value);
+            await SettingsService.Set(SettingKeys.PriceCheckCurrencyPoE2, value);
         }
     }
 

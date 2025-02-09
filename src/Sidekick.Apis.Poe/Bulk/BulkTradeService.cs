@@ -44,7 +44,7 @@ namespace Sidekick.Apis.Poe.Bulk
                 throw new ApiErrorException { AdditionalInformation = ["Sidekick could not find a valid item."], };
             }
 
-            var currency = item.Header.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckBulkCurrency) : await settingsService.GetString(SettingKeys.PriceCheckBulkCurrencyPoE2);
+            var currency = item.Header.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
             currency = filterProvider.GetPriceOption(currency);
             var minStock = await settingsService.GetInt(SettingKeys.PriceCheckBulkMinimumStock);
 
@@ -52,7 +52,7 @@ namespace Sidekick.Apis.Poe.Bulk
             model.Query.Want.Add(staticItem.Id);
             model.Query.Minimum = minStock;
 
-            if (currency == null || currency == "chaos_divine")
+            if (currency == null || currency == "chaos_divine" || currency == "exalted_divine")
             {
                 if (item.Header.Game == GameType.PathOfExile)
                 {
