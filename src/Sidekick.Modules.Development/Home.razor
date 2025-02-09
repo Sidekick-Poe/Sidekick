@@ -6,7 +6,7 @@
 @layout DevelopmentLayout
 
 <AppContainer>
-    <Fieldset Legend="Copy your item text here">
+    <FormFieldset Legend="Copy your item text here">
         <FormTextarea @bind-Value="ItemText" />
         <div class="grid grid-cols-12 gap-3 mt-3">
             <div class="col-span-6">
@@ -16,10 +16,10 @@
                 <HomeButton Class="bg-fuchsia-700 hover:bg-fuchsia-500" OnClick="MapCheck">Check Map</HomeButton>
             </div>
         </div>
-    </Fieldset>
-    <Fieldset Legend="Other sections">
+    </FormFieldset>
+    <FormFieldset Legend="Other sections">
         <ButtonPrimary OnClick="@(() => NavigationManager.NavigateTo("/settings"))">Settings</ButtonPrimary>
-    </Fieldset>
+    </FormFieldset>
 </AppContainer>
 
 @code {

@@ -1,0 +1,20 @@
+
+@inherits FormNumber
+
+<div class="flex flex-nowrap items-center gap-4 mb-3">
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label for="@Id"
+               class="block text-base font-medium dark:text-zinc-300 text-nowrap">
+            @Label
+        </label>
+    }
+    <div class="ml-auto">
+        <input id="@Id"
+               @attributes="InputAttributes"
+               type="number"
+               @onchange="OnChange"
+               value="@Value"
+               class="@UiClasses.FormInputClasses p-1 text-base min-w-0 w-[60px]"/>
+    </div>
+</div>

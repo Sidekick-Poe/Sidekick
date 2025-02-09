@@ -2,19 +2,23 @@
 @using Sidekick.Common.Blazor.Settings.General
 @inherits Sidekick.Common.Ui.Views.SidekickView
 
-<Fieldset Legend="@Resources["Keybindings"]">
+<FormFieldset Legend="@Resources["Keybindings"]">
     <KeyOpenPriceCheckEditor />
     <KeyCloseEditor />
-</Fieldset>
+</FormFieldset>
 
-<Fieldset Legend="@Resources["Item_Trade_Settings"]">
+<FormFieldset Legend="@Resources["Item_Trade_Settings"]">
     <PriceCheckNormalizeValueEditor />
     <PriceCheckPredictionEnabledEditor />
-</Fieldset>
+</FormFieldset>
 
-<Fieldset Legend="@Resources["Other_Settings"]">
+<FormFieldset Legend="@Resources["Bulk_Trade_Settings"]">
+    <PriceCheckCurrencyModeEditor/>
+</FormFieldset>
+
+<FormFieldset Legend="@Resources["Other_Settings"]">
     <PriceCheckCloseWithMouseEditor />
     <EscapeClosesOverlaysEditor />
-</Fieldset>
+</FormFieldset>
 
 @inject IStringLocalizer<SettingsResources> Resources

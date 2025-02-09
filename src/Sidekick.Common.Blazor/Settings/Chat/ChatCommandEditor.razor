@@ -26,7 +26,7 @@
     </div>
 }
 
-<Fieldset>
+<FormFieldset>
     <div class="flex justify-between">
         <ButtonSecondary OnClick="RestoreDefaults">
             @Resources["Chat_Restore_Defaults"]
@@ -35,7 +35,7 @@
             @Resources["Chat_Add_New_Command"]
         </ButtonPrimary>
     </div>
-</Fieldset>
+</FormFieldset>
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService

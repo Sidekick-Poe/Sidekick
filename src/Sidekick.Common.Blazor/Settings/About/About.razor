@@ -7,7 +7,7 @@
 <AppTitle Title="@Resources["About"]" />
 
 <AppContainer>
-    <Fieldset Legend="@($"{Resources["Sidekick"]} - {Title}")">
+    <FormFieldset Legend="@($"{Resources["Sidekick"]} - {Title}")">
         <div class="mb-3"><span class="text-lg underline text-blue-500 cursor-pointer" onclick="@(() => BrowserProvider.OpenSidekickWebsite())">@Resources["Official_Website"]</span></div>
         <div class="mb-3"><span class="text-lg underline text-blue-500 cursor-pointer" onclick="@(() => BrowserProvider.OpenGitHubRepository())">@Resources["GitHub_Repository"]</span></div>
 
@@ -15,7 +15,7 @@
 
         <div class="mb-3"><ButtonPrimary OnClick="@(() => FolderProvider.OpenDataFolderPath())">@Resources["Open_Settings_Folder"]</ButtonPrimary></div>
         <i>@FolderProvider.GetDataFolderPath()</i>
-    </Fieldset>
+    </FormFieldset>
 </AppContainer>
 
 @inject IStringLocalizer<SettingsResources> Resources

@@ -101,11 +101,17 @@ public class TradeSearchService
             currency = filterProvider.GetPriceOption(currency);
             if (!string.IsNullOrEmpty(currency))
             {
+                var currencyMin = item.Header.Game == GameType.PathOfExile ? await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMin) : await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMinPoE2);
+                var currencyMax = item.Header.Game == GameType.PathOfExile ? await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMax) : await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMaxPoE2);
                 query.Filters.TradeFilters = new TradeFilterGroup
                 {
                     Filters =
                     {
-                        Price = new StatFilterValue(currency),
+                        Price = new StatFilterValue(currency)
+                        {
+                            Min = currencyMin > 0 ? currencyMin : null,
+                            Max = currencyMax > 0 ? currencyMax : null,
+                        },
                     },
                 };
             }

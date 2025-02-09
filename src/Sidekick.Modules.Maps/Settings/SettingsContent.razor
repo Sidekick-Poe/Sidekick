@@ -2,18 +2,18 @@
 @using Sidekick.Common.Blazor.Settings.General
 @inherits Sidekick.Common.Ui.Views.SidekickView
 
-<Fieldset Legend="@Resources["Keybindings"]">
+<FormFieldset Legend="@Resources["Keybindings"]">
     <KeyOpenMapCheckEditor />
     <KeyCloseEditor />
-</Fieldset>
+</FormFieldset>
 
-<Fieldset Legend="@Resources["Dangerous_Modifiers"]">
+<FormFieldset Legend="@Resources["Dangerous_Modifiers"]">
     <MapCheckDangerousRegexEditor />
-</Fieldset>
+</FormFieldset>
 
-<Fieldset Legend="@Resources["Other_Settings"]">
+<FormFieldset Legend="@Resources["Other_Settings"]">
     <MapCheckCloseWithMouseEditor />
     <EscapeClosesOverlaysEditor />
-</Fieldset>
+</FormFieldset>
 
 @inject IStringLocalizer<SettingsResources> Resources

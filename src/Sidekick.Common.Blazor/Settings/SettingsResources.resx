@@ -288,14 +288,11 @@
   <data name="Bulk_Trade" xml:space="preserve">
     <value>Bulk Trade</value>
   </data>
-  <data name="Currency_of_Bulk_Offers" xml:space="preserve">
-    <value>Currency of Bulk Offers</value>
-  </data>
   <data name="Minimum_Stock_in_Bulk_Trade" xml:space="preserve">
-    <value>Minimum Stock in Bulk Trade</value>
+      <value>Minimum Stock</value>
   </data>
-  <data name="Currency_of_Listed_Items" xml:space="preserve">
-    <value>Currency of Listed Items</value>
+  <data name="Currency" xml:space="preserve">
+      <value>Currency</value>
   </data>
   <data name="Normalize_Values" xml:space="preserve">
     <value>Normalize item values. Leave at 0% for exact values.</value>

@@ -43,6 +43,10 @@ public static class SettingKeys
     public const string PriceCheckPredictionEnabled = nameof(PriceCheckPredictionEnabled);
     public const string PriceCheckItemCurrency = nameof(PriceCheckItemCurrency);
     public const string PriceCheckItemCurrencyPoE2 = nameof(PriceCheckItemCurrencyPoE2);
+    public const string PriceCheckItemCurrencyMin = nameof(PriceCheckItemCurrencyMin);
+    public const string PriceCheckItemCurrencyMinPoE2 = nameof(PriceCheckItemCurrencyMinPoE2);
+    public const string PriceCheckItemCurrencyMax = nameof(PriceCheckItemCurrencyMax);
+    public const string PriceCheckItemCurrencyMaxPoE2 = nameof(PriceCheckItemCurrencyMaxPoE2);
     public const string PriceCheckBulkCurrency = nameof(PriceCheckBulkCurrency);
     public const string PriceCheckBulkCurrencyPoE2 = nameof(PriceCheckBulkCurrencyPoE2);
     public const string PriceCheckBulkMinimumStock = nameof(PriceCheckBulkMinimumStock);

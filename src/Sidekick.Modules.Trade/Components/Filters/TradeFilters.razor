@@ -7,17 +7,21 @@
         <IconLarge Icon="@UiIcons.FilterSettings"/>
     </ButtonIcon>
     <Popover @bind-Visible="Visible">
-        <PriceCheckStatusEditor />
+        <FormFieldset Legend="@Resources["General"]"
+                      Dense="true">
+            <PriceCheckStatusEditor/>
+        </FormFieldset>
 
-        <Fieldset Legend="@Resources["Item_Trade_Settings"]">
+        <FormFieldset Legend="@Resources["Item_Trade_Settings"]"
+                      Dense="true">
             <PriceCheckItemCurrencyEditor/>
-        </Fieldset>
+        </FormFieldset>
 
-        <Fieldset Legend="@Resources["Bulk_Trade_Settings"]">
-            <PriceCheckCurrencyModeEditor/>
+        <FormFieldset Legend="@Resources["Bulk_Trade_Settings"]"
+                      Dense="true">
             <PriceCheckBulkCurrencyEditor/>
             <PriceCheckBulkMinimumStockEditor/>
-        </Fieldset>
+        </FormFieldset>
     </Popover>
 </div>
 

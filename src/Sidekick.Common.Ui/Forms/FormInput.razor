@@ -1,7 +1,7 @@
 @if (!string.IsNullOrEmpty(Label))
 {
     <label for="@Id"
-           class="block mb-1 text-base font-medium dark:text-zinc-200">
+           class="block mb-1 text-base font-medium dark:text-zinc-300">
         @Label
     </label>
 }
@@ -43,9 +43,9 @@
     [Parameter]
     public string? AdditionalClasses { get; set; }
 
-    private string Id { get; } = UiUtilities.GenerateId();
+    protected string Id { get; } = UiUtilities.GenerateId();
 
-    private async Task OnChange(ChangeEventArgs args)
+    protected async Task OnChange(ChangeEventArgs args)
     {
         await ValueChanged.InvokeAsync(args.Value?.ToString());
     }

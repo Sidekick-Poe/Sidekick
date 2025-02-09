@@ -1,16 +1,16 @@
 @using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Settings
 
-<FormNumber Label="@Resources["Minimum_Stock_in_Bulk_Trade"]"
-            Value="@Minimum"
-            ValueChanged="MinimumChanged"/>
+<FormNumberInline Label="@Resources["Minimum_Stock_in_Bulk_Trade"]"
+                  Value="@Minimum"
+                  ValueChanged="MinimumChanged"/>
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 
 @code {
 
-    private decimal? Minimum { get; set; }
+    private double? Minimum { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -19,7 +19,7 @@
         await base.OnInitializedAsync();
     }
 
-    private async Task MinimumChanged(decimal? value)
+    private async Task MinimumChanged(double? value)
     {
         Minimum = value ?? DefaultSettings.PriceCheckBulkMinimumStock;
         await SettingsService.Set(SettingKeys.PriceCheckBulkMinimumStock, (int)Minimum);

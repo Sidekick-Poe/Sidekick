@@ -5,12 +5,12 @@
 @inherits SidekickView
 
 <AppContainer>
-    <Fieldset Legend="Custom actions">
+    <FormFieldset Legend="Custom actions">
         <div class="flex gap-3">
             <ButtonPrimary OnClick="RegisterHooks">Bind keyboard hooks</ButtonPrimary>
             <ButtonPrimary OnClick="ThrowException">Throw an exception</ButtonPrimary>
         </div>
-    </Fieldset>
+    </FormFieldset>
 </AppContainer>
 
 @inject IKeyboardProvider KeyboardProvider
