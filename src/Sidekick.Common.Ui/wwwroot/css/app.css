@@ -1463,6 +1463,10 @@ video {
   margin: -0.25rem;
 }
 
+.-m-\[1px\] {
+  margin: -1px;
+}
+
 .m-4 {
   margin: 1rem;
 }
@@ -1563,10 +1567,6 @@ video {
 
 .mr-2 {
   margin-right: 0.5rem;
-}
-
-.mr-auto {
-  margin-right: auto;
 }
 
 .mt-1 {
