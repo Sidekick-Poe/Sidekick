@@ -9,6 +9,10 @@
     <Popover @bind-Visible="Visible">
         <PriceCheckStatusEditor/>
         <PriceCheckItemCurrencyEditor/>
+        <FormFieldset Legend="@Resources["Item_Trade_Settings"]"
+                      Dense="true">
+            <PriceCheckItemMinMaxPriceEditor/>
+        </FormFieldset>
         <FormFieldset Legend="@Resources["Bulk_Trade_Settings"]"
                       Dense="true">
             <PriceCheckBulkMinimumStockEditor/>

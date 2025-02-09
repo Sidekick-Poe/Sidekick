@@ -1,0 +1,74 @@
+﻿@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Extensions
+@using Sidekick.Common.Game
+@using Sidekick.Common.Settings
+
+<div class="flex flex-nowrap items-center gap-4">
+    <label class="block text-base font-medium dark:text-zinc-300 text-nowrap mb-3">
+        @Resources["Buyout_Price"]
+    </label>
+    <div
+        class="ml-auto flex flex-nowrap [&_input]:!rounded-r-none [&>:last-child_input]:!rounded-r-lg [&>:last-child_input]:!rounded-l-none">
+        <FormNumberInline placeholder="Min"
+                          Value="Minimum"
+                          ValueChanged="MinimumChanged"/>
+        <FormNumberInline placeholder="Max"
+                          Value="Maximum"
+                          ValueChanged="MaximumChanged"/>
+    </div>
+</div>
+
+@inject IStringLocalizer<SettingsResources> Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private double? Minimum { get; set; }
+    private double? Maximum { get; set; }
+    private GameType Game { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var league = await SettingsService.GetString(SettingKeys.LeagueId);
+        Game = league.GetGameFromLeagueId();
+        if (Game == GameType.PathOfExile)
+        {
+            Minimum = await SettingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMin);
+            Maximum = await SettingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMax);
+        }
+        else
+        {
+            Minimum = await SettingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMinPoE2);
+            Maximum = await SettingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMaxPoE2);
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task MinimumChanged(double? value)
+    {
+        Minimum = value;
+        if (Game == GameType.PathOfExile)
+        {
+            await SettingsService.Set(SettingKeys.PriceCheckItemCurrencyMin, (int?)value);
+        }
+        else
+        {
+            await SettingsService.Set(SettingKeys.PriceCheckItemCurrencyMinPoE2, (int?)value);
+        }
+    }
+
+    private async Task MaximumChanged(double? value)
+    {
+        Maximum = value;
+        if (Game == GameType.PathOfExile)
+        {
+            await SettingsService.Set(SettingKeys.PriceCheckItemCurrencyMax, (int?)value);
+        }
+        else
+        {
+            await SettingsService.Set(SettingKeys.PriceCheckItemCurrencyMaxPoE2, (int?)value);
+        }
+    }
+
+}

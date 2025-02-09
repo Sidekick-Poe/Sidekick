@@ -4490,6 +4490,16 @@ video {
   display: none;
 }
 
+.\[\&\>\:last-child_input\]\:\!rounded-l-none>:last-child input {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+.\[\&\>\:last-child_input\]\:\!rounded-r-lg>:last-child input {
+  border-top-right-radius: 0.5rem !important;
+  border-bottom-right-radius: 0.5rem !important;
+}
+
 .peer:checked ~ .peer-checked\:\[\&_\.custom-checkbox\]\:border-zinc-500 .custom-checkbox {
   --tw-border-opacity: 1;
   border-color: rgb(113 113 122 / var(--tw-border-opacity));
@@ -4506,6 +4516,11 @@ video {
 
 .\[\&_\.mud-popover\]\:top-0 .mud-popover {
   top: 0px;
+}
+
+.\[\&_input\]\:\!rounded-r-none input {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
 }
 
 .\[\&_svg\.check\]\:scale-0 svg.check {

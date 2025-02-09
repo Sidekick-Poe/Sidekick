@@ -98,11 +98,11 @@ public class TradeSearchService
             }
 
             var currency = item.Header.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
+            var currencyMin = item.Header.Game == GameType.PathOfExile ? await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMin) : await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMinPoE2);
+            var currencyMax = item.Header.Game == GameType.PathOfExile ? await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMax) : await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMaxPoE2);
             currency = filterProvider.GetPriceOption(currency);
-            if (!string.IsNullOrEmpty(currency))
+            if (!string.IsNullOrEmpty(currency) || currencyMin > 0 || currencyMax > 0)
             {
-                var currencyMin = item.Header.Game == GameType.PathOfExile ? await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMin) : await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMinPoE2);
-                var currencyMax = item.Header.Game == GameType.PathOfExile ? await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMax) : await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMaxPoE2);
                 query.Filters.TradeFilters = new TradeFilterGroup
                 {
                     Filters =
