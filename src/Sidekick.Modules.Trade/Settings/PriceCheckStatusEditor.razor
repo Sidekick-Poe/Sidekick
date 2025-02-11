@@ -1,0 +1,61 @@
+@using Sidekick.Apis.Poe.Trade.Requests
+@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Settings
+
+<FormFieldset Legend="@Resources["Player_Status"]"
+              Dense="true">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+        @foreach (var option in Options)
+        {
+            <FormCheckbox Value="option.Value == Value"
+                          NoMargin="true"
+                          Dense="true"
+                          ValueChanged="@(() => ValueChanged(option.Value))">@option.Label</FormCheckbox>
+        }
+    </div>
+</FormFieldset>
+
+@inject IStringLocalizer<SettingsResources> Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private string? Value { get; set; }
+
+    private List<SelectOption> Options { get; set; } =
+    [
+    ];
+
+    protected override async Task OnInitializedAsync()
+    {
+        Value = await SettingsService.GetString(SettingKeys.PriceCheckStatus);
+
+        Options =
+        [
+            new SelectOption()
+            {
+                Label = Resources["Player_Status_Online"],
+                Value = Status.Online,
+            },
+            new SelectOption()
+            {
+                Label = Resources["Player_Status_OnlineLeague"],
+                Value = Status.OnlineLeague,
+            },
+            new SelectOption()
+            {
+                Label = Resources["Player_Status_Any"],
+                Value = Status.Any,
+            },
+        ];
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task ValueChanged(string? value)
+    {
+        Value = value;
+        await SettingsService.Set(SettingKeys.PriceCheckStatus, value);
+    }
+
+}

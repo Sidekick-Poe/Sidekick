@@ -46,7 +46,7 @@ public class TradeSearchService
 
             // If the English trade is used, we must use the invariant name.
             var useInvariantTradeResults = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
-            string? itemApiNameToUse = useInvariantTradeResults ? item.Invariant?.ApiName : item.Header.ApiName;
+            var itemApiNameToUse = useInvariantTradeResults ? item.Invariant?.ApiName : item.Header.ApiName;
 
             if (propertyFilters?.BaseTypeFilterApplied ?? true)
             {
@@ -97,21 +97,28 @@ public class TradeSearchService
                 query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("nonunique");
             }
 
-            var currency = item.Header.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckItemCurrency) : await settingsService.GetString(SettingKeys.PriceCheckItemCurrencyPoE2);
+            var currency = item.Header.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
+            var currencyMin = item.Header.Game == GameType.PathOfExile ? await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMin) : await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMinPoE2);
+            var currencyMax = item.Header.Game == GameType.PathOfExile ? await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMax) : await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMaxPoE2);
             currency = filterProvider.GetPriceOption(currency);
-            if (!string.IsNullOrEmpty(currency))
+            if (!string.IsNullOrEmpty(currency) || currencyMin > 0 || currencyMax > 0)
             {
                 query.Filters.TradeFilters = new TradeFilterGroup
                 {
                     Filters =
                     {
-                        Price = new StatFilterValue(currency),
+                        Price = new StatFilterValue(currency)
+                        {
+                            Min = currencyMin > 0 ? currencyMin : null,
+                            Max = currencyMax > 0 ? currencyMax : null,
+                        },
                     },
                 };
             }
 
             SetSocketFilters(item, query.Filters);
 
+            // Stats
             var andGroup = GetAndStats(modifierFilters, pseudoFilters);
             if (andGroup != null) query.Stats.Add(andGroup);
 
@@ -120,10 +127,15 @@ public class TradeSearchService
 
             query.Stats.AddRange(GetWeightedSumStats(pseudoFilters));
 
+            // Properties
             if (propertyFilters != null)
             {
                 propertyParser.PrepareTradeRequest(query.Filters, item, propertyFilters);
             }
+
+            // Trade Settings
+            var status = await settingsService.GetString(SettingKeys.PriceCheckStatus);
+            query.Status.Option = status ?? Status.Online;
 
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             var uri = new Uri($"{await GetBaseApiUrl(metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");

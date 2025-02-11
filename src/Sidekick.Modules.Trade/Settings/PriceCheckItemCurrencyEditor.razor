@@ -1,21 +1,62 @@
 @using Sidekick.Apis.Poe.Filters
+@using Sidekick.Apis.Poe.Static
 @using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Game
 @using Sidekick.Common.Settings
 
-<FormSelect Label="@Resources["Currency_of_Listed_Items"]"
-            Value="@Currency"
-            ValueChanged="CurrencyChanged"
-            Options="Options"/>
+<FormFieldset Legend="@Resources["Currency_of_Results"]"
+              Dense="true">
+    <div class="flex flex-wrap items-center gap-1 mb-2">
+        @foreach (var option in CheckboxOptions)
+        {
+            <div class="mr-2">
+                <FormCheckbox Value="option.Value == Currency"
+                              NoMargin="true"
+                              Dense="true"
+                              ValueChanged="@(() => CurrencyChanged(option.Value))">@option.Label</FormCheckbox>
+            </div>
+        }
+
+        <div class="w-full"></div>
+
+        @foreach (var option in ImageOptions)
+        {
+            var image = option.Value != null ? ItemStaticDataProvider.GetImage(option.Value) : null;
+            var wrapperClass = "rounded-sm duration-200 transition-colors cursor-pointer p-[2px] leading-[0] -m-[1px]";
+            if (option.Value == Currency)
+            {
+                wrapperClass += " bg-violet-700 hover:bg-violet-500";
+            }
+            else
+            {
+                wrapperClass += " bg-transparent hover:bg-stone-800";
+            }
+
+            <div class="@wrapperClass" @onclick="@(() => CurrencyChanged(option.Value))">
+                <TooltipRight>
+                    <ChildContent>
+                        <img src="@image" class="h-6 w-6" alt="@option.Label"/>
+                    </ChildContent>
+                    <TooltipContent>@option.Label</TooltipContent>
+                </TooltipRight>
+            </div>
+        }
+    </div>
+</FormFieldset>
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 @inject IFilterProvider FilterProvider
+@inject IItemStaticDataProvider ItemStaticDataProvider
 
 @code {
 
     private string? Currency { get; set; }
+
+    private IEnumerable<SelectOption> ImageOptions => Options.Where(x => x.Value != null && !string.IsNullOrEmpty(ItemStaticDataProvider.GetImage(x.Value)));
+
+    private IEnumerable<SelectOption> CheckboxOptions => Options.Where(x => x.Value == null || string.IsNullOrEmpty(ItemStaticDataProvider.GetImage(x.Value)));
 
     private List<SelectOption> Options { get; set; } =
     [
@@ -25,7 +66,7 @@
     {
         var league = await SettingsService.GetString(SettingKeys.LeagueId);
         var game = league.GetGameFromLeagueId();
-        Currency = game == GameType.PathOfExile ? await SettingsService.GetString(SettingKeys.PriceCheckItemCurrency) : await SettingsService.GetString(SettingKeys.PriceCheckItemCurrencyPoE2);
+        Currency = game == GameType.PathOfExile ? await SettingsService.GetString(SettingKeys.PriceCheckCurrency) : await SettingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
         Currency = FilterProvider.GetPriceOption(Currency);
 
         Options = FilterProvider.TradePriceOptions.ConvertAll(x => new SelectOption()
@@ -45,11 +86,11 @@
         var game = league.GetGameFromLeagueId();
         if (game == GameType.PathOfExile)
         {
-            await SettingsService.Set(SettingKeys.PriceCheckItemCurrency, value);
+            await SettingsService.Set(SettingKeys.PriceCheckCurrency, value);
         }
         else
         {
-            await SettingsService.Set(SettingKeys.PriceCheckItemCurrencyPoE2, value);
+            await SettingsService.Set(SettingKeys.PriceCheckCurrencyPoE2, value);
         }
     }
 

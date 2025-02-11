@@ -1,7 +1,7 @@
 @if (!string.IsNullOrEmpty(Label))
 {
 <label for="@Id"
-       class="block mb-1 text-base font-medium dark:text-zinc-200">
+       class="block mb-1 text-base font-medium dark:text-zinc-300">
     @Label
 </label>
 }
@@ -21,17 +21,17 @@
     public string? Label { get; set; }
 
     [Parameter]
-    public decimal? Value { get; set; }
+    public double? Value { get; set; }
 
     [Parameter]
-    public EventCallback<decimal?> ValueChanged { get; set; }
+    public EventCallback<double?> ValueChanged { get; set; }
 
     [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object>? InputAttributes { get; set; }
 
-    private string Id { get; } = UiUtilities.GenerateId();
+    protected string Id { get; } = UiUtilities.GenerateId();
 
-    private string InternalValue { get; set; } = string.Empty;
+    protected string InternalValue { get; set; } = string.Empty;
 
     protected override void OnParametersSet()
     {
@@ -39,9 +39,9 @@
         base.OnParametersSet();
     }
 
-    private async Task OnChange(ChangeEventArgs args)
+    protected async Task OnChange(ChangeEventArgs args)
     {
-        if (decimal.TryParse(args.Value?.ToString(), out var decimalValue))
+        if (double.TryParse(args.Value?.ToString(), out var decimalValue))
         {
             await ValueChanged.InvokeAsync(decimalValue);
         }

@@ -41,15 +41,18 @@ public static class SettingKeys
 
     public const string PriceCheckCloseWithMouse = nameof(PriceCheckCloseWithMouse);
     public const string PriceCheckPredictionEnabled = nameof(PriceCheckPredictionEnabled);
-    public const string PriceCheckItemCurrency = nameof(PriceCheckItemCurrency);
-    public const string PriceCheckItemCurrencyPoE2 = nameof(PriceCheckItemCurrencyPoE2);
-    public const string PriceCheckBulkCurrency = nameof(PriceCheckBulkCurrency);
-    public const string PriceCheckBulkCurrencyPoE2 = nameof(PriceCheckBulkCurrencyPoE2);
+    public const string PriceCheckCurrency = nameof(PriceCheckCurrency);
+    public const string PriceCheckCurrencyPoE2 = nameof(PriceCheckCurrencyPoE2);
+    public const string PriceCheckItemCurrencyMin = nameof(PriceCheckItemCurrencyMin);
+    public const string PriceCheckItemCurrencyMinPoE2 = nameof(PriceCheckItemCurrencyMinPoE2);
+    public const string PriceCheckItemCurrencyMax = nameof(PriceCheckItemCurrencyMax);
+    public const string PriceCheckItemCurrencyMaxPoE2 = nameof(PriceCheckItemCurrencyMaxPoE2);
     public const string PriceCheckBulkMinimumStock = nameof(PriceCheckBulkMinimumStock);
     public const string PriceCheckCurrencyMode = nameof(PriceCheckCurrencyMode);
     public const string PriceCheckNormalizeValue = nameof(PriceCheckNormalizeValue);
     public const string PriceCheckCompactMode = nameof(PriceCheckCompactMode);
     public const string PriceCheckSidebarWidth = nameof(PriceCheckSidebarWidth);
+    public const string PriceCheckStatus = nameof(PriceCheckStatus);
 
     public const string SaveWindowPositions = nameof(SaveWindowPositions);
 

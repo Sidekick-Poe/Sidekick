@@ -4,19 +4,19 @@
 
 <AppTitle Title="@Resources["Settings"]" />
 <AppContainer>
-    <Fieldset Legend="@Resources["General_Settings"]">
+    <FormFieldset Legend="@Resources["General_Settings"]">
         <LanguageParserEditor />
         <UseInvariantForTradeResults />
         <LeagueIdEditor />
         <InterfaceLanguageEditor />
-    </Fieldset>
+    </FormFieldset>
 
-    <Fieldset Legend="@Resources["Other_Settings"]">
+    <FormFieldset Legend="@Resources["Other_Settings"]">
         <RetainClipboardEditor />
         <EscapeClosesOverlaysEditor />
         <SaveWindowPositionsEditor />
         <KeyFindItemsEditor />
-    </Fieldset>
+    </FormFieldset>
 </AppContainer>
 
 @inject IStringLocalizer<SettingsResources> Resources

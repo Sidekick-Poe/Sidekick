@@ -5,7 +5,7 @@
 
 <AppTitle Title="@Resources["Settings"]" />
 <AppContainer>
-    <Fieldset Legend="@Resources["Chat_Commands"]">
+    <FormFieldset Legend="@Resources["Chat_Commands"]">
         <ButtonLink OnClick="OpenWikiChatCommands">@WikiChatCommands.ToString()</ButtonLink>
 
         <div class="my-3">
@@ -34,7 +34,7 @@
             <TextBase>@Resources["Chat_Wildcard_LastWhisper_CharacterName"]</TextBase>
         </div>
 
-    </Fieldset>
+    </FormFieldset>
 
     <ChatCommandEditor />
 </AppContainer>

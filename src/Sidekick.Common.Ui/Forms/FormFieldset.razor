@@ -1,0 +1,20 @@
+<fieldset class="border border-solid dark:border-stone-800 pb-0 mb-3 @(Dense ? "pt-2 px-2" : "pt-3 px-3")">
+    @if (Legend != null)
+    {
+        <legend class="font-medium leading-none tracking-tight @(Dense ? "text-lg" : "text-2xl")">@Legend</legend>
+    }
+    @ChildContent
+</fieldset>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Legend { get; set; }
+
+    [Parameter]
+    public bool Dense { get; set; }
+
+}

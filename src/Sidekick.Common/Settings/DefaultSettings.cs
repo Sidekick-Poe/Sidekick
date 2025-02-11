@@ -9,7 +9,7 @@ public static class DefaultSettings
     public static string LanguageUi => "en";
 
     public static bool UseInvariantTradeResults => false;
-    
+
     public static string KeyClose => "Space";
 
     public static string KeyOpenWealth => "F7";
@@ -45,6 +45,8 @@ public static class DefaultSettings
     public static double PriceCheckNormalizeValue => .1;
 
     public static bool PriceCheckCompactMode => false;
+
+    public static string PriceCheckStatus => "online";
 
     public static List<ChatSetting> ChatCommands =>
     [

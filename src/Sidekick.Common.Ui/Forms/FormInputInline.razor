@@ -1,0 +1,21 @@
+@inherits FormInput
+
+<div class="flex flex-nowrap items-center gap-4 mb-3">
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label for="@Id"
+               class="block text-base font-medium dark:text-zinc-300 text-nowrap">
+            @Label
+        </label>
+    }
+    <div class="flex flex-nowrap gap-1 grow">
+        <input id="@Id"
+               @attributes="InputAttributes"
+               @onchange="OnChange"
+               @onfocus="OnFocus"
+               @onblur="OnBlur"
+               value="@Value"
+               class="@UiClasses.FormInputClasses p-2 text-base min-w-0 grow @AdditionalClasses" />
+        @AdornmentContent
+    </div>
+</div>
