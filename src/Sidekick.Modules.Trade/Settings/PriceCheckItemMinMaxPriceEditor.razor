@@ -10,9 +10,13 @@
     <div
         class="ml-auto flex flex-nowrap [&_input]:!rounded-r-none [&>:last-child_input]:!rounded-r-lg [&>:last-child_input]:!rounded-l-none">
         <FormNumberInline placeholder="Min"
+                          min="0"
+                          step="1"
                           Value="Minimum"
                           ValueChanged="MinimumChanged"/>
         <FormNumberInline placeholder="Max"
+                          min="0"
+                          step="1"
                           Value="Maximum"
                           ValueChanged="MaximumChanged"/>
     </div>
@@ -42,32 +46,41 @@
             Maximum = await SettingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMaxPoE2);
         }
 
+        if (Minimum <= 0) Minimum = null;
+        if (Maximum <= 0) Maximum = null;
+
         await base.OnInitializedAsync();
     }
 
     private async Task MinimumChanged(double? value)
     {
-        Minimum = value;
+        var intValue = (int?)value;
+        if (intValue <= 0) intValue = null;
+
+        Minimum = intValue;
         if (Game == GameType.PathOfExile)
         {
-            await SettingsService.Set(SettingKeys.PriceCheckItemCurrencyMin, (int?)value);
+            await SettingsService.Set(SettingKeys.PriceCheckItemCurrencyMin, intValue);
         }
         else
         {
-            await SettingsService.Set(SettingKeys.PriceCheckItemCurrencyMinPoE2, (int?)value);
+            await SettingsService.Set(SettingKeys.PriceCheckItemCurrencyMinPoE2, intValue);
         }
     }
 
     private async Task MaximumChanged(double? value)
     {
-        Maximum = value;
+        var intValue = (int?)value;
+        if (intValue <= 0) intValue = null;
+
+        Maximum = intValue;
         if (Game == GameType.PathOfExile)
         {
-            await SettingsService.Set(SettingKeys.PriceCheckItemCurrencyMax, (int?)value);
+            await SettingsService.Set(SettingKeys.PriceCheckItemCurrencyMax, intValue);
         }
         else
         {
-            await SettingsService.Set(SettingKeys.PriceCheckItemCurrencyMaxPoE2, (int?)value);
+            await SettingsService.Set(SettingKeys.PriceCheckItemCurrencyMaxPoE2, intValue);
         }
     }
 
