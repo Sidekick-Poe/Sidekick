@@ -1,4 +1,4 @@
-﻿using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Poe2.Parser;
@@ -89,7 +89,7 @@ Leeches 4.02% of Physical Damage as Mana
         actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Cold Damage", 39, 75);
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Attribute Requirements", 35);
         actual.AssertHasModifier(ModifierCategory.Explicit, "# to Level of all Projectile Skills", 3);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "Leeches #% of Physical Damage as Mana", 4.02);;
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Leeches #% of Physical Damage as Mana", 4.02); ;
     }
 
     [Fact]

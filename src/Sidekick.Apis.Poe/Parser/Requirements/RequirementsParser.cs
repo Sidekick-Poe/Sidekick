@@ -1,35 +1,34 @@
 using System.Text.RegularExpressions;
 using Sidekick.Common.Game.Languages;
 
-namespace Sidekick.Apis.Poe.Parser.Requirements
+namespace Sidekick.Apis.Poe.Parser.Requirements;
+
+public class RequirementsParser(IGameLanguageProvider gameLanguageProvider) : IRequirementsParser
 {
-    public class RequirementsParser(IGameLanguageProvider gameLanguageProvider) : IRequirementsParser
+    /// <inheritdoc/>
+    public int Priority => 100;
+
+    private Regex Pattern { get; set; } = null!;
+
+    /// <inheritdoc/>
+    public Task Initialize()
     {
-        /// <inheritdoc/>
-        public int Priority => 100;
+        Pattern = gameLanguageProvider.Language.DescriptionRequirements.ToRegexLine();
 
-        private Regex Pattern { get; set; } = null!;
+        return Task.CompletedTask;
+    }
 
-        /// <inheritdoc/>
-        public Task Initialize()
+    public void Parse(ParsingItem parsingItem)
+    {
+        foreach (var block in parsingItem.Blocks.Where(x => !x.Parsed))
         {
-            Pattern = gameLanguageProvider.Language.DescriptionRequirements.ToRegexLine();
-
-            return Task.CompletedTask;
-        }
-
-        public void Parse(ParsingItem parsingItem)
-        {
-            foreach (var block in parsingItem.Blocks.Where(x => !x.Parsed))
+            if (!block.TryParseRegex(Pattern, out _))
             {
-                if (!block.TryParseRegex(Pattern, out _))
-                {
-                    continue;
-                }
-
-                block.Parsed = true;
-                return;
+                continue;
             }
+
+            block.Parsed = true;
+            return;
         }
     }
 }

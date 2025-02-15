@@ -2,13 +2,12 @@ using System;
 using System.Threading.Tasks;
 using Sidekick.Common.Platform;
 
-namespace Sidekick.Mock
+namespace Sidekick.Mock;
+
+public class MockApplicationService : IApplicationService
 {
-    public class MockApplicationService : IApplicationService
+    public void Shutdown()
     {
-        public void Shutdown()
-        {
-            Environment.Exit(Environment.ExitCode);
-        }
+        Environment.Exit(Environment.ExitCode);
     }
 }

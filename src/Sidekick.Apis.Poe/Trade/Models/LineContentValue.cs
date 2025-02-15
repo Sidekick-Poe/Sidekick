@@ -1,9 +1,8 @@
-namespace Sidekick.Apis.Poe.Trade.Models
-{
-    public class LineContentValue
-    {
-        public string? Value { get; set; }
+namespace Sidekick.Apis.Poe.Trade.Models;
 
-        public LineContentType Type { get; set; }
-    }
+public class LineContentValue
+{
+    public string? Value { get; set; }
+
+    public LineContentType Type { get; set; }
 }

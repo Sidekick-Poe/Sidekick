@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Sidekick.Common.Converters;
@@ -12,7 +12,7 @@ public class ObjectOrArrayConverter<TObject> : JsonConverter<TObject?>
         if (reader.TokenType == JsonTokenType.StartArray)
         {
             // Consume the array (assuming it's empty and you only need to handle the array case where there are no elements)
-            while (reader.Read() && reader.TokenType != JsonTokenType.EndArray) {}
+            while (reader.Read() && reader.TokenType != JsonTokenType.EndArray) { }
 
             return null;
         }

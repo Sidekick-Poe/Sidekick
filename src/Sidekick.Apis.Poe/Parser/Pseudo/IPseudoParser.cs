@@ -1,10 +1,9 @@
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Initialization;
 
-namespace Sidekick.Apis.Poe.Parser.Pseudo
+namespace Sidekick.Apis.Poe.Parser.Pseudo;
+
+public interface IPseudoParser : IInitializableService
 {
-    public interface IPseudoParser : IInitializableService
-    {
-        List<PseudoModifier> Parse(List<ModifierLine> modifiers);
-    }
+    List<PseudoModifier> Parse(List<ModifierLine> modifiers);
 }

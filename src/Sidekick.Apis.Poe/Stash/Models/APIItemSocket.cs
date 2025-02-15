@@ -1,9 +1,8 @@
-namespace Sidekick.Apis.Poe.Stash.Models
+namespace Sidekick.Apis.Poe.Stash.Models;
+
+public class APIItemSocket
 {
-    public class APIItemSocket
-    {
-        public int group { get; set; }
-        public string? attr { get; set; }
-        public string? sColour { get; set; }
-    }
+    public int group { get; set; }
+    public string? attr { get; set; }
+    public string? sColour { get; set; }
 }

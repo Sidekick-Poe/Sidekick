@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class RitualParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void RitualSplinter()
-        {
-            var actual = parser.ParseItem(@"Item Class: Stackable Currency
+[Collection(Collections.Poe1Parser)]
+public class RitualParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void RitualSplinter()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Currency
 Ritual Splinter
 --------
@@ -23,16 +23,16 @@ Shift click to unstack.
 Note: ~price 1 alch
 ");
 
-            Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
-            Assert.Equal(Category.Currency, actual.Header.Category);
-            Assert.Equal("Ritual Splinter", actual.Header.ApiType);
-        }
+        Assert.Equal("currency", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+        Assert.Equal(Category.Currency, actual.Header.Category);
+        Assert.Equal("Ritual Splinter", actual.Header.ApiType);
+    }
 
-        [Fact]
-        public void RitualVessel()
-        {
-            var actual = parser.ParseItem(@"Item Class: Stackable Currency
+    [Fact]
+    public void RitualVessel()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Currency
 Ritual Vessel
 --------
@@ -45,16 +45,16 @@ Right-click this item then left-click a Ritual Altar to store the monsters from 
 Note: ~price 8 chaos
 ");
 
-            Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
-            Assert.Equal(Category.Currency, actual.Header.Category);
-            Assert.Equal("Ritual Vessel", actual.Header.ApiType);
-        }
+        Assert.Equal("currency", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+        Assert.Equal(Category.Currency, actual.Header.Category);
+        Assert.Equal("Ritual Vessel", actual.Header.ApiType);
+    }
 
-        [Fact]
-        public void Corpse()
-        {
-            var actual = parser.ParseItem(@"Item Class: Corpses
+    [Fact]
+    public void Corpse()
+    {
+        var actual = parser.ParseItem(@"Item Class: Corpses
 Rarity: Currency
 Perfect Needle Horror
 --------
@@ -72,10 +72,9 @@ Right click this item to create this corpse.
 Note: ~price 3 chaos
 ");
 
-            Assert.Equal("corpse", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
-            Assert.Equal(Category.Corpse, actual.Header.Category);
-            Assert.Equal("Perfect Needle Horror", actual.Header.ApiType);
-        }
+        Assert.Equal("corpse", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+        Assert.Equal(Category.Corpse, actual.Header.Category);
+        Assert.Equal("Perfect Needle Horror", actual.Header.ApiType);
     }
 }

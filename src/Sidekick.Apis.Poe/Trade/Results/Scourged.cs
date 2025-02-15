@@ -1,7 +1,6 @@
-namespace Sidekick.Apis.Poe.Trade.Results
+namespace Sidekick.Apis.Poe.Trade.Results;
+
+public class Scourged
 {
-    public class Scourged
-    {
-        public int Tier { get; set; }
-    }
+    public int Tier { get; set; }
 }

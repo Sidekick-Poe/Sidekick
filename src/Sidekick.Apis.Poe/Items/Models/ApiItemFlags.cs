@@ -1,7 +1,6 @@
-namespace Sidekick.Apis.Poe.Items.Models
+namespace Sidekick.Apis.Poe.Items.Models;
+
+public class ApiItemFlags
 {
-    public class ApiItemFlags
-    {
-        public bool Unique { get; set; }
-    }
+    public bool Unique { get; set; }
 }

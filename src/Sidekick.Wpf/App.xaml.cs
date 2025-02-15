@@ -11,7 +11,6 @@ using Sidekick.Apis.Poe;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
-using Sidekick.Common.Updater;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Database;
@@ -20,193 +19,193 @@ using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
+using Sidekick.Common.Updater;
 using Sidekick.Mock;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
-using Sidekick.Modules.Wealth;
 using Sidekick.Modules.Trade;
+using Sidekick.Modules.Wealth;
 using Sidekick.Wpf.Services;
 using Velopack;
 
-namespace Sidekick.Wpf
+namespace Sidekick.Wpf;
+
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
+public partial class App
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App
+    public static ServiceProvider ServiceProvider { get; private set; } = null!;
+
+    private readonly ILogger<App> logger;
+    private readonly ISettingsService settingsService;
+    private readonly IInterprocessService interprocessService;
+
+    public App()
     {
-        public static ServiceProvider ServiceProvider { get; private set; } = null!;
+        VelopackApp.Build().Run();
 
-        private readonly ILogger<App> logger;
-        private readonly ISettingsService settingsService;
-        private readonly IInterprocessService interprocessService;
+        DisableWindowsTheme();
+        ServiceProvider = GetServiceProvider();
+        logger = ServiceProvider.GetRequiredService<ILogger<App>>();
+        settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
+        interprocessService = ServiceProvider.GetRequiredService<IInterprocessService>();
+    }
 
-        public App()
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+
+        var currentDirectory = Directory.GetCurrentDirectory();
+        var settingDirectory = settingsService.GetString(SettingKeys.CurrentDirectory).Result;
+        if (string.IsNullOrEmpty(settingDirectory) || settingDirectory != currentDirectory)
         {
-            VelopackApp.Build().Run();
-
-            DisableWindowsTheme();
-            ServiceProvider = GetServiceProvider();
-            logger = ServiceProvider.GetRequiredService<ILogger<App>>();
-            settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-            interprocessService = ServiceProvider.GetRequiredService<IInterprocessService>();
+            logger.LogDebug("[Startup] Current Directory set to: {0}", currentDirectory);
+            settingsService.Set(SettingKeys.CurrentDirectory, currentDirectory).Wait();
+            settingsService.Set(SettingKeys.WealthEnabled, false).Wait();
         }
 
-        protected override void OnStartup(StartupEventArgs e)
+        _ = HandleInterprocessCommunications(e);
+
+        AttachErrorHandlers();
+        interprocessService.StartReceiving();
+        var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
+        _ = viewLocator.Open("/");
+    }
+
+    private async Task HandleInterprocessCommunications(StartupEventArgs e)
+    {
+        if (HasApplicationStartedUsingSidekickProtocol(e) && interprocessService.IsAlreadyRunning())
         {
-            base.OnStartup(e);
-
-            var currentDirectory = Directory.GetCurrentDirectory();
-            var settingDirectory = settingsService.GetString(SettingKeys.CurrentDirectory).Result;
-            if (string.IsNullOrEmpty(settingDirectory) || settingDirectory != currentDirectory)
+            // If we reach here, that means the application was started using a sidekick:// link. We send a message to the already running instance in this case and close this new instance after.
+            try
             {
-                logger.LogDebug("[Startup] Current Directory set to: {0}", currentDirectory);
-                settingsService.Set(SettingKeys.CurrentDirectory, currentDirectory).Wait();
-                settingsService.Set(SettingKeys.WealthEnabled, false).Wait();
+                await interprocessService.SendMessage(e.Args[0]);
             }
-
-            _ = HandleInterprocessCommunications(e);
-
-            AttachErrorHandlers();
-            interprocessService.StartReceiving();
-            var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
-            _ = viewLocator.Open("/");
-        }
-
-        private async Task HandleInterprocessCommunications(StartupEventArgs e)
-        {
-            if (HasApplicationStartedUsingSidekickProtocol(e) && interprocessService.IsAlreadyRunning())
+            finally
             {
-                // If we reach here, that means the application was started using a sidekick:// link. We send a message to the already running instance in this case and close this new instance after.
-                try
-                {
-                    await interprocessService.SendMessage(e.Args[0]);
-                }
-                finally
-                {
-                    logger.LogDebug("[Startup] Application is shutting down due to another instance running.");
-                    ShutdownAndExit();
-                }
-            }
-
-            // Wait a second before starting to listen to interprocess communications.
-            // This is necessary as when we are restarting as admin, the old non-admin instance is still running for a fraction of a second.
-            await Task.Delay(2000);
-            if (interprocessService.IsAlreadyRunning())
-            {
-                logger.LogDebug("[Startup] Application is already running.");
-                var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
-                await viewLocator.CloseAll();
-                var sidekickDialogs = ServiceProvider.GetRequiredService<ISidekickDialogs>();
-                await sidekickDialogs.OpenOkModal("Another instance of Sidekick is already running. Make sure to close all instances of Sidekick inside the Task Manager.");
                 logger.LogDebug("[Startup] Application is shutting down due to another instance running.");
                 ShutdownAndExit();
             }
         }
 
-        private bool HasApplicationStartedUsingSidekickProtocol(StartupEventArgs e)
+        // Wait a second before starting to listen to interprocess communications.
+        // This is necessary as when we are restarting as admin, the old non-admin instance is still running for a fraction of a second.
+        await Task.Delay(2000);
+        if (interprocessService.IsAlreadyRunning())
         {
-            return e.Args.Length > 0 && e.Args[0].ToUpper().StartsWith("SIDEKICK://");
+            logger.LogDebug("[Startup] Application is already running.");
+            var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
+            await viewLocator.CloseAll();
+            var sidekickDialogs = ServiceProvider.GetRequiredService<ISidekickDialogs>();
+            await sidekickDialogs.OpenOkModal("Another instance of Sidekick is already running. Make sure to close all instances of Sidekick inside the Task Manager.");
+            logger.LogDebug("[Startup] Application is shutting down due to another instance running.");
+            ShutdownAndExit();
         }
+    }
 
-        private void ShutdownAndExit()
+    private bool HasApplicationStartedUsingSidekickProtocol(StartupEventArgs e)
+    {
+        return e.Args.Length > 0 && e.Args[0].ToUpper().StartsWith("SIDEKICK://");
+    }
+
+    private void ShutdownAndExit()
+    {
+        Current.Dispatcher.Invoke(() =>
         {
-            Current.Dispatcher.Invoke(() =>
+            Current.Shutdown();
+        });
+        Environment.Exit(0);
+    }
+
+    private ServiceProvider GetServiceProvider()
+    {
+        var services = new ServiceCollection();
+
+        services.AddLocalization();
+
+        services
+
+            // Common
+            .AddSidekickCommon()
+            .AddSidekickCommonBlazor()
+            .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
+            .AddSidekickCommonUi()
+            .AddSidekickCommonPlatform(o =>
             {
-                Current.Shutdown();
-            });
-            Environment.Exit(0);
-        }
+                o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
+                o.OsxIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/apple-touch-icon.png");
+            })
 
-        private ServiceProvider GetServiceProvider()
-        {
-            var services = new ServiceCollection();
+            // Apis
+            .AddSidekickGitHubApi()
+            .AddSidekickPoeApi()
+            .AddSidekickPoeNinjaApi()
+            .AddSidekickPoePriceInfoApi()
+            .AddSidekickPoeWikiApi()
+            .AddSidekickUpdater()
 
-            services.AddLocalization();
+            // Modules
+            .AddSidekickChat()
+            .AddSidekickDevelopment()
+            .AddSidekickGeneral()
+            .AddSidekickMaps()
+            .AddSidekickTrade()
+            .AddSidekickWealth();
 
-            services
+        services.AddSingleton<IApplicationService, MockApplicationService>();
+        services.AddSingleton<ITrayProvider, WpfTrayProvider>();
+        services.AddSingleton<IViewLocator, WpfViewLocator>();
+        services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());
 
-                // Common
-                .AddSidekickCommon()
-                .AddSidekickCommonBlazor()
-                .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
-                .AddSidekickCommonUi()
-                .AddSidekickCommonPlatform(o =>
-                {
-                    o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
-                    o.OsxIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/apple-touch-icon.png");
-                })
-
-                // Apis
-                .AddSidekickGitHubApi()
-                .AddSidekickPoeApi()
-                .AddSidekickPoeNinjaApi()
-                .AddSidekickPoePriceInfoApi()
-                .AddSidekickPoeWikiApi()
-                .AddSidekickUpdater()
-
-                // Modules
-                .AddSidekickChat()
-                .AddSidekickDevelopment()
-                .AddSidekickGeneral()
-                .AddSidekickMaps()
-                .AddSidekickTrade()
-                .AddSidekickWealth();
-
-            services.AddSingleton<IApplicationService, MockApplicationService>();
-            services.AddSingleton<ITrayProvider, WpfTrayProvider>();
-            services.AddSingleton<IViewLocator, WpfViewLocator>();
-            services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());
-
-            services.AddApexCharts();
+        services.AddApexCharts();
 
 #pragma warning disable CA1416 // Validate platform compatibility
-            services.AddWpfBlazorWebView();
-            services.AddBlazorWebViewDeveloperTools();
+        services.AddWpfBlazorWebView();
+        services.AddBlazorWebViewDeveloperTools();
 #pragma warning restore CA1416 // Validate platform compatibility
 
-            return services.BuildServiceProvider();
-        }
+        return services.BuildServiceProvider();
+    }
 
-        protected override void OnExit(ExitEventArgs e)
+    protected override void OnExit(ExitEventArgs e)
+    {
+        if (ServiceProvider != null!)
         {
-            if (ServiceProvider != null!)
-            {
-                ServiceProvider.Dispose();
-            }
-
-            base.OnExit(e);
+            ServiceProvider.Dispose();
         }
 
-        private void AttachErrorHandlers()
+        base.OnExit(e);
+    }
+
+    private void AttachErrorHandlers()
+    {
+        AppDomain.CurrentDomain.UnhandledException += (_, e) =>
         {
-            AppDomain.CurrentDomain.UnhandledException += (_, e) =>
-            {
-                LogException((Exception)e.ExceptionObject);
-            };
+            LogException((Exception)e.ExceptionObject);
+        };
 
-            DispatcherUnhandledException += (_, e) =>
-            {
-                LogException(e.Exception);
-            };
-
-            TaskScheduler.UnobservedTaskException += (_, e) =>
-            {
-                LogException(e.Exception);
-            };
-        }
-
-        private void DisableWindowsTheme()
+        DispatcherUnhandledException += (_, e) =>
         {
-            // Disable Aero theme text rendering
-            RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
-        }
+            LogException(e.Exception);
+        };
 
-        private void LogException(Exception ex)
+        TaskScheduler.UnobservedTaskException += (_, e) =>
         {
-            logger.LogCritical(ex, "Unhandled exception.");
-        }
+            LogException(e.Exception);
+        };
+    }
+
+    private void DisableWindowsTheme()
+    {
+        // Disable Aero theme text rendering
+        RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
+    }
+
+    private void LogException(Exception ex)
+    {
+        logger.LogCritical(ex, "Unhandled exception.");
     }
 }

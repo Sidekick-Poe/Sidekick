@@ -13,74 +13,73 @@ using Sidekick.Common.Settings;
 using Sidekick.Mock;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1
+namespace Sidekick.Apis.Poe.Tests.Poe1;
+
+public class ParserFixture : IAsyncLifetime
 {
-    public class ParserFixture : IAsyncLifetime
+    private static Task? initializationTask;
+
+    public IInvariantModifierProvider InvariantModifierProvider { get; private set; } = null!;
+
+    public IItemParser Parser { get; private set; } = null!;
+
+    public Task DisposeAsync()
     {
-        private static Task? initializationTask;
+        return Task.CompletedTask;
+    }
 
-        public IInvariantModifierProvider InvariantModifierProvider { get; private set; } = null!;
+    public async Task InitializeAsync()
+    {
+        using var ctx = new TestContext();
+        ctx.Services.AddLocalization();
 
-        public IItemParser Parser { get; private set; } = null!;
+        ctx.Services
+            // Building blocks
+            .AddSidekickCommon()
+            .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
 
-        public Task DisposeAsync()
+            // Apis
+            .AddSidekickPoeApi()
+            .AddSidekickPoeNinjaApi()
+            .AddSidekickPoeWikiApi()
+
+            // Mocks
+            .AddSidekickMocks();
+
+        var settingsService = ctx.Services.GetRequiredService<ISettingsService>();
+        await settingsService.Set(SettingKeys.LanguageParser, "en");
+        await settingsService.Set(SettingKeys.LanguageUi, "en");
+        await settingsService.Set(SettingKeys.LeagueId, "poe1.Standard");
+
+        if (initializationTask == null)
         {
-            return Task.CompletedTask;
+            var serviceProvider = ctx.Services.GetRequiredService<IServiceProvider>();
+            initializationTask = Initialize(serviceProvider);
         }
 
-        public async Task InitializeAsync()
+        await initializationTask;
+
+        Parser = ctx.Services.GetRequiredService<IItemParser>();
+        InvariantModifierProvider = ctx.Services.GetRequiredService<IInvariantModifierProvider>();
+    }
+
+    private async Task Initialize(IServiceProvider serviceProvider)
+    {
+        var cache = serviceProvider.GetRequiredService<ICacheProvider>();
+        await cache.Clear();
+
+        var configuration = serviceProvider.GetRequiredService<IOptions<SidekickConfiguration>>();
+        var logger = serviceProvider.GetRequiredService<ILogger<ParserFixture>>();
+        foreach (var serviceType in configuration.Value.InitializableServices)
         {
-            using var ctx = new TestContext();
-            ctx.Services.AddLocalization();
-
-            ctx.Services
-                // Building blocks
-                .AddSidekickCommon()
-                .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
-
-                // Apis
-                .AddSidekickPoeApi()
-                .AddSidekickPoeNinjaApi()
-                .AddSidekickPoeWikiApi()
-
-                // Mocks
-                .AddSidekickMocks();
-
-            var settingsService = ctx.Services.GetRequiredService<ISettingsService>();
-            await settingsService.Set(SettingKeys.LanguageParser, "en");
-            await settingsService.Set(SettingKeys.LanguageUi, "en");
-            await settingsService.Set(SettingKeys.LeagueId, "poe1.Standard");
-
-            if (initializationTask == null)
+            var service = serviceProvider.GetRequiredService(serviceType);
+            if (service is not IInitializableService initializableService)
             {
-                var serviceProvider = ctx.Services.GetRequiredService<IServiceProvider>();
-                initializationTask = Initialize(serviceProvider);
+                continue;
             }
 
-            await initializationTask;
-
-            Parser = ctx.Services.GetRequiredService<IItemParser>();
-            InvariantModifierProvider = ctx.Services.GetRequiredService<IInvariantModifierProvider>();
-        }
-
-        private async Task Initialize(IServiceProvider serviceProvider)
-        {
-            var  cache = serviceProvider.GetRequiredService<ICacheProvider>();
-            await cache.Clear();
-
-            var  configuration = serviceProvider.GetRequiredService<IOptions<SidekickConfiguration>>();
-            var  logger = serviceProvider.GetRequiredService<ILogger<ParserFixture>>();
-            foreach (var serviceType in configuration.Value.InitializableServices)
-            {
-                var service = serviceProvider.GetRequiredService(serviceType);
-                if (service is not IInitializableService initializableService)
-                {
-                    continue;
-                }
-
-                logger.LogInformation($"[Initialization] Initializing {initializableService.GetType().FullName}");
-                await initializableService.Initialize();
-            }
+            logger.LogInformation($"[Initialization] Initializing {initializableService.GetType().FullName}");
+            await initializableService.Initialize();
         }
     }
 }

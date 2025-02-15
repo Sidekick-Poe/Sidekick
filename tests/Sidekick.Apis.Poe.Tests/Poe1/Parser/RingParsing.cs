@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class RingParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void ParseBroodCircle()
-        {
-            var actual = parser.ParseItem(@"Item Class: Rings
+[Collection(Collections.Poe1Parser)]
+public class RingParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParseBroodCircle()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
 Rarity: Rare
 Brood Circle
 Ruby Ring
@@ -31,26 +31,26 @@ Adds 8 to 13 Physical Damage to Attacks
 Corrupted
 ");
 
-            Assert.Equal("accessory.ring", actual.Header.ItemCategory);
-            Assert.Equal(Category.Accessory, actual.Header.Category);
-            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-            Assert.Equal("Ruby Ring", actual.Header.ApiType);
+        Assert.Equal("accessory.ring", actual.Header.ItemCategory);
+        Assert.Equal(Category.Accessory, actual.Header.Category);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal("Ruby Ring", actual.Header.ApiType);
 
-            Assert.Equal(76, actual.Properties.ItemLevel);
-            Assert.False(actual.Properties.Unidentified);
-            Assert.True(actual.Properties.Corrupted);
+        Assert.Equal(76, actual.Properties.ItemLevel);
+        Assert.False(actual.Properties.Unidentified);
+        Assert.True(actual.Properties.Corrupted);
 
-            actual.AssertHasModifier(ModifierCategory.Implicit, "Anger has #% increased Aura Effect", 18);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to all Attributes", 16);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Intelligence", 31);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage to Attacks", 8, 13);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Mana Regeneration Rate", 31);
-        }
+        actual.AssertHasModifier(ModifierCategory.Implicit, "Anger has #% increased Aura Effect", 18);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "+# to all Attributes", 16);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Intelligence", 31);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage to Attacks", 8, 13);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Mana Regeneration Rate", 31);
+    }
 
-        [Fact]
-        public void ParseBerekGrip()
-        {
-            var actual = parser.ParseItem(@"Item Class: Rings
+    [Fact]
+    public void ParseBerekGrip()
+    {
+        var actual = parser.ParseItem(@"Item Class: Rings
 Rarity: Unique
 Berek's Grip
 Two-Stone Ring
@@ -76,7 +76,6 @@ While Berek slept.""
 - Berek and the Untamed
 ");
 
-            Assert.False(actual.Properties.Unidentified);
-        }
+        Assert.False(actual.Properties.Unidentified);
     }
 }

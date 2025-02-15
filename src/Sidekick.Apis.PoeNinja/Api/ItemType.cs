@@ -1,91 +1,90 @@
 using Sidekick.Common.Enums;
 
-namespace Sidekick.Apis.PoeNinja.Api
+namespace Sidekick.Apis.PoeNinja.Api;
+
+public enum ItemType
 {
-    public enum ItemType
-    {
-        // BaseType, // This is ~13mb of raw data, in memory it eats ~40mb.
-        // HelmetEnchant,
+    // BaseType, // This is ~13mb of raw data, in memory it eats ~40mb.
+    // HelmetEnchant,
 
-        [EnumValue("oils")]
-        Oil,
+    [EnumValue("oils")]
+    Oil,
 
-        [EnumValue("incubators")]
-        Incubator,
+    [EnumValue("incubators")]
+    Incubator,
 
-        [EnumValue("scarabs")]
-        Scarab,
+    [EnumValue("scarabs")]
+    Scarab,
 
-        [EnumValue("fossils")]
-        Fossil,
+    [EnumValue("fossils")]
+    Fossil,
 
-        [EnumValue("resonators")]
-        Resonator,
+    [EnumValue("resonators")]
+    Resonator,
 
-        [EnumValue("essences")]
-        Essence,
+    [EnumValue("essences")]
+    Essence,
 
-        [EnumValue("divination-cards")]
-        DivinationCard,
+    [EnumValue("divination-cards")]
+    DivinationCard,
 
-        [EnumValue("skill-gems")]
-        SkillGem,
+    [EnumValue("skill-gems")]
+    SkillGem,
 
-        [EnumValue("unique-maps")]
-        UniqueMap,
+    [EnumValue("unique-maps")]
+    UniqueMap,
 
-        [EnumValue("maps")]
-        Map,
+    [EnumValue("maps")]
+    Map,
 
-        [EnumValue("cluster-jewels")]
-        ClusterJewel,
+    [EnumValue("cluster-jewels")]
+    ClusterJewel,
 
-        [EnumValue("unique-jewels")]
-        UniqueJewel,
+    [EnumValue("unique-jewels")]
+    UniqueJewel,
 
-        [EnumValue("unique-flasks")]
-        UniqueFlask,
+    [EnumValue("unique-flasks")]
+    UniqueFlask,
 
-        [EnumValue("unique-weapons")]
-        UniqueWeapon,
+    [EnumValue("unique-weapons")]
+    UniqueWeapon,
 
-        [EnumValue("unique-armours")]
-        UniqueArmour,
+    [EnumValue("unique-armours")]
+    UniqueArmour,
 
-        [EnumValue("unique-accessories")]
-        UniqueAccessory,
+    [EnumValue("unique-accessories")]
+    UniqueAccessory,
 
-        [EnumValue("beasts")]
-        Beast,
+    [EnumValue("beasts")]
+    Beast,
 
-        [EnumValue("currency")]
-        Currency,
+    [EnumValue("currency")]
+    Currency,
 
-        [EnumValue("fragments")]
-        Fragment,
+    [EnumValue("fragments")]
+    Fragment,
 
-        [EnumValue("invitations")]
-        Invitation,
+    [EnumValue("invitations")]
+    Invitation,
 
-        [EnumValue("delirium-orbs")]
-        DeliriumOrb,
+    [EnumValue("delirium-orbs")]
+    DeliriumOrb,
 
-        [EnumValue("blighted-maps")]
-        BlightedMap,
+    [EnumValue("blighted-maps")]
+    BlightedMap,
 
-        [EnumValue("blight-ravaged-maps")]
-        BlightRavagedMap,
+    [EnumValue("blight-ravaged-maps")]
+    BlightRavagedMap,
 
-        [EnumValue("artifacts")]
-        Artifact,
+    [EnumValue("artifacts")]
+    Artifact,
 
-        [EnumValue("kalguuran-runes")]
-        KalguuranRune,
+    [EnumValue("kalguuran-runes")]
+    KalguuranRune,
 
-        [EnumValue("omens")]
-        Omen,
+    [EnumValue("omens")]
+    Omen,
 
-        [EnumValue("tattoos")]
-        Tattoo,
-    }
+    [EnumValue("tattoos")]
+    Tattoo,
 }

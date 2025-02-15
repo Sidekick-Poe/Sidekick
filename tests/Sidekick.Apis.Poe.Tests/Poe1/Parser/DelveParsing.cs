@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class DelveParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void ParsePotentChaoticResonator()
-        {
-            var actual = parser.ParseItem(@"Item Class: Delve Stackable Socketable Currency
+[Collection(Collections.Poe1Parser)]
+public class DelveParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParsePotentChaoticResonator()
+    {
+        var actual = parser.ParseItem(@"Item Class: Delve Stackable Socketable Currency
 Rarity: Currency
 Potent Chaotic Resonator
 --------
@@ -27,16 +27,16 @@ All sockets must be filled with Fossils before this item can be used.
 Note: ~price 1 chaos
 ");
 
-            Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Category.Currency, actual.Header.Category);
-            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
-            Assert.Equal("Potent Chaotic Resonator", actual.Header.ApiType);
-        }
+        Assert.Equal("currency", actual.Header.ItemCategory);
+        Assert.Equal(Category.Currency, actual.Header.Category);
+        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+        Assert.Equal("Potent Chaotic Resonator", actual.Header.ApiType);
+    }
 
-        [Fact]
-        public void PowerfulChaoticResonator()
-        {
-            var actual = parser.ParseItem(@"Item Class: Delve Stackable Socketable Currency
+    [Fact]
+    public void PowerfulChaoticResonator()
+    {
+        var actual = parser.ParseItem(@"Item Class: Delve Stackable Socketable Currency
 Rarity: Currency
 Powerful Chaotic Resonator
 --------
@@ -52,16 +52,16 @@ All sockets must be filled with Fossils before this item can be used.
 Note: ~price 4 chaos
 ");
 
-            Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
-            Assert.Equal(Category.Currency, actual.Header.Category);
-            Assert.Equal("Powerful Chaotic Resonator", actual.Header.ApiType);
-        }
+        Assert.Equal("currency", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+        Assert.Equal(Category.Currency, actual.Header.Category);
+        Assert.Equal("Powerful Chaotic Resonator", actual.Header.ApiType);
+    }
 
-        [Fact]
-        public void PerfectFossil()
-        {
-            var actual = parser.ParseItem(@"Item Class: Stackable Currency
+    [Fact]
+    public void PerfectFossil()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Currency
 Opulent Fossil
 --------
@@ -73,10 +73,9 @@ No Tagless modifiers
 Place in a Resonator to influence item crafting.
 ");
 
-            Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
-            Assert.Equal(Category.Currency, actual.Header.Category);
-            Assert.Equal("Opulent Fossil", actual.Header.ApiType);
-        }
+        Assert.Equal("currency", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+        Assert.Equal(Category.Currency, actual.Header.Category);
+        Assert.Equal("Opulent Fossil", actual.Header.ApiType);
     }
 }

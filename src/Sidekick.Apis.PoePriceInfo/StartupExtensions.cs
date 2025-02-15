@@ -1,15 +1,14 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Sidekick.Apis.PoePriceInfo
-{
-    public static class StartupExtensions
-    {
-        public static IServiceCollection AddSidekickPoePriceInfoApi(this IServiceCollection services)
-        {
-            services.AddHttpClient();
-            services.AddSingleton<IPoePriceInfoClient, PoePriceInfoClient>();
+namespace Sidekick.Apis.PoePriceInfo;
 
-            return services;
-        }
+public static class StartupExtensions
+{
+    public static IServiceCollection AddSidekickPoePriceInfoApi(this IServiceCollection services)
+    {
+        services.AddHttpClient();
+        services.AddSingleton<IPoePriceInfoClient, PoePriceInfoClient>();
+
+        return services;
     }
 }

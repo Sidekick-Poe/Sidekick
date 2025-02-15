@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Apis.Poe.CloudFlare;
+namespace Sidekick.Apis.Poe.CloudFlare;
 
 public interface ICloudflareService
 {

@@ -1,4 +1,4 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Fuzzy;

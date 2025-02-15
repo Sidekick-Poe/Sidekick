@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
@@ -12,9 +12,9 @@ public abstract class PropertyDefinition
 
     public abstract void Initialize();
 
-    public virtual void Parse(ItemProperties itemProperties, ParsingItem parsingItem) {}
+    public virtual void Parse(ItemProperties itemProperties, ParsingItem parsingItem) { }
 
-    public virtual void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines) {}
+    public virtual void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines) { }
 
     public virtual BooleanPropertyFilter? GetFilter(Item item, double normalizeValue) { return null; }
 

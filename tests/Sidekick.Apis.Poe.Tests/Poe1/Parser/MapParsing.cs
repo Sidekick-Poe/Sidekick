@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class MapParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void ParseArcadeMap()
-        {
-            var actual = parser.ParseItem(@"Item Class: Maps
+[Collection(Collections.Poe1Parser)]
+public class MapParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParseArcadeMap()
+    {
+        var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Normal
 Arcade Map
 --------
@@ -23,18 +23,18 @@ Item Level: 84
 Travel to this Map by using it in a personal Map Device. Maps can only be used once.
 ");
 
-            Assert.Equal("map", actual.Header.ItemCategory);
-            Assert.Equal(Category.Map, actual.Header.Category);
-            Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-            Assert.Equal("Arcade Map", actual.Header.ApiType);
-            Assert.Equal(15, actual.Properties.MapTier);
-            Assert.Equal(84, actual.Properties.ItemLevel);
-        }
+        Assert.Equal("map", actual.Header.ItemCategory);
+        Assert.Equal(Category.Map, actual.Header.Category);
+        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
+        Assert.Equal("Arcade Map", actual.Header.ApiType);
+        Assert.Equal(15, actual.Properties.MapTier);
+        Assert.Equal(84, actual.Properties.ItemLevel);
+    }
 
-        [Fact]
-        public void ParseUniqueMap()
-        {
-            var actual = parser.ParseItem(@"Item Class: Maps
+    [Fact]
+    public void ParseUniqueMap()
+    {
+        var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Unique
 Maelström of Chaos
 Atoll Map
@@ -60,20 +60,20 @@ Will they grant me strength or doom?
 Travel to this Map by using it in a personal Map Device. Maps can only be used once.
 ");
 
-            Assert.Equal("map", actual.Header.ItemCategory);
-            Assert.Equal(Category.Map, actual.Header.Category);
-            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
-            Assert.Equal("Maelström of Chaos", actual.Header.ApiName);
-            Assert.Equal("Atoll Map", actual.Header.ApiType);
-            Assert.Equal(5, actual.Properties.MapTier);
-            Assert.Equal(41, actual.Properties.ItemQuantity);
-            Assert.Equal(299, actual.Properties.ItemRarity);
-        }
+        Assert.Equal("map", actual.Header.ItemCategory);
+        Assert.Equal(Category.Map, actual.Header.Category);
+        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+        Assert.Equal("Maelström of Chaos", actual.Header.ApiName);
+        Assert.Equal("Atoll Map", actual.Header.ApiType);
+        Assert.Equal(5, actual.Properties.MapTier);
+        Assert.Equal(41, actual.Properties.ItemQuantity);
+        Assert.Equal(299, actual.Properties.ItemRarity);
+    }
 
-        [Fact]
-        public void ParseOccupiedMap()
-        {
-            var actual = parser.ParseItem(@"Item Class: Maps
+    [Fact]
+    public void ParseOccupiedMap()
+    {
+        var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Rare
 Vortex Crag
 Phantasmagoria Map
@@ -106,27 +106,27 @@ Corrupted
 Note: ~price 2 chaos
 ");
 
-            Assert.Equal(Category.Map, actual.Header.Category);
-            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-            Assert.Equal("Phantasmagoria Map", actual.Header.ApiType);
+        Assert.Equal(Category.Map, actual.Header.Category);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal("Phantasmagoria Map", actual.Header.ApiType);
 
-            actual.AssertHasModifier(ModifierCategory.Implicit, "Area is influenced by The Elder");
-        }
+        actual.AssertHasModifier(ModifierCategory.Implicit, "Area is influenced by The Elder");
+    }
 
-        [Fact]
-        public void ParseTimelessKaruiEmblem()
-        {
-            var actual = parser.ParseItem(TimelessKaruiEmblem);
+    [Fact]
+    public void ParseTimelessKaruiEmblem()
+    {
+        var actual = parser.ParseItem(TimelessKaruiEmblem);
 
-            Assert.Equal(Category.Map, actual.Header.Category);
-            Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-            Assert.Equal("Timeless Karui Emblem", actual.Header.ApiType);
-        }
+        Assert.Equal(Category.Map, actual.Header.Category);
+        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
+        Assert.Equal("Timeless Karui Emblem", actual.Header.ApiType);
+    }
 
-        [Fact]
-        public void ParseVortexPit()
-        {
-            var actual = parser.ParseItem(@"Item Class: Unknown
+    [Fact]
+    public void ParseVortexPit()
+    {
+        var actual = parser.ParseItem(@"Item Class: Unknown
 Rarity: Rare
 Vortex Pit
 Burial Chambers Map
@@ -153,22 +153,21 @@ Magic Monster Packs each have a Bloodline Mod
 Travel to this Map by using it in a personal Map Device. Maps can only be used once.
 ");
 
-            Assert.Equal(Category.Map, actual.Header.Category);
-            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-            Assert.Equal("Burial Chambers Map", actual.Header.ApiType);
+        Assert.Equal(Category.Map, actual.Header.Category);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal("Burial Chambers Map", actual.Header.ApiType);
 
-            actual.AssertHasModifier(ModifierCategory.Explicit, "Monsters have #% increased Area of Effect", 100);
-        }
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Monsters have #% increased Area of Effect", 100);
+    }
 
-        #region ItemText
+    #region ItemText
 
-        private const string TimelessKaruiEmblem = @"Item Class: Map Fragments
+    private const string TimelessKaruiEmblem = @"Item Class: Map Fragments
 Rarity: Normal
 Timeless Karui Emblem
 --------
 Place two or more different Emblems in a Map Device to access the Domain of Timeless Conflict. Can only be used once.
 ";
 
-        #endregion ItemText
-    }
+    #endregion ItemText
 }

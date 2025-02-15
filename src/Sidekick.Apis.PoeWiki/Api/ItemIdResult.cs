@@ -1,10 +1,9 @@
 using System.Text.Json.Serialization;
 
-namespace Sidekick.Apis.PoeWiki.Api
+namespace Sidekick.Apis.PoeWiki.Api;
+
+internal record ItemIdResult
 {
-    internal record ItemIdResult
-    {
-        [JsonPropertyName("item id")]
-        public string? ItemId { get; init; }
-    }
+    [JsonPropertyName("item id")]
+    public string? ItemId { get; init; }
 }

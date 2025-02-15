@@ -21,7 +21,7 @@ public class IntPropertyFilter : BooleanPropertyFilter
 
     public int? Min { get; set; }
 
-    public int? Max { get; set;}
+    public int? Max { get; set; }
 
     /// <summary>
     /// Normalize the Min value with NormalizeValue.

@@ -3,26 +3,25 @@ using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
 
-namespace Sidekick.Modules.Wealth.Keybinds
+namespace Sidekick.Modules.Wealth.Keybinds;
+
+public class OpenWealthKeybindHandler(
+    IViewLocator viewLocator,
+    ISettingsService settingsService,
+    IProcessProvider processProvider) : KeybindHandler(settingsService)
 {
-    public class OpenWealthKeybindHandler(
-        IViewLocator viewLocator,
-        ISettingsService settingsService,
-        IProcessProvider processProvider) : KeybindHandler(settingsService)
+    private readonly ISettingsService settingsService = settingsService;
+
+    protected override async Task<List<string?>> GetKeybinds() =>
+    [
+        await settingsService.GetString(SettingKeys.KeyOpenWealth)
+    ];
+
+    public override bool IsValid(string _) => processProvider.IsPathOfExileInFocus || processProvider.IsSidekickInFocus;
+
+    public override Task Execute(string _)
     {
-        private readonly ISettingsService settingsService = settingsService;
-
-        protected override async Task<List<string?>> GetKeybinds() =>
-        [
-            await settingsService.GetString(SettingKeys.KeyOpenWealth)
-        ];
-
-        public override bool IsValid(string _) => processProvider.IsPathOfExileInFocus || processProvider.IsSidekickInFocus;
-
-        public override Task Execute(string _)
-        {
-            viewLocator.Open("/wealth");
-            return Task.CompletedTask;
-        }
+        viewLocator.Open("/wealth");
+        return Task.CompletedTask;
     }
 }

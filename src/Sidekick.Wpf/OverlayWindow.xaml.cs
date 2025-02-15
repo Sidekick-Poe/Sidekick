@@ -1,13 +1,12 @@
-namespace Sidekick.Wpf
+namespace Sidekick.Wpf;
+
+/// <summary>
+/// Interaction logic for Window1.xaml
+/// </summary>
+public partial class OverlayWindow
 {
-    /// <summary>
-    /// Interaction logic for Window1.xaml
-    /// </summary>
-    public partial class OverlayWindow
+    public OverlayWindow()
     {
-        public OverlayWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

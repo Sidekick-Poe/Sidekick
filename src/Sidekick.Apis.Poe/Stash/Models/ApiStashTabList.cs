@@ -1,10 +1,9 @@
 using System.Text.Json.Serialization;
 
-namespace Sidekick.Apis.Poe.Stash.Models
+namespace Sidekick.Apis.Poe.Stash.Models;
+
+public class ApiStashTabList
 {
-    public class ApiStashTabList
-    {
-        [JsonPropertyName("stashes")]
-        public required List<ApiStashTab> StashTabs { get; set; }
-    }
+    [JsonPropertyName("stashes")]
+    public required List<ApiStashTab> StashTabs { get; set; }
 }

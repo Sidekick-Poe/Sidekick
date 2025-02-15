@@ -84,9 +84,9 @@ public class HeaderParser
                 case "flask.life": return BuildRegex(gameLanguageProvider.Language.Classes.LifeFlasks);
                 case "flask.mana": return BuildRegex(gameLanguageProvider.Language.Classes.ManaFlasks);
 
-                // case "gem.metagem": return BuildRegex(gameLanguageProvider.Language.Classes.MetaGems);
-                // case "currency.rune": return BuildRegex(gameLanguageProvider.Language.Classes.Rune);
-                // case "currency.soulcore": return BuildRegex(gameLanguageProvider.Language.Classes.Soulcore);
+                    // case "gem.metagem": return BuildRegex(gameLanguageProvider.Language.Classes.MetaGems);
+                    // case "currency.rune": return BuildRegex(gameLanguageProvider.Language.Classes.Rune);
+                    // case "currency.soulcore": return BuildRegex(gameLanguageProvider.Language.Classes.Soulcore);
             }
         }
 

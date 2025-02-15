@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class BodyArmourParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void ParseSixLinkUniqueBodyArmor()
-        {
-            var actual = parser.ParseItem(@"Item Class: Unknown
+[Collection(Collections.Poe1Parser)]
+public class BodyArmourParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParseSixLinkUniqueBodyArmor()
+    {
+        var actual = parser.ParseItem(@"Item Class: Unknown
 Rarity: Unique
 Carcass Jack
 Varnished Coat
@@ -42,30 +42,30 @@ can deny that my work has made quite the splash...""
 - Maligaro's Journal
 ");
 
-            Assert.Equal(Category.Armour, actual.Header.Category);
-            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
-            Assert.Equal("Carcass Jack", actual.Header.ApiName);
-            Assert.Equal("Varnished Coat", actual.Header.ApiType);
-            Assert.Equal(20, actual.Properties.Quality);
-            Assert.Equal(960, actual.Properties.EvasionRating);
-            Assert.Equal(186, actual.Properties.EnergyShield);
-            Assert.Equal(6, actual.Sockets.Count(x => x.Group == 0));
+        Assert.Equal(Category.Armour, actual.Header.Category);
+        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+        Assert.Equal("Carcass Jack", actual.Header.ApiName);
+        Assert.Equal("Varnished Coat", actual.Header.ApiType);
+        Assert.Equal(20, actual.Properties.Quality);
+        Assert.Equal(960, actual.Properties.EvasionRating);
+        Assert.Equal(186, actual.Properties.EnergyShield);
+        Assert.Equal(6, actual.Sockets.Count(x => x.Group == 0));
 
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Evasion and Energy Shield (Local)", 128);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to maximum Life", 55);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "+#% to all Elemental Resistances", 12);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Area of Effect", 44);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Area Damage", 47);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "Extra gore");
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Evasion and Energy Shield (Local)", 128);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "+# to maximum Life", 55);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "+#% to all Elemental Resistances", 12);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Area of Effect", 44);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Area Damage", 47);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Extra gore");
 
-            actual.AssertHasPseudoModifier("+36% total Elemental Resistance", 36);
-            actual.AssertHasPseudoModifier("+55 total maximum Life", 55);
-        }
+        actual.AssertHasPseudoModifier("+36% total Elemental Resistance", 36);
+        actual.AssertHasPseudoModifier("+55 total maximum Life", 55);
+    }
 
-        [Fact]
-        public void DaressosDefiance()
-        {
-            var actual = parser.ParseItem(@"Item Class: Body Armours
+    [Fact]
+    public void DaressosDefiance()
+    {
+        var actual = parser.ParseItem(@"Item Class: Body Armours
 Rarity: Unique
 Daresso's Defiance
 Full Dragonscale
@@ -100,11 +100,10 @@ Unbridled, overwhelming violence.""
 Note: ~price 2 chaos
 ");
 
-            Assert.Equal("armour.chest", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
-            Assert.Equal(Category.Armour, actual.Header.Category);
-            Assert.Equal("Daresso's Defiance", actual.Header.ApiName);
-            Assert.Equal("Full Dragonscale", actual.Header.ApiType);
-        }
+        Assert.Equal("armour.chest", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+        Assert.Equal(Category.Armour, actual.Header.Category);
+        Assert.Equal("Daresso's Defiance", actual.Header.ApiName);
+        Assert.Equal("Full Dragonscale", actual.Header.ApiType);
     }
 }

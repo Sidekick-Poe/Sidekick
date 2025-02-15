@@ -13,204 +13,203 @@ using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
 
-namespace Sidekick.Common.Blazor.Initialization
+namespace Sidekick.Common.Blazor.Initialization;
+
+public partial class Initialization : SidekickView
 {
-    public partial class Initialization : SidekickView
+    [Inject]
+    private IStringLocalizer<InitializationResources> Resources { get; set; } = null!;
+
+    [Inject]
+    private ILogger<Initialization> Logger { get; set; } = null!;
+
+    [Inject]
+    private IApplicationService ApplicationService { get; set; } = null!;
+
+    [Inject]
+    private ITrayProvider TrayProvider { get; set; } = null!;
+
+    [Inject]
+    private IOptions<SidekickConfiguration> Configuration { get; set; } = null!;
+
+    [Inject]
+    private IServiceProvider ServiceProvider { get; set; } = null!;
+
+    [Inject]
+    private IBrowserProvider BrowserProvider { get; set; } = null!;
+
+    [Inject]
+    private ISettingsService SettingsService { get; set; } = null!;
+
+    [Inject]
+    private ICacheProvider CacheProvider { get; set; } = null!;
+
+    private int Count { get; set; }
+
+    private int Completed { get; set; }
+
+    private string? Step { get; set; }
+
+    private int Percentage { get; set; }
+
+    private string? WelcomeMessage { get; set; }
+
+    public Task? InitializationTask { get; set; }
+
+    public override SidekickViewType ViewType => SidekickViewType.Modal;
+
+    private int TimeLeftToCloseView { get; set; }
+
+    protected override async Task OnInitializedAsync()
     {
-        [Inject]
-        private IStringLocalizer<InitializationResources> Resources { get; set; } = null!;
+        InitializationTask = Handle();
+        var keyOpenPriceCheck = await SettingsService.GetString(SettingKeys.KeyOpenPriceCheck);
+        var keyClose = await SettingsService.GetString(SettingKeys.KeyClose);
+        WelcomeMessage = string.Format(Resources["Notification"], keyOpenPriceCheck.ToKeybindString(), keyClose.ToKeybindString());
+        await base.OnInitializedAsync();
+        await InitializationTask;
+    }
 
-        [Inject]
-        private ILogger<Initialization> Logger { get; set; } = null!;
-
-        [Inject]
-        private IApplicationService ApplicationService { get; set; } = null!;
-
-        [Inject]
-        private ITrayProvider TrayProvider { get; set; } = null!;
-
-        [Inject]
-        private IOptions<SidekickConfiguration> Configuration { get; set; } = null!;
-
-        [Inject]
-        private IServiceProvider ServiceProvider { get; set; } = null!;
-
-        [Inject]
-        private IBrowserProvider BrowserProvider { get; set; } = null!;
-
-        [Inject]
-        private ISettingsService SettingsService { get; set; } = null!;
-
-        [Inject]
-        private ICacheProvider CacheProvider { get; set; } = null!;
-
-        private int Count { get; set; }
-
-        private int Completed { get; set; }
-
-        private string? Step { get; set; }
-
-        private int Percentage { get; set; }
-
-        private string? WelcomeMessage { get; set; }
-
-        public Task? InitializationTask { get; set; }
-
-        public override SidekickViewType ViewType => SidekickViewType.Modal;
-
-        private int TimeLeftToCloseView { get; set; }
-
-        protected override async Task OnInitializedAsync()
+    public async Task Handle()
+    {
+        try
         {
-            InitializationTask = Handle();
-            var keyOpenPriceCheck = await SettingsService.GetString(SettingKeys.KeyOpenPriceCheck);
-            var keyClose = await SettingsService.GetString(SettingKeys.KeyClose);
-            WelcomeMessage = string.Format(Resources["Notification"], keyOpenPriceCheck.ToKeybindString(), keyClose.ToKeybindString());
-            await base.OnInitializedAsync();
-            await InitializationTask;
-        }
-
-        public async Task Handle()
-        {
-            try
+            Completed = 0;
+            Count = Configuration.Value.InitializableServices.Count + 1;
+            var version = GetVersion();
+            var previousVersion = await SettingsService.GetString(SettingKeys.Version);
+            if (version != previousVersion)
             {
-                Completed = 0;
-                Count = Configuration.Value.InitializableServices.Count + 1;
-                var version = GetVersion();
-                var previousVersion = await SettingsService.GetString(SettingKeys.Version);
-                if (version != previousVersion)
+                await CacheProvider.Clear();
+                await SettingsService.Set(SettingKeys.Version, version);
+            }
+
+            // Report initial progress
+            await ReportProgress();
+
+            var services = Configuration.Value.InitializableServices.Select(serviceType =>
                 {
-                    await CacheProvider.Clear();
-                    await SettingsService.Set(SettingKeys.Version, version);
-                }
+                    var service = ServiceProvider.GetRequiredService(serviceType);
+                    return service as IInitializableService;
+                })
+                .Where(x => x != null)
+                .Select(x => x!)
+                .OrderBy(x => x.Priority);
 
-                // Report initial progress
-                await ReportProgress();
-
-                var services = Configuration.Value.InitializableServices.Select(serviceType =>
-                    {
-                        var service = ServiceProvider.GetRequiredService(serviceType);
-                        return service as IInitializableService;
-                    })
-                    .Where(x => x != null)
-                    .Select(x => x!)
-                    .OrderBy(x => x.Priority);
-
-                foreach (var service in services)
-                {
-                    Logger.LogInformation($"[Initialization] Initializing {service.GetType().FullName}");
-                    await service.Initialize();
-                    Completed += 1;
-                    await ReportProgress();
-                }
-
-                await Run(InitializeTray);
-
-                // If we have a successful initialization, we delay for half a second to show the
-                // "Ready" label on the UI before closing the view
-                Completed = Count;
-
-                await StartCountdownToClose();
+            foreach (var service in services)
+            {
+                Logger.LogInformation($"[Initialization] Initializing {service.GetType().FullName}");
+                await service.Initialize();
+                Completed += 1;
                 await ReportProgress();
             }
-            catch (SidekickException e)
-            {
-                await SettingsService.Set(SettingKeys.LanguageParser, null);
-                e.Actions = ExceptionActions.ExitApplication;
-                throw;
-            }
+
+            await Run(InitializeTray);
+
+            // If we have a successful initialization, we delay for half a second to show the
+            // "Ready" label on the UI before closing the view
+            Completed = Count;
+
+            await StartCountdownToClose();
+            await ReportProgress();
+        }
+        catch (SidekickException e)
+        {
+            await SettingsService.Set(SettingKeys.LanguageParser, null);
+            e.Actions = ExceptionActions.ExitApplication;
+            throw;
+        }
+    }
+
+    private async Task StartCountdownToClose()
+    {
+        TimeLeftToCloseView = Debugger.IsAttached ? 1 : 4;
+
+        while (TimeLeftToCloseView > 0)
+        {
+            StateHasChanged();
+            await Task.Delay(1000);
+            TimeLeftToCloseView--;
         }
 
-        private async Task StartCountdownToClose()
+        if (Debugger.IsAttached)
         {
-            TimeLeftToCloseView = Debugger.IsAttached ? 1 : 4;
+            NavigationManager.NavigateTo("/development");
+        }
+        else
+        {
+            await CurrentView.Close();
+        }
+    }
 
-            while (TimeLeftToCloseView > 0)
-            {
-                StateHasChanged();
-                await Task.Delay(1000);
-                TimeLeftToCloseView--;
-            }
+    private async Task Run(Action action)
+    {
+        // Send the command
+        action.Invoke();
 
-            if (Debugger.IsAttached)
+        // Make sure that after all handlers run, the Completed count is updated
+        Completed += 1;
+
+        // Report progress
+        await ReportProgress();
+    }
+
+    private Task ReportProgress()
+    {
+        return InvokeAsync(() =>
+        {
+            Percentage = Count == 0 ? 0 : Completed * 100 / Count;
+            if (Percentage >= 100)
             {
-                NavigationManager.NavigateTo("/development");
+                Step = Resources["Ready"];
+                Percentage = 100;
             }
             else
             {
-                await CurrentView.Close();
+                Step = Resources["Title", Completed, Count];
             }
-        }
 
-        private async Task Run(Action action)
+            StateHasChanged();
+            return Task.Delay(100);
+        });
+    }
+
+    private string? GetVersion()
+    {
+        var version = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).FirstOrDefault(x => x.Name == "Sidekick")?.Version;
+        return version?.ToString();
+    }
+
+    private void InitializeTray()
+    {
+        var menuItems = new List<TrayMenuItem>();
+
+        menuItems.AddRange(new List<TrayMenuItem>()
         {
-            // Send the command
-            action.Invoke();
-
-            // Make sure that after all handlers run, the Completed count is updated
-            Completed += 1;
-
-            // Report progress
-            await ReportProgress();
-        }
-
-        private Task ReportProgress()
-        {
-            return InvokeAsync(() =>
-            {
-                Percentage = Count == 0 ? 0 : Completed * 100 / Count;
-                if (Percentage >= 100)
+            new(label: "Sidekick - " + GetVersion()),
+            new(label: Resources["Open_Website"],
+                onClick: () =>
                 {
-                    Step = Resources["Ready"];
-                    Percentage = 100;
-                }
-                else
+                    BrowserProvider.OpenSidekickWebsite();
+                    return Task.CompletedTask;
+                }),
+
+            // new(label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
+
+            new(label: Resources["Settings"], onClick: () => ViewLocator.Open("/settings")),
+            new(label: Resources["Exit"],
+                onClick: () =>
                 {
-                    Step = Resources["Title", Completed, Count];
-                }
+                    ApplicationService.Shutdown();
+                    return Task.CompletedTask;
+                }),
+        });
 
-                StateHasChanged();
-                return Task.Delay(100);
-            });
-        }
+        TrayProvider.Initialize(menuItems);
+    }
 
-        private string? GetVersion()
-        {
-            var version = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).FirstOrDefault(x => x.Name == "Sidekick")?.Version;
-            return version?.ToString();
-        }
-
-        private void InitializeTray()
-        {
-            var menuItems = new List<TrayMenuItem>();
-
-            menuItems.AddRange(new List<TrayMenuItem>()
-            {
-                new(label: "Sidekick - " + GetVersion()),
-                new(label: Resources["Open_Website"],
-                    onClick: () =>
-                    {
-                        BrowserProvider.OpenSidekickWebsite();
-                        return Task.CompletedTask;
-                    }),
-
-                // new(label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
-
-                new(label: Resources["Settings"], onClick: () => ViewLocator.Open("/settings")),
-                new(label: Resources["Exit"],
-                    onClick: () =>
-                    {
-                        ApplicationService.Shutdown();
-                        return Task.CompletedTask;
-                    }),
-            });
-
-            TrayProvider.Initialize(menuItems);
-        }
-
-        public void Exit()
-        {
-            ApplicationService.Shutdown();
-        }
+    public void Exit()
+    {
+        ApplicationService.Shutdown();
     }
 }

@@ -1,4 +1,4 @@
-﻿using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items;
 using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Parser.Headers;
