@@ -9,7 +9,8 @@ using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Wpf.Services;
 
-public class WpfApplicationService(
+public class WpfApplicationService
+(
     IViewLocator viewLocator,
     IStringLocalizer<InitializationResources> resources,
     IBrowserProvider browserProvider
@@ -36,29 +37,6 @@ public class WpfApplicationService(
 
     private void InitializeTray()
     {
-        var items = new List<TrayMenuItem>();
-
-        items.AddRange(new List<TrayMenuItem>()
-        {
-            new(label: "Sidekick - " + ((IApplicationService)this).GetVersion()),
-            new(label: resources["Open_Website"],
-                onClick: () =>
-                {
-                    browserProvider.OpenSidekickWebsite();
-                    return Task.CompletedTask;
-                }),
-
-            // new(label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
-
-            new(label: resources["Settings"], onClick: () => viewLocator.Open("/settings")),
-            new(label: resources["Exit"],
-                onClick: () =>
-                {
-                    Shutdown();
-                    return Task.CompletedTask;
-                }),
-        });
-
         Icon = new TaskbarIcon();
         Icon.Icon = new System.Drawing.Icon(System.IO.Path.Combine(AppContext.BaseDirectory, "wwwroot/favicon.ico"));
         Icon.ToolTipText = "Sidekick";
@@ -67,40 +45,46 @@ public class WpfApplicationService(
 
         if (Debugger.IsAttached)
         {
-            var developmentMenuItem = new MenuItem
-            {
-                Header = "Development",
-                IsEnabled = true,
-            };
-
-            developmentMenuItem.Click += async (_, _) =>
-            {
-                await viewLocator.Open("/development");
-            };
-
-            Icon.ContextMenu.Items.Add(developmentMenuItem);
+            AddTrayItem("Development", () => viewLocator.Open("/development"));
         }
 
-        foreach (var item in items)
-        {
-            var menuItem = new MenuItem
-            {
-                Header = item.Label,
-                IsEnabled = !item.Disabled,
-            };
-
-            menuItem.Click += async (_, _) =>
-            {
-                if (item.OnClick != null)
-                {
-                    await item.OnClick();
-                }
-            };
-
-            Icon.ContextMenu.Items.Add(menuItem);
-        }
+        AddTrayItem("Sidekick - " + ((IApplicationService)this).GetVersion(), null);
+        AddTrayItem(resources["Open_Website"],
+                    () =>
+                    {
+                        browserProvider.OpenSidekickWebsite();
+                        return Task.CompletedTask;
+                    });
+        AddTrayItem(resources["Settings"], () => viewLocator.Open("/settings"));
+        AddTrayItem(resources["Exit"],
+                    () =>
+                    {
+                        Shutdown();
+                        return Task.CompletedTask;
+                    });
 
         Initialized = true;
+    }
+
+    private void AddTrayItem(string label, Func<Task>? onClick, bool disabled = false)
+    {
+        if (Icon?.ContextMenu == null) return;
+
+        var menuItem = new MenuItem
+        {
+            Header = label,
+            IsEnabled = !disabled,
+        };
+
+        if (onClick != null)
+        {
+            menuItem.Click += async (_, _) =>
+            {
+                await onClick();
+            };
+        }
+
+        Icon.ContextMenu.Items.Add(menuItem);
     }
 
     public void Shutdown()
