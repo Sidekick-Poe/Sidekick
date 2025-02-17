@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Interop;
@@ -14,13 +13,13 @@ using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Database;
+using Sidekick.Common.Interprocess;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
-using Sidekick.Mock;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
@@ -132,12 +131,8 @@ public partial class App
             .AddSidekickCommon()
             .AddSidekickCommonBlazor()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
+            .AddSidekickCommonInterprocess()
             .AddSidekickCommonUi()
-            .AddSidekickCommonPlatform(o =>
-            {
-                o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
-                o.OsxIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/apple-touch-icon.png");
-            })
 
             // Apis
             .AddSidekickGitHubApi()
@@ -153,10 +148,16 @@ public partial class App
             .AddSidekickGeneral()
             .AddSidekickMaps()
             .AddSidekickTrade()
-            .AddSidekickWealth();
+            .AddSidekickWealth()
 
-        services.AddSingleton<IApplicationService, MockApplicationService>();
-        services.AddSingleton<ITrayProvider, WpfTrayProvider>();
+            // Platform needs to be at the end
+            .AddSidekickCommonPlatform(o =>
+            {
+                o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
+                o.OsxIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/apple-touch-icon.png");
+            });
+
+        services.AddSidekickInitializableService<IApplicationService, WpfApplicationService>();
         services.AddSingleton<IViewLocator, WpfViewLocator>();
         services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());
 

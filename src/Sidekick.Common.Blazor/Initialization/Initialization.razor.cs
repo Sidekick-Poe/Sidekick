@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Initialization;
@@ -27,16 +26,10 @@ public partial class Initialization : SidekickView
     private IApplicationService ApplicationService { get; set; } = null!;
 
     [Inject]
-    private ITrayProvider TrayProvider { get; set; } = null!;
-
-    [Inject]
     private IOptions<SidekickConfiguration> Configuration { get; set; } = null!;
 
     [Inject]
     private IServiceProvider ServiceProvider { get; set; } = null!;
-
-    [Inject]
-    private IBrowserProvider BrowserProvider { get; set; } = null!;
 
     [Inject]
     private ISettingsService SettingsService { get; set; } = null!;
@@ -75,8 +68,8 @@ public partial class Initialization : SidekickView
         try
         {
             Completed = 0;
-            Count = Configuration.Value.InitializableServices.Count + 1;
-            var version = GetVersion();
+            Count = Configuration.Value.InitializableServices.Count;
+            var version = ApplicationService.GetVersion();
             var previousVersion = await SettingsService.GetString(SettingKeys.Version);
             if (version != previousVersion)
             {
@@ -103,8 +96,6 @@ public partial class Initialization : SidekickView
                 Completed += 1;
                 await ReportProgress();
             }
-
-            await Run(InitializeTray);
 
             // If we have a successful initialization, we delay for half a second to show the
             // "Ready" label on the UI before closing the view
@@ -142,18 +133,6 @@ public partial class Initialization : SidekickView
         }
     }
 
-    private async Task Run(Action action)
-    {
-        // Send the command
-        action.Invoke();
-
-        // Make sure that after all handlers run, the Completed count is updated
-        Completed += 1;
-
-        // Report progress
-        await ReportProgress();
-    }
-
     private Task ReportProgress()
     {
         return InvokeAsync(() =>
@@ -172,40 +151,6 @@ public partial class Initialization : SidekickView
             StateHasChanged();
             return Task.Delay(100);
         });
-    }
-
-    private static string? GetVersion()
-    {
-        var version = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).FirstOrDefault(x => x.Name == "Sidekick")?.Version;
-        return version?.ToString();
-    }
-
-    private void InitializeTray()
-    {
-        var menuItems = new List<TrayMenuItem>();
-
-        menuItems.AddRange(new List<TrayMenuItem>()
-        {
-            new(label: "Sidekick - " + GetVersion()),
-            new(label: Resources["Open_Website"],
-                onClick: () =>
-                {
-                    BrowserProvider.OpenSidekickWebsite();
-                    return Task.CompletedTask;
-                }),
-
-            // new(label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
-
-            new(label: Resources["Settings"], onClick: () => ViewLocator.Open("/settings")),
-            new(label: Resources["Exit"],
-                onClick: () =>
-                {
-                    ApplicationService.Shutdown();
-                    return Task.CompletedTask;
-                }),
-        });
-
-        TrayProvider.Initialize(menuItems);
     }
 
     public void Exit()

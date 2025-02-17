@@ -10,7 +10,6 @@ using Sidekick.Common.Cache;
 using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Mock;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Poe1;
@@ -38,13 +37,10 @@ public class ParserFixture : IAsyncLifetime
             .AddSidekickCommon()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
 
-            // Apis
-            .AddSidekickPoeApi()
-            .AddSidekickPoeNinjaApi()
-            .AddSidekickPoeWikiApi()
-
-            // Mocks
-            .AddSidekickMocks();
+                // Apis
+                .AddSidekickPoeApi()
+                .AddSidekickPoeNinjaApi()
+                .AddSidekickPoeWikiApi();
 
         var settingsService = ctx.Services.GetRequiredService<ISettingsService>();
         await settingsService.Set(SettingKeys.LanguageParser, "en");

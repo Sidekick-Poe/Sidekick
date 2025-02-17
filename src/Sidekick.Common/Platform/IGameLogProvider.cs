@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Game.GameLogs;
+namespace Sidekick.Common.Platform;
 
 public interface IGameLogProvider
 {

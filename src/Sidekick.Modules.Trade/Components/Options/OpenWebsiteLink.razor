@@ -2,22 +2,26 @@
 @using Sidekick.Apis.Poe.Bulk
 @using Sidekick.Common.Browser
 @using Sidekick.Apis.Poe.Trade.Models
-@using Sidekick.Common.Platform
 @using Sidekick.Modules.Trade.Localization
+@using Sidekick.Common.Ui.Popovers
 
-@if (!string.IsNullOrEmpty(QueryId))
+@if (string.IsNullOrEmpty(QueryId))
 {
+    return;
+}
+
+<div class="relative">
     <TooltipRight>
         <ChildContent>
             <button type="button"
                     @onclick="@OpenWebsite"
                     @onclick:preventDefault="true"
                     @onclick:stopPropagation="true"
-                    @oncontextmenu="@CopyQuery"
+                    @oncontextmenu="@OpenDetails"
                     @oncontextmenu:preventDefault="true"
                     @oncontextmenu:stopPropagation="true"
                     class="inline-flex items-center justify-center p-1 -m-1 text-xl font-medium tracking-wide transition-colors duration-200 rounded-md bg-transparent">
-                <IconMedium Icon="@UiIcons.External" />
+                <IconMedium Icon="@UiIcons.External"/>
             </button>
         </ChildContent>
 
@@ -25,19 +29,26 @@
             <TextBase Class="max-w-[15rem]">@Resources["OpenQueryInWebsite"]</TextBase>
         </TooltipContent>
     </TooltipRight>
-}
+
+    <Popover @bind-Visible="DetailsOpened" Class="min-w-[30rem] [&_.mb-3]:!mb-0">
+        <FormInput Value="@TradeUri?.ToString()" readonly/>
+    </Popover>
+</div>
 
 @inject IStringLocalizer<TradeResources> Resources
 @inject ITradeSearchService TradeSearchService
 @inject IBulkTradeService BulkTradeService
 @inject IBrowserProvider BrowserProvider
 @inject PriceCheckService PriceCheckService
-@inject IClipboardProvider ClipboardProvider
 
 @code {
 
     [Parameter]
     public string? QueryId { get; set; }
+
+    private bool DetailsOpened { get; set; }
+
+    private Uri? TradeUri { get; set; }
 
     private async Task OpenWebsite()
     {
@@ -58,7 +69,7 @@
         }
     }
 
-    private async Task CopyQuery()
+    private async Task OpenDetails()
     {
         if (QueryId == null || PriceCheckService.Item == null)
         {
@@ -67,14 +78,14 @@
 
         if (PriceCheckService.CurrentMode == TradeMode.Bulk)
         {
-            var uri = await BulkTradeService.GetTradeUri(PriceCheckService.Item, QueryId);
-            await ClipboardProvider.SetText(uri.ToString());
+            TradeUri = await BulkTradeService.GetTradeUri(PriceCheckService.Item, QueryId);
         }
         else
         {
-            var uri = await TradeSearchService.GetTradeUri(PriceCheckService.Item.Header.Game, QueryId);
-            await ClipboardProvider.SetText(uri.ToString());
+            TradeUri = await TradeSearchService.GetTradeUri(PriceCheckService.Item.Header.Game, QueryId);
         }
+
+        DetailsOpened = true;
     }
 
 }

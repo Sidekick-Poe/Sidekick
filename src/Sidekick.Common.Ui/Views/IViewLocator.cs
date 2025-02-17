@@ -6,6 +6,16 @@ namespace Sidekick.Common.Ui.Views;
 public interface IViewLocator
 {
     /// <summary>
+    /// Gets a value indicating whether the view supports the minimize functionality.
+    /// </summary>
+    bool SupportsMinimize { get; }
+
+    /// <summary>
+    /// Gets a value indicating whether the view supports the maximize functionality.
+    /// </summary>
+    bool SupportsMaximize { get; }
+
+    /// <summary>
     /// Opens the specified view
     /// </summary>
     /// <param name="url">The url of the page to load and show</param>

@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Sidekick.Apis.PoeWiki.JsonConverters;
+using Sidekick.Common.Converters;
 
 namespace Sidekick.Apis.PoeWiki.Api;
 

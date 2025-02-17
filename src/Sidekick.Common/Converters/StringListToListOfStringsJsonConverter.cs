@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Sidekick.Apis.PoeWiki.JsonConverters;
+namespace Sidekick.Common.Converters;
 
 public class StringListToListOfStringsJsonConverter : JsonConverter<List<string>>
 {

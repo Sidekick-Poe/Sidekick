@@ -8,8 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PipeMethodCalls" Version="4.0.2" />
-    <PackageReference Include="PipeMethodCalls.NetJson" Version="3.0.0" />
     <PackageReference Include="SharpHook" Version="5.3.8" />
     <PackageReference Include="TextCopy" Version="6.2.1" />
     <PackageReference Include="System.Security.Principal.Windows" Version="5.0.0" />

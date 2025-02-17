@@ -1,22 +1,26 @@
-using Sidekick.Common.Ui.Views;
+﻿using Sidekick.Common.Ui.Views;
 
-namespace Sidekick.Mock;
+namespace Sidekick.Web.Services;
 
-public class MockViewLocator : IViewLocator
+public class WebViewLocator : IViewLocator
 {
+    public bool SupportsMinimize => false;
+
+    public bool SupportsMaximize => false;
+
     public Task Open(string url)
     {
-        return Task.CompletedTask;
+        throw new NotImplementedException();
     }
 
     public Task CloseAll()
     {
-        return Task.CompletedTask;
+        throw new NotImplementedException();
     }
 
     public Task CloseAllOverlays()
     {
-        return Task.CompletedTask;
+        throw new NotImplementedException();
     }
 
     public bool IsOverlayOpened()
@@ -37,11 +41,11 @@ public class MockViewLocator : IViewLocator
 
     public Task Minimize(SidekickView view)
     {
-        return Task.CompletedTask;
+        throw new NotImplementedException();
     }
 
     public Task Maximize(SidekickView view)
     {
-        return Task.CompletedTask;
+        throw new NotImplementedException();
     }
 }

@@ -6,7 +6,6 @@ using Serilog.Events;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Folder;
-using Sidekick.Common.Game.GameLogs;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Keybinds;
@@ -32,7 +31,6 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IBrowserProvider, BrowserProvider>();
         services.AddSingleton<ICacheProvider, CacheProvider>();
         services.AddSingleton<IFolderProvider, FolderProvider>();
-        services.AddSingleton<IGameLogProvider, GameLogProvider>();
 
         services.AddSidekickInitializableService<ISettingsService, SettingsService>();
         services.AddSidekickInitializableService<IGameLanguageProvider, GameLanguageProvider>();
@@ -121,6 +119,26 @@ public static class ServiceCollectionExtensions
     }
 
     /// <summary>
+    ///     Adds an initializable service to the application.
+    /// </summary>
+    /// <param name="services">The service collection to add an initializable service.</param>
+    /// <param name="service">The type of service to add to the application.</param>
+    /// <param name="implementation">The type of the implementation of the service.</param>
+    /// <returns>The service collection.</returns>
+    public static IServiceCollection AddSidekickInitializableService(this IServiceCollection services, Type service, Type implementation)
+    {
+        services.TryAddSingleton(service, implementation);
+
+        services.Configure<SidekickConfiguration>(
+            o =>
+            {
+                o.InitializableServices.Add(service);
+            });
+
+        return services;
+    }
+
+    /// <summary>
     ///     Adds a keybind to the application
     /// </summary>
     /// <typeparam name="TKeybindHandler">The type of the keybind handler.</typeparam>
@@ -129,15 +147,11 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddSidekickKeybind<TKeybindHandler>(this IServiceCollection services)
         where TKeybindHandler : KeybindHandler
     {
-        services.TryAddSingleton<TKeybindHandler>();
-
         services.Configure<SidekickConfiguration>(
             o =>
             {
                 o.Keybinds.Add(typeof(TKeybindHandler));
             });
-
-        services.AddSidekickInitializableService<TKeybindHandler, TKeybindHandler>();
 
         return services;
     }

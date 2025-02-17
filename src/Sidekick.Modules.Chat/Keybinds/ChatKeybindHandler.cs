@@ -1,5 +1,4 @@
 using Microsoft.Extensions.Logging;
-using Sidekick.Common.Game.GameLogs;
 using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
