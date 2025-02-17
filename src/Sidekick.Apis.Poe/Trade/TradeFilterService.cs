@@ -42,12 +42,8 @@ public class TradeFilterService
         }
     }
 
-    public async Task<PropertyFilters> GetPropertyFilters(Item item)
+    public PropertyFilters GetPropertyFilters(Item item) => new()
     {
-        var filters = await propertyParser.GetFilters(item);
-        return new PropertyFilters()
-        {
-            Filters = filters,
-        };
-    }
+        Filters = propertyParser.GetFilters(item),
+    };
 }

@@ -12,7 +12,7 @@ public interface IPropertyParser : IInitializableService
 
     void ParseAfterModifiers(ParsingItem parsingItem, ItemProperties properties, List<ModifierLine> modifierLines);
 
-    Task<List<BooleanPropertyFilter>> GetFilters(Item item);
+    List<BooleanPropertyFilter> GetFilters(Item item);
 
     void PrepareTradeRequest(SearchFilters searchFilters, Item item, PropertyFilters propertyFilters);
 }

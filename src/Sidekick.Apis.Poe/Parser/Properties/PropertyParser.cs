@@ -39,10 +39,13 @@ public class PropertyParser
 
     private Regex? AreaLevel { get; set; }
 
+    private double NormalizeValue { get; set; }
+
     public async Task Initialize()
     {
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         var game = leagueId.GetGameFromLeagueId();
+        NormalizeValue = await settingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
 
         Definitions.Clear();
         Definitions.AddRange([
@@ -117,19 +120,18 @@ public class PropertyParser
         }
     }
 
-    public async Task<List<BooleanPropertyFilter>> GetFilters(Item item)
+    public List<BooleanPropertyFilter> GetFilters(Item item)
     {
-        var normalizeValue = await settingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
         var results = new List<BooleanPropertyFilter>();
 
         foreach (var definition in Definitions)
         {
             if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(item.Header.Category)) continue;
 
-            var filter = definition.GetFilter(item, normalizeValue);
+            var filter = definition.GetFilter(item, NormalizeValue);
             if (filter != null) results.Add(filter);
 
-            var filters = definition.GetFilters(item, normalizeValue);
+            var filters = definition.GetFilters(item, NormalizeValue);
             if (filters != null) results.AddRange(filters);
         }
 
