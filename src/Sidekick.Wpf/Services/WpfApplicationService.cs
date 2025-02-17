@@ -48,7 +48,7 @@ public class WpfApplicationService
             AddTrayItem("Development", () => viewLocator.Open("/development"));
         }
 
-        AddTrayItem("Sidekick - " + ((IApplicationService)this).GetVersion(), null);
+        AddTrayItem("Sidekick - " + ((IApplicationService)this).GetVersion(), null, true);
         AddTrayItem(resources["Open_Website"],
                     () =>
                     {
