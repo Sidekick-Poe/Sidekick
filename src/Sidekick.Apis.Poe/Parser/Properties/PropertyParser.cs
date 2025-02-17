@@ -138,7 +138,7 @@ public class PropertyParser
         return results;
     }
 
-    private void CleanUpSeparatorFilters(List<BooleanPropertyFilter> results)
+    private static void CleanUpSeparatorFilters(List<BooleanPropertyFilter> results)
     {
         // Remove leading SeparatorProperty filters
         while (results.Count > 0 && results[0].Definition is SeparatorProperty)

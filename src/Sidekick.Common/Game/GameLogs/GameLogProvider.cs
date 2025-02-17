@@ -60,7 +60,7 @@ public class GameLogProvider(
     /// </summary>
     /// <param name="stream">The stream.</param>
     /// <returns>The current line of the stream position</returns>
-    private string GetLine(Stream stream)
+    private static string GetLine(Stream stream)
     {
         // while we have not yet reached start of file, read bytes backwards until '\n' byte is hit
         var lineLength = 0;

@@ -116,7 +116,7 @@ public class InvariantModifierProvider
         }
     }
 
-    private bool IsCategory(ApiCategory apiCategory, string? key)
+    private static bool IsCategory(ApiCategory apiCategory, string? key)
     {
         var first = apiCategory.Entries.FirstOrDefault();
         return first?.Id.Split('.')[0] == key;

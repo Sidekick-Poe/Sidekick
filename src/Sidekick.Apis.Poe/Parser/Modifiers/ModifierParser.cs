@@ -157,7 +157,7 @@ public class ModifierParser
         }
     }
 
-    private void ParseModifierValues(ModifierLine modifierLine, IEnumerable<ModifierPattern> patterns)
+    private static void ParseModifierValues(ModifierLine modifierLine, IEnumerable<ModifierPattern> patterns)
     {
         var pattern = patterns.FirstOrDefault();
         if (pattern == null)

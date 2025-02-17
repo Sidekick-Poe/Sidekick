@@ -316,7 +316,7 @@ public class KeyboardProvider(
         return Task.CompletedTask;
     }
 
-    private (List<KeyCode> Modifiers, List<KeyCode> Keys) FetchKeys(string stroke)
+    private static (List<KeyCode> Modifiers, List<KeyCode> Keys) FetchKeys(string stroke)
     {
         var keyCodes = new List<KeyCode>();
         var modifierCodes = new List<KeyCode>();

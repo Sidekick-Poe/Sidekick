@@ -164,7 +164,7 @@ public class TradeSearchService
         throw new ApiErrorException();
     }
 
-    private SearchFilterOption? GetCategoryFilter(string? itemCategory)
+    private static SearchFilterOption? GetCategoryFilter(string? itemCategory)
     {
         if (string.IsNullOrEmpty(itemCategory))
         {
@@ -174,7 +174,7 @@ public class TradeSearchService
         return new SearchFilterOption(itemCategory);
     }
 
-    private StatFilterGroup? GetAndStats(List<ModifierFilter>? modifierFilters, List<PseudoModifierFilter>? pseudoFilters)
+    private static StatFilterGroup? GetAndStats(List<ModifierFilter>? modifierFilters, List<PseudoModifierFilter>? pseudoFilters)
     {
         var andGroup = new StatFilterGroup()
         {
@@ -227,7 +227,7 @@ public class TradeSearchService
         return andGroup;
     }
 
-    private StatFilterGroup? GetCountStats(List<ModifierFilter>? modifierFilters)
+    private static StatFilterGroup? GetCountStats(List<ModifierFilter>? modifierFilters)
     {
         var countGroup = new StatFilterGroup()
         {
@@ -281,7 +281,7 @@ public class TradeSearchService
         return countGroup;
     }
 
-    private List<StatFilterGroup> GetWeightedSumStats(List<PseudoModifierFilter>? pseudoFilters)
+    private static List<StatFilterGroup> GetWeightedSumStats(List<PseudoModifierFilter>? pseudoFilters)
     {
         if (pseudoFilters == null)
         {
