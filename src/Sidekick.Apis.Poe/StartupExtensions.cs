@@ -9,6 +9,7 @@ using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Fuzzy;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Leagues;
+using Sidekick.Apis.Poe.Localization;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser;
 using Sidekick.Apis.Poe.Parser.AdditionalInformation;
