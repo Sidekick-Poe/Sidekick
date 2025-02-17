@@ -2,12 +2,15 @@ using Bunit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Modifiers;
+using Sidekick.Apis.Poe.Parser.Properties;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Database;
+using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Xunit;
@@ -19,8 +22,10 @@ public class ParserFixture : IAsyncLifetime
     private static Task? initializationTask;
 
     public IInvariantModifierProvider InvariantModifierProvider { get; private set; } = null!;
-
     public IItemParser Parser { get; private set; } = null!;
+    public IGameLanguageProvider GameLanguageProvider { get; private set; } = null!;
+    public IFilterProvider FilterProvider { get; private set; } = null!;
+    public IPropertyParser PropertyParser { get; private set; } = null!;
 
     public Task DisposeAsync()
     {
@@ -57,6 +62,9 @@ public class ParserFixture : IAsyncLifetime
 
         Parser = ctx.Services.GetRequiredService<IItemParser>();
         InvariantModifierProvider = ctx.Services.GetRequiredService<IInvariantModifierProvider>();
+        GameLanguageProvider = ctx.Services.GetRequiredService<IGameLanguageProvider>();
+        PropertyParser = ctx.Services.GetRequiredService<IPropertyParser>();
+        FilterProvider = ctx.Services.GetRequiredService<IFilterProvider>();
     }
 
     private static async Task Initialize(IServiceProvider serviceProvider)
