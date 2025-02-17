@@ -5,7 +5,9 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
 public class SearchFilters
 {
     [JsonPropertyName("type_filters")]
-    public TypeFilterGroup TypeFilters { get; set; } = new();
+    public TypeFilterGroup? TypeFilters { get; set; }
+
+    public TypeFilterGroup GetOrCreateTypeFilters() => TypeFilters ??= new();
 
     [JsonPropertyName("trade_filters")]
     public TradeFilterGroup? TradeFilters { get; set; }
