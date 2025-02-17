@@ -40,4 +40,7 @@ public class MiscFilters
 
     [JsonPropertyName("redeemer_item")]
     public SearchFilterOption? RedeemerItem { get; set; }
+
+    [JsonPropertyName("identified")]
+    public SearchFilterOption? Identified { get; set; }
 }

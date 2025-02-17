@@ -22,25 +22,16 @@ public class UnidentifiedProperty(IGameLanguageProvider gameLanguageProvider) : 
         itemProperties.Unidentified = GetBool(Pattern, parsingItem);
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue)
+    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue) => new(this)
     {
-        if (item.Properties.GemLevel <= 0) return null;
-
-        var filter = new IntPropertyFilter(this)
-        {
-            Text = gameLanguageProvider.Language.DescriptionQuality,
-            NormalizeEnabled = false,
-            NormalizeValue = normalizeValue,
-            Value = item.Properties.Quality,
-            Checked = item.Header.Rarity == Rarity.Gem,
-        };
-        return filter;
-    }
+        Text = gameLanguageProvider.Language.DescriptionUnidentified,
+        Checked = !item.Properties.Unidentified,
+    };
 
     public override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!filter.Checked) return;
 
-        searchFilters.GetOrCreateMiscFilters().Filters.Quality = new StatFilterValue(intFilter);
+        searchFilters.GetOrCreateMiscFilters().Filters.Identified = new SearchFilterOption(item.Properties.Unidentified ? "false" : "true");
     }
 }
