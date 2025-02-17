@@ -3,11 +3,11 @@ using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace Sidekick.Apis.PoeWiki.JsonConverters;
+namespace Sidekick.Common.Converters;
 
-public class RemoveTagsConverter : JsonConverter<string>
+public class RemoveWikiTagsConverter : JsonConverter<string>
 {
-    private static Regex StripTagsRegex = new Regex(@"\[\[(?(?=File)(?:[^|\]]*)|(?<match>[^|\]]*)).*?\]\]", RegexOptions.Compiled | RegexOptions.Multiline);
+    private static readonly Regex StripTagsRegex = new Regex(@"\[\[(?(?=File)(?:[^|\]]*)|(?<match>[^|\]]*)).*?\]\]", RegexOptions.Compiled | RegexOptions.Multiline);
 
     public override string Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {

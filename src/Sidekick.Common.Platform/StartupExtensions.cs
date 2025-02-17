@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common.Platform.Clipboard;
 using Sidekick.Common.Platform.GameLogs;
-using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Platform.Keyboards;
 using Sidekick.Common.Platform.Localization;
 using Sidekick.Common.Platform.Windows.Processes;
@@ -33,8 +33,16 @@ public static class StartupExtensions
         }
 
         services.AddSidekickInitializableService<IKeyboardProvider, KeyboardProvider>();
-        services.AddSingleton<IInterprocessService, InterprocessService>();
-            services.AddSingleton<IGameLogProvider, GameLogProvider>();
+        services.AddSingleton<IGameLogProvider, GameLogProvider>();
+
+        services.Configure<SidekickConfiguration>(o =>
+        {
+            foreach (var keybind in o.Keybinds)
+            {
+                services.TryAddSingleton(keybind);
+                services.AddSidekickInitializableService(keybind, keybind);
+            }
+        });
 
         return services;
     }

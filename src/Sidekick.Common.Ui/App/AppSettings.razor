@@ -58,7 +58,7 @@
 
 @inject ICurrentView CurrentView
 @inject IStringLocalizer<AppResources> Resources
-@inject IViewLocator ViewLocator
+@inject NavigationManager NavigationManager
 
 @code {
 
@@ -75,15 +75,14 @@
         Visible = !Visible;
     }
 
-    private async Task OpenSettings()
+    private void OpenSettings()
     {
         if (string.IsNullOrEmpty(Href) || CurrentView.Current == null)
         {
             return;
         }
 
-        await ViewLocator.Open(Href);
-        await ViewLocator.Close(CurrentView.Current);
+        NavigationManager.NavigateTo(Href);
     }
 
 }
