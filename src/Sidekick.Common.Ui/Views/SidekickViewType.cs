@@ -1,9 +1,8 @@
-namespace Sidekick.Common.Ui.Views
+namespace Sidekick.Common.Ui.Views;
+
+public enum SidekickViewType
 {
-    public enum SidekickViewType
-    {
-        Standard,
-        Modal,
-        Overlay,
-    }
+    Standard,
+    Modal,
+    Overlay,
 }

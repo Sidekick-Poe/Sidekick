@@ -1,13 +1,12 @@
-namespace Sidekick.Apis.Poe.Authentication
+namespace Sidekick.Apis.Poe.Authentication;
+
+public interface IAuthenticationService
 {
-    public interface IAuthenticationService
-    {
-        event Action? OnStateChanged;
+    event Action? OnStateChanged;
 
-        Task<AuthenticationState> GetCurrentState();
+    Task<AuthenticationState> GetCurrentState();
 
-        Task<string?> GetToken();
+    Task<string?> GetToken();
 
-        Task Authenticate(bool reauthenticate = false);
-    }
+    Task Authenticate(bool reauthenticate = false);
 }

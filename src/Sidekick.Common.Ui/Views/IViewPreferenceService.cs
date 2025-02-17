@@ -1,4 +1,4 @@
-﻿using Sidekick.Common.Database.Tables;
+using Sidekick.Common.Database.Tables;
 
 namespace Sidekick.Common.Ui.Views;
 

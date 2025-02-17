@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class FlaskParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void ParseSanctifiedManaFlask()
-        {
-            var actual = parser.ParseItem(@"Item Class: Mana Flasks
+[Collection(Collections.Poe1Parser)]
+public class FlaskParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParseSanctifiedManaFlask()
+    {
+        var actual = parser.ParseItem(@"Item Class: Mana Flasks
 Rarity: Magic
 Sanctified Mana Flask of Staunching
 --------
@@ -31,18 +31,18 @@ Grants Immunity to Corrupted Blood for 4 seconds if used while affected by Corru
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ");
 
-            Assert.Equal("flask", actual.Header.ItemCategory);
-            Assert.Equal(Category.Flask, actual.Header.Category);
-            Assert.Equal(Rarity.Magic, actual.Header.Rarity);
-            Assert.Equal("Sanctified Mana Flask", actual.Header.ApiType);
+        Assert.Equal("flask", actual.Header.ItemCategory);
+        Assert.Equal(Category.Flask, actual.Header.Category);
+        Assert.Equal(Rarity.Magic, actual.Header.Rarity);
+        Assert.Equal("Sanctified Mana Flask", actual.Header.ApiType);
 
-            actual.AssertHasModifier(ModifierCategory.Explicit, "Grants Immunity to Bleeding for 4 seconds if used while Bleeding\nGrants Immunity to Corrupted Blood for 4 seconds if used while affected by Corrupted Blood", 4);
-        }
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Grants Immunity to Bleeding for 4 seconds if used while Bleeding\nGrants Immunity to Corrupted Blood for 4 seconds if used while affected by Corrupted Blood", 4);
+    }
 
-        [Fact]
-        public void HallowedLifeFlask()
-        {
-            var actual = parser.ParseItem(@"Item Class: Life Flasks
+    [Fact]
+    public void HallowedLifeFlask()
+    {
+        var actual = parser.ParseItem(@"Item Class: Life Flasks
 Rarity: Normal
 Hallowed Life Flask
 --------
@@ -58,16 +58,16 @@ Item Level: 42
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ");
 
-            Assert.Equal("flask", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-            Assert.Equal(Category.Flask, actual.Header.Category);
-            Assert.Equal("Hallowed Life Flask", actual.Header.ApiType);
-        }
+        Assert.Equal("flask", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
+        Assert.Equal(Category.Flask, actual.Header.Category);
+        Assert.Equal("Hallowed Life Flask", actual.Header.ApiType);
+    }
 
-        [Fact]
-        public void SacredHybridFlask()
-        {
-            var actual = parser.ParseItem(@"Item Class: Hybrid Flasks
+    [Fact]
+    public void SacredHybridFlask()
+    {
+        var actual = parser.ParseItem(@"Item Class: Hybrid Flasks
 Rarity: Normal
 Superior Sacred Hybrid Flask
 --------
@@ -85,17 +85,17 @@ Item Level: 76
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ");
 
-            Assert.Equal("flask", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-            Assert.Equal(Category.Flask, actual.Header.Category);
-            Assert.Equal("Sacred Hybrid Flask", actual.Header.ApiType);
-            Assert.Equal(13, actual.Properties.Quality);
-        }
+        Assert.Equal("flask", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
+        Assert.Equal(Category.Flask, actual.Header.Category);
+        Assert.Equal("Sacred Hybrid Flask", actual.Header.ApiType);
+        Assert.Equal(13, actual.Properties.Quality);
+    }
 
-        [Fact]
-        public void Tincture()
-        {
-            var actual = parser.ParseItem(@"Item Class: Tinctures
+    [Fact]
+    public void Tincture()
+    {
+        var actual = parser.ParseItem(@"Item Class: Tinctures
 Rarity: Normal
 Poisonberry Tincture
 --------
@@ -113,10 +113,9 @@ Item Level: 82
 Right click to activate. Only one Tincture in your belt can be active at a time. Mana Burn causes you to lose 1% of your maximum Mana per stack per second. Can be deactivated manually, or will automatically deactivate when you reach 0 Mana.
 ");
 
-            Assert.Equal("tincture", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-            Assert.Equal(Category.Tincture, actual.Header.Category);
-            Assert.Equal("Poisonberry Tincture", actual.Header.ApiType);
-        }
+        Assert.Equal("tincture", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
+        Assert.Equal(Category.Tincture, actual.Header.Category);
+        Assert.Equal("Poisonberry Tincture", actual.Header.ApiType);
     }
 }

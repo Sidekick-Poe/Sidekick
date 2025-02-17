@@ -1,10 +1,9 @@
-namespace Sidekick.Apis.Poe.Clients.States
+namespace Sidekick.Apis.Poe.Clients.States;
+
+public enum ApiState
 {
-    public enum ApiState
-    {
-        Unknown,
-        Working,
-        Throttled,
-        TimedOut,
-    }
+    Unknown,
+    Working,
+    Throttled,
+    TimedOut,
 }

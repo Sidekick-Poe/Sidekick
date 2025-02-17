@@ -54,7 +54,7 @@ public class ItemProperties
     {
         get
         {
-            if(PhysicalDamage == null) return null;
+            if (PhysicalDamage == null) return null;
 
             var min = CalculateValueWithQuality(PhysicalDamage.Min);
             var max = CalculateValueWithQuality(PhysicalDamage.Max);

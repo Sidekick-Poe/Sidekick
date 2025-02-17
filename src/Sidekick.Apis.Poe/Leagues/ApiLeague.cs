@@ -1,23 +1,22 @@
-namespace Sidekick.Apis.Poe.Leagues
+namespace Sidekick.Apis.Poe.Leagues;
+
+/// <summary>
+/// A Path of Exile league
+/// </summary>
+public class ApiLeague
 {
     /// <summary>
-    /// A Path of Exile league
+    /// The identifier of the league
     /// </summary>
-    public class ApiLeague
-    {
-        /// <summary>
-        /// The identifier of the league
-        /// </summary>
-        public string? Id { get; set; }
+    public string? Id { get; set; }
 
-        /// <summary>
-        /// The label of the league
-        /// </summary>
-        public string? Text { get; set; }
+    /// <summary>
+    /// The label of the league
+    /// </summary>
+    public string? Text { get; set; }
 
-        /// <summary>
-        /// Realm of the league
-        /// </summary>
-        public LeagueRealm Realm { get; set; }
-    }
+    /// <summary>
+    /// Realm of the league
+    /// </summary>
+    public LeagueRealm Realm { get; set; }
 }

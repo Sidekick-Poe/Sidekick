@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class GloveParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void ParseRareGloves()
-        {
-            var actual = parser.ParseItem(@"Item Class: Unknown
+[Collection(Collections.Poe1Parser)]
+public class GloveParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParseRareGloves()
+    {
+        var actual = parser.ParseItem(@"Item Class: Unknown
 Rarity: Rare
 Death Nails
 Assassin's Mitts
@@ -34,16 +34,15 @@ Item Level: 61
 0.23% of Physical Attack Damage Leeched as Mana
 ");
 
-            Assert.Equal(Category.Armour, actual.Header.Category);
-            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-            Assert.Equal("Assassin's Mitts", actual.Header.ApiType);
-            Assert.Equal("Death Nails", actual.Header.Name);
-            Assert.Single(actual.Sockets);
+        Assert.Equal(Category.Armour, actual.Header.Category);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal("Assassin's Mitts", actual.Header.ApiType);
+        Assert.Equal("Death Nails", actual.Header.Name);
+        Assert.Single(actual.Sockets);
 
-            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Intelligence", 18);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to maximum Life", 73);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "+#% to Lightning Resistance", 14);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% of Physical Attack Damage Leeched as Mana", 0.23);
-        }
+        actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Intelligence", 18);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "+# to maximum Life", 73);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "+#% to Lightning Resistance", 14);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% of Physical Attack Damage Leeched as Mana", 0.23);
     }
 }

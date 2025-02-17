@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class DeliriumParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void SimulacrumSplinter()
-        {
-            var actual = parser.ParseItem(@"Item Class: Stackable Currency
+[Collection(Collections.Poe1Parser)]
+public class DeliriumParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void SimulacrumSplinter()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Currency
 Simulacrum Splinter
 --------
@@ -23,16 +23,16 @@ Shift click to unstack.
 Note: ~price .5 chaos
 ");
 
-            Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
-            Assert.Equal(Category.Currency, actual.Header.Category);
-            Assert.Equal("Simulacrum Splinter", actual.Header.ApiType);
-        }
+        Assert.Equal("currency", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+        Assert.Equal(Category.Currency, actual.Header.Category);
+        Assert.Equal("Simulacrum Splinter", actual.Header.ApiType);
+    }
 
-        [Fact]
-        public void SmallClusterJewel()
-        {
-            var actual = parser.ParseItem(@"Item Class: Jewels
+    [Fact]
+    public void SmallClusterJewel()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
 Rarity: Rare
 Oblivion Ruin
 Small Cluster Jewel
@@ -51,11 +51,10 @@ Place into an allocated Small, Medium or Large Jewel Socket on the Passive Skill
 Note: ~b/o 1 chance
 ");
 
-            Assert.Equal("jewel", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-            Assert.Equal(Category.Jewel, actual.Header.Category);
-            Assert.Equal("Small Cluster Jewel", actual.Header.ApiType);
-        }
-
+        Assert.Equal("jewel", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(Category.Jewel, actual.Header.Category);
+        Assert.Equal("Small Cluster Jewel", actual.Header.ApiType);
     }
+
 }

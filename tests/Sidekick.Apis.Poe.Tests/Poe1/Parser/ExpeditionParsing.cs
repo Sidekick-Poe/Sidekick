@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class ExpeditionParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void ParseMagicLogbook()
-        {
-            var actual = parser.ParseItem(@"Item Class: Expedition Logbooks
+[Collection(Collections.Poe1Parser)]
+public class ExpeditionParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParseMagicLogbook()
+    {
+        var actual = parser.ParseItem(@"Item Class: Expedition Logbooks
 Rarity: Magic
 Chaining Expedition Logbook
 --------
@@ -45,13 +45,12 @@ Monsters' skills Chain 2 additional times
 Take this item to Dannig in your Hideout to open portals to an expedition.
 ");
 
-            Assert.Equal("logbook", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Magic, actual.Header.Rarity);
-            Assert.Equal(Category.Logbook, actual.Header.Category);
-            Assert.Equal("Expedition Logbook", actual.Header.ApiType);
+        Assert.Equal("logbook", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Magic, actual.Header.Rarity);
+        Assert.Equal(Category.Logbook, actual.Header.Category);
+        Assert.Equal("Expedition Logbook", actual.Header.ApiType);
 
-            actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
-            actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Logbook Faction: Order of the Chalice");
-        }
+        actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
+        actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Logbook Faction: Order of the Chalice");
     }
 }

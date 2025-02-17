@@ -1,11 +1,10 @@
-namespace Sidekick.Apis.Poe.Bulk.Results
+namespace Sidekick.Apis.Poe.Bulk.Results;
+
+public class BulkListing
 {
-    public class BulkListing
-    {
-        public BulkAccount? Account { get; set; }
+    public BulkAccount? Account { get; set; }
 
-        public DateTimeOffset Indexed { get; set; }
+    public DateTimeOffset Indexed { get; set; }
 
-        public List<BulkOffer> Offers { get; set; } = new();
-    }
+    public List<BulkOffer> Offers { get; set; } = new();
 }

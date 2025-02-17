@@ -1,9 +1,8 @@
-namespace Sidekick.Apis.Poe.Bulk.Results
-{
-    public class BulkExchange
-    {
-        public decimal Amount { get; set; }
+namespace Sidekick.Apis.Poe.Bulk.Results;
 
-        public string? Currency { get; set; }
-    }
+public class BulkExchange
+{
+    public decimal Amount { get; set; }
+
+    public string? Currency { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Apis.Poe.Clients.Models;
+namespace Sidekick.Apis.Poe.Clients.Models;
 
 public class ApiError
 {

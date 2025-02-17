@@ -1,7 +1,6 @@
-namespace Sidekick.Apis.PoeWiki.Api
+namespace Sidekick.Apis.PoeWiki.Api;
+
+internal record CargoQuery<T> where T : class
 {
-    internal record CargoQuery<T> where T : class
-    {
-        public T? Title { get; init; }
-    }
+    public T? Title { get; init; }
 }

@@ -1,18 +1,17 @@
 using System.Text.Json.Serialization;
 
-namespace Sidekick.Apis.Poe.Trade.Results
+namespace Sidekick.Apis.Poe.Trade.Results;
+
+public class ResultSocket
 {
-    public class ResultSocket
-    {
-        public int Group { get; set; }
+    public int Group { get; set; }
 
-        [JsonPropertyName("sColour")]
-        public string? ColourString { get; set; }
+    [JsonPropertyName("sColour")]
+    public string? ColourString { get; set; }
 
-        [JsonPropertyName("type")]
-        public string? Type { get; set; }
+    [JsonPropertyName("type")]
+    public string? Type { get; set; }
 
-        [JsonPropertyName("item")]
-        public string? Item { get; set; }
-    }
+    [JsonPropertyName("item")]
+    public string? Item { get; set; }
 }

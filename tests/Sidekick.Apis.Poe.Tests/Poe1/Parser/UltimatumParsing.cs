@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class UltimatumParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void NoxiousCatalyst()
-        {
-            var actual = parser.ParseItem(@"Item Class: Stackable Currency
+[Collection(Collections.Poe1Parser)]
+public class UltimatumParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void NoxiousCatalyst()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Currency
 Noxious Catalyst
 --------
@@ -23,10 +23,9 @@ Replaces other quality types
 Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower-rarity jewellery. The maximum quality is 20%.
 ");
 
-            Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
-            Assert.Equal(Category.Currency, actual.Header.Category);
-            Assert.Equal("Noxious Catalyst", actual.Header.ApiType);
-        }
+        Assert.Equal("currency", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+        Assert.Equal(Category.Currency, actual.Header.Category);
+        Assert.Equal("Noxious Catalyst", actual.Header.ApiType);
     }
 }

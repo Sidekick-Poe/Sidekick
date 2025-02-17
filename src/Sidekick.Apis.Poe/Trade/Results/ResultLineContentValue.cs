@@ -1,8 +1,7 @@
-namespace Sidekick.Apis.Poe.Trade.Results
+namespace Sidekick.Apis.Poe.Trade.Results;
+
+public class ResultLineContentValue
 {
-    public class ResultLineContentValue
-    {
-        public string? Value { get; set; }
-        public ResultLineContentType Type { get; set; }
-    }
+    public string? Value { get; set; }
+    public ResultLineContentType Type { get; set; }
 }

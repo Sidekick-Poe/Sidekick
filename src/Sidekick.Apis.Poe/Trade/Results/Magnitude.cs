@@ -1,7 +1,6 @@
-namespace Sidekick.Apis.Poe.Trade.Results
+namespace Sidekick.Apis.Poe.Trade.Results;
+
+public class Magnitude
 {
-    public class Magnitude
-    {
-        public string? Hash { get; set; }
-    }
+    public string? Hash { get; set; }
 }

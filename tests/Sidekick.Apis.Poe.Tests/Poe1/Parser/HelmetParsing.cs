@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class HelmetParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void ParseBlightGuardian()
-        {
-            var actual = parser.ParseItem(@"Item Class: Unknown
+[Collection(Collections.Poe1Parser)]
+public class HelmetParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParseBlightGuardian()
+    {
+        var actual = parser.ParseItem(@"Item Class: Unknown
 Rarity: Rare
 Blight Guardian
 Hunter Hood
@@ -36,17 +36,17 @@ You have Shocking Conflux for 3 seconds every 8 seconds
 Hunter Item
 ");
 
-            Assert.Equal(Category.Armour, actual.Header.Category);
-            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-            Assert.Equal("Hunter Hood", actual.Header.ApiType);
+        Assert.Equal(Category.Armour, actual.Header.Category);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal("Hunter Hood", actual.Header.ApiType);
 
-            actual.AssertHasModifier(ModifierCategory.Explicit, "You have Shocking Conflux for 3 seconds every 8 seconds");
-        }
+        actual.AssertHasModifier(ModifierCategory.Explicit, "You have Shocking Conflux for 3 seconds every 8 seconds");
+    }
 
-        [Fact]
-        public void ParseStarkonjaHead()
-        {
-            var actual = parser.ParseItem(@"Item Class: Helmets
+    [Fact]
+    public void ParseStarkonjaHead()
+    {
+        var actual = parser.ParseItem(@"Item Class: Helmets
 Rarity: Unique
 Starkonja's Head
 Silken Hood
@@ -75,22 +75,21 @@ but merely a long sleep made eternal.
 Note: ~price 1 chaos
 ");
 
-            Assert.Equal(Category.Armour, actual.Header.Category);
-            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
-            Assert.Equal("Starkonja's Head", actual.Header.ApiName);
-            Assert.Equal("Silken Hood", actual.Header.ApiType);
+        Assert.Equal(Category.Armour, actual.Header.Category);
+        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+        Assert.Equal("Starkonja's Head", actual.Header.ApiName);
+        Assert.Equal("Silken Hood", actual.Header.ApiType);
 
-            Assert.False(actual.Properties.Unidentified);
-            Assert.Equal(63, actual.Properties.ItemLevel);
-            Assert.Equal(793, actual.Properties.EvasionRating);
+        Assert.False(actual.Properties.Unidentified);
+        Assert.Equal(63, actual.Properties.ItemLevel);
+        Assert.Equal(793, actual.Properties.EvasionRating);
 
-            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Dexterity", 53);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Damage when on Low Life", 50);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Attack Speed", 10);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Global Critical Strike Chance", 25);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Evasion Rating", 124);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to maximum Life", 80);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Global Evasion Rating when on Low Life", 150);
-        }
+        actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Dexterity", 53);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Damage when on Low Life", 50);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Attack Speed", 10);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Global Critical Strike Chance", 25);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Evasion Rating", 124);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "+# to maximum Life", 80);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Global Evasion Rating when on Low Life", 150);
     }
 }

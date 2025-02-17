@@ -1,19 +1,18 @@
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 
-namespace Sidekick.Apis.Poe.Trade.Requests
+namespace Sidekick.Apis.Poe.Trade.Requests;
+
+internal class Query
 {
-    internal class Query
-    {
-        public Status Status { get; set; } = new();
+    public Status Status { get; set; } = new();
 
-        public string? Name { get; set; }
+    public string? Name { get; set; }
 
-        public object? Type { get; set; }
+    public object? Type { get; set; }
 
-        public string? Term { get; set; }
+    public string? Term { get; set; }
 
-        public List<StatFilterGroup> Stats { get; set; } = new();
+    public List<StatFilterGroup> Stats { get; set; } = new();
 
-        public SearchFilters Filters { get; set; } = new();
-    }
+    public SearchFilters Filters { get; set; } = new();
 }

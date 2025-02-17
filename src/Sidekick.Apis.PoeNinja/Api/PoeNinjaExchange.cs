@@ -1,7 +1,6 @@
-namespace Sidekick.Apis.PoeNinja.Api
+namespace Sidekick.Apis.PoeNinja.Api;
+
+internal record PoeNinjaExchange
 {
-    internal record PoeNinjaExchange
-    {
-        public decimal Value { get; init; }
-    }
+    public decimal Value { get; init; }
 }

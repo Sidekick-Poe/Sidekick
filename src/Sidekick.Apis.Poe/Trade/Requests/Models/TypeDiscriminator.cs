@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Apis.Poe.Trade.Requests.Models;
+namespace Sidekick.Apis.Poe.Trade.Requests.Models;
 
 public class TypeDiscriminator
 {

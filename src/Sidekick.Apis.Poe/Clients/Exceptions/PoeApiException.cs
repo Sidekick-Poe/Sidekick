@@ -1,18 +1,17 @@
-namespace Sidekick.Apis.Poe.Clients.Exceptions
+namespace Sidekick.Apis.Poe.Clients.Exceptions;
+
+[Serializable]
+public class PoeApiException : Exception
 {
-    [Serializable]
-    public class PoeApiException : Exception
+    public PoeApiException()
     {
-        public PoeApiException()
-        {
-        }
+    }
 
-        public PoeApiException(string? message) : base(message)
-        {
-        }
+    public PoeApiException(string? message) : base(message)
+    {
+    }
 
-        public PoeApiException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
+    public PoeApiException(string? message, Exception? innerException) : base(message, innerException)
+    {
     }
 }

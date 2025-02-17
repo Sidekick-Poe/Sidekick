@@ -1,7 +1,6 @@
-namespace Sidekick.Apis.Poe.Stash.Models
+namespace Sidekick.Apis.Poe.Stash.Models;
+
+public class ApiStashTabWrapper
 {
-    public class ApiStashTabWrapper
-    {
-        public required ApiStashTab Stash { get; set; }
-    }
+    public required ApiStashTab Stash { get; set; }
 }

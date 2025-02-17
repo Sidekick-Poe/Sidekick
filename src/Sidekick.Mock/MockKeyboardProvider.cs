@@ -1,33 +1,32 @@
 using Sidekick.Common.Platform;
 
-namespace Sidekick.Mock
+namespace Sidekick.Mock;
+
+public class MockKeyboardProvider : IKeyboardProvider
 {
-    public class MockKeyboardProvider : IKeyboardProvider
-    {
-        public int Priority => 0;
+    public int Priority => 0;
 
 #pragma warning disable CS0067
 
-        public event Action<string>? OnKeyDown;
+    public event Action<string>? OnKeyDown;
 
 #pragma warning restore CS0067
 
-        public Task Initialize()
-        {
-            return Task.CompletedTask;
-        }
+    public Task Initialize()
+    {
+        return Task.CompletedTask;
+    }
 
-        public void RegisterHooks()
-        {
-        }
+    public void RegisterHooks()
+    {
+    }
 
-        public Task PressKey(params string[] keys)
-        {
-            return Task.CompletedTask;
-        }
+    public Task PressKey(params string[] keys)
+    {
+        return Task.CompletedTask;
+    }
 
-        public void ReleaseAltModifier()
-        {
-        }
+    public void ReleaseAltModifier()
+    {
     }
 }

@@ -1,4 +1,4 @@
-﻿using Sidekick.Common.Exceptions;
+using Sidekick.Common.Exceptions;
 using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Web;

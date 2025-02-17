@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class BeastParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void ParseRareBeast()
-        {
-            var actual = parser.ParseItem(@"Item Class: Stackable Currency
+[Collection(Collections.Poe1Parser)]
+public class BeastParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParseRareBeast()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Rare
 Shadowchew
 Farric Flame Hellion Alpha
@@ -30,17 +30,17 @@ Aspect of the Hellion
 Right-click to add this to your bestiary.
 ");
 
-            Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-            Assert.Equal(Category.ItemisedMonster, actual.Header.Category);
-            Assert.Null(actual.Header.ApiName);
-            Assert.Equal("Farric Flame Hellion Alpha", actual.Header.ApiType);
-        }
+        Assert.Equal("currency", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(Category.ItemisedMonster, actual.Header.Category);
+        Assert.Null(actual.Header.ApiName);
+        Assert.Equal("Farric Flame Hellion Alpha", actual.Header.ApiType);
+    }
 
-        [Fact]
-        public void ParseUniqueBeast()
-        {
-            var parsedRareBeast = parser.ParseItem(@"Item Class: Stackable Currency
+    [Fact]
+    public void ParseUniqueBeast()
+    {
+        var parsedRareBeast = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Unique
 Saqawal, First of the Sky
 --------
@@ -54,16 +54,16 @@ Cannot be fully Slowed
 --------
 Right-click to add this to your bestiary.");
 
-            Assert.Equal(Category.ItemisedMonster, parsedRareBeast.Header.Category);
-            Assert.Equal(Rarity.Unique, parsedRareBeast.Header.Rarity);
-            Assert.Equal("Saqawal, First of the Sky", parsedRareBeast.Header.ApiType);
-            Assert.Null(parsedRareBeast.Header.ApiName);
-        }
+        Assert.Equal(Category.ItemisedMonster, parsedRareBeast.Header.Category);
+        Assert.Equal(Rarity.Unique, parsedRareBeast.Header.Rarity);
+        Assert.Equal("Saqawal, First of the Sky", parsedRareBeast.Header.ApiType);
+        Assert.Null(parsedRareBeast.Header.ApiName);
+    }
 
-        [Fact]
-        public void FarricChieftain()
-        {
-            var actual = parser.ParseItem(@"Item Class: Stackable Currency
+    [Fact]
+    public void FarricChieftain()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Rare
 Duskkiller
 Farric Chieftain
@@ -84,10 +84,9 @@ Summons Apes from Trees
 Right-click to add this to your bestiary.
 ");
 
-            Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-            Assert.Equal(Category.ItemisedMonster, actual.Header.Category);
-            Assert.Equal("Farric Chieftain", actual.Header.ApiType);
-        }
+        Assert.Equal("currency", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(Category.ItemisedMonster, actual.Header.Category);
+        Assert.Equal("Farric Chieftain", actual.Header.ApiType);
     }
 }
