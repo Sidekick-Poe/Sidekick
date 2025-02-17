@@ -153,40 +153,6 @@ public partial class Initialization : SidekickView
         });
     }
 
-    private static string? GetVersion()
-    {
-        var version = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).FirstOrDefault(x => x.Name == "Sidekick")?.Version;
-        return version?.ToString();
-    }
-
-    private void InitializeTray()
-    {
-        var menuItems = new List<TrayMenuItem>();
-
-        menuItems.AddRange(new List<TrayMenuItem>()
-        {
-            new(label: "Sidekick - " + GetVersion()),
-            new(label: Resources["Open_Website"],
-                onClick: () =>
-                {
-                    BrowserProvider.OpenSidekickWebsite();
-                    return Task.CompletedTask;
-                }),
-
-            // new(label: "Wealth", onClick: () => ViewLocator.Open("/wealth")),
-
-            new(label: Resources["Settings"], onClick: () => ViewLocator.Open("/settings")),
-            new(label: Resources["Exit"],
-                onClick: () =>
-                {
-                    ApplicationService.Shutdown();
-                    return Task.CompletedTask;
-                }),
-        });
-
-        TrayProvider.Initialize(menuItems);
-    }
-
     public void Exit()
     {
         ApplicationService.Shutdown();

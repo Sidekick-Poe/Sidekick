@@ -17,8 +17,4 @@
     <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interprocess\" />
-  </ItemGroup>
-
 </Project>
