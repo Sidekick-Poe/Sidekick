@@ -1,6 +1,6 @@
 namespace Sidekick.Apis.Poe.Trade.Requests;
 
-internal class QueryRequest
+public class QueryRequest
 {
     public required Query Query { get; set; }
 

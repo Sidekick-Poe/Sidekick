@@ -1,10 +1,14 @@
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
 
 public class SearchFilterOption
 {
+    public SearchFilterOption()
+    {
+        Option = string.Empty;
+    }
+
     public SearchFilterOption(string option)
     {
         Option = option;
