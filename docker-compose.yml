@@ -1,0 +1,10 @@
+services:
+  sidekick:
+    image: sidekickpoe:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    volumes:
+      - ./sidekick-data:/app/src/Sidekick.Web/sidekick
