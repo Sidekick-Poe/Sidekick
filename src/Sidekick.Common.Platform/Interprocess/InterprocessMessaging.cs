@@ -6,7 +6,7 @@ public class InterprocessMessaging
 
     public static event Action<string>? OnMessageReceived;
 
-    public void ReceiveMessage(string message)
+    public static void ReceiveMessage(string message)
     {
         OnMessageReceived?.Invoke(message);
     }

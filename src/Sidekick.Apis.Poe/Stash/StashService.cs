@@ -35,7 +35,7 @@ public class StashService(
         }
     }
 
-    private void FillStashTabs(
+    private static void FillStashTabs(
         string leagueId,
         List<StashTab> list,
         List<ApiStashTab> apiStashTabs)

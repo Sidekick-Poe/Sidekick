@@ -106,12 +106,12 @@ public partial class App
         }
     }
 
-    private bool HasApplicationStartedUsingSidekickProtocol(StartupEventArgs e)
+    private static bool HasApplicationStartedUsingSidekickProtocol(StartupEventArgs e)
     {
         return e.Args.Length > 0 && e.Args[0].ToUpper().StartsWith("SIDEKICK://");
     }
 
-    private void ShutdownAndExit()
+    private static void ShutdownAndExit()
     {
         Current.Dispatcher.Invoke(() =>
         {
@@ -120,7 +120,7 @@ public partial class App
         Environment.Exit(0);
     }
 
-    private ServiceProvider GetServiceProvider()
+    private static ServiceProvider GetServiceProvider()
     {
         var services = new ServiceCollection();
 
@@ -198,7 +198,7 @@ public partial class App
         };
     }
 
-    private void DisableWindowsTheme()
+    private static void DisableWindowsTheme()
     {
         // Disable Aero theme text rendering
         RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;

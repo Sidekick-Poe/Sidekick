@@ -124,7 +124,7 @@ public class GitHubClient
         return githubReleaseList?.FirstOrDefault(x => !x.Prerelease);
     }
 
-    private Version? GetCurrentVersion()
+    private static Version? GetCurrentVersion()
     {
         return AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).FirstOrDefault(x => x.Name == "Sidekick")?.Version;
     }

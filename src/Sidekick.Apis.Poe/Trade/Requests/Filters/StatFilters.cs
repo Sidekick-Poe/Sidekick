@@ -4,5 +4,5 @@ public class StatFilters
 {
     public string? Id { get; set; }
     public StatFilterValue? Value { get; set; }
-    public bool Disabled => false;
+    public static bool Disabled => false;
 }

@@ -240,7 +240,7 @@ public class SettingsService(
         OnSettingsChanged?.Invoke();
     }
 
-    private string? GetStringValue(object? value)
+    private static string? GetStringValue(object? value)
     {
         if (value == null)
         {

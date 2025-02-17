@@ -174,7 +174,7 @@ public partial class Initialization : SidekickView
         });
     }
 
-    private string? GetVersion()
+    private static string? GetVersion()
     {
         var version = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).FirstOrDefault(x => x.Name == "Sidekick")?.Version;
         return version?.ToString();
