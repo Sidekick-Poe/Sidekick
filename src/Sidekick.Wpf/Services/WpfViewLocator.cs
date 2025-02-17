@@ -21,6 +21,10 @@ namespace Sidekick.Wpf.Services
 
         internal string? NextUrl { get; set; }
 
+        public bool SupportsMinimize => true;
+
+        public bool SupportsMaximize => true;
+
         public WpfViewLocator(ILogger<WpfViewLocator> logger, ICloudflareService cloudflareService, ISettingsService settingsService, IViewPreferenceService viewPreferenceService)
         {
             this.logger = logger;

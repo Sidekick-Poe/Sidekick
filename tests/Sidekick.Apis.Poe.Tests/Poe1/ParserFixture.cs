@@ -10,7 +10,6 @@ using Sidekick.Common.Cache;
 using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
-using Sidekick.Mock;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Poe1
@@ -41,10 +40,7 @@ namespace Sidekick.Apis.Poe.Tests.Poe1
                 // Apis
                 .AddSidekickPoeApi()
                 .AddSidekickPoeNinjaApi()
-                .AddSidekickPoeWikiApi()
-
-                // Mocks
-                .AddSidekickMocks();
+                .AddSidekickPoeWikiApi();
 
             var settingsService = ctx.Services.GetRequiredService<ISettingsService>();
             await settingsService.Set(SettingKeys.LanguageParser, "en");

@@ -1,9 +1,8 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
-using Sidekick.Common.Platform;
 
-namespace Sidekick.Common.Game.GameLogs;
+namespace Sidekick.Common.Platform.GameLogs;
 
 public class GameLogProvider(
     IProcessProvider processProvider,

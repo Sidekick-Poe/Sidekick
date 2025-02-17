@@ -6,7 +6,6 @@ using Serilog.Events;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Folder;
-using Sidekick.Common.Game.GameLogs;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Keybinds;
@@ -32,7 +31,6 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IBrowserProvider, BrowserProvider>();
         services.AddSingleton<ICacheProvider, CacheProvider>();
         services.AddSingleton<IFolderProvider, FolderProvider>();
-        services.AddSingleton<IGameLogProvider, GameLogProvider>();
 
         services.AddSidekickInitializableService<ISettingsService, SettingsService>();
         services.AddSidekickInitializableService<IGameLanguageProvider, GameLanguageProvider>();

@@ -1,3 +1,8 @@
+@if (!ViewLocator.SupportsMaximize)
+{
+    return;
+}
+
 <button type="button"
         @onclick="OnClick"
         @onclick:preventDefault="true"

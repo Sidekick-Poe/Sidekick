@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Interop;
@@ -20,7 +19,6 @@ using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
-using Sidekick.Mock;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
@@ -155,7 +153,7 @@ namespace Sidekick.Wpf
                 .AddSidekickTrade()
                 .AddSidekickWealth();
 
-            services.AddSingleton<IApplicationService, MockApplicationService>();
+            services.AddSingleton<IApplicationService, WpfApplicationService>();
             services.AddSingleton<ITrayProvider, WpfTrayProvider>();
             services.AddSingleton<IViewLocator, WpfViewLocator>();
             services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());

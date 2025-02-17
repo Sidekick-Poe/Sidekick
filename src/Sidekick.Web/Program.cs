@@ -8,11 +8,9 @@ using Sidekick.Common.Updater;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Database;
-using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
-using Sidekick.Mock;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
@@ -20,6 +18,7 @@ using Sidekick.Modules.Maps;
 using Sidekick.Modules.Trade;
 using Sidekick.Modules.Wealth;
 using Sidekick.Web;
+using Sidekick.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,16 +58,10 @@ builder.Services
     .AddSidekickGeneral()
     .AddSidekickMaps()
     .AddSidekickTrade()
-    .AddSidekickWealth()
-
-    // Mocks
-    .AddSidekickMocks();
+    .AddSidekickWealth();
 
 builder.Services.AddApexCharts();
-
-builder.Services.AddSingleton<IApplicationService, MockApplicationService>();
-builder.Services.AddSingleton<ITrayProvider, MockTrayProvider>();
-builder.Services.AddSingleton<IViewLocator, MockViewLocator>();
+builder.Services.AddSingleton<IViewLocator, WebViewLocator>();
 
 #endregion Services
 
