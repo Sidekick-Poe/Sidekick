@@ -59,7 +59,7 @@ public class ParserFixture : IAsyncLifetime
         InvariantModifierProvider = ctx.Services.GetRequiredService<IInvariantModifierProvider>();
     }
 
-    private async Task Initialize(IServiceProvider serviceProvider)
+    private static async Task Initialize(IServiceProvider serviceProvider)
     {
         var cache = serviceProvider.GetRequiredService<ICacheProvider>();
         await cache.Clear();

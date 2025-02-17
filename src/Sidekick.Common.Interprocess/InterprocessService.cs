@@ -47,7 +47,7 @@ public class InterprocessService : IInterprocessService, IDisposable
         logger.LogDebug("[Interprocess] Sending message to other application instance. {0}", message);
         using var pipeClient = new PipeClient<InterprocessMessaging>(new NetJsonPipeSerializer(), InterprocessMessaging.Pipename);
         await pipeClient.ConnectAsync();
-        await pipeClient.InvokeAsync(x => x.ReceiveMessage(message));
+        await pipeClient.InvokeAsync(x => InterprocessMessaging.ReceiveMessage(message));
         logger.LogDebug("[Interprocess] Message sent.");
     }
 

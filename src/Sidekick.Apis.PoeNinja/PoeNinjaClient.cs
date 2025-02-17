@@ -142,7 +142,7 @@ public class PoeNinjaClient : IPoeNinjaClient
     /// <summary>
     /// Get Poe.ninja's league uri from POE's API league id.
     /// </summary>
-    private string GetLeagueUri(string? leagueId)
+    private static string GetLeagueUri(string? leagueId)
     {
         leagueId = leagueId.GetUrlSlugForLeague();
         return leagueId switch
@@ -154,7 +154,7 @@ public class PoeNinjaClient : IPoeNinjaClient
         };
     }
 
-    private string GetCacheKey(ItemType itemType) => $"PoeNinja_{itemType}";
+    private static string GetCacheKey(ItemType itemType) => $"PoeNinja_{itemType}";
 
     private async Task ClearCacheIfExpired()
     {
@@ -307,7 +307,7 @@ public class PoeNinjaClient : IPoeNinjaClient
         return [];
     }
 
-    private IEnumerable<ItemType> GetApiItemTypes(Category category)
+    private static IEnumerable<ItemType> GetApiItemTypes(Category category)
     {
         switch (category)
         {

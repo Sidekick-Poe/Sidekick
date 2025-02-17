@@ -66,7 +66,7 @@ public class TradeSearchService
             }
             else if (propertyFilters.ClassFilterApplied)
             {
-                query.Filters.TypeFilters.Filters.Category = GetCategoryFilter(item.Header.ItemCategory);
+                query.Filters.GetOrCreateTypeFilters().Filters.Category = GetCategoryFilter(item.Header.ItemCategory);
             }
 
             if (item.Header.Category == Category.ItemisedMonster && !string.IsNullOrEmpty(itemApiNameToUse))
@@ -77,7 +77,7 @@ public class TradeSearchService
             else if (item.Header.Rarity == Rarity.Unique && !string.IsNullOrEmpty(itemApiNameToUse))
             {
                 query.Name = itemApiNameToUse;
-                query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("Unique");
+                query.Filters.GetOrCreateTypeFilters().Filters.Rarity = new SearchFilterOption("Unique");
             }
             else if (propertyFilters?.RarityFilterApplied ?? false)
             {
@@ -90,11 +90,11 @@ public class TradeSearchService
                     _ => "nonunique",
                 };
 
-                query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption(rarity);
+                query.Filters.GetOrCreateTypeFilters().Filters.Rarity = new SearchFilterOption(rarity);
             }
             else
             {
-                query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("nonunique");
+                query.Filters.GetOrCreateTypeFilters().Filters.Rarity = new SearchFilterOption("nonunique");
             }
 
             var currency = item.Header.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
@@ -164,7 +164,7 @@ public class TradeSearchService
         throw new ApiErrorException();
     }
 
-    private SearchFilterOption? GetCategoryFilter(string? itemCategory)
+    private static SearchFilterOption? GetCategoryFilter(string? itemCategory)
     {
         if (string.IsNullOrEmpty(itemCategory))
         {
@@ -174,7 +174,7 @@ public class TradeSearchService
         return new SearchFilterOption(itemCategory);
     }
 
-    private StatFilterGroup? GetAndStats(List<ModifierFilter>? modifierFilters, List<PseudoModifierFilter>? pseudoFilters)
+    private static StatFilterGroup? GetAndStats(List<ModifierFilter>? modifierFilters, List<PseudoModifierFilter>? pseudoFilters)
     {
         var andGroup = new StatFilterGroup()
         {
@@ -227,7 +227,7 @@ public class TradeSearchService
         return andGroup;
     }
 
-    private StatFilterGroup? GetCountStats(List<ModifierFilter>? modifierFilters)
+    private static StatFilterGroup? GetCountStats(List<ModifierFilter>? modifierFilters)
     {
         var countGroup = new StatFilterGroup()
         {
@@ -281,7 +281,7 @@ public class TradeSearchService
         return countGroup;
     }
 
-    private List<StatFilterGroup> GetWeightedSumStats(List<PseudoModifierFilter>? pseudoFilters)
+    private static List<StatFilterGroup> GetWeightedSumStats(List<PseudoModifierFilter>? pseudoFilters)
     {
         if (pseudoFilters == null)
         {
