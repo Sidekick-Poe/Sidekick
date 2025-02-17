@@ -1,9 +1,8 @@
-namespace Sidekick.Apis.PoeNinja.Api
-{
-    public record SparkLine
-    {
-        public double TotalChange { get; init; }
+namespace Sidekick.Apis.PoeNinja.Api;
 
-        public List<double?> Data { get; init; } = new();
-    }
+public record SparkLine
+{
+    public double TotalChange { get; init; }
+
+    public List<double?> Data { get; init; } = new();
 }

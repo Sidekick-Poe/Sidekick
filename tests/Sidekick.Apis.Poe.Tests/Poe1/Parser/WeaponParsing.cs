@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class WeaponParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void ParseUnidentifiedUnique()
-        {
-            var actual = parser.ParseItem(@"Item Class: Unknown
+[Collection(Collections.Poe1Parser)]
+public class WeaponParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParseUnidentifiedUnique()
+    {
+        var actual = parser.ParseItem(@"Item Class: Unknown
 Rarity: Unique
 Jade Hatchet
 --------
@@ -31,16 +31,16 @@ Item Level: 71
 Unidentified
 ;");
 
-            Assert.Equal(Category.Weapon, actual.Header.Category);
-            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
-            Assert.Equal("Jade Hatchet", actual.Header.ApiType);
-            Assert.True(actual.Properties.Unidentified);
-        }
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+        Assert.Equal("Jade Hatchet", actual.Header.ApiType);
+        Assert.True(actual.Properties.Unidentified);
+    }
 
-        [Fact]
-        public void ParseInfluencedWeapon()
-        {
-            var actual = parser.ParseItem(@"Item Class: Unknown
+    [Fact]
+    public void ParseInfluencedWeapon()
+    {
+        var actual = parser.ParseItem(@"Item Class: Unknown
 Rarity: Rare
 Miracle Chant
 Imbued Wand
@@ -67,22 +67,22 @@ Attacks with this Weapon Penetrate 10% Lightning Resistance
 Crusader Item
 ");
 
-            Assert.Equal(Category.Weapon, actual.Header.Category);
-            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-            Assert.Equal("Imbued Wand", actual.Header.ApiType);
-            Assert.Equal("Miracle Chant", actual.Header.Name);
-            Assert.True(actual.Properties.Influences.Crusader);
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal("Imbued Wand", actual.Header.ApiType);
+        Assert.Equal("Miracle Chant", actual.Header.Name);
+        Assert.True(actual.Properties.Influences.Crusader);
 
-            actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Spell Damage", 33);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage (Local)", 10, 16);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Fire Damage", 24);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "Attacks with this Weapon Penetrate #% Lightning Resistance", 10);
-        }
+        actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Spell Damage", 33);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage (Local)", 10, 16);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Fire Damage", 24);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Attacks with this Weapon Penetrate #% Lightning Resistance", 10);
+    }
 
-        [Fact]
-        public void ParseMagicWeapon()
-        {
-            var actual = parser.ParseItem(@"Item Class: Unknown
+    [Fact]
+    public void ParseMagicWeapon()
+    {
+        var actual = parser.ParseItem(@"Item Class: Unknown
 Rarity: Magic
 Shadow Axe of the Boxer
 --------
@@ -104,20 +104,20 @@ Item Level: 50
 11% reduced Enemy Stun Threshold
 ");
 
-            Assert.Equal(Category.Weapon, actual.Header.Category);
-            Assert.Equal(Rarity.Magic, actual.Header.Rarity);
-            Assert.Equal("Shadow Axe", actual.Header.ApiType);
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal(Rarity.Magic, actual.Header.Rarity);
+        Assert.Equal("Shadow Axe", actual.Header.ApiType);
 
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% reduced Enemy Stun Threshold", 11);
-        }
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% reduced Enemy Stun Threshold", 11);
+    }
 
-        /// <summary>
-        /// This unique item can have multiple possible bases.
-        /// </summary>
-        [Fact]
-        public void ParseUniqueItemWithDifferentBases()
-        {
-            var actual = parser.ParseItem(@"Item Class: Unknown
+    /// <summary>
+    /// This unique item can have multiple possible bases.
+    /// </summary>
+    [Fact]
+    public void ParseUniqueItemWithDifferentBases()
+    {
+        var actual = parser.ParseItem(@"Item Class: Unknown
 Rarity: Unique
 Wings of Entropy
 Ezomyte Axe
@@ -148,21 +148,21 @@ Counts as Dual Wielding
 --------
 Fire and Anarchy are the most reliable agents of change.");
 
-            Assert.Equal(Category.Weapon, actual.Header.Category);
-            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
-            Assert.Equal("Wings of Entropy", actual.Header.ApiName);
-            Assert.Equal("Ezomyte Axe", actual.Header.ApiType);
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+        Assert.Equal("Wings of Entropy", actual.Header.ApiName);
+        Assert.Equal("Ezomyte Axe", actual.Header.ApiType);
 
-            Assert.Equal(243.7, actual.Properties.PhysicalDps);
-            Assert.Equal(172.80, actual.Properties.ElementalDps);
-            Assert.Equal(176.9, actual.Properties.ChaosDps);
-            Assert.Equal(593.4, actual.Properties.TotalDps);
-        }
+        Assert.Equal(243.7, actual.Properties.PhysicalDps);
+        Assert.Equal(172.80, actual.Properties.ElementalDps);
+        Assert.Equal(176.9, actual.Properties.ChaosDps);
+        Assert.Equal(593.4, actual.Properties.TotalDps);
+    }
 
-        [Fact]
-        public void ParseDaressoPassion()
-        {
-            var actual = parser.ParseItem(@"Item Class: Thrusting One Hand Swords
+    [Fact]
+    public void ParseDaressoPassion()
+    {
+        var actual = parser.ParseItem(@"Item Class: Thrusting One Hand Swords
 Rarity: Unique
 Daresso's Passion
 Estoc
@@ -194,27 +194,27 @@ It doesn't matter how well the young swordsman trains.
 All form and finesse are forgotten when blood first hits the ground.
 ");
 
-            Assert.Equal(Category.Weapon, actual.Header.Category);
-            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
-            Assert.Equal("Daresso's Passion", actual.Header.ApiName);
-            Assert.Equal("Estoc", actual.Header.ApiType);
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+        Assert.Equal("Daresso's Passion", actual.Header.ApiName);
+        Assert.Equal("Estoc", actual.Header.ApiType);
 
-            // Verify physical damage
-            Assert.Equal(58, actual.Properties.PhysicalDamage?.Min);
-            Assert.Equal(90, actual.Properties.PhysicalDamage?.Max);
-            Assert.Equal(111, actual.Properties.PhysicalDps);
+        // Verify physical damage
+        Assert.Equal(58, actual.Properties.PhysicalDamage?.Min);
+        Assert.Equal(90, actual.Properties.PhysicalDamage?.Max);
+        Assert.Equal(111, actual.Properties.PhysicalDps);
 
-            // Verify elemental damages
-            Assert.Equal(36, actual.Properties.ColdDamage?.Min);
-            Assert.Equal(43, actual.Properties.ColdDamage?.Max);
+        // Verify elemental damages
+        Assert.Equal(36, actual.Properties.ColdDamage?.Min);
+        Assert.Equal(43, actual.Properties.ColdDamage?.Max);
 
-            AssertHelper.CloseEnough(59.2, actual.Properties.ElementalDps);
-        }
+        AssertHelper.CloseEnough(59.2, actual.Properties.ElementalDps);
+    }
 
-        [Fact]
-        public void Reefbane()
-        {
-            var actual = parser.ParseItem(@"Item Class: Fishing Rods
+    [Fact]
+    public void Reefbane()
+    {
+        var actual = parser.ParseItem(@"Item Class: Fishing Rods
 Rarity: Unique
 Reefbane
 Fishing Rod
@@ -240,17 +240,17 @@ And tore out her heart.
 Note: ~price 40 chaos
 ");
 
-            Assert.Equal("weapon.rod", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
-            Assert.Equal(Category.Weapon, actual.Header.Category);
-            Assert.Equal("Reefbane", actual.Header.ApiName);
-            Assert.Equal("Fishing Rod", actual.Header.ApiType);
-        }
+        Assert.Equal("weapon.rod", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal("Reefbane", actual.Header.ApiName);
+        Assert.Equal("Fishing Rod", actual.Header.ApiType);
+    }
 
-        [Fact]
-        public void UnidentifiedHunterItem()
-        {
-            var actual = parser.ParseItem(@"Item Class: One Hand Maces
+    [Fact]
+    public void UnidentifiedHunterItem()
+    {
+        var actual = parser.ParseItem(@"Item Class: One Hand Maces
 Rarity: Rare
 Ornate Mace
 --------
@@ -273,11 +273,10 @@ Unidentified
 --------
 Hunter Item");
 
-            Assert.Equal("weapon.onemace", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-            Assert.Equal(Category.Weapon, actual.Header.Category);
-            Assert.Equal("Ornate Mace", actual.Header.ApiType);
-            Assert.True(actual.Properties.Influences.Hunter);
-        }
+        Assert.Equal("weapon.onemace", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal("Ornate Mace", actual.Header.ApiType);
+        Assert.True(actual.Properties.Influences.Hunter);
     }
 }

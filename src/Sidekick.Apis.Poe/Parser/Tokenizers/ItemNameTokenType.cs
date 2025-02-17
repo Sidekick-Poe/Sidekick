@@ -1,11 +1,10 @@
-namespace Sidekick.Apis.Poe.Parser.Tokenizers
+namespace Sidekick.Apis.Poe.Parser.Tokenizers;
+
+public enum ItemNameTokenType
 {
-    public enum ItemNameTokenType
-    {
-        Set,
-        If,
-        Name,
-        MiscTags,
-        EndOfItem
-    }
+    Set,
+    If,
+    Name,
+    MiscTags,
+    EndOfItem
 }

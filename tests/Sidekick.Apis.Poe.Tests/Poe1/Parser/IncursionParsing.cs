@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class IncursionParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void LocusOfCorruption()
-        {
-            var actual = parser.ParseItem(@"Item Class: Misc Map Items
+[Collection(Collections.Poe1Parser)]
+public class IncursionParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void LocusOfCorruption()
+    {
+        var actual = parser.ParseItem(@"Item Class: Misc Map Items
 Rarity: Currency
 Chronicle of Atzoatl
 --------
@@ -39,13 +39,12 @@ Can be used in a personal Map Device to open portals to the Temple of Atzoatl in
 Note: ~price 1.29 exalted
 ");
 
-            Assert.Equal("map.fragment", actual.Header.ItemCategory);
-            Assert.Equal(Category.Map, actual.Header.Category);
-            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
-            Assert.Equal("Chronicle of Atzoatl", actual.Header.ApiType);
-            Assert.Equal(81, actual.Properties.AreaLevel);
+        Assert.Equal("map.fragment", actual.Header.ItemCategory);
+        Assert.Equal(Category.Map, actual.Header.Category);
+        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+        Assert.Equal("Chronicle of Atzoatl", actual.Header.ApiType);
+        Assert.Equal(81, actual.Properties.AreaLevel);
 
-            actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)");
-        }
+        actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)");
     }
 }

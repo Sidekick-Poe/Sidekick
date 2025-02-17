@@ -1,11 +1,10 @@
 using Sidekick.Apis.Poe.Stash.Models;
 
-namespace Sidekick.Apis.Poe.Stash
-{
-    public interface IStashService
-    {
-        Task<List<StashTab>?> GetStashTabList();
+namespace Sidekick.Apis.Poe.Stash;
 
-        Task<StashTabDetails?> GetStashDetails(string id);
-    }
+public interface IStashService
+{
+    Task<List<StashTab>?> GetStashTabList();
+
+    Task<StashTabDetails?> GetStashDetails(string id);
 }

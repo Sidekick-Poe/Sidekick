@@ -1,7 +1,6 @@
-namespace Sidekick.Apis.Poe.Modifiers.Models
+namespace Sidekick.Apis.Poe.Modifiers.Models;
+
+public class ApiModifierOptions
 {
-    public class ApiModifierOptions
-    {
-        public List<ApiModifierOption> Options { get; set; } = new();
-    }
+    public List<ApiModifierOption> Options { get; set; } = new();
 }

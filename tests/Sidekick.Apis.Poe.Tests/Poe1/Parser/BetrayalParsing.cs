@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class BetrayalParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void RustedReliquaryScarab()
-        {
-            var actual = parser.ParseItem(@"Item Class: Map Fragments
+[Collection(Collections.Poe1Parser)]
+public class BetrayalParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void RustedReliquaryScarab()
+    {
+        var actual = parser.ParseItem(@"Item Class: Map Fragments
 Rarity: Normal
 Rusted Reliquary Scarab
 --------
@@ -25,11 +25,10 @@ Can be used in a personal Map Device to add modifiers to a Map.
 Note: ~b/o .50 chaos
 ");
 
-            Assert.Equal("map.fragment", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-            Assert.Equal(Category.Map, actual.Header.Category);
-            Assert.Equal("Rusted Reliquary Scarab", actual.Header.ApiType);
-        }
-
+        Assert.Equal("map.fragment", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
+        Assert.Equal(Category.Map, actual.Header.Category);
+        Assert.Equal("Rusted Reliquary Scarab", actual.Header.ApiType);
     }
+
 }

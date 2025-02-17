@@ -7,68 +7,67 @@ using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
 
-namespace Sidekick.Apis.PoePriceInfo
-{
-    public class PoePriceInfoClient(
-        ISettingsService settingsService,
-        ILogger<PoePriceInfoClient> logger,
-        IHttpClientFactory httpClientFactory) : IPoePriceInfoClient
-    {
-        private readonly JsonSerializerOptions options = new()
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-        };
+namespace Sidekick.Apis.PoePriceInfo;
 
-        private HttpClient GetHttpClient()
+public class PoePriceInfoClient(
+    ISettingsService settingsService,
+    ILogger<PoePriceInfoClient> logger,
+    IHttpClientFactory httpClientFactory) : IPoePriceInfoClient
+{
+    private readonly JsonSerializerOptions options = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+    };
+
+    private HttpClient GetHttpClient()
+    {
+        var client = httpClientFactory.CreateClient();
+        client.BaseAddress = new Uri("https://www.poeprices.info/api");
+        client.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
+        client.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
+        client.Timeout = TimeSpan.FromSeconds(60);
+        return client;
+    }
+
+    public async Task<PricePrediction?> GetPricePrediction(Item item)
+    {
+        if (item.Header.Rarity != Rarity.Rare)
         {
-            var client = httpClientFactory.CreateClient();
-            client.BaseAddress = new Uri("https://www.poeprices.info/api");
-            client.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
-            client.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
-            client.Timeout = TimeSpan.FromSeconds(60);
-            return client;
+            return null;
         }
 
-        public async Task<PricePrediction?> GetPricePrediction(Item item)
+        try
         {
-            if (item.Header.Rarity != Rarity.Rare)
+            var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+            var encodedItem = Convert.ToBase64String(Encoding.UTF8.GetBytes(item.Text));
+            using var client = GetHttpClient();
+            var response = await client.GetAsync("?l=" + leagueId.GetUrlSlugForLeague() + "&i=" + encodedItem);
+            var content = await response.Content.ReadAsStreamAsync();
+            var result = await JsonSerializer.DeserializeAsync<PriceInfoResult>(content, options);
+
+            if (result == null)
             {
                 return null;
             }
 
-            try
+            if (result is { Min: 0, Max: 0 })
             {
-                var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-                var encodedItem = Convert.ToBase64String(Encoding.UTF8.GetBytes(item.Text));
-                using var client = GetHttpClient();
-                var response = await client.GetAsync("?l=" + leagueId.GetUrlSlugForLeague() + "&i=" + encodedItem);
-                var content = await response.Content.ReadAsStreamAsync();
-                var result = await JsonSerializer.DeserializeAsync<PriceInfoResult>(content, options);
-
-                if (result == null)
-                {
-                    return null;
-                }
-
-                if (result is { Min: 0, Max: 0 })
-                {
-                    return null;
-                }
-
-                return new PricePrediction()
-                {
-                    ConfidenceScore = result.ConfidenceScore,
-                    Currency = result.Currency,
-                    Max = result.Max ?? 0,
-                    Min = result.Min ?? 0,
-                };
-            }
-            catch (Exception e)
-            {
-                logger.LogWarning(e, "Error while trying to get price prediction from poeprices.info.");
+                return null;
             }
 
-            return null;
+            return new PricePrediction()
+            {
+                ConfidenceScore = result.ConfidenceScore,
+                Currency = result.Currency,
+                Max = result.Max ?? 0,
+                Min = result.Min ?? 0,
+            };
         }
+        catch (Exception e)
+        {
+            logger.LogWarning(e, "Error while trying to get price prediction from poeprices.info.");
+        }
+
+        return null;
     }
 }

@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class AbyssParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void BulbonicTrail()
-        {
-            var actual = parser.ParseItem(@"Item Class: Boots
+[Collection(Collections.Poe1Parser)]
+public class AbyssParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void BulbonicTrail()
+    {
+        var actual = parser.ParseItem(@"Item Class: Boots
 Rarity: Unique
 Bubonic Trail
 Murder Boots
@@ -37,19 +37,19 @@ Triggers Level 20 Death Walk when Equipped
 Even the dead serve the Lightless.
 ");
 
-            Assert.Equal("armour.boots", actual.Header.ItemCategory);
-            Assert.Equal(Category.Armour, actual.Header.Category);
-            Assert.Equal(Rarity.Unique, actual.Header.Rarity);
-            Assert.Equal("Bubonic Trail", actual.Header.ApiName);
-            Assert.Equal("Murder Boots", actual.Header.ApiType);
+        Assert.Equal("armour.boots", actual.Header.ItemCategory);
+        Assert.Equal(Category.Armour, actual.Header.Category);
+        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+        Assert.Equal("Bubonic Trail", actual.Header.ApiName);
+        Assert.Equal("Murder Boots", actual.Header.ApiType);
 
-            actual.AssertHasModifier(ModifierCategory.Explicit, "Has # Abyssal Sockets", 1);
-        }
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Has # Abyssal Sockets", 1);
+    }
 
-        [Fact]
-        public void AbyssJewel()
-        {
-            var actual = parser.ParseItem(@"Item Class: Abyss Jewels
+    [Fact]
+    public void AbyssJewel()
+    {
+        var actual = parser.ParseItem(@"Item Class: Abyss Jewels
 Rarity: Rare
 Whispering Leer
 Hypnotic Eye Jewel
@@ -71,10 +71,9 @@ Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the
 Note: ~price 1 alch
 ");
 
-            Assert.Equal("jewel.abyss", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-            Assert.Equal(Category.Jewel, actual.Header.Category);
-            Assert.Equal("Hypnotic Eye Jewel", actual.Header.ApiType);
-        }
+        Assert.Equal("jewel.abyss", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(Category.Jewel, actual.Header.Category);
+        Assert.Equal("Hypnotic Eye Jewel", actual.Header.ApiType);
     }
 }

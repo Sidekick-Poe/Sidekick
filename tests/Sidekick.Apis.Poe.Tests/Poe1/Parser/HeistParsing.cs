@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class HeistParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void HeistTool()
-        {
-            var actual = parser.ParseItem(@"Item Class: Heist Tools
+[Collection(Collections.Poe1Parser)]
+public class HeistParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void HeistTool()
+    {
+        var actual = parser.ParseItem(@"Item Class: Heist Tools
 Rarity: Magic
 Skillful Basic Disguise Kit
 --------
@@ -31,16 +31,16 @@ Item Level: 69
 Can only be equipped to Heist members.
 ");
 
-            Assert.Equal("heistequipment.heisttool", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Magic, actual.Header.Rarity);
-            Assert.Equal(Category.HeistEquipment, actual.Header.Category);
-            Assert.Equal("Basic Disguise Kit", actual.Header.ApiType);
-        }
+        Assert.Equal("heistequipment.heisttool", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Magic, actual.Header.Rarity);
+        Assert.Equal(Category.HeistEquipment, actual.Header.Category);
+        Assert.Equal("Basic Disguise Kit", actual.Header.ApiType);
+    }
 
-        [Fact]
-        public void HeistCloak()
-        {
-            var actual = parser.ParseItem(@"Item Class: Heist Cloaks
+    [Fact]
+    public void HeistCloak()
+    {
+        var actual = parser.ParseItem(@"Item Class: Heist Cloaks
 Rarity: Normal
 Torn Cloak
 --------
@@ -56,16 +56,16 @@ Item Level: 67
 Can only be equipped to Heist members.
 ");
 
-            Assert.Equal("heistequipment.heistutility", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-            Assert.Equal(Category.HeistEquipment, actual.Header.Category);
-            Assert.Equal("Torn Cloak", actual.Header.ApiType);
-        }
+        Assert.Equal("heistequipment.heistutility", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
+        Assert.Equal(Category.HeistEquipment, actual.Header.Category);
+        Assert.Equal("Torn Cloak", actual.Header.ApiType);
+    }
 
-        [Fact]
-        public void HeistBrooch()
-        {
-            var actual = parser.ParseItem(@"Item Class: Heist Brooches
+    [Fact]
+    public void HeistBrooch()
+    {
+        var actual = parser.ParseItem(@"Item Class: Heist Brooches
 Rarity: Normal
 Silver Brooch
 --------
@@ -81,16 +81,16 @@ Item Level: 73
 Can only be equipped to Heist members.
 ");
 
-            Assert.Equal("heistequipment.heistreward", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-            Assert.Equal(Category.HeistEquipment, actual.Header.Category);
-            Assert.Equal("Silver Brooch", actual.Header.ApiType);
-        }
+        Assert.Equal("heistequipment.heistreward", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
+        Assert.Equal(Category.HeistEquipment, actual.Header.Category);
+        Assert.Equal("Silver Brooch", actual.Header.ApiType);
+    }
 
-        [Fact]
-        public void HeistGear()
-        {
-            var actual = parser.ParseItem(@"Item Class: Heist Gear
+    [Fact]
+    public void HeistGear()
+    {
+        var actual = parser.ParseItem(@"Item Class: Heist Gear
 Rarity: Rare
 Miracle Equipment
 Rough Sharpening Stone
@@ -113,16 +113,16 @@ Grants Level 10 Anger Skill
 Can only be equipped to Heist members.
 ");
 
-            Assert.Equal("heistequipment.heistweapon", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-            Assert.Equal(Category.HeistEquipment, actual.Header.Category);
-            Assert.Equal("Rough Sharpening Stone", actual.Header.ApiType);
-        }
+        Assert.Equal("heistequipment.heistweapon", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(Category.HeistEquipment, actual.Header.Category);
+        Assert.Equal("Rough Sharpening Stone", actual.Header.ApiType);
+    }
 
-        [Fact]
-        public void HeistTarget()
-        {
-            var actual = parser.ParseItem(@"Item Class: Heist Targets
+    [Fact]
+    public void HeistTarget()
+    {
+        var actual = parser.ParseItem(@"Item Class: Heist Targets
 Rarity: Currency
 Golden Napuatzi Idol
 --------
@@ -133,16 +133,16 @@ Such a gift will set me apart from all other suitors.""
 Can be exchanged with Faustus, the Fence in The Rogue Harbour
 ");
 
-            Assert.Equal("currency.heistobjective", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
-            Assert.Equal(Category.Currency, actual.Header.Category);
-            Assert.Equal("Golden Napuatzi Idol", actual.Header.ApiType);
-        }
+        Assert.Equal("currency.heistobjective", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+        Assert.Equal(Category.Currency, actual.Header.Category);
+        Assert.Equal("Golden Napuatzi Idol", actual.Header.ApiType);
+    }
 
-        [Fact]
-        public void ThiefTrinket()
-        {
-            var actual = parser.ParseItem(@"Item Class: Trinkets
+    [Fact]
+    public void ThiefTrinket()
+    {
+        var actual = parser.ParseItem(@"Item Class: Trinkets
 Rarity: Rare
 Armageddon Lure
 Thief's Trinket
@@ -161,12 +161,11 @@ You must find the sculpture The Catch in a Smuggler's Den or Underbelly Blueprin
 Corrupted
 ");
 
-            Assert.Equal("accessory.trinket", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-            Assert.Equal(Category.Accessory, actual.Header.Category);
-            Assert.Equal("Thief's Trinket", actual.Header.ApiType);
-            Assert.True(actual.Properties.Corrupted);
-        }
-
+        Assert.Equal("accessory.trinket", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(Category.Accessory, actual.Header.Category);
+        Assert.Equal("Thief's Trinket", actual.Header.ApiType);
+        Assert.True(actual.Properties.Corrupted);
     }
+
 }

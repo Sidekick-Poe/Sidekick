@@ -7,73 +7,72 @@ using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
 
-namespace Sidekick.Apis.Poe.Static
+namespace Sidekick.Apis.Poe.Static;
+
+public class ItemStaticDataProvider
+(
+    ICacheProvider cacheProvider,
+    IPoeTradeClient poeTradeClient,
+    IGameLanguageProvider gameLanguageProvider,
+    ISettingsService settingsService
+) : IItemStaticDataProvider
 {
-    public class ItemStaticDataProvider
-    (
-        ICacheProvider cacheProvider,
-        IPoeTradeClient poeTradeClient,
-        IGameLanguageProvider gameLanguageProvider,
-        ISettingsService settingsService
-    ) : IItemStaticDataProvider
+    private Dictionary<string, StaticItem> ByIds { get; } = new();
+
+    private Dictionary<string, StaticItem> ByTexts { get; } = new();
+
+    /// <inheritdoc/>
+    public int Priority => 100;
+
+    /// <inheritdoc/>
+    public async Task Initialize()
     {
-        private Dictionary<string, StaticItem> ByIds { get; } = new();
+        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+        var game = leagueId.GetGameFromLeagueId();
+        var cacheKey = $"{game.GetValueAttribute()}_StaticData";
+        var result = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<StaticItemCategory>(game, gameLanguageProvider.Language, "data/static"), (cache) => cache.Result.Any());
 
-        private Dictionary<string, StaticItem> ByTexts { get; } = new();
-
-        /// <inheritdoc/>
-        public int Priority => 100;
-
-        /// <inheritdoc/>
-        public async Task Initialize()
+        ByTexts.Clear();
+        ByIds.Clear();
+        foreach (var category in result.Result)
         {
-            var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var game = leagueId.GetGameFromLeagueId();
-            var cacheKey = $"{game.GetValueAttribute()}_StaticData";
-            var result = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<StaticItemCategory>(game, gameLanguageProvider.Language, "data/static"), (cache) => cache.Result.Any());
-
-            ByTexts.Clear();
-            ByIds.Clear();
-            foreach (var category in result.Result)
+            foreach (var entry in category.Entries)
             {
-                foreach (var entry in category.Entries)
+                if (entry.Id == null! || entry.Image == null || entry.Text == null)
                 {
-                    if (entry.Id == null! || entry.Image == null || entry.Text == null)
-                    {
-                        continue;
-                    }
-
-                    ByIds.Add(entry.Id, entry);
-                    ByTexts.TryAdd(entry.Text, entry);
+                    continue;
                 }
+
+                ByIds.Add(entry.Id, entry);
+                ByTexts.TryAdd(entry.Text, entry);
             }
         }
+    }
 
-        public string? GetImage(string id)
+    public string? GetImage(string id)
+    {
+        var result = Get(id);
+        if (result?.Image == null) return null;
+
+        return $"{gameLanguageProvider.Language.PoeCdnBaseUrl}{result.Image.Trim('/')}";
+    }
+
+    public StaticItem? Get(string id)
+    {
+        id = id switch
         {
-            var result = Get(id);
-            if (result?.Image == null) return null;
+            "exalt" => "exalted",
+            _ => id
+        };
 
-            return $"{gameLanguageProvider.Language.PoeCdnBaseUrl}{result.Image.Trim('/')}";
-        }
+        return ByIds.GetValueOrDefault(id);
+    }
 
-        public StaticItem? Get(string id)
-        {
-            id = id switch
-            {
-                "exalt" => "exalted",
-                _ => id
-            };
+    public StaticItem? Get(ItemHeader itemHeader)
+    {
+        var text = itemHeader.Name ?? itemHeader.Type ?? itemHeader.ApiType;
+        if (text == null) return null;
 
-            return ByIds.GetValueOrDefault(id);
-        }
-
-        public StaticItem? Get(ItemHeader itemHeader)
-        {
-            var text = itemHeader.Name ?? itemHeader.Type ?? itemHeader.ApiType;
-            if (text == null) return null;
-
-            return ByTexts.GetValueOrDefault(text);
-        }
+        return ByTexts.GetValueOrDefault(text);
     }
 }

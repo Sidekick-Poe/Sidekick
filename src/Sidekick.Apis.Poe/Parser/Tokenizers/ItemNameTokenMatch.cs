@@ -1,19 +1,18 @@
 using System.Text.RegularExpressions;
 
-namespace Sidekick.Apis.Poe.Parser.Tokenizers
+namespace Sidekick.Apis.Poe.Parser.Tokenizers;
+
+public class ItemNameTokenMatch
 {
-    public class ItemNameTokenMatch
+    public ItemNameTokenMatch(
+        ItemNameTokenType tokenType,
+        Match match)
     {
-        public ItemNameTokenMatch(
-            ItemNameTokenType tokenType,
-            Match match)
-        {
-            TokenType = tokenType;
-            Match = match;
-        }
-
-        public ItemNameTokenType TokenType { get; set; }
-
-        public Match Match { get; set; }
+        TokenType = tokenType;
+        Match = match;
     }
+
+    public ItemNameTokenType TokenType { get; set; }
+
+    public Match Match { get; set; }
 }

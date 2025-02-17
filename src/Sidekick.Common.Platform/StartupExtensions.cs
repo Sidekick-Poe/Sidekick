@@ -7,36 +7,35 @@ using Sidekick.Common.Platform.Keyboards;
 using Sidekick.Common.Platform.Localization;
 using Sidekick.Common.Platform.Windows.Processes;
 
-namespace Sidekick.Common.Platform
+namespace Sidekick.Common.Platform;
+
+/// <summary>
+/// Functions for startup configuration for platform related features
+/// </summary>
+public static class StartupExtensions
 {
     /// <summary>
-    /// Functions for startup configuration for platform related features
+    /// Adds platform (operating system) functions to the service collection.
     /// </summary>
-    public static class StartupExtensions
+    /// <param name="services">The services collection to add services to.</param>
+    /// <param name="options">The platform options.</param>
+    /// <returns>The service collection with services added.</returns>
+    public static IServiceCollection AddSidekickCommonPlatform(this IServiceCollection services, Action<PlatformOptions> options)
     {
-        /// <summary>
-        /// Adds platform (operating system) functions to the service collection.
-        /// </summary>
-        /// <param name="services">The services collection to add services to.</param>
-        /// <param name="options">The platform options.</param>
-        /// <returns>The service collection with services added.</returns>
-        public static IServiceCollection AddSidekickCommonPlatform(this IServiceCollection services, Action<PlatformOptions> options)
+        services.Configure(options);
+
+        services.AddTransient<PlatformResources>();
+        services.AddTransient<IClipboardProvider, ClipboardProvider>();
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            services.Configure(options);
+            services.AddSidekickInitializableService<IProcessProvider, ProcessProvider>();
+        }
 
-            services.AddTransient<PlatformResources>();
-            services.AddTransient<IClipboardProvider, ClipboardProvider>();
-
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                services.AddSidekickInitializableService<IProcessProvider, ProcessProvider>();
-            }
-
-            services.AddSidekickInitializableService<IKeyboardProvider, KeyboardProvider>();
-            services.AddSingleton<IInterprocessService, InterprocessService>();
+        services.AddSidekickInitializableService<IKeyboardProvider, KeyboardProvider>();
+        services.AddSingleton<IInterprocessService, InterprocessService>();
             services.AddSingleton<IGameLogProvider, GameLogProvider>();
 
-            return services;
-        }
+        return services;
     }
 }

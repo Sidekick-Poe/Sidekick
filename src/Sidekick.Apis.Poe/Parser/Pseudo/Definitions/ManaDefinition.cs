@@ -1,4 +1,4 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 using Sidekick.Common.Game;
 
 namespace Sidekick.Apis.Poe.Parser.Pseudo.Definitions;

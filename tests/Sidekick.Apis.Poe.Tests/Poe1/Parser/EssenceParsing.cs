@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class EssenceParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void ParseWeepingEssenceOfAnger()
-        {
-            var actual = parser.ParseItem(@"Item Class: Stackable Currency
+[Collection(Collections.Poe1Parser)]
+public class EssenceParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParseWeepingEssenceOfAnger()
+    {
+        var actual = parser.ParseItem(@"Item Class: Stackable Currency
 Rarity: Currency
 Weeping Essence of Anger
 --------
@@ -33,10 +33,9 @@ Shift click to unstack.
 Note: ~price 1 fusing
 ");
 
-            Assert.Equal("currency", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Currency, actual.Header.Rarity);
-            Assert.Equal(Category.Currency, actual.Header.Category);
-            Assert.Equal("Weeping Essence of Anger", actual.Header.ApiType);
-        }
+        Assert.Equal("currency", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+        Assert.Equal(Category.Currency, actual.Header.Category);
+        Assert.Equal("Weeping Essence of Anger", actual.Header.ApiType);
     }
 }

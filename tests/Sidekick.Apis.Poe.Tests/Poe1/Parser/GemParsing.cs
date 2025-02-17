@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class GemParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void ParseVaalGem()
-        {
-            var actual = parser.ParseItem(@"Item Class: Unknown
+[Collection(Collections.Poe1Parser)]
+public class GemParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParseVaalGem()
+    {
+        var actual = parser.ParseItem(@"Item Class: Unknown
 Rarity: Gem
 Double Strike
 --------
@@ -54,18 +54,18 @@ Corrupted
 Note: ~price 2 chaos
 ");
 
-            Assert.Equal(Category.Gem, actual.Header.Category);
-            Assert.Equal(Rarity.Gem, actual.Header.Rarity);
-            Assert.Equal("Vaal Double Strike", actual.Header.ApiType);
-            Assert.Equal(1, actual.Properties.GemLevel);
-            Assert.Equal(0, actual.Properties.Quality);
-            Assert.True(actual.Properties.Corrupted);
-        }
+        Assert.Equal(Category.Gem, actual.Header.Category);
+        Assert.Equal(Rarity.Gem, actual.Header.Rarity);
+        Assert.Equal("Vaal Double Strike", actual.Header.ApiType);
+        Assert.Equal(1, actual.Properties.GemLevel);
+        Assert.Equal(0, actual.Properties.Quality);
+        Assert.True(actual.Properties.Corrupted);
+    }
 
-        [Fact]
-        public void ArcaneSurgeSupport()
-        {
-            var actual = parser.ParseItem(@"Item Class: Support Gems
+    [Fact]
+    public void ArcaneSurgeSupport()
+    {
+        var actual = parser.ParseItem(@"Item Class: Support Gems
 Rarity: Gem
 Arcane Surge Support
 --------
@@ -90,16 +90,16 @@ Experience: 1/70
 This is a Support Gem. It does not grant a bonus to your character, but to skills in sockets connected to it. Place into an item socket connected to a socket containing the Skill Gem you wish to augment. Right click to remove from a socket.
 ");
 
-            Assert.Equal("gem.supportgem", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Gem, actual.Header.Rarity);
-            Assert.Equal(Category.Gem, actual.Header.Category);
-            Assert.Equal("Arcane Surge Support", actual.Header.ApiType);
-        }
+        Assert.Equal("gem.supportgem", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Gem, actual.Header.Rarity);
+        Assert.Equal(Category.Gem, actual.Header.Category);
+        Assert.Equal("Arcane Surge Support", actual.Header.ApiType);
+    }
 
-        [Fact]
-        public void VoidSphere()
-        {
-            var actual = parser.ParseItem(@"Item Class: Skill Gems
+    [Fact]
+    public void VoidSphere()
+    {
+        var actual = parser.ParseItem(@"Item Class: Skill Gems
 Rarity: Gem
 Void Sphere
 --------
@@ -128,16 +128,16 @@ Experience: 1/252,595
 Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
 ");
 
-            Assert.Equal("gem.activegem", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Gem, actual.Header.Rarity);
-            Assert.Equal(Category.Gem, actual.Header.Category);
-            Assert.Equal("Void Sphere", actual.Header.ApiType);
-        }
+        Assert.Equal("gem.activegem", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Gem, actual.Header.Rarity);
+        Assert.Equal(Category.Gem, actual.Header.Category);
+        Assert.Equal("Void Sphere", actual.Header.ApiType);
+    }
 
-        [Fact]
-        public void TransfiguredGem()
-        {
-            var actual = parser.ParseItem(@"Item Class: Skill Gems
+    [Fact]
+    public void TransfiguredGem()
+    {
+        var actual = parser.ParseItem(@"Item Class: Skill Gems
 Rarity: Gem
 Kinetic Blast of Clustering
 --------
@@ -168,12 +168,11 @@ Place into an item socket of the right colour to gain this skill. Right click to
 Transfigured
 ");
 
-            Assert.Equal("gem.activegem", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Gem, actual.Header.Rarity);
-            Assert.Equal(Category.Gem, actual.Header.Category);
-            Assert.Equal("Kinetic Blast of Clustering", actual.Header.ApiText);
-            Assert.Equal("Kinetic Blast", actual.Header.ApiType);
-            Assert.Equal("alt_x", actual.Header.ApiDiscriminator);
-        }
+        Assert.Equal("gem.activegem", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Gem, actual.Header.Rarity);
+        Assert.Equal(Category.Gem, actual.Header.Category);
+        Assert.Equal("Kinetic Blast of Clustering", actual.Header.ApiText);
+        Assert.Equal("Kinetic Blast", actual.Header.ApiType);
+        Assert.Equal("alt_x", actual.Header.ApiDiscriminator);
     }
 }

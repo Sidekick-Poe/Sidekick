@@ -1,4 +1,4 @@
-﻿using Sidekick.Common.Enums;
+using Sidekick.Common.Enums;
 
 namespace Sidekick.Common.Game;
 

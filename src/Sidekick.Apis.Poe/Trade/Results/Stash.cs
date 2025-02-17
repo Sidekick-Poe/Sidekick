@@ -1,9 +1,8 @@
-namespace Sidekick.Apis.Poe.Trade.Results
+namespace Sidekick.Apis.Poe.Trade.Results;
+
+public class Stash
 {
-    public class Stash
-    {
-        public string? Name { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
-    }
+    public string? Name { get; set; }
+    public int X { get; set; }
+    public int Y { get; set; }
 }

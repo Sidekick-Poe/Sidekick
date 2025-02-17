@@ -1,17 +1,17 @@
 using Sidekick.Common.Game.Items;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe1.Parser
-{
-    [Collection(Collections.Poe1Parser)]
-    public class JewelParsing(ParserFixture fixture)
-    {
-        private readonly IItemParser parser = fixture.Parser;
+namespace Sidekick.Apis.Poe.Tests.Poe1.Parser;
 
-        [Fact]
-        public void ParseJewelBlightCut()
-        {
-            var actual = parser.ParseItem(@"Item Class: Unknown
+[Collection(Collections.Poe1Parser)]
+public class JewelParsing(ParserFixture fixture)
+{
+    private readonly IItemParser parser = fixture.Parser;
+
+    [Fact]
+    public void ParseJewelBlightCut()
+    {
+        var actual = parser.ParseItem(@"Item Class: Unknown
 Rarity: Rare
 Blight Cut
 Cobalt Jewel
@@ -26,22 +26,22 @@ Item Level: 68
 Place into an allocated Jewel Socket on the Passive Skill Tree.Right click to remove from the Socket.
 ");
 
-            Assert.Equal(Category.Jewel, actual.Header.Category);
-            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-            Assert.Equal("Cobalt Jewel", actual.Header.ApiType);
-            Assert.Equal("Blight Cut", actual.Header.Name);
-            Assert.Equal(68, actual.Properties.ItemLevel);
+        Assert.Equal(Category.Jewel, actual.Header.Category);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal("Cobalt Jewel", actual.Header.ApiType);
+        Assert.Equal("Blight Cut", actual.Header.Name);
+        Assert.Equal(68, actual.Properties.ItemLevel);
 
-            actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Strength and Intelligence", 8);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Spell Damage while Dual Wielding", 14);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Burning Damage", 19);
-            actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Damage with Wands", 15);
-        }
+        actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Strength and Intelligence", 8);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Spell Damage while Dual Wielding", 14);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Burning Damage", 19);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Damage with Wands", 15);
+    }
 
-        [Fact]
-        public void ChimericSliver()
-        {
-            var actual = parser.ParseItem(@"Item Class: Jewels
+    [Fact]
+    public void ChimericSliver()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
 Rarity: Rare
 Chimeric Sliver
 Large Cluster Jewel
@@ -65,21 +65,21 @@ Place into an allocated Large Jewel Socket on the Passive Skill Tree. Added pass
 Note: ~b/o 1 chaos
 ");
 
-            Assert.Equal(Category.Jewel, actual.Header.Category);
-            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-            Assert.Equal("Large Cluster Jewel", actual.Header.ApiType);
-            Assert.Equal("Chimeric Sliver", actual.Header.Name);
-            Assert.Equal(69, actual.Properties.ItemLevel);
+        Assert.Equal(Category.Jewel, actual.Header.Category);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal("Large Cluster Jewel", actual.Header.ApiType);
+        Assert.Equal("Chimeric Sliver", actual.Header.Name);
+        Assert.Equal(69, actual.Properties.ItemLevel);
 
-            actual.AssertHasModifier(ModifierCategory.Enchant, "Added Small Passive Skills grant: Axe Attacks deal 12% increased Damage with Hits and Ailments\nAdded Small Passive Skills grant: Sword Attacks deal 12% increased Damage with Hits and Ailments");
-            actual.AssertHasModifier(ModifierCategory.Enchant, "# Added Passive Skills are Jewel Sockets", 2);
-            actual.AssertHasModifier(ModifierCategory.Enchant, "Adds # Passive Skills", 11);
-        }
+        actual.AssertHasModifier(ModifierCategory.Enchant, "Added Small Passive Skills grant: Axe Attacks deal 12% increased Damage with Hits and Ailments\nAdded Small Passive Skills grant: Sword Attacks deal 12% increased Damage with Hits and Ailments");
+        actual.AssertHasModifier(ModifierCategory.Enchant, "# Added Passive Skills are Jewel Sockets", 2);
+        actual.AssertHasModifier(ModifierCategory.Enchant, "Adds # Passive Skills", 11);
+    }
 
-        [Fact]
-        public void ViridianJewel()
-        {
-            var actual = parser.ParseItem(@"Item Class: Jewels
+    [Fact]
+    public void ViridianJewel()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
 Rarity: Rare
 Phoenix Thirst
 Viridian Jewel
@@ -94,10 +94,9 @@ Item Level: 85
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-            Assert.Equal("jewel", actual.Header.ItemCategory);
-            Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-            Assert.Equal(Category.Jewel, actual.Header.Category);
-            Assert.Equal("Viridian Jewel", actual.Header.ApiType);
-        }
+        Assert.Equal("jewel", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(Category.Jewel, actual.Header.Category);
+        Assert.Equal("Viridian Jewel", actual.Header.ApiType);
     }
 }

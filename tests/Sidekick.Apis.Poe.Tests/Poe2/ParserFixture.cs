@@ -12,71 +12,70 @@ using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Xunit;
 
-namespace Sidekick.Apis.Poe.Tests.Poe2
+namespace Sidekick.Apis.Poe.Tests.Poe2;
+
+public class ParserFixture : IAsyncLifetime
 {
-    public class ParserFixture : IAsyncLifetime
+    private static Task? initializationTask;
+
+    public IInvariantModifierProvider InvariantModifierProvider { get; private set; } = null!;
+
+    public IItemParser Parser { get; private set; } = null!;
+
+    public Task DisposeAsync()
     {
-        private static Task? initializationTask;
+        return Task.CompletedTask;
+    }
 
-        public IInvariantModifierProvider InvariantModifierProvider { get; private set; } = null!;
+    public async Task InitializeAsync()
+    {
+        using var ctx = new TestContext();
+        ctx.Services.AddLocalization();
 
-        public IItemParser Parser { get; private set; } = null!;
-
-        public Task DisposeAsync()
-        {
-            return Task.CompletedTask;
-        }
-
-        public async Task InitializeAsync()
-        {
-            using var ctx = new TestContext();
-            ctx.Services.AddLocalization();
-
-            ctx.Services
-                // Building blocks
-                .AddSidekickCommon()
-                .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
+        ctx.Services
+            // Building blocks
+            .AddSidekickCommon()
+            .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
 
                 // Apis
                 .AddSidekickPoeApi()
                 .AddSidekickPoeNinjaApi()
                 .AddSidekickPoeWikiApi();
 
-            var settingsService = ctx.Services.GetRequiredService<ISettingsService>();
-            await settingsService.Set(SettingKeys.LanguageParser, "en");
-            await settingsService.Set(SettingKeys.LanguageUi, "en");
-            await settingsService.Set(SettingKeys.LeagueId, "poe2.Standard");
+        var settingsService = ctx.Services.GetRequiredService<ISettingsService>();
+        await settingsService.Set(SettingKeys.LanguageParser, "en");
+        await settingsService.Set(SettingKeys.LanguageUi, "en");
+        await settingsService.Set(SettingKeys.LeagueId, "poe2.Standard");
 
-            if (initializationTask == null)
-            {
-                var serviceProvider = ctx.Services.GetRequiredService<IServiceProvider>();
-                initializationTask = Initialize(serviceProvider);
-            }
-
-            await initializationTask;
-
-            Parser = ctx.Services.GetRequiredService<IItemParser>();
-            InvariantModifierProvider = ctx.Services.GetRequiredService<IInvariantModifierProvider>();
+        if (initializationTask == null)
+        {
+            var serviceProvider = ctx.Services.GetRequiredService<IServiceProvider>();
+            initializationTask = Initialize(serviceProvider);
         }
 
-        private async Task Initialize(IServiceProvider serviceProvider)
+        await initializationTask;
+
+        Parser = ctx.Services.GetRequiredService<IItemParser>();
+        InvariantModifierProvider = ctx.Services.GetRequiredService<IInvariantModifierProvider>();
+    }
+
+    private async Task Initialize(IServiceProvider serviceProvider)
+    {
+        var cache = serviceProvider.GetRequiredService<ICacheProvider>();
+        await cache.Clear();
+
+        var configuration = serviceProvider.GetRequiredService<IOptions<SidekickConfiguration>>();
+        var logger = serviceProvider.GetRequiredService<ILogger<ParserFixture>>();
+        foreach (var serviceType in configuration.Value.InitializableServices)
         {
-            var  cache = serviceProvider.GetRequiredService<ICacheProvider>();
-            await cache.Clear();
-
-            var  configuration = serviceProvider.GetRequiredService<IOptions<SidekickConfiguration>>();
-            var  logger = serviceProvider.GetRequiredService<ILogger<ParserFixture>>();
-            foreach (var serviceType in configuration.Value.InitializableServices)
+            var service = serviceProvider.GetRequiredService(serviceType);
+            if (service is not IInitializableService initializableService)
             {
-                var service = serviceProvider.GetRequiredService(serviceType);
-                if (service is not IInitializableService initializableService)
-                {
-                    continue;
-                }
-
-                logger.LogInformation($"[Initialization] Initializing {initializableService.GetType().FullName}");
-                await initializableService.Initialize();
+                continue;
             }
+
+            logger.LogInformation($"[Initialization] Initializing {initializableService.GetType().FullName}");
+            await initializableService.Initialize();
         }
     }
 }

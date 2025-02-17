@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Apis.Poe.Fuzzy;
+namespace Sidekick.Apis.Poe.Fuzzy;
 
 public interface IFuzzyService
 {

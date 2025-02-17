@@ -1,9 +1,8 @@
-namespace Sidekick.Apis.Poe.Authentication
+namespace Sidekick.Apis.Poe.Authentication;
+
+public enum AuthenticationState
 {
-    public enum AuthenticationState
-    {
-        Unauthenticated,
-        InProgress,
-        Authenticated,
-    }
+    Unauthenticated,
+    InProgress,
+    Authenticated,
 }

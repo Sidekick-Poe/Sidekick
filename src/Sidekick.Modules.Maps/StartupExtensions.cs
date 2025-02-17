@@ -3,19 +3,18 @@ using Sidekick.Common;
 using Sidekick.Modules.Maps.Keybinds;
 using Sidekick.Modules.Maps.Localization;
 
-namespace Sidekick.Modules.Maps
+namespace Sidekick.Modules.Maps;
+
+public static class StartupExtensions
 {
-    public static class StartupExtensions
+    public static IServiceCollection AddSidekickMaps(this IServiceCollection services)
     {
-        public static IServiceCollection AddSidekickMaps(this IServiceCollection services)
-        {
-            services.AddSidekickModule(typeof(StartupExtensions).Assembly);
+        services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
-            services.AddTransient<MapInfoResources>();
+        services.AddTransient<MapInfoResources>();
 
-            services.AddSidekickKeybind<OpenMapInfoKeybindHandler>();
+        services.AddSidekickKeybind<OpenMapInfoKeybindHandler>();
 
-            return services;
-        }
+        return services;
     }
 }

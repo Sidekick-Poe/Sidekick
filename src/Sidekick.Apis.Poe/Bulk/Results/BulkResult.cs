@@ -1,9 +1,8 @@
-namespace Sidekick.Apis.Poe.Bulk.Results
-{
-    public class BulkResult
-    {
-        public string? Id { get; set; }
+namespace Sidekick.Apis.Poe.Bulk.Results;
 
-        public BulkListing? Listing { get; set; }
-    }
+public class BulkResult
+{
+    public string? Id { get; set; }
+
+    public BulkListing? Listing { get; set; }
 }

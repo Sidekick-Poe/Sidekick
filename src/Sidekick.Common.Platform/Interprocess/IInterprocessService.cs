@@ -1,13 +1,12 @@
-namespace Sidekick.Common.Platform.Interprocess
+namespace Sidekick.Common.Platform.Interprocess;
+
+public interface IInterprocessService
 {
-    public interface IInterprocessService
-    {
-        event Action<string> OnMessageReceived;
+    event Action<string> OnMessageReceived;
 
-        void StartReceiving();
+    void StartReceiving();
 
-        bool IsAlreadyRunning();
+    bool IsAlreadyRunning();
 
-        Task SendMessage(string message);
-    }
+    Task SendMessage(string message);
 }
