@@ -54,7 +54,7 @@ public class PriceCheckService(
 
         Item = await itemParser.ParseItemAsync(itemText.DecodeBase64Url() ?? string.Empty);
 
-        PropertyFilters = tradeFilterService.GetPropertyFilters(Item);
+        PropertyFilters = await tradeFilterService.GetPropertyFilters(Item);
         ModifierFilters = tradeFilterService
                           .GetModifierFilters(Item)
                           .ToList();

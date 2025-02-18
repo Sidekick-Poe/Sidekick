@@ -25,5 +25,5 @@ public interface ITradeFilterService
     /// </summary>
     /// <param name="item">The item for which to get property filters.</param>
     /// <returns>The property filters.</returns>
-    PropertyFilters GetPropertyFilters(Item item);
+    Task<PropertyFilters> GetPropertyFilters(Item item);
 }
