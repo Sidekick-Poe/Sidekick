@@ -131,7 +131,7 @@ public class PriceCheckService(
         IsLoading = true;
         LoadingChanged?.Invoke();
 
-        var result = await tradeSearchService.GetResults(Item.Header.Game, ItemTradeResult.Id, ids, PseudoFilters);
+        var result = await tradeSearchService.GetResults(Item.Header.Game, ItemTradeResult.Id, ids);
         TradeItems?.AddRange(result);
 
         IsLoading = false;
