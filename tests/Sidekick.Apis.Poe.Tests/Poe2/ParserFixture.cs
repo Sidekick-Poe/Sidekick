@@ -29,6 +29,7 @@ public class ParserFixture : IAsyncLifetime
     public IPropertyParser PropertyParser { get; private set; } = null!;
     public ITradeFilterService TradeFilterService { get; private set; } = null!;
     public ISettingsService SettingsService { get; private set; } = null!;
+    public IModifierProvider ModifierProvider { get; private set; } = null!;
     private TestContext TestContext { get; set; } = null!;
 
     public async Task InitializeAsync()
@@ -65,6 +66,7 @@ public class ParserFixture : IAsyncLifetime
         PropertyParser = TestContext.Services.GetRequiredService<IPropertyParser>();
         FilterProvider = TestContext.Services.GetRequiredService<IFilterProvider>();
         TradeFilterService = TestContext.Services.GetRequiredService<ITradeFilterService>();
+        ModifierProvider = TestContext.Services.GetRequiredService<IModifierProvider>();
     }
 
     public Task DisposeAsync()

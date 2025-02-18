@@ -43,7 +43,7 @@ public class TradeSearchServiceTests
             fixture.GameLanguageProvider,
             fixture.SettingsService,
             tradeClient.Object,
-            Mock.Of<IModifierProvider>(),
+            fixture.ModifierProvider,
             fixture.FilterProvider,
             fixture.PropertyParser
         );
