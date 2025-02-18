@@ -2,7 +2,7 @@ using Sidekick.Apis.Poe.Trade.Requests.Filters;
 
 namespace Sidekick.Apis.Poe.Trade.Requests;
 
-internal class Query
+public class Query
 {
     public Status Status { get; set; } = new();
 
@@ -12,7 +12,7 @@ internal class Query
 
     public string? Term { get; set; }
 
-    public List<StatFilterGroup> Stats { get; set; } = new();
+    public List<StatFilterGroup> Stats { get; set; } = [];
 
     public SearchFilters Filters { get; set; } = new();
 }

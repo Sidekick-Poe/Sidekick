@@ -92,10 +92,6 @@ public class TradeSearchService
 
                 query.Filters.GetOrCreateTypeFilters().Filters.Rarity = new SearchFilterOption(rarity);
             }
-            else
-            {
-                query.Filters.GetOrCreateTypeFilters().Filters.Rarity = new SearchFilterOption("nonunique");
-            }
 
             var currency = item.Header.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
             var currencyMin = item.Header.Game == GameType.PathOfExile ? await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMin) : await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMinPoE2);
@@ -401,7 +397,7 @@ public class TradeSearchService
             Quality = 20,
             ItemLevel = result.Item?.ItemLevel ?? 0,
             Corrupted = result.Item?.Corrupted ?? false,
-            Unidentified = result.Item?.Identified ?? false,
+            Unidentified = result.Item?.Identified is false,
             Armour = result.Item?.Extended?.ArmourAtMax ?? 0,
             EnergyShield = result.Item?.Extended?.EnergyShieldAtMax ?? 0,
             EvasionRating = result.Item?.Extended?.EvasionAtMax ?? 0,
