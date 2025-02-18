@@ -2,12 +2,14 @@ using Sidekick.Apis.Poe.Parser.Properties;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade;
 
 public class TradeFilterService
 (
-    IPropertyParser propertyParser
+    IPropertyParser propertyParser,
+    ISettingsService settingsService
 ) : ITradeFilterService
 {
     public IEnumerable<ModifierFilter> GetModifierFilters(Item item)
@@ -45,9 +47,23 @@ public class TradeFilterService
     public async Task<PropertyFilters> GetPropertyFilters(Item item)
     {
         var filters = await propertyParser.GetFilters(item);
-        return new PropertyFilters()
+        var result = new PropertyFilters()
         {
             Filters = filters,
         };
+
+        var preferItemClass = await settingsService.GetEnum<DefaultItemClassFilter>(SettingKeys.PriceCheckItemClassFilter) ?? DefaultItemClassFilter.BaseType;
+        if (preferItemClass == DefaultItemClassFilter.ItemClass)
+        {
+            result.ClassFilterApplied = true;
+            result.BaseTypeFilterApplied = false;
+        }
+        else
+        {
+            result.BaseTypeFilterApplied = true;
+            result.ClassFilterApplied = false;
+        }
+
+        return result;
     }
 }

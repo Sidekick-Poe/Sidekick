@@ -53,6 +53,7 @@ public static class SettingKeys
     public const string PriceCheckCompactMode = nameof(PriceCheckCompactMode);
     public const string PriceCheckSidebarWidth = nameof(PriceCheckSidebarWidth);
     public const string PriceCheckStatus = nameof(PriceCheckStatus);
+    public const string PriceCheckItemClassFilter = nameof(PriceCheckItemClassFilter);
 
     public const string SaveWindowPositions = nameof(SaveWindowPositions);
 

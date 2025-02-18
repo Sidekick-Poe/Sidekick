@@ -42,6 +42,8 @@ public static class DefaultSettings
 
     public static string PriceCheckCurrencyMode => "item";
 
+    public static string PriceCheckItemClassFilter => DefaultItemClassFilter.BaseType.GetValueAttribute() ?? "basetype";
+
     public static double PriceCheckNormalizeValue => .1;
 
     public static bool PriceCheckCompactMode => false;
