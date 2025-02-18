@@ -14,7 +14,7 @@ namespace Sidekick.Apis.Poe.Tests.Poe2.Query;
 public class TradeSearchServiceTests
 {
     private readonly IItemParser parser;
-    private readonly TradeFilterService tradeFilterService;
+    private readonly ITradeFilterService tradeFilterService;
     private readonly MockHttpClient mockHttpClient = new();
     private readonly TradeSearchService sut;
     private readonly JsonSerializerOptions jsonSerializerOptions = new()
@@ -27,7 +27,7 @@ public class TradeSearchServiceTests
     public TradeSearchServiceTests(ParserFixture fixture)
     {
         parser = fixture.Parser;
-        tradeFilterService = new(fixture.PropertyParser);
+        tradeFilterService = fixture.TradeFilterService;
 
         var tradeClient = new Mock<IPoeTradeClient>();
         tradeClient
@@ -41,15 +41,15 @@ public class TradeSearchServiceTests
         sut = new TradeSearchService(
             NullLogger<TradeSearchService>.Instance,
             fixture.GameLanguageProvider,
-            Moq.Mock.Of<ISettingsService>(),
+            fixture.SettingsService,
             tradeClient.Object,
-            Moq.Mock.Of<IModifierProvider>(),
+            Mock.Of<IModifierProvider>(),
             fixture.FilterProvider,
             fixture.PropertyParser
         );
     }
 
-    [Fact(Skip = "Currently fails to ObjectDisposedException")]
+    [Fact]
     public async Task ExpectInputYieldsIsNotIdentified()
     {
         var input = ResourceHelper.ReadFileContent("TimeLostDiamond/item.txt");
@@ -87,7 +87,7 @@ public class TradeSearchServiceTests
         Assert.Equal(actual, expected);
     }
 
-    [Theory(Skip = "Currently fails to ObjectDisposedException")]
+    [Theory]
     [InlineData("TimeLostDiamond/item.txt", "TimeLostDiamond/query.json")]
     public async Task InputShouldCreateExpectedQuery(string pathToInput, string pathToExpectedQuery)
     {
