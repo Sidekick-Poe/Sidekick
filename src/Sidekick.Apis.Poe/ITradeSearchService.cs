@@ -10,7 +10,7 @@ public interface ITradeSearchService
 {
     Task<TradeSearchResult<string>> Search(Item item, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null, List<PseudoModifierFilter>? pseudoFilters = null);
 
-    Task<List<TradeItem>> GetResults(GameType game, string queryId, List<string> ids, List<PseudoModifierFilter>? pseudoFilters = null);
+    Task<List<TradeItem>> GetResults(GameType game, string queryId, List<string> ids);
 
     Task<Uri> GetTradeUri(GameType game, string queryId);
 }
