@@ -12,7 +12,7 @@ public class Query
 
     public string? Term { get; set; }
 
-    public List<StatFilterGroup> Stats { get; set; } = [new()];
+    public List<StatFilterGroup> Stats { get; set; } = [];
 
     public SearchFilters Filters { get; set; } = new();
 }
