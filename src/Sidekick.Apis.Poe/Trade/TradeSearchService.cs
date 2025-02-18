@@ -345,7 +345,7 @@ public class TradeSearchService
         };
     }
 
-    public async Task<List<TradeItem>> GetResults(GameType game, string queryId, List<string> ids, List<PseudoModifierFilter>? pseudoFilters = null)
+    public async Task<List<TradeItem>> GetResults(GameType game, string queryId, List<string> ids)
     {
         try
         {
