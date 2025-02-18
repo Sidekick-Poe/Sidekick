@@ -1,4 +1,5 @@
 using Bunit;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -26,45 +27,50 @@ public class ParserFixture : IAsyncLifetime
     public IGameLanguageProvider GameLanguageProvider { get; private set; } = null!;
     public IFilterProvider FilterProvider { get; private set; } = null!;
     public IPropertyParser PropertyParser { get; private set; } = null!;
-
-    public Task DisposeAsync()
-    {
-        return Task.CompletedTask;
-    }
+    public ITradeFilterService TradeFilterService { get; private set; } = null!;
+    public ISettingsService SettingsService { get; private set; } = null!;
+    private TestContext TestContext { get; set; } = null!;
 
     public async Task InitializeAsync()
     {
-        using var ctx = new TestContext();
-        ctx.Services.AddLocalization();
+        TestContext = new TestContext();
+        TestContext.Services.AddLocalization();
 
-        ctx.Services
+        TestContext.Services
             // Building blocks
             .AddSidekickCommon()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
 
-                // Apis
-                .AddSidekickPoeApi()
-                .AddSidekickPoeNinjaApi()
-                .AddSidekickPoeWikiApi();
+            // Apis
+            .AddSidekickPoeApi()
+            .AddSidekickPoeNinjaApi()
+            .AddSidekickPoeWikiApi();
 
-        var settingsService = ctx.Services.GetRequiredService<ISettingsService>();
-        await settingsService.Set(SettingKeys.LanguageParser, "en");
-        await settingsService.Set(SettingKeys.LanguageUi, "en");
-        await settingsService.Set(SettingKeys.LeagueId, "poe2.Standard");
+        SettingsService = TestContext.Services.GetRequiredService<ISettingsService>();
+        await SettingsService.Set(SettingKeys.LanguageParser, "en");
+        await SettingsService.Set(SettingKeys.LanguageUi, "en");
+        await SettingsService.Set(SettingKeys.LeagueId, "poe2.Standard");
 
         if (initializationTask == null)
         {
-            var serviceProvider = ctx.Services.GetRequiredService<IServiceProvider>();
+            var serviceProvider = TestContext.Services.GetRequiredService<IServiceProvider>();
             initializationTask = Initialize(serviceProvider);
         }
 
         await initializationTask;
 
-        Parser = ctx.Services.GetRequiredService<IItemParser>();
-        InvariantModifierProvider = ctx.Services.GetRequiredService<IInvariantModifierProvider>();
-        GameLanguageProvider = ctx.Services.GetRequiredService<IGameLanguageProvider>();
-        PropertyParser = ctx.Services.GetRequiredService<IPropertyParser>();
-        FilterProvider = ctx.Services.GetRequiredService<IFilterProvider>();
+        Parser = TestContext.Services.GetRequiredService<IItemParser>();
+        InvariantModifierProvider = TestContext.Services.GetRequiredService<IInvariantModifierProvider>();
+        GameLanguageProvider = TestContext.Services.GetRequiredService<IGameLanguageProvider>();
+        PropertyParser = TestContext.Services.GetRequiredService<IPropertyParser>();
+        FilterProvider = TestContext.Services.GetRequiredService<IFilterProvider>();
+        TradeFilterService = TestContext.Services.GetRequiredService<ITradeFilterService>();
+    }
+
+    public Task DisposeAsync()
+    {
+        TestContext.Dispose();
+        return Task.CompletedTask;
     }
 
     private static async Task Initialize(IServiceProvider serviceProvider)
