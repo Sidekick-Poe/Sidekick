@@ -16,7 +16,7 @@ public class TradeSearchServiceTests
     private readonly IItemParser parser;
     private readonly ITradeFilterService tradeFilterService;
     private readonly MockHttpClient mockHttpClient = new();
-    private readonly TradeSearchService sut;
+    private readonly TradeSearchService tradeSearchService;
     private readonly JsonSerializerOptions jsonSerializerOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -38,7 +38,7 @@ public class TradeSearchServiceTests
             .Setup(x => x.Options)
             .Returns(jsonSerializerOptions);
 
-        sut = new TradeSearchService(
+        tradeSearchService = new TradeSearchService(
             NullLogger<TradeSearchService>.Instance,
             fixture.GameLanguageProvider,
             fixture.SettingsService,
@@ -56,7 +56,7 @@ public class TradeSearchServiceTests
 
         var parsedItem = parser.ParseItem(input);
         var propertyFilters = await tradeFilterService.GetPropertyFilters(parsedItem);
-        var result = await sut.Search(parsedItem, propertyFilters);
+        var result = await tradeSearchService.Search(parsedItem, propertyFilters);
         Assert.Null(result.Error);
 
         var actual = Assert.Single(mockHttpClient.Requests);
@@ -96,7 +96,7 @@ public class TradeSearchServiceTests
 
         var parsedItem = parser.ParseItem(input);
         var propertyFilters = await tradeFilterService.GetPropertyFilters(parsedItem);
-        var result = await sut.Search(parsedItem, propertyFilters);
+        var result = await tradeSearchService.Search(parsedItem, propertyFilters);
         Assert.Null(result.Error);
 
         var actual = Assert.Single(mockHttpClient.Requests);
