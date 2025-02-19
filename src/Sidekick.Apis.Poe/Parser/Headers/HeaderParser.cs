@@ -69,7 +69,7 @@ public class HeaderParser
             Id = x.Id,
             Text = x.Text,
             Pattern = GetItemCategoryPattern(x.Id, game),
-            FuzzyText = fuzzyService.CleanFuzzyText(x.Text),
+            FuzzyText = x.Text is null ? null : fuzzyService.CleanFuzzyText(x.Text),
         });
     }
 
