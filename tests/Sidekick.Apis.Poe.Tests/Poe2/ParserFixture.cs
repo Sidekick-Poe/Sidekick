@@ -1,13 +1,17 @@
 using Bunit;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Modifiers;
+using Sidekick.Apis.Poe.Parser.Properties;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Database;
+using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Xunit;
@@ -19,44 +23,56 @@ public class ParserFixture : IAsyncLifetime
     private static Task? initializationTask;
 
     public IInvariantModifierProvider InvariantModifierProvider { get; private set; } = null!;
-
     public IItemParser Parser { get; private set; } = null!;
-
-    public Task DisposeAsync()
-    {
-        return Task.CompletedTask;
-    }
+    public IGameLanguageProvider GameLanguageProvider { get; private set; } = null!;
+    public IFilterProvider FilterProvider { get; private set; } = null!;
+    public IPropertyParser PropertyParser { get; private set; } = null!;
+    public ITradeFilterService TradeFilterService { get; private set; } = null!;
+    public ISettingsService SettingsService { get; private set; } = null!;
+    public IModifierProvider ModifierProvider { get; private set; } = null!;
+    private TestContext TestContext { get; set; } = null!;
 
     public async Task InitializeAsync()
     {
-        using var ctx = new TestContext();
-        ctx.Services.AddLocalization();
+        TestContext = new TestContext();
+        TestContext.Services.AddLocalization();
 
-        ctx.Services
+        TestContext.Services
             // Building blocks
             .AddSidekickCommon()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
 
-                // Apis
-                .AddSidekickPoeApi()
-                .AddSidekickPoeNinjaApi()
-                .AddSidekickPoeWikiApi();
+            // Apis
+            .AddSidekickPoeApi()
+            .AddSidekickPoeNinjaApi()
+            .AddSidekickPoeWikiApi();
 
-        var settingsService = ctx.Services.GetRequiredService<ISettingsService>();
-        await settingsService.Set(SettingKeys.LanguageParser, "en");
-        await settingsService.Set(SettingKeys.LanguageUi, "en");
-        await settingsService.Set(SettingKeys.LeagueId, "poe2.Standard");
+        SettingsService = TestContext.Services.GetRequiredService<ISettingsService>();
+        await SettingsService.Set(SettingKeys.LanguageParser, "en");
+        await SettingsService.Set(SettingKeys.LanguageUi, "en");
+        await SettingsService.Set(SettingKeys.LeagueId, "poe2.Standard");
 
         if (initializationTask == null)
         {
-            var serviceProvider = ctx.Services.GetRequiredService<IServiceProvider>();
+            var serviceProvider = TestContext.Services.GetRequiredService<IServiceProvider>();
             initializationTask = Initialize(serviceProvider);
         }
 
         await initializationTask;
 
-        Parser = ctx.Services.GetRequiredService<IItemParser>();
-        InvariantModifierProvider = ctx.Services.GetRequiredService<IInvariantModifierProvider>();
+        Parser = TestContext.Services.GetRequiredService<IItemParser>();
+        InvariantModifierProvider = TestContext.Services.GetRequiredService<IInvariantModifierProvider>();
+        GameLanguageProvider = TestContext.Services.GetRequiredService<IGameLanguageProvider>();
+        PropertyParser = TestContext.Services.GetRequiredService<IPropertyParser>();
+        FilterProvider = TestContext.Services.GetRequiredService<IFilterProvider>();
+        TradeFilterService = TestContext.Services.GetRequiredService<ITradeFilterService>();
+        ModifierProvider = TestContext.Services.GetRequiredService<IModifierProvider>();
+    }
+
+    public Task DisposeAsync()
+    {
+        TestContext.Dispose();
+        return Task.CompletedTask;
     }
 
     private static async Task Initialize(IServiceProvider serviceProvider)

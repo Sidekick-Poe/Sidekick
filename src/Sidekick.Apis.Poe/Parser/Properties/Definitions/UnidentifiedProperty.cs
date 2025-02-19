@@ -22,16 +22,27 @@ public class UnidentifiedProperty(IGameLanguageProvider gameLanguageProvider) : 
         itemProperties.Unidentified = GetBool(Pattern, parsingItem);
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue) => new(this)
+    public override TriStatePropertyFilter? GetFilter(Item item, double normalizeValue)
     {
-        Text = gameLanguageProvider.Language.DescriptionUnidentified,
-        Checked = !item.Properties.Unidentified,
-    };
+        if (!item.Properties.Unidentified)
+        {
+            return null;
+        }
+
+        return new(this)
+        {
+            Text = gameLanguageProvider.Language.DescriptionUnidentified,
+            Checked = true,
+        };
+    }
 
     public override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
     {
-        if (!filter.Checked) return;
+        if (filter is not TriStatePropertyFilter triStatePropertyFilter || triStatePropertyFilter.Checked is null)
+        {
+            return;
+        }
 
-        searchFilters.GetOrCreateMiscFilters().Filters.Identified = new SearchFilterOption(item.Properties.Unidentified ? "false" : "true");
+        searchFilters.GetOrCreateMiscFilters().Filters.Identified = new SearchFilterOption(triStatePropertyFilter.Checked is true ? "false" : "true");
     }
 }
