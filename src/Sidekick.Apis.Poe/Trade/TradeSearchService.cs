@@ -99,17 +99,17 @@ public class TradeSearchService
             currency = filterProvider.GetPriceOption(currency);
             if (!string.IsNullOrEmpty(currency) || currencyMin > 0 || currencyMax > 0)
             {
-                query.Filters.TradeFilters = new TradeFilterGroup
+                query.Filters.GetOrCreateTradeFilters().Filters.Price = new(currency)
                 {
-                    Filters =
-                    {
-                        Price = new StatFilterValue(currency)
-                        {
-                            Min = currencyMin > 0 ? currencyMin : null,
-                            Max = currencyMax > 0 ? currencyMax : null,
-                        },
-                    },
+                    Min = currencyMin > 0 ? currencyMin : null,
+                    Max = currencyMax > 0 ? currencyMax : null,
                 };
+            }
+
+            var timeFrame = await settingsService.GetString(SettingKeys.PriceCheckItemListedAge);
+            if (!string.IsNullOrWhiteSpace(timeFrame))
+            {
+                query.Filters.GetOrCreateTradeFilters().Filters.Indexed = new(timeFrame);
             }
 
             SetSocketFilters(item, query.Filters);

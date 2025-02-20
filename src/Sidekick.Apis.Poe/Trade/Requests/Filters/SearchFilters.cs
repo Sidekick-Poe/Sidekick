@@ -12,6 +12,8 @@ public class SearchFilters
     [JsonPropertyName("trade_filters")]
     public TradeFilterGroup? TradeFilters { get; set; }
 
+    public TradeFilterGroup GetOrCreateTradeFilters() => TradeFilters ??= new();
+
     [JsonPropertyName("misc_filters")]
     public MiscFilterGroup? MiscFilters { get; set; }
 

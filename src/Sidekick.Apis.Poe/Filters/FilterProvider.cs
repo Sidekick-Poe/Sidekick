@@ -16,9 +16,9 @@ public class FilterProvider
     ICacheProvider cacheProvider
 ) : IFilterProvider
 {
-    public List<ApiFilterOption> TypeCategoryOptions { get; private set; } = new();
-
-    public List<ApiFilterOption> TradePriceOptions { get; private set; } = new();
+    public List<ApiFilterOption> TypeCategoryOptions { get; private set; } = [];
+    public List<ApiFilterOption> TradePriceOptions { get; private set; } = [];
+    public List<ApiFilterOption> TradeIndexedOptions { get; private set; } = [];
 
     /// <inheritdoc/>
     public int Priority => 100;
@@ -36,16 +36,22 @@ public class FilterProvider
                                                       return cache.Result.Any(x => x.Id == "type_filters") && cache.Result.Any(x => x.Id == "trade_filters");
                                                   });
 
-        TypeCategoryOptions = result.Result.First(x => x.Id == "type_filters").Filters
+        TypeCategoryOptions = result.Result
+            .First(x => x.Id == "type_filters").Filters
             .First(x => x.Id == "category").Option!.Options;
 
-        TradePriceOptions = result.Result.First(x => x.Id == "trade_filters").Filters
+        TradePriceOptions = result.Result
+            .First(x => x.Id == "trade_filters").Filters
             .First(x => x.Id == "price").Option!.Options;
+
+        TradeIndexedOptions = result.Result
+            .First(x => x.Id == "trade_filters").Filters
+            .First(x => x.Id == "indexed").Option!.Options;
     }
 
-    public string? GetPriceOption(string? price)
-    {
-        var option = TradePriceOptions.SingleOrDefault(x => x.Id == price);
-        return option?.Id;
-    }
+    public string? GetPriceOption(string? price) => 
+        TradePriceOptions.SingleOrDefault(x => x.Id == price)?.Id;
+
+    public string? GetTradeIndexedOption(string? id) => 
+        TradeIndexedOptions.SingleOrDefault(x => x.Id == id)?.Id;
 }
