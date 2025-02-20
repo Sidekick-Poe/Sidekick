@@ -49,11 +49,11 @@
     [Parameter]
     public List<SelectOption> Options { get; set; } = new();
 
-    private string Id { get; } = UiUtilities.GenerateId();
+    protected string Id { get; } = UiUtilities.GenerateId();
 
-    private string GetOptionValue(string? value) => value ?? "null";
+    protected string GetOptionValue(string? value) => value ?? "null";
 
-    private async Task OnChange(ChangeEventArgs args)
+    protected async Task OnChange(ChangeEventArgs args)
     {
         var newValue = args.Value?.ToString();
         if (newValue == "null")

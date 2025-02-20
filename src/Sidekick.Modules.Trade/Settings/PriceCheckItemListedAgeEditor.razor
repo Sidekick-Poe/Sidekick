@@ -1,0 +1,39 @@
+@using Sidekick.Apis.Poe.Filters
+@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Settings
+
+<FormSelectInline Label="@Resources["Item_Listing_Age"]"
+                  Value="@Value"
+                  ValueChanged="@ValueChanged"
+                  Options="@Options"/>
+
+@inject IStringLocalizer<SettingsResources> Resources
+@inject ISettingsService SettingsService
+@inject IFilterProvider FilterProvider
+
+@code {
+
+    private string? Value { get; set; }
+
+    private List<SelectOption> Options { get; set; } = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        Options = FilterProvider.TradeIndexedOptions.ConvertAll(x => new SelectOption()
+        {
+            Label = x.Text ?? string.Empty,
+            Value = x.Id,
+        });
+
+        Value = await SettingsService.GetString(SettingKeys.PriceCheckItemListedAge);
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task ValueChanged(string? value)
+    {
+        Value = value;
+        await SettingsService.Set(SettingKeys.PriceCheckItemListedAge, value);
+    }
+
+}

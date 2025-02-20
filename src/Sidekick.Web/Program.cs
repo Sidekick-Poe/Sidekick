@@ -24,6 +24,8 @@ using Sidekick.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.UseStaticWebAssets();
+
 #region Services
 
 builder.Services.AddRazorPages();

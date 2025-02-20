@@ -41,6 +41,7 @@ public static class SettingKeys
 
     public const string PriceCheckCloseWithMouse = nameof(PriceCheckCloseWithMouse);
     public const string PriceCheckPredictionEnabled = nameof(PriceCheckPredictionEnabled);
+    public const string PriceCheckItemListedAge = nameof(PriceCheckItemListedAge);
     public const string PriceCheckCurrency = nameof(PriceCheckCurrency);
     public const string PriceCheckCurrencyPoE2 = nameof(PriceCheckCurrencyPoE2);
     public const string PriceCheckItemCurrencyMin = nameof(PriceCheckItemCurrencyMin);
