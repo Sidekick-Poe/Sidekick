@@ -32,31 +32,28 @@ public abstract class PseudoDefinition
 
     internal void InitializeDefinition(List<ApiCategory> apiCategories, List<ModifierPattern>? localizedPseudoModifiers)
     {
-        foreach (var apiCategory in apiCategories)
+        foreach (var apiModifier in apiCategories.SelectMany(apiCategory => apiCategory.Entries))
         {
-            foreach (var apiModifier in apiCategory.Entries)
+            if (!Enabled)
             {
-                if (!Enabled)
-                {
-                    return;
-                }
+                return;
+            }
 
-                if (Exception != null && Exception.IsMatch(apiModifier.Text))
+            if (Exception != null && apiModifier.Text is not null && Exception.IsMatch(apiModifier.Text))
+            {
+                continue;
+            }
+
+            foreach (var pattern in Patterns)
+            {
+                if (apiModifier.Id == null || apiModifier.Type == null || apiModifier.Text == null)
                 {
                     continue;
                 }
 
-                foreach (var pattern in Patterns)
+                if (pattern.Pattern.IsMatch(apiModifier.Text))
                 {
-                    if (apiModifier.Id == null || apiModifier.Type == null || apiModifier.Text == null)
-                    {
-                        continue;
-                    }
-
-                    if (pattern.Pattern.IsMatch(apiModifier.Text))
-                    {
-                        Modifiers.Add(new PseudoModifierDefinition(apiModifier.Id, apiModifier.Type, apiModifier.Text, pattern.Multiplier));
-                    }
+                    Modifiers.Add(new PseudoModifierDefinition(apiModifier.Id, apiModifier.Type, apiModifier.Text, pattern.Multiplier));
                 }
             }
         }

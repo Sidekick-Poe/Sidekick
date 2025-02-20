@@ -26,7 +26,7 @@ public static class EnumExtensions
     /// </summary>
     /// <param name="value">The enum to get the value for.</param>
     /// <returns>The value associated with the enum.</returns>
-    public static string? GetValueAttribute(this Enum value)
+    public static string GetValueAttribute(this Enum value)
     {
         var attribute = value.GetAttribute<EnumValueAttribute>();
         return attribute != null ? attribute.Value : value.ToString();

@@ -1,4 +1,5 @@
 @using Microsoft.EntityFrameworkCore
+@using MudBlazor
 @using Sidekick.Common.Database
 @using Sidekick.Common.Database.Tables
 @using Sidekick.Common.Settings
@@ -8,7 +9,7 @@
         <ToolBarContent>
             <MudText Typo="Typo.h3">Inventory</MudText>
             <MudSpacer />
-            <MudTextField bind-Value="SearchString" DebounceInterval="500" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-n4" />
+            <MudTextField @bind-Value="SearchString" DebounceInterval="500" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-n4" />
             <MudIconButton Icon="Icons.Material.Filled.FilterAlt" OnClick="() => FilterOpened = true" />
         </ToolBarContent>
         <HeaderContent>
