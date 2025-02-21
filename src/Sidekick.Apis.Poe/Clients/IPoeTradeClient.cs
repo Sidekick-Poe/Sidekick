@@ -7,8 +7,6 @@ namespace Sidekick.Apis.Poe.Clients;
 
 public interface IPoeTradeClient
 {
-    HttpClient HttpClient { get; }
-
     JsonSerializerOptions Options { get; }
 
     Task<FetchResult<TReturn>> Fetch<TReturn>(GameType game, IGameLanguage language, string path);
