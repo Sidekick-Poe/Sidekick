@@ -1,8 +1,6 @@
 using Bunit;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Properties;
@@ -80,9 +78,8 @@ public class ParserFixture : IAsyncLifetime
         var cache = serviceProvider.GetRequiredService<ICacheProvider>();
         await cache.Clear();
 
-        var configuration = serviceProvider.GetRequiredService<IOptions<SidekickConfiguration>>();
         var logger = serviceProvider.GetRequiredService<ILogger<ParserFixture>>();
-        foreach (var serviceType in configuration.Value.InitializableServices)
+        foreach (var serviceType in SidekickConfiguration.InitializableServices)
         {
             var service = serviceProvider.GetRequiredService(serviceType);
             if (service is not IInitializableService initializableService)

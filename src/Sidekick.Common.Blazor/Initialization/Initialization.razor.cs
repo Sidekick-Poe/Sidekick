@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Initialization;
@@ -24,9 +23,6 @@ public partial class Initialization : SidekickView
 
     [Inject]
     private IApplicationService ApplicationService { get; set; } = null!;
-
-    [Inject]
-    private IOptions<SidekickConfiguration> Configuration { get; set; } = null!;
 
     [Inject]
     private IServiceProvider ServiceProvider { get; set; } = null!;
@@ -68,7 +64,7 @@ public partial class Initialization : SidekickView
         try
         {
             Completed = 0;
-            Count = Configuration.Value.InitializableServices.Count;
+            Count = SidekickConfiguration.InitializableServices.Count;
             var version = ApplicationService.GetVersion();
             var previousVersion = await SettingsService.GetString(SettingKeys.Version);
             if (version != previousVersion)
@@ -80,7 +76,7 @@ public partial class Initialization : SidekickView
             // Report initial progress
             await ReportProgress();
 
-            var services = Configuration.Value.InitializableServices.Select(serviceType =>
+            var services = SidekickConfiguration.InitializableServices.Select(serviceType =>
                 {
                     var service = ServiceProvider.GetRequiredService(serviceType);
                     return service as IInitializableService;
