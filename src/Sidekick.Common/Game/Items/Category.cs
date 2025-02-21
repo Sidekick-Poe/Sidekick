@@ -22,4 +22,5 @@ public enum Category
     Affliction,
     Tincture,
     Corpse,
+    Idol,
 }

@@ -1,4 +1,4 @@
-using Sidekick.Common.Game.Items;
+﻿using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Items;
 
@@ -24,6 +24,7 @@ public class ApiItemConstants
         { "memoryline", (Category.MemoryLine, true) },
         { "tincture", (Category.Tincture, true) },
         { "corpse", (Category.Corpse, true) },
+        { "idol", (Category.Idol, true) },
     };
 
     public static readonly Dictionary<string, (Category Category, bool UseRegex)> Poe2Categories = new()
