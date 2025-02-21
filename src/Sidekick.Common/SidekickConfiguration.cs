@@ -1,5 +1,4 @@
 using System.Reflection;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Common;
 
@@ -9,17 +8,12 @@ namespace Sidekick.Common;
 public static class SidekickConfiguration
 {
     /// <summary>
-    ///     Gets or sets a list of initializable services.
-    /// </summary>
-    public static List<Type> InitializableServices { get; } = new();
-
-    /// <summary>
     ///     Gets or sets a list of modules.
     /// </summary>
-    public static List<Assembly> Modules { get; } = new();
+    public static List<Assembly> Modules { get; } = [];
 
     /// <summary>
     ///     The list of keybinds handled by this application
     /// </summary>
-    public static List<Type> Keybinds { get; } = new();
+    public static List<Type> Keybinds { get; } = [];
 }

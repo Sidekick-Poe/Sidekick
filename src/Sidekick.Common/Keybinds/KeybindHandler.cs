@@ -1,12 +1,8 @@
-using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Common.Keybinds;
 
-/// <summary>
-///     Interface for keybind handlers
-/// </summary>
-public abstract class KeybindHandler : IInitializableService
+public abstract class KeybindHandler : IKeybindHandler
 {
     protected KeybindHandler(ISettingsService settingsService)
     {
@@ -56,5 +52,4 @@ public abstract class KeybindHandler : IInitializableService
     /// <param name="keybind">The keybind that was pressed</param>
     /// <returns>A task</returns>
     public abstract Task Execute(string keybind);
-
 }

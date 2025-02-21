@@ -79,14 +79,8 @@ public class ParserFixture : IAsyncLifetime
         await cache.Clear();
 
         var logger = serviceProvider.GetRequiredService<ILogger<ParserFixture>>();
-        foreach (var serviceType in SidekickConfiguration.InitializableServices)
+        foreach (var initializableService in serviceProvider.GetServices<IInitializableService>())
         {
-            var service = serviceProvider.GetRequiredService(serviceType);
-            if (service is not IInitializableService initializableService)
-            {
-                continue;
-            }
-
             logger.LogInformation($"[Initialization] Initializing {initializableService.GetType().FullName}");
             await initializableService.Initialize();
         }

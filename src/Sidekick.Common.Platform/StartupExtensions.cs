@@ -37,8 +37,7 @@ public static class StartupExtensions
 
         foreach (var keybind in SidekickConfiguration.Keybinds)
         {
-            SidekickConfiguration.InitializableServices.Add(keybind);
-            services.AddSingleton(keybind);
+            services.AddSidekickInitializableService(keybind);
         }
 
         return services;
