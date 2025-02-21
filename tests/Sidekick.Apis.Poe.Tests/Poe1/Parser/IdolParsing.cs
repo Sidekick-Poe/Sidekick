@@ -34,7 +34,7 @@ Unmodifiable");
 
         // actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Maps found in Area", 2);
         // actual.AssertHasModifier(ModifierCategory.Explicit, "Your Maps have #% chance to contain an additional Imprisoned Monster", 46);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "Red Beasts in your Maps have 56% increased chance to be from The Sands", 56);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Red Beasts in your Maps have #% increased chance to be from The Sands", 56);
     }
 
     [Fact]
