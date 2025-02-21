@@ -147,7 +147,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddSidekickKeybind<TKeybindHandler>(this IServiceCollection services)
         where TKeybindHandler : KeybindHandler
     {
-        services.TryAddSingleton<TKeybindHandler>();
+        services.AddSidekickInitializableService<TKeybindHandler>();
         services.Configure<SidekickConfiguration>(
             o =>
             {

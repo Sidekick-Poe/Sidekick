@@ -160,18 +160,18 @@ public class KeyboardProvider(
 
     public void RegisterHooks()
     {
-        // We can't initialize twice
-        if (HasInitialized)
-        {
-            return;
-        }
-
         // Initialize keybindings
         KeybindHandlers.Clear();
         foreach (var keybindType in configuration.Value.Keybinds)
         {
             var keybindHandler = (KeybindHandler)serviceProvider.GetRequiredService(keybindType);
             KeybindHandlers.Add(keybindHandler);
+        }
+
+        // We can't initialize twice
+        if (HasInitialized)
+        {
+            return;
         }
 
         // Configure hook logging
