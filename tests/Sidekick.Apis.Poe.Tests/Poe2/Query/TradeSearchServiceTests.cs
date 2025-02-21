@@ -29,23 +29,20 @@ public class TradeSearchServiceTests
         parser = fixture.Parser;
         tradeFilterService = fixture.TradeFilterService;
 
-        var tradeClient = new Mock<IPoeTradeClient>();
-        tradeClient
-            .Setup(x => x.HttpClient)
+        var mockFactory = new Mock<IHttpClientFactory>();
+        mockFactory
+            .Setup(_ => _.CreateClient(It.IsAny<string>()))
             .Returns(mockHttpClient);
-
-        tradeClient
-            .Setup(x => x.Options)
-            .Returns(jsonSerializerOptions);
 
         tradeSearchService = new TradeSearchService(
             NullLogger<TradeSearchService>.Instance,
             fixture.GameLanguageProvider,
             fixture.SettingsService,
-            tradeClient.Object,
+            fixture.PoeTradeClient,
             fixture.ModifierProvider,
             fixture.FilterProvider,
-            fixture.PropertyParser
+            fixture.PropertyParser,
+            mockFactory.Object
         );
     }
 
