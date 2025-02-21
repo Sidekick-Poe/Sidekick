@@ -1,12 +1,9 @@
-@using Microsoft.Extensions.Options;
-@using Sidekick.Common.Ui.Views
 @using MudBlazor.Utilities
 @using MudBlazor
-@inject IOptions<SidekickConfiguration> Configuration;
 @inject IViewLocator ViewLocator
 
 <AppWrapper>
-    <Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="Configuration.Value.Modules">
+    <Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="SidekickConfiguration.Modules">
         <Found Context="routeData">
             <RouteView RouteData="@routeData"/>
         </Found>

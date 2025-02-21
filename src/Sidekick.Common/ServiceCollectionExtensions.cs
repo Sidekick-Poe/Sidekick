@@ -1,6 +1,5 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Serilog;
 using Serilog.Events;
 using Sidekick.Common.Browser;
@@ -75,25 +74,8 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services,
         Assembly assembly)
     {
-        services.Configure<SidekickConfiguration>(
-            o =>
-            {
-                o.Modules.Add(assembly);
-            });
-
+        SidekickConfiguration.Modules.Add(assembly);
         return services;
-    }
-
-    /// <summary>
-    ///     Adds an initializable service to the application.
-    /// </summary>
-    /// <param name="services">The service collection to add an initializable service.</param>
-    /// <typeparam name="TService">The type of service to add to the application.</typeparam>
-    /// <returns>The service collection.</returns>
-    public static IServiceCollection AddSidekickInitializableService<TService>(this IServiceCollection services)
-        where TService : class, IInitializableService
-    {
-        return services.AddSidekickInitializableService<TService, TService>();
     }
 
     /// <summary>
@@ -107,34 +89,8 @@ public static class ServiceCollectionExtensions
         where TService : class, IInitializableService
         where TImplementation : class, TService
     {
-        services.TryAddSingleton<TService, TImplementation>();
-
-        services.Configure<SidekickConfiguration>(
-            o =>
-            {
-                o.InitializableServices.Add(typeof(TService));
-            });
-
-        return services;
-    }
-
-    /// <summary>
-    ///     Adds an initializable service to the application.
-    /// </summary>
-    /// <param name="services">The service collection to add an initializable service.</param>
-    /// <param name="service">The type of service to add to the application.</param>
-    /// <param name="implementation">The type of the implementation of the service.</param>
-    /// <returns>The service collection.</returns>
-    public static IServiceCollection AddSidekickInitializableService(this IServiceCollection services, Type service, Type implementation)
-    {
-        services.TryAddSingleton(service, implementation);
-
-        services.Configure<SidekickConfiguration>(
-            o =>
-            {
-                o.InitializableServices.Add(service);
-            });
-
+        services.AddSingleton<TService, TImplementation>();
+        SidekickConfiguration.InitializableServices.Add(typeof(TService));
         return services;
     }
 
@@ -147,13 +103,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddSidekickKeybind<TKeybindHandler>(this IServiceCollection services)
         where TKeybindHandler : KeybindHandler
     {
-        services.AddSidekickInitializableService<TKeybindHandler>();
-        services.Configure<SidekickConfiguration>(
-            o =>
-            {
-                o.Keybinds.Add(typeof(TKeybindHandler));
-            });
-
+        SidekickConfiguration.Keybinds.Add(typeof(TKeybindHandler));
         return services;
     }
 }
