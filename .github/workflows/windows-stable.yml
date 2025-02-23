@@ -57,7 +57,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          config-name: release-drafter
+          config-name: release-drafter.yml
           name: 'Sidekick v${{ steps.version.outputs.version }}'
           tag: 'v${{ steps.version.outputs.version }}'
           version: 'v${{ steps.version.outputs.version }}'
