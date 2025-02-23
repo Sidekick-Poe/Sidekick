@@ -26,6 +26,8 @@ autolabeler:
   - label: 'refactor'
     branch:
       - '/refactor\/.+/i'
+    title:
+      - '/refactor/i'
   - label: 'bug'
     branch:
       - '/fix\/.+/i'
@@ -33,6 +35,7 @@ autolabeler:
       - '/bugfix\/.+/i'
     title:
       - '/fix/i'
+      - '/bug/i'
   - label: 'enhancement'
     branch:
       - '/features{0,1}\/.+/i'
