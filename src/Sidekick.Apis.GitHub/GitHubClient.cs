@@ -33,8 +33,8 @@ public class GitHubClient
         {
             return new GitHubRelease()
             {
-                IsNewerVersion = true,
-                IsExecutable = true,
+                IsNewerVersion = false,
+                IsExecutable = false,
             };
         }
 

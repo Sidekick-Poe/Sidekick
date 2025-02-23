@@ -1,3 +1,5 @@
+using Velopack;
+
 namespace Sidekick.Common.Updater;
 
 /// <summary>
@@ -6,8 +8,19 @@ namespace Sidekick.Common.Updater;
 public interface IAutoUpdater
 {
     /// <summary>
-    /// Checks for available updates, downloads the updates if available, and applies them.
+    /// Checks for available updates for the application.
     /// </summary>
-    /// <returns>A task that represents the asynchronous operation.</returns>
-    Task CheckForUpdates();
+    /// <returns>
+    /// An <see cref="UpdateInfo"/> object if an update is available; otherwise, null.
+    /// </returns>
+    Task<UpdateInfo?> CheckForUpdates();
+
+    /// <summary>
+    /// Downloads and applies the provided update, then restarts the application.
+    /// </summary>
+    /// <param name="updateInfo">The information about the update to be downloaded and applied.</param>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
+    Task UpdateAndRestart(UpdateInfo updateInfo);
 }

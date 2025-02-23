@@ -3,6 +3,8 @@
 @using System.Diagnostics
 @using Sidekick.Common.Updater
 @using Sidekick.Common.Browser
+@using Sidekick.Common.Exceptions
+@using Velopack
 @using Sidekick.Common.Platform
 @inherits Sidekick.Common.Ui.Views.SidekickView
 
@@ -25,43 +27,68 @@
                     Class="text-center">@Resources["NewLauncherText"]</TextBase>
             </AppContainer>
         }
+        else if (UpdateInfo == null)
+        {
+            <AppContainer>
+                <Heading3 Class="mb-2 text-center">@Resources["Checking_For_Updates"]</Heading3>
+                <ProgressBar Indeterminate="true"/>
+            </AppContainer>
+        }
+        else if (Updating)
+        {
+            <AppContainer>
+                <Heading3 Class="mb-2 text-center">@Resources["Updating"]</Heading3>
+                <ProgressBar Indeterminate="true"/>
+            </AppContainer>
+        }
         else
         {
             <AppContainer>
-                <Heading3 Class="mb-2 text-center"> @Resources["Checking_For_Updates"] </Heading3>
-                <ProgressBar Indeterminate="true"/>
+                <Heading1 Class="mb-2 text-center">@Resources["New_Update_Alert"]</Heading1>
+                <Heading3 Class="mb-2 text-center">@Resources["Changelog"]</Heading3>
+                @if (!string.IsNullOrEmpty(UpdateInfo.TargetFullRelease.NotesHTML) || UpdateInfo.DeltasToTarget.Any(x => !string.IsNullOrEmpty(x.NotesHTML)))
+                {
+                    <div class="text-center">
+                        @((MarkupString)UpdateInfo.TargetFullRelease.NotesHTML)
+                        @foreach (var delta in UpdateInfo.DeltasToTarget)
+                        {
+                            @((MarkupString)delta.NotesHTML)
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-2 text-center">
+                        @Resources["NoChangelog"]
+                    </div>
+                    <div class="px-3 py-2 flex justify-center gap-2">
+                        <ButtonSecondary OnClick="OpenWebsite">@Resources["Open_Website"]</ButtonSecondary>
+                    </div>
+                }
             </AppContainer>
         }
     </ChildContent>
 
     <BottomContent>
         <div class="px-3 py-2 flex justify-center gap-2">
-            @if (Error)
+            @if (NewLauncher)
             {
-                <ButtonSecondary OnClick="Exit">
-                    @Resources["Exit"]
-                </ButtonSecondary>
-                <ButtonPrimary OnClick="Continue">
-                    @Resources["Continue"]
-                </ButtonPrimary>
-            }
-            else if (NewLauncher)
-            {
-                <ButtonSecondary OnClick="Exit">
-                    @Resources["Exit"]
-                </ButtonSecondary>
-                <ButtonSecondary OnClick="Continue">
-                    @Resources["Continue"]
-                </ButtonSecondary>
-                <ButtonPrimary OnClick="OpenWebsite">
-                    @Resources["Open_Website"]
-                </ButtonPrimary>
+                <ButtonSecondary OnClick="Exit">@Resources["Exit"]</ButtonSecondary>
+                <ButtonSecondary OnClick="Continue">@Resources["Continue"]</ButtonSecondary>
+                <ButtonPrimary OnClick="OpenWebsite">@Resources["Open_Website"]</ButtonPrimary>
             }
             else
             {
-                <ButtonPrimary OnClick="Exit">
-                    @Resources["Exit"]
-                </ButtonPrimary>
+                <ButtonSecondary OnClick="Exit">@Resources["Exit"]</ButtonSecondary>
+                @if (!Updating)
+                {
+                    <ButtonSecondary OnClick="Continue">@Resources["Continue"]</ButtonSecondary>
+                }
+
+                @if (UpdateInfo != null && !Updating)
+                {
+                    <ButtonPrimary OnClick="DownloadAndUpdate">@Resources["Download_And_Install"]</ButtonPrimary>
+                }
             }
         </div>
     </BottomContent>
@@ -79,25 +106,35 @@
 
     private bool NewLauncher { get; set; }
 
+    private bool Updating { get; set; }
+
+    private UpdateInfo? UpdateInfo { get; set; }
+
     public override SidekickViewType ViewType => SidekickViewType.Modal;
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
 
+#if DEBUG
+        // Comment the following line to get the update view to stick when debugging.
+        Continue();
+#endif
+
         try
         {
-            await AutoUpdater.CheckForUpdates();
-            NavigationManager.NavigateTo("/setup");
+            UpdateInfo = await AutoUpdater.CheckForUpdates();
+            if (UpdateInfo == null)
+            {
+                NavigationManager.NavigateTo("/setup");
+            }
+            else
+            {
+                CurrentView.SetSize(height: 400);
+            }
         }
         catch (Exception ex)
         {
-            if (Debugger.IsAttached)
-            {
-                Continue();
-                return;
-            }
-
             if (ex.Message == "Cannot perform this operation in an application which is not installed.")
             {
                 NewLauncher = true;
@@ -120,6 +157,24 @@
         else
         {
             NavigationManager.NavigateTo("/setup");
+        }
+    }
+
+    public async Task DownloadAndUpdate()
+    {
+        if (UpdateInfo == null) throw new SidekickException("Could not apply the update successfully.");
+
+        Updating = true;
+        StateHasChanged();
+
+        try
+        {
+            await AutoUpdater.UpdateAndRestart(UpdateInfo);
+        }
+        catch (Exception e)
+        {
+            Logger.LogError(e, e.Message);
+            throw new SidekickException("Could not apply the update successfully.");
         }
     }
 
