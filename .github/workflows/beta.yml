@@ -52,7 +52,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
 
       - name: Release - Notes
-        id: release
+        id: notes
         uses: release-drafter/release-drafter@v6
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -101,6 +101,9 @@ jobs:
         run: |
           $version = "${{ steps.version.outputs.version }}"
           Write-Output "Version: $version"
+
+          $body = "${{ steps.notes.outputs.body }}"
+          Write-Output "Body: $body"
 
           dotnet tool install -g vpk
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-beta
