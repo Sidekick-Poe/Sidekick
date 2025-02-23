@@ -23,6 +23,9 @@ autolabeler:
       - '*.md'
     branch:
       - '/docs{0,1}\/.+/i'
+  - label: 'refactor'
+    branch:
+      - '/refactor\/.+/i'
   - label: 'bug'
     branch:
       - '/fix\/.+/i'
