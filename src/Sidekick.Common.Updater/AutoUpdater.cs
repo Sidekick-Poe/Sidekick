@@ -12,7 +12,6 @@ public class AutoUpdater : IAutoUpdater
     {
         this.logger = logger;
         var source = new Velopack.Sources.GithubSource("https://github.com/Sidekick-Poe/Sidekick", null, true);
-        var options = new UpdateOptions { AllowVersionDowngrade = true, };
 
         IVelopackLocator? locator = null;
 #if DEBUG
@@ -20,9 +19,14 @@ public class AutoUpdater : IAutoUpdater
 #endif
 
         // We are retiring the windows-beta branch to simplify maintenance. Maintaining one version is easier than two.
+        UpdateOptions? options = null;
         if (VelopackLocator.GetDefault(logger).Channel == "windows-beta")
         {
-            options.ExplicitChannel = "windows-stable";
+            options = new UpdateOptions
+            {
+                ExplicitChannel = "windows-stable",
+                AllowVersionDowngrade = true,
+            };
         }
 
         Manager = new UpdateManager(source, options, logger, locator);
