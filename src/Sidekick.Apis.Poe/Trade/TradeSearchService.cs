@@ -30,10 +30,11 @@ public class TradeSearchService
     IPoeTradeClient poeTradeClient,
     IModifierProvider modifierProvider,
     IFilterProvider filterProvider,
-    IPropertyParser propertyParser
+    IPropertyParser propertyParser,
+    IHttpClientFactory httpClientFactory
 ) : ITradeSearchService
 {
-    private readonly ILogger logger = logger;
+    private HttpClient HttpClient { get; } = httpClientFactory.CreateClient(ClientNames.TradeClient);
 
     public async Task<TradeSearchResult<string>> Search(Item item, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null, List<PseudoModifierFilter>? pseudoFilters = null)
     {
@@ -139,7 +140,7 @@ public class TradeSearchService
             var json = JsonSerializer.Serialize(new QueryRequest() { Query = query, }, poeTradeClient.Options);
 
             var body = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await poeTradeClient.HttpClient.PostAsync(uri, body);
+            var response = await HttpClient.PostAsync(uri, body);
 
             var content = await response.Content.ReadAsStreamAsync();
             var result = await JsonSerializer.DeserializeAsync<TradeSearchResult<string>?>(content, poeTradeClient.Options);
@@ -351,7 +352,7 @@ public class TradeSearchService
         {
             logger.LogInformation($"[Trade API] Fetching Trade API Listings from Query {queryId}.");
 
-            var response = await poeTradeClient.HttpClient.GetAsync(await GetBaseApiUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId);
+            var response = await HttpClient.GetAsync(await GetBaseApiUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId);
             if (!response.IsSuccessStatusCode)
             {
                 return new();

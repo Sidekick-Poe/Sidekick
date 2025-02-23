@@ -8,28 +8,18 @@ using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Clients;
 
-public class PoeTradeClient : IPoeTradeClient
+public class PoeTradeClient(
+    ILogger<PoeTradeClient> logger,
+    IHttpClientFactory httpClientFactory) : IPoeTradeClient
 {
-    private readonly ILogger logger;
-
-    public PoeTradeClient(
-        ILogger<PoeTradeClient> logger,
-        IHttpClientFactory httpClientFactory)
+    public JsonSerializerOptions Options { get; } = new()
     {
-        this.logger = logger;
-        HttpClient = httpClientFactory.CreateClient(ClientNames.TradeClient);
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+    };
 
-        Options = new JsonSerializerOptions()
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-        };
-        Options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
-    }
-
-    public JsonSerializerOptions Options { get; }
-
-    public HttpClient HttpClient { get; }
+    private HttpClient HttpClient { get; } = httpClientFactory.CreateClient(ClientNames.TradeClient);
 
     public async Task<FetchResult<TReturn>> Fetch<TReturn>(GameType game, IGameLanguage language, string path)
     {

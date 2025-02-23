@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Bulk.Models;
 using Sidekick.Apis.Poe.Bulk.Results;
 using Sidekick.Apis.Poe.Clients;
+using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Static;
 using Sidekick.Apis.Poe.Trade.Requests;
@@ -22,9 +23,10 @@ public class BulkTradeService(
     ISettingsService settingsService,
     IPoeTradeClient poeTradeClient,
     IFilterProvider filterProvider,
-    IItemStaticDataProvider itemStaticDataProvider) : IBulkTradeService
+    IItemStaticDataProvider itemStaticDataProvider,
+    IHttpClientFactory httpClientFactory) : IBulkTradeService
 {
-    private readonly ILogger logger = logger;
+    private HttpClient HttpClient { get; } = httpClientFactory.CreateClient(ClientNames.TradeClient);
 
     public bool SupportsBulkTrade(Item? item)
     {
@@ -74,7 +76,7 @@ public class BulkTradeService(
 
         var json = JsonSerializer.Serialize(model, poeTradeClient.Options);
         var body = new StringContent(json, Encoding.UTF8, "application/json");
-        var response = await poeTradeClient.HttpClient.PostAsync(uri, body);
+        var response = await HttpClient.PostAsync(uri, body);
 
         var content = await response.Content.ReadAsStringAsync();
         try
