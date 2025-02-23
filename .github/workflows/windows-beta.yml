@@ -105,7 +105,12 @@ jobs:
           $body = "${{ steps.notes.outputs.body }}"
           Write-Output "Body: $body"
 
+          # Output the body to a .md file
+          $releaseNotesPath = "release-notes.md"
+          Set-Content -Path $releaseNotesPath -Value $body
+          Write-Output "Release notes saved to $releaseNotesPath"
+
           dotnet tool install -g vpk
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-beta
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-beta
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-beta --releaseNotes $releaseNotesPath
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-beta --pre --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}

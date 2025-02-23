@@ -7,14 +7,14 @@ namespace Sidekick.Modules.General.Keybinds;
 public class CloseOverlayWithEscHandler : KeybindHandler
 {
     private readonly ISettingsService settingsService;
-    private readonly IViewLocator viewLocator1;
+    private readonly IViewLocator viewLocator;
 
     public CloseOverlayWithEscHandler(
         IViewLocator viewLocator,
         ISettingsService settingsService)
         : base(settingsService)
     {
-        viewLocator1 = viewLocator;
+        this.viewLocator = viewLocator;
         this.settingsService = settingsService;
         settingsService.OnSettingsChanged += OnSettingsChanged;
         _ = UpdateIsValid();
@@ -37,11 +37,11 @@ public class CloseOverlayWithEscHandler : KeybindHandler
         "Esc",
     ]);
 
-    public override bool IsValid(string _) => EscapeClosesOverlays && viewLocator1.IsOverlayOpened();
+    public override bool IsValid(string _) => EscapeClosesOverlays && viewLocator.IsOverlayOpened();
 
     public override Task Execute(string _)
     {
-        viewLocator1.CloseAllOverlays();
+        viewLocator.CloseAllOverlays();
         return Task.CompletedTask;
     }
 }
