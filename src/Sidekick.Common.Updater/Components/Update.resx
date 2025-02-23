@@ -120,9 +120,6 @@
   <data name="New_Update_Alert" xml:space="preserve">
       <value>A new update is available</value>
   </data>
-  <data name="Download_And_Install" xml:space="preserve">
-    <value>Download and Install</value>
-  </data>
   <data name="Open_Website" xml:space="preserve">
     <value>Open Website</value>
   </data>
@@ -155,5 +152,8 @@
   </data>
   <data name="Update" xml:space="preserve">
       <value>Update</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+      <value>Skip Update</value>
   </data>
 </root>

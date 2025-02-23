@@ -44,14 +44,14 @@
         else
         {
             <AppContainer>
-                <Heading1 Class="mb-3 text-center">@Resources["New_Update_Alert"]</Heading1>
+                <Heading1 Class="mb-4 text-center">@Resources["New_Update_Alert"]</Heading1>
                 @if (!string.IsNullOrEmpty(UpdateInfo.TargetFullRelease.NotesHTML) || UpdateInfo.DeltasToTarget.Any(x => !string.IsNullOrEmpty(x.NotesHTML)))
                 {
                     <div class="text-left">
-                        @((MarkupString)UpdateInfo.TargetFullRelease.NotesHTML)
+                        @GetNotes(UpdateInfo.TargetFullRelease)
                         @foreach (var delta in UpdateInfo.DeltasToTarget)
                         {
-                            @((MarkupString)delta.NotesHTML)
+                            @GetNotes(delta)
                         }
                     </div>
                 }
@@ -81,12 +81,12 @@
                 <ButtonSecondary OnClick="Exit">@Resources["Exit"]</ButtonSecondary>
                 @if (!Updating)
                 {
-                    <ButtonSecondary OnClick="Continue">@Resources["Continue"]</ButtonSecondary>
+                    <ButtonSecondary OnClick="Continue">@Resources["Skip"]</ButtonSecondary>
                 }
 
                 @if (UpdateInfo != null && !Updating)
                 {
-                    <ButtonPrimary OnClick="DownloadAndUpdate">@Resources["Download_And_Install"]</ButtonPrimary>
+                    <ButtonPrimary OnClick="Download">@Resources["Update"]</ButtonPrimary>
                 }
             }
         </div>
@@ -111,6 +111,13 @@
 
     public override SidekickViewType ViewType => SidekickViewType.Modal;
 
+    private RenderFragment GetNotes(VelopackAsset asset) => @<FormFieldset Legend="@($"Version {asset.Version}")">
+                                                                <div
+                                                                    class="[&_h1]:text-xl [&_h1]:mb-2 [&_h2]:text-lg [&_h2]:mb-2 [&_h3]:text-base [&_h3]:mb-1 [&_h4]:text-lg [&_h5]:text-lg [&_h6]:text-lg [&_ul]:list-disc [&_ul]:pl-4 pb-2">
+                                                                    @((MarkupString)asset.NotesHTML)
+                                                                </div>
+                                                            </FormFieldset>;
+
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
@@ -118,8 +125,8 @@
         if (Debugger.IsAttached)
         {
             // Comment the following line to get the update view to stick when debugging.
-            Continue();
-            return;
+            // Continue();
+            // return;
         }
 
         try
@@ -131,7 +138,7 @@
             }
             else
             {
-                CurrentView.SetSize(height: 400);
+                CurrentView.SetSize(height: 500);
             }
         }
         catch (Exception ex)
@@ -161,7 +168,7 @@
         }
     }
 
-    public async Task DownloadAndUpdate()
+    public async Task Download()
     {
         if (UpdateInfo == null) throw new SidekickException("Could not apply the update successfully.");
 
