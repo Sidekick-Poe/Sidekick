@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 using Velopack;
 using Velopack.Locators;
@@ -14,9 +15,10 @@ public class AutoUpdater : IAutoUpdater
         var source = new Velopack.Sources.GithubSource("https://github.com/Sidekick-Poe/Sidekick", null, true);
 
         IVelopackLocator? locator = null;
-#if DEBUG
-        locator = new DebugLocator();
-#endif
+        if (Debugger.IsAttached)
+        {
+            locator = new DebugLocator();
+        }
 
         // We are retiring the windows-beta branch to simplify maintenance. Maintaining one version is easier than two.
         UpdateOptions? options = null;
