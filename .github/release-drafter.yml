@@ -3,51 +3,21 @@ tag-template: 'v$RESOLVED_VERSION'
 categories:
   - title: 'Features'
     labels:
-      - 'feature'
-      - 'enhancement'
       - 'Type: Enhancement'
   - title: 'Bug Fixes'
     labels:
-      - 'fix'
-      - 'bugfix'
-      - 'bug'
       - 'Type: Bug'
   - title: 'Maintenance'
     labels:
-      - 'chore'
-      - 'refactor'
-      - 'clean'
       - 'Type: Maintenance'
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
-autolabeler:
-  - label: 'chore'
-    files:
-      - '*.md'
-    branch:
-      - '/docs{0,1}\/.+/i'
-  - label: 'refactor'
-    branch:
-      - '/refactor\/.+/i'
-    title:
-      - '/refactor/i'
-  - label: 'bug'
-    branch:
-      - '/fix\/.+/i'
-      - '/bug\/.+/i'
-      - '/bugfix\/.+/i'
-    title:
-      - '/fix/i'
-      - '/bug/i'
-  - label: 'enhancement'
-    branch:
-      - '/features{0,1}\/.+/i'
 template: |
-  ## Changes
+  # Changes
 
   $CHANGES
   
   
-  ## Contributors
+  # Contributors
   
   $CONTRIBUTORS
