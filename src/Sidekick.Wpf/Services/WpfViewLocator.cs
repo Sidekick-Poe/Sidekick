@@ -215,6 +215,7 @@ public class WpfViewLocator : IViewLocator
         {
             try
             {
+                window.Deactivate();
                 window.Close();
                 Windows.Remove(window);
                 GC.Collect();
