@@ -141,6 +141,15 @@ public partial class MainWindow
         DragMove();
     }
 
+    /// <summary>
+    /// Temporarily deactivates the current window.
+    /// This is typically used to manage focus-related issues when the main window should lose focus.
+    /// </summary>
+    /// <remarks>
+    /// We use this method typically right before we close the window. Sidekick had an issue for the longest time,
+    /// where closing the overlay would focus a random window instead of giving the focus back to the game.
+    /// This method ensures the window loses focus before closing. The way this is done is by creating a temporary window and giving focus to that.
+    /// Windows magic.</remarks>
     public void Deactivate()
     {
         // Check if the window is still valid and focused
