@@ -66,7 +66,6 @@ public partial class MainWindow
         base.OnClosing(e);
 
         MaximizeHelper.RemoveHook(this);
-        ClearFocusOnClosing();
 
         if (isClosing || !IsVisible || ResizeMode != ResizeMode.CanResize && ResizeMode != ResizeMode.CanResizeWithGrip || WindowState == WindowState.Maximized)
         {
@@ -142,53 +141,33 @@ public partial class MainWindow
         DragMove();
     }
 
-    #region Code to make sure the focus is lost correctly when the window is closed.
-
-    [DllImport("user32.dll")]
-    private static extern IntPtr GetForegroundWindow();
-
-    [DllImport("user32.dll")]
-    private static extern bool SetForegroundWindow(IntPtr hWnd);
-
-    private IntPtr previousWindowHandle;
-
-    private void ClearFocusOnClosing()
+    public void Deactivate()
     {
-        // Get the handle for the foreground window (current active window)
-        var foregroundWindow = GetForegroundWindow();
-
-        // Check if the window currently active belongs to our application
-        if (new WindowInteropHelper(this).Handle != foregroundWindow)
+        // Check if the window is still valid and focused
+        if (!IsActive)
         {
-            // Just in case, set the focus back to the application
-            SetForegroundWindow(new WindowInteropHelper(this).Handle);
+            return;
         }
 
-        // Get the handle of the currently focused window (likely the WPF window itself)
-        previousWindowHandle = GetForegroundWindow();
-
-        // Remove focus explicitly from WebView
-        Keyboard.ClearFocus();
-
-        // Optionally, set focus to a parent element or another default element
-        FocusManager.SetFocusedElement(this, this);
-
-        // Ensure the WebView is removed from the visual tree
-        WebView.Visibility = Visibility.Collapsed;
-    }
-
-    protected override void OnClosed(EventArgs e)
-    {
-        base.OnClosed(e);
-
-        // Explicitly set focus back to the previous window
-        if (previousWindowHandle != IntPtr.Zero)
+        // Create a hidden dummy window to take focus temporarily
+        var helperWindow = new Window
         {
-            SetForegroundWindow(previousWindowHandle);
-        }
-    }
+            Width = 1,
+            Height = 1,
+            ShowInTaskbar = false,
+            WindowStyle = WindowStyle.None,
+            AllowsTransparency = true,
+            Background = null,
+            Opacity = 0
+        };
 
-    #endregion
+        // Show the helper window to take focus
+        helperWindow.Show();
+
+        // Set focus to the dummy window before closing it
+        helperWindow.Activate();
+        helperWindow.Close();
+    }
 
     protected override void OnSourceInitialized(EventArgs e)
     {
