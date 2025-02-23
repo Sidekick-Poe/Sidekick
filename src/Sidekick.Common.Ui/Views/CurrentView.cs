@@ -1,14 +1,23 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Routing;
 
 namespace Sidekick.Common.Ui.Views;
 
 /// <summary>
 /// Interface to manage views
 /// </summary>
-public class CurrentView(
-    IViewLocator viewLocator,
-    NavigationManager navigationManager) : ICurrentView
+public class CurrentView: ICurrentView, IDisposable
 {
+    private readonly IViewLocator viewLocator;
+    private readonly NavigationManager navigationManager;
+
+    public CurrentView(IViewLocator viewLocator, NavigationManager navigationManager)
+    {
+        this.viewLocator = viewLocator;
+        this.navigationManager = navigationManager;
+        navigationManager.LocationChanged += NavigationManagerOnLocationChanged;
+    }
+
     /// <inheritdoc/>
     public event Action<ICurrentView>? ViewChanged;
 
@@ -76,5 +85,18 @@ public class CurrentView(
     public Task Close()
     {
         return Current == null ? Task.CompletedTask : viewLocator.Close(Current);
+    }
+
+    private void NavigationManagerOnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        Width = null;
+        Height = null;
+        MinWidth = null;
+        MinHeight = null;
+    }
+
+    public void Dispose()
+    {
+        navigationManager.LocationChanged -= NavigationManagerOnLocationChanged;
     }
 }

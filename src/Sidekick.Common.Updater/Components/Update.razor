@@ -44,11 +44,10 @@
         else
         {
             <AppContainer>
-                <Heading1 Class="mb-2 text-center">@Resources["New_Update_Alert"]</Heading1>
-                <Heading3 Class="mb-2 text-center">@Resources["Changelog"]</Heading3>
+                <Heading1 Class="mb-3 text-center">@Resources["New_Update_Alert"]</Heading1>
                 @if (!string.IsNullOrEmpty(UpdateInfo.TargetFullRelease.NotesHTML) || UpdateInfo.DeltasToTarget.Any(x => !string.IsNullOrEmpty(x.NotesHTML)))
                 {
-                    <div class="text-center">
+                    <div class="text-left">
                         @((MarkupString)UpdateInfo.TargetFullRelease.NotesHTML)
                         @foreach (var delta in UpdateInfo.DeltasToTarget)
                         {
@@ -58,10 +57,10 @@
                 }
                 else
                 {
-                    <div class="mb-2 text-center">
+                    <div class="mb-3 text-center">
                         @Resources["NoChangelog"]
                     </div>
-                    <div class="px-3 py-2 flex justify-center gap-2">
+                    <div class="text-center">
                         <ButtonSecondary OnClick="OpenWebsite">@Resources["Open_Website"]</ButtonSecondary>
                     </div>
                 }
@@ -116,11 +115,12 @@
     {
         await base.OnInitializedAsync();
 
-#if DEBUG
-        // Comment the following line to get the update view to stick when debugging.
-        Continue();
-        return;
-#endif
+        if (Debugger.IsAttached)
+        {
+            // Comment the following line to get the update view to stick when debugging.
+            // Continue();
+            // return;
+        }
 
         try
         {
