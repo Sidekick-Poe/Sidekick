@@ -8,7 +8,7 @@
 <AppContainer>
     <FormFieldset Legend="Copy your item text here">
         <FormTextarea @bind-Value="ItemText" />
-        <div class="grid grid-cols-12 gap-3 mt-3">
+        <div class="grid grid-cols-12 gap-3">
             <div class="col-span-6">
                 <HomeButton Class="bg-blue-700 hover:bg-blue-500" OnClick="PriceCheck">Check Prices</HomeButton>
             </div>
@@ -18,7 +18,9 @@
         </div>
     </FormFieldset>
     <FormFieldset Legend="Other sections">
-        <ButtonPrimary OnClick="@(() => NavigationManager.NavigateTo("/settings"))">Settings</ButtonPrimary>
+        <div>
+            <ButtonPrimary OnClick="@(() => NavigationManager.NavigateTo("/settings"))">Settings</ButtonPrimary>
+        </div>
     </FormFieldset>
 </AppContainer>
 

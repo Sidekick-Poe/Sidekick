@@ -8,7 +8,6 @@
         @foreach (var option in Options)
         {
             <FormCheckbox Value="option.Value == Value"
-                          NoMargin="true"
                           Dense="true"
                           ValueChanged="@(() => ValueChanged(option.Value))">@option.Label</FormCheckbox>
         }

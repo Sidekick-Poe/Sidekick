@@ -1,4 +1,4 @@
-<div class="flex items-center h-5 @(NoMargin ? "" : "mb-3")">
+<div class="flex items-center h-5">
     @if (Value == null)
     {
         <input name="custom-checkbox custom-checkbox-null" id="@Id" type="checkbox" class="hidden peer" checked @onchange="OnChange">
@@ -38,9 +38,6 @@
 
     [Parameter]
     public EventCallback<bool?> ValueChanged { get; set; }
-
-    [Parameter]
-    public bool NoMargin { get; set; }
 
     private string Id { get; } = UiUtilities.GenerateId();
 

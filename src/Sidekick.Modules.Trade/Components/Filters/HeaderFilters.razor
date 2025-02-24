@@ -7,8 +7,7 @@
     <FilterWrapper>
         <div class="flex items-center flex-nowrap justify-between">
             <FormCheckbox Value="PriceCheckService.PropertyFilters?.ClassFilterApplied ?? false"
-                          ValueChanged="ClassFilterChanged"
-                          NoMargin="true">
+                          ValueChanged="ClassFilterChanged">
                 <ItemPropertyText Label="@Resources["Item Class"]"
                                   Value="@ClassLabel"/>
             </FormCheckbox>
@@ -18,8 +17,7 @@
     <FilterWrapper>
         <div class="flex items-center flex-nowrap justify-between">
             <FormCheckbox Value="PriceCheckService.PropertyFilters?.BaseTypeFilterApplied ?? false"
-                          ValueChanged="TypeFilterChanged"
-                          NoMargin="true">
+                          ValueChanged="TypeFilterChanged">
                 <ItemPropertyText Label="@Resources["Base Type"]"
                                   Value="@PriceCheckService.Item?.Header.ApiType"/>
             </FormCheckbox>
@@ -31,8 +29,7 @@
         <FilterWrapper>
             <div class="flex items-center flex-nowrap justify-between">
                 <FormCheckbox Value="PriceCheckService.PropertyFilters?.RarityFilterApplied ?? false"
-                              ValueChanged="RarityFilterChanged"
-                              NoMargin="true">
+                              ValueChanged="RarityFilterChanged">
                     <ItemPropertyText Label="@Resources["Rarity"]"
                                       Value="@RarityLabel"/>
                 </FormCheckbox>

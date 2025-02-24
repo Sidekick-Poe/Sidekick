@@ -6,34 +6,39 @@
 <AppTitle Title="@Resources["Settings"]" />
 <AppContainer>
     <FormFieldset Legend="@Resources["Chat_Commands"]">
-        <ButtonLink OnClick="OpenWikiChatCommands">@WikiChatCommands.ToString()</ButtonLink>
+        <div>
+            <ButtonLink OnClick="OpenWikiChatCommands">@WikiChatCommands.ToString()</ButtonLink>
 
-        <div class="my-3">
-            <TextBase>@Resources["Chat_Common_Commands"]</TextBase>
-        </div>
+            <div class="my-3">
+                <TextBase>@Resources["Chat_Common_Commands"]</TextBase>
+            </div>
 
-        <div class="flex gap-3 mb-1"><code class="bg-stone-950 px-1 min-w-[8em]">/hideout</code>
-            <TextBase>@Resources["Chat_Commands_Hideout"]</TextBase>
-        </div>
-        <div class="flex gap-3 mb-1"><code class="bg-stone-950 px-1 min-w-[8em]">/leave</code>
-            <TextBase>@Resources["Chat_Commands_Leave"]</TextBase>
-        </div>
-        <div class="flex gap-3 mb-1"><code class="bg-stone-950 px-1 min-w-[8em]">/exit</code>
-            <TextBase>@Resources["Chat_Commands_Exit"]</TextBase>
-        </div>
-        <div class="flex gap-3 mb-1">
-            <code class="bg-stone-950 px-1 min-w-[8em]">/invite @@last</code>
-            <TextBase>@Resources["Chat_Commands_Invite"]</TextBase>
-        </div>
-        <div class="flex gap-3 mb-3">
-            <code class="bg-stone-950 px-1 min-w-[8em]">/kick @@last</code>
-            <TextBase>@Resources["Chat_Commands_Kick"]</TextBase>
-        </div>
+            <div class="flex gap-3 mb-1">
+                <code class="bg-stone-950 px-1 min-w-[8em]">/hideout</code>
+                <TextBase>@Resources["Chat_Commands_Hideout"]</TextBase>
+            </div>
+            <div class="flex gap-3 mb-1">
+                <code class="bg-stone-950 px-1 min-w-[8em]">/leave</code>
+                <TextBase>@Resources["Chat_Commands_Leave"]</TextBase>
+            </div>
+            <div class="flex gap-3 mb-1">
+                <code class="bg-stone-950 px-1 min-w-[8em]">/exit</code>
+                <TextBase>@Resources["Chat_Commands_Exit"]</TextBase>
+            </div>
+            <div class="flex gap-3 mb-1">
+                <code class="bg-stone-950 px-1 min-w-[8em]">/invite @@last</code>
+                <TextBase>@Resources["Chat_Commands_Invite"]</TextBase>
+            </div>
+            <div class="flex gap-3 mb-3">
+                <code class="bg-stone-950 px-1 min-w-[8em]">/kick @@last</code>
+                <TextBase>@Resources["Chat_Commands_Kick"]</TextBase>
+            </div>
 
-        <div class="flex gap-3"><code class="bg-stone-950 px-1 min-w-[8em]">@@last</code>
-            <TextBase>@Resources["Chat_Wildcard_LastWhisper_CharacterName"]</TextBase>
+            <div class="flex gap-3">
+                <code class="bg-stone-950 px-1 min-w-[8em]">@@last</code>
+                <TextBase>@Resources["Chat_Wildcard_LastWhisper_CharacterName"]</TextBase>
+            </div>
         </div>
-
     </FormFieldset>
 
     <ChatCommandEditor />
