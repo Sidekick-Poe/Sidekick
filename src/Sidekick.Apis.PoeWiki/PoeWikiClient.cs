@@ -31,6 +31,10 @@ public class PoeWikiClient
     private const string PoeWikiBaseUri = "https://www.poewiki.net/";
     private const string PoeWikiSubUrl = "w/index.php?search=";
 
+    /// <summary>
+    /// List of possible oils, only used for anointments right now.
+    /// Reflective Oil and Tainted Oil are not used for anointments, but are here for reference.
+    /// </summary>
     private static readonly List<string> oilNames =
     [
         "Clear Oil",
@@ -46,6 +50,9 @@ public class PoeWikiClient
         "Opalescent Oil",
         "Silver Oil",
         "Golden Oil",
+        "Prismatic Oil",
+        "Reflective Oil",
+        "Tainted Oil",
     ];
 
     private HttpClient GetHttpClient()
