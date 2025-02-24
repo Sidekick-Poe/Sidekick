@@ -3,8 +3,7 @@
 <FilterWrapper>
     <div class="flex flex-nowrap items-center">
         <div class="grow">
-            <FormCheckbox @bind-Value="Filter.Checked"
-                          NoMargin="true">
+            <FormCheckbox @bind-Value="Filter.Checked">
                 <div class="flex items-center gap-1">
                     <ItemPropertyText Label="@Filter.Text"
                                       Value="@(Filter.Checked ? "true" : "false")"

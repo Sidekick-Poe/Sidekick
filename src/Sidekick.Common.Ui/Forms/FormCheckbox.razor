@@ -1,4 +1,4 @@
-<div class="flex items-center  @(NoMargin ? "" : "mb-3") @(Dense ? "min-h-4" : "min-h-5")">
+<div class="flex items-center @(Dense ? "min-h-4" : "min-h-5")">
     <input name="custom-checkbox" id="@Id" type="checkbox" class="hidden peer" checked="@Value" @onchange="OnChange">
     <label for="@Id"
            @onmouseenter="OnMouseEnter"
@@ -24,9 +24,6 @@
 
     [Parameter]
     public EventCallback<bool> ValueChanged { get; set; }
-
-    [Parameter]
-    public bool NoMargin { get; set; }
 
     [Parameter]
     public bool Dense { get; set; }

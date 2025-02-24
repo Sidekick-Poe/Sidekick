@@ -8,13 +8,15 @@
 
 <AppContainer>
     <FormFieldset Legend="@($"{Resources["Sidekick"]} - {Title}")">
-        <div class="mb-3"><span class="text-lg underline text-blue-500 cursor-pointer" onclick="@(() => BrowserProvider.OpenSidekickWebsite())">@Resources["Official_Website"]</span></div>
-        <div class="mb-3"><span class="text-lg underline text-blue-500 cursor-pointer" onclick="@(() => BrowserProvider.OpenGitHubRepository())">@Resources["GitHub_Repository"]</span></div>
+        <div>
+            <div class="mb-3"><span class="text-lg underline text-blue-500 cursor-pointer" onclick="@(() => BrowserProvider.OpenSidekickWebsite())">@Resources["Official_Website"]</span></div>
+            <div class="mb-3"><span class="text-lg underline text-blue-500 cursor-pointer" onclick="@(() => BrowserProvider.OpenGitHubRepository())">@Resources["GitHub_Repository"]</span></div>
 
-        <LayoutDivider/>
+            <LayoutDivider />
 
-        <div class="mb-3"><ButtonPrimary OnClick="@(() => FolderProvider.OpenDataFolderPath())">@Resources["Open_Settings_Folder"]</ButtonPrimary></div>
-        <i>@FolderProvider.GetDataFolderPath()</i>
+            <div class="mb-3"><ButtonPrimary OnClick="@(() => FolderProvider.OpenDataFolderPath())">@Resources["Open_Settings_Folder"]</ButtonPrimary></div>
+            <code class="bg-stone-950 px-1 min-w-[8em]">@FolderProvider.GetDataFolderPath()</code>
+        </div>
     </FormFieldset>
 </AppContainer>
 

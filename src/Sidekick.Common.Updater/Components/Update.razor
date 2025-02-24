@@ -113,7 +113,7 @@
 
     private RenderFragment GetNotes(VelopackAsset asset) => @<FormFieldset Legend="@($"Version {asset.Version}")">
                                                                 <div
-                                                                    class="[&_h1]:text-xl [&_h1]:mb-2 [&_h2]:text-lg [&_h2]:mb-2 [&_h3]:text-base [&_h3]:mb-1 [&_h4]:text-lg [&_h5]:text-lg [&_h6]:text-lg [&_ul]:list-disc [&_ul]:pl-4 pb-2">
+                                                                    class="[&_h1]:text-xl [&_h1]:mb-2 [&_h2]:text-lg [&_h2]:mb-2 [&_h3]:text-base [&_h3]:mb-1 [&_h4]:text-lg [&_h5]:text-lg [&_h6]:text-lg [&_ul]:list-disc [&_ul]:pl-4">
                                                                     @((MarkupString)asset.NotesHTML)
                                                                 </div>
                                                             </FormFieldset>;
