@@ -19,12 +19,12 @@ public class ModifierLine(string text)
     /// <summary>
     ///     Gets or sets the modifier associated with this line.
     /// </summary>
-    public List<Modifier> Modifiers { get; init; } = new();
+    public List<Modifier> Modifiers { get; init; } = [];
 
     /// <summary>
     ///     Gets or sets a list of values on this modifier line.
     /// </summary>
-    public List<double> Values { get; set; } = new();
+    public List<double> Values { get; set; } = [];
 
     /// <summary>
     ///     Gets or sets the option value of this modifier.
@@ -37,8 +37,5 @@ public class ModifierLine(string text)
     public bool HasValues => OptionValue == null && Values.Count > 0;
 
     /// <inheritdoc />
-    public override string ToString()
-    {
-        return Text;
-    }
+    public override string ToString() => Text;
 }

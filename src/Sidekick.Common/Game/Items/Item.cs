@@ -4,9 +4,9 @@ public class Item(
     ItemHeader? invariant,
     ItemHeader itemHeader,
     ItemProperties itemProperties,
-    List<Socket> sockets,
-    List<ModifierLine> modifierLines,
-    List<PseudoModifier> pseudoModifiers,
+    IEnumerable<Socket> sockets,
+    IEnumerable<ModifierLine> modifierLines,
+    IEnumerable<PseudoModifier> pseudoModifiers,
     string text)
 {
     public ItemHeader? Invariant { get; set; } = invariant;
@@ -15,11 +15,11 @@ public class Item(
 
     public ItemProperties Properties { get; init; } = itemProperties;
 
-    public List<Socket> Sockets { get; init; } = sockets;
+    public List<Socket> Sockets { get; init; } = [.. sockets];
 
-    public List<ModifierLine> ModifierLines { get; set; } = modifierLines;
+    public List<ModifierLine> ModifierLines { get; set; } = [.. modifierLines];
 
-    public List<PseudoModifier> PseudoModifiers { get; init; } = pseudoModifiers;
+    public List<PseudoModifier> PseudoModifiers { get; init; } = [.. pseudoModifiers];
 
     public string Text { get; set; } = text;
 
