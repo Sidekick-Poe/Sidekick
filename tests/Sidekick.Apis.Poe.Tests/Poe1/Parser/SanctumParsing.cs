@@ -31,4 +31,32 @@ Take this item to the Relic Altar in the Forbidden Sanctum to enter.
         Assert.Equal(83, actual.Properties.AreaLevel);
         Assert.Equal(84, actual.Properties.ItemLevel);
     }
+
+    [Fact]
+    public void ParseRelic()
+    {
+        var actual = parser.ParseItem(@"Item Class: Relics
+Rarity: Magic
+Steadfast Urn Relic of Achievement
+--------
+Item Level: 80
+--------
+Gain 20 Resolve when you kill a Boss
++5 to Maximum Resolve
+--------
+Place this item on the Relic Altar at the start of each Sanctum run
+--------
+Unmodifiable
+");
+
+        Assert.Equal(Category.Sanctum, actual.Header.Category);
+        Assert.Equal(Rarity.Magic, actual.Header.Rarity);
+        Assert.Equal("sanctum.relic", actual.Header.ItemCategory);
+        Assert.Equal("Urn Relic", actual.Header.ApiType);
+        Assert.Null(actual.Header.ApiName);
+        Assert.Equal(80, actual.Properties.ItemLevel);
+
+        actual.AssertHasModifier(ModifierCategory.Sanctum, "Gain # Resolve when you kill a Boss", 20);
+        actual.AssertHasModifier(ModifierCategory.Sanctum, "+# to Maximum Resolve", 5);
+    }
 }
