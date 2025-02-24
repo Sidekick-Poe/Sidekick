@@ -1,7 +1,9 @@
-@using System.Diagnostics
+﻿@using Sidekick.Common.Blazor.Localization
 @using Sidekick.Common.Cache
+@using System.Diagnostics
 @inherits LayoutComponentBase
 
+<AppTitle Title="Sidekick"/>
 <LayoutTwoColumn>
     <TopContent>
         <AppBar>
@@ -12,17 +14,26 @@
     </TopContent>
     <LeftContent>
         <MenuList>
+            <MenuItem Href="/home">@Resources["Home"]</MenuItem>
+
+            <MenuLegend Legend="@Resources["Settings"]"/>
             <MenuItem Href="/settings">@Resources["General"]</MenuItem>
             <MenuItem Href="/settings/price">@Resources["Price_Check"]</MenuItem>
             <MenuItem Href="/settings/map">@Resources["Map_Check"]</MenuItem>
             <MenuItem Href="/settings/wiki">@Resources["Wiki"]</MenuItem>
             <MenuItem Href="/settings/chat">@Resources["Chat_Commands"]</MenuItem>
+
+            @if (Debugger.IsAttached)
+            {
+                <MenuItem Href="/settings/wealth">@Resources["WealthTracker"]</MenuItem>
+            }
+
             <MenuItem Href="/settings/about">@Resources["About"]</MenuItem>
 
             @if (Debugger.IsAttached)
             {
+                <MenuLegend Legend="@Resources["Development"]"/>
                 <MenuItem Href="/development">Development</MenuItem>
-                <MenuItem Href="/settings/wealth">@Resources["WealthTracker"]</MenuItem>
             }
 
             <div class="grow"></div>
@@ -33,9 +44,7 @@
         </MenuList>
     </LeftContent>
     <ChildContent>
-        <div class="max-w-[800px] mx-auto">
-            @Body
-        </div>
+        @Body
     </ChildContent>
 </LayoutTwoColumn>
 

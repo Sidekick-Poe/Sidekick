@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
@@ -46,8 +45,6 @@ public partial class Initialization : SidekickView
     public Task? InitializationTask { get; set; }
 
     public override SidekickViewType ViewType => SidekickViewType.Modal;
-
-    private int TimeLeftToCloseView { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -97,8 +94,9 @@ public partial class Initialization : SidekickView
             // "Ready" label on the UI before closing the view
             Completed = Count;
 
-            await StartCountdownToClose();
             await ReportProgress();
+            await Task.Delay(200);
+            Complete();
         }
         catch (SidekickException e)
         {
@@ -108,25 +106,9 @@ public partial class Initialization : SidekickView
         }
     }
 
-    private async Task StartCountdownToClose()
+    private void Complete()
     {
-        TimeLeftToCloseView = Debugger.IsAttached ? 1 : 4;
-
-        while (TimeLeftToCloseView > 0)
-        {
-            StateHasChanged();
-            await Task.Delay(1000);
-            TimeLeftToCloseView--;
-        }
-
-        if (Debugger.IsAttached)
-        {
-            NavigationManager.NavigateTo("/development");
-        }
-        else
-        {
-            await CurrentView.Close();
-        }
+        NavigationManager.NavigateTo("/home");
     }
 
     private Task ReportProgress()

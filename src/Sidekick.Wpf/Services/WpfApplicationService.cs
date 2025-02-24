@@ -45,7 +45,7 @@ public class WpfApplicationService
 
         if (Debugger.IsAttached)
         {
-            AddTrayItem("Development", () => viewLocator.Open("/development"));
+            AddTrayItem("Home", () => viewLocator.Open("/home"));
         }
 
         AddTrayItem("Sidekick - " + ((IApplicationService)this).GetVersion(), null, true);
