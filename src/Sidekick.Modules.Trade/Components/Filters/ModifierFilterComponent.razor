@@ -67,6 +67,7 @@
             if (oilMetadataIds != null)
             {
                 EnchantmentOilNames = oilMetadataIds
+                                      .Where(x => PoeWikiClient.BlightOilNamesByMetadataIds.ContainsKey(x))
                                       .Select(x => PoeWikiClient.BlightOilNamesByMetadataIds[x])
                                       .ToList();
             }
