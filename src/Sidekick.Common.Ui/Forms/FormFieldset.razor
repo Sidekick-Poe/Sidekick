@@ -1,4 +1,4 @@
-<fieldset class="border border-solid dark:border-stone-700 pb-0 mb-3 @(Dense ? "pt-2 px-2" : "pt-3 px-3")">
+<fieldset class="border border-solid dark:border-stone-800 mb-3 @(Dense ? "p-2" : "p-3") @AdditionalClasses">
     @if (Legend != null)
     {
         <legend class="font-medium leading-none tracking-tight @(Dense ? "text-lg" : "text-2xl")">@Legend</legend>
@@ -16,5 +16,8 @@
 
     [Parameter]
     public bool Dense { get; set; }
+
+    [Parameter]
+    public string? AdditionalClasses { get; set; }
 
 }

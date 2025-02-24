@@ -1,4 +1,4 @@
-﻿@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Ui.Popovers
 @using Sidekick.Modules.Trade.Settings
 
@@ -10,7 +10,8 @@
         <PriceCheckStatusEditor/>
         <PriceCheckItemCurrencyEditor/>
         <FormFieldset Legend="@Resources["Item_Trade_Settings"]"
-                      Dense="true">
+                      Dense="true"
+                      AdditionalClasses="flex flex-col gap-2">
             <PriceCheckItemMinMaxPriceEditor/>
             <PriceCheckItemListedAgeEditor/>
         </FormFieldset>
