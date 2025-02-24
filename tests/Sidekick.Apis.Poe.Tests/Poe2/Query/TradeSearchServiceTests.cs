@@ -2,10 +2,8 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
-using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Trade;
-using Sidekick.Common.Settings;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Poe2.Query;
@@ -93,7 +91,9 @@ public class TradeSearchServiceTests
 
         var parsedItem = parser.ParseItem(input);
         var propertyFilters = await tradeFilterService.GetPropertyFilters(parsedItem);
-        var result = await tradeSearchService.Search(parsedItem, propertyFilters);
+        var modifierFilters = tradeFilterService.GetModifierFilters(parsedItem);
+        var pseudoModifierFilters = tradeFilterService.GetPseudoModifierFilters(parsedItem);
+        var result = await tradeSearchService.Search(parsedItem, propertyFilters, modifierFilters, pseudoModifierFilters);
         Assert.Null(result.Error);
 
         var actual = Assert.Single(mockHttpClient.Requests);

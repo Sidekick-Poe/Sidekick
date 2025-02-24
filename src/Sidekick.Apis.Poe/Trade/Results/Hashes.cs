@@ -31,4 +31,7 @@ public class Hashes
 
     [JsonPropertyName("monster")]
     public List<List<JsonElement>> Monster { get; set; } = new();
+
+    [JsonPropertyName("sanctum")]
+    public List<List<JsonElement>> Sanctum { get; set; } = new();
 }

@@ -25,57 +25,64 @@ public class ModifierParser
             return [];
         }
 
-        var modifierLines = new List<ModifierLine>();
+        return MatchModifiers(parsingItem)
+            .Select(modifierMatch => CreateModifierLine(modifierMatch, parsingItem))
+            // Trim modifier lines
+            .Where(x => x.Modifiers.Count > 0)
+            // Order the mods by the order they appear on the item.
+            .OrderBy(x => parsingItem.Text.IndexOf(x.Text, StringComparison.InvariantCulture))
+            .ToList();
+    }
 
-        foreach (var match in MatchModifiers(parsingItem))
+    private ModifierLine CreateModifierLine(ModifierMatch match, ParsingItem parsingItem)
+    {
+        var text = CreateString(match);
+        var modifierLine = new ModifierLine(CleanOriginalTextPattern.Replace(text, string.Empty));
+
+        var fuzzyLine = fuzzyService.CleanFuzzyText(text);
+        var patterns = match.Patterns.OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText)).ToList();
+
+        if (parsingItem.Header?.Category is Category.Sanctum)
         {
-            var text = new StringBuilder();
-            foreach (var line in match.Lines)
+            patterns.RemoveAll(modifier => modifier.Category is not ModifierCategory.Sanctum);
+        }
+
+        foreach (var pattern in patterns)
+        {
+            if (!modifierLine.Modifiers.Any(x => x.Id == pattern.Id))
             {
-                if (text.Length != 0)
-                {
-                    text.Append('\n');
-                }
-
-                text.Append(line.Text);
-                line.Parsed = true;
-            }
-
-            var modifierLine = new ModifierLine(text: CleanOriginalTextPattern.Replace(text.ToString(), string.Empty));
-            modifierLines.Add(modifierLine);
-
-            var fuzzyLine = fuzzyService.CleanFuzzyText(text.ToString());
-            var patterns = match.Patterns.OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText)).ToList();
-            foreach (var pattern in patterns)
-            {
-                if (modifierLine.Modifiers.Any(x => x.Id == pattern.Id))
-                {
-                    continue;
-                }
-
-                var modifier = new Modifier(text: pattern.Text)
+                modifierLine.Modifiers.Add(new(text: pattern.Text)
                 {
                     Id = pattern.Id,
                     Category = pattern.Category,
-                };
-                modifierLine.Modifiers.Add(modifier);
+                });
             }
-
-            if (modifierLine.Modifiers.All(x => x.Category == ModifierCategory.Pseudo))
-            {
-                modifierLine.Text = modifierLine.Modifiers.FirstOrDefault()?.Text ?? modifierLine.Text;
-            }
-
-            ParseModifierValues(modifierLine, patterns);
         }
 
-        // Order the mods by the order they appear on the item.
-        modifierLines = modifierLines.OrderBy(x => parsingItem.Text.IndexOf(x.Text, StringComparison.InvariantCulture)).ToList();
+        if (modifierLine.Modifiers.All(x => x.Category == ModifierCategory.Pseudo))
+        {
+            modifierLine.Text = modifierLine.Modifiers.FirstOrDefault()?.Text ?? modifierLine.Text;
+        }
 
-        // Trim modifier lines
-        modifierLines.RemoveAll(x => x.Modifiers.Count == 0);
+        ParseModifierValue(modifierLine, patterns.FirstOrDefault());
+        return modifierLine;
+    }
 
-        return modifierLines;
+    private static string CreateString(ModifierMatch match)
+    {
+        var text = new StringBuilder();
+        foreach (var line in match.Lines)
+        {
+            if (text.Length != 0)
+            {
+                text.Append('\n');
+            }
+
+            text.Append(line.Text);
+            line.Parsed = true;
+        }
+
+        return text.ToString();
     }
 
     private IEnumerable<ModifierMatch> MatchModifiers(ParsingItem parsingItem)
@@ -91,21 +98,21 @@ public class ModifierParser
                 }
 
                 var patterns = MatchModifierPatterns(block, line, lineIndex).ToList();
-                if (!patterns.Any())
+                if (patterns.Count == 0)
                 {
                     // If we reach this point we have not found the modifier through traditional Regex means.
                     // Text from the game sometimes differ from the text from the API. We do a fuzzy search here to find the most common text.
-                    patterns = MatchModifierFuzzily(line).ToList();
+                    patterns = [.. MatchModifierFuzzily(line)];
                 }
 
-                if (!patterns.Any())
+                if (patterns.Count is 0)
                 {
                     continue;
                 }
 
                 var maxLineCount = patterns.Max(x => x.LineCount);
                 lineIndex += maxLineCount - 1; // Increment the line index by one less of the pattern count. The default lineIndex++ will take care of the remaining increment.
-                yield return new ModifierMatch(block, block.Lines.Skip(lineIndex).Take(maxLineCount), patterns.ToList());
+                yield return new ModifierMatch(block, block.Lines.Skip(lineIndex).Take(maxLineCount), patterns);
             }
         }
     }
@@ -151,30 +158,26 @@ public class ModifierParser
                              }
                          });
 
-        foreach (var result in results.OrderByDescending(x => x.Ratio))
+        foreach (var (ratio, pattern) in results.OrderByDescending(x => x.Ratio))
         {
-            yield return result.Pattern;
+            yield return pattern;
         }
     }
 
-    private static void ParseModifierValues(ModifierLine modifierLine, IEnumerable<ModifierPattern> patterns)
+    private static void ParseModifierValue(ModifierLine modifierLine, ModifierPattern? pattern)
     {
-        var pattern = patterns.FirstOrDefault();
-        if (pattern == null)
+        switch (pattern)
         {
-            return;
-        }
+            case { IsOption: true }:
+                modifierLine.OptionValue = pattern.Value;
+                return;
 
-        if (pattern.IsOption)
-        {
-            modifierLine.OptionValue = pattern.Value;
-            return;
-        }
-
-        if (pattern.Value.HasValue)
-        {
-            modifierLine.Values.Add(pattern.Value.Value);
-            return;
+            case { Value: int value }:
+                modifierLine.Values.Add(value);
+                return;
+            
+            case null: 
+                return;
         }
 
         var matches = new Regex("([-+0-9,.]+)").Matches(modifierLine.Text);

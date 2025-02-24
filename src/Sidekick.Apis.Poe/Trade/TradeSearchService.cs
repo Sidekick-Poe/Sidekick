@@ -36,7 +36,7 @@ public class TradeSearchService
 {
     private HttpClient HttpClient { get; } = httpClientFactory.CreateClient(ClientNames.TradeClient);
 
-    public async Task<TradeSearchResult<string>> Search(Item item, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null, List<PseudoModifierFilter>? pseudoFilters = null)
+    public async Task<TradeSearchResult<string>> Search(Item item, PropertyFilters? propertyFilters = null, IEnumerable<ModifierFilter>? modifierFilters = null, IEnumerable<PseudoModifierFilter>? pseudoFilters = null)
     {
         try
         {
@@ -171,7 +171,7 @@ public class TradeSearchService
         return new SearchFilterOption(itemCategory);
     }
 
-    private static StatFilterGroup? GetAndStats(List<ModifierFilter>? modifierFilters, List<PseudoModifierFilter>? pseudoFilters)
+    private static StatFilterGroup? GetAndStats(IEnumerable<ModifierFilter>? modifierFilters, IEnumerable<PseudoModifierFilter>? pseudoFilters)
     {
         var andGroup = new StatFilterGroup()
         {
@@ -224,7 +224,7 @@ public class TradeSearchService
         return andGroup;
     }
 
-    private static StatFilterGroup? GetCountStats(List<ModifierFilter>? modifierFilters)
+    private static StatFilterGroup? GetCountStats(IEnumerable<ModifierFilter>? modifierFilters)
     {
         var countGroup = new StatFilterGroup()
         {
@@ -278,14 +278,12 @@ public class TradeSearchService
         return countGroup;
     }
 
-    private static List<StatFilterGroup> GetWeightedSumStats(List<PseudoModifierFilter>? pseudoFilters)
+    private static IEnumerable<StatFilterGroup> GetWeightedSumStats(IEnumerable<PseudoModifierFilter>? pseudoFilters)
     {
         if (pseudoFilters == null)
         {
-            return [];
+            yield break;
         }
-
-        var stats = new List<StatFilterGroup>();
 
         foreach (var filter in pseudoFilters)
         {
@@ -318,11 +316,9 @@ public class TradeSearchService
 
             if (group.Filters.Count > 0)
             {
-                stats.Add(group);
+                yield return group;
             }
         }
-
-        return stats;
     }
 
     private static void SetSocketFilters(Item item, SearchFilters filters)
@@ -355,7 +351,7 @@ public class TradeSearchService
             var response = await HttpClient.GetAsync(await GetBaseApiUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId);
             if (!response.IsSuccessStatusCode)
             {
-                return new();
+                return [];
             }
 
             var content = await response.Content.ReadAsStreamAsync();
@@ -366,7 +362,7 @@ public class TradeSearchService
                                                                                      });
             if (result == null)
             {
-                return new();
+                return [];
             }
 
             return result.Result.Where(x => x != null).ToList().ConvertAll(x => GetItem(game, x!));
@@ -376,7 +372,7 @@ public class TradeSearchService
             logger.LogWarning(ex, $"[Trade API] Exception thrown when fetching trade API listings from Query {queryId}.");
         }
 
-        return new();
+        return [];
     }
 
     private TradeItem GetItem(GameType game, Result result)
@@ -409,12 +405,12 @@ public class TradeSearchService
             Influences = result.Item?.Influences ?? new(),
         };
 
-        var item = new TradeItem(itemHeader: header,
-                                 itemProperties: properties,
-                                 sockets: ParseSockets(result.Item?.Sockets).ToList(),
-                                 modifierLines: new(),
-                                 pseudoModifiers: new(),
-                                 text: Encoding.UTF8.GetString(Convert.FromBase64String(result.Item?.Extended?.Text ?? string.Empty)))
+        return new TradeItem(itemHeader: header,
+                             itemProperties: properties,
+                             sockets: ParseSockets(result.Item?.Sockets),
+                             modifierLines: GetModifierLines(result.Item),
+                             pseudoModifiers: [],
+                             text: Encoding.UTF8.GetString(Convert.FromBase64String(result.Item?.Extended?.Text ?? string.Empty)))
         {
             Id = result.Id,
             Price = new TradePrice()
@@ -434,24 +430,30 @@ public class TradeSearchService
             PropertyContents = ParseLineContents(result.Item?.Properties),
             AdditionalPropertyContents = ParseLineContents(result.Item?.AdditionalProperties, false),
         };
+    }
 
-        item.ModifierLines.AddRange(ParseModifierLines(result.Item?.EnchantMods, result.Item?.Extended?.Mods?.Enchant, ParseHash(result.Item?.Extended?.Hashes?.Enchant)));
+    private IEnumerable<ModifierLine> GetModifierLines(ResultItem? resultItem)
+    {
+        if (resultItem is null)
+        {
+            return [];
+        }
 
-        item.ModifierLines.AddRange(ParseModifierLines(result.Item?.RuneMods, result.Item?.Extended?.Mods?.Rune, ParseHash(result.Item?.Extended?.Hashes?.Rune)));
+        return GetAllModifierLines(resultItem)
+            .SelectMany(s => s)
+            .OrderBy(x => x.Text.IndexOf(x.Text, StringComparison.InvariantCultureIgnoreCase));
+    }
 
-        item.ModifierLines.AddRange(ParseModifierLines(result.Item?.ImplicitMods ?? result.Item?.LogbookMods.SelectMany(x => x.Mods).ToList(), result.Item?.Extended?.Mods?.Implicit, ParseHash(result.Item?.Extended?.Hashes?.Implicit)));
-
-        item.ModifierLines.AddRange(ParseModifierLines(result.Item?.CraftedMods, result.Item?.Extended?.Mods?.Crafted, ParseHash(result.Item?.Extended?.Hashes?.Crafted)));
-
-        item.ModifierLines.AddRange(ParseModifierLines(result.Item?.ExplicitMods, result.Item?.Extended?.Mods?.Explicit, ParseHash(result.Item?.Extended?.Hashes?.Explicit, result.Item?.Extended?.Hashes?.Monster)));
-
-        item.ModifierLines.AddRange(ParseModifierLines(result.Item?.FracturedMods, result.Item?.Extended?.Mods?.Fractured, ParseHash(result.Item?.Extended?.Hashes?.Fractured)));
-
-        item.ModifierLines.AddRange(ParseModifierLines(result.Item?.ScourgeMods, result.Item?.Extended?.Mods?.Scourge, ParseHash(result.Item?.Extended?.Hashes?.Scourge)));
-
-        item.ModifierLines = item.ModifierLines.OrderBy(x => item.Text.IndexOf(x.Text, StringComparison.InvariantCultureIgnoreCase)).ToList();
-
-        return item;
+    private IEnumerable<IEnumerable<ModifierLine>> GetAllModifierLines(ResultItem resultItem)
+    {
+        yield return ParseModifierLines(resultItem.EnchantMods, resultItem.Extended?.Mods?.Enchant, ParseHash(resultItem.Extended?.Hashes?.Enchant));
+        yield return ParseModifierLines(resultItem.RuneMods, resultItem.Extended?.Mods?.Rune, ParseHash(resultItem.Extended?.Hashes?.Rune));
+        yield return ParseModifierLines(resultItem.ImplicitMods ?? resultItem.LogbookMods.SelectMany(x => x.Mods).ToList(), resultItem.Extended?.Mods?.Implicit, ParseHash(resultItem.Extended?.Hashes?.Implicit));
+        yield return ParseModifierLines(resultItem.CraftedMods, resultItem.Extended?.Mods?.Crafted, ParseHash(resultItem.Extended?.Hashes?.Crafted));
+        yield return ParseModifierLines(resultItem.ExplicitMods, resultItem.Extended?.Mods?.Explicit, ParseHash(resultItem.Extended?.Hashes?.Explicit, resultItem.Extended?.Hashes?.Monster));
+        yield return ParseModifierLines(resultItem.FracturedMods, resultItem.Extended?.Mods?.Fractured, ParseHash(resultItem.Extended?.Hashes?.Fractured));
+        yield return ParseModifierLines(resultItem.ScourgeMods, resultItem.Extended?.Mods?.Scourge, ParseHash(resultItem.Extended?.Hashes?.Scourge));
+        yield return ParseModifierLines(resultItem.ExplicitMods, resultItem.Extended?.Mods?.Sanctum, ParseHash(resultItem.Extended?.Hashes?.Sanctum));
     }
 
     private static List<LineContentValue> ParseHash(params List<List<JsonElement>>?[] hashes)
