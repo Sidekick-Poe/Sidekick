@@ -75,6 +75,9 @@ public class ResultItem
     [JsonPropertyName("scourgeMods")]
     public List<string> ScourgeMods { get; set; } = new();
 
+    [JsonPropertyName("sanctumMods")]
+    public List<string> SanctumMods { get; set; } = new();
+
     public List<ResultSocket> Sockets { get; set; } = new();
 
     [JsonPropertyName("extended")]

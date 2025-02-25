@@ -7,15 +7,30 @@
 <AppContainer>
     <FormFieldset Legend="Custom actions">
         <div class="flex gap-3">
-            <ButtonPrimary OnClick="RegisterHooks">Bind keyboard hooks</ButtonPrimary>
+            @if (ApplicationService.SupportsKeybinds)
+            {
+                <ButtonPrimary OnClick="RegisterHooks">Bind keyboard hooks</ButtonPrimary>
+            }
             <ButtonPrimary OnClick="ThrowException">Throw an exception</ButtonPrimary>
         </div>
     </FormFieldset>
 </AppContainer>
 
-@inject IKeyboardProvider KeyboardProvider
+@inject IApplicationService ApplicationService
+@inject IServiceProvider ServiceProvider
 
 @code {
+
+    private IKeyboardProvider? KeyboardProvider;
+
+    protected override void OnInitialized()
+    {
+        if (ApplicationService.SupportsKeybinds)
+        {
+            KeyboardProvider = ServiceProvider.GetService<IKeyboardProvider>();
+        }
+        base.OnInitialized();
+    }
 
     private void ThrowException()
     {
@@ -26,7 +41,7 @@
 
     private void RegisterHooks()
     {
-        KeyboardProvider.RegisterHooks();
+        KeyboardProvider?.RegisterHooks();
     }
 
 }

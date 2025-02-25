@@ -6,9 +6,9 @@ public class TradeItem
 (
     ItemHeader itemHeader,
     ItemProperties itemProperties,
-    List<Socket> sockets,
-    List<ModifierLine> modifierLines,
-    List<PseudoModifier> pseudoModifiers,
+    IEnumerable<Socket> sockets,
+    IEnumerable<ModifierLine> modifierLines,
+    IEnumerable<PseudoModifier> pseudoModifiers,
     string text
 ) : Item(null,
          itemHeader,

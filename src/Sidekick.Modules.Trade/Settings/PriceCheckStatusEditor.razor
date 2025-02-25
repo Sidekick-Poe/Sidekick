@@ -5,11 +5,10 @@
 
 <FormFieldset Legend="@Resources["Player_Status"]"
               Dense="true">
-    <div class="flex flex-wrap items-center gap-2 mb-2">
+    <div class="flex flex-wrap items-center gap-2">
         @foreach (var option in Options)
         {
             <FormCheckbox Value="option.Value == Value"
-                          NoMargin="true"
                           Dense="true"
                           ValueChanged="@(() => ValueChanged(option.Value))">@option.Label</FormCheckbox>
         }
