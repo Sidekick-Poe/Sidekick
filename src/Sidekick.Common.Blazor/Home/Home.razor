@@ -1,12 +1,22 @@
 @page "/home"
 @using Sidekick.Common.Blazor.Components
 @using Sidekick.Common.Extensions
+@using Sidekick.Common.Keybinds
+@using Sidekick.Common.Settings
 @inherits SidekickView
 @layout MainWindowLayout
 
 <AppContainer>
+    <AppLogo/>
+    <div class="max-w-[300px] mx-auto">
+        <TextBase Class="text-center mb-3">@WelcomeMessage</TextBase>
+        <TextBase Class="text-center">@Resources["Close_Notification"]</TextBase>
+    </div>
+
+    <LayoutDivider/>
+
     <FormFieldset Legend="Copy your item text here">
-        <FormTextarea @bind-Value="ItemText" />
+        <FormTextarea @bind-Value="ItemText"/>
         <div class="grid grid-cols-12 gap-3">
             <div class="col-span-6">
                 <ButtonPrimary OnClick="PriceCheck">Check Prices</ButtonPrimary>
@@ -18,9 +28,22 @@
     </FormFieldset>
 </AppContainer>
 
+@inject ISettingsService SettingsService
+@inject IStringLocalizer<HomeResources> Resources
+
 @code {
 
     private string? ItemText { get; set; }
+
+    private string? WelcomeMessage { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var keyOpenPriceCheck = await SettingsService.GetString(SettingKeys.KeyOpenPriceCheck);
+        var keyClose = await SettingsService.GetString(SettingKeys.KeyClose);
+        WelcomeMessage = string.Format(Resources["Welcome_Message"], keyOpenPriceCheck.ToKeybindString(), keyClose.ToKeybindString());
+        await base.OnInitializedAsync();
+    }
 
     private void PriceCheck()
     {

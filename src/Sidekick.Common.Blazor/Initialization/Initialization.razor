@@ -8,17 +8,10 @@
     </TopContent>
 
     <ChildContent>
-        <AppContainer>
+        <AppFullContainer>
             <Heading3 Class="mb-2 text-center">@Step</Heading3>
-            @if (Count != Completed)
-            {
-                <ProgressBar Percent="Percentage"/>
-            }
-            else
-            {
-                <TextBase Class="text-center">@WelcomeMessage</TextBase>
-            }
-        </AppContainer>
+            <ProgressBar Percent="Percentage"/>
+        </AppFullContainer>
     </ChildContent>
 
     <BottomContent>

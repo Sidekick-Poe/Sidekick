@@ -35,7 +35,7 @@
                         Rarity="Item.Header.Rarity"
                         Influences="Item.Properties.Influences"/>
 
-            <AppContainer>
+            <AppFullContainer>
                 @if (DangerousMods.Any())
                 {
                     <Heading1 Class="text-red-500 flex flex-nowrap items-center justify-center gap-2 mb-2">
@@ -79,7 +79,7 @@
                         <ItemModifierText Class="ml-2 text-center grow">@mod</ItemModifierText>
                     </div>
                 }
-            </AppContainer>
+            </AppFullContainer>
         }
     </LeftContent>
     <ChildContent>

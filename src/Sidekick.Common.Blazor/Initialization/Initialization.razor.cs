@@ -40,8 +40,6 @@ public partial class Initialization : SidekickView
 
     private int Percentage { get; set; }
 
-    private string? WelcomeMessage { get; set; }
-
     public Task? InitializationTask { get; set; }
 
     public override SidekickViewType ViewType => SidekickViewType.Modal;
@@ -49,9 +47,6 @@ public partial class Initialization : SidekickView
     protected override async Task OnInitializedAsync()
     {
         InitializationTask = Handle();
-        var keyOpenPriceCheck = await SettingsService.GetString(SettingKeys.KeyOpenPriceCheck);
-        var keyClose = await SettingsService.GetString(SettingKeys.KeyClose);
-        WelcomeMessage = string.Format(Resources["Notification"], keyOpenPriceCheck.ToKeybindString(), keyClose.ToKeybindString());
         await base.OnInitializedAsync();
         await InitializationTask;
     }
