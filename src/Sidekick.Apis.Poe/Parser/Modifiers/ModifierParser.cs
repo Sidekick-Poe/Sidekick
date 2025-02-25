@@ -44,7 +44,12 @@ public class ModifierParser
 
         if (parsingItem.Header?.Category is Category.Sanctum)
         {
-            patterns.RemoveAll(modifier => modifier.Category is not ModifierCategory.Sanctum);
+            patterns.RemoveAll(pattern => pattern.Category is not ModifierCategory.Sanctum);
+        }
+
+        if (parsingItem.Header?.Category is Category.Map && parsingItem.Header.ItemCategory is "map.tablet")
+        {
+            patterns.RemoveAll(pattern => pattern.Category is not (ModifierCategory.Implicit or ModifierCategory.Explicit));
         }
 
         foreach (var pattern in patterns)
