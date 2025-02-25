@@ -32,7 +32,7 @@
 
     private void NavigationManagerOnLocationChanged(object? sender, LocationChangedEventArgs e)
     {
-        StateHasChanged();
+        _ = InvokeAsync(StateHasChanged);
     }
 
     private void OnClick()
