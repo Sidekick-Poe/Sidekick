@@ -27,4 +27,6 @@ public interface IKeyboardProvider : IInitializableService
     /// Simulate alt key release to prevent undesired behaviors such as Alt+Enter toggling fullscreen mode.
     /// </summary>
     void ReleaseAltModifier();
+
+    HashSet<string?> UsedKeybinds { get; }
 }

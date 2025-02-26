@@ -1,16 +1,25 @@
-
-<FormInput OnFocus="Focus"
-           OnBlur="Blur"
-           Label="@Label"
-           Value="@InputValue"
-           AdditionalClasses="cursor-default caret-transparent"
-           spellcheck="false">
-    <AdornmentContent>
-        <ButtonSecondary OnClick="Delete">@Resources["Reset"]</ButtonSecondary>
-    </AdornmentContent>
-</FormInput>
+<div>
+    <FormInput OnFocus="Focus"
+               OnBlur="Blur"
+               Label="@Label"
+               Value="@InputValue"
+               AdditionalClasses="cursor-default caret-transparent"
+               spellcheck="false">
+        <AdornmentContent>
+            <ButtonSecondary OnClick="Delete">@Resources["Reset"]</ButtonSecondary>
+        </AdornmentContent>
+    </FormInput>
+    @if (IsDuplicated)
+    {
+        <label class="mt-1 text-base font-medium text-amber-500 flex items-center flex-nowrap gap-2">
+            <IconLarge Icon="@UiIcons.Error"/>
+            <span>@Resources["Keybind_Already_In_Use"]</span>
+        </label>
+    }
+</div>
 
 @using Sidekick.Common.Platform
+@using Sidekick.Common.Blazor.Settings
 @implements IDisposable
 
 @inject IStringLocalizer<SettingsResources> Resources
@@ -35,6 +44,8 @@
 
     private bool Active => CurrentEditorId == Id;
 
+    private bool IsDuplicated { get; set; } = false;
+
     private string? InputValue
     {
         get
@@ -44,7 +55,7 @@
                 return Resources["Key_Active"];
             }
 
-            return string.IsNullOrEmpty(Value) ? Resources["Key_Unset"]: Value;
+            return string.IsNullOrEmpty(Value) ? Resources["Key_Unset"] : Value;
         }
     }
 
@@ -69,23 +80,30 @@
 
     private void OnKeyDown(string key)
     {
-        InvokeAsync(
-            async () =>
+        InvokeAsync(async () =>
+        {
+            if (!Active)
             {
-                if (!Active)
-                {
-                    return;
-                }
+                return;
+            }
 
-                if (key != "Esc")
+            if (key != "Esc" && key != Value)
+            {
+                if (Keyboard.UsedKeybinds.Contains(key))
                 {
+                    IsDuplicated = true;
+                }
+                else
+                {
+                    IsDuplicated = false;
                     await ValueChanged.InvokeAsync(key);
                 }
+            }
 
-                CurrentEditorId = null;
-                CurrentEditorChanged?.Invoke();
-                StateHasChanged();
-            });
+            CurrentEditorId = null;
+            CurrentEditorChanged?.Invoke();
+            StateHasChanged();
+        });
     }
 
     public async Task Delete()
