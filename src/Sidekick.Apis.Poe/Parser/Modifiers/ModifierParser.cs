@@ -42,16 +42,6 @@ public class ModifierParser
         var fuzzyLine = fuzzyService.CleanFuzzyText(text);
         var patterns = match.Patterns.OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText)).ToList();
 
-        if (parsingItem.Header?.Category is Category.Sanctum)
-        {
-            patterns.RemoveAll(pattern => pattern.Category is not ModifierCategory.Sanctum);
-        }
-
-        if (parsingItem.Header?.Category is Category.Map && parsingItem.Header.ItemCategory is "map.tablet")
-        {
-            patterns.RemoveAll(pattern => pattern.Category is not (ModifierCategory.Implicit or ModifierCategory.Explicit));
-        }
-
         foreach (var pattern in patterns)
         {
             if (!modifierLine.Modifiers.Any(x => x.Id == pattern.Id))
@@ -92,6 +82,7 @@ public class ModifierParser
 
     private IEnumerable<ModifierMatch> MatchModifiers(ParsingItem parsingItem)
     {
+        var allAvailablePatterns = GetAllAvailablePatterns(parsingItem);
         foreach (var block in parsingItem.Blocks.Where(x => !x.AnyParsed))
         {
             for (var lineIndex = 0; lineIndex < block.Lines.Count; lineIndex++)
@@ -102,12 +93,12 @@ public class ModifierParser
                     continue;
                 }
 
-                var patterns = MatchModifierPatterns(block, line, lineIndex).ToList();
+                var patterns = MatchModifierPatterns(block, line, lineIndex, allAvailablePatterns).ToList();
                 if (patterns.Count == 0)
                 {
                     // If we reach this point we have not found the modifier through traditional Regex means.
                     // Text from the game sometimes differ from the text from the API. We do a fuzzy search here to find the most common text.
-                    patterns = [.. MatchModifierFuzzily(line)];
+                    patterns = [.. MatchModifierFuzzily(line, allAvailablePatterns)];
                 }
 
                 if (patterns.Count is 0)
@@ -122,9 +113,9 @@ public class ModifierParser
         }
     }
 
-    private IEnumerable<ModifierPattern> MatchModifierPatterns(ParsingBlock block, ParsingLine line, int lineIndex)
+    private static IEnumerable<ModifierPattern> MatchModifierPatterns(ParsingBlock block, ParsingLine line, int lineIndex, IReadOnlyCollection<ModifierPattern> allAvailablePatterns)
     {
-        foreach (var pattern in modifierProvider.Patterns.SelectMany(x => x.Value))
+        foreach (var pattern in allAvailablePatterns)
         {
             var isMultilineModifierMatch = pattern.LineCount > 1 && pattern.Pattern.IsMatch(string.Join('\n', block.Lines.Skip(lineIndex).Take(pattern.LineCount)));
             var isSingleModifierMatch = pattern.Pattern.IsMatch(line.Text);
@@ -136,7 +127,7 @@ public class ModifierParser
         }
     }
 
-    private IEnumerable<ModifierPattern> MatchModifierFuzzily(ParsingLine line)
+    private IEnumerable<ModifierPattern> MatchModifierFuzzily(ParsingLine line, IReadOnlyCollection<ModifierPattern> allAvailablePatterns)
     {
         if (line.Parsed)
         {
@@ -148,7 +139,7 @@ public class ModifierParser
         var results = new List<(int Ratio, ModifierPattern Pattern)>();
         var resultsLock = new object(); // Lock object to synchronize access to results
 
-        Parallel.ForEach(modifierProvider.Patterns.SelectMany(x => x.Value),
+        Parallel.ForEach(allAvailablePatterns,
                          (x) =>
                          {
                              var ratio = Fuzz.Ratio(fuzzyLine, x.FuzzyText, FuzzySharp.PreProcess.PreprocessMode.None);
@@ -167,6 +158,22 @@ public class ModifierParser
         {
             yield return pattern;
         }
+    }
+
+    private IReadOnlyCollection<ModifierPattern> GetAllAvailablePatterns(ParsingItem parsingItem)
+    {
+        if (parsingItem.Header?.Category is Category.Sanctum)
+        {
+            return [ .. modifierProvider.Patterns[ModifierCategory.Sanctum]];
+        }
+
+        if (parsingItem.Header?.Category is Category.Map && parsingItem.Header.ItemCategory is "map.tablet")
+        {
+            return [ .. modifierProvider.Patterns[ModifierCategory.Implicit],
+                     .. modifierProvider.Patterns[ModifierCategory.Explicit]];
+        }
+
+        return [ .. modifierProvider.Patterns.SelectMany(x => x.Value)];
     }
 
     private static void ParseModifierValue(ModifierLine modifierLine, ModifierPattern? pattern)
