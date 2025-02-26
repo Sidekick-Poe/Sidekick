@@ -9,8 +9,13 @@
         <ButtonSecondary OnClick="Delete">@Resources["Reset"]</ButtonSecondary>
     </AdornmentContent>
 </FormInput>
+<label hidden="@HideErrorLabel" for="@Id" class="block mb-1 text-base font-medium text-yellow-800">
+    @Resources["Keybind_Already_In_Use"]
+</label>
 
+@using Microsoft.Extensions.Localization
 @using Sidekick.Common.Platform
+@using Sidekick.Common.Blazor.Settings
 @implements IDisposable
 
 @inject IStringLocalizer<SettingsResources> Resources
@@ -34,6 +39,8 @@
     private Guid Id { get; } = Guid.NewGuid();
 
     private bool Active => CurrentEditorId == Id;
+
+    private bool HideErrorLabel { get; set; } = true;
 
     private string? InputValue
     {
@@ -77,9 +84,17 @@
                     return;
                 }
 
-                if (key != "Esc")
+                if (key != "Esc" && key != Value)
                 {
-                    await ValueChanged.InvokeAsync(key);
+                    if (Keyboard.UsedKeybinds.Contains(key))
+                    {
+                        HideErrorLabel = false;
+                    }
+                    else
+                    {
+                        HideErrorLabel = true;
+                        await ValueChanged.InvokeAsync(key);
+                    }
                 }
 
                 CurrentEditorId = null;
