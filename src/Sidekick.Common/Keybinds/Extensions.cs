@@ -17,4 +17,10 @@ public static class Extensions
                .Replace("+", " + ")
                .Replace(",", ", ");
     }
+
+    public static bool ContainsDuplicates<T>(this IEnumerable<T> enumerable)
+    {
+        var hashSet = new HashSet<T>();
+        return !enumerable.All(hashSet.Add);
+    }
 }
