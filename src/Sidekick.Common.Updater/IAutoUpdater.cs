@@ -7,6 +7,8 @@ namespace Sidekick.Common.Updater;
 /// </summary>
 public interface IAutoUpdater
 {
+    bool IsUpdaterInstalled();
+
     /// <summary>
     /// Checks for available updates for the application.
     /// </summary>

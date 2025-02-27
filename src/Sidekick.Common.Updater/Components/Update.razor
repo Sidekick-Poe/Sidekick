@@ -19,14 +19,6 @@
         {
             <AlertError>@Resources["Update_Cant_Download"]</AlertError>
         }
-        else if (NewLauncher)
-        {
-            <AppContainer>
-                <Heading3 Class="mb-2 text-center">@Resources["NewLauncher"]</Heading3>
-                <TextBase
-                    Class="text-center">@Resources["NewLauncherText"]</TextBase>
-            </AppContainer>
-        }
         else if (UpdateInfo == null)
         {
             <AppContainer>
@@ -70,24 +62,15 @@
 
     <BottomContent>
         <div class="px-3 py-2 flex justify-center gap-2">
-            @if (NewLauncher)
+            <ButtonSecondary OnClick="Exit">@Resources["Exit"]</ButtonSecondary>
+            @if (!Updating)
             {
-                <ButtonSecondary OnClick="Exit">@Resources["Exit"]</ButtonSecondary>
-                <ButtonSecondary OnClick="Continue">@Resources["Continue"]</ButtonSecondary>
-                <ButtonPrimary OnClick="OpenWebsite">@Resources["Open_Website"]</ButtonPrimary>
+                <ButtonSecondary OnClick="Continue">@Resources["Skip"]</ButtonSecondary>
             }
-            else
-            {
-                <ButtonSecondary OnClick="Exit">@Resources["Exit"]</ButtonSecondary>
-                @if (!Updating)
-                {
-                    <ButtonSecondary OnClick="Continue">@Resources["Skip"]</ButtonSecondary>
-                }
 
-                @if (UpdateInfo != null && !Updating)
-                {
-                    <ButtonPrimary OnClick="Download">@Resources["Update"]</ButtonPrimary>
-                }
+            @if (UpdateInfo != null && !Updating)
+            {
+                <ButtonPrimary OnClick="Download">@Resources["Update"]</ButtonPrimary>
             }
         </div>
     </BottomContent>
@@ -102,8 +85,6 @@
 @code {
 
     private bool Error { get; set; }
-
-    private bool NewLauncher { get; set; }
 
     private bool Updating { get; set; }
 
@@ -129,11 +110,13 @@
             return;
         }
 
-        try
+        if (AutoUpdater.IsUpdaterInstalled())
         {
             UpdateInfo = await AutoUpdater.CheckForUpdates();
-            if (UpdateInfo == null)
+
+            if (UpdateInfo is null)
             {
+                // There's no available updates
                 NavigationManager.NavigateTo("/setup");
             }
             else
@@ -141,18 +124,10 @@
                 CurrentView.SetSize(height: 500);
             }
         }
-        catch (Exception ex)
+        else
         {
-            if (ex.Message == "Cannot perform this operation in an application which is not installed.")
-            {
-                NewLauncher = true;
-            }
-            else
-            {
-                Logger.LogError(ex.Message);
-                Error = true;
-                StateHasChanged();
-            }
+            Logger.LogWarning("[AutoUpdater] UpdateManager is not installed.");
+            NavigationManager.NavigateTo("/setup");
         }
     }
 
