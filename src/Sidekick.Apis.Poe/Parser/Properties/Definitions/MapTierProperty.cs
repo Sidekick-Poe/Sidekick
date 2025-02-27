@@ -8,14 +8,9 @@ namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
 public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
-    private Regex? Pattern { get; set; }
+    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionMapTier.ToRegexIntCapture();
 
     public override List<Category> ValidCategories { get; } = [Category.Map];
-
-    public override void Initialize()
-    {
-        Pattern = gameLanguageProvider.Language.DescriptionMapTier.ToRegexIntCapture();
-    }
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {

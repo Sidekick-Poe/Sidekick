@@ -8,14 +8,9 @@ namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
 public class UnidentifiedProperty(IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
-    private Regex? Pattern { get; set; }
+    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionUnidentified.ToRegexLine();
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Flask, Category.Map, Category.Contract, Category.Accessory, Category.Jewel];
-
-    public override void Initialize()
-    {
-        Pattern = gameLanguageProvider.Language.DescriptionUnidentified.ToRegexLine();
-    }
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {

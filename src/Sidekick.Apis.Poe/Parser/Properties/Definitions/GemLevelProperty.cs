@@ -15,14 +15,9 @@ public class GemLevelProperty
     IApiInvariantItemProvider apiInvariantItemProvider
 ) : PropertyDefinition
 {
-    private Regex? Pattern { get; set; }
+    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionLevel.ToRegexIntCapture();
 
     public override List<Category> ValidCategories { get; } = [Category.Gem];
-
-    public override void Initialize()
-    {
-        Pattern = gameLanguageProvider.Language.DescriptionLevel.ToRegexIntCapture();
-    }
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {

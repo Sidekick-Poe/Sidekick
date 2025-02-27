@@ -9,14 +9,9 @@ namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
 public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameType game) : PropertyDefinition
 {
-    private Regex? Pattern { get; set; }
+    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionItemLevel.ToRegexIntCapture();
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Flask, Category.Jewel, Category.Accessory, Category.Map, Category.Contract, Category.Sanctum, Category.Logbook];
-
-    public override void Initialize()
-    {
-        Pattern = gameLanguageProvider.Language.DescriptionItemLevel.ToRegexIntCapture();
-    }
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {

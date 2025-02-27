@@ -9,21 +9,11 @@ namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
 public class CriticalHitChanceProperty(IGameLanguageProvider gameLanguageProvider, GameType game) : PropertyDefinition
 {
-    private Regex? Pattern { get; set; }
+    private Regex Pattern { get; } = game is GameType.PathOfExile
+        ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance.ToRegexDoubleCapture()
+        : gameLanguageProvider.Language.DescriptionCriticalHitChance.ToRegexDoubleCapture();
 
     public override List<Category> ValidCategories { get; } = [Category.Weapon];
-
-    public override void Initialize()
-    {
-        if (game == GameType.PathOfExile)
-        {
-            Pattern = gameLanguageProvider.Language.DescriptionCriticalStrikeChance.ToRegexDoubleCapture();
-        }
-        else
-        {
-            Pattern = gameLanguageProvider.Language.DescriptionCriticalHitChance.ToRegexDoubleCapture();
-        }
-    }
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {

@@ -21,10 +21,6 @@ public class WeaponDamageProperty
 {
     public override List<Category> ValidCategories { get; } = [Category.Weapon];
 
-    public override void Initialize()
-    {
-    }
-
     public override void ParseAfterModifiers(ItemProperties properties, ParsingItem parsingItem, List<ModifierLine> modifierLines)
     {
         var propertyBlock = parsingItem.Blocks[1];
