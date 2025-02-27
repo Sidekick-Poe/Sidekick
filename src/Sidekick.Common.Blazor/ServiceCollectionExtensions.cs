@@ -1,7 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common.Blazor.Initialization;
 using Sidekick.Common.Blazor.Settings;
-using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Dialogs;
 using Sidekick.Common.Ui.Views;
 

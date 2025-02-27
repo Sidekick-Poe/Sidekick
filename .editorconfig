@@ -282,6 +282,7 @@ dotnet_diagnostic.fs1183.severity = warning
 dotnet_diagnostic.fs3218.severity = warning
 dotnet_diagnostic.fs3390.severity = warning
 dotnet_diagnostic.fs3520.severity = warning
+dotnet_diagnostic.ide0005.severity = error
 dotnet_diagnostic.wme006.severity = warning
 dotnet_naming_rule.constants_rule.import_to_resharper = as_predefined
 dotnet_naming_rule.constants_rule.resharper_style = AaBb, aaBb

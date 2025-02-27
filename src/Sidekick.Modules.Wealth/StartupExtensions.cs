@@ -1,6 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common;
-using Sidekick.Modules.Wealth.Keybinds;
 
 namespace Sidekick.Modules.Wealth;
 

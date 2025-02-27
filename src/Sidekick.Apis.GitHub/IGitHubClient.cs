@@ -1,5 +1,4 @@
 using Sidekick.Apis.GitHub.Models;
-using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.GitHub;
 

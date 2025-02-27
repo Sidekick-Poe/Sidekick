@@ -6,7 +6,7 @@ namespace Sidekick.Common.Ui.Views;
 /// <summary>
 /// Interface to manage views
 /// </summary>
-public class CurrentView: ICurrentView, IDisposable
+public class CurrentView : ICurrentView, IDisposable
 {
     private readonly IViewLocator viewLocator;
     private readonly NavigationManager navigationManager;

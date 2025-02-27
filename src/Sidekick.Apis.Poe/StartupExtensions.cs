@@ -16,7 +16,6 @@ using Sidekick.Apis.Poe.Parser.AdditionalInformation;
 using Sidekick.Apis.Poe.Parser.Headers;
 using Sidekick.Apis.Poe.Parser.Modifiers;
 using Sidekick.Apis.Poe.Parser.Properties;
-using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Parser.Pseudo;
 using Sidekick.Apis.Poe.Parser.Requirements;
 using Sidekick.Apis.Poe.Parser.Sockets;

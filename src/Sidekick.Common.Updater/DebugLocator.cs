@@ -1,4 +1,4 @@
-﻿using NuGet.Versioning;
+using NuGet.Versioning;
 using Velopack;
 using Velopack.Locators;
 
@@ -24,7 +24,7 @@ public class DebugLocator : IVelopackLocator
 
     public string? UpdateExePath => null;
 
-    public SemanticVersion CurrentlyInstalledVersion => new (1, 0, 0);
+    public SemanticVersion CurrentlyInstalledVersion => new(1, 0, 0);
 
     public string? ThisExeRelativePath => null;
 

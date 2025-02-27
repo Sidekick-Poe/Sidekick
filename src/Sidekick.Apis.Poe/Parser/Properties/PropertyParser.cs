@@ -26,20 +26,6 @@ public class PropertyParser
 
     private List<PropertyDefinition> Definitions { get; set; } = new();
 
-    private Regex? MapTier { get; set; }
-
-    private Regex? ItemQuantity { get; set; }
-
-    private Regex? ItemRarity { get; set; }
-
-    private Regex? MonsterPackSize { get; set; }
-
-    private Regex? Blighted { get; set; }
-
-    private Regex? BlightRavaged { get; set; }
-
-    private Regex? AreaLevel { get; set; }
-
     public async Task Initialize()
     {
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
@@ -85,14 +71,6 @@ public class PropertyParser
         {
             definition.Initialize();
         }
-
-        MapTier = gameLanguageProvider.Language.DescriptionMapTier.ToRegexIntCapture();
-        AreaLevel = gameLanguageProvider.Language.DescriptionAreaLevel.ToRegexIntCapture();
-        ItemQuantity = gameLanguageProvider.Language.DescriptionItemQuantity.ToRegexIntCapture();
-        ItemRarity = gameLanguageProvider.Language.DescriptionItemRarity.ToRegexIntCapture();
-        MonsterPackSize = gameLanguageProvider.Language.DescriptionMonsterPackSize.ToRegexIntCapture();
-        Blighted = gameLanguageProvider.Language.AffixBlighted.ToRegexAffix(gameLanguageProvider.Language.AffixSuperior);
-        BlightRavaged = gameLanguageProvider.Language.AffixBlightRavaged.ToRegexAffix(gameLanguageProvider.Language.AffixSuperior);
     }
 
     public ItemProperties Parse(ParsingItem parsingItem)
