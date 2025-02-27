@@ -2,7 +2,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
-using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Trade;
 using Xunit;
 

@@ -1,10 +1,8 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Net;
-using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Interop;
 using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common.Ui.Views;

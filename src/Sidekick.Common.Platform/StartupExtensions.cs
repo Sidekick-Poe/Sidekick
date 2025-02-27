@@ -1,6 +1,5 @@
 using System.Runtime.InteropServices;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sidekick.Common.Platform.Clipboard;
 using Sidekick.Common.Platform.GameLogs;
 using Sidekick.Common.Platform.Keyboards;
