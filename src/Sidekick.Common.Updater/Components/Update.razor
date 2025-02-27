@@ -129,11 +129,13 @@
             return;
         }
 
-        try
+        if (AutoUpdater.IsUpdaterInstalled())
         {
             UpdateInfo = await AutoUpdater.CheckForUpdates();
-            if (UpdateInfo == null)
+
+            if (UpdateInfo is null)
             {
+                // There's no available updates
                 NavigationManager.NavigateTo("/setup");
             }
             else
@@ -141,18 +143,10 @@
                 CurrentView.SetSize(height: 500);
             }
         }
-        catch (Exception ex)
+        else
         {
-            if (ex.Message == "Cannot perform this operation in an application which is not installed.")
-            {
-                NewLauncher = true;
-            }
-            else
-            {
-                Logger.LogError(ex.Message);
-                Error = true;
-                StateHasChanged();
-            }
+            Logger.LogWarning("[AutoUpdater] UpdateManager is not installed.");
+            NavigationManager.NavigateTo("/setup");
         }
     }
 
