@@ -9,21 +9,11 @@ namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
 public class BlockChanceProperty(IGameLanguageProvider gameLanguageProvider, GameType game) : PropertyDefinition
 {
-    private Regex? Pattern { get; set; }
+    private Regex Pattern { get; } = game is GameType.PathOfExile
+        ? gameLanguageProvider.Language.DescriptionChanceToBlock.ToRegexIntCapture()
+        : gameLanguageProvider.Language.DescriptionBlockChance.ToRegexIntCapture();
 
     public override List<Category> ValidCategories { get; } = [Category.Armour];
-
-    public override void Initialize()
-    {
-        if (game == GameType.PathOfExile)
-        {
-            Pattern = gameLanguageProvider.Language.DescriptionChanceToBlock.ToRegexIntCapture();
-        }
-        else
-        {
-            Pattern = gameLanguageProvider.Language.DescriptionBlockChance.ToRegexIntCapture();
-        }
-    }
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {

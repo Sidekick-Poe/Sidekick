@@ -9,14 +9,9 @@ namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
 public class AttacksPerSecondProperty(IGameLanguageProvider gameLanguageProvider, GameType game) : PropertyDefinition
 {
-    private Regex? Pattern { get; set; }
+    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionAttacksPerSecond.ToRegexDoubleCapture();
 
     public override List<Category> ValidCategories { get; } = [Category.Weapon];
-
-    public override void Initialize()
-    {
-        Pattern = gameLanguageProvider.Language.DescriptionAttacksPerSecond.ToRegexDoubleCapture();
-    }
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {

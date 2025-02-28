@@ -8,14 +8,9 @@ namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
 public class CorruptedProperty(IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
-    private Regex? Pattern { get; set; }
+    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionCorrupted.ToRegexLine();
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Map, Category.Contract, Category.Jewel, Category.Flask, Category.Gem];
-
-    public override void Initialize()
-    {
-        Pattern = gameLanguageProvider.Language.DescriptionCorrupted.ToRegexLine();
-    }
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {

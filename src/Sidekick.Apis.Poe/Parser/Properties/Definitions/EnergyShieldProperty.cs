@@ -13,20 +13,14 @@ public class EnergyShieldProperty
     GameType game
 ) : PropertyDefinition
 {
-    private Regex? Pattern { get; set; }
+    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionEnergyShield.ToRegexIntCapture();  
 
-    private Regex? AlternatePattern { get; set; }
+    private Regex? AlternatePattern { get; } = 
+        !string.IsNullOrEmpty(gameLanguageProvider.Language.DescriptionEnergyShieldAlternate)
+            ? gameLanguageProvider.Language.DescriptionEnergyShieldAlternate.ToRegexIntCapture()
+            : null;
 
     public override List<Category> ValidCategories { get; } = [Category.Armour];
-
-    public override void Initialize()
-    {
-        Pattern = gameLanguageProvider.Language.DescriptionEnergyShield.ToRegexIntCapture();
-        if (!string.IsNullOrEmpty(gameLanguageProvider.Language.DescriptionEnergyShieldAlternate))
-        {
-            AlternatePattern = gameLanguageProvider.Language.DescriptionEnergyShieldAlternate.ToRegexIntCapture();
-        }
-    }
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {

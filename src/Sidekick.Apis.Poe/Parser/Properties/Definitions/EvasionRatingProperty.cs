@@ -9,14 +9,9 @@ namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
 public class EvasionRatingProperty(IGameLanguageProvider gameLanguageProvider, GameType game) : PropertyDefinition
 {
-    private Regex? Pattern { get; set; }
+    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionEvasion.ToRegexIntCapture();
 
     public override List<Category> ValidCategories { get; } = [Category.Armour];
-
-    public override void Initialize()
-    {
-        Pattern = gameLanguageProvider.Language.DescriptionEvasion.ToRegexIntCapture();
-    }
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {

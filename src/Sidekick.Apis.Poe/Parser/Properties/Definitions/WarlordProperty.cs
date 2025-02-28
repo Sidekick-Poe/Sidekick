@@ -8,14 +8,9 @@ namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
 public class WarlordProperty(IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
-    private Regex? Pattern { get; set; }
+    private Regex Pattern { get; } = gameLanguageProvider.Language.InfluenceWarlord.ToRegexLine();
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Jewel];
-
-    public override void Initialize()
-    {
-        Pattern = gameLanguageProvider.Language.InfluenceWarlord.ToRegexLine();
-    }
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {

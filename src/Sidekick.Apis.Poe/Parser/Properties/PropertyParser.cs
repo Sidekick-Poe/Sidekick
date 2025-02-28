@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Localization;
@@ -66,11 +65,6 @@ public class PropertyParser
             new RedeemerProperty(gameLanguageProvider),
             new WarlordProperty(gameLanguageProvider),
         ]);
-
-        foreach (var definition in Definitions)
-        {
-            definition.Initialize();
-        }
     }
 
     public ItemProperties Parse(ParsingItem parsingItem)
