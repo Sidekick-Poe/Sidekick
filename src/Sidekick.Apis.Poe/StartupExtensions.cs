@@ -57,7 +57,7 @@ public static class StartupExtensions
         services.AddSingleton<ClusterJewelParser>();
         services.AddSingleton<IFuzzyService, FuzzyService>();
 
-        services.AddSidekickInitializableService<IRequirementsParser, RequirementsParser>();
+        services.AddSingleton<IRequirementsParser, RequirementsParser>();
         services.AddSingleton<ISocketParser, SocketParser>();
         services.AddSidekickInitializableService<IPropertyParser, PropertyParser>();
         services.AddSidekickInitializableService<IApiInvariantItemProvider, ApiInvariantItemProvider>();
