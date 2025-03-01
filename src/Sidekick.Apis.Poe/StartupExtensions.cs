@@ -58,7 +58,7 @@ public static class StartupExtensions
         services.AddSingleton<IFuzzyService, FuzzyService>();
 
         services.AddSidekickInitializableService<IRequirementsParser, RequirementsParser>();
-        services.AddSidekickInitializableService<ISocketParser, SocketParser>();
+        services.AddSingleton<ISocketParser, SocketParser>();
         services.AddSidekickInitializableService<IPropertyParser, PropertyParser>();
         services.AddSidekickInitializableService<IApiInvariantItemProvider, ApiInvariantItemProvider>();
         services.AddSidekickInitializableService<IApiItemProvider, ApiItemProvider>();

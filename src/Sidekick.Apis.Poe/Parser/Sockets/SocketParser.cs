@@ -6,21 +6,11 @@ namespace Sidekick.Apis.Poe.Parser.Sockets;
 
 public class SocketParser(IGameLanguageProvider gameLanguageProvider) : ISocketParser
 {
-    public int Priority => 100;
-
-    public Task Initialize()
-    {
-        // We need 6 capturing groups as it is possible for a 6 socket unlinked item to exist
-        Pattern = new Regex($"{Regex.Escape(gameLanguageProvider.Language.DescriptionSockets)}.*?([-RGBWAS]+)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)");
-
-        return Task.CompletedTask;
-    }
-
-    private Regex? Pattern { get; set; }
+    private Regex Pattern { get; } = new Regex($"{Regex.Escape(gameLanguageProvider.Language.DescriptionSockets)}.*?([-RGBWAS]+)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)");
 
     public List<Socket> Parse(ParsingItem parsingItem)
     {
-        if (Pattern == null || !parsingItem.TryParseRegex(Pattern, out var match))
+        if (!parsingItem.TryParseRegex(Pattern, out var match))
         {
             return [];
         }
