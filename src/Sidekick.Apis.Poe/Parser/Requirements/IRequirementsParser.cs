@@ -1,8 +1,6 @@
-using Sidekick.Common.Initialization;
-
 namespace Sidekick.Apis.Poe.Parser.Requirements;
 
-public interface IRequirementsParser : IInitializableService
+public interface IRequirementsParser
 {
     void Parse(ParsingItem parsingItem);
 }
