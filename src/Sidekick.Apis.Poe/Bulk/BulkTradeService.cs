@@ -26,8 +26,6 @@ public class BulkTradeService(
     IItemStaticDataProvider itemStaticDataProvider,
     IHttpClientFactory httpClientFactory) : IBulkTradeService
 {
-    private HttpClient HttpClient { get; } = httpClientFactory.CreateClient(ClientNames.TradeClient);
-
     public bool SupportsBulkTrade(Item? item)
     {
         return item?.Header.Rarity == Rarity.Currency && itemStaticDataProvider.Get(item.Header) != null;
@@ -76,7 +74,8 @@ public class BulkTradeService(
 
         var json = JsonSerializer.Serialize(model, poeTradeClient.Options);
         var body = new StringContent(json, Encoding.UTF8, "application/json");
-        var response = await HttpClient.PostAsync(uri, body);
+        using var httpClient = httpClientFactory.CreateClient(ClientNames.TradeClient);
+        var response = await httpClient.PostAsync(uri, body);
 
         var content = await response.Content.ReadAsStringAsync();
         try

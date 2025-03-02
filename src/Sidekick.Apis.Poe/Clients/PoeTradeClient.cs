@@ -19,22 +19,21 @@ public class PoeTradeClient(
         Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
     };
 
-    private HttpClient HttpClient { get; } = httpClientFactory.CreateClient(ClientNames.TradeClient);
-
     public async Task<FetchResult<TReturn>> Fetch<TReturn>(GameType game, IGameLanguage language, string path)
     {
         var name = typeof(TReturn).Name;
 
         try
         {
-            var response = await HttpClient.GetAsync(language.GetTradeApiBaseUrl(game) + path);
+            using var httpClient = httpClientFactory.CreateClient(ClientNames.TradeClient);
+            var response = await httpClient.GetAsync(language.GetTradeApiBaseUrl(game) + path);
             if (response.StatusCode == HttpStatusCode.Redirect || response.StatusCode == HttpStatusCode.MovedPermanently)
             {
                 var redirectUrl = response.Headers.Location?.ToString();
                 if (!string.IsNullOrEmpty(redirectUrl))
                 {
                     // Follow redirect manually
-                    response = await HttpClient.GetAsync(redirectUrl);
+                    response = await httpClient.GetAsync(redirectUrl);
                 }
             }
 
