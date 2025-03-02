@@ -13,6 +13,7 @@ public class PoeApiClient : IPoeApiClient
 
     private readonly ILogger logger;
     private readonly ISettingsService settingsService;
+    private readonly IHttpClientFactory httpClientFactory;
 
     public PoeApiClient(
         ILogger<PoeTradeClient> logger,
@@ -21,12 +22,7 @@ public class PoeApiClient : IPoeApiClient
     {
         this.logger = logger;
         this.settingsService = settingsService;
-
-        HttpClient = httpClientFactory.CreateClient(ClientNames.PoeClient);
-        HttpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
-        HttpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
-        HttpClient.BaseAddress = new Uri(PoeApiUrl);
-        HttpClient.Timeout = TimeSpan.FromHours(1);
+        this.httpClientFactory = httpClientFactory;
 
         Options = new JsonSerializerOptions()
         {
@@ -38,13 +34,22 @@ public class PoeApiClient : IPoeApiClient
 
     private JsonSerializerOptions Options { get; }
 
-    private HttpClient HttpClient { get; set; }
+    private HttpClient CreateClient()
+    {
+        var httpClient = httpClientFactory.CreateClient(ClientNames.PoeClient);
+        httpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
+        httpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
+        httpClient.BaseAddress = new Uri(PoeApiUrl);
+        httpClient.Timeout = TimeSpan.FromHours(1);
+        return httpClient;
+    }
 
     public async Task<TReturn?> Fetch<TReturn>(string path)
     {
+        using var httpClient = CreateClient();
         try
         {
-            var response = await HttpClient.GetAsync(path);
+            var response = await httpClient.GetAsync(path);
 
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized || response.StatusCode == System.Net.HttpStatusCode.Forbidden)
             {
@@ -67,7 +72,7 @@ public class PoeApiClient : IPoeApiClient
         }
         catch (Exception e)
         {
-            logger.LogError($"[Poe Api Client] Could not fetch {typeof(TReturn).Name} at {HttpClient.BaseAddress + path}.", e);
+            logger.LogError($"[Poe Api Client] Could not fetch {typeof(TReturn).Name} at {httpClient.BaseAddress + path}.", e);
             throw;
         }
 

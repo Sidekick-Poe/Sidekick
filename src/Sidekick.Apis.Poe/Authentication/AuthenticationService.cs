@@ -19,21 +19,21 @@ internal class AuthenticationService : IAuthenticationService, IDisposable
     private readonly ISettingsService settingsService;
     private readonly IBrowserProvider browserProvider;
     private readonly IInterprocessService interprocessService;
-    private readonly HttpClient client;
+    private readonly IHttpClientFactory httpClientFactory;
 
     public event Action? OnStateChanged;
 
     public AuthenticationService(
         ISettingsService settingsService,
         IBrowserProvider browserProvider,
-        IHttpClientFactory clientFactory,
+        IHttpClientFactory httpClientFactory,
         IInterprocessService interprocessService)
     {
         this.settingsService = settingsService;
         this.browserProvider = browserProvider;
         this.interprocessService = interprocessService;
+        this.httpClientFactory = httpClientFactory;
 
-        client = clientFactory.CreateClient();
         interprocessService.OnMessageReceived += InterprocessService_CustomProtocolCallback;
     }
 
@@ -161,6 +161,7 @@ internal class AuthenticationService : IAuthenticationService, IDisposable
             return;
         }
 
+        using var client = httpClientFactory.CreateClient();
         var requestContent = new StringContent($"client_id={Clientid}&grant_type=authorization_code&code={code}&redirect_uri={Redirecturl}&scope={Scopes}&code_verifier={Verifier}", Encoding.UTF8, "application/x-www-form-urlencoded");
         var response = await client.PostAsync(Tokenurl, requestContent);
         if (!response.IsSuccessStatusCode)
