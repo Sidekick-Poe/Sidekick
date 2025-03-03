@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Items.AdditionalInformation;
@@ -6,7 +7,7 @@ namespace Sidekick.Apis.Poe.Parser.AdditionalInformation;
 
 public class ClusterJewelParser(IInvariantModifierProvider invariantModifierProvider)
 {
-    public bool TryParse(Item item, out ClusterJewelInformation? information)
+    public bool TryParse(Item item, [NotNullWhen(true)] out ClusterJewelInformation? information)
     {
         information = null;
 
