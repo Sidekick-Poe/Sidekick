@@ -30,7 +30,7 @@ public class FindItemKeybindHandler(
             return;
         }
 
-        var item = await itemParser.ParseItemAsync(text);
+        var item = itemParser.ParseItem(text);
         await clipboardProvider.SetText(item.Header.ApiName ?? item.Header.ApiType);
         keyboard.ReleaseAltModifier();
         await keyboard.PressKey(
