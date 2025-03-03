@@ -1,3 +1,4 @@
+@using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization;
 
 <div class="relative group/filter self-end">
@@ -63,14 +64,6 @@
 
 @code {
 
-    public enum RangeType
-    {
-        Minimum,
-        Maximum,
-        Equals,
-        Range,
-    }
-
     [Parameter]
     public double? Min { get; set; }
 
@@ -87,6 +80,9 @@
     public EventCallback<RangeType> TypeChanged { get; set; }
 
     private RangeType Type { get; set; } = RangeType.Minimum;
+
+    [Parameter]
+    public required RangeType DefaultRangeType { get; set; }
 
     private string Id { get; } = UiUtilities.GenerateId();
 
@@ -109,22 +105,7 @@
             return;
         }
 
-        if (Min != null && Min == Max)
-        {
-            Type = RangeType.Equals;
-        }
-        else if (Min != null && Max != null)
-        {
-            Type = RangeType.Range;
-        }
-        else if (Max != null)
-        {
-            Type = RangeType.Maximum;
-        }
-        else if (Min != null)
-        {
-            Type = RangeType.Minimum;
-        }
+        Type = DefaultRangeType;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -147,24 +128,14 @@
 
     private async Task ToggleType()
     {
-        switch (Type)
+        Type = Type switch
         {
-            case RangeType.Minimum:
-                Type = RangeType.Maximum;
-                break;
-
-            case RangeType.Maximum:
-                Type = RangeType.Equals;
-                break;
-
-            case RangeType.Equals:
-                Type = RangeType.Range;
-                break;
-
-            case RangeType.Range:
-                Type = RangeType.Minimum;
-                break;
-        }
+            RangeType.Minimum => RangeType.Maximum,
+            RangeType.Maximum => RangeType.Equals,
+            RangeType.Equals  => RangeType.Range,
+            RangeType.Range   => RangeType.Minimum,
+            _                 => RangeType.Minimum,
+        };
 
         await TypeChanged.InvokeAsync(Type);
     }

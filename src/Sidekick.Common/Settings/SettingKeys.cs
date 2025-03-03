@@ -56,6 +56,7 @@ public static class SettingKeys
     public const string PriceCheckStatus = nameof(PriceCheckStatus);
     public const string PriceCheckItemClassFilter = nameof(PriceCheckItemClassFilter);
     public const string PriceCheckAutomaticallySearch = nameof(PriceCheckAutomaticallySearch);
+    public const string PriceCheckDefaultRangeType = nameof(PriceCheckDefaultRangeType);
 
     public const string SaveWindowPositions = nameof(SaveWindowPositions);
 

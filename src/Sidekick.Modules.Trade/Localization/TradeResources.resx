@@ -258,4 +258,19 @@
   <data name="Base_Type" xml:space="preserve">
       <value>Base Type</value>
   </data>
+  <data name="Default_RangeType" xml:space="preserve">
+      <value>Default filter range type</value>
+  </data>
+  <data name="RangeType_Minimum" xml:space="preserve">
+      <value>Minimum</value>
+  </data>
+  <data name="RangeType_Maximum" xml:space="preserve">
+      <value>Maximum</value>
+  </data>
+  <data name="RangeType_Equals" xml:space="preserve">
+      <value>Equals</value>
+  </data>
+  <data name="RangeType_Range" xml:space="preserve">
+      <value>Range</value>
+  </data>
 </root>

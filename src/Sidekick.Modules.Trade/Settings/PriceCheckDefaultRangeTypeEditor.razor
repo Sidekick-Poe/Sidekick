@@ -1,0 +1,59 @@
+@using Sidekick.Common.Enums
+@using Sidekick.Modules.Trade.Components.Filters
+@using Sidekick.Modules.Trade.Localization
+@using Sidekick.Common.Settings
+
+<FormSelect Label="@Resources["Default_RangeType"]"
+            Value="@Mode"
+            ValueChanged="@ModeChanged"
+            Options="Options"/>
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private string? Mode { get; set; }
+
+    private List<SelectOption> Options { get; set; } =
+    [
+    ];
+
+    protected override async Task OnInitializedAsync()
+    {
+        Options =
+        [
+            new()
+            {
+                Value = RangeType.Minimum.GetValueAttribute(),
+                Label = Resources["RangeType_Minimum"],
+            },
+            new()
+            {
+                Value = RangeType.Maximum.GetValueAttribute(),
+                Label = Resources["RangeType_Maximum"],
+            },
+            new()
+            {
+                Value = RangeType.Equals.GetValueAttribute(),
+                Label = Resources["RangeType_Equals"],
+            },
+            new()
+            {
+                Value = RangeType.Range.GetValueAttribute(),
+                Label = Resources["RangeType_Range"],
+            },
+        ];
+
+        Mode = await SettingsService.GetString(SettingKeys.PriceCheckDefaultRangeType) ?? RangeType.Minimum.GetValueAttribute();
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task ModeChanged(string? value)
+    {
+        Mode = value;
+        await SettingsService.Set(SettingKeys.PriceCheckDefaultRangeType, value);
+    }
+
+}

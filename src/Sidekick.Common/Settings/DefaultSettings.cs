@@ -28,7 +28,7 @@ public static class DefaultSettings
 
     public static bool WealthEnabled => false;
 
-    public static string PreferredWiki => WikiSetting.PoeWiki.GetValueAttribute() ?? "poewiki";
+    public static string PreferredWiki => WikiSetting.PoeWiki.GetValueAttribute();
 
     public static bool PriceCheckPredictionEnabled => true;
 
@@ -42,7 +42,7 @@ public static class DefaultSettings
 
     public static string PriceCheckCurrencyMode => "item";
 
-    public static string PriceCheckItemClassFilter => DefaultItemClassFilter.BaseType.GetValueAttribute() ?? "basetype";
+    public static string PriceCheckItemClassFilter => DefaultItemClassFilter.BaseType.GetValueAttribute();
 
     public static double PriceCheckNormalizeValue => .1;
 
@@ -59,4 +59,6 @@ public static class DefaultSettings
     ];
 
     public static bool SaveWindowPositions => false;
+
+    public static string PriceCheckDefaultRangeType => RangeType.Minimum.GetValueAttribute();
 }

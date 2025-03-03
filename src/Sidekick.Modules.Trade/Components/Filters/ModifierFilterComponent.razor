@@ -21,7 +21,7 @@
         }
 
         <div class="flex flex-col items-end justify-between">
-            @if (Filter is { Checked: true, HasMoreThanOneCategory: true } && Filter.FirstCategory != ModifierCategory.Explicit)
+            @if (Filter is { Checked: true, HasMoreThanOneCategory: true, FirstCategory: not ModifierCategory.Explicit })
             {
                 <TooltipRight>
                     <ChildContent>
@@ -38,9 +38,9 @@
 
             <div class="h-[2px]"></div>
 
-            @if ((Filter.Checked ?? false) && Filter.Line.HasValues)
+            @if (Filter is { Checked: true, Line: { HasValues: true } })
             {
-                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged" />
+                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged" DefaultRangeType="@DefaultRangeType"/>
             }
         </div>
     </div>
@@ -57,6 +57,9 @@
     public required ModifierFilter Filter { get; set; }
 
     private List<string>? EnchantmentOilNames { get; set; }
+
+    [Parameter]
+    public required RangeType DefaultRangeType { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -84,28 +87,28 @@
 
         // We can change the settings in the Trade window, so we should fetch here every time.
         Filter.NormalizeValue = await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
-        Filter.NormalizeMinValue();
+        TypeChanged(DefaultRangeType);
     }
 
-    private void TypeChanged(FilterRange.RangeType type)
+    private void TypeChanged(RangeType type)
     {
         switch (type)
         {
-            case FilterRange.RangeType.Minimum:
+            case RangeType.Minimum:
                 Filter.NormalizeMinValue();
                 Filter.Max = null;
                 break;
 
-            case FilterRange.RangeType.Maximum:
+            case RangeType.Maximum:
                 Filter.NormalizeMaxValue();
                 Filter.Min = null;
                 break;
 
-            case FilterRange.RangeType.Equals:
+            case RangeType.Equals:
                 Filter.SetExactValue();
                 break;
 
-            case FilterRange.RangeType.Range:
+            case RangeType.Range:
                 Filter.NormalizeMinValue();
                 Filter.NormalizeMaxValue();
                 break;

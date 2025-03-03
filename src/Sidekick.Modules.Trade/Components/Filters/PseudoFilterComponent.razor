@@ -18,9 +18,9 @@
 
             <div class="h-[2px]"></div>
 
-            @if ((Filter.Checked ?? false) && Filter.PseudoModifier.Value != 0)
+            @if (Filter is { Checked: true, PseudoModifier: { Value: not 0 }})
             {
-                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged"/>
+                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged" DefaultRangeType="@DefaultRangeType"/>
             }
         </div>
     </div>
@@ -34,32 +34,35 @@
     [CascadingParameter]
     public required PseudoModifierFilter Filter { get; set; }
 
+    [Parameter]
+    public required RangeType DefaultRangeType { get; set; }
+
     private async void CheckedChanged(bool value)
     {
         Filter.Checked = value;
 
         // We can change the settings in the Trade window, so we should fetch here every time.
         Filter.NormalizeValue = await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
-        Filter.NormalizeMinValue();
+        TypeChanged(DefaultRangeType);
     }
 
-    private void TypeChanged(FilterRange.RangeType type)
+    private void TypeChanged(RangeType type)
     {
         switch (type)
         {
-            case FilterRange.RangeType.Minimum:
+            case RangeType.Minimum:
                 Filter.NormalizeMinValue();
                 Filter.Max = null;
                 break;
 
-            case FilterRange.RangeType.Maximum:
+            case RangeType.Maximum:
                 Filter.NormalizeMaxValue();
                 Filter.Min = null;
                 break;
 
-            case FilterRange.RangeType.Equals: Filter.SetExactValue(); break;
+            case RangeType.Equals: Filter.SetExactValue(); break;
 
-            case FilterRange.RangeType.Range:
+            case RangeType.Range:
                 Filter.NormalizeMinValue();
                 Filter.NormalizeMaxValue();
                 break;
