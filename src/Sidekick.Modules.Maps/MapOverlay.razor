@@ -150,7 +150,7 @@
         }
 
         CloseOnBlur = await SettingsService.GetBool(SettingKeys.MapCheckCloseWithMouse);
-        Item = await ItemParser.ParseItemAsync(ItemText.DecodeBase64Url() ?? string.Empty);
+        Item = ItemParser.ParseItem(ItemText.DecodeBase64Url() ?? string.Empty);
 
         if (Item.Header.Category != Category.Map && Item.Header.Category != Category.Contract && Item.Header.Category != Category.Logbook)
         {

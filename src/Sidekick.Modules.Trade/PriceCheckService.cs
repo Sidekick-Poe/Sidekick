@@ -52,7 +52,7 @@ public class PriceCheckService(
         IsFilterLoading = true;
         FilterLoadingChanged?.Invoke();
 
-        Item = await itemParser.ParseItemAsync(itemText.DecodeBase64Url() ?? string.Empty);
+        Item = itemParser.ParseItem(itemText.DecodeBase64Url() ?? string.Empty);
 
         PropertyFilters = await tradeFilterService.GetPropertyFilters(Item);
         ModifierFilters = tradeFilterService

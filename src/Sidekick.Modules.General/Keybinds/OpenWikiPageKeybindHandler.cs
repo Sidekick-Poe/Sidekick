@@ -36,7 +36,7 @@ public class OpenWikiPageKeybindHandler(
             return;
         }
 
-        var item = await itemParser.ParseItemAsync(text);
+        var item = itemParser.ParseItem(text);
 
         var wikiPreferred = await settingsService.GetEnum<WikiSetting>(SettingKeys.PreferredWiki);
         if (wikiPreferred == WikiSetting.PoeWiki)
