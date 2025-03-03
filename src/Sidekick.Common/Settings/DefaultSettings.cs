@@ -60,5 +60,5 @@ public static class DefaultSettings
 
     public static bool SaveWindowPositions => false;
 
-    public static string PriceCheckDefaultRangeType => RangeType.Minimum.GetValueAttribute();
+    public static string PriceCheckDefaultFilterType => FilterType.Minimum.GetValueAttribute();
 }

@@ -3,7 +3,7 @@
 @for (var i = 0; i < PriceCheckService.ModifierFilters.Count; i++)
 {
     <CascadingValue Value="PriceCheckService.ModifierFilters[i]" IsFixed="true">
-        <ModifierFilterComponent DefaultRangeType="@DefaultRangeType"/>
+        <ModifierFilterComponent DefaultFilterType="@DefaultFilterType"/>
     </CascadingValue>
 
     var isLastFilter = i + 1 == PriceCheckService.ModifierFilters.Count;
@@ -21,7 +21,7 @@
 
 @code {
     [Parameter]
-    public required RangeType DefaultRangeType { get; set; }
+    public required FilterType DefaultFilterType { get; set; }
 
     private ModifierCategory? NormalizeModifierCategory(ModifierCategory? category) => category switch
     {

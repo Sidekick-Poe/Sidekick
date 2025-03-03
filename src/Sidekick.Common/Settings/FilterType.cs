@@ -2,7 +2,7 @@ using Sidekick.Common.Enums;
 
 namespace Sidekick.Common.Settings;
 
-public enum RangeType
+public enum FilterType
 {
     [EnumValue("minimum")]
     Minimum,

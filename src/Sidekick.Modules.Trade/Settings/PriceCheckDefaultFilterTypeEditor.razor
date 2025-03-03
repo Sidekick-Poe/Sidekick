@@ -3,7 +3,7 @@
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
 
-<FormSelect Label="@Resources["Default_RangeType"]"
+<FormSelect Label="@Resources["Default_FilterType"]"
             Value="@Mode"
             ValueChanged="@ModeChanged"
             Options="Options"/>
@@ -25,27 +25,27 @@
         [
             new()
             {
-                Value = RangeType.Minimum.GetValueAttribute(),
-                Label = Resources["RangeType_Minimum"],
+                Value = FilterType.Minimum.GetValueAttribute(),
+                Label = Resources["FilterType_Minimum"],
             },
             new()
             {
-                Value = RangeType.Maximum.GetValueAttribute(),
-                Label = Resources["RangeType_Maximum"],
+                Value = FilterType.Maximum.GetValueAttribute(),
+                Label = Resources["FilterType_Maximum"],
             },
             new()
             {
-                Value = RangeType.Equals.GetValueAttribute(),
-                Label = Resources["RangeType_Equals"],
+                Value = FilterType.Equals.GetValueAttribute(),
+                Label = Resources["FilterType_Equals"],
             },
             new()
             {
-                Value = RangeType.Range.GetValueAttribute(),
-                Label = Resources["RangeType_Range"],
+                Value = FilterType.Range.GetValueAttribute(),
+                Label = Resources["FilterType_Range"],
             },
         ];
 
-        Mode = await SettingsService.GetString(SettingKeys.PriceCheckDefaultRangeType) ?? RangeType.Minimum.GetValueAttribute();
+        Mode = await SettingsService.GetString(SettingKeys.PriceCheckDefaultFilterType) ?? FilterType.Minimum.GetValueAttribute();
 
         await base.OnInitializedAsync();
     }
@@ -53,7 +53,7 @@
     private async Task ModeChanged(string? value)
     {
         Mode = value;
-        await SettingsService.Set(SettingKeys.PriceCheckDefaultRangeType, value);
+        await SettingsService.Set(SettingKeys.PriceCheckDefaultFilterType, value);
     }
 
 }

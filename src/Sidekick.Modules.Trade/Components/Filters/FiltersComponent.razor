@@ -38,9 +38,9 @@
                 {
                     switch (filter)
                     {
-                        case IntPropertyFilter intFilter: <IntPropertyFilterComponent Filter="intFilter" DefaultRangeType="@DefaultRangeType"/> break;
-                        case WeaponDamagePropertyFilter weaponDamageFilter: <WeaponDamagePropertyFilterComponent Filter="weaponDamageFilter" DefaultRangeType="@DefaultRangeType"/> break;
-                        case DoublePropertyFilter doubleFilter: <DoublePropertyFilterComponent Filter="doubleFilter" DefaultRangeType="@DefaultRangeType"/> break;
+                        case IntPropertyFilter intFilter: <IntPropertyFilterComponent Filter="intFilter" DefaultFilterType="@DefaultFilterType"/> break;
+                        case WeaponDamagePropertyFilter weaponDamageFilter: <WeaponDamagePropertyFilterComponent Filter="weaponDamageFilter" DefaultFilterType="@DefaultFilterType"/> break;
+                        case DoublePropertyFilter doubleFilter: <DoublePropertyFilterComponent Filter="doubleFilter" DefaultFilterType="@DefaultFilterType"/> break;
                         case TriStatePropertyFilter triStateFilter: <TriStatePropertyFilterComponent Filter="triStateFilter"/> break;
                         case not null when filter.Definition is SeparatorProperty: <ItemSeparator Rarity="PriceCheckService.Item?.Header.Rarity ?? Rarity.Unknown"/> break;
                         default: <BooleanPropertyFilterComponent Filter="filter"/> break;
@@ -54,8 +54,8 @@
             </div>
         }
 
-        <ModifierFiltersComponent DefaultRangeType="@DefaultRangeType"/>
-        <PseudoFiltersComponent DefaultRangeType="@DefaultRangeType"/>
+        <ModifierFiltersComponent DefaultFilterType="@DefaultFilterType"/>
+        <PseudoFiltersComponent DefaultFilterType="@DefaultFilterType"/>
     </div>
 
     <div class="flex flex-nowrap items-center w-full py-2 px-1">
@@ -85,7 +85,7 @@
 
     private bool HasAnyFilter { get; set; }
 
-    private RangeType DefaultRangeType { get; set; }
+    private FilterType DefaultFilterType { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -97,7 +97,7 @@
         var modifierCount = PriceCheckService.ModifierFilters.Count;
         HasAnyFilter = modifierCount + propertyCount > 0;
 
-        DefaultRangeType = await SettingsService.GetEnum<RangeType>(SettingKeys.PriceCheckDefaultRangeType) ?? RangeType.Minimum;
+        DefaultFilterType = await SettingsService.GetEnum<FilterType>(SettingKeys.PriceCheckDefaultFilterType) ?? FilterType.Minimum;
     }
 
     public void Dispose()

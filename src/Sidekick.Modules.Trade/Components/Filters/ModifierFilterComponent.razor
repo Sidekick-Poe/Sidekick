@@ -40,7 +40,7 @@
 
             @if (Filter is { Checked: true, Line: { HasValues: true } })
             {
-                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged" DefaultRangeType="@DefaultRangeType"/>
+                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged" DefaultFilterType="@DefaultFilterType"/>
             }
         </div>
     </div>
@@ -59,7 +59,7 @@
     private List<string>? EnchantmentOilNames { get; set; }
 
     [Parameter]
-    public required RangeType DefaultRangeType { get; set; }
+    public required FilterType DefaultFilterType { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -87,28 +87,28 @@
 
         // We can change the settings in the Trade window, so we should fetch here every time.
         Filter.NormalizeValue = await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
-        TypeChanged(DefaultRangeType);
+        TypeChanged(DefaultFilterType);
     }
 
-    private void TypeChanged(RangeType type)
+    private void TypeChanged(FilterType type)
     {
         switch (type)
         {
-            case RangeType.Minimum:
+            case FilterType.Minimum:
                 Filter.NormalizeMinValue();
                 Filter.Max = null;
                 break;
 
-            case RangeType.Maximum:
+            case FilterType.Maximum:
                 Filter.NormalizeMaxValue();
                 Filter.Min = null;
                 break;
 
-            case RangeType.Equals:
+            case FilterType.Equals:
                 Filter.SetExactValue();
                 break;
 
-            case RangeType.Range:
+            case FilterType.Range:
                 Filter.NormalizeMinValue();
                 Filter.NormalizeMaxValue();
                 break;

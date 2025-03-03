@@ -9,7 +9,7 @@
 @foreach (var filter in PriceCheckService.PseudoFilters)
 {
     <CascadingValue Value="filter" IsFixed="true">
-        <PseudoFilterComponent DefaultRangeType="@DefaultRangeType"/>
+        <PseudoFilterComponent DefaultFilterType="@DefaultFilterType"/>
     </CascadingValue>
 }
 
@@ -18,5 +18,5 @@
 @code
 {
     [Parameter]
-    public required RangeType DefaultRangeType { get; set; }
+    public required FilterType DefaultFilterType { get; set; }
 }
