@@ -1,8 +1,8 @@
 using System.Text;
-using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoePriceInfo.Api;
 using Sidekick.Apis.PoePriceInfo.Models;
+using Sidekick.Common;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
@@ -14,11 +14,6 @@ public class PoePriceInfoClient(
     ILogger<PoePriceInfoClient> logger,
     IHttpClientFactory httpClientFactory) : IPoePriceInfoClient
 {
-    private readonly JsonSerializerOptions options = new()
-    {
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-    };
-
     private HttpClient GetHttpClient()
     {
         var client = httpClientFactory.CreateClient();
@@ -43,7 +38,7 @@ public class PoePriceInfoClient(
             using var client = GetHttpClient();
             var response = await client.GetAsync("?l=" + leagueId.GetUrlSlugForLeague() + "&i=" + encodedItem);
             var content = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<PriceInfoResult>(content, options);
+            var result = await content.FromJsonToAsync<PriceInfoResult>(SerializationOptions.CamelCaseNaming);
 
             if (result == null)
             {

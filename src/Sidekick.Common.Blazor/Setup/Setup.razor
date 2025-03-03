@@ -83,7 +83,7 @@
         try
         {
             var leagues = await LeagueProvider.GetList(false);
-            var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
+            var apiLeaguesHash = leagues.ToJson().GetDeterministicHashCode();
             var settingsLeaguesHash = await SettingsService.GetInt(SettingKeys.LeaguesHash);
             if (apiLeaguesHash != settingsLeaguesHash)
             {
@@ -137,7 +137,7 @@
             return;
         }
 
-        var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
+        var apiLeaguesHash = leagues.ToJson().GetDeterministicHashCode();
         await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
 
         CurrentView.SetSize(height: 220);

@@ -1,9 +1,8 @@
 using System.Net;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.CloudFlare;
+using Sidekick.Common;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
@@ -140,13 +139,8 @@ public class PoeTradeHandler
     {
         try
         {
-            var options = new JsonSerializerOptions()
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            };
             var content = await response.Content.ReadAsStreamAsync();
-            return await JsonSerializer.DeserializeAsync<ApiErrorResponse>(content, options);
+            return await content.FromJsonToAsync<ApiErrorResponse>(SerializationOptions.WithoutEnumConverterOptions);
         }
         catch (Exception)
         {

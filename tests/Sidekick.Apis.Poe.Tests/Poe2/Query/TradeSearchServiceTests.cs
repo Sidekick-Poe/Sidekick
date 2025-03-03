@@ -1,8 +1,7 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 using Sidekick.Apis.Poe.Trade;
+using Sidekick.Common;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Poe2.Query;
@@ -14,12 +13,6 @@ public class TradeSearchServiceTests
     private readonly ITradeFilterService tradeFilterService;
     private readonly MockHttpClient mockHttpClient = new();
     private readonly TradeSearchService tradeSearchService;
-    private readonly JsonSerializerOptions jsonSerializerOptions = new()
-    {
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
-    };
 
     public TradeSearchServiceTests(ParserFixture fixture)
     {
@@ -35,7 +28,6 @@ public class TradeSearchServiceTests
             NullLogger<TradeSearchService>.Instance,
             fixture.GameLanguageProvider,
             fixture.SettingsService,
-            fixture.PoeTradeClient,
             fixture.ModifierProvider,
             fixture.FilterProvider,
             fixture.PropertyParser,
@@ -54,7 +46,7 @@ public class TradeSearchServiceTests
         Assert.Null(result.Error);
 
         var actual = Assert.Single(mockHttpClient.Requests);
-        var actualQuery = JsonSerializer.Deserialize<Trade.Requests.QueryRequest>(actual, jsonSerializerOptions);
+        var actualQuery = actual.FromJsonTo<Trade.Requests.QueryRequest>(SerializationOptions.WithEnumConverterOptions);
 
         var identified = actualQuery?.Query.Filters.MiscFilters?.Filters.Identified?.Option;
         Assert.Equal("false", identified);
@@ -64,7 +56,7 @@ public class TradeSearchServiceTests
     public void ExpectQueryIsNotIdentified()
     {
         var expectedQuery = ResourceHelper.ReadFileContent("TimeLostDiamond/query.json");
-        var queryRequest = JsonSerializer.Deserialize<Trade.Requests.QueryRequest>(expectedQuery, jsonSerializerOptions);
+        var queryRequest = expectedQuery.FromJsonTo<Trade.Requests.QueryRequest>(SerializationOptions.WithEnumConverterOptions);
 
         var identified = queryRequest?.Query.Filters.MiscFilters?.Filters.Identified?.Option;
         Assert.Equal("false", identified);
@@ -74,9 +66,9 @@ public class TradeSearchServiceTests
     public void ExpectSerializationDeserializationNoChanges()
     {
         var expected = ResourceHelper.ReadFileContent("TimeLostDiamond/query.json");
-        var queryRequest = JsonSerializer.Deserialize<Trade.Requests.QueryRequest>(expected, jsonSerializerOptions);
+        var queryRequest = expected.FromJsonTo<Trade.Requests.QueryRequest>(SerializationOptions.WithEnumConverterOptions);
 
-        var actual = JsonSerializer.Serialize(queryRequest, jsonSerializerOptions);
+        var actual = queryRequest.ToJson(SerializationOptions.WithEnumConverterOptions);
 
         Assert.Equal(actual, expected);
     }

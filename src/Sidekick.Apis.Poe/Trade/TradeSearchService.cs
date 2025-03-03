@@ -2,7 +2,6 @@ using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Modifiers;
@@ -13,6 +12,7 @@ using Sidekick.Apis.Poe.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Models;
 using Sidekick.Apis.Poe.Trade.Results;
+using Sidekick.Common;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
@@ -27,7 +27,6 @@ public class TradeSearchService
     ILogger<TradeSearchService> logger,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
-    IPoeTradeClient poeTradeClient,
     IModifierProvider modifierProvider,
     IFilterProvider filterProvider,
     IPropertyParser propertyParser,
@@ -135,14 +134,14 @@ public class TradeSearchService
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             var uri = new Uri($"{await GetBaseApiUrl(metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
 
-            var json = JsonSerializer.Serialize(new QueryRequest() { Query = query, }, poeTradeClient.Options);
+            var json = new QueryRequest() { Query = query, }.ToJson(SerializationOptions.WithEnumConverterOptions);
 
             var body = new StringContent(json, Encoding.UTF8, "application/json");
             using var httpClient = httpClientFactory.CreateClient(ClientNames.TradeClient);
             var response = await httpClient.PostAsync(uri, body);
 
             var content = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<TradeSearchResult<string>?>(content, poeTradeClient.Options);
+            var result = await content.FromJsonToAsync<TradeSearchResult<string>?>(SerializationOptions.WithEnumConverterOptions);
             if (result != null)
             {
                 return result;
@@ -355,11 +354,7 @@ public class TradeSearchService
             }
 
             var content = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<FetchResult<Result?>>(content,
-                                                                                     new JsonSerializerOptions()
-                                                                                     {
-                                                                                         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                                                                                     });
+            var result = await content.FromJsonToAsync<FetchResult<Result?>>(SerializationOptions.CamelCaseNaming);
             if (result == null)
             {
                 return [];
