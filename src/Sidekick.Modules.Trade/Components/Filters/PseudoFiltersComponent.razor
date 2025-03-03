@@ -1,4 +1,5 @@
 @using Sidekick.Common.Game.Items
+@using Sidekick.Common.Settings
 
 @if (PriceCheckService.PseudoFilters.Any())
 {
@@ -8,8 +9,14 @@
 @foreach (var filter in PriceCheckService.PseudoFilters)
 {
     <CascadingValue Value="filter" IsFixed="true">
-        <PseudoFilterComponent />
+        <PseudoFilterComponent DefaultFilterType="@DefaultFilterType"/>
     </CascadingValue>
 }
 
 @inject PriceCheckService PriceCheckService
+
+@code
+{
+    [Parameter]
+    public required FilterType DefaultFilterType { get; set; }
+}
