@@ -75,16 +75,19 @@ public class PriceCheckService(
         IsFilterLoading = false;
         FilterLoadingChanged?.Invoke();
 
-        if (Item.Header.Rarity != Rarity.Rare && Item.Header.Rarity != Rarity.Magic && Item.Header.Category != Category.Gem)
+        var automaticallyPriceCheck = await settingsService.GetBool(SettingKeys.PriceCheckAutomaticallySearch);
+        if (!automaticallyPriceCheck)
         {
-            if (CurrentMode == TradeMode.Bulk)
-            {
-                await BulkSearch();
-            }
-            else
-            {
-                await ItemSearch();
-            }
+            return;
+        }
+
+        if (CurrentMode == TradeMode.Bulk)
+        {
+            await BulkSearch();
+        }
+        else
+        {
+            await ItemSearch();
         }
     }
 
