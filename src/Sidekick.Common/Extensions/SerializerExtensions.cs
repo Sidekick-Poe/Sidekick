@@ -1,8 +1,8 @@
 using System.Text.Json;
 
-namespace Sidekick.Common;
+namespace Sidekick.Common.Extensions;
 
-public static class Serialization
+public static class SerializerExtensions
 {
     public static string ToJson<T>(this T value, JsonSerializerOptions? jsonSerializerOptions = null) =>
         JsonSerializer.Serialize(value, options: jsonSerializerOptions);

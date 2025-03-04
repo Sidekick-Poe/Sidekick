@@ -6,6 +6,7 @@ using Sidekick.Apis.PoeWiki.Models;
 using Sidekick.Common;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
+using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.PoeWiki;

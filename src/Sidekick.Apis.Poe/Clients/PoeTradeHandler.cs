@@ -4,6 +4,7 @@ using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.CloudFlare;
 using Sidekick.Common;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
 

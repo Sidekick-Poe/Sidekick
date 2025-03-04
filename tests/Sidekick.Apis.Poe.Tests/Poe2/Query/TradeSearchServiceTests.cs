@@ -2,6 +2,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Common;
+using Sidekick.Common.Extensions;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Poe2.Query;

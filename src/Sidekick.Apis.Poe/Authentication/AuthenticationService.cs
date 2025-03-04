@@ -1,8 +1,8 @@
 using System.Security.Cryptography;
 using System.Text;
 using Sidekick.Apis.Poe.Authentication.Models;
-using Sidekick.Common;
 using Sidekick.Common.Browser;
+using Sidekick.Common.Extensions;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
 

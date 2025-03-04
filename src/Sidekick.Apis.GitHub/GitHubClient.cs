@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub.Api;
 using Sidekick.Apis.GitHub.Models;
 using Sidekick.Common;
+using Sidekick.Common.Extensions;
 
 namespace Sidekick.Apis.GitHub;
 

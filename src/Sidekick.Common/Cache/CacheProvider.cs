@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Sidekick.Common.Extensions;
 
 namespace Sidekick.Common.Cache;
 

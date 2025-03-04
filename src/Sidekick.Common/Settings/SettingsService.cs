@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
 using Sidekick.Common.Enums;
+using Sidekick.Common.Extensions;
 
 namespace Sidekick.Common.Settings;
 

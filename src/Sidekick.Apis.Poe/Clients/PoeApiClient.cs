@@ -2,6 +2,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients.Exceptions;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Common;
+using Sidekick.Common.Extensions;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Clients;
