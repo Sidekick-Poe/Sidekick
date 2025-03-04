@@ -1,13 +1,12 @@
 using System.Text;
-using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Bulk.Models;
 using Sidekick.Apis.Poe.Bulk.Results;
-using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Static;
 using Sidekick.Apis.Poe.Trade.Requests;
+using Sidekick.Common;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
@@ -21,7 +20,6 @@ public class BulkTradeService(
     ILogger<BulkTradeService> logger,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
-    IPoeTradeClient poeTradeClient,
     IFilterProvider filterProvider,
     IItemStaticDataProvider itemStaticDataProvider,
     IHttpClientFactory httpClientFactory) : IBulkTradeService
@@ -72,7 +70,7 @@ public class BulkTradeService(
         var status = await settingsService.GetString(SettingKeys.PriceCheckStatus);
         model.Query.Status.Option = status ?? Status.Online;
 
-        var json = JsonSerializer.Serialize(model, poeTradeClient.Options);
+        var json = model.ToJson(SerializationOptions.WithEnumConverterOptions);
         var body = new StringContent(json, Encoding.UTF8, "application/json");
         using var httpClient = httpClientFactory.CreateClient(ClientNames.TradeClient);
         var response = await httpClient.PostAsync(uri, body);
@@ -80,7 +78,7 @@ public class BulkTradeService(
         var content = await response.Content.ReadAsStringAsync();
         try
         {
-            var result = JsonSerializer.Deserialize<BulkResponse?>(content, poeTradeClient.Options);
+            var result = content.FromJsonTo<BulkResponse?>(SerializationOptions.WithEnumConverterOptions);
             if (result == null)
             {
                 throw new ApiErrorException();

@@ -1,10 +1,10 @@
 using System.Globalization;
-using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
 using Sidekick.Common.Enums;
+using Sidekick.Common.Extensions;
 
 namespace Sidekick.Common.Settings;
 
@@ -117,7 +117,7 @@ public class SettingsService(
         {
             try
             {
-                return JsonSerializer.Deserialize<TValue>(dbSetting.Value ?? string.Empty);
+                return (dbSetting.Value ?? string.Empty).FromJsonTo<TValue>();
             }
             catch (Exception e)
             {
@@ -254,7 +254,7 @@ public class SettingsService(
             DateTimeOffset x => x.ToString(),
             Enum x => x.GetValueAttribute(),
             string x => x,
-            _ => JsonSerializer.Serialize(value),
+            _ => value.ToJson(),
         };
     }
 }

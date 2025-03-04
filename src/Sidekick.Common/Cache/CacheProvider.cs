@@ -1,5 +1,5 @@
-using System.Text.Json;
 using Microsoft.Extensions.Logging;
+using Sidekick.Common.Extensions;
 
 namespace Sidekick.Common.Cache;
 
@@ -26,7 +26,7 @@ public class CacheProvider(ILogger<CacheProvider> logger) : ICacheProvider
         await using var stream = File.OpenRead(fileName);
         try
         {
-            var value = await JsonSerializer.DeserializeAsync<TModel>(stream);
+            var value = await stream.FromJsonToAsync<TModel>();
             if (value == null) return null;
 
             var valid = cacheValidator.Invoke(value);
@@ -56,7 +56,7 @@ public class CacheProvider(ILogger<CacheProvider> logger) : ICacheProvider
             }
 
             await using var stream = File.Create(fileName);
-            await JsonSerializer.SerializeAsync(stream, data);
+            await stream.ToJson(data);
         }
         catch (IOException exception)
         {
