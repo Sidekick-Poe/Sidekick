@@ -407,7 +407,7 @@ public class TradeSearchService
 
         return new TradeItem(itemHeader: header,
                              itemProperties: properties,
-                             sockets: ParseSockets(result.Item?.Sockets),
+                             sockets: ParseSockets(result.Item?.Sockets, result.Item?.GemSockets),
                              modifierLines: GetModifierLines(result.Item),
                              pseudoModifiers: [],
                              text: Encoding.UTF8.GetString(Convert.FromBase64String(result.Item?.Extended?.Text ?? string.Empty)))
@@ -597,7 +597,7 @@ public class TradeSearchService
         }
     }
 
-    private static IEnumerable<Socket> ParseSockets(List<ResultSocket>? sockets)
+    private static IEnumerable<Socket> ParseSockets(List<ResultSocket>? sockets, List<string>? gemSockets)
     {
         if (sockets == null)
         {
@@ -606,7 +606,17 @@ public class TradeSearchService
             ];
         }
 
-        return sockets.Where(x => x.ColourString != "DV") // Remove delve resonator sockets
+        if (gemSockets is not null)
+        {
+            return sockets.Select(x => new Socket()
+            {
+                Group = x.Group,
+                Colour = SocketColour.White,
+            });
+        }
+
+        return sockets
+            .Where(x => x.ColourString != "DV") // Remove delve resonator sockets
             .Select(x => new Socket()
             {
                 Group = x.Group,
