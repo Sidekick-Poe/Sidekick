@@ -1,9 +1,9 @@
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Bulk.Models;
 using Sidekick.Apis.Poe.Bulk.Results;
-using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Static;
@@ -21,12 +21,16 @@ public class BulkTradeService(
     ILogger<BulkTradeService> logger,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
-    IPoeTradeClient poeTradeClient,
     IFilterProvider filterProvider,
     IItemStaticDataProvider itemStaticDataProvider,
     IHttpClientFactory httpClientFactory) : IBulkTradeService
 {
-    private HttpClient HttpClient { get; } = httpClientFactory.CreateClient(ClientNames.TradeClient);
+    private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+    };
 
     public bool SupportsBulkTrade(Item? item)
     {
@@ -74,14 +78,15 @@ public class BulkTradeService(
         var status = await settingsService.GetString(SettingKeys.PriceCheckStatus);
         model.Query.Status.Option = status ?? Status.Online;
 
-        var json = JsonSerializer.Serialize(model, poeTradeClient.Options);
+        var json = JsonSerializer.Serialize(model, JsonSerializerOptions);
         var body = new StringContent(json, Encoding.UTF8, "application/json");
-        var response = await HttpClient.PostAsync(uri, body);
+        using var httpClient = httpClientFactory.CreateClient(ClientNames.TradeClient);
+        var response = await httpClient.PostAsync(uri, body);
 
         var content = await response.Content.ReadAsStringAsync();
         try
         {
-            var result = JsonSerializer.Deserialize<BulkResponse?>(content, poeTradeClient.Options);
+            var result = JsonSerializer.Deserialize<BulkResponse?>(content, JsonSerializerOptions);
             if (result == null)
             {
                 throw new ApiErrorException();

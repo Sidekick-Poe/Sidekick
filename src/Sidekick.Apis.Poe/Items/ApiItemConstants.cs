@@ -1,4 +1,4 @@
-﻿using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Items;
 

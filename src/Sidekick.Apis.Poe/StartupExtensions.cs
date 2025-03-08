@@ -16,7 +16,6 @@ using Sidekick.Apis.Poe.Parser.AdditionalInformation;
 using Sidekick.Apis.Poe.Parser.Headers;
 using Sidekick.Apis.Poe.Parser.Modifiers;
 using Sidekick.Apis.Poe.Parser.Properties;
-using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Parser.Pseudo;
 using Sidekick.Apis.Poe.Parser.Requirements;
 using Sidekick.Apis.Poe.Parser.Sockets;
@@ -58,8 +57,8 @@ public static class StartupExtensions
         services.AddSingleton<ClusterJewelParser>();
         services.AddSingleton<IFuzzyService, FuzzyService>();
 
-        services.AddSidekickInitializableService<IRequirementsParser, RequirementsParser>();
-        services.AddSidekickInitializableService<ISocketParser, SocketParser>();
+        services.AddSingleton<IRequirementsParser, RequirementsParser>();
+        services.AddSingleton<ISocketParser, SocketParser>();
         services.AddSidekickInitializableService<IPropertyParser, PropertyParser>();
         services.AddSidekickInitializableService<IApiInvariantItemProvider, ApiInvariantItemProvider>();
         services.AddSidekickInitializableService<IApiItemProvider, ApiItemProvider>();

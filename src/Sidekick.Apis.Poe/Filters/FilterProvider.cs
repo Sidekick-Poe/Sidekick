@@ -49,9 +49,9 @@ public class FilterProvider
             .First(x => x.Id == "indexed").Option!.Options;
     }
 
-    public string? GetPriceOption(string? price) => 
+    public string? GetPriceOption(string? price) =>
         TradePriceOptions.SingleOrDefault(x => x.Id == price)?.Id;
 
-    public string? GetTradeIndexedOption(string? id) => 
+    public string? GetTradeIndexedOption(string? id) =>
         TradeIndexedOptions.SingleOrDefault(x => x.Id == id)?.Id;
 }

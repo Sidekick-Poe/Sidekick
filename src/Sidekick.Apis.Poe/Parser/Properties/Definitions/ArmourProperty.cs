@@ -13,14 +13,9 @@ public class ArmourProperty
     GameType game
 ) : PropertyDefinition
 {
-    private Regex? Pattern { get; set; }
+    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionArmour.ToRegexIntCapture();
 
     public override List<Category> ValidCategories { get; } = [Category.Armour];
-
-    public override void Initialize()
-    {
-        Pattern = gameLanguageProvider.Language.DescriptionArmour.ToRegexIntCapture();
-    }
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {

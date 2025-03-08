@@ -1,5 +1,4 @@
 using System.Reflection;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Common;
 

@@ -141,6 +141,8 @@ public class KeyboardProvider(
     [
     ];
 
+    public HashSet<string?> UsedKeybinds => [ .. KeybindHandlers.SelectMany(k => k.Keybinds)];
+
     /// <inheritdoc/>
     public int Priority => 100;
 

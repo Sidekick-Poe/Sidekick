@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Sidekick.Common.Platform;
 
 namespace Sidekick.Web.Services;

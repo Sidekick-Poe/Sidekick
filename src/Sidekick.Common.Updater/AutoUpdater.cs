@@ -8,6 +8,7 @@ namespace Sidekick.Common.Updater;
 public class AutoUpdater : IAutoUpdater
 {
     private readonly ILogger<AutoUpdater> logger;
+    private UpdateManager Manager { get; }
 
     public AutoUpdater(ILogger<AutoUpdater> logger)
     {
@@ -34,10 +35,16 @@ public class AutoUpdater : IAutoUpdater
         Manager = new UpdateManager(source, options, logger, locator);
     }
 
-    private UpdateManager Manager { get; set; }
+    public bool IsUpdaterInstalled() => Manager.AppId is not null && Manager.IsInstalled;
 
     public async Task<UpdateInfo?> CheckForUpdates()
     {
+        if (!IsUpdaterInstalled())
+        {
+            logger.LogWarning("[AutoUpdater] UpdateManager is not installed.");
+            return null;
+        }
+
         logger.LogInformation("[AutoUpdater] Checking for updates.");
         var updateInfo = await Manager.CheckForUpdatesAsync();
         if (updateInfo == null)
@@ -52,6 +59,12 @@ public class AutoUpdater : IAutoUpdater
 
     public async Task UpdateAndRestart(UpdateInfo updateInfo)
     {
+        if (!IsUpdaterInstalled())
+        {
+            logger.LogWarning("[AutoUpdater] UpdateManager is not installed.");
+            return;
+        }
+
         // download new version
         logger.LogInformation("[AutoUpdater] Downloading updates.");
         await Manager.DownloadUpdatesAsync(updateInfo);

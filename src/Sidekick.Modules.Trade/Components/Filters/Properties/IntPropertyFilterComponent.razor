@@ -29,7 +29,8 @@
                          MinChanged="MinChanged"
                          Max="@Filter.Max"
                          MaxChanged="MaxChanged"
-                         TypeChanged="TypeChanged"/>
+                         TypeChanged="TypeChanged"
+                         DefaultFilterType="@DefaultFilterType"/>
         }
     </div>
 </FilterWrapper>
@@ -44,13 +45,16 @@
     [Parameter]
     public required IntPropertyFilter Filter { get; set; }
 
+    [Parameter]
+    public required FilterType DefaultFilterType { get; set; }
+
     private async void CheckedChanged(bool value)
     {
         Filter.Checked = value;
 
         // We can change the settings in the Trade window, so we should fetch here every time.
         Filter.NormalizeValue = await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
-        Filter.NormalizeMinValue();
+        TypeChanged(DefaultFilterType);
     }
 
     private void MinChanged(double? value)
@@ -63,23 +67,23 @@
         Filter.Max = value != null ? (int)value : null;
     }
 
-    private void TypeChanged(FilterRange.RangeType type)
+    private void TypeChanged(FilterType type)
     {
         switch (type)
         {
-            case FilterRange.RangeType.Minimum:
+            case FilterType.Minimum:
                 Filter.NormalizeMinValue();
                 Filter.Max = null;
                 break;
 
-            case FilterRange.RangeType.Maximum:
+            case FilterType.Maximum:
                 Filter.NormalizeMaxValue();
                 Filter.Min = null;
                 break;
 
-            case FilterRange.RangeType.Equals: Filter.SetExactValue(); break;
+            case FilterType.Equals: Filter.SetExactValue(); break;
 
-            case FilterRange.RangeType.Range:
+            case FilterType.Range:
                 Filter.NormalizeMinValue();
                 Filter.NormalizeMaxValue();
                 break;

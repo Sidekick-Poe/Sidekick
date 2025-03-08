@@ -7,44 +7,36 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Clients;
 
-public class PoeApiClient : IPoeApiClient
+public class PoeApiClient(
+    ILogger<PoeTradeClient> logger,
+    IHttpClientFactory httpClientFactory,
+    ISettingsService settingsService) : IPoeApiClient
 {
     private const string PoeApiUrl = "https://api.pathofexile.com/";
 
-    private readonly ILogger logger;
-    private readonly ISettingsService settingsService;
-
-    public PoeApiClient(
-        ILogger<PoeTradeClient> logger,
-        IHttpClientFactory httpClientFactory,
-        ISettingsService settingsService)
+    private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
-        this.logger = logger;
-        this.settingsService = settingsService;
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+    };
 
-        HttpClient = httpClientFactory.CreateClient(ClientNames.PoeClient);
-        HttpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
-        HttpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
-        HttpClient.BaseAddress = new Uri(PoeApiUrl);
-        HttpClient.Timeout = TimeSpan.FromHours(1);
-
-        Options = new JsonSerializerOptions()
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-        };
-        Options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+    private HttpClient CreateClient()
+    {
+        var httpClient = httpClientFactory.CreateClient(ClientNames.PoeClient);
+        httpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
+        httpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
+        httpClient.BaseAddress = new Uri(PoeApiUrl);
+        httpClient.Timeout = TimeSpan.FromHours(1);
+        return httpClient;
     }
-
-    private JsonSerializerOptions Options { get; }
-
-    private HttpClient HttpClient { get; set; }
 
     public async Task<TReturn?> Fetch<TReturn>(string path)
     {
+        using var httpClient = CreateClient();
         try
         {
-            var response = await HttpClient.GetAsync(path);
+            var response = await httpClient.GetAsync(path);
 
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized || response.StatusCode == System.Net.HttpStatusCode.Forbidden)
             {
@@ -54,7 +46,7 @@ public class PoeApiClient : IPoeApiClient
             }
 
             var content = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<TReturn>(content, Options);
+            var result = await JsonSerializer.DeserializeAsync<TReturn>(content, JsonSerializerOptions);
             if (result != null)
             {
                 return result;
@@ -67,7 +59,7 @@ public class PoeApiClient : IPoeApiClient
         }
         catch (Exception e)
         {
-            logger.LogError($"[Poe Api Client] Could not fetch {typeof(TReturn).Name} at {HttpClient.BaseAddress + path}.", e);
+            logger.LogError($"[Poe Api Client] Could not fetch {typeof(TReturn).Name} at {httpClient.BaseAddress + path}.", e);
             throw;
         }
 

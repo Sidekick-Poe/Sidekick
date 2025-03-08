@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Tokenizers;
@@ -38,7 +39,7 @@ public class ParsingItem
     /// </summary>
     public string Text { get; }
 
-    public bool TryParseRegex(Regex pattern, out Match match)
+    public bool TryParseRegex(Regex pattern, [NotNullWhen(true)] out Match? match)
     {
         foreach (var block in Blocks)
         {
@@ -48,7 +49,7 @@ public class ParsingItem
             }
         }
 
-        match = null!;
+        match = null;
         return false;
     }
 

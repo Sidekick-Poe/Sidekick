@@ -16,8 +16,12 @@ public class GitHubClient
 ) : IGitHubClient
 {
     private DateTimeOffset? LastUpdateCheck { get; set; }
-
     private GitHubRelease? LatestRelease { get; set; }
+    private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+    };
 
     /// <inheritdoc />
     public async Task<GitHubRelease> GetLatestRelease()
@@ -110,12 +114,8 @@ public class GitHubClient
             return [];
         }
 
-        return await JsonSerializer.DeserializeAsync<Release[]>(utf8Json: await listResponse.Content.ReadAsStreamAsync(),
-                                                                options: new JsonSerializerOptions
-                                                                {
-                                                                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                                                                    PropertyNameCaseInsensitive = true,
-                                                                });
+        var content = await listResponse.Content.ReadAsStreamAsync();
+        return await JsonSerializer.DeserializeAsync<Release[]>(content, JsonSerializerOptions);
     }
 
     private async Task<Release?> GetLatestApiRelease()

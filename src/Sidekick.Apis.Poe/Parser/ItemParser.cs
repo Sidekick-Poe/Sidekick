@@ -25,11 +25,6 @@ public class ItemParser
     IHeaderParser headerParser
 ) : IItemParser
 {
-    public Task<Item> ParseItemAsync(string itemText)
-    {
-        return Task.Run(() => ParseItem(itemText));
-    }
-
     public Item ParseItem(string itemText)
     {
         if (string.IsNullOrEmpty(itemText))

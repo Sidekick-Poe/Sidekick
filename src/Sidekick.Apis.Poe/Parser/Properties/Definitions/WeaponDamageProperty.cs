@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Localization;
@@ -20,10 +20,6 @@ public class WeaponDamageProperty
 ) : PropertyDefinition
 {
     public override List<Category> ValidCategories { get; } = [Category.Weapon];
-
-    public override void Initialize()
-    {
-    }
 
     public override void ParseAfterModifiers(ItemProperties properties, ParsingItem parsingItem, List<ModifierLine> modifierLines)
     {

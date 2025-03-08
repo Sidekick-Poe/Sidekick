@@ -10,10 +10,6 @@ public class SeparatorProperty() : PropertyDefinition
 
     public override List<Category> ValidCategories { get; } = [];
 
-    public override void Initialize()
-    {
-    }
-
     public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue)
     {
         return new BooleanPropertyFilter(this)

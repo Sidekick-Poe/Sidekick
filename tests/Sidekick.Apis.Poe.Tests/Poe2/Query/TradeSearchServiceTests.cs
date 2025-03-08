@@ -2,7 +2,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
-using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Trade;
 using Xunit;
 
@@ -15,7 +14,7 @@ public class TradeSearchServiceTests
     private readonly ITradeFilterService tradeFilterService;
     private readonly MockHttpClient mockHttpClient = new();
     private readonly TradeSearchService tradeSearchService;
-    private readonly JsonSerializerOptions jsonSerializerOptions = new()
+    private static readonly JsonSerializerOptions jsonSerializerOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
@@ -36,7 +35,6 @@ public class TradeSearchServiceTests
             NullLogger<TradeSearchService>.Instance,
             fixture.GameLanguageProvider,
             fixture.SettingsService,
-            fixture.PoeTradeClient,
             fixture.ModifierProvider,
             fixture.FilterProvider,
             fixture.PropertyParser,

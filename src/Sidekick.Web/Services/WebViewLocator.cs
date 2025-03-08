@@ -1,4 +1,4 @@
-﻿using Sidekick.Common.Ui.Views;
+using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Web.Services;
 

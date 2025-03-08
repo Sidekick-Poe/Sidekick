@@ -12,14 +12,12 @@ public class PoeTradeClient(
     ILogger<PoeTradeClient> logger,
     IHttpClientFactory httpClientFactory) : IPoeTradeClient
 {
-    public JsonSerializerOptions Options { get; } = new()
+    public static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
     };
-
-    private HttpClient HttpClient { get; } = httpClientFactory.CreateClient(ClientNames.TradeClient);
 
     public async Task<FetchResult<TReturn>> Fetch<TReturn>(GameType game, IGameLanguage language, string path)
     {
@@ -27,14 +25,15 @@ public class PoeTradeClient(
 
         try
         {
-            var response = await HttpClient.GetAsync(language.GetTradeApiBaseUrl(game) + path);
+            using var httpClient = httpClientFactory.CreateClient(ClientNames.TradeClient);
+            var response = await httpClient.GetAsync(language.GetTradeApiBaseUrl(game) + path);
             if (response.StatusCode == HttpStatusCode.Redirect || response.StatusCode == HttpStatusCode.MovedPermanently)
             {
                 var redirectUrl = response.Headers.Location?.ToString();
                 if (!string.IsNullOrEmpty(redirectUrl))
                 {
                     // Follow redirect manually
-                    response = await HttpClient.GetAsync(redirectUrl);
+                    response = await httpClient.GetAsync(redirectUrl);
                 }
             }
 
@@ -47,7 +46,7 @@ public class PoeTradeClient(
 
             var content = await response.Content.ReadAsStreamAsync();
 
-            var result = await JsonSerializer.DeserializeAsync<FetchResult<TReturn>>(content, Options);
+            var result = await JsonSerializer.DeserializeAsync<FetchResult<TReturn>>(content, JsonSerializerOptions);
             if (result == null)
             {
                 throw new Exception($"[Trade Client] Could not understand the API response.");

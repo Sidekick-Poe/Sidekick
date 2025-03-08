@@ -78,6 +78,8 @@ public class ResultItem
     [JsonPropertyName("sanctumMods")]
     public List<string> SanctumMods { get; set; } = new();
 
+    public List<string> GemSockets { get; set; } = new();
+
     public List<ResultSocket> Sockets { get; set; } = new();
 
     [JsonPropertyName("extended")]

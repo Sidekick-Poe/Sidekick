@@ -1,8 +1,8 @@
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Modifiers;
@@ -27,14 +27,18 @@ public class TradeSearchService
     ILogger<TradeSearchService> logger,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
-    IPoeTradeClient poeTradeClient,
     IModifierProvider modifierProvider,
     IFilterProvider filterProvider,
     IPropertyParser propertyParser,
     IHttpClientFactory httpClientFactory
 ) : ITradeSearchService
 {
-    private HttpClient HttpClient { get; } = httpClientFactory.CreateClient(ClientNames.TradeClient);
+    private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+    };
 
     public async Task<TradeSearchResult<string>> Search(Item item, PropertyFilters? propertyFilters = null, IEnumerable<ModifierFilter>? modifierFilters = null, IEnumerable<PseudoModifierFilter>? pseudoFilters = null)
     {
@@ -137,13 +141,18 @@ public class TradeSearchService
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             var uri = new Uri($"{await GetBaseApiUrl(metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
 
-            var json = JsonSerializer.Serialize(new QueryRequest() { Query = query, }, poeTradeClient.Options);
+            var request = new QueryRequest() 
+            { 
+                Query = query, 
+            };
+            var json = JsonSerializer.Serialize(request, JsonSerializerOptions);
 
             var body = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await HttpClient.PostAsync(uri, body);
+            using var httpClient = httpClientFactory.CreateClient(ClientNames.TradeClient);
+            var response = await httpClient.PostAsync(uri, body);
 
             var content = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<TradeSearchResult<string>?>(content, poeTradeClient.Options);
+            var result = await JsonSerializer.DeserializeAsync<TradeSearchResult<string>?>(content, JsonSerializerOptions);
             if (result != null)
             {
                 return result;
@@ -348,18 +357,15 @@ public class TradeSearchService
         {
             logger.LogInformation($"[Trade API] Fetching Trade API Listings from Query {queryId}.");
 
-            var response = await HttpClient.GetAsync(await GetBaseApiUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId);
+            using var httpClient = httpClientFactory.CreateClient(ClientNames.TradeClient);
+            var response = await httpClient.GetAsync(await GetBaseApiUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId);
             if (!response.IsSuccessStatusCode)
             {
                 return [];
             }
 
             var content = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<FetchResult<Result?>>(content,
-                                                                                     new JsonSerializerOptions()
-                                                                                     {
-                                                                                         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                                                                                     });
+            var result = await JsonSerializer.DeserializeAsync<FetchResult<Result?>>(content, JsonSerializerOptions);
             if (result == null)
             {
                 return [];
@@ -407,7 +413,7 @@ public class TradeSearchService
 
         return new TradeItem(itemHeader: header,
                              itemProperties: properties,
-                             sockets: ParseSockets(result.Item?.Sockets),
+                             sockets: ParseSockets(result.Item?.Sockets, result.Item?.GemSockets),
                              modifierLines: GetModifierLines(result.Item),
                              pseudoModifiers: [],
                              text: Encoding.UTF8.GetString(Convert.FromBase64String(result.Item?.Extended?.Text ?? string.Empty)))
@@ -597,7 +603,7 @@ public class TradeSearchService
         }
     }
 
-    private static IEnumerable<Socket> ParseSockets(List<ResultSocket>? sockets)
+    private static IEnumerable<Socket> ParseSockets(List<ResultSocket>? sockets, List<string>? gemSockets)
     {
         if (sockets == null)
         {
@@ -606,7 +612,17 @@ public class TradeSearchService
             ];
         }
 
-        return sockets.Where(x => x.ColourString != "DV") // Remove delve resonator sockets
+        if (gemSockets is not null)
+        {
+            return sockets.Select(x => new Socket()
+            {
+                Group = x.Group,
+                Colour = SocketColour.White,
+            });
+        }
+
+        return sockets
+            .Where(x => x.ColourString != "DV") // Remove delve resonator sockets
             .Select(x => new Socket()
             {
                 Group = x.Group,

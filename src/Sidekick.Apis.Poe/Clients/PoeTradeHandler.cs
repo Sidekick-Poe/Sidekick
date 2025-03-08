@@ -18,6 +18,12 @@ public class PoeTradeHandler
     IGameLanguageProvider gameLanguageProvider
 ) : DelegatingHandler
 {
+    private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+    };
+
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
         request.Headers.TryAddWithoutValidation("X-Powered-By", "Sidekick");
@@ -140,13 +146,8 @@ public class PoeTradeHandler
     {
         try
         {
-            var options = new JsonSerializerOptions()
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            };
             var content = await response.Content.ReadAsStreamAsync();
-            return await JsonSerializer.DeserializeAsync<ApiErrorResponse>(content, options);
+            return await JsonSerializer.DeserializeAsync<ApiErrorResponse>(content, JsonSerializerOptions);
         }
         catch (Exception)
         {
