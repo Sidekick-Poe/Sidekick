@@ -22,12 +22,11 @@ public class PoeWikiClient
     ICacheProvider cacheProvider
 ) : IPoeWikiClient
 {
-    private readonly JsonSerializerOptions options = new()
+    private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         PropertyNameCaseInsensitive = true
     };
-
     private const string PoeWikiBaseUri = "https://www.poewiki.net/";
     private const string PoeWikiSubUrl = "w/index.php?search=";
 
@@ -137,7 +136,7 @@ public class PoeWikiClient
             using var client = GetHttpClient();
             var response = await client.GetAsync(QueryStringHelper.ToQueryString(query));
             var content = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<MapResult>>(content, options);
+            var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<MapResult>>(content, JsonSerializerOptions);
             return result?.CargoQuery.Select(x => x.Title).FirstOrDefault();
         }
         catch (Exception e)
@@ -165,7 +164,7 @@ public class PoeWikiClient
             using var client = GetHttpClient();
             var response = await client.GetAsync(QueryStringHelper.ToQueryString(query));
             var content = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<BossResult>>(content, options);
+            var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<BossResult>>(content, JsonSerializerOptions);
             if (result == null)
             {
                 return null;
@@ -210,7 +209,7 @@ public class PoeWikiClient
             using var client = GetHttpClient();
             var response = await client.GetAsync(QueryStringHelper.ToQueryString(query));
             var content = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<CargoQueryResult<ItemResult>>(content, options);
+            var result = JsonSerializer.Deserialize<CargoQueryResult<ItemResult>>(content, JsonSerializerOptions);
             if (result == null)
             {
                 return null;
@@ -257,7 +256,7 @@ public class PoeWikiClient
             using var client = GetHttpClient();
             var response = await client.GetAsync(QueryStringHelper.ToQueryString(query));
             var content = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<ItemIdResult>>(content, options);
+            var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<ItemIdResult>>(content, JsonSerializerOptions);
             if (result == null)
             {
                 return null;
@@ -301,7 +300,7 @@ public class PoeWikiClient
             using var client = GetHttpClient();
             var response = await client.GetAsync(QueryStringHelper.ToQueryString(query));
             var content = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<ItemNameMetadataIdResult>>(content, options);
+            var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<ItemNameMetadataIdResult>>(content, JsonSerializerOptions);
             if (result == null)
             {
                 return null;
