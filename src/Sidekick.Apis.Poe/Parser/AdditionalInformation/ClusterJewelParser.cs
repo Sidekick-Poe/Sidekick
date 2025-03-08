@@ -7,22 +7,22 @@ namespace Sidekick.Apis.Poe.Parser.AdditionalInformation;
 
 public class ClusterJewelParser(IInvariantModifierProvider invariantModifierProvider)
 {
-    public bool TryParse(Item item, [NotNullWhen(true)] out ClusterJewelInformation? information)
+    public bool TryParse(ItemHeader itemHeader, List<ModifierLine> modifierLines, [NotNullWhen(true)] out ClusterJewelInformation? information)
     {
         information = null;
 
-        if (item.Header.Category != Category.Jewel || item.Header.Rarity == Rarity.Unique)
+        if (itemHeader.Category != Category.Jewel || itemHeader.Rarity == Rarity.Unique)
         {
             return false;
         }
 
-        var smallPassiveCount = ParseSmallPassiveCount(item);
+        var smallPassiveCount = ParseSmallPassiveCount(modifierLines);
         if (smallPassiveCount == 0)
         {
             return false;
         }
 
-        var grant = ParseGrantTexts(item);
+        var grant = ParseGrantTexts(modifierLines);
         if (grant == null)
         {
             return false;
@@ -37,9 +37,9 @@ public class ClusterJewelParser(IInvariantModifierProvider invariantModifierProv
         return true;
     }
 
-    public int ParseSmallPassiveCount(Item item)
+    public int ParseSmallPassiveCount(List<ModifierLine> modifierLines)
     {
-        foreach (var modifierLine in item.ModifierLines)
+        foreach (var modifierLine in modifierLines)
         {
             if (!modifierLine.HasValues)
             {
@@ -58,9 +58,9 @@ public class ClusterJewelParser(IInvariantModifierProvider invariantModifierProv
         return 0;
     }
 
-    public string? ParseGrantTexts(Item item)
+    public string? ParseGrantTexts(List<ModifierLine> modifierLines)
     {
-        foreach (var modifierLine in item.ModifierLines)
+        foreach (var modifierLine in modifierLines)
         {
             if (!modifierLine.OptionValue.HasValue)
             {

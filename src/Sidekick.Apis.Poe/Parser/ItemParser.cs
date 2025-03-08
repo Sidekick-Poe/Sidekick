@@ -9,6 +9,7 @@ using Sidekick.Apis.Poe.Parser.Requirements;
 using Sidekick.Apis.Poe.Parser.Sockets;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Game.Items.AdditionalInformation;
 
 namespace Sidekick.Apis.Poe.Parser;
 
@@ -54,25 +55,33 @@ public class ItemParser
             var modifierLines = modifierParser.Parse(parsingItem);
             propertyParser.ParseAfterModifiers(parsingItem, properties, modifierLines);
             var pseudoModifiers = pseudoParser.Parse(modifierLines);
-            var item = new Item(invariant: invariant,
-                                itemHeader: parsingItem.Header,
-                                itemProperties: properties,
-                                sockets: sockets,
-                                modifierLines: modifierLines,
-                                pseudoModifiers: pseudoModifiers,
-                                text: parsingItem.Text);
 
-            if (clusterJewelParser.TryParse(item, out var clusterInformation))
+            return new Item()
             {
-                item.AdditionalInformation = clusterInformation;
-            }
-
-            return item;
+                Invariant = invariant,
+                Header = parsingItem.Header,
+                Properties = properties,
+                Sockets = sockets,
+                ModifierLines = modifierLines,
+                PseudoModifiers = pseudoModifiers,
+                Text = parsingItem.Text,
+                AdditionalInformation = ParseAdditionalInformation(parsingItem.Header, modifierLines),
+            };
         }
         catch (Exception e)
         {
             logger.LogWarning(e, "Could not parse item.");
             throw;
         }
+    }
+
+    private ClusterJewelInformation? ParseAdditionalInformation(ItemHeader itemHeader, List<ModifierLine> modifierLines)
+    {
+        if (clusterJewelParser.TryParse(itemHeader, modifierLines, out var clusterJewelInformation))
+        {
+            return clusterJewelInformation;
+        }
+
+        return null;
     }
 }

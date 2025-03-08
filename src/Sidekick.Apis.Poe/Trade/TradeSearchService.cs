@@ -411,13 +411,15 @@ public class TradeSearchService
             Influences = result.Item?.Influences ?? new(),
         };
 
-        return new TradeItem(itemHeader: header,
-                             itemProperties: properties,
-                             sockets: ParseSockets(result.Item?.Sockets, result.Item?.GemSockets),
-                             modifierLines: GetModifierLines(result.Item),
-                             pseudoModifiers: [],
-                             text: Encoding.UTF8.GetString(Convert.FromBase64String(result.Item?.Extended?.Text ?? string.Empty)))
+        return new TradeItem()
         {
+            Invariant = null,
+            Header = header,
+            Properties = properties,
+            Sockets = [.. ParseSockets(result.Item?.Sockets, result.Item?.GemSockets)],
+            ModifierLines = [.. GetModifierLines(result.Item)],
+            PseudoModifiers = [],
+            Text = Encoding.UTF8.GetString(Convert.FromBase64String(result.Item?.Extended?.Text ?? string.Empty)),
             Id = result.Id,
             Price = new TradePrice()
             {

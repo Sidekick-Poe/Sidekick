@@ -2,21 +2,7 @@ using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Models;
 
-public class TradeItem
-(
-    ItemHeader itemHeader,
-    ItemProperties itemProperties,
-    IEnumerable<Socket> sockets,
-    IEnumerable<ModifierLine> modifierLines,
-    IEnumerable<PseudoModifier> pseudoModifiers,
-    string text
-) : Item(null,
-         itemHeader,
-         itemProperties,
-         sockets,
-         modifierLines,
-         pseudoModifiers,
-         text)
+public class TradeItem : Item
 {
     public string? Id { get; set; }
     public TradePrice? Price { get; set; }
