@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Initialization;
-using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
@@ -91,7 +90,7 @@ public partial class Initialization : SidekickView
 
             await ReportProgress();
             await Task.Delay(200);
-            Complete();
+            await Complete();
         }
         catch (SidekickException e)
         {
@@ -101,9 +100,17 @@ public partial class Initialization : SidekickView
         }
     }
 
-    private void Complete()
+    private async Task Complete()
     {
-        NavigationManager.NavigateTo("/home");
+        var redirectToHome = await SettingsService.GetBool(SettingKeys.OpenHomeOnLaunch);
+        if (redirectToHome)
+        {
+            NavigationManager.NavigateTo("/home");
+        }
+        else
+        {
+            await CurrentView.Close();
+        }
     }
 
     private Task ReportProgress()

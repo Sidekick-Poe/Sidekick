@@ -2,34 +2,62 @@
 @using Sidekick.Common.Blazor.Components
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Keybinds
+@using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
+@using Sidekick.Common.Blazor.Settings.General
 @inherits SidekickView
-@layout MainWindowLayout
 
-<AppContainer>
-    <AppLogo/>
-    <div class="max-w-[300px] mx-auto">
-        <TextBase Class="text-center mb-3">@WelcomeMessage</TextBase>
-        <TextBase Class="text-center">@Resources["Close_Notification"]</TextBase>
-    </div>
-
-    <LayoutDivider/>
-
-    <FormFieldset Legend="Copy your item text here">
-        <FormTextarea @bind-Value="ItemText"/>
-        <div class="grid grid-cols-12 gap-3">
-            <div class="col-span-6">
-                <ButtonPrimary OnClick="PriceCheck">Check Prices</ButtonPrimary>
+<AppTitle Title="Sidekick"/>
+<LayoutTwoColumn>
+    <TopContent>
+        <AppBar>
+            <AppMinimize/>
+            <AppMaximize/>
+            <AppClose/>
+        </AppBar>
+    </TopContent>
+    <LeftContent>
+        <SidekickMenu/>
+    </LeftContent>
+    <ChildContent>
+        <AppContainer>
+            <AppLogo/>
+            <div class="max-w-[300px] mx-auto">
+                @if (ApplicationService.SupportsKeybinds)
+                {
+                    <TextBase Class="text-center mb-3">@WelcomeMessage</TextBase>
+                    <TextBase Class="text-center">@Resources["Close_Notification"]</TextBase>
+                }
             </div>
-            <div class="col-span-6">
-                <ButtonPrimary OnClick="MapCheck">Check Map</ButtonPrimary>
+
+            <LayoutDivider/>
+
+            <FormFieldset Legend="@Resources["Item_Box_Legend"]">
+                <TextBase Class="text-center mb-2">
+                    @Resources["Item_Box_Text"]
+                </TextBase>
+                <FormTextarea @bind-Value="ItemText"/>
+                <div class="grid grid-cols-12 gap-3 *:col-span-6">
+                    <ButtonPrimary OnClick="PriceCheck">@Resources["Item_Box_Prices"]</ButtonPrimary>
+                    <ButtonPrimary OnClick="MapCheck">@Resources["Item_Box_Map"]</ButtonPrimary>
+                </div>
+            </FormFieldset>
+        </AppContainer>
+    </ChildContent>
+    <BottomContent>
+        @if (ApplicationService.SupportsKeybinds)
+        {
+            <div class="flex justify-end p-2">
+                <OpenHomeOnLaunchEditor />
             </div>
-        </div>
-    </FormFieldset>
-</AppContainer>
+        }
+    </BottomContent>
+</LayoutTwoColumn>
+
 
 @inject ISettingsService SettingsService
 @inject IStringLocalizer<HomeResources> Resources
+@inject IApplicationService ApplicationService
 
 @code {
 

@@ -4,6 +4,7 @@
 </a>
 
 @inject NavigationManager NavigationManager
+@implements IDisposable
 
 @code {
 
@@ -14,5 +15,22 @@
     public RenderFragment? ChildContent { get; set; }
 
     private bool IsActive => NavigationManager.ToAbsoluteUri(NavigationManager.Uri).AbsolutePath == Href;
+
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += NavigationManagerOnLocationChanged;
+
+        base.OnInitialized();
+    }
+
+    private void NavigationManagerOnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= NavigationManagerOnLocationChanged;
+    }
 
 }
