@@ -105,12 +105,10 @@ public partial class Initialization : SidekickView
         var redirectToHome = await SettingsService.GetBool(SettingKeys.OpenHomeOnLaunch);
         if (redirectToHome)
         {
-            NavigationManager.NavigateTo("/home");
+            await ViewLocator.Open("/home");
         }
-        else
-        {
-            await CurrentView.Close();
-        }
+
+        await CurrentView.Close();
     }
 
     private Task ReportProgress()
