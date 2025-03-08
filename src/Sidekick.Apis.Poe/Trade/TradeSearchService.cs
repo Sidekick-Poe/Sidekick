@@ -147,7 +147,7 @@ public class TradeSearchService
             };
             var json = JsonSerializer.Serialize(request, JsonSerializerOptions);
 
-            var body = new StringContent(json, Encoding.UTF8, "application/json");
+            using var body = new StringContent(json, Encoding.UTF8, "application/json");
             using var httpClient = httpClientFactory.CreateClient(ClientNames.TradeClient);
             var response = await httpClient.PostAsync(uri, body);
 

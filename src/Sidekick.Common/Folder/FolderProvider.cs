@@ -9,7 +9,7 @@ public class FolderProvider(ILogger<FolderProvider> logger) : IFolderProvider
     {
         try
         {
-            var process = new Process();
+            using var process = new Process();
             process.StartInfo = new ProcessStartInfo
             {
                 FileName = SidekickPaths.GetDataFilePath(),
