@@ -162,7 +162,7 @@ internal class AuthenticationService : IAuthenticationService, IDisposable
         }
 
         using var client = httpClientFactory.CreateClient();
-        var requestContent = new StringContent($"client_id={Clientid}&grant_type=authorization_code&code={code}&redirect_uri={Redirecturl}&scope={Scopes}&code_verifier={Verifier}", Encoding.UTF8, "application/x-www-form-urlencoded");
+        using var requestContent = new StringContent($"client_id={Clientid}&grant_type=authorization_code&code={code}&redirect_uri={Redirecturl}&scope={Scopes}&code_verifier={Verifier}", Encoding.UTF8, "application/x-www-form-urlencoded");
         var response = await client.PostAsync(Tokenurl, requestContent);
         if (!response.IsSuccessStatusCode)
         {
@@ -192,7 +192,7 @@ internal class AuthenticationService : IAuthenticationService, IDisposable
 
     private static string GenerateCodeVerifier()
     {
-        var rng = RandomNumberGenerator.Create();
+        using var rng = RandomNumberGenerator.Create();
         var bytes = new byte[32];
         rng.GetBytes(bytes);
 

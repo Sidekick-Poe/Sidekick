@@ -15,7 +15,7 @@ public class LogSink : ILogEventSink
     public void Emit(LogEvent logEvent)
     {
         _ = logEvent ?? throw new ArgumentNullException(nameof(logEvent));
-        var writer = new StringWriter();
+        using var writer = new StringWriter();
         textFormatter.Format(logEvent, writer);
 
         var logMessage = writer.ToString();

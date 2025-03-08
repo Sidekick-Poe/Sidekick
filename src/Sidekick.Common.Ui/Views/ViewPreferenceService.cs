@@ -18,7 +18,7 @@ public class ViewPreferenceService
             return null;
         }
 
-        var dbContext = new SidekickDbContext(dbOptions);
+        using var dbContext = new SidekickDbContext(dbOptions);
         var viewPreference = await dbContext.ViewPreferences.FirstOrDefaultAsync(x => x.Key == key);
         return viewPreference;
     }
@@ -37,7 +37,7 @@ public class ViewPreferenceService
             y = null;
         }
 
-        var dbContext = new SidekickDbContext(dbOptions);
+        using var dbContext = new SidekickDbContext(dbOptions);
         var viewPreference = await dbContext.ViewPreferences.FirstOrDefaultAsync(preference => preference.Key == key);
         if (viewPreference == null)
         {
