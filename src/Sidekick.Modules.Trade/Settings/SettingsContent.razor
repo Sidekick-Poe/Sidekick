@@ -1,11 +1,16 @@
 @using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Blazor.Settings.General
+@using Sidekick.Common.Platform
 @inherits Sidekick.Common.Ui.Views.SidekickView
+@inject IApplicationService ApplicationService
 
-<FormFieldset Legend="@Resources["Keybindings"]">
-    <KeyOpenPriceCheckEditor />
-    <KeyCloseEditor />
-</FormFieldset>
+@if (ApplicationService.SupportsKeybinds)
+{
+    <FormFieldset Legend="@Resources["Keybindings"]">
+        <KeyOpenPriceCheckEditor/>
+        <KeyCloseEditor/>
+    </FormFieldset>
+}
 
 <FormFieldset Legend="@Resources["Item_Trade_Settings"]">
     <PriceCheckItemClassFilter />
@@ -19,9 +24,12 @@
     <PriceCheckCurrencyModeEditor/>
 </FormFieldset>
 
-<FormFieldset Legend="@Resources["Other_Settings"]">
-    <PriceCheckCloseWithMouseEditor />
-    <EscapeClosesOverlaysEditor />
-</FormFieldset>
+@if (ApplicationService.SupportsKeybinds)
+{
+    <FormFieldset Legend="@Resources["Other_Settings"]">
+        <PriceCheckCloseWithMouseEditor/>
+        <EscapeClosesOverlaysEditor/>
+    </FormFieldset>
+}
 
 @inject IStringLocalizer<SettingsResources> Resources

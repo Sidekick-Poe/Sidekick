@@ -1,4 +1,10 @@
+@using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
+
+@if (!ApplicationService.SupportsKeybinds)
+{
+    return;
+}
 
 <FormCheckbox Value="@SaveWindowPositions"
               ValueChanged="@SaveWindowPositionsChanged">
@@ -7,6 +13,7 @@
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
+@inject IApplicationService ApplicationService
 
 @code {
 

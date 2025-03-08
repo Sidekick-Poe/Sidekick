@@ -22,18 +22,18 @@
     <ChildContent>
         <AppContainer>
             <AppLogo/>
-            <div class="max-w-[300px] mx-auto">
-                @if (ApplicationService.SupportsKeybinds)
-                {
+            @if (ApplicationService.SupportsKeybinds)
+            {
+                <div class="max-w-[300px] mx-auto">
                     <TextBase Class="text-center mb-3">@WelcomeMessage</TextBase>
                     <TextBase Class="text-center">@Resources["Close_Notification"]</TextBase>
-                }
-            </div>
+                </div>
 
-            <LayoutDivider/>
+                <LayoutDivider/>
+            }
 
             <FormFieldset Legend="@Resources["Item_Box_Legend"]">
-                <TextBase Class="text-center mb-2">
+                <TextBase Class="mb-1">
                     @Resources["Item_Box_Text"]
                 </TextBase>
                 <FormTextarea @bind-Value="ItemText"/>
@@ -48,7 +48,7 @@
         @if (ApplicationService.SupportsKeybinds)
         {
             <div class="flex justify-end py-2 px-3">
-                <OpenHomeOnLaunchEditor />
+                <OpenHomeOnLaunchEditor/>
             </div>
         }
     </BottomContent>

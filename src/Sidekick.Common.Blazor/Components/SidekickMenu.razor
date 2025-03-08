@@ -1,5 +1,6 @@
 ﻿@using Sidekick.Common.Cache
 @using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Platform
 @using System.Diagnostics
 @inherits LayoutComponentBase
 
@@ -10,8 +11,12 @@
     <MenuItem Href="/settings/general">@Resources["General"]</MenuItem>
     <MenuItem Href="/settings/price">@Resources["Price_Check"]</MenuItem>
     <MenuItem Href="/settings/map">@Resources["Map_Check"]</MenuItem>
-    <MenuItem Href="/settings/wiki">@Resources["Wiki"]</MenuItem>
-    <MenuItem Href="/settings/chat">@Resources["Chat_Commands"]</MenuItem>
+
+    @if (ApplicationService.SupportsKeybinds)
+    {
+        <MenuItem Href="/settings/wiki">@Resources["Wiki"]</MenuItem>
+        <MenuItem Href="/settings/chat">@Resources["Chat_Commands"]</MenuItem>
+    }
 
     @if (Debugger.IsAttached && false)
     {
@@ -36,6 +41,7 @@
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ICacheProvider CacheProvider
 @inject NavigationManager NavigationManager
+@inject IApplicationService ApplicationService
 
 @code {
 
