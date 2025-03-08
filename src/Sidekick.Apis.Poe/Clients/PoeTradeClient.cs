@@ -12,7 +12,7 @@ public class PoeTradeClient(
     ILogger<PoeTradeClient> logger,
     IHttpClientFactory httpClientFactory) : IPoeTradeClient
 {
-    public JsonSerializerOptions Options { get; } = new()
+    public static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
@@ -46,7 +46,7 @@ public class PoeTradeClient(
 
             var content = await response.Content.ReadAsStreamAsync();
 
-            var result = await JsonSerializer.DeserializeAsync<FetchResult<TReturn>>(content, Options);
+            var result = await JsonSerializer.DeserializeAsync<FetchResult<TReturn>>(content, JsonSerializerOptions);
             if (result == null)
             {
                 throw new Exception($"[Trade Client] Could not understand the API response.");

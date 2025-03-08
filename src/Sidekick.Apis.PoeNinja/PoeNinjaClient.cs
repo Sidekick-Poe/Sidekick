@@ -14,35 +14,21 @@ namespace Sidekick.Apis.PoeNinja;
 /// <summary>
 /// https://poe.ninja/swagger
 /// </summary>
-public class PoeNinjaClient : IPoeNinjaClient
+public class PoeNinjaClient(
+    ICacheProvider cacheProvider,
+    ISettingsService settingsService,
+    IHttpClientFactory httpClientFactory,
+    ILogger<PoeNinjaClient> logger) : IPoeNinjaClient
 {
     private static readonly Uri baseUrl = new("https://poe.ninja/");
     private static readonly Uri apiBaseUrl = new("https://poe.ninja/api/data/");
 
-    private readonly ICacheProvider cacheProvider;
-    private readonly ISettingsService settingsService;
-    private readonly IHttpClientFactory httpClientFactory;
-    private readonly ILogger<PoeNinjaClient> logger;
-    private readonly JsonSerializerOptions options;
-
-    public PoeNinjaClient(
-        ICacheProvider cacheProvider,
-        ISettingsService settingsService,
-        IHttpClientFactory httpClientFactory,
-        ILogger<PoeNinjaClient> logger)
+    private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
-        this.cacheProvider = cacheProvider;
-        this.settingsService = settingsService;
-        this.httpClientFactory = httpClientFactory;
-        this.logger = logger;
-
-        options = new JsonSerializerOptions()
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-        };
-        options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
-    }
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+    };
 
     private HttpClient GetHttpClient()
     {
@@ -237,7 +223,7 @@ public class PoeNinjaClient : IPoeNinjaClient
             using var client = GetHttpClient();
             var response = await client.GetAsync(url);
             var responseStream = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaItem>>(responseStream, options);
+            var result = await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaItem>>(responseStream, JsonSerializerOptions);
             if (result == null)
             {
                 return [];
@@ -280,7 +266,7 @@ public class PoeNinjaClient : IPoeNinjaClient
             using var client = GetHttpClient();
             var response = await client.GetAsync(url);
             var responseStream = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaCurrency>>(responseStream, options);
+            var result = await JsonSerializer.DeserializeAsync<PoeNinjaQueryResult<PoeNinjaCurrency>>(responseStream, JsonSerializerOptions);
             if (result == null)
             {
                 return [];

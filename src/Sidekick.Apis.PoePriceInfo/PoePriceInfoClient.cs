@@ -14,7 +14,7 @@ public class PoePriceInfoClient(
     ILogger<PoePriceInfoClient> logger,
     IHttpClientFactory httpClientFactory) : IPoePriceInfoClient
 {
-    private readonly JsonSerializerOptions options = new()
+    private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
     };
@@ -43,7 +43,7 @@ public class PoePriceInfoClient(
             using var client = GetHttpClient();
             var response = await client.GetAsync("?l=" + leagueId.GetUrlSlugForLeague() + "&i=" + encodedItem);
             var content = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<PriceInfoResult>(content, options);
+            var result = await JsonSerializer.DeserializeAsync<PriceInfoResult>(content, JsonSerializerOptions);
 
             if (result == null)
             {

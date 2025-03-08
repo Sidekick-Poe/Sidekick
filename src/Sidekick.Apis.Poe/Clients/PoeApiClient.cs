@@ -7,32 +7,19 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Clients;
 
-public class PoeApiClient : IPoeApiClient
+public class PoeApiClient(
+    ILogger<PoeTradeClient> logger,
+    IHttpClientFactory httpClientFactory,
+    ISettingsService settingsService) : IPoeApiClient
 {
     private const string PoeApiUrl = "https://api.pathofexile.com/";
 
-    private readonly ILogger logger;
-    private readonly ISettingsService settingsService;
-    private readonly IHttpClientFactory httpClientFactory;
-
-    public PoeApiClient(
-        ILogger<PoeTradeClient> logger,
-        IHttpClientFactory httpClientFactory,
-        ISettingsService settingsService)
+    private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
-        this.logger = logger;
-        this.settingsService = settingsService;
-        this.httpClientFactory = httpClientFactory;
-
-        Options = new JsonSerializerOptions()
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-        };
-        Options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
-    }
-
-    private JsonSerializerOptions Options { get; }
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+    };
 
     private HttpClient CreateClient()
     {
@@ -59,7 +46,7 @@ public class PoeApiClient : IPoeApiClient
             }
 
             var content = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<TReturn>(content, Options);
+            var result = await JsonSerializer.DeserializeAsync<TReturn>(content, JsonSerializerOptions);
             if (result != null)
             {
                 return result;
