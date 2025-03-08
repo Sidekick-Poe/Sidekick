@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Localization;
 
-namespace Sidekick.Common.Blazor.Settings;
+namespace Sidekick.Common.Blazor.Localization;
 
 public class SettingsResources(IStringLocalizer<SettingsResources> resources)
 {

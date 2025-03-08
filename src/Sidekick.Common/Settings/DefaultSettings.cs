@@ -8,6 +8,8 @@ public static class DefaultSettings
 
     public static string LanguageUi => "en";
 
+    public static bool OpenHomeOnLaunch => true;
+
     public static bool UseInvariantTradeResults => false;
 
     public static string KeyClose => "Space";

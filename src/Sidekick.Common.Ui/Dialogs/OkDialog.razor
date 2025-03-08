@@ -9,10 +9,10 @@
     </TopContent>
 
     <ChildContent>
-        <AppContainer>
+        <AppFullContainer>
             <Heading3
                 Class="mb-3 text-center">@((MarkupString)(Message.DecodeBase64Url()?.Replace("\\n", "<br />") ?? ""))</Heading3>
-        </AppContainer>
+        </AppFullContainer>
     </ChildContent>
     <BottomContent>
         <div class="px-3 py-2 flex justify-center gap-2">

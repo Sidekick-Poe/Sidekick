@@ -8,33 +8,17 @@
     </TopContent>
 
     <ChildContent>
-        <AppContainer>
+        <AppFullContainer>
             <Heading3 Class="mb-2 text-center">@Step</Heading3>
-            @if (Count != Completed)
-            {
-                <ProgressBar Percent="Percentage"/>
-            }
-            else
-            {
-                <TextBase Class="text-center">@WelcomeMessage</TextBase>
-            }
-        </AppContainer>
+            <ProgressBar Percent="Percentage"/>
+        </AppFullContainer>
     </ChildContent>
 
     <BottomContent>
         <div class="px-3 py-2 flex justify-center gap-2">
-            @if (Count != Completed)
-            {
-                <ButtonPrimary OnClick="Exit">
-                    @Resources["Exit"]
-                </ButtonPrimary>
-            }
-            else
-            {
-                <ButtonPrimary OnClick="CurrentView.Close">
-                    @Resources["Close"] @($"({TimeLeftToCloseView}s)")
-                </ButtonPrimary>
-            }
+            <ButtonPrimary OnClick="Exit">
+                @Resources["Exit"]
+            </ButtonPrimary>
         </div>
     </BottomContent>
 </LayoutSimple>

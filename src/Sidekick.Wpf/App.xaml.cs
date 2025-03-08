@@ -21,7 +21,6 @@ using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
 using Sidekick.Modules.Chat;
-using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
 using Sidekick.Modules.Trade;
@@ -144,7 +143,6 @@ public partial class App
 
             // Modules
             .AddSidekickChat()
-            .AddSidekickDevelopment()
             .AddSidekickGeneral()
             .AddSidekickMaps()
             .AddSidekickTrade()
