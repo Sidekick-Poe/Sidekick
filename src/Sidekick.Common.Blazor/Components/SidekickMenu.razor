@@ -1,5 +1,5 @@
-﻿@using Sidekick.Common.Blazor.Localization
-@using Sidekick.Common.Cache
+﻿@using Sidekick.Common.Cache
+@using Sidekick.Common.Blazor.Settings
 @using System.Diagnostics
 @inherits LayoutComponentBase
 
@@ -13,7 +13,7 @@
     <MenuItem Href="/settings/wiki">@Resources["Wiki"]</MenuItem>
     <MenuItem Href="/settings/chat">@Resources["Chat_Commands"]</MenuItem>
 
-    @if (Debugger.IsAttached)
+    @if (Debugger.IsAttached && false)
     {
         <MenuItem Href="/settings/wealth">@Resources["WealthTracker"]</MenuItem>
     }

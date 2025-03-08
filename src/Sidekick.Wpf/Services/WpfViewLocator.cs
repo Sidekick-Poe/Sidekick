@@ -52,17 +52,6 @@ public class WpfViewLocator : IViewLocator
             window.MinHeight = view.ViewHeight + 20;
             window.MinWidth = view.ViewWidth + 20;
 
-            if (view.ViewType != SidekickViewType.Modal && preferences != null)
-            {
-                window.Height = preferences.Height;
-                window.Width = preferences.Width;
-            }
-            else
-            {
-                window.Height = view.ViewHeight + 20;
-                window.Width = view.ViewWidth + 20;
-            }
-
             if (view.ViewType == SidekickViewType.Overlay)
             {
                 window.Topmost = true;
@@ -82,12 +71,28 @@ public class WpfViewLocator : IViewLocator
                 window.ResizeMode = ResizeMode.CanResize;
             }
 
+            if (window.IsReady)
+            {
+                return;
+            }
+
+            if (view.ViewType != SidekickViewType.Modal && preferences != null)
+            {
+                window.Height = preferences.Height;
+                window.Width = preferences.Width;
+            }
+            else
+            {
+                window.Height = view.ViewHeight + 20;
+                window.Width = view.ViewWidth + 20;
+            }
+
             // Set the window position.
             var saveWindowPositions = await settingsService.GetBool(SettingKeys.SaveWindowPositions);
             if (saveWindowPositions && preferences != null && preferences.X.HasValue && preferences.Y.HasValue)
             {
-                window.Left = preferences.X.Value!;
-                window.Top = preferences.Y.Value!;
+                window.Left = preferences.X.Value;
+                window.Top = preferences.Y.Value;
             }
             else
             {

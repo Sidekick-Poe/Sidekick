@@ -43,7 +43,7 @@ public class CurrentView : ICurrentView, IDisposable
     public string Url => navigationManager.Uri;
 
     /// <inheritdoc/>
-    public string? Key => new Uri(Url).AbsolutePath.Split('/', '\\').FirstOrDefault(x => !string.IsNullOrEmpty(x));
+    public string? Key { get; private set; }
 
     /// <inheritdoc/>
     public SidekickView? Current { get; private set; }
@@ -76,6 +76,7 @@ public class CurrentView : ICurrentView, IDisposable
     /// <inheritdoc/>
     public async Task Initialize(SidekickView view)
     {
+        Key ??= new Uri(Url).AbsolutePath.Split('/', '\\').FirstOrDefault(x => !string.IsNullOrEmpty(x));
         IsInitialized = true;
         Current = view;
         await viewLocator.Initialize(view);
