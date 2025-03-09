@@ -117,8 +117,6 @@ public class TradeSearchService
                 query.Filters.GetOrCreateTradeFilters().Filters.Indexed = new(timeFrame);
             }
 
-            SetSocketFilters(item, query.Filters);
-
             // Stats
             var andGroup = GetAndStats(modifierFilters, pseudoFilters);
             if (andGroup != null) query.Stats.Add(andGroup);
@@ -141,9 +139,9 @@ public class TradeSearchService
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             var uri = new Uri($"{await GetBaseApiUrl(metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
 
-            var request = new QueryRequest() 
-            { 
-                Query = query, 
+            var request = new QueryRequest()
+            {
+                Query = query,
             };
             var json = JsonSerializer.Serialize(request, JsonSerializerOptions);
 
@@ -330,27 +328,6 @@ public class TradeSearchService
         }
     }
 
-    private static void SetSocketFilters(Item item, SearchFilters filters)
-    {
-        // Auto Search 5+ Links
-        var highestCount = item.Sockets.GroupBy(x => x.Group).Select(x => x.Count()).OrderByDescending(x => x).FirstOrDefault();
-        if (highestCount < 5)
-        {
-            return;
-        }
-
-        filters.SocketFilters = new()
-        {
-            Filters =
-            {
-                Links = new SocketFilterOption()
-                {
-                    Min = highestCount,
-                },
-            },
-        };
-    }
-
     public async Task<List<TradeItem>> GetResults(GameType game, string queryId, List<string> ids)
     {
         try
@@ -409,6 +386,7 @@ public class TradeSearchService
             PhysicalDps = result.Item?.Extended?.PhysicalDps ?? 0,
             BaseDefencePercentile = result.Item?.Extended?.BaseDefencePercentile ?? 0,
             Influences = result.Item?.Influences ?? new(),
+            Sockets = [.. ParseSockets(result.Item?.Sockets, result.Item?.GemSockets)],
         };
 
         return new TradeItem()
@@ -416,7 +394,6 @@ public class TradeSearchService
             Invariant = null,
             Header = header,
             Properties = properties,
-            Sockets = [.. ParseSockets(result.Item?.Sockets, result.Item?.GemSockets)],
             ModifierLines = [.. GetModifierLines(result.Item)],
             PseudoModifiers = [],
             Text = Encoding.UTF8.GetString(Convert.FromBase64String(result.Item?.Extended?.Text ?? string.Empty)),
@@ -614,12 +591,12 @@ public class TradeSearchService
             ];
         }
 
-        if (gemSockets is not null)
+        if (gemSockets is not null && gemSockets.Count > 0)
         {
             return sockets.Select(x => new Socket()
             {
                 Group = x.Group,
-                Colour = SocketColour.White,
+                Colour = SocketColour.PoE2_Gem,
             });
         }
 
@@ -635,11 +612,15 @@ public class TradeSearchService
                     "R" => SocketColour.Red,
                     "W" => SocketColour.White,
                     "A" => SocketColour.Abyss,
-                    "S" => SocketColour.Soulcore,
                     _ => x.Type switch
                     {
-                        "rune" => x.Item == "rune" ? SocketColour.Rune : SocketColour.PathOfExile2,
-                        _ => throw new Exception("Invalid socket"),
+                        "rune" => x.Item switch
+                        {
+                            "rune" => SocketColour.PoE2_Rune,
+                            "soulcore" => SocketColour.PoE2_Soulcore,
+                            _ => SocketColour.PoE2,
+                        },
+                        _ => SocketColour.Undefined,
                     }
                 }
             });

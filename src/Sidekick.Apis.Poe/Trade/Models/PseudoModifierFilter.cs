@@ -1,4 +1,5 @@
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Models;
 
@@ -14,10 +15,37 @@ public class PseudoModifierFilter : ITradeFilter
 
     public double NormalizeValue { get; set; }
 
+    public FilterType FilterType { get; private set; }
+
+    public void ChangeFilterType(FilterType value)
+    {
+        switch (value)
+        {
+            case FilterType.Minimum:
+                NormalizeMinValue();
+                Max = null;
+                break;
+
+            case FilterType.Maximum:
+                NormalizeMaxValue();
+                Min = null;
+                break;
+
+            case FilterType.Equals: SetExactValue(); break;
+
+            case FilterType.Range:
+                NormalizeMinValue();
+                NormalizeMaxValue();
+                break;
+        }
+
+        FilterType = value;
+    }
+
     /// <summary>
     /// Normalize the Min value with NormalizeValue.
     /// </summary>
-    public void NormalizeMinValue()
+    private void NormalizeMinValue()
     {
         if (PseudoModifier.Value > 0)
         {
@@ -32,7 +60,7 @@ public class PseudoModifierFilter : ITradeFilter
     /// <summary>
     /// Normalize the Max value, +1 and/or NormalizeValue.
     /// </summary>
-    public void NormalizeMaxValue()
+    private void NormalizeMaxValue()
     {
         if (PseudoModifier.Value > 0)
         {
@@ -47,7 +75,7 @@ public class PseudoModifierFilter : ITradeFilter
     /// <summary>
     /// Sets the filter to be the exact value.
     /// </summary>
-    public void SetExactValue()
+    private void SetExactValue()
     {
         Min = (int)PseudoModifier.Value;
         Max = (int)PseudoModifier.Value;

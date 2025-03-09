@@ -9,9 +9,6 @@ public class MiscFilters
     [JsonPropertyName("gem_level")]
     public StatFilterValue? GemLevel { get; set; }
 
-    [JsonPropertyName("gem_alternate_quality")]
-    public SearchFilterOption? GemQualityType { get; set; }
-
     /// <remarks>
     /// The item level filter for Path of Exile 1 is inside the misc filters instead of the type filters.
     /// </remarks>
@@ -43,4 +40,7 @@ public class MiscFilters
 
     [JsonPropertyName("identified")]
     public SearchFilterOption? Identified { get; set; }
+
+    [JsonPropertyName("gem_sockets")]
+    public StatFilterValue? GemSockets { get; set; }
 }

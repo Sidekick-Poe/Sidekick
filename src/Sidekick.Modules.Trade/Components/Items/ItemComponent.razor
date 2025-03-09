@@ -32,7 +32,8 @@
                 @if (Item.Properties.Unidentified)
                 {
                     <ItemSeparator Rarity="Item.Header.Rarity"/>
-                    <ItemModifierText Category="ModifierCategory.Unidentified">@Resources["Unidentified"]</ItemModifierText>
+                    <ItemModifierText
+                        Category="ModifierCategory.Unidentified">@Resources["Unidentified"]</ItemModifierText>
                 }
                 @if (Item.Properties.Corrupted)
                 {
@@ -42,22 +43,22 @@
                 @if (!string.IsNullOrEmpty(Item.Price?.Note))
                 {
                     <ItemSeparator Rarity="Item.Header.Rarity"/>
-                    <TextCaption Class="font-caps text-[#AA9E82] text-center leading-none py-0.5">@Item.Price.Note</TextCaption>
+                    <TextCaption
+                        Class="font-caps text-[#AA9E82] text-center leading-none py-0.5">@Item.Price.Note</TextCaption>
                 }
             </div>
-            <div class="w-1/4 p-2">
+            <div class="w-1/4 min-w-[135px] p-2">
                 @if (Item.Price != null)
                 {
                     <div class="flex flex-col w-full items-center">
                         <PriceDisplay Value="Item.Price.Amount" Currency="@Item.Price.Currency"/>
-                        <TextBase Class="text-ellipsis w-full overflow-hidden text-center">@Item.Price.AccountName</TextBase>
+                        <TextBase
+                            Class="text-ellipsis w-full overflow-hidden text-center">@Item.Price.AccountName</TextBase>
                         <PriceAge Date="Item.Price.Date"/>
                     </div>
                 }
 
-                <div class="mt-3 flex flex-col w-full items-center">
-                    <ItemImageComponent Item="Item"/>
-                </div>
+                <ItemImageComponent Item="Item"/>
             </div>
         </div>
     </div>

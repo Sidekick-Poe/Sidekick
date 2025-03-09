@@ -1,6 +1,7 @@
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
@@ -10,7 +11,7 @@ public class SeparatorProperty() : PropertyDefinition
 
     public override List<Category> ValidCategories { get; } = [];
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue)
+    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
         return new BooleanPropertyFilter(this)
         {

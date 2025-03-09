@@ -39,6 +39,46 @@
     background-image: url("/images/items/socket-abyss.png");
 }
 
+.item-socket-poe2 {
+    background: url("/images/items/poe2/sockets.png") no-repeat 0 -120px;
+    background-size: cover;
+}
+
+.item-socket-poe2-gem {
+    position: relative;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("/images/items/poe2/socket_gem.png");
+}
+
+.item-socket-poe2-rune::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    background: url("/images/items/poe2/sockets.png") no-repeat 0 -150px;
+    background-size: cover;
+}
+
+.item-socket-poe2-soulcore::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    background: url("/images/items/poe2/sockets.png") no-repeat 0 -180px;
+    background-size: cover;
+}
+
 .item-socket-link::before {
     content: '';
     position: absolute;

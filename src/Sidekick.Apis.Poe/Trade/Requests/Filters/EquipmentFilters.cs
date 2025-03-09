@@ -33,4 +33,7 @@ public class EquipmentFilters
 
     [JsonPropertyName("damage")]
     public StatFilterValue? Damage { get; set; }
+
+    [JsonPropertyName("rune_sockets")]
+    public StatFilterValue? RuneSockets { get; set; }
 }

@@ -6,7 +6,6 @@ using Sidekick.Apis.Poe.Parser.Modifiers;
 using Sidekick.Apis.Poe.Parser.Properties;
 using Sidekick.Apis.Poe.Parser.Pseudo;
 using Sidekick.Apis.Poe.Parser.Requirements;
-using Sidekick.Apis.Poe.Parser.Sockets;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Items.AdditionalInformation;
@@ -21,7 +20,6 @@ public class ItemParser
     IRequirementsParser requirementsParser,
     ClusterJewelParser clusterJewelParser,
     IApiInvariantItemProvider apiInvariantItemProvider,
-    ISocketParser socketParser,
     IPropertyParser propertyParser,
     IHeaderParser headerParser
 ) : IItemParser
@@ -50,7 +48,6 @@ public class ItemParser
 
             // Order of parsing is important
             requirementsParser.Parse(parsingItem);
-            var sockets = socketParser.Parse(parsingItem);
             var properties = propertyParser.Parse(parsingItem);
             var modifierLines = modifierParser.Parse(parsingItem);
             propertyParser.ParseAfterModifiers(parsingItem, properties, modifierLines);
@@ -61,7 +58,6 @@ public class ItemParser
                 Invariant = invariant,
                 Header = parsingItem.Header,
                 Properties = properties,
-                Sockets = sockets,
                 ModifierLines = modifierLines,
                 PseudoModifiers = pseudoModifiers,
                 Text = parsingItem.Text,

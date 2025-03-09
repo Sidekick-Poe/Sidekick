@@ -95,7 +95,7 @@ else if (Price != null)
                 PriceCheckService.Item?.Header.Category ?? Category.Unknown,
                 gemLevel: PriceCheckService.Item?.Properties.GemLevel,
                 mapTier: PriceCheckService.Item?.Properties.MapTier,
-                numberOfLinks: PriceCheckService.Item?.GetMaximumNumberOfLinks());
+                numberOfLinks: PriceCheckService.Item?.Properties.GetMaximumNumberOfLinks());
         }
 
         if (Price?.SparkLine?.Data.All(x => x.HasValue) == true)

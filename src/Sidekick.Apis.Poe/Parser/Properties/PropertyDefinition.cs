@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Parser.Properties;
 
@@ -14,9 +15,9 @@ public abstract class PropertyDefinition
 
     public virtual void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines) { }
 
-    public virtual BooleanPropertyFilter? GetFilter(Item item, double normalizeValue) { return null; }
+    public virtual BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType) { return null; }
 
-    public virtual List<BooleanPropertyFilter>? GetFilters(Item item, double normalizeValue) { return null; }
+    public virtual List<BooleanPropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType) { return null; }
 
     public abstract void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter);
 

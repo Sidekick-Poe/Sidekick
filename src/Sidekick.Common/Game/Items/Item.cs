@@ -5,7 +5,6 @@ public class Item
     public required ItemHeader? Invariant { get; init; }
     public required ItemHeader Header { get; init; }
     public required ItemProperties Properties { get; init; }
-    public required List<Socket> Sockets { get; init; }
     public required List<ModifierLine> ModifierLines { get; init; }
     public required List<PseudoModifier> PseudoModifiers { get; init; }
     public required string Text { get; init; }
@@ -42,14 +41,5 @@ public class Item
         }
 
         return Header.Name;
-    }
-
-    public int GetMaximumNumberOfLinks()
-    {
-        return Sockets.Count != 0 ?
-            Sockets
-                .GroupBy(x => x.Group)
-                .Max(x => x.Count()) :
-            0;
     }
 }

@@ -1,22 +1,23 @@
 @using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Common.Game.Items
 
+@if (Item.Properties.Sockets == null || Item.Properties.Sockets.All(x => x.Colour == SocketColour.PoE2_Gem))
+{
+    return;
+}
+
 <div class="item-sockets-wrapper">
     <div class="item-sockets @WidthClass">
         @{
             var previousGroup = -1;
         }
-        @foreach (var socket in Item
-                                .Sockets.OrderBy(x => x.Group)
-                                .Select(
-                                    (
-                                        x,
-                                        index) => new
-                                    {
-                                        x.Colour,
-                                        x.Group,
-                                        Index = index
-                                    }))
+        @foreach (var socket in Item.Properties.Sockets.OrderBy(x => x.Group)
+                      .Select((x, index) => new
+                      {
+                          x.Colour,
+                          x.Group,
+                          Index = index
+                      }))
         {
             var isLink = previousGroup != -1 && previousGroup == socket.Group;
 
@@ -40,6 +41,22 @@
 
                 case SocketColour.Abyss:
                     <div class="item-socket item-socket-abyss @(isLink ? "item-socket-link" : "")"></div>
+                    break;
+
+                case SocketColour.PoE2:
+                    <div class="item-socket item-socket-poe2"></div>
+                    break;
+
+                case SocketColour.PoE2_Gem:
+                    <div class="item-socket-poe2-gem"></div>
+                    break;
+
+                case SocketColour.PoE2_Rune:
+                    <div class="item-socket item-socket-poe2 item-socket-poe2-rune"></div>
+                    break;
+
+                case SocketColour.PoE2_Soulcore:
+                    <div class="item-socket item-socket-poe2 item-socket-poe2-soulcore"></div>
                     break;
             }
 

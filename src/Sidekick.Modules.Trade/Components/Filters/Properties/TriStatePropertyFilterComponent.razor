@@ -1,6 +1,11 @@
 @using Sidekick.Apis.Poe.Parser.Properties.Filters
 @using Sidekick.Modules.Trade.Localization;
 
+@if (!Filter.ShowRow)
+{
+    return;
+}
+
 <FilterWrapper>
     <div class="flex flex-nowrap items-center">
         <div class="grow">

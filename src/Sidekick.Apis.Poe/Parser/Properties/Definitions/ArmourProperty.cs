@@ -4,6 +4,7 @@ using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
@@ -24,7 +25,7 @@ public class ArmourProperty
         if (itemProperties.Armour > 0) propertyBlock.Parsed = true;
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue)
+    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
         if (item.Properties.Armour <= 0) return null;
 
@@ -37,7 +38,7 @@ public class ArmourProperty
             OriginalValue = item.Properties.Armour,
             Checked = false,
         };
-        filter.NormalizeMinValue();
+        filter.ChangeFilterType(filterType);
         return filter;
     }
 

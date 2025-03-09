@@ -37,6 +37,8 @@ public class SearchFilters
     [JsonPropertyName("socket_filters")]
     public SocketFilterGroup? SocketFilters { get; set; }
 
+    public SocketFilterGroup GetOrCreateSocketFilters() => SocketFilters ??= new();
+
     [JsonPropertyName("req_filters")]
     public RequirementFilterGroup? RequirementFilters { get; set; }
 

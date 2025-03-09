@@ -18,7 +18,6 @@ using Sidekick.Apis.Poe.Parser.Modifiers;
 using Sidekick.Apis.Poe.Parser.Properties;
 using Sidekick.Apis.Poe.Parser.Pseudo;
 using Sidekick.Apis.Poe.Parser.Requirements;
-using Sidekick.Apis.Poe.Parser.Sockets;
 using Sidekick.Apis.Poe.Stash;
 using Sidekick.Apis.Poe.Static;
 using Sidekick.Apis.Poe.Trade;
@@ -58,7 +57,6 @@ public static class StartupExtensions
         services.AddSingleton<IFuzzyService, FuzzyService>();
 
         services.AddSingleton<IRequirementsParser, RequirementsParser>();
-        services.AddSingleton<ISocketParser, SocketParser>();
         services.AddSidekickInitializableService<IPropertyParser, PropertyParser>();
         services.AddSidekickInitializableService<IApiInvariantItemProvider, ApiInvariantItemProvider>();
         services.AddSidekickInitializableService<IApiItemProvider, ApiItemProvider>();
