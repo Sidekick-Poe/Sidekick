@@ -44,6 +44,8 @@ public class ItemProperties
 
     public Influences Influences { get; init; } = new();
 
+    public List<Socket>? Sockets { get; set; }
+
     public double CriticalHitChance { get; set; }
 
     public double AttacksPerSecond { get; set; }
@@ -214,5 +216,11 @@ public class ItemProperties
 
         // Step 2: Adjust the base value for the target quality
         return (int)(baseValue * 1.2);
+    }
+
+    public int GetMaximumNumberOfLinks()
+    {
+        if (Sockets == null) return 0;
+        return Sockets.Count != 0 ? Sockets.GroupBy(x => x.Group).Max(x => x.Count()) : 0;
     }
 }

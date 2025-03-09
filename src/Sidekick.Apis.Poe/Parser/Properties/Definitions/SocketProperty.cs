@@ -1,18 +1,27 @@
 using System.Text.RegularExpressions;
+using Sidekick.Apis.Poe.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Requests.Filters;
+using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
 
-namespace Sidekick.Apis.Poe.Parser.Sockets;
+namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
-public class SocketParser(IGameLanguageProvider gameLanguageProvider) : ISocketParser
+public class SocketProperty
+(
+    IGameLanguageProvider gameLanguageProvider,
+    GameType game
+) : PropertyDefinition
 {
     private Regex Pattern { get; } = new Regex($"{Regex.Escape(gameLanguageProvider.Language.DescriptionSockets)}.*?([-RGBWAS]+)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)");
 
-    public List<Socket> Parse(ParsingItem parsingItem)
+    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory];
+
+    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {
         if (!parsingItem.TryParseRegex(Pattern, out var match))
         {
-            return [];
+            return;
         }
 
         var groups = match.Groups.Values.Where(x => !string.IsNullOrEmpty(x.Value))
@@ -77,7 +86,7 @@ public class SocketParser(IGameLanguageProvider gameLanguageProvider) : ISocketP
                         result.Add(new Socket()
                         {
                             Group = group.Index,
-                            Colour = SocketColour.Soulcore
+                            Colour = SocketColour.PoE2
                         });
                         break;
                 }
@@ -86,6 +95,57 @@ public class SocketParser(IGameLanguageProvider gameLanguageProvider) : ISocketP
             }
         }
 
-        return result;
+        itemProperties.Sockets = result;
+    }
+
+    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue)
+    {
+        if (item.Properties.Sockets is not
+            {
+                Count: > 0
+            })
+            return null;
+
+        int value;
+        bool @checked;
+        if (game == GameType.PathOfExile2)
+        {
+            value = item.Properties.Sockets.Count;
+            @checked = value == 3;
+        }
+        else
+        {
+            value = item.Properties.Sockets.GroupBy(x => x.Group).Select(x => x.Count()).Max();
+            @checked = value >= 5;
+        }
+
+        var filter = new IntPropertyFilter(this)
+        {
+            Text = gameLanguageProvider.Language.DescriptionSockets,
+            NormalizeEnabled = false,
+            NormalizeValue = normalizeValue,
+            Value = value,
+            Checked = @checked,
+        };
+        filter.NormalizeMinValue();
+        return filter;
+    }
+
+    public override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
+    {
+        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+
+        switch (game)
+        {
+            case GameType.PathOfExile:
+                searchFilters.GetOrCreateSocketFilters().Filters.Links = new SocketFilterOption()
+                {
+                    Min = intFilter.Min ?? intFilter.Value,
+                    Max = intFilter.Max ?? intFilter.Value,
+                };
+                break;
+
+            case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.RuneSockets = new StatFilterValue(intFilter); break;
+        }
     }
 }

@@ -55,6 +55,7 @@ public class PropertyParser
 
             new GemLevelProperty(gameLanguageProvider, game, apiInvariantItemProvider),
             new ItemLevelProperty(gameLanguageProvider, game),
+            new SocketProperty(gameLanguageProvider, game),
             new CorruptedProperty(gameLanguageProvider),
             new UnidentifiedProperty(gameLanguageProvider),
 

@@ -50,7 +50,8 @@ Corrupted
 
         Assert.Equal(129, actual.Properties.EvasionRating);
 
-        Assert.Single(actual.Sockets);
+        Assert.NotNull(actual.Properties.Sockets);
+        Assert.Single(actual.Properties.Sockets);
 
         Assert.Equal(36, actual.Properties.ItemLevel);
 

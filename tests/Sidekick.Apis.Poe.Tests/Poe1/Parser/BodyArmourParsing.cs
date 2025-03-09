@@ -49,7 +49,8 @@ can deny that my work has made quite the splash...""
         Assert.Equal(20, actual.Properties.Quality);
         Assert.Equal(960, actual.Properties.EvasionRating);
         Assert.Equal(186, actual.Properties.EnergyShield);
-        Assert.Equal(6, actual.Sockets.Count(x => x.Group == 0));
+        Assert.NotNull(actual.Properties.Sockets);
+        Assert.Equal(6, actual.Properties.Sockets.Count(x => x.Group == 0));
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Evasion and Energy Shield (Local)", 128);
         actual.AssertHasModifier(ModifierCategory.Explicit, "+# to maximum Life", 55);

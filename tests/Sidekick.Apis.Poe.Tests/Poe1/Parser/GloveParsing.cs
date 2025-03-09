@@ -38,7 +38,8 @@ Item Level: 61
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Assassin's Mitts", actual.Header.ApiType);
         Assert.Equal("Death Nails", actual.Header.Name);
-        Assert.Single(actual.Sockets);
+        Assert.NotNull(actual.Properties.Sockets);
+        Assert.Single(actual.Properties.Sockets);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Intelligence", 18);
         actual.AssertHasModifier(ModifierCategory.Explicit, "+# to maximum Life", 73);

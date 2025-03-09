@@ -28,7 +28,7 @@ public class IntPropertyFilter : BooleanPropertyFilter
     /// </summary>
     public void NormalizeMinValue()
     {
-        if (!int.TryParse(Value.ToString(), out var value) || value == 0)
+        if (!NormalizeEnabled || !int.TryParse(Value.ToString(), out var value) || value == 0)
         {
             return;
         }
@@ -48,7 +48,7 @@ public class IntPropertyFilter : BooleanPropertyFilter
     /// </summary>
     public void NormalizeMaxValue()
     {
-        if (!int.TryParse(Value.ToString(), out var value) || value == 0)
+        if (!NormalizeEnabled || !int.TryParse(Value.ToString(), out var value) || value == 0)
         {
             return;
         }
