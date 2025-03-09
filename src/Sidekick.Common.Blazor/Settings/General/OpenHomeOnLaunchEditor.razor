@@ -1,0 +1,27 @@
+@using Sidekick.Common.Settings
+
+<FormCheckbox Value="@OpenHomeOnLaunch"
+              ValueChanged="@OpenHomeOnLaunchChanged">
+    @Resources["OpenHomeOnLaunch"]
+</FormCheckbox>
+
+@inject IStringLocalizer<SettingsResources> Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private bool OpenHomeOnLaunch { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        OpenHomeOnLaunch = await SettingsService.GetBool(SettingKeys.OpenHomeOnLaunch);
+        await base.OnInitializedAsync();
+    }
+
+    private async Task OpenHomeOnLaunchChanged(bool value)
+    {
+        OpenHomeOnLaunch = value;
+        await SettingsService.Set(SettingKeys.OpenHomeOnLaunch, value);
+    }
+
+}

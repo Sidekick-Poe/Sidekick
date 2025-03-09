@@ -1,8 +1,9 @@
-@page "/settings"
-@layout SettingsLayout
+@page "/settings/general"
+@layout MainWindowLayout
+@using Sidekick.Common.Blazor.Components
+@using Sidekick.Common.Platform
 @inherits Sidekick.Common.Ui.Views.SidekickView
 
-<AppTitle Title="@Resources["Settings"]" />
 <AppContainer>
     <FormFieldset Legend="@Resources["General_Settings"]">
         <LanguageParserEditor />
@@ -11,12 +12,16 @@
         <InterfaceLanguageEditor />
     </FormFieldset>
 
-    <FormFieldset Legend="@Resources["Other_Settings"]">
-        <RetainClipboardEditor />
-        <EscapeClosesOverlaysEditor />
-        <SaveWindowPositionsEditor />
-        <KeyFindItemsEditor />
-    </FormFieldset>
+    @if (ApplicationService.SupportsKeybinds)
+    {
+        <FormFieldset Legend="@Resources["Other_Settings"]">
+            <RetainClipboardEditor/>
+            <EscapeClosesOverlaysEditor/>
+            <SaveWindowPositionsEditor/>
+            <KeyFindItemsEditor/>
+        </FormFieldset>
+    }
 </AppContainer>
 
 @inject IStringLocalizer<SettingsResources> Resources
+@inject IApplicationService ApplicationService

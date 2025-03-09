@@ -8,9 +8,12 @@ public class WebViewLocator : IViewLocator
 
     public bool SupportsMaximize => false;
 
+    private SidekickView? LastView { get; set; }
+
     public Task Open(string url)
     {
-        throw new NotImplementedException();
+        LastView?.NavigationManager.NavigateTo(url);
+        return Task.CompletedTask;
     }
 
     public Task CloseAll()
@@ -30,12 +33,13 @@ public class WebViewLocator : IViewLocator
 
     public Task Close(SidekickView view)
     {
-        view.NavigationManager.NavigateTo("/development");
+        view.NavigationManager.NavigateTo("/home");
         return Task.CompletedTask;
     }
 
     public Task Initialize(SidekickView view)
     {
+        LastView = view;
         return Task.CompletedTask;
     }
 

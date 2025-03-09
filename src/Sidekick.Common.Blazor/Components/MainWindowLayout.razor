@@ -1,0 +1,18 @@
+﻿@inherits LayoutComponentBase
+
+<AppTitle Title="Sidekick"/>
+<LayoutTwoColumn>
+    <TopContent>
+        <AppBar>
+            <AppMinimize/>
+            <AppMaximize/>
+            <AppClose/>
+        </AppBar>
+    </TopContent>
+    <LeftContent>
+        <SidekickMenu />
+    </LeftContent>
+    <ChildContent>
+        @Body
+    </ChildContent>
+</LayoutTwoColumn>

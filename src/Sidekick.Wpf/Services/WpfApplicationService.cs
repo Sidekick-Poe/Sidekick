@@ -1,8 +1,7 @@
-using System.Diagnostics;
 using System.Windows.Controls;
 using Hardcodet.Wpf.TaskbarNotification;
 using Microsoft.Extensions.Localization;
-using Sidekick.Common.Blazor.Initialization;
+using Sidekick.Common.Blazor.Home;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Ui.Views;
@@ -12,7 +11,7 @@ namespace Sidekick.Wpf.Services;
 public class WpfApplicationService
 (
     IViewLocator viewLocator,
-    IStringLocalizer<InitializationResources> resources,
+    IStringLocalizer<HomeResources> resources,
     IBrowserProvider browserProvider
 ) : IApplicationService, IDisposable
 {
@@ -41,21 +40,16 @@ public class WpfApplicationService
         Icon.Icon = new System.Drawing.Icon(System.IO.Path.Combine(AppContext.BaseDirectory, "wwwroot/favicon.ico"));
         Icon.ToolTipText = "Sidekick";
         Icon.ContextMenu = new ContextMenu();
-        Icon.DoubleClickCommand = new SimpleCommand(() => viewLocator.Open("/settings"));
-
-        if (Debugger.IsAttached)
-        {
-            AddTrayItem("Development", () => viewLocator.Open("/development"));
-        }
+        Icon.DoubleClickCommand = new SimpleCommand(() => viewLocator.Open("/home"));
 
         AddTrayItem("Sidekick - " + ((IApplicationService)this).GetVersion(), null, true);
+        AddTrayItem(resources["Home"], () => viewLocator.Open("/home"));
         AddTrayItem(resources["Open_Website"],
                     () =>
                     {
                         browserProvider.OpenSidekickWebsite();
                         return Task.CompletedTask;
                     });
-        AddTrayItem(resources["Settings"], () => viewLocator.Open("/settings"));
         AddTrayItem(resources["Exit"],
                     () =>
                     {

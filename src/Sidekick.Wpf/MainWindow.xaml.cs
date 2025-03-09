@@ -19,6 +19,8 @@ public partial class MainWindow
     private readonly WpfViewLocator viewLocator;
     private bool isClosing;
 
+    public bool IsReady { get; private set; }
+
     private IServiceScope Scope { get; set; }
 
     public Guid Id { get; set; }
@@ -44,8 +46,6 @@ public partial class MainWindow
             WebView.WebView.CoreWebView2.Settings.AreDevToolsEnabled = false;
         }
 
-        var wasAlreadyVisible = WebView.Visibility == Visibility.Visible;
-
         // This avoids the white flicker which is caused by the page content not being loaded initially. We show the webview control only when the content is ready.
         WebView.Visibility = Visibility.Visible;
 
@@ -53,10 +53,12 @@ public partial class MainWindow
         Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
         Opacity = 0.01;
 
-        if (!wasAlreadyVisible)
+        if (!IsReady)
         {
             Activate();
         }
+
+        IsReady = true;
     }
 
     protected override void OnClosing(CancelEventArgs e)
