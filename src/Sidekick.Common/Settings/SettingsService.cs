@@ -14,19 +14,6 @@ public class SettingsService(
 {
     public event Action? OnSettingsChanged;
 
-    public int Priority { get; set; } = int.MinValue;
-
-    public async Task Initialize()
-    {
-        // If the language is Chinese, we are forcing the use invariant trade results flag.
-        var useInvariantTradeResults = await GetBool(SettingKeys.UseInvariantTradeResults);
-        var languageParser = await GetString(SettingKeys.LanguageParser);
-        if (languageParser == "zh" && !useInvariantTradeResults)
-        {
-            await Set(SettingKeys.UseInvariantTradeResults, true);
-        }
-    }
-
     public async Task<bool> GetBool(string key)
     {
         await using var dbContext = new SidekickDbContext(dbContextOptions);
