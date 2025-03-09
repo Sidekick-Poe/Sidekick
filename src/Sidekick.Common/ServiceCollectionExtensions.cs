@@ -30,8 +30,8 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IBrowserProvider, BrowserProvider>();
         services.AddSingleton<ICacheProvider, CacheProvider>();
         services.AddSingleton<IFolderProvider, FolderProvider>();
+        services.AddSingleton<ISettingsService, SettingsService>();
 
-        services.AddSidekickInitializableService<ISettingsService, SettingsService>();
         services.AddSidekickInitializableService<IGameLanguageProvider, GameLanguageProvider>();
         services.AddSidekickInitializableService<IUiLanguageProvider, UiLanguageProvider>();
 
