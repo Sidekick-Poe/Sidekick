@@ -1,9 +1,12 @@
+using System.Globalization;
+using Sidekick.Common.Settings;
+
 namespace Sidekick.Apis.Poe.Parser.Properties.Filters;
 
 public class DoublePropertyFilter : BooleanPropertyFilter
 {
-    internal DoublePropertyFilter(
-        PropertyDefinition definition) : base(definition)
+    internal DoublePropertyFilter(PropertyDefinition definition)
+        : base(definition)
     {
     }
 
@@ -13,22 +16,55 @@ public class DoublePropertyFilter : BooleanPropertyFilter
 
     public string? ValuePrefix { get; set; }
 
-    public string? ValueSuffix { get; set; }
+    public string? ValueSuffix { get; init; }
 
-    public required double Value { get; set; }
+    public required double Value { get; init; }
 
-    public double OriginalValue { get; set; }
+    public double OriginalValue { get; init; }
 
     public double? Min { get; set; }
 
     public double? Max { get; set; }
 
+    public FilterType FilterType { get; private set; }
+
+    public void ChangeFilterType(FilterType value)
+    {
+        switch (value)
+        {
+            case FilterType.Minimum:
+                NormalizeMinValue();
+                Max = null;
+                break;
+
+            case FilterType.Maximum:
+                NormalizeMaxValue();
+                Min = null;
+                break;
+
+            case FilterType.Equals: SetExactValue(); break;
+
+            case FilterType.Range:
+                NormalizeMinValue();
+                NormalizeMaxValue();
+                break;
+        }
+
+        FilterType = value;
+    }
+
     /// <summary>
     /// Normalize the Min value with NormalizeValue.
     /// </summary>
-    public void NormalizeMinValue()
+    private void NormalizeMinValue()
     {
-        if (!NormalizeEnabled || !decimal.TryParse(Value.ToString(), out var value) || value == 0)
+        if (!NormalizeEnabled)
+        {
+            Min = Value;
+            return;
+        }
+
+        if (!decimal.TryParse(Value.ToString(CultureInfo.InvariantCulture), out var value) || value == 0)
         {
             return;
         }
@@ -36,39 +72,43 @@ public class DoublePropertyFilter : BooleanPropertyFilter
         if (value > 0)
         {
             Min = Math.Round((double)Math.Max((1 - (decimal)NormalizeValue) * value, 0), 2);
+            return;
         }
-        else
-        {
-            Min = Math.Round((double)Math.Min((1 + (decimal)NormalizeValue) * value, 0), 2);
-        }
+
+        Min = Math.Round((double)Math.Min((1 + (decimal)NormalizeValue) * value, 0), 2);
     }
 
     /// <summary>
     /// Normalize the Max value, +1 and/or NormalizeValue.
     /// </summary>
-    public void NormalizeMaxValue()
+    private void NormalizeMaxValue()
     {
-        if (!NormalizeEnabled || !double.TryParse(Value.ToString(), out var value) || value == 0)
+        if (!NormalizeEnabled)
+        {
+            Max = Value;
+            return;
+        }
+
+        if (!double.TryParse(Value.ToString(CultureInfo.InvariantCulture), out var value) || value == 0)
         {
             return;
         }
 
         if (value > 0)
         {
-            Max = Math.Round(Math.Max(Math.Max(value + 1, (1 + (double)NormalizeValue) * value), 0), 2);
+            Max = Math.Round(Math.Max(Math.Max(value + 1, (1 + NormalizeValue) * value), 0), 2);
+            return;
         }
-        else
-        {
-            Max = Math.Round(Math.Min(Math.Max(value + 1, (1 - (double)NormalizeValue) * value), 0), 2);
-        }
+
+        Max = Math.Round(Math.Min(Math.Max(value + 1, (1 - NormalizeValue) * value), 0), 2);
     }
 
     /// <summary>
     /// Sets the filter to be the exact value.
     /// </summary>
-    public void SetExactValue()
+    private void SetExactValue()
     {
-        if (!double.TryParse(Value.ToString(), out var value))
+        if (!double.TryParse(Value.ToString(CultureInfo.InvariantCulture), out var value))
         {
             return;
         }
@@ -76,5 +116,4 @@ public class DoublePropertyFilter : BooleanPropertyFilter
         Min = value;
         Max = value;
     }
-
 }

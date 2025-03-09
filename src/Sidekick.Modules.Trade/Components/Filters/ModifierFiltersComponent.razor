@@ -1,9 +1,8 @@
 @using Sidekick.Common.Game.Items
-@using Sidekick.Common.Settings
 @for (var i = 0; i < PriceCheckService.ModifierFilters.Count; i++)
 {
     <CascadingValue Value="PriceCheckService.ModifierFilters[i]" IsFixed="true">
-        <ModifierFilterComponent DefaultFilterType="@DefaultFilterType"/>
+        <ModifierFilterComponent/>
     </CascadingValue>
 
     var isLastFilter = i + 1 == PriceCheckService.ModifierFilters.Count;
@@ -20,9 +19,6 @@
 @inject PriceCheckService PriceCheckService
 
 @code {
-    [Parameter]
-    public required FilterType DefaultFilterType { get; set; }
-
     private ModifierCategory? NormalizeModifierCategory(ModifierCategory? category) => category switch
     {
         ModifierCategory.Fractured => ModifierCategory.Explicit,

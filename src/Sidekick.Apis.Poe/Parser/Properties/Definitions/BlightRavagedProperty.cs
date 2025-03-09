@@ -3,6 +3,7 @@ using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
@@ -17,7 +18,7 @@ public class BlightRavagedProperty(IGameLanguageProvider gameLanguageProvider) :
         itemProperties.BlightRavaged = Pattern?.IsMatch(parsingItem.Blocks[0].Lines[^1].Text) ?? false;
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue)
+    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
         if (!item.Properties.BlightRavaged) return null;
 

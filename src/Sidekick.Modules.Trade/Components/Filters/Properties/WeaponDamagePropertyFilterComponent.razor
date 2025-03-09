@@ -4,6 +4,11 @@
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
 
+@if (!Filter.ShowRow)
+{
+    return;
+}
+
 <FilterWrapper>
     <div class="flex flex-nowrap items-center">
         <div class="grow">
@@ -16,9 +21,10 @@
                                       Value="@PriceCheckService.Item.Properties.PhysicalDamageWithQuality.ToDisplayString()"
                                       HasAdditionalInformation="PriceCheckService.Item.Properties.PhysicalDamageWithQuality.ToDisplayString() != PriceCheckService.Item.Properties.PhysicalDamage.ToDisplayString() && Filter.OriginalValue > 0">
                         <AdditionalInformation>
-                            <ItemPropertyText Label="@($"{GameLanguageProvider.Language.DescriptionQuality} {PriceCheckService.Item?.Properties.Quality}%")"
-                                              ContentType="LineContentType.Physical"
-                                              Value="@PriceCheckService.Item?.Properties.PhysicalDamage.ToDisplayString()"/>
+                            <ItemPropertyText
+                                Label="@($"{GameLanguageProvider.Language.DescriptionQuality} {PriceCheckService.Item?.Properties.Quality}%")"
+                                ContentType="LineContentType.Physical"
+                                Value="@PriceCheckService.Item?.Properties.PhysicalDamage.ToDisplayString()"/>
                             <ItemPropertyText Label="@($"{GameLanguageProvider.Language.DescriptionQuality} 20%")"
                                               ContentType="LineContentType.Physical"
                                               Value="@PriceCheckService.Item?.Properties.PhysicalDamageWithQuality.ToDisplayString()"/>
@@ -58,7 +64,10 @@
 
         @if (Filter.Checked)
         {
-            <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged" DefaultFilterType="@DefaultFilterType"/>
+            <FilterRange @bind-Min="@Filter.Min"
+                         @bind-Max="@Filter.Max"
+                         Type="@Filter.FilterType"
+                         TypeChanged="(v) => Filter.ChangeFilterType(v)"/>
         }
     </div>
 </FilterWrapper>
@@ -73,39 +82,14 @@
     [Parameter]
     public required WeaponDamagePropertyFilter Filter { get; set; }
 
-    [Parameter]
-    public required FilterType DefaultFilterType { get; set; }
-
     private async void CheckedChanged(bool value)
     {
         Filter.Checked = value;
 
         // We can change the settings in the Trade window, so we should fetch here every time.
         Filter.NormalizeValue = await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
-        TypeChanged(DefaultFilterType);
-    }
-
-    private void TypeChanged(FilterType type)
-    {
-        switch (type)
-        {
-            case FilterType.Minimum:
-                Filter.NormalizeMinValue();
-                Filter.Max = null;
-                break;
-
-            case FilterType.Maximum:
-                Filter.NormalizeMaxValue();
-                Filter.Min = null;
-                break;
-
-            case FilterType.Equals: Filter.SetExactValue(); break;
-
-            case FilterType.Range:
-                Filter.NormalizeMinValue();
-                Filter.NormalizeMaxValue();
-                break;
-        }
+        var filterType = await SettingsService.GetEnum<FilterType>(SettingKeys.PriceCheckDefaultFilterType) ?? FilterType.Minimum;
+        Filter.ChangeFilterType(filterType);
     }
 
 }

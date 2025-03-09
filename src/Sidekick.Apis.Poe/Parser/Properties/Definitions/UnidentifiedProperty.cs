@@ -3,6 +3,7 @@ using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
@@ -17,7 +18,7 @@ public class UnidentifiedProperty(IGameLanguageProvider gameLanguageProvider) : 
         itemProperties.Unidentified = GetBool(Pattern, parsingItem);
     }
 
-    public override TriStatePropertyFilter? GetFilter(Item item, double normalizeValue)
+    public override TriStatePropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
         if (!item.Properties.Unidentified)
         {

@@ -77,12 +77,10 @@
     public EventCallback<double?> MaxChanged { get; set; }
 
     [Parameter]
-    public EventCallback<FilterType> TypeChanged { get; set; }
-
-    private FilterType Type { get; set; } = FilterType.Minimum;
+    public FilterType Type { get; set; }
 
     [Parameter]
-    public required FilterType DefaultFilterType { get; set; }
+    public EventCallback<FilterType> TypeChanged { get; set; }
 
     private string Id { get; } = UiUtilities.GenerateId();
 
@@ -93,20 +91,6 @@
         FilterType.Range => @"<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 24 24""><path d=""M8,3A2,2 0 0,0 6,5V9A2,2 0 0,1 4,11H3V13H4A2,2 0 0,1 6,15V19A2,2 0 0,0 8,21H10V19H8V14A2,2 0 0,0 6,12A2,2 0 0,0 8,10V5H10V3M16,3A2,2 0 0,1 18,5V9A2,2 0 0,0 20,11H21V13H20A2,2 0 0,0 18,15V19A2,2 0 0,1 16,21H14V19H16V14A2,2 0 0,1 18,12A2,2 0 0,1 16,10V5H14V3H16Z"" /></svg>",
         _ => @"<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 24 24""><path d=""M6.5,2.27L20,10.14L6.5,18L5.5,16.27L16.03,10.14L5.5,4L6.5,2.27M20,20V22H5V20H20Z"" /></svg>",
     };
-
-    private bool IsChanging { get; set; }
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
-
-        if (IsChanging)
-        {
-            return;
-        }
-
-        Type = DefaultFilterType;
-    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -142,24 +126,16 @@
 
     private async Task UpdateMinValue(double? value)
     {
-        IsChanging = true;
-
         await MinChanged.InvokeAsync(value);
         if (Type == FilterType.Equals)
         {
             await MaxChanged.InvokeAsync(value);
         }
-
-        IsChanging = false;
     }
 
     private async Task UpdateMaxValue(double? value)
     {
-        IsChanging = true;
-
         await MaxChanged.InvokeAsync(value);
-
-        IsChanging = false;
     }
 
     private async Task OnMinWheel(WheelEventArgs args)

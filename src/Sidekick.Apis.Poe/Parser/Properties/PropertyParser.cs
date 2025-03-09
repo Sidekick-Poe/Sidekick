@@ -94,16 +94,17 @@ public class PropertyParser
     public async Task<List<BooleanPropertyFilter>> GetFilters(Item item)
     {
         var normalizeValue = await settingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
+        var filterType = await settingsService.GetEnum<FilterType>(SettingKeys.PriceCheckDefaultFilterType) ?? FilterType.Minimum;
         var results = new List<BooleanPropertyFilter>();
 
         foreach (var definition in Definitions)
         {
             if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(item.Header.Category)) continue;
 
-            var filter = definition.GetFilter(item, normalizeValue);
+            var filter = definition.GetFilter(item, normalizeValue, filterType);
             if (filter != null) results.Add(filter);
 
-            var filters = definition.GetFilters(item, normalizeValue);
+            var filters = definition.GetFilters(item, normalizeValue, filterType);
             if (filters != null) results.AddRange(filters);
         }
 
