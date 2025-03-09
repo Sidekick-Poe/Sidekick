@@ -41,6 +41,6 @@ public class ItemQuantityProperty(IGameLanguageProvider gameLanguageProvider) : 
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
-        searchFilters.GetOrCreateMapFilters().Filters.ItemQuantity = new StatFilterValue(intFilter);
+        searchFilters.MapFilters.Filters.ItemQuantity = new StatFilterValue(intFilter);
     }
 }

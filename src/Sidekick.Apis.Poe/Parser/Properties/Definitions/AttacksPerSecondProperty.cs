@@ -42,8 +42,8 @@ public class AttacksPerSecondProperty(IGameLanguageProvider gameLanguageProvider
 
         switch (game)
         {
-            case GameType.PathOfExile: searchFilters.GetOrCreateWeaponFilters().Filters.AttacksPerSecond = new StatFilterValue(doubleFilter); break;
-            case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.AttacksPerSecond = new StatFilterValue(doubleFilter); break;
+            case GameType.PathOfExile: searchFilters.WeaponFilters.Filters.AttacksPerSecond = new StatFilterValue(doubleFilter); break;
+            case GameType.PathOfExile2: searchFilters.EquipmentFilters.Filters.AttacksPerSecond = new StatFilterValue(doubleFilter); break;
         }
     }
 }

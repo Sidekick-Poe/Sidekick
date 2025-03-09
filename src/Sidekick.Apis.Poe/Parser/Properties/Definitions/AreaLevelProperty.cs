@@ -39,6 +39,6 @@ public class AreaLevelProperty(IGameLanguageProvider gameLanguageProvider) : Pro
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
-        searchFilters.GetOrCreateMapFilters().Filters.AreaLevel = intFilter.Checked ? new StatFilterValue(intFilter) : null;
+        searchFilters.MapFilters.Filters.AreaLevel = intFilter.Checked ? new StatFilterValue(intFilter) : null;
     }
 }

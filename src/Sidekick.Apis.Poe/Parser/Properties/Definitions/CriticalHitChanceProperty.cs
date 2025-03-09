@@ -46,8 +46,8 @@ public class CriticalHitChanceProperty(IGameLanguageProvider gameLanguageProvide
 
         switch (game)
         {
-            case GameType.PathOfExile: searchFilters.GetOrCreateWeaponFilters().Filters.CriticalHitChance = new StatFilterValue(doubleFilter); break;
-            case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.CriticalHitChance = new StatFilterValue(doubleFilter); break;
+            case GameType.PathOfExile: searchFilters.WeaponFilters.Filters.CriticalHitChance = new StatFilterValue(doubleFilter); break;
+            case GameType.PathOfExile2: searchFilters.EquipmentFilters.Filters.CriticalHitChance = new StatFilterValue(doubleFilter); break;
         }
     }
 }

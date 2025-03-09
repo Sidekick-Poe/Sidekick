@@ -46,8 +46,8 @@ public class BlockChanceProperty(IGameLanguageProvider gameLanguageProvider, Gam
 
         switch (game)
         {
-            case GameType.PathOfExile: searchFilters.GetOrCreateArmourFilters().Filters.BlockChance = new StatFilterValue(intFilter); break;
-            case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.BlockChance = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile: searchFilters.ArmourFilters.Filters.BlockChance = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile2: searchFilters.EquipmentFilters.Filters.BlockChance = new StatFilterValue(intFilter); break;
         }
     }
 }

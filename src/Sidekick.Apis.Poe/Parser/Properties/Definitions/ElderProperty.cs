@@ -33,6 +33,6 @@ public class ElderProperty(IGameLanguageProvider gameLanguageProvider) : Propert
     {
         if (!filter.Checked) return;
 
-        searchFilters.GetOrCreateMiscFilters().Filters.ElderItem = new SearchFilterOption(filter);
+        searchFilters.MiscFilters.Filters.ElderItem = new SearchFilterOption(filter);
     }
 }

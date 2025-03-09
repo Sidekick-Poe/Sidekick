@@ -41,6 +41,6 @@ public class QualityProperty(IGameLanguageProvider gameLanguageProvider) : Prope
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
-        searchFilters.GetOrCreateMiscFilters().Filters.Quality = new StatFilterValue(intFilter);
+        searchFilters.MiscFilters.Filters.Quality = new StatFilterValue(intFilter);
     }
 }

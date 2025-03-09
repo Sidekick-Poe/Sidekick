@@ -33,6 +33,6 @@ public class RedeemerProperty(IGameLanguageProvider gameLanguageProvider) : Prop
     {
         if (!filter.Checked) return;
 
-        searchFilters.GetOrCreateMiscFilters().Filters.RedeemerItem = new SearchFilterOption(filter);
+        searchFilters.MiscFilters.Filters.RedeemerItem = new SearchFilterOption(filter);
     }
 }

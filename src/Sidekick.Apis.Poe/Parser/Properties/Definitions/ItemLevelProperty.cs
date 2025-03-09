@@ -40,9 +40,9 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
 
         switch (game)
         {
-            case GameType.PathOfExile: searchFilters.GetOrCreateMiscFilters().Filters.ItemLevel = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile: searchFilters.MiscFilters.Filters.ItemLevel = new StatFilterValue(intFilter); break;
 
-            case GameType.PathOfExile2: searchFilters.GetOrCreateTypeFilters().Filters.ItemLevel = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile2: searchFilters.TypeFilters.Filters.ItemLevel = new StatFilterValue(intFilter); break;
         }
     }
 }

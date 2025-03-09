@@ -59,8 +59,8 @@ public class EnergyShieldProperty
 
         switch (game)
         {
-            case GameType.PathOfExile: searchFilters.GetOrCreateArmourFilters().Filters.EnergyShield = new StatFilterValue(intFilter); break;
-            case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.EnergyShield = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile: searchFilters.ArmourFilters.Filters.EnergyShield = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile2: searchFilters.EquipmentFilters.Filters.EnergyShield = new StatFilterValue(intFilter); break;
         }
     }
 }

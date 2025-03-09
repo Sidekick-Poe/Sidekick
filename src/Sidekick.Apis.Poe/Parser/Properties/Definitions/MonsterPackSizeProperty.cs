@@ -41,6 +41,6 @@ public class MonsterPackSizeProperty(IGameLanguageProvider gameLanguageProvider)
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
-        searchFilters.GetOrCreateMapFilters().Filters.MonsterPackSize = new StatFilterValue(intFilter);
+        searchFilters.MapFilters.Filters.MonsterPackSize = new StatFilterValue(intFilter);
     }
 }

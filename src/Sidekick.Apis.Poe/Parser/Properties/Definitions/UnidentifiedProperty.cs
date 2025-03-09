@@ -38,6 +38,6 @@ public class UnidentifiedProperty(IGameLanguageProvider gameLanguageProvider) : 
             return;
         }
 
-        searchFilters.GetOrCreateMiscFilters().Filters.Identified = new SearchFilterOption(triStatePropertyFilter.Checked is true ? "false" : "true");
+        searchFilters.MiscFilters.Filters.Identified = new SearchFilterOption(triStatePropertyFilter.Checked is true ? "false" : "true");
     }
 }

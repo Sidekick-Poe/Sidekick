@@ -5,34 +5,40 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
 public class SearchFilters
 {
     [JsonPropertyName("type_filters")]
-    public TypeFilterGroup? TypeFilters { get; set; }
+    public TypeFilterGroup? Type_filters { get; set; }
 
-    public TypeFilterGroup GetOrCreateTypeFilters() => TypeFilters ??= new();
+    [JsonIgnore]
+    public TypeFilterGroup TypeFilters => Type_filters ??= new();
 
     [JsonPropertyName("trade_filters")]
-    public TradeFilterGroup? TradeFilters { get; set; }
+    public TradeFilterGroup? Trade_filters { get; set; }
 
-    public TradeFilterGroup GetOrCreateTradeFilters() => TradeFilters ??= new();
+    [JsonIgnore]
+    public TradeFilterGroup TradeFilters => Trade_filters ??= new();
 
     [JsonPropertyName("misc_filters")]
-    public MiscFilterGroup? MiscFilters { get; set; }
+    public MiscFilterGroup? Misc_filters { get; set; }
 
-    public MiscFilterGroup GetOrCreateMiscFilters() => MiscFilters ??= new();
+    [JsonIgnore]
+    public MiscFilterGroup MiscFilters => Misc_filters ??= new();
 
     [JsonPropertyName("weapon_filters")]
-    public WeaponFilterGroup? WeaponFilters { get; set; }
+    public WeaponFilterGroup? Weapon_filters { get; set; }
 
-    public WeaponFilterGroup GetOrCreateWeaponFilters() => WeaponFilters ??= new();
+    [JsonIgnore]
+    public WeaponFilterGroup WeaponFilters => Weapon_filters ??= new();
 
     [JsonPropertyName("armour_filters")]
-    public ArmourFilterGroup? ArmourFilters { get; set; }
+    public ArmourFilterGroup? Armour_filters { get; set; }
 
-    public ArmourFilterGroup GetOrCreateArmourFilters() => ArmourFilters ??= new();
+    [JsonIgnore]
+    public ArmourFilterGroup ArmourFilters => Armour_filters ??= new();
 
     [JsonPropertyName("equipment_filters")]
-    public EquipmentFilterGroup? EquipmentFilters { get; set; }
+    public EquipmentFilterGroup? Equipment_filters { get; set; }
 
-    public EquipmentFilterGroup GetOrCreateEquipmentFilters() => EquipmentFilters ??= new();
+    [JsonIgnore]
+    public EquipmentFilterGroup EquipmentFilters => Equipment_filters ??= new();
 
     [JsonPropertyName("socket_filters")]
     public SocketFilterGroup? SocketFilters { get; set; }
@@ -41,8 +47,9 @@ public class SearchFilters
     public RequirementFilterGroup? RequirementFilters { get; set; }
 
     [JsonPropertyName("map_filters")]
-    public MapFilterGroup? MapFilters { get; set; }
+    public MapFilterGroup? Map_filters { get; set; }
 
-    public MapFilterGroup GetOrCreateMapFilters() => MapFilters ??= new();
+    [JsonIgnore]
+    public MapFilterGroup MapFilters => Map_filters ??= new();
 
 }

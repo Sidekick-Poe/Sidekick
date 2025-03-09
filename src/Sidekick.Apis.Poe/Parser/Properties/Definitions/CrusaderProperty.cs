@@ -33,6 +33,6 @@ public class CrusaderProperty(IGameLanguageProvider gameLanguageProvider) : Prop
     {
         if (!filter.Checked) return;
 
-        searchFilters.GetOrCreateMiscFilters().Filters.CrusaderItem = new SearchFilterOption(filter);
+        searchFilters.MiscFilters.Filters.CrusaderItem = new SearchFilterOption(filter);
     }
 }

@@ -48,11 +48,11 @@ public class GemLevelProperty
 
         switch (game)
         {
-            case GameType.PathOfExile: searchFilters.GetOrCreateMiscFilters().Filters.GemLevel = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile: searchFilters.MiscFilters.Filters.GemLevel = new StatFilterValue(intFilter); break;
 
-            case GameType.PathOfExile2 when apiInvariantItemProvider.UncutGemIds.Contains(item.Header.ApiItemId ?? string.Empty): searchFilters.GetOrCreateTypeFilters().Filters.ItemLevel = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile2 when apiInvariantItemProvider.UncutGemIds.Contains(item.Header.ApiItemId ?? string.Empty): searchFilters.TypeFilters.Filters.ItemLevel = new StatFilterValue(intFilter); break;
 
-            case GameType.PathOfExile2: searchFilters.GetOrCreateMiscFilters().Filters.GemLevel = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile2: searchFilters.MiscFilters.Filters.GemLevel = new StatFilterValue(intFilter); break;
         }
     }
 }

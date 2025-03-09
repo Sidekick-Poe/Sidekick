@@ -34,6 +34,6 @@ public class BlightedProperty(IGameLanguageProvider gameLanguageProvider) : Prop
     {
         if (!filter.Checked) return;
 
-        searchFilters.GetOrCreateMapFilters().Filters.Blighted = new SearchFilterOption(filter);
+        searchFilters.MapFilters.Filters.Blighted = new SearchFilterOption(filter);
     }
 }

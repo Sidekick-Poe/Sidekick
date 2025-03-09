@@ -34,6 +34,6 @@ public class BlightRavagedProperty(IGameLanguageProvider gameLanguageProvider) :
     {
         if (!filter.Checked) return;
 
-        searchFilters.GetOrCreateMapFilters().Filters.BlightRavavaged = new SearchFilterOption(filter);
+        searchFilters.MapFilters.Filters.BlightRavavaged = new SearchFilterOption(filter);
     }
 }

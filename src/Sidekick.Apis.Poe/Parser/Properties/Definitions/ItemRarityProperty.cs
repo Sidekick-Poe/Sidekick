@@ -41,6 +41,6 @@ public class ItemRarityProperty(IGameLanguageProvider gameLanguageProvider) : Pr
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
-        searchFilters.GetOrCreateMapFilters().Filters.ItemRarity = new StatFilterValue(intFilter);
+        searchFilters.MapFilters.Filters.ItemRarity = new StatFilterValue(intFilter);
     }
 }

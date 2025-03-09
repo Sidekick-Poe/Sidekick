@@ -34,6 +34,6 @@ public class CorruptedProperty(IGameLanguageProvider gameLanguageProvider) : Pro
             return;
         }
 
-        searchFilters.GetOrCreateMiscFilters().Filters.Corrupted = new SearchFilterOption(triStateFilter);
+        searchFilters.MiscFilters.Filters.Corrupted = new SearchFilterOption(triStateFilter);
     }
 }

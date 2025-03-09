@@ -202,8 +202,8 @@ public class WeaponDamageProperty
         {
             switch (game)
             {
-                case GameType.PathOfExile: searchFilters.GetOrCreateWeaponFilters().Filters.Damage = new StatFilterValue(damageFilter); break;
-                case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.Damage = new StatFilterValue(damageFilter); break;
+                case GameType.PathOfExile: searchFilters.WeaponFilters.Filters.Damage = new StatFilterValue(damageFilter); break;
+                case GameType.PathOfExile2: searchFilters.EquipmentFilters.Filters.Damage = new StatFilterValue(damageFilter); break;
             }
         }
 
@@ -211,8 +211,8 @@ public class WeaponDamageProperty
         {
             switch (game)
             {
-                case GameType.PathOfExile: searchFilters.GetOrCreateWeaponFilters().Filters.PhysicalDps = new StatFilterValue(physicalDpsFilter); break;
-                case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.PhysicalDps = new StatFilterValue(physicalDpsFilter); break;
+                case GameType.PathOfExile: searchFilters.WeaponFilters.Filters.PhysicalDps = new StatFilterValue(physicalDpsFilter); break;
+                case GameType.PathOfExile2: searchFilters.EquipmentFilters.Filters.PhysicalDps = new StatFilterValue(physicalDpsFilter); break;
             }
         }
 
@@ -220,22 +220,22 @@ public class WeaponDamageProperty
         {
             switch (game)
             {
-                case GameType.PathOfExile: searchFilters.GetOrCreateWeaponFilters().Filters.ElementalDps = new StatFilterValue(elementalDpsFilter); break;
-                case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.ElementalDps = new StatFilterValue(elementalDpsFilter); break;
+                case GameType.PathOfExile: searchFilters.WeaponFilters.Filters.ElementalDps = new StatFilterValue(elementalDpsFilter); break;
+                case GameType.PathOfExile2: searchFilters.EquipmentFilters.Filters.ElementalDps = new StatFilterValue(elementalDpsFilter); break;
             }
         }
 
         if (filter.Text == localizer["ChaosDps"] && filter is DoublePropertyFilter chaosDpsFilter)
         {
-            // searchFilters.GetOrCreateWeaponFilters().Filters.ChaosDps = new StatFilterValue(chaosDpsFilter);
+            // searchFilters.GetOrCreateWeaponFilters.Filters.ChaosDps = new StatFilterValue(chaosDpsFilter);
         }
 
         if (filter.Text == localizer["Dps"] && filter is DoublePropertyFilter dpsFilter)
         {
             switch (game)
             {
-                case GameType.PathOfExile: searchFilters.GetOrCreateWeaponFilters().Filters.DamagePerSecond = new StatFilterValue(dpsFilter); break;
-                case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.DamagePerSecond = new StatFilterValue(dpsFilter); break;
+                case GameType.PathOfExile: searchFilters.WeaponFilters.Filters.DamagePerSecond = new StatFilterValue(dpsFilter); break;
+                case GameType.PathOfExile2: searchFilters.EquipmentFilters.Filters.DamagePerSecond = new StatFilterValue(dpsFilter); break;
             }
         }
     }

@@ -71,7 +71,7 @@ public class TradeSearchService
             }
             else if (propertyFilters.ClassFilterApplied)
             {
-                query.Filters.GetOrCreateTypeFilters().Filters.Category = GetCategoryFilter(item.Header.ItemCategory);
+                query.Filters.TypeFilters.Filters.Category = GetCategoryFilter(item.Header.ItemCategory);
             }
 
             if (item.Header.Category == Category.ItemisedMonster && !string.IsNullOrEmpty(itemApiNameToUse))
@@ -82,7 +82,7 @@ public class TradeSearchService
             else if (item.Header.Rarity == Rarity.Unique && !string.IsNullOrEmpty(itemApiNameToUse))
             {
                 query.Name = itemApiNameToUse;
-                query.Filters.GetOrCreateTypeFilters().Filters.Rarity = new SearchFilterOption("Unique");
+                query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption("Unique");
             }
             else if (propertyFilters?.RarityFilterApplied ?? false)
             {
@@ -95,7 +95,7 @@ public class TradeSearchService
                     _ => "nonunique",
                 };
 
-                query.Filters.GetOrCreateTypeFilters().Filters.Rarity = new SearchFilterOption(rarity);
+                query.Filters.TypeFilters.Filters.Rarity = new SearchFilterOption(rarity);
             }
 
             var currency = item.Header.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
@@ -104,7 +104,7 @@ public class TradeSearchService
             currency = filterProvider.GetPriceOption(currency);
             if (!string.IsNullOrEmpty(currency) || currencyMin > 0 || currencyMax > 0)
             {
-                query.Filters.GetOrCreateTradeFilters().Filters.Price = new(currency)
+                query.Filters.TradeFilters.Filters.Price = new(currency)
                 {
                     Min = currencyMin > 0 ? currencyMin : null,
                     Max = currencyMax > 0 ? currencyMax : null,
@@ -114,7 +114,7 @@ public class TradeSearchService
             var timeFrame = await settingsService.GetString(SettingKeys.PriceCheckItemListedAge);
             if (!string.IsNullOrWhiteSpace(timeFrame))
             {
-                query.Filters.GetOrCreateTradeFilters().Filters.Indexed = new(timeFrame);
+                query.Filters.TradeFilters.Filters.Indexed = new(timeFrame);
             }
 
             SetSocketFilters(item, query.Filters);

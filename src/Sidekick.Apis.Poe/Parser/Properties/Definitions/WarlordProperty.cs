@@ -33,6 +33,6 @@ public class WarlordProperty(IGameLanguageProvider gameLanguageProvider) : Prope
     {
         if (!filter.Checked) return;
 
-        searchFilters.GetOrCreateMiscFilters().Filters.WarlordItem = new SearchFilterOption(filter);
+        searchFilters.MiscFilters.Filters.WarlordItem = new SearchFilterOption(filter);
     }
 }

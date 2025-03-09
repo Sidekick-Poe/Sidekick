@@ -39,6 +39,6 @@ public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : Prope
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
-        searchFilters.GetOrCreateMapFilters().Filters.MapTier = new StatFilterValue(intFilter);
+        searchFilters.MapFilters.Filters.MapTier = new StatFilterValue(intFilter);
     }
 }

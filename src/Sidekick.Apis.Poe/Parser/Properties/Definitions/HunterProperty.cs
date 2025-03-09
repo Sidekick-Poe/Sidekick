@@ -33,6 +33,6 @@ public class HunterProperty(IGameLanguageProvider gameLanguageProvider) : Proper
     {
         if (!filter.Checked) return;
 
-        searchFilters.GetOrCreateMiscFilters().Filters.HunterItem = new SearchFilterOption(filter);
+        searchFilters.MiscFilters.Filters.HunterItem = new SearchFilterOption(filter);
     }
 }
