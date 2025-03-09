@@ -44,7 +44,7 @@
         Language = value;
         await SettingsService.Set(SettingKeys.LanguageUi, value);
         await UiLanguageProvider.Initialize();
-        NavigationManager.NavigateTo("/settings", true);
+        NavigationManager.NavigateTo("/settings/general", true);
     }
 
 }

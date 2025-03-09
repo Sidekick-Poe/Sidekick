@@ -1,16 +1,21 @@
 @page "/settings/wiki"
-@layout SettingsLayout
+@layout MainWindowLayout
+@using Sidekick.Common.Blazor.Components
+@using Sidekick.Common.Platform
 @inherits Sidekick.Common.Ui.Views.SidekickView
+@inject IApplicationService ApplicationService
 
-<AppTitle Title="@Resources["Settings"]" />
-<AppContainer>
-    <FormFieldset Legend="@Resources["Keybindings"]">
-        <KeyOpenWikiEditor />
-    </FormFieldset>
+@if (ApplicationService.SupportsKeybinds)
+{
+    <AppContainer>
+        <FormFieldset Legend="@Resources["Keybindings"]">
+            <KeyOpenWikiEditor/>
+        </FormFieldset>
 
-    <FormFieldset Legend="@Resources["Other_Settings"]">
-        <PreferredWikiEditor />
-    </FormFieldset>
-</AppContainer>
+        <FormFieldset Legend="@Resources["Other_Settings"]">
+            <PreferredWikiEditor/>
+        </FormFieldset>
+    </AppContainer>
+}
 
 @inject IStringLocalizer<SettingsResources> Resources

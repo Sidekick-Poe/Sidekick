@@ -21,21 +21,21 @@
         }
         else if (UpdateInfo == null)
         {
-            <AppContainer>
+            <AppFullContainer>
                 <Heading3 Class="mb-2 text-center">@Resources["Checking_For_Updates"]</Heading3>
                 <ProgressBar Indeterminate="true"/>
-            </AppContainer>
+            </AppFullContainer>
         }
         else if (Updating)
         {
-            <AppContainer>
+            <AppFullContainer>
                 <Heading3 Class="mb-2 text-center">@Resources["Updating"]</Heading3>
                 <ProgressBar Indeterminate="true"/>
-            </AppContainer>
+            </AppFullContainer>
         }
         else
         {
-            <AppContainer>
+            <AppFullContainer>
                 <Heading1 Class="mb-4 text-center">@Resources["New_Update_Alert"]</Heading1>
                 @if (!string.IsNullOrEmpty(UpdateInfo.TargetFullRelease.NotesHTML) || UpdateInfo.DeltasToTarget.Any(x => !string.IsNullOrEmpty(x.NotesHTML)))
                 {
@@ -56,7 +56,7 @@
                         <ButtonSecondary OnClick="OpenWebsite">@Resources["Open_Website"]</ButtonSecondary>
                     </div>
                 }
-            </AppContainer>
+            </AppFullContainer>
         }
     </ChildContent>
 

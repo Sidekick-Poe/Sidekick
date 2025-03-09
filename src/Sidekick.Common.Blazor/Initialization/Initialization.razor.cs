@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
@@ -6,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Initialization;
-using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
@@ -41,20 +39,13 @@ public partial class Initialization : SidekickView
 
     private int Percentage { get; set; }
 
-    private string? WelcomeMessage { get; set; }
-
     public Task? InitializationTask { get; set; }
 
     public override SidekickViewType ViewType => SidekickViewType.Modal;
 
-    private int TimeLeftToCloseView { get; set; }
-
     protected override async Task OnInitializedAsync()
     {
         InitializationTask = Handle();
-        var keyOpenPriceCheck = await SettingsService.GetString(SettingKeys.KeyOpenPriceCheck);
-        var keyClose = await SettingsService.GetString(SettingKeys.KeyClose);
-        WelcomeMessage = string.Format(Resources["Notification"], keyOpenPriceCheck.ToKeybindString(), keyClose.ToKeybindString());
         await base.OnInitializedAsync();
         await InitializationTask;
     }
@@ -97,8 +88,9 @@ public partial class Initialization : SidekickView
             // "Ready" label on the UI before closing the view
             Completed = Count;
 
-            await StartCountdownToClose();
             await ReportProgress();
+            await Task.Delay(200);
+            await Complete();
         }
         catch (SidekickException e)
         {
@@ -108,25 +100,15 @@ public partial class Initialization : SidekickView
         }
     }
 
-    private async Task StartCountdownToClose()
+    private async Task Complete()
     {
-        TimeLeftToCloseView = Debugger.IsAttached ? 1 : 4;
-
-        while (TimeLeftToCloseView > 0)
+        var redirectToHome = await SettingsService.GetBool(SettingKeys.OpenHomeOnLaunch);
+        if (redirectToHome)
         {
-            StateHasChanged();
-            await Task.Delay(1000);
-            TimeLeftToCloseView--;
+            await ViewLocator.Open("/home");
         }
 
-        if (Debugger.IsAttached)
-        {
-            NavigationManager.NavigateTo("/development");
-        }
-        else
-        {
-            await CurrentView.Close();
-        }
+        await CurrentView.Close();
     }
 
     private Task ReportProgress()

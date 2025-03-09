@@ -9,6 +9,8 @@ public static class SettingKeys
     public const string BearerToken = nameof(BearerToken);
     public const string BearerExpiration = nameof(BearerExpiration);
 
+    public const string OpenHomeOnLaunch = nameof(OpenHomeOnLaunch);
+
     // Cloudflare settings
     public const string CloudflareCookies = nameof(CloudflareCookies);
     public const string CloudflareUserAgent = nameof(CloudflareUserAgent);

@@ -1,0 +1,92 @@
+@page "/home"
+@using Sidekick.Common.Blazor.Components
+@using Sidekick.Common.Extensions
+@using Sidekick.Common.Keybinds
+@using Sidekick.Common.Platform
+@using Sidekick.Common.Settings
+@using Sidekick.Common.Blazor.Settings.General
+@inherits SidekickView
+
+<AppTitle Title="Sidekick"/>
+<LayoutTwoColumn>
+    <TopContent>
+        <AppBar>
+            <AppMinimize/>
+            <AppMaximize/>
+            <AppClose/>
+        </AppBar>
+    </TopContent>
+    <LeftContent>
+        <SidekickMenu/>
+    </LeftContent>
+    <ChildContent>
+        <AppContainer>
+            <AppLogo/>
+            @if (ApplicationService.SupportsKeybinds)
+            {
+                <div class="max-w-[300px] mx-auto">
+                    <TextBase Class="text-center mb-3">@WelcomeMessage</TextBase>
+                    <TextBase Class="text-center">@Resources["Close_Notification"]</TextBase>
+                </div>
+
+                <LayoutDivider/>
+            }
+
+            <FormFieldset Legend="@Resources["Item_Box_Legend"]">
+                <TextBase Class="mb-1">
+                    @Resources["Item_Box_Text"]
+                </TextBase>
+                <FormTextarea @bind-Value="ItemText"/>
+                <div class="grid grid-cols-12 gap-3 *:col-span-6">
+                    <ButtonPrimary OnClick="PriceCheck">@Resources["Item_Box_Prices"]</ButtonPrimary>
+                    <ButtonPrimary OnClick="MapCheck">@Resources["Item_Box_Map"]</ButtonPrimary>
+                </div>
+            </FormFieldset>
+        </AppContainer>
+    </ChildContent>
+    <BottomContent>
+        @if (ApplicationService.SupportsKeybinds)
+        {
+            <div class="flex justify-end py-2 px-3">
+                <OpenHomeOnLaunchEditor/>
+            </div>
+        }
+    </BottomContent>
+</LayoutTwoColumn>
+
+
+@inject ISettingsService SettingsService
+@inject IStringLocalizer<HomeResources> Resources
+@inject IApplicationService ApplicationService
+
+@code {
+
+    private string? ItemText { get; set; }
+
+    private string? WelcomeMessage { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var keyOpenPriceCheck = await SettingsService.GetString(SettingKeys.KeyOpenPriceCheck);
+        var keyClose = await SettingsService.GetString(SettingKeys.KeyClose);
+        WelcomeMessage = string.Format(Resources["Welcome_Message"], keyOpenPriceCheck.ToKeybindString(), keyClose.ToKeybindString());
+        await base.OnInitializedAsync();
+    }
+
+    private void PriceCheck()
+    {
+        if (ItemText != null)
+        {
+            NavigationManager.NavigateTo($"/trade/{ItemText.EncodeBase64Url()}");
+        }
+    }
+
+    private void MapCheck()
+    {
+        if (ItemText != null)
+        {
+            NavigationManager.NavigateTo($"/map/{ItemText.EncodeBase64Url()}");
+        }
+    }
+
+}

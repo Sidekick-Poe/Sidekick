@@ -1,19 +1,27 @@
 @using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Blazor.Settings.General
+@using Sidekick.Common.Platform
 @inherits Sidekick.Common.Ui.Views.SidekickView
+@inject IApplicationService ApplicationService
 
-<FormFieldset Legend="@Resources["Keybindings"]">
-    <KeyOpenMapCheckEditor />
-    <KeyCloseEditor />
-</FormFieldset>
+@if (ApplicationService.SupportsKeybinds)
+{
+    <FormFieldset Legend="@Resources["Keybindings"]">
+        <KeyOpenMapCheckEditor/>
+        <KeyCloseEditor/>
+    </FormFieldset>
+}
 
 <FormFieldset Legend="@Resources["Dangerous_Modifiers"]">
     <MapCheckDangerousRegexEditor />
 </FormFieldset>
 
-<FormFieldset Legend="@Resources["Other_Settings"]">
-    <MapCheckCloseWithMouseEditor />
-    <EscapeClosesOverlaysEditor />
-</FormFieldset>
+@if (ApplicationService.SupportsKeybinds)
+{
+    <FormFieldset Legend="@Resources["Other_Settings"]">
+        <MapCheckCloseWithMouseEditor/>
+        <EscapeClosesOverlaysEditor/>
+    </FormFieldset>
+}
 
 @inject IStringLocalizer<SettingsResources> Resources

@@ -1,4 +1,8 @@
 ﻿<div class="h-full flex flex-col">
+    @if (!string.IsNullOrEmpty(Legend))
+    {
+        <div class="text-xl text-neutral-400 mt-4 mb-2 px-4">@Legend</div>
+    }
     @ChildContent
 </div>
 
@@ -6,5 +10,8 @@
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Legend { get; set; }
 
 }

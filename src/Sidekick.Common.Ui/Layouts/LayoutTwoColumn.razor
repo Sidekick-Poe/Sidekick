@@ -3,22 +3,25 @@
         @TopContent
     </div>
     <div class="grow flex flex-nowrap items-stretch">
-        <div id="@LeftContentId" class="@LeftContentClasses" style="@(LeftContentWidth != 0 ? $"width: {LeftContentWidth}px" : string.Empty)">
+        <div id="@LeftContentId" class="@LeftContentClasses"
+             style="@(LeftContentWidth != 0 ? $"width: {LeftContentWidth}px" : string.Empty)">
             <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden dark:bg-stone-950">
                 @LeftContent
             </div>
         </div>
-        @if (HasChildContent)
-        {
-            <div class="grow relative">
-                <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden">
-                    @ChildContent
+        <div class="h-full flex flex-col grow">
+            @if (HasChildContent)
+            {
+                <div class="grow relative">
+                    <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden">
+                        @ChildContent
+                    </div>
                 </div>
+            }
+            <div>
+                @BottomContent
             </div>
-        }
-    </div>
-    <div class="dark:bg-stone-950">
-        @BottomContent
+        </div>
     </div>
 </div>
 
@@ -45,7 +48,8 @@
             const element = document.getElementById(elementId);
             resizeObserver.observe(element);
             element.classList.add("resize-x");
-        } catch { }
+        } catch {
+        }
     }
 </script>
 
@@ -80,10 +84,17 @@
     {
         get
         {
-            var classes = new List<string> { "relative", "overflow-auto", "min-w-[22em]", };
+            var classes = new List<string>
+            {
+                "relative",
+                "overflow-auto",
+                "min-w-[22em]",
+            };
 
-            if (HasChildContent) classes.Add("max-w-[35em]");
-            else classes.Add("w-full");
+            if (HasChildContent)
+                classes.Add("max-w-[35em]");
+            else
+                classes.Add("w-full");
 
             return string.Join(" ", classes);
         }
@@ -98,7 +109,7 @@
                 var dotNetReference = DotNetObjectReference.Create(this);
                 await JSRuntime.InvokeVoidAsync("attachResizeObserver", LeftContentId, nameof(ResizeLeftContent), dotNetReference);
             }
-            catch { }
+            catch {}
         }
     }
 
@@ -110,4 +121,5 @@
             OnLeftContentResize.InvokeAsync(width);
         }
     }
+
 }

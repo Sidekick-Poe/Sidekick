@@ -1,9 +1,10 @@
 ﻿<a href="@Href"
-   class="focus:outline-none focus:ring-inset focus:ring-2 focus:ring-offset-2 dark:focus:ring-violet-400 px-4 py-2 text-base font-medium tracking-wide text-white transition-colors duration-200 @(IsActive ? "bg-violet-700 hover:bg-violet-500" : "bg-transparent hover:text-violet-500")">
+   class="focus:outline-none focus:ring-inset focus:ring-2 dark:focus:ring-violet-400 px-4 py-2 text-base font-medium tracking-wide text-white transition-colors duration-200 @(IsActive ? "bg-violet-700 hover:bg-violet-500" : "bg-transparent hover:text-violet-500")">
     @ChildContent
 </a>
 
 @inject NavigationManager NavigationManager
+@implements IDisposable
 
 @code {
 
@@ -14,5 +15,22 @@
     public RenderFragment? ChildContent { get; set; }
 
     private bool IsActive => NavigationManager.ToAbsoluteUri(NavigationManager.Uri).AbsolutePath == Href;
+
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += NavigationManagerOnLocationChanged;
+
+        base.OnInitialized();
+    }
+
+    private void NavigationManagerOnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= NavigationManagerOnLocationChanged;
+    }
 
 }

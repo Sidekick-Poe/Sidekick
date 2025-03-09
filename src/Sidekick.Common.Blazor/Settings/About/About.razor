@@ -1,10 +1,9 @@
 @page "/settings/about"
-@layout SettingsLayout
+@layout MainWindowLayout
 @inherits Sidekick.Common.Ui.Views.SidekickView
+@using Sidekick.Common.Blazor.Components
 @using Sidekick.Common.Browser
 @using Sidekick.Common.Folder
-
-<AppTitle Title="@Resources["About"]" />
 
 <AppContainer>
     <FormFieldset Legend="@($"{Resources["Sidekick"]} - {Title}")">
