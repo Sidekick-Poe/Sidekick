@@ -1,8 +1,6 @@
-using Sidekick.Common.Initialization;
-
 namespace Sidekick.Common.Settings;
 
-public interface ISettingsService : IInitializableService
+public interface ISettingsService
 {
     /// <summary>
     /// Event when any setting is changed.

@@ -1,12 +1,11 @@
 using System.Globalization;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Common.Localization;
 
 /// <summary>
 ///     Implementation of the ui language provider.
 /// </summary>
-public class UiLanguageProvider(ISettingsService settingsService) : IUiLanguageProvider
+public class UiLanguageProvider : IUiLanguageProvider
 {
     private static readonly string[] supportedLanguages =
     [
@@ -17,15 +16,6 @@ public class UiLanguageProvider(ISettingsService settingsService) : IUiLanguageP
 
     private string? currentLanguage;
 
-    /// <inheritdoc />
-    public int Priority => 0;
-
-    /// <inheritdoc />
-    public async Task Initialize()
-    {
-        var language = await settingsService.GetString(SettingKeys.LanguageUi);
-        Set(language ?? "en");
-    }
 
     /// <inheritdoc />
     public List<CultureInfo> GetList()
