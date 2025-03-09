@@ -142,13 +142,7 @@ public class SocketProperty
 
         switch (game)
         {
-            case GameType.PathOfExile:
-                searchFilters.GetOrCreateSocketFilters().Filters.Links = new SocketFilterOption()
-                {
-                    Min = intFilter.Min ?? intFilter.Value,
-                    Max = intFilter.Max ?? intFilter.Value,
-                };
-                break;
+            case GameType.PathOfExile: searchFilters.GetOrCreateSocketFilters().Filters.Links = new SocketFilterOption(intFilter); break;
 
             case GameType.PathOfExile2:
                 switch (item.Header.Category)
