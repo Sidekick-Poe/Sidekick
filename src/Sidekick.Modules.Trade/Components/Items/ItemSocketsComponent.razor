@@ -1,7 +1,7 @@
 @using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Common.Game.Items
 
-@if (Item.Properties.Sockets == null)
+@if (Item.Properties.Sockets == null || Item.Properties.Sockets.All(x => x.Colour == SocketColour.PoE2_Gem))
 {
     return;
 }
@@ -48,7 +48,7 @@
                     break;
 
                 case SocketColour.PoE2_Gem:
-                    <div class="item-socket item-socket-poe2"></div>
+                    <div class="item-socket-poe2-gem"></div>
                     break;
 
                 case SocketColour.PoE2_Rune:

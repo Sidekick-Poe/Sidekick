@@ -1,9 +1,12 @@
 @using Sidekick.Apis.Poe.Trade.Models
 
-<div class="relative text-center">
-    <img src="@Item.Image"/>
-    <div class="absolute top-0 left-0 right-0 bottom-0">
-        <ItemSocketsComponent Item="Item"/>
+<div class="mt-3 flex flex-col w-full items-center">
+    <ItemGemSocketsComponent Item="Item"/>
+    <div class="relative text-center">
+        <img src="@Item.Image"/>
+        <div class="absolute top-0 left-0 right-0 bottom-0">
+            <ItemSocketsComponent Item="Item"/>
+        </div>
     </div>
 </div>
 

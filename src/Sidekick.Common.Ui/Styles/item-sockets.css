@@ -45,6 +45,13 @@
 }
 
 .item-socket-poe2-gem {
+    position: relative;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
     background-image: url("/images/items/poe2/socket_gem.png");
 }
 
