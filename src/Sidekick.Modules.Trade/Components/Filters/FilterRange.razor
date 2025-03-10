@@ -1,7 +1,7 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization;
 
-<div class="flex flex-nowrap items-center gap-2 [&>button]:!px-[2px]" id="@Id">
+<div class="flex flex-nowrap items-center gap-2" id="@Id">
     <ButtonIcon OnClick="ToggleType">
         <IconMedium Icon="@Icon"/>
     </ButtonIcon>
@@ -17,7 +17,7 @@
 
     @if (Type == FilterType.Range)
     {
-        <span class="text-violet-500 -mx-[6px]">-</span>
+        <span class="text-violet-500 -mx-1">-</span>
     }
 
     @if (Type == FilterType.Maximum || Type == FilterType.Range)
