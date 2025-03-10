@@ -1,4 +1,6 @@
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.Localization;
+using Sidekick.Apis.Poe.Localization;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game;
@@ -11,7 +13,8 @@ namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 public class SocketProperty
 (
     IGameLanguageProvider gameLanguageProvider,
-    GameType game
+    GameType game,
+    IStringLocalizer<PoeResources> resources
 ) : PropertyDefinition
 {
     private Regex Pattern { get; } = new Regex($"{Regex.Escape(gameLanguageProvider.Language.DescriptionSockets)}.*?([-RGBWAS]+)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)");
@@ -109,12 +112,14 @@ public class SocketProperty
 
         int value;
         bool @checked;
+        string? hint;
         if (game == GameType.PathOfExile2)
         {
             // In Path of Exile 2, we automatically check the socket filter when there are 3 or more sockets on the item.
             // 3 sockets on equipment means it was the result of a corrupted outcome. Gems also have sockets on them. The higher the count, the better. We want to price accordingly.
             value = item.Properties.Sockets.Count;
             @checked = value >= 3;
+            hint = null;
         }
         else
         {
@@ -122,6 +127,7 @@ public class SocketProperty
             // The socket filter is actually a link filter in PoE1 as that is what holds value in the game.
             value = item.Properties.Sockets.GroupBy(x => x.Group).Select(x => x.Count()).Max();
             @checked = value >= 5;
+            hint = resources["Socket_Poe1_Hint"];
         }
 
         var filter = new IntPropertyFilter(this)
@@ -131,6 +137,7 @@ public class SocketProperty
             NormalizeValue = normalizeValue,
             Value = value,
             Checked = @checked,
+            Hint = hint,
         };
         filter.ChangeFilterType(filterType);
         return filter;

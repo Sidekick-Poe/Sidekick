@@ -8,5 +8,7 @@ public class BooleanPropertyFilter(PropertyDefinition definition)
 
     public required string Text { get; init; }
 
+    public string? Hint { get; init; }
+
     public PropertyDefinition Definition { get; } = definition;
 }

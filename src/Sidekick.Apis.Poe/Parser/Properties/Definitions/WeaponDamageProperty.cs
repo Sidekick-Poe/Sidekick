@@ -17,7 +17,7 @@ public class WeaponDamageProperty
     IGameLanguageProvider gameLanguageProvider,
     GameType game,
     IInvariantModifierProvider invariantModifierProvider,
-    IStringLocalizer<FilterResources> localizer
+    IStringLocalizer<PoeResources> localizer
 ) : PropertyDefinition
 {
     public override List<Category> ValidCategories { get; } = [Category.Weapon];

@@ -11,6 +11,7 @@
             <FormCheckbox @bind-Value="Filter.Checked">
                 <div class="flex items-center gap-1">
                     <ItemPropertyText Label="@Filter.Text"
+                                      Hint="@Filter.Hint"
                                       Value="@(Filter.Checked ? "true" : "false")"
                                       OnlyShowLabel="true"/>
                 </div>

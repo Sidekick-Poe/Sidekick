@@ -1,5 +1,5 @@
 namespace Sidekick.Apis.Poe.Localization;
 
-public class FilterResources
+public class PoeResources
 {
 }

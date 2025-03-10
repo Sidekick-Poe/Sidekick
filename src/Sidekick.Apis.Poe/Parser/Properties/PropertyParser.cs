@@ -18,7 +18,7 @@ public class PropertyParser
     IInvariantModifierProvider invariantModifierProvider,
     IApiInvariantItemProvider apiInvariantItemProvider,
     ISettingsService settingsService,
-    IStringLocalizer<FilterResources> filterLocalizer
+    IStringLocalizer<PoeResources> resources
 ) : IPropertyParser
 {
     public int Priority => 200;
@@ -39,7 +39,7 @@ public class PropertyParser
             new EnergyShieldProperty(gameLanguageProvider, game),
             new BlockChanceProperty(gameLanguageProvider, game),
 
-            new WeaponDamageProperty(gameLanguageProvider, game, invariantModifierProvider, filterLocalizer),
+            new WeaponDamageProperty(gameLanguageProvider, game, invariantModifierProvider, resources),
             new AttacksPerSecondProperty(gameLanguageProvider, game),
             new CriticalHitChanceProperty(gameLanguageProvider, game),
 
@@ -55,7 +55,7 @@ public class PropertyParser
 
             new GemLevelProperty(gameLanguageProvider, game, apiInvariantItemProvider),
             new ItemLevelProperty(gameLanguageProvider, game),
-            new SocketProperty(gameLanguageProvider, game),
+            new SocketProperty(gameLanguageProvider, game, resources),
             new CorruptedProperty(gameLanguageProvider),
             new UnidentifiedProperty(gameLanguageProvider),
 
