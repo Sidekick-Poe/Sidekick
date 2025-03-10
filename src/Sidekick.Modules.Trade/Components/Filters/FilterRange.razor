@@ -1,59 +1,32 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization;
 
-<div class="relative group/filter self-end">
-    <ButtonIcon OnClick="ToggleType">
-        <div class="flex flex-nowrap items-center gap-[2px]">
+<div class="relative group/filter" id="@Id">
+    <div class="flex flex-nowrap items-center gap-2 [&>button]:!px-[2px]">
+        <ButtonIcon OnClick="ToggleType">
             <IconMedium Icon="@Icon"/>
-            @if (Type == FilterType.Minimum || Type == FilterType.Equals || Type == FilterType.Range)
-            {
-                <span>@Min</span>
-            }
+        </ButtonIcon>
 
-            @if (Type == FilterType.Range)
-            {
-                <span>-</span>
-            }
-
-            @if (Type == FilterType.Maximum || Type == FilterType.Range)
-            {
-                <span>@Max</span>
-            }
-        </div>
-    </ButtonIcon>
-
-    <div class="group-hover/filter:flex flex-nowrap items-center gap-2 absolute top-full -right-2 bg-stone-800 rounded-b-lg py-1 px-2 hidden opacity-0 group-hover/filter:opacity-100 transition-opacity duration-200 z-10"
-         id="@Id">
-        @if (Type == FilterType.Equals)
+        @if (Type == FilterType.Minimum || Type == FilterType.Equals || Type == FilterType.Range)
         {
-            <div class="w-[5rem]"
-                 @onwheel="OnMinWheel"
+            <div @onwheel="OnMinWheel"
                  @oncontextmenu="Clear">
-                <FormNumberSmall Value="Min"
-                                 ValueChanged="UpdateMinValue"
-                                 Label="@Resources["Equals"]"/>
+                <FormContentEditable DoubleValue="Min"
+                                     DoubleValueChanged="UpdateMinValue"/>
             </div>
         }
 
-        @if (Type == FilterType.Minimum || Type == FilterType.Range)
+        @if (Type == FilterType.Range)
         {
-            <div class="w-[5rem]"
-                 @onwheel="OnMinWheel"
-                 @oncontextmenu="Clear">
-                <FormNumberSmall Value="Min"
-                                 ValueChanged="UpdateMinValue"
-                                 Label="@Resources["Min"]"/>
-            </div>
+            <span class="text-violet-500 -mx-[6px]">-</span>
         }
 
         @if (Type == FilterType.Maximum || Type == FilterType.Range)
         {
-            <div class="w-[5rem]"
-                 @onwheel="OnMaxWheel"
+            <div @onwheel="OnMaxWheel"
                  @oncontextmenu="Clear">
-                <FormNumberSmall Value="Max"
-                                 ValueChanged="UpdateMaxValue"
-                                 Label="@Resources["Max"]"/>
+                <FormContentEditable DoubleValue="Max"
+                                     DoubleValueChanged="UpdateMaxValue"/>
             </div>
         }
     </div>
@@ -96,12 +69,11 @@
     {
         if (firstRender)
         {
-            await JsRuntime.InvokeVoidAsync(
-                "eval",
-                @"
-                document.getElementById("""
-                + Id
-                + @""")?.addEventListener(""wheel"",function(e) {
+            await JsRuntime.InvokeVoidAsync("eval",
+                                            @"
+                                            document.getElementById("""
+                                            + Id
+                                            + @""")?.addEventListener(""wheel"",function(e) {
                     e.preventDefault();
                 }, { passive: false });
             ");
@@ -116,9 +88,9 @@
         {
             FilterType.Minimum => FilterType.Maximum,
             FilterType.Maximum => FilterType.Equals,
-            FilterType.Equals  => FilterType.Range,
-            FilterType.Range   => FilterType.Minimum,
-            _                 => FilterType.Minimum,
+            FilterType.Equals => FilterType.Range,
+            FilterType.Range => FilterType.Minimum,
+            _ => FilterType.Minimum,
         };
 
         await TypeChanged.InvokeAsync(Type);

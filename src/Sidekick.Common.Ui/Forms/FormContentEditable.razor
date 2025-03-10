@@ -1,0 +1,104 @@
+﻿@using System.Globalization
+<div id="@ElementId"
+     class="-m-1 p-1 border-none min-w-5 text-center rounded-lg whitespace-pre-wrap duration-200 @UiClasses.FocusClasses transition-colors hover:bg-stone-700 bg-transparent [&::selection]:bg-stone-600 [&::selection]:text-violet-300 text-violet-500 hover:text-violet-400"
+     contenteditable="true">@Value</div>
+
+@inject IJSRuntime JsRuntime
+
+@code {
+
+    [Parameter]
+    public string? StringValue { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> StringValueChanged { get; set; }
+
+    [Parameter]
+    public double? DoubleValue { get; set; }
+
+    [Parameter]
+    public EventCallback<double?> DoubleValueChanged { get; set; }
+
+    private IJSObjectReference? Module { get; set; }
+
+    private DotNetObjectReference<FormContentEditable>? Reference { get; set; }
+
+    private string ElementId { get; } = UiUtilities.GenerateId();
+
+    private string? Value { get; set; }
+
+    protected override bool ShouldRender() => false;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var previousValue = Value;
+        if (!string.IsNullOrEmpty(StringValue))
+        {
+            Value = StringValue;
+        }
+        else if (DoubleValue != null)
+        {
+            Value = DoubleValue.Value.ToString(CultureInfo.InvariantCulture);
+        }
+        else
+        {
+            Value = string.Empty;
+        }
+
+        if (Module != null && previousValue != Value)
+        {
+            await Module.InvokeVoidAsync("setValue", ElementId, Value);
+        }
+
+        await base.OnParametersSetAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        // Initialize the IntersectionObserver
+        if (firstRender)
+        {
+            Reference = DotNetObjectReference.Create(this);
+            Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/Forms/FormContentEditable.razor.js");
+
+            await Module.InvokeVoidAsync("init", ElementId, Reference);
+            await Module.InvokeVoidAsync("setValue", ElementId, Value);
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    [JSInvokable]
+    public async Task Update(string? value)
+    {
+        if (value == Value) return;
+
+        if (DoubleValueChanged.HasDelegate)
+        {
+            if (!double.TryParse(value, out var doubleValue))
+            {
+                if (Module != null) await Module.InvokeVoidAsync("setValue", ElementId, Value);
+                return;
+            }
+
+            Value = doubleValue.ToString(CultureInfo.InvariantCulture);
+            await DoubleValueChanged.InvokeAsync(doubleValue);
+        }
+        else
+        {
+            Value = value;
+            await StringValueChanged.InvokeAsync(value);
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (Module != null)
+        {
+            await Module.DisposeAsync();
+        }
+
+        Reference?.Dispose();
+    }
+
+}
