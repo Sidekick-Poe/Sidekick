@@ -1,35 +1,33 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization;
 
-<div class="relative group/filter" id="@Id">
-    <div class="flex flex-nowrap items-center gap-2 [&>button]:!px-[2px]">
-        <ButtonIcon OnClick="ToggleType">
-            <IconMedium Icon="@Icon"/>
-        </ButtonIcon>
+<div class="flex flex-nowrap items-center gap-2 [&>button]:!px-[2px]" id="@Id">
+    <ButtonIcon OnClick="ToggleType">
+        <IconMedium Icon="@Icon"/>
+    </ButtonIcon>
 
-        @if (Type == FilterType.Minimum || Type == FilterType.Equals || Type == FilterType.Range)
-        {
-            <div @onwheel="OnMinWheel"
-                 @oncontextmenu="Clear">
-                <FormContentEditable DoubleValue="Min"
-                                     DoubleValueChanged="UpdateMinValue"/>
-            </div>
-        }
+    @if (Type == FilterType.Minimum || Type == FilterType.Equals || Type == FilterType.Range)
+    {
+        <div @onwheel="OnMinWheel"
+             @oncontextmenu="Clear">
+            <FormContentEditable DoubleValue="Min"
+                                 DoubleValueChanged="UpdateMinValue"/>
+        </div>
+    }
 
-        @if (Type == FilterType.Range)
-        {
-            <span class="text-violet-500 -mx-[6px]">-</span>
-        }
+    @if (Type == FilterType.Range)
+    {
+        <span class="text-violet-500 -mx-[6px]">-</span>
+    }
 
-        @if (Type == FilterType.Maximum || Type == FilterType.Range)
-        {
-            <div @onwheel="OnMaxWheel"
-                 @oncontextmenu="Clear">
-                <FormContentEditable DoubleValue="Max"
-                                     DoubleValueChanged="UpdateMaxValue"/>
-            </div>
-        }
-    </div>
+    @if (Type == FilterType.Maximum || Type == FilterType.Range)
+    {
+        <div @onwheel="OnMaxWheel"
+             @oncontextmenu="Clear">
+            <FormContentEditable DoubleValue="Max"
+                                 DoubleValueChanged="UpdateMaxValue"/>
+        </div>
+    }
 </div>
 
 @inject IStringLocalizer<TradeResources> Resources
