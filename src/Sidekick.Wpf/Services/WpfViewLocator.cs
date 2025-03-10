@@ -145,7 +145,7 @@ public class WpfViewLocator : IViewLocator
                 CenterHelper.Center(window);
             }
 
-            window.Title = $"Sidekick {view.Title}".Trim();
+            window.Title = view.Title.StartsWith("Sidekick") ? view.Title.Trim() : $"Sidekick {view.Title}".Trim();
         });
     }
 
