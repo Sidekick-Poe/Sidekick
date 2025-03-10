@@ -1,12 +1,18 @@
 @using Sidekick.Apis.Poe.Parser.Properties.Filters
 @using Sidekick.Modules.Trade.Localization;
 
+@if (!Filter.ShowRow)
+{
+    return;
+}
+
 <FilterWrapper>
     <div class="flex flex-nowrap items-center">
         <div class="grow">
             <FormTriStateCheckbox @bind-Value="Filter.Checked">
                 <div class="flex items-center gap-1">
                     <ItemPropertyText Label="@Filter.Text"
+                                      Hint="@Filter.Hint"
                                       Value="@Value"/>
                 </div>
             </FormTriStateCheckbox>

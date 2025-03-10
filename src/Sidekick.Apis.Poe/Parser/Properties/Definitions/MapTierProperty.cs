@@ -3,6 +3,7 @@ using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
@@ -19,7 +20,7 @@ public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : Prope
         if (itemProperties.MapTier > 0) propertyBlock.Parsed = true;
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue)
+    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
         if (item.Properties.MapTier <= 0) return null;
 
@@ -31,7 +32,7 @@ public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : Prope
             Value = item.Properties.MapTier,
             Checked = true,
         };
-        filter.NormalizeMinValue();
+        filter.ChangeFilterType(filterType);
         return filter;
     }
 

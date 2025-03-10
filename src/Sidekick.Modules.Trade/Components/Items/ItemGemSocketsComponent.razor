@@ -1,0 +1,21 @@
+@using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Common.Game.Items
+
+@if (Item.Properties.Sockets == null || Item.Properties.Sockets.Any(x => x.Colour != SocketColour.PoE2_Gem))
+{
+    return;
+}
+
+<div class="flex flex-wrap items-center justify-center gap-1 my-1">
+    @for (var i = 0; i < Item.Properties.Sockets.Count; i++)
+    {
+        <div class="item-socket-poe2-gem"></div>
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public required TradeItem Item { get; set; }
+
+}

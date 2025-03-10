@@ -9,14 +9,8 @@
 @foreach (var filter in PriceCheckService.PseudoFilters)
 {
     <CascadingValue Value="filter" IsFixed="true">
-        <PseudoFilterComponent DefaultFilterType="@DefaultFilterType"/>
+        <PseudoFilterComponent/>
     </CascadingValue>
 }
 
 @inject PriceCheckService PriceCheckService
-
-@code
-{
-    [Parameter]
-    public required FilterType DefaultFilterType { get; set; }
-}

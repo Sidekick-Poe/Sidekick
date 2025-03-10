@@ -18,7 +18,7 @@ public class PropertyParser
     IInvariantModifierProvider invariantModifierProvider,
     IApiInvariantItemProvider apiInvariantItemProvider,
     ISettingsService settingsService,
-    IStringLocalizer<FilterResources> filterLocalizer
+    IStringLocalizer<PoeResources> resources
 ) : IPropertyParser
 {
     public int Priority => 200;
@@ -39,7 +39,7 @@ public class PropertyParser
             new EnergyShieldProperty(gameLanguageProvider, game),
             new BlockChanceProperty(gameLanguageProvider, game),
 
-            new WeaponDamageProperty(gameLanguageProvider, game, invariantModifierProvider, filterLocalizer),
+            new WeaponDamageProperty(gameLanguageProvider, game, invariantModifierProvider, resources),
             new AttacksPerSecondProperty(gameLanguageProvider, game),
             new CriticalHitChanceProperty(gameLanguageProvider, game),
 
@@ -55,6 +55,7 @@ public class PropertyParser
 
             new GemLevelProperty(gameLanguageProvider, game, apiInvariantItemProvider),
             new ItemLevelProperty(gameLanguageProvider, game),
+            new SocketProperty(gameLanguageProvider, game, resources),
             new CorruptedProperty(gameLanguageProvider),
             new UnidentifiedProperty(gameLanguageProvider),
 
@@ -93,16 +94,17 @@ public class PropertyParser
     public async Task<List<BooleanPropertyFilter>> GetFilters(Item item)
     {
         var normalizeValue = await settingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
+        var filterType = await settingsService.GetEnum<FilterType>(SettingKeys.PriceCheckDefaultFilterType) ?? FilterType.Minimum;
         var results = new List<BooleanPropertyFilter>();
 
         foreach (var definition in Definitions)
         {
             if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(item.Header.Category)) continue;
 
-            var filter = definition.GetFilter(item, normalizeValue);
+            var filter = definition.GetFilter(item, normalizeValue, filterType);
             if (filter != null) results.Add(filter);
 
-            var filters = definition.GetFilters(item, normalizeValue);
+            var filters = definition.GetFilters(item, normalizeValue, filterType);
             if (filters != null) results.AddRange(filters);
         }
 

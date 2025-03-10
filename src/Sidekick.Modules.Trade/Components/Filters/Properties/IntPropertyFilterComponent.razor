@@ -1,9 +1,12 @@
-@using Sidekick.Apis.Poe.Parser.Properties.Definitions
 @using Sidekick.Apis.Poe.Parser.Properties.Filters
-@using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Common.Game.Languages
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
+
+@if (!Filter.ShowRow)
+{
+    return;
+}
 
 <FilterWrapper>
     <div class="flex flex-nowrap items-center">
@@ -11,6 +14,7 @@
             <FormCheckbox Value="Filter.Checked"
                           ValueChanged="CheckedChanged">
                 <ItemPropertyText Label="@Filter.Text"
+                                  Hint="@Filter.Hint"
                                   Value="@($"{Filter.ValuePrefix}{Filter.Value}{Filter.ValueSuffix}")"
                                   HasAdditionalInformation="Filter.Value != Filter.OriginalValue && Filter.OriginalValue > 0">
                     <AdditionalInformation>
@@ -29,8 +33,8 @@
                          MinChanged="MinChanged"
                          Max="@Filter.Max"
                          MaxChanged="MaxChanged"
-                         TypeChanged="TypeChanged"
-                         DefaultFilterType="@DefaultFilterType"/>
+                         Type="@Filter.FilterType"
+                         TypeChanged="(v) => Filter.ChangeFilterType(v)"/>
         }
     </div>
 </FilterWrapper>
@@ -45,16 +49,14 @@
     [Parameter]
     public required IntPropertyFilter Filter { get; set; }
 
-    [Parameter]
-    public required FilterType DefaultFilterType { get; set; }
-
     private async void CheckedChanged(bool value)
     {
         Filter.Checked = value;
 
         // We can change the settings in the Trade window, so we should fetch here every time.
         Filter.NormalizeValue = await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
-        TypeChanged(DefaultFilterType);
+        var filterType = await SettingsService.GetEnum<FilterType>(SettingKeys.PriceCheckDefaultFilterType) ?? FilterType.Minimum;
+        Filter.ChangeFilterType(filterType);
     }
 
     private void MinChanged(double? value)
@@ -65,29 +67,6 @@
     private void MaxChanged(double? value)
     {
         Filter.Max = value != null ? (int)value : null;
-    }
-
-    private void TypeChanged(FilterType type)
-    {
-        switch (type)
-        {
-            case FilterType.Minimum:
-                Filter.NormalizeMinValue();
-                Filter.Max = null;
-                break;
-
-            case FilterType.Maximum:
-                Filter.NormalizeMaxValue();
-                Filter.Min = null;
-                break;
-
-            case FilterType.Equals: Filter.SetExactValue(); break;
-
-            case FilterType.Range:
-                Filter.NormalizeMinValue();
-                Filter.NormalizeMaxValue();
-                break;
-        }
     }
 
 }

@@ -8,6 +8,7 @@ using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
@@ -16,7 +17,7 @@ public class WeaponDamageProperty
     IGameLanguageProvider gameLanguageProvider,
     GameType game,
     IInvariantModifierProvider invariantModifierProvider,
-    IStringLocalizer<FilterResources> localizer
+    IStringLocalizer<PoeResources> localizer
 ) : PropertyDefinition
 {
     public override List<Category> ValidCategories { get; } = [Category.Weapon];
@@ -114,7 +115,7 @@ public class WeaponDamageProperty
         }
     }
 
-    public override List<BooleanPropertyFilter>? GetFilters(Item item, double normalizeValue)
+    public override List<BooleanPropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType)
     {
         var results = new List<BooleanPropertyFilter>();
 
@@ -129,7 +130,7 @@ public class WeaponDamageProperty
                 OriginalValue = item.Properties.TotalDamage ?? 0,
                 Checked = false,
             };
-            filter.NormalizeMinValue();
+            filter.ChangeFilterType(filterType);
             results.Add(filter);
         }
 
@@ -144,7 +145,7 @@ public class WeaponDamageProperty
                 OriginalValue = item.Properties.PhysicalDps ?? 0,
                 Checked = false,
             };
-            filter.NormalizeMinValue();
+            filter.ChangeFilterType(filterType);
             results.Add(filter);
         }
 
@@ -158,7 +159,7 @@ public class WeaponDamageProperty
                 Value = item.Properties.ElementalDps ?? 0,
                 Checked = false,
             };
-            filter.NormalizeMinValue();
+            filter.ChangeFilterType(filterType);
             results.Add(filter);
         }
 
@@ -172,7 +173,7 @@ public class WeaponDamageProperty
                 Value = item.Properties.ChaosDps ?? 0,
                 Checked = false,
             };
-            filter.NormalizeMinValue();
+            filter.ChangeFilterType(filterType);
             results.Add(filter);
         }
 
@@ -187,7 +188,7 @@ public class WeaponDamageProperty
                 OriginalValue = item.Properties.TotalDps ?? 0,
                 Checked = false,
             };
-            filter.NormalizeMinValue();
+            filter.ChangeFilterType(filterType);
             results.Add(filter);
         }
 

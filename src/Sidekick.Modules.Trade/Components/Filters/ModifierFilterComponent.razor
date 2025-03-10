@@ -17,18 +17,23 @@
 
         @if (EnchantmentOilNames?.Any() ?? false)
         {
-            <OilAnointment OilNames="EnchantmentOilNames" />
+            <OilAnointment OilNames="EnchantmentOilNames"/>
         }
 
         <div class="flex flex-col items-end justify-between">
-            @if (Filter is { Checked: true, HasMoreThanOneCategory: true, FirstCategory: not ModifierCategory.Explicit })
+            @if (Filter is
+                     {
+                         Checked: true,
+                         HasMoreThanOneCategory: true,
+                         FirstCategory: not ModifierCategory.Explicit
+                     })
             {
                 <TooltipRight>
                     <ChildContent>
                         <ItemModifierCategoryChip Category="Filter.FirstCategory"
                                                   Checked="Filter.ForceFirstCategory"
                                                   ShowCheckbox="true"
-                                                  OnClick="() => Filter.ForceFirstCategory = !Filter.ForceFirstCategory" />
+                                                  OnClick="() => Filter.ForceFirstCategory = !Filter.ForceFirstCategory"/>
                     </ChildContent>
                     <TooltipContent>
                         @Resources["ForceCategoryHint"]
@@ -38,9 +43,17 @@
 
             <div class="h-[2px]"></div>
 
-            @if (Filter is { Checked: true, Line: { HasValues: true } })
+            @if (Filter is
+                     {
+                         Checked: true,
+                         Line:
+                         {
+                             HasValues: true
+                         }
+                     })
             {
-                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" TypeChanged="TypeChanged" DefaultFilterType="@DefaultFilterType"/>
+                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" Type="@Filter.FilterType"
+                             TypeChanged="(v) => Filter.ChangeFilterType(v)"/>
             }
         </div>
     </div>
@@ -58,9 +71,6 @@
 
     private List<string>? EnchantmentOilNames { get; set; }
 
-    [Parameter]
-    public required FilterType DefaultFilterType { get; set; }
-
     protected override async Task OnInitializedAsync()
     {
         if (Filter.Line.Modifiers.FirstOrDefault()?.Category == ModifierCategory.Enchant && GameLanguageProvider.IsEnglish())
@@ -68,10 +78,7 @@
             var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Line);
             if (oilMetadataIds != null)
             {
-                EnchantmentOilNames = oilMetadataIds
-                                      .Where(x => PoeWikiClient.BlightOilNamesByMetadataIds.ContainsKey(x))
-                                      .Select(x => PoeWikiClient.BlightOilNamesByMetadataIds[x])
-                                      .ToList();
+                EnchantmentOilNames = oilMetadataIds.Where(x => PoeWikiClient.BlightOilNamesByMetadataIds.ContainsKey(x)).Select(x => PoeWikiClient.BlightOilNamesByMetadataIds[x]).ToList();
             }
         }
 
@@ -87,32 +94,8 @@
 
         // We can change the settings in the Trade window, so we should fetch here every time.
         Filter.NormalizeValue = await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
-        TypeChanged(DefaultFilterType);
-    }
-
-    private void TypeChanged(FilterType type)
-    {
-        switch (type)
-        {
-            case FilterType.Minimum:
-                Filter.NormalizeMinValue();
-                Filter.Max = null;
-                break;
-
-            case FilterType.Maximum:
-                Filter.NormalizeMaxValue();
-                Filter.Min = null;
-                break;
-
-            case FilterType.Equals:
-                Filter.SetExactValue();
-                break;
-
-            case FilterType.Range:
-                Filter.NormalizeMinValue();
-                Filter.NormalizeMaxValue();
-                break;
-        }
+        var filterType = await SettingsService.GetEnum<FilterType>(SettingKeys.PriceCheckDefaultFilterType) ?? FilterType.Minimum;
+        Filter.ChangeFilterType(filterType);
     }
 
 }

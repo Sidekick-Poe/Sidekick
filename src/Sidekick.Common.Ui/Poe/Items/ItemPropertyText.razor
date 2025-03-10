@@ -21,6 +21,13 @@
             </TooltipContent>
         </TooltipRight>
     }
+
+    @if (!string.IsNullOrEmpty(Hint))
+    {
+        <div class="ml-1">
+            <TooltipHint Text="@Hint"/>
+        </div>
+    }
 </TextBase>
 
 @code {
@@ -33,6 +40,9 @@
 
     [Parameter]
     public bool HasAdditionalInformation { get; set; }
+
+    [Parameter]
+    public string? Hint { get; set; }
 
     [Parameter]
     public string? Class { get; set; }

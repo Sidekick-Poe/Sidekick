@@ -4,6 +4,7 @@ using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Parser.Properties.Definitions;
 
@@ -13,9 +14,9 @@ public class EnergyShieldProperty
     GameType game
 ) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionEnergyShield.ToRegexIntCapture();  
+    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionEnergyShield.ToRegexIntCapture();
 
-    private Regex? AlternatePattern { get; } = 
+    private Regex? AlternatePattern { get; } =
         !string.IsNullOrEmpty(gameLanguageProvider.Language.DescriptionEnergyShieldAlternate)
             ? gameLanguageProvider.Language.DescriptionEnergyShieldAlternate.ToRegexIntCapture()
             : null;
@@ -30,7 +31,7 @@ public class EnergyShieldProperty
         if (itemProperties.EnergyShield > 0) propertyBlock.Parsed = true;
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue)
+    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
         if (item.Properties.EnergyShield <= 0) return null;
 
@@ -49,7 +50,7 @@ public class EnergyShieldProperty
             OriginalValue = item.Properties.EnergyShield,
             Checked = false,
         };
-        filter.NormalizeMinValue();
+        filter.ChangeFilterType(filterType);
         return filter;
     }
 
