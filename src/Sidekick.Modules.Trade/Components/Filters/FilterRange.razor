@@ -1,7 +1,7 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization;
 
-<div class="flex flex-nowrap items-center gap-2" id="@Id">
+<div class="flex flex-nowrap items-center -mr-1 [&_button]:!mr-1 [&_.range_[contenteditable]]:!rounded-r-none [&_.range:last-child_[contenteditable]]:!rounded-r-md [&_.range~.range_[contenteditable]]:!rounded-l-none" id="@Id">
     <ButtonIcon OnClick="ToggleType">
         <IconMedium Icon="@Icon"/>
     </ButtonIcon>
@@ -9,21 +9,20 @@
     @if (Type == FilterType.Minimum || Type == FilterType.Equals || Type == FilterType.Range)
     {
         <div @onwheel="OnMinWheel"
-             @oncontextmenu="Clear">
+             @oncontextmenu="Clear"
+             title="@Resources["Filters_Min"]"
+             class="range">
             <FormContentEditable DoubleValue="Min"
                                  DoubleValueChanged="UpdateMinValue"/>
         </div>
     }
 
-    @if (Type == FilterType.Range)
-    {
-        <span class="text-violet-500 -mx-1">-</span>
-    }
-
     @if (Type == FilterType.Maximum || Type == FilterType.Range)
     {
         <div @onwheel="OnMaxWheel"
-             @oncontextmenu="Clear">
+             @oncontextmenu="Clear"
+             title="@Resources["Filters_Max"]"
+             class="range">
             <FormContentEditable DoubleValue="Max"
                                  DoubleValueChanged="UpdateMaxValue"/>
         </div>
