@@ -1,62 +1,32 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization;
 
-<div class="relative group/filter self-end">
+<div class="flex flex-nowrap items-center -mr-1 [&_button]:!mr-1 [&_.range_[contenteditable]]:!rounded-r-none [&_.range:last-child_[contenteditable]]:!rounded-r-md [&_.range~.range_[contenteditable]]:!rounded-l-none" id="@Id">
     <ButtonIcon OnClick="ToggleType">
-        <div class="flex flex-nowrap items-center gap-[2px]">
-            <IconMedium Icon="@Icon"/>
-            @if (Type == FilterType.Minimum || Type == FilterType.Equals || Type == FilterType.Range)
-            {
-                <span>@Min</span>
-            }
-
-            @if (Type == FilterType.Range)
-            {
-                <span>-</span>
-            }
-
-            @if (Type == FilterType.Maximum || Type == FilterType.Range)
-            {
-                <span>@Max</span>
-            }
-        </div>
+        <IconMedium Icon="@Icon"/>
     </ButtonIcon>
 
-    <div class="group-hover/filter:flex flex-nowrap items-center gap-2 absolute top-full -right-2 bg-stone-800 rounded-b-lg py-1 px-2 hidden opacity-0 group-hover/filter:opacity-100 transition-opacity duration-200 z-10"
-         id="@Id">
-        @if (Type == FilterType.Equals)
-        {
-            <div class="w-[5rem]"
-                 @onwheel="OnMinWheel"
-                 @oncontextmenu="Clear">
-                <FormNumberSmall Value="Min"
-                                 ValueChanged="UpdateMinValue"
-                                 Label="@Resources["Equals"]"/>
-            </div>
-        }
+    @if (Type == FilterType.Minimum || Type == FilterType.Equals || Type == FilterType.Range)
+    {
+        <div @onwheel="OnMinWheel"
+             @oncontextmenu="Clear"
+             title="@Resources["Filters_Min"]"
+             class="range">
+            <FormContentEditable DoubleValue="Min"
+                                 DoubleValueChanged="UpdateMinValue"/>
+        </div>
+    }
 
-        @if (Type == FilterType.Minimum || Type == FilterType.Range)
-        {
-            <div class="w-[5rem]"
-                 @onwheel="OnMinWheel"
-                 @oncontextmenu="Clear">
-                <FormNumberSmall Value="Min"
-                                 ValueChanged="UpdateMinValue"
-                                 Label="@Resources["Min"]"/>
-            </div>
-        }
-
-        @if (Type == FilterType.Maximum || Type == FilterType.Range)
-        {
-            <div class="w-[5rem]"
-                 @onwheel="OnMaxWheel"
-                 @oncontextmenu="Clear">
-                <FormNumberSmall Value="Max"
-                                 ValueChanged="UpdateMaxValue"
-                                 Label="@Resources["Max"]"/>
-            </div>
-        }
-    </div>
+    @if (Type == FilterType.Maximum || Type == FilterType.Range)
+    {
+        <div @onwheel="OnMaxWheel"
+             @oncontextmenu="Clear"
+             title="@Resources["Filters_Max"]"
+             class="range">
+            <FormContentEditable DoubleValue="Max"
+                                 DoubleValueChanged="UpdateMaxValue"/>
+        </div>
+    }
 </div>
 
 @inject IStringLocalizer<TradeResources> Resources
@@ -96,12 +66,11 @@
     {
         if (firstRender)
         {
-            await JsRuntime.InvokeVoidAsync(
-                "eval",
-                @"
-                document.getElementById("""
-                + Id
-                + @""")?.addEventListener(""wheel"",function(e) {
+            await JsRuntime.InvokeVoidAsync("eval",
+                                            @"
+                                            document.getElementById("""
+                                            + Id
+                                            + @""")?.addEventListener(""wheel"",function(e) {
                     e.preventDefault();
                 }, { passive: false });
             ");
@@ -116,9 +85,9 @@
         {
             FilterType.Minimum => FilterType.Maximum,
             FilterType.Maximum => FilterType.Equals,
-            FilterType.Equals  => FilterType.Range,
-            FilterType.Range   => FilterType.Minimum,
-            _                 => FilterType.Minimum,
+            FilterType.Equals => FilterType.Range,
+            FilterType.Range => FilterType.Minimum,
+            _ => FilterType.Minimum,
         };
 
         await TypeChanged.InvokeAsync(Type);
