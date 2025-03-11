@@ -88,6 +88,7 @@
     protected override async Task OnInitializedAsync()
     {
         PriceCheckService.FilterLoadingChanged += StateHasChanged;
+        PriceCheckService.LoadingChanged += StateHasChanged;
 
         await base.OnInitializedAsync();
 
@@ -99,6 +100,7 @@
     public void Dispose()
     {
         PriceCheckService.FilterLoadingChanged -= StateHasChanged;
+        PriceCheckService.LoadingChanged -= StateHasChanged;
     }
 
 }
