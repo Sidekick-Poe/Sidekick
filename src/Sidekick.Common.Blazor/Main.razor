@@ -34,7 +34,7 @@
 
 @code {
 
-    private MudTheme theme = new MudTheme()
+    private MudTheme theme = new()
     {
         PaletteDark = new PaletteDark()
         {
@@ -48,106 +48,33 @@
         },
         Typography = new Typography()
         {
-            Body1 = new Body1()
-            {
-                FontSize = "14px",
-                FontFamily = ["fontin", "sans", "serif", "mono"],
-                FontWeight = 400,
-                LetterSpacing = "0",
-                LineHeight = 1.2,
-                TextTransform = "none",
-            },
-            Body2 = new Body2()
-            {
-                FontSize = "14px",
-                FontFamily = ["fontin", "sans", "serif", "mono"],
-                FontWeight = 400,
-                LetterSpacing = "0",
-                LineHeight = 1.2,
-                TextTransform = "none",
-            },
-            Subtitle1 = new Subtitle1()
-            {
-                FontSize = "16px",
-                FontFamily = ["fontin", "sans", "serif", "mono"],
-                FontWeight = 400,
-                LetterSpacing = "0",
-                LineHeight = 1.2,
-                TextTransform = "none",
-            },
-            Subtitle2 = new Subtitle2()
-            {
-                FontSize = "16px",
-                FontFamily = ["fontin", "sans", "serif", "mono"],
-                FontWeight = 400,
-                LetterSpacing = "0",
-                LineHeight = 1.2,
-                TextTransform = "none",
-            },
-            H6 = new H6()
-            {
-                FontSize = "16px",
-                FontFamily = ["fontin", "sans", "serif", "mono"],
-                FontWeight = 400,
-                LetterSpacing = "0",
-                LineHeight = 1.2,
-                TextTransform = "none",
-            },
-            H5 = new H5()
-            {
-                FontSize = "16px",
-                FontFamily = ["fontin", "sans", "serif", "mono"],
-                FontWeight = 400,
-                LetterSpacing = "0",
-                LineHeight = 1.2,
-                TextTransform = "none",
-            },
-            H4 = new H4()
-            {
-                FontSize = "16px",
-                FontFamily = ["fontin", "sans", "serif", "mono"],
-                FontWeight = 400,
-                LetterSpacing = "0",
-                LineHeight = 1.2,
-                TextTransform = "none",
-            },
-            H3 = new H3()
-            {
-                FontSize = "18px",
-                FontFamily = ["fontin", "sans", "serif", "mono"],
-                FontWeight = 400,
-                LetterSpacing = "0",
-                LineHeight = 1.2,
-                TextTransform = "none",
-            },
-            H2 = new H2()
-            {
-                FontSize = "24px",
-                FontFamily = ["fontin", "sans", "serif", "mono"],
-                FontWeight = 400,
-                LetterSpacing = "0",
-                LineHeight = 1.2,
-                TextTransform = "none",
-            },
-            H1 = new H1()
-            {
-                FontSize = "30px",
-                FontFamily = ["fontin", "sans", "serif", "mono"],
-                FontWeight = 400,
-                LetterSpacing = "0",
-                LineHeight = 1.2,
-                TextTransform = "none",
-            },
-            Default = new Default()
-            {
-                FontSize = "14px",
-                FontFamily = ["fontin", "sans", "serif", "mono"],
-                FontWeight = 400,
-                LetterSpacing = "0",
-                LineHeight = 1.2,
-                TextTransform = "none",
-            },
+            Body1 = CreateTypography<Body1Typography>("14px"),
+            Body2 = CreateTypography<Body2Typography>("14px"),
+            Subtitle1 = CreateTypography<Subtitle1Typography>("16px"),
+            Subtitle2 = CreateTypography<Subtitle2Typography>("16px"),
+            H6 = CreateTypography<H6Typography>("16px"),
+            H5 = CreateTypography<H5Typography>("16px"),
+            H4 = CreateTypography<H4Typography>("16px"),
+            H3 = CreateTypography<H3Typography>("18px"),
+            H2 = CreateTypography<H2Typography>("24px"),
+            H1 = CreateTypography<H1Typography>("30px"),
+            Default = CreateTypography<DefaultTypography>("14px"),
         }
     };
+
+    private static BaseTypography CreateTypography<T>(string fontSize)
+        where T : BaseTypography, new()
+    {
+        var typo = new T();
+        if (typo is not BaseTypography baseTypo) return typo;
+        baseTypo.FontFamily = ["fontin", "sans", "serif", "mono"];
+        baseTypo.FontSize = fontSize;
+        baseTypo.FontWeight = "400";
+        baseTypo.LineHeight = "1.2";
+        baseTypo.LetterSpacing = "0";
+        baseTypo.TextTransform = "none";
+
+        return typo;
+    }
 
 }

@@ -1,6 +1,6 @@
 ﻿<component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Publish Sidekick.Protocol to Sidekick.Wpf" type="DotNetFolderPublish" factoryName="Publish to folder">
-    <riderPublish configuration="Release" include_native_libs_for_self_extract="true" platform="Any CPU" produce_single_file="true" ready_to_run="true" runtime="win-x64" self_contained="true" target_folder="../Sidekick.Wpf" target_framework="net8.0-windows" trim_unused_assemblies="true" uuid_high="910202764452187751" uuid_low="-8974918554317503284" />
+    <riderPublish configuration="Release" include_native_libs_for_self_extract="true" platform="Any CPU" produce_single_file="true" ready_to_run="true" runtime="win-x64" self_contained="true" target_folder="../Sidekick.Wpf" target_framework="net9.0-windows" trim_unused_assemblies="true" uuid_high="910202764452187751" uuid_low="-8974918554317503284" />
     <method v="2" />
   </configuration>
 </component>
