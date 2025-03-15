@@ -37,6 +37,7 @@ public class GameLanguageRu : IGameLanguage
     public string DescriptionEvasion => "Уклонение";
     public string DescriptionChanceToBlock => "Шанс заблокировать удар";
     public string DescriptionBlockChance => "Шанс блока";
+    public string DescriptionSpirit => "Дух";
     public string DescriptionAttacksPerSecond => "Атак в секунду";
     public string DescriptionCriticalStrikeChance => "Шанс критического удара";
     public string DescriptionCriticalHitChance => "Шанс крит. попадания";

@@ -34,6 +34,7 @@ public class PropertyParser
         Definitions.AddRange([
             new QualityProperty(gameLanguageProvider),
 
+            new SpiritProperty(gameLanguageProvider, game),
             new ArmourProperty(gameLanguageProvider, game),
             new EvasionRatingProperty(gameLanguageProvider, game),
             new EnergyShieldProperty(gameLanguageProvider, game),

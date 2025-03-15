@@ -39,6 +39,7 @@ public class GameLanguageJp : IGameLanguage
     public string DescriptionEvasion => "回避力";
     public string DescriptionChanceToBlock => "ブロック率";
     public string DescriptionBlockChance => "ブロック率";
+    public string DescriptionSpirit => "スピリット";
     public string DescriptionAttacksPerSecond => "秒間アタック回数";
     public string DescriptionCriticalStrikeChance => "クリティカル率";
     public string DescriptionCriticalHitChance => "クリティカルヒット率";
