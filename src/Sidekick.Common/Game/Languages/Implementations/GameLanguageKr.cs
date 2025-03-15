@@ -39,6 +39,7 @@ public class GameLanguageKr : IGameLanguage
     public string DescriptionEvasion => "회피";
     public string DescriptionChanceToBlock => "막기 확률";
     public string DescriptionBlockChance => "막기 확률";
+    public string DescriptionSpirit => "정신력";
     public string DescriptionAttacksPerSecond => "초당 공격 횟수";
     public string DescriptionCriticalStrikeChance => "치명타 확률";
     public string DescriptionCriticalHitChance => "치명타 명중 확률";

@@ -37,6 +37,7 @@ public class GameLanguageEs : IGameLanguage
     public string DescriptionEvasion => "Evasión";
     public string DescriptionChanceToBlock => "Probabilidad de bloqueo";
     public string DescriptionBlockChance => "Probabilidad de bloqueo";
+    public string DescriptionSpirit => "Espíritu";
     public string DescriptionAttacksPerSecond => "Ataques por segundo";
     public string DescriptionCriticalStrikeChance => "Daño de golpe crítico";
     public string DescriptionCriticalHitChance => "Probabilidad de impacto crítico";

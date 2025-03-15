@@ -173,4 +173,27 @@ Leeches 5.82% of Physical Damage as Mana");
         Assert.Equal(66.0, actual.Properties.ChaosDps);
         Assert.Equal(66.0, actual.Properties.TotalDps);
     }
+
+    [Fact]
+    public void ParseSpirit()
+    {
+        var actual = parser.ParseItem(@"Item Class: Sceptres
+Rarity: Magic
+Burning Rattling Sceptre
+--------
+Spirit: 100
+--------
+Requires: Level 66, 46 Str, 117 Int
+--------
+Item Level: 70
+--------
+Allies in your Presence deal 9 to 13 additional Attack Fire Damage
+");
+
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal(Rarity.Magic, actual.Header.Rarity);
+        Assert.Equal("Rattling Sceptre", actual.Header.ApiType);
+
+        Assert.Equal(100, actual.Properties.Spirit);
+    }
 }

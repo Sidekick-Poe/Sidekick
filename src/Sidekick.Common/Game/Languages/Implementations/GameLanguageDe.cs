@@ -37,6 +37,7 @@ public class GameLanguageDe : IGameLanguage
     public string DescriptionEvasion => "Ausweichwert";
     public string DescriptionChanceToBlock => "Chance auf Blocken";
     public string DescriptionBlockChance => "Blockchance";
+    public string DescriptionSpirit => "Wille";
     public string DescriptionAttacksPerSecond => "Angriffe pro Sekunde";
     public string DescriptionCriticalStrikeChance => "Kritische Trefferchance";
     public string DescriptionCriticalHitChance => "Kritische Trefferchance";

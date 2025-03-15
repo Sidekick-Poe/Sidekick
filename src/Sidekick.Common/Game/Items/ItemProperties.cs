@@ -20,6 +20,10 @@ public class ItemProperties
 
     public int EvasionRatingWithQuality => CalculateValueWithQuality(EvasionRating);
 
+    public int Spirit { get; set; }
+
+    public int SpiritWithQuality => CalculateValueWithQuality(Spirit);
+
     public int BaseDefencePercentile { get; init; }
 
     public int BlockChance { get; set; }

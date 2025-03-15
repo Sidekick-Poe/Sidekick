@@ -37,6 +37,7 @@ public class GameLanguageTh : IGameLanguage
     public string DescriptionEvasion => "อัตราการหลบหลีก";
     public string DescriptionChanceToBlock => "โอกาสบล็อค";
     public string DescriptionBlockChance => "โอกาสบล็อค";
+    public string DescriptionSpirit => "พลังวิญญาณ";
     public string DescriptionAttacksPerSecond => "จำนวนครั้งการโจมตีต่อวินาที";
     public string DescriptionCriticalStrikeChance => "โอกาสคริติคอล";
     public string DescriptionCriticalHitChance => "โอกาสปะทะคริติคอล";
