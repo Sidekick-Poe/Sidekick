@@ -1,6 +1,6 @@
 @using Sidekick.Common.Game.Items
 
-<TextBase Class="@($"{Class} {ColorClass} leading-none py-0.5 font-caps")">@ChildContent</TextBase>
+<TextBase Class="@($"{Class} {ColorClass} {LogbookClass} leading-none py-[1px] font-caps")">@ChildContent</TextBase>
 
 @code {
 
@@ -26,7 +26,22 @@
         ModifierCategory.Crucible => "text-[#FF7339]",
         ModifierCategory.Corrupted => "text-[#D20000]",
         ModifierCategory.Unidentified => "text-[#D20000]",
+        ModifierCategory.WhiteText => "text-[#FFFFFF]",
+        ModifierCategory.GrayText => "text-[#7F7F7F]",
+        ModifierCategory.OrderOfTheChalice => "text-[#7F7F7F]",
+        ModifierCategory.KnightsOfTheSun => "text-[#7F7F7F]",
+        ModifierCategory.BlackScytheMercenaries => "text-[#7F7F7F]",
+        ModifierCategory.DruidsOfTheBrokenCircle => "text-[#7F7F7F]",
         _ => "text-[#8888FF]",
+    };
+
+    private string LogbookClass => Category switch
+    {
+        ModifierCategory.OrderOfTheChalice => "item-logbook-faction item-logbook-faction-order",
+        ModifierCategory.KnightsOfTheSun => "item-logbook-faction item-logbook-faction-knights",
+        ModifierCategory.BlackScytheMercenaries => "item-logbook-faction item-logbook-faction-mercenaries",
+        ModifierCategory.DruidsOfTheBrokenCircle => "item-logbook-faction item-logbook-faction-druids",
+        _ => string.Empty,
     };
 
 }

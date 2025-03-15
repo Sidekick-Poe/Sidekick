@@ -38,7 +38,7 @@ public class PseudoParser
         var categories = await invariantModifierProvider.GetList();
         categories.RemoveAll(x => x.Entries.FirstOrDefault()?.Id.StartsWith("pseudo") == true);
 
-        var localizedPseudoModifiers = modifierProvider.Patterns.GetValueOrDefault(ModifierCategory.Pseudo);
+        var localizedPseudoModifiers = modifierProvider.Definitions.GetValueOrDefault(ModifierCategory.Pseudo);
 
         foreach (var definition in Definitions)
         {

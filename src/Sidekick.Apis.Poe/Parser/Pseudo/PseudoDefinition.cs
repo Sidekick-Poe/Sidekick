@@ -30,7 +30,7 @@ public abstract class PseudoDefinition
 
     public List<PseudoModifierDefinition> Modifiers { get; private set; } = new();
 
-    internal void InitializeDefinition(List<ApiCategory> apiCategories, List<ModifierPattern>? localizedPseudoModifiers)
+    internal void InitializeDefinition(List<ApiCategory> apiCategories, List<ModifierDefinition>? localizedPseudoModifiers)
     {
         foreach (var apiModifier in apiCategories.SelectMany(apiCategory => apiCategory.Entries))
         {
@@ -74,7 +74,7 @@ public abstract class PseudoDefinition
 
         if (localizedPseudoModifiers != null && !string.IsNullOrEmpty(ModifierId))
         {
-            Text = localizedPseudoModifiers.FirstOrDefault(x => x.Id == ModifierId)?.Text ?? "";
+            Text = localizedPseudoModifiers.FirstOrDefault(x => x.ApiId == ModifierId)?.ApiText ?? "";
         }
 
         if (string.IsNullOrEmpty(Text))
@@ -108,7 +108,7 @@ public abstract class PseudoDefinition
         {
             foreach (var definitionModifier in Modifiers)
             {
-                if (itemModifierLine.Modifiers.All(itemModifier => definitionModifier.Id != itemModifier.Id) || itemModifierLine.Values.Count == 0)
+                if (itemModifierLine.Modifiers.All(itemModifier => definitionModifier.Id != itemModifier.ApiId) || itemModifierLine.Values.Count == 0)
                 {
                     continue;
                 }
@@ -131,7 +131,7 @@ public abstract class PseudoDefinition
             {
                 foreach (var modifier in itemModifierLine.Modifiers)
                 {
-                    if (modifier.Id == definitionModifier.Id) return true;
+                    if (modifier.ApiId == definitionModifier.Id) return true;
                 }
             }
         }

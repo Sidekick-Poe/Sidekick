@@ -5,8 +5,8 @@ namespace Sidekick.Apis.Poe.Fuzzy;
 
 public class FuzzyService(IGameLanguageProvider gameLanguageProvider) : IFuzzyService
 {
-    private readonly Regex CleanFuzzyPattern = new("[-+0-9%#]");
-    private readonly Regex TrimPattern = new(@"\s+");
+    private readonly Regex cleanFuzzyPattern = new("[-+0-9%#]");
+    private readonly Regex trimPattern = new(@"\s+");
 
     public string CleanFuzzyText(string text)
     {
@@ -15,8 +15,8 @@ public class FuzzyService(IGameLanguageProvider gameLanguageProvider) : IFuzzySe
             return text;
         }
 
-        text = CleanFuzzyPattern.Replace(text, string.Empty);
-        text = TrimPattern.Replace(text, " ").Trim();
+        text = cleanFuzzyPattern.Replace(text, string.Empty);
+        text = trimPattern.Replace(text, " ").Trim();
         text = gameLanguageProvider.Language.GetFuzzyText(text) ?? string.Empty;
         return text;
     }

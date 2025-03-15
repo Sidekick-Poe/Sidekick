@@ -1,0 +1,27 @@
+
+.item-logbook-faction::before {
+    display: inline-block;
+    content: " ";
+    width: 18px;
+    height: 18px;
+    padding-right: 2px;
+    line-height: 1em;
+    vertical-align: middle;
+    background: url("/images/items/expedition.png") no-repeat;
+}
+
+.item-logbook-faction-knights::before {
+    background-position: -18px -18px;
+}
+
+.item-logbook-faction-order::before {
+    background-position: 0 -18px;
+}
+
+.item-logbook-faction-mercenaries::before {
+    background-position: -18px 0;
+}
+
+.item-logbook-faction-druids::before {
+    background-position:  0 0;
+}

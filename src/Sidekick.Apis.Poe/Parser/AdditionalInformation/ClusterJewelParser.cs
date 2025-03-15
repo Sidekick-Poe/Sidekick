@@ -48,7 +48,7 @@ public class ClusterJewelParser(IInvariantModifierProvider invariantModifierProv
 
             foreach (var modifier in modifierLine.Modifiers)
             {
-                if (modifier.Id == invariantModifierProvider.ClusterJewelSmallPassiveCountModifierId)
+                if (modifier.ApiId == invariantModifierProvider.ClusterJewelSmallPassiveCountModifierId)
                 {
                     return (int)modifierLine.Values.First();
                 }
@@ -69,7 +69,7 @@ public class ClusterJewelParser(IInvariantModifierProvider invariantModifierProv
 
             foreach (var modifier in modifierLine.Modifiers)
             {
-                if (modifier.Id == invariantModifierProvider.ClusterJewelSmallPassiveGrantModifierId)
+                if (modifier.ApiId == invariantModifierProvider.ClusterJewelSmallPassiveGrantModifierId)
                 {
                     return invariantModifierProvider.ClusterJewelSmallPassiveGrantOptions[modifierLine.OptionValue.Value].Replace("\n", ", ");
                 }

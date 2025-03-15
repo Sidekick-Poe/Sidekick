@@ -8,8 +8,8 @@
     var isLastFilter = i + 1 == PriceCheckService.ModifierFilters.Count;
     if (!isLastFilter)
     {
-        var isDifferentCategoryThanNext = NormalizeModifierCategory(PriceCheckService.ModifierFilters[i].Line.Modifiers.FirstOrDefault()?.Category) != NormalizeModifierCategory(PriceCheckService.ModifierFilters[i + 1].Line.Modifiers.FirstOrDefault()?.Category);
-        if (isDifferentCategoryThanNext)
+        var isDifferentBlock = PriceCheckService.ModifierFilters[i].Line.BlockIndex != PriceCheckService.ModifierFilters[i+1].Line.BlockIndex;
+        if (isDifferentBlock)
         {
             <ItemSeparator Rarity="PriceCheckService.Item?.Header.Rarity ?? Rarity.Unknown"/>
         }

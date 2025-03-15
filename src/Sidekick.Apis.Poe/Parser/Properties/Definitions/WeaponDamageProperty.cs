@@ -71,7 +71,7 @@ public class WeaponDamageProperty
         damageMods.AddRange(invariantModifierProvider.ColdWeaponDamageIds);
         damageMods.AddRange(invariantModifierProvider.LightningWeaponDamageIds);
 
-        var itemMods = modifierLines.Where(x => x.Modifiers.Any(y => damageMods.Contains(y.Id ?? string.Empty))).ToList();
+        var itemMods = modifierLines.Where(x => x.Modifiers.Any(y => damageMods.Contains(y.ApiId ?? string.Empty))).ToList();
 
         var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
         var matchIndex = 0;
@@ -86,7 +86,7 @@ public class WeaponDamageProperty
             int.TryParse(match.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
             var range = new DamageRange(min, max);
 
-            var ids = itemMods[matchIndex].Modifiers.Where(x => x.Id != null).Select(x => x.Id!).ToList();
+            var ids = itemMods[matchIndex].Modifiers.Where(x => x.ApiId != null).Select(x => x.ApiId!).ToList();
             var isFire = invariantModifierProvider.FireWeaponDamageIds.Any(x => ids.Contains(x));
             if (isFire)
             {

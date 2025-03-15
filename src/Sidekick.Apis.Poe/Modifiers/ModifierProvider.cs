@@ -47,7 +47,7 @@ public class ModifierProvider
     private readonly Regex hashPattern = new("\\\\#");
     private readonly Regex parenthesesPattern = new("((?:\\\\\\ )*\\\\\\([^\\(\\)]*\\\\\\))");
 
-    public Dictionary<ModifierCategory, List<ModifierPattern>> Patterns { get; } = new();
+    public Dictionary<ModifierCategory, List<ModifierDefinition>> Definitions { get; } = new();
 
     /// <inheritdoc/>
     public int Priority => 200;
@@ -65,30 +65,34 @@ public class ModifierProvider
             var modifierCategory = GetModifierCategory(apiCategory.Entries[0].Id);
             var patterns = ComputeCategoryPatterns(apiCategory, modifierCategory);
 
-            if (!Patterns.TryAdd(modifierCategory, patterns))
+            if (!Definitions.TryAdd(modifierCategory, patterns))
             {
-                Patterns[modifierCategory].AddRange(patterns);
+                Definitions[modifierCategory].AddRange(patterns);
             }
         }
 
         // Prepare special pseudo patterns
-        var pseudoPatterns = Patterns.GetValueOrDefault(ModifierCategory.Pseudo) ?? [];
+        if (!Definitions.TryGetValue(ModifierCategory.Pseudo, out var pseudoPatterns))
+        {
+            pseudoPatterns = new List<ModifierDefinition>();
+            Definitions.Add(ModifierCategory.Pseudo, pseudoPatterns);
+        }
 
-        var incursionPatterns = pseudoPatterns.Where(x => invariantModifierProvider.IncursionRoomModifierIds.Contains(x.Id)).ToList();
-        ComputeSpecialPseudoPattern(pseudoPatterns, incursionPatterns);
+        var incursionPatterns = pseudoPatterns.Where(x => invariantModifierProvider.IncursionRoomModifierIds.Contains(x.ApiId)).ToList();
+        FillSpecialPseudoPattern(pseudoPatterns, incursionPatterns);
 
-        var logbookPatterns = pseudoPatterns.Where(x => invariantModifierProvider.LogbookFactionModifierIds.Contains(x.Id)).ToList();
-        ComputeSpecialPseudoPattern(pseudoPatterns, logbookPatterns);
+        var logbookPatterns = pseudoPatterns.Where(x => invariantModifierProvider.LogbookFactionModifierIds.Contains(x.ApiId)).ToList();
+        FillSpecialPseudoPattern(pseudoPatterns, logbookPatterns);
     }
 
-    private List<ModifierPattern> ComputeCategoryPatterns(ApiCategory apiCategory, ModifierCategory modifierCategory)
+    private List<ModifierDefinition> ComputeCategoryPatterns(ApiCategory apiCategory, ModifierCategory modifierCategory)
     {
         if (apiCategory.Entries.Count == 0 || modifierCategory == ModifierCategory.Undefined)
         {
             return [];
         }
 
-        var patterns = new List<ModifierPattern>();
+        var patterns = new List<ModifierDefinition>();
         foreach (var entry in apiCategory.Entries)
         {
             entry.Text = RemoveSquareBrackets(entry.Text);
@@ -98,22 +102,17 @@ public class ModifierProvider
             {
                 foreach (var option in options)
                 {
-                    var optionText = option.Text;
-                    if (optionText == null)
+                    if (option.Text == null) continue;
+                    option.Text = RemoveSquareBrackets(option.Text);
+                    patterns.Add(new ModifierDefinition(modifierCategory, entry.Id, apiText: ComputeOptionText(entry.Text, option.Text), fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text, option.Text), pattern: ComputePattern(entry.Text, modifierCategory, option.Text))
                     {
-                        continue;
-                    }
-
-                    optionText = RemoveSquareBrackets(optionText);
-                    patterns.Add(new ModifierPattern(modifierCategory, entry.Id, options.Any(), text: ComputeOptionText(entry.Text, optionText), fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text, optionText), pattern: ComputePattern(entry.Text, modifierCategory, optionText))
-                    {
-                        Value = option.Id,
+                        OptionId = option.Id,
                     });
                 }
             }
             else
             {
-                patterns.Add(new ModifierPattern(modifierCategory, entry.Id, options.Any(), entry.Text, fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text), pattern: ComputePattern(entry.Text, modifierCategory)));
+                patterns.Add(new ModifierDefinition(modifierCategory, entry.Id, entry.Text, fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text), pattern: ComputePattern(entry.Text, modifierCategory)));
             }
         }
 
@@ -139,21 +138,21 @@ public class ModifierProvider
         _ => ModifierCategory.Undefined,
     };
 
-    private void ComputeSpecialPseudoPattern(List<ModifierPattern> pseudoPatterns, List<ModifierPattern> patterns)
+    private void FillSpecialPseudoPattern(List<ModifierDefinition> pseudoPatterns, List<ModifierDefinition> patterns)
     {
-        var specialPatterns = new List<ModifierPattern>();
-        foreach (var group in patterns.GroupBy(x => x.Id))
+        var specialPatterns = new List<ModifierDefinition>();
+        foreach (var group in patterns.GroupBy(x => x.ApiId))
         {
-            var pattern = group.OrderBy(x => x.Value).First();
-            specialPatterns.Add(new ModifierPattern(category: pattern.Category, id: pattern.Id, isOption: pattern.IsOption, text: pattern.Text, fuzzyText: ComputeFuzzyText(ModifierCategory.Pseudo, pattern.Text), pattern: ComputePattern(pattern.Text.Split(':', 2).Last().Trim(), ModifierCategory.Pseudo))
+            var pattern = group.OrderBy(x => x.OptionId).First();
+            specialPatterns.Add(new ModifierDefinition(pattern.Category, pattern.ApiId, pattern.ApiText, fuzzyText: ComputeFuzzyText(ModifierCategory.Pseudo, pattern.ApiText), pattern: ComputePattern(pattern.ApiText.Split(':', 2).Last().Trim(), ModifierCategory.Pseudo))
             {
                 OptionText = pattern.OptionText,
-                Value = pattern.Value,
+                OptionId = pattern.OptionId,
             });
         }
 
-        var ids = specialPatterns.Select(x => x.Id).Distinct().ToList();
-        pseudoPatterns.RemoveAll(x => ids.Contains(x.Id));
+        var ids = specialPatterns.Select(x => x.ApiId).Distinct().ToList();
+        pseudoPatterns.RemoveAll(x => ids.Contains(x.ApiId));
         pseudoPatterns.AddRange(specialPatterns);
     }
 
@@ -255,9 +254,9 @@ public class ModifierProvider
 
     public bool IsMatch(string id, string text)
     {
-        foreach (var patternGroup in Patterns)
+        foreach (var patternGroup in Definitions)
         {
-            var pattern = patternGroup.Value.FirstOrDefault(x => x.Id == id);
+            var pattern = patternGroup.Value.FirstOrDefault(x => x.ApiId == id);
             if (pattern != null && pattern.Pattern.IsMatch(text))
             {
                 return true;

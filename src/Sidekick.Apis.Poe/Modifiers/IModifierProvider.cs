@@ -15,5 +15,5 @@ public interface IModifierProvider : IInitializableService
 
     bool IsMatch(string id, string text);
 
-    Dictionary<ModifierCategory, List<ModifierPattern>> Patterns { get; }
+    Dictionary<ModifierCategory, List<ModifierDefinition>> Definitions { get; }
 }

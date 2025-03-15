@@ -11,7 +11,7 @@ public class ItemRarityProperty(IGameLanguageProvider gameLanguageProvider) : Pr
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionItemRarity.ToRegexIntCapture();
 
-    public override List<Category> ValidCategories { get; } = [Category.Map, Category.Contract];
+    public override List<Category> ValidCategories { get; } = [Category.Map, Category.Contract, Category.Logbook];
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {

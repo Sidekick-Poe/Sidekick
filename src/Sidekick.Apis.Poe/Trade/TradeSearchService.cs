@@ -40,7 +40,7 @@ public class TradeSearchService
         Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
     };
 
-    public async Task<TradeSearchResult<string>> Search(Item item, PropertyFilters? propertyFilters = null, IEnumerable<ModifierFilter>? modifierFilters = null, IEnumerable<PseudoModifierFilter>? pseudoFilters = null)
+    public async Task<TradeSearchResult<string>> Search(Item item, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null, List<PseudoModifierFilter>? pseudoFilters = null)
     {
         try
         {
@@ -196,7 +196,7 @@ public class TradeSearchService
 
                 andGroup.Filters.Add(new StatFilters()
                 {
-                    Id = filter.Line.Modifiers.First().Id,
+                    Id = filter.Line.Modifiers.First().ApiId,
                     Value = new StatFilterValue(filter),
                 });
             }
@@ -265,7 +265,7 @@ public class TradeSearchService
                 {
                     countGroup.Filters.Add(new StatFilters()
                     {
-                        Id = modifier.Id,
+                        Id = modifier.ApiId,
                         Value = new StatFilterValue(filter),
                     });
                 }
@@ -362,31 +362,31 @@ public class TradeSearchService
     {
         var header = new ItemHeader()
         {
-            Name = result.Item?.Name,
-            Type = result.Item?.TypeLine,
+            Name = result.Item.Name,
+            Type = result.Item.TypeLine,
             ApiItemId = "",
-            ApiName = result.Item?.Name,
-            ApiType = result.Item?.TypeLine,
+            ApiName = result.Item.Name,
+            ApiType = result.Item.TypeLine,
             Category = Category.Unknown,
             Game = game,
-            Rarity = result.Item?.Rarity ?? Rarity.Unknown,
+            Rarity = result.Item.Rarity,
         };
 
         var properties = new ItemProperties()
         {
             Quality = 20,
-            ItemLevel = result.Item?.ItemLevel ?? 0,
-            Corrupted = result.Item?.Corrupted ?? false,
-            Unidentified = result.Item?.Identified is false,
-            Armour = result.Item?.Extended?.ArmourAtMax ?? 0,
-            EnergyShield = result.Item?.Extended?.EnergyShieldAtMax ?? 0,
-            EvasionRating = result.Item?.Extended?.EvasionAtMax ?? 0,
-            TotalDps = result.Item?.Extended?.DamagePerSecond ?? 0,
-            ElementalDps = result.Item?.Extended?.ElementalDps ?? 0,
-            PhysicalDps = result.Item?.Extended?.PhysicalDps ?? 0,
-            BaseDefencePercentile = result.Item?.Extended?.BaseDefencePercentile ?? 0,
-            Influences = result.Item?.Influences ?? new(),
-            Sockets = [.. ParseSockets(result.Item?.Sockets, result.Item?.GemSockets)],
+            ItemLevel = result.Item.ItemLevel,
+            Corrupted = result.Item.Corrupted,
+            Unidentified = result.Item.Identified is false,
+            Armour = result.Item.Extended?.ArmourAtMax ?? 0,
+            EnergyShield = result.Item.Extended?.EnergyShieldAtMax ?? 0,
+            EvasionRating = result.Item.Extended?.EvasionAtMax ?? 0,
+            TotalDps = result.Item.Extended?.DamagePerSecond ?? 0,
+            ElementalDps = result.Item.Extended?.ElementalDps ?? 0,
+            PhysicalDps = result.Item.Extended?.PhysicalDps ?? 0,
+            BaseDefencePercentile = result.Item.Extended?.BaseDefencePercentile ?? 0,
+            Influences = result.Item.Influences,
+            Sockets = [.. ParseSockets(result.Item.Sockets, result.Item.GemSockets)],
         };
 
         return new TradeItem()
@@ -396,24 +396,24 @@ public class TradeSearchService
             Properties = properties,
             ModifierLines = [.. GetModifierLines(result.Item)],
             PseudoModifiers = [],
-            Text = Encoding.UTF8.GetString(Convert.FromBase64String(result.Item?.Extended?.Text ?? string.Empty)),
+            Text = Encoding.UTF8.GetString(Convert.FromBase64String(result.Item.Extended?.Text ?? string.Empty)),
             Id = result.Id,
             Price = new TradePrice()
             {
-                AccountCharacter = result.Listing?.Account?.LastCharacterName,
-                AccountName = result.Listing?.Account?.Name,
-                Amount = result.Listing?.Price?.Amount ?? -1,
-                Currency = result.Listing?.Price?.Currency ?? "",
-                Date = result.Listing?.Indexed ?? DateTimeOffset.MinValue,
-                Whisper = result.Listing?.Whisper,
-                Note = result.Item?.Note,
+                AccountCharacter = result.Listing.Account?.LastCharacterName,
+                AccountName = result.Listing.Account?.Name,
+                Amount = result.Listing.Price?.Amount ?? -1,
+                Currency = result.Listing.Price?.Currency ?? "",
+                Date = result.Listing.Indexed,
+                Whisper = result.Listing.Whisper,
+                Note = result.Item.Note,
             },
-            Image = result.Item?.Icon,
-            Width = result.Item?.Width ?? 0,
-            Height = result.Item?.Height ?? 0,
-            RequirementContents = ParseLineContents(result.Item?.Requirements),
-            PropertyContents = ParseLineContents(result.Item?.Properties),
-            AdditionalPropertyContents = ParseLineContents(result.Item?.AdditionalProperties, false),
+            Image = result.Item.Icon,
+            Width = result.Item.Width,
+            Height = result.Item.Height,
+            RequirementContents = ParseLineContents(result.Item.Requirements),
+            PropertyContents = ParseLineContents(result.Item.Properties),
+            AdditionalPropertyContents = ParseLineContents(result.Item.AdditionalProperties, false),
         };
     }
 
@@ -431,14 +431,42 @@ public class TradeSearchService
 
     private IEnumerable<IEnumerable<ModifierLine>> GetAllModifierLines(ResultItem resultItem)
     {
-        yield return ParseModifierLines(resultItem.EnchantMods, resultItem.Extended?.Mods?.Enchant, ParseHash(resultItem.Extended?.Hashes?.Enchant));
-        yield return ParseModifierLines(resultItem.RuneMods, resultItem.Extended?.Mods?.Rune, ParseHash(resultItem.Extended?.Hashes?.Rune));
-        yield return ParseModifierLines(resultItem.ImplicitMods ?? resultItem.LogbookMods.SelectMany(x => x.Mods).ToList(), resultItem.Extended?.Mods?.Implicit, ParseHash(resultItem.Extended?.Hashes?.Implicit));
-        yield return ParseModifierLines(resultItem.CraftedMods, resultItem.Extended?.Mods?.Crafted, ParseHash(resultItem.Extended?.Hashes?.Crafted));
-        yield return ParseModifierLines(resultItem.ExplicitMods, resultItem.Extended?.Mods?.Explicit, ParseHash(resultItem.Extended?.Hashes?.Explicit, resultItem.Extended?.Hashes?.Monster));
-        yield return ParseModifierLines(resultItem.FracturedMods, resultItem.Extended?.Mods?.Fractured, ParseHash(resultItem.Extended?.Hashes?.Fractured));
-        yield return ParseModifierLines(resultItem.ScourgeMods, resultItem.Extended?.Mods?.Scourge, ParseHash(resultItem.Extended?.Hashes?.Scourge));
-        yield return ParseModifierLines(resultItem.ExplicitMods, resultItem.Extended?.Mods?.Sanctum, ParseHash(resultItem.Extended?.Hashes?.Sanctum));
+        var index = 0;
+        foreach (var logbook in resultItem.LogbookMods)
+        {
+            var blockIndex = ++index;
+            yield return [new ModifierLine(text: logbook.Name)
+            {
+                BlockIndex = blockIndex,
+                Modifiers =
+                [
+                    new Modifier(text: logbook.Name)
+                    {
+                        Category = ModifierCategory.WhiteText,
+                    },
+                ],
+            },new ModifierLine(text: logbook.Faction.Name)
+            {
+                BlockIndex = blockIndex,
+                Modifiers =
+                [
+                    new Modifier(text: logbook.Faction.Name)
+                    {
+                        Category = logbook.Faction.Category,
+                    },
+                ],
+            }];
+            yield return ParseModifierLines(blockIndex, logbook.Mods, resultItem.Extended?.Mods?.Implicit, ParseHash(resultItem.Extended?.Hashes?.Implicit));
+        }
+
+        yield return ParseModifierLines(++index, resultItem.EnchantMods, resultItem.Extended?.Mods?.Enchant, ParseHash(resultItem.Extended?.Hashes?.Enchant));
+        yield return ParseModifierLines(++index, resultItem.RuneMods, resultItem.Extended?.Mods?.Rune, ParseHash(resultItem.Extended?.Hashes?.Rune));
+        yield return ParseModifierLines(++index, resultItem.ImplicitMods, resultItem.Extended?.Mods?.Implicit, ParseHash(resultItem.Extended?.Hashes?.Implicit));
+        yield return ParseModifierLines(++index, resultItem.CraftedMods, resultItem.Extended?.Mods?.Crafted, ParseHash(resultItem.Extended?.Hashes?.Crafted));
+        yield return ParseModifierLines(++index, resultItem.ExplicitMods, resultItem.Extended?.Mods?.Explicit, ParseHash(resultItem.Extended?.Hashes?.Explicit, resultItem.Extended?.Hashes?.Monster));
+        yield return ParseModifierLines(++index, resultItem.FracturedMods, resultItem.Extended?.Mods?.Fractured, ParseHash(resultItem.Extended?.Hashes?.Fractured));
+        yield return ParseModifierLines(++index, resultItem.ScourgeMods, resultItem.Extended?.Mods?.Scourge, ParseHash(resultItem.Extended?.Hashes?.Scourge));
+        yield return ParseModifierLines(++index, resultItem.ExplicitMods, resultItem.Extended?.Mods?.Sanctum, ParseHash(resultItem.Extended?.Hashes?.Sanctum));
     }
 
     private static List<LineContentValue> ParseHash(params List<List<JsonElement>>?[] hashes)
@@ -529,7 +557,7 @@ public class TradeSearchService
 
                     case 3:
                         var format = Regex.Replace(line.Name ?? string.Empty, "%(\\d)", "{$1}");
-                        text = string.Format(format, values.Select(x => x.Value).ToArray());
+                        text = string.Format(format, values.Select(x => x.Value));
                         break;
 
                     default: text = $"{line.Name} {string.Join(", ", values.Select(x => x.Value))}"; break;
@@ -546,7 +574,7 @@ public class TradeSearchService
             .ToList();
     }
 
-    private IEnumerable<ModifierLine> ParseModifierLines(List<string>? texts, List<Mod>? mods, List<LineContentValue>? hashes)
+    private IEnumerable<ModifierLine> ParseModifierLines(int block, List<string>? texts, List<Mod>? mods, List<LineContentValue>? hashes)
     {
         if (texts == null || mods == null || hashes == null)
         {
@@ -568,11 +596,12 @@ public class TradeSearchService
 
             yield return new ModifierLine(text: text)
             {
+                BlockIndex = block,
                 Modifiers =
                 [
                     new Modifier(text: text)
                     {
-                        Id = id,
+                        ApiId = id,
                         Category = modifierProvider.GetModifierCategory(id),
                         Tier = mod?.Tier,
                         TierName = mod?.Name,

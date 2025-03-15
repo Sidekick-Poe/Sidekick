@@ -20,4 +20,12 @@ public enum ModifierCategory
     // Meta modifiers
     Corrupted = 101,
     Unidentified = 102,
+    WhiteText = 103,
+    GrayText = 104,
+
+    // Logbook modifiers
+    DruidsOfTheBrokenCircle = 201,
+    BlackScytheMercenaries = 202,
+    OrderOfTheChalice = 203,
+    KnightsOfTheSun = 204,
 }

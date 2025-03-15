@@ -6,12 +6,12 @@ namespace Sidekick.Apis.Poe.Parser;
 public class ParsingLine
 {
     /// <summary>
-    /// Stores data about each line in the parsing process
+    /// Represents a line of text in the parsing process, including its content and position.
     /// </summary>
-    /// <param name="text">The line of the item description</param>
-    public ParsingLine(string text)
+    public ParsingLine(string text, int index)
     {
         Text = text;
+        Index = index;
     }
 
     /// <summary>
@@ -22,7 +22,9 @@ public class ParsingLine
     /// <summary>
     /// The line of the item description
     /// </summary>
-    public string Text { get; set; }
+    public string Text { get; }
+
+    public int Index { get; }
 
     public override string ToString()
     {

@@ -11,7 +11,7 @@ public class MonsterPackSizeProperty(IGameLanguageProvider gameLanguageProvider)
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionMonsterPackSize.ToRegexIntCapture();
 
-    public override List<Category> ValidCategories { get; } = [Category.Map, Category.Contract];
+    public override List<Category> ValidCategories { get; } = [Category.Map, Category.Contract, Category.Logbook];
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {

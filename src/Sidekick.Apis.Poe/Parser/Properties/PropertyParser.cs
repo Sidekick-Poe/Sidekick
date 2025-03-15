@@ -46,10 +46,10 @@ public class PropertyParser
             new ItemQuantityProperty(gameLanguageProvider),
             new ItemRarityProperty(gameLanguageProvider),
             new MonsterPackSizeProperty(gameLanguageProvider),
-            new BlightedProperty(gameLanguageProvider),
-            new BlightRavagedProperty(gameLanguageProvider),
             new MapTierProperty(gameLanguageProvider),
             new AreaLevelProperty(gameLanguageProvider),
+            new BlightedProperty(gameLanguageProvider),
+            new BlightRavagedProperty(gameLanguageProvider),
 
             new SeparatorProperty(),
 
