@@ -108,10 +108,12 @@ public class ModifierParser
                     continue;
                 }
 
-                line.Parsed = true;
                 var maxLineCount = patterns.Max(x => x.LineCount);
+                var lines = block.Lines.Skip(lineIndex).Take(maxLineCount).ToList();
+                lines.ForEach(x => x.Parsed = true);
+
                 lineIndex += maxLineCount - 1; // Increment the line index by one less of the pattern count. The default lineIndex++ will take care of the remaining increment.
-                yield return new ModifierMatch(block, block.Lines.Skip(lineIndex).Take(maxLineCount), patterns);
+                yield return new ModifierMatch(block, lines, patterns);
             }
         }
     }

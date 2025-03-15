@@ -97,10 +97,9 @@ public class ModifierProvider
         {
             entry.Text = RemoveSquareBrackets(entry.Text);
 
-            var options = entry.Option?.Options ?? [];
-            if (options.Count > 0)
+            if (entry.Option?.Options.Count > 0)
             {
-                foreach (var option in options)
+                foreach (var option in entry.Option.Options)
                 {
                     if (option.Text == null) continue;
                     option.Text = RemoveSquareBrackets(option.Text);

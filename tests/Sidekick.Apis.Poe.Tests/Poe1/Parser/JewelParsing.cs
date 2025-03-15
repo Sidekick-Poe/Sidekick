@@ -99,4 +99,41 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         Assert.Equal(Category.Jewel, actual.Header.Category);
         Assert.Equal("Viridian Jewel", actual.Header.ApiType);
     }
+
+    [Fact]
+    public void Twwt()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Unique
+That Which Was Taken
+Crimson Jewel
+--------
+Limited to: 1
+--------
+Requirements:
+Level: 48
+--------
+Item Level: 86
+--------
+8% increased Strength
+16% chance to gain Onslaught for 4 seconds on Kill
+Enemies you Kill that are affected by Elemental Ailments
+grant 32% increased Flask Charges
+Cannot take Reflected Elemental Damage
+--------
+Faith given under false pretenses still carries the same power.
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+        Assert.Equal("jewel", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+        Assert.Equal(Category.Jewel, actual.Header.Category);
+        Assert.Equal("Crimson Jewel", actual.Header.ApiType);
+
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Strength", 8);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% chance to gain Onslaught for 4 seconds on Kill", 16, 4);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Enemies you Kill that are affected by Elemental Ailments\ngrant #% increased Flask Charges", 32);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Cannot take Reflected Elemental Damage");
+    }
 }

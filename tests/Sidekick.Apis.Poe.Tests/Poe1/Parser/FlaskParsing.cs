@@ -36,7 +36,7 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
         Assert.Equal(Rarity.Magic, actual.Header.Rarity);
         Assert.Equal("Sanctified Mana Flask", actual.Header.ApiType);
 
-        actual.AssertHasModifier(ModifierCategory.Explicit, "Grants Immunity to Bleeding for 4 seconds if used while Bleeding\nGrants Immunity to Corrupted Blood for 4 seconds if used while affected by Corrupted Blood", 4);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Grants Immunity to Bleeding for 4 seconds if used while Bleeding\nGrants Immunity to Corrupted Blood for 4 seconds if used while affected by Corrupted Blood", 4, 4);
     }
 
     [Fact]
