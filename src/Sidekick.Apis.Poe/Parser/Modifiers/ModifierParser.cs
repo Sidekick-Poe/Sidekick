@@ -15,7 +15,7 @@ public class ModifierParser
     IFuzzyService fuzzyService
 ) : IModifierParser
 {
-    private readonly Regex CleanOriginalTextPattern = new(" \\((?:implicit|enchant|crafted|veiled|fractured|scourge|crucible)\\)$");
+    private readonly Regex cleanOriginalTextPattern = new(" \\((?:implicit|enchant|crafted|veiled|fractured|scourge|crucible)\\)$");
 
     /// <inheritdoc/>
     public List<ModifierLine> Parse(ParsingItem parsingItem)
@@ -26,37 +26,39 @@ public class ModifierParser
         }
 
         return MatchModifiers(parsingItem)
-            .Select(modifierMatch => CreateModifierLine(modifierMatch, parsingItem))
+            .Select(CreateModifierLine)
             // Trim modifier lines
             .Where(x => x.Modifiers.Count > 0)
             // Order the mods by the order they appear on the item.
-            .OrderBy(x => parsingItem.Text.IndexOf(x.Text, StringComparison.InvariantCulture))
+            .OrderBy(x => x.BlockIndex)
+            .ThenBy(x => x.LineIndex)
             .ToList();
     }
 
-    private ModifierLine CreateModifierLine(ModifierMatch match, ParsingItem parsingItem)
+    private ModifierLine CreateModifierLine(ModifierMatch match)
     {
         var text = CreateString(match);
-        var modifierLine = new ModifierLine(CleanOriginalTextPattern.Replace(text, string.Empty));
+        var modifierLine = new ModifierLine(cleanOriginalTextPattern.Replace(text, string.Empty))
+        {
+            BlockIndex = match.Block.Index,
+            LineIndex = match.Lines.First().Index,
+        };
 
         var fuzzyLine = fuzzyService.CleanFuzzyText(text);
         var patterns = match.Patterns.OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText)).ToList();
 
-        foreach (var pattern in patterns)
+        foreach (var pattern in patterns.Where(pattern => modifierLine.Modifiers.All(x => x.ApiId != pattern.ApiId)))
         {
-            if (!modifierLine.Modifiers.Any(x => x.Id == pattern.Id))
+            modifierLine.Modifiers.Add(new(text: pattern.ApiText)
             {
-                modifierLine.Modifiers.Add(new(text: pattern.Text)
-                {
-                    Id = pattern.Id,
-                    Category = pattern.Category,
-                });
-            }
+                ApiId = pattern.ApiId,
+                Category = pattern.Category,
+            });
         }
 
         if (modifierLine.Modifiers.All(x => x.Category == ModifierCategory.Pseudo))
         {
-            modifierLine.Text = modifierLine.Modifiers.FirstOrDefault()?.Text ?? modifierLine.Text;
+            // modifierLine.Text = modifierLine.Modifiers.FirstOrDefault()?.Text ?? modifierLine.Text;
         }
 
         ParseModifierValue(modifierLine, patterns.FirstOrDefault());
@@ -106,6 +108,7 @@ public class ModifierParser
                     continue;
                 }
 
+                line.Parsed = true;
                 var maxLineCount = patterns.Max(x => x.LineCount);
                 lineIndex += maxLineCount - 1; // Increment the line index by one less of the pattern count. The default lineIndex++ will take care of the remaining increment.
                 yield return new ModifierMatch(block, block.Lines.Skip(lineIndex).Take(maxLineCount), patterns);
@@ -113,7 +116,7 @@ public class ModifierParser
         }
     }
 
-    private static IEnumerable<ModifierPattern> MatchModifierPatterns(ParsingBlock block, ParsingLine line, int lineIndex, IReadOnlyCollection<ModifierPattern> allAvailablePatterns)
+    private static IEnumerable<ModifierDefinition> MatchModifierPatterns(ParsingBlock block, ParsingLine line, int lineIndex, IReadOnlyCollection<ModifierDefinition> allAvailablePatterns)
     {
         foreach (var pattern in allAvailablePatterns)
         {
@@ -127,7 +130,7 @@ public class ModifierParser
         }
     }
 
-    private IEnumerable<ModifierPattern> MatchModifierFuzzily(ParsingLine line, IReadOnlyCollection<ModifierPattern> allAvailablePatterns)
+    private IEnumerable<ModifierDefinition> MatchModifierFuzzily(ParsingLine line, IReadOnlyCollection<ModifierDefinition> allAvailablePatterns)
     {
         if (line.Parsed)
         {
@@ -136,7 +139,7 @@ public class ModifierParser
 
         var fuzzyLine = fuzzyService.CleanFuzzyText(line.Text);
 
-        var results = new List<(int Ratio, ModifierPattern Pattern)>();
+        var results = new List<(int Ratio, ModifierDefinition Pattern)>();
         var resultsLock = new object(); // Lock object to synchronize access to results
 
         Parallel.ForEach(allAvailablePatterns,
@@ -160,35 +163,35 @@ public class ModifierParser
         }
     }
 
-    private IReadOnlyCollection<ModifierPattern> GetAllAvailablePatterns(ParsingItem parsingItem)
+    private IReadOnlyCollection<ModifierDefinition> GetAllAvailablePatterns(ParsingItem parsingItem)
     {
         if (parsingItem.Header?.Category is Category.Sanctum)
         {
-            return [ .. modifierProvider.Patterns[ModifierCategory.Sanctum]];
+            return [ .. modifierProvider.Definitions[ModifierCategory.Sanctum]];
         }
 
         if (parsingItem.Header?.Category is Category.Map && parsingItem.Header.ItemCategory is "map.tablet")
         {
-            return [ .. modifierProvider.Patterns[ModifierCategory.Implicit],
-                     .. modifierProvider.Patterns[ModifierCategory.Explicit]];
+            return [ .. modifierProvider.Definitions[ModifierCategory.Implicit],
+                     .. modifierProvider.Definitions[ModifierCategory.Explicit]];
         }
 
-        return [ .. modifierProvider.Patterns.SelectMany(x => x.Value)];
+        return [ .. modifierProvider.Definitions.SelectMany(x => x.Value)];
     }
 
-    private static void ParseModifierValue(ModifierLine modifierLine, ModifierPattern? pattern)
+    private static void ParseModifierValue(ModifierLine modifierLine, ModifierDefinition? pattern)
     {
         switch (pattern)
         {
             case { IsOption: true }:
-                modifierLine.OptionValue = pattern.Value;
+                modifierLine.OptionValue = pattern.OptionId;
                 return;
 
-            case { Value: int value }:
+            case { OptionId: int value }:
                 modifierLine.Values.Add(value);
                 return;
-            
-            case null: 
+
+            case null:
                 return;
         }
 

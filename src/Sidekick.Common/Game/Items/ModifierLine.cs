@@ -12,11 +12,6 @@ public class ModifierLine(string text)
     public string Text { get; set; } = text;
 
     /// <summary>
-    ///     Gets or sets a value indicating whether the modifier was found using a fuzzy search.
-    /// </summary>
-    public bool IsFuzzy { get; set; }
-
-    /// <summary>
     ///     Gets or sets the modifier associated with this line.
     /// </summary>
     public List<Modifier> Modifiers { get; init; } = [];
@@ -24,7 +19,7 @@ public class ModifierLine(string text)
     /// <summary>
     ///     Gets or sets a list of values on this modifier line.
     /// </summary>
-    public List<double> Values { get; set; } = [];
+    public List<double> Values { get; } = [];
 
     /// <summary>
     ///     Gets or sets the option value of this modifier.
@@ -35,6 +30,10 @@ public class ModifierLine(string text)
     ///     Gets a value indicating whether this modifier has double values.
     /// </summary>
     public bool HasValues => OptionValue == null && Values.Count > 0;
+
+    public int BlockIndex { get; set; }
+
+    public int LineIndex { get; set; }
 
     /// <inheritdoc />
     public override string ToString() => Text;

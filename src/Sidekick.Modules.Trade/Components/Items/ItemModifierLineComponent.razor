@@ -4,18 +4,18 @@
 {
     var modifier = ModifierLine.Modifiers.FirstOrDefault();
 
-    <TextBase Class="relative px-2 font-caps text-center text-[##8888FF] leading-none py-0.5">
+    if (IsFirstOfBlock)
+    {
+        <ItemSeparator Rarity="Item.Header.Rarity"/>
+    }
+
+    <TextBase Class="relative px-2 font-caps text-center text-[##8888FF] leading-none py-[1px]">
         <ItemModifierText Category="modifier?.Category">@ModifierLine.Text</ItemModifierText>
         @if (!string.IsNullOrWhiteSpace(modifier?.Tier))
         {
             <span class="absolute top-0.5 left-[-6px] @GetTierClass(modifier.Tier)">@modifier.Tier</span>
         }
     </TextBase>
-
-    if (IsLastOfCategory && Category is ModifierCategory.Implicit or ModifierCategory.Enchant or ModifierCategory.Rune)
-    {
-        <ItemSeparator Rarity="Item.Header.Rarity"/>
-    }
 }
 
 @code {
@@ -26,25 +26,15 @@
     [Parameter]
     public required ModifierLine ModifierLine { get; set; }
 
-    private ModifierCategory Category => ModifierLine.Modifiers.FirstOrDefault()
-                                                     ?.Category
-                                         ?? ModifierCategory.Undefined;
+    private ModifierCategory Category => ModifierLine.Modifiers.FirstOrDefault()?.Category ?? ModifierCategory.Undefined;
 
-    private bool IsLastOfCategory
+    private bool IsFirstOfBlock
     {
         get
         {
             var index = Item.ModifierLines.IndexOf(ModifierLine);
-            var next = Item.ModifierLines.ElementAtOrDefault(index + 1);
-            if (next != null
-                && next.Modifiers.FirstOrDefault()
-                       ?.Category
-                == Category)
-            {
-                return false;
-            }
-
-            return true;
+            var previous = Item.ModifierLines.ElementAtOrDefault(index - 1);
+            return previous == null || ModifierLine.BlockIndex != previous.BlockIndex;
         }
     }
 

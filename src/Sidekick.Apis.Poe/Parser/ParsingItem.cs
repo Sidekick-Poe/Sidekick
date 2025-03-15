@@ -23,7 +23,7 @@ public class ParsingItem
         Text = ModifierProvider.RemoveSquareBrackets(Text);
         Blocks = Text
             .Split(SeparatorPattern, StringSplitOptions.RemoveEmptyEntries)
-            .Select(x => new ParsingBlock(x.Trim('\r', '\n')))
+            .Select((x, blockIndex) => new ParsingBlock(x.Trim('\r', '\n'), blockIndex))
             .ToList();
     }
 

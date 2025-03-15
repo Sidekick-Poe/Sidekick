@@ -2,7 +2,7 @@ namespace Sidekick.Apis.Poe.Trade.Results;
 
 public class Result
 {
-    public string? Id { get; set; }
-    public Listing? Listing { get; set; }
-    public ResultItem? Item { get; set; }
+    public required string Id { get; init; }
+    public required Listing Listing { get; init; }
+    public required ResultItem Item { get; init; }
 }

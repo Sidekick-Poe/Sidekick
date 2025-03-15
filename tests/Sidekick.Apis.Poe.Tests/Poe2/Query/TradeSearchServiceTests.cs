@@ -28,7 +28,7 @@ public class TradeSearchServiceTests
 
         var mockFactory = new Mock<IHttpClientFactory>();
         mockFactory
-            .Setup(_ => _.CreateClient(It.IsAny<string>()))
+            .Setup(x => x.CreateClient(It.IsAny<string>()))
             .Returns(mockHttpClient);
 
         tradeSearchService = new TradeSearchService(
@@ -89,8 +89,8 @@ public class TradeSearchServiceTests
 
         var parsedItem = parser.ParseItem(input);
         var propertyFilters = await tradeFilterService.GetPropertyFilters(parsedItem);
-        var modifierFilters = tradeFilterService.GetModifierFilters(parsedItem);
-        var pseudoModifierFilters = tradeFilterService.GetPseudoModifierFilters(parsedItem);
+        var modifierFilters = tradeFilterService.GetModifierFilters(parsedItem).ToList();
+        var pseudoModifierFilters = tradeFilterService.GetPseudoModifierFilters(parsedItem).ToList();
         var result = await tradeSearchService.Search(parsedItem, propertyFilters, modifierFilters, pseudoModifierFilters);
         Assert.Null(result.Error);
 

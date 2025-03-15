@@ -53,4 +53,49 @@ Take this item to Dannig in your Hideout to open portals to an expedition.
         actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
         actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Logbook Faction: Order of the Chalice");
     }
+
+    [Fact]
+    public void ParseRareLogbook()
+    {
+        var actual = parser.ParseItem(@"Item Class: Expedition Logbooks
+Rarity: Rare
+Bleak Myth
+Expedition Logbook
+--------
+Item Quantity: +80% (augmented)
+Item Rarity: +46% (augmented)
+Monster Pack Size: +30% (augmented)
+Area Level: 83
+--------
+Item Level: 83
+--------
+Battleground Graves
+Druids of the Broken Circle
+35% increased Explosive Radius (implicit)
+32% increased number of Explosives (implicit)
+22% increased Explosive Placement Range (implicit)
+--------
+Scrublands
+Druids of the Broken Circle
+11% increased quantity of Artifacts dropped by Monsters (implicit)
+13% increased Explosive Radius (implicit)
+Area contains an additional Underground Area (implicit)
+--------
+Players have -12% to all maximum Resistances
+Monsters have 396% increased Critical Strike Chance
++44% to Monster Critical Strike Multiplier
+25% increased Monster Damage
+Monsters deal 107% extra Physical Damage as Fire
+Monsters Hinder on Hit with Spells
+--------
+Take this item to Dannig in your Hideout to open portals to an expedition.
+");
+
+        Assert.Equal("logbook", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(Category.Logbook, actual.Header.Category);
+        Assert.Equal("Expedition Logbook", actual.Header.ApiType);
+
+        actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
+    }
 }

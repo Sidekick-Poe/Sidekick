@@ -11,17 +11,17 @@ public class ParsingBlock
     private static readonly Regex newLinePattern = new("[\\r\\n]+");
 
     /// <summary>
-    /// Represents a single item section seperated by dashes when copying an item in-game.
+    /// Represents a section of an item description, separated by dashes, as part of the parsing process.
     /// </summary>
-    /// <param name="text">The text of the whole block</param>
-    public ParsingBlock(string text)
+    public ParsingBlock(string text, int index)
     {
         Text = text;
+        Index = index;
 
         Lines = newLinePattern
             .Split(Text)
             .Where(x => !string.IsNullOrEmpty(x))
-            .Select((x) => new ParsingLine(x))
+            .Select((x, lineIndex) => new ParsingLine(x, lineIndex))
             .ToList();
     }
 
@@ -51,14 +51,11 @@ public class ParsingBlock
     public bool AnyParsed => Lines.Any(x => x.Parsed);
 
     /// <summary>
-    /// Indicates if this block has been partially parsed by the parser
-    /// </summary>
-    public bool PartiallyParsed => Lines.Any(x => x.Parsed);
-
-    /// <summary>
     /// The text of the whole block
     /// </summary>
     public string Text { get; }
+
+    public int Index { get; }
 
     public bool TryParseRegex(Regex pattern, [NotNullWhen(true)] out Match? match)
     {

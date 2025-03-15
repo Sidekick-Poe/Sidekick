@@ -2,7 +2,7 @@ namespace Sidekick.Common.Game.Items;
 
 public class Modifier(string text)
 {
-    public string? Id { get; init; }
+    public string? ApiId { get; init; }
 
     public string? Tier { get; init; }
 
@@ -10,10 +10,10 @@ public class Modifier(string text)
 
     public ModifierCategory Category { get; init; }
 
-    public string Text { get; set; } = text;
+    public string Text { get; } = text;
 
     public override string ToString()
     {
-        return $"[{Id}] {Text}";
+        return $"[{ApiId}] {Text}";
     }
 }
