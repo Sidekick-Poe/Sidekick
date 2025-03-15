@@ -80,6 +80,8 @@ public interface IGameLanguage
 
     string DescriptionBlockChance { get; }
 
+    string DescriptionSpirit { get; }
+
     string DescriptionLevel { get; }
 
     string DescriptionRequirements { get; }
