@@ -10,7 +10,8 @@
         <ItemHeader Name="@Item.Header.Name"
                     Type="@Item.Header.Type"
                     Influences="Item.Properties.Influences"
-                    Rarity="Item.Header.Rarity"/>
+                    Rarity="Item.Header.Rarity"
+                    Game="Item.Header.Game"/>
 
         <div class="flex items-start flex-nowrap">
             <div class="w-3/4 p-2">
@@ -71,6 +72,7 @@ else
                         Type="@Item.Header.Type"
                         Influences="Item.Properties.Influences"
                         Rarity="Item.Header.Rarity"
+                        Game="Item.Header.Game"
                         SingleLine="true"/>
 
             @if (Item.Price != null)
