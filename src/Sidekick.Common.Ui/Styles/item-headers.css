@@ -1,40 +1,90 @@
 
 .item-header-currency {
     background: url("/images/items/header-currency-left.png") top left repeat-y, url("/images/items/header-currency-right.png") top right repeat-y, url("/images/items/header-currency-middle.png") top center repeat;
+    background-size: contain;
+
+    &.poe2 {
+        background: url("/images/items/poe2/header-currency-left.png") top left repeat-y, url("/images/items/poe2/header-currency-right.png") top right repeat-y, url("/images/items/poe2/header-currency-middle.png") top center repeat;
+        background-size: contain;
+    }
 }
 
 .item-header-gem {
     background: url("/images/items/header-gem-left.png") top left repeat-y, url("/images/items/header-gem-right.png") top right repeat-y, url("/images/items/header-gem-middle.png") top center repeat;
+    background-size: contain;
+
+    &.poe2 {
+        background: url("/images/items/poe2/header-gem-left.png") top left repeat-y, url("/images/items/poe2/header-gem-right.png") top right repeat-y, url("/images/items/poe2/header-gem-middle.png") top center repeat;
+        background-size: contain;
+    }
 }
 
 .item-header-relic {
     background: url("/images/items/header-relic-left.png") top left repeat-y, url("/images/items/header-relic-right.png") top right repeat-y, url("/images/items/header-relic-middle.png") top center repeat;
+    background-size: contain;
 }
 
 .item-header-double-relic {
     background: url("/images/items/header-double-relic-left.png") top left repeat-y, url("/images/items/header-double-relic-right.png") top right repeat-y, url("/images/items/header-double-relic-middle.png") top center repeat;
+    background-size: contain;
 }
 
 .item-header-double-rare {
     background: url("/images/items/header-double-rare-left.png") top left repeat-y, url("/images/items/header-double-rare-right.png") top right repeat-y, url("/images/items/header-double-rare-middle.png") top center repeat;
+    background-size: contain;
+
+    &.poe2 {
+        background: url("/images/items/poe2/header-double-rare-left.png") top left repeat-y, url("/images/items/poe2/header-double-rare-right.png") top right repeat-y, url("/images/items/poe2/header-double-rare-middle.png") top center repeat;
+        background-size: contain;
+    }
 }
 
 .item-header-double-unique {
     background: url("/images/items/header-double-unique-left.png") top left repeat-y, url("/images/items/header-double-unique-right.png") top right repeat-y, url("/images/items/header-double-unique-middle.png") top center repeat;
+    background-size: contain;
+
+    &.poe2 {
+        background: url("/images/items/poe2/header-double-unique-left.png") top left repeat-y, url("/images/items/poe2/header-double-unique-right.png") top right repeat-y, url("/images/items/poe2/header-double-unique-middle.png") top center repeat;
+        background-size: contain;
+    }
 }
 
 .item-header-magic {
     background: url("/images/items/header-magic-left.png") top left repeat-y, url("/images/items/header-magic-right.png") top right repeat-y, url("/images/items/header-magic-middle.png") top center repeat;
+    background-size: contain;
+
+    &.poe2 {
+        background: url("/images/items/poe2/header-magic-left.png") top left repeat-y, url("/images/items/poe2/header-magic-right.png") top right repeat-y, url("/images/items/poe2/header-magic-middle.png") top center repeat;
+        background-size: contain;
+    }
 }
 
 .item-header-normal {
     background: url("/images/items/header-normal-left.png") top left repeat-y, url("/images/items/header-normal-right.png") top right repeat-y, url("/images/items/header-normal-middle.png") top center repeat;
+    background-size: contain;
+
+    &.poe2 {
+        background: url("/images/items/poe2/header-normal-left.png") top left repeat-y, url("/images/items/poe2/header-normal-right.png") top right repeat-y, url("/images/items/poe2/header-normal-middle.png") top center repeat;
+        background-size: contain;
+    }
 }
 
 .item-header-rare {
     background: url("/images/items/header-rare-left.png") top left repeat-y, url("/images/items/header-rare-right.png") top right repeat-y, url("/images/items/header-rare-middle.png") top center repeat;
+    background-size: contain;
+
+    &.poe2 {
+        background: url("/images/items/poe2/header-rare-left.png") top left repeat-y, url("/images/items/poe2/header-rare-right.png") top right repeat-y, url("/images/items/poe2/header-rare-middle.png") top center repeat;
+        background-size: contain;
+    }
 }
 
 .item-header-unique {
     background: url("/images/items/header-unique-left.png") top left repeat-y, url("/images/items/header-unique-right.png") top right repeat-y, url("/images/items/header-unique-middle.png") top center repeat;
+    background-size: contain;
+
+    &.poe2 {
+        background: url("/images/items/poe2/header-unique-left.png") top left repeat-y, url("/images/items/poe2/header-unique-right.png") top right repeat-y, url("/images/items/poe2/header-unique-middle.png") top center repeat;
+        background-size: contain;
+    }
 }
