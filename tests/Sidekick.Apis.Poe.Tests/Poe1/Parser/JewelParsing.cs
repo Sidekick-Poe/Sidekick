@@ -136,4 +136,41 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         actual.AssertHasModifier(ModifierCategory.Explicit, "Enemies you Kill that are affected by Elemental Ailments\ngrant #% increased Flask Charges", 32);
         actual.AssertHasModifier(ModifierCategory.Explicit, "Cannot take Reflected Elemental Damage");
     }
+
+    [Fact]
+    public void ConvertWatcherEyeMod()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Unique
+Watcher's Eye
+Prismatic Jewel
+--------
+Limited to: 1
+--------
+Item Level: 85
+--------
+6% increased maximum Energy Shield
+6% increased maximum Life
+6% increased maximum Mana
+32% of Physical Damage Converted to Cold Damage while affected by Hatred
++6% chance to Evade Attack Hits while affected by Grace
+--------
+One by one, they stood their ground against a creature 
+they had no hope of understanding, let alone defeating,
+and one by one, they became a part of it.
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+        Assert.Equal("jewel", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+        Assert.Equal(Category.Jewel, actual.Header.Category);
+        Assert.Equal("Prismatic Jewel", actual.Header.ApiType);
+
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased maximum Energy Shield", 6);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased maximum Life", 6);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased maximum Mana", 6);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% of Physical Damage Converted to Cold Damage while affected by Hatred", 32);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "+#% chance to Evade Attack Hits while affected by Grace", 6);
+    }
 }
