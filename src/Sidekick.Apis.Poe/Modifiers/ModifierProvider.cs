@@ -97,10 +97,9 @@ public class ModifierProvider
         {
             entry.Text = RemoveSquareBrackets(entry.Text);
 
-            var options = entry.Option?.Options ?? [];
-            if (options.Count > 0)
+            if (entry.Option?.Options.Count > 0)
             {
-                foreach (var option in options)
+                foreach (var option in entry.Option.Options)
                 {
                     if (option.Text == null) continue;
                     option.Text = RemoveSquareBrackets(option.Text);
@@ -195,6 +194,10 @@ public class ModifierProvider
 
             patternValue = string.Join('\n', optionLines);
         }
+
+        // For multiline modifiers, the category can be suffixed on all lines.
+        if (!suffix.EndsWith("?")) suffix += "?";
+        patternValue = patternValue.Replace("\\n", suffix + "\\n");
 
         return new Regex($"^{patternValue}$", RegexOptions.None);
     }

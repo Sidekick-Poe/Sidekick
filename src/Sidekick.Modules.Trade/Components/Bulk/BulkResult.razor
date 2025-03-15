@@ -18,12 +18,17 @@ else if (PriceCheckService.BulkTradeResult != null)
     <div class="max-w-[800px] mx-auto">
         <div class="flex items-center w-full justify-between w-full dark:bg-stone-900 sticky top-0 z-10 py-3 -mt-3">
             <div>
-                <LeagueText />
+                <LeagueText/>
                 <CountString Count="PriceCheckService.BulkTradeResult.Offers.Count"
-                                Total="PriceCheckService.BulkTradeResult.TotalOffers"/>
+                             Total="PriceCheckService.BulkTradeResult.TotalOffers"/>
             </div>
             <OpenWebsiteLink QueryId="@PriceCheckService.BulkTradeResult.QueryId"/>
         </div>
+
+        @if (PriceCheckService.ResultError != null)
+        {
+            <AlertError>@PriceCheckService.ResultError</AlertError>
+        }
 
         @foreach (var offer in PriceCheckService.BulkTradeResult.Offers)
         {

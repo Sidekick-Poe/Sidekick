@@ -99,4 +99,78 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         Assert.Equal(Category.Jewel, actual.Header.Category);
         Assert.Equal("Viridian Jewel", actual.Header.ApiType);
     }
+
+    [Fact]
+    public void Twwt()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Unique
+That Which Was Taken
+Crimson Jewel
+--------
+Limited to: 1
+--------
+Requirements:
+Level: 48
+--------
+Item Level: 86
+--------
+8% increased Strength
+16% chance to gain Onslaught for 4 seconds on Kill
+Enemies you Kill that are affected by Elemental Ailments
+grant 32% increased Flask Charges
+Cannot take Reflected Elemental Damage
+--------
+Faith given under false pretenses still carries the same power.
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+        Assert.Equal("jewel", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+        Assert.Equal(Category.Jewel, actual.Header.Category);
+        Assert.Equal("Crimson Jewel", actual.Header.ApiType);
+
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Strength", 8);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% chance to gain Onslaught for 4 seconds on Kill", 16, 4);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Enemies you Kill that are affected by Elemental Ailments\ngrant #% increased Flask Charges", 32);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Cannot take Reflected Elemental Damage");
+    }
+
+    [Fact]
+    public void ConvertWatcherEyeMod()
+    {
+        var actual = parser.ParseItem(@"Item Class: Jewels
+Rarity: Unique
+Watcher's Eye
+Prismatic Jewel
+--------
+Limited to: 1
+--------
+Item Level: 85
+--------
+6% increased maximum Energy Shield
+6% increased maximum Life
+6% increased maximum Mana
+32% of Physical Damage Converted to Cold Damage while affected by Hatred
++6% chance to Evade Attack Hits while affected by Grace
+--------
+One by one, they stood their ground against a creature 
+they had no hope of understanding, let alone defeating,
+and one by one, they became a part of it.
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+");
+
+        Assert.Equal("jewel", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+        Assert.Equal(Category.Jewel, actual.Header.Category);
+        Assert.Equal("Prismatic Jewel", actual.Header.ApiType);
+
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased maximum Energy Shield", 6);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased maximum Life", 6);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased maximum Mana", 6);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% of Physical Damage Converted to Cold Damage while affected by Hatred", 32);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "+#% chance to Evade Attack Hits while affected by Grace", 6);
+    }
 }

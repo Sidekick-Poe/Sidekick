@@ -36,7 +36,7 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
         Assert.Equal(Rarity.Magic, actual.Header.Rarity);
         Assert.Equal("Sanctified Mana Flask", actual.Header.ApiType);
 
-        actual.AssertHasModifier(ModifierCategory.Explicit, "Grants Immunity to Bleeding for 4 seconds if used while Bleeding\nGrants Immunity to Corrupted Blood for 4 seconds if used while affected by Corrupted Blood", 4);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Grants Immunity to Bleeding for 4 seconds if used while Bleeding\nGrants Immunity to Corrupted Blood for 4 seconds if used while affected by Corrupted Blood", 4, 4);
     }
 
     [Fact]
@@ -117,5 +117,38 @@ Right click to activate. Only one Tincture in your belt can be active at a time.
         Assert.Equal(Rarity.Normal, actual.Header.Rarity);
         Assert.Equal(Category.Tincture, actual.Header.Category);
         Assert.Equal("Poisonberry Tincture", actual.Header.ApiType);
+    }
+
+    [Fact]
+    public void FlagellantMod()
+    {
+        var actual = parser.ParseItem(@"Item Class: Utility Flasks
+Rarity: Magic
+Flagellant's Bismuth Flask of the Rabbit
+--------
+Lasts 8.50 Seconds
+Consumes 15 of 40 Charges on use
+Currently has 0 Charges
++35% to all Elemental Resistances
+--------
+Requirements:
+Level: 64
+--------
+Item Level: 84
+--------
+Gain 3 Charges when you are Hit by an Enemy
+40% reduced Effect of Chill on you during Effect
+41% reduced Freeze Duration on you during Effect
+--------
+Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.");
+
+        Assert.Equal("flask", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Magic, actual.Header.Rarity);
+        Assert.Equal(Category.Flask, actual.Header.Category);
+        Assert.Equal("Bismuth Flask", actual.Header.ApiType);
+
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Gain # Charge when you are Hit by an Enemy", 3);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% reduced Effect of Chill on you during Effect", 40);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Freeze Duration on you during Effect", 41);
     }
 }

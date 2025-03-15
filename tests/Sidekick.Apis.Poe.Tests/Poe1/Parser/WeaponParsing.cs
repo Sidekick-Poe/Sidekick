@@ -279,4 +279,48 @@ Hunter Item");
         Assert.Equal("Ornate Mace", actual.Header.ApiType);
         Assert.True(actual.Properties.Influences.Hunter);
     }
+
+    [Fact]
+    public void TriggerWeapon()
+    {
+        var actual = parser.ParseItem(@"Item Class: Thrusting One Hand Swords
+Rarity: Rare
+Carrion Stinger
+Apex Rapier
+--------
+One Handed Sword
+Quality: +20% (augmented)
+Physical Damage: 107-236 (augmented)
+Elemental Damage: 37-74 (augmented)
+Critical Strike Chance: 5.70%
+Attacks per Second: 1.40
+Weapon Range: 1.4 metres
+--------
+Requirements:
+Level: 60
+Dex: 176
+--------
+Sockets: B-G-B 
+--------
+Item Level: 75
+--------
++35% to Global Critical Strike Multiplier (implicit)
+--------
+129% increased Physical Damage
+Adds 10 to 19 Physical Damage
+Adds 37 to 74 Fire Damage
++20% to Lightning Resistance
+25% increased Stun Duration on Enemies
+22% chance to Impale Enemies on Hit with Attacks
+Trigger a Socketed Spell when you Use a Skill, with a 8 second Cooldown (crafted)
+Spells Triggered this way have 150% more Cost (crafted)
+");
+
+        Assert.Equal("weapon.onesword", actual.Header.ItemCategory);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal("Apex Rapier", actual.Header.ApiType);
+
+        actual.AssertHasModifier(ModifierCategory.Crafted, "#% chance to Trigger a Socketed Spell on Using a Skill, with a 8 second Cooldown\nSpells Triggered this way have 150% more Cost", 8, 150);
+    }
 }
