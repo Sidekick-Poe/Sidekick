@@ -28,5 +28,7 @@ public class ModifierDefinition
 
     public bool IsOption => OptionId != null || !string.IsNullOrEmpty(OptionText);
 
-    public int LineCount => OptionText != null ? OptionText.Split('\n').Length : ApiText.Split('\n').Length;
+    private int? lineCount;
+
+    public int LineCount => lineCount ??= OptionText != null ? OptionText.Split('\n').Length : ApiText.Split('\n').Length;
 }

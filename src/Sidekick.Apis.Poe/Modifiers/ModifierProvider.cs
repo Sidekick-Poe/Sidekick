@@ -195,6 +195,10 @@ public class ModifierProvider
             patternValue = string.Join('\n', optionLines);
         }
 
+        // For multiline modifiers, the category can be suffixed on all lines.
+        if (!suffix.EndsWith("?")) suffix += "?";
+        patternValue = patternValue.Replace("\\n", suffix + "\\n");
+
         return new Regex($"^{patternValue}$", RegexOptions.None);
     }
 
