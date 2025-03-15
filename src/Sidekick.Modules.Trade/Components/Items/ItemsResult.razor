@@ -13,9 +13,9 @@
     {
         <div class="flex items-center w-full justify-between w-full dark:bg-stone-900 sticky top-0 z-10 py-3 -mt-3">
             <div>
-                <LeagueText />
+                <LeagueText/>
                 <CountString Count="PriceCheckService.TradeItems?.Count ?? 0"
-                Total="PriceCheckService.ItemTradeResult.Total"/>
+                             Total="PriceCheckService.ItemTradeResult.Total"/>
             </div>
             <div class="flex gap-4">
                 <ToggleCompactView OnClick="@ToggleView" IsCompact="@IsCompact"/>
@@ -31,7 +31,11 @@
             }
         }
 
-        @if (!PriceCheckService.IsLoading && !FullyLoaded && PriceCheckService.TradeItems != null)
+        @if (PriceCheckService.ResultError != null)
+        {
+            <AlertError>@PriceCheckService.ResultError</AlertError>
+        }
+        else if (!PriceCheckService.IsLoading && !FullyLoaded && PriceCheckService.TradeItems != null)
         {
             <div class="flex justify-center">
                 <ButtonPrimary OnClick="PriceCheckService.LoadMoreItems">@Resources.LoadMoreData</ButtonPrimary>

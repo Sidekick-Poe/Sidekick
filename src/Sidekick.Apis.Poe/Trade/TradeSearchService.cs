@@ -352,10 +352,9 @@ public class TradeSearchService
         }
         catch (Exception ex)
         {
-            logger.LogWarning(ex, $"[Trade API] Exception thrown when fetching trade API listings from Query {queryId}.");
+            logger.LogError(ex, $"[Trade API] Exception thrown when fetching trade API listings from Query {queryId}.");
+            throw new SidekickException("Sidekick could not fetch the listings from the trade API.");
         }
-
-        return [];
     }
 
     private TradeItem GetItem(GameType game, Result result)
@@ -424,9 +423,7 @@ public class TradeSearchService
             return [];
         }
 
-        return GetAllModifierLines(resultItem)
-            .SelectMany(s => s)
-            .OrderBy(x => x.Text.IndexOf(x.Text, StringComparison.InvariantCultureIgnoreCase));
+        return GetAllModifierLines(resultItem).SelectMany(s => s).OrderBy(x => x.Text.IndexOf(x.Text, StringComparison.InvariantCultureIgnoreCase));
     }
 
     private IEnumerable<IEnumerable<ModifierLine>> GetAllModifierLines(ResultItem resultItem)
@@ -435,27 +432,31 @@ public class TradeSearchService
         foreach (var logbook in resultItem.LogbookMods)
         {
             var blockIndex = ++index;
-            yield return [new ModifierLine(text: logbook.Name)
-            {
-                BlockIndex = blockIndex,
-                Modifiers =
-                [
-                    new Modifier(text: logbook.Name)
-                    {
-                        Category = ModifierCategory.WhiteText,
-                    },
-                ],
-            },new ModifierLine(text: logbook.Faction.Name)
-            {
-                BlockIndex = blockIndex,
-                Modifiers =
-                [
-                    new Modifier(text: logbook.Faction.Name)
-                    {
-                        Category = logbook.Faction.Category,
-                    },
-                ],
-            }];
+            yield return
+            [
+                new ModifierLine(text: logbook.Name)
+                {
+                    BlockIndex = blockIndex,
+                    Modifiers =
+                    [
+                        new Modifier(text: logbook.Name)
+                        {
+                            Category = ModifierCategory.WhiteText,
+                        },
+                    ],
+                },
+                new ModifierLine(text: logbook.Faction.Name)
+                {
+                    BlockIndex = blockIndex,
+                    Modifiers =
+                    [
+                        new Modifier(text: logbook.Faction.Name)
+                        {
+                            Category = logbook.Faction.Category,
+                        },
+                    ],
+                }
+            ];
             yield return ParseModifierLines(blockIndex, logbook.Mods, resultItem.Extended?.Mods?.Implicit, ParseHash(resultItem.Extended?.Hashes?.Implicit));
         }
 
@@ -557,7 +558,7 @@ public class TradeSearchService
 
                     case 3:
                         var format = Regex.Replace(line.Name ?? string.Empty, "%(\\d)", "{$1}");
-                        text = string.Format(format, values.Select(x => x.Value));
+                        text = string.Format(format, values.Select(x => (object?)x.Value).ToArray());
                         break;
 
                     default: text = $"{line.Name} {string.Join(", ", values.Select(x => x.Value))}"; break;
@@ -629,8 +630,7 @@ public class TradeSearchService
             });
         }
 
-        return sockets
-            .Where(x => x.ColourString != "DV") // Remove delve resonator sockets
+        return sockets.Where(x => x.ColourString != "DV") // Remove delve resonator sockets
             .Select(x => new Socket()
             {
                 Group = x.Group,

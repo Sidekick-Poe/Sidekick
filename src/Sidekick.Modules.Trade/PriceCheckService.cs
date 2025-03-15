@@ -4,6 +4,7 @@ using Sidekick.Apis.Poe.Bulk.Models;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Results;
+using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
@@ -38,6 +39,8 @@ public class PriceCheckService(
     public bool IsLoading { get; private set; }
 
     public bool IsFilterLoading { get; private set; }
+
+    public string? ResultError { get; private set; }
 
     public TradeSearchResult<string>? ItemTradeResult { get; private set; }
 
@@ -132,10 +135,18 @@ public class PriceCheckService(
         }
 
         IsLoading = true;
+        ResultError = null;
         LoadingChanged?.Invoke();
 
-        var result = await tradeSearchService.GetResults(Item.Header.Game, ItemTradeResult.Id, ids);
-        TradeItems?.AddRange(result);
+        try
+        {
+            var result = await tradeSearchService.GetResults(Item.Header.Game, ItemTradeResult.Id, ids);
+            TradeItems?.AddRange(result);
+        }
+        catch (SidekickException e)
+        {
+            ResultError = e.Message;
+        }
 
         IsLoading = false;
         LoadingChanged?.Invoke();
