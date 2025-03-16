@@ -210,6 +210,8 @@ public class ItemProperties
         }
     }
 
+    public List<string> AugmentedProperties { get; } = [];
+
     public int CalculateValueWithQuality(int value)
     {
         if (Quality >= 20)

@@ -1,5 +1,6 @@
 @using Sidekick.Apis.Poe.Parser.Properties.Filters
 @using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Common.Game.Items
 @using Sidekick.Common.Game.Languages
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
@@ -17,7 +18,7 @@
                 @if (PriceCheckService.Item?.Properties.PhysicalDamage != null && PriceCheckService.Item?.Properties.PhysicalDamageWithQuality != null)
                 {
                     <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionPhysicalDamage"
-                                      ContentType="LineContentType.Physical"
+                                      ContentType="PriceCheckService.Item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.PhysicalDamage)) ? LineContentType.Augmented : LineContentType.Physical"
                                       Value="@PriceCheckService.Item.Properties.PhysicalDamageWithQuality.ToDisplayString()"
                                       HasAdditionalInformation="PriceCheckService.Item.Properties.PhysicalDamageWithQuality.ToDisplayString() != PriceCheckService.Item.Properties.PhysicalDamage.ToDisplayString() && Filter.OriginalValue > 0">
                         <AdditionalInformation>

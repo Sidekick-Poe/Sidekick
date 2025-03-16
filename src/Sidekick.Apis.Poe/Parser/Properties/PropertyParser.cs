@@ -42,8 +42,8 @@ public class PropertyParser
             new BlockChanceProperty(gameLanguageProvider, game),
 
             new WeaponDamageProperty(gameLanguageProvider, game, invariantModifierProvider, resources),
-            new AttacksPerSecondProperty(gameLanguageProvider, game),
             new CriticalHitChanceProperty(gameLanguageProvider, game),
+            new AttacksPerSecondProperty(gameLanguageProvider, game),
 
             new MapTierProperty(gameLanguageProvider),
             new RewardProperty(gameLanguageProvider, game, apiItemProvider),

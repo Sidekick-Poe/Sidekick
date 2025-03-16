@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
@@ -11,13 +12,18 @@ public class MonsterPackSizeProperty(IGameLanguageProvider gameLanguageProvider)
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionMonsterPackSize.ToRegexIntCapture();
 
+    private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionMonsterPackSize.ToRegexIsAugmented();
+
     public override List<Category> ValidCategories { get; } = [Category.Map, Category.Contract, Category.Logbook];
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {
         var propertyBlock = parsingItem.Blocks[1];
         itemProperties.MonsterPackSize = GetInt(Pattern, propertyBlock);
-        if (itemProperties.MonsterPackSize > 0) propertyBlock.Parsed = true;
+        if (itemProperties.MonsterPackSize == 0) return;
+
+        propertyBlock.Parsed = true;
+        if (GetBool(IsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.MonsterPackSize));
     }
 
     public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
@@ -33,6 +39,7 @@ public class MonsterPackSizeProperty(IGameLanguageProvider gameLanguageProvider)
             ValuePrefix = "+",
             ValueSuffix = "%",
             Checked = false,
+            Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.MonsterPackSize)) ? LineContentType.Augmented : LineContentType.Simple,
         };
         filter.ChangeFilterType(filterType);
         return filter;

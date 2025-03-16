@@ -23,6 +23,8 @@ public abstract class PropertyDefinition
 
     protected static bool GetBool(Regex pattern, ParsingItem parsingItem) => parsingItem.TryParseRegex(pattern, out _);
 
+    protected static bool GetBool(Regex pattern, ParsingBlock parsingBlock) => parsingBlock.TryParseRegex(pattern, out _);
+
     protected static string? GetString(Regex pattern, ParsingBlock parsingBlock)
     {
         if (parsingBlock.TryParseRegex(pattern, out var match))
