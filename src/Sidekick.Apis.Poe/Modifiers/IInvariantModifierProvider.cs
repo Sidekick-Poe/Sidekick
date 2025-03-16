@@ -5,6 +5,8 @@ namespace Sidekick.Apis.Poe.Modifiers;
 
 public interface IInvariantModifierProvider : IInitializableService
 {
+    List<string> IgnoreModifierIds { get; }
+
     List<string> IncursionRoomModifierIds { get; }
 
     List<string> LogbookFactionModifierIds { get; }
