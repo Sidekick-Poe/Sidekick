@@ -160,6 +160,54 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
         actual.AssertHasModifier(ModifierCategory.Explicit, "Monsters have #% increased Area of Effect", 100);
     }
 
+    [Fact]
+    public void ParseValdoReward()
+    {
+        var actual = parser.ParseItem(@"Item Class: Maps
+Rarity: Rare
+Cyclopean Monolith
+Plaza Map
+--------
+Map Tier: 17
+Reward: Foil Mageblood
+Item Quantity: +70% (augmented)
+Item Rarity: +28% (augmented)
+Monster Pack Size: +22% (augmented)
+Quality: +20% (augmented)
+--------
+Chance for dropped Maps to convert to:
+Shaper Map: 18% (augmented)
+Elder Map: 9% (augmented)
+Conqueror Map: 9% (augmented)
+Unique Map: 10% (augmented)
+Scarab: 20% (augmented)
+--------
+Item Level: 100
+--------
+Monster Level: 84
+--------
+Rare and Unique Monsters in Area are Possessed by 3 to 4 Tormented Spirits and their Minions are Touched
+Monsters have +6 to Maximum Frenzy Charges
+Monsters gain a Frenzy Charge on Hit
+Area contains The Feared
+Players deal 10% less Damage per Equipped Item
+Players' Minions deal 10% less Damage per Item Equipped by their Master
+Players who Die in area are sent to the Void
+Only opens 1 Portal to Area
+--------
+Travel to this Map by using it in a personal Map Device. Maps can only be used once. Defeat 90% of all monsters in this Map, including all Rare and Unique enemies to obtain the Reward. The area created is not affected by your Atlas Passive Tree, and cannot be augmented via the Map Device.
+--------
+Unmodifiable
+--------
+Foil (Celestial Amethyst)
+");
+
+        Assert.Equal(Category.Map, actual.Header.Category);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal("Plaza Map", actual.Header.ApiType);
+        Assert.Equal("Foil Mageblood", actual.Properties.Reward);
+    }
+
     #region ItemText
 
     private const string TimelessKaruiEmblem = @"Item Class: Map Fragments

@@ -42,6 +42,7 @@ public class GameLanguageEs : IGameLanguage
     public string DescriptionCriticalStrikeChance => "Daño de golpe crítico";
     public string DescriptionCriticalHitChance => "Probabilidad de impacto crítico";
     public string DescriptionMapTier => "Grado del mapa";
+    public string DescriptionReward => "Recompensa";
     public string DescriptionItemQuantity => "Cantidad de objetos";
     public string DescriptionItemRarity => "Rareza de objetos";
     public string DescriptionMonsterPackSize => "Tamaño de los grupos de monstruos";

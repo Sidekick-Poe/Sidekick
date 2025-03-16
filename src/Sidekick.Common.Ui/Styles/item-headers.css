@@ -88,3 +88,68 @@
     background: url("/images/items/poe2/header-unique-left.png") top left repeat-y, url("/images/items/poe2/header-unique-right.png") top right repeat-y, url("/images/items/poe2/header-unique-middle.png") top center repeat;
     background-size: contain;
 }
+
+.item-header-double-foil {
+    background: url("/images/items/header-double-foil-left.png") top left repeat-y, url("/images/items/header-double-foil-right.png") top right repeat-y, url("/images/items/header-double-foil-middle.png") top center repeat;
+    background-size: contain;
+}
+
+.item-header-double-foil::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    mix-blend-mode: overlay;
+    pointer-events: none
+}
+
+.item-header-foil-1::after {
+    background: linear-gradient(180deg, rgba(151, 57, 253, 0.64), rgb(247, 184, 255))
+}
+
+.item-header-foil-2::after {
+    background: linear-gradient(180deg, rgba(108, 255, 71, 0.64), rgb(4, 90, 82))
+}
+
+.item-header-foil-3::after {
+    background: linear-gradient(180deg, rgba(255, 71, 122, 0.83), rgb(253, 182, 182))
+}
+
+.item-header-foil-4::after {
+    background: linear-gradient(180deg, rgba(71, 255, 238, 0.64), rgba(39, 121, 245, 0.85))
+}
+
+.item-header-foil-5::after {
+    background: linear-gradient(180deg, rgba(255, 190, 71, 0.64), rgba(109, 39, 245, 0.63))
+}
+
+.item-header-foil-6::after {
+    background: linear-gradient(180deg, rgba(255, 234, 85, 0.78), rgba(245, 163, 39, 0.82))
+}
+
+.item-header-foil-7::after {
+    background: linear-gradient(180deg, rgba(255, 34, 170, 0.64), rgb(250, 212, 255))
+}
+
+.item-header-foil-8::after {
+    background: linear-gradient(180deg, rgba(168, 5, 5, 0.58), rgba(94, 94, 94, 0.21))
+}
+
+.item-header-foil-9::after {
+    background: linear-gradient(180deg, rgba(52, 110, 0, 0.67), rgb(193, 122, 255))
+}
+
+.item-header-foil-10::after {
+    background: linear-gradient(180deg, rgba(255, 251, 58, 0.64), rgba(106, 47, 29, 0.95))
+}
+
+.item-header-foil-11::after {
+    background: linear-gradient(180deg, rgba(184, 233, 169, 0.84), rgba(229, 63, 85, 0.63))
+}
+
+.item-header-foil-12::after {
+    background: linear-gradient(180deg, rgba(83, 214, 255, 0.78), rgba(88, 42, 122, 0.82));
+}
+

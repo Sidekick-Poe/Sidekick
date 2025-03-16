@@ -42,6 +42,7 @@ public class GameLanguageTh : IGameLanguage
     public string DescriptionCriticalStrikeChance => "โอกาสคริติคอล";
     public string DescriptionCriticalHitChance => "โอกาสปะทะคริติคอล";
     public string DescriptionMapTier => "ระดับแผนที่";
+    public string DescriptionReward => "ของรางวัล";
     public string DescriptionItemQuantity => "จำนวนของไอเทม";
     public string DescriptionItemRarity => "ระดับความหายากของไอเทม";
     public string DescriptionMonsterPackSize => "ขนาดกองมอนสเตอร์";

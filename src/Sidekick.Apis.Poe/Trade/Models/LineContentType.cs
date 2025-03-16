@@ -9,5 +9,7 @@ public enum LineContentType
     Cold = 5,
     Lightning = 6,
     Chaos = 7,
+    Unique = 10,
     BlockedIncursionRoom = 15,
+    GrayItalic = 24,
 }

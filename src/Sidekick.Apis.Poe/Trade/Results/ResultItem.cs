@@ -18,6 +18,9 @@ public class ResultItem
     [JsonPropertyName("frameType")]
     public Rarity Rarity { get; set; }
 
+    [JsonPropertyName("foilVariation")]
+    public int? FoilVariation { get; set; }
+
     public bool Corrupted { get; set; }
 
     public Scourged Scourged { get; set; } = new Scourged();

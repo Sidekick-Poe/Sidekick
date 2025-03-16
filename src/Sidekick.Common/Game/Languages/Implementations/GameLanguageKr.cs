@@ -44,6 +44,7 @@ public class GameLanguageKr : IGameLanguage
     public string DescriptionCriticalStrikeChance => "치명타 확률";
     public string DescriptionCriticalHitChance => "치명타 명중 확률";
     public string DescriptionMapTier => "지도 등급";
+    public string DescriptionReward => "보상";
     public string DescriptionItemQuantity => "아이템 수량";
     public string DescriptionItemRarity => "아이템 희귀도";
     public string DescriptionMonsterPackSize => "몬스터 무리 규모";

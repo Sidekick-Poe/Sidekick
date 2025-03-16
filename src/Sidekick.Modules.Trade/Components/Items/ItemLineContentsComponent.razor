@@ -1,3 +1,4 @@
+@using Sidekick.Apis.Poe.Parser.Properties.Definitions
 @using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Common.Game.Items
 
@@ -5,7 +6,15 @@
 {
     @foreach (var property in LineContents)
     {
-        <TextBase Class="text-[#7f7f7f] font-caps text-center leading-none py-[1px]">@((MarkupString)GetLine(property))</TextBase>
+        if (property.Text == SeparatorProperty.Text)
+        {
+            <ItemSeparator Rarity="Item.Header.Rarity"/>
+        }
+        else
+        {
+            <TextBase
+                Class="text-[#7f7f7f] font-caps text-center leading-none py-[1px]">@((MarkupString)GetLine(property))</TextBase>
+        }
     }
 
     <ItemSeparator Rarity="Item.Header.Rarity"/>

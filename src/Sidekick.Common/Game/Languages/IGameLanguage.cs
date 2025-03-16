@@ -40,6 +40,8 @@ public interface IGameLanguage
 
     string DescriptionMapTier { get; }
 
+    string DescriptionReward { get; }
+
     string DescriptionAreaLevel { get; }
 
     string DescriptionItemQuantity { get; }

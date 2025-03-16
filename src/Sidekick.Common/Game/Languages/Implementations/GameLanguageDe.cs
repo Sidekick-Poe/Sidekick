@@ -42,6 +42,7 @@ public class GameLanguageDe : IGameLanguage
     public string DescriptionCriticalStrikeChance => "Kritische Trefferchance";
     public string DescriptionCriticalHitChance => "Kritische Trefferchance";
     public string DescriptionMapTier => "Kartenlevel";
+    public string DescriptionReward => "Belohnung";
     public string DescriptionItemQuantity => "Gegenstandsmenge";
     public string DescriptionItemRarity => "Gegenstandsseltenheit";
     public string DescriptionMonsterPackSize => "Monstergruppengröße";

@@ -42,6 +42,7 @@ public class GameLanguagePt : IGameLanguage
     public string DescriptionCriticalStrikeChance => "Chance de Crítico";
     public string DescriptionCriticalHitChance => "Chance de Acerto Crítico";
     public string DescriptionMapTier => "Tier do Mapa";
+    public string DescriptionReward => "Recompensa";
     public string DescriptionItemQuantity => "Quantidade de Itens";
     public string DescriptionItemRarity => "Raridade de Itens";
     public string DescriptionMonsterPackSize => "Tamanho do Grupo de Monstros";

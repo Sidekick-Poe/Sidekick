@@ -11,7 +11,9 @@ public static class LineContentTypeExtensions
             LineContentType.Cold => "text-[#366492]",
             LineContentType.Chaos => "text-[#D02090]",
             LineContentType.Lightning => "text-[#FFD700]",
+            LineContentType.Unique => "text-[#AF6025]",
             LineContentType.BlockedIncursionRoom => "text-[#5A5A5A]",
+            LineContentType.GrayItalic => "italic text-[#7F7F7F]",
             _ => "text-[#FFFFFF]",
         };
     }
