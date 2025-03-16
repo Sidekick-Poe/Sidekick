@@ -34,6 +34,8 @@ public class ItemProperties
 
     public int MapTier { get; set; }
 
+    public string? Reward { get; set; }
+
     public int AreaLevel { get; set; }
 
     public int ItemQuantity { get; set; }

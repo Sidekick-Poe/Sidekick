@@ -43,6 +43,7 @@ public class GameLanguageZh : IGameLanguage
     public string DescriptionCriticalStrikeChance => "暴擊率";
     public string DescriptionCriticalHitChance => "暴擊率";
     public string DescriptionMapTier => "地圖階級";
+    public string DescriptionReward => "__UNSET__";
     public string DescriptionItemQuantity => "物品數量";
     public string DescriptionItemRarity => "物品稀有度";
     public string DescriptionMonsterPackSize => "怪物群大小";

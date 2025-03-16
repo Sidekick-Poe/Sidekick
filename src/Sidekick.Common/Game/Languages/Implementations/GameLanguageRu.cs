@@ -42,6 +42,7 @@ public class GameLanguageRu : IGameLanguage
     public string DescriptionCriticalStrikeChance => "Шанс критического удара";
     public string DescriptionCriticalHitChance => "Шанс крит. попадания";
     public string DescriptionMapTier => "Уровень карты";
+    public string DescriptionReward => "Награда";
     public string DescriptionItemQuantity => "Количество предметов";
     public string DescriptionItemRarity => "Редкость предметов";
     public string DescriptionMonsterPackSize => "Размер групп монстров";

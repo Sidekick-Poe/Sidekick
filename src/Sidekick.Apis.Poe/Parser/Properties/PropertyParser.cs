@@ -17,6 +17,7 @@ public class PropertyParser
     IGameLanguageProvider gameLanguageProvider,
     IInvariantModifierProvider invariantModifierProvider,
     IApiInvariantItemProvider apiInvariantItemProvider,
+    IApiItemProvider apiItemProvider,
     ISettingsService settingsService,
     IStringLocalizer<PoeResources> resources
 ) : IPropertyParser
@@ -44,10 +45,11 @@ public class PropertyParser
             new AttacksPerSecondProperty(gameLanguageProvider, game),
             new CriticalHitChanceProperty(gameLanguageProvider, game),
 
+            new MapTierProperty(gameLanguageProvider),
+            new RewardProperty(gameLanguageProvider, game, apiItemProvider),
             new ItemQuantityProperty(gameLanguageProvider),
             new ItemRarityProperty(gameLanguageProvider),
             new MonsterPackSizeProperty(gameLanguageProvider),
-            new MapTierProperty(gameLanguageProvider),
             new AreaLevelProperty(gameLanguageProvider),
             new BlightedProperty(gameLanguageProvider),
             new BlightRavagedProperty(gameLanguageProvider),

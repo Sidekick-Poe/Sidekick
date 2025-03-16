@@ -44,6 +44,7 @@ public class GameLanguageJp : IGameLanguage
     public string DescriptionCriticalStrikeChance => "クリティカル率";
     public string DescriptionCriticalHitChance => "クリティカルヒット率";
     public string DescriptionMapTier => "マップティア";
+    public string DescriptionReward => "報酬";
     public string DescriptionItemQuantity => "アイテム数量";
     public string DescriptionItemRarity => "アイテムレアリティ";
     public string DescriptionMonsterPackSize => "モンスターパックサイズ";

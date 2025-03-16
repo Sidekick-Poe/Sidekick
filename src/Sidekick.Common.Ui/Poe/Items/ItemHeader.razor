@@ -79,6 +79,23 @@
                 case Rarity.Gem: return false;
                 case Rarity.Rare: return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Type);
                 case Rarity.Unique: return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Type);
+                case Rarity.Relic: return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Type);
+
+                case Rarity.Foil:
+                case Rarity.Foil_1:
+                case Rarity.Foil_2:
+                case Rarity.Foil_3:
+                case Rarity.Foil_4:
+                case Rarity.Foil_5:
+                case Rarity.Foil_6:
+                case Rarity.Foil_7:
+                case Rarity.Foil_8:
+                case Rarity.Foil_9:
+                case Rarity.Foil_10:
+                case Rarity.Foil_11:
+                case Rarity.Foil_12:
+                    return true;
+
                 default: return false;
             }
         }
@@ -90,11 +107,7 @@
         {
             if (IsRelic)
             {
-                if (!Double)
-                {
-                    return "item-header-relic";
-                }
-
+                if (!Double) return "item-header-relic";
                 return "item-header-double-relic";
             }
 
@@ -103,21 +116,30 @@
                 case Rarity.Currency: return "item-header-currency";
                 case Rarity.Magic: return "item-header-magic";
                 case Rarity.Gem: return "item-header-gem";
+                case Rarity.Foil_1: return "item-header-double-foil item-header-foil-1";
+                case Rarity.Foil_2: return "item-header-double-foil item-header-foil-2";
+                case Rarity.Foil_3: return "item-header-double-foil item-header-foil-3";
+                case Rarity.Foil_4: return "item-header-double-foil item-header-foil-4";
+                case Rarity.Foil_5: return "item-header-double-foil item-header-foil-5";
+                case Rarity.Foil_6: return "item-header-double-foil item-header-foil-6";
+                case Rarity.Foil_7: return "item-header-double-foil item-header-foil-7";
+                case Rarity.Foil_8: return "item-header-double-foil item-header-foil-8";
+                case Rarity.Foil_9: return "item-header-double-foil item-header-foil-9";
+                case Rarity.Foil_10: return "item-header-double-foil item-header-foil-10";
+                case Rarity.Foil_11: return "item-header-double-foil item-header-foil-11";
+                case Rarity.Foil_12: return "item-header-double-foil item-header-foil-12";
 
                 case Rarity.Rare:
-                    if (!Double)
-                    {
-                        return "item-header-rare";
-                    }
-
+                    if (!Double) return "item-header-rare";
                     return "item-header-double-rare";
 
-                case Rarity.Unique:
-                    if (!Double)
-                    {
-                        return "item-header-unique";
-                    }
+                case Rarity.Foil:
+                case Rarity.Relic:
+                    if (!Double) return "item-header-relic";
+                    return "item-header-double-relic";
 
+                case Rarity.Unique:
+                    if (!Double) return "item-header-unique";
                     return "item-header-double-unique";
 
                 default: return "item-header-normal";
@@ -129,11 +151,7 @@
     {
         get
         {
-            if (Double)
-            {
-                return "h-[27px] leading-[23px] pt-[4px] whitespace-nowrap overflow-hidden text-ellipsis";
-            }
-
+            if (Double) return "h-[27px] leading-[23px] pt-[4px] whitespace-nowrap overflow-hidden text-ellipsis";
             return "h-[34px] leading-[34px] whitespace-nowrap overflow-hidden text-ellipsis";
         }
     }
@@ -142,11 +160,7 @@
     {
         get
         {
-            if (Double)
-            {
-                return "h-[27px] leading-[23px] pb-[4px] whitespace-nowrap overflow-hidden text-ellipsis";
-            }
-
+            if (Double) return "h-[27px] leading-[23px] pb-[4px] whitespace-nowrap overflow-hidden text-ellipsis";
             return "h-[34px] leading-[34px] whitespace-nowrap overflow-hidden text-ellipsis";
         }
     }
@@ -158,6 +172,7 @@
         Rarity.Rare => "text-[#FFFF77]",
         Rarity.Unique => "text-[#AF6025]",
         Rarity.Gem => "text-[#1BA29B]",
+        Rarity.Foil => "text-[#7F7F7F]",
         _ => "text-[#C8C8C8]",
     };
 

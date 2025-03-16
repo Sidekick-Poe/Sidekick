@@ -43,6 +43,7 @@
                         case WeaponDamagePropertyFilter weaponDamageFilter: <WeaponDamagePropertyFilterComponent Filter="weaponDamageFilter" /> break;
                         case DoublePropertyFilter doubleFilter: <DoublePropertyFilterComponent Filter="doubleFilter" /> break;
                         case TriStatePropertyFilter triStateFilter: <TriStatePropertyFilterComponent Filter="triStateFilter"/> break;
+                        case StringPropertyFilter stringFilter: <StringPropertyFilterComponent Filter="stringFilter"/> break;
                         case not null when filter.Definition is SeparatorProperty: <ItemSeparator Rarity="PriceCheckService.Item?.Header.Rarity ?? Rarity.Unknown"/> break;
                         default: <BooleanPropertyFilterComponent Filter="filter"/> break;
                     }

@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers.Models;
 using Sidekick.Common.Cache;
@@ -16,6 +17,8 @@ public class InvariantModifierProvider
     ISettingsService settingsService
 ) : IInvariantModifierProvider
 {
+    public List<string> IgnoreModifierIds { get; } = [];
+
     public List<string> IncursionRoomModifierIds { get; } = [];
 
     public List<string> LogbookFactionModifierIds { get; } = [];
@@ -39,10 +42,22 @@ public class InvariantModifierProvider
     public async Task Initialize()
     {
         var result = await GetList();
+        InitializeIgnore(result);
         InitializeIncursionRooms(result);
         InitializeLogbookFactions(result);
         InitializeClusterJewel(result);
         InitializeWeaponDamageIds(result);
+    }
+
+    private void InitializeIgnore(List<ApiCategory> apiCategories)
+    {
+        IgnoreModifierIds.Clear();
+        foreach (var apiCategory in apiCategories)
+        {
+            if (!IsCategory(apiCategory, "pseudo")) { continue; }
+
+            IgnoreModifierIds.AddRange(apiCategory.Entries.Where(x => x.Text.StartsWith("#% chance for dropped Maps to convert to")).Select(x => x.Id).ToList());
+        }
     }
 
     private void InitializeIncursionRooms(List<ApiCategory> apiCategories)

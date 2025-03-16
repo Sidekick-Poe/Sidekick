@@ -7,6 +7,7 @@ using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Properties;
+using Sidekick.Apis.Poe.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests;
@@ -371,6 +372,26 @@ public class TradeSearchService
             Rarity = result.Item.Rarity,
         };
 
+        if (header.Rarity == Rarity.Foil)
+        {
+            header.Rarity = result.Item.FoilVariation switch
+            {
+                1 => Rarity.Foil_1,
+                2 => Rarity.Foil_2,
+                3 => Rarity.Foil_3,
+                4 => Rarity.Foil_4,
+                5 => Rarity.Foil_5,
+                6 => Rarity.Foil_6,
+                7 => Rarity.Foil_7,
+                8 => Rarity.Foil_8,
+                9 => Rarity.Foil_9,
+                10 => Rarity.Foil_10,
+                11 => Rarity.Foil_11,
+                12 => Rarity.Foil_12,
+                _ => header.Rarity,
+            };
+        }
+
         var properties = new ItemProperties()
         {
             Quality = 20,
@@ -411,7 +432,7 @@ public class TradeSearchService
             Width = result.Item.Width,
             Height = result.Item.Height,
             RequirementContents = ParseLineContents(result.Item.Requirements),
-            PropertyContents = ParseLineContents(result.Item.Properties),
+            PropertyContents = ParseLineContents(result.Item.Properties, false),
             AdditionalPropertyContents = ParseLineContents(result.Item.AdditionalProperties, false),
         };
     }
@@ -526,20 +547,9 @@ public class TradeSearchService
 
                 var text = line.Name;
 
-                if (values.Count <= 0)
-                {
-                    if (text != null) text = ModifierProvider.RemoveSquareBrackets(text);
-                    return new LineContent()
-                    {
-                        Text = text,
-                        Values = values,
-                    };
-                }
-
                 switch (line.DisplayMode)
                 {
                     case 0:
-                        text = line.Name;
                         if (values.Count > 0)
                         {
                             if (!string.IsNullOrEmpty(line.Name))
@@ -552,23 +562,27 @@ public class TradeSearchService
 
                         break;
 
-                    case 1: text = $"{values[0].Value} {line.Name}"; break;
+                    case 1:
+                        if (values.Count > 0) text = $"{values[0].Value} {line.Name}";
+                        break;
 
-                    case 2: text = $"{values[0].Value}"; break;
+                    case 2:
+                        if (values.Count > 0) text = $"{values[0].Value}";
+                        break;
 
                     case 3:
                         var format = Regex.Replace(line.Name ?? string.Empty, "%(\\d)", "{$1}");
                         text = string.Format(format, values.Select(x => (object?)x.Value).ToArray());
                         break;
 
+                    case 4: text = SeparatorProperty.Text; break;
+
                     default: text = $"{line.Name} {string.Join(", ", values.Select(x => x.Value))}"; break;
                 }
 
-                if (text != null) text = ModifierProvider.RemoveSquareBrackets(text);
-
                 return new LineContent()
                 {
-                    Text = text,
+                    Text = ModifierProvider.RemoveSquareBrackets(text),
                     Values = values,
                 };
             })

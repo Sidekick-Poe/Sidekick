@@ -16,6 +16,9 @@ public class MapFilters
     [JsonPropertyName("map_tier")]
     public StatFilterValue? MapTier { get; set; }
 
+    [JsonPropertyName("map_completion_reward")]
+    public SearchFilterOption? Reward { get; set; }
+
     [JsonPropertyName("map_packsize")]
     public StatFilterValue? MonsterPackSize { get; set; }
 

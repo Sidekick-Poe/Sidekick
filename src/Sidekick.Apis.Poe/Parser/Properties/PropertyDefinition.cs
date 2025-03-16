@@ -23,6 +23,16 @@ public abstract class PropertyDefinition
 
     protected static bool GetBool(Regex pattern, ParsingItem parsingItem) => parsingItem.TryParseRegex(pattern, out _);
 
+    protected static string? GetString(Regex pattern, ParsingBlock parsingBlock)
+    {
+        if (parsingBlock.TryParseRegex(pattern, out var match))
+        {
+            return match.Groups[1].Value.Trim(' ', ':');
+        }
+
+        return null;
+    }
+
     protected static int GetInt(Regex pattern, ParsingItem parsingItem)
     {
         if (parsingItem.TryParseRegex(pattern, out var match) && int.TryParse(match.Groups[1].Value, out var result))

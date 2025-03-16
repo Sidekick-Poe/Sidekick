@@ -42,6 +42,7 @@ public class GameLanguageFr : IGameLanguage
     public string DescriptionCriticalStrikeChance => "Chances de coup critique";
     public string DescriptionCriticalHitChance => "Chances de Touche critique";
     public string DescriptionMapTier => "Palier de Carte";
+    public string DescriptionReward => "Récompense";
     public string DescriptionItemQuantity => "Quantité d'objets";
     public string DescriptionItemRarity => "Rareté des objets";
     public string DescriptionMonsterPackSize => "Taille des groupes de monstres";

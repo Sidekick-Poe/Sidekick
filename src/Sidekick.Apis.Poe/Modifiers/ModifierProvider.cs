@@ -95,6 +95,8 @@ public class ModifierProvider
         var patterns = new List<ModifierDefinition>();
         foreach (var entry in apiCategory.Entries)
         {
+            if (invariantModifierProvider.IgnoreModifierIds.Contains(entry.Id)) continue;
+
             entry.Text = RemoveSquareBrackets(entry.Text);
 
             if (entry.Option?.Options.Count > 0)
