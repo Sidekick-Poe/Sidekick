@@ -1,4 +1,3 @@
-@using Sidekick.Apis.Poe.Trade.Models
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Options
 @using Sidekick.Common.Settings
@@ -8,46 +7,44 @@
     return;
 }
 
-<div class="max-w-[800px] mx-auto">
-    @if (PriceCheckService.ItemTradeResult != null)
-    {
-        <div class="flex items-center w-full justify-between w-full dark:bg-stone-900 sticky top-0 z-10 py-3 -mt-3">
-            <div>
-                <LeagueText/>
-                <CountString Count="PriceCheckService.TradeItems?.Count ?? 0"
-                             Total="PriceCheckService.ItemTradeResult.Total"/>
-            </div>
-            <div class="flex gap-4">
-                <ToggleCompactView OnClick="@ToggleView" IsCompact="@IsCompact"/>
-                <OpenWebsiteLink QueryId="@PriceCheckService.ItemTradeResult.Id"/>
-            </div>
+@if (PriceCheckService.ItemTradeResult != null)
+{
+    <div class="flex items-center w-full justify-between dark:bg-stone-900 sticky top-0 z-10 mb-3">
+        <div>
+            <LeagueText/>
+            <CountString Count="PriceCheckService.TradeItems?.Count ?? 0"
+                         Total="PriceCheckService.ItemTradeResult.Total"/>
         </div>
+        <div class="flex gap-4">
+            <ToggleCompactView OnClick="@ToggleView" IsCompact="@IsCompact"/>
+            <OpenWebsiteLink QueryId="@PriceCheckService.ItemTradeResult.Id"/>
+        </div>
+    </div>
 
-        @if (PriceCheckService.TradeItems != null)
-        {
-            foreach (var result in PriceCheckService.TradeItems)
-            {
-                <ItemComponent @key="result.Id" Item="result" IsCompact="@IsCompact"/>
-            }
-        }
-
-        @if (PriceCheckService.ResultError != null)
-        {
-            <AlertError>@PriceCheckService.ResultError</AlertError>
-        }
-        else if (!PriceCheckService.IsLoading && !FullyLoaded && PriceCheckService.TradeItems != null)
-        {
-            <div class="flex justify-center">
-                <ButtonPrimary OnClick="PriceCheckService.LoadMoreItems">@Resources.LoadMoreData</ButtonPrimary>
-            </div>
-        }
-    }
-
-    @if (PriceCheckService.IsLoading)
+    @if (PriceCheckService.TradeItems != null)
     {
-        <AppLoading/>
+        foreach (var result in PriceCheckService.TradeItems)
+        {
+            <ItemComponent @key="result.Id" Result="result" IsCompact="@IsCompact"/>
+        }
     }
-</div>
+
+    @if (PriceCheckService.ResultError != null)
+    {
+        <AlertError>@PriceCheckService.ResultError</AlertError>
+    }
+    else if (!PriceCheckService.IsLoading && !FullyLoaded && PriceCheckService.TradeItems != null)
+    {
+        <div class="flex justify-center">
+            <ButtonPrimary OnClick="PriceCheckService.LoadMoreItems">@Resources.LoadMoreData</ButtonPrimary>
+        </div>
+    }
+}
+
+@if (PriceCheckService.IsLoading)
+{
+    <AppLoading/>
+}
 
 @implements IDisposable
 
@@ -64,7 +61,7 @@
     protected override async Task OnInitializedAsync()
     {
         IsCompact = await SettingsService.GetBool(SettingKeys.PriceCheckCompactMode);
-        PriceCheckService.LoadingChanged += StateHasChanged;
+        PriceCheckService.Changed += StateHasChanged;
         await base.OnInitializedAsync();
     }
 
@@ -76,7 +73,7 @@
 
     public void Dispose()
     {
-        PriceCheckService.LoadingChanged -= StateHasChanged;
+        PriceCheckService.Changed -= StateHasChanged;
     }
 
 }

@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.Poe.Trade.Models;
+namespace Sidekick.Apis.Poe.Trade.Results;
 
 public enum LineContentType
 {

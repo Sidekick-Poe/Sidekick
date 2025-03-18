@@ -9,34 +9,32 @@
 
 @inherits Sidekick.Common.Ui.Views.SidekickView
 
-<AppTitle Title="@Resources.Trade" />
+<AppTitle Title="@Resources.Trade"/>
 
 <LayoutTwoColumn LeftContentWidth="@LeftContentWidth" OnLeftContentResize="@OnLeftContentResize">
     <TopContent>
         <AppBar>
             <AppSettings Href="/settings/price">
-                <SettingsContent />
+                <SettingsContent/>
             </AppSettings>
-            <AppClose />
+            <AppClose/>
         </AppBar>
     </TopContent>
     <LeftContent>
         @if (PriceCheckService.IsFilterLoading)
         {
-            <AppLoading />
+            <AppLoading/>
         }
         else
         {
-            <FiltersComponent />
+            <FiltersComponent/>
         }
     </LeftContent>
     <ChildContent>
-        <SidekickErrorBoundary>
-            <AppFullContainer>
-                <BulkResult />
-                <ItemsResult />
-            </AppFullContainer>
-        </SidekickErrorBoundary>
+        <AppContainer>
+            <BulkResult/>
+            <ItemsResult/>
+        </AppContainer>
     </ChildContent>
 </LayoutTwoColumn>
 
@@ -60,21 +58,19 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        PriceCheckService.FilterLoadingChanged += StateHasChanged;
+        PriceCheckService.Changed += StateHasChanged;
         CloseOnBlur = await SettingsService.GetBool(SettingKeys.PriceCheckCloseWithMouse);
         LeftContentWidth = await SettingsService.GetInt(SettingKeys.PriceCheckSidebarWidth);
     }
 
-    protected override async Task OnParametersSetAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await base.OnParametersSetAsync();
+        await base.OnAfterRenderAsync(firstRender);
 
-        if (string.IsNullOrEmpty(ItemText))
+        if (firstRender && !string.IsNullOrEmpty(ItemText))
         {
-            return;
+            await PriceCheckService.Initialize(ItemText.DecodeBase64Url() ?? string.Empty);
         }
-
-        await PriceCheckService.Initialize(ItemText.DecodeBase64Url() ?? string.Empty);
     }
 
     private async Task OnLeftContentResize(int width)
@@ -84,7 +80,7 @@
 
     public void Dispose()
     {
-        PriceCheckService.FilterLoadingChanged -= StateHasChanged;
+        PriceCheckService.Changed -= StateHasChanged;
     }
 
 }

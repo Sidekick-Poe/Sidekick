@@ -1,7 +1,7 @@
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
 
-namespace Sidekick.Apis.Poe.Trade.Models;
+namespace Sidekick.Apis.Poe.Trade.Filters;
 
 public class PseudoModifierFilter : ITradeFilter
 {

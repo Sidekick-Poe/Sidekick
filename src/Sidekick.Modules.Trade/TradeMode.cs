@@ -1,6 +1,6 @@
 using Sidekick.Common.Enums;
 
-namespace Sidekick.Apis.Poe.Trade.Models;
+namespace Sidekick.Modules.Trade;
 
 public enum TradeMode
 {

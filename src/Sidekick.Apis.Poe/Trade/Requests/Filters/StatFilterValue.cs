@@ -1,5 +1,5 @@
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Models;
+using Sidekick.Apis.Poe.Trade.Filters;
 
 namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
 

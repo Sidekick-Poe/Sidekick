@@ -4,11 +4,12 @@ using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Results;
 
-public class ResultItem
+public class TradeItem
 {
     public string? Name { get; set; }
 
-    public string? TypeLine { get; set; }
+    [JsonPropertyName("typeLine")]
+    public string? Type { get; set; }
 
     public bool Identified { get; set; }
 
@@ -90,4 +91,6 @@ public class ResultItem
     public Extended? Extended { get; set; }
 
     public List<LogbookMod> LogbookMods { get; set; } = new();
+
+    public bool HasModifiers => !Identified || ImplicitMods.Count > 0 || CraftedMods.Count > 0 || ExplicitMods.Count > 0 || UtilityMods.Count > 0 || PseudoMods.Count > 0 || EnchantMods.Count > 0 || RuneMods.Count > 0 || FracturedMods.Count > 0 || ScourgeMods.Count > 0 || SanctumMods.Count > 0 || LogbookMods.Count > 0;
 }

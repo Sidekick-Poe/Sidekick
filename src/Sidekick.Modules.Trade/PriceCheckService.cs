@@ -2,7 +2,7 @@ using Sidekick.Apis.Poe;
 using Sidekick.Apis.Poe.Bulk;
 using Sidekick.Apis.Poe.Bulk.Models;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Models;
+using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Results;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
@@ -11,16 +11,16 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.Trade;
 
-public class PriceCheckService(
+public class PriceCheckService
+(
     ISettingsService settingsService,
     IBulkTradeService bulkTradeService,
     IItemParser itemParser,
     ITradeFilterService tradeFilterService,
-    ITradeSearchService tradeSearchService)
+    ITradeSearchService tradeSearchService
+)
 {
-    public event Action? LoadingChanged;
-
-    public event Action? FilterLoadingChanged;
+    public event Action? Changed;
 
     public Item? Item { get; private set; }
 
@@ -28,13 +28,9 @@ public class PriceCheckService(
 
     public PropertyFilters? PropertyFilters { get; private set; }
 
-    public List<ModifierFilter> ModifierFilters { get; private set; } =
-    [
-    ];
+    public List<ModifierFilter> ModifierFilters { get; private set; } = [];
 
-    public List<PseudoModifierFilter> PseudoFilters { get; private set; } =
-    [
-    ];
+    public List<PseudoModifierFilter> PseudoFilters { get; private set; } = [];
 
     public bool IsLoading { get; private set; }
 
@@ -44,7 +40,7 @@ public class PriceCheckService(
 
     public TradeSearchResult<string>? ItemTradeResult { get; private set; }
 
-    public List<TradeItem>? TradeItems { get; private set; }
+    public List<TradeResult>? TradeItems { get; private set; }
 
     public BulkResponseModel? BulkTradeResult { get; private set; }
 
@@ -53,17 +49,13 @@ public class PriceCheckService(
     public async Task Initialize(string itemText)
     {
         IsFilterLoading = true;
-        FilterLoadingChanged?.Invoke();
+        Changed?.Invoke();
 
         Item = itemParser.ParseItem(itemText.DecodeBase64Url() ?? string.Empty);
 
         PropertyFilters = await tradeFilterService.GetPropertyFilters(Item);
-        ModifierFilters = tradeFilterService
-                          .GetModifierFilters(Item)
-                          .ToList();
-        PseudoFilters = tradeFilterService
-                        .GetPseudoModifierFilters(Item)
-                        .ToList();
+        ModifierFilters = tradeFilterService.GetModifierFilters(Item).ToList();
+        PseudoFilters = tradeFilterService.GetPseudoModifierFilters(Item).ToList();
 
         SupportsBulk = bulkTradeService.SupportsBulkTrade(Item);
         if (SupportsBulk)
@@ -76,7 +68,7 @@ public class PriceCheckService(
         }
 
         IsFilterLoading = false;
-        FilterLoadingChanged?.Invoke();
+        Changed?.Invoke();
 
         var automaticallyPriceCheck = await settingsService.GetBool(SettingKeys.PriceCheckAutomaticallySearch);
         if (!automaticallyPriceCheck)
@@ -102,20 +94,16 @@ public class PriceCheckService(
         }
 
         CurrentMode = TradeMode.Item;
-        TradeItems = new List<TradeItem>();
+        TradeItems = new List<TradeResult>();
         IsLoading = true;
-        LoadingChanged?.Invoke();
+        Changed?.Invoke();
 
-        ItemTradeResult = await tradeSearchService.Search(
-            Item,
-            PropertyFilters,
-            ModifierFilters,
-            PseudoFilters);
+        ItemTradeResult = await tradeSearchService.Search(Item, PropertyFilters, ModifierFilters, PseudoFilters);
 
         IsLoading = false;
         await LoadMoreItems();
 
-        LoadingChanged?.Invoke();
+        Changed?.Invoke();
     }
 
     public async Task LoadMoreItems()
@@ -125,10 +113,7 @@ public class PriceCheckService(
             return;
         }
 
-        var ids = ItemTradeResult
-                  .Result.Skip(TradeItems?.Count ?? 0)
-                  .Take(10)
-                  .ToList();
+        var ids = ItemTradeResult.Result.Skip(TradeItems?.Count ?? 0).Take(10).ToList();
         if (ids.Count == 0)
         {
             return;
@@ -136,7 +121,7 @@ public class PriceCheckService(
 
         IsLoading = true;
         ResultError = null;
-        LoadingChanged?.Invoke();
+        Changed?.Invoke();
 
         try
         {
@@ -149,7 +134,7 @@ public class PriceCheckService(
         }
 
         IsLoading = false;
-        LoadingChanged?.Invoke();
+        Changed?.Invoke();
     }
 
     public async Task BulkSearch()
@@ -162,11 +147,11 @@ public class PriceCheckService(
         CurrentMode = TradeMode.Bulk;
         BulkTradeResult = null;
         IsLoading = true;
-        LoadingChanged?.Invoke();
+        Changed?.Invoke();
 
         BulkTradeResult = await bulkTradeService.SearchBulk(Item);
 
         IsLoading = false;
-        LoadingChanged?.Invoke();
+        Changed?.Invoke();
     }
 }

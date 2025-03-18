@@ -1,13 +1,13 @@
-@using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Apis.Poe.Trade.Results
 @using Sidekick.Common.Game.Items
 
-@if (Item.Properties.Sockets == null || Item.Properties.Sockets.Any(x => x.Colour != SocketColour.PoE2_Gem))
+@if (Sockets.Any(x => x.Colour != SocketColour.PoE2_Gem))
 {
     return;
 }
 
 <div class="flex flex-wrap items-center justify-center gap-1 my-1">
-    @for (var i = 0; i < Item.Properties.Sockets.Count; i++)
+    @for (var i = 0; i < Sockets.Count; i++)
     {
         <div class="item-socket-poe2-gem"></div>
     }
@@ -16,6 +16,25 @@
 @code {
 
     [Parameter]
-    public required TradeItem Item { get; set; }
+    public required TradeResult Result { get; set; }
+
+    private List<Socket> Sockets { get; set; } = [];
+
+    protected override bool ShouldRender() => false;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        if (Result.Item.GemSockets.Count > 0)
+        {
+            Sockets = Result.Item.Sockets.Select(x => new Socket()
+                {
+                    Group = x.Group,
+                    Colour = SocketColour.PoE2_Gem,
+                })
+                .ToList();
+        }
+    }
 
 }

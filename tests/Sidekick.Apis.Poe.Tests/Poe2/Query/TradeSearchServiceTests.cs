@@ -35,7 +35,6 @@ public class TradeSearchServiceTests
             NullLogger<TradeSearchService>.Instance,
             fixture.GameLanguageProvider,
             fixture.SettingsService,
-            fixture.ModifierProvider,
             fixture.FilterProvider,
             fixture.PropertyParser,
             mockFactory.Object

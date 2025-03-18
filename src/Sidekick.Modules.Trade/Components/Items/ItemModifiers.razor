@@ -1,0 +1,128 @@
+@using System.Text.Json
+@using Sidekick.Apis.Poe.Modifiers
+@using Sidekick.Apis.Poe.Trade.Results
+@using Sidekick.Common.Game.Items
+@using TradeItem = Sidekick.Apis.Poe.Trade.Results.TradeItem
+
+<ItemSeparator Rarity="Result.Item.Rarity"/>
+@foreach (var line in Modifiers)
+{
+    <ItemModifierLineComponent Result="Result" ModifierLines="Modifiers" ModifierLine="line"/>
+}
+
+@inject IModifierProvider ModifierProvider
+
+@code {
+
+    public class ModifierLine(string text)
+    {
+        public string Text { get; } = text;
+
+        public string? Tier { get; init; }
+
+        public ModifierCategory Category { get; init; }
+
+        public int BlockIndex { get; init; }
+    }
+
+    [Parameter]
+    public required TradeResult Result { get; set; }
+
+    private List<ModifierLine> Modifiers { get; set; } = [];
+
+    protected override bool ShouldRender() => false;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        Modifiers = GetAllModifierLines(Result.Item).SelectMany(s => s).OrderBy(x => x.Text.IndexOf(x.Text, StringComparison.InvariantCultureIgnoreCase)).ToList();
+    }
+
+    private IEnumerable<IEnumerable<ModifierLine>> GetAllModifierLines(TradeItem tradeItem)
+    {
+        var index = 0;
+        foreach (var logbook in tradeItem.LogbookMods)
+        {
+            var blockIndex = ++index;
+            yield return
+            [
+                new ModifierLine(text: logbook.Name)
+                {
+                    BlockIndex = blockIndex,
+                    Category = ModifierCategory.WhiteText,
+                },
+                new ModifierLine(text: logbook.Faction.Name)
+                {
+                    BlockIndex = blockIndex,
+                    Category = logbook.Faction.Category,
+                }
+            ];
+            yield return ParseModifierLines(blockIndex, logbook.Mods, tradeItem.Extended?.Mods?.Implicit, ParseHash(tradeItem.Extended?.Hashes?.Implicit));
+        }
+
+        yield return ParseModifierLines(++index, tradeItem.EnchantMods, tradeItem.Extended?.Mods?.Enchant, ParseHash(tradeItem.Extended?.Hashes?.Enchant));
+        yield return ParseModifierLines(++index, tradeItem.RuneMods, tradeItem.Extended?.Mods?.Rune, ParseHash(tradeItem.Extended?.Hashes?.Rune));
+        yield return ParseModifierLines(++index, tradeItem.ImplicitMods, tradeItem.Extended?.Mods?.Implicit, ParseHash(tradeItem.Extended?.Hashes?.Implicit));
+        yield return ParseModifierLines(++index, tradeItem.CraftedMods, tradeItem.Extended?.Mods?.Crafted, ParseHash(tradeItem.Extended?.Hashes?.Crafted));
+        yield return ParseModifierLines(++index, tradeItem.ExplicitMods, tradeItem.Extended?.Mods?.Explicit, ParseHash(tradeItem.Extended?.Hashes?.Explicit, tradeItem.Extended?.Hashes?.Monster));
+        yield return ParseModifierLines(++index, tradeItem.FracturedMods, tradeItem.Extended?.Mods?.Fractured, ParseHash(tradeItem.Extended?.Hashes?.Fractured));
+        yield return ParseModifierLines(++index, tradeItem.ScourgeMods, tradeItem.Extended?.Mods?.Scourge, ParseHash(tradeItem.Extended?.Hashes?.Scourge));
+        yield return ParseModifierLines(++index, tradeItem.ExplicitMods, tradeItem.Extended?.Mods?.Sanctum, ParseHash(tradeItem.Extended?.Hashes?.Sanctum));
+    }
+
+    private static List<string?> ParseHash(params List<List<JsonElement>>?[] hashes)
+    {
+        var result = new List<string?>();
+
+        foreach (var values in hashes)
+        {
+            if (values == null)
+            {
+                continue;
+            }
+
+            foreach (var value in values)
+            {
+                if (value.Count != 2)
+                {
+                    continue;
+                }
+
+                result.Add(value[0].GetString());
+            }
+        }
+
+        return result;
+    }
+
+    private IEnumerable<ModifierLine> ParseModifierLines(int block, List<string>? texts, List<Mod>? mods, List<string?>? hashes)
+    {
+        if (texts == null || mods == null || hashes == null)
+        {
+            yield break;
+        }
+
+        for (var index = 0; index < hashes.Count; index++)
+        {
+            var id = hashes[index];
+            if (id == null || index >= texts.Count)
+            {
+                continue;
+            }
+
+            var text = texts.FirstOrDefault(x => ModifierProvider.IsMatch(id, x)) ?? texts[index];
+            text = Sidekick.Apis.Poe.Modifiers.ModifierProvider.RemoveSquareBrackets(text);
+
+            var mod = mods.FirstOrDefault(x => x.Magnitudes?.Any(y => y.Hash == id) == true);
+
+            yield return new ModifierLine(text: text)
+            {
+                BlockIndex = block,
+                Category = ModifierProvider.GetModifierCategory(id),
+                Tier = mod?.Tier,
+            };
+        }
+    }
+
+}

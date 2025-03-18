@@ -24,8 +24,6 @@ public class ItemProperties
 
     public int SpiritWithQuality => CalculateValueWithQuality(Spirit);
 
-    public int BaseDefencePercentile { get; init; }
-
     public int BlockChance { get; set; }
 
     public int Quality { get; set; }
