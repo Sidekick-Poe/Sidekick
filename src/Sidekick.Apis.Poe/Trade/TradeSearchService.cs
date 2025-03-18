@@ -230,6 +230,11 @@ public class TradeSearchService
 
     private static StatFilterGroup? GetCountStats(IEnumerable<ModifierFilter>? modifierFilters)
     {
+        if (modifierFilters == null)
+        {
+            return null;
+        }
+
         var countGroup = new StatFilterGroup()
         {
             Type = StatType.Count,
@@ -239,47 +244,39 @@ public class TradeSearchService
             },
         };
 
-        if (modifierFilters != null)
+        foreach (var filter in modifierFilters)
         {
-            foreach (var filter in modifierFilters)
+            if (filter.Checked != true || filter.Line.Modifiers.Count <= 1)
             {
-                if (filter.Checked != true || filter.Line.Modifiers.Count <= 1)
-                {
-                    continue;
-                }
+                continue;
+            }
 
-                var modifiers = filter.Line.Modifiers;
-                if (filter.ForceFirstCategory)
-                {
-                    modifiers = modifiers.Where(x => x.Category == filter.FirstCategory).ToList();
-                }
-                else if (modifiers.Any(x => x.Category == ModifierCategory.Explicit))
-                {
-                    modifiers = modifiers.Where(x => x.Category == ModifierCategory.Explicit).ToList();
-                }
+            var modifiers = filter.Line.Modifiers;
+            if (filter.ForceFirstCategory)
+            {
+                modifiers = modifiers.Where(x => x.Category == filter.FirstCategory).ToList();
+            }
+            else if (modifiers.Any(x => x.Category == ModifierCategory.Explicit))
+            {
+                modifiers = modifiers.Where(x => x.Category == ModifierCategory.Explicit).ToList();
+            }
 
-                foreach (var modifier in modifiers)
+            foreach (var modifier in modifiers)
+            {
+                countGroup.Filters.Add(new StatFilters()
                 {
-                    countGroup.Filters.Add(new StatFilters()
-                    {
-                        Id = modifier.ApiId,
-                        Value = new StatFilterValue(filter),
-                    });
-                }
+                    Id = modifier.ApiId,
+                    Value = new StatFilterValue(filter),
+                });
+            }
 
-                if (countGroup.Value != null && modifiers.Any())
-                {
-                    countGroup.Value.Min += 1;
-                }
+            if (countGroup.Value != null && modifiers.Count != 0)
+            {
+                countGroup.Value.Min += 1;
             }
         }
 
-        if (countGroup.Filters.Count == 0)
-        {
-            return null;
-        }
-
-        return countGroup;
+        return countGroup.Filters.Count == 0 ? null : countGroup;
     }
 
     private static IEnumerable<StatFilterGroup> GetWeightedSumStats(IEnumerable<PseudoModifierFilter>? pseudoFilters)
