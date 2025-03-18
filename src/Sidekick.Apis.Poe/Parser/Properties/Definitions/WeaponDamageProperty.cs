@@ -4,6 +4,7 @@ using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Localization;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
@@ -20,6 +21,8 @@ public class WeaponDamageProperty
     IStringLocalizer<PoeResources> localizer
 ) : PropertyDefinition
 {
+    private Regex RangePattern { get; } = new("(\\d+)-(\\d+)", RegexOptions.Compiled);
+
     public override List<Category> ValidCategories { get; } = [Category.Weapon];
 
     public override void ParseAfterModifiers(ItemProperties properties, ParsingItem parsingItem, List<ModifierLine> modifierLines)
@@ -47,11 +50,14 @@ public class WeaponDamageProperty
                 continue;
             }
 
-            var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
-            if (matches.Count <= 0 || matches[0].Groups.Count < 3)
-            {
-                continue;
-            }
+            if (isPhysical && line.Text.EndsWith(")")) properties.AugmentedProperties.Add(nameof(ItemProperties.PhysicalDamage));
+            if (isChaos && line.Text.EndsWith(")")) properties.AugmentedProperties.Add(nameof(ItemProperties.ChaosDamage));
+            if (isFire && line.Text.EndsWith(")")) properties.AugmentedProperties.Add(nameof(ItemProperties.FireDamage));
+            if (isCold && line.Text.EndsWith(")")) properties.AugmentedProperties.Add(nameof(ItemProperties.ColdDamage));
+            if (isLightning && line.Text.EndsWith(")")) properties.AugmentedProperties.Add(nameof(ItemProperties.LightningDamage));
+
+            var matches = RangePattern.Matches(line.Text);
+            if (matches.Count <= 0 || matches[0].Groups.Count < 3) continue;
 
             int.TryParse(matches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
             int.TryParse(matches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
@@ -144,6 +150,7 @@ public class WeaponDamageProperty
                 Value = item.Properties.PhysicalDpsWithQuality ?? 0,
                 OriginalValue = item.Properties.PhysicalDps ?? 0,
                 Checked = false,
+                Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.PhysicalDamage)) ? LineContentType.Augmented : LineContentType.Simple,
             };
             filter.ChangeFilterType(filterType);
             results.Add(filter);
@@ -158,6 +165,7 @@ public class WeaponDamageProperty
                 NormalizeValue = normalizeValue,
                 Value = item.Properties.ElementalDps ?? 0,
                 Checked = false,
+                Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.FireDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ColdDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.LightningDamage)) ? LineContentType.Augmented : LineContentType.Simple,
             };
             filter.ChangeFilterType(filterType);
             results.Add(filter);
@@ -172,6 +180,7 @@ public class WeaponDamageProperty
                 NormalizeValue = normalizeValue,
                 Value = item.Properties.ChaosDps ?? 0,
                 Checked = false,
+                Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ChaosDamage)) ? LineContentType.Augmented : LineContentType.Simple,
             };
             filter.ChangeFilterType(filterType);
             results.Add(filter);
@@ -187,6 +196,7 @@ public class WeaponDamageProperty
                 Value = item.Properties.TotalDpsWithQuality ?? 0,
                 OriginalValue = item.Properties.TotalDps ?? 0,
                 Checked = false,
+                Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.PhysicalDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.FireDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ColdDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.LightningDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ChaosDamage)) ? LineContentType.Augmented : LineContentType.Simple,
             };
             filter.ChangeFilterType(filterType);
             results.Add(filter);

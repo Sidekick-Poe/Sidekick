@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
@@ -11,13 +12,18 @@ public class QualityProperty(IGameLanguageProvider gameLanguageProvider) : Prope
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionQuality.ToRegexIntCapture();
 
+    private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionQuality.ToRegexIsAugmented();
+
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Flask, Category.Gem, Category.Map];
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {
         var propertyBlock = parsingItem.Blocks[1];
         itemProperties.Quality = GetInt(Pattern, propertyBlock);
-        if (itemProperties.Quality > 0) propertyBlock.Parsed = true;
+        if (itemProperties.Quality == 0) return;
+
+        propertyBlock.Parsed = true;
+        if (GetBool(IsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.Quality));
     }
 
     public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
@@ -33,6 +39,7 @@ public class QualityProperty(IGameLanguageProvider gameLanguageProvider) : Prope
             ValuePrefix = "+",
             ValueSuffix = "%",
             Checked = item.Header.Rarity == Rarity.Gem,
+            Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.Quality)) ? LineContentType.Augmented : LineContentType.Simple,
         };
         filter.ChangeFilterType(filterType);
         return filter;

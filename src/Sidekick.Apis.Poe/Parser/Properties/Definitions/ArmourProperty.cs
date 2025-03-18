@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
@@ -16,13 +17,18 @@ public class ArmourProperty
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionArmour.ToRegexIntCapture();
 
+    private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionArmour.ToRegexIsAugmented();
+
     public override List<Category> ValidCategories { get; } = [Category.Armour];
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {
         var propertyBlock = parsingItem.Blocks[1];
         itemProperties.Armour = GetInt(Pattern, propertyBlock);
-        if (itemProperties.Armour > 0) propertyBlock.Parsed = true;
+        if (itemProperties.Armour == 0) return;
+
+        propertyBlock.Parsed = true;
+        if (GetBool(IsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.Armour));
     }
 
     public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
@@ -37,6 +43,7 @@ public class ArmourProperty
             Value = item.Properties.ArmourWithQuality,
             OriginalValue = item.Properties.Armour,
             Checked = false,
+            Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.Armour)) ? LineContentType.Augmented : LineContentType.Simple,
         };
         filter.ChangeFilterType(filterType);
         return filter;

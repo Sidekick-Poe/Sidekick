@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
@@ -12,13 +13,18 @@ public class EvasionRatingProperty(IGameLanguageProvider gameLanguageProvider, G
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionEvasion.ToRegexIntCapture();
 
+    private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionEvasion.ToRegexIsAugmented();
+
     public override List<Category> ValidCategories { get; } = [Category.Armour];
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
     {
         var propertyBlock = parsingItem.Blocks[1];
         itemProperties.EvasionRating = GetInt(Pattern, propertyBlock);
-        if (itemProperties.EvasionRating > 0) propertyBlock.Parsed = true;
+        if (itemProperties.EvasionRating == 0) return;
+
+        propertyBlock.Parsed = true;
+        if (GetBool(IsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.EvasionRating));
     }
 
     public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
@@ -33,6 +39,7 @@ public class EvasionRatingProperty(IGameLanguageProvider gameLanguageProvider, G
             Value = item.Properties.EvasionRatingWithQuality,
             OriginalValue = item.Properties.EvasionRating,
             Checked = false,
+            Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.EvasionRating)) ? LineContentType.Augmented : LineContentType.Simple,
         };
         filter.ChangeFilterType(filterType);
         return filter;

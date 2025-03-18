@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
@@ -16,6 +17,8 @@ public class SpiritProperty
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionSpirit.ToRegexIntCapture();
 
+    private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionSpirit.ToRegexIsAugmented();
+
     public override List<Category> ValidCategories { get; } = [Category.Weapon, Category.Armour];
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
@@ -23,7 +26,10 @@ public class SpiritProperty
         if(game == GameType.PathOfExile) return;
         var propertyBlock = parsingItem.Blocks[1];
         itemProperties.Spirit = GetInt(Pattern, propertyBlock);
-        if (itemProperties.Spirit > 0) propertyBlock.Parsed = true;
+        if (itemProperties.Spirit == 0) return;
+
+        propertyBlock.Parsed = true;
+        if (GetBool(IsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.Spirit));
     }
 
     public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
@@ -38,6 +44,7 @@ public class SpiritProperty
             Value = item.Properties.SpiritWithQuality,
             OriginalValue = item.Properties.Spirit,
             Checked = false,
+            Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.Spirit)) ? LineContentType.Augmented : LineContentType.Simple,
         };
         filter.ChangeFilterType(filterType);
         return filter;

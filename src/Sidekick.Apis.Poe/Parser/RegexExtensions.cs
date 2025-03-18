@@ -10,6 +10,8 @@ public static class RegexExtensions
 
     public static Regex ToRegexStringCapture(this string input) => new($"^{Regex.Escape(input)}: *(.+)$");
 
+    public static Regex ToRegexIsAugmented(this string input) => new($"^{Regex.Escape(input)}.*\\)$");
+
     public static Regex ToRegexAffix(this string input, string superior)
     {
         if (input.StartsWith('/'))

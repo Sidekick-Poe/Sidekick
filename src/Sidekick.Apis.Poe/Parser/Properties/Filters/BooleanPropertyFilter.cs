@@ -1,3 +1,5 @@
+using Sidekick.Apis.Poe.Trade.Models;
+
 namespace Sidekick.Apis.Poe.Parser.Properties.Filters;
 
 public class BooleanPropertyFilter(PropertyDefinition definition)
@@ -11,4 +13,6 @@ public class BooleanPropertyFilter(PropertyDefinition definition)
     public string? Hint { get; init; }
 
     public PropertyDefinition Definition { get; } = definition;
+
+    public LineContentType Type { get; init; } = LineContentType.Simple;
 }

@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
@@ -21,6 +22,13 @@ public class EnergyShieldProperty
             ? gameLanguageProvider.Language.DescriptionEnergyShieldAlternate.ToRegexIntCapture()
             : null;
 
+    private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionEnergyShield.ToRegexIsAugmented();
+
+    private Regex? AlternateIsAugmentedPattern { get; } =
+        !string.IsNullOrEmpty(gameLanguageProvider.Language.DescriptionEnergyShieldAlternate)
+            ? gameLanguageProvider.Language.DescriptionEnergyShieldAlternate.ToRegexIsAugmented()
+            : null;
+
     public override List<Category> ValidCategories { get; } = [Category.Armour];
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
@@ -28,7 +36,11 @@ public class EnergyShieldProperty
         var propertyBlock = parsingItem.Blocks[1];
         itemProperties.EnergyShield = GetInt(Pattern, propertyBlock);
         if (itemProperties.EnergyShield <= 0 && AlternatePattern != null) itemProperties.EnergyShield = GetInt(AlternatePattern, propertyBlock);
-        if (itemProperties.EnergyShield > 0) propertyBlock.Parsed = true;
+        if (itemProperties.EnergyShield == 0) return;
+
+        propertyBlock.Parsed = true;
+        if (GetBool(IsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.EnergyShield));
+        else if (AlternateIsAugmentedPattern != null && GetBool(AlternateIsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.EnergyShield));
     }
 
     public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
@@ -49,6 +61,7 @@ public class EnergyShieldProperty
             Value = item.Properties.EnergyShieldWithQuality,
             OriginalValue = item.Properties.EnergyShield,
             Checked = false,
+            Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.EnergyShield)) ? LineContentType.Augmented : LineContentType.Simple,
         };
         filter.ChangeFilterType(filterType);
         return filter;

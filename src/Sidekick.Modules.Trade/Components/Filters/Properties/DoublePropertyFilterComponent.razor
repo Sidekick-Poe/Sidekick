@@ -16,6 +16,7 @@
                 <ItemPropertyText Label="@Filter.Text"
                                   Hint="@Filter.Hint"
                                   Value="@($"{Filter.ValuePrefix}{Filter.Value:0.00}{Filter.ValueSuffix}")"
+                                  ContentType="@Filter.Type"
                                   HasAdditionalInformation="Math.Abs(Filter.Value - Filter.OriginalValue) > 0.001 && Filter.OriginalValue > 0">
                     <AdditionalInformation>
                         <ItemPropertyText Label="@($"{GameLanguageProvider.Language.DescriptionQuality} {PriceCheckService.Item?.Properties.Quality}%")"
