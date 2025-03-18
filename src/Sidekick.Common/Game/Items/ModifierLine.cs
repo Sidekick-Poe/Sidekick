@@ -9,12 +9,12 @@ public class ModifierLine(string text)
     /// <summary>
     ///     Gets or sets the original line of text as it is in the game.
     /// </summary>
-    public string Text { get; set; } = text;
+    public string Text { get; } = text;
 
     /// <summary>
     ///     Gets or sets the modifier associated with this line.
     /// </summary>
-    public List<Modifier> Modifiers { get; init; } = [];
+    public List<Modifier> Modifiers { get; } = [];
 
     /// <summary>
     ///     Gets or sets a list of values on this modifier line.
@@ -31,9 +31,9 @@ public class ModifierLine(string text)
     /// </summary>
     public bool HasValues => OptionValue == null && Values.Count > 0;
 
-    public int BlockIndex { get; set; }
+    public int BlockIndex { get; init; }
 
-    public int LineIndex { get; set; }
+    public int LineIndex { get; init; }
 
     /// <inheritdoc />
     public override string ToString() => Text;

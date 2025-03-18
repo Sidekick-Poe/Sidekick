@@ -46,7 +46,7 @@ public class ItemProperties
 
     public bool BlightRavaged { get; set; }
 
-    public Influences Influences { get; init; } = new();
+    public Influences Influences { get; } = new();
 
     public List<Socket>? Sockets { get; set; }
 
