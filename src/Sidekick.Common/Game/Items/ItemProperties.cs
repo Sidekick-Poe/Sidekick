@@ -24,8 +24,6 @@ public class ItemProperties
 
     public int SpiritWithQuality => CalculateValueWithQuality(Spirit);
 
-    public int BaseDefencePercentile { get; init; }
-
     public int BlockChance { get; set; }
 
     public int Quality { get; set; }
@@ -48,7 +46,7 @@ public class ItemProperties
 
     public bool BlightRavaged { get; set; }
 
-    public Influences Influences { get; init; } = new();
+    public Influences Influences { get; } = new();
 
     public List<Socket>? Sockets { get; set; }
 

@@ -1,11 +1,11 @@
-@using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Apis.Poe.Trade.Results
 
 <div class="mt-3 flex flex-col w-full items-center">
-    <ItemGemSocketsComponent Item="Item"/>
+    <ItemGemSocketsComponent Result="Result"/>
     <div class="relative text-center">
-        <img src="@Item.Image"/>
+        <img src="@Result.Item.Icon"/>
         <div class="absolute top-0 left-0 right-0 bottom-0">
-            <ItemSocketsComponent Item="Item"/>
+            <ItemSocketsComponent Result="Result"/>
         </div>
     </div>
 </div>
@@ -13,6 +13,8 @@
 @code {
 
     [Parameter]
-    public required TradeItem Item { get; set; }
+    public required TradeResult Result { get; set; }
+
+    protected override bool ShouldRender() => false;
 
 }

@@ -1,40 +1,103 @@
+@using System.Text.RegularExpressions
+@using Sidekick.Apis.Poe.Modifiers
 @using Sidekick.Apis.Poe.Parser.Properties.Definitions
-@using Sidekick.Apis.Poe.Trade.Models
-@using Sidekick.Common.Game.Items
+@using Sidekick.Apis.Poe.Trade.Results
 
 @if (LineContents.Count > 0)
 {
-    @foreach (var property in LineContents)
+    @foreach (var line in LineContents)
     {
-        if (property.Text == SeparatorProperty.Text)
+        var html = GetHtml(line);
+        if (html == SeparatorProperty.Text)
         {
-            <ItemSeparator Rarity="Item.Header.Rarity"/>
+            <ItemSeparator Rarity="Result.Item.Rarity"/>
         }
         else
         {
             <TextBase
-                Class="text-[#7f7f7f] font-caps text-center leading-none py-[1px]">@((MarkupString)GetLine(property))</TextBase>
+                Class="text-[#7f7f7f] font-caps text-center leading-none py-[1px]">@((MarkupString)html)</TextBase>
         }
     }
 
-    <ItemSeparator Rarity="Item.Header.Rarity"/>
+    <ItemSeparator Rarity="Result.Item.Rarity"/>
 }
 
 @code {
 
-    [Parameter]
-    public required Item Item { get; set; }
-
-    [Parameter]
-    public List<LineContent> LineContents { get; set; } =
-    [
-    ];
-
-    private string GetLine(LineContent property)
+    public class LineContentValue
     {
-        var text = property.Text ?? string.Empty;
+        public string? Value { get; init; }
 
-        foreach (var value in property.Values)
+        public LineContentType Type { get; init; }
+    }
+
+    [Parameter]
+    public required TradeResult Result { get; set; }
+
+    [Parameter]
+    public required List<ResultLineContent> LineContents { get; set; }
+
+    protected override bool ShouldRender() => false;
+
+    public static string GetHtml(ResultLineContent line)
+    {
+        var values = new List<LineContentValue>();
+        foreach (var value in line.Values)
+        {
+            if (value.Count != 2)
+            {
+                continue;
+            }
+
+            values.Add(new LineContentValue()
+            {
+                Value = value[0].GetString(),
+                Type = (LineContentType)value[1].GetInt32()
+            });
+        }
+
+        var text = line.Name;
+
+        switch (line.DisplayMode)
+        {
+            case 0:
+                if (values.Count > 0)
+                {
+                    if (!string.IsNullOrEmpty(line.Name))
+                    {
+                        text += ": ";
+                    }
+
+                    text += string.Join(", ", values.Select(x => x.Value));
+                }
+
+                break;
+
+            case 1:
+                if (values.Count > 0) text = $"{values[0].Value} {line.Name}";
+                break;
+
+            case 2:
+                if (values.Count > 0) text = $"{values[0].Value}";
+                break;
+
+            case 3:
+                var format = Regex.Replace(line.Name ?? string.Empty, "%(\\d)", "{$1}");
+                text = string.Format(format, values.Select(x => (object?)x.Value).ToArray());
+                break;
+
+            case 4: text = SeparatorProperty.Text; break;
+
+            default: text = $"{line.Name} {string.Join(", ", values.Select(x => x.Value))}"; break;
+        }
+
+        text = ModifierProvider.RemoveSquareBrackets(text ?? string.Empty);
+        return MarkupValues(text, values);
+    }
+
+    private static string MarkupValues(string text, List<LineContentValue> values)
+    {
+        foreach (var value in values)
         {
             if (value.Value == null)
             {

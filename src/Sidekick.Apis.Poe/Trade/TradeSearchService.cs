@@ -1,15 +1,12 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Filters;
-using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Properties;
-using Sidekick.Apis.Poe.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Models;
+using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Models;
@@ -28,7 +25,6 @@ public class TradeSearchService
     ILogger<TradeSearchService> logger,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
-    IModifierProvider modifierProvider,
     IFilterProvider filterProvider,
     IPropertyParser propertyParser,
     IHttpClientFactory httpClientFactory
@@ -234,6 +230,11 @@ public class TradeSearchService
 
     private static StatFilterGroup? GetCountStats(IEnumerable<ModifierFilter>? modifierFilters)
     {
+        if (modifierFilters == null)
+        {
+            return null;
+        }
+
         var countGroup = new StatFilterGroup()
         {
             Type = StatType.Count,
@@ -243,47 +244,39 @@ public class TradeSearchService
             },
         };
 
-        if (modifierFilters != null)
+        foreach (var filter in modifierFilters)
         {
-            foreach (var filter in modifierFilters)
+            if (filter.Checked != true || filter.Line.Modifiers.Count <= 1)
             {
-                if (filter.Checked != true || filter.Line.Modifiers.Count <= 1)
-                {
-                    continue;
-                }
+                continue;
+            }
 
-                var modifiers = filter.Line.Modifiers;
-                if (filter.ForceFirstCategory)
-                {
-                    modifiers = modifiers.Where(x => x.Category == filter.FirstCategory).ToList();
-                }
-                else if (modifiers.Any(x => x.Category == ModifierCategory.Explicit))
-                {
-                    modifiers = modifiers.Where(x => x.Category == ModifierCategory.Explicit).ToList();
-                }
+            var modifiers = filter.Line.Modifiers;
+            if (filter.ForceFirstCategory)
+            {
+                modifiers = modifiers.Where(x => x.Category == filter.FirstCategory).ToList();
+            }
+            else if (modifiers.Any(x => x.Category == ModifierCategory.Explicit))
+            {
+                modifiers = modifiers.Where(x => x.Category == ModifierCategory.Explicit).ToList();
+            }
 
-                foreach (var modifier in modifiers)
+            foreach (var modifier in modifiers)
+            {
+                countGroup.Filters.Add(new StatFilters()
                 {
-                    countGroup.Filters.Add(new StatFilters()
-                    {
-                        Id = modifier.ApiId,
-                        Value = new StatFilterValue(filter),
-                    });
-                }
+                    Id = modifier.ApiId,
+                    Value = new StatFilterValue(filter),
+                });
+            }
 
-                if (countGroup.Value != null && modifiers.Any())
-                {
-                    countGroup.Value.Min += 1;
-                }
+            if (countGroup.Value != null && modifiers.Count != 0)
+            {
+                countGroup.Value.Min += 1;
             }
         }
 
-        if (countGroup.Filters.Count == 0)
-        {
-            return null;
-        }
-
-        return countGroup;
+        return countGroup.Filters.Count == 0 ? null : countGroup;
     }
 
     private static IEnumerable<StatFilterGroup> GetWeightedSumStats(IEnumerable<PseudoModifierFilter>? pseudoFilters)
@@ -329,7 +322,7 @@ public class TradeSearchService
         }
     }
 
-    public async Task<List<TradeItem>> GetResults(GameType game, string queryId, List<string> ids)
+    public async Task<List<TradeResult>> GetResults(GameType game, string queryId, List<string> ids)
     {
         try
         {
@@ -343,330 +336,19 @@ public class TradeSearchService
             }
 
             var content = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<FetchResult<Result?>>(content, JsonSerializerOptions);
+            var result = await JsonSerializer.DeserializeAsync<FetchResult<TradeResult?>>(content, JsonSerializerOptions);
             if (result == null)
             {
                 return [];
             }
 
-            return result.Result.Where(x => x != null).ToList().ConvertAll(x => GetItem(game, x!));
+            return result.Result.Where(x => x != null).ToList()!;
         }
         catch (Exception ex)
         {
             logger.LogError(ex, $"[Trade API] Exception thrown when fetching trade API listings from Query {queryId}.");
             throw new SidekickException("Sidekick could not fetch the listings from the trade API.");
         }
-    }
-
-    private TradeItem GetItem(GameType game, Result result)
-    {
-        var header = new ItemHeader()
-        {
-            Name = result.Item.Name,
-            Type = result.Item.TypeLine,
-            ApiItemId = "",
-            ApiName = result.Item.Name,
-            ApiType = result.Item.TypeLine,
-            Category = Category.Unknown,
-            Game = game,
-            Rarity = result.Item.Rarity,
-        };
-
-        if (header.Rarity == Rarity.Foil)
-        {
-            header.Rarity = result.Item.FoilVariation switch
-            {
-                1 => Rarity.Foil_1,
-                2 => Rarity.Foil_2,
-                3 => Rarity.Foil_3,
-                4 => Rarity.Foil_4,
-                5 => Rarity.Foil_5,
-                6 => Rarity.Foil_6,
-                7 => Rarity.Foil_7,
-                8 => Rarity.Foil_8,
-                9 => Rarity.Foil_9,
-                10 => Rarity.Foil_10,
-                11 => Rarity.Foil_11,
-                12 => Rarity.Foil_12,
-                _ => header.Rarity,
-            };
-        }
-
-        var properties = new ItemProperties()
-        {
-            Quality = 20,
-            ItemLevel = result.Item.ItemLevel,
-            Corrupted = result.Item.Corrupted,
-            Unidentified = result.Item.Identified is false,
-            Armour = result.Item.Extended?.ArmourAtMax ?? 0,
-            EnergyShield = result.Item.Extended?.EnergyShieldAtMax ?? 0,
-            EvasionRating = result.Item.Extended?.EvasionAtMax ?? 0,
-            TotalDps = result.Item.Extended?.DamagePerSecond ?? 0,
-            ElementalDps = result.Item.Extended?.ElementalDps ?? 0,
-            PhysicalDps = result.Item.Extended?.PhysicalDps ?? 0,
-            BaseDefencePercentile = result.Item.Extended?.BaseDefencePercentile ?? 0,
-            Influences = result.Item.Influences,
-            Sockets = [.. ParseSockets(result.Item.Sockets, result.Item.GemSockets)],
-        };
-
-        return new TradeItem()
-        {
-            Invariant = null,
-            Header = header,
-            Properties = properties,
-            ModifierLines = [.. GetModifierLines(result.Item)],
-            PseudoModifiers = [],
-            Text = Encoding.UTF8.GetString(Convert.FromBase64String(result.Item.Extended?.Text ?? string.Empty)),
-            Id = result.Id,
-            Price = new TradePrice()
-            {
-                AccountCharacter = result.Listing.Account?.LastCharacterName,
-                AccountName = result.Listing.Account?.Name,
-                Amount = result.Listing.Price?.Amount ?? -1,
-                Currency = result.Listing.Price?.Currency ?? "",
-                Date = result.Listing.Indexed,
-                Whisper = result.Listing.Whisper,
-                Note = result.Item.Note,
-            },
-            Image = result.Item.Icon,
-            Width = result.Item.Width,
-            Height = result.Item.Height,
-            RequirementContents = ParseLineContents(result.Item.Requirements),
-            PropertyContents = ParseLineContents(result.Item.Properties, false),
-            AdditionalPropertyContents = ParseLineContents(result.Item.AdditionalProperties, false),
-        };
-    }
-
-    private IEnumerable<ModifierLine> GetModifierLines(ResultItem? resultItem)
-    {
-        if (resultItem is null)
-        {
-            return [];
-        }
-
-        return GetAllModifierLines(resultItem).SelectMany(s => s).OrderBy(x => x.Text.IndexOf(x.Text, StringComparison.InvariantCultureIgnoreCase));
-    }
-
-    private IEnumerable<IEnumerable<ModifierLine>> GetAllModifierLines(ResultItem resultItem)
-    {
-        var index = 0;
-        foreach (var logbook in resultItem.LogbookMods)
-        {
-            var blockIndex = ++index;
-            yield return
-            [
-                new ModifierLine(text: logbook.Name)
-                {
-                    BlockIndex = blockIndex,
-                    Modifiers =
-                    [
-                        new Modifier(text: logbook.Name)
-                        {
-                            Category = ModifierCategory.WhiteText,
-                        },
-                    ],
-                },
-                new ModifierLine(text: logbook.Faction.Name)
-                {
-                    BlockIndex = blockIndex,
-                    Modifiers =
-                    [
-                        new Modifier(text: logbook.Faction.Name)
-                        {
-                            Category = logbook.Faction.Category,
-                        },
-                    ],
-                }
-            ];
-            yield return ParseModifierLines(blockIndex, logbook.Mods, resultItem.Extended?.Mods?.Implicit, ParseHash(resultItem.Extended?.Hashes?.Implicit));
-        }
-
-        yield return ParseModifierLines(++index, resultItem.EnchantMods, resultItem.Extended?.Mods?.Enchant, ParseHash(resultItem.Extended?.Hashes?.Enchant));
-        yield return ParseModifierLines(++index, resultItem.RuneMods, resultItem.Extended?.Mods?.Rune, ParseHash(resultItem.Extended?.Hashes?.Rune));
-        yield return ParseModifierLines(++index, resultItem.ImplicitMods, resultItem.Extended?.Mods?.Implicit, ParseHash(resultItem.Extended?.Hashes?.Implicit));
-        yield return ParseModifierLines(++index, resultItem.CraftedMods, resultItem.Extended?.Mods?.Crafted, ParseHash(resultItem.Extended?.Hashes?.Crafted));
-        yield return ParseModifierLines(++index, resultItem.ExplicitMods, resultItem.Extended?.Mods?.Explicit, ParseHash(resultItem.Extended?.Hashes?.Explicit, resultItem.Extended?.Hashes?.Monster));
-        yield return ParseModifierLines(++index, resultItem.FracturedMods, resultItem.Extended?.Mods?.Fractured, ParseHash(resultItem.Extended?.Hashes?.Fractured));
-        yield return ParseModifierLines(++index, resultItem.ScourgeMods, resultItem.Extended?.Mods?.Scourge, ParseHash(resultItem.Extended?.Hashes?.Scourge));
-        yield return ParseModifierLines(++index, resultItem.ExplicitMods, resultItem.Extended?.Mods?.Sanctum, ParseHash(resultItem.Extended?.Hashes?.Sanctum));
-    }
-
-    private static List<LineContentValue> ParseHash(params List<List<JsonElement>>?[] hashes)
-    {
-        var result = new List<LineContentValue>();
-
-        foreach (var values in hashes)
-        {
-            if (values == null)
-            {
-                continue;
-            }
-
-            foreach (var value in values)
-            {
-                if (value.Count != 2)
-                {
-                    continue;
-                }
-
-                result.Add(new LineContentValue()
-                {
-                    Value = value[0].GetString(),
-                    Type = value[1].ValueKind == JsonValueKind.Array ? (LineContentType)value[1][0].GetInt32() : LineContentType.Simple
-                });
-            }
-        }
-
-        return result;
-    }
-
-    private static List<LineContent> ParseLineContents(List<ResultLineContent>? lines, bool executeOrderBy = true)
-    {
-        if (lines == null)
-        {
-            return new();
-        }
-
-        return lines.OrderBy(x => executeOrderBy ? x.Order : 0)
-            .Select(line =>
-            {
-                var values = new List<LineContentValue>();
-                foreach (var value in line.Values)
-                {
-                    if (value.Count != 2)
-                    {
-                        continue;
-                    }
-
-                    values.Add(new LineContentValue()
-                    {
-                        Value = value[0].GetString(),
-                        Type = (LineContentType)value[1].GetInt32()
-                    });
-                }
-
-                var text = line.Name;
-
-                switch (line.DisplayMode)
-                {
-                    case 0:
-                        if (values.Count > 0)
-                        {
-                            if (!string.IsNullOrEmpty(line.Name))
-                            {
-                                text += ": ";
-                            }
-
-                            text += string.Join(", ", values.Select(x => x.Value));
-                        }
-
-                        break;
-
-                    case 1:
-                        if (values.Count > 0) text = $"{values[0].Value} {line.Name}";
-                        break;
-
-                    case 2:
-                        if (values.Count > 0) text = $"{values[0].Value}";
-                        break;
-
-                    case 3:
-                        var format = Regex.Replace(line.Name ?? string.Empty, "%(\\d)", "{$1}");
-                        text = string.Format(format, values.Select(x => (object?)x.Value).ToArray());
-                        break;
-
-                    case 4: text = SeparatorProperty.Text; break;
-
-                    default: text = $"{line.Name} {string.Join(", ", values.Select(x => x.Value))}"; break;
-                }
-
-                return new LineContent()
-                {
-                    Text = ModifierProvider.RemoveSquareBrackets(text),
-                    Values = values,
-                };
-            })
-            .ToList();
-    }
-
-    private IEnumerable<ModifierLine> ParseModifierLines(int block, List<string>? texts, List<Mod>? mods, List<LineContentValue>? hashes)
-    {
-        if (texts == null || mods == null || hashes == null)
-        {
-            yield break;
-        }
-
-        for (var index = 0; index < hashes.Count; index++)
-        {
-            var id = hashes[index].Value;
-            if (id == null || index >= texts.Count)
-            {
-                continue;
-            }
-
-            var text = texts.FirstOrDefault(x => modifierProvider.IsMatch(id, x)) ?? texts[index];
-            text = ModifierProvider.RemoveSquareBrackets(text);
-
-            var mod = mods.FirstOrDefault(x => x.Magnitudes?.Any(y => y.Hash == id) == true);
-
-            yield return new ModifierLine(text: text)
-            {
-                BlockIndex = block,
-                Modifiers =
-                [
-                    new Modifier(text: text)
-                    {
-                        ApiId = id,
-                        Category = modifierProvider.GetModifierCategory(id),
-                        Tier = mod?.Tier,
-                        TierName = mod?.Name,
-                    },
-                ],
-            };
-        }
-    }
-
-    private static IEnumerable<Socket> ParseSockets(List<ResultSocket>? sockets, List<string>? gemSockets)
-    {
-        if (sockets == null)
-        {
-            return
-            [
-            ];
-        }
-
-        if (gemSockets is not null && gemSockets.Count > 0)
-        {
-            return sockets.Select(x => new Socket()
-            {
-                Group = x.Group,
-                Colour = SocketColour.PoE2_Gem,
-            });
-        }
-
-        return sockets.Where(x => x.ColourString != "DV") // Remove delve resonator sockets
-            .Select(x => new Socket()
-            {
-                Group = x.Group,
-                Colour = x.ColourString switch
-                {
-                    "B" => SocketColour.Blue,
-                    "G" => SocketColour.Green,
-                    "R" => SocketColour.Red,
-                    "W" => SocketColour.White,
-                    "A" => SocketColour.Abyss,
-                    _ => x.Type switch
-                    {
-                        "rune" => x.Item switch
-                        {
-                            "rune" => SocketColour.PoE2_Rune,
-                            "soulcore" => SocketColour.PoE2_Soulcore,
-                            _ => SocketColour.PoE2,
-                        },
-                        _ => SocketColour.Undefined,
-                    }
-                }
-            });
     }
 
     public async Task<Uri> GetTradeUri(GameType game, string queryId)

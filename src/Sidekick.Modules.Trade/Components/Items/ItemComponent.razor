@@ -1,65 +1,59 @@
-@using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Apis.Poe.Trade.Results
 @using Sidekick.Common.Game.Items
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Prices
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 
-@if (!IsCompact && (Item.CanHaveModifiers || PriceCheckService.Item?.Header.Category == Category.Gem))
+@if (PriceCheckService.Item == null)
+{
+    return;
+}
+
+@if (!IsCompact && (Result.Item.HasModifiers || PriceCheckService.Item.Header.Category == Category.Gem))
 {
     <div class="mb-2 rounded-b-lg bg-stone-950">
-        <ItemHeader Name="@Item.Header.Name"
-                    Type="@Item.Header.Type"
-                    Influences="Item.Properties.Influences"
-                    Rarity="Item.Header.Rarity"
-                    Game="Item.Header.Game"/>
+        <ItemHeader Name="@Result.Item.Name"
+                    Type="@Result.Item.Type"
+                    Influences="Result.Item.Influences"
+                    Rarity="Result.Item.Rarity"
+                    Game="PriceCheckService.Item.Header.Game"/>
 
         <div class="flex items-start flex-nowrap">
             <div class="w-3/4 p-2">
-                <ItemLineContentsComponent Item="Item" LineContents="Item.PropertyContents"/>
-                <ItemLineContentsComponent Item="Item" LineContents="Item.AdditionalPropertyContents"/>
+                <ItemLineContentsComponent Result="Result" LineContents="Result.Item.Properties"/>
+                <ItemLineContentsComponent Result="Result" LineContents="Result.Item.AdditionalProperties"/>
 
-                <ItemProperties Item="Item"/>
-                <ItemRequirements Item="Item"/>
+                <ItemProperties Result="Result"/>
+                <ItemRequirements Result="Result"/>
+                <ItemModifiers Result="Result"/>
 
-                @if (Item.ModifierLines.Count > 0)
+                @if (!Result.Item.Identified)
                 {
-                    <ItemSeparator Rarity="Item.Header.Rarity"/>
-                    @foreach (var line in Item.ModifierLines)
-                    {
-                        <ItemModifierLineComponent Item="Item" ModifierLine="line"/>
-                    }
-                }
-
-                @if (Item.Properties.Unidentified)
-                {
-                    <ItemSeparator Rarity="Item.Header.Rarity"/>
+                    <ItemSeparator Rarity="Result.Item.Rarity"/>
                     <ItemModifierText
                         Category="ModifierCategory.Unidentified">@Resources["Unidentified"]</ItemModifierText>
                 }
-                @if (Item.Properties.Corrupted)
+                @if (Result.Item.Corrupted)
                 {
-                    <ItemSeparator Rarity="Item.Header.Rarity"/>
+                    <ItemSeparator Rarity="Result.Item.Rarity"/>
                     <ItemModifierText Category="ModifierCategory.Corrupted">@Resources["Corrupted"]</ItemModifierText>
                 }
-                @if (!string.IsNullOrEmpty(Item.Price?.Note))
+                @if (!string.IsNullOrEmpty(Result.Item.Note))
                 {
-                    <ItemSeparator Rarity="Item.Header.Rarity"/>
+                    <ItemSeparator Rarity="Result.Item.Rarity"/>
                     <TextCaption
-                        Class="font-caps text-[#AA9E82] text-center leading-none py-[1px]">@Item.Price.Note</TextCaption>
+                        Class="font-caps text-[#AA9E82] text-center leading-none py-[1px]">@Result.Item.Note</TextCaption>
                 }
             </div>
             <div class="w-1/4 min-w-[135px] p-2">
-                @if (Item.Price != null)
-                {
-                    <div class="flex flex-col w-full items-center">
-                        <PriceDisplay Value="Item.Price.Amount" Currency="@Item.Price.Currency"/>
-                        <TextBase
-                            Class="text-ellipsis w-full overflow-hidden text-center">@Item.Price.AccountName</TextBase>
-                        <PriceAge Date="Item.Price.Date"/>
-                    </div>
-                }
+                <div class="flex flex-col w-full items-center">
+                    <PriceDisplay Value="Result.Listing.Price.Amount" Currency="@Result.Listing.Price.Currency"/>
+                    <TextBase
+                        Class="text-ellipsis w-full overflow-hidden text-center">@Result.Listing.Account.Name</TextBase>
+                    <PriceAge Date="Result.Listing.Indexed"/>
+                </div>
 
-                <ItemImageComponent Item="Item"/>
+                <ItemImageComponent Result="Result"/>
             </div>
         </div>
     </div>
@@ -68,27 +62,21 @@ else
 {
     <div class="flex items-start flex-nowrap rounded-b-lg bg-stone-950 mb-2 rounded-tr-lg">
         <div class="w-3/4">
-            <ItemHeader Name="@Item.Header.Name"
-                        Type="@Item.Header.Type"
-                        Influences="Item.Properties.Influences"
-                        Rarity="Item.Header.Rarity"
-                        Game="Item.Header.Game"
+            <ItemHeader Name="@Result.Item.Name"
+                        Type="@Result.Item.Type"
+                        Influences="Result.Item.Influences"
+                        Rarity="Result.Item.Rarity"
+                        Game="PriceCheckService.Item.Header.Game"
                         SingleLine="true"/>
 
-            @if (Item.Price != null)
-            {
-                <div class="flex items-center p-2">
-                    <TextBase>@Item.Price.AccountName</TextBase>
-                    <div class="text-[#a38d6d]">,&nbsp;</div>
-                    <PriceAge Date="Item.Price.Date"/>
-                </div>
-            }
+            <div class="flex items-center p-2">
+                <TextBase>@Result.Listing.Account.Name</TextBase>
+                <div class="text-[#a38d6d]">,&nbsp;</div>
+                <PriceAge Date="Result.Listing.Indexed"/>
+            </div>
         </div>
         <div class="w-1/4 p-2 self-center">
-            @if (Item.Price != null)
-            {
-                <PriceDisplay Value="Item.Price.Amount" Currency="@Item.Price.Currency"/>
-            }
+            <PriceDisplay Value="Result.Listing.Price.Amount" Currency="@Result.Listing.Price.Currency"/>
         </div>
     </div>
 }
@@ -99,9 +87,9 @@ else
 @code {
 
     [Parameter]
-    public required TradeItem Item { get; set; }
+    public required TradeResult Result { get; set; }
 
     [Parameter]
-    public bool IsCompact { get; set; } = false;
+    public bool IsCompact { get; set; }
 
 }

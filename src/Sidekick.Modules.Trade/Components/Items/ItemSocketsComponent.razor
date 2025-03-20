@@ -1,7 +1,7 @@
-@using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Apis.Poe.Trade.Results
 @using Sidekick.Common.Game.Items
 
-@if (Item.Properties.Sockets == null || Item.Properties.Sockets.All(x => x.Colour == SocketColour.PoE2_Gem))
+@if (Sockets.All(x => x.Colour == SocketColour.PoE2_Gem))
 {
     return;
 }
@@ -11,7 +11,7 @@
         @{
             var previousGroup = -1;
         }
-        @foreach (var socket in Item.Properties.Sockets.OrderBy(x => x.Group)
+        @foreach (var socket in Sockets.OrderBy(x => x.Group)
                       .Select((x, index) => new
                       {
                           x.Colour,
@@ -68,8 +68,52 @@
 @code {
 
     [Parameter]
-    public required TradeItem Item { get; set; }
+    public required TradeResult Result { get; set; }
 
-    private string WidthClass => Item.Width == 1 ? "narrow" : "wide";
+    private string WidthClass => Result.Item.Width == 1 ? "narrow" : "wide";
+
+    private List<Socket> Sockets { get; set; } = [];
+
+    protected override bool ShouldRender() => false;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        if (Result.Item.GemSockets.Count > 0)
+        {
+            Sockets = Result.Item.Sockets.Select(x => new Socket()
+                {
+                    Group = x.Group,
+                    Colour = SocketColour.PoE2_Gem,
+                })
+                .ToList();
+        }
+
+        Sockets = Result.Item.Sockets.Where(x => x.ColourString != "DV") // Remove delve resonator sockets
+            .Select(x => new Socket()
+            {
+                Group = x.Group,
+                Colour = x.ColourString switch
+                {
+                    "B" => SocketColour.Blue,
+                    "G" => SocketColour.Green,
+                    "R" => SocketColour.Red,
+                    "W" => SocketColour.White,
+                    "A" => SocketColour.Abyss,
+                    _ => x.Type switch
+                    {
+                        "rune" => x.Item switch
+                        {
+                            "rune" => SocketColour.PoE2_Rune,
+                            "soulcore" => SocketColour.PoE2_Soulcore,
+                            _ => SocketColour.PoE2,
+                        },
+                        _ => SocketColour.Undefined,
+                    }
+                }
+            })
+            .ToList();
+    }
 
 }

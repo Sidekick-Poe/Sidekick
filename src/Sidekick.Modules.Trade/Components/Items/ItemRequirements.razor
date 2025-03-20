@@ -1,4 +1,4 @@
-@using Sidekick.Apis.Poe.Trade.Models
+@using Sidekick.Apis.Poe.Trade.Results
 @using Sidekick.Modules.Trade.Localization
 
 @if (!string.IsNullOrEmpty(Text))
@@ -12,36 +12,18 @@
 @code {
 
     [Parameter]
-    public required TradeItem Item { get; set; }
+    public required TradeResult Result { get; set; }
 
     private string Text { get; set; } = string.Empty;
+
+    protected override bool ShouldRender() => false;
 
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
 
-        Text = string.Join(", ", Item.RequirementContents.Select(x => x.Text));
-
-        foreach (var requirement in Item.RequirementContents)
-        {
-            foreach (var value in requirement.Values)
-            {
-                if (value.Value == null)
-                {
-                    continue;
-                }
-
-                var color = value.Type switch
-                {
-                    LineContentType.Augmented => "text-[#8888FF]",
-                    _ => "text-[#FFFFFF]",
-                };
-
-                Text = Text.Replace(value.Value, $"<span class=\"{color};\">{value.Value}</span>");
-            }
-        }
-
-        Text = Text.Trim();
+        var htmls = Result.Item.Requirements.ConvertAll(ItemLineContentsComponent.GetHtml);
+        Text = string.Join(", ", htmls).Trim();
     }
 
 }

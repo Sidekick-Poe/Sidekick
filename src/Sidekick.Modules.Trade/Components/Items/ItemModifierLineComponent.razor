@@ -1,43 +1,41 @@
-@using Sidekick.Common.Game.Items
+@using Sidekick.Apis.Poe.Trade.Results
 
-@if (ModifierLine.Modifiers.Any())
+@if (IsFirstOfBlock)
 {
-    var modifier = ModifierLine.Modifiers.FirstOrDefault();
-
-    if (IsFirstOfBlock)
-    {
-        <ItemSeparator Rarity="Item.Header.Rarity"/>
-    }
-
-    <TextBase Class="relative px-2 font-caps text-center text-[##8888FF] leading-none py-[1px]">
-        <ItemModifierText Category="modifier?.Category">@ModifierLine.Text</ItemModifierText>
-        @if (!string.IsNullOrWhiteSpace(modifier?.Tier))
-        {
-            <span class="absolute top-0.5 left-[-6px] @GetTierClass(modifier.Tier)">@modifier.Tier</span>
-        }
-    </TextBase>
+    <ItemSeparator Rarity="Result.Item.Rarity"/>
 }
+
+<TextBase Class="relative px-2 font-caps text-center text-[##8888FF] leading-none py-[1px]">
+    <ItemModifierText Category="ModifierLine.Category">@ModifierLine.Text</ItemModifierText>
+    @if (!string.IsNullOrWhiteSpace(ModifierLine.Tier))
+    {
+        <span class="absolute top-0.5 left-[-6px] @GetTierClass(ModifierLine.Tier)">@ModifierLine.Tier</span>
+    }
+</TextBase>
 
 @code {
 
     [Parameter]
-    public required Item Item { get; set; }
+    public required TradeResult Result { get; set; }
 
     [Parameter]
-    public required ModifierLine ModifierLine { get; set; }
+    public required List<ItemModifiers.ModifierLine> ModifierLines { get; set; }
 
-    private ModifierCategory Category => ModifierLine.Modifiers.FirstOrDefault()?.Category ?? ModifierCategory.Undefined;
+    [Parameter]
+    public required ItemModifiers.ModifierLine ModifierLine { get; set; }
 
     private bool IsFirstOfBlock
     {
         get
         {
-            var index = Item.ModifierLines.IndexOf(ModifierLine);
-            var previous = Item.ModifierLines.ElementAtOrDefault(index - 1);
+            var index = ModifierLines.IndexOf(ModifierLine);
+            var previous = ModifierLines.ElementAtOrDefault(index - 1);
             return previous == null || ModifierLine.BlockIndex != previous.BlockIndex;
         }
     }
 
     private string GetTierClass(string tier) => tier.StartsWith("P") ? "text-[#ec7676]" : "text-[#7aaff1]";
+
+    protected override bool ShouldRender() => false;
 
 }

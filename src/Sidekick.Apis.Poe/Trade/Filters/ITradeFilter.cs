@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.Poe.Trade.Models;
+namespace Sidekick.Apis.Poe.Trade.Filters;
 
 public interface ITradeFilter
 {
