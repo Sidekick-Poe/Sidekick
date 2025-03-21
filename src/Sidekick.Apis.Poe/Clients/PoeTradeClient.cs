@@ -54,9 +54,9 @@ public class PoeTradeClient(
 
             return result;
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            logger.LogInformation($"[Trade Client] Could not fetch {name} at {language.GetTradeApiBaseUrl(game) + path}.");
+            logger.LogError(e, $"[Trade Client] Could not fetch {name} at {language.GetTradeApiBaseUrl(game) + path}.");
             throw;
         }
     }

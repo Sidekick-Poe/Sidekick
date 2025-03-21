@@ -20,7 +20,7 @@ public class LeagueProvider(
     {
         if (fromCache)
         {
-            return await cacheProvider.GetOrSet("Leagues", FetchAll, (cache) => cache.Any());
+            return await cacheProvider.GetOrSet("Leagues", FetchAll, (cache) => cache.Count != 0);
         }
 
         try
