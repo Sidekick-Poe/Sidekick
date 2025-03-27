@@ -16,34 +16,12 @@ public interface IViewLocator
     bool SupportsMaximize { get; }
 
     /// <summary>
-    /// Opens the specified view
+    /// Opens a view of the specified type and navigates to the given URL.
     /// </summary>
-    /// <param name="url">The url of the page to load and show</param>
-    Task Open(string url);
-
-    /// <summary>
-    /// Initializes a view that was previously opened.
-    /// </summary>
-    /// <param name="view">The view to initialize.</param>
-    Task Initialize(SidekickView view);
-
-    /// <summary>
-    /// Minimizes the specified view.
-    /// </summary>
-    /// <param name="view">The view to minimize.</param>
-    Task Minimize(SidekickView view);
-
-    /// <summary>
-    /// Maximizes the specified view.
-    /// </summary>
-    /// <param name="view">The view to maximize.</param>
-    Task Maximize(SidekickView view);
-
-    /// <summary>
-    /// Closes the specified view.
-    /// </summary>
-    /// <param name="view">The view to close.</param>
-    Task Close(SidekickView view);
+    /// <param name="type">The type of view to open.</param>
+    /// <param name="url">The URL to navigate to within the view.</param>
+    /// <returns>A task that represents the asynchronous operation of opening the view.</returns>
+    Task Open(SidekickViewType type, string url);
 
     /// <summary>
     /// Close all views
@@ -53,7 +31,7 @@ public interface IViewLocator
     /// <summary>
     /// Close all overlays
     /// </summary>
-    Task CloseAllOverlays();
+    Task CloseOverlay();
 
     /// <summary>
     /// Check if an overlay is opened

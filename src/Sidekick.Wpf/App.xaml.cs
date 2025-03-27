@@ -68,9 +68,14 @@ public partial class App
         _ = HandleInterprocessCommunications(e);
 
         AttachErrorHandlers();
+
+        var cloudFlareHandler = ServiceProvider.GetRequiredService<WpfCloudflareHandler>();
+        cloudFlareHandler.Initialize();
+
         interprocessService.StartReceiving();
+
         var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
-        _ = viewLocator.Open("/");
+        _ = viewLocator.Open(SidekickViewType.Standard, "/");
     }
 
     private async Task HandleInterprocessCommunications(StartupEventArgs e)
@@ -158,6 +163,7 @@ public partial class App
         services.AddSidekickInitializableService<IApplicationService, WpfApplicationService>();
         services.AddSingleton<IViewLocator, WpfViewLocator>();
         services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());
+        services.AddSingleton<WpfCloudflareHandler>();
 
         services.AddApexCharts();
 

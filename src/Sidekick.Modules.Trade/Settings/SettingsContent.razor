@@ -1,7 +1,7 @@
 @using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Blazor.Settings.General
 @using Sidekick.Common.Platform
-@inherits Sidekick.Common.Ui.Views.SidekickView
+@using Sidekick.Common.Blazor.Settings.Components
 @inject IApplicationService ApplicationService
 
 @if (ApplicationService.SupportsKeybinds)
@@ -27,7 +27,7 @@
 @if (ApplicationService.SupportsKeybinds)
 {
     <FormFieldset Legend="@Resources["Other_Settings"]">
-        <PriceCheckCloseWithMouseEditor/>
+        <OverlayCloseWithMouseEditor/>
         <EscapeClosesOverlaysEditor/>
     </FormFieldset>
 }

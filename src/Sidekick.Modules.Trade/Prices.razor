@@ -7,10 +7,6 @@
 @using Sidekick.Modules.Trade.Components.Items
 @using Sidekick.Modules.Trade.Settings
 
-@inherits Sidekick.Common.Ui.Views.SidekickView
-
-<AppTitle Title="@Resources.Trade"/>
-
 <LayoutTwoColumn LeftContentWidth="@LeftContentWidth" OnLeftContentResize="@OnLeftContentResize">
     <TopContent>
         <AppBar>
@@ -43,23 +39,23 @@
 @inject ISettingsService SettingsService
 @inject TradeResources Resources
 @inject PriceCheckService PriceCheckService
+@inject ICurrentView CurrentView
 
 @code {
 
     [Parameter]
     public required string ItemText { get; set; }
 
-    public override bool CloseOnBlur { get; set; }
-
-    public override SidekickViewType ViewType => SidekickViewType.Overlay;
-
     private int LeftContentWidth { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+        CurrentView.Initialize(new ViewOptions()
+        {
+            Title = Resources.Trade,
+        });
         await base.OnInitializedAsync();
         PriceCheckService.Changed += StateHasChanged;
-        CloseOnBlur = await SettingsService.GetBool(SettingKeys.PriceCheckCloseWithMouse);
         LeftContentWidth = await SettingsService.GetInt(SettingKeys.PriceCheckSidebarWidth);
     }
 

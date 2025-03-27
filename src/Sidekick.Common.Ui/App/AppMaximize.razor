@@ -20,14 +20,9 @@
 
 @code {
 
-    private async Task OnClick()
+    private void OnClick()
     {
-        if (CurrentView.Current == null)
-        {
-            return;
-        }
-
-        await ViewLocator.Maximize(CurrentView.Current);
+        CurrentView.Maximize();
     }
 
 }

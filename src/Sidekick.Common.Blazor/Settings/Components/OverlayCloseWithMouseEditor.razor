@@ -15,14 +15,14 @@
 
     protected override async Task OnInitializedAsync()
     {
-        PriceCheckCloseWithMouse = await SettingsService.GetBool(SettingKeys.PriceCheckCloseWithMouse);
+        PriceCheckCloseWithMouse = await SettingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
         await base.OnInitializedAsync();
     }
 
     private async Task PriceCheckCloseWithMouseChanged(bool value)
     {
         PriceCheckCloseWithMouse = value;
-        await SettingsService.Set(SettingKeys.PriceCheckCloseWithMouse, value);
+        await SettingsService.Set(SettingKeys.OverlayCloseWithMouse, value);
     }
 
 }

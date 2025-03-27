@@ -6,84 +6,50 @@ namespace Sidekick.Common.Ui.Views;
 public interface ICurrentView
 {
     /// <summary>
-    /// Event when any property of the view is updated.
+    /// An event that is triggered when a view is initialized with specific options.
     /// </summary>
-    event Action<ICurrentView>? ViewChanged;
+    event Action? ViewInitialized;
 
     /// <summary>
-    /// Gets a unique id associated with this view.
+    /// An event that is triggered when a view is minimized.
     /// </summary>
-    Guid Id { get; }
+    event Action? ViewMinimized;
 
     /// <summary>
-    /// Gets the title of the view.
+    /// An event that is triggered when a view is maximized.
     /// </summary>
-    string Title { get; }
+    event Action? ViewMaximized;
 
     /// <summary>
-    /// Gets the width of the view.
+    /// An event that is triggered when a view is closed.
     /// </summary>
-    int? Width { get; }
+    event Action? ViewClosed;
 
     /// <summary>
-    /// Gets the height of the view.
+    /// Gets the options specifying the configuration of the current view.
+    /// Includes properties such as title, dimensions, and constraints.
     /// </summary>
-    int? Height { get; }
+    ViewOptions Options { get; }
 
     /// <summary>
-    /// Gets the minimum width of the view.
+    /// Initializes the current view with the specified options.
     /// </summary>
-    int? MinWidth { get; }
+    /// <param name="options">The options used to initialize the view.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    void Initialize(ViewOptions options);
 
     /// <summary>
-    /// Gets the minimum height of the view.
+    /// Minimizes the view.
     /// </summary>
-    int? MinHeight { get; }
+    void Minimize();
 
     /// <summary>
-    /// Gets the current Url of the view.
+    /// Maximizes the view.
     /// </summary>
-    string Url { get; }
+    void Maximize();
 
     /// <summary>
-    /// Gets the key of the view.
+    /// Closes the view.
     /// </summary>
-    string? Key { get; }
-
-    /// <summary>
-    /// Gets the current sidekick view.
-    /// </summary>
-    SidekickView? Current { get; }
-
-    /// <summary>
-    /// Gets a value indicating whether the current view is initialized.
-    /// </summary>
-    bool IsInitialized { get; }
-
-    /// <summary>
-    /// Sets the current view title.
-    /// </summary>
-    /// <param name="title"></param>
-    void SetTitle(string? title);
-
-    /// <summary>
-    /// Sets the dimensions and minimum size constraints for the current view.
-    /// </summary>
-    /// <param name="width">The desired width of the view. Null if not specified.</param>
-    /// <param name="height">The desired height of the view. Null if not specified.</param>
-    /// <param name="minWidth">The minimum allowable width of the view. Null if not specified.</param>
-    /// <param name="minHeight">The minimum allowable height of the view. Null if not specified.</param>
-    void SetSize(int? width = null, int? height = null, int? minWidth = null, int? minHeight = null);
-
-    /// <summary>
-    /// Initializes a view that was previously opened.
-    /// </summary>
-    /// <param name="view">The view to initialize.</param>
-    Task Initialize(SidekickView view);
-
-    /// <summary>
-    /// Closes the current view.
-    /// </summary>
-    /// <returns>A task.</returns>
-    public Task Close();
+    void Close();
 }

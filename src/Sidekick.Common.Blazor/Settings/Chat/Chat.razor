@@ -2,7 +2,6 @@
 @using Sidekick.Common.Blazor.Components
 @using Sidekick.Common.Browser;
 @layout MainWindowLayout
-@inherits Sidekick.Common.Ui.Views.SidekickView
 
 <AppContainer>
     <FormFieldset Legend="@Resources["Chat_Commands"]">
@@ -46,9 +45,16 @@
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject IBrowserProvider Browser
+@inject ICurrentView CurrentView
 
 @code {
     private Uri WikiChatCommands => new Uri("https://www.poewiki.net/wiki/Chat#Commands");
+
+    protected override void OnInitialized()
+    {
+        CurrentView.Initialize(new ViewOptions());
+        base.OnInitialized();
+    }
 
     private void OpenWikiChatCommands()
     {

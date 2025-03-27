@@ -1,8 +1,6 @@
 @page "/dialog/confirm/{message}"
 @using Sidekick.Common.Extensions
-@inherits SidekickView
 
-<AppTitle Title="@null"/>
 <LayoutSimple>
     <TopContent>
         <AppLogo/>
@@ -26,26 +24,35 @@
     </BottomContent>
 </LayoutSimple>
 
-@inject IStringLocalizer<DialogResources> Resources;
-@inject DialogService Service;
+@inject IStringLocalizer<DialogResources> Resources
+@inject DialogService Service
+@inject ICurrentView CurrentView
 
 @code {
 
     [Parameter]
     public string? Message { get; set; }
 
-    public override SidekickViewType ViewType => SidekickViewType.Modal;
-
-    private async Task Yes()
+    protected override void OnInitialized()
     {
-        Service.SetConfirmationResult(true);
-        await CurrentView.Close();
+        CurrentView.Initialize(new ViewOptions()
+        {
+            Width = 400,
+            Height = 220,
+        });
+        base.OnInitialized();
     }
 
-    private async Task No()
+    private void Yes()
+    {
+        Service.SetConfirmationResult(true);
+        CurrentView.Close();
+    }
+
+    private void No()
     {
         Service.SetConfirmationResult(false);
-        await CurrentView.Close();
+        CurrentView.Close();
     }
 
 }

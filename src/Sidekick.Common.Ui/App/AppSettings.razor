@@ -59,6 +59,7 @@
 @inject ICurrentView CurrentView
 @inject IStringLocalizer<AppResources> Resources
 @inject NavigationManager NavigationManager
+@inject IViewLocator ViewLocator
 
 @code {
 
@@ -77,12 +78,7 @@
 
     private void OpenSettings()
     {
-        if (string.IsNullOrEmpty(Href) || CurrentView.Current == null)
-        {
-            return;
-        }
-
-        NavigationManager.NavigateTo(Href);
+        ViewLocator.Open(SidekickViewType.Standard, Href);
     }
 
 }

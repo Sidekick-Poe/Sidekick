@@ -38,10 +38,10 @@ public static class SettingKeys
     public const string PreferredWiki = nameof(PreferredWiki);
     public const string PoeNinjaLastClear = nameof(PoeNinjaLastClear);
 
-    public const string MapCheckCloseWithMouse = nameof(MapCheckCloseWithMouse);
     public const string MapCheckDangerousRegex = nameof(MapCheckDangerousRegex);
 
-    public const string PriceCheckCloseWithMouse = nameof(PriceCheckCloseWithMouse);
+    public const string OverlayCloseWithMouse = nameof(OverlayCloseWithMouse);
+
     public const string PriceCheckPredictionEnabled = nameof(PriceCheckPredictionEnabled);
     public const string PriceCheckItemListedAge = nameof(PriceCheckItemListedAge);
     public const string PriceCheckCurrency = nameof(PriceCheckCurrency);

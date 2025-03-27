@@ -40,10 +40,10 @@ public class WpfApplicationService
         Icon.Icon = new System.Drawing.Icon(System.IO.Path.Combine(AppContext.BaseDirectory, "wwwroot/favicon.ico"));
         Icon.ToolTipText = "Sidekick";
         Icon.ContextMenu = new ContextMenu();
-        Icon.DoubleClickCommand = new SimpleCommand(() => viewLocator.Open("/home"));
+        Icon.DoubleClickCommand = new SimpleCommand(() => viewLocator.Open(SidekickViewType.Standard, "/home"));
 
         AddTrayItem("Sidekick - " + ((IApplicationService)this).GetVersion(), null, true);
-        AddTrayItem(resources["Home"], () => viewLocator.Open("/home"));
+        AddTrayItem(resources["Home"], () => viewLocator.Open(SidekickViewType.Standard, "/home"));
         AddTrayItem(resources["Open_Website"],
                     () =>
                     {

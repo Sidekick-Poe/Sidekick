@@ -1,103 +1,48 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Routing;
-
 namespace Sidekick.Common.Ui.Views;
 
 /// <summary>
-/// Interface to manage views
+/// Represents the current view implementation for Sidekick with functionalities
+/// to manage and interact with views including initialization, creation, and disposal.
 /// </summary>
-public class CurrentView : ICurrentView, IDisposable
+public class CurrentView : ICurrentView
 {
-    private readonly IViewLocator viewLocator;
-    private readonly NavigationManager navigationManager;
+    /// <inheritdoc/>
+    public event Action? ViewInitialized;
 
-    public CurrentView(IViewLocator viewLocator, NavigationManager navigationManager)
+    /// <inheritdoc/>
+    public event Action? ViewMinimized;
+
+    /// <inheritdoc/>
+    public event Action? ViewMaximized;
+
+    /// <inheritdoc/>
+    public event Action? ViewClosed;
+
+    /// <inheritdoc/>
+    public ViewOptions Options { get; private set; } = new();
+
+    /// <inheritdoc/>
+    public void Initialize(ViewOptions options)
     {
-        this.viewLocator = viewLocator;
-        this.navigationManager = navigationManager;
-        navigationManager.LocationChanged += NavigationManagerOnLocationChanged;
+        Options = options;
+        ViewInitialized?.Invoke();
     }
 
     /// <inheritdoc/>
-    public event Action<ICurrentView>? ViewChanged;
-
-    /// <inheritdoc/>
-    public Guid Id { get; } = Guid.NewGuid();
-
-    /// <inheritdoc/>
-    public string Title { get; private set; } = "Sidekick";
-
-    /// <inheritdoc/>
-    public int? Width { get; private set; }
-
-    /// <inheritdoc/>
-    public int? Height { get; private set; }
-
-    /// <inheritdoc/>
-    public int? MinWidth { get; private set; }
-
-    /// <inheritdoc/>
-    public int? MinHeight { get; private set; }
-
-    /// <inheritdoc/>
-    public string Url => navigationManager.Uri;
-
-    /// <inheritdoc/>
-    public string? Key { get; private set; }
-
-    /// <inheritdoc/>
-    public SidekickView? Current { get; private set; }
-
-    /// <inheritdoc/>
-    public bool IsInitialized { get; private set; }
-
-    /// <inheritdoc/>
-    public void SetTitle(string? title)
+    public void Minimize()
     {
-        if (Title == title)
-        {
-            return;
-        }
-
-        Title = title?.Trim() ?? "Sidekick";
-        ViewChanged?.Invoke(this);
+        ViewMinimized?.Invoke();
     }
 
     /// <inheritdoc/>
-    public void SetSize(int? width = null, int? height = null, int? minWidth = null, int? minHeight = null)
+    public void Maximize()
     {
-        Width = width;
-        Height = height;
-        MinWidth = minWidth;
-        MinHeight = minHeight;
-        ViewChanged?.Invoke(this);
+        ViewMaximized?.Invoke();
     }
 
     /// <inheritdoc/>
-    public async Task Initialize(SidekickView view)
+    public void Close()
     {
-        Key ??= new Uri(Url).AbsolutePath.Split('/', '\\').FirstOrDefault(x => !string.IsNullOrEmpty(x));
-        IsInitialized = true;
-        Current = view;
-        await viewLocator.Initialize(view);
-    }
-
-    /// <inheritdoc/>
-    public Task Close()
-    {
-        return Current == null ? Task.CompletedTask : viewLocator.Close(Current);
-    }
-
-    private void NavigationManagerOnLocationChanged(object? sender, LocationChangedEventArgs e)
-    {
-        Width = null;
-        Height = null;
-        MinWidth = null;
-        MinHeight = null;
-    }
-
-    public void Dispose()
-    {
-        navigationManager.LocationChanged -= NavigationManagerOnLocationChanged;
+        ViewClosed?.Invoke();
     }
 }

@@ -1,13 +1,12 @@
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Net;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
+using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Wpf.Helpers;
-using Sidekick.Wpf.Services;
 
 namespace Sidekick.Wpf;
 
@@ -16,29 +15,29 @@ namespace Sidekick.Wpf;
 /// </summary>
 public partial class MainWindow
 {
-    private readonly WpfViewLocator viewLocator;
-    private bool isClosing;
+    public SidekickViewType ViewType { get; }
 
-    public bool IsReady { get; private set; }
+    private IServiceScope Scope { get; }
 
-    private IServiceScope Scope { get; set; }
+    private bool IsDisposed { get; set; }
 
-    public Guid Id { get; set; }
+    public string? CurrentViewUrl { get; set; }
 
-    public MainWindow(WpfViewLocator viewLocator)
+    public event Action<string>? OnOpenView;
+
+    public MainWindow(SidekickViewType viewType)
     {
+        ViewType = viewType;
+
         Scope = App.ServiceProvider.CreateScope();
         Resources.Add("services", Scope.ServiceProvider);
         InitializeComponent();
-        this.viewLocator = viewLocator;
-    }
 
-    internal SidekickView? SidekickView { get; set; }
+        RootComponent.Parameters = new Dictionary<string, object?>
+        {
+            { "Window", this },
+        };
 
-    internal string? CurrentWebPath => WebUtility.UrlDecode(WebView.WebView.Source?.ToString());
-
-    public void Ready()
-    {
         if (!Debugger.IsAttached)
         {
             WebView.WebView.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
@@ -46,28 +45,162 @@ public partial class MainWindow
             WebView.WebView.CoreWebView2.Settings.AreDevToolsEnabled = false;
         }
 
-        // This avoids the white flicker which is caused by the page content not being loaded initially. We show the webview control only when the content is ready.
-        WebView.Visibility = Visibility.Visible;
+        Topmost = false;
+        ShowInTaskbar = false;
+        ResizeMode = ResizeMode.NoResize;
 
-        // The window background is transparent to avoid any flickering when opening a window. When the webview content is ready we need to set a background color. Otherwise, mouse clicks will go through the window.
+        WebView.Visibility = Visibility.Hidden;
+        Opacity = 0;
         Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
-        Opacity = 0.01;
 
-        if (!IsReady)
+        Show();
+    }
+
+    public void OpenView(string url)
+    {
+        OnOpenView?.Invoke(url);
+        Show();
+    }
+
+    public void InitializeView(ICurrentView view)
+    {
+        Dispatcher.InvokeAsync(() =>
         {
-            Activate();
-        }
+            Title = view.Options.Title.StartsWith("Sidekick") ? view.Options.Title.Trim() : $"Sidekick {view.Options.Title}".Trim();
 
-        IsReady = true;
+            // This avoids the white flicker which is caused by the page content not being loaded initially. We show the webview control only when the content is ready.
+            // The window background is transparent to avoid any flickering when opening a window. When the webview content is ready we need to set opacity. Otherwise, mouse clicks will go through the window.
+            WebView.Visibility = Visibility.Visible;
+            Opacity = 0.01;
+
+            switch (ViewType)
+            {
+                case SidekickViewType.Overlay:
+                    Topmost = true;
+                    ShowInTaskbar = false;
+                    ResizeMode = ResizeMode.CanResize;
+                    break;
+
+                case SidekickViewType.Modal:
+                    Topmost = true;
+                    ShowInTaskbar = true;
+                    ResizeMode = ResizeMode.NoResize;
+                    break;
+
+                case SidekickViewType.Standard:
+                    Topmost = false;
+                    ShowInTaskbar = true;
+                    ResizeMode = ResizeMode.CanResize;
+                    break;
+            }
+
+            Activate();
+            _ = NormalizeView(view);
+        });
+    }
+
+    public void MinimizeView()
+    {
+        Dispatcher.Invoke(() =>
+        {
+            WindowState = WindowState.Minimized;
+        });
+    }
+
+    public void MaximizeView(ICurrentView view)
+    {
+        if (WindowState == WindowState.Normal)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                WindowState = WindowState.Maximized;
+            });
+        }
+        else
+        {
+            _ = NormalizeView(view);
+        }
+    }
+
+    public async Task NormalizeView(ICurrentView view)
+    {
+        var viewPreferenceService = Scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
+        var settingsService = Scope.ServiceProvider.GetRequiredService<ISettingsService>();
+        var preferences = await viewPreferenceService.Get($"view_preference_{ViewType.ToString()}");
+        var saveWindowPositions = await settingsService.GetBool(SettingKeys.SaveWindowPositions);
+
+        Dispatcher.Invoke(() =>
+        {
+            WindowState = WindowState.Normal;
+
+            MinHeight = view.Options.Height
+                        ?? ViewType switch
+                        {
+                            SidekickViewType.Modal => 200,
+                            _ => 580,
+                        };
+            MinHeight += 20;
+            Height = MinHeight;
+
+            MinWidth = view.Options.Width
+                       ?? ViewType switch
+                       {
+                           SidekickViewType.Modal => 380,
+                           _ => 748,
+                       };
+            MinWidth += 20;
+            Width = MinWidth;
+
+            if (ViewType != SidekickViewType.Modal && preferences != null)
+            {
+                if (preferences.Height > Height) Height = preferences.Height;
+                if (preferences.Width > Width) Width = preferences.Width;
+            }
+
+            // Set the window position.
+            if (saveWindowPositions
+                && preferences is
+                {
+                    X: not null,
+                    Y: not null
+                })
+            {
+                Left = preferences.X.Value;
+                Top = preferences.Y.Value;
+            }
+            else
+            {
+                CenterHelper.Center(this);
+            }
+        });
+    }
+
+    public void CloseView()
+    {
+        Dispatcher.Invoke(() =>
+        {
+            WebView.Visibility = Visibility.Hidden;
+            Opacity = 0;
+
+            Deactivate();
+            Hide();
+        });
     }
 
     protected override void OnClosing(CancelEventArgs e)
     {
+        if (!IsDisposed)
+        {
+            e.Cancel = true;
+            base.OnClosing(e);
+            CloseView();
+            return;
+        }
+
         base.OnClosing(e);
+        return;
 
-        MaximizeHelper.RemoveHook(this);
-
-        if (isClosing || !IsVisible || ResizeMode != ResizeMode.CanResize && ResizeMode != ResizeMode.CanResizeWithGrip || WindowState == WindowState.Maximized)
+        if (!IsVisible || ResizeMode != ResizeMode.CanResize && ResizeMode != ResizeMode.CanResizeWithGrip || WindowState == WindowState.Maximized)
         {
             return;
         }
@@ -75,57 +208,38 @@ public partial class MainWindow
         // Save the window position and size.
         try
         {
-            var width = (int)ActualWidth;
-            var height = (int)ActualHeight;
-            var x = (int)Left;
-            var y = (int)Top;
+            if (ViewType != SidekickViewType.Modal)
+            {
+                var width = (int)ActualWidth;
+                var height = (int)ActualHeight;
+                var x = (int)Left;
+                var y = (int)Top;
 
-            _ = viewLocator.ViewPreferenceService.Set(SidekickView?.CurrentView.Key, width, height, x, y);
+                var viewPreferenceService = Scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
+                _ = viewPreferenceService.Set(ViewType.ToString(), width, height, x, y);
+            }
         }
         catch (Exception)
         {
             // If the save fails, we don't want to stop the execution.
         }
-
-        Resources.Remove("services");
-        viewLocator.Windows.Remove(this);
-        Scope.Dispose();
-
-        _ = Task.Run(async () =>
-        {
-            try
-            {
-                await WebView.WebView.EnsureCoreWebView2Async();
-                await WebView.DisposeAsync();
-            }
-            catch (Exception)
-            {
-                // If the dispose fails, we don't want to stop the execution.
-            }
-            finally
-            {
-                WebView = null;
-            }
-        });
-
-        UnregisterName("Grid");
-        UnregisterName("OverlayContainer");
-        UnregisterName("TopBorder");
-        UnregisterName("WebView");
-
-        isClosing = true;
     }
 
     protected override void OnDeactivated(EventArgs e)
     {
         base.OnDeactivated(e);
 
-        if (SidekickView is
-            {
-                CloseOnBlur: true
-            })
+        if (ViewType == SidekickViewType.Overlay)
         {
-            viewLocator.Close(SidekickView);
+            _ = Task.Run(async () =>
+            {
+                var settingsService = Scope.ServiceProvider.GetRequiredService<ISettingsService>();
+                var closeOnBlur = await settingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
+                if (closeOnBlur)
+                {
+                    CloseView();
+                }
+            });
         }
     }
 
@@ -182,5 +296,14 @@ public partial class MainWindow
     {
         base.OnSourceInitialized(e);
         MaximizeHelper.AddHook(this);
+    }
+
+    public void Dispose()
+    {
+        IsDisposed = true;
+        MaximizeHelper.RemoveHook(this);
+        Resources.Remove("services");
+        Scope.Dispose();
+        Close();
     }
 }

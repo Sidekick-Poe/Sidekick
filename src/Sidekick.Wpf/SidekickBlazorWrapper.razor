@@ -1,30 +1,75 @@
-@using Microsoft.JSInterop;
-@using Sidekick.Wpf.Services;
+@using Microsoft.AspNetCore.Components.Routing
+@using Sidekick.Common.Ui.Views
 
 @if (Ready)
 {
-    <Sidekick.Common.Blazor.Main />
+    <Sidekick.Common.Blazor.Main/>
 }
 
-@inject WpfViewLocator ViewLocator
-@inject IJSRuntime JsRuntime
+@inject ICurrentView CurrentView
+@inject NavigationManager NavigationManager
+@implements IDisposable
 
 @code {
 
+    [Parameter]
+    public required MainWindow Window { get; set; }
+
     private bool Ready { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        if (!string.IsNullOrEmpty(ViewLocator.NextUrl))
-        {
-            await JsRuntime.InvokeVoidAsync("eval", $"window.location = '{ViewLocator.NextUrl}'");
-            ViewLocator.NextUrl = null;
-        }
-        else
-        {
-            Ready = true;
-        }
+        Ready = Window.ViewType == SidekickViewType.Standard;
+        Window.OnOpenView += WindowOnOpenView;
+        CurrentView.ViewInitialized += CurrentViewInitialized;
+        CurrentView.ViewMinimized += CurrentViewMinimized;
+        CurrentView.ViewMaximized += CurrentViewMaximized;
+        CurrentView.ViewClosed += CurrentViewClosed;
+        NavigationManager.LocationChanged += NavigationManagerOnLocationChanged;
 
-        await base.OnInitializedAsync();
+        base.OnInitialized();
     }
+
+    private void WindowOnOpenView(string url)
+    {
+        NavigationManager.NavigateTo(url);
+    }
+
+    private void CurrentViewInitialized()
+    {
+        Window.InitializeView(CurrentView);
+    }
+
+    private void CurrentViewMinimized()
+    {
+        Window.MinimizeView();
+    }
+
+    private void CurrentViewMaximized()
+    {
+        Window.MaximizeView(CurrentView);
+    }
+
+    private void CurrentViewClosed()
+    {
+        Window.CloseView();
+        NavigationManager.NavigateTo("/home/hidden");
+    }
+
+    private void NavigationManagerOnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        if (Ready) return;
+        Ready = true;
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        Window.OnOpenView -= WindowOnOpenView;
+        CurrentView.ViewInitialized -= CurrentViewInitialized;
+        CurrentView.ViewMinimized -= CurrentViewMinimized;
+        CurrentView.ViewMaximized -= CurrentViewMaximized;
+        CurrentView.ViewClosed -= CurrentViewClosed;
+    }
+
 }

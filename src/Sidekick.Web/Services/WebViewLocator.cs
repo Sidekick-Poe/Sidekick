@@ -4,15 +4,18 @@ namespace Sidekick.Web.Services;
 
 public class WebViewLocator : IViewLocator
 {
+    /// <inheritdoc />
     public bool SupportsMinimize => false;
 
+    /// <inheritdoc />
     public bool SupportsMaximize => false;
 
-    private SidekickView? LastView { get; set; }
+    private List<ICurrentView> Views { get; } = [];
 
-    public Task Open(string url)
+    /// <inheritdoc />
+    public Task Open(SidekickViewType type, string url)
     {
-        LastView?.NavigationManager.NavigateTo(url);
+        Views.ForEach(x => x.NavigationManager.NavigateTo(url));
         return Task.CompletedTask;
     }
 
@@ -21,7 +24,7 @@ public class WebViewLocator : IViewLocator
         throw new NotImplementedException();
     }
 
-    public Task CloseAllOverlays()
+    public Task CloseOverlay()
     {
         throw new NotImplementedException();
     }
@@ -31,25 +34,30 @@ public class WebViewLocator : IViewLocator
         return false;
     }
 
-    public Task Close(SidekickView view)
+    public Task Close(ICurrentView view)
     {
         view.NavigationManager.NavigateTo("/home");
         return Task.CompletedTask;
     }
 
-    public Task Initialize(SidekickView view)
+    public Task Initialize(ICurrentView view)
     {
-        LastView = view;
+        Views.Add(view);
         return Task.CompletedTask;
     }
 
-    public Task Minimize(SidekickView view)
+    public Task Minimize(ICurrentView view)
     {
         throw new NotImplementedException();
     }
 
-    public Task Maximize(SidekickView view)
+    public Task Maximize(ICurrentView view)
     {
         throw new NotImplementedException();
+    }
+
+    public void ViewClosed(ICurrentView view)
+    {
+        Views.Remove(view);
     }
 }

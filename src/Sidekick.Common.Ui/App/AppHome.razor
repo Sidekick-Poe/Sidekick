@@ -18,6 +18,8 @@
 
 @inject IStringLocalizer<AppResources> Resources
 @inject NavigationManager NavigationManager
+@inject IViewLocator ViewLocator
+@inject ICurrentView CurrentView
 @implements IDisposable
 
 @code {
@@ -37,7 +39,8 @@
 
     private void OnClick()
     {
-        NavigationManager.NavigateTo("/home");
+        CurrentView.Close();
+        ViewLocator.Open(SidekickViewType.Standard, "/home");
     }
 
     public void Dispose()
