@@ -75,7 +75,7 @@ public partial class App
         interprocessService.StartReceiving();
 
         var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
-        _ = viewLocator.Open(SidekickViewType.Standard, "/");
+        viewLocator.Open(SidekickViewType.Standard, "/");
     }
 
     private async Task HandleInterprocessCommunications(StartupEventArgs e)
@@ -101,8 +101,8 @@ public partial class App
         {
             logger.LogDebug("[Startup] Application is already running.");
             var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
-            await viewLocator.Close(SidekickViewType.Standard);
-            await viewLocator.Close(SidekickViewType.Overlay);
+            viewLocator.Close(SidekickViewType.Standard);
+            viewLocator.Close(SidekickViewType.Overlay);
             var sidekickDialogs = ServiceProvider.GetRequiredService<ISidekickDialogs>();
             await sidekickDialogs.OpenOkModal("Another instance of Sidekick is already running. Make sure to close all instances of Sidekick inside the Task Manager.");
             logger.LogDebug("[Startup] Application is shutting down due to another instance running.");

@@ -15,11 +15,10 @@ public class WpfViewLocator : IViewLocator, IDisposable
 
     private MainWindow ModalWindow { get; } = new(SidekickViewType.Modal);
 
-    public Task Open(SidekickViewType type, string url)
+    public void Open(SidekickViewType type, string url)
     {
         var window = GetWindow(type);
         window.OpenView(url);
-        return Task.CompletedTask;
     }
 
     public MainWindow GetWindow(SidekickViewType type)
@@ -33,11 +32,10 @@ public class WpfViewLocator : IViewLocator, IDisposable
         };
     }
 
-    public Task Close(SidekickViewType type)
+    public void Close(SidekickViewType type)
     {
         var window = GetWindow(type);
         window.CloseView();
-        return Task.CompletedTask;
     }
 
     public Task CloseOverlay()

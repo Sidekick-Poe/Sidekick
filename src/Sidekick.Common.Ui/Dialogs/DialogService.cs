@@ -14,9 +14,9 @@ public class DialogService(IViewLocator viewLocator) : ISidekickDialogs
     {
         SetConfirmationResult(false);
 
-        _ = Task.Factory.StartNew(async () =>
+        _ = Task.Factory.StartNew(() =>
         {
-            await viewLocator.Open(SidekickViewType.Modal, $"/dialog/confirm/{message.EncodeBase64Url()}");
+            viewLocator.Open(SidekickViewType.Modal, $"/dialog/confirm/{message.EncodeBase64Url()}");
         });
 
         ConfirmationResult = new TaskCompletionSource<bool>();
@@ -28,9 +28,9 @@ public class DialogService(IViewLocator viewLocator) : ISidekickDialogs
     {
         SetOkResult(false);
 
-        _ = Task.Factory.StartNew(async () =>
+        _ = Task.Factory.StartNew(() =>
         {
-            await viewLocator.Open(SidekickViewType.Modal, $"/dialog/ok/{message.EncodeBase64Url()}");
+            viewLocator.Open(SidekickViewType.Modal, $"/dialog/ok/{message.EncodeBase64Url()}");
         });
 
         OkResult = new TaskCompletionSource<bool>();

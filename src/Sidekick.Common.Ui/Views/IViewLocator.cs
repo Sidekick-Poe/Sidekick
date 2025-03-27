@@ -20,15 +20,13 @@ public interface IViewLocator
     /// </summary>
     /// <param name="type">The type of view to open.</param>
     /// <param name="url">The URL to navigate to within the view.</param>
-    /// <returns>A task that represents the asynchronous operation of opening the view.</returns>
-    Task Open(SidekickViewType type, string url);
+    void Open(SidekickViewType type, string url);
 
     /// <summary>
     /// Closes a view of the specified type.
     /// </summary>
     /// <param name="type">The type of view to close.</param>
-    /// <returns>A task that represents the asynchronous operation of closing the view.</returns>
-    Task Close(SidekickViewType type);
+    void Close(SidekickViewType type);
 
     /// <summary>
     /// Check if an overlay is opened

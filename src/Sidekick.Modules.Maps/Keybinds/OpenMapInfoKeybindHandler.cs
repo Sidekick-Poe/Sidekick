@@ -33,6 +33,6 @@ public class OpenMapInfoKeybindHandler
             return;
         }
 
-        await viewLocator.Open(SidekickViewType.Overlay, $"/map/{text.EncodeBase64Url()}");
+        viewLocator.Open(SidekickViewType.Overlay, $"/map/{text.EncodeBase64Url()}");
     }
 }

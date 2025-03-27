@@ -43,7 +43,11 @@ public class WpfApplicationService
         Icon.DoubleClickCommand = new SimpleCommand(() => viewLocator.Open(SidekickViewType.Standard, "/home"));
 
         AddTrayItem("Sidekick - " + ((IApplicationService)this).GetVersion(), null, true);
-        AddTrayItem(resources["Home"], () => viewLocator.Open(SidekickViewType.Standard, "/home"));
+        AddTrayItem(resources["Home"], () =>
+        {
+            viewLocator.Open(SidekickViewType.Standard, "/home");
+            return Task.CompletedTask;
+        });
         AddTrayItem(resources["Open_Website"],
                     () =>
                     {

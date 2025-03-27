@@ -10,54 +10,17 @@ public class WebViewLocator : IViewLocator
     /// <inheritdoc />
     public bool SupportsMaximize => false;
 
-    private List<ICurrentView> Views { get; } = [];
+    public List<SidekickWebWrapper> Views { get; } = [];
 
-    /// <inheritdoc />
-    public Task Open(SidekickViewType type, string url)
+    public void Open(SidekickViewType type, string url)
     {
         Views.ForEach(x => x.NavigationManager.NavigateTo(url));
-        return Task.CompletedTask;
     }
 
-    public Task CloseStandard()
+    public void Close(SidekickViewType type)
     {
-        throw new NotImplementedException();
+        Views.ForEach(x => x.NavigationManager.NavigateTo("/home"));
     }
 
-    public Task CloseOverlay()
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool IsOverlayOpened()
-    {
-        return false;
-    }
-
-    public Task Close(ICurrentView view)
-    {
-        view.NavigationManager.NavigateTo("/home");
-        return Task.CompletedTask;
-    }
-
-    public Task Initialize(ICurrentView view)
-    {
-        Views.Add(view);
-        return Task.CompletedTask;
-    }
-
-    public Task Minimize(ICurrentView view)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task Maximize(ICurrentView view)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void ViewClosed(ICurrentView view)
-    {
-        Views.Remove(view);
-    }
+    public bool IsOverlayOpened() => false;
 }

@@ -1,4 +1,6 @@
 @page "/"
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Sidekick.Web
 @namespace Sidekick.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
@@ -21,7 +23,7 @@
     <link href="/css/app.css" rel="stylesheet"/>
 </head>
 <body class="dark bg-stone-800">
-    <component type="typeof(Common.Blazor.Main)" render-mode="Server" />
+    <component type="typeof(SidekickWebWrapper)" render-mode="Server" />
 
     <script src="_framework/blazor.server.js"></script>
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>

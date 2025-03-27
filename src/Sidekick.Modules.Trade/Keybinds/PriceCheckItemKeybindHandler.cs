@@ -33,6 +33,6 @@ public class PriceCheckItemKeybindHandler
             return;
         }
 
-        await viewLocator.Open(SidekickViewType.Overlay, $"/trade/{text.EncodeBase64Url()}");
+        viewLocator.Open(SidekickViewType.Overlay, $"/trade/{text.EncodeBase64Url()}");
     }
 }
