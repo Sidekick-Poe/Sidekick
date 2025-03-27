@@ -24,14 +24,11 @@ public interface IViewLocator
     Task Open(SidekickViewType type, string url);
 
     /// <summary>
-    /// Close all views
+    /// Closes a view of the specified type.
     /// </summary>
-    Task CloseAll();
-
-    /// <summary>
-    /// Close all overlays
-    /// </summary>
-    Task CloseOverlay();
+    /// <param name="type">The type of view to close.</param>
+    /// <returns>A task that represents the asynchronous operation of closing the view.</returns>
+    Task Close(SidekickViewType type);
 
     /// <summary>
     /// Check if an overlay is opened

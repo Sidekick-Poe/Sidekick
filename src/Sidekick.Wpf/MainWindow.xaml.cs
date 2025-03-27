@@ -21,7 +21,7 @@ public partial class MainWindow
 
     private bool IsDisposed { get; set; }
 
-    public string? CurrentViewUrl { get; set; }
+    private ICurrentView? View { get; set; }
 
     public event Action<string>? OnOpenView;
 
@@ -48,10 +48,7 @@ public partial class MainWindow
         Topmost = false;
         ShowInTaskbar = false;
         ResizeMode = ResizeMode.NoResize;
-
-        WebView.Visibility = Visibility.Hidden;
         Opacity = 0;
-        Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
 
         Show();
     }
@@ -64,6 +61,7 @@ public partial class MainWindow
 
     public void InitializeView(ICurrentView view)
     {
+        View = view;
         Dispatcher.InvokeAsync(() =>
         {
             Title = view.Options.Title.StartsWith("Sidekick") ? view.Options.Title.Trim() : $"Sidekick {view.Options.Title}".Trim();
@@ -71,6 +69,7 @@ public partial class MainWindow
             // This avoids the white flicker which is caused by the page content not being loaded initially. We show the webview control only when the content is ready.
             // The window background is transparent to avoid any flickering when opening a window. When the webview content is ready we need to set opacity. Otherwise, mouse clicks will go through the window.
             WebView.Visibility = Visibility.Visible;
+            Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
             Opacity = 0.01;
 
             switch (ViewType)
@@ -82,9 +81,9 @@ public partial class MainWindow
                     break;
 
                 case SidekickViewType.Modal:
-                    Topmost = true;
+                    Topmost = false;
                     ShowInTaskbar = true;
-                    ResizeMode = ResizeMode.NoResize;
+                    ResizeMode = ResizeMode.CanResize;
                     break;
 
                 case SidekickViewType.Standard:
@@ -94,8 +93,8 @@ public partial class MainWindow
                     break;
             }
 
+            _ = NormalizeView();
             Activate();
-            _ = NormalizeView(view);
         });
     }
 
@@ -107,7 +106,7 @@ public partial class MainWindow
         });
     }
 
-    public void MaximizeView(ICurrentView view)
+    public void MaximizeView()
     {
         if (WindowState == WindowState.Normal)
         {
@@ -118,11 +117,11 @@ public partial class MainWindow
         }
         else
         {
-            _ = NormalizeView(view);
+            _ = NormalizeView();
         }
     }
 
-    public async Task NormalizeView(ICurrentView view)
+    public async Task NormalizeView()
     {
         var viewPreferenceService = Scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
         var settingsService = Scope.ServiceProvider.GetRequiredService<ISettingsService>();
@@ -133,7 +132,7 @@ public partial class MainWindow
         {
             WindowState = WindowState.Normal;
 
-            MinHeight = view.Options.Height
+            MinHeight = View?.Options.Height
                         ?? ViewType switch
                         {
                             SidekickViewType.Modal => 200,
@@ -142,7 +141,7 @@ public partial class MainWindow
             MinHeight += 20;
             Height = MinHeight;
 
-            MinWidth = view.Options.Width
+            MinWidth = View?.Options.Width
                        ?? ViewType switch
                        {
                            SidekickViewType.Modal => 380,
@@ -191,9 +190,13 @@ public partial class MainWindow
     {
         if (!IsDisposed)
         {
+            if (View != null)
+                View.Close();
+            else
+                CloseView();
+
             e.Cancel = true;
             base.OnClosing(e);
-            CloseView();
             return;
         }
 

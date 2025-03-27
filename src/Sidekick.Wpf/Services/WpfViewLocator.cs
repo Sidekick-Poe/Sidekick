@@ -33,11 +33,10 @@ public class WpfViewLocator : IViewLocator, IDisposable
         };
     }
 
-    public Task CloseAll()
+    public Task Close(SidekickViewType type)
     {
-        StandardWindow.CloseView();
-        OverlayWindow.CloseView();
-        ModalWindow.CloseView();
+        var window = GetWindow(type);
+        window.CloseView();
         return Task.CompletedTask;
     }
 

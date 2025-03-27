@@ -41,7 +41,7 @@ public class CloseOverlayWithEscHandler : KeybindHandler
 
     public override Task Execute(string _)
     {
-        viewLocator.CloseOverlay();
+        viewLocator.Close(SidekickViewType.Overlay);
         return Task.CompletedTask;
     }
 }

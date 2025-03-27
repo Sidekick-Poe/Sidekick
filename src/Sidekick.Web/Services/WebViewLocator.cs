@@ -19,7 +19,7 @@ public class WebViewLocator : IViewLocator
         return Task.CompletedTask;
     }
 
-    public Task CloseAll()
+    public Task CloseStandard()
     {
         throw new NotImplementedException();
     }

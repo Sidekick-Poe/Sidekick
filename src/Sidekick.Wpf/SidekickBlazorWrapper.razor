@@ -32,7 +32,15 @@
 
     private void WindowOnOpenView(string url)
     {
-        NavigationManager.NavigateTo(url);
+        var uri = new Uri(NavigationManager.Uri);
+        if (uri.PathAndQuery == url)
+        {
+            CurrentViewInitialized();
+        }
+        else
+        {
+            NavigationManager.NavigateTo(url);
+        }
     }
 
     private void CurrentViewInitialized()
@@ -47,13 +55,13 @@
 
     private void CurrentViewMaximized()
     {
-        Window.MaximizeView(CurrentView);
+        Window.MaximizeView();
     }
 
     private void CurrentViewClosed()
     {
         Window.CloseView();
-        NavigationManager.NavigateTo("/home/hidden");
+        NavigationManager.NavigateTo("/home");
     }
 
     private void NavigationManagerOnLocationChanged(object? sender, LocationChangedEventArgs e)
@@ -70,6 +78,7 @@
         CurrentView.ViewMinimized -= CurrentViewMinimized;
         CurrentView.ViewMaximized -= CurrentViewMaximized;
         CurrentView.ViewClosed -= CurrentViewClosed;
+        NavigationManager.LocationChanged -= NavigationManagerOnLocationChanged;
     }
 
 }
