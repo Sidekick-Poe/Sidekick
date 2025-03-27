@@ -38,12 +38,6 @@ public class WpfViewLocator : IViewLocator, IDisposable
         window.CloseView();
     }
 
-    public Task CloseOverlay()
-    {
-        OverlayWindow.CloseView();
-        return Task.CompletedTask;
-    }
-
     public bool IsOverlayOpened()
     {
         return OverlayWindow.IsVisible;

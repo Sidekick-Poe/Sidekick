@@ -83,7 +83,7 @@ public partial class MainWindow
                 case SidekickViewType.Modal:
                     Topmost = false;
                     ShowInTaskbar = true;
-                    ResizeMode = ResizeMode.CanResize;
+                    ResizeMode = ResizeMode.NoResize;
                     break;
 
                 case SidekickViewType.Standard:
@@ -91,6 +91,15 @@ public partial class MainWindow
                     ShowInTaskbar = true;
                     ResizeMode = ResizeMode.CanResize;
                     break;
+            }
+
+            if (view.Options is
+                {
+                    Width: not null,
+                    Height: not null
+                })
+            {
+                ResizeMode = ResizeMode.NoResize;
             }
 
             _ = NormalizeView();
@@ -102,6 +111,7 @@ public partial class MainWindow
     {
         Dispatcher.Invoke(() =>
         {
+            SavePosition();
             WindowState = WindowState.Minimized;
         });
     }
@@ -112,6 +122,7 @@ public partial class MainWindow
         {
             Dispatcher.Invoke(() =>
             {
+                SavePosition();
                 WindowState = WindowState.Maximized;
             });
         }
@@ -125,7 +136,7 @@ public partial class MainWindow
     {
         var viewPreferenceService = Scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
         var settingsService = Scope.ServiceProvider.GetRequiredService<ISettingsService>();
-        var preferences = await viewPreferenceService.Get($"view_preference_{ViewType.ToString()}");
+        var preferences = await viewPreferenceService.Get(ViewType.ToString());
         var saveWindowPositions = await settingsService.GetBool(SettingKeys.SaveWindowPositions);
 
         Dispatcher.Invoke(() =>
@@ -152,8 +163,8 @@ public partial class MainWindow
 
             if (ViewType != SidekickViewType.Modal && preferences != null)
             {
-                if (preferences.Height > Height) Height = preferences.Height;
-                if (preferences.Width > Width) Width = preferences.Width;
+                if (preferences.Height > Height && View?.Options.Height == null) Height = preferences.Height;
+                if (preferences.Width > Width && View?.Options.Width == null) Width = preferences.Width;
             }
 
             // Set the window position.
@@ -178,12 +189,37 @@ public partial class MainWindow
     {
         Dispatcher.Invoke(() =>
         {
+            SavePosition();
+
             WebView.Visibility = Visibility.Hidden;
             Opacity = 0;
 
             Deactivate();
             Hide();
         });
+    }
+
+    private void SavePosition()
+    {
+        if (!IsVisible || ViewType == SidekickViewType.Modal || ResizeMode is not (ResizeMode.CanResize or ResizeMode.CanResizeWithGrip) || WindowState == WindowState.Maximized)
+        {
+            return;
+        }
+
+        try
+        {
+            var width = (int)ActualWidth;
+            var height = (int)ActualHeight;
+            var x = (int)Left;
+            var y = (int)Top;
+
+            var viewPreferenceService = Scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
+            _ = viewPreferenceService.Set(ViewType.ToString(), width, height, x, y);
+        }
+        catch (Exception)
+        {
+            // If the save fails, we don't want to stop the execution.
+        }
     }
 
     protected override void OnClosing(CancelEventArgs e)
@@ -196,36 +232,9 @@ public partial class MainWindow
                 CloseView();
 
             e.Cancel = true;
-            base.OnClosing(e);
-            return;
         }
 
         base.OnClosing(e);
-        return;
-
-        if (!IsVisible || ResizeMode != ResizeMode.CanResize && ResizeMode != ResizeMode.CanResizeWithGrip || WindowState == WindowState.Maximized)
-        {
-            return;
-        }
-
-        // Save the window position and size.
-        try
-        {
-            if (ViewType != SidekickViewType.Modal)
-            {
-                var width = (int)ActualWidth;
-                var height = (int)ActualHeight;
-                var x = (int)Left;
-                var y = (int)Top;
-
-                var viewPreferenceService = Scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
-                _ = viewPreferenceService.Set(ViewType.ToString(), width, height, x, y);
-            }
-        }
-        catch (Exception)
-        {
-            // If the save fails, we don't want to stop the execution.
-        }
     }
 
     protected override void OnDeactivated(EventArgs e)
