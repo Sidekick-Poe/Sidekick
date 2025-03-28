@@ -21,11 +21,7 @@
         </AppBar>
     </TopContent>
     <LeftContent>
-        @if (Item == null)
-        {
-            <AppLoading/>
-        }
-        else
+        @if (Item != null)
         {
             <ItemHeader Name="@Item.Header.Name"
                         Type="@Item.Header.Type"
@@ -81,11 +77,7 @@
         }
     </LeftContent>
     <ChildContent>
-        @if (Item == null)
-        {
-            <AppLoading/>
-        }
-        else if (Item.Header.Game == GameType.PathOfExile)
+        @if (Item?.Header.Game == GameType.PathOfExile)
         {
             <PoeWikiMapInfo Type="@Item.Invariant?.Type" Name="@Item.Invariant?.Name"/>
         }
@@ -141,12 +133,8 @@
 
     private async Task UpdateOverlay()
     {
-        if (string.IsNullOrEmpty(ItemText))
-        {
-            return;
-        }
-
-        Item = ItemParser.ParseItem(ItemText.DecodeBase64Url() ?? string.Empty);
+        var itemText = ItemText.DecodeBase64Url();
+        Item = ItemParser.ParseItem(itemText);
 
         if (Item.Header.Category != Category.Map && Item.Header.Category != Category.Contract && Item.Header.Category != Category.Logbook)
         {
