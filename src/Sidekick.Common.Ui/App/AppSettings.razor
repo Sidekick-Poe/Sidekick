@@ -34,7 +34,7 @@
                             @onclick:preventDefault="true"
                             @onclick:stopPropagation="true"
                             tabindex="-1"
-                            title="@Resources["All_Settings"]"
+                            title="@Resources["Close"]"
                             class="p-2 text-base font-medium tracking-wide text-white transition-colors duration-200 border-stone-700 bg-stone-950 hover:bg-stone-700 hover:border-stone-600 flex items-center gap-2">
                         <span class="fill-current inline-block w-[1em] h-[1em] min-w-[1em] min-h-[1em]"><svg
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path
@@ -78,6 +78,7 @@
 
     private void OpenSettings()
     {
+        CurrentView.Close();
         ViewLocator.Open(SidekickViewType.Standard, Href);
     }
 
