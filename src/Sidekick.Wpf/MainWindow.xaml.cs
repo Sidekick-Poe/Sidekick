@@ -46,7 +46,6 @@ public partial class MainWindow
             { "Window", this },
         };
 
-        SetWebViewDebugging();
         Show();
     }
 
@@ -71,6 +70,8 @@ public partial class MainWindow
             // This avoids the white flicker which is caused by the page content not being loaded initially. We show the webview control only when the content is ready.
             // The window background is transparent to avoid any flickering when opening a window. When the webview content is ready we need to set opacity. Otherwise, mouse clicks will go through the window.
             WebView.Visibility = Visibility.Visible;
+            SetWebViewDebugging();
+
             Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
             Opacity = 0.01;
 
