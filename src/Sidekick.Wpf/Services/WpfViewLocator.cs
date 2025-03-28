@@ -1,19 +1,20 @@
+using Microsoft.Extensions.Logging;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Wpf.Services;
 
-public class WpfViewLocator : IViewLocator, IDisposable
+public class WpfViewLocator(ILogger<WpfViewLocator> logger) : IViewLocator, IDisposable
 {
     public bool SupportsMinimize => true;
 
     public bool SupportsMaximize => true;
 
-    private MainWindow StandardWindow { get; } = new(SidekickViewType.Standard);
+    private MainWindow StandardWindow { get; } = new(SidekickViewType.Standard, logger);
 
-    private MainWindow OverlayWindow { get; } = new(SidekickViewType.Overlay);
+    private MainWindow OverlayWindow { get; } = new(SidekickViewType.Overlay, logger);
 
-    private MainWindow ModalWindow { get; } = new(SidekickViewType.Modal);
+    private MainWindow ModalWindow { get; } = new(SidekickViewType.Modal, logger);
 
     public void Open(SidekickViewType type, string url)
     {

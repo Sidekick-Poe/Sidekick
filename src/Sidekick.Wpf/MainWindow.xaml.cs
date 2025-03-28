@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Wpf.Helpers;
@@ -15,6 +16,8 @@ namespace Sidekick.Wpf;
 /// </summary>
 public partial class MainWindow
 {
+    private readonly ILogger logger;
+
     public SidekickViewType ViewType { get; }
 
     private IServiceScope Scope { get; }
@@ -29,8 +32,9 @@ public partial class MainWindow
 
     private bool ViewNormalized { get; set; }
 
-    public MainWindow(SidekickViewType viewType)
+    public MainWindow(SidekickViewType viewType, ILogger logger)
     {
+        this.logger = logger;
         ViewType = viewType;
 
         Scope = App.ServiceProvider.CreateScope();
@@ -48,6 +52,8 @@ public partial class MainWindow
 
     public void OpenView(string url)
     {
+        logger.LogInformation("[MainWindow] Opening view: " + url);
+
         Url = url;
         ViewOpened?.Invoke();
         Dispatcher.InvokeAsync(Show);
@@ -55,6 +61,8 @@ public partial class MainWindow
 
     public void InitializeView(ICurrentView view)
     {
+        logger.LogInformation("[MainWindow] Initializing view: " + view.Options.Title);
+
         View = view;
         Dispatcher.InvokeAsync(() =>
         {
@@ -107,6 +115,8 @@ public partial class MainWindow
 
     public void MinimizeView()
     {
+        logger.LogInformation("[MainWindow] Minimizing view");
+
         Dispatcher.Invoke(() =>
         {
             SavePosition();
@@ -116,6 +126,8 @@ public partial class MainWindow
 
     public void MaximizeView()
     {
+        logger.LogInformation("[MainWindow] Maximizing view");
+
         if (WindowState == WindowState.Normal)
         {
             Dispatcher.Invoke(() =>
@@ -132,6 +144,8 @@ public partial class MainWindow
 
     public async Task NormalizeView()
     {
+        logger.LogInformation("[MainWindow] Normalizing view");
+
         var viewPreferenceService = Scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
         var settingsService = Scope.ServiceProvider.GetRequiredService<ISettingsService>();
         var preferences = await viewPreferenceService.Get(ViewType.ToString());
@@ -145,6 +159,8 @@ public partial class MainWindow
                     Width: not null,
                 })
             {
+                logger.LogInformation("[MainWindow] View has fixed dimensions");
+
                 WindowState = WindowState.Normal;
 
                 MinHeight = View.Options.Height.Value + 20;
@@ -159,8 +175,13 @@ public partial class MainWindow
                 return;
             }
 
-            if (ViewNormalized && WindowState == WindowState.Normal) return;
+            if (ViewNormalized && WindowState == WindowState.Normal)
+            {
+                logger.LogInformation("[MainWindow] View is already normalized");
+                return;
+            }
 
+            logger.LogInformation("[MainWindow] View is not normalized");
             WindowState = WindowState.Normal;
 
             MinHeight = ViewType switch
@@ -205,6 +226,8 @@ public partial class MainWindow
 
     public void CloseView()
     {
+        logger.LogInformation("[MainWindow] Closing view");
+
         Dispatcher.Invoke(() =>
         {
             ViewNormalized = false;
@@ -222,6 +245,7 @@ public partial class MainWindow
     {
         if (!IsVisible || ViewType == SidekickViewType.Modal || ResizeMode is not (ResizeMode.CanResize or ResizeMode.CanResizeWithGrip) || WindowState == WindowState.Maximized)
         {
+            logger.LogInformation("[MainWindow] Not saving position, window is not visible, is modal, or is maximized");
             return;
         }
 
@@ -234,10 +258,11 @@ public partial class MainWindow
 
             var viewPreferenceService = Scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
             _ = viewPreferenceService.Set(ViewType.ToString(), width, height, x, y);
+            logger.LogInformation("[MainWindow] Position saved");
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            // If the save fails, we don't want to stop the execution.
+            logger.LogError(e, "[MainWindow] Error saving position");
         }
     }
 
