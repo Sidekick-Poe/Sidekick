@@ -13,9 +13,9 @@
     </TopContent>
 
     <ChildContent>
-        @if (Error)
+        @if (Exception != null)
         {
-            <AlertError>@Resources["Update_Cant_Download"]</AlertError>
+            <AlertException Exception="Exception"/>
         }
         else if (UpdateInfo == null)
         {
@@ -84,11 +84,11 @@
 
 @code {
 
-    private bool Error { get; set; }
-
     private bool Updating { get; set; }
 
     private UpdateInfo? UpdateInfo { get; set; }
+
+    private SidekickException? Exception { get; set; }
 
     private RenderFragment GetNotes(VelopackAsset asset) => @<FormFieldset Legend="@($"Version {asset.Version}")">
                                                                 <div
@@ -107,36 +107,43 @@
         });
         await base.OnInitializedAsync();
 
-        if (Debugger.IsAttached)
+        try
         {
-            // Comment the following line to get the update view to stick when debugging.
-            Continue();
-            return;
-        }
-
-        if (AutoUpdater.IsUpdaterInstalled())
-        {
-            UpdateInfo = await AutoUpdater.CheckForUpdates();
-
-            if (UpdateInfo is null)
+            if (Debugger.IsAttached)
             {
-                // There's no available updates
-                NavigationManager.NavigateTo("/setup");
+                // Comment the following line to get the update view to stick when debugging.
+                Continue();
+                return;
+            }
+
+            if (AutoUpdater.IsUpdaterInstalled())
+            {
+                UpdateInfo = await AutoUpdater.CheckForUpdates();
+
+                if (UpdateInfo is null)
+                {
+                    // There's no available updates
+                    NavigationManager.NavigateTo("/setup");
+                }
+                else
+                {
+                    CurrentView.Initialize(new ViewOptions()
+                    {
+                        Title = Resources["Update"],
+                        Width = 400,
+                        Height = 500,
+                    });
+                }
             }
             else
             {
-                CurrentView.Initialize(new ViewOptions()
-                {
-                    Title = Resources["Update"],
-                    Width = 400,
-                    Height = 500,
-                });
+                Logger.LogWarning("[AutoUpdater] UpdateManager is not installed.");
+                NavigationManager.NavigateTo("/setup");
             }
         }
-        else
+        catch (SidekickException e)
         {
-            Logger.LogWarning("[AutoUpdater] UpdateManager is not installed.");
-            NavigationManager.NavigateTo("/setup");
+            Exception = e;
         }
     }
 
@@ -156,18 +163,18 @@
     {
         if (UpdateInfo == null) throw new SidekickException("Could not apply the update successfully.");
 
-        Updating = true;
-        StateHasChanged();
-
         try
         {
+            Updating = true;
+            StateHasChanged();
+
             await AutoUpdater.UpdateAndRestart(UpdateInfo);
-        }
-        catch (Exception e)
-        {
-            Logger.LogError(e, e.Message);
-            Error = true;
             Updating = false;
+            StateHasChanged();
+        }
+        catch (SidekickException e)
+        {
+            Exception = e;
             StateHasChanged();
         }
     }

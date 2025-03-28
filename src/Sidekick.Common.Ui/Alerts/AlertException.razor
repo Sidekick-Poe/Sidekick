@@ -1,0 +1,28 @@
+﻿@using Sidekick.Common.Exceptions
+
+<AlertError IsCritical="Exception.IsCritical">
+    <TextBase>@Exception.Message</TextBase>
+
+    @foreach (var additionalInformation in Exception.AdditionalInformation)
+    {
+        <div>
+            <TextCaption Class="mt-1">@additionalInformation</TextCaption>
+        </div>
+    }
+
+    <div class="hidden mt-1">
+        <div>
+            @Exception.Message
+        </div>
+        <div>
+            @((MarkupString)(Exception.StackTrace?.Replace("\n", "<br/>") ?? ""))
+        </div>
+    </div>
+</AlertError>
+
+@code {
+
+    [Parameter]
+    public required SidekickException Exception { get; set; }
+
+}

@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.Extensions.Logging;
+using Sidekick.Common.Exceptions;
 using Velopack;
 using Velopack.Locators;
 
@@ -8,6 +9,7 @@ namespace Sidekick.Common.Updater;
 public class AutoUpdater : IAutoUpdater
 {
     private readonly ILogger<AutoUpdater> logger;
+
     private UpdateManager Manager { get; }
 
     public AutoUpdater(ILogger<AutoUpdater> logger)
@@ -35,7 +37,21 @@ public class AutoUpdater : IAutoUpdater
         Manager = new UpdateManager(source, options, logger, locator);
     }
 
-    public bool IsUpdaterInstalled() => Manager.AppId is not null && Manager.IsInstalled;
+    public bool IsUpdaterInstalled()
+    {
+        try
+        {
+            return Manager.AppId is not null && Manager.IsInstalled;
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "[AutoUpdater] Error while checking if UpdateManager is installed.");
+            throw new SidekickException("Could not check for updates", "Visit the website or the GitHub page to check manually.", "https://sidekick-poe.github.io/", "https://github.com/Sidekick-Poe/Sidekick/releases")
+            {
+                IsCritical = false,
+            };
+        }
+    }
 
     public async Task<UpdateInfo?> CheckForUpdates()
     {
@@ -45,16 +61,27 @@ public class AutoUpdater : IAutoUpdater
             return null;
         }
 
-        logger.LogInformation("[AutoUpdater] Checking for updates.");
-        var updateInfo = await Manager.CheckForUpdatesAsync();
-        if (updateInfo == null)
+        try
         {
-            logger.LogInformation("[AutoUpdater] No updates found.");
-            return null;
-        }
+            logger.LogInformation("[AutoUpdater] Checking for updates.");
+            var updateInfo = await Manager.CheckForUpdatesAsync();
+            if (updateInfo == null)
+            {
+                logger.LogInformation("[AutoUpdater] No updates found.");
+                return null;
+            }
 
-        logger.LogInformation("[AutoUpdater] Found a new update.");
-        return updateInfo;
+            logger.LogInformation("[AutoUpdater] Found a new update.");
+            return updateInfo;
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "[AutoUpdater] Error while checking for updates.");
+            throw new SidekickException("Could not check for updates", "Visit the website or the GitHub page to check manually.", "https://sidekick-poe.github.io/", "https://github.com/Sidekick-Poe/Sidekick/releases")
+            {
+                IsCritical = false,
+            };
+        }
     }
 
     public async Task UpdateAndRestart(UpdateInfo updateInfo)
@@ -65,12 +92,23 @@ public class AutoUpdater : IAutoUpdater
             return;
         }
 
-        // download new version
-        logger.LogInformation("[AutoUpdater] Downloading updates.");
-        await Manager.DownloadUpdatesAsync(updateInfo);
+        try
+        {
+            // download new version
+            logger.LogInformation("[AutoUpdater] Downloading updates.");
+            await Manager.DownloadUpdatesAsync(updateInfo);
 
-        // install new version and restart app
-        logger.LogInformation("[AutoUpdater] Applying updates and restarting.");
-        Manager.ApplyUpdatesAndRestart(updateInfo);
+            // install new version and restart app
+            logger.LogInformation("[AutoUpdater] Applying updates and restarting.");
+            Manager.ApplyUpdatesAndRestart(updateInfo);
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "[AutoUpdater] Error while updating and restarting.");
+            throw new SidekickException("Could not download the update automatically", "Visit the website or the GitHub page to download the latest version.", "https://sidekick-poe.github.io/", "https://github.com/Sidekick-Poe/Sidekick/releases")
+            {
+                IsCritical = false,
+            };
+        }
     }
 }

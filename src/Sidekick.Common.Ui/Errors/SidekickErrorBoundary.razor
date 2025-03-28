@@ -9,20 +9,20 @@
         {
             @ErrorContent(this)
         }
+        else if (SidekickException != null)
+        {
+            <AlertException Exception="SidekickException"/>
+        }
         else
         {
-            <AlertError>
+            <AlertError IsCritical="@IsCritical">
                 <TextBase>@Message</TextBase>
 
-                @if (AdditionalInformation.Any())
+                @foreach (var additionalInformation in AdditionalInformation)
                 {
-                    <Heading3 Class="mt-2">Additional Information</Heading3>
-                    @foreach (var additionalInformation in AdditionalInformation)
-                    {
-                        <div>
-                            <TextCaption Class="mt-1">@additionalInformation</TextCaption>
-                        </div>
-                    }
+                    <div>
+                        <TextCaption Class="mt-1">@additionalInformation</TextCaption>
+                    </div>
                 }
 
                 <div class="hidden mt-1">
@@ -61,6 +61,8 @@
 
     public Exception? Exception => Boundary?.CurrentException;
 
+    public SidekickException? SidekickException => Exception as SidekickException;
+
     protected override void OnAfterRender(bool firstRender)
     {
         if (Boundary?.CurrentException != null)
@@ -71,43 +73,10 @@
         base.OnAfterRender(firstRender);
     }
 
-    public string Message
-    {
-        get
-        {
-            if (Boundary?.CurrentException is SidekickException sidekickException)
-            {
-                return sidekickException.Message;
-            }
+    public string Message => SidekickException?.Message ?? "This application may no longer respond until reloaded. If this issue keeps reoccurring, please open a ticket on our github page.";
 
-            return "This application may no longer respond until reloaded. If this issue keeps reoccurring, please open a ticket on our github page.";
-        }
-    }
+    public List<string> AdditionalInformation => SidekickException?.AdditionalInformation ?? [];
 
-    public List<string> AdditionalInformation
-    {
-        get
-        {
-            if (Boundary?.CurrentException is SidekickException sidekickException)
-            {
-                return sidekickException.AdditionalInformation;
-            }
-
-            return [];
-        }
-    }
-
-    public bool IsCritical
-    {
-        get
-        {
-            if (Boundary?.CurrentException is SidekickException sidekickException)
-            {
-                return sidekickException.IsCritical;
-            }
-
-            return true;
-        }
-    }
+    public bool IsCritical => SidekickException?.IsCritical ?? true;
 
 }
