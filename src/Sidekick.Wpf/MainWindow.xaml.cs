@@ -23,7 +23,11 @@ public partial class MainWindow
 
     private ICurrentView? View { get; set; }
 
-    public event Action<string>? OnOpenView;
+    public event Action? ViewOpened;
+
+    public string? Url { get; private set; }
+
+    private bool ViewNormalized { get; set; }
 
     public MainWindow(SidekickViewType viewType)
     {
@@ -38,25 +42,15 @@ public partial class MainWindow
             { "Window", this },
         };
 
-        if (!Debugger.IsAttached)
-        {
-            WebView.WebView.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
-            WebView.WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
-            WebView.WebView.CoreWebView2.Settings.AreDevToolsEnabled = false;
-        }
-
-        Topmost = false;
-        ShowInTaskbar = false;
-        ResizeMode = ResizeMode.NoResize;
-        Opacity = 0;
-
+        SetWebViewDebugging();
         Show();
     }
 
     public void OpenView(string url)
     {
-        OnOpenView?.Invoke(url);
-        Show();
+        Url = url;
+        ViewOpened?.Invoke();
+        Dispatcher.InvokeAsync(Show);
     }
 
     public void InitializeView(ICurrentView view)
@@ -141,30 +135,48 @@ public partial class MainWindow
 
         Dispatcher.Invoke(() =>
         {
+            if (View?.Options is
+                {
+                    Height: not null,
+                    Width: not null,
+                })
+            {
+                WindowState = WindowState.Normal;
+
+                MinHeight = View.Options.Height.Value + 20;
+                Height = MinHeight;
+
+                MinWidth = View.Options.Width.Value + 20;
+                Width = MinWidth;
+
+                CenterHelper.Center(this);
+
+                ViewNormalized = false;
+                return;
+            }
+
+            if (ViewNormalized && WindowState == WindowState.Normal) return;
+
             WindowState = WindowState.Normal;
 
-            MinHeight = View?.Options.Height
-                        ?? ViewType switch
-                        {
-                            SidekickViewType.Modal => 200,
-                            _ => 580,
-                        };
-            MinHeight += 20;
+            MinHeight = ViewType switch
+            {
+                SidekickViewType.Modal => 220,
+                _ => 600,
+            };
             Height = MinHeight;
 
-            MinWidth = View?.Options.Width
-                       ?? ViewType switch
-                       {
-                           SidekickViewType.Modal => 380,
-                           _ => 748,
-                       };
-            MinWidth += 20;
+            MinWidth = ViewType switch
+            {
+                SidekickViewType.Modal => 400,
+                _ => 768,
+            };
             Width = MinWidth;
 
             if (ViewType != SidekickViewType.Modal && preferences != null)
             {
-                if (preferences.Height > Height && View?.Options.Height == null) Height = preferences.Height;
-                if (preferences.Width > Width && View?.Options.Width == null) Width = preferences.Width;
+                if (preferences.Height > Height && View?.Options!.Height == null) Height = preferences.Height;
+                if (preferences.Width > Width && View?.Options!.Width == null) Width = preferences.Width;
             }
 
             // Set the window position.
@@ -182,6 +194,8 @@ public partial class MainWindow
             {
                 CenterHelper.Center(this);
             }
+
+            ViewNormalized = true;
         });
     }
 
@@ -189,6 +203,7 @@ public partial class MainWindow
     {
         Dispatcher.Invoke(() =>
         {
+            ViewNormalized = false;
             SavePosition();
 
             WebView.Visibility = Visibility.Hidden;
@@ -265,6 +280,15 @@ public partial class MainWindow
     private void TopBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
         DragMove();
+    }
+
+    private void SetWebViewDebugging()
+    {
+        if (Debugger.IsAttached) return;
+
+        WebView.WebView.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+        WebView.WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
+        WebView.WebView.CoreWebView2.Settings.AreDevToolsEnabled = false;
     }
 
     /// <summary>

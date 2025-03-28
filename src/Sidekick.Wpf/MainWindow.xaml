@@ -9,9 +9,12 @@
     Title="Sidekick"
     Width="0"
     Height="0"
+    Opacity="0"
+    Topmost="False"
+    ShowInTaskbar="False"
     AllowsTransparency="True"
     Background="Transparent"
-    ResizeMode="CanResize"
+    ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">

@@ -19,28 +19,35 @@
 
     protected override void OnInitialized()
     {
-        Ready = Window.ViewType == SidekickViewType.Standard;
-        Window.OnOpenView += WindowOnOpenView;
+        Ready = Window.Url == "/";
+        Window.ViewOpened += WindowViewOpened;
         CurrentView.ViewInitialized += CurrentViewInitialized;
         CurrentView.ViewMinimized += CurrentViewMinimized;
         CurrentView.ViewMaximized += CurrentViewMaximized;
         CurrentView.ViewClosed += CurrentViewClosed;
         NavigationManager.LocationChanged += NavigationManagerOnLocationChanged;
 
+        WindowViewOpened();
+
         base.OnInitialized();
     }
 
-    private void WindowOnOpenView(string url)
+    private void WindowViewOpened()
     {
-        var uri = new Uri(NavigationManager.Uri);
-        if (uri.PathAndQuery == url)
+        if (string.IsNullOrEmpty(Window.Url)) return;
+
+        InvokeAsync(() =>
         {
-            CurrentViewInitialized();
-        }
-        else
-        {
-            NavigationManager.NavigateTo(url);
-        }
+            var uri = new Uri(NavigationManager.Uri);
+            if (uri.PathAndQuery == Window.Url)
+            {
+                CurrentViewInitialized();
+            }
+            else
+            {
+                NavigationManager.NavigateTo(Window.Url);
+            }
+        });
     }
 
     private void CurrentViewInitialized()
@@ -61,19 +68,27 @@
     private void CurrentViewClosed()
     {
         Window.CloseView();
-        NavigationManager.NavigateTo("/home");
+
+        InvokeAsync(() =>
+        {
+            NavigationManager.NavigateTo("/home");
+        });
     }
 
     private void NavigationManagerOnLocationChanged(object? sender, LocationChangedEventArgs e)
     {
         if (Ready) return;
-        Ready = true;
-        StateHasChanged();
+
+        InvokeAsync(() =>
+        {
+            Ready = true;
+            StateHasChanged();
+        });
     }
 
     public void Dispose()
     {
-        Window.OnOpenView -= WindowOnOpenView;
+        Window.ViewOpened -= WindowViewOpened;
         CurrentView.ViewInitialized -= CurrentViewInitialized;
         CurrentView.ViewMinimized -= CurrentViewMinimized;
         CurrentView.ViewMaximized -= CurrentViewMaximized;
