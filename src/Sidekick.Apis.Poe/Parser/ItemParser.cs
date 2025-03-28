@@ -24,7 +24,7 @@ public class ItemParser
     IHeaderParser headerParser
 ) : IItemParser
 {
-    public Item ParseItem(string itemText)
+    public Item ParseItem(string? itemText)
     {
         if (string.IsNullOrEmpty(itemText))
         {

@@ -1,5 +1,10 @@
 @page "/trade/{itemText}"
+@using Sidekick.Apis.Poe
+@using Sidekick.Apis.Poe.Bulk
+@using Sidekick.Apis.Poe.Parser.Properties.Filters
+@using Sidekick.Apis.Poe.Trade.Filters
 @using Sidekick.Common.Extensions
+@using Sidekick.Common.Game.Items
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Filters
@@ -17,29 +22,34 @@
         </AppBar>
     </TopContent>
     <LeftContent>
-        @if (PriceCheckService.IsFilterLoading)
+        @if (Item != null && PropertyFilters != null)
         {
-            <AppLoading/>
-        }
-        else
-        {
-            <FiltersComponent/>
+            <CascadingValue Value="Item">
+                <FiltersComponent PropertyFilters="@PropertyFilters" ModifierFilters="@ModifierFilters"
+                                  PseudoFilters="@PseudoFilters"/>
+            </CascadingValue>
         }
     </LeftContent>
     <ChildContent>
-        <AppContainer>
-            <BulkResult/>
-            <ItemsResult/>
-        </AppContainer>
+        @if (Item != null)
+        {
+            <CascadingValue Value="Item">
+                <AppContainer>
+                    <BulkResult/>
+                    <ItemsResult/>
+                </AppContainer>
+            </CascadingValue>
+        }
     </ChildContent>
 </LayoutTwoColumn>
-
-@implements IDisposable
 
 @inject ISettingsService SettingsService
 @inject TradeResources Resources
 @inject PriceCheckService PriceCheckService
+@inject ITradeFilterService TradeFilterService
 @inject ICurrentView CurrentView
+@inject IItemParser ItemParser
+@inject IBulkTradeService BulkTradeService
 
 @code {
 
@@ -48,6 +58,14 @@
 
     private int LeftContentWidth { get; set; }
 
+    private Item? Item { get; set; }
+
+    private PropertyFilters? PropertyFilters { get; set; }
+
+    private List<ModifierFilter> ModifierFilters { get; set; } = [];
+
+    private List<PseudoModifierFilter> PseudoFilters { get; set; } = [];
+
     protected override async Task OnInitializedAsync()
     {
         CurrentView.Initialize(new ViewOptions()
@@ -55,28 +73,43 @@
             Title = Resources.Trade,
         });
         await base.OnInitializedAsync();
-        PriceCheckService.Changed += StateHasChanged;
         LeftContentWidth = await SettingsService.GetInt(SettingKeys.PriceCheckSidebarWidth);
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnParametersSetAsync()
     {
-        await base.OnAfterRenderAsync(firstRender);
+        var itemText = ItemText.DecodeBase64Url();
+        Item = ItemParser.ParseItem(itemText);
 
-        if (firstRender && !string.IsNullOrEmpty(ItemText))
+        PropertyFilters = await TradeFilterService.GetPropertyFilters(Item);
+        ModifierFilters = TradeFilterService.GetModifierFilters(Item).ToList();
+        PseudoFilters = TradeFilterService.GetPseudoModifierFilters(Item).ToList();
+
+        var mode = TradeMode.Item;
+        if (BulkTradeService.SupportsBulkTrade(Item))
         {
-            await PriceCheckService.Initialize(ItemText.DecodeBase64Url() ?? string.Empty);
+            mode = await SettingsService.GetEnum<TradeMode>(SettingKeys.PriceCheckCurrencyMode) ?? TradeMode.Item;
         }
+
+        var automaticallyPriceCheck = await SettingsService.GetBool(SettingKeys.PriceCheckAutomaticallySearch);
+        if (automaticallyPriceCheck)
+        {
+            if (mode == TradeMode.Bulk)
+                await PriceCheckService.SearchBulk(Item);
+            else
+                await PriceCheckService.SearchItems(Item, PropertyFilters, ModifierFilters, PseudoFilters);
+        }
+        else
+        {
+            PriceCheckService.Clear();
+        }
+
+        await base.OnParametersSetAsync();
     }
 
     private async Task OnLeftContentResize(int width)
     {
         await SettingsService.Set(SettingKeys.PriceCheckSidebarWidth, width);
-    }
-
-    public void Dispose()
-    {
-        PriceCheckService.Changed -= StateHasChanged;
     }
 
 }

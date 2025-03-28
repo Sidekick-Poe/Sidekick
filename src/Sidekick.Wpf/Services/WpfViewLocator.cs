@@ -35,7 +35,14 @@ public class WpfViewLocator : IViewLocator, IDisposable
     public void Close(SidekickViewType type)
     {
         var window = GetWindow(type);
-        window.CloseView();
+        if (window.View != null)
+        {
+            window.View.Close();
+        }
+        else
+        {
+            window.CloseView();
+        }
     }
 
     public bool IsOverlayOpened()

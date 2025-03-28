@@ -1,6 +1,7 @@
 @using Sidekick.Apis.Poe.Bulk;
 @using Sidekick.Apis.Poe.Parser.Properties.Definitions
 @using Sidekick.Apis.Poe.Parser.Properties.Filters
+@using Sidekick.Apis.Poe.Trade.Filters
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
@@ -8,18 +9,13 @@
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 @using Sidekick.Modules.Trade.Components.Filters.Properties
 
-@if (PriceCheckService.Item == null)
-{
-    return;
-}
-
 <div class="flex flex-col h-full">
     <div>
-        <ItemHeader Name="@PriceCheckService.Item.Header.Name"
-                    Type="@PriceCheckService.Item.Header.Type"
-                    Rarity="PriceCheckService.Item.Header.Rarity"
-                    Game="PriceCheckService.Item.Header.Game"
-                    Influences="PriceCheckService.Item.Properties.Influences"/>
+        <ItemHeader Name="@Item.Header.Name"
+                    Type="@Item.Header.Type"
+                    Rarity="Item.Header.Rarity"
+                    Game="Item.Header.Game"
+                    Influences="Item.Properties.Influences"/>
     </div>
 
     <div class="grow overflow-y-auto py-2">
@@ -30,53 +26,70 @@
             <PricePredictionComponent/>
         </SidekickErrorBoundary>
 
-        @if (PriceCheckService.PropertyFilters != null)
-        {
-            <HeaderFilters/>
+        <HeaderFilters PropertyFilters="PropertyFilters"/>
 
-            <div>
-                @foreach (var filter in PriceCheckService.PropertyFilters.Filters)
+        <div>
+            @foreach (var filter in PropertyFilters.Filters)
+            {
+                switch (filter)
                 {
-                    switch (filter)
-                    {
-                        case IntPropertyFilter intFilter: <IntPropertyFilterComponent Filter="intFilter" /> break;
-                        case WeaponDamagePropertyFilter weaponDamageFilter: <WeaponDamagePropertyFilterComponent Filter="weaponDamageFilter" /> break;
-                        case DoublePropertyFilter doubleFilter: <DoublePropertyFilterComponent Filter="doubleFilter" /> break;
-                        case TriStatePropertyFilter triStateFilter: <TriStatePropertyFilterComponent Filter="triStateFilter"/> break;
-                        case StringPropertyFilter stringFilter: <StringPropertyFilterComponent Filter="stringFilter"/> break;
-                        case not null when filter.Definition is SeparatorProperty: <ItemSeparator Rarity="PriceCheckService.Item?.Header.Rarity ?? Rarity.Unknown"/> break;
-                        default: <BooleanPropertyFilterComponent Filter="filter"/> break;
-                    }
-                }
+                    case IntPropertyFilter intFilter:
+                        <IntPropertyFilterComponent Filter="intFilter"/>
+                        break;
 
-                @if (PriceCheckService.PropertyFilters.Filters.Count > 0)
-                {
-                    <ItemSeparator Rarity="PriceCheckService.Item?.Header.Rarity ?? Rarity.Unknown"/>
-                }
-            </div>
-        }
+                    case WeaponDamagePropertyFilter weaponDamageFilter:
+                        <WeaponDamagePropertyFilterComponent Filter="weaponDamageFilter"/>
+                        break;
 
-        <ModifierFiltersComponent />
-        <PseudoFiltersComponent />
+                    case DoublePropertyFilter doubleFilter:
+                        <DoublePropertyFilterComponent Filter="doubleFilter"/>
+                        break;
+
+                    case TriStatePropertyFilter triStateFilter:
+                        <TriStatePropertyFilterComponent Filter="triStateFilter"/>
+                        break;
+
+                    case StringPropertyFilter stringFilter:
+                        <StringPropertyFilterComponent Filter="stringFilter"/>
+                        break;
+
+                    case not null when filter.Definition is SeparatorProperty:
+                        <ItemSeparator Rarity="Item.Header.Rarity"/>
+                        break;
+
+                    default:
+                        <BooleanPropertyFilterComponent Filter="filter"/>
+                        break;
+                }
+            }
+
+            @if (PropertyFilters.Filters.Count > 0)
+            {
+                <ItemSeparator Rarity="Item.Header.Rarity"/>
+            }
+        </div>
+
+        <ModifierFiltersComponent ModifierFilters="ModifierFilters"/>
+        <PseudoFiltersComponent PseudoFilters="PseudoFilters"/>
     </div>
 
     <div class="flex flex-nowrap items-center w-full py-2 px-1">
         <div class="flex flex-col items-stretch text-center px-1 grow">
-            <ButtonPrimary OnClick="PriceCheckService.ItemSearch" Disabled="PriceCheckService.IsLoading">@Resources["Search"]</ButtonPrimary>
+            <ButtonPrimary OnClick="() => PriceCheckService.SearchItems(Item, PropertyFilters, ModifierFilters, PseudoFilters)"
+                           Disabled="PriceCheckService.IsLoading">@Resources["Search"]</ButtonPrimary>
         </div>
-        @if (PriceCheckService.SupportsBulk)
+        @if (BulkTradeService.SupportsBulkTrade(Item))
         {
             <div class="flex flex-col items-stretch text-center px-1 grow">
-                <ButtonSecondary OnClick="PriceCheckService.BulkSearch" Disabled="PriceCheckService.IsLoading">@Resources["Bulk_Search"]</ButtonSecondary>
+                <ButtonSecondary OnClick="() => PriceCheckService.SearchBulk(Item)"
+                                 Disabled="PriceCheckService.IsLoading">@Resources["Bulk_Search"]</ButtonSecondary>
             </div>
         }
         <div class="px-1">
-            <TradeFilters />
+            <TradeFilters/>
         </div>
     </div>
 </div>
-
-@implements  IDisposable
 
 @inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
@@ -85,22 +98,16 @@
 
 @code {
 
-    private bool HasAnyFilter { get; set; }
+    [CascadingParameter]
+    public required Item Item { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        PriceCheckService.Changed += StateHasChanged;
+    [Parameter]
+    public required PropertyFilters PropertyFilters { get; set; }
 
-        await base.OnInitializedAsync();
+    [Parameter]
+    public required List<ModifierFilter> ModifierFilters { get; set; }
 
-        var propertyCount = PriceCheckService.PropertyFilters?.Filters.Count ?? 0;
-        var modifierCount = PriceCheckService.ModifierFilters.Count;
-        HasAnyFilter = modifierCount + propertyCount > 0;
-    }
-
-    public void Dispose()
-    {
-        PriceCheckService.Changed -= StateHasChanged;
-    }
+    [Parameter]
+    public required List<PseudoModifierFilter> PseudoFilters { get; set; }
 
 }

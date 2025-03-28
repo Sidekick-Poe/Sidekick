@@ -4,5 +4,5 @@ namespace Sidekick.Apis.Poe;
 
 public interface IItemParser
 {
-    Item ParseItem(string itemText);
+    Item ParseItem(string? itemText);
 }

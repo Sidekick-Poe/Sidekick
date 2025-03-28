@@ -21,7 +21,7 @@ public partial class MainWindow
 
     private bool IsDisposed { get; set; }
 
-    private ICurrentView? View { get; set; }
+    public ICurrentView? View { get; private set; }
 
     public event Action? ViewOpened;
 
@@ -97,7 +97,11 @@ public partial class MainWindow
             }
 
             _ = NormalizeView();
-            Activate();
+
+            if (ViewType != SidekickViewType.Overlay)
+            {
+                Activate();
+            }
         });
     }
 
