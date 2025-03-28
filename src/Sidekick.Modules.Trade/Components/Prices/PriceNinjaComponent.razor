@@ -9,7 +9,7 @@
 
 @if (Loading)
 {
-    <AppLoading />
+    <AppLoading/>
 }
 else if (Price != null)
 {
@@ -30,7 +30,7 @@ else if (Price != null)
         </div>
         <div class="text-left w-1/2 pl-2">
             <div class="flex">
-                <PriceDisplay Value="Price.Price" />
+                <PriceDisplay Value="Price.Price"/>
             </div>
 
             @if (Price.Links >= 5)
@@ -49,12 +49,12 @@ else if (Price != null)
                                  Items="Series"
                                  XValue="(x => x.Index)"
                                  YValue="(x => x.Value)"
-                                 SeriesType="SeriesType.Line" />
+                                 SeriesType="SeriesType.Line"/>
             </ApexChart>
         </div>
     }
 
-    <ItemSeparator Rarity="PriceCheckService.Item?.Header.Rarity ?? Rarity.Unknown" />
+    <ItemSeparator Rarity="Item.Header.Rarity"/>
 }
 
 @inject IStringLocalizer<TradeResources> Resources
@@ -64,18 +64,22 @@ else if (Price != null)
 
 @code {
 
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
     private bool Loading { get; set; }
 
     private NinjaPrice? Price { get; set; }
 
     private List<DataPoint>? Series { get; set; }
+
     private ApexChartOptions<DataPoint>? Options { get; set; }
 
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
 
-        if (PriceCheckService.Item?.Header.Game == GameType.PathOfExile2)
+        if (Item.Header.Game == GameType.PathOfExile2)
         {
             return;
         }
@@ -83,31 +87,40 @@ else if (Price != null)
         Loading = true;
         StateHasChanged();
 
-        if (PriceCheckService.Item?.AdditionalInformation is ClusterJewelInformation clusterJewelInformation)
+        if (Item.AdditionalInformation is ClusterJewelInformation clusterJewelInformation)
         {
-            Price = await Client.GetClusterPrice(clusterJewelInformation.GrantText, clusterJewelInformation.SmallPassiveCount, PriceCheckService.Item.Properties.ItemLevel);
+            Price = await Client.GetClusterPrice(clusterJewelInformation.GrantText, clusterJewelInformation.SmallPassiveCount, Item.Properties.ItemLevel);
         }
         else
         {
-            Price = await Client.GetPriceInfo(
-                PriceCheckService.Item?.Invariant?.Name,
-                PriceCheckService.Item?.Invariant?.Type,
-                PriceCheckService.Item?.Header.Category ?? Category.Unknown,
-                gemLevel: PriceCheckService.Item?.Properties.GemLevel,
-                mapTier: PriceCheckService.Item?.Properties.MapTier,
-                numberOfLinks: PriceCheckService.Item?.Properties.GetMaximumNumberOfLinks());
+            Price = await Client.GetPriceInfo(Item.Invariant?.Name, Item.Invariant?.Type, Item.Header.Category, gemLevel: Item.Properties.GemLevel, mapTier: Item.Properties.MapTier, numberOfLinks: Item.Properties.GetMaximumNumberOfLinks());
         }
 
         if (Price?.SparkLine?.Data.All(x => x.HasValue) == true)
         {
-            Series = Price.SparkLine.Data.Select((value, index) => new DataPoint { Index = index, Value = (decimal?)value }).ToList();
-            Options = new();
-            Options.PlotOptions = new() { Line = new() { IsSlopeChart = true } };
-            Options.Tooltip = new() { Enabled = false };
-            Options.Chart.Sparkline = new() { Enabled = true };
-            Options.Markers = new() { Size = 0 };
-            Options.Chart.Height = 40;
-            Options.Stroke = new() { Curve = Curve.Smooth, Width = 2, Colors = new() { "#8888ff" } };
+            Series = Price.SparkLine.Data.Select((value, index) => new DataPoint
+                {
+                    Index = index,
+                    Value = (decimal?)value
+                })
+                .ToList();
+            Options = new()
+            {
+                PlotOptions = new() { Line = new() { IsSlopeChart = true } },
+                Tooltip = new() { Enabled = false },
+                Chart =
+                {
+                    Sparkline = new() { Enabled = true },
+                    Height = 40,
+                },
+                Markers = new() { Size = 0 },
+                Stroke = new()
+                {
+                    Curve = Curve.Smooth,
+                    Width = 2,
+                    Colors = ["#8888ff",]
+                },
+            };
         }
 
         Loading = false;
@@ -117,6 +130,7 @@ else if (Price != null)
     class DataPoint
     {
         public int Index { get; set; }
+
         public decimal? Value { get; set; }
     }
 
@@ -130,4 +144,5 @@ else if (Price != null)
         var uri = await Client.GetDetailsUri(Price);
         BrowserProvider.OpenUri(uri);
     }
+
 }

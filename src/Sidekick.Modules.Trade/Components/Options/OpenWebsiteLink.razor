@@ -1,6 +1,7 @@
 @using Sidekick.Apis.Poe
 @using Sidekick.Apis.Poe.Bulk
 @using Sidekick.Common.Browser
+@using Sidekick.Common.Game.Items
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Ui.Popovers
 
@@ -42,6 +43,9 @@
 
 @code {
 
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
     [Parameter]
     public string? QueryId { get; set; }
 
@@ -51,37 +55,37 @@
 
     private async Task OpenWebsite()
     {
-        if (QueryId == null || PriceCheckService.Item == null)
+        if (QueryId == null)
         {
             return;
         }
 
         if (PriceCheckService.CurrentMode == TradeMode.Bulk)
         {
-            var uri = await BulkTradeService.GetTradeUri(PriceCheckService.Item, QueryId);
+            var uri = await BulkTradeService.GetTradeUri(Item, QueryId);
             BrowserProvider.OpenUri(uri);
         }
         else
         {
-            var uri = await TradeSearchService.GetTradeUri(PriceCheckService.Item.Header.Game, QueryId);
+            var uri = await TradeSearchService.GetTradeUri(Item.Header.Game, QueryId);
             BrowserProvider.OpenUri(uri);
         }
     }
 
     private async Task OpenDetails()
     {
-        if (QueryId == null || PriceCheckService.Item == null)
+        if (QueryId == null)
         {
             return;
         }
 
         if (PriceCheckService.CurrentMode == TradeMode.Bulk)
         {
-            TradeUri = await BulkTradeService.GetTradeUri(PriceCheckService.Item, QueryId);
+            TradeUri = await BulkTradeService.GetTradeUri(Item, QueryId);
         }
         else
         {
-            TradeUri = await TradeSearchService.GetTradeUri(PriceCheckService.Item.Header.Game, QueryId);
+            TradeUri = await TradeSearchService.GetTradeUri(Item.Header.Game, QueryId);
         }
 
         DetailsOpened = true;

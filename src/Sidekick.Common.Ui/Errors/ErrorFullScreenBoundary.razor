@@ -63,7 +63,7 @@
                     @if (actions.HasFlag(ExceptionActions.CloseWindow))
                     {
                         <a href="javascript:" class="@ButtonClass(context.IsCritical) px-8 py-4 m-4"
-                           @onclick="CurrentView.Close">Close</a>
+                           @onclick="Close">Close</a>
                     }
                 </div>
             </div>
@@ -84,4 +84,10 @@
     private string ButtonClass(bool isCritical) => isCritical ? "bg-white text-red-700" : "bg-white text-orange-700";
 
     private SidekickErrorBoundary? ErrorBoundary { get; set; }
+
+    private void Close()
+    {
+        CurrentView.Close();
+    }
+
 }

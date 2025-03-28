@@ -2,14 +2,13 @@
 @layout MainWindowLayout
 @using Sidekick.Common.Blazor.Components
 @using Sidekick.Common.Platform
-@inherits Sidekick.Common.Ui.Views.SidekickView
 
 <AppContainer>
     <FormFieldset Legend="@Resources["General_Settings"]">
-        <LanguageParserEditor />
-        <UseInvariantForTradeResults />
-        <LeagueIdEditor />
-        <InterfaceLanguageEditor />
+        <LanguageParserEditor/>
+        <UseInvariantForTradeResults/>
+        <LeagueIdEditor/>
+        <InterfaceLanguageEditor/>
     </FormFieldset>
 
     @if (ApplicationService.SupportsKeybinds)
@@ -25,3 +24,14 @@
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject IApplicationService ApplicationService
+@inject ICurrentView CurrentView
+
+@code{
+
+    protected override void OnInitialized()
+    {
+        CurrentView.Initialize(new ViewOptions());
+        base.OnInitialized();
+    }
+
+}

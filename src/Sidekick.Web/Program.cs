@@ -65,6 +65,7 @@ builder.Services
 builder.Services.AddApexCharts();
 builder.Services.AddSidekickInitializableService<IApplicationService, WebApplicationService>();
 builder.Services.AddSingleton<IViewLocator, WebViewLocator>();
+builder.Services.AddSingleton(sp => (WebViewLocator)sp.GetRequiredService<IViewLocator>());
 
 #endregion Services
 

@@ -1,7 +1,7 @@
 <div class="dark:bg-stone-950 flex items-center flex-wrap py-2 pl-4">
-    <img src="/images/orbs/ExaltedOrb.png" class="w-6 h-6"/>
+    <img src="/images/orbs/ExaltedOrb.png" alt="logo" class="w-6 h-6"/>
     <h1 class="font-medium leading-none text-lg ml-4">
-        <span id="sidekick-appbar-title">@CurrentView.Title</span>
+        <span id="sidekick-appbar-title">Sidekick@(!string.IsNullOrEmpty(CurrentView.Options?.Title) ? $" {CurrentView.Options.Title}" : "")</span>
     </h1>
 
     <div class="ml-auto -my-2 flex items-center flex-nowrap">
@@ -21,18 +21,18 @@
 
     protected override void OnInitialized()
     {
-        CurrentView.ViewChanged += CurrentViewOnViewChanged;
+        CurrentView.ViewInitialized += CurrentViewInitialized;
         base.OnInitialized();
     }
 
-    private void CurrentViewOnViewChanged(ICurrentView obj)
+    private void CurrentViewInitialized()
     {
         InvokeAsync(StateHasChanged);
     }
 
     public void Dispose()
     {
-        CurrentView.ViewChanged -= CurrentViewOnViewChanged;
+        CurrentView.ViewInitialized -= CurrentViewInitialized;
     }
 
 }

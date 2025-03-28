@@ -1,4 +1,5 @@
 @using Sidekick.Apis.Poe.Parser.Properties.Filters
+@using Sidekick.Common.Game.Items
 @using Sidekick.Common.Game.Languages
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
@@ -19,7 +20,7 @@
                                   ContentType="@Filter.Type"
                                   HasAdditionalInformation="Filter.Value != Filter.OriginalValue && Filter.OriginalValue > 0">
                     <AdditionalInformation>
-                        <ItemPropertyText Label="@($"{GameLanguageProvider.Language.DescriptionQuality} {PriceCheckService.Item?.Properties.Quality}%")"
+                        <ItemPropertyText Label="@($"{GameLanguageProvider.Language.DescriptionQuality} {Item.Properties.Quality}%")"
                                           Value="@($"{Filter.ValuePrefix}{Filter.OriginalValue}{Filter.ValueSuffix}")"/>
                         <ItemPropertyText Label="@($"{GameLanguageProvider.Language.DescriptionQuality} 20%")"
                                           Value="@($"{Filter.ValuePrefix}{Filter.Value}{Filter.ValueSuffix}")"/>
@@ -46,6 +47,9 @@
 @inject ISettingsService SettingsService
 
 @code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
 
     [Parameter]
     public required IntPropertyFilter Filter { get; set; }

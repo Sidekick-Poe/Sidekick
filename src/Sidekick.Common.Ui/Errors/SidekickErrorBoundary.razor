@@ -61,17 +61,14 @@
 
     public Exception? Exception => Boundary?.CurrentException;
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override void OnAfterRender(bool firstRender)
     {
         if (Boundary?.CurrentException != null)
         {
-            if (!CurrentView.IsInitialized)
-            {
-                await CurrentView.Close();
-            }
+            CurrentView.Close();
         }
 
-        await base.OnAfterRenderAsync(firstRender);
+        base.OnAfterRender(firstRender);
     }
 
     public string Message

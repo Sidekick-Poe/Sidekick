@@ -1,13 +1,13 @@
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Net;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Wpf.Helpers;
-using Sidekick.Wpf.Services;
 
 namespace Sidekick.Wpf;
 
@@ -16,63 +16,239 @@ namespace Sidekick.Wpf;
 /// </summary>
 public partial class MainWindow
 {
-    private readonly WpfViewLocator viewLocator;
-    private bool isClosing;
+    private readonly ILogger logger;
 
-    public bool IsReady { get; private set; }
+    public SidekickViewType ViewType { get; }
 
-    private IServiceScope Scope { get; set; }
+    private IServiceScope Scope { get; }
 
-    public Guid Id { get; set; }
+    private bool IsDisposed { get; set; }
 
-    public MainWindow(WpfViewLocator viewLocator)
+    public ICurrentView? View { get; private set; }
+
+    public event Action? ViewOpened;
+
+    public string? Url { get; private set; }
+
+    private bool ViewNormalized { get; set; }
+
+    public MainWindow(SidekickViewType viewType, ILogger logger)
     {
+        this.logger = logger;
+        ViewType = viewType;
+
         Scope = App.ServiceProvider.CreateScope();
         Resources.Add("services", Scope.ServiceProvider);
         InitializeComponent();
-        this.viewLocator = viewLocator;
+
+        RootComponent.Parameters = new Dictionary<string, object?>
+        {
+            { "Window", this },
+        };
+
+        SetWebViewDebugging();
+        Show();
     }
 
-    internal SidekickView? SidekickView { get; set; }
-
-    internal string? CurrentWebPath => WebUtility.UrlDecode(WebView.WebView.Source?.ToString());
-
-    public void Ready()
+    public void OpenView(string url)
     {
-        if (!Debugger.IsAttached)
-        {
-            WebView.WebView.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
-            WebView.WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
-            WebView.WebView.CoreWebView2.Settings.AreDevToolsEnabled = false;
-        }
+        logger.LogInformation("[MainWindow] Opening view: " + url);
 
-        // This avoids the white flicker which is caused by the page content not being loaded initially. We show the webview control only when the content is ready.
-        WebView.Visibility = Visibility.Visible;
-
-        // The window background is transparent to avoid any flickering when opening a window. When the webview content is ready we need to set a background color. Otherwise, mouse clicks will go through the window.
-        Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
-        Opacity = 0.01;
-
-        if (!IsReady)
-        {
-            Activate();
-        }
-
-        IsReady = true;
+        Url = url;
+        ViewOpened?.Invoke();
+        Dispatcher.InvokeAsync(Show);
     }
 
-    protected override void OnClosing(CancelEventArgs e)
+    public void InitializeView(ICurrentView view)
     {
-        base.OnClosing(e);
+        logger.LogInformation("[MainWindow] Initializing view: " + view.Options.Title);
 
-        MaximizeHelper.RemoveHook(this);
-
-        if (isClosing || !IsVisible || ResizeMode != ResizeMode.CanResize && ResizeMode != ResizeMode.CanResizeWithGrip || WindowState == WindowState.Maximized)
+        View = view;
+        Dispatcher.InvokeAsync(() =>
         {
+            Title = view.Options.Title.StartsWith("Sidekick") ? view.Options.Title.Trim() : $"Sidekick {view.Options.Title}".Trim();
+
+            // This avoids the white flicker which is caused by the page content not being loaded initially. We show the webview control only when the content is ready.
+            // The window background is transparent to avoid any flickering when opening a window. When the webview content is ready we need to set opacity. Otherwise, mouse clicks will go through the window.
+            WebView.Visibility = Visibility.Visible;
+            Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
+            Opacity = 0.01;
+
+            switch (ViewType)
+            {
+                case SidekickViewType.Overlay:
+                    Topmost = true;
+                    ShowInTaskbar = false;
+                    ResizeMode = ResizeMode.CanResize;
+                    break;
+
+                case SidekickViewType.Modal:
+                    Topmost = false;
+                    ShowInTaskbar = true;
+                    ResizeMode = ResizeMode.NoResize;
+                    break;
+
+                case SidekickViewType.Standard:
+                    Topmost = false;
+                    ShowInTaskbar = true;
+                    ResizeMode = ResizeMode.CanResize;
+                    break;
+            }
+
+            if (view.Options is
+                {
+                    Width: not null,
+                    Height: not null
+                })
+            {
+                ResizeMode = ResizeMode.NoResize;
+            }
+
+            _ = NormalizeView();
+
+            if (ViewType != SidekickViewType.Overlay)
+            {
+                Activate();
+            }
+        });
+    }
+
+    public void MinimizeView()
+    {
+        logger.LogInformation("[MainWindow] Minimizing view");
+
+        Dispatcher.Invoke(() =>
+        {
+            SavePosition();
+            WindowState = WindowState.Minimized;
+        });
+    }
+
+    public void MaximizeView()
+    {
+        logger.LogInformation("[MainWindow] Maximizing view");
+
+        if (WindowState == WindowState.Normal)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                SavePosition();
+                WindowState = WindowState.Maximized;
+            });
+        }
+        else
+        {
+            _ = NormalizeView();
+        }
+    }
+
+    public async Task NormalizeView()
+    {
+        logger.LogInformation("[MainWindow] Normalizing view");
+
+        var viewPreferenceService = Scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
+        var settingsService = Scope.ServiceProvider.GetRequiredService<ISettingsService>();
+        var preferences = await viewPreferenceService.Get(ViewType.ToString());
+        var saveWindowPositions = await settingsService.GetBool(SettingKeys.SaveWindowPositions);
+
+        Dispatcher.Invoke(() =>
+        {
+            if (View?.Options is
+                {
+                    Height: not null,
+                    Width: not null,
+                })
+            {
+                logger.LogInformation("[MainWindow] View has fixed dimensions");
+
+                WindowState = WindowState.Normal;
+
+                MinHeight = View.Options.Height.Value + 20;
+                Height = MinHeight;
+
+                MinWidth = View.Options.Width.Value + 20;
+                Width = MinWidth;
+
+                CenterHelper.Center(this);
+
+                ViewNormalized = false;
+                return;
+            }
+
+            if (ViewNormalized && WindowState == WindowState.Normal)
+            {
+                logger.LogInformation("[MainWindow] View is already normalized");
+                return;
+            }
+
+            logger.LogInformation("[MainWindow] View is not normalized");
+            WindowState = WindowState.Normal;
+
+            MinHeight = ViewType switch
+            {
+                SidekickViewType.Modal => 220,
+                _ => 600,
+            };
+            Height = MinHeight;
+
+            MinWidth = ViewType switch
+            {
+                SidekickViewType.Modal => 400,
+                _ => 768,
+            };
+            Width = MinWidth;
+
+            if (ViewType != SidekickViewType.Modal && preferences != null)
+            {
+                if (preferences.Height > Height && View?.Options!.Height == null) Height = preferences.Height;
+                if (preferences.Width > Width && View?.Options!.Width == null) Width = preferences.Width;
+            }
+
+            // Set the window position.
+            if (saveWindowPositions
+                && preferences is
+                {
+                    X: not null,
+                    Y: not null
+                })
+            {
+                Left = preferences.X.Value;
+                Top = preferences.Y.Value;
+            }
+            else
+            {
+                CenterHelper.Center(this);
+            }
+
+            ViewNormalized = true;
+        });
+    }
+
+    public void CloseView()
+    {
+        logger.LogInformation("[MainWindow] Closing view");
+
+        Dispatcher.Invoke(() =>
+        {
+            ViewNormalized = false;
+            SavePosition();
+
+            WebView.Visibility = Visibility.Hidden;
+            Opacity = 0;
+
+            Deactivate();
+            Hide();
+        });
+    }
+
+    private void SavePosition()
+    {
+        if (!IsVisible || ViewType == SidekickViewType.Modal || ResizeMode is not (ResizeMode.CanResize or ResizeMode.CanResizeWithGrip) || WindowState == WindowState.Maximized)
+        {
+            logger.LogInformation("[MainWindow] Not saving position, window is not visible, is modal, or is maximized");
             return;
         }
 
-        // Save the window position and size.
         try
         {
             var width = (int)ActualWidth;
@@ -80,52 +256,46 @@ public partial class MainWindow
             var x = (int)Left;
             var y = (int)Top;
 
-            _ = viewLocator.ViewPreferenceService.Set(SidekickView?.CurrentView.Key, width, height, x, y);
+            var viewPreferenceService = Scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
+            _ = viewPreferenceService.Set(ViewType.ToString(), width, height, x, y);
+            logger.LogInformation("[MainWindow] Position saved");
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            // If the save fails, we don't want to stop the execution.
+            logger.LogError(e, "[MainWindow] Error saving position");
+        }
+    }
+
+    protected override void OnClosing(CancelEventArgs e)
+    {
+        if (!IsDisposed)
+        {
+            if (View != null)
+                View.Close();
+            else
+                CloseView();
+
+            e.Cancel = true;
         }
 
-        Resources.Remove("services");
-        viewLocator.Windows.Remove(this);
-        Scope.Dispose();
-
-        _ = Task.Run(async () =>
-        {
-            try
-            {
-                await WebView.WebView.EnsureCoreWebView2Async();
-                await WebView.DisposeAsync();
-            }
-            catch (Exception)
-            {
-                // If the dispose fails, we don't want to stop the execution.
-            }
-            finally
-            {
-                WebView = null;
-            }
-        });
-
-        UnregisterName("Grid");
-        UnregisterName("OverlayContainer");
-        UnregisterName("TopBorder");
-        UnregisterName("WebView");
-
-        isClosing = true;
+        base.OnClosing(e);
     }
 
     protected override void OnDeactivated(EventArgs e)
     {
         base.OnDeactivated(e);
 
-        if (SidekickView is
-            {
-                CloseOnBlur: true
-            })
+        if (ViewType == SidekickViewType.Overlay)
         {
-            viewLocator.Close(SidekickView);
+            _ = Task.Run(async () =>
+            {
+                var settingsService = Scope.ServiceProvider.GetRequiredService<ISettingsService>();
+                var closeOnBlur = await settingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
+                if (closeOnBlur)
+                {
+                    CloseView();
+                }
+            });
         }
     }
 
@@ -139,6 +309,15 @@ public partial class MainWindow
     private void TopBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
         DragMove();
+    }
+
+    private void SetWebViewDebugging()
+    {
+        if (Debugger.IsAttached) return;
+
+        WebView.WebView.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+        WebView.WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
+        WebView.WebView.CoreWebView2.Settings.AreDevToolsEnabled = false;
     }
 
     /// <summary>
@@ -182,5 +361,14 @@ public partial class MainWindow
     {
         base.OnSourceInitialized(e);
         MaximizeHelper.AddHook(this);
+    }
+
+    public void Dispose()
+    {
+        IsDisposed = true;
+        MaximizeHelper.RemoveHook(this);
+        Resources.Remove("services");
+        Scope.Dispose();
+        Close();
     }
 }

@@ -10,20 +10,14 @@
     </svg>
 </button>
 
-@inject IViewLocator ViewLocator
 @inject ICurrentView CurrentView
 @inject IStringLocalizer<AppResources> Resources
 
 @code {
 
-    private async Task OnClick()
+    private void OnClick()
     {
-        if (CurrentView.Current == null)
-        {
-            return;
-        }
-
-        await ViewLocator.Close(CurrentView.Current);
+        CurrentView.Close();
     }
 
 }

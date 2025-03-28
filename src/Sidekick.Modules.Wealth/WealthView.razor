@@ -1,5 +1,4 @@
 @page "/wealth"
-@inherits Sidekick.Common.Ui.Views.SidekickView
 @using Microsoft.EntityFrameworkCore
 @using MudBlazor
 @using Sidekick.Common.Database
@@ -8,7 +7,6 @@
 @using Sidekick.Common.Exceptions
 @using Sidekick.Common.Settings
 
-<AppTitle Title="Wealth Tracker"/>
 <MudDrawer Open="true"
            Variant="DrawerVariant.Persistent"
            Width="22em"
@@ -71,14 +69,11 @@
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject ISettingsService SettingsService
 @inject WealthParser WealthParser
+@inject ICurrentView CurrentView
 
 @code {
     public const string ChartHeight = "24vh";
     public const string InventoryHeight = "67vh";
-
-    public override int ViewWidth => 1280;
-
-    public override int ViewHeight => 800;
 
     private List<WealthStash> StashTabs { get; set; } = new();
 
@@ -88,6 +83,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        CurrentView.Initialize(new ViewOptions());
         await base.OnInitializedAsync();
 
         var enabled = await SettingsService.GetBool(SettingKeys.WealthEnabled);

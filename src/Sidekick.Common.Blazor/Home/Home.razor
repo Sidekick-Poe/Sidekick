@@ -5,9 +5,7 @@
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Blazor.Settings.General
-@inherits SidekickView
 
-<AppTitle Title="Sidekick"/>
 <LayoutTwoColumn>
     <TopContent>
         <AppBar>
@@ -54,10 +52,11 @@
     </BottomContent>
 </LayoutTwoColumn>
 
-
 @inject ISettingsService SettingsService
 @inject IStringLocalizer<HomeResources> Resources
 @inject IApplicationService ApplicationService
+@inject ICurrentView CurrentView
+@inject IViewLocator ViewLocator
 
 @code {
 
@@ -67,6 +66,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        CurrentView.Initialize(new ViewOptions());
         var keyOpenPriceCheck = await SettingsService.GetString(SettingKeys.KeyOpenPriceCheck);
         var keyClose = await SettingsService.GetString(SettingKeys.KeyClose);
         WelcomeMessage = string.Format(Resources["Welcome_Message"], keyOpenPriceCheck.ToKeybindString(), keyClose.ToKeybindString());
@@ -77,7 +77,7 @@
     {
         if (ItemText != null)
         {
-            NavigationManager.NavigateTo($"/trade/{ItemText.EncodeBase64Url()}");
+            ViewLocator.Open(SidekickViewType.Overlay, $"/trade/{ItemText.EncodeBase64Url()}");
         }
     }
 
@@ -85,7 +85,7 @@
     {
         if (ItemText != null)
         {
-            NavigationManager.NavigateTo($"/map/{ItemText.EncodeBase64Url()}");
+            ViewLocator.Open(SidekickViewType.Overlay, $"/map/{ItemText.EncodeBase64Url()}");
         }
     }
 

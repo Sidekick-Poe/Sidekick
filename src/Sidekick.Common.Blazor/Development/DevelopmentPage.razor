@@ -3,7 +3,6 @@
 @using Microsoft.Extensions.DependencyInjection
 @using Sidekick.Common.Blazor.Components
 @using Sidekick.Common.Platform
-@inherits SidekickView
 
 <AppContainer>
     <FormFieldset Legend="Custom actions">
@@ -19,13 +18,15 @@
 
 @inject IApplicationService ApplicationService
 @inject IServiceProvider ServiceProvider
+@inject ICurrentView CurrentView
 
 @code {
 
-    private IKeyboardProvider? KeyboardProvider;
+    private IKeyboardProvider? KeyboardProvider { get; set; }
 
     protected override void OnInitialized()
     {
+        CurrentView.Initialize(new ViewOptions());
         if (ApplicationService.SupportsKeybinds)
         {
             KeyboardProvider = ServiceProvider.GetService<IKeyboardProvider>();

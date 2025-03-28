@@ -11,7 +11,7 @@ using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Common.Blazor.Initialization;
 
-public partial class Initialization : SidekickView
+public partial class Initialization
 {
     [Inject]
     private IStringLocalizer<InitializationResources> Resources { get; set; } = null!;
@@ -31,6 +31,12 @@ public partial class Initialization : SidekickView
     [Inject]
     private ICacheProvider CacheProvider { get; set; } = null!;
 
+    [Inject]
+    private ICurrentView CurrentView { get; set; } = null!;
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; } = null!;
+
     private int Count { get; set; }
 
     private int Completed { get; set; }
@@ -41,10 +47,13 @@ public partial class Initialization : SidekickView
 
     public Task? InitializationTask { get; set; }
 
-    public override SidekickViewType ViewType => SidekickViewType.Modal;
-
     protected override async Task OnInitializedAsync()
     {
+        CurrentView.Initialize(new ViewOptions()
+        {
+            Width = 400,
+            Height = 220,
+        });
         InitializationTask = Handle();
         await base.OnInitializedAsync();
         await InitializationTask;
@@ -105,10 +114,12 @@ public partial class Initialization : SidekickView
         var redirectToHome = await SettingsService.GetBool(SettingKeys.OpenHomeOnLaunch);
         if (redirectToHome)
         {
-            await ViewLocator.Open("/home");
+            NavigationManager.NavigateTo("/home");
         }
-
-        await CurrentView.Close();
+        else
+        {
+            CurrentView.Close();
+        }
     }
 
     private Task ReportProgress()

@@ -1,16 +1,22 @@
+@using Sidekick.Apis.Poe.Trade.Filters
 @using Sidekick.Common.Game.Items
-@using Sidekick.Common.Settings
 
-@if (PriceCheckService.PseudoFilters.Any())
+@if (PseudoFilters.Any())
 {
-    <ItemSeparator Rarity="PriceCheckService.Item?.Header.Rarity ?? Rarity.Unknown"/>
+    <ItemSeparator Rarity="Item.Header.Rarity"/>
 }
 
-@foreach (var filter in PriceCheckService.PseudoFilters)
+@foreach (var filter in PseudoFilters)
 {
-    <CascadingValue Value="filter" IsFixed="true">
-        <PseudoFilterComponent/>
-    </CascadingValue>
+    <PseudoFilterComponent Filter="@filter"/>
 }
 
-@inject PriceCheckService PriceCheckService
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public required List<PseudoModifierFilter> PseudoFilters { get; set; }
+
+}

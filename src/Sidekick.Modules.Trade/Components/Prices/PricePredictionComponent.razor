@@ -21,7 +21,7 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
         </div>
     </div>
 
-    <ItemSeparator Rarity="PriceCheckService.Item?.Header.Rarity ?? Rarity.Unknown"/>
+    <ItemSeparator Rarity="Item.Header.Rarity"/>
 }
 
 @inject IStringLocalizer<TradeResources> Resources
@@ -30,6 +30,9 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
 @inject PriceCheckService PriceCheckService
 
 @code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
 
     private bool Loading { get; set; }
 
@@ -46,12 +49,12 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
     {
         await base.OnParametersSetAsync();
 
-        if (PriceCheckService.Item?.Header.Game == GameType.PathOfExile2)
+        if (Item.Header.Game == GameType.PathOfExile2)
         {
             return;
         }
 
-        if (PriceCheckService.Item == null || !await SettingsService.GetBool(SettingKeys.PriceCheckPredictionEnabled))
+        if (!await SettingsService.GetBool(SettingKeys.PriceCheckPredictionEnabled))
         {
             return;
         }
@@ -59,7 +62,7 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
         Loading = true;
         StateHasChanged();
 
-        Prediction = await Client.GetPricePrediction(PriceCheckService.Item);
+        Prediction = await Client.GetPricePrediction(Item);
         Loading = false;
         StateHasChanged();
     }

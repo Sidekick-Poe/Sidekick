@@ -1,4 +1,5 @@
 @using Sidekick.Apis.Poe.Filters
+@using Sidekick.Apis.Poe.Parser.Properties.Filters
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Game.Languages
 @using Sidekick.Modules.Trade.Localization
@@ -6,7 +7,7 @@
 {
     <FilterWrapper>
         <div class="flex items-center flex-nowrap justify-between">
-            <FormCheckbox Value="PriceCheckService.PropertyFilters?.ClassFilterApplied ?? false"
+            <FormCheckbox Value="PropertyFilters.ClassFilterApplied"
                           ValueChanged="ClassFilterChanged">
                 <ItemPropertyText Label="@Resources["Item Class"]"
                                   Value="@ClassLabel"/>
@@ -16,10 +17,10 @@
 
     <FilterWrapper>
         <div class="flex items-center flex-nowrap justify-between">
-            <FormCheckbox Value="PriceCheckService.PropertyFilters?.BaseTypeFilterApplied ?? false"
+            <FormCheckbox Value="PropertyFilters.BaseTypeFilterApplied"
                           ValueChanged="TypeFilterChanged">
                 <ItemPropertyText Label="@Resources["Base Type"]"
-                                  Value="@PriceCheckService.Item?.Header.ApiType"/>
+                                  Value="@Item.Header.ApiType"/>
             </FormCheckbox>
         </div>
     </FilterWrapper>
@@ -28,7 +29,7 @@
     {
         <FilterWrapper>
             <div class="flex items-center flex-nowrap justify-between">
-                <FormCheckbox Value="PriceCheckService.PropertyFilters?.RarityFilterApplied ?? false"
+                <FormCheckbox Value="PropertyFilters.RarityFilterApplied"
                               ValueChanged="RarityFilterChanged">
                     <ItemPropertyText Label="@Resources["Rarity"]"
                                       Value="@RarityLabel"/>
@@ -37,17 +38,22 @@
         </FilterWrapper>
     }
 
-    <ItemSeparator Rarity="PriceCheckService.Item?.Header.Rarity ?? Rarity.Unknown"/>
+    <ItemSeparator Rarity="Item.Header.Rarity"/>
 }
 
 @inject IStringLocalizer<TradeResources> Resources
-@inject PriceCheckService PriceCheckService
 @inject IFilterProvider FilterProvider
 @inject IGameLanguageProvider GameLanguageProvider
 
 @code {
 
-    private bool Visible => PriceCheckService.Item?.Header.Rarity is Rarity.Rare or Rarity.Magic or Rarity.Normal && !string.IsNullOrEmpty(PriceCheckService.Item.Header.ItemCategory) && !string.IsNullOrEmpty(ClassLabel);
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public required PropertyFilters PropertyFilters { get; set; }
+
+    private bool Visible => Item.Header.Rarity is Rarity.Rare or Rarity.Magic or Rarity.Normal && !string.IsNullOrEmpty(Item.Header.ItemCategory) && !string.IsNullOrEmpty(ClassLabel);
 
     private string? ClassLabel { get; set; }
 
@@ -57,13 +63,8 @@
     {
         await base.OnParametersSetAsync();
 
-        if (PriceCheckService.Item == null)
-        {
-            return;
-        }
-
-        ClassLabel = FilterProvider.TypeCategoryOptions.FirstOrDefault(x => x.Id == PriceCheckService.Item?.Header.ItemCategory)?.Text;
-        RarityLabel = PriceCheckService.Item.Header.Rarity switch
+        ClassLabel = FilterProvider.TypeCategoryOptions.FirstOrDefault(x => x.Id == Item.Header.ItemCategory)?.Text;
+        RarityLabel = Item.Header.Rarity switch
         {
             Rarity.Currency => GameLanguageProvider.Language.RarityCurrency,
             Rarity.Normal => GameLanguageProvider.Language.RarityNormal,
@@ -76,34 +77,19 @@
 
     private void TypeFilterChanged(bool value)
     {
-        if (PriceCheckService.PropertyFilters == null)
-        {
-            return;
-        }
-
-        PriceCheckService.PropertyFilters.ClassFilterApplied = !value;
-        PriceCheckService.PropertyFilters.BaseTypeFilterApplied = value;
+        PropertyFilters.ClassFilterApplied = !value;
+        PropertyFilters.BaseTypeFilterApplied = value;
     }
 
     private void ClassFilterChanged(bool value)
     {
-        if (PriceCheckService.PropertyFilters == null)
-        {
-            return;
-        }
-
-        PriceCheckService.PropertyFilters.ClassFilterApplied = value;
-        PriceCheckService.PropertyFilters.BaseTypeFilterApplied = !value;
+        PropertyFilters.ClassFilterApplied = value;
+        PropertyFilters.BaseTypeFilterApplied = !value;
     }
 
     private void RarityFilterChanged(bool value)
     {
-        if (PriceCheckService.PropertyFilters == null)
-        {
-            return;
-        }
-
-        PriceCheckService.PropertyFilters.RarityFilterApplied = value;
+        PropertyFilters.RarityFilterApplied = value;
     }
 
 }

@@ -68,9 +68,14 @@ public partial class App
         _ = HandleInterprocessCommunications(e);
 
         AttachErrorHandlers();
+
+        var cloudFlareHandler = ServiceProvider.GetRequiredService<WpfCloudflareHandler>();
+        cloudFlareHandler.Initialize();
+
         interprocessService.StartReceiving();
+
         var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
-        _ = viewLocator.Open("/");
+        viewLocator.Open(SidekickViewType.Standard, "/");
     }
 
     private async Task HandleInterprocessCommunications(StartupEventArgs e)
@@ -96,7 +101,8 @@ public partial class App
         {
             logger.LogDebug("[Startup] Application is already running.");
             var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
-            await viewLocator.CloseAll();
+            viewLocator.Close(SidekickViewType.Standard);
+            viewLocator.Close(SidekickViewType.Overlay);
             var sidekickDialogs = ServiceProvider.GetRequiredService<ISidekickDialogs>();
             await sidekickDialogs.OpenOkModal("Another instance of Sidekick is already running. Make sure to close all instances of Sidekick inside the Task Manager.");
             logger.LogDebug("[Startup] Application is shutting down due to another instance running.");
@@ -158,6 +164,7 @@ public partial class App
         services.AddSidekickInitializableService<IApplicationService, WpfApplicationService>();
         services.AddSingleton<IViewLocator, WpfViewLocator>();
         services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());
+        services.AddSingleton<WpfCloudflareHandler>();
 
         services.AddApexCharts();
 

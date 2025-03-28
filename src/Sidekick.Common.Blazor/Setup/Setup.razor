@@ -1,3 +1,4 @@
+@page "/setup"
 @using System.Text.Json
 @using Sidekick.Apis.Poe
 @using Sidekick.Common.Cache
@@ -7,7 +8,6 @@
 @using Sidekick.Common.Blazor.Settings.General
 @using Sidekick.Common.Exceptions
 
-<AppTitle Title="@Resources["Setup"]"/>
 <LayoutSimple>
     <TopContent>
         <AppLogo/>
@@ -80,6 +80,12 @@
 
     protected override async Task OnInitializedAsync()
     {
+        CurrentView.Initialize(new ViewOptions(){
+            Title = Resources["Setup"],
+            Width = 400,
+            Height = 220,
+        });
+
         try
         {
             var leagues = await LeagueProvider.GetList(false);
@@ -96,7 +102,12 @@
             var parserLanguage = await SettingsService.GetString(SettingKeys.LanguageParser);
             if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId) || NewLeagues || parserLanguage == null)
             {
-                CurrentView.SetSize(height: 360);
+                CurrentView.Initialize(new ViewOptions()
+                {
+                    Title = Resources["Setup"],
+                    Width = 400,
+                    Height = 360,
+                });
                 RequiresSetup = true;
             }
             else
@@ -106,13 +117,23 @@
         }
         catch (SidekickException e)
         {
-            CurrentView.SetSize(height: 360);
+            CurrentView.Initialize(new ViewOptions()
+            {
+                Title = Resources["Setup"],
+                Width = 400,
+                Height = 360,
+            });
             e.Actions = ExceptionActions.ExitApplication;
             throw;
         }
         catch (Exception e)
         {
-            CurrentView.SetSize(height: 360);
+            CurrentView.Initialize(new ViewOptions()
+            {
+                Title = Resources["Setup"],
+                Width = 400,
+                Height = 360,
+            });
             throw new SidekickException(e.Message)
             {
                 Actions = ExceptionActions.ExitApplication,
@@ -140,7 +161,11 @@
         var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
         await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
 
-        CurrentView.SetSize(height: 220);
+        CurrentView.Initialize(new ViewOptions()
+        {
+            Width = 400,
+            Height = 220,
+        });
         NavigationManager.NavigateTo("/initialize");
     }
 

@@ -6,12 +6,14 @@ using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Modules.Maps.Keybinds;
 
-public class OpenMapInfoKeybindHandler(
+public class OpenMapInfoKeybindHandler
+(
     IViewLocator viewLocator,
     IClipboardProvider clipboardProvider,
     IProcessProvider processProvider,
     IKeyboardProvider keyboard,
-    ISettingsService settingsService) : KeybindHandler(settingsService)
+    ISettingsService settingsService
+) : KeybindHandler(settingsService)
 {
     private readonly ISettingsService settingsService = settingsService;
 
@@ -31,7 +33,6 @@ public class OpenMapInfoKeybindHandler(
             return;
         }
 
-        await viewLocator.CloseAllOverlays();
-        await viewLocator.Open($"/map/{text.EncodeBase64Url()}");
+        viewLocator.Open(SidekickViewType.Overlay, $"/map/{text.EncodeBase64Url()}");
     }
 }

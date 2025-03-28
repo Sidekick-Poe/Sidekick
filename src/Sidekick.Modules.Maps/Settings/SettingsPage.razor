@@ -1,12 +1,19 @@
 @page "/settings/map"
 @layout MainWindowLayout
 @using Sidekick.Common.Blazor.Components
-@using Sidekick.Common.Blazor.Settings
-@inherits Sidekick.Common.Ui.Views.SidekickView
 
 <AppContainer>
     <SettingsContent />
 </AppContainer>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject ICurrentView CurrentView
 
+@code{
+
+    protected override void OnInitialized()
+    {
+        CurrentView.Initialize(new ViewOptions());
+        base.OnInitialized();
+    }
+
+}

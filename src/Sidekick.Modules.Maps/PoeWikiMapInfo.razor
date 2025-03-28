@@ -78,8 +78,12 @@ else
 
     private Map? Map { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
+        Map = null;
+        Loading = true;
+        StateHasChanged();
+
         Map = await PoeWikiClient.GetMap(Name ?? Type);
         Loading = false;
     }

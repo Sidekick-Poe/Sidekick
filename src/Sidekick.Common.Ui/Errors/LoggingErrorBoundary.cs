@@ -38,6 +38,6 @@ public class LoggingErrorBoundary : ErrorBoundary
 
         await base.OnErrorAsync(exception);
 
-        CurrentView.SetSize(minHeight: 360);
+        CurrentView.Initialize(new ViewOptions());
     }
 }

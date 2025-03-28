@@ -6,9 +6,7 @@
 @using Sidekick.Common.Exceptions
 @using Velopack
 @using Sidekick.Common.Platform
-@inherits Sidekick.Common.Ui.Views.SidekickView
 
-<AppTitle Title="@Resources["Update"]"/>
 <LayoutSimple>
     <TopContent>
         <AppLogo/>
@@ -81,6 +79,8 @@
 @inject IApplicationService ApplicationService
 @inject IAutoUpdater AutoUpdater
 @inject IBrowserProvider BrowserProvider
+@inject ICurrentView CurrentView
+@inject NavigationManager NavigationManager
 
 @code {
 
@@ -89,8 +89,6 @@
     private bool Updating { get; set; }
 
     private UpdateInfo? UpdateInfo { get; set; }
-
-    public override SidekickViewType ViewType => SidekickViewType.Modal;
 
     private RenderFragment GetNotes(VelopackAsset asset) => @<FormFieldset Legend="@($"Version {asset.Version}")">
                                                                 <div
@@ -101,6 +99,12 @@
 
     protected override async Task OnInitializedAsync()
     {
+        CurrentView.Initialize(new ViewOptions()
+        {
+            Title = Resources["Update"],
+            Width = 400,
+            Height = 220,
+        });
         await base.OnInitializedAsync();
 
         if (Debugger.IsAttached)
@@ -121,7 +125,12 @@
             }
             else
             {
-                CurrentView.SetSize(height: 500);
+                CurrentView.Initialize(new ViewOptions()
+                {
+                    Title = Resources["Update"],
+                    Width = 400,
+                    Height = 500,
+                });
             }
         }
         else
@@ -157,7 +166,9 @@
         catch (Exception e)
         {
             Logger.LogError(e, e.Message);
-            throw new SidekickException("Could not apply the update successfully.");
+            Error = true;
+            Updating = false;
+            StateHasChanged();
         }
     }
 

@@ -170,9 +170,16 @@ public class ProcessProvider
 
         Task.Run(async () =>
         {
-            if (!IsUserRunAsAdmin() && IsPathOfExileRunAsAdmin())
+            try
             {
-                await RestartAsAdmin();
+                if (!IsUserRunAsAdmin() && IsPathOfExileRunAsAdmin())
+                {
+                    await RestartAsAdmin();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogWarning(ex, "[ProcessProvider] Exception occurred during admin check.");
             }
         });
 

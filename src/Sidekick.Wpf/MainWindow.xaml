@@ -9,9 +9,12 @@
     Title="Sidekick"
     Width="0"
     Height="0"
+    Opacity="0"
+    Topmost="False"
+    ShowInTaskbar="False"
     AllowsTransparency="True"
     Background="Transparent"
-    ResizeMode="CanResize"
+    ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
@@ -48,7 +51,9 @@
             Services="{DynamicResource services}"
             Visibility="Hidden">
             <blazor:BlazorWebView.RootComponents>
-                <blazor:RootComponent ComponentType="{x:Type local:SidekickBlazorWrapper}" Selector="#app" />
+                <blazor:RootComponent x:Name="RootComponent"
+                                      ComponentType="{x:Type local:SidekickBlazorWrapper}"
+                                      Selector="#app" />
             </blazor:BlazorWebView.RootComponents>
         </blazor:BlazorWebView>
     </Grid>
