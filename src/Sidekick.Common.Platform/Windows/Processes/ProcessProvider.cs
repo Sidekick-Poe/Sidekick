@@ -86,6 +86,12 @@ public class ProcessProvider
             // Run GetForeGroundWindows and get active window information
             // assign them into handle pointer variable
             var hWnd = User32.GetForegroundWindow();
+            if (hWnd == IntPtr.Zero)
+            {
+                logger.LogWarning("GetForegroundWindow returned a null handle.");
+                return null;
+            }
+
             if (User32.GetWindowText(hWnd, ss, NChar) > 0)
             {
                 PreviousFocusedWindow = ss.ToString();
@@ -283,8 +289,6 @@ public class ProcessProvider
                 }
             }
 
-            User32.CloseHandle(ph);
-
             return result;
         }
         catch (Exception e)
@@ -295,7 +299,10 @@ public class ProcessProvider
         }
         finally
         {
-            User32.CloseHandle(ph);
+            if (ph != IntPtr.Zero)
+            {
+                User32.CloseHandle(ph);
+            }
         }
     }
 
