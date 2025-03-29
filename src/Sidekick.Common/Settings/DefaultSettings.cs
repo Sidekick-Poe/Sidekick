@@ -10,6 +10,8 @@ public static class DefaultSettings
 
     public static bool OpenHomeOnLaunch => true;
 
+    public static string Zoom => "1";
+
     public static bool UseInvariantTradeResults => false;
 
     public static string KeyClose => "Space";

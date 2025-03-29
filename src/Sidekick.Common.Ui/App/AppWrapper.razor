@@ -1,7 +1,9 @@
 @using Microsoft.AspNetCore.Components.Sections
+@using Sidekick.Common.Settings
 
 <ErrorFullScreenBoundary>
-    <div class="font-sans w-full h-screen overflow-y-auto overflow-x-hidden dark:bg-stone-900 text-white text-base">
+    <div
+        class="font-sans w-full h-[calc(var(--vh))] overflow-y-auto overflow-x-hidden dark:bg-stone-900 text-white text-base">
         @ChildContent
     </div>
 
@@ -10,9 +12,61 @@
     </div>
 </ErrorFullScreenBoundary>
 
+@inject IJSRuntime JsRuntime
+@inject ISettingsService SettingsService
+@implements IDisposable
+
 @code {
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    protected override void OnInitialized()
+    {
+        SettingsService.OnSettingsChanged += SettingsServiceOnOnSettingsChanged;
+        base.OnInitialized();
+    }
+
+    private void SettingsServiceOnOnSettingsChanged()
+    {
+        InvokeAsync(SetZoom);
+    }
+
+    /* TODO
+1. **Window Resizing**: Ensure the script updates the `--vh` variable dynamically when the viewport size changes:
+``` javascript
+   window.addEventListener("resize", () => {
+       const vh = window.innerHeight * zoom; // Use the current zoom value
+       document.documentElement.style.setProperty("--vh", `${vh}px`);
+   });
+```
+2. **Performance**: Continuous updates via JavaScript might degrade performance on very frequent `resize` events. Consider debouncing for optimal performance.
+     */
+
+    private async Task SetZoom()
+    {
+        var zoom = await SettingsService.GetString(SettingKeys.Zoom);
+        await JsRuntime.InvokeVoidAsync("eval",
+                                        $@"
+                                            document.body.style.zoom = {zoom};
+                                            // Dynamically calculate true viewport height and set it as a custom property
+                                            const vh = window.innerHeight * {zoom};
+                                            document.documentElement.style.setProperty('--vh', `${{vh}}px`);");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await SetZoom();
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= SettingsServiceOnOnSettingsChanged;
+    }
 
 }

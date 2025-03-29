@@ -8,6 +8,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --vh: 100vh; /* Fallback */
+}
+
 ::-webkit-scrollbar {
     width: 12px;
 }

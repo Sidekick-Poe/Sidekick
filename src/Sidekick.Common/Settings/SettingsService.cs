@@ -205,6 +205,7 @@ public class SettingsService(
 
             dbContext.Settings.Remove(dbSetting);
             await dbContext.SaveChangesAsync();
+            OnSettingsChanged?.Invoke();
             return;
         }
 
@@ -223,7 +224,6 @@ public class SettingsService(
         }
 
         await dbContext.SaveChangesAsync();
-
         OnSettingsChanged?.Invoke();
     }
 
