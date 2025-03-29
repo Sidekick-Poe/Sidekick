@@ -11,16 +11,16 @@
         <InterfaceLanguageEditor/>
     </FormFieldset>
 
-    @if (ApplicationService.SupportsKeybinds)
-    {
-        <FormFieldset Legend="@Resources["Other_Settings"]">
+    <FormFieldset Legend="@Resources["Other_Settings"]">
+        @if (ApplicationService.SupportsKeybinds)
+        {
             <RetainClipboardEditor/>
             <EscapeClosesOverlaysEditor/>
             <SaveWindowPositionsEditor/>
             <KeyFindItemsEditor/>
-            <ZoomEditor/>
-        </FormFieldset>
-    }
+        }
+        <ZoomEditor/>
+    </FormFieldset>
 </AppContainer>
 
 @inject IStringLocalizer<SettingsResources> Resources
