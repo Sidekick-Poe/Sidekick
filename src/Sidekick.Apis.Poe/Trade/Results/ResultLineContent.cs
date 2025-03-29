@@ -7,6 +7,8 @@ public class ResultLineContent
 {
     public string? Name { get; set; }
 
+    public string? Icon { get; set; }
+
     [JsonPropertyName("values")]
     public List<List<JsonElement>> Values { get; set; } = new();
 
