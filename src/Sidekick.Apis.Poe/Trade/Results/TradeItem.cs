@@ -46,51 +46,54 @@ public class TradeItem
 
     public string? Note { get; set; }
 
-    public List<ResultLineContent> Requirements { get; set; } = new();
+    public List<ResultLineContent> Requirements { get; set; } = [];
 
-    public List<ResultLineContent> Properties { get; set; } = new();
+    public List<ResultLineContent> Properties { get; set; } = [];
 
-    public List<ResultLineContent> AdditionalProperties { get; set; } = new();
+    public List<ResultLineContent> AdditionalProperties { get; set; } = [];
 
     [JsonPropertyName("implicitMods")]
-    public List<string> ImplicitMods { get; set; } = new();
+    public List<string> ImplicitMods { get; set; } = [];
 
     [JsonPropertyName("craftedMods")]
-    public List<string> CraftedMods { get; set; } = new();
+    public List<string> CraftedMods { get; set; } = [];
 
     [JsonPropertyName("explicitMods")]
-    public List<string> ExplicitMods { get; set; } = new();
+    public List<string> ExplicitMods { get; set; } = [];
 
     [JsonPropertyName("utilityMods")]
-    public List<string> UtilityMods { get; set; } = new();
+    public List<string> UtilityMods { get; set; } = [];
 
     [JsonPropertyName("pseudoMods")]
-    public List<string> PseudoMods { get; set; } = new();
+    public List<string> PseudoMods { get; set; } = [];
 
     [JsonPropertyName("enchantMods")]
-    public List<string> EnchantMods { get; set; } = new();
+    public List<string> EnchantMods { get; set; } = [];
 
     [JsonPropertyName("runeMods")]
-    public List<string> RuneMods { get; set; } = new();
+    public List<string> RuneMods { get; set; } = [];
 
     [JsonPropertyName("fracturedMods")]
-    public List<string> FracturedMods { get; set; } = new();
+    public List<string> FracturedMods { get; set; } = [];
 
     [JsonPropertyName("scourgeMods")]
-    public List<string> ScourgeMods { get; set; } = new();
+    public List<string> ScourgeMods { get; set; } = [];
 
     [JsonPropertyName("sanctumMods")]
-    public List<string> SanctumMods { get; set; } = new();
+    public List<string> SanctumMods { get; set; } = [];
 
-    public List<string> GemSockets { get; set; } = new();
+    public List<string> GemSockets { get; set; } = [];
 
-    public List<ResultSocket> Sockets { get; set; } = new();
+    public List<ResultSocket> Sockets { get; set; } = [];
 
     [JsonPropertyName("extended")]
     [JsonConverter(typeof(ObjectOrArrayConverter<Extended>))]
     public Extended? Extended { get; set; }
 
-    public List<LogbookMod> LogbookMods { get; set; } = new();
+    public List<LogbookMod> LogbookMods { get; set; } = [];
+
+    [JsonPropertyName("grantedSkills")]
+    public List<ResultLineContent> GrantedSkills { get; set; } = [];
 
     public bool HasModifiers => !Identified || ImplicitMods.Count > 0 || CraftedMods.Count > 0 || ExplicitMods.Count > 0 || UtilityMods.Count > 0 || PseudoMods.Count > 0 || EnchantMods.Count > 0 || RuneMods.Count > 0 || FracturedMods.Count > 0 || ScourgeMods.Count > 0 || SanctumMods.Count > 0 || LogbookMods.Count > 0;
 }

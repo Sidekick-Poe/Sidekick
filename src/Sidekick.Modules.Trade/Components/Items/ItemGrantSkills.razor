@@ -1,0 +1,19 @@
+@using Sidekick.Apis.Poe.Trade.Results
+@using Sidekick.Modules.Trade.Localization
+
+@if (Result.Item.GrantedSkills.Count != 0)
+{
+    <ItemSeparator Rarity="Result.Item.Rarity"/>
+    <ItemLineContentsComponent Result="Result" LineContents="Result.Item.GrantedSkills"/>
+}
+
+@inject IStringLocalizer<TradeResources> Resources
+
+@code {
+
+    [Parameter]
+    public required TradeResult Result { get; set; }
+
+    protected override bool ShouldRender() => false;
+
+}

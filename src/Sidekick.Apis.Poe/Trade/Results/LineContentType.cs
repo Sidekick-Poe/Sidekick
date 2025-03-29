@@ -12,4 +12,5 @@ public enum LineContentType
     Unique = 10,
     BlockedIncursionRoom = 15,
     GrayItalic = 24,
+    Modifier = 25,
 }
