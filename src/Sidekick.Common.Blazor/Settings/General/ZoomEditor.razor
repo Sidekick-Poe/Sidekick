@@ -1,0 +1,71 @@
+@using Sidekick.Common.Settings
+
+
+<div class="flex items-start gap-2">
+    <div class="grow">
+        <FormSelect Label="@Resources["Zoom"]"
+                    Value="@Zoom"
+                    ValueChanged="ZoomChanged"
+                    Options="Options"/>
+    </div>
+    <div class="mt-9">
+        <TooltipHint Text="@Resources["Zoom_Hint"]"></TooltipHint>
+    </div>
+</div>
+
+@inject IStringLocalizer<SettingsResources> Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private string? Zoom { get; set; }
+
+    private List<SelectOption> Options { get; set; } =
+    [
+        new SelectOption()
+        {
+            Label = "75%",
+            Value = "0.75",
+        },
+        new SelectOption()
+        {
+            Label = "100%",
+            Value = "1",
+        },
+        new SelectOption()
+        {
+            Label = "125%",
+            Value = "1.25",
+        },
+        new SelectOption()
+        {
+            Label = "150%",
+            Value = "1.5",
+        },
+        new SelectOption()
+        {
+            Label = "175%",
+            Value = "1.75",
+        },
+        new SelectOption()
+        {
+            Label = "200%",
+            Value = "2",
+        },
+    ];
+
+    protected override async Task OnInitializedAsync()
+    {
+        Zoom = await SettingsService.GetString(SettingKeys.Zoom);
+        await base.OnInitializedAsync();
+    }
+
+    private async Task ZoomChanged(string? value)
+    {
+        Zoom = value;
+        await SettingsService.Set(SettingKeys.Zoom, value);
+    }
+
+}
+
+

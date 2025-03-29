@@ -105,7 +105,10 @@ public partial class MainWindow
                 ResizeMode = ResizeMode.NoResize;
             }
 
-            _ = NormalizeView();
+            if (WindowState == WindowState.Normal)
+            {
+                _ = NormalizeView();
+            }
 
             if (ViewType != SidekickViewType.Overlay)
             {
@@ -151,6 +154,8 @@ public partial class MainWindow
         var settingsService = Scope.ServiceProvider.GetRequiredService<ISettingsService>();
         var preferences = await viewPreferenceService.Get(ViewType.ToString());
         var saveWindowPositions = await settingsService.GetBool(SettingKeys.SaveWindowPositions);
+        var zoomString = await settingsService.GetString(SettingKeys.Zoom);
+        if (!double.TryParse(zoomString, out var zoom)) zoom = 1;
 
         Dispatcher.Invoke(() =>
         {
@@ -164,10 +169,10 @@ public partial class MainWindow
 
                 WindowState = WindowState.Normal;
 
-                MinHeight = View.Options.Height.Value + 20;
+                MinHeight = (View.Options.Height.Value + 20) * zoom;
                 Height = MinHeight;
 
-                MinWidth = View.Options.Width.Value + 20;
+                MinWidth = (View.Options.Width.Value + 20) * zoom;
                 Width = MinWidth;
 
                 CenterHelper.Center(this);
@@ -187,15 +192,15 @@ public partial class MainWindow
 
             MinHeight = ViewType switch
             {
-                SidekickViewType.Modal => 220,
-                _ => 600,
+                SidekickViewType.Modal => 220 * zoom,
+                _ => 600 * zoom,
             };
             Height = MinHeight;
 
             MinWidth = ViewType switch
             {
-                SidekickViewType.Modal => 400,
-                _ => 768,
+                SidekickViewType.Modal => 400 * zoom,
+                _ => 768 * zoom,
             };
             Width = MinWidth;
 
