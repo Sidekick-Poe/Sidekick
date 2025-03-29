@@ -56,7 +56,13 @@
             });
         }
 
-        var text = line.Name;
+        var text = string.Empty;
+        if (!string.IsNullOrEmpty(line.Icon))
+        {
+            text += $"<img src=\"{line.Icon}\" class=\"w-4 h-4 inline-block leading-none mr-1\" />";
+        }
+
+        text += line.Name;
 
         switch (line.DisplayMode)
         {
@@ -101,6 +107,12 @@
         {
             if (value.Value == null)
             {
+                continue;
+            }
+
+            if (value.Type == LineContentType.Modifier)
+            {
+                text = $"<span class=\"{LineContentType.Modifier.GetColour()}\">{text}</span>";
                 continue;
             }
 
