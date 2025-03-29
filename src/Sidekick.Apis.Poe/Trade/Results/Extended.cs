@@ -11,28 +11,37 @@ public class Extended
     public Hashes? Hashes { get; set; }
 
     [JsonPropertyName("dps")]
-    public double DamagePerSecond { get; set; }
+    public double? DamagePerSecondAtMax { get; set; }
+
+    [JsonPropertyName("dps_aug")]
+    public bool DamagePerSecondAugmented { get; set; }
 
     [JsonPropertyName("edps")]
-    public double ElementalDps { get; set; }
+    public double? ElementalDpsAtMax { get; set; }
+
+    [JsonPropertyName("edps_aug")]
+    public bool ElementalDpsAugmented { get; set; }
 
     [JsonPropertyName("pdps")]
-    public double PhysicalDps { get; set; }
+    public double? PhysicalDpsAtMax { get; set; }
+
+    [JsonPropertyName("pdps_aug")]
+    public bool PhysicalDpsAugmented { get; set; }
 
     [JsonPropertyName("ar")]
-    public int ArmourAtMax { get; set; }
+    public int? ArmourAtMax { get; set; }
 
     [JsonPropertyName("ar_aug")]
     public bool ArmourAugmented { get; set; }
 
     [JsonPropertyName("ev")]
-    public int EvasionAtMax { get; set; }
+    public int? EvasionAtMax { get; set; }
 
     [JsonPropertyName("ev_aug")]
     public bool EvasionAugmented { get; set; }
 
     [JsonPropertyName("es")]
-    public int EnergyShieldAtMax { get; set; }
+    public int? EnergyShieldAtMax { get; set; }
 
     [JsonPropertyName("es_aug")]
     public bool EnergyShieldAugmented { get; set; }

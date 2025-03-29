@@ -3,6 +3,7 @@
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Prices
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
+@using Sidekick.Modules.Trade.Components
 
 @if (!IsCompact && (Result.Item.HasModifiers || Item.Header.Category == Category.Gem))
 {
@@ -39,6 +40,8 @@
                     <TextCaption
                         Class="font-caps text-[#AA9E82] text-center leading-none py-[1px]">@Result.Item.Note</TextCaption>
                 }
+
+                <ExtendedAtMax Result="Result"/>
             </div>
             <div class="w-1/4 min-w-[135px] p-2">
                 <div class="flex flex-col w-full items-center">
