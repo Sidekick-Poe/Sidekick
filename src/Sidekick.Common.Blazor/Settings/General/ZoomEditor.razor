@@ -1,9 +1,17 @@
 @using Sidekick.Common.Settings
 
-<FormSelect Label="@Resources["Zoom"]"
-            Value="@Zoom"
-            ValueChanged="ZoomChanged"
-            Options="Options"/>
+
+<div class="flex items-start gap-2">
+    <div class="grow">
+        <FormSelect Label="@Resources["Zoom"]"
+                    Value="@Zoom"
+                    ValueChanged="ZoomChanged"
+                    Options="Options"/>
+    </div>
+    <div class="mt-9">
+        <TooltipHint Text="@Resources["Zoom_Hint"]"></TooltipHint>
+    </div>
+</div>
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService

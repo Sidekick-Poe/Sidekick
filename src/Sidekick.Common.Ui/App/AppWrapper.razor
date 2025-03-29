@@ -50,8 +50,8 @@
                                         $@"
                                             document.body.style.zoom = {zoom};
                                             // Dynamically calculate true viewport height and set it as a custom property
-                                            const vh = window.innerHeight * {zoom};
-                                            document.documentElement.style.setProperty('--vh', `${{vh}}px`);");
+                                            // const vh = window.innerHeight * {zoom};
+                                            // document.documentElement.style.setProperty('--vh', `${{vh}}px`);");
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
