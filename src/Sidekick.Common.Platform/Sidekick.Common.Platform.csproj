@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SharpHook" Version="5.3.8" />
+    <PackageReference Include="SharpHook" Version="5.3.9" />
     <PackageReference Include="TextCopy" Version="6.2.1" />
     <PackageReference Include="System.Security.Principal.Windows" Version="5.0.0" />
   </ItemGroup>
