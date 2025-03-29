@@ -105,7 +105,10 @@ public partial class MainWindow
                 ResizeMode = ResizeMode.NoResize;
             }
 
-            _ = NormalizeView();
+            if (WindowState == WindowState.Normal)
+            {
+                _ = NormalizeView();
+            }
 
             if (ViewType != SidekickViewType.Overlay)
             {

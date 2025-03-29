@@ -3,8 +3,7 @@
 
 <ErrorFullScreenBoundary>
     <div
-        class="font-sans w-full h-[calc(var(--vh))] overflow-y-auto overflow-x-hidden dark:bg-stone-900 text-white text-base"
-        style="@Style">
+        class="font-sans w-full h-[calc(var(--sidekick-vh))] overflow-y-auto overflow-x-hidden dark:bg-stone-900 text-white text-base [zoom:var(--sidekick-zoom)]">
         @ChildContent
     </div>
 
@@ -26,8 +25,6 @@
 
     private IJSObjectReference? ZoomHandler { get; set; }
 
-    private string? Style { get; set; }
-
     protected override void OnInitialized()
     {
         SettingsService.OnSettingsChanged += SettingsServiceOnOnSettingsChanged;
@@ -41,11 +38,9 @@
 
     public async Task UpdateZoom()
     {
-        var zoom = await SettingsService.GetString(SettingKeys.Zoom);
-        Style = $"zoom: {zoom};";
-        StateHasChanged();
         if (ZoomHandler != null)
         {
+            var zoom = await SettingsService.GetString(SettingKeys.Zoom);
             await ZoomHandler.InvokeVoidAsync("update", zoom);
         }
     }

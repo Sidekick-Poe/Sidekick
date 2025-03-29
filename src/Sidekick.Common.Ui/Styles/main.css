@@ -9,7 +9,7 @@
 @tailwind utilities;
 
 :root {
-    --vh: 100vh; /* Fallback */
+    --sidekick-vh: 100vh; /* Fallback */
 }
 
 ::-webkit-scrollbar {
