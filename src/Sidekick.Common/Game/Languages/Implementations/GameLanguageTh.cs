@@ -1,6 +1,6 @@
 namespace Sidekick.Common.Game.Languages.Implementations;
 
-[GameLanguage("Thai", "th")]
+[GameLanguage("Thai (Unstable)", "th")]
 public class GameLanguageTh : IGameLanguage
 {
     public string PoeTradeBaseUrl => "https://th.pathofexile.com/trade/";
