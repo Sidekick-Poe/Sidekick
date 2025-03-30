@@ -31,7 +31,7 @@ Adds 8 to 13 Physical Damage to Attacks
 Corrupted
 ");
 
-        Assert.Equal("accessory.ring", actual.Header.ItemCategory);
+        Assert.Equal("accessory.ring", actual.Header.ApiItemCategory);
         Assert.Equal(Category.Accessory, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Ruby Ring", actual.Header.ApiType);

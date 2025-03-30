@@ -240,7 +240,7 @@ And tore out her heart.
 Note: ~price 40 chaos
 ");
 
-        Assert.Equal("weapon.rod", actual.Header.ItemCategory);
+        Assert.Equal("weapon.rod", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Unique, actual.Header.Rarity);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal("Reefbane", actual.Header.ApiName);
@@ -273,7 +273,7 @@ Unidentified
 --------
 Hunter Item");
 
-        Assert.Equal("weapon.onemace", actual.Header.ItemCategory);
+        Assert.Equal("weapon.onemace", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal("Ornate Mace", actual.Header.ApiType);
@@ -316,7 +316,7 @@ Trigger a Socketed Spell when you Use a Skill, with a 8 second Cooldown (crafted
 Spells Triggered this way have 150% more Cost (crafted)
 ");
 
-        Assert.Equal("weapon.onesword", actual.Header.ItemCategory);
+        Assert.Equal("weapon.onesword", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal("Apex Rapier", actual.Header.ApiType);

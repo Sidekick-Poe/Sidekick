@@ -30,7 +30,7 @@ Aspect of the Hellion
 Right-click to add this to your bestiary.
 ");
 
-        Assert.Equal("currency", actual.Header.ItemCategory);
+        Assert.Equal("currency", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal(Category.ItemisedMonster, actual.Header.Category);
         Assert.Null(actual.Header.ApiName);
@@ -84,7 +84,7 @@ Summons Apes from Trees
 Right-click to add this to your bestiary.
 ");
 
-        Assert.Equal("currency", actual.Header.ItemCategory);
+        Assert.Equal("currency", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal(Category.ItemisedMonster, actual.Header.Category);
         Assert.Equal("Farric Chieftain", actual.Header.ApiType);

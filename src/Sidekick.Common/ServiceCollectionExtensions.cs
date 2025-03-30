@@ -43,7 +43,7 @@ public static class ServiceCollectionExtensions
         var logSink = new LogSink();
         Log.Logger = new LoggerConfiguration()
                      .MinimumLevel.Debug()
-                     .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                     .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                      .Enrich.FromLogContext()
                      .WriteTo.File(
                          path: SidekickPaths.GetDataFilePath("Sidekick_log.log"),

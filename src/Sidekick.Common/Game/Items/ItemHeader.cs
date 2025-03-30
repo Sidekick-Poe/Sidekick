@@ -6,11 +6,15 @@ public class ItemHeader
 
     public string? Type { get; set; }
 
-    public string? ItemCategory { get; set; }
-
     public Rarity Rarity { get; set; } = Rarity.Unknown;
 
+    public Category Category { get; init; } = Category.Unknown;
+
+    public GameType Game { get; init; } = GameType.Unknown;
+
     public string? ApiItemId { get; init; }
+
+    public string? ApiItemCategory { get; set; }
 
     public string? ApiName { get; init; }
 
@@ -19,10 +23,6 @@ public class ItemHeader
     public string? ApiDiscriminator { get; init; }
 
     public string? ApiText { get; init; }
-
-    public Category Category { get; init; } = Category.Unknown;
-
-    public GameType Game { get; init; } = GameType.Unknown;
 
     /// <inheritdoc />
     public override string? ToString()

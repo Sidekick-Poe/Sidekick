@@ -33,7 +33,7 @@ Shift click to unstack.
 Note: ~price 1 fusing
 ");
 
-        Assert.Equal("currency", actual.Header.ItemCategory);
+        Assert.Equal("currency", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Currency, actual.Header.Rarity);
         Assert.Equal(Category.Currency, actual.Header.Category);
         Assert.Equal("Weeping Essence of Anger", actual.Header.ApiType);

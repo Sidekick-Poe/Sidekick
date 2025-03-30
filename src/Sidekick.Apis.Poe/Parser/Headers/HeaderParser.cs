@@ -233,7 +233,7 @@ public class HeaderParser
         var header = apiItem?.ToHeader() ?? new ItemHeader();
         header.Name = name;
         header.Type = type;
-        header.ItemCategory = ParseItemCategory(parsingItem);
+        header.ApiItemCategory = ParseItemCategory(parsingItem);
         if (header.Rarity == Rarity.Unknown) header.Rarity = rarity;
 
         parsingItem.Blocks[0].Parsed = true;

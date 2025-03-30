@@ -101,7 +101,7 @@ Unbridled, overwhelming violence.""
 Note: ~price 2 chaos
 ");
 
-        Assert.Equal("armour.chest", actual.Header.ItemCategory);
+        Assert.Equal("armour.chest", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Unique, actual.Header.Rarity);
         Assert.Equal(Category.Armour, actual.Header.Category);
         Assert.Equal("Daresso's Defiance", actual.Header.ApiName);
