@@ -31,7 +31,7 @@ Item Level: 69
 Can only be equipped to Heist members.
 ");
 
-        Assert.Equal("heistequipment.heisttool", actual.Header.ItemCategory);
+        Assert.Equal("heistequipment.heisttool", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Magic, actual.Header.Rarity);
         Assert.Equal(Category.HeistEquipment, actual.Header.Category);
         Assert.Equal("Basic Disguise Kit", actual.Header.ApiType);
@@ -56,7 +56,7 @@ Item Level: 67
 Can only be equipped to Heist members.
 ");
 
-        Assert.Equal("heistequipment.heistutility", actual.Header.ItemCategory);
+        Assert.Equal("heistequipment.heistutility", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Normal, actual.Header.Rarity);
         Assert.Equal(Category.HeistEquipment, actual.Header.Category);
         Assert.Equal("Torn Cloak", actual.Header.ApiType);
@@ -81,7 +81,7 @@ Item Level: 73
 Can only be equipped to Heist members.
 ");
 
-        Assert.Equal("heistequipment.heistreward", actual.Header.ItemCategory);
+        Assert.Equal("heistequipment.heistreward", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Normal, actual.Header.Rarity);
         Assert.Equal(Category.HeistEquipment, actual.Header.Category);
         Assert.Equal("Silver Brooch", actual.Header.ApiType);
@@ -113,7 +113,7 @@ Grants Level 10 Anger Skill
 Can only be equipped to Heist members.
 ");
 
-        Assert.Equal("heistequipment.heistweapon", actual.Header.ItemCategory);
+        Assert.Equal("heistequipment.heistweapon", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal(Category.HeistEquipment, actual.Header.Category);
         Assert.Equal("Rough Sharpening Stone", actual.Header.ApiType);
@@ -133,7 +133,7 @@ Such a gift will set me apart from all other suitors.""
 Can be exchanged with Faustus, the Fence in The Rogue Harbour
 ");
 
-        Assert.Equal("currency.heistobjective", actual.Header.ItemCategory);
+        Assert.Equal("currency.heistobjective", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Currency, actual.Header.Rarity);
         Assert.Equal(Category.Currency, actual.Header.Category);
         Assert.Equal("Golden Napuatzi Idol", actual.Header.ApiType);
@@ -161,7 +161,7 @@ You must find the sculpture The Catch in a Smuggler's Den or Underbelly Blueprin
 Corrupted
 ");
 
-        Assert.Equal("accessory.trinket", actual.Header.ItemCategory);
+        Assert.Equal("accessory.trinket", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal(Category.Accessory, actual.Header.Category);
         Assert.Equal("Thief's Trinket", actual.Header.ApiType);

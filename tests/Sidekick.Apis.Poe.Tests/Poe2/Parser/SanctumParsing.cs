@@ -26,7 +26,7 @@ Place this item on the Relic Altar at the start of the Trial of the Sekhemas
 
         Assert.Equal(Category.Sanctum, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Header.Rarity);
-        Assert.Equal("sanctum.relic", actual.Header.ItemCategory);
+        Assert.Equal("sanctum.relic", actual.Header.ApiItemCategory);
         Assert.Equal("Urn Relic", actual.Header.ApiType);
         Assert.Null(actual.Header.ApiName);
 
@@ -51,7 +51,7 @@ Place this item on the Relic Altar at the start of the Trial of the Sekhemas");
 
         Assert.Equal(Category.Sanctum, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Header.Rarity);
-        Assert.Equal("sanctum.relic", actual.Header.ItemCategory);
+        Assert.Equal("sanctum.relic", actual.Header.ApiItemCategory);
         Assert.Equal("Urn Relic", actual.Header.ApiType);
         Assert.Null(actual.Header.ApiName);
         Assert.Equal(80, actual.Properties.ItemLevel);

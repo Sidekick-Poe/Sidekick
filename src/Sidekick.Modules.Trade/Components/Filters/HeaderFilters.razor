@@ -53,7 +53,7 @@
     [Parameter]
     public required PropertyFilters PropertyFilters { get; set; }
 
-    private bool Visible => Item.Header.Rarity is Rarity.Rare or Rarity.Magic or Rarity.Normal && !string.IsNullOrEmpty(Item.Header.ItemCategory) && !string.IsNullOrEmpty(ClassLabel);
+    private bool Visible => Item.Header.Rarity is Rarity.Rare or Rarity.Magic or Rarity.Normal && !string.IsNullOrEmpty(Item.Header.ApiItemCategory) && !string.IsNullOrEmpty(ClassLabel);
 
     private string? ClassLabel { get; set; }
 
@@ -63,7 +63,7 @@
     {
         await base.OnParametersSetAsync();
 
-        ClassLabel = FilterProvider.TypeCategoryOptions.FirstOrDefault(x => x.Id == Item.Header.ItemCategory)?.Text;
+        ClassLabel = FilterProvider.TypeCategoryOptions.FirstOrDefault(x => x.Id == Item.Header.ApiItemCategory)?.Text;
         RarityLabel = Item.Header.Rarity switch
         {
             Rarity.Currency => GameLanguageProvider.Language.RarityCurrency,

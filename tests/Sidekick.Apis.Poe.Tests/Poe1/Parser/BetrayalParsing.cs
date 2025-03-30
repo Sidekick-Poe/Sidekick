@@ -25,7 +25,7 @@ Can be used in a personal Map Device to add modifiers to a Map.
 Note: ~b/o .50 chaos
 ");
 
-        Assert.Equal("map.fragment", actual.Header.ItemCategory);
+        Assert.Equal("map.fragment", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Normal, actual.Header.Rarity);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal("Rusted Reliquary Scarab", actual.Header.ApiType);

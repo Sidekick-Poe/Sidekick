@@ -68,7 +68,7 @@ public class TradeSearchService
             }
             else if (propertyFilters.ClassFilterApplied)
             {
-                query.Filters.GetOrCreateTypeFilters().Filters.Category = GetCategoryFilter(item.Header.ItemCategory);
+                query.Filters.GetOrCreateTypeFilters().Filters.Category = GetCategoryFilter(item.Header.ApiItemCategory);
             }
 
             if (item.Header.Category == Category.ItemisedMonster && !string.IsNullOrEmpty(itemApiNameToUse))

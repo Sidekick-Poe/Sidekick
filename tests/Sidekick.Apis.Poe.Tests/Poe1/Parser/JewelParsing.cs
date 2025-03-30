@@ -94,7 +94,7 @@ Item Level: 85
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-        Assert.Equal("jewel", actual.Header.ItemCategory);
+        Assert.Equal("jewel", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal(Category.Jewel, actual.Header.Category);
         Assert.Equal("Viridian Jewel", actual.Header.ApiType);
@@ -126,7 +126,7 @@ Faith given under false pretenses still carries the same power.
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-        Assert.Equal("jewel", actual.Header.ItemCategory);
+        Assert.Equal("jewel", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Unique, actual.Header.Rarity);
         Assert.Equal(Category.Jewel, actual.Header.Category);
         Assert.Equal("Crimson Jewel", actual.Header.ApiType);
@@ -162,7 +162,7 @@ and one by one, they became a part of it.
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-        Assert.Equal("jewel", actual.Header.ItemCategory);
+        Assert.Equal("jewel", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Unique, actual.Header.Rarity);
         Assert.Equal(Category.Jewel, actual.Header.Category);
         Assert.Equal("Prismatic Jewel", actual.Header.ApiType);

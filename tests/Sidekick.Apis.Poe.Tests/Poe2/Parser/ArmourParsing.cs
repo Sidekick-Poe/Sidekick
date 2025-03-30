@@ -44,7 +44,7 @@ Corrupted
 
         Assert.Equal(Category.Armour, actual.Header.Category);
         Assert.Equal(Rarity.Unique, actual.Header.Rarity);
-        Assert.Equal("armour.boots", actual.Header.ItemCategory);
+        Assert.Equal("armour.boots", actual.Header.ApiItemCategory);
         Assert.Equal("Steeltoe Boots", actual.Header.ApiType);
         Assert.Equal("Thunderstep", actual.Header.ApiName);
 

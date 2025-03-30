@@ -27,7 +27,7 @@ Can be used in a completed Tower on your Atlas to influence surrounding Maps. Ta
 
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Header.Rarity);
-        Assert.Equal("map.tablet", actual.Header.ItemCategory);
+        Assert.Equal("map.tablet", actual.Header.ApiItemCategory);
         Assert.Equal("Precursor Tablet", actual.Header.ApiType);
         Assert.Null(actual.Header.ApiName);
 

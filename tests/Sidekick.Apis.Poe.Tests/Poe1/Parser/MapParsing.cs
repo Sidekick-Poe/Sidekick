@@ -23,7 +23,7 @@ Item Level: 84
 Travel to this Map by using it in a personal Map Device. Maps can only be used once.
 ");
 
-        Assert.Equal("map", actual.Header.ItemCategory);
+        Assert.Equal("map", actual.Header.ApiItemCategory);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal(Rarity.Normal, actual.Header.Rarity);
         Assert.Equal("Arcade Map", actual.Header.ApiType);
@@ -60,7 +60,7 @@ Will they grant me strength or doom?
 Travel to this Map by using it in a personal Map Device. Maps can only be used once.
 ");
 
-        Assert.Equal("map", actual.Header.ItemCategory);
+        Assert.Equal("map", actual.Header.ApiItemCategory);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal(Rarity.Unique, actual.Header.Rarity);
         Assert.Equal("Maelström of Chaos", actual.Header.ApiName);

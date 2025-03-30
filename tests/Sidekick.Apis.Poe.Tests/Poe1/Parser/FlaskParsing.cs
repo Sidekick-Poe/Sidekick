@@ -31,7 +31,7 @@ Grants Immunity to Corrupted Blood for 4 seconds if used while affected by Corru
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ");
 
-        Assert.Equal("flask", actual.Header.ItemCategory);
+        Assert.Equal("flask", actual.Header.ApiItemCategory);
         Assert.Equal(Category.Flask, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Header.Rarity);
         Assert.Equal("Sanctified Mana Flask", actual.Header.ApiType);
@@ -58,7 +58,7 @@ Item Level: 42
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ");
 
-        Assert.Equal("flask", actual.Header.ItemCategory);
+        Assert.Equal("flask", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Normal, actual.Header.Rarity);
         Assert.Equal(Category.Flask, actual.Header.Category);
         Assert.Equal("Hallowed Life Flask", actual.Header.ApiType);
@@ -85,7 +85,7 @@ Item Level: 76
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ");
 
-        Assert.Equal("flask", actual.Header.ItemCategory);
+        Assert.Equal("flask", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Normal, actual.Header.Rarity);
         Assert.Equal(Category.Flask, actual.Header.Category);
         Assert.Equal("Sacred Hybrid Flask", actual.Header.ApiType);
@@ -113,7 +113,7 @@ Item Level: 82
 Right click to activate. Only one Tincture in your belt can be active at a time. Mana Burn causes you to lose 1% of your maximum Mana per stack per second. Can be deactivated manually, or will automatically deactivate when you reach 0 Mana.
 ");
 
-        Assert.Equal("tincture", actual.Header.ItemCategory);
+        Assert.Equal("tincture", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Normal, actual.Header.Rarity);
         Assert.Equal(Category.Tincture, actual.Header.Category);
         Assert.Equal("Poisonberry Tincture", actual.Header.ApiType);
@@ -142,7 +142,7 @@ Gain 3 Charges when you are Hit by an Enemy
 --------
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.");
 
-        Assert.Equal("flask", actual.Header.ItemCategory);
+        Assert.Equal("flask", actual.Header.ApiItemCategory);
         Assert.Equal(Rarity.Magic, actual.Header.Rarity);
         Assert.Equal(Category.Flask, actual.Header.Category);
         Assert.Equal("Bismuth Flask", actual.Header.ApiType);
