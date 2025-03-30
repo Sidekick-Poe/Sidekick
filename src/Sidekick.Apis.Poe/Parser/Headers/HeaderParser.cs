@@ -7,6 +7,7 @@ using Sidekick.Apis.Poe.Fuzzy;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Items.Models;
 using Sidekick.Apis.Poe.Parser.Headers.Models;
+using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
@@ -237,6 +238,11 @@ public class HeaderParser
         if (header.Rarity == Rarity.Unknown) header.Rarity = rarity;
 
         parsingItem.Blocks[0].Parsed = true;
+
+        if (string.IsNullOrEmpty(header.ApiName) && string.IsNullOrEmpty(header.ApiType))
+        {
+            throw new UnparsableException();
+        }
 
         return header;
     }

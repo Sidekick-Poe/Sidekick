@@ -34,34 +34,30 @@ public class ItemParser
         try
         {
             var parsingItem = new ParsingItem(itemText);
-            parsingItem.Header = headerParser.Parse(parsingItem);
-            if (parsingItem.Header == null || (string.IsNullOrEmpty(parsingItem.Header.ApiName) && string.IsNullOrEmpty(parsingItem.Header.ApiType)))
-            {
-                throw new UnparsableException();
-            }
+            var header = headerParser.Parse(parsingItem);
 
             ItemHeader? invariant = null;
-            if (parsingItem.Header.ApiItemId != null && apiInvariantItemProvider.IdDictionary.TryGetValue(parsingItem.Header.ApiItemId, out var invariantMetadata))
+            if (header.ApiItemId != null && apiInvariantItemProvider.IdDictionary.TryGetValue(header.ApiItemId, out var invariantMetadata))
             {
                 invariant = invariantMetadata.ToHeader();
             }
 
             // Order of parsing is important
             requirementsParser.Parse(parsingItem);
-            var properties = propertyParser.Parse(parsingItem);
-            var modifierLines = modifierParser.Parse(parsingItem);
-            propertyParser.ParseAfterModifiers(parsingItem, properties, modifierLines);
+            var properties = propertyParser.Parse(parsingItem, header);
+            var modifierLines = modifierParser.Parse(parsingItem, header);
+            propertyParser.ParseAfterModifiers(parsingItem, header, properties, modifierLines);
             var pseudoModifiers = pseudoParser.Parse(modifierLines);
 
             return new Item()
             {
                 Invariant = invariant,
-                Header = parsingItem.Header,
+                Header = header,
                 Properties = properties,
                 ModifierLines = modifierLines,
                 PseudoModifiers = pseudoModifiers,
                 Text = parsingItem.Text,
-                AdditionalInformation = ParseAdditionalInformation(parsingItem.Header, modifierLines),
+                AdditionalInformation = ParseAdditionalInformation(header, modifierLines),
             };
         }
         catch (Exception e)

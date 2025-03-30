@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Tokenizers;
-using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Parser;
 
@@ -11,7 +10,7 @@ namespace Sidekick.Apis.Poe.Parser;
 /// </summary>
 public class ParsingItem
 {
-    private const string SeparatorPattern = "--------";
+    public const string SeparatorPattern = "--------";
 
     /// <summary>
     /// Stores data about the state of the parsing process for the item
@@ -21,13 +20,8 @@ public class ParsingItem
     {
         Text = new ItemNameTokenizer().CleanString(text);
         Text = ModifierProvider.RemoveSquareBrackets(Text);
-        Blocks = Text
-            .Split(SeparatorPattern, StringSplitOptions.RemoveEmptyEntries)
-            .Select((x, blockIndex) => new ParsingBlock(x.Trim('\r', '\n'), blockIndex))
-            .ToList();
+        Blocks = Text.Split(SeparatorPattern, StringSplitOptions.RemoveEmptyEntries).Select((x, blockIndex) => new ParsingBlock(x.Trim('\r', '\n'), blockIndex)).ToList();
     }
-
-    public ItemHeader? Header { get; set; }
 
     /// <summary>
     /// Item sections seperated by dashes when copying an item in-game.

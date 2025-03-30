@@ -18,14 +18,14 @@ public class ModifierParser
     private readonly Regex cleanOriginalTextPattern = new(" \\((?:implicit|enchant|crafted|veiled|fractured|scourge|crucible)\\)");
 
     /// <inheritdoc/>
-    public List<ModifierLine> Parse(ParsingItem parsingItem)
+    public List<ModifierLine> Parse(ParsingItem parsingItem, ItemHeader header)
     {
-        if (parsingItem.Header?.Category is Category.DivinationCard or Category.Gem)
+        if (header.Category is Category.DivinationCard or Category.Gem)
         {
             return [];
         }
 
-        return MatchModifiers(parsingItem)
+        return MatchModifiers(parsingItem, header)
             .Select(CreateModifierLine)
 
             // Trim modifier lines
@@ -84,9 +84,9 @@ public class ModifierParser
         return text.ToString();
     }
 
-    private IEnumerable<ModifierMatch> MatchModifiers(ParsingItem parsingItem)
+    private IEnumerable<ModifierMatch> MatchModifiers(ParsingItem parsingItem, ItemHeader header)
     {
-        var allAvailablePatterns = GetAllAvailablePatterns(parsingItem);
+        var allAvailablePatterns = GetAllAvailablePatterns(header);
         foreach (var block in parsingItem.Blocks.Where(x => !x.AnyParsed))
         {
             for (var lineIndex = 0; lineIndex < block.Lines.Count; lineIndex++)
@@ -179,14 +179,14 @@ public class ModifierParser
         }
     }
 
-    private IReadOnlyCollection<ModifierDefinition> GetAllAvailablePatterns(ParsingItem parsingItem)
+    private IReadOnlyCollection<ModifierDefinition> GetAllAvailablePatterns(ItemHeader header)
     {
-        if (parsingItem.Header?.Category is Category.Sanctum)
+        if (header.Category is Category.Sanctum)
         {
             return [.. modifierProvider.Definitions[ModifierCategory.Sanctum]];
         }
 
-        if (parsingItem.Header?.Category is Category.Map && parsingItem.Header.ApiItemCategory is "map.tablet")
+        if (header.Category is Category.Map && header.ApiItemCategory is "map.tablet")
         {
             return
             [
