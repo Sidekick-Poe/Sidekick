@@ -63,16 +63,6 @@
 
     public SidekickException? SidekickException => Exception as SidekickException;
 
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if (Boundary?.CurrentException != null)
-        {
-            CurrentView.Close();
-        }
-
-        base.OnAfterRender(firstRender);
-    }
-
     public string Message => SidekickException?.Message ?? "This application may no longer respond until reloaded. If this issue keeps reoccurring, please open a ticket on our github page.";
 
     public List<string> AdditionalInformation => SidekickException?.AdditionalInformation ?? [];

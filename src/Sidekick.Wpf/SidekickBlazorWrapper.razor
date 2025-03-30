@@ -41,10 +41,12 @@
             var uri = new Uri(NavigationManager.Uri);
             if (uri.PathAndQuery == Window.Url)
             {
-                CurrentViewInitialized();
+                Window.InitializeView(CurrentView);
             }
             else
             {
+                Ready = false;
+                StateHasChanged();
                 NavigationManager.NavigateTo(Window.Url);
             }
         });
