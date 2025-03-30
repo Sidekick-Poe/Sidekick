@@ -159,10 +159,13 @@ public partial class MainWindow
 
         Dispatcher.Invoke(() =>
         {
-            if (View?.Options is
+            if (View is
                 {
-                    Height: not null,
-                    Width: not null,
+                    Options:
+                    {
+                        Height: not null,
+                        Width: not null,
+                    }
                 })
             {
                 logger.LogInformation("[MainWindow] View has fixed dimensions");
