@@ -5,10 +5,12 @@ using Sidekick.Common.Settings;
 namespace Sidekick.Common.Platform.Clipboard;
 
 /// <inheritdoc/>
-public class ClipboardProvider(
+public class ClipboardProvider
+(
     ISettingsService settingsService,
     IKeyboardProvider keyboard,
-    ILogger<ClipboardProvider> logger) : IClipboardProvider
+    ILogger<ClipboardProvider> logger
+) : IClipboardProvider
 {
     /// <inheritdoc/>
     public async Task<string?> Copy()
@@ -50,66 +52,55 @@ public class ClipboardProvider(
     /// <inheritdoc/>
     public Task<string?> GetText()
     {
-        string? data = null;
-        Exception? exception = null;
-        var staThread = new Thread(
-            delegate ()
+        var tcs = new TaskCompletionSource<string?>();
+        var staThread = new Thread(() =>
+        {
+            try
             {
-                try
-                {
-                    data = TextCopy.ClipboardService.GetText();
-                }
-                catch (Exception ex)
-                {
-                    exception = ex;
-                }
-            });
+                tcs.SetResult(TextCopy.ClipboardService.GetText());
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "[Clipboard] Failed to get the text value from the clipboard.");
+                tcs.SetException(ex);
+            }
+        });
+
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
             staThread.SetApartmentState(ApartmentState.STA);
         }
 
         staThread.Start();
-        staThread.Join();
 
-        if (exception != null)
-        {
-            logger.LogError(exception, "[Clipboard] Failed to get the text value from the clipboard.");
-        }
-
-        return Task.FromResult(data);
+        return tcs.Task;
     }
 
     /// <inheritdoc/>
     public Task SetText(string? text)
     {
-        text ??= string.Empty;
-        Exception? exception = null;
-        var staThread = new Thread(
-            delegate ()
+        var tcs = new TaskCompletionSource();
+        var staThread = new Thread(()=>
+        {
+            try
             {
-                try
-                {
-                    TextCopy.ClipboardService.SetText(text);
-                }
-                catch (Exception ex)
-                {
-                    exception = ex;
-                }
-            });
+                TextCopy.ClipboardService.SetText(text ?? string.Empty);
+                tcs.SetResult();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "[Clipboard] Failed to set the text value to the clipboard.");
+                tcs.SetException(ex);
+            }
+        });
+
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
             staThread.SetApartmentState(ApartmentState.STA);
         }
 
         staThread.Start();
-        staThread.Join();
 
-        if (exception != null)
-        {
-            logger.LogError(exception, "[Clipboard] Failed to set the text value to the clipboard.");
-        }
-
-        return Task.CompletedTask;
+        return tcs.Task;
     }
 }
