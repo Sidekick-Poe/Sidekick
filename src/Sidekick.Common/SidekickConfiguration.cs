@@ -7,6 +7,26 @@ namespace Sidekick.Common;
 /// </summary>
 public static class SidekickConfiguration
 {
+    private static bool isPoeApiDown;
+
+    /// <summary>
+    /// Occurs when a relevant flag or state within the application configuration changes.
+    /// </summary>
+    public static event Action? FlagChanged;
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the Path of Exile API is currently unavailable.
+    /// </summary>
+    public static bool IsPoeApiDown
+    {
+        get => isPoeApiDown;
+        set
+        {
+            isPoeApiDown = value;
+            FlagChanged?.Invoke();
+        }
+    }
+
     /// <summary>
     ///     Gets or sets a list of initializable services.
     /// </summary>

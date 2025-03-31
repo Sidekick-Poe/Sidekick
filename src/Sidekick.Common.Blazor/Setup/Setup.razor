@@ -6,7 +6,6 @@
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Blazor.Settings.General
-@using Sidekick.Common.Exceptions
 
 <LayoutSimple>
     <TopContent>
@@ -21,7 +20,7 @@
                 <AlertInfo>@Resources["New_League_Alert"]</AlertInfo>
             }
 
-            @if (HasError)
+            @if (FormInvalid)
             {
                 <AlertError>@Resources["Valid_Language_Alert"]</AlertError>
             }
@@ -69,6 +68,7 @@
 @inject IStringLocalizer<Setup> Resources
 @inject NavigationManager NavigationManager
 @inject ICurrentView CurrentView
+@inject ILogger<Setup> Logger
 
 @code {
 
@@ -76,7 +76,7 @@
 
     private bool NewLeagues { get; set; }
 
-    private bool HasError { get; set; }
+    private bool FormInvalid { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -115,17 +115,6 @@
                 NavigationManager.NavigateTo("/initialize");
             }
         }
-        catch (SidekickException e)
-        {
-            CurrentView.Initialize(new ViewOptions()
-            {
-                Title = Resources["Setup"],
-                Width = 400,
-                Height = 360,
-            });
-            e.Actions = ExceptionActions.ExitApplication;
-            throw;
-        }
         catch (Exception e)
         {
             CurrentView.Initialize(new ViewOptions()
@@ -134,10 +123,9 @@
                 Width = 400,
                 Height = 360,
             });
-            throw new SidekickException(e.Message)
-            {
-                Actions = ExceptionActions.ExitApplication,
-            };
+            Logger.LogError(e, "[Setup] Failed to initialize.");
+            SidekickConfiguration.IsPoeApiDown = true;
+            NavigationManager.NavigateTo("/initialize");
         }
 
         await base.OnInitializedAsync();
@@ -154,7 +142,7 @@
         var leagues = await LeagueProvider.GetList(true);
         if (leagues.All(x => x.Id != leagueId))
         {
-            HasError = true;
+            FormInvalid = true;
             return;
         }
 

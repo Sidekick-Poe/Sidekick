@@ -2,6 +2,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Items.Models;
+using Sidekick.Common;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Extensions;
@@ -33,6 +34,8 @@ public class ApiItemProvider
     /// <inheritdoc/>
     public async Task Initialize()
     {
+        if (SidekickConfiguration.IsPoeApiDown) return;
+
         NameAndTypeDictionary.Clear();
         NameAndTypeRegex.Clear();
 
