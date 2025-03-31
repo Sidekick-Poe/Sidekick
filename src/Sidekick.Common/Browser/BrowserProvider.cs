@@ -11,7 +11,6 @@ public class BrowserProvider(ILogger<BrowserProvider> logger, ISidekickDialogs d
 
         try
         {
-            throw new Exception();
             Process.Start(new ProcessStartInfo
             {
                 FileName = uri.AbsoluteUri,
