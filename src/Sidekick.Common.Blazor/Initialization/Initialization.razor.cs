@@ -112,7 +112,7 @@ public partial class Initialization
     private async Task Complete()
     {
         var redirectToHome = await SettingsService.GetBool(SettingKeys.OpenHomeOnLaunch);
-        if (redirectToHome)
+        if (redirectToHome || SidekickConfiguration.IsPoeApiDown)
         {
             NavigationManager.NavigateTo("/home");
         }

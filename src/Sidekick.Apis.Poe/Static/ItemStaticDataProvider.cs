@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Static.Models;
+using Sidekick.Common;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Extensions;
@@ -27,6 +28,8 @@ public class ItemStaticDataProvider
     /// <inheritdoc/>
     public async Task Initialize()
     {
+        if (SidekickConfiguration.IsPoeApiDown) return;
+
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_StaticData";

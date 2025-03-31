@@ -1,6 +1,6 @@
-using System.Diagnostics;
 using Sidekick.Apis.Poe.Clients;
 using Sidekick.Apis.Poe.Modifiers.Models;
+using Sidekick.Common;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Extensions;
@@ -29,11 +29,11 @@ public class InvariantModifierProvider
 
     public List<string> LightningWeaponDamageIds { get; } = [];
 
-    public string ClusterJewelSmallPassiveCountModifierId { get; private set; } = null!;
+    public string ClusterJewelSmallPassiveCountModifierId { get; private set; } = string.Empty;
 
-    public string ClusterJewelSmallPassiveGrantModifierId { get; private set; } = null!;
+    public string ClusterJewelSmallPassiveGrantModifierId { get; private set; } = string.Empty;
 
-    public Dictionary<int, string> ClusterJewelSmallPassiveGrantOptions { get; private set; } = null!;
+    public Dictionary<int, string> ClusterJewelSmallPassiveGrantOptions { get; private set; } = [];
 
     /// <inheritdoc/>
     public int Priority => 100;
@@ -41,6 +41,8 @@ public class InvariantModifierProvider
     /// <inheritdoc/>
     public async Task Initialize()
     {
+        if (SidekickConfiguration.IsPoeApiDown) return;
+
         var result = await GetList();
         InitializeIgnore(result);
         InitializeIncursionRooms(result);

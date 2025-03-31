@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Web.WebView2.Core;
 using Sidekick.Apis.Poe.CloudFlare;
 using Sidekick.Wpf.Helpers;
-using Application = System.Windows.Application;
+using Application=System.Windows.Application;
 
 namespace Sidekick.Wpf.Cloudflare;
 
@@ -88,10 +88,19 @@ public partial class CloudflareWindow
             {
                 logger.LogInformation("[CloudflareWindow] Cookie not found");
 
+                var content = await GetPageContent();
+                if (content == "\"Temporarily Unavailable\"")
+                {
+                    logger.LogInformation("[CloudflareWindow] The content is Temporarily Unavailable. \n" + content);
+                    await cloudflareService.CaptchaChallengeFailed();
+                    Dispatcher.Invoke(Close);
+                    return;
+                }
+
                 var isJsonContent = await CheckIfContentIsJson();
                 if (!isJsonContent)
                 {
-                    logger.LogInformation("[CloudflareWindow] Content is not JSON, checking for Cloudflare challenge");
+                    logger.LogInformation("[CloudflareWindow] Content is not JSON, checking for Cloudflare challenge.\n" + content);
                     return;
                 }
             }
@@ -109,6 +118,30 @@ public partial class CloudflareWindow
         }
     }
 
+    private async Task<string?> GetPageContent()
+    {
+        var html = await WebView.CoreWebView2.ExecuteScriptAsync(@"
+            (function() {
+                try {
+                    // Get the content of the body or response
+                    let content = document.body.innerHTML;
+                    if (document.body.childNodes.length > 0) {
+                        if (document.body.childNodes[0].innerHTML) {
+                            content = document.body.childNodes[0].innerHTML;
+                        } else if (document.body.childNodes[0].data) {
+                            content = document.body.childNodes[0].data;
+                        }
+                    }
+
+                    return content;
+                } catch {
+                    return null;
+                }
+            })();");
+        return html;
+
+    }
+
     private async Task<bool> CheckIfContentIsJson()
     {
         try
@@ -118,7 +151,14 @@ public partial class CloudflareWindow
             (function() {
                 try {
                     // Get the content of the body or response
-                    const content = document.body.childNodes.length > 0 ? document.body.childNodes[0].innerHTML : document.body.innerHTML;
+                    let content = document.body.innerHTML;
+                    if (document.body.childNodes.length > 0) {
+                        if (document.body.childNodes[0].innerHTML) {
+                            content = document.body.childNodes[0].innerHTML;
+                        } else if (document.body.childNodes[0].data) {
+                            content = document.body.childNodes[0].data;
+                        }
+                    }
                     
                     // Attempt to parse JSON
                     JSON.parse(content);
@@ -141,9 +181,6 @@ public partial class CloudflareWindow
                 logger.LogInformation("[CloudflareWindow] The content is JSON.");
                 return true;
             }
-
-            var html = await WebView.CoreWebView2.ExecuteScriptAsync("document.body.childNodes.length > 0 ? document.body.childNodes[0].innerHTML : document.body.innerHTML");
-            logger.LogInformation("[CloudflareWindow] The content is not JSON. \n" + html);
         }
         catch (Exception ex)
         {
