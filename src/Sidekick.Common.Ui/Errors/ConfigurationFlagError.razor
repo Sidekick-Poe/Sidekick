@@ -1,0 +1,28 @@
+﻿
+@if (SidekickConfiguration.IsPoeApiDown)
+{
+    <AlertError>@Resources["PoeApiDown"]</AlertError>
+}
+
+@inject IStringLocalizer<AppResources> Resources
+@implements IDisposable
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        SidekickConfiguration.FlagChanged += SidekickConfigurationOnFlagChanged;
+        base.OnInitialized();
+    }
+
+    private void SidekickConfigurationOnFlagChanged()
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        SidekickConfiguration.FlagChanged -= SidekickConfigurationOnFlagChanged;
+    }
+
+}
