@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Pseudo.Definitions;
+using Sidekick.Common;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
@@ -21,6 +22,8 @@ public class PseudoParser
     /// <inheritdoc/>
     public async Task Initialize()
     {
+        if (SidekickConfiguration.IsPoeApiDown) return;
+
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         var game = leagueId.GetGameFromLeagueId();
 
