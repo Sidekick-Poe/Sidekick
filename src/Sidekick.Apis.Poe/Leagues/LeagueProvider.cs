@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Clients;
+using Sidekick.Common;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
