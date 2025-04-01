@@ -10,11 +10,11 @@ public class WpfViewLocator(ILogger<WpfViewLocator> logger) : IViewLocator, IDis
 
     public bool SupportsMaximize => true;
 
-    private MainWindow StandardWindow { get; } = new(SidekickViewType.Standard, logger);
+    private MainWindow? StandardWindow { get; set; }
 
-    private MainWindow OverlayWindow { get; } = new(SidekickViewType.Overlay, logger);
+    private MainWindow? OverlayWindow { get; set; }
 
-    private MainWindow ModalWindow { get; } = new(SidekickViewType.Modal, logger);
+    private MainWindow? ModalWindow { get; set; }
 
     public void Open(SidekickViewType type, string url)
     {
@@ -24,13 +24,22 @@ public class WpfViewLocator(ILogger<WpfViewLocator> logger) : IViewLocator, IDis
 
     public MainWindow GetWindow(SidekickViewType type)
     {
-        return type switch
+        switch (type)
         {
-            SidekickViewType.Standard => StandardWindow,
-            SidekickViewType.Overlay => OverlayWindow,
-            SidekickViewType.Modal => ModalWindow,
-            _ => throw new SidekickException("The window could not be determined."),
-        };
+            case SidekickViewType.Standard:
+                StandardWindow ??= new MainWindow(SidekickViewType.Standard, logger);
+                return StandardWindow;
+
+            case SidekickViewType.Overlay:
+                OverlayWindow ??= new MainWindow(SidekickViewType.Overlay, logger);
+                return OverlayWindow;
+
+            case SidekickViewType.Modal:
+                ModalWindow ??= new MainWindow(SidekickViewType.Modal, logger);
+                return ModalWindow;
+
+            default: throw new SidekickException("The window could not be determined.");
+        }
     }
 
     public void Close(SidekickViewType type)
@@ -48,13 +57,13 @@ public class WpfViewLocator(ILogger<WpfViewLocator> logger) : IViewLocator, IDis
 
     public bool IsOverlayOpened()
     {
-        return OverlayWindow.IsVisible;
+        return OverlayWindow?.IsVisible ?? false;
     }
 
     public void Dispose()
     {
-        StandardWindow.Dispose();
-        OverlayWindow.Dispose();
-        ModalWindow.Dispose();
+        StandardWindow?.Dispose();
+        OverlayWindow?.Dispose();
+        ModalWindow?.Dispose();
     }
 }
