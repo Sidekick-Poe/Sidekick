@@ -1,3 +1,5 @@
+using System.Windows.Forms;
+using System.Windows.Threading;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Ui.Views;
@@ -27,15 +29,15 @@ public class WpfViewLocator(ILogger<WpfViewLocator> logger) : IViewLocator, IDis
         switch (type)
         {
             case SidekickViewType.Standard:
-                StandardWindow ??= new MainWindow(SidekickViewType.Standard, logger);
+                StandardWindow ??= System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Standard, logger));
                 return StandardWindow;
 
             case SidekickViewType.Overlay:
-                OverlayWindow ??= new MainWindow(SidekickViewType.Overlay, logger);
+                OverlayWindow ??= System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Overlay, logger));
                 return OverlayWindow;
 
             case SidekickViewType.Modal:
-                ModalWindow ??= new MainWindow(SidekickViewType.Modal, logger);
+                ModalWindow ??= System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Modal, logger));
                 return ModalWindow;
 
             default: throw new SidekickException("The window could not be determined.");
