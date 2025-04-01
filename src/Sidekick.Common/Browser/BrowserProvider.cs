@@ -1,9 +1,10 @@
 using System.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Sidekick.Common.Browser;
 
-public class BrowserProvider(ILogger<BrowserProvider> logger, ISidekickDialogs dialogs) : IBrowserProvider
+public class BrowserProvider(ILogger<BrowserProvider> logger, IServiceProvider serviceProvider) : IBrowserProvider
 {
     public void OpenUri(Uri uri)
     {
@@ -20,7 +21,8 @@ public class BrowserProvider(ILogger<BrowserProvider> logger, ISidekickDialogs d
         catch (Exception ex)
         {
             logger.LogError(ex, "[Browser] Failed to open URL: {uri}", uri.AbsoluteUri);
-            dialogs.OpenOkModal("Failed to open URL: " + uri.AbsoluteUri);
+            var dialogs = serviceProvider.GetService<ISidekickDialogs>();
+            dialogs?.OpenOkModal("Failed to open URL: " + uri.AbsoluteUri);
         }
     }
 
