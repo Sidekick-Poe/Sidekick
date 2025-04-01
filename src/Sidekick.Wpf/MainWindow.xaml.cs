@@ -239,6 +239,9 @@ public partial class MainWindow
 
         Dispatcher.Invoke(() =>
         {
+            ShowInTaskbar = false;
+            WindowStyle = WindowStyle.None;
+
             ViewNormalized = false;
             SavePosition();
 
