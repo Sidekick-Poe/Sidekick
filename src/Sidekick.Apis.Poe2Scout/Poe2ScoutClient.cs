@@ -108,7 +108,6 @@ public class Poe2ScoutClient(
         {
             using var client = GetHttpClient();
             var response = await client.GetAsync(url);
-            var test = await response.Content.ReadAsStringAsync();
             var responseStream = await response.Content.ReadAsStreamAsync();
             var result = await JsonSerializer.DeserializeAsync<List<Poe2ScoutItem>>(responseStream, JsonSerializerOptions);
 
