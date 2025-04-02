@@ -1,3 +1,4 @@
+@using System.Globalization
 @using Sidekick.Apis.Poe.Parser.Properties.Filters
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Game.Languages
@@ -16,14 +17,14 @@
                           ValueChanged="CheckedChanged">
                 <ItemPropertyText Label="@Filter.Text"
                                   Hint="@Filter.Hint"
-                                  Value="@($"{Filter.ValuePrefix}{Filter.Value:0.00}{Filter.ValueSuffix}")"
+                                  Value="@($"{Filter.ValuePrefix}{Filter.Value.ToString("0.00", CultureInfo.InvariantCulture)}{Filter.ValueSuffix}")"
                                   ContentType="@Filter.Type"
                                   HasAdditionalInformation="Math.Abs(Filter.Value - Filter.OriginalValue) > 0.001 && Filter.OriginalValue > 0">
                     <AdditionalInformation>
                         <ItemPropertyText Label="@($"{GameLanguageProvider.Language.DescriptionQuality} {Item.Properties.Quality}%")"
-                                          Value="@($"{Filter.ValuePrefix}{Filter.OriginalValue:0.00}{Filter.ValueSuffix}")"/>
+                                          Value="@($"{Filter.ValuePrefix}{Filter.OriginalValue.ToString("0.00", CultureInfo.InvariantCulture)}{Filter.ValueSuffix}")"/>
                         <ItemPropertyText Label="@($"{GameLanguageProvider.Language.DescriptionQuality} 20%")"
-                                          Value="@($"{Filter.ValuePrefix}{Filter.Value:0.00}{Filter.ValueSuffix}")"/>
+                                          Value="@($"{Filter.ValuePrefix}{Filter.Value.ToString("0.00", CultureInfo.InvariantCulture)}{Filter.ValueSuffix}")"/>
                     </AdditionalInformation>
                 </ItemPropertyText>
             </FormCheckbox>

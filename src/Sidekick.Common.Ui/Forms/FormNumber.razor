@@ -1,3 +1,4 @@
+@using System.Globalization
 <div>
 
     @if (!string.IsNullOrEmpty(Label))
@@ -45,7 +46,7 @@
 
     protected async Task OnChange(ChangeEventArgs args)
     {
-        if (double.TryParse(args.Value?.ToString(), out var decimalValue))
+        if (double.TryParse(args.Value?.ToString(), CultureInfo.InvariantCulture, out var decimalValue))
         {
             await ValueChanged.InvokeAsync(decimalValue);
         }
