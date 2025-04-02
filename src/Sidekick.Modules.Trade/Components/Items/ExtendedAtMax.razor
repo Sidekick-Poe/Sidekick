@@ -1,4 +1,5 @@
-﻿@using Sidekick.Apis.Poe.Localization
+﻿@using System.Globalization
+@using Sidekick.Apis.Poe.Localization
 @using Sidekick.Apis.Poe.Trade.Results
 @using Sidekick.Common.Game.Languages
 @using Sidekick.Modules.Trade.Localization
@@ -42,21 +43,21 @@
     @if (Result.Item.Extended?.DamagePerSecondAtMax > 0)
     {
         <ItemPropertyText Label="@PoeResources["Dps"]"
-                          Value="@(Result.Item.Extended?.DamagePerSecondAtMax.Value.ToString("0.00"))"
+                          Value="@(Result.Item.Extended?.DamagePerSecondAtMax.Value.ToString("0.00", CultureInfo.InvariantCulture))"
                           ContentType="GetContentType(Result.Item.Extended?.DamagePerSecondAugmented)"/>
     }
 
     @if (Result.Item.Extended?.PhysicalDpsAtMax > 0)
     {
         <ItemPropertyText Label="@PoeResources["PhysicalDps"]"
-                          Value="@(Result.Item.Extended?.PhysicalDpsAtMax.Value.ToString("0.00"))"
+                          Value="@(Result.Item.Extended?.PhysicalDpsAtMax.Value.ToString("0.00", CultureInfo.InvariantCulture))"
                           ContentType="GetContentType(Result.Item.Extended?.PhysicalDpsAugmented)"/>
     }
 
     @if (Result.Item.Extended?.ElementalDpsAtMax > 0)
     {
         <ItemPropertyText Label="@PoeResources["ElementalDps"]"
-                          Value="@(Result.Item.Extended?.ElementalDpsAtMax.Value.ToString("0.00"))"
+                          Value="@(Result.Item.Extended?.ElementalDpsAtMax.Value.ToString("0.00", CultureInfo.InvariantCulture))"
                           ContentType="GetContentType(Result.Item.Extended?.ElementalDpsAugmented)"/>
     }
 </div>
