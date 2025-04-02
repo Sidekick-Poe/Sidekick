@@ -1,7 +1,7 @@
 @using Sidekick.Common.Exceptions
 @using Sidekick.Common.Platform
 
-<SidekickErrorBoundary>
+<SidekickErrorBoundary @ref="ErrorBoundary">
     <ChildContent>
         @ChildContent
     </ChildContent>
@@ -32,20 +32,11 @@
                     }
                 </div>
 
-                <div class="hidden mt-1">
-                    <div>
-                        @context.Exception?.Message
-                    </div>
-                    <div>
-                        @((MarkupString)(context.Exception?.StackTrace?.Replace("\n", "<br/>") ?? ""))
-                    </div>
-                </div>
-
                 @{
                     var actions = ExceptionActions.CloseWindow;
-                    if (context.Exception is SidekickException sidekickException)
+                    if (context.SidekickException != null)
                     {
-                        actions = sidekickException.Actions;
+                        actions = context.SidekickException.Actions;
                     }
 
                     if (actions == 0)
@@ -73,6 +64,7 @@
 
 @inject ICurrentView CurrentView
 @inject IApplicationService ApplicationService
+@inject NavigationManager NavigationManager
 
 @code {
 
@@ -87,6 +79,14 @@
 
     private void Close()
     {
+        NavigationManager.LocationChanged += RecoverAfterNavigation;
+        NavigationManager.NavigateTo("/empty");
+    }
+
+    private void RecoverAfterNavigation(object? sender, LocationChangedEventArgs e)
+    {
+        ErrorBoundary?.Recover();
+        NavigationManager.LocationChanged -= RecoverAfterNavigation;
         CurrentView.Close();
     }
 

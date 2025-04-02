@@ -247,7 +247,6 @@ public partial class MainWindow
             SavePosition();
 
             WebView.Visibility = Visibility.Hidden;
-            Opacity = 0;
 
             Deactivate();
             Hide();
