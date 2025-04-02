@@ -59,7 +59,7 @@
 
     private LoggingErrorBoundary? Boundary { get; set; }
 
-    public Exception? Exception => Boundary?.CurrentException;
+    public Exception? Exception => Boundary?.CapturedException;
 
     public SidekickException? SidekickException => Exception as SidekickException;
 
@@ -68,5 +68,14 @@
     public List<string> AdditionalInformation => SidekickException?.AdditionalInformation ?? [];
 
     public bool IsCritical => SidekickException?.IsCritical ?? true;
+
+    public void Recover()
+    {
+        InvokeAsync(() =>
+        {
+            Boundary?.Recover();
+            StateHasChanged();
+        });
+    }
 
 }
