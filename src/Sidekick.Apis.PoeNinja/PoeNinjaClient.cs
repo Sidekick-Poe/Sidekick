@@ -12,7 +12,7 @@ using Sidekick.Common.Settings;
 namespace Sidekick.Apis.PoeNinja;
 
 /// <summary>
-/// https://poe.ninja/swagger
+/// Only for POE1.
 /// </summary>
 public class PoeNinjaClient(
     ICacheProvider cacheProvider,

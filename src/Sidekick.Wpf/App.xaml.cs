@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
+using Sidekick.Apis.Poe2Scout;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
@@ -143,6 +144,7 @@ public partial class App
             .AddSidekickGitHubApi()
             .AddSidekickPoeApi()
             .AddSidekickPoeNinjaApi()
+            .AddSidekickPoe2ScoutApi()
             .AddSidekickPoePriceInfoApi()
             .AddSidekickPoeWikiApi()
             .AddSidekickUpdater()

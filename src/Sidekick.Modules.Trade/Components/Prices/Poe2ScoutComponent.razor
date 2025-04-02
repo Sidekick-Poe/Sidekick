@@ -1,21 +1,20 @@
-@using Sidekick.Apis.PoeNinja
-@using Sidekick.Apis.PoeNinja.Models
+@using Sidekick.Apis.Poe2Scout
+@using Sidekick.Apis.Poe2Scout.Models
 @using Sidekick.Common.Browser
 @using Sidekick.Common.Game.Items
-@using Sidekick.Common.Game.Items.AdditionalInformation;
-@using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Game
+@using Sidekick.Modules.Trade.Localization
 @using ApexCharts
 
 @if (Loading)
 {
-    <AppLoading/>
+    <AppLoading />
 }
 else if (Price != null)
 {
     <div class="flex flex-nowrap items-center">
         <div class="text-right w-1/2 pr-2">
-            <Heading3>Poe.Ninja</Heading3>
+            <Heading3>Poe2Scout.com</Heading3>
             <TooltipRight>
                 <ChildContent>
                     <TextCaption>@Price.LastUpdated.ToString("g")</TextCaption>
@@ -30,15 +29,13 @@ else if (Price != null)
         </div>
         <div class="text-left w-1/2 pl-2">
             <div class="flex">
-                <PriceDisplay Value="Price.Price"/>
+                <PriceDisplay Value="Price.Price" Currency="exalt" />
             </div>
-
-            @if (Price.Links >= 5)
+            @if (NumberOfListings.HasValue)
             {
-                <TextCaption>@Price.Links @Resources["Links"]</TextCaption>
+                <TextCaption>(@NumberOfListings @Resources["Listings"])</TextCaption>
             }
         </div>
-
     </div>
 
     @if (Series != null)
@@ -49,16 +46,16 @@ else if (Price != null)
                                  Items="Series"
                                  XValue="(x => x.Index)"
                                  YValue="(x => x.Value)"
-                                 SeriesType="SeriesType.Line"/>
+                                 SeriesType="SeriesType.Line" />
             </ApexChart>
         </div>
     }
 
-    <ItemSeparator Rarity="Item.Header.Rarity"/>
+    <ItemSeparator Rarity="Item.Header.Rarity" />
 }
 
 @inject IStringLocalizer<TradeResources> Resources
-@inject IPoeNinjaClient Client
+@inject IPoe2ScoutClient Client
 @inject IBrowserProvider BrowserProvider
 
 @code {
@@ -68,7 +65,9 @@ else if (Price != null)
 
     private bool Loading { get; set; }
 
-    private NinjaPrice? Price { get; set; }
+    private Poe2ScoutPrice? Price { get; set; }
+
+    private int? NumberOfListings { get; set; }
 
     private List<DataPoint>? Series { get; set; }
 
@@ -78,7 +77,7 @@ else if (Price != null)
     {
         await base.OnParametersSetAsync();
 
-        if (Item.Header.Game == GameType.PathOfExile2)
+        if (Item.Header.Game == GameType.PathOfExile)
         {
             return;
         }
@@ -86,62 +85,54 @@ else if (Price != null)
         Loading = true;
         StateHasChanged();
 
-        if (Item.AdditionalInformation is ClusterJewelInformation clusterJewelInformation)
-        {
-            Price = await Client.GetClusterPrice(clusterJewelInformation.GrantText, clusterJewelInformation.SmallPassiveCount, Item.Properties.ItemLevel);
-        }
-        else
-        {
-            Price = await Client.GetPriceInfo(Item.Invariant?.Name, Item.Invariant?.Type, Item.Header.Category, gemLevel: Item.Properties.GemLevel, mapTier: Item.Properties.MapTier, numberOfLinks: Item.Properties.GetMaximumNumberOfLinks());
-        }
+        Price = await Client.GetPriceInfo(Item.Invariant?.Name, Item.Invariant?.Type, Item.Header.Category);
+        NumberOfListings = Price?.PriceLogs?.LastOrDefault(x => x?.Quantity != null)?.Quantity;
 
-        if (Price?.SparkLine?.Data.All(x => x.HasValue) == true)
+        if (Price?.PriceLogs != null)
         {
-            Series = Price.SparkLine.Data.Select((value, index) => new DataPoint
+            Series = Price.PriceLogs.Select((value, index) => new DataPoint
                 {
                     Index = index,
-                    Value = (decimal?)value
+                    Value = value?.Price
                 })
                 .ToList();
             Options = new()
-            {
-                PlotOptions = new() { Line = new() { IsSlopeChart = true } },
-                Tooltip = new() { Enabled = false },
-                Chart =
+                {
+                    PlotOptions = new() { Line = new() { IsSlopeChart = true } },
+                    Tooltip = new() { Enabled = false },
+                    Chart =
                 {
                     Sparkline = new() { Enabled = true },
                     Height = 40,
                 },
-                Markers = new() { Size = 0 },
-                Stroke = new()
-                {
-                    Curve = Curve.Smooth,
-                    Width = 2,
-                    Colors = ["#8888ff",]
-                },
-            };
+                    Markers = new() { Size = 0 },
+                    Stroke = new()
+                    {
+                        Curve = Curve.Smooth,
+                        Width = 2,
+                        Colors = ["#8888ff",]
+                    },
+                };
         }
 
         Loading = false;
         StateHasChanged();
     }
 
-    class DataPoint
-    {
-        public int Index { get; set; }
-
-        public decimal? Value { get; set; }
-    }
-
-    private async Task OpenWebsite()
+    private void OpenWebsite()
     {
         if (Price == null)
         {
             return;
         }
 
-        var uri = await Client.GetDetailsUri(Price);
+        var uri = Client.GetDetailsUri(Price);
         BrowserProvider.OpenUri(uri);
     }
 
+    class DataPoint
+    {
+        public int Index { get; set; }
+        public decimal? Value { get; set; }
+    }
 }
