@@ -25,7 +25,8 @@
         @if (Item != null && PropertyFilters != null)
         {
             <CascadingValue Value="Item">
-                <FiltersComponent PropertyFilters="@PropertyFilters" ModifierFilters="@ModifierFilters"
+                <FiltersComponent PropertyFilters="@PropertyFilters"
+                                  ModifierFilters="@ModifierFilters"
                                   PseudoFilters="@PseudoFilters"/>
             </CascadingValue>
         }

@@ -1,6 +1,7 @@
 using ApexCharts;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
+using Sidekick.Apis.Poe2Scout;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
@@ -51,6 +52,7 @@ builder.Services
     .AddSidekickGitHubApi()
     .AddSidekickPoeApi()
     .AddSidekickPoeNinjaApi()
+    .AddSidekickPoe2ScoutApi()
     .AddSidekickPoePriceInfoApi()
     .AddSidekickPoeWikiApi()
     .AddSidekickUpdater()
