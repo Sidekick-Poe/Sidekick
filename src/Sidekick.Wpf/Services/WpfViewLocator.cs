@@ -1,5 +1,3 @@
-using System.Windows.Forms;
-using System.Windows.Threading;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Ui.Views;
@@ -20,24 +18,36 @@ public class WpfViewLocator(ILogger<WpfViewLocator> logger) : IViewLocator, IDis
 
     public void Open(SidekickViewType type, string url)
     {
-        var window = GetWindow(type);
-        window.OpenView(url);
+        var window = GetWindow(type, true);
+        if (window != null) window.OpenView(url);
     }
 
-    public MainWindow GetWindow(SidekickViewType type)
+    public MainWindow? GetWindow(SidekickViewType type, bool createIfMissing)
     {
         switch (type)
         {
             case SidekickViewType.Standard:
-                StandardWindow ??= System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Standard, logger));
+                if (createIfMissing)
+                {
+                    StandardWindow ??= System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Standard, logger));
+                }
+
                 return StandardWindow;
 
             case SidekickViewType.Overlay:
-                OverlayWindow ??= System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Overlay, logger));
+                if (createIfMissing)
+                {
+                    OverlayWindow ??= System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Overlay, logger));
+                }
+
                 return OverlayWindow;
 
             case SidekickViewType.Modal:
-                ModalWindow ??= System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Modal, logger));
+                if (createIfMissing)
+                {
+                    ModalWindow ??= System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Modal, logger));
+                }
+
                 return ModalWindow;
 
             default: throw new SidekickException("The window could not be determined.");
@@ -46,15 +56,13 @@ public class WpfViewLocator(ILogger<WpfViewLocator> logger) : IViewLocator, IDis
 
     public void Close(SidekickViewType type)
     {
-        var window = GetWindow(type);
+        var window = GetWindow(type, false);
+        if (window == null) return;
+
         if (window.View != null)
-        {
             window.View.Close();
-        }
         else
-        {
             window.CloseView();
-        }
     }
 
     public bool IsOverlayOpened()
