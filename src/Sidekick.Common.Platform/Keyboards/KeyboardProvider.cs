@@ -10,19 +10,16 @@ using Sidekick.Common.Keybinds;
 
 namespace Sidekick.Common.Platform.Keyboards;
 
-public class KeyboardProvider(
+public class KeyboardProvider
+(
     ILogger<KeyboardProvider> logger,
     IServiceProvider serviceProvider,
-    IProcessProvider processProvider) : IKeyboardProvider, IDisposable
+    IProcessProvider processProvider
+) : IKeyboardProvider, IDisposable
 {
     private static readonly Dictionary<KeyCode, string> keyMappings = new()
     {
-        { KeyCode.VcLeftShift, "Shift" },
-        { KeyCode.VcRightShift, "Shift" },
-        { KeyCode.VcLeftControl, "Ctrl" },
-        { KeyCode.VcRightControl, "Ctrl" },
-        { KeyCode.VcLeftAlt, "Alt" },
-        { KeyCode.VcRightAlt, "Alt" },
+        { KeyCode.VcEscape, "Esc" },
         { KeyCode.VcF1, "F1" },
         { KeyCode.VcF2, "F2" },
         { KeyCode.VcF3, "F3" },
@@ -47,6 +44,7 @@ public class KeyboardProvider(
         { KeyCode.VcF22, "F22" },
         { KeyCode.VcF23, "F23" },
         { KeyCode.VcF24, "F24" },
+        { KeyCode.VcBackQuote, "`" },
         { KeyCode.Vc0, "0" },
         { KeyCode.Vc1, "1" },
         { KeyCode.Vc2, "2" },
@@ -57,6 +55,11 @@ public class KeyboardProvider(
         { KeyCode.Vc7, "7" },
         { KeyCode.Vc8, "8" },
         { KeyCode.Vc9, "9" },
+        { KeyCode.VcMinus, "-" },
+        { KeyCode.VcEquals, "=" },
+        { KeyCode.VcBackspace, "Backspace" },
+        { KeyCode.VcTab, "Tab" },
+        { KeyCode.VcCapsLock, "CapsLock" },
         { KeyCode.VcA, "A" },
         { KeyCode.VcB, "B" },
         { KeyCode.VcC, "C" },
@@ -83,36 +86,43 @@ public class KeyboardProvider(
         { KeyCode.VcX, "X" },
         { KeyCode.VcY, "Y" },
         { KeyCode.VcZ, "Z" },
-        { KeyCode.VcMinus, "-" },
-        { KeyCode.VcEquals, "=" },
+        { KeyCode.VcOpenBracket, "[" },
+        { KeyCode.VcCloseBracket, "]" },
+        { KeyCode.VcBackslash, "\\" },
+        { KeyCode.VcSemicolon, ";" },
+        { KeyCode.VcQuote, "'" },
+        { KeyCode.VcEnter, "Enter" },
         { KeyCode.VcComma, "," },
         { KeyCode.VcPeriod, "." },
-        { KeyCode.VcSemicolon, ";" },
         { KeyCode.VcSlash, "/" },
-        { KeyCode.VcBackQuote, "`" },
-        { KeyCode.VcOpenBracket, "[" },
-        { KeyCode.VcBackslash, "\\" },
-        { KeyCode.VcCloseBracket, "]" },
-        { KeyCode.VcQuote, "'" },
-        { KeyCode.VcEscape, "Esc" },
-        { KeyCode.VcTab, "Tab" },
-        { KeyCode.VcCapsLock, "CapsLock" },
         { KeyCode.VcSpace, "Space" },
-        { KeyCode.VcBackspace, "Backspace" },
-        { KeyCode.VcEnter, "Enter" },
+        { KeyCode.Vc102, "<>" },
+        { KeyCode.VcMisc, "Misc" },
         { KeyCode.VcPrintScreen, "PrintScreen" },
         { KeyCode.VcScrollLock, "ScrollLock" },
+        { KeyCode.VcPause, "Pause" },
+        { KeyCode.VcCancel, "Cancel" },
+        { KeyCode.VcHelp, "Help" },
         { KeyCode.VcInsert, "Insert" },
-        { KeyCode.VcHome, "Home" },
         { KeyCode.VcDelete, "Delete" },
+        { KeyCode.VcHome, "Home" },
         { KeyCode.VcEnd, "End" },
-        { KeyCode.VcPageDown, "PageDown" },
         { KeyCode.VcPageUp, "PageUp" },
+        { KeyCode.VcPageDown, "PageDown" },
         { KeyCode.VcUp, "Up" },
-        { KeyCode.VcDown, "Down" },
         { KeyCode.VcLeft, "Left" },
         { KeyCode.VcRight, "Right" },
+        { KeyCode.VcDown, "Down" },
         { KeyCode.VcNumLock, "NumLock" },
+        { KeyCode.VcNumPadClear, "NumClear" },
+        { KeyCode.VcNumPadDivide, "Num/" },
+        { KeyCode.VcNumPadMultiply, "Num*" },
+        { KeyCode.VcNumPadSubtract, "Num-" },
+        { KeyCode.VcNumPadEquals, "Num=" },
+        { KeyCode.VcNumPadAdd, "Num+" },
+        { KeyCode.VcNumPadEnter, "NumEnter" },
+        { KeyCode.VcNumPadDecimal, "Num." },
+        { KeyCode.VcNumPadSeparator, "Num," },
         { KeyCode.VcNumPad0, "Num0" },
         { KeyCode.VcNumPad1, "Num1" },
         { KeyCode.VcNumPad2, "Num2" },
@@ -123,6 +133,12 @@ public class KeyboardProvider(
         { KeyCode.VcNumPad7, "Num7" },
         { KeyCode.VcNumPad8, "Num8" },
         { KeyCode.VcNumPad9, "Num9" },
+        { KeyCode.VcLeftShift, "Shift" },
+        { KeyCode.VcRightShift, "Shift" },
+        { KeyCode.VcLeftControl, "Ctrl" },
+        { KeyCode.VcRightControl, "Ctrl" },
+        { KeyCode.VcLeftAlt, "Alt" },
+        { KeyCode.VcRightAlt, "Alt" },
     };
 
     private static readonly Regex modifierKeys = new("^(?:Ctrl|Shift|Alt)$");
@@ -141,7 +157,7 @@ public class KeyboardProvider(
     [
     ];
 
-    public HashSet<string?> UsedKeybinds => [ .. KeybindHandlers.SelectMany(k => k.Keybinds)];
+    public HashSet<string?> UsedKeybinds => [.. KeybindHandlers.SelectMany(k => k.Keybinds)];
 
     /// <inheritdoc/>
     public int Priority => 100;
@@ -149,6 +165,16 @@ public class KeyboardProvider(
     /// <inheritdoc/>
     public Task Initialize()
     {
+        // Add missing key codes that were not manually curated.
+        // We strip the first two characters of the label as all KeyCodes start with 'Vc', and we can strip that part.
+        foreach (var keyCode in Enum.GetValues(typeof(KeyCode)))
+        {
+            if (!keyMappings.ContainsKey((KeyCode)keyCode))
+            {
+                keyMappings.Add((KeyCode)keyCode, ((KeyCode)keyCode).ToString().Substring(2));
+            }
+        }
+
         if (Debugger.IsAttached)
         {
             return Task.CompletedTask;
@@ -189,9 +215,7 @@ public class KeyboardProvider(
 
     private readonly Regex ignoreHookLogs = new Regex("(?:dispatch_mouse_move|hook_get_multi_click_time|dispatch_event|win_hook_event_proc|dispatch_mouse_wheel|dispatch_button_press|dispatch_button_release)", RegexOptions.Compiled);
 
-    private void OnMessageLogged(
-        object? sender,
-        LogEventArgs e)
+    private void OnMessageLogged(object? sender, LogEventArgs e)
     {
         switch (e.LogEntry.Level)
         {
@@ -204,23 +228,15 @@ public class KeyboardProvider(
                 logger.LogDebug("[KeyboardHook] {0}", e.LogEntry.FullText);
                 break;
 
-            case SharpHook.Native.LogLevel.Info:
-                logger.LogInformation("[KeyboardHook] {0}", e.LogEntry.FullText);
-                break;
+            case SharpHook.Native.LogLevel.Info: logger.LogInformation("[KeyboardHook] {0}", e.LogEntry.FullText); break;
 
-            case SharpHook.Native.LogLevel.Warn:
-                logger.LogWarning("[KeyboardHook] {0}", e.LogEntry.FullText);
-                break;
+            case SharpHook.Native.LogLevel.Warn: logger.LogWarning("[KeyboardHook] {0}", e.LogEntry.FullText); break;
 
-            case SharpHook.Native.LogLevel.Error:
-                logger.LogError("[KeyboardHook] {0}", e.LogEntry.FullText);
-                break;
+            case SharpHook.Native.LogLevel.Error: logger.LogError("[KeyboardHook] {0}", e.LogEntry.FullText); break;
         }
     }
 
-    private void OnKeyPressed(
-        object? sender,
-        KeyboardHookEventArgs args)
+    private void OnKeyPressed(object? sender, KeyboardHookEventArgs args)
     {
         // Make sure the key is one we recognize and validate the event and keybinds
         if (!keyMappings.TryGetValue(args.RawEvent.Keyboard.KeyCode, out var key)

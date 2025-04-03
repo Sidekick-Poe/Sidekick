@@ -20,21 +20,17 @@ public class LoggingErrorBoundary : ErrorBoundary
     [Inject]
     private ICurrentView CurrentView { get; set; } = null!;
 
-    public new Exception? CurrentException { get; private set; }
+    public Exception? CapturedException => CurrentException;
 
     protected override async Task OnErrorAsync(Exception exception)
     {
-        if (exception is AggregateException aggregateException)
+        if (exception is AggregateException aggregateException && aggregateException.InnerException != null)
         {
-            CurrentException = aggregateException.InnerException;
-        }
-        else
-        {
-            CurrentException = exception;
+            exception = aggregateException.InnerException;
         }
 
-        await JsRuntime.InvokeVoidAsync("console.error", CurrentException?.ToString());
-        Logger.LogError(CurrentException, "[ErrorBoundary] An error occured.");
+        await JsRuntime.InvokeVoidAsync("console.error", exception.ToString());
+        Logger.LogError(exception, "[ErrorBoundary] An error occured.");
 
         await base.OnErrorAsync(exception);
 

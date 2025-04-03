@@ -40,7 +40,14 @@
         }
         else if (DoubleValue != null)
         {
-            Value = DoubleValue.Value.ToString(CultureInfo.InvariantCulture);
+            if (DoubleValue % 1 == 0)
+            {
+                Value = DoubleValue.Value.ToString(CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                Value = DoubleValue.Value.ToString("0.00", CultureInfo.InvariantCulture);
+            }
         }
         else
         {
@@ -77,7 +84,7 @@
 
         if (DoubleValueChanged.HasDelegate)
         {
-            if (!double.TryParse(value, out var doubleValue))
+            if (!double.TryParse(value, CultureInfo.InvariantCulture, out var doubleValue))
             {
                 if (Module != null) await Module.InvokeVoidAsync("setValue", ElementId, Value);
                 return;

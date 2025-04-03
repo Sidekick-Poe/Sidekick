@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -155,7 +156,7 @@ public partial class MainWindow
         var preferences = await viewPreferenceService.Get(ViewType.ToString());
         var saveWindowPositions = await settingsService.GetBool(SettingKeys.SaveWindowPositions);
         var zoomString = await settingsService.GetString(SettingKeys.Zoom);
-        if (!double.TryParse(zoomString, out var zoom)) zoom = 1;
+        if (!double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom)) zoom = 1;
 
         Dispatcher.Invoke(() =>
         {
@@ -246,7 +247,6 @@ public partial class MainWindow
             SavePosition();
 
             WebView.Visibility = Visibility.Hidden;
-            Opacity = 0;
 
             Deactivate();
             Hide();
