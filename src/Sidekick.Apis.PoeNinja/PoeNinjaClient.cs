@@ -12,8 +12,11 @@ using Sidekick.Common.Settings;
 namespace Sidekick.Apis.PoeNinja;
 
 /// <summary>
-/// Only for POE1.
+/// Provides a client to communicate with the poe.ninja API. https://poe.ninja/swagger
 /// </summary>
+/// <remarks>
+/// Only for POE1.
+/// </remarks>
 public class PoeNinjaClient(
     ICacheProvider cacheProvider,
     ISettingsService settingsService,

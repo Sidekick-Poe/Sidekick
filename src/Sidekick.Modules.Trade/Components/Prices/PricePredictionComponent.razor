@@ -34,6 +34,8 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
     [CascadingParameter]
     public required Item Item { get; set; }
 
+    private Guid ItemId { get; set; }
+
     private bool Loading { get; set; }
 
     private PricePrediction? Prediction { get; set; }
@@ -48,6 +50,9 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
+
+        if (ItemId == Item.Id) return;
+        ItemId = Item.Id;
 
         if (Item.Header.Game == GameType.PathOfExile2)
         {

@@ -66,6 +66,8 @@ else if (Price != null)
     [CascadingParameter]
     public required Item Item { get; set; }
 
+    private Guid ItemId { get; set; }
+
     private bool Loading { get; set; }
 
     private NinjaPrice? Price { get; set; }
@@ -77,6 +79,9 @@ else if (Price != null)
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
+
+        if (ItemId == Item.Id) return;
+        ItemId = Item.Id;
 
         if (Item.Header.Game == GameType.PathOfExile2)
         {

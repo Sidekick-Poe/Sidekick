@@ -2,6 +2,7 @@ namespace Sidekick.Common.Game.Items;
 
 public class Item
 {
+    public Guid Id { get; } = Guid.NewGuid();
     public required ItemHeader? Invariant { get; init; }
     public required ItemHeader Header { get; init; }
     public required ItemProperties Properties { get; init; }
