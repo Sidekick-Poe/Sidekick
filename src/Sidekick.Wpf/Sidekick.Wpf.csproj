@@ -26,6 +26,7 @@
     <RepositoryUrl>https://github.com/Sidekick-Poe/Sidekick</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <EnableWindowsFormsInterop>false</EnableWindowsFormsInterop>
+    <StartupObject>Sidekick.Wpf.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
