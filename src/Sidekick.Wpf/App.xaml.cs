@@ -44,13 +44,14 @@ public partial class App
 
     public App()
     {
-        VelopackApp.Build().Run();
-
-        DisableWindowsTheme();
         ServiceProvider = GetServiceProvider();
         logger = ServiceProvider.GetRequiredService<ILogger<App>>();
         settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
         interprocessService = ServiceProvider.GetRequiredService<IInterprocessService>();
+
+        VelopackApp.Build().Run(logger);
+
+        DisableWindowsTheme();
     }
 
     protected override void OnStartup(StartupEventArgs e)
