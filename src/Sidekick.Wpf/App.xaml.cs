@@ -2,32 +2,13 @@ using System.IO;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
-using ApexCharts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.GitHub;
-using Sidekick.Apis.Poe;
-using Sidekick.Apis.Poe2Scout;
-using Sidekick.Apis.PoeNinja;
-using Sidekick.Apis.PoePriceInfo;
-using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
-using Sidekick.Common.Blazor;
-using Sidekick.Common.Database;
-using Sidekick.Common.Interprocess;
-using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Settings;
-using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
-using Sidekick.Common.Updater;
-using Sidekick.Modules.Chat;
-using Sidekick.Modules.General;
-using Sidekick.Modules.Maps;
-using Sidekick.Modules.Trade;
-using Sidekick.Modules.Wealth;
 using Sidekick.Wpf.Services;
-using Velopack;
 
 namespace Sidekick.Wpf;
 
@@ -36,20 +17,15 @@ namespace Sidekick.Wpf;
 /// </summary>
 public partial class App
 {
-    public static ServiceProvider ServiceProvider { get; private set; } = null!;
-
     private readonly ILogger<App> logger;
     private readonly ISettingsService settingsService;
     private readonly IInterprocessService interprocessService;
 
     public App()
     {
-        ServiceProvider = GetServiceProvider();
-        logger = ServiceProvider.GetRequiredService<ILogger<App>>();
-        settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
-        interprocessService = ServiceProvider.GetRequiredService<IInterprocessService>();
-
-        VelopackApp.Build().Run(logger);
+        logger = Program.ServiceProvider.GetRequiredService<ILogger<App>>();
+        settingsService = Program.ServiceProvider.GetRequiredService<ISettingsService>();
+        interprocessService = Program.ServiceProvider.GetRequiredService<IInterprocessService>();
 
         DisableWindowsTheme();
     }
@@ -71,12 +47,12 @@ public partial class App
 
         AttachErrorHandlers();
 
-        var cloudFlareHandler = ServiceProvider.GetRequiredService<WpfCloudflareHandler>();
+        var cloudFlareHandler = Program.ServiceProvider.GetRequiredService<WpfCloudflareHandler>();
         cloudFlareHandler.Initialize();
 
         interprocessService.StartReceiving();
 
-        var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
+        var viewLocator = Program.ServiceProvider.GetRequiredService<IViewLocator>();
         viewLocator.Open(SidekickViewType.Standard, "/");
     }
 
@@ -102,10 +78,10 @@ public partial class App
         if (interprocessService.IsAlreadyRunning())
         {
             logger.LogDebug("[Startup] Application is already running.");
-            var viewLocator = ServiceProvider.GetRequiredService<IViewLocator>();
+            var viewLocator = Program.ServiceProvider.GetRequiredService<IViewLocator>();
             viewLocator.Close(SidekickViewType.Standard);
             viewLocator.Close(SidekickViewType.Overlay);
-            var sidekickDialogs = ServiceProvider.GetRequiredService<ISidekickDialogs>();
+            var sidekickDialogs = Program.ServiceProvider.GetRequiredService<ISidekickDialogs>();
             await sidekickDialogs.OpenOkModal("Another instance of Sidekick is already running. Make sure to close all instances of Sidekick inside the Task Manager.");
             logger.LogDebug("[Startup] Application is shutting down due to another instance running.");
             ShutdownAndExit();
@@ -126,64 +102,11 @@ public partial class App
         Environment.Exit(0);
     }
 
-    private static ServiceProvider GetServiceProvider()
-    {
-        var services = new ServiceCollection();
-
-        services.AddLocalization();
-
-        services
-
-            // Common
-            .AddSidekickCommon()
-            .AddSidekickCommonBlazor()
-            .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
-            .AddSidekickCommonInterprocess()
-            .AddSidekickCommonUi()
-
-            // Apis
-            .AddSidekickGitHubApi()
-            .AddSidekickPoeApi()
-            .AddSidekickPoeNinjaApi()
-            .AddSidekickPoe2ScoutApi()
-            .AddSidekickPoePriceInfoApi()
-            .AddSidekickPoeWikiApi()
-            .AddSidekickUpdater()
-
-            // Modules
-            .AddSidekickChat()
-            .AddSidekickGeneral()
-            .AddSidekickMaps()
-            .AddSidekickTrade()
-            .AddSidekickWealth()
-
-            // Platform needs to be at the end
-            .AddSidekickCommonPlatform(o =>
-            {
-                o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
-                o.OsxIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/apple-touch-icon.png");
-            });
-
-        services.AddSidekickInitializableService<IApplicationService, WpfApplicationService>();
-        services.AddSingleton<IViewLocator, WpfViewLocator>();
-        services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());
-        services.AddSingleton<WpfCloudflareHandler>();
-
-        services.AddApexCharts();
-
-#pragma warning disable CA1416 // Validate platform compatibility
-        services.AddWpfBlazorWebView();
-        services.AddBlazorWebViewDeveloperTools();
-#pragma warning restore CA1416 // Validate platform compatibility
-
-        return services.BuildServiceProvider();
-    }
-
     protected override void OnExit(ExitEventArgs e)
     {
-        if (ServiceProvider != null!)
+        if (Program.ServiceProvider != null!)
         {
-            ServiceProvider.Dispose();
+            Program.ServiceProvider.Dispose();
         }
 
         base.OnExit(e);

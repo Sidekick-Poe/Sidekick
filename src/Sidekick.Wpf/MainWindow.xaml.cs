@@ -37,7 +37,7 @@ public partial class MainWindow
         this.logger = logger;
         ViewType = viewType;
 
-        Scope = App.ServiceProvider.CreateScope();
+        Scope = Program.ServiceProvider.CreateScope();
         Resources.Add("services", Scope.ServiceProvider);
         InitializeComponent();
 
