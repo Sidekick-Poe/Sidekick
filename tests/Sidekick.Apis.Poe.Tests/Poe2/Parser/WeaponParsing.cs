@@ -69,7 +69,7 @@ Leeches 4.02% of Physical Damage as Mana
 ");
 
         Assert.Equal(Category.Weapon, actual.Header.Category);
-        Assert.Equal("Expert Composite Bow", actual.Header.ApiType);
+        Assert.Equal("Composite Bow", actual.Header.ApiType);
         Assert.Null(actual.Header.ApiName);
         Assert.Equal(76, actual.Properties.ItemLevel);
 
@@ -95,10 +95,10 @@ Leeches 4.02% of Physical Damage as Mana
     [Fact]
     public void ParseElementalCrossbow()
     {
-        var actual = parser.ParseItem(@"Item Class: Crossbows
+      var actual = parser.ParseItem(@"Item Class: Crossbows
 Rarity: Rare
 Blood Core
-Advanced Forlorn Crossbow
+Bleak Crossbow
 --------
 Physical Damage: 23-92
 Elemental Damage: 20-31 (augmented), 2-91 (augmented)
@@ -120,7 +120,7 @@ Grants 3 Life per Enemy Hit
 
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-        Assert.Equal("Advanced Forlorn Crossbow", actual.Header.ApiType);
+        Assert.Equal("Bleak Crossbow", actual.Header.ApiType);
         Assert.Equal("Blood Core", actual.Header.Name);
 
         // Verify physical damage
@@ -163,7 +163,7 @@ Leeches 5.82% of Physical Damage as Mana");
 
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Header.Rarity);
-        Assert.Equal("Advanced Cultist Bow", actual.Header.ApiType);
+        Assert.Equal("Cultist Bow", actual.Header.ApiType);
 
         // Verify the chaos damage range is parsed correctly
         Assert.Equal(41, actual.Properties.ChaosDamage?.Min);
