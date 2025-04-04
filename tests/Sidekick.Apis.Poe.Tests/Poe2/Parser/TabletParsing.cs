@@ -32,7 +32,7 @@ Can be used in a completed Tower on your Atlas to influence surrounding Maps. Ta
         Assert.Null(actual.Header.ApiName);
 
         actual.AssertHasModifier(ModifierCategory.Implicit, "# Maps in Range are Irradiated", 9);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "Area has #% chance to contain an Essence", 10);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Magic Monsters", 22);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Your Maps have #% chance to contain an Essence", 10);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Magic Monsters in your Maps", 22);
     }
 }
