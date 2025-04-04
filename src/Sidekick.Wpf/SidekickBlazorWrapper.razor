@@ -19,6 +19,8 @@
 
     private bool Ready { get; set; }
 
+    private bool ShouldInitialize { get; set; }
+
     protected override void OnInitialized()
     {
         Ready = Window.Url == "/";
@@ -47,6 +49,7 @@
             }
             else
             {
+                ShouldInitialize = true;
                 NavigationManager.NavigateTo(Window.Url);
             }
         });
@@ -80,7 +83,15 @@
     private void NavigationManagerOnLocationChanged(object? sender, LocationChangedEventArgs e)
     {
         Logger.LogInformation("Navigated to: " + e.Location);
-        if (Ready) return;
+        if (Ready)
+        {
+            if (ShouldInitialize)
+            {
+                Window.InitializeView(CurrentView);
+            }
+
+            return;
+        }
 
         InvokeAsync(() =>
         {
