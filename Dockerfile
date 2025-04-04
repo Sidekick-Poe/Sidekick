@@ -11,4 +11,4 @@ WORKDIR /app/src/Sidekick.Web
 VOLUME /app/src/Sidekick.Web/sidekick
 EXPOSE 5000
 ENTRYPOINT ["/usr/bin/dotnet"]
-CMD ["bin/Release/net9.0/Sidekick.dll", "--urls", "http://*:5000"]
+CMD ["bin/Release/net8.0/Sidekick.dll", "--urls", "http://*:5000"]
