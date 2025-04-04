@@ -33,6 +33,8 @@ public partial class MainWindow
 
     private bool ViewNormalized { get; set; }
 
+    private bool CanCloseOnBlur { get; set; } = true;
+
     public MainWindow(SidekickViewType viewType, ILogger logger)
     {
         this.logger = logger;
@@ -79,6 +81,7 @@ public partial class MainWindow
             switch (ViewType)
             {
                 case SidekickViewType.Overlay:
+                    Topmost = false;
                     Topmost = true;
                     ShowInTaskbar = false;
                     ResizeMode = ResizeMode.CanResize;
@@ -86,6 +89,7 @@ public partial class MainWindow
 
                 case SidekickViewType.Modal:
                     Topmost = false;
+                    Topmost = true;
                     ShowInTaskbar = true;
                     ResizeMode = ResizeMode.NoResize;
                     break;
@@ -111,9 +115,13 @@ public partial class MainWindow
                 _ = NormalizeView();
             }
 
-            if (ViewType != SidekickViewType.Overlay)
+            Activate();
+
+            if (ViewType == SidekickViewType.Overlay)
             {
-                Activate();
+                CanCloseOnBlur = false;
+                Deactivate();
+                CanCloseOnBlur = true;
             }
         });
     }
@@ -122,9 +130,9 @@ public partial class MainWindow
     {
         logger.LogInformation("[MainWindow] Minimizing view");
 
-        Dispatcher.Invoke(() =>
+        Dispatcher.InvokeAsync(async () =>
         {
-            SavePosition();
+            await SavePosition();
             WindowState = WindowState.Minimized;
         });
     }
@@ -135,9 +143,9 @@ public partial class MainWindow
 
         if (WindowState == WindowState.Normal)
         {
-            Dispatcher.Invoke(() =>
+            Dispatcher.InvokeAsync(async () =>
             {
-                SavePosition();
+                await SavePosition();
                 WindowState = WindowState.Maximized;
             });
         }
@@ -238,13 +246,14 @@ public partial class MainWindow
     {
         logger.LogInformation("[MainWindow] Closing view");
 
-        Dispatcher.Invoke(() =>
+        Dispatcher.InvokeAsync(async () =>
         {
+            await SavePosition();
+            ViewNormalized = false;
+
+            Topmost = false;
             ShowInTaskbar = false;
             WindowStyle = WindowStyle.None;
-
-            ViewNormalized = false;
-            SavePosition();
 
             WebView.Visibility = Visibility.Hidden;
 
@@ -253,7 +262,7 @@ public partial class MainWindow
         });
     }
 
-    private void SavePosition()
+    private async Task SavePosition()
     {
         if (!IsVisible || ViewType == SidekickViewType.Modal || ResizeMode is not (ResizeMode.CanResize or ResizeMode.CanResizeWithGrip) || WindowState == WindowState.Maximized)
         {
@@ -269,7 +278,7 @@ public partial class MainWindow
             var y = (int)Top;
 
             var viewPreferenceService = Scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
-            _ = viewPreferenceService.Set(ViewType.ToString(), width, height, x, y);
+            await viewPreferenceService.Set(ViewType.ToString(), width, height, x, y);
             logger.LogInformation("[MainWindow] Position saved");
         }
         catch (Exception e)
@@ -297,7 +306,7 @@ public partial class MainWindow
     {
         base.OnDeactivated(e);
 
-        if (ViewType == SidekickViewType.Overlay)
+        if (ViewType == SidekickViewType.Overlay && CanCloseOnBlur)
         {
             _ = Task.Run(async () =>
             {
