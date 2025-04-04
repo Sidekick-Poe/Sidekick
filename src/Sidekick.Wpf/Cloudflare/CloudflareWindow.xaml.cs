@@ -91,7 +91,7 @@ public partial class CloudflareWindow
                 var content = await GetPageContent();
                 if (content == "\"Temporarily Unavailable\"")
                 {
-                    logger.LogInformation("[CloudflareWindow] The content is Temporarily Unavailable. \n" + content);
+                    logger.LogInformation("[CloudflareWindow] The content is Temporarily Unavailable.");
                     await cloudflareService.CaptchaChallengeFailed();
                     Dispatcher.Invoke(Close);
                     return;
