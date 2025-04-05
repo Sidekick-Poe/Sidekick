@@ -93,7 +93,7 @@ else if (Price != null)
         Price = await Client.GetPriceInfo(Item.Invariant?.Name, Item.Invariant?.Type, Item.Header.Category);
         NumberOfListings = Price?.PriceLogs?.LastOrDefault(x => x?.Quantity != null)?.Quantity;
 
-        if (Price?.PriceLogs != null)
+        if (Price?.PriceLogs?.Count > 1)
         {
             Series = Price.PriceLogs.Select((value, index) => new DataPoint
                 {

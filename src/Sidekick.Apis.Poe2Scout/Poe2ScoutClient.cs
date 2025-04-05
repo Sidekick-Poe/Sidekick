@@ -40,7 +40,7 @@ public class Poe2ScoutClient(
 
         var prices = await GetPrices();
 
-        var price = prices.Where(x => x.CategoryApiId == category)
+        var price = prices.Where(x => x.CategoryApiId == category && x.Price != 0)
                           .FirstOrDefault(x => (x.Name == englishName || x.Name == englishType)
                                                || x.Type == englishType);
 
