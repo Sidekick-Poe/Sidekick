@@ -126,7 +126,7 @@ public class Poe2ScoutClient(
                                     : CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.CategoryApiId).GetEnumFromValue<Category>()
                                 : Category.Unknown,
                 Price = x.CurrentPrice,
-                PriceLogs = x.PriceLogs?.Where(x => x != null).ToList(),
+                PriceLogs = x.PriceLogs?.Where(x => x != null).OrderBy(x => x.Time).ToList(),
                 LastUpdated = DateTimeOffset.Now
             }).ToList();
         }
