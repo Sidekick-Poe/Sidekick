@@ -17,6 +17,9 @@ public class UiLanguageProvider(ISettingsService settingsService) : IUiLanguageP
 
     private string? currentLanguage;
 
+    // <inheritdoc />
+    public event Action<CultureInfo>? OnLanguageChanged;
+
     /// <inheritdoc />
     public int Priority => 0;
 
@@ -34,6 +37,15 @@ public class UiLanguageProvider(ISettingsService settingsService) : IUiLanguageP
                         .Select(CultureInfo.GetCultureInfo)
                         .ToList();
         return languages;
+    }
+
+    /// <inheritdoc />
+    public async Task<CultureInfo> Get()
+    {
+        var language = await settingsService.GetString(SettingKeys.LanguageUi);
+        var cultureInfo = CultureInfo.GetCultureInfo(language ?? "en");
+
+        return cultureInfo;
     }
 
     /// <inheritdoc />
@@ -59,7 +71,10 @@ public class UiLanguageProvider(ISettingsService settingsService) : IUiLanguageP
         }
 
         currentLanguage = name;
-        CultureInfo.DefaultThreadCurrentCulture = CultureInfo.GetCultureInfo(language);
-        CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo(language);
+        var cultureInfo = CultureInfo.GetCultureInfo(language);
+        CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+        CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+        OnLanguageChanged?.Invoke(cultureInfo);
     }
 }

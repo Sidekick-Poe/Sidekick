@@ -1,11 +1,39 @@
+using System.Globalization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Localization;
 using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Wpf.Services;
 
-public class WpfViewLocator(ILogger<WpfViewLocator> logger) : IViewLocator, IDisposable
+public class WpfViewLocator : IViewLocator, IDisposable
 {
+    private readonly ILogger<WpfViewLocator> logger;
+    private readonly IUiLanguageProvider uiLanguageProvider;
+
+    public WpfViewLocator(ILogger<WpfViewLocator> logger, IUiLanguageProvider uiLanguageProvider)
+    {
+        this.logger = logger;
+        this.uiLanguageProvider = uiLanguageProvider;
+        this.uiLanguageProvider.OnLanguageChanged += SetCultureInfo;
+
+        SetCultureInfo();
+    }
+
+    private async void SetCultureInfo(CultureInfo? cultureInfo = null)
+    {
+        if (cultureInfo == null)
+        {
+            cultureInfo = await uiLanguageProvider.Get();
+        }
+
+        await System.Windows.Application.Current.Dispatcher.InvokeAsync(() =>
+        {
+            CultureInfo.CurrentCulture = cultureInfo;
+            CultureInfo.CurrentUICulture = cultureInfo;
+        });
+    }
+
     public bool SupportsMinimize => true;
 
     public bool SupportsMaximize => true;
@@ -72,6 +100,7 @@ public class WpfViewLocator(ILogger<WpfViewLocator> logger) : IViewLocator, IDis
 
     public void Dispose()
     {
+        uiLanguageProvider.OnLanguageChanged -= SetCultureInfo;
         StandardWindow?.Dispose();
         OverlayWindow?.Dispose();
         ModalWindow?.Dispose();

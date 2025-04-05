@@ -27,12 +27,11 @@
         Language = await SettingsService.GetString(SettingKeys.LanguageUi);
         var languages = UiLanguageProvider.GetList();
         Options = languages
-                  .OrderBy(x => x.DisplayName)
                   .Select(
                       x => new SelectOption()
                       {
                           Value = x.TwoLetterISOLanguageName,
-                          Label = x.DisplayName,
+                          Label = $"{x.DisplayName} ({x.TwoLetterISOLanguageName})",
                       })
                   .ToList();
 
@@ -44,7 +43,8 @@
         Language = value;
         await SettingsService.Set(SettingKeys.LanguageUi, value);
         await UiLanguageProvider.Initialize();
-        NavigationManager.NavigateTo("/settings/general", true);
+        NavigationManager.NavigateTo("/home");
+        NavigationManager.NavigateTo("/settings/general");
     }
 
 }
