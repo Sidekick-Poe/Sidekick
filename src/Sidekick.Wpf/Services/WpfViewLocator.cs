@@ -19,7 +19,7 @@ public class WpfViewLocator(ILogger<WpfViewLocator> logger) : IViewLocator, IDis
     public void Open(SidekickViewType type, string url)
     {
         var window = GetWindow(type, true);
-        if (window != null) window.OpenView(url);
+        if (window != null) _ = window.OpenView(url);
     }
 
     public MainWindow? GetWindow(SidekickViewType type, bool createIfMissing)
