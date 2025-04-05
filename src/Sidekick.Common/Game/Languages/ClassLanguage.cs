@@ -131,4 +131,8 @@ public class ClassLanguage
     public required string Breachstone { get; set; }
 
     public required string BossKey { get; set; }
+
+    public required string Spears { get; set; }
+
+    public required string Bucklers { get; set; }
 }

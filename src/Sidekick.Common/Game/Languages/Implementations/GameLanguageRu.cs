@@ -1,3 +1,4 @@
+
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Russian", "ru")]
@@ -48,6 +49,7 @@ public class GameLanguageRu : IGameLanguage
     public string DescriptionMonsterPackSize => "Размер групп монстров";
     public string DescriptionRequirements => "Требования";
     public string DescriptionAreaLevel => "Уровень области";
+    public string DescriptionUnusable => "Вы не можете использовать этот предмет, его параметры не будут учтены";
 
     public string AffixSuperior => "высокого качества";
     public string AffixBlighted => "Заражённая";
@@ -114,6 +116,8 @@ public class GameLanguageRu : IGameLanguage
         Sceptres = "Скипетры",
         RuneDaggers = "Рунические кинжалы",
         Warstaves = "Воинские посохи",
+        Spears = "Копья",
+        Bucklers = "Баклеры",
         FishingRods = "Удочки",
         HeistGear = "Разбойничьи принадлежности",
         HeistBrooch = "Разбойничьи броши",

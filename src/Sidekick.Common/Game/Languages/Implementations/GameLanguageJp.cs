@@ -50,6 +50,7 @@ public class GameLanguageJp : IGameLanguage
     public string DescriptionMonsterPackSize => "モンスターパックサイズ";
     public string DescriptionRequirements => "装備要求";
     public string DescriptionAreaLevel => "エリアレベル";
+    public string DescriptionUnusable => "このアイテムを使用できません。アイテムの効果は無視されます";
 
     public string AffixSuperior => "上質な";
     public string AffixBlighted => "ブライト";
@@ -116,6 +117,8 @@ public class GameLanguageJp : IGameLanguage
         Sceptres = "セプター",
         RuneDaggers = "ルーンの短剣",
         Warstaves = "ウォースタッフ",
+        Spears = "槍",
+        Bucklers = "バックラー",
         FishingRods = "釣り竿",
         HeistGear = "ハイストギア",
         HeistBrooch = "ハイストブローチ",

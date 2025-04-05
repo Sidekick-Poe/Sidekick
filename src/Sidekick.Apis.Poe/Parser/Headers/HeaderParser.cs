@@ -113,6 +113,7 @@ public class HeaderParser
             "armour.quiver" => BuildRegex(gameLanguageProvider.Language.Classes.Quivers),
             "armour.shield" => BuildRegex(gameLanguageProvider.Language.Classes.Shields),
             "armour.focus" => BuildRegex(gameLanguageProvider.Language.Classes.Focus),
+            "armour.buckler" => BuildRegex(gameLanguageProvider.Language.Classes.Bucklers),
 
             // "armour.buckler" => BuildRegex(gameLanguageProvider.Language.Classes.Bucklers),
 
@@ -180,6 +181,7 @@ public class HeaderParser
             "weapon.twosword" => BuildRegex(gameLanguageProvider.Language.Classes.TwoHandSwords),
             "weapon.wand" => BuildRegex(gameLanguageProvider.Language.Classes.Wands),
             "weapon.warstaff" => BuildRegex(gameLanguageProvider.Language.Classes.Warstaves),
+            "weapon.spear" => BuildRegex(gameLanguageProvider.Language.Classes.Spears),
 
             "tincture" => BuildRegex(gameLanguageProvider.Language.Classes.Tinctures),
             "corpse" => BuildRegex(gameLanguageProvider.Language.Classes.Corpses),

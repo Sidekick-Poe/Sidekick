@@ -1,3 +1,4 @@
+
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Spanish", "es")]
@@ -48,6 +49,7 @@ public class GameLanguageEs : IGameLanguage
     public string DescriptionMonsterPackSize => "Tamaño de los grupos de monstruos";
     public string DescriptionRequirements => "Requisitos";
     public string DescriptionAreaLevel => "Nivel del área";
+    public string DescriptionUnusable => "No puedes usar este objeto. Sus estadísticas serán ignoradas";
 
     public string AffixSuperior => "Superior";
     public string AffixBlighted => "infestado";
@@ -114,6 +116,8 @@ public class GameLanguageEs : IGameLanguage
         Sceptres = "Cetros",
         RuneDaggers = "Dagas rúnicas",
         Warstaves = "Báculos de guerra",
+        Spears = "Lanzas",
+        Bucklers = "Broqueles",
         FishingRods = "Cañas de pescar",
         HeistGear = "Accesorio de Heist",
         HeistBrooch = "Broches de Heist",

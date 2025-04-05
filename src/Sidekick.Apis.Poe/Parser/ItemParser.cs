@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Parser.AdditionalInformation;
@@ -9,6 +10,8 @@ using Sidekick.Apis.Poe.Parser.Requirements;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Items.AdditionalInformation;
+using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Parser;
 
@@ -21,9 +24,23 @@ public class ItemParser
     ClusterJewelParser clusterJewelParser,
     IApiInvariantItemProvider apiInvariantItemProvider,
     IPropertyParser propertyParser,
+    IGameLanguageProvider gameLanguageProvider,
     IHeaderParser headerParser
 ) : IItemParser
 {
+    private Regex? UnusablePattern { get; set; }
+
+    public int Priority => 100;
+
+    public Task Initialize()
+    {
+        var unusableRegex = Regex.Escape(gameLanguageProvider.Language.DescriptionUnusable);
+        unusableRegex += @"[\n\r]+" + ParsingItem.SeparatorPattern + @"[\n\r]+";
+        UnusablePattern = new Regex(unusableRegex, RegexOptions.Compiled);
+
+        return Task.CompletedTask;
+    }
+
     public Item ParseItem(string? itemText)
     {
         if (string.IsNullOrEmpty(itemText))
@@ -33,6 +50,7 @@ public class ItemParser
 
         try
         {
+            itemText = RemoveUnusableLine(itemText);
             var parsingItem = new ParsingItem(itemText);
             var header = headerParser.Parse(parsingItem);
 
@@ -75,5 +93,10 @@ public class ItemParser
         }
 
         return null;
+    }
+
+    private string RemoveUnusableLine(string itemText)
+    {
+        return UnusablePattern?.Replace(itemText, string.Empty) ?? itemText;
     }
 }

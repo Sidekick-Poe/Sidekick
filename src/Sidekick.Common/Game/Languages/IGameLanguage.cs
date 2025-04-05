@@ -88,6 +88,8 @@ public interface IGameLanguage
 
     string DescriptionRequirements { get; }
 
+    string DescriptionUnusable { get; }
+
     string AffixSuperior { get; }
 
     string AffixBlighted { get; }

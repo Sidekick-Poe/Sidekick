@@ -1,4 +1,5 @@
 using Romanization;
+
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Traditional Chinese (Unstable)", "zh")]
@@ -49,6 +50,7 @@ public class GameLanguageZh : IGameLanguage
     public string DescriptionMonsterPackSize => "怪物群大小";
     public string DescriptionRequirements => "需求";
     public string DescriptionAreaLevel => "區域等級";
+    public string DescriptionUnusable => "你無法使用這項裝備，它的數值將被忽略";
 
     public string AffixSuperior => "精良的";
     public string AffixBlighted => "凋落的";
@@ -115,6 +117,8 @@ public class GameLanguageZh : IGameLanguage
         Sceptres = "權杖",
         RuneDaggers = "符紋匕首",
         Warstaves = "征戰長杖",
+        Spears = "長鋒",
+        Bucklers = "輕盾",
         FishingRods = "魚竿",
         HeistGear = "劫盜裝備",
         HeistBrooch = "劫盜胸針",

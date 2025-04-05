@@ -47,7 +47,6 @@ public static class StartupExtensions
 
         services.AddSingleton<ICloudflareService, CloudflareService>();
         services.AddSingleton<IAuthenticationService, AuthenticationService>();
-        services.AddSingleton<IItemParser, ItemParser>();
         services.AddSingleton<ITradeSearchService, TradeSearchService>();
         services.AddSingleton<ILeagueProvider, LeagueProvider>();
         services.AddSingleton<ITradeFilterService, TradeFilterService>();
@@ -57,6 +56,7 @@ public static class StartupExtensions
         services.AddSingleton<IFuzzyService, FuzzyService>();
 
         services.AddSingleton<IRequirementsParser, RequirementsParser>();
+        services.AddSidekickInitializableService<IItemParser, ItemParser>();
         services.AddSidekickInitializableService<IPropertyParser, PropertyParser>();
         services.AddSidekickInitializableService<IApiInvariantItemProvider, ApiInvariantItemProvider>();
         services.AddSidekickInitializableService<IApiItemProvider, ApiItemProvider>();
