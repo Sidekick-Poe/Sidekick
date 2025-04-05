@@ -144,12 +144,6 @@
   <data name="Base_Percentile" xml:space="preserve">
     <value>기본 백분위수</value>
   </data>
-  <data name="BuyoutPrice" xml:space="preserve">
-    <value>가격</value>
-  </data>
-  <data name="Class" xml:space="preserve">
-    <value>아이템 유형</value>
-  </data>
   <data name="Class_Hint" xml:space="preserve">
     <value>체크하시면 SideKick이 해당되는 모든 아이템 유형을 검색합니다. 체크하지 않으시면 Sidekick은 검색하는 특정 아이템 베이스를 검색합니다. (예: 갑옷 VS 전문 나그네 재킷)</value>
   </data>
@@ -224,5 +218,8 @@
   </data>
   <data name="Unidentified" xml:space="preserve">
     <value>미확인</value>
+  </data>
+  <data name="Item_Class" xml:space="preserve">
+    <value>아이템 유형</value>
   </data>
 </root>

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="New_Update_Alert" xml:space="preserve">
-      <value>Une mise à jour est disponible</value>
+    <value>Une mise à jour est disponible</value>
   </data>
   <data name="Open_Website" xml:space="preserve">
     <value>Ouvrir le site web</value>
@@ -126,8 +126,25 @@
   <data name="Checking_For_Updates" xml:space="preserve">
     <value>Vérification de mise à jour</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Continue" xml:space="preserve">
-      <value>Continuer</value>
+    <value>Continuer</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Quitter</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Journal des modifications</value>
+  </data>
+  <data name="Updating" xml:space="preserve">
+    <value>Téléchargement et mise à jour en cours...</value>
+  </data>
+  <data name="NoChangelog" xml:space="preserve">
+    <value>Aucun journal de modification trouvé. Utilisez le site web pour consulter les derniers changements.</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Mettre à jour</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Sauter la mise à jour</value>
   </data>
 </root>

@@ -123,9 +123,6 @@
   <data name="Character_League" xml:space="preserve">
     <value>리그</value>
   </data>
-  <data name="Chat_Add_New_Command" xml:space="preserve">
-    <value>새로운 명령어 추가</value>
-  </data>
   <data name="Chat_Commands" xml:space="preserve">
     <value>채팅 명령어</value>
   </data>
@@ -149,9 +146,6 @@
   </data>
   <data name="Chat_Kick" xml:space="preserve">
     <value>파티 탈퇴</value>
-  </data>
-  <data name="Chat_Submit_The_Command" xml:space="preserve">
-    <value>명령어 제출</value>
   </data>
   <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
     <value>마지막에 귓말을 받은 사람에게 답장할 수 있는 명령어입니다</value>
@@ -284,5 +278,14 @@
   </data>
   <data name="Bulk_Trade_Settings" xml:space="preserve">
     <value>대량 교환 세팅</value>
+  </data>
+  <data name="Chat_Add_New_Command" xml:space="preserve">
+    <value>새로운 명령어 추가</value>
+  </data>
+  <data name="Chat_Submit_The_Command" xml:space="preserve">
+    <value>명령어 제출</value>
+  </data>
+  <data name="Buyout_Price" xml:space="preserve">
+    <value>가격</value>
   </data>
 </root>
