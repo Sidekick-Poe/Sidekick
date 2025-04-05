@@ -196,4 +196,34 @@ Allies in your Presence deal 9 to 13 additional Attack Fire Damage
 
         Assert.Equal(100, actual.Properties.Spirit);
     }
+
+    [Fact]
+    public void ParseSpear()
+    {
+        var actual = parser.ParseItem(@"Item Class: Spears
+Rarity: Magic
+Precise Ironhead Spear
+--------
+Physical Damage: 7-13
+Critical Hit Chance: 5.00%
+Attacks per Second: 1.60
+--------
+Requires: Level 5, 11 Dex
+--------
+Item Level: 5
+--------
+Grants Skill: Spear Throw
+--------
++32 to Accuracy Rating
+
+");
+
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal(Rarity.Magic, actual.Header.Rarity);
+        Assert.Equal("weapon.spear", actual.Header.ApiItemCategory);
+        Assert.Equal("Ironhead Spear", actual.Header.ApiType);
+        Assert.Null(actual.Header.ApiName);
+
+        actual.AssertHasModifier(ModifierCategory.Explicit, "# to Accuracy Rating", 32);
+    }
 }

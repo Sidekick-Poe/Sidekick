@@ -64,4 +64,66 @@ Corrupted
 
         Assert.True(actual.Properties.Corrupted);
     }
+
+    [Fact]
+    public void ParseBuckler()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Bucklers
+Rarity: Magic
+Hale Wooden Buckler
+--------
+Block chance: 20%
+Evasion Rating: 16
+--------
+Requires: Level 5, 11 Dex
+--------
+Item Level: 5
+--------
+Grants Skill: Parry
+--------
++12 to maximum Life
+
+");
+
+        Assert.Equal(Category.Armour, actual.Header.Category);
+        Assert.Equal(Rarity.Magic, actual.Header.Rarity);
+        Assert.Equal("armour.buckler", actual.Header.ApiItemCategory);
+        Assert.Equal("Wooden Buckler", actual.Header.ApiType);
+        Assert.Null(actual.Header.ApiName);
+
+        Assert.Equal(16, actual.Properties.EvasionRating);
+
+        Assert.Equal(5, actual.Properties.ItemLevel);
+
+        actual.AssertHasModifier(ModifierCategory.Explicit, "# to maximum Life", 12);
+    }
+
+    [Fact]
+    public void ParseUnusableQuiver()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Quivers
+Rarity: Normal
+You cannot use this item. Its stats will be ignored
+--------
+Fire Quiver
+--------
+Requires: Level 8
+--------
+Item Level: 8
+--------
+Adds 3 to 5 Fire damage to Attacks (implicit)
+--------
+Can only be equipped if you are wielding a Bow.
+");
+
+        Assert.Equal(Category.Armour, actual.Header.Category);
+        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
+        Assert.Equal("armour.quiver", actual.Header.ApiItemCategory);
+        Assert.Equal("Fire Quiver", actual.Header.ApiType);
+        Assert.Null(actual.Header.ApiName);
+
+        Assert.Equal(8, actual.Properties.ItemLevel);
+    }
 }

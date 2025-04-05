@@ -50,6 +50,7 @@ public class GameLanguageKr : IGameLanguage
     public string DescriptionMonsterPackSize => "몬스터 무리 규모";
     public string DescriptionRequirements => "요구사항";
     public string DescriptionAreaLevel => "지역 레벨";
+    public string DescriptionUnusable => "아이템 착용 불가. 아이템 효과 미적용";
 
     public string AffixSuperior => "상";
     public string AffixBlighted => "역병";
@@ -116,6 +117,8 @@ public class GameLanguageKr : IGameLanguage
         Sceptres = "셉터",
         RuneDaggers = "룬 단검",
         Warstaves = "전쟁지팡이",
+        Spears = "창",
+        Bucklers = "버클러",
         FishingRods = "낚싯대",
         HeistGear = "강탈 장비",
         HeistBrooch = "강탈 브로치",

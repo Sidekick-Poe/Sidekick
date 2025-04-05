@@ -1,3 +1,4 @@
+
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("English", "en")]
@@ -48,6 +49,7 @@ public class GameLanguageEn : IGameLanguage
     public string DescriptionMonsterPackSize => "Monster Pack Size";
     public string DescriptionRequirements => "Requirements";
     public string DescriptionAreaLevel => "Area Level";
+    public string DescriptionUnusable => "You cannot use this item. Its stats will be ignored";
 
     public string AffixSuperior => "Superior";
     public string AffixBlighted => "Blighted";
@@ -114,6 +116,8 @@ public class GameLanguageEn : IGameLanguage
         Sceptres = "Sceptres",
         RuneDaggers = "Rune Daggers",
         Warstaves = "Warstaves",
+        Spears = "Spears",
+        Bucklers = "Bucklers",
         FishingRods = "Fishing Rods",
         HeistGear = "Heist Gear",
         HeistBrooch = "Heist Brooches",

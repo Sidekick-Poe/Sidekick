@@ -1,3 +1,4 @@
+
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Thai (Unstable)", "th")]
@@ -48,6 +49,7 @@ public class GameLanguageTh : IGameLanguage
     public string DescriptionMonsterPackSize => "ขนาดกองมอนสเตอร์";
     public string DescriptionRequirements => "เงื่อนไข";
     public string DescriptionAreaLevel => "ด่านเลเวล";
+    public string DescriptionUnusable => "คุณไม่สามารถใช้ไอเทมชิ้นนี้ได้ Stats ของไอเทมนี้จะไม่มีผล";
 
     public string AffixSuperior => "Superior";
     public string AffixBlighted => "Blighted";
@@ -114,6 +116,8 @@ public class GameLanguageTh : IGameLanguage
         Sceptres = "คทา",
         RuneDaggers = "มีดอาคม",
         Warstaves = "ไม้พลองสงคราม",
+        Spears = "หอก",
+        Bucklers = "บัคเลอร์",
         FishingRods = "เบ็ดตกปลา",
         HeistGear = "อุปกรณ์สวมใส่กองโจร",
         HeistBrooch = "เข็มกลัดกองโจร",
