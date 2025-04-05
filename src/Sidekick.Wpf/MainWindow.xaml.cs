@@ -264,7 +264,7 @@ public partial class MainWindow
 
             WebView.Visibility = Visibility.Hidden;
 
-            Deactivate2();
+            Deactivate();
             Hide();
         });
     }
@@ -349,7 +349,7 @@ public partial class MainWindow
     /// where closing the overlay would focus a random window instead of giving the focus back to the game.
     /// This method ensures the window loses focus before closing. The way this is done is by creating a temporary window and giving focus to that.
     /// Windows magic.</remarks>
-    private void Deactivate2()
+    private void Deactivate()
     {
         // Check if the window is still valid and focused
         if (!IsActive)
