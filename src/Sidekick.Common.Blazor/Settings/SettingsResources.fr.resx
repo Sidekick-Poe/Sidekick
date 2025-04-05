@@ -168,6 +168,9 @@
   <data name="Other_Settings" xml:space="preserve">
     <value>Autres configurations</value>
   </data>
+  <data name="Keybind_Already_In_Use" xml:space="preserve">
+    <value>Raccourci déjà utilisé, veuillez en choisir un autre.</value>
+  </data>
   <data name="Key_Active" xml:space="preserve">
     <value>&lt;Appuyez sur une touche&gt;</value>
   </data>
@@ -218,6 +221,9 @@
   </data>
   <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
     <value>Afficher les prédictions de poeprices.info (PoE1 seulement)</value>
+  </data>
+  <data name="PriceCheck_Automatically_Search" xml:space="preserve">
+    <value>Rechercher automatiquement lors de la vérification du prix</value>
   </data>
   <data name="Reset_Cache" xml:space="preserve">
     <value>Réinitialiser la cache</value>
@@ -294,6 +300,9 @@
   <data name="Currency_of_Results" xml:space="preserve">
     <value>Devise des résultats</value>
   </data>
+  <data name="Item_Listing_Age" xml:space="preserve">
+    <value>Âge de la mise en vente</value>
+  </data>
   <data name="Normalize_Values" xml:space="preserve">
     <value>Normaliser les valeurs. Laisser à 0% pour les valeurs exactes.</value>
   </data>
@@ -306,8 +315,15 @@
   <data name="Official_Website" xml:space="preserve">
     <value>Site officiel</value>
   </data>
+  <data name="GitHub_Repository" xml:space="preserve">
+    <value>GitHub Repository</value>
+  </data>
   <data name="Open_Settings_Folder" xml:space="preserve">
     <value>Ouvrir le répertoire des configurations</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="poedb" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="SaveWindowPositions" xml:space="preserve">
     <value>Conserver la position des fenêtres. Si désactivé, les fenêtres seront centrées.</value>
@@ -335,6 +351,33 @@
   </data>
   <data name="Chat_Commands_Kick" xml:space="preserve">
     <value>Expulser un joueur</value>
+  </data>
+  <data name="UseInvariantForTradeResultsTip" xml:space="preserve">
+    <value>Ce n'est pas fiable pour certains items uniques, mais c'est une solution de contournement.</value>
+  </data>
+  <data name="Player_Status" xml:space="preserve">
+    <value>Statut du joueur</value>
+  </data>
+  <data name="Player_Status_Online" xml:space="preserve">
+    <value>En ligne seulement</value>
+  </data>
+  <data name="Player_Status_Any" xml:space="preserve">
+    <value>Tous</value>
+  </data>
+  <data name="Player_Status_OnlineLeague" xml:space="preserve">
+    <value>En ligne et dans la ligue</value>
+  </data>
+  <data name="Buyout_Price" xml:space="preserve">
+    <value>Prix</value>
+  </data>
+  <data name="OpenHomeOnLaunch" xml:space="preserve">
+    <value>Affiché cette fenêtre au démarrage</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Zoom</value>
+  </data>
+  <data name="Zoom_Hint" xml:space="preserve">
+    <value>Si le zoom est modifié, il est recommandé d'ajuster également la taille des fenêtres.</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Configurations</value>

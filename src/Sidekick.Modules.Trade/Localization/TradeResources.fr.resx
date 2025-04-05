@@ -144,12 +144,6 @@
   <data name="Base_Percentile" xml:space="preserve">
     <value>Centile de base</value>
   </data>
-  <data name="BuyoutPrice" xml:space="preserve">
-    <value>Prix</value>
-  </data>
-  <data name="Class" xml:space="preserve">
-    <value>Classe d'item</value>
-  </data>
   <data name="Class_Hint" xml:space="preserve">
     <value>Si activé, Sidekick va rechercher les items de cette classe. Si désactivé, Sidekick va rechercher les items de ce type. (ex : Type: Couronne de prophète vs Class: Casques)</value>
   </data>
@@ -248,5 +242,32 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>Non</value>
+  </data>
+  <data name="Default_Item_Class_Filter" xml:space="preserve">
+    <value>Filtre de type d'item par défaut</value>
+  </data>
+  <data name="Item_Class" xml:space="preserve">
+    <value>Classe d'item</value>
+  </data>
+  <data name="Base_Type" xml:space="preserve">
+    <value>Type de base</value>
+  </data>
+  <data name="Default_FilterType" xml:space="preserve">
+    <value>Type de filtre par défaut</value>
+  </data>
+  <data name="FilterType_Minimum" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
+  <data name="FilterType_Maximum" xml:space="preserve">
+    <value>Maximum</value>
+  </data>
+  <data name="FilterType_Equals" xml:space="preserve">
+    <value>Égal</value>
+  </data>
+  <data name="FilterType_Range" xml:space="preserve">
+    <value>Plage</value>
+  </data>
+  <data name="Listings" xml:space="preserve">
+    <value>Mises en vente</value>
   </data>
 </root>
