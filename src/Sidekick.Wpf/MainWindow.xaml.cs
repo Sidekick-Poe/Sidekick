@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Sidekick.Common.Platform.Windows.DllImport;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Wpf.Helpers;
@@ -33,7 +34,9 @@ public partial class MainWindow
 
     private bool ViewNormalized { get; set; }
 
-    private bool CanCloseOnBlur { get; set; } = true;
+    private bool CloseOnBlur { get; set; }
+
+    private IntPtr OriginalFocusedWindow { get; set; }
 
     public MainWindow(SidekickViewType viewType, ILogger logger)
     {
@@ -52,8 +55,13 @@ public partial class MainWindow
         Show();
     }
 
-    public void OpenView(string url)
+    public async Task OpenView(string url)
     {
+        var settingsService = Scope.ServiceProvider.GetRequiredService<ISettingsService>();
+        CloseOnBlur = await settingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
+
+        OriginalFocusedWindow = User32.GetForegroundWindow();
+
         logger.LogInformation("[MainWindow] Opening view: " + url);
 
         Url = url;
@@ -117,11 +125,10 @@ public partial class MainWindow
 
             Activate();
 
-            if (ViewType == SidekickViewType.Overlay)
+            // Attempt to set focus back to the original window
+            if (ViewType == SidekickViewType.Overlay && !CloseOnBlur && OriginalFocusedWindow != IntPtr.Zero)
             {
-                CanCloseOnBlur = false;
-                Deactivate();
-                CanCloseOnBlur = true;
+                User32.SetForegroundWindow(OriginalFocusedWindow);
             }
         });
     }
@@ -306,17 +313,9 @@ public partial class MainWindow
     {
         base.OnDeactivated(e);
 
-        if (ViewType == SidekickViewType.Overlay && CanCloseOnBlur)
+        if (ViewType == SidekickViewType.Overlay && CloseOnBlur)
         {
-            _ = Task.Run(async () =>
-            {
-                var settingsService = Scope.ServiceProvider.GetRequiredService<ISettingsService>();
-                var closeOnBlur = await settingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
-                if (closeOnBlur)
-                {
-                    CloseView();
-                }
-            });
+            CloseView();
         }
     }
 
@@ -350,7 +349,7 @@ public partial class MainWindow
     /// where closing the overlay would focus a random window instead of giving the focus back to the game.
     /// This method ensures the window loses focus before closing. The way this is done is by creating a temporary window and giving focus to that.
     /// Windows magic.</remarks>
-    public void Deactivate()
+    private void Deactivate()
     {
         // Check if the window is still valid and focused
         if (!IsActive)

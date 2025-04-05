@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Sidekick.Common.Platform.Windows.DllImport;
 
-internal static class User32
+public static class User32
 {
     [DllImport("user32.dll")]
     internal static extern bool EnumDisplayMonitors(IntPtr hdc, IntPtr lprcClip, EnumMonitorsDelegate lpfnEnum, IntPtr dwData);
@@ -14,7 +14,10 @@ internal static class User32
     internal delegate bool EnumMonitorsDelegate(IntPtr hMonitor, IntPtr hdcMonitor, ref RectStruct lprcMonitor, IntPtr dwData);
 
     [DllImport("user32.dll")]
-    internal static extern IntPtr GetForegroundWindow();
+    public static extern IntPtr GetForegroundWindow();
+
+    [DllImport("user32.dll", SetLastError = true)]
+    public static extern bool SetForegroundWindow(IntPtr hWnd);
 
     [DllImport("user32.dll", SetLastError = true)]
     internal static extern uint GetWindowThreadProcessId(IntPtr hWnd, out int lpdwProcessId);
