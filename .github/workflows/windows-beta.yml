@@ -95,7 +95,7 @@ jobs:
           Write-Output "Version: $version"
 
           dotnet publish src/Sidekick.Protocol/Sidekick.Protocol.csproj -p:PublishProfile=Build
-          dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release --self-contained true -r win-x64 -o ./Publish
+          dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release -r win-x64 -o ./Publish
 
       - name: Velopack
         shell: pwsh
@@ -113,5 +113,5 @@ jobs:
 
           dotnet tool install -g vpk
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-beta
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-beta --releaseNotes $releaseNotesPath
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-beta --releaseNotes $releaseNotesPath --framework net8.0-x64-desktop,webview2
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-beta --pre --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
