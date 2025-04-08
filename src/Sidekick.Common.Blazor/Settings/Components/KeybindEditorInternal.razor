@@ -6,7 +6,7 @@
                AdditionalClasses="cursor-default caret-transparent"
                spellcheck="false">
         <AdornmentContent>
-            <ButtonSecondary OnClick="Delete">@Resources["Reset"]</ButtonSecondary>
+            <ButtonSecondary OnClick="Clear">@Resources["Clear"]</ButtonSecondary>
         </AdornmentContent>
     </FormInput>
     @if (IsDuplicated)
@@ -105,7 +105,7 @@
         });
     }
 
-    public async Task Delete()
+    public async Task Clear()
     {
         CurrentEditorId = null;
         CurrentEditorChanged?.Invoke();

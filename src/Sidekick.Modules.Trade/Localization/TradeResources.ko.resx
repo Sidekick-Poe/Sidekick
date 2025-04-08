@@ -144,17 +144,11 @@
   <data name="Base_Percentile" xml:space="preserve">
     <value>기본 백분위수</value>
   </data>
-  <data name="Class_Hint" xml:space="preserve">
-    <value>체크하시면 SideKick이 해당되는 모든 아이템 유형을 검색합니다. 체크하지 않으시면 Sidekick은 검색하는 특정 아이템 베이스를 검색합니다. (예: 갑옷 VS 전문 나그네 재킷)</value>
-  </data>
   <data name="Corrupted" xml:space="preserve">
     <value>타락된</value>
   </data>
   <data name="CountString" xml:space="preserve">
     <value>{1} 중 {0}개의 아이템을 보여주는 중</value>
-  </data>
-  <data name="Filters_Equals" xml:space="preserve">
-    <value>동일</value>
   </data>
   <data name="Filters_Max" xml:space="preserve">
     <value>최대</value>
@@ -162,17 +156,8 @@
   <data name="Filters_Min" xml:space="preserve">
     <value>최소</value>
   </data>
-  <data name="Filters_Submit" xml:space="preserve">
-    <value>검색</value>
-  </data>
   <data name="ForceCategoryHint" xml:space="preserve">
     <value>이 체크박스를 선택하면 선택된 접사와 관련된 결과에 등장합니다. 체크해제시 모든 접사가 등장합니다.</value>
-  </data>
-  <data name="ItemLevel" xml:space="preserve">
-    <value>아이템 레벨</value>
-  </data>
-  <data name="Layout" xml:space="preserve">
-    <value>레이아웃</value>
   </data>
   <data name="Layout_Cards_Maximized" xml:space="preserve">
     <value>상세 결과</value>
@@ -183,29 +168,8 @@
   <data name="LoadMoreData" xml:space="preserve">
     <value>더 많은 데이터 불러오기</value>
   </data>
-  <data name="MinStock" xml:space="preserve">
-    <value>최소 재고 개수</value>
-  </data>
-  <data name="Mode_Bulk" xml:space="preserve">
-    <value>대량 교환</value>
-  </data>
-  <data name="Mode_Item" xml:space="preserve">
-    <value>아이템</value>
-  </data>
-  <data name="ModifierHint" xml:space="preserve">
-    <value>이 드랍다운은 다른 접사를 선택할 수 있게 해줍니다. Sidekick은 선택하신 접사에 가장 근접한 아이템을 찾습니다만, 인게임과 거래소 접사의 명칭이 다를 수가 있어 종종 다른 결과가 있을 수 있습니다.</value>
-  </data>
   <data name="OpenQueryInWebsite" xml:space="preserve">
     <value>거래소에서 보기</value>
-  </data>
-  <data name="Parsing" xml:space="preserve">
-    <value>Parsing your item</value>
-  </data>
-  <data name="Prediction" xml:space="preserve">
-    <value>PoePrices.info</value>
-  </data>
-  <data name="PredictionConfidence" xml:space="preserve">
-    <value>Confidence: {0}%</value>
   </data>
   <data name="Requires" xml:space="preserve">
     <value>요구사항</value>

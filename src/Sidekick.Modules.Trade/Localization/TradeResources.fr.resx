@@ -144,9 +144,6 @@
   <data name="Base_Percentile" xml:space="preserve">
     <value>Centile de base</value>
   </data>
-  <data name="Class_Hint" xml:space="preserve">
-    <value>Si activé, Sidekick va rechercher les items de cette classe. Si désactivé, Sidekick va rechercher les items de ce type. (ex : Type: Couronne de prophète vs Class: Casques)</value>
-  </data>
   <data name="Corrupted" xml:space="preserve">
     <value>Corrompu</value>
   </data>
@@ -154,7 +151,7 @@
     <value>Affiche {0} sur {1} items</value>
   </data>
   <data name="Filters_Equals" xml:space="preserve">
-    <value>Val</value>
+    <value>Égal</value>
   </data>
   <data name="Filters_Max" xml:space="preserve">
     <value>Max</value>
@@ -162,17 +159,8 @@
   <data name="Filters_Min" xml:space="preserve">
     <value>Min</value>
   </data>
-  <data name="Filters_Submit" xml:space="preserve">
-    <value>Chercher</value>
-  </data>
   <data name="ForceCategoryHint" xml:space="preserve">
     <value>Sélectionner cette case va limiter les recherches à cette catégorie. La désélectionner va permettre toutes les catégories dans les résultats (explicite, fabriqué, fracturé, etc.).</value>
-  </data>
-  <data name="ItemLevel" xml:space="preserve">
-    <value>Niveau de l'objet</value>
-  </data>
-  <data name="Layout" xml:space="preserve">
-    <value>Disposition</value>
   </data>
   <data name="Layout_Cards_Maximized" xml:space="preserve">
     <value>Résultats détaillés</value>
@@ -183,29 +171,11 @@
   <data name="LoadMoreData" xml:space="preserve">
     <value>Charger plus de résultats</value>
   </data>
-  <data name="MinStock" xml:space="preserve">
-    <value>Stock minimum</value>
-  </data>
-  <data name="Mode_Bulk" xml:space="preserve">
-    <value>Vente en gros</value>
-  </data>
-  <data name="Mode_Item" xml:space="preserve">
-    <value>Item</value>
-  </data>
-  <data name="ModifierHint" xml:space="preserve">
-    <value>Ceci permet de choisir une modificateur alternatif. Sidekick ne peut pas déterminer avec exactitude le type de modificateur dans certains cas puisque le jeu peut retourner des valeurs ambiguës comparées au site d'échange.</value>
-  </data>
   <data name="OpenQueryInWebsite" xml:space="preserve">
     <value>Ouvrir la requête dans le site officiel. Clic droit pour copier le lien.</value>
   </data>
-  <data name="Parsing" xml:space="preserve">
-    <value>Analyse de l'item</value>
-  </data>
-  <data name="Prediction" xml:space="preserve">
-    <value>PoePrices.info</value>
-  </data>
   <data name="PredictionConfidence" xml:space="preserve">
-    <value>Confiance : {0}%</value>
+    <value>Confiance : {0}</value>
   </data>
   <data name="Requires" xml:space="preserve">
     <value>Nécessite</value>
@@ -269,5 +239,8 @@
   </data>
   <data name="Listings" xml:space="preserve">
     <value>Mises en vente</value>
+  </data>
+  <data name="Possible_Chance_Outcomes" xml:space="preserve">
+    <value>Résultats possibles d'orbe de chance</value>
   </data>
 </root>

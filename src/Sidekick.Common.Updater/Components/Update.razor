@@ -63,7 +63,7 @@
             <ButtonSecondary OnClick="Exit">@Resources["Exit"]</ButtonSecondary>
             @if (!Updating)
             {
-                <ButtonSecondary OnClick="Continue">@Resources["Skip"]</ButtonSecondary>
+                <ButtonSecondary OnClick="Skip">@Resources["Skip"]</ButtonSecondary>
             }
 
             @if (UpdateInfo != null && !Updating)
@@ -112,7 +112,7 @@
             if (Debugger.IsAttached)
             {
                 // Comment the following line to get the update view to stick when debugging.
-                Continue();
+                Skip();
                 return;
             }
 
@@ -147,7 +147,7 @@
         }
     }
 
-    public void Continue()
+    public void Skip()
     {
         if (NavigationManager.Uri.Contains("/update"))
         {

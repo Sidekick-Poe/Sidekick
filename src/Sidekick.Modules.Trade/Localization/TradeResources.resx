@@ -144,9 +144,6 @@
   <data name="Base_Percentile" xml:space="preserve">
     <value>Base Percentile</value>
   </data>
-  <data name="Class_Hint" xml:space="preserve">
-    <value>If checked, Sidekick will search for all items of this class. If left unchecked, Sidekick will search for this specific type. (e.g. Type: Prophet Crown vs Class: Helmet)</value>
-  </data>
   <data name="Corrupted" xml:space="preserve">
     <value>Corrupted</value>
   </data>
@@ -154,7 +151,7 @@
     <value>Showing {0} out of {1} items</value>
   </data>
   <data name="Filters_Equals" xml:space="preserve">
-    <value>Val</value>
+    <value>Equals</value>
   </data>
   <data name="Filters_Max" xml:space="preserve">
     <value>Max</value>
@@ -162,17 +159,8 @@
   <data name="Filters_Min" xml:space="preserve">
     <value>Min</value>
   </data>
-  <data name="Filters_Submit" xml:space="preserve">
-    <value>Search</value>
-  </data>
   <data name="ForceCategoryHint" xml:space="preserve">
     <value>Selecting this checkbox will force this specific category in the results. Unchecking allows for all modifier categories in the results (explicit, crafted, fractured, etc.).</value>
-  </data>
-  <data name="ItemLevel" xml:space="preserve">
-    <value>Item Level</value>
-  </data>
-  <data name="Layout" xml:space="preserve">
-    <value>Layout</value>
   </data>
   <data name="Layout_Cards_Maximized" xml:space="preserve">
     <value>Detailed results</value>
@@ -183,29 +171,11 @@
   <data name="LoadMoreData" xml:space="preserve">
     <value>Load More Data</value>
   </data>
-  <data name="MinStock" xml:space="preserve">
-    <value>Minimum Stock Size</value>
-  </data>
-  <data name="Mode_Bulk" xml:space="preserve">
-    <value>Bulk</value>
-  </data>
-  <data name="Mode_Item" xml:space="preserve">
-    <value>Item</value>
-  </data>
-  <data name="ModifierHint" xml:space="preserve">
-    <value>This drop down allows you to select an alternate modifier. Sidekick does its best to find the best fitting modifier, but sometimes it fails to find the correct modifier as the game text sometimes differs from the trade modifier text.</value>
-  </data>
   <data name="OpenQueryInWebsite" xml:space="preserve">
     <value>Open query in the official website. Right-click to copy the url.</value>
   </data>
-  <data name="Parsing" xml:space="preserve">
-    <value>Parsing your item</value>
-  </data>
-  <data name="Prediction" xml:space="preserve">
-    <value>PoePrices.info</value>
-  </data>
   <data name="PredictionConfidence" xml:space="preserve">
-    <value>Confidence: {0}%</value>
+    <value>Confidence: {0}</value>
   </data>
   <data name="Requires" xml:space="preserve">
     <value>Requires</value>

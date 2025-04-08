@@ -3,10 +3,10 @@
 
 <FormCheckbox Value="@PriceCheckPredictionEnabled"
               ValueChanged="@PriceCheckPredictionEnabledChanged">
-    @Resources.PriceCheck_Prediction_Enable
+    @Resources["PriceCheck_Prediction_Enable"]
 </FormCheckbox>
 
-@inject SettingsResources Resources
+@inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 
 @code {

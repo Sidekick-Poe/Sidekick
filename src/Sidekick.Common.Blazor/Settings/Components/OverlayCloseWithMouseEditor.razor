@@ -1,27 +1,27 @@
 @using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Settings
 
-<FormCheckbox Value="@PriceCheckCloseWithMouse"
-              ValueChanged="PriceCheckCloseWithMouseChanged">
-    @Resources.PriceCheck_CloseWithMouse
+<FormCheckbox Value="@OverlayCloseWithMouse"
+              ValueChanged="OverlayCloseWithMouseChanged">
+    @Resources["OverlayCloseWithMouse"]
 </FormCheckbox>
 
-@inject SettingsResources Resources
+@inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 
 @code {
 
-    private bool PriceCheckCloseWithMouse { get; set; }
+    private bool OverlayCloseWithMouse { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        PriceCheckCloseWithMouse = await SettingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
+        OverlayCloseWithMouse = await SettingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
         await base.OnInitializedAsync();
     }
 
-    private async Task PriceCheckCloseWithMouseChanged(bool value)
+    private async Task OverlayCloseWithMouseChanged(bool value)
     {
-        PriceCheckCloseWithMouse = value;
+        OverlayCloseWithMouse = value;
         await SettingsService.Set(SettingKeys.OverlayCloseWithMouse, value);
     }
 

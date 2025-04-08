@@ -4,6 +4,7 @@
 using System.Diagnostics;
 using System.Security.Principal;
 using System.Text;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Platform.Localization;
 using Sidekick.Common.Platform.Windows.DllImport;
@@ -15,7 +16,7 @@ public class ProcessProvider
     ILogger<ProcessProvider> logger,
     IApplicationService applicationService,
     ISidekickDialogs dialogService,
-    PlatformResources platformResources
+    IStringLocalizer<PlatformResources> resources
 ) : IProcessProvider, IDisposable
 {
     private const string PATH_OF_EXILE_TITLE = "Path of Exile";
@@ -210,7 +211,7 @@ public class ProcessProvider
 
     private async Task RestartAsAdmin()
     {
-        if (!await dialogService.OpenConfirmationModal(platformResources.RestartAsAdminText))
+        if (!await dialogService.OpenConfirmationModal(resources["RestartAsAdminText"]))
         {
             return;
         }

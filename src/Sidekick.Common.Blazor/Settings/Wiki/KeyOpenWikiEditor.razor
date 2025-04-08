@@ -3,9 +3,9 @@
 
 <KeybindEditor Value="@KeyOpen"
                ValueChanged="KeyChanged"
-               Label="@Resources.Wiki_Key_Open"/>
+               Label="@Resources["Wiki_Key_Open"]"/>
 
-@inject SettingsResources Resources
+@inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 
 @code {

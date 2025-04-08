@@ -100,7 +100,7 @@ public class BulkTradeService(
         }
         catch (Exception e)
         {
-            logger.LogError(e, "An exception occured while parsing the API response. {data}", content);
+            logger.LogError(e, "An exception occurred while parsing the API response. {data}", content);
             throw new ApiErrorException();
         }
     }

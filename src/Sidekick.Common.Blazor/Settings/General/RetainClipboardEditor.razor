@@ -8,10 +8,10 @@
 
 <FormCheckbox Value="@Retain"
               ValueChanged="@RetainChanged">
-    @Resources.General_RetainClipboard
+    @Resources["General_RetainClipboard"]
 </FormCheckbox>
 
-@inject SettingsResources Resources
+@inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 @inject IApplicationService ApplicationService
 

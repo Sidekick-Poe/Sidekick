@@ -17,7 +17,7 @@ public class UiLanguageProvider(ISettingsService settingsService) : IUiLanguageP
 
     private string? currentLanguage;
 
-    // <inheritdoc />
+    /// <inheritdoc />
     public event Action<CultureInfo>? OnLanguageChanged;
 
     /// <inheritdoc />

@@ -8,10 +8,10 @@
 
 <FormCheckbox Value="@EscapeClosesOverlays"
               ValueChanged="@EscapeClosesOverlaysChanged">
-    @Resources.EscapeClosesOverlays
+    @Resources["EscapeClosesOverlays"]
 </FormCheckbox>
 
-@inject SettingsResources Resources
+@inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 @inject IApplicationService ApplicationService
 

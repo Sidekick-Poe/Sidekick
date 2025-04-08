@@ -45,7 +45,7 @@
 </LayoutTwoColumn>
 
 @inject ISettingsService SettingsService
-@inject TradeResources Resources
+@inject IStringLocalizer<TradeResources> Resources
 @inject PriceCheckService PriceCheckService
 @inject ITradeFilterService TradeFilterService
 @inject ICurrentView CurrentView
@@ -71,7 +71,7 @@
     {
         CurrentView.Initialize(new ViewOptions()
         {
-            Title = Resources.Trade,
+            Title = Resources["Trade"],
         });
         await base.OnInitializedAsync();
         LeftContentWidth = await SettingsService.GetInt(SettingKeys.PriceCheckSidebarWidth);

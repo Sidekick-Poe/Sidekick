@@ -30,7 +30,7 @@ public class LoggingErrorBoundary : ErrorBoundary
         }
 
         await JsRuntime.InvokeVoidAsync("console.error", exception.ToString());
-        Logger.LogError(exception, "[ErrorBoundary] An error occured.");
+        Logger.LogError(exception, "[ErrorBoundary] An error occurred.");
 
         await base.OnErrorAsync(exception);
 

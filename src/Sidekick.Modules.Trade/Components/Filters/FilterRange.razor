@@ -10,7 +10,7 @@
     {
         <div @onwheel="OnMinWheel"
              @oncontextmenu="Clear"
-             title="@Resources["Filters_Min"]"
+             title="@(Type == FilterType.Equals ? Resources["Filters_Equals"] : Resources["Filters_Min"])"
              class="range">
             <FormContentEditable DoubleValue="Min"
                                  DoubleValueChanged="UpdateMinValue"/>

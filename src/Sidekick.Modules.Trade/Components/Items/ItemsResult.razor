@@ -34,8 +34,7 @@
     else if (!PriceCheckService.IsLoading && !FullyLoaded)
     {
         <div class="flex justify-center">
-            <ButtonPrimary
-                OnClick="() => PriceCheckService.LoadMoreItems(Item.Header.Game)">@Resources.LoadMoreData</ButtonPrimary>
+            <ButtonPrimary OnClick="() => PriceCheckService.LoadMoreItems(Item.Header.Game)">@Resources["LoadMoreData"]</ButtonPrimary>
         </div>
     }
 }
@@ -47,7 +46,7 @@
 
 @implements IDisposable
 
-@inject TradeResources Resources
+@inject IStringLocalizer<TradeResources> Resources
 @inject PriceCheckService PriceCheckService
 @inject ISettingsService SettingsService
 

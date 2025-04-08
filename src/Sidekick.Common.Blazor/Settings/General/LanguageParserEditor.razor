@@ -1,12 +1,13 @@
 @using Sidekick.Common.Cache
 @using Sidekick.Common.Game.Languages
 @using Sidekick.Common.Settings
-<FormSelect Label="@Resources.Language_Parser"
+
+<FormSelect Label="@Resources["Language_Parser"]"
             Value="@Language"
             ValueChanged="LanguageChanged"
             Options="Options" />
 
-@inject SettingsResources Resources
+@inject IStringLocalizer<SettingsResources> Resources
 @inject IGameLanguageProvider GameLanguageProvider
 @inject ISettingsService SettingsService
 @inject NavigationManager NavigationManager
