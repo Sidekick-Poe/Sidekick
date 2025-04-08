@@ -90,7 +90,7 @@ else if (Price != null)
         Loading = true;
         StateHasChanged();
 
-        Price = await Client.GetPriceInfo(Item.Invariant?.Name, Item.Invariant?.Type, Item.Header.Category);
+        Price = await Client.GetPriceInfo(Item);
         NumberOfListings = Price?.PriceLogs?.LastOrDefault(x => x?.Quantity != null)?.Quantity;
 
         if (Price?.PriceLogs?.Count > 1)
@@ -137,7 +137,7 @@ else if (Price != null)
 
     class DataPoint
     {
-        public int Index { get; set; }
-        public decimal? Value { get; set; }
+        public int Index { get; init; }
+        public decimal? Value { get; init; }
     }
 }

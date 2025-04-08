@@ -1,0 +1,142 @@
+@using Sidekick.Apis.Poe2Scout
+@using Sidekick.Apis.Poe2Scout.Models
+@using Sidekick.Common.Browser
+@using Sidekick.Common.Game.Items
+@using Sidekick.Common.Game
+@using Sidekick.Modules.Trade.Localization
+@using ApexCharts
+
+@if (Loading)
+{
+    <AppLoading/>
+}
+else if (Prices != null && Prices.Any())
+{
+    <div class="h-4"></div>
+    <ItemHeader Rarity="Rarity.Unique" Name="@Resources["Possible_Chance_Outcomes"]" SingleLine="true"/>
+
+    <div class="py-1 text-center">
+        <TextCaption>Poe2Scout.com</TextCaption>
+        <div class="flex flex-nowrap items-center">
+            <div class="text-right w-1/2 pr-1">
+                <TextCaption>@Resources["Last_Updated"]</TextCaption>
+            </div>
+            <div class="text-left w-1/2 pl-1">
+                <TextCaption>@Prices.First().LastUpdated.ToString("g")</TextCaption>
+            </div>
+        </div>
+    </div>
+
+    @foreach (var price in Prices)
+    {
+        var numberOfListings = price.PriceLogs?.LastOrDefault(x => x.Quantity != null)?.Quantity;
+        var series = price.PriceLogs?.Select((value, index) => new DataPoint
+            {
+                Index = index,
+                Value = value.Price
+            })
+            .ToList();
+
+        <ItemSeparator Rarity="Rarity.Unique"/>
+
+        <div class="flex flex-nowrap items-center pt-2">
+            <div class="text-right w-1/2 pr-2">
+                <Heading3>@price.Name</Heading3>
+                <ButtonLink OnClick="() => OpenWebsite(price)">
+                    <TextCaption>@Resources["Open_Website"]</TextCaption>
+                </ButtonLink>
+            </div>
+            <div class="text-left w-1/2 pl-2">
+                <div class="flex">
+                    <PriceDisplay Value="price.Price" Currency="exalt"/>
+                </div>
+                @if (numberOfListings.HasValue)
+                {
+                    <TextCaption>(@numberOfListings @Resources["Listings"])</TextCaption>
+                }
+            </div>
+        </div>
+
+        @if (series != null)
+        {
+            <div class="py-1">
+                <ApexChart TItem="DataPoint" Options="Options">
+                    <ApexPointSeries TItem="DataPoint"
+                                     Items="series"
+                                     XValue="(x => x.Index)"
+                                     YValue="(x => x.Value)"
+                                     SeriesType="SeriesType.Line"/>
+                </ApexChart>
+            </div>
+        }
+    }
+}
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject IPoe2ScoutClient Client
+@inject IBrowserProvider BrowserProvider
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    private Guid ItemId { get; set; }
+
+    private bool Loading { get; set; }
+
+    private List<Poe2ScoutPrice>? Prices { get; set; }
+
+    private ApexChartOptions<DataPoint> Options { get; } = new()
+    {
+        PlotOptions = new() { Line = new() { IsSlopeChart = true } },
+        Tooltip = new() { Enabled = false },
+        Chart =
+        {
+            Sparkline = new() { Enabled = true },
+            Height = 40,
+        },
+        Markers = new() { Size = 0 },
+        Stroke = new()
+        {
+            Curve = Curve.Smooth,
+            Width = 2,
+            Colors = ["#8888ff",]
+        },
+    };
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        if (ItemId == Item.Id) return;
+        ItemId = Item.Id;
+
+        if (Item.Header.Game == GameType.PathOfExile || Item.Header.Rarity != Rarity.Normal)
+        {
+            return;
+        }
+
+        Loading = true;
+        StateHasChanged();
+
+        Prices = await Client.GetUniquesFromType(Item);
+
+        Loading = false;
+        StateHasChanged();
+    }
+
+    private void OpenWebsite(Poe2ScoutPrice price)
+    {
+        var uri = Client.GetDetailsUri(price);
+        BrowserProvider.OpenUri(uri);
+    }
+
+    class DataPoint
+    {
+        public int Index { get; init; }
+
+        public decimal? Value { get; init; }
+    }
+
+}
