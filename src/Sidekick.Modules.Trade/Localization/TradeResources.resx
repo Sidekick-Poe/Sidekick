@@ -144,9 +144,6 @@
   <data name="Base_Percentile" xml:space="preserve">
     <value>Base Percentile</value>
   </data>
-  <data name="Class_Hint" xml:space="preserve">
-    <value>If checked, Sidekick will search for all items of this class. If left unchecked, Sidekick will search for this specific type. (e.g. Type: Prophet Crown vs Class: Helmet)</value>
-  </data>
   <data name="Corrupted" xml:space="preserve">
     <value>Corrupted</value>
   </data>
@@ -154,16 +151,13 @@
     <value>Showing {0} out of {1} items</value>
   </data>
   <data name="Filters_Equals" xml:space="preserve">
-    <value>Val</value>
+    <value>Equals</value>
   </data>
   <data name="Filters_Max" xml:space="preserve">
     <value>Max</value>
   </data>
   <data name="Filters_Min" xml:space="preserve">
     <value>Min</value>
-  </data>
-  <data name="Filters_Submit" xml:space="preserve">
-    <value>Search</value>
   </data>
   <data name="ForceCategoryHint" xml:space="preserve">
     <value>Selecting this checkbox will force this specific category in the results. Unchecking allows for all modifier categories in the results (explicit, crafted, fractured, etc.).</value>
@@ -197,12 +191,6 @@
   </data>
   <data name="OpenQueryInWebsite" xml:space="preserve">
     <value>Open query in the official website. Right-click to copy the url.</value>
-  </data>
-  <data name="Parsing" xml:space="preserve">
-    <value>Parsing your item</value>
-  </data>
-  <data name="Prediction" xml:space="preserve">
-    <value>PoePrices.info</value>
   </data>
   <data name="PredictionConfidence" xml:space="preserve">
     <value>Confidence: {0}</value>
