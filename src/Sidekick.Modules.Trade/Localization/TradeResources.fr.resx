@@ -162,12 +162,6 @@
   <data name="ForceCategoryHint" xml:space="preserve">
     <value>Sélectionner cette case va limiter les recherches à cette catégorie. La désélectionner va permettre toutes les catégories dans les résultats (explicite, fabriqué, fracturé, etc.).</value>
   </data>
-  <data name="ItemLevel" xml:space="preserve">
-    <value>Niveau de l'objet</value>
-  </data>
-  <data name="Layout" xml:space="preserve">
-    <value>Disposition</value>
-  </data>
   <data name="Layout_Cards_Maximized" xml:space="preserve">
     <value>Résultats détaillés</value>
   </data>
@@ -176,18 +170,6 @@
   </data>
   <data name="LoadMoreData" xml:space="preserve">
     <value>Charger plus de résultats</value>
-  </data>
-  <data name="MinStock" xml:space="preserve">
-    <value>Stock minimum</value>
-  </data>
-  <data name="Mode_Bulk" xml:space="preserve">
-    <value>Vente en gros</value>
-  </data>
-  <data name="Mode_Item" xml:space="preserve">
-    <value>Item</value>
-  </data>
-  <data name="ModifierHint" xml:space="preserve">
-    <value>Ceci permet de choisir une modificateur alternatif. Sidekick ne peut pas déterminer avec exactitude le type de modificateur dans certains cas puisque le jeu peut retourner des valeurs ambiguës comparées au site d'échange.</value>
   </data>
   <data name="OpenQueryInWebsite" xml:space="preserve">
     <value>Ouvrir la requête dans le site officiel. Clic droit pour copier le lien.</value>

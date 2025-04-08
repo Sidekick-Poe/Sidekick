@@ -174,15 +174,6 @@
   <data name="Language_UI" xml:space="preserve">
     <value>UI Language</value>
   </data>
-  <data name="Map" xml:space="preserve">
-    <value>Map Information</value>
-  </data>
-  <data name="Map_CloseWithMouse" xml:space="preserve">
-    <value>Close Overlay with Mouse Click</value>
-  </data>
-  <data name="Map_Dangerous" xml:space="preserve">
-    <value>Dangerous Modifiers</value>
-  </data>
   <data name="Map_Dangerous_Regex" xml:space="preserve">
     <value>Regex</value>
   </data>
@@ -237,20 +228,11 @@
   <data name="Chat_Commands_Remove" xml:space="preserve">
     <value>Remove this command</value>
   </data>
-  <data name="WealthTracker_StashTabs" xml:space="preserve">
-    <value>Stash Tabs</value>
-  </data>
-  <data name="WealthTracker_StashTabsInstructions" xml:space="preserve">
-    <value>Select the stash tabs in the list below for which you want to track your wealth. Note that selecting too many tabs may result in a worse experience and refresh rate due to the high number of requests. Selecting the unique items or map stash tabs are not recommended.</value>
-  </data>
   <data name="Wealth_Key_Open" xml:space="preserve">
     <value>Open Wealth Tracker</value>
   </data>
   <data name="UseInvariantForTradeResults" xml:space="preserve">
     <value>Use English Trade Website</value>
-  </data>
-  <data name="Reset" xml:space="preserve">
-    <value>Reset</value>
   </data>
   <data name="Map_Check" xml:space="preserve">
     <value>Map Check</value>
@@ -287,9 +269,11 @@
   </data>
   <data name="PathOfExile" xml:space="preserve">
     <value>Path of Exile 1</value>
+    <comment>Used in LeagueIdEditor.razor</comment>
   </data>
   <data name="PathOfExile2" xml:space="preserve">
     <value>Path of Exile 2</value>
+    <comment>Used in LeagueIdEditor.razor</comment>
   </data>
   <data name="League_Hint" xml:space="preserve">
     <value>For convenience, Sidekick supports both Path of Exile 2 and Path of Exile 1, simply choose the appropriate league when playing either of them.</value>
@@ -308,9 +292,11 @@
   </data>
   <data name="poewiki" xml:space="preserve">
     <value>poewiki.net / poe2wiki.net</value>
+    <comment>Used in PreferredWikiEditor.razor</comment>
   </data>
   <data name="poedb" xml:space="preserve">
     <value>poedb.tw / poe2db.tw</value>
+    <comment>Used in PreferredWikiEditor.razor</comment>
   </data>
   <data name="SaveWindowPositions" xml:space="preserve">
     <value>Save the positions of the overlays. If unchecked, they will be centered.</value>
@@ -326,9 +312,6 @@
   </data>
   <data name="Keybind" xml:space="preserve">
     <value>Keybind</value>
-  </data>
-  <data name="Submit_The_Command" xml:space="preserve">
-    <value>Submit the command</value>
   </data>
   <data name="Chat_Restore_Defaults" xml:space="preserve">
     <value>Restore default commands</value>
@@ -371,5 +354,8 @@
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
   </data>
 </root>

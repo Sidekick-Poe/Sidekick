@@ -174,15 +174,6 @@
   <data name="Language_UI" xml:space="preserve">
     <value>Langue de l'interface</value>
   </data>
-  <data name="Map" xml:space="preserve">
-    <value>Information de la carte</value>
-  </data>
-  <data name="Map_CloseWithMouse" xml:space="preserve">
-    <value>Fermer la fenêtre sur un clic de la souris</value>
-  </data>
-  <data name="Map_Dangerous" xml:space="preserve">
-    <value>Modificateurs à éviter</value>
-  </data>
   <data name="Map_Dangerous_Regex" xml:space="preserve">
     <value>Regex</value>
   </data>
@@ -235,22 +226,13 @@
     <value>Quitter le groupe</value>
   </data>
   <data name="Chat_Commands_Remove" xml:space="preserve">
-    <value>Retirer cette commande</value>
-  </data>
-  <data name="WealthTracker_StashTabs" xml:space="preserve">
-    <value>Onglets de réserve</value>
-  </data>
-  <data name="WealthTracker_StashTabsInstructions" xml:space="preserve">
-    <value>Sélectionnez les onglets de réserve à suivre pour le Wealth Tracker. Veuillez noter que sélectionner trop d'onglets pourrait entraîner un ralentissement au niveau de la performance dû au nombre de requêtes possibles. Il n'est pas recommandé de sélectionner les onglets d'uniques et/ou cartes.</value>
+    <value>Supprimer cette commande</value>
   </data>
   <data name="Wealth_Key_Open" xml:space="preserve">
     <value>Ouvrir le Wealth Tracker</value>
   </data>
   <data name="UseInvariantForTradeResults" xml:space="preserve">
     <value>Utiliser le site d'échange anglais</value>
-  </data>
-  <data name="Reset" xml:space="preserve">
-    <value>Réinitialiser</value>
   </data>
   <data name="Map_Check" xml:space="preserve">
     <value>Vérificateur de carte</value>
@@ -319,9 +301,6 @@
   <data name="Keybind" xml:space="preserve">
     <value>Raccourci</value>
   </data>
-  <data name="Submit_The_Command" xml:space="preserve">
-    <value>Soumettre la commande</value>
-  </data>
   <data name="Chat_Restore_Defaults" xml:space="preserve">
     <value>Restaurer les commandes par défaut</value>
   </data>
@@ -363,5 +342,8 @@
   </data>
   <data name="Home" xml:space="preserve">
     <value>Accueil</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Effacer</value>
   </data>
 </root>

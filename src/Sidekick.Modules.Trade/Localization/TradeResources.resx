@@ -162,12 +162,6 @@
   <data name="ForceCategoryHint" xml:space="preserve">
     <value>Selecting this checkbox will force this specific category in the results. Unchecking allows for all modifier categories in the results (explicit, crafted, fractured, etc.).</value>
   </data>
-  <data name="ItemLevel" xml:space="preserve">
-    <value>Item Level</value>
-  </data>
-  <data name="Layout" xml:space="preserve">
-    <value>Layout</value>
-  </data>
   <data name="Layout_Cards_Maximized" xml:space="preserve">
     <value>Detailed results</value>
   </data>
@@ -176,18 +170,6 @@
   </data>
   <data name="LoadMoreData" xml:space="preserve">
     <value>Load More Data</value>
-  </data>
-  <data name="MinStock" xml:space="preserve">
-    <value>Minimum Stock Size</value>
-  </data>
-  <data name="Mode_Bulk" xml:space="preserve">
-    <value>Bulk</value>
-  </data>
-  <data name="Mode_Item" xml:space="preserve">
-    <value>Item</value>
-  </data>
-  <data name="ModifierHint" xml:space="preserve">
-    <value>This drop down allows you to select an alternate modifier. Sidekick does its best to find the best fitting modifier, but sometimes it fails to find the correct modifier as the game text sometimes differs from the trade modifier text.</value>
   </data>
   <data name="OpenQueryInWebsite" xml:space="preserve">
     <value>Open query in the official website. Right-click to copy the url.</value>
