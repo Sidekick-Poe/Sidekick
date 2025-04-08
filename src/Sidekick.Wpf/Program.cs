@@ -44,7 +44,6 @@ public class Program
     {
         try {
             ServiceProvider = GetServiceProvider();
-            throw new WebView2RuntimeNotFoundException();
             var logger = ServiceProvider.GetRequiredService<ILogger<App>>();
 
             // It's important to Run() the VelopackApp as early as possible in app startup.
