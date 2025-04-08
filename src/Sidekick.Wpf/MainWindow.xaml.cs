@@ -66,7 +66,7 @@ public partial class MainWindow
 
         Url = url;
         ViewOpened?.Invoke();
-        Dispatcher.InvokeAsync(Show);
+        await Dispatcher.InvokeAsync(Show);
     }
 
     public void InitializeView(ICurrentView view)

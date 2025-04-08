@@ -112,7 +112,7 @@ else if (Prices != null && Prices.Any())
         if (ItemId == Item.Id) return;
         ItemId = Item.Id;
 
-        if (Item.Header.Game == GameType.PathOfExile)
+        if (Item.Header.Game == GameType.PathOfExile || Item.Header.Rarity != Rarity.Normal)
         {
             return;
         }

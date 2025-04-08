@@ -56,11 +56,6 @@ public class Poe2ScoutClient
 
     public async Task<List<Poe2ScoutPrice>?> GetUniquesFromType(Item item)
     {
-        if (item.Header.Rarity != Rarity.Normal)
-        {
-            return null;
-        }
-
         await ClearCacheIfExpired();
 
         var prices = await GetPrices();
@@ -70,14 +65,14 @@ public class Poe2ScoutClient
 
     private async Task<List<Poe2ScoutPrice>> GetPrices()
     {
-        var cachedItems = await cacheProvider.Get<List<Poe2ScoutPrice>>(CacheKey, (cache) => cache.Any());
-        if (cachedItems != null && cachedItems.Any())
+        var cachedItems = await cacheProvider.Get<List<Poe2ScoutPrice>>(CacheKey, (cache) => cache.Count != 0);
+        if (cachedItems != null && cachedItems.Count != 0)
         {
             return cachedItems;
         }
 
         var items = await FetchItems();
-        if (items.Any())
+        if (items.Count != 0)
         {
             await cacheProvider.Set(CacheKey, items);
         }
@@ -130,20 +125,20 @@ public class Poe2ScoutClient
             using var client = GetHttpClient();
             var response = await client.GetAsync(url);
             var responseStream = await response.Content.ReadAsStreamAsync();
-            var result = await JsonSerializer.DeserializeAsync<List<Poe2ScoutItem>>(responseStream, JsonSerializerOptions);
+            var results = await JsonSerializer.DeserializeAsync<List<Poe2ScoutItem>>(responseStream, JsonSerializerOptions);
 
-            if (result == null)
+            if (results == null)
             {
                 return [];
             }
 
-            return result.Select(x => new Poe2ScoutPrice()
+            return results.Select(result => new Poe2ScoutPrice()
                 {
-                    Name = x.Name ?? x.Text,
-                    Type = x.Type,
-                    CategoryApiId = x.CategoryApiId != null ? x.CategoryApiId == "waystones" ? Category.Map : CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.CategoryApiId).GetEnumFromValue<Category>() : Category.Unknown,
-                    Price = x.CurrentPrice,
-                    PriceLogs = x.PriceLogs?.Where(x => x != null).OrderBy(x => x.Time).ToList(),
+                    Name = result.Name ?? result.Text,
+                    Type = result.Type,
+                    CategoryApiId = result.CategoryApiId != null ? result.CategoryApiId == "waystones" ? Category.Map : CultureInfo.CurrentCulture.TextInfo.ToTitleCase(result.CategoryApiId).GetEnumFromValue<Category>() : Category.Unknown,
+                    Price = result.CurrentPrice,
+                    PriceLogs = result.PriceLogs?.Where(x => x != null).OrderBy(x => x!.Time).ToList()!,
                     LastUpdated = DateTimeOffset.Now
                 })
                 .ToList();
