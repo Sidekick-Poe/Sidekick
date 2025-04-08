@@ -101,7 +101,7 @@ Blood Core
 Bleak Crossbow
 --------
 Physical Damage: 23-92
-Elemental Damage: 20-31 (augmented), 2-91 (augmented)
+Elemental Damage: 20-31 (fire), 2-91 (lightning)
 Critical Hit Chance: 5.00%
 Attacks per Second: 1.60
 Reload Time: 0.80
@@ -225,5 +225,118 @@ Grants Skill: Spear Throw
         Assert.Null(actual.Header.ApiName);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "# to Accuracy Rating", 32);
+    }
+
+    [Fact]
+    public void ParseElementalSpear()
+    {
+        var actual = parser.ParseItem(@"Item Class: Spears
+Rarity: Rare
+Hypnotic Edge
+Forked Spear
+--------
+Quality: +11% (augmented)
+Physical Damage: 31-52 (augmented)
+Elemental Damage: 2-4 (cold), 3-67 (lightning)
+Critical Hit Chance: 6.40% (augmented)
+Attacks per Second: 1.84 (augmented)
+--------
+Requires: Level 26, 20 Str, 48 Dex
+--------
+Sockets: S 
+--------
+Item Level: 32
+--------
+Adds 1 to 20 Lightning Damage (rune)
+--------
+Grants Skill: Spear Throw
+--------
+Adds 11 to 15 Physical Damage
+Adds 2 to 4 Cold Damage
+Adds 2 to 47 Lightning Damage
++1.4% to Critical Hit Chance
+15% increased Attack Speed
+Grants 3 Life per Enemy Hit
+");
+
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal("Forked Spear", actual.Header.ApiType);
+        Assert.Equal("Hypnotic Edge", actual.Header.Name);
+
+        // Verify physical damage
+        Assert.Equal(31, actual.Properties.PhysicalDamage?.Min);
+        Assert.Equal(52, actual.Properties.PhysicalDamage?.Max);
+        AssertHelper.CloseEnough(76.4, actual.Properties.PhysicalDps);
+
+        // Verify elemental damages
+        Assert.Equal(2, actual.Properties.ColdDamage?.Min);
+        Assert.Equal(4, actual.Properties.ColdDamage?.Max);
+
+        Assert.Equal(3, actual.Properties.LightningDamage?.Min);
+        Assert.Equal(67, actual.Properties.LightningDamage?.Max);
+
+        // Verify DPS calculations
+        AssertHelper.CloseEnough(69.9, actual.Properties.ElementalDps);
+        AssertHelper.CloseEnough(146.3, actual.Properties.TotalDps);
+    }
+
+    [Fact]
+    public void ParseElementalQuarterstaff()
+    {
+        var actual = parser.ParseItem(@"Item Class: Quarterstaves
+Rarity: Rare
+Kraken Pillar
+Slicing Quarterstaff
+--------
+Quality: +20% (augmented)
+Physical Damage: 45-94 (augmented)
+Elemental Damage: 14-21 (fire), 14-27 (cold), 1-46 (lightning)
+Critical Hit Chance: 10.00%
+Attacks per Second: 1.65 (augmented)
+--------
+Requires: Level 33, 60 Dex, 25 Int
+--------
+Sockets: S S 
+--------
+Item Level: 35
+--------
+7% increased Attack Speed (enchant)
+--------
+30% increased Physical Damage (rune)
+--------
+Adds 14 to 21 Fire Damage
+Adds 14 to 27 Cold Damage
+Adds 1 to 46 Lightning Damage
+11% increased Attack Speed
++3 to Level of all Melee Skills
+Leeches 5.21% of Physical Damage as Life
+--------
+Corrupted
+");
+
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal("Slicing Quarterstaff", actual.Header.ApiType);
+        Assert.Equal("Kraken Pillar", actual.Header.Name);
+
+        // Verify physical damage
+        Assert.Equal(45, actual.Properties.PhysicalDamage?.Min);
+        Assert.Equal(94, actual.Properties.PhysicalDamage?.Max);
+        AssertHelper.CloseEnough(114.7, actual.Properties.PhysicalDps);
+
+        // Verify elemental damages
+        Assert.Equal(14, actual.Properties.FireDamage?.Min);
+        Assert.Equal(21, actual.Properties.FireDamage?.Max);
+
+        Assert.Equal(14, actual.Properties.ColdDamage?.Min);
+        Assert.Equal(27, actual.Properties.ColdDamage?.Max);
+
+        Assert.Equal(1, actual.Properties.LightningDamage?.Min);
+        Assert.Equal(46, actual.Properties.LightningDamage?.Max);
+
+        // Verify DPS calculations
+        AssertHelper.CloseEnough(101.5, actual.Properties.ElementalDps);
+        AssertHelper.CloseEnough(216.2, actual.Properties.TotalDps);
     }
 }

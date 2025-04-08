@@ -11,7 +11,6 @@ using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Items.AdditionalInformation;
 using Sidekick.Common.Game.Languages;
-using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Parser;
 
@@ -64,7 +63,6 @@ public class ItemParser
             requirementsParser.Parse(parsingItem);
             var properties = propertyParser.Parse(parsingItem, header);
             var modifierLines = modifierParser.Parse(parsingItem, header);
-            propertyParser.ParseAfterModifiers(parsingItem, header, properties, modifierLines);
             var pseudoModifiers = pseudoParser.Parse(modifierLines);
 
             return new Item()
