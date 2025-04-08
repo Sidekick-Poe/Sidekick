@@ -13,8 +13,6 @@ public abstract class PropertyDefinition
 
     public virtual void Parse(ItemProperties itemProperties, ParsingItem parsingItem) { }
 
-    public virtual void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines) { }
-
     public virtual BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType) { return null; }
 
     public virtual List<BooleanPropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType) { return null; }

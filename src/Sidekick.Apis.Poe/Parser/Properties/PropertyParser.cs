@@ -1,7 +1,6 @@
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Localization;
-using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
@@ -15,7 +14,6 @@ namespace Sidekick.Apis.Poe.Parser.Properties;
 public class PropertyParser
 (
     IGameLanguageProvider gameLanguageProvider,
-    IInvariantModifierProvider invariantModifierProvider,
     IApiInvariantItemProvider apiInvariantItemProvider,
     IApiItemProvider apiItemProvider,
     ISettingsService settingsService,
@@ -41,7 +39,7 @@ public class PropertyParser
             new EnergyShieldProperty(gameLanguageProvider, game),
             new BlockChanceProperty(gameLanguageProvider, game),
 
-            new WeaponDamageProperty(gameLanguageProvider, game, invariantModifierProvider, resources),
+            new WeaponDamageProperty(gameLanguageProvider, game, resources),
             new CriticalHitChanceProperty(gameLanguageProvider, game),
             new AttacksPerSecondProperty(gameLanguageProvider, game),
 
@@ -82,16 +80,6 @@ public class PropertyParser
         }
 
         return properties;
-    }
-
-    public void ParseAfterModifiers(ParsingItem parsingItem, ItemHeader header, ItemProperties properties, List<ModifierLine> modifierLines)
-    {
-        foreach (var definition in Definitions)
-        {
-            if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(header.Category)) continue;
-
-            definition.ParseAfterModifiers(properties, parsingItem, modifierLines);
-        }
     }
 
     public async Task<List<BooleanPropertyFilter>> GetFilters(Item item)

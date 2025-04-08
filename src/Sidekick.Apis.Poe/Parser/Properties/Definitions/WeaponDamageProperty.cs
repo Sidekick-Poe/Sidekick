@@ -2,7 +2,6 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Localization;
-using Sidekick.Apis.Poe.Modifiers;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Results;
@@ -17,7 +16,6 @@ public class WeaponDamageProperty
 (
     IGameLanguageProvider gameLanguageProvider,
     GameType game,
-    IInvariantModifierProvider invariantModifierProvider,
     IStringLocalizer<PoeResources> localizer
 ) : PropertyDefinition
 {
@@ -25,7 +23,7 @@ public class WeaponDamageProperty
 
     public override List<Category> ValidCategories { get; } = [Category.Weapon];
 
-    public override void ParseAfterModifiers(ItemProperties properties, ParsingItem parsingItem, List<ModifierLine> modifierLines)
+    public override void Parse(ItemProperties properties, ParsingItem parsingItem)
     {
         var propertyBlock = parsingItem.Blocks[1];
 
@@ -35,7 +33,7 @@ public class WeaponDamageProperty
             var isElemental = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionElementalDamage);
             if (isElemental)
             {
-                ParseElementalDamage(line, properties, modifierLines);
+                ParseElementalDamage(line, properties);
                 continue;
             }
 
@@ -71,19 +69,12 @@ public class WeaponDamageProperty
         }
     }
 
-    private void ParseElementalDamage(ParsingLine line, ItemProperties itemProperties, List<ModifierLine> modifierLines)
+    private static void ParseElementalDamage(ParsingLine line, ItemProperties itemProperties)
     {
-        var damageMods = invariantModifierProvider.FireWeaponDamageIds.ToList();
-        damageMods.AddRange(invariantModifierProvider.ColdWeaponDamageIds);
-        damageMods.AddRange(invariantModifierProvider.LightningWeaponDamageIds);
-
-        var itemMods = modifierLines.Where(x => x.Modifiers.Any(y => damageMods.Contains(y.ApiId ?? string.Empty))).ToList();
-
-        var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
-        var matchIndex = 0;
+        var matches = new Regex(@"(\d+)-(\d+) \((fire|cold|lightning)\)").Matches(line.Text);
         foreach (Match match in matches)
         {
-            if (match.Groups.Count < 3 || itemMods.Count <= matchIndex)
+            if (match.Groups.Count < 4)
             {
                 continue;
             }
@@ -92,32 +83,9 @@ public class WeaponDamageProperty
             int.TryParse(match.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
             var range = new DamageRange(min, max);
 
-            var ids = itemMods[matchIndex].Modifiers.Where(x => x.ApiId != null).Select(x => x.ApiId!).ToList();
-            var isFire = invariantModifierProvider.FireWeaponDamageIds.Any(x => ids.Contains(x));
-            if (isFire)
-            {
-                itemProperties.FireDamage = range;
-                matchIndex++;
-                continue;
-            }
-
-            var isCold = invariantModifierProvider.ColdWeaponDamageIds.Any(x => ids.Contains(x));
-            if (isCold)
-            {
-                itemProperties.ColdDamage = range;
-                matchIndex++;
-                continue;
-            }
-
-            var isLightning = invariantModifierProvider.LightningWeaponDamageIds.Any(x => ids.Contains(x));
-            if (isLightning)
-            {
-                itemProperties.LightningDamage = range;
-                matchIndex++;
-                continue;
-            }
-
-            matchIndex++;
+            if (match.Groups[3].Value == "fire") itemProperties.FireDamage = range;
+            if (match.Groups[3].Value == "cold") itemProperties.ColdDamage = range;
+            if (match.Groups[3].Value == "lightning") itemProperties.LightningDamage = range;
         }
     }
 
