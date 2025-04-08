@@ -135,18 +135,6 @@
   <data name="Chat_Commands_Hideout" xml:space="preserve">
     <value>플레이어의 은신처로 이동</value>
   </data>
-  <data name="Chat_Exit" xml:space="preserve">
-    <value>캐릭터 선택창으로 이동</value>
-  </data>
-  <data name="Chat_Hideout" xml:space="preserve">
-    <value>은신처로 이동</value>
-  </data>
-  <data name="Chat_Keybind" xml:space="preserve">
-    <value>키바인드</value>
-  </data>
-  <data name="Chat_Kick" xml:space="preserve">
-    <value>파티 탈퇴</value>
-  </data>
   <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
     <value>마지막에 귓말을 받은 사람에게 답장할 수 있는 명령어입니다</value>
   </data>
@@ -158,9 +146,6 @@
   </data>
   <data name="General_RetainClipboard" xml:space="preserve">
     <value>복사한 내용 저장</value>
-  </data>
-  <data name="Group_Custom_Keybinds" xml:space="preserve">
-    <value>커스텀 키바인드</value>
   </data>
   <data name="Keybindings" xml:space="preserve">
     <value>키바인딩</value>
@@ -174,9 +159,6 @@
   <data name="Key_Close" xml:space="preserve">
     <value>창 닫기</value>
   </data>
-  <data name="Key_Duplicated" xml:space="preserve">
-    <value>선택하신 키바인드는 이미 사용중입니다.</value>
-  </data>
   <data name="Key_FindItems" xml:space="preserve">
     <value>아이템 찾기</value>
   </data>
@@ -185,9 +167,6 @@
   </data>
   <data name="Language_Parser" xml:space="preserve">
     <value>게임 언어</value>
-  </data>
-  <data name="Language_Title" xml:space="preserve">
-    <value>언어 세팅</value>
   </data>
   <data name="Language_UI" xml:space="preserve">
     <value>UI 언어</value>
@@ -210,7 +189,7 @@
   <data name="Price_Check" xml:space="preserve">
     <value>가격 검색</value>
   </data>
-  <data name="PriceCheck_CloseWithMouse" xml:space="preserve">
+  <data name="OverlayCloseWithMouse" xml:space="preserve">
     <value>마우스를 클릭해 가격 검색창 닫기</value>
   </data>
   <data name="PriceCheck_Key_Check" xml:space="preserve">

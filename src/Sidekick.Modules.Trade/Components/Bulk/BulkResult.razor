@@ -42,7 +42,7 @@ else if (PriceCheckService.BulkTradeResult != null)
                     <PriceDisplay Value="offer.ItemAmount" Currency="@offer.ItemCurrency" Small="true"/>
                 </div>
                 <TextBase Class="text-center">
-                    <span class="text-[#a38d6d]">@Resources.Stock:</span>
+                    <span class="text-[#a38d6d]">@Resources["Stock"]:</span>
                     @offer.ItemStock
                 </TextBase>
             </div>
@@ -55,7 +55,7 @@ else if (PriceCheckService.BulkTradeResult != null)
 
 @implements IDisposable
 
-@inject TradeResources Resources
+@inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
 @inject PriceCheckService PriceCheckService
 

@@ -135,18 +135,6 @@
   <data name="Chat_Commands_Hideout" xml:space="preserve">
     <value>Aller au repaire</value>
   </data>
-  <data name="Chat_Exit" xml:space="preserve">
-    <value>Quitter</value>
-  </data>
-  <data name="Chat_Hideout" xml:space="preserve">
-    <value>Aller au repaire</value>
-  </data>
-  <data name="Chat_Keybind" xml:space="preserve">
-    <value>Raccourci</value>
-  </data>
-  <data name="Chat_Kick" xml:space="preserve">
-    <value>Expulser du groupe</value>
-  </data>
   <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
     <value>Nom de la personne du dernier échange</value>
   </data>
@@ -158,9 +146,6 @@
   </data>
   <data name="General_RetainClipboard" xml:space="preserve">
     <value>Conserver la valeur de votre presse-papier (clipboard)</value>
-  </data>
-  <data name="Group_Custom_Keybinds" xml:space="preserve">
-    <value>Raccourci personnalisés</value>
   </data>
   <data name="Keybindings" xml:space="preserve">
     <value>Raccourcis clavier</value>
@@ -177,9 +162,6 @@
   <data name="Key_Close" xml:space="preserve">
     <value>Fermer la fenêtre</value>
   </data>
-  <data name="Key_Duplicated" xml:space="preserve">
-    <value>Ce raccourci est déjà utilisé.</value>
-  </data>
   <data name="Key_FindItems" xml:space="preserve">
     <value>Rechercher des items</value>
   </data>
@@ -188,9 +170,6 @@
   </data>
   <data name="Language_Parser" xml:space="preserve">
     <value>Langue du jeu</value>
-  </data>
-  <data name="Language_Title" xml:space="preserve">
-    <value>Configuration des langues</value>
   </data>
   <data name="Language_UI" xml:space="preserve">
     <value>Langue de l'interface</value>
@@ -213,7 +192,7 @@
   <data name="Price_Check" xml:space="preserve">
     <value>Vérificateur de prix</value>
   </data>
-  <data name="PriceCheck_CloseWithMouse" xml:space="preserve">
+  <data name="OverlayCloseWithMouse" xml:space="preserve">
     <value>Fermer la fenêtre sur un clic de la souris</value>
   </data>
   <data name="PriceCheck_Key_Check" xml:space="preserve">

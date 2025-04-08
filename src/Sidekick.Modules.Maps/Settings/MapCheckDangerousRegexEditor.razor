@@ -3,9 +3,9 @@
 
 <FormInput Value="@MapCheckDangerousRegex"
            ValueChanged="@MapCheckDangerousRegexChanged"
-           Label="@Resources.Map_Dangerous_Regex"/>
+           Label="@Resources["Map_Dangerous_Regex"]"/>
 
-@inject SettingsResources Resources
+@inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 
 @code {

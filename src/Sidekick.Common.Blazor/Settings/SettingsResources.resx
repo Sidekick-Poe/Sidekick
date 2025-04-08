@@ -135,18 +135,6 @@
   <data name="Chat_Commands_Hideout" xml:space="preserve">
     <value>Go to your hideout</value>
   </data>
-  <data name="Chat_Exit" xml:space="preserve">
-    <value>Exit</value>
-  </data>
-  <data name="Chat_Hideout" xml:space="preserve">
-    <value>Go to Hideout</value>
-  </data>
-  <data name="Chat_Keybind" xml:space="preserve">
-    <value>Keybind</value>
-  </data>
-  <data name="Chat_Kick" xml:space="preserve">
-    <value>Kick from party</value>
-  </data>
   <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
     <value>Character name of the last whisper message you received</value>
   </data>
@@ -158,9 +146,6 @@
   </data>
   <data name="General_RetainClipboard" xml:space="preserve">
     <value>Retain Clipboard Data</value>
-  </data>
-  <data name="Group_Custom_Keybinds" xml:space="preserve">
-    <value>Custom Keybinds</value>
   </data>
   <data name="Keybindings" xml:space="preserve">
     <value>Keybindings</value>
@@ -177,9 +162,6 @@
   <data name="Key_Close" xml:space="preserve">
     <value>Close Window</value>
   </data>
-  <data name="Key_Duplicated" xml:space="preserve">
-    <value>The keybind you tried is already in use.</value>
-  </data>
   <data name="Key_FindItems" xml:space="preserve">
     <value>Find Items</value>
   </data>
@@ -188,9 +170,6 @@
   </data>
   <data name="Language_Parser" xml:space="preserve">
     <value>Game Language</value>
-  </data>
-  <data name="Language_Title" xml:space="preserve">
-    <value>Language Settings</value>
   </data>
   <data name="Language_UI" xml:space="preserve">
     <value>UI Language</value>
@@ -213,7 +192,7 @@
   <data name="Price_Check" xml:space="preserve">
     <value>Price Check</value>
   </data>
-  <data name="PriceCheck_CloseWithMouse" xml:space="preserve">
+  <data name="OverlayCloseWithMouse" xml:space="preserve">
     <value>Close Overlay with Mouse Click</value>
   </data>
   <data name="PriceCheck_Key_Check" xml:space="preserve">

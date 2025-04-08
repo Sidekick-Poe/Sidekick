@@ -205,7 +205,7 @@
     <value>PoePrices.info</value>
   </data>
   <data name="PredictionConfidence" xml:space="preserve">
-    <value>Confiance : {0}%</value>
+    <value>Confiance : {0}</value>
   </data>
   <data name="Requires" xml:space="preserve">
     <value>Nécessite</value>
@@ -269,5 +269,8 @@
   </data>
   <data name="Listings" xml:space="preserve">
     <value>Mises en vente</value>
+  </data>
+  <data name="Possible_Chance_Outcomes" xml:space="preserve">
+    <value>Résultats possibles d'orbe de chance</value>
   </data>
 </root>

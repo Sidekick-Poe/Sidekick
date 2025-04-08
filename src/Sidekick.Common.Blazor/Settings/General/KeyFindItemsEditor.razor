@@ -3,9 +3,9 @@
 
 <KeybindEditor Value="@KeyOpen"
                ValueChanged="KeyChanged"
-               Label="@Resources.Key_FindItems"/>
+               Label="@Resources["Key_FindItems"]"/>
 
-@inject SettingsResources Resources
+@inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 
 @code {

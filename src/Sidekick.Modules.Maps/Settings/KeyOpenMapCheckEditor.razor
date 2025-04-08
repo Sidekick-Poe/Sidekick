@@ -4,9 +4,9 @@
 
 <KeybindEditor Value="@KeyOpen"
                ValueChanged="KeyChanged"
-               Label="@Resources.Map_Key_Check"/>
+               Label="@Resources["Map_Key_Check"]"/>
 
-@inject SettingsResources Resources
+@inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 
 @code {

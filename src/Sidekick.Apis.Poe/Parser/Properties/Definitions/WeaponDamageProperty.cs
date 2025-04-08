@@ -16,7 +16,7 @@ public class WeaponDamageProperty
 (
     IGameLanguageProvider gameLanguageProvider,
     GameType game,
-    IStringLocalizer<PoeResources> localizer
+    IStringLocalizer<PoeResources> resources
 ) : PropertyDefinition
 {
     private Regex RangePattern { get; } = new("(\\d+)-(\\d+)", RegexOptions.Compiled);
@@ -97,7 +97,7 @@ public class WeaponDamageProperty
         {
             var filter = new WeaponDamagePropertyFilter(this)
             {
-                Text = localizer["Damage"],
+                Text = resources["Damage"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
                 Value = item.Properties.TotalDamageWithQuality ?? 0,
@@ -112,7 +112,7 @@ public class WeaponDamageProperty
         {
             var filter = new DoublePropertyFilter(this)
             {
-                Text = localizer["PhysicalDps"],
+                Text = resources["PhysicalDps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
                 Value = item.Properties.PhysicalDpsWithQuality ?? 0,
@@ -128,7 +128,7 @@ public class WeaponDamageProperty
         {
             var filter = new DoublePropertyFilter(this)
             {
-                Text = localizer["ElementalDps"],
+                Text = resources["ElementalDps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
                 Value = item.Properties.ElementalDps ?? 0,
@@ -143,7 +143,7 @@ public class WeaponDamageProperty
         {
             var filter = new DoublePropertyFilter(this)
             {
-                Text = localizer["ChaosDps"],
+                Text = resources["ChaosDps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
                 Value = item.Properties.ChaosDps ?? 0,
@@ -158,7 +158,7 @@ public class WeaponDamageProperty
         {
             var filter = new DoublePropertyFilter(this)
             {
-                Text = localizer["Dps"],
+                Text = resources["Dps"],
                 NormalizeEnabled = true,
                 NormalizeValue = normalizeValue,
                 Value = item.Properties.TotalDpsWithQuality ?? 0,
@@ -177,7 +177,7 @@ public class WeaponDamageProperty
     {
         if (!filter.Checked) return;
 
-        if (filter.Text == localizer["Damage"] && filter is DoublePropertyFilter damageFilter)
+        if (filter.Text == resources["Damage"] && filter is DoublePropertyFilter damageFilter)
         {
             switch (game)
             {
@@ -186,7 +186,7 @@ public class WeaponDamageProperty
             }
         }
 
-        if (filter.Text == localizer["PhysicalDps"] && filter is DoublePropertyFilter physicalDpsFilter)
+        if (filter.Text == resources["PhysicalDps"] && filter is DoublePropertyFilter physicalDpsFilter)
         {
             switch (game)
             {
@@ -195,7 +195,7 @@ public class WeaponDamageProperty
             }
         }
 
-        if (filter.Text == localizer["ElementalDps"] && filter is DoublePropertyFilter elementalDpsFilter)
+        if (filter.Text == resources["ElementalDps"] && filter is DoublePropertyFilter elementalDpsFilter)
         {
             switch (game)
             {
@@ -204,12 +204,12 @@ public class WeaponDamageProperty
             }
         }
 
-        if (filter.Text == localizer["ChaosDps"] && filter is DoublePropertyFilter chaosDpsFilter)
+        if (filter.Text == resources["ChaosDps"] && filter is DoublePropertyFilter chaosDpsFilter)
         {
             // searchFilters.GetOrCreateWeaponFilters().Filters.ChaosDps = new StatFilterValue(chaosDpsFilter);
         }
 
-        if (filter.Text == localizer["Dps"] && filter is DoublePropertyFilter dpsFilter)
+        if (filter.Text == resources["Dps"] && filter is DoublePropertyFilter dpsFilter)
         {
             switch (game)
             {

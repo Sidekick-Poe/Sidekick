@@ -3,9 +3,9 @@
 
 <KeybindEditor Value="@KeyOpen"
                ValueChanged="KeyChanged"
-               Label="@Resources.Wealth_Key_Open"/>
+               Label="@Resources["Wealth_Key_Open"]"/>
 
-@inject SettingsResources Resources
+@inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 
 @code {
