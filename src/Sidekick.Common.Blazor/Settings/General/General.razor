@@ -1,41 +1,54 @@
 @page "/settings/general"
 @layout MainWindowLayout
 @using Sidekick.Common.Blazor.Components
+@using Sidekick.Common.Cache
 @using Sidekick.Common.Platform
 
 <AppContainer>
     <FormFieldset Legend="@Resources["General_Settings"]">
-        <LanguageParserEditor/>
-        <UseInvariantForTradeResults/>
+        <LanguageParserEditor />
+        <UseInvariantForTradeResults />
         @if (!SidekickConfiguration.IsPoeApiDown)
         {
-            <LeagueIdEditor/>
+            <LeagueIdEditor />
         }
-        <InterfaceLanguageEditor/>
+        <InterfaceLanguageEditor />
     </FormFieldset>
 
     <FormFieldset Legend="@Resources["Other_Settings"]">
         @if (ApplicationService.SupportsKeybinds)
         {
-            <RetainClipboardEditor/>
-            <EscapeClosesOverlaysEditor/>
-            <SaveWindowPositionsEditor/>
-            <KeyFindItemsEditor/>
+            <RetainClipboardEditor />
+            <EscapeClosesOverlaysEditor />
+            <SaveWindowPositionsEditor />
+            <KeyFindItemsEditor />
         }
-        <ZoomEditor/>
+        <ZoomEditor />
+
+        <div class="py-2">
+            <ButtonPrimary OnClick="ResetCache">@Resources["Reset_Cache"]</ButtonPrimary>
+        </div>
     </FormFieldset>
 </AppContainer>
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject IApplicationService ApplicationService
 @inject ICurrentView CurrentView
+@inject ICacheProvider CacheProvider
+@inject NavigationManager NavigationManager
 
-@code{
+@code {
 
     protected override void OnInitialized()
     {
         CurrentView.Initialize(new ViewOptions());
         base.OnInitialized();
+    }
+
+    public async Task ResetCache()
+    {
+        await CacheProvider.Clear();
+        NavigationManager.NavigateTo("/initialize");
     }
 
 }
