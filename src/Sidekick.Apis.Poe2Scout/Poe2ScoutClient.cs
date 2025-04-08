@@ -1,7 +1,9 @@
+
 using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
+using Sidekick.Apis.Poe2Scout.Api;
 using Sidekick.Apis.Poe2Scout.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
@@ -16,16 +18,18 @@ namespace Sidekick.Apis.Poe2Scout;
 /// https://poe2scout.com/api/swagger
 /// https://poe2scout.com/api/items was made for Sidekick.
 /// </summary>
-public class Poe2ScoutClient(
+public class Poe2ScoutClient
+(
     ICacheProvider cacheProvider,
     ISettingsService settingsService,
     IHttpClientFactory httpClientFactory,
-    ILogger<Poe2ScoutClient> logger) : IPoe2ScoutClient
+    ILogger<Poe2ScoutClient> logger
+) : IPoe2ScoutClient
 {
     private static readonly Uri baseUrl = new("https://poe2scout.com");
     private static readonly Uri apiBaseUrl = new("https://poe2scout.com/api/");
 
-    private static string CacheKey = "Poe2Scout_Items";
+    private const string CacheKey = "Poe2Scout_Items";
 
     private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
@@ -34,22 +38,39 @@ public class Poe2ScoutClient(
         Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
     };
 
-    public async Task<Poe2ScoutPrice?> GetPriceInfo(string? englishName, string? englishType, Category category)
+    public async Task<Poe2ScoutPrice?> GetPriceInfo(Item item)
     {
+        if (item.Header.Rarity == Rarity.Normal || item.Header.Rarity == Rarity.Magic || item.Header.Rarity == Rarity.Rare)
+        {
+            return null;
+        }
+
         await ClearCacheIfExpired();
 
         var prices = await GetPrices();
 
-        var price = prices.Where(x => x.CategoryApiId == category && x.Price != 0)
-                          .FirstOrDefault(x => (x.Name == englishName || x.Name == englishType)
-                                               || x.Type == englishType);
+        var price = prices.Where(x => x.CategoryApiId == item.Header.Category && x.Price != 0).FirstOrDefault(x => (x.Name == item.Invariant?.Name || x.Name == item.Invariant?.Type) || x.Type == item.Invariant?.Type);
 
         return price;
     }
 
+    public async Task<List<Poe2ScoutPrice>?> GetUniquesFromType(Item item)
+    {
+        if (item.Header.Rarity != Rarity.Normal)
+        {
+            return null;
+        }
+
+        await ClearCacheIfExpired();
+
+        var prices = await GetPrices();
+
+        return prices.Where(x => x.CategoryApiId == item.Header.Category && x.Price != 0).Where(x => x.Name == item.Invariant?.Type || x.Type == item.Invariant?.Type).OrderByDescending(x => x.Price).ToList();
+    }
+
     private async Task<List<Poe2ScoutPrice>> GetPrices()
     {
-        var cachedItems = await cacheProvider.Get<List<Poe2ScoutPrice>>(CacheKey, (cache) => cache != null && cache.Any());
+        var cachedItems = await cacheProvider.Get<List<Poe2ScoutPrice>>(CacheKey, (cache) => cache.Any());
         if (cachedItems != null && cachedItems.Any())
         {
             return cachedItems;
@@ -117,18 +138,15 @@ public class Poe2ScoutClient(
             }
 
             return result.Select(x => new Poe2ScoutPrice()
-            {
-                Name = x.Name ?? x.Text,
-                Type = x.Type,
-                CategoryApiId = x.CategoryApiId != null
-                                ? x.CategoryApiId == "waystones"
-                                    ? Category.Map
-                                    : CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.CategoryApiId).GetEnumFromValue<Category>()
-                                : Category.Unknown,
-                Price = x.CurrentPrice,
-                PriceLogs = x.PriceLogs?.Where(x => x != null).OrderBy(x => x.Time).ToList(),
-                LastUpdated = DateTimeOffset.Now
-            }).ToList();
+                {
+                    Name = x.Name ?? x.Text,
+                    Type = x.Type,
+                    CategoryApiId = x.CategoryApiId != null ? x.CategoryApiId == "waystones" ? Category.Map : CultureInfo.CurrentCulture.TextInfo.ToTitleCase(x.CategoryApiId).GetEnumFromValue<Category>() : Category.Unknown,
+                    Price = x.CurrentPrice,
+                    PriceLogs = x.PriceLogs?.Where(x => x != null).OrderBy(x => x.Time).ToList(),
+                    LastUpdated = DateTimeOffset.Now
+                })
+                .ToList();
         }
         catch
         {
