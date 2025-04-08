@@ -169,7 +169,7 @@ Estoc
 --------
 One Handed Sword
 Physical Damage: 58-90 (augmented)
-Elemental Damage: 36-43 (augmented)
+Elemental Damage: 36-43 (cold)
 Critical Strike Chance: 5.50%
 Attacks per Second: 1.50
 Weapon Range: 1.4 metres
