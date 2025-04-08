@@ -5,6 +5,7 @@ using System.Windows.Media;
 using ApexCharts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Web.WebView2.Core;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
 using Sidekick.Apis.Poe2Scout;
@@ -43,6 +44,7 @@ public class Program
     {
         try {
             ServiceProvider = GetServiceProvider();
+            throw new WebView2RuntimeNotFoundException();
             var logger = ServiceProvider.GetRequiredService<ILogger<App>>();
 
             // It's important to Run() the VelopackApp as early as possible in app startup.
@@ -52,8 +54,14 @@ public class Program
             var app = new App();
             app.InitializeComponent();
             app.Run();
+        } catch (WebView2RuntimeNotFoundException ex) {
+            MessageBox.Show("Microsoft WebView2 Runtime is missing or not installed correctly. Please install the Microsoft WebView2 Runtime, which is required to run this application. \n\nIf the issue persists, ensure that Microsoft Edge is fully installed and up-to-date. \n\nYou can download the WebView2 Runtime from the official Microsoft website: https://developer.microsoft.com/en-us/microsoft-edge/webview2/consumer/\n");
+            var logger = ServiceProvider.GetRequiredService<ILogger<App>>();
+            logger.LogCritical(ex, "[Program] WebView2 runtime not found.");
         } catch (Exception ex) {
-            MessageBox.Show("Unhandled exception: " + ex.ToString());
+            MessageBox.Show("Unhandled exception: " + ex);
+            var logger = ServiceProvider.GetRequiredService<ILogger<App>>();
+            logger.LogCritical(ex, "[Program] Unhandled exception.");
         }
     }
 
