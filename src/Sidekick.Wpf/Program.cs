@@ -42,7 +42,8 @@ public class Program
     [STAThread]
     public static void Main(string[] args)
     {
-        try {
+        try
+        {
             ServiceProvider = GetServiceProvider();
             var logger = ServiceProvider.GetRequiredService<ILogger<App>>();
 
@@ -53,11 +54,15 @@ public class Program
             var app = new App();
             app.InitializeComponent();
             app.Run();
-        } catch (WebView2RuntimeNotFoundException ex) {
-            MessageBox.Show("Microsoft WebView2 Runtime is missing or not installed correctly. Please install the Microsoft WebView2 Runtime, which is required to run this application. \n\nIf the issue persists, ensure that Microsoft Edge is fully installed and up-to-date. \n\nYou can download the WebView2 Runtime from the official Microsoft website: https://developer.microsoft.com/en-us/microsoft-edge/webview2/consumer/\n");
+        }
+        catch (WebView2RuntimeNotFoundException ex)
+        {
+            MessageBox.Show("Microsoft WebView2 Runtime is missing or not installed correctly. Please install the Microsoft WebView2 Runtime, which is required to run this application. \n\nIf the issue persists, ensure that Microsoft Edge is fully installed and up-to-date. \n\nYou can download the WebView2 Runtime from the official Microsoft website: https://developer.microsoft.com/en-us/microsoft-edge/webview2/consumer/\n\nIf you need more support consider asking on the official Sidekick discord server.\n");
             var logger = ServiceProvider.GetRequiredService<ILogger<App>>();
             logger.LogCritical(ex, "[Program] WebView2 runtime not found.");
-        } catch (Exception ex) {
+        }
+        catch (Exception ex)
+        {
             MessageBox.Show("Unhandled exception: " + ex);
             var logger = ServiceProvider.GetRequiredService<ILogger<App>>();
             logger.LogCritical(ex, "[Program] Unhandled exception.");
@@ -116,5 +121,4 @@ public class Program
 
         return services.BuildServiceProvider();
     }
-
 }
