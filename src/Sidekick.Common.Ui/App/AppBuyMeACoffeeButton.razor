@@ -1,0 +1,17 @@
+@using Sidekick.Common.Browser
+
+<button @onclick="@OpenWebsite" title="@Resources["BuyMeACoffee"]">
+    <img src="/images/app/buymeacoffee.png" class="w-[12rem]" />
+</button>
+
+@inject IBrowserProvider BrowserProvider
+@inject IStringLocalizer<AppResources> Resources
+
+@code {
+
+    private void OpenWebsite()
+    {
+        BrowserProvider.OpenUri(new Uri("https://buymeacoffee.com/sidekickpoe"));
+    }
+
+}

@@ -1,4 +1,3 @@
-﻿@using Sidekick.Common.Cache
 @using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Platform
 @using System.Diagnostics
@@ -7,7 +6,7 @@
 <MenuList>
     <MenuItem Href="/home">@Resources["Home"]</MenuItem>
 
-    <MenuLegend Legend="@Resources["Settings"]"/>
+    <MenuLegend Legend="@Resources["Settings"]" />
     <MenuItem Href="/settings/general">@Resources["General"]</MenuItem>
     <MenuItem Href="/settings/price">@Resources["Price_Check"]</MenuItem>
     <MenuItem Href="/settings/map">@Resources["Map_Check"]</MenuItem>
@@ -27,28 +26,16 @@
 
     @if (Debugger.IsAttached)
     {
-        <MenuLegend Legend="@Resources["Development"]"/>
+        <MenuLegend Legend="@Resources["Development"]" />
         <MenuItem Href="/development">Development</MenuItem>
     }
 
-    <div class="grow"></div>
+    <div class="grow" />
 
-    <div class="py-2">
-        <ButtonSecondary OnClick="ResetCache">@Resources["Reset_Cache"]</ButtonSecondary>
+    <div class="py-4 flex justify-center items-center">
+        <AppBuyMeACoffeeButton />
     </div>
 </MenuList>
 
 @inject IStringLocalizer<SettingsResources> Resources
-@inject ICacheProvider CacheProvider
-@inject NavigationManager NavigationManager
 @inject IApplicationService ApplicationService
-
-@code {
-
-    public async Task ResetCache()
-    {
-        await CacheProvider.Clear();
-        NavigationManager.NavigateTo("/initialize");
-    }
-
-}
