@@ -138,10 +138,14 @@ public class Poe2ScoutClient
                     Type = result.Type,
                     CategoryApiId = result.CategoryApiId != null ? result.CategoryApiId == "waystones" ? Category.Map : CultureInfo.CurrentCulture.TextInfo.ToTitleCase(result.CategoryApiId).GetEnumFromValue<Category>() : Category.Unknown,
                     Price = result.CurrentPrice,
-                    PriceLogs = result.PriceLogs?.Where(x => x != null).OrderBy(x => x!.Time).ToList()!,
+                    PriceLogs = result.PriceLogs?.Where(x => x != null)
+                                                 // Reverse order to get earliest date first.
+                                                 .OrderBy(x => x!.Time)
+                                                 // Round to 3 decimal places.
+                                                 .Select(x => new Poe2ScoutPriceLog { Price = Math.Round(x!.Price ?? 0, 3), Time = x!.Time })
+                                                 .ToList()!,
                     LastUpdated = DateTimeOffset.Now
-                })
-                .ToList();
+                }).ToList();
         }
         catch
         {
