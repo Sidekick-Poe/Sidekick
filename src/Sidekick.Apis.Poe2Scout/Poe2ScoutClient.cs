@@ -142,7 +142,7 @@ public class Poe2ScoutClient
                                                  // Reverse order to get earliest date first.
                                                  .OrderBy(x => x!.Time)
                                                  // Round to 3 decimal places.
-                                                 .Select(x => new Poe2ScoutPriceLog { Price = Math.Round(x!.Price ?? 0, 3), Time = x!.Time })
+                                                 .Select(x => new Poe2ScoutPriceLog { Price = Math.Round(x!.Price!.Value, 3), Time = x!.Time })
                                                  .ToList()!,
                     LastUpdated = DateTimeOffset.Now
                 }).ToList();
