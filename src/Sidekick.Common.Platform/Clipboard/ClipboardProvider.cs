@@ -25,6 +25,9 @@ public class ClipboardProvider
 
         await SetText(string.Empty);
 
+        // Make sure Alt is not pressed, otherwise it will copy the item's text with additional info.
+        keyboard.ReleaseAltModifier();
+
         await keyboard.PressKey("Ctrl+C");
         logger.LogDebug("[Clipboard] Sent keystrokes Ctrl+C");
 
