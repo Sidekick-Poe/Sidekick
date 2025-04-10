@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sidekick.Common.Interprocess\Sidekick.Common.Interprocess.csproj" />
     <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
   </ItemGroup>
 

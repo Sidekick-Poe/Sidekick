@@ -5,7 +5,7 @@ using System.Windows.Media;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common;
-using Sidekick.Common.Platform.Interprocess;
+using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Wpf.Services;

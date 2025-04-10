@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 using PipeMethodCalls;
 using PipeMethodCalls.NetJson;
@@ -11,6 +12,7 @@ public class InterprocessService : IInterprocessService, IDisposable
 
     private Mutex? mutex;
     private bool isMainInstance;
+    private TaskCompletionSource<bool>? installTask;
 
     public event Action<string>? OnMessageReceived;
 
@@ -18,6 +20,22 @@ public class InterprocessService : IInterprocessService, IDisposable
     {
         this.logger = logger;
         InterprocessMessaging.OnMessageReceived += InterprocessMessaging_OnMessageReceived;
+    }
+
+    public Task Install()
+    {
+        if (installTask != null) return installTask.Task;
+
+        var startInfo = new ProcessStartInfo(@"Sidekick.Protocol.exe")
+        {
+            Verb = "runas",
+            UseShellExecute = true,
+        };
+
+        Process.Start(startInfo);
+
+        installTask = new TaskCompletionSource<bool>();
+        return installTask.Task;
     }
 
     public void StartReceiving()

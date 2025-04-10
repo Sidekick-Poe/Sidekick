@@ -1,8 +1,10 @@
-namespace Sidekick.Common.Platform.Interprocess;
+namespace Sidekick.Common.Platform;
 
 public interface IInterprocessService
 {
     event Action<string> OnMessageReceived;
+
+    Task Install();
 
     void StartReceiving();
 

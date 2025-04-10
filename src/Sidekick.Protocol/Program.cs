@@ -1,6 +1,17 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using Microsoft.Win32;
+using Sidekick.Common.Logging;
+
+var logger = LogHelper.GetLogger("Sidekick_protocol_log.log");
+
+void Log(string? message)
+{
+    if (message == null) return;
+    Console.WriteLine(message);
+    logger.Information(message);
+}
 
 try
 {
@@ -8,7 +19,7 @@ try
     var key = Registry.ClassesRoot.OpenSubKey(customProtocol, true);
     if (key == null)
     {
-        Console.WriteLine("Creating the registry key entries...");
+        Log("Creating the registry key entries...");
         key = Registry.ClassesRoot.CreateSubKey(customProtocol);
     }
 
@@ -17,7 +28,7 @@ try
 
     var currentDirectory = Directory.GetCurrentDirectory();
     var sidekickPath = Path.Combine(currentDirectory, "Sidekick.exe");
-    Console.WriteLine($"Registering Protocol Sidekick:// to {sidekickPath}");
+    Log($"Registering Protocol Sidekick:// to {sidekickPath}");
 
     var command = key.CreateSubKey("shell").CreateSubKey("open").CreateSubKey("command");
     command.SetValue(string.Empty, $"\"{sidekickPath}\" \"%1\"");
@@ -25,14 +36,26 @@ try
     command.Close();
     key.Close();
 
-    Console.WriteLine("Protocol Registered! Closing the application...");
+    Log("Protocol Registered!");
+
+    Log("Sending message to Sidekick.exe...");
+    var startInfo = new ProcessStartInfo(@"Sidekick.exe", "Sidekick://INSTALLED")
+    {
+        Verb = "runas",
+        UseShellExecute = true,
+    };
+
+    Process.Start(startInfo);
+
+    Log("Closing the application...");
+
 }
 catch (Exception e)
 {
-    Console.WriteLine(e.Message);
-    Console.WriteLine("=============================");
-    Console.WriteLine(e.StackTrace);
-    Console.WriteLine("=============================");
-    Console.WriteLine($"An exception happened while configuring the Sidekick:// protocol. If this issue persists, please contact us on Discord or Github. Press any key to close this message.");
+    Log(e.Message);
+    Log("=============================");
+    Log(e.StackTrace);
+    Log("=============================");
+    Log($"An exception happened while configuring the Sidekick:// protocol. If this issue persists, please contact us on Discord or Github. Press any key to close this message.");
     Console.ReadKey();
 }

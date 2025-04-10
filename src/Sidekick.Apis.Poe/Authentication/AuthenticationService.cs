@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.Json;
 using Sidekick.Apis.Poe.Authentication.Models;
 using Sidekick.Common.Browser;
-using Sidekick.Common.Platform.Interprocess;
+using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Authentication;

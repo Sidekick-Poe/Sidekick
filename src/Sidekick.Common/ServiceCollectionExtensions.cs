@@ -1,7 +1,6 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
-using Serilog.Events;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Folder;
@@ -40,26 +39,12 @@ public static class ServiceCollectionExtensions
 
     private static IServiceCollection AddSidekickLogging(this IServiceCollection services)
     {
-        var logSink = new LogSink();
-        Log.Logger = new LoggerConfiguration()
-                     .MinimumLevel.Debug()
-                     .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-                     .Enrich.FromLogContext()
-                     .WriteTo.File(
-                         path: SidekickPaths.GetDataFilePath("Sidekick_log.log"),
-                         rollingInterval: RollingInterval.Day,
-                         retainedFileCountLimit: 2,
-                         fileSizeLimitBytes: 5242880,
-                         rollOnFileSizeLimit: true)
-                     .WriteTo.Sink(logSink)
-                     .CreateLogger();
-
         services.AddLogging(
             builder =>
             {
                 builder.AddSerilog();
             });
-        services.AddSingleton(logSink);
+        services.AddSingleton(LogHelper.GetLogger("Sidekick_log.log"));
 
         return services;
     }

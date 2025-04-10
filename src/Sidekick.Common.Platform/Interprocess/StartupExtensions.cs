@@ -1,7 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Common.Platform.Interprocess;
 
-namespace Sidekick.Common.Interprocess;
+namespace Sidekick.Common.Platform.Interprocess;
 
 public static class StartupExtensions
 {

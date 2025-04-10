@@ -8,9 +8,7 @@ using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Database;
-using Sidekick.Common.Interprocess;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
@@ -39,7 +37,6 @@ builder.Services
     .AddSidekickCommon()
     .AddSidekickCommonBlazor()
     .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
-    .AddSidekickCommonInterprocess()
     .AddSidekickCommonUi()
 
     // .AddSidekickCommonPlatform(o =>

@@ -27,4 +27,8 @@
     <Content Include="favicon.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
+  </ItemGroup>
+
 </Project>
