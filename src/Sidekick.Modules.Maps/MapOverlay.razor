@@ -33,14 +33,14 @@
                 @if (DangerousMods.Any())
                 {
                     <Heading1 Class="text-red-500 flex flex-nowrap items-center justify-center gap-2 mb-2">
-                        <IconMedium Icon="@UiIcons.ThumbDown"/>
+                        <Icon Svg="@UiIcons.ThumbDown" />
                         @Resources["Unsafe"]
                     </Heading1>
                 }
                 else
                 {
                     <Heading1 Class="text-green-500 flex flex-nowrap items-center justify-center gap-2 mb-2">
-                        <IconMedium Icon="@UiIcons.ThumbUp"/>
+                        <Icon Svg="@UiIcons.ThumbUp" />
                         @Resources["Safe"]
                     </Heading1>
                 }
@@ -52,7 +52,7 @@
                     <div
                         class="flex items-center flex-nowrap p-1 -mx-1 duration-200 transition-colors bg-transparent hover:bg-stone-800 rounded">
                         <div class="text-red-500">
-                            <IconMedium Icon="@UiIcons.ThumbDown"/>
+                            <Icon Svg="@UiIcons.ThumbDown" />
                         </div>
                         <ItemModifierText Class="ml-2 text-center grow">@mod</ItemModifierText>
                     </div>
@@ -68,7 +68,7 @@
                     <div
                         class="flex items-center flex-nowrap p-1 -mx-1 duration-200 transition-colors bg-transparent hover:bg-stone-800 rounded">
                         <div class="text-green-500">
-                            <IconMedium Icon="@UiIcons.ThumbUp"/>
+                            <Icon Svg="@UiIcons.ThumbUp" />
                         </div>
                         <ItemModifierText Class="ml-2 text-center grow">@mod</ItemModifierText>
                     </div>
