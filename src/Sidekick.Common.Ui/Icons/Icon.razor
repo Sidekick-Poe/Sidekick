@@ -1,0 +1,14 @@
+@code {
+
+    [Parameter]
+    public required string Svg { get; set; }
+
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string Size { get; set; } = UiIconSizes.Medium;
+    
+}
+
+<span class="fill-current inline-block @Size @Class">@((MarkupString)Svg)</span>

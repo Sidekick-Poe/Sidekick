@@ -6,9 +6,18 @@
         @ChildContent
     </ChildContent>
     <ErrorContent>
-        <div class="fixed top-0 left-0 h-full w-full @BackgroundClass(context.IsCritical) text-xl overflow-auto">
+        <div class="fixed top-0 left-0 h-full w-full text-xl overflow-auto">
             <div class="flex min-w-full min-h-full items-center justify-center text-center p-4 flex-col">
-                <div>
+                @if (context.IsCritical)
+                {
+                    <Icon Svg="@UiIcons.Error" Class="text-red-700" Size="@UiIconSizes.XLarge" />
+                }
+                else
+                {
+                    <Icon Svg="@UiIcons.Warning" Class="text-orange-700" Size="@UiIconSizes.XLarge" />
+                }
+
+                <div class="my-3">
                     @if (!string.IsNullOrEmpty(context.Message))
                     {
                         <Heading1>@context.Message</Heading1>
@@ -28,7 +37,7 @@
                     }
                     else
                     {
-                        <span>An error has occurred. This application may no longer respond until reloaded.<br/>If this issue keeps reoccurring, please open a ticket on our github page.</span>
+                        <span>An error has occurred. This application may no longer respond until reloaded.<br />If this issue keeps reoccurring, please open a ticket on our github page.</span>
                     }
                 </div>
 
@@ -48,13 +57,13 @@
                 <div class="flex items-center justify-center gap-2">
                     @if (actions.HasFlag(ExceptionActions.ExitApplication))
                     {
-                        <a href="javascript:" class="@ButtonClass(context.IsCritical) px-8 py-4 m-4"
-                           @onclick="ApplicationService.Shutdown">Exit Application</a>
+                        <a href="javascript:" class="disabled:opacity-50 inline-flex items-center justify-center px-4 py-2 text-base font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-violet-700 hover:bg-violet-500 @UiClasses.FocusClasses"
+                        @onclick="ApplicationService.Shutdown">Exit Application</a>
                     }
                     @if (actions.HasFlag(ExceptionActions.CloseWindow))
                     {
-                        <a href="javascript:" class="@ButtonClass(context.IsCritical) px-8 py-4 m-4"
-                           @onclick="Close">Close</a>
+                        <a href="javascript:" class="disabled:opacity-50 inline-flex items-center justify-center px-4 py-2 text-base font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-violet-700 hover:bg-violet-500 @UiClasses.FocusClasses"
+                        @onclick="Close">Close</a>
                     }
                 </div>
             </div>
@@ -70,10 +79,6 @@
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
-
-    private string BackgroundClass(bool isCritical) => isCritical ? "bg-red-700 text-white" : "bg-orange-700 text-white";
-
-    private string ButtonClass(bool isCritical) => isCritical ? "bg-white text-red-700" : "bg-white text-orange-700";
 
     private SidekickErrorBoundary? ErrorBoundary { get; set; }
 
