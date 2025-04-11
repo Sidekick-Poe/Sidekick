@@ -3,6 +3,7 @@
 @using Sidekick.Common.Browser
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Game
+@using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
 @using ApexCharts
 
@@ -57,6 +58,7 @@ else if (Price != null)
 @inject IStringLocalizer<TradeResources> Resources
 @inject IPoe2ScoutClient Client
 @inject IBrowserProvider BrowserProvider
+@inject ISettingsService SettingsService
 
 @code {
 
@@ -83,6 +85,11 @@ else if (Price != null)
         ItemId = Item.Id;
 
         if (Item.Header.Game == GameType.PathOfExile)
+        {
+            return;
+        }
+
+        if (!await SettingsService.GetBool(SettingKeys.PriceCheckMarketEnabled))
         {
             return;
         }
