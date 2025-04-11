@@ -1,7 +1,6 @@
 ﻿using System.IO;
+using System.Reflection;
 using System.Windows;
-using System.Windows.Interop;
-using System.Windows.Media;
 using ApexCharts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -17,8 +16,6 @@ using Sidekick.Common.Blazor;
 using Sidekick.Common.Database;
 using Sidekick.Common.Interprocess;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Interprocess;
-using Sidekick.Common.Settings;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
@@ -55,7 +52,7 @@ public class Program
             app.InitializeComponent();
             app.Run();
         }
-        catch (WebView2RuntimeNotFoundException ex)
+        catch (TargetInvocationException ex) when (ex.InnerException is WebView2RuntimeNotFoundException)
         {
             MessageBox.Show("Microsoft WebView2 Runtime is missing or not installed correctly. Please install the Microsoft WebView2 Runtime, which is required to run this application. \n\nIf the issue persists, ensure that Microsoft Edge is fully installed and up-to-date. \n\nYou can download the WebView2 Runtime from the official Microsoft website: https://developer.microsoft.com/en-us/microsoft-edge/webview2/consumer/\n\nIf you need more support consider asking on the official Sidekick discord server.\n");
             var logger = ServiceProvider.GetRequiredService<ILogger<App>>();
