@@ -49,7 +49,13 @@ public class Poe2ScoutClient
 
         var prices = await GetPrices();
 
-        var price = prices.Where(x => x.CategoryApiId == item.Header.Category && x.Price != 0).FirstOrDefault(x => (x.Name == item.Invariant?.Name || x.Name == item.Invariant?.Type) || x.Type == item.Invariant?.Type);
+        // Same category and ignore items with no prices.
+        var query = prices.Where(x => x.CategoryApiId == item.Header.Category && x.Price != 0).ToList();
+
+        // Match by name or type, or name with type as a fallback.
+        var price = query.FirstOrDefault(x => x.Name == item.Invariant?.Name)
+                    ?? query.FirstOrDefault(x => x.Type == item.Invariant?.Type)
+                    ?? query.FirstOrDefault(x => x.Name == item.Invariant?.Type);
 
         return price;
     }
