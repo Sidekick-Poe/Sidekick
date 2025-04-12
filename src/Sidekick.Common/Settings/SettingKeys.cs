@@ -45,6 +45,7 @@ public static class SettingKeys
     public const string OverlayCloseWithMouse = nameof(OverlayCloseWithMouse);
 
     public const string PriceCheckPredictionEnabled = nameof(PriceCheckPredictionEnabled);
+    public const string PriceCheckMarketEnabled = nameof(PriceCheckMarketEnabled);
     public const string PriceCheckItemListedAge = nameof(PriceCheckItemListedAge);
     public const string PriceCheckCurrency = nameof(PriceCheckCurrency);
     public const string PriceCheckCurrencyPoE2 = nameof(PriceCheckCurrencyPoE2);
