@@ -1,10 +1,10 @@
-@using Sidekick.Common.Blazor.Settings
+﻿@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Ui.Popovers
 @using Sidekick.Modules.Trade.Settings
 
 <div class="relative">
     <ButtonIcon OnClick="() => Visible = !Visible">
-        <Icon Svg="@UiIcons.Adjustments" Size="@UiIconSizes.Large" />
+        <Icon Svg="@UiIcons.Adjustments" Size="@UiIconSize.Medium" />
     </ButtonIcon>
     <Popover @bind-Visible="Visible">
         <PriceCheckStatusEditor/>

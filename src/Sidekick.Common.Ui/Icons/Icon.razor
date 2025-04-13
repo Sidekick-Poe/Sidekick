@@ -7,8 +7,15 @@
     public string Class { get; set; } = "";
 
     [Parameter]
-    public string Size { get; set; } = UiIconSizes.Medium;
-    
+    public UiIconSize Size { get; set; } = UiIconSize.Medium;
+
+    private string SizeClass => Size switch
+    {
+        UiIconSize.Small => "size-3",
+        UiIconSize.Large => "size-12",
+        _ => "size-6",
+    };
+
 }
 
-<span class="fill-current inline-block @Size @Class">@((MarkupString)Svg)</span>
+<span class="fill-current inline-block @SizeClass @Class">@((MarkupString)Svg)</span>
