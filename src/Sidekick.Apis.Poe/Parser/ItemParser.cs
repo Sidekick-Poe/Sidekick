@@ -76,10 +76,15 @@ public class ItemParser
                 AdditionalInformation = ParseAdditionalInformation(header, modifierLines),
             };
         }
-        catch (Exception e)
+        catch (UnparsableException e)
         {
             logger.LogWarning(e, "Could not parse item.");
             throw;
+        }
+        catch (Exception e)
+        {
+            logger.LogWarning(e, "Could not parse item.");
+            throw new UnparsableException();
         }
     }
 
