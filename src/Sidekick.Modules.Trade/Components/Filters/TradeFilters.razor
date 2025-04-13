@@ -4,7 +4,7 @@
 
 <div class="relative">
     <ButtonIcon OnClick="() => Visible = !Visible">
-        <IconLarge Icon="@UiIcons.Adjustments"/>
+        <Icon Svg="@UiIcons.Adjustments" Size="@UiIconSize.Medium" />
     </ButtonIcon>
     <Popover @bind-Visible="Visible">
         <PriceCheckStatusEditor/>
