@@ -2,39 +2,68 @@ using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 using PipeMethodCalls;
 using PipeMethodCalls.NetJson;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Common.Platform.Interprocess;
 
 public class InterprocessService : IInterprocessService, IDisposable
 {
     private readonly ILogger<InterprocessService> logger;
+    private readonly ISettingsService settingsService;
     private const string APPLICATION_PROCESS_GUID = "93c46709-7db2-4334-8aa3-28d473e66041";
 
     private Mutex? mutex;
     private bool isMainInstance;
-    private TaskCompletionSource<bool>? installTask;
+    private TaskCompletionSource? installTask;
 
     public event Action<string>? OnMessageReceived;
 
-    public InterprocessService(ILogger<InterprocessService> logger)
+    public InterprocessService(ILogger<InterprocessService> logger, ISettingsService settingsService)
     {
         this.logger = logger;
+        this.settingsService = settingsService;
         InterprocessMessaging.OnMessageReceived += InterprocessMessaging_OnMessageReceived;
+    }
+
+    public async Task<bool> IsInstalled()
+    {
+        var currentDirectory = Directory.GetCurrentDirectory();
+        var settingDirectory = await settingsService.GetString(SettingKeys.InterprocessDirectory);
+        var isInstalled = settingDirectory == currentDirectory;
+        logger.LogInformation("[Interprocess] IsInstalled: {0}", isInstalled);
+        return isInstalled;
     }
 
     public Task Install()
     {
         if (installTask != null) return installTask.Task;
 
+        if (IsInstalled().Result)
+        {
+            logger.LogInformation("[Interprocess] Sidekick.Protocol.exe is already installed.");
+
+            installTask = new TaskCompletionSource();
+            installTask.SetResult();
+            return installTask.Task;
+        }
+
+        logger.LogInformation("[Interprocess] Starting Sidekick.Protocol.exe");
+
         var startInfo = new ProcessStartInfo(@"Sidekick.Protocol.exe")
         {
             Verb = "runas",
             UseShellExecute = true,
         };
-
         Process.Start(startInfo);
 
-        installTask = new TaskCompletionSource<bool>();
+        logger.LogInformation("[Interprocess] Started Sidekick.Protocol.exe");
+
+        var currentDirectory = Directory.GetCurrentDirectory();
+        settingsService.Set(SettingKeys.InterprocessDirectory, currentDirectory).Wait();
+
+        logger.LogInformation("[Interprocess] Saved directory to settings: {0}", currentDirectory);
+
+        installTask = new TaskCompletionSource();
         return installTask.Task;
     }
 

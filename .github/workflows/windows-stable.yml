@@ -94,7 +94,7 @@ jobs:
           $version = "${{ steps.version.outputs.version }}"
           Write-Output "Version: $version"
 
-          dotnet publish src/Sidekick.Protocol/Sidekick.Protocol.csproj -p:PublishProfile=Build
+          dotnet publish src/Sidekick.Protocol/Sidekick.Protocol.csproj -c Release -r win-x64 -o ./Publish
           dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release -r win-x64 -o ./Publish
 
       - name: Velopack

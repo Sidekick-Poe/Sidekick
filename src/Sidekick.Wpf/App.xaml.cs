@@ -1,4 +1,3 @@
-using System.IO;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -6,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Wpf.Services;
 
@@ -18,13 +16,11 @@ namespace Sidekick.Wpf;
 public partial class App
 {
     private readonly ILogger<App> logger;
-    private readonly ISettingsService settingsService;
     private readonly IInterprocessService interprocessService;
 
     public App()
     {
         logger = Program.ServiceProvider.GetRequiredService<ILogger<App>>();
-        settingsService = Program.ServiceProvider.GetRequiredService<ISettingsService>();
         interprocessService = Program.ServiceProvider.GetRequiredService<IInterprocessService>();
 
         DisableWindowsTheme();
@@ -33,15 +29,6 @@ public partial class App
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
-
-        var currentDirectory = Directory.GetCurrentDirectory();
-        var settingDirectory = settingsService.GetString(SettingKeys.CurrentDirectory).Result;
-        if (string.IsNullOrEmpty(settingDirectory) || settingDirectory != currentDirectory)
-        {
-            logger.LogDebug("[Startup] Current Directory set to: {0}", currentDirectory);
-            settingsService.Set(SettingKeys.CurrentDirectory, currentDirectory).Wait();
-            settingsService.Set(SettingKeys.WealthEnabled, false).Wait();
-        }
 
         _ = HandleInterprocessCommunications(e);
 

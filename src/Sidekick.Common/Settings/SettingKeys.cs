@@ -4,7 +4,7 @@ public static class SettingKeys
 {
     public const string Version = nameof(Version);
 
-    public const string CurrentDirectory = nameof(CurrentDirectory);
+    public const string InterprocessDirectory = nameof(InterprocessDirectory);
 
     public const string BearerToken = nameof(BearerToken);
     public const string BearerExpiration = nameof(BearerExpiration);
