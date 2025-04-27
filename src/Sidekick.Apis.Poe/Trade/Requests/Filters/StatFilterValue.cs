@@ -5,7 +5,7 @@ namespace Sidekick.Apis.Poe.Trade.Requests.Filters;
 
 public class StatFilterValue
 {
-    internal StatFilterValue()
+    public StatFilterValue()
     {
     }
 
