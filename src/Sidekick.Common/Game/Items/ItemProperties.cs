@@ -22,8 +22,6 @@ public class ItemProperties
 
     public int Spirit { get; set; }
 
-    public int SpiritWithQuality => CalculateValueWithQuality(Spirit);
-
     public int BlockChance { get; set; }
 
     public int Quality { get; set; }
