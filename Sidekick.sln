@@ -73,6 +73,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Interproces
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Apis.Poe2Scout", "src\Sidekick.Apis.Poe2Scout\Sidekick.Apis.Poe2Scout.csproj", "{D518587C-6F94-49ED-85E1-2BB1E165CAF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.PhotinoBlazor", "src\Sidekick.PhotinoBlazor\Sidekick.PhotinoBlazor.csproj", "{C8F7E7AE-C245-4B71-A915-CA90335A2F67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -257,6 +259,14 @@ Global
 		{D518587C-6F94-49ED-85E1-2BB1E165CAF4}.Linux-Release|Any CPU.Build.0 = Release|Any CPU
 		{D518587C-6F94-49ED-85E1-2BB1E165CAF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D518587C-6F94-49ED-85E1-2BB1E165CAF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Linux-Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Linux-Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Linux-Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Linux-Release|Any CPU.Build.0 = Release|Any CPU
+		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
