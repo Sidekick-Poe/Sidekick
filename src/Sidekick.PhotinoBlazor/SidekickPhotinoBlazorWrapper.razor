@@ -1,0 +1,34 @@
+@using Sidekick.Common.Ui.Views
+@using Sidekick.PhotinoBlazor.Services
+
+<Sidekick.Common.Blazor.Main/>
+
+@inject ICurrentView CurrentView
+@inject PhotinoBlazorViewLocator ViewLocator
+@implements IDisposable
+
+@code {
+
+    [Inject]
+    public required NavigationManager NavigationManager { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ViewLocator.Views.Add(this);
+        CurrentView.ViewClosed += CurrentViewClosed;
+
+        base.OnInitialized();
+    }
+
+    private void CurrentViewClosed()
+    {
+        NavigationManager.NavigateTo("/home");
+    }
+
+    public void Dispose()
+    {
+        ViewLocator.Views.Remove(this);
+        CurrentView.ViewClosed -= CurrentViewClosed;
+    }
+
+}

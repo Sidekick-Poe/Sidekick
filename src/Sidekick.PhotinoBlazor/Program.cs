@@ -17,12 +17,14 @@ using Sidekick.Common.Database;
 using Sidekick.Common.Interprocess;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Ui;
+using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
 using Sidekick.Modules.Trade;
 using Sidekick.Modules.Wealth;
+using Sidekick.PhotinoBlazor.Services;
 using Velopack;
 
 namespace Sidekick.PhotinoBlazor;
@@ -39,7 +41,7 @@ public class Program
 
         VelopackApp.Build().Run(logger);
 
-        photinoBlazorAppBuilder.RootComponents.Add<Main>("app");
+        photinoBlazorAppBuilder.RootComponents.Add<SidekickPhotinoBlazorWrapper>("#app");
 
         var photinoBlazorApp = photinoBlazorAppBuilder.Build();
 
@@ -91,9 +93,9 @@ public class Program
             .AddSingleton<PhotinoBlazorApp>()
             .AddBlazorWebView();
 
-        //services.AddSidekickInitializableService<IApplicationService, WpfApplicationService>();
-        //services.AddSingleton<IViewLocator, WpfViewLocator>();
-        //services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());
+        services.AddSidekickInitializableService<IApplicationService, PhotinoBlazorApplicationService>();
+        services.AddSingleton<IViewLocator, PhotinoBlazorViewLocator>();
+        services.AddSingleton(sp => (PhotinoBlazorViewLocator)sp.GetRequiredService<IViewLocator>());
         //services.AddSingleton<WpfCloudflareHandler>();
 
         services.AddApexCharts();
