@@ -4,7 +4,7 @@ namespace Sidekick.PhotinoBlazor.Services;
 
 public class PhotinoBlazorApplicationService : IApplicationService
 {
-    public bool SupportsKeybinds => false;
+    public bool SupportsKeybinds => true;
 
     public int Priority => 9000;
 
