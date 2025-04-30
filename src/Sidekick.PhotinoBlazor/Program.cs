@@ -1,6 +1,3 @@
-using System;
-using System.IO;
-using System.Net.Http;
 using ApexCharts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
