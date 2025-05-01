@@ -47,8 +47,7 @@ public class Program
             .SetTitle("Sidekick")
             .SetUserAgent("Sidekick")
             .Center()
-            .SetContextMenuEnabled(false)
-            .SetChromeless(true);
+            .SetContextMenuEnabled(false);
 
         app.Run();
     }

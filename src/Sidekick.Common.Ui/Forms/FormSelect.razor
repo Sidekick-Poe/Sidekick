@@ -10,7 +10,7 @@
 
     <select id="@Id"
             @onchange="OnChange"
-            class="@UiClasses.FormInputClasses p-2 text-base w-full">
+            class="@UiClasses.FormInputClasses p-2 text-base w-full appearance-none cursor-pointer">
         @if (Options.All(x => GetOptionValue(x.Value) != GetOptionValue(Value)))
         {
             <option selected></option>
