@@ -40,13 +40,17 @@ public class Program
 
         photinoBlazorAppBuilder.RootComponents.Add<SidekickPhotinoBlazorWrapper>("#app");
 
-        var photinoBlazorApp = photinoBlazorAppBuilder.Build();
+        var app = photinoBlazorAppBuilder.Build();
 
-        photinoBlazorApp.MainWindow
+        app.MainWindow
             .SetIconFile("wwwroot/favicon.ico")
-            .SetTitle("Sidekick");
+            .SetTitle("Sidekick")
+            .SetUserAgent("Sidekick")
+            .Center()
+            .SetContextMenuEnabled(false)
+            .SetChromeless(true);
 
-        photinoBlazorApp.Run();
+        app.Run();
     }
 
     private static void AddServices(IServiceCollection services)

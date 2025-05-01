@@ -1,7 +1,7 @@
-<div class="dark:bg-stone-950 flex items-center flex-wrap py-2 pl-4">
-    <img src="/images/orbs/ExaltedOrb.png" alt="logo" class="w-6 h-6"/>
-    <h1 class="font-medium leading-none text-lg ml-4">
-        <span id="sidekick-appbar-title">Sidekick@(!string.IsNullOrEmpty(CurrentView.Options?.Title) ? $" {CurrentView.Options.Title}" : "")</span>
+<div id="sidekick-appbar" class="dark:bg-stone-950 flex items-center flex-wrap py-2 pl-4">
+    <h1 class="font-medium leading-none text-lg flex align-center gap-4 select-none">
+        <img src="/images/orbs/ExaltedOrb.png" alt="logo" class="w-6 h-6"/>
+        <span>Sidekick@(!string.IsNullOrEmpty(CurrentView.Options?.Title) ? $" {CurrentView.Options.Title}" : "")</span>
     </h1>
 
     <div class="ml-auto -my-2 flex items-center flex-nowrap">

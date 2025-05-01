@@ -5,10 +5,10 @@ namespace Sidekick.PhotinoBlazor.Services;
 public class PhotinoBlazorViewLocator : IViewLocator
 {
     /// <inheritdoc />
-    public bool SupportsMinimize => false;
+    public bool SupportsMinimize => true;
 
     /// <inheritdoc />
-    public bool SupportsMaximize => false;
+    public bool SupportsMaximize => true;
 
     public List<SidekickPhotinoBlazorWrapper> Views { get; } = [];
 
