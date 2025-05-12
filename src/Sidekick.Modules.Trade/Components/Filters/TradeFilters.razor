@@ -1,30 +1,96 @@
-﻿@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Ui.Popovers
+@using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Settings
 
 <div class="relative">
     <ButtonIcon OnClick="() => Visible = !Visible">
-        <Icon Svg="@UiIcons.Adjustments" Size="@UiIconSize.Medium" />
+        <Icon Svg="@UiIcons.Adjustments" Size="@UiIconSize.Medium" AddBadge="AreSettingsModified" />
     </ButtonIcon>
     <Popover @bind-Visible="Visible">
-        <PriceCheckStatusEditor/>
-        <PriceCheckItemCurrencyEditor/>
+        <PriceCheckStatusEditor />
+        <PriceCheckItemCurrencyEditor />
         <FormFieldset Legend="@Resources["Item_Trade_Settings"]"
-                      Dense="true">
-            <PriceCheckItemMinMaxPriceEditor/>
-            <PriceCheckItemListedAgeEditor/>
+        Dense="true">
+            <PriceCheckItemMinMaxPriceEditor />
+            <PriceCheckItemListedAgeEditor />
         </FormFieldset>
         <FormFieldset Legend="@Resources["Bulk_Trade_Settings"]"
-                      Dense="true">
-            <PriceCheckBulkMinimumStockEditor/>
+        Dense="true">
+            <PriceCheckBulkMinimumStockEditor />
         </FormFieldset>
+
+        @if (AreSettingsModified)
+        {
+            <div class="flex justify-center mb-1">
+                <ButtonPrimary OnClick="ClearFilters">@Resources["Clear_Filters"]</ButtonPrimary>
+            </div>
+        }
     </Popover>
 </div>
 
 @inject IStringLocalizer<SettingsResources> Resources
+@inject ISettingsService SettingsService
 
 @code {
 
     private bool Visible { get; set; }
+
+    private bool AreSettingsModified { get; set; }
+
+    private List<string> SettingKeysUsed { get; } = new()
+    {
+        SettingKeys.PriceCheckStatus,
+        SettingKeys.PriceCheckCurrency,
+        SettingKeys.PriceCheckCurrencyPoE2,
+        SettingKeys.PriceCheckItemCurrencyMin,
+        SettingKeys.PriceCheckItemCurrencyMax,
+        SettingKeys.PriceCheckItemCurrencyMinPoE2,
+        SettingKeys.PriceCheckItemCurrencyMaxPoE2,
+        SettingKeys.PriceCheckItemListedAge,
+        SettingKeys.PriceCheckBulkMinimumStock
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        SettingsService.OnSettingsChanged += CheckIfSettingsAreModified;
+
+        CheckIfSettingsAreModified();
+
+        await base.OnInitializedAsync();
+    }
+
+    private async void CheckIfSettingsAreModified()
+    {
+        AreSettingsModified = false;
+
+        foreach (var settingKey in SettingKeysUsed)
+        {
+            if (await SettingsService.IsSettingModified(settingKey))
+            {
+                AreSettingsModified = true;
+                break;
+            }
+        }
+
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async void ClearFilters()
+    {
+        foreach (var settingKey in SettingKeysUsed)
+        {
+            await SettingsService.DeleteSetting(settingKey);
+        }
+
+        Visible = false;
+
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= CheckIfSettingsAreModified;
+    }
 
 }

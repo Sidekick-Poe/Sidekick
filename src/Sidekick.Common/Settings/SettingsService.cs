@@ -227,6 +227,43 @@ public class SettingsService(
         OnSettingsChanged?.Invoke();
     }
 
+    public async Task<bool> IsSettingModified(string key)
+    {
+        await using var dbContext = new SidekickDbContext(dbContextOptions);
+        var dbSetting = await dbContext
+                              .Settings.Where(x => x.Key == key)
+                              .FirstOrDefaultAsync();
+        if (dbSetting == null)
+        {
+            return false;
+        }
+
+        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
+        if (defaultProperty == null)
+        {
+            return false;
+        }
+
+        var defaultValue = GetStringValue(defaultProperty.GetValue(null));
+
+        return defaultValue != dbSetting.Value;
+    }
+
+    public async Task DeleteSetting(string key)
+    {
+        await using var dbContext = new SidekickDbContext(dbContextOptions);
+        var dbSetting = await dbContext
+                              .Settings.Where(x => x.Key == key)
+                              .FirstOrDefaultAsync();
+
+        if (dbSetting != null)
+        {
+            dbContext.Settings.Remove(dbSetting);
+            await dbContext.SaveChangesAsync();
+            OnSettingsChanged?.Invoke();
+        }
+    }
+
     private static string? GetStringValue(object? value)
     {
         if (value == null)
