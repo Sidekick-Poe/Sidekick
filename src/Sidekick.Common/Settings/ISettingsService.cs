@@ -58,4 +58,15 @@ public interface ISettingsService
     Task Set(
         string key,
         object? value);
+
+    /// <summary>
+    /// Determines if settings are different from their default value.
+    /// </summary>
+    /// <returns>True if any setting is modified.</returns>
+    Task<bool> IsSettingModified(params string[] keys);
+
+    /// <summary>
+    /// Restores settings to their default value by removing them.
+    /// </summary>
+    Task DeleteSetting(params string[] keys);
 }

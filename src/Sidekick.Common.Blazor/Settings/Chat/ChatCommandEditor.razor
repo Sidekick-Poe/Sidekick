@@ -4,7 +4,7 @@
 @foreach (var chatSetting in ChatSettings)
 {
     <div class="border border-solid dark:border-stone-800 p-3 mb-3">
-        <div class="grid grid-cols-12 gap-2">
+        <div class="grid grid-cols-12 gap-2 mb-3">
             <div class="col-span-6">
                 <FormInput Label="@Resources["Chat_Command"]" Value="@chatSetting.Command"
                     ValueChanged="(v) => CommandChanged(chatSetting, v)" />
