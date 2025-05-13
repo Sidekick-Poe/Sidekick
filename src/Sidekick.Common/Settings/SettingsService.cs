@@ -227,38 +227,64 @@ public class SettingsService(
         OnSettingsChanged?.Invoke();
     }
 
-    public async Task<bool> IsSettingModified(string key)
+    public async Task<bool> IsSettingModified(params string[] keys)
     {
+        if (keys == null || keys.Length == 0)
+        {
+            return false;
+        }
+
         await using var dbContext = new SidekickDbContext(dbContextOptions);
-        var dbSetting = await dbContext
-                              .Settings.Where(x => x.Key == key)
-                              .FirstOrDefaultAsync();
-        if (dbSetting == null)
+
+        foreach (var key in keys)
         {
-            return false;
+            var dbSetting = await dbContext.Settings.FirstOrDefaultAsync(x => x.Key == key);
+
+            if (dbSetting == null)
+            {
+                continue;
+            }
+
+            var defaultProperty = typeof(DefaultSettings).GetProperty(key);
+            if (defaultProperty == null)
+            {
+                continue;
+            }
+
+            var defaultValue = GetStringValue(defaultProperty.GetValue(null));
+
+            if (defaultValue != dbSetting.Value)
+            {
+                return true;
+            }
         }
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty == null)
-        {
-            return false;
-        }
-
-        var defaultValue = GetStringValue(defaultProperty.GetValue(null));
-
-        return defaultValue != dbSetting.Value;
+        return false;
     }
 
-    public async Task DeleteSetting(string key)
+    public async Task DeleteSetting(params string[] keys)
     {
-        await using var dbContext = new SidekickDbContext(dbContextOptions);
-        var dbSetting = await dbContext
-                              .Settings.Where(x => x.Key == key)
-                              .FirstOrDefaultAsync();
-
-        if (dbSetting != null)
+        if (keys == null || keys.Length == 0)
         {
-            dbContext.Settings.Remove(dbSetting);
+            return;
+        }
+
+        await using var dbContext = new SidekickDbContext(dbContextOptions);
+        bool changed = false;
+
+        foreach (var key in keys)
+        {
+            var dbSetting = await dbContext.Settings.FirstOrDefaultAsync(x => x.Key == key);
+
+            if (dbSetting != null)
+            {
+                dbContext.Settings.Remove(dbSetting);
+                changed = true;
+            }
+        }
+
+        if (changed)
+        {
             await dbContext.SaveChangesAsync();
             OnSettingsChanged?.Invoke();
         }

@@ -11,21 +11,19 @@
         <PriceCheckStatusEditor />
         <PriceCheckItemCurrencyEditor />
         <FormFieldset Legend="@Resources["Item_Trade_Settings"]"
-        Dense="true">
+                      Dense="true">
             <PriceCheckItemMinMaxPriceEditor />
             <PriceCheckItemListedAgeEditor />
         </FormFieldset>
         <FormFieldset Legend="@Resources["Bulk_Trade_Settings"]"
-        Dense="true">
+                      Dense="true">
             <PriceCheckBulkMinimumStockEditor />
         </FormFieldset>
 
-        @if (AreSettingsModified)
-        {
-            <div class="flex justify-center mb-1">
-                <ButtonPrimary OnClick="ClearFilters">@Resources["Clear_Filters"]</ButtonPrimary>
-            </div>
-        }
+
+        <div class="flex justify-center mb-1">
+            <ButtonPrimary Disabled="!AreSettingsModified" OnClick="ClearFilters">@Resources["Clear_Filters"]</ButtonPrimary>
+        </div>
     </Popover>
 </div>
 
@@ -38,7 +36,7 @@
 
     private bool AreSettingsModified { get; set; }
 
-    private List<string> SettingKeysUsed { get; } = new()
+    private string[] SettingKeysUsed { get; } =
     {
         SettingKeys.PriceCheckStatus,
         SettingKeys.PriceCheckCurrency,
@@ -62,26 +60,14 @@
 
     private async void CheckIfSettingsAreModified()
     {
-        AreSettingsModified = false;
-
-        foreach (var settingKey in SettingKeysUsed)
-        {
-            if (await SettingsService.IsSettingModified(settingKey))
-            {
-                AreSettingsModified = true;
-                break;
-            }
-        }
+        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
 
         await InvokeAsync(StateHasChanged);
     }
 
     private async void ClearFilters()
     {
-        foreach (var settingKey in SettingKeysUsed)
-        {
-            await SettingsService.DeleteSetting(settingKey);
-        }
+        await SettingsService.DeleteSetting(SettingKeysUsed);
 
         Visible = false;
 

@@ -60,12 +60,13 @@ public interface ISettingsService
         object? value);
 
     /// <summary>
-    /// Determines if a setting is different from its default value.
+    /// Determines if settings are different from their default value.
     /// </summary>
-    Task<bool> IsSettingModified(string key);
+    /// <returns>True if any setting is modified.</returns>
+    Task<bool> IsSettingModified(params string[] keys);
 
     /// <summary>
-    /// Restores a setting to its default value by removing the value from the database.
+    /// Restores settings to their default value by removing them.
     /// </summary>
-    Task DeleteSetting(string key);
+    Task DeleteSetting(params string[] keys);
 }
