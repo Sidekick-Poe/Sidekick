@@ -236,9 +236,11 @@ public class SettingsService(
 
         await using var dbContext = new SidekickDbContext(dbContextOptions);
 
+        var dbSettings = await dbContext.Settings.Where(x => keys.Contains(x.Key)).ToListAsync();
+
         foreach (var key in keys)
         {
-            var dbSetting = await dbContext.Settings.FirstOrDefaultAsync(x => x.Key == key);
+            var dbSetting = dbSettings.FirstOrDefault(x => x.Key == key);
 
             if (dbSetting == null)
             {
@@ -272,9 +274,11 @@ public class SettingsService(
         await using var dbContext = new SidekickDbContext(dbContextOptions);
         bool changed = false;
 
+        var dbSettings = await dbContext.Settings.Where(x => keys.Contains(x.Key)).ToListAsync();
+
         foreach (var key in keys)
         {
-            var dbSetting = await dbContext.Settings.FirstOrDefaultAsync(x => x.Key == key);
+            var dbSetting = dbSettings.FirstOrDefault(x => x.Key == key);
 
             if (dbSetting != null)
             {
