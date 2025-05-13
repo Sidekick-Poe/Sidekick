@@ -48,6 +48,20 @@ public static class DefaultSettings
 
     public static string PriceCheckCurrencyMode => "item";
 
+    public static string? PriceCheckCurrency => null;
+
+    public static string? PriceCheckCurrencyPoE2 => null;
+
+    public static int PriceCheckItemCurrencyMin => 0;
+
+    public static int PriceCheckItemCurrencyMax => 0;
+
+    public static int PriceCheckItemCurrencyMinPoE2 => 0;
+
+    public static int PriceCheckItemCurrencyMaxPoE2 => 0;
+
+    public static string? PriceCheckItemListedAge => null;
+
     public static string PriceCheckItemClassFilter => DefaultItemClassFilter.BaseType.GetValueAttribute();
 
     public static double PriceCheckNormalizeValue => .1;

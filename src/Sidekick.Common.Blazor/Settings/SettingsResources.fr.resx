@@ -154,7 +154,7 @@
     <value>Autres configurations</value>
   </data>
   <data name="Keybind_Already_In_Use" xml:space="preserve">
-    <value>Raccourci déjà utilisé, veuillez en choisir un autre.</value>
+    <value>Raccourci "{0}" déjà utilisé, veuillez en choisir un autre.</value>
   </data>
   <data name="Key_Active" xml:space="preserve">
     <value>&lt;Appuyez sur une touche&gt;</value>
@@ -348,5 +348,8 @@
   </data>
   <data name="PriceCheck_Market_Enable" xml:space="preserve">
     <value>Afficher les prix de poe.ninja (PoE1) et poe2scout.com (PoE2)</value>
+  </data>
+  <data name="Clear_Filters" xml:space="preserve">
+    <value>Retirer les filtres</value>
   </data>
 </root>
