@@ -362,6 +362,6 @@
     <value>Cocher les filtres correspondant au regex</value>
   </data>
   <data name="Regex_Hint" xml:space="preserve">
-    <value>Utilisez le caractère "|" pour séparer les modificateurs. Il n'est pas nécessaire de correspondre exactement au modificateur, et la distinction entre majuscules et minuscules est ignorée. Doit correspondre à la langue du jeu.</value>
+    <value>Utilisez le caractère "|" pour séparer les modificateurs. Il n'est pas nécessaire de correspondre exactement au modificateur, et la distinction entre majuscules et minuscules est ignorée. Doit correspondre à la langue du jeu. Ex: "vie maximale|résistance|régénérée"</value>
   </data>
 </root>
