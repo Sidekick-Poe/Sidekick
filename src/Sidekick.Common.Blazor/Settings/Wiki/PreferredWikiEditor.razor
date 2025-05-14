@@ -18,6 +18,8 @@
     protected override async Task OnInitializedAsync()
     {
         PreferredWiki = await SettingsService.GetString(SettingKeys.PreferredWiki);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         Options = Enum.GetValues<WikiSetting>()
                   .Select(x => new SelectOption()
                       {
@@ -37,4 +39,19 @@
             await SettingsService.Set(SettingKeys.PreferredWiki, PreferredWiki);
         }
     }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.PreferredWiki))
+        {
+            PreferredWiki = await SettingsService.GetString(SettingKeys.PreferredWiki);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
+    }
+
 }

@@ -3,7 +3,7 @@
 
 <KeybindEditor Value="@KeyOpen"
                ValueChanged="KeyChanged"
-               Label="@Resources["Wiki_Key_Open"]"/>
+               Label="@Resources["Wiki_Key_Open"]" />
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
@@ -15,6 +15,8 @@
     protected override async Task OnInitializedAsync()
     {
         KeyOpen = await SettingsService.GetString(SettingKeys.KeyOpenWiki);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
@@ -22,6 +24,20 @@
     {
         KeyOpen = value;
         await SettingsService.Set(SettingKeys.KeyOpenWiki, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.KeyOpenWiki))
+        {
+            KeyOpen = await SettingsService.GetString(SettingKeys.KeyOpenWiki);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }
