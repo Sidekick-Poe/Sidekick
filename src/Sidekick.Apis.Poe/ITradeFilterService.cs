@@ -1,24 +1,25 @@
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe;
 
-public interface ITradeFilterService
+public interface ITradeFilterService : IInitializableService
 {
     /// <summary>
     /// Gets a list of modifier filters for a specific item.
     /// </summary>
     /// <param name="item">The item for which to get modifier filters.</param>
     /// <returns>The list of modifier filters.</returns>
-    Task<List<ModifierFilter>> GetModifierFilters(Item item);
+    IEnumerable<ModifierFilter> GetModifierFilters(Item item);
 
     /// <summary>
     /// Gets a list of pseudo modifier filters for a specific item.
     /// </summary>
     /// <param name="item">The item for which to get modifier filters.</param>
     /// <returns>The list of modifier filters.</returns>
-    Task<List<PseudoModifierFilter>> GetPseudoModifierFilters(Item item);
+    IEnumerable<PseudoModifierFilter> GetPseudoModifierFilters(Item item);
 
     /// <summary>
     /// Gets a list of property filters for a specific item.

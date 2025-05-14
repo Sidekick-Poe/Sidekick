@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Parser.Properties;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Filters;
@@ -10,53 +11,97 @@ public class TradeFilterService : ITradeFilterService
 {
     private readonly IPropertyParser propertyParser;
     private readonly ISettingsService settingsService;
+    public int Priority => 0;
+
+    private bool? EnableAllFilters;
+    private bool EnableFiltersByRegexIsValid;
+    private Regex? EnableFiltersByRegex;
 
     public TradeFilterService(IPropertyParser propertyParser, ISettingsService settingsService)
     {
         this.propertyParser = propertyParser;
         this.settingsService = settingsService;
+
+        settingsService.OnSettingsChanged += OnSettingsChanged;
     }
 
-    public async Task<List<ModifierFilter>> GetModifierFilters(Item item)
+    public async Task Initialize()
+    {
+        await GetFiltersSettings();
+    }
+
+    private void OnSettingsChanged(string[] keys)
+    {
+        if (!keys.Any(x => x == SettingKeys.PriceCheckEnableAllFilters || x == SettingKeys.PriceCheckEnableFiltersByRegex))
+        {
+            return;
+        }
+
+        _ = Task.Run(GetFiltersSettings);
+    }
+
+    private async Task GetFiltersSettings()
+    {
+        EnableAllFilters = await settingsService.GetBool(SettingKeys.PriceCheckEnableAllFilters);
+
+        var enableFiltersByRegexSetting = await settingsService.GetString(SettingKeys.PriceCheckEnableFiltersByRegex);
+        if (!string.IsNullOrWhiteSpace(enableFiltersByRegexSetting))
+        {
+            EnableFiltersByRegex = new Regex(enableFiltersByRegexSetting, RegexOptions.IgnoreCase);
+            EnableFiltersByRegexIsValid = true;
+        }
+        else
+        {
+            EnableFiltersByRegexIsValid = false;
+        }
+    }
+
+    private bool ShouldFilterBeEnabled(string modifierLineText)
+    {
+        if (EnableAllFilters == true)
+        {
+            return true;
+        }
+        else if (EnableFiltersByRegexIsValid)
+        {
+            return EnableFiltersByRegex?.IsMatch(modifierLineText) == true;
+        }
+
+        return false;
+    }
+
+    public IEnumerable<ModifierFilter> GetModifierFilters(Item item)
     {
         // No filters for divination cards, etc.
         if (item.Header.Category == Category.DivinationCard || item.Header.Category == Category.Gem || item.Header.Category == Category.ItemisedMonster || item.Header.Category == Category.Leaguestone || item.Header.Category == Category.Unknown)
         {
-            return await Task.FromResult(new List<ModifierFilter>());
+            yield break;
         }
 
-        var enableAllFilters = await settingsService.GetBool(SettingKeys.PriceCheckEnableAllFilters);
-
-        var filters = new List<ModifierFilter>();
         foreach (var modifierLine in item.ModifierLines)
         {
             var modifier = new ModifierFilter(modifierLine);
-            modifier.Checked = enableAllFilters;
-            filters.Add(modifier);
+            modifier.Checked = ShouldFilterBeEnabled(modifierLine.Text);
+            yield return modifier;
         }
-
-        return await Task.FromResult(filters);
     }
 
-    public async Task<List<PseudoModifierFilter>> GetPseudoModifierFilters(Item item)
+    public IEnumerable<PseudoModifierFilter> GetPseudoModifierFilters(Item item)
     {
         // No filters for divination cards, etc.
         if (item.Header.Category == Category.DivinationCard || item.Header.Category == Category.Gem || item.Header.Category == Category.ItemisedMonster || item.Header.Category == Category.Leaguestone || item.Header.Category == Category.Unknown || item.Header.Category == Category.Currency)
         {
-            return await Task.FromResult(new List<PseudoModifierFilter>());
+            yield break;
         }
 
-        var filters = new List<PseudoModifierFilter>();
         foreach (var modifier in item.PseudoModifiers)
         {
-            filters.Add(new PseudoModifierFilter()
+            yield return new PseudoModifierFilter()
             {
                 PseudoModifier = modifier,
                 Checked = false,
-            });
+            };
         }
-
-        return await Task.FromResult(filters);
     }
 
     public async Task<PropertyFilters> GetPropertyFilters(Item item)

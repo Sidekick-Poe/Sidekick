@@ -370,4 +370,10 @@
   <data name="PriceCheck_Enable_All_Filters" xml:space="preserve">
     <value>Pre-check all filters automatically</value>
   </data>
+  <data name="PriceCheck_Enable_Filters_By_Regex" xml:space="preserve">
+    <value>Pre-check filters matching this regex</value>
+  </data>
+  <data name="Regex_Hint" xml:space="preserve">
+    <value>Use the "|" character to separate modifiers. The modifier does not need to match exactly, and differences between uppercase and lowercase are ignored. It should match the game's language.</value>
+  </data>
 </root>

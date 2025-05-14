@@ -39,6 +39,7 @@ public static class DefaultSettings
     public static bool PriceCheckMarketEnabled => true;
 
     public static string MapCheckDangerousRegex => "reflect|regen";
+    public static string PriceCheckEnableFiltersByRegex => "maximum life|resistance";
 
     public static string PriceCheckItemCurrency => "";
 
