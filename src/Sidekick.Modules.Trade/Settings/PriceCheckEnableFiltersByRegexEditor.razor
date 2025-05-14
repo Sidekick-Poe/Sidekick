@@ -1,0 +1,34 @@
+@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Settings
+
+<div class="flex items-start gap-2">
+    <div class="grow">
+        <FormInput Value="@Enabled"
+                   ValueChanged="@ValueChanged"
+                   Label="@Resources["PriceCheck_Enable_Filters_By_Regex"]" />
+    </div>
+    <div class="self-end">
+        <TooltipHint Text="@Resources["Regex_Hint"]" />
+    </div>
+</div>
+
+@inject IStringLocalizer<SettingsResources> Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private string? Enabled { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Enabled = await SettingsService.GetString(SettingKeys.PriceCheckEnableFiltersByRegex);
+        await base.OnInitializedAsync();
+    }
+
+    private async Task ValueChanged(string? value)
+    {
+        Enabled = value;
+        await SettingsService.Set(SettingKeys.PriceCheckEnableFiltersByRegex, value);
+    }
+
+}

@@ -35,14 +35,19 @@
         {
             <AppFullContainer>
                 <Heading1 Class="mb-4 text-center">@Resources["New_Update_Alert"]</Heading1>
-                @if (!string.IsNullOrEmpty(UpdateInfo.TargetFullRelease.NotesHTML) || UpdateInfo.DeltasToTarget.Any(x => !string.IsNullOrEmpty(x.NotesHTML)))
+                @if (UpdateInfo.DeltasToTarget.Any(x => !string.IsNullOrEmpty(x.NotesHTML)))
                 {
                     <div class="text-left">
-                        @GetNotes(UpdateInfo.TargetFullRelease)
                         @foreach (var delta in UpdateInfo.DeltasToTarget)
                         {
                             @GetNotes(delta)
                         }
+                    </div>
+                }
+                else if (!string.IsNullOrEmpty(UpdateInfo.TargetFullRelease.NotesHTML))
+                {
+                    <div class="text-left">
+                        @GetNotes(UpdateInfo.TargetFullRelease)
                     </div>
                 }
                 else
@@ -90,12 +95,22 @@
 
     private SidekickException? Exception { get; set; }
 
-    private RenderFragment GetNotes(VelopackAsset asset) => @<FormFieldset Legend="@($"Version {asset.Version}")">
-                                                                <div
-                                                                    class="[&_h1]:text-xl [&_h1]:mb-2 [&_h2]:text-lg [&_h2]:mb-2 [&_h3]:text-base [&_h3]:mb-1 [&_h4]:text-lg [&_h5]:text-lg [&_h6]:text-lg [&_ul]:list-disc [&_ul]:pl-4">
-                                                                    @((MarkupString)asset.NotesHTML)
-                                                                </div>
-                                                            </FormFieldset>;
+    private RenderFragment GetNotes(VelopackAsset asset)
+    {
+        return @<FormFieldset Legend="@($"Version {asset.Version}")">
+                   <div class="[&_h1:first-of-type]:hidden
+                                [&_h1:last-of-type]:mt-3 [&_h1:last-of-type]:text-gray-400
+                                [&_h2]:text-lg [&_h2]:mb-2 [&_h2]:text-violet-500
+                                [&_h3]:text-base [&_h3]:mb-1
+                                [&_h4]:text-lg
+                                [&_h5]:text-lg
+                                [&_h6]:text-lg
+                                [&_ul]:list-disc [&_ul]:ml-2 [&_ul]:pl-4 marker:text-zinc-300
+                                [&_li]:my-1">
+                       @((MarkupString)asset.NotesHTML)
+                   </div>
+               </FormFieldset>;
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -130,7 +145,7 @@
                     CurrentView.Initialize(new ViewOptions()
                     {
                         Title = Resources["Update"],
-                        Width = 400,
+                        Width = 600,
                         Height = 500,
                     });
                 }

@@ -92,7 +92,10 @@
             mode = await SettingsService.GetEnum<TradeMode>(SettingKeys.PriceCheckCurrencyMode) ?? TradeMode.Item;
         }
 
-        var automaticallyPriceCheck = await SettingsService.GetBool(SettingKeys.PriceCheckAutomaticallySearch);
+        var automaticallyPriceCheckSettingKey = Item.Header.Rarity == Rarity.Currency ?
+            SettingKeys.PriceCheckAutomaticallySearchCurrency :
+            SettingKeys.PriceCheckAutomaticallySearch;
+        var automaticallyPriceCheck = await SettingsService.GetBool(automaticallyPriceCheckSettingKey);
         if (automaticallyPriceCheck)
         {
             if (mode == TradeMode.Bulk)
