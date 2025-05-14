@@ -10,7 +10,7 @@ public class FindItemKeybindHandler(
     IClipboardProvider clipboardProvider,
     IProcessProvider processProvider,
     IItemParser itemParser,
-    ISettingsService settingsService) : KeybindHandler(settingsService)
+    ISettingsService settingsService) : KeybindHandler(settingsService, SettingKeys.KeyFindItems)
 {
     private readonly ISettingsService settingsService = settingsService;
 

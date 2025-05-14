@@ -33,8 +33,13 @@
         await base.OnInitializedAsync();
     }
 
-    private void SettingsServiceOnOnSettingsChanged()
+    private void SettingsServiceOnOnSettingsChanged(string[] keys)
     {
+        if (!keys.Contains(SettingKeys.UseInvariantTradeResults))
+        {
+            return;
+        }
+
         Visible = !LanguageProvider.IsEnglish();
         InvokeAsync(StateHasChanged);
     }

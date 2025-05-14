@@ -31,9 +31,12 @@
         base.OnInitialized();
     }
 
-    private void SettingsServiceOnOnSettingsChanged()
+    private void SettingsServiceOnOnSettingsChanged(string[] keys)
     {
-        InvokeAsync(UpdateZoom);
+        if (keys.Contains(SettingKeys.Zoom))
+        {
+            InvokeAsync(UpdateZoom);
+        }
     }
 
     public async Task UpdateZoom()

@@ -12,7 +12,7 @@ public class CloseOverlayWithEscHandler : KeybindHandler
     public CloseOverlayWithEscHandler(
         IViewLocator viewLocator,
         ISettingsService settingsService)
-        : base(settingsService)
+        : base(settingsService, SettingKeys.EscapeClosesOverlays)
     {
         this.viewLocator = viewLocator;
         this.settingsService = settingsService;
@@ -27,9 +27,12 @@ public class CloseOverlayWithEscHandler : KeybindHandler
         EscapeClosesOverlays = await settingsService.GetBool(SettingKeys.EscapeClosesOverlays);
     }
 
-    private void OnSettingsChanged()
+    private void OnSettingsChanged(string[] keys)
     {
-        _ = UpdateIsValid();
+        if (keys.Contains(SettingKeys.EscapeClosesOverlays))
+        {
+            _ = UpdateIsValid();
+        }
     }
 
     protected override Task<List<string?>> GetKeybinds() => Task.FromResult<List<string?>>(
