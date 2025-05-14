@@ -7,7 +7,7 @@
 }
 
 <FormCheckbox Value="@UseInvariantTradeResults"
-              ValueChanged="@UseInvariantTradeResultsChanged">
+ValueChanged="@UseInvariantTradeResultsChanged">
     <div class="flex items-center gap-2">
         @Resources["UseInvariantForTradeResults"]
         <TooltipHint Text="@Resources["UseInvariantForTradeResultsTip"]" />
@@ -33,8 +33,13 @@
         await base.OnInitializedAsync();
     }
 
-    private void SettingsServiceOnOnSettingsChanged()
+    private void SettingsServiceOnOnSettingsChanged(string[] keys)
     {
+        if (!keys.Contains(SettingKeys.UseInvariantTradeResults))
+        {
+            return;
+        }
+
         Visible = !LanguageProvider.IsEnglish();
         InvokeAsync(StateHasChanged);
     }

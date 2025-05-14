@@ -5,7 +5,8 @@ public interface ISettingsService
     /// <summary>
     /// Event when any setting is changed.
     /// </summary>
-    event Action OnSettingsChanged;
+    /// <param name="keys">The keys of the settings that have changed.</param>
+    event Action<string[]>? OnSettingsChanged;
 
     /// <summary>
     /// Gets a setting by its key.
@@ -62,11 +63,13 @@ public interface ISettingsService
     /// <summary>
     /// Determines if settings are different from their default value.
     /// </summary>
+    /// <param name="keys">The keys of the settings to check for modification.</param>
     /// <returns>True if any setting is modified.</returns>
     Task<bool> IsSettingModified(params string[] keys);
 
     /// <summary>
     /// Restores settings to their default value by removing them.
     /// </summary>
+    /// <param name="keys">The keys of the settings to delete.</param>
     Task DeleteSetting(params string[] keys);
 }

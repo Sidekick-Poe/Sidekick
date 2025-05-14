@@ -20,7 +20,6 @@
             <PriceCheckBulkMinimumStockEditor />
         </FormFieldset>
 
-
         <div class="flex justify-center mb-1">
             <ButtonPrimary Disabled="!AreSettingsModified" OnClick="ClearFilters">@Resources["Clear_Filters"]</ButtonPrimary>
         </div>
@@ -53,15 +52,19 @@
     {
         SettingsService.OnSettingsChanged += CheckIfSettingsAreModified;
 
-        CheckIfSettingsAreModified();
+        CheckIfSettingsAreModified(SettingKeysUsed);
 
         await base.OnInitializedAsync();
     }
 
-    private async void CheckIfSettingsAreModified()
+    private async void CheckIfSettingsAreModified(string[] keys)
     {
-        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        if (!keys.Any(key => SettingKeysUsed.Contains(key)))
+        {
+            return;
+        }
 
+        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
         await InvokeAsync(StateHasChanged);
     }
 

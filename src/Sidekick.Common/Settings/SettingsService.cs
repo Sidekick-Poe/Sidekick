@@ -12,7 +12,7 @@ public class SettingsService(
     DbContextOptions<SidekickDbContext> dbContextOptions,
     ILogger<SettingsService> logger) : ISettingsService
 {
-    public event Action? OnSettingsChanged;
+    public event Action<string[]>? OnSettingsChanged;
 
     public async Task<bool> GetBool(string key)
     {
@@ -205,7 +205,7 @@ public class SettingsService(
 
             dbContext.Settings.Remove(dbSetting);
             await dbContext.SaveChangesAsync();
-            OnSettingsChanged?.Invoke();
+            OnSettingsChanged?.Invoke([key]);
             return;
         }
 
@@ -224,7 +224,7 @@ public class SettingsService(
         }
 
         await dbContext.SaveChangesAsync();
-        OnSettingsChanged?.Invoke();
+        OnSettingsChanged?.Invoke([key]);
     }
 
     public async Task<bool> IsSettingModified(params string[] keys)
@@ -290,7 +290,7 @@ public class SettingsService(
         if (changed)
         {
             await dbContext.SaveChangesAsync();
-            OnSettingsChanged?.Invoke();
+            OnSettingsChanged?.Invoke(keys);
         }
     }
 

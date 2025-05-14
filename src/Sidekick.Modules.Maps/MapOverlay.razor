@@ -116,8 +116,13 @@
         base.OnInitialized();
     }
 
-    private void SettingsServiceOnOnSettingsChanged()
+    private void SettingsServiceOnOnSettingsChanged(string[] keys)
     {
+        if (!keys.Contains(SettingKeys.MapCheckDangerousRegex))
+        {
+            return;
+        }
+
         _ = InvokeAsync(async () =>
         {
             await UpdateOverlay();
