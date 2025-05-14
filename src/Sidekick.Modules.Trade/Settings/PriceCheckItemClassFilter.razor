@@ -5,7 +5,7 @@
 <FormSelect Label="@Resources["Default_Item_Class_Filter"]"
             Value="@Mode"
             ValueChanged="ModeChanged"
-            Options="Options"/>
+            Options="Options" />
 
 @inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
@@ -14,20 +14,17 @@
 
     private string? Mode { get; set; }
 
-    private List<SelectOption> Options { get; set; } =
-    [
-    ];
+    private List<SelectOption> Options { get; set; } = [];
 
     protected override async Task OnInitializedAsync()
     {
-        Options =
-        [
-            new SelectOption()
+        Options = [
+            new()
             {
                 Value = DefaultItemClassFilter.BaseType.GetValueAttribute(),
                 Label = Resources["Base_Type"],
             },
-            new SelectOption()
+            new()
             {
                 Value = DefaultItemClassFilter.ItemClass.GetValueAttribute(),
                 Label = Resources["Item_Class"],
@@ -36,6 +33,8 @@
 
         Mode = await SettingsService.GetString(SettingKeys.PriceCheckItemClassFilter);
 
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
@@ -43,6 +42,20 @@
     {
         Mode = value;
         await SettingsService.Set(SettingKeys.PriceCheckItemClassFilter, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.PriceCheckItemClassFilter))
+        {
+            Mode = await SettingsService.GetString(SettingKeys.PriceCheckItemClassFilter);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }

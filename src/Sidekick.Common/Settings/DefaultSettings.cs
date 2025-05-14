@@ -27,6 +27,7 @@ public static class DefaultSettings
     public static string KeyFindItems => "Ctrl+F";
 
     public static bool EscapeClosesOverlays => true;
+    public static bool OverlayCloseWithMouse => false;
 
     public static bool RetainClipboard => true;
 
@@ -39,6 +40,8 @@ public static class DefaultSettings
     public static bool PriceCheckMarketEnabled => true;
 
     public static string MapCheckDangerousRegex => "reflect|regen";
+
+    public static bool PriceCheckAutomaticallySearch => false;
 
     public static string PriceCheckItemCurrency => "";
 

@@ -16,6 +16,7 @@
     protected override async Task OnInitializedAsync()
     {
         OverlayCloseWithMouse = await SettingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
         await base.OnInitializedAsync();
     }
 
@@ -23,6 +24,20 @@
     {
         OverlayCloseWithMouse = value;
         await SettingsService.Set(SettingKeys.OverlayCloseWithMouse, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.OverlayCloseWithMouse))
+        {
+            OverlayCloseWithMouse = await SettingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }
