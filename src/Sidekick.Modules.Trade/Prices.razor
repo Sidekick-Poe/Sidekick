@@ -83,8 +83,8 @@
         Item = ItemParser.ParseItem(itemText);
 
         PropertyFilters = await TradeFilterService.GetPropertyFilters(Item);
-        ModifierFilters = TradeFilterService.GetModifierFilters(Item).ToList();
-        PseudoFilters = TradeFilterService.GetPseudoModifierFilters(Item).ToList();
+        ModifierFilters = await TradeFilterService.GetModifierFilters(Item);
+        PseudoFilters = await TradeFilterService.GetPseudoModifierFilters(Item);
 
         var mode = TradeMode.Item;
         if (BulkTradeService.SupportsBulkTrade(Item))

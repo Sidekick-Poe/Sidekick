@@ -11,14 +11,14 @@ public interface ITradeFilterService
     /// </summary>
     /// <param name="item">The item for which to get modifier filters.</param>
     /// <returns>The list of modifier filters.</returns>
-    IEnumerable<ModifierFilter> GetModifierFilters(Item item);
+    Task<List<ModifierFilter>> GetModifierFilters(Item item);
 
     /// <summary>
     /// Gets a list of pseudo modifier filters for a specific item.
     /// </summary>
     /// <param name="item">The item for which to get modifier filters.</param>
     /// <returns>The list of modifier filters.</returns>
-    IEnumerable<PseudoModifierFilter> GetPseudoModifierFilters(Item item);
+    Task<List<PseudoModifierFilter>> GetPseudoModifierFilters(Item item);
 
     /// <summary>
     /// Gets a list of property filters for a specific item.

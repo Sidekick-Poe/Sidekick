@@ -62,6 +62,7 @@ public static class SettingKeys
     public const string PriceCheckItemClassFilter = nameof(PriceCheckItemClassFilter);
     public const string PriceCheckAutomaticallySearch = nameof(PriceCheckAutomaticallySearch);
     public const string PriceCheckAutomaticallySearchCurrency = nameof(PriceCheckAutomaticallySearchCurrency);
+    public const string PriceCheckEnableAllFilters = nameof(PriceCheckEnableAllFilters);
     public const string PriceCheckDefaultFilterType = nameof(PriceCheckDefaultFilterType);
 
     public const string SaveWindowPositions = nameof(SaveWindowPositions);
