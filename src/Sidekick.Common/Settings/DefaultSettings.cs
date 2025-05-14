@@ -43,6 +43,12 @@ public static class DefaultSettings
 
     public static bool PriceCheckAutomaticallySearch => false;
 
+    public static bool PriceCheckAutomaticallySearchCurrency => false;
+
+    public static bool PriceCheckEnableAllFilters => false;
+
+    public static string PriceCheckEnableFiltersByRegex => "";
+
     public static string PriceCheckItemCurrency => "";
 
     public static string PriceCheckBulkCurrency => "divine";
