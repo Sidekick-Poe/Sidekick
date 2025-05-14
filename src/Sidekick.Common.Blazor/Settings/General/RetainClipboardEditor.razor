@@ -22,6 +22,8 @@
     protected override async Task OnInitializedAsync()
     {
         Retain = await SettingsService.GetBool(SettingKeys.RetainClipboard);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
@@ -29,6 +31,20 @@
     {
         Retain = value;
         await SettingsService.Set(SettingKeys.RetainClipboard, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.RetainClipboard))
+        {
+            Retain = await SettingsService.GetBool(SettingKeys.RetainClipboard);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }
