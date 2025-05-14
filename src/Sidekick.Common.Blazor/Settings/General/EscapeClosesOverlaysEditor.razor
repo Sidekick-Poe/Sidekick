@@ -23,6 +23,7 @@
     {
         EscapeClosesOverlays = await SettingsService.GetBool(SettingKeys.EscapeClosesOverlays);
         SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 

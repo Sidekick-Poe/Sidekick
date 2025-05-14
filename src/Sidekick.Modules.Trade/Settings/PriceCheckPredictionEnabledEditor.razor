@@ -17,6 +17,7 @@
     {
         PriceCheckPredictionEnabled = await SettingsService.GetBool(SettingKeys.PriceCheckPredictionEnabled);
         SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 

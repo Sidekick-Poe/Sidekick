@@ -4,7 +4,7 @@
 
 <KeybindEditor Value="@KeyOpen"
                ValueChanged="KeyChanged"
-               Label="@Resources["Map_Key_Check"]"/>
+               Label="@Resources["Map_Key_Check"]" />
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
@@ -16,6 +16,8 @@
     protected override async Task OnInitializedAsync()
     {
         KeyOpen = await SettingsService.GetString(SettingKeys.KeyOpenMapCheck);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
@@ -23,6 +25,20 @@
     {
         KeyOpen = value;
         await SettingsService.Set(SettingKeys.KeyOpenMapCheck, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.KeyOpenMapCheck))
+        {
+            KeyOpen = await SettingsService.GetString(SettingKeys.KeyOpenMapCheck);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }

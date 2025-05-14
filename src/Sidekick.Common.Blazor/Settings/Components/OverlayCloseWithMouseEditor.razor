@@ -17,6 +17,7 @@
     {
         OverlayCloseWithMouse = await SettingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
         SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 

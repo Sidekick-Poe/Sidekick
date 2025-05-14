@@ -17,6 +17,7 @@
     {
         PriceCheckMarketEnabled = await SettingsService.GetBool(SettingKeys.PriceCheckMarketEnabled);
         SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 

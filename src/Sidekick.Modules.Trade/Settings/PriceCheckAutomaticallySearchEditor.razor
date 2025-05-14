@@ -17,6 +17,7 @@
     {
         Enabled = await SettingsService.GetBool(SettingKeys.PriceCheckAutomaticallySearch);
         SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 

@@ -16,6 +16,7 @@
     {
         KeyOpen = await SettingsService.GetString(SettingKeys.KeyClose);
         SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
