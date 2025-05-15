@@ -376,4 +376,7 @@
   <data name="Key_Open_In_Craft_Of_Exile" xml:space="preserve">
     <value>Open item in CraftOfExile.com</value>
   </data>
+  <data name="Setting_Rate_Limit_Hint" xml:space="preserve">
+    <value>It is recommended to leave disabled to avoid exceeding the API rate limit.</value>
+  </data>
 </root>

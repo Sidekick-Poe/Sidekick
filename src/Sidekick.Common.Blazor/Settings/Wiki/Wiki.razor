@@ -1,6 +1,7 @@
 @page "/settings/wiki"
 @layout MainWindowLayout
 @using Sidekick.Common.Blazor.Components
+@using Sidekick.Common.Blazor.Settings.Components
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
 @inject IApplicationService ApplicationService
@@ -10,7 +11,7 @@
     @if (ApplicationService.SupportsKeybinds)
     {
         <FormFieldset Legend="@Resources["Keybindings"]">
-            <KeyOpenWikiEditor />
+            <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenWiki" Label="@Resources["Wiki_Key_Open"]" />
         </FormFieldset>
 
         <FormFieldset Legend="@Resources["Other_Settings"]">

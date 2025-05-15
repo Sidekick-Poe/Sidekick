@@ -1,4 +1,5 @@
 @page "/settings/wealth"
+@using Sidekick.Common.Blazor.Settings.Components
 @using Sidekick.Common.Settings
 @using System.Diagnostics;
 @using Sidekick.Apis.Poe.Authentication
@@ -53,7 +54,7 @@
     else
     {
         <Heading2 Class="mb-3">@Resources["Keybindings"]</Heading2>
-        <KeyOpenWealthEditor/>
+        <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenWealth" Label="@Resources["Wealth_Key_Open"]" />
 
         <LayoutDivider/>
 
