@@ -3,6 +3,7 @@
 @using Sidekick.Common.Blazor.Components
 @using Sidekick.Common.Cache
 @using Sidekick.Common.Platform
+@using Sidekick.Common.Settings
 
 <AppContainer>
     <FormFieldset Legend="@Resources["General_Settings"]">
@@ -13,6 +14,10 @@
             <LeagueIdEditor />
         }
         <InterfaceLanguageEditor />
+
+        <div class="py-2">
+            <ButtonPrimary OnClick="ResetCache">@Resources["Reset_Cache"]</ButtonPrimary>
+        </div>
     </FormFieldset>
 
     <FormFieldset Legend="@Resources["Other_Settings"]">
@@ -23,12 +28,12 @@
             <SaveWindowPositionsEditor />
             <KeyFindItemsEditor />
         }
-        <ZoomEditor />
-
-        <div class="py-2">
-            <ButtonPrimary OnClick="ResetCache">@Resources["Reset_Cache"]</ButtonPrimary>
-        </div>
+        <ZoomEditor />        
     </FormFieldset>
+
+    <div class="flex justify-center mb-1">
+        <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@Resources["Restore_Defaults"]</ButtonPrimary>
+    </div>
 </AppContainer>
 
 @inject IStringLocalizer<SettingsResources> Resources
@@ -36,19 +41,61 @@
 @inject ICurrentView CurrentView
 @inject ICacheProvider CacheProvider
 @inject NavigationManager NavigationManager
+@inject ISettingsService SettingsService
 
 @code {
 
-    protected override void OnInitialized()
+    private bool AreSettingsModified { get; set; }
+
+    private string[] SettingKeysUsed { get; } =
+    {
+        SettingKeys.RetainClipboard,
+        SettingKeys.EscapeClosesOverlays,
+        SettingKeys.SaveWindowPositions,
+        SettingKeys.KeyFindItems,
+        SettingKeys.Zoom,
+    };
+
+    protected override async Task OnInitializedAsync()
     {
         CurrentView.Initialize(new ViewOptions());
-        base.OnInitialized();
+
+        SettingsService.OnSettingsChanged += CheckIfSettingsAreModified;
+
+        CheckIfSettingsAreModified(SettingKeysUsed);
+
+        await base.OnInitializedAsync();
     }
 
     public async Task ResetCache()
     {
         await CacheProvider.Clear();
         NavigationManager.NavigateTo("/initialize");
+    }
+
+    private async void CheckIfSettingsAreModified(string[] keys)
+    {
+        if (!keys.Any(key => SettingKeysUsed.Contains(key)))
+        {
+            return;
+        }
+
+        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async void RestoreDefaults()
+    {
+        await SettingsService.DeleteSetting(SettingKeysUsed);
+
+        AreSettingsModified = false;
+
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= CheckIfSettingsAreModified;
     }
 
 }

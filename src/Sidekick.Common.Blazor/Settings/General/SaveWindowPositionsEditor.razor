@@ -22,6 +22,8 @@
     protected override async Task OnInitializedAsync()
     {
         SaveWindowPositions = await SettingsService.GetBool(SettingKeys.SaveWindowPositions);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
@@ -30,4 +32,19 @@
         SaveWindowPositions = value;
         await SettingsService.Set(SettingKeys.SaveWindowPositions, value);
     }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.SaveWindowPositions))
+        {
+            SaveWindowPositions = await SettingsService.GetBool(SettingKeys.SaveWindowPositions);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
+    }
+
 }

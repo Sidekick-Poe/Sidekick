@@ -28,9 +28,6 @@
 
 <FormFieldset>
     <div class="flex justify-between">
-        <ButtonSecondary OnClick="RestoreDefaults">
-            @Resources["Chat_Restore_Defaults"]
-        </ButtonSecondary>
         <ButtonPrimary OnClick="Add">
             @Resources["Chat_Add_New_Command"]
         </ButtonPrimary>
@@ -46,6 +43,8 @@
     protected override async Task OnInitializedAsync()
     {
         ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands) ?? [];
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
@@ -79,15 +78,23 @@
         await Save();
     }
 
-    private async Task RestoreDefaults()
-    {
-        ChatSettings = [.. DefaultSettings.ChatCommands];
-        await Save();
-    }
-
     protected async Task Save()
     {
         await SettingsService.Set(SettingKeys.ChatCommands, ChatSettings);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.ChatCommands))
+        {
+            ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands) ?? [];
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }

@@ -16,6 +16,8 @@
     protected override async Task OnInitializedAsync()
     {
         PriceCheckMarketEnabled = await SettingsService.GetBool(SettingKeys.PriceCheckMarketEnabled);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
@@ -23,6 +25,20 @@
     {
         PriceCheckMarketEnabled = value;
         await SettingsService.Set(SettingKeys.PriceCheckMarketEnabled, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.PriceCheckMarketEnabled))
+        {
+            PriceCheckMarketEnabled = await SettingsService.GetBool(SettingKeys.PriceCheckMarketEnabled);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }

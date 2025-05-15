@@ -16,6 +16,8 @@
     protected override async Task OnInitializedAsync()
     {
         Enabled = await SettingsService.GetBool(SettingKeys.PriceCheckAutomaticallySearchCurrency);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
@@ -23,6 +25,20 @@
     {
         Enabled = value;
         await SettingsService.Set(SettingKeys.PriceCheckAutomaticallySearchCurrency, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.PriceCheckAutomaticallySearchCurrency))
+        {
+            Enabled = await SettingsService.GetBool(SettingKeys.PriceCheckAutomaticallySearchCurrency);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }

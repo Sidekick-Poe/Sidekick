@@ -16,6 +16,8 @@
     protected override async Task OnInitializedAsync()
     {
         PriceCheckPredictionEnabled = await SettingsService.GetBool(SettingKeys.PriceCheckPredictionEnabled);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
@@ -23,6 +25,20 @@
     {
         PriceCheckPredictionEnabled = value;
         await SettingsService.Set(SettingKeys.PriceCheckPredictionEnabled, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.PriceCheckPredictionEnabled))
+        {
+            PriceCheckPredictionEnabled = await SettingsService.GetBool(SettingKeys.PriceCheckPredictionEnabled);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }

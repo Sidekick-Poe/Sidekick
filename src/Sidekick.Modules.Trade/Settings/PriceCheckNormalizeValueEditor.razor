@@ -22,6 +22,8 @@
 
         Value = (await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue)).ToString();
 
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         Options = values.Select(x => new SelectOption
             {
                 Value = x.ToString(),
@@ -36,4 +38,19 @@
         Value = value;
         await SettingsService.Set(SettingKeys.PriceCheckNormalizeValue, value);
     }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.KeyOpenPriceCheck))
+        {
+            Value = (await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue)).ToString();
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
+    }
+
 }

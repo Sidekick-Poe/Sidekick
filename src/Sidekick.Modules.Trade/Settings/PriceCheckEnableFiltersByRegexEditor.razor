@@ -3,7 +3,7 @@
 
 <div class="flex items-start gap-2">
     <div class="grow">
-        <FormInput Value="@Enabled"
+        <FormInput Value="@FiltersRegex"
                    ValueChanged="@ValueChanged"
                    Label="@Resources["PriceCheck_Enable_Filters_By_Regex"]" />
     </div>
@@ -17,18 +17,34 @@
 
 @code {
 
-    private string? Enabled { get; set; }
+    private string? FiltersRegex { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        Enabled = await SettingsService.GetString(SettingKeys.PriceCheckEnableFiltersByRegex);
+        FiltersRegex = await SettingsService.GetString(SettingKeys.PriceCheckEnableFiltersByRegex);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
     private async Task ValueChanged(string? value)
     {
-        Enabled = value;
+        FiltersRegex = value;
         await SettingsService.Set(SettingKeys.PriceCheckEnableFiltersByRegex, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.PriceCheckEnableFiltersByRegex))
+        {
+            FiltersRegex = await SettingsService.GetString(SettingKeys.PriceCheckEnableFiltersByRegex);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }

@@ -22,6 +22,8 @@
     protected override async Task OnInitializedAsync()
     {
         EscapeClosesOverlays = await SettingsService.GetBool(SettingKeys.EscapeClosesOverlays);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
@@ -29,6 +31,20 @@
     {
         EscapeClosesOverlays = value;
         await SettingsService.Set(SettingKeys.EscapeClosesOverlays, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.EscapeClosesOverlays))
+        {
+            EscapeClosesOverlays = await SettingsService.GetBool(SettingKeys.EscapeClosesOverlays);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }
