@@ -1,0 +1,43 @@
+@using Sidekick.Common.Settings
+@using Sidekick.Common.Blazor.Settings.Components
+
+<KeybindEditor Value="@Keybind"
+               ValueChanged="KeyChanged"
+               Label="@Resources["Key_Open_In_Craft_Of_Exile"]"/>
+
+@inject IStringLocalizer<SettingsResources> Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private string? Keybind { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Keybind = await SettingsService.GetString(SettingKeys.KeyOpenInCraftOfExile);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task KeyChanged(string? value)
+    {
+        Keybind = value;
+        await SettingsService.Set(SettingKeys.KeyOpenInCraftOfExile, value);
+    }
+    
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.KeyOpenInCraftOfExile))
+        {
+            Keybind = await SettingsService.GetString(SettingKeys.KeyOpenInCraftOfExile);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
+    }
+
+}

@@ -26,6 +26,8 @@ public static class DefaultSettings
 
     public static string KeyFindItems => "Ctrl+F";
 
+    public static string KeyOpenInCraftOfExile => "";
+
     public static bool EscapeClosesOverlays => true;
     public static bool OverlayCloseWithMouse => false;
 

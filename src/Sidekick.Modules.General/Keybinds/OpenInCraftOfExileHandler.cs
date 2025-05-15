@@ -1,0 +1,55 @@
+using Sidekick.Common.Browser;
+using Sidekick.Common.Extensions;
+using Sidekick.Common.Game;
+using Sidekick.Common.Keybinds;
+using Sidekick.Common.Platform;
+using Sidekick.Common.Settings;
+
+namespace Sidekick.Modules.General.Keybinds;
+
+/// <summary>
+/// Keybind handler for opening items in Craft of Exile.
+/// Does seem to support any languages, at least for the bases.
+/// Requires Alt information for PoE1.
+/// </summary>
+public class OpenInCraftOfExileHandler(
+    IClipboardProvider clipboardProvider,
+    ISettingsService settingsService,
+    IProcessProvider processProvider,
+    IBrowserProvider browserProvider,
+    IKeyboardProvider keyboard) : KeybindHandler(settingsService, SettingKeys.KeyOpenInCraftOfExile)
+{
+    private readonly ISettingsService settingsService = settingsService;
+
+    protected override async Task<List<string?>> GetKeybinds() =>
+    [
+        await settingsService.GetString(SettingKeys.KeyOpenInCraftOfExile)
+    ];
+
+    public override bool IsValid(string _) => processProvider.IsPathOfExileInFocus;
+
+    public override async Task Execute(string keybind)
+    {
+        // We get the item's alt text and url encode it.
+
+        var itemText = await clipboardProvider.Copy(withAlt: true);
+        if (itemText == null)
+        {
+            await keyboard.PressKey(keybind);
+            return;
+        }
+
+        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+        var game = leagueId.GetGameFromLeagueId();
+
+        var gameParam = game == GameType.PathOfExile ? "poe1" : "poe2";
+        var encodedItemText = Uri.EscapeDataString(itemText);
+
+        var uriBuilder = new UriBuilder("https://craftofexile.com/")
+        {
+            Query = $"game={gameParam}&eimport={encodedItemText}"
+        };
+
+        browserProvider.OpenUri(uriBuilder.Uri);
+    }
+}

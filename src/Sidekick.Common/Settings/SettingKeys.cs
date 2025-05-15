@@ -32,6 +32,7 @@ public static class SettingKeys
     public const string KeyOpenPriceCheck = nameof(KeyOpenPriceCheck);
     public const string KeyOpenWealth = nameof(KeyOpenWealth);
     public const string KeyOpenWiki = nameof(KeyOpenWiki);
+    public const string KeyOpenInCraftOfExile = nameof(KeyOpenInCraftOfExile);
 
     public const string EscapeClosesOverlays = nameof(EscapeClosesOverlays);
     public const string RetainClipboard = nameof(RetainClipboard);
