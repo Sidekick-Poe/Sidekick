@@ -1,12 +1,20 @@
 @using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Settings
 
-<FormCheckbox Value="@Enabled"
-              ValueChanged="@ValueChanged">
-    @Label
-</FormCheckbox>
+<div class="flex align-center gap-2">
+    <FormCheckbox Value="@Enabled"
+                  ValueChanged="@ValueChanged">
+        @Label
+    </FormCheckbox>
+
+    @if (Tooltip is not null)
+    {
+        <TooltipHint Text="@Tooltip" />
+    }
+</div>
 
 @inject ISettingsService SettingsService
+@implements IDisposable
 
 @code {
 
@@ -15,6 +23,9 @@
 
     [Parameter]
     public required string SettingKey { get; set; }
+
+    [Parameter]
+    public string? Tooltip { get; set; }
 
     private bool Enabled { get; set; }
 

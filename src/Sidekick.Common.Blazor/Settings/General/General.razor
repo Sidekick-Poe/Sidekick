@@ -3,13 +3,19 @@
 @using Sidekick.Common.Blazor.Components
 @using Sidekick.Common.Blazor.Settings.Components
 @using Sidekick.Common.Cache
+@using Sidekick.Common.Game.Languages
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
 
 <AppContainer>
     <FormFieldset Legend="@Resources["General_Settings"]">
         <LanguageParserEditor />
-        <UseInvariantForTradeResults />
+
+        @if (!LanguageProvider.IsEnglish())
+        {
+            <SettingCheckboxEditor SettingKey="@SettingKeys.UseInvariantTradeResults" Label="@Resources["UseInvariantForTradeResults"]" Tooltip="@Resources["UseInvariantForTradeResultsTip"]" />
+        }
+
         @if (!SidekickConfiguration.IsPoeApiDown)
         {
             <LeagueIdEditor />
@@ -44,6 +50,7 @@
 @inject ICacheProvider CacheProvider
 @inject NavigationManager NavigationManager
 @inject ISettingsService SettingsService
+@inject IGameLanguageProvider LanguageProvider
 
 @code {
 
