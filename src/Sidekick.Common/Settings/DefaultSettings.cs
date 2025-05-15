@@ -16,7 +16,7 @@ public static class DefaultSettings
 
     public static string KeyClose => "Space";
 
-    public static string KeyOpenWealth => "F7";
+    public static string KeyOpenWealth => "";
 
     public static string KeyOpenPriceCheck => "Ctrl+D";
 

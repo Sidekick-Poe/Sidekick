@@ -3,19 +3,24 @@
 
 <FormCheckbox Value="@Enabled"
               ValueChanged="@ValueChanged">
-    @Resources["PriceCheck_Enable_All_Filters"]
+    @Label
 </FormCheckbox>
 
-@inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 
 @code {
+
+    [Parameter]
+    public required string Label { get; set; }
+
+    [Parameter]
+    public required string SettingKey { get; set; }
 
     private bool Enabled { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        Enabled = await SettingsService.GetBool(SettingKeys.PriceCheckEnableAllFilters);
+        Enabled = await SettingsService.GetBool(SettingKey);
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
         await base.OnInitializedAsync();
@@ -24,14 +29,14 @@
     private async Task ValueChanged(bool value)
     {
         Enabled = value;
-        await SettingsService.Set(SettingKeys.PriceCheckEnableAllFilters, value);
+        await SettingsService.Set(SettingKey, value);
     }
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (keys.Contains(SettingKeys.PriceCheckEnableAllFilters))
+        if (keys.Contains(SettingKey))
         {
-            Enabled = await SettingsService.GetBool(SettingKeys.PriceCheckEnableAllFilters);
+            Enabled = await SettingsService.GetBool(SettingKey);
             await InvokeAsync(StateHasChanged);
         }
     }

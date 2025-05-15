@@ -1,6 +1,7 @@
 @page "/settings/general"
 @layout MainWindowLayout
 @using Sidekick.Common.Blazor.Components
+@using Sidekick.Common.Blazor.Settings.Components
 @using Sidekick.Common.Cache
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
@@ -23,13 +24,13 @@
     <FormFieldset Legend="@Resources["Other_Settings"]">
         @if (ApplicationService.SupportsKeybinds)
         {
-            <RetainClipboardEditor />
-            <EscapeClosesOverlaysEditor />
-            <SaveWindowPositionsEditor />
-            <KeyFindItemsEditor />
-            <KeyOpenInCraftOfExileEditor />
+            <SettingCheckboxEditor SettingKey="@SettingKeys.RetainClipboard" Label="@Resources["General_RetainClipboard"]" />
+            <SettingCheckboxEditor SettingKey="@SettingKeys.SaveWindowPositions" Label="@Resources["SaveWindowPositions"]" />
+            <SettingKeybindEditor SettingKey="@SettingKeys.KeyFindItems" Label="@Resources["Key_FindItems"]" />
+            <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenInCraftOfExile" Label="@Resources["Key_Open_In_Craft_Of_Exile"]" />
         }
-        <ZoomEditor />        
+
+        <ZoomEditor />
     </FormFieldset>
 
     <div class="flex justify-center mb-1">
@@ -51,7 +52,6 @@
     private string[] SettingKeysUsed { get; } =
     {
         SettingKeys.RetainClipboard,
-        SettingKeys.EscapeClosesOverlays,
         SettingKeys.SaveWindowPositions,
         SettingKeys.KeyFindItems,
         SettingKeys.KeyOpenInCraftOfExile,

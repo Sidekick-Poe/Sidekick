@@ -8,19 +8,19 @@
 @if (ApplicationService.SupportsKeybinds)
 {
     <FormFieldset Legend="@Resources["Keybindings"]">
-        <KeyOpenPriceCheckEditor />
-        <KeyCloseEditor />
+        <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenPriceCheck" Label="@Resources["PriceCheck_Key_Check"]" />
+        <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
     </FormFieldset>
 }
 
 <FormFieldset Legend="@Resources["Item_Trade_Settings"]">
     <PriceCheckItemClassFilter />
     <PriceCheckNormalizeValueEditor />
-    <PriceCheckPredictionEnabledEditor />
-    <PriceCheckMarketEnabledEditor />
-    <PriceCheckAutomaticallySearchEditor />
-    <PriceCheckAutomaticallySearchCurrencyEditor />
-    <PriceCheckEnableAllFiltersEditor />
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckPredictionEnabled" Label="@Resources["PriceCheck_Prediction_Enable"]" />
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckMarketEnabled" Label="@Resources["PriceCheck_Market_Enable"]" />
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallySearch" Label="@Resources["PriceCheck_Automatically_Search"]" />
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallySearchCurrency" Label="@Resources["PriceCheck_Automatically_Search_Currency"]" />
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckEnableAllFilters" Label="@Resources["PriceCheck_Enable_All_Filters"]" />
     <PriceCheckEnableFiltersByRegexEditor />
     <PriceCheckDefaultFilterTypeEditor />
 </FormFieldset>
@@ -32,8 +32,8 @@
 @if (ApplicationService.SupportsKeybinds)
 {
     <FormFieldset Legend="@Resources["Other_Settings"]">
-        <OverlayCloseWithMouseEditor />
-        <EscapeClosesOverlaysEditor />
+        <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayCloseWithMouse" Label="@Resources["OverlayCloseWithMouse"]" />
+        <SettingCheckboxEditor SettingKey="@SettingKeys.EscapeClosesOverlays" Label="@Resources["EscapeClosesOverlays"]" />
     </FormFieldset>
 }
 
