@@ -373,4 +373,7 @@
   <data name="Regex_Hint" xml:space="preserve">
     <value>Use the "|" character to separate modifiers. The modifier does not need to match exactly, and differences between uppercase and lowercase are ignored. It should match the game's language. E.g. "maximum life|resistance|regen"</value>
   </data>
+  <data name="Key_Open_In_Craft_Of_Exile" xml:space="preserve">
+    <value>Open item in CraftOfExile.com</value>
+  </data>
 </root>
