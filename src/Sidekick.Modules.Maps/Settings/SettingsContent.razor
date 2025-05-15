@@ -14,8 +14,7 @@
 }
 
 <FormFieldset Legend="@Resources["Dangerous_Modifiers"]">
-    <TextBase>@Resources["Regex_Hint"]</TextBase>
-    <MapCheckDangerousRegexEditor />
+    <SettingTextEditor SettingKey="@SettingKeys.MapCheckDangerousRegex" Label="@Resources["MapCheck_Dangerous_Regex"]" Tooltip="@Resources["Regex_Hint"]" />
 </FormFieldset>
 
 @if (ApplicationService.SupportsKeybinds)
