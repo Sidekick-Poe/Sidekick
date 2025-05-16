@@ -1,13 +1,26 @@
 @using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Enums
 @using Sidekick.Common.Settings
+@using Sidekick.Modules.Trade.Localization
 
-<FormSelect Label="@Resources["Normalize_Values"]"
-            Value="@Value"
+<FormSelect Value="@Value"
             ValueChanged="ValueChanged"
-            Options="Options" />
+            Label="@TradeResources["Normalize_Values"]"
+            Options="Options">
+    <AdornmentContent>
+        <div class="flex ml-1 gap-1 align-center">
+            @if (ShowResetButton)
+            {
+                <ButtonIcon OnClick="Reset" title="@SettingsResources["Reset"]">
+                    <Icon Svg="@UiIcons.Reset" />
+                </ButtonIcon>
+            }
+        </div>
+    </AdornmentContent>
+</FormSelect>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<SettingsResources> SettingsResources
+@inject IStringLocalizer<TradeResources> TradeResources
 @inject ISettingsService SettingsService
 @implements IDisposable
 
@@ -15,13 +28,18 @@
 
     private string? Value { get; set; }
 
-    private List<SelectOption> Options { get; set; } = [];
+    private List<SelectOption> Options { get; set; } = new();
+
+    private const string SettingKey = SettingKeys.PriceCheckNormalizeValue;
+
+    private bool ShowResetButton { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         var values = new List<double> { 0, .05, .1, .15, .2, .25 };
 
-        Value = (await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue)).ToString();
+        Value = (await SettingsService.GetObject<double>(SettingKey)).ToString();
+        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
 
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
@@ -37,16 +55,24 @@
     private async Task ValueChanged(string? value)
     {
         Value = value;
-        await SettingsService.Set(SettingKeys.PriceCheckNormalizeValue, value);
+
+        await SettingsService.Set(SettingKey, value);
     }
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (keys.Contains(SettingKeys.KeyOpenPriceCheck))
+        if (keys.Contains(SettingKey))
         {
-            Value = (await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue)).ToString();
+            Value = (await SettingsService.GetObject<double>(SettingKey)).ToString();
+            ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+
             await InvokeAsync(StateHasChanged);
         }
+    }
+
+    private async Task Reset()
+    {
+        await SettingsService.DeleteSetting(SettingKey);
     }
 
     public void Dispose()

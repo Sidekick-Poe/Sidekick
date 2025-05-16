@@ -45,6 +45,7 @@
     {
         Enabled = await SettingsService.GetBool(SettingKey);
         ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
         await base.OnInitializedAsync();
@@ -53,6 +54,7 @@
     private async Task ValueChanged(bool value)
     {
         Enabled = value;
+
         await SettingsService.Set(SettingKey, value);
     }
 
@@ -62,6 +64,7 @@
         {
             Enabled = await SettingsService.GetBool(SettingKey);
             ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+
             await InvokeAsync(StateHasChanged);
         }
     }

@@ -1,57 +1,83 @@
+@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Enums
-@using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
+@using Sidekick.Modules.Trade.Localization
 
-<FormSelect Label="@Resources["Default_Item_Class_Filter"]"
-            Value="@Mode"
-            ValueChanged="ModeChanged"
-            Options="Options" />
+<FormSelect Value="@Value"
+            ValueChanged="ValueChanged"
+            Label="@TradeResources["Default_Item_Class_Filter"]"
+            Options="Options">
+    <AdornmentContent>
+        <div class="flex ml-1 gap-1 align-center">
+            @if (ShowResetButton)
+            {
+                <ButtonIcon OnClick="Reset" title="@SettingsResources["Reset"]">
+                    <Icon Svg="@UiIcons.Reset" />
+                </ButtonIcon>
+            }
+        </div>
+    </AdornmentContent>
+</FormSelect>
 
-@inject IStringLocalizer<TradeResources> Resources
+@inject IStringLocalizer<SettingsResources> SettingsResources
+@inject IStringLocalizer<TradeResources> TradeResources
 @inject ISettingsService SettingsService
 @implements IDisposable
 
 @code {
 
-    private string? Mode { get; set; }
+    private string? Value { get; set; }
 
-    private List<SelectOption> Options { get; set; } = [];
+    private List<SelectOption> Options { get; set; } = new();
+
+    private const string SettingKey = SettingKeys.PriceCheckItemClassFilter;
+
+    private bool ShowResetButton { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+        Value = await SettingsService.GetString(SettingKey);
+        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         Options = [
             new()
             {
                 Value = DefaultItemClassFilter.BaseType.GetValueAttribute(),
-                Label = Resources["Base_Type"],
+                Label = TradeResources["Base_Type"],
             },
             new()
             {
                 Value = DefaultItemClassFilter.ItemClass.GetValueAttribute(),
-                Label = Resources["Item_Class"],
+                Label = TradeResources["Item_Class"],
             }
         ];
-
-        Mode = await SettingsService.GetString(SettingKeys.PriceCheckItemClassFilter);
-
-        SettingsService.OnSettingsChanged += OnSettingsChanged;
 
         await base.OnInitializedAsync();
     }
 
-    private async Task ModeChanged(string? value)
+    private async Task ValueChanged(string? value)
     {
-        Mode = value;
-        await SettingsService.Set(SettingKeys.PriceCheckItemClassFilter, value);
+        Value = value;
+
+        await SettingsService.Set(SettingKey, value);
     }
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (keys.Contains(SettingKeys.PriceCheckItemClassFilter))
+        if (keys.Contains(SettingKey))
         {
-            Mode = await SettingsService.GetString(SettingKeys.PriceCheckItemClassFilter);
+            Value = await SettingsService.GetString(SettingKey);
+            ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+
             await InvokeAsync(StateHasChanged);
         }
+    }
+
+    private async Task Reset()
+    {
+        await SettingsService.DeleteSetting(SettingKey);
     }
 
     public void Dispose()
