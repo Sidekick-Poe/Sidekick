@@ -15,8 +15,8 @@ public class WpfViewLocator : IViewLocator, IDisposable
         this.uiLanguageProvider = uiLanguageProvider;
         this.uiLanguageProvider.OnLanguageChanged += SetCultureInfo;
 
-        StandardWindow =  System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Standard, logger));
-        OverlayWindow =  System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Overlay, logger));
+        StandardWindow = System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Standard, logger));
+        OverlayWindow = System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Overlay, logger));
         ModalWindow = System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Modal, logger));
 
         SetCultureInfo();
@@ -64,8 +64,10 @@ public class WpfViewLocator : IViewLocator, IDisposable
     {
         var window = GetWindow(type);
 
-        if (window.View != null) window.View.Close();
-        else window.CloseView();
+        if (window.View != null)
+            window.View.Close();
+        else
+            window.CloseView();
     }
 
     public bool IsOverlayOpened()
