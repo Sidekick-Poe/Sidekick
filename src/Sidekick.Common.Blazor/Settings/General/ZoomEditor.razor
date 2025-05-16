@@ -6,48 +6,48 @@
         <FormSelect Label="@Resources["Zoom"]"
                     Value="@Zoom"
                     ValueChanged="ZoomChanged"
-                    Options="Options"/>
+                    Options="Options" />
     </div>
-    <div class="mt-9">
-        <TooltipHint Text="@Resources["Zoom_Hint"]"></TooltipHint>
+    <div class="self-end">
+        <TooltipHint Text="@Resources["Zoom_Hint"]" />
     </div>
 </div>
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
+@implements IDisposable
 
 @code {
 
     private string? Zoom { get; set; }
 
-    private List<SelectOption> Options { get; set; } =
-    [
-        new SelectOption()
+    private List<SelectOption> Options { get; set; } = [
+        new()
         {
             Label = "75%",
             Value = "0.75",
         },
-        new SelectOption()
+        new()
         {
             Label = "100%",
             Value = "1",
         },
-        new SelectOption()
+        new()
         {
             Label = "125%",
             Value = "1.25",
         },
-        new SelectOption()
+        new()
         {
             Label = "150%",
             Value = "1.5",
         },
-        new SelectOption()
+        new()
         {
             Label = "175%",
             Value = "1.75",
         },
-        new SelectOption()
+        new()
         {
             Label = "200%",
             Value = "2",
@@ -57,6 +57,8 @@
     protected override async Task OnInitializedAsync()
     {
         Zoom = await SettingsService.GetString(SettingKeys.Zoom);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
@@ -64,6 +66,20 @@
     {
         Zoom = value;
         await SettingsService.Set(SettingKeys.Zoom, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.Zoom))
+        {
+            Zoom = await SettingsService.GetString(SettingKeys.Zoom);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }

@@ -1,34 +1,47 @@
 @page "/settings/general"
 @layout MainWindowLayout
 @using Sidekick.Common.Blazor.Components
+@using Sidekick.Common.Blazor.Settings.Components
 @using Sidekick.Common.Cache
+@using Sidekick.Common.Game.Languages
 @using Sidekick.Common.Platform
+@using Sidekick.Common.Settings
 
 <AppContainer>
     <FormFieldset Legend="@Resources["General_Settings"]">
         <LanguageParserEditor />
-        <UseInvariantForTradeResults />
+
+        @if (!LanguageProvider.IsEnglish())
+        {
+            <SettingCheckboxEditor SettingKey="@SettingKeys.UseInvariantTradeResults" Label="@Resources["UseInvariantForTradeResults"]" Tooltip="@Resources["UseInvariantForTradeResultsTip"]" />
+        }
+
         @if (!SidekickConfiguration.IsPoeApiDown)
         {
             <LeagueIdEditor />
         }
         <InterfaceLanguageEditor />
-    </FormFieldset>
-
-    <FormFieldset Legend="@Resources["Other_Settings"]">
-        @if (ApplicationService.SupportsKeybinds)
-        {
-            <RetainClipboardEditor />
-            <EscapeClosesOverlaysEditor />
-            <SaveWindowPositionsEditor />
-            <KeyFindItemsEditor />
-        }
-        <ZoomEditor />
 
         <div class="py-2">
             <ButtonPrimary OnClick="ResetCache">@Resources["Reset_Cache"]</ButtonPrimary>
         </div>
     </FormFieldset>
+
+    <FormFieldset Legend="@Resources["Other_Settings"]">
+        @if (ApplicationService.SupportsKeybinds)
+        {
+            <SettingCheckboxEditor SettingKey="@SettingKeys.RetainClipboard" Label="@Resources["General_RetainClipboard"]" />
+            <SettingCheckboxEditor SettingKey="@SettingKeys.SaveWindowPositions" Label="@Resources["SaveWindowPositions"]" />
+            <SettingKeybindEditor SettingKey="@SettingKeys.KeyFindItems" Label="@Resources["Key_FindItems"]" />
+            <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenInCraftOfExile" Label="@Resources["Key_Open_In_Craft_Of_Exile"]" />
+        }
+
+        <ZoomEditor />
+    </FormFieldset>
+
+    <div class="flex justify-center mb-1">
+        <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@Resources["Restore_Defaults"]</ButtonPrimary>
+    </div>
 </AppContainer>
 
 @inject IStringLocalizer<SettingsResources> Resources
@@ -36,19 +49,62 @@
 @inject ICurrentView CurrentView
 @inject ICacheProvider CacheProvider
 @inject NavigationManager NavigationManager
+@inject ISettingsService SettingsService
+@inject IGameLanguageProvider LanguageProvider
 
 @code {
 
-    protected override void OnInitialized()
+    private bool AreSettingsModified { get; set; }
+
+    private string[] SettingKeysUsed { get; } =
+    {
+        SettingKeys.RetainClipboard,
+        SettingKeys.SaveWindowPositions,
+        SettingKeys.KeyFindItems,
+        SettingKeys.KeyOpenInCraftOfExile,
+        SettingKeys.Zoom,
+    };
+
+    protected override async Task OnInitializedAsync()
     {
         CurrentView.Initialize(new ViewOptions());
-        base.OnInitialized();
+
+        SettingsService.OnSettingsChanged += CheckIfSettingsAreModified;
+
+        CheckIfSettingsAreModified(SettingKeysUsed);
+
+        await base.OnInitializedAsync();
     }
 
     public async Task ResetCache()
     {
         await CacheProvider.Clear();
         NavigationManager.NavigateTo("/initialize");
+    }
+
+    private async void CheckIfSettingsAreModified(string[] keys)
+    {
+        if (!keys.Any(key => SettingKeysUsed.Contains(key)))
+        {
+            return;
+        }
+
+        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async void RestoreDefaults()
+    {
+        await SettingsService.DeleteSetting(SettingKeysUsed);
+
+        AreSettingsModified = false;
+
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= CheckIfSettingsAreModified;
     }
 
 }

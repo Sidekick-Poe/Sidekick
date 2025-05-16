@@ -13,7 +13,7 @@ public class OpenMapInfoKeybindHandler
     IProcessProvider processProvider,
     IKeyboardProvider keyboard,
     ISettingsService settingsService
-) : KeybindHandler(settingsService)
+) : KeybindHandler(settingsService, SettingKeys.KeyOpenMapCheck)
 {
     private readonly ISettingsService settingsService = settingsService;
 

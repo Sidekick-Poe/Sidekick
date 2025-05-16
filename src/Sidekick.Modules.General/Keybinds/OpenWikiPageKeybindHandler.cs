@@ -16,7 +16,7 @@ public class OpenWikiPageKeybindHandler(
     IItemParser itemParser,
     IGameLanguageProvider gameLanguageProvider,
     IBrowserProvider browserProvider,
-    IKeyboardProvider keyboard) : KeybindHandler(settingsService)
+    IKeyboardProvider keyboard) : KeybindHandler(settingsService, SettingKeys.KeyOpenWiki)
 {
     private readonly ISettingsService settingsService = settingsService;
 

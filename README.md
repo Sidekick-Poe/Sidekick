@@ -22,14 +22,20 @@ The application is a web application that is running inside a WebView2 provided 
 
 #### Running webapp in docker
 1. Clone the repository
-2. Build an image using `docker build --tag sidekickpoe:latest --file Dockerfile .`
-3. Run it with `docker run -p 5000:5000 -v ./sidekick-data:/app/src/Sidekick.Web/sidekick sidekickpoe:latest`
-4. Access through http://localhost:5000
+2. Build an image using:
+```powershell copy
+docker build --tag sidekickpoe:latest --file Dockerfile .
+```
+4. Run it with:
+```powershell copy
+docker run -p 5000:5000 -v ./sidekick-data:/app/src/Sidekick.Web/sidekick sidekickpoe:latest
+```
+5. Access through http://localhost:5000
 
 #### Running webapp with docker compose (requires [Docker Compose](https://docs.docker.com/compose/install/))
 1. Clone the repository
 2. Build and run the project with `docker compose up` 
-3. Access through http://localhost:5000
+3. Access through: http://localhost:5000
 
 ## Notice
 This product isn't affiliated with or endorsed by Grinding Gear Games in any way.

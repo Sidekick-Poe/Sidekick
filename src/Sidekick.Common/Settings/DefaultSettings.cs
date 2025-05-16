@@ -16,7 +16,7 @@ public static class DefaultSettings
 
     public static string KeyClose => "Space";
 
-    public static string KeyOpenWealth => "F7";
+    public static string KeyOpenWealth => "";
 
     public static string KeyOpenPriceCheck => "Ctrl+D";
 
@@ -26,7 +26,10 @@ public static class DefaultSettings
 
     public static string KeyFindItems => "Ctrl+F";
 
+    public static string KeyOpenInCraftOfExile => "";
+
     public static bool EscapeClosesOverlays => true;
+    public static bool OverlayCloseWithMouse => false;
 
     public static bool RetainClipboard => true;
 
@@ -39,6 +42,14 @@ public static class DefaultSettings
     public static bool PriceCheckMarketEnabled => true;
 
     public static string MapCheckDangerousRegex => "reflect|regen";
+
+    public static bool PriceCheckAutomaticallySearch => false;
+
+    public static bool PriceCheckAutomaticallySearchCurrency => false;
+
+    public static bool PriceCheckEnableAllFilters => false;
+
+    public static string PriceCheckEnableFiltersByRegex => "";
 
     public static string PriceCheckItemCurrency => "";
 

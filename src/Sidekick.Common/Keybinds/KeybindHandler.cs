@@ -8,18 +8,25 @@ namespace Sidekick.Common.Keybinds;
 /// </summary>
 public abstract class KeybindHandler : IInitializableService
 {
-    protected KeybindHandler(ISettingsService settingsService)
+    protected readonly string SettingKey;
+
+    protected KeybindHandler(ISettingsService settingsService, string settingKey)
     {
+        SettingKey = settingKey;
         settingsService.OnSettingsChanged += OnSettingsChanged;
     }
 
-    private void OnSettingsChanged()
+    private void OnSettingsChanged(string[] keys)
     {
-        _ = Task.Run(
-            async () =>
-            {
-                Keybinds = await GetKeybinds();
-            });
+        if (!keys.Contains(SettingKey))
+        {
+            return;
+        }
+
+        _ = Task.Run(async () =>
+        {
+            Keybinds = await GetKeybinds();
+        });
     }
 
     /// <summary>

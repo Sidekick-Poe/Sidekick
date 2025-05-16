@@ -1,0 +1,63 @@
+@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Settings
+
+<div class="flex align-center gap-2">
+    <div class="grow">
+        <FormInput Label="@Label"
+                   Value="@Value"
+                   ValueChanged="@ValueChanged" />
+    </div>
+
+    @if (Tooltip is not null)
+    {
+        <div class="self-end mb-1">
+            <TooltipHint Text="@Tooltip" />
+        </div>
+    }
+</div>
+
+@inject ISettingsService SettingsService
+@implements IDisposable
+
+@code {
+
+    [Parameter]
+    public required string Label { get; set; }
+
+    [Parameter]
+    public required string SettingKey { get; set; }
+
+    [Parameter]
+    public string? Tooltip { get; set; }
+
+    private string? Value { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Value = await SettingsService.GetString(SettingKey);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task ValueChanged(string? value)
+    {
+        Value = value;
+        await SettingsService.Set(SettingKey, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKey))
+        {
+            Value = await SettingsService.GetString(SettingKey);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
+    }
+
+}
