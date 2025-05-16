@@ -1,0 +1,60 @@
+@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Settings
+
+<div class="flex align-center gap-2">
+    <FormCheckbox Value="@Enabled"
+                  ValueChanged="@ValueChanged">
+        @Label
+    </FormCheckbox>
+
+    @if (Tooltip is not null)
+    {
+        <TooltipHint Text="@Tooltip" />
+    }
+</div>
+
+@inject ISettingsService SettingsService
+@implements IDisposable
+
+@code {
+
+    [Parameter]
+    public required string Label { get; set; }
+
+    [Parameter]
+    public required string SettingKey { get; set; }
+
+    [Parameter]
+    public string? Tooltip { get; set; }
+
+    private bool Enabled { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Enabled = await SettingsService.GetBool(SettingKey);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task ValueChanged(bool value)
+    {
+        Enabled = value;
+        await SettingsService.Set(SettingKey, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKey))
+        {
+            Enabled = await SettingsService.GetBool(SettingKey);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
+    }
+
+}

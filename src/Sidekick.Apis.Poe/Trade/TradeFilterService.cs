@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Parser.Properties;
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Filters;
@@ -6,12 +7,69 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade;
 
-public class TradeFilterService
-(
-    IPropertyParser propertyParser,
-    ISettingsService settingsService
-) : ITradeFilterService
+public class TradeFilterService : ITradeFilterService
 {
+    private readonly IPropertyParser propertyParser;
+    private readonly ISettingsService settingsService;
+    public int Priority => 0;
+
+    private bool? EnableAllFilters;
+    private bool EnableFiltersByRegexIsValid;
+    private Regex? EnableFiltersByRegex;
+
+    public TradeFilterService(IPropertyParser propertyParser, ISettingsService settingsService)
+    {
+        this.propertyParser = propertyParser;
+        this.settingsService = settingsService;
+
+        settingsService.OnSettingsChanged += OnSettingsChanged;
+    }
+
+    public async Task Initialize()
+    {
+        await GetFiltersSettings();
+    }
+
+    private void OnSettingsChanged(string[] keys)
+    {
+        if (!keys.Any(x => x == SettingKeys.PriceCheckEnableAllFilters || x == SettingKeys.PriceCheckEnableFiltersByRegex))
+        {
+            return;
+        }
+
+        _ = Task.Run(GetFiltersSettings);
+    }
+
+    private async Task GetFiltersSettings()
+    {
+        EnableAllFilters = await settingsService.GetBool(SettingKeys.PriceCheckEnableAllFilters);
+
+        var enableFiltersByRegexSetting = await settingsService.GetString(SettingKeys.PriceCheckEnableFiltersByRegex);
+        if (!string.IsNullOrWhiteSpace(enableFiltersByRegexSetting))
+        {
+            EnableFiltersByRegex = new Regex(enableFiltersByRegexSetting, RegexOptions.IgnoreCase);
+            EnableFiltersByRegexIsValid = true;
+        }
+        else
+        {
+            EnableFiltersByRegexIsValid = false;
+        }
+    }
+
+    private bool ShouldFilterBeEnabled(string modifierLineText)
+    {
+        if (EnableAllFilters == true)
+        {
+            return true;
+        }
+        else if (EnableFiltersByRegexIsValid)
+        {
+            return EnableFiltersByRegex?.IsMatch(modifierLineText) == true;
+        }
+
+        return false;
+    }
+
     public IEnumerable<ModifierFilter> GetModifierFilters(Item item)
     {
         // No filters for divination cards, etc.
@@ -22,7 +80,9 @@ public class TradeFilterService
 
         foreach (var modifierLine in item.ModifierLines)
         {
-            yield return new ModifierFilter(modifierLine);
+            var modifier = new ModifierFilter(modifierLine);
+            modifier.Checked = ShouldFilterBeEnabled(modifierLine.Text);
+            yield return modifier;
         }
     }
 

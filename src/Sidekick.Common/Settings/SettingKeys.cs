@@ -32,6 +32,7 @@ public static class SettingKeys
     public const string KeyOpenPriceCheck = nameof(KeyOpenPriceCheck);
     public const string KeyOpenWealth = nameof(KeyOpenWealth);
     public const string KeyOpenWiki = nameof(KeyOpenWiki);
+    public const string KeyOpenInCraftOfExile = nameof(KeyOpenInCraftOfExile);
 
     public const string EscapeClosesOverlays = nameof(EscapeClosesOverlays);
     public const string RetainClipboard = nameof(RetainClipboard);
@@ -45,6 +46,7 @@ public static class SettingKeys
     public const string OverlayCloseWithMouse = nameof(OverlayCloseWithMouse);
 
     public const string PriceCheckPredictionEnabled = nameof(PriceCheckPredictionEnabled);
+    public const string PriceCheckMarketEnabled = nameof(PriceCheckMarketEnabled);
     public const string PriceCheckItemListedAge = nameof(PriceCheckItemListedAge);
     public const string PriceCheckCurrency = nameof(PriceCheckCurrency);
     public const string PriceCheckCurrencyPoE2 = nameof(PriceCheckCurrencyPoE2);
@@ -60,6 +62,9 @@ public static class SettingKeys
     public const string PriceCheckStatus = nameof(PriceCheckStatus);
     public const string PriceCheckItemClassFilter = nameof(PriceCheckItemClassFilter);
     public const string PriceCheckAutomaticallySearch = nameof(PriceCheckAutomaticallySearch);
+    public const string PriceCheckAutomaticallySearchCurrency = nameof(PriceCheckAutomaticallySearchCurrency);
+    public const string PriceCheckEnableAllFilters = nameof(PriceCheckEnableAllFilters);
+    public const string PriceCheckEnableFiltersByRegex = nameof(PriceCheckEnableFiltersByRegex);
     public const string PriceCheckDefaultFilterType = nameof(PriceCheckDefaultFilterType);
 
     public const string SaveWindowPositions = nameof(SaveWindowPositions);

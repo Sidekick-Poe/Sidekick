@@ -12,7 +12,7 @@ public class SettingsService(
     DbContextOptions<SidekickDbContext> dbContextOptions,
     ILogger<SettingsService> logger) : ISettingsService
 {
-    public event Action? OnSettingsChanged;
+    public event Action<string[]>? OnSettingsChanged;
 
     public async Task<bool> GetBool(string key)
     {
@@ -205,7 +205,7 @@ public class SettingsService(
 
             dbContext.Settings.Remove(dbSetting);
             await dbContext.SaveChangesAsync();
-            OnSettingsChanged?.Invoke();
+            OnSettingsChanged?.Invoke([key]);
             return;
         }
 
@@ -224,7 +224,74 @@ public class SettingsService(
         }
 
         await dbContext.SaveChangesAsync();
-        OnSettingsChanged?.Invoke();
+        OnSettingsChanged?.Invoke([key]);
+    }
+
+    public async Task<bool> IsSettingModified(params string[] keys)
+    {
+        if (keys == null || keys.Length == 0)
+        {
+            return false;
+        }
+
+        await using var dbContext = new SidekickDbContext(dbContextOptions);
+
+        var dbSettings = await dbContext.Settings.Where(x => keys.Contains(x.Key)).ToListAsync();
+
+        foreach (var key in keys)
+        {
+            var dbSetting = dbSettings.FirstOrDefault(x => x.Key == key);
+
+            if (dbSetting == null)
+            {
+                continue;
+            }
+
+            var defaultProperty = typeof(DefaultSettings).GetProperty(key);
+            if (defaultProperty == null)
+            {
+                continue;
+            }
+
+            var defaultValue = GetStringValue(defaultProperty.GetValue(null));
+
+            if (defaultValue != dbSetting.Value)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public async Task DeleteSetting(params string[] keys)
+    {
+        if (keys == null || keys.Length == 0)
+        {
+            return;
+        }
+
+        await using var dbContext = new SidekickDbContext(dbContextOptions);
+        bool changed = false;
+
+        var dbSettings = await dbContext.Settings.Where(x => keys.Contains(x.Key)).ToListAsync();
+
+        foreach (var key in keys)
+        {
+            var dbSetting = dbSettings.FirstOrDefault(x => x.Key == key);
+
+            if (dbSetting != null)
+            {
+                dbContext.Settings.Remove(dbSetting);
+                changed = true;
+            }
+        }
+
+        if (changed)
+        {
+            await dbContext.SaveChangesAsync();
+            OnSettingsChanged?.Invoke(keys);
+        }
     }
 
     private static string? GetStringValue(object? value)

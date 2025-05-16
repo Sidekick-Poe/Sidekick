@@ -12,8 +12,8 @@
     {
         <TooltipRight>
             <ChildContent>
-                <span class="text-[#7f7f7f] inline-block ml-1">
-                    <IconSmall Icon="@UiIcons.PlusBox"></IconSmall>
+                <span class="inline-block ml-1 flex">
+                    <Icon Svg="@UiIcons.PlusBox" Size="@UiIconSize.Small" />
                 </span>
             </ChildContent>
             <TooltipContent>
@@ -24,7 +24,7 @@
 
     @if (!string.IsNullOrEmpty(Hint))
     {
-        <div class="ml-1">
+        <div class="ml-1 flex">
             <TooltipHint Text="@Hint"/>
         </div>
     }

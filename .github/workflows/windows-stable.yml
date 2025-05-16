@@ -22,17 +22,17 @@ jobs:
           # Get the current hour and minute without leading zero for the hour
           # Get the current hour and minute
           $HOUR = [int](Get-Date -Format "HH") # Convert hour to integer to strip any leading zero
-      
+
           # If the hour is 0 (midnight), set it to an empty string
           if ($HOUR -eq 0) {
             $HOUR = ''
           }
                 
           $MINUTE = Get-Date -Format "mm" # Keep minutes as-is
-      
+
           # Construct the time, omitting hour if it's empty
           $TIME = "$HOUR$MINUTE"
-          
+
           # Construct the version using DATE and TIME
           $VERSION = "$DATE.$TIME"
           Write-Output "Generated version: $VERSION"
@@ -58,9 +58,9 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           config-name: release-drafter.yml
-          name: 'Sidekick v${{ steps.version.outputs.version }}'
-          tag: 'v${{ steps.version.outputs.version }}'
-          version: 'v${{ steps.version.outputs.version }}'
+          name: "Sidekick v${{ steps.version.outputs.version }}"
+          tag: "v${{ steps.version.outputs.version }}"
+          version: "v${{ steps.version.outputs.version }}"
           publish: false
           prerelease: false
 
@@ -81,12 +81,17 @@ jobs:
         with:
           dotnet-version: 8.x
 
+      - name: .NET - NuGet Packages
+        shell: pwsh
+        run: dotnet restore
+
+      - name: .NET - Build
+        shell: pwsh
+        run: dotnet build --no-restore
+
       - name: .NET - Tests
         shell: pwsh
-        run: |
-          dotnet restore
-          dotnet build --no-restore
-          dotnet test --no-build --verbosity normal
+        run: dotnet test --no-build --verbosity normal
 
       - name: .NET - Publish
         shell: pwsh
@@ -96,6 +101,7 @@ jobs:
 
           dotnet publish src/Sidekick.Protocol/Sidekick.Protocol.csproj -c Release -r win-x64 -o ./Publish
           dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release -r win-x64 -o ./Publish
+          dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r win-x64 -o ./Publish-Web
 
       - name: Velopack
         shell: pwsh
@@ -105,13 +111,20 @@ jobs:
 
           $body = "${{ steps.notes.outputs.body }}"
           Write-Output "Body: $body"
-      
+
           # Output the body to a .md file
           $releaseNotesPath = "release-notes.md"
           Set-Content -Path $releaseNotesPath -Value $body
           Write-Output "Release notes saved to $releaseNotesPath"
 
           dotnet tool install -g vpk
+          
+          # Desktop version
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-stable
           vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-stable --releaseNotes $releaseNotesPath --framework net8.0-x64-desktop,webview2
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+
+          # Web version
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-stable
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-stable --releaseNotes $releaseNotesPath --framework net8.0-x64-desktop
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}

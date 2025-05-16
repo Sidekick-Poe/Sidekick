@@ -11,7 +11,7 @@ public class ChatKeybindHandler(
     IKeyboardProvider keyboard,
     ILogger<ChatKeybindHandler> logger,
     IProcessProvider processProvider,
-    IGameLogProvider gameLogProvider) : KeybindHandler(settingsService)
+    IGameLogProvider gameLogProvider) : KeybindHandler(settingsService, SettingKeys.ChatCommands)
 {
     private readonly ISettingsService settingsService = settingsService;
 

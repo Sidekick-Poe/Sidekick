@@ -1,31 +1,78 @@
 @page "/settings/wiki"
 @layout MainWindowLayout
 @using Sidekick.Common.Blazor.Components
+@using Sidekick.Common.Blazor.Settings.Components
 @using Sidekick.Common.Platform
+@using Sidekick.Common.Settings
 @inject IApplicationService ApplicationService
 
-@if (ApplicationService.SupportsKeybinds)
-{
-    <AppContainer>
+<AppContainer>
+
+    @if (ApplicationService.SupportsKeybinds)
+    {
         <FormFieldset Legend="@Resources["Keybindings"]">
-            <KeyOpenWikiEditor/>
+            <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenWiki" Label="@Resources["Wiki_Key_Open"]" />
         </FormFieldset>
 
         <FormFieldset Legend="@Resources["Other_Settings"]">
-            <PreferredWikiEditor/>
+            <PreferredWikiEditor />
         </FormFieldset>
-    </AppContainer>
-}
+    }
+
+    <div class="flex justify-center mb-1">
+        <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@Resources["Restore_Defaults"]</ButtonPrimary>
+    </div>
+
+</AppContainer>
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ICurrentView CurrentView
+@inject ISettingsService SettingsService
 
-@code{
+@code {
 
-    protected override void OnInitialized()
+    private bool AreSettingsModified { get; set; }
+
+    private string[] SettingKeysUsed { get; } =
+    {
+        SettingKeys.KeyOpenWiki,
+        SettingKeys.PreferredWiki
+    };
+
+    protected override async Task OnInitializedAsync()
     {
         CurrentView.Initialize(new ViewOptions());
-        base.OnInitialized();
+
+        SettingsService.OnSettingsChanged += CheckIfSettingsAreModified;
+
+        CheckIfSettingsAreModified(SettingKeysUsed);
+
+        await base.OnInitializedAsync();
+    }
+
+    private async void CheckIfSettingsAreModified(string[] keys)
+    {
+        if (!keys.Any(key => SettingKeysUsed.Contains(key)))
+        {
+            return;
+        }
+
+        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async void RestoreDefaults()
+    {
+        await SettingsService.DeleteSetting(SettingKeysUsed);
+
+        AreSettingsModified = false;
+
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= CheckIfSettingsAreModified;
     }
 
 }

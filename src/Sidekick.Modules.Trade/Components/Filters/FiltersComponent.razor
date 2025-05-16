@@ -3,7 +3,6 @@
 @using Sidekick.Apis.Poe.Parser.Properties.Filters
 @using Sidekick.Apis.Poe.Trade.Filters
 @using Sidekick.Common.Game.Items
-@using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Prices
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
@@ -32,36 +31,38 @@
         <HeaderFilters PropertyFilters="PropertyFilters"/>
 
         <div>
-            @foreach (var filter in PropertyFilters.Filters)
+            @for (var index = 0; index < PropertyFilters.Filters.Count; index++)
             {
+                var filter = PropertyFilters.Filters[index];
+                var key = $"{Item.Id}_property_{index}";
                 switch (filter)
                 {
                     case IntPropertyFilter intFilter:
-                        <IntPropertyFilterComponent Filter="intFilter"/>
+                        <IntPropertyFilterComponent @key="key" Filter="intFilter"/>
                         break;
 
                     case WeaponDamagePropertyFilter weaponDamageFilter:
-                        <WeaponDamagePropertyFilterComponent Filter="weaponDamageFilter"/>
+                        <WeaponDamagePropertyFilterComponent @key="key" Filter="weaponDamageFilter"/>
                         break;
 
                     case DoublePropertyFilter doubleFilter:
-                        <DoublePropertyFilterComponent Filter="doubleFilter"/>
+                        <DoublePropertyFilterComponent @key="key" Filter="doubleFilter"/>
                         break;
 
                     case TriStatePropertyFilter triStateFilter:
-                        <TriStatePropertyFilterComponent Filter="triStateFilter"/>
+                        <TriStatePropertyFilterComponent @key="key" Filter="triStateFilter"/>
                         break;
 
                     case StringPropertyFilter stringFilter:
-                        <StringPropertyFilterComponent Filter="stringFilter"/>
+                        <StringPropertyFilterComponent @key="key" Filter="stringFilter"/>
                         break;
 
                     case not null when filter.Definition is SeparatorProperty:
-                        <ItemSeparator Rarity="Item.Header.Rarity"/>
+                        <ItemSeparator @key="key" Rarity="Item.Header.Rarity"/>
                         break;
 
                     default:
-                        <BooleanPropertyFilterComponent Filter="filter"/>
+                        <BooleanPropertyFilterComponent @key="key" Filter="filter"/>
                         break;
                 }
             }
@@ -99,7 +100,6 @@
 </div>
 
 @inject IStringLocalizer<TradeResources> Resources
-@inject ISettingsService SettingsService
 @inject IBulkTradeService BulkTradeService
 @inject PriceCheckService PriceCheckService
 

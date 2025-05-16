@@ -14,7 +14,7 @@ public class PriceCheckItemKeybindHandler
     IProcessProvider processProvider,
     ISettingsService settingsService,
     IKeyboardProvider keyboard
-) : KeybindHandler(settingsService)
+) : KeybindHandler(settingsService, SettingKeys.KeyOpenPriceCheck)
 {
     private readonly ISettingsService settingsService = settingsService;
 

@@ -1,8 +1,14 @@
+@using Sidekick.Common.Platform
+@using Sidekick.Common.Blazor.Settings
+@implements IDisposable
+
 <div>
-    <FormInput OnFocus="Focus"
+    <FormInput id="@Id"
+               OnFocus="Focus"
                OnBlur="Blur"
                Label="@Label"
                Value="@InputValue"
+               readonly="true"
                AdditionalClasses="cursor-default caret-transparent"
                spellcheck="false">
         <AdornmentContent>
@@ -12,21 +18,20 @@
     @if (IsDuplicated)
     {
         <label class="mt-1 text-base font-medium text-amber-500 flex items-center flex-nowrap gap-2">
-            <IconLarge Icon="@UiIcons.Error"/>
-            <span>@Resources["Keybind_Already_In_Use"]</span>
+            <Icon Svg="@UiIcons.Warning" Size="@UiIconSize.Medium" />
+            <span>@string.Format(Resources["Keybind_Already_In_Use"], DuplicatedKey)</span>
         </label>
     }
 </div>
-@using Sidekick.Common.Platform
-@using Sidekick.Common.Blazor.Settings
-@implements IDisposable
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject IKeyboardProvider Keyboard
+@inject IJSRuntime JsRuntime
 
 @code {
-
     private static Guid? CurrentEditorId { get; set; }
+
+    private IJSObjectReference? Module { get; set; }
 
     private static event Action? CurrentEditorChanged;
 
@@ -44,6 +49,7 @@
     private bool Active => CurrentEditorId == Id;
 
     private bool IsDuplicated { get; set; } = false;
+    private string? DuplicatedKey { get; set; } = null;
 
     private string? InputValue
     {
@@ -63,6 +69,13 @@
         Keyboard.OnKeyDown += OnKeyDown;
         CurrentEditorChanged += StateHasChanged;
         base.OnInitialized();
+    }
+
+    private async Task RemoveFocusAsync()
+    {
+        Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import",
+            "./_content/Sidekick.Common.Blazor/Settings/Components/KeybindEditorInternal.razor.js");
+        await Module.InvokeVoidAsync("removeFocus", Id);
     }
 
     public void Focus()
@@ -86,10 +99,15 @@
                 return;
             }
 
-            if (key != "Esc" && key != Value)
+            if (key != "Esc")
             {
-                if (Keyboard.UsedKeybinds.Contains(key))
+                if (key == Value)
                 {
+                    IsDuplicated = false;
+                }
+                else if (Keyboard.UsedKeybinds.Contains(key))
+                {
+                    DuplicatedKey = key;
                     IsDuplicated = true;
                 }
                 else
@@ -99,6 +117,7 @@
                 }
             }
 
+            await RemoveFocusAsync();
             CurrentEditorId = null;
             CurrentEditorChanged?.Invoke();
             StateHasChanged();

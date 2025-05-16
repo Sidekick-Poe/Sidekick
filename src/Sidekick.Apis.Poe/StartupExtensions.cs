@@ -49,7 +49,6 @@ public static class StartupExtensions
         services.AddSingleton<IAuthenticationService, AuthenticationService>();
         services.AddSingleton<ITradeSearchService, TradeSearchService>();
         services.AddSingleton<ILeagueProvider, LeagueProvider>();
-        services.AddSingleton<ITradeFilterService, TradeFilterService>();
         services.AddSingleton<IBulkTradeService, BulkTradeService>();
         services.AddSingleton<IModifierParser, ModifierParser>();
         services.AddSingleton<ClusterJewelParser>();
@@ -62,6 +61,7 @@ public static class StartupExtensions
         services.AddSidekickInitializableService<IApiItemProvider, ApiItemProvider>();
         services.AddSidekickInitializableService<IItemStaticDataProvider, ItemStaticDataProvider>();
         services.AddSidekickInitializableService<IInvariantModifierProvider, InvariantModifierProvider>();
+        services.AddSidekickInitializableService<ITradeFilterService, TradeFilterService>();
         services.AddSidekickInitializableService<IModifierProvider, ModifierProvider>();
         services.AddSidekickInitializableService<IPseudoParser, PseudoParser>();
         services.AddSidekickInitializableService<IFilterProvider, FilterProvider>();

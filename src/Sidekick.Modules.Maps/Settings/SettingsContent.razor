@@ -2,26 +2,83 @@
 @using Sidekick.Common.Blazor.Settings.General
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Blazor.Settings.Components
+@using Sidekick.Common.Settings
 @inject IApplicationService ApplicationService
 
 @if (ApplicationService.SupportsKeybinds)
 {
     <FormFieldset Legend="@Resources["Keybindings"]">
-        <KeyOpenMapCheckEditor/>
-        <KeyCloseEditor/>
+        <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenMapCheck" Label="@Resources["Map_Key_Check"]" />
+        <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
     </FormFieldset>
 }
 
 <FormFieldset Legend="@Resources["Dangerous_Modifiers"]">
-    <MapCheckDangerousRegexEditor />
+    <SettingTextEditor SettingKey="@SettingKeys.MapCheckDangerousRegex" Label="@Resources["MapCheck_Dangerous_Regex"]" Tooltip="@Resources["Regex_Hint"]" />
 </FormFieldset>
 
 @if (ApplicationService.SupportsKeybinds)
 {
     <FormFieldset Legend="@Resources["Other_Settings"]">
-        <OverlayCloseWithMouseEditor/>
-        <EscapeClosesOverlaysEditor/>
+        <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayCloseWithMouse" Label="@Resources["OverlayCloseWithMouse"]" />
+        <SettingCheckboxEditor SettingKey="@SettingKeys.EscapeClosesOverlays" Label="@Resources["EscapeClosesOverlays"]" />
     </FormFieldset>
 }
 
+<div class="flex justify-center mb-1">
+    <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@Resources["Restore_Defaults"]</ButtonPrimary>
+</div>
+
 @inject IStringLocalizer<SettingsResources> Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private bool AreSettingsModified { get; set; }
+
+    private string[] SettingKeysUsed { get; } =
+    {
+        SettingKeys.KeyOpenMapCheck,
+        SettingKeys.KeyClose,
+
+        SettingKeys.MapCheckDangerousRegex,
+
+        SettingKeys.OverlayCloseWithMouse,
+        SettingKeys.EscapeClosesOverlays
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        SettingsService.OnSettingsChanged += CheckIfSettingsAreModified;
+
+        CheckIfSettingsAreModified(SettingKeysUsed);
+
+        await base.OnInitializedAsync();
+    }
+
+    private async void CheckIfSettingsAreModified(string[] keys)
+    {
+        if (!keys.Any(key => SettingKeysUsed.Contains(key)))
+        {
+            return;
+        }
+
+        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async void RestoreDefaults()
+    {
+        await SettingsService.DeleteSetting(SettingKeysUsed);
+
+        AreSettingsModified = false;
+
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= CheckIfSettingsAreModified;
+    }
+
+}

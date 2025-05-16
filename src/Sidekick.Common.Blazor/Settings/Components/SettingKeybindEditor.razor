@@ -1,0 +1,55 @@
+@using Sidekick.Common.Platform
+@using Sidekick.Common.Settings
+
+@if (!ApplicationService.SupportsKeybinds)
+{
+    return;
+}
+
+<KeybindEditorInternal Label="@Label"
+                       Value="@Value"
+                       ValueChanged="ValueChanged" />
+
+@inject IApplicationService ApplicationService
+@inject ISettingsService SettingsService
+@implements IDisposable
+
+@code {
+
+    [Parameter]
+    public required string Label { get; set; }
+
+    [Parameter]
+    public required string SettingKey { get; set; }
+
+    private string? Value { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Value = await SettingsService.GetString(SettingKey);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task ValueChanged(string? value)
+    {
+        Value = value;
+        await SettingsService.Set(SettingKey, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKey))
+        {
+            Value = await SettingsService.GetString(SettingKey);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
+    }
+
+}

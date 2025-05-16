@@ -1,10 +1,11 @@
 using Sidekick.Apis.Poe.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Common.Game.Items;
+using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe;
 
-public interface ITradeFilterService
+public interface ITradeFilterService : IInitializableService
 {
     /// <summary>
     /// Gets a list of modifier filters for a specific item.

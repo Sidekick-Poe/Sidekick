@@ -20,6 +20,7 @@ public static class StartupExtensions
         services.AddSidekickKeybind<CloseOverlayWithEscHandler>();
         services.AddSidekickKeybind<FindItemKeybindHandler>();
         services.AddSidekickKeybind<OpenWikiPageKeybindHandler>();
+        services.AddSidekickKeybind<OpenInCraftOfExileHandler>();
 
         return services;
     }

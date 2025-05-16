@@ -13,7 +13,7 @@ public class ClipboardProvider
 ) : IClipboardProvider
 {
     /// <inheritdoc/>
-    public async Task<string?> Copy()
+    public async Task<string?> Copy(bool? withAlt = false)
     {
         var clipboardText = string.Empty;
         var retainClipboard = await settingsService.GetBool(SettingKeys.RetainClipboard);
@@ -25,7 +25,17 @@ public class ClipboardProvider
 
         await SetText(string.Empty);
 
-        await keyboard.PressKey("Ctrl+C");
+        // Alt information is not used for item parsing.
+        if (withAlt == true)
+        {
+            keyboard.ReleaseAltModifier();
+            await keyboard.PressKey("Ctrl+Alt+C");
+        }
+        else
+        {
+            await keyboard.PressKey("Ctrl+C");
+        }
+
         logger.LogDebug("[Clipboard] Sent keystrokes Ctrl+C");
 
         await Task.Delay(100);
@@ -80,7 +90,7 @@ public class ClipboardProvider
     public Task SetText(string? text)
     {
         var tcs = new TaskCompletionSource();
-        var staThread = new Thread(()=>
+        var staThread = new Thread(() =>
         {
             try
             {

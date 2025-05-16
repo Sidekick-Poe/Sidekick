@@ -1,6 +1,7 @@
 @using Sidekick.Common.Cache
 @using Sidekick.Common.Game.Languages
 @using Sidekick.Common.Settings
+@using System.Globalization
 
 <FormSelect Label="@Resources["Language_Parser"]"
             Value="@Language"
@@ -31,7 +32,7 @@
                       x => new SelectOption()
                           {
                               Value = x.LanguageCode,
-                              Label = $"{x.Name} ({x.LanguageCode})",
+                              Label = $"{new CultureInfo(x.LanguageCode).DisplayName} ({x.LanguageCode})",
                           })
                   .ToList();
 

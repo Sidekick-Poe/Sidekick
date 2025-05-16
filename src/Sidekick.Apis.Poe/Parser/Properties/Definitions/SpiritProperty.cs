@@ -41,8 +41,7 @@ public class SpiritProperty
             Text = gameLanguageProvider.Language.DescriptionSpirit,
             NormalizeEnabled = true,
             NormalizeValue = normalizeValue,
-            Value = item.Properties.SpiritWithQuality,
-            OriginalValue = item.Properties.Spirit,
+            Value = item.Properties.Spirit,
             Checked = false,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.Spirit)) ? LineContentType.Augmented : LineContentType.Simple,
         };

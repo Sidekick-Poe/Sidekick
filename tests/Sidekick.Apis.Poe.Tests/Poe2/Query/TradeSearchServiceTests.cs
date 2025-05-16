@@ -95,6 +95,6 @@ public class TradeSearchServiceTests
 
         var actual = Assert.Single(mockHttpClient.Requests);
 
-        Assert.Equal(actual, expectedQuery);
+        Assert.Equal(expectedQuery, actual);
     }
 }

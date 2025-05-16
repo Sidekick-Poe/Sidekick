@@ -2,34 +2,105 @@
 @using Sidekick.Common.Blazor.Settings.General
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Blazor.Settings.Components
+@using Sidekick.Common.Settings
 @inject IApplicationService ApplicationService
 
 @if (ApplicationService.SupportsKeybinds)
 {
     <FormFieldset Legend="@Resources["Keybindings"]">
-        <KeyOpenPriceCheckEditor/>
-        <KeyCloseEditor/>
+        <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenPriceCheck" Label="@Resources["PriceCheck_Key_Check"]" />
+        <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
     </FormFieldset>
 }
 
 <FormFieldset Legend="@Resources["Item_Trade_Settings"]">
     <PriceCheckItemClassFilter />
     <PriceCheckNormalizeValueEditor />
-    <PriceCheckPredictionEnabledEditor />
-    <PriceCheckAutomaticallySearchEditor />
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckPredictionEnabled" Label="@Resources["PriceCheck_Prediction_Enable"]" />
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckMarketEnabled" Label="@Resources["PriceCheck_Market_Enable"]" />
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallySearch" Label="@Resources["PriceCheck_Automatically_Search"]" Tooltip="@Resources["Setting_Rate_Limit_Hint"]" />
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallySearchCurrency" Label="@Resources["PriceCheck_Automatically_Search_Currency"]" Tooltip="@Resources["Setting_Rate_Limit_Hint"]" />
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckEnableAllFilters" Label="@Resources["PriceCheck_Enable_All_Filters"]" />
+    <SettingTextEditor SettingKey="@SettingKeys.PriceCheckEnableFiltersByRegex" Label="@Resources["PriceCheck_Enable_Filters_By_Regex"]" Tooltip="@Resources["Regex_Hint"]" />    
     <PriceCheckDefaultFilterTypeEditor />
 </FormFieldset>
 
 <FormFieldset Legend="@Resources["Bulk_Trade_Settings"]">
-    <PriceCheckCurrencyModeEditor/>
+    <PriceCheckCurrencyModeEditor />
 </FormFieldset>
 
 @if (ApplicationService.SupportsKeybinds)
 {
     <FormFieldset Legend="@Resources["Other_Settings"]">
-        <OverlayCloseWithMouseEditor/>
-        <EscapeClosesOverlaysEditor/>
+        <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayCloseWithMouse" Label="@Resources["OverlayCloseWithMouse"]" />
+        <SettingCheckboxEditor SettingKey="@SettingKeys.EscapeClosesOverlays" Label="@Resources["EscapeClosesOverlays"]" />
     </FormFieldset>
 }
 
+<div class="flex justify-center mb-1">
+    <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@Resources["Restore_Defaults"]</ButtonPrimary>
+</div>
+
 @inject IStringLocalizer<SettingsResources> Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private bool AreSettingsModified { get; set; }
+
+    private string[] SettingKeysUsed { get; } =
+    {
+        SettingKeys.KeyOpenPriceCheck,
+        SettingKeys.KeyClose,
+
+        SettingKeys.PriceCheckItemClassFilter,
+        SettingKeys.PriceCheckNormalizeValue,
+        SettingKeys.PriceCheckPredictionEnabled,
+        SettingKeys.PriceCheckMarketEnabled,
+        SettingKeys.PriceCheckAutomaticallySearch,
+        SettingKeys.PriceCheckAutomaticallySearchCurrency,
+        SettingKeys.PriceCheckEnableAllFilters,
+        SettingKeys.PriceCheckEnableFiltersByRegex,
+        SettingKeys.PriceCheckDefaultFilterType,
+
+        SettingKeys.PriceCheckCurrencyMode,
+
+        SettingKeys.OverlayCloseWithMouse,
+        SettingKeys.EscapeClosesOverlays
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        SettingsService.OnSettingsChanged += CheckIfSettingsAreModified;
+
+        CheckIfSettingsAreModified(SettingKeysUsed);
+
+        await base.OnInitializedAsync();
+    }
+
+    private async void CheckIfSettingsAreModified(string[] keys)
+    {
+        if (!keys.Any(key => SettingKeysUsed.Contains(key)))
+        {
+            return;
+        }
+
+        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async void RestoreDefaults()
+    {
+        await SettingsService.DeleteSetting(SettingKeysUsed);
+
+        AreSettingsModified = false;
+
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= CheckIfSettingsAreModified;
+    }
+
+}

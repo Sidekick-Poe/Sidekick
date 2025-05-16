@@ -6,23 +6,21 @@
 <FormSelect Label="@Resources["Default_FilterType"]"
             Value="@Mode"
             ValueChanged="@ModeChanged"
-            Options="Options"/>
+            Options="Options" />
 
 @inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
+@implements IDisposable
 
 @code {
 
     private string? Mode { get; set; }
 
-    private List<SelectOption> Options { get; set; } =
-    [
-    ];
+    private List<SelectOption> Options { get; set; } = [];
 
     protected override async Task OnInitializedAsync()
     {
-        Options =
-        [
+        Options = [
             new()
             {
                 Value = FilterType.Minimum.GetValueAttribute(),
@@ -47,6 +45,8 @@
 
         Mode = await SettingsService.GetString(SettingKeys.PriceCheckDefaultFilterType) ?? FilterType.Minimum.GetValueAttribute();
 
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
@@ -54,6 +54,20 @@
     {
         Mode = value;
         await SettingsService.Set(SettingKeys.PriceCheckDefaultFilterType, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.PriceCheckDefaultFilterType))
+        {
+            Mode = await SettingsService.GetString(SettingKeys.PriceCheckDefaultFilterType) ?? FilterType.Minimum.GetValueAttribute();
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }

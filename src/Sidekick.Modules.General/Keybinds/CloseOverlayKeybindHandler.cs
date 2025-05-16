@@ -6,7 +6,7 @@ namespace Sidekick.Modules.General.Keybinds;
 
 public class CloseOverlayKeybindHandler(
     IViewLocator viewLocator,
-    ISettingsService settingsService) : KeybindHandler(settingsService)
+    ISettingsService settingsService) : KeybindHandler(settingsService, SettingKeys.KeyClose)
 {
     private readonly ISettingsService settingsService = settingsService;
 

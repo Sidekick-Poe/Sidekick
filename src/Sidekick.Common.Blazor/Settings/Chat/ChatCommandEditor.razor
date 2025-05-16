@@ -4,7 +4,7 @@
 @foreach (var chatSetting in ChatSettings)
 {
     <div class="border border-solid dark:border-stone-800 p-3 mb-3">
-        <div class="grid grid-cols-12 gap-2">
+        <div class="grid grid-cols-12 gap-2 mb-3">
             <div class="col-span-6">
                 <FormInput Label="@Resources["Chat_Command"]" Value="@chatSetting.Command"
                     ValueChanged="(v) => CommandChanged(chatSetting, v)" />
@@ -28,9 +28,6 @@
 
 <FormFieldset>
     <div class="flex justify-between">
-        <ButtonSecondary OnClick="RestoreDefaults">
-            @Resources["Chat_Restore_Defaults"]
-        </ButtonSecondary>
         <ButtonPrimary OnClick="Add">
             @Resources["Chat_Add_New_Command"]
         </ButtonPrimary>
@@ -39,6 +36,7 @@
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
+@implements IDisposable
 
 @code {
 
@@ -46,6 +44,8 @@
     protected override async Task OnInitializedAsync()
     {
         ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands) ?? [];
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
@@ -79,15 +79,23 @@
         await Save();
     }
 
-    private async Task RestoreDefaults()
-    {
-        ChatSettings = [.. DefaultSettings.ChatCommands];
-        await Save();
-    }
-
     protected async Task Save()
     {
         await SettingsService.Set(SettingKeys.ChatCommands, ChatSettings);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.ChatCommands))
+        {
+            ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands) ?? [];
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }

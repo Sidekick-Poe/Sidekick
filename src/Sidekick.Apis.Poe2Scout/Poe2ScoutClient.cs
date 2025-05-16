@@ -49,7 +49,13 @@ public class Poe2ScoutClient
 
         var prices = await GetPrices();
 
-        var price = prices.Where(x => x.CategoryApiId == item.Header.Category && x.Price != 0).FirstOrDefault(x => (x.Name == item.Invariant?.Name || x.Name == item.Invariant?.Type) || x.Type == item.Invariant?.Type);
+        // Same category and ignore items with no prices.
+        var query = prices.Where(x => x.CategoryApiId == item.Header.Category && x.Price != 0).ToList();
+
+        // Match by name or type, or name with type as a fallback.
+        var price = query.FirstOrDefault(x => x.Name == item.Invariant?.Name)
+                    ?? query.FirstOrDefault(x => x.Type == item.Invariant?.Type)
+                    ?? query.FirstOrDefault(x => x.Name == item.Invariant?.Type);
 
         return price;
     }
@@ -138,10 +144,14 @@ public class Poe2ScoutClient
                     Type = result.Type,
                     CategoryApiId = result.CategoryApiId != null ? result.CategoryApiId == "waystones" ? Category.Map : CultureInfo.CurrentCulture.TextInfo.ToTitleCase(result.CategoryApiId).GetEnumFromValue<Category>() : Category.Unknown,
                     Price = result.CurrentPrice,
-                    PriceLogs = result.PriceLogs?.Where(x => x != null).OrderBy(x => x!.Time).ToList()!,
+                    PriceLogs = result.PriceLogs?.Where(x => x != null)
+                                                 // Reverse order to get earliest date first.
+                                                 .OrderBy(x => x!.Time)
+                                                 // Round to 3 decimal places.
+                                                 .Select(x => new Poe2ScoutPriceLog { Price = Math.Round(x!.Price!.Value, 3), Time = x!.Time })
+                                                 .ToList()!,
                     LastUpdated = DateTimeOffset.Now
-                })
-                .ToList();
+                }).ToList();
         }
         catch
         {

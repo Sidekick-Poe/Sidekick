@@ -5,23 +5,21 @@
 <FormSelect Label="@Resources["Preferred_search_mode_for_currency_items"]"
             Value="@Mode"
             ValueChanged="ModeChanged"
-            Options="Options"/>
+            Options="Options" />
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
+@implements IDisposable
 
 @code {
 
     private string? Mode { get; set; }
 
-    private List<SelectOption> Options { get; set; } =
-    [
-    ];
+    private List<SelectOption> Options { get; set; } = [];
 
     protected override async Task OnInitializedAsync()
     {
-        Options =
-        [
+        Options = [
             new SelectOption()
             {
                 Value = TradeMode.Item.GetValueAttribute(),
@@ -36,6 +34,8 @@
 
         Mode = await SettingsService.GetString(SettingKeys.PriceCheckCurrencyMode);
 
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
@@ -43,6 +43,20 @@
     {
         Mode = value;
         await SettingsService.Set(SettingKeys.PriceCheckCurrencyMode, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.PriceCheckCurrencyMode))
+        {
+            Mode = await SettingsService.GetString(SettingKeys.PriceCheckCurrencyMode);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }
