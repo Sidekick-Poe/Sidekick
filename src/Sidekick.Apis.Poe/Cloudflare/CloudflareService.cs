@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Settings;
 
-namespace Sidekick.Apis.Poe.CloudFlare;
+namespace Sidekick.Apis.Poe.Cloudflare;
 
 public class CloudflareService
 (
@@ -11,9 +11,9 @@ public class CloudflareService
 {
     private const string DefaultUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36";
 
-    public event Action<Uri>? ChallengeStarted;
+    public event Action<CloudflareChallenge>? ChallengeStarted;
 
-    private TaskCompletionSource<bool>? challengeCompletion;
+    private CloudflareChallenge? challenge;
     private bool isHandlingChallenge;
 
     public Task<bool> StartCaptchaChallenge(Uri? uri = null, CancellationToken cancellationToken = default)
@@ -26,16 +26,19 @@ public class CloudflareService
             return Task.FromResult(false);
         }
 
-        if (isHandlingChallenge && challengeCompletion != null)
+        if (isHandlingChallenge && challenge != null)
         {
-            return challengeCompletion.Task;
+            return challenge.Task;
         }
 
         isHandlingChallenge = true;
-        ChallengeStarted?.Invoke(uri);
+        challenge = new CloudflareChallenge()
+        {
+            Uri = uri,
+        };
+        ChallengeStarted?.Invoke(challenge);
 
-        challengeCompletion = new TaskCompletionSource<bool>();
-        return challengeCompletion.Task;
+        return challenge.Task;
     }
 
     public async Task CaptchaChallengeCompleted(Dictionary<string, string> cookies)
@@ -44,14 +47,14 @@ public class CloudflareService
         var cookieString = string.Join("; ", cookies.Select(c => $"{c.Key}={c.Value}"));
         await settingsService.Set(SettingKeys.CloudflareCookies, cookieString);
 
-        challengeCompletion?.TrySetResult(true);
+        challenge?.TaskCompletion.TrySetResult(true);
         isHandlingChallenge = false;
     }
 
     public Task CaptchaChallengeFailed()
     {
         logger.LogInformation("[CloudflareService] Cloudflare challenge failed.");
-        challengeCompletion?.TrySetResult(false);
+        challenge?.TaskCompletion.TrySetResult(false);
         isHandlingChallenge = false;
         return Task.CompletedTask;
     }
@@ -61,15 +64,7 @@ public class CloudflareService
         request.Headers.UserAgent.Clear();
 
         var userAgent = await settingsService.GetString(SettingKeys.CloudflareUserAgent);
-        if (!string.IsNullOrEmpty(userAgent))
-        {
-            request.Headers.UserAgent.ParseAdd(userAgent);
-        }
-        else
-        {
-            request.Headers.UserAgent.ParseAdd(DefaultUserAgent);
-        }
-
+        request.Headers.UserAgent.ParseAdd(!string.IsNullOrEmpty(userAgent) ? userAgent : DefaultUserAgent);
 
         var cookies = await settingsService.GetString(SettingKeys.CloudflareCookies);
         if (!string.IsNullOrEmpty(cookies))

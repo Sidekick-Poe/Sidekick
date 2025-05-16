@@ -1,124 +1,45 @@
-using System.Net.Http.Headers;
-using System.Threading.RateLimiting;
 using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Apis.Poe.Clients.Limiter;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Clients.States;
+using Sidekick.Apis.Poe.Cloudflare;
+using Sidekick.Common.Exceptions;
 
 namespace Sidekick.Apis.Poe.Clients;
 
-public class PoeApiHandler(
+public class PoeApiHandler
+(
+    ICloudflareService cloudflareService,
     IAuthenticationService authenticationService,
-    IApiStateProvider apiStateProvider) : DelegatingHandler
+    PoeApiHandlerService handlerService,
+    IApiStateProvider apiStateProvider
+) : DelegatingHandler
 {
-    private readonly ConcurrencyLimiter concurrencyLimiter = new(
-        new ConcurrencyLimiterOptions()
-        {
-            PermitLimit = 1,
-            QueueLimit = int.MaxValue,
-            QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
-        });
+    private readonly LimitHandler limitHandler = new();
 
-    private readonly List<LimitRule> limitRules = new();
-
-    protected override async Task<HttpResponseMessage> SendAsync(
-        HttpRequestMessage request,
-        CancellationToken cancellationToken)
+    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
         apiStateProvider.Update(ClientNames.PoeClient, ApiState.Throttled);
-
-        using var concurrencyLease = await concurrencyLimiter.AcquireAsync(cancellationToken: cancellationToken);
-
-        var leases = new List<RateLimitLease>();
-        foreach (var limitRule in limitRules)
-        {
-            leases.Add(await limitRule.Limiter.AcquireAsync(cancellationToken: cancellationToken));
-        }
-
+        using var lease = await limitHandler.Lease(cancellationToken: cancellationToken);
         apiStateProvider.Update(ClientNames.PoeClient, ApiState.Working);
 
-        var token = await authenticationService.GetToken();
-        if (string.IsNullOrEmpty(token))
-        {
-            return new HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
-        }
-
-        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        request.Headers.TryAddWithoutValidation("X-Powered-By", "Sidekick");
+        await cloudflareService.InitializeHttpRequest(request);
+        await authenticationService.InitializeHttpRequest(request);
 
         var response = await base.SendAsync(request, cancellationToken);
-        await ParseRateLimitHeaders(response);
+        response = await handlerService.HandleRedirect(base.SendAsync, request, response, cancellationToken);
+        response = await handlerService.HandleForbidden(base.SendAsync, request, response, cancellationToken);
 
-        foreach (var lease in leases)
-        {
-            lease.Dispose();
-        }
+        await handlerService.LogRequest(request, response, cancellationToken);
+        await handlerService.HandleTooManyRequests(response, cancellationToken);
+        await handlerService.HandleUnauthorized(response, cancellationToken);
+        await handlerService.HandleBadRequest(response, cancellationToken);
 
-        return response;
-    }
+        await limitHandler.HandleResponse(response, cancellationToken);
 
-    private async Task ParseRateLimitHeaders(HttpResponseMessage response)
-    {
-        var headerRules = new List<HeaderRule>();
+        if (response.IsSuccessStatusCode) return response;
 
-        if (response.Headers.TryGetValues("X-Rate-Limit-Policy", out var _) && response.Headers.TryGetValues("X-Rate-Limit-Rules", out var headerRuleNames))
-        {
-            var ruleNames = headerRuleNames
-                            .First()
-                            .Split(',');
-            foreach (var ruleName in ruleNames)
-            {
-                if (!response.Headers.TryGetValues($"X-Rate-Limit-{ruleName}", out var headerRule) || !response.Headers.TryGetValues($"X-Rate-Limit-{ruleName}-State", out var headerRuleState))
-                {
-                    continue;
-                }
-
-                var definitions = headerRule
-                                  .First()
-                                  .Split(',');
-                var states = headerRuleState
-                             .First()
-                             .Split(',');
-                for (var i = 0; i < definitions.Count(); i++)
-                {
-                    var definitionParts = definitions[i]
-                        .Split(':');
-                    var stateParts = states[i]
-                        .Split(':');
-
-                    if (definitionParts.Count() != 3 || !int.TryParse(definitionParts[0], out var maxHitCount) || !int.TryParse(definitionParts[1], out var timePeriod) || stateParts.Count() != 3 || !int.TryParse(stateParts[0], out var currentHitCount))
-                    {
-                        continue;
-                    }
-
-                    headerRules.Add(
-                        new HeaderRule(
-                            ruleName,
-                            currentHitCount,
-                            maxHitCount,
-                            timePeriod));
-                }
-            }
-        }
-
-        limitRules.RemoveAll(limitRule => !headerRules.Any(headerRule => headerRule.MaxHitCount == limitRule.MaxHitCount && headerRule.Name == limitRule.Name && headerRule.TimePeriod == limitRule.TimePeriod));
-        foreach (var headerRule in headerRules)
-        {
-            var limitRule = limitRules.FirstOrDefault(limitRule => headerRule.MaxHitCount == limitRule.MaxHitCount && headerRule.Name == limitRule.Name && headerRule.TimePeriod == limitRule.TimePeriod);
-            if (limitRule == null)
-            {
-                limitRule = new LimitRule(headerRule.Name, headerRule.MaxHitCount, headerRule.TimePeriod);
-                await limitRule.Limiter.AcquireAsync(permitCount: headerRule.CurrentHitCount);
-                limitRules.Add(limitRule);
-            }
-
-            await limitRule.HandleResponse(headerRule.CurrentHitCount);
-        }
-
-        if (response.Headers.TryGetValues("Retry-After", out var retryAfter))
-        {
-            apiStateProvider.Update(ClientNames.PoeClient, ApiState.TimedOut);
-            await Task.Delay(TimeSpan.FromSeconds(int.Parse(retryAfter.First()) + 5));
-            throw new TimeoutException();
-        }
+        throw new ApiErrorException();
     }
 }

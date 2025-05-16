@@ -1,8 +1,8 @@
-namespace Sidekick.Apis.Poe.CloudFlare;
+namespace Sidekick.Apis.Poe.Cloudflare;
 
 public interface ICloudflareService
 {
-    event Action<Uri>? ChallengeStarted;
+    event Action<CloudflareChallenge>? ChallengeStarted;
 
     Task<bool> StartCaptchaChallenge(Uri? uri = null, CancellationToken cancellationToken = default);
 

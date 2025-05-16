@@ -21,13 +21,13 @@ internal class LimitRule
         });
     }
 
-    public string Name { get; init; }
+    public string Name { get; }
 
-    public int MaxHitCount { get; init; }
+    public int MaxHitCount { get; }
 
-    public int TimePeriod { get; init; }
+    public int TimePeriod { get; }
 
-    public TokenBucketRateLimiter Limiter { get; init; }
+    public TokenBucketRateLimiter Limiter { get; }
 
     private Timer? ReplenishTimer { get; set; }
 
@@ -39,20 +39,20 @@ internal class LimitRule
             ReplenishTimer = null;
         }
 
-        if (ReplenishTimer == null)
-        {
-            ReplenishTimer = new Timer(static (state) =>
-            {
-                var self = (LimitRule?)state;
-                if (self == null)
-                {
-                    return;
-                }
+        ReplenishTimer ??= new Timer(static state =>
+                                     {
+                                         var self = (LimitRule?)state;
+                                         if (self == null)
+                                         {
+                                             return;
+                                         }
 
-                self.ReplenishTimer?.Dispose();
-                self.ReplenishTimer = null;
-                self.Limiter.TryReplenish();
-            }, this, TimeSpan.FromSeconds(TimePeriod + 5), Timeout.InfiniteTimeSpan);
-        }
+                                         self.ReplenishTimer?.Dispose();
+                                         self.ReplenishTimer = null;
+                                         self.Limiter.TryReplenish();
+                                     },
+                                     this,
+                                     TimeSpan.FromSeconds(TimePeriod + 5),
+                                     Timeout.InfiniteTimeSpan);
     }
 }

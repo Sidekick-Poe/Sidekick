@@ -6,7 +6,7 @@ public interface IAuthenticationService
 
     Task<AuthenticationState> GetCurrentState();
 
-    Task<string?> GetToken();
+    Task InitializeHttpRequest(HttpRequestMessage request);
 
-    Task Authenticate(bool reauthenticate = false);
+    Task Authenticate(bool reauthenticate = false, CancellationToken cancellationToken = default);
 }
