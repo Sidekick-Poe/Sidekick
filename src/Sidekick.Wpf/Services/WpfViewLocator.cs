@@ -8,24 +8,23 @@ namespace Sidekick.Wpf.Services;
 
 public class WpfViewLocator : IViewLocator, IDisposable
 {
-    private readonly ILogger<WpfViewLocator> logger;
     private readonly IUiLanguageProvider uiLanguageProvider;
 
     public WpfViewLocator(ILogger<WpfViewLocator> logger, IUiLanguageProvider uiLanguageProvider)
     {
-        this.logger = logger;
         this.uiLanguageProvider = uiLanguageProvider;
         this.uiLanguageProvider.OnLanguageChanged += SetCultureInfo;
+
+        StandardWindow =  System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Standard, logger));
+        OverlayWindow =  System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Overlay, logger));
+        ModalWindow = System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Modal, logger));
 
         SetCultureInfo();
     }
 
     private async void SetCultureInfo(CultureInfo? cultureInfo = null)
     {
-        if (cultureInfo == null)
-        {
-            cultureInfo = await uiLanguageProvider.Get();
-        }
+        cultureInfo ??= await uiLanguageProvider.Get();
 
         await System.Windows.Application.Current.Dispatcher.InvokeAsync(() =>
         {
@@ -38,71 +37,47 @@ public class WpfViewLocator : IViewLocator, IDisposable
 
     public bool SupportsMaximize => true;
 
-    private MainWindow? StandardWindow { get; set; }
+    private MainWindow StandardWindow { get; }
 
-    private MainWindow? OverlayWindow { get; set; }
+    private MainWindow OverlayWindow { get; }
 
-    private MainWindow? ModalWindow { get; set; }
+    private MainWindow ModalWindow { get; }
 
     public void Open(SidekickViewType type, string url)
     {
-        var window = GetWindow(type, true);
-        if (window != null) _ = window.OpenView(url);
+        var window = GetWindow(type);
+        _ = window.OpenView(url);
     }
 
-    public MainWindow? GetWindow(SidekickViewType type, bool createIfMissing)
+    public MainWindow GetWindow(SidekickViewType type)
     {
-        switch (type)
+        return type switch
         {
-            case SidekickViewType.Standard:
-                if (createIfMissing)
-                {
-                    StandardWindow ??= System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Standard, logger));
-                }
-
-                return StandardWindow;
-
-            case SidekickViewType.Overlay:
-                if (createIfMissing)
-                {
-                    OverlayWindow ??= System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Overlay, logger));
-                }
-
-                return OverlayWindow;
-
-            case SidekickViewType.Modal:
-                if (createIfMissing)
-                {
-                    ModalWindow ??= System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Modal, logger));
-                }
-
-                return ModalWindow;
-
-            default: throw new SidekickException("The window could not be determined.");
-        }
+            SidekickViewType.Standard => StandardWindow,
+            SidekickViewType.Overlay => OverlayWindow,
+            SidekickViewType.Modal => ModalWindow,
+            _ => throw new SidekickException("The window could not be determined.")
+        };
     }
 
     public void Close(SidekickViewType type)
     {
-        var window = GetWindow(type, false);
-        if (window == null) return;
+        var window = GetWindow(type);
 
-        if (window.View != null)
-            window.View.Close();
-        else
-            window.CloseView();
+        if (window.View != null) window.View.Close();
+        else window.CloseView();
     }
 
     public bool IsOverlayOpened()
     {
-        return OverlayWindow?.IsVisible ?? false;
+        return OverlayWindow.IsVisible;
     }
 
     public void Dispose()
     {
         uiLanguageProvider.OnLanguageChanged -= SetCultureInfo;
-        StandardWindow?.Dispose();
-        OverlayWindow?.Dispose();
-        ModalWindow?.Dispose();
+        StandardWindow.Dispose();
+        OverlayWindow.Dispose();
+        ModalWindow.Dispose();
     }
 }
