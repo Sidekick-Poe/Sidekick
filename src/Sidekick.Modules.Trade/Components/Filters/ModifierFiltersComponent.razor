@@ -3,7 +3,8 @@
 @for (var i = 0; i < ModifierFilters.Count; i++)
 {
     var index = i;
-    <ModifierFilterComponent @key="ModifierFilters[i].Line.Text" Filter="@ModifierFilters[index]" />
+    var key = $"{Item.Id}_modifier_{index}";
+    <ModifierFilterComponent @key="key" Filter="@ModifierFilters[index]" />
 
     var isLastFilter = i + 1 == ModifierFilters.Count;
     if (!isLastFilter)
