@@ -7,6 +7,7 @@ using SharpHook;
 using SharpHook.Logging;
 using SharpHook.Native;
 using Sidekick.Common.Keybinds;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Common.Platform.Keyboards;
 
@@ -14,7 +15,8 @@ public class KeyboardProvider
 (
     ILogger<KeyboardProvider> logger,
     IServiceProvider serviceProvider,
-    IProcessProvider processProvider
+    IProcessProvider processProvider,
+    ISettingsService settingsService
 ) : IKeyboardProvider, IDisposable
 {
     private static readonly Dictionary<KeyCode, string> keyMappings = new()
@@ -153,6 +155,10 @@ public class KeyboardProvider
 
     public event Action<string>? OnKeyDown;
 
+    private bool MouseWheelNavigateStash { get; set; }
+
+    private bool MouseWheelNavigateStashReverse { get; set; }
+
     private List<KeybindHandler> KeybindHandlers { get; init; } =
     [
     ];
@@ -184,7 +190,20 @@ public class KeyboardProvider
         return Task.CompletedTask;
     }
 
-    public void RegisterHooks()
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.MouseWheelNavigateStash))
+        {
+            MouseWheelNavigateStash = await settingsService.GetBool(SettingKeys.MouseWheelNavigateStash);
+        }
+
+        if (keys.Contains(SettingKeys.MouseWheelNavigateStashReverse))
+        {
+            MouseWheelNavigateStashReverse = await settingsService.GetBool(SettingKeys.MouseWheelNavigateStashReverse);
+        }
+    }
+
+    public async void RegisterHooks()
     {
         // Initialize keybindings
         KeybindHandlers.Clear();
@@ -193,6 +212,10 @@ public class KeyboardProvider
             var keybindHandler = (KeybindHandler)serviceProvider.GetRequiredService(keybindType);
             KeybindHandlers.Add(keybindHandler);
         }
+
+        MouseWheelNavigateStash = await settingsService.GetBool(SettingKeys.MouseWheelNavigateStash);
+        MouseWheelNavigateStashReverse = await settingsService.GetBool(SettingKeys.MouseWheelNavigateStashReverse);
+        settingsService.OnSettingsChanged += OnSettingsChanged;
 
         // We can't initialize twice
         if (HasInitialized)
@@ -207,6 +230,10 @@ public class KeyboardProvider
         // Initialize keyboard hook
         Hook = new();
         Hook.KeyPressed += OnKeyPressed;
+
+        // Initialize mouse hook
+        Hook.MouseWheel += OnMouseWheel;
+
         HookTask = Hook.RunAsync();
 
         // Make sure we don't run this multiple times
@@ -280,6 +307,26 @@ public class KeyboardProvider
                 await keybindHandler.Execute(keybind);
                 logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
             });
+        }
+    }
+
+    private void OnMouseWheel(object? sender, MouseWheelHookEventArgs args)
+    {
+        if (!MouseWheelNavigateStash)
+        {
+            return;
+        }
+
+        if ((args.RawEvent.Mask & ModifierMask.Ctrl) > 0)
+        {
+            args.SuppressEvent = true;
+            var simulator = new EventSimulator();
+
+            var keyToPress = ((args.Data.Rotation > 0) ^ MouseWheelNavigateStashReverse)
+                       ? KeyCode.VcLeft
+                       : KeyCode.VcRight;
+
+            simulator.SimulateKeyPress(keyToPress);
         }
     }
 
