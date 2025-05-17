@@ -322,9 +322,7 @@ public class KeyboardProvider
             args.SuppressEvent = true;
             var simulator = new EventSimulator();
 
-            var keyToPress = ((args.Data.Rotation > 0) ^ MouseWheelNavigateStashReverse)
-                       ? KeyCode.VcLeft
-                       : KeyCode.VcRight;
+            var keyToPress = ((args.Data.Rotation > 0) ^ MouseWheelNavigateStashReverse) ? KeyCode.VcLeft : KeyCode.VcRight;
 
             simulator.SimulateKeyPress(keyToPress);
         }
