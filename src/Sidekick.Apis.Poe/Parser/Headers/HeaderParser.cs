@@ -243,7 +243,7 @@ public class HeaderParser
 
         if (string.IsNullOrEmpty(header.ApiName) && string.IsNullOrEmpty(header.ApiType))
         {
-            throw new UnparsableException();
+            throw new UnparsableException(parsingItem.Text);
         }
 
         return header;

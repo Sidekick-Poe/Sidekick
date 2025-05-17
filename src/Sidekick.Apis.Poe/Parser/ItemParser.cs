@@ -44,7 +44,7 @@ public class ItemParser
     {
         if (string.IsNullOrEmpty(itemText))
         {
-            throw new UnparsableException();
+            throw new UnparsableException(itemText);
         }
 
         try
@@ -84,7 +84,7 @@ public class ItemParser
         catch (Exception e)
         {
             logger.LogWarning(e, "Could not parse item.");
-            throw new UnparsableException();
+            throw new UnparsableException(itemText);
         }
     }
 
