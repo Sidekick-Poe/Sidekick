@@ -8,10 +8,21 @@
 
 <KeybindEditorInternal Label="@Label"
                        Value="@Value"
-                       ValueChanged="ValueChanged" />
+                       ValueChanged="ValueChanged">
+    <AdornmentContent>
+        @if (ShowResetButton)
+        {
+            <ButtonIcon OnClick="Reset" title="@Resources["Reset"]">
+                <Icon Svg="@UiIcons.Reset" />
+            </ButtonIcon>
+        }
+    </AdornmentContent>
+</KeybindEditorInternal>
+
 
 @inject IApplicationService ApplicationService
 @inject ISettingsService SettingsService
+@inject IStringLocalizer<SettingsResources> Resources
 @implements IDisposable
 
 @code {
@@ -24,9 +35,13 @@
 
     private string? Value { get; set; }
 
+    private bool ShowResetButton { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         Value = await SettingsService.GetString(SettingKey);
+        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
         await base.OnInitializedAsync();
@@ -43,8 +58,15 @@
         if (keys.Contains(SettingKey))
         {
             Value = await SettingsService.GetString(SettingKey);
+            ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+
             await InvokeAsync(StateHasChanged);
         }
+    }
+
+    private async Task Reset()
+    {
+        await SettingsService.DeleteSetting(SettingKey);
     }
 
     public void Dispose()
