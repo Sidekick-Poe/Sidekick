@@ -1,11 +1,11 @@
-﻿@using MudBlazor
+@using MudBlazor
 
-<MudTooltip Placement="Placement.Left">
+<MudTooltip Placement="Placement.Left" Class="!bg-transparent !p-0">
     <ChildContent>
         @ChildContent
     </ChildContent>
     <TooltipContent>
-        <div class="-mx-2 -my-1 bg-black py-[2px] px-1 text-white max-w-[15rem] rounded-sm">
+        <div class="bg-stone-950 p-2 max-w-[15rem] rounded-lg border border-solid border-stone-800">
             @TooltipContent
         </div>
     </TooltipContent>
