@@ -34,6 +34,9 @@ public static class SettingKeys
     public const string KeyOpenWiki = nameof(KeyOpenWiki);
     public const string KeyOpenInCraftOfExile = nameof(KeyOpenInCraftOfExile);
 
+    public const string MouseWheelNavigateStash = nameof(MouseWheelNavigateStash);
+    public const string MouseWheelNavigateStashReverse = nameof(MouseWheelNavigateStashReverse);
+
     public const string EscapeClosesOverlays = nameof(EscapeClosesOverlays);
     public const string RetainClipboard = nameof(RetainClipboard);
     public const string ChatCommands = nameof(ChatCommands);
