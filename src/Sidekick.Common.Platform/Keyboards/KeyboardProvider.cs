@@ -458,6 +458,7 @@ public class KeyboardProvider
 
             // Ensure hook itself is set to null
             Hook.KeyPressed -= OnKeyPressed;
+            Hook.MouseWheel -= OnMouseWheel;
             Hook.Dispose();
             Hook = null;
         }
