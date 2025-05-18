@@ -1,4 +1,5 @@
 @using Sidekick.Common.Game.Items
+@using Sidekick.Common.Ui.Utilities
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Options
 @using Sidekick.Common.Settings
@@ -12,19 +13,19 @@
 {
     <div class="flex items-center w-full justify-between dark:bg-stone-900 sticky top-0 z-10 mb-3">
         <div>
-            <LeagueText/>
+            <LeagueText />
             <CountString Count="PriceCheckService.TradeItems.Count"
-                         Total="PriceCheckService.ItemTradeResult.Total"/>
+                         Total="PriceCheckService.ItemTradeResult.Total" />
         </div>
         <div class="flex gap-4">
-            <ToggleCompactView OnClick="@ToggleView" IsCompact="@IsCompact"/>
-            <OpenWebsiteLink QueryId="@PriceCheckService.ItemTradeResult.Id"/>
+            <ToggleCompactView OnClick="@ToggleView" IsCompact="@IsCompact" />
+            <OpenWebsiteLink QueryId="@PriceCheckService.ItemTradeResult.Id" />
         </div>
     </div>
 
     foreach (var result in PriceCheckService.TradeItems)
     {
-        <ItemComponent @key="result.Id" Result="result" IsCompact="@IsCompact"/>
+        <ItemComponent @key="result.Id" Result="result" IsCompact="@IsCompact" />
     }
 
     if (PriceCheckService.ResultError != null)
@@ -34,14 +35,23 @@
     else if (!PriceCheckService.IsLoading && !FullyLoaded)
     {
         <div class="flex justify-center">
-            <ButtonPrimary OnClick="() => PriceCheckService.LoadMoreItems(Item.Header.Game)">@Resources["LoadMoreData"]</ButtonPrimary>
+            @if (AutomaticallyLoadMoreData)
+            {
+                <IntersectionObserver Callback="LoadMoreData">
+                    <ButtonPrimary OnClick="LoadMoreData">@Resources["LoadMoreData"]</ButtonPrimary>
+                </IntersectionObserver>
+            }
+            else
+            {
+                <ButtonPrimary OnClick="LoadMoreData">@Resources["LoadMoreData"]</ButtonPrimary>
+            }
         </div>
     }
 }
 
 @if (PriceCheckService.IsLoading)
 {
-    <AppLoading/>
+    <AppLoading />
 }
 
 @implements IDisposable
@@ -59,10 +69,17 @@
 
     private bool IsCompact { get; set; }
 
+    private bool AutomaticallyLoadMoreData { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         IsCompact = await SettingsService.GetBool(SettingKeys.PriceCheckCompactMode);
+        AutomaticallyLoadMoreData = await SettingsService.GetBool(SettingKeys.PriceCheckAutomaticallyLoadMoreData);
+
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         PriceCheckService.Changed += StateHasChanged;
+
         await base.OnInitializedAsync();
     }
 
@@ -72,8 +89,25 @@
         await SettingsService.Set(SettingKeys.PriceCheckCompactMode, IsCompact);
     }
 
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.PriceCheckCompactMode) || keys.Contains(SettingKeys.PriceCheckAutomaticallyLoadMoreData))
+        {
+            IsCompact = await SettingsService.GetBool(SettingKeys.PriceCheckCompactMode);
+            AutomaticallyLoadMoreData = await SettingsService.GetBool(SettingKeys.PriceCheckAutomaticallyLoadMoreData);
+
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private async void LoadMoreData()
+    {
+        await PriceCheckService.LoadMoreItems(Item.Header.Game);
+    }
+
     public void Dispose()
     {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
         PriceCheckService.Changed -= StateHasChanged;
     }
 

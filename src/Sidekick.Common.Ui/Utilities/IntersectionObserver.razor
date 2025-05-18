@@ -1,0 +1,39 @@
+<div id="@ElementId">
+    @ChildContent
+</div>
+
+@inject IJSRuntime JsRuntime
+
+@code {
+
+    [Parameter]
+    public required EventCallback Callback { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    private Guid ElementId { get; } = Guid.NewGuid();
+
+    private IJSObjectReference? Module { get; set; }
+
+    private DotNetObjectReference<IntersectionObserver>? Reference { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            Reference = DotNetObjectReference.Create(this);
+            Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/Utilities/IntersectionObserver.razor.js");
+            await Module.InvokeVoidAsync("initializeIntersectionObserver", ElementId, Reference);
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    [JSInvokable]
+    public async Task OnIntersecting()
+    {
+        await Callback.InvokeAsync();
+    }
+
+}
