@@ -5,13 +5,13 @@
 
 <FormSelect Value="@Value"
             ValueChanged="ValueChanged"
-            Label="@TradeResources["Normalize_Values"]"
+            Label="@Resources["Normalize_Values"]"
             Options="Options">
     <AdornmentContent>
         <div class="flex ml-1 gap-1 align-center">
             @if (ShowResetButton)
             {
-                <ButtonIcon OnClick="Reset" title="@SettingsResources["Reset"]">
+                <ButtonIcon OnClick="Reset" title="@Resources["Reset"]">
                     <Icon Svg="@UiIcons.Reset" />
                 </ButtonIcon>
             }
@@ -19,8 +19,7 @@
     </AdornmentContent>
 </FormSelect>
 
-@inject IStringLocalizer<SettingsResources> SettingsResources
-@inject IStringLocalizer<TradeResources> TradeResources
+@inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 @implements IDisposable
 
