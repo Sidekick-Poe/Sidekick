@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.Poe.Authentication;
+namespace Sidekick.Apis.Poe.Clients.Authentication;
 
 public enum AuthenticationState
 {

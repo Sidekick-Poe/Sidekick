@@ -1,6 +1,6 @@
 using System.Windows;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Cloudflare;
+using Sidekick.Apis.Poe.Clients.Cloudflare;
 using Sidekick.Common.Initialization;
 using Sidekick.Wpf.Cloudflare;
 

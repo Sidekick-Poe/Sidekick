@@ -7,10 +7,12 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Clients;
 
-public class PoeApiClient(
+public class PoeApiClient
+(
     ILogger<PoeTradeClient> logger,
     IHttpClientFactory httpClientFactory,
-    ISettingsService settingsService) : IPoeApiClient
+    ISettingsService settingsService
+) : IPoeApiClient
 {
     private const string PoeApiUrl = "https://api.pathofexile.com/";
 
@@ -21,22 +23,12 @@ public class PoeApiClient(
         Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
     };
 
-    private HttpClient CreateClient()
-    {
-        var httpClient = httpClientFactory.CreateClient(ClientNames.PoeClient);
-        httpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
-        httpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
-        httpClient.BaseAddress = new Uri(PoeApiUrl);
-        httpClient.Timeout = TimeSpan.FromHours(1);
-        return httpClient;
-    }
-
     public async Task<TReturn?> Fetch<TReturn>(string path)
     {
-        using var httpClient = CreateClient();
+        using var httpClient = httpClientFactory.CreateClient(ClientNames.PoeClient);
         try
         {
-            var response = await httpClient.GetAsync(path);
+            var response = await httpClient.GetAsync(PoeApiUrl + path);
 
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized || response.StatusCode == System.Net.HttpStatusCode.Forbidden)
             {

@@ -1,23 +1,16 @@
 using System.Net.Http.Headers;
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
-using Sidekick.Apis.Poe.Authentication.Models;
+using Sidekick.Apis.Poe.Clients.Authentication.Models;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 
-namespace Sidekick.Apis.Poe.Authentication;
+namespace Sidekick.Apis.Poe.Clients.Authentication;
 
 internal class AuthenticationService : IAuthenticationService, IDisposable
 {
-    private const string AuthorizationUrl = "https://www.pathofexile.com/oauth/authorize";
-    private const string RedirectUrl = "https://sidekick-poe.github.io/oauth/poe";
-    private const string ClientId = "sidekick";
-    private const string Scopes = "account:stashes";
-    private const string TokenUrl = "https://www.pathofexile.com/oauth/token";
-
     private readonly ISettingsService settingsService;
     private readonly IBrowserProvider browserProvider;
     private readonly IInterprocessService interprocessService;
@@ -37,9 +30,7 @@ internal class AuthenticationService : IAuthenticationService, IDisposable
 
     private string? State { get; set; }
 
-    private string? Verifier { get; set; }
-
-    private string? Challenge { get; set; }
+    private PkceHelper.PkcePair? PkcePair { get; set; }
 
     private TaskCompletionSource? AuthenticateTask { get; set; }
 
@@ -50,9 +41,7 @@ internal class AuthenticationService : IAuthenticationService, IDisposable
         var bearerToken = await settingsService.GetString(SettingKeys.BearerToken);
         var bearerExpiration = await settingsService.GetDateTime(SettingKeys.BearerExpiration);
         if (bearerExpiration == null || string.IsNullOrEmpty(bearerToken)) return AuthenticationState.Unauthenticated;
-        if (DateTimeOffset.Now < bearerExpiration) return AuthenticationState.Authenticated;
-
-        return AuthenticationState.Unauthenticated;
+        return DateTimeOffset.Now < bearerExpiration ? AuthenticationState.Authenticated : AuthenticationState.Unauthenticated;
     }
 
     private async Task<string?> GetToken()
@@ -88,10 +77,9 @@ internal class AuthenticationService : IAuthenticationService, IDisposable
         }
 
         State = Guid.NewGuid().ToString();
-        Verifier = GenerateCodeVerifier();
-        Challenge = GenerateCodeChallenge(Verifier);
+        PkcePair = PkceHelper.GeneratePkcePair();
 
-        var authenticationLink = $"{AuthorizationUrl}?client_id={ClientId}&response_type=code&scope={Scopes}&state={State}&redirect_uri={RedirectUrl}&code_challenge={Challenge}&code_challenge_method=S256";
+        var authenticationLink = $"{AuthenticationConfig.AuthorizationUrl}?client_id={AuthenticationConfig.ClientId}&response_type=code&scope={AuthenticationConfig.Scopes}&state={State}&redirect_uri={AuthenticationConfig.RedirectUrl}&code_challenge={PkcePair.Challenge}&code_challenge_method=S256";
         browserProvider.OpenUri(new Uri(authenticationLink));
 
         AuthenticateTask = new();
@@ -99,7 +87,7 @@ internal class AuthenticationService : IAuthenticationService, IDisposable
 
         _ = Task.Run(async () =>
         {
-            await Task.Delay(30000, cancellationToken);
+            await Task.Delay(AuthenticationConfig.AuthenticationTimeoutMs, cancellationToken);
             AuthenticateTask?.SetCanceled(cancellationToken);
             AuthenticateTask = null;
             OnStateChanged?.Invoke();
@@ -122,7 +110,7 @@ internal class AuthenticationService : IAuthenticationService, IDisposable
 
     private void InterprocessService_CustomProtocolCallback(string message)
     {
-        if (!message.ToUpper().StartsWith("SIDEKICK://OAUTH/POE"))
+        if (!message.ToUpper().StartsWith(AuthenticationConfig.ProtocolPrefix))
         {
             return;
         }
@@ -149,8 +137,8 @@ internal class AuthenticationService : IAuthenticationService, IDisposable
         }
 
         using var client = httpClientFactory.CreateClient(ClientNames.PoeClient);
-        using var requestContent = new StringContent($"client_id={ClientId}&grant_type=authorization_code&code={code}&redirect_uri={RedirectUrl}&scope={Scopes}&code_verifier={Verifier}", Encoding.UTF8, "application/x-www-form-urlencoded");
-        var response = await client.PostAsync(TokenUrl, requestContent, cancellationToken);
+        using var requestContent = new StringContent($"client_id={AuthenticationConfig.ClientId}&grant_type=authorization_code&code={code}&redirect_uri={AuthenticationConfig.RedirectUrl}&scope={AuthenticationConfig.Scopes}&code_verifier={PkcePair?.Verifier}", Encoding.UTF8, "application/x-www-form-urlencoded");
+        var response = await client.PostAsync(AuthenticationConfig.TokenUrl, requestContent, cancellationToken);
         var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
         if (!response.IsSuccessStatusCode)
         {
@@ -174,25 +162,6 @@ internal class AuthenticationService : IAuthenticationService, IDisposable
         }
 
         OnStateChanged?.Invoke();
-    }
-
-    private static string GenerateCodeVerifier()
-    {
-        using var rng = RandomNumberGenerator.Create();
-        var bytes = new byte[32];
-        rng.GetBytes(bytes);
-
-        var codeVerifier = Convert.ToBase64String(bytes).TrimEnd('=').Replace('+', '-').Replace('/', '_');
-        return codeVerifier;
-    }
-
-    private static string GenerateCodeChallenge(string verifier)
-    {
-        using var sha256 = SHA256.Create();
-        var challengeBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(verifier));
-        var codeChallenge = Convert.ToBase64String(challengeBytes).TrimEnd('=').Replace('+', '-').Replace('/', '_');
-
-        return codeChallenge;
     }
 
     public void Dispose()

@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Settings;
 
-namespace Sidekick.Apis.Poe.Cloudflare;
+namespace Sidekick.Apis.Poe.Clients.Cloudflare;
 
 public class CloudflareService
 (

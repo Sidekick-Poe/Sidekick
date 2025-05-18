@@ -1,10 +1,11 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Apis.Poe.Authentication;
 using Sidekick.Apis.Poe.Bulk;
 using Sidekick.Apis.Poe.Clients;
+using Sidekick.Apis.Poe.Clients.Authentication;
+using Sidekick.Apis.Poe.Clients.Cloudflare;
+using Sidekick.Apis.Poe.Clients.Limiter;
 using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Apis.Poe.Clients.States;
-using Sidekick.Apis.Poe.Cloudflare;
 using Sidekick.Apis.Poe.Filters;
 using Sidekick.Apis.Poe.Fuzzy;
 using Sidekick.Apis.Poe.Items;
@@ -32,8 +33,8 @@ public static class StartupExtensions
         services.AddSingleton<IPoeApiClient, PoeApiClient>();
         services.AddSingleton<IStashService, StashService>();
         services.AddSingleton<IApiStateProvider, ApiStateProvider>();
-        services.AddSingleton<PoeApiHandler>();
-        services.AddSingleton<PoeTradeHandler>();
+        services.AddTransient<PoeApiHandler>();
+        services.AddTransient<PoeTradeHandler>();
 
         services.AddHttpClient(ClientNames.TradeClient)
             .AddHttpMessageHandler<PoeTradeHandler>();
@@ -41,7 +42,9 @@ public static class StartupExtensions
         services.AddHttpClient(ClientNames.PoeClient)
             .AddHttpMessageHandler<PoeApiHandler>();
 
-        services.AddSingleton<IPoeTradeClient, PoeTradeClient>();
+        services.AddTransient<IPoeTradeClient, PoeTradeClient>();
+        services.AddSingleton<PoeApiHandlerService>();
+        services.AddSingleton<ApiLimiterProvider>();
 
         services.AddTransient<PoeResources>();
 

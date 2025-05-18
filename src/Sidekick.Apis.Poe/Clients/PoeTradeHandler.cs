@@ -1,5 +1,6 @@
+using Sidekick.Apis.Poe.Clients.Cloudflare;
 using Sidekick.Apis.Poe.Clients.Limiter;
-using Sidekick.Apis.Poe.Cloudflare;
+using Sidekick.Apis.Poe.Clients.Models;
 using Sidekick.Common.Exceptions;
 
 namespace Sidekick.Apis.Poe.Clients;
@@ -7,16 +8,16 @@ namespace Sidekick.Apis.Poe.Clients;
 public class PoeTradeHandler
 (
     ICloudflareService cloudflareService,
-    PoeApiHandlerService handlerService
+    PoeApiHandlerService handlerService,
+    ApiLimiterProvider limitProvider
 ) : DelegatingHandler
 {
-    private readonly LimitHandler limitHandler = new();
-
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
         request.Headers.TryAddWithoutValidation("X-Powered-By", "Sidekick");
         await cloudflareService.InitializeHttpRequest(request);
 
+        var limitHandler = limitProvider.Get(ClientNames.TradeClient);
         using var lease = await limitHandler.Lease(cancellationToken: cancellationToken);
 
         var response = await base.SendAsync(request, cancellationToken);

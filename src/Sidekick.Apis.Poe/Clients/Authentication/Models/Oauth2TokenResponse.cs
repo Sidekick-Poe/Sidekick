@@ -1,4 +1,4 @@
-namespace Sidekick.Apis.Poe.Authentication.Models;
+namespace Sidekick.Apis.Poe.Clients.Authentication.Models;
 
 internal class Oauth2TokenResponse
 {

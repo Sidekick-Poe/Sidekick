@@ -2,8 +2,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
+using Sidekick.Apis.Poe.Clients.Cloudflare;
 using Sidekick.Apis.Poe.Clients.Models;
-using Sidekick.Apis.Poe.Cloudflare;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
