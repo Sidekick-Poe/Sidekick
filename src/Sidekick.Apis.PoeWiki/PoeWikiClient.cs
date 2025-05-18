@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.PoeWiki.Api;
 using Sidekick.Apis.PoeWiki.Extensions;
@@ -66,13 +67,15 @@ public class PoeWikiClient
 
     public Dictionary<string, string> BlightOilNamesByMetadataIds { get; private set; } = new();
 
+    public Dictionary<string, List<string>> BlightOilNamesByMods { get; private set; } = new();
+
     /// <inheritdoc/>
     public int Priority => 0;
 
     /// <inheritdoc/>
     public async Task Initialize()
     {
-        var result = await cacheProvider.GetOrSet("PoeWikiBlightOils",
+        var blightOils = await cacheProvider.GetOrSet("PoeWikiBlightOils",
                                                   async () =>
                                                   {
                                                       var result = await GetMetadataIdsFromItemNames(oilNames);
@@ -84,7 +87,9 @@ public class PoeWikiClient
                                                       return result;
                                                   }, (cache) => cache.Any());
 
-        BlightOilNamesByMetadataIds = result.ToDictionary(x => x.MetadataId ?? string.Empty, x => x.Name ?? string.Empty);
+        BlightOilNamesByMetadataIds = blightOils.ToDictionary(x => x.MetadataId ?? string.Empty, x => x.Name ?? string.Empty);
+
+        BlightOilNamesByMods = await cacheProvider.GetOrSet("BlightOilNamesByMods", GetBlightOilNamesByMods, (cache) => cache.Any());
     }
 
     private async Task<Uri?> GetMapScreenshotUri(string mapType)
@@ -236,8 +241,10 @@ public class PoeWikiClient
         return null;
     }
 
-    public async Task<List<string>?> GetOilsMetadataIdsFromEnchantment(ModifierLine modifierLine)
+    public async Task<List<string>> GetOilsMetadataIdsFromEnchantment(ModifierLine modifierLine)
     {
+        var oilIds = new List<string>();
+
         try
         {
             var enchantmentText = modifierLine.Text.Replace("Allocates ", string.Empty);
@@ -257,30 +264,85 @@ public class PoeWikiClient
             var response = await client.GetAsync(QueryStringHelper.ToQueryString(query));
             var content = await response.Content.ReadAsStreamAsync();
             var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<ItemIdResult>>(content, JsonSerializerOptions);
-            if (result == null)
+            if (result != null)
             {
-                return null;
-            }
 
-            var list = new List<string>();
-            foreach (var queryResult in result.CargoQuery)
-            {
-                if (queryResult.Title == null || queryResult.Title.ItemId == null)
+                foreach (var queryResult in result.CargoQuery)
                 {
-                    continue;
+                    if (queryResult.Title == null || queryResult.Title.ItemId == null)
+                    {
+                        continue;
+                    }
+
+                    oilIds.Add(queryResult.Title.ItemId);
                 }
-
-                list.Add(queryResult.Title.ItemId);
             }
-
-            return list;
         }
         catch (Exception e)
         {
             logger.LogWarning(e, "[PoeWiki] Error while trying to get oils from enchantment from poewiki.net.");
         }
 
-        return null;
+        // If we get here, it means we couldn't find the oils from the mod.
+        // It's probably a ring enchantment with markdown links in the mod name.
+        // So let's use our cleaned cache of ring enchantments.
+        if (BlightOilNamesByMods.ContainsKey(modifierLine.Text))
+        {
+            return BlightOilNamesByMods[modifierLine.Text];
+        }
+
+        return oilIds;
+    }
+
+    /// <summary>
+    /// Will fetch all blight recipes with mods and create a Dictionary with the mod name as key and a list of the oil ids.
+    /// Will also split into multiple lines if the mod name contains a new line. So it only works for rings, not map mods.
+    /// </summary>
+    private async Task<Dictionary<string, List<string>>> GetBlightOilNamesByMods()
+    {
+        Dictionary<string, List<string>> blightOilNamesByMods = new();
+
+        try
+        {
+            var query = new List<KeyValuePair<string, string>>
+            {
+                new("action", "cargoquery"),
+                new("format", "json"),
+                new("limit", "500"),
+                new("tables", "blight_crafting_recipes,blight_crafting_recipes_items,mods"),
+                new("join_on", "blight_crafting_recipes_items.recipe_id=blight_crafting_recipes.id,blight_crafting_recipes.modifier_id=mods.id"),
+                new("fields", "blight_crafting_recipes_items.item_id,mods.stat_text"),
+                new("where", "mods.stat_text IS NOT NULL"),
+            };
+
+            using var client = GetHttpClient();
+            var response = await client.GetAsync(QueryStringHelper.ToQueryString(query));
+            var content = await response.Content.ReadAsStreamAsync();
+            var result = await JsonSerializer.DeserializeAsync<CargoQueryResult<StatTextResult>>(content, JsonSerializerOptions);
+            if (result != null)
+            {
+                var newLine = "&lt;br&gt;";
+                var oilNames = new List<string>();
+                foreach (var queryResult in result.CargoQuery.GroupBy(x => x.Title!.StatText))
+                {
+                    var statText = queryResult.First().Title!.StatText!;
+
+                    // Remove markdown links from the mod name.
+                    statText = Regex.Replace(statText, @"\[\[(.*?)\|(.*?)\]\]", "$2").Replace("[[", "").Replace("]]", "");
+
+                    // If the mod contains a newline, split into 2 mods.
+                    var mods = statText.Contains(newLine) ? statText.Split([newLine], StringSplitOptions.None) : [statText];
+
+                    mods.ToList().ForEach(x => blightOilNamesByMods.TryAdd(x, queryResult.Select(x => x.Title!.ItemId!).ToList()));
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            logger.LogWarning(e, "[PoeWiki] Error while trying to get oils from enchantment from poewiki.net.");
+        }
+
+        return blightOilNamesByMods;
     }
 
     private async Task<List<ItemNameMetadataIdResult>?> GetMetadataIdsFromItemNames(List<string> itemNames)
