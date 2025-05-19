@@ -16,7 +16,12 @@ public static class StartupExtensions
     /// <returns>The service collection with services added</returns>
     public static IServiceCollection AddSidekickRegexHotkeys(this IServiceCollection services)
     {
+        services.AddSidekickModule(typeof(StartupExtensions).Assembly);
+
+        services.AddTransient<RegexHotkeysResources>();
+
         services.AddSidekickKeybind<RegexHotkeyHandler>();
+
         return services;
     }
 }
