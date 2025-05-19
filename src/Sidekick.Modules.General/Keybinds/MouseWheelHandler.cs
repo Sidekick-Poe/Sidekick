@@ -1,5 +1,6 @@
 ﻿using Sidekick.Common.Initialization;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.EventArgs;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.General.Keybinds;
@@ -7,7 +8,8 @@ namespace Sidekick.Modules.General.Keybinds;
 public class MouseWheelHandler
 (
     ISettingsService settingsService,
-    IKeyboardProvider keyboardProvider
+    IKeyboardProvider keyboardProvider,
+    IProcessProvider processProvider
 ) : IInitializableService
 {
     private bool MouseWheelNavigateStash { get; set; }
@@ -38,19 +40,23 @@ public class MouseWheelHandler
         keyboardProvider.OnScrollUp += OnScrollUp;
     }
 
-    private void OnScrollDown(string keybind)
+    private void OnScrollDown(ScrollEventArgs args)
     {
         if (!MouseWheelNavigateStash) return;
-        if (keybind != "Ctrl") return;
+        if (args.Masks != "Ctrl") return;
+        if (!processProvider.IsPathOfExileInFocus) return;
 
         keyboardProvider.PressKey(MouseWheelNavigateStashReverse ? "Right" : "Left");
+        args.Suppress = true;
     }
 
-    private void OnScrollUp(string keybind)
+    private void OnScrollUp(ScrollEventArgs args)
     {
         if (!MouseWheelNavigateStash) return;
-        if (keybind != "Ctrl") return;
+        if (args.Masks != "Ctrl") return;
+        if (!processProvider.IsPathOfExileInFocus) return;
 
         keyboardProvider.PressKey(MouseWheelNavigateStashReverse ? "Left" : "Right");
+        args.Suppress = true;
     }
 }

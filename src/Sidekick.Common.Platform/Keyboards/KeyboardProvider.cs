@@ -7,6 +7,7 @@ using SharpHook;
 using SharpHook.Logging;
 using SharpHook.Native;
 using Sidekick.Common.Keybinds;
+using Sidekick.Common.Platform.EventArgs;
 
 namespace Sidekick.Common.Platform.Keyboards;
 
@@ -153,9 +154,9 @@ public class KeyboardProvider
 
     public event Action<string>? OnKeyDown;
 
-    public event Action<string>? OnScrollDown;
+    public event Action<ScrollEventArgs>? OnScrollDown;
 
-    public event Action<string>? OnScrollUp;
+    public event Action<ScrollEventArgs>? OnScrollUp;
 
     private List<KeybindHandler> KeybindHandlers { get; init; } =
     [
@@ -312,14 +313,21 @@ public class KeyboardProvider
         var keybind = str.ToString();
         if (!string.IsNullOrEmpty(keybind)) keybind = keybind[..^1];
 
+        ScrollEventArgs eventArgs = new()
+        {
+            Masks = keybind,
+        };
+
         if (args.Data.Rotation > 0)
         {
-            OnScrollDown?.Invoke(keybind);
+            OnScrollDown?.Invoke(eventArgs);
         }
         else
         {
-            OnScrollUp?.Invoke(keybind);
+            OnScrollUp?.Invoke(eventArgs);
         }
+
+        if (eventArgs.Suppress) args.SuppressEvent = true;
     }
 
     public Task PressKey(params string[] keyStrokes)

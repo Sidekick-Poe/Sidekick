@@ -4,12 +4,6 @@ const { fontFamily } = require("tailwindcss/defaultTheme");
 
 module.exports = {
     content: ["../**/*.{razor,html,cshtml,cs}", "./**/*.js"],
-    extract: {
-        DEFAULT: (content) => {
-            const matches = content.match(/(?:class|AdditionalClasses)="([^"]+)"/g) || [];
-            return matches.map((match) => match.replace(/(?:class|AdditionalClasses)="|"/g, ''));
-        },
-    },
     darkMode: "selector",
     theme: {
         fontFamily: {
