@@ -13,6 +13,16 @@ public interface IKeyboardProvider : IInitializableService
     event Action<string> OnKeyDown;
 
     /// <summary>
+    /// Event triggered when the user scrolls down.
+    /// </summary>
+    event Action<string> OnScrollDown;
+
+    /// <summary>
+    /// Event triggered when the user scrolls up.
+    /// </summary>
+    event Action<string> OnScrollUp;
+
+    /// <summary>
     /// Register keyboard hooks to capture keybinds.
     /// </summary>
     void RegisterHooks();

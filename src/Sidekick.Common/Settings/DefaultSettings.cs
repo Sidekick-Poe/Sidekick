@@ -28,7 +28,8 @@ public static class DefaultSettings
 
     public static string KeyOpenInCraftOfExile => "";
 
-    public static bool MouseWheelNavigateStash => false;
+    public static bool MouseWheelNavigateStash => true;
+
     public static bool MouseWheelNavigateStashReverse => false;
 
     public static bool EscapeClosesOverlays => true;

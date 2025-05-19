@@ -21,6 +21,7 @@ public static class StartupExtensions
         services.AddSidekickKeybind<FindItemKeybindHandler>();
         services.AddSidekickKeybind<OpenWikiPageKeybindHandler>();
         services.AddSidekickKeybind<OpenInCraftOfExileHandler>();
+        services.AddSidekickInitializableService<MouseWheelHandler, MouseWheelHandler>();
 
         return services;
     }
