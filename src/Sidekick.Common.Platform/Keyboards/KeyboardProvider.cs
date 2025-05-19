@@ -7,6 +7,7 @@ using SharpHook;
 using SharpHook.Logging;
 using SharpHook.Native;
 using Sidekick.Common.Keybinds;
+using Sidekick.Common.Platform.EventArgs;
 
 namespace Sidekick.Common.Platform.Keyboards;
 
@@ -153,6 +154,10 @@ public class KeyboardProvider
 
     public event Action<string>? OnKeyDown;
 
+    public event Action<ScrollEventArgs>? OnScrollDown;
+
+    public event Action<ScrollEventArgs>? OnScrollUp;
+
     private List<KeybindHandler> KeybindHandlers { get; init; } =
     [
     ];
@@ -207,6 +212,10 @@ public class KeyboardProvider
         // Initialize keyboard hook
         Hook = new();
         Hook.KeyPressed += OnKeyPressed;
+
+        // Initialize mouse hook
+        Hook.MouseWheel += OnMouseWheel;
+
         HookTask = Hook.RunAsync();
 
         // Make sure we don't run this multiple times
@@ -281,6 +290,44 @@ public class KeyboardProvider
                 logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
             });
         }
+    }
+
+    private void OnMouseWheel(object? sender, MouseWheelHookEventArgs args)
+    {
+        var str = new StringBuilder();
+        if ((args.RawEvent.Mask & ModifierMask.Ctrl) > 0)
+        {
+            str.Append("Ctrl+");
+        }
+
+        if ((args.RawEvent.Mask & ModifierMask.Shift) > 0)
+        {
+            str.Append("Shift+");
+        }
+
+        if ((args.RawEvent.Mask & ModifierMask.Alt) > 0)
+        {
+            str.Append("Alt+");
+        }
+
+        var keybind = str.ToString();
+        if (!string.IsNullOrEmpty(keybind)) keybind = keybind[..^1];
+
+        ScrollEventArgs eventArgs = new()
+        {
+            Masks = keybind,
+        };
+
+        if (args.Data.Rotation > 0)
+        {
+            OnScrollDown?.Invoke(eventArgs);
+        }
+        else
+        {
+            OnScrollUp?.Invoke(eventArgs);
+        }
+
+        if (eventArgs.Suppress) args.SuppressEvent = true;
     }
 
     public Task PressKey(params string[] keyStrokes)
@@ -411,6 +458,7 @@ public class KeyboardProvider
 
             // Ensure hook itself is set to null
             Hook.KeyPressed -= OnKeyPressed;
+            Hook.MouseWheel -= OnMouseWheel;
             Hook.Dispose();
             Hook = null;
         }
