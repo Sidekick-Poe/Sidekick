@@ -373,4 +373,24 @@
   <data name="PriceCheck_Automatically_Load_More_Data" xml:space="preserve">
     <value>Charger automatiquement plus de résultats lors du défilement vers le bas</value>
   </data>
+  <data name="Regex_Hotkeys" xml:space="preserve">
+    <value>Raccourcis regex</value>
+  </data>
+  <data name="Regex_Hotkeys_Description" xml:space="preserve">
+    <value>Ces raccourcis clavier permettent d’entrer automatiquement une expression régulière (regex) dans la barre de recherche des inventaires afin de mettre en évidence certains items. Un inventaire doit être ouvert avant utilisation.
+
+Consultez les sites web ci-dessous pour des exemples de regex :</value>
+  </data>
+  <data name="Regex" xml:space="preserve">
+    <value>Regex (longueur max 50)</value>
+  </data>
+  <data name="Regex_Hotkey_Remove" xml:space="preserve">
+    <value>Retirer ce raccourci regex</value>
+  </data>
+  <data name="Regex_Hotkey_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Regex_Hotkey_Add" xml:space="preserve">
+    <value>Ajouter un nouveau raccourci regex</value>
+  </data>
 </root>

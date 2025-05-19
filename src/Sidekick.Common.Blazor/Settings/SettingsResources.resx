@@ -385,4 +385,24 @@
   <data name="PriceCheck_Automatically_Load_More_Data" xml:space="preserve">
     <value>Automatically load more results when scrolling down</value>
   </data>
+  <data name="Regex_Hotkeys" xml:space="preserve">
+    <value>Regex hotkeys</value>
+  </data>
+  <data name="Regex_Hotkeys_Description" xml:space="preserve">
+    <value>These hotkeys are used to automatically enter a regex into the inventory search bar to highlight specific items. An inventory stash must be opened before use.
+
+Refer to the websites below for examples of regex:</value>
+  </data>
+  <data name="Regex" xml:space="preserve">
+    <value>Regex (50 max length)</value>
+  </data>
+  <data name="Regex_Hotkey_Remove" xml:space="preserve">
+    <value>Remove this regex hotkey</value>
+  </data>
+  <data name="Regex_Hotkey_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Regex_Hotkey_Add" xml:space="preserve">
+    <value>Add a new regex hotkey</value>
+  </data>
 </root>
