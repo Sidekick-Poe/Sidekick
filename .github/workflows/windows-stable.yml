@@ -127,5 +127,5 @@ jobs:
 
           # Web version
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-stable
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-stable --releaseNotes $releaseNotesPath --framework net8.0-x64-desktop
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-stable --releaseNotes $releaseNotesPath --framework net8.0-x64-aspnetcore,net8.0-x64-runtime
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}

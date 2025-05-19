@@ -28,11 +28,11 @@ public class ClipboardProvider
         // Alt information is not used for item parsing.
         if (withAlt == true)
         {
-            keyboard.ReleaseAltModifier();
             await keyboard.PressKey("Ctrl+Alt+C");
         }
         else
         {
+            keyboard.ReleaseAltModifier();
             await keyboard.PressKey("Ctrl+C");
         }
 

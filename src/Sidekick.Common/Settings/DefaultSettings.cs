@@ -85,6 +85,8 @@ public static class DefaultSettings
 
     public static string PriceCheckStatus => "online";
 
+    public static bool PriceCheckAutomaticallyLoadMoreData => false;
+
     public static List<ChatSetting> ChatCommands =>
     [
         new ChatSetting("F5", "/hideout", true),
