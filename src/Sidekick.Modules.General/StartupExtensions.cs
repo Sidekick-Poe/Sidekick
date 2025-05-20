@@ -16,6 +16,8 @@ public static class StartupExtensions
     /// <returns>The service collection with services added</returns>
     public static IServiceCollection AddSidekickGeneral(this IServiceCollection services)
     {
+        services.AddSidekickModule(typeof(StartupExtensions).Assembly);
+
         services.AddSidekickKeybind<CloseOverlayKeybindHandler>();
         services.AddSidekickKeybind<CloseOverlayWithEscHandler>();
         services.AddSidekickKeybind<FindItemKeybindHandler>();

@@ -1,5 +1,9 @@
+@using Microsoft.Extensions.Localization
+@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Blazor.Settings.Components
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Buttons
 
 @foreach (var chatSetting in ChatSettings)
 {
@@ -86,11 +90,10 @@
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (keys.Contains(SettingKeys.ChatCommands))
-        {
-            ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands) ?? [];
-            await InvokeAsync(StateHasChanged);
-        }
+        if (!keys.Contains(SettingKeys.ChatCommands)) return;
+
+        ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands) ?? [];
+        await InvokeAsync(StateHasChanged);
     }
 
     public void Dispose()

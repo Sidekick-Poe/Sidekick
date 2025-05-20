@@ -1,11 +1,18 @@
-@page "/settings/general"
-@layout MainWindowLayout
+@using Microsoft.Extensions.Localization
+@using Sidekick.Common
 @using Sidekick.Common.Blazor.Components
+@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Blazor.Settings.Components
-@using Sidekick.Common.Cache
-@using Sidekick.Common.Game.Languages
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Views
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.App
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Blazor.Settings.Game
+@using Sidekick.Common.Cache
+@using Sidekick.Common.Game.Languages
+@inject IApplicationService ApplicationService
 
 <AppContainer>
     <FormFieldset Legend="@Resources["General_Settings"]">
@@ -20,55 +27,66 @@
         {
             <LeagueIdEditor />
         }
-        <InterfaceLanguageEditor />
 
         <div class="py-2">
             <ButtonPrimary OnClick="ResetCache">@Resources["Reset_Cache"]</ButtonPrimary>
         </div>
     </FormFieldset>
 
+    @if (ApplicationService.SupportsKeybinds)
+    {
+        <FormFieldset Legend="@Resources["Wiki"]">
+            <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenWiki" Label="@Resources["Wiki_Key_Open"]" />
+            <PreferredWikiEditor />
+        </FormFieldset>
+    }
+
     <FormFieldset Legend="@Resources["Other_Settings"]">
         @if (ApplicationService.SupportsKeybinds)
         {
-            <SettingCheckboxEditor SettingKey="@SettingKeys.RetainClipboard" Label="@Resources["General_RetainClipboard"]" />
-            <SettingCheckboxEditor SettingKey="@SettingKeys.SaveWindowPositions" Label="@Resources["SaveWindowPositions"]" />
             <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStash" Label="@Resources["MouseWheelNavigateStash"]" />
             <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStashReverse" Label="@Resources["MouseWheelNavigateStashReverse"]" />
             <SettingKeybindEditor SettingKey="@SettingKeys.KeyFindItems" Label="@Resources["Key_FindItems"]" />
             <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenInCraftOfExile" Label="@Resources["Key_Open_In_Craft_Of_Exile"]" />
         }
 
-        <ZoomEditor />
     </FormFieldset>
 
     <div class="flex justify-center mb-1">
         <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@Resources["Restore_Defaults"]</ButtonPrimary>
     </div>
+
 </AppContainer>
 
+@page "/settings/game"
+@layout MainWindowLayout
 @inject IStringLocalizer<SettingsResources> Resources
-@inject IApplicationService ApplicationService
 @inject ICurrentView CurrentView
-@inject ICacheProvider CacheProvider
-@inject NavigationManager NavigationManager
 @inject ISettingsService SettingsService
 @inject IGameLanguageProvider LanguageProvider
+@inject ICacheProvider CacheProvider
+@inject NavigationManager NavigationManager
+@implements IDisposable
 
 @code {
 
     private bool AreSettingsModified { get; set; }
 
     private string[] SettingKeysUsed { get; } =
-    {
-        SettingKeys.RetainClipboard,
-        SettingKeys.SaveWindowPositions,
+    [
+        SettingKeys.KeyOpenWiki,
+        SettingKeys.PreferredWiki,
         SettingKeys.MouseWheelNavigateStash,
         SettingKeys.MouseWheelNavigateStashReverse,
         SettingKeys.KeyFindItems,
         SettingKeys.KeyOpenInCraftOfExile,
+    ];
 
-        SettingKeys.Zoom,
-    };
+    public async Task ResetCache()
+    {
+        await CacheProvider.Clear();
+        NavigationManager.NavigateTo("/initialize");
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -79,12 +97,6 @@
         CheckIfSettingsAreModified(SettingKeysUsed);
 
         await base.OnInitializedAsync();
-    }
-
-    public async Task ResetCache()
-    {
-        await CacheProvider.Clear();
-        NavigationManager.NavigateTo("/initialize");
     }
 
     private async void CheckIfSettingsAreModified(string[] keys)

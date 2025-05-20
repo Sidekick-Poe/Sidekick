@@ -1,10 +1,15 @@
-@using Sidekick.Common.Enums
+@using Microsoft.Extensions.Localization
+@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Icons
+@using Sidekick.Common.Ui.Buttons
 
 <FormSelect Value="@Value"
             ValueChanged="ValueChanged"
-            Label="@Resources["Wiki_Preferred"]"
-            Options="Options">
+            Label="@Resources["Zoom"]"
+            Options="Options"
+            Tooltip="@Resources["Zoom_Hint"]">
     <AdornmentContent>
         <div class="flex ml-1 gap-1 align-center">
             @if (ShowResetButton)
@@ -27,7 +32,7 @@
 
     private List<SelectOption> Options { get; set; } = new();
 
-    private const string SettingKey = SettingKeys.PreferredWiki;
+    private const string SettingKey = SettingKeys.Zoom;
 
     private bool ShowResetButton { get; set; }
 
@@ -38,11 +43,38 @@
 
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
-        Options = Enum.GetValues<WikiSetting>().Select(x => new SelectOption()
+        Options = [
+            new()
             {
-                Value = x.GetValueAttribute().ToString(),
-                Label = Resources[x.GetValueAttribute()],
-            }).ToList();
+                Label = "75%",
+                Value = "0.75",
+            },
+            new()
+            {
+                Label = "100%",
+                Value = "1",
+            },
+            new()
+            {
+                Label = "125%",
+                Value = "1.25",
+            },
+            new()
+            {
+                Label = "150%",
+                Value = "1.5",
+            },
+            new()
+            {
+                Label = "175%",
+                Value = "1.75",
+            },
+            new()
+            {
+                Label = "200%",
+                Value = "2",
+            },
+        ];
 
         await base.OnInitializedAsync();
     }
@@ -51,21 +83,16 @@
     {
         Value = value;
 
-        if (Value.GetEnumFromValue<WikiSetting> != null)
-        {
-            await SettingsService.Set(SettingKey, Value);
-        }
+        await SettingsService.Set(SettingKey, value);
     }
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (keys.Contains(SettingKey))
-        {
-            Value = await SettingsService.GetString(SettingKey);
-            ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+        if (!keys.Contains(SettingKey)) return;
 
-            await InvokeAsync(StateHasChanged);
-        }
+        Value = await SettingsService.GetString(SettingKey);
+        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+        await InvokeAsync(StateHasChanged);
     }
 
     private async Task Reset()
@@ -79,3 +106,5 @@
     }
 
 }
+
+

@@ -1,4 +1,4 @@
-@using Sidekick.Common.Blazor.Settings
+﻿@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Platform
 @using System.Diagnostics
 @inherits LayoutComponentBase
@@ -7,13 +7,13 @@
     <MenuItem Href="/home">@Resources["Home"]</MenuItem>
 
     <MenuLegend Legend="@Resources["Settings"]" />
-    <MenuItem Href="/settings/general">@Resources["General"]</MenuItem>
+    <MenuItem Href="/settings/game">@Resources["Game"]</MenuItem>
+    <MenuItem Href="/settings/application">@Resources["Application"]</MenuItem>
     <MenuItem Href="/settings/price">@Resources["Price_Check"]</MenuItem>
     <MenuItem Href="/settings/map">@Resources["Map_Check"]</MenuItem>
 
     @if (ApplicationService.SupportsKeybinds)
     {
-        <MenuItem Href="/settings/wiki">@Resources["Wiki"]</MenuItem>
         <MenuItem Href="/settings/chat">@Resources["Chat_Commands"]</MenuItem>
         <MenuItem Href="/settings/regexhotkeys">@Resources["Regex_Hotkeys"]</MenuItem>
     }

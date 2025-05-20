@@ -1,15 +1,14 @@
 @using Sidekick.Common.Blazor.Settings
-@using Sidekick.Common.Blazor.Settings.General
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Blazor.Settings.Components
 @using Sidekick.Common.Settings
+@implements IDisposable
 @inject IApplicationService ApplicationService
 
 @if (ApplicationService.SupportsKeybinds)
 {
     <FormFieldset Legend="@Resources["Keybindings"]">
         <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenPriceCheck" Label="@Resources["PriceCheck_Key_Check"]" />
-        <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
     </FormFieldset>
 }
 
@@ -21,7 +20,7 @@
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallySearch" Label="@Resources["PriceCheck_Automatically_Search"]" Tooltip="@Resources["Setting_Rate_Limit_Hint"]" />
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallySearchCurrency" Label="@Resources["PriceCheck_Automatically_Search_Currency"]" Tooltip="@Resources["Setting_Rate_Limit_Hint"]" />
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckEnableAllFilters" Label="@Resources["PriceCheck_Enable_All_Filters"]" />
-    <SettingTextEditor SettingKey="@SettingKeys.PriceCheckEnableFiltersByRegex" Label="@Resources["PriceCheck_Enable_Filters_By_Regex"]" Tooltip="@Resources["Regex_Hint"]" />    
+    <SettingTextEditor SettingKey="@SettingKeys.PriceCheckEnableFiltersByRegex" Label="@Resources["PriceCheck_Enable_Filters_By_Regex"]" Tooltip="@Resources["Regex_Hint"]" />
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallyLoadMoreData" Label="@Resources["PriceCheck_Automatically_Load_More_Data"]" Tooltip="@Resources["Setting_Rate_Limit_Hint"]" />
     <PriceCheckDefaultFilterTypeEditor />
 </FormFieldset>
@@ -29,14 +28,6 @@
 <FormFieldset Legend="@Resources["Bulk_Trade_Settings"]">
     <PriceCheckCurrencyModeEditor />
 </FormFieldset>
-
-@if (ApplicationService.SupportsKeybinds)
-{
-    <FormFieldset Legend="@Resources["Other_Settings"]">
-        <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayCloseWithMouse" Label="@Resources["OverlayCloseWithMouse"]" />
-        <SettingCheckboxEditor SettingKey="@SettingKeys.EscapeClosesOverlays" Label="@Resources["EscapeClosesOverlays"]" />
-    </FormFieldset>
-}
 
 <div class="flex justify-center mb-1">
     <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@Resources["Restore_Defaults"]</ButtonPrimary>
@@ -52,7 +43,6 @@
     private string[] SettingKeysUsed { get; } =
     {
         SettingKeys.KeyOpenPriceCheck,
-        SettingKeys.KeyClose,
 
         SettingKeys.PriceCheckItemClassFilter,
         SettingKeys.PriceCheckNormalizeValue,
@@ -66,9 +56,6 @@
         SettingKeys.PriceCheckDefaultFilterType,
 
         SettingKeys.PriceCheckCurrencyMode,
-
-        SettingKeys.OverlayCloseWithMouse,
-        SettingKeys.EscapeClosesOverlays
     };
 
     protected override async Task OnInitializedAsync()

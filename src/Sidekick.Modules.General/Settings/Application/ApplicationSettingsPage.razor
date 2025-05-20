@@ -1,0 +1,94 @@
+
+@using Microsoft.Extensions.Localization
+@using Sidekick.Common.Blazor.Components
+@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Blazor.Settings.Components
+@using Sidekick.Common.Platform
+@using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Views
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.App
+
+<AppContainer>
+    <FormFieldset Legend="@Resources["General_Settings"]">
+        <InterfaceLanguageEditor/>
+        <ZoomEditor/>
+        @if (ApplicationService.SupportsKeybinds)
+        {
+            <SettingCheckboxEditor SettingKey="@SettingKeys.RetainClipboard"
+                                   Label="@Resources["General_RetainClipboard"]"/>
+        }
+    </FormFieldset>
+
+    @if (ApplicationService.SupportsKeybinds)
+    {
+        <FormFieldset Legend="@Resources["Overlay_Settings"]">
+            <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
+            <SettingCheckboxEditor SettingKey="@SettingKeys.SaveWindowPositions"
+                                   Label="@Resources["SaveWindowPositions"]"/>
+            <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayCloseWithMouse"
+                                   Label="@Resources["OverlayCloseWithMouse"]"/>
+            <SettingCheckboxEditor SettingKey="@SettingKeys.EscapeClosesOverlays"
+                                   Label="@Resources["EscapeClosesOverlays"]"/>
+        </FormFieldset>
+    }
+
+    <div class="flex justify-center mb-1">
+        <ButtonPrimary Disabled="!AreSettingsModified"
+                       OnClick="RestoreDefaults">@Resources["Restore_Defaults"]</ButtonPrimary>
+    </div>
+</AppContainer>
+
+@page "/settings/application"
+@layout MainWindowLayout
+@implements IDisposable
+@inject IStringLocalizer<SettingsResources> Resources
+@inject IApplicationService ApplicationService
+@inject ICurrentView CurrentView
+@inject ISettingsService SettingsService
+
+@code {
+
+    private bool AreSettingsModified { get; set; }
+
+    private string[] SettingKeysUsed { get; } =
+    [
+        SettingKeys.RetainClipboard,
+        SettingKeys.SaveWindowPositions,
+        SettingKeys.Zoom,
+        SettingKeys.KeyClose,
+        SettingKeys.OverlayCloseWithMouse,
+        SettingKeys.EscapeClosesOverlays
+    ];
+
+    protected override async Task OnInitializedAsync()
+    {
+        CurrentView.Initialize(new ViewOptions());
+        SettingsService.OnSettingsChanged += CheckIfSettingsAreModified;
+        CheckIfSettingsAreModified(SettingKeysUsed);
+
+        await base.OnInitializedAsync();
+    }
+
+    private async void CheckIfSettingsAreModified(string[] keys)
+    {
+        if (!keys.Any(key => SettingKeysUsed.Contains(key))) return;
+
+        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async void RestoreDefaults()
+    {
+        await SettingsService.DeleteSetting(SettingKeysUsed);
+        AreSettingsModified = false;
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= CheckIfSettingsAreModified;
+    }
+
+}

@@ -394,4 +394,13 @@
   <data name="Regex_Hint" xml:space="preserve">
     <value>Use the "|" character to separate modifiers. The modifier does not need to match exactly, and differences between uppercase and lowercase are ignored. It should match the game's language. E.g. "maximum life|resistance|regen"</value>
   </data>
+  <data name="Application" xml:space="preserve">
+      <value>Application</value>
+  </data>
+  <data name="Game" xml:space="preserve">
+      <value>Game</value>
+  </data>
+  <data name="Overlay_Settings" xml:space="preserve">
+      <value>Overlay Settings</value>
+  </data>
 </root>

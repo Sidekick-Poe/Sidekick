@@ -1,29 +1,13 @@
 @using Sidekick.Common.Blazor.Settings
-@using Sidekick.Common.Blazor.Settings.General
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Blazor.Settings.Components
 @using Sidekick.Common.Settings
+@implements IDisposable
 @inject IApplicationService ApplicationService
-
-@if (ApplicationService.SupportsKeybinds)
-{
-    <FormFieldset Legend="@Resources["Keybindings"]">
-        <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenMapCheck" Label="@Resources["Map_Key_Check"]" />
-        <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
-    </FormFieldset>
-}
 
 <FormFieldset Legend="@Resources["Dangerous_Modifiers"]">
     <SettingTextEditor SettingKey="@SettingKeys.MapCheckDangerousRegex" Label="@Resources["Map_Dangerous_Regex"]" Tooltip="@Resources["Regex_Hint"]" />
 </FormFieldset>
-
-@if (ApplicationService.SupportsKeybinds)
-{
-    <FormFieldset Legend="@Resources["Other_Settings"]">
-        <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayCloseWithMouse" Label="@Resources["OverlayCloseWithMouse"]" />
-        <SettingCheckboxEditor SettingKey="@SettingKeys.EscapeClosesOverlays" Label="@Resources["EscapeClosesOverlays"]" />
-    </FormFieldset>
-}
 
 <div class="flex justify-center mb-1">
     <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@Resources["Restore_Defaults"]</ButtonPrimary>
@@ -39,12 +23,7 @@
     private string[] SettingKeysUsed { get; } =
     {
         SettingKeys.KeyOpenMapCheck,
-        SettingKeys.KeyClose,
-
         SettingKeys.MapCheckDangerousRegex,
-
-        SettingKeys.OverlayCloseWithMouse,
-        SettingKeys.EscapeClosesOverlays
     };
 
     protected override async Task OnInitializedAsync()
