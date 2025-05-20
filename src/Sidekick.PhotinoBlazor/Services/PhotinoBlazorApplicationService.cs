@@ -6,6 +6,7 @@ using NotificationIcon.NET;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Home;
 using Sidekick.Common.Browser;
+using Sidekick.Common.Localization;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Linux;
 using Sidekick.Common.Ui.Views;
@@ -17,6 +18,7 @@ public class PhotinoBlazorApplicationService
     IViewLocator viewLocator,
     ILogger<PhotinoBlazorApplicationService> logger,
     IStringLocalizer<HomeResources> resources,
+    IUiLanguageProvider uiLanguageProvider,
     IBrowserProvider browserProvider
 ) : IApplicationService, IDisposable
 {
@@ -39,16 +41,30 @@ public class PhotinoBlazorApplicationService
 
         CheckDependencies();
 
+        uiLanguageProvider.OnLanguageChanged += OnLanguageChanged;
+
         Initialized = true;
 
         return Task.CompletedTask;
+    }
+
+    private void OnLanguageChanged(CultureInfo cultureInfo)
+    {
+        if (Icon is null)
+        {
+            return;
+        }
+
+        Icon.MenuItems[0].Text = resources["Sidekick"] + " - " + ((IApplicationService)this).GetVersion();
+        Icon.MenuItems[1].Text = resources["Home"];
+        Icon.MenuItems[2].Text = resources["Open_Website"];
+        Icon.MenuItems[3].Text = resources["Exit"];
     }
 
     private void InitializeTray()
     {
         var iconImage = Path.Combine(AppContext.BaseDirectory, "wwwroot/favicon.ico");
 
-        // UI Language will not update the menu items until app restart.
         Icon = NotifyIcon.Create(iconImage,
         [
             new("Sidekick - " + ((IApplicationService)this).GetVersion())
