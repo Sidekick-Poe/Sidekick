@@ -28,20 +28,21 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.1" />
     <PackageVersion Include="Microsoft.Extensions.Localization" Version="8.0.14" />
     <PackageVersion Include="Microsoft.Extensions.Localization.Abstractions" Version="8.0.14" />
-    <PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.1" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.3" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
     <PackageVersion Include="Moq" Version="4.20.72" />
     <PackageVersion Include="MudBlazor" Version="8.3.0" />
+    <PackageVersion Include="NotificationIcon.NET" Version="1.2.8" />
     <PackageVersion Include="Photino.Blazor" Version="3.2.0" />
     <PackageVersion Include="PipeMethodCalls" Version="4.0.2" />
     <PackageVersion Include="PipeMethodCalls.NetJson" Version="3.0.0" />
     <PackageVersion Include="Romanization.NET" Version="0.9.5" />
     <PackageVersion Include="Serilog" Version="4.2.0" />
-    <PackageVersion Include="Serilog.Sinks.File" Version="6.0.0" />
     <PackageVersion Include="Serilog.Extensions.Logging" Version="8.0.0" />
+    <PackageVersion Include="Serilog.Sinks.File" Version="6.0.0" />
     <PackageVersion Include="SharpHook" Version="6.0.0" />
     <PackageVersion Include="System.Data.SQLite.Core" Version="1.0.119" />
     <PackageVersion Include="System.IO" Version="4.3.0" />

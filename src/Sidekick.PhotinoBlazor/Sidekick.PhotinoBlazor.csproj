@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="NotificationIcon.NET" />
     <PackageReference Include="Photino.Blazor" />
   </ItemGroup>
 
