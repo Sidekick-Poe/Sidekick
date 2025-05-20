@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Reflection;
 using System.Windows;
 using ApexCharts;
@@ -22,6 +22,7 @@ using Sidekick.Common.Updater;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
+using Sidekick.Modules.RegexHotkeys;
 using Sidekick.Modules.Trade;
 using Sidekick.Modules.Wealth;
 using Sidekick.Wpf.Services;
@@ -92,6 +93,7 @@ public class Program
 
             // Modules
             .AddSidekickChat()
+            .AddSidekickRegexHotkeys()
             .AddSidekickGeneral()
             .AddSidekickMaps()
             .AddSidekickTrade()

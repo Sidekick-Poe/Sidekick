@@ -73,6 +73,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Interproces
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Apis.Poe2Scout", "src\Sidekick.Apis.Poe2Scout\Sidekick.Apis.Poe2Scout.csproj", "{D518587C-6F94-49ED-85E1-2BB1E165CAF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Modules.RegexHotkeys", "src\Sidekick.Modules.RegexHotkeys\Sidekick.Modules.RegexHotkeys.csproj", "{B84D39FB-E519-77E1-68F5-33F2FABF1938}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -257,6 +259,14 @@ Global
 		{D518587C-6F94-49ED-85E1-2BB1E165CAF4}.Linux-Release|Any CPU.Build.0 = Release|Any CPU
 		{D518587C-6F94-49ED-85E1-2BB1E165CAF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D518587C-6F94-49ED-85E1-2BB1E165CAF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Linux-Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Linux-Debug|Any CPU.Build.0 = Release|Any CPU
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Linux-Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Linux-Release|Any CPU.Build.0 = Release|Any CPU
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -281,6 +291,7 @@ Global
 		{2F2F03B3-213A-40D7-B818-8E618DDF01AF} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
 		{A67AD8EA-BA32-4BF1-9533-B8AAD23820E9} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
 		{D518587C-6F94-49ED-85E1-2BB1E165CAF4} = {7285BD58-2544-44AA-8488-52EA8E55D239}
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17B5631D-95B3-4007-BE6B-C9BBE799D014}

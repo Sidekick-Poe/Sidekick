@@ -52,6 +52,7 @@
 @inject IBrowserProvider Browser
 @inject ICurrentView CurrentView
 @inject ISettingsService SettingsService
+@implements IDisposable
 
 @code {
     private Uri WikiChatCommands => new Uri("https://www.poewiki.net/wiki/Chat#Commands");

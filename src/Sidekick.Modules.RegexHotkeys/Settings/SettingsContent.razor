@@ -1,0 +1,87 @@
+@page "/settings/regexhotkeys"
+@using Sidekick.Common.Blazor.Components
+@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Browser
+@using Sidekick.Common.Settings
+@layout MainWindowLayout
+
+<AppContainer>
+    <FormFieldset Legend="@Resources["Regex_Hotkeys"]">
+        <div>
+            <TextBase Class="whitespace-pre-wrap">@Resources["Regex_Hotkeys_Description"]</TextBase>
+
+            <div class="my-3 flex gap-2">
+                <TextBase>@Resources["PathOfExile"] - </TextBase>
+                <ButtonLink OnClick="() => Browser.OpenUri(PathOfRegexWebsitePoE1)">@PathOfRegexWebsitePoE1.ToString()</ButtonLink>
+            </div>
+            <div class="flex gap-2">
+                <TextBase>@Resources["PathOfExile2"] - </TextBase>
+                <ButtonLink OnClick="() => Browser.OpenUri(PathOfRegexWebsitePoE2)">@PathOfRegexWebsitePoE2.ToString()</ButtonLink>
+            </div>
+        </div>
+    </FormFieldset>
+
+    <RegexHotkeysEditor />
+
+    <div class="flex justify-center mb-1">
+        <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@SettingsResources["Restore_Defaults"]</ButtonPrimary>
+    </div>
+</AppContainer>
+
+@inject IStringLocalizer<RegexHotkeysResources> Resources
+@inject IStringLocalizer<SettingsResources> SettingsResources
+@inject IBrowserProvider Browser
+@inject ICurrentView CurrentView
+@inject ISettingsService SettingsService
+@implements IDisposable
+
+@code {
+
+    private Uri PathOfRegexWebsitePoE1 => new Uri("https://poe.re/");
+
+    private Uri PathOfRegexWebsitePoE2 => new Uri("https://poe2.re/");
+
+    private bool AreSettingsModified { get; set; }
+
+    private string[] SettingKeysUsed { get; } =
+    {
+        SettingKeys.RegexHotkeys
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        CurrentView.Initialize(new ViewOptions());
+
+        SettingsService.OnSettingsChanged += CheckIfSettingsAreModified;
+
+        CheckIfSettingsAreModified(SettingKeysUsed);
+
+        await base.OnInitializedAsync();
+    }
+
+    private async void CheckIfSettingsAreModified(string[] keys)
+    {
+        if (!keys.Any(key => SettingKeysUsed.Contains(key)))
+        {
+            return;
+        }
+
+        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async void RestoreDefaults()
+    {
+        await SettingsService.DeleteSetting(SettingKeysUsed);
+
+        AreSettingsModified = false;
+
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= CheckIfSettingsAreModified;
+    }
+
+}
