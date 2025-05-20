@@ -4,8 +4,8 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SharpHook;
+using SharpHook.Data;
 using SharpHook.Logging;
-using SharpHook.Native;
 using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform.EventArgs;
 
@@ -206,7 +206,7 @@ public class KeyboardProvider
         }
 
         // Configure hook logging
-        LogSource = LogSource.RegisterOrGet(minLevel: SharpHook.Native.LogLevel.Info);
+        LogSource = LogSource.RegisterOrGet(minLevel: SharpHook.Data.LogLevel.Info);
         LogSource.MessageLogged += OnMessageLogged;
 
         // Initialize keyboard hook
@@ -228,7 +228,7 @@ public class KeyboardProvider
     {
         switch (e.LogEntry.Level)
         {
-            case SharpHook.Native.LogLevel.Debug:
+            case SharpHook.Data.LogLevel.Debug:
                 if (ignoreHookLogs.IsMatch(e.LogEntry.Function))
                 {
                     break;
@@ -237,11 +237,11 @@ public class KeyboardProvider
                 logger.LogDebug("[KeyboardHook] {0}", e.LogEntry.FullText);
                 break;
 
-            case SharpHook.Native.LogLevel.Info: logger.LogInformation("[KeyboardHook] {0}", e.LogEntry.FullText); break;
+            case SharpHook.Data.LogLevel.Info: logger.LogInformation("[KeyboardHook] {0}", e.LogEntry.FullText); break;
 
-            case SharpHook.Native.LogLevel.Warn: logger.LogWarning("[KeyboardHook] {0}", e.LogEntry.FullText); break;
+            case SharpHook.Data.LogLevel.Warn: logger.LogWarning("[KeyboardHook] {0}", e.LogEntry.FullText); break;
 
-            case SharpHook.Native.LogLevel.Error: logger.LogError("[KeyboardHook] {0}", e.LogEntry.FullText); break;
+            case SharpHook.Data.LogLevel.Error: logger.LogError("[KeyboardHook] {0}", e.LogEntry.FullText); break;
         }
     }
 
@@ -261,17 +261,17 @@ public class KeyboardProvider
 
         // Transfer the event key to a string to compare to settings
         var str = new StringBuilder();
-        if ((args.RawEvent.Mask & ModifierMask.Ctrl) > 0)
+        if ((args.RawEvent.Mask & EventMask.Ctrl) > 0)
         {
             str.Append("Ctrl+");
         }
 
-        if ((args.RawEvent.Mask & ModifierMask.Shift) > 0)
+        if ((args.RawEvent.Mask & EventMask.Shift) > 0)
         {
             str.Append("Shift+");
         }
 
-        if ((args.RawEvent.Mask & ModifierMask.Alt) > 0)
+        if ((args.RawEvent.Mask & EventMask.Alt) > 0)
         {
             str.Append("Alt+");
         }
@@ -295,17 +295,17 @@ public class KeyboardProvider
     private void OnMouseWheel(object? sender, MouseWheelHookEventArgs args)
     {
         var str = new StringBuilder();
-        if ((args.RawEvent.Mask & ModifierMask.Ctrl) > 0)
+        if ((args.RawEvent.Mask & EventMask.Ctrl) > 0)
         {
             str.Append("Ctrl+");
         }
 
-        if ((args.RawEvent.Mask & ModifierMask.Shift) > 0)
+        if ((args.RawEvent.Mask & EventMask.Shift) > 0)
         {
             str.Append("Shift+");
         }
 
-        if ((args.RawEvent.Mask & ModifierMask.Alt) > 0)
+        if ((args.RawEvent.Mask & EventMask.Alt) > 0)
         {
             str.Append("Alt+");
         }
