@@ -1,0 +1,107 @@
+@using Sidekick.Common.Blazor.Settings.Components
+@using Sidekick.Common.Settings
+
+@foreach (var regexHotkey in RegexHotkeys)
+{
+    <div class="border border-solid dark:border-stone-800 p-3 mb-3">
+        <div class="grid grid-cols-12 gap-2 mb-3">
+            <div class="col-span-6">
+                <FormInput Label="@Resources["Regex"]"
+                           Value="@regexHotkey.Regex"
+                           ValueChanged="(x) => RegexChanged(regexHotkey, x)"
+                           maxlength="50" />
+            </div>
+            <div class="col-span-6">
+                <FormInput Label="@Resources["Regex_Hotkey_Description"]"
+                           Value="@regexHotkey.Description"
+                           ValueChanged="(x) => RegexDescriptionChanged(regexHotkey, x)" />
+
+            </div>
+        </div>
+
+        <div class="flex justify-between items-end gap-2">
+            <div class="w-1/2">
+                <KeybindEditor Label="@Resources["Keybind"]"
+                               Value="@regexHotkey.Key"
+                               ValueChanged="(x) => KeyChanged(regexHotkey, x)" />
+            </div>
+            <ButtonPrimary OnClick="() => Remove(regexHotkey)">@Resources["Regex_Hotkey_Remove"]</ButtonPrimary>
+        </div>
+    </div>
+}
+
+<FormFieldset>
+    <div class="flex justify-between">
+        <ButtonPrimary OnClick="Add">
+            @Resources["Regex_Hotkey_Add"]
+        </ButtonPrimary>
+    </div>
+</FormFieldset>
+
+@inject IStringLocalizer<RegexHotkeysResources> Resources
+@inject ISettingsService SettingsService
+@implements IDisposable
+
+@code {
+    private List<RegexHotkey> RegexHotkeys { get; set; } = [];
+
+    private string SettingKey { get; } = SettingKeys.RegexHotkeys;
+
+    protected override async Task OnInitializedAsync()
+    {
+        RegexHotkeys = await SettingsService.GetObject<List<RegexHotkey>>(SettingKey) ?? [];
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
+        await base.OnInitializedAsync();
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKey))
+        {
+            RegexHotkeys = await SettingsService.GetObject<List<RegexHotkey>>(SettingKey) ?? [];
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private async Task RegexChanged(RegexHotkey regexHotkey, string? regex)
+    {
+        regexHotkey.Regex = regex;
+        await Save();
+    }
+
+    private async Task RegexDescriptionChanged(RegexHotkey regexHotkey, string? description)
+    {
+        regexHotkey.Description = description;
+        await Save();
+    }
+
+    private async Task KeyChanged(RegexHotkey regexHotkey, string? key)
+    {
+        regexHotkey.Key = key;
+        await Save();
+    }
+
+    private async Task Add()
+    {
+        RegexHotkeys.Add(new RegexHotkey());
+        await Save();
+    }
+
+    private async Task Remove(RegexHotkey regexHotkey)
+    {
+        RegexHotkeys.Remove(regexHotkey);
+        await Save();
+    }
+
+    protected async Task Save()
+    {
+        await SettingsService.Set(SettingKey, RegexHotkeys);
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
+    }
+
+}

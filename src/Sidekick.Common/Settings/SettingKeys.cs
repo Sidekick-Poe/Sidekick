@@ -34,12 +34,16 @@ public static class SettingKeys
     public const string KeyOpenWiki = nameof(KeyOpenWiki);
     public const string KeyOpenInCraftOfExile = nameof(KeyOpenInCraftOfExile);
 
+    public const string MouseWheelNavigateStash = nameof(MouseWheelNavigateStash);
+    public const string MouseWheelNavigateStashReverse = nameof(MouseWheelNavigateStashReverse);
+
     public const string EscapeClosesOverlays = nameof(EscapeClosesOverlays);
     public const string RetainClipboard = nameof(RetainClipboard);
     public const string ChatCommands = nameof(ChatCommands);
     public const string PreferredWiki = nameof(PreferredWiki);
     public const string PoeNinjaLastClear = nameof(PoeNinjaLastClear);
     public const string Poe2ScoutLastClear = nameof(Poe2ScoutLastClear);
+    public const string RegexHotkeys = nameof(RegexHotkeys);
 
     public const string MapCheckDangerousRegex = nameof(MapCheckDangerousRegex);
 
@@ -66,6 +70,7 @@ public static class SettingKeys
     public const string PriceCheckEnableAllFilters = nameof(PriceCheckEnableAllFilters);
     public const string PriceCheckEnableFiltersByRegex = nameof(PriceCheckEnableFiltersByRegex);
     public const string PriceCheckDefaultFilterType = nameof(PriceCheckDefaultFilterType);
+    public const string PriceCheckAutomaticallyLoadMoreData = nameof(PriceCheckAutomaticallyLoadMoreData);
 
     public const string SaveWindowPositions = nameof(SaveWindowPositions);
 

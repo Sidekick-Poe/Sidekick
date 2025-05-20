@@ -19,6 +19,7 @@ using Sidekick.Common.Updater;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
+using Sidekick.Modules.RegexHotkeys;
 using Sidekick.Modules.Trade;
 using Sidekick.Modules.Wealth;
 using Sidekick.Web;
@@ -56,6 +57,7 @@ builder.Services
 
     // Modules
     .AddSidekickChat()
+    .AddSidekickRegexHotkeys()
     .AddSidekickGeneral()
     .AddSidekickMaps()
     .AddSidekickTrade()

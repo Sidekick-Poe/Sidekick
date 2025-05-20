@@ -28,6 +28,10 @@ public static class DefaultSettings
 
     public static string KeyOpenInCraftOfExile => "";
 
+    public static bool MouseWheelNavigateStash => true;
+
+    public static bool MouseWheelNavigateStashReverse => false;
+
     public static bool EscapeClosesOverlays => true;
     public static bool OverlayCloseWithMouse => false;
 
@@ -81,6 +85,8 @@ public static class DefaultSettings
 
     public static string PriceCheckStatus => "online";
 
+    public static bool PriceCheckAutomaticallyLoadMoreData => false;
+
     public static List<ChatSetting> ChatCommands =>
     [
         new ChatSetting("F5", "/hideout", true),
@@ -92,4 +98,6 @@ public static class DefaultSettings
     public static bool SaveWindowPositions => false;
 
     public static string PriceCheckDefaultFilterType => FilterType.Minimum.GetValueAttribute();
+
+    public static List<RegexHotkey> RegexHotkeys => [];
 }

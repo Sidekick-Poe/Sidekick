@@ -34,6 +34,14 @@
                                 }
                             </ul>
                         }
+
+                        @if (context.SidekickException is UnparsableException unparsableException && !string.IsNullOrWhiteSpace(unparsableException.ItemText))
+                        {
+                            <label class="w-full h-64 mt-2">
+                                <TextBase>Here's the item's text</TextBase>
+                                <textarea class="@UiClasses.FormInputClasses mt-2 p-2 text-base w-full h-64 resize-none">@unparsableException.ItemText</textarea>
+                            </label>
+                        }
                     }
                     else
                     {
@@ -57,11 +65,11 @@
                 <div class="flex items-center justify-center gap-2">
                     @if (actions.HasFlag(ExceptionActions.ExitApplication))
                     {
-                        <div class="@GetButtonClass(context.IsCritical)" @onclick="ApplicationService.Shutdown">Exit Application</div>
+                        <a href="javascript:" class="@GetButtonClass(context.IsCritical)" @onclick="ApplicationService.Shutdown">Exit Application</a>
                     }
                     @if (actions.HasFlag(ExceptionActions.CloseWindow))
                     {
-                        <div class="@GetButtonClass(context.IsCritical)" @onclick="Close">Close</div>
+                        <a href="javascript:" class="@GetButtonClass(context.IsCritical)" @onclick="Close">Close</a>
                     }
                 </div>
             </div>
@@ -83,7 +91,7 @@
     private string GetButtonClass(bool isCritical)
     {
         var colors = isCritical ? "bg-red-600 hover:bg-red-400" : "bg-orange-600 hover:bg-orange-400";
-        return $"disabled:opacity-50 inline-flex items-center justify-center px-6 py-3 select-none cursor-pointer text-lg font-medium tracking-wide text-white transition-colors duration-200 rounded-md {colors} {UiClasses.FocusClasses}";
+        return $"disabled:opacity-50 inline-flex items-center justify-center px-6 py-3 text-lg font-medium tracking-wide text-white transition-colors duration-200 rounded-md {colors} {UiClasses.FocusClasses}";
     }
 
     private void Close()

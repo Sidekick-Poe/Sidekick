@@ -6,9 +6,12 @@
     <ItemSeparator Rarity="Item.Header.Rarity"/>
 }
 
-@foreach (var filter in PseudoFilters)
+
+@for (var index = 0; index < PseudoFilters.Count; index++)
 {
-    <PseudoFilterComponent Filter="@filter"/>
+    var filter = PseudoFilters[index];
+    var key = $"{Item.Id}_pseudo_{index}";
+    <PseudoFilterComponent @key="key" Filter="@filter"/>
 }
 
 @code {

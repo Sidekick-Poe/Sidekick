@@ -12,7 +12,16 @@
                AdditionalClasses="cursor-default caret-transparent"
                spellcheck="false">
         <AdornmentContent>
-            <ButtonSecondary OnClick="Clear">@Resources["Clear"]</ButtonSecondary>
+            <div class="flex ml-1 gap-1 align-center">
+                @if (ShowClearButton)
+                {
+                    <ButtonIcon OnClick="Clear" title="@Resources["Clear"]">
+                        <Icon Svg="@UiIcons.Clear" />
+                    </ButtonIcon>
+                }
+
+                @AdornmentContent
+            </div>
         </AdornmentContent>
     </FormInput>
     @if (IsDuplicated)
@@ -35,6 +44,8 @@
 
     private static event Action? CurrentEditorChanged;
 
+    private bool ShowClearButton => !string.IsNullOrWhiteSpace(Value);
+
     [Parameter]
     public required string Label { get; set; }
 
@@ -43,6 +54,9 @@
 
     [Parameter]
     public EventCallback<string?> ValueChanged { get; set; }
+
+    [Parameter]
+    public RenderFragment? AdornmentContent { get; set; }
 
     private Guid Id { get; } = Guid.NewGuid();
 

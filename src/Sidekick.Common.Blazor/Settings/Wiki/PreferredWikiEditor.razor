@@ -1,10 +1,21 @@
 @using Sidekick.Common.Enums
 @using Sidekick.Common.Settings
 
-<FormSelect Value="@PreferredWiki"
-            ValueChanged="(string? v) => PreferredChanged(v)"
+<FormSelect Value="@Value"
+            ValueChanged="ValueChanged"
             Label="@Resources["Wiki_Preferred"]"
-            Options="Options" />
+            Options="Options">
+    <AdornmentContent>
+        <div class="flex ml-1 gap-1 align-center">
+            @if (ShowResetButton)
+            {
+                <ButtonIcon OnClick="Reset" title="@Resources["Reset"]">
+                    <Icon Svg="@UiIcons.Reset" />
+                </ButtonIcon>
+            }
+        </div>
+    </AdornmentContent>
+</FormSelect>
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
@@ -12,42 +23,54 @@
 
 @code {
 
-    private string? PreferredWiki { get; set; }
+    private string? Value { get; set; }
 
     private List<SelectOption> Options { get; set; } = new();
 
+    private const string SettingKey = SettingKeys.PreferredWiki;
+
+    private bool ShowResetButton { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
-        PreferredWiki = await SettingsService.GetString(SettingKeys.PreferredWiki);
+        Value = await SettingsService.GetString(SettingKey);
+        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
-        Options = Enum.GetValues<WikiSetting>()
-                  .Select(x => new SelectOption()
-                      {
-                          Value = x.GetValueAttribute().ToString(),
-                          Label = Resources[x.GetValueAttribute()],
-                      })
-                  .ToList();
+        Options = Enum.GetValues<WikiSetting>().Select(x => new SelectOption()
+            {
+                Value = x.GetValueAttribute().ToString(),
+                Label = Resources[x.GetValueAttribute()],
+            }).ToList();
 
         await base.OnInitializedAsync();
     }
 
-    private async Task PreferredChanged(string? value)
+    private async Task ValueChanged(string? value)
     {
-        PreferredWiki = value;
-        if (PreferredWiki.GetEnumFromValue<WikiSetting> != null)
+        Value = value;
+
+        if (Value.GetEnumFromValue<WikiSetting> != null)
         {
-            await SettingsService.Set(SettingKeys.PreferredWiki, PreferredWiki);
+            await SettingsService.Set(SettingKey, Value);
         }
     }
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (keys.Contains(SettingKeys.PreferredWiki))
+        if (keys.Contains(SettingKey))
         {
-            PreferredWiki = await SettingsService.GetString(SettingKeys.PreferredWiki);
+            Value = await SettingsService.GetString(SettingKey);
+            ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+
             await InvokeAsync(StateHasChanged);
         }
+    }
+
+    private async Task Reset()
+    {
+        await SettingsService.DeleteSetting(SettingKey);
     }
 
     public void Dispose()

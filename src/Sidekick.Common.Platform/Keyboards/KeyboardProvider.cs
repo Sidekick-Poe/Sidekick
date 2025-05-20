@@ -4,9 +4,10 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SharpHook;
+using SharpHook.Data;
 using SharpHook.Logging;
-using SharpHook.Native;
 using Sidekick.Common.Keybinds;
+using Sidekick.Common.Platform.EventArgs;
 
 namespace Sidekick.Common.Platform.Keyboards;
 
@@ -153,6 +154,10 @@ public class KeyboardProvider
 
     public event Action<string>? OnKeyDown;
 
+    public event Action<ScrollEventArgs>? OnScrollDown;
+
+    public event Action<ScrollEventArgs>? OnScrollUp;
+
     private List<KeybindHandler> KeybindHandlers { get; init; } =
     [
     ];
@@ -201,12 +206,16 @@ public class KeyboardProvider
         }
 
         // Configure hook logging
-        LogSource = LogSource.RegisterOrGet(minLevel: SharpHook.Native.LogLevel.Info);
+        LogSource = LogSource.RegisterOrGet(minLevel: SharpHook.Data.LogLevel.Info);
         LogSource.MessageLogged += OnMessageLogged;
 
         // Initialize keyboard hook
         Hook = new();
         Hook.KeyPressed += OnKeyPressed;
+
+        // Initialize mouse hook
+        Hook.MouseWheel += OnMouseWheel;
+
         HookTask = Hook.RunAsync();
 
         // Make sure we don't run this multiple times
@@ -219,7 +228,7 @@ public class KeyboardProvider
     {
         switch (e.LogEntry.Level)
         {
-            case SharpHook.Native.LogLevel.Debug:
+            case SharpHook.Data.LogLevel.Debug:
                 if (ignoreHookLogs.IsMatch(e.LogEntry.Function))
                 {
                     break;
@@ -228,11 +237,11 @@ public class KeyboardProvider
                 logger.LogDebug("[KeyboardHook] {0}", e.LogEntry.FullText);
                 break;
 
-            case SharpHook.Native.LogLevel.Info: logger.LogInformation("[KeyboardHook] {0}", e.LogEntry.FullText); break;
+            case SharpHook.Data.LogLevel.Info: logger.LogInformation("[KeyboardHook] {0}", e.LogEntry.FullText); break;
 
-            case SharpHook.Native.LogLevel.Warn: logger.LogWarning("[KeyboardHook] {0}", e.LogEntry.FullText); break;
+            case SharpHook.Data.LogLevel.Warn: logger.LogWarning("[KeyboardHook] {0}", e.LogEntry.FullText); break;
 
-            case SharpHook.Native.LogLevel.Error: logger.LogError("[KeyboardHook] {0}", e.LogEntry.FullText); break;
+            case SharpHook.Data.LogLevel.Error: logger.LogError("[KeyboardHook] {0}", e.LogEntry.FullText); break;
         }
     }
 
@@ -252,17 +261,17 @@ public class KeyboardProvider
 
         // Transfer the event key to a string to compare to settings
         var str = new StringBuilder();
-        if ((args.RawEvent.Mask & ModifierMask.Ctrl) > 0)
+        if ((args.RawEvent.Mask & EventMask.Ctrl) > 0)
         {
             str.Append("Ctrl+");
         }
 
-        if ((args.RawEvent.Mask & ModifierMask.Shift) > 0)
+        if ((args.RawEvent.Mask & EventMask.Shift) > 0)
         {
             str.Append("Shift+");
         }
 
-        if ((args.RawEvent.Mask & ModifierMask.Alt) > 0)
+        if ((args.RawEvent.Mask & EventMask.Alt) > 0)
         {
             str.Append("Alt+");
         }
@@ -281,6 +290,44 @@ public class KeyboardProvider
                 logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
             });
         }
+    }
+
+    private void OnMouseWheel(object? sender, MouseWheelHookEventArgs args)
+    {
+        var str = new StringBuilder();
+        if ((args.RawEvent.Mask & EventMask.Ctrl) > 0)
+        {
+            str.Append("Ctrl+");
+        }
+
+        if ((args.RawEvent.Mask & EventMask.Shift) > 0)
+        {
+            str.Append("Shift+");
+        }
+
+        if ((args.RawEvent.Mask & EventMask.Alt) > 0)
+        {
+            str.Append("Alt+");
+        }
+
+        var keybind = str.ToString();
+        if (!string.IsNullOrEmpty(keybind)) keybind = keybind[..^1];
+
+        ScrollEventArgs eventArgs = new()
+        {
+            Masks = keybind,
+        };
+
+        if (args.Data.Rotation > 0)
+        {
+            OnScrollDown?.Invoke(eventArgs);
+        }
+        else
+        {
+            OnScrollUp?.Invoke(eventArgs);
+        }
+
+        if (eventArgs.Suppress) args.SuppressEvent = true;
     }
 
     public Task PressKey(params string[] keyStrokes)
@@ -411,6 +458,7 @@ public class KeyboardProvider
 
             // Ensure hook itself is set to null
             Hook.KeyPressed -= OnKeyPressed;
+            Hook.MouseWheel -= OnMouseWheel;
             Hook.Dispose();
             Hook = null;
         }
