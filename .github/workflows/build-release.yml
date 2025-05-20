@@ -168,7 +168,7 @@ jobs:
           export PATH="$PATH:$HOME/.dotnet/tools"
 
           # Web version
-          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-beta
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel linux-web-beta --releaseNotes $releaseNotesPath
-          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-beta --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-stable
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel linux-web-stable --releaseNotes $releaseNotesPath
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
 
