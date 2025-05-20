@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using ApexCharts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -19,6 +20,7 @@ using Sidekick.Common.Updater;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
+using Sidekick.Modules.RegexHotkeys;
 using Sidekick.Modules.Trade;
 using Sidekick.Modules.Wealth;
 using Sidekick.PhotinoBlazor.Services;
@@ -50,6 +52,11 @@ public class Program
             .SetNotificationsEnabled(false) // https://github.com/tryphotino/photino.NET/issues/85
             .SetContextMenuEnabled(false);
 
+        if (!Debugger.IsAttached)
+        {
+            app.MainWindow.DevToolsEnabled = false;
+        }
+
         app.Run();
     }
 
@@ -77,6 +84,7 @@ public class Program
 
             // Modules
             .AddSidekickChat()
+            .AddSidekickRegexHotkeys()
             .AddSidekickGeneral()
             .AddSidekickMaps()
             .AddSidekickTrade()

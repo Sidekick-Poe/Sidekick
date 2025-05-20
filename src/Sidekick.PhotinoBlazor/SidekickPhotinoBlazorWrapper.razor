@@ -2,7 +2,7 @@
 @using Sidekick.Common.Ui.Views
 @using Sidekick.PhotinoBlazor.Services
 
-<Sidekick.Common.Blazor.Main/>
+<Sidekick.Common.Blazor.Main />
 
 @inject ICurrentView CurrentView
 @inject PhotinoBlazorViewLocator ViewLocator
@@ -21,7 +21,6 @@
 
         CurrentView.ViewMinimized += CurrentViewMinimized;
         CurrentView.ViewMaximized += CurrentViewMaximized;
-        CurrentView.ViewClosed += CurrentViewClosed;
 
         base.OnInitialized();
     }
