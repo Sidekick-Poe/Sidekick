@@ -25,8 +25,4 @@
     <ProjectReference Include="..\Sidekick.Common.Database\Sidekick.Common.Database.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Keybinds\" />
-  </ItemGroup>
-
 </Project>

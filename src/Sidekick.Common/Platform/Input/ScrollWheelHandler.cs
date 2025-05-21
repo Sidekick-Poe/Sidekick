@@ -37,9 +37,9 @@ public abstract class ScrollWheelHandler : IInputHandler, IDisposable
     public int Priority => 0;
 
     /// <summary>
-    ///
+    /// Determines whether the scroll wheel handler should be enabled based on the current settings.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>A task that resolves to true if the handler should be enabled; otherwise, false.</returns>
     protected abstract Task<bool> GetEnabled();
 
     /// <summary>
