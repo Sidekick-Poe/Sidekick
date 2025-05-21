@@ -7,9 +7,9 @@ using Sidekick.Common.Cache;
 using Sidekick.Common.Folder;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
-using Sidekick.Common.Keybinds;
 using Sidekick.Common.Localization;
 using Sidekick.Common.Logging;
+using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Common;
@@ -95,15 +95,15 @@ public static class ServiceCollectionExtensions
     }
 
     /// <summary>
-    ///     Adds a keybind to the application
+    ///     Adds an input handler to the application
     /// </summary>
-    /// <typeparam name="TKeybindHandler">The type of the keybind handler.</typeparam>
-    /// <param name="services">The service collection to add the keybind to</param>
+    /// <typeparam name="TInputHandler">The type of the input handler.</typeparam>
+    /// <param name="services">The service collection to add the input handler to</param>
     /// <returns>The service collection</returns>
-    public static IServiceCollection AddSidekickKeybind<TKeybindHandler>(this IServiceCollection services)
-        where TKeybindHandler : KeybindHandler
+    public static IServiceCollection AddSidekickInputHandler<TInputHandler>(this IServiceCollection services)
+        where TInputHandler : IInputHandler
     {
-        SidekickConfiguration.Keybinds.Add(typeof(TKeybindHandler));
+        SidekickConfiguration.InputHandlers.Add(typeof(TInputHandler));
         return services;
     }
 }

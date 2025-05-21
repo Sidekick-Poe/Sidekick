@@ -11,7 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution", "_Solution", "{
 		CONTRIBUTING.md = CONTRIBUTING.md
 		docker-compose.yml = docker-compose.yml
 		Dockerfile = Dockerfile
-		download-instructions.txt = download-instructions.txt
 		.github\FUNDING.yml = .github\FUNDING.yml
 		LICENSE = LICENSE
 		README.md = README.md
@@ -19,6 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution", "_Solution", "{
 		.github\workflows\tests.yml = .github\workflows\tests.yml
 		.github\workflows\windows-beta.yml = .github\workflows\windows-beta.yml
 		.github\workflows\windows-stable.yml = .github\workflows\windows-stable.yml
+		Directory.Packages.props = Directory.Packages.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}"

@@ -38,7 +38,7 @@ public static class SidekickConfiguration
     public static List<Assembly> Modules { get; } = new();
 
     /// <summary>
-    ///     The list of keybinds handled by this application
+    ///     The list of input handlers handled by this application
     /// </summary>
-    public static List<Type> Keybinds { get; } = new();
+    public static List<Type> InputHandlers { get; } = new();
 }

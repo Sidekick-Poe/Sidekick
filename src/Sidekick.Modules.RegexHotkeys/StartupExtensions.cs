@@ -20,7 +20,7 @@ public static class StartupExtensions
 
         services.AddTransient<RegexHotkeysResources>();
 
-        services.AddSidekickKeybind<RegexHotkeyHandler>();
+        services.AddSidekickInputHandler<RegexHotkeyHandler>();
 
         return services;
     }
