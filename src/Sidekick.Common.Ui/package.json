@@ -6,5 +6,8 @@
   },
   "scripts": {
     "build": "npx tailwindcss -i ./Styles/main.css -o ./wwwroot/css/app.css"
+  },
+  "dependencies": {
+    "flowbite": "^3.1.2"
   }
 }
