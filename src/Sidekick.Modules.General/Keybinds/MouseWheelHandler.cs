@@ -1,6 +1,5 @@
-﻿using Sidekick.Common.Initialization;
-using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.EventArgs;
+﻿using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.General.Keybinds;
@@ -10,53 +9,30 @@ public class MouseWheelHandler
     ISettingsService settingsService,
     IKeyboardProvider keyboardProvider,
     IProcessProvider processProvider
-) : IInitializableService
+) : ScrollWheelHandler(settingsService, keyboardProvider)
 {
-    private bool MouseWheelNavigateStash { get; set; }
+    private readonly ISettingsService settingsService = settingsService;
+    private readonly IKeyboardProvider keyboardProvider = keyboardProvider;
 
     private bool MouseWheelNavigateStashReverse { get; set; }
 
-    private async void OnSettingsChanged(string[] keys)
+    protected override async Task<bool> GetEnabled()
     {
-        if (keys.Contains(SettingKeys.MouseWheelNavigateStash))
-        {
-            MouseWheelNavigateStash = await settingsService.GetBool(SettingKeys.MouseWheelNavigateStash);
-        }
-
-        if (keys.Contains(SettingKeys.MouseWheelNavigateStashReverse))
-        {
-            MouseWheelNavigateStashReverse = await settingsService.GetBool(SettingKeys.MouseWheelNavigateStashReverse);
-        }
-    }
-
-    public int Priority => 0;
-
-    public async Task Initialize()
-    {
-        MouseWheelNavigateStash = await settingsService.GetBool(SettingKeys.MouseWheelNavigateStash);
         MouseWheelNavigateStashReverse = await settingsService.GetBool(SettingKeys.MouseWheelNavigateStashReverse);
-        settingsService.OnSettingsChanged += OnSettingsChanged;
-        keyboardProvider.OnScrollDown += OnScrollDown;
-        keyboardProvider.OnScrollUp += OnScrollUp;
+        return await settingsService.GetBool(SettingKeys.MouseWheelNavigateStash);
     }
 
-    private void OnScrollDown(ScrollEventArgs args)
+    protected override bool IsValid() => processProvider.IsPathOfExileInFocus;
+
+    protected override Task OnScrollUp()
     {
-        if (!MouseWheelNavigateStash) return;
-        if (args.Masks != "Ctrl") return;
-        if (!processProvider.IsPathOfExileInFocus) return;
-
-        keyboardProvider.PressKey(MouseWheelNavigateStashReverse ? "Right" : "Left");
-        args.Suppress = true;
-    }
-
-    private void OnScrollUp(ScrollEventArgs args)
-    {
-        if (!MouseWheelNavigateStash) return;
-        if (args.Masks != "Ctrl") return;
-        if (!processProvider.IsPathOfExileInFocus) return;
-
         keyboardProvider.PressKey(MouseWheelNavigateStashReverse ? "Left" : "Right");
-        args.Suppress = true;
+        return Task.CompletedTask;
+    }
+
+    protected override Task OnScrollDown()
+    {
+        keyboardProvider.PressKey(MouseWheelNavigateStashReverse ? "Right" : "Left");
+        return Task.CompletedTask;
     }
 }

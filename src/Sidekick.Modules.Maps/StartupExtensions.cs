@@ -13,7 +13,7 @@ public static class StartupExtensions
 
         services.AddTransient<MapInfoResources>();
 
-        services.AddSidekickKeybind<OpenMapInfoKeybindHandler>();
+        services.AddSidekickInputHandler<OpenMapInfoKeybindHandler>();
 
         return services;
     }
