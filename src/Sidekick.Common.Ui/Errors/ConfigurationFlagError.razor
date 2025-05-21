@@ -4,6 +4,11 @@
     <AlertError>@Resources["PoeApiDown"]</AlertError>
 }
 
+@if (SidekickConfiguration.IsXselPackageMissing)
+{
+    <AlertError>@Resources["XselPackageMissing"]</AlertError>
+}
+
 @inject IStringLocalizer<AppResources> Resources
 @implements IDisposable
 

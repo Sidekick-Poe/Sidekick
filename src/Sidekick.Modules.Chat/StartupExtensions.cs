@@ -16,7 +16,7 @@ public static class StartupExtensions
     /// <returns>The service collection with services added</returns>
     public static IServiceCollection AddSidekickChat(this IServiceCollection services)
     {
-        services.AddSidekickKeybind<ChatKeybindHandler>();
+        services.AddSidekickInputHandler<ChatKeybindHandler>();
         return services;
     }
 }
