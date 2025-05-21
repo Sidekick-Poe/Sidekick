@@ -14,7 +14,7 @@ public static class StartupExtensions
         services.AddTransient<TradeResources>();
         services.AddScoped<PriceCheckService>();
 
-        services.AddSidekickKeybind<PriceCheckItemKeybindHandler>();
+        services.AddSidekickInputHandler<PriceCheckItemKeybindHandler>();
 
         return services;
     }

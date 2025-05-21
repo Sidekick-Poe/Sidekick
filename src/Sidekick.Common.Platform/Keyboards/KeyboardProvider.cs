@@ -6,8 +6,8 @@ using Microsoft.Extensions.Logging;
 using SharpHook;
 using SharpHook.Data;
 using SharpHook.Logging;
-using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform.EventArgs;
+using Sidekick.Common.Platform.Input;
 
 namespace Sidekick.Common.Platform.Keyboards;
 
@@ -193,9 +193,10 @@ public class KeyboardProvider
     {
         // Initialize keybindings
         KeybindHandlers.Clear();
-        foreach (var keybindType in SidekickConfiguration.Keybinds)
+        foreach (var keybindType in SidekickConfiguration.InputHandlers)
         {
-            var keybindHandler = (KeybindHandler)serviceProvider.GetRequiredService(keybindType);
+            var keybindHandler = serviceProvider.GetRequiredService(keybindType) as KeybindHandler;
+            if(keybindHandler == null) continue;
             KeybindHandlers.Add(keybindHandler);
         }
 
