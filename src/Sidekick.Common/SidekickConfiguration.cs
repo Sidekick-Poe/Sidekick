@@ -8,6 +8,7 @@ namespace Sidekick.Common;
 public static class SidekickConfiguration
 {
     private static bool isPoeApiDown;
+    private static bool isXselPackageMissing;
 
     /// <summary>
     /// Occurs when a relevant flag or state within the application configuration changes.
@@ -23,6 +24,20 @@ public static class SidekickConfiguration
         set
         {
             isPoeApiDown = value;
+            FlagChanged?.Invoke();
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the xsel package is missing.
+    /// Linux only.
+    /// </summary>
+    public static bool IsXselPackageMissing
+    {
+        get => isXselPackageMissing;
+        set
+        {
+            isXselPackageMissing = value;
             FlagChanged?.Invoke();
         }
     }

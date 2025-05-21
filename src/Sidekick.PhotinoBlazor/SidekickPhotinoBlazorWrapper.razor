@@ -1,0 +1,49 @@
+@using Photino.Blazor
+@using Sidekick.Common.Ui.Views
+@using Sidekick.PhotinoBlazor.Services
+
+<Sidekick.Common.Blazor.Main />
+
+@inject ICurrentView CurrentView
+@inject PhotinoBlazorViewLocator ViewLocator
+@inject PhotinoBlazorApp PhotinoBlazorApp
+@implements IDisposable
+
+@code {
+
+    [Inject]
+    public required NavigationManager NavigationManager { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ViewLocator.Views.Add(this);
+        CurrentView.ViewClosed += CurrentViewClosed;
+
+        CurrentView.ViewMinimized += CurrentViewMinimized;
+        CurrentView.ViewMaximized += CurrentViewMaximized;
+
+        base.OnInitialized();
+    }
+
+    private void CurrentViewMinimized()
+    {
+        PhotinoBlazorApp.MainWindow.SetMinimized(true);
+    }
+
+    private void CurrentViewMaximized()
+    {
+        PhotinoBlazorApp.MainWindow.SetMaximized(!PhotinoBlazorApp.MainWindow.Maximized);
+    }
+
+    private void CurrentViewClosed()
+    {
+
+    }
+
+    public void Dispose()
+    {
+        ViewLocator.Views.Remove(this);
+        CurrentView.ViewClosed -= CurrentViewClosed;
+    }
+
+}

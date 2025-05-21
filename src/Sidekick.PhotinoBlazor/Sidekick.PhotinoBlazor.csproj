@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>Sidekick</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sidekick.Common.Interprocess\Sidekick.Common.Interprocess.csproj" />
+    <ProjectReference Include="..\Sidekick.Common.Updater\Sidekick.Common.Updater.csproj" />
+    <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
+    <ProjectReference Include="..\Sidekick.Modules.Chat\Sidekick.Modules.Chat.csproj" />
+    <ProjectReference Include="..\Sidekick.Modules.General\Sidekick.Modules.General.csproj" />
+    <ProjectReference Include="..\Sidekick.Modules.Maps\Sidekick.Modules.Maps.csproj" />
+    <ProjectReference Include="..\Sidekick.Modules.RegexHotkeys\Sidekick.Modules.RegexHotkeys.csproj" />
+    <ProjectReference Include="..\Sidekick.Modules.Trade\Sidekick.Modules.Trade.csproj" />
+    <ProjectReference Include="..\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NotificationIcon.NET" />
+    <PackageReference Include="Photino.Blazor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\.gitignore">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <Target Name="Copywwwroot" BeforeTargets="Build">
+    <ItemGroup>
+      <WwwRootFiles Include="$(ProjectDir)..\Sidekick.Common.Ui\wwwroot\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(WwwRootFiles)" DestinationFolder="$(ProjectDir)wwwroot\%(RecursiveDir)" />
+  </Target>
+
+</Project>

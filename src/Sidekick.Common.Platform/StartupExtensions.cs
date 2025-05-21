@@ -4,7 +4,6 @@ using Sidekick.Common.Platform.Clipboard;
 using Sidekick.Common.Platform.GameLogs;
 using Sidekick.Common.Platform.Keyboards;
 using Sidekick.Common.Platform.Localization;
-using Sidekick.Common.Platform.Windows.Processes;
 
 namespace Sidekick.Common.Platform;
 
@@ -28,7 +27,11 @@ public static class StartupExtensions
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            services.AddSidekickInitializableService<IProcessProvider, ProcessProvider>();
+            services.AddSidekickInitializableService<IProcessProvider, Windows.Processes.ProcessProvider>();
+        }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            services.AddSidekickInitializableService<IProcessProvider, Linux.Processes.ProcessProvider>();
         }
 
         services.AddSidekickInitializableService<IKeyboardProvider, KeyboardProvider>();
