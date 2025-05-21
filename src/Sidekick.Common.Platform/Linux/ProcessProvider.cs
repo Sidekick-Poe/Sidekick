@@ -1,8 +1,6 @@
-using Microsoft.Extensions.Logging;
-
 namespace Sidekick.Common.Platform.Linux.Processes;
 
-public class ProcessProvider(ILogger<ProcessProvider> logger) : IProcessProvider
+public class ProcessProvider() : IProcessProvider
 {
     public string? ClientLogPath
     {
