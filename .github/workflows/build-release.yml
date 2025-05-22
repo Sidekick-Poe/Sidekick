@@ -137,7 +137,7 @@ jobs:
           version="${{ steps.version.outputs.version }}"
           echo "Version: $version"
 
-          dotnet publish src/Sidekick.Photino/Sidekick.Photino.csproj -c Release -r linux-x64 -o ./Publish
+          dotnet publish src/Sidekick.PhotinoBlazor/Sidekick.PhotinoBlazor.csproj -c Release -r linux-x64 -o ./Publish
           dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r linux-x64 -o ./Publish-Web
 
       - name: Velopack (Ubuntu)
