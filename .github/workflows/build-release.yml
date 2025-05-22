@@ -91,14 +91,6 @@ jobs:
           dotnet build --no-restore
           dotnet test --no-build --verbosity normal
 
-      - name: Ubuntu - Test
-        if: matrix.os == 'ubuntu-latest'
-        shell: bash
-        run: |
-          dotnet restore
-          dotnet build --no-restore
-          dotnet test --no-build --verbosity normal
-
       - name: .NET - Publish (Windows)
         if: matrix.os == 'windows-latest'
         shell: pwsh
