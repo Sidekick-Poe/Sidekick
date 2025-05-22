@@ -23,18 +23,7 @@ public class AutoUpdater : IAutoUpdater
             locator = new DebugLocator();
         }
 
-        // We are retiring the windows-beta branch to simplify maintenance. Maintaining one version is easier than two.
-        UpdateOptions? options = null;
-        if (VelopackLocator.GetDefault(logger).Channel == "windows-beta")
-        {
-            options = new UpdateOptions
-            {
-                ExplicitChannel = "windows-stable",
-                AllowVersionDowngrade = true,
-            };
-        }
-
-        Manager = new UpdateManager(source, options, logger, locator);
+        Manager = new UpdateManager(source, null, logger, locator);
     }
 
     public bool IsUpdaterInstalled()
