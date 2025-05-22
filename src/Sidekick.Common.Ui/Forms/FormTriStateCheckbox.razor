@@ -11,8 +11,8 @@
     {
         <input name="custom-checkbox" id="@Id" type="checkbox" class="hidden peer" @onchange="OnChange">
     }
-    <label for="@Id" tabindex="0" class="leading-none peer-checked:[&_svg]:scale-100 peer-checked:text-zinc-600 [&_svg]:scale-0 peer-checked:[&_.custom-checkbox]:border-zinc-500 peer-checked:[&_.custom-checkbox]:bg-zinc-500 select-none flex items-center space-x-2">
-        <span class="flex items-center justify-center w-5 h-5 border-2 rounded custom-checkbox dark:bg-zinc-700 dark:border-zinc-600">
+    <label for="@Id" tabindex="0" class="leading-none [&_svg]:peer-checked:scale-100 peer-checked:text-zinc-600 [&_svg]:scale-0 [&_.custom-checkbox]:peer-checked:border-zinc-500 [&_.custom-checkbox]:peer-checked:bg-zinc-500 select-none flex items-center space-x-2">
+        <span class="flex items-center justify-center w-5 h-5 border-2 rounded-sm custom-checkbox dark:bg-zinc-700 dark:border-zinc-600">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-3 h-3 text-white duration-300 ease-out">
                 @if (Value == null)
                 {

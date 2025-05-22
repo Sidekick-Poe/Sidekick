@@ -1,14 +1,56 @@
-@import "flowbite/src/themes/default";
+@import 'flowbite/src/themes/default' layer(base);
 
-@import "./fonts.css";
-@import "./item-headers.css";
-@import "./item-logbook-factions.css";
-@import "./item-sockets.css";
-@import "./poe.css";
+@import './fonts.css' layer(base);
+@import './item-headers.css' layer(base);
+@import './item-logbook-factions.css' layer(base);
+@import './item-sockets.css' layer(base);
+@import './poe.css' layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@plugin 'flowbite/plugin';
+
+@source '../../**/*.{razor,html,cshtml,cs}';
+@source '../**/*.js';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-*: initial;
+  --font-sans:
+    fontin, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-caps:
+    fontin-smallcaps, fontin, ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --text-*: initial;
+  --text-xs: 0.625rem;
+  --text-sm: 0.75rem;
+  --text-base: 0.875rem;
+  --text-lg: 1rem;
+  --text-xl: 1.125rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 :root {
     --sidekick-vh: 100vh; /* Fallback */

@@ -26,11 +26,11 @@
         </ChildContent>
 
         <TooltipContent>
-            <TextBase Class="max-w-[15rem]">@Resources["OpenQueryInWebsite"]</TextBase>
+            <TextBase Class="max-w-60">@Resources["OpenQueryInWebsite"]</TextBase>
         </TooltipContent>
     </TooltipRight>
 
-    <Popover @bind-Visible="DetailsOpened" Class="min-w-[30rem] [&_.mb-3]:!mb-0">
+    <Popover @bind-Visible="DetailsOpened" Class="min-w-120 [&_.mb-3]:mb-0!">
         <FormInput Value="@TradeUri?.ToString()" readonly/>
     </Popover>
 </div>

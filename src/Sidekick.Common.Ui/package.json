@@ -2,7 +2,7 @@
   "name": "sidekick.common.ui",
   "version": "1.0.0",
   "devDependencies": {
-    "tailwindcss": "^3.4.3"
+    "tailwindcss": "^4.1.7"
   },
   "scripts": {
     "build": "npx tailwindcss -i ./Styles/main.css -o ./wwwroot/css/app.css"
