@@ -79,7 +79,7 @@ jobs:
           value: ${{ github.token }}
 
       - name: .NET - Setup
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.x
 
