@@ -5,7 +5,7 @@
     "tailwindcss": "^4.1.7"
   },
   "scripts": {
-    "build": "npx tailwindcss -i ./Styles/main.css -o ./wwwroot/css/app.css"
+    "build": "npx @tailwindcss/cli -i ./Styles/main.css -o ./wwwroot/css/app.css"
   },
   "dependencies": {
     "flowbite": "^3.1.2"
