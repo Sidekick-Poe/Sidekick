@@ -11,7 +11,7 @@
 }
 
 <div class="relative">
-    <TooltipRight>
+    <Tooltip Placement="TooltipPlacement.Left">
         <ChildContent>
             <button type="button"
                     @onclick="@OpenWebsite"
@@ -24,11 +24,10 @@
                 <Icon Svg="@UiIcons.External" />
             </button>
         </ChildContent>
-
         <TooltipContent>
-            <TextBase Class="max-w-60">@Resources["OpenQueryInWebsite"]</TextBase>
+            <div class="min-w-60">@Resources["OpenQueryInWebsite"]</div>
         </TooltipContent>
-    </TooltipRight>
+    </Tooltip>
 
     <Popover @bind-Visible="DetailsOpened" Class="min-w-120 [&_.mb-3]:mb-0!">
         <FormInput Value="@TradeUri?.ToString()" readonly/>

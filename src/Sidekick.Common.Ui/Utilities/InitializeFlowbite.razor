@@ -1,0 +1,15 @@
+@inject IJSRuntime JsRuntime
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JsRuntime.InvokeVoidAsync("initFlowbite");
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+}

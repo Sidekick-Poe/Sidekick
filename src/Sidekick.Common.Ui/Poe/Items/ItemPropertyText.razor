@@ -10,7 +10,7 @@
 
     @if (HasAdditionalInformation && AdditionalInformation != null)
     {
-        <TooltipRight>
+        <Tooltip Placement="TooltipPlacement.Right">
             <ChildContent>
                 <span class="inline-block ml-1 flex">
                     <Icon Svg="@UiIcons.PlusBox" Size="@UiIconSize.Small" />
@@ -19,13 +19,13 @@
             <TooltipContent>
                 @AdditionalInformation
             </TooltipContent>
-        </TooltipRight>
+        </Tooltip>
     }
 
     @if (!string.IsNullOrEmpty(Hint))
     {
         <div class="ml-1 flex">
-            <TooltipHint Text="@Hint"/>
+            <Tooltip Text="@Hint" />
         </div>
     }
 </TextBase>

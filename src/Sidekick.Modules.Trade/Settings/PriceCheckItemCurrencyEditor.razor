@@ -33,12 +33,11 @@
             }
 
             <div class="@wrapperClass" @onclick="@(() => CurrencyChanged(option.Value))">
-                <TooltipRight>
+                <Tooltip Text="@option.Label" Placement="TooltipPlacement.Right">
                     <ChildContent>
-                        <img src="@image" class="h-6 w-6" alt="@option.Label"/>
+                        <img src="@image" class="h-6 w-6" alt="@option.Label" />
                     </ChildContent>
-                    <TooltipContent>@option.Label</TooltipContent>
-                </TooltipRight>
+                </Tooltip>
             </div>
         }
     </div>

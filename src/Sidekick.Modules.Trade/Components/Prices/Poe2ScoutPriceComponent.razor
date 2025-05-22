@@ -16,14 +16,13 @@ else if (Price != null)
     <div class="flex flex-nowrap items-center gap-2 px-2">
         <div class="text-right w-1/2">
             <Heading3>Poe2Scout.com</Heading3>
-            <TooltipRight>
+
+            <Tooltip Text="@Resources["Last_Updated"]" Placement="TooltipPlacement.Right">
                 <ChildContent>
                     <TextCaption>@Price.LastUpdated.ToString("g")</TextCaption>
                 </ChildContent>
-                <TooltipContent>
-                    @Resources["Last_Updated"]
-                </TooltipContent>
-            </TooltipRight>
+            </Tooltip>
+
             <ButtonLink OnClick="OpenWebsite">
                 <TextCaption>@Resources["Open_Website"]</TextCaption>
             </ButtonLink>
