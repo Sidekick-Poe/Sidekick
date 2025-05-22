@@ -20,7 +20,7 @@ else if (Price != null)
 
             <Tooltip Text="@Resources["Last_Updated"]" Placement="TooltipPlacement.Right">
                 <ChildContent>
-                    @Price.LastUpdated.ToString("g")
+                    <TextCaption>@Price.LastUpdated.ToString("g")</TextCaption>
                 </ChildContent>
             </Tooltip>
 
