@@ -5,6 +5,9 @@ const { fontFamily } = require("tailwindcss/defaultTheme");
 module.exports = {
     content: ["../**/*.{razor,html,cshtml,cs}", "./**/*.js"],
     darkMode: "selector",
+    plugins: [
+        require('flowbite/plugin')
+    ],
     theme: {
         fontFamily: {
             sans: ["fontin", ...fontFamily.sans],

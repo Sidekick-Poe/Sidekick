@@ -2,18 +2,18 @@
 @using Sidekick.Common.Settings
 
 <ErrorFullScreenBoundary>
-    <div
-        class="font-sans w-full h-[calc(var(--sidekick-vh))] overflow-y-auto overflow-x-hidden dark:bg-stone-900 text-white text-base [zoom:var(--sidekick-zoom)]">
+    <div class="font-sans w-full h-[calc(var(--sidekick-vh))] overflow-y-auto overflow-x-hidden dark:bg-stone-900 text-white text-base [zoom:var(--sidekick-zoom)]">
         @ChildContent
     </div>
 
     <div class="font-sans text-base">
-        <SectionOutlet SectionName="sidekick-overlay"/>
+        <SectionOutlet SectionName="sidekick-overlay" />
     </div>
 </ErrorFullScreenBoundary>
 
 @inject IJSRuntime JsRuntime
 @inject ISettingsService SettingsService
+@inject NavigationManager NavigationManager
 @implements IAsyncDisposable
 
 @code {
@@ -56,9 +56,17 @@
             ZoomHandler = await Module.InvokeAsync<IJSObjectReference>("initializeZoomHandling");
 
             await UpdateZoom();
+
+            await JsRuntime.InvokeVoidAsync("initFlowbite");
+            NavigationManager.LocationChanged += OnLocationChanged;
         }
 
         await base.OnAfterRenderAsync(firstRender);
+    }
+
+    private async void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        await JsRuntime.InvokeVoidAsync("initFlowbite");
     }
 
     public async ValueTask DisposeAsync()
@@ -74,6 +82,7 @@
         }
 
         SettingsService.OnSettingsChanged -= SettingsServiceOnOnSettingsChanged;
+        NavigationManager.LocationChanged -= OnLocationChanged;
     }
 
 }
