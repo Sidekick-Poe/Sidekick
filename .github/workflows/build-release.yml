@@ -79,21 +79,13 @@ jobs:
           value: ${{ github.token }}
 
       - name: .NET - Setup
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.x
 
       - name: Windows - Test
         if: matrix.os == 'windows-latest'
         shell: pwsh
-        run: |
-          dotnet restore
-          dotnet build --no-restore
-          dotnet test --no-build --verbosity normal
-
-      - name: Ubuntu - Test
-        if: matrix.os == 'ubuntu-latest'
-        shell: bash
         run: |
           dotnet restore
           dotnet build --no-restore
@@ -145,9 +137,9 @@ jobs:
           version="${{ steps.version.outputs.version }}"
           echo "Version: $version"
 
-          dotnet publish src/Sidekick.Protocol/Sidekick.Protocol.csproj -p:PublishProfile=Build
+          dotnet build src/Sidekick.PhotinoBlazor/Sidekick.PhotinoBlazor.csproj -c Release -r linux-x64
 
-          dotnet publish src/Sidekick.Photino/Sidekick.Photino.csproj -c Release -r linux-x64 -o ./Publish
+          dotnet publish src/Sidekick.PhotinoBlazor/Sidekick.PhotinoBlazor.csproj -c Release -r linux-x64 -o ./Publish
           dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r linux-x64 -o ./Publish-Web
 
       - name: Velopack (Ubuntu)

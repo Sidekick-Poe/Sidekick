@@ -45,7 +45,7 @@ public class Program
         var app = photinoBlazorAppBuilder.Build();
 
         app.MainWindow
-            .SetIconFile("wwwroot/favicon.ico")
+            .SetIconFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico"))
             .SetTitle("Sidekick")
             .SetUserAgent("Sidekick")
             .Center()
