@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using ApexCharts;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Photino.Blazor;
 using Sidekick.Apis.GitHub;
@@ -33,7 +34,8 @@ public class Program
     [STAThread]
     static void Main(string[] args)
     {
-        var photinoBlazorAppBuilder = PhotinoBlazorAppBuilder.CreateDefault(args);
+        using var physicalFileProvider = new PhysicalFileProvider(AppDomain.CurrentDomain.BaseDirectory);
+        var photinoBlazorAppBuilder = PhotinoBlazorAppBuilder.CreateDefault(physicalFileProvider, args);
         AddServices(photinoBlazorAppBuilder.Services);
         var serviceProvider = photinoBlazorAppBuilder.Services.BuildServiceProvider();
         var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
