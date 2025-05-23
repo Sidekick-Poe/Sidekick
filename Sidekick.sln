@@ -8,7 +8,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution", "_Solution", "{
 		.filenesting.json = .filenesting.json
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
+		.github\workflows\build-release.yml = .github\workflows\build-release.yml
 		CONTRIBUTING.md = CONTRIBUTING.md
+		Directory.Packages.props = Directory.Packages.props
 		docker-compose.yml = docker-compose.yml
 		Dockerfile = Dockerfile
 		.github\FUNDING.yml = .github\FUNDING.yml
@@ -16,9 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution", "_Solution", "{
 		README.md = README.md
 		.github\release-drafter.yml = .github\release-drafter.yml
 		.github\workflows\tests.yml = .github\workflows\tests.yml
-		.github\workflows\windows-beta.yml = .github\workflows\windows-beta.yml
-		.github\workflows\windows-stable.yml = .github\workflows\windows-stable.yml
-		Directory.Packages.props = Directory.Packages.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}"

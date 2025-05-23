@@ -22,13 +22,13 @@
     <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
   </ItemGroup>
 
-  <Target Name="CopyJavascriptFiles" BeforeTargets="Build">
-    <Copy SourceFiles="node_modules\flowbite\dist\flowbite.min.js" DestinationFolder="wwwroot\js\" />
-  </Target>
-
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="npm install" />
     <Exec Command="npm run build" />
+  </Target>
+
+  <Target Name="CopyJavascriptFiles" AfterTargets="PreBuild">
+    <Copy SourceFiles="node_modules\flowbite\dist\flowbite.min.js" DestinationFolder="wwwroot\js\" />
   </Target>
 
 </Project>

@@ -137,6 +137,8 @@ jobs:
           version="${{ steps.version.outputs.version }}"
           echo "Version: $version"
 
+          dotnet build src/Sidekick.PhotinoBlazor/Sidekick.PhotinoBlazor.csproj -c Release -r linux-x64
+
           dotnet publish src/Sidekick.PhotinoBlazor/Sidekick.PhotinoBlazor.csproj -c Release -r linux-x64 -o ./Publish
           dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r linux-x64 -o ./Publish-Web
 
