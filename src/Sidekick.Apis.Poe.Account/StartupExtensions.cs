@@ -1,10 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Apis.Common.Cloudflare;
-using Sidekick.Apis.Common.States;
 using Sidekick.Apis.Poe.Account.Authentication;
 using Sidekick.Apis.Poe.Account.Clients;
 using Sidekick.Apis.Poe.Account.Stash;
-using Sidekick.Common;
 
 namespace Sidekick.Apis.Poe.Account;
 

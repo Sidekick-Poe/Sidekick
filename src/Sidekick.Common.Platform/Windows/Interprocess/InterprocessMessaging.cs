@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Platform.Interprocess;
+namespace Sidekick.Common.Platform.Windows.Interprocess;
 
 public class InterprocessMessaging
 {

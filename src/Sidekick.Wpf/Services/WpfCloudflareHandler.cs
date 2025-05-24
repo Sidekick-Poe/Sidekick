@@ -1,7 +1,6 @@
 using System.Windows;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Common.Cloudflare;
-using Sidekick.Common.Initialization;
 using Sidekick.Wpf.Cloudflare;
 
 namespace Sidekick.Wpf.Services;

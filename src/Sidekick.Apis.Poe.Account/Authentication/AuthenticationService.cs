@@ -1,5 +1,4 @@
 using System.Net.Http.Headers;
-using System.Text;
 using System.Text.Json;
 using Sidekick.Apis.Poe.Account.Authentication.Models;
 using Sidekick.Apis.Poe.Account.Clients;
@@ -9,6 +8,10 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Account.Authentication;
 
+/// <summary>
+/// Provides functionality to handle user authentication between the Sidekick application and the Path of Exile Account API.
+/// Manages the authentication state, initializes authenticated HTTP requests,  and allows users to authenticate or reauthenticate their accounts.
+/// </summary>
 internal class AuthenticationService : IAuthenticationService, IDisposable
 {
     private readonly ISettingsService settingsService;
@@ -79,20 +82,30 @@ internal class AuthenticationService : IAuthenticationService, IDisposable
         State = Guid.NewGuid().ToString();
         PkcePair = PkceHelper.GeneratePkcePair();
 
-        var authenticationLink = $"{AuthenticationConfig.AuthorizationUrl}?client_id={AuthenticationConfig.ClientId}&response_type=code&scope={AuthenticationConfig.Scopes}&state={State}&redirect_uri={AuthenticationConfig.RedirectUrl}&code_challenge={PkcePair.Challenge}&code_challenge_method=S256";
+        var builder = new UriBuilder(AuthenticationConfig.AuthorizationUrl);
+        var query = System.Web.HttpUtility.ParseQueryString(string.Empty);
+        query["client_id"] = AuthenticationConfig.ClientId;
+        query["response_type"] = "code";
+        query["scope"] = AuthenticationConfig.Scopes;
+        query["state"] = State;
+        query["redirect_uri"] = AuthenticationConfig.RedirectUrl;
+        query["code_challenge"] = PkcePair.Challenge;
+        query["code_challenge_method"] = "S256";
+        builder.Query = query.ToString();
+        var authenticationLink = builder.ToString();
         browserProvider.OpenUri(new Uri(authenticationLink));
 
         AuthenticateTask = new();
         OnStateChanged?.Invoke();
 
         _ = Task.Run(async () =>
-        {
-            await Task.Delay(AuthenticationConfig.AuthenticationTimeoutMs, cancellationToken);
-            AuthenticateTask?.SetCanceled(cancellationToken);
-            AuthenticateTask = null;
-            OnStateChanged?.Invoke();
-        },
-        cancellationToken);
+                     {
+                         await Task.Delay(AuthenticationConfig.AuthenticationTimeoutMs, cancellationToken);
+                         AuthenticateTask?.SetCanceled(cancellationToken);
+                         AuthenticateTask = null;
+                         OnStateChanged?.Invoke();
+                     },
+                     cancellationToken);
 
         await AuthenticateTask.Task;
     }
@@ -136,8 +149,15 @@ internal class AuthenticationService : IAuthenticationService, IDisposable
             return;
         }
 
+        using var requestContent = new FormUrlEncodedContent([
+            new("client_id", AuthenticationConfig.ClientId),
+            new("grant_type", "authorization_code"),
+            new("code", code),
+            new("redirect_uri", AuthenticationConfig.RedirectUrl),
+            new("scope", AuthenticationConfig.Scopes),
+            new("code_verifier", PkcePair?.Verifier ?? string.Empty),
+        ]);
         using var client = httpClientFactory.CreateClient(AccountApiClient.ClientName);
-        using var requestContent = new StringContent($"client_id={AuthenticationConfig.ClientId}&grant_type=authorization_code&code={code}&redirect_uri={AuthenticationConfig.RedirectUrl}&scope={AuthenticationConfig.Scopes}&code_verifier={PkcePair?.Verifier}", Encoding.UTF8, "application/x-www-form-urlencoded");
         var response = await client.PostAsync(AuthenticationConfig.TokenUrl, requestContent, cancellationToken);
         var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
         if (!response.IsSuccessStatusCode)

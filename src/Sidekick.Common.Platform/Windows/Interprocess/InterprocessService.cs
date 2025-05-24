@@ -4,7 +4,7 @@ using PipeMethodCalls;
 using PipeMethodCalls.NetJson;
 using Sidekick.Common.Settings;
 
-namespace Sidekick.Common.Platform.Interprocess;
+namespace Sidekick.Common.Platform.Windows.Interprocess;
 
 public class InterprocessService : IInterprocessService, IDisposable
 {

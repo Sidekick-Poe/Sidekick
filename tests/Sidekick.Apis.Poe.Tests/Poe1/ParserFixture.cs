@@ -1,6 +1,7 @@
 using Bunit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Sidekick.Apis.Common;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.PoeNinja;
@@ -33,14 +34,16 @@ public class ParserFixture : IAsyncLifetime
         ctx.Services.AddLocalization();
 
         ctx.Services
+
             // Building blocks
             .AddSidekickCommon()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
 
-                // Apis
-                .AddSidekickPoeTradeApi()
-                .AddSidekickPoeNinjaApi()
-                .AddSidekickPoeWikiApi();
+            // Apis
+            .AddSidekickCommonApi()
+            .AddSidekickPoeTradeApi()
+            .AddSidekickPoeNinjaApi()
+            .AddSidekickPoeWikiApi();
 
         var settingsService = ctx.Services.GetRequiredService<ISettingsService>();
         await settingsService.Set(SettingKeys.LanguageParser, "en");

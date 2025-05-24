@@ -17,7 +17,7 @@ using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Database;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Interprocess;
+using Sidekick.Common.Platform.Windows.Interprocess;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
@@ -81,7 +81,6 @@ public class Program
             .AddSidekickCommon()
             .AddSidekickCommonBlazor()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
-            .AddSidekickCommonInterprocess()
             .AddSidekickCommonUi()
 
             // Apis
