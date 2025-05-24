@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Web.WebView2.Core;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
+using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe2Scout;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;

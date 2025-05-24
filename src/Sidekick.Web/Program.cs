@@ -2,6 +2,7 @@ using System.Diagnostics;
 using ApexCharts;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
+using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe2Scout;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;

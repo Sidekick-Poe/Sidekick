@@ -1,7 +1,8 @@
 using Bunit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Modifiers;
+using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;

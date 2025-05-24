@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Media;
 using Microsoft.Extensions.Logging;
 using Microsoft.Web.WebView2.Core;
-using Sidekick.Apis.Poe.Clients.Cloudflare;
+using Sidekick.Apis.Common.Cloudflare;
 using Sidekick.Wpf.Helpers;
 using Application=System.Windows.Application;
 
