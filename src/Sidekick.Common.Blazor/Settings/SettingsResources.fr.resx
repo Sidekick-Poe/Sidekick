@@ -129,9 +129,6 @@
   <data name="General" xml:space="preserve">
     <value>Général</value>
   </data>
-  <data name="General_RetainClipboard" xml:space="preserve">
-    <value>Conserver la valeur de votre presse-papier (clipboard)</value>
-  </data>
   <data name="Keybindings" xml:space="preserve">
     <value>Raccourcis clavier</value>
   </data>
@@ -144,26 +141,14 @@
   <data name="Key_Active" xml:space="preserve">
     <value>&lt;Appuyez sur une touche&gt;</value>
   </data>
-  <data name="Key_Close" xml:space="preserve">
-    <value>Fermer la fenêtre</value>
-  </data>
-  <data name="Key_FindItems" xml:space="preserve">
-    <value>Rechercher des items</value>
-  </data>
   <data name="Key_Unset" xml:space="preserve">
     <value>&lt;Non défini&gt;</value>
   </data>
   <data name="Language_Parser" xml:space="preserve">
     <value>Langue du jeu</value>
   </data>
-  <data name="Language_UI" xml:space="preserve">
-    <value>Langue de l'interface</value>
-  </data>
   <data name="Price_Check" xml:space="preserve">
     <value>Vérificateur de prix</value>
-  </data>
-  <data name="OverlayCloseWithMouse" xml:space="preserve">
-    <value>Fermer la fenêtre sur un clic de la souris</value>
   </data>
   <data name="PriceCheck_Key_Check" xml:space="preserve">
     <value>Vérifier les prix</value>
@@ -183,18 +168,6 @@
   <data name="Title" xml:space="preserve">
     <value>Configurations</value>
   </data>
-  <data name="Wiki" xml:space="preserve">
-    <value>Configurations Wiki</value>
-  </data>
-  <data name="Wiki_Key_Open" xml:space="preserve">
-    <value>Ouvrir le Wiki</value>
-  </data>
-  <data name="Wiki_Preferred" xml:space="preserve">
-    <value>Wiki de préférence</value>
-  </data>
-  <data name="EscapeClosesOverlays" xml:space="preserve">
-    <value>Fermer la fenêtre avec la touche Échapper</value>
-  </data>
   <data name="Restore_Defaults" xml:space="preserve">
     <value>Restaurer les valeurs par défaut</value>
   </data>
@@ -203,9 +176,6 @@
   </data>
   <data name="Wealth_Key_Open" xml:space="preserve">
     <value>Ouvrir le Wealth Tracker</value>
-  </data>
-  <data name="UseInvariantForTradeResults" xml:space="preserve">
-    <value>Utiliser le site d'échange anglais</value>
   </data>
   <data name="Map_Check" xml:space="preserve">
     <value>Vérificateur de carte</value>
@@ -240,26 +210,11 @@
   <data name="About" xml:space="preserve">
     <value>À propos</value>
   </data>
-  <data name="Official_Website" xml:space="preserve">
-    <value>Site officiel</value>
-  </data>
-  <data name="GitHub_Repository" xml:space="preserve">
-    <value>GitHub Repository</value>
-  </data>
-  <data name="Open_Settings_Folder" xml:space="preserve">
-    <value>Ouvrir le répertoire des configurations</value>
-  </data>
   <data name="poedb" xml:space="preserve">
     <value />
   </data>
-  <data name="SaveWindowPositions" xml:space="preserve">
-    <value>Conserver la position des fenêtres. Si désactivé, les fenêtres seront centrées.</value>
-  </data>
   <data name="Keybind" xml:space="preserve">
     <value>Raccourci</value>
-  </data>
-  <data name="UseInvariantForTradeResultsTip" xml:space="preserve">
-    <value>Ce n'est pas fiable pour certains items uniques, mais c'est une solution de contournement.</value>
   </data>
   <data name="Player_Status" xml:space="preserve">
     <value>Statut du joueur</value>
@@ -278,12 +233,6 @@
   </data>
   <data name="OpenHomeOnLaunch" xml:space="preserve">
     <value>Affiché cette fenêtre au démarrage</value>
-  </data>
-  <data name="Zoom" xml:space="preserve">
-    <value>Zoom</value>
-  </data>
-  <data name="Zoom_Hint" xml:space="preserve">
-    <value>Si le zoom est modifié, il est recommandé d'ajuster également la taille des fenêtres.</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Configurations</value>
@@ -309,20 +258,11 @@
   <data name="PriceCheck_Enable_Filters_By_Regex" xml:space="preserve">
     <value>Cocher les filtres correspondant au regex</value>
   </data>
-  <data name="Key_Open_In_Craft_Of_Exile" xml:space="preserve">
-    <value>Ouvrir l'item dans CraftOfExile.com</value>
-  </data>
   <data name="Setting_Rate_Limit_Hint" xml:space="preserve">
     <value>Il est recommandé de laisser désactivé afin de ne pas dépasser la limite de taux de l'API.</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Restaurer</value>
-  </data>
-  <data name="MouseWheelNavigateStash" xml:space="preserve">
-    <value>Ctrl+Roulette de souris pour naviguer dans l'inventaire</value>
-  </data>
-  <data name="MouseWheelNavigateStashReverse" xml:space="preserve">
-    <value>Navigation inversée dans l'inventaire avec la roulette de souris</value>
   </data>
   <data name="PriceCheck_Automatically_Load_More_Data" xml:space="preserve">
     <value>Charger automatiquement plus de résultats lors du défilement vers le bas</value>

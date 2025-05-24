@@ -129,9 +129,6 @@
   <data name="General" xml:space="preserve">
     <value>일반</value>
   </data>
-  <data name="General_RetainClipboard" xml:space="preserve">
-    <value>복사한 내용 저장</value>
-  </data>
   <data name="Keybindings" xml:space="preserve">
     <value>키바인딩</value>
   </data>
@@ -141,26 +138,14 @@
   <data name="Key_Active" xml:space="preserve">
     <value>키를 입력하세요</value>
   </data>
-  <data name="Key_Close" xml:space="preserve">
-    <value>창 닫기</value>
-  </data>
-  <data name="Key_FindItems" xml:space="preserve">
-    <value>아이템 찾기</value>
-  </data>
   <data name="Key_Unset" xml:space="preserve">
     <value>&lt;지정 없음&gt;</value>
   </data>
   <data name="Language_Parser" xml:space="preserve">
     <value>게임 언어</value>
   </data>
-  <data name="Language_UI" xml:space="preserve">
-    <value>UI 언어</value>
-  </data>
   <data name="Price_Check" xml:space="preserve">
     <value>가격 검색</value>
-  </data>
-  <data name="OverlayCloseWithMouse" xml:space="preserve">
-    <value>마우스를 클릭해 가격 검색창 닫기</value>
   </data>
   <data name="PriceCheck_Key_Check" xml:space="preserve">
     <value>가격 검색</value>
@@ -177,18 +162,6 @@
   <data name="Title" xml:space="preserve">
     <value>세팅</value>
   </data>
-  <data name="Wiki" xml:space="preserve">
-    <value>위키 설정</value>
-  </data>
-  <data name="Wiki_Key_Open" xml:space="preserve">
-    <value>위키 열기</value>
-  </data>
-  <data name="Wiki_Preferred" xml:space="preserve">
-    <value>선호하는 위키를 선택하세요</value>
-  </data>
-  <data name="EscapeClosesOverlays" xml:space="preserve">
-    <value>설정한 키로 현재창 닫기</value>
-  </data>
   <data name="Restore_Defaults" xml:space="preserve">
     <value>기본값으로 되돌리기</value>
   </data>
@@ -197,9 +170,6 @@
   </data>
   <data name="Wealth_Key_Open" xml:space="preserve">
     <value>Wealth Tracker 열기</value>
-  </data>
-  <data name="UseInvariantForTradeResults" xml:space="preserve">
-    <value>영문 거래소를 이용하기</value>
   </data>
   <data name="Map_Check" xml:space="preserve">
     <value>지도 체크</value>
@@ -222,16 +192,7 @@
   <data name="PriceCheck_Enable_Filters_By_Regex" xml:space="preserve">
     <value />
   </data>
-  <data name="Key_Open_In_Craft_Of_Exile" xml:space="preserve">
-    <value />
-  </data>
   <data name="Setting_Rate_Limit_Hint" xml:space="preserve">
-    <value />
-  </data>
-  <data name="MouseWheelNavigateStash" xml:space="preserve">
-    <value />
-  </data>
-  <data name="MouseWheelNavigateStashReverse" xml:space="preserve">
     <value />
   </data>
   <data name="PriceCheck_Automatically_Load_More_Data" xml:space="preserve">

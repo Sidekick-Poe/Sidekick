@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Official_Website" xml:space="preserve">
+    <value>Official website</value>
+  </data>
+    <data name="GitHub_Repository" xml:space="preserve">
+    <value>GitHub Repository</value>
+  </data>
+    <data name="Open_Settings_Folder" xml:space="preserve">
+    <value>Open the settings folder</value>
+  </data>
+    <data name="General_RetainClipboard" xml:space="preserve">
+    <value>Retain Clipboard Data</value>
+  </data>
+    <data name="Key_Close" xml:space="preserve">
+    <value>Close Window</value>
+  </data>
+    <data name="SaveWindowPositions" xml:space="preserve">
+    <value>Save the positions of the overlays. If unchecked, they will be centered.</value>
+  </data>
+    <data name="OverlayCloseWithMouse" xml:space="preserve">
+    <value>Close Overlay with Mouse Click</value>
+  </data>
+    <data name="EscapeClosesOverlays" xml:space="preserve">
+    <value>Close Overlay with Escape</value>
+  </data>
+    <data name="Language_UI" xml:space="preserve">
+    <value>UI Language</value>
+  </data>
+    <data name="Zoom" xml:space="preserve">
+    <value>Zoom</value>
+  </data>
+    <data name="Zoom_Hint" xml:space="preserve">
+    <value>When changing the zoom setting, it is recommended to adjust the window size as well.</value>
+  </data>
+    <data name="UseInvariantForTradeResults" xml:space="preserve">
+    <value>Use English Trade Website</value>
+  </data>
+    <data name="UseInvariantForTradeResultsTip" xml:space="preserve">
+    <value>This is unreliable for some unique items, but it's a workaround.</value>
+  </data>
+    <data name="Wiki_Key_Open" xml:space="preserve">
+    <value>Open Wiki</value>
+  </data>
+    <data name="Wiki" xml:space="preserve">
+    <value>Wiki Settings</value>
+  </data>
+    <data name="MouseWheelNavigateStash" xml:space="preserve">
+    <value>Ctrl+Mouse Wheel to navigate the stash</value>
+  </data>
+    <data name="MouseWheelNavigateStashReverse" xml:space="preserve">
+    <value>Reverse mouse wheel stash navigation</value>
+  </data>
+    <data name="Key_FindItems" xml:space="preserve">
+    <value>Find Items</value>
+  </data>
+    <data name="Key_Open_In_Craft_Of_Exile" xml:space="preserve">
+    <value>Open item in CraftOfExile.com</value>
+  </data>
+    <data name="Wiki_Preferred" xml:space="preserve">
+    <value>Preferred Wiki</value>
+  </data>
+</root>

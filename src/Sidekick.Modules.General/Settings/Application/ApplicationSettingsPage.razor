@@ -9,9 +9,10 @@
 @using Sidekick.Common.Ui.Buttons
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.App
+@using Sidekick.Modules.General.Localization
 
 <AppContainer>
-    <FormFieldset Legend="@Resources["General_Settings"]">
+    <FormFieldset Legend="@SettingResources["General_Settings"]">
         <InterfaceLanguageEditor/>
         <ZoomEditor/>
         @if (ApplicationService.SupportsKeybinds)
@@ -23,7 +24,7 @@
 
     @if (ApplicationService.SupportsKeybinds)
     {
-        <FormFieldset Legend="@Resources["Overlay_Settings"]">
+        <FormFieldset Legend="@SettingResources["Overlay_Settings"]">
             <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
             <SettingCheckboxEditor SettingKey="@SettingKeys.SaveWindowPositions"
                                    Label="@Resources["SaveWindowPositions"]"/>
@@ -36,14 +37,15 @@
 
     <div class="flex justify-center mb-1">
         <ButtonPrimary Disabled="!AreSettingsModified"
-                       OnClick="RestoreDefaults">@Resources["Restore_Defaults"]</ButtonPrimary>
+                       OnClick="RestoreDefaults">@SettingResources["Restore_Defaults"]</ButtonPrimary>
     </div>
 </AppContainer>
 
 @page "/settings/application"
 @layout MainWindowLayout
 @implements IDisposable
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<SettingsResources> SettingResources
+@inject IStringLocalizer<GeneralResources> Resources
 @inject IApplicationService ApplicationService
 @inject ICurrentView CurrentView
 @inject ISettingsService SettingsService

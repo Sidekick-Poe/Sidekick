@@ -129,9 +129,6 @@
   <data name="General" xml:space="preserve">
     <value>General</value>
   </data>
-  <data name="General_RetainClipboard" xml:space="preserve">
-    <value>Retain Clipboard Data</value>
-  </data>
   <data name="Keybindings" xml:space="preserve">
     <value>Keybindings</value>
   </data>
@@ -144,26 +141,14 @@
   <data name="Key_Active" xml:space="preserve">
     <value>&lt;Press a key&gt;</value>
   </data>
-  <data name="Key_Close" xml:space="preserve">
-    <value>Close Window</value>
-  </data>
-  <data name="Key_FindItems" xml:space="preserve">
-    <value>Find Items</value>
-  </data>
   <data name="Key_Unset" xml:space="preserve">
     <value>&lt;Unset&gt;</value>
   </data>
   <data name="Language_Parser" xml:space="preserve">
     <value>Game Language</value>
   </data>
-  <data name="Language_UI" xml:space="preserve">
-    <value>UI Language</value>
-  </data>
   <data name="Price_Check" xml:space="preserve">
     <value>Price Check</value>
-  </data>
-  <data name="OverlayCloseWithMouse" xml:space="preserve">
-    <value>Close Overlay with Mouse Click</value>
   </data>
   <data name="PriceCheck_Key_Check" xml:space="preserve">
     <value>Check Prices</value>
@@ -183,18 +168,6 @@
   <data name="Title" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="Wiki" xml:space="preserve">
-    <value>Wiki Settings</value>
-  </data>
-  <data name="Wiki_Key_Open" xml:space="preserve">
-    <value>Open Wiki</value>
-  </data>
-  <data name="Wiki_Preferred" xml:space="preserve">
-    <value>Preferred Wiki</value>
-  </data>
-  <data name="EscapeClosesOverlays" xml:space="preserve">
-    <value>Close Overlay with Escape</value>
-  </data>
   <data name="Restore_Defaults" xml:space="preserve">
     <value>Restore Defaults</value>
   </data>
@@ -203,9 +176,6 @@
   </data>
   <data name="Wealth_Key_Open" xml:space="preserve">
     <value>Open Wealth Tracker</value>
-  </data>
-  <data name="UseInvariantForTradeResults" xml:space="preserve">
-    <value>Use English Trade Website</value>
   </data>
   <data name="Map_Check" xml:space="preserve">
     <value>Map Check</value>
@@ -248,15 +218,6 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
-  <data name="Official_Website" xml:space="preserve">
-    <value>Official website</value>
-  </data>
-  <data name="GitHub_Repository" xml:space="preserve">
-    <value>GitHub Repository</value>
-  </data>
-  <data name="Open_Settings_Folder" xml:space="preserve">
-    <value>Open the settings folder</value>
-  </data>
   <data name="poewiki" xml:space="preserve">
     <value>poewiki.net / poe2wiki.net</value>
     <comment>Used in PreferredWikiEditor.razor</comment>
@@ -265,14 +226,8 @@
     <value>poedb.tw / poe2db.tw</value>
     <comment>Used in PreferredWikiEditor.razor</comment>
   </data>
-  <data name="SaveWindowPositions" xml:space="preserve">
-    <value>Save the positions of the overlays. If unchecked, they will be centered.</value>
-  </data>
   <data name="Keybind" xml:space="preserve">
     <value>Keybind</value>
-  </data>
-  <data name="UseInvariantForTradeResultsTip" xml:space="preserve">
-    <value>This is unreliable for some unique items, but it's a workaround.</value>
   </data>
   <data name="Player_Status" xml:space="preserve">
     <value>Player Status</value>
@@ -291,12 +246,6 @@
   </data>
   <data name="OpenHomeOnLaunch" xml:space="preserve">
     <value>Show this window on launch</value>
-  </data>
-  <data name="Zoom" xml:space="preserve">
-    <value>Zoom</value>
-  </data>
-  <data name="Zoom_Hint" xml:space="preserve">
-    <value>When changing the zoom setting, it is recommended to adjust the window size as well.</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
@@ -322,20 +271,11 @@
   <data name="PriceCheck_Enable_Filters_By_Regex" xml:space="preserve">
     <value>Pre-check filters matching this regex</value>
   </data>
-  <data name="Key_Open_In_Craft_Of_Exile" xml:space="preserve">
-    <value>Open item in CraftOfExile.com</value>
-  </data>
   <data name="Setting_Rate_Limit_Hint" xml:space="preserve">
     <value>It is recommended to leave disabled to avoid exceeding the API rate limit.</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
-  </data>
-  <data name="MouseWheelNavigateStash" xml:space="preserve">
-    <value>Ctrl+Mouse Wheel to navigate the stash</value>
-  </data>
-  <data name="MouseWheelNavigateStashReverse" xml:space="preserve">
-    <value>Reverse mouse wheel stash navigation</value>
   </data>
   <data name="PriceCheck_Automatically_Load_More_Data" xml:space="preserve">
     <value>Automatically load more results when scrolling down</value>

@@ -5,6 +5,7 @@
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.Icons
 @using Sidekick.Common.Ui.Buttons
+@using Sidekick.Modules.General.Localization
 
 <FormSelect Value="@Value"
             ValueChanged="ValueChanged"
@@ -14,7 +15,7 @@
         <div class="flex ml-1 gap-1 align-center">
             @if (ShowResetButton)
             {
-                <ButtonIcon OnClick="Reset" title="@Resources["Reset"]">
+                <ButtonIcon OnClick="Reset" title="@SettingResources["Reset"]">
                     <Icon Svg="@UiIcons.Reset"/>
                 </ButtonIcon>
             }
@@ -22,7 +23,8 @@
     </AdornmentContent>
 </FormSelect>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<SettingsResources> SettingResources
+@inject IStringLocalizer<GeneralResources> Resources
 @inject ISettingsService SettingsService
 @implements IDisposable
 

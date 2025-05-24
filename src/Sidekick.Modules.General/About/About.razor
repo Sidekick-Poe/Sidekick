@@ -2,7 +2,6 @@
 @layout MainWindowLayout
 @using Microsoft.Extensions.Localization
 @using Sidekick.Common.Blazor.Components
-@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Browser
 @using Sidekick.Common.Folder
 @using Sidekick.Common.Ui.Views
@@ -10,9 +9,10 @@
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.Layouts
 @using Sidekick.Common.Ui.Buttons
+@using Sidekick.Modules.General.Localization
 
 <AppContainer>
-    <FormFieldset Legend="@($"{Resources["Sidekick"]} - {Title}")">
+    <FormFieldset Legend="@($"Sidekick - {Title}")">
         <div>
             <div class="mb-3"><span class="text-lg underline text-blue-500 cursor-pointer" onclick="@(() => BrowserProvider.OpenSidekickWebsite())">@Resources["Official_Website"]</span></div>
             <div class="mb-3"><span class="text-lg underline text-blue-500 cursor-pointer" onclick="@(() => BrowserProvider.OpenGitHubRepository())">@Resources["GitHub_Repository"]</span></div>
@@ -25,7 +25,7 @@
     </FormFieldset>
 </AppContainer>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<GeneralResources> Resources
 @inject IBrowserProvider BrowserProvider
 @inject IFolderProvider FolderProvider
 @inject ICurrentView CurrentView

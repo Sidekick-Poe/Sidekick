@@ -9,13 +9,13 @@
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.App
 @using Sidekick.Common.Ui.Buttons
-@using Sidekick.Common.Blazor.Settings.Game
 @using Sidekick.Common.Cache
 @using Sidekick.Common.Game.Languages
+@using Sidekick.Modules.General.Localization
 @inject IApplicationService ApplicationService
 
 <AppContainer>
-    <FormFieldset Legend="@Resources["General_Settings"]">
+    <FormFieldset Legend="@SettingResources["General_Settings"]">
         <LanguageParserEditor />
 
         @if (!LanguageProvider.IsEnglish())
@@ -29,7 +29,7 @@
         }
 
         <div class="py-2">
-            <ButtonPrimary OnClick="ResetCache">@Resources["Reset_Cache"]</ButtonPrimary>
+            <ButtonPrimary OnClick="ResetCache">@SettingResources["Reset_Cache"]</ButtonPrimary>
         </div>
     </FormFieldset>
 
@@ -41,7 +41,7 @@
         </FormFieldset>
     }
 
-    <FormFieldset Legend="@Resources["Other_Settings"]">
+    <FormFieldset Legend="@SettingResources["Other_Settings"]">
         @if (ApplicationService.SupportsKeybinds)
         {
             <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStash" Label="@Resources["MouseWheelNavigateStash"]" />
@@ -53,14 +53,15 @@
     </FormFieldset>
 
     <div class="flex justify-center mb-1">
-        <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@Resources["Restore_Defaults"]</ButtonPrimary>
+        <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@SettingResources["Restore_Defaults"]</ButtonPrimary>
     </div>
 
 </AppContainer>
 
 @page "/settings/game"
 @layout MainWindowLayout
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<SettingsResources> SettingResources
+@inject IStringLocalizer<GeneralResources> Resources
 @inject ICurrentView CurrentView
 @inject ISettingsService SettingsService
 @inject IGameLanguageProvider LanguageProvider

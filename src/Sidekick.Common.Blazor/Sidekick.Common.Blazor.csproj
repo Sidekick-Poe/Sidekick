@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Settings\About\About.razor" />
+    <UpToDateCheckInput Remove="Settings\Wealth\Wealth.razor" />
   </ItemGroup>
 
 </Project>
