@@ -1,17 +1,19 @@
 @import 'flowbite/src/themes/default' layer(base);
 
 @import './fonts.css' layer(base);
-@import './item-headers.css' layer(base);
-@import './item-logbook-factions.css' layer(base);
-@import './item-sockets.css' layer(base);
-@import './poe.css' layer(base);
+@import './item-headers.css' layer(components);
+@import './item-logbook-factions.css' layer(components);
+@import './item-sockets.css' layer(components);
+@import './poe.css' layer(components);
 
-@import 'tailwindcss';
+@import "tailwindcss" source(none);
 
 @plugin 'flowbite/plugin';
 
 @source '../../**/*.{razor,html,cshtml,cs}';
 @source '../**/*.js';
+@source not "../node_modules";
+@source not "../wwwroot";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
