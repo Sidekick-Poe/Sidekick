@@ -19,9 +19,4 @@
     <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Settings\About\About.razor" />
-    <UpToDateCheckInput Remove="Settings\Wealth\Wealth.razor" />
-  </ItemGroup>
-
 </Project>

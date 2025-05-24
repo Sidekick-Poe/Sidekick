@@ -11,28 +11,4 @@
     <ProjectReference Include="..\Sidekick.Common.Blazor\Sidekick.Common.Blazor.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Localization\GeneralResources.fr.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>GeneralResources.fr.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Localization\GeneralResources.ko.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>GeneralResources.ko.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Localization\GeneralResources.fr.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>GeneralResources.fr.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Localization\GeneralResources.ko.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>GeneralResources.ko.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
 </Project>
