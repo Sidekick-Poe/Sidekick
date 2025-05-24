@@ -19,8 +19,4 @@
     <ProjectReference Include="..\Sidekick.Common.Database\Sidekick.Common.Database.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <AdditionalFiles Include="Settings\SettingsPage.razor" />
-  </ItemGroup>
-
 </Project>
