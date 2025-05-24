@@ -24,12 +24,12 @@ public static class StartupExtensions
 {
     public static IServiceCollection AddSidekickPoeApi(this IServiceCollection services)
     {
-        services.AddTransient<PoeTradeHandler>();
+        services.AddTransient<TradeApiHandler>();
 
-        services.AddHttpClient(PoeTradeClient.ClientName)
-            .AddHttpMessageHandler<PoeTradeHandler>();
+        services.AddHttpClient(TradeApiApiClient.ClientName)
+            .AddHttpMessageHandler<TradeApiHandler>();
 
-        services.AddTransient<IPoeTradeClient, PoeTradeClient>();
+        services.AddTransient<ITradeApiClient, TradeApiApiClient>();
         services.AddTransient<PoeResources>();
 
         services.AddSingleton<ITradeSearchService, TradeSearchService>();

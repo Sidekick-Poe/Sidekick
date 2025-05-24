@@ -8,7 +8,7 @@ using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Account.Stash;
 
 public class StashService(
-    IPoeApiClient client,
+    IAccountApiClient client,
     ISettingsService settingsService,
     ILogger<StashService> logger) : IStashService
 {

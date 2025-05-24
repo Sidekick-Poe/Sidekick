@@ -11,13 +11,13 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Clients;
 
-public class PoeTradeHandler
+public class TradeApiHandler
 (
     ICloudflareService cloudflareService,
     ApiLimiterProvider limitProvider,
     ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider,
-    ILogger<PoeTradeHandler> logger
+    ILogger<TradeApiHandler> logger
 ) : DelegatingHandler
 {
     private JsonSerializerOptions JsonSerializerOptions { get; } = new()
@@ -31,7 +31,7 @@ public class PoeTradeHandler
         request.Headers.TryAddWithoutValidation("X-Powered-By", "Sidekick");
         await cloudflareService.InitializeHttpRequest(request);
 
-        var limitHandler = limitProvider.Get(PoeTradeClient.ClientName);
+        var limitHandler = limitProvider.Get(TradeApiApiClient.ClientName);
         using var lease = await limitHandler.Lease(cancellationToken: cancellationToken);
 
         var response = await base.SendAsync(request, cancellationToken);

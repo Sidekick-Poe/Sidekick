@@ -136,7 +136,7 @@ internal class AuthenticationService : IAuthenticationService, IDisposable
             return;
         }
 
-        using var client = httpClientFactory.CreateClient(PoeApiClient.ClientName);
+        using var client = httpClientFactory.CreateClient(AccountApiClient.ClientName);
         using var requestContent = new StringContent($"client_id={AuthenticationConfig.ClientId}&grant_type=authorization_code&code={code}&redirect_uri={AuthenticationConfig.RedirectUrl}&scope={AuthenticationConfig.Scopes}&code_verifier={PkcePair?.Verifier}", Encoding.UTF8, "application/x-www-form-urlencoded");
         var response = await client.PostAsync(AuthenticationConfig.TokenUrl, requestContent, cancellationToken);
         var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);

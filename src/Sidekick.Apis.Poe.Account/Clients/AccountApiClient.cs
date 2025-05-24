@@ -1,17 +1,17 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Account.Clients.Exceptions;
+using Sidekick.Apis.Common.Exceptions;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Account.Clients;
 
-public class PoeApiClient
+public class AccountApiClient
 (
-    ILogger<PoeApiClient> logger,
+    ILogger<AccountApiClient> logger,
     IHttpClientFactory httpClientFactory,
     ISettingsService settingsService
-) : IPoeApiClient
+) : IAccountApiClient
 {
     public const string ClientName = "PoeClient";
     private const string PoeApiUrl = "https://api.pathofexile.com/";

@@ -8,22 +8,22 @@ using Sidekick.Common.Exceptions;
 
 namespace Sidekick.Apis.Poe.Account.Clients;
 
-public class PoeApiHandler
+public class AccountApiHandler
 (
     ICloudflareService cloudflareService,
     IAuthenticationService authenticationService,
     IApiStateProvider apiStateProvider,
     ApiLimiterProvider limitProvider,
-    ILogger<PoeApiHandler> logger
+    ILogger<AccountApiHandler> logger
 ) : DelegatingHandler
 {
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        apiStateProvider.Update(PoeApiClient.ClientName, ApiState.Throttled);
+        apiStateProvider.Update(AccountApiClient.ClientName, ApiState.Throttled);
 
-        var limitHandler = limitProvider.Get(PoeApiClient.ClientName);
+        var limitHandler = limitProvider.Get(AccountApiClient.ClientName);
         using var lease = await limitHandler.Lease(cancellationToken: cancellationToken);
-        apiStateProvider.Update(PoeApiClient.ClientName, ApiState.Working);
+        apiStateProvider.Update(AccountApiClient.ClientName, ApiState.Working);
 
         request.Headers.TryAddWithoutValidation("X-Powered-By", "Sidekick");
         await cloudflareService.InitializeHttpRequest(request);

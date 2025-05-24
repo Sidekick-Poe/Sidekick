@@ -15,7 +15,7 @@ namespace Sidekick.Apis.Poe.Trade.Modifiers;
 public class ModifierProvider
 (
     ICacheProvider cacheProvider,
-    IPoeTradeClient poeTradeClient,
+    ITradeApiClient tradeApiClient,
     IInvariantModifierProvider invariantModifierProvider,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
@@ -61,7 +61,7 @@ public class ModifierProvider
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_Modifiers";
-        var apiCategories = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.Language, "data/stats"), (cache) => cache.Result.Any());
+        var apiCategories = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.Fetch<ApiCategory>(game, gameLanguageProvider.Language, "data/stats"), (cache) => cache.Result.Any());
 
         foreach (var apiCategory in apiCategories.Result)
         {

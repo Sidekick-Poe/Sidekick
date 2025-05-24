@@ -13,7 +13,7 @@ namespace Sidekick.Apis.Poe.Trade.Static;
 public class ItemStaticDataProvider
 (
     ICacheProvider cacheProvider,
-    IPoeTradeClient poeTradeClient,
+    ITradeApiClient tradeApiClient,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService
 ) : IItemStaticDataProvider
@@ -33,7 +33,7 @@ public class ItemStaticDataProvider
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_StaticData";
-        var result = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<StaticItemCategory>(game, gameLanguageProvider.Language, "data/static"), (cache) => cache.Result.Any());
+        var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.Fetch<StaticItemCategory>(game, gameLanguageProvider.Language, "data/static"), (cache) => cache.Result.Any());
 
         ByTexts.Clear();
         ByIds.Clear();

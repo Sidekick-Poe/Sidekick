@@ -8,9 +8,9 @@ using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Clients;
 
-public class PoeTradeClient(
-    ILogger<PoeTradeClient> logger,
-    IHttpClientFactory httpClientFactory) : IPoeTradeClient
+public class TradeApiApiClient(
+    ILogger<TradeApiApiClient> logger,
+    IHttpClientFactory httpClientFactory) : ITradeApiClient
 {
     public const string ClientName = "PoeTradeClient";
 

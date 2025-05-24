@@ -13,12 +13,12 @@ public static class StartupExtensions
     public static IServiceCollection AddSidekickPoeAccountApi(this IServiceCollection services)
     {
         services.AddSingleton<IAuthenticationService, AuthenticationService>();
-        services.AddSingleton<IPoeApiClient, PoeApiClient>();
+        services.AddSingleton<IAccountApiClient, AccountApiClient>();
         services.AddSingleton<IStashService, StashService>();
-        services.AddTransient<PoeApiHandler>();
+        services.AddTransient<AccountApiHandler>();
 
-        services.AddHttpClient(PoeApiClient.ClientName)
-            .AddHttpMessageHandler<PoeApiHandler>();
+        services.AddHttpClient(AccountApiClient.ClientName)
+            .AddHttpMessageHandler<AccountApiHandler>();
 
         return services;
     }

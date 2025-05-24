@@ -12,7 +12,7 @@ namespace Sidekick.Apis.Poe.Trade.Modifiers;
 public class InvariantModifierProvider
 (
     ICacheProvider cacheProvider,
-    IPoeTradeClient poeTradeClient,
+    ITradeApiClient tradeApiClient,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService
 ) : IInvariantModifierProvider
@@ -121,7 +121,7 @@ public class InvariantModifierProvider
         var apiCategories = await cacheProvider.GetOrSet(cacheKey,
                                             async () =>
                                             {
-                                                var result = await poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "data/stats");
+                                                var result = await tradeApiClient.Fetch<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "data/stats");
                                                 return result.Result;
                                             }, (cache) => cache.Any());
 

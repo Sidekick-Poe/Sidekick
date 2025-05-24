@@ -16,7 +16,7 @@ namespace Sidekick.Apis.Poe.Trade.Items;
 public class ApiItemProvider
 (
     ICacheProvider cacheProvider,
-    IPoeTradeClient poeTradeClient,
+    ITradeApiClient tradeApiClient,
     ILogger<ApiItemProvider> logger,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService
@@ -43,7 +43,7 @@ public class ApiItemProvider
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_Items";
 
-        var result = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<ApiCategory>(game, gameLanguageProvider.Language, "data/items"), (cache) => cache.Result.Any());
+        var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.Fetch<ApiCategory>(game, gameLanguageProvider.Language, "data/items"), (cache) => cache.Result.Any());
 
         var categories = game switch
         {

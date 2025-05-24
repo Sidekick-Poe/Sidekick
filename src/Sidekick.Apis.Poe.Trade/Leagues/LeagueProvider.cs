@@ -10,7 +10,7 @@ namespace Sidekick.Apis.Poe.Trade.Leagues;
 
 public class LeagueProvider(
     ICacheProvider cacheProvider,
-    IPoeTradeClient poeTradeClient,
+    ITradeApiClient tradeApiClient,
     IGameLanguageProvider gameLanguageProvider,
     ILogger<LeagueProvider> logger) : ILeagueProvider
 {
@@ -63,7 +63,7 @@ public class LeagueProvider(
 
     private async Task<List<League>> Fetch(GameType game)
     {
-        var response = await poeTradeClient.Fetch<ApiLeague>(game, gameLanguageProvider.InvariantLanguage, "data/leagues");
+        var response = await tradeApiClient.Fetch<ApiLeague>(game, gameLanguageProvider.InvariantLanguage, "data/leagues");
         var leagues = new List<League>();
         foreach (var apiLeague in response.Result)
         {

@@ -9,7 +9,7 @@
 
             <div class="d-flex flex-nowrap align-center justify-center" style="width: 100%;">
                 <div class="mr-2"><strong>API Status</strong></div>
-                @switch (ApiStateProvider.Get(PoeApiClient.ClientName))
+                @switch (ApiStateProvider.Get(AccountApiClient.ClientName))
                 {
                     case ApiState.Working:
                         <div>Working</div>

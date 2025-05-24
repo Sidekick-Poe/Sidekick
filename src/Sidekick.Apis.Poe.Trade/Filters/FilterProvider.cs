@@ -11,7 +11,7 @@ namespace Sidekick.Apis.Poe.Trade.Filters;
 
 public class FilterProvider
 (
-    IPoeTradeClient poeTradeClient,
+    ITradeApiClient tradeApiClient,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
     ICacheProvider cacheProvider
@@ -33,7 +33,7 @@ public class FilterProvider
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_Filters";
 
-        var result = await cacheProvider.GetOrSet(cacheKey, () => poeTradeClient.Fetch<ApiFilter>(game, gameLanguageProvider.Language, "data/filters"),
+        var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.Fetch<ApiFilter>(game, gameLanguageProvider.Language, "data/filters"),
                                                   (cache) =>
                                                   {
                                                       return cache.Result.Any(x => x.Id == "type_filters") && cache.Result.Any(x => x.Id == "trade_filters");

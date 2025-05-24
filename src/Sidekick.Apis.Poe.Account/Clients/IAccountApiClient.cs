@@ -1,6 +1,6 @@
 namespace Sidekick.Apis.Poe.Account.Clients;
 
-public interface IPoeApiClient
+public interface IAccountApiClient
 {
     Task<TReturn?> Fetch<TReturn>(string path);
 }
