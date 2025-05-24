@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
+    <Version>1.0.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <InformationalVersion>1.0.0.0</InformationalVersion>
     <TargetFramework>net8.0</TargetFramework>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <Nullable>enable</Nullable>
