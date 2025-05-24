@@ -10,6 +10,7 @@
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 @inject IFilterProvider FilterProvider
+@implements IDisposable
 
 @code {
 
@@ -27,6 +28,8 @@
 
         Value = await SettingsService.GetString(SettingKeys.PriceCheckItemListedAge);
 
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
         await base.OnInitializedAsync();
     }
 
@@ -34,6 +37,20 @@
     {
         Value = value;
         await SettingsService.Set(SettingKeys.PriceCheckItemListedAge, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.PriceCheckItemListedAge))
+        {
+            Value = await SettingsService.GetString(SettingKeys.PriceCheckItemListedAge);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }

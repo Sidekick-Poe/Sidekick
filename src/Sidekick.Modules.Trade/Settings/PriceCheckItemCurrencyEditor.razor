@@ -32,13 +32,13 @@
                 wrapperClass += " bg-transparent hover:bg-stone-800";
             }
 
-            <div class="@wrapperClass" @onclick="@(() => CurrencyChanged(option.Value))">
-                <Tooltip Text="@option.Label" Placement="TooltipPlacement.Right">
+            <button class="@wrapperClass @UiClasses.FocusClasses" @onclick="@(() => CurrencyChanged(option.Value))">
+                <Tooltip Text="@option.Label" Placement="TooltipPlacement.Top">
                     <ChildContent>
                         <img src="@image" class="h-6 w-6" alt="@option.Label" />
                     </ChildContent>
                 </Tooltip>
-            </div>
+            </button>
         }
     </div>
 </FormFieldset>
@@ -47,6 +47,7 @@
 @inject ISettingsService SettingsService
 @inject IFilterProvider FilterProvider
 @inject IItemStaticDataProvider ItemStaticDataProvider
+@implements IDisposable
 
 @code {
 
@@ -56,24 +57,31 @@
 
     private IEnumerable<SelectOption> CheckboxOptions => Options.Where(x => x.Value == null || string.IsNullOrEmpty(ItemStaticDataProvider.GetImage(x.Value)));
 
-    private List<SelectOption> Options { get; set; } =
-    [
-    ];
+    private List<SelectOption> Options { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
-        var league = await SettingsService.GetString(SettingKeys.LeagueId);
-        var game = league.GetGameFromLeagueId();
-        Currency = game == GameType.PathOfExile ? await SettingsService.GetString(SettingKeys.PriceCheckCurrency) : await SettingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
-        Currency = FilterProvider.GetPriceOption(Currency);
+        await FetchSettings();
+
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
 
         Options = FilterProvider.TradePriceOptions.ConvertAll(x => new SelectOption()
-        {
-            Label = x.Text ?? string.Empty,
-            Value = x.Id,
-        });
+            {
+                Label = x.Text ?? string.Empty,
+                Value = x.Id,
+            });
 
         await base.OnInitializedAsync();
+    }
+
+    private async Task FetchSettings()
+    {
+        var league = await SettingsService.GetString(SettingKeys.LeagueId);
+        var game = league.GetGameFromLeagueId();
+        Currency = game == GameType.PathOfExile
+            ? await SettingsService.GetString(SettingKeys.PriceCheckCurrency)
+            : await SettingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
+        Currency = FilterProvider.GetPriceOption(Currency);
     }
 
     private async Task CurrencyChanged(string? value)
@@ -90,6 +98,22 @@
         {
             await SettingsService.Set(SettingKeys.PriceCheckCurrencyPoE2, value);
         }
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.PriceCheckCurrency)
+            || keys.Contains(SettingKeys.PriceCheckCurrencyPoE2)
+            || keys.Contains(SettingKeys.LeagueId))
+        {
+            await FetchSettings();
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }

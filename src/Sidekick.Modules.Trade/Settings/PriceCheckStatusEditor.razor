@@ -3,45 +3,45 @@
 @using Sidekick.Common.Settings
 
 <FormFieldset Legend="@Resources["Player_Status"]"
-              Dense="true">
+Dense="true">
     <div class="flex flex-wrap items-center gap-2">
         @foreach (var option in Options)
         {
             <FormCheckbox Value="option.Value == Value"
-                          Dense="true"
-                          ValueChanged="@(() => ValueChanged(option.Value))">@option.Label</FormCheckbox>
+            Dense="true"
+            ValueChanged="@(() => ValueChanged(option.Value))">@option.Label</FormCheckbox>
         }
     </div>
 </FormFieldset>
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
+@implements IDisposable
 
 @code {
 
     private string? Value { get; set; }
 
-    private List<SelectOption> Options { get; set; } =
-    [
-    ];
+    private List<SelectOption> Options { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
         Value = await SettingsService.GetString(SettingKeys.PriceCheckStatus);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
 
         Options =
         [
-            new SelectOption()
+            new()
             {
                 Label = Resources["Player_Status_Online"],
                 Value = Status.Online,
             },
-            new SelectOption()
+            new()
             {
                 Label = Resources["Player_Status_OnlineLeague"],
                 Value = Status.OnlineLeague,
             },
-            new SelectOption()
+            new()
             {
                 Label = Resources["Player_Status_Any"],
                 Value = Status.Any,
@@ -55,6 +55,20 @@
     {
         Value = value;
         await SettingsService.Set(SettingKeys.PriceCheckStatus, value);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.PriceCheckStatus))
+        {
+            Value = await SettingsService.GetString(SettingKeys.PriceCheckStatus);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }

@@ -1,12 +1,15 @@
 @if (ChildContent is not null)
 {
-    <div data-tooltip-target="@Id" data-tooltip-placement="@Placement.ToString().ToLower()">
+    <div data-tooltip-target="@Id"
+         data-tooltip-placement="@Placement.ToString().ToLower()"
+         data-tooltip-trigger="@Trigger.ToString().ToLower()">
         @ChildContent
     </div>
 }
 else
 {
-    <div data-tooltip-target="@Id" data-tooltip-placement="@Placement.ToString().ToLower()"
+    <div data-tooltip-target="@Id"
+         data-tooltip-placement="@Placement.ToString().ToLower()"
          class="text-violet-500 flex self-center cursor-help">
         <Icon Svg="@UiIcons.Help" />
     </div>
@@ -39,6 +42,9 @@ else
 
     [Parameter]
     public TooltipPlacement Placement { get; set; } = TooltipPlacement.Top;
+
+    [Parameter]
+    public TooltipTrigger Trigger { get; set; } = TooltipTrigger.Hover;
 
     private string Id { get; } = UiUtilities.GenerateId();
 
