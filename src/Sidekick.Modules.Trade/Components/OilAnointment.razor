@@ -1,14 +1,9 @@
 <div class="flex flex-nowrap items-center mx-1">
     @foreach (var oilName in OilNames)
-    {        
-        <TooltipRight>
-            <ChildContent>
-                <img src="/images/blight/@(oilName.Replace(" ", "_")).png" class="size-8 min-w-8 min-h-8" alt="@oilName"/>
-            </ChildContent>
-            <TooltipContent>
-                @oilName
-            </TooltipContent>
-        </TooltipRight>
+    {
+        <Tooltip Text="@oilName">
+            <img src="/images/blight/@(oilName.Replace(" ", "_")).png" class="size-8 min-w-8 min-h-8" alt="@oilName" />
+        </Tooltip>
     }
 </div>
 

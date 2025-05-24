@@ -18,12 +18,12 @@ public static class StartupExtensions
     {
         services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
-        services.AddSidekickKeybind<CloseOverlayKeybindHandler>();
-        services.AddSidekickKeybind<CloseOverlayWithEscHandler>();
-        services.AddSidekickKeybind<FindItemKeybindHandler>();
-        services.AddSidekickKeybind<OpenWikiPageKeybindHandler>();
-        services.AddSidekickKeybind<OpenInCraftOfExileHandler>();
-        services.AddSidekickInitializableService<MouseWheelHandler, MouseWheelHandler>();
+        services.AddSidekickInputHandler<CloseOverlayKeybindHandler>();
+        services.AddSidekickInputHandler<CloseOverlayWithEscHandler>();
+        services.AddSidekickInputHandler<FindItemKeybindHandler>();
+        services.AddSidekickInputHandler<OpenWikiPageKeybindHandler>();
+        services.AddSidekickInputHandler<OpenInCraftOfExileHandler>();
+        services.AddSidekickInputHandler<MouseWheelHandler>();
 
         return services;
     }

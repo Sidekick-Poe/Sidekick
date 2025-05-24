@@ -1,35 +1,49 @@
-﻿@using MudBlazor
+@if (AnchorIsIcon)
+{
+    <button data-popover-target="@Id"
+            data-popover-placement="@Placement.ToString().ToLower()"
+            data-popover-trigger="@Trigger.ToString().ToLower()"
+            class="disabled:opacity-50 inline-flex items-center justify-center text-base font-medium tracking-wide dark:text-violet-500 transition-colors duration-200 rounded-md bg-transparent hover:text-violet-400 @UiClasses.FocusClasses ">
+        @PopoverAnchor
+    </button>
+}
+else
+{
+    <div data-popover-target="@Id"
+         data-popover-placement="@Placement.ToString().ToLower()"
+         data-popover-trigger="@Trigger.ToString().ToLower()"
+         class="flex">
+        @PopoverAnchor
+    </div>
+}
+
+<div data-popover id="@Id"
+     class="fixed! z-10 invisible opacity-0 transition-opacity duration-300 border border-solid border-stone-800 bg-black grow overflow-auto p-3 rounded-lg shadow-lg @Class">
+    @PopoverContent
+</div>
+
+@inherits FlowbiteComponent
 
 @code {
 
     [Parameter]
-    public bool Visible { get; set; }
+    public required RenderFragment PopoverContent { get; set; }
 
     [Parameter]
-    public EventCallback<bool> VisibleChanged { get; set; }
+    public required RenderFragment PopoverAnchor { get; set; }
 
     [Parameter]
-    public required RenderFragment ChildContent { get; set; }
+    public TooltipPlacement Placement { get; set; } = TooltipPlacement.Top;
+
+    [Parameter]
+    public TooltipTrigger Trigger { get; set; } = TooltipTrigger.Click;
 
     [Parameter]
     public string Class { get; set; } = "max-h-[550px] max-w-[350px] overflow-y-auto";
 
+    [Parameter]
+    public bool AnchorIsIcon { get; set; } = true;
+
+    protected string Id { get; } = UiUtilities.GenerateId();
+
 }
-
-<MudPopover AnchorOrigin="Origin.TopLeft"
-            Class="!bg-transparent !rounded-none !shadow-none"
-            Fixed="true"
-            Open="Visible"
-            OverflowBehavior="OverflowBehavior.FlipAlways"
-            TransformOrigin="Origin.TopLeft">
-    <div
-        class="bg-black grow overflow-auto p-2 rounded-lg shadow-lg @Class">
-        @ChildContent
-    </div>
-</MudPopover>
-
-<MudOverlay Visible="Visible"
-            VisibleChanged="VisibleChanged"
-            DarkBackground="true"
-            AutoClose="true"
-            OnClosed="() => VisibleChanged.InvokeAsync(false)"/>

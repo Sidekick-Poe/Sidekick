@@ -1,12 +1,58 @@
-@import "./fonts.css";
-@import "./item-headers.css";
-@import "./item-logbook-factions.css";
-@import "./item-sockets.css";
-@import "./poe.css";
+@import 'flowbite/src/themes/default' layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import './fonts.css' layer(base);
+@import './item-headers.css' layer(components);
+@import './item-logbook-factions.css' layer(components);
+@import './item-sockets.css' layer(components);
+@import './poe.css' layer(components);
+
+@import "tailwindcss" source(none);
+
+@plugin 'flowbite/plugin';
+
+@source '../../**/*.{razor,html,cshtml,cs}';
+@source '../**/*.js';
+@source not "../node_modules";
+@source not "../wwwroot";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font- *: initial;
+    --font-sans: fontin, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-caps: fontin-smallcaps, fontin, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --text- *: initial;
+    --text-xs: 0.625rem;
+    --text-sm: 0.75rem;
+    --text-base: 0.875rem;
+    --text-lg: 1rem;
+    --text-xl: 1.125rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
+
+    button:not(:disabled),
+    [role="button"]:not(:disabled) {
+        cursor: pointer;
+    }
+}
 
 :root {
     --sidekick-vh: 100vh; /* Fallback */
@@ -24,6 +70,6 @@
     background: #44403c;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #57534e;
-}
+    ::-webkit-scrollbar-thumb:hover {
+        background: #57534e;
+    }

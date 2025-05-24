@@ -11,7 +11,7 @@
     <div class="ml-auto">
         <select id="@Id"
                 @onchange="OnChange"
-                class="@UiClasses.FormInputClasses p-1 text-base min-w-0 w-[160px]">
+                class="@UiClasses.FormInputClasses p-1 text-base min-w-0 w-[160px] appearance-none cursor-pointer">
             @if (Options.All(x => GetOptionValue(x.Value) != GetOptionValue(Value)))
             {
                 <option selected></option>

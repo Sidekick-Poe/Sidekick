@@ -9,11 +9,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" />
-    <PackageReference Include="MudBlazor" />
   </ItemGroup>
 
   <ItemGroup>
-    <SupportedPlatform Include="browser"/>
+    <SupportedPlatform Include="browser" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,8 +22,12 @@
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="npm install"/>
-    <Exec Command="npm run build"/>
+    <Exec Command="npm install" />
+    <Exec Command="npm run build" />
+  </Target>
+
+  <Target Name="CopyJavascriptFiles" AfterTargets="PreBuild">
+    <Copy SourceFiles="node_modules\flowbite\dist\flowbite.min.js" DestinationFolder="wwwroot\js\" />
   </Target>
 
 </Project>

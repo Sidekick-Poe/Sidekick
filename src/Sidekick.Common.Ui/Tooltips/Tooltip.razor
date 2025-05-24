@@ -1,0 +1,51 @@
+@if (ChildContent is not null)
+{
+    <div data-tooltip-target="@Id"
+         data-tooltip-placement="@Placement.ToString().ToLower()"
+         data-tooltip-trigger="@Trigger.ToString().ToLower()">
+        @ChildContent
+    </div>
+}
+else
+{
+    <div data-tooltip-target="@Id"
+         data-tooltip-placement="@Placement.ToString().ToLower()"
+         class="text-violet-500 flex self-center cursor-help">
+        <Icon Svg="@UiIcons.Help" />
+    </div>
+}
+
+<div id="@Id" role="tooltip" class="bg-stone-950 p-2 max-w-60 rounded-lg border border-solid border-stone-800
+            absolute z-10 invisible transition-opacity duration-300 shadow-xs opacity-0 tooltip ">
+    @if (TooltipContent is not null)
+    {
+        @TooltipContent
+    }
+    else
+    {
+        @Text
+    }
+</div>
+
+@inherits FlowbiteComponent
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? TooltipContent { get; set; }
+
+    [Parameter]
+    public string? Text { get; set; }
+
+    [Parameter]
+    public TooltipPlacement Placement { get; set; } = TooltipPlacement.Top;
+
+    [Parameter]
+    public TooltipTrigger Trigger { get; set; } = TooltipTrigger.Hover;
+
+    private string Id { get; } = UiUtilities.GenerateId();
+
+}

@@ -3,11 +3,11 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Settings
 
-<div class="relative">
-    <ButtonIcon OnClick="() => Visible = !Visible">
+<Popover>
+    <PopoverAnchor>
         <Icon Svg="@UiIcons.Adjustments" Size="@UiIconSize.Medium" AddBadge="AreSettingsModified" />
-    </ButtonIcon>
-    <Popover @bind-Visible="Visible">
+    </PopoverAnchor>
+    <PopoverContent>
         <PriceCheckStatusEditor />
         <PriceCheckItemCurrencyEditor />
         <FormFieldset Legend="@Resources["Item_Trade_Settings"]"
@@ -23,15 +23,14 @@
         <div class="flex justify-center mb-1">
             <ButtonPrimary Disabled="!AreSettingsModified" OnClick="ClearFilters">@Resources["Clear_Filters"]</ButtonPrimary>
         </div>
-    </Popover>
-</div>
+    </PopoverContent>
+</Popover>
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
+@implements IDisposable
 
 @code {
-
-    private bool Visible { get; set; }
 
     private bool AreSettingsModified { get; set; }
 
@@ -50,14 +49,14 @@
 
     protected override async Task OnInitializedAsync()
     {
-        SettingsService.OnSettingsChanged += CheckIfSettingsAreModified;
+        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
 
-        CheckIfSettingsAreModified(SettingKeysUsed);
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
 
         await base.OnInitializedAsync();
     }
 
-    private async void CheckIfSettingsAreModified(string[] keys)
+    private async void OnSettingsChanged(string[] keys)
     {
         if (!keys.Any(key => SettingKeysUsed.Contains(key)))
         {
@@ -72,14 +71,12 @@
     {
         await SettingsService.DeleteSetting(SettingKeysUsed);
 
-        Visible = false;
-
         StateHasChanged();
     }
 
     public void Dispose()
     {
-        SettingsService.OnSettingsChanged -= CheckIfSettingsAreModified;
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }

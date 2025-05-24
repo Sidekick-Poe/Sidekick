@@ -1,7 +1,8 @@
-﻿<a href="@Href"
-   class="focus:outline-none focus:ring-inset focus:ring-2 dark:focus:ring-violet-400 px-4 py-2 text-base font-medium tracking-wide text-white transition-colors duration-200 @(IsActive ? "bg-violet-700 hover:bg-violet-500" : "bg-transparent hover:text-violet-500")">
+<button type="button"
+        onclick="@NavigateTo"
+        class="block text-left focus:outline-hidden focus:ring-inset cursor-pointer select-none focus:ring-2 dark:focus:ring-violet-400 px-4 py-2 text-base font-medium tracking-wide text-white transition-colors duration-200 @(IsActive ? "bg-violet-700 hover:bg-violet-500" : "bg-transparent hover:text-violet-500")">
     @ChildContent
-</a>
+</button>
 
 @inject NavigationManager NavigationManager
 @implements IDisposable
@@ -9,7 +10,7 @@
 @code {
 
     [Parameter]
-    public string? Href { get; set; }
+    public required string Href { get; set; }
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
@@ -21,6 +22,11 @@
         NavigationManager.LocationChanged += NavigationManagerOnLocationChanged;
 
         base.OnInitialized();
+    }
+
+    private void NavigateTo()
+    {
+        NavigationManager.NavigateTo(Href);
     }
 
     private void NavigationManagerOnLocationChanged(object? sender, LocationChangedEventArgs e)

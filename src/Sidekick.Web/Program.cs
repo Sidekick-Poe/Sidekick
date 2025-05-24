@@ -26,7 +26,11 @@ using Sidekick.Web;
 using Sidekick.Web.Services;
 using Velopack;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    Args = args,
+    ContentRootPath = AppDomain.CurrentDomain.BaseDirectory,
+});
 
 builder.WebHost.UseStaticWebAssets();
 

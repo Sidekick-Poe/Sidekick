@@ -28,17 +28,14 @@
                     FirstCategory: not ModifierCategory.Explicit
                 })
             {
-                <TooltipRight>
+                <Tooltip Text="@Resources["ForceCategoryHint"]" Placement="TooltipPlacement.Right">
                     <ChildContent>
                         <ItemModifierCategoryChip Category="Filter.FirstCategory"
                                                   Checked="Filter.ForceFirstCategory"
                                                   ShowCheckbox="true"
                                                   OnClick="() => Filter.ForceFirstCategory = !Filter.ForceFirstCategory" />
                     </ChildContent>
-                    <TooltipContent>
-                        @Resources["ForceCategoryHint"]
-                    </TooltipContent>
-                </TooltipRight>
+                </Tooltip>
 
                 <div class="h-[2px]"></div>
             }

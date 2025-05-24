@@ -18,7 +18,7 @@ public static class StartupExtensions
     {
         services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
-        services.AddSidekickKeybind<ChatKeybindHandler>();
+        services.AddSidekickInputHandler<ChatKeybindHandler>();
         return services;
     }
 }
