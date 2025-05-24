@@ -1,8 +1,8 @@
 @using System.Text.Json
-@using Sidekick.Apis.Poe.Modifiers
-@using Sidekick.Apis.Poe.Trade.Results
+@using Sidekick.Apis.Poe.Trade.Modifiers
+@using Sidekick.Apis.Poe.Trade.Trade.Results
 @using Sidekick.Common.Game.Items
-@using TradeItem = Sidekick.Apis.Poe.Trade.Results.TradeItem
+@using TradeItem = Sidekick.Apis.Poe.Trade.Trade.Results.TradeItem
 
 <ItemSeparator Rarity="Result.Item.Rarity"/>
 @foreach (var line in Modifiers)
@@ -112,7 +112,7 @@
             }
 
             var text = texts.FirstOrDefault(x => ModifierProvider.IsMatch(id, x)) ?? texts[index];
-            text = Sidekick.Apis.Poe.Modifiers.ModifierProvider.RemoveSquareBrackets(text);
+            text = Apis.Poe.Trade.Modifiers.ModifierProvider.RemoveSquareBrackets(text);
 
             var mod = mods.FirstOrDefault(x => x.Magnitudes?.Any(y => y.Hash == id) == true);
 

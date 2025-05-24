@@ -3,6 +3,8 @@ using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe.Trade.Trade;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Poe2.Query;
@@ -52,7 +54,7 @@ public class TradeSearchServiceTests
         Assert.Null(result.Error);
 
         var actual = Assert.Single(mockHttpClient.Requests);
-        var actualQuery = JsonSerializer.Deserialize<Trade.Requests.QueryRequest>(actual, jsonSerializerOptions);
+        var actualQuery = JsonSerializer.Deserialize<QueryRequest>(actual, jsonSerializerOptions);
 
         var identified = actualQuery?.Query.Filters.MiscFilters?.Filters.Identified?.Option;
         Assert.Equal("false", identified);
@@ -62,7 +64,7 @@ public class TradeSearchServiceTests
     public void ExpectQueryIsNotIdentified()
     {
         var expectedQuery = ResourceHelper.ReadFileContent("TimeLostDiamond/query.json");
-        var queryRequest = JsonSerializer.Deserialize<Trade.Requests.QueryRequest>(expectedQuery, jsonSerializerOptions);
+        var queryRequest = JsonSerializer.Deserialize<QueryRequest>(expectedQuery, jsonSerializerOptions);
 
         var identified = queryRequest?.Query.Filters.MiscFilters?.Filters.Identified?.Option;
         Assert.Equal("false", identified);
@@ -72,7 +74,7 @@ public class TradeSearchServiceTests
     public void ExpectSerializationDeserializationNoChanges()
     {
         var expected = ResourceHelper.ReadFileContent("TimeLostDiamond/query.json");
-        var queryRequest = JsonSerializer.Deserialize<Trade.Requests.QueryRequest>(expected, jsonSerializerOptions);
+        var queryRequest = JsonSerializer.Deserialize<QueryRequest>(expected, jsonSerializerOptions);
 
         var actual = JsonSerializer.Serialize(queryRequest, jsonSerializerOptions);
 

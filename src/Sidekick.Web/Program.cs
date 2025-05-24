@@ -1,7 +1,9 @@
 using System.Diagnostics;
 using ApexCharts;
+using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
-using Sidekick.Apis.Poe;
+using Sidekick.Apis.Poe.Account;
+using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe2Scout;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
@@ -10,9 +12,7 @@ using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Database;
-using Sidekick.Common.Interprocess;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
@@ -47,12 +47,13 @@ builder.Services
     .AddSidekickCommon()
     .AddSidekickCommonBlazor()
     .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
-    .AddSidekickCommonInterprocess()
     .AddSidekickCommonUi()
 
     // Apis
     .AddSidekickGitHubApi()
-    .AddSidekickPoeApi()
+    .AddSidekickCommonApi()
+    .AddSidekickPoeAccountApi()
+    .AddSidekickPoeTradeApi()
     .AddSidekickPoeNinjaApi()
     .AddSidekickPoe2ScoutApi()
     .AddSidekickPoePriceInfoApi()
@@ -103,14 +104,13 @@ if (!Debugger.IsAttached)
     applicationLifetime.ApplicationStarted.Register(() =>
     {
         var browserProvider = app.Services.GetService<IBrowserProvider>();
-        if (browserProvider != null)
+        if (browserProvider == null) return;
+
+        // Get the first URL the app is listening on
+        var url = app.Urls.FirstOrDefault();
+        if (!string.IsNullOrEmpty(url))
         {
-            // Get the first URL the app is listening on
-            var url = app.Urls.FirstOrDefault();
-            if (!string.IsNullOrEmpty(url))
-            {
-                browserProvider.OpenUri(new Uri(url));
-            }
+            browserProvider.OpenUri(new Uri(url));
         }
     });
 }

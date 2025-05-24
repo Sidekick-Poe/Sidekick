@@ -1,4 +1,3 @@
-using Sidekick.Apis.Poe.Parser;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;

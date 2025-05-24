@@ -38,7 +38,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Apis.GitHub", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Apis.PoeNinja", "src\Sidekick.Apis.PoeNinja\Sidekick.Apis.PoeNinja.csproj", "{DF327715-65A1-4F16-A016-CE7A87E921E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Apis.Poe", "src\Sidekick.Apis.Poe\Sidekick.Apis.Poe.csproj", "{D3311A5D-F921-4B5F-9EB1-6AEC5EAD72FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Apis.Poe.Trade", "src\Sidekick.Apis.Poe.Trade\Sidekick.Apis.Poe.Trade.csproj", "{D3311A5D-F921-4B5F-9EB1-6AEC5EAD72FF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Apis.PoePriceInfo", "src\Sidekick.Apis.PoePriceInfo\Sidekick.Apis.PoePriceInfo.csproj", "{8A13FFC9-5C43-4565-B24C-2F2F10BF5AA2}"
 EndProject
@@ -68,9 +68,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Ui", "src\S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Updater", "src\Sidekick.Common.Updater\Sidekick.Common.Updater.csproj", "{2F2F03B3-213A-40D7-B818-8E618DDF01AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Interprocess", "src\Sidekick.Common.Interprocess\Sidekick.Common.Interprocess.csproj", "{A67AD8EA-BA32-4BF1-9533-B8AAD23820E9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Apis.Poe2Scout", "src\Sidekick.Apis.Poe2Scout\Sidekick.Apis.Poe2Scout.csproj", "{D518587C-6F94-49ED-85E1-2BB1E165CAF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Apis.Poe.Account", "src\Sidekick.Apis.Poe.Account\Sidekick.Apis.Poe.Account.csproj", "{9ABF7920-D05B-4215-B991-A0E7256038E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Apis.Common", "src\Sidekick.Apis.Common\Sidekick.Apis.Common.csproj", "{AD154539-2E18-47AC-9A6B-CF56E15C97AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.PhotinoBlazor", "src\Sidekick.PhotinoBlazor\Sidekick.PhotinoBlazor.csproj", "{C8F7E7AE-C245-4B71-A915-CA90335A2F67}"
 EndProject
@@ -244,14 +246,6 @@ Global
 		{2F2F03B3-213A-40D7-B818-8E618DDF01AF}.Linux-Release|Any CPU.Build.0 = Linux-Release|Any CPU
 		{2F2F03B3-213A-40D7-B818-8E618DDF01AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F2F03B3-213A-40D7-B818-8E618DDF01AF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A67AD8EA-BA32-4BF1-9533-B8AAD23820E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A67AD8EA-BA32-4BF1-9533-B8AAD23820E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A67AD8EA-BA32-4BF1-9533-B8AAD23820E9}.Linux-Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A67AD8EA-BA32-4BF1-9533-B8AAD23820E9}.Linux-Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A67AD8EA-BA32-4BF1-9533-B8AAD23820E9}.Linux-Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{A67AD8EA-BA32-4BF1-9533-B8AAD23820E9}.Linux-Release|Any CPU.Build.0 = Debug|Any CPU
-		{A67AD8EA-BA32-4BF1-9533-B8AAD23820E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A67AD8EA-BA32-4BF1-9533-B8AAD23820E9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D518587C-6F94-49ED-85E1-2BB1E165CAF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D518587C-6F94-49ED-85E1-2BB1E165CAF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D518587C-6F94-49ED-85E1-2BB1E165CAF4}.Linux-Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -260,6 +254,22 @@ Global
 		{D518587C-6F94-49ED-85E1-2BB1E165CAF4}.Linux-Release|Any CPU.Build.0 = Release|Any CPU
 		{D518587C-6F94-49ED-85E1-2BB1E165CAF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D518587C-6F94-49ED-85E1-2BB1E165CAF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ABF7920-D05B-4215-B991-A0E7256038E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ABF7920-D05B-4215-B991-A0E7256038E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ABF7920-D05B-4215-B991-A0E7256038E1}.Linux-Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ABF7920-D05B-4215-B991-A0E7256038E1}.Linux-Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ABF7920-D05B-4215-B991-A0E7256038E1}.Linux-Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ABF7920-D05B-4215-B991-A0E7256038E1}.Linux-Release|Any CPU.Build.0 = Debug|Any CPU
+		{9ABF7920-D05B-4215-B991-A0E7256038E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ABF7920-D05B-4215-B991-A0E7256038E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD154539-2E18-47AC-9A6B-CF56E15C97AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD154539-2E18-47AC-9A6B-CF56E15C97AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD154539-2E18-47AC-9A6B-CF56E15C97AC}.Linux-Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD154539-2E18-47AC-9A6B-CF56E15C97AC}.Linux-Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD154539-2E18-47AC-9A6B-CF56E15C97AC}.Linux-Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD154539-2E18-47AC-9A6B-CF56E15C97AC}.Linux-Release|Any CPU.Build.0 = Debug|Any CPU
+		{AD154539-2E18-47AC-9A6B-CF56E15C97AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD154539-2E18-47AC-9A6B-CF56E15C97AC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Linux-Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -298,8 +308,9 @@ Global
 		{8C9915FA-EC66-47AA-B449-4833813B0D16} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
 		{F5B003D8-BE39-419A-A02A-4328A4FBDD10} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
 		{2F2F03B3-213A-40D7-B818-8E618DDF01AF} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
-		{A67AD8EA-BA32-4BF1-9533-B8AAD23820E9} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
 		{D518587C-6F94-49ED-85E1-2BB1E165CAF4} = {7285BD58-2544-44AA-8488-52EA8E55D239}
+		{9ABF7920-D05B-4215-B991-A0E7256038E1} = {7285BD58-2544-44AA-8488-52EA8E55D239}
+		{AD154539-2E18-47AC-9A6B-CF56E15C97AC} = {7285BD58-2544-44AA-8488-52EA8E55D239}
 		{B84D39FB-E519-77E1-68F5-33F2FABF1938} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
