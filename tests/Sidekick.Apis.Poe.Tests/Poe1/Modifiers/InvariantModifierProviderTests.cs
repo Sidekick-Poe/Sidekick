@@ -1,4 +1,4 @@
-using Sidekick.Apis.Poe.Modifiers;
+using Sidekick.Apis.Poe.Trade.Modifiers;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests.Poe1.Modifiers;

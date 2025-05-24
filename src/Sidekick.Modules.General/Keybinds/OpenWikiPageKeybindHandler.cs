@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe;
+using Sidekick.Apis.Poe.Trade;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;

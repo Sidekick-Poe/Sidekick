@@ -1,7 +1,6 @@
 @using MudBlazor
-@using Sidekick.Apis.Poe.Clients
-@using Sidekick.Apis.Poe.Clients.Models
-@using Sidekick.Apis.Poe.Clients.States;
+@using Sidekick.Apis.Common.States
+@using Sidekick.Apis.Poe.Account.Clients
 @if (WealthParser.IsRunning())
 {
     <MudAlert Severity="Severity.Success" Variant="Variant.Filled" Square="true" Dense="true" Icon="Icons.Material.Filled.PlayCircle">
@@ -10,7 +9,7 @@
 
             <div class="d-flex flex-nowrap align-center justify-center" style="width: 100%;">
                 <div class="mr-2"><strong>API Status</strong></div>
-                @switch (ApiStateProvider.Get(ClientNames.PoeClient))
+                @switch (ApiStateProvider.Get(AccountApiClient.ClientName))
                 {
                     case ApiState.Working:
                         <div>Working</div>

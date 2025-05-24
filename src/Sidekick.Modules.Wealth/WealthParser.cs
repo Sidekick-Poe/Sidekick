@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MudBlazor;
-using Sidekick.Apis.Poe.Clients.Exceptions;
-using Sidekick.Apis.Poe.Stash;
-using Sidekick.Apis.Poe.Stash.Models;
+using Sidekick.Apis.Common.Exceptions;
+using Sidekick.Apis.Poe.Account.Stash;
+using Sidekick.Apis.Poe.Account.Stash.Models;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;

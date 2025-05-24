@@ -1,3 +1,4 @@
+using Sidekick.Apis.Poe.Trade;
 using Sidekick.Common.Game.Items;
 using Xunit;
 

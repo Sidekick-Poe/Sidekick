@@ -1,7 +1,6 @@
 using System.Windows;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.CloudFlare;
-using Sidekick.Common.Initialization;
+using Sidekick.Apis.Common.Cloudflare;
 using Sidekick.Wpf.Cloudflare;
 
 namespace Sidekick.Wpf.Services;
@@ -17,11 +16,11 @@ public class WpfCloudflareHandler
         cloudflareService.ChallengeStarted += CloudflareServiceOnChallengeStarted;
     }
 
-    private void CloudflareServiceOnChallengeStarted(Uri uri)
+    private void CloudflareServiceOnChallengeStarted(CloudflareChallenge challenge)
     {
         Application.Current.Dispatcher.Invoke(() =>
         {
-            var window = new CloudflareWindow(logger, cloudflareService, uri);
+            var window = new CloudflareWindow(logger, cloudflareService, challenge.Uri);
             window.Show();
         });
     }

@@ -1,12 +1,14 @@
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using System.Windows;
 using ApexCharts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Web.WebView2.Core;
+using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
-using Sidekick.Apis.Poe;
+using Sidekick.Apis.Poe.Account;
+using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe2Scout;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
@@ -14,8 +16,8 @@ using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
 using Sidekick.Common.Database;
-using Sidekick.Common.Interprocess;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Windows.Interprocess;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
@@ -79,12 +81,13 @@ public class Program
             .AddSidekickCommon()
             .AddSidekickCommonBlazor()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
-            .AddSidekickCommonInterprocess()
             .AddSidekickCommonUi()
 
             // Apis
             .AddSidekickGitHubApi()
-            .AddSidekickPoeApi()
+            .AddSidekickCommonApi()
+            .AddSidekickPoeAccountApi()
+            .AddSidekickPoeTradeApi()
             .AddSidekickPoeNinjaApi()
             .AddSidekickPoe2ScoutApi()
             .AddSidekickPoePriceInfoApi()
