@@ -171,12 +171,6 @@
   <data name="Language_UI" xml:space="preserve">
     <value>UI 언어</value>
   </data>
-  <data name="Map_Dangerous_Regex" xml:space="preserve">
-    <value>Regex (레젝스)</value>
-  </data>
-  <data name="Map_Key_Check" xml:space="preserve">
-    <value>맵모드 체크하기</value>
-  </data>
   <data name="Price_Check" xml:space="preserve">
     <value>가격 검색</value>
   </data>
@@ -231,14 +225,8 @@
   <data name="Map_Check" xml:space="preserve">
     <value>지도 체크</value>
   </data>
-  <data name="Dangerous_Modifiers" xml:space="preserve">
-    <value>위험한 접사</value>
-  </data>
   <data name="Item_Trade_Settings" xml:space="preserve">
     <value>아이템 거래 세팅</value>
-  </data>
-  <data name="Bulk_Trade_Settings" xml:space="preserve">
-    <value>대량 교환 세팅</value>
   </data>
   <data name="Chat_Add_New_Command" xml:space="preserve">
     <value>새로운 명령어 추가</value>
@@ -284,5 +272,8 @@
   </data>
   <data name="Game" xml:space="preserve">
       <value />
+  </data>
+  <data name="Bulk_Trade" xml:space="preserve">
+      <value>대량 교환 세팅</value>
   </data>
 </root>
