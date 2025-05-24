@@ -1,4 +1,4 @@
-﻿@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Platform
 @using System.Diagnostics
 @inherits LayoutComponentBase
@@ -15,6 +15,7 @@
     {
         <MenuItem Href="/settings/wiki">@Resources["Wiki"]</MenuItem>
         <MenuItem Href="/settings/chat">@Resources["Chat_Commands"]</MenuItem>
+        <MenuItem Href="/settings/regexhotkeys">@Resources["Regex_Hotkeys"]</MenuItem>
     }
 
     @if (Debugger.IsAttached && false)

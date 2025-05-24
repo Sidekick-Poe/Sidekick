@@ -1,4 +1,5 @@
 using Sidekick.Common.Initialization;
+using Sidekick.Common.Platform.EventArgs;
 
 namespace Sidekick.Common.Platform;
 
@@ -11,6 +12,16 @@ public interface IKeyboardProvider : IInitializableService
     /// Event that indicates that a key was pressed
     /// </summary>
     event Action<string> OnKeyDown;
+
+    /// <summary>
+    /// Event triggered when the user scrolls down.
+    /// </summary>
+    event Action<ScrollEventArgs> OnScrollDown;
+
+    /// <summary>
+    /// Event triggered when the user scrolls up.
+    /// </summary>
+    event Action<ScrollEventArgs> OnScrollUp;
 
     /// <summary>
     /// Register keyboard hooks to capture keybinds.

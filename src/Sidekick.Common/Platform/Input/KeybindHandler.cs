@@ -1,17 +1,19 @@
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 
-namespace Sidekick.Common.Keybinds;
+namespace Sidekick.Common.Platform.Input;
 
 /// <summary>
 ///     Interface for keybind handlers
 /// </summary>
-public abstract class KeybindHandler : IInitializableService
+public abstract class KeybindHandler : IInputHandler, IDisposable
 {
+    private readonly ISettingsService settingsService;
     protected readonly string SettingKey;
 
     protected KeybindHandler(ISettingsService settingsService, string settingKey)
     {
+        this.settingsService = settingsService;
         SettingKey = settingKey;
         settingsService.OnSettingsChanged += OnSettingsChanged;
     }
@@ -37,8 +39,10 @@ public abstract class KeybindHandler : IInitializableService
     [
     ];
 
+    /// <inheritdoc />
     public int Priority => 0;
 
+    /// <inheritdoc />
     public async Task Initialize()
     {
         Keybinds = await GetKeybinds();
@@ -64,4 +68,9 @@ public abstract class KeybindHandler : IInitializableService
     /// <returns>A task</returns>
     public abstract Task Execute(string keybind);
 
+    /// <inheritdoc />
+    public void Dispose()
+    {
+        settingsService.OnSettingsChanged -= OnSettingsChanged;
+    }
 }

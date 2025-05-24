@@ -1,5 +1,5 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Results
-<TextBase Class="@($"font-caps leading-none py-[1px] flex items-center {Class}")">
+<TextBase Class="@($"font-caps leading-none py-px flex items-center {Class}")">
     <span class="text-[#7f7f7f] whitespace-nowrap">@Label</span>
     @if (OnlyShowLabel == false)
     {
@@ -9,7 +9,7 @@
 
     @if (HasAdditionalInformation && AdditionalInformation != null)
     {
-        <TooltipRight>
+        <Tooltip Placement="TooltipPlacement.Right">
             <ChildContent>
                 <span class="inline-block ml-1 flex">
                     <Icon Svg="@UiIcons.PlusBox" Size="@UiIconSize.Small" />
@@ -18,13 +18,13 @@
             <TooltipContent>
                 @AdditionalInformation
             </TooltipContent>
-        </TooltipRight>
+        </Tooltip>
     }
 
     @if (!string.IsNullOrEmpty(Hint))
     {
         <div class="ml-1 flex">
-            <TooltipHint Text="@Hint"/>
+            <Tooltip Text="@Hint" />
         </div>
     }
 </TextBase>

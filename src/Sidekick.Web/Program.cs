@@ -18,13 +18,18 @@ using Sidekick.Common.Updater;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
+using Sidekick.Modules.RegexHotkeys;
 using Sidekick.Modules.Trade;
 using Sidekick.Modules.Wealth;
 using Sidekick.Web;
 using Sidekick.Web.Services;
 using Velopack;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    Args = args,
+    ContentRootPath = AppDomain.CurrentDomain.BaseDirectory,
+});
 
 builder.WebHost.UseStaticWebAssets();
 
@@ -54,6 +59,7 @@ builder.Services
 
     // Modules
     .AddSidekickChat()
+    .AddSidekickRegexHotkeys()
     .AddSidekickGeneral()
     .AddSidekickMaps()
     .AddSidekickTrade()

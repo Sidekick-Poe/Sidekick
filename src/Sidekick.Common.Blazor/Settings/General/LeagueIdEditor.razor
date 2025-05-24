@@ -5,17 +5,11 @@
 @using Sidekick.Common.Game
 @using Sidekick.Common.Settings
 
-<div class="flex items-start gap-2">
-    <div class="grow">
-        <FormSelect Label="@Resources["Character_League"]"
-        Value="@LeagueId"
-        ValueChanged="LeagueChanged"
-        Options="Options"/>
-    </div>
-    <div class="self-end">
-        <TooltipHint Text="@Resources["League_Hint"]" />
-    </div>
-</div>
+<FormSelect Label="@Resources["Character_League"]"
+            Value="@LeagueId"
+            ValueChanged="LeagueChanged"
+            Options="Options"
+            Tooltip="@Resources["League_Hint"]" />
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
@@ -52,7 +46,7 @@
                               Group = Resources[x.First().Game.ToString()]
                           })
                   .ToList();
-}
+    }
 
     private async Task LeagueChanged(string? value)
     {

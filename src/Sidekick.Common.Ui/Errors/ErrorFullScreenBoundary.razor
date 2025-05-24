@@ -34,6 +34,14 @@
                                 }
                             </ul>
                         }
+
+                        @if (context.SidekickException is UnparsableException unparsableException && !string.IsNullOrWhiteSpace(unparsableException.ItemText))
+                        {
+                            <label class="w-full h-64 mt-2">
+                                <TextBase>Here's the item's text</TextBase>
+                                <textarea class="@UiClasses.FormInputClasses mt-2 p-2 text-base w-full h-64 resize-none">@unparsableException.ItemText</textarea>
+                            </label>
+                        }
                     }
                     else
                     {
@@ -57,13 +65,11 @@
                 <div class="flex items-center justify-center gap-2">
                     @if (actions.HasFlag(ExceptionActions.ExitApplication))
                     {
-                        <a href="javascript:" class="@GetButtonClass(context.IsCritical)"
-                        @onclick="ApplicationService.Shutdown">Exit Application</a>
+                        <a href="javascript:" class="@GetButtonClass(context.IsCritical)" @onclick="ApplicationService.Shutdown">Exit Application</a>
                     }
                     @if (actions.HasFlag(ExceptionActions.CloseWindow))
                     {
-                        <a href="javascript:" class="@GetButtonClass(context.IsCritical)"
-                        @onclick="Close">Close</a>
+                        <a href="javascript:" class="@GetButtonClass(context.IsCritical)" @onclick="Close">Close</a>
                     }
                 </div>
             </div>

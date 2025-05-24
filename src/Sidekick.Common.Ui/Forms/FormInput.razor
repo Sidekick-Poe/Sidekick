@@ -3,12 +3,16 @@
     @if (!string.IsNullOrEmpty(Label))
     {
         <label for="@Id"
-               class="block mb-1 text-base font-medium dark:text-zinc-300">
+               class="flex gap-1 mb-1 text-base font-medium dark:text-zinc-300">
             @Label
+            @if (Tooltip is not null)
+            {
+                <Tooltip Text="@Tooltip" />
+            }
         </label>
     }
 
-    <div class="flex flex-nowrap gap-1">
+    <div class="flex flex-nowrap">
         <input id="@Id"
                @attributes="InputAttributes"
                @onchange="OnChange"
@@ -28,6 +32,9 @@
 
     [Parameter]
     public string? Value { get; set; }
+
+    [Parameter]
+    public string? Tooltip { get; set; }
 
     [Parameter]
     public EventCallback<string?> ValueChanged { get; set; }

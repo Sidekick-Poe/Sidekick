@@ -8,6 +8,7 @@ namespace Sidekick.Common;
 public static class SidekickConfiguration
 {
     private static bool isPoeApiDown;
+    private static bool isXselPackageMissing;
 
     /// <summary>
     /// Occurs when a relevant flag or state within the application configuration changes.
@@ -28,6 +29,20 @@ public static class SidekickConfiguration
     }
 
     /// <summary>
+    /// Gets or sets a value indicating whether the xsel package is missing.
+    /// Linux only.
+    /// </summary>
+    public static bool IsXselPackageMissing
+    {
+        get => isXselPackageMissing;
+        set
+        {
+            isXselPackageMissing = value;
+            FlagChanged?.Invoke();
+        }
+    }
+
+    /// <summary>
     ///     Gets or sets a list of initializable services.
     /// </summary>
     public static List<Type> InitializableServices { get; } = new();
@@ -38,7 +53,7 @@ public static class SidekickConfiguration
     public static List<Assembly> Modules { get; } = new();
 
     /// <summary>
-    ///     The list of keybinds handled by this application
+    ///     The list of input handlers handled by this application
     /// </summary>
-    public static List<Type> Keybinds { get; } = new();
+    public static List<Type> InputHandlers { get; } = new();
 }

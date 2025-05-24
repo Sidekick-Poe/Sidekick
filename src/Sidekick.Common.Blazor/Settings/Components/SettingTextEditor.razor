@@ -1,22 +1,30 @@
 @using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Settings
 
-<div class="flex align-center gap-2">
-    <div class="grow">
-        <FormInput Label="@Label"
-                   Value="@Value"
-                   ValueChanged="@ValueChanged" />
-    </div>
-
-    @if (Tooltip is not null)
-    {
-        <div class="self-end mb-1">
-            <TooltipHint Text="@Tooltip" />
+<FormInput Label="@Label"
+           Value="@Value"
+           ValueChanged="@ValueChanged"
+           Tooltip="@Tooltip">
+    <AdornmentContent>
+        <div class="flex ml-1 gap-1 align-center">
+            @if (ShowClearButton)
+            {
+                <ButtonIcon OnClick="Clear" title="@Resources["Clear"]">
+                    <Icon Svg="@UiIcons.Clear" />
+                </ButtonIcon>
+            }
+            @if (ShowResetButton)
+            {
+                <ButtonIcon OnClick="Reset" title="@Resources["Reset"]">
+                    <Icon Svg="@UiIcons.Reset" />
+                </ButtonIcon>
+            }
         </div>
-    }
-</div>
+    </AdornmentContent>
+</FormInput>
 
 @inject ISettingsService SettingsService
+@inject IStringLocalizer<SettingsResources> Resources
 @implements IDisposable
 
 @code {
@@ -30,11 +38,17 @@
     [Parameter]
     public string? Tooltip { get; set; }
 
+    private bool ShowClearButton => !string.IsNullOrWhiteSpace(Value);
+
+    private bool ShowResetButton { get; set; }
+
     private string? Value { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         Value = await SettingsService.GetString(SettingKey);
+        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
         await base.OnInitializedAsync();
@@ -43,6 +57,7 @@
     private async Task ValueChanged(string? value)
     {
         Value = value;
+
         await SettingsService.Set(SettingKey, value);
     }
 
@@ -51,8 +66,22 @@
         if (keys.Contains(SettingKey))
         {
             Value = await SettingsService.GetString(SettingKey);
+            ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+
             await InvokeAsync(StateHasChanged);
         }
+    }
+
+    private async Task Clear()
+    {
+        Value = string.Empty;
+
+        await SettingsService.Set(SettingKey, Value);
+    }
+
+    private async Task Reset()
+    {
+        await SettingsService.DeleteSetting(SettingKey);
     }
 
     public void Dispose()

@@ -1,12 +1,14 @@
-name: Windows-Stable
+name: Build Release
 
 on:
   workflow_dispatch:
 
 jobs:
   release:
-    runs-on: windows-latest
-
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Git - Checkout
         uses: actions/checkout@v2
@@ -15,12 +17,12 @@ jobs:
 
       - name: Version
         id: version
+        shell: pwsh
         run: |
           # Get the current date
           $DATE = Get-Date -Format "yyyy.Mdd"
 
           # Get the current hour and minute without leading zero for the hour
-          # Get the current hour and minute
           $HOUR = [int](Get-Date -Format "HH") # Convert hour to integer to strip any leading zero
 
           # If the hour is 0 (midnight), set it to an empty string
@@ -77,23 +79,20 @@ jobs:
           value: ${{ github.token }}
 
       - name: .NET - Setup
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.x
 
-      - name: .NET - NuGet Packages
+      - name: Windows - Test
+        if: matrix.os == 'windows-latest'
         shell: pwsh
-        run: dotnet restore
+        run: |
+          dotnet restore
+          dotnet build --no-restore
+          dotnet test --no-build --verbosity normal
 
-      - name: .NET - Build
-        shell: pwsh
-        run: dotnet build --no-restore
-
-      - name: .NET - Tests
-        shell: pwsh
-        run: dotnet test --no-build --verbosity normal
-
-      - name: .NET - Publish
+      - name: .NET - Publish (Windows)
+        if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
           $version = "${{ steps.version.outputs.version }}"
@@ -103,7 +102,8 @@ jobs:
           dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release -r win-x64 -o ./Publish
           dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r win-x64 -o ./Publish-Web
 
-      - name: Velopack
+      - name: Velopack (Windows)
+        if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
           $version = "${{ steps.version.outputs.version }}"
@@ -118,7 +118,7 @@ jobs:
           Write-Output "Release notes saved to $releaseNotesPath"
 
           dotnet tool install -g vpk
-          
+
           # Desktop version
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-stable
           vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel windows-stable --releaseNotes $releaseNotesPath --framework net8.0-x64-desktop,webview2
@@ -126,5 +126,45 @@ jobs:
 
           # Web version
           vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-stable
-          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-stable --releaseNotes $releaseNotesPath --framework net8.0-x64-desktop
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel windows-web-stable --releaseNotes $releaseNotesPath --framework net8.0-x64-aspnetcore,net8.0-x64-runtime
           vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel windows-web-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+
+      - name: .NET - Publish (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        shell: bash
+        run: |
+          version="${{ steps.version.outputs.version }}"
+          echo "Version: $version"
+
+          dotnet build src/Sidekick.PhotinoBlazor/Sidekick.PhotinoBlazor.csproj -c Release -r linux-x64
+
+          dotnet publish src/Sidekick.PhotinoBlazor/Sidekick.PhotinoBlazor.csproj -c Release -r linux-x64 -o ./Publish
+          dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r linux-x64 -o ./Publish-Web
+
+      - name: Velopack (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        shell: bash
+        run: |
+          version="${{ steps.version.outputs.version }}"
+          echo "Version: $version"
+
+          body="${{ steps.notes.outputs.body }}"
+          echo "Body: $body"
+
+          # Output the body to a .md file
+          releaseNotesPath="release-notes.md"
+          echo "$body" > "$releaseNotesPath"
+          echo "Release notes saved to $releaseNotesPath"
+
+          dotnet tool install -g vpk
+          export PATH="$PATH:$HOME/.dotnet/tools"
+
+          # Desktop version
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-stable
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish --channel linux-stable --releaseNotes $releaseNotesPath
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}
+
+          # Web version
+          vpk download github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-stable
+          vpk pack --packId Sidekick --packVersion $version --packDir Publish-Web --channel linux-web-stable --releaseNotes $releaseNotesPath
+          vpk upload github --repoUrl https://github.com/Sidekick-Poe/Sidekick --channel linux-web-stable --merge --releaseName "Sidekick v$version" --tag v$version --token ${{ github.token }}

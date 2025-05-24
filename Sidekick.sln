@@ -8,17 +8,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution", "_Solution", "{
 		.filenesting.json = .filenesting.json
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
+		.github\workflows\build-release.yml = .github\workflows\build-release.yml
 		CONTRIBUTING.md = CONTRIBUTING.md
+		Directory.Packages.props = Directory.Packages.props
 		docker-compose.yml = docker-compose.yml
 		Dockerfile = Dockerfile
-		download-instructions.txt = download-instructions.txt
 		.github\FUNDING.yml = .github\FUNDING.yml
 		LICENSE = LICENSE
 		README.md = README.md
 		.github\release-drafter.yml = .github\release-drafter.yml
 		.github\workflows\tests.yml = .github\workflows\tests.yml
-		.github\workflows\windows-beta.yml = .github\workflows\windows-beta.yml
-		.github\workflows\windows-stable.yml = .github\workflows\windows-stable.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}"
@@ -74,6 +73,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Apis.Poe.Account", "src\Sidekick.Apis.Poe.Account\Sidekick.Apis.Poe.Account.csproj", "{9ABF7920-D05B-4215-B991-A0E7256038E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Apis.Common", "src\Sidekick.Apis.Common\Sidekick.Apis.Common.csproj", "{AD154539-2E18-47AC-9A6B-CF56E15C97AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.PhotinoBlazor", "src\Sidekick.PhotinoBlazor\Sidekick.PhotinoBlazor.csproj", "{C8F7E7AE-C245-4B71-A915-CA90335A2F67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Modules.RegexHotkeys", "src\Sidekick.Modules.RegexHotkeys\Sidekick.Modules.RegexHotkeys.csproj", "{B84D39FB-E519-77E1-68F5-33F2FABF1938}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -267,6 +270,22 @@ Global
 		{AD154539-2E18-47AC-9A6B-CF56E15C97AC}.Linux-Release|Any CPU.Build.0 = Debug|Any CPU
 		{AD154539-2E18-47AC-9A6B-CF56E15C97AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD154539-2E18-47AC-9A6B-CF56E15C97AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Linux-Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Linux-Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Linux-Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Linux-Release|Any CPU.Build.0 = Release|Any CPU
+		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8F7E7AE-C245-4B71-A915-CA90335A2F67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Linux-Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Linux-Debug|Any CPU.Build.0 = Release|Any CPU
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Linux-Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Linux-Release|Any CPU.Build.0 = Release|Any CPU
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -292,6 +311,7 @@ Global
 		{D518587C-6F94-49ED-85E1-2BB1E165CAF4} = {7285BD58-2544-44AA-8488-52EA8E55D239}
 		{9ABF7920-D05B-4215-B991-A0E7256038E1} = {7285BD58-2544-44AA-8488-52EA8E55D239}
 		{AD154539-2E18-47AC-9A6B-CF56E15C97AC} = {7285BD58-2544-44AA-8488-52EA8E55D239}
+		{B84D39FB-E519-77E1-68F5-33F2FABF1938} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17B5631D-95B3-4007-BE6B-C9BBE799D014}

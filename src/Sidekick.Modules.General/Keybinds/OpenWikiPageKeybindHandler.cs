@@ -4,8 +4,8 @@ using Sidekick.Common.Browser;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
-using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.General.Keybinds;

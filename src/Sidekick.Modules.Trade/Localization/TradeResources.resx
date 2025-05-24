@@ -172,7 +172,8 @@
     <value>Load More Data</value>
   </data>
   <data name="OpenQueryInWebsite" xml:space="preserve">
-    <value>Open query in the official website. Right-click to copy the url.</value>
+    <value>This is the URL of the current query for the official website.
+Click the button to open in your browser.</value>
   </data>
   <data name="PredictionConfidence" xml:space="preserve">
     <value>Confidence: {0}</value>
@@ -241,6 +242,6 @@
     <value>Listings</value>
   </data>
   <data name="Possible_Chance_Outcomes" xml:space="preserve">
-      <value>Possible Chance Outcomes</value>
+    <value>Possible Chance Outcomes</value>
   </data>
 </root>

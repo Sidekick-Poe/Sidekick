@@ -1,6 +1,6 @@
 using Sidekick.Common.Extensions;
-using Sidekick.Common.Keybinds;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
 

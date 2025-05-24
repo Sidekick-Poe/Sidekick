@@ -16,11 +16,12 @@ public static class StartupExtensions
     /// <returns>The service collection with services added</returns>
     public static IServiceCollection AddSidekickGeneral(this IServiceCollection services)
     {
-        services.AddSidekickKeybind<CloseOverlayKeybindHandler>();
-        services.AddSidekickKeybind<CloseOverlayWithEscHandler>();
-        services.AddSidekickKeybind<FindItemKeybindHandler>();
-        services.AddSidekickKeybind<OpenWikiPageKeybindHandler>();
-        services.AddSidekickKeybind<OpenInCraftOfExileHandler>();
+        services.AddSidekickInputHandler<CloseOverlayKeybindHandler>();
+        services.AddSidekickInputHandler<CloseOverlayWithEscHandler>();
+        services.AddSidekickInputHandler<FindItemKeybindHandler>();
+        services.AddSidekickInputHandler<OpenWikiPageKeybindHandler>();
+        services.AddSidekickInputHandler<OpenInCraftOfExileHandler>();
+        services.AddSidekickInputHandler<MouseWheelHandler>();
 
         return services;
     }
