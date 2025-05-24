@@ -38,6 +38,7 @@ public class RegexHotkeyHandler(
 
         await clipboard.SetText(regexHotkey.Regex);
 
+        keyboard.ReleaseAltModifier();
         await keyboard.PressKey("Ctrl+F", "Ctrl+V");
 
         if (retainClipboard)
