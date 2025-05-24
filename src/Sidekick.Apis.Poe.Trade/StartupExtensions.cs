@@ -22,7 +22,7 @@ namespace Sidekick.Apis.Poe.Trade;
 
 public static class StartupExtensions
 {
-    public static IServiceCollection AddSidekickPoeApi(this IServiceCollection services)
+    public static IServiceCollection AddSidekickPoeTradeApi(this IServiceCollection services)
     {
         services.AddTransient<TradeApiHandler>();
 

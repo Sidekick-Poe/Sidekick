@@ -1,7 +1,8 @@
 using System.Diagnostics;
 using ApexCharts;
+using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
-using Sidekick.Apis.Poe;
+using Sidekick.Apis.Poe.Account;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe2Scout;
 using Sidekick.Apis.PoeNinja;
@@ -50,7 +51,9 @@ builder.Services
 
     // Apis
     .AddSidekickGitHubApi()
-    .AddSidekickPoeApi()
+    .AddSidekickCommonApi()
+    .AddSidekickPoeAccountApi()
+    .AddSidekickPoeTradeApi()
     .AddSidekickPoeNinjaApi()
     .AddSidekickPoe2ScoutApi()
     .AddSidekickPoePriceInfoApi()
@@ -101,14 +104,13 @@ if (!Debugger.IsAttached)
     applicationLifetime.ApplicationStarted.Register(() =>
     {
         var browserProvider = app.Services.GetService<IBrowserProvider>();
-        if (browserProvider != null)
+        if (browserProvider == null) return;
+
+        // Get the first URL the app is listening on
+        var url = app.Urls.FirstOrDefault();
+        if (!string.IsNullOrEmpty(url))
         {
-            // Get the first URL the app is listening on
-            var url = app.Urls.FirstOrDefault();
-            if (!string.IsNullOrEmpty(url))
-            {
-                browserProvider.OpenUri(new Uri(url));
-            }
+            browserProvider.OpenUri(new Uri(url));
         }
     });
 }
