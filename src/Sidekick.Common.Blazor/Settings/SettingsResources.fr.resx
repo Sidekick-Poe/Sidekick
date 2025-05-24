@@ -123,21 +123,6 @@
   <data name="Character_League" xml:space="preserve">
     <value>Ligue</value>
   </data>
-  <data name="Chat_Commands" xml:space="preserve">
-    <value>Commandes de chat</value>
-  </data>
-  <data name="Chat_Common_Commands" xml:space="preserve">
-    <value>Commandes communes</value>
-  </data>
-  <data name="Chat_Commands_Exit" xml:space="preserve">
-    <value>Quitter vers la sélection du personnage</value>
-  </data>
-  <data name="Chat_Commands_Hideout" xml:space="preserve">
-    <value>Aller au repaire</value>
-  </data>
-  <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
-    <value>Nom de la personne du dernier échange</value>
-  </data>
   <data name="General_Settings" xml:space="preserve">
     <value>Configurations générales</value>
   </data>
@@ -216,12 +201,6 @@
   <data name="WealthTracker" xml:space="preserve">
     <value>Wealth Tracker</value>
   </data>
-  <data name="Chat_Commands_Leave" xml:space="preserve">
-    <value>Quitter le groupe</value>
-  </data>
-  <data name="Chat_Commands_Remove" xml:space="preserve">
-    <value>Supprimer cette commande</value>
-  </data>
   <data name="Wealth_Key_Open" xml:space="preserve">
     <value>Ouvrir le Wealth Tracker</value>
   </data>
@@ -276,23 +255,8 @@
   <data name="SaveWindowPositions" xml:space="preserve">
     <value>Conserver la position des fenêtres. Si désactivé, les fenêtres seront centrées.</value>
   </data>
-  <data name="Chat_Add_New_Command" xml:space="preserve">
-    <value>Ajouter une nouvelle commande</value>
-  </data>
-  <data name="Chat_Submit_The_Command" xml:space="preserve">
-    <value>Soumettre la commande</value>
-  </data>
-  <data name="Chat_Command" xml:space="preserve">
-    <value>Commande</value>
-  </data>
   <data name="Keybind" xml:space="preserve">
     <value>Raccourci</value>
-  </data>
-  <data name="Chat_Commands_Invite" xml:space="preserve">
-    <value>Inviter un joueur</value>
-  </data>
-  <data name="Chat_Commands_Kick" xml:space="preserve">
-    <value>Expulser un joueur</value>
   </data>
   <data name="UseInvariantForTradeResultsTip" xml:space="preserve">
     <value>Ce n'est pas fiable pour certains items uniques, mais c'est une solution de contournement.</value>
@@ -386,5 +350,8 @@
   </data>
   <data name="Behaviour_Settings" xml:space="preserve">
       <value>Comportement</value>
+  </data>
+  <data name="Chat_Commands" xml:space="preserve">
+    <value>Commandes de chat</value>
   </data>
 </root>

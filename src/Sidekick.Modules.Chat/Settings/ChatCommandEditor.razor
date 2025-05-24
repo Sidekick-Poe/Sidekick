@@ -4,6 +4,7 @@
 @using Sidekick.Common.Blazor.Settings.Components
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.Buttons
+@using Sidekick.Modules.Chat.Localization
 
 @foreach (var chatSetting in ChatSettings)
 {
@@ -15,7 +16,7 @@
             </div>
             <div class="col-span-6">
                 <KeybindEditor Value="@chatSetting.Key" ValueChanged="(v) => KeyChanged(chatSetting, v)"
-                    Label="@Resources["Keybind"]" />
+                    Label="@SettingResources["Keybind"]" />
             </div>
         </div>
 
@@ -38,7 +39,8 @@
     </div>
 </FormFieldset>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<SettingsResources> SettingResources
+@inject IStringLocalizer<ChatResources> Resources
 @inject ISettingsService SettingsService
 @implements IDisposable
 
