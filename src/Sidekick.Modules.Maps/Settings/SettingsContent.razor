@@ -5,6 +5,13 @@
 @implements IDisposable
 @inject IApplicationService ApplicationService
 
+@if (ApplicationService.SupportsKeybinds)
+{
+    <FormFieldset Legend="@Resources["Keybindings"]">
+        <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenMapCheck" Label="@Resources["Map_Key_Check"]" />
+    </FormFieldset>
+}
+
 <FormFieldset Legend="@Resources["Dangerous_Modifiers"]">
     <SettingTextEditor SettingKey="@SettingKeys.MapCheckDangerousRegex" Label="@Resources["Map_Dangerous_Regex"]" Tooltip="@Resources["Regex_Hint"]" />
 </FormFieldset>

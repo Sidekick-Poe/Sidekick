@@ -243,9 +243,6 @@
   <data name="Item_Trade_Settings" xml:space="preserve">
     <value>Configurations de l'échange</value>
   </data>
-  <data name="Bulk_Trade_Settings" xml:space="preserve">
-    <value>Configurations de l'échange en gros</value>
-  </data>
   <data name="Preferred_search_mode_for_currency_items" xml:space="preserve">
     <value>Mode de recherche pour les devises</value>
   </data>
@@ -389,5 +386,14 @@
   </data>
   <data name="Overlay_Settings" xml:space="preserve">
       <value>Paramètres de fenêtre</value>
+  </data>
+  <data name="Filter_Settings" xml:space="preserve">
+      <value>Paramètres des filtres</value>
+  </data>
+  <data name="External_Tools_Settings" xml:space="preserve">
+      <value>Outils externes</value>
+  </data>
+  <data name="Behaviour_Settings" xml:space="preserve">
+      <value>Comportement</value>
   </data>
 </root>
