@@ -10,30 +10,19 @@
     return;
 }
 
-<div class="relative">
-    <TooltipRight>
-        <ChildContent>
-            <button type="button"
-                    @onclick="@OpenWebsite"
-                    @onclick:preventDefault="true"
-                    @onclick:stopPropagation="true"
-                    @oncontextmenu="@OpenDetails"
-                    @oncontextmenu:preventDefault="true"
-                    @oncontextmenu:stopPropagation="true"
-                    class="inline-flex items-center justify-center p-1 -m-1 text-xl font-medium tracking-wide transition-colors duration-200 rounded-md bg-transparent">
-                <Icon Svg="@UiIcons.External" />
-            </button>
-        </ChildContent>
-
-        <TooltipContent>
-            <TextBase Class="max-w-[15rem]">@Resources["OpenQueryInWebsite"]</TextBase>
-        </TooltipContent>
-    </TooltipRight>
-
-    <Popover @bind-Visible="DetailsOpened" Class="min-w-[30rem] [&_.mb-3]:!mb-0">
-        <FormInput Value="@TradeUri?.ToString()" readonly/>
-    </Popover>
-</div>
+<Popover AnchorIsIcon="false" Trigger="TooltipTrigger.Hover" Class="min-w-120 [&_.mb-3]:mb-0!">
+    <PopoverAnchor>
+        <button type="button"
+                @onclick="@OpenWebsite"
+                class="inline-flex items-center justify-center p-1 -m-1 text-xl font-medium tracking-wide transition-colors duration-200 rounded-md bg-transparent">
+            <Icon Svg="@UiIcons.External" />
+        </button>
+    </PopoverAnchor>
+    <PopoverContent>
+        <TextBase Class="mb-2 whitespace-pre-wrap">@Resources["OpenQueryInWebsite"]</TextBase>
+        <FormInput Value="@TradeUri?.ToString()" readonly />
+    </PopoverContent>
+</Popover>
 
 @inject IStringLocalizer<TradeResources> Resources
 @inject ITradeSearchService TradeSearchService
@@ -49,46 +38,28 @@
     [Parameter]
     public string? QueryId { get; set; }
 
-    private bool DetailsOpened { get; set; }
-
     private Uri? TradeUri { get; set; }
 
-    private async Task OpenWebsite()
+    protected override async Task OnInitializedAsync()
     {
-        if (QueryId == null)
+        if (QueryId != null)
         {
-            return;
+            TradeUri = PriceCheckService.CurrentMode == TradeMode.Bulk
+                ? await BulkTradeService.GetTradeUri(Item, QueryId)
+                : await TradeSearchService.GetTradeUri(Item.Header.Game, QueryId);
         }
 
-        if (PriceCheckService.CurrentMode == TradeMode.Bulk)
-        {
-            var uri = await BulkTradeService.GetTradeUri(Item, QueryId);
-            BrowserProvider.OpenUri(uri);
-        }
-        else
-        {
-            var uri = await TradeSearchService.GetTradeUri(Item.Header.Game, QueryId);
-            BrowserProvider.OpenUri(uri);
-        }
+        await base.OnInitializedAsync();
     }
 
-    private async Task OpenDetails()
+    private void OpenWebsite()
     {
-        if (QueryId == null)
+        if (TradeUri == null)
         {
             return;
         }
 
-        if (PriceCheckService.CurrentMode == TradeMode.Bulk)
-        {
-            TradeUri = await BulkTradeService.GetTradeUri(Item, QueryId);
-        }
-        else
-        {
-            TradeUri = await TradeSearchService.GetTradeUri(Item.Header.Game, QueryId);
-        }
-
-        DetailsOpened = true;
+        BrowserProvider.OpenUri(TradeUri);
     }
 
 }

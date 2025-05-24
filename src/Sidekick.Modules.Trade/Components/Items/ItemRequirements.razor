@@ -4,7 +4,7 @@
 @if (!string.IsNullOrEmpty(Text))
 {
     <TextBase
-        Class="text-[#7f7f7f] font-caps text-center leading-none py-[1px]">@Resources["Requires"] @((MarkupString)Text)</TextBase>
+        Class="text-[#7f7f7f] font-caps text-center leading-none py-px">@Resources["Requires"] @((MarkupString)Text)</TextBase>
 }
 
 @inject IStringLocalizer<TradeResources> Resources

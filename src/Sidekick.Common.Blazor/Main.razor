@@ -1,5 +1,3 @@
-@using MudBlazor.Utilities
-@using MudBlazor
 @inject IViewLocator ViewLocator
 
 <AppWrapper>
@@ -24,57 +22,3 @@
         </NotFound>
     </Router>
 </AppWrapper>
-
-<MudThemeProvider IsDarkMode="true" Theme="@theme"/>
-<MudDialogProvider/>
-<MudSnackbarProvider/>
-<div class="[&_.mud-popover]:left-0 [&_.mud-popover]:top-0 [&_.mud-popover>*]:[zoom:var(--sidekick-zoom)]">
-    <MudPopoverProvider/>
-</div>
-
-@code {
-
-    private MudTheme theme = new()
-    {
-        PaletteDark = new PaletteDark()
-        {
-            Background = new MudColor("#1c1917"),
-            Black = new MudColor("#000000"),
-            Dark = new MudColor("#44403c"),
-            Error = new MudColor("#b91c1c"),
-            Info = new MudColor("#14b8a6"),
-            Primary = new MudColor("#6d28d9"),
-            AppbarText = new MudColor("#ffffff"),
-        },
-        Typography = new Typography()
-        {
-            Body1 = CreateTypography<Body1Typography>("14px"),
-            Body2 = CreateTypography<Body2Typography>("14px"),
-            Subtitle1 = CreateTypography<Subtitle1Typography>("16px"),
-            Subtitle2 = CreateTypography<Subtitle2Typography>("16px"),
-            H6 = CreateTypography<H6Typography>("16px"),
-            H5 = CreateTypography<H5Typography>("16px"),
-            H4 = CreateTypography<H4Typography>("16px"),
-            H3 = CreateTypography<H3Typography>("18px"),
-            H2 = CreateTypography<H2Typography>("24px"),
-            H1 = CreateTypography<H1Typography>("30px"),
-            Default = CreateTypography<DefaultTypography>("14px"),
-        }
-    };
-
-    private static BaseTypography CreateTypography<T>(string fontSize)
-        where T : BaseTypography, new()
-    {
-        var typo = new T();
-        if (typo is not BaseTypography baseTypo) return typo;
-        baseTypo.FontFamily = ["fontin", "sans", "serif", "mono"];
-        baseTypo.FontSize = fontSize;
-        baseTypo.FontWeight = "400";
-        baseTypo.LineHeight = "1.2";
-        baseTypo.LetterSpacing = "0";
-        baseTypo.TextTransform = "none";
-
-        return typo;
-    }
-
-}

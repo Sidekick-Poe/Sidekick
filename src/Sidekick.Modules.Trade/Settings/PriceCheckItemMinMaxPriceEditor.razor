@@ -7,23 +7,23 @@
     <label class="block text-base font-medium dark:text-zinc-300 text-nowrap mb-3">
         @Resources["Buyout_Price"]
     </label>
-    <div
-        class="ml-auto flex flex-nowrap [&_input]:!rounded-r-none [&>:last-child_input]:!rounded-r-lg [&>:last-child_input]:!rounded-l-none">
+    <div class="ml-auto flex flex-nowrap [&_input]:rounded-r-none! [&>:last-child_input]:rounded-r-lg! [&>:last-child_input]:rounded-l-none!">
         <FormNumberInline placeholder="Min"
                           min="0"
                           step="1"
                           Value="Minimum"
-                          ValueChanged="MinimumChanged"/>
+                          ValueChanged="MinimumChanged" />
         <FormNumberInline placeholder="Max"
                           min="0"
                           step="1"
                           Value="Maximum"
-                          ValueChanged="MaximumChanged"/>
+                          ValueChanged="MaximumChanged" />
     </div>
 </div>
 
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
+@implements IDisposable
 
 @code {
 
@@ -31,7 +31,25 @@
     private double? Maximum { get; set; }
     private GameType Game { get; set; }
 
+    private string[] SettingKeysUsed { get; } =
+    {
+        SettingKeys.LeagueId,
+        SettingKeys.PriceCheckItemCurrencyMin,
+        SettingKeys.PriceCheckItemCurrencyMax,
+        SettingKeys.PriceCheckItemCurrencyMinPoE2,
+        SettingKeys.PriceCheckItemCurrencyMaxPoE2
+    };
+
     protected override async Task OnInitializedAsync()
+    {
+        await FetchSettings();
+
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task FetchSettings()
     {
         var league = await SettingsService.GetString(SettingKeys.LeagueId);
         Game = league.GetGameFromLeagueId();
@@ -48,8 +66,6 @@
 
         if (Minimum <= 0) Minimum = null;
         if (Maximum <= 0) Maximum = null;
-
-        await base.OnInitializedAsync();
     }
 
     private async Task MinimumChanged(double? value)
@@ -82,6 +98,22 @@
         {
             await SettingsService.Set(SettingKeys.PriceCheckItemCurrencyMaxPoE2, intValue);
         }
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (!keys.Any(key => SettingKeysUsed.Contains(key)))
+        {
+            return;
+        }
+
+        await FetchSettings();
+        await InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
     }
 
 }

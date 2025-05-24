@@ -15,6 +15,7 @@
 @inject ISettingsService SettingsService
 @inject NavigationManager NavigationManager
 @implements IAsyncDisposable
+@inherits FlowbiteComponent
 
 @code {
 
@@ -56,17 +57,9 @@
             ZoomHandler = await Module.InvokeAsync<IJSObjectReference>("initializeZoomHandling");
 
             await UpdateZoom();
-
-            await JsRuntime.InvokeVoidAsync("initFlowbite");
-            NavigationManager.LocationChanged += OnLocationChanged;
         }
 
         await base.OnAfterRenderAsync(firstRender);
-    }
-
-    private async void OnLocationChanged(object? sender, LocationChangedEventArgs e)
-    {
-        await JsRuntime.InvokeVoidAsync("initFlowbite");
     }
 
     public async ValueTask DisposeAsync()
@@ -82,7 +75,6 @@
         }
 
         SettingsService.OnSettingsChanged -= SettingsServiceOnOnSettingsChanged;
-        NavigationManager.LocationChanged -= OnLocationChanged;
     }
 
 }
