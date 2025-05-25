@@ -10,6 +10,7 @@
 @inject PhotinoBlazorViewLocator ViewLocator
 @inject PhotinoBlazorApp PhotinoBlazorApp
 @inject IKeyboardProvider KeyboardProvider
+@inject IApplicationService ApplicationService
 @implements IDisposable
 
 @code {
@@ -41,7 +42,10 @@
 
     private void CurrentViewClosed()
     {
-        NavigationManager.NavigateTo("/home");
+        if (new Uri(NavigationManager.Uri).PathAndQuery == "/home")
+        {
+            ApplicationService.Shutdown();
+        }
     }
 
     private void ViewStartDragging(int offsetX, int offsetY)

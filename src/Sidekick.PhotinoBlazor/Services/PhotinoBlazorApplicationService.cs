@@ -115,6 +115,7 @@ public class PhotinoBlazorApplicationService
     {
         Environment.Exit(0);
     }
+
     public void Dispose()
     {
         Icon?.Dispose();
