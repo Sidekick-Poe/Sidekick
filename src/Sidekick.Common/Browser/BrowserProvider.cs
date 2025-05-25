@@ -6,6 +6,12 @@ namespace Sidekick.Common.Browser;
 
 public class BrowserProvider(ILogger<BrowserProvider> logger, IServiceProvider serviceProvider) : IBrowserProvider
 {
+    public Uri SidekickWebsite => new("https://sidekick-poe.github.io/");
+
+    public Uri GitHubRepository => new("https://github.com/Sidekick-Poe/Sidekick");
+
+    public Uri DiscordServer => new("https://discord.gg/R9HyCpV");
+
     public void OpenUri(Uri uri)
     {
         logger.LogInformation("[Browser] Opening: {uri}", uri.AbsoluteUri);
@@ -24,15 +30,5 @@ public class BrowserProvider(ILogger<BrowserProvider> logger, IServiceProvider s
             var dialogs = serviceProvider.GetService<ISidekickDialogs>();
             dialogs?.OpenOkModal("Failed to open URL: " + uri.AbsoluteUri);
         }
-    }
-
-    public void OpenSidekickWebsite()
-    {
-        OpenUri(new Uri("https://sidekick-poe.github.io/"));
-    }
-
-    public void OpenGitHubRepository()
-    {
-        OpenUri(new Uri("https://github.com/Sidekick-Poe/Sidekick"));
     }
 }

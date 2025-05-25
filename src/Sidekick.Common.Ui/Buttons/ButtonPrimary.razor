@@ -3,7 +3,7 @@
         @onclick="() => OnClick.InvokeAsync()"
         @onclick:preventDefault="true"
         @onclick:stopPropagation="true"
-        class="disabled:opacity-50 inline-flex items-center justify-center px-4 py-2 text-base font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-violet-700 hover:enabled:bg-violet-500 @UiClasses.FocusClasses">
+        class="disabled:opacity-50 inline-flex items-center justify-center px-4 py-2 text-base font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-violet-700 hover:enabled:bg-violet-500 @UiClasses.FocusClasses @Class">
     @ChildContent
 </button>
 
@@ -17,5 +17,8 @@
 
     [Parameter]
     public bool Disabled { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
 
 }
