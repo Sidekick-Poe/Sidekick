@@ -78,4 +78,12 @@
     <data name="Wiki_Preferred" xml:space="preserve">
     <value>Preferred Wiki</value>
   </data>
+    <data name="poedb" xml:space="preserve">
+    <value>poedb.tw / poe2db.tw</value>
+    <comment>Used in PreferredWikiEditor.razor</comment>
+  </data>
+    <data name="poewiki" xml:space="preserve">
+    <value>poewiki.net / poe2wiki.net</value>
+    <comment>Used in PreferredWikiEditor.razor</comment>
+  </data>
 </root>

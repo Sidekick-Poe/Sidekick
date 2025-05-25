@@ -147,12 +147,6 @@
   <data name="Price_Check" xml:space="preserve">
     <value>가격 검색</value>
   </data>
-  <data name="PriceCheck_Key_Check" xml:space="preserve">
-    <value>가격 검색</value>
-  </data>
-  <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
-    <value>poeprices.info에서 가져온 가격 예측 보여주기 (PoE1)</value>
-  </data>
   <data name="Reset_Cache" xml:space="preserve">
     <value>캐시 초기화</value>
   </data>
@@ -165,34 +159,10 @@
   <data name="Restore_Defaults" xml:space="preserve">
     <value>기본값으로 되돌리기</value>
   </data>
-  <data name="WealthTracker" xml:space="preserve">
-    <value>Wealth Tracker</value>
-  </data>
   <data name="Map_Check" xml:space="preserve">
     <value>지도 체크</value>
   </data>
-  <data name="Item_Trade_Settings" xml:space="preserve">
-    <value>아이템 거래 세팅</value>
-  </data>
-  <data name="Buyout_Price" xml:space="preserve">
-    <value>가격</value>
-  </data>
   <data name="Clear_Filters" xml:space="preserve">
-    <value />
-  </data>
-  <data name="PriceCheck_Automatically_Search_Currency" xml:space="preserve">
-    <value />
-  </data>
-  <data name="PriceCheck_Enable_All_Filters" xml:space="preserve">
-    <value />
-  </data>
-  <data name="PriceCheck_Enable_Filters_By_Regex" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Setting_Rate_Limit_Hint" xml:space="preserve">
-    <value />
-  </data>
-  <data name="PriceCheck_Automatically_Load_More_Data" xml:space="preserve">
     <value />
   </data>
   <data name="Regex_Hotkeys" xml:space="preserve">
@@ -203,9 +173,6 @@
   </data>
   <data name="Game" xml:space="preserve">
       <value />
-  </data>
-  <data name="Bulk_Trade" xml:space="preserve">
-      <value>대량 교환 세팅</value>
   </data>
   <data name="Chat_Commands" xml:space="preserve">
     <value>채팅 명령어</value>

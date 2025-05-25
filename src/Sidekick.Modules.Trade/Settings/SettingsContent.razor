@@ -1,13 +1,14 @@
 @using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Blazor.Settings.Components
+@using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
 @implements IDisposable
 @inject IApplicationService ApplicationService
 
 @if (ApplicationService.SupportsKeybinds)
 {
-    <FormFieldset Legend="@Resources["Keybindings"]">
+    <FormFieldset Legend="@SettingsResources["Keybindings"]">
         <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenPriceCheck" Label="@Resources["PriceCheck_Key_Check"]" />
     </FormFieldset>
 }
@@ -17,7 +18,7 @@
     <PriceCheckNormalizeValueEditor />
     <PriceCheckDefaultFilterTypeEditor />
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckEnableAllFilters" Label="@Resources["PriceCheck_Enable_All_Filters"]" />
-    <SettingTextEditor SettingKey="@SettingKeys.PriceCheckEnableFiltersByRegex" Label="@Resources["PriceCheck_Enable_Filters_By_Regex"]" Tooltip="@Resources["Regex_Hint"]" />
+    <SettingTextEditor SettingKey="@SettingKeys.PriceCheckEnableFiltersByRegex" Label="@Resources["PriceCheck_Enable_Filters_By_Regex"]" Tooltip="@SettingsResources["Regex_Hint"]" />
 </FormFieldset>
 
 <FormFieldset Legend="@Resources["External_Tools_Settings"]">
@@ -37,7 +38,8 @@
     <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@Resources["Restore_Defaults"]</ButtonPrimary>
 </div>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<SettingsResources> SettingsResources
+@inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
 
 @code {
