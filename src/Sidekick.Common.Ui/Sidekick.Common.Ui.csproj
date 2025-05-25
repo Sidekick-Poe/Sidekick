@@ -28,6 +28,7 @@
 
   <Target Name="CopyJavascriptFiles" AfterTargets="PreBuild">
     <Copy SourceFiles="node_modules\flowbite\dist\flowbite.min.js" DestinationFolder="wwwroot\js\" />
+    <Copy SourceFiles="node_modules\interactjs\dist\interactjs.min.js" DestinationFolder="wwwroot\js\" />
   </Target>
 
 </Project>
