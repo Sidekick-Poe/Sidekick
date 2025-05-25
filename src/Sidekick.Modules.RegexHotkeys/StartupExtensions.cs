@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common;
 using Sidekick.Modules.RegexHotkeys.Keybinds;
+using Sidekick.Modules.RegexHotkeys.Localization;
 
 namespace Sidekick.Modules.RegexHotkeys;
 

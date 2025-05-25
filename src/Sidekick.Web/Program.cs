@@ -52,7 +52,6 @@ builder.Services
     // Apis
     .AddSidekickGitHubApi()
     .AddSidekickCommonApi()
-    .AddSidekickPoeAccountApi()
     .AddSidekickPoeTradeApi()
     .AddSidekickPoeNinjaApi()
     .AddSidekickPoe2ScoutApi()
@@ -65,8 +64,7 @@ builder.Services
     .AddSidekickRegexHotkeys()
     .AddSidekickGeneral()
     .AddSidekickMaps()
-    .AddSidekickTrade()
-    .AddSidekickWealth();
+    .AddSidekickTrade();
 
 builder.Services.AddApexCharts();
 builder.Services.AddSidekickInitializableService<IApplicationService, WebApplicationService>();
@@ -81,8 +79,6 @@ var logger = app.Services.GetRequiredService<ILogger<Program>>();
 VelopackApp.Build().Run(logger);
 
 #region Pipeline
-
-app.Services.GetRequiredService<IInterprocessService>().StartReceiving();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 

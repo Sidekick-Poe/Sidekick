@@ -1,5 +1,5 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Requests
-@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
 
 <FormFieldset Legend="@Resources["Player_Status"]"
@@ -14,7 +14,7 @@ Dense="true">
     </div>
 </FormFieldset>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
 @implements IDisposable
 
@@ -59,11 +59,10 @@ Dense="true">
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (keys.Contains(SettingKeys.PriceCheckStatus))
-        {
-            Value = await SettingsService.GetString(SettingKeys.PriceCheckStatus);
-            await InvokeAsync(StateHasChanged);
-        }
+        if (!keys.Contains(SettingKeys.PriceCheckStatus)) return;
+
+        Value = await SettingsService.GetString(SettingKeys.PriceCheckStatus);
+        await InvokeAsync(StateHasChanged);
     }
 
     public void Dispose()

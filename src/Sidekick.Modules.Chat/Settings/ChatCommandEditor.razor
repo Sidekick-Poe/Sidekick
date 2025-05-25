@@ -1,5 +1,10 @@
+@using Microsoft.Extensions.Localization
+@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Blazor.Settings.Components
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Modules.Chat.Localization
 
 @foreach (var chatSetting in ChatSettings)
 {
@@ -11,7 +16,7 @@
             </div>
             <div class="col-span-6">
                 <KeybindEditor Value="@chatSetting.Key" ValueChanged="(v) => KeyChanged(chatSetting, v)"
-                    Label="@Resources["Keybind"]" />
+                    Label="@SettingResources["Keybind"]" />
             </div>
         </div>
 
@@ -34,7 +39,8 @@
     </div>
 </FormFieldset>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<SettingsResources> SettingResources
+@inject IStringLocalizer<ChatResources> Resources
 @inject ISettingsService SettingsService
 @implements IDisposable
 
@@ -86,11 +92,10 @@
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (keys.Contains(SettingKeys.ChatCommands))
-        {
-            ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands) ?? [];
-            await InvokeAsync(StateHasChanged);
-        }
+        if (!keys.Contains(SettingKeys.ChatCommands)) return;
+
+        ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands) ?? [];
+        await InvokeAsync(StateHasChanged);
     }
 
     public void Dispose()

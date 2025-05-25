@@ -1,6 +1,6 @@
-@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Game
+@using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
 
 <div class="flex flex-nowrap items-center gap-4">
@@ -21,7 +21,7 @@
     </div>
 </div>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
 @implements IDisposable
 

@@ -1,5 +1,6 @@
 @using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Enums
+@using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
 
 <FormSelect Value="@Value"
@@ -10,7 +11,7 @@
         <div class="flex ml-1 gap-1 align-center">
             @if (ShowResetButton)
             {
-                <ButtonIcon OnClick="Reset" title="@Resources["Reset"]">
+                <ButtonIcon OnClick="Reset" title="@SettingsResources["Reset"]">
                     <Icon Svg="@UiIcons.Reset" />
                 </ButtonIcon>
             }
@@ -18,7 +19,8 @@
     </AdornmentContent>
 </FormSelect>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<SettingsResources> SettingsResources
+@inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
 @implements IDisposable
 
@@ -64,13 +66,11 @@
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (keys.Contains(SettingKey))
-        {
-            Value = await SettingsService.GetString(SettingKey);
-            ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+        if (!keys.Contains(SettingKey)) return;
 
-            await InvokeAsync(StateHasChanged);
-        }
+        Value = await SettingsService.GetString(SettingKey);
+        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+        await InvokeAsync(StateHasChanged);
     }
 
     private async Task Reset()

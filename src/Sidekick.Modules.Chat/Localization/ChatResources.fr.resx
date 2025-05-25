@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,103 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Age_Day" xml:space="preserve">
-    <value>{0} 일 전</value>
+  <data name="Chat_Command" xml:space="preserve">
+    <value>Commande</value>
   </data>
-  <data name="Age_Days" xml:space="preserve">
-    <value>{0} 일 전</value>
+  <data name="Chat_Submit_The_Command" xml:space="preserve">
+    <value>Soumettre la commande</value>
   </data>
-  <data name="Age_Hour" xml:space="preserve">
-    <value>{0} 시간 전</value>
+  <data name="Chat_Commands_Remove" xml:space="preserve">
+    <value>Supprimer cette commande</value>
   </data>
-  <data name="Age_Hours" xml:space="preserve">
-    <value>{0} 시간 전</value>
+  <data name="Chat_Add_New_Command" xml:space="preserve">
+    <value>Ajouter une nouvelle commande</value>
   </data>
-  <data name="Age_Minute" xml:space="preserve">
-    <value>{0} 분 전</value>
+  <data name="Chat_Commands_Hideout" xml:space="preserve">
+    <value>Aller au repaire</value>
   </data>
-  <data name="Age_Minutes" xml:space="preserve">
-    <value>{0} 분 전</value>
+  <data name="Chat_Commands_Leave" xml:space="preserve">
+    <value>Quitter le groupe</value>
   </data>
-  <data name="Age_Now" xml:space="preserve">
-    <value>방금</value>
+  <data name="Chat_Commands_Exit" xml:space="preserve">
+    <value>Quitter vers la sélection du personnage</value>
   </data>
-  <data name="Age_Seconds" xml:space="preserve">
-    <value>{0} 초 전</value>
+  <data name="Chat_Commands_Invite" xml:space="preserve">
+    <value>Inviter un joueur</value>
   </data>
-  <data name="Base_Percentile" xml:space="preserve">
-    <value>기본 백분위수</value>
+  <data name="Chat_Commands_Kick" xml:space="preserve">
+    <value>Expulser un joueur</value>
   </data>
-  <data name="Corrupted" xml:space="preserve">
-    <value>타락된</value>
+  <data name="Chat_Wildcard_LastWhisper_CharacterName" xml:space="preserve">
+    <value>Nom de la personne du dernier échange</value>
   </data>
-  <data name="CountString" xml:space="preserve">
-    <value>{1} 중 {0}개의 아이템을 보여주는 중</value>
-  </data>
-  <data name="Filters_Max" xml:space="preserve">
-    <value>최대</value>
-  </data>
-  <data name="Filters_Min" xml:space="preserve">
-    <value>최소</value>
-  </data>
-  <data name="ForceCategoryHint" xml:space="preserve">
-    <value>이 체크박스를 선택하면 선택된 접사와 관련된 결과에 등장합니다. 체크해제시 모든 접사가 등장합니다.</value>
-  </data>
-  <data name="Layout_Cards_Maximized" xml:space="preserve">
-    <value>상세 결과</value>
-  </data>
-  <data name="Layout_Cards_Minimized" xml:space="preserve">
-    <value>결과</value>
-  </data>
-  <data name="LoadMoreData" xml:space="preserve">
-    <value>더 많은 데이터 불러오기</value>
-  </data>
-  <data name="OpenQueryInWebsite" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Requires" xml:space="preserve">
-    <value>요구사항</value>
-  </data>
-  <data name="Stock" xml:space="preserve">
-    <value>재고</value>
-  </data>
-  <data name="Trade" xml:space="preserve">
-    <value>거래</value>
-  </data>
-  <data name="Unidentified" xml:space="preserve">
-    <value>미확인</value>
-  </data>
-  <data name="Item_Class" xml:space="preserve">
-    <value>아이템 유형</value>
-  </data>
-  <data name="Item_Trade_Settings" xml:space="preserve">
-    <value>아이템 거래 세팅</value>
-  </data>
-  <data name="Bulk_Trade" xml:space="preserve">
-      <value>대량 교환 세팅</value>
-  </data>
-  <data name="Buyout_Price" xml:space="preserve">
-    <value>가격</value>
-  </data>
-  <data name="PriceCheck_Key_Check" xml:space="preserve">
-    <value>가격 검색</value>
-  </data>
-  <data name="PriceCheck_Enable_All_Filters" xml:space="preserve">
-    <value />
-  </data>
-  <data name="PriceCheck_Enable_Filters_By_Regex" xml:space="preserve">
-    <value />
-  </data>
-  <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
-    <value>poeprices.info에서 가져온 가격 예측 보여주기 (PoE1)</value>
-  </data>
-  <data name="PriceCheck_Automatically_Load_More_Data" xml:space="preserve">
-    <value />
-  </data>
-  <data name="PriceCheck_Automatically_Search_Currency" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Setting_Rate_Limit_Hint" xml:space="preserve">
-    <value />
+  <data name="Chat_Common_Commands" xml:space="preserve">
+    <value>Commandes communes</value>
   </data>
 </root>
