@@ -51,7 +51,7 @@ public class WpfApplicationService
         AddTrayItem(resources["Open_Website"],
                     () =>
                     {
-                        browserProvider.OpenSidekickWebsite();
+                        browserProvider.OpenUri(browserProvider.SidekickWebsite);
                         return Task.CompletedTask;
                     });
         AddTrayItem(resources["Exit"],

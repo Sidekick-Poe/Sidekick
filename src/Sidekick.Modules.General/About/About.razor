@@ -14,12 +14,24 @@
 <AppContainer>
     <FormFieldset Legend="@($"Sidekick - {Title}")">
         <div>
-            <div class="mb-3"><span class="text-lg underline text-blue-500 cursor-pointer" onclick="@(() => BrowserProvider.OpenSidekickWebsite())">@Resources["Official_Website"]</span></div>
-            <div class="mb-3"><span class="text-lg underline text-blue-500 cursor-pointer" onclick="@(() => BrowserProvider.OpenGitHubRepository())">@Resources["GitHub_Repository"]</span></div>
+            <div class="flex flex-col gap-2">
+                <div class="flex gap-2">
+                    <TextBase>@Resources["Official_Website"] - </TextBase>
+                    <ButtonLink OnClick="@(() => BrowserProvider.OpenUri(BrowserProvider.SidekickWebsite))">@BrowserProvider.SidekickWebsite</ButtonLink>
+                </div>
+                <div class="flex gap-2">
+                    <TextBase>@Resources["GitHub_Repository"] - </TextBase>
+                    <ButtonLink OnClick="@(() => BrowserProvider.OpenUri(BrowserProvider.GitHubRepository))">@BrowserProvider.GitHubRepository</ButtonLink>
+                </div>
+                <div class="flex gap-2">
+                    <TextBase>@Resources["Discord_Server"] - </TextBase>
+                    <ButtonLink OnClick="@(() => BrowserProvider.OpenUri(BrowserProvider.DiscordServer))">@BrowserProvider.DiscordServer</ButtonLink>
+                </div>
+            </div>
 
             <LayoutDivider />
 
-            <div class="mb-3"><ButtonPrimary OnClick="@(() => FolderProvider.OpenDataFolderPath())">@Resources["Open_Settings_Folder"]</ButtonPrimary></div>
+            <ButtonPrimary Class="mb-3 block!" OnClick="@(() => FolderProvider.OpenDataFolderPath())">@Resources["Open_Settings_Folder"]</ButtonPrimary>
             <code class="bg-stone-950 px-1 min-w-[8em]">@FolderProvider.GetDataFolderPath()</code>
         </div>
     </FormFieldset>

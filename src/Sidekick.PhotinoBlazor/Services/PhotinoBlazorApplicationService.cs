@@ -77,7 +77,7 @@ public class PhotinoBlazorApplicationService
             },
             new(resources["Open_Website"])
             {
-                Click = (s, e) => browserProvider.OpenSidekickWebsite()
+                Click = (s, e) => browserProvider.OpenUri(browserProvider.SidekickWebsite)
             },
             new(resources["Exit"])
             {
