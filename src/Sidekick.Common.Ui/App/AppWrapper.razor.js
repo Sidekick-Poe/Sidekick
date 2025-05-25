@@ -3,15 +3,15 @@ export const initializeZoomHandling = () => {
 
     const updateVh = () => {
         const vh = parseInt(window.innerHeight / zoom);
-        document.documentElement.style.setProperty('--sidekick-vh', `${vh}px`);
-    }
+        document.documentElement.style.setProperty("--sidekick-vh", `${vh}px`);
+    };
 
     window.addEventListener("resize", updateVh);
 
     return {
         update: (value) => {
             zoom = value;
-            document.documentElement.style.setProperty('--sidekick-zoom', zoom);
+            document.documentElement.style.setProperty("--sidekick-zoom", zoom);
             updateVh();
         },
     };
@@ -19,6 +19,8 @@ export const initializeZoomHandling = () => {
 
 export const initializeResizeHandling = (elementId, dotNetRef) => {
     const element = document.getElementById(elementId);
+
+    let lastResizeTime = 0;
 
     interact(element).resizable({
         edges: { bottom: true, right: true },
@@ -36,7 +38,11 @@ export const initializeResizeHandling = (elementId, dotNetRef) => {
 
                 Object.assign(event.target.dataset, { x, y });
 
-                dotNetRef.invokeMethodAsync('OnResize', event.rect.width, event.rect.height);
+                const now = Date.now();
+                if (now - lastResizeTime >= 50) {
+                    lastResizeTime = now;
+                    dotNetRef.invokeMethodAsync("OnResize", event.rect.width, event.rect.height);
+                }
             },
         },
     });
