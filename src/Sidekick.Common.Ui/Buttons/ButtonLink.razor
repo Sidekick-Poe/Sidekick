@@ -1,9 +1,9 @@
-﻿<button type="button"
+<button type="button"
         disabled="@Disabled"
         @onclick="() => OnClick.InvokeAsync()"
         @onclick:preventDefault="true"
         @onclick:stopPropagation="true"
-        class="inline-flex p-1 -m-1 text-nowrap items-center transition-all duration-200 rounded-md @UiClasses.FocusClasses disabled:opacity-50 font-medium justify-center bg-transparent border-transparent! text-inherit underline cursor-pointer hover:opacity-60">
+        class="inline-flex p-1 -m-1 text-nowrap items-center transition-all duration-200 rounded-md disabled:opacity-50 font-medium justify-center bg-transparent border-transparent! text-inherit underline cursor-pointer hover:opacity-60 @UiClasses.FocusClasses @Class">
     @ChildContent
 </button>
 
@@ -17,5 +17,8 @@
 
     [Parameter]
     public bool Disabled { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
 
 }

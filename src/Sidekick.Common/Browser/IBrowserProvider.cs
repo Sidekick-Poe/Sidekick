@@ -3,18 +3,23 @@ namespace Sidekick.Common.Browser;
 public interface IBrowserProvider
 {
     /// <summary>
-    ///     Opens the specified Uri in a web browser
+    /// Opens the specified Uri in a web browser
     /// </summary>
     /// <param name="uri">The uri to open in a browser</param>
     void OpenUri(Uri uri);
 
     /// <summary>
-    ///     Opens the sidekick website in the user's browser.
+    /// The URL to the Sidekick website.
     /// </summary>
-    void OpenSidekickWebsite();
+    Uri SidekickWebsite { get; }
 
     /// <summary>
-    ///    Opens the Sidekick GitHub repository in the user's browser.
+    /// The URL to the Sidekick GitHub repository.
     /// </summary>
-    void OpenGitHubRepository();
+    Uri GitHubRepository { get; }
+
+    /// <summary>
+    /// The URL to the Sidekick Discord server.
+    /// </summary>
+    Uri DiscordServer { get; }
 }
