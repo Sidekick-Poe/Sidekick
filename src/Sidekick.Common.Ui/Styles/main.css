@@ -54,6 +54,10 @@
     }
 }
 
+html, body, #app {
+    @apply w-full h-full;
+}
+
 :root {
     --sidekick-vh: 100vh; /* Fallback */
 }

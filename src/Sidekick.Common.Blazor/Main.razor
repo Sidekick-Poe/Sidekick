@@ -1,14 +1,13 @@
-
-<AppWrapper>
+<AppWrapper OnResizeChanged="OnResizeChanged">
     <Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="SidekickConfiguration.Modules">
         <Found Context="routeData">
-            <RouteView RouteData="@routeData"/>
+            <RouteView RouteData="@routeData" />
         </Found>
         <NotFound>
             <LayoutView>
                 <LayoutSimple>
                     <TopContent>
-                        <AppLogo/>
+                        <AppLogo />
                     </TopContent>
 
                     <ChildContent>
@@ -21,3 +20,10 @@
         </NotFound>
     </Router>
 </AppWrapper>
+
+@code {
+
+    [Parameter]
+    public EventCallback<(int width, int height)> OnResizeChanged { get; set; }
+
+}

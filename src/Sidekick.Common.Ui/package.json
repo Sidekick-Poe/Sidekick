@@ -8,6 +8,7 @@
     "build": "npx @tailwindcss/cli -i ./Styles/main.css -o ./wwwroot/css/app.css"
   },
   "dependencies": {
-    "flowbite": "^3.1.2"
+    "flowbite": "^3.1.2",
+    "interactjs": "^1.10.11"
   }
 }

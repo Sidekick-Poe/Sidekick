@@ -2,12 +2,14 @@
 @using Sidekick.Common.Settings
 
 <ErrorFullScreenBoundary>
-    <div class="font-sans w-full h-[calc(var(--sidekick-vh))] overflow-y-auto overflow-x-hidden dark:bg-stone-900 text-white text-base [zoom:var(--sidekick-zoom)]">
-        @ChildContent
-    </div>
+    <div id="@ElementId" class="w-full h-full resizer-handler block select-none touch-none p-2 overflow-hidden">
+        <div class="w-full h-full dark bg-stone-800 font-sans dark:bg-stone-900 text-white text-base [zoom:var(--sidekick-zoom)]">
+            @ChildContent
+        </div>
 
-    <div class="font-sans text-base">
-        <SectionOutlet SectionName="sidekick-overlay" />
+        <div class="font-sans text-base">
+            <SectionOutlet SectionName="sidekick-overlay" />
+        </div>
     </div>
 </ErrorFullScreenBoundary>
 
@@ -21,6 +23,13 @@
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback<(int width, int height)> OnResizeChanged { get; set; }
+
+    private string ElementId { get; } = UiUtilities.GenerateId();
+
+    private DotNetObjectReference<AppWrapper>? Reference { get; set; }
 
     private IJSObjectReference? Module { get; set; }
 
@@ -49,12 +58,21 @@
         }
     }
 
+    [JSInvokable]
+    public async Task OnResize(int width, int height)
+    {
+        await OnResizeChanged.InvokeAsync((width, height));
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
             Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/App/AppWrapper.razor.js");
             ZoomHandler = await Module.InvokeAsync<IJSObjectReference>("initializeZoomHandling");
+
+            Reference = DotNetObjectReference.Create(this);
+            await Module.InvokeVoidAsync("initializeResizeHandling", ElementId, Reference);
 
             await UpdateZoom();
         }

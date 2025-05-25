@@ -4,7 +4,7 @@
 @using Sidekick.Common.Ui.Views
 @using Sidekick.PhotinoBlazor.Services
 
-<Sidekick.Common.Blazor.Main />
+<Sidekick.Common.Blazor.Main OnResizeChanged="OnResizeChange" />
 
 @inject ICurrentView CurrentView
 @inject PhotinoBlazorViewLocator ViewLocator
@@ -28,6 +28,11 @@
         CurrentView.ViewStartDragging += ViewStartDragging;
 
         base.OnInitialized();
+    }
+
+    private void OnResizeChange((int width, int height) size)
+    {
+        PhotinoBlazorApp.MainWindow.SetSize(size.width, size.height);
     }
 
     private void CurrentViewMinimized()

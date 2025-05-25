@@ -51,7 +51,10 @@ public class Program
             .SetUserAgent("Sidekick")
             .Center()
             .SetChromeless(true)
+            .SetTransparent(true)
             .SetNotificationsEnabled(false); // https://github.com/tryphotino/photino.NET/issues/85
+
+        app.MainWindow.MinSize = new(200, 200);
 
         if (!Debugger.IsAttached)
         {

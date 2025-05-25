@@ -1,4 +1,4 @@
-﻿export const initializeZoomHandling = () => {
+export const initializeZoomHandling = () => {
     let zoom = 1;
 
     const updateVh = () => {
@@ -15,4 +15,29 @@
             updateVh();
         },
     };
+};
+
+export const initializeResizeHandling = (elementId, dotNetRef) => {
+    const element = document.getElementById(elementId);
+
+    interact(element).resizable({
+        edges: { bottom: true, right: true },
+        listeners: {
+            move: function (event) {
+                let { x, y } = event.target.dataset;
+
+                x = (parseFloat(x) || 0) + event.deltaRect.left;
+                y = (parseFloat(y) || 0) + event.deltaRect.top;
+
+                Object.assign(event.target.style, {
+                    width: `${event.rect.width}px`,
+                    height: `${event.rect.height}px`,
+                });
+
+                Object.assign(event.target.dataset, { x, y });
+
+                dotNetRef.invokeMethodAsync('OnResize', event.rect.width, event.rect.height);
+            },
+        },
+    });
 };
