@@ -2,7 +2,7 @@
 @using Sidekick.Common.Settings
 
 <ErrorFullScreenBoundary>
-    <div id="@ElementId" class="w-full h-full resizer-handler block select-none touch-none p-2 overflow-hidden">
+    <div id="@ElementId" class="w-full h-full min-w-full min-h-full resizer-handler block select-none touch-none pr-2 pb-2 bg-transparent overflow-hidden">
         <div class="w-full h-full dark bg-stone-800 font-sans dark:bg-stone-900 text-white text-base [zoom:var(--sidekick-zoom)]">
             @ChildContent
         </div>

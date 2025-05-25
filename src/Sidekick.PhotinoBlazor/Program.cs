@@ -52,9 +52,8 @@ public class Program
             .Center()
             .SetChromeless(true)
             .SetTransparent(true)
+            .SetUseOsDefaultSize(false)
             .SetNotificationsEnabled(false); // https://github.com/tryphotino/photino.NET/issues/85
-
-        app.MainWindow.MinSize = new(200, 200);
 
         if (!Debugger.IsAttached)
         {
