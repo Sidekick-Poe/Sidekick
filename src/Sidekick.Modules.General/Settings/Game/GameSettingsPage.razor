@@ -16,16 +16,18 @@
 
 <AppContainer>
     <FormFieldset Legend="@SettingResources["General_Settings"]">
-        <LanguageParserEditor />
+        <LanguageParserEditor/>
 
         @if (!LanguageProvider.IsEnglish())
         {
-            <SettingCheckboxEditor SettingKey="@SettingKeys.UseInvariantTradeResults" Label="@Resources["UseInvariantForTradeResults"]" Tooltip="@Resources["UseInvariantForTradeResultsTip"]" />
+            <SettingCheckboxEditor SettingKey="@SettingKeys.UseInvariantTradeResults"
+                                   Label="@Resources["UseInvariantForTradeResults"]"
+                                   Tooltip="@Resources["UseInvariantForTradeResultsTip"]"/>
         }
 
         @if (!SidekickConfiguration.IsPoeApiDown)
         {
-            <LeagueIdEditor />
+            <LeagueIdEditor/>
         }
 
         <div class="py-2">
@@ -36,24 +38,27 @@
     @if (ApplicationService.SupportsKeybinds)
     {
         <FormFieldset Legend="@Resources["Wiki"]">
-            <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenWiki" Label="@Resources["Wiki_Key_Open"]" />
-            <PreferredWikiEditor />
+            <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenWiki" Label="@Resources["Wiki_Key_Open"]"/>
+            <PreferredWikiEditor/>
         </FormFieldset>
     }
 
-    <FormFieldset Legend="@SettingResources["Other_Settings"]">
-        @if (ApplicationService.SupportsKeybinds)
-        {
-            <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStash" Label="@Resources["MouseWheelNavigateStash"]" />
-            <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStashReverse" Label="@Resources["MouseWheelNavigateStashReverse"]" />
-            <SettingKeybindEditor SettingKey="@SettingKeys.KeyFindItems" Label="@Resources["Key_FindItems"]" />
-            <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenInCraftOfExile" Label="@Resources["Key_Open_In_Craft_Of_Exile"]" />
-        }
-
-    </FormFieldset>
+    @if (ApplicationService.SupportsKeybinds)
+    {
+        <FormFieldset Legend="@SettingResources["Other_Settings"]">
+            <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStash"
+                                   Label="@Resources["MouseWheelNavigateStash"]"/>
+            <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStashReverse"
+                                   Label="@Resources["MouseWheelNavigateStashReverse"]"/>
+            <SettingKeybindEditor SettingKey="@SettingKeys.KeyFindItems" Label="@Resources["Key_FindItems"]"/>
+            <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenInCraftOfExile"
+                                  Label="@Resources["Key_Open_In_Craft_Of_Exile"]"/>
+        </FormFieldset>
+    }
 
     <div class="flex justify-center mb-1">
-        <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@SettingResources["Restore_Defaults"]</ButtonPrimary>
+        <ButtonPrimary Disabled="!AreSettingsModified"
+                       OnClick="RestoreDefaults">@SettingResources["Restore_Defaults"]</ButtonPrimary>
     </div>
 
 </AppContainer>
