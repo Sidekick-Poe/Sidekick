@@ -46,6 +46,10 @@
         {
             ApplicationService.Shutdown();
         }
+        else
+        {
+            NavigationManager.NavigateTo("/home");
+        }
     }
 
     private void ViewStartDragging(int offsetX, int offsetY)

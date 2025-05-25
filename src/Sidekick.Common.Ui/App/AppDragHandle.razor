@@ -1,4 +1,4 @@
-<app-drag-handle @onmousedown:preventDefault="true"
+<div @onmousedown:preventDefault="true"
                  @onmousedown:stopPropagation="true"
                  @onmouseup:preventDefault="true"
                  @onmouseup:stopPropagation="true"
@@ -6,9 +6,9 @@
                  @onmousemove:stopPropagation="true"
                  @onmousedown="@OnMouseDown"
                  @onmouseup="@OnMouseUp"
-                 class="select-none @Class">
+                 class="app-drag-handle select-none @Class">
     @ChildContent
-</app-drag-handle>
+</div>
 
 @inject ICurrentView CurrentView
 
