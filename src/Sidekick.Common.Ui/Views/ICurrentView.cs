@@ -26,10 +26,25 @@ public interface ICurrentView
     event Action? ViewClosed;
 
     /// <summary>
+    /// An event that is triggered when the view starts being dragged.
+    /// </summary>
+    event Action<int, int>? ViewStartDragging;
+
+    /// <summary>
+    /// An event that is triggered when the view stops being dragged.
+    /// </summary>
+    event Action? ViewStopDragging;
+
+    /// <summary>
     /// Gets the options specifying the configuration of the current view.
     /// Includes properties such as title, dimensions, and constraints.
     /// </summary>
     ViewOptions Options { get; }
+
+    /// <summary>
+    /// Gets a value indicating whether the view is currently being dragged.
+    /// </summary>
+    bool IsDragging { get; }
 
     /// <summary>
     /// Initializes the current view with the specified options.
@@ -52,4 +67,15 @@ public interface ICurrentView
     /// Closes the view.
     /// </summary>
     void Close();
+
+    /// <summary>
+    /// Starts dragging the view with the specified offsets.
+    /// The offsets represent the distance from the top-left corner of the view to the point where the drag started.
+    /// </summary>
+    void StartDragging(int offsetX, int offsetY);
+
+    /// <summary>
+    /// Stops dragging the view.
+    /// </summary>
+    void StopDragging();
 }
