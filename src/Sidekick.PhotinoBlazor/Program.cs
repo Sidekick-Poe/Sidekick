@@ -50,7 +50,6 @@ public class Program
             .SetTitle("Sidekick")
             .SetUserAgent("Sidekick")
             .Center()
-            .SetChromeless(true)
             .SetNotificationsEnabled(false); // https://github.com/tryphotino/photino.NET/issues/85
 
         if (!Debugger.IsAttached)
