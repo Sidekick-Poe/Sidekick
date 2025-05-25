@@ -1,12 +1,12 @@
 <div @onmousedown:preventDefault="true"
-                 @onmousedown:stopPropagation="true"
-                 @onmouseup:preventDefault="true"
-                 @onmouseup:stopPropagation="true"
-                 @onmousemove:preventDefault="true"
-                 @onmousemove:stopPropagation="true"
-                 @onmousedown="@OnMouseDown"
-                 @onmouseup="@OnMouseUp"
-                 class="app-drag-handle select-none @Class">
+     @onmousedown:stopPropagation="true"
+     @onmouseup:preventDefault="true"
+     @onmouseup:stopPropagation="true"
+     @onmousemove:preventDefault="true"
+     @onmousemove:stopPropagation="true"
+     @onmousedown="@OnMouseDown"
+     @onmouseup="@OnMouseUp"
+     class="app-drag-handle select-none @Class">
     @ChildContent
 </div>
 
