@@ -1,48 +1,45 @@
 @using Sidekick.Common.Blazor.Settings
-@using Sidekick.Common.Blazor.Settings.General
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Blazor.Settings.Components
+@using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
+@implements IDisposable
 @inject IApplicationService ApplicationService
 
 @if (ApplicationService.SupportsKeybinds)
 {
-    <FormFieldset Legend="@Resources["Keybindings"]">
+    <FormFieldset Legend="@SettingsResources["Keybindings"]">
         <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenPriceCheck" Label="@Resources["PriceCheck_Key_Check"]" />
-        <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
     </FormFieldset>
 }
 
-<FormFieldset Legend="@Resources["Item_Trade_Settings"]">
+<FormFieldset Legend="@Resources["Filter_Settings"]">
     <PriceCheckItemClassFilter />
     <PriceCheckNormalizeValueEditor />
+    <PriceCheckDefaultFilterTypeEditor />
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckEnableAllFilters" Label="@Resources["PriceCheck_Enable_All_Filters"]" />
+    <SettingTextEditor SettingKey="@SettingKeys.PriceCheckEnableFiltersByRegex" Label="@Resources["PriceCheck_Enable_Filters_By_Regex"]" Tooltip="@SettingsResources["Regex_Hint"]" />
+</FormFieldset>
+
+<FormFieldset Legend="@Resources["External_Tools_Settings"]">
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckPredictionEnabled" Label="@Resources["PriceCheck_Prediction_Enable"]" />
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckMarketEnabled" Label="@Resources["PriceCheck_Market_Enable"]" />
-    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallySearch" Label="@Resources["PriceCheck_Automatically_Search"]" Tooltip="@Resources["Setting_Rate_Limit_Hint"]" />
-    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallySearchCurrency" Label="@Resources["PriceCheck_Automatically_Search_Currency"]" Tooltip="@Resources["Setting_Rate_Limit_Hint"]" />
-    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckEnableAllFilters" Label="@Resources["PriceCheck_Enable_All_Filters"]" />
-    <SettingTextEditor SettingKey="@SettingKeys.PriceCheckEnableFiltersByRegex" Label="@Resources["PriceCheck_Enable_Filters_By_Regex"]" Tooltip="@Resources["Regex_Hint"]" />    
-    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallyLoadMoreData" Label="@Resources["PriceCheck_Automatically_Load_More_Data"]" Tooltip="@Resources["Setting_Rate_Limit_Hint"]" />
-    <PriceCheckDefaultFilterTypeEditor />
 </FormFieldset>
 
-<FormFieldset Legend="@Resources["Bulk_Trade_Settings"]">
-    <PriceCheckCurrencyModeEditor />
+<FormFieldset Legend="@Resources["Behaviour_Settings"]">
+    <AlertInfo>@Resources["Rate_Limit_Disclaimer"]</AlertInfo>
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallySearch" Label="@Resources["PriceCheck_Automatically_Search"]" Tooltip="@Resources["Setting_Rate_Limit_Hint"]"/>
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallySearchCurrency" Label="@Resources["PriceCheck_Automatically_Search_Currency"]" Tooltip="@Resources["Setting_Rate_Limit_Hint"]"/>
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallyLoadMoreData" Label="@Resources["PriceCheck_Automatically_Load_More_Data"]" Tooltip="@Resources["Setting_Rate_Limit_Hint"]"/>
+    <PriceCheckCurrencyModeEditor/>
 </FormFieldset>
-
-@if (ApplicationService.SupportsKeybinds)
-{
-    <FormFieldset Legend="@Resources["Other_Settings"]">
-        <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayCloseWithMouse" Label="@Resources["OverlayCloseWithMouse"]" />
-        <SettingCheckboxEditor SettingKey="@SettingKeys.EscapeClosesOverlays" Label="@Resources["EscapeClosesOverlays"]" />
-    </FormFieldset>
-}
 
 <div class="flex justify-center mb-1">
     <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@Resources["Restore_Defaults"]</ButtonPrimary>
 </div>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<SettingsResources> SettingsResources
+@inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
 
 @code {
@@ -52,7 +49,6 @@
     private string[] SettingKeysUsed { get; } =
     {
         SettingKeys.KeyOpenPriceCheck,
-        SettingKeys.KeyClose,
 
         SettingKeys.PriceCheckItemClassFilter,
         SettingKeys.PriceCheckNormalizeValue,
@@ -66,9 +62,6 @@
         SettingKeys.PriceCheckDefaultFilterType,
 
         SettingKeys.PriceCheckCurrencyMode,
-
-        SettingKeys.OverlayCloseWithMouse,
-        SettingKeys.EscapeClosesOverlays
     };
 
     protected override async Task OnInitializedAsync()

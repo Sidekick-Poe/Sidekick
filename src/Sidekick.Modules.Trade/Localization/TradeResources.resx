@@ -244,4 +244,82 @@ Click the button to open in your browser.</value>
   <data name="Possible_Chance_Outcomes" xml:space="preserve">
     <value>Possible Chance Outcomes</value>
   </data>
+  <data name="Item_Trade_Settings" xml:space="preserve">
+    <value>Item Trade Settings</value>
+  </data>
+  <data name="Bulk_Trade" xml:space="preserve">
+    <value>Bulk Trade</value>
+  </data>
+  <data name="Minimum_Stock_in_Bulk_Trade" xml:space="preserve">
+    <value>Minimum Stock in Bulk Trade</value>
+  </data>
+  <data name="Preferred_search_mode_for_currency_items" xml:space="preserve">
+    <value>Preferred search mode for currency items</value>
+  </data>
+  <data name="Currency_of_Results" xml:space="preserve">
+    <value>Currency of Results</value>
+  </data>
+  <data name="Item_Listing_Age" xml:space="preserve">
+    <value>Item Listing Age</value>
+  </data>
+  <data name="Buyout_Price" xml:space="preserve">
+    <value>Buyout Price</value>
+  </data>
+  <data name="Normalize_Values" xml:space="preserve">
+    <value>Normalize item values. Leave at 0% for exact values.</value>
+  </data>
+  <data name="Player_Status_OnlineLeague" xml:space="preserve">
+    <value>Online in League</value>
+  </data>
+  <data name="Player_Status_Online" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="Player_Status_Any" xml:space="preserve">
+    <value>Any</value>
+  </data>
+  <data name="Player_Status" xml:space="preserve">
+    <value>Player Status</value>
+  </data>
+  <data name="Filter_Settings" xml:space="preserve">
+      <value>Filter Settings</value>
+  </data>
+  <data name="External_Tools_Settings" xml:space="preserve">
+      <value>External Tools</value>
+  </data>
+  <data name="PriceCheck_Key_Check" xml:space="preserve">
+    <value>Check Prices</value>
+  </data>
+  <data name="PriceCheck_Enable_All_Filters" xml:space="preserve">
+    <value>Pre-check all filters automatically</value>
+  </data>
+  <data name="PriceCheck_Enable_Filters_By_Regex" xml:space="preserve">
+    <value>Pre-check filters matching this regex</value>
+  </data>
+  <data name="PriceCheck_Market_Enable" xml:space="preserve">
+    <value>Show prices from poe.ninja (PoE1) and poe2scout.com (PoE2)</value>
+  </data>
+  <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
+    <value>Show price prediction from poeprices.info (PoE1 only)</value>
+  </data>
+  <data name="Behaviour_Settings" xml:space="preserve">
+      <value>Behaviour Settings</value>
+  </data>
+  <data name="Rate_Limit_Disclaimer" xml:space="preserve">
+      <value>The API has request limits. Enabling automatic features will increase API calls and may cause you to reach these limits faster. Use these settings at your own risk.</value>
+  </data>
+  <data name="PriceCheck_Automatically_Load_More_Data" xml:space="preserve">
+    <value>Automatically load more results when scrolling down</value>
+  </data>
+  <data name="PriceCheck_Automatically_Search" xml:space="preserve">
+    <value>Automatically search for items when price checking</value>
+  </data>
+  <data name="PriceCheck_Automatically_Search_Currency" xml:space="preserve">
+    <value>Automatically search for currencies when price checking</value>
+  </data>
+  <data name="Setting_Rate_Limit_Hint" xml:space="preserve">
+    <value>It is recommended to leave disabled to avoid exceeding the API rate limit.</value>
+  </data>
+  <data name="Item_Trade" xml:space="preserve">
+    <value>Item Trade</value>
+  </data>
 </root>

@@ -1,6 +1,7 @@
 @using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Ui.Popovers
 @using Sidekick.Common.Settings
+@using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Settings
 
 <Popover>
@@ -15,18 +16,19 @@
             <PriceCheckItemMinMaxPriceEditor />
             <PriceCheckItemListedAgeEditor />
         </FormFieldset>
-        <FormFieldset Legend="@Resources["Bulk_Trade_Settings"]"
+        <FormFieldset Legend="@Resources["Bulk_Trade"]"
                       Dense="true">
             <PriceCheckBulkMinimumStockEditor />
         </FormFieldset>
 
         <div class="flex justify-center mb-1">
-            <ButtonPrimary Disabled="!AreSettingsModified" OnClick="ClearFilters">@Resources["Clear_Filters"]</ButtonPrimary>
+            <ButtonPrimary Disabled="!AreSettingsModified" OnClick="ClearFilters">@SettingsResources["Clear_Filters"]</ButtonPrimary>
         </div>
     </PopoverContent>
 </Popover>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<SettingsResources> SettingsResources
+@inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
 @implements IDisposable
 

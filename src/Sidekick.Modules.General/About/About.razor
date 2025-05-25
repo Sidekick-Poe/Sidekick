@@ -1,11 +1,19 @@
 @page "/settings/about"
 @layout MainWindowLayout
+@using Microsoft.Extensions.Localization
 @using Sidekick.Common.Blazor.Components
 @using Sidekick.Common.Browser
 @using Sidekick.Common.Folder
+@using Sidekick.Common.Ui.Views
+@using Sidekick.Common.Ui.App
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Layouts
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Modules.General.Localization
+@using Sidekick.Common.Ui.Typography
 
 <AppContainer>
-    <FormFieldset Legend="@($"{Resources["Sidekick"]} - {Title}")">
+    <FormFieldset Legend="@($"Sidekick - {Title}")">
         <div>
             <div class="flex flex-col gap-2">
                 <div class="flex gap-2">
@@ -30,7 +38,7 @@
     </FormFieldset>
 </AppContainer>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<GeneralResources> Resources
 @inject IBrowserProvider BrowserProvider
 @inject IFolderProvider FolderProvider
 @inject ICurrentView CurrentView

@@ -1,0 +1,133 @@
+@using Microsoft.Extensions.Localization
+@using Sidekick.Common
+@using Sidekick.Common.Blazor.Components
+@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Blazor.Settings.Components
+@using Sidekick.Common.Platform
+@using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Views
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.App
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Cache
+@using Sidekick.Common.Game.Languages
+@using Sidekick.Modules.General.Localization
+@inject IApplicationService ApplicationService
+
+<AppContainer>
+    <FormFieldset Legend="@SettingResources["General_Settings"]">
+        <LanguageParserEditor/>
+
+        @if (!LanguageProvider.IsEnglish())
+        {
+            <SettingCheckboxEditor SettingKey="@SettingKeys.UseInvariantTradeResults"
+                                   Label="@Resources["UseInvariantForTradeResults"]"
+                                   Tooltip="@Resources["UseInvariantForTradeResultsTip"]"/>
+        }
+
+        @if (!SidekickConfiguration.IsPoeApiDown)
+        {
+            <LeagueIdEditor/>
+        }
+
+        <div class="py-2">
+            <ButtonPrimary OnClick="ResetCache">@SettingResources["Reset_Cache"]</ButtonPrimary>
+        </div>
+    </FormFieldset>
+
+    @if (ApplicationService.SupportsKeybinds)
+    {
+        <FormFieldset Legend="@Resources["Wiki"]">
+            <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenWiki" Label="@Resources["Wiki_Key_Open"]"/>
+            <PreferredWikiEditor/>
+        </FormFieldset>
+    }
+
+    @if (ApplicationService.SupportsKeybinds)
+    {
+        <FormFieldset Legend="@SettingResources["Other_Settings"]">
+            <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStash"
+                                   Label="@Resources["MouseWheelNavigateStash"]"/>
+            <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStashReverse"
+                                   Label="@Resources["MouseWheelNavigateStashReverse"]"/>
+            <SettingKeybindEditor SettingKey="@SettingKeys.KeyFindItems" Label="@Resources["Key_FindItems"]"/>
+            <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenInCraftOfExile"
+                                  Label="@Resources["Key_Open_In_Craft_Of_Exile"]"/>
+        </FormFieldset>
+    }
+
+    <div class="flex justify-center mb-1">
+        <ButtonPrimary Disabled="!AreSettingsModified"
+                       OnClick="RestoreDefaults">@SettingResources["Restore_Defaults"]</ButtonPrimary>
+    </div>
+
+</AppContainer>
+
+@page "/settings/game"
+@layout MainWindowLayout
+@inject IStringLocalizer<SettingsResources> SettingResources
+@inject IStringLocalizer<GeneralResources> Resources
+@inject ICurrentView CurrentView
+@inject ISettingsService SettingsService
+@inject IGameLanguageProvider LanguageProvider
+@inject ICacheProvider CacheProvider
+@inject NavigationManager NavigationManager
+@implements IDisposable
+
+@code {
+
+    private bool AreSettingsModified { get; set; }
+
+    private string[] SettingKeysUsed { get; } =
+    [
+        SettingKeys.KeyOpenWiki,
+        SettingKeys.PreferredWiki,
+        SettingKeys.MouseWheelNavigateStash,
+        SettingKeys.MouseWheelNavigateStashReverse,
+        SettingKeys.KeyFindItems,
+        SettingKeys.KeyOpenInCraftOfExile,
+    ];
+
+    public async Task ResetCache()
+    {
+        await CacheProvider.Clear();
+        NavigationManager.NavigateTo("/initialize");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        CurrentView.Initialize(new ViewOptions());
+
+        SettingsService.OnSettingsChanged += CheckIfSettingsAreModified;
+
+        CheckIfSettingsAreModified(SettingKeysUsed);
+
+        await base.OnInitializedAsync();
+    }
+
+    private async void CheckIfSettingsAreModified(string[] keys)
+    {
+        if (!keys.Any(key => SettingKeysUsed.Contains(key)))
+        {
+            return;
+        }
+
+        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async void RestoreDefaults()
+    {
+        await SettingsService.DeleteSetting(SettingKeysUsed);
+
+        AreSettingsModified = false;
+
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= CheckIfSettingsAreModified;
+    }
+
+}

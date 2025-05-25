@@ -1,5 +1,5 @@
 @using Sidekick.Apis.Poe.Trade.Filters
-@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
 
 <FormSelectInline Label="@Resources["Item_Listing_Age"]"
@@ -7,7 +7,7 @@
                   ValueChanged="@ValueChanged"
                   Options="@Options"/>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
 @inject IFilterProvider FilterProvider
 @implements IDisposable
@@ -41,11 +41,10 @@
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (keys.Contains(SettingKeys.PriceCheckItemListedAge))
-        {
-            Value = await SettingsService.GetString(SettingKeys.PriceCheckItemListedAge);
-            await InvokeAsync(StateHasChanged);
-        }
+        if (!keys.Contains(SettingKeys.PriceCheckItemListedAge)) return;
+
+        Value = await SettingsService.GetString(SettingKeys.PriceCheckItemListedAge);
+        await InvokeAsync(StateHasChanged);
     }
 
     public void Dispose()

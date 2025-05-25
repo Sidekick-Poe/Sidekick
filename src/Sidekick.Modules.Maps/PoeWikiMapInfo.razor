@@ -31,7 +31,7 @@ else if (Map != null)
             }
             else
             {
-                <TextBase Class="text-center">@Resources["This map drops nothing."]</TextBase>
+                <TextBase Class="text-center">@Resources["No_Drops"]</TextBase>
             }
 
 
@@ -50,7 +50,7 @@ else if (Map != null)
 
             <div class="text-center mt-2">
                 <ButtonLink OnClick="@(() => PoeWikiClient.OpenUri(Map))">
-                    @Resources["Information provided by poewiki.net"]
+                    @Resources["Provided_By"]
                 </ButtonLink>
             </div>
         </div>
@@ -59,7 +59,7 @@ else if (Map != null)
 else
 {
     <AppFullContainer>
-        <AlertError>@Resources["Could not fetch information from the wiki."]</AlertError>
+        <AlertError>@Resources["Could_Not_Fetch"]</AlertError>
     </AppFullContainer>
 }
 

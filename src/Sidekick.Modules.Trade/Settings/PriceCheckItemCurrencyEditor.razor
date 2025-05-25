@@ -1,8 +1,8 @@
 @using Sidekick.Apis.Poe.Trade.Filters
 @using Sidekick.Apis.Poe.Trade.Static
-@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Game
+@using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
 
 <FormFieldset Legend="@Resources["Currency_of_Results"]"
@@ -35,7 +35,7 @@
             <button class="@wrapperClass @UiClasses.FocusClasses" @onclick="@(() => CurrencyChanged(option.Value))">
                 <Tooltip Text="@option.Label" Placement="TooltipPlacement.Top">
                     <ChildContent>
-                        <img src="@image" class="h-6 w-6" alt="@option.Label" />
+                        <img src="@image" class="h-6 w-6" alt="@option.Label"/>
                     </ChildContent>
                 </Tooltip>
             </button>
@@ -43,7 +43,7 @@
     </div>
 </FormFieldset>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
 @inject IFilterProvider FilterProvider
 @inject IItemStaticDataProvider ItemStaticDataProvider
@@ -66,10 +66,10 @@
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
         Options = FilterProvider.TradePriceOptions.ConvertAll(x => new SelectOption()
-            {
-                Label = x.Text ?? string.Empty,
-                Value = x.Id,
-            });
+        {
+            Label = x.Text ?? string.Empty,
+            Value = x.Id,
+        });
 
         await base.OnInitializedAsync();
     }
@@ -78,9 +78,7 @@
     {
         var league = await SettingsService.GetString(SettingKeys.LeagueId);
         var game = league.GetGameFromLeagueId();
-        Currency = game == GameType.PathOfExile
-            ? await SettingsService.GetString(SettingKeys.PriceCheckCurrency)
-            : await SettingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
+        Currency = game == GameType.PathOfExile ? await SettingsService.GetString(SettingKeys.PriceCheckCurrency) : await SettingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
         Currency = FilterProvider.GetPriceOption(Currency);
     }
 
@@ -102,13 +100,10 @@
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (keys.Contains(SettingKeys.PriceCheckCurrency)
-            || keys.Contains(SettingKeys.PriceCheckCurrencyPoE2)
-            || keys.Contains(SettingKeys.LeagueId))
-        {
-            await FetchSettings();
-            await InvokeAsync(StateHasChanged);
-        }
+        if (!keys.Contains(SettingKeys.PriceCheckCurrency) && !keys.Contains(SettingKeys.PriceCheckCurrencyPoE2) && !keys.Contains(SettingKeys.LeagueId)) return;
+
+        await FetchSettings();
+        await InvokeAsync(StateHasChanged);
     }
 
     public void Dispose()

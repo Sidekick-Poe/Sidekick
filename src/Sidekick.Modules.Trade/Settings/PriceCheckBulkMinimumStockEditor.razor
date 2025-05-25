@@ -1,11 +1,11 @@
-@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Settings
+@using Sidekick.Modules.Trade.Localization
 
 <FormNumberInline Label="@Resources["Minimum_Stock_in_Bulk_Trade"]"
                   Value="@Minimum"
                   ValueChanged="MinimumChanged" />
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
 @implements IDisposable
 
@@ -30,11 +30,10 @@
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (keys.Contains(SettingKeys.PriceCheckBulkMinimumStock))
-        {
-            Minimum = await SettingsService.GetInt(SettingKeys.PriceCheckBulkMinimumStock);
-            await InvokeAsync(StateHasChanged);
-        }
+        if (!keys.Contains(SettingKeys.PriceCheckBulkMinimumStock)) return;
+
+        Minimum = await SettingsService.GetInt(SettingKeys.PriceCheckBulkMinimumStock);
+        await InvokeAsync(StateHasChanged);
     }
 
     public void Dispose()
