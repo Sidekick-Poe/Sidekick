@@ -14,10 +14,10 @@ namespace Sidekick.Wpf.Browser;
 public partial class BrowserWindow
 {
     private readonly ILogger logger;
-    private readonly BrowserRequestOptions request;
+    private readonly BrowserRequest request;
     private string? userAgent;
 
-    public BrowserWindow(ILogger logger, BrowserRequestOptions request)
+    public BrowserWindow(ILogger logger, BrowserRequest request)
     {
         this.logger = logger;
         this.request = request;

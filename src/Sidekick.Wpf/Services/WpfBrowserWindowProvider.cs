@@ -17,7 +17,7 @@ public class WpfBrowserWindowProvider : IDisposable
         browserWindowProvider.WindowOpened += BrowserWindowProviderOnWindowOpened;
     }
 
-    private void BrowserWindowProviderOnWindowOpened(BrowserRequestOptions options)
+    private void BrowserWindowProviderOnWindowOpened(BrowserRequest options)
     {
         Application.Current.Dispatcher.Invoke(() =>
         {

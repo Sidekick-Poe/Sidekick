@@ -2,7 +2,7 @@ namespace Sidekick.Common.Browser;
 
 public interface IBrowserWindowProvider
 {
-    event Action<BrowserRequestOptions>? WindowOpened;
+    event Action<BrowserRequest>? WindowOpened;
 
-    Task<BrowserResult> OpenBrowserWindow(BrowserRequestOptions options, CancellationToken cancellationToken = default);
+    Task<BrowserResult> OpenBrowserWindow(BrowserRequest options, CancellationToken cancellationToken = default);
 }

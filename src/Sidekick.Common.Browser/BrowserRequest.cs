@@ -1,14 +1,12 @@
 ﻿namespace Sidekick.Common.Browser;
 
-public class BrowserRequestOptions
+public class BrowserRequest
 {
     public required Uri Uri { get; set; }
 
-    private TaskCompletionSource<BrowserResult> TaskCompletion { get; } = new();
+    internal TaskCompletionSource<BrowserResult> TaskCompletion { get; } = new();
 
-    internal Task<BrowserResult> Task => TaskCompletion.Task;
-
-    public Func<BrowserCompletionOptions, bool> ShouldComplete { get; set; } = _ => true;
+    public Func<BrowserCompletionOptions, bool> ShouldComplete { get; set; } = _ => false;
 
     public void SetResult(BrowserResult result)
     {
