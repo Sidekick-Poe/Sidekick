@@ -1,4 +1,6 @@
 @using Photino.Blazor
+@using Sidekick.Common.Platform
+@using Sidekick.Common.Platform.EventArgs
 @using Sidekick.Common.Ui.Views
 @using Sidekick.PhotinoBlazor.Services
 
@@ -7,6 +9,7 @@
 @inject ICurrentView CurrentView
 @inject PhotinoBlazorViewLocator ViewLocator
 @inject PhotinoBlazorApp PhotinoBlazorApp
+@inject IKeyboardProvider KeyboardProvider
 @implements IDisposable
 
 @code {
@@ -17,10 +20,11 @@
     protected override void OnInitialized()
     {
         ViewLocator.Views.Add(this);
-        CurrentView.ViewClosed += CurrentViewClosed;
 
         CurrentView.ViewMinimized += CurrentViewMinimized;
         CurrentView.ViewMaximized += CurrentViewMaximized;
+        CurrentView.ViewClosed += CurrentViewClosed;
+        CurrentView.ViewStartDragging += ViewStartDragging;
 
         base.OnInitialized();
     }
@@ -37,7 +41,25 @@
 
     private void CurrentViewClosed()
     {
+        NavigationManager.NavigateTo("/home");
+    }
 
+    private void ViewStartDragging(int offsetX, int offsetY)
+    {
+        void OnMouseDrag(DraggedEventArgs args)
+        {
+            PhotinoBlazorApp.MainWindow.SetTop(args.Y - offsetY);
+            PhotinoBlazorApp.MainWindow.SetLeft(args.X - offsetX);
+        }
+
+        KeyboardProvider.OnMouseDrag += OnMouseDrag;
+
+        CurrentView.ViewStopDragging += Unsubscribe;
+        void Unsubscribe()
+        {
+            KeyboardProvider.OnMouseDrag -= OnMouseDrag;
+            CurrentView.ViewStopDragging -= Unsubscribe;
+        }
     }
 
     public void Dispose()

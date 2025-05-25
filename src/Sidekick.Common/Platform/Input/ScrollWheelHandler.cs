@@ -4,7 +4,7 @@ using Sidekick.Common.Settings;
 namespace Sidekick.Common.Platform.Input;
 
 /// <summary>
-///     Interface for keybind handlers
+/// Interface for keybind handlers for scroll wheel events.
 /// </summary>
 public abstract class ScrollWheelHandler : IInputHandler, IDisposable
 {

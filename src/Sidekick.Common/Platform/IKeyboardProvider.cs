@@ -24,6 +24,11 @@ public interface IKeyboardProvider : IInitializableService
     event Action<ScrollEventArgs> OnScrollUp;
 
     /// <summary>
+    /// Event triggered when the user drags the mouse.
+    /// </summary>
+    event Action<DraggedEventArgs>? OnMouseDrag;
+
+    /// <summary>
     /// Register keyboard hooks to capture keybinds.
     /// </summary>
     void RegisterHooks();

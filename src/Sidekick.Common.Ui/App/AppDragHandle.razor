@@ -1,0 +1,33 @@
+<app-drag-handle @onmousedown:preventDefault="true"
+                 @onmousedown:stopPropagation="true"
+                 @onmouseup:preventDefault="true"
+                 @onmouseup:stopPropagation="true"
+                 @onmousemove:preventDefault="true"
+                 @onmousemove:stopPropagation="true"
+                 @onmousedown="@OnMouseDown"
+                 @onmouseup="@OnMouseUp"
+                 class="select-none @Class">
+    @ChildContent
+</app-drag-handle>
+
+@inject ICurrentView CurrentView
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    private void OnMouseDown(MouseEventArgs e)
+    {
+        CurrentView.StartDragging((int)e.PageX, (int)e.PageY);
+    }
+
+    private void OnMouseUp()
+    {
+        CurrentView.StopDragging();
+    }
+
+}

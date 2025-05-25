@@ -18,8 +18,14 @@ public class CurrentView : ICurrentView
     /// <inheritdoc/>
     public event Action? ViewClosed;
 
+    public event Action<int, int>? ViewStartDragging;
+
+    public event Action? ViewStopDragging;
+
     /// <inheritdoc/>
     public ViewOptions Options { get; private set; } = new();
+
+    public bool IsDragging { get; private set; }
 
     /// <inheritdoc/>
     public void Initialize(ViewOptions options)
@@ -44,5 +50,22 @@ public class CurrentView : ICurrentView
     public void Close()
     {
         ViewClosed?.Invoke();
+    }
+
+    public void StartDragging(int offsetX, int offsetY)
+    {
+        if (IsDragging)
+        {
+            return;
+        }
+
+        IsDragging = true;
+        ViewStartDragging?.Invoke(offsetX, offsetY);
+    }
+
+    public void StopDragging()
+    {
+        IsDragging = false;
+        ViewStopDragging?.Invoke();
     }
 }

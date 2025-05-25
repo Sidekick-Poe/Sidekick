@@ -1,10 +1,12 @@
-<div id="sidekick-appbar" class="dark:bg-stone-950 flex items-center flex-wrap py-2 pl-4">
-    <h1 class="font-medium leading-none text-lg flex items-center gap-4 select-none">
-        <img src="/images/orbs/ExaltedOrb.png" alt="logo" class="w-6 h-6"/>
-        <span>Sidekick@(!string.IsNullOrEmpty(CurrentView.Options?.Title) ? $" {CurrentView.Options.Title}" : "")</span>
-    </h1>
+<div id="sidekick-appbar" class="dark:bg-stone-950 flex items-center flex-wrap">
+    <AppDragHandle Class="py-2 pl-4 flex grow self-stretch">
+        <h1 class="font-medium leading-none text-lg flex items-center gap-4 select-none">
+            <img src="/images/orbs/ExaltedOrb.png" alt="logo" class="w-6 h-6" />
+            <span>Sidekick@(!string.IsNullOrEmpty(CurrentView.Options?.Title) ? $" {CurrentView.Options.Title}" : "")</span>
+        </h1>
+    </AppDragHandle>
 
-    <div class="ml-auto -my-2 flex items-center flex-nowrap self-stretch items-stretch">
+    <div class="ml-auto flex items-center flex-nowrap self-stretch items-stretch">
         <AppUpdate />
         <AppHome />
         @ChildContent
