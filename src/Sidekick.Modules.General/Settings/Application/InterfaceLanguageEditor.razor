@@ -42,7 +42,7 @@
         await SettingsService.Set(SettingKeys.LanguageUi, value);
         await UiLanguageProvider.Initialize();
         NavigationManager.NavigateTo("/home");
-        NavigationManager.NavigateTo("/settings/general");
+        NavigationManager.NavigateTo("/settings/application");
     }
 
 }
