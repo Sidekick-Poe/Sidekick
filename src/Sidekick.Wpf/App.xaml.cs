@@ -34,6 +34,8 @@ public partial class App
 
         AttachErrorHandlers();
 
+        Program.ServiceProvider.GetRequiredService<WpfBrowserWindowProvider>();
+
         var cloudFlareHandler = Program.ServiceProvider.GetRequiredService<WpfCloudflareHandler>();
         cloudFlareHandler.Initialize();
 
@@ -103,17 +105,17 @@ public partial class App
     {
         AppDomain.CurrentDomain.UnhandledException += (_, e) =>
         {
-            LogException((Exception)e.ExceptionObject);
+            logger.LogCritical((Exception)e.ExceptionObject, "Unhandled exception.");
         };
 
         DispatcherUnhandledException += (_, e) =>
         {
-            LogException(e.Exception);
+            logger.LogCritical(e.Exception, "Unhandled exception.");
         };
 
         TaskScheduler.UnobservedTaskException += (_, e) =>
         {
-            LogException(e.Exception);
+            logger.LogCritical(e.Exception, "Unhandled exception.");
         };
     }
 
@@ -121,10 +123,5 @@ public partial class App
     {
         // Disable Aero theme text rendering
         RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
-    }
-
-    private void LogException(Exception ex)
-    {
-        logger.LogCritical(ex, "Unhandled exception.");
     }
 }

@@ -6,6 +6,7 @@ using System.Windows.Media;
 using Microsoft.Extensions.Logging;
 using Microsoft.Web.WebView2.Core;
 using Sidekick.Apis.Common.Cloudflare;
+using Sidekick.Wpf.Browser;
 using Sidekick.Wpf.Helpers;
 using Application=System.Windows.Application;
 

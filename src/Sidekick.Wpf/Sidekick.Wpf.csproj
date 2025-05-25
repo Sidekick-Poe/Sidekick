@@ -39,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Sidekick.Common.Browser\Sidekick.Common.Browser.csproj" />
     <ProjectReference Include="..\Sidekick.Common.Updater\Sidekick.Common.Updater.csproj" />
     <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.Chat\Sidekick.Modules.Chat.csproj" />
@@ -59,6 +60,14 @@
     <Content Update="wwwroot\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Browser\BrowserWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
   <Target Name="Copywwwroot" BeforeTargets="Build">

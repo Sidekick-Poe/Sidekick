@@ -112,6 +112,7 @@ public class Program
         services.AddSidekickInitializableService<IApplicationService, WpfApplicationService>();
         services.AddSingleton<IViewLocator, WpfViewLocator>();
         services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());
+        services.AddSingleton<WpfBrowserWindowProvider>();
         services.AddSingleton<WpfCloudflareHandler>();
 
         services.AddApexCharts();
