@@ -50,11 +50,11 @@ public class Program
             .SetTitle("Sidekick")
             .SetUserAgent("Sidekick")
             .Center()
-            .SetNotificationsEnabled(false) // https://github.com/tryphotino/photino.NET/issues/85
-            .SetContextMenuEnabled(false);
+            .SetNotificationsEnabled(false); // https://github.com/tryphotino/photino.NET/issues/85
 
         if (!Debugger.IsAttached)
         {
+            app.MainWindow.ContextMenuEnabled = false;
             app.MainWindow.DevToolsEnabled = false;
         }
 
