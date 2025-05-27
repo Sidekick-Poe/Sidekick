@@ -3,6 +3,7 @@
 @using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters
 @using Sidekick.Apis.Poe.Trade.Trade.Filters
 @using Sidekick.Common.Game.Items
+@using Sidekick.Modules.Trade.Components.Options
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Prices
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
@@ -82,10 +83,15 @@
     </div>
 
     <div class="flex flex-nowrap items-center w-full py-2 px-1">
+        <div class="px-1 flex">
+            <ItemOptions Item="Item" />
+        </div>
+
         <div class="flex flex-col items-stretch text-center px-1 grow">
             <ButtonPrimary OnClick="() => PriceCheckService.SearchItems(Item, PropertyFilters, ModifierFilters, PseudoFilters)"
                            Disabled="PriceCheckService.IsLoading">@Resources["Search"]</ButtonPrimary>
         </div>
+
         @if (BulkTradeService.SupportsBulkTrade(Item))
         {
             <div class="flex flex-col items-stretch text-center px-1 grow">
@@ -93,6 +99,7 @@
                                  Disabled="PriceCheckService.IsLoading">@Resources["Bulk_Search"]</ButtonSecondary>
             </div>
         }
+
         <div class="px-1 flex">
             <TradeFilters/>
         </div>
