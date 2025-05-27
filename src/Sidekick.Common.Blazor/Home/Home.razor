@@ -1,5 +1,7 @@
 @page "/home"
 @using Sidekick.Common.Blazor.Components
+@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Blazor.Settings.Components
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
@@ -45,7 +47,10 @@
         @if (ApplicationService.SupportsKeybinds)
         {
             <div class="flex justify-end py-2 px-3">
-                <OpenHomeOnLaunchEditor/>
+                <SettingCheckboxEditor SettingKey="@SettingKeys.OpenHomeOnLaunch"
+                                       Label="@SettingsResources["OpenHomeOnLaunch"]"
+                                       Tooltip="@SettingsResources["OpenHomeOnLaunch_Hint"]"
+                                       HasResetButton="false" />
             </div>
         }
     </BottomContent>
@@ -53,6 +58,7 @@
 
 @inject ISettingsService SettingsService
 @inject IStringLocalizer<HomeResources> Resources
+@inject IStringLocalizer<SettingsResources> SettingsResources
 @inject IApplicationService ApplicationService
 @inject ICurrentView CurrentView
 @inject IViewLocator ViewLocator

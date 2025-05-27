@@ -112,6 +112,11 @@
             }
             else
             {
+                var silentStart = await SettingsService.GetBool(SettingKeys.SilentStart);
+                if (silentStart)
+                {
+                    CurrentView.Close();
+                }
                 NavigationManager.NavigateTo("/initialize");
             }
         }

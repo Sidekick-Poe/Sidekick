@@ -10,6 +10,8 @@ public static class DefaultSettings
 
     public static bool OpenHomeOnLaunch => true;
 
+    public static bool SilentStart => false;
+
     public static string Zoom => "1";
 
     public static bool UseInvariantTradeResults => false;
