@@ -30,11 +30,6 @@
 
     private Guid ElementId { get; } = Guid.NewGuid();
 
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-    }
-
     public void OpenWiki()
     {
         var poeWikiBaseUri = "https://www.poewiki.net/";
