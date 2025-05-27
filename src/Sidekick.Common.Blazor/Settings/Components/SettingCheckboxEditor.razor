@@ -13,7 +13,7 @@
             <Tooltip Text="@Tooltip" />
         }
 
-        @if (ShowResetButton)
+        @if (HasResetButton && ShowResetButton)
         {
             <ButtonIcon OnClick="Reset" title="@Resources["Reset"]">
                 <Icon Svg="@UiIcons.Reset" />
@@ -36,6 +36,9 @@
 
     [Parameter]
     public string? Tooltip { get; set; }
+
+    [Parameter]
+    public bool HasResetButton { get; set; } = true;
 
     private bool Enabled { get; set; }
 

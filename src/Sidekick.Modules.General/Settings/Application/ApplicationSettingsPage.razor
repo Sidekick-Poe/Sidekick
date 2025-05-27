@@ -12,7 +12,7 @@
 @using Sidekick.Modules.General.Localization
 
 <AppContainer>
-    <FormFieldset Legend="@SettingResources["General_Settings"]">
+    <FormFieldset Legend="@SettingsResources["General_Settings"]">
         <InterfaceLanguageEditor/>
         <ZoomEditor/>
         @if (ApplicationService.SupportsKeybinds)
@@ -20,11 +20,13 @@
             <SettingCheckboxEditor SettingKey="@SettingKeys.RetainClipboard"
                                    Label="@Resources["General_RetainClipboard"]"/>
         }
+        <SettingCheckboxEditor SettingKey="@SettingKeys.SilentStart" Label="@SettingsResources["SilentStart"]" />
+        <SettingCheckboxEditor SettingKey="@SettingKeys.OpenHomeOnLaunch" Label="@SettingsResources["OpenHomeOnLaunch"]" Tooltip="@SettingsResources["OpenHomeOnLaunch_Hint"]" />
     </FormFieldset>
 
     @if (ApplicationService.SupportsKeybinds)
     {
-        <FormFieldset Legend="@SettingResources["Overlay_Settings"]">
+        <FormFieldset Legend="@SettingsResources["Overlay_Settings"]">
             <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
             <SettingCheckboxEditor SettingKey="@SettingKeys.SaveWindowPositions"
                                    Label="@Resources["SaveWindowPositions"]"/>
@@ -37,14 +39,14 @@
 
     <div class="flex justify-center mb-1">
         <ButtonPrimary Disabled="!AreSettingsModified"
-                       OnClick="RestoreDefaults">@SettingResources["Restore_Defaults"]</ButtonPrimary>
+                       OnClick="RestoreDefaults">@SettingsResources["Restore_Defaults"]</ButtonPrimary>
     </div>
 </AppContainer>
 
 @page "/settings/application"
 @layout MainWindowLayout
 @implements IDisposable
-@inject IStringLocalizer<SettingsResources> SettingResources
+@inject IStringLocalizer<SettingsResources> SettingsResources
 @inject IStringLocalizer<GeneralResources> Resources
 @inject IApplicationService ApplicationService
 @inject ICurrentView CurrentView
@@ -57,6 +59,8 @@
     private string[] SettingKeysUsed { get; } =
     [
         SettingKeys.RetainClipboard,
+        SettingKeys.SilentStart,
+        SettingKeys.OpenHomeOnLaunch,
         SettingKeys.SaveWindowPositions,
         SettingKeys.Zoom,
         SettingKeys.KeyClose,
