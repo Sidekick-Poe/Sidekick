@@ -16,7 +16,7 @@
     <div class="flex flex-col justify-items-start">
         <ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenWiki"><Icon Svg="@UiIcons.External" /> @(Item.Header.Game == GameType.PathOfExile ? "poewiki.net" : "poe2wiki.net")</ButtonLink>
         <ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenPoeDb"><Icon Svg="@UiIcons.External" /> @(Item.Header.Game == GameType.PathOfExile ? "poedb.tw" : "poe2db.tw")</ButtonLink>
-        <ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenCraftOfExile"><Icon Svg="@UiIcons.External" /> craftofexile.com</ButtonLink>
+        @* <ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenCraftOfExile"><Icon Svg="@UiIcons.External" /> craftofexile.com</ButtonLink> *@
     </div>
 </div>
 
@@ -63,17 +63,17 @@
 
     public void OpenCraftOfExile()
     {
-        var game = Item.Header.Game;
+        // var game = Item.Header.Game;
 
-        var gameParam = game == GameType.PathOfExile ? "poe1" : "poe2";
-        var encodedItemText = Uri.EscapeDataString(Item.Text);
+        // var gameParam = game == GameType.PathOfExile ? "poe1" : "poe2";
+        // var encodedItemText = Uri.EscapeDataString(Item.Text);
 
-        var uriBuilder = new UriBuilder("https://craftofexile.com/")
-            {
-                Query = $"game={gameParam}&eimport={encodedItemText}"
-            };
+        // var uriBuilder = new UriBuilder("https://craftofexile.com/")
+        //     {
+        //         Query = $"game={gameParam}&eimport={encodedItemText}"
+        //     };
 
-        browserProvider.OpenUri(uriBuilder.Uri);
+        // browserProvider.OpenUri(uriBuilder.Uri);
     }
 
 }
