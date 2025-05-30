@@ -39,7 +39,7 @@
     {
         <label class="mt-1 text-base font-medium text-amber-500 flex items-center flex-nowrap gap-2">
             <Icon Svg="@UiIcons.Warning" Size="@UiIconSize.Medium" />
-            <TextWithKeybinds Text="@Resources["Keybind_Already_In_Use"]" Keybinds="@(new[] { DuplicatedKey })" />
+            <TextWithKeybinds Text="@Resources["Keybind_Already_In_Use"]" Keybinds="[DuplicatedKey]" />
         </label>
     }
 </div>
