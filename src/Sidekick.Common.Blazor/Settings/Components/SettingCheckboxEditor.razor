@@ -4,7 +4,14 @@
 <div class="flex align-center">
     <FormCheckbox Value="@Enabled"
                   ValueChanged="@ValueChanged">
-        @Label
+        @if (ChildContent is not null)
+        {
+            @ChildContent
+        }
+        else
+        {
+            @Label
+        }
     </FormCheckbox>
 
     <div class="flex ml-1 gap-1 align-center">
@@ -13,7 +20,7 @@
             <Tooltip Text="@Tooltip" />
         }
 
-        @if (ShowResetButton)
+        @if (HasResetButton && ShowResetButton)
         {
             <ButtonIcon OnClick="Reset" title="@Resources["Reset"]">
                 <Icon Svg="@UiIcons.Reset" />
@@ -32,10 +39,16 @@
     public required string Label { get; set; }
 
     [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
     public required string SettingKey { get; set; }
 
     [Parameter]
     public string? Tooltip { get; set; }
+
+    [Parameter]
+    public bool HasResetButton { get; set; } = true;
 
     private bool Enabled { get; set; }
 

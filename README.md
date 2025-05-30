@@ -1,6 +1,6 @@
 # [![](https://sidekick-poe.github.io/assets/images/orb_exalted.png)](#) Sidekick
 
-[![](https://img.shields.io/github/v/release/Sidekick-Poe/Sidekick?style=flat-square)](https://github.com/Sidekick-Poe/Sidekick/releases/latest) [![Download Statistics](https://img.shields.io/github/downloads/Sidekick-Poe/Sidekick/latest/total?style=flat-square&color=15803d)](https://tooomm.github.io/github-release-stats/?username=Sidekick-Poe&repository=Sidekick) [![Download Statistics](https://img.shields.io/github/downloads/Sidekick-Poe/Sidekick/total?style=flat-square&color=22c55e)](https://tooomm.github.io/github-release-stats/?username=Sidekick-Poe&repository=Sidekick) [![](https://img.shields.io/discord/664252463188279300?color=%23738AD6&label=Discord&style=flat-square)](https://discord.gg/H4bg4GQ)
+[![](https://img.shields.io/github/v/release/Sidekick-Poe/Sidekick?style=flat-square)](https://github.com/Sidekick-Poe/Sidekick/releases/latest) [![Download Statistics](https://img.shields.io/github/downloads/Sidekick-Poe/Sidekick/latest/total?style=flat-square&color=15803d)](https://tooomm.github.io/github-release-stats/?username=Sidekick-Poe&repository=Sidekick) [![Download Statistics](https://img.shields.io/github/downloads/Sidekick-Poe/Sidekick/total?style=flat-square&color=22c55e)](https://tooomm.github.io/github-release-stats/?username=Sidekick-Poe&repository=Sidekick) [![](https://img.shields.io/discord/664252463188279300?color=%23738AD6&label=Discord&style=flat-square)](https://discord.gg/R9HyCpV)
 
 A Path of Exile and Path of Exile 2 companion tool. Price check items, check for dangerous map modifiers, and more!
 
@@ -9,7 +9,7 @@ A Path of Exile and Path of Exile 2 companion tool. Price check items, check for
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/sidekickpoe)
 
 ## Development
-We accept most PR and ideas. If you want a feature included, create an issue and we will discuss it. We are also available on [Discord](https://discord.gg/H4bg4GQ).
+We accept most PR and ideas. If you want a feature included, create an issue and we will discuss it. We are also available on [Discord](https://discord.gg/R9HyCpV).
 #### Running the code:
 1. Install **.NET SDK**
 2. Install **Node** and **NPM** (for the stylesheets)

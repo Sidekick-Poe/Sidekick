@@ -4,6 +4,7 @@
 }
 
 <KeybindEditorInternal Label="@Label"
+                       Tooltip="@Tooltip"
                        Value="@Value"
                        ValueChanged="ValueChanged" />
 
@@ -15,6 +16,9 @@
 
     [Parameter]
     public required string Label { get; set; }
+
+    [Parameter]
+    public string? Tooltip { get; set; }
 
     [Parameter]
     public string? Value { get; set; }

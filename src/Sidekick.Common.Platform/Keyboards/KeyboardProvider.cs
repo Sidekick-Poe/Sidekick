@@ -158,6 +158,8 @@ public class KeyboardProvider
 
     public event Action<ScrollEventArgs>? OnScrollUp;
 
+    public event Action<DraggedEventArgs>? OnMouseDrag;
+
     private List<KeybindHandler> KeybindHandlers { get; init; } =
     [
     ];
@@ -196,7 +198,7 @@ public class KeyboardProvider
         foreach (var keybindType in SidekickConfiguration.InputHandlers)
         {
             var keybindHandler = serviceProvider.GetRequiredService(keybindType) as KeybindHandler;
-            if(keybindHandler == null) continue;
+            if (keybindHandler == null) continue;
             KeybindHandlers.Add(keybindHandler);
         }
 
@@ -216,6 +218,9 @@ public class KeyboardProvider
 
         // Initialize mouse hook
         Hook.MouseWheel += OnMouseWheel;
+
+        // Initialize mouse drag hook
+        Hook.MouseDragged += OnMouseDragged;
 
         HookTask = Hook.RunAsync();
 
@@ -329,6 +334,11 @@ public class KeyboardProvider
         }
 
         if (eventArgs.Suppress) args.SuppressEvent = true;
+    }
+
+    private void OnMouseDragged(object? sender, MouseHookEventArgs args)
+    {
+        OnMouseDrag?.Invoke(new(args.Data.X, args.Data.Y));
     }
 
     public Task PressKey(params string[] keyStrokes)
@@ -460,6 +470,7 @@ public class KeyboardProvider
             // Ensure hook itself is set to null
             Hook.KeyPressed -= OnKeyPressed;
             Hook.MouseWheel -= OnMouseWheel;
+            Hook.MouseDragged -= OnMouseDragged;
             Hook.Dispose();
             Hook = null;
         }

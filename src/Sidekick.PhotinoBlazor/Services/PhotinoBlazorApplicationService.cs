@@ -77,7 +77,7 @@ public class PhotinoBlazorApplicationService
             },
             new(resources["Open_Website"])
             {
-                Click = (s, e) => browserProvider.OpenSidekickWebsite()
+                Click = (s, e) => browserProvider.OpenUri(browserProvider.SidekickWebsite)
             },
             new(resources["Exit"])
             {
@@ -115,6 +115,7 @@ public class PhotinoBlazorApplicationService
     {
         Environment.Exit(0);
     }
+
     public void Dispose()
     {
         Icon?.Dispose();

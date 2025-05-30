@@ -10,6 +10,7 @@ public static class SettingKeys
     public const string BearerExpiration = nameof(BearerExpiration);
 
     public const string OpenHomeOnLaunch = nameof(OpenHomeOnLaunch);
+    public const string SilentStart = nameof(SilentStart);
     public const string Zoom = nameof(Zoom);
 
     // Cloudflare settings

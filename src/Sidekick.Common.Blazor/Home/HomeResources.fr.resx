@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Welcome_Message" xml:space="preserve">
-    <value>Faites "{0}" sur un item dans le jeu et "{1}" pour fermer la fenêtre.</value>
+  <data name="Price_Check_Tip" xml:space="preserve">
+    <value>Faites {0} sur un item dans le jeu pour utiliser.</value>
   </data>
   <data name="Close_Notification" xml:space="preserve">
     <value>Fermer cette fenêtre va réduire Sidekick dans la barre d'état système.</value>
@@ -146,5 +146,8 @@
   </data>
   <data name="Home" xml:space="preserve">
     <value>Accueil</value>
+  </data>
+  <data name="Close_Overlay_Tip" xml:space="preserve">
+    <value>Faites {0} pour fermer la fenêtre.</value>
   </data>
 </root>

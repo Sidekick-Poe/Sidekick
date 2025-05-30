@@ -3,32 +3,43 @@
 @implements IDisposable
 
 <div>
-    <FormInput id="@Id"
-               OnFocus="Focus"
-               OnBlur="Blur"
-               Label="@Label"
-               Value="@InputValue"
-               readonly="true"
-               AdditionalClasses="cursor-default caret-transparent"
-               spellcheck="false">
-        <AdornmentContent>
-            <div class="flex ml-1 gap-1 align-center">
-                @if (ShowClearButton)
-                {
-                    <ButtonIcon OnClick="Clear" title="@Resources["Clear"]">
-                        <Icon Svg="@UiIcons.Clear" />
-                    </ButtonIcon>
-                }
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label for="@Id"
+               class="flex gap-1 mb-1 text-base font-medium dark:text-zinc-300">
+            @Label
+            @if (Tooltip is not null)
+            {
+                <Tooltip Text="@Tooltip" />
+            }
+        </label>
+    }
 
-                @AdornmentContent
-            </div>
-        </AdornmentContent>
-    </FormInput>
+    <div class="flex">
+        <button id="@Id"
+                class="min-w-40 px-2 py-[7px] text-left cursor-pointer select-none @UiClasses.FormInputClasses"
+                tabindex="-1"
+                @onfocus="Focus"
+                @onblur="Blur">
+            <KeybindDisplay Keybind="@InputValue" />
+        </button>
+        <div class="flex ml-1 gap-1 align-center">
+            @if (ShowClearButton)
+            {
+                <ButtonIcon OnClick="Clear" title="@Resources["Clear"]">
+                    <Icon Svg="@UiIcons.Clear" />
+                </ButtonIcon>
+            }
+
+            @AdornmentContent
+        </div>
+    </div>
+
     @if (IsDuplicated)
     {
         <label class="mt-1 text-base font-medium text-amber-500 flex items-center flex-nowrap gap-2">
             <Icon Svg="@UiIcons.Warning" Size="@UiIconSize.Medium" />
-            <span>@string.Format(Resources["Keybind_Already_In_Use"], DuplicatedKey)</span>
+            <TextWithKeybinds Text="@Resources["Keybind_Already_In_Use"]" Keybinds="[DuplicatedKey]" />
         </label>
     }
 </div>
@@ -38,16 +49,11 @@
 @inject IJSRuntime JsRuntime
 
 @code {
-    private static Guid? CurrentEditorId { get; set; }
-
-    private IJSObjectReference? Module { get; set; }
-
-    private static event Action? CurrentEditorChanged;
-
-    private bool ShowClearButton => !string.IsNullOrWhiteSpace(Value);
-
     [Parameter]
     public required string Label { get; set; }
+
+    [Parameter]
+    public string? Tooltip { get; set; }
 
     [Parameter]
     public string? Value { get; set; }
@@ -58,18 +64,25 @@
     [Parameter]
     public RenderFragment? AdornmentContent { get; set; }
 
-    private Guid Id { get; } = Guid.NewGuid();
+    private bool IsActive { get; set; }
 
-    private bool Active => CurrentEditorId == Id;
+    private IJSObjectReference? Module { get; set; }
+
+    private static event Action? CurrentEditorChanged;
+
+    private bool ShowClearButton => !string.IsNullOrWhiteSpace(Value);
+
+    protected string Id { get; } = UiUtilities.GenerateId();
 
     private bool IsDuplicated { get; set; } = false;
+
     private string? DuplicatedKey { get; set; } = null;
 
     private string? InputValue
     {
         get
         {
-            if (Active)
+            if (IsActive)
             {
                 return Resources["Key_Active"];
             }
@@ -94,13 +107,13 @@
 
     public void Focus()
     {
-        CurrentEditorId = Id;
+        IsActive = true;
         CurrentEditorChanged?.Invoke();
     }
 
     public void Blur()
     {
-        CurrentEditorId = null;
+        IsActive = false;
         CurrentEditorChanged?.Invoke();
     }
 
@@ -108,7 +121,7 @@
     {
         InvokeAsync(async () =>
         {
-            if (!Active)
+            if (!IsActive)
             {
                 return;
             }
@@ -132,7 +145,7 @@
             }
 
             await RemoveFocusAsync();
-            CurrentEditorId = null;
+            IsActive = false;
             CurrentEditorChanged?.Invoke();
             StateHasChanged();
         });
@@ -140,7 +153,8 @@
 
     public async Task Clear()
     {
-        CurrentEditorId = null;
+        IsDuplicated = false;
+        IsActive = false;
         CurrentEditorChanged?.Invoke();
         await ValueChanged.InvokeAsync("");
     }
