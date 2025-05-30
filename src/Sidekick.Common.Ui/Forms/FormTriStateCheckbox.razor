@@ -42,24 +42,18 @@
 
     private async Task OnChange(ChangeEventArgs args)
     {
-        switch (Value)
+        bool? checkboxValue = Value switch
         {
-            case null:
-                Value = true;
-                break;
-            case true:
-                Value = false;
-                break;
-            case false:
-                Value = null;
-                break;
-        }
+            null => true,
+            true => false,
+            false => null
+        };
 
-        await ValueChanged.InvokeAsync(Value);
+        await ValueChanged.InvokeAsync(checkboxValue);
 
         if (Module != null)
         {
-            await Module.InvokeVoidAsync("setIndeterminate", ElementId, Value == null);
+            await Module.InvokeVoidAsync("setIndeterminate", ElementId, checkboxValue == null);
         }
     }
 
