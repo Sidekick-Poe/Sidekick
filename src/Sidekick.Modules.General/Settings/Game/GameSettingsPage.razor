@@ -46,8 +46,10 @@
     @if (ApplicationService.SupportsKeybinds)
     {
         <FormFieldset Legend="@SettingResources["Other_Settings"]">
-            <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStash"
-                                   Label="@Resources["MouseWheelNavigateStash"]"/>
+            <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStash">
+                <TextWithKeybinds Text="@Resources["MouseWheelNavigateStash"]"
+                                  Keybinds="@(["Ctrl+MWheel"])" />
+            </SettingCheckboxEditor>
             <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStashReverse"
                                    Label="@Resources["MouseWheelNavigateStashReverse"]"/>
             <SettingKeybindEditor SettingKey="@SettingKeys.KeyFindItems" Label="@Resources["Key_FindItems"]"/>

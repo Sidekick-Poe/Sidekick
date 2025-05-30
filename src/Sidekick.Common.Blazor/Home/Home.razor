@@ -23,9 +23,10 @@
             <AppLogo/>
             @if (ApplicationService.SupportsKeybinds)
             {
-                <div class="max-w-[300px] mx-auto">
-                    <TextBase Class="text-center mb-3">@WelcomeMessage</TextBase>
-                    <TextBase Class="text-center">@Resources["Close_Notification"]</TextBase>
+                <div class="max-w-[300px] mx-auto text-center">
+                    <TextBase><TextWithKeybinds Text="@Resources["Price_Check_Tip"]" Keybinds="[KeyOpenPriceCheck]" /></TextBase>
+                    <TextBase Class="my-3"><TextWithKeybinds Text="@Resources["Close_Overlay_Tip"]" Keybinds="[KeyClose]" /></TextBase>
+                    <TextCaption>@Resources["Close_Notification"]</TextCaption>
                 </div>
 
                 <LayoutDivider/>
@@ -67,14 +68,17 @@
 
     private string? ItemText { get; set; }
 
-    private string? WelcomeMessage { get; set; }
+    private string? KeyOpenPriceCheck { get; set; }
+
+    private string? KeyClose { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         CurrentView.Initialize(new ViewOptions());
-        var keyOpenPriceCheck = await SettingsService.GetString(SettingKeys.KeyOpenPriceCheck);
-        var keyClose = await SettingsService.GetString(SettingKeys.KeyClose);
-        WelcomeMessage = string.Format(Resources["Welcome_Message"], keyOpenPriceCheck.ToKeybindString(), keyClose.ToKeybindString());
+
+        KeyOpenPriceCheck = await SettingsService.GetString(SettingKeys.KeyOpenPriceCheck);
+        KeyClose = await SettingsService.GetString(SettingKeys.KeyClose);
+
         await base.OnInitializedAsync();
     }
 
