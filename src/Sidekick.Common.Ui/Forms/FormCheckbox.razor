@@ -34,20 +34,4 @@
         }
     }
 
-    private async Task OnMouseEnter(MouseEventArgs args)
-    {
-        if (args.Buttons == 1)
-        {
-            Value = !Value;
-            await ValueChanged.InvokeAsync(Value);
-        }
-    }
-    private async Task OnMouseDown(MouseEventArgs args)
-    {
-        if (args.Buttons == 1)
-        {
-            Value = !Value;
-            await ValueChanged.InvokeAsync(Value);
-        }
-    }
 }
