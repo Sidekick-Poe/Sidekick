@@ -4,7 +4,14 @@
 <div class="flex align-center">
     <FormCheckbox Value="@Enabled"
                   ValueChanged="@ValueChanged">
-        @Label
+        @if (ChildContent is not null)
+        {
+            @ChildContent
+        }
+        else
+        {
+            @Label
+        }
     </FormCheckbox>
 
     <div class="flex ml-1 gap-1 align-center">
@@ -30,6 +37,9 @@
 
     [Parameter]
     public required string Label { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
 
     [Parameter]
     public required string SettingKey { get; set; }
