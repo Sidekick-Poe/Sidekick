@@ -1,6 +1,6 @@
 @using System.Text.RegularExpressions
 
-@RenderLocalizedText()
+@RenderText()
 
 @code {
 
@@ -10,7 +10,7 @@
     [Parameter]
     public string[] Keybinds { get; set; } = [];
 
-    private RenderFragment RenderLocalizedText() => builder =>
+    private RenderFragment RenderText() => builder =>
     {
         var matches = Regex.Matches(Text, @"\{(\d+)\}");
         int lastIndex = 0;
