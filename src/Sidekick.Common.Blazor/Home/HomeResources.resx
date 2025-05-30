@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Welcome_Message" xml:space="preserve">
-    <value>Press "{0}" over an item in-game to use. Press "{1}" to close overlay.</value>
+  <data name="Price_Check_Tip" xml:space="preserve">
+    <value>Press {0} over an item in-game to use.</value>
   </data>
   <data name="Close_Notification" xml:space="preserve">
     <value>Closing this window will minimize the application to the system tray.</value>
@@ -146,5 +146,8 @@
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="Close_Overlay_Tip" xml:space="preserve">
+    <value>Press {0} to close overlay.</value>
   </data>
 </root>
