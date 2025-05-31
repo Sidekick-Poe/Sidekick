@@ -1,9 +1,9 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
+using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Account.Authentication.Models;
 using Sidekick.Apis.Poe.Account.Clients;
 using Sidekick.Common.Browser;
-using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Account.Authentication;
@@ -12,34 +12,21 @@ namespace Sidekick.Apis.Poe.Account.Authentication;
 /// Provides functionality to handle user authentication between the Sidekick application and the Path of Exile Account API.
 /// Manages the authentication state, initializes authenticated HTTP requests,  and allows users to authenticate or reauthenticate their accounts.
 /// </summary>
-internal class AuthenticationService : IAuthenticationService, IDisposable
+internal class AuthenticationService
+(
+    ISettingsService settingsService,
+    IHttpClientFactory httpClientFactory,
+    ILogger<AuthenticationService> logger,
+    IBrowserWindowProvider browserWindowProvider
+) : IAuthenticationService
 {
-    private readonly ISettingsService settingsService;
-    private readonly IBrowserProvider browserProvider;
-    private readonly IInterprocessService interprocessService;
-    private readonly IHttpClientFactory httpClientFactory;
-
     public event Action? OnStateChanged;
 
-    public AuthenticationService(ISettingsService settingsService, IBrowserProvider browserProvider, IHttpClientFactory httpClientFactory, IInterprocessService interprocessService)
-    {
-        this.settingsService = settingsService;
-        this.browserProvider = browserProvider;
-        this.interprocessService = interprocessService;
-        this.httpClientFactory = httpClientFactory;
-
-        interprocessService.OnMessageReceived += InterprocessService_CustomProtocolCallback;
-    }
-
-    private string? State { get; set; }
-
-    private PkceHelper.PkcePair? PkcePair { get; set; }
-
-    private TaskCompletionSource? AuthenticateTask { get; set; }
+    private Task? AuthenticateTask { get; set; }
 
     public async Task<AuthenticationState> GetCurrentState()
     {
-        if (AuthenticateTask != null && AuthenticateTask.Task.Status != TaskStatus.RanToCompletion) return AuthenticationState.InProgress;
+        if (AuthenticateTask != null) return AuthenticationState.InProgress;
 
         var bearerToken = await settingsService.GetString(SettingKeys.BearerToken);
         var bearerExpiration = await settingsService.GetDateTime(SettingKeys.BearerExpiration);
@@ -68,86 +55,98 @@ internal class AuthenticationService : IAuthenticationService, IDisposable
 
     public async Task Authenticate(bool reauthenticate = false, CancellationToken cancellationToken = default)
     {
-        await interprocessService.Install();
-
-        var currentState = await GetCurrentState();
-        if (!reauthenticate && currentState == AuthenticationState.Authenticated) return;
-
-        if (currentState == AuthenticationState.InProgress)
+        if (AuthenticateTask != null)
         {
-            await AuthenticateTask!.Task;
+            logger.LogInformation("[AuthenticationService] Authentication already in progress, waiting for it to finish.");
+            await AuthenticateTask;
+        }
+
+        var state = Guid.NewGuid().ToString();
+        var pkcePair = PkceHelper.GeneratePkcePair();
+
+        logger.LogInformation("[AuthenticationService] Starting authentication process.");
+        var task = OpenBrowserWindow(state, pkcePair);
+        AuthenticateTask = task;
+        OnStateChanged?.Invoke();
+
+        var result = await task;
+        await browserWindowProvider.SaveCookies(AccountApiClient.ClientName, result, cancellationToken);
+
+        if (!result.Success)
+        {
+            logger.LogInformation("[AuthenticationService] Result was not successful, cancelling authentication.");
+            AuthenticateTask = null;
+            OnStateChanged?.Invoke();
             return;
         }
 
-        State = Guid.NewGuid().ToString();
-        PkcePair = PkceHelper.GeneratePkcePair();
+        if (result.Uri == null)
+        {
+            logger.LogInformation("[AuthenticationService] Result URI was null.");
+            AuthenticateTask = null;
+            OnStateChanged?.Invoke();
+            return;
+        }
 
+        var queryDictionary = System.Web.HttpUtility.ParseQueryString(result.Uri.Query);
+        var resultState = queryDictionary["state"];
+        var resultCode = queryDictionary["code"];
+
+        if (string.IsNullOrEmpty(resultState) || state != resultState)
+        {
+            logger.LogInformation("[AuthenticationService] The state was invalid.");
+            AuthenticateTask = null;
+            OnStateChanged?.Invoke();
+            return;
+        }
+
+        if (string.IsNullOrEmpty(resultCode))
+        {
+            logger.LogInformation("[AuthenticationService] The code was invalid.");
+            AuthenticateTask = null;
+            OnStateChanged?.Invoke();
+            return;
+        }
+
+        var token = await RequestAccessToken(resultCode, pkcePair.Verifier, cancellationToken);
+        if (token == null)
+        {
+            logger.LogInformation("[AuthenticationService] The token was invalid.");
+            AuthenticateTask = null;
+            OnStateChanged?.Invoke();
+            return;
+        }
+
+        await settingsService.Set(SettingKeys.BearerToken, token.access_token);
+        await settingsService.Set(SettingKeys.BearerExpiration, DateTimeOffset.Now.AddSeconds(token.expires_in));
+        AuthenticateTask = null;
+        OnStateChanged?.Invoke();
+    }
+
+    private Task<BrowserResult> OpenBrowserWindow(string state, PkceHelper.PkcePair pkcePair)
+    {
         var builder = new UriBuilder(AuthenticationConfig.AuthorizationUrl);
         var query = System.Web.HttpUtility.ParseQueryString(string.Empty);
         query["client_id"] = AuthenticationConfig.ClientId;
         query["response_type"] = "code";
         query["scope"] = AuthenticationConfig.Scopes;
-        query["state"] = State;
+        query["state"] = state;
         query["redirect_uri"] = AuthenticationConfig.RedirectUrl;
-        query["code_challenge"] = PkcePair.Challenge;
+        query["code_challenge"] = pkcePair.Challenge;
         query["code_challenge_method"] = "S256";
         builder.Query = query.ToString();
         var authenticationLink = builder.ToString();
-        browserProvider.OpenUri(new Uri(authenticationLink));
-
-        AuthenticateTask = new();
-        OnStateChanged?.Invoke();
-
-        _ = Task.Run(async () =>
-                     {
-                         await Task.Delay(AuthenticationConfig.AuthenticationTimeoutMs, cancellationToken);
-                         AuthenticateTask?.SetCanceled(cancellationToken);
-                         AuthenticateTask = null;
-                         OnStateChanged?.Invoke();
-                     },
-                     cancellationToken);
-
-        await AuthenticateTask.Task;
+        var task = browserWindowProvider.OpenBrowserWindow(new BrowserRequest()
+        {
+            Uri = new Uri(authenticationLink),
+            ShouldComplete = (options) => options.Uri?.ToString().StartsWith(AuthenticationConfig.RedirectUrl) ?? false,
+        });
+        return task;
     }
 
-    private void CancelAuthenticate()
+    private async Task<Oauth2TokenResponse?> RequestAccessToken(string code, string verifier, CancellationToken cancellationToken = default)
     {
-        if (AuthenticateTask != null)
-        {
-            AuthenticateTask.SetResult();
-            AuthenticateTask = null;
-        }
-
-        OnStateChanged?.Invoke();
-    }
-
-    private void InterprocessService_CustomProtocolCallback(string message)
-    {
-        if (!message.ToUpper().StartsWith(AuthenticationConfig.ProtocolPrefix))
-        {
-            return;
-        }
-
-        var queryDictionary = System.Web.HttpUtility.ParseQueryString(new Uri(message).Query);
-        var state = queryDictionary["state"];
-        var code = queryDictionary["code"];
-
-        if (string.IsNullOrEmpty(state) || string.IsNullOrEmpty(code))
-        {
-            CancelAuthenticate();
-            return;
-        }
-
-        _ = RequestAccessToken(state, code);
-    }
-
-    private async Task RequestAccessToken(string state, string code, CancellationToken cancellationToken = default)
-    {
-        if (state != State)
-        {
-            CancelAuthenticate();
-            return;
-        }
+        logger.LogInformation("[AuthenticationService] The authentication was successful, requesting access token.");
 
         using var requestContent = new FormUrlEncodedContent([
             new("client_id", AuthenticationConfig.ClientId),
@@ -155,37 +154,25 @@ internal class AuthenticationService : IAuthenticationService, IDisposable
             new("code", code),
             new("redirect_uri", AuthenticationConfig.RedirectUrl),
             new("scope", AuthenticationConfig.Scopes),
-            new("code_verifier", PkcePair?.Verifier ?? string.Empty),
+            new("code_verifier", verifier),
         ]);
         using var client = httpClientFactory.CreateClient(AccountApiClient.ClientName);
         var response = await client.PostAsync(AuthenticationConfig.TokenUrl, requestContent, cancellationToken);
         var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
         if (!response.IsSuccessStatusCode)
         {
-            CancelAuthenticate();
-            return;
+            logger.LogInformation("[AuthenticationService] The token response is invalid.");
+            return null;
         }
 
         var result = JsonSerializer.Deserialize<Oauth2TokenResponse>(responseContent);
         if (result == null || result.access_token == null)
         {
-            CancelAuthenticate();
-            return;
+            logger.LogInformation("[AuthenticationService] The token response is invalid.");
+            return null;
         }
 
-        await settingsService.Set(SettingKeys.BearerToken, result.access_token);
-        await settingsService.Set(SettingKeys.BearerExpiration, DateTimeOffset.Now.AddSeconds(result.expires_in));
-
-        if (AuthenticateTask != null)
-        {
-            AuthenticateTask.SetResult();
-        }
-
-        OnStateChanged?.Invoke();
-    }
-
-    public void Dispose()
-    {
-        interprocessService.OnMessageReceived -= InterprocessService_CustomProtocolCallback;
+        logger.LogInformation("[AuthenticationService] The access token call was successful.");
+        return result;
     }
 }

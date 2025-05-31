@@ -60,8 +60,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Web", "src\Sidekic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Modules.Wealth", "src\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj", "{70B9893F-72F8-4B5F-A9CF-732E538D6C9E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Protocol", "src\Sidekick.Protocol\Sidekick.Protocol.csproj", "{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Database", "src\Sidekick.Common.Database\Sidekick.Common.Database.csproj", "{8C9915FA-EC66-47AA-B449-4833813B0D16}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Ui", "src\Sidekick.Common.Ui\Sidekick.Common.Ui.csproj", "{F5B003D8-BE39-419A-A02A-4328A4FBDD10}"
@@ -77,6 +75,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.PhotinoBlazor", "src\Sidekick.PhotinoBlazor\Sidekick.PhotinoBlazor.csproj", "{C8F7E7AE-C245-4B71-A915-CA90335A2F67}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Modules.RegexHotkeys", "src\Sidekick.Modules.RegexHotkeys\Sidekick.Modules.RegexHotkeys.csproj", "{B84D39FB-E519-77E1-68F5-33F2FABF1938}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Browser", "src\Sidekick.Common.Browser\Sidekick.Common.Browser.csproj", "{FC7FC285-CE31-4983-9FC6-E897478A240F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -214,14 +214,6 @@ Global
 		{70B9893F-72F8-4B5F-A9CF-732E538D6C9E}.Linux-Release|Any CPU.Build.0 = Linux-Release|Any CPU
 		{70B9893F-72F8-4B5F-A9CF-732E538D6C9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70B9893F-72F8-4B5F-A9CF-732E538D6C9E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}.Linux-Debug|Any CPU.ActiveCfg = Linux-Debug|Any CPU
-		{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}.Linux-Debug|Any CPU.Build.0 = Linux-Debug|Any CPU
-		{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}.Linux-Release|Any CPU.ActiveCfg = Linux-Release|Any CPU
-		{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}.Linux-Release|Any CPU.Build.0 = Linux-Release|Any CPU
-		{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0CA1B097-80C0-4E67-8372-AF2041D7C4CC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8C9915FA-EC66-47AA-B449-4833813B0D16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8C9915FA-EC66-47AA-B449-4833813B0D16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C9915FA-EC66-47AA-B449-4833813B0D16}.Linux-Debug|Any CPU.ActiveCfg = Linux-Debug|Any CPU
@@ -286,6 +278,14 @@ Global
 		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Linux-Release|Any CPU.Build.0 = Release|Any CPU
 		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B84D39FB-E519-77E1-68F5-33F2FABF1938}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC7FC285-CE31-4983-9FC6-E897478A240F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC7FC285-CE31-4983-9FC6-E897478A240F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC7FC285-CE31-4983-9FC6-E897478A240F}.Linux-Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC7FC285-CE31-4983-9FC6-E897478A240F}.Linux-Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC7FC285-CE31-4983-9FC6-E897478A240F}.Linux-Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC7FC285-CE31-4983-9FC6-E897478A240F}.Linux-Release|Any CPU.Build.0 = Debug|Any CPU
+		{FC7FC285-CE31-4983-9FC6-E897478A240F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC7FC285-CE31-4983-9FC6-E897478A240F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -312,6 +312,7 @@ Global
 		{9ABF7920-D05B-4215-B991-A0E7256038E1} = {7285BD58-2544-44AA-8488-52EA8E55D239}
 		{AD154539-2E18-47AC-9A6B-CF56E15C97AC} = {7285BD58-2544-44AA-8488-52EA8E55D239}
 		{B84D39FB-E519-77E1-68F5-33F2FABF1938} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
+		{FC7FC285-CE31-4983-9FC6-E897478A240F} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17B5631D-95B3-4007-BE6B-C9BBE799D014}

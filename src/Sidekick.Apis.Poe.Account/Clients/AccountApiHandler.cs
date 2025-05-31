@@ -26,7 +26,7 @@ public class AccountApiHandler
         apiStateProvider.Update(AccountApiClient.ClientName, ApiState.Working);
 
         request.Headers.TryAddWithoutValidation("X-Powered-By", "Sidekick");
-        await cloudflareService.InitializeHttpRequest(request);
+        await cloudflareService.InitializeHttpRequest(AccountApiClient.ClientName, request, cancellationToken);
         await authenticationService.InitializeHttpRequest(request);
 
         var response = await base.SendAsync(request, cancellationToken);
@@ -81,7 +81,7 @@ public class AccountApiHandler
         logger.LogInformation("[PoeApiHandler] Received 403 response, attempting to handle Cloudflare challenge");
 
         // Show WebView2 window and wait for challenge completion
-        var success = await cloudflareService.StartCaptchaChallenge(request.RequestUri!, cancellationToken);
+        var success = await cloudflareService.Challenge(AccountApiClient.ClientName, request.RequestUri!, cancellationToken);
         if (!success)
         {
             logger.LogWarning("[PoeApiHandler] Failed to complete Cloudflare challenge");
@@ -89,7 +89,7 @@ public class AccountApiHandler
         }
 
         // Retry the request with new cookies
-        await cloudflareService.InitializeHttpRequest(request);
+        await cloudflareService.InitializeHttpRequest(AccountApiClient.ClientName, request, cancellationToken);
 
         var retryResponse = await base.SendAsync(request, cancellationToken);
         if (retryResponse.IsSuccessStatusCode)

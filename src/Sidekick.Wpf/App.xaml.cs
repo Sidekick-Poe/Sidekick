@@ -16,12 +16,10 @@ namespace Sidekick.Wpf;
 public partial class App
 {
     private readonly ILogger<App> logger;
-    private readonly IInterprocessService interprocessService;
 
     public App()
     {
         logger = Program.ServiceProvider.GetRequiredService<ILogger<App>>();
-        interprocessService = Program.ServiceProvider.GetRequiredService<IInterprocessService>();
 
         DisableWindowsTheme();
     }
@@ -30,38 +28,22 @@ public partial class App
     {
         base.OnStartup(e);
 
-        _ = HandleInterprocessCommunications(e);
+        _ = CheckIsAlreadyRunning();
 
         AttachErrorHandlers();
 
-        var cloudFlareHandler = Program.ServiceProvider.GetRequiredService<WpfCloudflareHandler>();
-        cloudFlareHandler.Initialize();
-
-        interprocessService.StartReceiving();
+        Program.ServiceProvider.GetRequiredService<WpfBrowserWindowProvider>();
 
         var viewLocator = Program.ServiceProvider.GetRequiredService<IViewLocator>();
         viewLocator.Open(SidekickViewType.Standard, "/");
     }
 
-    private async Task HandleInterprocessCommunications(StartupEventArgs e)
+    private async Task CheckIsAlreadyRunning()
     {
-        if (HasApplicationStartedUsingSidekickProtocol(e) && interprocessService.IsAlreadyRunning())
-        {
-            // If we reach here, that means the application was started using a sidekick:// link. We send a message to the already running instance in this case and close this new instance after.
-            try
-            {
-                await interprocessService.SendMessage(e.Args[0]);
-            }
-            finally
-            {
-                logger.LogDebug("[Startup] Application is shutting down due to another instance running.");
-                ShutdownAndExit();
-            }
-        }
-
         // Wait a second before starting to listen to interprocess communications.
         // This is necessary as when we are restarting as admin, the old non-admin instance is still running for a fraction of a second.
         await Task.Delay(2000);
+        var interprocessService = Program.ServiceProvider.GetRequiredService<IInterprocessService>();
         if (interprocessService.IsAlreadyRunning())
         {
             logger.LogDebug("[Startup] Application is already running.");
@@ -73,11 +55,6 @@ public partial class App
             logger.LogDebug("[Startup] Application is shutting down due to another instance running.");
             ShutdownAndExit();
         }
-    }
-
-    private static bool HasApplicationStartedUsingSidekickProtocol(StartupEventArgs e)
-    {
-        return e.Args.Length > 0 && e.Args[0].ToUpper().StartsWith("SIDEKICK://");
     }
 
     private static void ShutdownAndExit()
@@ -103,17 +80,17 @@ public partial class App
     {
         AppDomain.CurrentDomain.UnhandledException += (_, e) =>
         {
-            LogException((Exception)e.ExceptionObject);
+            logger.LogCritical((Exception)e.ExceptionObject, "Unhandled exception.");
         };
 
         DispatcherUnhandledException += (_, e) =>
         {
-            LogException(e.Exception);
+            logger.LogCritical(e.Exception, "Unhandled exception.");
         };
 
         TaskScheduler.UnobservedTaskException += (_, e) =>
         {
-            LogException(e.Exception);
+            logger.LogCritical(e.Exception, "Unhandled exception.");
         };
     }
 
@@ -121,10 +98,5 @@ public partial class App
     {
         // Disable Aero theme text rendering
         RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
-    }
-
-    private void LogException(Exception ex)
-    {
-        logger.LogCritical(ex, "Unhandled exception.");
     }
 }
