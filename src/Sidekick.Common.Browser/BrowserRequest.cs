@@ -8,6 +8,8 @@ public class BrowserRequest
 
     public Func<BrowserCompletionOptions, bool> ShouldComplete { get; set; } = _ => false;
 
+    public Task<BrowserResult> Task => TaskCompletion.Task;
+
     public void SetResult(BrowserResult result)
     {
         if (TaskCompletion.Task.IsCompleted) return;

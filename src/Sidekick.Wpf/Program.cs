@@ -15,9 +15,9 @@ using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Blazor;
+using Sidekick.Common.Browser;
 using Sidekick.Common.Database;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Platform.Windows.Interprocess;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
@@ -80,6 +80,7 @@ public class Program
             // Common
             .AddSidekickCommon()
             .AddSidekickCommonBlazor()
+            .AddSidekickCommonBrowser()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
             .AddSidekickCommonUi()
 
@@ -113,7 +114,6 @@ public class Program
         services.AddSingleton<IViewLocator, WpfViewLocator>();
         services.AddSingleton(sp => (WpfViewLocator)sp.GetRequiredService<IViewLocator>());
         services.AddSingleton<WpfBrowserWindowProvider>();
-        services.AddSingleton<WpfCloudflareHandler>();
 
         services.AddApexCharts();
 

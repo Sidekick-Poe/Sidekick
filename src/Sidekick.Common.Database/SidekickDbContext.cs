@@ -48,6 +48,8 @@ public class SidekickDbContext : DbContext
         base.OnModelCreating(modelBuilder);
     }
 
+    public DbSet<HttpClientCookie> HttpClientCookies { get; init; }
+
     public DbSet<Setting> Settings { get; init; }
 
     public DbSet<WealthItem> WealthItems { get; init; }

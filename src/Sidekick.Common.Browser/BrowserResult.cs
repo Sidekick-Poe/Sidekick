@@ -2,11 +2,13 @@
 
 public class BrowserResult
 {
-    public bool Success { get; set; }
+    public Uri? Uri { get; set; }
 
-    public string? UserAgent { get; set; }
+    public bool Success { get; init; }
 
-    public Dictionary<string, string> Cookies { get; set; } = [];
+    public string? UserAgent { get; init; }
+
+    public Dictionary<string, string> Cookies { get; init; } = [];
 
     public string? JsonContent { get; set; }
 

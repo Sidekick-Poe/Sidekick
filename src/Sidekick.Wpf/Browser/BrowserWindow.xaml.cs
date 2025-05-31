@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.Net;
-using System.Text.Json;
 using System.Windows;
 using System.Windows.Media;
 using Microsoft.Extensions.Logging;
@@ -34,10 +33,6 @@ public partial class BrowserWindow
             // Get the actual user agent the browser uses and save it.
             userAgent = await WebView.CoreWebView2.ExecuteScriptAsync("navigator.userAgent");
             userAgent = userAgent.Trim('\"');
-
-            await UseDevToolsNetworkProtocolAsync();
-
-            WebView.CoreWebView2.CookieManager.DeleteAllCookies();
 
             // Handle cookie changes by checking cookies after navigation
             WebView.CoreWebView2.NavigationCompleted += CoreWebView2_NavigationCompleted;
@@ -91,6 +86,7 @@ public partial class BrowserWindow
                 UserAgent = userAgent,
                 Cookies = cookies.ToDictionary(c => c.Name, c => c.Value),
                 JsonContent = jsonContent.Content,
+                Uri = WebView.Source,
                 Success = true,
             });
             Dispatcher.Invoke(Close);
@@ -146,23 +142,5 @@ public partial class BrowserWindow
             logger.LogError(ex, "[BrowserWindow] Error determining if content is JSON.");
             return (false, string.Empty);
         }
-    }
-
-    private async Task UseDevToolsNetworkProtocolAsync()
-    {
-        await WebView.CoreWebView2.CallDevToolsProtocolMethodAsync("Network.enable", "{}");
-
-        WebView.CoreWebView2.GetDevToolsProtocolEventReceiver("Network.requestWillBeSent").DevToolsProtocolEventReceived += (_, e) =>
-        {
-            var json = e.ParameterObjectAsJson;
-            logger.LogInformation("[BrowserWindow] DevTools Network Parameters \n" + json);
-
-            // Deserialize the JSON to extract request headers
-            var parameters = JsonSerializer.Deserialize<DevToolsParameters>(json, JsonSerializerOptions.Default);
-            if (parameters?.Request != null)
-            {
-                logger.LogInformation("[BrowserWindow] Deserialized " + parameters.Request.Headers.Count + " headers");
-            }
-        };
     }
 }

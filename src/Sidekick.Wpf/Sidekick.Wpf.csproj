@@ -48,7 +48,6 @@
     <ProjectReference Include="..\Sidekick.Modules.Maps\Sidekick.Modules.Maps.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.Trade\Sidekick.Modules.Trade.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj" />
-    <ProjectReference Include="..\Sidekick.Protocol\Sidekick.Protocol.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,14 +59,6 @@
     <Content Update="wwwroot\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Browser\BrowserWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <XamlRuntime>Wpf</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
 
   <Target Name="Copywwwroot" BeforeTargets="Build">
