@@ -10,36 +10,35 @@
             @Label
             @if (Tooltip is not null)
             {
-                <Tooltip Text="@Tooltip" />
+                <Tooltip Text="@Tooltip"/>
             }
         </label>
     }
 
-    <div class="flex">
+    <div class="flex flex-nowrap items-center gap-1">
         <button id="@Id"
-                class="min-w-40 px-2 py-[7px] text-left cursor-pointer select-none @UiClasses.FormInputClasses"
+                class="min-w-40 p-2 text-left cursor-pointer select-none @UiClasses.FormInputClasses"
                 tabindex="-1"
                 @onfocus="Focus"
                 @onblur="Blur">
-            <KeybindDisplay Keybind="@InputValue" />
+            <KeybindDisplay Keybind="@InputValue"/>
         </button>
-        <div class="flex ml-1 gap-1 align-center">
-            @if (ShowClearButton)
-            {
-                <ButtonIcon OnClick="Clear" title="@Resources["Clear"]">
-                    <Icon Svg="@UiIcons.Clear" />
-                </ButtonIcon>
-            }
 
-            @AdornmentContent
-        </div>
+        @if (ShowClearButton)
+        {
+            <ButtonIcon OnClick="Clear" title="@Resources["Clear"]">
+                <Icon Svg="@UiIcons.Clear"/>
+            </ButtonIcon>
+        }
+
+        @AdornmentContent
     </div>
 
     @if (IsDuplicated)
     {
         <label class="mt-1 text-base font-medium text-amber-500 flex items-center flex-nowrap gap-2">
-            <Icon Svg="@UiIcons.Warning" Size="@UiIconSize.Medium" />
-            <TextWithKeybinds Text="@Resources["Keybind_Already_In_Use"]" Keybinds="[DuplicatedKey]" />
+            <Icon Svg="@UiIcons.Warning" Size="@UiIconSize.Medium"/>
+            <TextWithKeybinds Text="@Resources["Keybind_Already_In_Use"]" Keybinds="[DuplicatedKey]"/>
         </label>
     }
 </div>
@@ -49,6 +48,7 @@
 @inject IJSRuntime JsRuntime
 
 @code {
+
     [Parameter]
     public required string Label { get; set; }
 
@@ -100,8 +100,7 @@
 
     private async Task RemoveFocusAsync()
     {
-        Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import",
-            "./_content/Sidekick.Common.Blazor/Settings/Components/KeybindEditorInternal.razor.js");
+        Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Blazor/Settings/Components/KeybindEditorInternal.razor.js");
         await Module.InvokeVoidAsync("removeFocus", Id);
     }
 

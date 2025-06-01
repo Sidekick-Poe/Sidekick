@@ -1,32 +1,34 @@
 @if (ChildContent is not null)
 {
     <div data-tooltip-target="@Id"
-         data-tooltip-placement="@Placement.ToString().ToLower()"
-         data-tooltip-trigger="@Trigger.ToString().ToLower()">
+         data-tooltip-placement="@Placement.GetValueAttribute()"
+         data-tooltip-trigger="@TooltipTrigger.Hover.GetValueAttribute()">
         @ChildContent
     </div>
 }
 else
 {
     <div data-tooltip-target="@Id"
-         data-tooltip-placement="@Placement.ToString().ToLower()"
+         data-tooltip-placement="@Placement.GetValueAttribute()"
+         data-tooltip-trigger="@TooltipTrigger.Hover.GetValueAttribute()"
          class="text-violet-500 flex self-center cursor-help">
         <Icon Svg="@UiIcons.Help" />
     </div>
 }
 
 <div id="@Id" role="tooltip" class="bg-stone-950 p-2 max-w-60 rounded-lg border border-solid border-stone-800
-            absolute z-10 invisible transition-opacity duration-300 shadow-xs opacity-0 tooltip ">
+            absolute z-10 invisible transition-opacity duration-300 shadow-xs opacity-0 tooltip">
     @if (TooltipContent is not null)
     {
         @TooltipContent
     }
     else
     {
-        @Text
+        <div class="text-center text-sm leading-4">@Text</div>
     }
 </div>
 
+@using Sidekick.Common.Enums
 @inherits FlowbiteComponent
 
 @code {
@@ -42,9 +44,6 @@ else
 
     [Parameter]
     public TooltipPlacement Placement { get; set; } = TooltipPlacement.Top;
-
-    [Parameter]
-    public TooltipTrigger Trigger { get; set; } = TooltipTrigger.Hover;
 
     private string Id { get; } = UiUtilities.GenerateId();
 

@@ -8,18 +8,14 @@
         </label>
     }
 
-    <div class="flex flex-nowrap gap-1">
+    <div class="flex flex-nowrap gap-1 items-center grow">
         <textarea id="@Id"
                   @onchange="OnChange"
                   @onfocus="OnFocus"
                   @onblur="OnBlur"
-                  class="@UiClasses.FormInputClasses p-2 text-base min-w-0 grow min-h-24 max-h-64">
-            @Value
-    </textarea>
-
+                  class="@UiClasses.FormInputClasses p-2 text-base min-w-0 grow min-h-24 max-h-64">@Value</textarea>
         @AdornmentContent
     </div>
-
 </div>
 
 @code {

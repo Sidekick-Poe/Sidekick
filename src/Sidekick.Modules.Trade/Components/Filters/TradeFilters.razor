@@ -6,23 +6,26 @@
 
 <Popover>
     <PopoverAnchor>
-        <Icon Svg="@UiIcons.Adjustments" Size="@UiIconSize.Medium" AddBadge="AreSettingsModified" />
+        <ButtonIcon>
+            <Icon Svg="@UiIcons.Adjustments" Size="@UiIconSize.Medium" AddBadge="AreSettingsModified"/>
+        </ButtonIcon>
     </PopoverAnchor>
     <PopoverContent>
-        <PriceCheckStatusEditor />
-        <PriceCheckItemCurrencyEditor />
+        <PriceCheckStatusEditor/>
+        <PriceCheckItemCurrencyEditor/>
         <FormFieldset Legend="@Resources["Item_Trade_Settings"]"
                       Dense="true">
-            <PriceCheckItemMinMaxPriceEditor />
-            <PriceCheckItemListedAgeEditor />
+            <PriceCheckItemMinMaxPriceEditor/>
+            <PriceCheckItemListedAgeEditor/>
         </FormFieldset>
         <FormFieldset Legend="@Resources["Bulk_Trade"]"
                       Dense="true">
-            <PriceCheckBulkMinimumStockEditor />
+            <PriceCheckBulkMinimumStockEditor/>
         </FormFieldset>
 
         <div class="flex justify-center mb-1">
-            <ButtonPrimary Disabled="!AreSettingsModified" OnClick="ClearFilters">@SettingsResources["Clear_Filters"]</ButtonPrimary>
+            <ButtonPrimary Disabled="!AreSettingsModified"
+                           OnClick="ClearFilters">@SettingsResources["Clear_Filters"]</ButtonPrimary>
         </div>
     </PopoverContent>
 </Popover>

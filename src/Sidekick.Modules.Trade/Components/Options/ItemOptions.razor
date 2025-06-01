@@ -1,34 +1,35 @@
 @using Sidekick.Common.Browser
 @using Sidekick.Common.Game
 @using Sidekick.Common.Game.Items
+@using Sidekick.Common.Ui.Popovers
 
-<button data-dropdown-toggle="@ElementId"
-        data-dropdown-trigger="hover"
-        data-dropdown-placement="right-start"
-        data-dropdown-offset-distance="-10"
-        data-dropdown-offset-skidding="-30"
-        class="inline-flex items-center justify-center text-base font-medium tracking-wide dark:text-violet-500 transition-colors duration-200 rounded-md bg-transparent hover:text-violet-400 @UiClasses.FocusClasses">
-    <Icon Svg="@UiIcons.EllipsisVertical" />
-</button>
+<Popover Placement="TooltipPlacement.TopRight">
+    <PopoverAnchor>
+        <ButtonIcon>
+            <Icon Svg="@UiIcons.EllipsisVertical"/>
+        </ButtonIcon>
+    </PopoverAnchor>
+    <PopoverContent>
+        <div class="flex flex-col">
+            <ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenWiki">
+                <Icon
+                    Svg="@UiIcons.External"/> @(Item.Header.Game == GameType.PathOfExile ? "poewiki.net" : "poe2wiki.net")
+            </ButtonLink>
+            <ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenPoeDb">
+                <Icon Svg="@UiIcons.External"/> @(Item.Header.Game == GameType.PathOfExile ? "poedb.tw" : "poe2db.tw")
+            </ButtonLink>
+            @* <ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenCraftOfExile"><Icon Svg="@UiIcons.External" /> craftofexile.com</ButtonLink> *@
+        </div>
+    </PopoverContent>
+</Popover>
 
-<div id="@ElementId"
-     class="fixed! z-10 hidden border border-solid border-stone-800 bg-black grow overflow-auto p-2 rounded-lg shadow-lg">
-    <div class="flex flex-col justify-items-start">
-        <ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenWiki"><Icon Svg="@UiIcons.External" /> @(Item.Header.Game == GameType.PathOfExile ? "poewiki.net" : "poe2wiki.net")</ButtonLink>
-        <ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenPoeDb"><Icon Svg="@UiIcons.External" /> @(Item.Header.Game == GameType.PathOfExile ? "poedb.tw" : "poe2db.tw")</ButtonLink>
-        @* <ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenCraftOfExile"><Icon Svg="@UiIcons.External" /> craftofexile.com</ButtonLink> *@
-    </div>
-</div>
-
-@inject IBrowserProvider browserProvider
+@inject IBrowserProvider BrowserProvider
 @inherits FlowbiteComponent
 
 @code {
 
     [Parameter]
     public required Item Item { get; set; }
-
-    private Guid ElementId { get; } = Guid.NewGuid();
 
     public void OpenWiki()
     {
@@ -40,7 +41,7 @@
         var wikiLink = poeWikiSubUrl + searchLink?.Replace(" ", "+");
         var uri = new Uri(baseUrl + wikiLink);
 
-        browserProvider.OpenUri(uri);
+        BrowserProvider.OpenUri(uri);
     }
 
     public void OpenPoeDb()
@@ -53,7 +54,7 @@
         var wikiLink = poeDbSubUrl + searchLink?.Replace(" ", "+");
         var uri = new Uri(baseUrl + wikiLink);
 
-        browserProvider.OpenUri(uri);
+        BrowserProvider.OpenUri(uri);
     }
 
     public void OpenCraftOfExile()

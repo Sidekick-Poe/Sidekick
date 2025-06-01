@@ -9,11 +9,8 @@
     @if (ImageUrl != null)
     {
         <TextBase Class="text-[#a38d6d]">&times;</TextBase>
-        <Tooltip Placement="TooltipPlacement.Left">
-            <ChildContent>
-                <img src="@ImageUrl" class="max-h-10" alt="@Currency"/>
-            </ChildContent>
-            <TooltipContent>@CurrencyText</TooltipContent>
+        <Tooltip Placement="TooltipPlacement.Left" Text="@CurrencyText">
+            <img src="@ImageUrl" class="max-h-10" alt="@Currency"/>
         </Tooltip>
     }
 </div>

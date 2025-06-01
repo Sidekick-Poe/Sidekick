@@ -6,20 +6,18 @@
            ValueChanged="@ValueChanged"
            Tooltip="@Tooltip">
     <AdornmentContent>
-        <div class="flex ml-1 gap-1 align-center">
-            @if (ShowClearButton)
-            {
-                <ButtonIcon OnClick="Clear" title="@Resources["Clear"]">
-                    <Icon Svg="@UiIcons.Clear" />
-                </ButtonIcon>
-            }
-            @if (ShowResetButton)
-            {
-                <ButtonIcon OnClick="Reset" title="@Resources["Reset"]">
-                    <Icon Svg="@UiIcons.Reset" />
-                </ButtonIcon>
-            }
-        </div>
+        @if (ShowClearButton)
+        {
+            <ButtonIcon OnClick="Clear" title="@Resources["Clear"]">
+                <Icon Svg="@UiIcons.Clear"/>
+            </ButtonIcon>
+        }
+        @if (ShowResetButton)
+        {
+            <ButtonIcon OnClick="Reset" title="@Resources["Reset"]">
+                <Icon Svg="@UiIcons.Reset"/>
+            </ButtonIcon>
+        }
     </AdornmentContent>
 </FormInput>
 
