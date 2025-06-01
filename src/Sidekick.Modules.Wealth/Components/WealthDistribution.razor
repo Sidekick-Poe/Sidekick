@@ -3,7 +3,7 @@
 @using Microsoft.EntityFrameworkCore
 @using ApexCharts
 
-<div style="@($"height:{WealthView.ChartHeight}")" class="pb-2">
+<div style="@($"height:{WealthViewBkp.ChartHeight}")" class="pb-2">
     @if (Stashes.Any())
     {
         <ApexChart @ref="Chart"
@@ -27,7 +27,7 @@
 @code {
 
     [CascadingParameter]
-    public WealthView View { get; set; } = null!;
+    public WealthViewBkp View { get; set; } = null!;
 
     private List<WealthStash> Stashes { get; set; } = new();
 

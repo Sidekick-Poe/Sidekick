@@ -4,7 +4,7 @@
 @using Microsoft.EntityFrameworkCore
 @using Sidekick.Common.Settings
 
-<div style="@($"height:{WealthView.ChartHeight}")" class="pb-2 pr-10 d-flex flex-column">
+<div style="@($"height:{WealthViewBkp.ChartHeight}")" class="pb-2 pr-10 d-flex flex-column">
     <WealthHourlyRate/>
 
     @*
@@ -55,7 +55,7 @@
 @code {
 
     [CascadingParameter]
-    public WealthView View { get; set; } = null!;
+    public WealthViewBkp View { get; set; } = null!;
 
     private List<DataSerie> Series { get; set; } =
     [

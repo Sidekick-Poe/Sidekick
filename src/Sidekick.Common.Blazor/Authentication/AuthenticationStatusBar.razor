@@ -3,13 +3,13 @@
 
 @if (CurrentState == AuthenticationState.Authenticated)
 {
-    <AlertInfo>
-        <div class="flex flex-wrap items-center justify-between gap-2">
-            <div class="ma-1">You are authenticated for the next @TokenRemainingString.</div>
-            <ButtonPrimary OnClick="() => AuthenticationService.Authenticate(true)">Re-authenticate</ButtonPrimary>
-        </div>
-    </AlertInfo>
-    <ProgressBar Square="true" Percent="TokenPercentRemaining"/>
+    <div class="flex flex-nowrap items-center gap-2">
+        <div class="bg-green-600 rounded-full w-2 h-2"></div>
+        <ButtonSecondary OnClick="() => AuthenticationService.Authenticate(true)"
+                         Class="!p-0 !text-green-600">
+            Authenticated (@TokenRemainingString)
+        </ButtonSecondary>
+    </div>
 }
 else if (CurrentState == AuthenticationState.InProgress)
 {
@@ -37,8 +37,6 @@ else if (CurrentState == AuthenticationState.Unauthenticated)
 
     private AuthenticationState CurrentState { get; set; }
 
-    private int TokenPercentRemaining { get; set; }
-
     private string? TokenRemainingString { get; set; }
 
     protected override void OnInitialized()
@@ -65,16 +63,11 @@ else if (CurrentState == AuthenticationState.Unauthenticated)
                 var bearerExpiration = await SettingsService.GetDateTime(SettingKeys.BearerExpiration);
                 if (bearerExpiration == null)
                 {
-                    TokenPercentRemaining = 0;
                     TokenRemainingString = "";
                 }
                 else
                 {
                     var remainingTime = bearerExpiration - DateTimeOffset.Now;
-                    TokenPercentRemaining = (int)((remainingTime.Value.TotalMinutes
-                                                   / TimeSpan.FromHours(10)
-                                                             .TotalMinutes)
-                                                  * 100);
                     TokenRemainingString = $"{remainingTime.Value.Hours:00}:{remainingTime.Value.Minutes:00}";
                 }
 

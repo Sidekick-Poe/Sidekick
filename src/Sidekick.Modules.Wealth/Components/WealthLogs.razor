@@ -2,7 +2,7 @@
 <div class="pl-4">
     @if (WealthParser.Logs.Any())
     {
-        <MudPaper Outlined="true" Class="d-flex flex-column" Style="@($"max-height:{WealthView.InventoryHeight}; background-color:transparent;")">
+        <MudPaper Outlined="true" Class="d-flex flex-column" Style="@($"max-height:{WealthViewBkp.InventoryHeight}; background-color:transparent;")">
             <MudText Typo="Typo.h3" Class="py-2 px-4">Logs</MudText>
             <div class="flex-grow-1" style="overflow-y: scroll;">
                 @for (var index = WealthParser.Logs.Count - 1; index >= 0 && index > WealthParser.Logs.Count - 100; index--)

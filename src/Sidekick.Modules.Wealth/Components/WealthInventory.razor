@@ -5,7 +5,7 @@
 @using Sidekick.Common.Settings
 
 <div class="relative">
-    <MudTable Height="@($"calc({WealthView.InventoryHeight} - 48px)")" Items="@Items" Dense="true" Hover="true" SortLabel="Sort By" Filter="new Func<WealthItem,bool>(Search)" Breakpoint="Breakpoint.Sm">
+    <MudTable Height="@($"calc({WealthViewBkp.InventoryHeight} - 48px)")" Items="@Items" Dense="true" Hover="true" SortLabel="Sort By" Filter="new Func<WealthItem,bool>(Search)" Breakpoint="Breakpoint.Sm">
         <ToolBarContent>
             <MudText Typo="Typo.h3">Inventory</MudText>
             <MudSpacer />
@@ -48,7 +48,7 @@
 @implements IDisposable
 @code {
     [CascadingParameter]
-    public WealthView View { get; set; } = null!;
+    public WealthViewBkp View { get; set; } = null!;
 
     private List<WealthItem> Items { get; set; } = new();
     private string SearchString { get; set; } = "";
