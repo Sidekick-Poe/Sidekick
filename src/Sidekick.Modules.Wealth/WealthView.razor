@@ -3,8 +3,9 @@
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Game
 @using Sidekick.Common.Settings
-@using Sidekick.Modules.Wealth.Components
 @using Sidekick.Common.Blazor.Components
+@using Sidekick.Modules.Wealth.Tabs
+@using Sidekick.Common.Blazor.Authentication
 
 @if (Game == GameType.PathOfExile2)
 {
@@ -13,10 +14,15 @@
 }
 
 <AppFullContainer>
-    <div class="grid grid-cols-12 gap-3">
-        <div class="col-span-3">
-            <Heading3>Stash Tabs</Heading3>
+    <div class="flex items-center mb-2">
+        <AuthenticationStatusBar/>
+    </div>
+    <div class="flex flex-nowrap">
+        <div class="flex-1 w-64">
             <WealthTabs/>
+        </div>
+        <div class="grow">
+            Test
         </div>
     </div>
 </AppFullContainer>

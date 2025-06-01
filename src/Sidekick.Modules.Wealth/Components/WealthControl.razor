@@ -1,7 +1,7 @@
 @using MudBlazor
 @using Sidekick.Apis.Common.States
 @using Sidekick.Apis.Poe.Account.Clients
-@if (WealthParser.IsRunning())
+@if (WealthParserBkp.IsRunning())
 {
     <MudAlert Severity="Severity.Success" Variant="Variant.Filled" Square="true" Dense="true" Icon="Icons.Material.Filled.PlayCircle">
         <div class="align-center d-flex flex-wrap justify-center">
@@ -43,20 +43,20 @@ else
     </MudAlert>
 }
 
-@inject WealthParser WealthParser
+@inject WealthParserBkp WealthParserBkp
 @inject IApiStateProvider ApiStateProvider
 @implements IDisposable
 @code {
     protected override void OnInitialized()
     {
-        WealthParser.OnLogsChanged += Update;
+        WealthParserBkp.OnLogsChanged += Update;
         ApiStateProvider.OnChange += Update;
         base.OnInitialized();
     }
 
     private void Start()
     {
-        WealthParser.Start();
+        WealthParserBkp.Start();
     }
 
     private void Update()
@@ -66,12 +66,12 @@ else
 
     private void Stop()
     {
-        WealthParser.Stop();
+        WealthParserBkp.Stop();
     }
 
     public void Dispose()
     {
-        WealthParser.OnLogsChanged -= Update;
+        WealthParserBkp.OnLogsChanged -= Update;
         ApiStateProvider.OnChange -= Update;
     }
 }

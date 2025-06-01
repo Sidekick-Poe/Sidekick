@@ -12,12 +12,12 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.Wealth;
 
-internal class WealthParser(
+internal class WealthParserBkp(
     DbContextOptions<SidekickDbContext> dbContextOptions,
     ISettingsService settingsService,
     IStashService stashService,
     IPoeNinjaClient poeNinjaClient,
-    ILogger<WealthParser> logger)
+    ILogger<WealthParserBkp> logger)
 {
     public event Action? OnLogsChanged;
     public event Action? OnStashParsed;
@@ -209,7 +209,7 @@ internal class WealthParser(
             return price.Price;
         }
 
-        logger.LogError($"{nameof(WealthParser)}.{nameof(GetItemPrice)}() : Could not price: {item.Name}.");
+        logger.LogError($"{nameof(WealthParserBkp)}.{nameof(GetItemPrice)}() : Could not price: {item.Name}.");
         return 0;
     }
 
@@ -218,7 +218,7 @@ internal class WealthParser(
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         if (leagueId == null)
         {
-            logger.LogError($"{nameof(WealthParser)}.{nameof(TakeStashSnapshot)}() : The league id is not set.");
+            logger.LogError($"{nameof(WealthParserBkp)}.{nameof(TakeStashSnapshot)}() : The league id is not set.");
             return;
         }
 
@@ -244,7 +244,7 @@ internal class WealthParser(
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         if (leagueId == null)
         {
-            logger.LogError($"{nameof(WealthParser)}.{nameof(TakeFullSnapshot)}() : The league id is not set.");
+            logger.LogError($"{nameof(WealthParserBkp)}.{nameof(TakeFullSnapshot)}() : The league id is not set.");
             return;
         }
 

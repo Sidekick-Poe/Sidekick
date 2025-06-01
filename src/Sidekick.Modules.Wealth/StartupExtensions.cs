@@ -9,7 +9,8 @@ public static class StartupExtensions
     {
         services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
-        services.AddSingleton<WealthParser>();
+        services.AddSingleton<WealthProvider>();
+        services.AddSingleton<WealthParserBkp>();
         // services.AddSidekickKeybind<OpenWealthKeybindHandler>();
 
         return services;

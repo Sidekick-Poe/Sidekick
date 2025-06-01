@@ -42,7 +42,7 @@
     </MudPopover>
 </div>
 
-@inject WealthParser WealthParser
+@inject WealthParserBkp WealthParserBkp
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject ISettingsService SettingsService
 @implements IDisposable
@@ -58,7 +58,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        WealthParser.OnStashParsed += Update;
+        WealthParserBkp.OnStashParsed += Update;
         View.OnSelectedStashIdsChanged += Update;
         await RetrieveStashItems();
         await base.OnInitializedAsync();
@@ -112,7 +112,7 @@
 
     public void Dispose()
     {
-        WealthParser.OnStashParsed -= Update;
+        WealthParserBkp.OnStashParsed -= Update;
         View.OnSelectedStashIdsChanged -= Update;
     }
 }

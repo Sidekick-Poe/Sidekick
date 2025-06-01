@@ -1,32 +1,32 @@
 @using Sidekick.Apis.Poe.Account.Authentication
 @using Sidekick.Common.Settings
 
-@if (CurrentState == AuthenticationState.Authenticated)
-{
-    <div class="flex flex-nowrap items-center gap-2">
-        <div class="bg-green-600 rounded-full w-2 h-2"></div>
-        <ButtonSecondary OnClick="() => AuthenticationService.Authenticate(true)"
-                         Class="!p-0 !text-green-600">
+<div class="flex flex-nowrap items-center gap-2">
+    @if (CurrentState == AuthenticationState.Authenticated)
+    {
+        <div class="bg-green-500 rounded-full w-2 h-2"></div>
+        <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
+                    Class="!text-green-600">
             Authenticated (@TokenRemainingString)
-        </ButtonSecondary>
-    </div>
-}
-else if (CurrentState == AuthenticationState.InProgress)
-{
-    <AlertInfo>
-        <TextBase>You are currently authenticating.</TextBase>
-    </AlertInfo>
-    <ProgressBar Square="true" Indeterminate="true"/>
-}
-else if (CurrentState == AuthenticationState.Unauthenticated)
-{
-    <AlertError>
-        <div class="flex flex-wrap items-center justify-between gap-2">
-            <TextBase>You are unauthenticated.</TextBase>
-            <ButtonPrimary OnClick="() => AuthenticationService.Authenticate(true)">Authenticate</ButtonPrimary>
-        </div>
-    </AlertError>
-}
+        </ButtonLink>
+    }
+    else if (CurrentState == AuthenticationState.InProgress)
+    {
+        <div class="bg-blue-500 rounded-full w-2 h-2"></div>
+        <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
+                    Class="!text-blue-600">
+            Authenticating
+        </ButtonLink>
+    }
+    else if (CurrentState == AuthenticationState.Unauthenticated)
+    {
+        <div class="bg-red-500 rounded-full w-2 h-2"></div>
+        <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
+                    Class="!text-red-600">
+            Unauthenticated
+        </ButtonLink>
+    }
+</div>
 
 @implements IDisposable
 @inject IAuthenticationService AuthenticationService
@@ -43,11 +43,7 @@ else if (CurrentState == AuthenticationState.Unauthenticated)
     {
         AuthenticationService.OnStateChanged += OnChanged;
 
-        refreshTimer = new Timer(
-            _ => { OnChanged(); },
-            null,
-            TimeSpan.Zero,
-            TimeSpan.FromMinutes(1));
+        refreshTimer = new Timer(_ => { OnChanged(); }, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
 
         OnChanged();
         base.OnInitialized();
@@ -55,24 +51,23 @@ else if (CurrentState == AuthenticationState.Unauthenticated)
 
     private void OnChanged()
     {
-        InvokeAsync(
-            async () =>
+        InvokeAsync(async () =>
+        {
+            CurrentState = await AuthenticationService.GetCurrentState();
+
+            var bearerExpiration = await SettingsService.GetDateTime(SettingKeys.BearerExpiration);
+            if (bearerExpiration == null)
             {
-                CurrentState = await AuthenticationService.GetCurrentState();
+                TokenRemainingString = "";
+            }
+            else
+            {
+                var remainingTime = bearerExpiration - DateTimeOffset.Now;
+                TokenRemainingString = $"{remainingTime.Value.Hours:00}:{remainingTime.Value.Minutes:00}";
+            }
 
-                var bearerExpiration = await SettingsService.GetDateTime(SettingKeys.BearerExpiration);
-                if (bearerExpiration == null)
-                {
-                    TokenRemainingString = "";
-                }
-                else
-                {
-                    var remainingTime = bearerExpiration - DateTimeOffset.Now;
-                    TokenRemainingString = $"{remainingTime.Value.Hours:00}:{remainingTime.Value.Minutes:00}";
-                }
-
-                StateHasChanged();
-            });
+            StateHasChanged();
+        });
     }
 
     public void Dispose()

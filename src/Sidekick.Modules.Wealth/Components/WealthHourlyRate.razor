@@ -14,7 +14,7 @@ else
 @using MudBlazor
 @using Sidekick.Common.Database
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
-@inject WealthParser WealthParser
+@inject WealthParserBkp WealthParserBkp
 @implements IDisposable
 
 @code {
@@ -23,7 +23,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        WealthParser.OnSnapshotTaken += Update;
+        WealthParserBkp.OnSnapshotTaken += Update;
         await LoadData();
         await base.OnInitializedAsync();
     }
@@ -71,7 +71,7 @@ else
 
     public void Dispose()
     {
-        WealthParser.OnSnapshotTaken -= Update;
+        WealthParserBkp.OnSnapshotTaken -= Update;
     }
 
 }

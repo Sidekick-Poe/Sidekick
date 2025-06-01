@@ -16,7 +16,7 @@
 <div class="grid grid-cols-12 gap-3">
     <div class="col-span-3">
         <Heading3>Stash Tabs</Heading3>
-        <WealthTabs/>
+        <WealthTabSelection/>
     </div>
 </div>
 @*
@@ -78,7 +78,7 @@
 @implements IDisposable
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject ISettingsService SettingsService
-@inject WealthParser WealthParser
+@inject WealthParserBkp WealthParserBkp
 @inject ICurrentView CurrentView
 
 @code {
@@ -101,7 +101,7 @@
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
         Game = leagueId.GetGameFromLeagueId();
 
-        WealthParser.OnStashParsed += OnStashParsed;
+        WealthParserBkp.OnStashParsed += OnStashParsed;
         await RetrieveStashes();
         SelectedStashIds = StashTabs.Select(x => x.Id).ToList();
     }
@@ -152,7 +152,7 @@
 
     public void Dispose()
     {
-        WealthParser.OnStashParsed -= OnStashParsed;
+        WealthParserBkp.OnStashParsed -= OnStashParsed;
     }
 
 }

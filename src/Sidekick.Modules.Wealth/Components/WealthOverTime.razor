@@ -49,7 +49,7 @@
 
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject ISettingsService SettingsService
-@inject WealthParser WealthParser
+@inject WealthParserBkp WealthParserBkp
 @implements IDisposable
 
 @code {
@@ -139,7 +139,7 @@
             },
         };
 
-        WealthParser.OnSnapshotTaken += Update;
+        WealthParserBkp.OnSnapshotTaken += Update;
         View.OnSelectedStashIdsChanged += Update;
         await LoadData();
         await base.OnInitializedAsync();
@@ -251,7 +251,7 @@
 
     public void Dispose()
     {
-        WealthParser.OnSnapshotTaken -= Update;
+        WealthParserBkp.OnSnapshotTaken -= Update;
         View.OnSelectedStashIdsChanged -= Update;
     }
 

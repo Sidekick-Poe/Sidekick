@@ -21,7 +21,7 @@
 </div>
 
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
-@inject WealthParser WealthParser
+@inject WealthParserBkp WealthParserBkp
 @implements IDisposable
 
 @code {
@@ -89,7 +89,7 @@
             },
         };
 
-        WealthParser.OnStashParsed += Update;
+        WealthParserBkp.OnStashParsed += Update;
         View.OnSelectedStashIdsChanged += Update;
         await LoadData();
         await base.OnInitializedAsync();
@@ -121,7 +121,7 @@
 
     public void Dispose()
     {
-        WealthParser.OnStashParsed -= Update;
+        WealthParserBkp.OnStashParsed -= Update;
         View.OnSelectedStashIdsChanged -= Update;
     }
 

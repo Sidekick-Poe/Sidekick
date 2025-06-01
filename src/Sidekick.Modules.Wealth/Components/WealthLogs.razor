@@ -1,13 +1,13 @@
 @using MudBlazor
 <div class="pl-4">
-    @if (WealthParser.Logs.Any())
+    @if (WealthParserBkp.Logs.Any())
     {
         <MudPaper Outlined="true" Class="d-flex flex-column" Style="@($"max-height:{WealthViewBkp.InventoryHeight}; background-color:transparent;")">
             <MudText Typo="Typo.h3" Class="py-2 px-4">Logs</MudText>
             <div class="flex-grow-1" style="overflow-y: scroll;">
-                @for (var index = WealthParser.Logs.Count - 1; index >= 0 && index > WealthParser.Logs.Count - 100; index--)
+                @for (var index = WealthParserBkp.Logs.Count - 1; index >= 0 && index > WealthParserBkp.Logs.Count - 100; index--)
                 {
-                    var log = WealthParser.Logs.ElementAt(index);
+                    var log = WealthParserBkp.Logs.ElementAt(index);
                     <div class="d-flex align-center flex-nowrap px-2 my-2" @key="@log.Id">
                         <MudIcon Icon="@log.Icon" Color="@log.Color"></MudIcon>
                         <div class="pl-2">
@@ -22,12 +22,12 @@
     }
 </div>
 
-@inject WealthParser WealthParser
+@inject WealthParserBkp WealthParserBkp
 @implements IDisposable
 @code {
     protected override void OnInitialized()
     {
-        WealthParser.OnLogsChanged += OnLogEvent;
+        WealthParserBkp.OnLogsChanged += OnLogEvent;
         base.OnInitialized();
     }
 
@@ -38,6 +38,6 @@
 
     public void Dispose()
     {
-        WealthParser.OnLogsChanged -= OnLogEvent;
+        WealthParserBkp.OnLogsChanged -= OnLogEvent;
     }
 }

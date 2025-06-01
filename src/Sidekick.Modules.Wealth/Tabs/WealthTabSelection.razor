@@ -1,0 +1,116 @@
+﻿@using Microsoft.EntityFrameworkCore
+@using Sidekick.Apis.Poe.Account.Stash
+@using Sidekick.Apis.Poe.Account.Stash.Models
+@using Sidekick.Common.Ui.Popovers
+@using Sidekick.Modules.Wealth.Localization
+@using Sidekick.Common.Blazor.Authentication
+@using Sidekick.Common.Database.Tables
+@using Sidekick.Common.Database
+
+<Popover Placement="TooltipPlacement.Bottom"
+         Class="w-72 max-h-96">
+    <PopoverAnchor>
+        <ButtonLink Class="!text-neutral-400 !text-sm">Change</ButtonLink>
+    </PopoverAnchor>
+    <PopoverContent>
+        <Heading3 Class="mb-2">Stash Tabs</Heading3>
+
+        @if (Loading)
+        {
+            <ProgressBar Indeterminate="true"/>
+        }
+        else if (StashTabs != null)
+        {
+            <div class="flex flex-col gap-1">
+                <AlertInfo>@Resources["High tab count may impact performance. Unique and map stash tabs are not recommended."]</AlertInfo>
+
+                @foreach (var stashTab in StashTabs)
+                {
+                    <FormCheckbox Value="IsChecked(stashTab)"
+                                  ValueChanged="(v) => Toggle(stashTab, v)">
+                        @stashTab.Name
+                    </FormCheckbox>
+                }
+            </div>
+        }
+
+        <div class="mt-2 pt-2 dark:border-stone-800 border-t">
+            <ButtonPrimary OnClick="Refresh">Refresh Tabs</ButtonPrimary>
+        </div>
+    </PopoverContent>
+</Popover>
+
+@inject IStringLocalizer<WealthResources> Resources
+@inject IStashService StashService
+@inject DbContextOptions<SidekickDbContext> DbContextOptions
+@inject  WealthProvider WealthProvider
+
+@code {
+
+    private List<WealthStash> TrackedTabs { get; set; } = [];
+
+    private List<StashTab>? StashTabs { get; set; }
+
+    private bool Loading { get; set; }
+
+    private async Task Refresh()
+    {
+        Loading = true;
+        StateHasChanged();
+
+        await using var dbContext = new SidekickDbContext(DbContextOptions);
+        TrackedTabs = await dbContext.WealthStashes.ToListAsync();
+        StashTabs = await StashService.GetStashTabList();
+
+        Loading = false;
+        StateHasChanged();
+    }
+
+    private bool IsChecked(StashTab tab) => TrackedTabs.Any(x => x.Id == tab.Id);
+
+    private async Task Toggle(StashTab tab, bool isChecked)
+    {
+        var trackedTab = TrackedTabs.FirstOrDefault(x => x.Id == tab.Id);
+
+        await using var dbContext = new SidekickDbContext(DbContextOptions);
+        var dbStash = await dbContext.WealthStashes.Where(x => x.Id == tab.Id).FirstOrDefaultAsync();
+
+        if (isChecked)
+        {
+            if (dbStash != null)
+            {
+                dbStash.Name = tab.Name;
+                dbStash.League = tab.League;
+                dbStash.Type = tab.Type.ToString();
+                dbStash.Total = 0;
+                dbStash.LastUpdate = DateTimeOffset.Now;
+                dbStash.Selected = true;
+            }
+            else
+            {
+                dbStash = new WealthStash()
+                {
+                    Id = tab.Id,
+                    Name = tab.Name,
+                    League = tab.League,
+                    Type = tab.Type.ToString(),
+                    Total = 0,
+                    LastUpdate = DateTimeOffset.Now,
+                    Selected = true,
+                };
+                dbContext.WealthStashes.Add(dbStash);
+            }
+
+            if (trackedTab == null) TrackedTabs.Add(dbStash);
+        }
+        else
+        {
+            if (trackedTab != null) TrackedTabs.Remove(trackedTab);
+            if (dbStash != null) dbContext.WealthStashes.Remove(dbStash);
+        }
+
+        await dbContext.SaveChangesAsync();
+        WealthProvider.StashUpdated();
+    }
+
+}

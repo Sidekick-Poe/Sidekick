@@ -5,7 +5,6 @@
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
-@using Sidekick.Common.Blazor.Authentication
 
 <LayoutTwoColumn>
     <TopContent>
@@ -45,7 +44,6 @@
         </AppContainer>
     </ChildContent>
     <BottomContent>
-        <AuthenticationStatusBar/>
         @if (ApplicationService.SupportsKeybinds)
         {
             <div class="flex justify-end py-2 px-3">
