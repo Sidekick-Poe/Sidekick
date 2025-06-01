@@ -28,6 +28,7 @@ namespace Sidekick.Common.Database.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Value")
+                        .HasMaxLength(1024)
                         .HasColumnType("TEXT");
 
                     b.HasKey("ClientName", "Name");

@@ -5,6 +5,7 @@ using Sidekick.Common.Database.Tables;
 
 namespace Sidekick.Common.Browser;
 
+/// <inheritdoc />
 public class BrowserWindowProvider
 (
     ILogger<BrowserWindowProvider> logger,

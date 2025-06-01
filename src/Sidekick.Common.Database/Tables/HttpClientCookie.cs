@@ -14,6 +14,6 @@ public class HttpClientCookie
     [MaxLength(64)]
     public required string Name { get; set; }
 
-    // ReSharper disable once EntityFramework.ModelValidation.UnlimitedStringLength
+    [MaxLength(1024)]
     public string? Value { get; set; }
 }

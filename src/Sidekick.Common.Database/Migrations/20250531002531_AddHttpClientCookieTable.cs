@@ -16,7 +16,7 @@ namespace Sidekick.Common.Database.Migrations
                 {
                     ClientName = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false),
                     Name = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false),
-                    Value = table.Column<string>(type: "TEXT", nullable: true)
+                    Value = table.Column<string>(type: "TEXT", maxLength: 1024, nullable: true)
                 },
                 constraints: table =>
                 {
