@@ -1,21 +1,9 @@
-@if (AnchorIsIcon)
-{
-    <button data-popover-target="@Id"
-            data-popover-placement="@Placement.ToString().ToLower()"
-            data-popover-trigger="@Trigger.ToString().ToLower()"
-            class="disabled:opacity-50 inline-flex items-center justify-center text-base font-medium tracking-wide dark:text-violet-500 transition-colors duration-200 rounded-md bg-transparent hover:text-violet-400 @UiClasses.FocusClasses ">
-        @PopoverAnchor
-    </button>
-}
-else
-{
-    <div data-popover-target="@Id"
-         data-popover-placement="@Placement.ToString().ToLower()"
-         data-popover-trigger="@Trigger.ToString().ToLower()"
-         class="flex">
-        @PopoverAnchor
-    </div>
-}
+<div data-popover-target="@Id"
+     data-popover-placement="@Placement.GetValueAttribute()"
+     data-popover-trigger="@Trigger.GetValueAttribute()"
+     class="flex">
+    @PopoverAnchor
+</div>
 
 <div data-popover
      id="@Id"
@@ -23,6 +11,7 @@ else
     @PopoverContent
 </div>
 
+@using Sidekick.Common.Enums
 @inherits FlowbiteComponent
 
 @code {
@@ -40,10 +29,7 @@ else
     public TooltipTrigger Trigger { get; set; } = TooltipTrigger.Click;
 
     [Parameter]
-    public string Class { get; set; } = "max-h-[550px] max-w-[350px] overflow-y-auto";
-
-    [Parameter]
-    public bool AnchorIsIcon { get; set; } = true;
+    public string Class { get; set; } = "max-h-[550px] max-w-[350px]";
 
     protected string Id { get; } = UiUtilities.GenerateId();
 

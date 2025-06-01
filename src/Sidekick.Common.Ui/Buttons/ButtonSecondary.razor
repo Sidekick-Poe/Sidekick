@@ -2,7 +2,6 @@
         disabled="@Disabled"
         @onclick="() => OnClick.InvokeAsync()"
         @onclick:preventDefault="true"
-        @onclick:stopPropagation="true"
         class="disabled:opacity-50 inline-flex items-center justify-center px-4 py-2 text-base font-medium tracking-wide dark:text-violet-500 transition-colors duration-200 rounded-md bg-transparent hover:text-violet-400 @UiClasses.FocusClasses @Class">
     @ChildContent
 </button>
