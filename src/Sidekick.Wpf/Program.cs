@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Reflection;
 using System.Windows;
 using ApexCharts;
@@ -57,13 +57,21 @@ public class Program
         }
         catch (TargetInvocationException ex) when (ex.InnerException is WebView2RuntimeNotFoundException)
         {
-            MessageBox.Show("Microsoft WebView2 Runtime is missing or not installed correctly. Please install the Microsoft WebView2 Runtime, which is required to run this application. \n\nIf the issue persists, ensure that Microsoft Edge is fully installed and up-to-date. \n\nYou can download the WebView2 Runtime from the official Microsoft website: https://developer.microsoft.com/en-us/microsoft-edge/webview2/consumer/\n\nIf you need more support consider asking on the official Sidekick discord server.\n");
+            MessageBox.Show(@"Microsoft WebView2 Runtime is missing or not installed correctly. Please install the Microsoft WebView2 Runtime, which is required to run this application.
+
+If the issue persists, ensure that Microsoft Edge is fully installed and up-to-date. 
+
+You can download the WebView2 Runtime from the official Microsoft website: https://developer.microsoft.com/en-us/microsoft-edge/webview2/consumer/
+
+If you need more support consider asking on the official Sidekick discord server.");
+
             var logger = ServiceProvider.GetRequiredService<ILogger<App>>();
             logger.LogCritical(ex, "[Program] WebView2 runtime not found.");
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Unhandled exception: " + ex);
+            var exceptionMessage = $"Sidekick encountered an unhandled exception: {ex}";
+            MessageBox.Show(exceptionMessage.Length > 3000 ? exceptionMessage[..3000] + "..." : exceptionMessage);
             var logger = ServiceProvider.GetRequiredService<ILogger<App>>();
             logger.LogCritical(ex, "[Program] Unhandled exception.");
         }
