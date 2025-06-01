@@ -4,8 +4,6 @@ public static class SettingKeys
 {
     public const string Version = nameof(Version);
 
-    public const string InterprocessDirectory = nameof(InterprocessDirectory);
-
     public const string BearerToken = nameof(BearerToken);
     public const string BearerExpiration = nameof(BearerExpiration);
 
@@ -14,7 +12,6 @@ public static class SettingKeys
     public const string Zoom = nameof(Zoom);
 
     // Cloudflare settings
-    public const string CloudflareCookies = nameof(CloudflareCookies);
     public const string CloudflareUserAgent = nameof(CloudflareUserAgent);
 
     public const string LanguageParser = nameof(LanguageParser);

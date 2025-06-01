@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Sidekick.Common.Browser;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Common.Cloudflare;
@@ -6,17 +7,13 @@ namespace Sidekick.Apis.Common.Cloudflare;
 public class CloudflareService
 (
     ISettingsService settingsService,
+    IBrowserWindowProvider browserWindowProvider,
     ILogger<CloudflareService> logger
 ) : ICloudflareService
 {
-    private const string DefaultUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36";
+    private Dictionary<string, Task<bool>> PendingChallenges { get; } = [];
 
-    public event Action<CloudflareChallenge>? ChallengeStarted;
-
-    private CloudflareChallenge? challenge;
-    private bool isHandlingChallenge;
-
-    public Task<bool> StartCaptchaChallenge(Uri? uri = null, CancellationToken cancellationToken = default)
+    public Task<bool> Challenge(string clientName, Uri? uri = null, CancellationToken cancellationToken = default)
     {
         logger.LogInformation("[CloudflareService] Starting Cloudflare challenge.");
 
@@ -26,70 +23,67 @@ public class CloudflareService
             return Task.FromResult(false);
         }
 
-        if (isHandlingChallenge && challenge != null)
+        if (PendingChallenges.TryGetValue(clientName, out var challenge))
         {
-            return challenge.Task;
+            return challenge;
         }
 
-        isHandlingChallenge = true;
-        challenge = new CloudflareChallenge()
+        PendingChallenges.Add(clientName, OpenBrowser(clientName, uri, cancellationToken));
+        return PendingChallenges[clientName];
+    }
+
+    private bool ShouldComplete(BrowserCompletionOptions options)
+    {
+        return options.Cookies.ContainsKey("cf_clearance");
+    }
+
+    private async Task<bool> OpenBrowser(string clientName, Uri uri, CancellationToken cancellationToken)
+    {
+        var result = await browserWindowProvider.OpenBrowserWindow(new BrowserRequest()
+                                                                    {
+                                                                        Uri = uri,
+                                                                        ShouldComplete = ShouldComplete,
+                                                                    });
+        if (!result.Success)
         {
-            Uri = uri,
-        };
-        ChallengeStarted?.Invoke(challenge);
+            logger.LogInformation("[CloudflareService] Cloudflare challenge failed.");
+            return false;
+        }
 
-        return challenge.Task;
-    }
+        logger.LogInformation("[CloudflareService] Setting user agent to: " + result.UserAgent);
+        await settingsService.Set(SettingKeys.CloudflareUserAgent, result.UserAgent);
 
-    public async Task CaptchaChallengeCompleted(Dictionary<string, string> cookies)
-    {
+        await browserWindowProvider.SaveCookies(clientName, result, cancellationToken);
+
         logger.LogInformation("[CloudflareService] Cloudflare challenge completed.");
-        var cookieString = string.Join("; ", cookies.Select(c => $"{c.Key}={c.Value}"));
-        await settingsService.Set(SettingKeys.CloudflareCookies, cookieString);
-
-        challenge?.TaskCompletion.TrySetResult(true);
-        isHandlingChallenge = false;
+        return true;
     }
 
-    public Task CaptchaChallengeFailed()
-    {
-        logger.LogInformation("[CloudflareService] Cloudflare challenge failed.");
-        challenge?.TaskCompletion.TrySetResult(false);
-        isHandlingChallenge = false;
-        return Task.CompletedTask;
-    }
-
-    public async Task InitializeHttpRequest(HttpRequestMessage request)
+    public async Task InitializeHttpRequest(string clientName, HttpRequestMessage request, CancellationToken cancellationToken)
     {
         request.Headers.UserAgent.Clear();
 
         var userAgent = await settingsService.GetString(SettingKeys.CloudflareUserAgent);
-        request.Headers.UserAgent.ParseAdd(!string.IsNullOrEmpty(userAgent) ? userAgent : DefaultUserAgent);
+        request.Headers.UserAgent.ParseAdd(!string.IsNullOrEmpty(userAgent) ? userAgent : BrowserWindowProvider.DefaultUserAgent);
 
-        var cookies = await settingsService.GetString(SettingKeys.CloudflareCookies);
-        if (!string.IsNullOrEmpty(cookies))
+        var cookieString = await browserWindowProvider.GetCookieString(clientName, cancellationToken);
+        if (!string.IsNullOrEmpty(cookieString))
         {
             logger.LogInformation("[CloudflareService] Adding cookie to request");
             // Append the cookie to the `Cookie` header
             if (!request.Headers.Contains("Cookie"))
             {
-                request.Headers.Add("Cookie", cookies);
+                request.Headers.Add("Cookie", cookieString);
             }
             else
             {
                 request.Headers.Remove("Cookie");
-                request.Headers.Add("Cookie", cookies);
+                request.Headers.Add("Cookie", cookieString);
             }
         }
         else
         {
             logger.LogInformation("[CloudflareService] No cookies found");
         }
-    }
-
-    public async Task SetUserAgent(string userAgent)
-    {
-        logger.LogInformation("[CloudflareService] Setting user agent to: " + userAgent);
-        await settingsService.Set(SettingKeys.CloudflareUserAgent, userAgent);
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sidekick.Common.Database;
 
@@ -10,9 +11,11 @@ using Sidekick.Common.Database;
 namespace Sidekick.Common.Database.Migrations
 {
     [DbContext(typeof(SidekickDbContext))]
-    partial class SidekickDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250531002531_AddHttpClientCookieTable")]
+    partial class AddHttpClientCookieTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.14");
@@ -28,7 +31,6 @@ namespace Sidekick.Common.Database.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Value")
-                        .HasMaxLength(1024)
                         .HasColumnType("TEXT");
 
                     b.HasKey("ClientName", "Name");

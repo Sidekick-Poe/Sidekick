@@ -7,6 +7,7 @@ using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
+using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
@@ -37,6 +38,7 @@ public class ParserFixture : IAsyncLifetime
 
             // Building blocks
             .AddSidekickCommon()
+            .AddSidekickCommonBrowser()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
 
             // Apis

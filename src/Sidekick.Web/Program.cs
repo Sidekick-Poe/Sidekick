@@ -2,7 +2,6 @@ using System.Diagnostics;
 using ApexCharts;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
-using Sidekick.Apis.Poe.Account;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe2Scout;
 using Sidekick.Apis.PoeNinja;
@@ -21,7 +20,6 @@ using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
 using Sidekick.Modules.RegexHotkeys;
 using Sidekick.Modules.Trade;
-using Sidekick.Modules.Wealth;
 using Sidekick.Web;
 using Sidekick.Web.Services;
 using Velopack;
@@ -46,6 +44,7 @@ builder.Services
     // Common
     .AddSidekickCommon()
     .AddSidekickCommonBlazor()
+    .AddSidekickCommonBrowser()
     .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
     .AddSidekickCommonUi()
 

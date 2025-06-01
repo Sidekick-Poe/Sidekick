@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Sidekick.Wpf.Cloudflare;
+namespace Sidekick.Wpf.Browser;
 
 public class DevToolsRequest
 {
