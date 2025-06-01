@@ -12,14 +12,12 @@
             Label="@Resources["Wiki_Preferred"]"
             Options="Options">
     <AdornmentContent>
-        <div class="flex ml-1 gap-1 align-center">
-            @if (ShowResetButton)
-            {
-                <ButtonIcon OnClick="Reset" title="@SettingResources["Reset"]">
-                    <Icon Svg="@UiIcons.Reset"/>
-                </ButtonIcon>
-            }
-        </div>
+        @if (ShowResetButton)
+        {
+            <ButtonIcon OnClick="Reset" title="@SettingResources["Reset"]">
+                <Icon Svg="@UiIcons.Reset"/>
+            </ButtonIcon>
+        }
     </AdornmentContent>
 </FormSelect>
 

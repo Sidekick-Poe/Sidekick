@@ -8,14 +8,12 @@
             Label="@TradeResources["Default_FilterType"]"
             Options="Options">
     <AdornmentContent>
-        <div class="flex ml-1 gap-1 align-center">
-            @if (ShowResetButton)
-            {
-                <ButtonIcon OnClick="Reset" title="@SettingsResources["Reset"]">
-                    <Icon Svg="@UiIcons.Reset" />
-                </ButtonIcon>
-            }
-        </div>
+        @if (ShowResetButton)
+        {
+            <ButtonIcon OnClick="Reset" title="@SettingsResources["Reset"]">
+                <Icon Svg="@UiIcons.Reset"/>
+            </ButtonIcon>
+        }
     </AdornmentContent>
 </FormSelect>
 
@@ -41,7 +39,8 @@
 
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
-        Options = [
+        Options =
+        [
             new()
             {
                 Value = FilterType.Minimum.GetValueAttribute(),
@@ -62,7 +61,7 @@
                 Value = FilterType.Range.GetValueAttribute(),
                 Label = TradeResources["FilterType_Range"],
             },
-    ];
+        ];
 
         await base.OnInitializedAsync();
     }

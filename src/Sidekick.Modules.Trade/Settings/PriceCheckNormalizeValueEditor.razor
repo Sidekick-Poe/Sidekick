@@ -7,14 +7,12 @@
             Label="@Resources["Normalize_Values"]"
             Options="Options">
     <AdornmentContent>
-        <div class="flex ml-1 gap-1 align-center">
-            @if (ShowResetButton)
-            {
-                <ButtonIcon OnClick="Reset" title="@SettingsResources["Reset"]">
-                    <Icon Svg="@UiIcons.Reset" />
-                </ButtonIcon>
-            }
-        </div>
+        @if (ShowResetButton)
+        {
+            <ButtonIcon OnClick="Reset" title="@SettingsResources["Reset"]">
+                <Icon Svg="@UiIcons.Reset"/>
+            </ButtonIcon>
+        }
     </AdornmentContent>
 </FormSelect>
 
@@ -35,7 +33,15 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var values = new List<double> { 0, .05, .1, .15, .2, .25 };
+        var values = new List<double>
+        {
+            0,
+            .05,
+            .1,
+            .15,
+            .2,
+            .25
+        };
 
         Value = (await SettingsService.GetObject<double>(SettingKey)).ToString();
         ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
@@ -46,7 +52,8 @@
             {
                 Value = x.ToString(),
                 Label = x.ToString("P0")
-            }).ToList();
+            })
+            .ToList();
 
         await base.OnInitializedAsync();
     }
