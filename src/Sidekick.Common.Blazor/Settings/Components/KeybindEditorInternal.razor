@@ -17,7 +17,7 @@
 
     <div class="flex flex-nowrap items-center gap-1">
         <button id="@Id"
-                class="min-w-40 px-2 py-[7px] text-left cursor-pointer select-none @UiClasses.FormInputClasses"
+                class="min-w-40 p-2 text-left cursor-pointer select-none @UiClasses.FormInputClasses"
                 tabindex="-1"
                 @onfocus="Focus"
                 @onblur="Blur">
@@ -26,11 +26,9 @@
 
         @if (ShowClearButton)
         {
-            <div class="ml-1">
-                <ButtonIcon OnClick="Clear" title="@Resources["Clear"]">
-                    <Icon Svg="@UiIcons.Clear"/>
-                </ButtonIcon>
-            </div>
+            <ButtonIcon OnClick="Clear" title="@Resources["Clear"]">
+                <Icon Svg="@UiIcons.Clear"/>
+            </ButtonIcon>
         }
 
         @AdornmentContent
