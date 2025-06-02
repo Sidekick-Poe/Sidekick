@@ -74,6 +74,8 @@ public class UiLanguageProvider(ISettingsService settingsService) : IUiLanguageP
         var cultureInfo = CultureInfo.GetCultureInfo(language);
         CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
         CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+        CultureInfo.CurrentCulture = cultureInfo;
+        CultureInfo.CurrentUICulture = cultureInfo;
 
         OnLanguageChanged?.Invoke(cultureInfo);
     }

@@ -118,6 +118,7 @@ public class PhotinoBlazorApplicationService
 
     public void Dispose()
     {
+        uiLanguageProvider.OnLanguageChanged -= OnLanguageChanged;
         Icon?.Dispose();
     }
 }
