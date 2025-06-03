@@ -39,7 +39,7 @@ public partial class Initialization
 
     private int Count { get; set; }
 
-    private int Completed { get; set; }
+    private int Completed;
 
     private string? Step { get; set; }
 
@@ -76,21 +76,28 @@ public partial class Initialization
             // Report initial progress
             await ReportProgress();
 
-            var services = SidekickConfiguration.InitializableServices.Select(serviceType =>
+            var services = SidekickConfiguration.InitializableServices
+                .Select(serviceType =>
                 {
                     var service = ServiceProvider.GetRequiredService(serviceType);
                     return service as IInitializableService;
                 })
                 .Where(x => x != null)
                 .Select(x => x!)
-                .OrderBy(x => x.Priority);
+                .GroupBy(s => s.Priority)
+                .OrderBy(g => g.Key)
+                .ToList();
 
-            foreach (var service in services)
+            foreach (var priorityGroup in services)
             {
-                Logger.LogInformation($"[Initialization] Initializing {service.GetType().FullName}");
-                await service.Initialize();
-                Completed += 1;
-                await ReportProgress();
+                var initializationTasks = priorityGroup.Select(async service =>
+                {
+                    Logger.LogInformation($"[Initialization] Initializing {service.GetType().FullName}");
+                    await service.Initialize();
+                    Interlocked.Increment(ref Completed);
+                    await ReportProgress();
+                });
+                await Task.WhenAll(initializationTasks);
             }
 
             // If we have a successful initialization, we delay for half a second to show the
