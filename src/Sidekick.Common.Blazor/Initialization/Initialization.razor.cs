@@ -39,13 +39,13 @@ public partial class Initialization
 
     private int Count { get; set; }
 
-    private int Completed;
-
     private string? Step { get; set; }
 
     private int Percentage { get; set; }
 
     public Task? InitializationTask { get; set; }
+
+    private int completed;
 
     protected override async Task OnInitializedAsync()
     {
@@ -63,7 +63,7 @@ public partial class Initialization
     {
         try
         {
-            Completed = 0;
+            completed = 0;
             Count = SidekickConfiguration.InitializableServices.Count;
             var version = ApplicationService.GetVersion();
             var previousVersion = await SettingsService.GetString(SettingKeys.Version);
@@ -94,7 +94,7 @@ public partial class Initialization
                 {
                     Logger.LogInformation($"[Initialization] Initializing {service.GetType().FullName}");
                     await service.Initialize();
-                    Interlocked.Increment(ref Completed);
+                    Interlocked.Increment(ref completed);
                     await ReportProgress();
                 });
                 await Task.WhenAll(initializationTasks);
@@ -102,7 +102,7 @@ public partial class Initialization
 
             // If we have a successful initialization, we delay for half a second to show the
             // "Ready" label on the UI before closing the view
-            Completed = Count;
+            completed = Count;
 
             await ReportProgress();
             await Task.Delay(200);
@@ -133,7 +133,7 @@ public partial class Initialization
     {
         return InvokeAsync(() =>
         {
-            Percentage = Count == 0 ? 0 : Completed * 100 / Count;
+            Percentage = Count == 0 ? 0 : completed * 100 / Count;
             if (Percentage >= 100)
             {
                 Step = Resources["Ready"];
@@ -141,7 +141,7 @@ public partial class Initialization
             }
             else
             {
-                Step = Resources["Title", Completed, Count];
+                Step = Resources["Title", completed, Count];
             }
 
             StateHasChanged();
