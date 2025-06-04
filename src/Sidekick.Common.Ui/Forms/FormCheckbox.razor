@@ -1,4 +1,8 @@
-<label class="flex items-center leading-none select-none @(Dense ? "min-h-4 gap-[3px]" : "min-h-5 gap-2")">
+<label @onmouseenter="OnMouseEnter"
+       @onmousedown="OnMouseDown"
+       @onkeydown="OnKeyDown"
+       @onclick:preventDefault="true"
+       class="flex items-center leading-none select-none @(Dense ? "min-h-4 gap-[3px]" : "min-h-5 gap-2")">
     <input type="checkbox"
            checked="@Value"
            @onchange="OnChange"
@@ -29,6 +33,30 @@
             await ValueChanged.InvokeAsync(boolValue);
         }
         else
+        {
+            await ValueChanged.InvokeAsync(!Value);
+        }
+    }
+
+    private async Task OnMouseEnter(MouseEventArgs args)
+    {
+        if (args.Buttons == 1)
+        {
+            await ValueChanged.InvokeAsync(!Value);
+        }
+    }
+
+    private async Task OnMouseDown(MouseEventArgs args)
+    {
+        if (args.Buttons == 1)
+        {
+            await ValueChanged.InvokeAsync(!Value);
+        }
+    }
+
+    private async Task OnKeyDown(KeyboardEventArgs args)
+    {
+        if (args.Key == " ")
         {
             await ValueChanged.InvokeAsync(!Value);
         }
