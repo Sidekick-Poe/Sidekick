@@ -42,8 +42,7 @@
     {
         if (args.Buttons == 1)
         {
-            Value = !Value;
-            await ValueChanged.InvokeAsync(Value);
+            await ValueChanged.InvokeAsync(!Value);
         }
     }
 
@@ -51,8 +50,7 @@
     {
         if (args.Buttons == 1)
         {
-            Value = !Value;
-            await ValueChanged.InvokeAsync(Value);
+            await ValueChanged.InvokeAsync(!Value);
         }
     }
 
@@ -60,8 +58,7 @@
     {
         if (args.Key == " ")
         {
-            Value = !Value;
-            await ValueChanged.InvokeAsync(Value);
+            await ValueChanged.InvokeAsync(!Value);
         }
     }
 
