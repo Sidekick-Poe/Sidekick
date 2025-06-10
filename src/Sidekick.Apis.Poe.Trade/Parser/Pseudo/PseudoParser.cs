@@ -17,7 +17,7 @@ public class PseudoParser
     private List<PseudoDefinition> Definitions { get; } = new();
 
     /// <inheritdoc/>
-    public int Priority => 200;
+    public int Priority => 300;
 
     /// <inheritdoc/>
     public async Task Initialize()
