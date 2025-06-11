@@ -23,6 +23,8 @@ public class ApiInvariantItemProvider
 {
     public Dictionary<string, ApiItem> IdDictionary { get; } = new();
 
+    public Dictionary<string, ApiItem> NameDictionary { get; } = new();
+
     public List<string> UncutGemIds { get; } = [];
 
     /// <inheritdoc/>
@@ -70,6 +72,7 @@ public class ApiInvariantItemProvider
             entry.Game = game;
             entry.Category = category;
             IdDictionary.Add(entry.Id, entry);
+            NameDictionary.TryAdd(entry.Name ?? entry.Type ?? "", entry);
         }
     }
 

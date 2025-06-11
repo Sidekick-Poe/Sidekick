@@ -1,5 +1,99 @@
-﻿<div class="mb-2 flex flex-nowrap gap-3 items-center">
-    <Heading3>Stash Tabs</Heading3>
-    <WealthTabSelection/>
-</div>
-<WealthTabFilters/>
+﻿@using Microsoft.EntityFrameworkCore
+@using Sidekick.Common.Database
+@using Sidekick.Common.Database.Tables
+@using Sidekick.Modules.Wealth.Provider
+@using Sidekick.Common.Settings
+
+<FormFieldset Legend="Stash Tabs">
+    <div class="mb-2 flex flex-nowrap gap-3 justify-end items-center">
+        <WealthTabSelection OnSelected="RetrieveStashes"/>
+    </div>
+
+    @if (Loading)
+    {
+        <ProgressBar Indeterminate="true"/>
+        return;
+    }
+
+    @if (StashTabs.Count == 0)
+    {
+        <AlertInfo>Select stashes by clicking 'change' above.</AlertInfo>
+        return;
+    }
+
+    <div class="flex flex-col items-stretch gap-1">
+        @foreach (var stashTab in StashTabs)
+        {
+            <FormCheckbox @key="stashTab.Id"
+                          Value="stashTab.Selected"
+                          ValueChanged="(v) => Toggle(stashTab, v)">
+                <div class="flex flex-nowrap items-center gap-1 w-full">
+                    <div class="truncate">@stashTab.Name</div>
+                    @if (WealthProvider.PendingStashIds.Contains(stashTab.Id))
+                    {
+                        <ProgressSpinner/>
+                    }
+                    <div class="ml-auto text-yellow-600">@stashTab.Total.ToString("N0")</div>
+                </div>
+            </FormCheckbox>
+        }
+    </div>
+</FormFieldset>
+
+@inject DbContextOptions<SidekickDbContext> DbContextOptions
+@inject ISettingsService SettingsService
+@inject WealthProvider WealthProvider
+@implements IDisposable
+
+@code {
+
+    private List<WealthStash> StashTabs { get; set; } = [];
+
+    private bool Loading { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        WealthProvider.OnStatusChanged += WealthProviderOnOnStatusChanged;
+        await RetrieveStashes();
+        await base.OnInitializedAsync();
+    }
+
+    public async Task RetrieveStashes()
+    {
+        Loading = true;
+        StateHasChanged();
+
+        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+
+        await using var database = new SidekickDbContext(DbContextOptions);
+        StashTabs = await database.WealthStashes.Where(x => x.League == leagueId).ToListAsync();
+        StashTabs = StashTabs.OrderByDescending(x => x.Total).ToList();
+
+        Loading = false;
+        StateHasChanged();
+    }
+
+    private async Task Toggle(WealthStash tab, bool isChecked)
+    {
+        tab.Selected = isChecked;
+
+        await using var database = new SidekickDbContext(DbContextOptions);
+        var dbTab = await database.WealthStashes.Where(x => x.Id == tab.Id).FirstOrDefaultAsync();
+        if (dbTab != null)
+        {
+            dbTab.Selected = isChecked;
+            await database.SaveChangesAsync();
+        }
+    }
+
+    private void WealthProviderOnOnStatusChanged()
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        WealthProvider.OnStatusChanged -= WealthProviderOnOnStatusChanged;
+    }
+
+}

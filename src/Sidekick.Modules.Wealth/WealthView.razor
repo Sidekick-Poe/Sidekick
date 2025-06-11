@@ -5,7 +5,8 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Blazor.Components
 @using Sidekick.Modules.Wealth.Tabs
-@using Sidekick.Common.Blazor.Authentication
+@using Sidekick.Modules.Wealth.Authentication
+@using Sidekick.Modules.Wealth.Components
 
 @if (Game == GameType.PathOfExile2)
 {
@@ -13,19 +14,21 @@
     return;
 }
 
-<AppFullContainer>
-    <div class="flex items-center mb-2">
-        <AuthenticationStatusBar/>
+<AppContainer>
+    <div class="flex items-center gap-2 mb-3">
+        <Heading1>Wealth Tracker</Heading1>
+        <div class="grow"></div>
+        <AuthenticationStatus/>
     </div>
-    <div class="flex flex-nowrap">
-        <div class="flex-1 w-64">
+    <div class="flex flex-nowrap gap-3">
+        <div class="flex-1 min-w-40">
             <WealthTabs/>
         </div>
         <div class="grow">
-            Test
+            <WealthStatus/>
         </div>
     </div>
-</AppFullContainer>
+</AppContainer>
 
 @inject ISettingsService SettingsService
 @inject ICurrentView CurrentView

@@ -10,7 +10,7 @@ namespace Sidekick.Common.Ui.Utilities;
 public abstract class FlowbiteComponent : ComponentBase
 {
     [Inject]
-    private IJSRuntime JsRuntime { get; set; } = default!;
+    private IJSRuntime JsRuntime { get; set; } = null!;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

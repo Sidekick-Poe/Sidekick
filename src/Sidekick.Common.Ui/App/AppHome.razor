@@ -12,10 +12,11 @@
     </button>
 }
 
-@inject IStringLocalizer<AppResources> Resources
+@inject IStringLocalizer<UiResources> Resources
 @inject NavigationManager NavigationManager
 @inject IViewLocator ViewLocator
 @inject ICurrentView CurrentView
+@using Sidekick.Common.Ui.Localization
 @implements IDisposable
 
 @code {

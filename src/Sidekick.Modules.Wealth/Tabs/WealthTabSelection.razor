@@ -3,12 +3,12 @@
 @using Sidekick.Apis.Poe.Account.Stash.Models
 @using Sidekick.Common.Ui.Popovers
 @using Sidekick.Modules.Wealth.Localization
-@using Sidekick.Common.Blazor.Authentication
 @using Sidekick.Common.Database.Tables
+@using Sidekick.Common.Settings
 @using Sidekick.Common.Database
 
 <Popover Placement="TooltipPlacement.Bottom"
-         Class="w-72 max-h-96">
+         Class="w-80 max-h-96">
     <PopoverAnchor>
         <ButtonLink Class="!text-neutral-400 !text-sm">Change</ButtonLink>
     </PopoverAnchor>
@@ -35,17 +35,20 @@
         }
 
         <div class="mt-2 pt-2 dark:border-stone-800 border-t">
-            <ButtonPrimary OnClick="Refresh">Refresh Tabs</ButtonPrimary>
+            <ButtonPrimary OnClick="Refresh">Fetch Tabs</ButtonPrimary>
         </div>
     </PopoverContent>
 </Popover>
 
 @inject IStringLocalizer<WealthResources> Resources
+@inject ISettingsService SettingsService
 @inject IStashService StashService
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
-@inject  WealthProvider WealthProvider
 
 @code {
+
+    [Parameter]
+    public EventCallback OnSelected { get; set; }
 
     private List<WealthStash> TrackedTabs { get; set; } = [];
 
@@ -58,9 +61,18 @@
         Loading = true;
         StateHasChanged();
 
+        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
         await using var dbContext = new SidekickDbContext(DbContextOptions);
-        TrackedTabs = await dbContext.WealthStashes.ToListAsync();
         StashTabs = await StashService.GetStashTabList();
+
+        TrackedTabs = await dbContext.WealthStashes.Where(x => x.League == leagueId).ToListAsync();
+        foreach (var trackedTab in TrackedTabs.ToList())
+        {
+            if (StashTabs.Any(x => x.Id == trackedTab.Id)) return;
+            dbContext.WealthStashes.Remove(trackedTab);
+        }
+
+        await dbContext.SaveChangesAsync();
 
         Loading = false;
         StateHasChanged();
@@ -77,10 +89,13 @@
 
         if (isChecked)
         {
+            var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+            if (leagueId == null) return;
+
             if (dbStash != null)
             {
                 dbStash.Name = tab.Name;
-                dbStash.League = tab.League;
+                dbStash.League = leagueId;
                 dbStash.Type = tab.Type.ToString();
                 dbStash.Total = 0;
                 dbStash.LastUpdate = DateTimeOffset.Now;
@@ -92,7 +107,7 @@
                 {
                     Id = tab.Id,
                     Name = tab.Name,
-                    League = tab.League,
+                    League = leagueId,
                     Type = tab.Type.ToString(),
                     Total = 0,
                     LastUpdate = DateTimeOffset.Now,
@@ -110,7 +125,7 @@
         }
 
         await dbContext.SaveChangesAsync();
-        WealthProvider.StashUpdated();
+        await OnSelected.InvokeAsync();
     }
 
 }

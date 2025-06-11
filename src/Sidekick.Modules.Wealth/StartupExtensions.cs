@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common;
+using Sidekick.Modules.Wealth.Provider;
 
 namespace Sidekick.Modules.Wealth;
 
@@ -10,8 +11,6 @@ public static class StartupExtensions
         services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
         services.AddSingleton<WealthProvider>();
-        services.AddSingleton<WealthParserBkp>();
-        // services.AddSidekickKeybind<OpenWealthKeybindHandler>();
 
         return services;
     }
