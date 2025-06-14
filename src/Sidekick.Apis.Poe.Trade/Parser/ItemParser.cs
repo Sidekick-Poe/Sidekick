@@ -63,6 +63,7 @@ public class ItemParser
             requirementsParser.Parse(parsingItem);
             var properties = propertyParser.Parse(parsingItem, header);
             var modifierLines = modifierParser.Parse(parsingItem, header);
+            propertyParser.ParseAfterModifiers(parsingItem, header, properties, modifierLines);
             var pseudoModifiers = pseudoParser.Parse(modifierLines);
 
             return new Item()

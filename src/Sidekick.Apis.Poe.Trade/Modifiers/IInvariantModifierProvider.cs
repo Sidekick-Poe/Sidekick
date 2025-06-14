@@ -11,6 +11,12 @@ public interface IInvariantModifierProvider : IInitializableService
 
     List<string> LogbookFactionModifierIds { get; }
 
+    List<string> FireWeaponDamageIds { get; }
+
+    List<string> ColdWeaponDamageIds { get; }
+
+    List<string> LightningWeaponDamageIds { get; }
+
     string ClusterJewelSmallPassiveCountModifierId { get; }
 
     string ClusterJewelSmallPassiveGrantModifierId { get; }
