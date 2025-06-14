@@ -93,6 +93,8 @@ public class WeaponDamageProperty
 
     public override void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines)
     {
+        if (game == GameType.PathOfExile2) return;
+
         var damageMods = invariantModifierProvider.FireWeaponDamageIds.ToList();
         damageMods.AddRange(invariantModifierProvider.ColdWeaponDamageIds);
         damageMods.AddRange(invariantModifierProvider.LightningWeaponDamageIds);
@@ -107,7 +109,7 @@ public class WeaponDamageProperty
             var isElemental = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionElementalDamage);
             if (!isElemental) continue;
 
-            var matches = new Regex("(\\d+)-(\\d+)").Matches(line.Text);
+            var matches = new Regex(@"(\d+)-(\d+) \(augmented\)").Matches(line.Text);
             var matchIndex = 0;
             foreach (Match match in matches)
             {
