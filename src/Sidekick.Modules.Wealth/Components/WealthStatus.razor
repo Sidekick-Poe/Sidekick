@@ -1,78 +1,83 @@
-﻿@using Sidekick.Apis.Poe.Account.Authentication
+﻿@using Microsoft.EntityFrameworkCore
+@using Sidekick.Common.Database
+@using Sidekick.Common.Settings
 @using Sidekick.Modules.Wealth.Provider
+@using Sidekick.Modules.Wealth.Authentication
 
-<div class="flex flex-nowrap items-center gap-2">
-    @if (WealthProvider.Status == WealthRunStatus.Completed)
-    {
-        <div class="bg-green-500 rounded-full w-2 h-2"></div>
-        <div class="text-green-600">Completed</div>
-    }
-    else if (WealthProvider.Status == WealthRunStatus.Running)
-    {
-        <div class="bg-blue-500 rounded-full w-2 h-2"></div>
-        <div class="text-blue-600">Running</div>
-        <Tooltip
-            Text="Refreshing stash tab contents. This may take time due to API rate limits. To speed up, reduce selected tabs."/>
-    }
-    else if (WealthProvider.Status == WealthRunStatus.Failed)
-    {
-        <div class="bg-red-500 rounded-full w-2 h-2"></div>
-        <div class="text-red-600">Failed</div>
-        <Tooltip Text="The wealth tracker failed to run. Please check the logs for more information."/>
-    }
-    else if (WealthProvider.Status == WealthRunStatus.Stopped)
-    {
-        <div class="bg-red-500 rounded-full w-2 h-2"></div>
-        <div class="text-red-600">Stopped</div>
-    }
+<HideIfUnauthenticated>
+    <div class="flex flex-wrap items-center gap-2">
+        <div class="flex items-center flex-nowrap justify-end gap-1">
+            <TextCaption>Last Updated:</TextCaption>
+            <TextAge Date="LastUpdated"/>
+        </div>
 
-    <ButtonPrimary Disabled="WealthProvider.Status == WealthRunStatus.Running || AuthenticationState != AuthenticationState.Authenticated"
-                   OnClick="WealthProvider.Start">Refresh
-    </ButtonPrimary>
-</div>
+        <div class="grow"></div>
 
-<div class="flex items-center flex-nowrap justify-end gap-1">
-    <TextCaption>Last Updated:</TextCaption>
-    <TextAge Date="LastUpdated"/>
-</div>
+        @if (WealthProvider.Status == WealthRunStatus.Completed)
+        {
+            <div class="bg-green-500 rounded-full w-2 h-2"></div>
+            <div class="text-green-600">Completed</div>
+        }
+        else if (WealthProvider.Status == WealthRunStatus.Running)
+        {
+            <div class="bg-blue-500 rounded-full w-2 h-2"></div>
+            <div class="text-blue-600">Running</div>
+            <Tooltip
+                Text="Refreshing stash tab contents. This may take time due to API rate limits. To speed up, reduce selected tabs."/>
+        }
+        else if (WealthProvider.Status == WealthRunStatus.Failed)
+        {
+            <div class="bg-red-500 rounded-full w-2 h-2"></div>
+            <div class="text-red-600">Failed</div>
+            <Tooltip Text="The wealth tracker failed to run. Please check the logs for more information."/>
+        }
+        else if (WealthProvider.Status == WealthRunStatus.Stopped)
+        {
+            <div class="bg-red-500 rounded-full w-2 h-2"></div>
+            <div class="text-red-600">Stopped</div>
+        }
+
+        <ButtonPrimary Disabled="WealthProvider.Status == WealthRunStatus.Running"
+                       OnClick="WealthProvider.Start">Refresh
+        </ButtonPrimary>
+    </div>
+</HideIfUnauthenticated>
 
 @inject WealthProvider WealthProvider
-@inject IAuthenticationService AuthenticationService
+@inject DbContextOptions<SidekickDbContext> DbContextOptions
+@inject ISettingsService SettingsService
 @implements IDisposable
 
 @code {
 
     private DateTimeOffset? LastUpdated { get; set; }
 
-    private AuthenticationState AuthenticationState { get; set; }
-
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        await using var database = new SidekickDbContext(DbContextOptions);
+        LastUpdated = await database.WealthFullSnapshots
+            .Where(x => x.League == leagueId)
+            .Select(x => x.Date)
+            .OrderByDescending(x => x)
+            .FirstOrDefaultAsync();
+
         WealthProvider.OnStatusChanged += WealthStatusChanged;
-        AuthenticationService.OnStateChanged += AuthenticationChanged;
-        AuthenticationChanged();
-        base.OnInitialized();
-    }
-
-    private void AuthenticationChanged()
-    {
-        InvokeAsync(async () =>
-        {
-            AuthenticationState = await AuthenticationService.GetCurrentState();
-            StateHasChanged();
-        });
+        await base.OnInitializedAsync();
     }
 
     private void WealthStatusChanged()
     {
-        LastUpdated = DateTimeOffset.Now;
-        InvokeAsync(StateHasChanged);
+        InvokeAsync(() =>
+        {
+            LastUpdated = DateTimeOffset.Now;
+            StateHasChanged();
+        });
     }
 
     public void Dispose()
     {
         WealthProvider.OnStatusChanged -= WealthStatusChanged;
-        AuthenticationService.OnStateChanged -= AuthenticationChanged;
     }
 
 }

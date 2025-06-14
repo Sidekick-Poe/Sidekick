@@ -31,13 +31,13 @@ public class ApiItem
 
     public bool Corrupted { get; set; }
 
-    public ApiItemScourged Scourged { get; set; } = new ApiItemScourged();
+    public ApiItemScourged Scourged { get; set; } = new();
 
     public bool Fractured { get; set; }
 
     public bool IsRelic { get; set; }
 
-    public Influences Influences { get; set; } = new Influences();
+    public Influences Influences { get; set; } = new();
 
     public bool Verified { get; set; }
 
@@ -50,8 +50,6 @@ public class ApiItem
     public int? StackSize { get; set; }
 
     public string? Icon { get; set; }
-
-    public string? League { get; set; }
 
     public string? Note { get; set; }
 
@@ -105,7 +103,14 @@ public class ApiItem
     public List<ApiItemLineContent> GrantedSkills { get; set; } = [];
 
     [JsonIgnore]
-    public int? MaxLinks => Sockets.GroupBy(x => x.Group).Max(x => x.Key);
+    public int? MaxLinks
+    {
+        get
+        {
+            if (Sockets.Count == 0) return null;
+            return Sockets.GroupBy(x => x.Group).Max(x => x.Key);
+        }
+    }
 
     [JsonIgnore]
     public int? GemLevel => GetPropertyValue("Level", 16);
@@ -113,10 +118,10 @@ public class ApiItem
     [JsonIgnore]
     public int? MapTier => GetPropertyValue("Map Tier", 16);
 
-    private int GetPropertyValue(string name, int defaultValue = 0)
+    private int? GetPropertyValue(string name, int defaultValue = 0)
     {
         var property = Properties.FirstOrDefault(x => string.Equals(x.Name, name, StringComparison.InvariantCultureIgnoreCase));
-        if (property == null) return defaultValue;
+        if (property == null) return null;
 
         var value = property.Values.FirstOrDefault()?.FirstOrDefault();
         if (value == null) return defaultValue;

@@ -1,0 +1,56 @@
+﻿@using Sidekick.Apis.Poe.Account.Authentication
+
+<div class="relative">
+    @ChildContent
+
+    @if (CurrentState != AuthenticationState.Authenticated)
+    {
+        <div
+            class="absolute top-0 left-0 right-0 bottom-0 bg-stone-950 flex flex-nowrap items-center justify-center gap-2">
+            <div class="bg-red-500 rounded-full w-2 h-2"></div>
+            <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
+                        Class="!text-red-600">
+                Unauthenticated
+            </ButtonLink>
+        </div>
+    }
+</div>
+
+@implements IDisposable
+@inject IAuthenticationService AuthenticationService
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    private Timer? refreshTimer;
+
+    private AuthenticationState CurrentState { get; set; }
+
+    protected override void OnInitialized()
+    {
+        AuthenticationService.OnStateChanged += OnChanged;
+
+        refreshTimer = new Timer(_ => { OnChanged(); }, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
+
+        OnChanged();
+        base.OnInitialized();
+    }
+
+    private void OnChanged()
+    {
+        InvokeAsync(async () =>
+        {
+            CurrentState = await AuthenticationService.GetCurrentState();
+            StateHasChanged();
+        });
+    }
+
+    public void Dispose()
+    {
+        refreshTimer?.Dispose();
+        AuthenticationService.OnStateChanged -= OnChanged;
+    }
+
+}

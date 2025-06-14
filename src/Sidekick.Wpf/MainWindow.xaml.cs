@@ -112,7 +112,7 @@ public partial class MainWindow
             if (view.Options is
                 {
                     Width: not null,
-                    Height: not null
+                    Height: not null,
                 })
             {
                 ResizeMode = ResizeMode.NoResize;
@@ -212,6 +212,7 @@ public partial class MainWindow
             MinHeight = ViewType switch
             {
                 SidekickViewType.Modal => 220 * zoom,
+                SidekickViewType.Standard => 768 * zoom,
                 _ => 600 * zoom,
             };
             Height = MinHeight;
@@ -219,14 +220,15 @@ public partial class MainWindow
             MinWidth = ViewType switch
             {
                 SidekickViewType.Modal => 400 * zoom,
+                SidekickViewType.Standard => 968 * zoom,
                 _ => 768 * zoom,
             };
             Width = MinWidth;
 
             if (ViewType != SidekickViewType.Modal && preferences != null)
             {
-                if (preferences.Height > Height && View?.Options!.Height == null) Height = preferences.Height;
-                if (preferences.Width > Width && View?.Options!.Width == null) Width = preferences.Width;
+                if (preferences.Height > Height && View?.Options.Height == null) Height = preferences.Height;
+                if (preferences.Width > Width && View?.Options.Width == null) Width = preferences.Width;
             }
 
             // Set the window position.

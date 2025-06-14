@@ -20,6 +20,7 @@ public class StashTab
 
     public StashMetadata? Metadata { get; set; }
 
+    [JsonIgnore]
     public StashType Type => TypeLine switch
     {
         "CurrencyStash" => StashType.Currency,

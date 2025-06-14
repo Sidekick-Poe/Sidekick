@@ -8,7 +8,6 @@ using Sidekick.Apis.Poe.Trade.Models.Items;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
-using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Modules.Wealth.Provider;
@@ -35,6 +34,11 @@ internal class WealthProvider
     {
         if (Status == WealthRunStatus.Running) return;
         _ = Run();
+    }
+
+    public void FiltersChanged()
+    {
+        OnFilterChanged?.Invoke();
     }
 
     private async Task Run()
@@ -71,6 +75,7 @@ internal class WealthProvider
                 await TakeStashSnapshot(database, leagueId, stash);
 
                 logger.LogInformation($"[WealthProvider] Stash completed {stash.Name}");
+                PendingStashIds.Remove(stash.Id);
                 OnStatusChanged?.Invoke();
             }
 
@@ -80,7 +85,7 @@ internal class WealthProvider
             Status = WealthRunStatus.Completed;
             OnStatusChanged?.Invoke();
         }
-        catch (PoeApiException e)
+        catch (Exception e)
         {
             logger.LogError(e, "[WealthProvider] Run failed.");
             Status = WealthRunStatus.Failed;
@@ -90,7 +95,7 @@ internal class WealthProvider
 
     private async Task ParseStash(SidekickDbContext database, string leagueId, StashTab stash)
     {
-        var dbStash = database.WealthStashes.FirstOrDefault(x => x.Id == stash.Id);
+        var dbStash = await database.WealthStashes.FirstOrDefaultAsync(x => x.Id == stash.Id);
         if (dbStash == null)
         {
             dbStash = new WealthStash()
@@ -116,7 +121,7 @@ internal class WealthProvider
         }
 
         // Game Item Removed (Traded, Used, Destroyed, etc.)
-        var dbItems = database.WealthItems.Where(x => x.StashId == stash.Id);
+        var dbItems = await database.WealthItems.Where(x => x.StashId == stash.Id).ToListAsync();
         database.WealthItems.RemoveRange(dbItems);
         await database.SaveChangesAsync();
 
@@ -127,7 +132,7 @@ internal class WealthProvider
         foreach (var item in stash.Items)
         {
             var parsedItem = await ParseItem(leagueId, stash, item);
-            if(parsedItem == null) continue;
+            if (parsedItem == null) continue;
             items.Add(parsedItem);
         }
 
@@ -144,9 +149,17 @@ internal class WealthProvider
             return null;
         }
 
-        if (string.IsNullOrEmpty(item.Name))
+        var name = string.IsNullOrEmpty(item.Name) ? item.Type : item.Name;
+        if (string.IsNullOrEmpty(name))
         {
             logger.LogError("[WealthProvider] Could not parse item due to missing name.");
+            return null;
+        }
+
+        var invariantItem = apiInvariantItemProvider.NameDictionary.GetValueOrDefault(name);
+        if (invariantItem?.Category == null)
+        {
+            logger.LogError("[WealthProvider] Could not parse item due to missing invariant: " + name);
             return null;
         }
 
@@ -160,9 +173,10 @@ internal class WealthProvider
             GemLevel = item.GemLevel,
             MapTier = item.MapTier,
             MaxLinks = item.MaxLinks,
-            Name = item.Name,
+            Name = name,
+            Category = invariantItem.Category.Value.ToString(),
             StashId = stash.Id,
-            Price = await GetItemPrice(item),
+            Price = await GetItemPrice(invariantItem, item),
         };
 
         dbItem.Total = dbItem.Count * dbItem.Price;
@@ -170,25 +184,22 @@ internal class WealthProvider
         return dbItem;
     }
 
-    private async Task<decimal> GetItemPrice(ApiItem item)
+    private async Task<decimal> GetItemPrice(Apis.Poe.Trade.Items.Models.ApiItem invariantItem, ApiItem item)
     {
-        var apiItem = apiInvariantItemProvider.NameDictionary.GetValueOrDefault(item.Name ?? item.Type ?? string.Empty);
-        if (apiItem?.Category == null) return 0;
-
-        var price = await poeNinjaClient.GetPriceInfo(
-            item.Name,
-            item.Name,
-            apiItem.Category.Value,
-            item.GemLevel,
-            item.MapTier,
-            item.IsRelic,
-            item.MaxLinks
-        );
-
-        if (price != null)
+        if (invariantItem.Category == null)
         {
-            return price.Price;
+            logger.LogError($"[WealthProvider] Could not price due to missing category: {item.Name}.");
+            return 0;
         }
+
+        var price = await poeNinjaClient.GetPriceInfo(invariantItem.Name,
+                                                      invariantItem.Type,
+                                                      invariantItem.Category.Value,
+                                                      item.GemLevel,
+                                                      item.MapTier,
+                                                      item.IsRelic,
+                                                      item.MaxLinks);
+        if (price != null) return price.Price;
 
         logger.LogError($"[WealthProvider] Could not price: {item.Name}.");
         return 0;
@@ -196,17 +207,14 @@ internal class WealthProvider
 
     private static async Task TakeStashSnapshot(SidekickDbContext database, string leagueId, StashTab stash)
     {
-        var totalPrice = await database.WealthItems
-            .Where(x => x.League == leagueId)
-            .Where(x => x.StashId == stash.Id)
-            .SumAsync(x => x.Total);
+        var totals = await database.WealthItems.Where(x => x.League == leagueId).Where(x => x.StashId == stash.Id).Select(x => x.Total).ToListAsync();
 
         database.WealthStashSnapshots.Add(new WealthStashSnapshot()
         {
             Date = DateTimeOffset.Now,
             League = leagueId,
             StashId = stash.Id,
-            Total = totalPrice,
+            Total = totals.Sum(),
         });
 
         await database.SaveChangesAsync();
@@ -214,15 +222,13 @@ internal class WealthProvider
 
     private static async Task TakeFullSnapshot(SidekickDbContext database, string leagueId)
     {
-        var totalPrice = await database.WealthItems
-            .Where(x => x.League == leagueId)
-            .SumAsync(x => x.Total);
+        var totals = await database.WealthItems.Where(x => x.League == leagueId).Select(x => x.Total).ToListAsync();
 
         database.WealthFullSnapshots.Add(new WealthFullSnapshot()
         {
             Date = DateTimeOffset.Now,
             League = leagueId,
-            Total = totalPrice,
+            Total = totals.Sum(),
         });
 
         await database.SaveChangesAsync();

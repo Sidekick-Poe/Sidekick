@@ -5,7 +5,7 @@
 @using Sidekick.Common.Settings
 
 <FormFieldset Legend="Stash Tabs">
-    <div class="mb-2 flex flex-nowrap gap-3 justify-end items-center">
+    <div class="-mt-5 flex flex-nowrap justify-end items-center">
         <WealthTabSelection OnSelected="RetrieveStashes"/>
     </div>
 
@@ -21,7 +21,7 @@
         return;
     }
 
-    <div class="flex flex-col items-stretch gap-1">
+    <div class="flex flex-col items-stretch gap-1 -mt-1">
         @foreach (var stashTab in StashTabs)
         {
             <FormCheckbox @key="stashTab.Id"
@@ -64,7 +64,6 @@
         StateHasChanged();
 
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
-
         await using var database = new SidekickDbContext(DbContextOptions);
         StashTabs = await database.WealthStashes.Where(x => x.League == leagueId).ToListAsync();
         StashTabs = StashTabs.OrderByDescending(x => x.Total).ToList();
@@ -84,6 +83,8 @@
             dbTab.Selected = isChecked;
             await database.SaveChangesAsync();
         }
+
+        WealthProvider.FiltersChanged();
     }
 
     private void WealthProviderOnOnStatusChanged()

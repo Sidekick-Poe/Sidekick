@@ -18,6 +18,9 @@ public class WealthItem
     public required string Name { get; set; }
 
     [MaxLength(64)]
+    public required string Category { get; set; }
+
+    [MaxLength(64)]
     public string? Icon { get; set; }
 
     public int? ItemLevel { get; set; }
