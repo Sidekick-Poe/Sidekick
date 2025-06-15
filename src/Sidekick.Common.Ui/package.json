@@ -1,11 +1,13 @@
 {
   "name": "sidekick.common.ui",
   "version": "1.0.0",
+  "type": "module",
   "devDependencies": {
+    "esbuild": "^0.25.2",
     "tailwindcss": "^4.1.7"
   },
   "scripts": {
-    "build": "npx @tailwindcss/cli -i ./Styles/main.css -o ./wwwroot/css/app.css"
+    "build": "node ./Scripts/esbuild.js && npx @tailwindcss/cli -i ./Styles/main.css -o ./wwwroot/css/sidekick.css"
   },
   "dependencies": {
     "flowbite": "^3.1.2"
