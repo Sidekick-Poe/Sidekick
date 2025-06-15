@@ -1,4 +1,5 @@
-<div id="@Id">
+<div id="@Id"
+     @attributes="Attributes">
     @ChildContent
 </div>
 
@@ -9,6 +10,9 @@
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? Attributes { get; set; }
 
     [Parameter]
     public required string Script { get; set; }
