@@ -15,7 +15,7 @@ export default (triggerId, parameters) => {
         };
     }
 
-    console.log(`[Sidekick] Flowbite tooltip: initializing tooltip for target element #${targetId} and trigger element #${triggerId}`);
+    console.log(`[Sidekick] Flowbite tooltip: initializing for target element #${targetId} and trigger element #${triggerId}`);
     const options = {
         placement: placement,
         triggerType: 'hover',

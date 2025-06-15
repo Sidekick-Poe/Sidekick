@@ -9,14 +9,14 @@ export default (triggerId, parameters) => {
     const $triggerEl = document.getElementById(triggerId);
 
     if ($targetEl === null || $triggerEl === null) {
-        console.warn(`[Sidekick] Flowbite tooltip: target element #${targetId} or trigger element #${triggerId} not found.`);
+        console.warn(`[Sidekick] Flowbite popover: target element #${targetId} or trigger element #${triggerId} not found.`);
         return {
             destroy() {
             },
         };
     }
 
-    console.log(`[Sidekick] Flowbite tooltip: initializing tooltip for target element #${targetId} and trigger element #${triggerId}`);
+    console.log(`[Sidekick] Flowbite popover: initializing for target element #${targetId} and trigger element #${triggerId}`);
     const options = {
         placement: placement,
         triggerType: trigger,
