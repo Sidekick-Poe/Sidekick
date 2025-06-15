@@ -1,0 +1,46 @@
+<div id="@Id"
+     @attributes="Attributes">
+    @ChildContent
+</div>
+
+@inject IJSRuntime JsRuntime
+@implements IAsyncDisposable
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? Attributes { get; set; }
+
+    [Parameter]
+    public required string Script { get; set; }
+
+    [Parameter]
+    public IEnumerable<object>? ScriptParameters { get; set; }
+
+    private IJSObjectReference? JsObject { get; set; }
+
+    private string Id { get; } = UiUtilities.GenerateId();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            JsObject = await JsRuntime.InvokeAsync<IJSObjectReference>("sidekick." + Script, Id, ScriptParameters);
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (JsObject != null)
+        {
+            await JsObject.InvokeVoidAsync("destroy");
+            await JsObject.DisposeAsync();
+        }
+    }
+
+}

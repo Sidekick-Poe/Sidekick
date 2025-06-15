@@ -1,4 +1,3 @@
-@using Sidekick.Apis.Poe
 @using Sidekick.Apis.Poe.Trade
 @using Sidekick.Apis.Poe.Trade.Bulk
 @using Sidekick.Common.Browser
@@ -11,7 +10,7 @@
     return;
 }
 
-<Popover Trigger="TooltipTrigger.Hover" Class="min-w-120 [&_.mb-3]:!mb-0">
+<Popover Trigger="PopoverTrigger.Hover" Class="min-w-120 [&_.mb-3]:!mb-0">
     <PopoverAnchor>
         <button type="button"
                 @onclick="@OpenWebsite"
