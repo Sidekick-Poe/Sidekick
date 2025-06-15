@@ -26,8 +26,4 @@
     <Exec Command="npm run build" />
   </Target>
 
-  <Target Name="CopyJavascriptFiles" AfterTargets="PreBuild">
-    <Copy SourceFiles="node_modules\flowbite\dist\flowbite.min.js" DestinationFolder="wwwroot\js\" />
-  </Target>
-
 </Project>
