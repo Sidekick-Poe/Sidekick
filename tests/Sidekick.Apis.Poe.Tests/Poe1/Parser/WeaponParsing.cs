@@ -324,4 +324,47 @@ Spells Triggered this way have 150% more Cost (crafted)
 
         actual.AssertHasModifier(ModifierCategory.Crafted, "#% chance to Trigger a Socketed Spell on Using a Skill, with a 8 second Cooldown\nSpells Triggered this way have 150% more Cost", 8, 150);
     }
+
+    [Fact]
+    public void PhysEleWeapon()
+    {
+        var actual = parser.ParseItem(@"Item Class: Thrusting One Hand Swords
+Rarity: Rare
+Phoenix Bane
+Fancy Foil
+--------
+One Handed Sword
+Physical Damage: 37-71 (augmented)
+Elemental Damage: 56-105 (augmented), 10-175 (augmented)
+Critical Strike Chance: 7.04% (augmented)
+Attacks per Second: 1.71 (augmented)
+Weapon Range: 1.4 metres
+--------
+Requirements:
+Level: 58
+Dex: 167
+--------
+Sockets: G-G G 
+--------
+Item Level: 57
+--------
++25% to Global Critical Strike Multiplier (implicit)
+--------
+Adds 9 to 20 Physical Damage
+Adds 56 to 105 Fire Damage
+Adds 10 to 175 Lightning Damage
+7% increased Attack Speed
+28% increased Critical Strike Chance
+9% increased Lightning Damage (crafted)");
+
+        Assert.Equal("weapon.onesword", actual.Header.ApiItemCategory);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal("Fancy Foil", actual.Header.ApiType);
+
+        Assert.Equal(110.30, actual.Properties.PhysicalDpsWithQuality);
+        Assert.Equal(295.90, actual.Properties.ElementalDps);
+
+        actual.AssertHasModifier(ModifierCategory.Crafted, "#% increased Lightning Damage", 9);
+    }
 }
