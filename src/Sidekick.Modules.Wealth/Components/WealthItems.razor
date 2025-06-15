@@ -4,26 +4,26 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Wealth.Provider
 
-<Virtualize Items="Items" Context="item" ItemSize="56" OverscanCount="20">
-    <div class="min-h-[49px] pb-1">
-        <div class="rounded-lg bg-stone-950 flex flex-nowrap items-center px-2 py-1 gap-2">
-            <div class="size-8">
-                <Tooltip Text="@item.Name">
-                    <img src="@item.Icon" class="mx-auto max-h-8"/>
-                </Tooltip>
-            </div>
-            <div class="flex-1">
-                <Tooltip Text="@item.Name">
-                    <div class="text-lg font-caps text-ellipsis line-clamp-1 leading-4">@item.Name</div>
-                </Tooltip>
-                <PriceDisplayQuantity Value="item.Price" Quantity="item.Count"/>
-            </div>
-            <div class="w-32 max-w-32 min-w-32">
-                <PriceDisplay Value="@item.Total"></PriceDisplay>
-            </div>
+@foreach (var item in Items)
+{
+    <div class="rounded-lg bg-stone-950 flex flex-nowrap items-center px-2 py-1 gap-2 mb-1"
+         @key="item.Id">
+        <div class="size-8">
+            <Tooltip Text="@item.Name">
+                <img src="@item.Icon" alt="@item.Name" class="mx-auto max-h-8"/>
+            </Tooltip>
+        </div>
+        <div class="flex-1">
+            <Tooltip Text="@item.Name">
+                <div class="text-lg font-caps text-ellipsis line-clamp-1 leading-4">@item.Name</div>
+            </Tooltip>
+            <PriceDisplayQuantity Value="item.Price" Quantity="item.Count"/>
+        </div>
+        <div class="w-32 max-w-32 min-w-32">
+            <PriceDisplay Value="@item.Total"></PriceDisplay>
         </div>
     </div>
-</Virtualize>
+}
 
 @inject WealthProvider WealthProvider
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
@@ -57,7 +57,7 @@
         var stashIds = await database.WealthStashes.Where(x => x.League == leagueId).Where(x => x.Selected).Select(x => x.Id).ToListAsync();
 
         var items = await database.WealthItems.Where(x => stashIds.Contains(x.StashId)).ToListAsync();
-        Items = items.OrderByDescending(x => x.Total).ToList();
+        Items = items.OrderByDescending(x => x.Total).Take(50).ToList();
     }
 
     public void Dispose()

@@ -29,13 +29,11 @@ public class StashService
 
         foreach (var stashTab in stashTabs)
         {
-            if (stashTab.Type == StashType.Folder) continue;
-
-            result.Add(stashTab);
+            if (stashTab.Type != StashType.Folder) result.Add(stashTab);
 
             if (stashTab.Children == null) continue;
 
-            result.AddRange(stashTab.Children);
+            result.AddRange(FlattenStashTabs(stashTab.Children));
         }
 
         return result;
