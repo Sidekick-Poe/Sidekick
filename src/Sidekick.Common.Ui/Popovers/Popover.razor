@@ -1,12 +1,15 @@
-<div data-popover-target="@Id"
-     data-popover-placement="@Placement.GetValueAttribute()"
-     data-popover-trigger="@Trigger.GetValueAttribute()"
-     class="flex">
+<FlowbiteComponent Script="popover"
+                   ScriptParameters="@(new[]
+                                     {
+                                         Id,
+                                         Placement.GetValueAttribute(),
+                                         Trigger.GetValueAttribute(),
+                                     })"
+                   class="flex">
     @PopoverAnchor
-</div>
+</FlowbiteComponent>
 
-<div data-popover
-     id="@Id"
+<div id="@Id"
      class="fixed! z-10 invisible opacity-0 transition-opacity duration-300 border border-solid border-stone-800 bg-black grow overflow-y-auto overflow-x-hidden p-3 rounded-lg shadow-lg @Class">
     @PopoverContent
 </div>
@@ -25,7 +28,7 @@
     public TooltipPlacement Placement { get; set; } = TooltipPlacement.Top;
 
     [Parameter]
-    public TooltipTrigger Trigger { get; set; } = TooltipTrigger.Click;
+    public PopoverTrigger Trigger { get; set; } = PopoverTrigger.Click;
 
     [Parameter]
     public string Class { get; set; } = "max-h-[550px] max-w-[350px]";

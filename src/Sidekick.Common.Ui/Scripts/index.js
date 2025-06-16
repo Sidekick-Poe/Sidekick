@@ -1,5 +1,7 @@
+import popover from "./flowbite/popover";
 import tooltip from "./flowbite/tooltip";
 
 window.sidekick = {
-    tooltip: tooltip,
+    popover,
+    tooltip,
 };
