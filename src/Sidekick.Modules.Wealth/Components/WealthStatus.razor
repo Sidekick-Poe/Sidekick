@@ -4,15 +4,15 @@
 @using Sidekick.Modules.Wealth.Provider
 @using Sidekick.Modules.Wealth.Authentication
 
-<HideIfUnauthenticated>
-    <div class="flex flex-wrap items-center gap-2">
-        <div class="flex items-center flex-nowrap justify-end gap-1">
-            <TextCaption>Last Updated:</TextCaption>
-            <TextAge Date="LastUpdated"/>
-        </div>
+<div class="flex flex-wrap items-center gap-2">
+    <div class="flex items-center flex-nowrap justify-end gap-1">
+        <TextCaption>Last Updated:</TextCaption>
+        <TextAge Date="LastUpdated"/>
+    </div>
 
-        <div class="grow"></div>
+    <div class="grow"></div>
 
+    <HideIfUnauthenticated>
         @if (WealthProvider.Status == WealthRunStatus.Completed)
         {
             <div class="bg-green-500 rounded-full w-2 h-2"></div>
@@ -40,8 +40,10 @@
         <ButtonPrimary Disabled="WealthProvider.Status == WealthRunStatus.Running"
                        OnClick="WealthProvider.Start">Refresh
         </ButtonPrimary>
-    </div>
-</HideIfUnauthenticated>
+    </HideIfUnauthenticated>
+
+    <WealthListSettings/>
+</div>
 
 @inject WealthProvider WealthProvider
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
@@ -56,11 +58,7 @@
     {
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
         await using var database = new SidekickDbContext(DbContextOptions);
-        LastUpdated = await database.WealthFullSnapshots
-            .Where(x => x.League == leagueId)
-            .Select(x => x.Date)
-            .OrderByDescending(x => x)
-            .FirstOrDefaultAsync();
+        LastUpdated = await database.WealthFullSnapshots.Where(x => x.League == leagueId).Select(x => x.Date).OrderByDescending(x => x).FirstOrDefaultAsync();
 
         WealthProvider.OnStatusChanged += WealthStatusChanged;
         await base.OnInitializedAsync();

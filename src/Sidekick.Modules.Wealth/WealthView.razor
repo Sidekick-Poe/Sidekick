@@ -4,9 +4,16 @@
 @using Sidekick.Common.Game
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Blazor.Components
+@using Sidekick.Common.Platform
 @using Sidekick.Modules.Wealth.Tabs
 @using Sidekick.Modules.Wealth.Authentication
 @using Sidekick.Modules.Wealth.Components
+
+@if (!ApplicationService.SupportsKeybinds)
+{
+    <AlertError>Wealth Tracker is not supported in the web version of Sidekick.</AlertError>
+    return;
+}
 
 @if (Game == GameType.PathOfExile2)
 {
@@ -34,6 +41,7 @@
 
 @inject ISettingsService SettingsService
 @inject ICurrentView CurrentView
+@inject IApplicationService ApplicationService
 
 @code {
 
