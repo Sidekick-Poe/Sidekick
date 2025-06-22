@@ -367,4 +367,45 @@ Adds 10 to 175 Lightning Damage
 
         actual.AssertHasModifier(ModifierCategory.Crafted, "#% increased Lightning Damage", 9);
     }
+
+    [Fact]
+    public void Staff()
+    {
+        var actual = parser.ParseItem(@"Item Class: Staves
+Rarity: Rare
+Armageddon Spire
+Imperial Staff
+--------
+Staff
+Physical Damage: 57-171
+Critical Strike Chance: 8.50%
+Attacks per Second: 1.15
+Weapon Range: 1.3 metres
+--------
+Requirements:
+Level: 66
+Str: 113
+Int: 113
+--------
+Sockets: G 
+--------
+Item Level: 83
+--------
++25% Chance to Block Spell Damage while wielding a Staff (implicit)
+--------
++44% to Damage over Time Multiplier (fractured)
++35% to Chaos Damage over Time Multiplier
+25% increased Fire Damage
+Adds 25 to 48 Cold Damage to Spells
+--------
+Fractured Item
+--------
+Note: ~price 30 chaos
+");
+
+        Assert.Equal("weapon.staff", actual.Header.ApiItemCategory);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal("Imperial Staff", actual.Header.ApiType);
+    }
 }

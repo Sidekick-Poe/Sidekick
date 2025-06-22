@@ -265,7 +265,7 @@ public class HeaderParser
             break;
         }
 
-        if (!string.IsNullOrEmpty(apiItemCategoryId) && !firstLine.StartsWith(gameLanguageProvider.Language.Classes.Prefix))
+        if (!string.IsNullOrEmpty(apiItemCategoryId) && firstLine.StartsWith(gameLanguageProvider.Language.Classes.Prefix))
         {
             return apiItemCategoryId;
         }
