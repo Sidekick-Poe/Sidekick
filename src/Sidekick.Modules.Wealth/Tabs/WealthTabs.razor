@@ -54,6 +54,7 @@
     protected override async Task OnInitializedAsync()
     {
         WealthProvider.OnStatusChanged += WealthProviderOnOnStatusChanged;
+        WealthProvider.OnRefreshed += WealthProviderOnOnRefreshed;;
         await RetrieveStashes();
         await base.OnInitializedAsync();
     }
@@ -85,6 +86,11 @@
         }
 
         WealthProvider.FiltersChanged();
+    }
+
+    private void WealthProviderOnOnRefreshed()
+    {
+        InvokeAsync(RetrieveStashes);
     }
 
     private void WealthProviderOnOnStatusChanged()

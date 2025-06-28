@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Common.Exceptions;
 using Sidekick.Apis.Poe.Account.Stash;
 using Sidekick.Apis.Poe.Account.Stash.Models;
 using Sidekick.Apis.Poe.Trade.Items;
@@ -25,6 +24,8 @@ internal class WealthProvider
     public event Action? OnFilterChanged;
 
     public event Action? OnStatusChanged;
+
+    public event Action? OnRefreshed;
 
     public WealthRunStatus Status { get; set; } = WealthRunStatus.Stopped;
 
@@ -84,6 +85,7 @@ internal class WealthProvider
 
             Status = WealthRunStatus.Completed;
             OnStatusChanged?.Invoke();
+            OnRefreshed?.Invoke();
         }
         catch (Exception e)
         {
