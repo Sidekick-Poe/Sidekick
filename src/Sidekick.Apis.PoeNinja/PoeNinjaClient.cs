@@ -124,7 +124,7 @@ public class PoeNinjaClient(
         }
 
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        return new Uri(baseUrl, $"{GetLeagueUri(leagueId)}/{ninjaPrice.ItemType.GetValueAttribute()}/{ninjaPrice.DetailsId}");
+        return new Uri(baseUrl, $"economy/{GetLeagueUri(leagueId)}/{ninjaPrice.ItemType.GetValueAttribute()}/{ninjaPrice.DetailsId}");
 
     }
 
@@ -138,6 +138,8 @@ public class PoeNinjaClient(
         {
             "Standard" => "standard",
             "Hardcore" => "hardcore",
+            "Mercenaries" => "mercenaries",
+            "Hardcore Mercenaries" => "mercenarieshc",
             not null when leagueId.Contains("Hardcore") => "challengehc",
             _ => "challenge"
         };
