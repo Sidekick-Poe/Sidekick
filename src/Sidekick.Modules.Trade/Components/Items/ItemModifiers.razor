@@ -1,8 +1,8 @@
 @using System.Text.Json
+@using Sidekick.Apis.Poe.Trade.Models.Items
 @using Sidekick.Apis.Poe.Trade.Modifiers
 @using Sidekick.Apis.Poe.Trade.Trade.Results
 @using Sidekick.Common.Game.Items
-@using TradeItem = Sidekick.Apis.Poe.Trade.Trade.Results.TradeItem
 
 <ItemSeparator Rarity="Result.Item.Rarity"/>
 @foreach (var line in Modifiers)
@@ -39,7 +39,7 @@
         Modifiers = GetAllModifierLines(Result.Item).SelectMany(s => s).OrderBy(x => x.Text.IndexOf(x.Text, StringComparison.InvariantCultureIgnoreCase)).ToList();
     }
 
-    private IEnumerable<IEnumerable<ModifierLine>> GetAllModifierLines(TradeItem tradeItem)
+    private IEnumerable<IEnumerable<ModifierLine>> GetAllModifierLines(ApiItem tradeItem)
     {
         var index = 0;
         foreach (var logbook in tradeItem.LogbookMods)
@@ -96,7 +96,7 @@
         return result;
     }
 
-    private IEnumerable<ModifierLine> ParseModifierLines(int block, List<string>? texts, List<Mod>? mods, List<string?>? hashes)
+    private IEnumerable<ModifierLine> ParseModifierLines(int block, List<string>? texts, List<ExtendedMod>? mods, List<string?>? hashes)
     {
         if (texts == null || mods == null || hashes == null)
         {

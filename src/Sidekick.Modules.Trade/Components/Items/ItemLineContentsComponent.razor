@@ -1,4 +1,5 @@
 @using System.Text.RegularExpressions
+@using Sidekick.Apis.Poe.Trade.Models.Items
 @using Sidekick.Apis.Poe.Trade.Modifiers
 @using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions
 @using Sidekick.Apis.Poe.Trade.Trade.Results
@@ -35,11 +36,11 @@
     public required TradeResult Result { get; set; }
 
     [Parameter]
-    public required List<ResultLineContent> LineContents { get; set; }
+    public required List<ApiItemLineContent> LineContents { get; set; }
 
     protected override bool ShouldRender() => false;
 
-    public static string GetHtml(ResultLineContent line)
+    public static string GetHtml(ApiItemLineContent line)
     {
         var values = new List<LineContentValue>();
         foreach (var value in line.Values)
@@ -97,7 +98,7 @@
             default: text = $"{line.Name} {string.Join(", ", values.Select(x => x.Value))}"; break;
         }
 
-        text = ModifierProvider.RemoveSquareBrackets(text ?? string.Empty);
+        text = ModifierProvider.RemoveSquareBrackets(text);
         return MarkupValues(text, values);
     }
 

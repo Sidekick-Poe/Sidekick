@@ -1,0 +1,44 @@
+@using Sidekick.Common.Settings
+@using Sidekick.Modules.Wealth.Localization
+
+<FormNumberInline Label="@Resources["Item_Total_Minimum"]"
+                  Value="@Minimum"
+                  ValueChanged="MinimumChanged" />
+
+@inject IStringLocalizer<WealthResources> Resources
+@inject ISettingsService SettingsService
+@implements IDisposable
+
+@code {
+
+    private double? Minimum { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Minimum = await SettingsService.GetInt(SettingKeys.WealthItemTotalMinimum);
+
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task MinimumChanged(double? value)
+    {
+        Minimum = value ?? DefaultSettings.WealthItemTotalMinimum;
+        await SettingsService.Set(SettingKeys.WealthItemTotalMinimum, (int)Minimum);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (!keys.Contains(SettingKeys.WealthItemTotalMinimum)) return;
+
+        Minimum = await SettingsService.GetInt(SettingKeys.WealthItemTotalMinimum);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
+    }
+
+}

@@ -1,4 +1,5 @@
 @using Microsoft.AspNetCore.Components.Sections
+@using Sidekick.Common.Ui.Localization
 
 <button type="button"
         @onclick="ToggleDrawer"
@@ -53,7 +54,7 @@
 </div>
 
 @inject ICurrentView CurrentView
-@inject IStringLocalizer<AppResources> Resources
+@inject IStringLocalizer<UiResources> Resources
 @inject NavigationManager NavigationManager
 @inject IViewLocator ViewLocator
 
