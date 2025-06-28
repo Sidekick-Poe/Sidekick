@@ -124,25 +124,19 @@ public class PoeNinjaClient(
         }
 
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        return new Uri(baseUrl, $"economy/{GetLeagueUri(leagueId)}/{ninjaPrice.ItemType.GetValueAttribute()}/{ninjaPrice.DetailsId}");
-
-    }
-
-    /// <summary>
-    /// Get Poe.ninja's league uri from POE's API league id.
-    /// </summary>
-    private static string GetLeagueUri(string? leagueId)
-    {
         leagueId = leagueId.GetUrlSlugForLeague();
-        return leagueId switch
+
+        var ninjaLeagues = await GetLeagues();
+        var ninjaLeague = ninjaLeagues.FirstOrDefault(x => x.Name == leagueId);
+
+        if (ninjaLeague == null)
         {
-            "Standard" => "standard",
-            "Hardcore" => "hardcore",
-            "Mercenaries" => "mercenaries",
-            "Hardcore Mercenaries" => "mercenarieshc",
-            not null when leagueId.Contains("Hardcore") => "challengehc",
-            _ => "challenge"
-        };
+            logger.LogWarning("[PoeNinja] Could not find league {LeagueId} in poe.ninja", leagueId);
+            return baseUrl;
+        }
+
+        return new Uri(baseUrl, $"economy/{ninjaLeague.Url}/{ninjaPrice.ItemType.GetValueAttribute()}/{ninjaPrice.DetailsId}");
+
     }
 
     private static string GetCacheKey(ItemType itemType) => $"PoeNinja_{itemType}";
@@ -216,6 +210,49 @@ public class PoeNinjaClient(
         }
 
         return items;
+    }
+
+    private async Task<IList<NinjaEconomyLeague>> GetLeagues()
+    {
+        var cachedLeagues = await cacheProvider.Get<List<NinjaEconomyLeague>>("PoeNinja_Leagues", (cache) => cache.Any());
+        if (cachedLeagues is
+            {
+                Count: > 0
+            })
+        {
+            return cachedLeagues;
+        }
+        var leagues = await FetchLeagues();
+        if (leagues.Any())
+        {
+            await cacheProvider.Set("PoeNinja_Leagues", leagues.ToList());
+        }
+        return leagues.ToList();
+    }
+
+    private async Task<IEnumerable<NinjaEconomyLeague>> FetchLeagues()
+    {
+        var url = new Uri($"{apiBaseUrl}index-state");
+
+        try
+        {
+            using var client = GetHttpClient();
+            var response = await client.GetAsync(url);
+            var responseStream = await response.Content.ReadAsStreamAsync();
+            var result = await JsonSerializer.DeserializeAsync<NinjaIndexState>(responseStream, JsonSerializerOptions);
+            if (result == null)
+            {
+                return [];
+            }
+
+            return result.EconomyLeagues;
+        }
+        catch (Exception)
+        {
+            logger.LogWarning("[PoeNinja] Could not fetch leagues from poe.ninja");
+        }
+
+        return [];
     }
 
     private async Task<IEnumerable<NinjaPrice>> FetchItems(ItemType itemType)
