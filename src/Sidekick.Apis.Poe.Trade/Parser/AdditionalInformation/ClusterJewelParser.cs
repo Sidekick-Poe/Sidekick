@@ -50,7 +50,7 @@ public class ClusterJewelParser(IInvariantModifierProvider invariantModifierProv
             {
                 if (modifier.ApiId == invariantModifierProvider.ClusterJewelSmallPassiveCountModifierId)
                 {
-                    return (int)modifierLine.Values.First();
+                    return (int)modifierLine.AverageValue;
                 }
             }
         }
