@@ -69,7 +69,7 @@ public class ModifierFilter : ITradeFilter
             return;
         }
 
-        var value = Line.Values.OrderBy(x => x).FirstOrDefault();
+        var value = Line.AverageValue;
         if (value > 0)
         {
             Min = (int)Math.Max((1 - NormalizeValue) * value, 0);
@@ -90,7 +90,7 @@ public class ModifierFilter : ITradeFilter
             return;
         }
 
-        var value = Line.Values.OrderBy(x => x).FirstOrDefault();
+        var value = Line.AverageValue;
         if (value > 0)
         {
             Max = (int)Math.Max(Math.Max(value + 1, (1 + NormalizeValue) * value), 0);
@@ -111,7 +111,7 @@ public class ModifierFilter : ITradeFilter
             return;
         }
 
-        var value = Line.Values.OrderBy(x => x).FirstOrDefault();
+        var value = Line.AverageValue;
         Min = (int)value;
         Max = (int)value;
     }

@@ -108,12 +108,12 @@ public abstract class PseudoDefinition
         {
             foreach (var definitionModifier in Modifiers)
             {
-                if (itemModifierLine.Modifiers.All(itemModifier => definitionModifier.Id != itemModifier.ApiId) || itemModifierLine.Values.Count == 0)
+                if (itemModifierLine.Modifiers.All(itemModifier => definitionModifier.Id != itemModifier.ApiId) || itemModifierLine.AverageValue == 0)
                 {
                     continue;
                 }
 
-                result.Value += itemModifierLine.Values.Average() * definitionModifier.Multiplier;
+                result.Value += itemModifierLine.AverageValue * definitionModifier.Multiplier;
                 break;
             }
         }

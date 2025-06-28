@@ -220,20 +220,11 @@ public class ModifierParser
         }
 
         var matches = new Regex("([-+0-9,.]+)").Matches(modifierLine.Text);
-        var values = matches
-            .Select(m => double.Parse(m.Value, NumberStyles.Any, CultureInfo.InvariantCulture))
-            .ToList();
-
-        // If there are exactly two numbers, store their average as a single value
-        if (values.Count == 2)
+        foreach (Match match in matches)
         {
-            modifierLine.Values.Add(Math.Floor((values[0] + values[1]) / 2.0));
-        }
-        else
-        {
-            foreach (var v in values)
+            if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
             {
-                modifierLine.Values.Add(v);
+                modifierLine.Values.Add(parsedValue);
             }
         }
     }

@@ -22,6 +22,12 @@ public class ModifierLine(string text)
     public List<double> Values { get; } = [];
 
     /// <summary>
+    /// Gets the average value of the numerical values associated with the modifier line.
+    /// If there are no values, returns 0.
+    /// </summary>
+    public double AverageValue => Values.Count > 0 ? Values.Average() : 0;
+
+    /// <summary>
     ///     Gets or sets the option value of this modifier.
     /// </summary>
     public int? OptionValue { get; set; }
