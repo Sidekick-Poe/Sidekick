@@ -376,6 +376,7 @@ public class PoeNinjaClient(
                 yield return ItemType.KalguuranRune;
                 yield return ItemType.Omen;
                 yield return ItemType.Tattoo;
+                yield return ItemType.Runegraft;
                 yield break;
 
             case Category.DivinationCard:
@@ -390,6 +391,7 @@ public class PoeNinjaClient(
                 yield return ItemType.BlightedMap;
                 yield return ItemType.BlightRavagedMap;
                 yield return ItemType.UniqueMap;
+                yield return ItemType.AllflameEmber;
                 yield break;
 
             case Category.Gem:
