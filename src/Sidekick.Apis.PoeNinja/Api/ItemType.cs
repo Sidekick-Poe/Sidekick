@@ -87,4 +87,10 @@ public enum ItemType
 
     [EnumValue("tattoos")]
     Tattoo,
+
+    [EnumValue("runegrafts")]
+    Runegraft,
+
+    [EnumValue("allflame-embers")]
+    AllflameEmber,
 }
