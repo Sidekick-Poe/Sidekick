@@ -100,14 +100,12 @@
 
     private async Task SelectType(FilterType filterType)
     {
-        Type = filterType;
-
-        await TypeChanged.InvokeAsync(Type);
+        await TypeChanged.InvokeAsync(filterType);
     }
 
     private async Task ToggleType()
     {
-        Type = Type switch
+        var type = Type switch
         {
             FilterType.Minimum => FilterType.Maximum,
             FilterType.Maximum => FilterType.Equals,
@@ -116,7 +114,7 @@
             _ => FilterType.Minimum,
         };
 
-        await TypeChanged.InvokeAsync(Type);
+        await TypeChanged.InvokeAsync(type);
     }
 
     private async Task UpdateMinValue(double? value)
