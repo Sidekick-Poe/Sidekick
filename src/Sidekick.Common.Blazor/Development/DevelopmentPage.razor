@@ -4,7 +4,7 @@
 @using Sidekick.Common.Blazor.Components
 @using Sidekick.Common.Platform
 
-<AppContainer>
+<AppSmallContainer>
     <FormFieldset Legend="Custom actions">
         <div class="flex gap-3">
             @if (ApplicationService.SupportsKeybinds)
@@ -14,7 +14,7 @@
             <ButtonPrimary OnClick="ThrowException">Throw an exception</ButtonPrimary>
         </div>
     </FormFieldset>
-</AppContainer>
+</AppSmallContainer>
 
 @inject IApplicationService ApplicationService
 @inject IServiceProvider ServiceProvider

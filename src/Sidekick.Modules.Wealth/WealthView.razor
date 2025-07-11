@@ -7,7 +7,7 @@
 @using Sidekick.Common.Platform
 @using Sidekick.Modules.Wealth.Tabs
 @using Sidekick.Modules.Wealth.Authentication
-@using Sidekick.Modules.Wealth.Components
+@using Sidekick.Modules.Wealth.Items
 
 @if (!ApplicationService.SupportsKeybinds)
 {
@@ -32,8 +32,6 @@
             <WealthTabs/>
         </div>
         <div class="flex-1">
-            <WealthStatus/>
-            <div class="h-2"></div>
             <WealthItems/>
         </div>
     </div>

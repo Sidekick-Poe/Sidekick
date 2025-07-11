@@ -3,7 +3,10 @@
 @using Sidekick.Common.Database.Tables
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Wealth.Provider
+@using Sidekick.Modules.Wealth.Components
 
+<WealthItemsHeader/>
+<div class="h-2"></div>
 <Virtualize Items="Items" Context="item" ItemSize="49" OverscanCount="20">
     <div class="rounded-lg bg-stone-950 flex flex-nowrap items-center px-2 py-1 gap-2 mb-1"
          @key="item.Id">
@@ -37,7 +40,7 @@
     {
         WealthProvider.OnFilterChanged += WealthFilterChanged;
         WealthProvider.OnStatusChanged += WealthFilterChanged;
-        SettingsService.OnSettingsChanged += SettingsChanged;;
+        SettingsService.OnSettingsChanged += SettingsChanged;
         await Refresh();
         await base.OnInitializedAsync();
     }
@@ -77,7 +80,7 @@
     {
         WealthProvider.OnFilterChanged -= WealthFilterChanged;
         WealthProvider.OnStatusChanged -= WealthFilterChanged;
-        SettingsService.OnSettingsChanged -= SettingsChanged;;
+        SettingsService.OnSettingsChanged -= SettingsChanged;
     }
 
 }
