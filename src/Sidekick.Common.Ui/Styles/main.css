@@ -6,14 +6,14 @@
 @import './item-sockets.css' layer(components);
 @import './poe.css' layer(components);
 
-@import "tailwindcss" source(none);
+@import "tailwindcss" source('../../**/*.{razor,html,cshtml,cs}');
 
 @plugin 'flowbite/plugin';
 
-@source '../../**/*.{razor,html,cshtml,cs}';
 @source '../**/*.js';
 @source not "../node_modules";
 @source not "../wwwroot";
+@source not "../../**/wwwroot";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
