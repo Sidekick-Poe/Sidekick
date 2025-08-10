@@ -23,4 +23,6 @@ public class WealthStash
     public decimal Total { get; set; }
 
     public DateTimeOffset LastUpdate { get; set; }
+
+    public bool Selected { get; set; }
 }
