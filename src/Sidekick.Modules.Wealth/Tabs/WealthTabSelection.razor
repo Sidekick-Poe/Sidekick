@@ -11,10 +11,10 @@
 <Popover Placement="TooltipPlacement.Bottom"
          Class="w-80 max-h-96">
     <PopoverAnchor>
-        <ButtonLink Class="!text-neutral-400 !text-sm">Change</ButtonLink>
+        <ButtonLink Class="!text-neutral-400 !text-sm">@Resources["Change"]</ButtonLink>
     </PopoverAnchor>
     <PopoverContent>
-        <Heading3 Class="mb-2">Stash Tabs</Heading3>
+        <Heading3 Class="mb-2">@Resources["Stash_Tabs"]</Heading3>
 
         @if (Loading)
         {
@@ -23,7 +23,7 @@
         else if (StashTabs != null)
         {
             <div class="flex flex-col gap-1">
-                <AlertInfo>@Resources["High tab count may impact performance. Unique and map stash tabs are not recommended."]</AlertInfo>
+                <AlertInfo>@Resources["Performance_Warning"]</AlertInfo>
 
                 @foreach (var stashTab in StashTabs)
                 {
@@ -38,7 +38,7 @@
         <div class="mt-2 pt-2 dark:border-stone-800 border-t">
             <AuthenticationRequiredOverlay>
                 <ButtonPrimary Class="w-full"
-                               OnClick="Refresh">Fetch Tabs</ButtonPrimary>
+                               OnClick="Refresh">@Resources["Fetch_Tabs"]</ButtonPrimary>
             </AuthenticationRequiredOverlay>
         </div>
     </PopoverContent>

@@ -235,4 +235,32 @@ internal class WealthProvider
 
         await database.SaveChangesAsync();
     }
+
+    public async Task Clear()
+    {
+        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+        if (leagueId == null)
+        {
+            logger.LogError("[WealthProvider] The league id is not set.");
+            return;
+        }
+
+        await using var database = new SidekickDbContext(dbContextOptions);
+
+        var items = await database.WealthItems.Where(x => x.League == leagueId).ToListAsync();
+        database.WealthItems.RemoveRange(items);
+        await database.SaveChangesAsync();
+
+        var stashes = await database.WealthStashes.Where(x => x.League == leagueId).ToListAsync();
+        database.WealthStashes.RemoveRange(stashes);
+        await database.SaveChangesAsync();
+
+        var stashSnapshots = await database.WealthStashSnapshots.Where(x => x.League == leagueId).ToListAsync();
+        database.WealthStashSnapshots.RemoveRange(stashSnapshots);
+        await database.SaveChangesAsync();
+
+        var fullSnapshots = await database.WealthFullSnapshots.Where(x => x.League == leagueId).ToListAsync();
+        database.WealthFullSnapshots.RemoveRange(fullSnapshots);
+        await database.SaveChangesAsync();
+    }
 }

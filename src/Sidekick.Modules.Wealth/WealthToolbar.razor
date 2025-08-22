@@ -3,48 +3,50 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Wealth.Provider
 @using Sidekick.Modules.Wealth.Authentication
+@using Sidekick.Modules.Wealth.Localization
 
-<div class="flex flex-wrap items-center gap-2">
+<div class="flex flex-wrap items-center justify-end gap-2 mb-3">
     <div class="flex items-center flex-nowrap justify-end gap-1">
-        <TextCaption>Last Updated:</TextCaption>
+        <TextCaption>@Resources["Last_Updated"]:</TextCaption>
         <TextAge Date="LastUpdated"/>
     </div>
-
-    <div class="grow"></div>
 
     <HideIfUnauthenticated>
         @if (WealthProvider.Status == WealthRunStatus.Completed)
         {
             <div class="bg-green-500 rounded-full w-2 h-2"></div>
-            <div class="text-green-600">Completed</div>
+            <div class="text-green-600">@Resources["Completed"]</div>
         }
         else if (WealthProvider.Status == WealthRunStatus.Running)
         {
             <div class="bg-blue-500 rounded-full w-2 h-2"></div>
-            <div class="text-blue-600">Running</div>
+            <div class="text-blue-600">@Resources["Running"]</div>
             <Tooltip
                 Text="Refreshing stash tab contents. This may take time due to API rate limits. To speed up, reduce selected tabs."/>
         }
         else if (WealthProvider.Status == WealthRunStatus.Failed)
         {
             <div class="bg-red-500 rounded-full w-2 h-2"></div>
-            <div class="text-red-600">Failed</div>
+            <div class="text-red-600">@Resources["Failed"]</div>
             <Tooltip Text="The wealth tracker failed to run. Please check the logs for more information."/>
         }
         else if (WealthProvider.Status == WealthRunStatus.Stopped)
         {
             <div class="bg-red-500 rounded-full w-2 h-2"></div>
-            <div class="text-red-600">Stopped</div>
+            <div class="text-red-600">@Resources["Stopped"]</div>
         }
 
         <ButtonPrimary Disabled="WealthProvider.Status == WealthRunStatus.Running"
-                       OnClick="WealthProvider.Start">Refresh
+                       OnClick="WealthProvider.Start">@Resources["Refresh"]
         </ButtonPrimary>
     </HideIfUnauthenticated>
 
-    <WealthItemsSettings/>
+    <AuthenticationStatus/>
+
+    <WealthSettings/>
 </div>
 
+@inject IStringLocalizer<WealthResources> Resources
 @inject WealthProvider WealthProvider
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject ISettingsService SettingsService

@@ -1,4 +1,5 @@
 ﻿@using Sidekick.Apis.Poe.Account.Authentication
+@using Sidekick.Modules.Wealth.Localization
 
 <div class="relative">
     @ChildContent
@@ -10,13 +11,14 @@
             <div class="bg-red-500 rounded-full w-2 h-2"></div>
             <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
                         Class="!text-red-600">
-                Unauthenticated
+                @Resources["Unauthenticated"]
             </ButtonLink>
         </div>
     }
 </div>
 
 @implements IDisposable
+@inject IStringLocalizer<WealthResources> Resources
 @inject IAuthenticationService AuthenticationService
 
 @code {

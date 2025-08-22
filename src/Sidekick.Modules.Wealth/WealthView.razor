@@ -6,26 +6,31 @@
 @using Sidekick.Common.Blazor.Components
 @using Sidekick.Common.Platform
 @using Sidekick.Modules.Wealth.Tabs
-@using Sidekick.Modules.Wealth.Authentication
 @using Sidekick.Modules.Wealth.Items
+@using Sidekick.Modules.Wealth.Graphs
+@using Sidekick.Modules.Wealth.Localization
 
 @if (!ApplicationService.SupportsKeybinds)
 {
-    <AlertError>Wealth Tracker is not supported in the web version of Sidekick.</AlertError>
+    <AlertError>@Resources["Not_Supported_Web"]</AlertError>
     return;
 }
 
 @if (Game == GameType.PathOfExile2)
 {
-    <AlertError>Wealth Tracker is only supported in Path of Exile 1 at the moment.</AlertError>
+    <AlertError>@Resources["Not_Supported_Game"]</AlertError>
     return;
 }
 
 <AppContainer>
     <div class="flex items-center gap-2 mb-3">
-        <Heading1>Wealth Tracker</Heading1>
+        <Heading1>@Resources["Wealth_Tracker"]</Heading1>
         <div class="grow"></div>
-        <AuthenticationStatus/>
+        <WealthToolbar/>
+    </div>
+    <div class="grid grid-cols-2 gap-3 mb-3">
+        <StashesOverTime/>
+        <WealthOverTime/>
     </div>
     <div class="flex flex-nowrap gap-3">
         <div class="min-w-64 w-64 max-w-64">
@@ -37,6 +42,7 @@
     </div>
 </AppContainer>
 
+@inject IStringLocalizer<WealthResources> Resources
 @inject ISettingsService SettingsService
 @inject ICurrentView CurrentView
 @inject IApplicationService ApplicationService

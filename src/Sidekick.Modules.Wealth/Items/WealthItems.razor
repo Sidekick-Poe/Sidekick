@@ -5,8 +5,6 @@
 @using Sidekick.Modules.Wealth.Provider
 @using Sidekick.Modules.Wealth.Components
 
-<WealthItemsHeader/>
-<div class="h-2"></div>
 <Virtualize Items="Items" Context="item" ItemSize="49" OverscanCount="20">
     <div class="rounded-lg bg-stone-950 flex flex-nowrap items-center px-2 py-1 gap-2 mb-1"
          @key="item.Id">
@@ -71,7 +69,6 @@
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
         await using var database = new SidekickDbContext(DbContextOptions);
         var stashIds = await database.WealthStashes.Where(x => x.League == leagueId).Where(x => x.Selected).Select(x => x.Id).ToListAsync();
-
         var items = await database.WealthItems.Where(x => stashIds.Contains(x.StashId)).Where(x => x.Total >= minimumTotal).ToListAsync();
         Items = items.OrderByDescending(x => x.Total).ToList();
     }

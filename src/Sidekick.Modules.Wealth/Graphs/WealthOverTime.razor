@@ -1,0 +1,93 @@
+﻿@using Sidekick.Common.Database
+@using ApexCharts
+@using Microsoft.EntityFrameworkCore
+@using Sidekick.Modules.Wealth.Provider
+@using Sidekick.Modules.Wealth.Localization
+@using Sidekick.Common.Settings
+
+@if (Serie != null)
+{
+    <div>
+        <FormFieldset Legend="@Resources["Total_Value"]">
+            <div class="h-[10rem] relative">
+                <ApexChart @ref="Chart"
+                           TItem="DataPoint"
+                           Options="DataConstants.GetOptions()"
+                           Height="@("100%")">
+                    <ApexPointSeries TItem="DataPoint"
+                                     Items="Serie.Points"
+                                     Name="@Serie.Name"
+                                     SeriesType="SeriesType.Line"
+                                     XValue="@(e => e.DateString)"
+                                     YValue="@(e => e.Value)"/>
+                </ApexChart>
+            </div>
+        </FormFieldset>
+    </div>
+}
+
+@inject IStringLocalizer<WealthResources> Resources
+@inject DbContextOptions<SidekickDbContext> DbContextOptions
+@inject ISettingsService SettingsService
+@inject WealthProvider WealthProvider
+@implements IDisposable
+
+@code {
+
+    [CascadingParameter]
+    public WealthView View { get; set; } = null!;
+
+    private DataSerie? Serie { get; set; }
+
+    private ApexChart<DataPoint>? Chart { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        WealthProvider.OnRefreshed += Update;
+        WealthProvider.OnFilterChanged += Update;
+        await LoadData();
+        await base.OnInitializedAsync();
+    }
+
+    public void Update()
+    {
+        _ = InvokeAsync(async () =>
+        {
+            await LoadData();
+            StateHasChanged();
+
+            if (Chart != null)
+            {
+                await Chart.RenderAsync();
+            }
+        });
+    }
+
+    private async Task LoadData()
+    {
+        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        await using var database = new SidekickDbContext(DbContextOptions);
+        var stashes = await database.WealthStashes.Where(x => x.League == leagueId).Where(x => x.Selected).ToListAsync();
+        var stashIds = stashes.Select(x => x.Id).ToList();
+        var stashSnapshots = await database.WealthStashSnapshots.Where(x => stashIds.Contains(x.StashId)).ToListAsync();
+
+        Serie = new DataSerie()
+        {
+            Name = "Total",
+            Points = stashSnapshots.GroupBy(x => $"{x.Date.Year}-{x.Date.Month:00}-{x.Date.Day:00} {x.Date.Hour:00}:{(x.Date.Minute / 30 == 0 ? "00" : "30")}")
+                .Select(x => new DataPoint()
+                {
+                    DateString = x.Key,
+                    Value = x.Sum(row => row.Total)
+                })
+                .ToList(),
+        };
+    }
+
+    public void Dispose()
+    {
+        WealthProvider.OnRefreshed -= Update;
+        WealthProvider.OnFilterChanged -= Update;
+    }
+
+}

@@ -2,6 +2,7 @@
 @using Sidekick.Common.Database
 @using Sidekick.Common.Database.Tables
 @using Sidekick.Modules.Wealth.Provider
+@using Sidekick.Modules.Wealth.Localization
 @using Sidekick.Common.Settings
 
 <FormFieldset Legend="Stash Tabs">
@@ -17,7 +18,7 @@
 
     @if (StashTabs.Count == 0)
     {
-        <AlertInfo>Select stashes by clicking 'change' above.</AlertInfo>
+        <AlertInfo>@Resources["No_Stash_Selected"]</AlertInfo>
         return;
     }
 
@@ -40,6 +41,7 @@
     </div>
 </FormFieldset>
 
+@inject IStringLocalizer<WealthResources> Resources
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject ISettingsService SettingsService
 @inject WealthProvider WealthProvider
