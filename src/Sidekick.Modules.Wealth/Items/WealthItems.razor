@@ -38,6 +38,7 @@
     {
         WealthProvider.OnFilterChanged += WealthFilterChanged;
         WealthProvider.OnStatusChanged += WealthFilterChanged;
+        WealthProvider.OnRefreshed += WealthFilterChanged;
         SettingsService.OnSettingsChanged += SettingsChanged;
         await Refresh();
         await base.OnInitializedAsync();
@@ -77,6 +78,7 @@
     {
         WealthProvider.OnFilterChanged -= WealthFilterChanged;
         WealthProvider.OnStatusChanged -= WealthFilterChanged;
+        WealthProvider.OnRefreshed -= WealthFilterChanged;
         SettingsService.OnSettingsChanged -= SettingsChanged;
     }
 

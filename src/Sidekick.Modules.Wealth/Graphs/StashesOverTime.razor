@@ -5,29 +5,26 @@
 @using Sidekick.Modules.Wealth.Localization
 @using Sidekick.Common.Settings
 
-@if (Series.Any())
-{
-    <div>
-        <FormFieldset Legend="@Resources["Stash_Value"]">
-            <div class="h-[10rem] relative">
-                <ApexChart @ref="Chart"
-                           TItem="DataPoint"
-                           Options="DataConstants.GetOptions()"
-                           Height="@("100%")">
-                    @foreach (var serie in Series)
-                    {
-                        <ApexPointSeries TItem="DataPoint"
-                                         Items="serie.Points"
-                                         Name="@serie.Name"
-                                         SeriesType="SeriesType.Line"
-                                         XValue="@(e => e.DateString)"
-                                         YValue="@(e => e.Value)"/>
-                    }
-                </ApexChart>
-            </div>
-        </FormFieldset>
-    </div>
-}
+<div class="@(Series.Count == 0 ? "hidden" : "")">
+    <FormFieldset Legend="@Resources["Stash_Value"]">
+        <div class="h-[10rem] relative">
+            <ApexChart @ref="Chart"
+                       TItem="DataPoint"
+                       Options="DataConstants.GetOptions()"
+                       Height="@("100%")">
+                @foreach (var serie in Series)
+                {
+                    <ApexPointSeries TItem="DataPoint"
+                                     Items="serie.Points"
+                                     Name="@serie.Name"
+                                     SeriesType="SeriesType.Line"
+                                     XValue="@(e => e.DateString)"
+                                     YValue="@(e => e.Value)"/>
+                }
+            </ApexChart>
+        </div>
+    </FormFieldset>
+</div>
 
 @inject IStringLocalizer<WealthResources> Resources
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
@@ -82,7 +79,7 @@
                             .Select(snapshot => new DataSerie()
                             {
                                 Name = stashes.First(y => snapshot.First().StashId == y.Id).Name,
-                                Points = snapshot.GroupBy(x => $"{x.Date.Year}-{x.Date.Month:00}-{x.Date.Day:00} {x.Date.Hour:00}:{(x.Date.Minute / 30 == 0 ? "00" : "30")}")
+                                Points = snapshot.GroupBy(x => $"{x.Date.Year}-{x.Date.Month:00}-{x.Date.Day:00} {x.Date.Hour:00}:{x.Date.Minute:00}")
                                     .Select(x => new DataPoint()
                                     {
                                         DateString = x.Key,

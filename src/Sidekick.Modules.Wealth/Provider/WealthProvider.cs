@@ -64,6 +64,8 @@ internal class WealthProvider
             PendingStashIds.AddRange(tabs.Select(x => x.Id));
             OnStatusChanged?.Invoke();
 
+            var date = DateTimeOffset.Now;
+
             foreach (var tab in tabs)
             {
                 var stash = await stashService.GetStashDetails(tab.Id);
@@ -73,7 +75,7 @@ internal class WealthProvider
                 await ParseStash(database, leagueId, stash);
 
                 logger.LogInformation($"[WealthProvider] Taking stash snapshot {stash.Name}");
-                await TakeStashSnapshot(database, leagueId, stash);
+                await TakeStashSnapshot(database, leagueId, stash, date);
 
                 logger.LogInformation($"[WealthProvider] Stash completed {stash.Name}");
                 PendingStashIds.Remove(stash.Id);
@@ -207,13 +209,13 @@ internal class WealthProvider
         return 0;
     }
 
-    private static async Task TakeStashSnapshot(SidekickDbContext database, string leagueId, StashTab stash)
+    private static async Task TakeStashSnapshot(SidekickDbContext database, string leagueId, StashTab stash, DateTimeOffset date)
     {
         var totals = await database.WealthItems.Where(x => x.League == leagueId).Where(x => x.StashId == stash.Id).Select(x => x.Total).ToListAsync();
 
         database.WealthStashSnapshots.Add(new WealthStashSnapshot()
         {
-            Date = DateTimeOffset.Now,
+            Date = date,
             League = leagueId,
             StashId = stash.Id,
             Total = totals.Sum(),
@@ -262,5 +264,7 @@ internal class WealthProvider
         var fullSnapshots = await database.WealthFullSnapshots.Where(x => x.League == leagueId).ToListAsync();
         database.WealthFullSnapshots.RemoveRange(fullSnapshots);
         await database.SaveChangesAsync();
+
+        OnRefreshed?.Invoke();
     }
 }
