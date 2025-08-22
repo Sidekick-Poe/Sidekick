@@ -60,7 +60,8 @@ public static class SettingKeys
     public const string PriceCheckNormalizeValue = nameof(PriceCheckNormalizeValue);
     public const string PriceCheckCompactMode = nameof(PriceCheckCompactMode);
     public const string PriceCheckSidebarWidth = nameof(PriceCheckSidebarWidth);
-    public const string PriceCheckStatus = nameof(PriceCheckStatus);
+    public const string PriceCheckStatusPoE1 = nameof(PriceCheckStatusPoE1);
+    public const string PriceCheckStatusPoE2 = nameof(PriceCheckStatusPoE2);
     public const string PriceCheckItemClassFilter = nameof(PriceCheckItemClassFilter);
     public const string PriceCheckAutomaticallySearch = nameof(PriceCheckAutomaticallySearch);
     public const string PriceCheckAutomaticallySearchCurrency = nameof(PriceCheckAutomaticallySearchCurrency);
