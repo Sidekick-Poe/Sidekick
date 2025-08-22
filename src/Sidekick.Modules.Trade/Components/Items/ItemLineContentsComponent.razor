@@ -106,7 +106,7 @@
     {
         foreach (var value in values)
         {
-            if (value.Value == null)
+            if (string.IsNullOrEmpty(value.Value))
             {
                 continue;
             }

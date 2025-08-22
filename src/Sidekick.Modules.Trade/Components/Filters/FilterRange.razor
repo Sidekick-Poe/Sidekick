@@ -1,10 +1,30 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization;
 
-<div class="flex flex-nowrap items-center -mr-1 [&_button]:mr-1! [&_.range_[contenteditable]]:rounded-r-none! [&_.range:last-child_[contenteditable]]:rounded-r-md! [&_.range~.range_[contenteditable]]:rounded-l-none!" id="@Id">
-    <ButtonIcon OnClick="ToggleType">
-        <Icon Svg="@Icon" />
-    </ButtonIcon>
+<div class="-mr-1 flex flex-nowrap items-center [&_.range~.range_[contenteditable]]:rounded-l-none! [&_.range_[contenteditable]]:rounded-r-none! [&_.range:last-child_[contenteditable]]:rounded-r-md!" id="@Id">
+    <Popover Trigger="PopoverTrigger.Hover">
+        <PopoverAnchor>
+            <ButtonIcon OnClick="ToggleType" AdditionalClasses="mr-1">
+                <Icon Svg="@Icon" />
+            </ButtonIcon>
+        </PopoverAnchor>
+        <PopoverContent>
+            <div class="flex gap-1">
+                <ButtonIcon OnClick="() => SelectType(FilterType.Minimum)" Disabled="Type == FilterType.Minimum">
+                    <Icon Svg="@UiIcons.FilterGreaterThan" />
+                </ButtonIcon>
+                <ButtonIcon OnClick="() => SelectType(FilterType.Maximum)" Disabled="Type == FilterType.Maximum">
+                    <Icon Svg="@UiIcons.FilterLessThan" />
+                </ButtonIcon>
+                <ButtonIcon OnClick="() => SelectType(FilterType.Equals)" Disabled="Type == FilterType.Equals">
+                    <Icon Svg="@UiIcons.FilterEquals" />
+                </ButtonIcon>
+                <ButtonIcon OnClick="() => SelectType(FilterType.Range)" Disabled="Type == FilterType.Range">
+                    <Icon Svg="@UiIcons.FilterRange" />
+                </ButtonIcon>
+            </div>
+        </PopoverContent>
+    </Popover>
 
     @if (Type == FilterType.Minimum || Type == FilterType.Equals || Type == FilterType.Range)
     {
@@ -13,7 +33,7 @@
              title="@(Type == FilterType.Equals ? Resources["Filters_Equals"] : Resources["Filters_Min"])"
              class="range">
             <FormContentEditable DoubleValue="Min"
-                                 DoubleValueChanged="UpdateMinValue"/>
+                                 DoubleValueChanged="UpdateMinValue" />
         </div>
     }
 
@@ -24,7 +44,7 @@
              title="@Resources["Filters_Max"]"
              class="range">
             <FormContentEditable DoubleValue="Max"
-                                 DoubleValueChanged="UpdateMaxValue"/>
+                                 DoubleValueChanged="UpdateMaxValue" />
         </div>
     }
 </div>
@@ -54,34 +74,38 @@
 
     private string Id { get; } = UiUtilities.GenerateId();
 
-    private string Icon => Type switch
-    {
-        FilterType.Maximum => @"<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 24 24""><path d=""M18.5,2.27L5,10.14L18.5,18L19.5,16.27L8.97,10.14L19.5,4L18.5,2.27M5,20V22H20V20H5Z"" /></svg>",
-        FilterType.Equals => @"<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 24 24""><path d=""M19,10H5V8H19V10M19,16H5V14H19V16Z"" /></svg>",
-        FilterType.Range => @"<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 24 24""><path d=""M8,3A2,2 0 0,0 6,5V9A2,2 0 0,1 4,11H3V13H4A2,2 0 0,1 6,15V19A2,2 0 0,0 8,21H10V19H8V14A2,2 0 0,0 6,12A2,2 0 0,0 8,10V5H10V3M16,3A2,2 0 0,1 18,5V9A2,2 0 0,0 20,11H21V13H20A2,2 0 0,0 18,15V19A2,2 0 0,1 16,21H14V19H16V14A2,2 0 0,1 18,12A2,2 0 0,1 16,10V5H14V3H16Z"" /></svg>",
-        _ => @"<svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 24 24""><path d=""M6.5,2.27L20,10.14L6.5,18L5.5,16.27L16.03,10.14L5.5,4L6.5,2.27M20,20V22H5V20H20Z"" /></svg>",
-    };
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await JsRuntime.InvokeVoidAsync("eval",
-                                            @"
-                                            document.getElementById("""
-                                            + Id
-                                            + @""")?.addEventListener(""wheel"",function(e) {
+            // Prevent the wheel event from scrolling.
+            var js = $@"
+                document.getElementById('{Id}')?.addEventListener('wheel', function(e) {{
                     e.preventDefault();
-                }, { passive: false });
-            ");
+                }}, {{ passive: false }});
+            ";
+            await JsRuntime.InvokeVoidAsync("eval", js);
         }
 
         await base.OnAfterRenderAsync(firstRender);
     }
 
+    private string Icon => Type switch
+    {
+        FilterType.Maximum => UiIcons.FilterLessThan,
+        FilterType.Equals => UiIcons.FilterEquals,
+        FilterType.Range => UiIcons.FilterRange,
+        _ => UiIcons.FilterGreaterThan,
+    };
+
+    private async Task SelectType(FilterType filterType)
+    {
+        await TypeChanged.InvokeAsync(filterType);
+    }
+
     private async Task ToggleType()
     {
-        Type = Type switch
+        var type = Type switch
         {
             FilterType.Minimum => FilterType.Maximum,
             FilterType.Maximum => FilterType.Equals,
@@ -90,7 +114,7 @@
             _ => FilterType.Minimum,
         };
 
-        await TypeChanged.InvokeAsync(Type);
+        await TypeChanged.InvokeAsync(type);
     }
 
     private async Task UpdateMinValue(double? value)

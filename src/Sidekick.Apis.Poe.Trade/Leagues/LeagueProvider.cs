@@ -44,18 +44,6 @@ public class LeagueProvider(
 
         leagues.AddRange(await Fetch(GameType.PathOfExile2));
 
-#warning "Temporary fix for #639"
-        if (leagues.Count(x => x.Game == GameType.PathOfExile2) == 0)
-        {
-            leagues.AddRange(new[]
-            {
-                new League(GameType.PathOfExile2, "poe2.Dawn of the Hunt", "Dawn of the Hunt"),
-                new League(GameType.PathOfExile2, "poe2.HC Dawn of the Hunt", "HC Dawn of the Hunt"),
-                new League(GameType.PathOfExile2, "poe2.Standard", "Standard"),
-                new League(GameType.PathOfExile2, "poe2.Hardcore", "Hardcore"),
-            });
-        }
-
         leagues.AddRange(await Fetch(GameType.PathOfExile));
 
         return leagues;
