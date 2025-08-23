@@ -1,0 +1,30 @@
+@using Sidekick.Apis.Poe.Trade.Static
+
+<div class="flex flex-nowrap gap-1 leading-3 items-center">
+    <div class="font-medium tracking-tight text-sm">@Quantity</div>
+    <div class="font-medium text-base">&times;</div>
+    @if (ImageUrl != null)
+    {
+        <div class="text-sm opacity-80 text-[#a38d6d]">@Value.ToString("0.##")</div>
+
+        <Tooltip Text="@CurrencyText">
+            <img src="@ImageUrl" class="max-h-4" alt="chaos"/>
+        </Tooltip>
+    }
+</div>
+
+@inject IItemStaticDataProvider ItemStaticDataProvider
+
+@code {
+
+    [Parameter]
+    public int Quantity { get; set; }
+
+    [Parameter]
+    public decimal Value { get; set; }
+
+    private string? ImageUrl => ItemStaticDataProvider.GetImage("chaos");
+
+    private string? CurrencyText => ItemStaticDataProvider.Get("chaos")?.Text;
+
+}

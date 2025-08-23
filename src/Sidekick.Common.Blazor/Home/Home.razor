@@ -6,7 +6,7 @@
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
 
-<LayoutTwoColumn>
+<LayoutMenu>
     <TopContent>
         <AppBar>
             <AppMinimize/>
@@ -18,11 +18,11 @@
         <SidekickMenu/>
     </LeftContent>
     <ChildContent>
-        <AppContainer>
+        <AppSmallContainer>
             <AppLogo/>
             @if (ApplicationService.SupportsKeybinds)
             {
-                <div class="max-w-[300px] mx-auto text-center">
+                <div class="mx-auto text-center">
                     <TextBase><TextWithKeybinds Text="@Resources["Price_Check_Tip"]" Keybinds="[KeyOpenPriceCheck]" /></TextBase>
                     <TextBase Class="my-3"><TextWithKeybinds Text="@Resources["Close_Overlay_Tip"]" Keybinds="[KeyClose]" /></TextBase>
                     <TextCaption>@Resources["Close_Notification"]</TextCaption>
@@ -41,7 +41,7 @@
                     <ButtonPrimary OnClick="MapCheck">@Resources["Item_Box_Map"]</ButtonPrimary>
                 </div>
             </FormFieldset>
-        </AppContainer>
+        </AppSmallContainer>
     </ChildContent>
     <BottomContent>
         @if (ApplicationService.SupportsKeybinds)
@@ -54,7 +54,7 @@
             </div>
         }
     </BottomContent>
-</LayoutTwoColumn>
+</LayoutMenu>
 
 @inject ISettingsService SettingsService
 @inject IStringLocalizer<HomeResources> Resources

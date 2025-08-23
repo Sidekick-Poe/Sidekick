@@ -1,0 +1,85 @@
+﻿@using Microsoft.EntityFrameworkCore
+@using Sidekick.Common.Database
+@using Sidekick.Common.Database.Tables
+@using Sidekick.Common.Settings
+@using Sidekick.Modules.Wealth.Provider
+@using Sidekick.Modules.Wealth.Components
+
+<Virtualize Items="Items" Context="item" ItemSize="49" OverscanCount="20">
+    <div class="rounded-lg bg-stone-950 flex flex-nowrap items-center px-2 py-1 gap-2 mb-1"
+         @key="item.Id">
+        <div class="size-8">
+            <Tooltip Text="@item.Name">
+                <img src="@item.Icon" alt="@item.Name" class="mx-auto max-h-8"/>
+            </Tooltip>
+        </div>
+        <div class="flex-1">
+            <Tooltip Text="@item.Name">
+                <div class="text-base font-caps text-ellipsis line-clamp-1 leading-4">@item.Name</div>
+            </Tooltip>
+            <PriceDisplayQuantity Value="item.Price" Quantity="item.Count"/>
+        </div>
+        <div class="w-32 max-w-32 min-w-32">
+            <PriceDisplay Value="@item.Total"></PriceDisplay>
+        </div>
+    </div>
+</Virtualize>
+
+@inject WealthProvider WealthProvider
+@inject DbContextOptions<SidekickDbContext> DbContextOptions
+@inject ISettingsService SettingsService
+@implements IDisposable
+
+@code {
+
+    private List<WealthItem> Items { get; set; } = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        WealthProvider.OnFilterChanged += WealthFilterChanged;
+        WealthProvider.OnStatusChanged += WealthFilterChanged;
+        WealthProvider.OnRefreshed += WealthFilterChanged;
+        SettingsService.OnSettingsChanged += SettingsChanged;
+        await Refresh();
+        await base.OnInitializedAsync();
+    }
+
+    private void SettingsChanged(string[] obj)
+    {
+        InvokeAsync(async () =>
+        {
+            await Refresh();
+            StateHasChanged();
+        });
+    }
+
+    private void WealthFilterChanged()
+    {
+        InvokeAsync(async () =>
+        {
+            await Refresh();
+            StateHasChanged();
+        });
+    }
+
+    private async Task Refresh()
+    {
+        var minimumTotal = await SettingsService.GetInt(SettingKeys.WealthItemTotalMinimum);
+        if (minimumTotal < 1) minimumTotal = 1;
+
+        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        await using var database = new SidekickDbContext(DbContextOptions);
+        var stashIds = await database.WealthStashes.Where(x => x.League == leagueId).Where(x => x.Selected).Select(x => x.Id).ToListAsync();
+        var items = await database.WealthItems.Where(x => stashIds.Contains(x.StashId)).Where(x => x.Total >= minimumTotal).ToListAsync();
+        Items = items.OrderByDescending(x => x.Total).ToList();
+    }
+
+    public void Dispose()
+    {
+        WealthProvider.OnFilterChanged -= WealthFilterChanged;
+        WealthProvider.OnStatusChanged -= WealthFilterChanged;
+        WealthProvider.OnRefreshed -= WealthFilterChanged;
+        SettingsService.OnSettingsChanged -= SettingsChanged;
+    }
+
+}

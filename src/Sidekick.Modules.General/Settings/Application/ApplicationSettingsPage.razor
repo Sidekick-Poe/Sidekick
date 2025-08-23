@@ -1,4 +1,3 @@
-
 @using Microsoft.Extensions.Localization
 @using Sidekick.Common.Blazor.Components
 @using Sidekick.Common.Blazor.Settings
@@ -11,7 +10,7 @@
 @using Sidekick.Common.Ui.App
 @using Sidekick.Modules.General.Localization
 
-<AppContainer>
+<AppSmallContainer>
     <FormFieldset Legend="@SettingsResources["General_Settings"]">
         <InterfaceLanguageEditor/>
         <ZoomEditor/>
@@ -41,7 +40,7 @@
         <ButtonPrimary Disabled="!AreSettingsModified"
                        OnClick="RestoreDefaults">@SettingsResources["Restore_Defaults"]</ButtonPrimary>
     </div>
-</AppContainer>
+</AppSmallContainer>
 
 @page "/settings/application"
 @layout MainWindowLayout

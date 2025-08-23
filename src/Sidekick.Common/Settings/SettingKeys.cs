@@ -28,7 +28,6 @@ public static class SettingKeys
     public const string KeyFindItems = nameof(KeyFindItems);
     public const string KeyOpenMapCheck = nameof(KeyOpenMapCheck);
     public const string KeyOpenPriceCheck = nameof(KeyOpenPriceCheck);
-    public const string KeyOpenWealth = nameof(KeyOpenWealth);
     public const string KeyOpenWiki = nameof(KeyOpenWiki);
     public const string KeyOpenInCraftOfExile = nameof(KeyOpenInCraftOfExile);
 
@@ -72,7 +71,5 @@ public static class SettingKeys
 
     public const string SaveWindowPositions = nameof(SaveWindowPositions);
 
-    public const string WealthEnabled = nameof(WealthEnabled);
-    public const string WealthTrackedTabs = nameof(WealthTrackedTabs);
     public const string WealthItemTotalMinimum = nameof(WealthItemTotalMinimum);
 }

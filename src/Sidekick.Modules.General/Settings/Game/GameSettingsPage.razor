@@ -14,7 +14,7 @@
 @using Sidekick.Modules.General.Localization
 @inject IApplicationService ApplicationService
 
-<AppContainer>
+<AppSmallContainer>
     <FormFieldset Legend="@SettingResources["General_Settings"]">
         <LanguageParserEditor/>
 
@@ -63,7 +63,7 @@
                        OnClick="RestoreDefaults">@SettingResources["Restore_Defaults"]</ButtonPrimary>
     </div>
 
-</AppContainer>
+</AppSmallContainer>
 
 @page "/settings/game"
 @layout MainWindowLayout

@@ -1,0 +1,81 @@
+@using Sidekick.Apis.Poe.Account.Authentication
+@using Sidekick.Common.Settings
+@using Sidekick.Modules.Wealth.Localization
+
+<div class="flex flex-nowrap items-center gap-2">
+    @if (CurrentState == AuthenticationState.Authenticated)
+    {
+        <div class="bg-green-500 rounded-full w-2 h-2"></div>
+        <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
+                    Class="!text-green-600">
+            @Resources["Authenticated"] (@TokenRemainingString)
+        </ButtonLink>
+    }
+    else if (CurrentState == AuthenticationState.InProgress)
+    {
+        <div class="bg-blue-500 rounded-full w-2 h-2"></div>
+        <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
+                    Class="!text-blue-600">
+            @Resources["Authenticating"]
+        </ButtonLink>
+    }
+    else if (CurrentState == AuthenticationState.Unauthenticated)
+    {
+        <div class="bg-red-500 rounded-full w-2 h-2"></div>
+        <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
+                    Class="!text-red-600">
+            @Resources["Unauthenticated"]
+        </ButtonLink>
+    }
+</div>
+
+@implements IDisposable
+@inject IStringLocalizer<WealthResources> Resources
+@inject IAuthenticationService AuthenticationService
+@inject ISettingsService SettingsService
+
+@code {
+    private Timer? refreshTimer;
+
+    private AuthenticationState CurrentState { get; set; }
+
+    private string? TokenRemainingString { get; set; }
+
+    protected override void OnInitialized()
+    {
+        AuthenticationService.OnStateChanged += OnChanged;
+
+        refreshTimer = new Timer(_ => { OnChanged(); }, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
+
+        OnChanged();
+        base.OnInitialized();
+    }
+
+    private void OnChanged()
+    {
+        InvokeAsync(async () =>
+        {
+            CurrentState = await AuthenticationService.GetCurrentState();
+
+            var bearerExpiration = await SettingsService.GetDateTime(SettingKeys.BearerExpiration);
+            if (bearerExpiration == null)
+            {
+                TokenRemainingString = "";
+            }
+            else
+            {
+                var remainingTime = bearerExpiration - DateTimeOffset.Now;
+                TokenRemainingString = $"{remainingTime.Value.Hours:00}:{remainingTime.Value.Minutes:00}";
+            }
+
+            StateHasChanged();
+        });
+    }
+
+    public void Dispose()
+    {
+        refreshTimer?.Dispose();
+        AuthenticationService.OnStateChanged -= OnChanged;
+    }
+
+}

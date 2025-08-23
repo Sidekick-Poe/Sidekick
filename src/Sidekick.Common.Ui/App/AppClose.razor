@@ -1,3 +1,4 @@
+@using Sidekick.Common.Ui.Localization
 <button type="button"
         @onclick="OnClick"
         @onclick:preventDefault="true"
@@ -9,7 +10,7 @@
 </button>
 
 @inject ICurrentView CurrentView
-@inject IStringLocalizer<AppResources> Resources
+@inject IStringLocalizer<UiResources> Resources
 
 @code {
 

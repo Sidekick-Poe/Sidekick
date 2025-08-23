@@ -4,7 +4,7 @@ namespace Sidekick.Apis.Poe.Account.Stash;
 
 public interface IStashService
 {
-    Task<List<StashTab>?> GetStashTabList();
+    Task<List<StashTab>> GetStashTabList();
 
-    Task<StashTabDetails?> GetStashDetails(string id);
+    Task<StashTab?> GetStashDetails(string id);
 }

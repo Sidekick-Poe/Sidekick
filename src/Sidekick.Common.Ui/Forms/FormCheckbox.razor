@@ -7,7 +7,7 @@
            checked="@Value"
            @onchange="OnChange"
            class="@(Dense ? "w-4 h-4 min-w-4 min-h-4" : "w-5 h-5 min-w-5 min-h-5") border-2 rounded-sm bg-zinc-700 border-zinc-600 text-zinc-600 @UiClasses.FocusClasses">
-    <span class="text-zinc-200 font-medium @(Dense ? "text-sm" : "text-base")">
+    <span class="text-zinc-200 font-medium @(Dense ? "text-sm" : "text-base") grow">
         @ChildContent
     </span>
 </label>

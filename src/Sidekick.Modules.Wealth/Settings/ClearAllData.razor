@@ -1,0 +1,26 @@
+@using Sidekick.Modules.Wealth.Localization
+@using Sidekick.Modules.Wealth.Provider
+
+<div class="flex justify-end">
+    <ButtonSecondary OnClick="Clear">
+        @Resources["Clear_All_Data"]
+    </ButtonSecondary>
+</div>
+
+@inject IStringLocalizer<WealthResources> Resources
+@inject WealthProvider WealthProvider
+@inject DialogService DialogService
+
+@code {
+
+    private async Task Clear()
+    {
+        if (!await DialogService.OpenConfirmationModal(Resources["Clear_All_Data_Confirmation"]))
+        {
+            return;
+        }
+
+        await WealthProvider.Clear();
+    }
+
+}

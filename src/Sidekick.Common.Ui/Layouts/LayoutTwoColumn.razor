@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="h-full flex flex-col grow">
-            <ConfigurationFlagError />
+            <ConfigurationFlagError/>
             @if (HasChildContent)
             {
                 <div class="grow relative">
@@ -85,18 +85,14 @@
     {
         get
         {
-            var classes = new List<string>
-            {
+            List<string> classes =
+            [
                 "relative",
                 "overflow-auto",
-                "min-w-[22em]",
-                "z-10"
-            };
-
-            if (HasChildContent)
-                classes.Add("max-w-[35em]");
-            else
-                classes.Add("w-full");
+                "min-w-80",
+                "z-10",
+                HasChildContent ? "max-w-140" : "w-full",
+            ];
 
             return string.Join(" ", classes);
         }

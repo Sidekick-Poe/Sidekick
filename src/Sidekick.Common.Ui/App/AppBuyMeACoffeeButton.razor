@@ -1,11 +1,12 @@
 @using Sidekick.Common.Browser
+@using Sidekick.Common.Ui.Localization
 
 <button @onclick="@OpenWebsite" title="@Resources["BuyMeACoffee"]">
     <img src="/images/app/buymeacoffee.png" alt="@Resources["BuyMeACoffee"]" class="w-40" />
 </button>
 
 @inject IBrowserProvider BrowserProvider
-@inject IStringLocalizer<AppResources> Resources
+@inject IStringLocalizer<UiResources> Resources
 
 @code {
 

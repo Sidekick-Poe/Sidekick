@@ -1,0 +1,45 @@
+﻿@using Sidekick.Apis.Poe.Account.Authentication
+
+@if (CurrentState == AuthenticationState.Authenticated)
+{
+    @ChildContent
+}
+
+@implements IDisposable
+@inject IAuthenticationService AuthenticationService
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    private Timer? refreshTimer;
+
+    private AuthenticationState CurrentState { get; set; }
+
+    protected override void OnInitialized()
+    {
+        AuthenticationService.OnStateChanged += OnChanged;
+
+        refreshTimer = new Timer(_ => { OnChanged(); }, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
+
+        OnChanged();
+        base.OnInitialized();
+    }
+
+    private void OnChanged()
+    {
+        InvokeAsync(async () =>
+        {
+            CurrentState = await AuthenticationService.GetCurrentState();
+            StateHasChanged();
+        });
+    }
+
+    public void Dispose()
+    {
+        refreshTimer?.Dispose();
+        AuthenticationService.OnStateChanged -= OnChanged;
+    }
+
+}

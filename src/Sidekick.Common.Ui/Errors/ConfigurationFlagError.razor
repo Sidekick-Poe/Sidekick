@@ -9,7 +9,8 @@
     <AlertError>@Resources["XselPackageMissing"]</AlertError>
 }
 
-@inject IStringLocalizer<AppResources> Resources
+@inject IStringLocalizer<UiResources> Resources
+@using Sidekick.Common.Ui.Localization
 @implements IDisposable
 
 @code {

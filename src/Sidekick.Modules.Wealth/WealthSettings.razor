@@ -1,0 +1,22 @@
+﻿@using Sidekick.Common.Ui.Popovers
+@using Sidekick.Modules.Wealth.Localization
+@using Sidekick.Modules.Wealth.Settings
+
+<Popover Placement="TooltipPlacement.Bottom"
+         Class="w-80 max-h-96">
+    <PopoverAnchor>
+        <ButtonIcon>
+            <Icon Svg="@UiIcons.Settings"/>
+        </ButtonIcon>
+    </PopoverAnchor>
+    <PopoverContent>
+        <FormFieldset Legend="@Resources["Item_Settings"]"
+                      Dense="true">
+            <ItemTotalMinimumEditor/>
+        </FormFieldset>
+
+        <ClearAllData/>
+    </PopoverContent>
+</Popover>
+
+@inject IStringLocalizer<WealthResources> Resources

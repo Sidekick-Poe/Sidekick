@@ -1,119 +1,72 @@
-using Microsoft.Extensions.Logging;
+using System.Text.Json;
 using Sidekick.Apis.Poe.Account.Clients;
 using Sidekick.Apis.Poe.Account.Stash.Models;
+using Sidekick.Apis.Poe.Trade.Models.Items;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Account.Stash;
 
-public class StashService(
+public class StashService
+(
     IAccountApiClient client,
-    ISettingsService settingsService,
-    ILogger<StashService> logger) : IStashService
+    ISettingsService settingsService
+) : IStashService
 {
-    public async Task<List<StashTab>?> GetStashTabList()
+    public async Task<List<StashTab>> GetStashTabList()
     {
-        try
-        {
-            var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var response = await client.Fetch<ApiStashTabList>($"stash/{leagueId.GetUrlSlugForLeague()}");
-            if (response == null || leagueId == null)
-            {
-                return null;
-            }
+        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+        var response = await client.Fetch<StashTabListResult>($"stash/{leagueId.GetUrlSlugForLeague()}");
+        if (response == null || leagueId == null) return [];
 
-            var result = new List<StashTab>();
-            FillStashTabs(leagueId, result, response.StashTabs);
-
-            return result;
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, "The GetStashTabList() method failed to fetch data successfully.");
-            return null;
-        }
+        return FlattenStashTabs(response.Tabs);
     }
 
-    private static void FillStashTabs(
-        string leagueId,
-        List<StashTab> list,
-        List<ApiStashTab> apiStashTabs)
+    private static List<StashTab> FlattenStashTabs(List<StashTab> stashTabs)
     {
-        foreach (var stashTab in apiStashTabs)
+        var result = new List<StashTab>();
+
+        foreach (var stashTab in stashTabs)
         {
-            if (stashTab.StashType != StashType.Folder)
-            {
-                list.Add(
-                    new()
-                    {
-                        Name = stashTab.Name,
-                        Id = stashTab.Id,
-                        League = leagueId,
-                        Type = stashTab.StashType,
-                    });
-            }
+            if (stashTab.Type != StashType.Folder) result.Add(stashTab);
 
-            if (stashTab.Children == null)
-            {
-                continue;
-            }
+            if (stashTab.Children == null) continue;
 
-            FillStashTabs(leagueId, list, stashTab.Children);
+            result.AddRange(FlattenStashTabs(stashTab.Children));
         }
+
+        return result;
     }
 
-    public async Task<StashTabDetails?> GetStashDetails(string id)
+    public async Task<StashTab?> GetStashDetails(string id)
     {
-        try
+        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
+        var result = await client.Fetch<StashTabResult>($"stash/{leagueId.GetUrlSlugForLeague()}/{id}");
+        if (result == null || leagueId == null) return null;
+
+        if (result.Stash.Type == StashType.Map)
         {
-            var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var wrapper = await client.Fetch<ApiStashTabWrapper>($"stash/{leagueId.GetUrlSlugForLeague()}/{id}");
-            if (wrapper == null || leagueId == null)
-            {
-                return null;
-            }
-
-            var details = new StashTabDetails()
-            {
-                Id = wrapper.Stash.Id,
-                Parent = wrapper.Stash.Parent,
-                League = leagueId,
-                Name = wrapper.Stash.Name,
-                Type = wrapper.Stash.StashType
-            };
-
-            List<APIStashItem> items;
-            if (details.Type == StashType.Map)
-            {
-                items = await FetchMapStashItems(wrapper.Stash);
-            }
-            else
-            {
-                items = await FetchStashItems(wrapper.Stash);
-            }
-
-            ParseItems(details, items);
-
-            return details;
+            result.Stash.Items = await FetchMapStashItems(result.Stash);
         }
-        catch (Exception ex)
+        else
         {
-            logger.LogError(ex, "The GetStashDetails() method failed to fetch data successfully.");
-            return null;
+            result.Stash.Items = await FetchStashItems(result.Stash);
         }
+
+        return result.Stash;
     }
 
-    private async Task<List<APIStashItem>> FetchStashItems(ApiStashTab tab)
+    private async Task<List<ApiItem>> FetchStashItems(StashTab tab)
     {
-        var items = new List<APIStashItem>();
+        var items = new List<ApiItem>();
 
         if (tab.Items == null && tab.Children == null)
         {
             var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
             var uri = string.IsNullOrEmpty(tab.Parent) ? $"stash/{leagueId.GetUrlSlugForLeague()}/{tab.Id}" : $"stash/{leagueId}/{tab.Parent}/{tab.Id}";
 
-            var wrapper = await client.Fetch<ApiStashTabWrapper>(uri);
+            var wrapper = await client.Fetch<StashTabResult>(uri);
             if (wrapper?.Stash.Items != null)
             {
                 tab = wrapper.Stash;
@@ -138,7 +91,7 @@ public class StashService(
         return items;
     }
 
-    private async Task<List<APIStashItem>> FetchMapStashItems(ApiStashTab tab)
+    private async Task<List<ApiItem>> FetchMapStashItems(StashTab tab)
     {
         if (tab.Children == null)
         {
@@ -153,81 +106,41 @@ public class StashService(
             ];
         }
 
-        var items = new List<APIStashItem>();
+        var items = new List<ApiItem>();
         foreach (var childTab in tab.Children)
         {
-            if (childTab.Metadata?.map?.section == "special")
+            if (childTab.Metadata?.Map?.Section == "special")
             {
                 items.AddRange(await FetchStashItems(childTab));
             }
             else
             {
-                items.Add(
-                    new APIStashItem
-                    {
-                        id = childTab.Id,
-                        typeLine = childTab.Metadata?.map?.name,
-                        baseType = childTab.Metadata?.map?.name,
-                        name = "",
-                        icon = childTab.Metadata?.map?.image,
-                        league = leagueId,
-                        ilvl = -1,
-                        stackSize = childTab.Metadata?.items,
-                        properties =
-                        [
-                            new()
-                            {
-                                name = "Map Tier",
-                                values =
+                items.Add(new ApiItem
+                {
+                    Id = childTab.Id,
+                    TypeLine = childTab.Metadata?.Map?.Name,
+                    BaseType = childTab.Metadata?.Map?.Name,
+                    Icon = childTab.Metadata?.Map?.Image,
+                    StackSize = childTab.Metadata?.Items,
+                    Properties =
+                    [
+                        new()
+                        {
+                            Name = "Map Tier",
+                            Values =
+                            [
                                 [
-                                    [
-                                        childTab.Metadata?.map?.tier,
-                                    ],
-                                ]
-                            },
-                        ],
-                        frameType = FrameType.Normal
-                    });
+                                    JsonDocument.Parse($"\"{childTab.Metadata?.Map?.Tier}\"").RootElement,
+                                    JsonDocument.Parse($"0").RootElement,
+                                ],
+                            ]
+                        },
+                    ],
+                    Rarity = Rarity.Normal
+                });
             }
         }
 
         return items;
-    }
-
-    private void ParseItems(
-        StashTabDetails details,
-        List<APIStashItem> items)
-    {
-        foreach (var item in items)
-        {
-            details.Items.Add(
-                new()
-                {
-                    Id = item.id,
-                    Name = item.getFriendlyName(),
-                    Stash = details.Id,
-                    Icon = item.icon,
-                    League = details.League,
-                    ItemLevel = item.ilvl,
-                    GemLevel = item.getGemLevel(),
-                    MapTier = item.getMapTier(),
-                    MaxLinks = item.getLinkCount(),
-                    Count = item.stackSize ?? 1,
-                    Category = GetItemCategory(item),
-                });
-        }
-    }
-
-    private Category GetItemCategory(APIStashItem item)
-    {
-        var name = item.getFriendlyName();
-        // var metadata = metadataParser.Parse(name, item.typeLine);
-        // if (metadata != null)
-        // {
-        //     return metadata.Category;
-        // }
-
-        logger.LogError($"[Stash] Could not retrieve metadata: {item.getFriendlyName()}");
-        return Category.Unknown;
     }
 }

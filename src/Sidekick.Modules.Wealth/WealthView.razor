@@ -1,161 +1,64 @@
 @page "/wealth"
-@using Microsoft.EntityFrameworkCore
-@using MudBlazor
-@using Sidekick.Common.Database
-@using Sidekick.Common.Database.Tables
-@using Sidekick.Modules.Wealth.Components
-@using Sidekick.Common.Exceptions
+@layout MainWindowLayout
+@using Sidekick.Common.Extensions
+@using Sidekick.Common.Game
 @using Sidekick.Common.Settings
+@using Sidekick.Common.Blazor.Components
+@using Sidekick.Common.Platform
+@using Sidekick.Modules.Wealth.Tabs
+@using Sidekick.Modules.Wealth.Items
+@using Sidekick.Modules.Wealth.Graphs
+@using Sidekick.Modules.Wealth.Localization
 
-<MudDrawer Open="true"
-           Variant="DrawerVariant.Persistent"
-           Width="22em"
-           Class="black"
-           ClipMode="DrawerClipMode.Always">
-    <div class="flex-grow-1" style="overflow-y:auto;">
-        <div class="mt-4 d-flex justify-space-between align-center px-4 py-2">
-            <MudText Typo="Typo.h3">
-                Stash Tabs
-            </MudText>
-            <MudTooltip Text="Only the stash tabs selected in the settings are shown here. If you want to track more stash tabs, you have to do it from the settings." Style="max-width: 15rem;">
-                <MudIcon Icon="Icons.Material.Filled.Info" Color="Color.Info"/>
-            </MudTooltip>
-        </div>
+@if (!ApplicationService.SupportsKeybinds)
+{
+    <AlertError>@Resources["Not_Supported_Web"]</AlertError>
+    return;
+}
 
-        @foreach (var stashTab in StashTabs)
-        {
-            <div class="d-flex align-center flex-nowrap justify-space-between px-4">
-                <MudCheckBox T="bool"
-                             Value="SelectedStashIds.Contains(stashTab.Id)"
-                             ValueChanged="(v) => Toggle(stashTab, v)"
-                             Dense="true"
-                             Color="Color.Primary">
-                    @stashTab.Name
-                </MudCheckBox>
-                <div style="color: gold;">
-                    @stashTab.Total.ToString("N0")
-                </div>
-            </div>
-        }
+@if (Game == GameType.PathOfExile2)
+{
+    <AlertError>@Resources["Not_Supported_Game"]</AlertError>
+    return;
+}
+
+<AppContainer>
+    <div class="flex items-center gap-2 mb-3">
+        <Heading1>@Resources["Wealth_Tracker"]</Heading1>
+        <div class="grow"></div>
+        <WealthToolbar/>
     </div>
+    <div class="grid grid-cols-2 gap-3 mb-3">
+        <StashesOverTime/>
+        <WealthOverTime/>
+    </div>
+    <div class="flex flex-nowrap gap-3">
+        <div class="min-w-64 w-64 max-w-64">
+            <WealthTabs/>
+        </div>
+        <div class="flex-1">
+            <WealthItems/>
+        </div>
+    </div>
+</AppContainer>
 
-    <Sidekick.Common.Blazor.Authentication.AuthenticationStatusBar/>
-    <WealthControl/>
-</MudDrawer>
-
-<CascadingValue Value="this" IsFixed="true">
-    @if (StashTabs.Any())
-    {
-        <MudGrid Spacing="0" Class="ml-0">
-            <MudItem xs="4">
-                <WealthDistribution/>
-            </MudItem>
-            <MudItem xs="8">
-                <WealthOverTime/>
-            </MudItem>
-        </MudGrid>
-        <MudGrid Spacing="0" Class="ml-0">
-            <MudItem xs="9">
-                <WealthInventory/>
-            </MudItem>
-            <MudItem xs="3">
-                <WealthLogs/>
-            </MudItem>
-        </MudGrid>
-    }
-</CascadingValue>
-
-@implements IDisposable
-@inject DbContextOptions<SidekickDbContext> DbContextOptions
+@inject IStringLocalizer<WealthResources> Resources
 @inject ISettingsService SettingsService
-@inject WealthParser WealthParser
 @inject ICurrentView CurrentView
+@inject IApplicationService ApplicationService
 
 @code {
-    public const string ChartHeight = "24vh";
-    public const string InventoryHeight = "67vh";
 
-    private List<WealthStash> StashTabs { get; set; } = new();
-
-    public List<string> SelectedStashIds { get; set; } = new();
-
-    public event Action? OnSelectedStashIdsChanged;
+    private GameType Game { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         CurrentView.Initialize(new ViewOptions());
+
+        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        Game = leagueId.GetGameFromLeagueId();
+
         await base.OnInitializedAsync();
-
-        var enabled = await SettingsService.GetBool(SettingKeys.WealthEnabled);
-        if (!enabled)
-        {
-            throw new DisabledModuleException();
-        }
-
-        WealthParser.OnStashParsed += OnStashParsed;
-        await RetrieveStashes();
-        SelectedStashIds = StashTabs
-                           .Select(x => x.Id)
-                           .ToList();
-    }
-
-    public void OnStashParsed()
-    {
-        _ = InvokeAsync(
-            async () =>
-            {
-                await RetrieveStashes();
-                StateHasChanged();
-            });
-    }
-
-    private void Toggle(
-        WealthStash tab,
-        bool isChecked)
-    {
-        if (!isChecked)
-        {
-            SelectedStashIds.Remove(tab.Id);
-        }
-        else
-        {
-            SelectedStashIds.Add(tab.Id);
-        }
-
-        OnSelectedStashIdsChanged?.Invoke();
-    }
-
-    public async Task RetrieveStashes()
-    {
-        var previousStashIds = StashTabs
-                               .Select(x => x.Id)
-                               .ToList();
-        var tabs = (await SettingsService.GetString(SettingKeys.WealthTrackedTabs))?.Split(',')
-                   ??
-                   [
-                   ];
-        await using var database = new SidekickDbContext(DbContextOptions);
-        StashTabs = await database
-                          .WealthStashes.Where(x => tabs.Contains(x.Id))
-                          .OrderByDescending(x => x.Total)
-                          .ToListAsync();
-
-        SelectedStashIds = SelectedStashIds
-                           .Where(x => StashTabs.Any(y => y.Id == x))
-                           .ToList();
-
-        foreach (var tab in StashTabs)
-        {
-            if (!previousStashIds.Contains(tab.Id))
-            {
-                SelectedStashIds.Add(tab.Id);
-            }
-        }
-    }
-
-    public void Dispose()
-    {
-        WealthParser.OnStashParsed -= OnStashParsed;
     }
 
 }

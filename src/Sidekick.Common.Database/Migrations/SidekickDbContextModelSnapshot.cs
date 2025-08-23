@@ -171,6 +171,9 @@ namespace Sidekick.Common.Database.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("Selected")
+                        .HasColumnType("INTEGER");
+
                     b.Property<decimal>("Total")
                         .HasColumnType("TEXT");
 

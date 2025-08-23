@@ -3,7 +3,6 @@
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Prices
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
-@using Sidekick.Modules.Trade.Components
 
 @if (!IsCompact && (Result.Item.HasModifiers || Item.Header.Category == Category.Gem))
 {
@@ -49,7 +48,7 @@
                     <PriceDisplay Value="Result.Listing.Price.Amount" Currency="@Result.Listing.Price.Currency"/>
                     <TextBase
                         Class="text-ellipsis w-full overflow-hidden text-center">@Result.Listing.Account.Name</TextBase>
-                    <PriceAge Date="Result.Listing.Indexed"/>
+                    <TextAge Date="Result.Listing.Indexed"/>
                 </div>
 
                 <ItemImageComponent Result="Result"/>
@@ -71,7 +70,7 @@ else
             <div class="flex items-center p-2">
                 <TextBase>@Result.Listing.Account.Name</TextBase>
                 <div class="text-[#a38d6d]">,&nbsp;</div>
-                <PriceAge Date="Result.Listing.Indexed"/>
+                <TextAge Date="Result.Listing.Indexed"/>
             </div>
         </div>
         <div class="w-1/4 p-2 self-center">
@@ -81,7 +80,6 @@ else
 }
 
 @inject IStringLocalizer<TradeResources> Resources
-@inject PriceCheckService PriceCheckService
 
 @code {
 

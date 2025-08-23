@@ -3,7 +3,7 @@
 <root>
     <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
         <xsd:element name="root" msdata:IsDataSet="true">
-            
+
         </xsd:element>
     </xsd:schema>
     <resheader name="resmimetype">
@@ -18,10 +18,73 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="WealthTracker" xml:space="preserve">
-    <value>Wealth Tracker</value>
-  </data>
-    <data name="Wealth_Key_Open" xml:space="preserve">
-    <value>Open Wealth Tracker</value>
-  </data>
+    <data name="Unauthenticated" xml:space="preserve">
+        <value>Unauthenticated</value>
+    </data>
+    <data name="Item_Total_Minimum" xml:space="preserve">
+        <value>Minimum Item Total Value</value>
+    </data>
+    <data name="Authenticated" xml:space="preserve">
+        <value>Authenticated</value>
+    </data>
+    <data name="Authenticating" xml:space="preserve">
+        <value>Authenticating</value>
+    </data>
+    <data name="Total_Value" xml:space="preserve">
+        <value>Total Value</value>
+    </data>
+    <data name="Stash_Value" xml:space="preserve">
+        <value>Stash Value</value>
+    </data>
+    <data name="Clear_All_Data" xml:space="preserve">
+        <value>Clear All Data</value>
+    </data>
+    <data name="Clear_All_Data_Confirmation" xml:space="preserve">
+        <value>This will delete all data from the wealth tracker. Are you sure?</value>
+    </data>
+    <data name="No_Stash_Selected" xml:space="preserve">
+        <value>Select stashes by clicking 'change' above.</value>
+    </data>
+    <data name="Performance_Warning" xml:space="preserve">
+        <value>High tab count may impact performance. Unique and map stash tabs are not recommended.</value>
+    </data>
+    <data name="Stash_Tabs" xml:space="preserve">
+        <value>Stash Tabs</value>
+    </data>
+    <data name="Change" xml:space="preserve">
+        <value>Change</value>
+    </data>
+    <data name="Fetch_Tabs" xml:space="preserve">
+        <value>Fetch Tabs</value>
+    </data>
+    <data name="Item_Settings" xml:space="preserve">
+        <value>Item Settings</value>
+    </data>
+    <data name="Last_Updated" xml:space="preserve">
+        <value>Last Updated</value>
+    </data>
+    <data name="Completed" xml:space="preserve">
+        <value>Completed</value>
+    </data>
+    <data name="Running" xml:space="preserve">
+        <value>Running</value>
+    </data>
+    <data name="Failed" xml:space="preserve">
+        <value>Failed</value>
+    </data>
+    <data name="Stopped" xml:space="preserve">
+        <value>Stopped</value>
+    </data>
+    <data name="Refresh" xml:space="preserve">
+        <value>Refresh</value>
+    </data>
+    <data name="Wealth_Tracker" xml:space="preserve">
+        <value>Wealth Tracker</value>
+    </data>
+    <data name="Not_Supported_Game" xml:space="preserve">
+        <value>Wealth Tracker is only supported in Path of Exile 1 at the moment.</value>
+    </data>
+    <data name="Not_Supported_Web" xml:space="preserve">
+        <value>Wealth Tracker is not supported in the web version of Sidekick.</value>
+    </data>
 </root>
