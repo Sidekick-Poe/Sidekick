@@ -85,7 +85,9 @@ public static class DefaultSettings
 
     public static bool PriceCheckCompactMode => false;
 
-    public static string PriceCheckStatus => "online";
+    public static string PriceCheckStatusPoE1 => "online";
+
+    public static string PriceCheckStatusPoE2 => "any";
 
     public static bool PriceCheckAutomaticallyLoadMoreData => false;
 
