@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using Sidekick.Common;
+using Sidekick.Common.Blazor.Initialization;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Initialization;
@@ -9,7 +11,7 @@ using Sidekick.Common.Platform;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
 
-namespace Sidekick.Common.Blazor.Initialization;
+namespace Sidekick.Modules.General.Initialization;
 
 public partial class Initialization
 {

@@ -5,6 +5,7 @@ using Sidekick.Apis.Common.Limiter;
 using Sidekick.Apis.Common.States;
 using Sidekick.Apis.Poe.Account.Authentication;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Account.Clients;
 
@@ -14,6 +15,7 @@ public class AccountApiHandler
     IAuthenticationService authenticationService,
     IApiStateProvider apiStateProvider,
     ApiLimiterProvider limitProvider,
+    ISettingsService settingsService,
     ILogger<AccountApiHandler> logger
 ) : DelegatingHandler
 {
@@ -35,7 +37,7 @@ public class AccountApiHandler
 
         await LogRequest(request, response, cancellationToken);
         HandleTooManyRequests(response);
-        HandleUnauthorized(response);
+        await HandleUnauthorized(response);
         HandleBadRequest(response);
 
         await limitHandler.HandleResponse(response, cancellationToken);
@@ -129,7 +131,7 @@ public class AccountApiHandler
         logger.LogWarning("[PoeApiHandler] BadRequest.");
     }
 
-    private void HandleTooManyRequests(HttpResponseMessage response)
+    private void  HandleTooManyRequests(HttpResponseMessage response)
     {
         if (response.StatusCode != HttpStatusCode.TooManyRequests) return;
 
@@ -137,10 +139,12 @@ public class AccountApiHandler
         throw new SidekickException("Rate limit exceeded.", "The official trade website has a rate limit to avoid spam. Sidekick cannot change this.");
     }
 
-    private void HandleUnauthorized(HttpResponseMessage response)
+    private async Task HandleUnauthorized(HttpResponseMessage response)
     {
         if (response.StatusCode != HttpStatusCode.Unauthorized) return;
 
+        await settingsService.Set(SettingKeys.BearerToken, null);
+        await settingsService.Set(SettingKeys.BearerExpiration, null);
         logger.LogWarning("[PoeApiHandler] Unauthorized.");
         throw new SidekickException("Sidekick failed to communicate with the trade API.", "The trade website requires authentication, which Sidekick does not support currently.", "Try using a different game language and/or force to search using English only in the settings.");
     }

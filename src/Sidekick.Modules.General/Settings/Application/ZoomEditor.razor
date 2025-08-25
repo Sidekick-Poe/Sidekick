@@ -1,9 +1,9 @@
 @using Microsoft.Extensions.Localization
-@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.Icons
 @using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Localization
 @using Sidekick.Modules.General.Localization
 
 <FormSelect Value="@Value"
@@ -14,14 +14,14 @@
     <AdornmentContent>
         @if (ShowResetButton)
         {
-            <ButtonIcon OnClick="Reset" title="@SettingResources["Reset"]">
+            <ButtonIcon OnClick="Reset" title="@UiResources["Reset"]">
                 <Icon Svg="@UiIcons.Reset"/>
             </ButtonIcon>
         }
     </AdornmentContent>
 </FormSelect>
 
-@inject IStringLocalizer<SettingsResources> SettingResources
+@inject IStringLocalizer<UiResources> UiResources
 @inject IStringLocalizer<GeneralResources> Resources
 @inject ISettingsService SettingsService
 @implements IDisposable

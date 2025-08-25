@@ -1,11 +1,15 @@
 <div class="h-full flex flex-col">
     <div class="dark:bg-stone-950">
-        @TopContent
+        <AppBar>
+            <AppMinimize/>
+            <AppMaximize/>
+            <AppClose/>
+        </AppBar>
     </div>
     <div class="grow flex flex-nowrap items-stretch">
         <div class="relative overflow-auto min-w-48 z-10">
             <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden dark:bg-stone-950">
-                @LeftContent
+                <SidekickMenu />
             </div>
         </div>
         <div class="h-full flex flex-col grow">
@@ -23,12 +27,6 @@
 </div>
 
 @code {
-
-    [Parameter]
-    public RenderFragment? TopContent { get; set; }
-
-    [Parameter]
-    public RenderFragment? LeftContent { get; set; }
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }

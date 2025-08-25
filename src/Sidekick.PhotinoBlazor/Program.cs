@@ -12,7 +12,6 @@ using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
-using Sidekick.Common.Blazor;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Database;
 using Sidekick.Common.Platform;
@@ -20,6 +19,7 @@ using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
 using Sidekick.Modules.Chat;
+using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Maps;
 using Sidekick.Modules.RegexHotkeys;
@@ -71,7 +71,6 @@ public class Program
 
             // Common
             .AddSidekickCommon()
-            .AddSidekickCommonBlazor()
             .AddSidekickCommonBrowser()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
             .AddSidekickCommonUi()
@@ -89,6 +88,7 @@ public class Program
 
             // Modules
             .AddSidekickChat()
+            .AddSidekickDevelopment()
             .AddSidekickRegexHotkeys()
             .AddSidekickGeneral()
             .AddSidekickMaps()

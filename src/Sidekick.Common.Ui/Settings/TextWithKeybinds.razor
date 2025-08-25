@@ -1,0 +1,36 @@
+@using System.Text.RegularExpressions
+
+@RenderText()
+
+@code {
+
+    [Parameter]
+    public string Text { get; set; } = string.Empty;
+
+    [Parameter]
+    public string?[] Keybinds { get; set; } = [];
+
+    private RenderFragment RenderText() => builder =>
+    {
+        var matches = Regex.Matches(Text, @"\{(\d+)\}");
+        var lastIndex = 0;
+        var sequence = 0;
+
+        foreach (Match match in matches)
+        {
+            var placeholderIndex = int.Parse(match.Groups[1].Value);
+            if (placeholderIndex >= Keybinds.Length) continue;
+
+            builder.AddContent(sequence++, Text.Substring(lastIndex, match.Index - lastIndex));
+
+            builder.OpenComponent<KeybindDisplay>(sequence++);
+            builder.AddAttribute(sequence++, "Keybind", Keybinds[placeholderIndex]);
+            builder.CloseComponent();
+
+            lastIndex = match.Index + match.Length;
+        }
+
+        builder.AddContent(sequence++, Text.Substring(lastIndex));
+    };
+
+}

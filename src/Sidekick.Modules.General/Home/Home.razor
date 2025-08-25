@@ -1,22 +1,20 @@
 @page "/home"
-@using Sidekick.Common.Blazor.Components
-@using Sidekick.Common.Blazor.Settings
-@using Sidekick.Common.Blazor.Settings.Components
+@using Microsoft.Extensions.Localization
+@using Sidekick.Common.Blazor.Home
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Views
+@using Sidekick.Common.Ui.Layouts
+@using Sidekick.Common.Ui.App
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Typography
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Modules.General.Settings
+@using Sidekick.Modules.General.Settings.Components
+@using Sidekick.Common.Ui.Settings
 
 <LayoutMenu>
-    <TopContent>
-        <AppBar>
-            <AppMinimize/>
-            <AppMaximize/>
-            <AppClose/>
-        </AppBar>
-    </TopContent>
-    <LeftContent>
-        <SidekickMenu/>
-    </LeftContent>
     <ChildContent>
         <AppSmallContainer>
             <AppLogo/>

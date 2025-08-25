@@ -1,5 +1,5 @@
-@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Localization
 
 <div class="flex align-center">
     <FormCheckbox Value="@Enabled"
@@ -30,7 +30,7 @@
 </div>
 
 @inject ISettingsService SettingsService
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<UiResources> Resources
 @implements IDisposable
 
 @code {
@@ -73,13 +73,12 @@
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (keys.Contains(SettingKey))
-        {
-            Enabled = await SettingsService.GetBool(SettingKey);
-            ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+        if (!keys.Contains(SettingKey)) return;
 
-            await InvokeAsync(StateHasChanged);
-        }
+        Enabled = await SettingsService.GetBool(SettingKey);
+        ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
+
+        await InvokeAsync(StateHasChanged);
     }
 
     private async Task Reset()

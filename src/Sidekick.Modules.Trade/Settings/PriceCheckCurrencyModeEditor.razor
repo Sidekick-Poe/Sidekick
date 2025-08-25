@@ -1,6 +1,6 @@
-@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Enums
 @using Sidekick.Modules.Trade.Localization
+@using Sidekick.Common.Ui.Localization
 @using Sidekick.Common.Settings
 
 <FormSelect Value="@Value"
@@ -10,14 +10,14 @@
     <AdornmentContent>
         @if (ShowResetButton)
         {
-            <ButtonIcon OnClick="Reset" title="@SettingsResources["Reset"]">
+            <ButtonIcon OnClick="Reset" title="@UiResources["Reset"]">
                 <Icon Svg="@UiIcons.Reset"/>
             </ButtonIcon>
         }
     </AdornmentContent>
 </FormSelect>
 
-@inject IStringLocalizer<SettingsResources> SettingsResources
+@inject IStringLocalizer<UiResources> UiResources
 @inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
 @implements IDisposable

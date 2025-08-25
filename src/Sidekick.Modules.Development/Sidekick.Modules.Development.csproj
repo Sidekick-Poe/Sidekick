@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sidekick.Apis.PoeWiki\Sidekick.Apis.PoeWiki.csproj" />
-    <ProjectReference Include="..\Sidekick.Apis.Poe.Trade\Sidekick.Apis.Poe.Trade.csproj" />
+    <ProjectReference Include="..\Sidekick.Apis.Poe.Trade\Sidekick.Apis.Poe.Trade.csproj"/>
     <ProjectReference Include="..\Sidekick.Common.Ui\Sidekick.Common.Ui.csproj" />
   </ItemGroup>
 

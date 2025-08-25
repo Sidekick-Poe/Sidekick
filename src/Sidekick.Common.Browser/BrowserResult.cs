@@ -2,7 +2,7 @@
 
 public class BrowserResult
 {
-    public Uri? Uri { get; set; }
+    public Uri? Uri { get; init; }
 
     public bool Success { get; init; }
 

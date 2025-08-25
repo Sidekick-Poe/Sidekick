@@ -165,4 +165,61 @@
   <data name="Age_Never" xml:space="preserve">
       <value>never</value>
   </data>
+  <data name="WealthTracker" xml:space="preserve">
+    <value>Wealth Tracker</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+      <value>Settings</value>
+  </data>
+  <data name="Game" xml:space="preserve">
+    <value>Game</value>
+  </data>
+  <data name="Application" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="Price_Check" xml:space="preserve">
+    <value>Price Check</value>
+  </data>
+  <data name="Map_Check" xml:space="preserve">
+    <value>Map Check</value>
+  </data>
+  <data name="Chat_Commands" xml:space="preserve">
+      <value>Chat Commands</value>
+  </data>
+  <data name="Regex_Hotkeys" xml:space="preserve">
+      <value>Regex Hotkeys</value>
+  </data>
+  <data name="Development" xml:space="preserve">
+      <value>Development</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Keybind_Already_In_Use" xml:space="preserve">
+    <value>Keybind {0} is already in use, please choose another one.</value>
+  </data>
+  <data name="Keybind_Active" xml:space="preserve">
+    <value>&lt;Press a key&gt;</value>
+  </data>
+  <data name="Keybind_Unset" xml:space="preserve">
+    <value>&lt;Unset&gt;</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Keybind" xml:space="preserve">
+    <value>Keybind</value>
+  </data>
+  <data name="Restore_Defaults" xml:space="preserve">
+    <value>Restore Defaults</value>
+  </data>
+  <data name="Keybindings" xml:space="preserve">
+    <value>Keybindings</value>
+  </data>
+  <data name="Regex_Hint" xml:space="preserve">
+    <value>Use the "|" character to separate modifiers. The modifier does not need to match exactly, and differences between uppercase and lowercase are ignored. It should match the game's language. E.g. "maximum life|resistance|regen"</value>
+  </data>
 </root>

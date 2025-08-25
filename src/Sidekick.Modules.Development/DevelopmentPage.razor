@@ -1,20 +1,25 @@
 @page "/development"
-@layout MainWindowLayout
 @using Microsoft.Extensions.DependencyInjection
-@using Sidekick.Common.Blazor.Components
 @using Sidekick.Common.Platform
+@using Sidekick.Common.Ui.Views
+@using Sidekick.Common.Ui.App
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Layouts
 
-<AppSmallContainer>
-    <FormFieldset Legend="Custom actions">
-        <div class="flex gap-3">
-            @if (ApplicationService.SupportsKeybinds)
-            {
-                <ButtonPrimary OnClick="RegisterHooks">Bind keyboard hooks</ButtonPrimary>
-            }
-            <ButtonPrimary OnClick="ThrowException">Throw an exception</ButtonPrimary>
-        </div>
-    </FormFieldset>
-</AppSmallContainer>
+<LayoutMenu>
+    <AppSmallContainer>
+        <FormFieldset Legend="Custom actions">
+            <div class="flex gap-3">
+                @if (ApplicationService.SupportsKeybinds)
+                {
+                    <ButtonPrimary OnClick="RegisterHooks">Bind keyboard hooks</ButtonPrimary>
+                }
+                <ButtonPrimary OnClick="ThrowException">Throw an exception</ButtonPrimary>
+            </div>
+        </FormFieldset>
+    </AppSmallContainer>
+</LayoutMenu>
 
 @inject IApplicationService ApplicationService
 @inject IServiceProvider ServiceProvider

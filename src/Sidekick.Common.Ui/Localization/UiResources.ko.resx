@@ -141,4 +141,28 @@
   <data name="Age_Day" xml:space="preserve">
     <value>{0} 일 전</value>
   </data>
+  <data name="Game" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Price_Check" xml:space="preserve">
+    <value>가격 검색</value>
+  </data>
+  <data name="Map_Check" xml:space="preserve">
+    <value>지도 체크</value>
+  </data>
+  <data name="Keybind_Active" xml:space="preserve">
+    <value>키를 입력하세요</value>
+  </data>
+  <data name="Keybind_Unset" xml:space="preserve">
+    <value>&lt;지정 없음&gt;</value>
+  </data>
+  <data name="Restore_Defaults" xml:space="preserve">
+    <value>기본값으로 되돌리기</value>
+  </data>
+  <data name="Keybindings" xml:space="preserve">
+    <value>키바인딩</value>
+  </data>
+  <data name="Regex_Hint" xml:space="preserve">
+    <value />
+  </data>
 </root>
