@@ -8,7 +8,19 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sidekick.Apis.Poe.Trade\Sidekick.Apis.Poe.Trade.csproj" />
-    <ProjectReference Include="..\Sidekick.Common.Blazor\Sidekick.Common.Blazor.csproj" />
+    <ProjectReference Include="..\Sidekick.Common.Ui\Sidekick.Common.Ui.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Settings\Components\KeybindDisplay.razor" />
+    <UpToDateCheckInput Remove="Settings\Components\KeybindEditor.razor" />
+    <UpToDateCheckInput Remove="Settings\Components\KeybindEditorInternal.razor" />
+    <UpToDateCheckInput Remove="Settings\Components\LanguageParserEditor.razor" />
+    <UpToDateCheckInput Remove="Settings\Components\LeagueIdEditor.razor" />
+    <UpToDateCheckInput Remove="Settings\Components\SettingCheckboxEditor.razor" />
+    <UpToDateCheckInput Remove="Settings\Components\SettingKeybindEditor.razor" />
+    <UpToDateCheckInput Remove="Settings\Components\SettingTextEditor.razor" />
+    <UpToDateCheckInput Remove="Settings\Components\TextWithKeybinds.razor" />
   </ItemGroup>
 
 </Project>

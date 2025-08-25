@@ -118,69 +118,59 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>취소</value>
+    <value>Cancel</value>
   </data>
   <data name="Character_League" xml:space="preserve">
-    <value>리그</value>
+    <value>League</value>
   </data>
   <data name="General_Settings" xml:space="preserve">
-    <value>일반 세팅</value>
+    <value>General Settings</value>
   </data>
   <data name="General" xml:space="preserve">
-    <value>일반</value>
-  </data>
-  <data name="Keybindings" xml:space="preserve">
-    <value>키바인딩</value>
+    <value>General</value>
   </data>
   <data name="Other_Settings" xml:space="preserve">
-    <value>설정</value>
-  </data>
-  <data name="Key_Active" xml:space="preserve">
-    <value>키를 입력하세요</value>
-  </data>
-  <data name="Key_Unset" xml:space="preserve">
-    <value>&lt;지정 없음&gt;</value>
+    <value>Other Settings</value>
   </data>
   <data name="Language_Parser" xml:space="preserve">
-    <value>게임 언어</value>
-  </data>
-  <data name="Price_Check" xml:space="preserve">
-    <value>가격 검색</value>
+    <value>Game Language</value>
   </data>
   <data name="Reset_Cache" xml:space="preserve">
-    <value>캐시 초기화</value>
+    <value>Reset Cache</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>저장</value>
+    <value>Save</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>세팅</value>
+    <value>Settings</value>
   </data>
-  <data name="Restore_Defaults" xml:space="preserve">
-    <value>기본값으로 되돌리기</value>
+  <data name="PathOfExile" xml:space="preserve">
+    <value>Path of Exile 1</value>
+    <comment>Used in LeagueIdEditor.razor</comment>
   </data>
-  <data name="Map_Check" xml:space="preserve">
-    <value>지도 체크</value>
+  <data name="PathOfExile2" xml:space="preserve">
+    <value>Path of Exile 2</value>
+    <comment>Used in LeagueIdEditor.razor</comment>
+  </data>
+  <data name="League_Hint" xml:space="preserve">
+    <value>For convenience, Sidekick supports both Path of Exile 2 and Path of Exile 1, simply choose the appropriate league when playing either of them.</value>
+  </data>
+  <data name="OpenHomeOnLaunch" xml:space="preserve">
+    <value>Open home view on launch</value>
   </data>
   <data name="Clear_Filters" xml:space="preserve">
-    <value />
+    <value>Clear filters</value>
   </data>
   <data name="Regex_Hotkeys" xml:space="preserve">
-    <value />
+      <value>Regex Hotkeys</value>
   </data>
-  <data name="Regex_Hint" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Game" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Chat_Commands" xml:space="preserve">
-    <value>채팅 명령어</value>
+  <data name="Overlay_Settings" xml:space="preserve">
+    <value>Overlay Settings</value>
   </data>
   <data name="SilentStart" xml:space="preserve">
-    <value />
+    <value>Initialize in background when starting Sidekick</value>
   </data>
   <data name="OpenHomeOnLaunch_Hint" xml:space="preserve">
-    <value />
+    <value>Ignored if initializing in background is enabled</value>
   </data>
 </root>

@@ -29,9 +29,9 @@ public class TradeApiHandler
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
         request.Headers.TryAddWithoutValidation("X-Powered-By", "Sidekick");
-        await cloudflareService.InitializeHttpRequest(TradeApiApiClient.ClientName, request, cancellationToken);
+        await cloudflareService.InitializeHttpRequest(TradeApiClient.ClientName, request, cancellationToken);
 
-        var limitHandler = limitProvider.Get(TradeApiApiClient.ClientName);
+        var limitHandler = limitProvider.Get(TradeApiClient.ClientName);
         using var lease = await limitHandler.Lease(cancellationToken: cancellationToken);
 
         var response = await base.SendAsync(request, cancellationToken);
@@ -52,7 +52,10 @@ public class TradeApiHandler
 
     private async Task<HttpResponseMessage> HandleRedirect(HttpRequestMessage request, HttpResponseMessage response, CancellationToken cancellationToken)
     {
-        if (response.StatusCode != HttpStatusCode.Moved && response.StatusCode != HttpStatusCode.Redirect && response.StatusCode != HttpStatusCode.RedirectKeepVerb)
+        if (response.StatusCode != HttpStatusCode.Moved
+            && response.StatusCode != HttpStatusCode.MovedPermanently
+            && response.StatusCode != HttpStatusCode.Redirect
+            && response.StatusCode != HttpStatusCode.RedirectKeepVerb)
         {
             return response;
         }
@@ -94,7 +97,7 @@ public class TradeApiHandler
         logger.LogInformation("[PoeTradeHandler] Received 403 response, attempting to handle Cloudflare challenge");
 
         // Show WebView2 window and wait for challenge completion
-        var success = await cloudflareService.Challenge(TradeApiApiClient.ClientName, request.RequestUri!, cancellationToken);
+        var success = await cloudflareService.Challenge(TradeApiClient.ClientName, request.RequestUri!, cancellationToken);
         if (!success)
         {
             logger.LogWarning("[PoeTradeHandler] Failed to complete Cloudflare challenge");
@@ -102,7 +105,7 @@ public class TradeApiHandler
         }
 
         // Retry the request with new cookies
-        await cloudflareService.InitializeHttpRequest(TradeApiApiClient.ClientName, request, cancellationToken);
+        await cloudflareService.InitializeHttpRequest(TradeApiClient.ClientName, request, cancellationToken);
 
         var retryResponse = await base.SendAsync(request, cancellationToken);
         if (retryResponse.IsSuccessStatusCode)
@@ -116,7 +119,6 @@ public class TradeApiHandler
 
         return retryResponse;
     }
-
 
     private async Task LogRequest(HttpRequestMessage request, HttpResponseMessage response, CancellationToken cancellationToken = default)
     {
@@ -133,6 +135,8 @@ public class TradeApiHandler
 
         var content = await response.Content.ReadAsStringAsync(cancellationToken);
         logger.LogWarning("[PoeTradeHandler] Response: {responseCode} {responseMessage}", response.StatusCode, content);
+
+        throw new SidekickException("[Trade Client] Could not understand the API response.");
     }
 
     private async Task HandleBadRequest(HttpResponseMessage response, CancellationToken cancellationToken)

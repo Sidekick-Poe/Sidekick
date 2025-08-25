@@ -1,5 +1,5 @@
-﻿@using Sidekick.Common.Blazor.Settings
-@using Sidekick.Common.Platform
+﻿@using Sidekick.Common.Platform
+@using Sidekick.Common.Ui.Localization
 @using System.Diagnostics
 @inherits LayoutComponentBase
 
@@ -19,17 +19,12 @@
         <MenuItem Href="/settings/regexhotkeys">@Resources["Regex_Hotkeys"]</MenuItem>
     }
 
-    @if (Debugger.IsAttached && false)
-    {
-        <MenuItem Href="/settings/wealth">@Resources["WealthTracker"]</MenuItem>
-    }
-
     <MenuItem Href="/settings/about">@Resources["About"]</MenuItem>
 
     @if (Debugger.IsAttached)
     {
         <MenuLegend Legend="@Resources["Development"]" />
-        <MenuItem Href="/development">Development</MenuItem>
+        <MenuItem Href="/development">@Resources["Development"]</MenuItem>
     }
 
     <div class="grow"></div>
@@ -39,5 +34,5 @@
     </div>
 </MenuList>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<UiResources> Resources
 @inject IApplicationService ApplicationService

@@ -26,10 +26,10 @@ public static class StartupExtensions
     {
         services.AddTransient<TradeApiHandler>();
 
-        services.AddHttpClient(TradeApiApiClient.ClientName)
+        services.AddHttpClient(TradeApiClient.ClientName)
             .AddHttpMessageHandler<TradeApiHandler>();
 
-        services.AddTransient<ITradeApiClient, TradeApiApiClient>();
+        services.AddTransient<ITradeApiClient, TradeApiClient>();
         services.AddTransient<PoeResources>();
 
         services.AddSingleton<ITradeSearchService, TradeSearchService>();

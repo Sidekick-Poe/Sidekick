@@ -145,7 +145,7 @@ public class TradeSearchService
             var json = JsonSerializer.Serialize(request, JsonSerializerOptions);
 
             using var body = new StringContent(json, Encoding.UTF8, "application/json");
-            using var httpClient = httpClientFactory.CreateClient(TradeApiApiClient.ClientName);
+            using var httpClient = httpClientFactory.CreateClient(TradeApiClient.ClientName);
             var response = await httpClient.PostAsync(uri, body);
 
             var content = await response.Content.ReadAsStreamAsync();
@@ -330,7 +330,7 @@ public class TradeSearchService
         {
             logger.LogInformation($"[Trade API] Fetching Trade API Listings from Query {queryId}.");
 
-            using var httpClient = httpClientFactory.CreateClient(TradeApiApiClient.ClientName);
+            using var httpClient = httpClientFactory.CreateClient(TradeApiClient.ClientName);
             var response = await httpClient.GetAsync(await GetBaseApiUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId);
             if (!response.IsSuccessStatusCode)
             {

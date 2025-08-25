@@ -1,5 +1,5 @@
 @using Sidekick.Common.Platform
-@using Sidekick.Common.Blazor.Settings
+@using Sidekick.Common.Ui.Localization
 @implements IDisposable
 
 <div>
@@ -43,7 +43,7 @@
     }
 </div>
 
-@inject IStringLocalizer<SettingsResources> Resources
+@inject IStringLocalizer<UiResources> Resources
 @inject IKeyboardProvider Keyboard
 @inject IJSRuntime JsRuntime
 
@@ -74,9 +74,9 @@
 
     protected string Id { get; } = UiUtilities.GenerateId();
 
-    private bool IsDuplicated { get; set; } = false;
+    private bool IsDuplicated { get; set; }
 
-    private string? DuplicatedKey { get; set; } = null;
+    private string? DuplicatedKey { get; set; }
 
     private string? InputValue
     {
@@ -84,10 +84,10 @@
         {
             if (IsActive)
             {
-                return Resources["Key_Active"];
+                return Resources["Keybind_Active"];
             }
 
-            return string.IsNullOrEmpty(Value) ? Resources["Key_Unset"] : Value;
+            return string.IsNullOrEmpty(Value) ? Resources["Keybind_Unset"] : Value;
         }
     }
 
@@ -100,7 +100,7 @@
 
     private async Task RemoveFocusAsync()
     {
-        Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Blazor/Settings/Components/KeybindEditorInternal.razor.js");
+        Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/Settings/KeybindEditorInternal.razor.js");
         await Module.InvokeVoidAsync("removeFocus", Id);
     }
 

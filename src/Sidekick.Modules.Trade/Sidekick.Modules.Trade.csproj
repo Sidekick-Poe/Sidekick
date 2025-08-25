@@ -16,7 +16,7 @@
     <ProjectReference Include="..\Sidekick.Apis.PoePriceInfo\Sidekick.Apis.PoePriceInfo.csproj" />
     <ProjectReference Include="..\Sidekick.Apis.PoeWiki\Sidekick.Apis.PoeWiki.csproj" />
     <ProjectReference Include="..\Sidekick.Apis.Poe.Trade\Sidekick.Apis.Poe.Trade.csproj" />
-    <ProjectReference Include="..\Sidekick.Common.Blazor\Sidekick.Common.Blazor.csproj" />
+    <ProjectReference Include="..\Sidekick.Common.Ui\Sidekick.Common.Ui.csproj" />
   </ItemGroup>
 
 </Project>

@@ -118,102 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>Annuler</value>
+    <value>취소</value>
   </data>
   <data name="Character_League" xml:space="preserve">
-    <value>Ligue</value>
+    <value>리그</value>
   </data>
   <data name="General_Settings" xml:space="preserve">
-    <value>Configurations générales</value>
+    <value>일반 세팅</value>
   </data>
   <data name="General" xml:space="preserve">
-    <value>Général</value>
-  </data>
-  <data name="Keybindings" xml:space="preserve">
-    <value>Raccourcis clavier</value>
+    <value>일반</value>
   </data>
   <data name="Other_Settings" xml:space="preserve">
-    <value>Autres configurations</value>
-  </data>
-  <data name="Keybind_Already_In_Use" xml:space="preserve">
-    <value>Raccourci {0} déjà utilisé, veuillez en choisir un autre.</value>
-  </data>
-  <data name="Key_Active" xml:space="preserve">
-    <value>&lt;Appuyez sur une touche&gt;</value>
-  </data>
-  <data name="Key_Unset" xml:space="preserve">
-    <value>&lt;Non défini&gt;</value>
+    <value>설정</value>
   </data>
   <data name="Language_Parser" xml:space="preserve">
-    <value>Langue du jeu</value>
-  </data>
-  <data name="Price_Check" xml:space="preserve">
-    <value>Vérificateur de prix</value>
+    <value>게임 언어</value>
   </data>
   <data name="Reset_Cache" xml:space="preserve">
-    <value>Réinitialiser la cache</value>
+    <value>캐시 초기화</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Sauvegarder</value>
+    <value>저장</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Configurations</value>
-  </data>
-  <data name="Restore_Defaults" xml:space="preserve">
-    <value>Restaurer les valeurs par défaut</value>
-  </data>
-  <data name="Map_Check" xml:space="preserve">
-    <value>Vérificateur de carte</value>
-  </data>
-  <data name="League_Hint" xml:space="preserve">
-    <value>Sidekick supporte à la fois Path of Exile 1 et Path of Exile 2, veuillez choisir la ligue correspondante lorsque vous jouez à l'un ou l'autre.</value>
-  </data>
-  <data name="About" xml:space="preserve">
-    <value>À propos</value>
-  </data>
-  <data name="Keybind" xml:space="preserve">
-    <value>Raccourci</value>
-  </data>
-  <data name="OpenHomeOnLaunch" xml:space="preserve">
-    <value>Afficher l'accueil au lancement</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Configurations</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>Accueil</value>
-  </data>
-  <data name="Clear" xml:space="preserve">
-    <value>Effacer</value>
+    <value>세팅</value>
   </data>
   <data name="Clear_Filters" xml:space="preserve">
-    <value>Retirer les filtres</value>
-  </data>
-  <data name="Reset" xml:space="preserve">
-    <value>Restaurer</value>
+    <value />
   </data>
   <data name="Regex_Hotkeys" xml:space="preserve">
-    <value>Raccourcis regex</value>
-  </data>
-  <data name="Regex_Hint" xml:space="preserve">
-    <value>Utilisez le caractère "|" pour séparer les modificateurs. Il n'est pas nécessaire de correspondre exactement au modificateur, et la distinction entre majuscules et minuscules est ignorée. Doit correspondre à la langue du jeu. Ex: "vie maximale|résistance|régénérée"</value>
-  </data>
-  <data name="Application" xml:space="preserve">
-    <value>Application</value>
-  </data>
-  <data name="Game" xml:space="preserve">
-    <value>Jeu</value>
-  </data>
-  <data name="Overlay_Settings" xml:space="preserve">
-    <value>Paramètres de fenêtre</value>
-  </data>
-  <data name="Chat_Commands" xml:space="preserve">
-    <value>Commandes de chat</value>
+    <value />
   </data>
   <data name="SilentStart" xml:space="preserve">
-    <value>Initialiser en arrière-plan lors du démarrage de Sidekick</value>
+    <value />
   </data>
   <data name="OpenHomeOnLaunch_Hint" xml:space="preserve">
-    <value>Ignoré si initialiser en arrière-plan est activé</value>
+    <value />
   </data>
 </root>

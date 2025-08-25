@@ -1,6 +1,7 @@
-@using Sidekick.Common.Blazor.Settings.Components
 @using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Localization
 @using Sidekick.Modules.RegexHotkeys.Localization
+@using Sidekick.Common.Ui.Settings
 
 @foreach (var regexHotkey in RegexHotkeys)
 {
@@ -22,7 +23,7 @@
 
         <div class="flex justify-between items-end gap-2">
             <div class="w-1/2">
-                <KeybindEditor Label="@Resources["Keybind"]"
+                <KeybindEditor Label="@UiResources["Keybind"]"
                                Value="@regexHotkey.Key"
                                ValueChanged="(x) => KeyChanged(regexHotkey, x)" />
             </div>
@@ -39,6 +40,7 @@
     </div>
 </FormFieldset>
 
+@inject IStringLocalizer<UiResources> UiResources
 @inject IStringLocalizer<RegexHotkeysResources> Resources
 @inject ISettingsService SettingsService
 @implements IDisposable
@@ -58,11 +60,10 @@
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (keys.Contains(SettingKey))
-        {
-            RegexHotkeys = await SettingsService.GetObject<List<RegexHotkey>>(SettingKey) ?? [];
-            await InvokeAsync(StateHasChanged);
-        }
+        if (!keys.Contains(SettingKey)) return;
+
+        RegexHotkeys = await SettingsService.GetObject<List<RegexHotkey>>(SettingKey) ?? [];
+        await InvokeAsync(StateHasChanged);
     }
 
     private async Task RegexChanged(RegexHotkey regexHotkey, string? regex)
