@@ -118,113 +118,51 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annuler</value>
   </data>
   <data name="Character_League" xml:space="preserve">
-    <value>League</value>
+    <value>Ligue</value>
   </data>
   <data name="General_Settings" xml:space="preserve">
-    <value>General Settings</value>
+    <value>Configurations générales</value>
   </data>
   <data name="General" xml:space="preserve">
-    <value>General</value>
-  </data>
-  <data name="Keybindings" xml:space="preserve">
-    <value>Keybindings</value>
+    <value>Général</value>
   </data>
   <data name="Other_Settings" xml:space="preserve">
-    <value>Other Settings</value>
-  </data>
-  <data name="Keybind_Already_In_Use" xml:space="preserve">
-    <value>Keybind {0} is already in use, please choose another one.</value>
-  </data>
-  <data name="Key_Active" xml:space="preserve">
-    <value>&lt;Press a key&gt;</value>
-  </data>
-  <data name="Key_Unset" xml:space="preserve">
-    <value>&lt;Unset&gt;</value>
+    <value>Autres configurations</value>
   </data>
   <data name="Language_Parser" xml:space="preserve">
-    <value>Game Language</value>
-  </data>
-  <data name="Price_Check" xml:space="preserve">
-    <value>Price Check</value>
+    <value>Langue du jeu</value>
   </data>
   <data name="Reset_Cache" xml:space="preserve">
-    <value>Reset Cache</value>
+    <value>Réinitialiser la cache</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Sauvegarder</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="Restore_Defaults" xml:space="preserve">
-    <value>Restore Defaults</value>
-  </data>
-  <data name="WealthTracker" xml:space="preserve">
-    <value>Wealth Tracker</value>
-  </data>
-  <data name="Map_Check" xml:space="preserve">
-    <value>Map Check</value>
-  </data>
-  <data name="PathOfExile" xml:space="preserve">
-    <value>Path of Exile 1</value>
-    <comment>Used in LeagueIdEditor.razor</comment>
-  </data>
-  <data name="PathOfExile2" xml:space="preserve">
-    <value>Path of Exile 2</value>
-    <comment>Used in LeagueIdEditor.razor</comment>
+    <value>Configurations</value>
   </data>
   <data name="League_Hint" xml:space="preserve">
-    <value>For convenience, Sidekick supports both Path of Exile 2 and Path of Exile 1, simply choose the appropriate league when playing either of them.</value>
-  </data>
-  <data name="About" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="Keybind" xml:space="preserve">
-    <value>Keybind</value>
+    <value>Sidekick supporte à la fois Path of Exile 1 et Path of Exile 2, veuillez choisir la ligue correspondante lorsque vous jouez à l'un ou l'autre.</value>
   </data>
   <data name="OpenHomeOnLaunch" xml:space="preserve">
-    <value>Open home view on launch</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
+    <value>Afficher l'accueil au lancement</value>
   </data>
   <data name="Clear_Filters" xml:space="preserve">
-    <value>Clear filters</value>
-  </data>
-  <data name="Reset" xml:space="preserve">
-    <value>Reset</value>
+    <value>Retirer les filtres</value>
   </data>
   <data name="Regex_Hotkeys" xml:space="preserve">
-    <value>Regex hotkeys</value>
-  </data>
-  <data name="Regex_Hint" xml:space="preserve">
-    <value>Use the "|" character to separate modifiers. The modifier does not need to match exactly, and differences between uppercase and lowercase are ignored. It should match the game's language. E.g. "maximum life|resistance|regen"</value>
-  </data>
-  <data name="Application" xml:space="preserve">
-    <value>Application</value>
-  </data>
-  <data name="Game" xml:space="preserve">
-    <value>Game</value>
+    <value>Raccourcis regex</value>
   </data>
   <data name="Overlay_Settings" xml:space="preserve">
-    <value>Overlay Settings</value>
-  </data>
-  <data name="Chat_Commands" xml:space="preserve">
-    <value>Chat Commands</value>
+    <value>Paramètres de fenêtre</value>
   </data>
   <data name="SilentStart" xml:space="preserve">
-    <value>Initialize in background when starting Sidekick</value>
+    <value>Initialiser en arrière-plan lors du démarrage de Sidekick</value>
   </data>
   <data name="OpenHomeOnLaunch_Hint" xml:space="preserve">
-    <value>Ignored if initializing in background is enabled</value>
+    <value>Ignoré si initialiser en arrière-plan est activé</value>
   </data>
 </root>

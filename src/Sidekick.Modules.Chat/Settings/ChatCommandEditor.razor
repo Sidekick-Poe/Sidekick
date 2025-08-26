@@ -1,10 +1,10 @@
 @using Microsoft.Extensions.Localization
-@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Settings
-@using Sidekick.Common.Blazor.Settings.Components
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Localization
 @using Sidekick.Modules.Chat.Localization
+@using Sidekick.Common.Ui.Settings
 
 @foreach (var chatSetting in ChatSettings)
 {
@@ -16,7 +16,7 @@
             </div>
             <div class="col-span-6">
                 <KeybindEditor Value="@chatSetting.Key" ValueChanged="(v) => KeyChanged(chatSetting, v)"
-                    Label="@SettingResources["Keybind"]" />
+                    Label="@UiResources["Keybind"]" />
             </div>
         </div>
 
@@ -39,7 +39,7 @@
     </div>
 </FormFieldset>
 
-@inject IStringLocalizer<SettingsResources> SettingResources
+@inject IStringLocalizer<UiResources> UiResources
 @inject IStringLocalizer<ChatResources> Resources
 @inject ISettingsService SettingsService
 @implements IDisposable

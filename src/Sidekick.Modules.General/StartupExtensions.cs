@@ -1,6 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common;
+using Sidekick.Common.Blazor.Initialization;
 using Sidekick.Modules.General.Keybinds;
+using Sidekick.Modules.General.Settings;
 
 namespace Sidekick.Modules.General;
 
@@ -24,6 +26,9 @@ public static class StartupExtensions
         services.AddSidekickInputHandler<OpenWikiPageKeybindHandler>();
         services.AddSidekickInputHandler<OpenInCraftOfExileHandler>();
         services.AddSidekickInputHandler<MouseWheelHandler>();
+
+        services.AddTransient<InitializationResources>();
+        services.AddTransient<SettingsResources>();
 
         return services;
     }

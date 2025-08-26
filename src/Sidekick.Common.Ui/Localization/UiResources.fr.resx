@@ -162,4 +162,58 @@
   <data name="Age_Never" xml:space="preserve">
       <value>jamais</value>
   </data>
+  <data name="About" xml:space="preserve">
+    <value>À propos</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+      <value>Configurations</value>
+  </data>
+  <data name="Game" xml:space="preserve">
+    <value>Jeu</value>
+  </data>
+  <data name="Application" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="Price_Check" xml:space="preserve">
+    <value>Vérificateur de prix</value>
+  </data>
+  <data name="Map_Check" xml:space="preserve">
+    <value>Vérificateur de carte</value>
+  </data>
+  <data name="Chat_Commands" xml:space="preserve">
+      <value>Commandes de chat</value>
+  </data>
+  <data name="Regex_Hotkeys" xml:space="preserve">
+      <value>Raccourcis regex</value>
+  </data>
+  <data name="Development" xml:space="preserve">
+      <value>Développement</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Effacer</value>
+  </data>
+  <data name="Keybind_Already_In_Use" xml:space="preserve">
+    <value>Raccourci {0} déjà utilisé, veuillez en choisir un autre.</value>
+  </data>
+  <data name="Keybind_Active" xml:space="preserve">
+    <value>&lt;Appuyez sur une touche&gt;</value>
+  </data>
+  <data name="Keybind_Unset" xml:space="preserve">
+    <value>&lt;Non défini&gt;</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Restaurer</value>
+  </data>
+  <data name="Keybind" xml:space="preserve">
+    <value>Raccourci</value>
+  </data>
+  <data name="Restore_Defaults" xml:space="preserve">
+    <value>Restaurer les valeurs par défaut</value>
+  </data>
+  <data name="Keybindings" xml:space="preserve">
+    <value>Raccourcis clavier</value>
+  </data>
+  <data name="Regex_Hint" xml:space="preserve">
+    <value>Utilisez le caractère "|" pour séparer les modificateurs. Il n'est pas nécessaire de correspondre exactement au modificateur, et la distinction entre majuscules et minuscules est ignorée. Doit correspondre à la langue du jeu. Ex: "vie maximale|résistance|régénérée"</value>
+  </data>
 </root>

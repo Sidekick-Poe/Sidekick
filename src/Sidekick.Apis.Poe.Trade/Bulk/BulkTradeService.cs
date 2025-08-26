@@ -81,7 +81,7 @@ public class BulkTradeService(
 
         var json = JsonSerializer.Serialize(model, JsonSerializerOptions);
         using var body = new StringContent(json, Encoding.UTF8, "application/json");
-        using var httpClient = httpClientFactory.CreateClient(TradeApiApiClient.ClientName);
+        using var httpClient = httpClientFactory.CreateClient(TradeApiClient.ClientName);
         var response = await httpClient.PostAsync(uri, body);
 
         var content = await response.Content.ReadAsStringAsync();

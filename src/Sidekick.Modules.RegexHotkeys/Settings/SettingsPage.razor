@@ -1,36 +1,36 @@
 @page "/settings/regexhotkeys"
-@using Sidekick.Common.Blazor.Components
-@using Sidekick.Common.Blazor.Settings
 @using Sidekick.Common.Browser
 @using Sidekick.Modules.RegexHotkeys.Localization
+@using Sidekick.Common.Ui.Localization
 @using Sidekick.Common.Settings
-@layout MainWindowLayout
 
-<AppContainer>
-    <FormFieldset Legend="@Resources["Regex_Hotkeys"]">
-        <div>
-            <TextBase Class="whitespace-pre-wrap">@Resources["Regex_Hotkeys_Description"]</TextBase>
+<LayoutMenu>
+    <AppContainer>
+        <FormFieldset Legend="@Resources["Regex_Hotkeys"]">
+            <div>
+                <TextBase Class="whitespace-pre-wrap">@Resources["Regex_Hotkeys_Description"]</TextBase>
 
-            <div class="my-3 flex gap-2">
-                <TextBase>@Resources["PathOfExile"] - </TextBase>
-                <ButtonLink OnClick="() => Browser.OpenUri(PathOfRegexWebsitePoE1)">@PathOfRegexWebsitePoE1</ButtonLink>
+                <div class="my-3 flex gap-2">
+                    <TextBase>@Resources["PathOfExile"] - </TextBase>
+                    <ButtonLink OnClick="() => Browser.OpenUri(PathOfRegexWebsitePoE1)">@PathOfRegexWebsitePoE1</ButtonLink>
+                </div>
+                <div class="flex gap-2">
+                    <TextBase>@Resources["PathOfExile2"] - </TextBase>
+                    <ButtonLink OnClick="() => Browser.OpenUri(PathOfRegexWebsitePoE2)">@PathOfRegexWebsitePoE2</ButtonLink>
+                </div>
             </div>
-            <div class="flex gap-2">
-                <TextBase>@Resources["PathOfExile2"] - </TextBase>
-                <ButtonLink OnClick="() => Browser.OpenUri(PathOfRegexWebsitePoE2)">@PathOfRegexWebsitePoE2</ButtonLink>
-            </div>
+        </FormFieldset>
+
+        <RegexHotkeysEditor />
+
+        <div class="flex justify-center mb-1">
+            <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
         </div>
-    </FormFieldset>
-
-    <RegexHotkeysEditor />
-
-    <div class="flex justify-center mb-1">
-        <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@SettingsResources["Restore_Defaults"]</ButtonPrimary>
-    </div>
-</AppContainer>
+    </AppContainer>
+</LayoutMenu>
 
 @inject IStringLocalizer<RegexHotkeysResources> Resources
-@inject IStringLocalizer<SettingsResources> SettingsResources
+@inject IStringLocalizer<UiResources> UiResources
 @inject IBrowserProvider Browser
 @inject ICurrentView CurrentView
 @inject ISettingsService SettingsService

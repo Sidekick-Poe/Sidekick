@@ -1,51 +1,54 @@
 @using Microsoft.Extensions.Localization
-@using Sidekick.Common.Blazor.Components
-@using Sidekick.Common.Blazor.Settings
-@using Sidekick.Common.Blazor.Settings.Components
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Views
 @using Sidekick.Common.Ui.Buttons
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.App
+@using Sidekick.Common.Ui.Layouts
+@using Sidekick.Common.Ui.Localization
 @using Sidekick.Modules.General.Localization
+@using Sidekick.Modules.General.Settings.Components
+@using Sidekick.Common.Ui.Settings
 
-<AppSmallContainer>
-    <FormFieldset Legend="@SettingsResources["General_Settings"]">
-        <InterfaceLanguageEditor/>
-        <ZoomEditor/>
+<LayoutMenu>
+    <AppSmallContainer>
+        <FormFieldset Legend="@SettingsResources["General_Settings"]">
+            <InterfaceLanguageEditor/>
+            <ZoomEditor/>
+            @if (ApplicationService.SupportsKeybinds)
+            {
+                <SettingCheckboxEditor SettingKey="@SettingKeys.RetainClipboard"
+                                       Label="@Resources["General_RetainClipboard"]"/>
+            }
+            <SettingCheckboxEditor SettingKey="@SettingKeys.SilentStart" Label="@SettingsResources["SilentStart"]" />
+            <SettingCheckboxEditor SettingKey="@SettingKeys.OpenHomeOnLaunch" Label="@SettingsResources["OpenHomeOnLaunch"]" Tooltip="@SettingsResources["OpenHomeOnLaunch_Hint"]" />
+        </FormFieldset>
+
         @if (ApplicationService.SupportsKeybinds)
         {
-            <SettingCheckboxEditor SettingKey="@SettingKeys.RetainClipboard"
-                                   Label="@Resources["General_RetainClipboard"]"/>
+            <FormFieldset Legend="@SettingsResources["Overlay_Settings"]">
+                <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
+                <SettingCheckboxEditor SettingKey="@SettingKeys.SaveWindowPositions"
+                                       Label="@Resources["SaveWindowPositions"]"/>
+                <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayCloseWithMouse"
+                                       Label="@Resources["OverlayCloseWithMouse"]"/>
+                <SettingCheckboxEditor SettingKey="@SettingKeys.EscapeClosesOverlays"
+                                       Label="@Resources["EscapeClosesOverlays"]"/>
+            </FormFieldset>
         }
-        <SettingCheckboxEditor SettingKey="@SettingKeys.SilentStart" Label="@SettingsResources["SilentStart"]" />
-        <SettingCheckboxEditor SettingKey="@SettingKeys.OpenHomeOnLaunch" Label="@SettingsResources["OpenHomeOnLaunch"]" Tooltip="@SettingsResources["OpenHomeOnLaunch_Hint"]" />
-    </FormFieldset>
 
-    @if (ApplicationService.SupportsKeybinds)
-    {
-        <FormFieldset Legend="@SettingsResources["Overlay_Settings"]">
-            <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
-            <SettingCheckboxEditor SettingKey="@SettingKeys.SaveWindowPositions"
-                                   Label="@Resources["SaveWindowPositions"]"/>
-            <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayCloseWithMouse"
-                                   Label="@Resources["OverlayCloseWithMouse"]"/>
-            <SettingCheckboxEditor SettingKey="@SettingKeys.EscapeClosesOverlays"
-                                   Label="@Resources["EscapeClosesOverlays"]"/>
-        </FormFieldset>
-    }
-
-    <div class="flex justify-center mb-1">
-        <ButtonPrimary Disabled="!AreSettingsModified"
-                       OnClick="RestoreDefaults">@SettingsResources["Restore_Defaults"]</ButtonPrimary>
-    </div>
-</AppSmallContainer>
+        <div class="flex justify-center mb-1">
+            <ButtonPrimary Disabled="!AreSettingsModified"
+                           OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
+        </div>
+    </AppSmallContainer>
+</LayoutMenu>
 
 @page "/settings/application"
-@layout MainWindowLayout
 @implements IDisposable
 @inject IStringLocalizer<SettingsResources> SettingsResources
+@inject IStringLocalizer<UiResources> UiResources
 @inject IStringLocalizer<GeneralResources> Resources
 @inject IApplicationService ApplicationService
 @inject ICurrentView CurrentView

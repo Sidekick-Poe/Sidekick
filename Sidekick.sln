@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution", "_Solution", "{9B41443D-4D1E-4DF3-9DA5-522B0AAB40A0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Configuration", "_Configuration", "{9B41443D-4D1E-4DF3-9DA5-522B0AAB40A0}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.filenesting.json = .filenesting.json
@@ -23,8 +23,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1D8BF515-81E9-4769-9B27-24DFB8D8BDCC}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Common.Blazor", "src\Sidekick.Common.Blazor\Sidekick.Common.Blazor.csproj", "{A78010BD-2B6B-4D13-A1A5-F90B1C395C1A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Common", "src\Sidekick.Common\Sidekick.Common.csproj", "{484EAA27-27A0-4B0E-BA43-B5047D697CAE}"
 EndProject
@@ -78,6 +76,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Modules.RegexHotke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Browser", "src\Sidekick.Common.Browser\Sidekick.Common.Browser.csproj", "{FC7FC285-CE31-4983-9FC6-E897478A240F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Data", "_Data", "{DCD756EF-4846-42C1-B17E-46918E8BF6F2}"
+	ProjectSection(SolutionItems) = preProject
+		data\download.js = data\download.js
+		data\package.json = data\package.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Modules.Development", "src\Sidekick.Modules.Development\Sidekick.Modules.Development.csproj", "{6802359E-B82B-4828-990D-15A5240A884D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,14 +92,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A78010BD-2B6B-4D13-A1A5-F90B1C395C1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A78010BD-2B6B-4D13-A1A5-F90B1C395C1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A78010BD-2B6B-4D13-A1A5-F90B1C395C1A}.Linux-Debug|Any CPU.ActiveCfg = Linux-Debug|Any CPU
-		{A78010BD-2B6B-4D13-A1A5-F90B1C395C1A}.Linux-Debug|Any CPU.Build.0 = Linux-Debug|Any CPU
-		{A78010BD-2B6B-4D13-A1A5-F90B1C395C1A}.Linux-Release|Any CPU.ActiveCfg = Linux-Release|Any CPU
-		{A78010BD-2B6B-4D13-A1A5-F90B1C395C1A}.Linux-Release|Any CPU.Build.0 = Linux-Release|Any CPU
-		{A78010BD-2B6B-4D13-A1A5-F90B1C395C1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A78010BD-2B6B-4D13-A1A5-F90B1C395C1A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{484EAA27-27A0-4B0E-BA43-B5047D697CAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{484EAA27-27A0-4B0E-BA43-B5047D697CAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{484EAA27-27A0-4B0E-BA43-B5047D697CAE}.Linux-Debug|Any CPU.ActiveCfg = Linux-Debug|Any CPU
@@ -286,12 +284,19 @@ Global
 		{FC7FC285-CE31-4983-9FC6-E897478A240F}.Linux-Release|Any CPU.Build.0 = Debug|Any CPU
 		{FC7FC285-CE31-4983-9FC6-E897478A240F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC7FC285-CE31-4983-9FC6-E897478A240F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6802359E-B82B-4828-990D-15A5240A884D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6802359E-B82B-4828-990D-15A5240A884D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6802359E-B82B-4828-990D-15A5240A884D}.Linux-Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6802359E-B82B-4828-990D-15A5240A884D}.Linux-Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6802359E-B82B-4828-990D-15A5240A884D}.Linux-Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{6802359E-B82B-4828-990D-15A5240A884D}.Linux-Release|Any CPU.Build.0 = Debug|Any CPU
+		{6802359E-B82B-4828-990D-15A5240A884D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6802359E-B82B-4828-990D-15A5240A884D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{A78010BD-2B6B-4D13-A1A5-F90B1C395C1A} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
 		{484EAA27-27A0-4B0E-BA43-B5047D697CAE} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
 		{3A9B57B9-08B5-4CA7-9B24-DAFB2E3438FF} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
 		{99FA103B-2815-413F-AC37-05DDBE3FBF0A} = {7285BD58-2544-44AA-8488-52EA8E55D239}
@@ -313,6 +318,7 @@ Global
 		{AD154539-2E18-47AC-9A6B-CF56E15C97AC} = {7285BD58-2544-44AA-8488-52EA8E55D239}
 		{B84D39FB-E519-77E1-68F5-33F2FABF1938} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 		{FC7FC285-CE31-4983-9FC6-E897478A240F} = {E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}
+		{6802359E-B82B-4828-990D-15A5240A884D} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17B5631D-95B3-4007-BE6B-C9BBE799D014}
