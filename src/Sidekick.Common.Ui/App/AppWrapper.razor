@@ -51,10 +51,16 @@
     {
         if (firstRender)
         {
-            Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/App/AppWrapper.razor.js");
-            ZoomHandler = await Module.InvokeAsync<IJSObjectReference>("initializeZoomHandling");
-
-            await UpdateZoom();
+            try
+            {
+                Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/App/AppWrapper.razor.js");
+                ZoomHandler = await Module.InvokeAsync<IJSObjectReference>("initializeZoomHandling");
+                await UpdateZoom();
+            }
+            catch (Exception)
+            {
+                // Do nothing if the zoom handler fails to load.
+            }
         }
 
         await base.OnAfterRenderAsync(firstRender);

@@ -24,6 +24,8 @@ using Sidekick.Web;
 using Sidekick.Web.Services;
 using Velopack;
 
+VelopackApp.Build().Run();
+
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
     Args = args,
@@ -73,9 +75,6 @@ builder.Services.AddSingleton(sp => (WebViewLocator)sp.GetRequiredService<IViewL
 #endregion Services
 
 var app = builder.Build();
-
-var logger = app.Services.GetRequiredService<ILogger<Program>>();
-VelopackApp.Build().Run(logger);
 
 #region Pipeline
 
