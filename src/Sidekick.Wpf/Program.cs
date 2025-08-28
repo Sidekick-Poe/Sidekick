@@ -44,11 +44,10 @@ public class Program
     {
         try
         {
-            ServiceProvider = GetServiceProvider();
-            var logger = ServiceProvider.GetRequiredService<ILogger<App>>();
-
             // It's important to Run() the VelopackApp as early as possible in app startup.
-            VelopackApp.Build().Run(logger);
+            VelopackApp.Build().Run();
+
+            ServiceProvider = GetServiceProvider();
 
             // We can now launch the WPF application as normal.
             var app = new App();

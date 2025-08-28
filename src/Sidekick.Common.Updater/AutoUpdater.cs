@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Common.Exceptions;
 using Velopack;
 using Velopack.Locators;
+using Velopack.Logging;
 
 namespace Sidekick.Common.Updater;
 
@@ -16,14 +17,7 @@ public class AutoUpdater : IAutoUpdater
     {
         this.logger = logger;
         var source = new Velopack.Sources.GithubSource("https://github.com/Sidekick-Poe/Sidekick", null, true);
-
-        IVelopackLocator? locator = null;
-        if (Debugger.IsAttached)
-        {
-            locator = new DebugLocator();
-        }
-
-        Manager = new UpdateManager(source, null, logger, locator);
+        Manager = new UpdateManager(source);
     }
 
     public bool IsUpdaterInstalled()

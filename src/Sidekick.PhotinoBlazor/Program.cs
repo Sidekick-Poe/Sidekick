@@ -35,13 +35,11 @@ public class Program
     [STAThread]
     static void Main(string[] args)
     {
+        VelopackApp.Build().Run();
+
         var photinoBlazorAppBuilder = PhotinoBlazorAppBuilder.CreateDefault(args);
         AddServices(photinoBlazorAppBuilder.Services);
-        var serviceProvider = photinoBlazorAppBuilder.Services.BuildServiceProvider();
-        var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
-
-        VelopackApp.Build().Run(logger);
-
+        photinoBlazorAppBuilder.Services.BuildServiceProvider();
         photinoBlazorAppBuilder.RootComponents.Add<SidekickPhotinoBlazorWrapper>("#app");
 
         var app = photinoBlazorAppBuilder.Build();
