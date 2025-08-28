@@ -1,8 +1,7 @@
 using System.Globalization;
-using System.IO;
+using System.Windows.Controls;
+using Hardcodet.Wpf.TaskbarNotification;
 using Microsoft.Extensions.Localization;
-using Microsoft.Extensions.Logging;
-using NotificationIcon.NET;
 using Sidekick.Common.Blazor.Home;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Localization;
@@ -14,7 +13,6 @@ namespace Sidekick.Wpf.Services;
 public class WpfApplicationService
 (
     IViewLocator viewLocator,
-    ILogger<WpfApplicationService> logger,
     IStringLocalizer<HomeResources> resources,
     IUiLanguageProvider uiLanguageProvider,
     IBrowserProvider browserProvider
@@ -24,7 +22,7 @@ public class WpfApplicationService
 
     private bool Initialized { get; set; }
 
-    private NotifyIcon? Icon { get; set; }
+    private TaskbarIcon? Icon { get; set; }
 
     public int Priority => 9000;
 
@@ -45,53 +43,60 @@ public class WpfApplicationService
 
     private void OnLanguageChanged(CultureInfo cultureInfo)
     {
-        if (Icon is null)
-        {
-            return;
-        }
-
-        Icon.MenuItems[0].Text = resources["Sidekick"] + " - " + ((IApplicationService)this).GetVersion();
-        Icon.MenuItems[1].Text = resources["Home"];
-        Icon.MenuItems[2].Text = resources["Open_Website"];
-        Icon.MenuItems[3].Text = resources["Exit"];
+        InitializeTray();
     }
 
     private void InitializeTray()
     {
-        var iconImage = Path.Combine(AppContext.BaseDirectory, "wwwroot/favicon.ico");
+        Icon?.Dispose();
 
-        Icon = NotifyIcon.Create(iconImage,
-        [
-            new("Sidekick - " + ((IApplicationService)this).GetVersion())
-            {
-                IsDisabled = true
-            },
-            new(resources["Home"])
-            {
-                Click = (s, e) => viewLocator.Open(SidekickViewType.Standard, "/home")
-            },
-            new(resources["Open_Website"])
-            {
-                Click = (s, e) => browserProvider.OpenUri(browserProvider.SidekickWebsite)
-            },
-            new(resources["Exit"])
-            {
-                Click = (s, e) => Shutdown()
-            },
-        ]);
+        Icon = new TaskbarIcon();
+        Icon.Icon = new System.Drawing.Icon(System.IO.Path.Combine(AppContext.BaseDirectory, "wwwroot/favicon.ico"));
+        Icon.ToolTipText = "Sidekick";
+        Icon.ContextMenu = new ContextMenu();
+        Icon.DoubleClickCommand = new SimpleCommand(() => viewLocator.Open(SidekickViewType.Standard, "/home"));
 
-        // Runs its own message loop.
-        _ = Task.Run(() =>
+        AddTrayItem("Sidekick - " + ((IApplicationService)this).GetVersion(), null, true);
+        AddTrayItem(resources["Home"], () =>
         {
-            try
-            {
-                Icon.Show();
-            }
-            catch (Exception e)
-            {
-                logger.LogError(e, "[ApplicationService] Error while trying to create the notification icon in the taskbar.");
-            }
+            viewLocator.Open(SidekickViewType.Standard, "/home");
+            return Task.CompletedTask;
         });
+        AddTrayItem(resources["Open_Website"],
+                    () =>
+                    {
+                        browserProvider.OpenUri(browserProvider.SidekickWebsite);
+                        return Task.CompletedTask;
+                    });
+        AddTrayItem(resources["Exit"],
+                    () =>
+                    {
+                        Shutdown();
+                        return Task.CompletedTask;
+                    });
+
+        Initialized = true;
+    }
+
+    private void AddTrayItem(string label, Func<Task>? onClick, bool disabled = false)
+    {
+        if (Icon?.ContextMenu == null) return;
+
+        var menuItem = new MenuItem
+        {
+            Header = label,
+            IsEnabled = !disabled,
+        };
+
+        if (onClick != null)
+        {
+            menuItem.Click += async (_, _) =>
+            {
+                await onClick();
+            };
+        }
+
+        Icon.ContextMenu.Items.Add(menuItem);
     }
 
     public void Shutdown()
