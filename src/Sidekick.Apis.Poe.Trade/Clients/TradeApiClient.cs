@@ -32,4 +32,11 @@ public class TradeApiClient
 
         return result;
     }
+
+    public async Task<Stream> Fetch(GameType game, IGameLanguage language, string path)
+    {
+        using var httpClient = httpClientFactory.CreateClient(ClientName);
+        var response = await httpClient.GetAsync(language.GetTradeApiBaseUrl(game) + path);
+        return await response.Content.ReadAsStreamAsync();
+    }
 }

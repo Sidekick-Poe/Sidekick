@@ -7,7 +7,7 @@
     "tailwindcss": "^4.1.7"
   },
   "scripts": {
-    "build": "node ./Scripts/esbuild.js && npx @tailwindcss/cli -i ./Styles/main.css -o ./wwwroot/css/sidekick.css"
+    "build": "npm install && node ./Scripts/esbuild.js && npx @tailwindcss/cli -i ./Styles/main.css -o ./wwwroot/css/sidekick.css"
   },
   "dependencies": {
     "flowbite": "^3.1.2"

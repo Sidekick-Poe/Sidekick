@@ -1,0 +1,111 @@
+﻿@using Sidekick.Apis.Poe.Trade.Clients
+@using Sidekick.Common.Game
+@using Sidekick.Common.Game.Languages
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Forms
+
+<FormFieldset Legend="Preload Data">
+    <FormInput Label="Folder Path (/data)"
+               @bind-Value="DataFolder"/>
+    <ButtonPrimary OnClick="Download">Download</ButtonPrimary>
+
+    @foreach (var message in Messages)
+    {
+        <p>@message</p>
+    }
+
+</FormFieldset>
+
+@inject ITradeApiClient TradeApiClient
+@inject IGameLanguageProvider GameLanguageProvider
+
+@code {
+
+    private string DataFolder { get; set; } = string.Empty;
+
+    private List<string> Messages { get; set; } = [];
+
+    public async Task Download()
+    {
+        // List of endpoints
+        var endpoints = new[]
+        {
+            new
+            {
+                ApiPath = "data/items",
+                Filename = "{0}.{1}.items.json"
+            },
+            new
+            {
+                ApiPath = "data/stats",
+                Filename = "{0}.{1}.stats.json"
+            },
+            new
+            {
+                ApiPath = "data/static",
+                Filename = "{0}.{1}.static.json"
+            },
+            new
+            {
+                ApiPath = "data/filters",
+                Filename = "{0}.{1}.filters.json"
+            },
+        };
+
+        // List of languages
+        var languages = GameLanguageProvider.GetList();
+
+        try
+        {
+            foreach (var languageAttribute in languages)
+            {
+                var language = languageAttribute.Build();
+
+                foreach (var endpoint in endpoints)
+                {
+                    // Construct POE1 URLs and filenames
+                    var poe1Filename = endpoint.Filename.Replace("{0}", "poe1").Replace("{1}", languageAttribute.LanguageCode);
+                    var poe1Data = await TradeApiClient.Fetch(GameType.PathOfExile, language, endpoint.ApiPath);
+                    await SaveToDisk(poe1Filename, poe1Data);
+
+                    // Construct POE2 URLs and filenames
+                    var poe2Filename = endpoint.Filename.Replace("{0}", "poe2").Replace("{1}", languageAttribute.LanguageCode);
+                    var poe2Data = await TradeApiClient.Fetch(GameType.PathOfExile2, language, endpoint.ApiPath);
+                    await SaveToDisk(poe2Filename, poe2Data);
+                }
+            }
+
+            LogMessage("All data downloaded successfully.");
+        }
+        catch (Exception ex)
+        {
+            LogMessage($"An error occurred: {ex.Message}");
+        }
+    }
+
+    private async Task SaveToDisk(string filename, Stream stream)
+    {
+        try
+        {
+            // Save the data to a file (example assumes a write directory is set up, adjust accordingly)
+            var filePath = Path.Combine(DataFolder, filename); // Ensure "wwwroot/data" exists
+            Directory.CreateDirectory(Path.GetDirectoryName(filePath)!); // Ensure directory creation
+
+            await using var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write);
+            await stream.CopyToAsync(fileStream);
+
+            LogMessage($"Downloaded and saved: {filename}");
+        }
+        catch (Exception ex)
+        {
+            LogMessage($"Failed to download {filename}: {ex.Message}");
+        }
+    }
+
+    private void LogMessage(string message)
+    {
+        Messages.Add(message);
+        StateHasChanged();
+    }
+
+}

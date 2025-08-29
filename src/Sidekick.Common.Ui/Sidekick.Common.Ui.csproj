@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="npm install" />
     <Exec Command="npm run build" />
   </Target>
 
