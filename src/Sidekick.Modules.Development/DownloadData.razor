@@ -55,6 +55,8 @@
         // List of languages
         var languages = GameLanguageProvider.GetList();
 
+        await DownloadLeagues();
+
         try
         {
             foreach (var languageAttribute in languages)
@@ -81,6 +83,19 @@
         {
             LogMessage($"An error occurred: {ex.Message}");
         }
+    }
+
+    private async Task DownloadLeagues()
+    {
+        // Construct POE1 URLs and filenames
+        var poe1Filename = "poe1.leagues.json";
+        var poe1Data = await TradeApiClient.Fetch(GameType.PathOfExile, GameLanguageProvider.InvariantLanguage, "data/leagues");
+        await SaveToDisk(poe1Filename, poe1Data);
+
+        // Construct POE2 URLs and filenames
+        var poe2Filename = "poe2.leagues.json";
+        var poe2Data = await TradeApiClient.Fetch(GameType.PathOfExile2, GameLanguageProvider.InvariantLanguage, "data/leagues");
+        await SaveToDisk(poe2Filename, poe2Data);
     }
 
     private async Task SaveToDisk(string filename, Stream stream)

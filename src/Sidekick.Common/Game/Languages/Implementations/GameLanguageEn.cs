@@ -4,6 +4,8 @@ namespace Sidekick.Common.Game.Languages.Implementations;
 [GameLanguage("English", "en")]
 public class GameLanguageEn : IGameLanguage
 {
+    public string Code => "en";
+
     public string PoeTradeBaseUrl => "https://www.pathofexile.com/trade/";
     public string PoeTradeApiBaseUrl => "https://www.pathofexile.com/api/trade/";
     public string Poe2TradeBaseUrl => "https://www.pathofexile.com/trade2/";
