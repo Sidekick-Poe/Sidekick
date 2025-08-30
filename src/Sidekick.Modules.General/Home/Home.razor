@@ -11,12 +11,11 @@
 @using Sidekick.Common.Ui.Typography
 @using Sidekick.Common.Ui.Buttons
 @using Sidekick.Modules.General.Settings
-@using Sidekick.Modules.General.Settings.Components
 @using Sidekick.Common.Ui.Settings
 
 <LayoutMenu>
     <ChildContent>
-        <AppSmallContainer>
+        <AppContainer>
             <AppLogo/>
             @if (ApplicationService.SupportsKeybinds)
             {
@@ -39,7 +38,7 @@
                     <ButtonPrimary OnClick="MapCheck">@Resources["Item_Box_Map"]</ButtonPrimary>
                 </div>
             </FormFieldset>
-        </AppSmallContainer>
+        </AppContainer>
     </ChildContent>
     <BottomContent>
         @if (ApplicationService.SupportsKeybinds)
