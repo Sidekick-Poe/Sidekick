@@ -8,7 +8,7 @@
 @using Sidekick.Common.Ui.Layouts
 
 <LayoutMenu>
-    <AppSmallContainer>
+    <AppContainer>
         <FormFieldset Legend="Custom actions">
             <div class="flex gap-3">
                 @if (ApplicationService.SupportsKeybinds)
@@ -19,7 +19,7 @@
             </div>
         </FormFieldset>
         <DownloadData/>
-    </AppSmallContainer>
+    </AppContainer>
 </LayoutMenu>
 
 @inject IApplicationService ApplicationService

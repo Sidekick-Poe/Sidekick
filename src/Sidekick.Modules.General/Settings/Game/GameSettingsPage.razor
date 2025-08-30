@@ -16,7 +16,7 @@
 @inject IApplicationService ApplicationService
 
 <LayoutMenu>
-    <AppSmallContainer>
+    <AppContainer>
         <FormFieldset Legend="@SettingResources["General_Settings"]">
             <LanguageParserEditor/>
 
@@ -61,7 +61,7 @@
             <ButtonPrimary Disabled="!AreSettingsModified"
                            OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
         </div>
-    </AppSmallContainer>
+    </AppContainer>
 </LayoutMenu>
 
 @page "/settings/game"
