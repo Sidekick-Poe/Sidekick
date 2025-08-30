@@ -6,6 +6,7 @@ namespace Sidekick.Apis.Poe.Trade.Clients;
 
 public interface ITradeApiClient
 {
-    Task<FetchResult<TReturn>> Fetch<TReturn>(GameType game, IGameLanguage language, string path);
-    Task<Stream> Fetch(GameType game, IGameLanguage language, string path);
+    string GetDataFileName(GameType game, IGameLanguage language, string path);
+    Task<FetchResult<TReturn>> FetchData<TReturn>(GameType game, IGameLanguage language, string path);
+    Task<Stream> FetchData(GameType game, IGameLanguage language, string path);
 }

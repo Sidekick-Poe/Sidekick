@@ -41,7 +41,7 @@ public class ApiInvariantItemProvider
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_InvariantItems";
 
-        var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.Fetch<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "data/items"), (cache) => cache.Result.Any());
+        var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "items"), (cache) => cache.Result.Any());
 
         var categories = game switch
         {

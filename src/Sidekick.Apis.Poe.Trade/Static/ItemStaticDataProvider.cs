@@ -33,7 +33,7 @@ public class ItemStaticDataProvider
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_StaticData";
-        var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.Fetch<StaticItemCategory>(game, gameLanguageProvider.Language, "data/static"), (cache) => cache.Result.Any());
+        var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<StaticItemCategory>(game, gameLanguageProvider.Language, "static"), (cache) => cache.Result.Any());
 
         ByTexts.Clear();
         ByIds.Clear();

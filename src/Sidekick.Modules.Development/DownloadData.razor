@@ -28,28 +28,12 @@
     public async Task Download()
     {
         // List of endpoints
-        var endpoints = new[]
+        var paths = new[]
         {
-            new
-            {
-                ApiPath = "data/items",
-                Filename = "{0}.{1}.items.json"
-            },
-            new
-            {
-                ApiPath = "data/stats",
-                Filename = "{0}.{1}.stats.json"
-            },
-            new
-            {
-                ApiPath = "data/static",
-                Filename = "{0}.{1}.static.json"
-            },
-            new
-            {
-                ApiPath = "data/filters",
-                Filename = "{0}.{1}.filters.json"
-            },
+            "items",
+            "stats",
+            "static",
+            "filters",
         };
 
         // List of languages
@@ -63,16 +47,16 @@
             {
                 var language = languageAttribute.Build();
 
-                foreach (var endpoint in endpoints)
+                foreach (var path in paths)
                 {
                     // Construct POE1 URLs and filenames
-                    var poe1Filename = endpoint.Filename.Replace("{0}", "poe1").Replace("{1}", languageAttribute.LanguageCode);
-                    var poe1Data = await TradeApiClient.Fetch(GameType.PathOfExile, language, endpoint.ApiPath);
+                    var poe1Filename = TradeApiClient.GetDataFileName(GameType.PathOfExile, language, path);
+                    var poe1Data = await TradeApiClient.FetchData(GameType.PathOfExile, language, path);
                     await SaveToDisk(poe1Filename, poe1Data);
 
                     // Construct POE2 URLs and filenames
-                    var poe2Filename = endpoint.Filename.Replace("{0}", "poe2").Replace("{1}", languageAttribute.LanguageCode);
-                    var poe2Data = await TradeApiClient.Fetch(GameType.PathOfExile2, language, endpoint.ApiPath);
+                    var poe2Filename = TradeApiClient.GetDataFileName(GameType.PathOfExile2, language, path);
+                    var poe2Data = await TradeApiClient.FetchData(GameType.PathOfExile2, language, path);
                     await SaveToDisk(poe2Filename, poe2Data);
                 }
             }
@@ -88,13 +72,13 @@
     private async Task DownloadLeagues()
     {
         // Construct POE1 URLs and filenames
-        var poe1Filename = "poe1.leagues.json";
-        var poe1Data = await TradeApiClient.Fetch(GameType.PathOfExile, GameLanguageProvider.InvariantLanguage, "data/leagues");
+        var poe1Filename = TradeApiClient.GetDataFileName(GameType.PathOfExile, GameLanguageProvider.InvariantLanguage, "leagues");
+        var poe1Data = await TradeApiClient.FetchData(GameType.PathOfExile, GameLanguageProvider.InvariantLanguage, "leagues");
         await SaveToDisk(poe1Filename, poe1Data);
 
         // Construct POE2 URLs and filenames
-        var poe2Filename = "poe2.leagues.json";
-        var poe2Data = await TradeApiClient.Fetch(GameType.PathOfExile2, GameLanguageProvider.InvariantLanguage, "data/leagues");
+        var poe2Filename = TradeApiClient.GetDataFileName(GameType.PathOfExile2, GameLanguageProvider.InvariantLanguage, "leagues");
+        var poe2Data = await TradeApiClient.FetchData(GameType.PathOfExile2, GameLanguageProvider.InvariantLanguage, "leagues");
         await SaveToDisk(poe2Filename, poe2Data);
     }
 
@@ -102,8 +86,7 @@
     {
         try
         {
-            // Save the data to a file (example assumes a write directory is set up, adjust accordingly)
-            var filePath = Path.Combine(DataFolder, filename); // Ensure "wwwroot/data" exists
+            var filePath = Path.Combine(DataFolder, filename);
             Directory.CreateDirectory(Path.GetDirectoryName(filePath)!); // Ensure directory creation
 
             await using var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write);

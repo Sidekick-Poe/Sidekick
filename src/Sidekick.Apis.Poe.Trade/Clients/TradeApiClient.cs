@@ -1,6 +1,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Trade.Clients.Models;
+using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Languages;
@@ -9,7 +11,8 @@ namespace Sidekick.Apis.Poe.Trade.Clients;
 
 public class TradeApiClient
 (
-    IHttpClientFactory httpClientFactory
+    IHttpClientFactory httpClientFactory,
+    ILogger<TradeApiClient> logger
 ) : ITradeApiClient
 {
     public const string ClientName = "PoeTradeClient";
@@ -21,22 +24,53 @@ public class TradeApiClient
         Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
     };
 
-    public async Task<FetchResult<TReturn>> Fetch<TReturn>(GameType game, IGameLanguage language, string path)
+    public string GetDataFileName(GameType game, IGameLanguage language, string path)
+    {
+        return $"{game.GetValueAttribute()}.{language.Code}.{path}.json";
+    }
+
+    public async Task<FetchResult<TReturn>> FetchData<TReturn>(GameType game, IGameLanguage language, string path)
     {
         using var httpClient = httpClientFactory.CreateClient(ClientName);
-        var response = await httpClient.GetAsync(language.GetTradeApiBaseUrl(game) + path);
+        var response = await httpClient.GetAsync(language.GetTradeApiBaseUrl(game) + "data/" + path);
         var content = await response.Content.ReadAsStreamAsync();
 
         var result = await JsonSerializer.DeserializeAsync<FetchResult<TReturn>>(content, JsonSerializerOptions);
-        if (result == null) throw new SidekickException("[Trade Client] Could not understand the API response.");
+        if (result != null && result.Result.Count != 0) return result;
 
-        return result;
+        logger.LogWarning("[Trade Client] Failed to parse the API response.");
+
+        var dataFilePath = Path.Combine(AppContext.BaseDirectory, "wwwroot/data/" + GetDataFileName(game, language, path));
+        logger.LogInformation("[Trade Client] Attempting to load data from local file: {dataFilePath}", dataFilePath);
+
+        // Read from the local file as a fallback
+        if (!File.Exists(dataFilePath))
+        {
+            throw new SidekickException("[Trade Client] Could not understand the API response.");
+        }
+
+        try
+        {
+            await using var fileStream = File.OpenRead(dataFilePath);
+            result = await JsonSerializer.DeserializeAsync<FetchResult<TReturn>>(fileStream, JsonSerializerOptions);
+            if (result != null && result.Result.Count > 0)
+            {
+                logger.LogInformation("[Trade Client] Successfully loaded data from local file.");
+                return result;
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "[Trade Client] Failed to load data from local file.");
+        }
+
+        throw new SidekickException("[Trade Client] Could not understand the API response. Could not read data from local data file.");
     }
 
-    public async Task<Stream> Fetch(GameType game, IGameLanguage language, string path)
+    public async Task<Stream> FetchData(GameType game, IGameLanguage language, string path)
     {
         using var httpClient = httpClientFactory.CreateClient(ClientName);
-        var response = await httpClient.GetAsync(language.GetTradeApiBaseUrl(game) + path);
+        var response = await httpClient.GetAsync(language.GetTradeApiBaseUrl(game) + "data/" + path);
         return await response.Content.ReadAsStreamAsync();
     }
 }

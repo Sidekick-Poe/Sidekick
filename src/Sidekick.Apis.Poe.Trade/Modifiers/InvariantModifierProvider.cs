@@ -148,7 +148,7 @@ public class InvariantModifierProvider
         var apiCategories = await cacheProvider.GetOrSet(cacheKey,
                                             async () =>
                                             {
-                                                var result = await tradeApiClient.Fetch<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "data/stats");
+                                                var result = await tradeApiClient.FetchData<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "stats");
                                                 return result.Result;
                                             }, (cache) => cache.Any());
 
