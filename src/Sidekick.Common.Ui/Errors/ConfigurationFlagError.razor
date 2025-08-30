@@ -1,9 +1,4 @@
 ﻿
-@if (SidekickConfiguration.IsPoeApiDown)
-{
-    <AlertError>@Resources["PoeApiDown"]</AlertError>
-}
-
 @if (SidekickConfiguration.IsXselPackageMissing)
 {
     <AlertError>@Resources["XselPackageMissing"]</AlertError>

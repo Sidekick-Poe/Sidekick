@@ -34,8 +34,6 @@ public class ApiItemProvider
     /// <inheritdoc/>
     public async Task Initialize()
     {
-        if (SidekickConfiguration.IsPoeApiDown) return;
-
         NameAndTypeDictionary.Clear();
         NameAndTypeRegex.Clear();
 
@@ -43,7 +41,7 @@ public class ApiItemProvider
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_Items";
 
-        var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.Fetch<ApiCategory>(game, gameLanguageProvider.Language, "data/items"), (cache) => cache.Result.Any());
+        var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<ApiCategory>(game, gameLanguageProvider.Language, "items"), (cache) => cache.Result.Any());
 
         var categories = game switch
         {

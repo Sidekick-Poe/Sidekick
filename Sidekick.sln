@@ -76,12 +76,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Modules.RegexHotke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Browser", "src\Sidekick.Common.Browser\Sidekick.Common.Browser.csproj", "{FC7FC285-CE31-4983-9FC6-E897478A240F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Data", "_Data", "{DCD756EF-4846-42C1-B17E-46918E8BF6F2}"
-	ProjectSection(SolutionItems) = preProject
-		data\download.js = data\download.js
-		data\package.json = data\package.json
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Modules.Development", "src\Sidekick.Modules.Development\Sidekick.Modules.Development.csproj", "{6802359E-B82B-4828-990D-15A5240A884D}"
 EndProject
 Global

@@ -56,12 +56,10 @@ public class ModifierProvider
     /// <inheritdoc/>
     public async Task Initialize()
     {
-        if (SidekickConfiguration.IsPoeApiDown) return;
-
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_Modifiers";
-        var apiCategories = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.Fetch<ApiCategory>(game, gameLanguageProvider.Language, "data/stats"), (cache) => cache.Result.Any());
+        var apiCategories = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<ApiCategory>(game, gameLanguageProvider.Language, "stats"), (cache) => cache.Result.Any());
 
         foreach (var apiCategory in apiCategories.Result)
         {

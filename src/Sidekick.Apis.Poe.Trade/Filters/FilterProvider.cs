@@ -27,13 +27,11 @@ public class FilterProvider
     /// <inheritdoc/>
     public async Task Initialize()
     {
-        if (SidekickConfiguration.IsPoeApiDown) return;
-
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_Filters";
 
-        var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.Fetch<ApiFilter>(game, gameLanguageProvider.Language, "data/filters"),
+        var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<ApiFilter>(game, gameLanguageProvider.Language, "filters"),
                                                   (cache) =>
                                                   {
                                                       return cache.Result.Any(x => x.Id == "type_filters") && cache.Result.Any(x => x.Id == "trade_filters");

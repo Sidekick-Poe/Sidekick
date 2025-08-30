@@ -1,9 +1,7 @@
 @page "/setup"
 @using System.Text.Json
 @using Microsoft.Extensions.Localization
-@using Microsoft.Extensions.Logging
 @using Sidekick.Apis.Poe.Trade
-@using Sidekick.Common
 @using Sidekick.Common.Cache
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Platform
@@ -78,7 +76,6 @@
 @inject IStringLocalizer<Setup> Resources
 @inject NavigationManager NavigationManager
 @inject ICurrentView CurrentView
-@inject ILogger<Setup> Logger
 
 @code {
 
@@ -90,47 +87,26 @@
 
     protected override async Task OnInitializedAsync()
     {
-        CurrentView.Initialize(new ViewOptions(){
+        CurrentView.Initialize(new ViewOptions()
+        {
             Title = Resources["Setup"],
             Width = 400,
             Height = 220,
         });
 
-        try
+        var leagues = await LeagueProvider.GetList(false);
+        var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
+        var settingsLeaguesHash = await SettingsService.GetInt(SettingKeys.LeaguesHash);
+        if (apiLeaguesHash != settingsLeaguesHash)
         {
-            var leagues = await LeagueProvider.GetList(false);
-            var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
-            var settingsLeaguesHash = await SettingsService.GetInt(SettingKeys.LeaguesHash);
-            if (apiLeaguesHash != settingsLeaguesHash)
-            {
-                NewLeagues = true;
-                await CacheProvider.Clear();
-            }
-
-            // Check to see if we should run Setup first before running the rest of the initialization process
-            var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
-            var parserLanguage = await SettingsService.GetString(SettingKeys.LanguageParser);
-            if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId) || NewLeagues || parserLanguage == null)
-            {
-                CurrentView.Initialize(new ViewOptions()
-                {
-                    Title = Resources["Setup"],
-                    Width = 400,
-                    Height = 360,
-                });
-                RequiresSetup = true;
-            }
-            else
-            {
-                var silentStart = await SettingsService.GetBool(SettingKeys.SilentStart);
-                if (silentStart)
-                {
-                    CurrentView.Close();
-                }
-                NavigationManager.NavigateTo("/initialize");
-            }
+            NewLeagues = true;
+            await CacheProvider.Clear();
         }
-        catch (Exception e)
+
+        // Check to see if we should run Setup first before running the rest of the initialization process
+        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        var parserLanguage = await SettingsService.GetString(SettingKeys.LanguageParser);
+        if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId) || NewLeagues || parserLanguage == null)
         {
             CurrentView.Initialize(new ViewOptions()
             {
@@ -138,8 +114,16 @@
                 Width = 400,
                 Height = 360,
             });
-            Logger.LogError(e, "[Setup] Failed to initialize.");
-            SidekickConfiguration.IsPoeApiDown = true;
+            RequiresSetup = true;
+        }
+        else
+        {
+            var silentStart = await SettingsService.GetBool(SettingKeys.SilentStart);
+            if (silentStart)
+            {
+                CurrentView.Close();
+            }
+
             NavigationManager.NavigateTo("/initialize");
         }
 

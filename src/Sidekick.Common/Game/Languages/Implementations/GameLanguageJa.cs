@@ -3,8 +3,10 @@ using Romanization;
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Japanese", "ja")]
-public class GameLanguageJp : IGameLanguage
+public class GameLanguageJa : IGameLanguage
 {
+    public string Code => "ja";
+
     public string PoeTradeBaseUrl => "https://jp.pathofexile.com/trade/";
     public string PoeTradeApiBaseUrl => "https://jp.pathofexile.com/api/trade/";
     public string Poe2TradeBaseUrl => "https://jp.pathofexile.com/trade2/";
