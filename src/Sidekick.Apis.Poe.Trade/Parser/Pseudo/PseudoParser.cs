@@ -22,8 +22,6 @@ public class PseudoParser
     /// <inheritdoc/>
     public async Task Initialize()
     {
-        if (SidekickConfiguration.IsPoeApiDown) return;
-
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         var game = leagueId.GetGameFromLeagueId();
 

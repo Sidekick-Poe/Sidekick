@@ -41,8 +41,6 @@ public class InvariantModifierProvider
     /// <inheritdoc/>
     public async Task Initialize()
     {
-        if (SidekickConfiguration.IsPoeApiDown) return;
-
         var result = await GetList();
         InitializeIgnore(result);
         InitializeIncursionRooms(result);

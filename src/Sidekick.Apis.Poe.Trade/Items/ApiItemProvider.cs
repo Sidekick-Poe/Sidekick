@@ -34,8 +34,6 @@ public class ApiItemProvider
     /// <inheritdoc/>
     public async Task Initialize()
     {
-        if (SidekickConfiguration.IsPoeApiDown) return;
-
         NameAndTypeDictionary.Clear();
         NameAndTypeRegex.Clear();
 

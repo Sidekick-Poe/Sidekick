@@ -33,8 +33,6 @@ public class ApiInvariantItemProvider
     /// <inheritdoc/>
     public async Task Initialize()
     {
-        if (SidekickConfiguration.IsPoeApiDown) return;
-
         IdDictionary.Clear();
 
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);

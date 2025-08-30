@@ -30,20 +30,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="favicon.ico" />
-    <Content Include=".gitignore">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Update="data\.gitignore">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Sidekick.Common.Browser\Sidekick.Common.Browser.csproj" />
     <ProjectReference Include="..\Sidekick.Common.Updater\Sidekick.Common.Updater.csproj" />
     <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
