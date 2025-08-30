@@ -11,7 +11,7 @@
 @using Sidekick.Common.Ui.Typography
 
 <LayoutMenu>
-    <AppSmallContainer>
+    <AppContainer>
         <FormFieldset Legend="@($"Sidekick - {Title}")">
             <div>
                 <div class="flex flex-col gap-2">
@@ -35,7 +35,7 @@
                 <code class="bg-stone-950 px-1 min-w-[8em]">@FolderProvider.GetDataFolderPath()</code>
             </div>
         </FormFieldset>
-    </AppSmallContainer>
+    </AppContainer>
 </LayoutMenu>
 
 @inject IStringLocalizer<GeneralResources> Resources

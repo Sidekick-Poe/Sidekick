@@ -8,11 +8,10 @@
 @using Sidekick.Common.Ui.Layouts
 @using Sidekick.Common.Ui.Localization
 @using Sidekick.Modules.General.Localization
-@using Sidekick.Modules.General.Settings.Components
 @using Sidekick.Common.Ui.Settings
 
 <LayoutMenu>
-    <AppSmallContainer>
+    <AppContainer>
         <FormFieldset Legend="@SettingsResources["General_Settings"]">
             <InterfaceLanguageEditor/>
             <ZoomEditor/>
@@ -42,7 +41,7 @@
             <ButtonPrimary Disabled="!AreSettingsModified"
                            OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
         </div>
-    </AppSmallContainer>
+    </AppContainer>
 </LayoutMenu>
 
 @page "/settings/application"
