@@ -22,7 +22,7 @@ Combine 100 Splinters to create Tul's Breachstone.
 Shift click to unstack.
 ");
 
-        Assert.Equal("currency", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.Currency, actual.Header.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Header.Rarity);
         Assert.Equal(Category.Currency, actual.Header.Category);
         Assert.Equal("Splinter of Tul", actual.Header.ApiType);

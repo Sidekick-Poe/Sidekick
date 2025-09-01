@@ -21,7 +21,7 @@ public class SpiritProperty
 
     public override List<Category> ValidCategories { get; } = [Category.Weapon, Category.Armour];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
+    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
     {
         if(game == GameType.PathOfExile) return;
         var propertyBlock = parsingItem.Blocks[1];

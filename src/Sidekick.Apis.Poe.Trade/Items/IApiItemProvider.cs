@@ -10,5 +10,7 @@ public interface IApiItemProvider : IInitializableService
 
     Dictionary<string, List<ApiItem>> NameAndTypeDictionary { get; }
 
+    Dictionary<string, ApiItem> IdDictionary { get; }
+
     List<(Regex Regex, ApiItem Item)> NameAndTypeRegex { get; }
 }

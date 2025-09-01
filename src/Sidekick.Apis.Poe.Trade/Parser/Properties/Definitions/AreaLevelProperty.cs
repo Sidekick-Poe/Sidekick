@@ -13,7 +13,7 @@ public class AreaLevelProperty(IGameLanguageProvider gameLanguageProvider) : Pro
 
     public override List<Category> ValidCategories { get; } = [Category.Sanctum, Category.Logbook, Category.Contract, Category.Map];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
+    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
     {
         var propertyBlock = parsingItem.Blocks[1];
         itemProperties.AreaLevel = GetInt(Pattern, propertyBlock);

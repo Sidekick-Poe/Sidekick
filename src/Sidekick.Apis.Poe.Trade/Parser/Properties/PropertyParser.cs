@@ -15,8 +15,8 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
 public class PropertyParser
 (
     IGameLanguageProvider gameLanguageProvider,
-    IApiInvariantItemProvider apiInvariantItemProvider,
     IApiItemProvider apiItemProvider,
+    IApiInvariantItemProvider apiInvariantItemProvider,
     ISettingsService settingsService,
     IStringLocalizer<PoeResources> resources,
     IInvariantModifierProvider invariantModifierProvider
@@ -24,7 +24,7 @@ public class PropertyParser
 {
     public int Priority => 200;
 
-    private List<PropertyDefinition> Definitions { get; set; } = new();
+    private List<PropertyDefinition> Definitions { get; } = new();
 
     public async Task Initialize()
     {
@@ -56,7 +56,7 @@ public class PropertyParser
 
             new SeparatorProperty(),
 
-            new GemLevelProperty(gameLanguageProvider, game, apiInvariantItemProvider),
+            new GemLevelProperty(gameLanguageProvider, apiInvariantItemProvider),
             new ItemLevelProperty(gameLanguageProvider, game),
             new SocketProperty(gameLanguageProvider, game, resources),
             new CorruptedProperty(gameLanguageProvider),
@@ -76,9 +76,9 @@ public class PropertyParser
         var properties = new ItemProperties();
         foreach (var definition in Definitions)
         {
-            if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(header?.Category ?? Category.Unknown)) continue;
+            if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(header.Category)) continue;
 
-            definition.Parse(properties, parsingItem);
+            definition.Parse(properties, parsingItem, header);
         }
 
         return properties;

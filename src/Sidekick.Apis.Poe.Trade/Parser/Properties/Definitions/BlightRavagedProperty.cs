@@ -13,7 +13,7 @@ public class BlightRavagedProperty(IGameLanguageProvider gameLanguageProvider) :
 
     public override List<Category> ValidCategories { get; } = [Category.Map];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
+    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
     {
         itemProperties.BlightRavaged = Pattern?.IsMatch(parsingItem.Blocks[0].Lines[^1].Text) ?? false;
     }

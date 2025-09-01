@@ -13,7 +13,7 @@ public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : Prope
 
     public override List<Category> ValidCategories { get; } = [Category.Map];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
+    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
     {
         var propertyBlock = parsingItem.Blocks[1];
         itemProperties.MapTier = GetInt(Pattern, propertyBlock);

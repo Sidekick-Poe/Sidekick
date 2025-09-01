@@ -12,7 +12,7 @@ public class HelmetParsing(ParserFixture fixture)
     [Fact]
     public void ParseBlightGuardian()
     {
-        var actual = parser.ParseItem(@"Item Class: Unknown
+        var actual = parser.ParseItem(@"Item Class: Helmets
 Rarity: Rare
 Blight Guardian
 Hunter Hood
@@ -37,6 +37,7 @@ You have Shocking Conflux for 3 seconds every 8 seconds
 Hunter Item
 ");
 
+        Assert.Equal(ItemClass.Helmet, actual.Header.ItemClass);
         Assert.Equal(Category.Armour, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Hunter Hood", actual.Header.ApiType);
@@ -76,6 +77,7 @@ but merely a long sleep made eternal.
 Note: ~price 1 chaos
 ");
 
+        Assert.Equal(ItemClass.Helmet, actual.Header.ItemClass);
         Assert.Equal(Category.Armour, actual.Header.Category);
         Assert.Equal(Rarity.Unique, actual.Header.Rarity);
         Assert.Equal("Starkonja's Head", actual.Header.ApiName);

@@ -12,7 +12,7 @@ public class GloveParsing(ParserFixture fixture)
     [Fact]
     public void ParseRareGloves()
     {
-        var actual = parser.ParseItem(@"Item Class: Unknown
+        var actual = parser.ParseItem(@"Item Class: Gloves
 Rarity: Rare
 Death Nails
 Assassin's Mitts
@@ -35,6 +35,7 @@ Item Level: 61
 0.23% of Physical Attack Damage Leeched as Mana
 ");
 
+        Assert.Equal(ItemClass.Gloves, actual.Header.ItemClass);
         Assert.Equal(Category.Armour, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Assassin's Mitts", actual.Header.ApiType);

@@ -1,11 +1,10 @@
 using Romanization;
-
 namespace Sidekick.Common.Game.Languages.Implementations;
 
-[GameLanguage("Korean", "ko")]
+[GameLanguage("Korean", "kr")]
 public class GameLanguageKr : IGameLanguage
 {
-    public string Code => "ko";
+    public string Code => "kr";
 
     public string PoeTradeBaseUrl => "https://poe.game.daum.net/trade/";
     public string PoeTradeApiBaseUrl => "https://poe.game.daum.net/api/trade/";
@@ -23,7 +22,6 @@ public class GameLanguageKr : IGameLanguage
 
     public string DescriptionUnidentified => "미확인";
     public string DescriptionQuality => "퀄리티";
-    public string DescriptionAlternateQuality => "대체 퀄리티";
     public string DescriptionLevel => "레벨";
     public string DescriptionCorrupted => "타락";
     public string DescriptionSockets => "홈";
@@ -74,7 +72,6 @@ public class GameLanguageKr : IGameLanguage
         Omen = "징조",
         Jewel = "주얼",
         DelveStackableSocketableCurrency = "탐광 중첩 및 결합형 화폐",
-        MetamorphSample = "변형 샘플",
         HeistTool = "강탈 도구",
         Amulet = "목걸이",
         Ring = "반지",
@@ -92,6 +89,9 @@ public class GameLanguageKr : IGameLanguage
         UtilityFlasks = "특수 플라스크",
         ActiveSkillGems = "스킬 젬",
         SupportSkillGems = "보조 젬",
+        UncutSkillGems = "미가공 스킬 젬",
+        UncutSupportGems = "미가공 보조 젬",
+        UncutSpiritGems = "미가공 정신력 젬",
         Maps = "지도",
         MapFragments = "지도 조각",
         Contract = "계약",
@@ -119,6 +119,7 @@ public class GameLanguageKr : IGameLanguage
         Sceptres = "셉터",
         RuneDaggers = "룬 단검",
         Warstaves = "전쟁지팡이",
+        Quarterstaves = "육척봉",
         Spears = "창",
         Bucklers = "버클러",
         FishingRods = "낚싯대",

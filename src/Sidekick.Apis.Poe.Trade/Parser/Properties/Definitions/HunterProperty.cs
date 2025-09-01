@@ -13,7 +13,7 @@ public class HunterProperty(IGameLanguageProvider gameLanguageProvider) : Proper
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Jewel];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
+    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
     {
         itemProperties.Influences.Hunter = GetBool(Pattern, parsingItem);
     }

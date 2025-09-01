@@ -29,7 +29,7 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
 ");
 
         Assert.Equal(Category.Map, actual.Header.Category);
-        Assert.Equal("map", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.Map, actual.Header.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Header.Rarity);
         Assert.Equal("Blighted Atoll Map", actual.Header.Type);
         Assert.Equal("Blighted Atoll Map", actual.Header.ApiText);
@@ -61,7 +61,7 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
 ");
 
         Assert.Equal(Category.Map, actual.Header.Category);
-        Assert.Equal("map", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.Map, actual.Header.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Header.Rarity);
         Assert.Equal("Blighted Shore Map", actual.Header.ApiText);
         Assert.Equal("Shore Map", actual.Header.ApiType);
@@ -86,7 +86,7 @@ Shift click to unstack.
 Note: ~price 1 blessed
 ");
 
-        Assert.Equal("currency", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.Currency, actual.Header.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Header.Rarity);
         Assert.Equal(Category.Currency, actual.Header.Category);
         Assert.Equal("Clear Oil", actual.Header.ApiType);
@@ -121,7 +121,7 @@ Players have 20% less Recovery Rate of Life and Energy Shield
 Travel to this Map by using it in a personal Map Device.Maps can only be used once.
 ");
 
-        Assert.Equal("map", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.Map, actual.Header.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal("Blighted Spider Forest Map", actual.Header.ApiText);

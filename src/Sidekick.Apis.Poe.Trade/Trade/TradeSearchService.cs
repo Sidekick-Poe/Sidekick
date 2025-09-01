@@ -12,6 +12,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Models;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
+using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
@@ -69,7 +70,7 @@ public class TradeSearchService
             }
             else if (propertyFilters.ClassFilterApplied)
             {
-                query.Filters.GetOrCreateTypeFilters().Filters.Category = GetCategoryFilter(item.Header.ApiItemCategory);
+                query.Filters.GetOrCreateTypeFilters().Filters.Category = GetCategoryFilter(item.Header.ItemClass);
             }
 
             if (item.Header.Category == Category.ItemisedMonster && !string.IsNullOrEmpty(itemApiNameToUse))
@@ -167,14 +168,12 @@ public class TradeSearchService
         throw new ApiErrorException();
     }
 
-    private static SearchFilterOption? GetCategoryFilter(string? itemCategory)
+    private static SearchFilterOption? GetCategoryFilter(ItemClass itemClass)
     {
-        if (string.IsNullOrEmpty(itemCategory))
-        {
-            return null;
-        }
+        var enumValue = itemClass.GetValueAttribute();
+        if (string.IsNullOrEmpty(enumValue)) return null;
 
-        return new SearchFilterOption(itemCategory);
+        return new SearchFilterOption(enumValue);
     }
 
     private static StatFilterGroup? GetAndStats(IEnumerable<ModifierFilter>? modifierFilters, IEnumerable<PseudoModifierFilter>? pseudoFilters)

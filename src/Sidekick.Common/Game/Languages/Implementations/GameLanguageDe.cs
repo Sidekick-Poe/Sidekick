@@ -1,4 +1,3 @@
-
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("German", "de")]
@@ -22,7 +21,6 @@ public class GameLanguageDe : IGameLanguage
 
     public string DescriptionUnidentified => "Nicht identifiziert";
     public string DescriptionQuality => "Qualität";
-    public string DescriptionAlternateQuality => "Alternative Qualität";
     public string DescriptionLevel => "Stufe";
     public string DescriptionCorrupted => "Verderbt";
     public string DescriptionSockets => "Fassungen";
@@ -73,7 +71,6 @@ public class GameLanguageDe : IGameLanguage
         Omen = "Omen",
         Jewel = "Juwelen",
         DelveStackableSocketableCurrency = "Delve: Stapelbare, einfassbare Währung",
-        MetamorphSample = "Metamorph-Proben",
         HeistTool = "Heist-Werkzeug",
         Amulet = "Amulette",
         Ring = "Ringe",
@@ -91,6 +88,9 @@ public class GameLanguageDe : IGameLanguage
         UtilityFlasks = "Hilfsfläschchen",
         ActiveSkillGems = "Fertigkeitengemmen",
         SupportSkillGems = "Unterstützungsgemmen",
+        UncutSkillGems = "Ungeschnittene Fertigkeitengemme",
+        UncutSupportGems = "Ungeschnittene Unterstützungsgemme",
+        UncutSpiritGems = "Ungeschnittene Willegemme",
         Maps = "Karten",
         MapFragments = "Kartenfragmente",
         Contract = "Aufträge",
@@ -118,6 +118,7 @@ public class GameLanguageDe : IGameLanguage
         Sceptres = "Zepter",
         RuneDaggers = "Runendolche",
         Warstaves = "Kriegsstäbe",
+        Quarterstaves = "Kampfstäbe",
         Spears = "Speere",
         Bucklers = "Faustschild",
         FishingRods = "Angelruten",

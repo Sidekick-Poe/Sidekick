@@ -17,7 +17,7 @@ public class EvasionRatingProperty(IGameLanguageProvider gameLanguageProvider, G
 
     public override List<Category> ValidCategories { get; } = [Category.Armour];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
+    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
     {
         var propertyBlock = parsingItem.Blocks[1];
         itemProperties.EvasionRating = GetInt(Pattern, propertyBlock);

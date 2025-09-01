@@ -12,7 +12,7 @@ public class BootParsing(ParserFixture fixture)
     [Fact]
     public void ParseFracturedItem()
     {
-        var actual = parser.ParseItem(@"Item Class: Unknown
+        var actual = parser.ParseItem(@"Item Class: Boots
 Rarity: Rare
 Invasion Track
 Iron Greaves
@@ -31,6 +31,7 @@ Regenerate 1.9 Life per second
 Fractured Item
 ");
 
+        Assert.Equal(ItemClass.Boots, actual.Header.ItemClass);
         Assert.Equal(Category.Armour, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Iron Greaves", actual.Header.ApiType);

@@ -21,7 +21,7 @@ public class CriticalHitChanceProperty(IGameLanguageProvider gameLanguageProvide
 
     public override List<Category> ValidCategories { get; } = [Category.Weapon];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem)
+    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
     {
         var propertyBlock = parsingItem.Blocks[1];
         itemProperties.CriticalHitChance = GetDouble(Pattern, propertyBlock);

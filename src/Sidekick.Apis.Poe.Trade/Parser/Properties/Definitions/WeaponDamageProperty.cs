@@ -25,7 +25,7 @@ public class WeaponDamageProperty
 
     public override List<Category> ValidCategories { get; } = [Category.Weapon];
 
-    public override void Parse(ItemProperties properties, ParsingItem parsingItem)
+    public override void Parse(ItemProperties properties, ParsingItem parsingItem, ItemHeader header)
     {
         var propertyBlock = parsingItem.Blocks[1];
 

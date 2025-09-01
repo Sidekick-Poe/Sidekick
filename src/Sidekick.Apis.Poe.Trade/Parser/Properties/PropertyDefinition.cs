@@ -11,7 +11,7 @@ public abstract class PropertyDefinition
 {
     public abstract List<Category> ValidCategories { get; }
 
-    public virtual void Parse(ItemProperties itemProperties, ParsingItem parsingItem) { }
+    public virtual void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header) { }
 
     public virtual void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines) { }
 

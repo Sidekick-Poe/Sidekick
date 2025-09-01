@@ -43,9 +43,9 @@ the world hearkens.
 Corrupted
 ");
 
+        Assert.Equal(ItemClass.Boots, actual.Header.ItemClass);
         Assert.Equal(Category.Armour, actual.Header.Category);
         Assert.Equal(Rarity.Unique, actual.Header.Rarity);
-        Assert.Equal("armour.boots", actual.Header.ApiItemCategory);
         Assert.Equal("Steeltoe Boots", actual.Header.ApiType);
         Assert.Equal("Thunderstep", actual.Header.ApiName);
 
@@ -87,9 +87,9 @@ Grants Skill: Parry
 
 ");
 
+        Assert.Equal(ItemClass.Buckler, actual.Header.ItemClass);
         Assert.Equal(Category.Armour, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Header.Rarity);
-        Assert.Equal("armour.buckler", actual.Header.ApiItemCategory);
         Assert.Equal("Wooden Buckler", actual.Header.ApiType);
         Assert.Null(actual.Header.ApiName);
 
@@ -119,9 +119,9 @@ Adds 3 to 5 Fire damage to Attacks (implicit)
 Can only be equipped if you are wielding a Bow.
 ");
 
+        Assert.Equal(ItemClass.Quiver, actual.Header.ItemClass);
         Assert.Equal(Category.Armour, actual.Header.Category);
         Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-        Assert.Equal("armour.quiver", actual.Header.ApiItemCategory);
         Assert.Equal("Fire Quiver", actual.Header.ApiType);
         Assert.Null(actual.Header.ApiName);
 

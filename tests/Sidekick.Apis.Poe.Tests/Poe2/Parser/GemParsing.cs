@@ -10,47 +10,63 @@ public class GemParsing(ParserFixture fixture)
     private readonly IItemParser parser = fixture.Parser;
 
     [Fact]
-    public void ParseUncutSpirit()
+    public void ParseUncutSpirit16()
     {
         var actual = parser.ParseItem(
-            @"Rarity: Currency
-Uncut Spirit Gem
+            @"Item Class: Uncut Spirit Gems
+Rarity: Currency
+Uncut Spirit Gem (Level 16)
 --------
-Level: 14
---------
-Item Level: 14
---------
-Creates a Persistent Buff Skill Gem or Level an existing gem to Level 14
+Creates a Persistent Buff Skill Gem or Level an existing gem to Level 16
 --------
 Right Click to engrave a Persistent Buff Skill Gem.
 ");
 
+        Assert.Equal(ItemClass.UncutSpiritGem, actual.Header.ItemClass);
         Assert.Equal(Category.Gem, actual.Header.Category);
         Assert.Equal("Uncut Spirit Gem", actual.Header.ApiType);
         Assert.Null(actual.Header.ApiName);
-        Assert.Equal(14, actual.Properties.GemLevel);
+        Assert.Equal(16, actual.Properties.GemLevel);
     }
 
     [Fact]
     public void ParseSupport3()
     {
         var actual = parser.ParseItem(
-            @"Rarity: Currency
-Uncut Support Gem
+            @"Item Class: Uncut Support Gems
+Rarity: Currency
+Uncut Support Gem (Level 3)
 --------
-Level: 3
---------
-Item Level: 3
---------
-Creates a Support Gem up to level 3
+Creates a Support Gem
 --------
 Right Click to engrave a Support Gem.
 ");
 
+        Assert.Equal(ItemClass.UncutSupportGem, actual.Header.ItemClass);
         Assert.Equal(Category.Gem, actual.Header.Category);
         Assert.Equal("Uncut Support Gem", actual.Header.ApiType);
         Assert.Null(actual.Header.ApiName);
         Assert.Equal(3, actual.Properties.GemLevel);
+    }
+
+    [Fact]
+    public void ParseSkill9()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Uncut Skill Gems
+Rarity: Currency
+Uncut Skill Gem (Level 9)
+--------
+Creates a Skill Gem or Level an existing gem to level 9
+--------
+Right Click to engrave a Skill Gem.
+");
+
+        Assert.Equal(ItemClass.UncutSkillGem, actual.Header.ItemClass);
+        Assert.Equal(Category.Gem, actual.Header.Category);
+        Assert.Equal("Uncut Skill Gem", actual.Header.ApiType);
+        Assert.Null(actual.Header.ApiName);
+        Assert.Equal(9, actual.Properties.GemLevel);
     }
 
     [Fact]

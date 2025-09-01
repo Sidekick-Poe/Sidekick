@@ -1,7 +1,6 @@
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Items.Models;
-using Sidekick.Common;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Extensions;
@@ -25,7 +24,9 @@ public class ApiInvariantItemProvider
 
     public Dictionary<string, ApiItem> NameDictionary { get; } = new();
 
-    public List<string> UncutGemIds { get; } = [];
+    public string UncutSkillGemId { get; private set; } = string.Empty;
+    public string UncutSupportGemId { get; private set; } = string.Empty;
+    public string UncutSpiritGemId { get; private set; } = string.Empty;
 
     /// <inheritdoc/>
     public int Priority => 100;
@@ -76,13 +77,19 @@ public class ApiInvariantItemProvider
 
     private void InitializeUncutGemIds()
     {
-        UncutGemIds.Clear();
-
         foreach (var item in IdDictionary)
         {
-            if (item.Value.Type == "Uncut Skill Gem" || item.Value.Type == "Uncut Spirit Gem" || item.Value.Type == "Uncut Support Gem")
+            switch (item.Value.Type)
             {
-                UncutGemIds.Add(item.Key);
+                case "Uncut Skill Gem":
+                    UncutSkillGemId = item.Key;
+                    break;
+                case "Uncut Spirit Gem":
+                    UncutSpiritGemId = item.Key;
+                    break;
+                case "Uncut Support Gem":
+                    UncutSupportGemId = item.Key;
+                    break;
             }
         }
     }

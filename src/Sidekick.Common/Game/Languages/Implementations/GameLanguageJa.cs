@@ -1,5 +1,4 @@
 using Romanization;
-
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Japanese", "ja")]
@@ -23,7 +22,6 @@ public class GameLanguageJa : IGameLanguage
 
     public string DescriptionUnidentified => "未鑑定";
     public string DescriptionQuality => "品質";
-    public string DescriptionAlternateQuality => "代替品質";
     public string DescriptionLevel => "レベル";
     public string DescriptionCorrupted => "コラプト状態";
     public string DescriptionSockets => "ソケット";
@@ -74,7 +72,6 @@ public class GameLanguageJa : IGameLanguage
         Omen = "お告げ",
         Jewel = "ジュエル",
         DelveStackableSocketableCurrency = "デルヴスタック可能ソケット可能カレンシー",
-        MetamorphSample = "メタモルフサンプル",
         HeistTool = "ハイストツール",
         Amulet = "アミュレット",
         Ring = "指輪",
@@ -92,6 +89,9 @@ public class GameLanguageJa : IGameLanguage
         UtilityFlasks = "ユーティリティフラスコ",
         ActiveSkillGems = "スキルジェム",
         SupportSkillGems = "サポートジェム",
+        UncutSkillGems = "スキルジェムの原石",
+        UncutSupportGems = "サポートジェムの原石",
+        UncutSpiritGems = "スピリットジェムの原石",
         Maps = "マップ",
         MapFragments = "マップの断片",
         Contract = "依頼書",
@@ -119,6 +119,7 @@ public class GameLanguageJa : IGameLanguage
         Sceptres = "セプター",
         RuneDaggers = "ルーンの短剣",
         Warstaves = "ウォースタッフ",
+        Quarterstaves = "クォータースタッフ",
         Spears = "槍",
         Bucklers = "バックラー",
         FishingRods = "釣り竿",

@@ -24,9 +24,9 @@ Upgrades a normal item to Magic with one Defence modifier
 Right click this item then left click a normal item to apply it.
 ");
 
+        Assert.Equal(ItemClass.Currency, actual.Header.ItemClass);
         Assert.Equal(Category.Currency, actual.Header.Category);
         Assert.Equal(Rarity.Currency, actual.Header.Rarity);
-        Assert.Equal("currency", actual.Header.ApiItemCategory);
         Assert.Equal("Essence of Enhancement", actual.Header.ApiType);
         Assert.Null(actual.Header.ApiName);
     }
