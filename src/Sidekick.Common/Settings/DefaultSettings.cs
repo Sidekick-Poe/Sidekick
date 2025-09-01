@@ -87,7 +87,7 @@ public static class DefaultSettings
 
     public static string PriceCheckStatusPoE1 => "online";
 
-    public static string PriceCheckStatusPoE2 => "any";
+    public static string PriceCheckStatusPoE2 => "securable";
 
     public static bool PriceCheckAutomaticallyLoadMoreData => false;
 
