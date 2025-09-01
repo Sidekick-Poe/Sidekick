@@ -27,6 +27,7 @@ Item Level: 60
 +20 to Intelligence
 ");
 
+        Assert.Equal(ItemClass.Staff, actual.Header.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal("Ashen Staff", actual.Header.ApiType);
         Assert.Null(actual.Header.ApiName);
@@ -69,6 +70,7 @@ Adds 39 to 75 Cold Damage
 Leeches 4.02% of Physical Damage as Mana
 ");
 
+        Assert.Equal(ItemClass.Bow, actual.Header.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal("Composite Bow", actual.Header.ApiType);
         Assert.Null(actual.Header.ApiName);
@@ -119,6 +121,7 @@ Adds 2 to 91 Lightning Damage
 Grants 3 Life per Enemy Hit
 ");
 
+      Assert.Equal(ItemClass.Crossbow, actual.Header.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Bleak Crossbow", actual.Header.ApiType);
@@ -162,6 +165,7 @@ Item Level: 60
 --------
 Leeches 5.82% of Physical Damage as Mana");
 
+        Assert.Equal(ItemClass.Bow, actual.Header.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Header.Rarity);
         Assert.Equal("Cultist Bow", actual.Header.ApiType);
@@ -191,6 +195,7 @@ Item Level: 70
 Allies in your Presence deal 9 to 13 additional Attack Fire Damage
 ");
 
+        Assert.Equal(ItemClass.Sceptre, actual.Header.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Header.Rarity);
         Assert.Equal("Rattling Sceptre", actual.Header.ApiType);
@@ -219,9 +224,9 @@ Grants Skill: Spear Throw
 
 ");
 
+        Assert.Equal(ItemClass.Spear, actual.Header.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Header.Rarity);
-        Assert.Equal("weapon.spear", actual.Header.ApiItemCategory);
         Assert.Equal("Ironhead Spear", actual.Header.ApiType);
         Assert.Null(actual.Header.ApiName);
 
@@ -260,6 +265,7 @@ Adds 2 to 47 Lightning Damage
 Grants 3 Life per Enemy Hit
 ");
 
+        Assert.Equal(ItemClass.Spear, actual.Header.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Forked Spear", actual.Header.ApiType);
@@ -316,6 +322,7 @@ Leeches 5.21% of Physical Damage as Life
 Corrupted
 ");
 
+        Assert.Equal(ItemClass.Warstaff, actual.Header.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Slicing Quarterstaff", actual.Header.ApiType);

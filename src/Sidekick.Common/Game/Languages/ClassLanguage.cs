@@ -12,8 +12,6 @@ public class ClassLanguage
 
     public required string DelveStackableSocketableCurrency { get; init; }
 
-    public required string MetamorphSample { get; init; }
-
     public required string HeistTool { get; init; }
 
     public required string Amulet { get; init; }
@@ -45,6 +43,12 @@ public class ClassLanguage
     public required string ActiveSkillGems { get; init; }
 
     public required string SupportSkillGems { get; init; }
+
+    public required string UncutSkillGems { get; init; }
+
+    public required string UncutSupportGems { get; init; }
+
+    public required string UncutSpiritGems { get; init; }
 
     public required string Maps { get; init; }
 
@@ -85,6 +89,8 @@ public class ClassLanguage
     public required string RuneDaggers { get; init; }
 
     public required string Warstaves { get; init; }
+
+    public required string Quarterstaves { get; init; }
 
     public required string FishingRods { get; init; }
 

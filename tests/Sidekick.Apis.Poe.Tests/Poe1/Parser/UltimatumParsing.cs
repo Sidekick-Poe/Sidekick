@@ -24,7 +24,7 @@ Replaces other quality types
 Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower-rarity jewellery. The maximum quality is 20%.
 ");
 
-        Assert.Equal("currency", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.Currency, actual.Header.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Header.Rarity);
         Assert.Equal(Category.Currency, actual.Header.Category);
         Assert.Equal("Noxious Catalyst", actual.Header.ApiType);

@@ -24,7 +24,7 @@ Item Level: 84
 Travel to this Map by using it in a personal Map Device. Maps can only be used once.
 ");
 
-        Assert.Equal("map", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.Map, actual.Header.ItemClass);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal(Rarity.Normal, actual.Header.Rarity);
         Assert.Equal("Arcade Map", actual.Header.ApiType);
@@ -61,7 +61,7 @@ Will they grant me strength or doom?
 Travel to this Map by using it in a personal Map Device. Maps can only be used once.
 ");
 
-        Assert.Equal("map", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.Map, actual.Header.ItemClass);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal(Rarity.Unique, actual.Header.Rarity);
         Assert.Equal("Maelström of Chaos", actual.Header.ApiName);
@@ -107,6 +107,7 @@ Corrupted
 Note: ~price 2 chaos
 ");
 
+        Assert.Equal(ItemClass.Map, actual.Header.ItemClass);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Phantasmagoria Map", actual.Header.ApiType);
@@ -119,6 +120,7 @@ Note: ~price 2 chaos
     {
         var actual = parser.ParseItem(TimelessKaruiEmblem);
 
+        Assert.Equal(ItemClass.MapFragment, actual.Header.ItemClass);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal(Rarity.Normal, actual.Header.Rarity);
         Assert.Equal("Timeless Karui Emblem", actual.Header.ApiType);
@@ -127,7 +129,7 @@ Note: ~price 2 chaos
     [Fact]
     public void ParseVortexPit()
     {
-        var actual = parser.ParseItem(@"Item Class: Unknown
+        var actual = parser.ParseItem(@"Item Class: Maps
 Rarity: Rare
 Vortex Pit
 Burial Chambers Map
@@ -154,6 +156,7 @@ Magic Monster Packs each have a Bloodline Mod
 Travel to this Map by using it in a personal Map Device. Maps can only be used once.
 ");
 
+        Assert.Equal(ItemClass.Map, actual.Header.ItemClass);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Burial Chambers Map", actual.Header.ApiType);
@@ -203,6 +206,7 @@ Unmodifiable
 Foil (Celestial Amethyst)
 ");
 
+        Assert.Equal(ItemClass.Map, actual.Header.ItemClass);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Plaza Map", actual.Header.ApiType);

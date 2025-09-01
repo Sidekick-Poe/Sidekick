@@ -2,7 +2,6 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Items.Models;
-using Sidekick.Common;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Extensions;
@@ -26,6 +25,8 @@ public class ApiItemProvider
 
     public Dictionary<string, List<ApiItem>> NameAndTypeDictionary { get; } = new();
 
+    public Dictionary<string, ApiItem> IdDictionary { get; } = new();
+
     public List<(Regex Regex, ApiItem Item)> NameAndTypeRegex { get; } = new();
 
     /// <inheritdoc/>
@@ -35,6 +36,7 @@ public class ApiItemProvider
     public async Task Initialize()
     {
         NameAndTypeDictionary.Clear();
+        IdDictionary.Clear();
         NameAndTypeRegex.Clear();
 
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
@@ -72,6 +74,8 @@ public class ApiItemProvider
             entry.Id = $"{categoryId}.{i}";
             entry.Game = game;
             entry.Category = category;
+
+            IdDictionary.Add(entry.Id, entry);
 
             if (!string.IsNullOrEmpty(entry.Name))
             {

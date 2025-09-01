@@ -12,7 +12,7 @@ public class GemParsing(ParserFixture fixture)
     [Fact]
     public void ParseVaalGem()
     {
-        var actual = parser.ParseItem(@"Item Class: Unknown
+        var actual = parser.ParseItem(@"Item Class: Skill Gems
 Rarity: Gem
 Double Strike
 --------
@@ -55,6 +55,7 @@ Corrupted
 Note: ~price 2 chaos
 ");
 
+        Assert.Equal(ItemClass.ActiveGem, actual.Header.ItemClass);
         Assert.Equal(Category.Gem, actual.Header.Category);
         Assert.Equal(Rarity.Gem, actual.Header.Rarity);
         Assert.Equal("Vaal Double Strike", actual.Header.ApiType);
@@ -91,7 +92,7 @@ Experience: 1/70
 This is a Support Gem. It does not grant a bonus to your character, but to skills in sockets connected to it. Place into an item socket connected to a socket containing the Skill Gem you wish to augment. Right click to remove from a socket.
 ");
 
-        Assert.Equal("gem.supportgem", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.SupportGem, actual.Header.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Header.Rarity);
         Assert.Equal(Category.Gem, actual.Header.Category);
         Assert.Equal("Arcane Surge Support", actual.Header.ApiType);
@@ -129,7 +130,7 @@ Experience: 1/252,595
 Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
 ");
 
-        Assert.Equal("gem.activegem", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.ActiveGem, actual.Header.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Header.Rarity);
         Assert.Equal(Category.Gem, actual.Header.Category);
         Assert.Equal("Void Sphere", actual.Header.ApiType);
@@ -169,7 +170,7 @@ Place into an item socket of the right colour to gain this skill. Right click to
 Transfigured
 ");
 
-        Assert.Equal("gem.activegem", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.ActiveGem, actual.Header.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Header.Rarity);
         Assert.Equal(Category.Gem, actual.Header.Category);
         Assert.Equal("Kinetic Blast of Clustering", actual.Header.ApiText);

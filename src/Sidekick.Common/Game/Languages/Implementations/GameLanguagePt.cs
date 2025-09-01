@@ -1,4 +1,3 @@
-
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Portuguese", "pt")]
@@ -22,7 +21,6 @@ public class GameLanguagePt : IGameLanguage
 
     public string DescriptionUnidentified => "Não Identificado";
     public string DescriptionQuality => "Qualidade";
-    public string DescriptionAlternateQuality => "Qualidade Alternativa";
     public string DescriptionLevel => "Nível";
     public string DescriptionCorrupted => "Corrompido";
     public string DescriptionSockets => "Encaixes";
@@ -73,7 +71,6 @@ public class GameLanguagePt : IGameLanguage
         Omen = "Presságio",
         Jewel = "Joias",
         DelveStackableSocketableCurrency = "Item Monetário Aglomerável e Encaixável Delve",
-        MetamorphSample = "Amostras Metamorfas",
         HeistTool = "Ferramentas Heist",
         Amulet = "Amuletos",
         Ring = "Anéis",
@@ -91,6 +88,9 @@ public class GameLanguagePt : IGameLanguage
         UtilityFlasks = "Frascos de Utilidade",
         ActiveSkillGems = "Gemas de Habilidades",
         SupportSkillGems = "Gemas de Suporte",
+        UncutSkillGems = "Gemas de Habilidade Brutas",
+        UncutSupportGems = "Gemas de Reforço Brutas",
+        UncutSpiritGems = "Gemas Espirituais Brutas",
         Maps = "Mapas",
         MapFragments = "Fragmentos de Mapas",
         Contract = "Contratos",
@@ -118,6 +118,7 @@ public class GameLanguagePt : IGameLanguage
         Sceptres = "Cetros",
         RuneDaggers = "Adagas Rúnicas",
         Warstaves = "Cajados de Guerra",
+        Quarterstaves = "Cajados",
         Spears = "Lanças",
         Bucklers = "Broquéis",
         FishingRods = "Varas de Pescar",
@@ -135,4 +136,3 @@ public class GameLanguagePt : IGameLanguage
         SanctumResearch = "Pesquisa Sanctum",
     };
 }
-

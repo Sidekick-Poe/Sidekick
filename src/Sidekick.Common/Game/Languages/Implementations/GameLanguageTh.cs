@@ -1,4 +1,3 @@
-
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Thai (Unstable)", "th")]
@@ -22,7 +21,6 @@ public class GameLanguageTh : IGameLanguage
 
     public string DescriptionUnidentified => "ยังไม่ได้ตรวจสอบ";
     public string DescriptionQuality => "ค่าคุณภาพ";
-    public string DescriptionAlternateQuality => "ค่าคุณภาพแบบพิเศษ";
     public string DescriptionLevel => "เลเวล";
     public string DescriptionCorrupted => "มีมลทิน";
     public string DescriptionSockets => "รู";
@@ -73,7 +71,6 @@ public class GameLanguageTh : IGameLanguage
         Omen = "ลางบอกเหตุ",
         Jewel = "จิวเวล",
         DelveStackableSocketableCurrency = "เงินตรามีรูของเหมืองแบบรวมกองได้",
-        MetamorphSample = "ชิ้นส่วนตัวอย่างเมตามอร์ฟ",
         HeistTool = "เครื่องมือกองโจร",
         Amulet = "สร้อย",
         Ring = "แหวน",
@@ -91,6 +88,9 @@ public class GameLanguageTh : IGameLanguage
         UtilityFlasks = "ขวดยาช่วยเหลือ",
         ActiveSkillGems = "หินสกิล",
         SupportSkillGems = "หินเสริม",
+        UncutSkillGems = "หินสกิลหยาบ",
+        UncutSupportGems = "หินเสริมหยาบ",
+        UncutSpiritGems = "หินพลังวิญญาณหยาบ",
         Maps = "แผนที่",
         MapFragments = "ชิ้นส่วนแผนที่",
         Contract = "สัญญาจ้าง",
@@ -118,6 +118,7 @@ public class GameLanguageTh : IGameLanguage
         Sceptres = "คทา",
         RuneDaggers = "มีดอาคม",
         Warstaves = "ไม้พลองสงคราม",
+        Quarterstaves = "ไม้พลองวรยุทธ์",
         Spears = "หอก",
         Bucklers = "บัคเลอร์",
         FishingRods = "เบ็ดตกปลา",

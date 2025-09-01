@@ -46,8 +46,8 @@ public static class EnumExtensions
         var fields = type.GetFields();
         foreach (var field in fields)
         {
-            var attribute = field.GetCustomAttributes(attributeType, false);
-            if (attribute.Length == 0)
+            var attributes = field.GetCustomAttributes(attributeType, false);
+            if (attributes.Length == 0)
             {
                 if (field.Name == value)
                 {
@@ -57,8 +57,8 @@ public static class EnumExtensions
                 continue;
             }
 
-            var attributeValue = ((EnumValueAttribute)attribute[0]).Value;
-            if (attributeValue == value)
+            var attribute = ((EnumValueAttribute)attributes[0]);
+            if (attribute.Value == value && !attribute.IsDuplicate)
             {
                 return (T?)field.GetValue(null) ?? default;
             }

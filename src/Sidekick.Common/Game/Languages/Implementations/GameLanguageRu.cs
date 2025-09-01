@@ -1,4 +1,3 @@
-
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Russian", "ru")]
@@ -22,7 +21,6 @@ public class GameLanguageRu : IGameLanguage
 
     public string DescriptionUnidentified => "Неопознано";
     public string DescriptionQuality => "Качество";
-    public string DescriptionAlternateQuality => "Изменённый эффект качества";
     public string DescriptionLevel => "Уровень";
     public string DescriptionCorrupted => "Осквернено";
     public string DescriptionSockets => "Гнезда";
@@ -73,7 +71,6 @@ public class GameLanguageRu : IGameLanguage
         Omen = "Предзнаменования",
         Jewel = "Самоцветы",
         DelveStackableSocketableCurrency = "Валюта Спуска",
-        MetamorphSample = "Образцы Метаморфа",
         HeistTool = "Разбойничий инструмент",
         Amulet = "Амулеты",
         Ring = "Кольца",
@@ -91,6 +88,9 @@ public class GameLanguageRu : IGameLanguage
         UtilityFlasks = "Особые флаконы",
         ActiveSkillGems = "Камни умений",
         SupportSkillGems = "Камни поддержки",
+        UncutSkillGems = "Неогранённые камни умений",
+        UncutSupportGems = "Неогранённые камни поддержки",
+        UncutSpiritGems = "Неогранённые камни духа",
         Maps = "Карты",
         MapFragments = "Обрывки карт",
         Contract = "Контракты",
@@ -118,6 +118,7 @@ public class GameLanguageRu : IGameLanguage
         Sceptres = "Скипетры",
         RuneDaggers = "Рунические кинжалы",
         Warstaves = "Воинские посохи",
+        Quarterstaves = "Боевые посохи",
         Spears = "Копья",
         Bucklers = "Баклеры",
         FishingRods = "Удочки",

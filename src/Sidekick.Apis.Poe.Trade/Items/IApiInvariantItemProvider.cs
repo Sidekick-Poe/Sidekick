@@ -9,5 +9,7 @@ public interface IApiInvariantItemProvider : IInitializableService
 
     Dictionary<string, ApiItem> NameDictionary { get; }
 
-    List<string> UncutGemIds { get; }
+    string UncutSkillGemId { get; }
+    string UncutSupportGemId { get; }
+    string UncutSpiritGemId { get; }
 }

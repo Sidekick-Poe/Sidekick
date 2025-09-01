@@ -51,6 +51,8 @@ public static class StartupExtensions
         services.AddSidekickInitializableService<IPseudoParser, PseudoParser>();
         services.AddSidekickInitializableService<IFilterProvider, FilterProvider>();
         services.AddSidekickInitializableService<IHeaderParser, HeaderParser>();
+        services.AddSidekickInitializableService<IRarityParser, RarityParser>();
+        services.AddSidekickInitializableService<IItemClassParser, ItemClassParser>();
 
         return services;
     }

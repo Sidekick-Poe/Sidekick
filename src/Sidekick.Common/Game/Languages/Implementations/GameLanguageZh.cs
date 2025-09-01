@@ -1,5 +1,3 @@
-using Romanization;
-
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("Traditional Chinese (Unstable)", "zh")]
@@ -23,7 +21,6 @@ public class GameLanguageZh : IGameLanguage
 
     public string DescriptionUnidentified => "未鑑定";
     public string DescriptionQuality => "品質";
-    public string DescriptionAlternateQuality => "替代品質";
     public string DescriptionLevel => "物品等級";
     public string DescriptionCorrupted => "已汙染";
     public string DescriptionSockets => "插槽";
@@ -74,7 +71,6 @@ public class GameLanguageZh : IGameLanguage
         Omen = "預兆",
         Jewel = "珠寶",
         DelveStackableSocketableCurrency = "掘獄可堆疊有插槽通貨",
-        MetamorphSample = "鍊魔樣本",
         HeistTool = "劫盜工具",
         Amulet = "項鍊",
         Ring = "戒指",
@@ -92,6 +88,9 @@ public class GameLanguageZh : IGameLanguage
         UtilityFlasks = "功能藥劑",
         ActiveSkillGems = "技能寶石",
         SupportSkillGems = "輔助寶石",
+        UncutSkillGems = "未切割的技能寶石",
+        UncutSupportGems = "未切割的輔助寶石",
+        UncutSpiritGems = "未切割的精魂寶石",
         Maps = "地圖",
         MapFragments = "地圖碎片",
         Contract = "契約書",
@@ -119,6 +118,7 @@ public class GameLanguageZh : IGameLanguage
         Sceptres = "權杖",
         RuneDaggers = "符紋匕首",
         Warstaves = "征戰長杖",
+        Quarterstaves = "征戰長杖",
         Spears = "長鋒",
         Bucklers = "輕盾",
         FishingRods = "魚竿",
@@ -135,21 +135,5 @@ public class GameLanguageZh : IGameLanguage
         Corpses = "屍體",
         SanctumResearch = "聖域研究",
     };
-
-    private static Chinese.HanyuPinyin? Romanization { get; set; }
-
-    public string? GetFuzzyText(string? text)
-    {
-        Romanization ??= new Chinese.HanyuPinyin();
-        try
-        {
-            text = Romanization.Process(text);
-        }
-        catch (Exception)
-        {
-            // Do nothing if the romanization fails.
-        }
-
-        return text;
-    }
 }
+

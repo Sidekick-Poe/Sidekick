@@ -12,9 +12,9 @@ public class ItemHeader
 
     public GameType Game { get; init; } = GameType.Unknown;
 
-    public string? ApiItemId { get; init; }
+    public ItemClass ItemClass { get; set; }
 
-    public string? ApiItemCategory { get; set; }
+    public string? ApiItemId { get; init; }
 
     public string? ApiName { get; init; }
 

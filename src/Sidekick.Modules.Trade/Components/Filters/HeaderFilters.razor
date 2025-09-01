@@ -1,5 +1,6 @@
 @using Sidekick.Apis.Poe.Trade.Filters
 @using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters
+@using Sidekick.Common.Enums
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Game.Languages
 @using Sidekick.Modules.Trade.Localization
@@ -53,7 +54,7 @@
     [Parameter]
     public required PropertyFilters PropertyFilters { get; set; }
 
-    private bool Visible => Item.Header.Rarity is Rarity.Rare or Rarity.Magic or Rarity.Normal && !string.IsNullOrEmpty(Item.Header.ApiItemCategory) && !string.IsNullOrEmpty(ClassLabel);
+    private bool Visible => Item.Header.Rarity is Rarity.Rare or Rarity.Magic or Rarity.Normal && Item.Header.ItemClass != ItemClass.Unknown && !string.IsNullOrEmpty(ClassLabel);
 
     private string? ClassLabel { get; set; }
 
@@ -63,7 +64,7 @@
     {
         await base.OnParametersSetAsync();
 
-        ClassLabel = FilterProvider.TypeCategoryOptions.FirstOrDefault(x => x.Id == Item.Header.ApiItemCategory)?.Text;
+        ClassLabel = FilterProvider.TypeCategoryOptions.FirstOrDefault(x => x.Id == Item.Header.ItemClass.GetValueAttribute())?.Text;
         RarityLabel = Item.Header.Rarity switch
         {
             Rarity.Currency => GameLanguageProvider.Language.RarityCurrency,

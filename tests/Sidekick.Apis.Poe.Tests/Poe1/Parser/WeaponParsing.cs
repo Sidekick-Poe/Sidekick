@@ -195,6 +195,7 @@ It doesn't matter how well the young swordsman trains.
 All form and finesse are forgotten when blood first hits the ground.
 ");
 
+        Assert.Equal(ItemClass.OneHandSword, actual.Header.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Unique, actual.Header.Rarity);
         Assert.Equal("Daresso's Passion", actual.Header.ApiName);
@@ -241,7 +242,7 @@ And tore out her heart.
 Note: ~price 40 chaos
 ");
 
-        Assert.Equal("weapon.rod", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.FishingRod, actual.Header.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Header.Rarity);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal("Reefbane", actual.Header.ApiName);
@@ -274,7 +275,7 @@ Unidentified
 --------
 Hunter Item");
 
-        Assert.Equal("weapon.onemace", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.OneHandMace, actual.Header.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal("Ornate Mace", actual.Header.ApiType);
@@ -317,7 +318,7 @@ Trigger a Socketed Spell when you Use a Skill, with a 8 second Cooldown (crafted
 Spells Triggered this way have 150% more Cost (crafted)
 ");
 
-        Assert.Equal("weapon.onesword", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.OneHandSword, actual.Header.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal("Apex Rapier", actual.Header.ApiType);
@@ -357,7 +358,7 @@ Adds 10 to 175 Lightning Damage
 28% increased Critical Strike Chance
 9% increased Lightning Damage (crafted)");
 
-        Assert.Equal("weapon.onesword", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.OneHandSword, actual.Header.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal("Fancy Foil", actual.Header.ApiType);
@@ -403,7 +404,7 @@ Fractured Item
 Note: ~price 30 chaos
 ");
 
-        Assert.Equal("weapon.staff", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.Staff, actual.Header.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal("Imperial Staff", actual.Header.ApiType);

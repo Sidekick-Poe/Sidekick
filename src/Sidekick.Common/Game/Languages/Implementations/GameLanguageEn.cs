@@ -1,4 +1,3 @@
-
 namespace Sidekick.Common.Game.Languages.Implementations;
 
 [GameLanguage("English", "en")]
@@ -22,7 +21,6 @@ public class GameLanguageEn : IGameLanguage
 
     public string DescriptionUnidentified => "Unidentified";
     public string DescriptionQuality => "Quality";
-    public string DescriptionAlternateQuality => "Alternate Quality";
     public string DescriptionLevel => "Level";
     public string DescriptionCorrupted => "Corrupted";
     public string DescriptionSockets => "Sockets";
@@ -73,7 +71,6 @@ public class GameLanguageEn : IGameLanguage
         Omen = "Omen",
         Jewel = "Jewels",
         DelveStackableSocketableCurrency = "Delve Stackable Socketable Currency",
-        MetamorphSample = "Metamorph Samples",
         HeistTool = "Heist Tools",
         Amulet = "Amulets",
         Ring = "Rings",
@@ -91,6 +88,9 @@ public class GameLanguageEn : IGameLanguage
         UtilityFlasks = "Utility Flasks",
         ActiveSkillGems = "Skill Gems",
         SupportSkillGems = "Support Gems",
+        UncutSkillGems = "Uncut Skill Gems",
+        UncutSupportGems = "Uncut Support Gems",
+        UncutSpiritGems = "Uncut Spirit Gems",
         Maps = "Maps",
         MapFragments = "Map Fragments",
         Contract = "Contracts",
@@ -118,6 +118,7 @@ public class GameLanguageEn : IGameLanguage
         Sceptres = "Sceptres",
         RuneDaggers = "Rune Daggers",
         Warstaves = "Warstaves",
+        Quarterstaves = "Quarterstaves",
         Spears = "Spears",
         Bucklers = "Bucklers",
         FishingRods = "Fishing Rods",

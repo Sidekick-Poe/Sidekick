@@ -24,7 +24,7 @@ Shift click to unstack.
 Note: ~price 1 alch
 ");
 
-        Assert.Equal("currency", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.Currency, actual.Header.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Header.Rarity);
         Assert.Equal(Category.Currency, actual.Header.Category);
         Assert.Equal("Ritual Splinter", actual.Header.ApiType);
@@ -46,7 +46,7 @@ Right-click this item then left-click a Ritual Altar to store the monsters from 
 Note: ~price 8 chaos
 ");
 
-        Assert.Equal("currency", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.Currency, actual.Header.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Header.Rarity);
         Assert.Equal(Category.Currency, actual.Header.Category);
         Assert.Equal("Ritual Vessel", actual.Header.ApiType);
@@ -73,7 +73,7 @@ Right click this item to create this corpse.
 Note: ~price 3 chaos
 ");
 
-        Assert.Equal("corpse", actual.Header.ApiItemCategory);
+        Assert.Equal(ItemClass.Corpse, actual.Header.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Header.Rarity);
         Assert.Equal(Category.Corpse, actual.Header.Category);
         Assert.Equal("Perfect Needle Horror", actual.Header.ApiType);

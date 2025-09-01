@@ -186,7 +186,7 @@ public class ModifierParser
             return [.. modifierProvider.Definitions[ModifierCategory.Sanctum]];
         }
 
-        if (header.Category is Category.Map && header.ApiItemCategory is "map.tablet")
+        if (header.Category is Category.Map && header.ItemClass == ItemClass.Tablet)
         {
             return
             [

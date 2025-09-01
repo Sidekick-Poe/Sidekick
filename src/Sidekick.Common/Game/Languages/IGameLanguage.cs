@@ -32,8 +32,6 @@ public interface IGameLanguage
 
     string DescriptionQuality { get; }
 
-    string DescriptionAlternateQuality { get; }
-
     string DescriptionCorrupted { get; }
 
     string DescriptionSockets { get; }
