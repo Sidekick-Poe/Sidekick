@@ -248,7 +248,7 @@ Cliquez sur le bouton pour l'ouvrir dans votre navigateur.</value>
     <value>En ligne et dans la ligue</value>
   </data>
   <data name="Player_Status_Online" xml:space="preserve">
-    <value>En ligne seulement</value>
+      <value>Échange en personne</value>
   </data>
   <data name="Player_Status_Any" xml:space="preserve">
     <value>Tous</value>
@@ -297,5 +297,11 @@ Cliquez sur le bouton pour l'ouvrir dans votre navigateur.</value>
   </data>
   <data name="Clear_Filters" xml:space="preserve">
       <value>Retirer les filtres</value>
+  </data>
+  <data name="Player_Status_Available" xml:space="preserve">
+      <value>Achat instantané et Échange en personne</value>
+  </data>
+  <data name="Player_Status_Securable" xml:space="preserve">
+      <value>Achat instantané</value>
   </data>
 </root>

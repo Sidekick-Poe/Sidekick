@@ -5,13 +5,13 @@
 @using Sidekick.Common.Settings
 
 <FormFieldset Legend="@Resources["Player_Status"]"
-Dense="true">
+              Dense="true">
     <div class="flex flex-wrap items-center gap-2">
         @foreach (var option in Options)
         {
             <FormCheckbox Value="option.Value == Value"
-            Dense="true"
-            ValueChanged="@(() => ValueChanged(option.Value))">@option.Label</FormCheckbox>
+                          Dense="true"
+                          ValueChanged="@(() => ValueChanged(option.Value))">@option.Label</FormCheckbox>
         }
     </div>
 </FormFieldset>
@@ -37,24 +37,53 @@ Dense="true">
         Value = await SettingsService.GetString(SettingKey);
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
-        Options =
-        [
-            new()
-            {
-                Label = Resources["Player_Status_Online"],
-                Value = Status.Online,
-            },
-            new()
-            {
-                Label = Resources["Player_Status_OnlineLeague"],
-                Value = Status.OnlineLeague,
-            },
-            new()
-            {
-                Label = Resources["Player_Status_Any"],
-                Value = Status.Any,
-            },
-        ];
+        if (game == GameType.PathOfExile2)
+        {
+            Options =
+            [
+                new()
+                {
+                    Label = Resources["Player_Status_Available"],
+                    Value = Status.Available,
+                },
+                new()
+                {
+                    Label = Resources["Player_Status_Securable"],
+                    Value = Status.Securable,
+                },
+                new()
+                {
+                    Label = Resources["Player_Status_Online"],
+                    Value = Status.Online,
+                },
+                new()
+                {
+                    Label = Resources["Player_Status_Any"],
+                    Value = Status.Any,
+                },
+            ];
+        }
+        else
+        {
+            Options =
+            [
+                new()
+                {
+                    Label = Resources["Player_Status_Online"],
+                    Value = Status.Online,
+                },
+                new()
+                {
+                    Label = Resources["Player_Status_OnlineLeague"],
+                    Value = Status.OnlineLeague,
+                },
+                new()
+                {
+                    Label = Resources["Player_Status_Any"],
+                    Value = Status.Any,
+                },
+            ];
+        }
 
         await base.OnInitializedAsync();
     }
