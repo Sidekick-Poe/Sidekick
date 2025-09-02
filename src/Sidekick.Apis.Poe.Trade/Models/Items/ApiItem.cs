@@ -83,6 +83,9 @@ public class ApiItem
     [JsonPropertyName("fracturedMods")]
     public List<string> FracturedMods { get; set; } = [];
 
+    [JsonPropertyName("desecratedMods")]
+    public List<string> DesecratedMods { get; set; } = [];
+
     [JsonPropertyName("scourgeMods")]
     public List<string> ScourgeMods { get; set; } = [];
 
@@ -129,5 +132,5 @@ public class ApiItem
         return value.Value.GetInt32();
     }
 
-    public bool HasModifiers => !Identified || ImplicitMods.Count > 0 || CraftedMods.Count > 0 || ExplicitMods.Count > 0 || UtilityMods.Count > 0 || PseudoMods.Count > 0 || EnchantMods.Count > 0 || RuneMods.Count > 0 || FracturedMods.Count > 0 || ScourgeMods.Count > 0 || SanctumMods.Count > 0 || LogbookMods.Count > 0;
+    public bool HasModifiers => !Identified || ImplicitMods.Count > 0 || CraftedMods.Count > 0 || ExplicitMods.Count > 0 || UtilityMods.Count > 0 || PseudoMods.Count > 0 || EnchantMods.Count > 0 || RuneMods.Count > 0 || FracturedMods.Count > 0 || DesecratedMods.Count > 0 || ScourgeMods.Count > 0 || SanctumMods.Count > 0 || LogbookMods.Count > 0;
 }
