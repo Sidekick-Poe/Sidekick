@@ -5,7 +5,7 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo.Definitions;
 
 public class LifeDefinition(GameType game) : PseudoDefinition
 {
-    protected override bool Enabled => game == GameType.PathOfExile;
+    protected override bool Enabled => true;
 
     protected override string? ModifierId => game == GameType.PathOfExile ? "pseudo.pseudo_total_life" : null;
 
@@ -17,7 +17,7 @@ public class LifeDefinition(GameType game) : PseudoDefinition
         new(new Regex("to all Attributes$"), AttributeMultiplier),
     ];
 
-    protected override Regex Exception => new("Zombies|Transformed");
+    protected override Regex Exception => new("Zombies|Transformed|Convert");
 
     private double AttributeMultiplier => game == GameType.PathOfExile ? 0.5 : 2;
 }

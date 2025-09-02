@@ -5,7 +5,7 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo.Definitions;
 
 public class ElementalResistancesDefinition(GameType game) : PseudoDefinition
 {
-    protected override bool Enabled => game == GameType.PathOfExile;
+    protected override bool Enabled => true;
 
     protected override string? ModifierId => game == GameType.PathOfExile ? "pseudo.pseudo_total_elemental_resistance" : null;
 
@@ -17,5 +17,5 @@ public class ElementalResistancesDefinition(GameType game) : PseudoDefinition
         new(new Regex("to all Elemental Resistances$"), 3),
     ];
 
-    protected override Regex Exception => new("Minions|Enemies|Totems");
+    protected override Regex Exception => new("Minions|Enemies|Totems|Allies|applies|Passive");
 }

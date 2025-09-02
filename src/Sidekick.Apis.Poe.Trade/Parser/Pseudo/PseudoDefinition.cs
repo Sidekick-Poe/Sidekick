@@ -32,14 +32,14 @@ public abstract class PseudoDefinition
 
     internal void InitializeDefinition(List<ApiCategory> apiCategories, List<ModifierDefinition>? localizedPseudoModifiers)
     {
+        if (!Enabled)
+        {
+            return;
+        }
+
         foreach (var apiModifier in apiCategories.SelectMany(apiCategory => apiCategory.Entries))
         {
-            if (!Enabled)
-            {
-                return;
-            }
-
-            if (Exception != null && apiModifier.Text is not null && Exception.IsMatch(apiModifier.Text))
+            if (Exception != null && Exception.IsMatch(apiModifier.Text))
             {
                 continue;
             }
