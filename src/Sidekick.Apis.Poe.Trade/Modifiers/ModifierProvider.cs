@@ -126,6 +126,7 @@ public class ModifierProvider
         "crafted" => ModifierCategory.Crafted,
         "delve" => ModifierCategory.Delve,
         "enchant" => ModifierCategory.Enchant,
+        "skill" => ModifierCategory.Skill,
         "explicit" => ModifierCategory.Explicit,
         "fractured" => ModifierCategory.Fractured,
         "desecrated" => ModifierCategory.Desecrated,

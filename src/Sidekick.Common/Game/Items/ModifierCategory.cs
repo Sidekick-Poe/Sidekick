@@ -17,6 +17,7 @@ public enum ModifierCategory
     Rune = 12,
     Sanctum = 13,
     Desecrated = 14,
+    Skill = 15,
 
     // Meta modifiers
     Corrupted = 101,
