@@ -15,7 +15,7 @@ public class ModifierParser
     IFuzzyService fuzzyService
 ) : IModifierParser
 {
-    private readonly Regex cleanOriginalTextPattern = new(" \\((?:implicit|enchant|crafted|veiled|fractured|scourge|crucible)\\)");
+    private readonly Regex cleanOriginalTextPattern = new(" \\((?:implicit|enchant|crafted|veiled|fractured|scourge|crucible|rune|desecrated)\\)");
 
     /// <inheritdoc/>
     public List<ModifierLine> Parse(ParsingItem parsingItem, ItemHeader header)
