@@ -153,9 +153,9 @@ public class Poe2ScoutClient
                     LastUpdated = DateTimeOffset.Now
                 }).ToList();
         }
-        catch
+        catch (Exception e)
         {
-            logger.LogWarning("[Poe2Scout] Could not fetch items from poe2scout.com");
+            logger.LogError(e, "[Poe2Scout] Could not fetch items from poe2scout.com");
         }
 
         return [];
