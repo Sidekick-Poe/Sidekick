@@ -16,6 +16,7 @@ public enum ModifierCategory
     Crucible = 11,
     Rune = 12,
     Sanctum = 13,
+    Desecrated = 14,
 
     // Meta modifiers
     Corrupted = 101,

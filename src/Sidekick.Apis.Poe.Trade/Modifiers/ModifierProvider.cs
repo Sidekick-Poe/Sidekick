@@ -2,7 +2,6 @@ using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Modifiers.Models;
-using Sidekick.Common;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Extensions;
@@ -129,6 +128,7 @@ public class ModifierProvider
         "enchant" => ModifierCategory.Enchant,
         "explicit" => ModifierCategory.Explicit,
         "fractured" => ModifierCategory.Fractured,
+        "desecrated" => ModifierCategory.Desecrated,
         "implicit" => ModifierCategory.Implicit,
         "monster" => ModifierCategory.Monster,
         "pseudo" => ModifierCategory.Pseudo,
@@ -172,6 +172,7 @@ public class ModifierProvider
             ModifierCategory.Crafted => "(?:\\ \\(crafted\\))?",
             ModifierCategory.Veiled => "(?:\\ \\(veiled\\))",
             ModifierCategory.Fractured => "(?:\\ \\(fractured\\))?",
+            ModifierCategory.Desecrated => "(?:\\ \\(desecrated\\))",
             ModifierCategory.Scourge => "(?:\\ \\(scourge\\))",
             ModifierCategory.Crucible => "(?:\\ \\(crucible\\))",
             ModifierCategory.Rune => "(?:\\ \\(rune\\))",
@@ -237,6 +238,7 @@ public class ModifierProvider
             ModifierCategory.Crafted => " (crafted)",
             ModifierCategory.Veiled => " (veiled)",
             ModifierCategory.Fractured => " (fractured)",
+            ModifierCategory.Desecrated => " (desecrated)",
             ModifierCategory.Scourge => " (scourge)",
             ModifierCategory.Pseudo => " (pseudo)",
             ModifierCategory.Crucible => " (crucible)",
