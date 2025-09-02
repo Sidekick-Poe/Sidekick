@@ -80,6 +80,8 @@
 
     protected override async Task OnParametersSetAsync()
     {
+        PriceCheckService.Init();
+
         var itemText = ItemText.DecodeBase64Url();
         Item = ItemParser.ParseItem(itemText);
 
