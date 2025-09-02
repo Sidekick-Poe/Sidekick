@@ -17,13 +17,15 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Bulk;
 
-public class BulkTradeService(
+public class BulkTradeService
+(
     ILogger<BulkTradeService> logger,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
     IFilterProvider filterProvider,
     IItemStaticDataProvider itemStaticDataProvider,
-    IHttpClientFactory httpClientFactory) : IBulkTradeService
+    IHttpClientFactory httpClientFactory
+) : IBulkTradeService
 {
     private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
@@ -47,7 +49,10 @@ public class BulkTradeService(
         var staticItem = itemStaticDataProvider.Get(item.Header);
         if (staticItem == null)
         {
-            throw new ApiErrorException { AdditionalInformation = ["Sidekick could not find a valid item."], };
+            throw new ApiErrorException
+            {
+                AdditionalInformation = ["Sidekick could not find a valid item."],
+            };
         }
 
         var currency = item.Header.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
@@ -77,7 +82,8 @@ public class BulkTradeService(
         // Trade Settings
         var statusKey = item.Header.Game == GameType.PathOfExile ? SettingKeys.PriceCheckStatusPoE1 : SettingKeys.PriceCheckStatusPoE2;
         var status = await settingsService.GetString(statusKey);
-        model.Query.Status.Option = status ?? Status.Online;
+        if (status == Status.Securable || status == Status.Available) status = Status.OnlineLeague;
+        model.Query.Status.Option = status ?? Status.OnlineLeague;
 
         var json = JsonSerializer.Serialize(model, JsonSerializerOptions);
         using var body = new StringContent(json, Encoding.UTF8, "application/json");
@@ -124,5 +130,4 @@ public class BulkTradeService(
         var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
         return useInvariant ? gameLanguageProvider.InvariantLanguage.GetTradeBaseUrl(game) : gameLanguageProvider.Language.GetTradeBaseUrl(game);
     }
-
 }
