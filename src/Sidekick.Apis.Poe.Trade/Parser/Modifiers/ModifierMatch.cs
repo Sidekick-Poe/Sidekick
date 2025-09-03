@@ -6,12 +6,12 @@ public class ModifierMatch
 (
     ParsingBlock block,
     IEnumerable<ParsingLine> lines,
-    IEnumerable<ModifierDefinition> patterns
+    IEnumerable<ModifierDefinition> definitions
 )
 {
     public ParsingBlock Block { get; } = block;
 
     public IEnumerable<ParsingLine> Lines { get; } = lines;
 
-    public IEnumerable<ModifierDefinition> Patterns { get; } = patterns;
+    public IEnumerable<ModifierDefinition> Definitions { get; } = definitions;
 }

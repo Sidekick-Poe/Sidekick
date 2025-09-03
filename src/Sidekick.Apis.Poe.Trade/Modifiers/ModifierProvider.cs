@@ -43,9 +43,9 @@ public class ModifierProvider
         return parseSquareBracketPattern.Replace(text, "$1");
     }
 
-    private readonly Regex newLinePattern = new("(?:\\\\)*[\\r\\n]+");
-    private readonly Regex hashPattern = new("\\\\#");
-    private readonly Regex parenthesesPattern = new("((?:\\\\\\ )*\\\\\\([^\\(\\)]*\\\\\\))");
+    private readonly Regex newLinePattern = new(@"(?:\\)*[\r\n]+");
+    private readonly Regex hashPattern = new(@"\\#");
+    private readonly Regex parenthesesPattern = new(@"((?:\\\ )*\\\([^\(\)]*\\\))");
 
     public Dictionary<ModifierCategory, List<ModifierDefinition>> Definitions { get; } = new();
 
@@ -105,15 +105,16 @@ public class ModifierProvider
                 {
                     if (option.Text == null) continue;
                     option.Text = RemoveSquareBrackets(option.Text);
-                    patterns.Add(new ModifierDefinition(modifierCategory, entry.Id, apiText: ComputeOptionText(entry.Text, option.Text), fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text, option.Text), pattern: ComputePattern(entry.Text, modifierCategory, option.Text))
+                    patterns.Add(new ModifierDefinition(modifierCategory, entry.Id, apiText: ComputeOptionText(entry.Text, option.Text), fuzzyText: ComputeFuzzyText(entry.Text, option.Text), pattern: ComputePattern(entry.Text, modifierCategory, option.Text))
                     {
                         OptionId = option.Id,
+                        OptionText = option.Text,
                     });
                 }
             }
             else
             {
-                patterns.Add(new ModifierDefinition(modifierCategory, entry.Id, entry.Text, fuzzyText: ComputeFuzzyText(modifierCategory, entry.Text), pattern: ComputePattern(entry.Text, modifierCategory)));
+                patterns.Add(new ModifierDefinition(modifierCategory, entry.Id, entry.Text, fuzzyText: ComputeFuzzyText(entry.Text), pattern: ComputePattern(entry.Text, modifierCategory)));
             }
         }
 
@@ -121,25 +122,11 @@ public class ModifierProvider
     }
 
     /// <inheritdoc/>
-    public ModifierCategory GetModifierCategory(string? apiId) => apiId?.Split('.').First() switch
+    public ModifierCategory GetModifierCategory(string? apiId)
     {
-        "crafted" => ModifierCategory.Crafted,
-        "delve" => ModifierCategory.Delve,
-        "enchant" => ModifierCategory.Enchant,
-        "skill" => ModifierCategory.Skill,
-        "explicit" => ModifierCategory.Explicit,
-        "fractured" => ModifierCategory.Fractured,
-        "desecrated" => ModifierCategory.Desecrated,
-        "implicit" => ModifierCategory.Implicit,
-        "monster" => ModifierCategory.Monster,
-        "pseudo" => ModifierCategory.Pseudo,
-        "scourge" => ModifierCategory.Scourge,
-        "veiled" => ModifierCategory.Veiled,
-        "crucible" => ModifierCategory.Crucible,
-        "rune" => ModifierCategory.Rune,
-        "sanctum" => ModifierCategory.Sanctum,
-        _ => ModifierCategory.Undefined,
-    };
+        var value = apiId?.Split('.').First();
+        return value.GetEnumFromValue<ModifierCategory>();
+    }
 
     private void FillSpecialPseudoPattern(List<ModifierDefinition> pseudoPatterns, List<ModifierDefinition> patterns)
     {
@@ -147,7 +134,7 @@ public class ModifierProvider
         foreach (var group in patterns.GroupBy(x => x.ApiId))
         {
             var pattern = group.OrderBy(x => x.OptionId).First();
-            specialPatterns.Add(new ModifierDefinition(pattern.Category, pattern.ApiId, pattern.ApiText, fuzzyText: ComputeFuzzyText(ModifierCategory.Pseudo, pattern.ApiText), pattern: ComputePattern(pattern.ApiText.Split(':', 2).Last().Trim(), ModifierCategory.Pseudo))
+            specialPatterns.Add(new ModifierDefinition(pattern.Category, pattern.ApiId, pattern.ApiText, fuzzyText: ComputeFuzzyText(pattern.ApiText), pattern: ComputePattern(pattern.ApiText.Split(':', 2).Last().Trim(), ModifierCategory.Pseudo))
             {
                 OptionText = pattern.OptionText,
                 OptionId = pattern.OptionId,
@@ -166,18 +153,20 @@ public class ModifierProvider
 
         // The notes in parentheses are never translated by the game.
         // We should be fine hardcoding them this way.
+        var explicitCategories = string.Join("|", ModifierCategories.AllExplicitCategories.Select(x => x.GetValueAttribute()));
+        var explicitSuffix = "(?:\\ \\((?:" + explicitCategories + ")\\))?";
         var suffix = category switch
         {
-            ModifierCategory.Implicit => "(?:\\ \\(implicit\\))",
             ModifierCategory.Enchant => "(?:\\ \\(enchant\\))",
-            ModifierCategory.Crafted => "(?:\\ \\(crafted\\))?",
-            ModifierCategory.Veiled => "(?:\\ \\(veiled\\))",
-            ModifierCategory.Fractured => "(?:\\ \\(fractured\\))?",
-            ModifierCategory.Desecrated => "(?:\\ \\(desecrated\\))",
-            ModifierCategory.Scourge => "(?:\\ \\(scourge\\))",
-            ModifierCategory.Crucible => "(?:\\ \\(crucible\\))",
             ModifierCategory.Rune => "(?:\\ \\(rune\\))",
-            ModifierCategory.Explicit => "(?:\\ \\((?:crafted|fractured)\\))?",
+            ModifierCategory.Implicit => "(?:\\ \\(implicit\\))",
+            ModifierCategory.Veiled => explicitSuffix,
+            ModifierCategory.Scourge => explicitSuffix,
+            ModifierCategory.Crucible => explicitSuffix,
+            ModifierCategory.Crafted => explicitSuffix,
+            ModifierCategory.Fractured => explicitSuffix,
+            ModifierCategory.Desecrated => explicitSuffix,
+            ModifierCategory.Explicit => explicitSuffix,
             _ => "",
         };
 
@@ -207,45 +196,29 @@ public class ModifierProvider
         return new Regex($"^{patternValue}$", RegexOptions.None);
     }
 
-    private string ComputeFuzzyText(ModifierCategory category, string text, string? optionText = null)
+    private string ComputeFuzzyText(string text, string? optionText = null)
     {
         text = RemoveSquareBrackets(text);
         if (optionText != null) optionText = RemoveSquareBrackets(optionText);
 
         var fuzzyValue = text;
 
-        if (!string.IsNullOrEmpty(optionText))
+        if (string.IsNullOrEmpty(optionText))
         {
-            foreach (var optionLine in newLinePattern.Split(optionText))
-            {
-                if (parseHashPattern.IsMatch(fuzzyValue))
-                {
-                    fuzzyValue = parseHashPattern.Replace(fuzzyValue, optionLine);
-                }
-                else
-                {
-                    fuzzyValue += optionLine;
-                }
-            }
+            return fuzzyService.CleanFuzzyText(fuzzyValue);
         }
 
-        // Add the suffix
-        // The notes in parentheses are never translated by the game.
-        // We should be fine hardcoding them this way.
-        fuzzyValue += category switch
+        foreach (var optionLine in newLinePattern.Split(optionText))
         {
-            ModifierCategory.Implicit => " (implicit)",
-            ModifierCategory.Enchant => " (enchant)",
-            ModifierCategory.Crafted => " (crafted)",
-            ModifierCategory.Veiled => " (veiled)",
-            ModifierCategory.Fractured => " (fractured)",
-            ModifierCategory.Desecrated => " (desecrated)",
-            ModifierCategory.Scourge => " (scourge)",
-            ModifierCategory.Pseudo => " (pseudo)",
-            ModifierCategory.Crucible => " (crucible)",
-            ModifierCategory.Rune => " (rune)",
-            _ => "",
-        };
+            if (parseHashPattern.IsMatch(fuzzyValue))
+            {
+                fuzzyValue = parseHashPattern.Replace(fuzzyValue, optionLine);
+            }
+            else
+            {
+                fuzzyValue += optionLine;
+            }
+        }
 
         return fuzzyService.CleanFuzzyText(fuzzyValue);
     }

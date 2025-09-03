@@ -5,6 +5,7 @@ using FuzzySharp;
 using Sidekick.Apis.Poe.Trade.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Modifiers.Models;
+using Sidekick.Common.Enums;
 using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Modifiers;
@@ -15,7 +16,7 @@ public class ModifierParser
     IFuzzyService fuzzyService
 ) : IModifierParser
 {
-    private readonly Regex cleanOriginalTextPattern = new(" \\((?:implicit|enchant|crafted|veiled|fractured|scourge|crucible|rune|desecrated)\\)");
+    private readonly Regex parseCategoryPattern = new(@" \((implicit|enchant|crafted|veiled|fractured|scourge|crucible|rune|desecrated)\)");
 
     /// <inheritdoc/>
     public List<ModifierLine> Parse(ParsingItem parsingItem, ItemHeader header)
@@ -39,15 +40,37 @@ public class ModifierParser
 
     private ModifierLine CreateModifierLine(ModifierMatch match)
     {
-        var text = CreateString(match);
-        var modifierLine = new ModifierLine(cleanOriginalTextPattern.Replace(text, string.Empty))
+        var textBuilder = new StringBuilder();
+        foreach (var line in match.Lines)
+        {
+            if (textBuilder.Length != 0) textBuilder.Append('\n');
+
+            textBuilder.Append(line.Text);
+            line.Parsed = true;
+        }
+
+        var text = textBuilder.ToString();
+        var textCategoryMatches = parseCategoryPattern.Matches(text);
+        var category = textCategoryMatches.Count > 0 ? textCategoryMatches[0].Groups[1].Value : string.Empty;
+
+        var modifierLine = new ModifierLine(parseCategoryPattern.Replace(text, string.Empty))
         {
             BlockIndex = match.Block.Index,
             LineIndex = match.Lines.First().Index,
         };
 
         var fuzzyLine = fuzzyService.CleanFuzzyText(text);
-        var patterns = match.Patterns.OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText)).ToList();
+        var patterns = match.Definitions.OrderByDescending(x =>
+            {
+                if (!string.IsNullOrEmpty(category) && category == x.Category.GetValueAttribute())
+                {
+                    return 1;
+                }
+
+                return 0;
+            })
+            .ThenByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText))
+            .ToList();
 
         foreach (var pattern in patterns.Where(pattern => modifierLine.Modifiers.All(x => x.ApiId != pattern.ApiId)))
         {
@@ -58,30 +81,8 @@ public class ModifierParser
             });
         }
 
-        if (modifierLine.Modifiers.All(x => x.Category == ModifierCategory.Pseudo))
-        {
-            // modifierLine.Text = modifierLine.Modifiers.FirstOrDefault()?.Text ?? modifierLine.Text;
-        }
-
         ParseModifierValue(modifierLine, patterns.FirstOrDefault());
         return modifierLine;
-    }
-
-    private static string CreateString(ModifierMatch match)
-    {
-        var text = new StringBuilder();
-        foreach (var line in match.Lines)
-        {
-            if (text.Length != 0)
-            {
-                text.Append('\n');
-            }
-
-            text.Append(line.Text);
-            line.Parsed = true;
-        }
-
-        return text.ToString();
     }
 
     private IEnumerable<ModifierMatch> MatchModifiers(ParsingItem parsingItem, ItemHeader header)
@@ -136,17 +137,15 @@ public class ModifierParser
 
     private IEnumerable<ModifierDefinition> MatchModifierFuzzily(ParsingBlock block, ParsingLine line, IReadOnlyCollection<ModifierDefinition> allAvailablePatterns)
     {
-        if (line.Parsed)
-        {
-            yield break;
-        }
+        if (line.Parsed) yield break;
 
-        var fuzzySingleLine = fuzzyService.CleanFuzzyText(line.Text);
+        var cleanLine = parseCategoryPattern.Replace(line.Text, string.Empty);
+        var fuzzySingleLine = fuzzyService.CleanFuzzyText(cleanLine);
         string? fuzzyDoubleLine = null;
         var lineIndex = block.Lines.IndexOf(line);
         if (lineIndex < block.Lines.Count - 1)
         {
-            fuzzyDoubleLine = fuzzyService.CleanFuzzyText(line.Text + " " + block.Lines[lineIndex + 1].Text);
+            fuzzyDoubleLine = fuzzyService.CleanFuzzyText(cleanLine + " " + block.Lines[lineIndex + 1].Text);
         }
 
         var results = new List<(int Ratio, ModifierDefinition Pattern)>();

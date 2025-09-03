@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common.Ui.Dialogs;
+using Sidekick.Common.Ui.Sections;
 using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Common.Ui;
@@ -15,6 +16,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ICurrentView, CurrentView>();
 
         services.AddSingleton<IViewPreferenceService, ViewPreferenceService>();
+        services.AddSingleton<SectionService>();
 
         services.AddSidekickModule(typeof(ConfirmationDialog).Assembly);
 

@@ -67,7 +67,8 @@ public abstract class PseudoDefinition
                 "enchant" => 4,
                 "fractured" => 5,
                 "veiled" => 6,
-                _ => 7,
+                "desecrated" => 7,
+                _ => 8,
             })
             .ThenBy(x => x.Text)
             .ToList();
