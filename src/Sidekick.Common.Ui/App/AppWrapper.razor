@@ -1,14 +1,14 @@
 @using Microsoft.AspNetCore.Components.Sections
 @using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Sections
 
 <ErrorFullScreenBoundary>
-    <div class="font-sans w-full h-[calc(var(--sidekick-vh))] overflow-y-auto overflow-x-hidden dark:bg-stone-900 text-white text-base [zoom:var(--sidekick-zoom)]">
+    <div
+        class="font-sans w-full h-[calc(var(--sidekick-vh))] overflow-y-auto overflow-x-hidden dark:bg-stone-900 text-white text-base [zoom:var(--sidekick-zoom)]">
         @ChildContent
     </div>
 
-    <div class="font-sans text-base">
-        <SectionOutlet SectionName="sidekick-overlay" />
-    </div>
+    <BodySectionOutlets/>
 </ErrorFullScreenBoundary>
 
 @inject IJSRuntime JsRuntime

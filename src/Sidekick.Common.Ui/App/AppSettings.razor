@@ -1,5 +1,5 @@
-@using Microsoft.AspNetCore.Components.Sections
 @using Sidekick.Common.Ui.Localization
+@using Sidekick.Common.Ui.Sections
 
 <button type="button"
         @onclick="ToggleDrawer"
@@ -14,7 +14,7 @@
 <div class="relative">
     @if (Visible)
     {
-        <SectionContent SectionName="sidekick-overlay">
+        <BodySectionContent SectionName="app-settings">
             <div
                 class="dark:bg-stone-950 shadow-lg text-white fixed top-0 right-0 bottom-0 w-[450px] z-30 flex flex-col">
                 <div class="w-full flex justify-end">
@@ -49,7 +49,7 @@
                  @onclick:preventDefault="true"
                  @onclick:stopPropagation="true">
             </div>
-        </SectionContent>
+        </BodySectionContent>
     }
 </div>
 
