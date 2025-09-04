@@ -4,10 +4,10 @@ export default (triggerId, parameters) => {
     const targetId = parameters[0];
     const placement = parameters[1] || 'top';
 
-    const $targetEl = document.getElementById(targetId);
-    const $triggerEl = document.getElementById(triggerId);
+    const targetElement = document.getElementById(targetId);
+    const triggerElement = document.getElementById(triggerId);
 
-    if ($targetEl === null || $triggerEl === null) {
+    if (targetElement === null || triggerElement === null) {
         console.warn(`[Sidekick] Flowbite tooltip: target element #${targetId} or trigger element #${triggerId} not found.`);
         return {
             destroy() {
@@ -19,7 +19,12 @@ export default (triggerId, parameters) => {
     const options = {
         placement: placement,
         triggerType: 'hover',
+        onShow: () => {
+            targetElement.classList.remove('hidden');
+        }
     };
 
-    return new Tooltip($targetEl, $triggerEl, options);
+    targetElement.classList.add('hidden');
+
+    return new Tooltip(targetElement, triggerElement, options);
 };

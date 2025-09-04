@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
@@ -20,7 +21,7 @@ public class SeparatorProperty() : PropertyDefinition
         };
     }
 
-    public override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
     {
     }
 }

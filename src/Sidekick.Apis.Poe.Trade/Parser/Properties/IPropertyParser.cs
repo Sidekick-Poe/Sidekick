@@ -1,5 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Initialization;
 
@@ -13,5 +13,5 @@ public interface IPropertyParser : IInitializableService
 
     Task<List<BooleanPropertyFilter>> GetFilters(Item item);
 
-    void PrepareTradeRequest(SearchFilters searchFilters, Item item, PropertyFilters propertyFilters);
+    void PrepareTradeRequest(Query query, Item item, PropertyFilters propertyFilters);
 }

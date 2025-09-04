@@ -4,6 +4,7 @@ using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
@@ -14,6 +15,7 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
 
 public class PropertyParser
 (
+    IServiceProvider serviceProvider,
     IGameLanguageProvider gameLanguageProvider,
     IApiItemProvider apiItemProvider,
     IApiInvariantItemProvider apiInvariantItemProvider,
@@ -59,6 +61,10 @@ public class PropertyParser
             new GemLevelProperty(gameLanguageProvider, apiInvariantItemProvider),
             new ItemLevelProperty(gameLanguageProvider, game),
             new SocketProperty(gameLanguageProvider, game, resources),
+
+            new SeparatorProperty(),
+
+            new DesecratedProperty(serviceProvider, game),
             new CorruptedProperty(gameLanguageProvider),
             new UnidentifiedProperty(gameLanguageProvider),
 
@@ -143,11 +149,11 @@ public class PropertyParser
         }
     }
 
-    public void PrepareTradeRequest(SearchFilters searchFilters, Item item, PropertyFilters propertyFilters)
+    public void PrepareTradeRequest(Query query, Item item, PropertyFilters propertyFilters)
     {
         foreach (var filter in propertyFilters.Filters)
         {
-            filter.Definition.PrepareTradeRequest(searchFilters, item, filter);
+            filter.Definition.PrepareTradeRequest(query, item, filter);
         }
     }
 }

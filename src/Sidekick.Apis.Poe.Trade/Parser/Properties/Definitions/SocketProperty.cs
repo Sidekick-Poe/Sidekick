@@ -2,6 +2,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
@@ -143,19 +144,19 @@ public class SocketProperty
         return filter;
     }
 
-    public override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
         switch (game)
         {
-            case GameType.PathOfExile: searchFilters.GetOrCreateSocketFilters().Filters.Links = new SocketFilterOption(intFilter); break;
+            case GameType.PathOfExile: query.Filters.GetOrCreateSocketFilters().Filters.Links = new SocketFilterOption(intFilter); break;
 
             case GameType.PathOfExile2:
                 switch (item.Header.Category)
                 {
-                    case Category.Gem: searchFilters.GetOrCreateMiscFilters().Filters.GemSockets = new StatFilterValue(intFilter); break;
-                    default: searchFilters.GetOrCreateEquipmentFilters().Filters.RuneSockets = new StatFilterValue(intFilter); break;
+                    case Category.Gem: query.Filters.GetOrCreateMiscFilters().Filters.GemSockets = new StatFilterValue(intFilter); break;
+                    default: query.Filters.GetOrCreateEquipmentFilters().Filters.RuneSockets = new StatFilterValue(intFilter); break;
                 }
 
                 break;
