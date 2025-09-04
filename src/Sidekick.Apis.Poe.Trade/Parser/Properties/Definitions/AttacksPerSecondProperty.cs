@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Game;
@@ -48,14 +49,14 @@ public class AttacksPerSecondProperty
         return filter;
     }
 
-    public override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
     {
         if (!filter.Checked || filter is not DoublePropertyFilter doubleFilter) return;
 
         switch (game)
         {
-            case GameType.PathOfExile: searchFilters.GetOrCreateWeaponFilters().Filters.AttacksPerSecond = new StatFilterValue(doubleFilter); break;
-            case GameType.PathOfExile2: searchFilters.GetOrCreateEquipmentFilters().Filters.AttacksPerSecond = new StatFilterValue(doubleFilter); break;
+            case GameType.PathOfExile: query.Filters.GetOrCreateWeaponFilters().Filters.AttacksPerSecond = new StatFilterValue(doubleFilter); break;
+            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.AttacksPerSecond = new StatFilterValue(doubleFilter); break;
         }
     }
 }

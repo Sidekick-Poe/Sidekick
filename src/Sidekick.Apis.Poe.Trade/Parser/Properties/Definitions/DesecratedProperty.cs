@@ -1,29 +1,32 @@
-using System.Text.RegularExpressions;
+using Microsoft.Extensions.DependencyInjection;
+using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class CorruptedProperty(IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+public class DesecratedProperty(IServiceProvider serviceProvider, GameType game) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionCorrupted.ToRegexLine();
+    private IFilterProvider FilterProvicer => serviceProvider.GetRequiredService<IFilterProvider>();
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Map, Category.Contract, Category.Jewel, Category.Flask, Category.Gem];
+    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Map];
 
     public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
     {
-        itemProperties.Corrupted = GetBool(Pattern, parsingItem);
     }
 
     public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
+        if (game == GameType.PathOfExile) return null;
+        if (FilterProvicer.Desecrated == null) return null;
+
         var filter = new TriStatePropertyFilter(this)
         {
-            Text = gameLanguageProvider.Language.DescriptionCorrupted,
+            Text = FilterProvicer.Desecrated.Text ?? "Desecrated",
             Checked = null,
         };
         return filter;
@@ -36,6 +39,6 @@ public class CorruptedProperty(IGameLanguageProvider gameLanguageProvider) : Pro
             return;
         }
 
-        query.Filters.GetOrCreateMiscFilters().Filters.Corrupted = new SearchFilterOption(triStateFilter);
+        query.Filters.GetOrCreateMiscFilters().Filters.Desecrated = new SearchFilterOption(triStateFilter);
     }
 }

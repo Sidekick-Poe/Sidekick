@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
@@ -19,7 +20,7 @@ public abstract class PropertyDefinition
 
     public virtual List<BooleanPropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType) { return null; }
 
-    public abstract void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter);
+    public abstract void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter);
 
     protected static bool GetBool(Regex pattern, ParsingItem parsingItem) => parsingItem.TryParseRegex(pattern, out _);
 

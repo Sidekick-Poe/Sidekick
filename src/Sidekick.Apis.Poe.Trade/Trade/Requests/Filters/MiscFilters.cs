@@ -43,4 +43,7 @@ public class MiscFilters
 
     [JsonPropertyName("gem_sockets")]
     public StatFilterValue? GemSockets { get; set; }
+
+    [JsonPropertyName("desecrated")]
+    public SearchFilterOption? Desecrated { get; set; }
 }

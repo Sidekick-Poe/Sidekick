@@ -128,7 +128,7 @@ public class TradeSearchService
             // Properties
             if (propertyFilters != null)
             {
-                propertyParser.PrepareTradeRequest(query.Filters, item, propertyFilters);
+                propertyParser.PrepareTradeRequest(query, item, propertyFilters);
             }
 
             // Trade Settings

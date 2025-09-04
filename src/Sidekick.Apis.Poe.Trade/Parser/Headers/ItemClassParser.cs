@@ -22,7 +22,7 @@ public class ItemClassParser
     ISettingsService settingsService
 ) : IItemClassParser
 {
-    public int Priority => 200;
+    public int Priority => 300;
 
     private List<ItemClassDefinition> ItemClassDefinitions { get; set; } = [];
 
@@ -39,7 +39,9 @@ public class ItemClassParser
 
     private List<ApiItemClassDefinition> GetApiItemClassDefinitions()
     {
-        return filterProvider.TypeCategoryOptions.ConvertAll(x => new ApiItemClassDefinition()
+        if (filterProvider.TypeCategory == null) return [];
+
+        return filterProvider.TypeCategory.Option.Options.ConvertAll(x => new ApiItemClassDefinition()
         {
             Id = x.Id,
             Text = x.Text,
