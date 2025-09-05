@@ -9,6 +9,11 @@ public interface IFilterProvider : IInitializableService
     ApiFilter? TradePrice { get; }
     ApiFilter? TradeIndexed { get; }
     ApiFilter? Desecrated { get; }
+    ApiFilter? Veiled { get; }
+    ApiFilter? Fractured { get; }
+    ApiFilter? Mirrored { get; }
+    ApiFilter? Sanctified { get; }
+    ApiFilterCategory? MiscellaneousCategory { get; }
     string? GetPriceOption(string? price);
     string? GetTradeIndexedOption(string? timeFrame);
 }

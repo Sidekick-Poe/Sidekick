@@ -3,6 +3,7 @@ using Sidekick.Apis.Poe.Trade.Filters.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Extensions;
+using Sidekick.Common.Game;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
 
@@ -17,6 +18,10 @@ public class InvariantFilterProvider
 ) : IInvariantFilterProvider
 {
     public FilterDefinition? DesecratedDefinition { get; private set; }
+    public FilterDefinition? VeiledDefinition { get; private set; }
+    public FilterDefinition? FracturedDefinition { get; private set; }
+    public FilterDefinition? MirroredDefinition { get; private set; }
+    public FilterDefinition? SanctifiedDefinition { get; private set; }
 
     /// <inheritdoc/>
     public int Priority => 100;
@@ -44,6 +49,42 @@ public class InvariantFilterProvider
                 if (category.Id == "misc_filters" && filter.Id == "desecrated")
                 {
                     DesecratedDefinition = new FilterDefinition()
+                    {
+                        CategoryId = category.Id,
+                        FilterId = filter.Id,
+                    };
+                }
+
+                if (category.Id == "misc_filters" && filter.Id == "veiled")
+                {
+                    VeiledDefinition = new FilterDefinition()
+                    {
+                        CategoryId = category.Id,
+                        FilterId = filter.Id,
+                    };
+                }
+
+                if (category.Id == "misc_filters" && filter.Id == "fractured_item")
+                {
+                    FracturedDefinition = new FilterDefinition()
+                    {
+                        CategoryId = category.Id,
+                        FilterId = filter.Id,
+                    };
+                }
+
+                if (category.Id == "misc_filters" && filter.Id == "mirrored")
+                {
+                    MirroredDefinition = new FilterDefinition()
+                    {
+                        CategoryId = category.Id,
+                        FilterId = filter.Id,
+                    };
+                }
+
+                if (category.Id == "misc_filters" && filter.Id == "sanctified")
+                {
+                    SanctifiedDefinition = new FilterDefinition()
                     {
                         CategoryId = category.Id,
                         FilterId = filter.Id,

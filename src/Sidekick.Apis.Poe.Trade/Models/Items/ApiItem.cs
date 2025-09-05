@@ -35,6 +35,11 @@ public class ApiItem
 
     public bool Fractured { get; set; }
 
+    public bool Sanctified { get; set; }
+
+    [JsonPropertyName("duplicated")]
+    public bool Mirrored { get; set; }
+
     public bool IsRelic { get; set; }
 
     public Influences Influences { get; set; } = new();
