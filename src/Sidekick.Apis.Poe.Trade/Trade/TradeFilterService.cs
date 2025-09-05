@@ -11,6 +11,7 @@ public class TradeFilterService : ITradeFilterService
 {
     private readonly IPropertyParser propertyParser;
     private readonly ISettingsService settingsService;
+
     public int Priority => 0;
 
     private bool? EnableAllFilters;
@@ -62,7 +63,8 @@ public class TradeFilterService : ITradeFilterService
         {
             return true;
         }
-        else if (EnableFiltersByRegexIsValid)
+
+        if (EnableFiltersByRegexIsValid)
         {
             return EnableFiltersByRegex?.IsMatch(modifierLineText) == true;
         }
@@ -80,8 +82,10 @@ public class TradeFilterService : ITradeFilterService
 
         foreach (var modifierLine in item.ModifierLines)
         {
-            var modifier = new ModifierFilter(modifierLine);
-            modifier.Checked = ShouldFilterBeEnabled(modifierLine.Text);
+            var modifier = new ModifierFilter(modifierLine)
+            {
+                Checked = ShouldFilterBeEnabled(modifierLine.Text),
+            };
             yield return modifier;
         }
     }

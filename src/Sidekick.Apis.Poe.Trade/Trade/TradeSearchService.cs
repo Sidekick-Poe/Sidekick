@@ -259,7 +259,7 @@ public class TradeSearchService
             }
             else if (modifiers.Any(x => x.Category == ModifierCategory.Explicit))
             {
-                modifiers = modifiers.Where(x => ModifierCategories.AllExplicitCategories.Contains(x.Category)).ToList();
+                modifiers = modifiers.Where(x => ModifierCategoryExtensions.AllExplicitCategories.Contains(x.Category)).ToList();
             }
 
             foreach (var modifier in modifiers)

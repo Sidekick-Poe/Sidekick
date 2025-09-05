@@ -127,7 +127,7 @@
             yield return new ModifierLine(text: text)
             {
                 BlockIndex = block,
-                Category = ModifierProvider.GetModifierCategory(id),
+                Category = id.GetModifierCategory(),
                 Tier = mod?.Tier,
             };
         }

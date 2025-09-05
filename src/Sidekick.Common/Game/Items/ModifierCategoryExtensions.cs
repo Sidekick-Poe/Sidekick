@@ -1,6 +1,8 @@
+using Sidekick.Common.Enums;
+
 namespace Sidekick.Common.Game.Items;
 
-public class ModifierCategories
+public static class ModifierCategoryExtensions
 {
     public static readonly List<ModifierCategory> AllExplicitCategories =
     [
@@ -13,4 +15,10 @@ public class ModifierCategories
         ModifierCategory.Veiled,
         ModifierCategory.Crucible,
     ];
+
+    public static ModifierCategory GetModifierCategory(this string? apiId)
+    {
+        var value = apiId?.Split('.').First();
+        return value.GetEnumFromValue<ModifierCategory>();
+    }
 }

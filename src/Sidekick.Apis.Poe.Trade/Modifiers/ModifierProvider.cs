@@ -62,7 +62,7 @@ public class ModifierProvider
 
         foreach (var apiCategory in apiCategories.Result)
         {
-            var modifierCategory = GetModifierCategory(apiCategory.Entries[0].Id);
+            var modifierCategory = apiCategory.Entries[0].Id.GetModifierCategory();
             var patterns = ComputeCategoryPatterns(apiCategory, modifierCategory);
 
             if (!Definitions.TryAdd(modifierCategory, patterns))
@@ -121,13 +121,6 @@ public class ModifierProvider
         return patterns;
     }
 
-    /// <inheritdoc/>
-    public ModifierCategory GetModifierCategory(string? apiId)
-    {
-        var value = apiId?.Split('.').First();
-        return value.GetEnumFromValue<ModifierCategory>();
-    }
-
     private void FillSpecialPseudoPattern(List<ModifierDefinition> pseudoPatterns, List<ModifierDefinition> patterns)
     {
         var specialPatterns = new List<ModifierDefinition>();
@@ -153,7 +146,7 @@ public class ModifierProvider
 
         // The notes in parentheses are never translated by the game.
         // We should be fine hardcoding them this way.
-        var explicitCategories = string.Join("|", ModifierCategories.AllExplicitCategories.Select(x => x.GetValueAttribute()));
+        var explicitCategories = string.Join("|", ModifierCategoryExtensions.AllExplicitCategories.Select(x => x.GetValueAttribute()));
         var explicitSuffix = "(?:\\ \\((?:" + explicitCategories + ")\\))?";
         var suffix = category switch
         {
@@ -246,5 +239,19 @@ public class ModifierProvider
         }
 
         return false;
+    }
+
+    public ModifierDefinition? GetById(string? id)
+    {
+        foreach (var patternGroup in Definitions)
+        {
+            var pattern = patternGroup.Value.FirstOrDefault(x => x.ApiId == id);
+            if (pattern != null)
+            {
+                return pattern;
+            }
+        }
+
+        return null;
     }
 }

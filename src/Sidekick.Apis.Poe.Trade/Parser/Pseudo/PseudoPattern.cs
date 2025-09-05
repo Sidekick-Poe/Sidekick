@@ -8,7 +8,7 @@ public class PseudoPattern
     double multiplier = 1
 )
 {
-    public Regex Pattern { get; set; } = regex;
+    public Regex Pattern { get; } = regex;
 
-    public double Multiplier { get; set; } = multiplier;
+    public double Multiplier { get; } = multiplier;
 }

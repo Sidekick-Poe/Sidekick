@@ -1,4 +1,6 @@
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.DependencyInjection;
+using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Modifiers.Models;
 using Sidekick.Common.Game.Items;
 
@@ -30,30 +32,35 @@ public abstract class PseudoDefinition
 
     public List<PseudoModifierDefinition> Modifiers { get; private set; } = new();
 
-    internal void InitializeDefinition(List<ApiCategory> apiCategories, List<ModifierDefinition>? localizedPseudoModifiers)
+    internal void InitializeDefinition(IServiceProvider serviceProvider)
     {
         if (!Enabled)
         {
             return;
         }
 
-        foreach (var apiModifier in apiCategories.SelectMany(apiCategory => apiCategory.Entries))
-        {
-            if (Exception != null && Exception.IsMatch(apiModifier.Text))
-            {
-                continue;
-            }
+        var invariantModifierProvider = serviceProvider.GetRequiredService<IInvariantModifierProvider>();
 
-            foreach (var pattern in Patterns)
+        foreach (var category in invariantModifierProvider.Categories.Where(x => ModifierCategoryExtensions.AllExplicitCategories.Contains(x.Key)))
+        {
+            foreach (var apiModifier in category.Value)
             {
-                if (apiModifier.Id == null || apiModifier.Type == null || apiModifier.Text == null)
+                if (Exception != null && Exception.IsMatch(apiModifier.Text))
                 {
                     continue;
                 }
 
-                if (pattern.Pattern.IsMatch(apiModifier.Text))
+                foreach (var pattern in Patterns)
                 {
-                    Modifiers.Add(new PseudoModifierDefinition(apiModifier.Id, apiModifier.Type, apiModifier.Text, pattern.Multiplier));
+                    if (apiModifier.Id == null || apiModifier.Type == null || apiModifier.Text == null)
+                    {
+                        continue;
+                    }
+
+                    if (pattern.Pattern.IsMatch(apiModifier.Text))
+                    {
+                        Modifiers.Add(new PseudoModifierDefinition(apiModifier.Id, apiModifier.Type, apiModifier.Text, pattern.Multiplier));
+                    }
                 }
             }
         }
@@ -73,15 +80,9 @@ public abstract class PseudoDefinition
             .ThenBy(x => x.Text)
             .ToList();
 
-        if (localizedPseudoModifiers != null && !string.IsNullOrEmpty(ModifierId))
-        {
-            Text = localizedPseudoModifiers.FirstOrDefault(x => x.ApiId == ModifierId)?.ApiText ?? "";
-        }
-
-        if (string.IsNullOrEmpty(Text))
-        {
-            Text = string.Join(", ", Modifiers.Select(x => x.Text).Distinct().ToList());
-        }
+        var modifierProvider = serviceProvider.GetRequiredService<IModifierProvider>();
+        var modifierId = invariantModifierProvider.PseudoModifierIds.GetValueOrDefault(GetType());
+        Text = modifierProvider.GetById(modifierId)?.ApiText;
     }
 
     internal PseudoModifier? Parse(List<ModifierLine> itemModifierLines)
@@ -120,7 +121,10 @@ public abstract class PseudoDefinition
         }
 
         result.Value = (int)result.Value;
-        result.Text = parseHashPattern.Replace(result.Text, ((int)result.Value).ToString(), 1);
+
+        var valueText = result.Value > 0 ? $"+{result.Value}" : $"-{result.Value}";
+        result.Text = parseHashPattern.Replace(result.Text, valueText, 1);
+
         return result;
     }
 

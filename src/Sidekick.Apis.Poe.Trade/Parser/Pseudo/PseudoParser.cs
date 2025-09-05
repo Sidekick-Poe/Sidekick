@@ -1,6 +1,4 @@
-using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Definitions;
-using Sidekick.Common;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
@@ -9,8 +7,7 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 
 public class PseudoParser
 (
-    IInvariantModifierProvider invariantModifierProvider,
-    IModifierProvider modifierProvider,
+    IServiceProvider serviceProvider,
     ISettingsService settingsService
 ) : IPseudoParser
 {
@@ -36,14 +33,9 @@ public class PseudoParser
             new ManaDefinition(game),
         ]);
 
-        var categories = await invariantModifierProvider.GetList();
-        categories.RemoveAll(x => x.Entries.FirstOrDefault()?.Id.StartsWith("pseudo") == true);
-
-        var localizedPseudoModifiers = modifierProvider.Definitions.GetValueOrDefault(ModifierCategory.Pseudo);
-
         foreach (var definition in Definitions)
         {
-            definition.InitializeDefinition(categories, localizedPseudoModifiers);
+            definition.InitializeDefinition(serviceProvider);
         }
     }
 
