@@ -46,4 +46,13 @@ public class MiscFilters
 
     [JsonPropertyName("desecrated")]
     public SearchFilterOption? Desecrated { get; set; }
+
+    [JsonPropertyName("fractured_item")]
+    public SearchFilterOption? Fractured { get; set; }
+
+    [JsonPropertyName("mirrored")]
+    public SearchFilterOption? Mirrored { get; set; }
+
+    [JsonPropertyName("sanctified")]
+    public SearchFilterOption? Sanctified { get; set; }
 }

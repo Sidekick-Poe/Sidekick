@@ -1,11 +1,11 @@
 using Microsoft.Extensions.Localization;
+using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Items;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
@@ -18,13 +18,14 @@ public class PropertyParser
     IServiceProvider serviceProvider,
     IGameLanguageProvider gameLanguageProvider,
     IApiItemProvider apiItemProvider,
+    IFilterProvider filterProvider,
     IApiInvariantItemProvider apiInvariantItemProvider,
     ISettingsService settingsService,
     IStringLocalizer<PoeResources> resources,
     IInvariantModifierProvider invariantModifierProvider
 ) : IPropertyParser
 {
-    public int Priority => 200;
+    public int Priority => 300;
 
     private List<PropertyDefinition> Definitions { get; } = new();
 
@@ -64,16 +65,19 @@ public class PropertyParser
 
             new SeparatorProperty(),
 
-            new DesecratedProperty(serviceProvider, game),
-            new CorruptedProperty(gameLanguageProvider),
-            new UnidentifiedProperty(gameLanguageProvider),
-
-            new ElderProperty(gameLanguageProvider),
-            new ShaperProperty(gameLanguageProvider),
-            new CrusaderProperty(gameLanguageProvider),
-            new HunterProperty(gameLanguageProvider),
-            new RedeemerProperty(gameLanguageProvider),
-            new WarlordProperty(gameLanguageProvider),
+            new CollapsiblePropertiesDefinition(filterProvider.MiscellaneousCategory?.Title,
+                                                new ElderProperty(gameLanguageProvider),
+                                                new ShaperProperty(gameLanguageProvider),
+                                                new CrusaderProperty(gameLanguageProvider),
+                                                new HunterProperty(gameLanguageProvider),
+                                                new RedeemerProperty(gameLanguageProvider),
+                                                new WarlordProperty(gameLanguageProvider),
+                                                new CorruptedProperty(gameLanguageProvider),
+                                                new FracturedProperty(serviceProvider, game),
+                                                new DesecratedProperty(serviceProvider, game),
+                                                new SanctifiedProperty(serviceProvider, game),
+                                                new MirroredProperty(serviceProvider, game),
+                                                new UnidentifiedProperty(gameLanguageProvider)),
         ]);
     }
 

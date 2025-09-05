@@ -1,0 +1,56 @@
+@using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters
+@using Sidekick.Apis.Poe.Trade.Trade.Results
+@using Sidekick.Common.Game.Items
+@if (!Filter.ShowRow)
+{
+    return;
+}
+
+@for (var index = 0; index < Filter.Filters.Count; index++)
+{
+    var filter = Filter.Filters[index];
+    var key = $"{Item.Id}_property_{index}";
+
+    if (!Expanded)
+    {
+        if (filter is TriStatePropertyFilter triState)
+        {
+            if (triState.Checked == null) continue;
+        }
+        else if (!filter.Checked) continue;
+    }
+
+    <PropertyFilterComponent @key="key"
+                             Filter="filter"
+                             Item="Item"/>
+}
+
+<FilterWrapper>
+    <div class="flex flex-nowrap items-center justify-center gap-2 cursor-pointer @LineContentType.Simple.GetColour()"
+         @onclick="() => Filter.Checked = !Filter.Checked"
+         @onclick:preventDefault="true">
+        <Icon Size="UiIconSize.Small"
+              Svg="@(Filter.Checked ? UiIcons.ChevronUp : UiIcons.ChevronDown)"/>
+
+        <ItemPropertyText Label="@Filter.Text"
+                          Hint="@Filter.Hint"
+                          Value="@(Filter.Checked ? "true" : "false")"
+                          ContentType="@Filter.Type"
+                          OnlyShowLabel="true"/>
+
+        <Icon Size="UiIconSize.Small"
+              Svg="@(Filter.Checked ? UiIcons.ChevronUp : UiIcons.ChevronDown)"/>
+    </div>
+</FilterWrapper>
+
+@code {
+
+    [Parameter]
+    public required CollapsiblePropertiesFilter Filter { get; set; }
+
+    [Parameter]
+    public required Item Item { get; set; }
+
+    private bool Expanded => Filter.Checked;
+
+}

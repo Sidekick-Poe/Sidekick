@@ -1,5 +1,4 @@
 @using Sidekick.Apis.Poe.Trade.Bulk
-@using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions
 @using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters
 @using Sidekick.Apis.Poe.Trade.Trade.Filters
 @using Sidekick.Common.Game.Items
@@ -36,36 +35,9 @@
             {
                 var filter = PropertyFilters.Filters[index];
                 var key = $"{Item.Id}_property_{index}";
-                switch (filter)
-                {
-                    case IntPropertyFilter intFilter:
-                        <IntPropertyFilterComponent @key="key" Filter="intFilter"/>
-                        break;
-
-                    case WeaponDamagePropertyFilter weaponDamageFilter:
-                        <WeaponDamagePropertyFilterComponent @key="key" Filter="weaponDamageFilter"/>
-                        break;
-
-                    case DoublePropertyFilter doubleFilter:
-                        <DoublePropertyFilterComponent @key="key" Filter="doubleFilter"/>
-                        break;
-
-                    case TriStatePropertyFilter triStateFilter:
-                        <TriStatePropertyFilterComponent @key="key" Filter="triStateFilter"/>
-                        break;
-
-                    case StringPropertyFilter stringFilter:
-                        <StringPropertyFilterComponent @key="key" Filter="stringFilter"/>
-                        break;
-
-                    case not null when filter.Definition is SeparatorProperty:
-                        <ItemSeparator @key="key" Rarity="Item.Header.Rarity"/>
-                        break;
-
-                    default:
-                        <BooleanPropertyFilterComponent @key="key" Filter="filter"/>
-                        break;
-                }
+                <PropertyFilterComponent @key="key"
+                                         Filter="filter"
+                                         Item="Item"/>
             }
 
             @if (PropertyFilters.Filters.Count > 0)

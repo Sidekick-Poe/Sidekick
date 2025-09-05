@@ -23,7 +23,17 @@ public class FilterProvider
 
     public ApiFilter? TradeIndexed { get; private set; }
 
-    public ApiFilter? Desecrated { get; set; }
+    public ApiFilter? Desecrated { get; private set; }
+
+    public ApiFilter? Veiled { get; private set; }
+
+    public ApiFilter? Fractured { get; private set; }
+
+    public ApiFilter? Mirrored { get; private set; }
+
+    public ApiFilter? Sanctified { get; private set; }
+
+    public ApiFilterCategory? MiscellaneousCategory { get; private set; }
 
     private List<ApiFilterCategory> Filters { get; set; } = [];
 
@@ -49,9 +59,31 @@ public class FilterProvider
         TradePrice = GetApiFilter("trade_filters", "price");
         TradeIndexed = GetApiFilter("trade_filters", "indexed");
 
+        MiscellaneousCategory = GetApiFilterCategory("misc_filters");
+
         if (invariantFilterProvider.DesecratedDefinition != null)
         {
             Desecrated = GetApiFilter(invariantFilterProvider.DesecratedDefinition.CategoryId, invariantFilterProvider.DesecratedDefinition.FilterId);
+        }
+
+        if (invariantFilterProvider.VeiledDefinition != null)
+        {
+            Veiled = GetApiFilter(invariantFilterProvider.VeiledDefinition.CategoryId, invariantFilterProvider.VeiledDefinition.FilterId);
+        }
+
+        if (invariantFilterProvider.FracturedDefinition != null)
+        {
+            Fractured = GetApiFilter(invariantFilterProvider.FracturedDefinition.CategoryId, invariantFilterProvider.FracturedDefinition.FilterId);
+        }
+
+        if (invariantFilterProvider.MirroredDefinition != null)
+        {
+            Mirrored = GetApiFilter(invariantFilterProvider.MirroredDefinition.CategoryId, invariantFilterProvider.MirroredDefinition.FilterId);
+        }
+
+        if (invariantFilterProvider.SanctifiedDefinition != null)
+        {
+            Sanctified = GetApiFilter(invariantFilterProvider.SanctifiedDefinition.CategoryId, invariantFilterProvider.SanctifiedDefinition.FilterId);
         }
     }
 
@@ -59,8 +91,13 @@ public class FilterProvider
 
     public string? GetTradeIndexedOption(string? id) => TradeIndexed?.Option.Options.SingleOrDefault(x => x.Id == id)?.Id;
 
+    private ApiFilterCategory? GetApiFilterCategory(string categoryId)
+    {
+        return Filters.FirstOrDefault(x => x.Id == categoryId);
+    }
+
     private ApiFilter? GetApiFilter(string categoryId, string filterId)
     {
-        return Filters.FirstOrDefault(x => x.Id == categoryId)?.Filters.FirstOrDefault(x => x.Id == filterId);
+        return GetApiFilterCategory(categoryId)?.Filters.FirstOrDefault(x => x.Id == filterId);
     }
 }
