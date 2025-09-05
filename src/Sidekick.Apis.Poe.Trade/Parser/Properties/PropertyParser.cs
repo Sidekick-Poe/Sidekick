@@ -65,7 +65,7 @@ public class PropertyParser
 
             new SeparatorProperty(),
 
-            new CollapsiblePropertiesDefinition(filterProvider.MiscellaneousCategory?.Title,
+            new ExpandablePropertiesDefinition(filterProvider.MiscellaneousCategory?.Title,
                                                 new ElderProperty(gameLanguageProvider),
                                                 new ShaperProperty(gameLanguageProvider),
                                                 new CrusaderProperty(gameLanguageProvider),

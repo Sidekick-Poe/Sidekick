@@ -5,7 +5,7 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
 
-public class CollapsiblePropertiesDefinition
+public class ExpandablePropertiesDefinition
 (
     string? label,
     params PropertyDefinition[] definitions
@@ -33,7 +33,7 @@ public class CollapsiblePropertiesDefinition
 
     public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        var filter = new CollapsiblePropertiesFilter(this)
+        var filter = new ExpandablePropertiesFilter(this)
         {
             Text = label ?? string.Empty,
         };
@@ -45,7 +45,7 @@ public class CollapsiblePropertiesDefinition
 
     public override List<BooleanPropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType)
     {
-        var filter = new CollapsiblePropertiesFilter(this)
+        var filter = new ExpandablePropertiesFilter(this)
         {
             Text = label ?? string.Empty,
         };
@@ -64,9 +64,9 @@ public class CollapsiblePropertiesDefinition
 
     public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
     {
-        if (filter is not CollapsiblePropertiesFilter collapsiblePropertiesFilter) return;
+        if (filter is not ExpandablePropertiesFilter expandablePropertiesFilter) return;
 
-        foreach (var childFilter in collapsiblePropertiesFilter.Filters)
+        foreach (var childFilter in expandablePropertiesFilter.Filters)
         {
             childFilter.Definition.PrepareTradeRequest(query, item, childFilter);
         }
