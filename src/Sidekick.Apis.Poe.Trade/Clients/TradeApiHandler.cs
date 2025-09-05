@@ -135,8 +135,6 @@ public class TradeApiHandler
 
         var content = await response.Content.ReadAsStringAsync(cancellationToken);
         logger.LogWarning("[PoeTradeHandler] Response: {responseCode} {responseMessage}", response.StatusCode, content);
-
-        throw new SidekickException("[Trade Client] Could not understand the API response.");
     }
 
     private async Task HandleBadRequest(HttpResponseMessage response, CancellationToken cancellationToken)
