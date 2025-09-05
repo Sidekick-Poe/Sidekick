@@ -127,7 +127,7 @@ else if (Prices != null && Prices.Any())
         Loading = true;
         StateHasChanged();
 
-        Prices = await Client.GetUniquesFromType(Item);
+        Prices = await Client.GetChanceableUniquesFromType(Item);
 
         Loading = false;
         StateHasChanged();

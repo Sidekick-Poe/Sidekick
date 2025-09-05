@@ -7,7 +7,7 @@ public interface IPoe2ScoutClient
 {
     Task<Poe2ScoutPrice?> GetPriceInfo(Item item);
 
-    Task<List<Poe2ScoutPrice>?> GetUniquesFromType(Item item);
+    Task<List<Poe2ScoutPrice>?> GetChanceableUniquesFromType(Item item);
 
     Uri GetDetailsUri(Poe2ScoutPrice price);
 }

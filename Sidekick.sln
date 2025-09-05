@@ -4,7 +4,6 @@ VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Configuration", "_Configuration", "{9B41443D-4D1E-4DF3-9DA5-522B0AAB40A0}"
 	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
 		.filenesting.json = .filenesting.json
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
@@ -18,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Configuration", "_Configur
 		README.md = README.md
 		.github\release-drafter.yml = .github\release-drafter.yml
 		.github\workflows\tests.yml = .github\workflows\tests.yml
+		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E4920CFB-0EED-44B1-AC8D-8F5ECBCB7788}"
