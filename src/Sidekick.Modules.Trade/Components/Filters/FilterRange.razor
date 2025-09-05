@@ -1,11 +1,11 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization;
 
-<div class="-mr-1 flex flex-nowrap items-center [&_.range~.range_[contenteditable]]:rounded-l-none! [&_.range_[contenteditable]]:rounded-r-none! [&_.range:last-child_[contenteditable]]:rounded-r-md!" id="@Id">
+<div class="flex flex-nowrap items-center [&_.range~.range_[contenteditable]]:rounded-l-none! [&_.range_[contenteditable]]:rounded-r-none! [&_.range:last-child_[contenteditable]]:rounded-r-md!" id="@Id">
     <Popover Trigger="PopoverTrigger.Hover">
         <PopoverAnchor>
-            <ButtonIcon OnClick="ToggleType" AdditionalClasses="mr-1">
-                <Icon Svg="@Icon" />
+            <ButtonIcon OnClick="ToggleType" AdditionalClasses="mr-[2px]">
+                <Icon Svg="@Icon" Class="!size-4 !min-h-4 !min-w-4" />
             </ButtonIcon>
         </PopoverAnchor>
         <PopoverContent>

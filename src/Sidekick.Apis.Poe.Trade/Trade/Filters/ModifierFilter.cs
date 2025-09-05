@@ -9,20 +9,16 @@ public class ModifierFilter : ITradeFilter
     {
         Line = line;
         Checked = line.Modifiers.FirstOrDefault()?.Category == ModifierCategory.Fractured;
-
-        if (HasMoreThanOneCategory && FirstCategory == ModifierCategory.Fractured)
-        {
-            ForceFirstCategory = true;
-        }
+        ForceCategory = HasMoreThanOneCategory && (Category == ModifierCategory.Fractured || Category == ModifierCategory.Desecrated);
     }
 
     public ModifierLine Line { get; }
 
-    public bool? @Checked { get; set; }
+    public bool? Checked { get; set; }
 
-    public bool ForceFirstCategory { get; set; }
+    public bool ForceCategory { get; set; }
 
-    public ModifierCategory FirstCategory => Line.Modifiers.FirstOrDefault()?.Category ?? ModifierCategory.Undefined;
+    public ModifierCategory Category => Line.Modifiers.FirstOrDefault()?.Category ?? ModifierCategory.Undefined;
 
     public bool HasMoreThanOneCategory => Line.Modifiers.GroupBy(x => x.Category).Count() > 1;
 

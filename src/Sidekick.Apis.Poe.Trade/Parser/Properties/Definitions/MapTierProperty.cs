@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
@@ -36,10 +37,10 @@ public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : Prope
         return filter;
     }
 
-    public override void PrepareTradeRequest(SearchFilters searchFilters, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
-        searchFilters.GetOrCreateMapFilters().Filters.MapTier = new StatFilterValue(intFilter);
+        query.Filters.GetOrCreateMapFilters().Filters.MapTier = new StatFilterValue(intFilter);
     }
 }

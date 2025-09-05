@@ -14,18 +14,21 @@
     }
 </FlowbiteComponent>
 
-<div id="@Id" role="tooltip" class="bg-stone-950 p-2 max-w-60 rounded-lg border border-solid border-stone-800
-            absolute z-10 invisible transition-opacity duration-300 shadow-xs opacity-0 tooltip">
-    @if (TooltipContent is not null)
-    {
-        @TooltipContent
-    }
-    else
-    {
-        <div class="text-center text-sm leading-4">@Text</div>
-    }
-</div>
+<BodySectionContent SectionName="@Id">
+    <div id="@Id" role="tooltip" class="bg-stone-950 p-2 max-w-60 rounded-lg border border-solid border-stone-800
+            absolute z-10 invisible transition-opacity duration-300 shadow-xs opacity-0 tooltip text-white">
+        @if (TooltipContent is not null)
+        {
+            @TooltipContent
+        }
+        else
+        {
+            <div class="text-center text-sm leading-4">@Text</div>
+        }
+    </div>
+</BodySectionContent>
 
+@using Sidekick.Common.Ui.Sections
 @using Sidekick.Common.Enums
 
 @code {

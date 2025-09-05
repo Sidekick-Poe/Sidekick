@@ -128,7 +128,7 @@ public class TradeSearchService
             // Properties
             if (propertyFilters != null)
             {
-                propertyParser.PrepareTradeRequest(query.Filters, item, propertyFilters);
+                propertyParser.PrepareTradeRequest(query, item, propertyFilters);
             }
 
             // Trade Settings
@@ -252,14 +252,14 @@ public class TradeSearchService
                 continue;
             }
 
-            var modifiers = filter.Line.Modifiers;
-            if (filter.ForceFirstCategory)
+            var modifiers = filter.Line.Modifiers.ToList();
+            if (filter.ForceCategory)
             {
-                modifiers = modifiers.Where(x => x.Category == filter.FirstCategory).ToList();
+                modifiers = modifiers.Where(x => x.Category == filter.Category).ToList();
             }
             else if (modifiers.Any(x => x.Category == ModifierCategory.Explicit))
             {
-                modifiers = modifiers.Where(x => x.Category == ModifierCategory.Explicit).ToList();
+                modifiers = modifiers.Where(x => ModifierCategories.AllExplicitCategories.Contains(x.Category)).ToList();
             }
 
             foreach (var modifier in modifiers)

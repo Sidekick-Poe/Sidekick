@@ -1,0 +1,26 @@
+﻿<div class="font-sans text-base">
+    @foreach (var name in SectionService.BodySectionNames)
+    {
+        <SectionOutlet @key="@name"
+                       SectionName="@name"/>
+    }
+</div>
+
+@inject SectionService SectionService
+@using Microsoft.AspNetCore.Components.Sections
+@implements IDisposable
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        SectionService.OnChanged += StateHasChanged;
+        base.OnInitialized();
+    }
+
+    public void Dispose()
+    {
+        SectionService.OnChanged -= StateHasChanged;
+    }
+
+}

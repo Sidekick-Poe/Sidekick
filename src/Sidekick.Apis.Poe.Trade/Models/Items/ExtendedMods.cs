@@ -10,6 +10,7 @@ public class ExtendedMods
     public List<ExtendedMod> Enchant { get; set; } = [];
     public List<ExtendedMod> Rune { get; set; } = [];
     public List<ExtendedMod> Fractured { get; set; } = [];
+    public List<ExtendedMod> Desecrated { get; set; } = [];
     public List<ExtendedMod> Scourge { get; set; } = [];
     public List<ExtendedMod> Sanctum { get; set; } = [];
 

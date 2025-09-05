@@ -31,6 +31,13 @@ public class PriceCheckService
 
     public BulkResponseModel? BulkTradeResult { get; private set; }
 
+    public void Init()
+    {
+        IsLoading = false;
+        CurrentMode = TradeMode.Item;
+        Clear();
+    }
+
     public void Clear()
     {
         ResultError = null;

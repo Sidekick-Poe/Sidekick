@@ -1,10 +1,10 @@
 using Romanization;
 namespace Sidekick.Common.Game.Languages.Implementations;
 
-[GameLanguage("Korean", "kr")]
-public class GameLanguageKr : IGameLanguage
+[GameLanguage("Korean", "ko")]
+public class GameLanguageKo : IGameLanguage
 {
-    public string Code => "kr";
+    public string Code => "ko";
 
     public string PoeTradeBaseUrl => "https://poe.game.daum.net/trade/";
     public string PoeTradeApiBaseUrl => "https://poe.game.daum.net/api/trade/";

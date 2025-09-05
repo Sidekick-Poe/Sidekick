@@ -31,14 +31,21 @@ public class TradeApiClient
 
     public async Task<FetchResult<TReturn>> FetchData<TReturn>(GameType game, IGameLanguage language, string path)
     {
-        using var httpClient = httpClientFactory.CreateClient(ClientName);
-        var response = await httpClient.GetAsync(language.GetTradeApiBaseUrl(game) + "data/" + path);
-        var content = await response.Content.ReadAsStreamAsync();
+        try
+        {
+            using var httpClient = httpClientFactory.CreateClient(ClientName);
+            var response = await httpClient.GetAsync(language.GetTradeApiBaseUrl(game) + "data/" + path);
+            var content = await response.Content.ReadAsStreamAsync();
 
-        var result = await JsonSerializer.DeserializeAsync<FetchResult<TReturn>>(content, JsonSerializerOptions);
-        if (result != null && result.Result.Count != 0) return result;
+            var result = await JsonSerializer.DeserializeAsync<FetchResult<TReturn>>(content, JsonSerializerOptions);
+            if (result != null && result.Result.Count != 0) return result;
 
-        logger.LogWarning("[Trade Client] Failed to parse the API response.");
+            logger.LogWarning("[Trade Client] Failed to parse the API response.");
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "[Trade Client] Failed to parse the API response.");
+        }
 
         var dataFilePath = Path.Combine(AppContext.BaseDirectory, "wwwroot/data/" + GetDataFileName(game, language, path));
         logger.LogInformation("[Trade Client] Attempting to load data from local file: {dataFilePath}", dataFilePath);
@@ -52,7 +59,7 @@ public class TradeApiClient
         try
         {
             await using var fileStream = File.OpenRead(dataFilePath);
-            result = await JsonSerializer.DeserializeAsync<FetchResult<TReturn>>(fileStream, JsonSerializerOptions);
+            var result = await JsonSerializer.DeserializeAsync<FetchResult<TReturn>>(fileStream, JsonSerializerOptions);
             if (result != null && result.Result.Count > 0)
             {
                 logger.LogInformation("[Trade Client] Successfully loaded data from local file.");

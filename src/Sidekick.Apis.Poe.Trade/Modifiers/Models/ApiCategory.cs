@@ -8,4 +8,6 @@ public class ApiCategory
     public string? Label { get; set; }
 
     public List<ApiModifier> Entries { get; set; } = new();
+
+    public override string ToString() => Label ?? string.Empty;
 }

@@ -127,4 +127,45 @@ Can only be equipped if you are wielding a Bow.
 
         Assert.Equal(8, actual.Properties.ItemLevel);
     }
+
+    [Fact]
+    public void ParseDesecratedBoots()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Boots
+Rarity: Rare
+Victory Hoof
+Bastion Sabatons
+--------
+Quality: +20% (augmented)
+Armour: 149 (augmented)
+Evasion Rating: 118 (augmented)
+--------
+Requires: Level 59, 44 Str, 44 Dex
+--------
+Sockets: S 
+--------
+Item Level: 66
+--------
++14% to Fire Resistance (rune)
+--------
+25% increased Movement Speed
++83 to maximum Life
++20% to Fire Resistance
++22% to Cold Resistance
++34% to Lightning Resistance
++32 to Armour (desecrated)
++14 to Evasion Rating (desecrated)
+");
+
+        Assert.Equal(ItemClass.Boots, actual.Header.ItemClass);
+        Assert.Equal(Category.Armour, actual.Header.Category);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal("Bastion Sabatons", actual.Header.ApiType);
+        Assert.Null(actual.Header.ApiName);
+
+        Assert.Equal(66, actual.Properties.ItemLevel);
+
+        actual.AssertHasModifier(ModifierCategory.Desecrated, "# to Armour", 32);
+    }
 }

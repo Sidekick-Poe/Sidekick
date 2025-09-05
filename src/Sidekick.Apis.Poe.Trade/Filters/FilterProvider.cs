@@ -1,6 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Filters.Models;
-using Sidekick.Common;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Extensions;
@@ -14,45 +13,91 @@ public class FilterProvider
     ITradeApiClient tradeApiClient,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
-    ICacheProvider cacheProvider
+    ICacheProvider cacheProvider,
+    IInvariantFilterProvider invariantFilterProvider
 ) : IFilterProvider
 {
-    public List<ApiFilterOption> TypeCategoryOptions { get; private set; } = [];
-    public List<ApiFilterOption> TradePriceOptions { get; private set; } = [];
-    public List<ApiFilterOption> TradeIndexedOptions { get; private set; } = [];
+    public ApiFilter? TypeCategory { get; private set; }
+
+    public ApiFilter? TradePrice { get; private set; }
+
+    public ApiFilter? TradeIndexed { get; private set; }
+
+    public ApiFilter? Desecrated { get; private set; }
+
+    public ApiFilter? Veiled { get; private set; }
+
+    public ApiFilter? Fractured { get; private set; }
+
+    public ApiFilter? Mirrored { get; private set; }
+
+    public ApiFilter? Sanctified { get; private set; }
+
+    public ApiFilterCategory? MiscellaneousCategory { get; private set; }
+
+    private List<ApiFilterCategory> Filters { get; set; } = [];
 
     /// <inheritdoc/>
-    public int Priority => 100;
+    public int Priority => 200;
 
     /// <inheritdoc/>
     public async Task Initialize()
     {
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
         var game = leagueId.GetGameFromLeagueId();
-        var cacheKey = $"{game.GetValueAttribute()}_Filters";
+        var cacheKey = $"{game.GetValueAttribute()}_InvariantFilters";
 
-        var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<ApiFilter>(game, gameLanguageProvider.Language, "filters"),
+        var result = await cacheProvider.GetOrSet(cacheKey,
+                                                  () => tradeApiClient.FetchData<ApiFilterCategory>(game, gameLanguageProvider.Language, "filters"),
                                                   (cache) =>
                                                   {
                                                       return cache.Result.Any(x => x.Id == "type_filters") && cache.Result.Any(x => x.Id == "trade_filters");
                                                   });
+        Filters = result.Result;
 
-        TypeCategoryOptions = result.Result
-            .First(x => x.Id == "type_filters").Filters
-            .First(x => x.Id == "category").Option!.Options;
+        TypeCategory = GetApiFilter("type_filters", "category");
+        TradePrice = GetApiFilter("trade_filters", "price");
+        TradeIndexed = GetApiFilter("trade_filters", "indexed");
 
-        TradePriceOptions = result.Result
-            .First(x => x.Id == "trade_filters").Filters
-            .First(x => x.Id == "price").Option!.Options;
+        MiscellaneousCategory = GetApiFilterCategory("misc_filters");
 
-        TradeIndexedOptions = result.Result
-            .First(x => x.Id == "trade_filters").Filters
-            .First(x => x.Id == "indexed").Option!.Options;
+        if (invariantFilterProvider.DesecratedDefinition != null)
+        {
+            Desecrated = GetApiFilter(invariantFilterProvider.DesecratedDefinition.CategoryId, invariantFilterProvider.DesecratedDefinition.FilterId);
+        }
+
+        if (invariantFilterProvider.VeiledDefinition != null)
+        {
+            Veiled = GetApiFilter(invariantFilterProvider.VeiledDefinition.CategoryId, invariantFilterProvider.VeiledDefinition.FilterId);
+        }
+
+        if (invariantFilterProvider.FracturedDefinition != null)
+        {
+            Fractured = GetApiFilter(invariantFilterProvider.FracturedDefinition.CategoryId, invariantFilterProvider.FracturedDefinition.FilterId);
+        }
+
+        if (invariantFilterProvider.MirroredDefinition != null)
+        {
+            Mirrored = GetApiFilter(invariantFilterProvider.MirroredDefinition.CategoryId, invariantFilterProvider.MirroredDefinition.FilterId);
+        }
+
+        if (invariantFilterProvider.SanctifiedDefinition != null)
+        {
+            Sanctified = GetApiFilter(invariantFilterProvider.SanctifiedDefinition.CategoryId, invariantFilterProvider.SanctifiedDefinition.FilterId);
+        }
     }
 
-    public string? GetPriceOption(string? price) =>
-        TradePriceOptions.SingleOrDefault(x => x.Id == price)?.Id;
+    public string? GetPriceOption(string? price) => TradePrice?.Option.Options.SingleOrDefault(x => x.Id == price)?.Id;
 
-    public string? GetTradeIndexedOption(string? id) =>
-        TradeIndexedOptions.SingleOrDefault(x => x.Id == id)?.Id;
+    public string? GetTradeIndexedOption(string? id) => TradeIndexed?.Option.Options.SingleOrDefault(x => x.Id == id)?.Id;
+
+    private ApiFilterCategory? GetApiFilterCategory(string categoryId)
+    {
+        return Filters.FirstOrDefault(x => x.Id == categoryId);
+    }
+
+    private ApiFilter? GetApiFilter(string categoryId, string filterId)
+    {
+        return GetApiFilterCategory(categoryId)?.Filters.FirstOrDefault(x => x.Id == filterId);
+    }
 }

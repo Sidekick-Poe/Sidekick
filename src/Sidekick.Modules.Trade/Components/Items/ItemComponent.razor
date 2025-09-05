@@ -1,3 +1,4 @@
+@using Sidekick.Apis.Poe.Trade.Filters
 @using Sidekick.Apis.Poe.Trade.Trade.Results
 @using Sidekick.Common.Game.Items
 @using Sidekick.Modules.Trade.Localization
@@ -28,6 +29,16 @@
                     <ItemSeparator Rarity="Result.Item.Rarity"/>
                     <ItemModifierText
                         Category="ModifierCategory.Unidentified">@Resources["Unidentified"]</ItemModifierText>
+                }
+                @if (Result.Item.Sanctified && FilterProvider.Sanctified != null)
+                {
+                    <ItemSeparator Rarity="Result.Item.Rarity"/>
+                    <ItemModifierText Category="ModifierCategory.Fractured">@FilterProvider.Sanctified.Text</ItemModifierText>
+                }
+                @if (Result.Item.Mirrored && FilterProvider.Mirrored != null)
+                {
+                    <ItemSeparator Rarity="Result.Item.Rarity"/>
+                    <ItemModifierText Category="ModifierCategory.Explicit">@FilterProvider.Mirrored.Text</ItemModifierText>
                 }
                 @if (Result.Item.Corrupted)
                 {
@@ -80,6 +91,7 @@ else
 }
 
 @inject IStringLocalizer<TradeResources> Resources
+@inject IFilterProvider FilterProvider
 
 @code {
 

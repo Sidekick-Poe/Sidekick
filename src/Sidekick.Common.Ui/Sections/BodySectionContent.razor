@@ -1,0 +1,28 @@
+﻿<SectionContent SectionName="@SectionName">
+    @ChildContent
+</SectionContent>
+
+@inject SectionService SectionService
+@using Microsoft.AspNetCore.Components.Sections
+@implements IDisposable
+
+@code {
+
+    [Parameter]
+    public required string SectionName { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    protected override void OnInitialized()
+    {
+        SectionService.AddBody(SectionName);
+        base.OnInitialized();
+    }
+
+    public void Dispose()
+    {
+        SectionService.RemoveBody(SectionName);
+    }
+
+}

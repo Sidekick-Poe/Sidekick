@@ -20,12 +20,7 @@ public class ChatKeybindHandler(
     protected override async Task<List<string?>> GetKeybinds()
     {
         var chatCommands = await settingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands);
-        return chatCommands
-               ?.Select(x => x.Key)
-               .ToList()
-               ??
-               [
-               ];
+        return chatCommands?.Select(x => x.Key).ToList() ?? [];
     }
 
     public override bool IsValid(string keybind) => processProvider.IsPathOfExileInFocus
@@ -75,6 +70,7 @@ public class ChatKeybindHandler(
             await keyboard.PressKey(
                 "Enter",
                 "Ctrl+A",
+                "Backspace",
                 "Ctrl+V",
                 "Enter",
                 "Enter",

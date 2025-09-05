@@ -26,6 +26,9 @@ public class ExtendedHashes
     [JsonPropertyName("fractured")]
     public List<List<JsonElement>> Fractured { get; set; } = [];
 
+    [JsonPropertyName("desecrated")]
+    public List<List<JsonElement>> Desecrated { get; set; } = [];
+
     [JsonPropertyName("scourge")]
     public List<List<JsonElement>> Scourge { get; set; } = [];
 

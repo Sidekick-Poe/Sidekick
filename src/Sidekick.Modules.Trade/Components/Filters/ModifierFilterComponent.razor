@@ -17,40 +17,36 @@
 
         @if (EnchantmentOilNames?.Any() ?? false)
         {
-            <OilAnointment OilNames="EnchantmentOilNames" />
+            <OilAnointment OilNames="EnchantmentOilNames"/>
         }
 
-        <div class="flex flex-col items-end justify-between">
+        <div class="flex flex-col items-end justify-between gap-[2px] -mr-1">
             @if (Filter is
-                {
-                    Checked: true,
-                    HasMoreThanOneCategory: true,
-                    FirstCategory: not ModifierCategory.Explicit
-                })
+                     {
+                         Checked: true,
+                         HasMoreThanOneCategory: true,
+                         Category: not ModifierCategory.Explicit
+                     })
             {
                 <Tooltip Text="@Resources["ForceCategoryHint"]" Placement="TooltipPlacement.Right">
-                    <ChildContent>
-                        <ItemModifierCategoryChip Category="Filter.FirstCategory"
-                                                  Checked="Filter.ForceFirstCategory"
-                                                  ShowCheckbox="true"
-                                                  OnClick="() => Filter.ForceFirstCategory = !Filter.ForceFirstCategory" />
-                    </ChildContent>
+                    <ItemModifierCategoryChip Category="Filter.Category"
+                                              Checked="Filter.ForceCategory"
+                                              ShowCheckbox="true"
+                                              OnClick="() => Filter.ForceCategory = !Filter.ForceCategory"/>
                 </Tooltip>
-
-                <div class="h-[2px]"></div>
             }
 
             @if (Filter is
-                {
-                    Checked: true,
-                    Line:
-                    {
-                        HasValues: true
-                    }
-                })
+                     {
+                         Checked: true,
+                         Line:
+                         {
+                             HasValues: true
+                         }
+                     })
             {
                 <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" Type="@Filter.FilterType"
-                             TypeChanged="(v) => Filter.ChangeFilterType(v)" />
+                             TypeChanged="(v) => Filter.ChangeFilterType(v)"/>
             }
         </div>
     </div>

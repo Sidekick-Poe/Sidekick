@@ -20,11 +20,12 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Options = FilterProvider.TradeIndexedOptions.ConvertAll(x => new SelectOption()
-        {
-            Label = x.Text ?? string.Empty,
-            Value = x.Id,
-        });
+        Options = FilterProvider.TradeIndexed?.Option.Options.ConvertAll(x => new SelectOption()
+                  {
+                      Label = x.Text ?? string.Empty,
+                      Value = x.Id,
+                  })
+                  ?? [];
 
         Value = await SettingsService.GetString(SettingKeys.PriceCheckItemListedAge);
 

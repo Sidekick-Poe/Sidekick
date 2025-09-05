@@ -61,14 +61,22 @@
             yield return ParseModifierLines(blockIndex, logbook.Mods, tradeItem.Extended?.Mods?.Implicit, ParseHash(tradeItem.Extended?.Hashes?.Implicit));
         }
 
-        yield return ParseModifierLines(++index, tradeItem.EnchantMods, tradeItem.Extended?.Mods?.Enchant, ParseHash(tradeItem.Extended?.Hashes?.Enchant));
-        yield return ParseModifierLines(++index, tradeItem.RuneMods, tradeItem.Extended?.Mods?.Rune, ParseHash(tradeItem.Extended?.Hashes?.Rune));
-        yield return ParseModifierLines(++index, tradeItem.ImplicitMods, tradeItem.Extended?.Mods?.Implicit, ParseHash(tradeItem.Extended?.Hashes?.Implicit));
-        yield return ParseModifierLines(++index, tradeItem.CraftedMods, tradeItem.Extended?.Mods?.Crafted, ParseHash(tradeItem.Extended?.Hashes?.Crafted));
-        yield return ParseModifierLines(++index, tradeItem.ExplicitMods, tradeItem.Extended?.Mods?.Explicit, ParseHash(tradeItem.Extended?.Hashes?.Explicit, tradeItem.Extended?.Hashes?.Monster));
-        yield return ParseModifierLines(++index, tradeItem.FracturedMods, tradeItem.Extended?.Mods?.Fractured, ParseHash(tradeItem.Extended?.Hashes?.Fractured));
-        yield return ParseModifierLines(++index, tradeItem.ScourgeMods, tradeItem.Extended?.Mods?.Scourge, ParseHash(tradeItem.Extended?.Hashes?.Scourge));
-        yield return ParseModifierLines(++index, tradeItem.ExplicitMods, tradeItem.Extended?.Mods?.Sanctum, ParseHash(tradeItem.Extended?.Hashes?.Sanctum));
+        index++;
+        yield return ParseModifierLines(index, tradeItem.EnchantMods, tradeItem.Extended?.Mods?.Enchant, ParseHash(tradeItem.Extended?.Hashes?.Enchant));
+
+        index++;
+        yield return ParseModifierLines(index, tradeItem.RuneMods, tradeItem.Extended?.Mods?.Rune, ParseHash(tradeItem.Extended?.Hashes?.Rune));
+
+        index++;
+        yield return ParseModifierLines(index, tradeItem.ImplicitMods, tradeItem.Extended?.Mods?.Implicit, ParseHash(tradeItem.Extended?.Hashes?.Implicit));
+
+        index++;
+        yield return ParseModifierLines(index, tradeItem.CraftedMods, tradeItem.Extended?.Mods?.Crafted, ParseHash(tradeItem.Extended?.Hashes?.Crafted));
+        yield return ParseModifierLines(index, tradeItem.ExplicitMods, tradeItem.Extended?.Mods?.Explicit, ParseHash(tradeItem.Extended?.Hashes?.Explicit, tradeItem.Extended?.Hashes?.Monster));
+        yield return ParseModifierLines(index, tradeItem.FracturedMods, tradeItem.Extended?.Mods?.Fractured, ParseHash(tradeItem.Extended?.Hashes?.Fractured));
+        yield return ParseModifierLines(index, tradeItem.DesecratedMods, tradeItem.Extended?.Mods?.Desecrated, ParseHash(tradeItem.Extended?.Hashes?.Desecrated));
+        yield return ParseModifierLines(index, tradeItem.ScourgeMods, tradeItem.Extended?.Mods?.Scourge, ParseHash(tradeItem.Extended?.Hashes?.Scourge));
+        yield return ParseModifierLines(index, tradeItem.ExplicitMods, tradeItem.Extended?.Mods?.Sanctum, ParseHash(tradeItem.Extended?.Hashes?.Sanctum));
     }
 
     private static List<string?> ParseHash(params List<List<JsonElement>>?[] hashes)
