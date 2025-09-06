@@ -36,7 +36,10 @@ public class TradeSearchService
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+        Converters =
+        {
+            new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
+        }
     };
 
     public async Task<TradeSearchResult<string>> Search(Item item, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null, List<PseudoModifierFilter>? pseudoFilters = null)
@@ -120,9 +123,7 @@ public class TradeSearchService
             var andGroup = GetAndStats(modifierFilters, pseudoFilters);
             if (andGroup != null) query.Stats.Add(andGroup);
 
-            var countGroup = GetCountStats(modifierFilters);
-            if (countGroup != null) query.Stats.Add(countGroup);
-
+            query.Stats.AddRange(GetCountStats(modifierFilters));
             query.Stats.AddRange(GetWeightedSumStats(pseudoFilters));
 
             // Properties
@@ -229,11 +230,11 @@ public class TradeSearchService
         return andGroup;
     }
 
-    private static StatFilterGroup? GetCountStats(IEnumerable<ModifierFilter>? modifierFilters)
+    private static IEnumerable<StatFilterGroup> GetCountStats(IEnumerable<ModifierFilter>? modifierFilters)
     {
         if (modifierFilters == null)
         {
-            return null;
+            yield break;
         }
 
         var countGroup = new StatFilterGroup()
@@ -277,7 +278,12 @@ public class TradeSearchService
             }
         }
 
-        return countGroup.Filters.Count == 0 ? null : countGroup;
+        if (countGroup.Filters.Count == 0)
+        {
+            yield break;
+        }
+
+        yield return countGroup;
     }
 
     private static IEnumerable<StatFilterGroup> GetWeightedSumStats(IEnumerable<PseudoModifierFilter>? pseudoFilters)

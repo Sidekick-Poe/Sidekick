@@ -165,7 +165,7 @@ public class ModifierProvider
             ModifierCategory.Crucible => explicitSuffix,
             ModifierCategory.Crafted => explicitSuffix,
             ModifierCategory.Fractured => explicitSuffix,
-            ModifierCategory.Desecrated => explicitSuffix,
+            ModifierCategory.Desecrated => "(?:\\ \\((?:" + explicitCategories + "|desecrated)\\))?",
             ModifierCategory.Explicit => explicitSuffix,
             _ => "",
         };

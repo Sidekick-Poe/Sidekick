@@ -6,7 +6,6 @@ public class ModifierCategories
     [
         ModifierCategory.Explicit,
         ModifierCategory.Fractured,
-        ModifierCategory.Desecrated,
         ModifierCategory.Crafted,
         ModifierCategory.Delve,
         ModifierCategory.Scourge,
