@@ -1,4 +1,3 @@
-
 using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -35,7 +34,10 @@ public class Poe2ScoutClient
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+        Converters =
+        {
+            new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
+        }
     };
 
     public async Task<Poe2ScoutPrice?> GetPriceInfo(Item item)
@@ -53,20 +55,24 @@ public class Poe2ScoutClient
         var query = prices.Where(x => x.CategoryApiId == item.Header.Category && x.Price != 0).ToList();
 
         // Match by name or type, or name with type as a fallback.
-        var price = query.FirstOrDefault(x => x.Name == item.Invariant?.Name)
-                    ?? query.FirstOrDefault(x => x.Type == item.Invariant?.Type)
-                    ?? query.FirstOrDefault(x => x.Name == item.Invariant?.Type);
+        var price = query.FirstOrDefault(x => x.Name == item.Invariant?.Name) ?? query.FirstOrDefault(x => x.Type == item.Invariant?.Type) ?? query.FirstOrDefault(x => x.Name == item.Invariant?.Type);
 
         return price;
     }
 
-    public async Task<List<Poe2ScoutPrice>?> GetUniquesFromType(Item item)
+    public async Task<List<Poe2ScoutPrice>?> GetChanceableUniquesFromType(Item item)
     {
         await ClearCacheIfExpired();
 
         var prices = await GetPrices();
 
-        return prices.Where(x => x.CategoryApiId == item.Header.Category && x.Price != 0).Where(x => x.Name == item.Invariant?.Type || x.Type == item.Invariant?.Type).OrderByDescending(x => x.Price).ToList();
+        prices = prices
+            .Where(x => x.CategoryApiId == item.Header.Category && x.Price != 0)
+            .Where(x => x.Name == item.Invariant?.Type || x.Type == item.Invariant?.Type).ToList();
+
+        return prices.Where(x => x.IsChanceable)
+            .OrderByDescending(x => x.Price)
+            .ToList();
     }
 
     private async Task<List<Poe2ScoutPrice>> GetPrices()
@@ -144,14 +150,22 @@ public class Poe2ScoutClient
                     Type = result.Type,
                     CategoryApiId = result.CategoryApiId != null ? result.CategoryApiId == "waystones" ? Category.Map : CultureInfo.CurrentCulture.TextInfo.ToTitleCase(result.CategoryApiId).GetEnumFromValue<Category>() : Category.Unknown,
                     Price = result.CurrentPrice,
+                    IsChanceable = result.IsChanceable,
                     PriceLogs = result.PriceLogs?.Where(x => x != null)
-                                                 // Reverse order to get earliest date first.
-                                                 .OrderBy(x => x!.Time)
-                                                 // Round to 3 decimal places.
-                                                 .Select(x => new Poe2ScoutPriceLog { Price = Math.Round(x!.Price!.Value, 3), Time = x!.Time })
-                                                 .ToList()!,
+
+                        // Reverse order to get earliest date first.
+                        .OrderBy(x => x!.Time)
+
+                        // Round to 3 decimal places.
+                        .Select(x => new Poe2ScoutPriceLog
+                        {
+                            Price = Math.Round(x!.Price!.Value, 3),
+                            Time = x!.Time
+                        })
+                        .ToList()!,
                     LastUpdated = DateTimeOffset.Now
-                }).ToList();
+                })
+                .ToList();
         }
         catch (Exception e)
         {

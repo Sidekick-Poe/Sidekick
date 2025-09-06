@@ -21,5 +21,7 @@ internal record Poe2ScoutItem
 
     public decimal CurrentPrice { get; init; }
 
+    public bool IsChanceable { get; init; }
+
     public List<Poe2ScoutPriceLog?>? PriceLogs { get; init; }
 }
