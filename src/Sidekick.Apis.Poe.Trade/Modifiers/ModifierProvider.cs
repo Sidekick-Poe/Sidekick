@@ -155,18 +155,29 @@ public class ModifierProvider
         // We should be fine hardcoding them this way.
         var explicitCategories = string.Join("|", ModifierCategories.AllExplicitCategories.Select(x => x.GetValueAttribute()));
         var explicitSuffix = "(?:\\ \\((?:" + explicitCategories + ")\\))?";
+
+
         var suffix = category switch
         {
             ModifierCategory.Enchant => "(?:\\ \\(enchant\\))",
             ModifierCategory.Rune => "(?:\\ \\(rune\\))",
             ModifierCategory.Implicit => "(?:\\ \\(implicit\\))",
-            ModifierCategory.Veiled => explicitSuffix,
-            ModifierCategory.Scourge => explicitSuffix,
-            ModifierCategory.Crucible => explicitSuffix,
-            ModifierCategory.Crafted => explicitSuffix,
-            ModifierCategory.Fractured => explicitSuffix,
-            ModifierCategory.Desecrated => "(?:\\ \\((?:" + explicitCategories + "|desecrated)\\))?",
-            ModifierCategory.Explicit => explicitSuffix,
+            ModifierCategory.Veiled => "(?:\\ \\(veiled\\))",
+            ModifierCategory.Scourge => "(?:\\ \\(scourge\\))",
+            ModifierCategory.Crucible => "(?:\\ \\(crucible\\))",
+            ModifierCategory.Crafted => "(?:\\ \\(crafted\\))",
+            ModifierCategory.Fractured => "(?:\\ \\(fractured\\))",
+            ModifierCategory.Desecrated => "(?:\\ \\((?:desecrated)\\))",
+            ModifierCategory.Explicit => string.Empty,
+
+            // TODO: View issue #792
+            //ModifierCategory.Veiled => explicitSuffix,
+            //ModifierCategory.Scourge => explicitSuffix,
+            //ModifierCategory.Crucible => explicitSuffix,
+            //ModifierCategory.Crafted => explicitSuffix,
+            //ModifierCategory.Fractured => explicitSuffix,
+            //ModifierCategory.Desecrated => explicitSuffix,
+            //ModifierCategory.Explicit => explicitSuffix,
             _ => "",
         };
 
