@@ -10,11 +10,18 @@ public static class DataConstants
         {
             Background = "transparent",
             FontFamily = "fontin",
-            Toolbar = new Toolbar { Show = false },
+            Toolbar = new Toolbar
+            {
+                Show = false
+            },
             Sparkline = new ChartSparkline
             {
                 Enabled = true,
-            }
+            },
+            Zoom = new Zoom
+            {
+                Enabled = false,
+            },
         },
         Theme = new Theme
         {
@@ -73,7 +80,7 @@ public static class DataConstants
             {
                 Formatter = @"
                       function (value) {
-                        if (!value) return null;
+                        if (!value) return '';
                         return parseInt(value);
                       }",
             },

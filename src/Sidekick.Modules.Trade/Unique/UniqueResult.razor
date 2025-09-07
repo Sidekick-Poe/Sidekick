@@ -1,0 +1,50 @@
+﻿@using Sidekick.Apis.Poe2Scout.History
+@using Sidekick.Apis.Poe2Scout.History.Models
+@using Sidekick.Modules.Trade.Exchange.Localization
+@using Sidekick.Modules.Trade.Poe2Scout
+@using Sidekick.Common.Game.Items
+
+@if (Loading)
+{
+    <AppLoading/>
+    return;
+}
+
+@if (History == null)
+{
+    <AlertInfo>@Resources["NoCurrencyExchangeData"]</AlertInfo>
+}
+else if (History != null)
+{
+    <Poe2ScoutWebsite History="History"/>
+    <Poe2ScoutPanel Currency="exalted" Logs="@History.Exalted"/>
+    <Poe2ScoutPanel Currency="chaos" Logs="@History.Chaos"/>
+    <Poe2ScoutPanel Currency="divine" Logs="@History.Divine"/>
+}
+
+@inject IScoutHistoryProvider ScoutHistoryProvider
+@inject IStringLocalizer<ExchangeResources> Resources
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    private ScoutHistory? History { get; set; }
+
+    private bool Loading { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        Loading = true;
+        StateHasChanged();
+
+        History = await ScoutHistoryProvider.GetHistory(Item.Header.Rarity, Item.Invariant?.ApiName, Item.Invariant?.ApiType);
+
+        Loading = false;
+        StateHasChanged();
+    }
+
+}

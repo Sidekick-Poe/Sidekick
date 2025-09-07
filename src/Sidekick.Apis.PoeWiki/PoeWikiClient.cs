@@ -67,7 +67,7 @@ public class PoeWikiClient
 
     public Dictionary<string, string> BlightOilNamesByMetadataIds { get; private set; } = new();
 
-    public Dictionary<string, List<string>> BlightOilNamesByMods { get; private set; } = new();
+    private Dictionary<string, List<string>> BlightOilNamesByMods { get; set; } = new();
 
     /// <inheritdoc/>
     public int Priority => 0;
@@ -86,10 +86,11 @@ public class PoeWikiClient
 
                                                       return result;
                                                   }, (cache) => cache.Any());
+        if (blightOils == null) return;
 
         BlightOilNamesByMetadataIds = blightOils.ToDictionary(x => x.MetadataId ?? string.Empty, x => x.Name ?? string.Empty);
 
-        BlightOilNamesByMods = await cacheProvider.GetOrSet("BlightOilNamesByMods", GetBlightOilNamesByMods, (cache) => cache.Any());
+        BlightOilNamesByMods = await cacheProvider.GetOrSet("BlightOilNamesByMods", GetBlightOilNamesByMods, (cache) => cache.Any()) ?? [];
     }
 
     private async Task<Uri?> GetMapScreenshotUri(string mapType)
@@ -322,7 +323,6 @@ public class PoeWikiClient
             if (result != null)
             {
                 var newLine = "&lt;br&gt;";
-                var oilNames = new List<string>();
                 foreach (var queryResult in result.CargoQuery.GroupBy(x => x.Title!.StatText))
                 {
                     var statText = queryResult.First().Title!.StatText!;
@@ -333,7 +333,7 @@ public class PoeWikiClient
                     // If the mod contains a newline, split into 2 mods.
                     var mods = statText.Contains(newLine) ? statText.Split([newLine], StringSplitOptions.None) : [statText];
 
-                    mods.ToList().ForEach(x => blightOilNamesByMods.TryAdd(x, queryResult.Select(x => x.Title!.ItemId!).ToList()));
+                    mods.ToList().ForEach(x => blightOilNamesByMods.TryAdd(x, queryResult.Select(cargoQuery => cargoQuery.Title!.ItemId!).ToList()));
                 }
             }
         }

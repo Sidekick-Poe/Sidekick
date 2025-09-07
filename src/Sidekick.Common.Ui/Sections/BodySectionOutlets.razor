@@ -14,13 +14,18 @@
 
     protected override void OnInitialized()
     {
-        SectionService.OnChanged += StateHasChanged;
+        SectionService.OnChanged += Changed;
         base.OnInitialized();
+    }
+
+    private void Changed()
+    {
+        InvokeAsync(StateHasChanged);
     }
 
     public void Dispose()
     {
-        SectionService.OnChanged -= StateHasChanged;
+        SectionService.OnChanged -= Changed;
     }
 
 }

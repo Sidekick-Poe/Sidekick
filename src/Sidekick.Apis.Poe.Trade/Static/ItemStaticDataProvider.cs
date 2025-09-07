@@ -1,8 +1,8 @@
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Static.Models;
-using Sidekick.Common;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
+using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
@@ -32,6 +32,7 @@ public class ItemStaticDataProvider
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_StaticData";
         var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<StaticItemCategory>(game, gameLanguageProvider.Language, "static"), (cache) => cache.Result.Any());
+        if (result == null) throw new SidekickException("Could not fetch data from the trade API.");
 
         ByTexts.Clear();
         ByIds.Clear();

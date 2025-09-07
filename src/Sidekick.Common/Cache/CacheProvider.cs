@@ -49,11 +49,7 @@ public class CacheProvider(ILogger<CacheProvider> logger) : ICacheProvider
             EnsureDirectory();
 
             var fileName = GetCacheFileName(key);
-
-            if (File.Exists(fileName))
-            {
-                File.Delete(fileName);
-            }
+            if (File.Exists(fileName)) File.Delete(fileName);
 
             await using var stream = File.Create(fileName);
             await JsonSerializer.SerializeAsync(stream, data);
@@ -85,19 +81,17 @@ public class CacheProvider(ILogger<CacheProvider> logger) : ICacheProvider
     }
 
     /// <inheritdoc />
-    public async Task<TModel> GetOrSet<TModel>(string key, Func<Task<TModel>> func, Func<TModel, bool> cacheValidator)
+    public async Task<TModel?> GetOrSet<TModel>(string key, Func<Task<TModel>> func, Func<TModel, bool> cacheValidator)
         where TModel : class
     {
         EnsureDirectory();
 
         var result = await Get(key, cacheValidator);
-
-        if (result != null)
-        {
-            return result;
-        }
+        if (result != null) return result;
 
         var data = await func.Invoke();
+        if (!cacheValidator.Invoke(data)) return null;
+
         await Set(key, data);
         return data;
     }

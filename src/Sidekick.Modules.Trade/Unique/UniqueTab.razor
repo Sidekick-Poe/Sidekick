@@ -1,0 +1,37 @@
+﻿@using Sidekick.Apis.Poe.Trade.Bulk
+@using Sidekick.Common.Game
+@using Sidekick.Common.Game.Items
+@using Sidekick.Modules.Trade.Unique.Localization
+@using Sidekick.Common.Ui.Tabs
+
+@if (Item.Header.Rarity == Rarity.Unique && Item.Header.Game == GameType.PathOfExile2)
+{
+    <TabItem Active="@(CurrentTab == "unique")"
+             Text="@Resources["UniquePrice"]"
+             OnClick="@(() => CurrentTabChanged.InvokeAsync("unique"))"/>
+}
+
+@inject IStringLocalizer<UniqueResources> Resources
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public string? CurrentTab { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> CurrentTabChanged { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Item.Header.Rarity == Rarity.Unique)
+        {
+             await CurrentTabChanged.InvokeAsync("unique");
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+}

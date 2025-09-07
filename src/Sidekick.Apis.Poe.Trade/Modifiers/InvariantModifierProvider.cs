@@ -1,8 +1,8 @@
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Modifiers.Models;
-using Sidekick.Common;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
+using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
@@ -149,6 +149,7 @@ public class InvariantModifierProvider
                                                 var result = await tradeApiClient.FetchData<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "stats");
                                                 return result.Result;
                                             }, (cache) => cache.Any());
+        if (apiCategories == null) throw new SidekickException("Could not fetch modifiers from the trade API.");
 
         apiCategories.ForEach(category =>
         {

@@ -32,7 +32,7 @@ public interface ICacheProvider
     /// <param name="func">The func to initialize the data, in the event that the data is not in the cache</param>
     /// <param name="cacheValidator">A function that determines if the data stored in the cache is valid.</param>
     /// <returns>Returns the cache data</returns>
-    Task<TModel> GetOrSet<TModel>(string key, Func<Task<TModel>> func, Func<TModel, bool> cacheValidator)
+    Task<TModel?> GetOrSet<TModel>(string key, Func<Task<TModel>> func, Func<TModel, bool> cacheValidator)
         where TModel : class;
 
     /// <summary>

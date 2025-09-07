@@ -1,0 +1,78 @@
+@using Sidekick.Apis.Poe.Trade.Trade.Filters
+@using Sidekick.Common.Game.Items
+@using Sidekick.Common.Settings
+@using Sidekick.Modules.Trade.Localization
+
+<FilterWrapper>
+    <div class="flex flex-nowrap items-center">
+        <div class="grow">
+            <FormCheckbox Value="Filter.Checked ?? false"
+                          ValueChanged="CheckedChanged">
+                <ItemModifierText Class="text-left"
+                                  Category="Filter.Line.Modifiers.FirstOrDefault()?.Category">@Filter.Line.Text</ItemModifierText>
+            </FormCheckbox>
+        </div>
+
+        <OilAnointment Filter="Filter"/>
+
+        <div class="flex flex-col items-end justify-between gap-[2px] -mr-1">
+            @if (Filter is
+                     {
+                         Checked: true,
+                         HasMoreThanOneCategory: true,
+                         Category: not ModifierCategory.Explicit
+                     })
+            {
+                <Tooltip Text="@Resources["ForceCategoryHint"]" Placement="TooltipPlacement.Right">
+                    <ItemModifierCategoryChip Category="Filter.Category"
+                                              Checked="Filter.ForceCategory"
+                                              ShowCheckbox="true"
+                                              OnClick="() => Filter.ForceCategory = !Filter.ForceCategory"/>
+                </Tooltip>
+            }
+
+            @if (Filter is
+                     {
+                         Checked: true,
+                         Line:
+                         {
+                             HasValues: true
+                         }
+                     })
+            {
+                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" Type="@Filter.FilterType"
+                             TypeChanged="(v) => Filter.ChangeFilterType(v)"/>
+            }
+        </div>
+    </div>
+</FilterWrapper>
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    [Parameter]
+    public required ModifierFilter Filter { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Filter.Checked == true)
+        {
+            await CheckedChanged(true);
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task CheckedChanged(bool value)
+    {
+        Filter.Checked = value;
+
+        // We can change the settings in the Trade window, so we should fetch here every time.
+        Filter.NormalizeValue = await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
+        var filterType = await SettingsService.GetEnum<FilterType>(SettingKeys.PriceCheckDefaultFilterType) ?? FilterType.Minimum;
+        Filter.ChangeFilterType(filterType);
+    }
+
+}
