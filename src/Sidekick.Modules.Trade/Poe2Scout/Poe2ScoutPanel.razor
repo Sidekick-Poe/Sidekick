@@ -2,7 +2,7 @@
 @using Sidekick.Modules.Trade.Components.Prices
 @using Sidekick.Modules.Trade.Localization
 
-@if (LastLog == null)
+@if (LastLog == null || Logs == null)
 {
     return;
 }
@@ -20,7 +20,7 @@
 @code {
 
     [Parameter]
-    public List<ScoutHistoryLog> Logs { get; set; } = [];
+    public List<ScoutHistoryLog>? Logs { get; set; }
 
     [Parameter]
     public required string Currency { get; set; }
@@ -29,7 +29,7 @@
 
     protected override void OnParametersSet()
     {
-        LastLog = Logs.LastOrDefault();
+        LastLog = Logs?.LastOrDefault();
         base.OnParametersSet();
     }
 

@@ -1,4 +1,4 @@
-﻿@using Sidekick.Apis.Poe.Trade.Bulk
+﻿@using Sidekick.Apis.Poe2Scout.Items
 @using Sidekick.Common.Game
 @using Sidekick.Common.Game.Items
 @using Sidekick.Modules.Trade.Exchange.Localization
@@ -12,7 +12,7 @@
 }
 
 @inject IStringLocalizer<ExchangeResources> Resources
-@inject IBulkTradeService BulkTradeService
+@inject IScoutItemProvider ScoutItemProvider
 
 @code {
 
@@ -29,7 +29,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        SupportsCurrencyExchange = BulkTradeService.SupportsBulkTrade(Item);
+        var scoutItem = await ScoutItemProvider.GetItem(Item.Invariant?.ApiName, Item.Invariant?.ApiType);
+        SupportsCurrencyExchange = scoutItem?.IsCurrency ?? false;
         if (SupportsCurrencyExchange)
         {
              await CurrentTabChanged.InvokeAsync("exchange");

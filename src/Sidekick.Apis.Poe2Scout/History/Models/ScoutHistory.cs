@@ -2,9 +2,7 @@
 
 public class ScoutHistory
 {
-    public required string? Category { get; set; }
-
-    public List<ScoutHistoryLog> Exalted { get; set; } = [];
-    public List<ScoutHistoryLog> Chaos { get; set; } = [];
-    public List<ScoutHistoryLog> Divine { get; set; } = [];
+    public List<ScoutHistoryLog>? Exalted { get; init; }
+    public List<ScoutHistoryLog>? Chaos { get; init; }
+    public List<ScoutHistoryLog>? Divine { get; init; }
 }

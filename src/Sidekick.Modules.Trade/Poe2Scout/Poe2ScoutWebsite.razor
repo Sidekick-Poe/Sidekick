@@ -1,5 +1,6 @@
 ﻿@using Sidekick.Apis.Poe2Scout.Categories
 @using Sidekick.Apis.Poe2Scout.History.Models
+@using Sidekick.Apis.Poe2Scout.Items.Models
 @using Sidekick.Common.Browser
 @using Sidekick.Modules.Trade.Localization
 
@@ -34,17 +35,20 @@
     [Parameter]
     public ScoutHistory? History { get; set; }
 
+    [Parameter]
+    public ScoutItem? Item { get; set; }
+
     private ScoutHistoryLog? LastLog { get; set; }
 
     protected override void OnParametersSet()
     {
-        LastLog = History?.Exalted.LastOrDefault();
+        LastLog = History?.Exalted?.LastOrDefault();
         base.OnParametersSet();
     }
 
     private void OpenWebsite()
     {
-        var uri = ScoutCategoryProvider.GetUri(History?.Category);
+        var uri = ScoutCategoryProvider.GetUri(Item?.CategoryApiId);
         BrowserProvider.OpenUri(uri);
     }
 

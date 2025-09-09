@@ -1,5 +1,7 @@
 ﻿@using Sidekick.Apis.Poe2Scout.History
 @using Sidekick.Apis.Poe2Scout.History.Models
+@using Sidekick.Apis.Poe2Scout.Items
+@using Sidekick.Apis.Poe2Scout.Items.Models
 @using Sidekick.Modules.Trade.Exchange.Localization
 @using Sidekick.Modules.Trade.Poe2Scout
 @using Sidekick.Common.Game.Items
@@ -10,19 +12,20 @@
     return;
 }
 
-@if (History == null)
+@if (ScoutHistory == null)
 {
     <AlertInfo>@Resources["NoCurrencyExchangeData"]</AlertInfo>
 }
-else if (History != null)
+else if (ScoutHistory != null)
 {
-    <Poe2ScoutWebsite History="History"/>
-    <Poe2ScoutPanel Currency="exalted" Logs="@History.Exalted"/>
-    <Poe2ScoutPanel Currency="chaos" Logs="@History.Chaos"/>
-    <Poe2ScoutPanel Currency="divine" Logs="@History.Divine"/>
+    <Poe2ScoutWebsite History="ScoutHistory" Item="ScoutItem"/>
+    <Poe2ScoutPanel Currency="exalted" Logs="@ScoutHistory.Exalted"/>
+    <Poe2ScoutPanel Currency="chaos" Logs="@ScoutHistory.Chaos"/>
+    <Poe2ScoutPanel Currency="divine" Logs="@ScoutHistory.Divine"/>
 }
 
 @inject IScoutHistoryProvider ScoutHistoryProvider
+@inject IScoutItemProvider ScoutItemProvider
 @inject IStringLocalizer<ExchangeResources> Resources
 
 @code {
@@ -30,7 +33,9 @@ else if (History != null)
     [CascadingParameter]
     public required Item Item { get; set; }
 
-    private ScoutHistory? History { get; set; }
+    private ScoutHistory? ScoutHistory { get; set; }
+
+    private ScoutItem? ScoutItem { get; set; }
 
     private bool Loading { get; set; }
 
@@ -41,7 +46,11 @@ else if (History != null)
         Loading = true;
         StateHasChanged();
 
-        History = await ScoutHistoryProvider.GetHistory(Item.Header.Rarity, Item.Invariant?.ApiName, Item.Invariant?.ApiType);
+        ScoutItem = await ScoutItemProvider.GetItem(Item.Invariant?.ApiName, Item.Invariant?.ApiType);
+        if (ScoutItem != null)
+        {
+            ScoutHistory = await ScoutHistoryProvider.GetCurrencyHistory(ScoutItem.ItemId);
+        }
 
         Loading = false;
         StateHasChanged();

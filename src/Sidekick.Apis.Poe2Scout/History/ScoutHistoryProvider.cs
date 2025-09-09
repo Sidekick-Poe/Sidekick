@@ -1,55 +1,83 @@
 ﻿using Sidekick.Apis.Poe2Scout.Clients;
 using Sidekick.Apis.Poe2Scout.History.Models;
 using Sidekick.Apis.Poe2Scout.Items;
-using Sidekick.Apis.Poe2Scout.Items.Models;
-using Sidekick.Common.Game.Items;
 namespace Sidekick.Apis.Poe2Scout.History;
 
 public class ScoutHistoryProvider(
-    IScoutItemProvider itemProvider,
-    IScoutClient scoutClient) : IScoutHistoryProvider
+    IScoutClient scoutClient,
+    IScoutItemProvider scoutItemProvider) : IScoutHistoryProvider
 {
-    public async Task<ScoutHistory?> GetHistory(Rarity rarity, string? name, string? type)
+    public async Task<ScoutHistory?> GetItemHistory(int itemId)
     {
-        name ??= type;
-        if (string.IsNullOrEmpty(name)) return null;
-
-        var items = await (rarity == Rarity.Unique ? itemProvider.GetUniqueItems() : itemProvider.GetCurrencyItems());
-        var item = items.FirstOrDefault(x => !string.IsNullOrEmpty(x.Name) && x.Name == name);
-        item ??= items.FirstOrDefault(x => !string.IsNullOrEmpty(x.Text) && x.Text == name);
-        if (item == null) return null;
-
         return new ScoutHistory()
         {
-            Category = item.CategoryApiId,
-            Chaos = await GetLogs(item, "chaos"),
-            Exalted = await GetLogs(item, "exalted"),
-            Divine = await GetLogs(item, "divine"),
+            Exalted = await GetItemLogs(itemId, "exalted"),
         };
     }
 
-    private async Task<List<ScoutHistoryLog>> GetLogs(ScoutItem item, string currency)
+    private async Task<List<ScoutHistoryLog>> GetItemLogs(int itemId, string currency)
     {
-        bool hasMore;
-        var logs = new List<ScoutHistoryLog>();
-        do
+        var result = await scoutClient.Fetch<ApiHistoryResult>($"items/{itemId}/history", new Dictionary<string, string?>()
         {
-            var result = await scoutClient.Fetch<ApiHistoryResult>($"items/{item.ItemId}/history", new Dictionary<string, string?>()
             {
-                {
-                    "logCount", "336"
-                },
-                {
-                    "referenceCurrency", currency
-                },
-            });
-            if (result == null) return logs;
+                "logCount", "24"
+            },
+            {
+                "referenceCurrency", currency
+            },
+        });
+        if (result == null) return [];
 
-            logs.AddRange(result.Logs);
-
-            hasMore = result.HasMore;
-        } while (hasMore);
-
-        return logs;
+        return result.Logs
+            .OrderByDescending(x => x.Time)
+            .Take(24)
+            .OrderBy(x => x.Time)
+            .ToList();
     }
+
+    public async Task<ScoutHistory?> GetCurrencyHistory(int itemId)
+    {
+        var exaltedOrb = await scoutItemProvider.GetExaltedOrb(); // 290
+        var chaosOrb = await scoutItemProvider.GetChaosOrb(); // 287
+        var divineOrb = await scoutItemProvider.GetDivineOrb(); // 291
+
+        return new ScoutHistory()
+        {
+            Exalted = await GetCurrencyLogs(itemId, exaltedOrb?.ItemId),
+            Chaos = await GetCurrencyLogs(itemId, chaosOrb?.ItemId),
+            Divine = await GetCurrencyLogs(itemId, divineOrb?.ItemId),
+        };
+    }
+
+    private async Task<List<ScoutHistoryLog>> GetCurrencyLogs(int itemId, int? currencyId)
+    {
+        if (currencyId == null) return [];
+
+        var result = await scoutClient.Fetch<ApiCurrencyHistoryResult>($"currencyExchange/PairHistory", new Dictionary<string, string?>()
+        {
+            {
+                "limit", "24"
+            },
+            {
+                "currencyOneItemId", itemId.ToString()
+            },
+            {
+                "currencyTwoItemId", currencyId.ToString()
+            },
+        });
+        if (result == null) return [];
+
+        return result.History
+            .Select(x=> new ScoutHistoryLog()
+            {
+                Time = x.DateTime,
+                Price = x.Value,
+                Quantity = x.Quantity,
+            })
+            .OrderByDescending(x => x.Time)
+            .Take(24)
+            .OrderBy(x => x.Time)
+            .ToList();
+    }
+
 }
