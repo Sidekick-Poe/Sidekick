@@ -6,7 +6,6 @@ using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Parser.Headers.Models;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
@@ -30,8 +29,7 @@ public class ItemClassParser
 
     public async Task Initialize()
     {
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        var game = leagueId.GetGameFromLeagueId();
+        var game = await settingsService.GetGame();
 
         ItemClassDefinitions = GetItemClassDefinitions(game);
         ApiItemClassDefinitions = GetApiItemClassDefinitions();

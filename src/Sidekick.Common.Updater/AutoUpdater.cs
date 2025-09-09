@@ -1,9 +1,6 @@
-using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Exceptions;
 using Velopack;
-using Velopack.Locators;
-using Velopack.Logging;
 
 namespace Sidekick.Common.Updater;
 

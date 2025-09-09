@@ -4,7 +4,6 @@ using Sidekick.Apis.Poe2Scout.Clients;
 using Sidekick.Apis.Poe2Scout.Items.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe2Scout.Items;
 
@@ -33,8 +32,7 @@ public class ScoutItemProvider(
     {
         if (Items != null) return Items;
 
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        var game = leagueId.GetGameFromLeagueId();
+        var game = await settingsService.GetGame();
         var cacheKey = $"poe2scout.{game.GetValueAttribute()}.items";
 
         Items = await cacheProvider.GetOrSet(cacheKey, FetchAllItems, (result) => result.Count > 0);
@@ -55,8 +53,7 @@ public class ScoutItemProvider(
 
     private async Task<List<ScoutItem>> GetOrFetchItemsByCategories()
     {
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        var game = leagueId.GetGameFromLeagueId();
+        var game = await settingsService.GetGame();
         var cacheKey = $"poe2scout.{game.GetValueAttribute()}.items";
 
         var uniqueCategories = await categoryProvider.GetUniqueCategories();

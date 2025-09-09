@@ -4,7 +4,6 @@ using Sidekick.Apis.Poe.Trade.Items.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
@@ -37,8 +36,7 @@ public class ApiInvariantItemProvider
     {
         IdDictionary.Clear();
 
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        var game = leagueId.GetGameFromLeagueId();
+        var game = await settingsService.GetGame();
         var cacheKey = $"{game.GetValueAttribute()}_InvariantItems";
 
         var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "items"), (cache) => cache.Result.Any());

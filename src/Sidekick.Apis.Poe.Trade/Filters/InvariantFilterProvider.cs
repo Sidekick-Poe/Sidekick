@@ -3,7 +3,6 @@ using Sidekick.Apis.Poe.Trade.Filters.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
 
@@ -29,8 +28,7 @@ public class InvariantFilterProvider
     /// <inheritdoc/>
     public async Task Initialize()
     {
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        var game = leagueId.GetGameFromLeagueId();
+        var game = await settingsService.GetGame();
         var cacheKey = $"{game.GetValueAttribute()}_Filters";
 
         var result = await cacheProvider.GetOrSet(cacheKey,

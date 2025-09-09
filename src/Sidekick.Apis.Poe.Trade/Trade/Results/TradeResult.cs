@@ -1,4 +1,3 @@
-using Sidekick.Apis.Poe.Trade.Models;
 using Sidekick.Apis.Poe.Trade.Models.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Trade.Results;

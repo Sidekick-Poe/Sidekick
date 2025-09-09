@@ -1,7 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Definitions;
-using Sidekick.Common;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
 
@@ -22,8 +20,7 @@ public class PseudoParser
     /// <inheritdoc/>
     public async Task Initialize()
     {
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        var game = leagueId.GetGameFromLeagueId();
+        var game = await settingsService.GetGame();
 
         Definitions.Clear();
         Definitions.AddRange([
