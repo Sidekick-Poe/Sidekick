@@ -9,6 +9,8 @@ public interface ISettingsService
     /// <param name="keys">The keys of the settings that have changed.</param>
     event Action<string[]>? OnSettingsChanged;
 
+    Task<string?> GetLeague();
+
     Task<GameType> GetGame();
 
     /// <summary>

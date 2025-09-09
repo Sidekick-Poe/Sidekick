@@ -14,8 +14,7 @@
     {
         var leagues = await LeagueProvider.GetList(true);
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
-        Text = leagues.FirstOrDefault(x => x.Id == leagueId)
-                      ?.Text;
+        Text = leagues.FirstOrDefault(x => x.Id == leagueId)?.Text;
 
         await base.OnInitializedAsync();
     }

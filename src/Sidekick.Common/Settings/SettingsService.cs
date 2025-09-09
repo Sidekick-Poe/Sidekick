@@ -16,6 +16,12 @@ public class SettingsService(
 {
     public event Action<string[]>? OnSettingsChanged;
 
+    public async Task<string?> GetLeague()
+    {
+        var leagueId = await GetString(SettingKeys.LeagueId);
+        return leagueId.GetUrlSlugForLeague();
+    }
+
     public async Task<GameType> GetGame()
     {
         var leagueId = await GetString(SettingKeys.LeagueId);

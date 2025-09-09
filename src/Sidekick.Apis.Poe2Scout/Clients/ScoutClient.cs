@@ -1,7 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe2Scout.Clients;
 
@@ -40,8 +39,8 @@ public class ScoutClient
     where TResponse : class
     {
         parameters ??= new();
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        parameters.TryAdd("league", leagueId.GetUrlSlugForLeague());
+        var league = await settingsService.GetLeague();
+        parameters.TryAdd("league", league);
 
         var query = string.Join("&", parameters.Select((x) => x.Key + "=" + x.Value?.ToString()));
         var url = new Uri($"{apiBaseUrl}{path}?{query}");

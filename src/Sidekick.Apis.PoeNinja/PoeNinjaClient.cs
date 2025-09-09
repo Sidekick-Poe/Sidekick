@@ -5,7 +5,6 @@ using Sidekick.Apis.PoeNinja.Api;
 using Sidekick.Apis.PoeNinja.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
 
@@ -123,15 +122,14 @@ public class PoeNinjaClient(
             return baseUrl;
         }
 
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        leagueId = leagueId.GetUrlSlugForLeague();
+        var league = await settingsService.GetLeague();
 
         var ninjaLeagues = await GetLeagues();
-        var ninjaLeague = ninjaLeagues.FirstOrDefault(x => x.Name == leagueId);
+        var ninjaLeague = ninjaLeagues.FirstOrDefault(x => x.Name == league);
 
         if (ninjaLeague == null)
         {
-            logger.LogWarning("[PoeNinja] Could not find league {LeagueId} in poe.ninja", leagueId);
+            logger.LogWarning("[PoeNinja] Could not find league {LeagueId} in poe.ninja", league);
             return baseUrl;
         }
 
@@ -230,7 +228,7 @@ public class PoeNinjaClient(
         return leagues.ToList();
     }
 
-    private async Task<IEnumerable<NinjaEconomyLeague>> FetchLeagues()
+    private async Task<List<NinjaEconomyLeague>> FetchLeagues()
     {
         var url = new Uri($"{apiBaseUrl}index-state");
 
@@ -257,8 +255,8 @@ public class PoeNinjaClient(
 
     private async Task<IEnumerable<NinjaPrice>> FetchItems(ItemType itemType)
     {
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        var url = new Uri($"{apiBaseUrl}itemoverview?league={leagueId.GetUrlSlugForLeague()}&type={itemType}");
+        var league = await settingsService.GetLeague();
+        var url = new Uri($"{apiBaseUrl}itemoverview?league={league}&type={itemType}");
 
         try
         {
@@ -300,8 +298,8 @@ public class PoeNinjaClient(
 
     private async Task<IEnumerable<NinjaPrice>> FetchCurrencies(ItemType itemType)
     {
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        var url = new Uri($"{apiBaseUrl}currencyoverview?league={leagueId.GetUrlSlugForLeague()}&type={itemType}");
+        var league = await settingsService.GetLeague();
+        var url = new Uri($"{apiBaseUrl}currencyoverview?league={league}&type={itemType}");
 
         try
         {
