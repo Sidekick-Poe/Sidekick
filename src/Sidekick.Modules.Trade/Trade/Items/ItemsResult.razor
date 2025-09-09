@@ -2,53 +2,56 @@
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
 
-@if (TradeService.CurrentMode != TradeMode.Item)
+@if (TradeService.CurrentMode != TradeMode.Item || TradeService.ItemTradeResult == null)
 {
     return;
 }
 
-@if (TradeService.ItemTradeResult != null)
-{
-    <div class="flex items-center w-full justify-between dark:bg-stone-900 sticky top-0 z-10 mb-3">
-        <div>
-            <CountString Count="TradeService.TradeItems.Count"
-                         Total="TradeService.ItemTradeResult.Total" />
-        </div>
-        <div class="flex gap-4">
-            <ToggleCompactView OnClick="@ToggleView" IsCompact="@IsCompact" />
-            <OpenWebsiteLink QueryId="@TradeService.ItemTradeResult.Id" />
-        </div>
+<div class="flex items-center w-full justify-between dark:bg-stone-900 sticky top-0 z-10 mb-3">
+    <div>
+        <CountString Count="TradeService.TradeItems.Count"
+                     Total="TradeService.ItemTradeResult.Total"/>
     </div>
+    <div class="flex gap-4">
+        <ToggleCompactView OnClick="@ToggleView" IsCompact="@IsCompact"/>
+        <OpenWebsiteLink QueryId="@TradeService.ItemTradeResult.Id"/>
+    </div>
+</div>
 
-    foreach (var result in TradeService.TradeItems)
-    {
-        <ItemComponent @key="result.Id" Result="result" IsCompact="@IsCompact" />
-    }
+@if (TradeService.ResultError != null)
+{
+    <AlertError>@TradeService.ResultError</AlertError>
+}
 
-    if (TradeService.ResultError != null)
-    {
-        <AlertError>@TradeService.ResultError</AlertError>
-    }
-    else if (!TradeService.IsLoading && !FullyLoaded)
-    {
-        <div class="flex justify-center">
-            @if (AutomaticallyLoadMoreData)
-            {
-                <IntersectionObserver Callback="LoadMoreData">
-                    <ButtonPrimary OnClick="LoadMoreData">@Resources["LoadMoreData"]</ButtonPrimary>
-                </IntersectionObserver>
-            }
-            else
-            {
-                <ButtonPrimary OnClick="LoadMoreData">@Resources["LoadMoreData"]</ButtonPrimary>
-            }
-        </div>
-    }
+@if (TradeService.TradeItems.Count == 0)
+{
+    <AlertInfo>@Resources["NoResults"]</AlertInfo>
+    return;
+}
+
+@foreach (var result in TradeService.TradeItems)
+{
+    <ItemComponent @key="result.Id" Result="result" IsCompact="@IsCompact"/>
 }
 
 @if (TradeService.IsLoading)
 {
-    <AppLoading />
+    <AppLoading/>
+}
+else if (!FullyLoaded)
+{
+    <div class="flex justify-center">
+        @if (AutomaticallyLoadMoreData)
+        {
+            <IntersectionObserver Callback="LoadMoreData">
+                <ButtonPrimary OnClick="LoadMoreData">@Resources["LoadMoreData"]</ButtonPrimary>
+            </IntersectionObserver>
+        }
+        else
+        {
+            <ButtonPrimary OnClick="LoadMoreData">@Resources["LoadMoreData"]</ButtonPrimary>
+        }
+    </div>
 }
 
 @implements IDisposable
