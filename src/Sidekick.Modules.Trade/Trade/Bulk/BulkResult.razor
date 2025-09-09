@@ -6,14 +6,6 @@
     return;
 }
 
-<div class="flex items-center w-full justify-between dark:bg-stone-900 sticky top-0 z-10 mb-3">
-    <div>
-        <CountString Count="TradeService.BulkTradeResult.Offers.Count"
-                     Total="TradeService.BulkTradeResult.TotalOffers"/>
-    </div>
-    <OpenWebsiteLink QueryId="@TradeService.BulkTradeResult.QueryId"/>
-</div>
-
 @if (TradeService.ResultError != null)
 {
     <AlertError>@TradeService.ResultError</AlertError>
