@@ -1,5 +1,14 @@
+@using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Trade.Bulk
 @using Sidekick.Modules.Trade.Trade.Items
 
 <BulkResult/>
 <ItemsResult/>
+
+@if (TradeService.ItemTradeResult == null && TradeService.BulkTradeResult == null)
+{
+    <AlertInfo>@Resources["TradeInstructions"]</AlertInfo>
+}
+
+@inject TradeService TradeService
+@inject IStringLocalizer<TradeResources> Resources
