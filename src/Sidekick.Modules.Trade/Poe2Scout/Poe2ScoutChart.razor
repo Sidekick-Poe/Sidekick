@@ -1,5 +1,6 @@
 ﻿@using ApexCharts
 @using Sidekick.Apis.Poe2Scout.History.Models
+@using Sidekick.Modules.Trade.Exchange.Localization
 
 @if (Logs.Count == 0)
 {
@@ -12,23 +13,28 @@
                Height="@("100%")">
         <ApexPointSeries TItem="DataPoint"
                          Items="QuantityPoints"
-                         Name="Quantity"
+                         Name="@(QuantityLabel ?? Resources["Listings"])"
                          SeriesType="SeriesType.Bar"
                          XValue="@(e => e.DateString)"
                          YValue="@(e => e.Value)"/>
         <ApexPointSeries TItem="DataPoint"
                          Items="ValuePoints"
-                         Name="Value"
+                         Name="@Resources["Value"]"
                          SeriesType="SeriesType.Line"
                          XValue="@(e => e.DateString)"
                          YValue="@(e => e.Value)"/>
     </ApexChart>
 </div>
 
+@inject IStringLocalizer<ExchangeResources> Resources
+
 @code {
 
     [Parameter]
     public List<ScoutHistoryLog> Logs { get; set; } = [];
+
+    [Parameter]
+    public string? QuantityLabel { get; set; }
 
     private List<DataPoint> ValuePoints { get; set; } = [];
 

@@ -14,9 +14,9 @@ public class ApiCurrencyHistoryLog
     {
         get
         {
-            if (Pair?.One?.RelativePrice > 0 && Pair?.Two?.RelativePrice > 0)
+            if (Pair?.One?.VolumeTraded > 0 && Pair?.Two?.VolumeTraded > 0)
             {
-                return 1 / (Pair.Two.RelativePrice / Pair.One.RelativePrice);
+                return (decimal)Pair.Two.VolumeTraded / Pair.One.VolumeTraded;
             }
 
             return 0;

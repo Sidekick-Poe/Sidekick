@@ -1,5 +1,4 @@
 ﻿using ApexCharts;
-using Sidekick.Modules.Trade.Exchange;
 namespace Sidekick.Modules.Trade.Poe2Scout;
 
 public static class DataConstants
@@ -7,6 +6,7 @@ public static class DataConstants
     private const string TwoDecimalFormatter = @"
                       function (value) {
                         if (!value) return '';
+                        if (value % 1 === 0) return value;
                         return value.toFixed(2);
                       }";
 
