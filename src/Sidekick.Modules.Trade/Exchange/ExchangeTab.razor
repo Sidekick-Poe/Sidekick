@@ -1,0 +1,42 @@
+﻿@using Sidekick.Apis.Poe2Scout.Items
+@using Sidekick.Common.Game
+@using Sidekick.Common.Game.Items
+@using Sidekick.Modules.Trade.Exchange.Localization
+@using Sidekick.Common.Ui.Tabs
+
+@if (SupportsCurrencyExchange && Item.Header.Game == GameType.PathOfExile2)
+{
+    <TabItem Active="@(CurrentTab == "exchange")"
+             Text="@Resources["CurrencyExchange"]"
+             OnClick="@(() => CurrentTabChanged.InvokeAsync("exchange"))"/>
+}
+
+@inject IStringLocalizer<ExchangeResources> Resources
+@inject IScoutItemProvider ScoutItemProvider
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public string? CurrentTab { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> CurrentTabChanged { get; set; }
+
+    private bool SupportsCurrencyExchange { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var scoutItem = await ScoutItemProvider.GetItem(Item.Invariant?.ApiName, Item.Invariant?.ApiType);
+        SupportsCurrencyExchange = scoutItem?.IsCurrency ?? false;
+        if (SupportsCurrencyExchange)
+        {
+             await CurrentTabChanged.InvokeAsync("exchange");
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+}

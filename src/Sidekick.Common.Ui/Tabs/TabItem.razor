@@ -1,0 +1,33 @@
+﻿@if (Active)
+{
+    <li>
+        <button type="button"
+                class="inline-block px-2 py-1 text-violet-400 bg-stone-700 rounded-t-lg active"
+                @onclick="() => OnClick.InvokeAsync()"
+                @onclick:preventDefault="true">
+            <TextBase>@Text</TextBase>
+        </button>
+    </li>
+}
+else
+{
+    <li>
+        <button type="button"
+                class="inline-block px-2 py-1 rounded-t-lg dark:hover:bg-stone-600 hover:text-gray-300 transition-colors duration-200"
+                @onclick="() => OnClick.InvokeAsync()"
+                @onclick:preventDefault="true">
+            <TextBase>@Text</TextBase>
+        </button>
+    </li>
+}
+
+@code {
+    [Parameter]
+    public bool Active { get; set; }
+
+    [Parameter]
+    public required string Text { get; set; }
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+}

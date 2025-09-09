@@ -9,7 +9,7 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class FracturedProperty(IServiceProvider serviceProvider, GameType game) : PropertyDefinition
+public class FracturedProperty(IServiceProvider serviceProvider) : PropertyDefinition
 {
     private IFilterProvider FilterProvicer => serviceProvider.GetRequiredService<IFilterProvider>();
 

@@ -1,0 +1,17 @@
+﻿<ul class="flex flex-wrap items-center gap-1 text-sm font-medium text-center border-b border-stone-700 text-gray-400 mb-2 @Class">
+    @ChildContent
+    <div class="grow"></div>
+    @RightContent
+</ul>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? RightContent { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+}

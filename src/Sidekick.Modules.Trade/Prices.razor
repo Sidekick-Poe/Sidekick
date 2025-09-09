@@ -1,16 +1,15 @@
 @page "/trade/{itemText}"
-@using Sidekick.Apis.Poe
 @using Sidekick.Apis.Poe.Trade
-@using Sidekick.Apis.Poe.Trade.Bulk
-@using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters
-@using Sidekick.Apis.Poe.Trade.Trade.Filters
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Game.Items
 @using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Tabs
+@using Sidekick.Modules.Trade.Components
+@using Sidekick.Modules.Trade.Exchange
 @using Sidekick.Modules.Trade.Localization
-@using Sidekick.Modules.Trade.Components.Filters
-@using Sidekick.Modules.Trade.Components.Bulk
-@using Sidekick.Modules.Trade.Components.Items
+@using Sidekick.Modules.Trade.Trade
+@using Sidekick.Modules.Trade.Trade.Filters
+@using Sidekick.Modules.Trade.Unique
 @using Sidekick.Modules.Trade.Settings
 
 <LayoutTwoColumn LeftContentWidth="@LeftContentWidth" OnLeftContentResize="@OnLeftContentResize">
@@ -23,22 +22,38 @@
         </AppBar>
     </TopContent>
     <LeftContent>
-        @if (Item != null && PropertyFilters != null)
+        @if (Item != null)
         {
-            <CascadingValue Value="Item">
-                <FiltersComponent PropertyFilters="@PropertyFilters"
-                                  ModifierFilters="@ModifierFilters"
-                                  PseudoFilters="@PseudoFilters"/>
+            <CascadingValue Value="Item"
+                            IsFixed="true">
+                <FiltersComponent/>
             </CascadingValue>
         }
     </LeftContent>
     <ChildContent>
         @if (Item != null)
         {
-            <CascadingValue Value="Item">
+            <CascadingValue Value="Item"
+                            IsFixed="true">
                 <AppContainer>
-                    <BulkResult/>
-                    <ItemsResult/>
+                    <TabList Class="-mt-1">
+                        <ChildContent>
+                            <UniqueTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
+                            <ExchangeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
+                            <TradeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
+                        </ChildContent>
+                        <RightContent>
+                            <li>
+                                <LeagueText/>
+                            </li>
+                        </RightContent>
+                    </TabList>
+                    @switch (CurrentTab)
+                    {
+                        case "trade": <TradeResult/> break;
+                        case "unique": <UniqueResult/> break;
+                        case "exchange": <ExchangeResult/> break;
+                    }
                 </AppContainer>
             </CascadingValue>
         }
@@ -47,11 +62,9 @@
 
 @inject ISettingsService SettingsService
 @inject IStringLocalizer<TradeResources> Resources
-@inject PriceCheckService PriceCheckService
-@inject ITradeFilterService TradeFilterService
+@inject TradeService TradeService
 @inject ICurrentView CurrentView
 @inject IItemParser ItemParser
-@inject IBulkTradeService BulkTradeService
 
 @code {
 
@@ -62,11 +75,7 @@
 
     private Item? Item { get; set; }
 
-    private PropertyFilters? PropertyFilters { get; set; }
-
-    private List<ModifierFilter> ModifierFilters { get; set; } = [];
-
-    private List<PseudoModifierFilter> PseudoFilters { get; set; } = [];
+    private string? CurrentTab { get; set; } = "trade";
 
     protected override async Task OnInitializedAsync()
     {
@@ -74,44 +83,28 @@
         {
             Title = Resources["Trade"],
         });
+
         await base.OnInitializedAsync();
         LeftContentWidth = await SettingsService.GetInt(SettingKeys.PriceCheckSidebarWidth);
     }
 
     protected override async Task OnParametersSetAsync()
     {
-        PriceCheckService.Init();
+        TradeService.Init();
 
         var itemText = ItemText.DecodeBase64Url();
         Item = ItemParser.ParseItem(itemText);
 
-        PropertyFilters = await TradeFilterService.GetPropertyFilters(Item);
-        ModifierFilters = TradeFilterService.GetModifierFilters(Item).ToList();
-        PseudoFilters = TradeFilterService.GetPseudoModifierFilters(Item).ToList();
-
-        var mode = TradeMode.Item;
-        if (BulkTradeService.SupportsBulkTrade(Item))
-        {
-            mode = await SettingsService.GetEnum<TradeMode>(SettingKeys.PriceCheckCurrencyMode) ?? TradeMode.Item;
-        }
-
-        var automaticallyPriceCheckSettingKey = Item.Header.Rarity == Rarity.Currency ?
-            SettingKeys.PriceCheckAutomaticallySearchCurrency :
-            SettingKeys.PriceCheckAutomaticallySearch;
-        var automaticallyPriceCheck = await SettingsService.GetBool(automaticallyPriceCheckSettingKey);
-        if (automaticallyPriceCheck)
-        {
-            if (mode == TradeMode.Bulk)
-                await PriceCheckService.SearchBulk(Item);
-            else
-                await PriceCheckService.SearchItems(Item, PropertyFilters, ModifierFilters, PseudoFilters);
-        }
-        else
-        {
-            PriceCheckService.Clear();
-        }
-
         await base.OnParametersSetAsync();
+    }
+
+    private async Task TabChanged(string? tab)
+    {
+        await InvokeAsync(() =>
+        {
+            CurrentTab = tab ?? "trade";
+            StateHasChanged();
+        });
     }
 
     private async Task OnLeftContentResize(int width)

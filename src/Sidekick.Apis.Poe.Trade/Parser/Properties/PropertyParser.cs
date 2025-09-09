@@ -73,10 +73,10 @@ public class PropertyParser
                                                 new RedeemerProperty(gameLanguageProvider),
                                                 new WarlordProperty(gameLanguageProvider),
                                                 new CorruptedProperty(gameLanguageProvider),
-                                                new FracturedProperty(serviceProvider, game),
+                                                new FracturedProperty(serviceProvider),
                                                 new DesecratedProperty(serviceProvider, game),
                                                 new SanctifiedProperty(serviceProvider, game),
-                                                new MirroredProperty(serviceProvider, game),
+                                                new MirroredProperty(serviceProvider),
                                                 new UnidentifiedProperty(gameLanguageProvider)),
         ]);
     }

@@ -9,7 +9,7 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class MirroredProperty(IServiceProvider serviceProvider, GameType game) : PropertyDefinition
+public class MirroredProperty(IServiceProvider serviceProvider) : PropertyDefinition
 {
     private IFilterProvider FilterProvicer => serviceProvider.GetRequiredService<IFilterProvider>();
 

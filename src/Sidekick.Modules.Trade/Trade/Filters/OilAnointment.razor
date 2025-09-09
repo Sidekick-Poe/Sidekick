@@ -1,0 +1,40 @@
+@using Sidekick.Apis.Poe.Trade.Trade.Filters
+@using Sidekick.Apis.PoeWiki
+@using Sidekick.Common.Game.Items
+@using Sidekick.Common.Game.Languages
+
+@if (OilNames == null || !OilNames.Any())
+{
+    return;
+}
+
+<div class="flex flex-nowrap items-center mx-1">
+    @foreach (var oilName in OilNames)
+    {
+        <Tooltip Text="@oilName">
+            <img src="/images/blight/@(oilName.Replace(" ", "_")).png" class="size-8 min-w-8 min-h-8" alt="@oilName" />
+        </Tooltip>
+    }
+</div>
+
+@inject IPoeWikiClient PoeWikiClient
+@inject IGameLanguageProvider GameLanguageProvider
+
+@code {
+
+    [Parameter]
+    public required ModifierFilter Filter { get; set; }
+
+    private List<string>? OilNames { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Filter.Line.Modifiers.FirstOrDefault()?.Category == ModifierCategory.Enchant && GameLanguageProvider.IsEnglish())
+        {
+            var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Line);
+
+            OilNames = oilMetadataIds.Where(x => PoeWikiClient.BlightOilNamesByMetadataIds.ContainsKey(x)).Select(x => PoeWikiClient.BlightOilNamesByMetadataIds[x]).ToList();
+        }
+    }
+
+}

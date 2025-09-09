@@ -1,0 +1,75 @@
+@using Sidekick.Apis.PoePriceInfo
+@using Sidekick.Apis.PoePriceInfo.Models
+@using Sidekick.Common.Game
+@using Sidekick.Common.Game.Items
+@using Sidekick.Common.Settings
+@using Sidekick.Modules.Trade.Components.Prices
+@using Sidekick.Modules.Trade.Localization
+
+@if (Loading)
+{
+    <AppLoading/>
+}
+else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
+{
+    <div class="flex flex-nowrap items-center gap-2 px-2">
+        <div class="text-right w-1/2">
+            <Heading3>PoePrices.info</Heading3>
+            <TextCaption Class="@ConfidenceColorClass">@Resources["PredictionConfidence", string.Format("{0:0.#}%", Prediction.ConfidenceScore)]</TextCaption>
+        </div>
+        <div class="text-left w-1/2">
+            <PriceRangeDisplay Min="Prediction.Min" Max="Prediction.Max" Currency="@Prediction.Currency"/>
+        </div>
+    </div>
+
+    <ItemSeparator Rarity="Item.Header.Rarity"/>
+}
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject ISettingsService SettingsService
+@inject IPoePriceInfoClient Client
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    private Guid ItemId { get; set; }
+
+    private bool Loading { get; set; }
+
+    private PricePrediction? Prediction { get; set; }
+
+    private string ConfidenceColorClass => Prediction?.ConfidenceScore switch
+    {
+        (< 33) => "text-red-500",
+        (< 66) => "text-yellow-500",
+        _ => "text-green-500"
+    };
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        if (ItemId == Item.Id) return;
+        ItemId = Item.Id;
+
+        if (Item.Header.Game == GameType.PathOfExile2)
+        {
+            return;
+        }
+
+        if (!await SettingsService.GetBool(SettingKeys.PriceCheckPredictionEnabled))
+        {
+            return;
+        }
+
+        Loading = true;
+        StateHasChanged();
+
+        Prediction = await Client.GetPricePrediction(Item);
+        Loading = false;
+        StateHasChanged();
+    }
+
+}

@@ -1,0 +1,73 @@
+﻿@using ApexCharts
+@using Sidekick.Apis.Poe2Scout.History.Models
+@using Sidekick.Modules.Trade.Exchange.Localization
+
+@if (Logs.Count == 0)
+{
+    return;
+}
+
+<div class="h-[15rem]">
+    <ApexChart TItem="DataPoint"
+               Options="DataConstants.GetOptions()"
+               Height="@("100%")">
+        <ApexPointSeries TItem="DataPoint"
+                         Items="QuantityPoints"
+                         Name="@(QuantityLabel ?? Resources["Listings"])"
+                         SeriesType="SeriesType.Bar"
+                         XValue="@(e => e.DateString)"
+                         YValue="@(e => e.Value)"/>
+        <ApexPointSeries TItem="DataPoint"
+                         Items="ValuePoints"
+                         Name="@Resources["Value"]"
+                         SeriesType="SeriesType.Line"
+                         XValue="@(e => e.DateString)"
+                         YValue="@(e => e.Value)"/>
+    </ApexChart>
+</div>
+
+@inject IStringLocalizer<ExchangeResources> Resources
+
+@code {
+
+    [Parameter]
+    public List<ScoutHistoryLog> Logs { get; set; } = [];
+
+    [Parameter]
+    public string? QuantityLabel { get; set; }
+
+    private List<DataPoint> ValuePoints { get; set; } = [];
+
+    private List<DataPoint> QuantityPoints { get; set; } = [];
+
+    protected override Task OnParametersSetAsync()
+    {
+        ValuePoints = GetDataPoints(x => x.Price);
+        QuantityPoints = GetDataPoints(x => x.Quantity);
+        return base.OnParametersSetAsync();
+    }
+
+    private string GetDateString(DateTimeOffset date)
+    {
+        return $"{date.Year}-{date.Month:00}-{date.Day:00} {date.Hour:00}:{date.Minute:00}";
+    }
+
+    private List<DataPoint> GetDataPoints(Func<ScoutHistoryLog, decimal?> valueFunc)
+    {
+        var result = new List<DataPoint>();
+        foreach (var log in Logs.TakeLast(24))
+        {
+            var dateString = GetDateString(log.Time);
+            if (result.Any(x => x.DateString == dateString)) continue;
+
+            result.Add(new DataPoint()
+            {
+                DateString = dateString,
+                Value = valueFunc.Invoke(log),
+            });
+        }
+
+        return result;
+    }
+
+}

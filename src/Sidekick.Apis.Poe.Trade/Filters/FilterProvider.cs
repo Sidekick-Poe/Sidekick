@@ -2,6 +2,7 @@ using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Filters.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
+using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
@@ -53,6 +54,8 @@ public class FilterProvider
                                                   {
                                                       return cache.Result.Any(x => x.Id == "type_filters") && cache.Result.Any(x => x.Id == "trade_filters");
                                                   });
+        if (result == null) throw new SidekickException("Could not fetch filters from the trade API.");
+
         Filters = result.Result;
 
         TypeCategory = GetApiFilter("type_filters", "category");

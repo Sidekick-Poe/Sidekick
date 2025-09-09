@@ -1,0 +1,111 @@
+@using Sidekick.Common.Game.Items
+@using Sidekick.Modules.Trade.Localization
+@using Sidekick.Common.Settings
+
+@if (TradeService.CurrentMode != TradeMode.Item)
+{
+    return;
+}
+
+@if (TradeService.ItemTradeResult != null)
+{
+    <div class="flex items-center w-full justify-between dark:bg-stone-900 sticky top-0 z-10 mb-3">
+        <div>
+            <CountString Count="TradeService.TradeItems.Count"
+                         Total="TradeService.ItemTradeResult.Total" />
+        </div>
+        <div class="flex gap-4">
+            <ToggleCompactView OnClick="@ToggleView" IsCompact="@IsCompact" />
+            <OpenWebsiteLink QueryId="@TradeService.ItemTradeResult.Id" />
+        </div>
+    </div>
+
+    foreach (var result in TradeService.TradeItems)
+    {
+        <ItemComponent @key="result.Id" Result="result" IsCompact="@IsCompact" />
+    }
+
+    if (TradeService.ResultError != null)
+    {
+        <AlertError>@TradeService.ResultError</AlertError>
+    }
+    else if (!TradeService.IsLoading && !FullyLoaded)
+    {
+        <div class="flex justify-center">
+            @if (AutomaticallyLoadMoreData)
+            {
+                <IntersectionObserver Callback="LoadMoreData">
+                    <ButtonPrimary OnClick="LoadMoreData">@Resources["LoadMoreData"]</ButtonPrimary>
+                </IntersectionObserver>
+            }
+            else
+            {
+                <ButtonPrimary OnClick="LoadMoreData">@Resources["LoadMoreData"]</ButtonPrimary>
+            }
+        </div>
+    }
+}
+
+@if (TradeService.IsLoading)
+{
+    <AppLoading />
+}
+
+@implements IDisposable
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject TradeService TradeService
+@inject ISettingsService SettingsService
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    private bool FullyLoaded => TradeService.TradeItems.Count == (TradeService.ItemTradeResult?.Result?.Count ?? 0);
+
+    private bool IsCompact { get; set; }
+
+    private bool AutomaticallyLoadMoreData { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        IsCompact = await SettingsService.GetBool(SettingKeys.PriceCheckCompactMode);
+        AutomaticallyLoadMoreData = await SettingsService.GetBool(SettingKeys.PriceCheckAutomaticallyLoadMoreData);
+
+        SettingsService.OnSettingsChanged += OnSettingsChanged;
+
+        TradeService.Changed += StateHasChanged;
+
+        await base.OnInitializedAsync();
+    }
+
+    private async void ToggleView()
+    {
+        IsCompact = !IsCompact;
+        await SettingsService.Set(SettingKeys.PriceCheckCompactMode, IsCompact);
+    }
+
+    private async void OnSettingsChanged(string[] keys)
+    {
+        if (keys.Contains(SettingKeys.PriceCheckCompactMode) || keys.Contains(SettingKeys.PriceCheckAutomaticallyLoadMoreData))
+        {
+            IsCompact = await SettingsService.GetBool(SettingKeys.PriceCheckCompactMode);
+            AutomaticallyLoadMoreData = await SettingsService.GetBool(SettingKeys.PriceCheckAutomaticallyLoadMoreData);
+
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private async void LoadMoreData()
+    {
+        await TradeService.LoadMoreItems(Item.Header.Game);
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= OnSettingsChanged;
+        TradeService.Changed -= StateHasChanged;
+    }
+
+}

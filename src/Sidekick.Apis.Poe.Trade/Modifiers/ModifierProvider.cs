@@ -4,6 +4,7 @@ using Sidekick.Apis.Poe.Trade.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Modifiers.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
+using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
@@ -59,6 +60,7 @@ public class ModifierProvider
         var game = leagueId.GetGameFromLeagueId();
         var cacheKey = $"{game.GetValueAttribute()}_Modifiers";
         var apiCategories = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<ApiCategory>(game, gameLanguageProvider.Language, "stats"), (cache) => cache.Result.Any());
+        if (apiCategories == null) throw new SidekickException("Could not fetch modifiers from the trade API.");
 
         foreach (var apiCategory in apiCategories.Result)
         {

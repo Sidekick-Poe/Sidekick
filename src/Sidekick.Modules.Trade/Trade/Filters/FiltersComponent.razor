@@ -1,0 +1,125 @@
+@using Sidekick.Apis.Poe.Trade
+@using Sidekick.Apis.Poe.Trade.Bulk
+@using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters
+@using Sidekick.Apis.Poe.Trade.Trade.Filters
+@using Sidekick.Common.Game.Items
+@using Sidekick.Common.Settings
+@using Sidekick.Modules.Trade.Localization
+@using Sidekick.Modules.Trade.PoeNinja
+@using Sidekick.Modules.Trade.PoePrices
+@using Sidekick.Modules.Trade.Trade.Filters.Properties
+
+@if (PropertyFilters == null)
+{
+    return;
+}
+
+<div class="flex flex-col h-full">
+    <div>
+        <ItemHeader Name="@Item.Header.Name"
+                    Type="@Item.Header.Type"
+                    Rarity="Item.Header.Rarity"
+                    Game="Item.Header.Game"
+                    Influences="Item.Properties.Influences"/>
+    </div>
+
+    <div class="grow overflow-y-auto py-2">
+        <SidekickErrorBoundary>
+            <PriceNinjaComponent/>
+        </SidekickErrorBoundary>
+        <SidekickErrorBoundary>
+            <PricePredictionComponent/>
+        </SidekickErrorBoundary>
+
+        <HeaderFilters PropertyFilters="PropertyFilters"/>
+
+        <div>
+            @for (var index = 0; index < PropertyFilters.Filters.Count; index++)
+            {
+                var filter = PropertyFilters.Filters[index];
+                var key = $"{Item.Id}_property_{index}";
+                <PropertyFilterComponent @key="key"
+                                         Filter="filter"
+                                         Item="Item"/>
+            }
+
+            @if (PropertyFilters.Filters.Count > 0)
+            {
+                <ItemSeparator Rarity="Item.Header.Rarity"/>
+            }
+        </div>
+
+        <ModifierFiltersComponent ModifierFilters="ModifierFilters"/>
+        <PseudoFiltersComponent PseudoFilters="PseudoFilters"/>
+    </div>
+
+    <div class="flex flex-nowrap items-center w-full py-2 px-1">
+        <ItemOptions Item="Item"/>
+
+        <div class="flex flex-col items-stretch text-center px-1 grow">
+            <ButtonPrimary
+                OnClick="() => TradeService.SearchItems(Item, PropertyFilters, ModifierFilters, PseudoFilters)"
+                Disabled="TradeService.IsLoading">@Resources["Search"]</ButtonPrimary>
+        </div>
+
+        @if (BulkTradeService.SupportsBulkTrade(Item))
+        {
+            <div class="flex flex-col items-stretch text-center px-1 grow">
+                <ButtonSecondary OnClick="() => TradeService.SearchBulk(Item)"
+                                 Disabled="TradeService.IsLoading">@Resources["Bulk_Search"]</ButtonSecondary>
+            </div>
+        }
+
+        <TradeFilters/>
+    </div>
+</div>
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject IBulkTradeService BulkTradeService
+@inject TradeService TradeService
+@inject ITradeFilterService TradeFilterService
+@inject ISettingsService SettingsService
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    private PropertyFilters? PropertyFilters { get; set; }
+
+    private List<ModifierFilter> ModifierFilters { get; set; } = [];
+
+    private List<PseudoModifierFilter> PseudoFilters { get; set; } = [];
+
+    protected override async Task OnParametersSetAsync()
+    {
+        PropertyFilters = await TradeFilterService.GetPropertyFilters(Item);
+        ModifierFilters = TradeFilterService.GetModifierFilters(Item).ToList();
+        PseudoFilters = TradeFilterService.GetPseudoModifierFilters(Item).ToList();
+
+        var automaticallyPriceCheckSettingKey = Item.Header.Rarity == Rarity.Currency ?
+            SettingKeys.PriceCheckAutomaticallySearchCurrency :
+            SettingKeys.PriceCheckAutomaticallySearch;
+        var automaticallyPriceCheck = await SettingsService.GetBool(automaticallyPriceCheckSettingKey);
+        if (automaticallyPriceCheck)
+        {
+            var mode = TradeMode.Item;
+            if (BulkTradeService.SupportsBulkTrade(Item))
+            {
+                mode = await SettingsService.GetEnum<TradeMode>(SettingKeys.PriceCheckCurrencyMode) ?? TradeMode.Item;
+            }
+
+            if (mode == TradeMode.Bulk)
+                await TradeService.SearchBulk(Item);
+            else
+                await TradeService.SearchItems(Item, PropertyFilters, ModifierFilters, PseudoFilters);
+        }
+        else
+        {
+            TradeService.Clear();
+        }
+
+        await base.OnParametersSetAsync();
+    }
+
+}

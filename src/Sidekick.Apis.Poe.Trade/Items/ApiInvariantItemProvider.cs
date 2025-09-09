@@ -3,6 +3,7 @@ using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Items.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
+using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
@@ -41,6 +42,7 @@ public class ApiInvariantItemProvider
         var cacheKey = $"{game.GetValueAttribute()}_InvariantItems";
 
         var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "items"), (cache) => cache.Result.Any());
+        if (result == null) throw new SidekickException("Could not fetch items from the trade API.");
 
         var categories = game switch
         {

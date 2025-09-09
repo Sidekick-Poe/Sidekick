@@ -20,7 +20,8 @@ public class LeagueProvider(
     {
         if (fromCache)
         {
-            return await cacheProvider.GetOrSet("Leagues", FetchAll, (cache) => cache.Count != 0);
+            var result = await cacheProvider.GetOrSet("Leagues", FetchAll, (cache) => cache.Count != 0);
+            if (result != null) return result;
         }
 
         try
@@ -32,7 +33,10 @@ public class LeagueProvider(
         catch (Exception e)
         {
             logger.LogError(e, "[LeagueProvider] Error fetching leagues.");
-            throw new ApiErrorException { AdditionalInformation = ["If the official trade website is down, Sidekick will not work.", "Please try again later or open a ticket on GitHub."], };
+            throw new ApiErrorException
+            {
+                AdditionalInformation = ["If the official trade website is down, Sidekick will not work.", "Please try again later or open a ticket on GitHub."],
+            };
         }
     }
 
