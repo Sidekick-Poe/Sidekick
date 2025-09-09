@@ -2,13 +2,30 @@
 @using Sidekick.Modules.Trade.Trade.Bulk
 @using Sidekick.Modules.Trade.Trade.Items
 
-<BulkResult/>
-<ItemsResult/>
-
 @if (TradeService.ItemTradeResult == null && TradeService.BulkTradeResult == null)
 {
     <AlertInfo>@Resources["TradeInstructions"]</AlertInfo>
 }
 
-@inject TradeService TradeService
+<BulkResult/>
+<ItemsResult/>
+
+@implements IDisposable
+
 @inject IStringLocalizer<TradeResources> Resources
+@inject TradeService TradeService
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        TradeService.Changed += StateHasChanged;
+        await base.OnInitializedAsync();
+    }
+
+    public void Dispose()
+    {
+        TradeService.Changed -= StateHasChanged;
+    }
+
+}
