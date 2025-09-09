@@ -7,17 +7,6 @@
     return;
 }
 
-<div class="flex items-center w-full justify-between dark:bg-stone-900 sticky top-0 z-10 mb-3">
-    <div>
-        <CountString Count="TradeService.TradeItems.Count"
-                     Total="TradeService.ItemTradeResult.Total"/>
-    </div>
-    <div class="flex gap-4">
-        <ToggleCompactView OnClick="@ToggleView" IsCompact="@IsCompact"/>
-        <OpenWebsiteLink QueryId="@TradeService.ItemTradeResult.Id"/>
-    </div>
-</div>
-
 @if (TradeService.ResultError != null)
 {
     <AlertError>@TradeService.ResultError</AlertError>
@@ -81,12 +70,6 @@ else if (!FullyLoaded)
         TradeService.Changed += StateHasChanged;
 
         await base.OnInitializedAsync();
-    }
-
-    private async void ToggleView()
-    {
-        IsCompact = !IsCompact;
-        await SettingsService.Set(SettingKeys.PriceCheckCompactMode, IsCompact);
     }
 
     private async void OnSettingsChanged(string[] keys)

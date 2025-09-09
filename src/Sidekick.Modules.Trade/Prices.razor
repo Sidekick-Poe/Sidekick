@@ -36,23 +36,34 @@
             <CascadingValue Value="Item"
                             IsFixed="true">
                 <AppContainer>
-                    <TabList Class="-mt-1">
-                        <ChildContent>
-                            <UniqueTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
-                            <ExchangeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
-                            <TradeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
-                        </ChildContent>
-                        <RightContent>
-                            <li>
-                                <LeagueText/>
-                            </li>
-                        </RightContent>
-                    </TabList>
+                    <div class="sticky top-0 z-10 pb-1 mb-2 -mt-3 pt-2 bg-stone-900">
+                        <TabList>
+                            <ChildContent>
+                                <UniqueTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
+                                <ExchangeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
+                                <TradeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
+                            </ChildContent>
+                            <RightContent>
+                                <li>
+                                    <LeagueText/>
+                                </li>
+                            </RightContent>
+                        </TabList>
+                        @switch (CurrentTab)
+                        {
+                            case "trade":
+                                <TradeSticky/> break;
+                        }
+                    </div>
+
                     @switch (CurrentTab)
                     {
-                        case "trade": <TradeResult/> break;
-                        case "unique": <UniqueResult/> break;
-                        case "exchange": <ExchangeResult/> break;
+                        case "trade":
+                            <TradeResult/> break;
+                        case "unique":
+                            <UniqueResult/> break;
+                        case "exchange":
+                            <ExchangeResult/> break;
                     }
                 </AppContainer>
             </CascadingValue>
