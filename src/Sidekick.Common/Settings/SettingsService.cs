@@ -42,7 +42,7 @@ public class SettingsService(
         var defaultProperty = typeof(DefaultSettings).GetProperty(key);
         if (defaultProperty == null)
         {
-            return default;
+            return false;
         }
 
         return (bool)(defaultProperty.GetValue(null) ?? false);
@@ -62,7 +62,7 @@ public class SettingsService(
         var defaultProperty = typeof(DefaultSettings).GetProperty(key);
         if (defaultProperty == null)
         {
-            return default;
+            return null;
         }
 
         return (string?)(defaultProperty.GetValue(null) ?? null);
@@ -82,7 +82,7 @@ public class SettingsService(
         var defaultProperty = typeof(DefaultSettings).GetProperty(key);
         if (defaultProperty == null)
         {
-            return default;
+            return 0;
         }
 
         return (int)(defaultProperty.GetValue(null) ?? 0);
@@ -102,7 +102,7 @@ public class SettingsService(
         var defaultProperty = typeof(DefaultSettings).GetProperty(key);
         if (defaultProperty == null)
         {
-            return default;
+            return null;
         }
 
         return (DateTimeOffset?)(defaultProperty.GetValue(null) ?? null);
@@ -164,7 +164,7 @@ public class SettingsService(
         var defaultProperty = typeof(DefaultSettings).GetProperty(key);
         if (defaultProperty == null)
         {
-            return default;
+            return null;
         }
 
         try
@@ -187,7 +187,7 @@ public class SettingsService(
             throw;
         }
 
-        return default;
+        return null;
     }
 
     public async Task Set(
@@ -243,7 +243,7 @@ public class SettingsService(
 
     public async Task<bool> IsSettingModified(params string[] keys)
     {
-        if (keys == null || keys.Length == 0)
+        if (keys.Length == 0)
         {
             return false;
         }
@@ -280,13 +280,13 @@ public class SettingsService(
 
     public async Task DeleteSetting(params string[] keys)
     {
-        if (keys == null || keys.Length == 0)
+        if (keys.Length == 0)
         {
             return;
         }
 
         await using var dbContext = new SidekickDbContext(dbContextOptions);
-        bool changed = false;
+        var changed = false;
 
         var dbSettings = await dbContext.Settings.Where(x => keys.Contains(x.Key)).ToListAsync();
 
