@@ -1,4 +1,5 @@
 using Sidekick.Common.Browser;
+using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;

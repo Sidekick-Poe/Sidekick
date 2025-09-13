@@ -5,8 +5,6 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Extensions;
-using Sidekick.Common.Game;
 
 namespace Sidekick.Common.Settings;
 
@@ -15,18 +13,6 @@ public class SettingsService(
     ILogger<SettingsService> logger) : ISettingsService
 {
     public event Action<string[]>? OnSettingsChanged;
-
-    public async Task<string?> GetLeague()
-    {
-        var leagueId = await GetString(SettingKeys.LeagueId);
-        return leagueId.GetUrlSlugForLeague();
-    }
-
-    public async Task<GameType> GetGame()
-    {
-        var leagueId = await GetString(SettingKeys.LeagueId);
-        return leagueId.GetGameFromLeagueId();
-    }
 
     public async Task<bool> GetBool(string key)
     {

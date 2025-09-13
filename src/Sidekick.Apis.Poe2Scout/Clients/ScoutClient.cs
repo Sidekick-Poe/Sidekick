@@ -1,6 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
+using Sidekick.Common.Extensions;
 using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe2Scout.Clients;
 

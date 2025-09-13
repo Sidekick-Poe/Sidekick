@@ -9,6 +9,7 @@ using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Static;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
