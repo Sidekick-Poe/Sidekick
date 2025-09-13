@@ -14,7 +14,6 @@ using Sidekick.Apis.Poe.Trade.Trade.Requests.Models;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
@@ -137,8 +136,8 @@ public class TradeSearchService
             var status = await settingsService.GetString(statusKey);
             query.Status.Option = status ?? Status.Online;
 
-            var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var uri = new Uri($"{await GetBaseApiUrl(metadata.Game)}search/{leagueId.GetUrlSlugForLeague()}");
+            var league = await settingsService.GetLeague();
+            var uri = new Uri($"{await GetBaseApiUrl(metadata.Game)}search/{league}");
 
             var request = new QueryRequest()
             {
@@ -361,8 +360,8 @@ public class TradeSearchService
     public async Task<Uri> GetTradeUri(GameType game, string queryId)
     {
         var baseUri = new Uri(await GetBaseUrl(game) + "search/");
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        return new Uri(baseUri, $"{leagueId.GetUrlSlugForLeague()}/{queryId}");
+        var league = await settingsService.GetLeague();
+        return new Uri(baseUri, $"{league}/{queryId}");
     }
 
     private async Task<string> GetBaseApiUrl(GameType game)

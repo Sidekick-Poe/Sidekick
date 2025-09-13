@@ -33,7 +33,7 @@
         await base.OnInitializedAsync();
     }
 
-    public async Task RefreshOptions()
+    private async Task RefreshOptions()
     {
         var leagues = await LeagueProvider.GetList(true);
         Options = leagues

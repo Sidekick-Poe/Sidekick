@@ -1,4 +1,3 @@
-@using Sidekick.Common.Extensions
 @using Sidekick.Common.Game
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
@@ -51,8 +50,7 @@
 
     private async Task FetchSettings()
     {
-        var league = await SettingsService.GetString(SettingKeys.LeagueId);
-        Game = league.GetGameFromLeagueId();
+        Game = await SettingsService.GetGame();
         if (Game == GameType.PathOfExile)
         {
             Minimum = await SettingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMin);

@@ -1,5 +1,4 @@
 using Sidekick.Common.Browser;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;
@@ -39,9 +38,7 @@ public class OpenInCraftOfExileHandler(
             return;
         }
 
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        var game = leagueId.GetGameFromLeagueId();
-
+        var game = await settingsService.GetGame();
         var gameParam = game == GameType.PathOfExile ? "poe1" : "poe2";
         var encodedItemText = Uri.EscapeDataString(itemText);
 

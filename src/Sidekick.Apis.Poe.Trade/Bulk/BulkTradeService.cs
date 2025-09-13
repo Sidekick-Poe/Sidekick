@@ -9,7 +9,6 @@ using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Static;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Game;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Game.Languages;
@@ -43,8 +42,8 @@ public class BulkTradeService
     {
         logger.LogInformation("[Trade API] Querying Exchange API.");
 
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        var uri = $"{await GetBaseApiUrl(item.Header.Game)}exchange/{leagueId.GetUrlSlugForLeague()}";
+        var league = await settingsService.GetLeague();
+        var uri = $"{await GetBaseApiUrl(item.Header.Game)}exchange/{league}";
 
         var staticItem = itemStaticDataProvider.Get(item.Header);
         if (staticItem == null)
@@ -115,8 +114,8 @@ public class BulkTradeService
     public async Task<Uri> GetTradeUri(Item item, string queryId)
     {
         var baseUri = new Uri(await GetBaseUrl(item.Header.Game) + "exchange/");
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        return new Uri(baseUri, $"{leagueId.GetUrlSlugForLeague()}/{queryId}");
+        var league = await settingsService.GetLeague();
+        return new Uri(baseUri, $"{league}/{queryId}");
     }
 
     private async Task<string> GetBaseApiUrl(GameType game)

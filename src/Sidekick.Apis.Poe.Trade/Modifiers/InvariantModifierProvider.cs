@@ -3,7 +3,6 @@ using Sidekick.Apis.Poe.Trade.Modifiers.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
 
@@ -139,8 +138,7 @@ public class InvariantModifierProvider
 
     public async Task<List<ApiCategory>> GetList()
     {
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        var game = leagueId.GetGameFromLeagueId();
+        var game = await settingsService.GetGame();
         var cacheKey = $"{game.GetValueAttribute()}_InvariantModifiers";
 
         var apiCategories = await cacheProvider.GetOrSet(cacheKey,

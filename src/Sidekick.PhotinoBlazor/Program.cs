@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using ApexCharts;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Photino.Blazor;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;

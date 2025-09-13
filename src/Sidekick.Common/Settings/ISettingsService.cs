@@ -1,3 +1,4 @@
+using Sidekick.Common.Game;
 namespace Sidekick.Common.Settings;
 
 public interface ISettingsService
@@ -7,6 +8,10 @@ public interface ISettingsService
     /// </summary>
     /// <param name="keys">The keys of the settings that have changed.</param>
     event Action<string[]>? OnSettingsChanged;
+
+    Task<string?> GetLeague();
+
+    Task<GameType> GetGame();
 
     /// <summary>
     /// Gets a setting by its key.

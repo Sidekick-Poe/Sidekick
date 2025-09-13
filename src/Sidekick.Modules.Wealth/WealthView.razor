@@ -1,5 +1,4 @@
 @page "/wealth"
-@using Sidekick.Common.Extensions
 @using Sidekick.Common.Game
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Platform
@@ -54,9 +53,7 @@
     protected override async Task OnInitializedAsync()
     {
         CurrentView.Initialize(new ViewOptions());
-
-        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
-        Game = leagueId.GetGameFromLeagueId();
+        Game = await SettingsService.GetGame();
 
         await base.OnInitializedAsync();
     }

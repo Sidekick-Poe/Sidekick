@@ -2,7 +2,6 @@ using System.Text.Json;
 using Sidekick.Apis.Poe.Account.Clients;
 using Sidekick.Apis.Poe.Account.Stash.Models;
 using Sidekick.Apis.Poe.Trade.Models.Items;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
 
@@ -16,9 +15,9 @@ public class StashService
 {
     public async Task<List<StashTab>> GetStashTabList()
     {
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        var response = await client.Fetch<StashTabListResult>($"stash/{leagueId.GetUrlSlugForLeague()}");
-        if (response == null || leagueId == null) return [];
+        var league = await settingsService.GetLeague();
+        var response = await client.Fetch<StashTabListResult>($"stash/{league}");
+        if (response == null || league == null) return [];
 
         return FlattenStashTabs(response.Tabs);
     }
@@ -41,9 +40,9 @@ public class StashService
 
     public async Task<StashTab?> GetStashDetails(string id)
     {
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        var result = await client.Fetch<StashTabResult>($"stash/{leagueId.GetUrlSlugForLeague()}/{id}");
-        if (result == null || leagueId == null) return null;
+        var league = await settingsService.GetLeague();
+        var result = await client.Fetch<StashTabResult>($"stash/{league}/{id}");
+        if (result == null || league == null) return null;
 
         if (result.Stash.Type == StashType.Map)
         {
@@ -63,8 +62,8 @@ public class StashService
 
         if (tab.Items == null && tab.Children == null)
         {
-            var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-            var uri = string.IsNullOrEmpty(tab.Parent) ? $"stash/{leagueId.GetUrlSlugForLeague()}/{tab.Id}" : $"stash/{leagueId}/{tab.Parent}/{tab.Id}";
+            var league = await settingsService.GetLeague();
+            var uri = string.IsNullOrEmpty(tab.Parent) ? $"stash/{league}/{tab.Id}" : $"stash/{league}/{tab.Parent}/{tab.Id}";
 
             var wrapper = await client.Fetch<StashTabResult>(uri);
             if (wrapper?.Stash.Items != null)
@@ -98,13 +97,8 @@ public class StashService
             return new();
         }
 
-        var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        if (leagueId == null)
-        {
-            return
-            [
-            ];
-        }
+        var league = await settingsService.GetLeague();
+        if (league == null) return [];
 
         var items = new List<ApiItem>();
         foreach (var childTab in tab.Children)

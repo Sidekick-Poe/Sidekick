@@ -1,6 +1,5 @@
 @using Sidekick.Apis.Poe.Trade.Filters
 @using Sidekick.Apis.Poe.Trade.Static
-@using Sidekick.Common.Extensions
 @using Sidekick.Common.Game
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
@@ -77,8 +76,7 @@
 
     private async Task FetchSettings()
     {
-        var league = await SettingsService.GetString(SettingKeys.LeagueId);
-        var game = league.GetGameFromLeagueId();
+        var game = await SettingsService.GetGame();
         Currency = game == GameType.PathOfExile ? await SettingsService.GetString(SettingKeys.PriceCheckCurrency) : await SettingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
         Currency = FilterProvider.GetPriceOption(Currency);
     }
@@ -87,8 +85,7 @@
     {
         Currency = value;
 
-        var league = await SettingsService.GetString(SettingKeys.LeagueId);
-        var game = league.GetGameFromLeagueId();
+        var game = await SettingsService.GetGame();
         if (game == GameType.PathOfExile)
         {
             await SettingsService.Set(SettingKeys.PriceCheckCurrency, value);

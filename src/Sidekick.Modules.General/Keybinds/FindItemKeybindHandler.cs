@@ -1,4 +1,3 @@
-using Sidekick.Apis.Poe;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;
