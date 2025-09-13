@@ -1,8 +1,5 @@
-using System.Text;
-using System.Web;
-using Sidekick.Common.Game;
-
-namespace Sidekick.Common.Extensions;
+using Sidekick.Apis.Poe.Models;
+namespace Sidekick.Apis.Poe.Extensions;
 
 /// <summary>
 ///     Class containing extension methods for strings.

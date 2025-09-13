@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-using Sidekick.Common.Game.Items;
+using Sidekick.Apis.Poe.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Headers.Models;
 

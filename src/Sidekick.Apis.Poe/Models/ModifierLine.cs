@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Game.Items;
+namespace Sidekick.Apis.Poe.Models;
 
 /// <summary>
 ///     Represents a line of text on an item. With the API being the way it is, each line of text can be represented by one

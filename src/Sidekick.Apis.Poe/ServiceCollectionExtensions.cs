@@ -1,17 +1,7 @@
-using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using Serilog;
-using Sidekick.Common.Browser;
-using Sidekick.Common.Cache;
-using Sidekick.Common.Folder;
-using Sidekick.Common.Game.Languages;
-using Sidekick.Common.Initialization;
-using Sidekick.Common.Localization;
-using Sidekick.Common.Logging;
-using Sidekick.Common.Platform.Input;
-using Sidekick.Common.Settings;
-
-namespace Sidekick.Common;
+using Sidekick.Apis.Poe.Languages;
+using Sidekick.Common;
+namespace Sidekick.Apis.Poe;
 
 public static class ServiceCollectionExtensions
 {

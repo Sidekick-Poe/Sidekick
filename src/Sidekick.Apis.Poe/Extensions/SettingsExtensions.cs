@@ -1,6 +1,6 @@
-﻿using Sidekick.Common.Game;
+﻿using Sidekick.Apis.Poe.Models;
 using Sidekick.Common.Settings;
-namespace Sidekick.Common.Extensions;
+namespace Sidekick.Apis.Poe.Extensions;
 
 public static class SettingsExtensions
 {

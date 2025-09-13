@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Game.Languages.Implementations;
+namespace Sidekick.Apis.Poe.Languages.Implementations;
 
 [GameLanguage("French", "fr")]
 public class GameLanguageFr : IGameLanguage

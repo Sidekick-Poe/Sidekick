@@ -1,4 +1,5 @@
-﻿using Sidekick.Apis.Poe2Scout.Categories;
+﻿using Sidekick.Apis.Poe.Extensions;
+using Sidekick.Apis.Poe2Scout.Categories;
 using Sidekick.Apis.Poe2Scout.Categories.Models;
 using Sidekick.Apis.Poe2Scout.Clients;
 using Sidekick.Apis.Poe2Scout.Items.Models;

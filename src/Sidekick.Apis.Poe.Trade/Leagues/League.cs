@@ -1,3 +1,4 @@
+using Sidekick.Apis.Poe.Models;
 using Sidekick.Common.Game;
 
 namespace Sidekick.Apis.Poe.Trade.Leagues;

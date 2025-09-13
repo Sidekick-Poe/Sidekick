@@ -1,6 +1,5 @@
 using Sidekick.Common.Enums;
-
-namespace Sidekick.Common.Game;
+namespace Sidekick.Apis.Poe.Models;
 
 public enum GameType
 {

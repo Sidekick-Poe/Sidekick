@@ -1,5 +1,5 @@
+using Sidekick.Apis.Poe.Models;
 using Sidekick.Apis.Poe.Trade.Bulk.Models;
-using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Bulk;
 

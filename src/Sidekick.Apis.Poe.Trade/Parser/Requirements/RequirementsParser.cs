@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-using Sidekick.Common.Game.Languages;
+using Sidekick.Apis.Poe.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Requirements;
 

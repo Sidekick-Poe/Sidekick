@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
+using Sidekick.Apis.Poe.Models;
+using Sidekick.Apis.Poe.Models.AdditionalInformation;
 using Sidekick.Apis.Poe.Trade.Modifiers;
-using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Items.AdditionalInformation;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.AdditionalInformation;
 

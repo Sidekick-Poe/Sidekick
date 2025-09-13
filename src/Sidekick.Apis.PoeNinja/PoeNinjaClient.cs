@@ -1,12 +1,13 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
+using Sidekick.Apis.Poe.Extensions;
+using Sidekick.Apis.Poe.Models;
 using Sidekick.Apis.PoeNinja.Api;
 using Sidekick.Apis.PoeNinja.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Extensions;
-using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.PoeNinja;

@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Game.Items;
+namespace Sidekick.Apis.Poe.Models;
 
 public class Socket
 {

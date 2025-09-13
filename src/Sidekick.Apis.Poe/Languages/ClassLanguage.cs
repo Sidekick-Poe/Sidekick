@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Game.Languages;
+namespace Sidekick.Apis.Poe.Languages;
 
 public class ClassLanguage
 {

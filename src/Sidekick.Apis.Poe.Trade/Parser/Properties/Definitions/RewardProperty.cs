@@ -1,12 +1,11 @@
 using System.Text.RegularExpressions;
+using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Models;
 using Sidekick.Apis.Poe.Trade.Items;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
-using Sidekick.Common.Game;
-using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;

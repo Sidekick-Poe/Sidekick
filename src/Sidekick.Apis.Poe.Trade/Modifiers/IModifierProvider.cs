@@ -1,5 +1,5 @@
+using Sidekick.Apis.Poe.Models;
 using Sidekick.Apis.Poe.Trade.Modifiers.Models;
-using Sidekick.Common.Game.Items;
 using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Trade.Modifiers;

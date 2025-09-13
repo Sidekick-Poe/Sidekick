@@ -1,5 +1,8 @@
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
+using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Models;
+using Sidekick.Apis.Poe.Models.AdditionalInformation;
 using Sidekick.Apis.Poe.Trade.Items;
 using Sidekick.Apis.Poe.Trade.Parser.AdditionalInformation;
 using Sidekick.Apis.Poe.Trade.Parser.Headers;
@@ -8,9 +11,6 @@ using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 using Sidekick.Apis.Poe.Trade.Parser.Requirements;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Items.AdditionalInformation;
-using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser;
 

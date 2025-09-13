@@ -1,4 +1,5 @@
-namespace Sidekick.Common.Game.Languages;
+using Sidekick.Apis.Poe.Models;
+namespace Sidekick.Apis.Poe.Languages;
 
 public interface IGameLanguage
 {

@@ -1,8 +1,7 @@
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Settings;
-
-namespace Sidekick.Common.Game.Languages;
+namespace Sidekick.Apis.Poe.Languages;
 
 public class GameLanguageProvider(ISettingsService settingsService) : IGameLanguageProvider
 {

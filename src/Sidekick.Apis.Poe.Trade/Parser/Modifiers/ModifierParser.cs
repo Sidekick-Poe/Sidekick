@@ -2,11 +2,11 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 using FuzzySharp;
+using Sidekick.Apis.Poe.Models;
 using Sidekick.Apis.Poe.Trade.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Modifiers.Models;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 

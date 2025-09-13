@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Game.Items.AdditionalInformation;
+namespace Sidekick.Apis.Poe.Models.AdditionalInformation;
 
 public record ClusterJewelInformation
 {

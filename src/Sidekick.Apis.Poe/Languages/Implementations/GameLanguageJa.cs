@@ -1,5 +1,5 @@
 using Romanization;
-namespace Sidekick.Common.Game.Languages.Implementations;
+namespace Sidekick.Apis.Poe.Languages.Implementations;
 
 [GameLanguage("Japanese", "ja")]
 public class GameLanguageJa : IGameLanguage

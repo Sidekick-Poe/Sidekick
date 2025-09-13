@@ -1,6 +1,5 @@
 using Sidekick.Common.Exceptions;
-
-namespace Sidekick.Common.Game.Languages;
+namespace Sidekick.Apis.Poe.Languages;
 
 public class GameLanguageAttribute
 (

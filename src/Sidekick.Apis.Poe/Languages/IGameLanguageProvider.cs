@@ -1,6 +1,5 @@
 using Sidekick.Common.Initialization;
-
-namespace Sidekick.Common.Game.Languages;
+namespace Sidekick.Apis.Poe.Languages;
 
 public interface IGameLanguageProvider : IInitializableService
 {

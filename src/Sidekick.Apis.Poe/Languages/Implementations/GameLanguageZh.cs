@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Game.Languages.Implementations;
+namespace Sidekick.Apis.Poe.Languages.Implementations;
 
 [GameLanguage("Traditional Chinese (Unstable)", "zh")]
 public class GameLanguageZh : IGameLanguage

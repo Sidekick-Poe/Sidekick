@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
+using Sidekick.Apis.Poe.Models;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
-using Sidekick.Common.Game.Items;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Trade;
