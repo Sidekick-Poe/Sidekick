@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Models;
 using Sidekick.Apis.Poe.Trade.Items;
 using Sidekick.Apis.Poe.Trade.Items.Models;
 using Sidekick.Common.Exceptions;

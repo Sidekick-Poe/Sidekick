@@ -1,4 +1,4 @@
-using Sidekick.Apis.Poe.Models;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Bulk.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Bulk;

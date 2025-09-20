@@ -1,5 +1,5 @@
 using Sidekick.Apis.Poe.Extensions;
-using Sidekick.Apis.Poe.Models;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Definitions;
 using Sidekick.Common.Extensions;

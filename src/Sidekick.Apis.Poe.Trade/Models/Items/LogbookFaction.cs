@@ -1,4 +1,4 @@
-using Sidekick.Apis.Poe.Models;
+using Sidekick.Apis.Poe.Items;
 namespace Sidekick.Apis.Poe.Trade.Models.Items;
 
 public class LogbookFaction

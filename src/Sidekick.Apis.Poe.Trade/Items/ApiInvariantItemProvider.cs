@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Extensions;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Models;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Items.Models;
 using Sidekick.Common.Cache;

@@ -1,4 +1,4 @@
-using Sidekick.Apis.Poe.Models;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Static.Models;
 using Sidekick.Common.Initialization;
 

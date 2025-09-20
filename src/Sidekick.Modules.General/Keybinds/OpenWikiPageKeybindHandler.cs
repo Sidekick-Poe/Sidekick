@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Models;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Exceptions;

@@ -2,7 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
-using Sidekick.Apis.Poe.Models;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.PoeWiki.Api;
 using Sidekick.Apis.PoeWiki.Extensions;
 using Sidekick.Apis.PoeWiki.Models;

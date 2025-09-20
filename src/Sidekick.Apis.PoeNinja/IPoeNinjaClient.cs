@@ -1,4 +1,4 @@
-using Sidekick.Apis.Poe.Models;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.PoeNinja.Models;
 
 namespace Sidekick.Apis.PoeNinja;

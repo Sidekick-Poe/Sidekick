@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Sidekick.Apis.Poe.Models;
+using Sidekick.Apis.Poe.Items;
 
 namespace Sidekick.Apis.Poe.Trade.Items.Models;
 
@@ -32,9 +32,9 @@ public class ApiItem
     {
         var categoryRarity = Category switch
         {
-            Poe.Models.Category.DivinationCard => Rarity.DivinationCard,
-            Poe.Models.Category.Gem => Rarity.Gem,
-            Poe.Models.Category.Currency => Rarity.Currency,
+            Poe.Items.Category.DivinationCard => Rarity.DivinationCard,
+            Poe.Items.Category.Gem => Rarity.Gem,
+            Poe.Items.Category.Currency => Rarity.Currency,
             _ => Rarity.Unknown
         };
 
@@ -48,7 +48,7 @@ public class ApiItem
             ApiDiscriminator = Discriminator,
             ApiText = Text,
             Game = Game,
-            Category = Category ?? Poe.Models.Category.Unknown,
+            Category = Category ?? Poe.Items.Category.Unknown,
             Rarity = IsUnique ? Rarity.Unique : categoryRarity,
         };
     }

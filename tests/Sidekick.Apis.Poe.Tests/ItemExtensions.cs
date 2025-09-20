@@ -1,4 +1,4 @@
-using Sidekick.Apis.Poe.Models;
+using Sidekick.Apis.Poe.Items;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests;

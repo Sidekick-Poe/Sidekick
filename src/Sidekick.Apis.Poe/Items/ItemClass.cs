@@ -1,5 +1,5 @@
 using Sidekick.Common.Enums;
-namespace Sidekick.Apis.Poe.Models;
+namespace Sidekick.Apis.Poe.Items;
 
 public enum ItemClass
 {

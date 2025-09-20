@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Extensions;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Models;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Modifiers.Models;
