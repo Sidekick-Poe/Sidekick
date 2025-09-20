@@ -43,6 +43,7 @@ public class ParserFixture : IAsyncLifetime
 
             // Apis
             .AddSidekickCommonApi()
+            .AddSidekickPoeApi()
             .AddSidekickPoeTradeApi()
             .AddSidekickPoeNinjaApi()
             .AddSidekickPoeWikiApi();
