@@ -21,7 +21,7 @@ public class WeaponDamageProperty
     IInvariantModifierProvider invariantModifierProvider
 ) : PropertyDefinition
 {
-    private Regex RangePattern { get; } = new("(\\d+)-(\\d+)", RegexOptions.Compiled);
+    private Regex RangePattern { get; } = new(@"([\d,\.]+)-([\d,\.]+)", RegexOptions.Compiled);
 
     public override List<Category> ValidCategories { get; } = [Category.Weapon];
 
@@ -73,7 +73,7 @@ public class WeaponDamageProperty
 
     private static void ParseElementalDamage(ParsingLine line, ItemProperties itemProperties)
     {
-        var matches = new Regex(@"(\d+)-(\d+) \((fire|cold|lightning)\)").Matches(line.Text);
+        var matches = new Regex(@"([\d,\.]+)-([\d,\.]+) \((fire|cold|lightning)\)").Matches(line.Text);
         foreach (Match match in matches)
         {
             if (match.Groups.Count < 4)
@@ -109,7 +109,7 @@ public class WeaponDamageProperty
             var isElemental = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionElementalDamage);
             if (!isElemental) continue;
 
-            var matches = new Regex(@"(\d+)-(\d+) \(augmented\)").Matches(line.Text);
+            var matches = new Regex(@"([\d,\.]+)-([\d,\.]+) \(augmented\)").Matches(line.Text);
             var matchIndex = 0;
             foreach (Match match in matches)
             {
