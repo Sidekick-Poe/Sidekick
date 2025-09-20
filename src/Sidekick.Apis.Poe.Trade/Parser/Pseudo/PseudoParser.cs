@@ -26,11 +26,11 @@ public class PseudoParser
 
         Definitions.Clear();
         Definitions.AddRange([
-            new ElementalResistancesDefinition(game),
-            new ChaosResistancesDefinition(game),
-            new StrengthDefinition(game),
-            new IntelligenceDefinition(game),
-            new DexterityDefinition(game),
+            new ElementalResistancesDefinition(),
+            new ChaosResistancesDefinition(),
+            new StrengthDefinition(),
+            new IntelligenceDefinition(),
+            new DexterityDefinition(),
             new LifeDefinition(game),
             new ManaDefinition(game),
         ]);

@@ -3,11 +3,11 @@ using Sidekick.Apis.Poe.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo.Definitions;
 
-public class DexterityDefinition(GameType game) : PseudoDefinition
+public class DexterityDefinition : PseudoDefinition
 {
-    protected override bool Enabled => game == GameType.PathOfExile;
+    protected override bool Enabled => true;
 
-    protected override string? ModifierId => game == GameType.PathOfExile ? "pseudo.pseudo_total_dexterity" : null;
+    protected override string? ModifierId => "pseudo.pseudo_total_dexterity";
 
     protected override List<PseudoPattern> Patterns =>
     [
