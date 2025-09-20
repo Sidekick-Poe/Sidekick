@@ -1,10 +1,12 @@
+using Sidekick.Apis.Poe.Extensions;
+using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Models;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Static.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Languages;
+using Sidekick.Common.Extensions;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Static;

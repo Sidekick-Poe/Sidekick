@@ -1,7 +1,9 @@
-﻿using Sidekick.Apis.Poe2Scout.Categories.Models;
+﻿using Sidekick.Apis.Poe.Extensions;
+using Sidekick.Apis.Poe2Scout.Categories.Models;
 using Sidekick.Apis.Poe2Scout.Clients;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
+using Sidekick.Common.Extensions;
 using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe2Scout.Categories;
 

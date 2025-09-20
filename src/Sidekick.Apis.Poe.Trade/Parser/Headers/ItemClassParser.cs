@@ -2,13 +2,13 @@ using System.Text.RegularExpressions;
 using FuzzySharp;
 using FuzzySharp.SimilarityRatio;
 using FuzzySharp.SimilarityRatio.Scorer.StrategySensitive;
+using Sidekick.Apis.Poe.Extensions;
+using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Models;
 using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Parser.Headers.Models;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Game;
-using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Headers;

@@ -1,8 +1,9 @@
+using Sidekick.Apis.Poe;
+using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Models;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
@@ -61,7 +62,7 @@ public class OpenWikiPageKeybindHandler(
     private void OpenPoeWiki(Item item)
     {
         var searchLink = item.Header.ApiName ?? item.Header.ApiType;
-        var baseUrl = item.Header.Game == Common.Game.GameType.PathOfExile ? PoeWikiBaseUri : Poe2WikiBaseUri;
+        var baseUrl = item.Header.Game == GameType.PathOfExile ? PoeWikiBaseUri : Poe2WikiBaseUri;
         var wikiLink = PoeWikiSubUrl + searchLink?.Replace(" ", "+");
         var uri = new Uri(baseUrl + wikiLink);
 
@@ -75,7 +76,7 @@ public class OpenWikiPageKeybindHandler(
     private void OpenPoeDb(Item item)
     {
         var searchLink = item.Header.ApiName ?? item.Header.ApiType;
-        var baseUrl = item.Header.Game == Common.Game.GameType.PathOfExile ? PoeDbBaseUri : Poe2DbBaseUri;
+        var baseUrl = item.Header.Game == GameType.PathOfExile ? PoeDbBaseUri : Poe2DbBaseUri;
         var wikiLink = PoeDbSubUrl + searchLink?.Replace(" ", "+");
         var uri = new Uri(baseUrl + wikiLink);
 

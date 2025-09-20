@@ -7,7 +7,7 @@ public class ApiCurrencyData
     public int CurrencyItemId { get; set; }
 
     [JsonPropertyName("RelativePrice")]
-    public string _RelativePrice { get; set; }
+    public string? _RelativePrice { get; set; }
 
     [JsonPropertyName("VolumeTraded")]
     public int VolumeTraded { get; set; }

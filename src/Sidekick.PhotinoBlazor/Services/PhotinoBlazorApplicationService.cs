@@ -24,6 +24,8 @@ public class PhotinoBlazorApplicationService
 {
     public bool SupportsKeybinds => true;
 
+    public bool SupportsAuthentication => false;
+
     private bool Initialized { get; set; }
 
     private NotifyIcon? Icon { get; set; }

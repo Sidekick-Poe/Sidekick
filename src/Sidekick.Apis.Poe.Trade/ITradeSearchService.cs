@@ -1,8 +1,7 @@
+using Sidekick.Apis.Poe.Models;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
-using Sidekick.Common.Game;
-using Sidekick.Common.Game.Items;
 
 namespace Sidekick.Apis.Poe.Trade;
 

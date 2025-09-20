@@ -2,6 +2,7 @@ using Bunit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Common;
+using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Modifiers;
@@ -12,7 +13,6 @@ using Sidekick.Common;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Database;
-using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Xunit;
@@ -46,6 +46,7 @@ public class ParserFixture : IAsyncLifetime
 
             // Apis
             .AddSidekickCommonApi()
+            .AddSidekickPoeApi()
             .AddSidekickPoeTradeApi()
             .AddSidekickPoeNinjaApi()
             .AddSidekickPoeWikiApi();

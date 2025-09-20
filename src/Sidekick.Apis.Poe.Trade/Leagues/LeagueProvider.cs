@@ -1,10 +1,10 @@
 using Microsoft.Extensions.Logging;
+using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Models;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Game;
-using Sidekick.Common.Game.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Leagues;
 

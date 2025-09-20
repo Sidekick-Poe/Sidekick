@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
-using Sidekick.Common.Game.Items;
-using Sidekick.Common.Game.Languages;
+using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Headers;
 

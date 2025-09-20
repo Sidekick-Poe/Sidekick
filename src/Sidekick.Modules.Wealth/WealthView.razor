@@ -1,5 +1,6 @@
 @page "/wealth"
-@using Sidekick.Common.Game
+@using Sidekick.Apis.Poe.Extensions
+@using Sidekick.Apis.Poe.Models
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Platform
 @using Sidekick.Modules.Wealth.Tabs
@@ -8,15 +9,15 @@
 @using Sidekick.Modules.Wealth.Localization
 
 <LayoutMenu>
-    @if (!ApplicationService.SupportsKeybinds)
-    {
-        <AlertError>@Resources["Not_Supported_Web"]</AlertError>
-        return;
-    }
-
     @if (Game == GameType.PathOfExile2)
     {
         <AlertError>@Resources["Not_Supported_Game"]</AlertError>
+        return;
+    }
+
+    @if (!ApplicationService.SupportsKeybinds || !ApplicationService.SupportsAuthentication)
+    {
+        <AlertError>@Resources["Not_Supported"]</AlertError>
         return;
     }
 

@@ -4,7 +4,6 @@ using Serilog;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Folder;
-using Sidekick.Common.Game.Languages;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Localization;
 using Sidekick.Common.Logging;
@@ -31,7 +30,6 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IFolderProvider, FolderProvider>();
         services.AddSingleton<ISettingsService, SettingsService>();
 
-        services.AddSidekickInitializableService<IGameLanguageProvider, GameLanguageProvider>();
         services.AddSidekickInitializableService<IUiLanguageProvider, UiLanguageProvider>();
 
         return services.AddSidekickLogging();

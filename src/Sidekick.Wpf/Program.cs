@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Web.WebView2.Core;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
+using Sidekick.Apis.Poe;
 using Sidekick.Apis.Poe.Account;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe2Scout;
@@ -93,6 +94,7 @@ If you need more support consider asking on the official Sidekick discord server
             // Apis
             .AddSidekickGitHubApi()
             .AddSidekickCommonApi()
+            .AddSidekickPoeApi()
             .AddSidekickPoeAccountApi()
             .AddSidekickPoeTradeApi()
             .AddSidekickPoeNinjaApi()
