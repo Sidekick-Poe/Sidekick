@@ -101,8 +101,14 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        TradeService.Init();
+        if (Item != null)
+        {
+            Item = null;
+            StateHasChanged();
+            await Task.Delay(100);
+        }
 
+        TradeService.Init();
         var itemText = ItemText.DecodeBase64Url();
         Item = ItemParser.ParseItem(itemText);
 
