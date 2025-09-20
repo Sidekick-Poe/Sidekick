@@ -4,9 +4,9 @@ namespace Sidekick.Apis.Poe.Trade.Parser;
 
 public static class RegexExtensions
 {
-    public static Regex ToRegexIntCapture(this string input) => new($"^{Regex.Escape(input)}[^\\d]*(\\d+)");
+    public static Regex ToRegexIntCapture(this string input) => new($@"^{Regex.Escape(input)}[^\d]*([\d,\.]+)");
 
-    public static Regex ToRegexDoubleCapture(this string input) => new($"^{Regex.Escape(input)}[^\\d]*([\\d,\\.]+)");
+    public static Regex ToRegexDoubleCapture(this string input) => new($@"^{Regex.Escape(input)}[^\d]*([\d,\.]+)");
 
     public static Regex ToRegexStringCapture(this string input) => new($"^{Regex.Escape(input)}: *(.+)$");
 

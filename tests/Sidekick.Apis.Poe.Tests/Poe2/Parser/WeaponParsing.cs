@@ -347,4 +347,50 @@ Corrupted
         AssertHelper.CloseEnough(101.5, actual.Properties.ElementalDps);
         AssertHelper.CloseEnough(216.2, actual.Properties.TotalDps);
     }
+
+    [Fact]
+    public void ParseThousandDamage()
+    {
+        var actual = parser.ParseItem(@"Item Class: Crossbows
+Rarity: Rare
+Dragon Core
+Siege Crossbow
+--------
+Quality: +29% (augmented)
+Physical Damage: 414-1,043 (augmented)
+Critical Hit Chance: 5.00%
+Attacks per Second: 2.07 (augmented)
+Reload Time: 0.60 (augmented)
+--------
+Requires: Level 79, 89 (unmet) Str, 89 Dex
+--------
+Sockets: S S 
+--------
+Item Level: 82
+--------
+36% increased Physical Damage (rune)
+--------
+Grenade Skills Fire an additional Projectile (implicit)
+--------
+25% increased Attack Speed (fractured)
+251% increased Physical Damage
++175 to Accuracy Rating
++7 to Level of all Projectile Skills
+Loads 2 additional bolts
+Adds 54 to 94 Physical Damage (desecrated)
+--------
+Fractured Item
+--------
+Note: ~price 1 mirror");
+
+        Assert.Equal(ItemClass.Crossbow, actual.Header.ItemClass);
+        Assert.Equal(Category.Weapon, actual.Header.Category);
+        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal("Siege Crossbow", actual.Header.ApiType);
+        Assert.Equal("Dragon Core", actual.Header.Name);
+
+        // Verify physical damage
+        Assert.Equal(414, actual.Properties.PhysicalDamage?.Min);
+        Assert.Equal(1043, actual.Properties.PhysicalDamage?.Max);
+    }
 }
