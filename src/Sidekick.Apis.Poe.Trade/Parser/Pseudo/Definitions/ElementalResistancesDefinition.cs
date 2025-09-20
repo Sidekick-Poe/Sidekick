@@ -3,11 +3,11 @@ using Sidekick.Apis.Poe.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo.Definitions;
 
-public class ElementalResistancesDefinition(GameType game) : PseudoDefinition
+public class ElementalResistancesDefinition : PseudoDefinition
 {
-    protected override bool Enabled => game == GameType.PathOfExile;
+    protected override bool Enabled => true;
 
-    protected override string? ModifierId => game == GameType.PathOfExile ? "pseudo.pseudo_total_elemental_resistance" : null;
+    protected override string? ModifierId => "pseudo.pseudo_total_elemental_resistance";
 
     protected override List<PseudoPattern> Patterns =>
     [
