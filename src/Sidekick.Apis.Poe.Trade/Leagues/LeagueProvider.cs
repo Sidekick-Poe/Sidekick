@@ -5,7 +5,6 @@ using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Game;
 
 namespace Sidekick.Apis.Poe.Trade.Leagues;
 

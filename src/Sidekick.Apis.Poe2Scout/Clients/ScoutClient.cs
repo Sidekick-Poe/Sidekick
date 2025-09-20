@@ -44,7 +44,9 @@ public class ScoutClient
         var league = await settingsService.GetLeague();
         parameters.TryAdd("league", league);
 
-        var query = string.Join("&", parameters.Select((x) => x.Key + "=" + x.Value?.ToString()));
+        var query = string.Join("&",
+                                parameters.Select((x) => x.Key + "=" +
+                                                         Uri.EscapeDataString(x.Value?.ToString() ?? string.Empty)));
         var url = new Uri($"{apiBaseUrl}{path}?{query}");
 
         try
