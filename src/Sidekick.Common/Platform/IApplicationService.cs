@@ -15,7 +15,7 @@ public interface IApplicationService : IInitializableService
     /// <summary>
     /// Gets a value indicating whether the platform supports the use of a browser.
     /// </summary>
-    bool SupportsBrowser { get; }
+    bool SupportsAuthentication { get; }
 
     /// <summary>
     /// Retrieves the current version of the application.

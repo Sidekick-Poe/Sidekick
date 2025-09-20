@@ -9,15 +9,15 @@
 @using Sidekick.Modules.Wealth.Localization
 
 <LayoutMenu>
-    @if (!ApplicationService.SupportsKeybinds)
-    {
-        <AlertError>@Resources["Not_Supported_Web"]</AlertError>
-        return;
-    }
-
     @if (Game == GameType.PathOfExile2)
     {
         <AlertError>@Resources["Not_Supported_Game"]</AlertError>
+        return;
+    }
+
+    @if (!ApplicationService.SupportsKeybinds || !ApplicationService.SupportsAuthentication)
+    {
+        <AlertError>@Resources["Not_Supported"]</AlertError>
         return;
     }
 
