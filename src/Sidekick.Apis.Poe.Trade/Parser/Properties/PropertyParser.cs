@@ -82,6 +82,8 @@ public class PropertyParser
                                                new SanctifiedProperty(serviceProvider, game),
                                                new MirroredProperty(serviceProvider),
                                                new UnidentifiedProperty(gameLanguageProvider)),
+
+            new ClusterJewelPassiveCountProperty(serviceProvider, game),
         ]);
     }
 
@@ -98,13 +100,13 @@ public class PropertyParser
         return properties;
     }
 
-    public void ParseAfterModifiers(ParsingItem parsingItem, ItemHeader header, ItemProperties properties, List<ModifierLine> modifierLines)
+    public void ParseAfterModifiers(Item item, ParsingItem parsingItem)
     {
         foreach (var definition in Definitions)
         {
-            if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(header.Category)) continue;
+            if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(item.Header.Category)) continue;
 
-            definition.ParseAfterModifiers(properties, parsingItem, modifierLines);
+            definition.ParseAfterModifiers(item, parsingItem);
         }
     }
 

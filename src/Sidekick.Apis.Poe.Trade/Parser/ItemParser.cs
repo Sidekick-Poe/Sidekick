@@ -60,23 +60,20 @@ public class ItemParser
             requirementsParser.Parse(parsingItem);
             var properties = propertyParser.Parse(parsingItem, header);
             var modifierLines = modifierParser.Parse(parsingItem, header);
-            propertyParser.ParseAfterModifiers(parsingItem, header, properties, modifierLines);
-            var pseudoModifiers = pseudoParser.Parse(modifierLines);
 
-            return new Item()
+            var item = new Item()
             {
                 Invariant = invariant,
                 Header = header,
                 Properties = properties,
                 ModifierLines = modifierLines,
-                PseudoModifiers = pseudoModifiers,
                 Text = parsingItem.Text,
             };
-        }
-        catch (UnparsableException e)
-        {
-            logger.LogWarning(e, "Could not parse item.");
-            throw;
+
+            propertyParser.ParseAfterModifiers(item, parsingItem);
+            item.PseudoModifiers = pseudoParser.Parse(modifierLines);
+
+            return item;
         }
         catch (Exception e)
         {

@@ -91,7 +91,7 @@ public class WeaponDamageProperty
         }
     }
 
-    public override void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines)
+    public override void ParseAfterModifiers(Item item, ParsingItem parsingItem)
     {
         if (game == GameType.PathOfExile2) return;
 
@@ -99,7 +99,7 @@ public class WeaponDamageProperty
         damageMods.AddRange(invariantModifierProvider.ColdWeaponDamageIds);
         damageMods.AddRange(invariantModifierProvider.LightningWeaponDamageIds);
 
-        var itemMods = modifierLines.Where(x => x.Modifiers.Any(y => damageMods.Contains(y.ApiId ?? string.Empty))).ToList();
+        var itemMods = item.ModifierLines.Where(x => x.Modifiers.Any(y => damageMods.Contains(y.ApiId ?? string.Empty))).ToList();
         if (itemMods.Count == 0) return;
 
         // Parse elemental damage for Path of Exile 1.
@@ -124,9 +124,9 @@ public class WeaponDamageProperty
                 var isCold = invariantModifierProvider.ColdWeaponDamageIds.Any(x => ids.Contains(x));
                 var isLightning = invariantModifierProvider.LightningWeaponDamageIds.Any(x => ids.Contains(x));
 
-                if (isFire) itemProperties.FireDamage = range;
-                else if (isCold) itemProperties.ColdDamage = range;
-                else if (isLightning) itemProperties.LightningDamage = range;
+                if (isFire) item.Properties.FireDamage = range;
+                else if (isCold) item.Properties.ColdDamage = range;
+                else if (isLightning) item.Properties.LightningDamage = range;
 
                 matchIndex++;
             }

@@ -23,11 +23,11 @@ public class ExpandablePropertiesDefinition
         }
     }
 
-    public override void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines)
+    public override void ParseAfterModifiers(Item item, ParsingItem parsingItem)
     {
         foreach (var definition in Definitions)
         {
-            definition.ParseAfterModifiers(itemProperties, parsingItem, modifierLines);
+            definition.ParseAfterModifiers(item, parsingItem);
         }
     }
 

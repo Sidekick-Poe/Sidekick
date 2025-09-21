@@ -98,11 +98,11 @@ else if (Price != null)
 
         if (Item.Properties is
             {
-                ClusterJewelSmallPassiveCount: not null,
+                ClusterJewelPassiveCount: not null,
                 ClusterJewelGrantText: not null
             })
         {
-            Price = await Client.GetClusterPrice(Item.Properties.ClusterJewelGrantText, Item.Properties.ClusterJewelSmallPassiveCount.Value, Item.Properties.ItemLevel);
+            Price = await Client.GetClusterPrice(Item.Properties.ClusterJewelGrantText, Item.Properties.ClusterJewelPassiveCount.Value, Item.Properties.ItemLevel);
         }
         else
         {

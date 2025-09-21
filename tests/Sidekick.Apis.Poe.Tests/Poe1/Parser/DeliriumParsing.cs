@@ -56,6 +56,8 @@ Note: ~b/o 1 chance
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal(Category.Jewel, actual.Header.Category);
         Assert.Equal("Small Cluster Jewel", actual.Header.ApiType);
+
+        Assert.Equal(2, actual.Properties.ClusterJewelPassiveCount);
     }
 
 }

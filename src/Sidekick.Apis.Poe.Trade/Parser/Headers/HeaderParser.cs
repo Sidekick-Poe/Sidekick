@@ -75,14 +75,14 @@ public class HeaderParser
         var itemClass = itemClassParser.Parse(parsingItem);
 
         string? type = null;
-        if (parsingItem.Blocks[0].Lines.Count >= 2)
+        if (parsingItem.Blocks[0].Lines.Count >= 3)
         {
             type = parsingItem.Blocks[0].Lines[^1].Text;
             parsingItem.Blocks[0].Lines[^1].Parsed = true;
         }
 
         string? name = null;
-        if (parsingItem.Blocks[0].Lines.Count >= 3 && !parsingItem.Blocks[0].Lines[^2].Parsed)
+        if (parsingItem.Blocks[0].Lines.Count >= 4 && !parsingItem.Blocks[0].Lines[^2].Parsed)
         {
             name = parsingItem.Blocks[0].Lines[^2].Text;
             parsingItem.Blocks[0].Lines[^2].Parsed = true;

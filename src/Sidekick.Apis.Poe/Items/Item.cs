@@ -7,7 +7,7 @@ public class Item
     public required ItemHeader Header { get; init; }
     public required ItemProperties Properties { get; init; }
     public required List<ModifierLine> ModifierLines { get; init; }
-    public required List<PseudoModifier> PseudoModifiers { get; init; }
+    public List<PseudoModifier> PseudoModifiers { get; set; } = [];
     public required string Text { get; init; }
 
     /// <inheritdoc />

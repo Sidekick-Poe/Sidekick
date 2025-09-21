@@ -9,7 +9,7 @@ public interface IPropertyParser : IInitializableService
 {
     ItemProperties Parse(ParsingItem parsingItem, ItemHeader header);
 
-    void ParseAfterModifiers(ParsingItem parsingItem, ItemHeader header, ItemProperties properties, List<ModifierLine> modifierLines);
+    void ParseAfterModifiers(Item item, ParsingItem parsingItem);
 
     Task<List<PropertyFilter>> GetFilters(Item item);
 

@@ -11,15 +11,15 @@ public abstract class PropertyDefinition
 {
     public abstract List<Category> ValidCategories { get; }
 
-    public virtual void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header) { }
+    public virtual void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header) {}
 
-    public virtual void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines) { }
+    public virtual void ParseAfterModifiers(Item item, ParsingItem parsingItem) {}
 
     public virtual Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType) { return Task.FromResult<PropertyFilter?>(null); }
 
     public virtual List<PropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType) { return null; }
 
-    public abstract void PrepareTradeRequest(Query query, Item item, PropertyFilter filter);
+    public virtual void PrepareTradeRequest(Query query, Item item, PropertyFilter filter) {}
 
     protected static bool GetBool(Regex pattern, ParsingItem parsingItem) => parsingItem.TryParseRegex(pattern, out _);
 
