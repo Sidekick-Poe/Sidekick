@@ -32,9 +32,9 @@ public class SpiritProperty
         if (GetBool(IsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.Spirit));
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (game == GameType.PathOfExile || item.Properties.Spirit <= 0) return null;
+        if (game == GameType.PathOfExile || item.Properties.Spirit <= 0) return Task.FromResult<PropertyFilter?>(null);
 
         var filter = new IntPropertyFilter(this)
         {
@@ -46,10 +46,10 @@ public class SpiritProperty
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.Spirit)) ? LineContentType.Augmented : LineContentType.Simple,
         };
         filter.ChangeFilterType(filterType);
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 

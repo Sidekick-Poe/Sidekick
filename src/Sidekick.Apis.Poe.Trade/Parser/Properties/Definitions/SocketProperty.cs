@@ -102,13 +102,13 @@ public class SocketProperty
         itemProperties.Sockets = result;
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
         if (item.Properties.Sockets is not
             {
                 Count: > 0
             })
-            return null;
+            return Task.FromResult<PropertyFilter?>(null);
 
         int value;
         bool @checked;
@@ -140,10 +140,10 @@ public class SocketProperty
             Hint = hint,
         };
         filter.ChangeFilterType(filterType);
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 

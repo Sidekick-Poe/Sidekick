@@ -1,3 +1,4 @@
+
 namespace Sidekick.Apis.Poe.Languages.Implementations;
 
 [GameLanguage("French", "fr")]
@@ -19,6 +20,7 @@ public class GameLanguageFr : IGameLanguage
     public string RarityGem => "Gemme";
     public string RarityDivinationCard => "Carte divinatoire";
 
+    public string DescriptionRarity => "Rareté";
     public string DescriptionUnidentified => "Non identifié";
     public string DescriptionQuality => "Qualité";
     public string DescriptionLevel => "Niveau";

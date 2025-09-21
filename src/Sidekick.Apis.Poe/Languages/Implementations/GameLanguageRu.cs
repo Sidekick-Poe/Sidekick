@@ -1,3 +1,4 @@
+
 namespace Sidekick.Apis.Poe.Languages.Implementations;
 
 [GameLanguage("Russian", "ru")]
@@ -19,6 +20,7 @@ public class GameLanguageRu : IGameLanguage
     public string RarityGem => "Камень";
     public string RarityDivinationCard => "Гадальная карта";
 
+    public string DescriptionRarity => "Редкость";
     public string DescriptionUnidentified => "Неопознано";
     public string DescriptionQuality => "Качество";
     public string DescriptionLevel => "Уровень";

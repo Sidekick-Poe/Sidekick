@@ -9,7 +9,6 @@ public class Item
     public required List<ModifierLine> ModifierLines { get; init; }
     public required List<PseudoModifier> PseudoModifiers { get; init; }
     public required string Text { get; init; }
-    public object? AdditionalInformation { get; init; }
 
     /// <inheritdoc />
     public override string? ToString()

@@ -4,7 +4,6 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Prices
-@using Sidekick.Apis.Poe.Items.AdditionalInformation
 @using Sidekick.Apis.Poe.Items
 @using ApexCharts
 
@@ -97,9 +96,13 @@ else if (Price != null)
         Loading = true;
         StateHasChanged();
 
-        if (Item.AdditionalInformation is ClusterJewelInformation clusterJewelInformation)
+        if (Item.Properties is
+            {
+                ClusterJewelSmallPassiveCount: not null,
+                ClusterJewelGrantText: not null
+            })
         {
-            Price = await Client.GetClusterPrice(clusterJewelInformation.GrantText, clusterJewelInformation.SmallPassiveCount, Item.Properties.ItemLevel);
+            Price = await Client.GetClusterPrice(Item.Properties.ClusterJewelGrantText, Item.Properties.ClusterJewelSmallPassiveCount.Value, Item.Properties.ItemLevel);
         }
         else
         {
@@ -116,14 +119,29 @@ else if (Price != null)
                 .ToList();
             Options = new()
             {
-                PlotOptions = new() { Line = new() { IsSlopeChart = true } },
-                Tooltip = new() { Enabled = false },
+                PlotOptions = new()
+                {
+                    Line = new()
+                    {
+                        IsSlopeChart = true
+                    }
+                },
+                Tooltip = new()
+                {
+                    Enabled = false
+                },
                 Chart =
                 {
-                    Sparkline = new() { Enabled = true },
+                    Sparkline = new()
+                    {
+                        Enabled = true
+                    },
                     Height = 40,
                 },
-                Markers = new() { Size = 0 },
+                Markers = new()
+                {
+                    Size = 0
+                },
                 Stroke = new()
                 {
                     Curve = Curve.Smooth,

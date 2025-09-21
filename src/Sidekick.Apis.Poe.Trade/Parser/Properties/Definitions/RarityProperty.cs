@@ -1,0 +1,99 @@
+using System.Text.RegularExpressions;
+using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Common.Settings;
+
+namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
+
+public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+{
+    private Dictionary<Rarity, Regex> RarityPatterns { get; } = new()
+    {
+        {
+            Rarity.Normal, gameLanguageProvider.Language.RarityNormal.ToRegexEndOfLine()
+        },
+        {
+            Rarity.Magic, gameLanguageProvider.Language.RarityMagic.ToRegexEndOfLine()
+        },
+        {
+            Rarity.Rare, gameLanguageProvider.Language.RarityRare.ToRegexEndOfLine()
+        },
+        {
+            Rarity.Unique, gameLanguageProvider.Language.RarityUnique.ToRegexEndOfLine()
+        },
+        {
+            Rarity.Currency, gameLanguageProvider.Language.RarityCurrency.ToRegexEndOfLine()
+        },
+        {
+            Rarity.Gem, gameLanguageProvider.Language.RarityGem.ToRegexEndOfLine()
+        },
+        {
+            Rarity.DivinationCard, gameLanguageProvider.Language.RarityDivinationCard.ToRegexEndOfLine()
+        }
+    };
+
+    public override List<Category> ValidCategories { get; } = [];
+
+    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    {
+        if (header.Rarity != Rarity.Unknown) return;
+
+        foreach (var pattern in RarityPatterns)
+        {
+            if (!pattern.Value.IsMatch(parsingItem.Blocks[0].Lines[1].Text)) continue;
+
+            parsingItem.Blocks[0].Lines[1].Parsed = true;
+            header.Rarity = pattern.Key;
+            return;
+        }
+    }
+
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    {
+        if (item.Header.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal)) return Task.FromResult<PropertyFilter?>(null);
+
+        var rarityLabel = item.Header.Rarity switch
+        {
+            Rarity.Currency => gameLanguageProvider.Language.RarityCurrency,
+            Rarity.Normal => gameLanguageProvider.Language.RarityNormal,
+            Rarity.Magic => gameLanguageProvider.Language.RarityMagic,
+            Rarity.Rare => gameLanguageProvider.Language.RarityRare,
+            Rarity.Unique => gameLanguageProvider.Language.RarityUnique,
+            _ => null
+        };
+        if (rarityLabel == null) return Task.FromResult<PropertyFilter?>(null);
+
+        var filter = new StringPropertyFilter(this)
+        {
+            Text = gameLanguageProvider.Language.DescriptionRarity,
+            Value = rarityLabel,
+            Checked = false,
+        };
+        return Task.FromResult<PropertyFilter?>(filter);
+    }
+
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
+    {
+        if (item.Header.Rarity == Rarity.Unique)
+        {
+            query.Filters.GetOrCreateTypeFilters().Filters.Rarity = new SearchFilterOption("unique");
+            return;
+        }
+
+        if (!filter.Checked || filter is not StringPropertyFilter) return;
+
+        var rarity = item.Header.Rarity switch
+        {
+            Rarity.Normal => "normal",
+            Rarity.Magic => "magic",
+            Rarity.Rare => "rare",
+            Rarity.Unique => "unique",
+            _ => "nonunique",
+        };
+
+        query.Filters.GetOrCreateTypeFilters().Filters.Rarity = new SearchFilterOption(rarity);
+    }
+}

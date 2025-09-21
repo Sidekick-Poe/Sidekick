@@ -29,6 +29,8 @@ public interface IGameLanguage
 
     string RarityDivinationCard { get; }
 
+    string DescriptionRarity { get; }
+
     string DescriptionUnidentified { get; }
 
     string DescriptionQuality { get; }

@@ -15,11 +15,11 @@ public abstract class PropertyDefinition
 
     public virtual void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines) { }
 
-    public virtual BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType) { return null; }
+    public virtual Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType) { return Task.FromResult<PropertyFilter?>(null); }
 
-    public virtual List<BooleanPropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType) { return null; }
+    public virtual List<PropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType) { return null; }
 
-    public abstract void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter);
+    public abstract void PrepareTradeRequest(Query query, Item item, PropertyFilter filter);
 
     protected static bool GetBool(Regex pattern, ParsingItem parsingItem) => parsingItem.TryParseRegex(pattern, out _);
 

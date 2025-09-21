@@ -1,3 +1,4 @@
+
 namespace Sidekick.Apis.Poe.Languages.Implementations;
 
 [GameLanguage("Portuguese", "pt")]
@@ -19,6 +20,7 @@ public class GameLanguagePt : IGameLanguage
     public string RarityGem => "Gema";
     public string RarityDivinationCard => "Carta de Adivinhação";
 
+    public string DescriptionRarity => "Raridade";
     public string DescriptionUnidentified => "Não Identificado";
     public string DescriptionQuality => "Qualidade";
     public string DescriptionLevel => "Nível";
@@ -136,3 +138,4 @@ public class GameLanguagePt : IGameLanguage
         SanctumResearch = "Pesquisa Sanctum",
     };
 }
+

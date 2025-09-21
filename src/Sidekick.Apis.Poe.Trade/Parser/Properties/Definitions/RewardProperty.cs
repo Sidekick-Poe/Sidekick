@@ -30,9 +30,9 @@ public class RewardProperty
         if (itemProperties.Reward != null) propertyBlock.Parsed = true;
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (game == GameType.PathOfExile2 || item.Properties.Reward == null) return null;
+        if (game == GameType.PathOfExile2 || item.Properties.Reward == null) return Task.FromResult<PropertyFilter?>(null);
 
         var filter = new StringPropertyFilter(this)
         {
@@ -41,10 +41,10 @@ public class RewardProperty
             Type = LineContentType.Unique,
             Checked = true,
         };
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (!filter.Checked || filter is not StringPropertyFilter stringFilter) return;
 

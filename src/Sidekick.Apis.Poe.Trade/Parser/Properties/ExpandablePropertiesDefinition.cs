@@ -31,19 +31,28 @@ public class ExpandablePropertiesDefinition
         }
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override async Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
         var filter = new ExpandablePropertiesFilter(this)
         {
             Text = label ?? string.Empty,
         };
 
-        filter.Filters.AddRange(Definitions.Select(x => x.GetFilter(item, normalizeValue, filterType)).Where(x => x != null)!);
+        foreach (var definition in Definitions)
+        {
+            var definitionFilter = await definition.GetFilter(item, normalizeValue, filterType);
+            if (definitionFilter != null)
+            {
+                filter.Filters.Add(definitionFilter);
+            }
+        }
 
-        return filter.Filters.Count == 0 ? null : filter;
+        if (filter.Filters.Count == 0) return null;
+
+        return filter;
     }
 
-    public override List<BooleanPropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType)
+    public override List<PropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType)
     {
         var filter = new ExpandablePropertiesFilter(this)
         {
@@ -62,7 +71,7 @@ public class ExpandablePropertiesDefinition
         return filter.Filters.Count == 0 ? null : [filter];
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (filter is not ExpandablePropertiesFilter expandablePropertiesFilter) return;
 

@@ -1,9 +1,9 @@
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Trade.Trade.Filters;
 using Sidekick.Common.Settings;
+namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters;
 
-namespace Sidekick.Apis.Poe.Trade.Trade.Filters;
-
-public class PseudoModifierFilter : ITradeFilter
+public class PseudoFilter : ITradeFilter
 {
     public required PseudoModifier PseudoModifier { get; set; }
 

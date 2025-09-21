@@ -31,9 +31,9 @@ public class BlockChanceProperty(IGameLanguageProvider gameLanguageProvider, Gam
         if (GetBool(IsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.BlockChance));
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (item.Properties.BlockChance <= 0) return null;
+        if (item.Properties.BlockChance <= 0) return Task.FromResult<PropertyFilter?>(null);
 
         var text = game == GameType.PathOfExile ? gameLanguageProvider.Language.DescriptionChanceToBlock : gameLanguageProvider.Language.DescriptionBlockChance;
         var filter = new IntPropertyFilter(this)
@@ -47,10 +47,10 @@ public class BlockChanceProperty(IGameLanguageProvider gameLanguageProvider, Gam
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.BlockChance)) ? LineContentType.Augmented : LineContentType.Simple,
         };
         filter.ChangeFilterType(filterType);
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 

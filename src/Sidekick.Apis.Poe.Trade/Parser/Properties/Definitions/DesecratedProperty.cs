@@ -18,20 +18,20 @@ public class DesecratedProperty(IServiceProvider serviceProvider, GameType game)
     {
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (game == GameType.PathOfExile) return null;
-        if (FilterProvicer.Desecrated == null) return null;
+        if (game == GameType.PathOfExile) return Task.FromResult<PropertyFilter?>(null);
+        if (FilterProvicer.Desecrated == null) return Task.FromResult<PropertyFilter?>(null);
 
         var filter = new TriStatePropertyFilter(this)
         {
             Text = FilterProvicer.Desecrated.Text ?? "Desecrated",
             Checked = null,
         };
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (filter is not TriStatePropertyFilter triStateFilter || triStateFilter.Checked == null)
         {

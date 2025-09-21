@@ -31,9 +31,9 @@ public class CriticalHitChanceProperty(IGameLanguageProvider gameLanguageProvide
         if (GetBool(IsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.CriticalHitChance));
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (item.Properties.CriticalHitChance <= 0) return null;
+        if (item.Properties.CriticalHitChance <= 0) return Task.FromResult<PropertyFilter?>(null);
 
         var text = game == GameType.PathOfExile ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance : gameLanguageProvider.Language.DescriptionCriticalHitChance;
         var filter = new DoublePropertyFilter(this)
@@ -47,10 +47,10 @@ public class CriticalHitChanceProperty(IGameLanguageProvider gameLanguageProvide
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.CriticalHitChance)) ? LineContentType.Augmented : LineContentType.Simple,
         };
         filter.ChangeFilterType(filterType);
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (!filter.Checked || filter is not DoublePropertyFilter doubleFilter) return;
 

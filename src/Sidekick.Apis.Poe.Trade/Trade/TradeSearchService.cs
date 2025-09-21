@@ -10,6 +10,7 @@ using Sidekick.Apis.Poe.Trade.Clients.Models;
 using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
@@ -41,7 +42,7 @@ public class TradeSearchService
         }
     };
 
-    public async Task<TradeSearchResult<string>> Search(Item item, PropertyFilters? propertyFilters = null, List<ModifierFilter>? modifierFilters = null, List<PseudoModifierFilter>? pseudoFilters = null)
+    public async Task<TradeSearchResult<string>> Search(Item item, List<PropertyFilter>? propertyFilters = null, List<ModifierFilter>? modifierFilters = null, List<PseudoFilter>? pseudoFilters = null)
     {
         try
         {
@@ -54,8 +55,6 @@ public class TradeSearchService
             var useInvariantTradeResults = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
             var itemApiNameToUse = useInvariantTradeResults ? item.Invariant?.ApiName : item.Header.ApiName;
 
-            if (propertyFilters?.BaseTypeFilterApplied ?? true)
-            {
                 var hasTypeDiscriminator = !string.IsNullOrEmpty(metadata.ApiDiscriminator);
                 if (hasTypeDiscriminator)
                 {
@@ -69,11 +68,6 @@ public class TradeSearchService
                 {
                     query.Type = metadata.ApiType;
                 }
-            }
-            else if (propertyFilters.ClassFilterApplied)
-            {
-                query.Filters.GetOrCreateTypeFilters().Filters.Category = GetCategoryFilter(item.Header.ItemClass);
-            }
 
             if (item.Header.Category == Category.ItemisedMonster && !string.IsNullOrEmpty(itemApiNameToUse))
             {
@@ -83,20 +77,6 @@ public class TradeSearchService
             else if (item.Header.Rarity == Rarity.Unique && !string.IsNullOrEmpty(itemApiNameToUse))
             {
                 query.Name = itemApiNameToUse;
-                query.Filters.GetOrCreateTypeFilters().Filters.Rarity = new SearchFilterOption("Unique");
-            }
-            else if (propertyFilters?.RarityFilterApplied ?? false)
-            {
-                var rarity = item.Header.Rarity switch
-                {
-                    Rarity.Normal => "normal",
-                    Rarity.Magic => "magic",
-                    Rarity.Rare => "rare",
-                    Rarity.Unique => "unique",
-                    _ => "nonunique",
-                };
-
-                query.Filters.GetOrCreateTypeFilters().Filters.Rarity = new SearchFilterOption(rarity);
             }
 
             var currency = item.Header.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
@@ -168,15 +148,7 @@ public class TradeSearchService
         throw new ApiErrorException();
     }
 
-    private static SearchFilterOption? GetCategoryFilter(ItemClass itemClass)
-    {
-        var enumValue = itemClass.GetValueAttribute();
-        if (string.IsNullOrEmpty(enumValue)) return null;
-
-        return new SearchFilterOption(enumValue);
-    }
-
-    private static StatFilterGroup? GetAndStats(IEnumerable<ModifierFilter>? modifierFilters, IEnumerable<PseudoModifierFilter>? pseudoFilters)
+    private static StatFilterGroup? GetAndStats(IEnumerable<ModifierFilter>? modifierFilters, IEnumerable<PseudoFilter>? pseudoFilters)
     {
         var andGroup = new StatFilterGroup()
         {
@@ -285,7 +257,7 @@ public class TradeSearchService
         yield return countGroup;
     }
 
-    private static IEnumerable<StatFilterGroup> GetWeightedSumStats(IEnumerable<PseudoModifierFilter>? pseudoFilters)
+    private static IEnumerable<StatFilterGroup> GetWeightedSumStats(IEnumerable<PseudoFilter>? pseudoFilters)
     {
         if (pseudoFilters == null)
         {

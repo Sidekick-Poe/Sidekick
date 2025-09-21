@@ -19,7 +19,7 @@ public class CorruptedProperty(IGameLanguageProvider gameLanguageProvider) : Pro
         itemProperties.Corrupted = GetBool(Pattern, parsingItem);
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
         bool? @checked = null;
         if (item.Header.Rarity == Rarity.Unique)
@@ -32,10 +32,10 @@ public class CorruptedProperty(IGameLanguageProvider gameLanguageProvider) : Pro
             Text = gameLanguageProvider.Language.DescriptionCorrupted,
             Checked = @checked,
         };
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (filter is not TriStatePropertyFilter triStateFilter || triStateFilter.Checked == null)
         {

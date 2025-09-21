@@ -19,19 +19,19 @@ public class WarlordProperty(IGameLanguageProvider gameLanguageProvider) : Prope
         itemProperties.Influences.Warlord = GetBool(Pattern, parsingItem);
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (!item.Properties.Influences.Warlord) return null;
+        if (!item.Properties.Influences.Warlord) return Task.FromResult<PropertyFilter?>(null);
 
-        var filter = new BooleanPropertyFilter(this)
+        var filter = new PropertyFilter(this)
         {
             Text = gameLanguageProvider.Language.InfluenceWarlord,
             Checked = true,
         };
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (!filter.Checked) return;
 

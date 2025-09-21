@@ -11,7 +11,7 @@ public interface IPropertyParser : IInitializableService
 
     void ParseAfterModifiers(ParsingItem parsingItem, ItemHeader header, ItemProperties properties, List<ModifierLine> modifierLines);
 
-    Task<List<BooleanPropertyFilter>> GetFilters(Item item);
+    Task<List<PropertyFilter>> GetFilters(Item item);
 
-    void PrepareTradeRequest(Query query, Item item, PropertyFilters propertyFilters);
+    void PrepareTradeRequest(Query query, Item item, List<PropertyFilter> propertyFilters);
 }

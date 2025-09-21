@@ -12,7 +12,6 @@ public class HeaderParser
     IGameLanguageProvider gameLanguageProvider,
     IApiItemProvider apiItemProvider,
     IApiInvariantItemProvider apiInvariantItemProvider,
-    IRarityParser rarityParser,
     IItemClassParser itemClassParser
 ) : IHeaderParser
 {
@@ -73,7 +72,6 @@ public class HeaderParser
 
     private ItemHeader CreateItemHeader(ParsingItem parsingItem)
     {
-        var rarity = rarityParser.Parse(parsingItem);
         var itemClass = itemClassParser.Parse(parsingItem);
 
         string? type = null;
@@ -90,7 +88,7 @@ public class HeaderParser
             parsingItem.Blocks[0].Lines[^2].Parsed = true;
         }
 
-        if (TryParseVaalGem(parsingItem, rarity, out var vaalGem) && vaalGem != null)
+        if (TryParseVaalGem(parsingItem, itemClass, out var vaalGem) && vaalGem != null)
         {
             name = vaalGem.Name;
             type = vaalGem.Type;
@@ -98,7 +96,6 @@ public class HeaderParser
 
         return new ItemHeader()
         {
-            Rarity = rarity,
             ItemClass = itemClass,
             Name = name,
             Type = type,
@@ -182,9 +179,9 @@ public class HeaderParser
         return orderedResults.FirstOrDefault();
     }
 
-    private bool TryParseVaalGem(ParsingItem parsingItem, Rarity rarity, out ApiItem? vaalGem)
+    private bool TryParseVaalGem(ParsingItem parsingItem, ItemClass itemClass, out ApiItem? vaalGem)
     {
-        var canBeVaalGem = rarity == Rarity.Gem && parsingItem.Blocks.Count > 7;
+        var canBeVaalGem = itemClass == ItemClass.ActiveGem && parsingItem.Blocks.Count > 7;
         if (!canBeVaalGem || parsingItem.Blocks[5].Lines.Count <= 0)
         {
             vaalGem = null;

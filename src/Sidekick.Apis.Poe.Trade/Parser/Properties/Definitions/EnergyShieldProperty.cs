@@ -43,9 +43,9 @@ public class EnergyShieldProperty
         else if (AlternateIsAugmentedPattern != null && GetBool(AlternateIsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.EnergyShield));
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (item.Properties.EnergyShield <= 0) return null;
+        if (item.Properties.EnergyShield <= 0) return Task.FromResult<PropertyFilter?>(null);
 
         var text = gameLanguageProvider.Language.DescriptionEnergyShield;
         if (!string.IsNullOrEmpty(gameLanguageProvider.Language.DescriptionEnergyShieldAlternate) && item.Header.Game == GameType.PathOfExile2)
@@ -64,10 +64,10 @@ public class EnergyShieldProperty
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.EnergyShield)) ? LineContentType.Augmented : LineContentType.Simple,
         };
         filter.ChangeFilterType(filterType);
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 

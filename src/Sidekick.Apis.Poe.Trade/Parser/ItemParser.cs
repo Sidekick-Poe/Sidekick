@@ -1,10 +1,8 @@
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Items.AdditionalInformation;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Items;
-using Sidekick.Apis.Poe.Trade.Parser.AdditionalInformation;
 using Sidekick.Apis.Poe.Trade.Parser.Headers;
 using Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
@@ -20,7 +18,6 @@ public class ItemParser
     IModifierParser modifierParser,
     IPseudoParser pseudoParser,
     IRequirementsParser requirementsParser,
-    ClusterJewelParser clusterJewelParser,
     IApiInvariantItemProvider apiInvariantItemProvider,
     IPropertyParser propertyParser,
     IGameLanguageProvider gameLanguageProvider,
@@ -74,7 +71,6 @@ public class ItemParser
                 ModifierLines = modifierLines,
                 PseudoModifiers = pseudoModifiers,
                 Text = parsingItem.Text,
-                AdditionalInformation = ParseAdditionalInformation(header, modifierLines),
             };
         }
         catch (UnparsableException e)
@@ -87,16 +83,6 @@ public class ItemParser
             logger.LogWarning(e, "Could not parse item.");
             throw new UnparsableException(itemText);
         }
-    }
-
-    private ClusterJewelInformation? ParseAdditionalInformation(ItemHeader itemHeader, List<ModifierLine> modifierLines)
-    {
-        if (clusterJewelParser.TryParse(itemHeader, modifierLines, out var clusterJewelInformation))
-        {
-            return clusterJewelInformation;
-        }
-
-        return null;
     }
 
     private string RemoveUnusableLine(string itemText)

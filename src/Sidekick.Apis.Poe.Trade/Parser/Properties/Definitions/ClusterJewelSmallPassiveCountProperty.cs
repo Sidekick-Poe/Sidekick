@@ -5,7 +5,7 @@ using Sidekick.Apis.Poe.Trade.Modifiers;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.AdditionalInformation;
 
-public class ClusterJewelParser(IInvariantModifierProvider invariantModifierProvider)
+public class ClusterJewelSmallPassiveCountProperty(IInvariantModifierProvider invariantModifierProvider)
 {
     public bool TryParse(ItemHeader itemHeader, List<ModifierLine> modifierLines, [NotNullWhen(true)] out ClusterJewelInformation? information)
     {

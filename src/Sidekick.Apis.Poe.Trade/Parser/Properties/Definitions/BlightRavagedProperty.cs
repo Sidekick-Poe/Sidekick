@@ -19,20 +19,20 @@ public class BlightRavagedProperty(IGameLanguageProvider gameLanguageProvider) :
         itemProperties.BlightRavaged = Pattern?.IsMatch(parsingItem.Blocks[0].Lines[^1].Text) ?? false;
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (!item.Properties.BlightRavaged) return null;
+        if (!item.Properties.BlightRavaged) return Task.FromResult<PropertyFilter?>(null);
 
-        var filter = new BooleanPropertyFilter(this)
+        var filter = new PropertyFilter(this)
         {
             ShowRow = false,
             Text = gameLanguageProvider.Language.AffixBlightRavaged,
             Checked = true,
         };
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (!filter.Checked) return;
 

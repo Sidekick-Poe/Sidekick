@@ -1,3 +1,4 @@
+
 using Romanization;
 namespace Sidekick.Apis.Poe.Languages.Implementations;
 
@@ -20,6 +21,7 @@ public class GameLanguageJa : IGameLanguage
     public string RarityGem => "ジェム";
     public string RarityDivinationCard => "占いカード";
 
+    public string DescriptionRarity => "レアリティ";
     public string DescriptionUnidentified => "未鑑定";
     public string DescriptionQuality => "品質";
     public string DescriptionLevel => "レベル";

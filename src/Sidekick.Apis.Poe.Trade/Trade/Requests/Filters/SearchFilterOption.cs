@@ -14,7 +14,7 @@ public class SearchFilterOption
         Option = option;
     }
 
-    public SearchFilterOption(BooleanPropertyFilter filter)
+    public SearchFilterOption(PropertyFilter filter)
     {
         Option = filter.Checked ? "true" : "false";
     }

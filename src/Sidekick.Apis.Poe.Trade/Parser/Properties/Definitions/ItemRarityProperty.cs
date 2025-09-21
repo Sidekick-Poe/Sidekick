@@ -27,9 +27,9 @@ public class ItemRarityProperty(IGameLanguageProvider gameLanguageProvider) : Pr
         if (GetBool(IsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.ItemRarity));
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (item.Properties.ItemRarity <= 0) return null;
+        if (item.Properties.ItemRarity <= 0) return Task.FromResult<PropertyFilter?>(null);
 
         var filter = new IntPropertyFilter(this)
         {
@@ -43,10 +43,10 @@ public class ItemRarityProperty(IGameLanguageProvider gameLanguageProvider) : Pr
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ItemRarity)) ? LineContentType.Augmented : LineContentType.Simple,
         };
         filter.ChangeFilterType(filterType);
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 

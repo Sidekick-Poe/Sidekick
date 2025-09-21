@@ -1,7 +1,9 @@
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Trade
 @using Sidekick.Apis.Poe.Trade.Bulk
+@using Sidekick.Apis.Poe.Trade.Parser.Properties
 @using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters
+@using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters
 @using Sidekick.Apis.Poe.Trade.Trade.Filters
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
@@ -32,23 +34,19 @@
             <PricePredictionComponent/>
         </SidekickErrorBoundary>
 
-        <HeaderFilters PropertyFilters="PropertyFilters"/>
+        @for (var index = 0; index < PropertyFilters.Count; index++)
+        {
+            var filter = PropertyFilters[index];
+            var key = $"{Item.Id}_property_{index}";
+            <PropertyFilterComponent @key="key"
+                                     Filter="filter"
+                                     Item="Item"/>
+        }
 
-        <div>
-            @for (var index = 0; index < PropertyFilters.Filters.Count; index++)
-            {
-                var filter = PropertyFilters.Filters[index];
-                var key = $"{Item.Id}_property_{index}";
-                <PropertyFilterComponent @key="key"
-                                         Filter="filter"
-                                         Item="Item"/>
-            }
-
-            @if (PropertyFilters.Filters.Count > 0)
-            {
-                <ItemSeparator Rarity="Item.Header.Rarity"/>
-            }
-        </div>
+        @if (PropertyFilters.Count > 0)
+        {
+            <ItemSeparator Rarity="Item.Header.Rarity"/>
+        }
 
         <ModifierFiltersComponent ModifierFilters="ModifierFilters"/>
         <PseudoFiltersComponent PseudoFilters="PseudoFilters"/>
@@ -80,22 +78,23 @@
 @inject TradeService TradeService
 @inject ITradeFilterService TradeFilterService
 @inject ISettingsService SettingsService
+@inject IPropertyParser PropertyParser
 
 @code {
 
     [CascadingParameter]
     public required Item Item { get; set; }
 
-    private PropertyFilters? PropertyFilters { get; set; }
+    private List<PropertyFilter>? PropertyFilters { get; set; }
 
     private List<ModifierFilter> ModifierFilters { get; set; } = [];
 
-    private List<PseudoModifierFilter> PseudoFilters { get; set; } = [];
+    private List<PseudoFilter> PseudoFilters { get; set; } = [];
 
     protected override async Task OnParametersSetAsync()
     {
-        PropertyFilters = await TradeFilterService.GetPropertyFilters(Item);
-        ModifierFilters = TradeFilterService.GetModifierFilters(Item).ToList();
+        PropertyFilters = await PropertyParser.GetFilters(Item);
+        ModifierFilters = await TradeFilterService.GetModifierFilters(Item);
         PseudoFilters = TradeFilterService.GetPseudoModifierFilters(Item).ToList();
 
         var automaticallyPriceCheckSettingKey = Item.Header.Rarity == Rarity.Currency ?

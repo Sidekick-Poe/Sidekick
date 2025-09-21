@@ -133,9 +133,9 @@ public class WeaponDamageProperty
         }
     }
 
-    public override List<BooleanPropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType)
+    public override List<PropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType)
     {
-        var results = new List<BooleanPropertyFilter>();
+        var results = new List<PropertyFilter>();
 
         if (item.Properties.TotalDamage > 0)
         {
@@ -217,7 +217,7 @@ public class WeaponDamageProperty
         return results.Count > 0 ? results : null;
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (!filter.Checked) return;
 

@@ -9,7 +9,6 @@ using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
@@ -36,6 +35,11 @@ public class PropertyParser
 
         Definitions.Clear();
         Definitions.AddRange([
+            new ItemClassProperty(gameLanguageProvider, serviceProvider),
+            new RarityProperty(gameLanguageProvider),
+
+            new SeparatorProperty(),
+
             new QualityProperty(gameLanguageProvider),
 
             new SpiritProperty(gameLanguageProvider, game),
@@ -66,18 +70,18 @@ public class PropertyParser
             new SeparatorProperty(),
 
             new ExpandablePropertiesDefinition(filterProvider.MiscellaneousCategory?.Title,
-                                                new ElderProperty(gameLanguageProvider),
-                                                new ShaperProperty(gameLanguageProvider),
-                                                new CrusaderProperty(gameLanguageProvider),
-                                                new HunterProperty(gameLanguageProvider),
-                                                new RedeemerProperty(gameLanguageProvider),
-                                                new WarlordProperty(gameLanguageProvider),
-                                                new CorruptedProperty(gameLanguageProvider),
-                                                new FracturedProperty(serviceProvider),
-                                                new DesecratedProperty(serviceProvider, game),
-                                                new SanctifiedProperty(serviceProvider, game),
-                                                new MirroredProperty(serviceProvider),
-                                                new UnidentifiedProperty(gameLanguageProvider)),
+                                               new ElderProperty(gameLanguageProvider),
+                                               new ShaperProperty(gameLanguageProvider),
+                                               new CrusaderProperty(gameLanguageProvider),
+                                               new HunterProperty(gameLanguageProvider),
+                                               new RedeemerProperty(gameLanguageProvider),
+                                               new WarlordProperty(gameLanguageProvider),
+                                               new CorruptedProperty(gameLanguageProvider),
+                                               new FracturedProperty(serviceProvider),
+                                               new DesecratedProperty(serviceProvider, game),
+                                               new SanctifiedProperty(serviceProvider, game),
+                                               new MirroredProperty(serviceProvider),
+                                               new UnidentifiedProperty(gameLanguageProvider)),
         ]);
     }
 
@@ -104,17 +108,18 @@ public class PropertyParser
         }
     }
 
-    public async Task<List<BooleanPropertyFilter>> GetFilters(Item item)
+    public async Task<List<PropertyFilter>> GetFilters(Item item)
     {
+
         var normalizeValue = await settingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
         var filterType = await settingsService.GetEnum<FilterType>(SettingKeys.PriceCheckDefaultFilterType) ?? FilterType.Minimum;
-        var results = new List<BooleanPropertyFilter>();
+        var results = new List<PropertyFilter>();
 
         foreach (var definition in Definitions)
         {
             if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(item.Header.Category)) continue;
 
-            var filter = definition.GetFilter(item, normalizeValue, filterType);
+            var filter = await definition.GetFilter(item, normalizeValue, filterType);
             if (filter != null) results.Add(filter);
 
             var filters = definition.GetFilters(item, normalizeValue, filterType);
@@ -126,7 +131,7 @@ public class PropertyParser
         return results;
     }
 
-    private static void CleanUpSeparatorFilters(List<BooleanPropertyFilter> results)
+    private static void CleanUpSeparatorFilters(List<PropertyFilter> results)
     {
         // Remove leading SeparatorProperty filters
         while (results.Count > 0 && results[0].Definition is SeparatorProperty)
@@ -149,13 +154,13 @@ public class PropertyParser
             }
 
             results.RemoveAt(i);
-            i--; // Adjust index to recheck current position
+            i--;// Adjust index to recheck current position
         }
     }
 
-    public void PrepareTradeRequest(Query query, Item item, PropertyFilters propertyFilters)
+    public void PrepareTradeRequest(Query query, Item item, List<PropertyFilter> propertyFilters)
     {
-        foreach (var filter in propertyFilters.Filters)
+        foreach (var filter in propertyFilters)
         {
             filter.Definition.PrepareTradeRequest(query, item, filter);
         }
