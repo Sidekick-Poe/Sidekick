@@ -14,9 +14,9 @@ public class ElderProperty(IGameLanguageProvider gameLanguageProvider) : Propert
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Jewel];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        itemProperties.Influences.Elder = GetBool(Pattern, parsingItem);
+        item.Properties.Influences.Elder = GetBool(Pattern, item.Text);
     }
 
     public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)

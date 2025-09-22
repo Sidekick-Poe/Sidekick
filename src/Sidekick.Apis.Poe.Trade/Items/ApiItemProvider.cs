@@ -53,13 +53,13 @@ public class ApiItemProvider
 
         foreach (var category in categories)
         {
-            FillCategoryItems(game, result.Result, category.Key, category.Value.Category, category.Value.UseRegex);
+            FillCategoryItems(result.Result, category.Key, category.Value.Category, category.Value.UseRegex);
         }
 
         UniqueItems = NameAndTypeDictionary.Values.SelectMany(x => x).Where(x => x.IsUnique).OrderByDescending(x => x.Name?.Length).ToList();
     }
 
-    private void FillCategoryItems(GameType game, List<ApiCategory> categories, string categoryId, Category category, bool useRegex = false)
+    private void FillCategoryItems(List<ApiCategory> categories, string categoryId, Category category, bool useRegex = false)
     {
         var categoryItems = categories.SingleOrDefault(x => x.Id == categoryId);
         if (categoryItems == null)
@@ -72,7 +72,6 @@ public class ApiItemProvider
         {
             var entry = categoryItems.Entries[i];
             entry.Id = $"{categoryId}.{i}";
-            entry.Game = game;
             entry.Category = category;
 
             IdDictionary.Add(entry.Id, entry);

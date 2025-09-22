@@ -7,7 +7,7 @@ public class LifeDefinition(GameType game) : PseudoDefinition
 {
     protected override bool Enabled => true;
 
-    protected override string? ModifierId => "pseudo.pseudo_total_life";
+    protected override string ModifierId => "pseudo.pseudo_total_life";
 
     protected override List<PseudoPattern> Patterns =>
     [

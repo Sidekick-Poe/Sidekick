@@ -5,5 +5,5 @@ namespace Sidekick.Apis.Poe.Trade;
 
 public interface IItemParser : IInitializableService
 {
-    Item ParseItem(string? itemText);
+    Item ParseItem(string? text, string? advancedText = null);
 }

@@ -11,9 +11,9 @@ public abstract class PropertyDefinition
 {
     public abstract List<Category> ValidCategories { get; }
 
-    public virtual void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header) {}
+    public virtual void Parse(Item item) {}
 
-    public virtual void ParseAfterModifiers(Item item, ParsingItem parsingItem) {}
+    public virtual void ParseAfterModifiers(Item item) {}
 
     public virtual Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType) { return Task.FromResult<PropertyFilter?>(null); }
 
@@ -21,13 +21,13 @@ public abstract class PropertyDefinition
 
     public virtual void PrepareTradeRequest(Query query, Item item, PropertyFilter filter) {}
 
-    protected static bool GetBool(Regex pattern, ParsingItem parsingItem) => parsingItem.TryParseRegex(pattern, out _);
+    protected static bool GetBool(Regex pattern, TextItem textItem) => textItem.TryParseRegex(pattern, out _);
 
-    protected static bool GetBool(Regex pattern, ParsingBlock parsingBlock) => parsingBlock.TryParseRegex(pattern, out _);
+    protected static bool GetBool(Regex pattern, TextBlock textBlock) => textBlock.TryParseRegex(pattern, out _);
 
-    protected static string? GetString(Regex pattern, ParsingBlock parsingBlock)
+    protected static string? GetString(Regex pattern, TextBlock textBlock)
     {
-        if (parsingBlock.TryParseRegex(pattern, out var match))
+        if (textBlock.TryParseRegex(pattern, out var match))
         {
             return match.Groups[1].Value.Trim(' ', ':');
         }
@@ -35,9 +35,9 @@ public abstract class PropertyDefinition
         return null;
     }
 
-    protected static int GetInt(Regex pattern, ParsingItem parsingItem)
+    protected static int GetInt(Regex pattern, TextItem textItem)
     {
-        if (parsingItem.TryParseRegex(pattern, out var match) && int.TryParse(match.Groups[1].Value, out var result))
+        if (textItem.TryParseRegex(pattern, out var match) && int.TryParse(match.Groups[1].Value, out var result))
         {
             return result;
         }
@@ -45,9 +45,9 @@ public abstract class PropertyDefinition
         return 0;
     }
 
-    protected static int GetInt(Regex pattern, ParsingBlock parsingBlock)
+    protected static int GetInt(Regex pattern, TextBlock textBlock)
     {
-        if (parsingBlock.TryParseRegex(pattern, out var match) && int.TryParse(match.Groups[1].Value, out var result))
+        if (textBlock.TryParseRegex(pattern, out var match) && int.TryParse(match.Groups[1].Value, out var result))
         {
             return result;
         }
@@ -55,9 +55,9 @@ public abstract class PropertyDefinition
         return 0;
     }
 
-    protected static double GetDouble(Regex pattern, ParsingBlock parsingBlock)
+    protected static double GetDouble(Regex pattern, TextBlock textBlock)
     {
-        if (!parsingBlock.TryParseRegex(pattern, out var match))
+        if (!textBlock.TryParseRegex(pattern, out var match))
         {
             return 0;
         }

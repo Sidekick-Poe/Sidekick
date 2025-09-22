@@ -11,8 +11,7 @@ public class HeaderParser
 (
     IGameLanguageProvider gameLanguageProvider,
     IApiItemProvider apiItemProvider,
-    IApiInvariantItemProvider apiInvariantItemProvider,
-    IItemClassParser itemClassParser
+    IApiInvariantItemProvider apiInvariantItemProvider
 ) : IHeaderParser
 {
     public int Priority => 200;
@@ -45,84 +44,61 @@ public class HeaderParser
         return Task.CompletedTask;
     }
 
-    public ItemHeader Parse(ParsingItem parsingItem)
+    public void Parse(Item item)
     {
-        var header = CreateItemHeader(parsingItem);
-
-        var apiItem = GetApiItem(header);
+        var apiItem = GetApiItem(item);
         if (apiItem != null)
         {
-            var apiHeader = apiItem.ToHeader();
-            apiHeader.Name = header.Name;
-            apiHeader.Type = header.Type;
-            apiHeader.ItemClass = header.ItemClass;
-            if (apiHeader.Rarity == Rarity.Unknown) apiHeader.Rarity = header.Rarity;
+            var categoryRarity = apiItem.Category switch
+            {
+                Category.DivinationCard => Rarity.DivinationCard,
+                Category.Gem => Rarity.Gem,
+                Category.Currency => Rarity.Currency,
+                _ => Rarity.Unknown,
+            };
 
-            header = apiHeader;
+            item.Header.ApiItemId = apiItem.Id;
+            item.Header.ApiName = apiItem.Name;
+            item.Header.ApiType = apiItem.Type;
+            item.Header.ApiDiscriminator = apiItem.Discriminator;
+            item.Header.ApiText = apiItem.Text;
+            item.Header.Category = apiItem.Category;
+
+            if(apiItem.IsUnique) item.Header.Rarity = Rarity.Unique;
+            else if (categoryRarity != Rarity.Unknown) item.Header.Rarity = categoryRarity;
         }
 
-        if (string.IsNullOrEmpty(header.ApiName) && string.IsNullOrEmpty(header.ApiType))
+        if (string.IsNullOrEmpty(item.Header.ApiName) && string.IsNullOrEmpty(item.Header.ApiType))
         {
-            throw new UnparsableException(parsingItem.Text);
+            throw new UnparsableException(item.Text.Text);
         }
 
-        parsingItem.Blocks[0].Parsed = true;
-        return header;
+        ParseVaalGem(item);
+
+        item.Text.Blocks[0].Parsed = true;
     }
 
-    private ItemHeader CreateItemHeader(ParsingItem parsingItem)
+    private ApiItem? GetApiItem(Item item)
     {
-        var itemClass = itemClassParser.Parse(parsingItem);
-
-        string? type = null;
-        if (parsingItem.Blocks[0].Lines.Count >= 3)
-        {
-            type = parsingItem.Blocks[0].Lines[^1].Text;
-            parsingItem.Blocks[0].Lines[^1].Parsed = true;
-        }
-
-        string? name = null;
-        if (parsingItem.Blocks[0].Lines.Count >= 4 && !parsingItem.Blocks[0].Lines[^2].Parsed)
-        {
-            name = parsingItem.Blocks[0].Lines[^2].Text;
-            parsingItem.Blocks[0].Lines[^2].Parsed = true;
-        }
-
-        if (TryParseVaalGem(parsingItem, itemClass, out var vaalGem) && vaalGem != null)
-        {
-            name = vaalGem.Name;
-            type = vaalGem.Type;
-        }
-
-        return new ItemHeader()
-        {
-            ItemClass = itemClass,
-            Name = name,
-            Type = type,
-        };
-    }
-
-    private ApiItem? GetApiItem(ItemHeader header)
-    {
-        if (header.ItemClass == ItemClass.UncutSkillGem && apiItemProvider.IdDictionary.TryGetValue(apiInvariantItemProvider.UncutSkillGemId, out var uncutSkillGem))
+        if (item.Header.ItemClass == ItemClass.UncutSkillGem && apiItemProvider.IdDictionary.TryGetValue(apiInvariantItemProvider.UncutSkillGemId, out var uncutSkillGem))
         {
             return uncutSkillGem;
         }
 
-        if (header.ItemClass == ItemClass.UncutSupportGem && apiItemProvider.IdDictionary.TryGetValue(apiInvariantItemProvider.UncutSupportGemId, out var uncutSupportGem))
+        if (item.Header.ItemClass == ItemClass.UncutSupportGem && apiItemProvider.IdDictionary.TryGetValue(apiInvariantItemProvider.UncutSupportGemId, out var uncutSupportGem))
         {
             return uncutSupportGem;
         }
 
-        if (header.ItemClass == ItemClass.UncutSpiritGem && apiItemProvider.IdDictionary.TryGetValue(apiInvariantItemProvider.UncutSpiritGemId, out var uncutSpiritGem))
+        if (item.Header.ItemClass == ItemClass.UncutSpiritGem && apiItemProvider.IdDictionary.TryGetValue(apiInvariantItemProvider.UncutSpiritGemId, out var uncutSpiritGem))
         {
             return uncutSpiritGem;
         }
 
         // Rares may have conflicting names, so we don't want to search any unique items that may have that name. Like "Ancient Orb" which can be used by abyss jewels.
-        var name = header.Rarity is Rarity.Rare or Rarity.Magic ? null : header.Name;
+        var name = item.Header.Rarity is Rarity.Rare or Rarity.Magic ? null : item.Name;
         name = name != null ? GetLineWithoutSuperiorAffix(name) : null;
-        var type = header.Type != null ? GetLineWithoutSuperiorAffix(header.Type) : null;
+        var type = item.Type != null ? GetLineWithoutSuperiorAffix(item.Type) : null;
 
         // We can find multiple matches while parsing. This will store all of them. We will figure out which result is correct at the end of this method.
         var results = new List<ApiItem>();
@@ -179,18 +155,16 @@ public class HeaderParser
         return orderedResults.FirstOrDefault();
     }
 
-    private bool TryParseVaalGem(ParsingItem parsingItem, ItemClass itemClass, out ApiItem? vaalGem)
+    private void ParseVaalGem(Item item)
     {
-        var canBeVaalGem = itemClass == ItemClass.ActiveGem && parsingItem.Blocks.Count > 7;
-        if (!canBeVaalGem || parsingItem.Blocks[5].Lines.Count <= 0)
-        {
-            vaalGem = null;
-            return false;
-        }
+        var canBeVaalGem = item.Header.ItemClass == ItemClass.ActiveGem && item.Text.Blocks.Count > 7;
+        if (!canBeVaalGem || item.Text.Blocks[5].Lines.Count <= 0) return;
 
-        apiItemProvider.NameAndTypeDictionary.TryGetValue(parsingItem.Blocks[5].Lines[0].Text, out var item);
-        vaalGem = item?.FirstOrDefault();
-        return true;
+        if (!apiItemProvider.NameAndTypeDictionary.TryGetValue(item.Text.Blocks[5].Lines[0].Text, out var apiItem)) return;
+
+        var vaalGem = apiItem.First();
+        item.Name = vaalGem.Name;
+        item.Type = vaalGem.Type;
     }
 }
 

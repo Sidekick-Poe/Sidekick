@@ -39,7 +39,7 @@ Item Level: 61
         Assert.Equal(Category.Armour, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Assassin's Mitts", actual.Header.ApiType);
-        Assert.Equal("Death Nails", actual.Header.Name);
+        Assert.Equal("Death Nails", actual.Name);
         Assert.NotNull(actual.Properties.Sockets);
         Assert.Single(actual.Properties.Sockets);
 

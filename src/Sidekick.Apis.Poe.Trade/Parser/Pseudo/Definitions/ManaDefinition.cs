@@ -7,7 +7,7 @@ public class ManaDefinition(GameType game) : PseudoDefinition
 {
     protected override bool Enabled => true;
 
-    protected override string? ModifierId => "pseudo.pseudo_total_mana";
+    protected override string ModifierId => "pseudo.pseudo_total_mana";
 
     protected override List<PseudoPattern> Patterns =>
     [

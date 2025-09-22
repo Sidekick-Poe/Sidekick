@@ -6,7 +6,7 @@ public class ChaosResistancesDefinition : PseudoDefinition
 {
     protected override bool Enabled => true;
 
-    protected override string? ModifierId => "pseudo.pseudo_total_chaos_resistance";
+    protected override string ModifierId => "pseudo.pseudo_total_chaos_resistance";
 
     protected override List<PseudoPattern> Patterns =>
     [

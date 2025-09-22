@@ -8,7 +8,6 @@ using Sidekick.Apis.Poe.Trade.Modifiers.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Modifiers;
@@ -24,26 +23,6 @@ public class ModifierProvider
 ) : IModifierProvider
 {
     private readonly Regex parseHashPattern = new("\\#");
-
-    /// <summary>
-    /// A regular expression used to extract and process text within square brackets,
-    /// optionally separated by pipes, for parsing modifier patterns within game data.
-    /// </summary>
-    /// <example>
-    /// [ItemRarity|Rarity of Items] => Rarity of Items
-    /// [Spell] => Spell
-    /// </example>
-    private static readonly Regex parseSquareBracketPattern = new("\\[.*?\\|?([^\\|\\[\\]]*)\\]");
-
-    public static string RemoveSquareBrackets(string text)
-    {
-        if (string.IsNullOrEmpty(text))
-        {
-            return text;
-        }
-
-        return parseSquareBracketPattern.Replace(text, "$1");
-    }
 
     private readonly Regex newLinePattern = new(@"(?:\\)*[\r\n]+");
     private readonly Regex hashPattern = new(@"\\#");
@@ -99,14 +78,14 @@ public class ModifierProvider
         {
             if (invariantModifierProvider.IgnoreModifierIds.Contains(entry.Id)) continue;
 
-            entry.Text = RemoveSquareBrackets(entry.Text);
+            entry.Text = entry.Text.RemoveSquareBrackets();
 
             if (entry.Option?.Options.Count > 0)
             {
                 foreach (var option in entry.Option.Options)
                 {
                     if (option.Text == null) continue;
-                    option.Text = RemoveSquareBrackets(option.Text);
+                    option.Text = option.Text.RemoveSquareBrackets();
                     patterns.Add(new ModifierDefinition(modifierCategory, entry.Id, apiText: ComputeOptionText(entry.Text, option.Text), fuzzyText: ComputeFuzzyText(entry.Text, option.Text), pattern: ComputePattern(entry.Text, modifierCategory, option.Text))
                     {
                         OptionId = option.Id,
@@ -150,26 +129,25 @@ public class ModifierProvider
 
     private Regex ComputePattern(string text, ModifierCategory? category = null, string? optionText = null)
     {
-        text = RemoveSquareBrackets(text);
-        if (optionText != null) optionText = RemoveSquareBrackets(optionText);
+        text = text.RemoveSquareBrackets();
+        if (optionText != null) optionText = optionText.RemoveSquareBrackets();
 
         // The notes in parentheses are never translated by the game.
         // We should be fine hardcoding them this way.
         var explicitCategories = string.Join("|", ModifierCategories.AllExplicitCategories.Select(x => x.GetValueAttribute()));
         var explicitSuffix = "(?:\\ \\((?:" + explicitCategories + ")\\))?";
 
-
         var suffix = category switch
         {
-            ModifierCategory.Enchant => "(?:\\ \\(enchant\\))",
-            ModifierCategory.Rune => "(?:\\ \\(rune\\))",
-            ModifierCategory.Implicit => "(?:\\ \\(implicit\\))",
-            ModifierCategory.Veiled => "(?:\\ \\(veiled\\))",
-            ModifierCategory.Scourge => "(?:\\ \\(scourge\\))",
-            ModifierCategory.Crucible => "(?:\\ \\(crucible\\))",
-            ModifierCategory.Crafted => "(?:\\ \\(crafted\\))",
-            ModifierCategory.Fractured => "(?:\\ \\(fractured\\))",
-            ModifierCategory.Desecrated => "(?:\\ \\((?:desecrated)\\))",
+            ModifierCategory.Enchant => "\\ \\(enchant\\)",
+            ModifierCategory.Rune => "\\ \\(rune\\)",
+            ModifierCategory.Implicit => "\\ \\(implicit\\)",
+            ModifierCategory.Veiled => "\\ \\(veiled\\)",
+            ModifierCategory.Scourge => "\\ \\(scourge\\)",
+            ModifierCategory.Crucible => "\\ \\(crucible\\)",
+            ModifierCategory.Crafted => "\\ \\(crafted\\)",
+            ModifierCategory.Fractured => "\\ \\(fractured\\)",
+            ModifierCategory.Desecrated => "\\ \\(desecrated\\)",
             ModifierCategory.Explicit => string.Empty,
 
             // TODO: View issue #792
@@ -211,8 +189,8 @@ public class ModifierProvider
 
     private string ComputeFuzzyText(string text, string? optionText = null)
     {
-        text = RemoveSquareBrackets(text);
-        if (optionText != null) optionText = RemoveSquareBrackets(optionText);
+        text = text.RemoveSquareBrackets();
+        if (optionText != null) optionText = optionText.RemoveSquareBrackets();
 
         var fuzzyValue = text;
 

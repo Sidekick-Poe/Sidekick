@@ -21,13 +21,13 @@ public class RewardProperty
 
     public override List<Category> ValidCategories { get; } = [Category.Map];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
         if (game == GameType.PathOfExile2) return;
 
-        var propertyBlock = parsingItem.Blocks[1];
-        itemProperties.Reward = GetString(Pattern, propertyBlock);
-        if (itemProperties.Reward != null) propertyBlock.Parsed = true;
+        var propertyBlock = item.Text.Blocks[1];
+        item.Properties.Reward = GetString(Pattern, propertyBlock);
+        if (item.Properties.Reward != null) propertyBlock.Parsed = true;
     }
 
     public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)

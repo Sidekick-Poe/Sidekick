@@ -71,7 +71,7 @@ Crusader Item
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Imbued Wand", actual.Header.ApiType);
-        Assert.Equal("Miracle Chant", actual.Header.Name);
+        Assert.Equal("Miracle Chant", actual.Name);
         Assert.True(actual.Properties.Influences.Crusader);
 
         actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Spell Damage", 33);

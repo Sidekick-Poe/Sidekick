@@ -14,9 +14,9 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Flask, Category.Jewel, Category.Accessory, Category.Map, Category.Contract, Category.Sanctum, Category.Logbook];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        itemProperties.ItemLevel = GetInt(Pattern, parsingItem);
+        item.Properties.ItemLevel = GetInt(Pattern, item.Text);
     }
 
     public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)

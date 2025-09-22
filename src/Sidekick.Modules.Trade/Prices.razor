@@ -1,4 +1,4 @@
-@page "/trade/{itemText}"
+@page "/trade/{itemText}/{advancedText}"
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Trade
 @using Sidekick.Common.Extensions
@@ -82,6 +82,9 @@
     [Parameter]
     public required string ItemText { get; set; }
 
+    [Parameter]
+    public required string AdvancedText { get; set; }
+
     private int LeftContentWidth { get; set; }
 
     private Item? Item { get; set; }
@@ -110,7 +113,8 @@
 
         TradeService.Init();
         var itemText = ItemText.DecodeBase64Url();
-        Item = ItemParser.ParseItem(itemText);
+        var advancedText = AdvancedText.DecodeBase64Url();
+        Item = ItemParser.ParseItem(itemText, advancedText);
 
         await base.OnParametersSetAsync();
     }

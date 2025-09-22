@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Trade.Parser.Modifiers.Filters;
 namespace Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 
 public interface IModifierParser
@@ -6,8 +7,13 @@ public interface IModifierParser
     /// <summary>
     /// Parses the modifiers from the parsing item and returns a list of modifier lines.
     /// </summary>
-    /// <param name="parsingItem">The item currently being parsed.</param>
-    /// <param name="header">The item header.</param>
-    /// <returns>The list of modifier lines. Each line may contain one or more modifiers which the user will then have to pick.</returns>
-    List<ModifierLine> Parse(ParsingItem parsingItem, ItemHeader header);
+    /// <param name="item">The item currently being parsed.</param>
+    void Parse(Item item);
+
+    /// <summary>
+    /// Gets a list of modifier filters for a specific item.
+    /// </summary>
+    /// <param name="item">The item for which to get modifier filters.</param>
+    /// <returns>The list of modifier filters.</returns>
+    Task<List<ModifierFilter>> GetFilters(Item item);
 }

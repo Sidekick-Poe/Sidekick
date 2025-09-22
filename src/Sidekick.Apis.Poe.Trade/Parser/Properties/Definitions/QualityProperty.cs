@@ -17,14 +17,14 @@ public class QualityProperty(IGameLanguageProvider gameLanguageProvider) : Prope
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Flask, Category.Gem, Category.Map];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        var propertyBlock = parsingItem.Blocks[1];
-        itemProperties.Quality = GetInt(Pattern, propertyBlock);
-        if (itemProperties.Quality == 0) return;
+        var propertyBlock = item.Text.Blocks[1];
+        item.Properties.Quality = GetInt(Pattern, propertyBlock);
+        if (item.Properties.Quality == 0) return;
 
         propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.Quality));
+        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.Quality));
     }
 
     public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)

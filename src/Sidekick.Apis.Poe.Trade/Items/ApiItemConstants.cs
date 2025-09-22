@@ -20,7 +20,6 @@ public class ApiItemConstants
         { "heistmission", (Category.Contract, true) },
         { "logbook", (Category.Logbook, true) },
         { "sanctum", (Category.Sanctum, true) },
-        { "memoryline", (Category.MemoryLine, true) },
         { "tincture", (Category.Tincture, true) },
         { "corpse", (Category.Corpse, true) },
         { "idol", (Category.Idol, true) },

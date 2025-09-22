@@ -10,5 +10,5 @@ public interface IItemStaticDataProvider : IInitializableService
 
     StaticItem? Get(string id);
 
-    StaticItem? Get(ItemHeader itemHeader);
+    StaticItem? Get(Item item);
 }

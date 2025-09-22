@@ -7,10 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Romanization.NET" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Sidekick.Apis.Common\Sidekick.Apis.Common.csproj" />
       <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
     </ItemGroup>

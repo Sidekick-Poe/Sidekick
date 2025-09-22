@@ -14,7 +14,7 @@ public class DesecratedProperty(IServiceProvider serviceProvider, GameType game)
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Map];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
     }
 

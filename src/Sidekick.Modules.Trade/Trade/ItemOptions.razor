@@ -11,10 +11,10 @@
         <div class="flex flex-col">
             <ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenWiki">
                 <Icon
-                    Svg="@UiIcons.External"/> @(Item.Header.Game == GameType.PathOfExile ? "poewiki.net" : "poe2wiki.net")
+                    Svg="@UiIcons.External"/> @(Item.Game == GameType.PathOfExile ? "poewiki.net" : "poe2wiki.net")
             </ButtonLink>
             <ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenPoeDb">
-                <Icon Svg="@UiIcons.External"/> @(Item.Header.Game == GameType.PathOfExile ? "poedb.tw" : "poe2db.tw")
+                <Icon Svg="@UiIcons.External"/> @(Item.Game == GameType.PathOfExile ? "poedb.tw" : "poe2db.tw")
             </ButtonLink>
             @* <ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenCraftOfExile"><Icon Svg="@UiIcons.External" /> craftofexile.com</ButtonLink> *@
         </div>
@@ -34,7 +34,7 @@
         var poe2WikiBaseUri = "https://www.poe2wiki.net/";
         var poeWikiSubUrl = "w/index.php?search=";
         var searchLink = Item.Header.ApiName ?? Item.Header.ApiType;
-        var baseUrl = Item.Header.Game == GameType.PathOfExile ? poeWikiBaseUri : poe2WikiBaseUri;
+        var baseUrl = Item.Game == GameType.PathOfExile ? poeWikiBaseUri : poe2WikiBaseUri;
         var wikiLink = poeWikiSubUrl + searchLink?.Replace(" ", "+");
         var uri = new Uri(baseUrl + wikiLink);
 
@@ -47,7 +47,7 @@
         var poe2DbBaseUri = "https://poe2db.tw/";
         var poeDbSubUrl = "search?q=";
         var searchLink = Item.Header.ApiName ?? Item.Header.ApiType;
-        var baseUrl = Item.Header.Game == GameType.PathOfExile ? poeDbBaseUri : poe2DbBaseUri;
+        var baseUrl = Item.Game == GameType.PathOfExile ? poeDbBaseUri : poe2DbBaseUri;
         var wikiLink = poeDbSubUrl + searchLink?.Replace(" ", "+");
         var uri = new Uri(baseUrl + wikiLink);
 

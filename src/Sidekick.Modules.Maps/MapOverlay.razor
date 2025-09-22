@@ -1,4 +1,4 @@
-@page "/map/{itemText}"
+@page "/map/{itemText}/{advancedText}"
 @using System.Text.RegularExpressions
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Trade
@@ -10,7 +10,7 @@
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 @using Sidekick.Modules.Maps.Settings
 
-<LayoutTwoColumn HasChildContent="@(Item == null || Item.Header.Game == GameType.PathOfExile)">
+<LayoutTwoColumn HasChildContent="@(Item == null || Item.Game == GameType.PathOfExile)">
     <TopContent>
         <AppBar>
             <AppSettings Href="/settings/map">
@@ -22,10 +22,10 @@
     <LeftContent>
         @if (Item != null)
         {
-            <ItemHeader Name="@Item.Header.Name"
-                        Type="@Item.Header.Type"
+            <ItemHeader Name="@Item.Name"
+                        Type="@Item.Type"
                         Rarity="Item.Header.Rarity"
-                        Game="Item.Header.Game"
+                        Game="Item.Game"
                         Influences="Item.Properties.Influences"/>
 
             <AppFullContainer>
@@ -76,9 +76,9 @@
         }
     </LeftContent>
     <ChildContent>
-        @if (Item?.Header.Game == GameType.PathOfExile)
+        @if (Item?.Game == GameType.PathOfExile)
         {
-            <PoeWikiMapInfo Type="@Item.Invariant?.Type" Name="@Item.Invariant?.Name"/>
+            <PoeWikiMapInfo Type="@Item.Invariant?.ApiType" Name="@Item.Invariant?.ApiName"/>
         }
     </ChildContent>
 </LayoutTwoColumn>
@@ -94,6 +94,9 @@
 
     [Parameter]
     public required string ItemText { get; set; }
+
+    [Parameter]
+    public required string AdvancedText { get; set; }
 
     private List<string> DangerousMods { get; } =
     [
@@ -138,7 +141,8 @@
     private async Task UpdateOverlay()
     {
         var itemText = ItemText.DecodeBase64Url();
-        Item = ItemParser.ParseItem(itemText);
+        var advancedText = AdvancedText.DecodeBase64Url();
+        Item = ItemParser.ParseItem(itemText, advancedText);
 
         if (Item.Header.Category != Category.Map && Item.Header.Category != Category.Contract && Item.Header.Category != Category.Logbook)
         {

@@ -21,14 +21,14 @@ public class BlockChanceProperty(IGameLanguageProvider gameLanguageProvider, Gam
 
     public override List<Category> ValidCategories { get; } = [Category.Armour];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        var propertyBlock = parsingItem.Blocks[1];
-        itemProperties.BlockChance = GetInt(Pattern, propertyBlock);
-        if (itemProperties.BlockChance == 0) return;
+        var propertyBlock = item.Text.Blocks[1];
+        item.Properties.BlockChance = GetInt(Pattern, propertyBlock);
+        if (item.Properties.BlockChance == 0) return;
 
         propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.BlockChance));
+        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.BlockChance));
     }
 
     public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)

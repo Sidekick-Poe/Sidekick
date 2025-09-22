@@ -36,7 +36,6 @@ public static class StartupExtensions
         services.AddSingleton<IBulkTradeService, BulkTradeService>();
         services.AddSingleton<IModifierParser, ModifierParser>();
         services.AddSingleton<IFuzzyService, FuzzyService>();
-        services.AddSingleton<ITradeFilterService, TradeFilterService>();
 
         services.AddSingleton<IRequirementsParser, RequirementsParser>();
         services.AddSidekickInitializableService<IItemParser, ItemParser>();
@@ -50,7 +49,6 @@ public static class StartupExtensions
         services.AddSidekickInitializableService<IFilterProvider, FilterProvider>();
         services.AddSidekickInitializableService<IInvariantFilterProvider, InvariantFilterProvider>();
         services.AddSidekickInitializableService<IHeaderParser, HeaderParser>();
-        services.AddSidekickInitializableService<IItemClassParser, ItemClassParser>();
 
         return services;
     }

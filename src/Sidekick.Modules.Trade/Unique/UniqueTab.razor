@@ -2,7 +2,7 @@
 @using Sidekick.Modules.Trade.Unique.Localization
 @using Sidekick.Common.Ui.Tabs
 
-@if (Item.Header.Rarity == Rarity.Unique && Item.Header.Game == GameType.PathOfExile2)
+@if (Item.Header.Rarity == Rarity.Unique && Item.Game == GameType.PathOfExile2)
 {
     <TabItem Active="@(CurrentTab == "unique")"
              Text="@Resources["UniquePrice"]"

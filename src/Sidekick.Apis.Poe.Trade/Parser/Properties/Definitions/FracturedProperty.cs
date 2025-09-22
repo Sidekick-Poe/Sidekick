@@ -14,7 +14,7 @@ public class FracturedProperty(IServiceProvider serviceProvider) : PropertyDefin
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
     }
 

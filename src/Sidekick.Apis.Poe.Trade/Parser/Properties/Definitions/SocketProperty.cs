@@ -21,9 +21,9 @@ public class SocketProperty
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Gem];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        if (!parsingItem.TryParseRegex(Pattern, out var match))
+        if (!item.Text.TryParseRegex(Pattern, out var match))
         {
             return;
         }
@@ -99,7 +99,7 @@ public class SocketProperty
             }
         }
 
-        itemProperties.Sockets = result;
+        item.Properties.Sockets = result;
     }
 
     public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)

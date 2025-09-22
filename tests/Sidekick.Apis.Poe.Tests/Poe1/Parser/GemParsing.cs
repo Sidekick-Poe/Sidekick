@@ -58,7 +58,7 @@ Note: ~price 2 chaos
         Assert.Equal(ItemClass.ActiveGem, actual.Header.ItemClass);
         Assert.Equal(Category.Gem, actual.Header.Category);
         Assert.Equal(Rarity.Gem, actual.Header.Rarity);
-        Assert.Equal("Vaal Double Strike", actual.Header.ApiType);
+         Assert.Equal("Vaal Double Strike", actual.Header.ApiType);
         Assert.Equal(1, actual.Properties.GemLevel);
         Assert.Equal(0, actual.Properties.Quality);
         Assert.True(actual.Properties.Corrupted);

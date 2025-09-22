@@ -83,7 +83,7 @@ else if (Price != null)
         if (ItemId == Item.Id) return;
         ItemId = Item.Id;
 
-        if (Item.Header.Game == GameType.PathOfExile2)
+        if (Item.Game == GameType.PathOfExile2)
         {
             return;
         }
@@ -106,7 +106,7 @@ else if (Price != null)
         }
         else
         {
-            Price = await Client.GetPriceInfo(Item.Invariant?.Name, Item.Invariant?.Type, Item.Header.Category, gemLevel: Item.Properties.GemLevel, mapTier: Item.Properties.MapTier, numberOfLinks: Item.Properties.GetMaximumNumberOfLinks());
+            Price = await Client.GetPriceInfo(Item.Invariant?.ApiName, Item.Invariant?.ApiType, Item.Header.Category, gemLevel: Item.Properties.GemLevel, mapTier: Item.Properties.MapTier, numberOfLinks: Item.Properties.GetMaximumNumberOfLinks());
         }
 
         if (Price?.SparkLine?.Data.All(x => x.HasValue) == true)

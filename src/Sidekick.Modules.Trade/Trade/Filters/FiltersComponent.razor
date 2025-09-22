@@ -1,10 +1,11 @@
 @using Sidekick.Apis.Poe.Items
-@using Sidekick.Apis.Poe.Trade
 @using Sidekick.Apis.Poe.Trade.Bulk
+@using Sidekick.Apis.Poe.Trade.Parser.Modifiers
+@using Sidekick.Apis.Poe.Trade.Parser.Modifiers.Filters
 @using Sidekick.Apis.Poe.Trade.Parser.Properties
 @using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters
+@using Sidekick.Apis.Poe.Trade.Parser.Pseudo
 @using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters
-@using Sidekick.Apis.Poe.Trade.Trade.Filters
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.PoeNinja
@@ -19,10 +20,10 @@
 
 <div class="flex flex-col h-full">
     <div>
-        <ItemHeader Name="@Item.Header.Name"
-                    Type="@Item.Header.Type"
+        <ItemHeader Name="@Item.Name"
+                    Type="@Item.Type"
                     Rarity="Item.Header.Rarity"
-                    Game="Item.Header.Game"
+                    Game="Item.Game"
                     Influences="Item.Properties.Influences"/>
     </div>
 
@@ -76,9 +77,10 @@
 @inject IStringLocalizer<TradeResources> Resources
 @inject IBulkTradeService BulkTradeService
 @inject TradeService TradeService
-@inject ITradeFilterService TradeFilterService
 @inject ISettingsService SettingsService
 @inject IPropertyParser PropertyParser
+@inject IModifierParser ModifierParser
+@inject IPseudoParser PseudoParser
 
 @code {
 
@@ -94,8 +96,8 @@
     protected override async Task OnParametersSetAsync()
     {
         PropertyFilters = await PropertyParser.GetFilters(Item);
-        ModifierFilters = await TradeFilterService.GetModifierFilters(Item);
-        PseudoFilters = TradeFilterService.GetPseudoModifierFilters(Item).ToList();
+        ModifierFilters = await ModifierParser.GetFilters(Item);
+        PseudoFilters = PseudoParser.GetFilters(Item);
 
         var automaticallyPriceCheckSettingKey = Item.Header.Rarity == Rarity.Currency ?
             SettingKeys.PriceCheckAutomaticallySearchCurrency :

@@ -3,7 +3,7 @@
 @using Sidekick.Modules.Trade.Exchange.Localization
 @using Sidekick.Common.Ui.Tabs
 
-@if (SupportsCurrencyExchange && Item.Header.Game == GameType.PathOfExile2)
+@if (SupportsCurrencyExchange && Item.Game == GameType.PathOfExile2)
 {
     <TabItem Active="@(CurrentTab == "exchange")"
              Text="@Resources["CurrencyExchange"]"

@@ -20,10 +20,7 @@ public class ApiItem
     public string? Id { get; set; }
 
     [JsonIgnore]
-    public GameType Game { get; set; }
-
-    [JsonIgnore]
-    public Category? Category { get; set; }
+    public Category Category { get; set; }
 
     [JsonIgnore]
     public bool IsUnique => Flags?.Unique ?? false;
@@ -32,23 +29,20 @@ public class ApiItem
     {
         var categoryRarity = Category switch
         {
-            Poe.Items.Category.DivinationCard => Rarity.DivinationCard,
-            Poe.Items.Category.Gem => Rarity.Gem,
-            Poe.Items.Category.Currency => Rarity.Currency,
+            Category.DivinationCard => Rarity.DivinationCard,
+            Category.Gem => Rarity.Gem,
+            Category.Currency => Rarity.Currency,
             _ => Rarity.Unknown
         };
 
         return new ItemHeader()
         {
-            Name = Name,
-            Type = Type,
             ApiItemId = Id ?? string.Empty,
             ApiName = Name,
             ApiType = Type,
             ApiDiscriminator = Discriminator,
             ApiText = Text,
-            Game = Game,
-            Category = Category ?? Poe.Items.Category.Unknown,
+            Category = Category,
             Rarity = IsUnique ? Rarity.Unique : categoryRarity,
         };
     }

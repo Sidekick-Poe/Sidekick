@@ -28,7 +28,6 @@ public class ParserFixture : IAsyncLifetime
     public IGameLanguageProvider GameLanguageProvider { get; private set; } = null!;
     public IFilterProvider FilterProvider { get; private set; } = null!;
     public IPropertyParser PropertyParser { get; private set; } = null!;
-    public ITradeFilterService TradeFilterService { get; private set; } = null!;
     public ISettingsService SettingsService { get; private set; } = null!;
     public IModifierProvider ModifierProvider { get; private set; } = null!;
     private TestContext TestContext { get; set; } = null!;
@@ -69,7 +68,6 @@ public class ParserFixture : IAsyncLifetime
         GameLanguageProvider = TestContext.Services.GetRequiredService<IGameLanguageProvider>();
         PropertyParser = TestContext.Services.GetRequiredService<IPropertyParser>();
         FilterProvider = TestContext.Services.GetRequiredService<IFilterProvider>();
-        TradeFilterService = TestContext.Services.GetRequiredService<ITradeFilterService>();
         ModifierProvider = TestContext.Services.GetRequiredService<IModifierProvider>();
     }
 

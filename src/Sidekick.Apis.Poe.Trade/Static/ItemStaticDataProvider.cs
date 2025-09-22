@@ -6,7 +6,6 @@ using Sidekick.Apis.Poe.Trade.Static.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Static;
@@ -70,9 +69,9 @@ public class ItemStaticDataProvider
         return ByIds.GetValueOrDefault(id);
     }
 
-    public StaticItem? Get(ItemHeader itemHeader)
+    public StaticItem? Get(Item item)
     {
-        var text = itemHeader.Name ?? itemHeader.Type ?? itemHeader.ApiType;
+        var text = item.Name ?? item.Type ?? item.Header.ApiType;
         if (text == null) return null;
 
         return ByTexts.GetValueOrDefault(text);

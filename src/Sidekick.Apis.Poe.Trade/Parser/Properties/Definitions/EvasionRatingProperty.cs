@@ -17,14 +17,14 @@ public class EvasionRatingProperty(IGameLanguageProvider gameLanguageProvider, G
 
     public override List<Category> ValidCategories { get; } = [Category.Armour];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        var propertyBlock = parsingItem.Blocks[1];
-        itemProperties.EvasionRating = GetInt(Pattern, propertyBlock);
-        if (itemProperties.EvasionRating == 0) return;
+        var propertyBlock = item.Text.Blocks[1];
+        item.Properties.EvasionRating = GetInt(Pattern, propertyBlock);
+        if (item.Properties.EvasionRating == 0) return;
 
         propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.EvasionRating));
+        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.EvasionRating));
     }
 
     public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)

@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Requirements;
@@ -7,9 +8,9 @@ public class RequirementsParser(IGameLanguageProvider gameLanguageProvider) : IR
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionRequirements.ToRegexLine();
 
-    public void Parse(ParsingItem parsingItem)
+    public void Parse(TextItem textItem)
     {
-        foreach (var block in parsingItem.Blocks.Where(x => !x.Parsed))
+        foreach (var block in textItem.Blocks.Where(x => !x.Parsed))
         {
             if (!block.TryParseRegex(Pattern, out _))
             {

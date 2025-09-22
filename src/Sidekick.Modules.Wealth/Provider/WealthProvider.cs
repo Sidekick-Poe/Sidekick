@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Account.Stash;
 using Sidekick.Apis.Poe.Account.Stash.Models;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Items;
 using Sidekick.Apis.Poe.Trade.Models.Items;
 using Sidekick.Apis.PoeNinja;
@@ -178,7 +179,7 @@ internal class WealthProvider
             MapTier = item.MapTier,
             MaxLinks = item.MaxLinks,
             Name = name,
-            Category = invariantItem.Category.Value.ToString(),
+            Category = invariantItem.Category.ToString(),
             StashId = stash.Id,
             Price = await GetItemPrice(invariantItem, item),
         };
@@ -190,7 +191,7 @@ internal class WealthProvider
 
     private async Task<decimal> GetItemPrice(Apis.Poe.Trade.Items.Models.ApiItem invariantItem, ApiItem item)
     {
-        if (invariantItem.Category == null)
+        if (invariantItem.Category == Category.Unknown)
         {
             logger.LogError($"[WealthProvider] Could not price due to missing category: {item.Name}.");
             return 0;
@@ -198,7 +199,7 @@ internal class WealthProvider
 
         var price = await poeNinjaClient.GetPriceInfo(invariantItem.Name,
                                                       invariantItem.Type,
-                                                      invariantItem.Category.Value,
+                                                      invariantItem.Category,
                                                       item.GemLevel,
                                                       item.MapTier,
                                                       item.IsRelic,

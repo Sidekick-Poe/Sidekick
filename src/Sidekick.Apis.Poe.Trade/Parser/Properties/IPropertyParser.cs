@@ -7,9 +7,9 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
 
 public interface IPropertyParser : IInitializableService
 {
-    ItemProperties Parse(ParsingItem parsingItem, ItemHeader header);
+    void Parse(Item item);
 
-    void ParseAfterModifiers(Item item, ParsingItem parsingItem);
+    void ParseAfterModifiers(Item item);
 
     Task<List<PropertyFilter>> GetFilters(Item item);
 

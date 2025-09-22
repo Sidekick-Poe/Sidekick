@@ -37,16 +37,16 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
 
     public override List<Category> ValidCategories { get; } = [];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        if (header.Rarity != Rarity.Unknown) return;
+        if (item.Header.Rarity != Rarity.Unknown) return;
 
         foreach (var pattern in RarityPatterns)
         {
-            if (!pattern.Value.IsMatch(parsingItem.Blocks[0].Lines[1].Text)) continue;
+            if (!pattern.Value.IsMatch(item.Text.Blocks[0].Lines[1].Text)) continue;
 
-            parsingItem.Blocks[0].Lines[1].Parsed = true;
-            header.Rarity = pattern.Key;
+            item.Text.Blocks[0].Lines[1].Parsed = true;
+            item.Header.Rarity = pattern.Key;
             return;
         }
     }

@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
+using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Items;
@@ -9,6 +10,7 @@ using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 using Sidekick.Apis.Poe.Trade.Parser.Requirements;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser;
 
@@ -21,64 +23,59 @@ public class ItemParser
     IApiInvariantItemProvider apiInvariantItemProvider,
     IPropertyParser propertyParser,
     IGameLanguageProvider gameLanguageProvider,
-    IHeaderParser headerParser
+    IHeaderParser headerParser,
+    ISettingsService settingsService
 ) : IItemParser
 {
     private Regex? UnusablePattern { get; set; }
 
     public int Priority => 100;
 
-    public Task Initialize()
+    private GameType Game { get; set; }
+
+    public async Task Initialize()
     {
         var unusableRegex = Regex.Escape(gameLanguageProvider.Language.DescriptionUnusable);
-        unusableRegex += @"[\n\r]+" + ParsingItem.SeparatorPattern + @"[\n\r]+";
+        unusableRegex += @"[\n\r]+" + TextItem.SeparatorPattern + @"[\n\r]+";
         UnusablePattern = new Regex(unusableRegex, RegexOptions.Compiled);
-
-        return Task.CompletedTask;
+        Game = await settingsService.GetGame();
     }
 
-    public Item ParseItem(string? itemText)
+    public Item ParseItem(string? text, string? advancedText = null)
     {
-        if (string.IsNullOrEmpty(itemText))
+        if (string.IsNullOrEmpty(text))
         {
-            throw new UnparsableException(itemText);
+            throw new UnparsableException(text);
         }
 
         try
         {
-            itemText = RemoveUnusableLine(itemText);
-            var parsingItem = new ParsingItem(itemText);
-            var header = headerParser.Parse(parsingItem);
+            text = RemoveUnusableLine(text);
+            var item = new Item(Game, text, advancedText);
 
-            ItemHeader? invariant = null;
-            if (header.ApiItemId != null && apiInvariantItemProvider.IdDictionary.TryGetValue(header.ApiItemId, out var invariantMetadata))
+            headerParser.Parse(item);
+
+            if (item.Header.ApiItemId != null && apiInvariantItemProvider.IdDictionary.TryGetValue(item.Header.ApiItemId, out var invariantMetadata))
             {
-                invariant = invariantMetadata.ToHeader();
+                item.Invariant = invariantMetadata.ToHeader();
             }
 
             // Order of parsing is important
-            requirementsParser.Parse(parsingItem);
-            var properties = propertyParser.Parse(parsingItem, header);
-            var modifierLines = modifierParser.Parse(parsingItem, header);
+            requirementsParser.Parse(item.Text);
 
-            var item = new Item()
-            {
-                Invariant = invariant,
-                Header = header,
-                Properties = properties,
-                ModifierLines = modifierLines,
-                Text = parsingItem.Text,
-            };
+            propertyParser.Parse(item);
+            modifierParser.Parse(item);
+            propertyParser.ParseAfterModifiers(item);
+            pseudoParser.Parse(item);
 
-            propertyParser.ParseAfterModifiers(item, parsingItem);
-            item.PseudoModifiers = pseudoParser.Parse(modifierLines);
+            headerParser.Parse(item);
 
             return item;
         }
         catch (Exception e)
         {
             logger.LogWarning(e, "Could not parse item.");
-            throw new UnparsableException(itemText);
+            throw new UnparsableException(text);
         }
     }
 

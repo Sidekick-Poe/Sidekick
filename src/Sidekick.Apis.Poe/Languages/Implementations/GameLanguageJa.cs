@@ -1,5 +1,3 @@
-
-using Romanization;
 namespace Sidekick.Apis.Poe.Languages.Implementations;
 
 [GameLanguage("Japanese", "ja")]
@@ -138,22 +136,5 @@ public class GameLanguageJa : IGameLanguage
         Corpses = "死体",
         SanctumResearch = "サンクタム調査書",
     };
-
-    private static Japanese.KanjiReadings? Romanization { get; set; }
-
-    public string? GetFuzzyText(string? text)
-    {
-        Romanization ??= new Japanese.KanjiReadings();
-        try
-        {
-            text = Romanization.Process(text);
-        }
-        catch (Exception)
-        {
-            // Do nothing if the romanization fails.
-        }
-
-        return text;
-    }
 }
 

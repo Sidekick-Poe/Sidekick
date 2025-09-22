@@ -21,14 +21,14 @@ public class CriticalHitChanceProperty(IGameLanguageProvider gameLanguageProvide
 
     public override List<Category> ValidCategories { get; } = [Category.Weapon];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        var propertyBlock = parsingItem.Blocks[1];
-        itemProperties.CriticalHitChance = GetDouble(Pattern, propertyBlock);
-        if (itemProperties.CriticalHitChance == 0) return;
+        var propertyBlock = item.Text.Blocks[1];
+        item.Properties.CriticalHitChance = GetDouble(Pattern, propertyBlock);
+        if (item.Properties.CriticalHitChance == 0) return;
 
         propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.CriticalHitChance));
+        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.CriticalHitChance));
     }
 
     public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)

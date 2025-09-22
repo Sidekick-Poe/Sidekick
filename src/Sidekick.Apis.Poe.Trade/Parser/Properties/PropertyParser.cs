@@ -19,7 +19,6 @@ public class PropertyParser
     IGameLanguageProvider gameLanguageProvider,
     IApiItemProvider apiItemProvider,
     IFilterProvider filterProvider,
-    IApiInvariantItemProvider apiInvariantItemProvider,
     ISettingsService settingsService,
     IStringLocalizer<PoeResources> resources,
     IInvariantModifierProvider invariantModifierProvider
@@ -35,7 +34,7 @@ public class PropertyParser
 
         Definitions.Clear();
         Definitions.AddRange([
-            new ItemClassProperty(gameLanguageProvider, serviceProvider),
+            new ItemClassProperty(game, serviceProvider),
             new RarityProperty(gameLanguageProvider),
 
             new SeparatorProperty(),
@@ -63,7 +62,7 @@ public class PropertyParser
 
             new SeparatorProperty(),
 
-            new GemLevelProperty(gameLanguageProvider, apiInvariantItemProvider),
+            new GemLevelProperty(gameLanguageProvider),
             new ItemLevelProperty(gameLanguageProvider, game),
             new SocketProperty(gameLanguageProvider, game, resources),
 
@@ -87,26 +86,23 @@ public class PropertyParser
         ]);
     }
 
-    public ItemProperties Parse(ParsingItem parsingItem, ItemHeader header)
-    {
-        var properties = new ItemProperties();
-        foreach (var definition in Definitions)
-        {
-            if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(header.Category)) continue;
-
-            definition.Parse(properties, parsingItem, header);
-        }
-
-        return properties;
-    }
-
-    public void ParseAfterModifiers(Item item, ParsingItem parsingItem)
+    public void Parse(Item item)
     {
         foreach (var definition in Definitions)
         {
             if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(item.Header.Category)) continue;
 
-            definition.ParseAfterModifiers(item, parsingItem);
+            definition.Parse(item);
+        }
+    }
+
+    public void ParseAfterModifiers(Item item)
+    {
+        foreach (var definition in Definitions)
+        {
+            if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(item.Header.Category)) continue;
+
+            definition.ParseAfterModifiers(item);
         }
     }
 

@@ -21,15 +21,15 @@ public class SpiritProperty
 
     public override List<Category> ValidCategories { get; } = [Category.Weapon, Category.Armour];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
         if(game == GameType.PathOfExile) return;
-        var propertyBlock = parsingItem.Blocks[1];
-        itemProperties.Spirit = GetInt(Pattern, propertyBlock);
-        if (itemProperties.Spirit == 0) return;
+        var propertyBlock = item.Text.Blocks[1];
+        item.Properties.Spirit = GetInt(Pattern, propertyBlock);
+        if (item.Properties.Spirit == 0) return;
 
         propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.Spirit));
+        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.Spirit));
     }
 
     public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)

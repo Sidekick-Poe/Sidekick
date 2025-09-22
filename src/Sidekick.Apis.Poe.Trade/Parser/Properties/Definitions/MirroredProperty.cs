@@ -14,7 +14,7 @@ public class MirroredProperty(IServiceProvider serviceProvider) : PropertyDefini
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
     }
 

@@ -17,14 +17,14 @@ public class ItemQuantityProperty(IGameLanguageProvider gameLanguageProvider) : 
 
     public override List<Category> ValidCategories { get; } = [Category.Map, Category.Contract, Category.Logbook];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        var propertyBlock = parsingItem.Blocks[1];
-        itemProperties.ItemQuantity = GetInt(Pattern, propertyBlock);
-        if (itemProperties.ItemQuantity == 0) return;
+        var propertyBlock = item.Text.Blocks[1];
+        item.Properties.ItemQuantity = GetInt(Pattern, propertyBlock);
+        if (item.Properties.ItemQuantity == 0) return;
 
         propertyBlock.Parsed = true;
-        if (GetBool(IsAugmentedPattern, propertyBlock)) itemProperties.AugmentedProperties.Add(nameof(ItemProperties.ItemQuantity));
+        if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.ItemQuantity));
     }
 
     public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)

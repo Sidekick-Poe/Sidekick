@@ -2,36 +2,30 @@ namespace Sidekick.Apis.Poe.Items;
 
 public class ItemHeader
 {
-    public string? Name { get; set; }
-
-    public string? Type { get; set; }
-
     public Rarity Rarity { get; set; } = Rarity.Unknown;
 
-    public Category Category { get; init; } = Category.Unknown;
-
-    public GameType Game { get; init; } = GameType.Unknown;
+    public Category Category { get; set; } = Category.Unknown;
 
     public ItemClass ItemClass { get; set; }
 
-    public string? ApiItemId { get; init; }
+    public string? ApiItemId { get; set; }
 
-    public string? ApiName { get; init; }
+    public string? ApiName { get; set; }
 
-    public string? ApiType { get; init; }
+    public string? ApiType { get; set; }
 
-    public string? ApiDiscriminator { get; init; }
+    public string? ApiDiscriminator { get; set; }
 
-    public string? ApiText { get; init; }
+    public string? ApiText { get; set; }
 
     /// <inheritdoc />
     public override string? ToString()
     {
-        if (!string.IsNullOrEmpty(Type) && !string.IsNullOrEmpty(Name))
+        if (!string.IsNullOrEmpty(ApiType) && !string.IsNullOrEmpty(ApiName))
         {
-            return $"{Type} - {Name}";
+            return $"{ApiType} - {ApiName}";
         }
 
-        return !string.IsNullOrEmpty(Type) ? Type : Name;
+        return !string.IsNullOrEmpty(ApiType) ? ApiType : ApiName;
     }
 }

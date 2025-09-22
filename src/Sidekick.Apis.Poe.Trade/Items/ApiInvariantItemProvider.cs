@@ -49,13 +49,13 @@ public class ApiInvariantItemProvider
         };
         foreach (var category in categories)
         {
-            FillCategoryItems(game, result.Result, category.Key, category.Value.Category);
+            FillCategoryItems(result.Result, category.Key, category.Value.Category);
         }
 
         InitializeUncutGemIds();
     }
 
-    private void FillCategoryItems(GameType game, List<ApiCategory> categories, string categoryId, Category category)
+    private void FillCategoryItems(List<ApiCategory> categories, string categoryId, Category category)
     {
         var categoryItems = categories.SingleOrDefault(x => x.Id == categoryId);
         if (categoryItems == null)
@@ -68,7 +68,6 @@ public class ApiInvariantItemProvider
         {
             var entry = categoryItems.Entries[i];
             entry.Id = $"{categoryId}.{i}";
-            entry.Game = game;
             entry.Category = category;
             IdDictionary.Add(entry.Id, entry);
             NameDictionary.TryAdd(entry.Name ?? entry.Type ?? "", entry);

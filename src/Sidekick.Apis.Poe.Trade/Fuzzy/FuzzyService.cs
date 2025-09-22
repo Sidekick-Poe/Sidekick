@@ -3,7 +3,7 @@ using Sidekick.Apis.Poe.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Fuzzy;
 
-public class FuzzyService(IGameLanguageProvider gameLanguageProvider) : IFuzzyService
+public class FuzzyService : IFuzzyService
 {
     private readonly Regex cleanFuzzyPattern = new("[-+0-9%#]");
     private readonly Regex trimPattern = new(@"\s+");
@@ -17,7 +17,6 @@ public class FuzzyService(IGameLanguageProvider gameLanguageProvider) : IFuzzySe
 
         text = cleanFuzzyPattern.Replace(text, string.Empty);
         text = trimPattern.Replace(text, " ").Trim();
-        text = gameLanguageProvider.Language.GetFuzzyText(text) ?? string.Empty;
         return text;
     }
 

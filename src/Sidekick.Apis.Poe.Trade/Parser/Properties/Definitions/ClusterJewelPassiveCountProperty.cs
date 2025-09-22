@@ -9,7 +9,7 @@ public class ClusterJewelPassiveCountProperty(IServiceProvider serviceProvider, 
 
     public override List<Category> ValidCategories { get; } = [Category.Jewel];
 
-    public override void ParseAfterModifiers(Item item, ParsingItem parsingItem)
+    public override void ParseAfterModifiers(Item item)
     {
         if (game == GameType.PathOfExile2) return;
         if (item.Header.Rarity == Rarity.Unique) return;

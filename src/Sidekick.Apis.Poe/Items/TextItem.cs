@@ -1,14 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Trade.Modifiers;
+using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Trade.Parser.Tokenizers;
-
-namespace Sidekick.Apis.Poe.Trade.Parser;
+namespace Sidekick.Apis.Poe.Items;
 
 /// <summary>
 /// Stores data about the state of the parsing process for the item
 /// </summary>
-public class ParsingItem
+public class TextItem
 {
     public const string SeparatorPattern = "--------";
 
@@ -16,17 +15,17 @@ public class ParsingItem
     /// Stores data about the state of the parsing process for the item
     /// </summary>
     /// <param name="text">The original text of the item</param>
-    public ParsingItem(string text)
+    public TextItem(string text)
     {
         Text = new ItemNameTokenizer().CleanString(text);
-        Text = ModifierProvider.RemoveSquareBrackets(Text);
-        Blocks = Text.Split(SeparatorPattern, StringSplitOptions.RemoveEmptyEntries).Select((x, blockIndex) => new ParsingBlock(x.Trim('\r', '\n'), blockIndex)).ToList();
+        Text = Text.RemoveSquareBrackets();
+        Blocks = Text.Split(SeparatorPattern, StringSplitOptions.RemoveEmptyEntries).Select((x, blockIndex) => new TextBlock(x.Trim('\r', '\n'), blockIndex)).ToList();
     }
 
     /// <summary>
     /// Item sections seperated by dashes when copying an item in-game.
     /// </summary>
-    public List<ParsingBlock> Blocks { get; }
+    public List<TextBlock> Blocks { get; }
 
     /// <summary>
     /// The original text of the item

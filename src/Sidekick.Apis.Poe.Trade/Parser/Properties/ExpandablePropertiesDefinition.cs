@@ -15,19 +15,19 @@ public class ExpandablePropertiesDefinition
 
     public override List<Category> ValidCategories => Definitions.SelectMany(x => x.ValidCategories).Distinct().ToList();
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
         foreach (var definition in Definitions)
         {
-            definition.Parse(itemProperties, parsingItem, header);
+            definition.Parse(item);
         }
     }
 
-    public override void ParseAfterModifiers(Item item, ParsingItem parsingItem)
+    public override void ParseAfterModifiers(Item item)
     {
         foreach (var definition in Definitions)
         {
-            definition.ParseAfterModifiers(item, parsingItem);
+            definition.ParseAfterModifiers(item);
         }
     }
 

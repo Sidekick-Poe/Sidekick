@@ -14,9 +14,9 @@ public class UnidentifiedProperty(IGameLanguageProvider gameLanguageProvider) : 
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Flask, Category.Map, Category.Contract, Category.Accessory, Category.Jewel];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        itemProperties.Unidentified = GetBool(Pattern, parsingItem);
+        item.Properties.Unidentified = GetBool(Pattern, item.Text);
     }
 
     public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)

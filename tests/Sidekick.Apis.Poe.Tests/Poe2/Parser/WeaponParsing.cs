@@ -125,7 +125,7 @@ Grants 3 Life per Enemy Hit
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Bleak Crossbow", actual.Header.ApiType);
-        Assert.Equal("Blood Core", actual.Header.Name);
+        Assert.Equal("Blood Core", actual.Name);
 
         // Verify physical damage
         Assert.Equal(23, actual.Properties.PhysicalDamage?.Min);
@@ -269,7 +269,7 @@ Grants 3 Life per Enemy Hit
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Forked Spear", actual.Header.ApiType);
-        Assert.Equal("Hypnotic Edge", actual.Header.Name);
+        Assert.Equal("Hypnotic Edge", actual.Name);
 
         // Verify physical damage
         Assert.Equal(31, actual.Properties.PhysicalDamage?.Min);
@@ -326,7 +326,7 @@ Corrupted
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Slicing Quarterstaff", actual.Header.ApiType);
-        Assert.Equal("Kraken Pillar", actual.Header.Name);
+        Assert.Equal("Kraken Pillar", actual.Name);
 
         // Verify physical damage
         Assert.Equal(45, actual.Properties.PhysicalDamage?.Min);
@@ -387,7 +387,7 @@ Note: ~price 1 mirror");
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Header.Rarity);
         Assert.Equal("Siege Crossbow", actual.Header.ApiType);
-        Assert.Equal("Dragon Core", actual.Header.Name);
+        Assert.Equal("Dragon Core", actual.Name);
 
         // Verify physical damage
         Assert.Equal(414, actual.Properties.PhysicalDamage?.Min);
