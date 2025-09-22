@@ -182,6 +182,8 @@ public class ItemClassProperty : PropertyDefinition
 
     public override void Parse(Item item)
     {
+        if (item.Properties.ItemClass != ItemClass.Unknown) return;
+
         var line = item.Text.Blocks[0].Lines[0].Text;
         item.Text.Blocks[0].Lines[0].Parsed = true;
 

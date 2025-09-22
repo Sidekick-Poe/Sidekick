@@ -68,8 +68,6 @@ public class ItemParser
             propertyParser.ParseAfterModifiers(item);
             pseudoParser.Parse(item);
 
-            headerParser.Parse(item);
-
             return item;
         }
         catch (Exception e)

@@ -9,6 +9,7 @@ using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
@@ -84,6 +85,12 @@ public class PropertyParser
 
             new ClusterJewelPassiveCountProperty(serviceProvider, game),
         ]);
+    }
+
+    public TDefinition GetDefinition<TDefinition>() where TDefinition : PropertyDefinition
+    {
+        return Definitions.OfType<TDefinition>().FirstOrDefault()
+            ?? throw new SidekickException($"Could not find definition of type {typeof(TDefinition).FullName}");
     }
 
     public void Parse(Item item)

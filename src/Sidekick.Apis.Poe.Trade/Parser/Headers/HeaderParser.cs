@@ -3,6 +3,8 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Items;
 using Sidekick.Apis.Poe.Trade.Items.Models;
+using Sidekick.Apis.Poe.Trade.Parser.Properties;
+using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Common.Exceptions;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Headers;
@@ -11,7 +13,8 @@ public class HeaderParser
 (
     IGameLanguageProvider gameLanguageProvider,
     IApiItemProvider apiItemProvider,
-    IApiInvariantItemProvider apiInvariantItemProvider
+    IApiInvariantItemProvider apiInvariantItemProvider,
+    IPropertyParser propertyParser
 ) : IHeaderParser
 {
     public int Priority => 200;
@@ -46,6 +49,8 @@ public class HeaderParser
 
     public void Parse(Item item)
     {
+        propertyParser.GetDefinition<ItemClassProperty>().Parse(item);
+
         var apiItem = GetApiItem(item);
         if (apiItem != null)
         {
