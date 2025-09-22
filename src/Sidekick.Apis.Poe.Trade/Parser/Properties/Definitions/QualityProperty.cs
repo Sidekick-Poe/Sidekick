@@ -39,7 +39,7 @@ public class QualityProperty(IGameLanguageProvider gameLanguageProvider) : Prope
             Value = item.Properties.Quality,
             ValuePrefix = "+",
             ValueSuffix = "%",
-            Checked = item.Header.Rarity == Rarity.Gem,
+            Checked = item.Properties.Rarity == Rarity.Gem,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.Quality)) ? LineContentType.Augmented : LineContentType.Simple,
         };
         filter.ChangeFilterType(filterType);

@@ -28,7 +28,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree.Right click to re
 ");
 
         Assert.Equal(Category.Jewel, actual.Header.Category);
-        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Cobalt Jewel", actual.Header.ApiType);
         Assert.Equal("Blight Cut", actual.Name);
         Assert.Equal(68, actual.Properties.ItemLevel);
@@ -67,7 +67,7 @@ Note: ~b/o 1 chaos
 ");
 
         Assert.Equal(Category.Jewel, actual.Header.Category);
-        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Large Cluster Jewel", actual.Header.ApiType);
         Assert.Equal("Chimeric Sliver", actual.Name);
         Assert.Equal(69, actual.Properties.ItemLevel);
@@ -95,8 +95,8 @@ Item Level: 85
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-        Assert.Equal(ItemClass.Jewel, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal(Category.Jewel, actual.Header.Category);
         Assert.Equal("Viridian Jewel", actual.Header.ApiType);
     }
@@ -127,8 +127,8 @@ Faith given under false pretenses still carries the same power.
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-        Assert.Equal(ItemClass.Jewel, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+        Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal(Category.Jewel, actual.Header.Category);
         Assert.Equal("Crimson Jewel", actual.Header.ApiType);
 
@@ -163,8 +163,8 @@ and one by one, they became a part of it.
 Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
 ");
 
-        Assert.Equal(ItemClass.Jewel, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
+        Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal(Category.Jewel, actual.Header.Category);
         Assert.Equal("Prismatic Jewel", actual.Header.ApiType);
 

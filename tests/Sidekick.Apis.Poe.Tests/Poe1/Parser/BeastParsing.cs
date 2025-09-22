@@ -31,8 +31,8 @@ Aspect of the Hellion
 Right-click to add this to your bestiary.
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal(Category.ItemisedMonster, actual.Header.Category);
         Assert.Null(actual.Header.ApiName);
         Assert.Equal("Farric Flame Hellion Alpha", actual.Header.ApiType);
@@ -56,7 +56,7 @@ Cannot be fully Slowed
 Right-click to add this to your bestiary.");
 
         Assert.Equal(Category.ItemisedMonster, parsedRareBeast.Header.Category);
-        Assert.Equal(Rarity.Unique, parsedRareBeast.Header.Rarity);
+        Assert.Equal(Rarity.Unique, parsedRareBeast.Properties.Rarity);
         Assert.Equal("Saqawal, First of the Sky", parsedRareBeast.Header.ApiType);
         Assert.Null(parsedRareBeast.Header.ApiName);
     }
@@ -85,8 +85,8 @@ Summons Apes from Trees
 Right-click to add this to your bestiary.
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal(Category.ItemisedMonster, actual.Header.Category);
         Assert.Equal("Farric Chieftain", actual.Header.ApiType);
     }

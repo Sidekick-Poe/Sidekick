@@ -43,7 +43,6 @@ public class ApiItem
             ApiDiscriminator = Discriminator,
             ApiText = Text,
             Category = Category,
-            Rarity = IsUnique ? Rarity.Unique : categoryRarity,
         };
     }
 }

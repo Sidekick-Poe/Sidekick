@@ -35,7 +35,7 @@ public class BulkTradeService
 
     public bool SupportsBulkTrade(Item? item)
     {
-        return item?.Header.Rarity == Rarity.Currency && itemStaticDataProvider.Get(item) != null;
+        return item?.Properties.Rarity == Rarity.Currency && itemStaticDataProvider.Get(item) != null;
     }
 
     public async Task<BulkResponseModel> SearchBulk(Item item)

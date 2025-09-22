@@ -41,6 +41,8 @@ public class ModifierProvider
         var apiCategories = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<ApiCategory>(game, gameLanguageProvider.Language, "stats"), (cache) => cache.Result.Any());
         if (apiCategories == null) throw new SidekickException("Could not fetch modifiers from the trade API.");
 
+        Definitions.Clear();
+
         foreach (var apiCategory in apiCategories.Result)
         {
             var modifierCategory = GetModifierCategory(apiCategory.Entries[0].Id);

@@ -2,6 +2,10 @@ namespace Sidekick.Apis.Poe.Items;
 
 public class ItemProperties
 {
+    public Rarity Rarity { get; set; } = Rarity.Unknown;
+
+    public ItemClass ItemClass { get; set; }
+
     public bool Unidentified { get; set; }
 
     public int ItemLevel { get; set; }

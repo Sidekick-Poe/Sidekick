@@ -24,7 +24,7 @@ public class GemLevelProperty
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.GemLevel = GetInt(Pattern, propertyBlock);
 
-        if (item.Header.ItemClass is ItemClass.UncutSkillGem or ItemClass.UncutSupportGem or ItemClass.UncutSpiritGem)
+        if (item.Properties.ItemClass is ItemClass.UncutSkillGem or ItemClass.UncutSupportGem or ItemClass.UncutSpiritGem)
         {
             item.Properties.GemLevel = GetInt(IntCapture, item.Text.Blocks[0]);
         }

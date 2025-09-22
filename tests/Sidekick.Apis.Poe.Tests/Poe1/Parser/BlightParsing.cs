@@ -29,8 +29,8 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
 ");
 
         Assert.Equal(Category.Map, actual.Header.Category);
-        Assert.Equal(ItemClass.Map, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
+        Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Blighted Atoll Map", actual.Type);
         Assert.Equal("Blighted Atoll Map", actual.Header.ApiText);
         Assert.Equal("Atoll Map", actual.Header.ApiType);
@@ -61,8 +61,8 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
 ");
 
         Assert.Equal(Category.Map, actual.Header.Category);
-        Assert.Equal(ItemClass.Map, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
+        Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Blighted Shore Map", actual.Header.ApiText);
         Assert.Equal("Shore Map", actual.Header.ApiType);
         Assert.Equal("blighted", actual.Header.ApiDiscriminator);
@@ -86,8 +86,8 @@ Shift click to unstack.
 Note: ~price 1 blessed
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+        Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal(Category.Currency, actual.Header.Category);
         Assert.Equal("Clear Oil", actual.Header.ApiType);
     }
@@ -121,8 +121,8 @@ Players have 20% less Recovery Rate of Life and Energy Shield
 Travel to this Map by using it in a personal Map Device.Maps can only be used once.
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal("Blighted Spider Forest Map", actual.Header.ApiText);
         Assert.Equal("Spider Forest Map", actual.Header.ApiType);

@@ -12,7 +12,7 @@ public class ClusterJewelPassiveCountProperty(IServiceProvider serviceProvider, 
     public override void ParseAfterModifiers(Item item)
     {
         if (game == GameType.PathOfExile2) return;
-        if (item.Header.Rarity == Rarity.Unique) return;
+        if (item.Properties.Rarity == Rarity.Unique) return;
 
         var passiveCount = ParseSmallPassiveCount(item.ModifierLines);
         if (passiveCount != 0)

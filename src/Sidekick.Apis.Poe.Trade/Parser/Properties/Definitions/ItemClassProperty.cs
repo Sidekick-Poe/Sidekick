@@ -189,7 +189,7 @@ public class ItemClassProperty : PropertyDefinition
         {
             if (definition.Pattern?.IsMatch(line) ?? false)
             {
-                item.Header.ItemClass = definition.ItemClass;
+                item.Properties.ItemClass = definition.ItemClass;
                 return;
             }
         }
@@ -209,15 +209,15 @@ public class ItemClassProperty : PropertyDefinition
         };
         var apiItemCategoryId = Process.ExtractOne(categoryToMatch, ApiItemClassDefinitions.Value, x => x.FuzzyText, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
 
-        item.Header.ItemClass = apiItemCategoryId?.GetEnumFromValue<ItemClass>() ?? ItemClass.Unknown;
+        item.Properties.ItemClass = apiItemCategoryId?.GetEnumFromValue<ItemClass>() ?? ItemClass.Unknown;
     }
 
     public override async Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (item.Header.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal)) return null;
-        if (item.Header.ItemClass == ItemClass.Unknown) return null;
+        if (item.Properties.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal)) return null;
+        if (item.Properties.ItemClass == ItemClass.Unknown) return null;
 
-        var classLabel = filterProvider.TypeCategory?.Option.Options.FirstOrDefault(x => x.Id == item.Header.ItemClass.GetValueAttribute())?.Text;
+        var classLabel = filterProvider.TypeCategory?.Option.Options.FirstOrDefault(x => x.Id == item.Properties.ItemClass.GetValueAttribute())?.Text;
         if (classLabel == null || item.Header.ApiType == null) return null;
 
         var preferItemClass = await settingsService.GetEnum<DefaultItemClassFilter>(SettingKeys.PriceCheckItemClassFilter) ?? DefaultItemClassFilter.BaseType;
@@ -237,7 +237,7 @@ public class ItemClassProperty : PropertyDefinition
         if (!filter.Checked || filter is not ItemClassPropertyFilter) return;
 
         query.Type = null;
-        query.Filters.GetOrCreateTypeFilters().Filters.Category = GetCategoryFilter(item.Header.ItemClass);
+        query.Filters.GetOrCreateTypeFilters().Filters.Category = GetCategoryFilter(item.Properties.ItemClass);
     }
 
     private static SearchFilterOption? GetCategoryFilter(ItemClass itemClass)

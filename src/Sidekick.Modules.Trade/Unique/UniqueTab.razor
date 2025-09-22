@@ -2,7 +2,7 @@
 @using Sidekick.Modules.Trade.Unique.Localization
 @using Sidekick.Common.Ui.Tabs
 
-@if (Item.Header.Rarity == Rarity.Unique && Item.Game == GameType.PathOfExile2)
+@if (Item.Properties.Rarity == Rarity.Unique && Item.Game == GameType.PathOfExile2)
 {
     <TabItem Active="@(CurrentTab == "unique")"
              Text="@Resources["UniquePrice"]"
@@ -24,7 +24,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (Item.Header.Rarity == Rarity.Unique)
+        if (Item.Properties.Rarity == Rarity.Unique)
         {
              await CurrentTabChanged.InvokeAsync("unique");
         }

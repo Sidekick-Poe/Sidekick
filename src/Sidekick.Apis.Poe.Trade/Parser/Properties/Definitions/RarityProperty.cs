@@ -39,23 +39,23 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
 
     public override void Parse(Item item)
     {
-        if (item.Header.Rarity != Rarity.Unknown) return;
+        if (item.Properties.Rarity != Rarity.Unknown) return;
 
         foreach (var pattern in RarityPatterns)
         {
             if (!pattern.Value.IsMatch(item.Text.Blocks[0].Lines[1].Text)) continue;
 
             item.Text.Blocks[0].Lines[1].Parsed = true;
-            item.Header.Rarity = pattern.Key;
+            item.Properties.Rarity = pattern.Key;
             return;
         }
     }
 
     public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (item.Header.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal)) return Task.FromResult<PropertyFilter?>(null);
+        if (item.Properties.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal)) return Task.FromResult<PropertyFilter?>(null);
 
-        var rarityLabel = item.Header.Rarity switch
+        var rarityLabel = item.Properties.Rarity switch
         {
             Rarity.Currency => gameLanguageProvider.Language.RarityCurrency,
             Rarity.Normal => gameLanguageProvider.Language.RarityNormal,
@@ -77,7 +77,7 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
 
     public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
-        if (item.Header.Rarity == Rarity.Unique)
+        if (item.Properties.Rarity == Rarity.Unique)
         {
             query.Filters.GetOrCreateTypeFilters().Filters.Rarity = new SearchFilterOption("unique");
             return;
@@ -85,7 +85,7 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
 
         if (!filter.Checked || filter is not StringPropertyFilter) return;
 
-        var rarity = item.Header.Rarity switch
+        var rarity = item.Properties.Rarity switch
         {
             Rarity.Normal => "normal",
             Rarity.Magic => "magic",

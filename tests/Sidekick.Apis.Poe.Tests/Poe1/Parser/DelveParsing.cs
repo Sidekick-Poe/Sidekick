@@ -28,9 +28,9 @@ All sockets must be filled with Fossils before this item can be used.
 Note: ~price 1 chaos
 ");
 
-        Assert.Equal(ItemClass.Resonator, actual.Header.ItemClass);
+        Assert.Equal(ItemClass.Resonator, actual.Properties.ItemClass);
         Assert.Equal(Category.Currency, actual.Header.Category);
-        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Potent Chaotic Resonator", actual.Header.ApiType);
     }
 
@@ -53,8 +53,8 @@ All sockets must be filled with Fossils before this item can be used.
 Note: ~price 4 chaos
 ");
 
-        Assert.Equal(ItemClass.Resonator, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+        Assert.Equal(ItemClass.Resonator, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal(Category.Currency, actual.Header.Category);
         Assert.Equal("Powerful Chaotic Resonator", actual.Header.ApiType);
     }
@@ -74,8 +74,8 @@ No Tagless modifiers
 Place in a Resonator to influence item crafting.
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
+        Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal(Category.Currency, actual.Header.Category);
         Assert.Equal("Opulent Fossil", actual.Header.ApiType);
     }

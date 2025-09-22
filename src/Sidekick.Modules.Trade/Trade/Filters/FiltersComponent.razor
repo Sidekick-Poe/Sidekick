@@ -22,7 +22,7 @@
     <div>
         <ItemHeader Name="@Item.Name"
                     Type="@Item.Type"
-                    Rarity="Item.Header.Rarity"
+                    Rarity="Item.Properties.Rarity"
                     Game="Item.Game"
                     Influences="Item.Properties.Influences"/>
     </div>
@@ -46,7 +46,7 @@
 
         @if (PropertyFilters.Count > 0)
         {
-            <ItemSeparator Rarity="Item.Header.Rarity"/>
+            <ItemSeparator Rarity="Item.Properties.Rarity"/>
         }
 
         <ModifierFiltersComponent ModifierFilters="ModifierFilters"/>
@@ -99,7 +99,7 @@
         ModifierFilters = await ModifierParser.GetFilters(Item);
         PseudoFilters = PseudoParser.GetFilters(Item);
 
-        var automaticallyPriceCheckSettingKey = Item.Header.Rarity == Rarity.Currency ?
+        var automaticallyPriceCheckSettingKey = Item.Properties.Rarity == Rarity.Currency ?
             SettingKeys.PriceCheckAutomaticallySearchCurrency :
             SettingKeys.PriceCheckAutomaticallySearch;
         var automaticallyPriceCheck = await SettingsService.GetBool(automaticallyPriceCheckSettingKey);

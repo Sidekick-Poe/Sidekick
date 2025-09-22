@@ -29,7 +29,7 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
             NormalizeEnabled = false,
             NormalizeValue = normalizeValue,
             Value = item.Properties.ItemLevel,
-            Checked = game == GameType.PathOfExile && item.Properties.ItemLevel >= 80 && item.Properties.MapTier == 0 && item.Header.Rarity != Rarity.Unique,
+            Checked = game == GameType.PathOfExile && item.Properties.ItemLevel >= 80 && item.Properties.MapTier == 0 && item.Properties.Rarity != Rarity.Unique,
         };
         filter.ChangeFilterType(filterType);
         return Task.FromResult<PropertyFilter?>(filter);

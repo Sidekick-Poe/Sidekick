@@ -46,8 +46,8 @@ Monsters' skills Chain 2 additional times
 Take this item to Dannig in your Hideout to open portals to an expedition.
 ");
 
-        Assert.Equal(ItemClass.Logbook, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Magic, actual.Header.Rarity);
+        Assert.Equal(ItemClass.Logbook, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal(Category.Logbook, actual.Header.Category);
         Assert.Equal("Expedition Logbook", actual.Header.ApiType);
 
@@ -92,8 +92,8 @@ Monsters Hinder on Hit with Spells
 Take this item to Dannig in your Hideout to open portals to an expedition.
 ");
 
-        Assert.Equal(ItemClass.Logbook, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
+        Assert.Equal(ItemClass.Logbook, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal(Category.Logbook, actual.Header.Category);
         Assert.Equal("Expedition Logbook", actual.Header.ApiType);
 

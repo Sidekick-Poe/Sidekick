@@ -24,7 +24,7 @@
         {
             <ItemHeader Name="@Item.Name"
                         Type="@Item.Type"
-                        Rarity="Item.Header.Rarity"
+                        Rarity="Item.Properties.Rarity"
                         Game="Item.Game"
                         Influences="Item.Properties.Influences"/>
 
@@ -44,7 +44,7 @@
                     </Heading1>
                 }
 
-                <ItemSeparator Rarity="Item.Header.Rarity"/>
+                <ItemSeparator Rarity="Item.Properties.Rarity"/>
 
                 @foreach (var mod in DangerousMods)
                 {
@@ -59,7 +59,7 @@
 
                 @if (DangerousMods.Any() && OkMods.Any())
                 {
-                    <ItemSeparator Rarity="Item.Header.Rarity"/>
+                    <ItemSeparator Rarity="Item.Properties.Rarity"/>
                 }
 
                 @foreach (var mod in OkMods)

@@ -2,11 +2,7 @@ namespace Sidekick.Apis.Poe.Items;
 
 public class ItemHeader
 {
-    public Rarity Rarity { get; set; } = Rarity.Unknown;
-
     public Category Category { get; set; } = Category.Unknown;
-
-    public ItemClass ItemClass { get; set; }
 
     public string? ApiItemId { get; set; }
 

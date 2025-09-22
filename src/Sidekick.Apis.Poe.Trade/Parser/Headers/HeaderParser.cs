@@ -64,8 +64,8 @@ public class HeaderParser
             item.Header.ApiText = apiItem.Text;
             item.Header.Category = apiItem.Category;
 
-            if(apiItem.IsUnique) item.Header.Rarity = Rarity.Unique;
-            else if (categoryRarity != Rarity.Unknown) item.Header.Rarity = categoryRarity;
+            if(apiItem.IsUnique) item.Properties.Rarity = Rarity.Unique;
+            else if (categoryRarity != Rarity.Unknown) item.Properties.Rarity = categoryRarity;
         }
 
         if (string.IsNullOrEmpty(item.Header.ApiName) && string.IsNullOrEmpty(item.Header.ApiType))
@@ -80,23 +80,23 @@ public class HeaderParser
 
     private ApiItem? GetApiItem(Item item)
     {
-        if (item.Header.ItemClass == ItemClass.UncutSkillGem && apiItemProvider.IdDictionary.TryGetValue(apiInvariantItemProvider.UncutSkillGemId, out var uncutSkillGem))
+        if (item.Properties.ItemClass == ItemClass.UncutSkillGem && apiItemProvider.IdDictionary.TryGetValue(apiInvariantItemProvider.UncutSkillGemId, out var uncutSkillGem))
         {
             return uncutSkillGem;
         }
 
-        if (item.Header.ItemClass == ItemClass.UncutSupportGem && apiItemProvider.IdDictionary.TryGetValue(apiInvariantItemProvider.UncutSupportGemId, out var uncutSupportGem))
+        if (item.Properties.ItemClass == ItemClass.UncutSupportGem && apiItemProvider.IdDictionary.TryGetValue(apiInvariantItemProvider.UncutSupportGemId, out var uncutSupportGem))
         {
             return uncutSupportGem;
         }
 
-        if (item.Header.ItemClass == ItemClass.UncutSpiritGem && apiItemProvider.IdDictionary.TryGetValue(apiInvariantItemProvider.UncutSpiritGemId, out var uncutSpiritGem))
+        if (item.Properties.ItemClass == ItemClass.UncutSpiritGem && apiItemProvider.IdDictionary.TryGetValue(apiInvariantItemProvider.UncutSpiritGemId, out var uncutSpiritGem))
         {
             return uncutSpiritGem;
         }
 
         // Rares may have conflicting names, so we don't want to search any unique items that may have that name. Like "Ancient Orb" which can be used by abyss jewels.
-        var name = item.Header.Rarity is Rarity.Rare or Rarity.Magic ? null : item.Name;
+        var name = item.Properties.Rarity is Rarity.Rare or Rarity.Magic ? null : item.Name;
         name = name != null ? GetLineWithoutSuperiorAffix(name) : null;
         var type = item.Type != null ? GetLineWithoutSuperiorAffix(item.Type) : null;
 
@@ -157,14 +157,19 @@ public class HeaderParser
 
     private void ParseVaalGem(Item item)
     {
-        var canBeVaalGem = item.Header.ItemClass == ItemClass.ActiveGem && item.Text.Blocks.Count > 7;
+        var canBeVaalGem = item.Properties.ItemClass == ItemClass.ActiveGem && item.Text.Blocks.Count > 7;
         if (!canBeVaalGem || item.Text.Blocks[5].Lines.Count <= 0) return;
 
-        if (!apiItemProvider.NameAndTypeDictionary.TryGetValue(item.Text.Blocks[5].Lines[0].Text, out var apiItem)) return;
+        if (!apiItemProvider.NameAndTypeDictionary.TryGetValue(item.Text.Blocks[5].Lines[0].Text, out var apiItems)) return;
 
-        var vaalGem = apiItem.First();
-        item.Name = vaalGem.Name;
-        item.Type = vaalGem.Type;
+        var apiItem = apiItems.First();
+        item.Header.ApiItemId = apiItem.Id;
+        item.Header.ApiName = apiItem.Name;
+        item.Header.ApiType = apiItem.Type;
+        item.Header.ApiDiscriminator = apiItem.Discriminator;
+        item.Header.ApiText = apiItem.Text;
+        item.Header.Category = apiItem.Category;
+
     }
 }
 

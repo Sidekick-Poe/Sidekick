@@ -43,7 +43,7 @@ public class ModifierParser
 
     private IEnumerable<ModifierMatch> MatchModifiers(Item item)
     {
-        var allAvailablePatterns = GetAllAvailablePatterns(item.Header);
+        var allAvailablePatterns = GetAllAvailablePatterns(item);
         foreach (var block in item.Text.Blocks.Where(x => !x.AnyParsed))
         {
             for (var lineIndex = 0; lineIndex < block.Lines.Count; lineIndex++)
@@ -127,15 +127,15 @@ public class ModifierParser
         }
     }
 
-    private IReadOnlyCollection<ModifierDefinition> GetAllAvailablePatterns(ItemHeader header)
+    private IReadOnlyCollection<ModifierDefinition> GetAllAvailablePatterns(Item item)
     {
-        return header.Category switch
+        return item.Header.Category switch
         {
             Category.Sanctum =>
             [
                 .. modifierProvider.Definitions[ModifierCategory.Sanctum]
             ],
-            Category.Map when header.ItemClass == ItemClass.Tablet =>
+            Category.Map when item.Properties.ItemClass == ItemClass.Tablet =>
             [
                 .. modifierProvider.Definitions[ModifierCategory.Implicit],
                 .. modifierProvider.Definitions[ModifierCategory.Explicit]

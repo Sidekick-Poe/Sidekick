@@ -31,7 +31,7 @@ public class PoePriceInfoClient(
 
     public async Task<PricePrediction?> GetPricePrediction(Item item)
     {
-        if (item.Header.Rarity != Rarity.Rare)
+        if (item.Properties.Rarity != Rarity.Rare)
         {
             return null;
         }

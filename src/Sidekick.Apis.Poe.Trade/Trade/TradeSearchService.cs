@@ -73,7 +73,7 @@ public class TradeSearchService
                 query.Term = itemApiNameToUse;
                 query.Type = null;
             }
-            else if (item.Header.Rarity == Rarity.Unique && !string.IsNullOrEmpty(itemApiNameToUse))
+            else if (item.Properties.Rarity == Rarity.Unique && !string.IsNullOrEmpty(itemApiNameToUse))
             {
                 query.Name = itemApiNameToUse;
             }
