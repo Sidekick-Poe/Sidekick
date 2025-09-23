@@ -2,40 +2,38 @@ namespace Sidekick.Apis.Poe.Items;
 
 public class Item
 {
-    public Item(GameType game, string itemText, string? advancedItemText = null)
+    public Item(GameType game, string? text, string advancedText)
     {
-        Text = new TextItem(itemText);
-        AdvancedText = advancedItemText != null ? new(advancedItemText) : null;
+        var normalText = text != null ? new TextItem(text) : null;
+        Text = new TextItem(advancedText);
         Game = game;
 
-        if (Text.Blocks[0].Lines.Count >= 3)
-        {
-            Type = Text.Blocks[0].Lines[^1].Text;
-            Text.Blocks[0].Lines[^1].Parsed = true;
-        }
+        if (Text.Blocks[0].Lines.Count >= 3) InvariantType = Text.Blocks[0].Lines[^1].Text;
+        if (Text.Blocks[0].Lines.Count >= 4) InvariantName = Text.Blocks[0].Lines[^2].Text;
 
-        if (Text.Blocks[0].Lines.Count >= 4)
-        {
-            Name = Text.Blocks[0].Lines[^2].Text;
-            Text.Blocks[0].Lines[^2].Parsed = true;
-        }
+        Type = normalText?.Blocks[0].Lines.Count >= 3 ? normalText.Blocks[0].Lines[^1].Text : InvariantType;
+        Name = normalText?.Blocks[0].Lines.Count >= 4 ? normalText.Blocks[0].Lines[^2].Text : InvariantName;
+
+        Text.Blocks[0].Parsed = true;
     }
 
     public Guid Id { get; } = Guid.NewGuid();
 
     public TextItem Text { get; }
 
-    public TextItem? AdvancedText { get; }
-
     public GameType Game { get; }
+
+    public string? InvariantName { get; set; }
+
+    public string? InvariantType { get; set; }
 
     public string? Name { get; set; }
 
     public string? Type { get; set; }
 
-    public ItemHeader? Invariant { get; set; }
+    public ItemApiInformation Invariant { get; set; } = null!;
 
-    public ItemHeader Header { get; } = new();
+    public ItemApiInformation Header { get; set; } = null!;
 
     public ItemProperties Properties { get; } = new();
 

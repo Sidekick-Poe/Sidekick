@@ -26,8 +26,8 @@ Publicly, he lived a pious and chaste life of poverty. Privately, tithes and tri
         Assert.Equal(ItemClass.DivinationCard, actual.Properties.ItemClass);
         Assert.Equal(Category.DivinationCard, actual.Header.Category);
         Assert.Equal(Rarity.DivinationCard, actual.Properties.Rarity);
-        Assert.Null(actual.Header.ApiName);
-        Assert.Equal("The Saint's Treasure", actual.Header.ApiType);
+        Assert.Null(actual.Header.Name);
+        Assert.Equal("The Saint's Treasure", actual.Header.Type);
     }
 
     [Fact]
@@ -47,8 +47,8 @@ Though they were a pack of elite combatants, the Emperor's royal guards were not
         Assert.Equal(ItemClass.DivinationCard, actual.Properties.ItemClass);
         Assert.Equal(Category.DivinationCard, actual.Header.Category);
         Assert.Equal(Rarity.DivinationCard, actual.Properties.Rarity);
-        Assert.Null(actual.Header.ApiName);
-        Assert.Equal("The Lord of Celebration", actual.Header.ApiType);
+        Assert.Null(actual.Header.Name);
+        Assert.Equal("The Lord of Celebration", actual.Header.Type);
         Assert.False(actual.Properties.Influences.Crusader);
         Assert.False(actual.Properties.Influences.Elder);
         Assert.False(actual.Properties.Influences.Hunter);
@@ -76,6 +76,6 @@ Note: ~price 1 blessed
         Assert.Equal(ItemClass.DivinationCard, actual.Properties.ItemClass);
         Assert.Equal(Rarity.DivinationCard, actual.Properties.Rarity);
         Assert.Equal(Category.DivinationCard, actual.Header.Category);
-        Assert.Equal("Boon of Justice", actual.Header.ApiType);
+        Assert.Equal("Boon of Justice", actual.Header.Type);
     }
 }

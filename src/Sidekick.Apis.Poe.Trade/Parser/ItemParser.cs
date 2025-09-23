@@ -4,9 +4,9 @@ using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Items;
-using Sidekick.Apis.Poe.Trade.Parser.Headers;
 using Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
+using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 using Sidekick.Apis.Poe.Trade.Parser.Requirements;
 using Sidekick.Common.Exceptions;
@@ -20,10 +20,10 @@ public class ItemParser
     IModifierParser modifierParser,
     IPseudoParser pseudoParser,
     IRequirementsParser requirementsParser,
-    IApiInvariantItemProvider apiInvariantItemProvider,
     IPropertyParser propertyParser,
     IGameLanguageProvider gameLanguageProvider,
-    IHeaderParser headerParser,
+    IApiItemProvider apiItemProvider,
+    IApiInvariantItemProvider apiInvariantItemProvider,
     ISettingsService settingsService
 ) : IItemParser
 {
@@ -43,26 +43,27 @@ public class ItemParser
 
     public Item ParseItem(string? text, string? advancedText = null)
     {
-        if (string.IsNullOrEmpty(text))
-        {
-            throw new UnparsableException(text);
-        }
+        if (gameLanguageProvider.IsEnglish()) advancedText ??= text;
+
+        if (string.IsNullOrEmpty(advancedText)) throw new UnparsableException(text);
 
         try
         {
-            text = RemoveUnusableLine(text);
+            if (text != null) text = RemoveUnusableLine(text);
+            advancedText = RemoveUnusableLine(advancedText);
+
             var item = new Item(Game, text, advancedText);
 
-            headerParser.Parse(item);
+            // These properties are required for later parsing steps
+            propertyParser.GetDefinition<ItemClassProperty>().Parse(item);
+            propertyParser.GetDefinition<RarityProperty>().Parse(item);
 
-            if (item.Header.ApiItemId != null && apiInvariantItemProvider.IdDictionary.TryGetValue(item.Header.ApiItemId, out var invariantMetadata))
-            {
-                item.Invariant = invariantMetadata.ToHeader();
-            }
+            item.Header = apiItemProvider.GetApiItem(item.Properties.Rarity, item.Properties.ItemClass, item.Name, item.Type) ?? throw new UnparsableException(item.Text.Text);
+            item.Invariant = apiInvariantItemProvider.GetApiItem(item.Properties.Rarity, item.Properties.ItemClass, item.InvariantName, item.InvariantType) ?? throw new UnparsableException(item.Text.Text);
 
-            // Order of parsing is important
+            ParseVaalGem(item);
+
             requirementsParser.Parse(item.Text);
-
             propertyParser.Parse(item);
             modifierParser.Parse(item);
             propertyParser.ParseAfterModifiers(item);
@@ -80,5 +81,21 @@ public class ItemParser
     private string RemoveUnusableLine(string itemText)
     {
         return UnusablePattern?.Replace(itemText, string.Empty) ?? itemText;
+    }
+
+    private void ParseVaalGem(Item item)
+    {
+        var canBeVaalGem = item.Properties.ItemClass == ItemClass.ActiveGem && item.Text.Blocks.Count > 7;
+        if (!canBeVaalGem || item.Text.Blocks[5].Lines.Count <= 0) return;
+
+        if (apiItemProvider.NameAndTypeDictionary.TryGetValue(item.Text.Blocks[5].Lines[0].Text, out var apiItems))
+        {
+            item.Header = apiItems.First();
+        }
+
+        if (apiInvariantItemProvider.NameAndTypeDictionary.TryGetValue(item.Text.Blocks[5].Lines[0].Text, out var invariantApiItems))
+        {
+            item.Invariant = invariantApiItems.First();
+        }
     }
 }

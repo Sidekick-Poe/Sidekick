@@ -18,15 +18,11 @@ public class ApiInvariantItemProvider
     ILogger<ApiInvariantItemProvider> logger,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService
-) : IApiInvariantItemProvider
+) : BaseItemProvider(logger), IApiInvariantItemProvider
 {
-    public Dictionary<string, ApiItem> IdDictionary { get; } = new();
-
-    public Dictionary<string, ApiItem> NameDictionary { get; } = new();
-
-    public string UncutSkillGemId { get; private set; } = string.Empty;
-    public string UncutSupportGemId { get; private set; } = string.Empty;
-    public string UncutSpiritGemId { get; private set; } = string.Empty;
+    public ItemApiInformation? UncutSkillGem { get; private set; }
+    public ItemApiInformation? UncutSupportGem { get; private set; }
+    public ItemApiInformation? UncutSpiritGem { get; private set; }
 
     /// <inheritdoc/>
     public int Priority => 100;
@@ -34,62 +30,17 @@ public class ApiInvariantItemProvider
     /// <inheritdoc/>
     public async Task Initialize()
     {
-        IdDictionary.Clear();
-
         var game = await settingsService.GetGame();
         var cacheKey = $"{game.GetValueAttribute()}_InvariantItems";
 
         var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "items"), (cache) => cache.Result.Any());
         if (result == null) throw new SidekickException("Could not fetch items from the trade API.");
 
-        var categories = game switch
-        {
-            GameType.PathOfExile2 => ApiItemConstants.Poe2Categories,
-            _ => ApiItemConstants.Poe1Categories,
-        };
-        foreach (var category in categories)
-        {
-            FillCategoryItems(result.Result, category.Key, category.Value.Category);
-        }
+        await InitializeLanguage(gameLanguageProvider.InvariantLanguage);
+        InitializeItems(game, result);
 
-        InitializeUncutGemIds();
-    }
-
-    private void FillCategoryItems(List<ApiCategory> categories, string categoryId, Category category)
-    {
-        var categoryItems = categories.SingleOrDefault(x => x.Id == categoryId);
-        if (categoryItems == null)
-        {
-            logger.LogWarning($"[MetadataProvider] The category '{categoryId}' could not be found in the metadata from the API.");
-            return;
-        }
-
-        for (var i = 0; i < categoryItems.Entries.Count; i++)
-        {
-            var entry = categoryItems.Entries[i];
-            entry.Id = $"{categoryId}.{i}";
-            entry.Category = category;
-            IdDictionary.Add(entry.Id, entry);
-            NameDictionary.TryAdd(entry.Name ?? entry.Type ?? "", entry);
-        }
-    }
-
-    private void InitializeUncutGemIds()
-    {
-        foreach (var item in IdDictionary)
-        {
-            switch (item.Value.Type)
-            {
-                case "Uncut Skill Gem":
-                    UncutSkillGemId = item.Key;
-                    break;
-                case "Uncut Spirit Gem":
-                    UncutSpiritGemId = item.Key;
-                    break;
-                case "Uncut Support Gem":
-                    UncutSupportGemId = item.Key;
-                    break;
-            }
-        }
+        UncutSkillGem = NameAndTypeDictionary.GetValueOrDefault("Uncut Skill Gem")?.FirstOrDefault();
+        UncutSpiritGem = NameAndTypeDictionary.GetValueOrDefault("Uncut Spirit Gem")?.FirstOrDefault();
+        UncutSupportGem = NameAndTypeDictionary.GetValueOrDefault("Uncut Support Gem")?.FirstOrDefault();
     }
 }

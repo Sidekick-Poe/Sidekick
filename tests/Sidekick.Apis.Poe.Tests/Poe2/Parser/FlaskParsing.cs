@@ -34,8 +34,8 @@ Right click to drink. Can only hold charges while in belt. Refill at Wells or by
         Assert.Equal(ItemClass.LifeFlask, actual.Properties.ItemClass);
         Assert.Equal(Category.Flask, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Ultimate Life Flask", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
+        Assert.Equal("Ultimate Life Flask", actual.Header.Type);
+        Assert.Null(actual.Header.Name);
 
         Assert.Equal(66, actual.Properties.ItemLevel);
 

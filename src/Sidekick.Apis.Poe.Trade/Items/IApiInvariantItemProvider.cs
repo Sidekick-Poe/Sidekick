@@ -1,15 +1,11 @@
-using Sidekick.Apis.Poe.Trade.Items.Models;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Trade.Items;
 
-public interface IApiInvariantItemProvider : IInitializableService
+public interface IApiInvariantItemProvider : IInitializableService, IBaseItemProvider
 {
-    Dictionary<string, ApiItem> IdDictionary { get; }
-
-    Dictionary<string, ApiItem> NameDictionary { get; }
-
-    string UncutSkillGemId { get; }
-    string UncutSupportGemId { get; }
-    string UncutSpiritGemId { get; }
+    ItemApiInformation? UncutSkillGem { get; }
+    ItemApiInformation? UncutSupportGem { get; }
+    ItemApiInformation? UncutSpiritGem { get; }
 }

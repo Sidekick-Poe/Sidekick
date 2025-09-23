@@ -46,8 +46,8 @@ Corrupted
         Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
         Assert.Equal(Category.Armour, actual.Header.Category);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Steeltoe Boots", actual.Header.ApiType);
-        Assert.Equal("Thunderstep", actual.Header.ApiName);
+        Assert.Equal("Steeltoe Boots", actual.Header.Type);
+        Assert.Equal("Thunderstep", actual.Header.Name);
 
         Assert.Equal(129, actual.Properties.EvasionRating);
 
@@ -90,8 +90,8 @@ Grants Skill: Parry
         Assert.Equal(ItemClass.Buckler, actual.Properties.ItemClass);
         Assert.Equal(Category.Armour, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Wooden Buckler", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
+        Assert.Equal("Wooden Buckler", actual.Header.Type);
+        Assert.Null(actual.Header.Name);
 
         Assert.Equal(16, actual.Properties.EvasionRating);
 
@@ -122,8 +122,8 @@ Can only be equipped if you are wielding a Bow.
         Assert.Equal(ItemClass.Quiver, actual.Properties.ItemClass);
         Assert.Equal(Category.Armour, actual.Header.Category);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Fire Quiver", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
+        Assert.Equal("Fire Quiver", actual.Header.Type);
+        Assert.Null(actual.Header.Name);
 
         Assert.Equal(8, actual.Properties.ItemLevel);
     }
@@ -161,8 +161,8 @@ Item Level: 66
         Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
         Assert.Equal(Category.Armour, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Bastion Sabatons", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
+        Assert.Equal("Bastion Sabatons", actual.Header.Type);
+        Assert.Null(actual.Header.Name);
 
         Assert.Equal(66, actual.Properties.ItemLevel);
 

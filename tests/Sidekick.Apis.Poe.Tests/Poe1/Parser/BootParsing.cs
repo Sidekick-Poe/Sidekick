@@ -34,7 +34,7 @@ Fractured Item
         Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
         Assert.Equal(Category.Armour, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Iron Greaves", actual.Header.ApiType);
+        Assert.Equal("Iron Greaves", actual.Header.Type);
 
         actual.AssertHasModifier(ModifierCategory.Fractured, "#% increased Movement Speed", 10);
     }

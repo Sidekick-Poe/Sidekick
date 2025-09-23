@@ -71,7 +71,7 @@ public class ItemStaticDataProvider
 
     public StaticItem? Get(Item item)
     {
-        var text = item.Name ?? item.Type ?? item.Header.ApiType;
+        var text = item.Name ?? item.Type ?? item.Header.Type;
         if (text == null) return null;
 
         return ByTexts.GetValueOrDefault(text);

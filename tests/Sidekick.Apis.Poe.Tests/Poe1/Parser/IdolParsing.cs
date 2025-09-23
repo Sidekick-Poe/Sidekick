@@ -30,8 +30,8 @@ Unmodifiable");
         Assert.Equal(ItemClass.Idol, actual.Properties.ItemClass);
         Assert.Equal(Category.Idol, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Null(actual.Header.ApiName);
-        Assert.Equal("Minor Idol", actual.Header.ApiType);
+        Assert.Null(actual.Header.Name);
+        Assert.Equal("Minor Idol", actual.Header.Type);
 
         // actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Maps found in Area", 2);
         // actual.AssertHasModifier(ModifierCategory.Explicit, "Your Maps have #% chance to contain an additional Imprisoned Monster", 46);
@@ -65,8 +65,8 @@ Unmodifiable
         Assert.Equal(ItemClass.Idol, actual.Properties.ItemClass);
         Assert.Equal(Category.Idol, actual.Header.Category);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Loved by the Sun", actual.Header.ApiName);
-        Assert.Equal("Minor Idol", actual.Header.ApiType);
+        Assert.Equal("Loved by the Sun", actual.Header.Name);
+        Assert.Equal("Minor Idol", actual.Header.Type);
 
         // actual.AssertHasModifier(ModifierCategory.Implicit, "#% increased Maps found in Area", 2);
         // actual.AssertHasModifier(ModifierCategory.Explicit, "Your Maps have #% chance to contain an additional Imprisoned Monster", 46);

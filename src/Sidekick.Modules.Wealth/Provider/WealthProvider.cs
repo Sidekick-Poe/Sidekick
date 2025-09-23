@@ -161,7 +161,7 @@ internal class WealthProvider
             return null;
         }
 
-        var invariantItem = apiInvariantItemProvider.NameDictionary.GetValueOrDefault(name);
+        var invariantItem = apiInvariantItemProvider.NameAndTypeDictionary.GetValueOrDefault(name)?.FirstOrDefault();
         if (invariantItem?.Category == null)
         {
             logger.LogError("[WealthProvider] Could not parse item due to missing invariant: " + name);
@@ -189,7 +189,7 @@ internal class WealthProvider
         return dbItem;
     }
 
-    private async Task<decimal> GetItemPrice(Apis.Poe.Trade.Items.Models.ApiItem invariantItem, ApiItem item)
+    private async Task<decimal> GetItemPrice(ItemApiInformation invariantItem, ApiItem item)
     {
         if (invariantItem.Category == Category.Unknown)
         {

@@ -29,8 +29,8 @@ Item Level: 60
 
         Assert.Equal(ItemClass.Staff, actual.Properties.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
-        Assert.Equal("Ashen Staff", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
+        Assert.Equal("Ashen Staff", actual.Header.Type);
+        Assert.Null(actual.Header.Name);
         Assert.Equal(60, actual.Properties.ItemLevel);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "# to maximum Mana", 148);
@@ -72,8 +72,8 @@ Leeches 4.02% of Physical Damage as Mana
 
         Assert.Equal(ItemClass.Bow, actual.Properties.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
-        Assert.Equal("Composite Bow", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
+        Assert.Equal("Composite Bow", actual.Header.Type);
+        Assert.Null(actual.Header.Name);
         Assert.Equal(76, actual.Properties.ItemLevel);
 
         // Verify physical damage
@@ -124,7 +124,7 @@ Grants 3 Life per Enemy Hit
       Assert.Equal(ItemClass.Crossbow, actual.Properties.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Bleak Crossbow", actual.Header.ApiType);
+        Assert.Equal("Bleak Crossbow", actual.Header.Type);
         Assert.Equal("Blood Core", actual.Name);
 
         // Verify physical damage
@@ -168,7 +168,7 @@ Leeches 5.82% of Physical Damage as Mana");
         Assert.Equal(ItemClass.Bow, actual.Properties.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Cultist Bow", actual.Header.ApiType);
+        Assert.Equal("Cultist Bow", actual.Header.Type);
 
         // Verify the chaos damage range is parsed correctly
         Assert.Equal(41, actual.Properties.ChaosDamage?.Min);
@@ -198,7 +198,7 @@ Allies in your Presence deal 9 to 13 additional Attack Fire Damage
         Assert.Equal(ItemClass.Sceptre, actual.Properties.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Rattling Sceptre", actual.Header.ApiType);
+        Assert.Equal("Rattling Sceptre", actual.Header.Type);
 
         Assert.Equal(100, actual.Properties.Spirit);
     }
@@ -227,8 +227,8 @@ Grants Skill: Spear Throw
         Assert.Equal(ItemClass.Spear, actual.Properties.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Ironhead Spear", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
+        Assert.Equal("Ironhead Spear", actual.Header.Type);
+        Assert.Null(actual.Header.Name);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "# to Accuracy Rating", 32);
     }
@@ -268,7 +268,7 @@ Grants 3 Life per Enemy Hit
         Assert.Equal(ItemClass.Spear, actual.Properties.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Forked Spear", actual.Header.ApiType);
+        Assert.Equal("Forked Spear", actual.Header.Type);
         Assert.Equal("Hypnotic Edge", actual.Name);
 
         // Verify physical damage
@@ -325,7 +325,7 @@ Corrupted
         Assert.Equal(ItemClass.Warstaff, actual.Properties.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Slicing Quarterstaff", actual.Header.ApiType);
+        Assert.Equal("Slicing Quarterstaff", actual.Header.Type);
         Assert.Equal("Kraken Pillar", actual.Name);
 
         // Verify physical damage
@@ -386,7 +386,7 @@ Note: ~price 1 mirror");
         Assert.Equal(ItemClass.Crossbow, actual.Properties.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Siege Crossbow", actual.Header.ApiType);
+        Assert.Equal("Siege Crossbow", actual.Header.Type);
         Assert.Equal("Dragon Core", actual.Name);
 
         // Verify physical damage

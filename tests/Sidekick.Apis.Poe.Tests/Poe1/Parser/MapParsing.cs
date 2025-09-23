@@ -27,7 +27,7 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Arcade Map", actual.Header.ApiType);
+        Assert.Equal("Arcade Map", actual.Header.Type);
         Assert.Equal(15, actual.Properties.MapTier);
         Assert.Equal(84, actual.Properties.ItemLevel);
     }
@@ -64,8 +64,8 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Maelström of Chaos", actual.Header.ApiName);
-        Assert.Equal("Atoll Map", actual.Header.ApiType);
+        Assert.Equal("Maelström of Chaos", actual.Header.Name);
+        Assert.Equal("Atoll Map", actual.Header.Type);
         Assert.Equal(5, actual.Properties.MapTier);
         Assert.Equal(41, actual.Properties.ItemQuantity);
         Assert.Equal(299, actual.Properties.ItemRarity);
@@ -110,7 +110,7 @@ Note: ~price 2 chaos
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Phantasmagoria Map", actual.Header.ApiType);
+        Assert.Equal("Phantasmagoria Map", actual.Header.Type);
 
         actual.AssertHasModifier(ModifierCategory.Implicit, "Area is influenced by The Elder");
     }
@@ -123,7 +123,7 @@ Note: ~price 2 chaos
         Assert.Equal(ItemClass.MapFragment, actual.Properties.ItemClass);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Timeless Karui Emblem", actual.Header.ApiType);
+        Assert.Equal("Timeless Karui Emblem", actual.Header.Type);
     }
 
     [Fact]
@@ -159,7 +159,7 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Burial Chambers Map", actual.Header.ApiType);
+        Assert.Equal("Burial Chambers Map", actual.Header.Type);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "Monsters have #% increased Area of Effect", 100);
     }
@@ -209,7 +209,7 @@ Foil (Celestial Amethyst)
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Plaza Map", actual.Header.ApiType);
+        Assert.Equal("Plaza Map", actual.Header.Type);
         Assert.Equal("Foil Mageblood", actual.Properties.Reward);
     }
 

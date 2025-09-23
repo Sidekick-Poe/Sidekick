@@ -43,7 +43,7 @@ Note: ~price 1.29 exalted
         Assert.Equal(ItemClass.MapFragment, actual.Properties.ItemClass);
         Assert.Equal(Category.Map, actual.Header.Category);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Chronicle of Atzoatl", actual.Header.ApiType);
+        Assert.Equal("Chronicle of Atzoatl", actual.Header.Type);
         Assert.Equal(81, actual.Properties.AreaLevel);
 
         actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)");

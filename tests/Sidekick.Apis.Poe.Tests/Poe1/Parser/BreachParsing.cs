@@ -25,6 +25,6 @@ Shift click to unstack.
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal(Category.Currency, actual.Header.Category);
-        Assert.Equal("Splinter of Tul", actual.Header.ApiType);
+        Assert.Equal("Splinter of Tul", actual.Header.Type);
     }
 }

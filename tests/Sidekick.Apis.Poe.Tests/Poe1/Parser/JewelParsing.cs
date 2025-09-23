@@ -29,7 +29,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree.Right click to re
 
         Assert.Equal(Category.Jewel, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Cobalt Jewel", actual.Header.ApiType);
+        Assert.Equal("Cobalt Jewel", actual.Header.Type);
         Assert.Equal("Blight Cut", actual.Name);
         Assert.Equal(68, actual.Properties.ItemLevel);
 
@@ -68,7 +68,7 @@ Note: ~b/o 1 chaos
 
         Assert.Equal(Category.Jewel, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Large Cluster Jewel", actual.Header.ApiType);
+        Assert.Equal("Large Cluster Jewel", actual.Header.Type);
         Assert.Equal("Chimeric Sliver", actual.Name);
         Assert.Equal(69, actual.Properties.ItemLevel);
 
@@ -98,7 +98,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal(Category.Jewel, actual.Header.Category);
-        Assert.Equal("Viridian Jewel", actual.Header.ApiType);
+        Assert.Equal("Viridian Jewel", actual.Header.Type);
     }
 
     [Fact]
@@ -130,7 +130,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal(Category.Jewel, actual.Header.Category);
-        Assert.Equal("Crimson Jewel", actual.Header.ApiType);
+        Assert.Equal("Crimson Jewel", actual.Header.Type);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Strength", 8);
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% chance to gain Onslaught for 4 seconds on Kill", 16, 4);
@@ -166,7 +166,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal(Category.Jewel, actual.Header.Category);
-        Assert.Equal("Prismatic Jewel", actual.Header.ApiType);
+        Assert.Equal("Prismatic Jewel", actual.Header.Type);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased maximum Energy Shield", 6);
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased maximum Life", 6);

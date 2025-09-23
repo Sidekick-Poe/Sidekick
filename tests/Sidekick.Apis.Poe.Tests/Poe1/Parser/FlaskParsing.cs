@@ -35,7 +35,7 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
         Assert.Equal(ItemClass.Flask, actual.Properties.ItemClass);
         Assert.Equal(Category.Flask, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Sanctified Mana Flask", actual.Header.ApiType);
+        Assert.Equal("Sanctified Mana Flask", actual.Header.Type);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "Grants Immunity to Bleeding for 4 seconds if used while Bleeding\nGrants Immunity to Corrupted Blood for 4 seconds if used while affected by Corrupted Blood", 4, 4);
     }
@@ -62,7 +62,7 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
         Assert.Equal(ItemClass.Flask, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal(Category.Flask, actual.Header.Category);
-        Assert.Equal("Hallowed Life Flask", actual.Header.ApiType);
+        Assert.Equal("Hallowed Life Flask", actual.Header.Type);
     }
 
     [Fact]
@@ -89,7 +89,7 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
         Assert.Equal(ItemClass.Flask, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal(Category.Flask, actual.Header.Category);
-        Assert.Equal("Sacred Hybrid Flask", actual.Header.ApiType);
+        Assert.Equal("Sacred Hybrid Flask", actual.Header.Type);
         Assert.Equal(13, actual.Properties.Quality);
     }
 
@@ -117,7 +117,7 @@ Right click to activate. Only one Tincture in your belt can be active at a time.
         Assert.Equal(ItemClass.Tincture, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal(Category.Tincture, actual.Header.Category);
-        Assert.Equal("Poisonberry Tincture", actual.Header.ApiType);
+        Assert.Equal("Poisonberry Tincture", actual.Header.Type);
     }
 
     [Fact]
@@ -146,7 +146,7 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
         Assert.Equal(ItemClass.Flask, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal(Category.Flask, actual.Header.Category);
-        Assert.Equal("Bismuth Flask", actual.Header.ApiType);
+        Assert.Equal("Bismuth Flask", actual.Header.Type);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "Gain # Charge when you are Hit by an Enemy", 3);
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% reduced Effect of Chill on you during Effect", 40);

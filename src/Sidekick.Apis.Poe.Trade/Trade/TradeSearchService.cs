@@ -52,20 +52,20 @@ public class TradeSearchService
 
             // If the English trade is used, we must use the invariant name.
             var useInvariantTradeResults = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
-            var itemApiNameToUse = useInvariantTradeResults ? item.Invariant?.ApiName : item.Header.ApiName;
+            var itemApiNameToUse = useInvariantTradeResults ? item.Invariant?.Name : item.Header.Name;
 
-                var hasTypeDiscriminator = !string.IsNullOrEmpty(metadata.ApiDiscriminator);
+                var hasTypeDiscriminator = !string.IsNullOrEmpty(metadata.Discriminator);
                 if (hasTypeDiscriminator)
                 {
                     query.Type = new TypeDiscriminator()
                     {
-                        Option = metadata.ApiType,
-                        Discriminator = metadata.ApiDiscriminator,
+                        Option = metadata.Type,
+                        Discriminator = metadata.Discriminator,
                     };
                 }
                 else
                 {
-                    query.Type = metadata.ApiType;
+                    query.Type = metadata.Type;
                 }
 
             if (item.Header.Category == Category.ItemisedMonster && !string.IsNullOrEmpty(itemApiNameToUse))
@@ -347,7 +347,7 @@ public class TradeSearchService
         return useInvariant ? gameLanguageProvider.InvariantLanguage.GetTradeBaseUrl(game) : gameLanguageProvider.Language.GetTradeBaseUrl(game);
     }
 
-    private async Task<ItemHeader> GetHeader(Item item)
+    private async Task<ItemApiInformation> GetHeader(Item item)
     {
         var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
         return useInvariant ? item.Invariant ?? item.Header : item.Header;

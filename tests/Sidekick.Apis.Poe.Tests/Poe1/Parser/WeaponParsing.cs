@@ -34,7 +34,7 @@ Unidentified
 
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Jade Hatchet", actual.Header.ApiType);
+        Assert.Equal("Jade Hatchet", actual.Header.Type);
         Assert.True(actual.Properties.Unidentified);
     }
 
@@ -70,7 +70,7 @@ Crusader Item
 
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Imbued Wand", actual.Header.ApiType);
+        Assert.Equal("Imbued Wand", actual.Header.Type);
         Assert.Equal("Miracle Chant", actual.Name);
         Assert.True(actual.Properties.Influences.Crusader);
 
@@ -107,7 +107,7 @@ Item Level: 50
 
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Shadow Axe", actual.Header.ApiType);
+        Assert.Equal("Shadow Axe", actual.Header.Type);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% reduced Enemy Stun Threshold", 11);
     }
@@ -151,8 +151,8 @@ Fire and Anarchy are the most reliable agents of change.");
 
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Wings of Entropy", actual.Header.ApiName);
-        Assert.Equal("Ezomyte Axe", actual.Header.ApiType);
+        Assert.Equal("Wings of Entropy", actual.Header.Name);
+        Assert.Equal("Ezomyte Axe", actual.Header.Type);
 
         Assert.Equal(243.7, actual.Properties.PhysicalDps);
         Assert.Equal(172.80, actual.Properties.ElementalDps);
@@ -198,8 +198,8 @@ All form and finesse are forgotten when blood first hits the ground.
         Assert.Equal(ItemClass.OneHandSword, actual.Properties.ItemClass);
         Assert.Equal(Category.Weapon, actual.Header.Category);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Daresso's Passion", actual.Header.ApiName);
-        Assert.Equal("Estoc", actual.Header.ApiType);
+        Assert.Equal("Daresso's Passion", actual.Header.Name);
+        Assert.Equal("Estoc", actual.Header.Type);
 
         // Verify physical damage
         Assert.Equal(58, actual.Properties.PhysicalDamage?.Min);
@@ -245,8 +245,8 @@ Note: ~price 40 chaos
         Assert.Equal(ItemClass.FishingRod, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal(Category.Weapon, actual.Header.Category);
-        Assert.Equal("Reefbane", actual.Header.ApiName);
-        Assert.Equal("Fishing Rod", actual.Header.ApiType);
+        Assert.Equal("Reefbane", actual.Header.Name);
+        Assert.Equal("Fishing Rod", actual.Header.Type);
     }
 
     [Fact]
@@ -278,7 +278,7 @@ Hunter Item");
         Assert.Equal(ItemClass.OneHandMace, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal(Category.Weapon, actual.Header.Category);
-        Assert.Equal("Ornate Mace", actual.Header.ApiType);
+        Assert.Equal("Ornate Mace", actual.Header.Type);
         Assert.True(actual.Properties.Influences.Hunter);
     }
 
@@ -321,7 +321,7 @@ Spells Triggered this way have 150% more Cost (crafted)
         Assert.Equal(ItemClass.OneHandSword, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal(Category.Weapon, actual.Header.Category);
-        Assert.Equal("Apex Rapier", actual.Header.ApiType);
+        Assert.Equal("Apex Rapier", actual.Header.Type);
 
         actual.AssertHasModifier(ModifierCategory.Crafted, "#% chance to Trigger a Socketed Spell on Using a Skill, with a 8 second Cooldown\nSpells Triggered this way have 150% more Cost", 8, 150);
     }
@@ -361,7 +361,7 @@ Adds 10 to 175 Lightning Damage
         Assert.Equal(ItemClass.OneHandSword, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal(Category.Weapon, actual.Header.Category);
-        Assert.Equal("Fancy Foil", actual.Header.ApiType);
+        Assert.Equal("Fancy Foil", actual.Header.Type);
 
         Assert.Equal(110.30, actual.Properties.PhysicalDpsWithQuality);
         Assert.Equal(295.90, actual.Properties.ElementalDps);
@@ -407,6 +407,6 @@ Note: ~price 30 chaos
         Assert.Equal(ItemClass.Staff, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal(Category.Weapon, actual.Header.Category);
-        Assert.Equal("Imperial Staff", actual.Header.ApiType);
+        Assert.Equal("Imperial Staff", actual.Header.Type);
     }
 }

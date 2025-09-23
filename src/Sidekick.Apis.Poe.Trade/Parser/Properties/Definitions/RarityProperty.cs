@@ -39,6 +39,23 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
 
     public override void Parse(Item item)
     {
+        if (item.Header != null!)
+        {
+            if (item.Header.IsUnique)
+            {
+                item.Properties.Rarity = Rarity.Unique;
+                return;
+            }
+
+            item.Properties.Rarity = item.Header.Category switch
+            {
+                Category.DivinationCard => Rarity.DivinationCard,
+                Category.Gem => Rarity.Gem,
+                Category.Currency => Rarity.Currency,
+                _ => Rarity.Unknown,
+            };
+        }
+
         if (item.Properties.Rarity != Rarity.Unknown) return;
 
         foreach (var pattern in RarityPatterns)

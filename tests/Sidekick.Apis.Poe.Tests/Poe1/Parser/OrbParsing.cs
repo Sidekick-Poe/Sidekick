@@ -28,7 +28,7 @@ Note: ~b/o 2 blessed
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal(Category.Currency, actual.Header.Category);
-        Assert.Equal("Chaos Orb", actual.Header.ApiType);
+        Assert.Equal("Chaos Orb", actual.Header.Type);
 
         Assert.Empty(actual.ModifierLines);
     }

@@ -220,7 +220,7 @@ public class ItemClassProperty : PropertyDefinition
         if (item.Properties.ItemClass == ItemClass.Unknown) return null;
 
         var classLabel = filterProvider.TypeCategory?.Option.Options.FirstOrDefault(x => x.Id == item.Properties.ItemClass.GetValueAttribute())?.Text;
-        if (classLabel == null || item.Header.ApiType == null) return null;
+        if (classLabel == null || item.Header.Type == null) return null;
 
         var preferItemClass = await settingsService.GetEnum<DefaultItemClassFilter>(SettingKeys.PriceCheckItemClassFilter) ?? DefaultItemClassFilter.BaseType;
 
@@ -228,7 +228,7 @@ public class ItemClassProperty : PropertyDefinition
         {
             Text = gameLanguageProvider.Language.DescriptionRarity,
             ItemClass = classLabel,
-            BaseType = item.Header.ApiType,
+            BaseType = item.Header.Type,
             Checked = preferItemClass == DefaultItemClassFilter.ItemClass,
         };
         return filter;

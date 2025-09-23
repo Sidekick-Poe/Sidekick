@@ -78,7 +78,7 @@
     <ChildContent>
         @if (Item?.Game == GameType.PathOfExile)
         {
-            <PoeWikiMapInfo Type="@Item.Invariant?.ApiType" Name="@Item.Invariant?.ApiName"/>
+            <PoeWikiMapInfo Type="@Item.Invariant?.Type" Name="@Item.Invariant?.Name"/>
         }
     </ChildContent>
 </LayoutTwoColumn>

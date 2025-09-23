@@ -1,16 +1,11 @@
 using System.Text.RegularExpressions;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Items.Models;
 using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Trade.Items;
 
-public interface IApiItemProvider : IInitializableService
+public interface IApiItemProvider : IInitializableService, IBaseItemProvider
 {
-    List<ApiItem> UniqueItems { get; }
-
-    Dictionary<string, List<ApiItem>> NameAndTypeDictionary { get; }
-
-    Dictionary<string, ApiItem> IdDictionary { get; }
-
-    List<(Regex Regex, ApiItem Item)> NameAndTypeRegex { get; }
+    List<ItemApiInformation> UniqueItems { get; }
 }

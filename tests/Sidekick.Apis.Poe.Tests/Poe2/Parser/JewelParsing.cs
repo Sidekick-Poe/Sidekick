@@ -30,8 +30,8 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
 
         Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
         Assert.Equal(Category.Jewel, actual.Header.Category);
-        Assert.Equal("Emerald", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
+        Assert.Equal("Emerald", actual.Header.Type);
+        Assert.Null(actual.Header.Name);
         Assert.Equal(26, actual.Properties.ItemLevel);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Attack Speed", 3);
@@ -62,8 +62,8 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
         Assert.Equal(Category.Jewel, actual.Header.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Time-Lost Ruby", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
+        Assert.Equal("Time-Lost Ruby", actual.Header.Type);
+        Assert.Null(actual.Header.Name);
         Assert.Equal(64, actual.Properties.ItemLevel);
     }
 }
