@@ -65,14 +65,6 @@ public class ApiStaticDataProvider
         }
     }
 
-    public string? GetImage(string id)
-    {
-        var result = GetById(id);
-        if (result?.Image == null) return null;
-
-        return $"{gameLanguageProvider.Language.PoeCdnBaseUrl}{result.Image.Trim('/')}";
-    }
-
     public StaticItem? GetById(string id)
     {
         id = id switch

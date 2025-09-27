@@ -1,12 +1,13 @@
 @using Sidekick.Apis.Poe.Trade.Static
+@using Sidekick.Apis.Poe.Trade.Static.Models
 
 <div class="flex flex-nowrap gap-0.5 items-center justify-end">
     <Heading3>@Value.ToString("0.##")</Heading3>
-    @if (ImageUrl != null)
+    @if (ChaosItem != null)
     {
         <TextBase Class="text-[#a38d6d]">&times;</TextBase>
-        <Tooltip Text="@CurrencyText">
-            <img src="@ImageUrl" class="max-h-6" alt="chaos" />
+        <Tooltip Text="@ChaosItem.Text">
+            <img src="@ChaosItem.Image" class="max-h-6" alt="chaos" />
         </Tooltip>
     }
 </div>
@@ -18,8 +19,6 @@
     [Parameter]
     public decimal Value { get; set; }
 
-    private string? ImageUrl => ApiStaticDataProvider.GetImage("chaos");
-
-    private string? CurrencyText => ApiStaticDataProvider.GetById("chaos")?.Text;
+    private StaticItem? ChaosItem => ApiStaticDataProvider.GetById("chaos");
 
 }

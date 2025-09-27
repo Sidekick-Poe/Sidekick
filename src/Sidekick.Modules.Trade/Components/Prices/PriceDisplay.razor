@@ -44,7 +44,7 @@ else
     [Parameter]
     public bool Small { get; set; }
 
-    private string? ImageUrl => ApiStaticDataProvider.GetImage(Currency);
+    private string? ImageUrl => ApiStaticDataProvider.GetById(Currency)?.Image;
 
     private string? CurrencyText => ApiStaticDataProvider.GetById(Currency)?.Text;
 

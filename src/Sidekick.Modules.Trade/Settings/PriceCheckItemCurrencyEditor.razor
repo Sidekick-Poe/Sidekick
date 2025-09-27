@@ -21,7 +21,7 @@
 
         @foreach (var option in ImageOptions)
         {
-            var image = option.Value != null ? ApiStaticDataProvider.GetImage(option.Value) : null;
+            var image = option.Value != null ? ApiStaticDataProvider.GetById(option.Value)?.Image : null;
             var wrapperClass = "rounded-xs duration-200 transition-colors cursor-pointer p-[2px] leading-[0] -m-px";
             if (option.Value == Currency)
             {
@@ -53,9 +53,9 @@
 
     private string? Currency { get; set; }
 
-    private IEnumerable<SelectOption> ImageOptions => Options.Where(x => x.Value != null && !string.IsNullOrEmpty(ApiStaticDataProvider.GetImage(x.Value)));
+    private IEnumerable<SelectOption> ImageOptions => Options.Where(x => x.Value != null && !string.IsNullOrEmpty(ApiStaticDataProvider.GetById(x.Value)?.Image));
 
-    private IEnumerable<SelectOption> CheckboxOptions => Options.Where(x => x.Value == null || string.IsNullOrEmpty(ApiStaticDataProvider.GetImage(x.Value)));
+    private IEnumerable<SelectOption> CheckboxOptions => Options.Where(x => x.Value == null || string.IsNullOrEmpty(ApiStaticDataProvider.GetById(x.Value)?.Image));
 
     private List<SelectOption> Options { get; set; } = new();
 

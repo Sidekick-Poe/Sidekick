@@ -15,19 +15,17 @@ public class GemLevelProperty
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionLevel.ToRegexIntCapture();
 
-    private Regex IntCapture { get; } = new("(\\d+)");
-
     public override List<Category> ValidCategories { get; } = [Category.Gem];
 
     public override void Parse(Item item)
     {
-        var propertyBlock = item.Text.Blocks[1];
-        item.Properties.GemLevel = GetInt(Pattern, propertyBlock);
-
         if (item.Properties.ItemClass is ItemClass.UncutSkillGem or ItemClass.UncutSupportGem or ItemClass.UncutSpiritGem)
         {
-            item.Properties.GemLevel = GetInt(IntCapture, item.Text.Blocks[0]);
+            return;
         }
+
+        var propertyBlock = item.Text.Blocks[1];
+        item.Properties.GemLevel = GetInt(Pattern, propertyBlock);
 
         if (item.Properties.GemLevel > 0) propertyBlock.Parsed = true;
     }

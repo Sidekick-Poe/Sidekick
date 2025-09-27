@@ -1,8 +1,9 @@
 ﻿@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Languages
 @using Sidekick.Modules.Trade.Unique.Localization
 @using Sidekick.Common.Ui.Tabs
 
-@if (Item.Properties.Rarity == Rarity.Unique && Item.Game == GameType.PathOfExile2)
+@if (Valid)
 {
     <TabItem Active="@(CurrentTab == "unique")"
              Text="@Resources["UniquePrice"]"
@@ -10,6 +11,7 @@
 }
 
 @inject IStringLocalizer<UniqueResources> Resources
+@inject IGameLanguageProvider GameLanguageProvider
 
 @code {
 
@@ -22,9 +24,13 @@
     [Parameter]
     public EventCallback<string?> CurrentTabChanged { get; set; }
 
+    private bool Valid => Item.Properties.Rarity == Rarity.Unique
+                          && Item.Game == GameType.PathOfExile2
+                          && GameLanguageProvider.IsEnglish();
+
     protected override async Task OnInitializedAsync()
     {
-        if (Item.Properties.Rarity == Rarity.Unique)
+        if (Valid)
         {
              await CurrentTabChanged.InvokeAsync("unique");
         }
