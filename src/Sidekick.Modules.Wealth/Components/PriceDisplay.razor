@@ -11,15 +11,15 @@
     }
 </div>
 
-@inject IItemStaticDataProvider ItemStaticDataProvider
+@inject IApiStaticDataProvider ApiStaticDataProvider
 
 @code {
 
     [Parameter]
     public decimal Value { get; set; }
 
-    private string? ImageUrl => ItemStaticDataProvider.GetImage("chaos");
+    private string? ImageUrl => ApiStaticDataProvider.GetImage("chaos");
 
-    private string? CurrencyText => ItemStaticDataProvider.Get("chaos")?.Text;
+    private string? CurrencyText => ApiStaticDataProvider.GetById("chaos")?.Text;
 
 }

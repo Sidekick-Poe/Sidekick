@@ -31,7 +31,7 @@ else
     </div>
 }
 
-@inject IItemStaticDataProvider ItemStaticDataProvider
+@inject IApiStaticDataProvider ApiStaticDataProvider
 
 @code {
 
@@ -44,8 +44,8 @@ else
     [Parameter]
     public bool Small { get; set; }
 
-    private string? ImageUrl => ItemStaticDataProvider.GetImage(Currency);
+    private string? ImageUrl => ApiStaticDataProvider.GetImage(Currency);
 
-    private string? CurrencyText => ItemStaticDataProvider.Get(Currency)?.Text;
+    private string? CurrencyText => ApiStaticDataProvider.GetById(Currency)?.Text;
 
 }

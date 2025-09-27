@@ -22,7 +22,7 @@ public class BulkTradeService
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
     IFilterProvider filterProvider,
-    IItemStaticDataProvider itemStaticDataProvider,
+    IApiStaticDataProvider apiStaticDataProvider,
     IHttpClientFactory httpClientFactory
 ) : IBulkTradeService
 {
@@ -35,7 +35,7 @@ public class BulkTradeService
 
     public bool SupportsBulkTrade(Item? item)
     {
-        return item?.Properties.Rarity == Rarity.Currency && itemStaticDataProvider.Get(item) != null;
+        return item?.Properties.Rarity == Rarity.Currency && apiStaticDataProvider.Get(item.Name, item.Type) != null;
     }
 
     public async Task<BulkResponseModel> SearchBulk(Item item)
@@ -45,7 +45,7 @@ public class BulkTradeService
         var league = await settingsService.GetLeague();
         var uri = $"{await GetBaseApiUrl(item.Game)}exchange/{league}";
 
-        var staticItem = itemStaticDataProvider.Get(item);
+        var staticItem = apiStaticDataProvider.Get(item.Name, item.Type);
         if (staticItem == null)
         {
             throw new ApiErrorException
@@ -118,15 +118,13 @@ public class BulkTradeService
         return new Uri(baseUri, $"{league}/{queryId}");
     }
 
-    private async Task<string> GetBaseApiUrl(GameType game)
+    private Task<string> GetBaseApiUrl(GameType game)
     {
-        var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
-        return useInvariant ? gameLanguageProvider.InvariantLanguage.GetTradeApiBaseUrl(game) : gameLanguageProvider.Language.GetTradeApiBaseUrl(game);
+        return Task.FromResult(gameLanguageProvider.Language.GetTradeApiBaseUrl(game));
     }
 
-    private async Task<string> GetBaseUrl(GameType game)
+    private Task<string> GetBaseUrl(GameType game)
     {
-        var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
-        return useInvariant ? gameLanguageProvider.InvariantLanguage.GetTradeBaseUrl(game) : gameLanguageProvider.Language.GetTradeBaseUrl(game);
+        return Task.FromResult(gameLanguageProvider.Language.GetTradeBaseUrl(game));
     }
 }

@@ -27,13 +27,12 @@ public class OpenMapInfoKeybindHandler
     public override async Task Execute(string keybind)
     {
         var text = await clipboardProvider.Copy();
-        var advancedText = await clipboardProvider.Copy(true);
         if (text == null)
         {
             await keyboard.PressKey(keybind);
             return;
         }
 
-        viewLocator.Open(SidekickViewType.Overlay, $"/map/{text.EncodeBase64Url()}/{advancedText?.EncodeBase64Url()}");
+        viewLocator.Open(SidekickViewType.Overlay, $"/map/{text.EncodeBase64Url()}");
     }
 }

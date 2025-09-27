@@ -28,7 +28,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var scoutItem = await ScoutItemProvider.GetItem(Item.Invariant?.Name, Item.Invariant?.Type);
+        var scoutItem = await ScoutItemProvider.GetItem(Item.Header.InvariantText);
         SupportsCurrencyExchange = scoutItem?.IsCurrency ?? false;
         if (SupportsCurrencyExchange)
         {

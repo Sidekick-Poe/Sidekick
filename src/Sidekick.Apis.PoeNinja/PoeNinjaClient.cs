@@ -2,12 +2,10 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Extensions;
-using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.PoeNinja.Api;
 using Sidekick.Apis.PoeNinja.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.PoeNinja;
@@ -27,6 +25,43 @@ public class PoeNinjaClient(
     private static readonly Uri baseUrl = new("https://poe.ninja/");
     private static readonly Uri apiBaseUrl = new("https://poe.ninja/api/data/");
 
+    private static readonly List<ItemType> itemTypes =
+    [
+        ItemType.ClusterJewel,
+        ItemType.UniqueAccessory,
+        ItemType.UniqueArmour,
+        ItemType.UniqueFlask,
+        ItemType.UniqueJewel,
+        ItemType.UniqueWeapon,
+        ItemType.Currency,
+        ItemType.Fragment,
+        ItemType.DeliriumOrb,
+        ItemType.Incubator,
+        ItemType.Oil,
+        ItemType.Incubator,
+        ItemType.Scarab,
+        ItemType.Fossil,
+        ItemType.Resonator,
+        ItemType.Essence,
+        ItemType.Resonator,
+        ItemType.Artifact,
+        ItemType.KalguuranRune,
+        ItemType.Omen,
+        ItemType.Tattoo,
+        ItemType.Runegraft,
+        ItemType.DivinationCard,
+        ItemType.Map,
+        ItemType.Fragment,
+        ItemType.Scarab,
+        ItemType.Invitation,
+        ItemType.BlightedMap,
+        ItemType.BlightRavagedMap,
+        ItemType.UniqueMap,
+        ItemType.AllflameEmber,
+        ItemType.Beast,
+        ItemType.SkillGem,
+    ];
+
     private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -43,15 +78,13 @@ public class PoeNinjaClient(
     }
 
     public async Task<NinjaPrice?> GetPriceInfo(
-        string? englishName,
-        string? englishType,
-        Category category,
+        string? invariantText,
         int? gemLevel = null,
         int? mapTier = null,
         bool? isRelic = false,
         int? numberOfLinks = null)
     {
-        if ((englishName ?? englishType) == "Chaos Orb")
+        if (invariantText == "Chaos Orb")
         {
             return new NinjaPrice()
             {
@@ -63,11 +96,11 @@ public class PoeNinjaClient(
         }
 
         await ClearCacheIfExpired();
-        var prices = await GetPrices(category);
+        var prices = await GetPrices();
 
-        var query = prices.Where(x => x.Name == englishName || x.Name == englishType);
+        var query = prices.Where(x => x.Name == invariantText);
 
-        if (category == Category.Gem && gemLevel != null)
+        if (gemLevel is > 0)
         {
             query = query.Where(x => x.GemLevel == gemLevel);
         }
@@ -77,12 +110,12 @@ public class PoeNinjaClient(
             query = query.Where(x => x.IsRelic == isRelic);
         }
 
-        if (category == Category.Map && mapTier != null)
+        if (mapTier is > 0)
         {
             query = query.Where(x => x.MapTier == mapTier);
         }
 
-        if (numberOfLinks != null)
+        if (numberOfLinks is > 0)
         {
             // Poe.ninja has pricings for <5, 5 and 6 links.
             // <5 being 0 links in their API.
@@ -107,7 +140,7 @@ public class PoeNinjaClient(
         };
 
         await ClearCacheIfExpired();
-        var prices = await GetPrices(Category.Jewel);
+        var prices = await GetPrices();
 
         var query = prices
             .Where(x => x.Name == englishGrantText)
@@ -158,7 +191,7 @@ public class PoeNinjaClient(
         await settingsService.Set(SettingKeys.PoeNinjaLastClear, DateTimeOffset.Now);
     }
 
-    public async Task SaveItemsToCache(ItemType itemType, List<NinjaPrice> prices)
+    private async Task SaveItemsToCache(ItemType itemType, List<NinjaPrice> prices)
     {
         prices = prices
             .GroupBy(x => (x.Name,
@@ -172,9 +205,8 @@ public class PoeNinjaClient(
         await cacheProvider.Set(GetCacheKey(itemType), prices);
     }
 
-    private async Task<IEnumerable<NinjaPrice>> GetPrices(Category category)
+    private async Task<IEnumerable<NinjaPrice>> GetPrices()
     {
-        var itemTypes = GetApiItemTypes(category);
         var tasks = new List<Task<IList<NinjaPrice>>>();
 
         foreach (var itemType in itemTypes)
@@ -333,74 +365,5 @@ public class PoeNinjaClient(
         }
 
         return [];
-    }
-
-    private static IEnumerable<ItemType> GetApiItemTypes(Category category)
-    {
-        switch (category)
-        {
-            case Category.Accessory:
-                yield return ItemType.UniqueAccessory;
-                yield break;
-
-            case Category.Armour:
-                yield return ItemType.UniqueArmour;
-                yield break;
-
-            case Category.Flask:
-                yield return ItemType.UniqueFlask;
-                yield break;
-
-            case Category.Jewel:
-                yield return ItemType.UniqueJewel;
-                yield return ItemType.ClusterJewel;
-                yield break;
-
-            case Category.Weapon:
-                yield return ItemType.UniqueWeapon;
-                yield break;
-
-            case Category.Currency:
-                yield return ItemType.Currency;
-                yield return ItemType.Fragment;
-                yield return ItemType.DeliriumOrb;
-                yield return ItemType.Incubator;
-                yield return ItemType.Oil;
-                yield return ItemType.Incubator;
-                yield return ItemType.Scarab;
-                yield return ItemType.Fossil;
-                yield return ItemType.Resonator;
-                yield return ItemType.Essence;
-                yield return ItemType.Resonator;
-                yield return ItemType.Artifact;
-                yield return ItemType.KalguuranRune;
-                yield return ItemType.Omen;
-                yield return ItemType.Tattoo;
-                yield return ItemType.Runegraft;
-                yield break;
-
-            case Category.DivinationCard:
-                yield return ItemType.DivinationCard;
-                yield break;
-
-            case Category.Map:
-                yield return ItemType.Map;
-                yield return ItemType.Fragment;
-                yield return ItemType.Scarab;
-                yield return ItemType.Invitation;
-                yield return ItemType.BlightedMap;
-                yield return ItemType.BlightRavagedMap;
-                yield return ItemType.UniqueMap;
-                yield return ItemType.AllflameEmber;
-                yield break;
-
-            case Category.Gem:
-                yield return ItemType.SkillGem;
-                yield break;
-
-            case Category.ItemisedMonster:
-                yield return ItemType.Beast;
-                yield break;
-        }
     }
 }

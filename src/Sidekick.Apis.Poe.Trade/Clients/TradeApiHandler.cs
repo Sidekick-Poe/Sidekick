@@ -63,12 +63,11 @@ public class TradeApiHandler
         var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
         if (responseContent.Contains("<center>cloudflare</center>"))
         {
-            var useInvariantTradeResults = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
             var isChinese = gameLanguageProvider.IsChinese();
-            if (isChinese && !useInvariantTradeResults)
+            if (isChinese)
             {
                 logger.LogWarning("[PoeTradeHandler] Invalid chinese settings. Throwing exception.");
-                throw new SidekickException("Sidekick failed to communicate with the trade API.", "The trade website requires authentication, which Sidekick does not support currently.", "Try using a different game language and/or force to search using English only in the settings.");
+                throw new SidekickException("Sidekick failed to communicate with the trade API.", "The trade website requires authentication, which Sidekick does not support currently.", "Try using a different game language in the settings.");
             }
 
             logger.LogWarning("[PoeTradeHandler] Received a cloudflare redirect. Letting the handler continue.");

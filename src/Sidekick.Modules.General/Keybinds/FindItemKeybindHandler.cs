@@ -24,14 +24,13 @@ public class FindItemKeybindHandler(
     public override async Task Execute(string keybind)
     {
         var text = await clipboardProvider.Copy();
-        var advancedText = await clipboardProvider.Copy(true);
         if (text == null)
         {
             await keyboard.PressKey(keybind);
             return;
         }
 
-        var item = itemParser.ParseItem(text, advancedText);
+        var item = itemParser.ParseItem(text);
         await clipboardProvider.SetText(item.Header.Name ?? item.Header.Type);
         keyboard.ReleaseAltModifier();
         await keyboard.PressKey(

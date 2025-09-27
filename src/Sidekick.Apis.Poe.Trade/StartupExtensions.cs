@@ -39,9 +39,8 @@ public static class StartupExtensions
         services.AddSingleton<IRequirementsParser, RequirementsParser>();
         services.AddSidekickInitializableService<IItemParser, ItemParser>();
         services.AddSidekickInitializableService<IPropertyParser, PropertyParser>();
-        services.AddSidekickInitializableService<IApiInvariantItemProvider, ApiInvariantItemProvider>();
         services.AddSidekickInitializableService<IApiItemProvider, ApiItemProvider>();
-        services.AddSidekickInitializableService<IItemStaticDataProvider, ItemStaticDataProvider>();
+        services.AddSidekickInitializableService<IApiStaticDataProvider, ApiStaticDataProvider>();
         services.AddSidekickInitializableService<IInvariantModifierProvider, InvariantModifierProvider>();
         services.AddSidekickInitializableService<IModifierProvider, ModifierProvider>();
         services.AddSidekickInitializableService<IPseudoParser, PseudoParser>();

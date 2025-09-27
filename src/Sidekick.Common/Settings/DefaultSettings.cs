@@ -14,8 +14,6 @@ public static class DefaultSettings
 
     public static string Zoom => "1";
 
-    public static bool UseInvariantTradeResults => false;
-
     public static string KeyClose => "Space";
 
     public static string KeyOpenWealth => "";

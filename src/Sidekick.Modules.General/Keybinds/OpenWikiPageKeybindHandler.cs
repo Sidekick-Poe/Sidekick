@@ -30,14 +30,13 @@ public class OpenWikiPageKeybindHandler(
     public override async Task Execute(string keybind)
     {
         var text = await clipboardProvider.Copy();
-        var advancedText = await clipboardProvider.Copy(true);
         if (text == null)
         {
             await keyboard.PressKey(keybind);
             return;
         }
 
-        var item = itemParser.ParseItem(text, advancedText);
+        var item = itemParser.ParseItem(text);
 
         var wikiPreferred = await settingsService.GetEnum<WikiSetting>(SettingKeys.PreferredWiki);
         if (wikiPreferred == WikiSetting.PoeWiki)

@@ -44,7 +44,7 @@ else if (Map != null)
                             @Map.AreaTypeTags.Aggregate((a, b) => System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(a) + ", " + System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(b))
                         </figcaption>
                     }
-                    <img class="h-auto max-w-full rounded-lg mx-auto" src="@Map.Screenshot" alt="@(Name ?? Type)">
+                    <img class="h-auto max-w-full rounded-lg mx-auto" src="@Map.Screenshot" alt="@(Text)">
                 </figure>
             }
 
@@ -69,10 +69,7 @@ else
 @code {
 
     [Parameter]
-    public string? Name { get; set; }
-
-    [Parameter]
-    public string? Type { get; set; }
+    public string? Text { get; set; }
 
     private bool Loading { get; set; } = true;
 
@@ -84,7 +81,7 @@ else
         Loading = true;
         StateHasChanged();
 
-        Map = await PoeWikiClient.GetMap(Name ?? Type);
+        Map = await PoeWikiClient.GetMap(Text);
         Loading = false;
     }
 

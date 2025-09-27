@@ -4,11 +4,11 @@ using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Trade.Static;
 
-public interface IItemStaticDataProvider : IInitializableService
+public interface IApiStaticDataProvider : IInitializableService
 {
     string? GetImage(string id);
 
-    StaticItem? Get(string id);
+    StaticItem? GetById(string id);
 
-    StaticItem? Get(Item item);
+    StaticItem? Get(string? name, string? type);
 }

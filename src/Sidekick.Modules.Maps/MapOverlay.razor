@@ -1,4 +1,4 @@
-@page "/map/{itemText}/{advancedText}"
+@page "/map/{itemText}"
 @using System.Text.RegularExpressions
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Trade
@@ -78,7 +78,7 @@
     <ChildContent>
         @if (Item?.Game == GameType.PathOfExile)
         {
-            <PoeWikiMapInfo Type="@Item.Invariant?.Type" Name="@Item.Invariant?.Name"/>
+            <PoeWikiMapInfo Text="@Item.Header.InvariantText"/>
         }
     </ChildContent>
 </LayoutTwoColumn>
@@ -94,9 +94,6 @@
 
     [Parameter]
     public required string ItemText { get; set; }
-
-    [Parameter]
-    public required string AdvancedText { get; set; }
 
     private List<string> DangerousMods { get; } =
     [
@@ -141,8 +138,7 @@
     private async Task UpdateOverlay()
     {
         var itemText = ItemText.DecodeBase64Url();
-        var advancedText = AdvancedText.DecodeBase64Url();
-        Item = ItemParser.ParseItem(itemText, advancedText);
+        Item = ItemParser.ParseItem(itemText);
 
         if (Item.Header.Category != Category.Map && Item.Header.Category != Category.Contract && Item.Header.Category != Category.Logbook)
         {

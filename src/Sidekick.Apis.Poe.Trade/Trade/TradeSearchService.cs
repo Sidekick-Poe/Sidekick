@@ -48,34 +48,29 @@ public class TradeSearchService
             logger.LogInformation("[Trade API] Querying Trade API.");
 
             var query = new Query();
-            var metadata = await GetHeader(item);
 
-            // If the English trade is used, we must use the invariant name.
-            var useInvariantTradeResults = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
-            var itemApiNameToUse = useInvariantTradeResults ? item.Invariant?.Name : item.Header.Name;
-
-                var hasTypeDiscriminator = !string.IsNullOrEmpty(metadata.Discriminator);
-                if (hasTypeDiscriminator)
-                {
-                    query.Type = new TypeDiscriminator()
-                    {
-                        Option = metadata.Type,
-                        Discriminator = metadata.Discriminator,
-                    };
-                }
-                else
-                {
-                    query.Type = metadata.Type;
-                }
-
-            if (item.Header.Category == Category.ItemisedMonster && !string.IsNullOrEmpty(itemApiNameToUse))
+            var hasTypeDiscriminator = !string.IsNullOrEmpty(item.Header.Discriminator);
+            if (hasTypeDiscriminator)
             {
-                query.Term = itemApiNameToUse;
+                query.Type = new TypeDiscriminator()
+                {
+                    Option = item.Header.Type,
+                    Discriminator = item.Header.Discriminator,
+                };
+            }
+            else
+            {
+                query.Type = item.Header.Type;
+            }
+
+            if (item.Header.Category == Category.ItemisedMonster && !string.IsNullOrEmpty(item.Header.Name))
+            {
+                query.Term = item.Header.Name;
                 query.Type = null;
             }
-            else if (item.Properties.Rarity == Rarity.Unique && !string.IsNullOrEmpty(itemApiNameToUse))
+            else if (item.Properties.Rarity == Rarity.Unique && !string.IsNullOrEmpty(item.Header.Name))
             {
-                query.Name = itemApiNameToUse;
+                query.Name = item.Header.Name;
             }
 
             var currency = item.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
@@ -335,21 +330,13 @@ public class TradeSearchService
         return new Uri(baseUri, $"{league}/{queryId}");
     }
 
-    private async Task<string> GetBaseApiUrl(GameType game)
+    private Task<string> GetBaseApiUrl(GameType game)
     {
-        var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
-        return useInvariant ? gameLanguageProvider.InvariantLanguage.GetTradeApiBaseUrl(game) : gameLanguageProvider.Language.GetTradeApiBaseUrl(game);
+        return Task.FromResult(gameLanguageProvider.Language.GetTradeApiBaseUrl(game));
     }
 
-    private async Task<string> GetBaseUrl(GameType game)
+    private Task<string> GetBaseUrl(GameType game)
     {
-        var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
-        return useInvariant ? gameLanguageProvider.InvariantLanguage.GetTradeBaseUrl(game) : gameLanguageProvider.Language.GetTradeBaseUrl(game);
-    }
-
-    private async Task<ItemApiInformation> GetHeader(Item item)
-    {
-        var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
-        return useInvariant ? item.Invariant ?? item.Header : item.Header;
+        return Task.FromResult(gameLanguageProvider.Language.GetTradeBaseUrl(game));
     }
 }

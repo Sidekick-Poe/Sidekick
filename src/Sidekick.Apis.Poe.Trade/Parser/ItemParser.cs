@@ -23,7 +23,6 @@ public class ItemParser
     IPropertyParser propertyParser,
     IGameLanguageProvider gameLanguageProvider,
     IApiItemProvider apiItemProvider,
-    IApiInvariantItemProvider apiInvariantItemProvider,
     ISettingsService settingsService
 ) : IItemParser
 {
@@ -41,26 +40,21 @@ public class ItemParser
         Game = await settingsService.GetGame();
     }
 
-    public Item ParseItem(string? text, string? advancedText = null)
+    public Item ParseItem(string? text)
     {
-        if (gameLanguageProvider.IsEnglish()) advancedText ??= text;
-
-        if (string.IsNullOrEmpty(advancedText)) throw new UnparsableException(text);
+        if (string.IsNullOrEmpty(text)) throw new UnparsableException(text);
 
         try
         {
-            if (text != null) text = RemoveUnusableLine(text);
-            advancedText = RemoveUnusableLine(advancedText);
+            text = RemoveUnusableLine(text);
 
-            var item = new Item(Game, text, advancedText);
+            var item = new Item(Game, text);
 
             // These properties are required for later parsing steps
             propertyParser.GetDefinition<ItemClassProperty>().Parse(item);
             propertyParser.GetDefinition<RarityProperty>().Parse(item);
 
-            item.Header = apiItemProvider.GetApiItem(item.Properties.Rarity, item.Properties.ItemClass, item.Name, item.Type) ?? throw new UnparsableException(item.Text.Text);
-            item.Invariant = apiInvariantItemProvider.GetApiItem(item.Properties.Rarity, item.Properties.ItemClass, item.InvariantName, item.InvariantType) ?? throw new UnparsableException(item.Text.Text);
-
+            item.Header = apiItemProvider.GetApiItem(item.Properties.Rarity, item.Name, item.Type) ?? throw new UnparsableException(item.Text.Text);
             ParseVaalGem(item);
 
             requirementsParser.Parse(item.Text);
@@ -88,14 +82,9 @@ public class ItemParser
         var canBeVaalGem = item.Properties.ItemClass == ItemClass.ActiveGem && item.Text.Blocks.Count > 7;
         if (!canBeVaalGem || item.Text.Blocks[5].Lines.Count <= 0) return;
 
-        if (apiItemProvider.NameAndTypeDictionary.TryGetValue(item.Text.Blocks[5].Lines[0].Text, out var apiItems))
+        if (apiItemProvider.NameAndTypeDictionary.TryGetValue(item.Text.Blocks[5].Lines[0].Text, out var apiItems) && apiItems.Count > 0)
         {
             item.Header = apiItems.First();
-        }
-
-        if (apiInvariantItemProvider.NameAndTypeDictionary.TryGetValue(item.Text.Blocks[5].Lines[0].Text, out var invariantApiItems))
-        {
-            item.Invariant = invariantApiItems.First();
         }
     }
 }

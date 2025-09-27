@@ -4,6 +4,12 @@ public class ItemApiInformation
 {
     public Category Category { get; set; } = Category.Unknown;
 
+    public string? InvariantId { get; set; }
+
+    public string? InvariantText { get; set; }
+
+    public string? Image { get; set; }
+
     public string? Name { get; set; }
 
     public string? Type { get; set; }
