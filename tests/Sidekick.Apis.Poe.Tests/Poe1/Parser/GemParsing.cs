@@ -56,9 +56,9 @@ Note: ~price 2 chaos
 ");
 
         Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
-        Assert.Equal(Category.Gem, actual.Header.Category);
+        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal("Vaal Double Strike", actual.Header.Type);
+        Assert.Equal("Vaal Double Strike", actual.ApiInformation.Type);
         Assert.Equal(1, actual.Properties.GemLevel);
         Assert.Equal(0, actual.Properties.Quality);
         Assert.True(actual.Properties.Corrupted);
@@ -94,8 +94,8 @@ This is a Support Gem. It does not grant a bonus to your character, but to skill
 
         Assert.Equal(ItemClass.SupportGem, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal(Category.Gem, actual.Header.Category);
-        Assert.Equal("Arcane Surge Support", actual.Header.Type);
+        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
+        Assert.Equal("Arcane Surge Support", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -132,8 +132,8 @@ Place into an item socket of the right colour to gain this skill. Right click to
 
         Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal(Category.Gem, actual.Header.Category);
-        Assert.Equal("Void Sphere", actual.Header.Type);
+        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
+        Assert.Equal("Void Sphere", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -172,9 +172,9 @@ Transfigured
 
         Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal(Category.Gem, actual.Header.Category);
-        Assert.Equal("Kinetic Blast of Clustering", actual.Header.Text);
-        Assert.Equal("Kinetic Blast", actual.Header.Type);
-        Assert.Equal("alt_x", actual.Header.Discriminator);
+        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
+        Assert.Equal("Kinetic Blast of Clustering", actual.ApiInformation.Text);
+        Assert.Equal("Kinetic Blast", actual.ApiInformation.Type);
+        Assert.Equal("alt_x", actual.ApiInformation.Discriminator);
     }
 }

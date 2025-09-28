@@ -97,7 +97,7 @@ public class PropertyParser
     {
         foreach (var definition in Definitions)
         {
-            if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(item.Header.Category)) continue;
+            if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(item.ApiInformation.Category)) continue;
 
             definition.Parse(item);
         }
@@ -107,7 +107,7 @@ public class PropertyParser
     {
         foreach (var definition in Definitions)
         {
-            if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(item.Header.Category)) continue;
+            if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(item.ApiInformation.Category)) continue;
 
             definition.ParseAfterModifiers(item);
         }
@@ -122,7 +122,7 @@ public class PropertyParser
 
         foreach (var definition in Definitions)
         {
-            if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(item.Header.Category)) continue;
+            if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(item.ApiInformation.Category)) continue;
 
             var filter = await definition.GetFilter(item, normalizeValue, filterType);
             if (filter != null) results.Add(filter);

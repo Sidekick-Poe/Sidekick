@@ -44,10 +44,10 @@ Corrupted
 ");
 
         Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
-        Assert.Equal(Category.Armour, actual.Header.Category);
+        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal("Steeltoe Boots", actual.Header.Type);
-        Assert.Equal("Thunderstep", actual.Header.Name);
+        Assert.Equal("Steeltoe Boots", actual.ApiInformation.Type);
+        Assert.Equal("Thunderstep", actual.ApiInformation.Name);
 
         Assert.Equal(129, actual.Properties.EvasionRating);
 
@@ -88,10 +88,10 @@ Grants Skill: Parry
 ");
 
         Assert.Equal(ItemClass.Buckler, actual.Properties.ItemClass);
-        Assert.Equal(Category.Armour, actual.Header.Category);
+        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal("Wooden Buckler", actual.Header.Type);
-        Assert.Null(actual.Header.Name);
+        Assert.Equal("Wooden Buckler", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
 
         Assert.Equal(16, actual.Properties.EvasionRating);
 
@@ -120,10 +120,10 @@ Can only be equipped if you are wielding a Bow.
 ");
 
         Assert.Equal(ItemClass.Quiver, actual.Properties.ItemClass);
-        Assert.Equal(Category.Armour, actual.Header.Category);
+        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Fire Quiver", actual.Header.Type);
-        Assert.Null(actual.Header.Name);
+        Assert.Equal("Fire Quiver", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
 
         Assert.Equal(8, actual.Properties.ItemLevel);
     }
@@ -159,10 +159,10 @@ Item Level: 66
 ");
 
         Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
-        Assert.Equal(Category.Armour, actual.Header.Category);
+        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal("Bastion Sabatons", actual.Header.Type);
-        Assert.Null(actual.Header.Name);
+        Assert.Equal("Bastion Sabatons", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
 
         Assert.Equal(66, actual.Properties.ItemLevel);
 

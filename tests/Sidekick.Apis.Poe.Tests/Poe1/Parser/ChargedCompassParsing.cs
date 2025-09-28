@@ -25,7 +25,7 @@ Right click on this item then left click on a Voidstone to apply the itemised Se
 ");
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
-        Assert.Equal(Category.Currency, actual.Header.Category);
+        Assert.Equal(Category.Currency, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
 
         actual.AssertHasModifier(ModifierCategory.Enchant, "Your Maps contain Niko (Master)");

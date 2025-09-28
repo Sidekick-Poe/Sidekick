@@ -28,13 +28,13 @@ Natural inhabitants of this area have been removed (implicit)
 Travel to this Map by using it in a personal Map Device. Maps can only be used once.
 ");
 
-        Assert.Equal(Category.Map, actual.Header.Category);
+        Assert.Equal(Category.Map, actual.ApiInformation.Category);
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Blighted Atoll Map", actual.Type);
-        Assert.Equal("Blighted Atoll Map", actual.Header.Text);
-        Assert.Equal("Atoll Map", actual.Header.Type);
-        Assert.Equal("blighted", actual.Header.Discriminator);
+        Assert.Equal("Blighted Atoll Map", actual.ApiInformation.Text);
+        Assert.Equal("Atoll Map", actual.ApiInformation.Type);
+        Assert.Equal("blighted", actual.ApiInformation.Discriminator);
         Assert.Equal(14, actual.Properties.MapTier);
         Assert.True(actual.Properties.Blighted);
     }
@@ -60,12 +60,12 @@ Natural inhabitants of this area have been removed (implicit)
 Travel to this Map by using it in a personal Map Device. Maps can only be used once.
 ");
 
-        Assert.Equal(Category.Map, actual.Header.Category);
+        Assert.Equal(Category.Map, actual.ApiInformation.Category);
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal("Blighted Shore Map", actual.Header.Text);
-        Assert.Equal("Shore Map", actual.Header.Type);
-        Assert.Equal("blighted", actual.Header.Discriminator);
+        Assert.Equal("Blighted Shore Map", actual.ApiInformation.Text);
+        Assert.Equal("Shore Map", actual.ApiInformation.Type);
+        Assert.Equal("blighted", actual.ApiInformation.Discriminator);
         Assert.Null(actual.Name);
         Assert.Equal(6, actual.Properties.MapTier);
         Assert.True(actual.Properties.Blighted);
@@ -88,8 +88,8 @@ Note: ~price 1 blessed
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal(Category.Currency, actual.Header.Category);
-        Assert.Equal("Clear Oil", actual.Header.Type);
+        Assert.Equal(Category.Currency, actual.ApiInformation.Category);
+        Assert.Equal("Clear Oil", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -123,10 +123,10 @@ Travel to this Map by using it in a personal Map Device.Maps can only be used on
 
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal(Category.Map, actual.Header.Category);
-        Assert.Equal("Blighted Spider Forest Map", actual.Header.Text);
-        Assert.Equal("Spider Forest Map", actual.Header.Type);
-        Assert.Equal("blighted", actual.Header.Discriminator);
+        Assert.Equal(Category.Map, actual.ApiInformation.Category);
+        Assert.Equal("Blighted Spider Forest Map", actual.ApiInformation.Text);
+        Assert.Equal("Spider Forest Map", actual.ApiInformation.Type);
+        Assert.Equal("blighted", actual.ApiInformation.Discriminator);
         Assert.Equal("Nightmare Spires", actual.Name);
         Assert.True(actual.Properties.Blighted);
     }

@@ -54,7 +54,7 @@ public class ItemParser
             propertyParser.GetDefinition<ItemClassProperty>().Parse(item);
             propertyParser.GetDefinition<RarityProperty>().Parse(item);
 
-            item.Header = apiItemProvider.GetApiItem(item.Properties.Rarity, item.Name, item.Type) ?? throw new UnparsableException(item.Text.Text);
+            item.ApiInformation = apiItemProvider.GetApiItem(item.Properties.Rarity, item.Name, item.Type) ?? throw new UnparsableException(item.Text.Text);
             ParseVaalGem(item);
 
             requirementsParser.Parse(item.Text);
@@ -84,7 +84,7 @@ public class ItemParser
 
         if (apiItemProvider.NameAndTypeDictionary.TryGetValue(item.Text.Blocks[5].Lines[0].Text, out var apiItems) && apiItems.Count > 0)
         {
-            item.Header = apiItems.First();
+            item.ApiInformation = apiItems.First();
         }
     }
 }

@@ -152,7 +152,7 @@ public class SocketProperty
             case GameType.PathOfExile: query.Filters.GetOrCreateSocketFilters().Filters.Links = new SocketFilterOption(intFilter); break;
 
             case GameType.PathOfExile2:
-                switch (item.Header.Category)
+                switch (item.ApiInformation.Category)
                 {
                     case Category.Gem: query.Filters.GetOrCreateMiscFilters().Filters.GemSockets = new StatFilterValue(intFilter); break;
                     default: query.Filters.GetOrCreateEquipmentFilters().Filters.RuneSockets = new StatFilterValue(intFilter); break;

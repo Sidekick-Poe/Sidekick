@@ -60,7 +60,7 @@ public class OpenWikiPageKeybindHandler(
 
     private void OpenPoeWiki(Item item)
     {
-        var searchLink = item.Header.Name ?? item.Header.Type;
+        var searchLink = item.ApiInformation.Name ?? item.ApiInformation.Type;
         var baseUrl = item.Game == GameType.PathOfExile ? PoeWikiBaseUri : Poe2WikiBaseUri;
         var wikiLink = PoeWikiSubUrl + searchLink?.Replace(" ", "+");
         var uri = new Uri(baseUrl + wikiLink);
@@ -74,7 +74,7 @@ public class OpenWikiPageKeybindHandler(
 
     private void OpenPoeDb(Item item)
     {
-        var searchLink = item.Header.Name ?? item.Header.Type;
+        var searchLink = item.ApiInformation.Name ?? item.ApiInformation.Type;
         var baseUrl = item.Game == GameType.PathOfExile ? PoeDbBaseUri : Poe2DbBaseUri;
         var wikiLink = PoeDbSubUrl + searchLink?.Replace(" ", "+");
         var uri = new Uri(baseUrl + wikiLink);

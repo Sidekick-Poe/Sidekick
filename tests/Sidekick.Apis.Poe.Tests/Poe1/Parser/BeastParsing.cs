@@ -33,9 +33,9 @@ Right-click to add this to your bestiary.
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal(Category.ItemisedMonster, actual.Header.Category);
-        Assert.Null(actual.Header.Name);
-        Assert.Equal("Farric Flame Hellion Alpha", actual.Header.Type);
+        Assert.Equal(Category.ItemisedMonster, actual.ApiInformation.Category);
+        Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal("Farric Flame Hellion Alpha", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -55,10 +55,10 @@ Cannot be fully Slowed
 --------
 Right-click to add this to your bestiary.");
 
-        Assert.Equal(Category.ItemisedMonster, parsedRareBeast.Header.Category);
+        Assert.Equal(Category.ItemisedMonster, parsedRareBeast.ApiInformation.Category);
         Assert.Equal(Rarity.Unique, parsedRareBeast.Properties.Rarity);
-        Assert.Equal("Saqawal, First of the Sky", parsedRareBeast.Header.Type);
-        Assert.Null(parsedRareBeast.Header.Name);
+        Assert.Equal("Saqawal, First of the Sky", parsedRareBeast.ApiInformation.Type);
+        Assert.Null(parsedRareBeast.ApiInformation.Name);
     }
 
     [Fact]
@@ -87,7 +87,7 @@ Right-click to add this to your bestiary.
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal(Category.ItemisedMonster, actual.Header.Category);
-        Assert.Equal("Farric Chieftain", actual.Header.Type);
+        Assert.Equal(Category.ItemisedMonster, actual.ApiInformation.Category);
+        Assert.Equal("Farric Chieftain", actual.ApiInformation.Type);
     }
 }

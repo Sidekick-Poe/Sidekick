@@ -78,7 +78,7 @@
     <ChildContent>
         @if (Item?.Game == GameType.PathOfExile)
         {
-            <PoeWikiMapInfo Text="@Item.Header.InvariantText"/>
+            <PoeWikiMapInfo Text="@Item.ApiInformation.InvariantText"/>
         }
     </ChildContent>
 </LayoutTwoColumn>
@@ -140,7 +140,7 @@
         var itemText = ItemText.DecodeBase64Url();
         Item = ItemParser.ParseItem(itemText);
 
-        if (Item.Header.Category != Category.Map && Item.Header.Category != Category.Contract && Item.Header.Category != Category.Logbook)
+        if (Item.ApiInformation.Category != Category.Map && Item.ApiInformation.Category != Category.Contract && Item.ApiInformation.Category != Category.Logbook)
         {
             throw new InvalidItemException();
         }

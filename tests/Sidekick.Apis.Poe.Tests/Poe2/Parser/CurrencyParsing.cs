@@ -25,9 +25,9 @@ Right click this item then left click a normal item to apply it.
 ");
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
-        Assert.Equal(Category.Currency, actual.Header.Category);
+        Assert.Equal(Category.Currency, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal("Essence of Enhancement", actual.Header.Type);
-        Assert.Null(actual.Header.Name);
+        Assert.Equal("Essence of Enhancement", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
     }
 }

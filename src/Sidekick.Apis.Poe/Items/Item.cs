@@ -23,7 +23,7 @@ public class Item
 
     public string? Type { get; set; }
 
-    public ItemApiInformation Header { get; set; } = null!;
+    public ItemApiInformation ApiInformation { get; set; } = null!;
 
     public ItemProperties Properties { get; } = new();
 

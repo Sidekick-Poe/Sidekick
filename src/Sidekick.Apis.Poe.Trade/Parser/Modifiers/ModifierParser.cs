@@ -24,7 +24,7 @@ public class ModifierParser
     /// <inheritdoc/>
     public void Parse(Item item)
     {
-        if (item.Header.Category is Category.DivinationCard or Category.Gem) return;
+        if (item.ApiInformation.Category is Category.DivinationCard or Category.Gem) return;
 
         var modifiers = MatchModifiers(item)
             .Select(CreateModifierLine)
@@ -129,7 +129,7 @@ public class ModifierParser
 
     private IReadOnlyCollection<ModifierDefinition> GetAllAvailablePatterns(Item item)
     {
-        return item.Header.Category switch
+        return item.ApiInformation.Category switch
         {
             Category.Sanctum =>
             [
@@ -229,7 +229,7 @@ public class ModifierParser
     public async Task<List<ModifierFilter>> GetFilters(Item item)
     {
         // No filters for divination cards, etc.
-        if (item.Header.Category is Category.DivinationCard
+        if (item.ApiInformation.Category is Category.DivinationCard
             or Category.Gem
             or Category.ItemisedMonster
             or Category.Leaguestone

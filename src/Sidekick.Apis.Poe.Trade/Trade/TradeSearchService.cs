@@ -49,28 +49,28 @@ public class TradeSearchService
 
             var query = new Query();
 
-            var hasTypeDiscriminator = !string.IsNullOrEmpty(item.Header.Discriminator);
+            var hasTypeDiscriminator = !string.IsNullOrEmpty(item.ApiInformation.Discriminator);
             if (hasTypeDiscriminator)
             {
                 query.Type = new TypeDiscriminator()
                 {
-                    Option = item.Header.Type,
-                    Discriminator = item.Header.Discriminator,
+                    Option = item.ApiInformation.Type,
+                    Discriminator = item.ApiInformation.Discriminator,
                 };
             }
             else
             {
-                query.Type = item.Header.Type;
+                query.Type = item.ApiInformation.Type;
             }
 
-            if (item.Header.Category == Category.ItemisedMonster && !string.IsNullOrEmpty(item.Header.Name))
+            if (item.ApiInformation.Category == Category.ItemisedMonster && !string.IsNullOrEmpty(item.ApiInformation.Name))
             {
-                query.Term = item.Header.Name;
+                query.Term = item.ApiInformation.Name;
                 query.Type = null;
             }
-            else if (item.Properties.Rarity == Rarity.Unique && !string.IsNullOrEmpty(item.Header.Name))
+            else if (item.Properties.Rarity == Rarity.Unique && !string.IsNullOrEmpty(item.ApiInformation.Name))
             {
-                query.Name = item.Header.Name;
+                query.Name = item.ApiInformation.Name;
             }
 
             var currency = item.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);

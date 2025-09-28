@@ -34,8 +34,8 @@ Can only be equipped to Heist members.
 
         Assert.Equal(ItemClass.HeistTool, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal(Category.HeistEquipment, actual.Header.Category);
-        Assert.Equal("Basic Disguise Kit", actual.Header.Type);
+        Assert.Equal(Category.HeistEquipment, actual.ApiInformation.Category);
+        Assert.Equal("Basic Disguise Kit", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -59,8 +59,8 @@ Can only be equipped to Heist members.
 
         Assert.Equal(ItemClass.HeistUtility, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal(Category.HeistEquipment, actual.Header.Category);
-        Assert.Equal("Torn Cloak", actual.Header.Type);
+        Assert.Equal(Category.HeistEquipment, actual.ApiInformation.Category);
+        Assert.Equal("Torn Cloak", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -84,8 +84,8 @@ Can only be equipped to Heist members.
 
         Assert.Equal(ItemClass.HeistReward, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal(Category.HeistEquipment, actual.Header.Category);
-        Assert.Equal("Silver Brooch", actual.Header.Type);
+        Assert.Equal(Category.HeistEquipment, actual.ApiInformation.Category);
+        Assert.Equal("Silver Brooch", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -116,8 +116,8 @@ Can only be equipped to Heist members.
 
         Assert.Equal(ItemClass.HeistWeapon, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal(Category.HeistEquipment, actual.Header.Category);
-        Assert.Equal("Rough Sharpening Stone", actual.Header.Type);
+        Assert.Equal(Category.HeistEquipment, actual.ApiInformation.Category);
+        Assert.Equal("Rough Sharpening Stone", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -136,8 +136,8 @@ Can be exchanged with Faustus, the Fence in The Rogue Harbour
 
         Assert.Equal(ItemClass.HeistObjective, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal(Category.Currency, actual.Header.Category);
-        Assert.Equal("Golden Napuatzi Idol", actual.Header.Type);
+        Assert.Equal(Category.Currency, actual.ApiInformation.Category);
+        Assert.Equal("Golden Napuatzi Idol", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -164,8 +164,8 @@ Corrupted
 
         Assert.Equal(ItemClass.Trinket, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal(Category.Accessory, actual.Header.Category);
-        Assert.Equal("Thief's Trinket", actual.Header.Type);
+        Assert.Equal(Category.Accessory, actual.ApiInformation.Category);
+        Assert.Equal("Thief's Trinket", actual.ApiInformation.Type);
         Assert.True(actual.Properties.Corrupted);
     }
 

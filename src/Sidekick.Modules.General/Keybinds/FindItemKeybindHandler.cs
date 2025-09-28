@@ -31,7 +31,7 @@ public class FindItemKeybindHandler(
         }
 
         var item = itemParser.ParseItem(text);
-        await clipboardProvider.SetText(item.Header.Name ?? item.Header.Type);
+        await clipboardProvider.SetText(item.ApiInformation.Name ?? item.ApiInformation.Type);
         keyboard.ReleaseAltModifier();
         await keyboard.PressKey(
             "Ctrl+F",
