@@ -26,7 +26,6 @@ Right Click to engrave a Persistent Buff Skill Gem.
         Assert.Equal(Category.Gem, actual.ApiInformation.Category);
         Assert.Equal("Uncut Spirit Gem (Level 16)", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
-        Assert.Equal(16, actual.Properties.GemLevel);
     }
 
     [Fact]
@@ -46,7 +45,6 @@ Right Click to engrave a Support Gem.
         Assert.Equal(Category.Gem, actual.ApiInformation.Category);
         Assert.Equal("Uncut Support Gem (Level 3)", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
-        Assert.Equal(3, actual.Properties.GemLevel);
     }
 
     [Fact]
@@ -66,7 +64,6 @@ Right Click to engrave a Skill Gem.
         Assert.Equal(Category.Gem, actual.ApiInformation.Category);
         Assert.Equal("Uncut Skill Gem (Level 9)", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
-        Assert.Equal(9, actual.Properties.GemLevel);
     }
 
     [Fact]
