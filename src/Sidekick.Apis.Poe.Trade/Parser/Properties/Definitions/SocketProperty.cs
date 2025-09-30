@@ -21,9 +21,9 @@ public class SocketProperty
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Gem];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        if (!parsingItem.TryParseRegex(Pattern, out var match))
+        if (!item.Text.TryParseRegex(Pattern, out var match))
         {
             return;
         }
@@ -99,16 +99,16 @@ public class SocketProperty
             }
         }
 
-        itemProperties.Sockets = result;
+        item.Properties.Sockets = result;
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
         if (item.Properties.Sockets is not
             {
                 Count: > 0
             })
-            return null;
+            return Task.FromResult<PropertyFilter?>(null);
 
         int value;
         bool @checked;
@@ -140,10 +140,10 @@ public class SocketProperty
             Hint = hint,
         };
         filter.ChangeFilterType(filterType);
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
@@ -152,7 +152,7 @@ public class SocketProperty
             case GameType.PathOfExile: query.Filters.GetOrCreateSocketFilters().Filters.Links = new SocketFilterOption(intFilter); break;
 
             case GameType.PathOfExile2:
-                switch (item.Header.Category)
+                switch (item.ApiInformation.Category)
                 {
                     case Category.Gem: query.Filters.GetOrCreateMiscFilters().Filters.GemSockets = new StatFilterValue(intFilter); break;
                     default: query.Filters.GetOrCreateEquipmentFilters().Filters.RuneSockets = new StatFilterValue(intFilter); break;

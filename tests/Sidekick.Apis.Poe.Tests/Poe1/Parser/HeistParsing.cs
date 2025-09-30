@@ -32,10 +32,10 @@ Item Level: 69
 Can only be equipped to Heist members.
 ");
 
-        Assert.Equal(ItemClass.HeistTool, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Magic, actual.Header.Rarity);
-        Assert.Equal(Category.HeistEquipment, actual.Header.Category);
-        Assert.Equal("Basic Disguise Kit", actual.Header.ApiType);
+        Assert.Equal(ItemClass.HeistTool, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
+        Assert.Equal(Category.HeistEquipment, actual.ApiInformation.Category);
+        Assert.Equal("Basic Disguise Kit", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -57,10 +57,10 @@ Item Level: 67
 Can only be equipped to Heist members.
 ");
 
-        Assert.Equal(ItemClass.HeistUtility, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-        Assert.Equal(Category.HeistEquipment, actual.Header.Category);
-        Assert.Equal("Torn Cloak", actual.Header.ApiType);
+        Assert.Equal(ItemClass.HeistUtility, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Equal(Category.HeistEquipment, actual.ApiInformation.Category);
+        Assert.Equal("Torn Cloak", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -82,10 +82,10 @@ Item Level: 73
 Can only be equipped to Heist members.
 ");
 
-        Assert.Equal(ItemClass.HeistReward, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-        Assert.Equal(Category.HeistEquipment, actual.Header.Category);
-        Assert.Equal("Silver Brooch", actual.Header.ApiType);
+        Assert.Equal(ItemClass.HeistReward, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Equal(Category.HeistEquipment, actual.ApiInformation.Category);
+        Assert.Equal("Silver Brooch", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -114,10 +114,10 @@ Grants Level 10 Anger Skill
 Can only be equipped to Heist members.
 ");
 
-        Assert.Equal(ItemClass.HeistWeapon, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-        Assert.Equal(Category.HeistEquipment, actual.Header.Category);
-        Assert.Equal("Rough Sharpening Stone", actual.Header.ApiType);
+        Assert.Equal(ItemClass.HeistWeapon, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal(Category.HeistEquipment, actual.ApiInformation.Category);
+        Assert.Equal("Rough Sharpening Stone", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -134,10 +134,10 @@ Such a gift will set me apart from all other suitors.""
 Can be exchanged with Faustus, the Fence in The Rogue Harbour
 ");
 
-        Assert.Equal(ItemClass.HeistObjective, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
-        Assert.Equal(Category.Currency, actual.Header.Category);
-        Assert.Equal("Golden Napuatzi Idol", actual.Header.ApiType);
+        Assert.Equal(ItemClass.HeistObjective, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal(Category.Currency, actual.ApiInformation.Category);
+        Assert.Equal("Golden Napuatzi Idol", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -162,10 +162,10 @@ You must find the sculpture The Catch in a Smuggler's Den or Underbelly Blueprin
 Corrupted
 ");
 
-        Assert.Equal(ItemClass.Trinket, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-        Assert.Equal(Category.Accessory, actual.Header.Category);
-        Assert.Equal("Thief's Trinket", actual.Header.ApiType);
+        Assert.Equal(ItemClass.Trinket, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal(Category.Accessory, actual.ApiInformation.Category);
+        Assert.Equal("Thief's Trinket", actual.ApiInformation.Type);
         Assert.True(actual.Properties.Corrupted);
     }
 

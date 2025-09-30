@@ -21,18 +21,18 @@ public class RewardProperty
 
     public override List<Category> ValidCategories { get; } = [Category.Map];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
         if (game == GameType.PathOfExile2) return;
 
-        var propertyBlock = parsingItem.Blocks[1];
-        itemProperties.Reward = GetString(Pattern, propertyBlock);
-        if (itemProperties.Reward != null) propertyBlock.Parsed = true;
+        var propertyBlock = item.Text.Blocks[1];
+        item.Properties.Reward = GetString(Pattern, propertyBlock);
+        if (item.Properties.Reward != null) propertyBlock.Parsed = true;
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (game == GameType.PathOfExile2 || item.Properties.Reward == null) return null;
+        if (game == GameType.PathOfExile2 || item.Properties.Reward == null) return Task.FromResult<PropertyFilter?>(null);
 
         var filter = new StringPropertyFilter(this)
         {
@@ -41,10 +41,10 @@ public class RewardProperty
             Type = LineContentType.Unique,
             Checked = true,
         };
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (!filter.Checked || filter is not StringPropertyFilter stringFilter) return;
 

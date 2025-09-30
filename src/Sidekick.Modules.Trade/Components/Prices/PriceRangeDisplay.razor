@@ -14,7 +14,7 @@
     }
 </div>
 
-@inject IItemStaticDataProvider ItemStaticDataProvider
+@inject IApiStaticDataProvider ApiStaticDataProvider
 
 @code {
 
@@ -27,8 +27,8 @@
     [Parameter]
     public double Max { get; set; }
 
-    private string? ImageUrl => ItemStaticDataProvider.GetImage(Currency);
+    private string? ImageUrl => ApiStaticDataProvider.GetById(Currency)?.Image;
 
-    private string? CurrencyText => ItemStaticDataProvider.Get(Currency)?.Text;
+    private string? CurrencyText => ApiStaticDataProvider.GetById(Currency)?.Text;
 
 }

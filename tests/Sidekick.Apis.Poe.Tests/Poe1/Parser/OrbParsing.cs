@@ -25,10 +25,10 @@ Right click this item then left click a rare item to apply it.
 Note: ~b/o 2 blessed
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
-        Assert.Equal(Category.Currency, actual.Header.Category);
-        Assert.Equal("Chaos Orb", actual.Header.ApiType);
+        Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal(Category.Currency, actual.ApiInformation.Category);
+        Assert.Equal("Chaos Orb", actual.ApiInformation.Type);
 
         Assert.Empty(actual.ModifierLines);
     }

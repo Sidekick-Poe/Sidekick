@@ -32,10 +32,10 @@ Adds 8 to 13 Physical Damage to Attacks
 Corrupted
 ");
 
-        Assert.Equal(ItemClass.Ring, actual.Header.ItemClass);
-        Assert.Equal(Category.Accessory, actual.Header.Category);
-        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-        Assert.Equal("Ruby Ring", actual.Header.ApiType);
+        Assert.Equal(ItemClass.Ring, actual.Properties.ItemClass);
+        Assert.Equal(Category.Accessory, actual.ApiInformation.Category);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Ruby Ring", actual.ApiInformation.Type);
 
         Assert.Equal(76, actual.Properties.ItemLevel);
         Assert.False(actual.Properties.Unidentified);
@@ -77,7 +77,7 @@ While Berek slept.""
 - Berek and the Untamed
 ");
 
-        Assert.Equal(ItemClass.Ring, actual.Header.ItemClass);
+        Assert.Equal(ItemClass.Ring, actual.Properties.ItemClass);
         Assert.False(actual.Properties.Unidentified);
     }
 }

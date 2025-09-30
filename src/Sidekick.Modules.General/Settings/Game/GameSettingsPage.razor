@@ -18,14 +18,6 @@
     <AppContainer>
         <FormFieldset Legend="@SettingResources["General_Settings"]">
             <LanguageParserEditor/>
-
-            @if (!LanguageProvider.IsEnglish())
-            {
-                <SettingCheckboxEditor SettingKey="@SettingKeys.UseInvariantTradeResults"
-                                       Label="@Resources["UseInvariantForTradeResults"]"
-                                       Tooltip="@Resources["UseInvariantForTradeResultsTip"]"/>
-            }
-
             <LeagueIdEditor/>
 
             <div class="py-2">

@@ -14,26 +14,26 @@ public class UnidentifiedProperty(IGameLanguageProvider gameLanguageProvider) : 
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Flask, Category.Map, Category.Contract, Category.Accessory, Category.Jewel];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        itemProperties.Unidentified = GetBool(Pattern, parsingItem);
+        item.Properties.Unidentified = GetBool(Pattern, item.Text);
     }
 
-    public override TriStatePropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
         if (!item.Properties.Unidentified)
         {
-            return null;
+            return Task.FromResult<PropertyFilter?>(null);
         }
 
-        return new(this)
+        return Task.FromResult<PropertyFilter?>(new(this)
         {
             Text = gameLanguageProvider.Language.DescriptionUnidentified,
             Checked = true,
-        };
+        });
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (filter is not TriStatePropertyFilter triStatePropertyFilter || triStatePropertyFilter.Checked is null)
         {

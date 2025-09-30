@@ -2,8 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Account.Stash;
 using Sidekick.Apis.Poe.Account.Stash.Models;
-using Sidekick.Apis.Poe.Trade.Items;
 using Sidekick.Apis.Poe.Trade.Models.Items;
+using Sidekick.Apis.Poe.Trade.Static;
+using Sidekick.Apis.Poe.Trade.Static.Models;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
@@ -17,7 +18,7 @@ internal class WealthProvider
     ISettingsService settingsService,
     IStashService stashService,
     IPoeNinjaClient poeNinjaClient,
-    IApiInvariantItemProvider apiInvariantItemProvider,
+    IApiStaticDataProvider apiStaticDataProvider,
     DbContextOptions<SidekickDbContext> dbContextOptions
 )
 {
@@ -160,12 +161,8 @@ internal class WealthProvider
             return null;
         }
 
-        var invariantItem = apiInvariantItemProvider.NameDictionary.GetValueOrDefault(name);
-        if (invariantItem?.Category == null)
-        {
-            logger.LogError("[WealthProvider] Could not parse item due to missing invariant: " + name);
-            return null;
-        }
+        var apiData = apiStaticDataProvider.Get(item.Name, item.Type);
+        if (apiData == null) return null;
 
         var dbItem = new WealthItem
         {
@@ -178,9 +175,8 @@ internal class WealthProvider
             MapTier = item.MapTier,
             MaxLinks = item.MaxLinks,
             Name = name,
-            Category = invariantItem.Category.Value.ToString(),
             StashId = stash.Id,
-            Price = await GetItemPrice(invariantItem, item),
+            Price = await GetItemPrice(apiData, item),
         };
 
         dbItem.Total = dbItem.Count * dbItem.Price;
@@ -188,17 +184,9 @@ internal class WealthProvider
         return dbItem;
     }
 
-    private async Task<decimal> GetItemPrice(Apis.Poe.Trade.Items.Models.ApiItem invariantItem, ApiItem item)
+    private async Task<decimal> GetItemPrice(StaticItem apiData, ApiItem item)
     {
-        if (invariantItem.Category == null)
-        {
-            logger.LogError($"[WealthProvider] Could not price due to missing category: {item.Name}.");
-            return 0;
-        }
-
-        var price = await poeNinjaClient.GetPriceInfo(invariantItem.Name,
-                                                      invariantItem.Type,
-                                                      invariantItem.Category.Value,
+        var price = await poeNinjaClient.GetPriceInfo(apiData.Text,
                                                       item.GemLevel,
                                                       item.MapTier,
                                                       item.IsRelic,

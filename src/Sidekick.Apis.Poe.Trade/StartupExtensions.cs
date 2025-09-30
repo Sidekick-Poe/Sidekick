@@ -8,8 +8,6 @@ using Sidekick.Apis.Poe.Trade.Leagues;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser;
-using Sidekick.Apis.Poe.Trade.Parser.AdditionalInformation;
-using Sidekick.Apis.Poe.Trade.Parser.Headers;
 using Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
@@ -36,24 +34,18 @@ public static class StartupExtensions
         services.AddSingleton<ILeagueProvider, LeagueProvider>();
         services.AddSingleton<IBulkTradeService, BulkTradeService>();
         services.AddSingleton<IModifierParser, ModifierParser>();
-        services.AddSingleton<ClusterJewelParser>();
         services.AddSingleton<IFuzzyService, FuzzyService>();
 
         services.AddSingleton<IRequirementsParser, RequirementsParser>();
         services.AddSidekickInitializableService<IItemParser, ItemParser>();
         services.AddSidekickInitializableService<IPropertyParser, PropertyParser>();
-        services.AddSidekickInitializableService<IApiInvariantItemProvider, ApiInvariantItemProvider>();
         services.AddSidekickInitializableService<IApiItemProvider, ApiItemProvider>();
-        services.AddSidekickInitializableService<IItemStaticDataProvider, ItemStaticDataProvider>();
+        services.AddSidekickInitializableService<IApiStaticDataProvider, ApiStaticDataProvider>();
         services.AddSidekickInitializableService<IInvariantModifierProvider, InvariantModifierProvider>();
-        services.AddSidekickInitializableService<ITradeFilterService, TradeFilterService>();
         services.AddSidekickInitializableService<IModifierProvider, ModifierProvider>();
         services.AddSidekickInitializableService<IPseudoParser, PseudoParser>();
         services.AddSidekickInitializableService<IFilterProvider, FilterProvider>();
         services.AddSidekickInitializableService<IInvariantFilterProvider, InvariantFilterProvider>();
-        services.AddSidekickInitializableService<IHeaderParser, HeaderParser>();
-        services.AddSidekickInitializableService<IRarityParser, RarityParser>();
-        services.AddSidekickInitializableService<IItemClassParser, ItemClassParser>();
 
         return services;
     }

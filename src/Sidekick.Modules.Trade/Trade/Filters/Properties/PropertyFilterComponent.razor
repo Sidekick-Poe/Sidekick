@@ -28,8 +28,12 @@
         <ExpandablePropertyFilterComponent Filter="expandableFilter" Item="Item"/>
         break;
 
+    case ItemClassPropertyFilter classFilter:
+        <ItemClassPropertyFilterComponent Filter="classFilter"/>
+        break;
+
     case not null when Filter.Definition is SeparatorProperty:
-        <ItemSeparator Rarity="Item.Header.Rarity"/>
+        <ItemSeparator Rarity="Item.Properties.Rarity"/>
         break;
 
     default:
@@ -43,6 +47,6 @@
     public required Item Item { get; set; }
 
     [Parameter]
-    public required BooleanPropertyFilter Filter { get; set; }
+    public required PropertyFilter Filter { get; set; }
 
 }

@@ -4,7 +4,6 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Components.Prices
-@using Sidekick.Apis.Poe.Items.AdditionalInformation
 @using Sidekick.Apis.Poe.Items
 @using ApexCharts
 
@@ -54,7 +53,7 @@ else if (Price != null)
         </div>
     }
 
-    <ItemSeparator Rarity="Item.Header.Rarity"/>
+    <ItemSeparator Rarity="Item.Properties.Rarity"/>
 }
 
 @inject IStringLocalizer<TradeResources> Resources
@@ -84,7 +83,7 @@ else if (Price != null)
         if (ItemId == Item.Id) return;
         ItemId = Item.Id;
 
-        if (Item.Header.Game == GameType.PathOfExile2)
+        if (Item.Game == GameType.PathOfExile2)
         {
             return;
         }
@@ -97,13 +96,17 @@ else if (Price != null)
         Loading = true;
         StateHasChanged();
 
-        if (Item.AdditionalInformation is ClusterJewelInformation clusterJewelInformation)
+        if (Item.Properties is
+            {
+                ClusterJewelPassiveCount: not null,
+                ClusterJewelGrantText: not null
+            })
         {
-            Price = await Client.GetClusterPrice(clusterJewelInformation.GrantText, clusterJewelInformation.SmallPassiveCount, Item.Properties.ItemLevel);
+            Price = await Client.GetClusterPrice(Item.Properties.ClusterJewelGrantText, Item.Properties.ClusterJewelPassiveCount.Value, Item.Properties.ItemLevel);
         }
         else
         {
-            Price = await Client.GetPriceInfo(Item.Invariant?.Name, Item.Invariant?.Type, Item.Header.Category, gemLevel: Item.Properties.GemLevel, mapTier: Item.Properties.MapTier, numberOfLinks: Item.Properties.GetMaximumNumberOfLinks());
+            Price = await Client.GetPriceInfo(Item.ApiInformation.InvariantText, gemLevel: Item.Properties.GemLevel, mapTier: Item.Properties.MapTier, numberOfLinks: Item.Properties.GetMaximumNumberOfLinks());
         }
 
         if (Price?.SparkLine?.Data.All(x => x.HasValue) == true)
@@ -116,14 +119,29 @@ else if (Price != null)
                 .ToList();
             Options = new()
             {
-                PlotOptions = new() { Line = new() { IsSlopeChart = true } },
-                Tooltip = new() { Enabled = false },
+                PlotOptions = new()
+                {
+                    Line = new()
+                    {
+                        IsSlopeChart = true
+                    }
+                },
+                Tooltip = new()
+                {
+                    Enabled = false
+                },
                 Chart =
                 {
-                    Sparkline = new() { Enabled = true },
+                    Sparkline = new()
+                    {
+                        Enabled = true
+                    },
                     Height = 40,
                 },
-                Markers = new() { Size = 0 },
+                Markers = new()
+                {
+                    Size = 0
+                },
                 Stroke = new()
                 {
                     Curve = Curve.Smooth,

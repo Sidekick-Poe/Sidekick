@@ -1,6 +1,6 @@
 @using System.Text.RegularExpressions
+@using Sidekick.Apis.Poe.Extensions
 @using Sidekick.Apis.Poe.Trade.Models.Items
-@using Sidekick.Apis.Poe.Trade.Modifiers
 @using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions
 @using Sidekick.Apis.Poe.Trade.Trade.Results
 
@@ -98,7 +98,7 @@
             default: text = $"{line.Name} {string.Join(", ", values.Select(x => x.Value))}"; break;
         }
 
-        text = ModifierProvider.RemoveSquareBrackets(text);
+        text = text.RemoveSquareBrackets();
         return MarkupValues(text, values);
     }
 

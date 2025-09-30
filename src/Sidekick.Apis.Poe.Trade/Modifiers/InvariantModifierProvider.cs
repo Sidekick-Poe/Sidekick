@@ -5,7 +5,6 @@ using Sidekick.Apis.Poe.Trade.Modifiers.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Modifiers;
@@ -72,7 +71,7 @@ public class InvariantModifierProvider
 
             foreach (var apiModifier in apiCategory.Entries)
             {
-                var text = ModifierProvider.RemoveSquareBrackets(apiModifier.Text);
+                var text = apiModifier.Text.RemoveSquareBrackets();
 
                 if (text == "Adds # to # Fire Damage") FireWeaponDamageIds.Add(apiModifier.Id);
                 if (text == "Adds # to # Cold Damage") ColdWeaponDamageIds.Add(apiModifier.Id);
@@ -155,7 +154,7 @@ public class InvariantModifierProvider
         {
             category.Entries.ForEach(entry =>
             {
-                entry.Text = ModifierProvider.RemoveSquareBrackets(entry.Text);
+                entry.Text = entry.Text.RemoveSquareBrackets();
             });
         });
 

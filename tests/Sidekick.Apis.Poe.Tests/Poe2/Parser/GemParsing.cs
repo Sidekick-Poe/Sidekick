@@ -22,11 +22,10 @@ Creates a Persistent Buff Skill Gem or Level an existing gem to Level 16
 Right Click to engrave a Persistent Buff Skill Gem.
 ");
 
-        Assert.Equal(ItemClass.UncutSpiritGem, actual.Header.ItemClass);
-        Assert.Equal(Category.Gem, actual.Header.Category);
-        Assert.Equal("Uncut Spirit Gem", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
-        Assert.Equal(16, actual.Properties.GemLevel);
+        Assert.Equal(ItemClass.UncutSpiritGem, actual.Properties.ItemClass);
+        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
+        Assert.Equal("Uncut Spirit Gem (Level 16)", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
     }
 
     [Fact]
@@ -42,11 +41,10 @@ Creates a Support Gem
 Right Click to engrave a Support Gem.
 ");
 
-        Assert.Equal(ItemClass.UncutSupportGem, actual.Header.ItemClass);
-        Assert.Equal(Category.Gem, actual.Header.Category);
-        Assert.Equal("Uncut Support Gem", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
-        Assert.Equal(3, actual.Properties.GemLevel);
+        Assert.Equal(ItemClass.UncutSupportGem, actual.Properties.ItemClass);
+        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
+        Assert.Equal("Uncut Support Gem (Level 3)", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
     }
 
     [Fact]
@@ -62,11 +60,10 @@ Creates a Skill Gem or Level an existing gem to level 9
 Right Click to engrave a Skill Gem.
 ");
 
-        Assert.Equal(ItemClass.UncutSkillGem, actual.Header.ItemClass);
-        Assert.Equal(Category.Gem, actual.Header.Category);
-        Assert.Equal("Uncut Skill Gem", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
-        Assert.Equal(9, actual.Properties.GemLevel);
+        Assert.Equal(ItemClass.UncutSkillGem, actual.Properties.ItemClass);
+        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
+        Assert.Equal("Uncut Skill Gem (Level 9)", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
     }
 
     [Fact]
@@ -104,9 +101,9 @@ Enemies you Shatter explode
 Skills can be managed in the Skills Panel.
 ");
 
-        Assert.Equal(Category.Gem, actual.Header.Category);
-        Assert.Equal("Herald of Ice", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
+        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
+        Assert.Equal("Herald of Ice", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
         Assert.Equal(18, actual.Properties.GemLevel);
         Assert.NotNull(actual.Properties.Sockets);
         Assert.Equal(4, actual.Properties.Sockets.Count);

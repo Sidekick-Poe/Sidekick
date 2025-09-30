@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 
-namespace Sidekick.Apis.Poe.Trade.Parser.Headers.Models;
+namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions.Models;
 
 public class ItemClassDefinition
 {

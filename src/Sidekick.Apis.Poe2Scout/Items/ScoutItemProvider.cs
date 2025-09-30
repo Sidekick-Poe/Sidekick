@@ -5,8 +5,8 @@ using Sidekick.Apis.Poe2Scout.Clients;
 using Sidekick.Apis.Poe2Scout.Items.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Settings;
+
 namespace Sidekick.Apis.Poe2Scout.Items;
 
 public class ScoutItemProvider(
@@ -17,15 +17,14 @@ public class ScoutItemProvider(
 {
     private List<ScoutItem>? Items { get; set; }
 
-    public async Task<ScoutItem?> GetItem(string? name, string? type)
+    public async Task<ScoutItem?> GetItem(string? text)
     {
-        name ??= type;
-        if (string.IsNullOrEmpty(name)) return null;
+        if (string.IsNullOrEmpty(text)) return null;
 
         var items = await GetOrFetchItems();
-        var item = items.FirstOrDefault(x => !string.IsNullOrEmpty(x.Name) && x.Name == name);
-        item ??= items.FirstOrDefault(x => !string.IsNullOrEmpty(x.Type) && x.Type == name);
-        item ??= items.FirstOrDefault(x => !string.IsNullOrEmpty(x.Text) && x.Text == name);
+        var item = items.FirstOrDefault(x => !string.IsNullOrEmpty(x.Name) && x.Name == text);
+        item ??= items.FirstOrDefault(x => !string.IsNullOrEmpty(x.Type) && x.Type == text);
+        item ??= items.FirstOrDefault(x => !string.IsNullOrEmpty(x.Text) && x.Text == text);
 
         return item;
     }

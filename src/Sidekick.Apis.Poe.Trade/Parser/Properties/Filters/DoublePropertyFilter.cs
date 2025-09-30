@@ -3,7 +3,7 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 
-public class DoublePropertyFilter : BooleanPropertyFilter
+public class DoublePropertyFilter : PropertyFilter
 {
     internal DoublePropertyFilter(PropertyDefinition definition)
         : base(definition)

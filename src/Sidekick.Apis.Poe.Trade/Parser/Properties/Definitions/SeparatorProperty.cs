@@ -11,16 +11,16 @@ public class SeparatorProperty() : PropertyDefinition
 
     public override List<Category> ValidCategories { get; } = [];
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        return new BooleanPropertyFilter(this)
+        return Task.FromResult<PropertyFilter?>(new PropertyFilter(this)
         {
             Text = Text,
             Checked = true,
-        };
+        });
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
     }
 }

@@ -14,15 +14,15 @@ public class CorruptedProperty(IGameLanguageProvider gameLanguageProvider) : Pro
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Map, Category.Contract, Category.Jewel, Category.Flask, Category.Gem];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        itemProperties.Corrupted = GetBool(Pattern, parsingItem);
+        item.Properties.Corrupted = GetBool(Pattern, item.Text);
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
         bool? @checked = null;
-        if (item.Header.Rarity == Rarity.Unique)
+        if (item.Properties.Rarity == Rarity.Unique)
         {
             @checked = item.Properties.Corrupted;
         }
@@ -32,10 +32,10 @@ public class CorruptedProperty(IGameLanguageProvider gameLanguageProvider) : Pro
             Text = gameLanguageProvider.Language.DescriptionCorrupted,
             Checked = @checked,
         };
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (filter is not TriStatePropertyFilter triStateFilter || triStateFilter.Checked == null)
         {

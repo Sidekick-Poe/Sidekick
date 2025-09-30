@@ -43,11 +43,11 @@ the world hearkens.
 Corrupted
 ");
 
-        Assert.Equal(ItemClass.Boots, actual.Header.ItemClass);
-        Assert.Equal(Category.Armour, actual.Header.Category);
-        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
-        Assert.Equal("Steeltoe Boots", actual.Header.ApiType);
-        Assert.Equal("Thunderstep", actual.Header.ApiName);
+        Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
+        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Steeltoe Boots", actual.ApiInformation.Type);
+        Assert.Equal("Thunderstep", actual.ApiInformation.Name);
 
         Assert.Equal(129, actual.Properties.EvasionRating);
 
@@ -87,11 +87,11 @@ Grants Skill: Parry
 
 ");
 
-        Assert.Equal(ItemClass.Buckler, actual.Header.ItemClass);
-        Assert.Equal(Category.Armour, actual.Header.Category);
-        Assert.Equal(Rarity.Magic, actual.Header.Rarity);
-        Assert.Equal("Wooden Buckler", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
+        Assert.Equal(ItemClass.Buckler, actual.Properties.ItemClass);
+        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
+        Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
+        Assert.Equal("Wooden Buckler", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
 
         Assert.Equal(16, actual.Properties.EvasionRating);
 
@@ -119,11 +119,11 @@ Adds 3 to 5 Fire damage to Attacks (implicit)
 Can only be equipped if you are wielding a Bow.
 ");
 
-        Assert.Equal(ItemClass.Quiver, actual.Header.ItemClass);
-        Assert.Equal(Category.Armour, actual.Header.Category);
-        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-        Assert.Equal("Fire Quiver", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
+        Assert.Equal(ItemClass.Quiver, actual.Properties.ItemClass);
+        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Equal("Fire Quiver", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
 
         Assert.Equal(8, actual.Properties.ItemLevel);
     }
@@ -158,11 +158,11 @@ Item Level: 66
 +14 to Evasion Rating (desecrated)
 ");
 
-        Assert.Equal(ItemClass.Boots, actual.Header.ItemClass);
-        Assert.Equal(Category.Armour, actual.Header.Category);
-        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-        Assert.Equal("Bastion Sabatons", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
+        Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
+        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Bastion Sabatons", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
 
         Assert.Equal(66, actual.Properties.ItemLevel);
 

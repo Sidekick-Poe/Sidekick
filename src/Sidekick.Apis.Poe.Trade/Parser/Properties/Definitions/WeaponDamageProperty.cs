@@ -25,9 +25,9 @@ public class WeaponDamageProperty
 
     public override List<Category> ValidCategories { get; } = [Category.Weapon];
 
-    public override void Parse(ItemProperties properties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        var propertyBlock = parsingItem.Blocks[1];
+        var propertyBlock = item.Text.Blocks[1];
 
         // Parse damage ranges
         foreach (var line in propertyBlock.Lines)
@@ -35,7 +35,7 @@ public class WeaponDamageProperty
             var isElemental = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionElementalDamage);
             if (isElemental)
             {
-                ParseElementalDamage(line, properties);
+                ParseElementalDamage(line, item.Properties);
                 continue;
             }
 
@@ -50,11 +50,11 @@ public class WeaponDamageProperty
                 continue;
             }
 
-            if (isPhysical && line.Text.EndsWith(")")) properties.AugmentedProperties.Add(nameof(ItemProperties.PhysicalDamage));
-            if (isChaos && line.Text.EndsWith(")")) properties.AugmentedProperties.Add(nameof(ItemProperties.ChaosDamage));
-            if (isFire && line.Text.EndsWith(")")) properties.AugmentedProperties.Add(nameof(ItemProperties.FireDamage));
-            if (isCold && line.Text.EndsWith(")")) properties.AugmentedProperties.Add(nameof(ItemProperties.ColdDamage));
-            if (isLightning && line.Text.EndsWith(")")) properties.AugmentedProperties.Add(nameof(ItemProperties.LightningDamage));
+            if (isPhysical && line.Text.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.PhysicalDamage));
+            if (isChaos && line.Text.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.ChaosDamage));
+            if (isFire && line.Text.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.FireDamage));
+            if (isCold && line.Text.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.ColdDamage));
+            if (isLightning && line.Text.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.LightningDamage));
 
             var matches = RangePattern.Matches(line.Text);
             if (matches.Count <= 0 || matches[0].Groups.Count < 3) continue;
@@ -63,15 +63,15 @@ public class WeaponDamageProperty
             int.TryParse(matches[0].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
 
             var range = new DamageRange(min, max);
-            if (isPhysical) properties.PhysicalDamage = range;
-            if (isChaos) properties.ChaosDamage = range;
-            if (isFire) properties.FireDamage = range;
-            if (isCold) properties.ColdDamage = range;
-            if (isLightning) properties.LightningDamage = range;
+            if (isPhysical) item.Properties.PhysicalDamage = range;
+            if (isChaos) item.Properties.ChaosDamage = range;
+            if (isFire) item.Properties.FireDamage = range;
+            if (isCold) item.Properties.ColdDamage = range;
+            if (isLightning) item.Properties.LightningDamage = range;
         }
     }
 
-    private static void ParseElementalDamage(ParsingLine line, ItemProperties itemProperties)
+    private static void ParseElementalDamage(TextLine line, ItemProperties itemProperties)
     {
         var matches = new Regex(@"([\d,\.]+)-([\d,\.]+) \((fire|cold|lightning)\)").Matches(line.Text);
         foreach (Match match in matches)
@@ -91,7 +91,7 @@ public class WeaponDamageProperty
         }
     }
 
-    public override void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines)
+    public override void ParseAfterModifiers(Item item)
     {
         if (game == GameType.PathOfExile2) return;
 
@@ -99,12 +99,12 @@ public class WeaponDamageProperty
         damageMods.AddRange(invariantModifierProvider.ColdWeaponDamageIds);
         damageMods.AddRange(invariantModifierProvider.LightningWeaponDamageIds);
 
-        var itemMods = modifierLines.Where(x => x.Modifiers.Any(y => damageMods.Contains(y.ApiId ?? string.Empty))).ToList();
+        var itemMods = item.ModifierLines.Where(x => x.Modifiers.Any(y => damageMods.Contains(y.ApiId ?? string.Empty))).ToList();
         if (itemMods.Count == 0) return;
 
         // Parse elemental damage for Path of Exile 1.
         // In Path of Exile 1, the elemental damage properties have (augmented) as suffix instead of the easier to parse (fire|cold|lightning).
-        foreach (var line in parsingItem.Blocks[1].Lines)
+        foreach (var line in item.Text.Blocks[1].Lines)
         {
             var isElemental = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionElementalDamage);
             if (!isElemental) continue;
@@ -124,18 +124,18 @@ public class WeaponDamageProperty
                 var isCold = invariantModifierProvider.ColdWeaponDamageIds.Any(x => ids.Contains(x));
                 var isLightning = invariantModifierProvider.LightningWeaponDamageIds.Any(x => ids.Contains(x));
 
-                if (isFire) itemProperties.FireDamage = range;
-                else if (isCold) itemProperties.ColdDamage = range;
-                else if (isLightning) itemProperties.LightningDamage = range;
+                if (isFire) item.Properties.FireDamage = range;
+                else if (isCold) item.Properties.ColdDamage = range;
+                else if (isLightning) item.Properties.LightningDamage = range;
 
                 matchIndex++;
             }
         }
     }
 
-    public override List<BooleanPropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType)
+    public override List<PropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType)
     {
-        var results = new List<BooleanPropertyFilter>();
+        var results = new List<PropertyFilter>();
 
         if (item.Properties.TotalDamage > 0)
         {
@@ -217,7 +217,7 @@ public class WeaponDamageProperty
         return results.Count > 0 ? results : null;
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (!filter.Checked) return;
 

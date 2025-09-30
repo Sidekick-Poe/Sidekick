@@ -1,19 +1,10 @@
-namespace Sidekick.Apis.Poe.Trade.Parser;
+namespace Sidekick.Apis.Poe.Items;
 
 /// <summary>
 /// Stores data about each line in the parsing process
 /// </summary>
-public class ParsingLine
+public class TextLine(string text, int index)
 {
-    /// <summary>
-    /// Represents a line of text in the parsing process, including its content and position.
-    /// </summary>
-    public ParsingLine(string text, int index)
-    {
-        Text = text;
-        Index = index;
-    }
-
     /// <summary>
     /// Indicates if this line has been successfully parsed
     /// </summary>
@@ -22,9 +13,9 @@ public class ParsingLine
     /// <summary>
     /// The line of the item description
     /// </summary>
-    public string Text { get; }
+    public string Text { get; } = text;
 
-    public int Index { get; }
+    public int Index { get; } = index;
 
     public override string ToString()
     {

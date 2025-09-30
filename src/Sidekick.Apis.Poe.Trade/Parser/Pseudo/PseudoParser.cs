@@ -2,7 +2,7 @@ using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Definitions;
-using Sidekick.Common.Extensions;
+using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo;
@@ -46,16 +46,34 @@ public class PseudoParser
         }
     }
 
-    public List<PseudoModifier> Parse(List<ModifierLine> lines)
+    public void Parse(Item item)
     {
-        var results = new List<PseudoModifier>();
-
+        item.PseudoModifiers.Clear();
         foreach (var definition in Definitions)
         {
-            var result = definition.Parse(lines);
-            if (result != null) results.Add(result);
+            var result = definition.Parse(item.ModifierLines);
+            if (result != null && !string.IsNullOrEmpty(result.Text)) item.PseudoModifiers.Add(result);
+        }
+    }
+
+    public List<PseudoFilter> GetFilters(Item item)
+    {
+        // No filters for divination cards, etc.
+        if (item.ApiInformation.Category == Category.DivinationCard || item.ApiInformation.Category == Category.Gem || item.ApiInformation.Category == Category.ItemisedMonster || item.ApiInformation.Category == Category.Leaguestone || item.ApiInformation.Category == Category.Unknown || item.ApiInformation.Category == Category.Currency)
+        {
+            return [];
         }
 
-        return results;
+        var result = new List<PseudoFilter>();
+        foreach (var modifier in item.PseudoModifiers)
+        {
+            result.Add(new PseudoFilter()
+            {
+                PseudoModifier = modifier,
+                Checked = false,
+            });
+        }
+
+        return result;
     }
 }

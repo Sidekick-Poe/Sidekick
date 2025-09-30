@@ -45,7 +45,7 @@
         {
             TradeUri = TradeService.CurrentMode == TradeMode.Bulk
                 ? await BulkTradeService.GetTradeUri(Item, QueryId)
-                : await TradeSearchService.GetTradeUri(Item.Header.Game, QueryId);
+                : await TradeSearchService.GetTradeUri(Item.Game, QueryId);
         }
 
         await base.OnInitializedAsync();

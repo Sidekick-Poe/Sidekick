@@ -14,23 +14,23 @@ public class MirroredProperty(IServiceProvider serviceProvider) : PropertyDefini
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (FilterProvicer.Mirrored == null) return null;
+        if (FilterProvicer.Mirrored == null) return Task.FromResult<PropertyFilter?>(null);
 
         var filter = new TriStatePropertyFilter(this)
         {
             Text = FilterProvicer.Mirrored.Text ?? "Mirrored",
             Checked = null,
         };
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (filter is not TriStatePropertyFilter triStateFilter || triStateFilter.Checked == null)
         {

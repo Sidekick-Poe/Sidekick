@@ -55,10 +55,10 @@ Corrupted
 Note: ~price 2 chaos
 ");
 
-        Assert.Equal(ItemClass.ActiveGem, actual.Header.ItemClass);
-        Assert.Equal(Category.Gem, actual.Header.Category);
-        Assert.Equal(Rarity.Gem, actual.Header.Rarity);
-        Assert.Equal("Vaal Double Strike", actual.Header.ApiType);
+        Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
+        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
+        Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
+        Assert.Equal("Vaal Double Strike", actual.ApiInformation.Type);
         Assert.Equal(1, actual.Properties.GemLevel);
         Assert.Equal(0, actual.Properties.Quality);
         Assert.True(actual.Properties.Corrupted);
@@ -92,10 +92,10 @@ Experience: 1/70
 This is a Support Gem. It does not grant a bonus to your character, but to skills in sockets connected to it. Place into an item socket connected to a socket containing the Skill Gem you wish to augment. Right click to remove from a socket.
 ");
 
-        Assert.Equal(ItemClass.SupportGem, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Gem, actual.Header.Rarity);
-        Assert.Equal(Category.Gem, actual.Header.Category);
-        Assert.Equal("Arcane Surge Support", actual.Header.ApiType);
+        Assert.Equal(ItemClass.SupportGem, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
+        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
+        Assert.Equal("Arcane Surge Support", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -130,10 +130,10 @@ Experience: 1/252,595
 Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
 ");
 
-        Assert.Equal(ItemClass.ActiveGem, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Gem, actual.Header.Rarity);
-        Assert.Equal(Category.Gem, actual.Header.Category);
-        Assert.Equal("Void Sphere", actual.Header.ApiType);
+        Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
+        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
+        Assert.Equal("Void Sphere", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -170,11 +170,11 @@ Place into an item socket of the right colour to gain this skill. Right click to
 Transfigured
 ");
 
-        Assert.Equal(ItemClass.ActiveGem, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Gem, actual.Header.Rarity);
-        Assert.Equal(Category.Gem, actual.Header.Category);
-        Assert.Equal("Kinetic Blast of Clustering", actual.Header.ApiText);
-        Assert.Equal("Kinetic Blast", actual.Header.ApiType);
-        Assert.Equal("alt_x", actual.Header.ApiDiscriminator);
+        Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
+        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
+        Assert.Equal("Kinetic Blast of Clustering", actual.ApiInformation.Text);
+        Assert.Equal("Kinetic Blast", actual.ApiInformation.Type);
+        Assert.Equal("alt_x", actual.ApiInformation.Discriminator);
     }
 }

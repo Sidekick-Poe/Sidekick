@@ -2,44 +2,53 @@ using System.Text.RegularExpressions;
 using FuzzySharp;
 using FuzzySharp.SimilarityRatio;
 using FuzzySharp.SimilarityRatio.Scorer.StrategySensitive;
-using Sidekick.Apis.Poe.Extensions;
+using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Fuzzy;
-using Sidekick.Apis.Poe.Trade.Parser.Headers.Models;
+using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions.Models;
+using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 
-namespace Sidekick.Apis.Poe.Trade.Parser.Headers;
+namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class ItemClassParser
-(
-    IGameLanguageProvider gameLanguageProvider,
-    IFuzzyService fuzzyService,
-    IFilterProvider filterProvider,
-    ISettingsService settingsService
-) : IItemClassParser
+public class ItemClassProperty : PropertyDefinition
 {
-    public int Priority => 300;
+    private readonly GameType game;
+    private readonly IGameLanguageProvider gameLanguageProvider;
+    private readonly IFilterProvider filterProvider;
+    private readonly ISettingsService settingsService;
+    private readonly IFuzzyService fuzzyService;
 
-    private List<ItemClassDefinition> ItemClassDefinitions { get; set; } = [];
-
-    private List<ApiItemClassDefinition> ApiItemClassDefinitions { get; set; } = [];
-
-    public async Task Initialize()
+    public ItemClassProperty(
+        GameType game,
+        IServiceProvider serviceProvider)
     {
-        var game = await settingsService.GetGame();
+        this.game = game;
+        gameLanguageProvider = serviceProvider.GetRequiredService<IGameLanguageProvider>();
+        filterProvider = serviceProvider.GetRequiredService<IFilterProvider>();
+        settingsService = serviceProvider.GetRequiredService<ISettingsService>();
+        fuzzyService = serviceProvider.GetRequiredService<IFuzzyService>();
 
-        ItemClassDefinitions = GetItemClassDefinitions(game);
-        ApiItemClassDefinitions = GetApiItemClassDefinitions();
+        ItemClassDefinitions = new(GetItemClassDefinitions);
+        ApiItemClassDefinitions = new(GetApiItemClassDefinitions);
     }
 
-    private List<ApiItemClassDefinition> GetApiItemClassDefinitions()
+    public override List<Category> ValidCategories { get; } = [];
+
+    private Lazy<List<ItemClassDefinition>> ItemClassDefinitions { get; }
+
+    private Lazy<List<ItemClassDefinition>> ApiItemClassDefinitions { get; }
+
+    private List<ItemClassDefinition> GetApiItemClassDefinitions()
     {
         if (filterProvider.TypeCategory == null) return [];
 
-        return filterProvider.TypeCategory.Option.Options.ConvertAll(x => new ApiItemClassDefinition()
+        return filterProvider.TypeCategory.Option.Options.ConvertAll(x => new ItemClassDefinition()
         {
             Id = x.Id,
             Text = x.Text,
@@ -47,7 +56,7 @@ public class ItemClassParser
         });
     }
 
-    private List<ItemClassDefinition> GetItemClassDefinitions(GameType game)
+    private List<ItemClassDefinition> GetItemClassDefinitions()
     {
         List<ItemClassDefinition> definitions =
         [
@@ -72,10 +81,10 @@ public class ItemClassParser
             CreateItemClassDefinition(ItemClass.Omen, gameLanguageProvider.Language.Classes.Omen),
             CreateItemClassDefinition(ItemClass.Socketable, gameLanguageProvider.Language.Classes.Socketable),
 
-            // GetItemClass(ItemClass.Unknown, gameLanguageProvider.Language.Classes.UniqueFragment),
-            // GetItemClass(ItemClass.Unknown, gameLanguageProvider.Language.Classes.Fossil),
-            // GetItemClass(ItemClass.Unknown, gameLanguageProvider.Language.Classes.Incubator),
-            // GetItemClass(ItemClass.Unknown, gameLanguageProvider.Language.Classes.Tattoo),
+            // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.UniqueFragment),
+            // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.Fossil),
+            // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.Incubator),
+            // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.Tattoo),
 
             CreateItemClassDefinition(ItemClass.ActiveGem, gameLanguageProvider.Language.Classes.ActiveSkillGems),
             CreateItemClassDefinition(ItemClass.SupportGem, gameLanguageProvider.Language.Classes.SupportSkillGems),
@@ -83,7 +92,7 @@ public class ItemClassParser
             CreateItemClassDefinition(ItemClass.UncutSupportGem, gameLanguageProvider.Language.Classes.UncutSupportGems),
             CreateItemClassDefinition(ItemClass.UncutSpiritGem, gameLanguageProvider.Language.Classes.UncutSpiritGems),
 
-            // GetItemClass(ItemClass.Unknown, gameLanguageProvider.Language.Classes.AwakenedSupportSkillGems),
+            // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.AwakenedSupportSkillGems),
 
             CreateItemClassDefinition(ItemClass.Blueprint, gameLanguageProvider.Language.Classes.Blueprint),
             CreateItemClassDefinition(ItemClass.Contract, gameLanguageProvider.Language.Classes.Contract),
@@ -95,7 +104,7 @@ public class ItemClassParser
             CreateItemClassDefinition(ItemClass.Jewel, gameLanguageProvider.Language.Classes.Jewel),
             CreateItemClassDefinition(ItemClass.AbyssJewel, gameLanguageProvider.Language.Classes.AbyssJewel),
 
-            // GetItemClass(ItemClass.Unknown, gameLanguageProvider.Language.Classes.ClusterJewel),
+            // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.ClusterJewel),
 
             CreateItemClassDefinition(ItemClass.Logbook, gameLanguageProvider.Language.Classes.Logbooks),
 
@@ -121,8 +130,8 @@ public class ItemClassParser
             CreateItemClassDefinition(ItemClass.Staff, gameLanguageProvider.Language.Classes.Staves),
             CreateItemClassDefinition(ItemClass.Spear, gameLanguageProvider.Language.Classes.Spears),
 
-            // GetItemClass(ItemClass.Unknown, gameLanguageProvider.Language.Classes.Flails),
-            // GetItemClass(ItemClass.Unknown, gameLanguageProvider.Language.Classes.Rapiers),
+            // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.Flails),
+            // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.Rapiers),
             CreateItemClassDefinition(ItemClass.FishingRod, gameLanguageProvider.Language.Classes.FishingRods),
             CreateItemClassDefinition(ItemClass.TwoHandAxe, gameLanguageProvider.Language.Classes.TwoHandAxes),
             CreateItemClassDefinition(ItemClass.TwoHandMace, gameLanguageProvider.Language.Classes.TwoHandMaces),
@@ -171,13 +180,20 @@ public class ItemClassParser
 
     private Regex BuildRegex(params string[] labels) => new($"^{Regex.Escape(gameLanguageProvider.Language.Classes.Prefix)}:* *(?:{string.Join("|", labels.Select(Regex.Escape))})$");
 
-    public ItemClass Parse(ParsingItem parsingItem)
+    public override void Parse(Item item)
     {
-        var line = parsingItem.Blocks[0].Lines[0].Text;
+        if (item.Properties.ItemClass != ItemClass.Unknown) return;
 
-        foreach (var definition in ItemClassDefinitions)
+        var line = item.Text.Blocks[0].Lines[0].Text;
+        item.Text.Blocks[0].Lines[0].Parsed = true;
+
+        foreach (var definition in ItemClassDefinitions.Value)
         {
-            if (definition.Pattern?.IsMatch(line) ?? false) return definition.ItemClass;
+            if (definition.Pattern?.IsMatch(line) ?? false)
+            {
+                item.Properties.ItemClass = definition.ItemClass;
+                return;
+            }
         }
 
         var classLine = line.Replace(gameLanguageProvider.Language.Classes.Prefix, "").Trim(' ', ':');
@@ -188,13 +204,49 @@ public class ItemClassParser
             classLine = gameLanguageProvider.Language.Classes.MapFragments;
         }
 
-        var categoryToMatch = new ApiItemClassDefinition()
+        var categoryToMatch = new ItemClassDefinition()
         {
             Text = classLine,
             FuzzyText = fuzzyService.CleanFuzzyText(classLine)
         };
-        var apiItemCategoryId = Process.ExtractOne(categoryToMatch, ApiItemClassDefinitions, x => x.FuzzyText, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
+        var apiItemCategoryId = Process.ExtractOne(categoryToMatch, ApiItemClassDefinitions.Value, x => x.FuzzyText, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
 
-        return apiItemCategoryId?.GetEnumFromValue<ItemClass>() ?? ItemClass.Unknown;
+        item.Properties.ItemClass = apiItemCategoryId?.GetEnumFromValue<ItemClass>() ?? ItemClass.Unknown;
+    }
+
+    public override async Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    {
+        if (item.Properties.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal)) return null;
+        if (item.Properties.ItemClass == ItemClass.Unknown) return null;
+
+        var classLabel = filterProvider.TypeCategory?.Option.Options.FirstOrDefault(x => x.Id == item.Properties.ItemClass.GetValueAttribute())?.Text;
+        if (classLabel == null || item.ApiInformation.Type == null) return null;
+
+        var preferItemClass = await settingsService.GetEnum<DefaultItemClassFilter>(SettingKeys.PriceCheckItemClassFilter) ?? DefaultItemClassFilter.BaseType;
+
+        var filter = new ItemClassPropertyFilter(this)
+        {
+            Text = gameLanguageProvider.Language.DescriptionRarity,
+            ItemClass = classLabel,
+            BaseType = item.ApiInformation.Type,
+            Checked = preferItemClass == DefaultItemClassFilter.ItemClass,
+        };
+        return filter;
+    }
+
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
+    {
+        if (!filter.Checked || filter is not ItemClassPropertyFilter) return;
+
+        query.Type = null;
+        query.Filters.GetOrCreateTypeFilters().Filters.Category = GetCategoryFilter(item.Properties.ItemClass);
+    }
+
+    private static SearchFilterOption? GetCategoryFilter(ItemClass itemClass)
+    {
+        var enumValue = itemClass.GetValueAttribute();
+        if (string.IsNullOrEmpty(enumValue)) return null;
+
+        return new SearchFilterOption(enumValue);
     }
 }

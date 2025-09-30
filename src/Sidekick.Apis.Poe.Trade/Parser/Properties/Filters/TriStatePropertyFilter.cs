@@ -1,6 +1,6 @@
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 
-public class TriStatePropertyFilter : BooleanPropertyFilter
+public class TriStatePropertyFilter : PropertyFilter
 {
     internal TriStatePropertyFilter(
         PropertyDefinition definition) : base(definition)

@@ -21,7 +21,7 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
         </div>
     </div>
 
-    <ItemSeparator Rarity="Item.Header.Rarity"/>
+    <ItemSeparator Rarity="Item.Properties.Rarity"/>
 }
 
 @inject IStringLocalizer<TradeResources> Resources
@@ -53,7 +53,7 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
         if (ItemId == Item.Id) return;
         ItemId = Item.Id;
 
-        if (Item.Header.Game == GameType.PathOfExile2)
+        if (Item.Game == GameType.PathOfExile2)
         {
             return;
         }

@@ -1,34 +1,34 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
-
-namespace Sidekick.Apis.Poe.Trade.Parser;
+namespace Sidekick.Apis.Poe.Items;
 
 /// <summary>
 /// Represents a single item section seperated by dashes when copying an item in-game.
 /// </summary>
-public class ParsingBlock
+public partial class TextBlock
 {
-    private static readonly Regex newLinePattern = new("[\\r\\n]+");
+    [GeneratedRegex(@"[\r\n]+")]
+    private static partial Regex NewLinePattern();
 
     /// <summary>
     /// Represents a section of an item description, separated by dashes, as part of the parsing process.
     /// </summary>
-    public ParsingBlock(string text, int index)
+    public TextBlock(string text, int index)
     {
         Text = text;
         Index = index;
 
-        Lines = newLinePattern
+        Lines = NewLinePattern()
             .Split(Text)
             .Where(x => !string.IsNullOrEmpty(x))
-            .Select((x, lineIndex) => new ParsingLine(x, lineIndex))
+            .Select((x, lineIndex) => new TextLine(x, lineIndex))
             .ToList();
     }
 
     /// <summary>
     /// Contains all the lines inside this block
     /// </summary>
-    public List<ParsingLine> Lines { get; set; }
+    public List<TextLine> Lines { get; set; }
 
     /// <summary>
     /// Indicates if this block has been successfully parsed by the parser
@@ -38,10 +38,7 @@ public class ParsingBlock
         get => Lines.All(x => x.Parsed);
         set
         {
-            foreach (var line in Lines)
-            {
-                line.Parsed = value;
-            }
+            Lines.ForEach(x => x.Parsed = value);
         }
     }
 

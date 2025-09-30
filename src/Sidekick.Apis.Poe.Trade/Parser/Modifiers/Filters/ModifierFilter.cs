@@ -1,9 +1,8 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Common.Settings;
+namespace Sidekick.Apis.Poe.Trade.Parser.Modifiers.Filters;
 
-namespace Sidekick.Apis.Poe.Trade.Trade.Filters;
-
-public class ModifierFilter : ITradeFilter
+public class ModifierFilter
 {
     public ModifierFilter(ModifierLine line)
     {

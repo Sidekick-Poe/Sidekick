@@ -15,7 +15,7 @@ namespace Sidekick.Common.Database.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.14");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.19");
 
             modelBuilder.Entity("Sidekick.Common.Database.Tables.HttpClientCookie", b =>
                 {
@@ -95,11 +95,6 @@ namespace Sidekick.Common.Database.Migrations
             modelBuilder.Entity("Sidekick.Common.Database.Tables.WealthItem", b =>
                 {
                     b.Property<string>("Id")
-                        .HasMaxLength(64)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("TEXT");
 

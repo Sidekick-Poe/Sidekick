@@ -1,16 +1,16 @@
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
+using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Items.AdditionalInformation;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Items;
-using Sidekick.Apis.Poe.Trade.Parser.AdditionalInformation;
-using Sidekick.Apis.Poe.Trade.Parser.Headers;
 using Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
+using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 using Sidekick.Apis.Poe.Trade.Parser.Requirements;
 using Sidekick.Common.Exceptions;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser;
 
@@ -20,87 +20,71 @@ public class ItemParser
     IModifierParser modifierParser,
     IPseudoParser pseudoParser,
     IRequirementsParser requirementsParser,
-    ClusterJewelParser clusterJewelParser,
-    IApiInvariantItemProvider apiInvariantItemProvider,
     IPropertyParser propertyParser,
     IGameLanguageProvider gameLanguageProvider,
-    IHeaderParser headerParser
+    IApiItemProvider apiItemProvider,
+    ISettingsService settingsService
 ) : IItemParser
 {
     private Regex? UnusablePattern { get; set; }
 
     public int Priority => 100;
 
-    public Task Initialize()
+    private GameType Game { get; set; }
+
+    public async Task Initialize()
     {
         var unusableRegex = Regex.Escape(gameLanguageProvider.Language.DescriptionUnusable);
-        unusableRegex += @"[\n\r]+" + ParsingItem.SeparatorPattern + @"[\n\r]+";
+        unusableRegex += @"[\n\r]+" + TextItem.SeparatorPattern + @"[\n\r]+";
         UnusablePattern = new Regex(unusableRegex, RegexOptions.Compiled);
-
-        return Task.CompletedTask;
+        Game = await settingsService.GetGame();
     }
 
-    public Item ParseItem(string? itemText)
+    public Item ParseItem(string? text)
     {
-        if (string.IsNullOrEmpty(itemText))
-        {
-            throw new UnparsableException(itemText);
-        }
+        if (string.IsNullOrEmpty(text)) throw new UnparsableException(text);
 
         try
         {
-            itemText = RemoveUnusableLine(itemText);
-            var parsingItem = new ParsingItem(itemText);
-            var header = headerParser.Parse(parsingItem);
+            text = RemoveUnusableLine(text);
 
-            ItemHeader? invariant = null;
-            if (header.ApiItemId != null && apiInvariantItemProvider.IdDictionary.TryGetValue(header.ApiItemId, out var invariantMetadata))
-            {
-                invariant = invariantMetadata.ToHeader();
-            }
+            var item = new Item(Game, text);
 
-            // Order of parsing is important
-            requirementsParser.Parse(parsingItem);
-            var properties = propertyParser.Parse(parsingItem, header);
-            var modifierLines = modifierParser.Parse(parsingItem, header);
-            propertyParser.ParseAfterModifiers(parsingItem, header, properties, modifierLines);
-            var pseudoModifiers = pseudoParser.Parse(modifierLines);
+            // These properties are required for later parsing steps
+            propertyParser.GetDefinition<ItemClassProperty>().Parse(item);
+            propertyParser.GetDefinition<RarityProperty>().Parse(item);
 
-            return new Item()
-            {
-                Invariant = invariant,
-                Header = header,
-                Properties = properties,
-                ModifierLines = modifierLines,
-                PseudoModifiers = pseudoModifiers,
-                Text = parsingItem.Text,
-                AdditionalInformation = ParseAdditionalInformation(header, modifierLines),
-            };
-        }
-        catch (UnparsableException e)
-        {
-            logger.LogWarning(e, "Could not parse item.");
-            throw;
+            item.ApiInformation = apiItemProvider.GetApiItem(item.Properties.Rarity, item.Name, item.Type) ?? throw new UnparsableException(item.Text.Text);
+            ParseVaalGem(item);
+
+            requirementsParser.Parse(item.Text);
+            propertyParser.Parse(item);
+            modifierParser.Parse(item);
+            propertyParser.ParseAfterModifiers(item);
+            pseudoParser.Parse(item);
+
+            return item;
         }
         catch (Exception e)
         {
             logger.LogWarning(e, "Could not parse item.");
-            throw new UnparsableException(itemText);
+            throw new UnparsableException(text);
         }
-    }
-
-    private ClusterJewelInformation? ParseAdditionalInformation(ItemHeader itemHeader, List<ModifierLine> modifierLines)
-    {
-        if (clusterJewelParser.TryParse(itemHeader, modifierLines, out var clusterJewelInformation))
-        {
-            return clusterJewelInformation;
-        }
-
-        return null;
     }
 
     private string RemoveUnusableLine(string itemText)
     {
         return UnusablePattern?.Replace(itemText, string.Empty) ?? itemText;
+    }
+
+    private void ParseVaalGem(Item item)
+    {
+        var canBeVaalGem = item.Properties.ItemClass == ItemClass.ActiveGem && item.Text.Blocks.Count > 7;
+        if (!canBeVaalGem || item.Text.Blocks[5].Lines.Count <= 0) return;
+
+        if (apiItemProvider.NameAndTypeDictionary.TryGetValue(item.Text.Blocks[5].Lines[0].Text, out var apiItems) && apiItems.Count > 0)
+        {
+            item.ApiInformation = apiItems.First();
+        }
     }
 }

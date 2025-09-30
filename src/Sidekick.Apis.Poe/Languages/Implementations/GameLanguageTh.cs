@@ -1,3 +1,4 @@
+
 namespace Sidekick.Apis.Poe.Languages.Implementations;
 
 [GameLanguage("Thai (Unstable)", "th")]
@@ -19,6 +20,7 @@ public class GameLanguageTh : IGameLanguage
     public string RarityGem => "หิน";
     public string RarityDivinationCard => "ไพ่พยากรณ์";
 
+    public string DescriptionRarity => "ความหายาก";
     public string DescriptionUnidentified => "ยังไม่ได้ตรวจสอบ";
     public string DescriptionQuality => "ค่าคุณภาพ";
     public string DescriptionLevel => "เลเวล";

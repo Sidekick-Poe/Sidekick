@@ -43,10 +43,10 @@ can deny that my work has made quite the splash...""
 - Maligaro's Journal
 ");
 
-        Assert.Equal(Category.Armour, actual.Header.Category);
-        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
-        Assert.Equal("Carcass Jack", actual.Header.ApiName);
-        Assert.Equal("Varnished Coat", actual.Header.ApiType);
+        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Carcass Jack", actual.ApiInformation.Name);
+        Assert.Equal("Varnished Coat", actual.ApiInformation.Type);
         Assert.Equal(20, actual.Properties.Quality);
         Assert.Equal(960, actual.Properties.EvasionRating);
         Assert.Equal(186, actual.Properties.EnergyShield);
@@ -102,10 +102,10 @@ Unbridled, overwhelming violence.""
 Note: ~price 2 chaos
 ");
 
-        Assert.Equal(ItemClass.BodyArmour, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
-        Assert.Equal(Category.Armour, actual.Header.Category);
-        Assert.Equal("Daresso's Defiance", actual.Header.ApiName);
-        Assert.Equal("Full Dragonscale", actual.Header.ApiType);
+        Assert.Equal(ItemClass.BodyArmour, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
+        Assert.Equal("Daresso's Defiance", actual.ApiInformation.Name);
+        Assert.Equal("Full Dragonscale", actual.ApiInformation.Type);
     }
 }

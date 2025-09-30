@@ -6,9 +6,7 @@ namespace Sidekick.Apis.PoeNinja;
 public interface IPoeNinjaClient
 {
     Task<NinjaPrice?> GetPriceInfo(
-        string? englishName,
-        string? englishType,
-        Category category,
+        string? invariantText,
         int? gemLevel = null,
         int? mapTier = null,
         bool? isRelic = false,

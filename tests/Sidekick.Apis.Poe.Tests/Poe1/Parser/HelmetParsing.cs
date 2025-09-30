@@ -37,10 +37,10 @@ You have Shocking Conflux for 3 seconds every 8 seconds
 Hunter Item
 ");
 
-        Assert.Equal(ItemClass.Helmet, actual.Header.ItemClass);
-        Assert.Equal(Category.Armour, actual.Header.Category);
-        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-        Assert.Equal("Hunter Hood", actual.Header.ApiType);
+        Assert.Equal(ItemClass.Helmet, actual.Properties.ItemClass);
+        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal("Hunter Hood", actual.ApiInformation.Type);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "You have Shocking Conflux for 3 seconds every 8 seconds");
     }
@@ -77,11 +77,11 @@ but merely a long sleep made eternal.
 Note: ~price 1 chaos
 ");
 
-        Assert.Equal(ItemClass.Helmet, actual.Header.ItemClass);
-        Assert.Equal(Category.Armour, actual.Header.Category);
-        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
-        Assert.Equal("Starkonja's Head", actual.Header.ApiName);
-        Assert.Equal("Silken Hood", actual.Header.ApiType);
+        Assert.Equal(ItemClass.Helmet, actual.Properties.ItemClass);
+        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Starkonja's Head", actual.ApiInformation.Name);
+        Assert.Equal("Silken Hood", actual.ApiInformation.Type);
 
         Assert.False(actual.Properties.Unidentified);
         Assert.Equal(63, actual.Properties.ItemLevel);

@@ -15,35 +15,44 @@ public class ExpandablePropertiesDefinition
 
     public override List<Category> ValidCategories => Definitions.SelectMany(x => x.ValidCategories).Distinct().ToList();
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
         foreach (var definition in Definitions)
         {
-            definition.Parse(itemProperties, parsingItem, header);
+            definition.Parse(item);
         }
     }
 
-    public override void ParseAfterModifiers(ItemProperties itemProperties, ParsingItem parsingItem, List<ModifierLine> modifierLines)
+    public override void ParseAfterModifiers(Item item)
     {
         foreach (var definition in Definitions)
         {
-            definition.ParseAfterModifiers(itemProperties, parsingItem, modifierLines);
+            definition.ParseAfterModifiers(item);
         }
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override async Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
         var filter = new ExpandablePropertiesFilter(this)
         {
             Text = label ?? string.Empty,
         };
 
-        filter.Filters.AddRange(Definitions.Select(x => x.GetFilter(item, normalizeValue, filterType)).Where(x => x != null)!);
+        foreach (var definition in Definitions)
+        {
+            var definitionFilter = await definition.GetFilter(item, normalizeValue, filterType);
+            if (definitionFilter != null)
+            {
+                filter.Filters.Add(definitionFilter);
+            }
+        }
 
-        return filter.Filters.Count == 0 ? null : filter;
+        if (filter.Filters.Count == 0) return null;
+
+        return filter;
     }
 
-    public override List<BooleanPropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType)
+    public override List<PropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType)
     {
         var filter = new ExpandablePropertiesFilter(this)
         {
@@ -62,7 +71,7 @@ public class ExpandablePropertiesDefinition
         return filter.Filters.Count == 0 ? null : [filter];
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (filter is not ExpandablePropertiesFilter expandablePropertiesFilter) return;
 

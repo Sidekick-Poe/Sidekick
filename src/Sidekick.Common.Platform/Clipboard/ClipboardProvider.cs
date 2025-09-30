@@ -25,7 +25,6 @@ public class ClipboardProvider
 
         await SetText(string.Empty);
 
-        // Alt information is not used for item parsing.
         if (withAlt == true)
         {
             await keyboard.PressKey("Ctrl+Alt+C");
@@ -51,12 +50,7 @@ public class ClipboardProvider
             logger.LogDebug("[Clipboard] Reset clipboard to retained value.");
         }
 
-        if (string.IsNullOrEmpty(result))
-        {
-            return null;
-        }
-
-        return result;
+        return string.IsNullOrEmpty(result) ? null : result;
     }
 
     /// <inheritdoc/>

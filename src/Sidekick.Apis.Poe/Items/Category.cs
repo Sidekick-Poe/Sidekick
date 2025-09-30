@@ -18,8 +18,6 @@ public enum Category
     Contract,
     Logbook,
     Sanctum,
-    MemoryLine,
-    Affliction,
     Tincture,
     Corpse,
     Idol,

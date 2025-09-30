@@ -2,7 +2,7 @@ using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 
-public class IntPropertyFilter : BooleanPropertyFilter
+public class IntPropertyFilter : PropertyFilter
 {
     internal IntPropertyFilter(PropertyDefinition definition)
         : base(definition)

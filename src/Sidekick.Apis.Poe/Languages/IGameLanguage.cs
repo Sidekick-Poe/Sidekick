@@ -29,6 +29,8 @@ public interface IGameLanguage
 
     string RarityDivinationCard { get; }
 
+    string DescriptionRarity { get; }
+
     string DescriptionUnidentified { get; }
 
     string DescriptionQuality { get; }
@@ -122,11 +124,4 @@ public interface IGameLanguage
         GameType.PathOfExile2 => Poe2TradeApiBaseUrl,
         _ => PoeTradeApiBaseUrl,
     };
-
-    /// <summary>
-    /// Applies a fuzzy transformation to the input text to match approximate text patterns.
-    /// </summary>
-    /// <param name="text">The input text to transform using a fuzzy logic mechanism.</param>
-    /// <returns>Returns a transformed string based on fuzzy logic.</returns>
-    string? GetFuzzyText(string? text) => text;
 }

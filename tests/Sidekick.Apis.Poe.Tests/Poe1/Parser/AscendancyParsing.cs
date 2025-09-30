@@ -54,9 +54,9 @@ but justice favours only the truly worthy.
 Travel to the Aspirants' Plaza and spend this item to open the Eternal Labyrinth of Fortune. You must have completed the six different Trials of Ascendancy found in Maps in order to access this area.
 ");
 
-        Assert.Equal(ItemClass.MapFragment, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-        Assert.Equal(Category.Map, actual.Header.Category);
-        Assert.Equal("Tribute to the Goddess", actual.Header.ApiType);
+        Assert.Equal(ItemClass.MapFragment, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Equal(Category.Map, actual.ApiInformation.Category);
+        Assert.Equal("Tribute to the Goddess", actual.ApiInformation.Type);
     }
 }

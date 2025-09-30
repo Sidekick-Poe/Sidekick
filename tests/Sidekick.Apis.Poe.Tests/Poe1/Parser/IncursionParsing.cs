@@ -40,10 +40,10 @@ Can be used in a personal Map Device to open portals to the Temple of Atzoatl in
 Note: ~price 1.29 exalted
 ");
 
-        Assert.Equal(ItemClass.MapFragment, actual.Header.ItemClass);
-        Assert.Equal(Category.Map, actual.Header.Category);
-        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
-        Assert.Equal("Chronicle of Atzoatl", actual.Header.ApiType);
+        Assert.Equal(ItemClass.MapFragment, actual.Properties.ItemClass);
+        Assert.Equal(Category.Map, actual.ApiInformation.Category);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal("Chronicle of Atzoatl", actual.ApiInformation.Type);
         Assert.Equal(81, actual.Properties.AreaLevel);
 
         actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)");

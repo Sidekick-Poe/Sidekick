@@ -28,13 +28,13 @@ Natural inhabitants of this area have been removed (implicit)
 Travel to this Map by using it in a personal Map Device. Maps can only be used once.
 ");
 
-        Assert.Equal(Category.Map, actual.Header.Category);
-        Assert.Equal(ItemClass.Map, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-        Assert.Equal("Blighted Atoll Map", actual.Header.Type);
-        Assert.Equal("Blighted Atoll Map", actual.Header.ApiText);
-        Assert.Equal("Atoll Map", actual.Header.ApiType);
-        Assert.Equal("blighted", actual.Header.ApiDiscriminator);
+        Assert.Equal(Category.Map, actual.ApiInformation.Category);
+        Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Equal("Blighted Atoll Map", actual.Type);
+        Assert.Equal("Blighted Atoll Map", actual.ApiInformation.Text);
+        Assert.Equal("Atoll Map", actual.ApiInformation.Type);
+        Assert.Equal("blighted", actual.ApiInformation.Discriminator);
         Assert.Equal(14, actual.Properties.MapTier);
         Assert.True(actual.Properties.Blighted);
     }
@@ -60,13 +60,13 @@ Natural inhabitants of this area have been removed (implicit)
 Travel to this Map by using it in a personal Map Device. Maps can only be used once.
 ");
 
-        Assert.Equal(Category.Map, actual.Header.Category);
-        Assert.Equal(ItemClass.Map, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Normal, actual.Header.Rarity);
-        Assert.Equal("Blighted Shore Map", actual.Header.ApiText);
-        Assert.Equal("Shore Map", actual.Header.ApiType);
-        Assert.Equal("blighted", actual.Header.ApiDiscriminator);
-        Assert.Null(actual.Header.Name);
+        Assert.Equal(Category.Map, actual.ApiInformation.Category);
+        Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
+        Assert.Equal("Blighted Shore Map", actual.ApiInformation.Text);
+        Assert.Equal("Shore Map", actual.ApiInformation.Type);
+        Assert.Equal("blighted", actual.ApiInformation.Discriminator);
+        Assert.Null(actual.Name);
         Assert.Equal(6, actual.Properties.MapTier);
         Assert.True(actual.Properties.Blighted);
     }
@@ -86,10 +86,10 @@ Shift click to unstack.
 Note: ~price 1 blessed
 ");
 
-        Assert.Equal(ItemClass.Currency, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Currency, actual.Header.Rarity);
-        Assert.Equal(Category.Currency, actual.Header.Category);
-        Assert.Equal("Clear Oil", actual.Header.ApiType);
+        Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
+        Assert.Equal(Category.Currency, actual.ApiInformation.Category);
+        Assert.Equal("Clear Oil", actual.ApiInformation.Type);
     }
 
     [Fact]
@@ -121,13 +121,13 @@ Players have 20% less Recovery Rate of Life and Energy Shield
 Travel to this Map by using it in a personal Map Device.Maps can only be used once.
 ");
 
-        Assert.Equal(ItemClass.Map, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-        Assert.Equal(Category.Map, actual.Header.Category);
-        Assert.Equal("Blighted Spider Forest Map", actual.Header.ApiText);
-        Assert.Equal("Spider Forest Map", actual.Header.ApiType);
-        Assert.Equal("blighted", actual.Header.ApiDiscriminator);
-        Assert.Equal("Nightmare Spires", actual.Header.Name);
+        Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal(Category.Map, actual.ApiInformation.Category);
+        Assert.Equal("Blighted Spider Forest Map", actual.ApiInformation.Text);
+        Assert.Equal("Spider Forest Map", actual.ApiInformation.Type);
+        Assert.Equal("blighted", actual.ApiInformation.Discriminator);
+        Assert.Equal("Nightmare Spires", actual.Name);
         Assert.True(actual.Properties.Blighted);
     }
 }

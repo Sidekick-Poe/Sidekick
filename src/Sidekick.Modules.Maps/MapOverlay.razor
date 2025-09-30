@@ -10,7 +10,7 @@
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 @using Sidekick.Modules.Maps.Settings
 
-<LayoutTwoColumn HasChildContent="@(Item == null || Item.Header.Game == GameType.PathOfExile)">
+<LayoutTwoColumn HasChildContent="@(Item == null || Item.Game == GameType.PathOfExile)">
     <TopContent>
         <AppBar>
             <AppSettings Href="/settings/map">
@@ -22,10 +22,10 @@
     <LeftContent>
         @if (Item != null)
         {
-            <ItemHeader Name="@Item.Header.Name"
-                        Type="@Item.Header.Type"
-                        Rarity="Item.Header.Rarity"
-                        Game="Item.Header.Game"
+            <ItemHeader Name="@Item.Name"
+                        Type="@Item.Type"
+                        Rarity="Item.Properties.Rarity"
+                        Game="Item.Game"
                         Influences="Item.Properties.Influences"/>
 
             <AppFullContainer>
@@ -44,7 +44,7 @@
                     </Heading1>
                 }
 
-                <ItemSeparator Rarity="Item.Header.Rarity"/>
+                <ItemSeparator Rarity="Item.Properties.Rarity"/>
 
                 @foreach (var mod in DangerousMods)
                 {
@@ -59,7 +59,7 @@
 
                 @if (DangerousMods.Any() && OkMods.Any())
                 {
-                    <ItemSeparator Rarity="Item.Header.Rarity"/>
+                    <ItemSeparator Rarity="Item.Properties.Rarity"/>
                 }
 
                 @foreach (var mod in OkMods)
@@ -76,9 +76,9 @@
         }
     </LeftContent>
     <ChildContent>
-        @if (Item?.Header.Game == GameType.PathOfExile)
+        @if (Item?.Game == GameType.PathOfExile)
         {
-            <PoeWikiMapInfo Type="@Item.Invariant?.Type" Name="@Item.Invariant?.Name"/>
+            <PoeWikiMapInfo Text="@Item.ApiInformation.InvariantText"/>
         }
     </ChildContent>
 </LayoutTwoColumn>
@@ -140,7 +140,7 @@
         var itemText = ItemText.DecodeBase64Url();
         Item = ItemParser.ParseItem(itemText);
 
-        if (Item.Header.Category != Category.Map && Item.Header.Category != Category.Contract && Item.Header.Category != Category.Logbook)
+        if (Item.ApiInformation.Category != Category.Map && Item.ApiInformation.Category != Category.Contract && Item.ApiInformation.Category != Category.Logbook)
         {
             throw new InvalidItemException();
         }

@@ -5,7 +5,6 @@ using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.PoePriceInfo.Api;
 using Sidekick.Apis.PoePriceInfo.Models;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.PoePriceInfo;
@@ -32,7 +31,7 @@ public class PoePriceInfoClient(
 
     public async Task<PricePrediction?> GetPricePrediction(Item item)
     {
-        if (item.Header.Rarity != Rarity.Rare)
+        if (item.Properties.Rarity != Rarity.Rare)
         {
             return null;
         }
@@ -40,7 +39,7 @@ public class PoePriceInfoClient(
         try
         {
             var league = await settingsService.GetLeague();
-            var encodedItem = Convert.ToBase64String(Encoding.UTF8.GetBytes(item.Text));
+            var encodedItem = Convert.ToBase64String(Encoding.UTF8.GetBytes(item.Text.Text));
             using var client = GetHttpClient();
             var response = await client.GetAsync("?l=" + league + "&i=" + encodedItem);
             var content = await response.Content.ReadAsStreamAsync();

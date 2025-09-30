@@ -10,7 +10,7 @@ public abstract class PseudoDefinition
 
     protected abstract bool Enabled { get; }
 
-    protected abstract string? ModifierId { get; }
+    protected abstract string ModifierId { get; }
 
     protected abstract List<PseudoPattern> Patterns { get; }
 
@@ -28,33 +28,21 @@ public abstract class PseudoDefinition
 
     private string? Text { get; set; }
 
-    public List<PseudoModifierDefinition> Modifiers { get; private set; } = new();
+    private List<PseudoModifierDefinition> Modifiers { get; set; } = new();
 
     internal void InitializeDefinition(List<ApiCategory> apiCategories, List<ModifierDefinition>? localizedPseudoModifiers)
     {
+        if (!Enabled) return;
+
         foreach (var apiModifier in apiCategories.SelectMany(apiCategory => apiCategory.Entries))
         {
-            if (!Enabled)
-            {
-                return;
-            }
-
-            if (Exception != null && apiModifier.Text is not null && Exception.IsMatch(apiModifier.Text))
-            {
-                continue;
-            }
+            if (Exception != null && Exception.IsMatch(apiModifier.Text)) continue;
 
             foreach (var pattern in Patterns)
             {
-                if (apiModifier.Id == null || apiModifier.Type == null || apiModifier.Text == null)
-                {
-                    continue;
-                }
+                if (apiModifier.Id == null || apiModifier.Type == null || apiModifier.Text == null || !pattern.Pattern.IsMatch(apiModifier.Text)) continue;
 
-                if (pattern.Pattern.IsMatch(apiModifier.Text))
-                {
-                    Modifiers.Add(new PseudoModifierDefinition(apiModifier.Id, apiModifier.Type, apiModifier.Text, pattern.Multiplier));
-                }
+                Modifiers.Add(new PseudoModifierDefinition(apiModifier.Id, apiModifier.Type, apiModifier.Text, pattern.Multiplier));
             }
         }
 
@@ -73,15 +61,7 @@ public abstract class PseudoDefinition
             .ThenBy(x => x.Text)
             .ToList();
 
-        if (localizedPseudoModifiers != null && !string.IsNullOrEmpty(ModifierId))
-        {
-            Text = localizedPseudoModifiers.FirstOrDefault(x => x.ApiId == ModifierId)?.ApiText ?? "";
-        }
-
-        if (string.IsNullOrEmpty(Text))
-        {
-            Text = string.Join(", ", Modifiers.Select(x => x.Text).Distinct().ToList());
-        }
+        Text = localizedPseudoModifiers?.FirstOrDefault(x => x.ApiId == ModifierId)?.ApiText ?? null;
     }
 
     internal PseudoModifier? Parse(List<ModifierLine> itemModifierLines)

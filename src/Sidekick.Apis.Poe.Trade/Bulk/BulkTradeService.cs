@@ -22,7 +22,7 @@ public class BulkTradeService
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
     IFilterProvider filterProvider,
-    IItemStaticDataProvider itemStaticDataProvider,
+    IApiStaticDataProvider apiStaticDataProvider,
     IHttpClientFactory httpClientFactory
 ) : IBulkTradeService
 {
@@ -35,7 +35,7 @@ public class BulkTradeService
 
     public bool SupportsBulkTrade(Item? item)
     {
-        return item?.Header.Rarity == Rarity.Currency && itemStaticDataProvider.Get(item.Header) != null;
+        return item?.Properties.Rarity == Rarity.Currency && apiStaticDataProvider.Get(item.Name, item.Type) != null;
     }
 
     public async Task<BulkResponseModel> SearchBulk(Item item)
@@ -43,9 +43,9 @@ public class BulkTradeService
         logger.LogInformation("[Trade API] Querying Exchange API.");
 
         var league = await settingsService.GetLeague();
-        var uri = $"{await GetBaseApiUrl(item.Header.Game)}exchange/{league}";
+        var uri = $"{await GetBaseApiUrl(item.Game)}exchange/{league}";
 
-        var staticItem = itemStaticDataProvider.Get(item.Header);
+        var staticItem = apiStaticDataProvider.Get(item.Name, item.Type);
         if (staticItem == null)
         {
             throw new ApiErrorException
@@ -54,7 +54,7 @@ public class BulkTradeService
             };
         }
 
-        var currency = item.Header.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
+        var currency = item.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
         currency = filterProvider.GetPriceOption(currency);
         var minStock = await settingsService.GetInt(SettingKeys.PriceCheckBulkMinimumStock);
 
@@ -64,7 +64,7 @@ public class BulkTradeService
 
         if (currency == null || currency == "chaos_divine" || currency == "exalted_divine")
         {
-            if (item.Header.Game == GameType.PathOfExile)
+            if (item.Game == GameType.PathOfExile)
             {
                 model.Query.Have.Add(model.Query.Want.Any(x => x == "chaos") ? "divine" : "chaos");
             }
@@ -79,7 +79,7 @@ public class BulkTradeService
         }
 
         // Trade Settings
-        var statusKey = item.Header.Game == GameType.PathOfExile ? SettingKeys.PriceCheckStatusPoE1 : SettingKeys.PriceCheckStatusPoE2;
+        var statusKey = item.Game == GameType.PathOfExile ? SettingKeys.PriceCheckStatusPoE1 : SettingKeys.PriceCheckStatusPoE2;
         var status = await settingsService.GetString(statusKey);
         if (status == Status.Securable || status == Status.Available) status = Status.OnlineLeague;
         model.Query.Status.Option = status ?? Status.OnlineLeague;
@@ -113,20 +113,18 @@ public class BulkTradeService
 
     public async Task<Uri> GetTradeUri(Item item, string queryId)
     {
-        var baseUri = new Uri(await GetBaseUrl(item.Header.Game) + "exchange/");
+        var baseUri = new Uri(await GetBaseUrl(item.Game) + "exchange/");
         var league = await settingsService.GetLeague();
         return new Uri(baseUri, $"{league}/{queryId}");
     }
 
-    private async Task<string> GetBaseApiUrl(GameType game)
+    private Task<string> GetBaseApiUrl(GameType game)
     {
-        var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
-        return useInvariant ? gameLanguageProvider.InvariantLanguage.GetTradeApiBaseUrl(game) : gameLanguageProvider.Language.GetTradeApiBaseUrl(game);
+        return Task.FromResult(gameLanguageProvider.Language.GetTradeApiBaseUrl(game));
     }
 
-    private async Task<string> GetBaseUrl(GameType game)
+    private Task<string> GetBaseUrl(GameType game)
     {
-        var useInvariant = await settingsService.GetBool(SettingKeys.UseInvariantTradeResults);
-        return useInvariant ? gameLanguageProvider.InvariantLanguage.GetTradeBaseUrl(game) : gameLanguageProvider.Language.GetTradeBaseUrl(game);
+        return Task.FromResult(gameLanguageProvider.Language.GetTradeBaseUrl(game));
     }
 }

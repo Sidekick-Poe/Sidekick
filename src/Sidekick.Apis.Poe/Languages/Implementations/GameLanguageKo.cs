@@ -1,4 +1,4 @@
-using Romanization;
+
 namespace Sidekick.Apis.Poe.Languages.Implementations;
 
 [GameLanguage("Korean", "ko")]
@@ -20,6 +20,7 @@ public class GameLanguageKo : IGameLanguage
     public string RarityGem => "젬";
     public string RarityDivinationCard => "점술 카드";
 
+    public string DescriptionRarity => "아이템 희귀도";
     public string DescriptionUnidentified => "미확인";
     public string DescriptionQuality => "퀄리티";
     public string DescriptionLevel => "레벨";
@@ -136,22 +137,5 @@ public class GameLanguageKo : IGameLanguage
         Corpses = "시신",
         SanctumResearch = "성역 연구",
     };
-
-    private static Korean.RevisedRomanization? Romanization { get; set; }
-
-    public string? GetFuzzyText(string? text)
-    {
-        Romanization ??= new Korean.RevisedRomanization();
-        try
-        {
-            text = Romanization.Process(text);
-        }
-        catch (Exception)
-        {
-            // Do nothing if the romanization fails.
-        }
-
-        return text;
-    }
 }
 

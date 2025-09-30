@@ -14,25 +14,25 @@ public class BlightedProperty(IGameLanguageProvider gameLanguageProvider) : Prop
 
     public override List<Category> ValidCategories { get; } = [Category.Map];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        itemProperties.Blighted = Pattern?.IsMatch(parsingItem.Blocks[0].Lines[^1].Text) ?? false;
+        item.Properties.Blighted = Pattern.IsMatch(item.Text.Blocks[0].Lines[^1].Text);
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (!item.Properties.Blighted) return null;
+        if (!item.Properties.Blighted) return Task.FromResult<PropertyFilter?>(null);
 
-        var filter = new BooleanPropertyFilter(this)
+        var filter = new PropertyFilter(this)
         {
             ShowRow = false,
             Text = gameLanguageProvider.Language.AffixBlighted,
             Checked = true,
         };
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (!filter.Checked) return;
 

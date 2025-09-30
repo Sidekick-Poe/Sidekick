@@ -5,14 +5,14 @@
 @using Sidekick.Modules.Trade.Components.Prices
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 
-@if (!IsCompact && (Result.Item.HasModifiers || Item.Header.Category == Category.Gem))
+@if (!IsCompact && (Result.Item.HasModifiers || Item.ApiInformation.Category == Category.Gem))
 {
     <div class="mb-2 rounded-b-lg bg-stone-950">
         <ItemHeader Name="@Result.Item.Name"
                     Type="@Result.Item.Type"
                     Influences="Result.Item.Influences"
                     Rarity="Result.Item.Rarity"
-                    Game="Item.Header.Game"/>
+                    Game="Item.Game"/>
 
         <div class="flex items-start flex-nowrap">
             <div class="w-3/4 p-2">
@@ -75,7 +75,7 @@ else
                         Type="@Result.Item.Type"
                         Influences="Result.Item.Influences"
                         Rarity="Result.Item.Rarity"
-                        Game="Item.Header.Game"
+                        Game="Item.Game"
                         SingleLine="true"/>
 
             <div class="flex items-center p-2">

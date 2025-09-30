@@ -2,7 +2,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Results;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 
-public class BooleanPropertyFilter(PropertyDefinition definition)
+public class PropertyFilter(PropertyDefinition definition)
 {
     public bool ShowRow { get; init; } = true;
 

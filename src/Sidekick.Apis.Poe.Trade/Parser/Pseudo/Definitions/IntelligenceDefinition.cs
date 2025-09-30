@@ -6,7 +6,7 @@ public class IntelligenceDefinition : PseudoDefinition
 {
     protected override bool Enabled => true;
 
-    protected override string? ModifierId => "pseudo.pseudo_total_intelligence";
+    protected override string ModifierId => "pseudo.pseudo_total_intelligence";
 
     protected override List<PseudoPattern> Patterns =>
     [

@@ -38,11 +38,11 @@ Triggers Level 20 Death Walk when Equipped
 Even the dead serve the Lightless.
 ");
 
-        Assert.Equal(ItemClass.Boots, actual.Header.ItemClass);
-        Assert.Equal(Category.Armour, actual.Header.Category);
-        Assert.Equal(Rarity.Unique, actual.Header.Rarity);
-        Assert.Equal("Bubonic Trail", actual.Header.ApiName);
-        Assert.Equal("Murder Boots", actual.Header.ApiType);
+        Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
+        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal("Bubonic Trail", actual.ApiInformation.Name);
+        Assert.Equal("Murder Boots", actual.ApiInformation.Type);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "Has # Abyssal Sockets", 1);
     }
@@ -72,9 +72,9 @@ Place into an Abyssal Socket on an Item or into an allocated Jewel Socket on the
 Note: ~price 1 alch
 ");
 
-        Assert.Equal(ItemClass.AbyssJewel, actual.Header.ItemClass);
-        Assert.Equal(Rarity.Rare, actual.Header.Rarity);
-        Assert.Equal(Category.Jewel, actual.Header.Category);
-        Assert.Equal("Hypnotic Eye Jewel", actual.Header.ApiType);
+        Assert.Equal(ItemClass.AbyssJewel, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal(Category.Jewel, actual.ApiInformation.Category);
+        Assert.Equal("Hypnotic Eye Jewel", actual.ApiInformation.Type);
     }
 }

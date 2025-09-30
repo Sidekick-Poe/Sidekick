@@ -14,14 +14,14 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Flask, Category.Jewel, Category.Accessory, Category.Map, Category.Contract, Category.Sanctum, Category.Logbook];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        itemProperties.ItemLevel = GetInt(Pattern, parsingItem);
+        item.Properties.ItemLevel = GetInt(Pattern, item.Text);
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (item.Properties.ItemLevel <= 0) return null;
+        if (item.Properties.ItemLevel <= 0) return Task.FromResult<PropertyFilter?>(null);
 
         var filter = new IntPropertyFilter(this)
         {
@@ -29,13 +29,13 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
             NormalizeEnabled = false,
             NormalizeValue = normalizeValue,
             Value = item.Properties.ItemLevel,
-            Checked = game == GameType.PathOfExile && item.Properties.ItemLevel >= 80 && item.Properties.MapTier == 0 && item.Header.Rarity != Rarity.Unique,
+            Checked = game == GameType.PathOfExile && item.Properties.ItemLevel >= 80 && item.Properties.MapTier == 0 && item.Properties.Rarity != Rarity.Unique,
         };
         filter.ChangeFilterType(filterType);
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 

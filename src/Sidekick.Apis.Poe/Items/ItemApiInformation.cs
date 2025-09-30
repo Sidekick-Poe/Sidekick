@@ -2,24 +2,32 @@ namespace Sidekick.Apis.Poe.Items;
 
 public class ItemApiInformation
 {
-    public string? ApiItemId { get; init; }
+    public Category Category { get; set; } = Category.Unknown;
 
-    public string? ApiName { get; init; }
+    public string? InvariantId { get; set; }
 
-    public string? ApiType { get; init; }
+    public string? InvariantText { get; set; }
 
-    public string? ApiDiscriminator { get; init; }
+    public string? Image { get; set; }
 
-    public string? ApiText { get; init; }
+    public string? Name { get; set; }
+
+    public string? Type { get; set; }
+
+    public string? Discriminator { get; set; }
+
+    public string? Text { get; set; }
+
+    public bool IsUnique { get; set; }
 
     /// <inheritdoc />
     public override string? ToString()
     {
-        if (!string.IsNullOrEmpty(ApiType) && !string.IsNullOrEmpty(ApiName))
+        if (!string.IsNullOrEmpty(Type) && !string.IsNullOrEmpty(Name))
         {
-            return $"{ApiType} - {ApiName}";
+            return $"{Type} - {Name}";
         }
 
-        return !string.IsNullOrEmpty(ApiType) ? ApiType : ApiName;
+        return !string.IsNullOrEmpty(Type) ? Type : Name;
     }
 }

@@ -25,11 +25,11 @@ Fountains have 6% chance to grant double Sacred Water
 Place this item on the Relic Altar at the start of the Trial of the Sekhemas
 ");
 
-        Assert.Equal(ItemClass.SanctumRelic, actual.Header.ItemClass);
-        Assert.Equal(Category.Sanctum, actual.Header.Category);
-        Assert.Equal(Rarity.Magic, actual.Header.Rarity);
-        Assert.Equal("Urn Relic", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
+        Assert.Equal(ItemClass.SanctumRelic, actual.Properties.ItemClass);
+        Assert.Equal(Category.Sanctum, actual.ApiInformation.Category);
+        Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
+        Assert.Equal("Urn Relic", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
 
         actual.AssertHasModifier(ModifierCategory.Sanctum, "Fountains have #% chance to grant double Sacred Water", 6);
         actual.AssertHasModifier(ModifierCategory.Sanctum, "#% increased Honour restored", 9);
@@ -50,11 +50,11 @@ Item Level: 80
 --------
 Place this item on the Relic Altar at the start of the Trial of the Sekhemas");
 
-        Assert.Equal(ItemClass.SanctumRelic, actual.Header.ItemClass);
-        Assert.Equal(Category.Sanctum, actual.Header.Category);
-        Assert.Equal(Rarity.Magic, actual.Header.Rarity);
-        Assert.Equal("Urn Relic", actual.Header.ApiType);
-        Assert.Null(actual.Header.ApiName);
+        Assert.Equal(ItemClass.SanctumRelic, actual.Properties.ItemClass);
+        Assert.Equal(Category.Sanctum, actual.ApiInformation.Category);
+        Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
+        Assert.Equal("Urn Relic", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
         Assert.Equal(80, actual.Properties.ItemLevel);
 
         actual.AssertHasModifier(ModifierCategory.Sanctum, "#% increased Defences", 35);

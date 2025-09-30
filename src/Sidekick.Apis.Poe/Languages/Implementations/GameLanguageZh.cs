@@ -1,3 +1,4 @@
+
 namespace Sidekick.Apis.Poe.Languages.Implementations;
 
 [GameLanguage("Traditional Chinese (Unstable)", "zh")]
@@ -19,6 +20,7 @@ public class GameLanguageZh : IGameLanguage
     public string RarityGem => "寶石";
     public string RarityDivinationCard => "命運卡";
 
+    public string DescriptionRarity => "稀有度";
     public string DescriptionUnidentified => "未鑑定";
     public string DescriptionQuality => "品質";
     public string DescriptionLevel => "物品等級";

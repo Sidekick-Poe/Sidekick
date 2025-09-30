@@ -14,24 +14,24 @@ public class CrusaderProperty(IGameLanguageProvider gameLanguageProvider) : Prop
 
     public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Jewel];
 
-    public override void Parse(ItemProperties itemProperties, ParsingItem parsingItem, ItemHeader header)
+    public override void Parse(Item item)
     {
-        itemProperties.Influences.Crusader = GetBool(Pattern, parsingItem);
+        item.Properties.Influences.Crusader = GetBool(Pattern, item.Text);
     }
 
-    public override BooleanPropertyFilter? GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (!item.Properties.Influences.Crusader) return null;
+        if (!item.Properties.Influences.Crusader) return Task.FromResult<PropertyFilter?>(null);
 
-        var filter = new BooleanPropertyFilter(this)
+        var filter = new PropertyFilter(this)
         {
             Text = gameLanguageProvider.Language.InfluenceCrusader,
             Checked = true,
         };
-        return filter;
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, BooleanPropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
     {
         if (!filter.Checked) return;
 
