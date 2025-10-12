@@ -1,0 +1,58 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="Linux-Debug" />
+    <BuildType Name="Linux-Release" />
+    <BuildType Name="Release" />
+  </Configurations>
+  <Folder Name="/Apis/">
+    <Project Path="src/Sidekick.Apis.Common/Sidekick.Apis.Common.csproj" />
+    <Project Path="src/Sidekick.Apis.GitHub/Sidekick.Apis.GitHub.csproj" />
+    <Project Path="src/Sidekick.Apis.Poe.Account/Sidekick.Apis.Poe.Account.csproj" />
+    <Project Path="src/Sidekick.Apis.Poe.Trade/Sidekick.Apis.Poe.Trade.csproj" />
+    <Project Path="src/Sidekick.Apis.Poe/Sidekick.Apis.Poe.csproj" />
+    <Project Path="src/Sidekick.Apis.Poe2Scout/Sidekick.Apis.Poe2Scout.csproj" />
+    <Project Path="src/Sidekick.Apis.PoeNinja/Sidekick.Apis.PoeNinja.csproj" />
+    <Project Path="src/Sidekick.Apis.PoePriceInfo/Sidekick.Apis.PoePriceInfo.csproj" />
+    <Project Path="src/Sidekick.Apis.PoeWiki/Sidekick.Apis.PoeWiki.csproj" />
+  </Folder>
+  <Folder Name="/Common/">
+    <Project Path="src/Sidekick.Common.Browser/Sidekick.Common.Browser.csproj" />
+    <Project Path="src/Sidekick.Common.Database/Sidekick.Common.Database.csproj" />
+    <Project Path="src/Sidekick.Common.Platform/Sidekick.Common.Platform.csproj" />
+    <Project Path="src/Sidekick.Common.Ui/Sidekick.Common.Ui.csproj" />
+    <Project Path="src/Sidekick.Common.Updater/Sidekick.Common.Updater.csproj" />
+    <Project Path="src/Sidekick.Common/Sidekick.Common.csproj" />
+  </Folder>
+  <Folder Name="/Modules/">
+    <Project Path="src/Sidekick.Modules.Chat/Sidekick.Modules.Chat.csproj" />
+    <Project Path="src/Sidekick.Modules.Development/Sidekick.Modules.Development.csproj" />
+    <Project Path="src/Sidekick.Modules.General/Sidekick.Modules.General.csproj" />
+    <Project Path="src/Sidekick.Modules.Maps/Sidekick.Modules.Maps.csproj" />
+    <Project Path="src/Sidekick.Modules.RegexHotkeys/Sidekick.Modules.RegexHotkeys.csproj" />
+    <Project Path="src/Sidekick.Modules.Trade/Sidekick.Modules.Trade.csproj" />
+    <Project Path="src/Sidekick.Modules.Wealth/Sidekick.Modules.Wealth.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="tests/Sidekick.Apis.Poe.Tests/Sidekick.Apis.Poe.Tests.csproj" />
+  </Folder>
+  <Folder Name="/_Configuration/">
+    <File Path=".editorconfig" />
+    <File Path=".filenesting.json" />
+    <File Path=".gitattributes" />
+    <File Path=".github/FUNDING.yml" />
+    <File Path=".github/release-drafter.yml" />
+    <File Path=".github/workflows/build-release.yml" />
+    <File Path=".github/workflows/tests.yml" />
+    <File Path=".gitignore" />
+    <File Path="CONTRIBUTING.md" />
+    <File Path="Directory.Packages.props" />
+    <File Path="docker-compose.yml" />
+    <File Path="Dockerfile" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="src/Sidekick.PhotinoBlazor/Sidekick.PhotinoBlazor.csproj" />
+  <Project Path="src/Sidekick.Web/Sidekick.Web.csproj" />
+  <Project Path="src/Sidekick.Wpf/Sidekick.Wpf.csproj" />
+</Solution>
