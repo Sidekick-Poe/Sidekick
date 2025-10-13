@@ -1,3 +1,4 @@
+
 namespace Sidekick.Apis.Poe.Languages.Implementations;
 
 [GameLanguage("Japanese", "ja")]
@@ -48,9 +49,14 @@ public class GameLanguageJa : IGameLanguage
     public string DescriptionItemQuantity => "アイテム数量";
     public string DescriptionItemRarity => "アイテムレアリティ";
     public string DescriptionMonsterPackSize => "モンスターパックサイズ";
-    public string DescriptionRequirements => "装備要求";
     public string DescriptionAreaLevel => "エリアレベル";
     public string DescriptionUnusable => "このアイテムを使用できません。アイテムの効果は無視されます";
+    public string DescriptionRequirements => "装備要求";
+    public string DescriptionRequires => "装備条件";
+    public string DescriptionRequiresLevel => "レベル";
+    public string DescriptionRequiresStr => "筋力";
+    public string DescriptionRequiresDex => "器用さ";
+    public string DescriptionRequiresInt => "知性";
 
     public string AffixSuperior => "上質な";
     public string AffixBlighted => "ブライト";

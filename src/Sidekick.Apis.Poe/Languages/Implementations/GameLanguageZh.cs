@@ -49,9 +49,14 @@ public class GameLanguageZh : IGameLanguage
     public string DescriptionItemQuantity => "物品數量";
     public string DescriptionItemRarity => "物品稀有度";
     public string DescriptionMonsterPackSize => "怪物群大小";
-    public string DescriptionRequirements => "需求";
     public string DescriptionAreaLevel => "區域等級";
     public string DescriptionUnusable => "你無法使用這項裝備，它的數值將被忽略";
+    public string DescriptionRequirements => "需求";
+    public string DescriptionRequires => "需求";
+    public string DescriptionRequiresLevel => "等級";
+    public string DescriptionRequiresStr => "力量";
+    public string DescriptionRequiresDex => "敏捷";
+    public string DescriptionRequiresInt => "智慧";
 
     public string AffixSuperior => "精良的";
     public string AffixBlighted => "凋落的";

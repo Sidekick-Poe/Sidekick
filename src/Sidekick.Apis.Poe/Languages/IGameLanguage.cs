@@ -89,9 +89,19 @@ public interface IGameLanguage
 
     string DescriptionLevel { get; }
 
+    string DescriptionUnusable { get; }
+
     string DescriptionRequirements { get; }
 
-    string DescriptionUnusable { get; }
+    string DescriptionRequires { get; }
+
+    string DescriptionRequiresLevel { get; }
+
+    string DescriptionRequiresStr { get; }
+    
+    string DescriptionRequiresDex { get; }
+
+    string DescriptionRequiresInt { get; }
 
     string AffixSuperior { get; }
 

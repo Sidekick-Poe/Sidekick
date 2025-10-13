@@ -92,6 +92,8 @@ Grants Skill: Parry
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Wooden Buckler", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal(5, actual.Properties.RequiresLevel);
+        Assert.Equal(11, actual.Properties.RequiresDexterity);
 
         Assert.Equal(16, actual.Properties.EvasionRating);
 
@@ -163,6 +165,9 @@ Item Level: 66
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Bastion Sabatons", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal(59, actual.Properties.RequiresLevel);
+        Assert.Equal(44, actual.Properties.RequiresStrength);
+        Assert.Equal(44, actual.Properties.RequiresDexterity);
 
         Assert.Equal(66, actual.Properties.ItemLevel);
 

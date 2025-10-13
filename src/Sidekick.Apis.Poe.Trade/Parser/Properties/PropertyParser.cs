@@ -69,6 +69,14 @@ public class PropertyParser
 
             new SeparatorProperty(),
 
+            new ExpandablePropertiesDefinition(filterProvider.RequirementsCategory?.Title,
+                                               new RequiresLevelProperty(gameLanguageProvider),
+                                               new RequiresStrengthProperty(gameLanguageProvider),
+                                               new RequiresDexterityProperty(gameLanguageProvider),
+                                               new RequiresIntelligenceProperty(gameLanguageProvider)),
+
+            new SeparatorProperty(),
+
             new ExpandablePropertiesDefinition(filterProvider.MiscellaneousCategory?.Title,
                                                new ElderProperty(gameLanguageProvider),
                                                new ShaperProperty(gameLanguageProvider),

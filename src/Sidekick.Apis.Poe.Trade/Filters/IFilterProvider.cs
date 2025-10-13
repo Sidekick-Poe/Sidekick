@@ -13,6 +13,7 @@ public interface IFilterProvider : IInitializableService
     ApiFilter? Fractured { get; }
     ApiFilter? Mirrored { get; }
     ApiFilter? Sanctified { get; }
+    ApiFilterCategory? RequirementsCategory { get; }
     ApiFilterCategory? MiscellaneousCategory { get; }
     string? GetPriceOption(string? price);
     string? GetTradeIndexedOption(string? timeFrame);

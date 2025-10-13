@@ -14,6 +14,11 @@ public class SearchFilters
 
     public TradeFilterGroup GetOrCreateTradeFilters() => TradeFilters ??= new();
 
+    [JsonPropertyName("req_filters")]
+    public ReqFilterGroup? ReqFilters { get; set; }
+
+    public ReqFilterGroup GetOrCreateReqFilters() => ReqFilters ??= new();
+
     [JsonPropertyName("misc_filters")]
     public MiscFilterGroup? MiscFilters { get; set; }
 

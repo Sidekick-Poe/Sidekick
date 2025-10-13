@@ -199,6 +199,9 @@ Allies in your Presence deal 9 to 13 additional Attack Fire Damage
         Assert.Equal(Category.Weapon, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Rattling Sceptre", actual.ApiInformation.Type);
+        Assert.Equal(66, actual.Properties.RequiresLevel);
+        Assert.Equal(46, actual.Properties.RequiresStrength);
+        Assert.Equal(117, actual.Properties.RequiresIntelligence);
 
         Assert.Equal(100, actual.Properties.Spirit);
     }

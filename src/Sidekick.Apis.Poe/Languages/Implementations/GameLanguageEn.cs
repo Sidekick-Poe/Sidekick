@@ -49,9 +49,14 @@ public class GameLanguageEn : IGameLanguage
     public string DescriptionItemQuantity => "Item Quantity";
     public string DescriptionItemRarity => "Item Rarity";
     public string DescriptionMonsterPackSize => "Monster Pack Size";
-    public string DescriptionRequirements => "Requirements";
     public string DescriptionAreaLevel => "Area Level";
     public string DescriptionUnusable => "You cannot use this item. Its stats will be ignored";
+    public string DescriptionRequirements => "Requirements";
+    public string DescriptionRequires => "Requires";
+    public string DescriptionRequiresLevel => "Level";
+    public string DescriptionRequiresStr => "Str";
+    public string DescriptionRequiresDex => "Dex";
+    public string DescriptionRequiresInt => "Int";
 
     public string AffixSuperior => "Superior";
     public string AffixBlighted => "Blighted";
@@ -138,4 +143,5 @@ public class GameLanguageEn : IGameLanguage
         SanctumResearch = "Sanctum Research",
     };
 }
+
 

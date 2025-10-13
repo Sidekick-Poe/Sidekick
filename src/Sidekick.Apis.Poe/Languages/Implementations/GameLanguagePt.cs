@@ -49,9 +49,14 @@ public class GameLanguagePt : IGameLanguage
     public string DescriptionItemQuantity => "Quantidade de Itens";
     public string DescriptionItemRarity => "Raridade de Itens";
     public string DescriptionMonsterPackSize => "Tamanho do Grupo de Monstros";
-    public string DescriptionRequirements => "Requisitos";
     public string DescriptionAreaLevel => "Nível da Área";
     public string DescriptionUnusable => "Você não pode utilizar este item. Suas propriedades serão ignoradas";
+    public string DescriptionRequirements => "Requisitos";
+    public string DescriptionRequires => "Requer";
+    public string DescriptionRequiresLevel => "Nível";
+    public string DescriptionRequiresStr => "For";
+    public string DescriptionRequiresDex => "Des";
+    public string DescriptionRequiresInt => "Int";
 
     public string AffixSuperior => "Superior";
     public string AffixBlighted => "Infestado";
