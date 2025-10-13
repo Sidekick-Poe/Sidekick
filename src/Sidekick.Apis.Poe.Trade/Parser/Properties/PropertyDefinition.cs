@@ -47,12 +47,9 @@ public abstract class PropertyDefinition
 
     protected static int GetInt(Regex pattern, TextBlock textBlock)
     {
-        if (textBlock.TryParseRegex(pattern, out var match) && int.TryParse(match.Groups[1].Value, out var result))
-        {
-            return result;
-        }
+        if (!textBlock.TryParseRegex(pattern, out var match)) return 0;
 
-        return 0;
+        return int.TryParse(match.Groups[1].Value, out var result) ? result : 0;
     }
 
     protected static double GetDouble(Regex pattern, TextBlock textBlock)

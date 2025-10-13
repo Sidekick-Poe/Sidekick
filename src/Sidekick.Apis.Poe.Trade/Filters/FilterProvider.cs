@@ -35,6 +35,8 @@ public class FilterProvider
 
     public ApiFilter? Sanctified { get; private set; }
 
+    public ApiFilterCategory? RequirementsCategory { get; private set; }
+
     public ApiFilterCategory? MiscellaneousCategory { get; private set; }
 
     private List<ApiFilterCategory> Filters { get; set; } = [];
@@ -62,6 +64,7 @@ public class FilterProvider
         TradePrice = GetApiFilter("trade_filters", "price");
         TradeIndexed = GetApiFilter("trade_filters", "indexed");
 
+        RequirementsCategory = GetApiFilterCategory("req_filters");
         MiscellaneousCategory = GetApiFilterCategory("misc_filters");
 
         if (invariantFilterProvider.DesecratedDefinition != null)

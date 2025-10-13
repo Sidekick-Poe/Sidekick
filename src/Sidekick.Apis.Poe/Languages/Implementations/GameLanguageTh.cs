@@ -49,9 +49,14 @@ public class GameLanguageTh : IGameLanguage
     public string DescriptionItemQuantity => "จำนวนของไอเทม";
     public string DescriptionItemRarity => "ระดับความหายากของไอเทม";
     public string DescriptionMonsterPackSize => "ขนาดกองมอนสเตอร์";
-    public string DescriptionRequirements => "เงื่อนไข";
     public string DescriptionAreaLevel => "ด่านเลเวล";
     public string DescriptionUnusable => "คุณไม่สามารถใช้ไอเทมชิ้นนี้ได้ Stats ของไอเทมนี้จะไม่มีผล";
+    public string DescriptionRequirements => "เงื่อนไข";
+    public string DescriptionRequires => "ต้องการ";
+    public string DescriptionRequiresLevel => "เลเวล";
+    public string DescriptionRequiresStr => "Str";
+    public string DescriptionRequiresDex => "Dex";
+    public string DescriptionRequiresInt => "Int";
 
     public string AffixSuperior => "Superior";
     public string AffixBlighted => "Blighted";

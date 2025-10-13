@@ -49,9 +49,14 @@ public class GameLanguageRu : IGameLanguage
     public string DescriptionItemQuantity => "Количество предметов";
     public string DescriptionItemRarity => "Редкость предметов";
     public string DescriptionMonsterPackSize => "Размер групп монстров";
-    public string DescriptionRequirements => "Требования";
     public string DescriptionAreaLevel => "Уровень области";
     public string DescriptionUnusable => "Вы не можете использовать этот предмет, его параметры не будут учтены";
+    public string DescriptionRequirements => "Требования";
+    public string DescriptionRequires => "Требуется";
+    public string DescriptionRequiresLevel => "Уровень";
+    public string DescriptionRequiresStr => "Сила";
+    public string DescriptionRequiresDex => "Ловк";
+    public string DescriptionRequiresInt => "Инт";
 
     public string AffixSuperior => "высокого качества";
     public string AffixBlighted => "Заражённая";

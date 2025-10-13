@@ -49,9 +49,14 @@ public class GameLanguageKo : IGameLanguage
     public string DescriptionItemQuantity => "아이템 수량";
     public string DescriptionItemRarity => "아이템 희귀도";
     public string DescriptionMonsterPackSize => "몬스터 무리 규모";
-    public string DescriptionRequirements => "요구사항";
     public string DescriptionAreaLevel => "지역 레벨";
     public string DescriptionUnusable => "아이템 착용 불가. 아이템 효과 미적용";
+    public string DescriptionRequirements => "요구사항";
+    public string DescriptionRequires => "요구 사항";
+    public string DescriptionRequiresLevel => "레벨";
+    public string DescriptionRequiresStr => "힘";
+    public string DescriptionRequiresDex => "민첩";
+    public string DescriptionRequiresInt => "지능";
 
     public string AffixSuperior => "상";
     public string AffixBlighted => "역병";

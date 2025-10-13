@@ -52,6 +52,14 @@ public class ItemProperties
 
     public List<Socket>? Sockets { get; set; }
 
+    public int RequiresLevel { get; set; }
+    
+    public int RequiresStrength { get; set; }
+    
+    public int RequiresDexterity { get; set; }
+    
+    public int RequiresIntelligence { get; set; }
+    
     public double CriticalHitChance { get; set; }
 
     public double AttacksPerSecond { get; set; }

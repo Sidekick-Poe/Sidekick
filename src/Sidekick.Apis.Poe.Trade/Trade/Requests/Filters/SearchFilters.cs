@@ -14,6 +14,11 @@ public class SearchFilters
 
     public TradeFilterGroup GetOrCreateTradeFilters() => TradeFilters ??= new();
 
+    [JsonPropertyName("req_filters")]
+    public RequirementsFilterGroup? ReqFilters { get; set; }
+
+    public RequirementsFilterGroup GetOrCreateRequirementsFilters() => ReqFilters ??= new();
+
     [JsonPropertyName("misc_filters")]
     public MiscFilterGroup? MiscFilters { get; set; }
 
@@ -38,9 +43,6 @@ public class SearchFilters
     public SocketFilterGroup? SocketFilters { get; set; }
 
     public SocketFilterGroup GetOrCreateSocketFilters() => SocketFilters ??= new();
-
-    [JsonPropertyName("req_filters")]
-    public RequirementFilterGroup? RequirementFilters { get; set; }
 
     [JsonPropertyName("map_filters")]
     public MapFilterGroup? MapFilters { get; set; }

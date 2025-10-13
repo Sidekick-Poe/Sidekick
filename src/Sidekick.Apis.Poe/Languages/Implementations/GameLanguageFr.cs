@@ -49,9 +49,14 @@ public class GameLanguageFr : IGameLanguage
     public string DescriptionItemQuantity => "Quantité d'objets";
     public string DescriptionItemRarity => "Rareté des objets";
     public string DescriptionMonsterPackSize => "Taille des groupes de monstres";
-    public string DescriptionRequirements => "Prérequis";
     public string DescriptionAreaLevel => "Niveau de la zone";
     public string DescriptionUnusable => "Vous ne pouvez pas utiliser cet objet ; ses stats sont ignorées.";
+    public string DescriptionRequirements => "Prérequis";
+    public string DescriptionRequires => "Prérequis";
+    public string DescriptionRequiresLevel => "Niveau";
+    public string DescriptionRequiresStr => "For";
+    public string DescriptionRequiresDex => "Dex";
+    public string DescriptionRequiresInt => "Int";
 
     public string AffixSuperior => "supérieur";
     public string AffixBlighted => "Carte infestée";

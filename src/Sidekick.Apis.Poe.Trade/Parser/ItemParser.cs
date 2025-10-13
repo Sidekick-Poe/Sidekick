@@ -8,7 +8,6 @@ using Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
-using Sidekick.Apis.Poe.Trade.Parser.Requirements;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
 
@@ -19,7 +18,6 @@ public class ItemParser
     ILogger<ItemParser> logger,
     IModifierParser modifierParser,
     IPseudoParser pseudoParser,
-    IRequirementsParser requirementsParser,
     IPropertyParser propertyParser,
     IGameLanguageProvider gameLanguageProvider,
     IApiItemProvider apiItemProvider,
@@ -57,7 +55,6 @@ public class ItemParser
             item.ApiInformation = apiItemProvider.GetApiItem(item.Properties.Rarity, item.Name, item.Type) ?? throw new UnparsableException(item.Text.Text);
             ParseVaalGem(item);
 
-            requirementsParser.Parse(item.Text);
             propertyParser.Parse(item);
             modifierParser.Parse(item);
             propertyParser.ParseAfterModifiers(item);
