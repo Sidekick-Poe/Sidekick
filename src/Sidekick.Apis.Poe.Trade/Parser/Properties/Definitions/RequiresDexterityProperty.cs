@@ -48,6 +48,6 @@ public class RequiresDexterityProperty(IGameLanguageProvider gameLanguageProvide
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
-        query.Filters.GetOrCreateReqFilters().Filters.Dexterity = new StatFilterValue(intFilter);
+        query.Filters.GetOrCreateRequirementsFilters().Filters.Dexterity = new StatFilterValue(intFilter);
     }
 }

@@ -48,6 +48,6 @@ public class RequiresStrengthProperty(IGameLanguageProvider gameLanguageProvider
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
-        query.Filters.GetOrCreateReqFilters().Filters.Strength = new StatFilterValue(intFilter);
+        query.Filters.GetOrCreateRequirementsFilters().Filters.Strength = new StatFilterValue(intFilter);
     }
 }

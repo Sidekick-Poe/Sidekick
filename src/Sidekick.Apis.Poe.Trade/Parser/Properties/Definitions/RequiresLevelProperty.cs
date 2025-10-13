@@ -48,6 +48,6 @@ public class RequiresLevelProperty(IGameLanguageProvider gameLanguageProvider) :
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
-        query.Filters.GetOrCreateReqFilters().Filters.Level = new StatFilterValue(intFilter);
+        query.Filters.GetOrCreateRequirementsFilters().Filters.Level = new StatFilterValue(intFilter);
     }
 }

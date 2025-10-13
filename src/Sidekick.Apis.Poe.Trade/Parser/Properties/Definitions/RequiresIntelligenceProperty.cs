@@ -48,6 +48,6 @@ public class RequiresIntelligenceProperty(IGameLanguageProvider gameLanguageProv
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 
-        query.Filters.GetOrCreateReqFilters().Filters.Intelligence = new StatFilterValue(intFilter);
+        query.Filters.GetOrCreateRequirementsFilters().Filters.Intelligence = new StatFilterValue(intFilter);
     }
 }
