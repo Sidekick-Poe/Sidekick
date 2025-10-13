@@ -41,6 +41,7 @@ public class ApiStaticDataProvider
             {
                 if (entry.Id == null! || entry.Text == null || entry.Id == "sep") continue;
 
+                entry.Image = $"https://web.poecdn.com{entry.Image}";
                 TextDictionary.TryAdd(entry.Text, entry);
             }
         }
@@ -60,6 +61,7 @@ public class ApiStaticDataProvider
             {
                 if (entry.Id == null! || entry.Text == null || entry.Id == "sep") continue;
 
+                entry.Image = $"https://web.poecdn.com{entry.Image}";
                 InvariantDictionary.TryAdd(entry.Id, entry);
             }
         }
