@@ -352,7 +352,7 @@ Corrupted
     }
 
     [Fact]
-    public void ParseThousandDamage()
+    public async Task ParseThousandDamage()
     {
         var actual = parser.ParseItem(@"Item Class: Crossbows
 Rarity: Rare
@@ -395,5 +395,40 @@ Note: ~price 1 mirror");
         // Verify physical damage
         Assert.Equal(414, actual.Properties.PhysicalDamage?.Min);
         Assert.Equal(1043, actual.Properties.PhysicalDamage?.Max);
+        
+        actual.AssertHasModifier(ModifierCategory.Rune, "#% increased Physical Damage", 36);
+        
+        actual.AssertHasModifier(ModifierCategory.Fractured, "#% increased Attack Speed", 25);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Attack Speed", 25);
+        
+        actual.AssertHasModifier(ModifierCategory.Desecrated, "Adds # to # Physical Damage", 54, 94);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage", 54, 94);
+
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Loads an additional bolt", 2);
+        actual.AssertDoesNotHaveModifier(ModifierCategory.Fractured, "Loads an additional bolt");
+
+        var modifierFilters = await fixture.ModifierParser.GetFilters(actual);
+        
+        var fracturedFilter = modifierFilters.First(x => x.PrimaryCategory == ModifierCategory.Fractured);
+        Assert.True(fracturedFilter.UsePrimaryCategory);
+        Assert.Equal(ModifierCategory.Fractured, fracturedFilter.PrimaryCategory);
+        Assert.Equal(ModifierCategory.Explicit, fracturedFilter.SecondaryCategory);
+        foreach (var x in fracturedFilter.Line.ApiInformation)
+        {
+            if (x.Category is ModifierCategory.Fractured or ModifierCategory.Explicit) continue;
+            
+            Assert.Fail();
+        }
+        
+        var desecratedFilter = modifierFilters.First(x => x.PrimaryCategory == ModifierCategory.Desecrated);
+        Assert.True(desecratedFilter.UsePrimaryCategory);
+        Assert.Equal(ModifierCategory.Desecrated, desecratedFilter.PrimaryCategory);
+        Assert.Equal(ModifierCategory.Explicit, desecratedFilter.SecondaryCategory);
+        foreach (var x in desecratedFilter.Line.ApiInformation)
+        {
+            if (x.Category is ModifierCategory.Desecrated or ModifierCategory.Explicit) continue;
+            
+            Assert.Fail();
+        }
     }
 }

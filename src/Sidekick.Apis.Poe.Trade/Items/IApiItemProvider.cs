@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Common.Initialization;
 

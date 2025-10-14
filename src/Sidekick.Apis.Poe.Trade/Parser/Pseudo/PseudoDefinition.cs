@@ -64,7 +64,7 @@ public abstract class PseudoDefinition
         Text = localizedPseudoModifiers?.FirstOrDefault(x => x.ApiId == ModifierId)?.ApiText ?? null;
     }
 
-    internal PseudoModifier? Parse(List<ModifierLine> itemModifierLines)
+    internal PseudoModifier? Parse(List<Modifier> itemModifierLines)
     {
         if (!Enabled || !HasPseudoMods(itemModifierLines))
         {
@@ -89,7 +89,7 @@ public abstract class PseudoDefinition
         {
             foreach (var definitionModifier in Modifiers)
             {
-                if (itemModifierLine.Modifiers.All(itemModifier => definitionModifier.Id != itemModifier.ApiId) || itemModifierLine.AverageValue == 0)
+                if (itemModifierLine.ApiInformation.All(itemModifier => definitionModifier.Id != itemModifier.ApiId) || itemModifierLine.AverageValue == 0)
                 {
                     continue;
                 }
@@ -104,13 +104,13 @@ public abstract class PseudoDefinition
         return result;
     }
 
-    private bool HasPseudoMods(List<ModifierLine> itemModifierLines)
+    private bool HasPseudoMods(List<Modifier> itemModifierLines)
     {
         foreach (var definitionModifier in Modifiers)
         {
             foreach (var itemModifierLine in itemModifierLines)
             {
-                foreach (var modifier in itemModifierLine.Modifiers)
+                foreach (var modifier in itemModifierLine.ApiInformation)
                 {
                     if (modifier.ApiId == definitionModifier.Id) return true;
                 }

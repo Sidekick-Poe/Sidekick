@@ -7,14 +7,14 @@ public static class ItemExtensions
 {
     public static void AssertHasModifier(this Item actual, ModifierCategory expectedCategory, string expectedText, params double[] expectedValues)
     {
-        var modifiers = actual.ModifierLines
-            .SelectMany(line => line.Modifiers.Select(modifier => new
+        var modifiers = actual.Modifiers
+            .SelectMany(line => line.ApiInformation.Select(modifier => new
             {
                 Line = line,
                 Modifier = modifier,
             }));
 
-        var actualModifier = modifiers.FirstOrDefault(x => expectedCategory == x.Modifier.Category && expectedText == x.Modifier.Text);
+        var actualModifier = modifiers.FirstOrDefault(x => expectedCategory == x.Modifier.Category && expectedText == x.Modifier.ApiText);
         for (var i = 0; i < expectedValues.Length; i++)
         {
             Assert.Equal(expectedValues[i], actualModifier?.Line.Values[i]);
@@ -22,6 +22,19 @@ public static class ItemExtensions
 
         Assert.True(actualModifier?.Line.Values.Count == expectedValues.Length);
         Assert.NotNull(actualModifier);
+    }
+
+    public static void AssertDoesNotHaveModifier(this Item actual, ModifierCategory expectedCategory, string expectedText)
+    {
+        var modifiers = actual.Modifiers
+            .SelectMany(line => line.ApiInformation.Select(modifier => new
+            {
+                Line = line,
+                Modifier = modifier,
+            }));
+
+        var actualModifier = modifiers.FirstOrDefault(x => expectedCategory == x.Modifier.Category && expectedText == x.Modifier.ApiText);
+        Assert.Null(actualModifier);
     }
 
     public static void AssertHasPseudoModifier(this Item actual, string expectedText, double? expectedValue = null)

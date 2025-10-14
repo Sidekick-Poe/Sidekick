@@ -1,4 +1,4 @@
-using Sidekick.Apis.Poe.Trade.Parser.Modifiers.Filters;
+using Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 
 namespace Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;

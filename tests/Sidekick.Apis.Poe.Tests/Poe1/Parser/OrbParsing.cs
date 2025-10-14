@@ -30,6 +30,6 @@ Note: ~b/o 2 blessed
         Assert.Equal(Category.Currency, actual.ApiInformation.Category);
         Assert.Equal("Chaos Orb", actual.ApiInformation.Type);
 
-        Assert.Empty(actual.ModifierLines);
+        Assert.Empty(actual.Modifiers);
     }
 }

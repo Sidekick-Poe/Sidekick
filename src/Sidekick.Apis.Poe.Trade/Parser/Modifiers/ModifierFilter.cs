@@ -1,25 +1,39 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Common.Settings;
-namespace Sidekick.Apis.Poe.Trade.Parser.Modifiers.Filters;
+
+namespace Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 
 public class ModifierFilter
 {
-    public ModifierFilter(ModifierLine line)
+    public ModifierFilter(Modifier line)
     {
         Line = line;
-        Checked = line.Modifiers.FirstOrDefault()?.Category == ModifierCategory.Fractured;
-        ForceCategory = HasMoreThanOneCategory && (Category == ModifierCategory.Fractured || Category == ModifierCategory.Desecrated);
+        Checked = line.ApiInformation.FirstOrDefault()?.Category == ModifierCategory.Fractured;
+        
+        var categories = line.ApiInformation.Select(x => x.Category).Distinct().ToList();
+        if (categories.Any(x => x is ModifierCategory.Fractured or ModifierCategory.Desecrated or ModifierCategory.Crafted))
+        {
+            UsePrimaryCategory = true;
+            PrimaryCategory = categories.FirstOrDefault(x => x is ModifierCategory.Fractured or ModifierCategory.Desecrated or ModifierCategory.Crafted);
+            SecondaryCategory = categories.FirstOrDefault(x => x == ModifierCategory.Explicit);
+        }
+        else
+        {
+            UsePrimaryCategory = false;
+            PrimaryCategory = Line.ApiInformation.FirstOrDefault()?.Category ?? ModifierCategory.Undefined;
+            SecondaryCategory = ModifierCategory.Undefined;
+        }
     }
 
-    public ModifierLine Line { get; }
+    public Modifier Line { get; }
 
     public bool? Checked { get; set; }
 
-    public bool ForceCategory { get; set; }
+    public bool UsePrimaryCategory { get; set; }
 
-    public ModifierCategory Category => Line.Modifiers.FirstOrDefault()?.Category ?? ModifierCategory.Undefined;
+    public ModifierCategory PrimaryCategory { get; private init; }
 
-    public bool HasMoreThanOneCategory => Line.Modifiers.GroupBy(x => x.Category).Count() > 1;
+    public ModifierCategory SecondaryCategory { get; private init; }
 
     public double? Min { get; set; }
 

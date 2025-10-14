@@ -152,15 +152,15 @@
         if (!string.IsNullOrEmpty(dangerousRegex))
         {
             var dangerousModsRegex = new Regex(dangerousRegex, RegexOptions.IgnoreCase);
-            FilterMods(dangerousModsRegex, Item.ModifierLines);
+            FilterMods(dangerousModsRegex, Item.Modifiers);
         }
         else
         {
-            FilterMods(null, Item.ModifierLines);
+            FilterMods(null, Item.Modifiers);
         }
     }
 
-    private void FilterMods(Regex? modRegex, List<ModifierLine> modifierLines)
+    private void FilterMods(Regex? modRegex, List<Modifier> modifierLines)
     {
         if (modRegex == null)
         {

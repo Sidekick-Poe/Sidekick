@@ -27,7 +27,7 @@ public class Item
 
     public ItemProperties Properties { get; } = new();
 
-    public List<ModifierLine> ModifierLines { get; } = [];
+    public List<Modifier> Modifiers { get; } = [];
 
     public List<PseudoModifier> PseudoModifiers { get; } = [];
 

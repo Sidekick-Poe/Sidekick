@@ -8,7 +8,7 @@ using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Clients.Models;
 using Sidekick.Apis.Poe.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Parser.Modifiers.Filters;
+using Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters;
@@ -153,14 +153,14 @@ public class TradeSearchService
         {
             foreach (var filter in modifierFilters)
             {
-                if (filter.Checked != true || filter.Line.Modifiers.Count != 1)
+                if (filter.Checked != true || filter.Line.ApiInformation.Count != 1)
                 {
                     continue;
                 }
 
                 andGroup.Filters.Add(new StatFilters()
                 {
-                    Id = filter.Line.Modifiers.First().ApiId,
+                    Id = filter.Line.ApiInformation.First().ApiId,
                     Value = new StatFilterValue(filter),
                 });
             }
@@ -213,19 +213,19 @@ public class TradeSearchService
 
         foreach (var filter in modifierFilters)
         {
-            if (filter.Checked != true || filter.Line.Modifiers.Count <= 1)
+            if (filter.Checked != true || filter.Line.ApiInformation.Count <= 1)
             {
                 continue;
             }
 
-            var modifiers = filter.Line.Modifiers.ToList();
-            if (filter.ForceCategory)
+            var modifiers = filter.Line.ApiInformation.ToList();
+            if (filter.UsePrimaryCategory)
             {
-                modifiers = modifiers.Where(x => x.Category == filter.Category).ToList();
+                modifiers = modifiers.Where(x => x.Category == filter.PrimaryCategory).ToList();
             }
-            else if (modifiers.Any(x => x.Category == ModifierCategory.Explicit))
+            else if (filter.SecondaryCategory != ModifierCategory.Undefined)
             {
-                modifiers = modifiers.Where(x => ModifierCategories.AllExplicitCategories.Contains(x.Category)).ToList();
+                modifiers = modifiers.Where(x => x.Category == filter.SecondaryCategory).ToList();
             }
 
             foreach (var modifier in modifiers)
