@@ -49,6 +49,10 @@ public class GameLanguageZh : IGameLanguage
     public string DescriptionItemQuantity => "物品數量";
     public string DescriptionItemRarity => "物品稀有度";
     public string DescriptionMonsterPackSize => "怪物群大小";
+    public string DescriptionMagicMonsters => "魔法怪物";
+    public string DescriptionRareMonsters => "稀有怪物";
+    public string DescriptionRevivesAvailable => "可用的復活數";
+    public string DescriptionWaystoneDropChance => "換界石掉落機率";
     public string DescriptionAreaLevel => "區域等級";
     public string DescriptionUnusable => "你無法使用這項裝備，它的數值將被忽略";
     public string DescriptionRequirements => "需求";

@@ -49,6 +49,10 @@ public class GameLanguageEn : IGameLanguage
     public string DescriptionItemQuantity => "Item Quantity";
     public string DescriptionItemRarity => "Item Rarity";
     public string DescriptionMonsterPackSize => "Monster Pack Size";
+    public string DescriptionMagicMonsters => "Magic Monsters";
+    public string DescriptionRareMonsters => "Rare Monsters";
+    public string DescriptionRevivesAvailable => "Revives Available";
+    public string DescriptionWaystoneDropChance => "Waystone Drop Chance";
     public string DescriptionAreaLevel => "Area Level";
     public string DescriptionUnusable => "You cannot use this item. Its stats will be ignored";
     public string DescriptionRequirements => "Requirements";
@@ -143,5 +147,4 @@ public class GameLanguageEn : IGameLanguage
         SanctumResearch = "Sanctum Research",
     };
 }
-
 

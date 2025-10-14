@@ -49,6 +49,10 @@ public class GameLanguagePt : IGameLanguage
     public string DescriptionItemQuantity => "Quantidade de Itens";
     public string DescriptionItemRarity => "Raridade de Itens";
     public string DescriptionMonsterPackSize => "Tamanho do Grupo de Monstros";
+    public string DescriptionMagicMonsters => "Monstros Mágicos";
+    public string DescriptionRareMonsters => "Monstros Raros";
+    public string DescriptionRevivesAvailable => "Ressurreições";
+    public string DescriptionWaystoneDropChance => "Chance de Queda de Pedra Guia";
     public string DescriptionAreaLevel => "Nível da Área";
     public string DescriptionUnusable => "Você não pode utilizar este item. Suas propriedades serão ignoradas";
     public string DescriptionRequirements => "Requisitos";
@@ -103,7 +107,7 @@ public class GameLanguagePt : IGameLanguage
         Contract = "Contratos",
         Blueprint = "Plantas",
         MiscMapItems = "Itens Mapas Variados",
-        Waystone = "Pedras Guia",
+        Waystone = "Dreno de Mana",
         Barya = "Moedas da Provação",
         Ultimatum = "Ultimato Talhado",
         Tablet = "Tábua",

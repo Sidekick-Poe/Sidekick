@@ -4,6 +4,9 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 
 public class MapFilters
 {
+    [JsonPropertyName("map_revives")]
+    public StatFilterValue? RevivesAvailable { get; set; }
+
     [JsonPropertyName("map_iiq")]
     public StatFilterValue? ItemQuantity { get; set; }
 
@@ -21,6 +24,15 @@ public class MapFilters
 
     [JsonPropertyName("map_packsize")]
     public StatFilterValue? MonsterPackSize { get; set; }
+
+    [JsonPropertyName("map_magic_monsters")]
+    public StatFilterValue? MagicMonsters { get; set; }
+
+    [JsonPropertyName("map_rare_monsters")]
+    public StatFilterValue? RareMonsters { get; set; }
+
+    [JsonPropertyName("map_bonus")]
+    public StatFilterValue? WaystoneDropChance { get; set; }
 
     [JsonPropertyName("map_blighted")]
     public SearchFilterOption? Blighted { get; set; }

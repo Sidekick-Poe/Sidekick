@@ -49,6 +49,10 @@ public class GameLanguageTh : IGameLanguage
     public string DescriptionItemQuantity => "จำนวนของไอเทม";
     public string DescriptionItemRarity => "ระดับความหายากของไอเทม";
     public string DescriptionMonsterPackSize => "ขนาดกองมอนสเตอร์";
+    public string DescriptionMagicMonsters => "มอนสเตอร์เมจิก";
+    public string DescriptionRareMonsters => "มอนสเตอร์แรร์";
+    public string DescriptionRevivesAvailable => "จำนวนสิทธิ์คืนชีพ";
+    public string DescriptionWaystoneDropChance => "โอกาสดรอปศิลานำทาง";
     public string DescriptionAreaLevel => "ด่านเลเวล";
     public string DescriptionUnusable => "คุณไม่สามารถใช้ไอเทมชิ้นนี้ได้ Stats ของไอเทมนี้จะไม่มีผล";
     public string DescriptionRequirements => "เงื่อนไข";

@@ -32,31 +32,33 @@ public class WeaponDamageProperty
         // Parse damage ranges
         foreach (var line in propertyBlock.Lines)
         {
-            var isElemental = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionElementalDamage);
+            var lineText = line.Text.Replace(".", "").Replace(",", "").Trim();
+
+            var isElemental = lineText.StartsWith(gameLanguageProvider.Language.DescriptionElementalDamage);
             if (isElemental)
             {
-                ParseElementalDamage(line, item.Properties);
+                ParseElementalDamage(lineText, item.Properties);
                 continue;
             }
 
-            var isPhysical = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionPhysicalDamage);
-            var isChaos = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionChaosDamage);
-            var isFire = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionFireDamage);
-            var isCold = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionColdDamage);
-            var isLightning = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionLightningDamage);
+            var isPhysical = lineText.StartsWith(gameLanguageProvider.Language.DescriptionPhysicalDamage);
+            var isChaos = lineText.StartsWith(gameLanguageProvider.Language.DescriptionChaosDamage);
+            var isFire = lineText.StartsWith(gameLanguageProvider.Language.DescriptionFireDamage);
+            var isCold = lineText.StartsWith(gameLanguageProvider.Language.DescriptionColdDamage);
+            var isLightning = lineText.StartsWith(gameLanguageProvider.Language.DescriptionLightningDamage);
 
             if (!isPhysical && !isChaos && !isFire && !isCold && !isLightning)
             {
                 continue;
             }
 
-            if (isPhysical && line.Text.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.PhysicalDamage));
-            if (isChaos && line.Text.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.ChaosDamage));
-            if (isFire && line.Text.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.FireDamage));
-            if (isCold && line.Text.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.ColdDamage));
-            if (isLightning && line.Text.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.LightningDamage));
+            if (isPhysical && lineText.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.PhysicalDamage));
+            if (isChaos && lineText.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.ChaosDamage));
+            if (isFire && lineText.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.FireDamage));
+            if (isCold && lineText.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.ColdDamage));
+            if (isLightning && lineText.EndsWith(")")) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.LightningDamage));
 
-            var matches = RangePattern.Matches(line.Text);
+            var matches = RangePattern.Matches(lineText);
             if (matches.Count <= 0 || matches[0].Groups.Count < 3) continue;
 
             int.TryParse(matches[0].Groups[1].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var min);
@@ -71,9 +73,9 @@ public class WeaponDamageProperty
         }
     }
 
-    private static void ParseElementalDamage(TextLine line, ItemProperties itemProperties)
+    private static void ParseElementalDamage(string line, ItemProperties itemProperties)
     {
-        var matches = new Regex(@"([\d,\.]+)-([\d,\.]+) \((fire|cold|lightning)\)").Matches(line.Text);
+        var matches = new Regex(@"([\d,\.]+)-([\d,\.]+) \((fire|cold|lightning)\)").Matches(line);
         foreach (Match match in matches)
         {
             if (match.Groups.Count < 4)
@@ -109,7 +111,8 @@ public class WeaponDamageProperty
             var isElemental = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionElementalDamage);
             if (!isElemental) continue;
 
-            var matches = new Regex(@"([\d,\.]+)-([\d,\.]+) \(augmented\)").Matches(line.Text);
+            var lineText = line.Text.Replace(".", "").Replace(",", "").Trim();
+            var matches = new Regex(@"([\d,\.]+)-([\d,\.]+) \(augmented\)").Matches(lineText);
             var matchIndex = 0;
             foreach (Match match in matches)
             {

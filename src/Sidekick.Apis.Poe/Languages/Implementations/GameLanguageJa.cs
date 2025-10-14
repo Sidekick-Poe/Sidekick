@@ -49,6 +49,10 @@ public class GameLanguageJa : IGameLanguage
     public string DescriptionItemQuantity => "アイテム数量";
     public string DescriptionItemRarity => "アイテムレアリティ";
     public string DescriptionMonsterPackSize => "モンスターパックサイズ";
+    public string DescriptionMagicMonsters => "マジックモンスター";
+    public string DescriptionRareMonsters => "レアモンスター";
+    public string DescriptionRevivesAvailable => "復活が利用可能";
+    public string DescriptionWaystoneDropChance => "ウェイストーンドロップ確率";
     public string DescriptionAreaLevel => "エリアレベル";
     public string DescriptionUnusable => "このアイテムを使用できません。アイテムの効果は無視されます";
     public string DescriptionRequirements => "装備要求";
