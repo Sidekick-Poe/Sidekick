@@ -49,6 +49,10 @@ public class GameLanguageFr : IGameLanguage
     public string DescriptionItemQuantity => "Quantité d'objets";
     public string DescriptionItemRarity => "Rareté des objets";
     public string DescriptionMonsterPackSize => "Taille des groupes de monstres";
+    public string DescriptionMagicMonsters => "Monstres magiques";
+    public string DescriptionRareMonsters => "Monstres rares";
+    public string DescriptionRevivesAvailable => "Résurrections disponibles";
+    public string DescriptionWaystoneDropChance => "Chances de trouver des Pierres de téléportation";
     public string DescriptionAreaLevel => "Niveau de la zone";
     public string DescriptionUnusable => "Vous ne pouvez pas utiliser cet objet ; ses stats sont ignorées.";
     public string DescriptionRequirements => "Prérequis";

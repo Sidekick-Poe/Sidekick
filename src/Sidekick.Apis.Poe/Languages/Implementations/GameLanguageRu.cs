@@ -49,6 +49,10 @@ public class GameLanguageRu : IGameLanguage
     public string DescriptionItemQuantity => "Количество предметов";
     public string DescriptionItemRarity => "Редкость предметов";
     public string DescriptionMonsterPackSize => "Размер групп монстров";
+    public string DescriptionMagicMonsters => "Волшебные монстры";
+    public string DescriptionRareMonsters => "Редкие монстры";
+    public string DescriptionRevivesAvailable => "Доступно возрождений";
+    public string DescriptionWaystoneDropChance => "Шанс выпадения путевого камня";
     public string DescriptionAreaLevel => "Уровень области";
     public string DescriptionUnusable => "Вы не можете использовать этот предмет, его параметры не будут учтены";
     public string DescriptionRequirements => "Требования";

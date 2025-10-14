@@ -38,11 +38,19 @@ public class ItemProperties
 
     public int AreaLevel { get; set; }
 
+    public int RevivesAvailable { get; set; }
+
+    public int MonsterPackSize { get; set; }
+
+    public int MagicMonsters { get; set; }
+
+    public int RareMonsters { get; set; }
+
     public int ItemQuantity { get; set; }
 
     public int ItemRarity { get; set; }
 
-    public int MonsterPackSize { get; set; }
+    public int WaystoneDropChance { get; set; }
 
     public bool Blighted { get; set; }
 
@@ -53,13 +61,13 @@ public class ItemProperties
     public List<Socket>? Sockets { get; set; }
 
     public int RequiresLevel { get; set; }
-    
+
     public int RequiresStrength { get; set; }
-    
+
     public int RequiresDexterity { get; set; }
-    
+
     public int RequiresIntelligence { get; set; }
-    
+
     public double CriticalHitChance { get; set; }
 
     public double AttacksPerSecond { get; set; }

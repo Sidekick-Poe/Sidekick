@@ -49,6 +49,10 @@ public class GameLanguageKo : IGameLanguage
     public string DescriptionItemQuantity => "아이템 수량";
     public string DescriptionItemRarity => "아이템 희귀도";
     public string DescriptionMonsterPackSize => "몬스터 무리 규모";
+    public string DescriptionMagicMonsters => "마법 몬스터";
+    public string DescriptionRareMonsters => "희귀 몬스터";
+    public string DescriptionRevivesAvailable => "부활 횟수";
+    public string DescriptionWaystoneDropChance => "경로석 출현 확률";
     public string DescriptionAreaLevel => "지역 레벨";
     public string DescriptionUnusable => "아이템 착용 불가. 아이템 효과 미적용";
     public string DescriptionRequirements => "요구사항";

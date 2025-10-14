@@ -49,6 +49,10 @@ public class GameLanguageDe : IGameLanguage
     public string DescriptionItemQuantity => "Gegenstandsmenge";
     public string DescriptionItemRarity => "Gegenstandsseltenheit";
     public string DescriptionMonsterPackSize => "Monstergruppengröße";
+    public string DescriptionMagicMonsters => "Magische Monster";
+    public string DescriptionRareMonsters => "Seltene Monster";
+    public string DescriptionRevivesAvailable => "Wiederbelebungen verfügbar";
+    public string DescriptionWaystoneDropChance => "Chance auf fallen gelassene Wegsteine";
     public string DescriptionAreaLevel => "Gebietsstufe";
     public string DescriptionUnusable => "Du kannst diesen Gegenstand nicht benutzen. Seine Eigenschaften werden ignoriert.";
     public string DescriptionRequirements => "Anforderungen";

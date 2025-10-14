@@ -53,6 +53,14 @@ public interface IGameLanguage
 
     string DescriptionMonsterPackSize { get; }
 
+    string DescriptionMagicMonsters { get; }
+
+    string DescriptionRareMonsters { get; }
+
+    string DescriptionRevivesAvailable { get; }
+
+    string DescriptionWaystoneDropChance { get; }
+
     string DescriptionExperience { get; }
 
     string DescriptionPhysicalDamage { get; }
@@ -98,7 +106,7 @@ public interface IGameLanguage
     string DescriptionRequiresLevel { get; }
 
     string DescriptionRequiresStr { get; }
-    
+
     string DescriptionRequiresDex { get; }
 
     string DescriptionRequiresInt { get; }
