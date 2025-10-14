@@ -56,7 +56,7 @@ public static class StringExtensions
         var match = parseCategoryPattern.Match(text);
         if (!match.Success)
         {
-            return ModifierCategory.Explicit;
+            return ModifierCategory.Undefined;
         }
 
         var categoryText = match.Value.Trim(' ', '(', ')');
@@ -71,7 +71,7 @@ public static class StringExtensions
             "crucible" => ModifierCategory.Crucible,
             "rune" => ModifierCategory.Rune,
             "desecrated" => ModifierCategory.Desecrated,
-            _ => ModifierCategory.Explicit,
+            _ => ModifierCategory.Undefined,
         };
     }
 }

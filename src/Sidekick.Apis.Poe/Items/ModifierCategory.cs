@@ -3,7 +3,7 @@ namespace Sidekick.Apis.Poe.Items;
 
 public static class ModifierCategoryExtensions
 {
-    public static bool HasSecondaryCategory(this ModifierCategory category)
+    public static bool HasExplicitModifier(this ModifierCategory category)
     {
         return category switch
         {
@@ -12,6 +12,16 @@ public static class ModifierCategoryExtensions
             ModifierCategory.Fractured => true,
             _ => false,
         };
+    }
+    
+    public static List<ModifierCategory> GetSecondaryCategories(this ModifierCategory category)
+    {
+        if (category is ModifierCategory.Crafted or ModifierCategory.Desecrated or ModifierCategory.Fractured)
+        {
+            return [ModifierCategory.Explicit];
+        }
+
+        return [];
     }
 }
 

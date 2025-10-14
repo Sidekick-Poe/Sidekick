@@ -100,7 +100,7 @@ public class ModifierParser
         Parallel.ForEach(allAvailablePatterns,
                          definition =>
                          {
-                             if (definition.Category != category) return;
+                             if (category != ModifierCategory.Undefined && definition.Category != category) return;
                              
                              var compareLine = definition.LineCount switch
                              {

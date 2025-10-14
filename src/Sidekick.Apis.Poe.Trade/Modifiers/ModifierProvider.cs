@@ -237,7 +237,7 @@ public class ModifierProvider
 
         foreach (var group in Definitions)
         {
-            if (!group.Key.HasSecondaryCategory()) continue;
+            if (!group.Key.HasExplicitModifier()) continue;
 
             foreach (var definition in group.Value)
             {

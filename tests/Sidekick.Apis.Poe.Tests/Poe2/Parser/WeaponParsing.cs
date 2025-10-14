@@ -409,9 +409,9 @@ Note: ~price 1 mirror");
 
         var modifierFilters = await fixture.ModifierParser.GetFilters(actual);
         
-        var fracturedFilter = modifierFilters.First(x => x.Category == ModifierCategory.Fractured);
+        var fracturedFilter = modifierFilters.First(x => x.PrimaryCategory == ModifierCategory.Fractured);
         Assert.True(fracturedFilter.UsePrimaryCategory);
-        Assert.Equal(ModifierCategory.Fractured, fracturedFilter.Category);
+        Assert.Equal(ModifierCategory.Fractured, fracturedFilter.PrimaryCategory);
         Assert.Equal(ModifierCategory.Explicit, fracturedFilter.SecondaryCategory);
         foreach (var x in fracturedFilter.Line.ApiInformation)
         {
@@ -420,9 +420,9 @@ Note: ~price 1 mirror");
             Assert.Fail();
         }
         
-        var desecratedFilter = modifierFilters.First(x => x.Category == ModifierCategory.Desecrated);
+        var desecratedFilter = modifierFilters.First(x => x.PrimaryCategory == ModifierCategory.Desecrated);
         Assert.True(desecratedFilter.UsePrimaryCategory);
-        Assert.Equal(ModifierCategory.Desecrated, desecratedFilter.Category);
+        Assert.Equal(ModifierCategory.Desecrated, desecratedFilter.PrimaryCategory);
         Assert.Equal(ModifierCategory.Explicit, desecratedFilter.SecondaryCategory);
         foreach (var x in desecratedFilter.Line.ApiInformation)
         {

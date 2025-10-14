@@ -221,7 +221,7 @@ public class TradeSearchService
             var modifiers = filter.Line.ApiInformation.ToList();
             if (filter.UsePrimaryCategory)
             {
-                modifiers = modifiers.Where(x => x.Category == filter.Category).ToList();
+                modifiers = modifiers.Where(x => x.Category == filter.PrimaryCategory).ToList();
             }
             else if (filter.SecondaryCategory != ModifierCategory.Undefined)
             {

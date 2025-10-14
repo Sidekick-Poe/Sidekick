@@ -14,13 +14,13 @@ public class ModifierFilter
         if (categories.Any(x => x is ModifierCategory.Fractured or ModifierCategory.Desecrated or ModifierCategory.Crafted))
         {
             UsePrimaryCategory = true;
-            Category = categories.FirstOrDefault(x => x is ModifierCategory.Fractured or ModifierCategory.Desecrated or ModifierCategory.Crafted);
+            PrimaryCategory = categories.FirstOrDefault(x => x is ModifierCategory.Fractured or ModifierCategory.Desecrated or ModifierCategory.Crafted);
             SecondaryCategory = categories.FirstOrDefault(x => x == ModifierCategory.Explicit);
         }
         else
         {
             UsePrimaryCategory = false;
-            Category = Line.ApiInformation.FirstOrDefault()?.Category ?? ModifierCategory.Undefined;
+            PrimaryCategory = Line.ApiInformation.FirstOrDefault()?.Category ?? ModifierCategory.Undefined;
             SecondaryCategory = ModifierCategory.Undefined;
         }
     }
@@ -31,7 +31,7 @@ public class ModifierFilter
 
     public bool UsePrimaryCategory { get; set; }
 
-    public ModifierCategory Category { get; private init; }
+    public ModifierCategory PrimaryCategory { get; private init; }
 
     public ModifierCategory SecondaryCategory { get; private init; }
 
