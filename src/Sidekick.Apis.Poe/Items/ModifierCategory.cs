@@ -13,16 +13,13 @@ public static class ModifierCategoryExtensions
             _ => false,
         };
     }
-    
-    public static List<ModifierCategory> GetSecondaryCategories(this ModifierCategory category)
-    {
-        if (category is ModifierCategory.Crafted or ModifierCategory.Desecrated or ModifierCategory.Fractured)
-        {
-            return [ModifierCategory.Explicit];
-        }
 
-        return [];
-    }
+    public static List<ModifierCategory> ExplicitCategories { get; } =
+    [
+        ModifierCategory.Explicit,
+        ModifierCategory.Delve,
+        ModifierCategory.Sanctum,
+    ];
 }
 
 public enum ModifierCategory

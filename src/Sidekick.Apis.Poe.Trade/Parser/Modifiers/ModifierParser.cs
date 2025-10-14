@@ -101,7 +101,9 @@ public class ModifierParser
                          definition =>
                          {
                              if (category != ModifierCategory.Undefined && definition.Category != category) return;
-                             
+
+                             if (category == ModifierCategory.Undefined && !ModifierCategoryExtensions.ExplicitCategories.Contains(definition.Category)) return;
+
                              var compareLine = definition.LineCount switch
                              {
                                  2 => fuzzyDoubleLine ?? fuzzySingleLine,
