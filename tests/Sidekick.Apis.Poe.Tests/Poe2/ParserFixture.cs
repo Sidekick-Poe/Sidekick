@@ -6,6 +6,7 @@ using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Modifiers;
+using Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
@@ -30,6 +31,7 @@ public class ParserFixture : IAsyncLifetime
     public IPropertyParser PropertyParser { get; private set; } = null!;
     public ISettingsService SettingsService { get; private set; } = null!;
     public IModifierProvider ModifierProvider { get; private set; } = null!;
+    public IModifierParser ModifierParser { get; private set; } = null!;
     private TestContext TestContext { get; set; } = null!;
 
     public async Task InitializeAsync()
@@ -69,6 +71,7 @@ public class ParserFixture : IAsyncLifetime
         PropertyParser = TestContext.Services.GetRequiredService<IPropertyParser>();
         FilterProvider = TestContext.Services.GetRequiredService<IFilterProvider>();
         ModifierProvider = TestContext.Services.GetRequiredService<IModifierProvider>();
+        ModifierParser = TestContext.Services.GetRequiredService<IModifierParser>();
     }
 
     public Task DisposeAsync()

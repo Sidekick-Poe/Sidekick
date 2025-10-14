@@ -51,7 +51,7 @@ public class PseudoParser
         item.PseudoModifiers.Clear();
         foreach (var definition in Definitions)
         {
-            var result = definition.Parse(item.ModifierLines);
+            var result = definition.Parse(item.Modifiers);
             if (result != null && !string.IsNullOrEmpty(result.Text)) item.PseudoModifiers.Add(result);
         }
     }

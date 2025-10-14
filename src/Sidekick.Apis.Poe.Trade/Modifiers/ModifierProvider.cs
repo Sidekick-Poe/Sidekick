@@ -54,6 +54,8 @@ public class ModifierProvider
             }
         }
 
+        ComputeSecondaryDefinitions();
+
         // Prepare special pseudo patterns
         if (!Definitions.TryGetValue(ModifierCategory.Pseudo, out var pseudoPatterns))
         {
@@ -70,38 +72,39 @@ public class ModifierProvider
 
     private List<ModifierDefinition> ComputeCategoryPatterns(ApiCategory apiCategory, ModifierCategory modifierCategory)
     {
-        if (apiCategory.Entries.Count == 0 || modifierCategory == ModifierCategory.Undefined)
-        {
-            return [];
-        }
+        if (apiCategory.Entries.Count == 0 || modifierCategory == ModifierCategory.Undefined) return [];
 
         var patterns = new List<ModifierDefinition>();
         foreach (var entry in apiCategory.Entries)
         {
-            if (invariantModifierProvider.IgnoreModifierIds.Contains(entry.Id)) continue;
-
-            entry.Text = entry.Text.RemoveSquareBrackets();
-
-            if (entry.Option?.Options.Count > 0)
-            {
-                foreach (var option in entry.Option.Options)
-                {
-                    if (option.Text == null) continue;
-                    option.Text = option.Text.RemoveSquareBrackets();
-                    patterns.Add(new ModifierDefinition(modifierCategory, entry.Id, apiText: ComputeOptionText(entry.Text, option.Text), fuzzyText: ComputeFuzzyText(entry.Text, option.Text), pattern: ComputePattern(entry.Text, modifierCategory, option.Text))
-                    {
-                        OptionId = option.Id,
-                        OptionText = option.Text,
-                    });
-                }
-            }
-            else
-            {
-                patterns.Add(new ModifierDefinition(modifierCategory, entry.Id, entry.Text, fuzzyText: ComputeFuzzyText(entry.Text), pattern: ComputePattern(entry.Text, modifierCategory)));
-            }
+            patterns.AddRange(ComputeDefinition(modifierCategory, entry));
         }
 
         return patterns;
+    }
+    private IEnumerable<ModifierDefinition> ComputeDefinition(ModifierCategory modifierCategory, ApiModifier entry)
+    {
+        if (invariantModifierProvider.IgnoreModifierIds.Contains(entry.Id)) yield break;
+
+        entry.Text = entry.Text.RemoveSquareBrackets();
+
+        if (entry.Option?.Options.Count > 0)
+        {
+            foreach (var option in entry.Option.Options)
+            {
+                if (option.Text == null) continue;
+                option.Text = option.Text.RemoveSquareBrackets();
+                yield return new ModifierDefinition(modifierCategory, entry.Id, apiText: ComputeOptionText(entry.Text, option.Text), fuzzyText: ComputeFuzzyText(entry.Text, option.Text), pattern: ComputePattern(entry.Text, modifierCategory, option.Text))
+                {
+                    OptionId = option.Id,
+                    OptionText = option.Text,
+                };
+            }
+        }
+        else
+        {
+            yield return new ModifierDefinition(modifierCategory, entry.Id, entry.Text, fuzzyText: ComputeFuzzyText(entry.Text), pattern: ComputePattern(entry.Text, modifierCategory));
+        }
     }
 
     /// <inheritdoc/>
@@ -136,30 +139,17 @@ public class ModifierProvider
 
         // The notes in parentheses are never translated by the game.
         // We should be fine hardcoding them this way.
-        var explicitCategories = string.Join("|", ModifierCategories.AllExplicitCategories.Select(x => x.GetValueAttribute()));
-        var explicitSuffix = "(?:\\ \\((?:" + explicitCategories + ")\\))?";
-
         var suffix = category switch
         {
-            ModifierCategory.Enchant => "\\ \\(enchant\\)",
-            ModifierCategory.Rune => "\\ \\(rune\\)",
-            ModifierCategory.Implicit => "\\ \\(implicit\\)",
-            ModifierCategory.Veiled => "\\ \\(veiled\\)",
-            ModifierCategory.Scourge => "\\ \\(scourge\\)",
-            ModifierCategory.Crucible => "\\ \\(crucible\\)",
-            ModifierCategory.Crafted => "\\ \\(crafted\\)",
-            ModifierCategory.Fractured => "\\ \\(fractured\\)",
-            ModifierCategory.Desecrated => "\\ \\(desecrated\\)",
-            ModifierCategory.Explicit => string.Empty,
-
-            // TODO: View issue #792
-            //ModifierCategory.Veiled => explicitSuffix,
-            //ModifierCategory.Scourge => explicitSuffix,
-            //ModifierCategory.Crucible => explicitSuffix,
-            //ModifierCategory.Crafted => explicitSuffix,
-            //ModifierCategory.Fractured => explicitSuffix,
-            //ModifierCategory.Desecrated => explicitSuffix,
-            //ModifierCategory.Explicit => explicitSuffix,
+            ModifierCategory.Enchant => @"\ \(enchant\)",
+            ModifierCategory.Rune => @"\ \(rune\)",
+            ModifierCategory.Implicit => @"\ \(implicit\)",
+            ModifierCategory.Veiled => @"\ \(veiled\)",
+            ModifierCategory.Scourge => @"\ \(scourge\)",
+            ModifierCategory.Crucible => @"\ \(crucible\)",
+            ModifierCategory.Crafted => @"\ \(crafted\)",
+            ModifierCategory.Fractured => @"\ \(fractured\)",
+            ModifierCategory.Desecrated => @"\ \(desecrated\)",
             _ => "",
         };
 
@@ -183,7 +173,6 @@ public class ModifierProvider
         }
 
         // For multiline modifiers, the category can be suffixed on all lines.
-        if (!suffix.EndsWith("?")) suffix += "?";
         patternValue = patternValue.Replace("\\n", suffix + "\\n");
 
         return new Regex($"^{patternValue}$", RegexOptions.None);
@@ -240,4 +229,22 @@ public class ModifierProvider
 
         return false;
     }
+
+    private void ComputeSecondaryDefinitions()
+    {
+        var explicitDefinitions = Definitions.GetValueOrDefault(ModifierCategory.Explicit);
+        if (explicitDefinitions == null) return;
+
+        foreach (var group in Definitions)
+        {
+            if (!group.Key.HasSecondaryCategory()) continue;
+
+            foreach (var definition in group.Value)
+            {
+                definition.SecondaryDefinitions.AddRange(explicitDefinitions.Where(x => x.ApiText == definition.ApiText));
+
+            }
+        }
+    }
+
 }

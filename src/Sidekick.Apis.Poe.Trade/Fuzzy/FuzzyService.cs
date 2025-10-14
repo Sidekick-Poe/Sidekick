@@ -1,5 +1,4 @@
 using System.Text.RegularExpressions;
-using Sidekick.Apis.Poe.Languages;
 
 namespace Sidekick.Apis.Poe.Trade.Fuzzy;
 

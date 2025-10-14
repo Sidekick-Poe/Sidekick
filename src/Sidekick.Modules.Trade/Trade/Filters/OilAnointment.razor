@@ -1,6 +1,6 @@
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Languages
-@using Sidekick.Apis.Poe.Trade.Parser.Modifiers.Filters
+@using Sidekick.Apis.Poe.Trade.Parser.Modifiers
 @using Sidekick.Apis.PoeWiki
 
 @if (OilNames == null || !OilNames.Any())
@@ -29,7 +29,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (Filter.Line.Modifiers.FirstOrDefault()?.Category == ModifierCategory.Enchant && GameLanguageProvider.IsEnglish())
+        if (Filter.Line.ApiInformation.FirstOrDefault()?.Category == ModifierCategory.Enchant && GameLanguageProvider.IsEnglish())
         {
             var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Line);
 

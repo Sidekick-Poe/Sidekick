@@ -14,20 +14,20 @@ public class ClusterJewelPassiveCountProperty(IServiceProvider serviceProvider, 
         if (game == GameType.PathOfExile2) return;
         if (item.Properties.Rarity == Rarity.Unique) return;
 
-        var passiveCount = ParseSmallPassiveCount(item.ModifierLines);
+        var passiveCount = ParseSmallPassiveCount(item.Modifiers);
         if (passiveCount != 0)
         {
             item.Properties.ClusterJewelPassiveCount = passiveCount;
         }
 
-        var grant = ParseGrantTexts(item.ModifierLines);
+        var grant = ParseGrantTexts(item.Modifiers);
         if (grant == null)
         {
             item.Properties.ClusterJewelGrantText = grant;
         }
     }
 
-    private int ParseSmallPassiveCount(List<ModifierLine> modifierLines)
+    private int ParseSmallPassiveCount(List<Modifier> modifierLines)
     {
         foreach (var modifierLine in modifierLines)
         {
@@ -36,7 +36,7 @@ public class ClusterJewelPassiveCountProperty(IServiceProvider serviceProvider, 
                 continue;
             }
 
-            foreach (var modifier in modifierLine.Modifiers)
+            foreach (var modifier in modifierLine.ApiInformation)
             {
                 if (modifier.ApiId == InvariantModifierProvider.ClusterJewelSmallPassiveCountModifierId)
                 {
@@ -48,7 +48,7 @@ public class ClusterJewelPassiveCountProperty(IServiceProvider serviceProvider, 
         return 0;
     }
 
-    private string? ParseGrantTexts(List<ModifierLine> modifierLines)
+    private string? ParseGrantTexts(List<Modifier> modifierLines)
     {
         foreach (var modifierLine in modifierLines)
         {
@@ -57,7 +57,7 @@ public class ClusterJewelPassiveCountProperty(IServiceProvider serviceProvider, 
                 continue;
             }
 
-            foreach (var modifier in modifierLine.Modifiers)
+            foreach (var modifier in modifierLine.ApiInformation)
             {
                 if (modifier.ApiId == InvariantModifierProvider.ClusterJewelSmallPassiveGrantModifierId)
                 {

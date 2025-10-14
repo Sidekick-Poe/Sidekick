@@ -5,7 +5,6 @@ using Sidekick.Apis.Poe.Trade.Filters.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Filters;

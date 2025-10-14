@@ -1,5 +1,4 @@
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Parser.Modifiers.Filters;
 namespace Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 
 public interface IModifierParser

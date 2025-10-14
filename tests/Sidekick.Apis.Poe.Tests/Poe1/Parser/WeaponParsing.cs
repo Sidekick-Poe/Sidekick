@@ -408,5 +408,9 @@ Note: ~price 30 chaos
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal(Category.Weapon, actual.ApiInformation.Category);
         Assert.Equal("Imperial Staff", actual.ApiInformation.Type);
+        
+        actual.AssertHasModifier(ModifierCategory.Fractured, "+#% to Damage over Time Multiplier", 44);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "+#% to Damage over Time Multiplier", 44);
+
     }
 }

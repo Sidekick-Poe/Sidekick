@@ -1,8 +1,23 @@
 using Sidekick.Common.Enums;
 namespace Sidekick.Apis.Poe.Items;
 
+public static class ModifierCategoryExtensions
+{
+    public static bool HasSecondaryCategory(this ModifierCategory category)
+    {
+        return category switch
+        {
+            ModifierCategory.Crafted => true,
+            ModifierCategory.Desecrated => true,
+            ModifierCategory.Fractured => true,
+            _ => false,
+        };
+    }
+}
+
 public enum ModifierCategory
 {
+
     Undefined = 0,
 
     [EnumValue("crafted")]

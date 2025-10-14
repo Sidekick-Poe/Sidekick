@@ -2,7 +2,7 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.Bulk;
 using Sidekick.Apis.Poe.Trade.Bulk.Models;
-using Sidekick.Apis.Poe.Trade.Parser.Modifiers.Filters;
+using Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;

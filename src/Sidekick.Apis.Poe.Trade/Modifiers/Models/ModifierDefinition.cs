@@ -31,4 +31,6 @@ public class ModifierDefinition
     private int? lineCount;
 
     public int LineCount => lineCount ??= OptionText != null ? OptionText.Split('\n').Length : ApiText.Split('\n').Length;
+
+    public List<ModifierDefinition> SecondaryDefinitions { get; set; } = [];
 }

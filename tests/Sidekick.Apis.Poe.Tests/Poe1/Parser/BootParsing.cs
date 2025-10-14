@@ -37,5 +37,6 @@ Fractured Item
         Assert.Equal("Iron Greaves", actual.ApiInformation.Type);
 
         actual.AssertHasModifier(ModifierCategory.Fractured, "#% increased Movement Speed", 10);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Movement Speed", 10);
     }
 }
