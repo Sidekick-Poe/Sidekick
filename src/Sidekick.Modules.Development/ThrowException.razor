@@ -1,0 +1,17 @@
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Buttons
+
+<FormFieldset Legend="Exceptions">
+    <ButtonPrimary OnClick="NormalException">Throw an exception</ButtonPrimary>
+</FormFieldset>
+
+@code {
+
+    private void NormalException()
+    {
+        #pragma warning disable S112 // General exceptions should never be thrown
+        throw new Exception("[Development] This is a test exception.");
+        #pragma warning restore S112 // General exceptions should never be thrown
+    }
+
+}
