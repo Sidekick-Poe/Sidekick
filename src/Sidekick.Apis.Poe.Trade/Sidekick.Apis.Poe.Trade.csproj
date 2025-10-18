@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="FuzzySharp" />
+    <PackageReference Include="Romanization.NET" />
   </ItemGroup>
 
   <ItemGroup>
