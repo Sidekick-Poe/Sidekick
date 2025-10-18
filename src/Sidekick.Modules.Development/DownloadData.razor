@@ -1,25 +1,42 @@
-﻿@using Sidekick.Apis.Poe.Items
+﻿@using System.Text.Json
+@using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Languages
 @using Sidekick.Apis.Poe.Trade.Clients
+@using Sidekick.Apis.Poe.Trade.Clients.Models
+@using Sidekick.Common.Enums
 @using Sidekick.Common.Ui.Buttons
 @using Sidekick.Common.Ui.Forms
 
 <FormFieldset Legend="Preload Data">
     <FormInput Label="Folder Path (/data)"
                @bind-Value="DataFolder"/>
-    <ButtonPrimary OnClick="Download">Download</ButtonPrimary>
+    <div class="flex flex-wrap gap-3">
+        <ButtonPrimary OnClick="Download">Download</ButtonPrimary>
+        <ButtonSecondary OnClick="Analyze">Analyze</ButtonSecondary>
+    </div>
 
-    @foreach (var message in Messages)
-    {
-        <p>@message</p>
-    }
-
+    <div>
+        @foreach (var message in Messages)
+        {
+            <p class="mb-1">@message</p>
+        }
+    </div>
 </FormFieldset>
 
-@inject ITradeApiClient TradeApiClient
+@inject ITradeApiClient ApiClient
 @inject IGameLanguageProvider GameLanguageProvider
 
 @code {
+
+
+    private static List<GameType> games = [GameType.PathOfExile, GameType.PathOfExile2];
+    private static string[] paths =
+    [
+        "items",
+        "stats",
+        "static",
+        "filters",
+    ];
 
     private string DataFolder { get; set; } = string.Empty;
 
@@ -27,37 +44,25 @@
 
     public async Task Download()
     {
-        // List of endpoints
-        var paths = new[]
-        {
-            "items",
-            "stats",
-            "static",
-            "filters",
-        };
-
         // List of languages
         var languages = GameLanguageProvider.GetList();
 
-        await DownloadLeagues();
-
         try
         {
-            foreach (var languageAttribute in languages)
+            foreach (var game in games)
             {
-                var language = languageAttribute.Build();
+                await DownloadLeagues(game);
 
-                foreach (var path in paths)
+                foreach (var languageAttribute in languages)
                 {
-                    // Construct POE1 URLs and filenames
-                    var poe1Filename = TradeApiClient.GetDataFileName(GameType.PathOfExile, language, path);
-                    var poe1Data = await TradeApiClient.FetchData(GameType.PathOfExile, language, path);
-                    await SaveToDisk(poe1Filename, poe1Data);
+                    var language = languageAttribute.Build();
 
-                    // Construct POE2 URLs and filenames
-                    var poe2Filename = TradeApiClient.GetDataFileName(GameType.PathOfExile2, language, path);
-                    var poe2Data = await TradeApiClient.FetchData(GameType.PathOfExile2, language, path);
-                    await SaveToDisk(poe2Filename, poe2Data);
+                    foreach (var path in paths)
+                    {
+                        var fileName = ApiClient.GetDataFileName(game, language, path);
+                        var data = await ApiClient.FetchData(game, language, path);
+                        await SaveToDisk(fileName, data);
+                    }
                 }
             }
 
@@ -69,34 +74,28 @@
         }
     }
 
-    private async Task DownloadLeagues()
+    private async Task DownloadLeagues(GameType game)
     {
-        // Construct POE1 URLs and filenames
-        var poe1Filename = TradeApiClient.GetDataFileName(GameType.PathOfExile, GameLanguageProvider.InvariantLanguage, "leagues");
-        var poe1Data = await TradeApiClient.FetchData(GameType.PathOfExile, GameLanguageProvider.InvariantLanguage, "leagues");
-        await SaveToDisk(poe1Filename, poe1Data);
-
-        // Construct POE2 URLs and filenames
-        var poe2Filename = TradeApiClient.GetDataFileName(GameType.PathOfExile2, GameLanguageProvider.InvariantLanguage, "leagues");
-        var poe2Data = await TradeApiClient.FetchData(GameType.PathOfExile2, GameLanguageProvider.InvariantLanguage, "leagues");
-        await SaveToDisk(poe2Filename, poe2Data);
+        var fileName = ApiClient.GetDataFileName(game, GameLanguageProvider.InvariantLanguage, "leagues");
+        var data = await ApiClient.FetchData(game, GameLanguageProvider.InvariantLanguage, "leagues");
+        await SaveToDisk(fileName, data);
     }
 
-    private async Task SaveToDisk(string filename, Stream stream)
+    private async Task SaveToDisk(string fileName, Stream stream)
     {
         try
         {
-            var filePath = Path.Combine(DataFolder, filename);
-            Directory.CreateDirectory(Path.GetDirectoryName(filePath)!); // Ensure directory creation
+            var filePath = Path.Combine(DataFolder, fileName);
+            Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);// Ensure directory creation
 
             await using var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write);
             await stream.CopyToAsync(fileStream);
 
-            LogMessage($"Downloaded and saved: {filename}");
+            LogMessage($"Downloaded and saved: {fileName}");
         }
         catch (Exception ex)
         {
-            LogMessage($"Failed to download {filename}: {ex.Message}");
+            LogMessage($"Failed to download {fileName}: {ex.Message}");
         }
     }
 
@@ -106,4 +105,40 @@
         StateHasChanged();
     }
 
+    private async Task Analyze()
+    {
+        foreach (var game in games)
+        {
+            LogMessage($"[{game.GetValueAttribute()}] Analyzing items.");
+            await AnalyzePath<Sidekick.Apis.Poe.Trade.Items.Models.ApiCategory>(game, "items", AnalyzeItems);
+        }
+    }
+
+    private async Task AnalyzePath<TReturn>(GameType game, string path, Action<IGameLanguage, FetchResult<TReturn>> analyzeFunc)
+    {
+        var languages = GameLanguageProvider.GetList();
+        foreach (var languageAttribute in languages)
+        {
+            var language = languageAttribute.Build();
+            var fileName = ApiClient.GetDataFileName(game, language, path);
+            var filePath = Path.Combine(DataFolder, fileName);
+
+            await using var fileStream = File.OpenRead(filePath);
+            var result = await JsonSerializer.DeserializeAsync<FetchResult<TReturn>>(fileStream, TradeApiClient.JsonSerializerOptions);
+            if (result == null)
+            {
+                LogMessage($"{path} result is null.");
+                continue;
+            }
+
+            analyzeFunc.Invoke(language, result);
+        }
+    }
+
+    private void AnalyzeItems(IGameLanguage language,
+        FetchResult<Sidekick.Apis.Poe.Trade.Items.Models.ApiCategory> result)
+    {
+        var itemCount = result.Result.SelectMany(x => x.Entries).Count();
+        LogMessage($"[{language.Code}] {itemCount} items found.");
+    }
 }

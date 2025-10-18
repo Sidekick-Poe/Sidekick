@@ -1,0 +1,37 @@
+@using Microsoft.Extensions.DependencyInjection
+@using Sidekick.Common.Platform
+@using Sidekick.Common.Ui.Views
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Buttons
+
+<FormFieldset Legend="Keybinds">
+    @if (ApplicationService.SupportsKeybinds)
+    {
+        <ButtonPrimary OnClick="Register">Bind keyboard hooks</ButtonPrimary>
+    }
+</FormFieldset>
+
+@inject IApplicationService ApplicationService
+@inject IServiceProvider ServiceProvider
+@inject ICurrentView CurrentView
+
+@code {
+
+    private IKeyboardProvider? KeyboardProvider { get; set; }
+
+    protected override void OnInitialized()
+    {
+        CurrentView.Initialize(new ViewOptions());
+        if (ApplicationService.SupportsKeybinds)
+        {
+            KeyboardProvider = ServiceProvider.GetService<IKeyboardProvider>();
+        }
+        base.OnInitialized();
+    }
+
+    private void Register()
+    {
+        KeyboardProvider?.RegisterHooks();
+    }
+
+}
