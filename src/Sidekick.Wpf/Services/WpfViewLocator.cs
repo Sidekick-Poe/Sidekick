@@ -65,10 +65,7 @@ public class WpfViewLocator : IViewLocator, IDisposable
         var window = GetWindow(type, false);
         if (window == null) return;
 
-        if (window.View != null)
-            window.View.Close();
-        else
-            window.CloseView();
+        window.CloseView();
     }
 
     public bool IsOverlayOpened()

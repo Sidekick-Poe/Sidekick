@@ -38,12 +38,14 @@ public interface ICurrentView
     /// </summary>
     event Action? DragStopped;
 
-    int? Width { get; set; }
+    int? Width { get; }
     
-    int? Height { get; set; }
+    int? Height { get; }
     
-    string? Title { get; set; }
+    string? Title { get; }
 
+    void UpdateOptions(int? width, int? height, string? title);
+    
     /// <summary>
     /// Minimizes the view.
     /// </summary>

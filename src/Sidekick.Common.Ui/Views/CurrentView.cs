@@ -24,40 +24,16 @@ public class CurrentView : ICurrentView
     /// <inheritdoc/>
     public event Action? DragStopped;
 
-    private int? width;
-    public int? Width
-    {
-        get => width;
-        set
-        {
-            if (width == value) return;
-            width = value;
-            OptionsChanged?.Invoke();
-        }
-    }
+    public int? Width  { get; private set; }
+    public int? Height { get; private set; }
+    public string? Title { get; private set; }
 
-    private int? height;
-    public int? Height
+    public void UpdateOptions(int? width, int? height, string? title)
     {
-        get => height;
-        set
-        {
-            if (height == value) return;
-            height = value;
-            OptionsChanged?.Invoke();
-        }
-    }
-    
-    private string? title;
-    public string? Title
-    {
-        get => title;
-        set
-        {
-            if (title == value) return;
-            title = value;
-            OptionsChanged?.Invoke();
-        }
+        Width = width;
+        Height = height;
+        Title = title;
+        OptionsChanged?.Invoke();
     }
 
     /// <inheritdoc/>

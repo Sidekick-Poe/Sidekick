@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Platform.Windows.DllImport;
@@ -20,17 +21,17 @@ public partial class MainWindow
 {
     private readonly ILogger logger;
 
-    public SidekickViewType ViewType { get; }
+    private SidekickViewType ViewType { get; }
 
     private IServiceScope Scope { get; }
 
+    private NavigationManager? NavigationManager { get; set; }
+    
+    private ICurrentView? View { get; set; }
+
     private bool IsDisposed { get; set; }
 
-    public ICurrentView? View { get; private set; }
-
-    public event Action? ViewOpened;
-
-    public string? Url { get; private set; }
+    private string? Url { get; set; }
 
     private bool ViewNormalized { get; set; }
 
@@ -66,24 +67,37 @@ public partial class MainWindow
 
         logger.LogInformation("[MainWindow] Opening view: " + url);
 
-        Url = url;
-        ViewOpened?.Invoke();
-        await Dispatcher.InvokeAsync(Show);
+        await Dispatcher.InvokeAsync(() =>
+        {
+            Navigate(url);
+            Activate();
+
+            // Attempt to set focus back to the original window
+            if (ViewType == SidekickViewType.Overlay && !CloseOnBlur && OriginalFocusedWindow != IntPtr.Zero)
+            {
+                User32.SetForegroundWindow(OriginalFocusedWindow);
+            }
+
+            Show();
+        });
     }
 
-    public void InitializeView(ICurrentView view)
+    public void BlazorReady(ICurrentView view, NavigationManager navigationManager)
     {
-        logger.LogInformation("[MainWindow] Initializing view: " + view.Title);
-
         View = view;
+        View.OptionsChanged += CurrentViewOptionsChanged;
+        View.Maximized += MaximizeView;
+        View.Minimized += MinimizeView;
+        View.Closed += CloseView;
+        
+        NavigationManager = navigationManager;
+        
         Dispatcher.InvokeAsync(() =>
         {
-            if (string.IsNullOrWhiteSpace(view.Title)) Title = "Sidekick";
-            else if (view.Title.StartsWith("Sidekick")) Title = view.Title.Trim();
-            else Title = $"Sidekick {view.Title}".Trim();
+            Navigate(Url);
 
             // This avoids the white flicker which is caused by the page content not being loaded initially. We show the webview control only when the content is ready.
-            // The window background is transparent to avoid any flickering when opening a window. When the webview content is ready we need to set opacity. Otherwise, mouse clicks will go through the window.
+            // The window background is transparent to avoid any flickering when opening a window. When the webview content is ready, we need to set opacity. Otherwise, mouse clicks will go through the window.
             WebView.Visibility = Visibility.Visible;
             SetWebViewDebugging();
 
@@ -113,7 +127,19 @@ public partial class MainWindow
                     break;
             }
 
-            if (view is
+            CurrentViewOptionsChanged();
+        });
+    }
+
+    private void CurrentViewOptionsChanged()
+    {
+        Dispatcher.InvokeAsync(() =>
+        {
+            if (string.IsNullOrWhiteSpace(View?.Title)) Title = "Sidekick";
+            else if (View.Title.StartsWith("Sidekick")) Title = View.Title.Trim();
+            else Title = $"Sidekick {View.Title}".Trim();
+
+            if (View is
                 {
                     Width: not null,
                     Height: not null,
@@ -126,18 +152,10 @@ public partial class MainWindow
             {
                 _ = NormalizeView();
             }
-
-            Activate();
-
-            // Attempt to set focus back to the original window
-            if (ViewType == SidekickViewType.Overlay && !CloseOnBlur && OriginalFocusedWindow != IntPtr.Zero)
-            {
-                User32.SetForegroundWindow(OriginalFocusedWindow);
-            }
         });
     }
 
-    public void MinimizeView()
+    private void MinimizeView()
     {
         logger.LogInformation("[MainWindow] Minimizing view");
 
@@ -148,7 +166,7 @@ public partial class MainWindow
         });
     }
 
-    public void MaximizeView()
+    private void MaximizeView()
     {
         logger.LogInformation("[MainWindow] Maximizing view");
 
@@ -166,7 +184,7 @@ public partial class MainWindow
         }
     }
 
-    public async Task NormalizeView()
+    private async Task NormalizeView()
     {
         logger.LogInformation("[MainWindow] Normalizing view");
 
@@ -237,7 +255,7 @@ public partial class MainWindow
                 && preferences is
                 {
                     X: not null,
-                    Y: not null
+                    Y: not null,
                 })
             {
                 Left = preferences.X.Value;
@@ -258,6 +276,8 @@ public partial class MainWindow
 
         Dispatcher.InvokeAsync(async () =>
         {
+            Navigate("/empty");
+
             await SavePosition();
             ViewNormalized = false;
 
@@ -270,6 +290,19 @@ public partial class MainWindow
             Deactivate();
             Hide();
         });
+    }
+
+    private void Navigate(string? url)
+    {
+        if (NavigationManager == null)
+        {
+            Url = url;
+            return;
+        }
+
+        if (string.IsNullOrEmpty(url)) return;
+
+        NavigationManager.NavigateTo(url);
     }
 
     private async Task SavePosition()
@@ -301,11 +334,7 @@ public partial class MainWindow
     {
         if (!IsDisposed)
         {
-            if (View != null)
-                View.Close();
-            else
-                CloseView();
-
+            CloseView();
             e.Cancel = true;
         }
 
@@ -360,7 +389,7 @@ public partial class MainWindow
             return;
         }
 
-        // Create a hidden dummy window to take focus temporarily
+        // Create a hidden fake window to take focus temporarily
         var helperWindow = new Window
         {
             Width = 1,
@@ -375,7 +404,7 @@ public partial class MainWindow
         // Show the helper window to take focus
         helperWindow.Show();
 
-        // Set focus to the dummy window before closing it
+        // Set focus to the fake window before closing it
         helperWindow.Activate();
         helperWindow.Close();
     }
@@ -391,6 +420,13 @@ public partial class MainWindow
         IsDisposed = true;
         MaximizeHelper.RemoveHook(this);
         Resources.Remove("services");
+        if (View != null)
+        {
+            View.OptionsChanged -= CurrentViewOptionsChanged;
+            View.Maximized -= MaximizeView;
+            View.Minimized -= MinimizeView;
+            View.Closed -= CloseView;
+        }
         Scope.Dispose();
         Close();
     }

@@ -13,9 +13,7 @@
 
     protected override void OnParametersSet()
     {
-        CurrentView.Width = Width;
-        CurrentView.Height = Height;
-        CurrentView.Title = Title;
+        CurrentView.UpdateOptions(Width, Height, Title);
         base.OnParametersSet();
     }
 
