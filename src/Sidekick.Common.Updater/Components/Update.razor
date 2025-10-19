@@ -79,6 +79,15 @@
     </BottomContent>
 </LayoutSimple>
 
+@if (UpdateInfo == null || Updating)
+{
+    <ViewOptions Width="@ICurrentView.DialogWidth" Height="@ICurrentView.DialogHeight" Title="@Resources["Update"]"/>
+}
+else
+{
+    <ViewOptions Width="600" Height="500" Title="@Resources["Update"]"/>
+}
+
 @inject ILogger<Update> Logger
 @inject IStringLocalizer<Update> Resources
 @inject IApplicationService ApplicationService
@@ -114,12 +123,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        CurrentView.Initialize(new ViewOptions()
-        {
-            Title = Resources["Update"],
-            Width = 400,
-            Height = 220,
-        });
         await base.OnInitializedAsync();
 
         try
@@ -139,15 +142,6 @@
                 {
                     // There's no available updates
                     NavigationManager.NavigateTo("/setup");
-                }
-                else
-                {
-                    CurrentView.Initialize(new ViewOptions()
-                    {
-                        Title = Resources["Update"],
-                        Width = 600,
-                        Height = 500,
-                    });
                 }
             }
             else

@@ -2,10 +2,7 @@
 @using Microsoft.Extensions.Logging
 @using Sidekick.Common.Ui.Views
 
-@if (Ready)
-{
-    <Sidekick.Common.Ui.Main />
-}
+<Sidekick.Common.Ui.Main/>
 
 @inject ICurrentView CurrentView
 @inject NavigationManager NavigationManager
@@ -25,10 +22,10 @@
     {
         Ready = Window.Url == "/";
         Window.ViewOpened += WindowViewOpened;
-        CurrentView.ViewInitialized += CurrentViewInitialized;
-        CurrentView.ViewMinimized += CurrentViewMinimized;
-        CurrentView.ViewMaximized += CurrentViewMaximized;
-        CurrentView.ViewClosed += CurrentViewClosed;
+        CurrentView.OptionsChanged += CurrentViewOptionsChanged;
+        CurrentView.Minimized += CurrentViewMinimized;
+        CurrentView.Maximized += CurrentViewMaximized;
+        CurrentView.Closed += CurrentViewClosed;
         NavigationManager.LocationChanged += NavigationManagerOnLocationChanged;
 
         WindowViewOpened();
@@ -55,7 +52,7 @@
         });
     }
 
-    private void CurrentViewInitialized()
+    private void CurrentViewOptionsChanged()
     {
         Window.InitializeView(CurrentView);
     }
@@ -72,11 +69,10 @@
 
     private void CurrentViewClosed()
     {
-        Window.CloseView();
-
         InvokeAsync(() =>
         {
             NavigationManager.NavigateTo("/empty");
+            Window.CloseView();
         });
     }
 
@@ -103,10 +99,10 @@
     public void Dispose()
     {
         Window.ViewOpened -= WindowViewOpened;
-        CurrentView.ViewInitialized -= CurrentViewInitialized;
-        CurrentView.ViewMinimized -= CurrentViewMinimized;
-        CurrentView.ViewMaximized -= CurrentViewMaximized;
-        CurrentView.ViewClosed -= CurrentViewClosed;
+        CurrentView.OptionsChanged -= CurrentViewOptionsChanged;
+        CurrentView.Minimized -= CurrentViewMinimized;
+        CurrentView.Maximized -= CurrentViewMaximized;
+        CurrentView.Closed -= CurrentViewClosed;
         NavigationManager.LocationChanged -= NavigationManagerOnLocationChanged;
     }
 

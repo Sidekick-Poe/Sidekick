@@ -1,6 +1,5 @@
 using System.Globalization;
 using Microsoft.Extensions.Logging;
-using Sidekick.Common.Exceptions;
 using Sidekick.Common.Localization;
 using Sidekick.Common.Ui.Views;
 
@@ -8,61 +7,63 @@ namespace Sidekick.Wpf.Services;
 
 public class WpfViewLocator : IViewLocator, IDisposable
 {
+    private readonly ILogger<WpfViewLocator> logger;
     private readonly IUiLanguageProvider uiLanguageProvider;
 
     public WpfViewLocator(ILogger<WpfViewLocator> logger, IUiLanguageProvider uiLanguageProvider)
     {
+        this.logger = logger;
         this.uiLanguageProvider = uiLanguageProvider;
         this.uiLanguageProvider.OnLanguageChanged += SetCultureInfo;
-
-        StandardWindow = System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Standard, logger));
-        OverlayWindow = System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Overlay, logger));
-        ModalWindow = System.Windows.Application.Current.Dispatcher.Invoke(() => new MainWindow(SidekickViewType.Modal, logger));
 
         SetCultureInfo();
     }
 
     private async void SetCultureInfo(CultureInfo? cultureInfo = null)
     {
-        cultureInfo ??= await uiLanguageProvider.Get();
-
-        await System.Windows.Application.Current.Dispatcher.InvokeAsync(() =>
+        try
         {
-            CultureInfo.CurrentCulture = cultureInfo;
-            CultureInfo.CurrentUICulture = cultureInfo;
-        });
+            cultureInfo ??= await uiLanguageProvider.Get();
+
+            await System.Windows.Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                CultureInfo.CurrentCulture = cultureInfo;
+                CultureInfo.CurrentUICulture = cultureInfo;
+            });
+        }
+        catch (Exception e)
+        {
+            logger.LogWarning(e, "Error while trying to set culture info.");
+        }
     }
 
     public bool SupportsMinimize => true;
 
     public bool SupportsMaximize => true;
 
-    private MainWindow StandardWindow { get; }
-
-    private MainWindow OverlayWindow { get; }
-
-    private MainWindow ModalWindow { get; }
+    private Dictionary<SidekickViewType, MainWindow> Windows { get; } = [];
 
     public void Open(SidekickViewType type, string url)
     {
-        var window = GetWindow(type);
+        var window = GetWindow(type, true)!;
         _ = window.OpenView(url);
     }
 
-    public MainWindow GetWindow(SidekickViewType type)
+    private MainWindow? GetWindow(SidekickViewType type, bool create)
     {
-        return type switch
-        {
-            SidekickViewType.Standard => StandardWindow,
-            SidekickViewType.Overlay => OverlayWindow,
-            SidekickViewType.Modal => ModalWindow,
-            _ => throw new SidekickException("The window could not be determined.")
-        };
+        var window = Windows.GetValueOrDefault(type);
+        if (window != null) return window;
+        if (!create) return null;
+
+        window = new MainWindow(type, logger);
+        Windows.Add(type, window);
+        return window;
     }
 
     public void Close(SidekickViewType type)
     {
-        var window = GetWindow(type);
+        var window = GetWindow(type, false);
+        if (window == null) return;
 
         if (window.View != null)
             window.View.Close();
@@ -72,14 +73,17 @@ public class WpfViewLocator : IViewLocator, IDisposable
 
     public bool IsOverlayOpened()
     {
-        return OverlayWindow.IsVisible;
+        var window = GetWindow(SidekickViewType.Overlay, false);
+        return window?.IsVisible ?? false;
     }
 
     public void Dispose()
     {
         uiLanguageProvider.OnLanguageChanged -= SetCultureInfo;
-        StandardWindow.Dispose();
-        OverlayWindow.Dispose();
-        ModalWindow.Dispose();
+
+        foreach (var window in Windows)
+        {
+            window.Value.Dispose();
+        }
     }
 }

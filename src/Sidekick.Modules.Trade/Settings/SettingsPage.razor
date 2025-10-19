@@ -5,15 +5,3 @@
         <SettingsContent />
     </AppContainer>
 </LayoutMenu>
-
-@inject ICurrentView CurrentView
-
-@code{
-
-    protected override void OnInitialized()
-    {
-        CurrentView.Initialize(new ViewOptions());
-        base.OnInitialized();
-    }
-
-}

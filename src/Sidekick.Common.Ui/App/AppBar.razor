@@ -2,7 +2,7 @@
     <AppDragHandle Class="py-2 pl-4 flex grow self-stretch">
         <h1 class="font-medium leading-none text-lg flex items-center gap-4 select-none">
             <img src="/images/orbs/ExaltedOrb.png" alt="logo" class="w-6 h-6" />
-            <span>Sidekick@(!string.IsNullOrEmpty(CurrentView.Options?.Title) ? $" {CurrentView.Options.Title}" : "")</span>
+            <span>Sidekick@($" {CurrentView.Title}")</span>
         </h1>
     </AppDragHandle>
 
@@ -23,18 +23,18 @@
 
     protected override void OnInitialized()
     {
-        CurrentView.ViewInitialized += CurrentViewInitialized;
+        CurrentView.OptionsChanged += CurrentViewOptionsChanged;
         base.OnInitialized();
     }
 
-    private void CurrentViewInitialized()
+    private void CurrentViewOptionsChanged()
     {
         InvokeAsync(StateHasChanged);
     }
 
     public void Dispose()
     {
-        CurrentView.ViewInitialized -= CurrentViewInitialized;
+        CurrentView.OptionsChanged -= CurrentViewOptionsChanged;
     }
 
 }

@@ -49,7 +49,9 @@ public partial class MainWindow
 
         RootComponent.Parameters = new Dictionary<string, object?>
         {
-            { "Window", this },
+            {
+                "Window", this
+            },
         };
 
         Show();
@@ -71,12 +73,14 @@ public partial class MainWindow
 
     public void InitializeView(ICurrentView view)
     {
-        logger.LogInformation("[MainWindow] Initializing view: " + view.Options.Title);
+        logger.LogInformation("[MainWindow] Initializing view: " + view.Title);
 
         View = view;
         Dispatcher.InvokeAsync(() =>
         {
-            Title = view.Options.Title.StartsWith("Sidekick") ? view.Options.Title.Trim() : $"Sidekick {view.Options.Title}".Trim();
+            if (string.IsNullOrWhiteSpace(view.Title)) Title = "Sidekick";
+            else if (view.Title.StartsWith("Sidekick")) Title = view.Title.Trim();
+            else Title = $"Sidekick {view.Title}".Trim();
 
             // This avoids the white flicker which is caused by the page content not being loaded initially. We show the webview control only when the content is ready.
             // The window background is transparent to avoid any flickering when opening a window. When the webview content is ready we need to set opacity. Otherwise, mouse clicks will go through the window.
@@ -109,7 +113,7 @@ public partial class MainWindow
                     break;
             }
 
-            if (view.Options is
+            if (view is
                 {
                     Width: not null,
                     Height: not null,
@@ -177,21 +181,18 @@ public partial class MainWindow
         {
             if (View is
                 {
-                    Options:
-                    {
-                        Height: not null,
-                        Width: not null,
-                    }
+                    Height: not null,
+                    Width: not null,
                 })
             {
                 logger.LogInformation("[MainWindow] View has fixed dimensions");
 
                 WindowState = WindowState.Normal;
 
-                MinHeight = (View.Options.Height.Value + 20) * zoom;
+                MinHeight = (View.Height.Value + 20) * zoom;
                 Height = MinHeight;
 
-                MinWidth = (View.Options.Width.Value + 20) * zoom;
+                MinWidth = (View.Width.Value + 20) * zoom;
                 Width = MinWidth;
 
                 CenterHelper.Center(this);
@@ -227,8 +228,8 @@ public partial class MainWindow
 
             if (ViewType != SidekickViewType.Modal && preferences != null)
             {
-                if (preferences.Height > Height && View?.Options.Height == null) Height = preferences.Height;
-                if (preferences.Width > Width && View?.Options.Width == null) Width = preferences.Width;
+                if (preferences.Height > Height && View?.Height == null) Height = preferences.Height;
+                if (preferences.Width > Width && View?.Width == null) Width = preferences.Width;
             }
 
             // Set the window position.

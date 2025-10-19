@@ -70,8 +70,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        CurrentView.Initialize(new ViewOptions());
-
         KeyOpenPriceCheck = await SettingsService.GetString(SettingKeys.KeyOpenPriceCheck);
         KeyClose = await SettingsService.GetString(SettingKeys.KeyClose);
 

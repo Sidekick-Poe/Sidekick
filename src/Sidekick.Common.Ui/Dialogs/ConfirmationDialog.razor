@@ -24,6 +24,8 @@
     </BottomContent>
 </LayoutSimple>
 
+<ViewOptions Width="@ICurrentView.DialogWidth" Height="@ICurrentView.DialogHeight" />
+
 @inject IStringLocalizer<DialogResources> Resources
 @inject DialogService Service
 @inject ICurrentView CurrentView
@@ -32,16 +34,6 @@
 
     [Parameter]
     public string? Message { get; set; }
-
-    protected override void OnInitialized()
-    {
-        CurrentView.Initialize(new ViewOptions()
-        {
-            Width = 400,
-            Height = 220,
-        });
-        base.OnInitialized();
-    }
 
     private void Yes()
     {

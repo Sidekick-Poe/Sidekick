@@ -1,6 +1,5 @@
 @using Microsoft.Extensions.DependencyInjection
 @using Sidekick.Common.Platform
-@using Sidekick.Common.Ui.Views
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.Buttons
 
@@ -13,7 +12,6 @@
 
 @inject IApplicationService ApplicationService
 @inject IServiceProvider ServiceProvider
-@inject ICurrentView CurrentView
 
 @code {
 
@@ -21,7 +19,6 @@
 
     protected override void OnInitialized()
     {
-        CurrentView.Initialize(new ViewOptions());
         if (ApplicationService.SupportsKeybinds)
         {
             KeyboardProvider = ServiceProvider.GetService<IKeyboardProvider>();

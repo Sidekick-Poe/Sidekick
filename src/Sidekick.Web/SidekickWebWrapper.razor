@@ -15,7 +15,7 @@
     protected override void OnInitialized()
     {
         ViewLocator.Views.Add(this);
-        CurrentView.ViewClosed += CurrentViewClosed;
+        CurrentView.Closed += CurrentViewClosed;
 
         base.OnInitialized();
     }
@@ -28,7 +28,7 @@
     public void Dispose()
     {
         ViewLocator.Views.Remove(this);
-        CurrentView.ViewClosed -= CurrentViewClosed;
+        CurrentView.Closed -= CurrentViewClosed;
     }
 
 }
