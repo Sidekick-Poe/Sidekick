@@ -47,6 +47,8 @@ public partial class MainWindow
         Scope = Program.ServiceProvider.CreateScope();
         Resources.Add("services", Scope.ServiceProvider);
         InitializeComponent();
+        
+        Title = "Sidekick";
 
         RootComponent.Parameters = new Dictionary<string, object?>
         {
@@ -135,10 +137,6 @@ public partial class MainWindow
     {
         Dispatcher.InvokeAsync(() =>
         {
-            if (string.IsNullOrWhiteSpace(View?.Title)) Title = "Sidekick";
-            else if (View.Title.StartsWith("Sidekick")) Title = View.Title.Trim();
-            else Title = $"Sidekick {View.Title}".Trim();
-
             if (View is
                 {
                     Width: not null,
@@ -230,7 +228,7 @@ public partial class MainWindow
 
             MinHeight = ViewType switch
             {
-                SidekickViewType.Modal => 220 * zoom,
+                SidekickViewType.Modal => ICurrentView.DialogHeight * zoom,
                 SidekickViewType.Standard => 768 * zoom,
                 _ => 600 * zoom,
             };
@@ -238,7 +236,7 @@ public partial class MainWindow
 
             MinWidth = ViewType switch
             {
-                SidekickViewType.Modal => 400 * zoom,
+                SidekickViewType.Modal => ICurrentView.DialogWidth * zoom,
                 SidekickViewType.Standard => 968 * zoom,
                 _ => 768 * zoom,
             };

@@ -79,14 +79,8 @@
     </BottomContent>
 </LayoutSimple>
 
-@if (UpdateInfo == null || Updating)
-{
-    <ViewOptions Width="@ICurrentView.DialogWidth" Height="@ICurrentView.DialogHeight" Title="@Resources["Update"]"/>
-}
-else
-{
-    <ViewOptions Width="600" Height="500" Title="@Resources["Update"]"/>
-}
+<ViewOptions Width="@(UpdateInfo != null && !Updating ? 600 : ICurrentView.DialogWidth)"
+             Height="@(UpdateInfo != null && !Updating ? 500 : ICurrentView.DialogHeight)"/>
 
 @inject ILogger<Update> Logger
 @inject IStringLocalizer<Update> Resources

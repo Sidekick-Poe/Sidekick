@@ -1,5 +1,7 @@
 @inject ICurrentView CurrentView
 
+@implements IDisposable
+
 @code {
 
     [Parameter]
@@ -8,13 +10,14 @@
     [Parameter]
     public int? Width { get; set; }
 
-    [Parameter]
-    public string? Title { get; set; }
-
     protected override void OnParametersSet()
     {
-        CurrentView.UpdateOptions(Width, Height, Title);
+        CurrentView.UpdateOptions(Width, Height);
         base.OnParametersSet();
     }
-
+    
+    public void Dispose()
+    {
+        CurrentView.UpdateOptions(null, null);
+    }
 }

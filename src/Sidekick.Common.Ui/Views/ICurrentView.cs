@@ -42,9 +42,7 @@ public interface ICurrentView
     
     int? Height { get; }
     
-    string? Title { get; }
-
-    void UpdateOptions(int? width, int? height, string? title);
+    void UpdateOptions(int? width, int? height);
     
     /// <summary>
     /// Minimizes the view.

@@ -26,13 +26,11 @@ public class CurrentView : ICurrentView
 
     public int? Width  { get; private set; }
     public int? Height { get; private set; }
-    public string? Title { get; private set; }
 
-    public void UpdateOptions(int? width, int? height, string? title)
+    public void UpdateOptions(int? width, int? height)
     {
         Width = width;
         Height = height;
-        Title = title;
         OptionsChanged?.Invoke();
     }
 

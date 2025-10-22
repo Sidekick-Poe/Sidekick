@@ -34,8 +34,10 @@
             }
 
             <AppContainer>
-                <LanguageParserEditor/>
-                <LeagueIdEditor AutoRefresh="false"/>
+                <div class="flex flex-col gap-3">
+                    <LanguageParserEditor/>
+                    <LeagueIdEditor AutoRefresh="false"/>
+                </div>
             </AppContainer>
         }
         else
@@ -69,14 +71,8 @@
     </BottomContent>
 </LayoutSimple>
 
-@if (RequiresSetup)
-{
-    <ViewOptions Width="400" Height="360" Title="@Resources["Setup"]"/>
-}
-else
-{
-    <ViewOptions Width="@ICurrentView.DialogWidth" Height="@ICurrentView.DialogHeight" Title="@Resources["Setup"]"/>
-}
+<ViewOptions Width="@(RequiresSetup ? 400 : ICurrentView.DialogWidth)"
+             Height="@(RequiresSetup ? 360 : ICurrentView.DialogHeight)"/>
 
 @inject ISettingsService SettingsService
 @inject IApplicationService ApplicationService
