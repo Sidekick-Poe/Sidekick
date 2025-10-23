@@ -1,5 +1,4 @@
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
@@ -363,8 +362,10 @@ public partial class MainWindow
 
     private void SetWebViewDebugging()
     {
-        if (Debugger.IsAttached) return;
-
+        #if DEBUG
+        return;
+        #endif
+        
         WebView.WebView.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
         WebView.WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
         WebView.WebView.CoreWebView2.Settings.AreDevToolsEnabled = false;
