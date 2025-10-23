@@ -26,7 +26,7 @@ public partial class MainWindow
     private IServiceScope Scope { get; }
 
     private NavigationManager? NavigationManager { get; set; }
-    
+
     private ICurrentView? View { get; set; }
 
     private bool IsDisposed { get; set; }
@@ -47,7 +47,7 @@ public partial class MainWindow
         Scope = Program.ServiceProvider.CreateScope();
         Resources.Add("services", Scope.ServiceProvider);
         InitializeComponent();
-        
+
         Title = "Sidekick";
 
         RootComponent.Parameters = new Dictionary<string, object?>
@@ -91,9 +91,9 @@ public partial class MainWindow
         View.Maximized += MaximizeView;
         View.Minimized += MinimizeView;
         View.Closed += CloseView;
-        
+
         NavigationManager = navigationManager;
-        
+
         Dispatcher.InvokeAsync(() =>
         {
             Navigate(Url);
@@ -106,6 +106,14 @@ public partial class MainWindow
             Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
             Opacity = 0.01;
 
+            CurrentViewOptionsChanged();
+        });
+    }
+
+    private void CurrentViewOptionsChanged()
+    {
+        Dispatcher.InvokeAsync(() =>
+        {
             switch (ViewType)
             {
                 case SidekickViewType.Overlay:
@@ -129,14 +137,6 @@ public partial class MainWindow
                     break;
             }
 
-            CurrentViewOptionsChanged();
-        });
-    }
-
-    private void CurrentViewOptionsChanged()
-    {
-        Dispatcher.InvokeAsync(() =>
-        {
             if (View is
                 {
                     Width: not null,
