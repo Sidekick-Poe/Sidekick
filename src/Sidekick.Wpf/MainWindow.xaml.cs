@@ -19,37 +19,36 @@ namespace Sidekick.Wpf;
 public partial class MainWindow
 {
     private readonly ILogger logger;
-
-    private SidekickViewType ViewType { get; }
-
-    private IServiceScope Scope { get; }
+    private readonly IServiceScope scope;
 
     private NavigationManager? NavigationManager { get; set; }
-
     private ICurrentView? View { get; set; }
 
     private bool IsDisposed { get; set; }
-
     private bool IsReady { get; set; }
-
+    private bool IsNormalized { get; set; }
     private string? NextPath { get; set; }
 
-    private bool ViewNormalized { get; set; }
-
     private bool CloseOnBlur { get; set; }
-
     private IntPtr OriginalFocusedWindow { get; set; }
+
+    private SidekickViewType ViewType { get; }
 
     public MainWindow(SidekickViewType viewType, ILogger logger)
     {
         this.logger = logger;
+
+        scope = Program.ServiceProvider.CreateScope();
+        Resources.Add("services", scope.ServiceProvider);
+
         ViewType = viewType;
-
-        Scope = Program.ServiceProvider.CreateScope();
-        Resources.Add("services", Scope.ServiceProvider);
-        InitializeComponent();
-
         Title = "Sidekick";
+        Width = 0;
+        Height = 0;
+        Opacity = 0;
+        Topmost = false;
+        ShowInTaskbar = false;
+        InitializeComponent();
 
         RootComponent.Parameters = new Dictionary<string, object?>
         {
@@ -63,25 +62,18 @@ public partial class MainWindow
 
     public async Task OpenView(string url)
     {
-        var settingsService = Scope.ServiceProvider.GetRequiredService<ISettingsService>();
-        CloseOnBlur = await settingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
-
-        OriginalFocusedWindow = User32.GetForegroundWindow();
-
         logger.LogInformation("[MainWindow] Opening view: " + url);
+
+        var settingsService = scope.ServiceProvider.GetRequiredService<ISettingsService>();
+        CloseOnBlur = await settingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
+        OriginalFocusedWindow = User32.GetForegroundWindow();
 
         await Dispatcher.InvokeAsync(() =>
         {
             Show();
 
-            if (!IsReady)
-            {
-                NextPath = url;
-            }
-            else
-            {
-                Navigate(url);
-            }
+            if (!IsReady) NextPath = url;
+            else Navigate(url);
 
             Activate();
             CurrentViewOptionsChanged();
@@ -94,33 +86,44 @@ public partial class MainWindow
         });
     }
 
-    public void BlazorReady(ICurrentView view, NavigationManager navigationManager)
+    public void CloseView()
     {
-        IsReady = true;
+        logger.LogInformation("[MainWindow] Closing view");
 
-        View = view;
-        View.OptionsChanged += CurrentViewOptionsChanged;
-        View.Maximized += MaximizeView;
-        View.Minimized += MinimizeView;
-        View.Closed += CloseView;
-
-        NavigationManager = navigationManager;
-        Navigate(NextPath);
-
-        CurrentViewOptionsChanged();
-    }
-
-    private void CurrentViewOptionsChanged()
-    {
         Dispatcher.InvokeAsync(async () =>
         {
-            // This avoids the white flicker which is caused by the page content not being loaded initially. We show the webview control only when the content is ready.
-            // The window background is transparent to avoid any flickering when opening a window. When the webview content is ready, we need to set opacity. Otherwise, mouse clicks will go through the window.
-            WebView.Visibility = Visibility.Visible;
-            SetWebViewDebugging();
+            Navigate("/empty");
+            await SavePosition();
+
+            IsNormalized = false;
+
+            Deactivate();
+            Hide();
+        });
+    }
+
+    public void BlazorReady(ICurrentView view, NavigationManager navigationManager)
+    {
+        logger.LogInformation("[MainWindow] Blazor ready");
+
+        Dispatcher.Invoke(() =>
+        {
+            IsReady = true;
+
+            View = view;
+            View.OptionsChanged += CurrentViewOptionsChanged;
+            View.Maximized += MaximizeView;
+            View.Minimized += MinimizeView;
+            View.Closed += CloseView;
+
+            NavigationManager = navigationManager;
+            Navigate(NextPath);
 
             Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
             Opacity = 0.01;
+
+            WebView.Visibility = Visibility.Visible;
+            SetWebViewDebugging();
 
             switch (ViewType)
             {
@@ -142,7 +145,15 @@ public partial class MainWindow
                     ResizeMode = ResizeMode.CanResize;
                     break;
             }
+        });
 
+        CurrentViewOptionsChanged();
+    }
+
+    private void CurrentViewOptionsChanged()
+    {
+        Dispatcher.InvokeAsync(async () =>
+        {
             if (View is
                 {
                     Width: not null,
@@ -174,126 +185,101 @@ public partial class MainWindow
     {
         logger.LogInformation("[MainWindow] Maximizing view");
 
-        if (WindowState == WindowState.Normal)
+        Dispatcher.InvokeAsync(async () =>
         {
-            Dispatcher.InvokeAsync(async () =>
+            if (WindowState == WindowState.Normal)
             {
                 await SavePosition();
                 WindowState = WindowState.Maximized;
-            });
-        }
-        else
-        {
-            _ = NormalizeView();
-        }
+            }
+            else
+            {
+                await NormalizeView();
+            }
+        });
     }
 
     private async Task NormalizeView()
     {
         logger.LogInformation("[MainWindow] Normalizing view");
 
-        var viewPreferenceService = Scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
-        var settingsService = Scope.ServiceProvider.GetRequiredService<ISettingsService>();
+        var viewPreferenceService = scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
+        var settingsService = scope.ServiceProvider.GetRequiredService<ISettingsService>();
         var preferences = await viewPreferenceService.Get(ViewType.ToString());
         var saveWindowPositions = await settingsService.GetBool(SettingKeys.SaveWindowPositions);
         var zoomString = await settingsService.GetString(SettingKeys.Zoom);
         if (!double.TryParse(zoomString, CultureInfo.InvariantCulture, out var zoom)) zoom = 1;
 
-        Dispatcher.Invoke(() =>
+        if (View is
+            {
+                Height: not null,
+                Width: not null,
+            })
         {
-            if (View is
-                {
-                    Height: not null,
-                    Width: not null,
-                })
-            {
-                logger.LogInformation("[MainWindow] View has fixed dimensions");
+            logger.LogInformation("[MainWindow] View has fixed dimensions");
 
-                WindowState = WindowState.Normal;
-
-                MinHeight = (View.Height.Value + 20) * zoom;
-                Height = MinHeight;
-
-                MinWidth = (View.Width.Value + 20) * zoom;
-                Width = MinWidth;
-
-                CenterHelper.Center(this);
-
-                ViewNormalized = false;
-                return;
-            }
-
-            if (ViewNormalized && WindowState == WindowState.Normal)
-            {
-                logger.LogInformation("[MainWindow] View is already normalized");
-                return;
-            }
-
-            logger.LogInformation("[MainWindow] View is not normalized");
             WindowState = WindowState.Normal;
 
-            MinHeight = ViewType switch
-            {
-                SidekickViewType.Modal => ICurrentView.DialogHeight * zoom,
-                SidekickViewType.Standard => 768 * zoom,
-                _ => 600 * zoom,
-            };
+            MinHeight = (View.Height.Value + 20) * zoom;
             Height = MinHeight;
 
-            MinWidth = ViewType switch
-            {
-                SidekickViewType.Modal => ICurrentView.DialogWidth * zoom,
-                SidekickViewType.Standard => 968 * zoom,
-                _ => 768 * zoom,
-            };
+            MinWidth = (View.Width.Value + 20) * zoom;
             Width = MinWidth;
 
-            if (ViewType != SidekickViewType.Modal && preferences != null)
-            {
-                if (preferences.Height > Height && View?.Height == null) Height = preferences.Height;
-                if (preferences.Width > Width && View?.Width == null) Width = preferences.Width;
-            }
+            CenterHelper.Center(this);
 
-            // Set the window position.
-            if (saveWindowPositions
-                && preferences is
-                {
-                    X: not null,
-                    Y: not null,
-                })
-            {
-                Left = preferences.X.Value;
-                Top = preferences.Y.Value;
-            }
-            else
-            {
-                CenterHelper.Center(this);
-            }
+            IsNormalized = false;
+            return;
+        }
 
-            ViewNormalized = true;
-        });
-    }
-
-    public void CloseView()
-    {
-        logger.LogInformation("[MainWindow] Closing view");
-
-        Dispatcher.InvokeAsync(async () =>
+        if (IsNormalized && WindowState == WindowState.Normal)
         {
-            Navigate("/empty");
+            logger.LogInformation("[MainWindow] View is already normalized");
+            return;
+        }
 
-            await SavePosition();
-            ViewNormalized = false;
+        logger.LogInformation("[MainWindow] View is not normalized");
+        WindowState = WindowState.Normal;
 
-            Topmost = false;
-            ShowInTaskbar = false;
-            WindowStyle = WindowStyle.None;
+        MinHeight = ViewType switch
+        {
+            SidekickViewType.Modal => ICurrentView.DialogHeight * zoom,
+            SidekickViewType.Standard => 768 * zoom,
+            _ => 600 * zoom,
+        };
+        Height = MinHeight;
 
-            WebView.Visibility = Visibility.Hidden;
+        MinWidth = ViewType switch
+        {
+            SidekickViewType.Modal => ICurrentView.DialogWidth * zoom,
+            SidekickViewType.Standard => 968 * zoom,
+            _ => 768 * zoom,
+        };
+        Width = MinWidth;
 
-            Deactivate();
-            Hide();
-        });
+        if (ViewType != SidekickViewType.Modal && preferences != null)
+        {
+            if (preferences.Height > Height && View?.Height == null) Height = preferences.Height;
+            if (preferences.Width > Width && View?.Width == null) Width = preferences.Width;
+        }
+
+        // Set the window position.
+        if (saveWindowPositions
+            && preferences is
+            {
+                X: not null,
+                Y: not null,
+            })
+        {
+            Left = preferences.X.Value;
+            Top = preferences.Y.Value;
+        }
+        else
+        {
+            CenterHelper.Center(this);
+        }
+
+        IsNormalized = true;
     }
 
     private void Navigate(string? url)
@@ -318,7 +304,7 @@ public partial class MainWindow
             var x = (int)Left;
             var y = (int)Top;
 
-            var viewPreferenceService = Scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
+            var viewPreferenceService = scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
             await viewPreferenceService.Set(ViewType.ToString(), width, height, x, y);
             logger.LogInformation("[MainWindow] Position saved");
         }
@@ -384,10 +370,7 @@ public partial class MainWindow
     private void Deactivate()
     {
         // Check if the window is still valid and focused
-        if (!IsActive)
-        {
-            return;
-        }
+        if (!IsActive) return;
 
         // Create a hidden fake window to take focus temporarily
         var helperWindow = new Window
@@ -427,7 +410,8 @@ public partial class MainWindow
             View.Minimized -= MinimizeView;
             View.Closed -= CloseView;
         }
-        Scope.Dispose();
+
+        scope.Dispose();
         Close();
     }
 }
