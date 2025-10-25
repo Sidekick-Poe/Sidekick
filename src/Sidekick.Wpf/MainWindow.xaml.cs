@@ -30,7 +30,9 @@ public partial class MainWindow
 
     private bool IsDisposed { get; set; }
 
-    private string? Url { get; set; }
+    private bool IsReady { get; set; }
+
+    private string? NextPath { get; set; }
 
     private bool ViewNormalized { get; set; }
 
@@ -70,21 +72,32 @@ public partial class MainWindow
 
         await Dispatcher.InvokeAsync(() =>
         {
-            Navigate(url);
+            Show();
+
+            if (!IsReady)
+            {
+                NextPath = url;
+            }
+            else
+            {
+                Navigate(url);
+            }
+
             Activate();
+            CurrentViewOptionsChanged();
 
             // Attempt to set focus back to the original window
             if (ViewType == SidekickViewType.Overlay && !CloseOnBlur && OriginalFocusedWindow != IntPtr.Zero)
             {
                 User32.SetForegroundWindow(OriginalFocusedWindow);
             }
-
-            Show();
         });
     }
 
     public void BlazorReady(ICurrentView view, NavigationManager navigationManager)
     {
+        IsReady = true;
+
         View = view;
         View.OptionsChanged += CurrentViewOptionsChanged;
         View.Maximized += MaximizeView;
@@ -92,11 +105,15 @@ public partial class MainWindow
         View.Closed += CloseView;
 
         NavigationManager = navigationManager;
+        Navigate(NextPath);
 
-        Dispatcher.InvokeAsync(() =>
+        CurrentViewOptionsChanged();
+    }
+
+    private void CurrentViewOptionsChanged()
+    {
+        Dispatcher.InvokeAsync(async () =>
         {
-            Navigate(Url);
-
             // This avoids the white flicker which is caused by the page content not being loaded initially. We show the webview control only when the content is ready.
             // The window background is transparent to avoid any flickering when opening a window. When the webview content is ready, we need to set opacity. Otherwise, mouse clicks will go through the window.
             WebView.Visibility = Visibility.Visible;
@@ -105,25 +122,15 @@ public partial class MainWindow
             Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
             Opacity = 0.01;
 
-            CurrentViewOptionsChanged();
-        });
-    }
-
-    private void CurrentViewOptionsChanged()
-    {
-        Dispatcher.InvokeAsync(() =>
-        {
             switch (ViewType)
             {
                 case SidekickViewType.Overlay:
-                    Topmost = false;
                     Topmost = true;
                     ShowInTaskbar = false;
                     ResizeMode = ResizeMode.CanResize;
                     break;
 
                 case SidekickViewType.Modal:
-                    Topmost = false;
                     Topmost = true;
                     ShowInTaskbar = true;
                     ResizeMode = ResizeMode.NoResize;
@@ -147,7 +154,7 @@ public partial class MainWindow
 
             if (WindowState == WindowState.Normal)
             {
-                _ = NormalizeView();
+                await NormalizeView();
             }
         });
     }
@@ -291,13 +298,7 @@ public partial class MainWindow
 
     private void Navigate(string? url)
     {
-        if (NavigationManager == null)
-        {
-            Url = url;
-            return;
-        }
-
-        if (string.IsNullOrEmpty(url)) return;
+        if (NavigationManager == null || !IsReady || string.IsNullOrEmpty(url)) return;
 
         NavigationManager.NavigateTo(url);
     }
@@ -362,10 +363,10 @@ public partial class MainWindow
 
     private void SetWebViewDebugging()
     {
-        #if DEBUG
+#if DEBUG
         return;
-        #endif
-        
+#endif
+
         WebView.WebView.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
         WebView.WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
         WebView.WebView.CoreWebView2.Settings.AreDevToolsEnabled = false;

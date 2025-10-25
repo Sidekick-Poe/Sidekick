@@ -48,6 +48,7 @@
         <blazor:BlazorWebView
             Name="WebView"
             HostPage="wwwroot\index.html"
+            StartPath="/empty"
             Services="{DynamicResource services}"
             Visibility="Hidden">
             <blazor:BlazorWebView.RootComponents>
