@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
-using Sidekick.Common.Ui.Views;
 
 namespace Sidekick.Common.Ui.Errors;
 
@@ -17,9 +16,6 @@ public class LoggingErrorBoundary : ErrorBoundary
     [Inject]
     private IJSRuntime JsRuntime { get; set; } = null!;
 
-    [Inject]
-    private ICurrentView CurrentView { get; set; } = null!;
-
     public Exception? CapturedException => CurrentException;
 
     protected override async Task OnErrorAsync(Exception exception)
@@ -33,7 +29,5 @@ public class LoggingErrorBoundary : ErrorBoundary
         Logger.LogError(exception, "[ErrorBoundary] An error occurred.");
 
         await base.OnErrorAsync(exception);
-
-        CurrentView.Initialize(new ViewOptions());
     }
 }

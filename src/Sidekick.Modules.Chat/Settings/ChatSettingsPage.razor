@@ -8,7 +8,6 @@
 @using Sidekick.Common.Ui.Layouts
 @using Sidekick.Common.Ui.Localization
 @using Sidekick.Common.Ui.Typography
-@using Sidekick.Common.Ui.Views
 @using Sidekick.Modules.Chat.Localization
 
 <LayoutMenu>
@@ -60,7 +59,6 @@
 @inject IStringLocalizer<UiResources> UiResources
 @inject IStringLocalizer<ChatResources> Resources
 @inject IBrowserProvider Browser
-@inject ICurrentView CurrentView
 @inject ISettingsService SettingsService
 @implements IDisposable
 
@@ -76,8 +74,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        CurrentView.Initialize(new ViewOptions());
-
         SettingsService.OnSettingsChanged += CheckIfSettingsAreModified;
 
         CheckIfSettingsAreModified(SettingKeysUsed);

@@ -44,7 +44,6 @@
 
 @inject IStringLocalizer<WealthResources> Resources
 @inject ISettingsService SettingsService
-@inject ICurrentView CurrentView
 @inject IApplicationService ApplicationService
 
 @code {
@@ -53,7 +52,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        CurrentView.Initialize(new ViewOptions());
         Game = await SettingsService.GetGame();
 
         await base.OnInitializedAsync();

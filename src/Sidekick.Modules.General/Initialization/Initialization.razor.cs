@@ -51,11 +51,6 @@ public partial class Initialization
 
     protected override async Task OnInitializedAsync()
     {
-        CurrentView.Initialize(new ViewOptions()
-        {
-            Width = 400,
-            Height = 220,
-        });
         InitializationTask = Handle();
         await base.OnInitializedAsync();
         await InitializationTask;

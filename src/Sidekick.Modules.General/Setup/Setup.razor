@@ -34,8 +34,10 @@
             }
 
             <AppContainer>
-                <LanguageParserEditor/>
-                <LeagueIdEditor AutoRefresh="false"/>
+                <div class="flex flex-col gap-3">
+                    <LanguageParserEditor/>
+                    <LeagueIdEditor AutoRefresh="false"/>
+                </div>
             </AppContainer>
         }
         else
@@ -69,6 +71,9 @@
     </BottomContent>
 </LayoutSimple>
 
+<ViewOptions Width="@(RequiresSetup ? 400 : ICurrentView.DialogWidth)"
+             Height="@(RequiresSetup ? 360 : ICurrentView.DialogHeight)"/>
+
 @inject ISettingsService SettingsService
 @inject IApplicationService ApplicationService
 @inject ILeagueProvider LeagueProvider
@@ -87,13 +92,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        CurrentView.Initialize(new ViewOptions()
-        {
-            Title = Resources["Setup"],
-            Width = 400,
-            Height = 220,
-        });
-
         var leagues = await LeagueProvider.GetList(false);
         var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
         var settingsLeaguesHash = await SettingsService.GetInt(SettingKeys.LeaguesHash);
@@ -108,12 +106,6 @@
         var parserLanguage = await SettingsService.GetString(SettingKeys.LanguageParser);
         if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId) || NewLeagues || parserLanguage == null)
         {
-            CurrentView.Initialize(new ViewOptions()
-            {
-                Title = Resources["Setup"],
-                Width = 400,
-                Height = 360,
-            });
             RequiresSetup = true;
         }
         else
@@ -147,12 +139,6 @@
 
         var apiLeaguesHash = JsonSerializer.Serialize(leagues).GetDeterministicHashCode();
         await SettingsService.Set(SettingKeys.LeaguesHash, apiLeaguesHash);
-
-        CurrentView.Initialize(new ViewOptions()
-        {
-            Width = 400,
-            Height = 220,
-        });
         NavigationManager.NavigateTo("/initialize");
     }
 

@@ -7,65 +7,64 @@ namespace Sidekick.Common.Ui.Views;
 public class CurrentView : ICurrentView
 {
     /// <inheritdoc/>
-    public event Action? ViewInitialized;
+    public event Action? OptionsChanged;
 
     /// <inheritdoc/>
-    public event Action? ViewMinimized;
+    public event Action? Minimized;
 
     /// <inheritdoc/>
-    public event Action? ViewMaximized;
+    public event Action? Maximized;
 
     /// <inheritdoc/>
-    public event Action? ViewClosed;
-
-    public event Action<int, int>? ViewStartDragging;
-
-    public event Action? ViewStopDragging;
+    public event Action? Closed;
 
     /// <inheritdoc/>
-    public ViewOptions Options { get; private set; } = new();
-
-    public bool IsDragging { get; private set; }
+    public event Action<int, int>? DragStarted;
 
     /// <inheritdoc/>
-    public void Initialize(ViewOptions options)
+    public event Action? DragStopped;
+
+    public int? Width  { get; private set; }
+    public int? Height { get; private set; }
+
+    public void UpdateOptions(int? width, int? height)
     {
-        Options = options;
-        ViewInitialized?.Invoke();
+        Width = width;
+        Height = height;
+        OptionsChanged?.Invoke();
     }
 
     /// <inheritdoc/>
     public void Minimize()
     {
-        ViewMinimized?.Invoke();
+        Minimized?.Invoke();
     }
 
     /// <inheritdoc/>
     public void Maximize()
     {
-        ViewMaximized?.Invoke();
+        Maximized?.Invoke();
     }
 
     /// <inheritdoc/>
     public void Close()
     {
-        ViewClosed?.Invoke();
+        Closed?.Invoke();
     }
 
+    private bool IsDragging { get; set; }
+    
     public void StartDragging(int offsetX, int offsetY)
     {
-        if (IsDragging)
-        {
-            return;
-        }
+        if (IsDragging) return;
 
         IsDragging = true;
-        ViewStartDragging?.Invoke(offsetX, offsetY);
+        DragStarted?.Invoke(offsetX, offsetY);
     }
 
     public void StopDragging()
     {
         IsDragging = false;
-        ViewStopDragging?.Invoke();
+        DragStopped?.Invoke();
     }
 }

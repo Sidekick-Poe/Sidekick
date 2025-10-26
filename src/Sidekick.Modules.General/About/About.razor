@@ -49,7 +49,6 @@
 
     protected override void OnInitialized()
     {
-        CurrentView.Initialize(new ViewOptions());
         Title = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).FirstOrDefault(x => x.Name == "Sidekick")?.Version?.ToString();
         base.OnInitializedAsync();
     }

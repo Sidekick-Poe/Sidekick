@@ -87,7 +87,6 @@
 @inject IStringLocalizer<MapInfoResources> Resources
 @inject IItemParser ItemParser
 @inject ISettingsService SettingsService
-@inject ICurrentView CurrentView
 @implements IDisposable
 
 @code {
@@ -107,10 +106,6 @@
 
     protected override void OnInitialized()
     {
-        CurrentView.Initialize(new ViewOptions()
-        {
-            Title = Resources["Title"],
-        });
         SettingsService.OnSettingsChanged += SettingsServiceOnOnSettingsChanged;
         base.OnInitialized();
     }

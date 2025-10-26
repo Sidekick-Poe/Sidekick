@@ -22,10 +22,10 @@
     {
         ViewLocator.Views.Add(this);
 
-        CurrentView.ViewMinimized += CurrentViewMinimized;
-        CurrentView.ViewMaximized += CurrentViewMaximized;
-        CurrentView.ViewClosed += CurrentViewClosed;
-        CurrentView.ViewStartDragging += ViewStartDragging;
+        CurrentView.Minimized += CurrentViewMinimized;
+        CurrentView.Maximized += CurrentViewMaximized;
+        CurrentView.Closed += CurrentViewClosed;
+        CurrentView.DragStarted += ViewStartDragging;
 
         base.OnInitialized();
     }
@@ -62,18 +62,18 @@
 
         KeyboardProvider.OnMouseDrag += OnMouseDrag;
 
-        CurrentView.ViewStopDragging += Unsubscribe;
+        CurrentView.DragStopped += Unsubscribe;
         void Unsubscribe()
         {
             KeyboardProvider.OnMouseDrag -= OnMouseDrag;
-            CurrentView.ViewStopDragging -= Unsubscribe;
+            CurrentView.DragStopped -= Unsubscribe;
         }
     }
 
     public void Dispose()
     {
         ViewLocator.Views.Remove(this);
-        CurrentView.ViewClosed -= CurrentViewClosed;
+        CurrentView.Closed -= CurrentViewClosed;
     }
 
 }

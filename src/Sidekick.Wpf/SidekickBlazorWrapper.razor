@@ -1,113 +1,23 @@
-@using Microsoft.AspNetCore.Components.Routing
-@using Microsoft.Extensions.Logging
 @using Sidekick.Common.Ui.Views
 
-@if (Ready)
-{
-    <Sidekick.Common.Ui.Main />
-}
+<Sidekick.Common.Ui.Main/>
 
 @inject ICurrentView CurrentView
 @inject NavigationManager NavigationManager
-@inject ILogger<SidekickBlazorWrapper> Logger
-@implements IDisposable
 
 @code {
 
     [Parameter]
     public required MainWindow Window { get; set; }
 
-    private bool Ready { get; set; }
-
-    private bool ShouldInitialize { get; set; }
-
-    protected override void OnInitialized()
+    protected override void OnAfterRender(bool firstRender)
     {
-        Ready = Window.Url == "/";
-        Window.ViewOpened += WindowViewOpened;
-        CurrentView.ViewInitialized += CurrentViewInitialized;
-        CurrentView.ViewMinimized += CurrentViewMinimized;
-        CurrentView.ViewMaximized += CurrentViewMaximized;
-        CurrentView.ViewClosed += CurrentViewClosed;
-        NavigationManager.LocationChanged += NavigationManagerOnLocationChanged;
-
-        WindowViewOpened();
-
-        base.OnInitialized();
-    }
-
-    private void WindowViewOpened()
-    {
-        if (string.IsNullOrEmpty(Window.Url)) return;
-
-        InvokeAsync(() =>
+        if (firstRender)
         {
-            var uri = new Uri(NavigationManager.Uri);
-            if (uri.PathAndQuery == Window.Url)
-            {
-                Window.InitializeView(CurrentView);
-            }
-            else
-            {
-                ShouldInitialize = true;
-                NavigationManager.NavigateTo(Window.Url);
-            }
-        });
-    }
-
-    private void CurrentViewInitialized()
-    {
-        Window.InitializeView(CurrentView);
-    }
-
-    private void CurrentViewMinimized()
-    {
-        Window.MinimizeView();
-    }
-
-    private void CurrentViewMaximized()
-    {
-        Window.MaximizeView();
-    }
-
-    private void CurrentViewClosed()
-    {
-        Window.CloseView();
-
-        InvokeAsync(() =>
-        {
-            NavigationManager.NavigateTo("/empty");
-        });
-    }
-
-    private void NavigationManagerOnLocationChanged(object? sender, LocationChangedEventArgs e)
-    {
-        Logger.LogInformation("Navigated to: " + e.Location);
-        if (Ready)
-        {
-            if (ShouldInitialize)
-            {
-                Window.InitializeView(CurrentView);
-            }
-
-            return;
+            Window.BlazorReady(CurrentView, NavigationManager);
         }
-
-        InvokeAsync(() =>
-        {
-            Ready = true;
-            StateHasChanged();
-        });
-    }
-
-    public void Dispose()
-    {
-        Window.ViewOpened -= WindowViewOpened;
-        CurrentView.ViewInitialized -= CurrentViewInitialized;
-        CurrentView.ViewMinimized -= CurrentViewMinimized;
-        CurrentView.ViewMaximized -= CurrentViewMaximized;
-        CurrentView.ViewClosed -= CurrentViewClosed;
-        NavigationManager.LocationChanged -= NavigationManagerOnLocationChanged;
+        
+        base.OnAfterRender(firstRender);
     }
 
 }

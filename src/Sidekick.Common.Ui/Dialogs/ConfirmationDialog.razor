@@ -33,16 +33,6 @@
     [Parameter]
     public string? Message { get; set; }
 
-    protected override void OnInitialized()
-    {
-        CurrentView.Initialize(new ViewOptions()
-        {
-            Width = 400,
-            Height = 220,
-        });
-        base.OnInitialized();
-    }
-
     private void Yes()
     {
         Service.SetConfirmationResult(true);

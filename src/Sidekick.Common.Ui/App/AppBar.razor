@@ -2,39 +2,19 @@
     <AppDragHandle Class="py-2 pl-4 flex grow self-stretch">
         <h1 class="font-medium leading-none text-lg flex items-center gap-4 select-none">
             <img src="/images/orbs/ExaltedOrb.png" alt="logo" class="w-6 h-6" />
-            <span>Sidekick@(!string.IsNullOrEmpty(CurrentView.Options?.Title) ? $" {CurrentView.Options.Title}" : "")</span>
+            <span>Sidekick</span>
         </h1>
     </AppDragHandle>
 
     <div class="ml-auto flex flex-nowrap self-stretch items-stretch">
         <AppUpdate />
-        <AppHome />
         @ChildContent
     </div>
 </div>
-
-@implements IDisposable
-@inject ICurrentView CurrentView
 
 @code {
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
-
-    protected override void OnInitialized()
-    {
-        CurrentView.ViewInitialized += CurrentViewInitialized;
-        base.OnInitialized();
-    }
-
-    private void CurrentViewInitialized()
-    {
-        InvokeAsync(StateHasChanged);
-    }
-
-    public void Dispose()
-    {
-        CurrentView.ViewInitialized -= CurrentViewInitialized;
-    }
 
 }

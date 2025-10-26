@@ -90,11 +90,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        CurrentView.Initialize(new ViewOptions()
-        {
-            Title = Resources["Trade"],
-        });
-
         await base.OnInitializedAsync();
         LeftContentWidth = await SettingsService.GetInt(SettingKeys.PriceCheckSidebarWidth);
     }

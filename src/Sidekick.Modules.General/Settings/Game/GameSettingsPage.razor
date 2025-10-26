@@ -1,8 +1,6 @@
 @using Microsoft.Extensions.Localization
-@using Sidekick.Apis.Poe.Languages
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Settings
-@using Sidekick.Common.Ui.Views
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.App
 @using Sidekick.Common.Ui.Buttons
@@ -12,7 +10,6 @@
 @using Sidekick.Common.Ui.Localization
 @using Sidekick.Modules.General.Settings.Components
 @using Sidekick.Common.Ui.Settings
-@inject IApplicationService ApplicationService
 
 <LayoutMenu>
     <AppContainer>
@@ -56,12 +53,11 @@
 </LayoutMenu>
 
 @page "/settings/game"
+@inject IApplicationService ApplicationService
 @inject IStringLocalizer<SettingsResources> SettingResources
 @inject IStringLocalizer<UiResources> UiResources
 @inject IStringLocalizer<GeneralResources> Resources
-@inject ICurrentView CurrentView
 @inject ISettingsService SettingsService
-@inject IGameLanguageProvider LanguageProvider
 @inject ICacheProvider CacheProvider
 @inject NavigationManager NavigationManager
 @implements IDisposable
@@ -88,8 +84,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        CurrentView.Initialize(new ViewOptions());
-
         SettingsService.OnSettingsChanged += CheckIfSettingsAreModified;
 
         CheckIfSettingsAreModified(SettingKeysUsed);

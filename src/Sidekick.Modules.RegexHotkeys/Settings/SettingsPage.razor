@@ -32,7 +32,6 @@
 @inject IStringLocalizer<RegexHotkeysResources> Resources
 @inject IStringLocalizer<UiResources> UiResources
 @inject IBrowserProvider Browser
-@inject ICurrentView CurrentView
 @inject ISettingsService SettingsService
 @implements IDisposable
 
@@ -51,8 +50,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        CurrentView.Initialize(new ViewOptions());
-
         SettingsService.OnSettingsChanged += CheckIfSettingsAreModified;
 
         CheckIfSettingsAreModified(SettingKeysUsed);

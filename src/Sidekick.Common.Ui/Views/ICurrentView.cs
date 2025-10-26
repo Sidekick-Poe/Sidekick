@@ -5,54 +5,45 @@ namespace Sidekick.Common.Ui.Views;
 /// </summary>
 public interface ICurrentView
 {
+    public const int DialogWidth = 400;
+    public const int DialogHeight = 220;
+    
     /// <summary>
-    /// An event that is triggered when a view is initialized with specific options.
+    /// An event that is triggered when a view is updated with specific options.
     /// </summary>
-    event Action? ViewInitialized;
+    event Action? OptionsChanged;
 
     /// <summary>
     /// An event that is triggered when a view is minimized.
     /// </summary>
-    event Action? ViewMinimized;
+    event Action? Minimized;
 
     /// <summary>
     /// An event that is triggered when a view is maximized.
     /// </summary>
-    event Action? ViewMaximized;
+    event Action? Maximized;
 
     /// <summary>
     /// An event that is triggered when a view is closed.
     /// </summary>
-    event Action? ViewClosed;
+    event Action? Closed;
 
     /// <summary>
     /// An event that is triggered when the view starts being dragged.
     /// </summary>
-    event Action<int, int>? ViewStartDragging;
+    event Action<int, int>? DragStarted;
 
     /// <summary>
     /// An event that is triggered when the view stops being dragged.
     /// </summary>
-    event Action? ViewStopDragging;
+    event Action? DragStopped;
 
-    /// <summary>
-    /// Gets the options specifying the configuration of the current view.
-    /// Includes properties such as title, dimensions, and constraints.
-    /// </summary>
-    ViewOptions Options { get; }
-
-    /// <summary>
-    /// Gets a value indicating whether the view is currently being dragged.
-    /// </summary>
-    bool IsDragging { get; }
-
-    /// <summary>
-    /// Initializes the current view with the specified options.
-    /// </summary>
-    /// <param name="options">The options used to initialize the view.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    void Initialize(ViewOptions options);
-
+    int? Width { get; }
+    
+    int? Height { get; }
+    
+    void UpdateOptions(int? width, int? height);
+    
     /// <summary>
     /// Minimizes the view.
     /// </summary>
