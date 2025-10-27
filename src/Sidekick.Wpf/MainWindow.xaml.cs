@@ -128,8 +128,13 @@ public partial class MainWindow
             switch (ViewType)
             {
                 case SidekickViewType.Overlay:
+                    #if DEBUG
+                    Topmost = false;
+                    ShowInTaskbar = true;
+                    #else
                     Topmost = true;
                     ShowInTaskbar = false;
+                    #endif
                     ResizeMode = ResizeMode.CanResize;
                     break;
 
