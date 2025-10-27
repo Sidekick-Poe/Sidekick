@@ -41,8 +41,8 @@ public partial class MainWindow
         scope = Program.ServiceProvider.CreateScope();
         Resources.Add("services", scope.ServiceProvider);
 
-        ViewType = viewType;
         Title = "Sidekick";
+        ViewType = viewType;
         Width = 0;
         Height = 0;
         Opacity = 0;
@@ -56,8 +56,6 @@ public partial class MainWindow
                 "Window", this
             },
         };
-
-        Show();
     }
 
     public async Task OpenView(string url)
@@ -68,7 +66,7 @@ public partial class MainWindow
         CloseOnBlur = await settingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
         OriginalFocusedWindow = User32.GetForegroundWindow();
 
-        await Dispatcher.InvokeAsync(() =>
+        await Dispatch(async () =>
         {
             Show();
 
@@ -76,12 +74,12 @@ public partial class MainWindow
             else Navigate(url);
 
             Activate();
-            CurrentViewOptionsChanged();
+            await NormalizeView();
 
             // Attempt to set focus back to the original window
             if (ViewType == SidekickViewType.Overlay && !CloseOnBlur && OriginalFocusedWindow != IntPtr.Zero)
             {
-                User32.SetForegroundWindow(OriginalFocusedWindow);
+                //User32.SetForegroundWindow(OriginalFocusedWindow);
             }
         });
     }
@@ -90,7 +88,7 @@ public partial class MainWindow
     {
         logger.LogInformation("[MainWindow] Closing view");
 
-        Dispatcher.InvokeAsync(async () =>
+        _ = Dispatch(async () =>
         {
             Navigate("/empty");
             await SavePosition();
@@ -106,7 +104,7 @@ public partial class MainWindow
     {
         logger.LogInformation("[MainWindow] Blazor ready");
 
-        Dispatcher.Invoke(() =>
+        _ = Dispatch(async () =>
         {
             IsReady = true;
 
@@ -125,56 +123,20 @@ public partial class MainWindow
             WebView.Visibility = Visibility.Visible;
             SetWebViewDebugging();
 
-            switch (ViewType)
-            {
-                case SidekickViewType.Overlay:
-                    Topmost = true;
-                    ShowInTaskbar = false;
-                    ResizeMode = ResizeMode.CanResize;
-                    break;
-
-                case SidekickViewType.Modal:
-                    Topmost = true;
-                    ShowInTaskbar = true;
-                    ResizeMode = ResizeMode.NoResize;
-                    break;
-
-                case SidekickViewType.Standard:
-                    Topmost = false;
-                    ShowInTaskbar = true;
-                    ResizeMode = ResizeMode.CanResize;
-                    break;
-            }
+            await NormalizeView();
         });
-
-        CurrentViewOptionsChanged();
     }
 
     private void CurrentViewOptionsChanged()
     {
-        Dispatcher.InvokeAsync(async () =>
-        {
-            if (View is
-                {
-                    Width: not null,
-                    Height: not null,
-                })
-            {
-                ResizeMode = ResizeMode.NoResize;
-            }
-
-            if (WindowState == WindowState.Normal)
-            {
-                await NormalizeView();
-            }
-        });
+        _ = Dispatch(NormalizeView);
     }
 
     private void MinimizeView()
     {
         logger.LogInformation("[MainWindow] Minimizing view");
 
-        Dispatcher.InvokeAsync(async () =>
+        _ = Dispatch(async () =>
         {
             await SavePosition();
             WindowState = WindowState.Minimized;
@@ -185,7 +147,7 @@ public partial class MainWindow
     {
         logger.LogInformation("[MainWindow] Maximizing view");
 
-        Dispatcher.InvokeAsync(async () =>
+        _ = Dispatch(async () =>
         {
             if (WindowState == WindowState.Normal)
             {
@@ -203,6 +165,32 @@ public partial class MainWindow
     {
         logger.LogInformation("[MainWindow] Normalizing view");
 
+        switch (ViewType)
+        {
+            case SidekickViewType.Overlay:
+#if DEBUG
+                Topmost = false;
+                ShowInTaskbar = true;
+#else
+                Topmost = true;
+                ShowInTaskbar = false;
+#endif
+                ResizeMode = ResizeMode.CanResize;
+                break;
+
+            case SidekickViewType.Modal:
+                Topmost = true;
+                ShowInTaskbar = true;
+                ResizeMode = ResizeMode.NoResize;
+                break;
+
+            case SidekickViewType.Standard:
+                Topmost = false;
+                ShowInTaskbar = true;
+                ResizeMode = ResizeMode.CanResize;
+                break;
+        }
+
         var viewPreferenceService = scope.ServiceProvider.GetRequiredService<IViewPreferenceService>();
         var settingsService = scope.ServiceProvider.GetRequiredService<ISettingsService>();
         var preferences = await viewPreferenceService.Get(ViewType.ToString());
@@ -219,6 +207,7 @@ public partial class MainWindow
             logger.LogInformation("[MainWindow] View has fixed dimensions");
 
             WindowState = WindowState.Normal;
+            ResizeMode = ResizeMode.NoResize;
 
             MinHeight = (View.Height.Value + 20) * zoom;
             Height = MinHeight;
@@ -390,6 +379,21 @@ public partial class MainWindow
         // Set focus to the fake window before closing it
         helperWindow.Activate();
         helperWindow.Close();
+    }
+
+    private async Task Dispatch(Func<Task> action)
+    {
+        await Dispatcher.InvokeAsync(async () =>
+        {
+            try
+            {
+                await action();
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e, "[MainWindow] Error dispatching");
+            }
+        });
     }
 
     protected override void OnSourceInitialized(EventArgs e)

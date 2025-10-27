@@ -9,4 +9,6 @@ public class ScoutItem
     public string? CategoryApiId { get; set; }
     public string? IconUrl { get; set; }
     public bool IsCurrency { get; set; }
+    
+    public override string ToString() => Text ?? Name ?? Type ?? "";
 }

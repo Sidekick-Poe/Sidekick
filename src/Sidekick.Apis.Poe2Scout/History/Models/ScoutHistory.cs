@@ -5,4 +5,12 @@ public class ScoutHistory
     public List<ScoutHistoryLog>? Exalted { get; init; }
     public List<ScoutHistoryLog>? Chaos { get; init; }
     public List<ScoutHistoryLog>? Divine { get; init; }
+    
+    public bool IsValid
+    {
+        get
+        {
+            return Exalted?.Any() ?? false;
+        }
+    }
 }

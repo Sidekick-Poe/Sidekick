@@ -92,6 +92,12 @@ public class ApiItemProvider
             information.InvariantText = apiData?.Text;
             information.Image = apiData?.Image;
 
+            if (string.IsNullOrEmpty(information.InvariantText) && gameLanguageProvider.IsEnglish())
+            {
+                information.InvariantName = entry.Name;
+                information.InvariantText = entry.Text;
+            }
+
             if (!string.IsNullOrEmpty(information.Name))
             {
                 if (!NameDictionary.TryGetValue(information.Name, out var namePatterns))
