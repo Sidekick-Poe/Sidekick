@@ -8,6 +8,7 @@ using Sidekick.Apis.Poe.Trade.Leagues;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Apis.Poe.Trade.Parser.ApiInformation;
 using Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
@@ -34,6 +35,7 @@ public static class StartupExtensions
         services.AddSingleton<IBulkTradeService, BulkTradeService>();
         services.AddSingleton<IModifierParser, ModifierParser>();
         services.AddSingleton<IFuzzyService, FuzzyService>();
+        services.AddSingleton<IApiInformationParser, ApiInformationParser>();
 
         services.AddSidekickInitializableService<IItemParser, ItemParser>();
         services.AddSidekickInitializableService<IPropertyParser, PropertyParser>();
