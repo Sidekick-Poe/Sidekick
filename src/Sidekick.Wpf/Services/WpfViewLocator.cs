@@ -55,9 +55,12 @@ public class WpfViewLocator : IViewLocator, IDisposable
         if (window != null) return window;
         if (!create) return null;
 
-        window = new MainWindow(type, logger);
-        Windows.Add(type, window);
-        return window;
+        return System.Windows.Application.Current.Dispatcher.InvokeAsync(() =>
+        {
+            window = new MainWindow(type, logger);
+            Windows.Add(type, window);
+            return window;
+        }).Result;
     }
 
     public void Close(SidekickViewType type)
