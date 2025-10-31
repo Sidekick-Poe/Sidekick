@@ -5,6 +5,7 @@
 @using Sidekick.Common.Browser
 @using Sidekick.Common.Exceptions
 @using Velopack
+@using Sidekick.Common.Updater.Localization
 @using Sidekick.Common.Platform
 
 <LayoutSimple>
@@ -83,7 +84,7 @@
              Height="@(UpdateInfo != null && !Updating ? 500 : ICurrentView.DialogHeight)"/>
 
 @inject ILogger<Update> Logger
-@inject IStringLocalizer<Update> Resources
+@inject IStringLocalizer<UpdateResources> Resources
 @inject IApplicationService ApplicationService
 @inject IAutoUpdater AutoUpdater
 @inject IBrowserProvider BrowserProvider
