@@ -1,0 +1,28 @@
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Common.Browser
+
+<ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenPoeDb">
+    <Icon Svg="@UiIcons.External"/> @(Item.Game == GameType.PathOfExile ? "poedb.tw" : "poe2db.tw")
+</ButtonLink>
+
+@inject IBrowserProvider BrowserProvider
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    public void OpenPoeDb()
+    {
+        var poeDbBaseUri = "https://poedb.tw/";
+        var poe2DbBaseUri = "https://poe2db.tw/";
+        var poeDbSubUrl = "search?q=";
+        var searchLink = Item.ApiInformation.Name ?? Item.ApiInformation.Type;
+        var baseUrl = Item.Game == GameType.PathOfExile ? poeDbBaseUri : poe2DbBaseUri;
+        var wikiLink = poeDbSubUrl + searchLink?.Replace(" ", "+");
+        var uri = new Uri(baseUrl + wikiLink);
+
+        BrowserProvider.OpenUri(uri);
+    }
+
+}

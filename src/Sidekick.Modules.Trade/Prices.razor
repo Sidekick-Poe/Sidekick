@@ -10,6 +10,7 @@
 @using Sidekick.Modules.Trade.Trade
 @using Sidekick.Modules.Trade.Trade.Filters
 @using Sidekick.Modules.Trade.Unique
+@using Sidekick.Modules.Trade.Wiki
 @using Sidekick.Modules.Trade.Settings
 
 <LayoutTwoColumn LeftContentWidth="@LeftContentWidth" OnLeftContentResize="@OnLeftContentResize">
@@ -42,6 +43,7 @@
                                 <UniqueTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <ExchangeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <TradeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
+                                <WikiTab/>
                             </ChildContent>
                             <RightContent>
                                 <li>

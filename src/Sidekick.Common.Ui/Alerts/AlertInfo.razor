@@ -1,5 +1,5 @@
-﻿<div class="flex flex-nowrap gap-2 items-center w-full bg-violet-600 p-2 text-white">
-    <Icon Svg="@UiIcons.Warning" Size="@UiIconSize.Medium" />
+﻿<div class="@Class">
+    <Icon Svg="@UiIcons.Warning" Size="@UiIconSize.Medium"/>
     <div class="grow">
         @ChildContent
     </div>
@@ -9,5 +9,17 @@
 
     [Parameter]
     public required RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public bool Flat { get; set; }
+
+    private string Class
+    {
+        get
+        {
+            if (Flat) return "flex flex-nowrap gap-2 items-center w-full text-violet-400 p-2 bg-transparent";
+            return "flex flex-nowrap gap-2 items-center w-full bg-violet-600 p-2 text-white";
+        }
+    }
 
 }
