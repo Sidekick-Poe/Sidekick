@@ -1,0 +1,40 @@
+﻿@using Sidekick.Common.Ui.Tabs
+@using Sidekick.Modules.Trade.Wiki.Localization
+@using Sidekick.Apis.Poe.Items
+
+<Popover Placement="TooltipPlacement.TopRight">
+    <PopoverAnchor>
+        <TabItem EndIcon="@UiIcons.ChevronDown"
+                 Text="@Resources["Wiki"]"/>
+    </PopoverAnchor>
+    <PopoverContent>
+        <div class="flex flex-col">
+            <PoeWikiButton/>
+            <PoeDbButton/>
+        </div>
+    </PopoverContent>
+</Popover>
+
+@inject IStringLocalizer<WikiResources> Resources
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    public void OpenCraftOfExile()
+    {
+        // var game = Item.Header.Game;
+
+        // var gameParam = game == GameType.PathOfExile ? "poe1" : "poe2";
+        // var encodedItemText = Uri.EscapeDataString(Item.Text);
+
+        // var uriBuilder = new UriBuilder("https://craftofexile.com/")
+        //     {
+        //         Query = $"game={gameParam}&eimport={encodedItemText}"
+        //     };
+
+        // browserProvider.OpenUri(uriBuilder.Uri);
+    }
+
+}

@@ -1,0 +1,28 @@
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Common.Browser
+
+<ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenWiki">
+    <Icon Svg="@UiIcons.External"/> @(Item.Game == GameType.PathOfExile ? "poewiki.net" : "poe2wiki.net")
+</ButtonLink>
+
+@inject IBrowserProvider BrowserProvider
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    public void OpenWiki()
+    {
+        var poeWikiBaseUri = "https://www.poewiki.net/";
+        var poe2WikiBaseUri = "https://www.poe2wiki.net/";
+        var poeWikiSubUrl = "w/index.php?search=";
+        var searchLink = Item.ApiInformation.Name ?? Item.ApiInformation.Type;
+        var baseUrl = Item.Game == GameType.PathOfExile ? poeWikiBaseUri : poe2WikiBaseUri;
+        var wikiLink = poeWikiSubUrl + searchLink?.Replace(" ", "+");
+        var uri = new Uri(baseUrl + wikiLink);
+
+        BrowserProvider.OpenUri(uri);
+    }
+
+}

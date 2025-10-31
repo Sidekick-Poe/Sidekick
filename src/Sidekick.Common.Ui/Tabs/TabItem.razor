@@ -2,10 +2,14 @@
 {
     <li>
         <button type="button"
-                class="inline-block px-2 py-1 text-violet-400 bg-stone-700 rounded-t-lg active"
+                class="flex items-center flex-nowrap gap-1 px-2 py-1 text-violet-400 bg-stone-700 rounded-t-lg active"
                 @onclick="() => OnClick.InvokeAsync()"
                 @onclick:preventDefault="true">
             <TextBase>@Text</TextBase>
+            @if (!string.IsNullOrEmpty(EndIcon))
+            {
+                <Icon Svg="@EndIcon" Size="UiIconSize.Small" />
+            }
         </button>
     </li>
 }
@@ -13,10 +17,14 @@ else
 {
     <li>
         <button type="button"
-                class="inline-block px-2 py-1 rounded-t-lg dark:hover:bg-stone-600 hover:text-gray-300 transition-colors duration-200"
+                class="flex items-center flex-nowrap gap-1 px-2 py-1 rounded-t-lg dark:hover:bg-stone-600 hover:text-gray-300 transition-colors duration-200"
                 @onclick="() => OnClick.InvokeAsync()"
                 @onclick:preventDefault="true">
             <TextBase>@Text</TextBase>
+            @if (!string.IsNullOrEmpty(EndIcon))
+            {
+                <Icon Svg="@EndIcon" Size="UiIconSize.Small" />
+            }
         </button>
     </li>
 }
@@ -27,6 +35,9 @@ else
 
     [Parameter]
     public required string Text { get; set; }
+
+    [Parameter]
+    public string? EndIcon { get; set; }
 
     [Parameter]
     public EventCallback OnClick { get; set; }
