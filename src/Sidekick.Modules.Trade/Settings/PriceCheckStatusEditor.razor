@@ -1,5 +1,3 @@
-@using Sidekick.Apis.Poe.Extensions
-@using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Trade.Trade.Requests
 @using Sidekick.Modules.Trade.Localization
 @using Sidekick.Common.Settings
@@ -26,63 +24,33 @@
 
     private List<SelectOption> Options { get; set; } = new();
 
-    private string SettingKey { get; set; } = SettingKeys.PriceCheckStatusPoE1;
-
     protected override async Task OnInitializedAsync()
     {
-        var game = await SettingsService.GetGame();
-        SettingKey = game == GameType.PathOfExile ? SettingKeys.PriceCheckStatusPoE1 : SettingKeys.PriceCheckStatusPoE2;
-
-        Value = await SettingsService.GetString(SettingKey);
+        Value = await SettingsService.GetString(SettingKeys.PriceCheckStatus);
         SettingsService.OnSettingsChanged += OnSettingsChanged;
-
-        if (game == GameType.PathOfExile2)
-        {
-            Options =
-            [
-                new()
-                {
-                    Label = Resources["Player_Status_Available"],
-                    Value = Status.Available,
-                },
-                new()
-                {
-                    Label = Resources["Player_Status_Securable"],
-                    Value = Status.Securable,
-                },
-                new()
-                {
-                    Label = Resources["Player_Status_Online"],
-                    Value = Status.Online,
-                },
-                new()
-                {
-                    Label = Resources["Player_Status_Any"],
-                    Value = Status.Any,
-                },
-            ];
-        }
-        else
-        {
-            Options =
-            [
-                new()
-                {
-                    Label = Resources["Player_Status_Online"],
-                    Value = Status.Online,
-                },
-                new()
-                {
-                    Label = Resources["Player_Status_OnlineLeague"],
-                    Value = Status.OnlineLeague,
-                },
-                new()
-                {
-                    Label = Resources["Player_Status_Any"],
-                    Value = Status.Any,
-                },
-            ];
-        }
+        Options =
+        [
+            new()
+            {
+                Label = Resources["Player_Status_Available"],
+                Value = Status.Available,
+            },
+            new()
+            {
+                Label = Resources["Player_Status_Securable"],
+                Value = Status.Securable,
+            },
+            new()
+            {
+                Label = Resources["Player_Status_Online"],
+                Value = Status.Online,
+            },
+            new()
+            {
+                Label = Resources["Player_Status_Any"],
+                Value = Status.Any,
+            },
+        ];
 
         await base.OnInitializedAsync();
     }
@@ -90,14 +58,14 @@
     private async Task ValueChanged(string? value)
     {
         Value = value;
-        await SettingsService.Set(SettingKey, value);
+        await SettingsService.Set(SettingKeys.PriceCheckStatus, value);
     }
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (!keys.Contains(SettingKey)) return;
+        if (!keys.Contains(SettingKeys.PriceCheckStatus)) return;
 
-        Value = await SettingsService.GetString(SettingKey);
+        Value = await SettingsService.GetString(SettingKeys.PriceCheckStatus);
         await InvokeAsync(StateHasChanged);
     }
 
