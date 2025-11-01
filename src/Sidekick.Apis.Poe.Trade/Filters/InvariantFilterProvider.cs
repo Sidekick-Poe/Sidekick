@@ -21,6 +21,7 @@ public class InvariantFilterProvider
     public FilterDefinition? VeiledDefinition { get; private set; }
     public FilterDefinition? FracturedDefinition { get; private set; }
     public FilterDefinition? MirroredDefinition { get; private set; }
+    public FilterDefinition? FoulbornDefinition { get; private set; }
     public FilterDefinition? SanctifiedDefinition { get; private set; }
 
     /// <inheritdoc/>
@@ -76,6 +77,15 @@ public class InvariantFilterProvider
                 if (category.Id == "misc_filters" && filter.Id == "mirrored")
                 {
                     MirroredDefinition = new FilterDefinition()
+                    {
+                        CategoryId = category.Id,
+                        FilterId = filter.Id,
+                    };
+                }
+
+                if (category.Id == "misc_filters" && filter.Id == "foulborn_item")
+                {
+                    FoulbornDefinition = new FilterDefinition()
                     {
                         CategoryId = category.Id,
                         FilterId = filter.Id,

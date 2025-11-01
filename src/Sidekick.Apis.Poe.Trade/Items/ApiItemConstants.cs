@@ -23,6 +23,8 @@ public class ApiItemConstants
         { "tincture", Category.Tincture },
         { "corpse", Category.Corpse },
         { "idol", Category.Idol },
+        { "graft", Category.Graft },
+        { "wombgift", Category.Wombgift },
     };
 
     public static readonly Dictionary<string, Category> Poe2Categories = new()

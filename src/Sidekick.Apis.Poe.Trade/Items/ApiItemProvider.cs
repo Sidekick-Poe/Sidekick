@@ -24,7 +24,7 @@ public class ApiItemProvider
     IApiStaticDataProvider apiStaticDataProvider
 ) : IApiItemProvider
 {
-    public Dictionary<string, List<(Regex Regex, ItemApiInformation Item)>> NameDictionary { get; private set; } = [];
+    public List<(Regex Regex, ItemApiInformation Item)> NamePatterns { get; private set; } = [];
 
     public List<(Regex Regex, ItemApiInformation Item)> TypePatterns { get; private set; } = [];
 
@@ -45,8 +45,7 @@ public class ApiItemProvider
         if (result == null) throw new SidekickException("Could not fetch items from the trade API.");
 
         InitializeItems(game, result);
-        UniqueItems = NameDictionary.SelectMany(x => x.Value)
-            .Select(x => x.Item)
+        UniqueItems = NamePatterns.Select(x => x.Item)
             .Where(x => x.IsUnique)
             .OrderByDescending(x => x.Name?.Length)
             .ToList();
@@ -57,7 +56,7 @@ public class ApiItemProvider
 
     private void InitializeItems(GameType game, FetchResult<ApiCategory> result)
     {
-        NameDictionary.Clear();
+        NamePatterns.Clear();
         TypePatterns.Clear();
         TextPatterns.Clear();
 
@@ -100,13 +99,8 @@ public class ApiItemProvider
 
             if (!string.IsNullOrEmpty(information.Name))
             {
-                if (!NameDictionary.TryGetValue(information.Name, out var namePatterns))
-                {
-                    namePatterns = new List<(Regex Regex, ItemApiInformation Item)>();
-                    NameDictionary.Add(information.Name, namePatterns);
-                }
-
-                namePatterns.Add((new Regex(Regex.Escape(information.Name)), information));
+                var regex = $"^{Regex.Escape(information.Name)}|{Regex.Escape(information.Name)}$";
+                NamePatterns.Add((new Regex(regex), information));
             }
 
             if (!string.IsNullOrEmpty(information.Type) && !information.IsUnique)

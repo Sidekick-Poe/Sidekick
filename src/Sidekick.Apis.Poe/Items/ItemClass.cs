@@ -199,4 +199,10 @@ public enum ItemClass
 
     [EnumValue("idol")]
     Idol,
+
+    [EnumValue("graft")]
+    Graft,
+
+    [EnumValue("wombgift")]
+    Wombgift,
 }

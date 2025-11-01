@@ -55,4 +55,7 @@ public class MiscFilters
 
     [JsonPropertyName("sanctified")]
     public SearchFilterOption? Sanctified { get; set; }
+
+    [JsonPropertyName("foulborn_item")]
+    public SearchFilterOption? Foulborn { get; set; }
 }

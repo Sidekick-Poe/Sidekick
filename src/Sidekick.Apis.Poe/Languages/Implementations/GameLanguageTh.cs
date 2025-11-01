@@ -145,6 +145,8 @@ public class GameLanguageTh : IGameLanguage
         Tinctures = "ยาเคลือบอาวุธ",
         Corpses = "ศพ",
         SanctumResearch = "บทวิจัยเทวสถาน",
+        Grafts = "หัตถ์",
+        Wombgifts = "ผลฝากครรภ์",
     };
 }
 

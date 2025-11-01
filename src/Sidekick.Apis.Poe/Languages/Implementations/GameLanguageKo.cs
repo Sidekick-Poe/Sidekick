@@ -145,6 +145,8 @@ public class GameLanguageKo : IGameLanguage
         Tinctures = "팅크",
         Corpses = "시신",
         SanctumResearch = "성역 연구",
+        Grafts = "기생체",
+        Wombgifts = "생명의 결실",
     };
 }
 

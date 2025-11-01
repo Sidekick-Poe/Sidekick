@@ -19,14 +19,13 @@ public class ApiInformationParser(IApiItemProvider apiItemProvider) : IApiInform
         name = rarity is Rarity.Rare or Rarity.Magic ? null : name;
 
         ItemApiInformation? result = null;
-        if (!string.IsNullOrEmpty(name) && apiItemProvider.NameDictionary.TryGetValue(name, out var nameEntry))
-        {
-            result ??= string.IsNullOrEmpty(name) ? null :
-                nameEntry.Where(pattern => pattern.Regex.IsMatch(name))
-                    .Select(x => x.Item)
-                    .OrderByDescending(x => x.Type == type ? 1 : 0)
-                    .FirstOrDefault();
-        }
+
+        result ??= string.IsNullOrEmpty(name) ? null :
+            apiItemProvider.NamePatterns.Where(pattern => pattern.Regex.IsMatch(name))
+                .Select(x => x.Item)
+                .OrderByDescending(x => x.Name == name ? 1 : 0)
+                .ThenByDescending(x => x.Type == type ? 1 : 0)
+                .FirstOrDefault();
 
         result ??= string.IsNullOrEmpty(type) ? null :
             apiItemProvider.TextPatterns.Where(pattern => pattern.Regex.IsMatch(type))

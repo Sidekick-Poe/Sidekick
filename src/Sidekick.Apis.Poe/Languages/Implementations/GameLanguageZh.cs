@@ -145,6 +145,8 @@ public class GameLanguageZh : IGameLanguage
         Tinctures = "萃取物",
         Corpses = "屍體",
         SanctumResearch = "聖域研究",
+        Grafts = "",
+        Wombgifts = "",
     };
 }
 

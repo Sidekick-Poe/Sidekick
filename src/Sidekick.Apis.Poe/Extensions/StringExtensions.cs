@@ -43,14 +43,14 @@ public static class StringExtensions
             _ => GameType.PathOfExile,
         };
     }
-    
-    private static readonly Regex parseCategoryPattern = new(@" \((?:implicit|enchant|crafted|veiled|fractured|scourge|crucible|rune|desecrated)\)");
+
+    private static readonly Regex parseCategoryPattern = new(@" \((?:implicit|enchant|crafted|veiled|fractured|scourge|crucible|rune|desecrated|mutated)\)");
 
     public static string RemoveCategory(this string text)
     {
         return parseCategoryPattern.Replace(text, string.Empty);
     }
-    
+
     public static ModifierCategory ParseCategory(this string text)
     {
         var match = parseCategoryPattern.Match(text);
@@ -71,6 +71,7 @@ public static class StringExtensions
             "crucible" => ModifierCategory.Crucible,
             "rune" => ModifierCategory.Rune,
             "desecrated" => ModifierCategory.Desecrated,
+            "mutated" => ModifierCategory.Mutated,
             _ => ModifierCategory.Undefined,
         };
     }

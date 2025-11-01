@@ -48,4 +48,5 @@ Item Level: 61
         actual.AssertHasModifier(ModifierCategory.Explicit, "+#% to Lightning Resistance", 14);
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% of Physical Attack Damage Leeched as Mana", 0.23);
     }
+
 }

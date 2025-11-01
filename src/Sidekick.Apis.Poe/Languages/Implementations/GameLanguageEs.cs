@@ -145,6 +145,8 @@ public class GameLanguageEs : IGameLanguage
         Tinctures = "Tinturas",
         Corpses = "Cadáveres",
         SanctumResearch = "Investigación del santuario",
+        Grafts = "Injertos",
+        Wombgifts = "Regalos del vientre",
     };
 }
 

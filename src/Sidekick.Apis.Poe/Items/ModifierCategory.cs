@@ -77,6 +77,7 @@ public enum ModifierCategory
     Unidentified = 102,
     WhiteText = 103,
     GrayText = 104,
+    Mutated = 105,
 
     // Logbook modifiers
     DruidsOfTheBrokenCircle = 201,

@@ -14,7 +14,7 @@ public class RequiresDexterityProperty(IGameLanguageProvider gameLanguageProvide
 
     private Regex RequiresPattern { get; } = new($@"^{gameLanguageProvider.Language.DescriptionRequires}.*?(\d+)\s*{gameLanguageProvider.Language.DescriptionRequiresDex}");
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Flask];
+    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Flask, Category.Graft];
 
     public override void Parse(Item item)
     {
