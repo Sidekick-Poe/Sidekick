@@ -43,11 +43,45 @@ Can grow into a Currency item on the Genesis Tree
 Place this item into an allocated currency item womb on the Genesis Tree. Right click to retrieve from the Genesis Tree.
 ");
 
-        Assert.Equal(ItemClass.Unknown, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Wombgift, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal(Category.Wombgift, actual.ApiInformation.Category);
         Assert.Equal("Lavish Wombgift", actual.ApiInformation.Type);
         Assert.Equal(34, actual.Properties.ItemLevel);
+    }
+
+    [Fact]
+    public void Graft()
+    {
+        var actual = parser.ParseItem(@"Item Class: Grafts
+Rarity: Rare
+Quiet Coma
+Freezing Tulgraft
+--------
+Graftblood: 416/865
+--------
+Requirements:
+Level: 29
+--------
+Item Level: 37
+--------
+10% chance to Freeze (implicit)
+Uses level 11 Falling Crystals (implicit)
+--------
++12% to Global Critical Strike Multiplier
+10% increased Graftblood gained
+Skills used by this Graft have 17% increased Cooldown Recovery Rate
+Skills used by this Graft deal 56% increased Damage
+--------
+Graft items can only be modified by Implant currencies.
+");
+
+        Assert.Equal(ItemClass.Graft, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal(Category.Graft, actual.ApiInformation.Category);
+        Assert.Equal("Freezing Tulgraft", actual.ApiInformation.Type);
+        Assert.Equal(37, actual.Properties.ItemLevel);
+        Assert.Equal(29, actual.Properties.RequiresLevel);
     }
 
     [Fact]
