@@ -145,6 +145,8 @@ public class GameLanguageFr : IGameLanguage
         Tinctures = "Teintures",
         Corpses = "Cadavres",
         SanctumResearch = "Recherche du Sanctuaire",
+        Grafts = "Greffons",
+        Wombgifts = "Dons de la matrice",
     };
 }
 

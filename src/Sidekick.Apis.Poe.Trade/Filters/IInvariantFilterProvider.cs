@@ -9,5 +9,6 @@ public interface IInvariantFilterProvider : IInitializableService
     FilterDefinition? VeiledDefinition { get; }
     FilterDefinition? FracturedDefinition { get; }
     FilterDefinition? MirroredDefinition { get; }
+    FilterDefinition? FoulbornDefinition { get; }
     FilterDefinition? SanctifiedDefinition { get; }
 }

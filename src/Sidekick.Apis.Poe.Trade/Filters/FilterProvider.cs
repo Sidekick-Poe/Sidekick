@@ -32,6 +32,8 @@ public class FilterProvider
 
     public ApiFilter? Mirrored { get; private set; }
 
+    public ApiFilter? Foulborn { get; private set; }
+
     public ApiFilter? Sanctified { get; private set; }
 
     public ApiFilterCategory? RequirementsCategory { get; private set; }
@@ -84,6 +86,11 @@ public class FilterProvider
         if (invariantFilterProvider.MirroredDefinition != null)
         {
             Mirrored = GetApiFilter(invariantFilterProvider.MirroredDefinition.CategoryId, invariantFilterProvider.MirroredDefinition.FilterId);
+        }
+
+        if (invariantFilterProvider.FoulbornDefinition != null)
+        {
+            Foulborn = GetApiFilter(invariantFilterProvider.FoulbornDefinition.CategoryId, invariantFilterProvider.FoulbornDefinition.FilterId);
         }
 
         if (invariantFilterProvider.SanctifiedDefinition != null)

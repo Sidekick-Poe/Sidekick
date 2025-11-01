@@ -145,6 +145,8 @@ public class GameLanguageDe : IGameLanguage
         Tinctures = "Tinkturen",
         Corpses = "Leichen",
         SanctumResearch = "Sanktum-Forschungsauftrag",
+        Grafts = "Transplantate",
+        Wombgifts = "Fruchtkeime",
     };
 }
 

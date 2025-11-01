@@ -145,6 +145,8 @@ public class GameLanguageRu : IGameLanguage
         Tinctures = "Микстуры",
         Corpses = "Трупы",
         SanctumResearch = "Исследования Святилища",
+        Grafts = "Наросты",
+        Wombgifts = "Дары утробы",
     };
 }
 

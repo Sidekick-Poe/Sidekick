@@ -145,6 +145,8 @@ public class GameLanguagePt : IGameLanguage
         Tinctures = "Tintura",
         Corpses = "Patuá",
         SanctumResearch = "Pesquisa Sanctum",
+        Grafts = "Enxertos",
+        Wombgifts = "Dádivas do Ventre",
     };
 }
 

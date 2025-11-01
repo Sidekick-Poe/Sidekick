@@ -145,6 +145,8 @@ public class GameLanguageJa : IGameLanguage
         Tinctures = "チンキ",
         Corpses = "死体",
         SanctumResearch = "サンクタム調査書",
+        Grafts = "グラフト",
+        Wombgifts = "母胎ギフト",
     };
 }
 

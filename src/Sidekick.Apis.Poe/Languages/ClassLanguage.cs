@@ -141,4 +141,8 @@ public class ClassLanguage
     public required string Spears { get; set; }
 
     public required string Bucklers { get; set; }
+
+    public required string Grafts { get; set; }
+
+    public required string Wombgifts { get; set; }
 }

@@ -93,6 +93,7 @@ public class PropertyParser
                                                new DesecratedProperty(serviceProvider, game),
                                                new SanctifiedProperty(serviceProvider, game),
                                                new MirroredProperty(serviceProvider),
+                                               new FoulbornProperty(serviceProvider, game),
                                                new UnidentifiedProperty(gameLanguageProvider)),
 
             new ClusterJewelPassiveCountProperty(serviceProvider, game),

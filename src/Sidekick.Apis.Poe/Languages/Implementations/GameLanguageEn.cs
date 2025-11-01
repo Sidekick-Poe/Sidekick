@@ -145,6 +145,8 @@ public class GameLanguageEn : IGameLanguage
         Tinctures = "Tinctures",
         Corpses = "Corpses",
         SanctumResearch = "Sanctum Research",
+        Grafts = "Grafts",
+        Wombgifts = "Wombgifts",
     };
 }
 

@@ -6,7 +6,7 @@ namespace Sidekick.Apis.Poe.Trade.Items;
 
 public interface IApiItemProvider : IInitializableService
 {
-    Dictionary<string, List<(Regex Regex, ItemApiInformation Item)>> NameDictionary { get; }
+    List<(Regex Regex, ItemApiInformation Item)> NamePatterns { get; }
 
     List<(Regex Regex, ItemApiInformation Item)> TypePatterns { get; }
 
