@@ -24,6 +24,7 @@ public class PoeNinjaClient(
 {
     private static readonly Uri baseUrl = new("https://poe.ninja/");
     private static readonly Uri apiBaseUrl = new("https://poe.ninja/api/data/");
+    private static readonly Uri leaguesUrl = new("https://poe.ninja/poe1/api/data/index-state");
 
     private static readonly List<ItemType> itemTypes =
     [
@@ -264,12 +265,10 @@ public class PoeNinjaClient(
 
     private async Task<List<NinjaEconomyLeague>> FetchLeagues()
     {
-        var url = new Uri($"{apiBaseUrl}index-state");
-
         try
         {
             using var client = GetHttpClient();
-            var response = await client.GetAsync(url);
+            var response = await client.GetAsync(leaguesUrl);
             var responseStream = await response.Content.ReadAsStreamAsync();
             var result = await JsonSerializer.DeserializeAsync<NinjaIndexState>(responseStream, JsonSerializerOptions);
             if (result == null)
