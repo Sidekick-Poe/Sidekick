@@ -150,6 +150,7 @@ public class ModifierProvider
             ModifierCategory.Crafted => @"\ \(crafted\)",
             ModifierCategory.Fractured => @"\ \(fractured\)",
             ModifierCategory.Desecrated => @"\ \(desecrated\)",
+            ModifierCategory.Explicit => @"(?:\ \(mutated\))?",
             _ => "",
         };
 

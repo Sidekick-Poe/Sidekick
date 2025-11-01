@@ -21,4 +21,6 @@ public enum Category
     Tincture,
     Corpse,
     Idol,
+    Graft,
+    Wombgift,
 }

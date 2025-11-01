@@ -86,6 +86,8 @@ public class ModifierParser
     private IEnumerable<ModifierDefinition> MatchModifierFuzzily(TextBlock block, int lineIndex, IReadOnlyCollection<ModifierDefinition> allAvailablePatterns)
     {
         var category = block.Lines[lineIndex].Text.ParseCategory();
+        if (category == ModifierCategory.Mutated) category = ModifierCategory.Explicit;
+
         var cleanLine = block.Lines[lineIndex].Text.RemoveCategory();
         var fuzzySingleLine = fuzzyService.CleanFuzzyText(cleanLine);
         string? fuzzyDoubleLine = null;
@@ -152,6 +154,7 @@ public class ModifierParser
     private Modifier CreateModifier(TextBlock block, List<TextLine> lines, List<ModifierDefinition> definitions, bool matchedFuzzily)
     {
         var text = string.Join('\n', lines.Select(x => x.Text));
+        var category = text.ParseCategory();
 
         var modifier = new Modifier(text.RemoveCategory())
         {
@@ -171,7 +174,11 @@ public class ModifierParser
             modifier.ApiInformation.Add(new(apiText: definition.ApiText)
             {
                 ApiId = definition.ApiId,
-                Category = definition.Category,
+                Category = category switch
+                {
+                    ModifierCategory.Mutated => ModifierCategory.Mutated,
+                    _ => definition.Category,
+                },
             });
 
             foreach (var secondaryDefinition in definition.SecondaryDefinitions)
@@ -179,7 +186,11 @@ public class ModifierParser
                 modifier.ApiInformation.Add(new(apiText: secondaryDefinition.ApiText)
                 {
                     ApiId = secondaryDefinition.ApiId,
-                    Category = secondaryDefinition.Category,
+                    Category = category switch
+                    {
+                        ModifierCategory.Mutated => ModifierCategory.Mutated,
+                        _ => secondaryDefinition.Category,
+                    },
                 });
             }
         }
