@@ -79,10 +79,9 @@ public class BulkTradeService
         }
 
         // Trade Settings
-        var statusKey = item.Game == GameType.PathOfExile ? SettingKeys.PriceCheckStatusPoE1 : SettingKeys.PriceCheckStatusPoE2;
-        var status = await settingsService.GetString(statusKey);
+        var status = await settingsService.GetString(SettingKeys.PriceCheckStatus);
         if (status == Status.Securable || status == Status.Available) status = Status.OnlineLeague;
-        model.Query.Status.Option = status ?? Status.OnlineLeague;
+        model.Query.Status.Option = status ?? Status.Securable;
 
         var json = JsonSerializer.Serialize(model, JsonSerializerOptions);
         using var body = new StringContent(json, Encoding.UTF8, "application/json");

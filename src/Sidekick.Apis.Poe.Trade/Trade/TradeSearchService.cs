@@ -106,9 +106,8 @@ public class TradeSearchService
             }
 
             // Trade Settings
-            var statusKey = item.Game == GameType.PathOfExile ? SettingKeys.PriceCheckStatusPoE1 : SettingKeys.PriceCheckStatusPoE2;
-            var status = await settingsService.GetString(statusKey);
-            query.Status.Option = status ?? Status.Online;
+            var status = await settingsService.GetString(SettingKeys.PriceCheckStatus);
+            query.Status.Option = status ?? Status.Securable;
 
             var league = await settingsService.GetLeague();
             var uri = new Uri($"{await GetBaseApiUrl(item.Game)}search/{league}");
