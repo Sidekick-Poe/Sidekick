@@ -94,7 +94,7 @@ public static class StringExtensions
         }
 
         var substr = input.Substring(5);
-        return substr.DecodeBase64();
+        return DecodeUrl(substr).DecodeBase64();
     }
 
     /// <summary>

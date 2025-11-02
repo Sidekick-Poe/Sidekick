@@ -1,0 +1,25 @@
+﻿@using Sidekick.Common.Extensions
+@using Sidekick.Common.Ui.Forms
+
+<FormFieldset Legend="Decode Url">
+    <div class="flex flex-col gap-3">
+        <FormInput Value="@Value"
+                   ValueChanged="OnChange"
+                   Label="Url"/>
+        <FormTextarea Value="@Decoded"
+                      Label="Decoded Value"/>
+    </div>
+</FormFieldset>
+
+<h3>DecodeBase64Url</h3>
+
+@code {
+    private string Value { get; set; } = string.Empty;
+    private string Decoded { get; set; } = string.Empty;
+
+    private void OnChange(string? value)
+    {
+        Value = value ?? string.Empty;
+        Decoded = value?.DecodeBase64Url() ?? string.Empty;
+    }
+}
