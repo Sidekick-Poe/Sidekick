@@ -34,7 +34,7 @@ public static class SettingKeys
     public const string ChatCommands = nameof(ChatCommands);
     public const string PreferredWiki = nameof(PreferredWiki);
     public const string PoeNinjaLastClear = nameof(PoeNinjaLastClear);
-    public const string Poe2ScoutLastClear = nameof(Poe2ScoutLastClear);
+    public const string PoeNinjaCurrencyLastUpdate = nameof(PoeNinjaCurrencyLastUpdate);
     public const string RegexHotkeys = nameof(RegexHotkeys);
 
     public const string MapCheckDangerousRegex = nameof(MapCheckDangerousRegex);
