@@ -1,4 +1,5 @@
 ﻿using Sidekick.Apis.Poe.Extensions;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe2Scout.Categories;
 using Sidekick.Apis.Poe2Scout.Categories.Models;
 using Sidekick.Apis.Poe2Scout.Clients;
@@ -19,6 +20,9 @@ public class ScoutItemProvider(
 
     public async Task<ScoutItem?> GetItem(string? text)
     {
+        var game = await settingsService.GetGame();
+        if (game == GameType.PathOfExile) return null;
+
         if (string.IsNullOrEmpty(text)) return null;
 
         var items = await GetOrFetchItems();

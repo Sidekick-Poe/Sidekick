@@ -4,5 +4,5 @@ namespace Sidekick.Apis.PoeNinja.Items;
 
 public interface INinjaItemProvider : IInitializableService
 {
-    NinjaPage? GetPage(string invariantId);
+    NinjaPage? GetPage(string? invariantId);
 }

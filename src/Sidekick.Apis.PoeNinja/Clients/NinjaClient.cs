@@ -46,6 +46,7 @@ public class NinjaClient
         var gamePath = game == GameType.PathOfExile ? "poe1/api/" : "poe2/api/";
 
         var league = await settingsService.GetLeague();
+        league = league?.Replace(' ', '+');
         parameters.TryAdd("league", league);
 
         var query = string.Join("&", parameters.Select(x => x.Key + "=" + Uri.EscapeDataString(x.Value?.ToString() ?? string.Empty)));

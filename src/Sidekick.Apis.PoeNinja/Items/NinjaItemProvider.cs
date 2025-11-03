@@ -28,5 +28,9 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
         }
     }
 
-    public NinjaPage? GetPage(string invariantId) => Items.GetValueOrDefault(invariantId);
+    public NinjaPage? GetPage(string? invariantId)
+    {
+        if (invariantId == null) return null;
+        return Items.GetValueOrDefault(invariantId);
+    }
 }

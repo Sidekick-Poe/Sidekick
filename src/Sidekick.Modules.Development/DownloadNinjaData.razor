@@ -1,0 +1,40 @@
+﻿@using Sidekick.Apis.PoeNinja.Items
+@using Sidekick.Common.Ui.App
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Typography
+
+<FormFieldset Legend="Preload Ninja Data">
+    <TextBase Class="mb-2">You must be using Standard as the league before downloading Poe.Ninja data.</TextBase>
+    <FormInput Label="Folder Path (/data)"
+               @bind-Value="DataFolder"/>
+    <div class="flex flex-wrap gap-3">
+        <ButtonPrimary OnClick="Download">Download</ButtonPrimary>
+    </div>
+
+    @if (Loading)
+    {
+        <AppLoading/>
+    }
+</FormFieldset>
+
+@inject INinjaPageProvider NinjaPageProvider
+
+@code {
+
+    private string DataFolder { get; set; } = string.Empty;
+
+    private bool Loading { get; set; }
+
+    public async Task Download()
+    {
+        Loading = true;
+        StateHasChanged();
+
+        await NinjaPageProvider.Download(DataFolder);
+
+        Loading = false;
+        StateHasChanged();
+    }
+
+}

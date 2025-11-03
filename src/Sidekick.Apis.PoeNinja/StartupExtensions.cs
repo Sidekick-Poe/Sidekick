@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Exchange;
+using Sidekick.Apis.PoeNinja.Items;
 
 namespace Sidekick.Apis.PoeNinja;
 
@@ -12,6 +13,8 @@ public static class StartupExtensions
         services.AddSingleton<IPoeNinjaClient, PoeNinjaClient>();
         services.AddSingleton<INinjaClient, NinjaClient>();
         services.AddSingleton<INinjaExchangeProvider, NinjaExchangeProvider>();
+        services.AddSingleton<INinjaPageProvider, NinjaPageProvider>();
+        services.AddSingleton<INinjaItemProvider, NinjaItemProvider>();
 
         return services;
     }

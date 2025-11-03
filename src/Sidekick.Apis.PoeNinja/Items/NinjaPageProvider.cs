@@ -101,12 +101,12 @@ public class NinjaPageProvider(
 
         async Task DownloadStash(GameType game, NinjaPage page, ConcurrentBag<NinjaPageItem> items)
         {
-            var result = await ninjaExchangeProvider.FetchOverview(game, page.Type);
-            foreach (var item in result.Items)
-            {
-                if (item.Id == null) continue;
-                items.Add(new NinjaPageItem(item.Id, page));
-            }
+            // var result = await ninjaExchangeProvider.FetchOverview(game, page.Type);
+            // foreach (var item in result.Items)
+            // {
+            //     if (item.Id == null) continue;
+            //     items.Add(new NinjaPageItem(item.Id, page));
+            // }
         }
 
         async Task SaveToDisk(GameType game, ConcurrentBag<NinjaPageItem> items)

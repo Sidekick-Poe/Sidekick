@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sidekick.Apis.Poe.Trade\Sidekick.Apis.Poe.Trade.csproj"/>
+    <ProjectReference Include="..\Sidekick.Apis.PoeNinja\Sidekick.Apis.PoeNinja.csproj" />
     <ProjectReference Include="..\Sidekick.Common.Ui\Sidekick.Common.Ui.csproj" />
   </ItemGroup>
 
