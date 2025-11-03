@@ -78,7 +78,7 @@
 
     private async Task LoadNinja()
     {
-        NinjaCurrency = await NinjaExchangeProvider.GetCurrencyInfo(Item.ApiInformation.InvariantId);
+        NinjaCurrency = await NinjaExchangeProvider.GetInfo(Item.ApiInformation.InvariantId);
     }
 
 }

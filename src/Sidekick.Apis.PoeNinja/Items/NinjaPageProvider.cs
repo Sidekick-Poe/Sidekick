@@ -4,10 +4,12 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Exchange;
 using Sidekick.Apis.PoeNinja.Items.Models;
+using Sidekick.Apis.PoeNinja.Stash;
 namespace Sidekick.Apis.PoeNinja.Items;
 
 public class NinjaPageProvider(
-    INinjaExchangeProvider ninjaExchangeProvider) : INinjaPageProvider
+    INinjaExchangeProvider ninjaExchangeProvider,
+    INinjaStashProvider ninjaStashProvider) : INinjaPageProvider
 {
     private static List<NinjaPage> Poe1Pages { get; } =
     [
@@ -72,10 +74,11 @@ public class NinjaPageProvider(
 
         async Task DownloadPages(GameType game, List<NinjaPage> pages)
         {
-            ConcurrentBag<NinjaPageItem> items = [];
-            var tasks = pages.Select(x => DownloadPage(game, x, items)).ToList();
+            ConcurrentBag<NinjaPageItem> concurrentItems = [];
+            var tasks = pages.Select(x => DownloadPage(game, x, concurrentItems)).ToList();
             await Task.WhenAll(tasks);
 
+            var items = concurrentItems.DistinctBy(x => x.Name).ToList();
             await SaveToDisk(game, items);
         }
 
@@ -84,7 +87,7 @@ public class NinjaPageProvider(
             List<Task> tasks = [];
 
             if (page.SupportsExchange) tasks.Add(DownloadExchange(game, page, items));
-            if (page.SupportsStash) tasks.Add(DownloadStash(game, page, items));
+            else if (page.SupportsStash) tasks.Add(DownloadStash(game, page, items));
 
             await Task.WhenAll(tasks);
         }
@@ -101,15 +104,15 @@ public class NinjaPageProvider(
 
         async Task DownloadStash(GameType game, NinjaPage page, ConcurrentBag<NinjaPageItem> items)
         {
-            // var result = await ninjaExchangeProvider.FetchOverview(game, page.Type);
-            // foreach (var item in result.Items)
-            // {
-            //     if (item.Id == null) continue;
-            //     items.Add(new NinjaPageItem(item.Id, page));
-            // }
+            var result = await ninjaStashProvider.FetchOverview(game, page.Type);
+            foreach (var item in result.Lines)
+            {
+                if (item.Name == null) continue;
+                items.Add(new NinjaPageItem(item.Name, page));
+            }
         }
 
-        async Task SaveToDisk(GameType game, ConcurrentBag<NinjaPageItem> items)
+        async Task SaveToDisk(GameType game, List<NinjaPageItem> items)
         {
             var fileName = GetFileName(game);
             var filePath = Path.Combine(dataFolder, fileName);

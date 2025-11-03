@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Extensions;
@@ -84,8 +83,6 @@ public class ApiItemProvider
 
         foreach (var entry in categoryItems.Entries)
         {
-            if (entry.Type == "Exalted Orb") Debugger.Break();
-
             var information = entry.ToItemApiInformation();
             information.Category = category;
 
@@ -94,10 +91,11 @@ public class ApiItemProvider
             information.InvariantText = apiData?.Text;
             information.Image = apiData?.Image;
 
-            if (string.IsNullOrEmpty(information.InvariantText) && gameLanguageProvider.IsEnglish())
+            if (gameLanguageProvider.IsEnglish())
             {
                 information.InvariantName = entry.Name;
-                information.InvariantText = entry.Text;
+                information.InvariantType = entry.Type;
+                if (string.IsNullOrEmpty(information.InvariantText)) information.InvariantText = entry.Text;
             }
 
             if (!string.IsNullOrEmpty(information.Name))

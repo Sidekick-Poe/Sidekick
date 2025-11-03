@@ -24,13 +24,17 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
         var result = await JsonSerializer.DeserializeAsync<List<NinjaPageItem>>(fileStream, NinjaClient.JsonSerializerOptions);
         if (result != null)
         {
-            Items = result.ToDictionary(x => x.InvariantId, x => x.Page);
+            foreach (var item in result)
+            {
+                if (item.Name == null) continue;
+                Items.TryAdd(item.Name, item.Page);
+            }
         }
     }
 
-    public NinjaPage? GetPage(string? invariantId)
+    public NinjaPage? GetPage(string? invariant)
     {
-        if (invariantId == null) return null;
-        return Items.GetValueOrDefault(invariantId);
+        if (invariant == null) return null;
+        return Items.GetValueOrDefault(invariant);
     }
 }

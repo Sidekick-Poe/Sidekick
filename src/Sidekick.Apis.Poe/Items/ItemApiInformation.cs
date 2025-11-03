@@ -10,6 +10,8 @@ public class ItemApiInformation
 
     public string? InvariantName { get; set; }
 
+    public string? InvariantType { get; set; }
+
     public string? Image { get; set; }
 
     public string? Name { get; set; }

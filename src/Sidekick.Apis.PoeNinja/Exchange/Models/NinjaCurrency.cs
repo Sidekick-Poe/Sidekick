@@ -18,4 +18,5 @@ public class NinjaCurrency
     public DateTimeOffset LastUpdated { get; set; }
     public List<NinjaCurrencyTrade> Trades { get; set; } = [];
     public ApiSparkline? Sparkline { get; set; }
+    public required Uri? DetailsUrl { get; set; }
 }

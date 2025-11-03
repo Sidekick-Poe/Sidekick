@@ -19,7 +19,7 @@ public class NinjaExchangeProvider(
         return $"PoeNinjaExchange_{league}_{type}";
     }
 
-    public async Task<NinjaCurrency?> GetCurrencyInfo(string? invariantId)
+    public async Task<NinjaCurrency?> GetInfo(string? invariantId)
     {
         if (invariantId == null) return null;
 
@@ -32,10 +32,13 @@ public class NinjaExchangeProvider(
         var line = result.Lines.FirstOrDefault(x => x.Id == invariantId);
         if (line == null) return null;
 
-        return new NinjaCurrency(line, result);
+        return new NinjaCurrency(line, result)
+        {
+            DetailsUrl = await GetDetailsUri(invariantId),
+        };
     }
 
-    public async Task<Uri?> GetDetailsUri(string? invariantId)
+    private async Task<Uri?> GetDetailsUri(string? invariantId)
     {
         if (invariantId == null) return null;
 
