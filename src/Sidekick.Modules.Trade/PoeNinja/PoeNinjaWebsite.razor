@@ -1,5 +1,4 @@
-﻿@using Sidekick.Apis.PoeNinja.Exchange.Models
-@using Sidekick.Common.Browser
+﻿@using Sidekick.Common.Browser
 @using Sidekick.Modules.Trade.Localization
 
 <div class="flex items-start flex-wrap mb-2">
@@ -8,10 +7,10 @@
     <div class="ml-auto text-right">
         <div class="flex items-center flex-nowrap gap-1">
             <TextCaption>@Resources["Last_Updated"]:</TextCaption>
-            <TextCaption>@Currency.LastUpdated.ToString("g")</TextCaption>
+            <TextCaption>@LastUpdated.ToString("g")</TextCaption>
         </div>
 
-        @if (Currency.DetailsUrl != null)
+        @if (DetailsUrl != null)
         {
             <ButtonLink OnClick="OpenWebsite">
                 <TextCaption>@Resources["Open_Website"]</TextCaption>
@@ -26,11 +25,14 @@
 @code {
 
     [Parameter]
-    public required NinjaCurrency Currency { get; set; }
+    public required DateTimeOffset LastUpdated { get; set; }
+
+    [Parameter]
+    public Uri? DetailsUrl { get; set; }
 
     private void OpenWebsite()
     {
-        if (Currency.DetailsUrl != null) BrowserProvider.OpenUri(Currency.DetailsUrl);
+        if (DetailsUrl != null) BrowserProvider.OpenUri(DetailsUrl);
     }
 
 }

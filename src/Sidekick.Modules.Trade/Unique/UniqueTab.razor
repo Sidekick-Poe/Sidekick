@@ -1,5 +1,6 @@
 ﻿@using Sidekick.Apis.Poe.Items
-@using Sidekick.Apis.Poe.Languages
+@using Sidekick.Apis.Poe2Scout.Items
+@using Sidekick.Apis.PoeNinja.Items
 @using Sidekick.Modules.Trade.Unique.Localization
 @using Sidekick.Common.Ui.Tabs
 
@@ -11,7 +12,8 @@
 }
 
 @inject IStringLocalizer<UniqueResources> Resources
-@inject IGameLanguageProvider GameLanguageProvider
+@inject IScoutItemProvider ScoutItemProvider
+@inject INinjaItemProvider NinjaItemProvider
 
 @code {
 
@@ -24,18 +26,36 @@
     [Parameter]
     public EventCallback<string?> CurrentTabChanged { get; set; }
 
-    private bool Valid => Item.Properties.Rarity == Rarity.Unique
-                          && Item.Game == GameType.PathOfExile2
-                          && GameLanguageProvider.IsEnglish();
+    private bool Valid { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        if (Valid)
+        if (Item.Properties.Rarity == Rarity.Unique)
         {
-             await CurrentTabChanged.InvokeAsync("unique");
+            List<Task<bool>> tasks =
+            [
+                CheckNinja(),
+                CheckScout(),
+            ];
+
+            var result = await Task.WhenAll(tasks);
+            Valid = result.Any(x => x);
+            if (Valid) await CurrentTabChanged.InvokeAsync("unique");
         }
 
         await base.OnInitializedAsync();
+    }
+
+    private Task<bool> CheckNinja()
+    {
+        var ninjaItem = NinjaItemProvider.GetPage(Item.ApiInformation.InvariantName);
+        return Task.FromResult(ninjaItem?.SupportsStash ?? false);
+    }
+
+    private async Task<bool> CheckScout()
+    {
+        var scoutItem = await ScoutItemProvider.GetItem(Item.ApiInformation.InvariantName);
+        return scoutItem != null;
     }
 
 }

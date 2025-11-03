@@ -38,18 +38,15 @@
 
         var result = await Task.WhenAll(tasks);
         SupportsCurrencyExchange = result.Any(x => x);
-        if (SupportsCurrencyExchange)
-        {
-            await CurrentTabChanged.InvokeAsync("exchange");
-        }
+        if (SupportsCurrencyExchange) await CurrentTabChanged.InvokeAsync("exchange");
 
         await base.OnInitializedAsync();
     }
 
     private Task<bool> CheckNinja()
     {
-        var ninjaItem = NinjaItemProvider.GetPage(Item.ApiInformation.InvariantId);
-        return Task.FromResult(ninjaItem?.SupportsExchange ?? false);
+        var ninjaPage = NinjaItemProvider.GetPage(Item.ApiInformation.InvariantId);
+        return Task.FromResult(ninjaPage?.SupportsExchange ?? false);
     }
 
     private async Task<bool> CheckScout()

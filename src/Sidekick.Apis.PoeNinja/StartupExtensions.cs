@@ -12,7 +12,6 @@ public static class StartupExtensions
     public static IServiceCollection AddSidekickPoeNinjaApi(this IServiceCollection services)
     {
         services.AddHttpClient();
-        services.AddSingleton<IPoeNinjaClient, PoeNinjaClient>();
         services.AddSingleton<INinjaClient, NinjaClient>();
         services.AddSingleton<INinjaExchangeProvider, NinjaExchangeProvider>();
         services.AddSingleton<INinjaStashProvider, NinjaStashProvider>();

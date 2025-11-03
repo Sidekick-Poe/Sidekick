@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Diagnostics;
+using System.Text.Json;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Items.Models;
@@ -15,10 +16,9 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
     {
         var game = await settingsService.GetGame();
         var dataFilePath = Path.Combine(AppContext.BaseDirectory, "wwwroot/data/" + NinjaPageProvider.GetFileName(game));
-        if (!File.Exists(dataFilePath))
-        {
-            return;
-        }
+        if (!File.Exists(dataFilePath)) return;
+
+        Items.Clear();
 
         await using var fileStream = File.OpenRead(dataFilePath);
         var result = await JsonSerializer.DeserializeAsync<List<NinjaPageItem>>(fileStream, NinjaClient.JsonSerializerOptions);
@@ -26,6 +26,8 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
         {
             foreach (var item in result)
             {
+                if (item.Name == "whispering-essence-of-hatred") Debugger.Break();
+
                 if (item.Name == null) continue;
                 Items.TryAdd(item.Name, item.Page);
             }
@@ -34,7 +36,7 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
 
     public NinjaPage? GetPage(string? invariant)
     {
-        if (invariant == null) return null;
+        if (string.IsNullOrEmpty(invariant)) return null;
         return Items.GetValueOrDefault(invariant);
     }
 }

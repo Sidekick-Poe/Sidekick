@@ -9,7 +9,8 @@ namespace Sidekick.Apis.PoeNinja.Items;
 
 public class NinjaPageProvider(
     INinjaExchangeProvider ninjaExchangeProvider,
-    INinjaStashProvider ninjaStashProvider) : INinjaPageProvider
+    INinjaStashProvider ninjaStashProvider,
+    INinjaItemProvider ninjaItemProvider) : INinjaPageProvider
 {
     private static List<NinjaPage> Poe1Pages { get; } =
     [
@@ -69,6 +70,7 @@ public class NinjaPageProvider(
     {
         await DownloadPages(GameType.PathOfExile, Poe1Pages);
         await DownloadPages(GameType.PathOfExile2, Poe2Pages);
+        await ninjaItemProvider.Initialize();
 
         return;
 

@@ -47,8 +47,8 @@ public class NinjaExchangeProvider(
 
         var league = await settingsService.GetLeague();
         var game = await settingsService.GetGame();
-        var gamePath = game == GameType.PathOfExile ? "poe1" : "poe2";
-        return new Uri($"https://poe.ninja/{gamePath}/economy/{league}/{page.Url}/{invariantId}");
+        var gamePath = game == GameType.PathOfExile ? "" : "poe2/";
+        return new Uri($"https://poe.ninja/{gamePath}economy/{league?.ToLowerInvariant()}/{page.Url}/{invariantId}");
     }
 
     private async Task<ApiOverviewResult?> GetResult(string type)

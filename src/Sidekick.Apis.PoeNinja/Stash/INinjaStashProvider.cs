@@ -4,6 +4,7 @@ namespace Sidekick.Apis.PoeNinja.Stash;
 
 public interface INinjaStashProvider
 {
+    Task<NinjaStash?> GetInfo(Item item);
     Task<NinjaStash?> GetUniqueInfo(string? name, int links);
     Task<NinjaStash?> GetGemInfo(string? name, int gemLevel);
     Task<NinjaStash?> GetMapInfo(string? name, int mapTier);

@@ -1,0 +1,30 @@
+﻿@using Sidekick.Apis.PoeNinja.Stash.Models
+@using Sidekick.Modules.Trade.Components.Prices
+@using Sidekick.Modules.Trade.PoeNinja.Localization
+
+<div class="mb-2 bg-stone-950 rounded-lg px-2 py-1">
+    <div class="flex flex-wrap">
+        <div class="flex w-1/3 justify-center">
+            <PriceDisplay Value="Stash.ChaosValue" Currency="chaos"/>
+        </div>
+        <div class="flex w-1/3 justify-center">
+            <PriceDisplay Value="Stash.ExaltedValue" Currency="exalted"/>
+        </div>
+        <div class="flex w-1/3 justify-center">
+            <PriceDisplay Value="Stash.DivineValue" Currency="divine"/>
+        </div>
+    </div>
+
+    <div class="mt-1">
+        <TextCaption Class="text-center">@Stash.ListingCount @NinjaResources["Listings"]</TextCaption>
+    </div>
+</div>
+
+@inject IStringLocalizer<PoeNinjaResources> NinjaResources
+
+@code {
+
+    [Parameter]
+    public required NinjaStash Stash { get; set; }
+
+}

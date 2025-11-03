@@ -20,6 +20,31 @@ public class NinjaStashProvider(
         return $"PoeNinjaStash_{league}_{type}";
     }
 
+    public async Task<NinjaStash?> GetInfo(Item item)
+    {
+        if (item.Properties.Rarity == Rarity.Unique)
+        {
+            return await GetUniqueInfo(item.ApiInformation.InvariantName, item.Properties.GetMaximumNumberOfLinks());
+        }
+
+        if (item.Properties.ItemClass is ItemClass.ActiveGem or ItemClass.SupportGem)
+        {
+            return await GetGemInfo(item.ApiInformation.InvariantType, item.Properties.GemLevel);
+        }
+
+        if (item.Properties.MapTier != 0)
+        {
+            return await GetMapInfo(item.ApiInformation.InvariantType, item.Properties.MapTier);
+        }
+
+        if (item.Properties.ClusterJewelPassiveCount.HasValue && item.Properties.ClusterJewelPassiveCount != 0)
+        {
+            return await GetClusterInfo(item.Properties.ClusterJewelGrantText, item.Properties.ClusterJewelPassiveCount.Value, item.Properties.ItemLevel);
+        }
+
+        return await GetBaseTypeInfo(item.ApiInformation.InvariantType, item.Properties.ItemLevel, item.Properties.Influences);
+    }
+
     public async Task<NinjaStash?> GetUniqueInfo(string? name, int links)
     {
         if (name == null) return null;
@@ -29,6 +54,8 @@ public class NinjaStashProvider(
 
         var result = await GetResult(page.Type);
         if (result == null) return null;
+
+        if (links < 5) links = 0;
 
         var line = result.Lines
             .Where(x => x.Name == name)
@@ -53,10 +80,12 @@ public class NinjaStashProvider(
         var result = await GetResult(page.Type);
         if (result == null) return null;
 
+        if (gemLevel > 7 && gemLevel < 20) gemLevel = 1;
+
         var line = result.Lines
             .Where(x => x.Name == name)
-            .OrderBy(x => x.GemLevel == gemLevel ? 0 : 1)
-            .ThenBy(x => x.ChaosValue)
+            .Where(x => x.GemLevel == gemLevel)
+            .OrderBy(x => x.ChaosValue)
             .FirstOrDefault();
         if (line == null) return null;
 
@@ -78,8 +107,8 @@ public class NinjaStashProvider(
 
         var line = result.Lines
             .Where(x => x.Name == name)
-            .OrderBy(x => x.MapTier == mapTier ? 0 : 1)
-            .ThenBy(x => x.ChaosValue)
+            .Where(x => x.MapTier == mapTier)
+            .OrderBy(x => x.ChaosValue)
             .FirstOrDefault();
         if (line == null) return null;
 
@@ -99,16 +128,17 @@ public class NinjaStashProvider(
         var result = await GetResult(page.Type);
         if (result == null) return null;
 
+        if (itemLevel < 50) itemLevel = 1;
+        else if (itemLevel < 68) itemLevel = 50;
+        else if (itemLevel < 75) itemLevel = 68;
+        else if (itemLevel < 84) itemLevel = 75;
+        else itemLevel = 84;
+
         var line = result.Lines
             .Where(x => x.Name == grantText)
-            .OrderByDescending(x =>
-            {
-                var validConditions = 0;
-                if (x.Variant == $"{passiveCount} passives") validConditions++;
-                if (x.LevelRequired == itemLevel) validConditions++;
-                return validConditions;
-            })
-            .ThenBy(x => x.ChaosValue)
+            .Where(x => x.Variant == $"{passiveCount} passives")
+            .Where(x => x.LevelRequired == itemLevel)
+            .OrderBy(x => x.ChaosValue)
             .FirstOrDefault();
         if (line == null) return null;
 
@@ -129,16 +159,14 @@ public class NinjaStashProvider(
         if (result == null) return null;
 
         var variants = GetVariants().ToList();
+        if (itemLevel > 86) itemLevel = 86;
+        else if (itemLevel < 82) itemLevel = 0;
+
         var line = result.Lines
             .Where(x => x.Name == name)
-            .OrderByDescending(x =>
-            {
-                var validConditions = 0;
-                if (x.Variant != null && variants.Contains(x.Variant)) validConditions++;
-                if (x.LevelRequired == itemLevel) validConditions++;
-                return validConditions;
-            })
-            .ThenBy(x => x.ChaosValue)
+            .Where(x => (x.Variant == null && variants.Count == 0) || (x.Variant != null && variants.Contains(x.Variant)))
+            .Where(x => x.LevelRequired == itemLevel)
+            .OrderBy(x => x.ChaosValue)
             .FirstOrDefault();
         if (line == null) return null;
 
@@ -195,8 +223,8 @@ public class NinjaStashProvider(
 
         var league = await settingsService.GetLeague();
         var game = await settingsService.GetGame();
-        var gamePath = game == GameType.PathOfExile ? "poe1" : "poe2";
-        return new Uri($"https://poe.ninja/{gamePath}/economy/{league}/{page.Url}/{line.DetailsId}");
+        var gamePath = game == GameType.PathOfExile ? "" : "poe2/";
+        return new Uri($"https://poe.ninja/{gamePath}economy/{league?.ToLowerInvariant()}/{page.Url}/{line.DetailsId}");
     }
 
     private async Task<ApiOverviewResult?> GetResult(string type)
@@ -237,7 +265,7 @@ public class NinjaStashProvider(
     private async Task<bool> CheckCacheIsValid(string type, ApiOverviewResult? result = null)
     {
         var lastUpdate = result?.LastUpdated ?? DateTimeOffset.MinValue;
-        var isCacheTimeValid = DateTimeOffset.Now - lastUpdate <= TimeSpan.FromHours(1);
+        var isCacheTimeValid = DateTimeOffset.Now - lastUpdate <= TimeSpan.FromHours(2);
         if (isCacheTimeValid) return true;
 
         var cacheKey = await GetCacheKey(type);

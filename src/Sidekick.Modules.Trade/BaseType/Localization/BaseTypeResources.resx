@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="UniquePrice" xml:space="preserve">
-      <value>Unique Prices</value>
-  </data>
   <data name="NoData" xml:space="preserve">
       <value>No data was found for this item.</value>
+  </data>
+  <data name="BaseType" xml:space="preserve">
+      <value>Base Type</value>
   </data>
 </root>
