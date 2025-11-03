@@ -88,6 +88,11 @@ else if (Price != null)
             return;
         }
 
+        if (Item.ApiInformation.InvariantId != null)
+        {
+            return;
+        }
+
         if (!await SettingsService.GetBool(SettingKeys.PriceCheckMarketEnabled))
         {
             return;

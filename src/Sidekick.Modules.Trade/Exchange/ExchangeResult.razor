@@ -3,8 +3,11 @@
 @using Sidekick.Apis.Poe2Scout.History.Models
 @using Sidekick.Apis.Poe2Scout.Items
 @using Sidekick.Apis.Poe2Scout.Items.Models
+@using Sidekick.Apis.PoeNinja.Exchange
+@using Sidekick.Apis.PoeNinja.Exchange.Models
 @using Sidekick.Modules.Trade.Exchange.Localization
 @using Sidekick.Modules.Trade.Poe2Scout
+@using Sidekick.Modules.Trade.PoeNinja
 
 @if (Loading)
 {
@@ -12,11 +15,17 @@
     return;
 }
 
-@if (ScoutHistory == null)
+@if (ScoutHistory == null && NinjaCurrency == null)
 {
     <AlertInfo Flat="true">@Resources["NoCurrencyExchangeData"]</AlertInfo>
 }
-else if (ScoutHistory != null)
+
+@if (NinjaCurrency != null)
+{
+    <PoeNinjaCurrencyPanel Currency="NinjaCurrency"/>
+}
+
+@if (ScoutHistory != null)
 {
     <Poe2ScoutWebsite History="ScoutHistory" Item="ScoutItem"/>
     <Poe2ScoutPanel Currency="exalted" Logs="@ScoutHistory.Exalted" QuantityLabel="@Resources["VolumeTraded"]"/>
@@ -26,6 +35,7 @@ else if (ScoutHistory != null)
 
 @inject IScoutHistoryProvider ScoutHistoryProvider
 @inject IScoutItemProvider ScoutItemProvider
+@inject INinjaExchangeProvider NinjaExchangeProvider
 @inject IStringLocalizer<ExchangeResources> Resources
 
 @code {
@@ -37,6 +47,8 @@ else if (ScoutHistory != null)
 
     private ScoutItem? ScoutItem { get; set; }
 
+    private NinjaCurrency? NinjaCurrency { get; set; }
+
     private bool Loading { get; set; }
 
     protected override async Task OnInitializedAsync()
@@ -46,14 +58,21 @@ else if (ScoutHistory != null)
         Loading = true;
         StateHasChanged();
 
-        ScoutItem = await ScoutItemProvider.GetItem(Item.ApiInformation.InvariantText);
-        if (ScoutItem != null)
-        {
-            ScoutHistory = await ScoutHistoryProvider.GetCurrencyHistory(ScoutItem.ItemId);
-        }
+        await Task.WhenAll(LoadScout(), LoadNinja());
 
         Loading = false;
         StateHasChanged();
+    }
+
+    private async Task LoadScout()
+    {
+        ScoutItem = await ScoutItemProvider.GetItem(Item.ApiInformation.InvariantText);
+        ScoutHistory = (ScoutItem != null) ? await ScoutHistoryProvider.GetCurrencyHistory(ScoutItem.ItemId) : null;
+    }
+
+    private async Task LoadNinja()
+    {
+        NinjaCurrency = await NinjaExchangeProvider.GetCurrencyInfo(Item.ApiInformation.InvariantId);
     }
 
 }

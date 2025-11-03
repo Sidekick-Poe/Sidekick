@@ -52,6 +52,7 @@
         return $"{date.Year}-{date.Month:00}-{date.Day:00} {date.Hour:00}:{date.Minute:00}";
     }
 
+
     private List<DataPoint> GetDataPoints(Func<ScoutHistoryLog, decimal?> valueFunc)
     {
         var result = new List<DataPoint>();
@@ -60,11 +61,7 @@
             var dateString = GetDateString(log.Time);
             if (result.Any(x => x.DateString == dateString)) continue;
 
-            result.Add(new DataPoint()
-            {
-                DateString = dateString,
-                Value = valueFunc.Invoke(log),
-            });
+            result.Add(new DataPoint(dateString, valueFunc.Invoke(log)));
         }
 
         return result;

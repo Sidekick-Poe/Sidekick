@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Apis.PoeNinja.Currency.Models;
+﻿namespace Sidekick.Apis.PoeNinja.Exchange.Models;
 
 public class ApiLine
 {

@@ -1,0 +1,36 @@
+﻿@using Sidekick.Apis.PoeNinja.Exchange
+@using Sidekick.Apis.PoeNinja.Exchange.Models
+@using Sidekick.Common.Browser
+@using Sidekick.Modules.Trade.Localization
+
+<div class="flex items-start flex-wrap mb-2">
+    <Heading2>Poe.Ninja</Heading2>
+
+    <div class="ml-auto text-right">
+        <div class="flex items-center flex-nowrap gap-1">
+            <TextCaption>@Resources["Last_Updated"]:</TextCaption>
+            <TextCaption>@Currency.LastUpdated.ToString("g")</TextCaption>
+        </div>
+
+        <ButtonLink OnClick="OpenWebsite">
+            <TextCaption>@Resources["Open_Website"]</TextCaption>
+        </ButtonLink>
+    </div>
+</div>
+
+@inject INinjaExchangeProvider NinjaExchangeProvider
+@inject IBrowserProvider BrowserProvider
+@inject IStringLocalizer<TradeResources> Resources
+
+@code {
+
+    [Parameter]
+    public required NinjaCurrency Currency { get; set; }
+
+    private async Task OpenWebsite()
+    {
+        var uri = await NinjaExchangeProvider.GetDetailsUri(Currency.Id);
+        if (uri != null) BrowserProvider.OpenUri(uri);
+    }
+
+}

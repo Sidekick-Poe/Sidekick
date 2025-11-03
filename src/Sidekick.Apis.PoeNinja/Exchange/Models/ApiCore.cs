@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Apis.PoeNinja.Currency.Models;
+﻿namespace Sidekick.Apis.PoeNinja.Exchange.Models;
 
 public class ApiCore
 {
@@ -8,5 +8,5 @@ public class ApiCore
 
     public Dictionary<string, decimal> Rates { get; set; } = [];
 
-    public List<ApiItem> Items { get; set; }
+    public List<ApiItem> Items { get; set; } = [];
 }

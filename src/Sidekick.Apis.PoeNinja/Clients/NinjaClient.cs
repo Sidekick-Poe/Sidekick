@@ -18,9 +18,9 @@ public class NinjaClient
     ILogger<NinjaClient> logger
 ) : INinjaClient
 {
-    private static readonly Uri apiBaseUrl = new("https://poe.ninja.com/");
+    private static readonly Uri apiBaseUrl = new("https://poe.ninja/");
 
-    private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
+    public static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
@@ -38,12 +38,11 @@ public class NinjaClient
         return client;
     }
 
-    public async Task<TResponse?> Fetch<TResponse>(string path, Dictionary<string, string?>? parameters = null)
-    where TResponse : class
+    public async Task<TResponse?> Fetch<TResponse>(GameType game, string path, Dictionary<string, string?>? parameters = null)
+        where TResponse : class
     {
         parameters ??= new();
 
-        var game = await settingsService.GetGame();
         var gamePath = game == GameType.PathOfExile ? "poe1/api/" : "poe2/api/";
 
         var league = await settingsService.GetLeague();

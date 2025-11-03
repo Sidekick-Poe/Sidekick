@@ -2,6 +2,7 @@ using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Clients;
+using Sidekick.Apis.Poe.Trade.Clients.Models;
 using Sidekick.Apis.Poe.Trade.Static.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
@@ -28,25 +29,18 @@ public class ApiStaticDataProvider
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        var cacheKey = $"{game.GetValueAttribute()}_StaticData";
+        await InitializeText(game);
+        await InitializeInvariant(game);
+    }
 
+    private async Task InitializeText(GameType game)
+    {
+        var cacheKey = $"{game.GetValueAttribute()}_StaticData";
         var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<StaticItemCategory>(game, gameLanguageProvider.Language, "static"), (cache) => cache.Result.Any());
         if (result == null) throw new SidekickException("Could not fetch data from the trade API.");
 
         TextDictionary.Clear();
-        InvariantDictionary.Clear();
-        foreach (var category in result.Result)
-        {
-            foreach (var entry in category.Entries)
-            {
-                if (entry.Id == null! || entry.Text == null || entry.Id == "sep") continue;
-
-                entry.Image = $"https://web.poecdn.com{entry.Image}";
-                TextDictionary.TryAdd(entry.Text, entry);
-            }
-        }
-
-        await InitializeInvariant(game);
+        FillDictionary(TextDictionary, result);
     }
 
     private async Task InitializeInvariant(GameType game)
@@ -55,6 +49,12 @@ public class ApiStaticDataProvider
         var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<StaticItemCategory>(game, gameLanguageProvider.InvariantLanguage, "static"), (cache) => cache.Result.Any());
         if (result == null) throw new SidekickException("Could not fetch invariant data from the trade API.");
 
+        InvariantDictionary.Clear();
+        FillDictionary(InvariantDictionary, result);
+    }
+
+    private void FillDictionary(Dictionary<string, StaticItem> dictionary, FetchResult<StaticItemCategory> result)
+    {
         foreach (var category in result.Result)
         {
             foreach (var entry in category.Entries)
@@ -62,7 +62,8 @@ public class ApiStaticDataProvider
                 if (entry.Id == null! || entry.Text == null || entry.Id == "sep") continue;
 
                 entry.Image = $"https://web.poecdn.com{entry.Image}";
-                InvariantDictionary.TryAdd(entry.Id, entry);
+                entry.CategoryId = category.Id;
+                dictionary.TryAdd(entry.Text, entry);
             }
         }
     }

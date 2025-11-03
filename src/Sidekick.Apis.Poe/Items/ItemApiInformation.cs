@@ -6,6 +6,8 @@ public class ItemApiInformation
 
     public string? InvariantId { get; set; }
 
+    public string? InvariantCategoryId { get; set; }
+
     public string? InvariantText { get; set; }
 
     public string? InvariantName { get; set; }
