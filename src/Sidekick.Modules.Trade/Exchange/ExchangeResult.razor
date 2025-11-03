@@ -22,8 +22,13 @@
 
 @if (NinjaCurrency != null)
 {
+    <PoeNinjaCurrencyWebsite Currency="NinjaCurrency"/>
     <PoeNinjaCurrencyPanel Currency="NinjaCurrency"/>
-    <PoeNinjaCurrencyPanel Currency="NinjaCurrency"/>
+}
+
+@if (ScoutHistory != null && NinjaCurrency != null)
+{
+    <LayoutDivider/>
 }
 
 @if (ScoutHistory != null)

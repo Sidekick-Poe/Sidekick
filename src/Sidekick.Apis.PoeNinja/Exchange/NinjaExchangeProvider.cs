@@ -13,7 +13,11 @@ public class NinjaExchangeProvider(
     INinjaItemProvider ninjaItemProvider,
     ICacheProvider cacheProvider) : INinjaExchangeProvider
 {
-    private string GetCacheKey(string type) => $"PoeNinjaExchange_{type}";
+    private async Task<string> GetCacheKey(string type)
+    {
+        var league = await settingsService.GetLeague();
+        return $"PoeNinjaExchange_{league}_{type}";
+    }
 
     public async Task<NinjaCurrency?> GetCurrencyInfo(string? invariantId)
     {
@@ -47,7 +51,7 @@ public class NinjaExchangeProvider(
     private async Task<ApiOverviewResult?> GetResult(string type)
     {
         var result = await GetOrUpdateCache();
-        if (!CheckCacheIsValid(type, result))
+        if (!await CheckCacheIsValid(type, result))
         {
             result = await GetOrUpdateCache();
         }
@@ -56,7 +60,8 @@ public class NinjaExchangeProvider(
 
         async Task<ApiOverviewResult?> GetOrUpdateCache()
         {
-            return await cacheProvider.GetOrSet(GetCacheKey(type), async () =>
+            var cacheKey = await GetCacheKey(type);
+            return await cacheProvider.GetOrSet(cacheKey, async () =>
             {
                 var game = await settingsService.GetGame();
                 return await FetchOverview(game, type);
@@ -78,13 +83,14 @@ public class NinjaExchangeProvider(
         return result;
     }
 
-    private bool CheckCacheIsValid(string type, ApiOverviewResult? result = null)
+    private async Task<bool> CheckCacheIsValid(string type, ApiOverviewResult? result = null)
     {
         var lastUpdate = result?.LastUpdated ?? DateTimeOffset.MinValue;
         var isCacheTimeValid = DateTimeOffset.Now - lastUpdate <= TimeSpan.FromHours(1);
         if (isCacheTimeValid) return true;
 
-        cacheProvider.Delete(GetCacheKey(type));
+        var cacheKey = await GetCacheKey(type);
+        cacheProvider.Delete(cacheKey);
         return false;
     }
 

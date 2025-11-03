@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Extensions;
@@ -88,7 +89,6 @@ public class ApiItemProvider
 
             var apiData = apiStaticDataProvider.Get(information.Name, information.Type);
             information.InvariantId = apiData?.Id;
-            information.InvariantCategoryId = apiData?.CategoryId;
             information.InvariantText = apiData?.Text;
             information.Image = apiData?.Image;
 

@@ -40,7 +40,7 @@ public class ApiStaticDataProvider
         if (result == null) throw new SidekickException("Could not fetch data from the trade API.");
 
         TextDictionary.Clear();
-        FillDictionary(TextDictionary, result);
+        FillDictionary(TextDictionary, result, x => x.Text);
     }
 
     private async Task InitializeInvariant(GameType game)
@@ -50,20 +50,20 @@ public class ApiStaticDataProvider
         if (result == null) throw new SidekickException("Could not fetch invariant data from the trade API.");
 
         InvariantDictionary.Clear();
-        FillDictionary(InvariantDictionary, result);
+        FillDictionary(InvariantDictionary, result, x => x.Id);
     }
 
-    private void FillDictionary(Dictionary<string, StaticItem> dictionary, FetchResult<StaticItemCategory> result)
+    private void FillDictionary(Dictionary<string, StaticItem> dictionary, FetchResult<StaticItemCategory> result, Func<StaticItem, string?> keyFunc)
     {
         foreach (var category in result.Result)
         {
             foreach (var entry in category.Entries)
             {
-                if (entry.Id == null! || entry.Text == null || entry.Id == "sep") continue;
+                var key = keyFunc(entry);
+                if (key == null || entry.Id == null! || entry.Text == null || entry.Id == "sep") continue;
 
                 entry.Image = $"https://web.poecdn.com{entry.Image}";
-                entry.CategoryId = category.Id;
-                dictionary.TryAdd(entry.Text, entry);
+                dictionary.TryAdd(key, entry);
             }
         }
     }
