@@ -84,6 +84,8 @@ public class ApiItemProvider
 
         foreach (var entry in categoryItems.Entries)
         {
+            if (entry.Type == "Exalted Orb") Debugger.Break();
+
             var information = entry.ToItemApiInformation();
             information.Category = category;
 
