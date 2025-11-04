@@ -107,15 +107,13 @@ public partial class MainWindow
         _ = Dispatch(async () =>
         {
             IsReady = true;
-
+            NavigationManager = navigationManager;
             View = view;
+
             View.OptionsChanged += CurrentViewOptionsChanged;
             View.Maximized += MaximizeView;
             View.Minimized += MinimizeView;
             View.Closed += CloseView;
-
-            NavigationManager = navigationManager;
-            Navigate(NextPath);
 
             Background = (Brush?)new BrushConverter().ConvertFrom("#000000");
             Opacity = 0.01;
@@ -124,6 +122,7 @@ public partial class MainWindow
             SetWebViewDebugging();
 
             await NormalizeView();
+            Navigate(NextPath);
         });
     }
 
