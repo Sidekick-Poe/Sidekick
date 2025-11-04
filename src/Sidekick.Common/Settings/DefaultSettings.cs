@@ -43,8 +43,6 @@ public static class DefaultSettings
 
     public static bool PriceCheckPredictionEnabled => true;
 
-    public static bool PriceCheckMarketEnabled => true;
-
     public static string MapCheckDangerousRegex => "reflect|regen";
 
     public static bool PriceCheckAutomaticallySearch => false;

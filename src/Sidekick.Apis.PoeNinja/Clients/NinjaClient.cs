@@ -49,7 +49,7 @@ public class NinjaClient
         league = league?.Replace(' ', '+');
         parameters.TryAdd("league", league);
 
-        var query = string.Join("&", parameters.Select(x => x.Key + "=" + Uri.EscapeDataString(x.Value?.ToString() ?? string.Empty)));
+        var query = string.Join("&", parameters.Select(x => x.Key + "=" + x.Value?.ToString()));
         var url = new Uri($"{apiBaseUrl}{gamePath}{path}?{query}");
 
         try
