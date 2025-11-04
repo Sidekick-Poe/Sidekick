@@ -25,17 +25,8 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
 
         foreach (var item in result)
         {
-            Console.WriteLine($"Item: {item.Name}, Page: {item.Page}");
-            if (string.IsNullOrEmpty(item.Name))
-            {
-                Console.WriteLine("Item skipped due to empty name!");
-            }
-            else
-            {
-                Items.TryAdd(item.Name, item.Page);
-            }
-            // if (string.IsNullOrEmpty(item.Name)) continue;
-            // Items.TryAdd(item.Name, item.Page);
+            if (string.IsNullOrEmpty(item.Name)) continue;
+            Items.TryAdd(item.Name, item.Page);
         }
     }
 

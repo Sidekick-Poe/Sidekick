@@ -20,6 +20,17 @@
     </div>
 </div>
 
+<PoeNinjaSparkline Sparkline="Stash.Sparkline"/>
+
+@if (Stash.ListingCount < 5)
+{
+    <AlertError IsCritical="true" Flat="true">@NinjaResources["LowConfidence"]</AlertError>
+}
+else if (Stash.ListingCount < 10)
+{
+    <AlertError IsCritical="false" Flat="true">@NinjaResources["MediumConfidence"]</AlertError>
+}
+
 @inject IStringLocalizer<PoeNinjaResources> NinjaResources
 
 @code {

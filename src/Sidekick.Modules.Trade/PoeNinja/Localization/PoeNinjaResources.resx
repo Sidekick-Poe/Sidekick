@@ -126,4 +126,13 @@
   <data name="VolumeTraded" xml:space="preserve">
       <value>Volume Traded</value>
   </data>
+  <data name="Change" xml:space="preserve">
+      <value>Change</value>
+  </data>
+  <data name="LowConfidence" xml:space="preserve">
+      <value>Low confidence. Price is based on a low number of listings.</value>
+  </data>
+  <data name="MediumConfidence" xml:space="preserve">
+      <value>Medium confidence. Price is based on a relatively low number of listings.</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
-﻿namespace Sidekick.Apis.PoeNinja.Stash.Models;
+﻿using Sidekick.Apis.PoeNinja.Exchange.Models;
+namespace Sidekick.Apis.PoeNinja.Stash.Models;
 
 public class ApiLine
 {

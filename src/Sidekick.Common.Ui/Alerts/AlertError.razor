@@ -1,4 +1,4 @@
-﻿<div class="flex flex-nowrap items-center w-full gap-2 @BackgroundClass p-2">
+﻿<div class="@Class">
     <Icon Svg="@UiIcons.Error" Size="@UiIconSize.Medium" />
     <div class="grow">
         @ChildContent
@@ -13,6 +13,22 @@
     [Parameter]
     public bool IsCritical { get; set; } = true;
 
-    private string BackgroundClass => IsCritical ? "bg-red-700 text-white" : "bg-orange-700 text-white";
+    [Parameter]
+    public bool Flat { get; set; }
+
+    private string Class
+    {
+        get
+        {
+            if (IsCritical)
+            {
+                if (Flat) return "flex flex-nowrap gap-2 items-center w-full text-red-500 p-2 bg-transparent";
+                return "flex flex-nowrap gap-2 items-center w-full bg-red-700 p-2 text-white";
+            }
+
+            if (Flat) return "flex flex-nowrap gap-2 items-center w-full text-orange-500 p-2 bg-transparent";
+            return "flex flex-nowrap gap-2 items-center w-full bg-orange-700 p-2 text-white";
+        }
+    }
 
 }
