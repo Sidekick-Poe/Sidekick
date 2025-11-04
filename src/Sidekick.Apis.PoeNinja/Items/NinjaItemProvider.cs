@@ -37,8 +37,9 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
     {
         if (string.IsNullOrEmpty(invariant)) return null;
         var page = Items.GetValueOrDefault(invariant);
-        if(page != null) return page;
+        if (page != null) return page;
 
+        // The PoE1 api doesn't have chaos currency, so we need to add it manually.
         if (Game == GameType.PathOfExile && invariant == "chaos")
         {
             return new("Currency", "currency", true, true);

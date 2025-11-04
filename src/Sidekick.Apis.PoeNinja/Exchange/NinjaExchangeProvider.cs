@@ -30,9 +30,11 @@ public class NinjaExchangeProvider(
         if (result?.Core == null) return null;
 
         var line = result.Lines.FirstOrDefault(x => x.Id == invariantId);
+
+        // In some cases, the currency is not listed in the exchange overview, but is the primary currency.
+        // This is the case for Path of Exile 1's Chaos Orb. It is the main comparison currency, but is absent from the lines.
         if (line == null && page.Type == "Currency" && result.Core.Primary == invariantId)
         {
-            var secondary = result.Lines.FirstOrDefault(x => x.Id == result.Core.Secondary);
             line = new ApiLine()
             {
                 Id = invariantId,
