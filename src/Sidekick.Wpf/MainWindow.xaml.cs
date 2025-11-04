@@ -62,24 +62,30 @@ public partial class MainWindow
     {
         logger.LogInformation("[MainWindow] Opening view: " + url);
 
-        var settingsService = scope.ServiceProvider.GetRequiredService<ISettingsService>();
-        CloseOnBlur = await settingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
-        OriginalFocusedWindow = User32.GetForegroundWindow();
-
         await Dispatch(async () =>
         {
+            var settingsService = scope.ServiceProvider.GetRequiredService<ISettingsService>();
+            CloseOnBlur = await settingsService.GetBool(SettingKeys.OverlayCloseWithMouse);
+            OriginalFocusedWindow = User32.GetForegroundWindow();
+
             Show();
 
-            if (!IsReady) NextPath = url;
-            else Navigate(url);
+            if (!IsReady)
+            {
+                NextPath = url;
+            }
+            else
+            {
+                Navigate(url);
+            }
 
-            Activate();
             await NormalizeView();
+            Activate();
 
             // Attempt to set focus back to the original window
             if (ViewType == SidekickViewType.Overlay && !CloseOnBlur && OriginalFocusedWindow != IntPtr.Zero)
             {
-                //User32.SetForegroundWindow(OriginalFocusedWindow);
+                User32.SetForegroundWindow(OriginalFocusedWindow);
             }
         });
     }
@@ -106,7 +112,6 @@ public partial class MainWindow
 
         _ = Dispatch(async () =>
         {
-            IsReady = true;
             NavigationManager = navigationManager;
             View = view;
 
@@ -120,9 +125,11 @@ public partial class MainWindow
 
             WebView.Visibility = Visibility.Visible;
             SetWebViewDebugging();
+            if (NextPath != null) NavigationManager.NavigateTo(NextPath);
 
             await NormalizeView();
-            Navigate(NextPath);
+
+            IsReady = true;
         });
     }
 
@@ -167,13 +174,8 @@ public partial class MainWindow
         switch (ViewType)
         {
             case SidekickViewType.Overlay:
-#if DEBUG
-                Topmost = false;
-                ShowInTaskbar = true;
-#else
                 Topmost = true;
                 ShowInTaskbar = false;
-#endif
                 ResizeMode = ResizeMode.CanResize;
                 break;
 
@@ -272,7 +274,7 @@ public partial class MainWindow
 
     private void Navigate(string? url)
     {
-        if (NavigationManager == null || !IsReady || string.IsNullOrEmpty(url)) return;
+        if (NavigationManager == null || string.IsNullOrEmpty(url)) return;
 
         NavigationManager.NavigateTo(url);
     }
@@ -317,7 +319,7 @@ public partial class MainWindow
     {
         base.OnDeactivated(e);
 
-        if (ViewType == SidekickViewType.Overlay && CloseOnBlur)
+        if (IsReady && ViewType == SidekickViewType.Overlay && CloseOnBlur)
         {
             CloseView();
         }
