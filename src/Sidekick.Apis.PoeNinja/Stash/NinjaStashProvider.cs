@@ -248,14 +248,20 @@ public class NinjaStashProvider(
         }
     }
 
-    public async Task<ApiOverviewResult> FetchOverview(GameType game, string type)
+    public async Task<ApiOverviewResult> FetchOverview(GameType game, string type, string? leagueOverride = null)
     {
-        var result = await ninjaClient.Fetch<ApiOverviewResult>(game, "economy/stash/current/item/overview", new Dictionary<string, string?>()
+        var query = new Dictionary<string, string?>()
         {
             {
                 "type", type
             },
-        });
+        };
+        if (leagueOverride != null)
+        {
+            query.Add("league", leagueOverride);
+        }
+
+        var result = await ninjaClient.Fetch<ApiOverviewResult>(game, "economy/stash/current/item/overview", query);
         if (result == null) return new();
 
         result.LastUpdated = DateTimeOffset.Now;

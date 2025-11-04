@@ -65,36 +65,36 @@ public class NinjaPageProvider(
         new NinjaPage("Breach", "breach-catalyst", true, false),
     ];
 
-    public async Task Download(string dataFolder)
+    public async Task Download(string dataFolder, string poe1League, string poe2League)
     {
-        await DownloadPages(GameType.PathOfExile, Poe1Pages);
-        await DownloadPages(GameType.PathOfExile2, Poe2Pages);
+        await DownloadPages(GameType.PathOfExile, Poe1Pages, poe1League);
+        await DownloadPages(GameType.PathOfExile2, Poe2Pages, poe2League);
 
         return;
 
-        async Task DownloadPages(GameType game, List<NinjaPage> pages)
+        async Task DownloadPages(GameType game, List<NinjaPage> pages, string league)
         {
             ConcurrentBag<NinjaPageItem> concurrentItems = [];
-            var tasks = pages.Select(x => DownloadPage(game, x, concurrentItems)).ToList();
+            var tasks = pages.Select(x => DownloadPage(game, x, league, concurrentItems)).ToList();
             await Task.WhenAll(tasks);
 
             var items = concurrentItems.DistinctBy(x => x.Name).ToList();
             await SaveToDisk(game, items);
         }
 
-        async Task DownloadPage(GameType game, NinjaPage page, ConcurrentBag<NinjaPageItem> items)
+        async Task DownloadPage(GameType game, NinjaPage page, string league, ConcurrentBag<NinjaPageItem> items)
         {
             List<Task> tasks = [];
 
-            if (page.SupportsExchange) tasks.Add(DownloadExchange(game, page, items));
-            else if (page.SupportsStash) tasks.Add(DownloadStash(game, page, items));
+            if (page.SupportsExchange) tasks.Add(DownloadExchange(game, page, league, items));
+            else if (page.SupportsStash) tasks.Add(DownloadStash(game, page, league, items));
 
             await Task.WhenAll(tasks);
         }
 
-        async Task DownloadExchange(GameType game, NinjaPage page, ConcurrentBag<NinjaPageItem> items)
+        async Task DownloadExchange(GameType game, NinjaPage page, string league, ConcurrentBag<NinjaPageItem> items)
         {
-            var result = await ninjaExchangeProvider.FetchOverview(game, page.Type);
+            var result = await ninjaExchangeProvider.FetchOverview(game, page.Type, leagueOverride: league);
             foreach (var item in result.Items)
             {
                 if (item.Id == null) continue;
@@ -102,9 +102,9 @@ public class NinjaPageProvider(
             }
         }
 
-        async Task DownloadStash(GameType game, NinjaPage page, ConcurrentBag<NinjaPageItem> items)
+        async Task DownloadStash(GameType game, NinjaPage page, string league, ConcurrentBag<NinjaPageItem> items)
         {
-            var result = await ninjaStashProvider.FetchOverview(game, page.Type);
+            var result = await ninjaStashProvider.FetchOverview(game, page.Type, leagueOverride: league);
             foreach (var item in result.Lines)
             {
                 if (item.Name == null) continue;

@@ -11,5 +11,5 @@ public interface INinjaStashProvider
     Task<NinjaStash?> GetClusterInfo(string? grantText, int passiveCount, int itemLevel);
     Task<NinjaStash?> GetBaseTypeInfo(string? name, int itemLevel, Influences influences);
 
-    Task<ApiOverviewResult> FetchOverview(GameType game, string type);
+    Task<ApiOverviewResult> FetchOverview(GameType game, string type, string? leagueOverride = null);
 }

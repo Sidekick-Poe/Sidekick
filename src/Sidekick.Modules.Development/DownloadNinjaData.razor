@@ -2,12 +2,20 @@
 @using Sidekick.Common.Ui.App
 @using Sidekick.Common.Ui.Buttons
 @using Sidekick.Common.Ui.Forms
-@using Sidekick.Common.Ui.Typography
 
 <FormFieldset Legend="Preload Ninja Data">
-    <TextBase Class="mb-2">You must be using Standard as the league before downloading Poe.Ninja data.</TextBase>
     <FormInput Label="Folder Path (/data)"
                @bind-Value="DataFolder"/>
+    <div class="flex flex-nowrap gap-3">
+        <div class="w-1/2">
+            <FormInput Label="PoE1 League"
+                       @bind-Value="PoE1League"/>
+        </div>
+        <div class="w-1/2">
+            <FormInput Label="PoE2 League"
+                       @bind-Value="PoE2League"/>
+        </div>
+    </div>
     <div class="flex flex-wrap gap-3">
         <ButtonPrimary OnClick="Download">Download</ButtonPrimary>
     </div>
@@ -24,6 +32,10 @@
 
     private string DataFolder { get; set; } = string.Empty;
 
+    private string PoE1League { get; set; } = string.Empty;
+
+    private string PoE2League { get; set; } = string.Empty;
+
     private bool Loading { get; set; }
 
     public async Task Download()
@@ -31,7 +43,7 @@
         Loading = true;
         StateHasChanged();
 
-        await NinjaPageProvider.Download(DataFolder);
+        await NinjaPageProvider.Download(DataFolder, PoE1League, PoE2League);
 
         Loading = false;
         StateHasChanged();
