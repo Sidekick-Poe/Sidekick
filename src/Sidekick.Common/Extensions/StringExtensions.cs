@@ -35,32 +35,6 @@ public static class StringExtensions
     }
 
     /// <summary>
-    ///     Encode a string for URL transfer
-    /// </summary>
-    public static string EncodeUrl(this string input)
-    {
-        if (string.IsNullOrEmpty(input))
-        {
-            return input;
-        }
-
-        return HttpUtility.UrlEncode(input);
-    }
-
-    /// <summary>
-    ///     Decodes a Url Encodeded String
-    /// </summary>
-    public static string DecodeUrl(this string input)
-    {
-        if (string.IsNullOrEmpty(input))
-        {
-            return input;
-        }
-
-        return HttpUtility.UrlDecode(input);
-    }
-
-    /// <summary>
     ///     Encode a string in Base64 for URL transfer
     /// </summary>
     public static string? EncodeBase64Url(this string? input)
@@ -70,12 +44,11 @@ public static class StringExtensions
             return null;
         }
 
-        if (input.HasInvalidUrlCharacters())
-        {
-            return $"xurl_{input.EncodeBase64().EncodeUrl()}";
-        }
-
-        return input;
+        var url = input.EncodeBase64();
+        url = url.Replace('+', '-')
+            .Replace('/', '_')
+            .Replace('=', '.');
+        return $"base64_{url}";
     }
 
     /// <summary>
@@ -88,21 +61,17 @@ public static class StringExtensions
             return null;
         }
 
-        if (!input.StartsWith("xurl_"))
+        if (!input.StartsWith("base64_"))
         {
             return input;
         }
 
-        var substr = input.Substring(5);
-        return DecodeUrl(substr).DecodeBase64();
-    }
-
-    /// <summary>
-    ///     Indicates if the string has invalid characters
-    /// </summary>
-    public static bool HasInvalidUrlCharacters(this string input)
-    {
-        return input.EncodeUrl() != input;
+        var url = input.Substring(7)
+            .Replace('-', '+')
+            .Replace('_', '/')
+            .Replace('.', '=');
+        url = url.DecodeBase64();
+        return url;
     }
 
     public static int GetDeterministicHashCode(this string str)
