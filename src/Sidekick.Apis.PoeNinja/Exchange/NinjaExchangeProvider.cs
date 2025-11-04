@@ -30,6 +30,16 @@ public class NinjaExchangeProvider(
         if (result?.Core == null) return null;
 
         var line = result.Lines.FirstOrDefault(x => x.Id == invariantId);
+        if (line == null && page.Type == "Currency" && result.Core.Primary == invariantId)
+        {
+            var secondary = result.Lines.FirstOrDefault(x => x.Id == result.Core.Secondary);
+            line = new ApiLine()
+            {
+                Id = invariantId,
+                PrimaryValue = 1,
+            };
+        }
+
         if (line == null) return null;
 
         return new NinjaCurrency(line, result)

@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using Sidekick.Apis.Poe.Extensions;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Items.Models;
 using Sidekick.Common.Settings;
@@ -11,10 +12,12 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
 
     public int Priority => 100;
 
+    private GameType Game { get; set; }
+
     public async Task Initialize()
     {
-        var game = await settingsService.GetGame();
-        var dataFilePath = Path.Combine(AppContext.BaseDirectory, "wwwroot/data/" + NinjaPageProvider.GetFileName(game));
+        Game = await settingsService.GetGame();
+        var dataFilePath = Path.Combine(AppContext.BaseDirectory, "wwwroot/data/" + NinjaPageProvider.GetFileName(Game));
         if (!File.Exists(dataFilePath)) return;
 
         Items.Clear();
@@ -33,6 +36,14 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
     public NinjaPage? GetPage(string? invariant)
     {
         if (string.IsNullOrEmpty(invariant)) return null;
-        return Items.GetValueOrDefault(invariant);
+        var page = Items.GetValueOrDefault(invariant);
+        if(page != null) return page;
+
+        if (Game == GameType.PathOfExile && invariant == "chaos")
+        {
+            return new("Currency", "currency", true, true);
+        }
+
+        return null;
     }
 }
