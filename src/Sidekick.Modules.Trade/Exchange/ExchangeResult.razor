@@ -7,6 +7,7 @@
 @using Sidekick.Apis.PoeNinja.Exchange.Models
 @using Sidekick.Modules.Trade.Exchange.Localization
 @using Sidekick.Modules.Trade.Poe2Scout
+@using Sidekick.Modules.Trade.PoeNinja.Localization
 @using Sidekick.Modules.Trade.PoeNinja
 
 @if (Loading)
@@ -34,15 +35,16 @@
 @if (ScoutHistory != null)
 {
     <Poe2ScoutWebsite History="ScoutHistory" Item="ScoutItem"/>
-    <Poe2ScoutPanel Currency="exalted" Logs="@ScoutHistory.Exalted" QuantityLabel="@Resources["VolumeTraded"]"/>
-    <Poe2ScoutPanel Currency="chaos" Logs="@ScoutHistory.Chaos" QuantityLabel="@Resources["VolumeTraded"]"/>
-    <Poe2ScoutPanel Currency="divine" Logs="@ScoutHistory.Divine" QuantityLabel="@Resources["VolumeTraded"]"/>
+    <Poe2ScoutPanel Currency="exalted" Logs="@ScoutHistory.Exalted" QuantityLabel="@PoeNinjaResources["VolumeTraded"]"/>
+    <Poe2ScoutPanel Currency="chaos" Logs="@ScoutHistory.Chaos" QuantityLabel="@PoeNinjaResources["VolumeTraded"]"/>
+    <Poe2ScoutPanel Currency="divine" Logs="@ScoutHistory.Divine" QuantityLabel="@PoeNinjaResources["VolumeTraded"]"/>
 }
 
 @inject IScoutHistoryProvider ScoutHistoryProvider
 @inject IScoutItemProvider ScoutItemProvider
 @inject INinjaExchangeProvider NinjaExchangeProvider
 @inject IStringLocalizer<ExchangeResources> Resources
+@inject IStringLocalizer<PoeNinjaResources> PoeNinjaResources
 
 @code {
 

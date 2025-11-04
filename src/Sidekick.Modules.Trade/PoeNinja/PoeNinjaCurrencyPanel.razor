@@ -1,6 +1,6 @@
 ﻿@using Sidekick.Apis.PoeNinja.Exchange.Models
 @using Sidekick.Modules.Trade.Components.Prices
-@using Sidekick.Modules.Trade.Exchange.Localization
+@using Sidekick.Modules.Trade.PoeNinja.Localization
 
 @foreach (var trade in Currency.Trades)
 {
@@ -27,7 +27,7 @@
 
 <PoeNinjaSparkline Sparkline="Currency.Sparkline"/>
 
-@inject IStringLocalizer<ExchangeResources> Resources
+@inject IStringLocalizer<PoeNinjaResources> Resources
 
 @code {
 
