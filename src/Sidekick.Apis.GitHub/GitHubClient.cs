@@ -67,34 +67,6 @@ public class GitHubClient
         return LatestRelease;
     }
 
-    /// <inheritdoc />
-    public async Task<bool> DownloadLatest(string downloadPath)
-    {
-        var release = await GetLatestApiRelease();
-        if (release == null)
-        {
-            return false;
-        }
-
-        if (File.Exists(downloadPath))
-        {
-            File.Delete(downloadPath);
-        }
-
-        var downloadUrl = release.Assets?.FirstOrDefault(x => x.Name == "Sidekick-Setup.exe")?.DownloadUrl;
-        if (downloadUrl == null)
-        {
-            return false;
-        }
-
-        using var client = GetHttpClient();
-        var response = await client.GetAsync(downloadUrl);
-        await using var downloadStream = await response.Content.ReadAsStreamAsync();
-        await using var fileStream = new FileStream(downloadPath, FileMode.Create, FileAccess.Write, FileShare.None);
-        await downloadStream.CopyToAsync(fileStream);
-        return true;
-    }
-
     private HttpClient GetHttpClient()
     {
         var client = httpClientFactory.CreateClient();
@@ -106,16 +78,23 @@ public class GitHubClient
 
     private async Task<Release[]?> GetApiReleases()
     {
-        // Get List of releases
-        using var client = GetHttpClient();
-        var listResponse = await client.GetAsync("/repos/Sidekick-Poe/Sidekick/releases");
-        if (!listResponse.IsSuccessStatusCode)
+        try
         {
+            using var client = GetHttpClient();
+            var listResponse = await client.GetAsync("/repos/Sidekick-Poe/Sidekick/releases");
+            if (!listResponse.IsSuccessStatusCode)
+            {
+                return [];
+            }
+
+            var content = await listResponse.Content.ReadAsStreamAsync();
+            return await JsonSerializer.DeserializeAsync<Release[]>(content, JsonSerializerOptions);
+        }
+        catch (Exception e)
+        {
+            logger.LogWarning(e, "[GitHubClient] Error while trying to get releases from GitHub.");
             return [];
         }
-
-        var content = await listResponse.Content.ReadAsStreamAsync();
-        return await JsonSerializer.DeserializeAsync<Release[]>(content, JsonSerializerOptions);
     }
 
     private async Task<Release?> GetLatestApiRelease()
