@@ -11,10 +11,14 @@
     <AlertError>@TradeService.ResultError</AlertError>
 }
 
+@if (TradeService.IsLoading)
+{
+    return;
+}
+
 @if (TradeService.BulkTradeResult.Offers.Count == 0)
 {
     <AlertInfo>@Resources["NoResults"]</AlertInfo>
-    return;
 }
 
 @foreach (var offer in TradeService.BulkTradeResult.Offers)
@@ -39,11 +43,6 @@
             <PriceDisplay Value="offer.SaleUnitPrice" Currency="@offer.SaleCurrency"/>
         </div>
     </div>
-}
-
-@if (TradeService.IsLoading)
-{
-    <AppLoading/>
 }
 
 @implements IDisposable

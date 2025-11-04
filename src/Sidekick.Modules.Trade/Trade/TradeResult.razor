@@ -2,13 +2,17 @@
 @using Sidekick.Modules.Trade.Trade.Bulk
 @using Sidekick.Modules.Trade.Trade.Items
 
-@if (TradeService.ItemTradeResult == null && TradeService.BulkTradeResult == null)
+<BulkResult/>
+<ItemsResult/>
+
+@if (TradeService.IsLoading)
+{
+    <AppLoading/>
+}
+else if (TradeService.ItemTradeResult == null && TradeService.BulkTradeResult == null)
 {
     <AlertInfo Flat="true">@Resources["TradeInstructions"]</AlertInfo>
 }
-
-<BulkResult/>
-<ItemsResult/>
 
 @implements IDisposable
 

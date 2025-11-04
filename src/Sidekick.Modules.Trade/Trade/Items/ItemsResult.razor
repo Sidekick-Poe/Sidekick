@@ -19,9 +19,10 @@
 
 @if (TradeService.IsLoading)
 {
-    <AppLoading/>
+    return;
 }
-else if (TradeService.TradeItems.Count == 0)
+
+@if (TradeService.TradeItems.Count == 0)
 {
     <AlertInfo>@Resources["NoResults"]</AlertInfo>
 }
