@@ -21,10 +21,7 @@ public class ClusterJewelPassiveCountProperty(IServiceProvider serviceProvider, 
         }
 
         var grant = ParseGrantTexts(item.Modifiers);
-        if (grant == null)
-        {
-            item.Properties.ClusterJewelGrantText = grant;
-        }
+        if (grant != null) item.Properties.ClusterJewelGrantText = grant;
     }
 
     private int ParseSmallPassiveCount(List<Modifier> modifierLines)

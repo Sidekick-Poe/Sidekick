@@ -1,0 +1,48 @@
+﻿@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.PoeNinja.Stash
+@using Sidekick.Apis.PoeNinja.Stash.Models
+@using Sidekick.Modules.Trade.PoeNinja
+@using Sidekick.Modules.Trade.Unique.Localization
+
+@if (Loading)
+{
+    <AppLoading/>
+    return;
+}
+
+@if (NinjaStash == null)
+{
+    <AlertInfo Flat="true">@Resources["NoData"]</AlertInfo>
+}
+
+@if (NinjaStash != null)
+{
+    <PoeNinjaWebsite LastUpdated="NinjaStash.LastUpdated" DetailsUrl="NinjaStash.DetailsUrl"/>
+    <PoeNinjaStashPanel Stash="NinjaStash"/>
+}
+
+@inject INinjaStashProvider NinjaStashProvider
+@inject IStringLocalizer<UniqueResources> Resources
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    private NinjaStash? NinjaStash { get; set; }
+
+    private bool Loading { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        Loading = true;
+        StateHasChanged();
+
+        NinjaStash = await NinjaStashProvider.GetInfo(Item);
+
+        Loading = false;
+        StateHasChanged();
+    }
+}

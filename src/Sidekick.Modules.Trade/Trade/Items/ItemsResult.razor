@@ -12,12 +12,6 @@
     <AlertError>@TradeService.ResultError</AlertError>
 }
 
-@if (TradeService.TradeItems.Count == 0)
-{
-    <AlertInfo>@Resources["NoResults"]</AlertInfo>
-    return;
-}
-
 @foreach (var result in TradeService.TradeItems)
 {
     <ItemComponent @key="result.Id" Result="result" IsCompact="@IsCompact"/>
@@ -26,6 +20,10 @@
 @if (TradeService.IsLoading)
 {
     <AppLoading/>
+}
+else if (TradeService.TradeItems.Count == 0)
+{
+    <AlertInfo>@Resources["NoResults"]</AlertInfo>
 }
 else if (!FullyLoaded)
 {

@@ -1,0 +1,38 @@
+﻿@using Sidekick.Common.Browser
+@using Sidekick.Modules.Trade.Localization
+
+<div class="flex items-start flex-wrap mb-2">
+    <Heading2>Poe.Ninja</Heading2>
+
+    <div class="ml-auto text-right">
+        <div class="flex items-center flex-nowrap gap-1">
+            <TextCaption>@Resources["Last_Updated"]:</TextCaption>
+            <TextCaption>@LastUpdated.ToString("g")</TextCaption>
+        </div>
+
+        @if (DetailsUrl != null)
+        {
+            <ButtonLink OnClick="OpenWebsite">
+                <TextCaption>@Resources["Open_Website"]</TextCaption>
+            </ButtonLink>
+        }
+    </div>
+</div>
+
+@inject IBrowserProvider BrowserProvider
+@inject IStringLocalizer<TradeResources> Resources
+
+@code {
+
+    [Parameter]
+    public required DateTimeOffset LastUpdated { get; set; }
+
+    [Parameter]
+    public Uri? DetailsUrl { get; set; }
+
+    private void OpenWebsite()
+    {
+        if (DetailsUrl != null) BrowserProvider.OpenUri(DetailsUrl);
+    }
+
+}

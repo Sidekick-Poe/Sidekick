@@ -1,6 +1,6 @@
 ﻿@using Sidekick.Apis.Poe2Scout.History.Models
 @using Sidekick.Modules.Trade.Components.Prices
-@using Sidekick.Modules.Trade.Exchange.Localization
+@using Sidekick.Modules.Trade.PoeNinja.Localization
 
 @if (LastLog == null || Logs == null)
 {
@@ -10,12 +10,12 @@
 <div class="mb-2 bg-stone-950 rounded-lg">
     <div class="flex flex-nowrap items-center gap-2 pt-1 px-3">
         <PriceDisplay Value="LastLog.Price" Currency="@Currency"/>
-        <TextCaption Class="ml-auto">@LastLog.Quantity @(QuantityLabel ?? Resources["Listings"])</TextCaption>
+        <TextCaption Class="ml-auto">@LastLog.Quantity @(QuantityLabel ?? NinjaResources["Listings"])</TextCaption>
     </div>
-    <Poe2ScoutChart Logs="Logs" QuantityLabel="@(QuantityLabel ?? Resources["Listings"])"/>
+    <Poe2ScoutChart Logs="Logs" QuantityLabel="@(QuantityLabel ?? NinjaResources["Listings"])"/>
 </div>
 
-@inject IStringLocalizer<ExchangeResources> Resources
+@inject IStringLocalizer<PoeNinjaResources> NinjaResources
 
 @code {
 

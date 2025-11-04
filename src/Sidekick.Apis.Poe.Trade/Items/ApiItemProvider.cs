@@ -91,10 +91,11 @@ public class ApiItemProvider
             information.InvariantText = apiData?.Text;
             information.Image = apiData?.Image;
 
-            if (string.IsNullOrEmpty(information.InvariantText) && gameLanguageProvider.IsEnglish())
+            if (gameLanguageProvider.IsEnglish())
             {
                 information.InvariantName = entry.Name;
-                information.InvariantText = entry.Text;
+                information.InvariantType = entry.Type;
+                if (string.IsNullOrEmpty(information.InvariantText)) information.InvariantText = entry.Text;
             }
 
             if (!string.IsNullOrEmpty(information.Name))

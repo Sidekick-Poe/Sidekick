@@ -124,7 +124,7 @@ public class ApiItem
     }
 
     [JsonIgnore]
-    public int? GemLevel => GetPropertyValue("Level", 16);
+    public int? GemLevel => GetPropertyValue("Level", 1);
 
     [JsonIgnore]
     public int? MapTier => GetPropertyValue("Map Tier", 16);

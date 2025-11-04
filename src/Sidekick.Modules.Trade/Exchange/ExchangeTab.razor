@@ -1,9 +1,10 @@
 ﻿@using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe2Scout.Items
+@using Sidekick.Apis.PoeNinja.Items
 @using Sidekick.Modules.Trade.Exchange.Localization
 @using Sidekick.Common.Ui.Tabs
 
-@if (SupportsCurrencyExchange && Item.Game == GameType.PathOfExile2)
+@if (SupportsCurrencyExchange)
 {
     <TabItem Active="@(CurrentTab == "exchange")"
              Text="@Resources["CurrencyExchange"]"
@@ -12,6 +13,7 @@
 
 @inject IStringLocalizer<ExchangeResources> Resources
 @inject IScoutItemProvider ScoutItemProvider
+@inject INinjaItemProvider NinjaItemProvider
 
 @code {
 
@@ -28,14 +30,29 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var scoutItem = await ScoutItemProvider.GetItem(Item.ApiInformation.InvariantText);
-        SupportsCurrencyExchange = scoutItem?.IsCurrency ?? false;
-        if (SupportsCurrencyExchange)
-        {
-             await CurrentTabChanged.InvokeAsync("exchange");
-        }
+        List<Task<bool>> tasks =
+        [
+            CheckNinja(),
+            CheckScout(),
+        ];
+
+        var result = await Task.WhenAll(tasks);
+        SupportsCurrencyExchange = result.Any(x => x);
+        if (SupportsCurrencyExchange) await CurrentTabChanged.InvokeAsync("exchange");
 
         await base.OnInitializedAsync();
+    }
+
+    private Task<bool> CheckNinja()
+    {
+        var ninjaPage = NinjaItemProvider.GetPage(Item.ApiInformation.InvariantId);
+        return Task.FromResult(ninjaPage?.SupportsExchange ?? false);
+    }
+
+    private async Task<bool> CheckScout()
+    {
+        var scoutItem = await ScoutItemProvider.GetItem(Item.ApiInformation.InvariantText);
+        return scoutItem?.IsCurrency ?? false;
     }
 
 }

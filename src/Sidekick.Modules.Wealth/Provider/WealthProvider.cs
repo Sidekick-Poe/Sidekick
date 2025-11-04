@@ -2,10 +2,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Account.Stash;
 using Sidekick.Apis.Poe.Account.Stash.Models;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Models.Items;
 using Sidekick.Apis.Poe.Trade.Static;
-using Sidekick.Apis.Poe.Trade.Static.Models;
-using Sidekick.Apis.PoeNinja;
+using Sidekick.Apis.PoeNinja.Exchange;
+using Sidekick.Apis.PoeNinja.Items;
+using Sidekick.Apis.PoeNinja.Stash;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
 using Sidekick.Common.Settings;
@@ -17,7 +19,9 @@ internal class WealthProvider
     ILogger<WealthProvider> logger,
     ISettingsService settingsService,
     IStashService stashService,
-    IPoeNinjaClient poeNinjaClient,
+    INinjaItemProvider ninjaItemProvider,
+    INinjaExchangeProvider ninjaExchangeProvider,
+    INinjaStashProvider ninjaStashProvider,
     IApiStaticDataProvider apiStaticDataProvider,
     DbContextOptions<SidekickDbContext> dbContextOptions
 )
@@ -161,8 +165,8 @@ internal class WealthProvider
             return null;
         }
 
-        var apiData = apiStaticDataProvider.Get(item.Name, item.Type);
-        if (apiData == null) return null;
+        var price = await GetItemPrice(item);
+        if (price == 0) return null;
 
         var dbItem = new WealthItem
         {
@@ -176,7 +180,7 @@ internal class WealthProvider
             MaxLinks = item.MaxLinks,
             Name = name,
             StashId = stash.Id,
-            Price = await GetItemPrice(apiData, item),
+            Price = price,
         };
 
         dbItem.Total = dbItem.Count * dbItem.Price;
@@ -184,14 +188,51 @@ internal class WealthProvider
         return dbItem;
     }
 
-    private async Task<decimal> GetItemPrice(StaticItem apiData, ApiItem item)
+    private async Task<decimal> GetItemPrice(ApiItem item)
     {
-        var price = await poeNinjaClient.GetPriceInfo(apiData.Text,
-                                                      item.GemLevel,
-                                                      item.MapTier,
-                                                      item.IsRelic,
-                                                      item.MaxLinks);
-        if (price != null) return price.Price;
+        var invariant = item.Name;
+        var ninjaPage = ninjaItemProvider.GetPage(invariant);
+
+        if (ninjaPage == null)
+        {
+            invariant = item.Type;
+            ninjaPage = ninjaItemProvider.GetPage(invariant);
+        }
+
+        if (ninjaPage == null)
+        {
+            var apiData = apiStaticDataProvider.Get(item.Name, item.Type);
+            if (apiData == null) return 0;
+
+            invariant = apiData.Id;
+            ninjaPage = ninjaItemProvider.GetPage(invariant);
+        }
+
+        if (ninjaPage == null) return 0;
+
+        if (ninjaPage.SupportsExchange)
+        {
+            var info = await ninjaExchangeProvider.GetInfo(invariant);
+            return info?.Trades.FirstOrDefault(x => x.ExchangeId == "chaos")?.Value ?? 0;
+        }
+
+        if (item.Rarity == Rarity.Unique)
+        {
+            var info = await ninjaStashProvider.GetUniqueInfo(invariant, item.MaxLinks ?? 0);
+            return info?.ChaosValue ?? 0;
+        }
+
+        if (item.GemLevel != 0)
+        {
+            var info = await ninjaStashProvider.GetGemInfo(invariant, item.GemLevel ?? 1);
+            return info?.ChaosValue ?? 0;
+        }
+
+        if (item.MapTier != 0)
+        {
+            var info = await ninjaStashProvider.GetMapInfo(invariant, item.MapTier ?? 1);
+            return info?.ChaosValue ?? 0;
+        }
 
         logger.LogError($"[WealthProvider] Could not price: {item.Name}.");
         return 0;

@@ -4,9 +4,9 @@
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Tabs
+@using Sidekick.Modules.Trade.BaseType
 @using Sidekick.Modules.Trade.Components
 @using Sidekick.Modules.Trade.Exchange
-@using Sidekick.Modules.Trade.Localization
 @using Sidekick.Modules.Trade.Trade
 @using Sidekick.Modules.Trade.Trade.Filters
 @using Sidekick.Modules.Trade.Unique
@@ -42,6 +42,7 @@
                             <ChildContent>
                                 <UniqueTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <ExchangeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
+                                <BaseTypeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <TradeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <WikiTab/>
                             </ChildContent>
@@ -66,6 +67,8 @@
                             <UniqueResult/> break;
                         case "exchange":
                             <ExchangeResult/> break;
+                        case "basetype":
+                            <BaseTypeResult/> break;
                     }
                 </AppContainer>
             </CascadingValue>
@@ -74,9 +77,7 @@
 </LayoutTwoColumn>
 
 @inject ISettingsService SettingsService
-@inject IStringLocalizer<TradeResources> Resources
 @inject TradeService TradeService
-@inject ICurrentView CurrentView
 @inject IItemParser ItemParser
 
 @code {
