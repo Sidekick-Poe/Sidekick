@@ -17,6 +17,7 @@ public class FoulbornProperty(IServiceProvider serviceProvider, GameType game) :
     public override void ParseAfterModifiers(Item item)
     {
         if (game == GameType.PathOfExile2) return;
+        if (item.Properties.Rarity != Rarity.Unique) return;
 
         item.Properties.Foulborn = item.Modifiers.Any(x => x.ApiInformation.Any(y => y.Category == ModifierCategory.Mutated));
     }
@@ -24,14 +25,14 @@ public class FoulbornProperty(IServiceProvider serviceProvider, GameType game) :
     public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
         if (game == GameType.PathOfExile2) return Task.FromResult<PropertyFilter?>(null);
-         if (FilterProvicer.Foulborn == null) return Task.FromResult<PropertyFilter?>(null);
+        if (FilterProvicer.Foulborn == null) return Task.FromResult<PropertyFilter?>(null);
 
-         var filter = new TriStatePropertyFilter(this)
-         {
-             Text = FilterProvicer.Foulborn.Text ?? "Foulborn",
-             Checked = item.Properties.Foulborn,
-         };
-         return Task.FromResult<PropertyFilter?>(filter);
+        var filter = new TriStatePropertyFilter(this)
+        {
+            Text = FilterProvicer.Foulborn.Text ?? "Foulborn",
+            Checked = item.Properties.Foulborn,
+        };
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
     public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
