@@ -36,4 +36,6 @@ public class WealthItem
 
     public decimal SparklineTotalChange { get; set; }
 
+    public virtual List<WealthSparkline> Sparklines { get; set; } = [];
+
 }
