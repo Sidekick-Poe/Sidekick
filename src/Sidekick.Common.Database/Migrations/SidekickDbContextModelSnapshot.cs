@@ -15,7 +15,7 @@ namespace Sidekick.Common.Database.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.19");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.21");
 
             modelBuilder.Entity("Sidekick.Common.Database.Tables.HttpClientCookie", b =>
                 {
@@ -130,6 +130,9 @@ namespace Sidekick.Common.Database.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
 
+                    b.Property<decimal>("SparklineTotalChange")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("StashId")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -141,6 +144,23 @@ namespace Sidekick.Common.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("WealthItems");
+                });
+
+            modelBuilder.Entity("Sidekick.Common.Database.Tables.WealthSparkline", b =>
+                {
+                    b.Property<string>("ItemId")
+                        .HasMaxLength(64)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Index")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal?>("Value")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ItemId", "Index");
+
+                    b.ToTable("WealthSparklines");
                 });
 
             modelBuilder.Entity("Sidekick.Common.Database.Tables.WealthStash", b =>

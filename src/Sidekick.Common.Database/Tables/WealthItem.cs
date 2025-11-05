@@ -33,4 +33,7 @@ public class WealthItem
     public decimal Price { get; set; }
 
     public decimal Total { get; set; }
+
+    public decimal SparklineTotalChange { get; set; }
+
 }

@@ -22,18 +22,17 @@
     }
 
     <AppContainer>
-        <div class="flex items-center gap-2 mb-3">
+        <div class="flex items-start gap-2 mb-3">
             <Heading1>@Resources["Wealth_Tracker"]</Heading1>
-            <div class="grow"></div>
-            <WealthToolbar/>
-        </div>
-        <div class="grid grid-cols-2 gap-3 mb-3">
-            <StashesOverTime/>
-            <WealthOverTime/>
+            <div class="self-center ml-auto">
+                <WealthToolbar/>
+            </div>
         </div>
         <div class="flex flex-nowrap gap-3">
             <div class="min-w-64 w-64 max-w-64">
+                <WealthOverTime/>
                 <WealthTabs/>
+                <StashesOverTime/>
             </div>
             <div class="flex-1">
                 <WealthItems/>

@@ -279,6 +279,12 @@ internal class WealthProvider
         await using var database = new SidekickDbContext(dbContextOptions);
 
         var items = await database.WealthItems.Where(x => x.League == leagueId).ToListAsync();
+        var itemIds = items.Select(x => x.Id).ToList();
+
+        var sparlines = await database.WealthSparklines.Where(x => itemIds.Contains(x.ItemId)).ToListAsync();
+        database.WealthSparklines.RemoveRange(sparlines);
+        await database.SaveChangesAsync();
+
         database.WealthItems.RemoveRange(items);
         await database.SaveChangesAsync();
 
