@@ -174,12 +174,14 @@ public partial class MainWindow
         switch (ViewType)
         {
             case SidekickViewType.Overlay:
+                Topmost = false;
                 Topmost = true;
                 ShowInTaskbar = false;
                 ResizeMode = ResizeMode.CanResize;
                 break;
 
             case SidekickViewType.Modal:
+                Topmost = false;
                 Topmost = true;
                 ShowInTaskbar = true;
                 ResizeMode = ResizeMode.NoResize;
