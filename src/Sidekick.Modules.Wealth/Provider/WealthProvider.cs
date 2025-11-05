@@ -3,14 +3,15 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Account.Stash;
 using Sidekick.Apis.Poe.Account.Stash.Models;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Models.Items;
 using Sidekick.Apis.Poe.Trade.Static;
 using Sidekick.Apis.PoeNinja.Exchange;
+using Sidekick.Apis.PoeNinja.Exchange.Models;
 using Sidekick.Apis.PoeNinja.Items;
 using Sidekick.Apis.PoeNinja.Stash;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
 using Sidekick.Common.Settings;
+using ApiItem=Sidekick.Apis.Poe.Trade.Models.Items.ApiItem;
 
 namespace Sidekick.Modules.Wealth.Provider;
 
@@ -166,7 +167,7 @@ internal class WealthProvider
         }
 
         var price = await GetItemPrice(item);
-        if (price == 0) return null;
+        if (!price.HasValue || price.Value.Value == 0) return null;
 
         var dbItem = new WealthItem
         {
@@ -180,15 +181,27 @@ internal class WealthProvider
             MaxLinks = item.MaxLinks,
             Name = name,
             StashId = stash.Id,
-            Price = price,
+            Price = price.Value.Value,
+            SparklineTotalChange = price.Value.SparkLine?.TotalChange ?? 0,
+            Sparklines = [],
         };
 
         dbItem.Total = dbItem.Count * dbItem.Price;
 
+        if (price.Value.SparkLine != null)
+        {
+            dbItem.Sparklines = price.Value.SparkLine.Data.Select((x, index) => new WealthSparkline()
+            {
+                ItemId = item.Id,
+                Index = index,
+                Value = x,
+            }).ToList();
+        }
+
         return dbItem;
     }
 
-    private async Task<decimal> GetItemPrice(ApiItem item)
+    private async Task<(decimal Value, ApiSparkline? SparkLine)?> GetItemPrice(ApiItem item)
     {
         var invariant = item.Name;
         var ninjaPage = ninjaItemProvider.GetPage(invariant);
@@ -202,40 +215,47 @@ internal class WealthProvider
         if (ninjaPage == null)
         {
             var apiData = apiStaticDataProvider.Get(item.Name, item.Type);
-            if (apiData == null) return 0;
+            if (apiData == null) return null;
 
             invariant = apiData.Id;
             ninjaPage = ninjaItemProvider.GetPage(invariant);
         }
 
-        if (ninjaPage == null) return 0;
+        if (ninjaPage == null) return null;
 
+        decimal price = 0;
+        ApiSparkline? sparkLine = null;
         if (ninjaPage.SupportsExchange)
         {
             var info = await ninjaExchangeProvider.GetInfo(invariant);
-            return info?.Trades.FirstOrDefault(x => x.ExchangeId == "chaos")?.Value ?? 0;
+            price = info?.Trades.FirstOrDefault(x => x.ExchangeId == "chaos")?.Value ?? 0;
+            sparkLine = info?.Sparkline;
         }
-
-        if (item.Rarity == Rarity.Unique)
+        else if (item.Rarity == Rarity.Unique)
         {
             var info = await ninjaStashProvider.GetUniqueInfo(invariant, item.MaxLinks ?? 0);
-            return info?.ChaosValue ?? 0;
+            price = info?.ChaosValue ?? 0;
+            sparkLine = info?.Sparkline;
         }
-
-        if (item.GemLevel != 0)
+        else if (item.GemLevel != 0)
         {
             var info = await ninjaStashProvider.GetGemInfo(invariant, item.GemLevel ?? 1);
-            return info?.ChaosValue ?? 0;
+            price = info?.ChaosValue ?? 0;
+            sparkLine = info?.Sparkline;
         }
-
-        if (item.MapTier != 0)
+        else if (item.MapTier != 0)
         {
             var info = await ninjaStashProvider.GetMapInfo(invariant, item.MapTier ?? 1);
-            return info?.ChaosValue ?? 0;
+            price = info?.ChaosValue ?? 0;
+            sparkLine = info?.Sparkline;
         }
 
-        logger.LogError($"[WealthProvider] Could not price: {item.Name}.");
-        return 0;
+        if (price == 0)
+        {
+            logger.LogError($"[WealthProvider] Could not price: {item.Name}.");
+        }
+
+        return (price, sparkLine);
     }
 
     private static async Task TakeStashSnapshot(SidekickDbContext database, string leagueId, StashTab stash, DateTimeOffset date)
@@ -279,6 +299,12 @@ internal class WealthProvider
         await using var database = new SidekickDbContext(dbContextOptions);
 
         var items = await database.WealthItems.Where(x => x.League == leagueId).ToListAsync();
+        var itemIds = items.Select(x => x.Id).ToList();
+
+        var sparlines = await database.WealthSparklines.Where(x => itemIds.Contains(x.ItemId)).ToListAsync();
+        database.WealthSparklines.RemoveRange(sparlines);
+        await database.SaveChangesAsync();
+
         database.WealthItems.RemoveRange(items);
         await database.SaveChangesAsync();
 

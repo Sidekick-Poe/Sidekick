@@ -1,24 +1,22 @@
-﻿@using Sidekick.Apis.PoeNinja.Exchange.Models
-@using Sidekick.Modules.Trade.PoeNinja.Localization
+﻿@using Sidekick.Modules.Wealth.Localization
 @using ApexCharts
 
-@if (Sparkline == null || Sparkline.TotalChange == 0) return;
+@if (Data.Count == 0 || TotalChange == 0) return;
 
-<div class="mb-2 bg-stone-950 rounded-lg px-2 py-1 flex flex-nowrap items-center gap-2">
-    <div class="flex flex-nowrap items-center gap-2 justify-center grow min-h-[40px]">
-        <Heading3>@Resources["Change"]</Heading3>
-
-        @if (Sparkline.TotalChange > 0)
+<div class="rounded-lg flex flex-nowrap items-center gap-2 h-[35px] -my-1">
+    @if (TotalChange != null)
+    {
+        @if (TotalChange > 0)
         {
-            <Heading3 Class="text-green-400">+@Sparkline.TotalChange.ToString("0")%</Heading3>
+            <TextCaption Class="text-green-400">+@TotalChange.Value.ToString("0")%</TextCaption>
         }
         else
         {
-            <Heading3 Class="text-red-400">@Sparkline.TotalChange.ToString("0")%</Heading3>
+            <TextCaption Class="text-red-400">@TotalChange.Value.ToString("0")%</TextCaption>
         }
-    </div>
+    }
 
-    <div class="w-[200px]">
+    <div class="w-[40px]">
         @if (Series != null)
         {
             <ApexChart TItem="DataPoint" Options="Options">
@@ -32,12 +30,13 @@
     </div>
 </div>
 
-@inject IStringLocalizer<PoeNinjaResources> Resources
-
 @code {
 
     [Parameter]
-    public ApiSparkline? Sparkline { get; set; }
+    public decimal? TotalChange { get; set; }
+
+    [Parameter]
+    public List<decimal?> Data { get; set; } = [];
 
     private List<DataPoint>? Series { get; set; }
 
@@ -47,9 +46,9 @@
     {
         await base.OnParametersSetAsync();
 
-        if (Sparkline?.Data.Count(x => x.HasValue) > 2)
+        if (Data.Count(x => x.HasValue) > 2)
         {
-            Series = Sparkline.Data
+            Series = Data
                 .Where(x => x.HasValue)
                 .Select((value, index) => new DataPoint
                 {
@@ -61,7 +60,7 @@
             {
                 Chart = new Chart
                 {
-                    Height = 40,
+                    Height = 35,
                     Background = "transparent",
                     FontFamily = "fontin",
                     Toolbar = new Toolbar

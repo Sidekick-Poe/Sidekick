@@ -19,9 +19,9 @@
             </Tooltip>
             <PriceDisplayQuantity Value="item.Price" Quantity="item.Count"/>
         </div>
-        <div class="w-32 max-w-32 min-w-32">
-            <PriceDisplay Value="@item.Total"></PriceDisplay>
-        </div>
+        <WealthSparkline Data="@item.Sparklines.OrderBy(x=>x.Index).Select(x=>x.Value).ToList()"
+                         TotalChange="@item.SparklineTotalChange"/>
+        <PriceDisplay Value="@item.Total"/>
     </div>
 </Virtualize>
 
@@ -70,7 +70,11 @@
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
         await using var database = new SidekickDbContext(DbContextOptions);
         var stashIds = await database.WealthStashes.Where(x => x.League == leagueId).Where(x => x.Selected).Select(x => x.Id).ToListAsync();
-        var items = await database.WealthItems.Where(x => stashIds.Contains(x.StashId)).Where(x => x.Total >= minimumTotal).ToListAsync();
+        var items = await database.WealthItems
+            .Include(x=>x.Sparklines)
+            .Where(x => stashIds.Contains(x.StashId))
+            .Where(x => x.Total >= minimumTotal)
+            .ToListAsync();
         Items = items.OrderByDescending(x => x.Total).ToList();
     }
 

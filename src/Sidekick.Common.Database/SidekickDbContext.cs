@@ -4,17 +4,14 @@ using Sidekick.Common.Database.Tables;
 
 namespace Sidekick.Common.Database;
 
-public class SidekickDbContext : DbContext
+public sealed class SidekickDbContext : DbContext
 {
     private static bool hasMigrated;
 
     public SidekickDbContext(DbContextOptions<SidekickDbContext> options)
         : base(options)
     {
-        if (hasMigrated)
-        {
-            return;
-        }
+        if (hasMigrated) return;
 
         Database.Migrate();
         hasMigrated = true;
@@ -59,6 +56,8 @@ public class SidekickDbContext : DbContext
     public DbSet<WealthStashSnapshot> WealthStashSnapshots { get; init; }
 
     public DbSet<WealthFullSnapshot> WealthFullSnapshots { get; init; }
+
+    public DbSet<WealthSparkline> WealthSparklines { get; init; }
 
     public DbSet<ViewPreference> ViewPreferences { get; init; }
 }

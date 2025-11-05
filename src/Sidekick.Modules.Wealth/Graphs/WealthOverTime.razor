@@ -7,11 +7,12 @@
 
 <div class="@(Series.Count == 0 ? "hidden" : "")">
     <FormFieldset Legend="@Resources["Total_Value"]">
-        <div class="h-[10rem] relative">
+        <div class="h-[8rem] relative -mb-3 -mx-3">
             <ApexChart @ref="Chart"
                        TItem="DataPoint"
                        Options="DataConstants.GetOptions()"
-                       Height="@("100%")">
+                       Height="@("128px")"
+                       Width="@("256px")">
                 @foreach (var serie in Series)
                 {
                     <ApexPointSeries TItem="DataPoint"
@@ -49,7 +50,7 @@
         await base.OnInitializedAsync();
     }
 
-    public void Update()
+    private void Update()
     {
         _ = InvokeAsync(async () =>
         {

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sidekick.Common.Database;
 
@@ -10,9 +11,11 @@ using Sidekick.Common.Database;
 namespace Sidekick.Common.Database.Migrations
 {
     [DbContext(typeof(SidekickDbContext))]
-    partial class SidekickDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251105174443_AddedWealthSparkline")]
+    partial class AddedWealthSparkline
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.21");
@@ -222,22 +225,6 @@ namespace Sidekick.Common.Database.Migrations
                     b.HasKey("Date", "StashId");
 
                     b.ToTable("WealthStashSnapshots");
-                });
-
-            modelBuilder.Entity("Sidekick.Common.Database.Tables.WealthSparkline", b =>
-                {
-                    b.HasOne("Sidekick.Common.Database.Tables.WealthItem", "Item")
-                        .WithMany("Sparklines")
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Item");
-                });
-
-            modelBuilder.Entity("Sidekick.Common.Database.Tables.WealthItem", b =>
-                {
-                    b.Navigation("Sparklines");
                 });
 #pragma warning restore 612, 618
         }
