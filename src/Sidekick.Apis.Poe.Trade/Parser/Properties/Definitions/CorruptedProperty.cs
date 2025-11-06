@@ -21,16 +21,10 @@ public class CorruptedProperty(IGameLanguageProvider gameLanguageProvider) : Pro
 
     public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        bool? @checked = null;
-        if (item.Properties.Rarity == Rarity.Unique)
-        {
-            @checked = item.Properties.Corrupted;
-        }
-
         var filter = new TriStatePropertyFilter(this)
         {
             Text = gameLanguageProvider.Language.DescriptionCorrupted,
-            Checked = @checked,
+            Checked = item.Properties.Corrupted,
         };
         return Task.FromResult<PropertyFilter?>(filter);
     }
