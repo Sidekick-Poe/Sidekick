@@ -169,6 +169,11 @@ public class ModifierParser
             .OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText))
             .ToList();
 
+        if (filteredDefinitions.Any(x => x.Category == ModifierCategory.Pseudo))
+        {
+            filteredDefinitions = filteredDefinitions.Where(x => x.Category == ModifierCategory.Pseudo).ToList();
+        }
+
         foreach (var definition in filteredDefinitions)
         {
             modifier.ApiInformation.Add(new(apiText: definition.ApiText)
