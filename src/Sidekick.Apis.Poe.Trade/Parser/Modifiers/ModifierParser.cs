@@ -169,9 +169,10 @@ public class ModifierParser
             .OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText))
             .ToList();
 
-        if (filteredDefinitions.Any(x => x.Category == ModifierCategory.Pseudo))
+        if (filteredDefinitions.Any(x => x.Category == ModifierCategory.Pseudo)
+            && filteredDefinitions.Any(x => x.Category != ModifierCategory.Pseudo))
         {
-            filteredDefinitions = filteredDefinitions.Where(x => x.Category == ModifierCategory.Pseudo).ToList();
+            filteredDefinitions = filteredDefinitions.Where(x => x.Category != ModifierCategory.Pseudo).ToList();
         }
 
         foreach (var definition in filteredDefinitions)
