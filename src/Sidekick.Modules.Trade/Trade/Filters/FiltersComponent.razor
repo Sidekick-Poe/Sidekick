@@ -7,7 +7,6 @@
 @using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
-@using Sidekick.Modules.Trade.PoeNinja
 @using Sidekick.Modules.Trade.PoePrices
 @using Sidekick.Modules.Trade.Trade.Filters.Properties
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
@@ -93,22 +92,15 @@
         ModifierFilters = await ModifierParser.GetFilters(Item);
         PseudoFilters = PseudoParser.GetFilters(Item);
 
-        var automaticallyPriceCheckSettingKey = Item.Properties.Rarity == Rarity.Currency ?
-            SettingKeys.PriceCheckAutomaticallySearchCurrency :
-            SettingKeys.PriceCheckAutomaticallySearch;
-        var automaticallyPriceCheck = await SettingsService.GetBool(automaticallyPriceCheckSettingKey);
+        var automaticallyPriceCheck = false;
+        if (Item.Properties.Rarity != Rarity.Currency)
+        {
+            automaticallyPriceCheck = await SettingsService.GetBool(SettingKeys.PriceCheckAutomaticallySearch);
+        }
+
         if (automaticallyPriceCheck)
         {
-            var mode = TradeMode.Item;
-            if (BulkTradeService.SupportsBulkTrade(Item))
-            {
-                mode = await SettingsService.GetEnum<TradeMode>(SettingKeys.PriceCheckCurrencyMode) ?? TradeMode.Item;
-            }
-
-            if (mode == TradeMode.Bulk)
-                await TradeService.SearchBulk(Item);
-            else
-                await TradeService.SearchItems(Item, PropertyFilters, ModifierFilters, PseudoFilters);
+            await TradeService.SearchItems(Item, PropertyFilters, ModifierFilters, PseudoFilters);
         }
         else
         {

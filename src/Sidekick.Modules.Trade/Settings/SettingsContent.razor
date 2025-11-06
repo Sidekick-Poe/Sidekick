@@ -28,9 +28,7 @@
 <FormFieldset Legend="@Resources["Behaviour_Settings"]">
     <AlertInfo>@Resources["Rate_Limit_Disclaimer"]</AlertInfo>
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallySearch" Label="@Resources["PriceCheck_Automatically_Search"]" Tooltip="@Resources["Setting_Rate_Limit_Hint"]"/>
-    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallySearchCurrency" Label="@Resources["PriceCheck_Automatically_Search_Currency"]" Tooltip="@Resources["Setting_Rate_Limit_Hint"]"/>
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallyLoadMoreData" Label="@Resources["PriceCheck_Automatically_Load_More_Data"]" Tooltip="@Resources["Setting_Rate_Limit_Hint"]"/>
-    <PriceCheckCurrencyModeEditor/>
 </FormFieldset>
 
 <div class="flex justify-center mb-1">
@@ -53,13 +51,10 @@
         SettingKeys.PriceCheckNormalizeValue,
         SettingKeys.PriceCheckPredictionEnabled,
         SettingKeys.PriceCheckAutomaticallySearch,
-        SettingKeys.PriceCheckAutomaticallySearchCurrency,
         SettingKeys.PriceCheckEnableAllFilters,
         SettingKeys.PriceCheckEnableFiltersByRegex,
         SettingKeys.PriceCheckAutomaticallyLoadMoreData,
         SettingKeys.PriceCheckDefaultFilterType,
-
-        SettingKeys.PriceCheckCurrencyMode,
     };
 
     protected override async Task OnInitializedAsync()

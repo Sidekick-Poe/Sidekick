@@ -47,8 +47,6 @@ public static class DefaultSettings
 
     public static bool PriceCheckAutomaticallySearch => false;
 
-    public static bool PriceCheckAutomaticallySearchCurrency => false;
-
     public static bool PriceCheckEnableAllFilters => false;
 
     public static string PriceCheckEnableFiltersByRegex => "";
@@ -58,8 +56,6 @@ public static class DefaultSettings
     public static string PriceCheckBulkCurrency => "divine";
 
     public static int PriceCheckBulkMinimumStock => 5;
-
-    public static string PriceCheckCurrencyMode => "item";
 
     public static string? PriceCheckCurrency => null;
 
