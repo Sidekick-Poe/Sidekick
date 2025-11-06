@@ -70,7 +70,7 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
 
     public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (item.Properties.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal)) return Task.FromResult<PropertyFilter?>(null);
+        if (item.Properties.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal or Rarity.Unique)) return Task.FromResult<PropertyFilter?>(null);
 
         var rarityLabel = item.Properties.Rarity switch
         {
@@ -88,6 +88,7 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
             Text = gameLanguageProvider.Language.DescriptionRarity,
             Value = rarityLabel,
             Checked = false,
+            ShowRow = item.Properties.Rarity != Rarity.Unique,
         };
         return Task.FromResult<PropertyFilter?>(filter);
     }
