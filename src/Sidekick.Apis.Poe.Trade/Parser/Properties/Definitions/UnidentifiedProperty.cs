@@ -21,16 +21,14 @@ public class UnidentifiedProperty(IGameLanguageProvider gameLanguageProvider) : 
 
     public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
     {
-        if (!item.Properties.Unidentified)
-        {
-            return Task.FromResult<PropertyFilter?>(null);
-        }
+        if (!item.Properties.Unidentified) return Task.FromResult<PropertyFilter?>(null);
 
-        return Task.FromResult<PropertyFilter?>(new(this)
+        var filter = new TriStatePropertyFilter(this)
         {
             Text = gameLanguageProvider.Language.DescriptionUnidentified,
             Checked = true,
-        });
+        };
+        return Task.FromResult<PropertyFilter?>(filter);
     }
 
     public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
