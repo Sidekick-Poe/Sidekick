@@ -74,22 +74,10 @@ public class TradeSearchService
             }
 
             var currency = item.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
-            var currencyMin = item.Game == GameType.PathOfExile ? await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMin) : await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMinPoE2);
-            var currencyMax = item.Game == GameType.PathOfExile ? await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMax) : await settingsService.GetInt(SettingKeys.PriceCheckItemCurrencyMaxPoE2);
             currency = filterProvider.GetPriceOption(currency);
-            if (!string.IsNullOrEmpty(currency) || currencyMin > 0 || currencyMax > 0)
+            if (!string.IsNullOrEmpty(currency))
             {
-                query.Filters.GetOrCreateTradeFilters().Filters.Price = new(currency)
-                {
-                    Min = currencyMin > 0 ? currencyMin : null,
-                    Max = currencyMax > 0 ? currencyMax : null,
-                };
-            }
-
-            var timeFrame = await settingsService.GetString(SettingKeys.PriceCheckItemListedAge);
-            if (!string.IsNullOrWhiteSpace(timeFrame))
-            {
-                query.Filters.GetOrCreateTradeFilters().Filters.Indexed = new(timeFrame);
+                query.Filters.GetOrCreateTradeFilters().Filters.Price = new(currency);
             }
 
             // Stats

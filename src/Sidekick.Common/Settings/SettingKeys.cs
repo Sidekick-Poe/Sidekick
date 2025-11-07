@@ -40,13 +40,8 @@ public static class SettingKeys
     public const string OverlayCloseWithMouse = nameof(OverlayCloseWithMouse);
 
     public const string PriceCheckPredictionEnabled = nameof(PriceCheckPredictionEnabled);
-    public const string PriceCheckItemListedAge = nameof(PriceCheckItemListedAge);
     public const string PriceCheckCurrency = nameof(PriceCheckCurrency);
     public const string PriceCheckCurrencyPoE2 = nameof(PriceCheckCurrencyPoE2);
-    public const string PriceCheckItemCurrencyMin = nameof(PriceCheckItemCurrencyMin);
-    public const string PriceCheckItemCurrencyMinPoE2 = nameof(PriceCheckItemCurrencyMinPoE2);
-    public const string PriceCheckItemCurrencyMax = nameof(PriceCheckItemCurrencyMax);
-    public const string PriceCheckItemCurrencyMaxPoE2 = nameof(PriceCheckItemCurrencyMaxPoE2);
     public const string PriceCheckBulkMinimumStock = nameof(PriceCheckBulkMinimumStock);
     public const string PriceCheckNormalizeValue = nameof(PriceCheckNormalizeValue);
     public const string PriceCheckCompactMode = nameof(PriceCheckCompactMode);
