@@ -26,6 +26,7 @@ public class FoulbornProperty(IServiceProvider serviceProvider, GameType game) :
     {
         if (game == GameType.PathOfExile2) return Task.FromResult<PropertyFilter?>(null);
         if (FilterProvicer.Foulborn == null) return Task.FromResult<PropertyFilter?>(null);
+        if (item.Properties.Rarity != Rarity.Unique) return Task.FromResult<PropertyFilter?>(null);
 
         var filter = new TriStatePropertyFilter(this)
         {
