@@ -127,6 +127,9 @@ public class ApiItem
     public int? GemLevel => GetPropertyValue("Level", 1);
 
     [JsonIgnore]
+    public int? Quality => GetPropertyValue("Quality");
+
+    [JsonIgnore]
     public int? MapTier => GetPropertyValue("Map Tier", 16);
 
     private int? GetPropertyValue(string name, int defaultValue = 0)
@@ -138,7 +141,7 @@ public class ApiItem
         if (value == null) return defaultValue;
 
         var stringValue = value.Value.GetString();
-        if (int.TryParse(stringValue, out var intValue)) return intValue;
+        if (int.TryParse(stringValue?.Trim('-', '+', '%'), out var intValue)) return intValue;
 
         return defaultValue;
     }

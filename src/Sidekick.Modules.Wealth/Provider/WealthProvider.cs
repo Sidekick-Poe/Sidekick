@@ -239,7 +239,7 @@ internal class WealthProvider
         }
         else if (item.GemLevel != 0)
         {
-            var info = await ninjaStashProvider.GetGemInfo(invariant, item.GemLevel ?? 1);
+            var info = await ninjaStashProvider.GetGemInfo(invariant, item.GemLevel ?? 1, item.Quality ?? 0);
             price = info?.ChaosValue ?? 0;
             sparkLine = info?.Sparkline;
         }
