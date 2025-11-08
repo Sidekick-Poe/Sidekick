@@ -30,23 +30,15 @@
 
     protected override async Task OnInitializedAsync()
     {
-        List<Task<bool>> tasks =
-        [
-            CheckNinja(),
-            CheckScout(),
-        ];
-
-        var result = await Task.WhenAll(tasks);
-        SupportsCurrencyExchange = result.Any(x => x);
+        SupportsCurrencyExchange = CheckNinja() || await CheckScout();
         if (SupportsCurrencyExchange) await CurrentTabChanged.InvokeAsync("exchange");
 
         await base.OnInitializedAsync();
     }
 
-    private Task<bool> CheckNinja()
+    private bool CheckNinja()
     {
-        var ninjaPage = NinjaItemProvider.GetPage(Item.ApiInformation.InvariantId);
-        return Task.FromResult(ninjaPage?.SupportsExchange ?? false);
+        return NinjaItemProvider.GetExchangeItem(Item.ApiInformation.InvariantId) != null;
     }
 
     private async Task<bool> CheckScout()

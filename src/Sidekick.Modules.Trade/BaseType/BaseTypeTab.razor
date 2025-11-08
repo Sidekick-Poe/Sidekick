@@ -1,5 +1,5 @@
 ﻿@using Sidekick.Apis.Poe.Items
-@using Sidekick.Apis.PoeNinja.Stash
+@using Sidekick.Apis.PoeNinja.Items
 @using Sidekick.Modules.Trade.BaseType.Localization
 @using Sidekick.Common.Ui.Tabs
 
@@ -11,7 +11,7 @@
 }
 
 @inject IStringLocalizer<BaseTypeResources> Resources
-@inject INinjaStashProvider NinjaStashProvider
+@inject INinjaItemProvider NinjaItemProvider
 
 @code {
 
@@ -30,22 +30,16 @@
     {
         if (Item.Properties.Rarity != Rarity.Unique)
         {
-            List<Task<bool>> tasks =
-            [
-                CheckNinja(),
-            ];
-
-            var result = await Task.WhenAll(tasks);
-            Valid = result.Any(x => x);
+            Valid = CheckNinja();
             if (Valid) await CurrentTabChanged.InvokeAsync("basetype");
         }
 
         await base.OnInitializedAsync();
     }
 
-    private async Task<bool> CheckNinja()
+    private bool CheckNinja()
     {
-        return await NinjaStashProvider.GetInfo(Item) != null;
+        return NinjaItemProvider.GetStashItem(Item) != null;
     }
 
 }

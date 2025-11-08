@@ -5,6 +5,7 @@
 @using Sidekick.Apis.Poe2Scout.Items.Models
 @using Sidekick.Apis.PoeNinja.Exchange
 @using Sidekick.Apis.PoeNinja.Exchange.Models
+@using Sidekick.Apis.PoeNinja.Items
 @using Sidekick.Modules.Trade.Exchange.Localization
 @using Sidekick.Modules.Trade.Poe2Scout
 @using Sidekick.Modules.Trade.PoeNinja.Localization
@@ -43,6 +44,7 @@
 @inject IScoutHistoryProvider ScoutHistoryProvider
 @inject IScoutItemProvider ScoutItemProvider
 @inject INinjaExchangeProvider NinjaExchangeProvider
+@inject INinjaItemProvider NinjaItemProvider
 @inject IStringLocalizer<ExchangeResources> Resources
 @inject IStringLocalizer<PoeNinjaResources> PoeNinjaResources
 
@@ -80,7 +82,8 @@
 
     private async Task LoadNinja()
     {
-        NinjaCurrency = await NinjaExchangeProvider.GetInfo(Item.ApiInformation.InvariantId);
+        var item = NinjaItemProvider.GetExchangeItem(Item.ApiInformation.InvariantId);
+        NinjaCurrency = item != null ? await NinjaExchangeProvider.GetInfo(item) : null;
     }
 
 }
