@@ -29,7 +29,7 @@ public class NinjaStashProvider(
 
         if (item.Properties.ItemClass is ItemClass.ActiveGem or ItemClass.SupportGem)
         {
-            return await GetGemInfo(item.ApiInformation.InvariantType, item.Properties.GemLevel);
+            return await GetGemInfo(item.ApiInformation.InvariantType, item.Properties.GemLevel, item.Properties.Quality);
         }
 
         if (item.Properties.MapTier != 0)
@@ -70,7 +70,7 @@ public class NinjaStashProvider(
         };
     }
 
-    public async Task<NinjaStash?> GetGemInfo(string? name, int gemLevel)
+    public async Task<NinjaStash?> GetGemInfo(string? name, int gemLevel, int gemQuality)
     {
         if (name == null) return null;
 
@@ -82,9 +82,14 @@ public class NinjaStashProvider(
 
         if (gemLevel > 7 && gemLevel < 20) gemLevel = 1;
 
+        if (gemQuality < 20) gemQuality = 0;
+        else if (gemQuality < 23) gemQuality = 20;
+        else gemQuality = 23;
+
         var line = result.Lines
             .Where(x => x.Name == name)
             .Where(x => x.GemLevel == gemLevel)
+            .Where(x => x.GemQuality == gemQuality)
             .OrderBy(x => x.ChaosValue)
             .FirstOrDefault();
         if (line == null) return null;
