@@ -70,7 +70,11 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
 
         if (item.Properties.MapTier != 0)
         {
-            return GetMapItem(item.ApiInformation.InvariantType, item.Properties.MapTier);
+            var name = item.ApiInformation.InvariantType;
+            if(item.Properties.Blighted) name = $"Blighted {name}";
+            if(item.Properties.BlightRavaged) name = $"Blight-ravaged {name}";
+
+            return GetMapItem(name, item.Properties.MapTier);
         }
 
         if (item.Properties.ClusterJewelPassiveCount.HasValue && item.Properties.ClusterJewelPassiveCount != 0)
