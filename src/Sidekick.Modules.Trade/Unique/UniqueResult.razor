@@ -3,6 +3,7 @@
 @using Sidekick.Apis.Poe2Scout.History.Models
 @using Sidekick.Apis.Poe2Scout.Items
 @using Sidekick.Apis.Poe2Scout.Items.Models
+@using Sidekick.Apis.PoeNinja.Items
 @using Sidekick.Apis.PoeNinja.Stash
 @using Sidekick.Apis.PoeNinja.Stash.Models
 @using Sidekick.Modules.Trade.Poe2Scout
@@ -42,6 +43,7 @@
 @inject IScoutHistoryProvider ScoutHistoryProvider
 @inject IScoutItemProvider ScoutItemProvider
 @inject INinjaStashProvider NinjaStashProvider
+@inject INinjaItemProvider NinjaItemProvider
 @inject IStringLocalizer<UniqueResources> Resources
 
 @code {
@@ -81,7 +83,8 @@
 
     private async Task LoadNinja()
     {
-        NinjaStash = await NinjaStashProvider.GetUniqueInfo(Item.ApiInformation.InvariantName, Item.Properties.GetMaximumNumberOfLinks());
+        var item = NinjaItemProvider.GetStashItem(Item);
+        NinjaStash = item != null ? await NinjaStashProvider.GetInfo(item) : null;
     }
 
 }

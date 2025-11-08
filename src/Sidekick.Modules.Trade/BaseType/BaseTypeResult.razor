@@ -1,4 +1,5 @@
 ﻿@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.PoeNinja.Items
 @using Sidekick.Apis.PoeNinja.Stash
 @using Sidekick.Apis.PoeNinja.Stash.Models
 @using Sidekick.Modules.Trade.PoeNinja
@@ -22,6 +23,7 @@
 }
 
 @inject INinjaStashProvider NinjaStashProvider
+@inject INinjaItemProvider NinjaItemProvider
 @inject IStringLocalizer<UniqueResources> Resources
 
 @code {
@@ -40,7 +42,8 @@
         Loading = true;
         StateHasChanged();
 
-        NinjaStash = await NinjaStashProvider.GetInfo(Item);
+        var item = NinjaItemProvider.GetStashItem(Item);
+        NinjaStash = item != null ? await NinjaStashProvider.GetInfo(item) : null;
 
         Loading = false;
         StateHasChanged();

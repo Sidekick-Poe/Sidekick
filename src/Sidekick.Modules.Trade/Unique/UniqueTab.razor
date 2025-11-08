@@ -32,24 +32,16 @@
     {
         if (Item.Properties.Rarity == Rarity.Unique)
         {
-            List<Task<bool>> tasks =
-            [
-                CheckNinja(),
-                CheckScout(),
-            ];
-
-            var result = await Task.WhenAll(tasks);
-            Valid = result.Any(x => x);
+            Valid = CheckNinja() || await CheckScout();
             if (Valid) await CurrentTabChanged.InvokeAsync("unique");
         }
 
         await base.OnInitializedAsync();
     }
 
-    private Task<bool> CheckNinja()
+    private bool CheckNinja()
     {
-        var ninjaItem = NinjaItemProvider.GetPage(Item.ApiInformation.InvariantName);
-        return Task.FromResult(ninjaItem?.SupportsStash ?? false);
+        return NinjaItemProvider.GetStashItem(Item) != null;
     }
 
     private async Task<bool> CheckScout()
