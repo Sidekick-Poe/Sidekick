@@ -20,5 +20,5 @@ public class ApiLine
     public int? LevelRequired { get; set; }
     public int? MapTier { get; set; }
 
-    public ApiSparkline? Sparkline { get; set; }
+    public ApiSparkline? SparkLine { get; set; }
 }
