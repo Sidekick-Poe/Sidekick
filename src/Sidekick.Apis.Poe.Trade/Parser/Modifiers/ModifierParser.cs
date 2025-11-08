@@ -226,7 +226,7 @@ public class ModifierParser
             case null: return;
         }
 
-        var matches = new Regex("([-+0-9,.]+)").Matches(modifier.Text);
+        var matches = new Regex("([-+0-9,.]+)").Matches(modifier.Text.Split('\n').First());
         foreach (Match match in matches)
         {
             if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
