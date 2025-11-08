@@ -3,6 +3,7 @@
 public record NinjaStashItem(
     string? Name,
     string? DetailsId,
+    bool? Corrupted,
     int? GemLevel,
     int? GemQuality,
     int? MapTier,

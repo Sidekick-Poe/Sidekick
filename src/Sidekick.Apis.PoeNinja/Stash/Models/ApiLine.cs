@@ -13,6 +13,7 @@ public class ApiLine
     public decimal ExaltedValue { get; set; }
     public int ListingCount { get; set; }
 
+    public bool? Corrupted { get; set; }
     public int? GemLevel { get; set; }
     public int? GemQuality { get; set; }
     public int? Links { get; set; }

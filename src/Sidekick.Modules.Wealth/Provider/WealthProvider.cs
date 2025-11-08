@@ -229,7 +229,7 @@ internal class WealthProvider
         }
         else if (item.GemLevel != 0)
         {
-            var stashItem = ninjaItemProvider.GetGemItem(item.Name, item.GemLevel ?? 1, item.Quality ?? 0);
+            var stashItem = ninjaItemProvider.GetGemItem(item.Name, item.GemLevel ?? 1, item.Quality ?? 0, item.Corrupted);
             if (stashItem != null)
             {
                 var info = await ninjaStashProvider.GetInfo(stashItem);

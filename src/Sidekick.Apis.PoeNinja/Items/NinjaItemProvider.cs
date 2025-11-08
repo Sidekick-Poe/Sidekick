@@ -65,7 +65,7 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
 
         if (item.Properties.ItemClass is ItemClass.ActiveGem or ItemClass.SupportGem)
         {
-            return GetGemItem(item.ApiInformation.InvariantType, item.Properties.GemLevel, item.Properties.Quality);
+            return GetGemItem(item.ApiInformation.InvariantType, item.Properties.GemLevel, item.Properties.Quality, item.Properties.Corrupted);
         }
 
         if (item.Properties.MapTier != 0)
@@ -93,7 +93,7 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
             .FirstOrDefault();
     }
 
-    public NinjaStashItem? GetGemItem(string? name, int gemLevel, int gemQuality)
+    public NinjaStashItem? GetGemItem(string? name, int gemLevel, int gemQuality, bool corrupted)
     {
         if (name == null) return null;
 
@@ -103,21 +103,24 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
         else if (gemQuality < 23) gemQuality = 20;
         else gemQuality = 23;
 
-        return StashItems
+        var items = StashItems
             .Where(x => x.Name == name)
             .Where(x => x.GemLevel == gemLevel || (gemLevel == 0 && !x.GemLevel.HasValue))
             .Where(x => x.GemQuality == gemQuality || (gemQuality == 0 && !x.GemQuality.HasValue))
-            .FirstOrDefault();
+            .Where(x => x.Corrupted == corrupted || (!corrupted && !x.Corrupted.HasValue));
+
+        return items.FirstOrDefault();
     }
 
     public NinjaStashItem? GetMapItem(string? name, int mapTier)
     {
         if (name == null) return null;
 
-        return StashItems
+        var items =  StashItems
             .Where(x => x.Name == name)
-            .Where(x => x.MapTier == mapTier || (mapTier == 0 && !x.MapTier.HasValue))
-            .FirstOrDefault();
+            .Where(x => x.MapTier == mapTier || (mapTier == 0 && !x.MapTier.HasValue));
+
+        return items.FirstOrDefault();
     }
 
     public NinjaStashItem? GetClusterItem(string? grantText, int passiveCount, int itemLevel)
@@ -130,11 +133,12 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
         else if (itemLevel < 84) itemLevel = 75;
         else itemLevel = 84;
 
-        return StashItems
+        var items =  StashItems
             .Where(x => x.Name == grantText)
             .Where(x => x.Variant == $"{passiveCount} passives")
-            .Where(x => x.ItemLevel == itemLevel)
-            .FirstOrDefault();
+            .Where(x => x.ItemLevel == itemLevel);
+
+        return items.FirstOrDefault();
     }
 
     public NinjaStashItem? GetBaseTypeItem(string? name, int itemLevel, Influences influences)
@@ -145,11 +149,12 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
         if (itemLevel > 86) itemLevel = 86;
         else if (itemLevel < 82) itemLevel = 0;
 
-        return StashItems
+        var items =  StashItems
             .Where(x => x.Name == name)
             .Where(x => (x.Variant == null && variants.Count == 0) || (x.Variant != null && variants.Contains(x.Variant)))
-            .Where(x => x.ItemLevel == itemLevel || (itemLevel == 0 && !x.ItemLevel.HasValue))
-            .FirstOrDefault();
+            .Where(x => x.ItemLevel == itemLevel || (itemLevel == 0 && !x.ItemLevel.HasValue));
+
+        return items.FirstOrDefault();
 
         IEnumerable<string> GetVariants()
         {
