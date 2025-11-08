@@ -71,8 +71,8 @@ public class NinjaPageProvider(
 
     public async Task Download(string dataFolder, string poe1League, string poe2League)
     {
-        await DownloadPages(GameType.PathOfExile, Poe1Pages, poe1League);
-        await DownloadPages(GameType.PathOfExile2, Poe2Pages, poe2League);
+        if (!string.IsNullOrEmpty(poe1League)) await DownloadPages(GameType.PathOfExile, Poe1Pages, poe1League);
+        if (!string.IsNullOrEmpty(poe2League)) await DownloadPages(GameType.PathOfExile2, Poe2Pages, poe2League);
 
         return;
 
@@ -113,6 +113,7 @@ public class NinjaPageProvider(
                 if (item.Name == null) continue;
                 items.Add(new NinjaStashItem(Name: item.Name,
                                              DetailsId: item.DetailsId,
+                                             Corrupted: item.Corrupted,
                                              GemLevel: item.GemLevel,
                                              GemQuality: item.GemQuality,
                                              MapTier: item.MapTier,
