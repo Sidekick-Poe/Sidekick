@@ -15,7 +15,7 @@ public class QualityProperty(IGameLanguageProvider gameLanguageProvider) : Prope
 
     private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionQuality.ToRegexIsAugmented();
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Flask, Category.Gem, Category.Map];
+    public override List<Category> ValidItemClasses { get; } = [Category.Armour, Category.Weapon, Category.Flask, Category.Gem, Category.Map];
 
     public override void Parse(Item item)
     {

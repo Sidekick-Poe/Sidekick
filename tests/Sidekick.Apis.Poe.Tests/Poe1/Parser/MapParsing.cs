@@ -25,7 +25,6 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
 ");
 
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
-        Assert.Equal(Category.Map, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Arcade Map", actual.ApiInformation.Type);
         Assert.Equal(15, actual.Properties.MapTier);
@@ -62,7 +61,6 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
 ");
 
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
-        Assert.Equal(Category.Map, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Maelström of Chaos", actual.ApiInformation.Name);
         Assert.Equal("Atoll Map", actual.ApiInformation.Type);
@@ -108,7 +106,6 @@ Note: ~price 2 chaos
 ");
 
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
-        Assert.Equal(Category.Map, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Phantasmagoria Map", actual.ApiInformation.Type);
 
@@ -121,7 +118,6 @@ Note: ~price 2 chaos
         var actual = parser.ParseItem(TimelessKaruiEmblem);
 
         Assert.Equal(ItemClass.MapFragment, actual.Properties.ItemClass);
-        Assert.Equal(Category.Map, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Timeless Karui Emblem", actual.ApiInformation.Type);
     }
@@ -157,7 +153,6 @@ Travel to this Map by using it in a personal Map Device. Maps can only be used o
 ");
 
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
-        Assert.Equal(Category.Map, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Burial Chambers Map", actual.ApiInformation.Type);
 
@@ -207,7 +202,6 @@ Foil (Celestial Amethyst)
 ");
 
         Assert.Equal(ItemClass.Map, actual.Properties.ItemClass);
-        Assert.Equal(Category.Map, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Plaza Map", actual.ApiInformation.Type);
         Assert.Equal("Foil Mageblood", actual.Properties.Reward);

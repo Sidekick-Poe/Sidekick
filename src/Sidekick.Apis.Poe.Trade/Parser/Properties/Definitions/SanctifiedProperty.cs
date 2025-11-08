@@ -12,7 +12,7 @@ public class SanctifiedProperty(IServiceProvider serviceProvider, GameType game)
 {
     private IFilterProvider FilterProvicer => serviceProvider.GetRequiredService<IFilterProvider>();
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory];
+    public override List<Category> ValidItemClasses { get; } = [Category.Armour, Category.Weapon, Category.Accessory];
 
     public override void Parse(Item item)
     {

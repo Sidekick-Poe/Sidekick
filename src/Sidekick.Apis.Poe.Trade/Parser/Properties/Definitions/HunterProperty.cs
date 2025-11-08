@@ -12,7 +12,7 @@ public class HunterProperty(IGameLanguageProvider gameLanguageProvider) : Proper
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.InfluenceHunter.ToRegexLine();
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Jewel];
+    public override List<Category> ValidItemClasses { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Jewel];
 
     public override void Parse(Item item)
     {

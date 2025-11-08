@@ -12,7 +12,7 @@ public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : Prope
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionMapTier.ToRegexIntCapture();
 
-    public override List<Category> ValidCategories { get; } = [Category.Map];
+    public override List<Category> ValidItemClasses { get; } = [Category.Map];
 
     public override void Parse(Item item)
     {

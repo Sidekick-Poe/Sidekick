@@ -12,7 +12,7 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionItemLevel.ToRegexIntCapture();
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Flask, Category.Jewel, Category.Accessory, Category.Map, Category.Contract, Category.Sanctum, Category.Logbook, Category.Wombgift, Category.Graft];
+    public override List<Category> ValidItemClasses { get; } = [Category.Armour, Category.Weapon, Category.Flask, Category.Jewel, Category.Accessory, Category.Map, Category.Contract, Category.Sanctum, Category.Logbook, Category.Wombgift, Category.Graft];
 
     public override void Parse(Item item)
     {

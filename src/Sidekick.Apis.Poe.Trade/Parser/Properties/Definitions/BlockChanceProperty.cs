@@ -19,7 +19,7 @@ public class BlockChanceProperty(IGameLanguageProvider gameLanguageProvider, Gam
         ? gameLanguageProvider.Language.DescriptionChanceToBlock.ToRegexIsAugmented()
         : gameLanguageProvider.Language.DescriptionBlockChance.ToRegexIsAugmented();
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour];
+    public override List<Category> ValidItemClasses { get; } = [Category.Armour];
 
     public override void Parse(Item item)
     {

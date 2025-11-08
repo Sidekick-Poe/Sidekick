@@ -19,7 +19,7 @@ public class SpiritProperty
 
     private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionSpirit.ToRegexIsAugmented();
 
-    public override List<Category> ValidCategories { get; } = [Category.Weapon, Category.Armour];
+    public override List<Category> ValidItemClasses { get; } = [Category.Weapon, Category.Armour];
 
     public override void Parse(Item item)
     {

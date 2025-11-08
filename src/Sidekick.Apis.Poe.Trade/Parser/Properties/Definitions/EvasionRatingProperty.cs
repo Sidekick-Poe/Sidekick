@@ -15,7 +15,7 @@ public class EvasionRatingProperty(IGameLanguageProvider gameLanguageProvider, G
 
     private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionEvasion.ToRegexIsAugmented();
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour];
+    public override List<Category> ValidItemClasses { get; } = [Category.Armour];
 
     public override void Parse(Item item)
     {

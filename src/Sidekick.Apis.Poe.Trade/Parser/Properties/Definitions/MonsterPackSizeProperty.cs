@@ -15,7 +15,7 @@ public class MonsterPackSizeProperty(IGameLanguageProvider gameLanguageProvider)
 
     private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionMonsterPackSize.ToRegexIsAugmented();
 
-    public override List<Category> ValidCategories { get; } = [Category.Map, Category.Contract, Category.Logbook];
+    public override List<Category> ValidItemClasses { get; } = [Category.Map, Category.Contract, Category.Logbook];
 
     public override void Parse(Item item)
     {

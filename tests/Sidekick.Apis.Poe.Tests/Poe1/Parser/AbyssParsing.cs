@@ -39,7 +39,6 @@ Even the dead serve the Lightless.
 ");
 
         Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
-        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Bubonic Trail", actual.ApiInformation.Name);
         Assert.Equal("Murder Boots", actual.ApiInformation.Type);
@@ -74,7 +73,6 @@ Note: ~price 1 alch
 
         Assert.Equal(ItemClass.AbyssJewel, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal(Category.Jewel, actual.ApiInformation.Category);
         Assert.Equal("Hypnotic Eye Jewel", actual.ApiInformation.Type);
     }
 }

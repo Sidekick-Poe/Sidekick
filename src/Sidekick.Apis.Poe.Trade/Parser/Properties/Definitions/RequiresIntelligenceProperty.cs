@@ -14,7 +14,7 @@ public class RequiresIntelligenceProperty(IGameLanguageProvider gameLanguageProv
 
     private Regex RequiresPattern { get; } = new($@"^{gameLanguageProvider.Language.DescriptionRequires}.*?(\d+)\s*{gameLanguageProvider.Language.DescriptionRequiresInt}");
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Flask, Category.Graft];
+    public override List<Category> ValidItemClasses { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Flask, Category.Graft];
 
     public override void Parse(Item item)
     {

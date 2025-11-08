@@ -27,7 +27,6 @@ Note: ~b/o 2 blessed
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal(Category.Currency, actual.ApiInformation.Category);
         Assert.Equal("Chaos Orb", actual.ApiInformation.Type);
         Assert.Equal("chaos", actual.ApiInformation.InvariantId);
 
@@ -50,7 +49,6 @@ Right click this item then left click a rare item to apply it. Rare items can ha
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal(Category.Currency, actual.ApiInformation.Category);
         Assert.Equal("Exalted Orb", actual.ApiInformation.Type);
         Assert.Equal("exalted", actual.ApiInformation.InvariantId);
 

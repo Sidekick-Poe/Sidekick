@@ -58,11 +58,7 @@ public class PseudoParser
 
     public List<PseudoFilter> GetFilters(Item item)
     {
-        // No filters for divination cards, etc.
-        if (item.ApiInformation.Category == Category.DivinationCard || item.ApiInformation.Category == Category.Gem || item.ApiInformation.Category == Category.ItemisedMonster || item.ApiInformation.Category == Category.Leaguestone || item.ApiInformation.Category == Category.Unknown || item.ApiInformation.Category == Category.Currency)
-        {
-            return [];
-        }
+        if (!item.Properties.ItemClass.HasModifiers()) return [];
 
         var result = new List<PseudoFilter>();
         foreach (var modifier in item.PseudoModifiers)

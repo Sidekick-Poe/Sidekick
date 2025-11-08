@@ -2,8 +2,6 @@ namespace Sidekick.Apis.Poe.Items;
 
 public class ItemApiInformation
 {
-    public Category Category { get; set; } = Category.Unknown;
-
     public string? InvariantId { get; set; }
 
     public string? InvariantText { get; set; }
@@ -17,6 +15,8 @@ public class ItemApiInformation
     public string? Name { get; set; }
 
     public string? Type { get; set; }
+
+    public string? Category { get; set; }
 
     public string? Discriminator { get; set; }
 

@@ -19,7 +19,7 @@ public class CriticalHitChanceProperty(IGameLanguageProvider gameLanguageProvide
         ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance.ToRegexIsAugmented()
         : gameLanguageProvider.Language.DescriptionCriticalHitChance.ToRegexIsAugmented();
 
-    public override List<Category> ValidCategories { get; } = [Category.Weapon];
+    public override List<Category> ValidItemClasses { get; } = [Category.Weapon];
 
     public override void Parse(Item item)
     {

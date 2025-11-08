@@ -12,7 +12,7 @@ public class BlightedProperty(IGameLanguageProvider gameLanguageProvider) : Prop
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.AffixBlighted.ToRegexAffix(gameLanguageProvider.Language.AffixSuperior);
 
-    public override List<Category> ValidCategories { get; } = [Category.Map];
+    public override List<Category> ValidItemClasses { get; } = [Category.Map];
 
     public override void Parse(Item item)
     {

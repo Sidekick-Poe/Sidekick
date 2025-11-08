@@ -26,7 +26,6 @@ Note: ~price 1 alch
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal(Category.Currency, actual.ApiInformation.Category);
         Assert.Equal("Ritual Splinter", actual.ApiInformation.Type);
     }
 
@@ -48,7 +47,6 @@ Note: ~price 8 chaos
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal(Category.Currency, actual.ApiInformation.Category);
         Assert.Equal("Ritual Vessel", actual.ApiInformation.Type);
     }
 
@@ -75,7 +73,6 @@ Note: ~price 3 chaos
 
         Assert.Equal(ItemClass.Corpse, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal(Category.Corpse, actual.ApiInformation.Category);
         Assert.Equal("Perfect Needle Horror", actual.ApiInformation.Type);
     }
 }

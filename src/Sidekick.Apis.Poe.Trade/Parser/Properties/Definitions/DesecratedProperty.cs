@@ -12,7 +12,7 @@ public class DesecratedProperty(IServiceProvider serviceProvider, GameType game)
 {
     private IFilterProvider FilterProvicer => serviceProvider.GetRequiredService<IFilterProvider>();
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Map];
+    public override List<Category> ValidItemClasses { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Map];
 
     public override void Parse(Item item)
     {

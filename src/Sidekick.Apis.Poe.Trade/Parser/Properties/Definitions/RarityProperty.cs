@@ -35,7 +35,7 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
         }
     };
 
-    public override List<Category> ValidCategories { get; } = [];
+    public override List<Category> ValidItemClasses { get; } = [];
 
     public override void Parse(Item item)
     {

@@ -38,7 +38,6 @@ Hunter Item
 ");
 
         Assert.Equal(ItemClass.Helmet, actual.Properties.ItemClass);
-        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Hunter Hood", actual.ApiInformation.Type);
 
@@ -78,7 +77,6 @@ Note: ~price 1 chaos
 ");
 
         Assert.Equal(ItemClass.Helmet, actual.Properties.ItemClass);
-        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Starkonja's Head", actual.ApiInformation.Name);
         Assert.Equal("Silken Hood", actual.ApiInformation.Type);

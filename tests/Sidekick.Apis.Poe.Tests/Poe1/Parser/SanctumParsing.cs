@@ -27,7 +27,6 @@ Take this item to the Relic Altar in the Forbidden Sanctum to enter.
 ");
 
         Assert.Equal(ItemClass.SanctumResearch, actual.Properties.ItemClass);
-        Assert.Equal(Category.Sanctum, actual.ApiInformation.Category);
         Assert.Equal("Forbidden Tome", actual.ApiInformation.Type);
         Assert.Equal(83, actual.Properties.AreaLevel);
         Assert.Equal(84, actual.Properties.ItemLevel);
@@ -51,7 +50,6 @@ Unmodifiable
 ");
 
         Assert.Equal(ItemClass.SanctumRelic, actual.Properties.ItemClass);
-        Assert.Equal(Category.Sanctum, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Urn Relic", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);

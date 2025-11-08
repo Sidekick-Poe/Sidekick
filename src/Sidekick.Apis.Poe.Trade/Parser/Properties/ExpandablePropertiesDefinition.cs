@@ -11,9 +11,9 @@ public class ExpandablePropertiesDefinition
     params PropertyDefinition[] definitions
 ) : PropertyDefinition
 {
-    public List<PropertyDefinition> Definitions { get; } = definitions.ToList();
+    private List<PropertyDefinition> Definitions { get; } = definitions.ToList();
 
-    public override List<Category> ValidCategories => Definitions.SelectMany(x => x.ValidCategories).Distinct().ToList();
+    public override List<ItemClass> ValidItemClasses => Definitions.SelectMany(x => x.ValidItemClasses).Distinct().ToList();
 
     public override void Parse(Item item)
     {

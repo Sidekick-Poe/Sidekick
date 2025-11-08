@@ -41,7 +41,6 @@ Note: ~price 1.29 exalted
 ");
 
         Assert.Equal(ItemClass.MapFragment, actual.Properties.ItemClass);
-        Assert.Equal(Category.Map, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
         Assert.Equal("Chronicle of Atzoatl", actual.ApiInformation.Type);
         Assert.Equal(81, actual.Properties.AreaLevel);

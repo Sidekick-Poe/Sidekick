@@ -63,7 +63,7 @@ public class TradeSearchService
                 query.Type = item.ApiInformation.Type;
             }
 
-            if (item.ApiInformation.Category == Category.ItemisedMonster && !string.IsNullOrEmpty(item.ApiInformation.Name))
+            if (item.ApiInformation.Category == "monster" && !string.IsNullOrEmpty(item.ApiInformation.Name))
             {
                 query.Term = item.ApiInformation.Name;
                 query.Type = null;

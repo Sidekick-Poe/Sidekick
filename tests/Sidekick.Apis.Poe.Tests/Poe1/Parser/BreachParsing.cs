@@ -24,7 +24,6 @@ Shift click to unstack.
 
         Assert.Equal(ItemClass.Currency, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal(Category.Currency, actual.ApiInformation.Category);
         Assert.Equal("Splinter of Tul", actual.ApiInformation.Type);
     }
 
@@ -45,7 +44,6 @@ Place this item into an allocated currency item womb on the Genesis Tree. Right 
 
         Assert.Equal(ItemClass.Wombgift, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Currency, actual.Properties.Rarity);
-        Assert.Equal(Category.Wombgift, actual.ApiInformation.Category);
         Assert.Equal("Lavish Wombgift", actual.ApiInformation.Type);
         Assert.Equal(34, actual.Properties.ItemLevel);
     }
@@ -78,7 +76,6 @@ Graft items can only be modified by Implant currencies.
 
         Assert.Equal(ItemClass.Graft, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal(Category.Graft, actual.ApiInformation.Category);
         Assert.Equal("Freezing Tulgraft", actual.ApiInformation.Type);
         Assert.Equal(37, actual.Properties.ItemLevel);
         Assert.Equal(29, actual.Properties.RequiresLevel);
@@ -105,7 +102,6 @@ A net woven to keep safe the bones of the Lords.
 ");
 
         Assert.Equal(ItemClass.BodyArmour, actual.Properties.ItemClass);
-        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Simple Robe", actual.ApiInformation.Type);
         Assert.Equal("Skin of the Loyal", actual.ApiInformation.Name);

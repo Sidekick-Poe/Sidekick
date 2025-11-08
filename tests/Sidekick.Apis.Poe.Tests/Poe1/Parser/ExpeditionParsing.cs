@@ -48,7 +48,6 @@ Take this item to Dannig in your Hideout to open portals to an expedition.
 
         Assert.Equal(ItemClass.Logbook, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal(Category.Logbook, actual.ApiInformation.Category);
         Assert.Equal("Expedition Logbook", actual.ApiInformation.Type);
 
         actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");
@@ -94,7 +93,6 @@ Take this item to Dannig in your Hideout to open portals to an expedition.
 
         Assert.Equal(ItemClass.Logbook, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal(Category.Logbook, actual.ApiInformation.Category);
         Assert.Equal("Expedition Logbook", actual.ApiInformation.Type);
 
         actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Logbook Faction: Druids of the Broken Circle");

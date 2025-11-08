@@ -15,7 +15,7 @@ public class GemLevelProperty
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionLevel.ToRegexIntCapture();
 
-    public override List<Category> ValidCategories { get; } = [Category.Gem];
+    public override List<Category> ValidItemClasses { get; } = [Category.Gem];
 
     public override void Parse(Item item)
     {

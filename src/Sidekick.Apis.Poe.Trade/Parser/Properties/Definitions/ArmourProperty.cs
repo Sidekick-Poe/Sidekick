@@ -19,7 +19,7 @@ public class ArmourProperty
 
     private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionArmour.ToRegexIsAugmented();
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour];
+    public override List<Category> ValidItemClasses { get; } = [Category.Armour];
 
     public override void Parse(Item item)
     {
