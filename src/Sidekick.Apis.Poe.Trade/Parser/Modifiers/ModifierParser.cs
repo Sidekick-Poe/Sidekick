@@ -226,12 +226,18 @@ public class ModifierParser
             case null: return;
         }
 
-        var matches = new Regex("([-+0-9,.]+)").Matches(modifier.Text);
-        foreach (Match match in matches)
+        var lines = modifier.Text.Split('\n');
+        foreach (var line in lines)
         {
-            if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
+            if (modifier.Values.Count != 0) continue;
+
+            var matches = new Regex("([-+0-9,.]+)").Matches(line);
+            foreach (Match match in matches)
             {
-                modifier.Values.Add(parsedValue);
+                if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
+                {
+                    modifier.Values.Add(parsedValue);
+                }
             }
         }
     }
