@@ -40,6 +40,7 @@ Right click to drink. Can only hold charges while in belt. Refill at Wells or by
         Assert.Equal(66, actual.Properties.ItemLevel);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% of Recovery applied Instantly", 23);
-        // actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Charges per use", 26);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Charges per use", 26);
+        Assert.True(actual.Modifiers[1].Negative);
     }
 }
