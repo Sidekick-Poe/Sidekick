@@ -110,7 +110,8 @@ Item Level: 50
         Assert.Equal("Shadow Axe", actual.ApiInformation.Type);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% reduced Enemy Stun Threshold", 11);
-        Assert.False(actual.Modifiers.First().Negative);
+        Assert.False(actual.Modifiers[0].Negative);
+        Assert.False(actual.Modifiers[0].MatchedFuzzily);
     }
 
     /// <summary>
@@ -213,6 +214,7 @@ All form and finesse are forgotten when blood first hits the ground.
 
         AssertHelper.CloseEnough(59.2, actual.Properties.ElementalDps);
         Assert.True(actual.Modifiers[3].Negative);
+        Assert.False(actual.Modifiers[3].MatchedFuzzily);
     }
 
     [Fact]
