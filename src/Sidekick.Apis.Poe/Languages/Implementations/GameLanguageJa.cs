@@ -73,6 +73,13 @@ public class GameLanguageJa : IGameLanguage
     public string InfluenceRedeemer => "レディーマーアイテム";
     public string InfluenceWarlord => "ウォーロードアイテム";
 
+    public string RegexIncreased => "増加";
+    public string RegexReduced => "減少";
+    public string RegexMore => "上昇";
+    public string RegexLess => "低下";
+    public string RegexFaster => "速く";
+    public string RegexSlower => "遅く";
+
     public ClassLanguage Classes { get; } = new()
     {
         Prefix = "アイテムクラス",

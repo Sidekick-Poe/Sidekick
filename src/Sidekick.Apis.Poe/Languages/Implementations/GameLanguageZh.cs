@@ -73,6 +73,13 @@ public class GameLanguageZh : IGameLanguage
     public string InfluenceRedeemer => "救贖者物品";
     public string InfluenceWarlord => "總督軍物品";
 
+    public string RegexIncreased => "";
+    public string RegexReduced => "";
+    public string RegexMore => "";
+    public string RegexLess => "";
+    public string RegexFaster => "";
+    public string RegexSlower => "";
+
     public ClassLanguage Classes { get; } = new()
     {
         Prefix = "物品種類",

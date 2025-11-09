@@ -73,6 +73,13 @@ public class GameLanguageEn : IGameLanguage
     public string InfluenceRedeemer => "Redeemer Item";
     public string InfluenceWarlord => "Warlord Item";
 
+    public string RegexIncreased => "increased|Increased";
+    public string RegexReduced => "reduced|Reduced";
+    public string RegexMore => "more|More";
+    public string RegexLess => "less|Less";
+    public string RegexFaster => "faster|Faster";
+    public string RegexSlower => "slower|Slower";
+
     public ClassLanguage Classes { get; } = new()
     {
         Prefix = "Item Class",

@@ -73,6 +73,13 @@ public class GameLanguageFr : IGameLanguage
     public string InfluenceRedeemer => "Objet de la Rédemptrice";
     public string InfluenceWarlord => "Objet du Seigneur de guerre";
 
+    public string RegexIncreased => "";
+    public string RegexReduced => "";
+    public string RegexMore => "";
+    public string RegexLess => "";
+    public string RegexFaster => "";
+    public string RegexSlower => "";
+
     public ClassLanguage Classes { get; } = new()
     {
         Prefix = "Classe d'objet",
