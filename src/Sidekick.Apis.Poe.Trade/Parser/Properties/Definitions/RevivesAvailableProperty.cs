@@ -5,7 +5,6 @@ using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -27,7 +26,7 @@ public class RevivesAvailableProperty(IGameLanguageProvider gameLanguageProvider
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.RevivesAvailable));
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item)
     {
         if (item.Properties.RevivesAvailable <= 0) return Task.FromResult<PropertyFilter?>(null);
 
@@ -35,12 +34,10 @@ public class RevivesAvailableProperty(IGameLanguageProvider gameLanguageProvider
         {
             Text = gameLanguageProvider.Language.DescriptionRevivesAvailable,
             NormalizeEnabled = false,
-            NormalizeValue = normalizeValue,
             Value = item.Properties.RevivesAvailable,
             Checked = false,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.RevivesAvailable)) ? LineContentType.Augmented : LineContentType.Simple,
         };
-        filter.ChangeFilterType(filterType);
         return Task.FromResult<PropertyFilter?>(filter);
     }
 

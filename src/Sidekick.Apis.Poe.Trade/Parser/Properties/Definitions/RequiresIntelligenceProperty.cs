@@ -4,7 +4,6 @@ using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -29,7 +28,7 @@ public class RequiresIntelligenceProperty(IGameLanguageProvider gameLanguageProv
         }
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item)
     {
         if (item.Properties.RequiresIntelligence <= 0) return Task.FromResult<PropertyFilter?>(null);
 
@@ -37,10 +36,8 @@ public class RequiresIntelligenceProperty(IGameLanguageProvider gameLanguageProv
         {
             Text = gameLanguageProvider.Language.DescriptionRequiresInt,
             NormalizeEnabled = false,
-            NormalizeValue = normalizeValue,
             Value = item.Properties.RequiresIntelligence,
         };
-        filter.ChangeFilterType(filterType);
         return Task.FromResult<PropertyFilter?>(filter);
     }
 

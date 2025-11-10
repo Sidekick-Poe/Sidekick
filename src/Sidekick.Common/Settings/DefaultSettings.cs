@@ -81,8 +81,6 @@ public static class DefaultSettings
 
     public static bool SaveWindowPositions => false;
 
-    public static string PriceCheckDefaultFilterType => FilterType.Minimum.GetValueAttribute();
-
     public static List<RegexHotkey> RegexHotkeys => [];
 
     public static int WealthItemTotalMinimum => 1;

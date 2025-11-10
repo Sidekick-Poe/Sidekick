@@ -9,7 +9,6 @@ using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -136,7 +135,7 @@ public class WeaponDamageProperty
         }
     }
 
-    public override List<PropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType)
+    public override List<PropertyFilter>? GetFilters(Item item)
     {
         var results = new List<PropertyFilter>();
 
@@ -146,12 +145,10 @@ public class WeaponDamageProperty
             {
                 Text = resources["Damage"],
                 NormalizeEnabled = true,
-                NormalizeValue = normalizeValue,
                 Value = item.Properties.TotalDamageWithQuality ?? 0,
                 OriginalValue = item.Properties.TotalDamage ?? 0,
                 Checked = false,
             };
-            filter.ChangeFilterType(filterType);
             results.Add(filter);
         }
 
@@ -161,13 +158,11 @@ public class WeaponDamageProperty
             {
                 Text = resources["PhysicalDps"],
                 NormalizeEnabled = true,
-                NormalizeValue = normalizeValue,
                 Value = item.Properties.PhysicalDpsWithQuality ?? 0,
                 OriginalValue = item.Properties.PhysicalDps ?? 0,
                 Checked = false,
                 Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.PhysicalDamage)) ? LineContentType.Augmented : LineContentType.Simple,
             };
-            filter.ChangeFilterType(filterType);
             results.Add(filter);
         }
 
@@ -177,12 +172,10 @@ public class WeaponDamageProperty
             {
                 Text = resources["ElementalDps"],
                 NormalizeEnabled = true,
-                NormalizeValue = normalizeValue,
                 Value = item.Properties.ElementalDps ?? 0,
                 Checked = false,
                 Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.FireDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ColdDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.LightningDamage)) ? LineContentType.Augmented : LineContentType.Simple,
             };
-            filter.ChangeFilterType(filterType);
             results.Add(filter);
         }
 
@@ -192,12 +185,10 @@ public class WeaponDamageProperty
             {
                 Text = resources["ChaosDps"],
                 NormalizeEnabled = true,
-                NormalizeValue = normalizeValue,
                 Value = item.Properties.ChaosDps ?? 0,
                 Checked = false,
                 Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ChaosDamage)) ? LineContentType.Augmented : LineContentType.Simple,
             };
-            filter.ChangeFilterType(filterType);
             results.Add(filter);
         }
 
@@ -207,13 +198,11 @@ public class WeaponDamageProperty
             {
                 Text = resources["Dps"],
                 NormalizeEnabled = true,
-                NormalizeValue = normalizeValue,
                 Value = item.Properties.TotalDpsWithQuality ?? 0,
                 OriginalValue = item.Properties.TotalDps ?? 0,
                 Checked = false,
                 Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.PhysicalDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.FireDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ColdDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.LightningDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ChaosDamage)) ? LineContentType.Augmented : LineContentType.Simple,
             };
-            filter.ChangeFilterType(filterType);
             results.Add(filter);
         }
 

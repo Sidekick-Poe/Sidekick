@@ -6,7 +6,6 @@ using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -102,7 +101,7 @@ public class SocketProperty
         item.Properties.Sockets = result;
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item)
     {
         if (item.Properties.Sockets is not
             {
@@ -134,12 +133,10 @@ public class SocketProperty
         {
             Text = gameLanguageProvider.Language.DescriptionSockets,
             NormalizeEnabled = false,
-            NormalizeValue = normalizeValue,
             Value = value,
             Checked = @checked,
             Hint = hint,
         };
-        filter.ChangeFilterType(filterType);
         return Task.FromResult<PropertyFilter?>(filter);
     }
 

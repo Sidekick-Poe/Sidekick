@@ -1,7 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -11,7 +10,7 @@ public class SeparatorProperty() : PropertyDefinition
 
     public override List<Category> ValidCategories { get; } = [];
 
-    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item)
     {
         return Task.FromResult<PropertyFilter?>(new PropertyFilter(this)
         {

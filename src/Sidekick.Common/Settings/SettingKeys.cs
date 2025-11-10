@@ -51,7 +51,6 @@ public static class SettingKeys
     public const string PriceCheckAutomaticallySearch = nameof(PriceCheckAutomaticallySearch);
     public const string PriceCheckEnableAllFilters = nameof(PriceCheckEnableAllFilters);
     public const string PriceCheckEnableFiltersByRegex = nameof(PriceCheckEnableFiltersByRegex);
-    public const string PriceCheckDefaultFilterType = nameof(PriceCheckDefaultFilterType);
     public const string PriceCheckAutomaticallyLoadMoreData = nameof(PriceCheckAutomaticallyLoadMoreData);
 
     public const string SaveWindowPositions = nameof(SaveWindowPositions);
