@@ -73,6 +73,13 @@ public class GameLanguagePt : IGameLanguage
     public string InfluenceRedeemer => "Item do Redentor";
     public string InfluenceWarlord => "Item do Senhor da Guerra";
 
+    public string RegexIncreased => "aumentado|Aumentado|aumentada|Aumentada|aumentados|Aumentados|aumentadas|Aumentadas";
+    public string RegexReduced => "reduzido|Reduzido|reduzida|Reduzida|reduzidos|Reduzidos|reduzidas|Reduzidas";
+    public string RegexMore => "mais|Mais";
+    public string RegexLess => "menos|Menos";
+    public string RegexFaster => "mais rápido|Mais rápido|rapidamente|Rapidamente";
+    public string RegexSlower => "mais lento|Mais lento|lentamente|Lentamente";
+
     public ClassLanguage Classes { get; } = new()
     {
         Prefix = "Classe do Item",

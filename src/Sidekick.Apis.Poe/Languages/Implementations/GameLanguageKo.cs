@@ -73,6 +73,13 @@ public class GameLanguageKo : IGameLanguage
     public string InfluenceRedeemer => "대속자 아이템";
     public string InfluenceWarlord => "전쟁군주 아이템";
 
+    public string RegexIncreased => "";
+    public string RegexReduced => "";
+    public string RegexMore => "";
+    public string RegexLess => "";
+    public string RegexFaster => "";
+    public string RegexSlower => "";
+
     public ClassLanguage Classes { get; } = new()
     {
         Prefix = "아이템 종류",

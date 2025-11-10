@@ -91,6 +91,8 @@ Leeches 4.02% of Physical Damage as Mana
         actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage", 24, 37);
         actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Cold Damage", 39, 75);
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Attribute Requirements", 35);
+        Assert.True(actual.Modifiers[4].Negative);
+        Assert.False(actual.Modifiers[4].MatchedFuzzily);
         actual.AssertHasModifier(ModifierCategory.Explicit, "# to Level of all Projectile Skills", 3);
         actual.AssertHasModifier(ModifierCategory.Explicit, "Leeches #% of Physical Damage as Mana", 4.02); ;
     }

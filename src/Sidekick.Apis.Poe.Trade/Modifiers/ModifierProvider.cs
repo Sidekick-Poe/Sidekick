@@ -28,6 +28,10 @@ public class ModifierProvider
     private readonly Regex hashPattern = new(@"\\#");
     private readonly Regex parenthesesPattern = new(@"((?:\\\ )*\\\([^\(\)]*\\\))");
 
+    private record ModifierReplaceEntry(Regex Pattern, string Replacement);
+
+    private List<ModifierReplaceEntry> ReplacementPatterns { get; } = [];
+
     public Dictionary<ModifierCategory, List<ModifierDefinition>> Definitions { get; } = new();
 
     /// <inheritdoc/>
@@ -40,6 +44,17 @@ public class ModifierProvider
         var cacheKey = $"{game.GetValueAttribute()}_Modifiers";
         var apiCategories = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<ApiCategory>(game, gameLanguageProvider.Language, "stats"), (cache) => cache.Result.Any());
         if (apiCategories == null) throw new SidekickException("Could not fetch modifiers from the trade API.");
+
+        ReplacementPatterns.Clear();
+        ReplacementPatterns.Add(new(
+                                new Regex(gameLanguageProvider.Language.RegexIncreased),
+                                $"(?:{gameLanguageProvider.Language.RegexIncreased}|{gameLanguageProvider.Language.RegexReduced})"));
+        ReplacementPatterns.Add(new(
+                                new Regex(gameLanguageProvider.Language.RegexMore),
+                                $"(?:{gameLanguageProvider.Language.RegexMore}|{gameLanguageProvider.Language.RegexLess})"));
+        ReplacementPatterns.Add(new(
+                                new Regex(gameLanguageProvider.Language.RegexFaster),
+                                $"(?:{gameLanguageProvider.Language.RegexFaster}|{gameLanguageProvider.Language.RegexSlower})"));
 
         Definitions.Clear();
 
@@ -158,6 +173,11 @@ public class ModifierProvider
         patternValue = parenthesesPattern.Replace(patternValue, "(?:$1)?");
         patternValue = newLinePattern.Replace(patternValue, "\\n");
 
+        foreach (var replacement in ReplacementPatterns)
+        {
+            patternValue = replacement.Pattern.Replace(patternValue, replacement.Replacement);       
+        }
+        
         if (string.IsNullOrEmpty(optionText))
         {
             patternValue = hashPattern.Replace(patternValue, "[-+0-9,.]+") + suffix;

@@ -43,6 +43,8 @@ public class Modifier(string text)
 
     public bool MatchedFuzzily { get; init; }
 
+    public bool Negative { get; init; }
+
     /// <inheritdoc />
     public override string ToString() => Text;
 }

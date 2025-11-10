@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using FuzzySharp;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Modifiers.Models;
@@ -14,9 +15,37 @@ public class ModifierParser
 (
     IModifierProvider modifierProvider,
     IFuzzyService fuzzyService,
-    ISettingsService settingsService
+    ISettingsService settingsService,
+    IGameLanguageProvider gameLanguageProvider
 ) : IModifierParser
 {
+    public int Priority => 300;
+    
+    private Regex? PositivePattern { get; set; }
+    
+    private Regex? NegativePattern { get; set; }
+    
+    public Task Initialize()
+    {
+        List<string> positiveTexts =
+        [
+            ..gameLanguageProvider.Language.RegexIncreased.Split('|'),
+            ..gameLanguageProvider.Language.RegexMore.Split('|'),
+            ..gameLanguageProvider.Language.RegexFaster.Split('|'),
+        ];
+        PositivePattern = positiveTexts.Count != 0 ? new Regex($"(?:{string.Join('|', positiveTexts)})") : null;
+        
+        List<string> negativeTexts =
+        [
+            ..gameLanguageProvider.Language.RegexReduced.Split('|'),
+            ..gameLanguageProvider.Language.RegexLess.Split('|'),
+            ..gameLanguageProvider.Language.RegexSlower.Split('|'),
+        ];
+        NegativePattern = negativeTexts.Count != 0 ? new Regex($"(?:{string.Join('|', negativeTexts)})") : null;
+        
+        return Task.CompletedTask;
+    }
+    
     /// <inheritdoc/>
     public void Parse(Item item)
     {
@@ -156,11 +185,19 @@ public class ModifierParser
         var text = string.Join('\n', lines.Select(x => x.Text));
         var category = text.ParseCategory();
 
+        var originallyPositive = false;
+        var negative = NegativePattern?.IsMatch(text) ?? false;
+        foreach (var definition in definitions)
+        {
+            originallyPositive |= PositivePattern?.IsMatch(definition.ApiText) ?? false;
+        }
+        
         var modifier = new Modifier(text.RemoveCategory())
         {
             BlockIndex = block.Index,
             LineIndex = lines.First().Index,
             MatchedFuzzily = matchedFuzzily,
+            Negative = negative && originallyPositive,
         };
 
         var fuzzyLine = fuzzyService.CleanFuzzyText(text);
@@ -274,5 +311,4 @@ public class ModifierParser
 
         return result;
     }
-
 }

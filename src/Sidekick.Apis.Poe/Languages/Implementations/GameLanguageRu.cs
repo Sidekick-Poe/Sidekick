@@ -73,6 +73,13 @@ public class GameLanguageRu : IGameLanguage
     public string InfluenceRedeemer => "Предмет Избавительницы";
     public string InfluenceWarlord => "Предмет Вождя";
 
+    public string RegexIncreased => "";
+    public string RegexReduced => "";
+    public string RegexMore => "";
+    public string RegexLess => "";
+    public string RegexFaster => "";
+    public string RegexSlower => "";
+
     public ClassLanguage Classes { get; } = new()
     {
         Prefix = "Класс предмета",
