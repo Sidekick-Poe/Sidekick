@@ -9,7 +9,7 @@ public class ModifierFilter
     {
         Line = line;
         Checked = line.ApiInformation.FirstOrDefault()?.Category == ModifierCategory.Fractured;
-        
+
         var categories = line.ApiInformation.Select(x => x.Category).Distinct().ToList();
         if (categories.Any(x => x is ModifierCategory.Fractured or ModifierCategory.Desecrated or ModifierCategory.Crafted))
         {
@@ -79,6 +79,7 @@ public class ModifierFilter
         }
 
         var value = Line.AverageValue;
+        if (Line.Negative) value *= -1;
         if (value > 0)
         {
             Min = (int)Math.Max((1 - NormalizeValue) * value, 0);
@@ -100,6 +101,7 @@ public class ModifierFilter
         }
 
         var value = Line.AverageValue;
+        if (Line.Negative) value *= -1;
         if (value > 0)
         {
             Max = (int)Math.Max(Math.Max(value + 1, (1 + NormalizeValue) * value), 0);
@@ -121,6 +123,7 @@ public class ModifierFilter
         }
 
         var value = Line.AverageValue;
+        if (Line.Negative) value *= -1;
         Min = (int)value;
         Max = (int)value;
     }
