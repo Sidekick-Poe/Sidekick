@@ -1,7 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
 
@@ -31,7 +30,7 @@ public class ExpandablePropertiesDefinition
         }
     }
 
-    public override async Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override async Task<PropertyFilter?> GetFilter(Item item)
     {
         var filter = new ExpandablePropertiesFilter(this)
         {
@@ -40,7 +39,7 @@ public class ExpandablePropertiesDefinition
 
         foreach (var definition in Definitions)
         {
-            var definitionFilter = await definition.GetFilter(item, normalizeValue, filterType);
+            var definitionFilter = await definition.GetFilter(item);
             if (definitionFilter != null)
             {
                 filter.Filters.Add(definitionFilter);
@@ -52,7 +51,7 @@ public class ExpandablePropertiesDefinition
         return filter;
     }
 
-    public override List<PropertyFilter>? GetFilters(Item item, double normalizeValue, FilterType filterType)
+    public override List<PropertyFilter>? GetFilters(Item item)
     {
         var filter = new ExpandablePropertiesFilter(this)
         {
@@ -61,7 +60,7 @@ public class ExpandablePropertiesDefinition
 
         foreach (var definition in Definitions)
         {
-            var definitionFilters = definition.GetFilters(item, normalizeValue, filterType);
+            var definitionFilters = definition.GetFilters(item);
             if (definitionFilters != null)
             {
                 filter.Filters.AddRange(definitionFilters);

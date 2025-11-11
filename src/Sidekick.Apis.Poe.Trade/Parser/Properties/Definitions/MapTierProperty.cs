@@ -4,7 +4,6 @@ using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -21,7 +20,7 @@ public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : Prope
         if (item.Properties.MapTier > 0) propertyBlock.Parsed = true;
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item)
     {
         if (item.Properties.MapTier <= 0) return Task.FromResult<PropertyFilter?>(null);
 
@@ -29,11 +28,9 @@ public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : Prope
         {
             Text = gameLanguageProvider.Language.DescriptionMapTier,
             NormalizeEnabled = false,
-            NormalizeValue = normalizeValue,
             Value = item.Properties.MapTier,
             Checked = true,
         };
-        filter.ChangeFilterType(filterType);
         return Task.FromResult<PropertyFilter?>(filter);
     }
 

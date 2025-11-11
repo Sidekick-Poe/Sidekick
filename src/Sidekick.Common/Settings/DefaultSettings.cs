@@ -48,6 +48,8 @@ public static class DefaultSettings
     public static bool PriceCheckAutomaticallySearch => false;
 
     public static bool PriceCheckEnableAllFilters => false;
+    public static bool PriceCheckFillDefaultMin => true;
+    public static bool PriceCheckFillDefaultMax => false;
 
     public static string PriceCheckEnableFiltersByRegex => "";
 
@@ -80,8 +82,6 @@ public static class DefaultSettings
     ];
 
     public static bool SaveWindowPositions => false;
-
-    public static string PriceCheckDefaultFilterType => FilterType.Minimum.GetValueAttribute();
 
     public static List<RegexHotkey> RegexHotkeys => [];
 

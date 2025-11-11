@@ -16,7 +16,8 @@
 <FormFieldset Legend="@Resources["Filter_Settings"]">
     <PriceCheckItemClassFilter />
     <PriceCheckNormalizeValueEditor />
-    <PriceCheckDefaultFilterTypeEditor />
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckFillDefaultMin" Label="@Resources["PriceCheck_FillDefault_Min"]"/>
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckFillDefaultMax" Label="@Resources["PriceCheck_FillDefault_Max"]"/>
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckEnableAllFilters" Label="@Resources["PriceCheck_Enable_All_Filters"]" />
     <SettingTextEditor SettingKey="@SettingKeys.PriceCheckEnableFiltersByRegex" Label="@Resources["PriceCheck_Enable_Filters_By_Regex"]" Tooltip="@UiResources["Regex_Hint"]" />
 </FormFieldset>
@@ -49,12 +50,13 @@
 
         SettingKeys.PriceCheckItemClassFilter,
         SettingKeys.PriceCheckNormalizeValue,
+        SettingKeys.PriceCheckFillDefaultMin,
+        SettingKeys.PriceCheckFillDefaultMax,
         SettingKeys.PriceCheckPredictionEnabled,
         SettingKeys.PriceCheckAutomaticallySearch,
         SettingKeys.PriceCheckEnableAllFilters,
         SettingKeys.PriceCheckEnableFiltersByRegex,
         SettingKeys.PriceCheckAutomaticallyLoadMoreData,
-        SettingKeys.PriceCheckDefaultFilterType,
     };
 
     protected override async Task OnInitializedAsync()

@@ -5,7 +5,6 @@ using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -43,7 +42,7 @@ public class EnergyShieldProperty
         else if (AlternateIsAugmentedPattern != null && GetBool(AlternateIsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.EnergyShield));
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item)
     {
         if (item.Properties.EnergyShield <= 0) return Task.FromResult<PropertyFilter?>(null);
 
@@ -57,13 +56,11 @@ public class EnergyShieldProperty
         {
             Text = text,
             NormalizeEnabled = true,
-            NormalizeValue = normalizeValue,
             Value = item.Properties.EnergyShieldWithQuality,
             OriginalValue = item.Properties.EnergyShield,
             Checked = false,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.EnergyShield)) ? LineContentType.Augmented : LineContentType.Simple,
         };
-        filter.ChangeFilterType(filterType);
         return Task.FromResult<PropertyFilter?>(filter);
     }
 

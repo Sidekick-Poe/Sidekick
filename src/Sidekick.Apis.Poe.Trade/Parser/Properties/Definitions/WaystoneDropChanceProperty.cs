@@ -5,7 +5,6 @@ using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -27,7 +26,7 @@ public class WaystoneDropChanceProperty(IGameLanguageProvider gameLanguageProvid
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.WaystoneDropChance));
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item)
     {
         if (item.Properties.WaystoneDropChance <= 0) return Task.FromResult<PropertyFilter?>(null);
 
@@ -35,14 +34,12 @@ public class WaystoneDropChanceProperty(IGameLanguageProvider gameLanguageProvid
         {
             Text = gameLanguageProvider.Language.DescriptionWaystoneDropChance,
             NormalizeEnabled = true,
-            NormalizeValue = normalizeValue,
             Value = item.Properties.WaystoneDropChance,
             ValuePrefix = "+",
             ValueSuffix = "%",
             Checked = false,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.WaystoneDropChance)) ? LineContentType.Augmented : LineContentType.Simple,
         };
-        filter.ChangeFilterType(filterType);
         return Task.FromResult<PropertyFilter?>(filter);
     }
 

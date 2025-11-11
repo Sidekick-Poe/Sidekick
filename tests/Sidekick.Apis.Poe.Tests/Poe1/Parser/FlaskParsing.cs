@@ -150,6 +150,6 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "Gain # Charge when you are Hit by an Enemy", 3);
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% reduced Effect of Chill on you during Effect", 40);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Freeze Duration on you during Effect", 41);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Freeze Duration on you during Effect", -41);
     }
 }

@@ -1,8 +1,6 @@
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Languages
 @using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters
-@using Sidekick.Modules.Trade.Localization
-@using Sidekick.Common.Settings
 
 @if (!Filter.ShowRow)
 {
@@ -31,20 +29,19 @@
 
         @if (Filter.Checked)
         {
-            <FilterRange Min="@Filter.Min"
+            <FilterRange Checked="Filter.Checked"
+                         NormalizeEnabled="Filter.NormalizeEnabled"
+                         NormalizeRoundToInteger="true"
+                         Value="@Filter.Value"
+                         Min="@Filter.Min"
                          MinChanged="MinChanged"
                          Max="@Filter.Max"
-                         MaxChanged="MaxChanged"
-                         Type="@Filter.FilterType"
-                         TypeChanged="(v) => Filter.ChangeFilterType(v)"/>
+                         MaxChanged="MaxChanged"/>
         }
     </div>
 </FilterWrapper>
 
-@inject IStringLocalizer<TradeResources> Resources
-@inject TradeService TradeService
 @inject IGameLanguageProvider GameLanguageProvider
-@inject ISettingsService SettingsService
 
 @code {
 
@@ -54,14 +51,9 @@
     [Parameter]
     public required IntPropertyFilter Filter { get; set; }
 
-    private async void CheckedChanged(bool value)
+    private void CheckedChanged(bool value)
     {
         Filter.Checked = value;
-
-        // We can change the settings in the Trade window, so we should fetch here every time.
-        Filter.NormalizeValue = await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
-        var filterType = await SettingsService.GetEnum<FilterType>(SettingKeys.PriceCheckDefaultFilterType) ?? FilterType.Minimum;
-        Filter.ChangeFilterType(filterType);
     }
 
     private void MinChanged(double? value)

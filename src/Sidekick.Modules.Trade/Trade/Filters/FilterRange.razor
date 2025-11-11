@@ -1,58 +1,68 @@
+@using System.Globalization
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization;
 
-<div class="flex flex-nowrap items-center [&_.range~.range_[contenteditable]]:rounded-l-none! [&_.range_[contenteditable]]:rounded-r-none! [&_.range:last-child_[contenteditable]]:rounded-r-md!" id="@Id">
-    <Popover Trigger="PopoverTrigger.Hover">
-        <PopoverAnchor>
-            <ButtonIcon OnClick="ToggleType" AdditionalClasses="mr-[2px]">
-                <Icon Svg="@Icon" Class="!size-4 !min-h-4 !min-w-4" />
-            </ButtonIcon>
-        </PopoverAnchor>
-        <PopoverContent>
-            <div class="flex gap-1">
-                <ButtonIcon OnClick="() => SelectType(FilterType.Minimum)" Disabled="Type == FilterType.Minimum">
-                    <Icon Svg="@UiIcons.FilterGreaterThan" />
-                </ButtonIcon>
-                <ButtonIcon OnClick="() => SelectType(FilterType.Maximum)" Disabled="Type == FilterType.Maximum">
-                    <Icon Svg="@UiIcons.FilterLessThan" />
-                </ButtonIcon>
-                <ButtonIcon OnClick="() => SelectType(FilterType.Equals)" Disabled="Type == FilterType.Equals">
-                    <Icon Svg="@UiIcons.FilterEquals" />
-                </ButtonIcon>
-                <ButtonIcon OnClick="() => SelectType(FilterType.Range)" Disabled="Type == FilterType.Range">
-                    <Icon Svg="@UiIcons.FilterRange" />
-                </ButtonIcon>
+@if (!Checked)
+{
+    return;
+}
+
+<Popover Trigger="PopoverTrigger.Hover">
+    <PopoverAnchor>
+        <div
+            class="flex flex-nowrap items-center [&_.range_[contenteditable]]:leading-[14px] [&_.range~.range_[contenteditable]]:rounded-l-none! [&_.range_[contenteditable]]:rounded-r-none! [&_.range:last-child_[contenteditable]]:rounded-r-md!"
+            id="@Id">
+            <div @onwheel="OnMinWheel"
+                 @oncontextmenu="Clear"
+                 class="range">
+                <FormContentEditable Placeholder="@Resources["Filters_Min"]"
+                                     DoubleValue="Min"
+                                     DoubleValueChanged="UpdateMinValue"/>
             </div>
-        </PopoverContent>
-    </Popover>
-
-    @if (Type == FilterType.Minimum || Type == FilterType.Equals || Type == FilterType.Range)
-    {
-        <div @onwheel="OnMinWheel"
-             @oncontextmenu="Clear"
-             title="@(Type == FilterType.Equals ? Resources["Filters_Equals"] : Resources["Filters_Min"])"
-             class="range">
-            <FormContentEditable DoubleValue="Min"
-                                 DoubleValueChanged="UpdateMinValue" />
+            <div @onwheel="OnMaxWheel"
+                 @oncontextmenu="Clear"
+                 class="range">
+                <FormContentEditable Placeholder="@Resources["Filters_Max"]"
+                                     DoubleValue="Max"
+                                     DoubleValueChanged="UpdateMaxValue"/>
+            </div>
         </div>
-    }
-
-    @if (Type == FilterType.Maximum || Type == FilterType.Range)
-    {
-        <div @onwheel="OnMaxWheel"
-             @oncontextmenu="Clear"
-             title="@Resources["Filters_Max"]"
-             class="range">
-            <FormContentEditable DoubleValue="Max"
-                                 DoubleValueChanged="UpdateMaxValue" />
+    </PopoverAnchor>
+    <PopoverContent>
+        <div class="flex flex-nowrap gap-1">
+            <ButtonIcon OnClick="SetMin">
+                <Icon Svg="@UiIcons.FilterGreaterThan" />
+            </ButtonIcon>
+            <ButtonIcon OnClick="SetMax">
+                <Icon Svg="@UiIcons.FilterLessThan" />
+            </ButtonIcon>
+            <ButtonIcon OnClick="SetEquals">
+                <Icon Svg="@UiIcons.FilterEquals" />
+            </ButtonIcon>
+            <ButtonIcon OnClick="SetRange">
+                <Icon Svg="@UiIcons.FilterRange" />
+            </ButtonIcon>
         </div>
-    }
-</div>
+    </PopoverContent>
+</Popover>
 
 @inject IStringLocalizer<TradeResources> Resources
 @inject IJSRuntime JsRuntime
+@inject ISettingsService SettingsService
 
 @code {
+
+    [Parameter]
+    public bool Checked { get; set; }
+
+    [Parameter]
+    public bool NormalizeEnabled { get; set; }
+
+    [Parameter]
+    public bool NormalizeRoundToInteger { get; set; }
+
+    [Parameter]
+    public double? Value { get; set; }
 
     [Parameter]
     public double? Min { get; set; }
@@ -66,13 +76,34 @@
     [Parameter]
     public EventCallback<double?> MaxChanged { get; set; }
 
-    [Parameter]
-    public FilterType Type { get; set; }
+    private bool LastValueChecked { get; set; }
 
-    [Parameter]
-    public EventCallback<FilterType> TypeChanged { get; set; }
+    private double NormalizeMultiplier { get; set; }
 
     private string Id { get; } = UiUtilities.GenerateId();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Checked != LastValueChecked)
+        {
+            LastValueChecked = Checked;
+            NormalizeMultiplier = await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
+
+            var fillMin = await SettingsService.GetBool(SettingKeys.PriceCheckFillDefaultMin);
+            if (fillMin)
+            {
+                await NormalizeMinValue();
+            }
+
+            var fillMax = await SettingsService.GetBool(SettingKeys.PriceCheckFillDefaultMax);
+            if (fillMax)
+            {
+                await NormalizeMaxValue();
+            }
+        }
+
+        await base.OnParametersSetAsync();
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -90,40 +121,9 @@
         await base.OnAfterRenderAsync(firstRender);
     }
 
-    private string Icon => Type switch
-    {
-        FilterType.Maximum => UiIcons.FilterLessThan,
-        FilterType.Equals => UiIcons.FilterEquals,
-        FilterType.Range => UiIcons.FilterRange,
-        _ => UiIcons.FilterGreaterThan,
-    };
-
-    private async Task SelectType(FilterType filterType)
-    {
-        await TypeChanged.InvokeAsync(filterType);
-    }
-
-    private async Task ToggleType()
-    {
-        var type = Type switch
-        {
-            FilterType.Minimum => FilterType.Maximum,
-            FilterType.Maximum => FilterType.Equals,
-            FilterType.Equals => FilterType.Range,
-            FilterType.Range => FilterType.Minimum,
-            _ => FilterType.Minimum,
-        };
-
-        await TypeChanged.InvokeAsync(type);
-    }
-
     private async Task UpdateMinValue(double? value)
     {
         await MinChanged.InvokeAsync(value);
-        if (Type == FilterType.Equals)
-        {
-            await MaxChanged.InvokeAsync(value);
-        }
     }
 
     private async Task UpdateMaxValue(double? value)
@@ -136,11 +136,11 @@
         var value = Min ?? 0;
         if (args.DeltaY < 0)
         {
-            value = value + 1;
+            value += 1;
         }
         else
         {
-            value = value - 1;
+            value -= 1;
         }
 
         await UpdateMinValue(value);
@@ -151,14 +151,58 @@
         var value = Max ?? 0;
         if (args.DeltaY < 0)
         {
-            value = value + 1;
+            value += 1;
         }
         else
         {
-            value = value - 1;
+            value -= 1;
         }
 
         await UpdateMaxValue(value);
+    }
+
+    private async Task NormalizeMinValue()
+    {
+        if (!NormalizeEnabled || !Value.HasValue || !decimal.TryParse(Value.Value.ToString(CultureInfo.InvariantCulture), out var value) || value == 0)
+        {
+            await UpdateMinValue(Value);
+            return;
+        }
+
+        double normalizedValue;
+        if (value > 0)
+        {
+            normalizedValue = Math.Round((double)Math.Max((1 - (decimal)NormalizeMultiplier) * value, 0), 2);
+        }
+        else
+        {
+            normalizedValue = Math.Round((double)Math.Max((1 - (decimal)NormalizeMultiplier) * value, 0), 2);
+        }
+
+        if (NormalizeRoundToInteger) normalizedValue = (int)normalizedValue;
+        await UpdateMinValue(normalizedValue);
+    }
+
+    private async Task NormalizeMaxValue()
+    {
+        if (!NormalizeEnabled || !Value.HasValue || !double.TryParse(Value.Value.ToString(CultureInfo.InvariantCulture), out var value) || value == 0)
+        {
+            await UpdateMaxValue(Value);
+            return;
+        }
+
+        double normalizedValue;
+        if (value > 0)
+        {
+            normalizedValue = Math.Round(Math.Max(Math.Max(value + 1, (1 + NormalizeMultiplier) * value), 0), 2);
+        }
+        else
+        {
+            normalizedValue = Math.Round(Math.Min(Math.Max(value + 1, (1 - NormalizeMultiplier) * value), 0), 2);
+        }
+
+        if (NormalizeRoundToInteger) normalizedValue = (int)normalizedValue;
+        await UpdateMaxValue(normalizedValue);
     }
 
     private async Task Clear()
@@ -167,4 +211,27 @@
         await MaxChanged.InvokeAsync(null);
     }
 
+    private async Task SetMin()
+    {
+        await NormalizeMinValue();
+        await UpdateMaxValue(null);
+    }
+
+    private async Task SetMax()
+    {
+        await NormalizeMaxValue();
+        await UpdateMinValue(null);
+    }
+
+    private async Task SetEquals()
+    {
+        await UpdateMinValue(Value);
+        await UpdateMaxValue(Value);
+    }
+
+    private async Task SetRange()
+    {
+        await NormalizeMinValue();
+        await NormalizeMaxValue();
+    }
 }

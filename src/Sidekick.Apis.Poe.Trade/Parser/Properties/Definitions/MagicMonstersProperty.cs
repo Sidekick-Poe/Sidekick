@@ -5,7 +5,6 @@ using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -27,7 +26,7 @@ public class MagicMonstersProperty(IGameLanguageProvider gameLanguageProvider) :
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.MagicMonsters));
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item)
     {
         if (item.Properties.MagicMonsters <= 0) return Task.FromResult<PropertyFilter?>(null);
 
@@ -35,14 +34,12 @@ public class MagicMonstersProperty(IGameLanguageProvider gameLanguageProvider) :
         {
             Text = gameLanguageProvider.Language.DescriptionMagicMonsters,
             NormalizeEnabled = true,
-            NormalizeValue = normalizeValue,
             Value = item.Properties.MagicMonsters,
             ValuePrefix = "+",
             ValueSuffix = "%",
             Checked = false,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.MagicMonsters)) ? LineContentType.Augmented : LineContentType.Simple,
         };
-        filter.ChangeFilterType(filterType);
         return Task.FromResult<PropertyFilter?>(filter);
     }
 

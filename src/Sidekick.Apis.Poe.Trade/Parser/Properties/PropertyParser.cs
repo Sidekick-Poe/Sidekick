@@ -128,19 +128,16 @@ public class PropertyParser
 
     public async Task<List<PropertyFilter>> GetFilters(Item item)
     {
-
-        var normalizeValue = await settingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
-        var filterType = await settingsService.GetEnum<FilterType>(SettingKeys.PriceCheckDefaultFilterType) ?? FilterType.Minimum;
         var results = new List<PropertyFilter>();
 
         foreach (var definition in Definitions)
         {
             if (definition.ValidCategories.Count > 0 && !definition.ValidCategories.Contains(item.ApiInformation.Category)) continue;
 
-            var filter = await definition.GetFilter(item, normalizeValue, filterType);
+            var filter = await definition.GetFilter(item);
             if (filter != null) results.Add(filter);
 
-            var filters = definition.GetFilters(item, normalizeValue, filterType);
+            var filters = definition.GetFilters(item);
             if (filters != null) results.AddRange(filters);
         }
 

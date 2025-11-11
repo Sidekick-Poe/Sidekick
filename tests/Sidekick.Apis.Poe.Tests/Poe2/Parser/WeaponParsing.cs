@@ -90,8 +90,7 @@ Leeches 4.02% of Physical Damage as Mana
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Physical Damage", 73);
         actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage", 24, 37);
         actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Cold Damage", 39, 75);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Attribute Requirements", 35);
-        Assert.True(actual.Modifiers[4].Negative);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Attribute Requirements", -35);
         Assert.False(actual.Modifiers[4].MatchedFuzzily);
         actual.AssertHasModifier(ModifierCategory.Explicit, "# to Level of all Projectile Skills", 3);
         actual.AssertHasModifier(ModifierCategory.Explicit, "Leeches #% of Physical Damage as Mana", 4.02); ;
@@ -397,12 +396,12 @@ Note: ~price 1 mirror");
         // Verify physical damage
         Assert.Equal(414, actual.Properties.PhysicalDamage?.Min);
         Assert.Equal(1043, actual.Properties.PhysicalDamage?.Max);
-        
+
         actual.AssertHasModifier(ModifierCategory.Rune, "#% increased Physical Damage", 36);
-        
+
         actual.AssertHasModifier(ModifierCategory.Fractured, "#% increased Attack Speed", 25);
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Attack Speed", 25);
-        
+
         actual.AssertHasModifier(ModifierCategory.Desecrated, "Adds # to # Physical Damage", 54, 94);
         actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Physical Damage", 54, 94);
 
@@ -410,7 +409,7 @@ Note: ~price 1 mirror");
         actual.AssertDoesNotHaveModifier(ModifierCategory.Fractured, "Loads an additional bolt");
 
         var modifierFilters = await fixture.ModifierParser.GetFilters(actual);
-        
+
         var fracturedFilter = modifierFilters.First(x => x.PrimaryCategory == ModifierCategory.Fractured);
         Assert.True(fracturedFilter.UsePrimaryCategory);
         Assert.Equal(ModifierCategory.Fractured, fracturedFilter.PrimaryCategory);
@@ -418,10 +417,10 @@ Note: ~price 1 mirror");
         foreach (var x in fracturedFilter.Line.ApiInformation)
         {
             if (x.Category is ModifierCategory.Fractured or ModifierCategory.Explicit) continue;
-            
+
             Assert.Fail();
         }
-        
+
         var desecratedFilter = modifierFilters.First(x => x.PrimaryCategory == ModifierCategory.Desecrated);
         Assert.True(desecratedFilter.UsePrimaryCategory);
         Assert.Equal(ModifierCategory.Desecrated, desecratedFilter.PrimaryCategory);
@@ -429,7 +428,7 @@ Note: ~price 1 mirror");
         foreach (var x in desecratedFilter.Line.ApiInformation)
         {
             if (x.Category is ModifierCategory.Desecrated or ModifierCategory.Explicit) continue;
-            
+
             Assert.Fail();
         }
     }
