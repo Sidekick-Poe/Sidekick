@@ -6,11 +6,10 @@
 @import './item-sockets.css' layer(components);
 @import './poe.css' layer(components);
 
-@import "tailwindcss" source('../../**/*.{razor,html,cshtml,cs}');
+@import "tailwindcss" source('../../**/*.{razor,html,cshtml,cs,js}');
 
 @plugin 'flowbite/plugin';
 
-@source '../**/*.js';
 @source not "../node_modules";
 @source not "../wwwroot";
 @source not "../../**/wwwroot";

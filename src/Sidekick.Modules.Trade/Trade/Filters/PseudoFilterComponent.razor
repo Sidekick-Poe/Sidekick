@@ -1,7 +1,5 @@
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters
-@using Sidekick.Common.Settings
-@using Sidekick.Modules.Trade.Localization
 
 <FilterWrapper>
     <div class="flex flex-nowrap items-center">
@@ -27,29 +25,24 @@
                          }
                      })
             {
-                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" Type="@Filter.FilterType"
-                             TypeChanged="(v) => Filter.ChangeFilterType(v)"/>
+                <FilterRange Checked="Filter.Checked == true"
+                             NormalizeEnabled="true"
+                             NormalizeRoundToInteger="true"
+                             Value="@Filter.PseudoModifier.Value"
+                             @bind-Min="@Filter.Min" @bind-Max="@Filter.Max"/>
             }
         </div>
     </div>
 </FilterWrapper>
-
-@inject IStringLocalizer<TradeResources> Resources
-@inject ISettingsService SettingsService
 
 @code {
 
     [Parameter]
     public required PseudoFilter Filter { get; set; }
 
-    private async void CheckedChanged(bool value)
+    private void CheckedChanged(bool value)
     {
         Filter.Checked = value;
-
-        // We can change the settings in the Trade window, so we should fetch here every time.
-        Filter.NormalizeValue = await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
-        var filterType = await SettingsService.GetEnum<FilterType>(SettingKeys.PriceCheckDefaultFilterType) ?? FilterType.Minimum;
-        Filter.ChangeFilterType(filterType);
     }
 
 }

@@ -88,7 +88,7 @@ Note: ~price 1 chaos
         Assert.Equal(793, actual.Properties.EvasionRating);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Dexterity", 53);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Damage when on Low Life", 50);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Damage when on Low Life", -50);
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Attack Speed", 10);
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Global Critical Strike Chance", 25);
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Evasion Rating", 124);

@@ -20,11 +20,11 @@ public class ModifierParser
 ) : IModifierParser
 {
     public int Priority => 300;
-    
+
     private Regex? PositivePattern { get; set; }
-    
+
     private Regex? NegativePattern { get; set; }
-    
+
     public Task Initialize()
     {
         List<string> positiveTexts =
@@ -34,7 +34,7 @@ public class ModifierParser
             ..gameLanguageProvider.Language.RegexFaster.Split('|'),
         ];
         PositivePattern = positiveTexts.Count != 0 ? new Regex($"(?:{string.Join('|', positiveTexts)})") : null;
-        
+
         List<string> negativeTexts =
         [
             ..gameLanguageProvider.Language.RegexReduced.Split('|'),
@@ -42,10 +42,10 @@ public class ModifierParser
             ..gameLanguageProvider.Language.RegexSlower.Split('|'),
         ];
         NegativePattern = negativeTexts.Count != 0 ? new Regex($"(?:{string.Join('|', negativeTexts)})") : null;
-        
+
         return Task.CompletedTask;
     }
-    
+
     /// <inheritdoc/>
     public void Parse(Item item)
     {
@@ -185,19 +185,11 @@ public class ModifierParser
         var text = string.Join('\n', lines.Select(x => x.Text));
         var category = text.ParseCategory();
 
-        var originallyPositive = false;
-        var negative = NegativePattern?.IsMatch(text) ?? false;
-        foreach (var definition in definitions)
-        {
-            originallyPositive |= PositivePattern?.IsMatch(definition.ApiText) ?? false;
-        }
-        
         var modifier = new Modifier(text.RemoveCategory())
         {
             BlockIndex = block.Index,
             LineIndex = lines.First().Index,
             MatchedFuzzily = matchedFuzzily,
-            Negative = negative && originallyPositive,
         };
 
         var fuzzyLine = fuzzyService.CleanFuzzyText(text);
@@ -239,6 +231,21 @@ public class ModifierParser
         }
 
         ParseModifierValue(modifier, filteredDefinitions.FirstOrDefault());
+
+        var originallyPositive = false;
+        var negative = NegativePattern?.IsMatch(text) ?? false;
+        foreach (var definition in definitions)
+        {
+            originallyPositive |= PositivePattern?.IsMatch(definition.ApiText) ?? false;
+        }
+
+        if (negative && originallyPositive)
+        {
+            var nagativeValues = modifier.Values.Select(x => x * -1).ToList();
+            modifier.Values.Clear();
+            modifier.Values.AddRange(nagativeValues);
+        }
+
         return modifier;
     }
 

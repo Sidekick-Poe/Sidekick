@@ -1,13 +1,17 @@
 ﻿@using System.Globalization
 
 <div id="@ElementId"
-     class="p-[2px] border border-violet-800 bg-violet-300/10 min-w-6 text-center rounded-md whitespace-pre-wrap duration-200 @UiClasses.FocusClasses transition-colors hover:bg-violet-950 [&::selection]:bg-violet-700 [&::selection]:text-violet-200 text-violet-500 hover:text-violet-400 hover:border-violet-600"
-     contenteditable="true">@Value</div>
+     class="p-[2px] border border-violet-800 bg-violet-300/10 min-w-6 text-center rounded-md whitespace-pre-wrap duration-200 @UiClasses.FocusClasses transition-colors hover:bg-violet-950 [&::selection]:bg-violet-700 [&::selection]:text-violet-200 hover:text-violet-400 hover:border-violet-600 text-violet-500"
+     contenteditable="true"
+     data-placeholder="@Placeholder">@Value</div>
 
 @inject IJSRuntime JsRuntime
 @implements IAsyncDisposable
 
 @code {
+
+    [Parameter]
+    public string? Placeholder { get; set; }
 
     [Parameter]
     public string? StringValue { get; set; }
@@ -56,7 +60,7 @@
 
         if (Module != null && previousValue != Value)
         {
-            await Module.InvokeVoidAsync("setValue", ElementId, Value);
+            await UpdateEditable();
         }
 
         await base.OnParametersSetAsync();
@@ -71,7 +75,7 @@
             Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/Forms/FormContentEditable.razor.js");
 
             await Module.InvokeVoidAsync("init", ElementId, Reference);
-            await Module.InvokeVoidAsync("setValue", ElementId, Value);
+            await UpdateEditable();
         }
 
         await base.OnAfterRenderAsync(firstRender);
@@ -81,14 +85,18 @@
     public async Task Update(string? value)
     {
         if (value == Value) return;
+        if (value == Placeholder)
+        {
+            Value = null;
+            await DoubleValueChanged.InvokeAsync(null);
+            await StringValueChanged.InvokeAsync(null);
+            await UpdateEditable();
+            return;
+        }
 
         if (DoubleValueChanged.HasDelegate)
         {
-            if (!double.TryParse(value, CultureInfo.InvariantCulture, out var doubleValue))
-            {
-                if (Module != null) await Module.InvokeVoidAsync("setValue", ElementId, Value);
-                return;
-            }
+            if (!double.TryParse(value, CultureInfo.InvariantCulture, out var doubleValue)) return;
 
             Value = doubleValue.ToString(CultureInfo.InvariantCulture);
             await DoubleValueChanged.InvokeAsync(doubleValue);
@@ -98,6 +106,11 @@
             Value = value;
             await StringValueChanged.InvokeAsync(value);
         }
+    }
+
+    private async Task UpdateEditable()
+    {
+        if (Module != null) await Module.InvokeVoidAsync("setValue", ElementId, Value);
     }
 
     public async ValueTask DisposeAsync()
