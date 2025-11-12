@@ -11,6 +11,8 @@
 @using Sidekick.Modules.Trade.Trade.Filters
 @using Sidekick.Modules.Trade.Unique
 @using Sidekick.Modules.Trade.Wiki
+@using Sidekick.Modules.Trade.Tools.Chromatic
+@using Sidekick.Modules.Trade.Tools
 @using Sidekick.Modules.Trade.Settings
 
 <LayoutTwoColumn LeftContentWidth="@LeftContentWidth" OnLeftContentResize="@OnLeftContentResize">
@@ -44,12 +46,11 @@
                                 <ExchangeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <BaseTypeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <TradeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
+                                <ToolTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <WikiTab/>
                             </ChildContent>
                             <RightContent>
-                                <li>
-                                    <LeagueText/>
-                                </li>
+                                <LeagueText/>
                             </RightContent>
                         </TabList>
                         @switch (CurrentTab)
@@ -69,6 +70,8 @@
                             <ExchangeResult/> break;
                         case "basetype":
                             <BaseTypeResult/> break;
+                        case "chromatic":
+                            <ChromaticCalculator/> break;
                     }
                 </AppContainer>
             </CascadingValue>

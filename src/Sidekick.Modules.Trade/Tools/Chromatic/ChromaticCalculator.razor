@@ -1,0 +1,84 @@
+﻿@using Sidekick.Apis.Poe.Items
+
+<h3>Chromatic Calculator</h3>
+
+<div class="grid grid-cols-1 gap-4 p-4 w-full lg:w-1/2">
+    <!-- Input Fields -->
+    <div class="flex flex-col">
+        <label for="sockets" class="font-semibold">Number of Sockets (1-6):</label>
+        <input @bind="NumberOfSockets" type="number" id="sockets" class="input-field" min="1" max="6"/>
+    </div>
+    <div class="flex flex-col">
+        <label for="red" class="font-semibold">Desired Red Sockets:</label>
+        <input @bind="RedSockets" type="number" id="red" class="input-field" min="0" max="6"/>
+    </div>
+    <div class="flex flex-col">
+        <label for="green" class="font-semibold">Desired Green Sockets:</label>
+        <input @bind="GreenSockets" type="number" id="green" class="input-field" min="0" max="6"/>
+    </div>
+    <div class="flex flex-col">
+        <label for="blue" class="font-semibold">Desired Blue Sockets:</label>
+        <input @bind="BlueSockets" type="number" id="blue" class="input-field" min="0" max="6"/>
+    </div>
+    <!-- Calculate Button -->
+    <button class="btn btn-primary" @onclick="Calculate">Calculate</button>
+</div>
+
+<!-- Results Table -->
+@if (Results.Count > 0)
+{
+    <table class="table-auto border-collapse border border-gray-500 w-full mt-4">
+        <thead>
+        <tr>
+            <th>Craft Type</th>
+            <th>Average Cost (in chromatics)</th>
+            <th>Success Chance</th>
+            <th>Average Attempts (mean)</th>
+            <th>Cost per Try (in chromatics)</th>
+            <th>Std. Deviation (of attempts)</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var result in Results)
+        {
+            <tr>
+                <td>@result.Description</td>
+                <td>@result.AverageCost.ToString("0.##")</td>
+                <td>@result.ChancePercentage.ToString("0.##")%</td>
+                <td>@result.AverageTries.ToString("0.##")</td>
+                <td>@result.Cost.ToString()</td>
+                <td>@result.StandardDeviation.ToString("0.##")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    public static bool IsValid(Item item) => item.Properties.Sockets?.Count > 0;
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    // Input Parameters
+    private int NumberOfSockets { get; set; } = 1;
+    private int RedSockets { get; set; } = 0;
+    private int GreenSockets { get; set; } = 0;
+    private int BlueSockets { get; set; } = 0;
+
+    // Calculation Results
+    private List<ProbabilityResult> Results { get; set; } = [];
+
+    // Calculation Trigger
+    private void Calculate()
+    {
+        Results = ChromaticProbabilityCalculator.Calculate(NumberOfSockets,
+                                                           Item.Properties.RequiresStrength,
+                                                           Item.Properties.RequiresDexterity,
+                                                           Item.Properties.RequiresIntelligence,
+                                                           RedSockets,
+                                                           GreenSockets,
+                                                           BlueSockets);
+    }
+}
