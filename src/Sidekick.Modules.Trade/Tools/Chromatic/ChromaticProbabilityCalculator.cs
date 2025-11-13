@@ -164,7 +164,7 @@ public static class ChromaticProbabilityCalculator
 
     private static List<Recipe> Recipes => new()
     {
-        new Recipe(0, 0, 0, 1, "Drop Rate"),
+        // new Recipe(0, 0, 0, 1, "Drop Rate"),
         new Recipe(0, 0, 0, 1, "Chromatic Orb"),
         new Recipe(1, 0, 0, 4, "One Red Socket"),
         new Recipe(0, 1, 0, 4, "One Green Socket"),
