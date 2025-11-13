@@ -1,7 +1,7 @@
 @using Sidekick.Apis.Poe.Trade.Static
 @if (Small)
 {
-    <div class="flex flex-nowrap gap-1 items-center justify-end">
+    <div class="flex flex-nowrap gap-0.5 items-center justify-end text-white">
         <Heading3>@Value.ToString("0.##")</Heading3>
         @if (ImageUrl != null)
         {
@@ -17,7 +17,7 @@
 }
 else
 {
-    <div class="flex flex-nowrap gap-1 items-center justify-end">
+    <div class="flex flex-nowrap gap-1 items-center justify-end text-white">
         <Heading2>@Value.ToString("0.##")</Heading2>
         @if (ImageUrl != null)
         {

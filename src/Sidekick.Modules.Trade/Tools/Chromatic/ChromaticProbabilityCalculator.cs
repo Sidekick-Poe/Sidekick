@@ -11,10 +11,7 @@ public static class ChromaticProbabilityCalculator
         // Validate inputs
         if (totalSockets < 1 || totalSockets > 6 || red < 0 || green < 0 || blue < 0 || red + green + blue > totalSockets)
         {
-            return
-            [
-                new ProbabilityResult("Error! Invalid input values.", 0, 1),
-            ];
+            return [];
         }
 
         // Core logic similar to "Main.getProbabilities" from the JavaScript file
@@ -90,7 +87,7 @@ public static class ChromaticProbabilityCalculator
         var baseProbability = Multinomial(unvoricifiedDesires, remainingSockets);
 
         // Step 3: Adjust the probability for "Chromatic" recipes if applicable
-        if (recipe.Description == "Chromatic")
+        if (recipe.Description == "Chromatic Orb")
         {
             var chromaticBonus = CalculateChromaticBonus(chances, desired, totalSockets);
             baseProbability /= (1 - chromaticBonus);
@@ -168,25 +165,25 @@ public static class ChromaticProbabilityCalculator
     private static List<Recipe> Recipes => new()
     {
         new Recipe(0, 0, 0, 1, "Drop Rate"),
-        new Recipe(0, 0, 0, 1, "Chromatic"),
-        new Recipe(1, 0, 0, 4, "1R"),
-        new Recipe(0, 1, 0, 4, "1G"),
-        new Recipe(0, 0, 1, 4, "1B"),
-        new Recipe(2, 0, 0, 25, "2R"),
-        new Recipe(0, 2, 0, 25, "2G"),
-        new Recipe(0, 0, 2, 25, "2B"),
-        new Recipe(0, 1, 1, 15, "1G1B"),
-        new Recipe(1, 0, 1, 15, "1R1B"),
-        new Recipe(1, 1, 0, 15, "1R1G"),
-        new Recipe(3, 0, 0, 120, "3R"),
-        new Recipe(0, 3, 0, 120, "3G"),
-        new Recipe(0, 0, 3, 120, "3B"),
-        new Recipe(2, 1, 0, 100, "2R1G"),
-        new Recipe(2, 0, 1, 100, "2R1B"),
-        new Recipe(1, 2, 0, 100, "1R2G"),
-        new Recipe(0, 2, 1, 100, "2G1B"),
-        new Recipe(1, 0, 2, 100, "1R2B"),
-        new Recipe(0, 1, 2, 100, "1G2B")
+        new Recipe(0, 0, 0, 1, "Chromatic Orb"),
+        new Recipe(1, 0, 0, 4, "One Red Socket"),
+        new Recipe(0, 1, 0, 4, "One Green Socket"),
+        new Recipe(0, 0, 1, 4, "One Blue Socket"),
+        new Recipe(2, 0, 0, 25, "Two Red Sockets"),
+        new Recipe(0, 2, 0, 25, "Two Green Sockets"),
+        new Recipe(0, 0, 2, 25, "Two Blue Sockets"),
+        new Recipe(0, 1, 1, 15, "One Green and One Blue Socket"),
+        new Recipe(1, 0, 1, 15, "One Red and One Blue Socket"),
+        new Recipe(1, 1, 0, 15, "One Red and One Green Socket"),
+        new Recipe(3, 0, 0, 120, "Three Red Sockets"),
+        new Recipe(0, 3, 0, 120, "Three Green Sockets"),
+        new Recipe(0, 0, 3, 120, "Three Blue Sockets"),
+        new Recipe(2, 1, 0, 100, "Two Red and One Green Socket"),
+        new Recipe(2, 0, 1, 100, "Two Red and One Blue Socket"),
+        new Recipe(1, 2, 0, 100, "Two Green and One Red Socket"),
+        new Recipe(0, 2, 1, 100, "Two Green and One Blue Socket"),
+        new Recipe(1, 0, 2, 100, "Two Blue and One Red Socket"),
+        new Recipe(0, 1, 2, 100, "Two Blue and One Green Socket")
     };
 }
 
