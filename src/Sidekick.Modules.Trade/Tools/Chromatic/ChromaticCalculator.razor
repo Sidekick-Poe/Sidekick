@@ -24,7 +24,6 @@
     <AlertError>@Resources["Chromatic_Error"]</AlertError>
 }
 
-<!-- Results Table -->
 @if (Results.Count > 0)
 {
     <LayoutDivider/>
@@ -37,17 +36,19 @@
                 <div class="text-lg font-caps text-ellipsis line-clamp-1 leading-4 mb-1">@result.Description</div>
                 <div class="flex flex-wrap gap-2 gap-y-0 items-center text-[#a38d6d] text-sm">
                     <div class="flex flex-nowrap items-center gap-1">
-                        <span>Cost:</span>
+                        <span>@Resources["Chromatic_Cost"]:</span>
                         <PriceDisplay Value="@((decimal)result.Cost)" Currency="chrome" Small="true"/>
                     </div>
                     <div>
-                        Chance: <span class="text-base text-white">@result.ChancePercentage.ToString("0.##")%</span>
+                        @Resources["Chromatic_Chance"]: <span
+                            class="text-base text-white">@result.ChancePercentage.ToString("0.##")%</span>
                     </div>
                     <div>
-                        Average tries: <span class="text-base text-white">@result.AverageTries.ToString("0.##")</span>
+                        @Resources["Chromatic_AverageTries"]: <span
+                            class="text-base text-white">@result.AverageTries.ToString("0.##")</span>
                     </div>
                     <div>
-                        Std. Deviation: <span
+                        @Resources["Chromatic_Deviation"]: <span
                             class="text-base text-white">@result.StandardDeviation.ToString("0.##")</span>
                     </div>
                 </div>
