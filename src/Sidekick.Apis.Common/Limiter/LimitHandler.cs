@@ -4,6 +4,8 @@ namespace Sidekick.Apis.Common.Limiter;
 
 public class LimitHandler
 {
+    public event Action? OnChange;
+
     private ConcurrencyLimiter ConcurrencyLimiter { get; } = new(new ConcurrencyLimiterOptions()
     {
         PermitLimit = 1,
@@ -11,14 +13,35 @@ public class LimitHandler
         QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
     });
 
-    private List<LimitRule> Rules { get; } = [];
+    // Maintain rules per policy so we don't lose state when switching endpoints with different policies
+    private Dictionary<string, List<LimitRule>> RulesByPolicy { get; } = new();
+
+    public IEnumerable<LimitRule> GetSnapshot()
+    {
+        // Return a simple, read-only snapshot of the current rate limit state per rule
+        // Name: rule group name provided by server (e.g., account, trading)
+        // MaxHitCount: maximum requests per period
+        // TimePeriod: window length in seconds
+        // Available: currently available tokens according to the TokenBucket limiter
+        // Used: computed as Max - Available within the current window
+        foreach (var rules in RulesByPolicy.Values)
+        {
+            foreach (var rule in rules)
+            {
+                yield return rule;
+            }
+        }
+    }
 
     public async ValueTask<LimitLease> Lease(CancellationToken cancellationToken = default)
     {
         var leases = new List<RateLimitLease>();
-        foreach (var limitRule in Rules)
+        foreach (var kvp in RulesByPolicy)
         {
-            leases.Add(await limitRule.Limiter.AcquireAsync(cancellationToken: cancellationToken));
+            foreach (var limitRule in kvp.Value)
+            {
+                leases.Add(await limitRule.Limiter.AcquireAsync(cancellationToken: cancellationToken));
+            }
         }
 
         return new LimitLease()
@@ -32,7 +55,12 @@ public class LimitHandler
     {
         var headerRules = new List<HeaderRule>();
 
-        if (response.Headers.TryGetValues("X-Rate-Limit-Policy", out var _) && response.Headers.TryGetValues("X-Rate-Limit-Rules", out var headerRuleNames))
+        // Determine policy for this response. If absent, group under a default policy key.
+        var policy = response.Headers.TryGetValues("X-Rate-Limit-Policy", out var policyHeader)
+            ? policyHeader.FirstOrDefault() ?? "default"
+            : "default";
+
+        if (response.Headers.TryGetValues("X-Rate-Limit-Rules", out var headerRuleNames))
         {
             var ruleNames = headerRuleNames.First().Split(',');
             foreach (var ruleName in ruleNames)
@@ -54,23 +82,38 @@ public class LimitHandler
                         continue;
                     }
 
-                    headerRules.Add(new HeaderRule(ruleName, currentHitCount, maxHitCount, timePeriod));
+                    headerRules.Add(new HeaderRule(policy, ruleName, currentHitCount, maxHitCount, timePeriod));
                 }
             }
         }
 
-        Rules.RemoveAll(limitRule => !headerRules.Any(headerRule => headerRule.MaxHitCount == limitRule.MaxHitCount && headerRule.Name == limitRule.Name && headerRule.TimePeriod == limitRule.TimePeriod));
+        // Ensure a bucket exists for this policy
+        if (!RulesByPolicy.TryGetValue(policy, out var rulesForPolicy))
+        {
+            rulesForPolicy = new List<LimitRule>();
+            RulesByPolicy[policy] = rulesForPolicy;
+        }
+
+        // Remove rules that are no longer present for this policy
+        rulesForPolicy.RemoveAll(limitRule => !headerRules.Any(headerRule => headerRule.Policy == policy && headerRule.MaxHitCount == limitRule.MaxHitCount && headerRule.Name == limitRule.Name && headerRule.TimePeriod == limitRule.TimePeriod));
+
+        // Add or update rules for this policy
         foreach (var headerRule in headerRules)
         {
-            var limitRule = Rules.FirstOrDefault(limitRule => headerRule.MaxHitCount == limitRule.MaxHitCount && headerRule.Name == limitRule.Name && headerRule.TimePeriod == limitRule.TimePeriod);
+            if (headerRule.Policy != policy) continue;
+
+            var limitRule = rulesForPolicy.FirstOrDefault(limitRule => headerRule.MaxHitCount == limitRule.MaxHitCount && headerRule.Name == limitRule.Name && headerRule.TimePeriod == limitRule.TimePeriod);
             if (limitRule == null)
             {
-                limitRule = new LimitRule(headerRule.Name, headerRule.MaxHitCount, headerRule.TimePeriod);
+                limitRule = new LimitRule(policy, headerRule.Name, headerRule.MaxHitCount, headerRule.TimePeriod, () => OnChange?.Invoke());
                 await limitRule.Limiter.AcquireAsync(headerRule.CurrentHitCount, cancellationToken);
-                Rules.Add(limitRule);
+                rulesForPolicy.Add(limitRule);
             }
 
             await limitRule.HandleResponse(headerRule.CurrentHitCount);
         }
+
+        // Notify listeners that snapshot may have changed due to new response headers
+        OnChange?.Invoke();
     }
 }

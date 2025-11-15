@@ -1,8 +1,10 @@
 @page "/trade/{itemText}"
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Trade
+@using Sidekick.Apis.Poe.Trade.Clients
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Api
 @using Sidekick.Common.Ui.Tabs
 @using Sidekick.Modules.Trade.BaseType
 @using Sidekick.Modules.Trade.Components
@@ -77,6 +79,11 @@
             </CascadingValue>
         }
     </ChildContent>
+    <BottomContent>
+        <div class="px-2 py-0.5 border-t border-stone-700">
+            <ApiStatusAndLimits ApiClientName="@TradeApiClient.ClientName"/>
+        </div>
+    </BottomContent>
 </LayoutTwoColumn>
 
 @inject ISettingsService SettingsService

@@ -5,5 +5,4 @@ public enum ApiState
     Unknown,
     Working,
     Throttled,
-    TimedOut,
 }

@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sidekick.Apis.GitHub\Sidekick.Apis.GitHub.csproj" />
+    <ProjectReference Include="..\Sidekick.Apis.Common\Sidekick.Apis.Common.csproj" />
     <ProjectReference Include="..\Sidekick.Apis.Poe.Trade\Sidekick.Apis.Poe.Trade.csproj" />
     <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
   </ItemGroup>
