@@ -1,0 +1,106 @@
+@using Sidekick.Apis.Common.States
+@using Sidekick.Apis.Common.Limiter
+@implements IDisposable
+
+<div class="flex flex-wrap items-center gap-2 justify-end my-1">
+    <div class="text-neutral-400 text-sm">Api Status:</div>
+    <div class="flex flex-nowrap items-center gap-1">
+        <div class="@StatusColor rounded-full w-2 h-2"></div>
+        <div class="text-neutral-400 text-xs">@StatusText</div>
+    </div>
+
+    @if (ClosestLimit != null)
+    {
+        <Tooltip>
+            <ChildContent>
+                <div
+                    class="text-xs text-neutral-400 bg-stone-700 rounded px-2 py-0.5 flex flex-nowrap items-center gap-1 cursor-help">
+                    <div class="@GetLimitBackground(ClosestLimit) rounded-full w-2 h-2 -my-0.5"></div>
+                    <div>
+                        Rate limit: @ClosestLimit.Used/@ClosestLimit.MaxHitCount in @ClosestLimit.TimePeriod s
+                    </div>
+                    <Icon Svg="@UiIcons.Help" Size="UiIconSize.Small"/>
+                </div>
+            </ChildContent>
+            <TooltipContent>
+                <div class="flex flex-col gap-1">
+                    @foreach (var rl in CurrentLimits)
+                    {
+                        <div
+                            class="text-xs text-neutral-400 bg-stone-700 rounded px-2 py-0.5 flex flex-nowrap items-center gap-1">
+                            <div class="@GetLimitBackground(rl) rounded-full w-2 h-2 -my-0.5"></div>
+                            <div>
+                                @rl.Policy: @rl.Used/@rl.MaxHitCount in @rl.TimePeriod s
+                            </div>
+                        </div>
+                    }
+                </div>
+            </TooltipContent>
+        </Tooltip>
+    }
+</div>
+
+@inject IApiStateProvider ApiStateProvider
+@inject ApiLimiterProvider ApiLimiterProvider
+
+@code {
+    [Parameter]
+    public string ApiClientName { get; set; } = string.Empty;
+
+    private LimitHandler? LimitHandler { get; set; }
+
+    private ApiState CurrentState => ApiStateProvider.Get(ApiClientName);
+
+    private IEnumerable<LimitRule> CurrentLimits => LimitHandler?.GetSnapshot() ?? [];
+
+    private LimitRule? ClosestLimit => CurrentLimits.OrderByDescending(x => x.Ratio).FirstOrDefault();
+
+    private string StatusColor => CurrentState switch
+    {
+        ApiState.Working => "bg-green-500",
+        ApiState.Throttled => "bg-yellow-500",
+        _ => "bg-gray-400",
+    };
+
+    private string StatusText => CurrentState switch
+    {
+        ApiState.Working => "Working",
+        ApiState.Throttled => "Throttled",
+        _ => "Unknown",
+    };
+
+    protected override void OnInitialized()
+    {
+        ApiStateProvider.OnChange += LimitChanged;
+        LimitHandler = ApiLimiterProvider.Get(ApiClientName);
+        LimitHandler.OnChange += LimitChanged;
+        base.OnInitialized();
+    }
+
+    private string GetLimitBackground(LimitRule limit)
+    {
+        if (limit.MaxHitCount <= 0) return "bg-gray-400";
+
+        var ratio = (double)limit.Used / limit.MaxHitCount;
+        switch (ratio)
+        {
+            case < 0.7: return "bg-green-500";
+            case < 0.9: return "bg-yellow-500";
+            default: return "bg-red-500";
+        }
+    }
+
+    private void LimitChanged()
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        ApiStateProvider.OnChange -= LimitChanged;
+        if (LimitHandler != null)
+        {
+            LimitHandler.OnChange -= LimitChanged;
+        }
+    }
+}
