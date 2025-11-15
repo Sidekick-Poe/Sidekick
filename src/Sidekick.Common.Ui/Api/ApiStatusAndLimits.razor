@@ -1,9 +1,10 @@
 @using Sidekick.Apis.Common.States
 @using Sidekick.Apis.Common.Limiter
+@using Sidekick.Common.Ui.Localization
 @implements IDisposable
 
 <div class="flex flex-wrap items-center gap-2 justify-end my-1">
-    <div class="text-neutral-400 text-sm">Api Status:</div>
+    <div class="text-neutral-400 text-sm">@Resources["Api_Status"]:</div>
     <div class="flex flex-nowrap items-center gap-1">
         <div class="@StatusColor rounded-full w-2 h-2"></div>
         <div class="text-neutral-400 text-xs">@StatusText</div>
@@ -17,7 +18,7 @@
                     class="text-xs text-neutral-400 bg-stone-700 rounded px-2 py-0.5 flex flex-nowrap items-center gap-1 cursor-help">
                     <div class="@GetLimitBackground(ClosestLimit) rounded-full w-2 h-2 -my-0.5"></div>
                     <div>
-                        Rate limit: @ClosestLimit.Used/@ClosestLimit.MaxHitCount in @ClosestLimit.TimePeriod s
+                        @Resources["Api_RateLimit"]: @ClosestLimit.Used/@ClosestLimit.MaxHitCount @Resources["Api_RateLimit_In"] @ClosestLimit.TimePeriod @Resources["Api_RateLimit_Seconds"]
                     </div>
                     <Icon Svg="@UiIcons.Help" Size="UiIconSize.Small"/>
                 </div>
@@ -30,7 +31,7 @@
                             class="text-xs text-neutral-400 bg-stone-700 rounded px-2 py-0.5 flex flex-nowrap items-center gap-1">
                             <div class="@GetLimitBackground(rl) rounded-full w-2 h-2 -my-0.5"></div>
                             <div>
-                                @rl.Policy: @rl.Used/@rl.MaxHitCount in @rl.TimePeriod s
+                                @rl.Policy: @rl.Used/@rl.MaxHitCount @Resources["Api_RateLimit_In"] @rl.TimePeriod @Resources["Api_RateLimit_Seconds"]
                             </div>
                         </div>
                     }
@@ -40,6 +41,7 @@
     }
 </div>
 
+@inject IStringLocalizer<UiResources> Resources
 @inject IApiStateProvider ApiStateProvider
 @inject ApiLimiterProvider ApiLimiterProvider
 
@@ -64,9 +66,9 @@
 
     private string StatusText => CurrentState switch
     {
-        ApiState.Working => "Working",
-        ApiState.Throttled => "Throttled",
-        _ => "Unknown",
+        ApiState.Working => Resources["Working"],
+        ApiState.Throttled => Resources["Throttled"],
+        _ => Resources["Unknown"],
     };
 
     protected override void OnInitialized()
