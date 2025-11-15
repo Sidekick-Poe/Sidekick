@@ -222,4 +222,25 @@
   <data name="Regex_Hint" xml:space="preserve">
     <value>Use the "|" character to separate modifiers. The modifier does not need to match exactly, and differences between uppercase and lowercase are ignored. It should match the game's language. E.g. "maximum life|resistance|regen"</value>
   </data>
+  <data name="Api_Status" xml:space="preserve">
+      <value>Api Status</value>
+  </data>
+  <data name="Api_RateLimit" xml:space="preserve">
+      <value>Rate Limit</value>
+  </data>
+  <data name="Api_RateLimit_In" xml:space="preserve">
+      <value>in</value>
+  </data>
+  <data name="Api_RateLimit_Seconds" xml:space="preserve">
+      <value>s</value>
+  </data>
+  <data name="Api_Working" xml:space="preserve">
+      <value>Working</value>
+  </data>
+  <data name="Api_Throttled" xml:space="preserve">
+      <value>Throttled</value>
+  </data>
+  <data name="Api_Unknown" xml:space="preserve">
+      <value>Unknown</value>
+  </data>
 </root>
