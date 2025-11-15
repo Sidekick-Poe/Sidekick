@@ -1,0 +1,131 @@
+﻿@using Sidekick.Apis.Poe.Items
+@using Sidekick.Modules.Trade.Components.Prices
+@using Sidekick.Modules.Trade.Tools.Localization
+
+<Heading1>@Resources["ChromaticCalculator"]</Heading1>
+
+<div class="grid grid-cols-4 gap-3 my-3">
+    <FormNumber @bind-Value="NumberOfSockets"
+                Label="@Resources["Chromatic_Sockets"]"/>
+    <FormNumber @bind-Value="RedSockets"
+                Label="@Resources["Chromatic_Red"]"/>
+    <FormNumber @bind-Value="GreenSockets"
+                Label="@Resources["Chromatic_Green"]"/>
+    <FormNumber @bind-Value="BlueSockets"
+                Label="@Resources["Chromatic_Blue"]"/>
+</div>
+
+<ButtonPrimary OnClick="Calculate">@Resources["Chromatic_Calculate"]</ButtonPrimary>
+
+@if (Error)
+{
+    <LayoutDivider/>
+
+    <AlertError>@Resources["Chromatic_Error"]</AlertError>
+}
+
+@if (Results.Count > 0)
+{
+    <LayoutDivider/>
+
+    @foreach (var result in Results)
+    {
+        <div class="rounded-lg bg-stone-950 flex flex-nowrap items-center px-2 py-1 gap-2 mb-1"
+             @key="result.Description">
+            <div class="flex-1">
+                <div class="text-lg font-caps text-ellipsis line-clamp-1 leading-4 mb-1">@result.Description</div>
+                <div class="flex flex-wrap gap-2 gap-y-0 items-center text-[#a38d6d] text-sm">
+                    <div class="flex flex-nowrap items-center gap-1">
+                        <span>@Resources["Chromatic_Cost"]:</span>
+                        <PriceDisplay Value="@((decimal)result.Cost)" Currency="chrome" Small="true"/>
+                    </div>
+                    <div>
+                        @Resources["Chromatic_Chance"]: <span
+                            class="text-base text-white">@result.ChancePercentage.ToString("0.##")%</span>
+                    </div>
+                    <div>
+                        @Resources["Chromatic_AverageTries"]: <span
+                            class="text-base text-white">@result.AverageTries.ToString("0.##")</span>
+                    </div>
+                    <div>
+                        @Resources["Chromatic_Deviation"]: <span
+                            class="text-base text-white">@result.StandardDeviation.ToString("0.##")</span>
+                    </div>
+                </div>
+            </div>
+            <Tooltip Text="Average Cost">
+                <PriceDisplay Value="@((decimal)result.AverageCost)" Currency="chrome"/>
+            </Tooltip>
+        </div>
+    }
+}
+
+<LayoutDivider/>
+
+<AlertInfo Flat="true">@((MarkupString)Resources["Chromatic_Credits"].Value)</AlertInfo>
+
+@inject IStringLocalizer<ToolResources> Resources
+
+@code {
+
+    public static bool IsValid(Item item) => item.Properties.Sockets?.Count > 0;
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    // Input Parameters
+    private double? NumberOfSockets { get; set; } = 1;
+    private double? RedSockets { get; set; }
+    private double? GreenSockets { get; set; }
+    private double? BlueSockets { get; set; }
+
+    private bool Error { get; set; }
+
+    // Calculation Results
+    private List<ProbabilityResult> Results { get; set; } = [];
+
+    protected override void OnInitialized()
+    {
+        NumberOfSockets = Item.Properties.ItemClass switch
+        {
+            ItemClass.BodyArmour => 6,
+            ItemClass.Boots => 4,
+            ItemClass.Bow => 6,
+            ItemClass.Buckler => 3,
+            ItemClass.Claw => 3,
+            ItemClass.Dagger => 3,
+            ItemClass.RuneDagger => 3,
+            ItemClass.OneHandAxe => 3,
+            ItemClass.OneHandMace => 3,
+            ItemClass.OneHandSword => 3,
+            ItemClass.Sceptre => 3,
+            ItemClass.Staff => 6,
+            ItemClass.TwoHandAxe => 6,
+            ItemClass.TwoHandMace => 6,
+            ItemClass.TwoHandSword => 6,
+            ItemClass.Wand => 3,
+            ItemClass.Warstaff => 6,
+            ItemClass.Spear => 3,
+            ItemClass.Focus => 3,
+            ItemClass.Shield => 3,
+            ItemClass.Helmet => 4,
+            ItemClass.Gloves => 4,
+            _ => 6,
+        };
+        base.OnInitialized();
+    }
+
+    // Calculation Trigger
+    private void Calculate()
+    {
+        Results = ChromaticProbabilityCalculator.Calculate((int)(NumberOfSockets ?? 0),
+                                                           Item.Properties.RequiresStrength,
+                                                           Item.Properties.RequiresDexterity,
+                                                           Item.Properties.RequiresIntelligence,
+                                                           (int)(RedSockets ?? 0),
+                                                           (int)(GreenSockets ?? 0),
+                                                           (int)(BlueSockets ?? 0));
+
+        Error = Results.Count == 0;
+    }
+}
