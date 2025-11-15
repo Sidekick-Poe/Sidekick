@@ -3,6 +3,7 @@
 @using Sidekick.Apis.PoeNinja.Stash
 @using Sidekick.Apis.PoeNinja.Stash.Models
 @using Sidekick.Modules.Trade.PoeNinja
+@using Sidekick.Modules.Trade.PoePrices
 @using Sidekick.Modules.Trade.Unique.Localization
 
 @if (Loading)
@@ -19,8 +20,20 @@
 @if (NinjaStash != null)
 {
     <PoeNinjaWebsite LastUpdated="NinjaStash.LastUpdated" DetailsUrl="NinjaStash.DetailsUrl"/>
+
+    @if (Item.Properties.Rarity != Rarity.Unique)
+    {
+        <TextCaption>Poe.ninja only looks at specific information about the item to provide a price. The base type, item
+            level and influences are what poe.ninja currently looks for.
+        </TextCaption>
+    }
+
     <PoeNinjaStashPanel Stash="NinjaStash"/>
 }
+
+<SidekickErrorBoundary>
+    <PricePredictionComponent/>
+</SidekickErrorBoundary>
 
 @inject INinjaStashProvider NinjaStashProvider
 @inject INinjaItemProvider NinjaItemProvider

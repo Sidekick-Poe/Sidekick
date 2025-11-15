@@ -19,9 +19,4 @@
     <ProjectReference Include="..\Sidekick.Common.Ui\Sidekick.Common.Ui.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <AdditionalFiles Include="BaseType\BaseTypeResult.razor" />
-    <AdditionalFiles Include="BaseType\BaseTypeTab.razor" />
-  </ItemGroup>
-
 </Project>

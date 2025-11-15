@@ -6,9 +6,9 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Api
 @using Sidekick.Common.Ui.Tabs
-@using Sidekick.Modules.Trade.BaseType
 @using Sidekick.Modules.Trade.Components
 @using Sidekick.Modules.Trade.Exchange
+@using Sidekick.Modules.Trade.Insight
 @using Sidekick.Modules.Trade.Trade
 @using Sidekick.Modules.Trade.Trade.Filters
 @using Sidekick.Modules.Trade.Unique
@@ -46,7 +46,7 @@
                             <ChildContent>
                                 <UniqueTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <ExchangeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
-                                <BaseTypeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
+                                <InsightTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <TradeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <ToolTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <WikiTab/>
@@ -70,8 +70,8 @@
                             <UniqueResult/> break;
                         case "exchange":
                             <ExchangeResult/> break;
-                        case "basetype":
-                            <BaseTypeResult/> break;
+                        case "insight":
+                            <InsightResult/> break;
                         case "chromatic":
                             <ChromaticCalculator/> break;
                     }

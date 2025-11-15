@@ -5,6 +5,8 @@
 @using Sidekick.Modules.Trade.Components.Prices
 @using Sidekick.Modules.Trade.Localization
 
+<LayoutDivider/>
+
 @if (Loading)
 {
     <AppLoading/>
@@ -20,8 +22,6 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
             <PriceRangeDisplay Min="Prediction.Min" Max="Prediction.Max" Currency="@Prediction.Currency"/>
         </div>
     </div>
-
-    <ItemSeparator Rarity="Item.Properties.Rarity"/>
 }
 
 @inject IStringLocalizer<TradeResources> Resources
@@ -67,6 +67,7 @@ else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
         StateHasChanged();
 
         Prediction = await Client.GetPricePrediction(Item);
+
         Loading = false;
         StateHasChanged();
     }
