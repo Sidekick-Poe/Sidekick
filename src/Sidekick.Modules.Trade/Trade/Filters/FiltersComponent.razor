@@ -7,7 +7,6 @@
 @using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
-@using Sidekick.Modules.Trade.PoePrices
 @using Sidekick.Modules.Trade.Trade.Filters.Properties
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 
@@ -26,10 +25,6 @@
     </div>
 
     <div class="grow overflow-y-auto py-2">
-        <SidekickErrorBoundary>
-            <PricePredictionComponent/>
-        </SidekickErrorBoundary>
-
         @for (var index = 0; index < PropertyFilters.Count; index++)
         {
             var filter = PropertyFilters[index];

@@ -2,7 +2,16 @@
 @using Sidekick.Modules.Trade.Localization
 
 <div class="flex items-start flex-wrap mb-2">
-    <Heading2>Poe.Ninja</Heading2>
+    <Heading2>
+        <div class="flex flex-nowrap items-center gap-3">
+            <img alt="PoeNinja" src="/images/external-tools/ninja-logo.png" class="size-6" />
+            <span>Poe.Ninja</span>
+            @if (!string.IsNullOrEmpty(Tooltip))
+            {
+                <Tooltip Text="@Tooltip"/>
+            }
+        </div>
+    </Heading2>
 
     <div class="ml-auto text-right">
         <div class="flex items-center flex-nowrap gap-1">
@@ -29,6 +38,9 @@
 
     [Parameter]
     public Uri? DetailsUrl { get; set; }
+
+    [Parameter]
+    public string? Tooltip { get; set; }
 
     private void OpenWebsite()
     {

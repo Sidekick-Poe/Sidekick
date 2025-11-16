@@ -6,15 +6,14 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Api
 @using Sidekick.Common.Ui.Tabs
-@using Sidekick.Modules.Trade.BaseType
 @using Sidekick.Modules.Trade.Components
 @using Sidekick.Modules.Trade.Exchange
 @using Sidekick.Modules.Trade.Trade
 @using Sidekick.Modules.Trade.Trade.Filters
-@using Sidekick.Modules.Trade.Unique
 @using Sidekick.Modules.Trade.Wiki
 @using Sidekick.Modules.Trade.Tools.Chromatic
 @using Sidekick.Modules.Trade.Tools
+@using Sidekick.Modules.Trade.Valuation
 @using Sidekick.Modules.Trade.Settings
 
 <LayoutTwoColumn LeftContentWidth="@LeftContentWidth" OnLeftContentResize="@OnLeftContentResize">
@@ -44,9 +43,8 @@
                     <div class="sticky top-0 z-10 pb-1 mb-2 -mt-3 pt-2 bg-stone-900">
                         <TabList>
                             <ChildContent>
-                                <UniqueTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <ExchangeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
-                                <BaseTypeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
+                                <ValuationTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <TradeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <ToolTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <WikiTab/>
@@ -66,12 +64,10 @@
                     {
                         case "trade":
                             <TradeResult/> break;
-                        case "unique":
-                            <UniqueResult/> break;
                         case "exchange":
                             <ExchangeResult/> break;
-                        case "basetype":
-                            <BaseTypeResult/> break;
+                        case "valuation":
+                            <ValuationResult/> break;
                         case "chromatic":
                             <ChromaticCalculator/> break;
                     }

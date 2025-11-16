@@ -3,33 +3,12 @@
 @using Sidekick.Apis.Poe2Scout.History.Models
 @using Sidekick.Apis.Poe2Scout.Items
 @using Sidekick.Apis.Poe2Scout.Items.Models
-@using Sidekick.Apis.PoeNinja.Items
-@using Sidekick.Apis.PoeNinja.Stash
-@using Sidekick.Apis.PoeNinja.Stash.Models
 @using Sidekick.Modules.Trade.Poe2Scout
-@using Sidekick.Modules.Trade.PoeNinja
-@using Sidekick.Modules.Trade.Unique.Localization
 
 @if (Loading)
 {
-    <AppLoading/>
+    <AppLoading Label="Poe2Scout.com"/>
     return;
-}
-
-@if (ScoutHistory == null && NinjaStash == null)
-{
-    <AlertInfo Flat="true">@Resources["NoData"]</AlertInfo>
-}
-
-@if (NinjaStash != null)
-{
-    <PoeNinjaWebsite LastUpdated="NinjaStash.LastUpdated" DetailsUrl="NinjaStash.DetailsUrl"/>
-    <PoeNinjaStashPanel Stash="NinjaStash"/>
-}
-
-@if (ScoutHistory != null && NinjaStash != null)
-{
-    <LayoutDivider/>
 }
 
 @if (ScoutHistory != null)
@@ -42,20 +21,18 @@
 
 @inject IScoutHistoryProvider ScoutHistoryProvider
 @inject IScoutItemProvider ScoutItemProvider
-@inject INinjaStashProvider NinjaStashProvider
-@inject INinjaItemProvider NinjaItemProvider
-@inject IStringLocalizer<UniqueResources> Resources
 
 @code {
 
     [CascadingParameter]
     public required Item Item { get; set; }
 
+    [Parameter]
+    public EventCallback<bool> AfterInitialized { get; set; }
+
     private ScoutHistory? ScoutHistory { get; set; }
 
     private ScoutItem? ScoutItem { get; set; }
-
-    private NinjaStash? NinjaStash { get; set; }
 
     private bool Loading { get; set; }
 
@@ -66,25 +43,15 @@
         Loading = true;
         StateHasChanged();
 
-        await Task.WhenAll(LoadScout(), LoadNinja());
-
-        Loading = false;
-        StateHasChanged();
-    }
-
-    private async Task LoadScout()
-    {
         ScoutItem = await ScoutItemProvider.GetItem(Item.ApiInformation.InvariantName);
         if (ScoutItem != null)
         {
             ScoutHistory = await ScoutHistoryProvider.GetItemHistory(ScoutItem.ItemId);
         }
-    }
 
-    private async Task LoadNinja()
-    {
-        var item = NinjaItemProvider.GetStashItem(Item);
-        NinjaStash = item != null ? await NinjaStashProvider.GetInfo(item) : null;
-    }
+        Loading = false;
+        StateHasChanged();
 
+        await AfterInitialized.InvokeAsync(ScoutHistory != null);
+    }
 }
