@@ -27,19 +27,20 @@ public class ModifierParser
 
     public Task Initialize()
     {
+
         List<string> positiveTexts =
         [
-            ..gameLanguageProvider.Language.RegexIncreased.Split('|'),
-            ..gameLanguageProvider.Language.RegexMore.Split('|'),
-            ..gameLanguageProvider.Language.RegexFaster.Split('|'),
+            ..gameLanguageProvider.Language.RegexIncreased.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
+            ..gameLanguageProvider.Language.RegexMore.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
+            ..gameLanguageProvider.Language.RegexFaster.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
         ];
         PositivePattern = positiveTexts.Count != 0 ? new Regex($"(?:{string.Join('|', positiveTexts)})") : null;
 
         List<string> negativeTexts =
         [
-            ..gameLanguageProvider.Language.RegexReduced.Split('|'),
-            ..gameLanguageProvider.Language.RegexLess.Split('|'),
-            ..gameLanguageProvider.Language.RegexSlower.Split('|'),
+            ..gameLanguageProvider.Language.RegexReduced.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
+            ..gameLanguageProvider.Language.RegexLess.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
+            ..gameLanguageProvider.Language.RegexSlower.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
         ];
         NegativePattern = negativeTexts.Count != 0 ? new Regex($"(?:{string.Join('|', negativeTexts)})") : null;
 
