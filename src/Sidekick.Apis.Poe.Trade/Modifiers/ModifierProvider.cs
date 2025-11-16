@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
@@ -46,15 +47,26 @@ public class ModifierProvider
         if (apiCategories == null) throw new SidekickException("Could not fetch modifiers from the trade API.");
 
         ReplacementPatterns.Clear();
-        ReplacementPatterns.Add(new(
-                                new Regex(gameLanguageProvider.Language.RegexIncreased),
-                                $"(?:{gameLanguageProvider.Language.RegexIncreased}|{gameLanguageProvider.Language.RegexReduced})"));
-        ReplacementPatterns.Add(new(
-                                new Regex(gameLanguageProvider.Language.RegexMore),
-                                $"(?:{gameLanguageProvider.Language.RegexMore}|{gameLanguageProvider.Language.RegexLess})"));
-        ReplacementPatterns.Add(new(
-                                new Regex(gameLanguageProvider.Language.RegexFaster),
-                                $"(?:{gameLanguageProvider.Language.RegexFaster}|{gameLanguageProvider.Language.RegexSlower})"));
+        if (!string.IsNullOrEmpty(gameLanguageProvider.Language.RegexIncreased))
+        {
+            ReplacementPatterns.Add(new(
+                                    new Regex(gameLanguageProvider.Language.RegexIncreased),
+                                    $"(?:{gameLanguageProvider.Language.RegexIncreased}|{gameLanguageProvider.Language.RegexReduced})"));
+        }
+
+        if (!string.IsNullOrEmpty(gameLanguageProvider.Language.RegexMore))
+        {
+            ReplacementPatterns.Add(new(
+                                    new Regex(gameLanguageProvider.Language.RegexMore),
+                                    $"(?:{gameLanguageProvider.Language.RegexMore}|{gameLanguageProvider.Language.RegexLess})"));
+        }
+
+        if (!string.IsNullOrEmpty(gameLanguageProvider.Language.RegexFaster))
+        {
+            ReplacementPatterns.Add(new(
+                                    new Regex(gameLanguageProvider.Language.RegexFaster),
+                                    $"(?:{gameLanguageProvider.Language.RegexFaster}|{gameLanguageProvider.Language.RegexSlower})"));
+        }
 
         Definitions.Clear();
 
@@ -175,9 +187,9 @@ public class ModifierProvider
 
         foreach (var replacement in ReplacementPatterns)
         {
-            patternValue = replacement.Pattern.Replace(patternValue, replacement.Replacement);       
+            patternValue = replacement.Pattern.Replace(patternValue, replacement.Replacement);
         }
-        
+
         if (string.IsNullOrEmpty(optionText))
         {
             patternValue = hashPattern.Replace(patternValue, "[-+0-9,.]+") + suffix;
@@ -190,7 +202,7 @@ public class ModifierProvider
                 optionLines.Add(hashPattern.Replace(patternValue, Regex.Escape(optionLine)) + suffix);
             }
 
-            patternValue = string.Join('\n', optionLines);
+            patternValue = string.Join('\n', optionLines.Where(x => !string.IsNullOrEmpty(x)));
         }
 
         // For multiline modifiers, the category can be suffixed on all lines.
