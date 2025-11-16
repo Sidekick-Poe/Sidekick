@@ -19,4 +19,9 @@
     <ProjectReference Include="..\Sidekick.Common.Ui\Sidekick.Common.Ui.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Unique\UniqueResult.razor" />
+    <UpToDateCheckInput Remove="Unique\UniqueTab.razor" />
+  </ItemGroup>
+
 </Project>

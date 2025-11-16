@@ -3,46 +3,33 @@
 @using Sidekick.Apis.PoeNinja.Stash
 @using Sidekick.Apis.PoeNinja.Stash.Models
 @using Sidekick.Modules.Trade.PoeNinja
-@using Sidekick.Modules.Trade.PoePrices
-@using Sidekick.Modules.Trade.Unique.Localization
+@using Sidekick.Modules.Trade.Valuation.Localization
 
 @if (Loading)
 {
-    <AppLoading/>
+    <AppLoading Label="poe.ninja"/>
     return;
-}
-
-@if (NinjaStash == null)
-{
-    <AlertInfo Flat="true">@Resources["NoData"]</AlertInfo>
 }
 
 @if (NinjaStash != null)
 {
-    <PoeNinjaWebsite LastUpdated="NinjaStash.LastUpdated" DetailsUrl="NinjaStash.DetailsUrl"/>
-
-    @if (Item.Properties.Rarity != Rarity.Unique)
-    {
-        <TextCaption>Poe.ninja only looks at specific information about the item to provide a price. The base type, item
-            level and influences are what poe.ninja currently looks for.
-        </TextCaption>
-    }
+    <PoeNinjaWebsite LastUpdated="NinjaStash.LastUpdated" DetailsUrl="NinjaStash.DetailsUrl"
+                     Tooltip="@(Item.Properties.Rarity != Rarity.Unique ? Resources["BaseType_Description"] : null)"/>
 
     <PoeNinjaStashPanel Stash="NinjaStash"/>
 }
 
-<SidekickErrorBoundary>
-    <PricePredictionComponent/>
-</SidekickErrorBoundary>
-
 @inject INinjaStashProvider NinjaStashProvider
 @inject INinjaItemProvider NinjaItemProvider
-@inject IStringLocalizer<UniqueResources> Resources
+@inject IStringLocalizer<ValuationResources> Resources
 
 @code {
 
     [CascadingParameter]
     public required Item Item { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> AfterInitialized { get; set; }
 
     private NinjaStash? NinjaStash { get; set; }
 
@@ -60,5 +47,7 @@
 
         Loading = false;
         StateHasChanged();
+
+        await AfterInitialized.InvokeAsync(NinjaStash != null);
     }
 }

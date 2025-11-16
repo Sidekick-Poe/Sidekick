@@ -117,10 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="UniquePrice" xml:space="preserve">
-      <value>Unique Prices</value>
-  </data>
   <data name="NoData" xml:space="preserve">
       <value>No data was found for this item.</value>
+  </data>
+  <data name="Valuation" xml:space="preserve">
+      <value>Valuation</value>
+  </data>
+    <data name="Prediction_Confidence" xml:space="preserve">
+    <value>Confidence: {0}</value>
+  </data>
+  <data name="Prediction_Description" xml:space="preserve">
+      <value>PoePrices.info looks at all the item modifiers and attempts to predict the price. It's not perfect, but it should give you an idea at a glance if the item has potential value.</value>
+  </data>
+  <data name="BaseType_Description" xml:space="preserve">
+      <value>Poe.ninja only looks at specific information about the item to provide a price. The base type, item level and influences are what poe.ninja currently looks for.</value>
   </data>
 </root>

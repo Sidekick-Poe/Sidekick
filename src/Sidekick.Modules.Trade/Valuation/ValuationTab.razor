@@ -1,17 +1,17 @@
 ﻿@using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe2Scout.Items
 @using Sidekick.Apis.PoeNinja.Items
-@using Sidekick.Modules.Trade.Unique.Localization
+@using Sidekick.Modules.Trade.Valuation.Localization
 @using Sidekick.Common.Ui.Tabs
 
 @if (Valid)
 {
-    <TabItem Active="@(CurrentTab == "unique")"
-             Text="@Resources["UniquePrice"]"
-             OnClick="@(() => CurrentTabChanged.InvokeAsync("unique"))"/>
+    <TabItem Active="@(CurrentTab == "valuation")"
+             Text="@Resources["Valuation"]"
+             OnClick="@(() => CurrentTabChanged.InvokeAsync("valuation"))"/>
 }
 
-@inject IStringLocalizer<UniqueResources> Resources
+@inject IStringLocalizer<ValuationResources> Resources
 @inject IScoutItemProvider ScoutItemProvider
 @inject INinjaItemProvider NinjaItemProvider
 
@@ -30,11 +30,11 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (Item.Properties.Rarity == Rarity.Unique)
-        {
-            Valid = CheckNinja() || await CheckScout();
-            if (Valid) await CurrentTabChanged.InvokeAsync("unique");
-        }
+        Valid = CheckNinja();
+        Valid |= CheckPrediction();
+        Valid |= await CheckScout();
+
+        if (Valid) await CurrentTabChanged.InvokeAsync("valuation");
 
         await base.OnInitializedAsync();
     }
@@ -42,6 +42,11 @@
     private bool CheckNinja()
     {
         return NinjaItemProvider.GetStashItem(Item) != null;
+    }
+
+    private bool CheckPrediction()
+    {
+        return Item.Game == GameType.PathOfExile && Item.Properties.Rarity == Rarity.Rare;
     }
 
     private async Task<bool> CheckScout()

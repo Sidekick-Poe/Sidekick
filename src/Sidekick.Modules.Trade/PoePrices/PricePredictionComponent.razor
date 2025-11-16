@@ -1,75 +1,49 @@
-@using Sidekick.Apis.Poe.Items
-@using Sidekick.Apis.PoePriceInfo
-@using Sidekick.Apis.PoePriceInfo.Models
-@using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Components.Prices
-@using Sidekick.Modules.Trade.Localization
+@using Sidekick.Modules.Trade.Valuation.Localization
 
-<LayoutDivider/>
-
-@if (Loading)
-{
-    <AppLoading/>
-}
-else if (Prediction != null && (Prediction.Min != 0 || Prediction.Max != 0))
-{
-    <div class="flex flex-nowrap items-center gap-2 px-2">
-        <div class="text-right w-1/2">
-            <Heading3>PoePrices.info</Heading3>
-            <TextCaption Class="@ConfidenceColorClass">@Resources["PredictionConfidence", string.Format("{0:0.#}%", Prediction.ConfidenceScore)]</TextCaption>
+<div class="mb-2">
+    <Heading2>
+        <div class="flex flex-nowrap items-center gap-3">
+            <img alt="PoePrices" src="/images/external-tools/poeprices-logo.png" class="size-6"/>
+            <span>PoePrices.info</span>
+            <Tooltip Text="@Resources["Prediction_Description"]"/>
         </div>
-        <div class="text-left w-1/2">
-            <PriceRangeDisplay Min="Prediction.Min" Max="Prediction.Max" Currency="@Prediction.Currency"/>
+    </Heading2>
+</div>
+
+<div class="mb-2 bg-stone-950 rounded-lg px-2 py-1">
+    <div class="flex flex-wrap">
+        <div class="flex w-1/2 justify-center">
+            <PriceRangeDisplay Min="Min" Max="Max" Currency="@Currency"/>
+        </div>
+        <div class="text-right w-1/2">
+            <TextBase
+                Class="@ConfidenceColorClass">@Resources["Prediction_Confidence", $"{Confidence:0.#}%"]</TextBase>
         </div>
     </div>
-}
+</div>
 
-@inject IStringLocalizer<TradeResources> Resources
-@inject ISettingsService SettingsService
-@inject IPoePriceInfoClient Client
+@inject IStringLocalizer<ValuationResources> Resources
 
 @code {
 
-    [CascadingParameter]
-    public required Item Item { get; set; }
+    [Parameter]
+    public double Min { get; set; }
 
-    private Guid ItemId { get; set; }
+    [Parameter]
+    public double Max { get; set; }
 
-    private bool Loading { get; set; }
+    [Parameter]
+    public double Confidence { get; set; }
 
-    private PricePrediction? Prediction { get; set; }
+    [Parameter]
+    public string? Currency { get; set; }
 
-    private string ConfidenceColorClass => Prediction?.ConfidenceScore switch
+    private string ConfidenceColorClass => Confidence switch
     {
         (< 33) => "text-red-500",
         (< 66) => "text-yellow-500",
         _ => "text-green-500"
     };
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
-
-        if (ItemId == Item.Id) return;
-        ItemId = Item.Id;
-
-        if (Item.Game == GameType.PathOfExile2)
-        {
-            return;
-        }
-
-        if (!await SettingsService.GetBool(SettingKeys.PriceCheckPredictionEnabled))
-        {
-            return;
-        }
-
-        Loading = true;
-        StateHasChanged();
-
-        Prediction = await Client.GetPricePrediction(Item);
-
-        Loading = false;
-        StateHasChanged();
-    }
 
 }

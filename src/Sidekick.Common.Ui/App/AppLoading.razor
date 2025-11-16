@@ -2,6 +2,13 @@
 @inject IStringLocalizer<UiResources> Resources
 
 <AppFullContainer>
-    <Heading3 Class="text-center mb-3">@Resources["Loading"]</Heading3>
+    <Heading3 Class="text-center mb-3">@Resources["Loading"] @Label</Heading3>
     <ProgressBar Indeterminate="true"/>
 </AppFullContainer>
+
+@code {
+
+    [Parameter]
+    public string? Label { get; set; }
+
+}
