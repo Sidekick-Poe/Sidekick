@@ -40,7 +40,7 @@ public class AccountApiHandler
         await HandleUnauthorized(response);
         HandleBadRequest(response);
 
-        await limitHandler.HandleResponse(response, cancellationToken);
+        limitHandler.HandleResponse(response, cancellationToken);
 
         if (response.IsSuccessStatusCode) return response;
 

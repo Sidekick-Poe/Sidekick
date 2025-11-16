@@ -2,75 +2,38 @@ using System.Threading.RateLimiting;
 
 namespace Sidekick.Apis.Common.Limiter;
 
-public class LimitRule
+public class LimitRule(string policy, string name, int maxHitCount, int timePeriod)
+    : IDisposable, IAsyncDisposable
 {
-    private readonly Action? onChanged;
+    public string Policy { get; } = policy;
 
-    public LimitRule(string policy, string name, int maxHitCount, int timePeriod, Action? onChanged = null)
-    {
-        Policy = policy;
-        Name = name;
-        MaxHitCount = maxHitCount;
-        TimePeriod = timePeriod;
-        this.onChanged = onChanged;
+    public string Name { get; } = name;
 
-        Limiter = new TokenBucketRateLimiter(new TokenBucketRateLimiterOptions()
-        {
-            AutoReplenishment = false,
-            QueueLimit = int.MaxValue,
-            TokenLimit = MaxHitCount,
-            TokensPerPeriod = MaxHitCount,
-            QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
-            ReplenishmentPeriod = TimeSpan.FromSeconds(timePeriod + 5),
-        });
-    }
+    public int MaxHitCount { get; } = maxHitCount;
 
-    public string Policy { get; }
+    public int TimePeriod { get; } = timePeriod;
 
-    public string Name { get; }
+    public ServerSynchronizedRateLimiter Limiter { get; } = new(maxHitCount,
+                                                                TimeSpan.FromSeconds(timePeriod));
 
-    public int MaxHitCount { get; }
-
-    public int TimePeriod { get; }
-
-    public TokenBucketRateLimiter Limiter { get; }
-
-    private int CurrentHitCount { get; set; }
-
-    private Timer? ReplenishTimer { get; set; }
+    public int CurrentHitCount => Limiter.CurrentHitCount;
 
     public int Used => Math.Clamp(CurrentHitCount, 0, MaxHitCount);
 
-    public int Available => Math.Max(0, MaxHitCount - Used);
-
     public double Ratio => Used / (double)MaxHitCount;
 
-    internal async Task HandleResponse(int currentHitCount)
+    public override string ToString()
     {
-        CurrentHitCount = currentHitCount;
-        if (currentHitCount == 1 && ReplenishTimer != null)
-        {
-            await ReplenishTimer.DisposeAsync();
-            ReplenishTimer = null;
-        }
+        return $"{Name} - {Policy} - {MaxHitCount} in {TimePeriod} seconds";
+    }
 
-        ReplenishTimer ??= new Timer(static state =>
-                                     {
-                                         var self = (LimitRule?)state;
-                                         if (self == null)
-                                         {
-                                             return;
-                                         }
+    public void Dispose()
+    {
+        Limiter.Dispose();
+    }
 
-                                         self.ReplenishTimer?.Dispose();
-                                         self.ReplenishTimer = null;
-                                         // Window elapsed: reset the hit count and replenish tokens, then notify listeners
-                                         self.CurrentHitCount = 0;
-                                         self.Limiter.TryReplenish();
-                                         self.onChanged?.Invoke();
-                                     },
-                                     this,
-                                     TimeSpan.FromSeconds(TimePeriod + 5),
-                                     Timeout.InfiniteTimeSpan);
+    public async ValueTask DisposeAsync()
+    {
+        await Limiter.DisposeAsync();
     }
 }

@@ -18,4 +18,9 @@ internal class HeaderRule
     public int MaxHitCount { get; init; } = maxHitCount;
 
     public int TimePeriod { get; init; } = timePeriod;
+
+    public override string ToString()
+    {
+        return $"{Name} - {Policy} - {MaxHitCount} in {TimePeriod} seconds";
+    }
 }

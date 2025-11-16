@@ -25,13 +25,13 @@
             </ChildContent>
             <TooltipContent>
                 <div class="flex flex-col gap-1">
-                    @foreach (var rl in CurrentLimits)
+                    @foreach (var rule in CurrentRules)
                     {
                         <div
                             class="text-xs text-neutral-400 bg-stone-700 rounded px-2 py-0.5 flex flex-nowrap items-center gap-1">
-                            <div class="@GetLimitBackground(rl) rounded-full w-2 h-2 -my-0.5"></div>
+                            <div class="@GetLimitBackground(rule) rounded-full w-2 h-2 -my-0.5"></div>
                             <div>
-                                @rl.Policy: @rl.Used/@rl.MaxHitCount @Resources["Api_RateLimit_In"] @rl.TimePeriod @Resources["Api_RateLimit_Seconds"]
+                                @rule.Policy: @rule.Used/@rule.MaxHitCount @Resources["Api_RateLimit_In"] @rule.TimePeriod @Resources["Api_RateLimit_Seconds"]
                             </div>
                         </div>
                     }
@@ -53,9 +53,9 @@
 
     private ApiState CurrentState => ApiStateProvider.Get(ApiClientName);
 
-    private IEnumerable<LimitRule> CurrentLimits => LimitHandler?.GetSnapshot() ?? [];
+    private IEnumerable<LimitRule> CurrentRules => LimitHandler?.Rules ?? [];
 
-    private LimitRule? ClosestLimit => CurrentLimits.OrderByDescending(x => x.Ratio).FirstOrDefault();
+    private LimitRule? ClosestLimit => CurrentRules.OrderByDescending(x => x.Ratio).FirstOrDefault();
 
     private string StatusColor => CurrentState switch
     {
