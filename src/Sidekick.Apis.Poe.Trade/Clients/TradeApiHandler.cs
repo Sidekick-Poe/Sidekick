@@ -47,7 +47,7 @@ public class TradeApiHandler
         HandleUnauthorized(response);
         await HandleBadRequest(response, cancellationToken);
 
-        await limitHandler.HandleResponse(response, cancellationToken);
+        limitHandler.HandleResponse(response, cancellationToken);
 
         if (response.IsSuccessStatusCode) return response;
 
