@@ -43,7 +43,7 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
     public NinjaExchangeItem? GetExchangeItem(string? invariant)
     {
         if (string.IsNullOrEmpty(invariant)) return null;
-        var item = ExchangeItems.FirstOrDefault(x=>x.Id == invariant);
+        var item = ExchangeItems.FirstOrDefault(x => x.Id == invariant);
         if (item != null) return item;
 
         // The PoE1 api doesn't have chaos currency, so we need to add it manually.
@@ -71,8 +71,8 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
         if (item.Properties.MapTier != 0)
         {
             var name = item.ApiInformation.InvariantType;
-            if(item.Properties.Blighted) name = $"Blighted {name}";
-            if(item.Properties.BlightRavaged) name = $"Blight-ravaged {name}";
+            if (item.Properties.Blighted) name = $"Blighted {name}";
+            if (item.Properties.BlightRavaged) name = $"Blight-ravaged {name}";
 
             return GetMapItem(name, item.Properties.MapTier);
         }
@@ -120,7 +120,7 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
     {
         if (name == null) return null;
 
-        var items =  StashItems
+        var items = StashItems
             .Where(x => x.Name == name)
             .Where(x => x.MapTier == mapTier || (mapTier == 0 && !x.MapTier.HasValue));
 
@@ -137,7 +137,7 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
         else if (itemLevel < 84) itemLevel = 75;
         else itemLevel = 84;
 
-        var items =  StashItems
+        var items = StashItems
             .Where(x => x.Name == grantText)
             .Where(x => x.Variant == $"{passiveCount} passives")
             .Where(x => x.ItemLevel == itemLevel);
@@ -153,7 +153,7 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
         if (itemLevel > 86) itemLevel = 86;
         else if (itemLevel < 82) itemLevel = 0;
 
-        var items =  StashItems
+        var items = StashItems
             .Where(x => x.Name == name)
             .Where(x => (x.Variant == null && variants.Count == 0) || (x.Variant != null && variants.Contains(x.Variant)))
             .Where(x => x.ItemLevel == itemLevel || (itemLevel == 0 && !x.ItemLevel.HasValue));
@@ -173,7 +173,8 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
             // Generate all permutations of the influences list
             foreach (var permutation in GetPermutations(influenceNames))
             {
-                yield return string.Join("/", permutation);
+                var values = permutation.ToList();
+                if (values.Count != 0) yield return string.Join("/", values);
             }
 
             yield break;
