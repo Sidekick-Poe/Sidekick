@@ -175,15 +175,23 @@ public partial class MainWindow
         {
             case SidekickViewType.Overlay:
                 Topmost = false;
+#if DEBUG
+                ShowInTaskbar = true;
+#else
                 Topmost = true;
                 ShowInTaskbar = false;
+#endif
                 ResizeMode = ResizeMode.CanResize;
                 break;
 
             case SidekickViewType.Modal:
                 Topmost = false;
+#if DEBUG
+                ShowInTaskbar = true;
+#else
                 Topmost = true;
                 ShowInTaskbar = true;
+#endif
                 ResizeMode = ResizeMode.NoResize;
                 break;
 
