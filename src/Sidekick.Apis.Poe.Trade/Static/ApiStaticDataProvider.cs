@@ -75,6 +75,7 @@ public class ApiStaticDataProvider
             "exalt" => "exalted",
             _ => id,
         };
+        if (string.IsNullOrEmpty(id)) return null;
 
         return InvariantDictionary.GetValueOrDefault(id);
     }
