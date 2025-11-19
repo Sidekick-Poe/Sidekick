@@ -1,4 +1,5 @@
 ﻿@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Languages
 @using Sidekick.Apis.Poe2Scout.Items
 @using Sidekick.Apis.PoeNinja.Items
 @using Sidekick.Modules.Trade.Valuation.Localization
@@ -14,6 +15,7 @@
 @inject IStringLocalizer<ValuationResources> Resources
 @inject IScoutItemProvider ScoutItemProvider
 @inject INinjaItemProvider NinjaItemProvider
+@inject IGameLanguageProvider GameLanguageProvider
 
 @code {
 
@@ -46,7 +48,9 @@
 
     private bool CheckPrediction()
     {
-        return Item.Game == GameType.PathOfExile && Item.Properties.Rarity == Rarity.Rare;
+        return Item.Game == GameType.PathOfExile
+               && Item.Properties.Rarity == Rarity.Rare
+               && GameLanguageProvider.IsEnglish();
     }
 
     private async Task<bool> CheckScout()
