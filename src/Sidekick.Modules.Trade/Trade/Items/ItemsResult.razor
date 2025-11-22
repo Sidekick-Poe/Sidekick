@@ -29,16 +29,9 @@
 else if (!FullyLoaded)
 {
     <div class="flex justify-center">
-        @if (AutomaticallyLoadMoreData)
-        {
-            <IntersectionObserver Callback="LoadMoreData">
-                <ButtonPrimary OnClick="LoadMoreData">@Resources["LoadMoreData"]</ButtonPrimary>
-            </IntersectionObserver>
-        }
-        else
-        {
+        <IntersectionObserver Callback="LoadMoreData">
             <ButtonPrimary OnClick="LoadMoreData">@Resources["LoadMoreData"]</ButtonPrimary>
-        }
+        </IntersectionObserver>
     </div>
 }
 
@@ -57,12 +50,9 @@ else if (!FullyLoaded)
 
     private bool IsCompact { get; set; }
 
-    private bool AutomaticallyLoadMoreData { get; set; }
-
     protected override async Task OnInitializedAsync()
     {
         IsCompact = await SettingsService.GetBool(SettingKeys.PriceCheckCompactMode);
-        AutomaticallyLoadMoreData = await SettingsService.GetBool(SettingKeys.PriceCheckAutomaticallyLoadMoreData);
 
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
@@ -73,11 +63,9 @@ else if (!FullyLoaded)
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (keys.Contains(SettingKeys.PriceCheckCompactMode) || keys.Contains(SettingKeys.PriceCheckAutomaticallyLoadMoreData))
+        if (keys.Contains(SettingKeys.PriceCheckCompactMode))
         {
             IsCompact = await SettingsService.GetBool(SettingKeys.PriceCheckCompactMode);
-            AutomaticallyLoadMoreData = await SettingsService.GetBool(SettingKeys.PriceCheckAutomaticallyLoadMoreData);
-
             await InvokeAsync(StateHasChanged);
         }
     }
