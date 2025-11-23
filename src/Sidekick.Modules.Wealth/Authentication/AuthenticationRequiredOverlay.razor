@@ -1,21 +1,20 @@
 ﻿@using Sidekick.Apis.Poe.Account.Authentication
 @using Sidekick.Modules.Wealth.Localization
 
-<div class="relative">
+@if (CurrentState != AuthenticationState.Authenticated)
+{
+    <div class="flex flex-nowrap items-center justify-center gap-2">
+        <div class="bg-red-500 rounded-full w-2 h-2"></div>
+        <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
+                    Class="!text-red-600">
+            @Resources["Unauthenticated"]
+        </ButtonLink>
+    </div>
+}
+else
+{
     @ChildContent
-
-    @if (CurrentState != AuthenticationState.Authenticated)
-    {
-        <div
-            class="absolute top-0 left-0 right-0 bottom-0 bg-stone-950 flex flex-nowrap items-center justify-center gap-2">
-            <div class="bg-red-500 rounded-full w-2 h-2"></div>
-            <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
-                        Class="!text-red-600">
-                @Resources["Unauthenticated"]
-            </ButtonLink>
-        </div>
-    }
-</div>
+}
 
 @implements IDisposable
 @inject IStringLocalizer<WealthResources> Resources
