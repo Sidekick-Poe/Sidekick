@@ -47,7 +47,7 @@
 
     private async void OnSettingsChanged(string[] keys)
     {
-        if (keys.Contains(SettingKeys.PriceCheckCompactMode) || keys.Contains(SettingKeys.PriceCheckAutomaticallyLoadMoreData))
+        if (keys.Contains(SettingKeys.PriceCheckCompactMode))
         {
             IsCompact = await SettingsService.GetBool(SettingKeys.PriceCheckCompactMode);
 

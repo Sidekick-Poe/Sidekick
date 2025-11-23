@@ -50,10 +50,8 @@ public static class SettingKeys
     public const string PriceCheckSidebarWidth = nameof(PriceCheckSidebarWidth);
     public const string PriceCheckStatus = nameof(PriceCheckStatus);
     public const string PriceCheckItemClassFilter = nameof(PriceCheckItemClassFilter);
-    public const string PriceCheckAutomaticallySearch = nameof(PriceCheckAutomaticallySearch);
     public const string PriceCheckEnableAllFilters = nameof(PriceCheckEnableAllFilters);
     public const string PriceCheckEnableFiltersByRegex = nameof(PriceCheckEnableFiltersByRegex);
-    public const string PriceCheckAutomaticallyLoadMoreData = nameof(PriceCheckAutomaticallyLoadMoreData);
 
     public const string SaveWindowPositions = nameof(SaveWindowPositions);
 
