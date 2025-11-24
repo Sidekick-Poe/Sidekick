@@ -41,4 +41,14 @@ public class StashTab
         "QuadStash" => StashType.Quad,
         _ => StashType.Unknown,
     };
+
+    public override string ToString()
+    {
+        if (Metadata?.Map != null)
+        {
+            return $"{Metadata.Map.Section} - {Metadata.Map.Name}";
+        }
+
+        return Name;
+    }
 }
