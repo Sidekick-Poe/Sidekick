@@ -6,6 +6,7 @@
 @using Sidekick.Common.Database.Tables
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Database
+@using Sidekick.Common.Enums
 @using Sidekick.Modules.Wealth.Authentication
 @using Sidekick.Modules.Wealth.Provider
 
@@ -30,7 +31,18 @@
                 {
                     <FormCheckbox Value="IsChecked(stashTab)"
                                   ValueChanged="(v) => Toggle(stashTab, v)">
-                        @stashTab.Name
+                        <div class="flex flex-nowrap items-center gap-1 w-full">
+                            <div class="size-5 -ml-1">
+                                @{
+                                    var imageUrl = stashTab.Type.GetValueAttribute("image");
+                                }
+                                @if (!string.IsNullOrEmpty(imageUrl) && stashTab.Type.ToString() != imageUrl)
+                                {
+                                    <img alt="icon" src="@imageUrl" class="w-5 h-5"/>
+                                }
+                            </div>
+                            <div class="truncate">@stashTab.Name</div>
+                        </div>
                     </FormCheckbox>
                 }
             </div>

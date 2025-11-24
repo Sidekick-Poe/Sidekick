@@ -27,6 +27,7 @@ public class StashTab
         "EssenceStash" => StashType.Essences,
         "Folder" => StashType.Folder,
         "MetamorphStash" => StashType.Metamorph,
+        "UltimatumStash" => StashType.Ultimatum,
         "DelveStash" => StashType.Delve,
         "MapStash" => StashType.Map,
         "BlightStash" => StashType.Blight,
