@@ -21,23 +21,23 @@ public class StashService
         var response = await client.Fetch<StashTabListResult>($"stash/{league}");
         if (response == null || league == null) return [];
 
-        return FlattenStashTabs(response.Tabs);
+        var stashTabs = FlattenStashTabs(response.Tabs);
+        return stashTabs.ToList();
     }
 
-    private static List<StashTab> FlattenStashTabs(List<StashTab> stashTabs)
+    private static IEnumerable<StashTab> FlattenStashTabs(List<StashTab> stashTabs)
     {
-        var result = new List<StashTab>();
-
         foreach (var stashTab in stashTabs)
         {
-            if (stashTab.Type != StashType.Folder) result.Add(stashTab);
+            if (stashTab.Type != StashType.Folder) yield return stashTab;
 
             if (stashTab.Children == null) continue;
 
-            result.AddRange(FlattenStashTabs(stashTab.Children));
+            foreach (var child in FlattenStashTabs(stashTab.Children))
+            {
+                yield return child;
+            }
         }
-
-        return result;
     }
 
     public async Task<StashTab?> GetStashDetails(string id)
