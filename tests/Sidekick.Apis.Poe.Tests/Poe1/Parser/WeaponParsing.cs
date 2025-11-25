@@ -417,4 +417,54 @@ Note: ~price 30 chaos
         actual.AssertHasModifier(ModifierCategory.Explicit, "+#% to Damage over Time Multiplier", 44);
 
     }
+
+    [Fact]
+    public void FortifyMod()
+    {
+        var actual = parser.ParseItem(@"Item Class: One Hand Axes
+Rarity: Unique
+Relentless Fury
+Decorative Axe
+--------
+One Handed Axe
+Physical Damage: 62-113 (augmented)
+Critical Strike Chance: 5.00%
+Attacks per Second: 1.20
+Weapon Range: 1.1 metres
+--------
+Requirements:
+Level: 29
+Str: 80
+Dex: 23
+--------
+Sockets: R G R 
+--------
+Item Level: 83
+--------
+Adds 4 to 6 Physical Damage (implicit)
+Melee Hits have 12% chance to Fortify (implicit)
+--------
+71% increased Physical Damage
+Adds 5 to 10 Physical Damage
+2% of Physical Attack Damage Leeched as Life
+Culling Strike
+You gain Onslaught for 3 seconds on Culling Strike
+100% chance to Avoid being Chilled during Onslaught
+--------
+Relentless fury
+Sunder my every foe
+Fuel my boiling blood
+--------
+Corrupted");
+
+        Assert.Equal(ItemClass.OneHandAxe, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
+        Assert.Equal(Category.Weapon, actual.ApiInformation.Category);
+        Assert.Equal("Decorative Axe", actual.ApiInformation.Type);
+
+        // Known parsing issue: #912
+        actual.AssertDoesNotHaveModifier(ModifierCategory.Implicit, "Melee Hits have #% chance to Fortify");
+        actual.AssertDoesNotHaveModifier(ModifierCategory.Implicit, "Melee Hits Fortify");
+        Assert.Equal(1, actual.Modifiers.Count(x => x.ApiInformation.FirstOrDefault()?.Category == ModifierCategory.Implicit));
+    }
 }
