@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
@@ -192,7 +191,7 @@ public class ModifierProvider
 
         if (string.IsNullOrEmpty(optionText))
         {
-            patternValue = hashPattern.Replace(patternValue, "[-+0-9,.]+") + suffix;
+            patternValue = hashPattern.Replace(patternValue, "([-+0-9,.]+)") + suffix;
         }
         else
         {
