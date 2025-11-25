@@ -227,7 +227,7 @@ internal class WealthProvider
                 sparkLine = info?.Sparkline;
             }
         }
-        else if (item.GemLevel != 0)
+        else if (item.GemLevel > 0)
         {
             var stashItem = ninjaItemProvider.GetGemItem(item.Name, item.GemLevel ?? 1, item.Quality ?? 0, item.Corrupted);
             if (stashItem != null)
@@ -237,7 +237,7 @@ internal class WealthProvider
                 sparkLine = info?.Sparkline;
             }
         }
-        else if (item.MapTier != 0)
+        else if (item.MapTier > 0)
         {
             var stashItem = ninjaItemProvider.GetMapItem(item.Type, item.MapTier ?? 1);
             if (stashItem != null)

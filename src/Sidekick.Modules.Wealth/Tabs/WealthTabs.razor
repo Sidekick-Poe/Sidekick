@@ -1,6 +1,8 @@
 ﻿@using Microsoft.EntityFrameworkCore
+@using Sidekick.Apis.Poe.Account.Stash.Models
 @using Sidekick.Common.Database
 @using Sidekick.Common.Database.Tables
+@using Sidekick.Common.Enums
 @using Sidekick.Modules.Wealth.Provider
 @using Sidekick.Modules.Wealth.Localization
 @using Sidekick.Common.Settings
@@ -29,6 +31,15 @@
                           Value="stashTab.Selected"
                           ValueChanged="(v) => Toggle(stashTab, v)">
                 <div class="flex flex-nowrap items-center gap-1 w-full">
+                    <div class="size-5 -ml-1">
+                        @{
+                            var imageUrl = Enum.TryParse<StashType>(stashTab.Type, out var typeEnum) ? typeEnum.GetValueAttribute("image") : null;
+                        }
+                        @if (!string.IsNullOrEmpty(imageUrl) && typeEnum.ToString() != imageUrl)
+                        {
+                            <img alt="icon" src="@imageUrl" class="w-5 h-5" />
+                        }
+                    </div>
                     <div class="truncate">@stashTab.Name</div>
                     @if (WealthProvider.PendingStashIds.Contains(stashTab.Id))
                     {

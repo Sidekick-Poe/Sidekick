@@ -1,4 +1,5 @@
 ﻿@using Microsoft.EntityFrameworkCore
+@using Sidekick.Apis.Poe.Languages
 @using Sidekick.Common.Database
 @using Sidekick.Common.Database.Tables
 @using Sidekick.Common.Settings
@@ -9,17 +10,25 @@
     <div class="rounded-lg bg-stone-950 flex flex-nowrap items-center px-2 py-1 gap-2 mb-1"
          @key="item.Id">
         <div class="size-8">
-            <Tooltip Text="@item.Name">
-                <img src="@item.Icon" alt="@item.Name" class="mx-auto max-h-8"/>
-            </Tooltip>
+            <img src="@item.Icon" alt="@item.Name" class="mx-auto max-h-8"/>
         </div>
         <div class="flex-1">
             <Tooltip Text="@item.Name">
                 <div class="text-base font-caps text-ellipsis line-clamp-1 leading-4">@item.Name</div>
             </Tooltip>
-            <PriceDisplayQuantity Value="item.Price" Quantity="item.Count"/>
+            <div class="flex items-center gap-3">
+                <PriceDisplayQuantity Value="item.Price" Quantity="item.Count"/>
+                @if (item.GemLevel > 0)
+                {
+                    <TextCaption Class="text-gray-400">@GameLanguageProvider.Language.DescriptionLevel: @item.GemLevel</TextCaption>
+                }
+                @if (item.MapTier > 0)
+                {
+                    <TextCaption Class="text-gray-400">@GameLanguageProvider.Language.DescriptionMapTier: @item.MapTier</TextCaption>
+                }
+            </div>
         </div>
-        <WealthSparkline Data="@item.Sparklines.OrderBy(x=>x.Index).Select(x=>x.Value).ToList()"
+        <WealthSparkline Data="@item.Sparklines.OrderBy(x => x.Index).Select(x => x.Value).ToList()"
                          TotalChange="@item.SparklineTotalChange"/>
         <PriceDisplay Value="@item.Total"/>
     </div>
@@ -28,6 +37,7 @@
 @inject WealthProvider WealthProvider
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject ISettingsService SettingsService
+@inject IGameLanguageProvider GameLanguageProvider
 @implements IDisposable
 
 @code {
@@ -71,7 +81,7 @@
         await using var database = new SidekickDbContext(DbContextOptions);
         var stashIds = await database.WealthStashes.Where(x => x.League == leagueId).Where(x => x.Selected).Select(x => x.Id).ToListAsync();
         var items = await database.WealthItems
-            .Include(x=>x.Sparklines)
+            .Include(x => x.Sparklines)
             .Where(x => stashIds.Contains(x.StashId))
             .Where(x => x.Total >= minimumTotal)
             .ToListAsync();

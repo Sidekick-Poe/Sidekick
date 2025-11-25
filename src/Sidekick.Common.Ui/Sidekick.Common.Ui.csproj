@@ -26,6 +26,20 @@
     <Folder Include="wwwroot\images\external-tools\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\images\metamorph\Abrasive_Catalyst.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\metamorph\Fertile_Catalyst.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\metamorph\Imbued_Catalyst.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\metamorph\Intrinsic_Catalyst.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\metamorph\Prismatic_Catalyst.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\metamorph\Tempering_Catalyst.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\metamorph\Turbulent_Catalyst.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\delve\FossilRoom.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\delve\FracturedWall.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\trade\ChaosOrbEquivalent.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\trade\ChaosOrDivine.png" />
+  </ItemGroup>
+
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="npm run build" />
   </Target>
