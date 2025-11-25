@@ -271,27 +271,29 @@ public class ModifierParser
             case null: return;
         }
 
+        // We try to parse the value from the line itself, if that fails we try to parse it from finding numbers in the line.
+        var patternMatch = definition.Pattern.Match(modifier.Text);
+        if (patternMatch.Success)
+        {
+            foreach (Group group in patternMatch.Groups)
+            {
+                foreach (Capture capture in group.Captures)
+                {
+                    if (double.TryParse(capture.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
+                    {
+                        modifier.Values.Add(parsedValue);
+                    }
+                }
+            }
+
+            return;
+        }
+
+        // Find numbers in the line
         var lines = modifier.Text.Split('\n');
         foreach (var line in lines)
         {
             if (modifier.Values.Count != 0) continue;
-
-            var patternMatch = definition.Pattern.Match(line);
-            if (patternMatch.Success)
-            {
-                foreach (Group group in patternMatch.Groups)
-                {
-                    foreach (Capture capture in group.Captures)
-                    {
-                        if (double.TryParse(capture.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
-                        {
-                            modifier.Values.Add(parsedValue);
-                        }
-                    }
-                }
-
-                continue;
-            }
 
             var matches = new Regex("([-+0-9,.]+)").Matches(line);
             foreach (Match match in matches)
