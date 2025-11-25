@@ -133,7 +133,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         Assert.Equal("Crimson Jewel", actual.ApiInformation.Type);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Strength", 8);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% chance to gain Onslaught for 4 seconds on Kill", 16, 4);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% chance to gain Onslaught for 4 seconds on Kill", 16);
         actual.AssertHasModifier(ModifierCategory.Explicit, "Enemies you Kill that are affected by Elemental Ailments\ngrant #% increased Flask Charges", 32);
         actual.AssertHasModifier(ModifierCategory.Explicit, "Cannot take Reflected Elemental Damage");
     }

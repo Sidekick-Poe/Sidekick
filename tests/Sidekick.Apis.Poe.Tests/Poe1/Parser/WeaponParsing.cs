@@ -467,4 +467,46 @@ Corrupted");
         actual.AssertDoesNotHaveModifier(ModifierCategory.Implicit, "Melee Hits Fortify");
         Assert.Equal(1, actual.Modifiers.Count(x => x.ApiInformation.FirstOrDefault()?.Category == ModifierCategory.Implicit));
     }
+
+    [Fact]
+    public void PerXModifiers()
+    {
+        var actual = parser.ParseItem(@"Item Class: Wands
+Rarity: Rare
+Damnation Call
+Prophecy Wand
+--------
+Wand
+Quality: +20% (augmented)
+Physical Damage: 31-58 (augmented)
+Critical Strike Chance: 8.70%
+Attacks per Second: 1.50
+--------
+Requirements:
+Level: 68
+Int: 245
+--------
+Sockets: B-B G 
+--------
+Item Level: 85
+--------
+39% increased Spell Damage (implicit)
+--------
+1% increased Spell Damage per 16 Intelligence
+Adds 1 to 5 Lightning Damage to Attacks with this Weapon per 10 Intelligence
+Adds 43 to 86 Cold Damage to Spells
+29% increased Lightning Damage
+10% increased Attack Speed while a Rare or Unique Enemy is Nearby (crafted)
+--------
+Shaper Item
+Elder Item");
+
+        Assert.Equal(ItemClass.Wand, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
+        Assert.Equal(Category.Weapon, actual.ApiInformation.Category);
+        Assert.Equal("Prophecy Wand", actual.ApiInformation.Type);
+
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Lightning Damage to Attacks with this Weapon per 10 Intelligence", 1, 5);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Spell Damage per 16 Intelligence", 1);
+    }
 }
