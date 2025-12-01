@@ -2,7 +2,6 @@
 @using Sidekick.Common.Database
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Wealth.Provider
-@using Sidekick.Modules.Wealth.Authentication
 @using Sidekick.Modules.Wealth.Localization
 
 <div class="flex flex-wrap items-center justify-end gap-2 mb-3">
@@ -13,14 +12,6 @@
             <TextAge Date="LastUpdated"/>
         </div>
     }
-
-    <AuthenticationStatus/>
-
-    <HideIfUnauthenticated>
-        <ButtonPrimary Disabled="WealthProvider.Status == WealthRunStatus.Running"
-                       OnClick="WealthProvider.Start">@Resources["Refresh"]
-        </ButtonPrimary>
-    </HideIfUnauthenticated>
 
     <WealthSettings/>
 </div>

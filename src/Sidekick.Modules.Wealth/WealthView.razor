@@ -5,6 +5,7 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Ui.Api
+@using Sidekick.Modules.Wealth.Authentication
 @using Sidekick.Modules.Wealth.Tabs
 @using Sidekick.Modules.Wealth.Items
 @using Sidekick.Modules.Wealth.Graphs
@@ -28,7 +29,7 @@
             <div class="flex items-start gap-2 mb-3">
                 <Heading1>@Resources["Wealth_Tracker"]</Heading1>
                 <div class="self-center ml-auto">
-                    <WealthToolbar/>
+                    <WealthSteps/>
                 </div>
             </div>
 
@@ -39,6 +40,7 @@
                     <StashesOverTime/>
                 </div>
                 <div class="flex-1">
+                    <WealthToolbar/>
                     <WealthItems/>
                 </div>
             </div>
@@ -46,7 +48,9 @@
     </ChildContent>
 
     <BottomContent>
-        <div class="px-2 py-0.5 border-t border-stone-700">
+        <div class="px-2 py-0.5 border-t border-stone-700 flex flex-wrap items-center gap-2 justify-end my-1">
+            <AuthenticationStatus/>
+            <div class="grow"></div>
             <ApiStatusAndLimits ApiClientName="@AccountApiClient.ClientName"/>
         </div>
     </BottomContent>
