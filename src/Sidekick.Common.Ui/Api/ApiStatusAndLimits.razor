@@ -3,41 +3,43 @@
 @using Sidekick.Common.Ui.Localization
 @implements IDisposable
 
-<div class="text-neutral-400 text-sm">@Resources["Api_Status"]:</div>
 <div class="flex flex-nowrap items-center gap-1">
-    <div class="@StatusColor rounded-full w-2 h-2"></div>
-    <div class="text-neutral-400 text-xs">@StatusText</div>
-</div>
+    <div class="text-neutral-400 text-sm">@Resources["Api_Status"]:</div>
+    <div class="flex flex-nowrap items-center gap-1">
+        <div class="@StatusColor rounded-full w-2 h-2"></div>
+        <div class="text-neutral-400 text-xs">@StatusText</div>
+    </div>
 
-@if (ClosestLimit != null)
-{
-    <Tooltip>
-        <ChildContent>
-            <div
-                class="text-xs text-neutral-400 bg-stone-700 rounded px-2 py-0.5 flex flex-nowrap items-center gap-1 cursor-help">
-                <div class="@GetLimitBackground(ClosestLimit) rounded-full w-2 h-2 -my-0.5"></div>
-                <div>
-                    @Resources["Api_RateLimit"]: @ClosestLimit.Used/@ClosestLimit.MaxHitCount @Resources["Api_RateLimit_In"] @ClosestLimit.TimePeriod @Resources["Api_RateLimit_Seconds"]
-                </div>
-                <Icon Svg="@UiIcons.Help" Size="UiIconSize.Small"/>
-            </div>
-        </ChildContent>
-        <TooltipContent>
-            <div class="flex flex-col gap-1">
-                @foreach (var rule in CurrentRules)
-                {
-                    <div
-                        class="text-xs text-neutral-400 bg-stone-700 rounded px-2 py-0.5 flex flex-nowrap items-center gap-1">
-                        <div class="@GetLimitBackground(rule) rounded-full w-2 h-2 -my-0.5"></div>
-                        <div>
-                            @rule.Policy: @rule.Used/@rule.MaxHitCount @Resources["Api_RateLimit_In"] @rule.TimePeriod @Resources["Api_RateLimit_Seconds"]
-                        </div>
+    @if (ClosestLimit != null)
+    {
+        <Tooltip>
+            <ChildContent>
+                <div
+                    class="text-xs text-neutral-400 bg-stone-700 rounded px-2 py-0.5 flex flex-nowrap items-center gap-1 cursor-help">
+                    <div class="@GetLimitBackground(ClosestLimit) rounded-full w-2 h-2 -my-0.5"></div>
+                    <div>
+                        @Resources["Api_RateLimit"]: @ClosestLimit.Used/@ClosestLimit.MaxHitCount @Resources["Api_RateLimit_In"] @ClosestLimit.TimePeriod @Resources["Api_RateLimit_Seconds"]
                     </div>
-                }
-            </div>
-        </TooltipContent>
-    </Tooltip>
-}
+                    <Icon Svg="@UiIcons.Help" Size="UiIconSize.Small"/>
+                </div>
+            </ChildContent>
+            <TooltipContent>
+                <div class="flex flex-col gap-1">
+                    @foreach (var rule in CurrentRules)
+                    {
+                        <div
+                            class="text-xs text-neutral-400 bg-stone-700 rounded px-2 py-0.5 flex flex-nowrap items-center gap-1">
+                            <div class="@GetLimitBackground(rule) rounded-full w-2 h-2 -my-0.5"></div>
+                            <div>
+                                @rule.Policy: @rule.Used/@rule.MaxHitCount @Resources["Api_RateLimit_In"] @rule.TimePeriod @Resources["Api_RateLimit_Seconds"]
+                            </div>
+                        </div>
+                    }
+                </div>
+            </TooltipContent>
+        </Tooltip>
+    }
+</div>
 
 @inject IStringLocalizer<UiResources> Resources
 @inject IApiStateProvider ApiStateProvider

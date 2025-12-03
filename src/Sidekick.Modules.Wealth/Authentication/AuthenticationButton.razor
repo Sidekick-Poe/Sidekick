@@ -4,7 +4,7 @@
 
 @if (CurrentState == AuthenticationState.Authenticated)
 {
-    <ButtonCustom Class="bg-green-950 hover:enabled:bg-green-900"
+    <ButtonCustom Class="border border-green-500 bg-transparent hover:enabled:bg-green-900"
                   OnClick="() => AuthenticationService.Authenticate(true)">
         <div class="bg-green-400 rounded-full w-2 h-2"></div>
         <div class="text-green-400">@Resources["Authenticated"] (@TokenRemainingString)</div>
@@ -12,7 +12,7 @@
 }
 else if (CurrentState == AuthenticationState.InProgress)
 {
-    <ButtonCustom Class="bg-blue-950 hover:enabled:bg-blue-900"
+    <ButtonCustom Class="border border-blue-500 bg-transparent hover:enabled:bg-blue-900"
                   OnClick="() => AuthenticationService.Authenticate(true)">
         <div class="bg-blue-400 rounded-full w-2 h-2"></div>
         <div class="text-blue-400">@Resources["Authenticating"]</div>
@@ -20,7 +20,7 @@ else if (CurrentState == AuthenticationState.InProgress)
 }
 else if (CurrentState == AuthenticationState.Unauthenticated)
 {
-    <ButtonCustom Class="border border-red-500 bg-red-950 hover:enabled:bg-red-900"
+    <ButtonCustom Class="border border-red-500 bg-transparent hover:enabled:bg-red-900"
                   OnClick="() => AuthenticationService.Authenticate(true)">
         <div class="bg-red-400 rounded-full w-2 h-2"></div>
         <div class="text-red-400">@Resources["Unauthenticated"]</div>
