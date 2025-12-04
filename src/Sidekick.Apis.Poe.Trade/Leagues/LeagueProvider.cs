@@ -48,7 +48,7 @@ public class LeagueProvider(
 
         leagues.AddRange(await Fetch(GameType.PathOfExile2));
 
-        leagues.AddRange(await Fetch(GameType.PathOfExile));
+        leagues.AddRange(await Fetch(GameType.PathOfExile1));
 
         return leagues;
     }

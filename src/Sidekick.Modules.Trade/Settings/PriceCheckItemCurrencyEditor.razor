@@ -78,7 +78,7 @@
     private async Task FetchSettings()
     {
         var game = await SettingsService.GetGame();
-        Currency = game == GameType.PathOfExile ? await SettingsService.GetString(SettingKeys.PriceCheckCurrency) : await SettingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
+        Currency = game == GameType.PathOfExile1 ? await SettingsService.GetString(SettingKeys.PriceCheckCurrency) : await SettingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
         Currency = FilterProvider.GetPriceOption(Currency);
     }
 
@@ -87,7 +87,7 @@
         Currency = value;
 
         var game = await SettingsService.GetGame();
-        if (game == GameType.PathOfExile)
+        if (game == GameType.PathOfExile1)
         {
             await SettingsService.Set(SettingKeys.PriceCheckCurrency, value);
         }

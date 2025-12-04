@@ -19,5 +19,5 @@ public class LifeDefinition(GameType game) : PseudoDefinition
 
     protected override Regex Exception => new("Zombies|Transformed");
 
-    private double AttributeMultiplier => game == GameType.PathOfExile ? 0.5 : 2;
+    private double AttributeMultiplier => game == GameType.PathOfExile1 ? 0.5 : 2;
 }

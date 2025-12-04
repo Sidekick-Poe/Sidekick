@@ -217,7 +217,7 @@ public class WeaponDamageProperty
         {
             switch (game)
             {
-                case GameType.PathOfExile: query.Filters.GetOrCreateWeaponFilters().Filters.Damage = new StatFilterValue(damageFilter); break;
+                case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.Damage = new StatFilterValue(damageFilter); break;
                 case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.Damage = new StatFilterValue(damageFilter); break;
             }
         }
@@ -226,7 +226,7 @@ public class WeaponDamageProperty
         {
             switch (game)
             {
-                case GameType.PathOfExile: query.Filters.GetOrCreateWeaponFilters().Filters.PhysicalDps = new StatFilterValue(physicalDpsFilter); break;
+                case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.PhysicalDps = new StatFilterValue(physicalDpsFilter); break;
                 case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.PhysicalDps = new StatFilterValue(physicalDpsFilter); break;
             }
         }
@@ -235,7 +235,7 @@ public class WeaponDamageProperty
         {
             switch (game)
             {
-                case GameType.PathOfExile: query.Filters.GetOrCreateWeaponFilters().Filters.ElementalDps = new StatFilterValue(elementalDpsFilter); break;
+                case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.ElementalDps = new StatFilterValue(elementalDpsFilter); break;
                 case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.ElementalDps = new StatFilterValue(elementalDpsFilter); break;
             }
         }
@@ -249,7 +249,7 @@ public class WeaponDamageProperty
         {
             switch (game)
             {
-                case GameType.PathOfExile: query.Filters.GetOrCreateWeaponFilters().Filters.DamagePerSecond = new StatFilterValue(dpsFilter); break;
+                case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.DamagePerSecond = new StatFilterValue(dpsFilter); break;
                 case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.DamagePerSecond = new StatFilterValue(dpsFilter); break;
             }
         }

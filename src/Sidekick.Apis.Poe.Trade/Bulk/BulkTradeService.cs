@@ -54,7 +54,7 @@ public class BulkTradeService
             };
         }
 
-        var currency = item.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
+        var currency = item.Game == GameType.PathOfExile1 ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
         currency = filterProvider.GetPriceOption(currency);
         var minStock = await settingsService.GetInt(SettingKeys.PriceCheckBulkMinimumStock);
 
@@ -64,7 +64,7 @@ public class BulkTradeService
 
         if (currency == null || currency == "chaos_divine" || currency == "exalted_divine")
         {
-            if (item.Game == GameType.PathOfExile)
+            if (item.Game == GameType.PathOfExile1)
             {
                 model.Query.Have.Add(model.Query.Want.Any(x => x == "chaos") ? "divine" : "chaos");
             }

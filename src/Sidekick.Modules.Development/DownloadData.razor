@@ -29,7 +29,7 @@
 @code {
 
 
-    private static List<GameType> games = [GameType.PathOfExile, GameType.PathOfExile2];
+    private static List<GameType> games = [GameType.PathOfExile1, GameType.PathOfExile2];
     private static string[] paths =
     [
         "items",
@@ -59,7 +59,7 @@
 
                     foreach (var path in paths)
                     {
-                        var fileName = ApiClient.GetDataFileName(game, language, path);
+                        var fileName = TradeApiClient.GetDataFileName(game, language, path);
                         var data = await ApiClient.FetchData(game, language, path);
                         await SaveToDisk(fileName, data);
                     }
@@ -76,7 +76,7 @@
 
     private async Task DownloadLeagues(GameType game)
     {
-        var fileName = ApiClient.GetDataFileName(game, GameLanguageProvider.InvariantLanguage, "leagues");
+        var fileName = TradeApiClient.GetDataFileName(game, GameLanguageProvider.InvariantLanguage, "leagues");
         var data = await ApiClient.FetchData(game, GameLanguageProvider.InvariantLanguage, "leagues");
         await SaveToDisk(fileName, data);
     }
@@ -120,7 +120,7 @@
         foreach (var languageAttribute in languages)
         {
             var language = languageAttribute.Build();
-            var fileName = ApiClient.GetDataFileName(game, language, path);
+            var fileName = TradeApiClient.GetDataFileName(game, language, path);
             var filePath = Path.Combine(DataFolder, fileName);
 
             await using var fileStream = File.OpenRead(filePath);

@@ -22,7 +22,7 @@ public class SpiritProperty
 
     public override void Parse(Item item)
     {
-        if(game == GameType.PathOfExile) return;
+        if(game == GameType.PathOfExile1) return;
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.Spirit = GetInt(Pattern, propertyBlock);
         if (item.Properties.Spirit == 0) return;
@@ -33,7 +33,7 @@ public class SpiritProperty
 
     public override Task<PropertyFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile || item.Properties.Spirit <= 0) return Task.FromResult<PropertyFilter?>(null);
+        if (game == GameType.PathOfExile1 || item.Properties.Spirit <= 0) return Task.FromResult<PropertyFilter?>(null);
 
         var filter = new IntPropertyFilter(this)
         {
@@ -52,7 +52,7 @@ public class SpiritProperty
 
         switch (game)
         {
-            case GameType.PathOfExile: break;
+            case GameType.PathOfExile1: break;
             case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.Spirit = new StatFilterValue(intFilter); break;
         }
     }

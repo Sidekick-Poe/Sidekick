@@ -52,7 +52,7 @@ public class ArmourProperty
 
         switch (game)
         {
-            case GameType.PathOfExile: query.Filters.GetOrCreateArmourFilters().Filters.Armour = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile1: query.Filters.GetOrCreateArmourFilters().Filters.Armour = new StatFilterValue(intFilter); break;
             case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.Armour = new StatFilterValue(intFilter); break;
         }
     }

@@ -48,7 +48,7 @@ public class EvasionRatingProperty(IGameLanguageProvider gameLanguageProvider, G
 
         switch (game)
         {
-            case GameType.PathOfExile: query.Filters.GetOrCreateArmourFilters().Filters.EvasionRating = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile1: query.Filters.GetOrCreateArmourFilters().Filters.EvasionRating = new StatFilterValue(intFilter); break;
             case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.EvasionRating = new StatFilterValue(intFilter); break;
         }
     }

@@ -47,7 +47,7 @@ public class NinjaItemProvider(ISettingsService settingsService) : INinjaItemPro
         if (item != null) return item;
 
         // The PoE1 api doesn't have chaos currency, so we need to add it manually.
-        if (Game == GameType.PathOfExile && invariant == "chaos")
+        if (Game == GameType.PathOfExile1 && invariant == "chaos")
         {
             var page = new NinjaPage("Currency", "currency", true, true);
             return new NinjaExchangeItem(invariant, "divine-orb", page);

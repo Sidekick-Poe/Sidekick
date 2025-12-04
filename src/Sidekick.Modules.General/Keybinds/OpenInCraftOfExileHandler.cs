@@ -40,7 +40,7 @@ public class OpenInCraftOfExileHandler(
         }
 
         var game = await settingsService.GetGame();
-        var gameParam = game == GameType.PathOfExile ? "poe1" : "poe2";
+        var gameParam = game == GameType.PathOfExile1 ? "poe1" : "poe2";
         var encodedItemText = Uri.EscapeDataString(itemText);
 
         var uriBuilder = new UriBuilder("https://craftofexile.com/")

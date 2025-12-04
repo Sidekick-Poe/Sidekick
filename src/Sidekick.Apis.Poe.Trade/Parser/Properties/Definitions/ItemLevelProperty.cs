@@ -27,7 +27,7 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
             Text = gameLanguageProvider.Language.DescriptionItemLevel,
             NormalizeEnabled = false,
             Value = item.Properties.ItemLevel,
-            Checked = game == GameType.PathOfExile && item.Properties.ItemLevel >= 80 && item.Properties.MapTier == 0 && item.Properties.Rarity != Rarity.Unique,
+            Checked = game == GameType.PathOfExile1 && item.Properties.ItemLevel >= 80 && item.Properties.MapTier == 0 && item.Properties.Rarity != Rarity.Unique,
         };
         return Task.FromResult<PropertyFilter?>(filter);
     }
@@ -38,7 +38,7 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
 
         switch (game)
         {
-            case GameType.PathOfExile: query.Filters.GetOrCreateMiscFilters().Filters.ItemLevel = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile1: query.Filters.GetOrCreateMiscFilters().Filters.ItemLevel = new StatFilterValue(intFilter); break;
             case GameType.PathOfExile2: query.Filters.GetOrCreateTypeFilters().Filters.ItemLevel = new StatFilterValue(intFilter); break;
         }
     }
