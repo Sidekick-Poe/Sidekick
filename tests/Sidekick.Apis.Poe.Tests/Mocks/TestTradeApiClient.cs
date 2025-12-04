@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Items;
@@ -15,7 +16,7 @@ public class TestTradeApiClient(ILogger<TestTradeApiClient> logger) : ITradeApiC
 {
     public async Task<FetchResult<TReturn>> FetchData<TReturn>(GameType game, IGameLanguage language, string path)
     {
-        var dataFilePath = Path.Combine(AppContext.BaseDirectory, "wwwroot/data/" + TradeApiClient.GetDataFileName(game, language, path));
+        var dataFilePath = Path.GetFullPath(Path.Combine(GetProjectDirectory(), @"..\..\data", TradeApiClient.GetDataFileName(game, language, path)));
         logger.LogInformation("[TestTradeApiClient] Loading data from local file: {dataFilePath}", dataFilePath);
 
         if (!File.Exists(dataFilePath))
@@ -35,7 +36,7 @@ public class TestTradeApiClient(ILogger<TestTradeApiClient> logger) : ITradeApiC
 
     public async Task<Stream> FetchData(GameType game, IGameLanguage language, string path)
     {
-        var dataFilePath = Path.Combine(AppContext.BaseDirectory, "wwwroot/data/" + TradeApiClient.GetDataFileName(game, language, path));
+        var dataFilePath = Path.GetFullPath(Path.Combine(GetProjectDirectory(), @"..\..\data", TradeApiClient.GetDataFileName(game, language, path)));
         logger.LogInformation("[TestTradeApiClient] Loading stream from local file: {dataFilePath}", dataFilePath);
 
         if (!File.Exists(dataFilePath))
@@ -45,5 +46,15 @@ public class TestTradeApiClient(ILogger<TestTradeApiClient> logger) : ITradeApiC
 
         // Return an open read-only stream
         return await Task.FromResult<Stream>(File.OpenRead(dataFilePath));
+    }
+
+    private static string GetProjectDirectory([CallerFilePath] string filePath = "")
+    {
+        var directory = Path.GetDirectoryName(filePath);
+        while (directory != null && !Directory.EnumerateFiles(directory, "*.csproj").Any())
+        {
+            directory = Directory.GetParent(directory)?.FullName;
+        }
+        return directory ?? throw new FileNotFoundException("Could not find project directory.");
     }
 }
