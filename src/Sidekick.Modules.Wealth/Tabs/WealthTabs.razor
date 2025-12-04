@@ -8,10 +8,6 @@
 @using Sidekick.Common.Settings
 
 <FormFieldset Legend="Stash Tabs">
-    <div class="-mt-5 flex flex-nowrap justify-end items-center">
-        <WealthTabSelection OnSelected="RetrieveStashes"/>
-    </div>
-
     @if (Loading)
     {
         <ProgressBar Indeterminate="true"/>

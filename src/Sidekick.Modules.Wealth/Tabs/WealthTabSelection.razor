@@ -13,7 +13,20 @@
 <Popover Placement="TooltipPlacement.Bottom"
          Class="w-80 max-h-96">
     <PopoverAnchor>
-        <ButtonLink Class="!text-neutral-400 !text-sm">@Resources["Change"]</ButtonLink>
+        @if (TrackedTabs.Count > 0)
+        {
+            <ButtonCustom Class="border border-green-500 bg-transparent hover:enabled:bg-green-900">
+                <div class="bg-green-400 rounded-full w-2 h-2"></div>
+                <div class="text-green-400">@TrackedTabs.Count Tabs Selected</div>
+            </ButtonCustom>
+        }
+        else
+        {
+            <ButtonCustom Class="border border-red-500 bg-transparent hover:enabled:bg-red-900">
+                <div class="bg-blue-400 rounded-full w-2 h-2"></div>
+                <div class="text-green-400">No Tabs Selected</div>
+            </ButtonCustom>
+        }
     </PopoverAnchor>
     <PopoverContent>
         <Heading3 Class="mb-2">@Resources["Stash_Tabs"]</Heading3>
@@ -77,10 +90,11 @@
     protected override async Task OnInitializedAsync()
     {
         WealthProvider.OnRefreshed += Update;
+        await UpdateTrackedTabs();
         await base.OnInitializedAsync();
     }
 
-    public void Update()
+    private void Update()
     {
         _ = InvokeAsync(async () =>
         {
@@ -94,11 +108,11 @@
         Loading = true;
         StateHasChanged();
 
-        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        await UpdateTrackedTabs();
+
         await using var dbContext = new SidekickDbContext(DbContextOptions);
         StashTabs = await StashService.GetStashTabList();
 
-        TrackedTabs = await dbContext.WealthStashes.Where(x => x.League == leagueId).ToListAsync();
         foreach (var trackedTab in TrackedTabs.ToList())
         {
             if (StashTabs.Any(x => x.Id == trackedTab.Id)) continue;
@@ -109,6 +123,13 @@
 
         Loading = false;
         StateHasChanged();
+    }
+
+    private async Task UpdateTrackedTabs()
+    {
+        var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
+        await using var dbContext = new SidekickDbContext(DbContextOptions);
+        TrackedTabs = await dbContext.WealthStashes.Where(x => x.League == leagueId).ToListAsync();
     }
 
     private bool IsChecked(StashTab tab) => TrackedTabs.Any(x => x.Id == tab.Id);

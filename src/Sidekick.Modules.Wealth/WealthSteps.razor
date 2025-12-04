@@ -1,0 +1,50 @@
+﻿@using Sidekick.Apis.Poe.Account.Authentication
+@using Sidekick.Modules.Wealth.Provider
+@using Sidekick.Modules.Wealth.Authentication
+@using Sidekick.Modules.Wealth.Localization
+@using Sidekick.Modules.Wealth.Tabs
+
+<div class="flex flex-nowrap items-center justify-center">
+    <AuthenticationButton/>
+    <Icon Svg="@UiIcons.ArrowForward" Class="text-stone-700"/>
+    <WealthTabSelection/>
+    <HideIfUnauthenticated>
+        <Icon Svg="@UiIcons.ArrowForward" Class="text-stone-700"/>
+        <ButtonPrimary Disabled="WealthProvider.Status == WealthRunStatus.Running"
+                       OnClick="WealthProvider.Start">@Resources["Refresh"]
+        </ButtonPrimary>
+    </HideIfUnauthenticated>
+</div>
+
+@inject IStringLocalizer<WealthResources> Resources
+@inject WealthProvider WealthProvider
+@inject IAuthenticationService AuthenticationService
+@implements IDisposable
+
+@code {
+
+    private AuthenticationState AuthenticationState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationService.OnStateChanged += OnAuthenticationChanged;
+        OnAuthenticationChanged();
+
+        await base.OnInitializedAsync();
+    }
+
+    private void OnAuthenticationChanged()
+    {
+        InvokeAsync(async () =>
+        {
+            AuthenticationState = await AuthenticationService.GetCurrentState();
+            StateHasChanged();
+        });
+    }
+
+    public void Dispose()
+    {
+        AuthenticationService.OnStateChanged -= OnAuthenticationChanged;
+    }
+
+}

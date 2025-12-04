@@ -18,4 +18,9 @@
     <ProjectReference Include="..\Sidekick.Common.Ui\Sidekick.Common.Ui.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Steps\StepContainer.razor" />
+    <UpToDateCheckInput Remove="Steps\StepItem.razor" />
+  </ItemGroup>
+
 </Project>
