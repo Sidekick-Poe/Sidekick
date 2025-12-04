@@ -42,10 +42,6 @@
       </None>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Fixtures\" />
-    </ItemGroup>
-
     <Target Name="CopyData" BeforeTargets="Build">
         <ItemGroup>
             <DataFiles Include="$(ProjectDir)..\..\data\**\*.*"/>
