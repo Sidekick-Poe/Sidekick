@@ -73,7 +73,7 @@ public class TradeSearchService
                 query.Name = item.ApiInformation.Name;
             }
 
-            var currency = item.Game == GameType.PathOfExile ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
+            var currency = item.Game == GameType.PathOfExile1 ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
             currency = filterProvider.GetPriceOption(currency);
             if (!string.IsNullOrEmpty(currency))
             {

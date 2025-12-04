@@ -40,7 +40,7 @@ public static class StringExtensions
             .ElementAtOrDefault(0) switch
         {
             "poe2" => GameType.PathOfExile2,
-            _ => GameType.PathOfExile,
+            _ => GameType.PathOfExile1,
         };
     }
 

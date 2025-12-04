@@ -19,7 +19,7 @@ public class SanctifiedProperty(IServiceProvider serviceProvider, GameType game)
 
     public override Task<PropertyFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile) return Task.FromResult<PropertyFilter?>(null);
+        if (game == GameType.PathOfExile1) return Task.FromResult<PropertyFilter?>(null);
         if (FilterProvicer.Sanctified == null) return Task.FromResult<PropertyFilter?>(null);
 
         var filter = new TriStatePropertyFilter(this)

@@ -71,7 +71,7 @@ public class NinjaPageProvider(
 
     public async Task Download(string dataFolder, string poe1League, string poe2League)
     {
-        if (!string.IsNullOrEmpty(poe1League)) await DownloadPages(GameType.PathOfExile, Poe1Pages, poe1League);
+        if (!string.IsNullOrEmpty(poe1League)) await DownloadPages(GameType.PathOfExile1, Poe1Pages, poe1League);
         if (!string.IsNullOrEmpty(poe2League)) await DownloadPages(GameType.PathOfExile2, Poe2Pages, poe2League);
 
         return;
@@ -139,7 +139,7 @@ public class NinjaPageProvider(
     {
         return game switch
         {
-            GameType.PathOfExile => $"poe1.ninja.{type}.json",
+            GameType.PathOfExile1 => $"poe1.ninja.{type}.json",
             GameType.PathOfExile2 => $"poe2.ninja.{type}.json",
             _ => throw new Exception(),
         };

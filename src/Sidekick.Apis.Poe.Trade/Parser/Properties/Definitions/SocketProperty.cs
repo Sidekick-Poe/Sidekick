@@ -146,7 +146,7 @@ public class SocketProperty
 
         switch (game)
         {
-            case GameType.PathOfExile: query.Filters.GetOrCreateSocketFilters().Filters.Links = new SocketFilterOption(intFilter); break;
+            case GameType.PathOfExile1: query.Filters.GetOrCreateSocketFilters().Filters.Links = new SocketFilterOption(intFilter); break;
 
             case GameType.PathOfExile2:
                 switch (item.ApiInformation.Category)

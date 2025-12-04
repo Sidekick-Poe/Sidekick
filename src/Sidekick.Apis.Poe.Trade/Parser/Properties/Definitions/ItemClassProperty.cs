@@ -154,7 +154,7 @@ public class ItemClassProperty : PropertyDefinition
             ]);
         }
 
-        if (game == GameType.PathOfExile)
+        if (game == GameType.PathOfExile1)
         {
             definitions.AddRange([
                 CreateItemClassDefinition(ItemClass.Flask, gameLanguageProvider.Language.Classes.HybridFlasks),

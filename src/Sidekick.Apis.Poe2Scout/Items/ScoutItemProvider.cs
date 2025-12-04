@@ -21,7 +21,7 @@ public class ScoutItemProvider(
     public async Task<ScoutItem?> GetItem(string? text)
     {
         var game = await settingsService.GetGame();
-        if (game == GameType.PathOfExile) return null;
+        if (game == GameType.PathOfExile1) return null;
 
         if (string.IsNullOrEmpty(text)) return null;
 

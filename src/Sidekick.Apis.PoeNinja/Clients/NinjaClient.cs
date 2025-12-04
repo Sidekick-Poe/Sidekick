@@ -43,7 +43,7 @@ public class NinjaClient
     {
         parameters ??= new();
 
-        var gamePath = game == GameType.PathOfExile ? "poe1/api/" : "poe2/api/";
+        var gamePath = game == GameType.PathOfExile1 ? "poe1/api/" : "poe2/api/";
 
         var league = await settingsService.GetLeague();
         league = league?.Replace(' ', '+');

@@ -37,7 +37,7 @@ public class NinjaStashProvider(
     {
         var league = await settingsService.GetLeague();
         var game = await settingsService.GetGame();
-        var gamePath = game == GameType.PathOfExile ? "" : "poe2/";
+        var gamePath = game == GameType.PathOfExile1 ? "" : "poe2/";
         return new Uri($"https://poe.ninja/{gamePath}economy/{league?.ToLowerInvariant()}/{item.Page.Url}/{item.DetailsId}");
     }
 
