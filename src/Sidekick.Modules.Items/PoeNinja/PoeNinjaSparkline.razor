@@ -1,0 +1,143 @@
+﻿@using Sidekick.Apis.PoeNinja.Exchange.Models
+@using Sidekick.Modules.Items.PoeNinja.Localization
+@using ApexCharts
+
+@if (Sparkline == null || Sparkline.TotalChange == 0) return;
+
+<div class="mb-2 bg-stone-950 rounded-lg px-2 py-1 flex flex-nowrap items-center gap-2">
+    <div class="flex flex-nowrap items-center gap-2 justify-center grow min-h-[40px]">
+        <Heading3>@Resources["Change"]</Heading3>
+
+        @if (Sparkline.TotalChange > 0)
+        {
+            <Heading3 Class="text-green-400">+@Sparkline.TotalChange.ToString("0")%</Heading3>
+        }
+        else
+        {
+            <Heading3 Class="text-red-400">@Sparkline.TotalChange.ToString("0")%</Heading3>
+        }
+    </div>
+
+    <div class="w-[200px]">
+        @if (Series != null)
+        {
+            <ApexChart TItem="DataPoint" Options="Options">
+                <ApexPointSeries TItem="DataPoint"
+                                 Items="Series"
+                                 SeriesType="SeriesType.Line"
+                                 XValue="(x => x.Index)"
+                                 YValue="(x => x.Value)"/>
+            </ApexChart>
+        }
+    </div>
+</div>
+
+@inject IStringLocalizer<PoeNinjaResources> Resources
+
+@code {
+
+    [Parameter]
+    public ApiSparkline? Sparkline { get; set; }
+
+    private List<DataPoint>? Series { get; set; }
+
+    private ApexChartOptions<DataPoint>? Options { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        if (Sparkline?.Data.Count(x => x.HasValue) > 2)
+        {
+            Series = Sparkline.Data
+                .Where(x => x.HasValue)
+                .Select((value, index) => new DataPoint
+                {
+                    Index = index,
+                    Value = value,
+                })
+                .ToList();
+            Options = new()
+            {
+                Chart = new Chart
+                {
+                    Height = 40,
+                    Background = "transparent",
+                    FontFamily = "fontin",
+                    Toolbar = new Toolbar
+                    {
+                        Show = false
+                    },
+                    Zoom = new Zoom
+                    {
+                        Enabled = false,
+                    },
+                    Sparkline = new ChartSparkline()
+                    {
+                        Enabled = true,
+                    }
+                },
+                Legend = new Legend()
+                {
+                    Show = false,
+                },
+                Stroke = new()
+                {
+                    Curve = Curve.Smooth,
+                    Width = 2,
+                    Colors = ["#8888ff"],
+                },
+                Theme = new Theme
+                {
+                    Mode = Mode.Dark,
+                    Palette = PaletteType.Palette8,
+                },
+                Tooltip = new()
+                {
+                    Enabled = false
+                },
+                Markers = new()
+                {
+                    Size = 0
+                },
+                Xaxis = new XAxis
+                {
+                    AxisBorder = new AxisBorder()
+                    {
+                        Show = false,
+                    },
+                    AxisTicks = new AxisTicks()
+                    {
+                        Show = false,
+                    },
+                    Labels = new XAxisLabels()
+                    {
+                        Show = false,
+                    },
+                    Tooltip = new XAxisTooltip()
+                    {
+                        Enabled = false,
+                    },
+                },
+                Yaxis =
+                [
+                    new YAxis()
+                    {
+                        Labels = new YAxisLabels()
+                        {
+                            Show = false,
+                        },
+                    },
+                ],
+            };
+        }
+    }
+
+    class DataPoint
+    {
+        public int Index { get; set; }
+
+        public decimal? Value { get; set; }
+    }
+
+}

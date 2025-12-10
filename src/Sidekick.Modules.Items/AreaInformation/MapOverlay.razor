@@ -1,0 +1,184 @@
+@page "/map/{itemText}"
+@using System.Text.RegularExpressions
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Trade
+@using Sidekick.Common.Settings
+@using Sidekick.Common.Exceptions
+
+@using Sidekick.Common.Extensions
+@using Sidekick.Modules.Items.AreaInformation.Localization
+@using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
+@using Sidekick.Modules.Maps.Settings
+
+<LayoutTwoColumn HasChildContent="@(Item == null || Item.Game == GameType.PathOfExile1)">
+    <TopContent>
+        <AppBar>
+            <AppSettings Href="/settings/map">
+                <SettingsContent/>
+            </AppSettings>
+            <AppClose/>
+        </AppBar>
+    </TopContent>
+    <LeftContent>
+        @if (Item != null)
+        {
+            <ItemHeader Name="@Item.Name"
+                        Type="@Item.Type"
+                        Rarity="Item.Properties.Rarity"
+                        Game="Item.Game"
+                        Influences="Item.Properties.Influences"/>
+
+            <AppFullContainer>
+                @if (DangerousMods.Any())
+                {
+                    <Heading1 Class="text-red-500 flex flex-nowrap items-center justify-center gap-2 mb-2">
+                        <Icon Svg="@UiIcons.ThumbDown" />
+                        @Resources["Unsafe"]
+                    </Heading1>
+                }
+                else
+                {
+                    <Heading1 Class="text-green-500 flex flex-nowrap items-center justify-center gap-2 mb-2">
+                        <Icon Svg="@UiIcons.ThumbUp" />
+                        @Resources["Safe"]
+                    </Heading1>
+                }
+
+                <ItemSeparator Rarity="Item.Properties.Rarity"/>
+
+                @foreach (var mod in DangerousMods)
+                {
+                    <div
+                        class="flex items-center flex-nowrap p-1 -mx-1 duration-200 transition-colors bg-transparent hover:bg-stone-800 rounded-sm">
+                        <div class="text-red-500">
+                            <Icon Svg="@UiIcons.ThumbDown" />
+                        </div>
+                        <ItemModifierText Class="ml-2 text-center grow">@mod</ItemModifierText>
+                    </div>
+                }
+
+                @if (DangerousMods.Any() && OkMods.Any())
+                {
+                    <ItemSeparator Rarity="Item.Properties.Rarity"/>
+                }
+
+                @foreach (var mod in OkMods)
+                {
+                    <div
+                        class="flex items-center flex-nowrap p-1 -mx-1 duration-200 transition-colors bg-transparent hover:bg-stone-800 rounded-sm">
+                        <div class="text-green-500">
+                            <Icon Svg="@UiIcons.ThumbUp" />
+                        </div>
+                        <ItemModifierText Class="ml-2 text-center grow">@mod</ItemModifierText>
+                    </div>
+                }
+            </AppFullContainer>
+        }
+    </LeftContent>
+    <ChildContent>
+        @if (Item?.Game == GameType.PathOfExile1)
+        {
+            <PoeWikiMapInfo Text="@Item.ApiInformation.InvariantText"/>
+        }
+    </ChildContent>
+</LayoutTwoColumn>
+
+
+@inject IStringLocalizer<MapInfoResources> Resources
+@inject IItemParser ItemParser
+@inject ISettingsService SettingsService
+@implements IDisposable
+
+@code {
+
+    [Parameter]
+    public required string ItemText { get; set; }
+
+    private List<string> DangerousMods { get; } =
+    [
+    ];
+
+    private List<string> OkMods { get; } =
+    [
+    ];
+
+    private Item? Item { get; set; }
+
+    protected override void OnInitialized()
+    {
+        SettingsService.OnSettingsChanged += SettingsServiceOnOnSettingsChanged;
+        base.OnInitialized();
+    }
+
+    private void SettingsServiceOnOnSettingsChanged(string[] keys)
+    {
+        if (!keys.Contains(SettingKeys.MapCheckDangerousRegex))
+        {
+            return;
+        }
+
+        _ = InvokeAsync(async () =>
+        {
+            await UpdateOverlay();
+            StateHasChanged();
+        });
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+        await UpdateOverlay();
+    }
+
+    private async Task UpdateOverlay()
+    {
+        var itemText = ItemText.DecodeBase64Url();
+        Item = ItemParser.ParseItem(itemText);
+
+        if (Item.ApiInformation.Category != Category.Map && Item.ApiInformation.Category != Category.Contract && Item.ApiInformation.Category != Category.Logbook)
+        {
+            throw new InvalidItemException();
+        }
+
+        DangerousMods.Clear();
+        OkMods.Clear();
+
+        var dangerousRegex = await SettingsService.GetString(SettingKeys.MapCheckDangerousRegex);
+        if (!string.IsNullOrEmpty(dangerousRegex))
+        {
+            var dangerousModsRegex = new Regex(dangerousRegex, RegexOptions.IgnoreCase);
+            FilterMods(dangerousModsRegex, Item.Modifiers);
+        }
+        else
+        {
+            FilterMods(null, Item.Modifiers);
+        }
+    }
+
+    private void FilterMods(Regex? modRegex, List<Modifier> modifierLines)
+    {
+        if (modRegex == null)
+        {
+            OkMods.AddRange(modifierLines.Select(x => x.Text));
+            return;
+        }
+
+        foreach (var mod in modifierLines)
+        {
+            if (modRegex.IsMatch(mod.Text))
+            {
+                DangerousMods.Add(mod.Text);
+            }
+            else
+            {
+                OkMods.Add(mod.Text);
+            }
+        }
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= SettingsServiceOnOnSettingsChanged;
+    }
+
+}

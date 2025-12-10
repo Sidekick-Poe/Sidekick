@@ -1,0 +1,54 @@
+﻿@using Sidekick.Apis.Poe.Items
+@using Sidekick.Modules.Items.Exchange.Localization
+@using Sidekick.Modules.Items.Tools.Chromatic
+@using Sidekick.Common.Ui.Tabs
+
+@if (!AnyTools)
+{
+    return;
+}
+
+<Popover Placement="TooltipPlacement.TopRight">
+    <PopoverAnchor>
+        <TabItem Active="Active"
+                 EndIcon="@UiIcons.ChevronDown"
+                 Text="@Resources["Tools"]"/>
+    </PopoverAnchor>
+    <PopoverContent>
+        <div class="flex flex-col">
+            <ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenChromatic">Chromatic Calculator</ButtonLink>
+        </div>
+    </PopoverContent>
+</Popover>
+
+
+@inject IStringLocalizer<ExchangeResources> Resources
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public string? CurrentTab { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> CurrentTabChanged { get; set; }
+
+    private bool Active => CurrentTab == "chromatic";
+
+    private bool AnyTools { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        AnyTools = ChromaticCalculator.IsValid(Item);
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task OpenChromatic()
+    {
+        await CurrentTabChanged.InvokeAsync("chromatic");
+    }
+
+}

@@ -1,0 +1,41 @@
+@using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters
+@using Sidekick.Modules.Items.Localization
+@if (!Filter.ShowRow)
+{
+    return;
+}
+
+@if (!string.IsNullOrEmpty(Filter.ItemClass))
+{
+    <FilterWrapper>
+        <div class="flex items-center flex-nowrap justify-between">
+            <FormCheckbox Value="Filter.Checked"
+                          ValueChanged="(v)=>Filter.Checked = v">
+                <ItemPropertyText Label="@Resources["Item Class"]"
+                                  Value="@Filter.ItemClass"/>
+            </FormCheckbox>
+        </div>
+    </FilterWrapper>
+}
+
+@if (!string.IsNullOrEmpty(Filter.BaseType))
+{
+    <FilterWrapper>
+        <div class="flex items-center flex-nowrap justify-between">
+            <FormCheckbox Value="!Filter.Checked"
+                          ValueChanged="(v)=>Filter.Checked = !v">
+                <ItemPropertyText Label="@Resources["Base Type"]"
+                                  Value="@Filter.BaseType"/>
+            </FormCheckbox>
+        </div>
+    </FilterWrapper>
+}
+
+@inject IStringLocalizer<TradeResources> Resources
+
+@code {
+
+    [Parameter]
+    public required ItemClassPropertyFilter Filter { get; set; }
+
+}

@@ -24,7 +24,7 @@ using Sidekick.Common.Updater;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
-using Sidekick.Modules.Item;
+using Sidekick.Modules.Items;
 using Sidekick.Modules.RegexHotkeys;
 using Sidekick.Modules.Wealth;
 using Sidekick.Wpf.Services;
@@ -107,7 +107,7 @@ If you need more support consider asking on the official Sidekick discord server
             .AddSidekickDevelopment()
             .AddSidekickRegexHotkeys()
             .AddSidekickGeneral()
-            .AddSidekickTrade()
+            .AddSidekickItems()
             .AddSidekickWealth()
 
             // Platform needs to be at the end

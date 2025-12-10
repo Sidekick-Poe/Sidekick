@@ -40,7 +40,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Apis.Poe.Trade", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Apis.PoePriceInfo", "src\Sidekick.Apis.PoePriceInfo\Sidekick.Apis.PoePriceInfo.csproj", "{8A13FFC9-5C43-4565-B24C-2F2F10BF5AA2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Modules.Item", "src\Sidekick.Modules.Item\Sidekick.Modules.Item.csproj", "{AD46F63E-E1AE-4E71-AC6B-B1947AFED1A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Modules.Items", "src\Sidekick.Modules.Items\Sidekick.Modules.Items.csproj", "{AD46F63E-E1AE-4E71-AC6B-B1947AFED1A3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sidekick.Apis.Poe.Tests", "tests\Sidekick.Apis.Poe.Tests\Sidekick.Apis.Poe.Tests.csproj", "{1AE4A2BC-0990-46AC-B3ED-2CCAEDE45473}"
 EndProject
