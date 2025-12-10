@@ -19,7 +19,6 @@ using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Item;
-using Sidekick.Modules.Maps;
 using Sidekick.Modules.RegexHotkeys;
 using Sidekick.Web;
 using Sidekick.Web.Services;
@@ -66,7 +65,6 @@ builder.Services
     .AddSidekickDevelopment()
     .AddSidekickRegexHotkeys()
     .AddSidekickGeneral()
-    .AddSidekickMaps()
     .AddSidekickTrade();
 
 builder.Services.AddApexCharts();

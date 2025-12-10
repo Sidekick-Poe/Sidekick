@@ -21,7 +21,6 @@ public static class SettingKeys
 
     public const string KeyClose = nameof(KeyClose);
     public const string KeyFindItems = nameof(KeyFindItems);
-    public const string KeyOpenMapCheck = nameof(KeyOpenMapCheck);
     public const string KeyOpenPriceCheck = nameof(KeyOpenPriceCheck);
     public const string KeyOpenWiki = nameof(KeyOpenWiki);
     public const string KeyOpenInCraftOfExile = nameof(KeyOpenInCraftOfExile);
@@ -34,8 +33,6 @@ public static class SettingKeys
     public const string ChatCommands = nameof(ChatCommands);
     public const string PreferredWiki = nameof(PreferredWiki);
     public const string RegexHotkeys = nameof(RegexHotkeys);
-
-    public const string MapCheckDangerousRegex = nameof(MapCheckDangerousRegex);
 
     public const string OverlayCloseWithMouse = nameof(OverlayCloseWithMouse);
 
