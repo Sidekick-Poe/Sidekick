@@ -1,4 +1,4 @@
-namespace Sidekick.Modules.Trade.Valuation.Localization;
+namespace Sidekick.Modules.Item.Valuation.Localization;
 
 public class ValuationResources()
 {

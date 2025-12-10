@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Modules.Trade.Tools.Chromatic;
+﻿namespace Sidekick.Modules.Item.Tools.Chromatic;
 
 // This file has been adapted and translated to C# from the original JavaScript implementation
 // available in the following repository: https://github.com/Siveran/siveran.github.io

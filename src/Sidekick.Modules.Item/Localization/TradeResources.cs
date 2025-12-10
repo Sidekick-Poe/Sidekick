@@ -1,4 +1,4 @@
-namespace Sidekick.Modules.Trade.Localization;
+namespace Sidekick.Modules.Item.Localization;
 
 public class TradeResources()
 {

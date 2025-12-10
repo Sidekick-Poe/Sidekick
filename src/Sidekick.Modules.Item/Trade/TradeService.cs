@@ -7,8 +7,7 @@ using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
 using Sidekick.Common.Exceptions;
-
-namespace Sidekick.Modules.Trade.Trade;
+namespace Sidekick.Modules.Item.Trade;
 
 public class TradeService
 (
@@ -46,7 +45,7 @@ public class TradeService
         Changed?.Invoke();
     }
 
-    public async Task SearchItems(Item item, List<PropertyFilter> propertyFilters, List<ModifierFilter> modifierFilters, List<PseudoFilter> pseudoFilters)
+    public async Task SearchItems(Apis.Poe.Items.Item item, List<PropertyFilter> propertyFilters, List<ModifierFilter> modifierFilters, List<PseudoFilter> pseudoFilters)
     {
         CurrentMode = TradeMode.Item;
         IsLoading = true;
@@ -59,7 +58,7 @@ public class TradeService
         Changed?.Invoke();
     }
 
-    public async Task SearchBulk(Item item)
+    public async Task SearchBulk(Apis.Poe.Items.Item item)
     {
         CurrentMode = TradeMode.Bulk;
         IsLoading = true;
@@ -78,7 +77,7 @@ public class TradeService
             return;
         }
 
-        var ids = ItemTradeResult.Result.Skip(TradeItems?.Count ?? 0).Take(10).ToList();
+        var ids = ItemTradeResult.Result.Skip(TradeItems.Count).Take(10).ToList();
         if (ids.Count == 0)
         {
             return;
@@ -91,7 +90,7 @@ public class TradeService
         try
         {
             var result = await tradeSearchService.GetResults(game, ItemTradeResult.Id, ids);
-            TradeItems?.AddRange(result);
+            TradeItems.AddRange(result);
         }
         catch (SidekickException e)
         {

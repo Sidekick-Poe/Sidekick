@@ -1,5 +1,5 @@
 ﻿using ApexCharts;
-namespace Sidekick.Modules.Trade.Poe2Scout;
+namespace Sidekick.Modules.Item.Poe2Scout;
 
 public static class DataConstants
 {

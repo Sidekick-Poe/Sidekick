@@ -1,6 +1,5 @@
 using Sidekick.Common.Enums;
-
-namespace Sidekick.Modules.Trade;
+namespace Sidekick.Modules.Item;
 
 public enum TradeMode
 {

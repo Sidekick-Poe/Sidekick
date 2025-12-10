@@ -1,4 +1,4 @@
-namespace Sidekick.Modules.Trade.Wiki.Localization;
+namespace Sidekick.Modules.Item.Wiki.Localization;
 
 public class WikiResources()
 {

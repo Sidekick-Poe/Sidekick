@@ -1,4 +1,4 @@
-namespace Sidekick.Modules.Trade.PoeNinja.Localization;
+namespace Sidekick.Modules.Item.PoeNinja.Localization;
 
 public class PoeNinjaResources()
 {

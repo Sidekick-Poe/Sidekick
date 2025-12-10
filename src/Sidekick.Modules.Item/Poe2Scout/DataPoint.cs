@@ -1,3 +1,3 @@
-﻿namespace Sidekick.Modules.Trade.Poe2Scout;
+﻿namespace Sidekick.Modules.Item.Poe2Scout;
 
 public record DataPoint(string DateString, decimal? Value);

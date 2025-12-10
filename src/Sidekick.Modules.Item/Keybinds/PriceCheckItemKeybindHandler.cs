@@ -3,8 +3,7 @@ using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
-
-namespace Sidekick.Modules.Trade.Keybinds;
+namespace Sidekick.Modules.Item.Keybinds;
 
 public class PriceCheckItemKeybindHandler
 (
