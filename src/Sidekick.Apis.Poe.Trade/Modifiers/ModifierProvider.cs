@@ -69,7 +69,7 @@ public class ModifierProvider
 
         Definitions.Clear();
 
-        foreach (var apiCategory in apiCategories.Result)
+        Parallel.ForEach(apiCategories.Result, apiCategory =>
         {
             var modifierCategory = GetModifierCategory(apiCategory.Entries[0].Id);
             var patterns = ComputeCategoryPatterns(apiCategory, modifierCategory);
@@ -78,7 +78,7 @@ public class ModifierProvider
             {
                 Definitions[modifierCategory].AddRange(patterns);
             }
-        }
+        });
 
         ComputeSecondaryDefinitions();
 
