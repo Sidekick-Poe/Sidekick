@@ -154,7 +154,7 @@ public class ItemClassProperty : PropertyDefinition
             ]);
         }
 
-        if (game == GameType.PathOfExile)
+        if (game == GameType.PathOfExile1)
         {
             definitions.AddRange([
                 CreateItemClassDefinition(ItemClass.Flask, gameLanguageProvider.Language.Classes.HybridFlasks),
@@ -214,7 +214,7 @@ public class ItemClassProperty : PropertyDefinition
         item.Properties.ItemClass = apiItemCategoryId?.GetEnumFromValue<ItemClass>() ?? ItemClass.Unknown;
     }
 
-    public override async Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override async Task<PropertyFilter?> GetFilter(Item item)
     {
         if (item.Properties.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal)) return null;
         if (item.Properties.ItemClass == ItemClass.Unknown) return null;

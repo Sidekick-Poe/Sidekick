@@ -5,7 +5,6 @@ using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -31,7 +30,7 @@ public class ArmourProperty
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.Armour));
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item)
     {
         if (item.Properties.Armour <= 0) return Task.FromResult<PropertyFilter?>(null);
 
@@ -39,13 +38,11 @@ public class ArmourProperty
         {
             Text = gameLanguageProvider.Language.DescriptionArmour,
             NormalizeEnabled = true,
-            NormalizeValue = normalizeValue,
             Value = item.Properties.ArmourWithQuality,
             OriginalValue = item.Properties.Armour,
             Checked = false,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.Armour)) ? LineContentType.Augmented : LineContentType.Simple,
         };
-        filter.ChangeFilterType(filterType);
         return Task.FromResult<PropertyFilter?>(filter);
     }
 
@@ -55,7 +52,7 @@ public class ArmourProperty
 
         switch (game)
         {
-            case GameType.PathOfExile: query.Filters.GetOrCreateArmourFilters().Filters.Armour = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile1: query.Filters.GetOrCreateArmourFilters().Filters.Armour = new StatFilterValue(intFilter); break;
             case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.Armour = new StatFilterValue(intFilter); break;
         }
     }

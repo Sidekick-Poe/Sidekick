@@ -1,44 +1,59 @@
 @page "/wealth"
+@using Sidekick.Apis.Poe.Account.Clients
 @using Sidekick.Apis.Poe.Extensions
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Platform
+@using Sidekick.Common.Ui.Api
+@using Sidekick.Modules.Wealth.Authentication
 @using Sidekick.Modules.Wealth.Tabs
 @using Sidekick.Modules.Wealth.Items
 @using Sidekick.Modules.Wealth.Graphs
 @using Sidekick.Modules.Wealth.Localization
 
 <LayoutMenu>
-    @if (Game == GameType.PathOfExile2)
-    {
-        <AlertError>@Resources["Not_Supported_Game"]</AlertError>
-        return;
-    }
+    <ChildContent>
+        @if (Game == GameType.PathOfExile2)
+        {
+            <AlertError>@Resources["Not_Supported_Game"]</AlertError>
+            return;
+        }
 
-    @if (!ApplicationService.SupportsKeybinds || !ApplicationService.SupportsAuthentication)
-    {
-        <AlertError>@Resources["Not_Supported"]</AlertError>
-        return;
-    }
+        @if (!ApplicationService.SupportsKeybinds || !ApplicationService.SupportsAuthentication)
+        {
+            <AlertError>@Resources["Not_Supported"]</AlertError>
+            return;
+        }
 
-    <AppContainer>
-        <div class="flex items-start gap-2 mb-3">
-            <Heading1>@Resources["Wealth_Tracker"]</Heading1>
-            <div class="self-center ml-auto">
-                <WealthToolbar/>
+        <AppContainer>
+            <div class="flex items-start gap-2 mb-3">
+                <Heading1>@Resources["Wealth_Tracker"]</Heading1>
+                <div class="self-center ml-auto">
+                    <WealthSteps/>
+                </div>
             </div>
+
+            <div class="flex flex-nowrap gap-3">
+                <div class="min-w-64 w-64 max-w-64">
+                    <WealthOverTime/>
+                    <WealthTabs/>
+                    <StashesOverTime/>
+                </div>
+                <div class="flex-1">
+                    <WealthToolbar/>
+                    <WealthItems/>
+                </div>
+            </div>
+        </AppContainer>
+    </ChildContent>
+
+    <BottomContent>
+        <div class="px-2 py-0.5 border-t border-stone-700 flex flex-wrap items-center gap-2 justify-end my-1">
+            <AuthenticationStatus/>
+            <div class="grow"></div>
+            <ApiStatusAndLimits ApiClientName="@AccountApiClient.ClientName"/>
         </div>
-        <div class="flex flex-nowrap gap-3">
-            <div class="min-w-64 w-64 max-w-64">
-                <WealthOverTime/>
-                <WealthTabs/>
-                <StashesOverTime/>
-            </div>
-            <div class="flex-1">
-                <WealthItems/>
-            </div>
-        </div>
-    </AppContainer>
+    </BottomContent>
 </LayoutMenu>
 
 @inject IStringLocalizer<WealthResources> Resources

@@ -73,6 +73,13 @@ public class GameLanguageDe : IGameLanguage
     public string InfluenceRedeemer => "Erlöserin-Gegenstand";
     public string InfluenceWarlord => "Kriegsfürst-Gegenstand";
 
+    public string RegexIncreased => "erhöhte|Erhöhte|erhöhter|Erhöhter";
+    public string RegexReduced => "verringerte|Verringerte|verringerten|Verringerten|verringerungen|Verringerungen";
+    public string RegexMore => "mehr|Mehr";
+    public string RegexLess => "weniger|Weniger";
+    public string RegexFaster => "schnellerer|Schnellerer|schneller|Schneller|schnellere|Schnellere";
+    public string RegexSlower => "verlangsamende|Verlangsamende|verlangsamungen|Verlangsamungen";
+
     public ClassLanguage Classes { get; } = new()
     {
         Prefix = "Gegenstandsklasse",

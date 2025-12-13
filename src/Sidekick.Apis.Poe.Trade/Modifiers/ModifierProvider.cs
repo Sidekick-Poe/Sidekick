@@ -28,6 +28,10 @@ public class ModifierProvider
     private readonly Regex hashPattern = new(@"\\#");
     private readonly Regex parenthesesPattern = new(@"((?:\\\ )*\\\([^\(\)]*\\\))");
 
+    private record ModifierReplaceEntry(Regex Pattern, string Replacement);
+
+    private List<ModifierReplaceEntry> ReplacementPatterns { get; } = [];
+
     public Dictionary<ModifierCategory, List<ModifierDefinition>> Definitions { get; } = new();
 
     /// <inheritdoc/>
@@ -41,9 +45,31 @@ public class ModifierProvider
         var apiCategories = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<ApiCategory>(game, gameLanguageProvider.Language, "stats"), (cache) => cache.Result.Any());
         if (apiCategories == null) throw new SidekickException("Could not fetch modifiers from the trade API.");
 
+        ReplacementPatterns.Clear();
+        if (!string.IsNullOrEmpty(gameLanguageProvider.Language.RegexIncreased))
+        {
+            ReplacementPatterns.Add(new(
+                                    new Regex(gameLanguageProvider.Language.RegexIncreased),
+                                    $"(?:{gameLanguageProvider.Language.RegexIncreased}|{gameLanguageProvider.Language.RegexReduced})"));
+        }
+
+        if (!string.IsNullOrEmpty(gameLanguageProvider.Language.RegexMore))
+        {
+            ReplacementPatterns.Add(new(
+                                    new Regex(gameLanguageProvider.Language.RegexMore),
+                                    $"(?:{gameLanguageProvider.Language.RegexMore}|{gameLanguageProvider.Language.RegexLess})"));
+        }
+
+        if (!string.IsNullOrEmpty(gameLanguageProvider.Language.RegexFaster))
+        {
+            ReplacementPatterns.Add(new(
+                                    new Regex(gameLanguageProvider.Language.RegexFaster),
+                                    $"(?:{gameLanguageProvider.Language.RegexFaster}|{gameLanguageProvider.Language.RegexSlower})"));
+        }
+
         Definitions.Clear();
 
-        foreach (var apiCategory in apiCategories.Result)
+        Parallel.ForEach(apiCategories.Result, apiCategory =>
         {
             var modifierCategory = GetModifierCategory(apiCategory.Entries[0].Id);
             var patterns = ComputeCategoryPatterns(apiCategory, modifierCategory);
@@ -52,7 +78,7 @@ public class ModifierProvider
             {
                 Definitions[modifierCategory].AddRange(patterns);
             }
-        }
+        });
 
         ComputeSecondaryDefinitions();
 
@@ -158,9 +184,14 @@ public class ModifierProvider
         patternValue = parenthesesPattern.Replace(patternValue, "(?:$1)?");
         patternValue = newLinePattern.Replace(patternValue, "\\n");
 
+        foreach (var replacement in ReplacementPatterns)
+        {
+            patternValue = replacement.Pattern.Replace(patternValue, replacement.Replacement);
+        }
+
         if (string.IsNullOrEmpty(optionText))
         {
-            patternValue = hashPattern.Replace(patternValue, "[-+0-9,.]+") + suffix;
+            patternValue = hashPattern.Replace(patternValue, "([-+0-9,.]+)") + suffix;
         }
         else
         {
@@ -170,7 +201,7 @@ public class ModifierProvider
                 optionLines.Add(hashPattern.Replace(patternValue, Regex.Escape(optionLine)) + suffix);
             }
 
-            patternValue = string.Join('\n', optionLines);
+            patternValue = string.Join('\n', optionLines.Where(x => !string.IsNullOrEmpty(x)));
         }
 
         // For multiline modifiers, the category can be suffixed on all lines.

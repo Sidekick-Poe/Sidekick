@@ -73,6 +73,13 @@ public class GameLanguageTh : IGameLanguage
     public string InfluenceRedeemer => "ไอเทมผู้พิชิตบาป";
     public string InfluenceWarlord => "ไอเทมผู้พิชิตศึก";
 
+    public string RegexIncreased => "";
+    public string RegexReduced => "";
+    public string RegexMore => "";
+    public string RegexLess => "";
+    public string RegexFaster => "";
+    public string RegexSlower => "";
+
     public ClassLanguage Classes { get; } = new()
     {
         Prefix = "ชนิดไอเทม",

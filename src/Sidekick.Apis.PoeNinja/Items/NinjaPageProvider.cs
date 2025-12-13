@@ -65,56 +65,68 @@ public class NinjaPageProvider(
         new NinjaPage("Breach", "breach-catalyst", true, false),
     ];
 
+    internal const string ExchangeType = "exchange";
+
+    internal const string StashType = "stash";
+
     public async Task Download(string dataFolder, string poe1League, string poe2League)
     {
-        await DownloadPages(GameType.PathOfExile, Poe1Pages, poe1League);
-        await DownloadPages(GameType.PathOfExile2, Poe2Pages, poe2League);
+        if (!string.IsNullOrEmpty(poe1League)) await DownloadPages(GameType.PathOfExile1, Poe1Pages, poe1League);
+        if (!string.IsNullOrEmpty(poe2League)) await DownloadPages(GameType.PathOfExile2, Poe2Pages, poe2League);
 
         return;
 
-        async Task DownloadPages(GameType game, List<NinjaPage> pages, string league)
+        async Task DownloadPages(GameType game,
+            List<NinjaPage> pages,
+            string league)
         {
-            ConcurrentBag<NinjaPageItem> concurrentItems = [];
-            var tasks = pages.Select(x => DownloadPage(game, x, league, concurrentItems)).ToList();
-            await Task.WhenAll(tasks);
+            ConcurrentBag<NinjaExchangeItem> exchangeItems = [];
+            await Task.WhenAll(pages.Where(x => x.SupportsExchange)
+                                   .Select(x => DownloadExchange(game, x, league, exchangeItems)));
+            await SaveToDisk(game, ExchangeType, exchangeItems.ToList<object>());
 
-            var items = concurrentItems.DistinctBy(x => x.Name).ToList();
-            await SaveToDisk(game, items);
+            ConcurrentBag<NinjaStashItem> stashItems = [];
+            await Task.WhenAll(pages.Where(x => !x.SupportsExchange && x.SupportsStash)
+                                   .Select(x => DownloadStash(game, x, league, stashItems)));
+            await SaveToDisk(game, StashType, stashItems.ToList<object>());
         }
 
-        async Task DownloadPage(GameType game, NinjaPage page, string league, ConcurrentBag<NinjaPageItem> items)
+        async Task DownloadExchange(GameType game, NinjaPage page, string league, ConcurrentBag<NinjaExchangeItem> items)
         {
-            List<Task> tasks = [];
+            if (!page.SupportsExchange) return;
 
-            if (page.SupportsExchange) tasks.Add(DownloadExchange(game, page, league, items));
-            else if (page.SupportsStash) tasks.Add(DownloadStash(game, page, league, items));
-
-            await Task.WhenAll(tasks);
-        }
-
-        async Task DownloadExchange(GameType game, NinjaPage page, string league, ConcurrentBag<NinjaPageItem> items)
-        {
             var result = await ninjaExchangeProvider.FetchOverview(game, page.Type, leagueOverride: league);
             foreach (var item in result.Items)
             {
                 if (item.Id == null) continue;
-                items.Add(new NinjaPageItem(item.Id, page));
+                items.Add(new NinjaExchangeItem(item.Id, item.DetailsId, page));
             }
         }
 
-        async Task DownloadStash(GameType game, NinjaPage page, string league, ConcurrentBag<NinjaPageItem> items)
+        async Task DownloadStash(GameType game, NinjaPage page, string league, ConcurrentBag<NinjaStashItem> items)
         {
+            if (page.SupportsExchange) return;
+
             var result = await ninjaStashProvider.FetchOverview(game, page.Type, leagueOverride: league);
             foreach (var item in result.Lines)
             {
                 if (item.Name == null) continue;
-                items.Add(new NinjaPageItem(item.Name, page));
+                items.Add(new NinjaStashItem(Name: item.Name,
+                                             DetailsId: item.DetailsId,
+                                             Corrupted: item.Corrupted,
+                                             GemLevel: item.GemLevel,
+                                             GemQuality: item.GemQuality,
+                                             MapTier: item.MapTier,
+                                             Links: item.Links,
+                                             ItemLevel: item.LevelRequired,
+                                             Variant: item.Variant,
+                                             Page: page));
             }
         }
 
-        async Task SaveToDisk(GameType game, List<NinjaPageItem> items)
+        async Task SaveToDisk(GameType game, string type, List<object> items)
         {
-            var fileName = GetFileName(game);
+            var fileName = GetFileName(game, type);
             var filePath = Path.Combine(dataFolder, fileName);
             Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);// Ensure directory creation
 
@@ -123,12 +135,12 @@ public class NinjaPageProvider(
         }
     }
 
-    internal static string GetFileName(GameType game)
+    internal static string GetFileName(GameType game, string type)
     {
         return game switch
         {
-            GameType.PathOfExile => "poe1.ninja.items.json",
-            GameType.PathOfExile2 => "poe2.ninja.items.json",
+            GameType.PathOfExile1 => $"poe1.ninja.{type}.json",
+            GameType.PathOfExile2 => $"poe2.ninja.{type}.json",
             _ => throw new Exception(),
         };
     }

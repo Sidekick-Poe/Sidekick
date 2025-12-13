@@ -16,19 +16,14 @@
 <FormFieldset Legend="@Resources["Filter_Settings"]">
     <PriceCheckItemClassFilter />
     <PriceCheckNormalizeValueEditor />
-    <PriceCheckDefaultFilterTypeEditor />
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckFillDefaultMin" Label="@Resources["PriceCheck_FillDefault_Min"]"/>
+    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckFillDefaultMax" Label="@Resources["PriceCheck_FillDefault_Max"]"/>
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckEnableAllFilters" Label="@Resources["PriceCheck_Enable_All_Filters"]" />
     <SettingTextEditor SettingKey="@SettingKeys.PriceCheckEnableFiltersByRegex" Label="@Resources["PriceCheck_Enable_Filters_By_Regex"]" Tooltip="@UiResources["Regex_Hint"]" />
 </FormFieldset>
 
 <FormFieldset Legend="@Resources["External_Tools_Settings"]">
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckPredictionEnabled" Label="@Resources["PriceCheck_Prediction_Enable"]" />
-</FormFieldset>
-
-<FormFieldset Legend="@Resources["Behaviour_Settings"]">
-    <AlertInfo>@Resources["Rate_Limit_Disclaimer"]</AlertInfo>
-    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallySearch" Label="@Resources["PriceCheck_Automatically_Search"]" Tooltip="@Resources["Setting_Rate_Limit_Hint"]"/>
-    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckAutomaticallyLoadMoreData" Label="@Resources["PriceCheck_Automatically_Load_More_Data"]" Tooltip="@Resources["Setting_Rate_Limit_Hint"]"/>
 </FormFieldset>
 
 <div class="flex justify-center mb-1">
@@ -49,12 +44,11 @@
 
         SettingKeys.PriceCheckItemClassFilter,
         SettingKeys.PriceCheckNormalizeValue,
+        SettingKeys.PriceCheckFillDefaultMin,
+        SettingKeys.PriceCheckFillDefaultMax,
         SettingKeys.PriceCheckPredictionEnabled,
-        SettingKeys.PriceCheckAutomaticallySearch,
         SettingKeys.PriceCheckEnableAllFilters,
         SettingKeys.PriceCheckEnableFiltersByRegex,
-        SettingKeys.PriceCheckAutomaticallyLoadMoreData,
-        SettingKeys.PriceCheckDefaultFilterType,
     };
 
     protected override async Task OnInitializedAsync()

@@ -27,6 +27,7 @@ public class StashTab
         "EssenceStash" => StashType.Essences,
         "Folder" => StashType.Folder,
         "MetamorphStash" => StashType.Metamorph,
+        "UltimatumStash" => StashType.Ultimatum,
         "DelveStash" => StashType.Delve,
         "MapStash" => StashType.Map,
         "BlightStash" => StashType.Blight,
@@ -40,4 +41,14 @@ public class StashTab
         "QuadStash" => StashType.Quad,
         _ => StashType.Unknown,
     };
+
+    public override string ToString()
+    {
+        if (Metadata?.Map != null)
+        {
+            return $"{Metadata.Map.Section} - {Metadata.Map.Name}";
+        }
+
+        return Name;
+    }
 }

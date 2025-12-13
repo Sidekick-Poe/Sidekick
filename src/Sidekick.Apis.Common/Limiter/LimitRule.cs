@@ -2,57 +2,38 @@ using System.Threading.RateLimiting;
 
 namespace Sidekick.Apis.Common.Limiter;
 
-internal class LimitRule
+public class LimitRule(string policy, string name, int maxHitCount, int timePeriod)
+    : IDisposable, IAsyncDisposable
 {
-    public LimitRule(string name, int maxHitCount, int timePeriod)
-    {
-        Name = name;
-        MaxHitCount = maxHitCount;
-        TimePeriod = timePeriod;
+    public string Policy { get; } = policy;
 
-        Limiter = new TokenBucketRateLimiter(new TokenBucketRateLimiterOptions()
-        {
-            AutoReplenishment = false,
-            QueueLimit = int.MaxValue,
-            TokenLimit = MaxHitCount,
-            TokensPerPeriod = MaxHitCount,
-            QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
-            ReplenishmentPeriod = TimeSpan.FromSeconds(timePeriod + 5),
-        });
+    public string Name { get; } = name;
+
+    public int MaxHitCount { get; } = maxHitCount;
+
+    public int TimePeriod { get; } = timePeriod;
+
+    public ServerSynchronizedRateLimiter Limiter { get; } = new(maxHitCount,
+                                                                TimeSpan.FromSeconds(timePeriod));
+
+    public int CurrentHitCount => Limiter.CurrentHitCount;
+
+    public int Used => Math.Clamp(CurrentHitCount, 0, MaxHitCount);
+
+    public double Ratio => Used / (double)MaxHitCount;
+
+    public override string ToString()
+    {
+        return $"{Name} - {Policy} - {MaxHitCount} in {TimePeriod} seconds";
     }
 
-    public string Name { get; }
-
-    public int MaxHitCount { get; }
-
-    public int TimePeriod { get; }
-
-    public TokenBucketRateLimiter Limiter { get; }
-
-    private Timer? ReplenishTimer { get; set; }
-
-    public async Task HandleResponse(int currentHitCount)
+    public void Dispose()
     {
-        if (currentHitCount == 1 && ReplenishTimer != null)
-        {
-            await ReplenishTimer.DisposeAsync();
-            ReplenishTimer = null;
-        }
+        Limiter.Dispose();
+    }
 
-        ReplenishTimer ??= new Timer(static state =>
-                                     {
-                                         var self = (LimitRule?)state;
-                                         if (self == null)
-                                         {
-                                             return;
-                                         }
-
-                                         self.ReplenishTimer?.Dispose();
-                                         self.ReplenishTimer = null;
-                                         self.Limiter.TryReplenish();
-                                     },
-                                     this,
-                                     TimeSpan.FromSeconds(TimePeriod + 5),
-                                     Timeout.InfiniteTimeSpan);
+    public async ValueTask DisposeAsync()
+    {
+        await Limiter.DisposeAsync();
     }
 }

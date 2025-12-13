@@ -24,7 +24,7 @@ public class TradeApiClient
         Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
     };
 
-    public string GetDataFileName(GameType game, IGameLanguage language, string path)
+    public static string GetDataFileName(GameType game, IGameLanguage language, string path)
     {
         return $"{game.GetValueAttribute()}.{language.Code}.{path}.json";
     }

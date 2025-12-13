@@ -1,6 +1,7 @@
+using Microsoft.Extensions.Logging;
 namespace Sidekick.Apis.Common.Limiter;
 
-public class ApiLimiterProvider
+public class ApiLimiterProvider(ILogger<ApiLimiterProvider> logger)
 {
     private Dictionary<string, LimitHandler> Handlers { get; } = [];
 
@@ -11,7 +12,7 @@ public class ApiLimiterProvider
             return currentState;
         }
 
-        Handlers.Add(clientName, new LimitHandler());
+        Handlers.Add(clientName, new LimitHandler(logger));
         return Handlers[clientName];
     }
 }

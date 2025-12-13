@@ -5,9 +5,7 @@
 @using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters
 @using Sidekick.Apis.Poe.Trade.Parser.Pseudo
 @using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters
-@using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
-@using Sidekick.Modules.Trade.PoePrices
 @using Sidekick.Modules.Trade.Trade.Filters.Properties
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 
@@ -26,10 +24,6 @@
     </div>
 
     <div class="grow overflow-y-auto py-2">
-        <SidekickErrorBoundary>
-            <PricePredictionComponent/>
-        </SidekickErrorBoundary>
-
         @for (var index = 0; index < PropertyFilters.Count; index++)
         {
             var filter = PropertyFilters[index];
@@ -70,7 +64,6 @@
 @inject IStringLocalizer<TradeResources> Resources
 @inject IBulkTradeService BulkTradeService
 @inject TradeService TradeService
-@inject ISettingsService SettingsService
 @inject IPropertyParser PropertyParser
 @inject IModifierParser ModifierParser
 @inject IPseudoParser PseudoParser
@@ -91,21 +84,7 @@
         PropertyFilters = await PropertyParser.GetFilters(Item);
         ModifierFilters = await ModifierParser.GetFilters(Item);
         PseudoFilters = PseudoParser.GetFilters(Item);
-
-        var automaticallyPriceCheck = false;
-        if (Item.Properties.Rarity != Rarity.Currency)
-        {
-            automaticallyPriceCheck = await SettingsService.GetBool(SettingKeys.PriceCheckAutomaticallySearch);
-        }
-
-        if (automaticallyPriceCheck)
-        {
-            await TradeService.SearchItems(Item, PropertyFilters, ModifierFilters, PseudoFilters);
-        }
-        else
-        {
-            TradeService.Clear();
-        }
+        TradeService.Clear();
 
         await base.OnParametersSetAsync();
     }

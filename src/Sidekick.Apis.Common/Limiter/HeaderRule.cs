@@ -2,12 +2,15 @@ namespace Sidekick.Apis.Common.Limiter;
 
 internal class HeaderRule
 (
+    string policy,
     string name,
     int currentHitCount,
     int maxHitCount,
     int timePeriod
 )
 {
+    public string Policy { get; init; } = policy;
+
     public string Name { get; init; } = name;
 
     public int CurrentHitCount { get; init; } = currentHitCount;
@@ -15,4 +18,9 @@ internal class HeaderRule
     public int MaxHitCount { get; init; } = maxHitCount;
 
     public int TimePeriod { get; init; } = timePeriod;
+
+    public override string ToString()
+    {
+        return $"{Name} - {Policy} - {MaxHitCount} in {TimePeriod} seconds";
+    }
 }

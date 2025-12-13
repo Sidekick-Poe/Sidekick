@@ -129,6 +129,18 @@ public interface IGameLanguage
 
     string InfluenceWarlord { get; }
 
+    string RegexIncreased { get; }
+
+    string RegexReduced { get; }
+
+    string RegexMore { get; }
+
+    string RegexLess { get; }
+
+    string RegexFaster { get; }
+
+    string RegexSlower { get; }
+
     ClassLanguage Classes { get; }
 
     public string GetTradeBaseUrl(GameType game) => game switch

@@ -10,7 +10,7 @@
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 @using Sidekick.Modules.Maps.Settings
 
-<LayoutTwoColumn HasChildContent="@(Item == null || Item.Game == GameType.PathOfExile)">
+<LayoutTwoColumn HasChildContent="@(Item == null || Item.Game == GameType.PathOfExile1)">
     <TopContent>
         <AppBar>
             <AppSettings Href="/settings/map">
@@ -76,7 +76,7 @@
         }
     </LeftContent>
     <ChildContent>
-        @if (Item?.Game == GameType.PathOfExile)
+        @if (Item?.Game == GameType.PathOfExile1)
         {
             <PoeWikiMapInfo Text="@Item.ApiInformation.InvariantText"/>
         }

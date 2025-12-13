@@ -17,8 +17,27 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sidekick.Apis.GitHub\Sidekick.Apis.GitHub.csproj" />
+    <ProjectReference Include="..\Sidekick.Apis.Common\Sidekick.Apis.Common.csproj" />
     <ProjectReference Include="..\Sidekick.Apis.Poe.Trade\Sidekick.Apis.Poe.Trade.csproj" />
     <ProjectReference Include="..\Sidekick.Common\Sidekick.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\external-tools\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\images\metamorph\Abrasive_Catalyst.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\metamorph\Fertile_Catalyst.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\metamorph\Imbued_Catalyst.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\metamorph\Intrinsic_Catalyst.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\metamorph\Prismatic_Catalyst.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\metamorph\Tempering_Catalyst.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\metamorph\Turbulent_Catalyst.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\delve\FossilRoom.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\delve\FracturedWall.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\trade\ChaosOrbEquivalent.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\trade\ChaosOrDivine.png" />
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">

@@ -4,7 +4,6 @@ using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -30,7 +29,7 @@ public class GemLevelProperty
         if (item.Properties.GemLevel > 0) propertyBlock.Parsed = true;
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item)
     {
         if (item.Properties.GemLevel <= 0) return Task.FromResult<PropertyFilter?>(null);
 
@@ -38,11 +37,9 @@ public class GemLevelProperty
         {
             Text = gameLanguageProvider.Language.DescriptionLevel,
             NormalizeEnabled = false,
-            NormalizeValue = normalizeValue,
             Value = item.Properties.GemLevel,
             Checked = true,
         };
-        filter.ChangeFilterType(filterType);
         return Task.FromResult<PropertyFilter?>(filter);
     }
 

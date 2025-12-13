@@ -10,7 +10,7 @@ public class NinjaStash
         DivineValue = line.DivineValue;
         ExaltedValue = line.ExaltedValue;
         ListingCount = line.ListingCount;
-        Sparkline = line.Sparkline;
+        Sparkline = line.SparkLine;
     }
 
     public DateTimeOffset LastUpdated { get; set; }

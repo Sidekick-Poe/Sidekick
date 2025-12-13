@@ -1,6 +1,5 @@
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Trade.Parser.Modifiers
-@using Sidekick.Common.Settings
 @using Sidekick.Modules.Trade.Localization
 
 <FilterWrapper>
@@ -39,39 +38,27 @@
                          }
                      })
             {
-                <FilterRange @bind-Min="@Filter.Min" @bind-Max="@Filter.Max" Type="@Filter.FilterType"
-                             TypeChanged="(v) => Filter.ChangeFilterType(v)"/>
+                <FilterRange Checked="Filter.Checked == true"
+                             NormalizeEnabled="true"
+                             NormalizeRoundToInteger="true"
+                             Value="@Filter.Line.AverageValue"
+                             @bind-Min="@Filter.Min"
+                             @bind-Max="@Filter.Max"/>
             }
         </div>
     </div>
 </FilterWrapper>
 
 @inject IStringLocalizer<TradeResources> Resources
-@inject ISettingsService SettingsService
 
 @code {
 
     [Parameter]
     public required ModifierFilter Filter { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        if (Filter.Checked == true)
-        {
-            await CheckedChanged(true);
-        }
-
-        await base.OnInitializedAsync();
-    }
-
-    private async Task CheckedChanged(bool value)
+    private void CheckedChanged(bool value)
     {
         Filter.Checked = value;
-
-        // We can change the settings in the Trade window, so we should fetch here every time.
-        Filter.NormalizeValue = await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
-        var filterType = await SettingsService.GetEnum<FilterType>(SettingKeys.PriceCheckDefaultFilterType) ?? FilterType.Minimum;
-        Filter.ChangeFilterType(filterType);
     }
 
 }

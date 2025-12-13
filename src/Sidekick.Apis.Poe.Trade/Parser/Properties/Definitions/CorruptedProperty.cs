@@ -4,7 +4,6 @@ using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -19,7 +18,7 @@ public class CorruptedProperty(IGameLanguageProvider gameLanguageProvider) : Pro
         item.Properties.Corrupted = GetBool(Pattern, item.Text);
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item)
     {
         var filter = new TriStatePropertyFilter(this)
         {

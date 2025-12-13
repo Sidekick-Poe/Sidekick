@@ -68,13 +68,16 @@ public class ApiStaticDataProvider
         }
     }
 
-    public StaticItem? GetById(string id)
+    public StaticItem? GetById(string? id)
     {
+        if (string.IsNullOrEmpty(id)) return null;
+
         id = id switch
         {
             "exalt" => "exalted",
             _ => id,
         };
+        if (string.IsNullOrEmpty(id)) return null;
 
         return InvariantDictionary.GetValueOrDefault(id);
     }

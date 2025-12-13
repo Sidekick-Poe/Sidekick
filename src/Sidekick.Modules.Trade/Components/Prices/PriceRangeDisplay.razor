@@ -19,7 +19,7 @@
 @code {
 
     [Parameter]
-    public string Currency { get; set; } = "chaos";
+    public string? Currency { get; set; }
 
     [Parameter]
     public double Min { get; set; }
@@ -27,8 +27,8 @@
     [Parameter]
     public double Max { get; set; }
 
-    private string? ImageUrl => ApiStaticDataProvider.GetById(Currency)?.Image;
+    private string? ImageUrl => ApiStaticDataProvider.GetById(Currency ?? "chaos")?.Image;
 
-    private string? CurrencyText => ApiStaticDataProvider.GetById(Currency)?.Text;
+    private string? CurrencyText => ApiStaticDataProvider.GetById(Currency ?? "chaos")?.Text;
 
 }

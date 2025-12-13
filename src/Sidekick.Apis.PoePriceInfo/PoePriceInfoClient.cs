@@ -3,6 +3,7 @@ using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.PoePriceInfo.Api;
 using Sidekick.Apis.PoePriceInfo.Models;
 using Sidekick.Common.Settings;
@@ -12,7 +13,8 @@ namespace Sidekick.Apis.PoePriceInfo;
 public class PoePriceInfoClient(
     ISettingsService settingsService,
     ILogger<PoePriceInfoClient> logger,
-    IHttpClientFactory httpClientFactory) : IPoePriceInfoClient
+    IHttpClientFactory httpClientFactory,
+    IGameLanguageProvider gameLanguageProvider) : IPoePriceInfoClient
 {
     private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
@@ -31,7 +33,7 @@ public class PoePriceInfoClient(
 
     public async Task<PricePrediction?> GetPricePrediction(Item item)
     {
-        if (item.Properties.Rarity != Rarity.Rare)
+        if (item.Properties.Rarity != Rarity.Rare || !gameLanguageProvider.IsEnglish())
         {
             return null;
         }

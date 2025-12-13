@@ -151,9 +151,6 @@
     <value>This is the URL of the current query for the official website.
 Click the button to open in your browser.</value>
   </data>
-  <data name="PredictionConfidence" xml:space="preserve">
-    <value>Confidence: {0}</value>
-  </data>
   <data name="Requires" xml:space="preserve">
     <value>Requires</value>
   </data>
@@ -268,21 +265,6 @@ Click the button to open in your browser.</value>
   <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
     <value>Show price prediction from poeprices.info (PoE1 only)</value>
   </data>
-  <data name="Behaviour_Settings" xml:space="preserve">
-      <value>Behaviour Settings</value>
-  </data>
-  <data name="Rate_Limit_Disclaimer" xml:space="preserve">
-      <value>The API has request limits. Enabling automatic features will increase API calls and may cause you to reach these limits faster. Use these settings at your own risk.</value>
-  </data>
-  <data name="PriceCheck_Automatically_Load_More_Data" xml:space="preserve">
-    <value>Automatically load more results when scrolling down</value>
-  </data>
-  <data name="PriceCheck_Automatically_Search" xml:space="preserve">
-    <value>Automatically search for items when price checking</value>
-  </data>
-  <data name="Setting_Rate_Limit_Hint" xml:space="preserve">
-    <value>It is recommended to leave disabled to avoid exceeding the API rate limit.</value>
-  </data>
   <data name="Item_Trade" xml:space="preserve">
     <value>Item Trade</value>
   </data>
@@ -303,5 +285,14 @@ Click the button to open in your browser.</value>
   </data>
   <data name="NoResults" xml:space="preserve">
       <value>No results found</value>
+  </data>
+  <data name="PriceCheck_FillDefault_Min" xml:space="preserve">
+      <value>Pre-fill a default minimum value</value>
+  </data>
+  <data name="PriceCheck_FillDefault_Max" xml:space="preserve">
+      <value>Pre-fill a default maximum value</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+      <value>Tools</value>
   </data>
 </root>

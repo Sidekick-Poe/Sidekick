@@ -100,7 +100,9 @@ public abstract class PseudoDefinition
         }
 
         result.Value = (int)result.Value;
-        result.Text = parseHashPattern.Replace(result.Text, ((int)result.Value).ToString(), 1);
+        result.Text = parseHashPattern
+            .Replace(result.Text, ((int)result.Value).ToString(), 1)
+            .Replace("+-", "-");
         return result;
     }
 

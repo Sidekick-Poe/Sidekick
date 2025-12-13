@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using FuzzySharp;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Modifiers.Models;
@@ -14,9 +15,38 @@ public class ModifierParser
 (
     IModifierProvider modifierProvider,
     IFuzzyService fuzzyService,
-    ISettingsService settingsService
+    ISettingsService settingsService,
+    IGameLanguageProvider gameLanguageProvider
 ) : IModifierParser
 {
+    public int Priority => 300;
+
+    private Regex? PositivePattern { get; set; }
+
+    private Regex? NegativePattern { get; set; }
+
+    public Task Initialize()
+    {
+
+        List<string> positiveTexts =
+        [
+            ..gameLanguageProvider.Language.RegexIncreased.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
+            ..gameLanguageProvider.Language.RegexMore.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
+            ..gameLanguageProvider.Language.RegexFaster.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
+        ];
+        PositivePattern = positiveTexts.Count != 0 ? new Regex($"(?:{string.Join('|', positiveTexts)})") : null;
+
+        List<string> negativeTexts =
+        [
+            ..gameLanguageProvider.Language.RegexReduced.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
+            ..gameLanguageProvider.Language.RegexLess.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
+            ..gameLanguageProvider.Language.RegexSlower.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
+        ];
+        NegativePattern = negativeTexts.Count != 0 ? new Regex($"(?:{string.Join('|', negativeTexts)})") : null;
+
+        return Task.CompletedTask;
+    }
+
     /// <inheritdoc/>
     public void Parse(Item item)
     {
@@ -202,18 +232,33 @@ public class ModifierParser
         }
 
         ParseModifierValue(modifier, filteredDefinitions.FirstOrDefault());
+
+        var originallyPositive = false;
+        var negative = NegativePattern?.IsMatch(text) ?? false;
+        foreach (var definition in definitions)
+        {
+            originallyPositive |= PositivePattern?.IsMatch(definition.ApiText) ?? false;
+        }
+
+        if (negative && originallyPositive)
+        {
+            var nagativeValues = modifier.Values.Select(x => x * -1).ToList();
+            modifier.Values.Clear();
+            modifier.Values.AddRange(nagativeValues);
+        }
+
         return modifier;
     }
 
-    private static void ParseModifierValue(Modifier modifier, ModifierDefinition? pattern)
+    private static void ParseModifierValue(Modifier modifier, ModifierDefinition? definition)
     {
-        switch (pattern)
+        switch (definition)
         {
             case
             {
                 IsOption: true
             }:
-                modifier.OptionValue = pattern.OptionId;
+                modifier.OptionValue = definition.OptionId;
                 return;
 
             case
@@ -226,12 +271,37 @@ public class ModifierParser
             case null: return;
         }
 
-        var matches = new Regex("([-+0-9,.]+)").Matches(modifier.Text);
-        foreach (Match match in matches)
+        // We try to parse the value from the line itself, if that fails we try to parse it from finding numbers in the line.
+        var patternMatch = definition.Pattern.Match(modifier.Text);
+        if (patternMatch.Success)
         {
-            if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
+            foreach (Group group in patternMatch.Groups)
             {
-                modifier.Values.Add(parsedValue);
+                foreach (Capture capture in group.Captures)
+                {
+                    if (double.TryParse(capture.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
+                    {
+                        modifier.Values.Add(parsedValue);
+                    }
+                }
+            }
+
+            return;
+        }
+
+        // Find numbers in the line
+        var lines = modifier.Text.Split('\n');
+        foreach (var line in lines)
+        {
+            if (modifier.Values.Count != 0) continue;
+
+            var matches = new Regex("([-+0-9,.]+)").Matches(line);
+            foreach (Match match in matches)
+            {
+                if (double.TryParse(match.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
+                {
+                    modifier.Values.Add(parsedValue);
+                }
             }
         }
     }
@@ -260,5 +330,4 @@ public class ModifierParser
 
         return result;
     }
-
 }

@@ -2,7 +2,6 @@
 @using Sidekick.Common.Database
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Wealth.Provider
-@using Sidekick.Modules.Wealth.Authentication
 @using Sidekick.Modules.Wealth.Localization
 
 <div class="flex flex-wrap items-center justify-end gap-2 mb-3">
@@ -13,39 +12,6 @@
             <TextAge Date="LastUpdated"/>
         </div>
     }
-
-    <div>
-        <AuthenticationStatus/>
-
-        <HideIfUnauthenticated>
-            <div class="flex items-center gap-2">
-                @if (WealthProvider.Status == WealthRunStatus.Completed)
-                {
-                    <div class="bg-green-500 rounded-full w-2 h-2"></div>
-                    <div class="text-green-600">@Resources["Completed"]</div>
-                }
-                else if (WealthProvider.Status == WealthRunStatus.Running)
-                {
-                    <div class="bg-blue-500 rounded-full w-2 h-2"></div>
-                    <div class="text-blue-600">@Resources["Running"]</div>
-                    <Tooltip
-                        Text="Refreshing stash tab contents. This may take time due to API rate limits. To speed up, reduce selected tabs."/>
-                }
-                else if (WealthProvider.Status == WealthRunStatus.Failed)
-                {
-                    <div class="bg-red-500 rounded-full w-2 h-2"></div>
-                    <div class="text-red-600">@Resources["Failed"]</div>
-                    <Tooltip Text="The wealth tracker failed to run. Please check the logs for more information."/>
-                }
-            </div>
-        </HideIfUnauthenticated>
-    </div>
-
-    <HideIfUnauthenticated>
-        <ButtonPrimary Disabled="WealthProvider.Status == WealthRunStatus.Running"
-                       OnClick="WealthProvider.Start">@Resources["Refresh"]
-        </ButtonPrimary>
-    </HideIfUnauthenticated>
 
     <WealthSettings/>
 </div>

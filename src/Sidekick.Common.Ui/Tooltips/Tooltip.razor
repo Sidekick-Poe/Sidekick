@@ -45,6 +45,6 @@
     [Parameter]
     public TooltipPlacement Placement { get; set; } = TooltipPlacement.Top;
 
-    protected string Id { get; } = UiUtilities.GenerateId();
+    private string Id { get; } = UiUtilities.GenerateId();
 
 }

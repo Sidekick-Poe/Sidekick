@@ -5,7 +5,6 @@ using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -23,7 +22,7 @@ public class SpiritProperty
 
     public override void Parse(Item item)
     {
-        if(game == GameType.PathOfExile) return;
+        if(game == GameType.PathOfExile1) return;
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.Spirit = GetInt(Pattern, propertyBlock);
         if (item.Properties.Spirit == 0) return;
@@ -32,20 +31,18 @@ public class SpiritProperty
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.Spirit));
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile || item.Properties.Spirit <= 0) return Task.FromResult<PropertyFilter?>(null);
+        if (game == GameType.PathOfExile1 || item.Properties.Spirit <= 0) return Task.FromResult<PropertyFilter?>(null);
 
         var filter = new IntPropertyFilter(this)
         {
             Text = gameLanguageProvider.Language.DescriptionSpirit,
             NormalizeEnabled = true,
-            NormalizeValue = normalizeValue,
             Value = item.Properties.Spirit,
             Checked = false,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.Spirit)) ? LineContentType.Augmented : LineContentType.Simple,
         };
-        filter.ChangeFilterType(filterType);
         return Task.FromResult<PropertyFilter?>(filter);
     }
 
@@ -55,7 +52,7 @@ public class SpiritProperty
 
         switch (game)
         {
-            case GameType.PathOfExile: break;
+            case GameType.PathOfExile1: break;
             case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.Spirit = new StatFilterValue(intFilter); break;
         }
     }

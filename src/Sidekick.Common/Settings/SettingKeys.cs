@@ -44,15 +44,14 @@ public static class SettingKeys
     public const string PriceCheckCurrencyPoE2 = nameof(PriceCheckCurrencyPoE2);
     public const string PriceCheckBulkMinimumStock = nameof(PriceCheckBulkMinimumStock);
     public const string PriceCheckNormalizeValue = nameof(PriceCheckNormalizeValue);
+    public const string PriceCheckFillDefaultMin = nameof(PriceCheckFillDefaultMin);
+    public const string PriceCheckFillDefaultMax = nameof(PriceCheckFillDefaultMax);
     public const string PriceCheckCompactMode = nameof(PriceCheckCompactMode);
     public const string PriceCheckSidebarWidth = nameof(PriceCheckSidebarWidth);
     public const string PriceCheckStatus = nameof(PriceCheckStatus);
     public const string PriceCheckItemClassFilter = nameof(PriceCheckItemClassFilter);
-    public const string PriceCheckAutomaticallySearch = nameof(PriceCheckAutomaticallySearch);
     public const string PriceCheckEnableAllFilters = nameof(PriceCheckEnableAllFilters);
     public const string PriceCheckEnableFiltersByRegex = nameof(PriceCheckEnableFiltersByRegex);
-    public const string PriceCheckDefaultFilterType = nameof(PriceCheckDefaultFilterType);
-    public const string PriceCheckAutomaticallyLoadMoreData = nameof(PriceCheckAutomaticallyLoadMoreData);
 
     public const string SaveWindowPositions = nameof(SaveWindowPositions);
 

@@ -5,17 +5,16 @@ using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class CriticalHitChanceProperty(IGameLanguageProvider gameLanguageProvider, GameType game) : PropertyDefinition
 {
-    private Regex Pattern { get; } = game is GameType.PathOfExile
+    private Regex Pattern { get; } = game is GameType.PathOfExile1
         ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance.ToRegexDoubleCapture()
         : gameLanguageProvider.Language.DescriptionCriticalHitChance.ToRegexDoubleCapture();
 
-    private Regex IsAugmentedPattern { get; } = game is GameType.PathOfExile
+    private Regex IsAugmentedPattern { get; } = game is GameType.PathOfExile1
         ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance.ToRegexIsAugmented()
         : gameLanguageProvider.Language.DescriptionCriticalHitChance.ToRegexIsAugmented();
 
@@ -31,22 +30,20 @@ public class CriticalHitChanceProperty(IGameLanguageProvider gameLanguageProvide
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.CriticalHitChance));
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item)
     {
         if (item.Properties.CriticalHitChance <= 0) return Task.FromResult<PropertyFilter?>(null);
 
-        var text = game == GameType.PathOfExile ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance : gameLanguageProvider.Language.DescriptionCriticalHitChance;
+        var text = game == GameType.PathOfExile1 ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance : gameLanguageProvider.Language.DescriptionCriticalHitChance;
         var filter = new DoublePropertyFilter(this)
         {
             Text = text,
             NormalizeEnabled = true,
-            NormalizeValue = normalizeValue,
             Value = item.Properties.CriticalHitChance,
             ValueSuffix = "%",
             Checked = false,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.CriticalHitChance)) ? LineContentType.Augmented : LineContentType.Simple,
         };
-        filter.ChangeFilterType(filterType);
         return Task.FromResult<PropertyFilter?>(filter);
     }
 
@@ -56,7 +53,7 @@ public class CriticalHitChanceProperty(IGameLanguageProvider gameLanguageProvide
 
         switch (game)
         {
-            case GameType.PathOfExile: query.Filters.GetOrCreateWeaponFilters().Filters.CriticalHitChance = new StatFilterValue(doubleFilter); break;
+            case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.CriticalHitChance = new StatFilterValue(doubleFilter); break;
             case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.CriticalHitChance = new StatFilterValue(doubleFilter); break;
         }
     }

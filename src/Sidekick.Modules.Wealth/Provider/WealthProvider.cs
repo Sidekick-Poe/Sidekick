@@ -203,51 +203,49 @@ internal class WealthProvider
 
     private async Task<(decimal Value, ApiSparkline? SparkLine)?> GetItemPrice(ApiItem item)
     {
-        var invariant = item.Name;
-        var ninjaPage = ninjaItemProvider.GetPage(invariant);
-
-        if (ninjaPage == null)
-        {
-            invariant = item.Type;
-            ninjaPage = ninjaItemProvider.GetPage(invariant);
-        }
-
-        if (ninjaPage == null)
-        {
-            var apiData = apiStaticDataProvider.Get(item.Name, item.Type);
-            if (apiData == null) return null;
-
-            invariant = apiData.Id;
-            ninjaPage = ninjaItemProvider.GetPage(invariant);
-        }
-
-        if (ninjaPage == null) return null;
-
         decimal price = 0;
         ApiSparkline? sparkLine = null;
-        if (ninjaPage.SupportsExchange)
+        var apiData = apiStaticDataProvider.Get(item.Name, item.Type);
+
+        var exchangeItem = ninjaItemProvider.GetExchangeItem(item.Name);
+        exchangeItem ??= ninjaItemProvider.GetExchangeItem(item.Type);
+        exchangeItem ??= apiData != null ? ninjaItemProvider.GetExchangeItem(apiData.Id) : null;
+
+        if (exchangeItem != null)
         {
-            var info = await ninjaExchangeProvider.GetInfo(invariant);
+            var info = await ninjaExchangeProvider.GetInfo(exchangeItem);
             price = info?.Trades.FirstOrDefault(x => x.ExchangeId == "chaos")?.Value ?? 0;
             sparkLine = info?.Sparkline;
         }
         else if (item.Rarity == Rarity.Unique)
         {
-            var info = await ninjaStashProvider.GetUniqueInfo(invariant, item.MaxLinks ?? 0);
-            price = info?.ChaosValue ?? 0;
-            sparkLine = info?.Sparkline;
+            var stashItem = ninjaItemProvider.GetUniqueItem(item.Name, item.MaxLinks ?? 0);
+            if (stashItem != null)
+            {
+                var info = await ninjaStashProvider.GetInfo(stashItem);
+                price = info?.ChaosValue ?? 0;
+                sparkLine = info?.Sparkline;
+            }
         }
-        else if (item.GemLevel != 0)
+        else if (item.GemLevel > 0)
         {
-            var info = await ninjaStashProvider.GetGemInfo(invariant, item.GemLevel ?? 1);
-            price = info?.ChaosValue ?? 0;
-            sparkLine = info?.Sparkline;
+            var stashItem = ninjaItemProvider.GetGemItem(item.Name, item.GemLevel ?? 1, item.Quality ?? 0, item.Corrupted);
+            if (stashItem != null)
+            {
+                var info = await ninjaStashProvider.GetInfo(stashItem);
+                price = info?.ChaosValue ?? 0;
+                sparkLine = info?.Sparkline;
+            }
         }
-        else if (item.MapTier != 0)
+        else if (item.MapTier > 0)
         {
-            var info = await ninjaStashProvider.GetMapInfo(invariant, item.MapTier ?? 1);
-            price = info?.ChaosValue ?? 0;
-            sparkLine = info?.Sparkline;
+            var stashItem = ninjaItemProvider.GetMapItem(item.Type, item.MapTier ?? 1);
+            if (stashItem != null)
+            {
+                var info = await ninjaStashProvider.GetInfo(stashItem);
+                price = info?.ChaosValue ?? 0;
+                sparkLine = info?.Sparkline;
+            }
         }
 
         if (price == 0)

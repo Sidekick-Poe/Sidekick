@@ -5,17 +5,16 @@ using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Results;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class BlockChanceProperty(IGameLanguageProvider gameLanguageProvider, GameType game) : PropertyDefinition
 {
-    private Regex Pattern { get; } = game is GameType.PathOfExile
+    private Regex Pattern { get; } = game is GameType.PathOfExile1
         ? gameLanguageProvider.Language.DescriptionChanceToBlock.ToRegexIntCapture()
         : gameLanguageProvider.Language.DescriptionBlockChance.ToRegexIntCapture();
 
-    private Regex IsAugmentedPattern { get; } = game is GameType.PathOfExile
+    private Regex IsAugmentedPattern { get; } = game is GameType.PathOfExile1
         ? gameLanguageProvider.Language.DescriptionChanceToBlock.ToRegexIsAugmented()
         : gameLanguageProvider.Language.DescriptionBlockChance.ToRegexIsAugmented();
 
@@ -31,22 +30,20 @@ public class BlockChanceProperty(IGameLanguageProvider gameLanguageProvider, Gam
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.BlockChance));
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item, double normalizeValue, FilterType filterType)
+    public override Task<PropertyFilter?> GetFilter(Item item)
     {
         if (item.Properties.BlockChance <= 0) return Task.FromResult<PropertyFilter?>(null);
 
-        var text = game == GameType.PathOfExile ? gameLanguageProvider.Language.DescriptionChanceToBlock : gameLanguageProvider.Language.DescriptionBlockChance;
+        var text = game == GameType.PathOfExile1 ? gameLanguageProvider.Language.DescriptionChanceToBlock : gameLanguageProvider.Language.DescriptionBlockChance;
         var filter = new IntPropertyFilter(this)
         {
             Text = text,
             NormalizeEnabled = true,
-            NormalizeValue = normalizeValue,
             Value = item.Properties.BlockChance,
             ValueSuffix = "%",
             Checked = false,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.BlockChance)) ? LineContentType.Augmented : LineContentType.Simple,
         };
-        filter.ChangeFilterType(filterType);
         return Task.FromResult<PropertyFilter?>(filter);
     }
 
@@ -56,7 +53,7 @@ public class BlockChanceProperty(IGameLanguageProvider gameLanguageProvider, Gam
 
         switch (game)
         {
-            case GameType.PathOfExile: query.Filters.GetOrCreateArmourFilters().Filters.BlockChance = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile1: query.Filters.GetOrCreateArmourFilters().Filters.BlockChance = new StatFilterValue(intFilter); break;
             case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.BlockChance = new StatFilterValue(intFilter); break;
         }
     }

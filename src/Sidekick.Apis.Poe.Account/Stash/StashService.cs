@@ -4,7 +4,6 @@ using Sidekick.Apis.Poe.Account.Stash.Models;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Models.Items;
-using Sidekick.Common.Extensions;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Account.Stash;
@@ -21,23 +20,23 @@ public class StashService
         var response = await client.Fetch<StashTabListResult>($"stash/{league}");
         if (response == null || league == null) return [];
 
-        return FlattenStashTabs(response.Tabs);
+        var stashTabs = FlattenStashTabs(response.Tabs);
+        return stashTabs.ToList();
     }
 
-    private static List<StashTab> FlattenStashTabs(List<StashTab> stashTabs)
+    private static IEnumerable<StashTab> FlattenStashTabs(List<StashTab> stashTabs)
     {
-        var result = new List<StashTab>();
-
         foreach (var stashTab in stashTabs)
         {
-            if (stashTab.Type != StashType.Folder) result.Add(stashTab);
+            if (stashTab.Type != StashType.Folder) yield return stashTab;
 
             if (stashTab.Children == null) continue;
 
-            result.AddRange(FlattenStashTabs(stashTab.Children));
+            foreach (var child in FlattenStashTabs(stashTab.Children))
+            {
+                yield return child;
+            }
         }
-
-        return result;
     }
 
     public async Task<StashTab?> GetStashDetails(string id)
@@ -105,36 +104,42 @@ public class StashService
         var items = new List<ApiItem>();
         foreach (var childTab in tab.Children)
         {
-            if (childTab.Metadata?.Map?.Section == "special")
+            if (string.IsNullOrEmpty(childTab.Metadata?.Map?.Section)) continue;
+
+            var name = childTab.Metadata?.Map?.Name;
+            if (string.IsNullOrEmpty(name)) continue;
+
+            if (name == "Lair of the Hydra"
+                || name == "Maze of the Minotaur"
+                || name == "Pit of the Chimera"
+                || name == "Forge of the Phoenix")
             {
-                items.AddRange(await FetchStashItems(childTab));
+                name += " Map";
             }
-            else
+
+            items.Add(new ApiItem
             {
-                items.Add(new ApiItem
-                {
-                    Id = childTab.Id,
-                    TypeLine = childTab.Metadata?.Map?.Name,
-                    BaseType = childTab.Metadata?.Map?.Name,
-                    Icon = childTab.Metadata?.Map?.Image,
-                    StackSize = childTab.Metadata?.Items,
-                    Properties =
-                    [
-                        new()
-                        {
-                            Name = "Map Tier",
-                            Values =
+                Id = childTab.Id,
+                TypeLine = name,
+                BaseType = name,
+                Icon = childTab.Metadata?.Map?.Image,
+                StackSize = childTab.Metadata?.Items,
+                Properties =
+                [
+                    new()
+                    {
+                        Name = "Map Tier",
+                        Values =
+                        [
                             [
-                                [
-                                    JsonDocument.Parse($"\"{childTab.Metadata?.Map?.Tier}\"").RootElement,
-                                    JsonDocument.Parse($"0").RootElement,
-                                ],
-                            ]
-                        },
-                    ],
-                    Rarity = Rarity.Normal
-                });
-            }
+                                JsonDocument.Parse($"\"{childTab.Metadata?.Map?.Tier}\"").RootElement,
+                                JsonDocument.Parse($"0").RootElement,
+                            ],
+                        ]
+                    },
+                ],
+                Rarity = Rarity.Normal
+            });
         }
 
         return items;

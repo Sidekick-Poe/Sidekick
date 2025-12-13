@@ -3,27 +3,32 @@
 @using Microsoft.EntityFrameworkCore
 @using Sidekick.Modules.Wealth.Provider
 @using Sidekick.Modules.Wealth.Localization
+@using Sidekick.Modules.Wealth.Components
 @using Sidekick.Common.Settings
 
 <div class="@(Series.Count == 0 ? "hidden" : "")">
     <FormFieldset Legend="@Resources["Total_Value"]">
-        <div class="h-[8rem] relative -mb-3 -mx-3">
-            <ApexChart @ref="Chart"
-                       TItem="DataPoint"
-                       Options="DataConstants.GetOptions()"
-                       Height="@("128px")"
-                       Width="@("256px")">
-                @foreach (var serie in Series)
-                {
-                    <ApexPointSeries TItem="DataPoint"
-                                     Items="serie.Points"
-                                     Name="@serie.Name"
-                                     SeriesType="SeriesType.Line"
-                                     XValue="@(e => e.DateString)"
-                                     YValue="@(e => e.Value)"/>
-                }
-            </ApexChart>
+        <div class="-mt-3">
+            <PriceDisplay Value="Series.LastOrDefault()?.Points.LastOrDefault()?.Value ?? 0"/>
         </div>
+
+            <div class="h-[8rem] relative -m-3">
+                <ApexChart @ref="Chart"
+                           TItem="DataPoint"
+                           Options="DataConstants.GetOptions()"
+                           Height="@("128px")"
+                           Width="@("256px")">
+                    @foreach (var serie in Series)
+                    {
+                        <ApexPointSeries TItem="DataPoint"
+                                         Items="serie.Points"
+                                         Name="@serie.Name"
+                                         SeriesType="SeriesType.Line"
+                                         XValue="@(e => e.DateString)"
+                                         YValue="@(e => e.Value)"/>
+                    }
+                </ApexChart>
+            </div>
     </FormFieldset>
 </div>
 

@@ -7,7 +7,7 @@
     {
         <div class="bg-green-500 rounded-full w-2 h-2"></div>
         <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
-                    Class="!text-green-600">
+                    Class="!text-green-600 !text-sm">
             @Resources["Authenticated"] (@TokenRemainingString)
         </ButtonLink>
     }
@@ -15,7 +15,7 @@
     {
         <div class="bg-blue-500 rounded-full w-2 h-2"></div>
         <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
-                    Class="!text-blue-600">
+                    Class="!text-blue-600 !text-sm">
             @Resources["Authenticating"]
         </ButtonLink>
     }
@@ -23,7 +23,7 @@
     {
         <div class="bg-red-500 rounded-full w-2 h-2"></div>
         <ButtonLink OnClick="() => AuthenticationService.Authenticate(true)"
-                    Class="!text-red-600">
+                    Class="!text-red-600 !text-sm">
             @Resources["Unauthenticated"]
         </ButtonLink>
     }

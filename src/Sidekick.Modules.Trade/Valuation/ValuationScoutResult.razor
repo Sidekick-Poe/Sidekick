@@ -1,0 +1,57 @@
+﻿@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe2Scout.History
+@using Sidekick.Apis.Poe2Scout.History.Models
+@using Sidekick.Apis.Poe2Scout.Items
+@using Sidekick.Apis.Poe2Scout.Items.Models
+@using Sidekick.Modules.Trade.Poe2Scout
+
+@if (Loading)
+{
+    <AppLoading Label="Poe2Scout.com"/>
+    return;
+}
+
+@if (ScoutHistory != null)
+{
+    <Poe2ScoutWebsite History="ScoutHistory"/>
+    <Poe2ScoutPanel Currency="exalted" Logs="@ScoutHistory.Exalted" QuantityLabel=""/>
+    <Poe2ScoutPanel Currency="chaos" Logs="@ScoutHistory.Chaos"/>
+    <Poe2ScoutPanel Currency="divine" Logs="@ScoutHistory.Divine"/>
+}
+
+@inject IScoutHistoryProvider ScoutHistoryProvider
+@inject IScoutItemProvider ScoutItemProvider
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> AfterInitialized { get; set; }
+
+    private ScoutHistory? ScoutHistory { get; set; }
+
+    private ScoutItem? ScoutItem { get; set; }
+
+    private bool Loading { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        Loading = true;
+        StateHasChanged();
+
+        ScoutItem = await ScoutItemProvider.GetItem(Item.ApiInformation.InvariantName);
+        if (ScoutItem != null)
+        {
+            ScoutHistory = await ScoutHistoryProvider.GetItemHistory(ScoutItem.ItemId);
+        }
+
+        Loading = false;
+        StateHasChanged();
+
+        await AfterInitialized.InvokeAsync(ScoutHistory != null);
+    }
+}
