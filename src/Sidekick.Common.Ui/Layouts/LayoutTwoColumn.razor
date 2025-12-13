@@ -11,14 +11,11 @@
         </div>
         <div class="h-full flex flex-col grow">
             <ConfigurationFlagError/>
-            @if (HasChildContent)
-            {
-                <div class="grow relative">
-                    <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden">
-                        @ChildContent
-                    </div>
+            <div class="grow relative">
+                <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden">
+                    @ChildContent
                 </div>
-            }
+            </div>
             <div>
                 @BottomContent
             </div>
@@ -71,9 +68,6 @@
     public RenderFragment? ChildContent { get; set; }
 
     [Parameter]
-    public bool HasChildContent { get; set; } = true;
-
-    [Parameter]
     public RenderFragment? BottomContent { get; set; }
 
     [Parameter]
@@ -91,7 +85,7 @@
                 "overflow-auto",
                 "min-w-80",
                 "z-10",
-                HasChildContent ? "max-w-140" : "w-full",
+                "max-w-140",
             ];
 
             return string.Join(" ", classes);
@@ -100,7 +94,7 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender && HasChildContent && OnLeftContentResize.HasDelegate)
+        if (firstRender && OnLeftContentResize.HasDelegate)
         {
             try
             {
