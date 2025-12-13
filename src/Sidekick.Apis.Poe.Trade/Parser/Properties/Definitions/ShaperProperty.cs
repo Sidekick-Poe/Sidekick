@@ -11,7 +11,11 @@ public class ShaperProperty(IGameLanguageProvider gameLanguageProvider) : Proper
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.InfluenceShaper.ToRegexLine();
 
-    public override List<Category> ValidItemClasses { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Jewel];
+    public override List<ItemClass> ValidItemClasses { get; } = [
+        ..ItemClassConstants.Equipment,
+        ..ItemClassConstants.Accessories,
+        ..ItemClassConstants.Weapons,
+    ];
 
     public override void Parse(Item item)
     {

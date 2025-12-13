@@ -50,7 +50,7 @@ public class ModifierParser
     /// <inheritdoc/>
     public void Parse(Item item)
     {
-        if (!item.Properties.ItemClass.HasModifiers()) return;
+        if (!ItemClassConstants.WithModifiers.Contains(item.Properties.ItemClass)) return;
 
         var modifiers = MatchModifiers(item)
             // Trim modifier lines
@@ -308,7 +308,7 @@ public class ModifierParser
 
     public async Task<List<ModifierFilter>> GetFilters(Item item)
     {
-        if (!item.Properties.ItemClass.HasModifiers()) return [];
+        if (!ItemClassConstants.WithModifiers.Contains(item.Properties.ItemClass)) return [];
 
         var enableAllFilters = await settingsService.GetBool(SettingKeys.PriceCheckEnableAllFilters);
         var enableFiltersByRegexSetting = await settingsService.GetString(SettingKeys.PriceCheckEnableFiltersByRegex);

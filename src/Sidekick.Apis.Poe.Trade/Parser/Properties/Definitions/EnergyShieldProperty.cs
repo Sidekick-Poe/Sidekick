@@ -28,7 +28,9 @@ public class EnergyShieldProperty
             ? gameLanguageProvider.Language.DescriptionEnergyShieldAlternate.ToRegexIsAugmented()
             : null;
 
-    public override List<Category> ValidItemClasses { get; } = [Category.Armour];
+    public override List<ItemClass> ValidItemClasses { get; } = [
+        ..ItemClassConstants.Equipment,
+    ];
 
     public override void Parse(Item item)
     {

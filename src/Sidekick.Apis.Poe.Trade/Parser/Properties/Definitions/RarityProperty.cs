@@ -34,7 +34,7 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
         }
     };
 
-    public override List<Category> ValidItemClasses { get; } = [];
+    public override List<ItemClass> ValidItemClasses { get; } = [];
 
     public override void Parse(Item item)
     {
@@ -46,11 +46,11 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
                 return;
             }
 
-            item.Properties.Rarity = item.ApiInformation.Category switch
+            item.Properties.Rarity = item.Properties.ItemClass switch
             {
-                Category.DivinationCard => Rarity.DivinationCard,
-                Category.Gem => Rarity.Gem,
-                Category.Currency => Rarity.Currency,
+                ItemClass.DivinationCard => Rarity.DivinationCard,
+                ItemClass.Currency => Rarity.Currency,
+                _ when ItemClassConstants.Gems.Contains(item.Properties.ItemClass) => Rarity.Gem,
                 _ => Rarity.Unknown,
             };
         }

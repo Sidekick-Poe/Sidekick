@@ -58,7 +58,7 @@ public class PseudoParser
 
     public List<PseudoFilter> GetFilters(Item item)
     {
-        if (!item.Properties.ItemClass.HasModifiers()) return [];
+        if (!ItemClassConstants.WithModifiers.Contains(item.Properties.ItemClass)) return [];
 
         var result = new List<PseudoFilter>();
         foreach (var modifier in item.PseudoModifiers)

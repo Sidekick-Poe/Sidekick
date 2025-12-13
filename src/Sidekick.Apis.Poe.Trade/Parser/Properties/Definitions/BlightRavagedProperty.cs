@@ -11,7 +11,9 @@ public class BlightRavagedProperty(IGameLanguageProvider gameLanguageProvider) :
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.AffixBlightRavaged.ToRegexAffix(gameLanguageProvider.Language.AffixSuperior);
 
-    public override List<Category> ValidItemClasses { get; } = [Category.Map];
+    public override List<ItemClass> ValidItemClasses { get; } = [
+        ItemClass.Map,
+    ];
 
     public override void Parse(Item item)
     {

@@ -8,7 +8,7 @@ public class SeparatorProperty() : PropertyDefinition
 {
     public const string Text = "---";
 
-    public override List<Category> ValidItemClasses { get; } = [];
+    public override List<ItemClass> ValidItemClasses { get; } = [];
 
     public override Task<PropertyFilter?> GetFilter(Item item)
     {

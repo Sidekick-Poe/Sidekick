@@ -11,7 +11,13 @@ public class FoulbornProperty(IServiceProvider serviceProvider, GameType game) :
 {
     private IFilterProvider FilterProvicer => serviceProvider.GetRequiredService<IFilterProvider>();
 
-    public override List<Category> ValidItemClasses { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Jewel, Category.Flask];
+    public override List<ItemClass> ValidItemClasses { get; } = [
+        ..ItemClassConstants.Equipment,
+        ..ItemClassConstants.Weapons,
+        ..ItemClassConstants.Accessories,
+        ..ItemClassConstants.Jewels,
+        ..ItemClassConstants.Flasks,
+    ];
 
     public override void ParseAfterModifiers(Item item)
     {

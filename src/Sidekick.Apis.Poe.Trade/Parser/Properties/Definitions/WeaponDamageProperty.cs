@@ -22,7 +22,9 @@ public class WeaponDamageProperty
 {
     private Regex RangePattern { get; } = new(@"([\d,\.]+)-([\d,\.]+)", RegexOptions.Compiled);
 
-    public override List<Category> ValidItemClasses { get; } = [Category.Weapon];
+    public override List<ItemClass> ValidItemClasses { get; } = [
+        ..ItemClassConstants.Weapons,
+    ];
 
     public override void Parse(Item item)
     {

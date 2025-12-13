@@ -13,7 +13,14 @@ public class RequiresLevelProperty(IGameLanguageProvider gameLanguageProvider) :
 
     private Regex RequiresPattern { get; } = new($@"^{gameLanguageProvider.Language.DescriptionRequires}.*{gameLanguageProvider.Language.DescriptionLevel}\s*(\d+)");
 
-    public override List<Category> ValidItemClasses { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Flask, Category.Graft];
+    public override List<ItemClass> ValidItemClasses { get; } =
+    [
+        ..ItemClassConstants.Equipment,
+        ..ItemClassConstants.Weapons,
+        ..ItemClassConstants.Accessories,
+        ..ItemClassConstants.Flasks,
+        ItemClass.Graft,
+    ];
 
     public override void Parse(Item item)
     {

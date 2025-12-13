@@ -448,7 +448,6 @@ Corrupted");
 
         Assert.Equal(ItemClass.OneHandAxe, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal(Category.Weapon, actual.ApiInformation.Category);
         Assert.Equal("Decorative Axe", actual.ApiInformation.Type);
 
         // Known parsing issue: #912
@@ -492,7 +491,6 @@ Elder Item");
 
         Assert.Equal(ItemClass.Wand, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal(Category.Weapon, actual.ApiInformation.Category);
         Assert.Equal("Prophecy Wand", actual.ApiInformation.Type);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "Adds # to # Lightning Damage to Attacks with this Weapon per 10 Intelligence", 1, 5);

@@ -11,7 +11,10 @@ public class FracturedProperty(IServiceProvider serviceProvider) : PropertyDefin
 {
     private IFilterProvider FilterProvicer => serviceProvider.GetRequiredService<IFilterProvider>();
 
-    public override List<Category> ValidItemClasses { get; } = [Category.Armour, Category.Weapon, Category.Accessory];
+    public override List<ItemClass> ValidItemClasses { get; } =
+    [
+        ..ItemClassConstants.WithModifiers,
+    ];
 
     public override void Parse(Item item)
     {
