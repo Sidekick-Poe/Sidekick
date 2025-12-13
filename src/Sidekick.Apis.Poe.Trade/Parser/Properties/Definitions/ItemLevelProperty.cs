@@ -21,6 +21,9 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
         ..ItemClassConstants.Jewels,
         ..ItemClassConstants.Areas,
 
+        ItemClass.SanctumRelic,
+        ItemClass.SanctumResearch,
+
         ItemClass.Wombgift,
         ItemClass.Graft,
     ];

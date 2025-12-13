@@ -77,6 +77,8 @@ public static class ItemClassConstants
         ItemClass.Waystone,
         ItemClass.Barya,
         ItemClass.Ultimatum,
+        ItemClass.SanctumResearch,
+        ItemClass.MapFragment, // Necessary for itemised Atzoatl temples
     ];
 
     public static readonly ItemClass[] WithModifiers =

@@ -11,7 +11,7 @@ public class BodyArmourParsing(Poe1EnglishFixture fixture)
     [Fact]
     public void ParseSixLinkUniqueBodyArmor()
     {
-        var actual = parser.ParseItem(@"Item Class: Unknown
+        var actual = parser.ParseItem(@"Item Class: Body Armours
 Rarity: Unique
 Carcass Jack
 Varnished Coat
