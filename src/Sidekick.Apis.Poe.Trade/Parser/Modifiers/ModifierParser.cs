@@ -27,7 +27,6 @@ public class ModifierParser
 
     public Task Initialize()
     {
-
         List<string> positiveTexts =
         [
             ..gameLanguageProvider.Language.RegexIncreased.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
