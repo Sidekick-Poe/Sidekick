@@ -32,7 +32,6 @@ Corrupted
 ");
 
         Assert.Equal(ItemClass.Ring, actual.Properties.ItemClass);
-        Assert.Equal(Category.Accessory, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Ruby Ring", actual.ApiInformation.Type);
 

@@ -14,7 +14,9 @@ public class ItemRarityProperty(IGameLanguageProvider gameLanguageProvider) : Pr
 
     private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionItemRarity.ToRegexIsAugmented();
 
-    public override List<Category> ValidCategories { get; } = [Category.Map, Category.Contract, Category.Logbook];
+    public override List<ItemClass> ValidItemClasses { get; } = [
+        ..ItemClassConstants.Areas,
+    ];
 
     public override void Parse(Item item)
     {

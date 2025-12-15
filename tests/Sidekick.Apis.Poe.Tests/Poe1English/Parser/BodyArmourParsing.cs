@@ -11,7 +11,7 @@ public class BodyArmourParsing(Poe1EnglishFixture fixture)
     [Fact]
     public void ParseSixLinkUniqueBodyArmor()
     {
-        var actual = parser.ParseItem(@"Item Class: Unknown
+        var actual = parser.ParseItem(@"Item Class: Body Armours
 Rarity: Unique
 Carcass Jack
 Varnished Coat
@@ -42,7 +42,6 @@ can deny that my work has made quite the splash...""
 - Maligaro's Journal
 ");
 
-        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Carcass Jack", actual.ApiInformation.Name);
         Assert.Equal("Varnished Coat", actual.ApiInformation.Type);
@@ -107,7 +106,6 @@ Note: ~price 2 chaos
 
         Assert.Equal(ItemClass.BodyArmour, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
         Assert.Equal("Daresso's Defiance", actual.ApiInformation.Name);
         Assert.Equal("Full Dragonscale", actual.ApiInformation.Type);
     }

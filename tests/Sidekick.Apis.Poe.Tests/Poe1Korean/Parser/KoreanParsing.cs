@@ -31,7 +31,6 @@ public class KoreanParsing(Poe1KoreanFixture fixture)
  명철한 자들은 성장할 가치가 있는 법이니! """);
 
         Assert.Equal(ItemClass.Belt, actual.Properties.ItemClass);
-        Assert.Equal(Category.Accessory, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
 
         actual.AssertHasModifier(ModifierCategory.Mutated, "번개 피해의 #%를 카오스 피해로 전환", 40);
@@ -62,7 +61,6 @@ public class KoreanParsing(Poe1KoreanFixture fixture)
 춤춰라, 망자여. 나의 명에 따를 지어다!");
 
         Assert.Equal(ItemClass.Amulet, actual.Properties.ItemClass);
-        Assert.Equal(Category.Accessory, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "지능 +#", 34);

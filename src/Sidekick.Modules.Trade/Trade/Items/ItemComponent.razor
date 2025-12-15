@@ -5,7 +5,7 @@
 @using Sidekick.Modules.Trade.Components.Prices
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 
-@if (!IsCompact && (Result.Item.HasModifiers || Item.ApiInformation.Category == Category.Gem))
+@if (!IsCompact && (Result.Item.HasModifiers || ItemClassConstants.Gems.Contains(Item.Properties.ItemClass)))
 {
     <div class="mb-2 rounded-b-lg bg-stone-950">
         <ItemHeader Name="@Result.Item.Name"

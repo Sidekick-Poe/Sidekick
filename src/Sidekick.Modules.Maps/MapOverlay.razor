@@ -135,7 +135,7 @@
         var itemText = ItemText.DecodeBase64Url();
         Item = ItemParser.ParseItem(itemText);
 
-        if (Item.ApiInformation.Category != Category.Map && Item.ApiInformation.Category != Category.Contract && Item.ApiInformation.Category != Category.Logbook)
+        if (Item.Properties.ItemClass != ItemClass.Map && Item.Properties.ItemClass != ItemClass.Contract && Item.Properties.ItemClass != ItemClass.Logbook)
         {
             throw new InvalidItemException();
         }

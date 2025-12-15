@@ -11,7 +11,11 @@ public class CrusaderProperty(IGameLanguageProvider gameLanguageProvider) : Prop
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.InfluenceCrusader.ToRegexLine();
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Jewel];
+    public override List<ItemClass> ValidItemClasses { get; } = [
+        ..ItemClassConstants.Equipment,
+        ..ItemClassConstants.Accessories,
+        ..ItemClassConstants.Weapons,
+    ];
 
     public override void Parse(Item item)
     {

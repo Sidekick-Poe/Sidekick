@@ -32,7 +32,6 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
 ");
 
         Assert.Equal(ItemClass.Flask, actual.Properties.ItemClass);
-        Assert.Equal(Category.Flask, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Sanctified Mana Flask", actual.ApiInformation.Type);
 
@@ -60,7 +59,6 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
 
         Assert.Equal(ItemClass.Flask, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal(Category.Flask, actual.ApiInformation.Category);
         Assert.Equal("Hallowed Life Flask", actual.ApiInformation.Type);
     }
 
@@ -87,7 +85,6 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
 
         Assert.Equal(ItemClass.Flask, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal(Category.Flask, actual.ApiInformation.Category);
         Assert.Equal("Sacred Hybrid Flask", actual.ApiInformation.Type);
         Assert.Equal(13, actual.Properties.Quality);
     }
@@ -115,7 +112,6 @@ Right click to activate. Only one Tincture in your belt can be active at a time.
 
         Assert.Equal(ItemClass.Tincture, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
-        Assert.Equal(Category.Tincture, actual.ApiInformation.Category);
         Assert.Equal("Poisonberry Tincture", actual.ApiInformation.Type);
     }
 
@@ -144,7 +140,6 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
 
         Assert.Equal(ItemClass.Flask, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
-        Assert.Equal(Category.Flask, actual.ApiInformation.Category);
         Assert.Equal("Bismuth Flask", actual.ApiInformation.Type);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "Gain # Charge when you are Hit by an Enemy", 3);

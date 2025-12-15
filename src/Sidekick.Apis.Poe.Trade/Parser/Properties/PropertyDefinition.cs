@@ -8,7 +8,7 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
 
 public abstract class PropertyDefinition
 {
-    public abstract List<Category> ValidCategories { get; }
+    public abstract List<ItemClass> ValidItemClasses { get; }
 
     public virtual void Parse(Item item) {}
 

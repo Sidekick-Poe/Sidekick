@@ -55,7 +55,6 @@ Note: ~price 2 chaos
 ");
 
         Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
-        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
         Assert.Equal("Vaal Double Strike", actual.ApiInformation.Type);
         Assert.Equal(1, actual.Properties.GemLevel);
@@ -93,7 +92,6 @@ This is a Support Gem. It does not grant a bonus to your character, but to skill
 
         Assert.Equal(ItemClass.SupportGem, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
         Assert.Equal("Arcane Surge Support", actual.ApiInformation.Type);
     }
 
@@ -131,7 +129,6 @@ Place into an item socket of the right colour to gain this skill. Right click to
 
         Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
         Assert.Equal("Void Sphere", actual.ApiInformation.Type);
     }
 
@@ -171,7 +168,6 @@ Transfigured
 
         Assert.Equal(ItemClass.ActiveGem, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Gem, actual.Properties.Rarity);
-        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
         Assert.Equal("Kinetic Blast of Clustering", actual.ApiInformation.Text);
         Assert.Equal("Kinetic Blast", actual.ApiInformation.Type);
         Assert.Equal("alt_x", actual.ApiInformation.Discriminator);

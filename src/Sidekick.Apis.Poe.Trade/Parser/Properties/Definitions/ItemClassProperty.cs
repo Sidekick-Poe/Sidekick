@@ -38,7 +38,7 @@ public class ItemClassProperty : PropertyDefinition
         ApiItemClassDefinitions = new(GetApiItemClassDefinitions);
     }
 
-    public override List<Category> ValidCategories { get; } = [];
+    public override List<ItemClass> ValidItemClasses { get; } = [];
 
     private Lazy<List<ItemClassDefinition>> ItemClassDefinitions { get; }
 
