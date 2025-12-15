@@ -129,6 +129,7 @@ public class ItemClassProperty : PropertyDefinition
             CreateItemClassDefinition(ItemClass.Sceptre, gameLanguageProvider.Language.Classes.Sceptres),
             CreateItemClassDefinition(ItemClass.Staff, gameLanguageProvider.Language.Classes.Staves),
             CreateItemClassDefinition(ItemClass.Spear, gameLanguageProvider.Language.Classes.Spears),
+            CreateItemClassDefinition(ItemClass.Talisman, gameLanguageProvider.Language.Classes.Talismans),
 
             // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.Flails),
             // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.Rapiers),

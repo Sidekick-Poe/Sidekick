@@ -154,6 +154,7 @@ public class GameLanguageZh : IGameLanguage
         SanctumResearch = "聖域研究",
         Grafts = "",
         Wombgifts = "",
+        Talismans = "魔符",
     };
 }
 

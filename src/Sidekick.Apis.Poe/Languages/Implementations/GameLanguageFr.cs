@@ -154,6 +154,7 @@ public class GameLanguageFr : IGameLanguage
         SanctumResearch = "Recherche du Sanctuaire",
         Grafts = "Greffons",
         Wombgifts = "Dons de la matrice",
+        Talismans = "Talismans",
     };
 }
 
