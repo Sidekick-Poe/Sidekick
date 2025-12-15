@@ -154,6 +154,7 @@ public class GameLanguageDe : IGameLanguage
         SanctumResearch = "Sanktum-Forschungsauftrag",
         Grafts = "Transplantate",
         Wombgifts = "Fruchtkeime",
+        Talismans = "Talismane",
     };
 }
 

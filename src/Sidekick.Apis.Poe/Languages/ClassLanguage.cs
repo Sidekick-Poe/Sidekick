@@ -145,4 +145,6 @@ public class ClassLanguage
     public required string Grafts { get; set; }
 
     public required string Wombgifts { get; set; }
+
+    public required string Talismans { get; set; }
 }

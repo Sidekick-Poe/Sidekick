@@ -154,6 +154,7 @@ public class GameLanguagePt : IGameLanguage
         SanctumResearch = "Pesquisa Sanctum",
         Grafts = "Enxertos",
         Wombgifts = "Dádivas do Ventre",
+        Talismans = "Talismãs",
     };
 }
 

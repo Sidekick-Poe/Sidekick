@@ -154,6 +154,7 @@ public class GameLanguageJa : IGameLanguage
         SanctumResearch = "サンクタム調査書",
         Grafts = "グラフト",
         Wombgifts = "母胎ギフト",
+        Talismans = "タリスマン",
     };
 }
 

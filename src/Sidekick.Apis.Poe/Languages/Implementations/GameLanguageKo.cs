@@ -154,6 +154,7 @@ public class GameLanguageKo : IGameLanguage
         SanctumResearch = "성역 연구",
         Grafts = "기생체",
         Wombgifts = "생명의 결실",
+        Talismans = "부적",
     };
 }
 
