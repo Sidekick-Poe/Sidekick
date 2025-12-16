@@ -19,7 +19,12 @@
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckFillDefaultMin" Label="@Resources["PriceCheck_FillDefault_Min"]"/>
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckFillDefaultMax" Label="@Resources["PriceCheck_FillDefault_Max"]"/>
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckEnableAllFilters" Label="@Resources["PriceCheck_Enable_All_Filters"]" />
-    <SettingTextEditor SettingKey="@SettingKeys.PriceCheckEnableFiltersByRegex" Label="@Resources["PriceCheck_Enable_Filters_By_Regex"]" Tooltip="@UiResources["Regex_Hint"]" />
+</FormFieldset>
+
+<FormFieldset Legend="@Resources["Auto_Select_Rules"]">
+    <SettingTextEditor SettingKey="@SettingKeys.PriceCheckAutoSelectRules"
+                       Label="@Resources["Auto_Select_Rules_Label"]"
+                       Tooltip="@Resources["Auto_Select_Rules_Hint"]"/>
 </FormFieldset>
 
 <FormFieldset Legend="@Resources["External_Tools_Settings"]">
@@ -48,7 +53,7 @@
         SettingKeys.PriceCheckFillDefaultMax,
         SettingKeys.PriceCheckPredictionEnabled,
         SettingKeys.PriceCheckEnableAllFilters,
-        SettingKeys.PriceCheckEnableFiltersByRegex,
+        SettingKeys.PriceCheckAutoSelectRules,
     };
 
     protected override async Task OnInitializedAsync()

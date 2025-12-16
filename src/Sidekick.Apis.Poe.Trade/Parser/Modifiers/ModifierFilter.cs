@@ -1,8 +1,9 @@
 using Sidekick.Apis.Poe.Items;
 
+using Sidekick.Apis.Poe.Trade.Parser.Filters;
 namespace Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 
-public class ModifierFilter
+public class ModifierFilter : IAutoSelectableFilter
 {
     public ModifierFilter(Modifier line)
     {
@@ -37,4 +38,6 @@ public class ModifierFilter
     public double? Min { get; set; }
 
     public double? Max { get; set; }
+
+    public string Text => Line.Text;
 }

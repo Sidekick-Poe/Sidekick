@@ -67,6 +67,8 @@
 @inject IPropertyParser PropertyParser
 @inject IModifierParser ModifierParser
 @inject IPseudoParser PseudoParser
+@inject Sidekick.Apis.Poe.Trade.AutoSelect.IFilterAutoSelectService AutoSelectService
+@inject Sidekick.Common.Settings.ISettingsService SettingsService
 
 @code {
 
@@ -84,9 +86,36 @@
         PropertyFilters = await PropertyParser.GetFilters(Item);
         ModifierFilters = await ModifierParser.GetFilters(Item);
         PseudoFilters = PseudoParser.GetFilters(Item);
+        await ApplyAutoSelection();
         TradeService.Clear();
 
         await base.OnParametersSetAsync();
+    }
+
+    private async Task ApplyAutoSelection()
+    {
+        var enableAll = await SettingsService.GetBool(Sidekick.Common.Settings.SettingKeys.PriceCheckEnableAllFilters);
+        if (enableAll)
+        {
+            foreach (var f in PropertyFilters!) f.Checked = true;
+            foreach (var f in ModifierFilters) f.Checked = true;
+            foreach (var f in PseudoFilters) f.Checked = true;
+            return;
+        }
+
+        // Apply rules for each filter category
+        foreach (var f in PropertyFilters!)
+        {
+            f.Checked = await AutoSelectService.ShouldCheck(Item, f);
+        }
+        foreach (var f in ModifierFilters)
+        {
+            f.Checked = await AutoSelectService.ShouldCheck(Item, f);
+        }
+        foreach (var f in PseudoFilters)
+        {
+            f.Checked = await AutoSelectService.ShouldCheck(Item, f);
+        }
     }
 
 }

@@ -16,7 +16,8 @@ public class ModifierParser
     IModifierProvider modifierProvider,
     IFuzzyService fuzzyService,
     ISettingsService settingsService,
-    IGameLanguageProvider gameLanguageProvider
+    IGameLanguageProvider gameLanguageProvider,
+    Sidekick.Apis.Poe.Trade.AutoSelect.IFilterAutoSelectService autoSelectService
 ) : IModifierParser
 {
     public int Priority => 300;
@@ -310,20 +311,19 @@ public class ModifierParser
         if (!ItemClassConstants.WithModifiers.Contains(item.Properties.ItemClass)) return [];
 
         var enableAllFilters = await settingsService.GetBool(SettingKeys.PriceCheckEnableAllFilters);
-        var enableFiltersByRegexSetting = await settingsService.GetString(SettingKeys.PriceCheckEnableFiltersByRegex);
-        Regex? enableFiltersByRegex = null;
-        if (!string.IsNullOrWhiteSpace(enableFiltersByRegexSetting))
-        {
-            enableFiltersByRegex = new Regex(enableFiltersByRegexSetting, RegexOptions.IgnoreCase);
-        }
 
         var result = new List<ModifierFilter>();
         foreach (var modifier in item.Modifiers)
         {
-            var filter = new ModifierFilter(modifier)
+            var filter = new ModifierFilter(modifier);
+            if (enableAllFilters)
             {
-                Checked = enableAllFilters || (enableFiltersByRegex?.IsMatch(modifier.Text) ?? false),
-            };
+                filter.Checked = true;
+            }
+            else
+            {
+                filter.Checked = await autoSelectService.ShouldCheck(item, filter);
+            }
             result.Add(filter);
         }
 

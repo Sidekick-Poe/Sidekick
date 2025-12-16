@@ -1,7 +1,8 @@
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Trade.Parser.Filters;
 namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters;
 
-public class PseudoFilter
+public class PseudoFilter : IAutoSelectableFilter
 {
     public required PseudoModifier PseudoModifier { get; set; }
 
@@ -10,4 +11,6 @@ public class PseudoFilter
     public double? Min { get; set; }
 
     public double? Max { get; set; }
+
+    public string Text => PseudoModifier.Text ?? string.Empty;
 }

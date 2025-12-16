@@ -1,12 +1,13 @@
 using Sidekick.Apis.Poe.Trade.Trade.Results;
+using Sidekick.Apis.Poe.Trade.Parser.Filters;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
 
-public class PropertyFilter(PropertyDefinition definition)
+public class PropertyFilter(PropertyDefinition definition) : IAutoSelectableFilter
 {
     public bool ShowRow { get; init; } = true;
 
-    public bool Checked { get; set; }
+    public bool? Checked { get; set; }
 
     public required string Text { get; init; }
 

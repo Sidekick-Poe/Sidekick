@@ -53,6 +53,9 @@ public static class SettingKeys
     public const string PriceCheckEnableAllFilters = nameof(PriceCheckEnableAllFilters);
     public const string PriceCheckEnableFiltersByRegex = nameof(PriceCheckEnableFiltersByRegex);
 
+    // JSON serialized rules for auto-selecting filters on overlay open
+    public const string PriceCheckAutoSelectRules = nameof(PriceCheckAutoSelectRules);
+
     public const string SaveWindowPositions = nameof(SaveWindowPositions);
 
     public const string WealthItemTotalMinimum = nameof(WealthItemTotalMinimum);

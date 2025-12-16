@@ -50,6 +50,7 @@ public static class DefaultSettings
     public static bool PriceCheckFillDefaultMax => false;
 
     public static string PriceCheckEnableFiltersByRegex => "";
+    public static string PriceCheckAutoSelectRules => "[]";
 
     public static string PriceCheckItemCurrency => "";
 
