@@ -43,7 +43,6 @@ Corrupted
 ");
 
         Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
-        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Steeltoe Boots", actual.ApiInformation.Type);
         Assert.Equal("Thunderstep", actual.ApiInformation.Name);
@@ -88,7 +87,6 @@ Grants Skill: Parry
 ");
 
         Assert.Equal(ItemClass.Buckler, actual.Properties.ItemClass);
-        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Wooden Buckler", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
@@ -122,7 +120,6 @@ Can only be equipped if you are wielding a Bow.
 ");
 
         Assert.Equal(ItemClass.Quiver, actual.Properties.ItemClass);
-        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Normal, actual.Properties.Rarity);
         Assert.Equal("Fire Quiver", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
@@ -161,7 +158,6 @@ Item Level: 66
 ");
 
         Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
-        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Bastion Sabatons", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);

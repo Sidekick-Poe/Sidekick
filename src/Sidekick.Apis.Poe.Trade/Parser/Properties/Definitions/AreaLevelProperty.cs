@@ -11,7 +11,9 @@ public class AreaLevelProperty(IGameLanguageProvider gameLanguageProvider) : Pro
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionAreaLevel.ToRegexIntCapture();
 
-    public override List<Category> ValidCategories { get; } = [Category.Sanctum, Category.Logbook, Category.Contract, Category.Map];
+    public override List<ItemClass> ValidItemClasses { get; } = [
+        ..ItemClassConstants.Areas,
+    ];
 
     public override void Parse(Item item)
     {

@@ -7,7 +7,7 @@ public class ClusterJewelPassiveCountProperty(IServiceProvider serviceProvider, 
 {
     private IInvariantModifierProvider InvariantModifierProvider { get; } = serviceProvider.GetRequiredService<IInvariantModifierProvider>();
 
-    public override List<Category> ValidCategories { get; } = [Category.Jewel];
+    public override List<ItemClass> ValidItemClasses { get; } = [ItemClass.Jewel];
 
     public override void ParseAfterModifiers(Item item)
     {

@@ -18,7 +18,9 @@ public class AttacksPerSecondProperty
 
     private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionAttacksPerSecond.ToRegexIsAugmented();
 
-    public override List<Category> ValidCategories { get; } = [Category.Weapon];
+    public override List<ItemClass> ValidItemClasses { get; } = [
+        ..ItemClassConstants.Weapons,
+    ];
 
     public override void Parse(Item item)
     {

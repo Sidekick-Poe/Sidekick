@@ -18,7 +18,13 @@ public class SocketProperty
 {
     private Regex Pattern { get; } = new Regex($"{Regex.Escape(gameLanguageProvider.Language.DescriptionSockets)}.*?([-RGBWAS]+)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)");
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory, Category.Gem];
+    public override List<ItemClass> ValidItemClasses { get; } =
+    [
+        ..ItemClassConstants.Equipment,
+        ..ItemClassConstants.Weapons,
+        ..ItemClassConstants.Accessories,
+        ..ItemClassConstants.Gems,
+    ];
 
     public override void Parse(Item item)
     {
@@ -149,9 +155,9 @@ public class SocketProperty
             case GameType.PathOfExile1: query.Filters.GetOrCreateSocketFilters().Filters.Links = new SocketFilterOption(intFilter); break;
 
             case GameType.PathOfExile2:
-                switch (item.ApiInformation.Category)
+                switch (item.Properties.ItemClass)
                 {
-                    case Category.Gem: query.Filters.GetOrCreateMiscFilters().Filters.GemSockets = new StatFilterValue(intFilter); break;
+                    case ItemClass.ActiveGem: query.Filters.GetOrCreateMiscFilters().Filters.GemSockets = new StatFilterValue(intFilter); break;
                     default: query.Filters.GetOrCreateEquipmentFilters().Filters.RuneSockets = new StatFilterValue(intFilter); break;
                 }
 

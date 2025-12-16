@@ -17,7 +17,7 @@ public class ApiItem
     public ApiItemFlags? Flags { get; init; }
 
     [JsonIgnore]
-    public Category Category { get; set; }
+    public string? Category { get; set; }
 
     [JsonIgnore]
     public bool IsUnique => Flags?.Unique ?? false;

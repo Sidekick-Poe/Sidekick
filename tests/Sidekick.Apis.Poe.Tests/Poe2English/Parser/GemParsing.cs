@@ -22,7 +22,6 @@ Right Click to engrave a Persistent Buff Skill Gem.
 ");
 
         Assert.Equal(ItemClass.UncutSpiritGem, actual.Properties.ItemClass);
-        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
         Assert.Equal("Uncut Spirit Gem (Level 16)", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
     }
@@ -41,7 +40,6 @@ Right Click to engrave a Support Gem.
 ");
 
         Assert.Equal(ItemClass.UncutSupportGem, actual.Properties.ItemClass);
-        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
         Assert.Equal("Uncut Support Gem (Level 3)", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
     }
@@ -60,7 +58,6 @@ Right Click to engrave a Skill Gem.
 ");
 
         Assert.Equal(ItemClass.UncutSkillGem, actual.Properties.ItemClass);
-        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
         Assert.Equal("Uncut Skill Gem (Level 9)", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
     }
@@ -100,7 +97,6 @@ Enemies you Shatter explode
 Skills can be managed in the Skills Panel.
 ");
 
-        Assert.Equal(Category.Gem, actual.ApiInformation.Category);
         Assert.Equal("Herald of Ice", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
         Assert.Equal(18, actual.Properties.GemLevel);

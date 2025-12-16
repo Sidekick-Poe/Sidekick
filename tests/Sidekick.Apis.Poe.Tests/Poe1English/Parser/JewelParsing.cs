@@ -26,7 +26,6 @@ Item Level: 68
 Place into an allocated Jewel Socket on the Passive Skill Tree.Right click to remove from the Socket.
 ");
 
-        Assert.Equal(Category.Jewel, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Cobalt Jewel", actual.ApiInformation.Type);
         Assert.Equal("Blight Cut", actual.Name);
@@ -65,7 +64,6 @@ Place into an allocated Large Jewel Socket on the Passive Skill Tree. Added pass
 Note: ~b/o 1 chaos
 ");
 
-        Assert.Equal(Category.Jewel, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Large Cluster Jewel", actual.ApiInformation.Type);
         Assert.Equal("Chimeric Sliver", actual.Name);
@@ -96,7 +94,6 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
 
         Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
-        Assert.Equal(Category.Jewel, actual.ApiInformation.Category);
         Assert.Equal("Viridian Jewel", actual.ApiInformation.Type);
     }
 
@@ -128,7 +125,6 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
 
         Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal(Category.Jewel, actual.ApiInformation.Category);
         Assert.Equal("Crimson Jewel", actual.ApiInformation.Type);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Strength", 8);
@@ -164,7 +160,6 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
 
         Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
-        Assert.Equal(Category.Jewel, actual.ApiInformation.Category);
         Assert.Equal("Prismatic Jewel", actual.ApiInformation.Type);
 
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased maximum Energy Shield", 6);

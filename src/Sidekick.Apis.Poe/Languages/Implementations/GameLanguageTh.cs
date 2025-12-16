@@ -154,6 +154,7 @@ public class GameLanguageTh : IGameLanguage
         SanctumResearch = "บทวิจัยเทวสถาน",
         Grafts = "หัตถ์",
         Wombgifts = "ผลฝากครรภ์",
+        Talismans = "เครื่องราง",
     };
 }
 

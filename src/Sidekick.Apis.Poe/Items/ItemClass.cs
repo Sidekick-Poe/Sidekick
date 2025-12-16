@@ -167,6 +167,9 @@ public enum ItemClass
     [EnumValue("weapon.rod")]
     FishingRod,
 
+    [EnumValue("weapon.talisman")]
+    Talisman,
+
     [EnumValue("weapon.twoaxe")]
     TwoHandAxe,
 

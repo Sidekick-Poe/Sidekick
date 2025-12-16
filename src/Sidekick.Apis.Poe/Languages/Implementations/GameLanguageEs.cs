@@ -154,6 +154,7 @@ public class GameLanguageEs : IGameLanguage
         SanctumResearch = "Investigación del santuario",
         Grafts = "Injertos",
         Wombgifts = "Regalos del vientre",
+        Talismans = "Talismanes",
     };
 }
 

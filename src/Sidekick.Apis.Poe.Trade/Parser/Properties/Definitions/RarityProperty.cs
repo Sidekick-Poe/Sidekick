@@ -34,28 +34,27 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
         }
     };
 
-    public override List<Category> ValidCategories { get; } = [];
+    public override List<ItemClass> ValidItemClasses { get; } = [];
 
     public override void Parse(Item item)
     {
-        if (item.ApiInformation != null!)
+        if (item.ApiInformation != null! && item.ApiInformation.IsUnique)
         {
-            if (item.ApiInformation.IsUnique)
-            {
-                item.Properties.Rarity = Rarity.Unique;
-                return;
-            }
-
-            item.Properties.Rarity = item.ApiInformation.Category switch
-            {
-                Category.DivinationCard => Rarity.DivinationCard,
-                Category.Gem => Rarity.Gem,
-                Category.Currency => Rarity.Currency,
-                _ => Rarity.Unknown,
-            };
+            item.Properties.Rarity = Rarity.Unique;
+            return;
         }
 
-        if (item.Properties.Rarity != Rarity.Unknown) return;
+        if (item.Properties.ItemClass == ItemClass.DivinationCard)
+        {
+            item.Properties.Rarity = Rarity.DivinationCard;
+            return;
+        }
+
+        if (ItemClassConstants.Gems.Contains(item.Properties.ItemClass))
+        {
+            item.Properties.Rarity = Rarity.Gem;
+            return;
+        }
 
         foreach (var pattern in RarityPatterns)
         {
@@ -65,6 +64,14 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
             item.Properties.Rarity = pattern.Key;
             return;
         }
+
+        if (item.Properties.ItemClass == ItemClass.Currency)
+        {
+            item.Properties.Rarity = Rarity.Currency;
+            return;
+        }
+
+        item.Properties.Rarity = Rarity.Unknown;
     }
 
     public override Task<PropertyFilter?> GetFilter(Item item)

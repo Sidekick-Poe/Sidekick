@@ -27,7 +27,6 @@ Item Level: 60
 ");
 
         Assert.Equal(ItemClass.Staff, actual.Properties.ItemClass);
-        Assert.Equal(Category.Weapon, actual.ApiInformation.Category);
         Assert.Equal("Ashen Staff", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
         Assert.Equal(60, actual.Properties.ItemLevel);
@@ -70,7 +69,6 @@ Leeches 4.02% of Physical Damage as Mana
 ");
 
         Assert.Equal(ItemClass.Bow, actual.Properties.ItemClass);
-        Assert.Equal(Category.Weapon, actual.ApiInformation.Category);
         Assert.Equal("Composite Bow", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
         Assert.Equal(76, actual.Properties.ItemLevel);
@@ -92,7 +90,7 @@ Leeches 4.02% of Physical Damage as Mana
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Attribute Requirements", -35);
         Assert.False(actual.Modifiers[4].MatchedFuzzily);
         actual.AssertHasModifier(ModifierCategory.Explicit, "# to Level of all Projectile Skills", 3);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "Leeches #% of Physical Damage as Mana", 4.02); ;
+        actual.AssertHasModifier(ModifierCategory.Explicit, "Leeches #% of Physical Damage as Mana", 4.02);
     }
 
     [Fact]
@@ -122,7 +120,6 @@ Grants 3 Life per Enemy Hit
 ");
 
       Assert.Equal(ItemClass.Crossbow, actual.Properties.ItemClass);
-        Assert.Equal(Category.Weapon, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Bleak Crossbow", actual.ApiInformation.Type);
         Assert.Equal("Blood Core", actual.Name);
@@ -166,7 +163,6 @@ Item Level: 60
 Leeches 5.82% of Physical Damage as Mana");
 
         Assert.Equal(ItemClass.Bow, actual.Properties.ItemClass);
-        Assert.Equal(Category.Weapon, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Cultist Bow", actual.ApiInformation.Type);
 
@@ -196,7 +192,6 @@ Allies in your Presence deal 9 to 13 additional Attack Fire Damage
 ");
 
         Assert.Equal(ItemClass.Sceptre, actual.Properties.ItemClass);
-        Assert.Equal(Category.Weapon, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Rattling Sceptre", actual.ApiInformation.Type);
         Assert.Equal(66, actual.Properties.RequiresLevel);
@@ -228,7 +223,6 @@ Grants Skill: Spear Throw
 ");
 
         Assert.Equal(ItemClass.Spear, actual.Properties.ItemClass);
-        Assert.Equal(Category.Weapon, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Equal("Ironhead Spear", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
@@ -269,7 +263,6 @@ Grants 3 Life per Enemy Hit
 ");
 
         Assert.Equal(ItemClass.Spear, actual.Properties.ItemClass);
-        Assert.Equal(Category.Weapon, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Forked Spear", actual.ApiInformation.Type);
         Assert.Equal("Hypnotic Edge", actual.Name);
@@ -326,7 +319,6 @@ Corrupted
 ");
 
         Assert.Equal(ItemClass.Warstaff, actual.Properties.ItemClass);
-        Assert.Equal(Category.Weapon, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Slicing Quarterstaff", actual.ApiInformation.Type);
         Assert.Equal("Kraken Pillar", actual.Name);
@@ -387,7 +379,6 @@ Fractured Item
 Note: ~price 1 mirror");
 
         Assert.Equal(ItemClass.Crossbow, actual.Properties.ItemClass);
-        Assert.Equal(Category.Weapon, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Siege Crossbow", actual.ApiInformation.Type);
         Assert.Equal("Dragon Core", actual.Name);
@@ -430,5 +421,41 @@ Note: ~price 1 mirror");
 
             Assert.Fail();
         }
+    }
+
+    [Fact]
+    public void ParseTalisman()
+    {
+        var actual = parser.ParseItem(@"Item Class: Talismans
+Rarity: Magic
+Lumbering Talisman of Consumption
+--------
+Physical Damage: 71-107
+Critical Hit Chance: 5.00%
+Attacks per Second: 1.10
+--------
+Requires: Level 52, 60 Str, 43 Int
+--------
+Item Level: 77
+--------
+Gain 19 Mana per enemy killed
+");
+
+        Assert.Equal(ItemClass.Talisman, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
+        Assert.Equal("Lumbering Talisman", actual.ApiInformation.Type);
+        Assert.Null(actual.Name);
+
+        Assert.Equal(77, actual.Properties.ItemLevel);
+
+        Assert.Equal(71, actual.Properties.PhysicalDamage?.Min);
+        Assert.Equal(107, actual.Properties.PhysicalDamage?.Max);
+        Assert.Equal(5, actual.Properties.CriticalHitChance);
+        Assert.Equal(1.1, actual.Properties.AttacksPerSecond);
+
+        Assert.Equal(0, actual.Properties.RequiresDexterity);
+        Assert.Equal(43, actual.Properties.RequiresIntelligence);
+        Assert.Equal(60, actual.Properties.RequiresStrength);
+        Assert.Equal(52, actual.Properties.RequiresLevel);
     }
 }

@@ -41,7 +41,6 @@ Can be used in a Map Device, allowing you to enter a Map. Waystones can only be 
 ");
 
         Assert.Equal(ItemClass.Waystone, actual.Properties.ItemClass);
-        Assert.Equal(Category.Map, actual.ApiInformation.Category);
         Assert.Equal("Waystone (Tier 1)", actual.ApiInformation.Type);
         Assert.Null(actual.ApiInformation.Name);
         Assert.Equal(66, actual.Properties.ItemLevel);

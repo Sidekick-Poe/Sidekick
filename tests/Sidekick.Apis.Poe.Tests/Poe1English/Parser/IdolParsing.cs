@@ -27,7 +27,6 @@ Place this item into the Idol inventory at a Map Device to affect Maps you open.
 Unmodifiable");
 
         Assert.Equal(ItemClass.Idol, actual.Properties.ItemClass);
-        Assert.Equal(Category.Idol, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
         Assert.Null(actual.ApiInformation.Name);
         Assert.Equal("Minor Idol", actual.ApiInformation.Type);
@@ -62,7 +61,6 @@ Unmodifiable
 ");
 
         Assert.Equal(ItemClass.Idol, actual.Properties.ItemClass);
-        Assert.Equal(Category.Idol, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
         Assert.Equal("Loved by the Sun", actual.ApiInformation.Name);
         Assert.Equal("Minor Idol", actual.ApiInformation.Type);

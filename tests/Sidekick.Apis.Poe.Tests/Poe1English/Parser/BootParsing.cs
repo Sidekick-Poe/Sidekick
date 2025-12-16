@@ -31,7 +31,6 @@ Fractured Item
 ");
 
         Assert.Equal(ItemClass.Boots, actual.Properties.ItemClass);
-        Assert.Equal(Category.Armour, actual.ApiInformation.Category);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Iron Greaves", actual.ApiInformation.Type);
 

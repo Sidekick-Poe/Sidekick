@@ -154,6 +154,7 @@ public class GameLanguageEn : IGameLanguage
         SanctumResearch = "Sanctum Research",
         Grafts = "Grafts",
         Wombgifts = "Wombgifts",
+        Talismans = "Talismans",
     };
 }
 

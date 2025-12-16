@@ -27,7 +27,6 @@ public class ModifierParser
 
     public Task Initialize()
     {
-
         List<string> positiveTexts =
         [
             ..gameLanguageProvider.Language.RegexIncreased.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
@@ -50,7 +49,7 @@ public class ModifierParser
     /// <inheritdoc/>
     public void Parse(Item item)
     {
-        if (item.ApiInformation.Category is Category.DivinationCard or Category.Gem) return;
+        if (!ItemClassConstants.WithModifiers.Contains(item.Properties.ItemClass)) return;
 
         var modifiers = MatchModifiers(item)
             // Trim modifier lines
@@ -162,13 +161,13 @@ public class ModifierParser
 
     private IReadOnlyCollection<ModifierDefinition> GetAllAvailablePatterns(Item item)
     {
-        return item.ApiInformation.Category switch
+        return item.Properties.ItemClass switch
         {
-            Category.Sanctum =>
+            ItemClass.SanctumRelic =>
             [
                 .. modifierProvider.Definitions[ModifierCategory.Sanctum]
             ],
-            Category.Map when item.Properties.ItemClass == ItemClass.Tablet =>
+            ItemClass.Tablet =>
             [
                 .. modifierProvider.Definitions[ModifierCategory.Implicit],
                 .. modifierProvider.Definitions[ModifierCategory.Explicit]
@@ -308,15 +307,7 @@ public class ModifierParser
 
     public async Task<List<ModifierFilter>> GetFilters(Item item)
     {
-        // No filters for divination cards, etc.
-        if (item.ApiInformation.Category is Category.DivinationCard
-            or Category.Gem
-            or Category.ItemisedMonster
-            or Category.Leaguestone
-            or Category.Unknown)
-        {
-            return [];
-        }
+        if (!ItemClassConstants.WithModifiers.Contains(item.Properties.ItemClass)) return [];
 
         var enableAllFilters = await settingsService.GetBool(SettingKeys.PriceCheckEnableAllFilters);
         var enableFiltersByRegexSetting = await settingsService.GetString(SettingKeys.PriceCheckEnableFiltersByRegex);

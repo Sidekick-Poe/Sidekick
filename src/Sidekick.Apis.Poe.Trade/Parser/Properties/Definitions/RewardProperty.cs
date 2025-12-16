@@ -18,7 +18,9 @@ public class RewardProperty
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionReward.ToRegexStringCapture();
 
-    public override List<Category> ValidCategories { get; } = [Category.Map];
+    public override List<ItemClass> ValidItemClasses { get; } = [
+        ItemClass.Map,
+    ];
 
     public override void Parse(Item item)
     {

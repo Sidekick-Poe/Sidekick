@@ -11,7 +11,12 @@ public class MirroredProperty(IServiceProvider serviceProvider) : PropertyDefini
 {
     private IFilterProvider FilterProvicer => serviceProvider.GetRequiredService<IFilterProvider>();
 
-    public override List<Category> ValidCategories { get; } = [Category.Armour, Category.Weapon, Category.Accessory];
+    public override List<ItemClass> ValidItemClasses { get; } =
+    [
+        ..ItemClassConstants.Equipment,
+        ..ItemClassConstants.Weapons,
+        ..ItemClassConstants.Accessories,
+    ];
 
     public override void Parse(Item item)
     {

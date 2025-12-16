@@ -154,6 +154,7 @@ public class GameLanguageRu : IGameLanguage
         SanctumResearch = "Исследования Святилища",
         Grafts = "Наросты",
         Wombgifts = "Дары утробы",
+        Talismans = "Талисманы",
     };
 }
 
