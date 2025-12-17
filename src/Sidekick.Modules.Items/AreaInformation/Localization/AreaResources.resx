@@ -141,9 +141,6 @@
   <data name="Regex" xml:space="preserve">
     <value>Regex</value>
   </data>
-  <data name="Map_Key_Check" xml:space="preserve">
-    <value>Check Map Mods</value>
-  </data>
   <data name="Tab" xml:space="preserve">
       <value>Area Info</value>
   </data>
@@ -152,5 +149,17 @@
   </data>
   <data name="Area_Settings" xml:space="preserve">
       <value>Area Settings</value>
+  </data>
+  <data name="NoRegex" xml:space="preserve">
+      <value>No regex set</value>
+  </data>
+  <data name="Settings_Description" xml:space="preserve">
+      <value>We recommend using the website below to generate regexes for your areas.</value>
+  </data>
+  <data name="Regex_Token_Invalid" xml:space="preserve">
+      <value>Invalid regex token</value>
+  </data>
+  <data name="Regex_Token_Missing" xml:space="preserve">
+      <value>Missing regex for</value>
   </data>
 </root>

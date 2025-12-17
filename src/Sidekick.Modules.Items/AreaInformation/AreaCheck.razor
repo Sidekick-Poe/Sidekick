@@ -4,6 +4,8 @@
 
 @using Sidekick.Modules.Items.AreaInformation.Localization
 
+@if (NoRegex) { return; }
+
 @if (BadLines.Any())
 {
     <Heading1 Class="text-red-500 flex flex-nowrap items-center justify-center gap-2 my-2">
@@ -40,6 +42,8 @@ else
     [CascadingParameter]
     public required Item Item { get; set; }
 
+    private bool NoRegex { get; set; }
+
     private List<string> BadLines { get; } = [];
 
     protected override void OnInitialized()
@@ -70,6 +74,7 @@ else
         BadLines.Clear();
 
         var regexValue = await SettingsService.GetString(SettingKeys.MapCheckDangerousRegex);
+        NoRegex = string.IsNullOrEmpty(regexValue);
         if (string.IsNullOrEmpty(regexValue)) return;
 
         var regex = new Regex(regexValue, RegexOptions.IgnoreCase);

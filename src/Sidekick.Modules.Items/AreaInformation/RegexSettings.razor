@@ -11,7 +11,14 @@
             class="bg-stone-950 border border-stone-700 rounded-md px-2 py-1 gap-2 flex justify-between items-center text-neutral-400 duration-200 transition-colors hover:bg-stone-700 cursor-pointer">
             <div>
                 <TextCaption>@Resources["Regex"]</TextCaption>
-                <TextBase Class="leading-4 line-clamp-1">@Regex</TextBase>
+                @if (!string.IsNullOrEmpty(Regex))
+                {
+                    <TextBase Class="leading-4 line-clamp-1">@Regex</TextBase>
+                }
+                else
+                {
+                    <TextBase Class="leading-4 line-clamp-1 italic">@Resources["NoRegex"]</TextBase>
+                }
             </div>
             <Icon Svg="@UiIcons.Settings" Class="w-6 h-6 text-white"/>
         </div>
@@ -20,7 +27,7 @@
         <Heading3>@Resources["Area_Settings"]</Heading3>
     </HeaderContent>
     <ChildContent>
-        <TextBase>We recommend using the website below to generate regexes for your areas.</TextBase>
+        <TextBase>@Resources["Settings_Description"]</TextBase>
         @if (Item.Game == GameType.PathOfExile1)
         {
             <ButtonLink OnClick="OpenPoeRe1">poe.re</ButtonLink>
