@@ -6,6 +6,7 @@ using System.Windows.Media;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Web.WebView2.Core;
 using Sidekick.Common.Platform.Windows.DllImport;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
@@ -49,6 +50,7 @@ public partial class MainWindow
         Topmost = false;
         ShowInTaskbar = false;
         InitializeComponent();
+        InitializeWebView();
 
         RootComponent.Parameters = new Dictionary<string, object?>
         {
@@ -345,6 +347,20 @@ public partial class MainWindow
     private void TopBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
         DragMove();
+    }
+
+    private async void InitializeWebView()
+    {
+        var settingsService = scope.ServiceProvider.GetRequiredService<ISettingsService>();
+        var useHardwareAcceleration = await settingsService.GetBool(SettingKeys.UseHardwareAcceleration);
+        if (!useHardwareAcceleration)
+        {
+            var env = await CoreWebView2Environment.CreateAsync(options: new CoreWebView2EnvironmentOptions
+            {
+                AdditionalBrowserArguments = "--disable-gpu --disable-software-rasterizer"
+            });
+            await WebView.WebView.EnsureCoreWebView2Async(env);
+        }
     }
 
     private void SetWebViewDebugging()

@@ -42,6 +42,7 @@ public static class DefaultSettings
     public static string PreferredWiki => WikiSetting.PoeWiki.GetValueAttribute();
 
     public static bool PriceCheckPredictionEnabled => true;
+    public static bool UseHardwareAcceleration => true;
 
     public static string MapCheckDangerousRegex => "reflect|regen";
 

@@ -21,6 +21,7 @@
             }
             <SettingCheckboxEditor SettingKey="@SettingKeys.SilentStart" Label="@SettingsResources["SilentStart"]" />
             <SettingCheckboxEditor SettingKey="@SettingKeys.OpenHomeOnLaunch" Label="@SettingsResources["OpenHomeOnLaunch"]" Tooltip="@SettingsResources["OpenHomeOnLaunch_Hint"]" />
+            @if (ApplicationService.SupportsKeybinds) {}
         </FormFieldset>
 
         @if (ApplicationService.SupportsKeybinds)
@@ -33,6 +34,15 @@
                                        Label="@Resources["OverlayCloseWithMouse"]"/>
                 <SettingCheckboxEditor SettingKey="@SettingKeys.EscapeClosesOverlays"
                                        Label="@Resources["EscapeClosesOverlays"]"/>
+            </FormFieldset>
+        }
+
+        @if (ApplicationService.SupportsHardwareAcceleration)
+        {
+            <FormFieldset Legend="@SettingsResources["Other"]">
+                <SettingCheckboxEditor SettingKey="@SettingKeys.UseHardwareAcceleration"
+                                       Label="@SettingsResources["UseHardwareAcceleration"]"
+                                       Tooltip="@SettingsResources["RestartRequired"]"/>
             </FormFieldset>
         }
 
@@ -64,7 +74,8 @@
         SettingKeys.Zoom,
         SettingKeys.KeyClose,
         SettingKeys.OverlayCloseWithMouse,
-        SettingKeys.EscapeClosesOverlays
+        SettingKeys.EscapeClosesOverlays,
+        SettingKeys.UseHardwareAcceleration,
     ];
 
     protected override async Task OnInitializedAsync()
