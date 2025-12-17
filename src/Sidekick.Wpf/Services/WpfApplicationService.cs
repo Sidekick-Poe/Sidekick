@@ -22,6 +22,8 @@ public class WpfApplicationService
 
     public bool SupportsAuthentication => true;
 
+    public bool SupportsHardwareAcceleration => true;
+
     private bool Initialized { get; set; }
 
     private TaskbarIcon? Icon { get; set; }

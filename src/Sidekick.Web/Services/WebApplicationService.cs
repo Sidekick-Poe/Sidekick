@@ -8,6 +8,8 @@ public class WebApplicationService : IApplicationService
 
     public bool SupportsAuthentication => false;
 
+    public bool SupportsHardwareAcceleration => false;
+
     public int Priority => 9000;
 
     public Task Initialize()

@@ -19,6 +19,8 @@ public static class SettingKeys
     public const string LeagueId = nameof(LeagueId);
     public const string LeaguesHash = nameof(LeaguesHash);
 
+    public const string UseHardwareAcceleration = nameof(UseHardwareAcceleration);
+
     public const string KeyClose = nameof(KeyClose);
     public const string KeyFindItems = nameof(KeyFindItems);
     public const string KeyOpenMapCheck = nameof(KeyOpenMapCheck);
