@@ -17,7 +17,7 @@ export default (triggerId, targetId) => {
         const options = {
             placement: 'top-left',
             backdrop: 'dynamic',
-            backdropClasses: 'bg-stone-500/30 fixed inset-0 z-40',
+            backdropClasses: 'bg-stone-500/30 fixed inset-0 z-30',
             closable: false,
         };
 

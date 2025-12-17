@@ -1,6 +1,7 @@
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Common.Browser
 @using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Localization
 
 @using Sidekick.Common.Ui.Modal
 @using Sidekick.Modules.Items.AreaInformation.Localization
@@ -42,6 +43,7 @@
         <FormInput Label="@Resources["Regex"]"
                    Value="@Regex"
                    ValueChanged="RegexChanged"
+                   Tooltip="@UiResources["Regex_Hint"]"
                    maxlength="250"/>
 
         @if (Regexes.Any())
@@ -51,9 +53,10 @@
             <div class="flex flex-col items-stretch gap-1">
                 @foreach (var regex in Regexes)
                 {
-                    <div class="bg-stone-800 rounded-md px-2 py-1 hover:bg-stone-600 cursor-pointer transition-colors duration-200"
-                         @onclick="() => RegexChanged(regex.Regex)"
-                         @onclick:preventDefault="true">
+                    <div
+                        class="bg-stone-800 rounded-md px-2 py-1 hover:bg-stone-600 cursor-pointer transition-colors duration-200"
+                        @onclick="() => RegexChanged(regex.Regex)"
+                        @onclick:preventDefault="true">
                         <TextCaption>@regex.Description</TextCaption>
                         <TextBase>@regex.Regex</TextBase>
                     </div>
@@ -69,6 +72,7 @@
 </Modal>
 
 @inject IStringLocalizer<AreaResources> Resources
+@inject IStringLocalizer<UiResources> UiResources
 @inject ISettingsService SettingsService
 @inject IBrowserProvider BrowserProvider
 
