@@ -43,6 +43,23 @@
                    Value="@Regex"
                    ValueChanged="RegexChanged"
                    maxlength="250"/>
+
+        @if (Regexes.Any())
+        {
+            <LayoutDivider/>
+            @Resources["Use_Regex_Hotkeys"]
+            <div class="flex flex-col items-stretch gap-1">
+                @foreach (var regex in Regexes)
+                {
+                    <div class="bg-stone-800 rounded-md px-2 py-1 hover:bg-stone-600 cursor-pointer transition-colors duration-200"
+                         @onclick="() => RegexChanged(regex.Regex)"
+                         @onclick:preventDefault="true">
+                        <TextCaption>@regex.Description</TextCaption>
+                        <TextBase>@regex.Regex</TextBase>
+                    </div>
+                }
+            </div>
+        }
     </ChildContent>
     <FooterContent>
         <div class="flex justify-end gap-2">
@@ -64,7 +81,7 @@
 
     private string? Regex { get; set; }
 
-    private List<string> Regexes { get; set; }
+    private List<RegexHotkey> Regexes { get; set; } = [];
 
     protected override async Task OnInitializedAsync()
     {
@@ -74,8 +91,8 @@
 
     private async Task OnShow()
     {
-        var regexes = await SettingsService.GetObject("Item_Area_Regexes", () => new List<string>());
-        Regexes = regexes ?? [];
+        var regexes = await SettingsService.GetObject<List<RegexHotkey>>(SettingKeys.RegexHotkeys, () => []);
+        Regexes = regexes;
     }
 
     private void OpenPoeRe1()
