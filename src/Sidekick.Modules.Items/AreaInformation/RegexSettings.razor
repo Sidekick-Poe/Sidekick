@@ -57,6 +57,8 @@
 
 @code {
 
+    public const string SettingKey = "Area_Regex";
+
     [CascadingParameter]
     public required Item Item { get; set; }
 
@@ -66,7 +68,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Regex = await SettingsService.GetString(SettingKeys.MapCheckDangerousRegex);
+        Regex = await SettingsService.GetString(SettingKey);
         await base.OnInitializedAsync();
     }
 
@@ -89,7 +91,7 @@
     private async Task RegexChanged(string? regex)
     {
         Regex = regex;
-        await SettingsService.Set(SettingKeys.MapCheckDangerousRegex, regex);
+        await SettingsService.Set(SettingKey, regex);
     }
 
 }

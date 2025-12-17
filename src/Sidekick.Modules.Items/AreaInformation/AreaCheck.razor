@@ -54,7 +54,7 @@ else
 
     private void SettingsServiceOnOnSettingsChanged(string[] keys)
     {
-        if (!keys.Contains(SettingKeys.MapCheckDangerousRegex)) return;
+        if (!keys.Contains(RegexSettings.SettingKey)) return;
 
         _ = InvokeAsync(async () =>
         {
@@ -73,7 +73,7 @@ else
     {
         BadLines.Clear();
 
-        var regexValue = await SettingsService.GetString(SettingKeys.MapCheckDangerousRegex);
+        var regexValue = await SettingsService.GetString(RegexSettings.SettingKey);
         NoRegex = string.IsNullOrEmpty(regexValue);
         if (string.IsNullOrEmpty(regexValue)) return;
 
