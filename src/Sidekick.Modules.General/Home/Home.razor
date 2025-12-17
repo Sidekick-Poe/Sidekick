@@ -33,9 +33,8 @@
                     @Resources["Item_Box_Text"]
                 </TextBase>
                 <FormTextarea @bind-Value="ItemText"/>
-                <div class="grid grid-cols-12 gap-3 *:col-span-6">
-                    <ButtonPrimary OnClick="PriceCheck">@Resources["Item_Box_Prices"]</ButtonPrimary>
-                    <ButtonPrimary OnClick="MapCheck">@Resources["Item_Box_Map"]</ButtonPrimary>
+                <div class="*:w-full">
+                    <ButtonPrimary OnClick="ItemOverlay">@Resources["Item_Box_Submit"]</ButtonPrimary>
                 </div>
             </FormFieldset>
         </AppContainer>
@@ -57,7 +56,6 @@
 @inject IStringLocalizer<HomeResources> Resources
 @inject IStringLocalizer<SettingsResources> SettingsResources
 @inject IApplicationService ApplicationService
-@inject ICurrentView CurrentView
 @inject IViewLocator ViewLocator
 
 @code {
@@ -76,19 +74,11 @@
         await base.OnInitializedAsync();
     }
 
-    private void PriceCheck()
+    private void ItemOverlay()
     {
         if (ItemText != null)
         {
-            ViewLocator.Open(SidekickViewType.Overlay, $"/trade/{ItemText.EncodeBase64Url()}");
-        }
-    }
-
-    private void MapCheck()
-    {
-        if (ItemText != null)
-        {
-            ViewLocator.Open(SidekickViewType.Overlay, $"/map/{ItemText.EncodeBase64Url()}");
+            ViewLocator.Open(SidekickViewType.Overlay, $"/item/{ItemText.EncodeBase64Url()}");
         }
     }
 

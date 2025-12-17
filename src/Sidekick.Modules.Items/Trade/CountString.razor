@@ -1,0 +1,17 @@
+@using Sidekick.Modules.Items.Localization
+@if (Total > 0 && Count > 0)
+{
+    <TextCaption>@Resources["CountString", Count, Total]</TextCaption>
+}
+
+@inject IStringLocalizer<TradeResources> Resources
+
+@code {
+
+    [Parameter]
+    public int Total { get; set; }
+
+    [Parameter]
+    public int Count { get; set; }
+
+}

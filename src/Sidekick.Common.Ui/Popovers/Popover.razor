@@ -6,12 +6,12 @@
                                          Trigger.GetValueAttribute(),
                                      })"
                    class="flex">
-    @PopoverAnchor
+    @ActivatorContent
 </FlowbiteComponent>
 
 <div id="@Id"
      class="fixed! z-10 invisible opacity-0 transition-opacity duration-300 border border-solid border-stone-800 bg-black grow overflow-y-auto overflow-x-hidden p-2 rounded-lg shadow-lg @Class">
-    @PopoverContent
+    @ChildContent
 </div>
 
 @using Sidekick.Common.Enums
@@ -19,10 +19,10 @@
 @code {
 
     [Parameter]
-    public required RenderFragment PopoverContent { get; set; }
+    public required RenderFragment ChildContent { get; set; }
 
     [Parameter]
-    public required RenderFragment PopoverAnchor { get; set; }
+    public required RenderFragment ActivatorContent { get; set; }
 
     [Parameter]
     public TooltipPlacement Placement { get; set; } = TooltipPlacement.Top;
@@ -33,6 +33,6 @@
     [Parameter]
     public string Class { get; set; } = "max-h-[550px] max-w-[350px]";
 
-    protected string Id { get; } = UiUtilities.GenerateId();
+    private string Id { get; } = UiUtilities.GenerateId();
 
 }

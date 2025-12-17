@@ -1,0 +1,63 @@
+﻿@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Languages
+@using Sidekick.Apis.Poe2Scout.Items
+@using Sidekick.Apis.PoeNinja.Items
+@using Sidekick.Modules.Items.Valuation.Localization
+@using Sidekick.Common.Ui.Tabs
+
+@if (Valid)
+{
+    <TabItem Active="@(CurrentTab == "valuation")"
+             Text="@Resources["Valuation"]"
+             OnClick="@(() => CurrentTabChanged.InvokeAsync("valuation"))"/>
+}
+
+@inject IStringLocalizer<ValuationResources> Resources
+@inject IScoutItemProvider ScoutItemProvider
+@inject INinjaItemProvider NinjaItemProvider
+@inject IGameLanguageProvider GameLanguageProvider
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public string? CurrentTab { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> CurrentTabChanged { get; set; }
+
+    private bool Valid { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Valid = CheckNinja();
+        Valid |= CheckPrediction();
+        Valid |= await CheckScout();
+        Valid &= Item.Properties.ItemClass != ItemClass.Map && Item.Properties.ItemClass != ItemClass.Waystone;
+
+        if (Valid) await CurrentTabChanged.InvokeAsync("valuation");
+
+        await base.OnInitializedAsync();
+    }
+
+    private bool CheckNinja()
+    {
+        return NinjaItemProvider.GetStashItem(Item) != null;
+    }
+
+    private bool CheckPrediction()
+    {
+        return Item.Game == GameType.PathOfExile1
+               && Item.Properties.Rarity == Rarity.Rare
+               && GameLanguageProvider.IsEnglish();
+    }
+
+    private async Task<bool> CheckScout()
+    {
+        var scoutItem = await ScoutItemProvider.GetItem(Item.ApiInformation.InvariantName);
+        return scoutItem != null;
+    }
+
+}

@@ -21,9 +21,8 @@ using Sidekick.Common.Updater;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
-using Sidekick.Modules.Maps;
+using Sidekick.Modules.Items;
 using Sidekick.Modules.RegexHotkeys;
-using Sidekick.Modules.Trade;
 using Sidekick.Modules.Wealth;
 using Sidekick.PhotinoBlazor.Services;
 using Velopack;
@@ -89,8 +88,7 @@ public class Program
             .AddSidekickDevelopment()
             .AddSidekickRegexHotkeys()
             .AddSidekickGeneral()
-            .AddSidekickMaps()
-            .AddSidekickTrade()
+            .AddSidekickItems()
             .AddSidekickWealth()
 
             // Platform needs to be at the end

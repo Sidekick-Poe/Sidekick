@@ -20,8 +20,6 @@ public static class DefaultSettings
 
     public static string KeyOpenPriceCheck => "Ctrl+D";
 
-    public static string KeyOpenMapCheck => "Ctrl+X";
-
     public static string KeyOpenWiki => "Alt+W";
 
     public static string KeyFindItems => "Ctrl+F";
@@ -43,8 +41,6 @@ public static class DefaultSettings
 
     public static bool PriceCheckPredictionEnabled => true;
     public static bool UseHardwareAcceleration => true;
-
-    public static string MapCheckDangerousRegex => "reflect|regen";
 
     public static bool PriceCheckEnableAllFilters => false;
     public static bool PriceCheckFillDefaultMin => true;

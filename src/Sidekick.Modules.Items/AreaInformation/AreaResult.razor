@@ -1,0 +1,23 @@
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Modules.Items.AreaInformation.Localization
+
+<Heading2 Class="mb-2">@Resources["Title"]</Heading2>
+
+<RegexSettings/>
+<div class="h-2"></div>
+<AreaCheck/>
+
+@if (Item.Game == GameType.PathOfExile1)
+{
+    <ItemSeparator Rarity="Item.Properties.Rarity"/>
+    <PoeWikiMapInfo Text="@Item.ApiInformation.InvariantText"/>
+}
+
+@inject IStringLocalizer<AreaResources> Resources
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+}

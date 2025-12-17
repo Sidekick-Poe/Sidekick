@@ -1,0 +1,37 @@
+﻿@using Sidekick.Apis.PoeNinja.Exchange.Models
+@using Sidekick.Modules.Items.Components.Prices
+@using Sidekick.Modules.Items.PoeNinja.Localization
+
+@foreach (var trade in Currency.Trades)
+{
+    <div class="mb-2 bg-stone-950 rounded-lg px-2 py-1">
+        <div class="flex flex-wrap">
+            <div class="flex w-1/2 justify-center">
+                <PriceDisplay Value="trade.Value" Currency="@trade.ExchangeId"/>
+            </div>
+            <div class="flex items-center w-1/2 justify-center">
+                <PriceDisplay Value="1" Currency="@trade.ExchangeId" Small="true"/>
+                <Icon Svg="@UiIcons.ArrowForward" Class="mx-1 text-[#a38d6d]"/>
+                <PriceDisplay Value="(1 / trade.Value)" Currency="@Currency.Id" Small="true"/>
+            </div>
+        </div>
+
+        @if (trade.Volume != null)
+        {
+            <div class="w-1/2">
+                <TextCaption Class="text-center">@trade.Volume @Resources["VolumeTraded"]</TextCaption>
+            </div>
+        }
+    </div>
+}
+
+<PoeNinjaSparkline Sparkline="Currency.Sparkline"/>
+
+@inject IStringLocalizer<PoeNinjaResources> Resources
+
+@code {
+
+    [Parameter]
+    public required NinjaCurrency Currency { get; set; }
+
+}
