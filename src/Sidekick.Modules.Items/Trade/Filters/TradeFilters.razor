@@ -3,12 +3,12 @@
 @using Sidekick.Modules.Items.Settings
 
 <Popover>
-    <PopoverAnchor>
+    <ActivatorContent>
         <ButtonIcon>
             <Icon Svg="@UiIcons.Adjustments" Size="@UiIconSize.Medium" AddBadge="AreSettingsModified"/>
         </ButtonIcon>
-    </PopoverAnchor>
-    <PopoverContent>
+    </ActivatorContent>
+    <ChildContent>
         <PriceCheckStatusEditor/>
         <PriceCheckItemCurrencyEditor/>
         <FormFieldset Legend="@Resources["Bulk_Trade"]"
@@ -20,7 +20,7 @@
             <ButtonPrimary Disabled="!AreSettingsModified"
                            OnClick="ClearFilters">@Resources["Clear_Filters"]</ButtonPrimary>
         </div>
-    </PopoverContent>
+    </ChildContent>
 </Popover>
 
 @inject IStringLocalizer<TradeResources> Resources

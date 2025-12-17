@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Dangerous_Modifiers" xml:space="preserve">
-    <value>Modificateurs à éviter</value>
+    <value>위험한 접사</value>
   </data>
-  <data name="Map_Dangerous_Regex" xml:space="preserve">
-    <value>Regex</value>
+  <data name="Regex" xml:space="preserve">
+      <value>Regex</value>
   </data>
   <data name="Map_Key_Check" xml:space="preserve">
-    <value>Vérifier les modificateurs de la carte</value>
+    <value>맵모드 체크하기</value>
   </data>
 </root>

@@ -19,16 +19,16 @@ public class ChatKeybindHandler(
 
     protected override async Task<List<string?>> GetKeybinds()
     {
-        var chatCommands = await settingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands);
+        var chatCommands = await settingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands, () => []);
         return chatCommands?.Select(x => x.Key).ToList() ?? [];
     }
 
     public override bool IsValid(string keybind) => processProvider.IsPathOfExileInFocus
-                                           && Keybinds.Any(x => x == keybind);
+                                                    && Keybinds.Any(x => x == keybind);
 
     public override async Task Execute(string keybind)
     {
-        var chatCommands = await settingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands);
+        var chatCommands = await settingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands, () => []);
         var chatCommand = chatCommands?.FirstOrDefault(x => x.Key == keybind);
         if (chatCommand == null)
         {
@@ -68,15 +68,15 @@ public class ChatKeybindHandler(
         if (chatCommand.Submit)
         {
             await keyboard.PressKey(
-                "Enter",
-                "Ctrl+A",
-                "Backspace",
-                "Ctrl+V",
-                "Enter",
-                "Enter",
-                "Up",
-                "Up",
-                "Esc");
+            "Enter",
+            "Ctrl+A",
+            "Backspace",
+            "Ctrl+V",
+            "Enter",
+            "Enter",
+            "Up",
+            "Up",
+            "Esc");
         }
         else
         {

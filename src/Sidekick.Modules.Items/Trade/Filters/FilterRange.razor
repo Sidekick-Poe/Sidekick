@@ -8,7 +8,7 @@
 }
 
 <Popover Trigger="PopoverTrigger.Hover">
-    <PopoverAnchor>
+    <ActivatorContent>
         <div
             class="flex flex-nowrap items-center [&_.range_[contenteditable]]:leading-[14px] [&_.range~.range_[contenteditable]]:rounded-l-none! [&_.range_[contenteditable]]:rounded-r-none! [&_.range:last-child_[contenteditable]]:rounded-r-md!"
             id="@Id">
@@ -27,8 +27,8 @@
                                      DoubleValueChanged="UpdateMaxValue"/>
             </div>
         </div>
-    </PopoverAnchor>
-    <PopoverContent>
+    </ActivatorContent>
+    <ChildContent>
         <div class="flex flex-nowrap gap-1">
             <ButtonIcon OnClick="SetMin">
                 <Icon Svg="@UiIcons.FilterGreaterThan" />
@@ -43,7 +43,7 @@
                 <Icon Svg="@UiIcons.FilterRange" />
             </ButtonIcon>
         </div>
-    </PopoverContent>
+    </ChildContent>
 </Popover>
 
 @inject IStringLocalizer<TradeResources> Resources
@@ -87,7 +87,7 @@
         if (Checked != LastValueChecked)
         {
             LastValueChecked = Checked;
-            NormalizeMultiplier = await SettingsService.GetObject<double>(SettingKeys.PriceCheckNormalizeValue);
+            NormalizeMultiplier = await SettingsService.GetDouble(SettingKeys.PriceCheckNormalizeValue);
 
             var fillMin = await SettingsService.GetBool(SettingKeys.PriceCheckFillDefaultMin);
             if (fillMin)

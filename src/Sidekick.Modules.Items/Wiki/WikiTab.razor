@@ -3,16 +3,16 @@
 @using Sidekick.Apis.Poe.Items
 
 <Popover Placement="TooltipPlacement.TopRight">
-    <PopoverAnchor>
+    <ActivatorContent>
         <TabItem EndIcon="@UiIcons.ChevronDown"
                  Text="@Resources["Wiki"]"/>
-    </PopoverAnchor>
-    <PopoverContent>
+    </ActivatorContent>
+    <ChildContent>
         <div class="flex flex-col">
             <PoeWikiButton/>
             <PoeDbButton/>
         </div>
-    </PopoverContent>
+    </ChildContent>
 </Popover>
 
 @inject IStringLocalizer<WikiResources> Resources

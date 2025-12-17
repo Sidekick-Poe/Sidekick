@@ -10,17 +10,17 @@
 }
 
 <Popover Trigger="PopoverTrigger.Hover" Class="min-w-120 [&_.mb-3]:!mb-0">
-    <PopoverAnchor>
+    <ActivatorContent>
         <button type="button"
                 @onclick="@OpenWebsite"
                 class="inline-flex items-center justify-center p-1 -m-1 text-xl font-medium tracking-wide transition-colors duration-200 rounded-md bg-transparent">
             <Icon Svg="@UiIcons.External" />
         </button>
-    </PopoverAnchor>
-    <PopoverContent>
+    </ActivatorContent>
+    <ChildContent>
         <TextBase Class="mb-2 whitespace-pre-wrap">@Resources["OpenQueryInWebsite"]</TextBase>
         <FormInput Value="@TradeUri?.ToString()" readonly />
-    </PopoverContent>
+    </ChildContent>
 </Popover>
 
 @inject IStringLocalizer<TradeResources> Resources

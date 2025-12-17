@@ -56,6 +56,22 @@ public class TestSettingsService : ISettingsService
 
         return Task.FromResult((int)(defaultProperty.GetValue(null) ?? 0));
     }
+    
+    public Task<double> GetDouble(string key)
+    {
+        if (store.TryGetValue(key, out var value) && double.TryParse(value, out var intValue))
+        {
+            return Task.FromResult(intValue);
+        }
+
+        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
+        if (defaultProperty == null)
+        {
+            return Task.FromResult(0.0);
+        }
+
+        return Task.FromResult((double)(defaultProperty.GetValue(null) ?? 0));
+    }
 
     public Task<DateTimeOffset?> GetDateTime(string key)
     {
@@ -105,7 +121,8 @@ public class TestSettingsService : ISettingsService
         return Task.FromResult(defaultEnumValueFromAttribute);
     }
 
-    public Task<TValue?> GetObject<TValue>(string key)
+    public Task<TValue> GetObject<TValue>(string key, Func<TValue> defaultFunc)
+    where TValue : class
     {
         if (store.TryGetValue(key, out var value))
         {

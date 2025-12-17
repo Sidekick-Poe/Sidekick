@@ -1,0 +1,178 @@
+@using System.Text.RegularExpressions
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Common.Settings
+
+@using Sidekick.Modules.Items.AreaInformation.Localization
+
+@if (BadLines.Any())
+{
+    <Heading1 Class="text-red-500 flex flex-nowrap items-center justify-center gap-2 my-2">
+        <Icon Svg="@UiIcons.ThumbDown"/>
+        @Resources["Bad"]
+    </Heading1>
+    <ItemSeparator Rarity="Item.Properties.Rarity"/>
+
+    <div class="flex flex-col gap-1">
+        @foreach (var badLine in BadLines)
+        {
+            <div class="flex items-center justify-center flex-nowrap gap-2">
+                <Icon Svg="@UiIcons.ThumbDown" Class="text-red-500"/>
+                <TextBase Class="font-caps text-red-500">@badLine</TextBase>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <Heading1 Class="text-green-500 flex flex-nowrap items-center justify-center gap-2 my-2">
+        <Icon Svg="@UiIcons.ThumbUp"/>
+        @Resources["Good"]
+    </Heading1>
+}
+
+
+@inject IStringLocalizer<AreaResources> Resources
+@inject ISettingsService SettingsService
+@implements IDisposable
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    private List<string> BadLines { get; } = [];
+
+    protected override void OnInitialized()
+    {
+        SettingsService.OnSettingsChanged += SettingsServiceOnOnSettingsChanged;
+        base.OnInitialized();
+    }
+
+    private void SettingsServiceOnOnSettingsChanged(string[] keys)
+    {
+        if (!keys.Contains(SettingKeys.MapCheckDangerousRegex)) return;
+
+        _ = InvokeAsync(async () =>
+        {
+            await Update();
+            StateHasChanged();
+        });
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+        await Update();
+    }
+
+    private async Task Update()
+    {
+        BadLines.Clear();
+
+        var regexValue = await SettingsService.GetString(SettingKeys.MapCheckDangerousRegex);
+        if (string.IsNullOrEmpty(regexValue)) return;
+
+        var regex = new Regex(regexValue, RegexOptions.IgnoreCase);
+        var text = Item.Text.Text;
+        var lines = text.Split(new[]
+        {
+            "\r\n",
+            "\n",
+            "\r"
+        }, StringSplitOptions.None);
+
+        var tokens = Tokenize(regexValue);
+        if (tokens.Length == 0) tokens = [regexValue.Trim()];
+
+        var bad = new HashSet<string>(StringComparer.Ordinal);
+
+        foreach (var tokenRaw in tokens)
+        {
+            var isNegated = tokenRaw.StartsWith("!");
+            var tokenBody = isNegated ? tokenRaw[1..].Trim() : tokenRaw;
+
+            if (string.IsNullOrWhiteSpace(tokenBody))
+                continue;
+
+            Regex tokenRegex;
+            try
+            {
+                tokenRegex = new Regex(tokenBody, RegexOptions.IgnoreCase);
+            }
+            catch
+            {
+                // Invalid token regex: report it plainly (always correct).
+                bad.Add($"Invalid regex token: \"{tokenRaw}\"");
+                continue;
+            }
+
+            if (isNegated)
+            {
+                // "!xyz" => any line matching xyz is BAD; show offending lines.
+                foreach (var line in lines)
+                {
+                    var trimmed = line.Trim();
+                    if (string.IsNullOrWhiteSpace(trimmed)) continue;
+                    if (trimmed == "--------") continue;
+
+                    if (tokenRegex.IsMatch(trimmed))
+                        bad.Add(trimmed);
+                }
+            }
+            else
+            {
+                // Positive token => if it doesn't match anywhere in the full text, report the token.
+                if (!tokenRegex.IsMatch(text))
+                {
+                    var hint = GetHelpfulTokenHint(tokenRaw);
+                    bad.Add(hint is null
+                                ? $"Missing match for: \"{tokenRaw}\""
+                                : $"Missing match for: \"{tokenRaw}\" ({hint})");
+                }
+            }
+        }
+
+        BadLines.AddRange(bad);
+    }
+
+    private static string[] Tokenize(string input)
+    {
+        // Matches either:
+        // 1) "anything but quotes"  -> group 1
+        // 2) or a non-whitespace token -> group 2
+        var matches = Regex.Matches(input, "\"([^\"]*)\"|(\\S+)");
+        return matches
+            .Select(m => m.Groups[1].Success ? m.Groups[1].Value : m.Groups[2].Value)
+            .Select(s => s.Trim())
+            .Where(s => !string.IsNullOrWhiteSpace(s))
+            .ToArray();
+    }
+
+    private static Regex BuildTokenRegex(string patternOrLiteral, RegexOptions options)
+    {
+        // Prefer "treat as regex", but if invalid, treat as literal (always safe).
+        try
+        {
+            return new Regex(patternOrLiteral, options);
+        }
+        catch
+        {
+            return new Regex(Regex.Escape(patternOrLiteral), options);
+        }
+    }
+
+    private static string? GetHelpfulTokenHint(string tokenRaw)
+    {
+        // Only used for UI messaging; does not affect matching.
+        if (tokenRaw.Contains("m q", StringComparison.OrdinalIgnoreCase)) return "Item Quantity";
+        if (tokenRaw.Contains("m r", StringComparison.OrdinalIgnoreCase)) return "Item Rarity";
+        if (tokenRaw.Contains("m p", StringComparison.OrdinalIgnoreCase)) return "Monster Pack Size";
+        return null;
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= SettingsServiceOnOnSettingsChanged;
+    }
+
+}

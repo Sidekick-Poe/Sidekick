@@ -20,7 +20,7 @@
     [Parameter]
     public IEnumerable<object>? ScriptParameters { get; set; }
 
-    private IJSObjectReference? JsObject { get; set; }
+    public IJSObjectReference? JsObject { get; set; }
 
     private string Id { get; } = UiUtilities.GenerateId();
 

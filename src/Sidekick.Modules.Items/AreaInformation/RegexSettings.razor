@@ -1,0 +1,88 @@
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Common.Browser
+@using Sidekick.Common.Settings
+
+@using Sidekick.Common.Ui.Modal
+@using Sidekick.Modules.Items.AreaInformation.Localization
+
+<Modal OnShow="OnShow">
+    <ActivatorContent>
+        <div
+            class="bg-stone-950 border border-stone-700 rounded-md px-2 py-1 gap-2 flex justify-between items-center text-neutral-400 duration-200 transition-colors hover:bg-stone-700 cursor-pointer">
+            <div>
+                <TextCaption>@Resources["Regex"]</TextCaption>
+                <TextBase Class="leading-4 line-clamp-1">@Regex</TextBase>
+            </div>
+            <Icon Svg="@UiIcons.Settings" Class="w-6 h-6 text-white"/>
+        </div>
+    </ActivatorContent>
+    <HeaderContent>
+        <Heading3>@Resources["Area_Settings"]</Heading3>
+    </HeaderContent>
+    <ChildContent>
+        <TextBase>We recommend using the website below to generate regexes for your areas.</TextBase>
+        @if (Item.Game == GameType.PathOfExile1)
+        {
+            <ButtonLink OnClick="OpenPoeRe1">poe.re</ButtonLink>
+        }
+        else
+        {
+            <ButtonLink OnClick="OpenPoeRe2">poe2.re</ButtonLink>
+        }
+
+        <LayoutDivider/>
+
+        <FormInput Label="@Resources["Regex"]"
+                   Value="@Regex"
+                   ValueChanged="RegexChanged"
+                   maxlength="250"/>
+    </ChildContent>
+    <FooterContent>
+        <div class="flex justify-end gap-2">
+            <ButtonPrimary OnClick="context.Hide">@Resources["Close"]</ButtonPrimary>
+        </div>
+    </FooterContent>
+</Modal>
+
+@inject IStringLocalizer<AreaResources> Resources
+@inject ISettingsService SettingsService
+@inject IBrowserProvider BrowserProvider
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    private string? Regex { get; set; }
+
+    private List<string> Regexes { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Regex = await SettingsService.GetString(SettingKeys.MapCheckDangerousRegex);
+        await base.OnInitializedAsync();
+    }
+
+    private async Task OnShow()
+    {
+        var regexes = await SettingsService.GetObject("Item_Area_Regexes", () => new List<string>());
+        Regexes = regexes ?? [];
+    }
+
+    private void OpenPoeRe1()
+    {
+        BrowserProvider.OpenUri(new Uri("https://poe.re/#/maps"));
+    }
+
+    private void OpenPoeRe2()
+    {
+        BrowserProvider.OpenUri(new Uri("https://poe2.re/waystone"));
+    }
+
+    private async Task RegexChanged(string? regex)
+    {
+        Regex = regex;
+        await SettingsService.Set(SettingKeys.MapCheckDangerousRegex, regex);
+    }
+
+}

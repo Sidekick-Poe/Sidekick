@@ -6,6 +6,7 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Api
 @using Sidekick.Common.Ui.Tabs
+@using Sidekick.Modules.Items.AreaInformation
 @using Sidekick.Modules.Items.Components
 @using Sidekick.Modules.Items.Exchange
 @using Sidekick.Modules.Items.Settings
@@ -43,6 +44,7 @@
                     <div class="sticky top-0 z-10 pb-1 mb-2 -mt-3 pt-2 bg-stone-900">
                         <TabList>
                             <ChildContent>
+                                <AreaTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <ExchangeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <ValuationTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
                                 <TradeTab CurrentTab="@CurrentTab" CurrentTabChanged="TabChanged"/>
@@ -62,6 +64,8 @@
 
                     @switch (CurrentTab)
                     {
+                        case "area":
+                            <AreaResult/> break;
                         case "trade":
                             <TradeResult/> break;
                         case "exchange":

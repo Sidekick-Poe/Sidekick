@@ -43,7 +43,7 @@
             .25
         };
 
-        Value = (await SettingsService.GetObject<double>(SettingKey)).ToString();
+        Value = (await SettingsService.GetDouble(SettingKey)).ToString();
         ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
 
         SettingsService.OnSettingsChanged += OnSettingsChanged;
@@ -69,7 +69,7 @@
     {
         if (!keys.Contains(SettingKey)) return;
 
-        Value = (await SettingsService.GetObject<double>(SettingKey)).ToString();
+        Value = (await SettingsService.GetDouble(SettingKey)).ToString();
         ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
         await InvokeAsync(StateHasChanged);
     }

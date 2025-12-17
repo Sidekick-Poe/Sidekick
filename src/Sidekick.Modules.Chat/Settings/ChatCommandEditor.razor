@@ -12,11 +12,11 @@
         <div class="grid grid-cols-12 gap-2 mb-3">
             <div class="col-span-6">
                 <FormInput Label="@Resources["Chat_Command"]" Value="@chatSetting.Command"
-                    ValueChanged="(v) => CommandChanged(chatSetting, v)" />
+                           ValueChanged="(v) => CommandChanged(chatSetting, v)"/>
             </div>
             <div class="col-span-6">
                 <KeybindEditor Value="@chatSetting.Key" ValueChanged="(v) => KeyChanged(chatSetting, v)"
-                    Label="@UiResources["Keybind"]" />
+                               Label="@UiResources["Keybind"]"/>
             </div>
         </div>
 
@@ -49,7 +49,7 @@
     private List<ChatSetting> ChatSettings { get; set; } = [];
     protected override async Task OnInitializedAsync()
     {
-        ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands) ?? [];
+        ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands, () => []);
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
         await base.OnInitializedAsync();
@@ -94,7 +94,7 @@
     {
         if (!keys.Contains(SettingKeys.ChatCommands)) return;
 
-        ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands) ?? [];
+        ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands, () => []);
         await InvokeAsync(StateHasChanged);
     }
 

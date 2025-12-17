@@ -1,5 +1,5 @@
 namespace Sidekick.Modules.Items.AreaInformation.Localization;
 
-public class MapInfoResources
+public class AreaResources
 {
 }

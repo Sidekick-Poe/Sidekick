@@ -1,0 +1,36 @@
+﻿@using Sidekick.Apis.Poe.Items
+@using Sidekick.Modules.Items.AreaInformation.Localization
+@using Sidekick.Common.Ui.Tabs
+
+@if (Valid)
+{
+    <TabItem Active="@(CurrentTab == "area")"
+             Text="@Resources["Tab"]"
+             OnClick="@(() => CurrentTabChanged.InvokeAsync("area"))"/>
+}
+
+@inject IStringLocalizer<AreaResources> Resources
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public string? CurrentTab { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> CurrentTabChanged { get; set; }
+
+    private bool Valid { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Valid = Item.Properties.ItemClass == ItemClass.Map || Item.Properties.ItemClass == ItemClass.Waystone;
+
+        if (Valid) await CurrentTabChanged.InvokeAsync("area");
+
+        await base.OnInitializedAsync();
+    }
+    
+}
