@@ -56,7 +56,7 @@ public class TestSettingsService : ISettingsService
 
         return Task.FromResult((int)(defaultProperty.GetValue(null) ?? 0));
     }
-    
+
     public Task<double> GetDouble(string key)
     {
         if (store.TryGetValue(key, out var value) && double.TryParse(value, out var intValue))
@@ -128,7 +128,7 @@ public class TestSettingsService : ISettingsService
         {
             try
             {
-                return Task.FromResult(JsonSerializer.Deserialize<TValue>(value ?? string.Empty));
+                if(!string.IsNullOrEmpty(value)) return Task.FromResult(JsonSerializer.Deserialize<TValue>(value) ?? defaultFunc.Invoke());
             }
             catch
             {
@@ -137,12 +137,19 @@ public class TestSettingsService : ISettingsService
         }
 
         var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty == null)
+        if (defaultProperty != null)
         {
-            return Task.FromResult<TValue?>(default);
+            try
+            {
+                return Task.FromResult((TValue)(defaultProperty.GetValue(null) ?? throw new Exception("The default settings returned null.")));
+            }
+            catch
+            {
+                // Ignore and fall back to default
+            }
         }
 
-        return Task.FromResult((TValue?)(defaultProperty.GetValue(null) ?? null));
+        return Task.FromResult(defaultFunc.Invoke());
     }
 
     public Task Set(string key, object? value)
