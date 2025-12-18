@@ -139,10 +139,6 @@
         {
             if (Debugger.IsAttached)
             {
-                TimedOut = true;
-                StateHasChanged();
-                return;
-
                 // Comment the following line to get the update view to stick when debugging.
                 Skip();
                 return;
