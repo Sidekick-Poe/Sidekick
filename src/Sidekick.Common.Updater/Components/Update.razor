@@ -20,10 +20,23 @@
         }
         else if (UpdateInfo == null)
         {
-            <AppFullContainer>
-                <Heading3 Class="mb-2 text-center">@Resources["Checking_For_Updates"]</Heading3>
-                <ProgressBar Indeterminate="true"/>
-            </AppFullContainer>
+            if (!TimedOut)
+            {
+                <AppFullContainer>
+                    <Heading3 Class="mb-2 text-center">@Resources["Checking_For_Updates"]</Heading3>
+                    <ProgressBar Indeterminate="true"/>
+                </AppFullContainer>
+            }
+            else
+            {
+                <AppFullContainer>
+                    <Heading3 Class="mb-4 text-center">Update check took too long</Heading3>
+                    <div class="text-center flex gap-2 justify-center">
+                        <ButtonPrimary OnClick="Skip">Continue to Sidekick</ButtonPrimary>
+                        <ButtonSecondary OnClick="OpenWebsite">Go to website</ButtonSecondary>
+                    </div>
+                </AppFullContainer>
+            }
         }
         else if (Updating)
         {
@@ -99,6 +112,8 @@
 
     private SidekickException? Exception { get; set; }
 
+    private bool TimedOut { get; set; }
+
     private RenderFragment GetNotes(VelopackAsset asset)
     {
         return @<FormFieldset Legend="@($"Version {asset.Version}")">
@@ -131,12 +146,25 @@
 
             if (AutoUpdater.IsUpdaterInstalled())
             {
-                UpdateInfo = await AutoUpdater.CheckForUpdates();
-
-                if (UpdateInfo is null)
+                var checkTask = AutoUpdater.CheckForUpdates();
+                var completedTask = await Task.WhenAny(checkTask, Task.Delay(TimeSpan.FromSeconds(10)));
+                if (completedTask == checkTask)
                 {
-                    // There's no available updates
-                    NavigationManager.NavigateTo("/setup");
+                    // Completed within timeout
+                    UpdateInfo = await checkTask;
+
+                    if (UpdateInfo is null)
+                    {
+                        // There's no available updates
+                        NavigationManager.NavigateTo("/setup");
+                    }
+                }
+                else
+                {
+                    // Timed out
+                    TimedOut = true;
+                    StateHasChanged();
+                    return;
                 }
             }
             else
