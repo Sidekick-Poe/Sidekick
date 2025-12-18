@@ -30,10 +30,10 @@
             else
             {
                 <AppFullContainer>
-                    <Heading3 Class="mb-4 text-center">Update check took too long</Heading3>
+                    <Heading3 Class="mb-4 text-center">@Resources["TimedOut"]</Heading3>
                     <div class="text-center flex gap-2 justify-center">
-                        <ButtonPrimary OnClick="Skip">Continue to Sidekick</ButtonPrimary>
-                        <ButtonSecondary OnClick="OpenWebsite">Go to website</ButtonSecondary>
+                        <ButtonSecondary OnClick="OpenWebsite">@Resources["Open_Website"]</ButtonSecondary>
+                        <ButtonPrimary OnClick="Skip">@Resources["Skip"]</ButtonPrimary>
                     </div>
                 </AppFullContainer>
             }
@@ -80,7 +80,7 @@
     <BottomContent>
         <div class="px-3 py-2 flex justify-center gap-2">
             <ButtonSecondary OnClick="Exit">@Resources["Exit"]</ButtonSecondary>
-            @if (!Updating)
+            @if (!Updating && !TimedOut)
             {
                 <ButtonSecondary OnClick="Skip">@Resources["Skip"]</ButtonSecondary>
             }
@@ -139,6 +139,10 @@
         {
             if (Debugger.IsAttached)
             {
+                TimedOut = true;
+                StateHasChanged();
+                return;
+
                 // Comment the following line to get the update view to stick when debugging.
                 Skip();
                 return;
@@ -164,7 +168,6 @@
                     // Timed out
                     TimedOut = true;
                     StateHasChanged();
-                    return;
                 }
             }
             else
