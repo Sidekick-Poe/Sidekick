@@ -41,4 +41,42 @@ Right click to drink. Can only hold charges while in belt. Refill at Wells or by
         actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Charges per use", -26);
         Assert.False(actual.Modifiers[1].MatchedFuzzily);
     }
+
+    [Fact]
+    public void ParseCharm()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Charms
+Rarity: Magic
+Analyst's Stone Charm of the Practitioner
+--------
+Lasts 3.60 (augmented) Seconds
+Consumes 16 (augmented) of 40 Charges on use
+Currently has 40 Charges
+Cannot be Stunned
+--------
+Requires: Level 16
+--------
+Item Level: 51
+--------
+Used when you become Stunned (implicit)
+--------
+21% increased Duration
+19% reduced Charges per use
+--------
+Used automatically when condition is met. Can only hold charges while in belt. Refill at Wells or by killing monsters.
+");
+
+        Assert.Equal(ItemClass.Charms, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
+        Assert.Equal("Stone Charm", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
+
+        Assert.Equal(16, actual.Properties.RequiresLevel);
+        Assert.Equal(51, actual.Properties.ItemLevel);
+
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Duration (Charm)", 21);
+        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Charges per use", -19);
+        Assert.False(actual.Modifiers[1].MatchedFuzzily);
+    }
 }

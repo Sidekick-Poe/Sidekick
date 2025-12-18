@@ -155,6 +155,7 @@ public class GameLanguageKo : IGameLanguage
         Grafts = "기생체",
         Wombgifts = "생명의 결실",
         Talismans = "부적",
+        Charms = "호신부",
     };
 }
 

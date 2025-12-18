@@ -155,6 +155,7 @@ public class GameLanguageDe : IGameLanguage
         Grafts = "Transplantate",
         Wombgifts = "Fruchtkeime",
         Talismans = "Talismane",
+        Charms = "Phiolen",
     };
 }
 

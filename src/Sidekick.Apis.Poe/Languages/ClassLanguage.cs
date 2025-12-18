@@ -147,4 +147,6 @@ public class ClassLanguage
     public required string Wombgifts { get; set; }
 
     public required string Talismans { get; set; }
+
+    public required string Charms { get; set; }
 }

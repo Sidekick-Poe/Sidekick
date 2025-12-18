@@ -155,6 +155,7 @@ public class GameLanguagePt : IGameLanguage
         Grafts = "Enxertos",
         Wombgifts = "Dádivas do Ventre",
         Talismans = "Talismãs",
+        Charms = "Patuás",
     };
 }
 
