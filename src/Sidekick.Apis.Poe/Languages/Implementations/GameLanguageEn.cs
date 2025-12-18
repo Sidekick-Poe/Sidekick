@@ -155,6 +155,7 @@ public class GameLanguageEn : IGameLanguage
         Grafts = "Grafts",
         Wombgifts = "Wombgifts",
         Talismans = "Talismans",
+        Charms = "Charms",
     };
 }
 

@@ -155,6 +155,7 @@ public class GameLanguageEs : IGameLanguage
         Grafts = "Injertos",
         Wombgifts = "Regalos del vientre",
         Talismans = "Talismanes",
+        Charms = "Viales",
     };
 }
 

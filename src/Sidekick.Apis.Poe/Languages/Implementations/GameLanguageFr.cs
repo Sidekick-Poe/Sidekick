@@ -155,6 +155,7 @@ public class GameLanguageFr : IGameLanguage
         Grafts = "Greffons",
         Wombgifts = "Dons de la matrice",
         Talismans = "Talismans",
+        Charms = "Charmes",
     };
 }
 

@@ -155,6 +155,7 @@ public class GameLanguageZh : IGameLanguage
         Grafts = "",
         Wombgifts = "",
         Talismans = "魔符",
+        Charms = "護符",
     };
 }
 

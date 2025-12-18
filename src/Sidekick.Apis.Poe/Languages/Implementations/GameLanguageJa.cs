@@ -155,6 +155,7 @@ public class GameLanguageJa : IGameLanguage
         Grafts = "グラフト",
         Wombgifts = "母胎ギフト",
         Talismans = "タリスマン",
+        Charms = "チャーム",
     };
 }
 

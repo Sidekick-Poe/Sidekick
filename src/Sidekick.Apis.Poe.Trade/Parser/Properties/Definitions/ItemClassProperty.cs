@@ -142,6 +142,7 @@ public class ItemClassProperty : PropertyDefinition
 
             CreateItemClassDefinition(ItemClass.Tincture, gameLanguageProvider.Language.Classes.Tinctures),
             CreateItemClassDefinition(ItemClass.Corpse, gameLanguageProvider.Language.Classes.Corpses),
+            CreateItemClassDefinition(ItemClass.Charms, gameLanguageProvider.Language.Classes.Charms),
 
             CreateItemClassDefinition(ItemClass.SanctumRelic, gameLanguageProvider.Language.Classes.SanctumRelics),
             CreateItemClassDefinition(ItemClass.SanctumResearch, gameLanguageProvider.Language.Classes.SanctumResearch),

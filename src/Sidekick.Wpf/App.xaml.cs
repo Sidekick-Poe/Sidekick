@@ -32,16 +32,7 @@ public partial class App
         _ = CheckIsAlreadyRunning();
 
         AttachErrorHandlers();
-
         Program.ServiceProvider.GetRequiredService<WpfBrowserWindowProvider>();
-        var settingsService = Program.ServiceProvider.GetRequiredService<ISettingsService>();
-        var useHardwareAcceleration = await settingsService.GetBool(SettingKeys.UseHardwareAcceleration);
-        if (!useHardwareAcceleration)
-        {
-            // This changes the variable only for the current running application (does not override outside)
-            Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--disable-gpu --disable-software-rasterizer");
-        }
-
         var viewLocator = Program.ServiceProvider.GetRequiredService<IViewLocator>();
         viewLocator.Open(SidekickViewType.Standard, "/");
     }

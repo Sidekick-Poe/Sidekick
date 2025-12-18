@@ -155,6 +155,7 @@ public class GameLanguageTh : IGameLanguage
         Grafts = "หัตถ์",
         Wombgifts = "ผลฝากครรภ์",
         Talismans = "เครื่องราง",
+        Charms = "ของขลัง",
     };
 }
 

@@ -65,6 +65,7 @@ public static class ItemClassConstants
         ItemClass.LifeFlask,
         ItemClass.ManaFlask,
         ItemClass.Tincture,
+        ItemClass.Charms,
     ];
 
     public static readonly ItemClass[] Areas =
