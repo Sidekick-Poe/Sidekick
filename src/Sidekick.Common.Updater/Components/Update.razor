@@ -20,10 +20,23 @@
         }
         else if (UpdateInfo == null)
         {
-            <AppFullContainer>
-                <Heading3 Class="mb-2 text-center">@Resources["Checking_For_Updates"]</Heading3>
-                <ProgressBar Indeterminate="true"/>
-            </AppFullContainer>
+            if (!TimedOut)
+            {
+                <AppFullContainer>
+                    <Heading3 Class="mb-2 text-center">@Resources["Checking_For_Updates"]</Heading3>
+                    <ProgressBar Indeterminate="true"/>
+                </AppFullContainer>
+            }
+            else
+            {
+                <AppFullContainer>
+                    <Heading3 Class="mb-4 text-center">@Resources["TimedOut"]</Heading3>
+                    <div class="text-center flex gap-2 justify-center">
+                        <ButtonSecondary OnClick="OpenWebsite">@Resources["Open_Website"]</ButtonSecondary>
+                        <ButtonPrimary OnClick="Skip">@Resources["Skip"]</ButtonPrimary>
+                    </div>
+                </AppFullContainer>
+            }
         }
         else if (Updating)
         {
@@ -67,7 +80,7 @@
     <BottomContent>
         <div class="px-3 py-2 flex justify-center gap-2">
             <ButtonSecondary OnClick="Exit">@Resources["Exit"]</ButtonSecondary>
-            @if (!Updating)
+            @if (!Updating && !TimedOut)
             {
                 <ButtonSecondary OnClick="Skip">@Resources["Skip"]</ButtonSecondary>
             }
@@ -98,6 +111,8 @@
     private UpdateInfo? UpdateInfo { get; set; }
 
     private SidekickException? Exception { get; set; }
+
+    private bool TimedOut { get; set; }
 
     private RenderFragment GetNotes(VelopackAsset asset)
     {
@@ -131,12 +146,24 @@
 
             if (AutoUpdater.IsUpdaterInstalled())
             {
-                UpdateInfo = await AutoUpdater.CheckForUpdates();
-
-                if (UpdateInfo is null)
+                var checkTask = AutoUpdater.CheckForUpdates();
+                var completedTask = await Task.WhenAny(checkTask, Task.Delay(TimeSpan.FromSeconds(10)));
+                if (completedTask == checkTask)
                 {
-                    // There's no available updates
-                    NavigationManager.NavigateTo("/setup");
+                    // Completed within timeout
+                    UpdateInfo = await checkTask;
+
+                    if (UpdateInfo is null)
+                    {
+                        // There's no available updates
+                        NavigationManager.NavigateTo("/setup");
+                    }
+                }
+                else
+                {
+                    // Timed out
+                    TimedOut = true;
+                    StateHasChanged();
                 }
             }
             else
