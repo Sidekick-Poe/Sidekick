@@ -1,0 +1,76 @@
+@using Sidekick.Common.Ui.Sections
+
+<FlowbiteComponent @ref="Component"
+                   Script="modal"
+                   ScriptParameters="@(new[]
+                                     {
+                                         Id,
+                                     })">
+    <div @onclick="() => Show()"
+         @onclick:preventDefault="true">
+        @ActivatorContent
+    </div>
+</FlowbiteComponent>
+
+<BodySectionContent SectionName="@Id">
+    <div id="@Id" tabindex="-1"
+         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-40 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-stone-950 border border-stone-700 text-white rounded-lg shadow-sm p-4">
+                @if (HeaderContent != null)
+                {
+                    @HeaderContent.Invoke(this)
+                    <LayoutDivider/>
+                }
+                <div>
+                    @ChildContent.Invoke(this)
+                </div>
+                @if (FooterContent != null)
+                {
+                    <LayoutDivider/>
+                    @FooterContent.Invoke(this)
+                }
+            </div>
+        </div>
+    </div>
+</BodySectionContent>
+
+@code {
+
+    [Parameter]
+    public RenderFragment<Modal>? HeaderContent { get; set; }
+
+    [Parameter]
+    public required RenderFragment<Modal> ChildContent { get; set; }
+
+    [Parameter]
+    public RenderFragment<Modal>? FooterContent { get; set; }
+
+    [Parameter]
+    public required RenderFragment ActivatorContent { get; set; }
+
+    [Parameter]
+    public string Class { get; set; } = "max-h-[550px] max-w-[350px]";
+
+    [Parameter]
+    public EventCallback OnShow { get; set; }
+
+    private string Id { get; } = UiUtilities.GenerateId();
+
+    private FlowbiteComponent? Component { get; set; }
+
+    public async Task Show()
+    {
+        if (Component?.JsObject == null) return;
+
+        await Component.JsObject.InvokeVoidAsync("show");
+        await OnShow.InvokeAsync();
+    }
+
+    public async Task Hide()
+    {
+        if (Component?.JsObject == null) return;
+
+        await Component.JsObject.InvokeVoidAsync("hide");
+    }
+}

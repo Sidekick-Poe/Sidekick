@@ -34,6 +34,13 @@ public interface ISettingsService
     /// </summary>
     /// <param name="key">The key of the setting to get.</param>
     /// <returns>The value of the setting.</returns>
+    Task<double> GetDouble(string key);
+
+    /// <summary>
+    /// Gets a setting by its key.
+    /// </summary>
+    /// <param name="key">The key of the setting to get.</param>
+    /// <returns>The value of the setting.</returns>
     Task<DateTimeOffset?> GetDateTime(string key);
 
     /// <summary>
@@ -48,8 +55,10 @@ public interface ISettingsService
     /// Gets a setting by its key.
     /// </summary>
     /// <param name="key">The key of the setting to get.</param>
+    /// <param name="defaultValue">The default value of the setting if it is not defined.</param>
     /// <returns>The value of the setting.</returns>
-    Task<TValue?> GetObject<TValue>(string key);
+    Task<TValue> GetObject<TValue>(string key, Func<TValue> defaultFunc)
+        where TValue : class;
 
     /// <summary>
     ///     Command to save a single setting.

@@ -18,9 +18,8 @@ using Sidekick.Common.Updater;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
-using Sidekick.Modules.Maps;
+using Sidekick.Modules.Items;
 using Sidekick.Modules.RegexHotkeys;
-using Sidekick.Modules.Trade;
 using Sidekick.Web;
 using Sidekick.Web.Services;
 using Velopack;
@@ -66,8 +65,7 @@ builder.Services
     .AddSidekickDevelopment()
     .AddSidekickRegexHotkeys()
     .AddSidekickGeneral()
-    .AddSidekickMaps()
-    .AddSidekickTrade();
+    .AddSidekickItems();
 
 builder.Services.AddApexCharts();
 builder.Services.AddSidekickInitializableService<IApplicationService, WebApplicationService>();

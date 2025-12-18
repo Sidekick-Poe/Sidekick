@@ -52,4 +52,48 @@ Can be used in a Map Device, allowing you to enter a Map. Waystones can only be 
         Assert.Equal(18, actual.Properties.ItemRarity);
         Assert.Equal(70, actual.Properties.WaystoneDropChance);
     }
+
+    [Fact]
+    public void ParseWaystoneTier13()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Waystones
+Rarity: Rare
+Putrid Navigation
+Waystone (Tier 13)
+--------
+Waystone Tier: 13
+Revives Available: 1 (augmented)
+Monster Pack Size: +10% (augmented)
+Magic Monsters: +33% (augmented)
+Rare Monsters: +25% (augmented)
+Item Rarity: +38% (augmented)
+Waystone Drop Chance: +70% (augmented)
+--------
+Item Level: 80
+--------
+Area has patches of Ignited Ground
+33% increased number of Magic Monsters
+25% increased number of Rare Monsters
+Monsters have 276% increased Critical Hit Chance
++30% to Monster Critical Damage Bonus
+50% less effect of Curses on Monsters
+Players have 40% less Recovery Rate of Life and Energy Shield
+Rare Monsters have 1 additional Modifier
+--------
+Can be used in a Map Device, allowing you to enter a Map. Waystones can only be used once.
+");
+
+        Assert.Equal(ItemClass.Waystone, actual.Properties.ItemClass);
+        Assert.Equal("Waystone (Tier 13)", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal(80, actual.Properties.ItemLevel);
+
+        Assert.Equal(1, actual.Properties.RevivesAvailable);
+        Assert.Equal(10, actual.Properties.MonsterPackSize);
+        Assert.Equal(33, actual.Properties.MagicMonsters);
+        Assert.Equal(25, actual.Properties.RareMonsters);
+        Assert.Equal(38, actual.Properties.ItemRarity);
+        Assert.Equal(70, actual.Properties.WaystoneDropChance);
+    }
 }

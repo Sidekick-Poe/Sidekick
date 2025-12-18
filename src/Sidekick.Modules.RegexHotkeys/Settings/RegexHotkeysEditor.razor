@@ -11,12 +11,12 @@
                 <FormInput Label="@Resources["Regex"]"
                            Value="@regexHotkey.Regex"
                            ValueChanged="(x) => RegexChanged(regexHotkey, x)"
-                           maxlength="250" />
+                           maxlength="250"/>
             </div>
             <div class="col-span-6">
                 <FormInput Label="@Resources["Regex_Hotkey_Description"]"
                            Value="@regexHotkey.Description"
-                           ValueChanged="(x) => RegexDescriptionChanged(regexHotkey, x)" />
+                           ValueChanged="(x) => RegexDescriptionChanged(regexHotkey, x)"/>
 
             </div>
         </div>
@@ -25,7 +25,7 @@
             <div class="w-1/2">
                 <KeybindEditor Label="@UiResources["Keybind"]"
                                Value="@regexHotkey.Key"
-                               ValueChanged="(x) => KeyChanged(regexHotkey, x)" />
+                               ValueChanged="(x) => KeyChanged(regexHotkey, x)"/>
             </div>
             <ButtonPrimary OnClick="() => Remove(regexHotkey)">@Resources["Regex_Hotkey_Remove"]</ButtonPrimary>
         </div>
@@ -52,7 +52,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        RegexHotkeys = await SettingsService.GetObject<List<RegexHotkey>>(SettingKey) ?? [];
+        RegexHotkeys = await SettingsService.GetObject<List<RegexHotkey>>(SettingKey, () => []);
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
         await base.OnInitializedAsync();
@@ -62,7 +62,7 @@
     {
         if (!keys.Contains(SettingKey)) return;
 
-        RegexHotkeys = await SettingsService.GetObject<List<RegexHotkey>>(SettingKey) ?? [];
+        RegexHotkeys = await SettingsService.GetObject<List<RegexHotkey>>(SettingKey, () => []);
         await InvokeAsync(StateHasChanged);
     }
 

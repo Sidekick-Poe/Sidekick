@@ -144,7 +144,7 @@
   <data name="Title" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="PathOfExile" xml:space="preserve">
+  <data name="PathOfExile1" xml:space="preserve">
     <value>Path of Exile 1</value>
     <comment>Used in LeagueIdEditor.razor</comment>
   </data>
@@ -172,5 +172,14 @@
   </data>
   <data name="OpenHomeOnLaunch_Hint" xml:space="preserve">
     <value>Ignored if initializing in background is enabled</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+      <value>Other</value>
+  </data>
+  <data name="UseHardwareAcceleration" xml:space="preserve">
+      <value>Use Hardware Acceleration</value>
+  </data>
+  <data name="RestartRequired" xml:space="preserve">
+      <value>A Sidekick restart is required for changes to this setting to take effect.</value>
   </data>
 </root>

@@ -1,0 +1,35 @@
+@using Sidekick.Modules.Items.Localization
+@using Sidekick.Modules.Items.Trade.Bulk
+@using Sidekick.Modules.Items.Trade.Items
+
+<BulkResult/>
+<ItemsResult/>
+
+@if (TradeService.IsLoading)
+{
+    <AppLoading/>
+}
+else if (TradeService.ItemTradeResult == null && TradeService.BulkTradeResult == null)
+{
+    <AlertInfo Flat="true">@Resources["TradeInstructions"]</AlertInfo>
+}
+
+@implements IDisposable
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject TradeService TradeService
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        TradeService.Changed += StateHasChanged;
+        await base.OnInitializedAsync();
+    }
+
+    public void Dispose()
+    {
+        TradeService.Changed -= StateHasChanged;
+    }
+
+}

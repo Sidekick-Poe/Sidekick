@@ -1,0 +1,121 @@
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Trade.Bulk
+@using Sidekick.Apis.Poe.Trade.Parser.Modifiers
+@using Sidekick.Apis.Poe.Trade.Parser.Properties
+@using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters
+@using Sidekick.Apis.Poe.Trade.Parser.Pseudo
+@using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters
+@using Sidekick.Modules.Items.Localization
+@using Sidekick.Modules.Items.Trade.Filters.Properties
+@using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
+
+@if (PropertyFilters == null)
+{
+    return;
+}
+
+<div class="flex flex-col h-full">
+    <div>
+        <ItemHeader Name="@Item.Name"
+                    Type="@Item.Type"
+                    Rarity="Item.Properties.Rarity"
+                    Game="Item.Game"
+                    Influences="Item.Properties.Influences"/>
+    </div>
+
+    <div class="grow overflow-y-auto py-2">
+        @for (var index = 0; index < PropertyFilters.Count; index++)
+        {
+            var filter = PropertyFilters[index];
+            var key = $"{Item.Id}_property_{index}";
+            <PropertyFilterComponent @key="key"
+                                     Filter="filter"
+                                     Item="Item"/>
+        }
+
+        @if (PropertyFilters.Count > 0)
+        {
+            <ItemSeparator Rarity="Item.Properties.Rarity"/>
+        }
+
+        <ModifierFiltersComponent ModifierFilters="ModifierFilters"/>
+        <PseudoFiltersComponent PseudoFilters="PseudoFilters"/>
+    </div>
+
+    <div class="flex flex-nowrap items-center w-full py-2 px-1">
+        <div class="flex flex-col items-stretch text-center px-1 grow">
+            <ButtonPrimary
+                OnClick="() => TradeService.SearchItems(Item, PropertyFilters, ModifierFilters, PseudoFilters)"
+                Disabled="TradeService.IsLoading">@Resources["Search"]</ButtonPrimary>
+        </div>
+
+        @if (BulkTradeService.SupportsBulkTrade(Item))
+        {
+            <div class="flex flex-col items-stretch text-center px-1 grow">
+                <ButtonSecondary OnClick="() => TradeService.SearchBulk(Item)"
+                                 Disabled="TradeService.IsLoading">@Resources["Bulk_Search"]</ButtonSecondary>
+            </div>
+        }
+
+        <TradeFilters/>
+    </div>
+</div>
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject IBulkTradeService BulkTradeService
+@inject TradeService TradeService
+@inject IPropertyParser PropertyParser
+@inject IModifierParser ModifierParser
+@inject IPseudoParser PseudoParser
+@inject Sidekick.Apis.Poe.Trade.AutoSelect.IFilterAutoSelectService AutoSelectService
+@inject Sidekick.Common.Settings.ISettingsService SettingsService
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    private List<PropertyFilter>? PropertyFilters { get; set; }
+
+    private List<ModifierFilter> ModifierFilters { get; set; } = [];
+
+    private List<PseudoFilter> PseudoFilters { get; set; } = [];
+
+    protected override async Task OnParametersSetAsync()
+    {
+        PropertyFilters = await PropertyParser.GetFilters(Item);
+        ModifierFilters = await ModifierParser.GetFilters(Item);
+        PseudoFilters = PseudoParser.GetFilters(Item);
+        await ApplyAutoSelection();
+        TradeService.Clear();
+
+        await base.OnParametersSetAsync();
+    }
+
+    private async Task ApplyAutoSelection()
+    {
+        var enableAll = await SettingsService.GetBool(Sidekick.Common.Settings.SettingKeys.PriceCheckEnableAllFilters);
+        if (enableAll)
+        {
+            foreach (var f in PropertyFilters!) f.Checked = true;
+            foreach (var f in ModifierFilters) f.Checked = true;
+            foreach (var f in PseudoFilters) f.Checked = true;
+            return;
+        }
+
+        // Apply rules for each filter category
+        foreach (var f in PropertyFilters!)
+        {
+            f.Checked = await AutoSelectService.ShouldCheck(Item, f);
+        }
+        foreach (var f in ModifierFilters)
+        {
+            f.Checked = await AutoSelectService.ShouldCheck(Item, f);
+        }
+        foreach (var f in PseudoFilters)
+        {
+            f.Checked = await AutoSelectService.ShouldCheck(Item, f);
+        }
+    }
+
+}

@@ -17,6 +17,8 @@ public interface IApplicationService : IInitializableService
     /// </summary>
     bool SupportsAuthentication { get; }
 
+    bool SupportsHardwareAcceleration { get; }
+
     /// <summary>
     /// Retrieves the current version of the application.
     /// </summary>

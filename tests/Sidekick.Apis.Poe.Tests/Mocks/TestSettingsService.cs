@@ -57,6 +57,22 @@ public class TestSettingsService : ISettingsService
         return Task.FromResult((int)(defaultProperty.GetValue(null) ?? 0));
     }
 
+    public Task<double> GetDouble(string key)
+    {
+        if (store.TryGetValue(key, out var value) && double.TryParse(value, out var intValue))
+        {
+            return Task.FromResult(intValue);
+        }
+
+        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
+        if (defaultProperty == null)
+        {
+            return Task.FromResult(0.0);
+        }
+
+        return Task.FromResult((double)(defaultProperty.GetValue(null) ?? 0));
+    }
+
     public Task<DateTimeOffset?> GetDateTime(string key)
     {
         if (store.TryGetValue(key, out var value) && DateTimeOffset.TryParse(value, out var dateValue))
@@ -105,13 +121,14 @@ public class TestSettingsService : ISettingsService
         return Task.FromResult(defaultEnumValueFromAttribute);
     }
 
-    public Task<TValue?> GetObject<TValue>(string key)
+    public Task<TValue> GetObject<TValue>(string key, Func<TValue> defaultFunc)
+    where TValue : class
     {
         if (store.TryGetValue(key, out var value))
         {
             try
             {
-                return Task.FromResult(JsonSerializer.Deserialize<TValue>(value ?? string.Empty));
+                if(!string.IsNullOrEmpty(value)) return Task.FromResult(JsonSerializer.Deserialize<TValue>(value) ?? defaultFunc.Invoke());
             }
             catch
             {
@@ -120,12 +137,19 @@ public class TestSettingsService : ISettingsService
         }
 
         var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty == null)
+        if (defaultProperty != null)
         {
-            return Task.FromResult<TValue?>(default);
+            try
+            {
+                return Task.FromResult((TValue)(defaultProperty.GetValue(null) ?? throw new Exception("The default settings returned null.")));
+            }
+            catch
+            {
+                // Ignore and fall back to default
+            }
         }
 
-        return Task.FromResult((TValue?)(defaultProperty.GetValue(null) ?? null));
+        return Task.FromResult(defaultFunc.Invoke());
     }
 
     public Task Set(string key, object? value)

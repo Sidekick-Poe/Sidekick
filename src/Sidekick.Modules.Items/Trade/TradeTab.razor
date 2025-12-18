@@ -1,0 +1,40 @@
+﻿@using Sidekick.Apis.Poe.Items
+@using Sidekick.Modules.Items.Localization
+@using Sidekick.Common.Ui.Tabs
+
+<TabItem Active="@(CurrentTab == "trade")"
+         Text="@Resources["Trade"]"
+         OnClick="@(() => CurrentTabChanged.InvokeAsync("trade"))"/>
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject TradeService TradeService
+@implements IDisposable
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public string? CurrentTab { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> CurrentTabChanged { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        TradeService.Changed += TradeServiceOnChanged;
+        await base.OnInitializedAsync();
+    }
+
+    private void TradeServiceOnChanged()
+    {
+        CurrentTabChanged.InvokeAsync("trade");
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        TradeService.Changed -= TradeServiceOnChanged;
+    }
+}

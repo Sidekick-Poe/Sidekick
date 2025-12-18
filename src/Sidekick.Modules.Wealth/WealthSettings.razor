@@ -4,19 +4,19 @@
 
 <Popover Placement="TooltipPlacement.Bottom"
          Class="w-80 max-h-96">
-    <PopoverAnchor>
+    <ActivatorContent>
         <ButtonIcon>
             <Icon Svg="@UiIcons.Settings"/>
         </ButtonIcon>
-    </PopoverAnchor>
-    <PopoverContent>
+    </ActivatorContent>
+    <ChildContent>
         <FormFieldset Legend="@Resources["Item_Settings"]"
                       Dense="true">
             <ItemTotalMinimumEditor/>
         </FormFieldset>
 
         <ClearAllData/>
-    </PopoverContent>
+    </ChildContent>
 </Popover>
 
 @inject IStringLocalizer<WealthResources> Resources

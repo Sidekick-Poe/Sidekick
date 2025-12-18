@@ -14,7 +14,7 @@ public class RegexHotkeyHandler(
 
     protected override async Task<List<string?>> GetKeybinds()
     {
-        var regexHotkeys = await settingsService.GetObject<List<RegexHotkey>>(SettingKeys.RegexHotkeys);
+        var regexHotkeys = await settingsService.GetObject<List<RegexHotkey>>(SettingKeys.RegexHotkeys, () => []);
         return regexHotkeys?.Select(x => x.Key).ToList() ?? [];
     }
 
@@ -22,7 +22,7 @@ public class RegexHotkeyHandler(
 
     public override async Task Execute(string keybind)
     {
-        var regexHotkeys = await settingsService.GetObject<List<RegexHotkey>>(SettingKeys.RegexHotkeys);
+        var regexHotkeys = await settingsService.GetObject<List<RegexHotkey>>(SettingKeys.RegexHotkeys, () => []);
         var regexHotkey = regexHotkeys?.FirstOrDefault(x => x.Key == keybind);
         if (regexHotkey == null || string.IsNullOrWhiteSpace(regexHotkey.Regex))
         {

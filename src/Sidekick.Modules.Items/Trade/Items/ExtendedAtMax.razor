@@ -1,0 +1,78 @@
+@using System.Globalization
+@using Sidekick.Apis.Poe.Languages
+@using Sidekick.Apis.Poe.Trade.Localization
+@using Sidekick.Apis.Poe.Trade.Trade.Results
+@using Sidekick.Modules.Items.Localization
+
+@if (!AnyExtendedAtMax)
+{
+    return;
+}
+
+<ItemSeparator Rarity="Result.Item.Rarity"/>
+
+<div class="flex flex-wrap items-center justify-center py-0.5 gap-y-0.5 gap-x-2 text-sm [&_.text-base]:text-sm!">
+    @if (Result.Item.Extended?.BaseDefencePercentile.HasValue ?? false)
+    {
+        <ItemPropertyText Label="@TradeResources["Base_Percentile"]"
+                          Value="@(Result.Item.Extended?.BaseDefencePercentile + "%")"
+                          ContentType="LineContentType.Simple"/>
+    }
+
+    @if (Result.Item.Extended?.ArmourAtMax > 0)
+    {
+        <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionArmour"
+                          Value="@(Result.Item.Extended?.ArmourAtMax.Value.ToString())"
+                          ContentType="GetContentType(Result.Item.Extended?.ArmourAugmented)"/>
+    }
+
+    @if (Result.Item.Extended?.EvasionAtMax > 0)
+    {
+        <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionEvasion"
+                          Value="@(Result.Item.Extended?.EvasionAtMax.Value.ToString())"
+                          ContentType="GetContentType(Result.Item.Extended?.EvasionAugmented)"/>
+    }
+
+    @if (Result.Item.Extended?.EnergyShieldAtMax > 0)
+    {
+        <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionEnergyShield"
+                          Value="@(Result.Item.Extended?.EnergyShieldAtMax.Value.ToString())"
+                          ContentType="GetContentType(Result.Item.Extended?.EnergyShieldAugmented)"/>
+    }
+
+    @if (Result.Item.Extended?.DamagePerSecondAtMax > 0)
+    {
+        <ItemPropertyText Label="@PoeResources["Dps"]"
+                          Value="@(Result.Item.Extended?.DamagePerSecondAtMax.Value.ToString("0.00", CultureInfo.InvariantCulture))"
+                          ContentType="GetContentType(Result.Item.Extended?.DamagePerSecondAugmented)"/>
+    }
+
+    @if (Result.Item.Extended?.PhysicalDpsAtMax > 0)
+    {
+        <ItemPropertyText Label="@PoeResources["PhysicalDps"]"
+                          Value="@(Result.Item.Extended?.PhysicalDpsAtMax.Value.ToString("0.00", CultureInfo.InvariantCulture))"
+                          ContentType="GetContentType(Result.Item.Extended?.PhysicalDpsAugmented)"/>
+    }
+
+    @if (Result.Item.Extended?.ElementalDpsAtMax > 0)
+    {
+        <ItemPropertyText Label="@PoeResources["ElementalDps"]"
+                          Value="@(Result.Item.Extended?.ElementalDpsAtMax.Value.ToString("0.00", CultureInfo.InvariantCulture))"
+                          ContentType="GetContentType(Result.Item.Extended?.ElementalDpsAugmented)"/>
+    }
+</div>
+
+@inject IStringLocalizer<PoeResources> PoeResources
+@inject IStringLocalizer<TradeResources> TradeResources
+@inject IGameLanguageProvider GameLanguageProvider
+
+@code {
+
+    [Parameter]
+    public required TradeResult Result { get; set; }
+
+    private bool AnyExtendedAtMax => Result.Item.Extended?.DamagePerSecondAtMax > 0 || Result.Item.Extended?.PhysicalDpsAtMax > 0 || Result.Item.Extended?.ElementalDpsAtMax > 0 || Result.Item.Extended?.ArmourAtMax > 0 || Result.Item.Extended?.EvasionAtMax > 0 || Result.Item.Extended?.EnergyShieldAtMax > 0 || (Result.Item.Extended?.BaseDefencePercentile.HasValue ?? false);
+
+    private LineContentType GetContentType(bool? augmented) => augmented ?? false ? LineContentType.Augmented : LineContentType.Simple;
+
+}

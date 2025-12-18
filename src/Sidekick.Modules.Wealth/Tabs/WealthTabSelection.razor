@@ -12,7 +12,7 @@
 
 <Popover Placement="TooltipPlacement.Bottom"
          Class="w-80 max-h-96">
-    <PopoverAnchor>
+    <ActivatorContent>
         @if (TrackedTabs.Count > 0)
         {
             <ButtonCustom Class="border border-green-500 bg-transparent hover:enabled:bg-green-900">
@@ -27,8 +27,8 @@
                 <div class="text-green-400">No Tabs Selected</div>
             </ButtonCustom>
         }
-    </PopoverAnchor>
-    <PopoverContent>
+    </ActivatorContent>
+    <ChildContent>
         <Heading3 Class="mb-2">@Resources["Stash_Tabs"]</Heading3>
 
         @if (Loading)
@@ -67,7 +67,7 @@
                                OnClick="Refresh">@Resources["Fetch_Tabs"]</ButtonPrimary>
             </AuthenticationRequiredOverlay>
         </div>
-    </PopoverContent>
+    </ChildContent>
 </Popover>
 
 @inject IStringLocalizer<WealthResources> Resources

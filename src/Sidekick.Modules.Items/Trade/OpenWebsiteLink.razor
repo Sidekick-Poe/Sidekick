@@ -1,0 +1,66 @@
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Trade
+@using Sidekick.Apis.Poe.Trade.Bulk
+@using Sidekick.Common.Browser
+@using Sidekick.Modules.Items.Localization
+
+@if (string.IsNullOrEmpty(QueryId))
+{
+    return;
+}
+
+<Popover Trigger="PopoverTrigger.Hover" Class="min-w-120 [&_.mb-3]:!mb-0">
+    <ActivatorContent>
+        <button type="button"
+                @onclick="@OpenWebsite"
+                class="inline-flex items-center justify-center p-1 -m-1 text-xl font-medium tracking-wide transition-colors duration-200 rounded-md bg-transparent">
+            <Icon Svg="@UiIcons.External" />
+        </button>
+    </ActivatorContent>
+    <ChildContent>
+        <TextBase Class="mb-2 whitespace-pre-wrap">@Resources["OpenQueryInWebsite"]</TextBase>
+        <FormInput Value="@TradeUri?.ToString()" readonly />
+    </ChildContent>
+</Popover>
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject ITradeSearchService TradeSearchService
+@inject IBulkTradeService BulkTradeService
+@inject IBrowserProvider BrowserProvider
+@inject TradeService TradeService
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public string? QueryId { get; set; }
+
+    private Uri? TradeUri { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (QueryId != null)
+        {
+            TradeUri = TradeService.CurrentMode == TradeMode.Bulk
+                ? await BulkTradeService.GetTradeUri(Item, QueryId)
+                : await TradeSearchService.GetTradeUri(Item.Game, QueryId);
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+    private void OpenWebsite()
+    {
+        if (TradeUri == null)
+        {
+            return;
+        }
+
+        BrowserProvider.OpenUri(TradeUri);
+    }
+
+}
+
+
