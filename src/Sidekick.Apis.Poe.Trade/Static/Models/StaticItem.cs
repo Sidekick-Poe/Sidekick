@@ -6,5 +6,5 @@ public class StaticItem
     public string? Text { get; set; }
     public string? Image { get; set; }
 
-    public override string ToString() => Text;
+    public override string ToString() => Text ?? string.Empty;
 }

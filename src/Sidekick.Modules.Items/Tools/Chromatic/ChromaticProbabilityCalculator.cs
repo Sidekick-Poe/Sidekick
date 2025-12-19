@@ -123,7 +123,7 @@ public static class ChromaticProbabilityCalculator
         }
     }
 
-    private static double CalculateChromaticBonus(ColorChances chances, ColoredStats desired, int freeSockets, ColoredStats rolled = null, int position = 1)
+    private static double CalculateChromaticBonus(ColorChances chances, ColoredStats desired, int freeSockets, ColoredStats? rolled = null, int position = 1)
     {
         rolled ??= new ColoredStats(0, 0, 0);
 

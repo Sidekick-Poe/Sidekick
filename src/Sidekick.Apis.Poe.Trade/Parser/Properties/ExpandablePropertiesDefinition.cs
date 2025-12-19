@@ -76,7 +76,7 @@ public class ExpandablePropertiesDefinition
 
         foreach (var childFilter in expandablePropertiesFilter.Filters)
         {
-            childFilter.Definition.PrepareTradeRequest(query, item, childFilter);
+            childFilter.PrepareTradeRequest(query, item);
         }
     }
 }

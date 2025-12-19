@@ -8,7 +8,6 @@ using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
 
@@ -103,7 +102,7 @@ public class PropertyParser
     public TDefinition GetDefinition<TDefinition>() where TDefinition : PropertyDefinition
     {
         return Definitions.OfType<TDefinition>().FirstOrDefault()
-            ?? throw new SidekickException($"Could not find definition of type {typeof(TDefinition).FullName}");
+               ?? throw new SidekickException($"Could not find definition of type {typeof(TDefinition).FullName}");
     }
 
     public void Parse(Item item)
@@ -149,13 +148,13 @@ public class PropertyParser
     private static void CleanUpSeparatorFilters(List<PropertyFilter> results)
     {
         // Remove leading SeparatorProperty filters
-        while (results.Count > 0 && results[0].Definition is SeparatorProperty)
+        while (results.Count > 0 && results[0] is SeparatorFilter)
         {
             results.RemoveAt(0);
         }
 
         // Remove trailing SeparatorProperty filters
-        while (results.Count > 0 && results[^1].Definition is SeparatorProperty)
+        while (results.Count > 0 && results[^1] is SeparatorFilter)
         {
             results.RemoveAt(results.Count - 1);
         }
@@ -163,21 +162,13 @@ public class PropertyParser
         // Remove consecutive SeparatorProperty filters
         for (var i = 1; i < results.Count; i++)
         {
-            if (results[i].Definition is not SeparatorProperty || results[i - 1].Definition is not SeparatorProperty)
+            if (results[i] is not SeparatorFilter || results[i - 1] is not SeparatorFilter)
             {
                 continue;
             }
 
             results.RemoveAt(i);
             i--;// Adjust index to recheck current position
-        }
-    }
-
-    public void PrepareTradeRequest(Query query, Item item, List<PropertyFilter> propertyFilters)
-    {
-        foreach (var filter in propertyFilters)
-        {
-            filter.Definition.PrepareTradeRequest(query, item, filter);
         }
     }
 }

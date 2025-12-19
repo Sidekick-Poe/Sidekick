@@ -404,7 +404,7 @@ Note: ~price 1 mirror");
         Assert.True(fracturedFilter.UsePrimaryCategory);
         Assert.Equal(ModifierCategory.Fractured, fracturedFilter.PrimaryCategory);
         Assert.Equal(ModifierCategory.Explicit, fracturedFilter.SecondaryCategory);
-        foreach (var x in fracturedFilter.Line.ApiInformation)
+        foreach (var x in fracturedFilter.Modifier.ApiInformation)
         {
             if (x.Category is ModifierCategory.Fractured or ModifierCategory.Explicit) continue;
 
@@ -415,7 +415,7 @@ Note: ~price 1 mirror");
         Assert.True(desecratedFilter.UsePrimaryCategory);
         Assert.Equal(ModifierCategory.Desecrated, desecratedFilter.PrimaryCategory);
         Assert.Equal(ModifierCategory.Explicit, desecratedFilter.SecondaryCategory);
-        foreach (var x in desecratedFilter.Line.ApiInformation)
+        foreach (var x in desecratedFilter.Modifier.ApiInformation)
         {
             if (x.Category is ModifierCategory.Desecrated or ModifierCategory.Explicit) continue;
 

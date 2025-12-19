@@ -12,7 +12,7 @@ public class SeparatorProperty() : PropertyDefinition
 
     public override Task<PropertyFilter?> GetFilter(Item item)
     {
-        return Task.FromResult<PropertyFilter?>(new PropertyFilter(this)
+        return Task.FromResult<PropertyFilter?>(new SeparatorFilter(this)
         {
             Text = Text,
             Checked = true,

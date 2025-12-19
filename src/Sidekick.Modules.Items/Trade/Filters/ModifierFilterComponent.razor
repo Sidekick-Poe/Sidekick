@@ -5,10 +5,10 @@
 <FilterWrapper>
     <div class="flex flex-nowrap items-center">
         <div class="grow">
-            <FormCheckbox Value="Filter.Checked ?? false"
+            <FormCheckbox Value="Filter.Checked"
                           ValueChanged="CheckedChanged">
                 <ItemModifierText Class="text-left"
-                                  Category="Filter.Line.ApiInformation.FirstOrDefault()?.Category">@Filter.Line.Text</ItemModifierText>
+                                  Category="Filter.Modifier.ApiInformation.FirstOrDefault()?.Category">@Filter.Modifier.Text</ItemModifierText>
             </FormCheckbox>
         </div>
 
@@ -32,7 +32,7 @@
             @if (Filter is
                      {
                          Checked: true,
-                         Line:
+                         Modifier:
                          {
                              HasValues: true
                          }
@@ -41,7 +41,7 @@
                 <FilterRange Checked="Filter.Checked == true"
                              NormalizeEnabled="true"
                              NormalizeRoundToInteger="true"
-                             Value="@Filter.Line.AverageValue"
+                             Value="@Filter.Modifier.AverageValue"
                              @bind-Min="@Filter.Min"
                              @bind-Max="@Filter.Max"/>
             }

@@ -9,5 +9,5 @@ public class StaticItemCategory
     public string? Label { get; set; }
     public List<StaticItem> Entries { get; set; } = new();
 
-    public override string ToString() => Label;
+    public override string ToString() => Label ?? string.Empty;
 }

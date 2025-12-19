@@ -1,33 +1,47 @@
+@using Sidekick.Apis.Poe.Trade.Trade.Results
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Items.Localization
 @using Sidekick.Modules.Items.Settings
 
-<Popover>
-    <ActivatorContent>
-        <ButtonIcon>
-            <Icon Svg="@UiIcons.Adjustments" Size="@UiIconSize.Medium" AddBadge="AreSettingsModified"/>
-        </ButtonIcon>
-    </ActivatorContent>
-    <ChildContent>
-        <PriceCheckStatusEditor/>
-        <PriceCheckItemCurrencyEditor/>
-        <FormFieldset Legend="@Resources["Bulk_Trade"]"
-                      Dense="true">
-            <PriceCheckBulkMinimumStockEditor/>
-        </FormFieldset>
+<FilterWrapper>
+    <div class="flex flex-nowrap items-center justify-center gap-2 cursor-pointer @LineContentType.Simple.GetColour()"
+         @onclick="() => Expanded = !Expanded"
+         @onclick:preventDefault="true">
+        <Icon Size="UiIconSize.Small"
+              Svg="@(Expanded ? UiIcons.ChevronUp : UiIcons.ChevronDown)"/>
 
-        <div class="flex justify-center mb-1">
-            <ButtonPrimary Disabled="!AreSettingsModified"
-                           OnClick="ClearFilters">@Resources["Clear_Filters"]</ButtonPrimary>
-        </div>
-    </ChildContent>
-</Popover>
+        <ItemPropertyText Label="@Resources["Filters_Trade"]"
+                          Value="@(Expanded ? "true" : "false")"
+                          ContentType="LineContentType.Simple"
+                          OnlyShowLabel="true"/>
+
+        <Icon Size="UiIconSize.Small"
+              Svg="@(Expanded ? UiIcons.ChevronUp : UiIcons.ChevronDown)"/>
+    </div>
+</FilterWrapper>
+
+@if (Expanded)
+{
+    <PriceCheckStatusEditor/>
+    <PriceCheckItemCurrencyEditor/>
+    <FormFieldset Legend="@Resources["Bulk_Trade"]"
+                  Dense="true">
+        <PriceCheckBulkMinimumStockEditor/>
+    </FormFieldset>
+
+    <div class="flex justify-center mb-1">
+        <ButtonPrimary Disabled="!AreSettingsModified"
+                       OnClick="ClearFilters">@Resources["Clear_Filters"]</ButtonPrimary>
+    </div>
+}
 
 @inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
 @implements IDisposable
 
 @code {
+
+    private bool Expanded { get; set; }
 
     private bool AreSettingsModified { get; set; }
 

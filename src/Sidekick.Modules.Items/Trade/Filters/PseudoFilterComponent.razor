@@ -4,10 +4,10 @@
 <FilterWrapper>
     <div class="flex flex-nowrap items-center">
         <div class="grow">
-            <FormCheckbox Value="Filter.Checked ?? false"
+            <FormCheckbox Value="Filter.Checked"
                           ValueChanged="CheckedChanged">
                 <ItemModifierText Class="text-left"
-                                  Category="ModifierCategory.Pseudo">@Filter.PseudoModifier.Text</ItemModifierText>
+                                  Category="ModifierCategory.Pseudo">@Filter.Modifier.Text</ItemModifierText>
             </FormCheckbox>
         </div>
 
@@ -19,7 +19,7 @@
             @if (Filter is
                      {
                          Checked: true,
-                         PseudoModifier:
+                         Modifier:
                          {
                              Value: not 0
                          }
@@ -28,7 +28,7 @@
                 <FilterRange Checked="Filter.Checked == true"
                              NormalizeEnabled="true"
                              NormalizeRoundToInteger="true"
-                             Value="@Filter.PseudoModifier.Value"
+                             Value="@Filter.Modifier.Value"
                              @bind-Min="@Filter.Min" @bind-Max="@Filter.Max"/>
             }
         </div>

@@ -15,4 +15,19 @@ public class Query
     public List<StatFilterGroup> Stats { get; set; } = [];
 
     public SearchFilters Filters { get; set; } = new();
+
+    public StatFilterGroup GetOrCreateStatGroup(StatType type)
+    {
+        var group = Stats.FirstOrDefault(x => x.Type == type);
+        if (group == null)
+        {
+            group = new()
+            {
+                Type = type,
+            };
+            Stats.Add(group);
+        }
+
+        return group;
+    }
 }

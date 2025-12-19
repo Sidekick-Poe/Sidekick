@@ -6,7 +6,7 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 
 public abstract class PseudoDefinition
 {
-    private static readonly Regex parseHashPattern = new("\\#");
+    private static readonly Regex ParseHashPattern = new("\\#");
 
     protected abstract bool Enabled { get; }
 
@@ -77,14 +77,6 @@ public abstract class PseudoDefinition
             Text = Text ?? string.Empty,
         };
 
-        if (string.IsNullOrEmpty(ModifierId))
-        {
-            foreach (var definitionModifier in Modifiers)
-            {
-                result.WeightedSumModifiers.Add(definitionModifier.Id, definitionModifier.Multiplier);
-            }
-        }
-
         foreach (var itemModifierLine in itemModifierLines)
         {
             foreach (var definitionModifier in Modifiers)
@@ -100,7 +92,7 @@ public abstract class PseudoDefinition
         }
 
         result.Value = (int)result.Value;
-        result.Text = parseHashPattern
+        result.Text = ParseHashPattern
             .Replace(result.Text, ((int)result.Value).ToString(), 1)
             .Replace("+-", "-");
         return result;

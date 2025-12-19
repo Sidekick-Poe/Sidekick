@@ -30,7 +30,7 @@ public class StatFilterValue
 
     public StatFilterValue(ModifierFilter filter)
     {
-        Option = filter.Line.OptionValue;
+        Option = filter.Modifier.OptionValue;
         Min = filter.Min;
         Max = filter.Max;
     }

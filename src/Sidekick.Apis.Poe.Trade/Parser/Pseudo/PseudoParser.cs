@@ -65,7 +65,7 @@ public class PseudoParser
         {
             result.Add(new PseudoFilter()
             {
-                PseudoModifier = modifier,
+                Modifier = modifier,
                 Checked = false,
             });
         }

@@ -29,9 +29,9 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (Filter.Line.ApiInformation.FirstOrDefault()?.Category == ModifierCategory.Enchant && GameLanguageProvider.IsEnglish())
+        if (Filter.Modifier.ApiInformation.FirstOrDefault()?.Category == ModifierCategory.Enchant && GameLanguageProvider.IsEnglish())
         {
-            var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Line);
+            var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Modifier);
 
             OilNames = oilMetadataIds.Where(x => PoeWikiClient.BlightOilNamesByMetadataIds.ContainsKey(x)).Select(x => PoeWikiClient.BlightOilNamesByMetadataIds[x]).ToList();
         }

@@ -9,7 +9,7 @@
     var isLastFilter = i + 1 == ModifierFilters.Count;
     if (!isLastFilter)
     {
-        var isDifferentBlock = ModifierFilters[i].Line.BlockIndex != ModifierFilters[i + 1].Line.BlockIndex;
+        var isDifferentBlock = ModifierFilters[i].Modifier.BlockIndex != ModifierFilters[i + 1].Modifier.BlockIndex;
         if (isDifferentBlock)
         {
             <ItemSeparator Rarity="Item.Properties.Rarity"/>
