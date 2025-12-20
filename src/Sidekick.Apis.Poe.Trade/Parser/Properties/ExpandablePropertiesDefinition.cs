@@ -1,5 +1,5 @@
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
@@ -76,6 +76,7 @@ public class ExpandablePropertiesDefinition
 
         foreach (var childFilter in expandablePropertiesFilter.Filters)
         {
+            if (childFilter.PrepareTradeRequest == null) continue;
             childFilter.PrepareTradeRequest(query, item);
         }
     }

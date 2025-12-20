@@ -6,8 +6,7 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
-using Sidekick.Apis.Poe.Trade.ApiStats.Models;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
 
@@ -305,7 +304,7 @@ public class StatParser
         }
     }
 
-    public async Task<List<StatFilter>> GetFilters(Item item)
+    public async Task<List<TradeFilter>> GetFilters(Item item)
     {
         if (!ItemClassConstants.WithStats.Contains(item.Properties.ItemClass)) return [];
 
@@ -317,14 +316,25 @@ public class StatParser
             enableFiltersByRegex = new Regex(enableFiltersByRegexSetting, RegexOptions.IgnoreCase);
         }
 
-        var result = new List<StatFilter>();
-        foreach (var stat in item.Stats)
+        var result = new List<TradeFilter>();
+        for (var i = 0; i < item.Stats.Count; i++)
         {
+            var stat = item.Stats[i];
             var filter = new StatFilter(stat)
             {
                 Checked = enableAllFilters || (enableFiltersByRegex?.IsMatch(stat.Text) ?? false),
             };
             result.Add(filter);
+
+            var isLastFilter = i + 1 == item.Stats.Count;
+            if (!isLastFilter)
+            {
+                var isDifferentBlock = item.Stats[i].BlockIndex != item.Stats[i + 1].BlockIndex;
+                if (isDifferentBlock)
+                {
+                    result.Add(new SeparatorFilter());
+                }
+            }
         }
 
         return result;

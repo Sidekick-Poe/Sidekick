@@ -3,15 +3,10 @@
 @using Sidekick.Apis.Poe.Trade.Parser.Pseudo
 @using Sidekick.Apis.Poe.Trade.Parser.Stats
 @using Sidekick.Apis.Poe.Trade.Trade.Bulk
-@using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Modules.Items.Localization
-@using Sidekick.Modules.Items.Trade.Filters.Properties
+@using Sidekick.Modules.Items.Trade.Filters.Types
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
-
-@if (PropertyFilters == null)
-{
-    return;
-}
 
 <div class="flex flex-col h-full">
     <div>
@@ -23,22 +18,14 @@
     </div>
 
     <div class="grow overflow-y-auto py-2">
-        @for (var index = 0; index < PropertyFilters.Count; index++)
+        @for (var index = 0; index < Filters.Count; index++)
         {
-            var filter = PropertyFilters[index];
-            var key = $"{Item.Id}_property_{index}";
-            <PropertyFilterComponent @key="key"
+            var filter = Filters[index];
+            var key = $"{Item.Id}_filter_{index}";
+            <FilterComponent @key="key"
                                      Filter="filter"
                                      Item="Item"/>
         }
-
-        @if (PropertyFilters.Count > 0)
-        {
-            <ItemSeparator Rarity="Item.Properties.Rarity"/>
-        }
-
-        <StatFiltersComponent Filters="StatFilters"/>
-        <PseudoFiltersComponent Filters="PseudoFilters"/>
 
         <ItemSeparator Rarity="Item.Properties.Rarity"/>
         <TradeFilters/>
@@ -47,7 +34,7 @@
     <div class="flex flex-nowrap items-center w-full py-2 px-1">
         <div class="flex flex-col items-stretch text-center px-1 grow">
             <ButtonPrimary
-                OnClick="() => TradeService.SearchItems(Item, PropertyFilters, StatFilters, PseudoFilters)"
+                OnClick="() => TradeService.SearchItems(Item, Filters)"
                 Disabled="TradeService.IsLoading">@Resources["Search"]</ButtonPrimary>
         </div>
 
@@ -73,20 +60,49 @@
     [CascadingParameter]
     public required Item Item { get; set; }
 
-    private List<TradeFilter>? PropertyFilters { get; set; }
-
-    private List<StatFilter> StatFilters { get; set; } = [];
-
-    private List<PseudoFilter> PseudoFilters { get; set; } = [];
+    private List<TradeFilter> Filters { get; set; } = [];
 
     protected override async Task OnParametersSetAsync()
     {
-        PropertyFilters = await PropertyParser.GetFilters(Item);
-        StatFilters = await StatParser.GetFilters(Item);
-        PseudoFilters = PseudoParser.GetFilters(Item);
+        Filters.Clear();
+        Filters.AddRange(await PropertyParser.GetFilters(Item));
+        Filters.Add(new SeparatorFilter());
+        Filters.AddRange(await StatParser.GetFilters(Item));
+        Filters.Add(new SeparatorFilter());
+        Filters.AddRange(PseudoParser.GetFilters(Item));
+
+        CleanUpSeparatorFilters(Filters);
+
         TradeService.Clear();
 
         await base.OnParametersSetAsync();
     }
 
+
+    private static void CleanUpSeparatorFilters(List<TradeFilter> results)
+    {
+        // Remove leading SeparatorProperty filters
+        while (results.Count > 0 && results[0] is SeparatorFilter)
+        {
+            results.RemoveAt(0);
+        }
+
+        // Remove trailing SeparatorProperty filters
+        while (results.Count > 0 && results[^1] is SeparatorFilter)
+        {
+            results.RemoveAt(results.Count - 1);
+        }
+
+        // Remove consecutive SeparatorProperty filters
+        for (var i = 1; i < results.Count; i++)
+        {
+            if (results[i] is not SeparatorFilter || results[i - 1] is not SeparatorFilter)
+            {
+                continue;
+            }
+
+            results.RemoveAt(i);
+            i--;// Adjust index to recheck current position
+        }
+    }
 }

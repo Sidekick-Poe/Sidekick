@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
@@ -400,7 +401,9 @@ Note: ~price 1 mirror");
 
         var modifierFilters = await fixture.StatParser.GetFilters(actual);
 
-        var fracturedFilter = modifierFilters.First(x => x.PrimaryCategory == StatCategory.Fractured);
+        var fracturedFilter = modifierFilters
+            .OfType<StatFilter>()
+            .First(x => x.PrimaryCategory == StatCategory.Fractured);
         Assert.True(fracturedFilter.UsePrimaryCategory);
         Assert.Equal(StatCategory.Fractured, fracturedFilter.PrimaryCategory);
         Assert.Equal(StatCategory.Explicit, fracturedFilter.SecondaryCategory);
@@ -411,7 +414,9 @@ Note: ~price 1 mirror");
             Assert.Fail();
         }
 
-        var desecratedFilter = modifierFilters.First(x => x.PrimaryCategory == StatCategory.Desecrated);
+        var desecratedFilter = modifierFilters
+            .OfType<StatFilter>()
+            .First(x => x.PrimaryCategory == StatCategory.Desecrated);
         Assert.True(desecratedFilter.UsePrimaryCategory);
         Assert.Equal(StatCategory.Desecrated, desecratedFilter.PrimaryCategory);
         Assert.Equal(StatCategory.Explicit, desecratedFilter.SecondaryCategory);

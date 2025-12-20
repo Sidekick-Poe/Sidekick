@@ -1,5 +1,4 @@
-using Sidekick.Apis.Poe.Trade.Parser.Stats;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 namespace Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 
 public class StatFilterValue

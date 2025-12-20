@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;

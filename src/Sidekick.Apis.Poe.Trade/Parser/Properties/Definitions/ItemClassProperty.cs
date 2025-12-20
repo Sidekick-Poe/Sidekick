@@ -8,7 +8,7 @@ using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions.Models;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;

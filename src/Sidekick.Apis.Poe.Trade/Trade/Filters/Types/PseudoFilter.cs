@@ -1,19 +1,25 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
-namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
+namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
-public class PseudoFilter
+public class PseudoFilter : TradeFilter
 {
-    public required PseudoStat Stat { get; set; }
+    public PseudoFilter(PseudoStat stat)
+    {
+        Stat = stat;
+        Text = stat.Text;
 
-    public bool Checked { get; set; } = false;
+        PrepareTradeRequest = PreparePseudoRequest;
+    }
+
+    public PseudoStat Stat { get; set; }
 
     public double? Min { get; set; }
 
     public double? Max { get; set; }
 
-    public void PrepareTradeRequest(Query query, Item item)
+    private void PreparePseudoRequest(Query query, Item item)
     {
         if (!Checked || string.IsNullOrEmpty(Stat.Id))
         {

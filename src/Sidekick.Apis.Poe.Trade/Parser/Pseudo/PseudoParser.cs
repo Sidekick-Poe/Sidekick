@@ -2,7 +2,7 @@ using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Definitions;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo;
@@ -63,11 +63,7 @@ public class PseudoParser
         var result = new List<PseudoFilter>();
         foreach (var stat in item.PseudoStats)
         {
-            result.Add(new PseudoFilter()
-            {
-                Stat = stat,
-                Checked = false,
-            });
+            result.Add(new PseudoFilter(stat));
         }
 
         return result;

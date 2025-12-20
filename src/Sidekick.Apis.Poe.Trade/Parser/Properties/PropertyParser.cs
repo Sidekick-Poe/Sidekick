@@ -7,7 +7,7 @@ using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
 
@@ -140,35 +140,6 @@ public class PropertyParser
             if (filters != null) results.AddRange(filters);
         }
 
-        CleanUpSeparatorFilters(results);
-
         return results;
-    }
-
-    private static void CleanUpSeparatorFilters(List<TradeFilter> results)
-    {
-        // Remove leading SeparatorProperty filters
-        while (results.Count > 0 && results[0] is SeparatorFilter)
-        {
-            results.RemoveAt(0);
-        }
-
-        // Remove trailing SeparatorProperty filters
-        while (results.Count > 0 && results[^1] is SeparatorFilter)
-        {
-            results.RemoveAt(results.Count - 1);
-        }
-
-        // Remove consecutive SeparatorProperty filters
-        for (var i = 1; i < results.Count; i++)
-        {
-            if (results[i] is not SeparatorFilter || results[i - 1] is not SeparatorFilter)
-            {
-                continue;
-            }
-
-            results.RemoveAt(i);
-            i--;// Adjust index to recheck current position
-        }
     }
 }

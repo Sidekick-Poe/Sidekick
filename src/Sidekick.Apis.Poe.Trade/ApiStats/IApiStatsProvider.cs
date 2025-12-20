@@ -1,5 +1,4 @@
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.ApiStats.Models;
 using Sidekick.Common.Initialization;
 namespace Sidekick.Apis.Poe.Trade.ApiStats;
 

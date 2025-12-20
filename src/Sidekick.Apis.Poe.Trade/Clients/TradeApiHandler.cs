@@ -8,7 +8,6 @@ using Sidekick.Apis.Common.States;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Clients.Models;
 using Sidekick.Common.Exceptions;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Clients;
 

@@ -7,9 +7,8 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Clients.Models;
-using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Models;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
@@ -36,7 +35,7 @@ public class ItemTradeService
         }
     };
 
-    public async Task<TradeSearchResult<string>> Search(Item item, List<TradeFilter>? propertyFilters = null, List<StatFilter>? statFilters = null, List<PseudoFilter>? pseudoFilters = null)
+    public async Task<TradeSearchResult<string>> Search(Item item, List<TradeFilter>? filters = null)
     {
         try
         {
@@ -75,18 +74,9 @@ public class ItemTradeService
                 query.Filters.GetOrCreateTradeFilters().Filters.Price = new(currency);
             }
 
-            foreach (var filter in propertyFilters ?? [])
+            foreach (var filter in filters ?? [])
             {
-                filter.PrepareTradeRequest(query, item);
-            }
-
-            foreach (var filter in statFilters ?? [])
-            {
-                filter.PrepareTradeRequest(query, item);
-            }
-
-            foreach (var filter in pseudoFilters ?? [])
-            {
+                if (filter.PrepareTradeRequest == null) continue;
                 filter.PrepareTradeRequest(query, item);
             }
 

@@ -1,5 +1,5 @@
 @using Sidekick.Apis.Poe.Items
-@using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 
 <FilterWrapper>
     <div class="flex flex-nowrap items-center">
@@ -7,7 +7,7 @@
             <FormCheckbox Value="Filter.Checked"
                           ValueChanged="CheckedChanged">
                 <ItemStatText Class="text-left"
-                                  Category="StatCategory.Pseudo">@Filter.Stat.Text</ItemStatText>
+                                  Category="StatCategory.Pseudo">@Filter.Text</ItemStatText>
             </FormCheckbox>
         </div>
 
@@ -25,7 +25,7 @@
                          }
                      })
             {
-                <FilterRange Checked="Filter.Checked == true"
+                <FilterRange Checked="Filter.Checked"
                              NormalizeEnabled="true"
                              NormalizeRoundToInteger="true"
                              Value="@Filter.Stat.Value"

@@ -1,14 +1,15 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
-namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
+namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
-public class StatFilter
+public class StatFilter : TradeFilter
 {
     public StatFilter(Stat stat)
     {
         Stat = stat;
         Checked = stat.ApiInformation.FirstOrDefault()?.Category == StatCategory.Fractured;
+        Text = stat.Text;
 
         var categories = stat.ApiInformation.Select(x => x.Category).Distinct().ToList();
         if (categories.Any(x => x is StatCategory.Fractured or StatCategory.Desecrated or StatCategory.Crafted))
@@ -23,9 +24,9 @@ public class StatFilter
             PrimaryCategory = Stat.ApiInformation.FirstOrDefault()?.Category ?? StatCategory.Undefined;
             SecondaryCategory = StatCategory.Undefined;
         }
-    }
 
-    public bool Checked { get; set; }
+        PrepareTradeRequest = PrepareStatRequest;
+    }
 
     public Stat Stat { get; }
 
@@ -39,7 +40,7 @@ public class StatFilter
 
     public double? Max { get; set; }
 
-    public void PrepareTradeRequest(Query query, Item item)
+    private void PrepareStatRequest(Query query, Item item)
     {
         if (!Checked || Stat.ApiInformation.Count == 0)
         {
