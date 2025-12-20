@@ -19,5 +19,7 @@ public interface ITradeFilterProvider : IInitializableService
     ApiFilterCategory? MiscellaneousCategory { get; }
     string? GetPriceOption(string? price);
     string? GetTradeIndexedOption(string? timeFrame);
+    ApiFilterCategory? GetApiFilterCategory(string categoryId);
+    ApiFilter? GetApiFilter(string categoryId, string filterId);
     Task<List<TradeFilter>> GetFilters(Item item);
 }

@@ -3,7 +3,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
-public class StatFilter : TradeFilter
+public sealed class StatFilter : TradeFilter
 {
     public StatFilter(Stat stat)
     {

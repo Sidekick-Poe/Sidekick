@@ -8,8 +8,10 @@ using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStatic;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Trade.Bulk.Models;
+using Sidekick.Apis.Poe.Trade.Trade.Bulk.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Bulk.Results;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
@@ -53,7 +55,7 @@ public class BulkTradeService
             };
         }
 
-        var currency = item.Game == GameType.PathOfExile1 ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
+        var currency = item.Game == GameType.PathOfExile1 ? await settingsService.GetString(CurrencyFilter.SettingKeyPoe1) : await settingsService.GetString(CurrencyFilter.SettingKeyPoe2);
         currency = tradeFilterProvider.GetPriceOption(currency);
         var minStock = await settingsService.GetInt(SettingKeys.PriceCheckBulkMinimumStock);
 
@@ -78,7 +80,7 @@ public class BulkTradeService
         }
 
         // Trade Settings
-        model.Query.Status.Option = Status.OnlineLeague;
+        model.Query.Status.Option = PlayerStatusFilter.OnlineLeague;
 
         var json = JsonSerializer.Serialize(model, JsonSerializerOptions);
         using var body = new StringContent(json, Encoding.UTF8, "application/json");

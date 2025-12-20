@@ -1,4 +1,5 @@
-namespace Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
+namespace Sidekick.Apis.Poe.Trade.Trade.Bulk.Requests;
 
 public class BulkQuery
 {

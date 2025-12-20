@@ -22,8 +22,6 @@
 
 @if (Expanded)
 {
-    <PriceCheckStatusEditor/>
-    <PriceCheckItemCurrencyEditor/>
     <FormFieldset Legend="@Resources["Bulk_Trade"]"
                   Dense="true">
         <PriceCheckBulkMinimumStockEditor/>
@@ -47,8 +45,6 @@
 
     private string[] SettingKeysUsed { get; } =
     {
-        SettingKeys.PriceCheckCurrency,
-        SettingKeys.PriceCheckCurrencyPoE2,
         SettingKeys.PriceCheckBulkMinimumStock
     };
 
