@@ -82,7 +82,7 @@ public static class ItemClassConstants
         ItemClass.MapFragment, // Necessary for itemised Atzoatl temples
     ];
 
-    public static readonly ItemClass[] WithModifiers =
+    public static readonly ItemClass[] WithStats =
     [
         ..Equipment,
         ..Weapons,

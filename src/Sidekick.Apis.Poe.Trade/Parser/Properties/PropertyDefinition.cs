@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
 
@@ -12,13 +12,13 @@ public abstract class PropertyDefinition
 
     public virtual void Parse(Item item) {}
 
-    public virtual void ParseAfterModifiers(Item item) {}
+    public virtual void ParseAfterStats(Item item) {}
 
-    public virtual Task<PropertyFilter?> GetFilter(Item item) { return Task.FromResult<PropertyFilter?>(null); }
+    public virtual Task<TradeFilter?> GetFilter(Item item) { return Task.FromResult<TradeFilter?>(null); }
 
-    public virtual List<PropertyFilter>? GetFilters(Item item) { return null; }
+    public virtual List<TradeFilter>? GetFilters(Item item) { return null; }
 
-    public virtual void PrepareTradeRequest(Query query, Item item, PropertyFilter filter) {}
+    public virtual void PrepareTradeRequest(Query query, Item item, TradeFilter filter) {}
 
     protected static bool GetBool(Regex pattern, TextItem textItem) => textItem.TryParseRegex(pattern, out _);
 

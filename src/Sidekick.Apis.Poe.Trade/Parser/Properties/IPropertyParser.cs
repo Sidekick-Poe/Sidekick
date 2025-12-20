@@ -1,6 +1,5 @@
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
 using Sidekick.Common.Initialization;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
@@ -11,7 +10,7 @@ public interface IPropertyParser : IInitializableService
 
     void Parse(Item item);
 
-    void ParseAfterModifiers(Item item);
+    void ParseAfterStats(Item item);
 
-    Task<List<PropertyFilter>> GetFilters(Item item);
+    Task<List<TradeFilter>> GetFilters(Item item);
 }

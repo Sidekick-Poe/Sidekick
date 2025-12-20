@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
 
@@ -22,17 +22,17 @@ public class ExpandablePropertiesDefinition
         }
     }
 
-    public override void ParseAfterModifiers(Item item)
+    public override void ParseAfterStats(Item item)
     {
         foreach (var definition in Definitions)
         {
-            definition.ParseAfterModifiers(item);
+            definition.ParseAfterStats(item);
         }
     }
 
-    public override async Task<PropertyFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        var filter = new ExpandablePropertiesFilter(this)
+        var filter = new ExpandableFilter(this)
         {
             Text = label ?? string.Empty,
         };
@@ -51,9 +51,9 @@ public class ExpandablePropertiesDefinition
         return filter;
     }
 
-    public override List<PropertyFilter>? GetFilters(Item item)
+    public override List<TradeFilter>? GetFilters(Item item)
     {
-        var filter = new ExpandablePropertiesFilter(this)
+        var filter = new ExpandableFilter(this)
         {
             Text = label ?? string.Empty,
         };
@@ -70,9 +70,9 @@ public class ExpandablePropertiesDefinition
         return filter.Filters.Count == 0 ? null : [filter];
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
     {
-        if (filter is not ExpandablePropertiesFilter expandablePropertiesFilter) return;
+        if (filter is not ExpandableFilter expandablePropertiesFilter) return;
 
         foreach (var childFilter in expandablePropertiesFilter.Filters)
         {

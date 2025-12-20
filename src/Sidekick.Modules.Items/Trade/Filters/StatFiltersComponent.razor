@@ -1,0 +1,28 @@
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions
+@for (var i = 0; i < Filters.Count; i++)
+{
+    var index = i;
+    var key = $"{Item.Id}_stat_{index}";
+    <StatFilterComponent @key="key" Filter="@Filters[index]" />
+
+    var isLastFilter = i + 1 == Filters.Count;
+    if (!isLastFilter)
+    {
+        var isDifferentBlock = Filters[i].Stat.BlockIndex != Filters[i + 1].Stat.BlockIndex;
+        if (isDifferentBlock)
+        {
+            <ItemSeparator Rarity="Item.Properties.Rarity"/>
+        }
+    }
+}
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public required List<StatFilter> Filters { get; set; }
+
+}

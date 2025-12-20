@@ -6,11 +6,11 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Tests.Mocks;
 using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Clients;
-using Sidekick.Apis.Poe.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Modifiers;
-using Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
+using Sidekick.Apis.Poe.Trade.Parser.Stats;
+using Sidekick.Apis.Poe.Trade.Trade.Filters;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
@@ -29,14 +29,14 @@ public abstract class ParserFixture : IAsyncLifetime
 
     private Task? initializationTask;
 
-    public IInvariantModifierProvider InvariantModifierProvider { get; private set; } = null!;
+    public IInvariantStatsProvider InvariantStatsProvider { get; private set; } = null!;
     public IItemParser Parser { get; private set; } = null!;
     public IGameLanguageProvider GameLanguageProvider { get; private set; } = null!;
-    public IFilterProvider FilterProvider { get; private set; } = null!;
+    public ITradeFilterProvider TradeFilterProvider { get; private set; } = null!;
     public IPropertyParser PropertyParser { get; private set; } = null!;
     public ISettingsService SettingsService { get; private set; } = null!;
-    public IModifierProvider ModifierProvider { get; private set; } = null!;
-    public IModifierParser ModifierParser { get; private set; } = null!;
+    public IApiStatsProvider ApiStatsProvider { get; private set; } = null!;
+    public IStatParser StatParser { get; private set; } = null!;
     private TestContext TestContext { get; set; } = null!;
 
     public async Task InitializeAsync()
@@ -76,12 +76,12 @@ public abstract class ParserFixture : IAsyncLifetime
         await initializationTask;
 
         Parser = TestContext.Services.GetRequiredService<IItemParser>();
-        InvariantModifierProvider = TestContext.Services.GetRequiredService<IInvariantModifierProvider>();
+        InvariantStatsProvider = TestContext.Services.GetRequiredService<IInvariantStatsProvider>();
         GameLanguageProvider = TestContext.Services.GetRequiredService<IGameLanguageProvider>();
         PropertyParser = TestContext.Services.GetRequiredService<IPropertyParser>();
-        FilterProvider = TestContext.Services.GetRequiredService<IFilterProvider>();
-        ModifierProvider = TestContext.Services.GetRequiredService<IModifierProvider>();
-        ModifierParser = TestContext.Services.GetRequiredService<IModifierParser>();
+        TradeFilterProvider = TestContext.Services.GetRequiredService<ITradeFilterProvider>();
+        ApiStatsProvider = TestContext.Services.GetRequiredService<IApiStatsProvider>();
+        StatParser = TestContext.Services.GetRequiredService<IStatParser>();
     }
 
     public Task DisposeAsync()

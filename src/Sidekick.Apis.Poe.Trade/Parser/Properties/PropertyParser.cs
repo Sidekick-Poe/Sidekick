@@ -2,12 +2,12 @@ using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Items;
+using Sidekick.Apis.Poe.Trade.ApiItems;
+using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Localization;
-using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
 
@@ -18,10 +18,10 @@ public class PropertyParser
     IServiceProvider serviceProvider,
     IGameLanguageProvider gameLanguageProvider,
     IApiItemProvider apiItemProvider,
-    IFilterProvider filterProvider,
+    ITradeFilterProvider tradeFilterProvider,
     ISettingsService settingsService,
     IStringLocalizer<PoeResources> resources,
-    IInvariantModifierProvider invariantModifierProvider
+    IInvariantStatsProvider invariantStatsProvider
 ) : IPropertyParser
 {
     public int Priority => 300;
@@ -47,7 +47,7 @@ public class PropertyParser
             new EnergyShieldProperty(gameLanguageProvider, game),
             new BlockChanceProperty(gameLanguageProvider, game),
 
-            new WeaponDamageProperty(gameLanguageProvider, game, resources, invariantModifierProvider),
+            new WeaponDamageProperty(gameLanguageProvider, game, resources, invariantStatsProvider),
             new CriticalHitChanceProperty(gameLanguageProvider, game),
             new AttacksPerSecondProperty(gameLanguageProvider, game),
 
@@ -72,7 +72,7 @@ public class PropertyParser
 
             new SeparatorProperty(),
 
-            new ExpandablePropertiesDefinition(filterProvider.RequirementsCategory?.Title,
+            new ExpandablePropertiesDefinition(tradeFilterProvider.RequirementsCategory?.Title,
                                                new RequiresLevelProperty(gameLanguageProvider),
                                                new RequiresStrengthProperty(gameLanguageProvider),
                                                new RequiresDexterityProperty(gameLanguageProvider),
@@ -80,7 +80,7 @@ public class PropertyParser
 
             new SeparatorProperty(),
 
-            new ExpandablePropertiesDefinition(filterProvider.MiscellaneousCategory?.Title,
+            new ExpandablePropertiesDefinition(tradeFilterProvider.MiscellaneousCategory?.Title,
                                                new ElderProperty(gameLanguageProvider),
                                                new ShaperProperty(gameLanguageProvider),
                                                new CrusaderProperty(gameLanguageProvider),
@@ -115,19 +115,19 @@ public class PropertyParser
         }
     }
 
-    public void ParseAfterModifiers(Item item)
+    public void ParseAfterStats(Item item)
     {
         foreach (var definition in Definitions)
         {
             if (definition.ValidItemClasses.Count > 0 && !definition.ValidItemClasses.Contains(item.Properties.ItemClass)) continue;
 
-            definition.ParseAfterModifiers(item);
+            definition.ParseAfterStats(item);
         }
     }
 
-    public async Task<List<PropertyFilter>> GetFilters(Item item)
+    public async Task<List<TradeFilter>> GetFilters(Item item)
     {
-        var results = new List<PropertyFilter>();
+        var results = new List<TradeFilter>();
 
         foreach (var definition in Definitions)
         {
@@ -145,7 +145,7 @@ public class PropertyParser
         return results;
     }
 
-    private static void CleanUpSeparatorFilters(List<PropertyFilter> results)
+    private static void CleanUpSeparatorFilters(List<TradeFilter> results)
     {
         // Remove leading SeparatorProperty filters
         while (results.Count > 0 && results[0] is SeparatorFilter)

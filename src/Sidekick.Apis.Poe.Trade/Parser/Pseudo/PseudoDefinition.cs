@@ -1,6 +1,7 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Modifiers.Models;
+using Sidekick.Apis.Poe.Trade.ApiStats;
+using Sidekick.Apis.Poe.Trade.ApiStats.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 
@@ -10,43 +11,43 @@ public abstract class PseudoDefinition
 
     protected abstract bool Enabled { get; }
 
-    protected abstract string ModifierId { get; }
+    protected abstract string StatId { get; }
 
     protected abstract List<PseudoPattern> Patterns { get; }
 
     /// <summary>
-    /// Represents a regular expression pattern used to exclude certain modifier texts
-    /// during the processing of pseudo-modifier definitions in the Path of Exile API.
+    /// Represents a regular expression pattern used to exclude certain stat texts
+    /// during the processing of pseudo-stat definitions in the Path of Exile API.
     /// </summary>
     /// <remarks>
-    /// This property defines a regular expression that matches modifier texts
+    /// This property defines a regular expression that matches stat texts
     /// which should be excluded from further processing. Each derived class provides
     /// a specific implementation of this property. It is utilized within the
-    /// initialization and parsing processes to filter out unwanted modifier entries.
+    /// initialization and parsing processes to filter out unwanted stat entries.
     /// </remarks>
     protected abstract Regex? Exception { get; }
 
     private string? Text { get; set; }
 
-    private List<PseudoModifierDefinition> Modifiers { get; set; } = new();
+    private List<PseudoStatDefinition> Definitions { get; set; } = new();
 
-    internal void InitializeDefinition(List<ApiCategory> apiCategories, List<ModifierDefinition>? localizedPseudoModifiers)
+    internal void InitializeDefinition(List<ApiCategory> apiCategories, List<StatDefinition>? localizedPseudoStats)
     {
         if (!Enabled) return;
 
-        foreach (var apiModifier in apiCategories.SelectMany(apiCategory => apiCategory.Entries))
+        foreach (var apiStat in apiCategories.SelectMany(apiCategory => apiCategory.Entries))
         {
-            if (Exception != null && Exception.IsMatch(apiModifier.Text)) continue;
+            if (Exception != null && Exception.IsMatch(apiStat.Text)) continue;
 
             foreach (var pattern in Patterns)
             {
-                if (apiModifier.Id == null || apiModifier.Type == null || apiModifier.Text == null || !pattern.Pattern.IsMatch(apiModifier.Text)) continue;
+                if (!pattern.Pattern.IsMatch(apiStat.Text)) continue;
 
-                Modifiers.Add(new PseudoModifierDefinition(apiModifier.Id, apiModifier.Type, apiModifier.Text, pattern.Multiplier));
+                Definitions.Add(new PseudoStatDefinition(apiStat.Id, apiStat.Type, apiStat.Text, pattern.Multiplier));
             }
         }
 
-        Modifiers = Modifiers.OrderBy(x => x.Type switch
+        Definitions = Definitions.OrderBy(x => x.Type switch
             {
                 "pseudo" => 0,
                 "explicit" => 1,
@@ -61,32 +62,32 @@ public abstract class PseudoDefinition
             .ThenBy(x => x.Text)
             .ToList();
 
-        Text = localizedPseudoModifiers?.FirstOrDefault(x => x.ApiId == ModifierId)?.ApiText ?? null;
+        Text = localizedPseudoStats?.FirstOrDefault(x => x.Id == StatId)?.Text ?? null;
     }
 
-    internal PseudoModifier? Parse(List<Modifier> itemModifierLines)
+    internal PseudoStat? Parse(List<Stat> lines)
     {
-        if (!Enabled || !HasPseudoMods(itemModifierLines))
+        if (!Enabled || !HasPseudoMods(lines))
         {
             return null;
         }
 
-        var result = new PseudoModifier()
+        var result = new PseudoStat
         {
-            ModifierId = ModifierId,
+            Id = StatId,
             Text = Text ?? string.Empty,
         };
 
-        foreach (var itemModifierLine in itemModifierLines)
+        foreach (var line in lines)
         {
-            foreach (var definitionModifier in Modifiers)
+            foreach (var definition in Definitions)
             {
-                if (itemModifierLine.ApiInformation.All(itemModifier => definitionModifier.Id != itemModifier.ApiId) || itemModifierLine.AverageValue == 0)
+                if (line.ApiInformation.All(apiStat => definition.Id != apiStat.Id) || line.AverageValue == 0)
                 {
                     continue;
                 }
 
-                result.Value += itemModifierLine.AverageValue * definitionModifier.Multiplier;
+                result.Value += line.AverageValue * definition.Multiplier;
                 break;
             }
         }
@@ -98,15 +99,15 @@ public abstract class PseudoDefinition
         return result;
     }
 
-    private bool HasPseudoMods(List<Modifier> itemModifierLines)
+    private bool HasPseudoMods(List<Stat> lines)
     {
-        foreach (var definitionModifier in Modifiers)
+        foreach (var definition in Definitions)
         {
-            foreach (var itemModifierLine in itemModifierLines)
+            foreach (var line in lines)
             {
-                foreach (var modifier in itemModifierLine.ApiInformation)
+                foreach (var apiStat in line.ApiInformation)
                 {
-                    if (modifier.ApiId == definitionModifier.Id) return true;
+                    if (apiStat.Id == definition.Id) return true;
                 }
             }
         }

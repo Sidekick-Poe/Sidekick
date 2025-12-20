@@ -37,7 +37,7 @@ Split Arrow fires 2 additional Projectiles (enchant)
 27% increased Stun and Block Recovery
 ");
 
-        actual.AssertHasModifier(ModifierCategory.Enchant, "Split Arrow fires an additional Projectile", 2);
+        actual.AssertHasStat(StatCategory.Enchant, "Split Arrow fires an additional Projectile", 2);
     }
 
     [Fact]

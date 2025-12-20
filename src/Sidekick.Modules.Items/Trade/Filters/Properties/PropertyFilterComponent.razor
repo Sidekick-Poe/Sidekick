@@ -1,6 +1,6 @@
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions
-@using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions
 
 @switch (Filter)
 {
@@ -24,7 +24,7 @@
         <StringPropertyFilterComponent Filter="stringFilter"/>
         break;
 
-    case ExpandablePropertiesFilter expandableFilter:
+    case ExpandableFilter expandableFilter:
         <ExpandablePropertyFilterComponent Filter="expandableFilter" Item="Item"/>
         break;
 
@@ -47,6 +47,6 @@
     public required Item Item { get; set; }
 
     [Parameter]
-    public required PropertyFilter Filter { get; set; }
+    public required TradeFilter Filter { get; set; }
 
 }

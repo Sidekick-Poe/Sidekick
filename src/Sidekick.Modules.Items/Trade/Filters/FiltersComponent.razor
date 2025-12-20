@@ -1,10 +1,9 @@
 @using Sidekick.Apis.Poe.Items
-@using Sidekick.Apis.Poe.Trade.Bulk
-@using Sidekick.Apis.Poe.Trade.Parser.Modifiers
 @using Sidekick.Apis.Poe.Trade.Parser.Properties
-@using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters
 @using Sidekick.Apis.Poe.Trade.Parser.Pseudo
-@using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters
+@using Sidekick.Apis.Poe.Trade.Parser.Stats
+@using Sidekick.Apis.Poe.Trade.Trade.Bulk
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions
 @using Sidekick.Modules.Items.Localization
 @using Sidekick.Modules.Items.Trade.Filters.Properties
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
@@ -38,8 +37,8 @@
             <ItemSeparator Rarity="Item.Properties.Rarity"/>
         }
 
-        <ModifierFiltersComponent ModifierFilters="ModifierFilters"/>
-        <PseudoFiltersComponent PseudoFilters="PseudoFilters"/>
+        <StatFiltersComponent Filters="StatFilters"/>
+        <PseudoFiltersComponent Filters="PseudoFilters"/>
 
         <ItemSeparator Rarity="Item.Properties.Rarity"/>
         <TradeFilters/>
@@ -48,7 +47,7 @@
     <div class="flex flex-nowrap items-center w-full py-2 px-1">
         <div class="flex flex-col items-stretch text-center px-1 grow">
             <ButtonPrimary
-                OnClick="() => TradeService.SearchItems(Item, PropertyFilters, ModifierFilters, PseudoFilters)"
+                OnClick="() => TradeService.SearchItems(Item, PropertyFilters, StatFilters, PseudoFilters)"
                 Disabled="TradeService.IsLoading">@Resources["Search"]</ButtonPrimary>
         </div>
 
@@ -66,7 +65,7 @@
 @inject IBulkTradeService BulkTradeService
 @inject TradeService TradeService
 @inject IPropertyParser PropertyParser
-@inject IModifierParser ModifierParser
+@inject IStatParser StatParser
 @inject IPseudoParser PseudoParser
 
 @code {
@@ -74,16 +73,16 @@
     [CascadingParameter]
     public required Item Item { get; set; }
 
-    private List<PropertyFilter>? PropertyFilters { get; set; }
+    private List<TradeFilter>? PropertyFilters { get; set; }
 
-    private List<ModifierFilter> ModifierFilters { get; set; } = [];
+    private List<StatFilter> StatFilters { get; set; } = [];
 
     private List<PseudoFilter> PseudoFilters { get; set; } = [];
 
     protected override async Task OnParametersSetAsync()
     {
         PropertyFilters = await PropertyParser.GetFilters(Item);
-        ModifierFilters = await ModifierParser.GetFilters(Item);
+        StatFilters = await StatParser.GetFilters(Item);
         PseudoFilters = PseudoParser.GetFilters(Item);
         TradeService.Clear();
 

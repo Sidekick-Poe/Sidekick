@@ -3,12 +3,12 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Localization;
-using Sidekick.Apis.Poe.Trade.Modifiers;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Results;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -17,7 +17,7 @@ public class WeaponDamageProperty
     IGameLanguageProvider gameLanguageProvider,
     GameType game,
     IStringLocalizer<PoeResources> resources,
-    IInvariantModifierProvider invariantModifierProvider
+    IInvariantStatsProvider invariantStatsProvider
 ) : PropertyDefinition
 {
     private Regex RangePattern { get; } = new(@"([\d,\.]+)-([\d,\.]+)", RegexOptions.Compiled);
@@ -94,15 +94,15 @@ public class WeaponDamageProperty
         }
     }
 
-    public override void ParseAfterModifiers(Item item)
+    public override void ParseAfterStats(Item item)
     {
         if (game == GameType.PathOfExile2) return;
 
-        var damageMods = invariantModifierProvider.FireWeaponDamageIds.ToList();
-        damageMods.AddRange(invariantModifierProvider.ColdWeaponDamageIds);
-        damageMods.AddRange(invariantModifierProvider.LightningWeaponDamageIds);
+        var damageMods = invariantStatsProvider.FireWeaponDamageIds.ToList();
+        damageMods.AddRange(invariantStatsProvider.ColdWeaponDamageIds);
+        damageMods.AddRange(invariantStatsProvider.LightningWeaponDamageIds);
 
-        var itemMods = item.Modifiers.Where(x => x.ApiInformation.Any(y => damageMods.Contains(y.ApiId ?? string.Empty))).ToList();
+        var itemMods = item.Stats.Where(x => x.ApiInformation.Any(y => damageMods.Contains(y.Id ?? string.Empty))).ToList();
         if (itemMods.Count == 0) return;
 
         // Parse elemental damage for Path of Exile 1.
@@ -123,10 +123,10 @@ public class WeaponDamageProperty
                 int.TryParse(match.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
                 var range = new DamageRange(min, max);
 
-                var ids = itemMods[matchIndex].ApiInformation.Where(x => x.ApiId != null).Select(x => x.ApiId!).ToList();
-                var isFire = invariantModifierProvider.FireWeaponDamageIds.Any(x => ids.Contains(x));
-                var isCold = invariantModifierProvider.ColdWeaponDamageIds.Any(x => ids.Contains(x));
-                var isLightning = invariantModifierProvider.LightningWeaponDamageIds.Any(x => ids.Contains(x));
+                var ids = itemMods[matchIndex].ApiInformation.Where(x => x.Id != null).Select(x => x.Id!).ToList();
+                var isFire = invariantStatsProvider.FireWeaponDamageIds.Any(x => ids.Contains(x));
+                var isCold = invariantStatsProvider.ColdWeaponDamageIds.Any(x => ids.Contains(x));
+                var isLightning = invariantStatsProvider.LightningWeaponDamageIds.Any(x => ids.Contains(x));
 
                 if (isFire) item.Properties.FireDamage = range;
                 else if (isCold) item.Properties.ColdDamage = range;
@@ -137,9 +137,9 @@ public class WeaponDamageProperty
         }
     }
 
-    public override List<PropertyFilter>? GetFilters(Item item)
+    public override List<TradeFilter>? GetFilters(Item item)
     {
-        var results = new List<PropertyFilter>();
+        var results = new List<TradeFilter>();
 
         if (item.Properties.TotalDamage > 0)
         {
@@ -211,7 +211,7 @@ public class WeaponDamageProperty
         return results.Count > 0 ? results : null;
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
     {
         if (!filter.Checked) return;
 

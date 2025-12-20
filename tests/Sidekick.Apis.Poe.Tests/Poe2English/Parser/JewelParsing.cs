@@ -32,10 +32,10 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         Assert.Null(actual.ApiInformation.Name);
         Assert.Equal(26, actual.Properties.ItemLevel);
 
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Attack Speed", 3);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "Damage Penetrates #% Lightning Resistance", 5);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Magnitude of Ailments you inflict", 7);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Pin Buildup", 14);
+        actual.AssertHasStat(StatCategory.Explicit, "#% increased Attack Speed", 3);
+        actual.AssertHasStat(StatCategory.Explicit, "Damage Penetrates #% Lightning Resistance", 5);
+        actual.AssertHasStat(StatCategory.Explicit, "#% increased Magnitude of Ailments you inflict", 7);
+        actual.AssertHasStat(StatCategory.Explicit, "#% increased Pin Buildup", 14);
     }
 
     [Fact]

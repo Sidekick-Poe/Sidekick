@@ -1,15 +1,15 @@
 @using Sidekick.Apis.Poe.Items
-@using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions
 
-@if (PseudoFilters.Any())
+@if (Filters.Any())
 {
     <ItemSeparator Rarity="Item.Properties.Rarity"/>
 }
 
 
-@for (var index = 0; index < PseudoFilters.Count; index++)
+@for (var index = 0; index < Filters.Count; index++)
 {
-    var filter = PseudoFilters[index];
+    var filter = Filters[index];
     var key = $"{Item.Id}_pseudo_{index}";
     <PseudoFilterComponent @key="key" Filter="@filter"/>
 }
@@ -20,6 +20,6 @@
     public required Item Item { get; set; }
 
     [Parameter]
-    public required List<PseudoFilter> PseudoFilters { get; set; }
+    public required List<PseudoFilter> Filters { get; set; }
 
 }

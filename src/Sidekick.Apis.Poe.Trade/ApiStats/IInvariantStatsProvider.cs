@@ -1,0 +1,26 @@
+using Sidekick.Apis.Poe.Trade.ApiStats.Models;
+using Sidekick.Common.Initialization;
+namespace Sidekick.Apis.Poe.Trade.ApiStats;
+
+public interface IInvariantStatsProvider : IInitializableService
+{
+    List<string> IgnoreStatIds { get; }
+
+    List<string> IncursionRoomStatIds { get; }
+
+    List<string> LogbookFactionStatIds { get; }
+
+    List<string> FireWeaponDamageIds { get; }
+
+    List<string> ColdWeaponDamageIds { get; }
+
+    List<string> LightningWeaponDamageIds { get; }
+
+    string ClusterJewelSmallPassiveCountStatId { get; }
+
+    string ClusterJewelSmallPassiveGrantStatId { get; }
+
+    Dictionary<int, string> ClusterJewelSmallPassiveGrantOptions { get; }
+
+    Task<List<ApiCategory>> GetList();
+}

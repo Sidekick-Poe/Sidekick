@@ -33,7 +33,7 @@ public class KoreanParsing(Poe1KoreanFixture fixture)
         Assert.Equal(ItemClass.Belt, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
 
-        actual.AssertHasModifier(ModifierCategory.Mutated, "번개 피해의 #%를 카오스 피해로 전환", 40);
+        actual.AssertHasStat(StatCategory.Mutated, "번개 피해의 #%를 카오스 피해로 전환", 40);
     }
 
     [Fact]
@@ -63,6 +63,6 @@ public class KoreanParsing(Poe1KoreanFixture fixture)
         Assert.Equal(ItemClass.Amulet, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Unique, actual.Properties.Rarity);
 
-        actual.AssertHasModifier(ModifierCategory.Explicit, "지능 +#", 34);
+        actual.AssertHasStat(StatCategory.Explicit, "지능 +#", 34);
     }
 }

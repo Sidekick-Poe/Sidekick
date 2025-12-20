@@ -1,7 +1,7 @@
 @using Sidekick.Apis.Poe.Extensions
 @using Sidekick.Apis.Poe.Items
-@using Sidekick.Apis.Poe.Trade.Filters
-@using Sidekick.Apis.Poe.Trade.Static
+@using Sidekick.Apis.Poe.Trade.ApiStatic
+@using Sidekick.Apis.Poe.Trade.Trade.Filters
 @using Sidekick.Modules.Items.Localization
 @using Sidekick.Common.Settings
 
@@ -45,7 +45,7 @@
 
 @inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
-@inject IFilterProvider FilterProvider
+@inject ITradeFilterProvider TradeFilterProvider
 @inject IApiStaticDataProvider ApiStaticDataProvider
 @implements IDisposable
 
@@ -65,7 +65,7 @@
 
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
-        Options = FilterProvider.TradePrice?.Option.Options.ConvertAll(x => new SelectOption()
+        Options = TradeFilterProvider.TradePrice?.Option.Options.ConvertAll(x => new SelectOption()
                   {
                       Label = x.Text ?? string.Empty,
                       Value = x.Id,
@@ -79,7 +79,7 @@
     {
         var game = await SettingsService.GetGame();
         Currency = game == GameType.PathOfExile1 ? await SettingsService.GetString(SettingKeys.PriceCheckCurrency) : await SettingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
-        Currency = FilterProvider.GetPriceOption(Currency);
+        Currency = TradeFilterProvider.GetPriceOption(Currency);
     }
 
     private async Task CurrencyChanged(string? value)

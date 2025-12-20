@@ -1,6 +1,6 @@
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -10,16 +10,16 @@ public class SeparatorProperty() : PropertyDefinition
 
     public override List<ItemClass> ValidItemClasses { get; } = [];
 
-    public override Task<PropertyFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        return Task.FromResult<PropertyFilter?>(new SeparatorFilter(this)
+        return Task.FromResult<TradeFilter?>(new SeparatorFilter(this)
         {
             Text = Text,
             Checked = true,
         });
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
     {
     }
 }

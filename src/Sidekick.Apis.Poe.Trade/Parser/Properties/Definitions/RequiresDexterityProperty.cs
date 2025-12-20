@@ -1,9 +1,9 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -33,9 +33,9 @@ public class RequiresDexterityProperty(IGameLanguageProvider gameLanguageProvide
         }
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.RequiresDexterity <= 0) return Task.FromResult<PropertyFilter?>(null);
+        if (item.Properties.RequiresDexterity <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new IntPropertyFilter(this)
         {
@@ -43,10 +43,10 @@ public class RequiresDexterityProperty(IGameLanguageProvider gameLanguageProvide
             NormalizeEnabled = false,
             Value = item.Properties.RequiresDexterity,
         };
-        return Task.FromResult<PropertyFilter?>(filter);
+        return Task.FromResult<TradeFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
+    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
     {
         if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
 

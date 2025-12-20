@@ -1,6 +1,6 @@
 @using Sidekick.Apis.Poe.Items
-@using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters
-@using Sidekick.Apis.Poe.Trade.Trade.Results
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions
+@using Sidekick.Apis.Poe.Trade.Trade.Items.Results
 @if (!Filter.ShowRow)
 {
     return;
@@ -46,7 +46,7 @@
 @code {
 
     [Parameter]
-    public required ExpandablePropertiesFilter Filter { get; set; }
+    public required ExpandableFilter Filter { get; set; }
 
     [Parameter]
     public required Item Item { get; set; }

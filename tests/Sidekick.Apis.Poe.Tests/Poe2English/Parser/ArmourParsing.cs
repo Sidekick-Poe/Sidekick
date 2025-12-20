@@ -55,12 +55,12 @@ Corrupted
 
         Assert.Equal(36, actual.Properties.ItemLevel);
 
-        actual.AssertHasModifier(ModifierCategory.Enchant, "#% increased Evasion Rating", 22);
-        actual.AssertHasModifier(ModifierCategory.Rune, "#% to Fire Resistance", 12);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Movement Speed", 10);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Evasion Rating", 41);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% to Maximum Lightning Resistance", 5);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% to Lightning Resistance", 33);
+        actual.AssertHasStat(StatCategory.Enchant, "#% increased Evasion Rating", 22);
+        actual.AssertHasStat(StatCategory.Rune, "#% to Fire Resistance", 12);
+        actual.AssertHasStat(StatCategory.Explicit, "#% increased Movement Speed", 10);
+        actual.AssertHasStat(StatCategory.Explicit, "#% increased Evasion Rating", 41);
+        actual.AssertHasStat(StatCategory.Explicit, "#% to Maximum Lightning Resistance", 5);
+        actual.AssertHasStat(StatCategory.Explicit, "#% to Lightning Resistance", 33);
 
         Assert.True(actual.Properties.Corrupted);
     }
@@ -97,7 +97,7 @@ Grants Skill: Parry
 
         Assert.Equal(5, actual.Properties.ItemLevel);
 
-        actual.AssertHasModifier(ModifierCategory.Explicit, "# to maximum Life", 12);
+        actual.AssertHasStat(StatCategory.Explicit, "# to maximum Life", 12);
     }
 
     [Fact]
@@ -167,6 +167,6 @@ Item Level: 66
 
         Assert.Equal(66, actual.Properties.ItemLevel);
 
-        actual.AssertHasModifier(ModifierCategory.Desecrated, "# to Armour", 32);
+        actual.AssertHasStat(StatCategory.Desecrated, "# to Armour", 32);
     }
 }
