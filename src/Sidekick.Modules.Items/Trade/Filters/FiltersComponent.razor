@@ -18,16 +18,13 @@
                     Influences="Item.Properties.Influences"/>
     </div>
 
-    <div class="grow overflow-y-auto py-2">
+    <div class="grow overflow-y-auto pt-2">
         @for (var index = 0; index < Filters.Count; index++)
         {
             var filter = Filters[index];
             var key = $"{Item.Id}_filter_{index}";
             <FilterComponent @key="key" Filter="filter"/>
         }
-
-        <ItemSeparator Rarity="Item.Properties.Rarity"/>
-        <TradeFilters/>
     </div>
 
     <div class="flex flex-nowrap items-center w-full py-2 px-1">
@@ -71,7 +68,7 @@
         Filters.Add(new SeparatorFilter());
         Filters.AddRange(PseudoParser.GetFilters(Item));
         Filters.Add(new SeparatorFilter());
-        Filters.AddRange(await TradeFilterProvider.GetFilters());
+        Filters.AddRange(await TradeFilterProvider.GetFilters(Item));
 
         CleanUpSeparatorFilters(Filters);
 

@@ -78,9 +78,7 @@ public class BulkTradeService
         }
 
         // Trade Settings
-        var status = await settingsService.GetString(SettingKeys.PriceCheckStatus);
-        if (status == Status.Securable || status == Status.Available) status = Status.OnlineLeague;
-        model.Query.Status.Option = status ?? Status.Securable;
+        model.Query.Status.Option = Status.OnlineLeague;
 
         var json = JsonSerializer.Serialize(model, JsonSerializerOptions);
         using var body = new StringContent(json, Encoding.UTF8, "application/json");

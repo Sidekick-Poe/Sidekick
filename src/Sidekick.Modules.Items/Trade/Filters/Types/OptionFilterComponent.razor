@@ -3,20 +3,25 @@
 @using Sidekick.Common.Settings
 
 <FilterWrapper>
-    <div class="flex flex-nowrap items-center">
+    <div class="flex flex-nowrap items-center min-h-5 font-caps">
         <ItemStatText Class="text-left text-nowrap"
                       Category="StatCategory.GrayText">@Filter.Text:
         </ItemStatText>
-        <FormSelectInline Options="Options"
-                          Value="@Filter.Value"
-                          ValueChanged="@Changed"/>
 
-        @if (!string.IsNullOrEmpty(Filter.SettingKey) && Filter.Value != Filter.DefaultValue)
-        {
-            <ButtonIcon OnClick="@ClearSetting">
-                <Icon Svg="@UiIcons.Reset" Size="UiIconSize.Small"/>
-            </ButtonIcon>
-        }
+        <div class="grow">
+            <FormSelectInline Options="Options"
+                              Value="@Filter.Value"
+                              ValueChanged="@Changed"/>
+        </div>
+
+        <div class="leading-none flex items-center justify-end w-5">
+            @if (!string.IsNullOrEmpty(Filter.SettingKey) && Filter.Value != Filter.DefaultValue)
+            {
+                <ButtonIcon OnClick="@ClearSetting">
+                    <Icon Svg="@UiIcons.Reset" Size="UiIconSize.Small"/>
+                </ButtonIcon>
+            }
+        </div>
     </div>
 </FilterWrapper>
 

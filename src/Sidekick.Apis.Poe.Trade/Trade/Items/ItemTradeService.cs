@@ -7,7 +7,6 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Clients.Models;
-using Sidekick.Apis.Poe.Trade.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Models;
@@ -21,9 +20,8 @@ public class ItemTradeService
     ILogger<ItemTradeService> logger,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
-    ITradeFilterProvider tradeFilterProvider,
     IHttpClientFactory httpClientFactory
-) : ITradeSearchService
+) : IItemTradeService
 {
     private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
@@ -67,22 +65,11 @@ public class ItemTradeService
                 query.Name = item.ApiInformation.Name;
             }
 
-            var currency = item.Game == GameType.PathOfExile1 ? await settingsService.GetString(SettingKeys.PriceCheckCurrency) : await settingsService.GetString(SettingKeys.PriceCheckCurrencyPoE2);
-            currency = tradeFilterProvider.GetPriceOption(currency);
-            if (!string.IsNullOrEmpty(currency))
-            {
-                query.Filters.GetOrCreateTradeFilters().Filters.Price = new(currency);
-            }
-
             foreach (var filter in filters ?? [])
             {
                 if (filter.PrepareTradeRequest == null) continue;
                 filter.PrepareTradeRequest(query, item);
             }
-
-            // Trade Settings
-            var status = await settingsService.GetString(SettingKeys.PriceCheckStatus);
-            query.Status.Option = status ?? Status.Securable;
 
             var league = await settingsService.GetLeague();
             var uri = new Uri($"{gameLanguageProvider.Language.GetTradeApiBaseUrl(item.Game)}search/{league}");

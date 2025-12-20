@@ -2,7 +2,7 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
 public class OptionFilter : TradeFilter
 {
-    public record OptionFilterValue(string? Value, string? Text, string? ImageUrl);
+    public record OptionFilterValue(string? Value, string? Text);
 
     public string? Value { get; set; }
 

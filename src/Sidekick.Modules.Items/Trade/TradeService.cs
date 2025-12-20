@@ -11,7 +11,7 @@ namespace Sidekick.Modules.Items.Trade;
 public class TradeService
 (
     IBulkTradeService bulkTradeService,
-    ITradeSearchService tradeSearchService
+    IItemTradeService itemTradeService
 )
 {
     public event Action? Changed;
@@ -50,7 +50,7 @@ public class TradeService
         IsLoading = true;
         Clear();
 
-        ItemTradeResult = await tradeSearchService.Search(item, filters);
+        ItemTradeResult = await itemTradeService.Search(item, filters);
 
         IsLoading = false;
         await LoadMoreItems(item.Game);
@@ -88,7 +88,7 @@ public class TradeService
 
         try
         {
-            var result = await tradeSearchService.GetResults(game, ItemTradeResult.Id, ids);
+            var result = await itemTradeService.GetResults(game, ItemTradeResult.Id, ids);
             TradeItems.AddRange(result);
         }
         catch (SidekickException e)

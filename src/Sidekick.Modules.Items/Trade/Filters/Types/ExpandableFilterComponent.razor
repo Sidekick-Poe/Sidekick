@@ -1,10 +1,29 @@
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Apis.Poe.Trade.Trade.Items.Results
+
 @if (!Filter.ShowRow)
 {
     return;
 }
+
+<FilterWrapper>
+    <div class="flex flex-nowrap items-center min-h-5 justify-center gap-2 cursor-pointer @LineContentType.Simple.GetColour()"
+         @onclick="() => Filter.Checked = !Filter.Checked"
+         @onclick:preventDefault="true">
+        <Icon Size="UiIconSize.Small"
+              Svg="@(Filter.Checked ? UiIcons.ChevronDown : UiIcons.ChevronRight)"/>
+
+        <ItemPropertyText Label="@Filter.Text"
+                          Hint="@Filter.Hint"
+                          Value="@(Filter.Checked ? "true" : "false")"
+                          ContentType="@Filter.Type"
+                          OnlyShowLabel="true"/>
+
+        <Icon Size="UiIconSize.Small"
+              Svg="@(Filter.Checked ? UiIcons.ChevronDown : UiIcons.ChevronLeft)"/>
+    </div>
+</FilterWrapper>
 
 @for (var index = 0; index < Filter.Filters.Count; index++)
 {
@@ -23,24 +42,6 @@
     <FilterComponent @key="key"
                      Filter="filter"/>
 }
-
-<FilterWrapper>
-    <div class="flex flex-nowrap items-center justify-center gap-2 cursor-pointer @LineContentType.Simple.GetColour()"
-         @onclick="() => Filter.Checked = !Filter.Checked"
-         @onclick:preventDefault="true">
-        <Icon Size="UiIconSize.Small"
-              Svg="@(Filter.Checked ? UiIcons.ChevronUp : UiIcons.ChevronDown)"/>
-
-        <ItemPropertyText Label="@Filter.Text"
-                          Hint="@Filter.Hint"
-                          Value="@(Filter.Checked ? "true" : "false")"
-                          ContentType="@Filter.Type"
-                          OnlyShowLabel="true"/>
-
-        <Icon Size="UiIconSize.Small"
-              Svg="@(Filter.Checked ? UiIcons.ChevronUp : UiIcons.ChevronDown)"/>
-    </div>
-</FilterWrapper>
 
 @code {
 

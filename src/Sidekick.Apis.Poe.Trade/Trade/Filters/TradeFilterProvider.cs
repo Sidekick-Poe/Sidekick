@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Extensions;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Localization;
@@ -95,27 +96,54 @@ public class TradeFilterProvider
         return GetApiFilterCategory(categoryId)?.Filters.FirstOrDefault(x => x.Id == filterId);
     }
 
-    public async Task<List<TradeFilter>> GetFilters()
+    public async Task<List<TradeFilter>> GetFilters(Item item)
     {
         if (TradeCategory?.Title == null) return [];
 
         var result = new List<TradeFilter>();
 
-        var statusCategory = GetApiFilterCategory("status_filters");
         var statusFilters = GetApiFilter("status_filters", "status");
         var statusValue = await settingsService.GetString(SettingKeys.PriceCheckStatus);
-        if (statusCategory != null && statusFilters != null)
+        if (statusFilters != null)
         {
-            result.Add(new OptionFilter()
+            var filter = new OptionFilter()
             {
                 Text = resources["Player_Status"],
                 Value = statusValue ?? Status.Securable,
                 DefaultValue = Status.Securable,
                 SettingKey = SettingKeys.PriceCheckStatus,
                 Options = statusFilters.Option.Options
-                    .Select(x => new OptionFilter.OptionFilterValue(x.Id, x.Text, null))
+                    .Select(x => new OptionFilter.OptionFilterValue(x.Id, x.Text))
                     .ToList(),
-            });
+            };
+            filter.PrepareTradeRequest = (query, _) => query.Status.Option = filter.Value ?? Status.Securable;
+            result.Add(filter);
+        }
+
+        var priceFilters = GetApiFilter("trade_filters", "price");
+        var priceKey = item.Game == GameType.PathOfExile1 ? SettingKeys.PriceCheckCurrency : SettingKeys.PriceCheckCurrencyPoE2;
+        var priceValue = await settingsService.GetString(priceKey);
+        if (priceFilters != null)
+        {
+            var filter = new OptionFilter()
+            {
+                Text = priceFilters.Text ?? string.Empty,
+                Value = priceValue,
+                DefaultValue = null,
+                SettingKey = priceKey,
+                Options = priceFilters.Option.Options
+                    .Select(x => new OptionFilter.OptionFilterValue(x.Id, x.Text))
+                    .ToList(),
+            };
+            filter.PrepareTradeRequest = (query, _) =>
+            {
+                var option = GetPriceOption(filter.Value);
+                if (!string.IsNullOrEmpty(option))
+                {
+                    query.Filters.GetOrCreateTradeFilters().Filters.Price = new(option);
+                }
+            };
+            result.Add(filter);
         }
 
         if (result.Count == 0) return [];

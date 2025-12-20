@@ -4,7 +4,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 
 namespace Sidekick.Apis.Poe.Trade;
 
-public interface ITradeSearchService
+public interface IItemTradeService
 {
     Task<TradeSearchResult<string>> Search(Item item, List<TradeFilter>? filters = null);
 

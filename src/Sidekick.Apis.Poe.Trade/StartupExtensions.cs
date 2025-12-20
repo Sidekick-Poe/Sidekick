@@ -30,7 +30,7 @@ public static class StartupExtensions
         services.AddTransient<ITradeApiClient, TradeApiClient>();
         services.AddTransient<PoeResources>();
 
-        services.AddSingleton<ITradeSearchService, ItemTradeService>();
+        services.AddSingleton<IItemTradeService, ItemTradeService>();
         services.AddSingleton<ILeagueProvider, LeagueProvider>();
         services.AddSingleton<IBulkTradeService, BulkTradeService>();
         services.AddSingleton<IFuzzyService, FuzzyService>();

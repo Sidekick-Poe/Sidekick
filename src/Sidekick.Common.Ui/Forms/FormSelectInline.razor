@@ -10,7 +10,7 @@
     }
     <select id="@Id"
             @onchange="OnChange"
-            class="@UiClasses.FocusClasses border border-transparent rounded-sm bg-transparent hover:bg-zinc-700 focus:bg-zinc-700 hover:border-zinc-600 text-white leading-4 -my-0.5 py-0.5 px-1 transition-colors duration-200 min-w-20 inline-block text-base">
+            class="@UiClasses.FocusClasses border border-none rounded-sm bg-none bg-transparent hover:bg-zinc-700 focus:bg-zinc-700 hover:border-zinc-600 text-white leading-4 -my-0.5 py-0.5 px-1 transition-colors duration-200 min-w-20 block w-full text-base appearance-none">
         @if (Options.All(x => GetOptionValue(x.Value) != GetOptionValue(Value)))
         {
             <option selected></option>

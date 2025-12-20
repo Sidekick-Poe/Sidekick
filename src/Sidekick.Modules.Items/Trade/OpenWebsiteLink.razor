@@ -24,7 +24,7 @@
 </Popover>
 
 @inject IStringLocalizer<TradeResources> Resources
-@inject ITradeSearchService TradeSearchService
+@inject IItemTradeService ItemTradeService
 @inject IBulkTradeService BulkTradeService
 @inject IBrowserProvider BrowserProvider
 @inject TradeService TradeService
@@ -45,7 +45,7 @@
         {
             TradeUri = TradeService.CurrentMode == TradeMode.Bulk
                 ? await BulkTradeService.GetTradeUri(Item, QueryId)
-                : await TradeSearchService.GetTradeUri(Item.Game, QueryId);
+                : await ItemTradeService.GetTradeUri(Item.Game, QueryId);
         }
 
         await base.OnInitializedAsync();
