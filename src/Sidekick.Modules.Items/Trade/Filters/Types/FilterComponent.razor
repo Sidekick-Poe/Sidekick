@@ -24,11 +24,15 @@
         break;
 
     case ExpandableFilter expandableFilter:
-        <ExpandablePropertyFilterComponent Filter="expandableFilter" Item="Item"/>
+        <ExpandableFilterComponent Filter="expandableFilter"/>
         break;
 
     case ItemClassPropertyFilter classFilter:
         <ItemClassPropertyFilterComponent Filter="classFilter"/>
+        break;
+
+    case OptionFilter optionFilter:
+        <OptionFilterComponent Filter="optionFilter"/>
         break;
 
     case StatFilter statFilter:
@@ -44,13 +48,13 @@
         break;
 
     default:
-        <BooleanPropertyFilterComponent Filter="Filter"/>
+        <BooleanFilterComponent Filter="Filter"/>
         break;
 }
 
 @code {
 
-    [Parameter]
+    [CascadingParameter]
     public required Item Item { get; set; }
 
     [Parameter]

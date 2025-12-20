@@ -3,6 +3,7 @@
 @using Sidekick.Apis.Poe.Trade.Parser.Pseudo
 @using Sidekick.Apis.Poe.Trade.Parser.Stats
 @using Sidekick.Apis.Poe.Trade.Trade.Bulk
+@using Sidekick.Apis.Poe.Trade.Trade.Filters
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Modules.Items.Localization
 @using Sidekick.Modules.Items.Trade.Filters.Types
@@ -22,9 +23,7 @@
         {
             var filter = Filters[index];
             var key = $"{Item.Id}_filter_{index}";
-            <FilterComponent @key="key"
-                                     Filter="filter"
-                                     Item="Item"/>
+            <FilterComponent @key="key" Filter="filter"/>
         }
 
         <ItemSeparator Rarity="Item.Properties.Rarity"/>
@@ -54,6 +53,7 @@
 @inject IPropertyParser PropertyParser
 @inject IStatParser StatParser
 @inject IPseudoParser PseudoParser
+@inject ITradeFilterProvider TradeFilterProvider
 
 @code {
 
@@ -70,6 +70,8 @@
         Filters.AddRange(await StatParser.GetFilters(Item));
         Filters.Add(new SeparatorFilter());
         Filters.AddRange(PseudoParser.GetFilters(Item));
+        Filters.Add(new SeparatorFilter());
+        Filters.AddRange(await TradeFilterProvider.GetFilters());
 
         CleanUpSeparatorFilters(Filters);
 

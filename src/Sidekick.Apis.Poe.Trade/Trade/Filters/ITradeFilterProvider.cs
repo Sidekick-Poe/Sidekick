@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Models;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Initialization;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters;
 
@@ -17,4 +18,5 @@ public interface ITradeFilterProvider : IInitializableService
     ApiFilterCategory? MiscellaneousCategory { get; }
     string? GetPriceOption(string? price);
     string? GetTradeIndexedOption(string? timeFrame);
+    Task<List<TradeFilter>> GetFilters();
 }

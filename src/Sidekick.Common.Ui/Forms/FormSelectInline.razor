@@ -1,6 +1,6 @@
 @inherits FormSelect
 
-<div class="flex flex-nowrap items-center gap-4">
+<div class="flex flex-nowrap items-center gap-2">
     @if (!string.IsNullOrEmpty(Label))
     {
         <label for="@Id"
@@ -8,37 +8,35 @@
             @Label
         </label>
     }
-    <div class="ml-auto">
-        <select id="@Id"
-                @onchange="OnChange"
-                class="@UiClasses.FormInputClasses p-1 text-base min-w-0 w-[160px] appearance-none cursor-pointer">
-            @if (Options.All(x => GetOptionValue(x.Value) != GetOptionValue(Value)))
-            {
-                <option selected></option>
-            }
+    <select id="@Id"
+            @onchange="OnChange"
+            class="@UiClasses.FocusClasses border border-transparent rounded-sm bg-transparent hover:bg-zinc-700 focus:bg-zinc-700 hover:border-zinc-600 text-white leading-4 -my-0.5 py-0.5 px-1 transition-colors duration-200 min-w-20 inline-block text-base">
+        @if (Options.All(x => GetOptionValue(x.Value) != GetOptionValue(Value)))
+        {
+            <option selected></option>
+        }
 
-            @if (Options.All(x => x.Group != null))
+        @if (Options.All(x => x.Group != null))
+        {
+            foreach (var group in Options.GroupBy(x => x.Group))
             {
-                foreach (var group in Options.GroupBy(x => x.Group))
-                {
-                    <optgroup label="@group.Key">
-                        @foreach (var option in group)
-                        {
-                            <option selected="@(GetOptionValue(option.Value) == GetOptionValue(Value))"
-                                    value="@GetOptionValue(option.Value)"
-                                    disabled="@option.Disabled">@option.Label</option>
-                        }
-                    </optgroup>
-                }
+                <optgroup label="@group.Key">
+                    @foreach (var option in group)
+                    {
+                        <option selected="@(GetOptionValue(option.Value) == GetOptionValue(Value))"
+                                value="@GetOptionValue(option.Value)"
+                                disabled="@option.Disabled">@option.Label</option>
+                    }
+                </optgroup>
             }
-            else
+        }
+        else
+        {
+            foreach (var option in Options)
             {
-                foreach (var option in Options)
-                {
-                    <option selected="@(GetOptionValue(option.Value) == GetOptionValue(Value))"
-                            value="@GetOptionValue(option.Value)" disabled="@option.Disabled">@option.Label</option>
-                }
+                <option selected="@(GetOptionValue(option.Value) == GetOptionValue(Value))"
+                        value="@GetOptionValue(option.Value)" disabled="@option.Disabled">@option.Label</option>
             }
-        </select>
-    </div>
+        }
+    </select>
 </div>

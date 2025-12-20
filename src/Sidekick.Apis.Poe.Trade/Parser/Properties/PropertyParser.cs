@@ -72,7 +72,7 @@ public class PropertyParser
 
             new SeparatorProperty(),
 
-            new ExpandablePropertiesDefinition(tradeFilterProvider.RequirementsCategory?.Title,
+            new ExpandableProperty(tradeFilterProvider.RequirementsCategory?.Title,
                                                new RequiresLevelProperty(gameLanguageProvider),
                                                new RequiresStrengthProperty(gameLanguageProvider),
                                                new RequiresDexterityProperty(gameLanguageProvider),
@@ -80,7 +80,7 @@ public class PropertyParser
 
             new SeparatorProperty(),
 
-            new ExpandablePropertiesDefinition(tradeFilterProvider.MiscellaneousCategory?.Title,
+            new ExpandableProperty(tradeFilterProvider.MiscellaneousCategory?.Title,
                                                new ElderProperty(gameLanguageProvider),
                                                new ShaperProperty(gameLanguageProvider),
                                                new CrusaderProperty(gameLanguageProvider),

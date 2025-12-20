@@ -9,7 +9,7 @@
 @for (var index = 0; index < Filter.Filters.Count; index++)
 {
     var filter = Filter.Filters[index];
-    var key = $"{Item.Id}_property_{index}";
+    var key = $"{Item.Id}_filter_{index}";
 
     if (!Expanded)
     {
@@ -21,8 +21,7 @@
     }
 
     <FilterComponent @key="key"
-                             Filter="filter"
-                             Item="Item"/>
+                     Filter="filter"/>
 }
 
 <FilterWrapper>
@@ -45,11 +44,11 @@
 
 @code {
 
-    [Parameter]
-    public required ExpandableFilter Filter { get; set; }
+    [CascadingParameter]
+    public required Item Item { get; set; }
 
     [Parameter]
-    public required Item Item { get; set; }
+    public required ExpandableFilter Filter { get; set; }
 
     private bool Expanded => Filter.Checked;
 

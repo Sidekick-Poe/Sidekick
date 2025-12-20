@@ -17,7 +17,7 @@ public class TradeFilter
 
     public bool ShowRow { get; init; } = true;
 
-    public bool Checked { get; set; }
+    public virtual bool Checked { get; set; }
 
     public string Text { get; init; } = string.Empty;
 

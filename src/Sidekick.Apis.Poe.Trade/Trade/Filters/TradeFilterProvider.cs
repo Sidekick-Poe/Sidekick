@@ -1,20 +1,24 @@
+using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Clients;
+using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Models;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters;
 
-public class TradeTradeFilterProvider
+public class TradeFilterProvider
 (
     ITradeApiClient tradeApiClient,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
     ICacheProvider cacheProvider,
-    IInvariantFilterProvider invariantFilterProvider
+    IStringLocalizer<PoeResources> resources
 ) : ITradeFilterProvider
 {
     public ApiFilter? TypeCategory { get; private set; }
@@ -38,6 +42,8 @@ public class TradeTradeFilterProvider
     public ApiFilterCategory? RequirementsCategory { get; private set; }
 
     public ApiFilterCategory? MiscellaneousCategory { get; private set; }
+
+    public ApiFilterCategory? TradeCategory { get; private set; }
 
     private List<ApiFilterCategory> Filters { get; set; } = [];
 
@@ -66,36 +72,13 @@ public class TradeTradeFilterProvider
 
         RequirementsCategory = GetApiFilterCategory("req_filters");
         MiscellaneousCategory = GetApiFilterCategory("misc_filters");
-
-        if (invariantFilterProvider.DesecratedDefinition != null)
-        {
-            Desecrated = GetApiFilter(invariantFilterProvider.DesecratedDefinition.CategoryId, invariantFilterProvider.DesecratedDefinition.FilterId);
-        }
-
-        if (invariantFilterProvider.VeiledDefinition != null)
-        {
-            Veiled = GetApiFilter(invariantFilterProvider.VeiledDefinition.CategoryId, invariantFilterProvider.VeiledDefinition.FilterId);
-        }
-
-        if (invariantFilterProvider.FracturedDefinition != null)
-        {
-            Fractured = GetApiFilter(invariantFilterProvider.FracturedDefinition.CategoryId, invariantFilterProvider.FracturedDefinition.FilterId);
-        }
-
-        if (invariantFilterProvider.MirroredDefinition != null)
-        {
-            Mirrored = GetApiFilter(invariantFilterProvider.MirroredDefinition.CategoryId, invariantFilterProvider.MirroredDefinition.FilterId);
-        }
-
-        if (invariantFilterProvider.FoulbornDefinition != null)
-        {
-            Foulborn = GetApiFilter(invariantFilterProvider.FoulbornDefinition.CategoryId, invariantFilterProvider.FoulbornDefinition.FilterId);
-        }
-
-        if (invariantFilterProvider.SanctifiedDefinition != null)
-        {
-            Sanctified = GetApiFilter(invariantFilterProvider.SanctifiedDefinition.CategoryId, invariantFilterProvider.SanctifiedDefinition.FilterId);
-        }
+        TradeCategory = GetApiFilterCategory("trade_filters");
+        Desecrated = GetApiFilter("misc_filters", "desecrated");
+        Veiled = GetApiFilter("misc_filters", "veiled");
+        Fractured = GetApiFilter("misc_filters", "fractured_item");
+        Mirrored = GetApiFilter("misc_filters", "mirrored");
+        Foulborn = GetApiFilter("misc_filters", "foulborn_item");
+        Sanctified = GetApiFilter("misc_filters", "sanctified");
     }
 
     public string? GetPriceOption(string? price) => TradePrice?.Option.Options.SingleOrDefault(x => x.Id == price)?.Id;
@@ -110,5 +93,32 @@ public class TradeTradeFilterProvider
     private ApiFilter? GetApiFilter(string categoryId, string filterId)
     {
         return GetApiFilterCategory(categoryId)?.Filters.FirstOrDefault(x => x.Id == filterId);
+    }
+
+    public async Task<List<TradeFilter>> GetFilters()
+    {
+        if (TradeCategory?.Title == null) return [];
+
+        var result = new List<TradeFilter>();
+
+        var statusCategory = GetApiFilterCategory("status_filters");
+        var statusFilters = GetApiFilter("status_filters", "status");
+        var statusValue = await settingsService.GetString(SettingKeys.PriceCheckStatus);
+        if (statusCategory != null && statusFilters != null)
+        {
+            result.Add(new OptionFilter()
+            {
+                Text = resources["Player_Status"],
+                Value = statusValue ?? Status.Securable,
+                DefaultValue = Status.Securable,
+                SettingKey = SettingKeys.PriceCheckStatus,
+                Options = statusFilters.Option.Options
+                    .Select(x => new OptionFilter.OptionFilterValue(x.Id, x.Text, null))
+                    .ToList(),
+            });
+        }
+
+        if (result.Count == 0) return [];
+        return [new ExpandableFilter(TradeCategory.Title, result.ToArray())];
     }
 }

@@ -44,8 +44,7 @@ public static class StartupExtensions
         services.AddSidekickInitializableService<IApiStatsProvider, ApiStatsProvider>();
         services.AddSidekickInitializableService<IStatParser, StatParser>();
         services.AddSidekickInitializableService<IPseudoParser, PseudoParser>();
-        services.AddSidekickInitializableService<ITradeFilterProvider, TradeTradeFilterProvider>();
-        services.AddSidekickInitializableService<IInvariantFilterProvider, InvariantFilterProvider>();
+        services.AddSidekickInitializableService<ITradeFilterProvider, TradeFilterProvider>();
 
         return services;
     }

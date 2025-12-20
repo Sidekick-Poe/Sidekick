@@ -26,9 +26,7 @@ public class BlightRavagedProperty(IGameLanguageProvider gameLanguageProvider) :
 
         var filter = new TradeFilter(this)
         {
-            ShowRow = false,
             Text = gameLanguageProvider.Language.AffixBlightRavaged,
-            Checked = true,
         };
         return Task.FromResult<TradeFilter?>(filter);
     }

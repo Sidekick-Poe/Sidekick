@@ -1,0 +1,55 @@
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
+@using Sidekick.Common.Settings
+
+<FilterWrapper>
+    <div class="flex flex-nowrap items-center">
+        <ItemStatText Class="text-left text-nowrap"
+                      Category="StatCategory.GrayText">@Filter.Text:
+        </ItemStatText>
+        <FormSelectInline Options="Options"
+                          Value="@Filter.Value"
+                          ValueChanged="@Changed"/>
+
+        @if (!string.IsNullOrEmpty(Filter.SettingKey) && Filter.Value != Filter.DefaultValue)
+        {
+            <ButtonIcon OnClick="@ClearSetting">
+                <Icon Svg="@UiIcons.Reset" Size="UiIconSize.Small"/>
+            </ButtonIcon>
+        }
+    </div>
+</FilterWrapper>
+
+@inject ISettingsService SettingsService
+
+@code {
+
+    [Parameter]
+    public required OptionFilter Filter { get; set; }
+
+    private List<SelectOption> Options => Filter.Options.Select(x => new SelectOption()
+    {
+        Label = x.Text ?? string.Empty,
+        Value = x.Value ?? string.Empty,
+    }).ToList();
+
+    private async Task Changed(string? value)
+    {
+        Filter.Value = value;
+
+        if (!string.IsNullOrEmpty(Filter.SettingKey))
+        {
+            await SettingsService.Set(Filter.SettingKey, value);
+        }
+    }
+
+    private async Task ClearSetting()
+    {
+        if (!string.IsNullOrEmpty(Filter.SettingKey))
+        {
+            Filter.Value = Filter.DefaultValue;
+            await SettingsService.DeleteSetting(Filter.SettingKey);
+        }
+    }
+
+}

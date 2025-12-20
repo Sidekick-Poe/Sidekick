@@ -31,7 +31,7 @@ public class ApiStatsProvider
 
     private List<StatReplaceEntry> ReplacementPatterns { get; } = [];
 
-    public Dictionary<StatCategory, List<StatDefinition>> Definitions { get; } = new();
+    public Dictionary<StatCategory, List<StatDefinition>> Definitions { get; private set; } = new();
 
     /// <inheritdoc/>
     public int Priority => 200;
@@ -67,8 +67,7 @@ public class ApiStatsProvider
         }
 
         Definitions.Clear();
-
-        Parallel.ForEach(apiCategories.Result, apiCategory =>
+        foreach (var apiCategory in apiCategories.Result)
         {
             var statCategory = GetStatCategory(apiCategory.Entries[0].Id);
             var patterns = ComputeCategoryPatterns(apiCategory, statCategory);
@@ -77,7 +76,7 @@ public class ApiStatsProvider
             {
                 Definitions[statCategory].AddRange(patterns);
             }
-        });
+        }
 
         ComputeSecondaryDefinitions();
 
