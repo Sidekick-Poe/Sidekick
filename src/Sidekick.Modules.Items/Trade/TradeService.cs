@@ -4,6 +4,7 @@ using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Trade.Bulk;
 using Sidekick.Apis.Poe.Trade.Trade.Bulk.Models;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Exceptions;
 namespace Sidekick.Modules.Items.Trade;

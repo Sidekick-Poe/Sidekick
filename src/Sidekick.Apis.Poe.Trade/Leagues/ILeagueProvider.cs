@@ -1,6 +1,4 @@
-using Sidekick.Apis.Poe.Trade.Leagues;
-
-namespace Sidekick.Apis.Poe.Trade;
+namespace Sidekick.Apis.Poe.Trade.Leagues;
 
 public interface ILeagueProvider
 {

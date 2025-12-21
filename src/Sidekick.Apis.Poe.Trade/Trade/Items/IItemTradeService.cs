@@ -1,8 +1,7 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
-
-namespace Sidekick.Apis.Poe.Trade;
+namespace Sidekick.Apis.Poe.Trade.Trade.Items;
 
 public interface IItemTradeService
 {
