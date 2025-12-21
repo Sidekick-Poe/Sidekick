@@ -14,9 +14,9 @@ public sealed class StatFilter : TradeFilter
         var categories = stat.ApiInformation.Select(x => x.Category).Distinct().ToList();
         if (categories.Any(x => x is StatCategory.Fractured or StatCategory.Desecrated or StatCategory.Crafted))
         {
-            UsePrimaryCategory = true;
             PrimaryCategory = categories.FirstOrDefault(x => x is StatCategory.Fractured or StatCategory.Desecrated or StatCategory.Crafted);
             SecondaryCategory = categories.FirstOrDefault(x => x == StatCategory.Explicit);
+            UsePrimaryCategory = PrimaryCategory is StatCategory.Fractured;
         }
         else
         {
