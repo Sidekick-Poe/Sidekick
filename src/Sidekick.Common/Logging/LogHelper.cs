@@ -11,7 +11,6 @@ public class LogHelper
     {
         if (logger != null) return logger;
 
-        var logSink = new LogSink();
         Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
@@ -22,7 +21,7 @@ public class LogHelper
                 retainedFileCountLimit: 2,
                 fileSizeLimitBytes: 5242880,
                 rollOnFileSizeLimit: true)
-            .WriteTo.Sink(logSink)
+            .WriteTo.Sink(LogSink.Instance)
             .CreateLogger();
 
         logger = Log.Logger;
