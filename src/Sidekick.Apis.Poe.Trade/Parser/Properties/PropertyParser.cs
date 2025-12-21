@@ -48,6 +48,10 @@ public class PropertyParser
             new BlockChanceProperty(gameLanguageProvider, game),
 
             new WeaponDamageProperty(gameLanguageProvider, game, resources, invariantStatsProvider),
+            new PhysicalDpsProperty(game, resources),
+            new ElementalDpsProperty(game, resources),
+            new ChaosDpsProperty(resources),
+            new TotalDpsProperty(game, resources),
             new CriticalHitChanceProperty(gameLanguageProvider, game),
             new AttacksPerSecondProperty(gameLanguageProvider, game),
 
@@ -135,9 +139,6 @@ public class PropertyParser
 
             var filter = await definition.GetFilter(item);
             if (filter != null) results.Add(filter);
-
-            var filters = definition.GetFilters(item);
-            if (filters != null) results.AddRange(filters);
         }
 
         return results;

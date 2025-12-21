@@ -15,8 +15,6 @@ public abstract class PropertyDefinition
 
     public virtual Task<TradeFilter?> GetFilter(Item item) { return Task.FromResult<TradeFilter?>(null); }
 
-    public virtual List<TradeFilter>? GetFilters(Item item) { return null; }
-
     protected static bool GetBool(Regex pattern, TextItem textItem) => textItem.TryParseRegex(pattern, out _);
 
     protected static bool GetBool(Regex pattern, TextBlock textBlock) => textBlock.TryParseRegex(pattern, out _);

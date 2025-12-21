@@ -8,7 +8,6 @@ using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -137,78 +136,23 @@ public class WeaponDamageProperty
         }
     }
 
-    public override List<TradeFilter>? GetFilters(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        var results = new List<TradeFilter>();
-
-        if (item.Properties.TotalDamage > 0)
+        if (item.Properties.TotalDamage <= 0)
         {
-            var filter = new WeaponDamageFilter(game)
-            {
-                Text = resources["Damage"],
-                NormalizeEnabled = true,
-                Value = item.Properties.TotalDamageWithQuality ?? 0,
-                OriginalValue = item.Properties.TotalDamage ?? 0,
-                Checked = false,
-            };
-            results.Add(filter);
+            return Task.FromResult<TradeFilter?>(null);
         }
 
-        if (item.Properties.PhysicalDps > 0)
+        var filter = new WeaponDamageFilter(game)
         {
-            var filter = new PhysicalDpsFilter(game)
-            {
-                Text = resources["PhysicalDps"],
-                NormalizeEnabled = true,
-                Value = item.Properties.PhysicalDpsWithQuality ?? 0,
-                OriginalValue = item.Properties.PhysicalDps ?? 0,
-                Checked = false,
-                Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.PhysicalDamage)) ? LineContentType.Augmented : LineContentType.Simple,
-            };
-            results.Add(filter);
-        }
+            Text = resources["Damage"],
+            NormalizeEnabled = true,
+            Value = item.Properties.TotalDamageWithQuality ?? 0,
+            OriginalValue = item.Properties.TotalDamage ?? 0,
+            Checked = false,
+        };
 
-        if (item.Properties.ElementalDps > 0)
-        {
-            var filter = new ElementalDpsFilter(game)
-            {
-                Text = resources["ElementalDps"],
-                NormalizeEnabled = true,
-                Value = item.Properties.ElementalDps ?? 0,
-                Checked = false,
-                Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.FireDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ColdDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.LightningDamage)) ? LineContentType.Augmented : LineContentType.Simple,
-            };
-            results.Add(filter);
-        }
-
-        if (item.Properties.ChaosDps > 0)
-        {
-            var filter = new ChaosDpsFilter
-            {
-                Text = resources["ChaosDps"],
-                NormalizeEnabled = true,
-                Value = item.Properties.ChaosDps ?? 0,
-                Checked = false,
-                Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ChaosDamage)) ? LineContentType.Augmented : LineContentType.Simple,
-            };
-            results.Add(filter);
-        }
-
-        if (item.Properties.TotalDps > 0)
-        {
-            var filter = new TotalDpsFilter(game)
-            {
-                Text = resources["Dps"],
-                NormalizeEnabled = true,
-                Value = item.Properties.TotalDpsWithQuality ?? 0,
-                OriginalValue = item.Properties.TotalDps ?? 0,
-                Checked = false,
-                Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.PhysicalDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.FireDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ColdDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.LightningDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ChaosDamage)) ? LineContentType.Augmented : LineContentType.Simple,
-            };
-            results.Add(filter);
-        }
-
-        return results.Count > 0 ? results : null;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 
@@ -222,55 +166,6 @@ public class WeaponDamageFilter(GameType game) : WeaponDamagePropertyFilter
         {
             case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.Damage = new StatFilterValue(this); break;
             case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.Damage = new StatFilterValue(this); break;
-        }
-    }
-}
-
-public class PhysicalDpsFilter(GameType game) : DoublePropertyFilter
-{
-    public override void PrepareTradeRequest(Query query, Item item)
-    {
-        if (!Checked) return;
-
-        switch (game)
-        {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.PhysicalDps = new StatFilterValue(this); break;
-            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.PhysicalDps = new StatFilterValue(this); break;
-        }
-    }
-}
-
-public class ElementalDpsFilter(GameType game) : DoublePropertyFilter
-{
-    public override void PrepareTradeRequest(Query query, Item item)
-    {
-        if (!Checked) return;
-
-        switch (game)
-        {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.ElementalDps = new StatFilterValue(this); break;
-            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.ElementalDps = new StatFilterValue(this); break;
-        }
-    }
-}
-
-public class ChaosDpsFilter : DoublePropertyFilter
-{
-    public override void PrepareTradeRequest(Query query, Item item)
-    {
-    }
-}
-
-public class TotalDpsFilter(GameType game) : DoublePropertyFilter
-{
-    public override void PrepareTradeRequest(Query query, Item item)
-    {
-        if (!Checked) return;
-
-        switch (game)
-        {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.DamagePerSecond = new StatFilterValue(this); break;
-            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.DamagePerSecond = new StatFilterValue(this); break;
         }
     }
 }
