@@ -3,7 +3,7 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Apis.PoeWiki
 
-@if (OilNames == null || !OilNames.Any())
+@if (OilNames.Count == 0)
 {
     return;
 }
@@ -12,7 +12,7 @@
     @foreach (var oilName in OilNames)
     {
         <Tooltip Text="@oilName">
-            <img src="/images/blight/@(oilName.Replace(" ", "_")).png" class="size-8 min-w-8 min-h-8" alt="@oilName" />
+            <img src="/images/blight/@(oilName.Replace(" ", "_")).png" class="size-8 min-w-8 min-h-8" alt="@oilName"/>
         </Tooltip>
     }
 </div>
@@ -22,13 +22,23 @@
 
 @code {
 
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
     [Parameter]
     public required StatFilter Filter { get; set; }
 
-    private List<string>? OilNames { get; set; }
+    private List<string> OilNames { get; set; } = [];
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
+        OilNames.Clear();
+
+        if (Item.Game == GameType.PathOfExile2)
+        {
+            return;
+        }
+
         if (Filter.Stat.ApiInformation.FirstOrDefault()?.Category == StatCategory.Enchant && GameLanguageProvider.IsEnglish())
         {
             var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Stat);
