@@ -1,19 +1,20 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sidekick.Apis.Poe.Trade.Bulk;
+using Sidekick.Apis.Poe.Trade.ApiItems;
+using Sidekick.Apis.Poe.Trade.ApiStatic;
+using Sidekick.Apis.Poe.Trade.ApiStats;
+using Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Clients;
-using Sidekick.Apis.Poe.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Fuzzy;
-using Sidekick.Apis.Poe.Trade.Items;
 using Sidekick.Apis.Poe.Trade.Leagues;
 using Sidekick.Apis.Poe.Trade.Localization;
-using Sidekick.Apis.Poe.Trade.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Apis.Poe.Trade.Parser.ApiInformation;
-using Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
-using Sidekick.Apis.Poe.Trade.Static;
-using Sidekick.Apis.Poe.Trade.Trade;
+using Sidekick.Apis.Poe.Trade.Parser.Stats;
+using Sidekick.Apis.Poe.Trade.Trade.Bulk;
+using Sidekick.Apis.Poe.Trade.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
+using Sidekick.Apis.Poe.Trade.Trade.Items;
 using Sidekick.Common;
 
 namespace Sidekick.Apis.Poe.Trade;
@@ -30,7 +31,7 @@ public static class StartupExtensions
         services.AddTransient<ITradeApiClient, TradeApiClient>();
         services.AddTransient<PoeResources>();
 
-        services.AddSingleton<ITradeSearchService, TradeSearchService>();
+        services.AddSingleton<IItemTradeService, ItemTradeService>();
         services.AddSingleton<ILeagueProvider, LeagueProvider>();
         services.AddSingleton<IBulkTradeService, BulkTradeService>();
         services.AddSingleton<IFuzzyService, FuzzyService>();
@@ -40,12 +41,14 @@ public static class StartupExtensions
         services.AddSidekickInitializableService<IPropertyParser, PropertyParser>();
         services.AddSidekickInitializableService<IApiItemProvider, ApiItemProvider>();
         services.AddSidekickInitializableService<IApiStaticDataProvider, ApiStaticDataProvider>();
-        services.AddSidekickInitializableService<IInvariantModifierProvider, InvariantModifierProvider>();
-        services.AddSidekickInitializableService<IModifierProvider, ModifierProvider>();
-        services.AddSidekickInitializableService<IModifierParser, ModifierParser>();
+        services.AddSidekickInitializableService<IInvariantStatsProvider, InvariantStatsProvider>();
+        services.AddSidekickInitializableService<IApiStatsProvider, ApiStatsProvider>();
+        services.AddSidekickInitializableService<IStatParser, StatParser>();
         services.AddSidekickInitializableService<IPseudoParser, PseudoParser>();
-        services.AddSidekickInitializableService<IFilterProvider, FilterProvider>();
-        services.AddSidekickInitializableService<IInvariantFilterProvider, InvariantFilterProvider>();
+        services.AddSidekickInitializableService<ITradeFilterProvider, TradeFilterProvider>();
+
+        services.AddSingleton<CurrencyFilterFactory>();
+        services.AddSingleton<PlayerStatusFilterFactory>();
 
         return services;
     }

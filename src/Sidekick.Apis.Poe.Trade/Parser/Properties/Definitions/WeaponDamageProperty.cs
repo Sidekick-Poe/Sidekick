@@ -3,12 +3,11 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Localization;
-using Sidekick.Apis.Poe.Trade.Modifiers;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Results;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -17,7 +16,7 @@ public class WeaponDamageProperty
     IGameLanguageProvider gameLanguageProvider,
     GameType game,
     IStringLocalizer<PoeResources> resources,
-    IInvariantModifierProvider invariantModifierProvider
+    IInvariantStatsProvider invariantStatsProvider
 ) : PropertyDefinition
 {
     private Regex RangePattern { get; } = new(@"([\d,\.]+)-([\d,\.]+)", RegexOptions.Compiled);
@@ -94,15 +93,15 @@ public class WeaponDamageProperty
         }
     }
 
-    public override void ParseAfterModifiers(Item item)
+    public override void ParseAfterStats(Item item)
     {
         if (game == GameType.PathOfExile2) return;
 
-        var damageMods = invariantModifierProvider.FireWeaponDamageIds.ToList();
-        damageMods.AddRange(invariantModifierProvider.ColdWeaponDamageIds);
-        damageMods.AddRange(invariantModifierProvider.LightningWeaponDamageIds);
+        var damageMods = invariantStatsProvider.FireWeaponDamageIds.ToList();
+        damageMods.AddRange(invariantStatsProvider.ColdWeaponDamageIds);
+        damageMods.AddRange(invariantStatsProvider.LightningWeaponDamageIds);
 
-        var itemMods = item.Modifiers.Where(x => x.ApiInformation.Any(y => damageMods.Contains(y.ApiId ?? string.Empty))).ToList();
+        var itemMods = item.Stats.Where(x => x.ApiInformation.Any(y => damageMods.Contains(y.Id ?? string.Empty))).ToList();
         if (itemMods.Count == 0) return;
 
         // Parse elemental damage for Path of Exile 1.
@@ -123,10 +122,10 @@ public class WeaponDamageProperty
                 int.TryParse(match.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var max);
                 var range = new DamageRange(min, max);
 
-                var ids = itemMods[matchIndex].ApiInformation.Where(x => x.ApiId != null).Select(x => x.ApiId!).ToList();
-                var isFire = invariantModifierProvider.FireWeaponDamageIds.Any(x => ids.Contains(x));
-                var isCold = invariantModifierProvider.ColdWeaponDamageIds.Any(x => ids.Contains(x));
-                var isLightning = invariantModifierProvider.LightningWeaponDamageIds.Any(x => ids.Contains(x));
+                var ids = itemMods[matchIndex].ApiInformation.Where(x => x.Id != null).Select(x => x.Id!).ToList();
+                var isFire = invariantStatsProvider.FireWeaponDamageIds.Any(x => ids.Contains(x));
+                var isCold = invariantStatsProvider.ColdWeaponDamageIds.Any(x => ids.Contains(x));
+                var isLightning = invariantStatsProvider.LightningWeaponDamageIds.Any(x => ids.Contains(x));
 
                 if (isFire) item.Properties.FireDamage = range;
                 else if (isCold) item.Properties.ColdDamage = range;
@@ -137,123 +136,36 @@ public class WeaponDamageProperty
         }
     }
 
-    public override List<PropertyFilter>? GetFilters(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        var results = new List<PropertyFilter>();
-
-        if (item.Properties.TotalDamage > 0)
+        if (item.Properties.TotalDamage <= 0)
         {
-            var filter = new WeaponDamagePropertyFilter(this)
-            {
-                Text = resources["Damage"],
-                NormalizeEnabled = true,
-                Value = item.Properties.TotalDamageWithQuality ?? 0,
-                OriginalValue = item.Properties.TotalDamage ?? 0,
-                Checked = false,
-            };
-            results.Add(filter);
+            return Task.FromResult<TradeFilter?>(null);
         }
 
-        if (item.Properties.PhysicalDps > 0)
+        var filter = new WeaponDamageFilter(game)
         {
-            var filter = new DoublePropertyFilter(this)
-            {
-                Text = resources["PhysicalDps"],
-                NormalizeEnabled = true,
-                Value = item.Properties.PhysicalDpsWithQuality ?? 0,
-                OriginalValue = item.Properties.PhysicalDps ?? 0,
-                Checked = false,
-                Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.PhysicalDamage)) ? LineContentType.Augmented : LineContentType.Simple,
-            };
-            results.Add(filter);
-        }
+            Text = resources["Damage"],
+            NormalizeEnabled = true,
+            Value = item.Properties.TotalDamageWithQuality ?? 0,
+            OriginalValue = item.Properties.TotalDamage ?? 0,
+            Checked = false,
+        };
 
-        if (item.Properties.ElementalDps > 0)
-        {
-            var filter = new DoublePropertyFilter(this)
-            {
-                Text = resources["ElementalDps"],
-                NormalizeEnabled = true,
-                Value = item.Properties.ElementalDps ?? 0,
-                Checked = false,
-                Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.FireDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ColdDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.LightningDamage)) ? LineContentType.Augmented : LineContentType.Simple,
-            };
-            results.Add(filter);
-        }
-
-        if (item.Properties.ChaosDps > 0)
-        {
-            var filter = new DoublePropertyFilter(this)
-            {
-                Text = resources["ChaosDps"],
-                NormalizeEnabled = true,
-                Value = item.Properties.ChaosDps ?? 0,
-                Checked = false,
-                Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ChaosDamage)) ? LineContentType.Augmented : LineContentType.Simple,
-            };
-            results.Add(filter);
-        }
-
-        if (item.Properties.TotalDps > 0)
-        {
-            var filter = new DoublePropertyFilter(this)
-            {
-                Text = resources["Dps"],
-                NormalizeEnabled = true,
-                Value = item.Properties.TotalDpsWithQuality ?? 0,
-                OriginalValue = item.Properties.TotalDps ?? 0,
-                Checked = false,
-                Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.PhysicalDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.FireDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ColdDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.LightningDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ChaosDamage)) ? LineContentType.Augmented : LineContentType.Simple,
-            };
-            results.Add(filter);
-        }
-
-        return results.Count > 0 ? results : null;
+        return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
+public class WeaponDamageFilter(GameType game) : WeaponDamagePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked) return;
+        if (!Checked) return;
 
-        if (filter.Text == resources["Damage"] && filter is DoublePropertyFilter damageFilter)
+        switch (game)
         {
-            switch (game)
-            {
-                case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.Damage = new StatFilterValue(damageFilter); break;
-                case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.Damage = new StatFilterValue(damageFilter); break;
-            }
-        }
-
-        if (filter.Text == resources["PhysicalDps"] && filter is DoublePropertyFilter physicalDpsFilter)
-        {
-            switch (game)
-            {
-                case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.PhysicalDps = new StatFilterValue(physicalDpsFilter); break;
-                case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.PhysicalDps = new StatFilterValue(physicalDpsFilter); break;
-            }
-        }
-
-        if (filter.Text == resources["ElementalDps"] && filter is DoublePropertyFilter elementalDpsFilter)
-        {
-            switch (game)
-            {
-                case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.ElementalDps = new StatFilterValue(elementalDpsFilter); break;
-                case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.ElementalDps = new StatFilterValue(elementalDpsFilter); break;
-            }
-        }
-
-        if (filter.Text == resources["ChaosDps"] && filter is DoublePropertyFilter chaosDpsFilter)
-        {
-            // searchFilters.GetOrCreateWeaponFilters().Filters.ChaosDps = new StatFilterValue(chaosDpsFilter);
-        }
-
-        if (filter.Text == resources["Dps"] && filter is DoublePropertyFilter dpsFilter)
-        {
-            switch (game)
-            {
-                case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.DamagePerSecond = new StatFilterValue(dpsFilter); break;
-                case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.DamagePerSecond = new StatFilterValue(dpsFilter); break;
-            }
+            case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.Damage = new StatFilterValue(this); break;
+            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.Damage = new StatFilterValue(this); break;
         }
     }
 }

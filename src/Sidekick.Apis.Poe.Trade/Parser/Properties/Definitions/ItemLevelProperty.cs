@@ -1,9 +1,9 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -33,28 +33,31 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
         item.Properties.ItemLevel = GetInt(Pattern, item.Text);
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.ItemLevel <= 0) return Task.FromResult<PropertyFilter?>(null);
+        if (item.Properties.ItemLevel <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new ItemLevelFilter(game)
         {
             Text = gameLanguageProvider.Language.DescriptionItemLevel,
             NormalizeEnabled = false,
             Value = item.Properties.ItemLevel,
             Checked = game == GameType.PathOfExile1 && item.Properties.ItemLevel >= 80 && item.Properties.MapTier == 0 && item.Properties.Rarity != Rarity.Unique,
         };
-        return Task.FromResult<PropertyFilter?>(filter);
+        return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
+public class ItemLevelFilter(GameType game) : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
         switch (game)
         {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateMiscFilters().Filters.ItemLevel = new StatFilterValue(intFilter); break;
-            case GameType.PathOfExile2: query.Filters.GetOrCreateTypeFilters().Filters.ItemLevel = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile1: query.Filters.GetOrCreateMiscFilters().Filters.ItemLevel = new StatFilterValue(this); break;
+            case GameType.PathOfExile2: query.Filters.GetOrCreateTypeFilters().Filters.ItemLevel = new StatFilterValue(this); break;
         }
     }
 }

@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe.Trade.Parser;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -42,7 +43,7 @@ Even the dead serve the Lightless.
         Assert.Equal("Bubonic Trail", actual.ApiInformation.Name);
         Assert.Equal("Murder Boots", actual.ApiInformation.Type);
 
-        actual.AssertHasModifier(ModifierCategory.Explicit, "Has # Abyssal Sockets", 1);
+        actual.AssertHasStat(StatCategory.Explicit, "Has # Abyssal Sockets", 1);
     }
 
     [Fact]

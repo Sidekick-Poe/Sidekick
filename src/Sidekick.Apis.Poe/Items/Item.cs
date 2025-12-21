@@ -27,9 +27,9 @@ public class Item
 
     public ItemProperties Properties { get; } = new();
 
-    public List<Modifier> Modifiers { get; } = [];
+    public List<Stat> Stats { get; } = [];
 
-    public List<PseudoModifier> PseudoModifiers { get; } = [];
+    public List<PseudoStat> PseudoStats { get; } = [];
 
     /// <inheritdoc />
     public override string? ToString()

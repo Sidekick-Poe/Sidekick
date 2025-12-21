@@ -1,11 +1,11 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Trade.Items;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Results;
+using Sidekick.Apis.Poe.Trade.ApiItems;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -31,25 +31,28 @@ public class RewardProperty
         if (item.Properties.Reward != null) propertyBlock.Parsed = true;
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile2 || item.Properties.Reward == null) return Task.FromResult<PropertyFilter?>(null);
+        if (game == GameType.PathOfExile2 || item.Properties.Reward == null) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new StringPropertyFilter(this)
+        var filter = new RewardFilter(apiItemProvider)
         {
             Text = gameLanguageProvider.Language.DescriptionReward,
             Value = item.Properties.Reward!,
             Type = LineContentType.Unique,
             Checked = true,
         };
-        return Task.FromResult<PropertyFilter?>(filter);
+        return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
+public class RewardFilter(IApiItemProvider apiItemProvider) : StringPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not StringPropertyFilter stringFilter) return;
+        if (!Checked) return;
 
-        var uniqueItem = apiItemProvider.UniqueItems.FirstOrDefault(x => x.Name != null && stringFilter.Value.Contains(x.Name));
+        var uniqueItem = apiItemProvider.UniqueItems.FirstOrDefault(x => x.Name != null && Value.Contains(x.Name));
         if (uniqueItem?.Name == null) return;
 
         query.Filters.GetOrCreateMapFilters().Filters.Reward = new SearchFilterOption(uniqueItem.Name);

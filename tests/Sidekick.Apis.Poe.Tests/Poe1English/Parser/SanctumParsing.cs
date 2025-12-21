@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe.Trade.Parser;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -54,7 +55,7 @@ Unmodifiable
         Assert.Null(actual.ApiInformation.Name);
         Assert.Equal(80, actual.Properties.ItemLevel);
 
-        actual.AssertHasModifier(ModifierCategory.Sanctum, "Gain # Resolve when you kill a Boss", 20);
-        actual.AssertHasModifier(ModifierCategory.Sanctum, "+# to Maximum Resolve", 5);
+        actual.AssertHasStat(StatCategory.Sanctum, "Gain # Resolve when you kill a Boss", 20);
+        actual.AssertHasStat(StatCategory.Sanctum, "+# to Maximum Resolve", 5);
     }
 }

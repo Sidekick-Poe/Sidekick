@@ -1,10 +1,10 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Results;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -34,11 +34,11 @@ public class QualityProperty(IGameLanguageProvider gameLanguageProvider) : Prope
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.Quality));
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.Quality <= 0) return Task.FromResult<PropertyFilter?>(null);
+        if (item.Properties.Quality <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new QualityFilter
         {
             Text = gameLanguageProvider.Language.DescriptionQuality,
             NormalizeEnabled = false,
@@ -48,13 +48,16 @@ public class QualityProperty(IGameLanguageProvider gameLanguageProvider) : Prope
             Checked = item.Properties.Rarity == Rarity.Gem,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.Quality)) ? LineContentType.Augmented : LineContentType.Simple,
         };
-        return Task.FromResult<PropertyFilter?>(filter);
+        return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
+public class QualityFilter : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMiscFilters().Filters.Quality = new StatFilterValue(intFilter);
+        query.Filters.GetOrCreateMiscFilters().Filters.Quality = new StatFilterValue(this);
     }
 }

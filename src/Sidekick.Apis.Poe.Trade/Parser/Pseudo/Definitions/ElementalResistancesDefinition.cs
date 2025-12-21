@@ -6,7 +6,7 @@ public class ElementalResistancesDefinition : PseudoDefinition
 {
     protected override bool Enabled => true;
 
-    protected override string ModifierId => "pseudo.pseudo_total_elemental_resistance";
+    protected override string StatId => "pseudo.pseudo_total_elemental_resistance";
 
     protected override List<PseudoPattern> Patterns =>
     [

@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe.Trade.Parser;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -41,10 +42,10 @@ Item Level: 61
         Assert.NotNull(actual.Properties.Sockets);
         Assert.Single(actual.Properties.Sockets);
 
-        actual.AssertHasModifier(ModifierCategory.Explicit, "+# to Intelligence", 18);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "+# to maximum Life", 73);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "+#% to Lightning Resistance", 14);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% of Physical Attack Damage Leeched as Mana", 0.23);
+        actual.AssertHasStat(StatCategory.Explicit, "+# to Intelligence", 18);
+        actual.AssertHasStat(StatCategory.Explicit, "+# to maximum Life", 73);
+        actual.AssertHasStat(StatCategory.Explicit, "+#% to Lightning Resistance", 14);
+        actual.AssertHasStat(StatCategory.Explicit, "#% of Physical Attack Damage Leeched as Mana", 0.23);
     }
 
 }

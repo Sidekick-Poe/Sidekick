@@ -14,7 +14,7 @@
 @if (NinjaStash != null)
 {
     <PoeNinjaWebsite LastUpdated="NinjaStash.LastUpdated" DetailsUrl="NinjaStash.DetailsUrl"
-                     Tooltip="@(Item.Properties.Rarity != Rarity.Unique ? Resources["BaseType_Description"] : null)"/>
+                     Tooltip="@(Item.Properties.Rarity != Rarity.Unique ? Resources["BaseType_Description"] : string.Empty)"/>
 
     <PoeNinjaStashPanel Stash="NinjaStash"/>
 }

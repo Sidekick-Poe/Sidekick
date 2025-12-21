@@ -54,17 +54,11 @@ public static class DefaultSettings
 
     public static int PriceCheckBulkMinimumStock => 5;
 
-    public static string? PriceCheckCurrency => null;
-
-    public static string? PriceCheckCurrencyPoE2 => null;
-
     public static string PriceCheckItemClassFilter => DefaultItemClassFilter.BaseType.GetValueAttribute();
 
     public static double PriceCheckNormalizeValue => .1;
 
     public static bool PriceCheckCompactMode => false;
-
-    public static string PriceCheckStatus => "securable";
 
     public static bool PriceCheckAutomaticallyLoadMoreData => false;
 
