@@ -418,7 +418,7 @@ Note: ~price 1 mirror");
         var desecratedFilter = modifierFilters
             .OfType<StatFilter>()
             .First(x => x.PrimaryCategory == StatCategory.Desecrated);
-        Assert.True(desecratedFilter.UsePrimaryCategory);
+        Assert.False(desecratedFilter.UsePrimaryCategory);
         Assert.Equal(StatCategory.Desecrated, desecratedFilter.PrimaryCategory);
         Assert.Equal(StatCategory.Explicit, desecratedFilter.SecondaryCategory);
         foreach (var x in desecratedFilter.Stat.ApiInformation)
