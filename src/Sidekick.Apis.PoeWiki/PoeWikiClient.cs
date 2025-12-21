@@ -242,13 +242,13 @@ public class PoeWikiClient
         return null;
     }
 
-    public async Task<List<string>> GetOilsMetadataIdsFromEnchantment(Modifier modifier)
+    public async Task<List<string>> GetOilsMetadataIdsFromEnchantment(Stat stat)
     {
         var oilIds = new List<string>();
 
         try
         {
-            var enchantmentText = modifier.Text.Replace("Allocates ", string.Empty);
+            var enchantmentText = stat.Text.Replace("Allocates ", string.Empty);
 
             var query = new List<KeyValuePair<string, string>>
             {
@@ -287,9 +287,9 @@ public class PoeWikiClient
         // If we get here, it means we couldn't find the oils from the mod.
         // It's probably a ring enchantment with markdown links in the mod name.
         // So let's use our cleaned cache of ring enchantments.
-        if (BlightOilNamesByMods.ContainsKey(modifier.Text))
+        if (BlightOilNamesByMods.ContainsKey(stat.Text))
         {
-            return BlightOilNamesByMods[modifier.Text];
+            return BlightOilNamesByMods[stat.Text];
         }
 
         return oilIds;

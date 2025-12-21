@@ -3,9 +3,9 @@ using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Localization;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -107,13 +107,13 @@ public class SocketProperty
         item.Properties.Sockets = result;
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
         if (item.Properties.Sockets is not
             {
                 Count: > 0
             })
-            return Task.FromResult<PropertyFilter?>(null);
+            return Task.FromResult<TradeFilter?>(null);
 
         int value;
         bool @checked;
@@ -135,7 +135,7 @@ public class SocketProperty
             hint = resources["Socket_Poe1_Hint"];
         }
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new SocketFilter(game)
         {
             Text = gameLanguageProvider.Language.DescriptionSockets,
             NormalizeEnabled = false,
@@ -143,22 +143,25 @@ public class SocketProperty
             Checked = @checked,
             Hint = hint,
         };
-        return Task.FromResult<PropertyFilter?>(filter);
+        return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
+public class SocketFilter(GameType game) : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
         switch (game)
         {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateSocketFilters().Filters.Links = new SocketFilterOption(intFilter); break;
+            case GameType.PathOfExile1: query.Filters.GetOrCreateSocketFilters().Filters.Links = new SocketFilterOption(this); break;
 
             case GameType.PathOfExile2:
                 switch (item.Properties.ItemClass)
                 {
-                    case ItemClass.ActiveGem: query.Filters.GetOrCreateMiscFilters().Filters.GemSockets = new StatFilterValue(intFilter); break;
-                    default: query.Filters.GetOrCreateEquipmentFilters().Filters.RuneSockets = new StatFilterValue(intFilter); break;
+                    case ItemClass.ActiveGem: query.Filters.GetOrCreateMiscFilters().Filters.GemSockets = new StatFilterValue(this); break;
+                    default: query.Filters.GetOrCreateEquipmentFilters().Filters.RuneSockets = new StatFilterValue(this); break;
                 }
 
                 break;

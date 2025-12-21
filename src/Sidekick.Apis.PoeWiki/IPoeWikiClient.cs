@@ -10,7 +10,7 @@ public interface IPoeWikiClient : IInitializableService
 
     public Task<Map?> GetMap(string? mapType);
 
-    public Task<List<string>> GetOilsMetadataIdsFromEnchantment(Modifier modifier);
+    public Task<List<string>> GetOilsMetadataIdsFromEnchantment(Stat stat);
 
     public void OpenUri(Map map);
 

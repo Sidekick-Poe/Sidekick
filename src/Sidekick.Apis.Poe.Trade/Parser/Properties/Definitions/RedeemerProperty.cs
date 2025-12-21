@@ -1,9 +1,9 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -22,22 +22,25 @@ public class RedeemerProperty(IGameLanguageProvider gameLanguageProvider) : Prop
         item.Properties.Influences.Redeemer = GetBool(Pattern, item.Text);
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.Properties.Influences.Redeemer) return Task.FromResult<PropertyFilter?>(null);
+        if (!item.Properties.Influences.Redeemer) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new PropertyFilter(this)
+        var filter = new RedeemerFilter
         {
             Text = gameLanguageProvider.Language.InfluenceRedeemer,
             Checked = true,
         };
-        return Task.FromResult<PropertyFilter?>(filter);
+        return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
+public class RedeemerFilter : TradeFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMiscFilters().Filters.RedeemerItem = new SearchFilterOption(filter);
+        query.Filters.GetOrCreateMiscFilters().Filters.RedeemerItem = new SearchFilterOption(this);
     }
 }

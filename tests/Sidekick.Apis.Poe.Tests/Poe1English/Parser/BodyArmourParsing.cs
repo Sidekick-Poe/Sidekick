@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe.Trade.Parser;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -55,12 +56,12 @@ can deny that my work has made quite the splash...""
         Assert.Equal(96, actual.Properties.RequiresDexterity);
         Assert.Equal(111, actual.Properties.RequiresIntelligence);
 
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Evasion and Energy Shield (Local)", 128);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "+# to maximum Life", 55);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "+#% to all Elemental Resistances", 12);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Area of Effect", 44);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Area Damage", 47);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "Extra gore");
+        actual.AssertHasStat(StatCategory.Explicit, "#% increased Evasion and Energy Shield (Local)", 128);
+        actual.AssertHasStat(StatCategory.Explicit, "+# to maximum Life", 55);
+        actual.AssertHasStat(StatCategory.Explicit, "+#% to all Elemental Resistances", 12);
+        actual.AssertHasStat(StatCategory.Explicit, "#% increased Area of Effect", 44);
+        actual.AssertHasStat(StatCategory.Explicit, "#% increased Area Damage", 47);
+        actual.AssertHasStat(StatCategory.Explicit, "Extra gore");
 
         actual.AssertHasPseudoModifier("+36% total Elemental Resistance", 36);
         actual.AssertHasPseudoModifier("+55 total maximum Life", 55);

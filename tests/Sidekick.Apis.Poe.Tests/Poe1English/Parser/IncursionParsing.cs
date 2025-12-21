@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe.Trade.Parser;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -44,6 +45,6 @@ Note: ~price 1.29 exalted
         Assert.Equal("Chronicle of Atzoatl", actual.ApiInformation.Type);
         Assert.Equal(81, actual.Properties.AreaLevel);
 
-        actual.AssertHasModifier(ModifierCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)");
+        actual.AssertHasStat(StatCategory.Pseudo, "Has Room: Locus of Corruption (Tier 3)");
     }
 }

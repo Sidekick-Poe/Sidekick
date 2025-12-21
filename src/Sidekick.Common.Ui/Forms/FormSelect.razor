@@ -67,7 +67,11 @@
 
     protected string Id { get; } = UiUtilities.GenerateId();
 
-    protected string GetOptionValue(string? value) => value ?? "null";
+    protected string GetOptionValue(string? value)
+    {
+        if(string.IsNullOrEmpty(value)) return "null";
+        return value;
+    }
 
     protected async Task OnChange(ChangeEventArgs args)
     {

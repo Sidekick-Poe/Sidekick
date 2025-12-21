@@ -1,6 +1,7 @@
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Trade
-@using Sidekick.Apis.Poe.Trade.Bulk
+@using Sidekick.Apis.Poe.Trade.Trade.Bulk
+@using Sidekick.Apis.Poe.Trade.Trade.Items
 @using Sidekick.Common.Browser
 @using Sidekick.Modules.Items.Localization
 
@@ -24,7 +25,7 @@
 </Popover>
 
 @inject IStringLocalizer<TradeResources> Resources
-@inject ITradeSearchService TradeSearchService
+@inject IItemTradeService ItemTradeService
 @inject IBulkTradeService BulkTradeService
 @inject IBrowserProvider BrowserProvider
 @inject TradeService TradeService
@@ -45,7 +46,7 @@
         {
             TradeUri = TradeService.CurrentMode == TradeMode.Bulk
                 ? await BulkTradeService.GetTradeUri(Item, QueryId)
-                : await TradeSearchService.GetTradeUri(Item.Game, QueryId);
+                : await ItemTradeService.GetTradeUri(Item.Game, QueryId);
         }
 
         await base.OnInitializedAsync();

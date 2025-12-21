@@ -12,16 +12,16 @@ public static class AssertExtensions
                     $"Expected {expected}, but got {actual} which is outside the tolerance of {tolerance}");
     }
 
-    public static void AssertHasModifier(this Item actual, ModifierCategory expectedCategory, string expectedText, params double[] expectedValues)
+    public static void AssertHasStat(this Item actual, StatCategory expectedCategory, string expectedText, params double[] expectedValues)
     {
-        var modifiers = actual.Modifiers
+        var modifiers = actual.Stats
             .SelectMany(line => line.ApiInformation.Select(modifier => new
             {
                 Line = line,
                 Modifier = modifier,
             }));
 
-        var actualModifier = modifiers.FirstOrDefault(x => expectedCategory == x.Modifier.Category && expectedText == x.Modifier.ApiText);
+        var actualModifier = modifiers.FirstOrDefault(x => expectedCategory == x.Modifier.Category && expectedText == x.Modifier.Text);
         for (var i = 0; i < expectedValues.Length; i++)
         {
             Assert.Equal(expectedValues[i], actualModifier?.Line.Values[i]);
@@ -31,22 +31,22 @@ public static class AssertExtensions
         Assert.NotNull(actualModifier);
     }
 
-    public static void AssertDoesNotHaveModifier(this Item actual, ModifierCategory expectedCategory, string expectedText)
+    public static void AssertDoesNotHaveModifier(this Item actual, StatCategory expectedCategory, string expectedText)
     {
-        var modifiers = actual.Modifiers
+        var modifiers = actual.Stats
             .SelectMany(line => line.ApiInformation.Select(modifier => new
             {
                 Line = line,
                 Modifier = modifier,
             }));
 
-        var actualModifier = modifiers.FirstOrDefault(x => expectedCategory == x.Modifier.Category && expectedText == x.Modifier.ApiText);
+        var actualModifier = modifiers.FirstOrDefault(x => expectedCategory == x.Modifier.Category && expectedText == x.Modifier.Text);
         Assert.Null(actualModifier);
     }
 
     public static void AssertHasPseudoModifier(this Item actual, string expectedText, double? expectedValue = null)
     {
-        var actualModifier = actual.PseudoModifiers.FirstOrDefault(x => expectedText == x.Text);
+        var actualModifier = actual.PseudoStats.FirstOrDefault(x => expectedText == x.Text);
         Assert.Equal(expectedText, actualModifier?.Text);
 
         if (expectedValue != null)

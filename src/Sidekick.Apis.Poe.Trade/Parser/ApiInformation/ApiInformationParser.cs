@@ -1,5 +1,5 @@
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Items;
+using Sidekick.Apis.Poe.Trade.ApiItems;
 using Sidekick.Common.Exceptions;
 namespace Sidekick.Apis.Poe.Trade.Parser.ApiInformation;
 

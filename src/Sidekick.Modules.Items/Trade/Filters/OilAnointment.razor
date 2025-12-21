@@ -1,6 +1,6 @@
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Languages
-@using Sidekick.Apis.Poe.Trade.Parser.Modifiers
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Apis.PoeWiki
 
 @if (OilNames.Count == 0)
@@ -26,7 +26,7 @@
     public required Item Item { get; set; }
 
     [Parameter]
-    public required ModifierFilter Filter { get; set; }
+    public required StatFilter Filter { get; set; }
 
     private List<string> OilNames { get; set; } = [];
 
@@ -39,9 +39,9 @@
             return;
         }
 
-        if (Filter.Line.ApiInformation.FirstOrDefault()?.Category == ModifierCategory.Enchant && GameLanguageProvider.IsEnglish())
+        if (Filter.Stat.ApiInformation.FirstOrDefault()?.Category == StatCategory.Enchant && GameLanguageProvider.IsEnglish())
         {
-            var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Line);
+            var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Stat);
 
             OilNames = oilMetadataIds.Where(x => PoeWikiClient.BlightOilNamesByMetadataIds.ContainsKey(x)).Select(x => PoeWikiClient.BlightOilNamesByMetadataIds[x]).ToList();
         }

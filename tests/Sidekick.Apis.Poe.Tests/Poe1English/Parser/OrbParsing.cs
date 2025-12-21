@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe.Trade.Parser;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -29,7 +30,7 @@ Note: ~b/o 2 blessed
         Assert.Equal("Chaos Orb", actual.ApiInformation.Type);
         Assert.Equal("chaos", actual.ApiInformation.InvariantId);
 
-        Assert.Empty(actual.Modifiers);
+        Assert.Empty(actual.Stats);
     }
 
     [Fact]
@@ -51,6 +52,6 @@ Right click this item then left click a rare item to apply it. Rare items can ha
         Assert.Equal("Exalted Orb", actual.ApiInformation.Type);
         Assert.Equal("exalted", actual.ApiInformation.InvariantId);
 
-        Assert.Empty(actual.Modifiers);
+        Assert.Empty(actual.Stats);
     }
 }

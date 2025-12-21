@@ -1,15 +1,15 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class SanctifiedProperty(IServiceProvider serviceProvider, GameType game) : PropertyDefinition
 {
-    private IFilterProvider FilterProvicer => serviceProvider.GetRequiredService<IFilterProvider>();
+    private ITradeFilterProvider TradeFilterProvicer => serviceProvider.GetRequiredService<ITradeFilterProvider>();
 
     public override List<ItemClass> ValidItemClasses { get; } =
     [
@@ -22,26 +22,29 @@ public class SanctifiedProperty(IServiceProvider serviceProvider, GameType game)
     {
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile1) return Task.FromResult<PropertyFilter?>(null);
-        if (FilterProvicer.Sanctified == null) return Task.FromResult<PropertyFilter?>(null);
+        if (game == GameType.PathOfExile1) return Task.FromResult<TradeFilter?>(null);
+        if (TradeFilterProvicer.Sanctified == null) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new TriStatePropertyFilter(this)
+        var filter = new SanctifiedFilter
         {
-            Text = FilterProvicer.Sanctified.Text ?? "Sanctified",
+            Text = TradeFilterProvicer.Sanctified.Text ?? "Sanctified",
             Checked = null,
         };
-        return Task.FromResult<PropertyFilter?>(filter);
+        return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
+public class SanctifiedFilter : TriStatePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (filter is not TriStatePropertyFilter triStateFilter || triStateFilter.Checked == null)
+        if (Checked == null)
         {
             return;
         }
 
-        query.Filters.GetOrCreateMiscFilters().Filters.Sanctified = new SearchFilterOption(triStateFilter);
+        query.Filters.GetOrCreateMiscFilters().Filters.Sanctified = new SearchFilterOption(this);
     }
 }

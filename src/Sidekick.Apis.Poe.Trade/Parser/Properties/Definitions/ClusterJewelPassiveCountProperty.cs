@@ -1,43 +1,43 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Modifiers;
+using Sidekick.Apis.Poe.Trade.ApiStats;
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class ClusterJewelPassiveCountProperty(IServiceProvider serviceProvider, GameType game) : PropertyDefinition
 {
-    private IInvariantModifierProvider InvariantModifierProvider { get; } = serviceProvider.GetRequiredService<IInvariantModifierProvider>();
+    private IInvariantStatsProvider InvariantStatsProvider { get; } = serviceProvider.GetRequiredService<IInvariantStatsProvider>();
 
     public override List<ItemClass> ValidItemClasses { get; } = [ItemClass.Jewel];
 
-    public override void ParseAfterModifiers(Item item)
+    public override void ParseAfterStats(Item item)
     {
         if (game == GameType.PathOfExile2) return;
         if (item.Properties.Rarity == Rarity.Unique) return;
 
-        var passiveCount = ParseSmallPassiveCount(item.Modifiers);
+        var passiveCount = ParseSmallPassiveCount(item.Stats);
         if (passiveCount != 0)
         {
             item.Properties.ClusterJewelPassiveCount = passiveCount;
         }
 
-        var grant = ParseGrantTexts(item.Modifiers);
+        var grant = ParseGrantTexts(item.Stats);
         if (grant != null) item.Properties.ClusterJewelGrantText = grant;
     }
 
-    private int ParseSmallPassiveCount(List<Modifier> modifierLines)
+    private int ParseSmallPassiveCount(List<Stat> lines)
     {
-        foreach (var modifierLine in modifierLines)
+        foreach (var line in lines)
         {
-            if (!modifierLine.HasValues)
+            if (!line.HasValues)
             {
                 continue;
             }
 
-            foreach (var modifier in modifierLine.ApiInformation)
+            foreach (var stat in line.ApiInformation)
             {
-                if (modifier.ApiId == InvariantModifierProvider.ClusterJewelSmallPassiveCountModifierId)
+                if (stat.Id == InvariantStatsProvider.ClusterJewelSmallPassiveCountStatId)
                 {
-                    return (int)modifierLine.AverageValue;
+                    return (int)line.AverageValue;
                 }
             }
         }
@@ -45,20 +45,20 @@ public class ClusterJewelPassiveCountProperty(IServiceProvider serviceProvider, 
         return 0;
     }
 
-    private string? ParseGrantTexts(List<Modifier> modifierLines)
+    private string? ParseGrantTexts(List<Stat> lines)
     {
-        foreach (var modifierLine in modifierLines)
+        foreach (var line in lines)
         {
-            if (!modifierLine.OptionValue.HasValue)
+            if (!line.OptionValue.HasValue)
             {
                 continue;
             }
 
-            foreach (var modifier in modifierLine.ApiInformation)
+            foreach (var apiStat in line.ApiInformation)
             {
-                if (modifier.ApiId == InvariantModifierProvider.ClusterJewelSmallPassiveGrantModifierId)
+                if (apiStat.Id == InvariantStatsProvider.ClusterJewelSmallPassiveGrantStatId)
                 {
-                    return InvariantModifierProvider.ClusterJewelSmallPassiveGrantOptions[modifierLine.OptionValue.Value].Replace("\n", ", ");
+                    return InvariantStatsProvider.ClusterJewelSmallPassiveGrantOptions[line.OptionValue.Value].Replace("\n", ", ");
                 }
             }
         }

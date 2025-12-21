@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe.Trade.Parser;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
 
@@ -37,9 +38,9 @@ Right click to drink. Can only hold charges while in belt. Refill at Wells or by
 
         Assert.Equal(66, actual.Properties.ItemLevel);
 
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% of Recovery applied Instantly", 23);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Charges per use", -26);
-        Assert.False(actual.Modifiers[1].MatchedFuzzily);
+        actual.AssertHasStat(StatCategory.Explicit, "#% of Recovery applied Instantly", 23);
+        actual.AssertHasStat(StatCategory.Explicit, "#% increased Charges per use", -26);
+        Assert.False(actual.Stats[1].MatchedFuzzily);
     }
 
     [Fact]
@@ -75,8 +76,8 @@ Used automatically when condition is met. Can only hold charges while in belt. R
         Assert.Equal(16, actual.Properties.RequiresLevel);
         Assert.Equal(51, actual.Properties.ItemLevel);
 
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Duration (Charm)", 21);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Charges per use", -19);
-        Assert.False(actual.Modifiers[1].MatchedFuzzily);
+        actual.AssertHasStat(StatCategory.Explicit, "#% increased Duration (Charm)", 21);
+        actual.AssertHasStat(StatCategory.Explicit, "#% increased Charges per use", -19);
+        Assert.False(actual.Stats[1].MatchedFuzzily);
     }
 }

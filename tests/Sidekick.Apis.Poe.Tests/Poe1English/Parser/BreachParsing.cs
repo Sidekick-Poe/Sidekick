@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe.Trade.Parser;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -107,6 +108,6 @@ A net woven to keep safe the bones of the Lords.
         Assert.Equal("Foulborn Skin of the Loyal", actual.Name);
         Assert.True(actual.Properties.Foulborn);
 
-        actual.AssertHasModifier(ModifierCategory.Mutated, "+#% to Quality of Socketed Gems", 20);
+        actual.AssertHasStat(StatCategory.Mutated, "+#% to Quality of Socketed Gems", 20);
     }
 }
