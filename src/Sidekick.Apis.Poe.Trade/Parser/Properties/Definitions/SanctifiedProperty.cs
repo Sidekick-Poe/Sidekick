@@ -27,21 +27,24 @@ public class SanctifiedProperty(IServiceProvider serviceProvider, GameType game)
         if (game == GameType.PathOfExile1) return Task.FromResult<TradeFilter?>(null);
         if (TradeFilterProvicer.Sanctified == null) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new TriStatePropertyFilter(this)
+        var filter = new SanctifiedFilter
         {
             Text = TradeFilterProvicer.Sanctified.Text ?? "Sanctified",
             Checked = null,
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class SanctifiedFilter : TriStatePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (filter is not TriStatePropertyFilter triStateFilter || triStateFilter.Checked == null)
+        if (Checked == null)
         {
             return;
         }
 
-        query.Filters.GetOrCreateMiscFilters().Filters.Sanctified = new SearchFilterOption(triStateFilter);
+        query.Filters.GetOrCreateMiscFilters().Filters.Sanctified = new SearchFilterOption(this);
     }
 }

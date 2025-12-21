@@ -18,8 +18,4 @@ public class SeparatorProperty : PropertyDefinition
             Checked = true,
         });
     }
-
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
-    {
-    }
 }

@@ -26,21 +26,24 @@ public class MirroredProperty(IServiceProvider serviceProvider) : PropertyDefini
     {
         if (TradeFilterProvicer.Mirrored == null) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new TriStatePropertyFilter(this)
+        var filter = new MirroredFilter
         {
             Text = TradeFilterProvicer.Mirrored.Text ?? "Mirrored",
             Checked = null,
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class MirroredFilter : TriStatePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (filter is not TriStatePropertyFilter triStateFilter || triStateFilter.Checked == null)
+        if (Checked == null)
         {
             return;
         }
 
-        query.Filters.GetOrCreateMiscFilters().Filters.Mirrored = new SearchFilterOption(triStateFilter);
+        query.Filters.GetOrCreateMiscFilters().Filters.Mirrored = new SearchFilterOption(this);
     }
 }

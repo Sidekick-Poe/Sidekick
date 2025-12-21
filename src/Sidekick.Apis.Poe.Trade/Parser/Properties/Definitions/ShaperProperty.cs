@@ -26,18 +26,21 @@ public class ShaperProperty(IGameLanguageProvider gameLanguageProvider) : Proper
     {
         if (!item.Properties.Influences.Shaper) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new TradeFilter(this)
+        var filter = new ShaperFilter
         {
             Text = gameLanguageProvider.Language.InfluenceShaper,
             Checked = true,
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class ShaperFilter : TradeFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMiscFilters().Filters.ShaperItem = new SearchFilterOption(filter);
+        query.Filters.GetOrCreateMiscFilters().Filters.ShaperItem = new SearchFilterOption(this);
     }
 }

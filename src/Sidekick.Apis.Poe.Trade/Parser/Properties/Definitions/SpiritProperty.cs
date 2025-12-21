@@ -38,7 +38,7 @@ public class SpiritProperty
     {
         if (game == GameType.PathOfExile1 || item.Properties.Spirit <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new SpiritFilter
         {
             Text = gameLanguageProvider.Language.DescriptionSpirit,
             NormalizeEnabled = true,
@@ -48,15 +48,14 @@ public class SpiritProperty
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class SpiritFilter : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
-        switch (game)
-        {
-            case GameType.PathOfExile1: break;
-            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.Spirit = new StatFilterValue(intFilter); break;
-        }
+        query.Filters.GetOrCreateEquipmentFilters().Filters.Spirit = new StatFilterValue(this);
     }
 }

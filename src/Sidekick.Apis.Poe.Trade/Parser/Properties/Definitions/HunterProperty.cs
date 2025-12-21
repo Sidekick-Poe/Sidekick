@@ -26,18 +26,21 @@ public class HunterProperty(IGameLanguageProvider gameLanguageProvider) : Proper
     {
         if (!item.Properties.Influences.Hunter) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new TradeFilter(this)
+        var filter = new HunterFilter
         {
             Text = gameLanguageProvider.Language.InfluenceHunter,
             Checked = true,
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class HunterFilter : TradeFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMiscFilters().Filters.HunterItem = new SearchFilterOption(filter);
+        query.Filters.GetOrCreateMiscFilters().Filters.HunterItem = new SearchFilterOption(this);
     }
 }

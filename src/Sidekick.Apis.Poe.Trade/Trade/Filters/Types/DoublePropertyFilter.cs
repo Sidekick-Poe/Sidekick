@@ -1,13 +1,10 @@
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
 public class DoublePropertyFilter : TradeFilter
 {
-    internal DoublePropertyFilter(PropertyDefinition definition)
-        : base(definition)
-    {
-    }
-
     public string? ValuePrefix { get; set; }
 
     public string? ValueSuffix { get; init; }

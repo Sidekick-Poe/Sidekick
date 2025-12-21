@@ -36,7 +36,7 @@ public class ArmourProperty
     {
         if (item.Properties.Armour <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new ArmourFilter(game)
         {
             Text = gameLanguageProvider.Language.DescriptionArmour,
             NormalizeEnabled = true,
@@ -47,15 +47,18 @@ public class ArmourProperty
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class ArmourFilter(GameType game) : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
         switch (game)
         {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateArmourFilters().Filters.Armour = new StatFilterValue(intFilter); break;
-            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.Armour = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile1: query.Filters.GetOrCreateArmourFilters().Filters.Armour = new StatFilterValue(this); break;
+            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.Armour = new StatFilterValue(this); break;
         }
     }
 }

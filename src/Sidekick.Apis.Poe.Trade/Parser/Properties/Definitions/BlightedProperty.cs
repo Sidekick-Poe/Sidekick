@@ -24,7 +24,7 @@ public class BlightedProperty(IGameLanguageProvider gameLanguageProvider) : Prop
     {
         if (!item.Properties.Blighted) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new TradeFilter(this)
+        var filter = new BlightedFilter
         {
             ShowRow = false,
             Text = gameLanguageProvider.Language.AffixBlighted,
@@ -32,11 +32,14 @@ public class BlightedProperty(IGameLanguageProvider gameLanguageProvider) : Prop
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class BlightedFilter : TradeFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMapFilters().Filters.Blighted = new SearchFilterOption(filter);
+        query.Filters.GetOrCreateMapFilters().Filters.Blighted = new SearchFilterOption(this);
     }
 }

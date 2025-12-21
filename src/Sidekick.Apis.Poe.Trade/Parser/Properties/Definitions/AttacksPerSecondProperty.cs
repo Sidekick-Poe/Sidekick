@@ -36,7 +36,7 @@ public class AttacksPerSecondProperty
     {
         if (item.Properties.AttacksPerSecond <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new DoublePropertyFilter(this)
+        var filter = new AttacksPerSecondFilter(game)
         {
             Text = gameLanguageProvider.Language.DescriptionAttacksPerSecond,
             NormalizeEnabled = true,
@@ -46,15 +46,18 @@ public class AttacksPerSecondProperty
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class AttacksPerSecondFilter(GameType game) : DoublePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not DoublePropertyFilter doubleFilter) return;
+        if (!Checked) return;
 
         switch (game)
         {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.AttacksPerSecond = new StatFilterValue(doubleFilter); break;
-            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.AttacksPerSecond = new StatFilterValue(doubleFilter); break;
+            case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.AttacksPerSecond = new StatFilterValue(this); break;
+            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.AttacksPerSecond = new StatFilterValue(this); break;
         }
     }
 }

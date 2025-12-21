@@ -24,21 +24,24 @@ public class FracturedProperty(IServiceProvider serviceProvider) : PropertyDefin
     {
         if (TradeFilterProvicer.Fractured == null) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new TriStatePropertyFilter(this)
+        var filter = new FracturedFilter
         {
             Text = TradeFilterProvicer.Fractured.Text ?? "Fractured",
             Checked = null,
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class FracturedFilter : TriStatePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (filter is not TriStatePropertyFilter triStateFilter || triStateFilter.Checked == null)
+        if (Checked == null)
         {
             return;
         }
 
-        query.Filters.GetOrCreateMiscFilters().Filters.Fractured = new SearchFilterOption(triStateFilter);
+        query.Filters.GetOrCreateMiscFilters().Filters.Fractured = new SearchFilterOption(this);
     }
 }

@@ -89,7 +89,7 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
         };
         if (rarityLabel == null) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new StringPropertyFilter(this)
+        var filter = new RarityFilter
         {
             Text = gameLanguageProvider.Language.DescriptionRarity,
             Value = rarityLabel,
@@ -98,8 +98,11 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class RarityFilter : StringPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
         if (item.Properties.Rarity == Rarity.Unique)
         {
@@ -107,7 +110,7 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
             return;
         }
 
-        if (!filter.Checked || filter is not StringPropertyFilter) return;
+        if (!Checked) return;
 
         var rarity = item.Properties.Rarity switch
         {

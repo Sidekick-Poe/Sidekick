@@ -32,7 +32,7 @@ public class ItemRarityProperty(IGameLanguageProvider gameLanguageProvider) : Pr
     {
         if (item.Properties.ItemRarity <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new ItemRarityFilter
         {
             Text = gameLanguageProvider.Language.DescriptionItemRarity,
             NormalizeEnabled = true,
@@ -44,11 +44,14 @@ public class ItemRarityProperty(IGameLanguageProvider gameLanguageProvider) : Pr
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class ItemRarityFilter : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMapFilters().Filters.ItemRarity = new StatFilterValue(intFilter);
+        query.Filters.GetOrCreateMapFilters().Filters.ItemRarity = new StatFilterValue(this);
     }
 }

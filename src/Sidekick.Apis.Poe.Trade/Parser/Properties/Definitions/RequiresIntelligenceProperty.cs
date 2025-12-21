@@ -37,7 +37,7 @@ public class RequiresIntelligenceProperty(IGameLanguageProvider gameLanguageProv
     {
         if (item.Properties.RequiresIntelligence <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new RequiresIntelligenceFilter
         {
             Text = gameLanguageProvider.Language.DescriptionRequiresInt,
             NormalizeEnabled = false,
@@ -45,11 +45,14 @@ public class RequiresIntelligenceProperty(IGameLanguageProvider gameLanguageProv
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class RequiresIntelligenceFilter : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateRequirementsFilters().Filters.Intelligence = new StatFilterValue(intFilter);
+        query.Filters.GetOrCreateRequirementsFilters().Filters.Intelligence = new StatFilterValue(this);
     }
 }

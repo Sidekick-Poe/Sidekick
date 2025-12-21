@@ -38,7 +38,7 @@ public class BlockChanceProperty(IGameLanguageProvider gameLanguageProvider, Gam
         if (item.Properties.BlockChance <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var text = game == GameType.PathOfExile1 ? gameLanguageProvider.Language.DescriptionChanceToBlock : gameLanguageProvider.Language.DescriptionBlockChance;
-        var filter = new IntPropertyFilter(this)
+        var filter = new BlockChanceFilter(game)
         {
             Text = text,
             NormalizeEnabled = true,
@@ -49,15 +49,18 @@ public class BlockChanceProperty(IGameLanguageProvider gameLanguageProvider, Gam
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class BlockChanceFilter(GameType game) : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
         switch (game)
         {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateArmourFilters().Filters.BlockChance = new StatFilterValue(intFilter); break;
-            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.BlockChance = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile1: query.Filters.GetOrCreateArmourFilters().Filters.BlockChance = new StatFilterValue(this); break;
+            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.BlockChance = new StatFilterValue(this); break;
         }
     }
 }

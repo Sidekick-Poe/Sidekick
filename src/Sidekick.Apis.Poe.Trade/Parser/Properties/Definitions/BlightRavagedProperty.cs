@@ -24,17 +24,20 @@ public class BlightRavagedProperty(IGameLanguageProvider gameLanguageProvider) :
     {
         if (!item.Properties.BlightRavaged) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new TradeFilter(this)
+        var filter = new BlightRavagedFilter
         {
             Text = gameLanguageProvider.Language.AffixBlightRavaged,
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class BlightRavagedFilter : TradeFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMapFilters().Filters.BlightRavavaged = new SearchFilterOption(filter);
+        query.Filters.GetOrCreateMapFilters().Filters.BlightRavavaged = new SearchFilterOption(this);
     }
 }

@@ -32,7 +32,7 @@ public class RevivesAvailableProperty(IGameLanguageProvider gameLanguageProvider
     {
         if (item.Properties.RevivesAvailable <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new RevivesAvailableFilter
         {
             Text = gameLanguageProvider.Language.DescriptionRevivesAvailable,
             NormalizeEnabled = false,
@@ -42,11 +42,14 @@ public class RevivesAvailableProperty(IGameLanguageProvider gameLanguageProvider
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class RevivesAvailableFilter : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMapFilters().Filters.RevivesAvailable = new StatFilterValue(intFilter);
+        query.Filters.GetOrCreateMapFilters().Filters.RevivesAvailable = new StatFilterValue(this);
     }
 }

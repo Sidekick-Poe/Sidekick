@@ -6,11 +6,11 @@ public class OptionFilter : TradeFilter
 
     public string? Value { get; set; }
 
-    public string? DefaultValue { get; set; }
+    public virtual string? DefaultValue { get; init; }
 
     public override bool Checked => Value != DefaultValue;
 
     public required List<OptionFilterValue> Options { get; set; }
 
-    public string? SettingKey { get; set; }
+    public virtual string? SettingKey { get; init; }
 }

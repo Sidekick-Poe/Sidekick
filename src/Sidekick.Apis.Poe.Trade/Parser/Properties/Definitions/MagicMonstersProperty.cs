@@ -32,7 +32,7 @@ public class MagicMonstersProperty(IGameLanguageProvider gameLanguageProvider) :
     {
         if (item.Properties.MagicMonsters <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new MagicMonstersFilter
         {
             Text = gameLanguageProvider.Language.DescriptionMagicMonsters,
             NormalizeEnabled = true,
@@ -44,11 +44,14 @@ public class MagicMonstersProperty(IGameLanguageProvider gameLanguageProvider) :
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class MagicMonstersFilter : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMapFilters().Filters.MagicMonsters = new StatFilterValue(intFilter);
+        query.Filters.GetOrCreateMapFilters().Filters.MagicMonsters = new StatFilterValue(this);
     }
 }

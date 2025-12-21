@@ -8,16 +8,14 @@ public class ExpandableFilter : TradeFilter
     {
         Text = text;
         Filters = filters.ToList();
-        PrepareTradeRequest = PrepareChildFilters;
     }
 
     public List<TradeFilter> Filters { get; }
 
-    private void PrepareChildFilters(Query query, Item item)
+    public override void PrepareTradeRequest(Query query, Item item)
     {
         foreach (var filter in Filters)
         {
-            if (filter.PrepareTradeRequest == null) continue;
             filter.PrepareTradeRequest(query, item);
         }
     }

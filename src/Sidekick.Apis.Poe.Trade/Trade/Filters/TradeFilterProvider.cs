@@ -57,8 +57,6 @@ public class TradeFilterProvider
         Filters = result.Result;
     }
 
-    public string? GetPriceOption(string? price) => TradePrice?.Option.Options.SingleOrDefault(x => x.Id == price)?.Id;
-
     public string? GetTradeIndexedOption(string? id) => TradeIndexed?.Option.Options.SingleOrDefault(x => x.Id == id)?.Id;
 
     public ApiFilterCategory? GetApiFilterCategory(string categoryId)
@@ -77,13 +75,11 @@ public class TradeFilterProvider
 
         var result = new List<TradeFilter>();
 
-        var statusFilter = await serviceProvider.GetRequiredService<PlayerStatusFilter>()
-            .GetFilter(item);
-        if(statusFilter != null) result.Add(statusFilter);
+        var statusFilter = await serviceProvider.GetRequiredService<PlayerStatusFilterFactory>().GetFilter(item);
+        if (statusFilter != null) result.Add(statusFilter);
 
-        var currencyFilter = await serviceProvider.GetRequiredService<CurrencyFilter>()
-            .GetFilter(item);
-        if(currencyFilter != null) result.Add(currencyFilter);
+        var currencyFilter = await serviceProvider.GetRequiredService<CurrencyFilterFactory>().GetFilter(item);
+        if (currencyFilter != null) result.Add(currencyFilter);
 
         if (result.Count == 0) return [];
         return [new ExpandableFilter(TradeCategory.Title, result.ToArray())];

@@ -7,8 +7,6 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Filters;
 public interface ITradeFilterProvider : IInitializableService
 {
     ApiFilter? TypeCategory { get; }
-    ApiFilter? TradePrice { get; }
-    ApiFilter? TradeIndexed { get; }
     ApiFilter? Desecrated { get; }
     ApiFilter? Veiled { get; }
     ApiFilter? Fractured { get; }
@@ -17,9 +15,6 @@ public interface ITradeFilterProvider : IInitializableService
     ApiFilter? Sanctified { get; }
     ApiFilterCategory? RequirementsCategory { get; }
     ApiFilterCategory? MiscellaneousCategory { get; }
-    string? GetPriceOption(string? price);
-    string? GetTradeIndexedOption(string? timeFrame);
-    ApiFilterCategory? GetApiFilterCategory(string categoryId);
     ApiFilter? GetApiFilter(string categoryId, string filterId);
     Task<List<TradeFilter>> GetFilters(Item item);
 }

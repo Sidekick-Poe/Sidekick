@@ -26,18 +26,21 @@ public class CrusaderProperty(IGameLanguageProvider gameLanguageProvider) : Prop
     {
         if (!item.Properties.Influences.Crusader) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new TradeFilter(this)
+        var filter = new CrusaderFilter
         {
             Text = gameLanguageProvider.Language.InfluenceCrusader,
             Checked = true,
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class CrusaderFilter : TradeFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMiscFilters().Filters.CrusaderItem = new SearchFilterOption(filter);
+        query.Filters.GetOrCreateMiscFilters().Filters.CrusaderItem = new SearchFilterOption(this);
     }
 }

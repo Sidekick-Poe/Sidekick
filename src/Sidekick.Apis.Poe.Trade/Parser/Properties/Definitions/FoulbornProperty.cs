@@ -33,21 +33,24 @@ public class FoulbornProperty(IServiceProvider serviceProvider, GameType game) :
         if (TradeFilterProvicer.Foulborn == null) return Task.FromResult<TradeFilter?>(null);
         if (item.Properties.Rarity != Rarity.Unique) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new TriStatePropertyFilter(this)
+        var filter = new FoulbornFilter
         {
             Text = TradeFilterProvicer.Foulborn.Text ?? "Foulborn",
             Checked = item.Properties.Foulborn,
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class FoulbornFilter : TriStatePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (filter is not TriStatePropertyFilter triStateFilter || triStateFilter.Checked == null)
+        if (Checked == null)
         {
             return;
         }
 
-        query.Filters.GetOrCreateMiscFilters().Filters.Foulborn = new SearchFilterOption(triStateFilter);
+        query.Filters.GetOrCreateMiscFilters().Filters.Foulborn = new SearchFilterOption(this);
     }
 }

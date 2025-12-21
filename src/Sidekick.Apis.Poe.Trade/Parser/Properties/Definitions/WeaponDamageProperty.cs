@@ -143,7 +143,7 @@ public class WeaponDamageProperty
 
         if (item.Properties.TotalDamage > 0)
         {
-            var filter = new WeaponDamagePropertyFilter(this)
+            var filter = new WeaponDamageFilter(game)
             {
                 Text = resources["Damage"],
                 NormalizeEnabled = true,
@@ -156,7 +156,7 @@ public class WeaponDamageProperty
 
         if (item.Properties.PhysicalDps > 0)
         {
-            var filter = new DoublePropertyFilter(this)
+            var filter = new PhysicalDpsFilter(game)
             {
                 Text = resources["PhysicalDps"],
                 NormalizeEnabled = true,
@@ -170,7 +170,7 @@ public class WeaponDamageProperty
 
         if (item.Properties.ElementalDps > 0)
         {
-            var filter = new DoublePropertyFilter(this)
+            var filter = new ElementalDpsFilter(game)
             {
                 Text = resources["ElementalDps"],
                 NormalizeEnabled = true,
@@ -183,7 +183,7 @@ public class WeaponDamageProperty
 
         if (item.Properties.ChaosDps > 0)
         {
-            var filter = new DoublePropertyFilter(this)
+            var filter = new ChaosDpsFilter
             {
                 Text = resources["ChaosDps"],
                 NormalizeEnabled = true,
@@ -196,7 +196,7 @@ public class WeaponDamageProperty
 
         if (item.Properties.TotalDps > 0)
         {
-            var filter = new DoublePropertyFilter(this)
+            var filter = new TotalDpsFilter(game)
             {
                 Text = resources["Dps"],
                 NormalizeEnabled = true,
@@ -210,50 +210,67 @@ public class WeaponDamageProperty
 
         return results.Count > 0 ? results : null;
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class WeaponDamageFilter(GameType game) : WeaponDamagePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked) return;
+        if (!Checked) return;
 
-        if (filter.Text == resources["Damage"] && filter is DoublePropertyFilter damageFilter)
+        switch (game)
         {
-            switch (game)
-            {
-                case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.Damage = new StatFilterValue(damageFilter); break;
-                case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.Damage = new StatFilterValue(damageFilter); break;
-            }
+            case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.Damage = new StatFilterValue(this); break;
+            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.Damage = new StatFilterValue(this); break;
         }
+    }
+}
 
-        if (filter.Text == resources["PhysicalDps"] && filter is DoublePropertyFilter physicalDpsFilter)
+public class PhysicalDpsFilter(GameType game) : DoublePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
+    {
+        if (!Checked) return;
+
+        switch (game)
         {
-            switch (game)
-            {
-                case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.PhysicalDps = new StatFilterValue(physicalDpsFilter); break;
-                case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.PhysicalDps = new StatFilterValue(physicalDpsFilter); break;
-            }
+            case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.PhysicalDps = new StatFilterValue(this); break;
+            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.PhysicalDps = new StatFilterValue(this); break;
         }
+    }
+}
 
-        if (filter.Text == resources["ElementalDps"] && filter is DoublePropertyFilter elementalDpsFilter)
+public class ElementalDpsFilter(GameType game) : DoublePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
+    {
+        if (!Checked) return;
+
+        switch (game)
         {
-            switch (game)
-            {
-                case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.ElementalDps = new StatFilterValue(elementalDpsFilter); break;
-                case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.ElementalDps = new StatFilterValue(elementalDpsFilter); break;
-            }
+            case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.ElementalDps = new StatFilterValue(this); break;
+            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.ElementalDps = new StatFilterValue(this); break;
         }
+    }
+}
 
-        if (filter.Text == resources["ChaosDps"] && filter is DoublePropertyFilter chaosDpsFilter)
-        {
-            // searchFilters.GetOrCreateWeaponFilters().Filters.ChaosDps = new StatFilterValue(chaosDpsFilter);
-        }
+public class ChaosDpsFilter : DoublePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
+    {
+    }
+}
 
-        if (filter.Text == resources["Dps"] && filter is DoublePropertyFilter dpsFilter)
+public class TotalDpsFilter(GameType game) : DoublePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
+    {
+        if (!Checked) return;
+
+        switch (game)
         {
-            switch (game)
-            {
-                case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.DamagePerSecond = new StatFilterValue(dpsFilter); break;
-                case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.DamagePerSecond = new StatFilterValue(dpsFilter); break;
-            }
+            case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.DamagePerSecond = new StatFilterValue(this); break;
+            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.DamagePerSecond = new StatFilterValue(this); break;
         }
     }
 }

@@ -37,7 +37,7 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
     {
         if (item.Properties.ItemLevel <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new ItemLevelFilter(game)
         {
             Text = gameLanguageProvider.Language.DescriptionItemLevel,
             NormalizeEnabled = false,
@@ -46,15 +46,18 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class ItemLevelFilter(GameType game) : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
         switch (game)
         {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateMiscFilters().Filters.ItemLevel = new StatFilterValue(intFilter); break;
-            case GameType.PathOfExile2: query.Filters.GetOrCreateTypeFilters().Filters.ItemLevel = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile1: query.Filters.GetOrCreateMiscFilters().Filters.ItemLevel = new StatFilterValue(this); break;
+            case GameType.PathOfExile2: query.Filters.GetOrCreateTypeFilters().Filters.ItemLevel = new StatFilterValue(this); break;
         }
     }
 }

@@ -26,21 +26,24 @@ public class DesecratedProperty(IServiceProvider serviceProvider, GameType game)
         if (game == GameType.PathOfExile1) return Task.FromResult<TradeFilter?>(null);
         if (TradeFilterProvicer.Desecrated == null) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new TriStatePropertyFilter(this)
+        var filter = new DesecratedFilter
         {
             Text = TradeFilterProvicer.Desecrated.Text ?? "Desecrated",
             Checked = null,
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class DesecratedFilter : TriStatePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (filter is not TriStatePropertyFilter triStateFilter || triStateFilter.Checked == null)
+        if (Checked == null)
         {
             return;
         }
 
-        query.Filters.GetOrCreateMiscFilters().Filters.Desecrated = new SearchFilterOption(triStateFilter);
+        query.Filters.GetOrCreateMiscFilters().Filters.Desecrated = new SearchFilterOption(this);
     }
 }

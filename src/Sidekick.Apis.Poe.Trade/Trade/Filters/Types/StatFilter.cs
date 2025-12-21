@@ -24,8 +24,6 @@ public sealed class StatFilter : TradeFilter
             PrimaryCategory = Stat.ApiInformation.FirstOrDefault()?.Category ?? StatCategory.Undefined;
             SecondaryCategory = StatCategory.Undefined;
         }
-
-        PrepareTradeRequest = PrepareStatRequest;
     }
 
     public Stat Stat { get; }
@@ -40,7 +38,7 @@ public sealed class StatFilter : TradeFilter
 
     public double? Max { get; set; }
 
-    private void PrepareStatRequest(Query query, Item item)
+    public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked || Stat.ApiInformation.Count == 0)
         {

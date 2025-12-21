@@ -24,21 +24,24 @@ public class CorruptedProperty(IGameLanguageProvider gameLanguageProvider) : Pro
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        var filter = new TriStatePropertyFilter(this)
+        var filter = new CorruptedFilter
         {
             Text = gameLanguageProvider.Language.DescriptionCorrupted,
             Checked = item.Properties.Corrupted,
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class CorruptedFilter : TriStatePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (filter is not TriStatePropertyFilter triStateFilter || triStateFilter.Checked == null)
+        if (Checked == null)
         {
             return;
         }
 
-        query.Filters.GetOrCreateMiscFilters().Filters.Corrupted = new SearchFilterOption(triStateFilter);
+        query.Filters.GetOrCreateMiscFilters().Filters.Corrupted = new SearchFilterOption(this);
     }
 }

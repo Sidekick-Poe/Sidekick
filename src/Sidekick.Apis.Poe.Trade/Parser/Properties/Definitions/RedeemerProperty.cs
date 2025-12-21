@@ -26,18 +26,21 @@ public class RedeemerProperty(IGameLanguageProvider gameLanguageProvider) : Prop
     {
         if (!item.Properties.Influences.Redeemer) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new TradeFilter(this)
+        var filter = new RedeemerFilter
         {
             Text = gameLanguageProvider.Language.InfluenceRedeemer,
             Checked = true,
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class RedeemerFilter : TradeFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMiscFilters().Filters.RedeemerItem = new SearchFilterOption(filter);
+        query.Filters.GetOrCreateMiscFilters().Filters.RedeemerItem = new SearchFilterOption(this);
     }
 }

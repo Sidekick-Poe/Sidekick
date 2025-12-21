@@ -2,10 +2,11 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
 
-public class PlayerStatusFilter(
+public class PlayerStatusFilterFactory(
     ITradeFilterProvider tradeFilterProvider,
     ISettingsService settingsService,
     IStringLocalizer<PoeResources> resources)
@@ -16,7 +17,7 @@ public class PlayerStatusFilter(
     public const string Any = "any";
     public const string OnlineLeague = "onlineleague";
 
-    private const string SettingKey = "Trade_Filter_Status";
+    public const string SettingKey = "Trade_Filter_Status";
 
     public async Task<TradeFilter?> GetFilter(Item item)
     {
@@ -24,20 +25,30 @@ public class PlayerStatusFilter(
         var statusValue = await settingsService.GetString(SettingKey);
         if (statusFilters != null)
         {
-            var filter = new OptionFilter()
+            var filter = new PlayerStatusFilter()
             {
                 Text = resources["Player_Status"],
                 Value = statusValue ?? Securable,
                 DefaultValue = Securable,
-                SettingKey = SettingKey,
                 Options = statusFilters.Option.Options
                     .Select(x => new OptionFilter.OptionFilterValue(x.Id, x.Text))
                     .ToList(),
             };
-            filter.PrepareTradeRequest = (query, _) => query.Status.Option = filter.Value ?? Securable;
             return filter;
         }
 
         return null;
+    }
+}
+
+public class PlayerStatusFilter : OptionFilter
+{
+    public override string? DefaultValue => PlayerStatusFilterFactory.Securable;
+
+    public override string? SettingKey => PlayerStatusFilterFactory.SettingKey;
+
+    public override void PrepareTradeRequest(Query query, Item item)
+    {
+        query.Status.Option = Value ?? PlayerStatusFilterFactory.Securable;
     }
 }

@@ -9,8 +9,6 @@ public class PseudoFilter : TradeFilter
     {
         Stat = stat;
         Text = stat.Text;
-
-        PrepareTradeRequest = PreparePseudoRequest;
     }
 
     public PseudoStat Stat { get; set; }
@@ -19,7 +17,7 @@ public class PseudoFilter : TradeFilter
 
     public double? Max { get; set; }
 
-    private void PreparePseudoRequest(Query query, Item item)
+    public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked || string.IsNullOrEmpty(Stat.Id))
         {

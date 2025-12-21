@@ -226,7 +226,7 @@ public class ItemClassProperty : PropertyDefinition
 
         var preferItemClass = await settingsService.GetEnum<DefaultItemClassFilter>(SettingKeys.PriceCheckItemClassFilter) ?? DefaultItemClassFilter.BaseType;
 
-        var filter = new ItemClassPropertyFilter(this)
+        var filter = new ItemClassFilter
         {
             Text = gameLanguageProvider.Language.DescriptionRarity,
             ItemClass = classLabel,
@@ -235,10 +235,13 @@ public class ItemClassProperty : PropertyDefinition
         };
         return filter;
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class ItemClassFilter : ItemClassPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not ItemClassPropertyFilter) return;
+        if (!Checked) return;
 
         query.Type = null;
         query.Filters.GetOrCreateTypeFilters().Filters.Category = GetCategoryFilter(item.Properties.ItemClass);

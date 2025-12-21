@@ -37,7 +37,7 @@ public class RequiresDexterityProperty(IGameLanguageProvider gameLanguageProvide
     {
         if (item.Properties.RequiresDexterity <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new RequiresDexterityFilter
         {
             Text = gameLanguageProvider.Language.DescriptionRequiresDex,
             NormalizeEnabled = false,
@@ -45,11 +45,14 @@ public class RequiresDexterityProperty(IGameLanguageProvider gameLanguageProvide
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class RequiresDexterityFilter : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateRequirementsFilters().Filters.Dexterity = new StatFilterValue(intFilter);
+        query.Filters.GetOrCreateRequirementsFilters().Filters.Dexterity = new StatFilterValue(this);
     }
 }

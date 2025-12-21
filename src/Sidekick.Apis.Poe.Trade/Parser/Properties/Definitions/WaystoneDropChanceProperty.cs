@@ -32,7 +32,7 @@ public class WaystoneDropChanceProperty(IGameLanguageProvider gameLanguageProvid
     {
         if (item.Properties.WaystoneDropChance <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new WaystoneDropChanceFilter
         {
             Text = gameLanguageProvider.Language.DescriptionWaystoneDropChance,
             NormalizeEnabled = true,
@@ -44,11 +44,14 @@ public class WaystoneDropChanceProperty(IGameLanguageProvider gameLanguageProvid
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class WaystoneDropChanceFilter : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMapFilters().Filters.WaystoneDropChance = new StatFilterValue(intFilter);
+        query.Filters.GetOrCreateMapFilters().Filters.WaystoneDropChance = new StatFilterValue(this);
     }
 }

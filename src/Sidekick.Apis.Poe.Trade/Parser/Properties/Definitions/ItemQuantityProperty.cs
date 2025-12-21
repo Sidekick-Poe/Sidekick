@@ -32,7 +32,7 @@ public class ItemQuantityProperty(IGameLanguageProvider gameLanguageProvider) : 
     {
         if (item.Properties.ItemQuantity <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new ItemQuantityFilter
         {
             Text = gameLanguageProvider.Language.DescriptionItemQuantity,
             NormalizeEnabled = true,
@@ -44,11 +44,14 @@ public class ItemQuantityProperty(IGameLanguageProvider gameLanguageProvider) : 
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class ItemQuantityFilter : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMapFilters().Filters.ItemQuantity = new StatFilterValue(intFilter);
+        query.Filters.GetOrCreateMapFilters().Filters.ItemQuantity = new StatFilterValue(this);
     }
 }

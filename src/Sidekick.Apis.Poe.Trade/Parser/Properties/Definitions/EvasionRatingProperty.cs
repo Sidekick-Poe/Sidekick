@@ -32,7 +32,7 @@ public class EvasionRatingProperty(IGameLanguageProvider gameLanguageProvider, G
     {
         if (item.Properties.EvasionRating <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new EvasionRatingFilter(game)
         {
             Text = gameLanguageProvider.Language.DescriptionEvasion,
             NormalizeEnabled = true,
@@ -43,15 +43,18 @@ public class EvasionRatingProperty(IGameLanguageProvider gameLanguageProvider, G
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class EvasionRatingFilter(GameType game) : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
         switch (game)
         {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateArmourFilters().Filters.EvasionRating = new StatFilterValue(intFilter); break;
-            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.EvasionRating = new StatFilterValue(intFilter); break;
+            case GameType.PathOfExile1: query.Filters.GetOrCreateArmourFilters().Filters.EvasionRating = new StatFilterValue(this); break;
+            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.EvasionRating = new StatFilterValue(this); break;
         }
     }
 }

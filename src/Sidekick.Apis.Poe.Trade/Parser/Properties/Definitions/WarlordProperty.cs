@@ -26,7 +26,7 @@ public class WarlordProperty(IGameLanguageProvider gameLanguageProvider) : Prope
     {
         if (!item.Properties.Influences.Warlord) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new TradeFilter(this)
+        var filter = new WarlordFilter
         {
             Text = gameLanguageProvider.Language.InfluenceWarlord,
             Checked = true,
@@ -34,10 +34,14 @@ public class WarlordProperty(IGameLanguageProvider gameLanguageProvider) : Prope
         return Task.FromResult<TradeFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
-    {
-        if (!filter.Checked) return;
+}
 
-        query.Filters.GetOrCreateMiscFilters().Filters.WarlordItem = new SearchFilterOption(filter);
+public class WarlordFilter : TradeFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
+    {
+        if (!Checked) return;
+
+        query.Filters.GetOrCreateMiscFilters().Filters.WarlordItem = new SearchFilterOption(this);
     }
 }

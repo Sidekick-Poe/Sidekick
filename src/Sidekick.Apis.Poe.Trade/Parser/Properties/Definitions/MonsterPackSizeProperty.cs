@@ -32,7 +32,7 @@ public class MonsterPackSizeProperty(IGameLanguageProvider gameLanguageProvider)
     {
         if (item.Properties.MonsterPackSize <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new MonsterPackSizeFilter
         {
             Text = gameLanguageProvider.Language.DescriptionMonsterPackSize,
             NormalizeEnabled = true,
@@ -44,11 +44,14 @@ public class MonsterPackSizeProperty(IGameLanguageProvider gameLanguageProvider)
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class MonsterPackSizeFilter : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMapFilters().Filters.MonsterPackSize = new StatFilterValue(intFilter);
+        query.Filters.GetOrCreateMapFilters().Filters.MonsterPackSize = new StatFilterValue(this);
     }
 }

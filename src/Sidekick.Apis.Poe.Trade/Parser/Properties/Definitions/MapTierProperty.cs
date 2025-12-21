@@ -26,7 +26,7 @@ public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : Prope
     {
         if (item.Properties.MapTier <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new MapTierFilter
         {
             Text = gameLanguageProvider.Language.DescriptionMapTier,
             NormalizeEnabled = false,
@@ -35,11 +35,14 @@ public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : Prope
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class MapTierFilter : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMapFilters().Filters.MapTier = new StatFilterValue(intFilter);
+        query.Filters.GetOrCreateMapFilters().Filters.MapTier = new StatFilterValue(this);
     }
 }

@@ -26,18 +26,21 @@ public class ElderProperty(IGameLanguageProvider gameLanguageProvider) : Propert
     {
         if (!item.Properties.Influences.Elder) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new TradeFilter(this)
+        var filter = new ElderFilter
         {
             Text = gameLanguageProvider.Language.InfluenceElder,
             Checked = true,
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class ElderFilter : TradeFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMiscFilters().Filters.ElderItem = new SearchFilterOption(filter);
+        query.Filters.GetOrCreateMiscFilters().Filters.ElderItem = new SearchFilterOption(this);
     }
 }

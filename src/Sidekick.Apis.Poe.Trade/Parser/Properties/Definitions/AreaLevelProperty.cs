@@ -26,7 +26,7 @@ public class AreaLevelProperty(IGameLanguageProvider gameLanguageProvider) : Pro
     {
         if (item.Properties.AreaLevel <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new AreaLevelFilter
         {
             Text = gameLanguageProvider.Language.DescriptionAreaLevel,
             NormalizeEnabled = false,
@@ -35,11 +35,14 @@ public class AreaLevelProperty(IGameLanguageProvider gameLanguageProvider) : Pro
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class AreaLevelFilter : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMapFilters().Filters.AreaLevel = intFilter.Checked ? new StatFilterValue(intFilter) : null;
+        query.Filters.GetOrCreateMapFilters().Filters.AreaLevel = new StatFilterValue(this);
     }
 }

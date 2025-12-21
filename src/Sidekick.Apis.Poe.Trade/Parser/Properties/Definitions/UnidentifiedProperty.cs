@@ -30,21 +30,24 @@ public class UnidentifiedProperty(IGameLanguageProvider gameLanguageProvider) : 
     {
         if (!item.Properties.Unidentified) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new TriStatePropertyFilter(this)
+        var filter = new UnidentifiedFilter
         {
             Text = gameLanguageProvider.Language.DescriptionUnidentified,
             Checked = true,
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class UnidentifiedFilter : TriStatePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (filter is not TriStatePropertyFilter triStatePropertyFilter || triStatePropertyFilter.Checked is null)
+        if (Checked is null)
         {
             return;
         }
 
-        query.Filters.GetOrCreateMiscFilters().Filters.Identified = new SearchFilterOption(triStatePropertyFilter.Checked is true ? "false" : "true");
+        query.Filters.GetOrCreateMiscFilters().Filters.Identified = new SearchFilterOption(Checked is true ? "false" : "true");
     }
 }

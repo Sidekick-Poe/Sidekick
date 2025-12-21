@@ -18,8 +18,6 @@ public abstract class PropertyDefinition
 
     public virtual List<TradeFilter>? GetFilters(Item item) { return null; }
 
-    public virtual void PrepareTradeRequest(Query query, Item item, TradeFilter filter) {}
-
     protected static bool GetBool(Regex pattern, TextItem textItem) => textItem.TryParseRegex(pattern, out _);
 
     protected static bool GetBool(Regex pattern, TextBlock textBlock) => textBlock.TryParseRegex(pattern, out _);

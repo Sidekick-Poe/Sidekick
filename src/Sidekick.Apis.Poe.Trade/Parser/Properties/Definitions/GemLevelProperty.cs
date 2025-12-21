@@ -33,7 +33,7 @@ public class GemLevelProperty
     {
         if (item.Properties.GemLevel <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new GemLevelFilter
         {
             Text = gameLanguageProvider.Language.DescriptionLevel,
             NormalizeEnabled = false,
@@ -42,11 +42,14 @@ public class GemLevelProperty
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class GemLevelFilter : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
-        query.Filters.GetOrCreateMiscFilters().Filters.GemLevel = new StatFilterValue(intFilter);
+        query.Filters.GetOrCreateMiscFilters().Filters.GemLevel = new StatFilterValue(this);
     }
 }

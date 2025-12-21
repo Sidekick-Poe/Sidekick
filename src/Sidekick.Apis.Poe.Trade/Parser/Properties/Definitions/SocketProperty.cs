@@ -135,7 +135,7 @@ public class SocketProperty
             hint = resources["Socket_Poe1_Hint"];
         }
 
-        var filter = new IntPropertyFilter(this)
+        var filter = new SocketFilter(game)
         {
             Text = gameLanguageProvider.Language.DescriptionSockets,
             NormalizeEnabled = false,
@@ -145,20 +145,23 @@ public class SocketProperty
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, TradeFilter filter)
+public class SocketFilter(GameType game) : IntPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not IntPropertyFilter intFilter) return;
+        if (!Checked) return;
 
         switch (game)
         {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateSocketFilters().Filters.Links = new SocketFilterOption(intFilter); break;
+            case GameType.PathOfExile1: query.Filters.GetOrCreateSocketFilters().Filters.Links = new SocketFilterOption(this); break;
 
             case GameType.PathOfExile2:
                 switch (item.Properties.ItemClass)
                 {
-                    case ItemClass.ActiveGem: query.Filters.GetOrCreateMiscFilters().Filters.GemSockets = new StatFilterValue(intFilter); break;
-                    default: query.Filters.GetOrCreateEquipmentFilters().Filters.RuneSockets = new StatFilterValue(intFilter); break;
+                    case ItemClass.ActiveGem: query.Filters.GetOrCreateMiscFilters().Filters.GemSockets = new StatFilterValue(this); break;
+                    default: query.Filters.GetOrCreateEquipmentFilters().Filters.RuneSockets = new StatFilterValue(this); break;
                 }
 
                 break;
