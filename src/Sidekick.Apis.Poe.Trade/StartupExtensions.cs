@@ -11,7 +11,6 @@ using Sidekick.Apis.Poe.Trade.Parser.ApiInformation;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
-using Sidekick.Apis.Poe.Trade.Trade.Bulk;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
 using Sidekick.Apis.Poe.Trade.Trade.Items;
@@ -33,7 +32,6 @@ public static class StartupExtensions
 
         services.AddSingleton<IItemTradeService, ItemTradeService>();
         services.AddSingleton<ILeagueProvider, LeagueProvider>();
-        services.AddSingleton<IBulkTradeService, BulkTradeService>();
         services.AddSingleton<IFuzzyService, FuzzyService>();
         services.AddSingleton<IApiInformationParser, ApiInformationParser>();
 

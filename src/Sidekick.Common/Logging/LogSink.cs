@@ -1,4 +1,3 @@
-using System.Collections.Concurrent;
 using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting;
@@ -8,9 +7,13 @@ namespace Sidekick.Common.Logging;
 
 public class LogSink : ILogEventSink
 {
+    public static LogSink Instance { get; } = new();
+
+    private LogSink() { }
+
     private readonly ITextFormatter textFormatter = new MessageTemplateTextFormatter("{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {Message:lj}{NewLine}{Exception}");
 
-    public ConcurrentQueue<string> Events { get; } = new();
+    public CappedQueue<string> Entries = new(1000);
 
     public void Emit(LogEvent logEvent)
     {
@@ -19,8 +22,8 @@ public class LogSink : ILogEventSink
         textFormatter.Format(logEvent, writer);
 
         var logMessage = writer.ToString();
+        Entries.Enqueue(logMessage);
         LogEventEmitted?.Invoke(logMessage);
-        Events.Enqueue(logMessage);
     }
 
     public event Action<string>? LogEventEmitted;

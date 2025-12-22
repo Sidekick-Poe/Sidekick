@@ -118,13 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Official_Website" xml:space="preserve">
-    <value>Official website</value>
+      <value>Official Website</value>
   </data>
   <data name="GitHub_Repository" xml:space="preserve">
     <value>GitHub Repository</value>
-  </data>
-  <data name="Open_Settings_Folder" xml:space="preserve">
-    <value>Open the settings folder</value>
   </data>
   <data name="General_RetainClipboard" xml:space="preserve">
     <value>Retain Clipboard Data</value>
@@ -186,6 +183,9 @@
     <comment>Used in PreferredWikiEditor.razor</comment>
   </data>
   <data name="Discord_Server" xml:space="preserve">
-    <value>Discord server</value>
+      <value>Discord Server</value>
+  </data>
+  <data name="Data_Folder" xml:space="preserve">
+      <value>Sidekick Data Folder</value>
   </data>
 </root>

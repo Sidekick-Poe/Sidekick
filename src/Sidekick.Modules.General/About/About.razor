@@ -1,8 +1,7 @@
-@page "/settings/about"
+@page "/about"
 @using Microsoft.Extensions.Localization
 @using Sidekick.Common.Browser
 @using Sidekick.Common.Folder
-@using Sidekick.Common.Ui.Views
 @using Sidekick.Common.Ui.App
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.Layouts
@@ -27,12 +26,11 @@
                         <TextBase>@Resources["Discord_Server"] - </TextBase>
                         <ButtonLink OnClick="@(() => BrowserProvider.OpenUri(BrowserProvider.DiscordServer))">@BrowserProvider.DiscordServer</ButtonLink>
                     </div>
+                    <div class="flex gap-2">
+                        <TextBase>@Resources["Data_Folder"] - </TextBase>
+                        <ButtonLink OnClick="@(() => FolderProvider.OpenDataFolderPath())"><span class="font-mono">@FolderProvider.GetDataFolderPath()</span></ButtonLink>
+                    </div>
                 </div>
-
-                <LayoutDivider />
-
-                <ButtonPrimary Class="mb-3 block!" OnClick="@(() => FolderProvider.OpenDataFolderPath())">@Resources["Open_Settings_Folder"]</ButtonPrimary>
-                <code class="bg-stone-950 px-1 min-w-[8em]">@FolderProvider.GetDataFolderPath()</code>
             </div>
         </FormFieldset>
     </AppContainer>
@@ -41,7 +39,6 @@
 @inject IStringLocalizer<GeneralResources> Resources
 @inject IBrowserProvider BrowserProvider
 @inject IFolderProvider FolderProvider
-@inject ICurrentView CurrentView
 
 @code
 {

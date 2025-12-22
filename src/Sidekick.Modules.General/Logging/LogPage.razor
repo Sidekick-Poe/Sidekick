@@ -1,0 +1,42 @@
+@page "/logs"
+@using Microsoft.Extensions.Localization
+@using Sidekick.Common.Folder
+@using Sidekick.Common.Logging
+@using Sidekick.Common.Platform
+@using Sidekick.Common.Ui.App
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Layouts
+@using Sidekick.Common.Ui.Typography
+
+<LayoutMenu>
+    <AppContainer>
+        <div class="mb-3 flex gap-3">
+            <Heading1>@Resources["Logs"]</Heading1>
+            @if (ApplicationService.SupportsKeybinds)
+            {
+                <div class="ml-auto flex justify-end gap-3">
+                    <ButtonSecondary
+                        OnClick="@(() => FolderProvider.OpenDataFolderPath())">@Resources["Open_Folder"]</ButtonSecondary>
+                    <ButtonPrimary OnClick="Copy">@Resources["Copy"]</ButtonPrimary>
+                </div>
+            }
+        </div>
+
+        <LogStream/>
+    </AppContainer>
+</LayoutMenu>
+
+@inject IStringLocalizer<LogResources> Resources
+@inject IFolderProvider FolderProvider
+@inject IClipboardProvider ClipboardProvider
+@inject IApplicationService ApplicationService
+
+@code {
+
+    private async Task Copy()
+    {
+        var text = string.Join("", LogSink.Instance.Entries.ToList());
+        await ClipboardProvider.SetText(text);
+    }
+
+}

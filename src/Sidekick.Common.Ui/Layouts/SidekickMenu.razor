@@ -18,7 +18,9 @@
         <MenuItem Href="/settings/regexhotkeys">@Resources["Regex_Hotkeys"]</MenuItem>
     }
 
-    <MenuItem Href="/settings/about">@Resources["About"]</MenuItem>
+    <MenuLegend Legend="@Resources["Help"]" />
+    <MenuItem Href="/about">@Resources["About"]</MenuItem>
+    <MenuItem Href="/logs">@Resources["Logs"]</MenuItem>
 
     @if (Debugger.IsAttached)
     {
