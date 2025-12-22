@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Account.Stash;
 using Sidekick.Apis.Poe.Account.Stash.Models;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Static;
+using Sidekick.Apis.Poe.Trade.ApiStatic;
 using Sidekick.Apis.PoeNinja.Exchange;
 using Sidekick.Apis.PoeNinja.Exchange.Models;
 using Sidekick.Apis.PoeNinja.Items;
@@ -11,7 +11,7 @@ using Sidekick.Apis.PoeNinja.Stash;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
 using Sidekick.Common.Settings;
-using ApiItem=Sidekick.Apis.Poe.Trade.Models.Items.ApiItem;
+using ApiItem=Sidekick.Apis.Poe.Trade.Trade.Items.Models.ApiItem;
 
 namespace Sidekick.Modules.Wealth.Provider;
 

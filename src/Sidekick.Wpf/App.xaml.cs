@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common;
 using Sidekick.Common.Platform;
-using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Wpf.Services;
 
@@ -25,23 +24,14 @@ public partial class App
         DisableWindowsTheme();
     }
 
-    protected override async void OnStartup(StartupEventArgs e)
+    protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
 
         _ = CheckIsAlreadyRunning();
 
         AttachErrorHandlers();
-
         Program.ServiceProvider.GetRequiredService<WpfBrowserWindowProvider>();
-        var settingsService = Program.ServiceProvider.GetRequiredService<ISettingsService>();
-        var useHardwareAcceleration = await settingsService.GetBool(SettingKeys.UseHardwareAcceleration);
-        if (!useHardwareAcceleration)
-        {
-            // This changes the variable only for the current running application (does not override outside)
-            Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--disable-gpu --disable-software-rasterizer");
-        }
-
         var viewLocator = Program.ServiceProvider.GetRequiredService<IViewLocator>();
         viewLocator.Open(SidekickViewType.Standard, "/");
     }
@@ -55,7 +45,6 @@ public partial class App
         if (interprocessService.IsAlreadyRunning())
         {
             logger.LogDebug("[Startup] Application is already running.");
-#if !DEBUG
             var viewLocator = Program.ServiceProvider.GetRequiredService<IViewLocator>();
             viewLocator.Close(SidekickViewType.Standard);
             viewLocator.Close(SidekickViewType.Overlay);
@@ -63,7 +52,6 @@ public partial class App
             await sidekickDialogs.OpenOkModal("Another instance of Sidekick is already running. Make sure to close all instances of Sidekick inside the Task Manager.");
             logger.LogDebug("[Startup] Application is shutting down due to another instance running.");
             ShutdownAndExit();
-#endif
         }
     }
 

@@ -68,6 +68,8 @@ public enum ItemClass
     [EnumValue("flask.mana")]
     ManaFlask,
 
+    Charms,
+
     [EnumValue("gem.activegem")]
     ActiveGem,
 

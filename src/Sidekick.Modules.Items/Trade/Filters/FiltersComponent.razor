@@ -1,18 +1,13 @@
 @using Sidekick.Apis.Poe.Items
-@using Sidekick.Apis.Poe.Trade.Bulk
-@using Sidekick.Apis.Poe.Trade.Parser.Modifiers
 @using Sidekick.Apis.Poe.Trade.Parser.Properties
-@using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters
 @using Sidekick.Apis.Poe.Trade.Parser.Pseudo
-@using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters
+@using Sidekick.Apis.Poe.Trade.Parser.Stats
+@using Sidekick.Apis.Poe.Trade.Trade.Bulk
+@using Sidekick.Apis.Poe.Trade.Trade.Filters
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Modules.Items.Localization
-@using Sidekick.Modules.Items.Trade.Filters.Properties
+@using Sidekick.Modules.Items.Trade.Filters.Types
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
-
-@if (PropertyFilters == null)
-{
-    return;
-}
 
 <div class="flex flex-col h-full">
     <div>
@@ -23,29 +18,19 @@
                     Influences="Item.Properties.Influences"/>
     </div>
 
-    <div class="grow overflow-y-auto py-2">
-        @for (var index = 0; index < PropertyFilters.Count; index++)
+    <div class="grow overflow-y-auto pt-2">
+        @for (var index = 0; index < Filters.Count; index++)
         {
-            var filter = PropertyFilters[index];
-            var key = $"{Item.Id}_property_{index}";
-            <PropertyFilterComponent @key="key"
-                                     Filter="filter"
-                                     Item="Item"/>
+            var filter = Filters[index];
+            var key = $"{Item.Id}_filter_{index}";
+            <FilterComponent @key="key" Filter="filter"/>
         }
-
-        @if (PropertyFilters.Count > 0)
-        {
-            <ItemSeparator Rarity="Item.Properties.Rarity"/>
-        }
-
-        <ModifierFiltersComponent ModifierFilters="ModifierFilters"/>
-        <PseudoFiltersComponent PseudoFilters="PseudoFilters"/>
     </div>
 
     <div class="flex flex-nowrap items-center w-full py-2 px-1">
         <div class="flex flex-col items-stretch text-center px-1 grow">
             <ButtonPrimary
-                OnClick="() => TradeService.SearchItems(Item, PropertyFilters, ModifierFilters, PseudoFilters)"
+                OnClick="() => TradeService.SearchItems(Item, Filters)"
                 Disabled="TradeService.IsLoading">@Resources["Search"]</ButtonPrimary>
         </div>
 
@@ -56,8 +41,6 @@
                                  Disabled="TradeService.IsLoading">@Resources["Bulk_Search"]</ButtonSecondary>
             </div>
         }
-
-        <TradeFilters/>
     </div>
 </div>
 
@@ -65,28 +48,30 @@
 @inject IBulkTradeService BulkTradeService
 @inject TradeService TradeService
 @inject IPropertyParser PropertyParser
-@inject IModifierParser ModifierParser
+@inject IStatParser StatParser
 @inject IPseudoParser PseudoParser
-@inject Sidekick.Apis.Poe.Trade.AutoSelect.IFilterAutoSelectService AutoSelectService
-@inject Sidekick.Common.Settings.ISettingsService SettingsService
+@inject ITradeFilterProvider TradeFilterProvider
 
 @code {
 
     [CascadingParameter]
     public required Item Item { get; set; }
 
-    private List<PropertyFilter>? PropertyFilters { get; set; }
-
-    private List<ModifierFilter> ModifierFilters { get; set; } = [];
-
-    private List<PseudoFilter> PseudoFilters { get; set; } = [];
+    private List<TradeFilter> Filters { get; set; } = [];
 
     protected override async Task OnParametersSetAsync()
     {
-        PropertyFilters = await PropertyParser.GetFilters(Item);
-        ModifierFilters = await ModifierParser.GetFilters(Item);
-        PseudoFilters = PseudoParser.GetFilters(Item);
-        await ApplyAutoSelection();
+        Filters.Clear();
+        Filters.AddRange(await PropertyParser.GetFilters(Item));
+        Filters.Add(new SeparatorFilter());
+        Filters.AddRange(await StatParser.GetFilters(Item));
+        Filters.Add(new SeparatorFilter());
+        Filters.AddRange(PseudoParser.GetFilters(Item));
+        Filters.Add(new SeparatorFilter());
+        Filters.AddRange(await TradeFilterProvider.GetFilters(Item));
+
+        CleanUpSeparatorFilters(Filters);
+
         TradeService.Clear();
 
         await base.OnParametersSetAsync();
@@ -118,4 +103,31 @@
         }
     }
 
+
+    private static void CleanUpSeparatorFilters(List<TradeFilter> results)
+    {
+        // Remove leading SeparatorProperty filters
+        while (results.Count > 0 && results[0] is SeparatorFilter)
+        {
+            results.RemoveAt(0);
+        }
+
+        // Remove trailing SeparatorProperty filters
+        while (results.Count > 0 && results[^1] is SeparatorFilter)
+        {
+            results.RemoveAt(results.Count - 1);
+        }
+
+        // Remove consecutive SeparatorProperty filters
+        for (var i = 1; i < results.Count; i++)
+        {
+            if (results[i] is not SeparatorFilter || results[i - 1] is not SeparatorFilter)
+            {
+                continue;
+            }
+
+            results.RemoveAt(i);
+            i--;// Adjust index to recheck current position
+        }
+    }
 }

@@ -1,8 +1,8 @@
 @using System.Text.RegularExpressions
 @using Sidekick.Apis.Poe.Extensions
-@using Sidekick.Apis.Poe.Trade.Models.Items
 @using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions
-@using Sidekick.Apis.Poe.Trade.Trade.Results
+@using Sidekick.Apis.Poe.Trade.Trade.Items.Models
+@using Sidekick.Apis.Poe.Trade.Trade.Items.Results
 
 @if (LineContents.Count > 0)
 {
@@ -111,9 +111,9 @@
                 continue;
             }
 
-            if (value.Type == LineContentType.Modifier)
+            if (value.Type == LineContentType.Stat)
             {
-                text = $"<span class=\"{LineContentType.Modifier.GetColour()}\">{text}</span>";
+                text = $"<span class=\"{LineContentType.Stat.GetColour()}\">{text}</span>";
                 continue;
             }
 

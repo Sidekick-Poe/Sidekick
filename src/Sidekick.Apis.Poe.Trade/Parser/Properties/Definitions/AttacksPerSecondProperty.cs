@@ -1,10 +1,10 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Results;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -32,11 +32,11 @@ public class AttacksPerSecondProperty
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.AttacksPerSecond));
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.AttacksPerSecond <= 0) return Task.FromResult<PropertyFilter?>(null);
+        if (item.Properties.AttacksPerSecond <= 0) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new DoublePropertyFilter(this)
+        var filter = new AttacksPerSecondFilter(game)
         {
             Text = gameLanguageProvider.Language.DescriptionAttacksPerSecond,
             NormalizeEnabled = true,
@@ -44,17 +44,20 @@ public class AttacksPerSecondProperty
             Checked = false,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.AttacksPerSecond)) ? LineContentType.Augmented : LineContentType.Simple,
         };
-        return Task.FromResult<PropertyFilter?>(filter);
+        return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
+public class AttacksPerSecondFilter(GameType game) : DoublePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not DoublePropertyFilter doubleFilter) return;
+        if (!Checked) return;
 
         switch (game)
         {
-            case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.AttacksPerSecond = new StatFilterValue(doubleFilter); break;
-            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.AttacksPerSecond = new StatFilterValue(doubleFilter); break;
+            case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.AttacksPerSecond = new StatFilterValue(this); break;
+            case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.AttacksPerSecond = new StatFilterValue(this); break;
         }
     }
 }

@@ -1,15 +1,15 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class MirroredProperty(IServiceProvider serviceProvider) : PropertyDefinition
 {
-    private IFilterProvider FilterProvicer => serviceProvider.GetRequiredService<IFilterProvider>();
+    private ITradeFilterProvider TradeFilterProvicer => serviceProvider.GetRequiredService<ITradeFilterProvider>();
 
     public override List<ItemClass> ValidItemClasses { get; } =
     [
@@ -22,25 +22,28 @@ public class MirroredProperty(IServiceProvider serviceProvider) : PropertyDefini
     {
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (FilterProvicer.Mirrored == null) return Task.FromResult<PropertyFilter?>(null);
+        if (TradeFilterProvicer.Mirrored == null) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new TriStatePropertyFilter(this)
+        var filter = new MirroredFilter
         {
-            Text = FilterProvicer.Mirrored.Text ?? "Mirrored",
+            Text = TradeFilterProvicer.Mirrored.Text ?? "Mirrored",
             Checked = null,
         };
-        return Task.FromResult<PropertyFilter?>(filter);
+        return Task.FromResult<TradeFilter?>(filter);
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
+public class MirroredFilter : TriStatePropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (filter is not TriStatePropertyFilter triStateFilter || triStateFilter.Checked == null)
+        if (Checked == null)
         {
             return;
         }
 
-        query.Filters.GetOrCreateMiscFilters().Filters.Mirrored = new SearchFilterOption(triStateFilter);
+        query.Filters.GetOrCreateMiscFilters().Filters.Mirrored = new SearchFilterOption(this);
     }
 }

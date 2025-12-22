@@ -1,0 +1,139 @@
+@using System.Text.Json
+@using Sidekick.Apis.Poe.Extensions
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Trade.ApiStats
+@using Sidekick.Apis.Poe.Trade.Trade.Items.Models
+@using Sidekick.Apis.Poe.Trade.Trade.Items.Results
+
+<ItemSeparator Rarity="Result.Item.Rarity"/>
+@foreach (var line in Stats)
+{
+    <ItemStatLineComponent Result="Result" StatLines="Stats" StatLine="line"/>
+}
+
+@inject IApiStatsProvider ApiStatsProvider
+
+@code {
+
+    public class StatLine(string text)
+    {
+        public string Text { get; } = text;
+
+        public string? Tier { get; init; }
+
+        public StatCategory Category { get; set; }
+
+        public int BlockIndex { get; init; }
+    }
+
+    [Parameter]
+    public required TradeResult Result { get; set; }
+
+    private List<StatLine> Stats { get; set; } = [];
+
+    protected override bool ShouldRender() => false;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        Stats = GetAllStatLines(Result.Item).OrderBy(x => x.Text.IndexOf(x.Text, StringComparison.InvariantCultureIgnoreCase)).ToList();
+    }
+
+    private IEnumerable<StatLine> GetAllStatLines(ApiItem tradeItem)
+    {
+        var index = 0;
+        foreach (var logbook in tradeItem.LogbookMods)
+        {
+            var blockIndex = ++index;
+            yield return new StatLine(text: logbook.Name)
+            {
+                BlockIndex = blockIndex,
+                Category = StatCategory.WhiteText,
+            };
+            yield return new StatLine(text: logbook.Faction.Name)
+            {
+                BlockIndex = blockIndex,
+                Category = logbook.Faction.Category,
+            };
+            foreach (var line in ParseStatLines(blockIndex, logbook.Mods, tradeItem.Extended?.Mods?.Implicit, ParseHash(tradeItem.Extended?.Hashes?.Implicit))) yield return line;
+        }
+
+        index++;
+        foreach (var line in ParseStatLines(index, tradeItem.EnchantMods, tradeItem.Extended?.Mods?.Enchant, ParseHash(tradeItem.Extended?.Hashes?.Enchant))) yield return line;
+
+        index++;
+        foreach (var line in ParseStatLines(index, tradeItem.RuneMods, tradeItem.Extended?.Mods?.Rune, ParseHash(tradeItem.Extended?.Hashes?.Rune))) yield return line;
+
+        index++;
+        foreach (var line in ParseStatLines(index, tradeItem.ImplicitMods, tradeItem.Extended?.Mods?.Implicit, ParseHash(tradeItem.Extended?.Hashes?.Implicit))) yield return line;
+
+        index++;
+        foreach (var line in ParseStatLines(index, tradeItem.CraftedMods, tradeItem.Extended?.Mods?.Crafted, ParseHash(tradeItem.Extended?.Hashes?.Crafted))) yield return line;
+        foreach (var line in ParseStatLines(index, tradeItem.ExplicitMods, tradeItem.Extended?.Mods?.Explicit, ParseHash(tradeItem.Extended?.Hashes?.Explicit, tradeItem.Extended?.Hashes?.Monster))) yield return line;
+        foreach (var line in ParseStatLines(index, tradeItem.FracturedMods, tradeItem.Extended?.Mods?.Fractured, ParseHash(tradeItem.Extended?.Hashes?.Fractured))) yield return line;
+        foreach (var line in ParseStatLines(index, tradeItem.DesecratedMods, tradeItem.Extended?.Mods?.Desecrated, ParseHash(tradeItem.Extended?.Hashes?.Desecrated))) yield return line;
+        foreach (var line in ParseStatLines(index, tradeItem.ScourgeMods, tradeItem.Extended?.Mods?.Scourge, ParseHash(tradeItem.Extended?.Hashes?.Scourge))) yield return line;
+        foreach (var line in ParseStatLines(index, tradeItem.ExplicitMods, tradeItem.Extended?.Mods?.Sanctum, ParseHash(tradeItem.Extended?.Hashes?.Sanctum))) yield return line;
+        foreach (var line in ParseStatLines(index, tradeItem.MutatedMods, tradeItem.Extended?.Mods?.Explicit, ParseHash(tradeItem.Extended?.Hashes?.Explicit)))
+        {
+            line.Category = StatCategory.Mutated;
+            yield return line;
+        }
+    }
+
+    private static List<string?> ParseHash(params List<List<JsonElement>>?[] hashes)
+    {
+        var result = new List<string?>();
+
+        foreach (var values in hashes)
+        {
+            if (values == null)
+            {
+                continue;
+            }
+
+            foreach (var value in values)
+            {
+                if (value.Count != 2)
+                {
+                    continue;
+                }
+
+                result.Add(value[0].GetString());
+            }
+        }
+
+        return result;
+    }
+
+    private IEnumerable<StatLine> ParseStatLines(int block, List<string>? texts, List<ExtendedMod>? mods, List<string?>? hashes)
+    {
+        if (texts == null || mods == null || hashes == null)
+        {
+            yield break;
+        }
+
+        for (var index = 0; index < hashes.Count; index++)
+        {
+            var id = hashes[index];
+            if (id == null || index >= texts.Count)
+            {
+                continue;
+            }
+
+            var text = texts.FirstOrDefault(x => ApiStatsProvider.IsMatch(id, x)) ?? texts[index];
+            text = text.RemoveSquareBrackets();
+
+            var mod = mods.FirstOrDefault(x => x.Magnitudes?.Any(y => y.Hash == id) == true);
+
+            yield return new StatLine(text: text)
+            {
+                BlockIndex = block,
+                Category = ApiStatsProvider.GetStatCategory(id),
+                Tier = mod?.Tier,
+            };
+        }
+    }
+
+}

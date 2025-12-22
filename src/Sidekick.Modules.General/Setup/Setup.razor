@@ -2,6 +2,7 @@
 @using System.Text.Json
 @using Microsoft.Extensions.Localization
 @using Sidekick.Apis.Poe.Trade
+@using Sidekick.Apis.Poe.Trade.Leagues
 @using Sidekick.Common.Cache
 @using Sidekick.Common.Extensions
 @using Sidekick.Common.Platform
@@ -63,9 +64,9 @@
         else
         {
             <div class="px-3 py-2 flex justify-center gap-2">
-                <ButtonPrimary OnClick="Exit">
+                <ButtonSecondary OnClick="Exit">
                     @Resources["Exit"]
-                </ButtonPrimary>
+                </ButtonSecondary>
             </div>
         }
     </BottomContent>

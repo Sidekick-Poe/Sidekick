@@ -1,18 +1,18 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade;
-using Sidekick.Apis.Poe.Trade.Bulk;
-using Sidekick.Apis.Poe.Trade.Bulk.Models;
-using Sidekick.Apis.Poe.Trade.Parser.Modifiers;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Results;
+using Sidekick.Apis.Poe.Trade.Parser.Stats;
+using Sidekick.Apis.Poe.Trade.Trade.Bulk;
+using Sidekick.Apis.Poe.Trade.Trade.Bulk.Models;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Items;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Exceptions;
 namespace Sidekick.Modules.Items.Trade;
 
 public class TradeService
 (
     IBulkTradeService bulkTradeService,
-    ITradeSearchService tradeSearchService
+    IItemTradeService itemTradeService
 )
 {
     public event Action? Changed;
@@ -25,7 +25,7 @@ public class TradeService
 
     public TradeSearchResult<string>? ItemTradeResult { get; private set; }
 
-    public List<Apis.Poe.Trade.Trade.Results.TradeResult> TradeItems { get; private set; } = [];
+    public List<Apis.Poe.Trade.Trade.Items.Results.TradeResult> TradeItems { get; private set; } = [];
 
     public BulkResponseModel? BulkTradeResult { get; private set; }
 
@@ -45,13 +45,13 @@ public class TradeService
         Changed?.Invoke();
     }
 
-    public async Task SearchItems(Item item, List<PropertyFilter> propertyFilters, List<ModifierFilter> modifierFilters, List<PseudoFilter> pseudoFilters)
+    public async Task SearchItems(Item item, List<TradeFilter> filters)
     {
         CurrentMode = TradeMode.Item;
         IsLoading = true;
         Clear();
 
-        ItemTradeResult = await tradeSearchService.Search(item, propertyFilters, modifierFilters, pseudoFilters);
+        ItemTradeResult = await itemTradeService.Search(item, filters);
 
         IsLoading = false;
         await LoadMoreItems(item.Game);
@@ -89,7 +89,7 @@ public class TradeService
 
         try
         {
-            var result = await tradeSearchService.GetResults(game, ItemTradeResult.Id, ids);
+            var result = await itemTradeService.GetResults(game, ItemTradeResult.Id, ids);
             TradeItems.AddRange(result);
         }
         catch (SidekickException e)

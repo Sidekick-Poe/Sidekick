@@ -155,6 +155,7 @@ public class GameLanguageRu : IGameLanguage
         Grafts = "Наросты",
         Wombgifts = "Дары утробы",
         Talismans = "Талисманы",
+        Charms = "Обереги",
     };
 }
 

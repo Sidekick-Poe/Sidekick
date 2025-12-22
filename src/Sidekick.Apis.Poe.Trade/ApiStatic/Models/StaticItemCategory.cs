@@ -1,0 +1,13 @@
+namespace Sidekick.Apis.Poe.Trade.ApiStatic.Models;
+
+/// <summary>
+/// Currencies, Fragments, Maps, etc.
+/// </summary>
+public class StaticItemCategory
+{
+    public string? Id { get; set; }
+    public string? Label { get; set; }
+    public List<StaticItem> Entries { get; set; } = new();
+
+    public override string ToString() => Label ?? string.Empty;
+}

@@ -51,28 +51,28 @@ public static class StringExtensions
         return parseCategoryPattern.Replace(text, string.Empty);
     }
 
-    public static ModifierCategory ParseCategory(this string text)
+    public static StatCategory ParseCategory(this string text)
     {
         var match = parseCategoryPattern.Match(text);
         if (!match.Success)
         {
-            return ModifierCategory.Undefined;
+            return StatCategory.Undefined;
         }
 
         var categoryText = match.Value.Trim(' ', '(', ')');
         return categoryText switch
         {
-            "implicit" => ModifierCategory.Implicit,
-            "enchant" => ModifierCategory.Enchant,
-            "crafted" => ModifierCategory.Crafted,
-            "veiled" => ModifierCategory.Veiled,
-            "fractured" => ModifierCategory.Fractured,
-            "scourge" => ModifierCategory.Scourge,
-            "crucible" => ModifierCategory.Crucible,
-            "rune" => ModifierCategory.Rune,
-            "desecrated" => ModifierCategory.Desecrated,
-            "mutated" => ModifierCategory.Mutated,
-            _ => ModifierCategory.Undefined,
+            "implicit" => StatCategory.Implicit,
+            "enchant" => StatCategory.Enchant,
+            "crafted" => StatCategory.Crafted,
+            "veiled" => StatCategory.Veiled,
+            "fractured" => StatCategory.Fractured,
+            "scourge" => StatCategory.Scourge,
+            "crucible" => StatCategory.Crucible,
+            "rune" => StatCategory.Rune,
+            "desecrated" => StatCategory.Desecrated,
+            "mutated" => StatCategory.Mutated,
+            _ => StatCategory.Undefined,
         };
     }
 }

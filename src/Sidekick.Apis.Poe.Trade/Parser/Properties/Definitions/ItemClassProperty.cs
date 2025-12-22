@@ -5,12 +5,12 @@ using FuzzySharp.SimilarityRatio.Scorer.StrategySensitive;
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Trade.Filters;
-using Sidekick.Apis.Poe.Trade.Fuzzy;
+using Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions.Models;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 
@@ -20,7 +20,7 @@ public class ItemClassProperty : PropertyDefinition
 {
     private readonly GameType game;
     private readonly IGameLanguageProvider gameLanguageProvider;
-    private readonly IFilterProvider filterProvider;
+    private readonly ITradeFilterProvider tradeFilterProvider;
     private readonly ISettingsService settingsService;
     private readonly IFuzzyService fuzzyService;
 
@@ -30,7 +30,7 @@ public class ItemClassProperty : PropertyDefinition
     {
         this.game = game;
         gameLanguageProvider = serviceProvider.GetRequiredService<IGameLanguageProvider>();
-        filterProvider = serviceProvider.GetRequiredService<IFilterProvider>();
+        tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
         settingsService = serviceProvider.GetRequiredService<ISettingsService>();
         fuzzyService = serviceProvider.GetRequiredService<IFuzzyService>();
 
@@ -46,9 +46,9 @@ public class ItemClassProperty : PropertyDefinition
 
     private List<ItemClassDefinition> GetApiItemClassDefinitions()
     {
-        if (filterProvider.TypeCategory == null) return [];
+        if (tradeFilterProvider.TypeCategory == null) return [];
 
-        return filterProvider.TypeCategory.Option.Options.ConvertAll(x => new ItemClassDefinition()
+        return tradeFilterProvider.TypeCategory.Option.Options.ConvertAll(x => new ItemClassDefinition()
         {
             Id = x.Id,
             Text = x.Text,
@@ -142,6 +142,7 @@ public class ItemClassProperty : PropertyDefinition
 
             CreateItemClassDefinition(ItemClass.Tincture, gameLanguageProvider.Language.Classes.Tinctures),
             CreateItemClassDefinition(ItemClass.Corpse, gameLanguageProvider.Language.Classes.Corpses),
+            CreateItemClassDefinition(ItemClass.Charms, gameLanguageProvider.Language.Classes.Charms),
 
             CreateItemClassDefinition(ItemClass.SanctumRelic, gameLanguageProvider.Language.Classes.SanctumRelics),
             CreateItemClassDefinition(ItemClass.SanctumResearch, gameLanguageProvider.Language.Classes.SanctumResearch),
@@ -215,17 +216,17 @@ public class ItemClassProperty : PropertyDefinition
         item.Properties.ItemClass = apiItemCategoryId?.GetEnumFromValue<ItemClass>() ?? ItemClass.Unknown;
     }
 
-    public override async Task<PropertyFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
         if (item.Properties.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal)) return null;
         if (item.Properties.ItemClass == ItemClass.Unknown) return null;
 
-        var classLabel = filterProvider.TypeCategory?.Option.Options.FirstOrDefault(x => x.Id == item.Properties.ItemClass.GetValueAttribute())?.Text;
+        var classLabel = tradeFilterProvider.TypeCategory?.Option.Options.FirstOrDefault(x => x.Id == item.Properties.ItemClass.GetValueAttribute())?.Text;
         if (classLabel == null || item.ApiInformation.Type == null) return null;
 
         var preferItemClass = await settingsService.GetEnum<DefaultItemClassFilter>(SettingKeys.PriceCheckItemClassFilter) ?? DefaultItemClassFilter.BaseType;
 
-        var filter = new ItemClassPropertyFilter(this)
+        var filter = new ItemClassFilter
         {
             Text = gameLanguageProvider.Language.DescriptionRarity,
             ItemClass = classLabel,
@@ -234,10 +235,13 @@ public class ItemClassProperty : PropertyDefinition
         };
         return filter;
     }
+}
 
-    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
+public class ItemClassFilter : ItemClassPropertyFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (!filter.Checked || filter is not ItemClassPropertyFilter) return;
+        if (!Checked) return;
 
         query.Type = null;
         query.Filters.GetOrCreateTypeFilters().Filters.Category = GetCategoryFilter(item.Properties.ItemClass);

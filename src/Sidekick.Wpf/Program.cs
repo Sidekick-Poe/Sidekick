@@ -18,6 +18,7 @@ using Sidekick.Common;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Database;
 using Sidekick.Common.Platform;
+using Sidekick.Common.Settings;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
@@ -48,6 +49,7 @@ public class Program
             VelopackApp.Build().Run();
 
             ServiceProvider = GetServiceProvider();
+            ConfigureHardwareAcceleration();
 
             // We can now launch the WPF application as normal.
             var app = new App();
@@ -130,5 +132,16 @@ If you need more support consider asking on the official Sidekick discord server
 #pragma warning restore CA1416 // Validate platform compatibility
 
         return services.BuildServiceProvider();
+    }
+
+    private static void ConfigureHardwareAcceleration()
+    {
+        var settingsService = ServiceProvider.GetRequiredService<ISettingsService>();
+        var useHardwareAcceleration = settingsService.GetBool(SettingKeys.UseHardwareAcceleration).Result;
+        if (!useHardwareAcceleration)
+        {
+            // This changes the variable only for the current running application (does not override outside)
+            Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--disable-gpu --disable-software-rasterizer");
+        }
     }
 }

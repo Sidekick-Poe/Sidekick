@@ -4,10 +4,10 @@ using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Parser.ApiInformation;
-using Sidekick.Apis.Poe.Trade.Parser.Modifiers;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo;
+using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
 
@@ -16,7 +16,7 @@ namespace Sidekick.Apis.Poe.Trade.Parser;
 public class ItemParser
 (
     ILogger<ItemParser> logger,
-    IModifierParser modifierParser,
+    IStatParser statParser,
     IPseudoParser pseudoParser,
     IPropertyParser propertyParser,
     IGameLanguageProvider gameLanguageProvider,
@@ -54,8 +54,8 @@ public class ItemParser
 
             apiInformationParser.Parse(item);
             propertyParser.Parse(item);
-            modifierParser.Parse(item);
-            propertyParser.ParseAfterModifiers(item);
+            statParser.Parse(item);
+            propertyParser.ParseAfterStats(item);
             pseudoParser.Parse(item);
 
             return item;

@@ -1,0 +1,40 @@
+@using Sidekick.Apis.Poe.Trade.Trade.Items.Results
+@if (IsFirstOfBlock)
+{
+    <ItemSeparator Rarity="Result.Item.Rarity"/>
+}
+
+<TextBase Class="relative px-2 font-caps text-center text-[##8888FF] leading-none py-px">
+    <ItemStatText Category="StatLine.Category">@StatLine.Text</ItemStatText>
+    @if (!string.IsNullOrWhiteSpace(StatLine.Tier))
+    {
+        <span class="absolute top-0.5 left-[-6px] @GetTierClass(StatLine.Tier)">@StatLine.Tier</span>
+    }
+</TextBase>
+
+@code {
+
+    [Parameter]
+    public required TradeResult Result { get; set; }
+
+    [Parameter]
+    public required List<ItemStats.StatLine> StatLines { get; set; }
+
+    [Parameter]
+    public required ItemStats.StatLine StatLine { get; set; }
+
+    private bool IsFirstOfBlock
+    {
+        get
+        {
+            var index = StatLines.IndexOf(StatLine);
+            var previous = StatLines.ElementAtOrDefault(index - 1);
+            return previous == null || StatLine.BlockIndex != previous.BlockIndex;
+        }
+    }
+
+    private string GetTierClass(string tier) => tier.StartsWith("P") ? "text-[#ec7676]" : "text-[#7aaff1]";
+
+    protected override bool ShouldRender() => false;
+
+}

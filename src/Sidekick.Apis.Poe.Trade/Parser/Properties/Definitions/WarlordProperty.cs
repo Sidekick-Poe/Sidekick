@@ -1,9 +1,9 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Trade.Parser.Properties.Filters;
-using Sidekick.Apis.Poe.Trade.Trade.Requests;
-using Sidekick.Apis.Poe.Trade.Trade.Requests.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
+using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -22,22 +22,26 @@ public class WarlordProperty(IGameLanguageProvider gameLanguageProvider) : Prope
         item.Properties.Influences.Warlord = GetBool(Pattern, item.Text);
     }
 
-    public override Task<PropertyFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.Properties.Influences.Warlord) return Task.FromResult<PropertyFilter?>(null);
+        if (!item.Properties.Influences.Warlord) return Task.FromResult<TradeFilter?>(null);
 
-        var filter = new PropertyFilter(this)
+        var filter = new WarlordFilter
         {
             Text = gameLanguageProvider.Language.InfluenceWarlord,
             Checked = true,
         };
-        return Task.FromResult<PropertyFilter?>(filter);
+        return Task.FromResult<TradeFilter?>(filter);
     }
 
-    public override void PrepareTradeRequest(Query query, Item item, PropertyFilter filter)
-    {
-        if (!filter.Checked) return;
+}
 
-        query.Filters.GetOrCreateMiscFilters().Filters.WarlordItem = new SearchFilterOption(filter);
+public class WarlordFilter : TradeFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
+    {
+        if (!Checked) return;
+
+        query.Filters.GetOrCreateMiscFilters().Filters.WarlordItem = new SearchFilterOption(this);
     }
 }

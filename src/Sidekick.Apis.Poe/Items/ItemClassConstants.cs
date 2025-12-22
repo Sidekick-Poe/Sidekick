@@ -65,6 +65,7 @@ public static class ItemClassConstants
         ItemClass.LifeFlask,
         ItemClass.ManaFlask,
         ItemClass.Tincture,
+        ItemClass.Charms,
     ];
 
     public static readonly ItemClass[] Areas =
@@ -81,7 +82,7 @@ public static class ItemClassConstants
         ItemClass.MapFragment, // Necessary for itemised Atzoatl temples
     ];
 
-    public static readonly ItemClass[] WithModifiers =
+    public static readonly ItemClass[] WithStats =
     [
         ..Equipment,
         ..Weapons,

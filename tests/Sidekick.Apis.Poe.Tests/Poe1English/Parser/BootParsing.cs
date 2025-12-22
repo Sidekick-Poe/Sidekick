@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe.Trade.Parser;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Parser;
 
@@ -34,7 +35,7 @@ Fractured Item
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Iron Greaves", actual.ApiInformation.Type);
 
-        actual.AssertHasModifier(ModifierCategory.Fractured, "#% increased Movement Speed", 10);
-        actual.AssertHasModifier(ModifierCategory.Explicit, "#% increased Movement Speed", 10);
+        actual.AssertHasStat(StatCategory.Fractured, "#% increased Movement Speed", 10);
+        actual.AssertHasStat(StatCategory.Explicit, "#% increased Movement Speed", 10);
     }
 }

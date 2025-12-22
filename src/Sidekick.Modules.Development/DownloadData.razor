@@ -1,6 +1,7 @@
 ﻿@using System.Text.Json
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Languages
+@using Sidekick.Apis.Poe.Trade.ApiItems.Models
 @using Sidekick.Apis.Poe.Trade.Clients
 @using Sidekick.Apis.Poe.Trade.Clients.Models
 @using Sidekick.Common.Enums
@@ -110,7 +111,7 @@
         foreach (var game in games)
         {
             LogMessage($"[{game.GetValueAttribute()}] Analyzing items.");
-            await AnalyzePath<Sidekick.Apis.Poe.Trade.Items.Models.ApiCategory>(game, "items", AnalyzeItems);
+            await AnalyzePath<ApiCategory>(game, "items", AnalyzeItems);
         }
     }
 
@@ -136,7 +137,7 @@
     }
 
     private void AnalyzeItems(IGameLanguage language,
-        FetchResult<Sidekick.Apis.Poe.Trade.Items.Models.ApiCategory> result)
+        FetchResult<ApiCategory> result)
     {
         var itemCount = result.Result.SelectMany(x => x.Entries).Count();
         LogMessage($"[{language.Code}] {itemCount} items found.");

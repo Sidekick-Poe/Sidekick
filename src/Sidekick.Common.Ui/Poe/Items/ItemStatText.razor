@@ -1,0 +1,48 @@
+@using Sidekick.Apis.Poe.Items
+<TextBase Class="@($"{Class} {ColorClass} {LogbookClass} leading-none py-px font-caps")">@ChildContent</TextBase>
+
+@code {
+
+    [Parameter]
+    public string? Text { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; } = "text-center";
+
+    [Parameter]
+    public StatCategory? Category { get; set; }
+
+    private string ColorClass => Category switch
+    {
+        StatCategory.Scourge => "text-[#FF6E25]",
+        StatCategory.Fractured => "text-[#A29162]",
+        StatCategory.Desecrated => "text-[#738725]",
+        StatCategory.Mutated => "text-[#CD2285]",
+        StatCategory.Enchant => "text-[#B4B4FF]",
+        StatCategory.Rune => "text-[#B4B4FF]",
+        StatCategory.Crafted => "text-[#B4B4FF]",
+        StatCategory.Crucible => "text-[#FF7339]",
+        StatCategory.Corrupted => "text-[#D20000]",
+        StatCategory.Unidentified => "text-[#D20000]",
+        StatCategory.WhiteText => "text-[#FFFFFF]",
+        StatCategory.GrayText => "text-[#7F7F7F]",
+        StatCategory.OrderOfTheChalice => "text-[#7F7F7F]",
+        StatCategory.KnightsOfTheSun => "text-[#7F7F7F]",
+        StatCategory.BlackScytheMercenaries => "text-[#7F7F7F]",
+        StatCategory.DruidsOfTheBrokenCircle => "text-[#7F7F7F]",
+        _ => "text-[#8888FF]",
+    };
+
+    private string LogbookClass => Category switch
+    {
+        StatCategory.OrderOfTheChalice => "item-logbook-faction item-logbook-faction-order",
+        StatCategory.KnightsOfTheSun => "item-logbook-faction item-logbook-faction-knights",
+        StatCategory.BlackScytheMercenaries => "item-logbook-faction item-logbook-faction-mercenaries",
+        StatCategory.DruidsOfTheBrokenCircle => "item-logbook-faction item-logbook-faction-druids",
+        _ => string.Empty,
+    };
+
+}

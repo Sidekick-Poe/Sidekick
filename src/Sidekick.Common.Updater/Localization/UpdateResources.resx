@@ -139,6 +139,9 @@
       <value>Update</value>
   </data>
   <data name="Skip" xml:space="preserve">
-      <value>Skip Update</value>
+      <value>Skip Check</value>
+  </data>
+  <data name="TimedOut" xml:space="preserve">
+      <value>Update check took too long</value>
   </data>
 </root>
