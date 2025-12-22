@@ -17,10 +17,10 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --font- *: initial;
+    --font-*: initial;
     --font-sans: fontin, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --font-caps: fontin-smallcaps, fontin, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --text- *: initial;
+    --text-*: initial;
     --text-xs: 0.625rem;
     --text-sm: 0.75rem;
     --text-base: 0.875rem;
@@ -51,24 +51,13 @@
     [role="button"]:not(:disabled) {
         cursor: pointer;
     }
+
+    * {
+        scrollbar-color: oklch(37.4% 0.01 67.558) oklch(14.7% 0.004 49.25);
+        scrollbar-width: thin;
+    }
 }
 
 :root {
     --sidekick-vh: 100vh; /* Fallback */
 }
-
-::-webkit-scrollbar {
-    width: 12px;
-}
-
-::-webkit-scrollbar-track {
-    background: #0c0a09;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #44403c;
-}
-
-    ::-webkit-scrollbar-thumb:hover {
-        background: #57534e;
-    }
