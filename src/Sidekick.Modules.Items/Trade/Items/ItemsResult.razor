@@ -2,7 +2,7 @@
 @using Sidekick.Modules.Items.Localization
 @using Sidekick.Common.Settings
 
-@if (TradeService.CurrentMode != TradeMode.Item || TradeService.ItemTradeResult == null)
+@if (TradeService.ItemTradeResult == null)
 {
     return;
 }

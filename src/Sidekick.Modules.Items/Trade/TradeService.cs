@@ -1,8 +1,4 @@
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade;
-using Sidekick.Apis.Poe.Trade.Parser.Stats;
-using Sidekick.Apis.Poe.Trade.Trade.Bulk;
-using Sidekick.Apis.Poe.Trade.Trade.Bulk.Models;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
@@ -11,13 +7,10 @@ namespace Sidekick.Modules.Items.Trade;
 
 public class TradeService
 (
-    IBulkTradeService bulkTradeService,
     IItemTradeService itemTradeService
 )
 {
     public event Action? Changed;
-
-    public TradeMode CurrentMode { get; private set; }
 
     public bool IsLoading { get; private set; }
 
@@ -27,12 +20,9 @@ public class TradeService
 
     public List<Apis.Poe.Trade.Trade.Items.Results.TradeResult> TradeItems { get; private set; } = [];
 
-    public BulkResponseModel? BulkTradeResult { get; private set; }
-
     public void Init()
     {
         IsLoading = false;
-        CurrentMode = TradeMode.Item;
         Clear();
     }
 
@@ -41,13 +31,11 @@ public class TradeService
         ResultError = null;
         ItemTradeResult = null;
         TradeItems = [];
-        BulkTradeResult = null;
         Changed?.Invoke();
     }
 
     public async Task SearchItems(Item item, List<TradeFilter> filters)
     {
-        CurrentMode = TradeMode.Item;
         IsLoading = true;
         Clear();
 
@@ -55,18 +43,6 @@ public class TradeService
 
         IsLoading = false;
         await LoadMoreItems(item.Game);
-        Changed?.Invoke();
-    }
-
-    public async Task SearchBulk(Item item)
-    {
-        CurrentMode = TradeMode.Bulk;
-        IsLoading = true;
-        Clear();
-
-        BulkTradeResult = await bulkTradeService.SearchBulk(item);
-
-        IsLoading = false;
         Changed?.Invoke();
     }
 

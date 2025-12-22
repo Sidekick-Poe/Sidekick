@@ -22,6 +22,8 @@
   <ItemGroup>
     <UpToDateCheckInput Remove="Unique\UniqueResult.razor" />
     <UpToDateCheckInput Remove="Unique\UniqueTab.razor" />
+    <UpToDateCheckInput Remove="Trade\Bulk\BulkResult.razor" />
+    <UpToDateCheckInput Remove="Trade\Bulk\BulkSticky.razor" />
   </ItemGroup>
 
 </Project>
