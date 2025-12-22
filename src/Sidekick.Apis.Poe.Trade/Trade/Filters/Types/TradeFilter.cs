@@ -6,8 +6,6 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
 public class TradeFilter
 {
-    public bool ShowRow { get; init; } = true;
-
     public virtual bool Checked { get; set; }
 
     public string Text { get; set; } = string.Empty;
@@ -18,18 +16,7 @@ public class TradeFilter
 
     public virtual void PrepareTradeRequest(Query query, Item item) {}
 
-    public required AutoSelectPreferences AutoSelect { get; init; }
+    public AutoSelectPreferences? AutoSelect { get; init; }
 
-    public async Task<bool> ShouldCheck(Item item)
-    {
-        var rules = await GetRules();
-        if (rules.Count == 0) return false;
-
-        foreach (var rule in rules)
-        {
-            if (RuleMatches(rule, item, filter)) return true;
-        }
-
-        return false;
-    }
+    public virtual Task OnChanged() => Task.CompletedTask;
 }

@@ -1,6 +1,5 @@
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
-@using Sidekick.Common.Settings
 
 <FilterWrapper>
     <div class="flex flex-nowrap items-center min-h-5 font-caps">
@@ -15,7 +14,7 @@
         </div>
 
         <div class="leading-none flex items-center justify-end w-5">
-            @if (!string.IsNullOrEmpty(Filter.SettingKey) && Filter.Value != Filter.DefaultValue)
+            @if (Filter.Value != Filter.DefaultValue)
             {
                 <ButtonIcon OnClick="@ClearSetting">
                     <Icon Svg="@UiIcons.Reset" Size="UiIconSize.Small"/>
@@ -24,8 +23,6 @@
         </div>
     </div>
 </FilterWrapper>
-
-@inject ISettingsService SettingsService
 
 @code {
 
@@ -41,20 +38,13 @@
     private async Task Changed(string? value)
     {
         Filter.Value = value;
-
-        if (!string.IsNullOrEmpty(Filter.SettingKey))
-        {
-            await SettingsService.Set(Filter.SettingKey, value);
-        }
+        await Filter.OnChanged();
     }
 
     private async Task ClearSetting()
     {
-        if (!string.IsNullOrEmpty(Filter.SettingKey))
-        {
-            Filter.Value = Filter.DefaultValue;
-            await SettingsService.DeleteSetting(Filter.SettingKey);
-        }
+        Filter.Value = Filter.DefaultValue;
+        await Filter.OnChanged();
     }
 
 }

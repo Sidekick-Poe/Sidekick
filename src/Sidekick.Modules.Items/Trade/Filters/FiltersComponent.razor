@@ -77,32 +77,6 @@
         await base.OnParametersSetAsync();
     }
 
-    private async Task ApplyAutoSelection()
-    {
-        var enableAll = await SettingsService.GetBool(Sidekick.Common.Settings.SettingKeys.PriceCheckEnableAllFilters);
-        if (enableAll)
-        {
-            foreach (var f in PropertyFilters!) f.Checked = true;
-            foreach (var f in ModifierFilters) f.Checked = true;
-            foreach (var f in PseudoFilters) f.Checked = true;
-            return;
-        }
-
-        // Apply rules for each filter category
-        foreach (var f in PropertyFilters!)
-        {
-            f.Checked = await AutoSelectService.ShouldCheck(Item, f);
-        }
-        foreach (var f in ModifierFilters)
-        {
-            f.Checked = await AutoSelectService.ShouldCheck(Item, f);
-        }
-        foreach (var f in PseudoFilters)
-        {
-            f.Checked = await AutoSelectService.ShouldCheck(Item, f);
-        }
-    }
-
 
     private static void CleanUpSeparatorFilters(List<TradeFilter> results)
     {

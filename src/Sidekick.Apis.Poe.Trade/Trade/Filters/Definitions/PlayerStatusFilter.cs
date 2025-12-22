@@ -25,7 +25,7 @@ public class PlayerStatusFilterFactory(
         var statusValue = await settingsService.GetString(SettingKey);
         if (statusFilters != null)
         {
-            var filter = new PlayerStatusFilter()
+            var filter = new PlayerStatusFilter(settingsService)
             {
                 Text = resources["Player_Status"],
                 Value = statusValue ?? Securable,
@@ -41,14 +41,18 @@ public class PlayerStatusFilterFactory(
     }
 }
 
-public class PlayerStatusFilter : OptionFilter
+public class PlayerStatusFilter(ISettingsService settingsService) : OptionFilter
 {
     public override string? DefaultValue => PlayerStatusFilterFactory.Securable;
-
-    public override string? SettingKey => PlayerStatusFilterFactory.SettingKey;
 
     public override void PrepareTradeRequest(Query query, Item item)
     {
         query.Status.Option = Value ?? PlayerStatusFilterFactory.Securable;
+    }
+
+    public override async Task OnChanged()
+    {
+        await settingsService.Set(PlayerStatusFilterFactory.SettingKey, Value);
+        await base.OnChanged();
     }
 }

@@ -19,11 +19,11 @@ public class AutoSelectCondition
     public string ExpressionAsString
     {
         get { return _expressionSerializer.SerializeText(Expression); }
-        set { Expression = _expressionSerializer.DeserializeText(value) as Expression<Func<Item, object>>; }
+        set { Expression = _expressionSerializer.DeserializeText(value) as Expression<Func<Item, object?>>; }
     }
 
     [JsonIgnore]
-    public Expression<Func<Item, object>>? Expression { get; set; }
+    public Expression<Func<Item, object?>>? Expression { get; set; }
 
     [JsonIgnore]
     public AutoSelectConditionType Type { get; set; }

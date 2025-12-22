@@ -26,7 +26,6 @@ public class BlightedProperty(IGameLanguageProvider gameLanguageProvider) : Prop
 
         var filter = new BlightedFilter
         {
-            ShowRow = false,
             Text = gameLanguageProvider.Language.AffixBlighted,
             Checked = true,
         };
@@ -34,7 +33,7 @@ public class BlightedProperty(IGameLanguageProvider gameLanguageProvider) : Prop
     }
 }
 
-public class BlightedFilter : TradeFilter
+public class BlightedFilter : HiddenFilter
 {
     public override void PrepareTradeRequest(Query query, Item item)
     {

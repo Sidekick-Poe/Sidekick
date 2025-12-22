@@ -89,12 +89,16 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
         };
         if (rarityLabel == null) return Task.FromResult<TradeFilter?>(null);
 
+        if (item.Properties.Rarity == Rarity.Unique)
+        {
+            return Task.FromResult<TradeFilter?>(new UniqueRarityFilter());
+        }
+
         var filter = new RarityFilter
         {
             Text = gameLanguageProvider.Language.DescriptionRarity,
             Value = rarityLabel,
             Checked = false,
-            ShowRow = item.Properties.Rarity != Rarity.Unique,
         };
         return Task.FromResult<TradeFilter?>(filter);
     }
@@ -104,12 +108,6 @@ public class RarityFilter : StringPropertyFilter
 {
     public override void PrepareTradeRequest(Query query, Item item)
     {
-        if (item.Properties.Rarity == Rarity.Unique)
-        {
-            query.Filters.GetOrCreateTypeFilters().Filters.Rarity = new SearchFilterOption("unique");
-            return;
-        }
-
         if (!Checked) return;
 
         var rarity = item.Properties.Rarity switch
@@ -122,5 +120,13 @@ public class RarityFilter : StringPropertyFilter
         };
 
         query.Filters.GetOrCreateTypeFilters().Filters.Rarity = new SearchFilterOption(rarity);
+    }
+}
+
+public class UniqueRarityFilter : HiddenFilter
+{
+    public override void PrepareTradeRequest(Query query, Item item)
+    {
+        query.Filters.GetOrCreateTypeFilters().Filters.Rarity = new SearchFilterOption("unique");
     }
 }

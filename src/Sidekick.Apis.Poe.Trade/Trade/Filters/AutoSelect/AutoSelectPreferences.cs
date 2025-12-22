@@ -38,7 +38,55 @@ public class AutoSelectPreferences
 
     private static bool ConditionMatches(AutoSelectCondition condition, Item item)
     {
+        if (condition.Expression == null)
+        {
+            return true;
+        }
 
+        var expressionValue = condition.Expression.Compile().Invoke(item);
+        if (expressionValue == null && condition.Value == null)
+        {
+            return true;
+        }
+
+        if (expressionValue == null || condition.Value == null)
+        {
+            return false;
+        }
+
+        return condition.Type switch
+        {
+            AutoSelectConditionType.GreaterThan => Compare(expressionValue, condition.Value) > 0,
+            AutoSelectConditionType.LesserThan => Compare(expressionValue, condition.Value) < 0,
+            AutoSelectConditionType.GreaterThanOrEqual => Compare(expressionValue, condition.Value) >= 0,
+            AutoSelectConditionType.LesserThanOrEqual => Compare(expressionValue, condition.Value) <= 0,
+            AutoSelectConditionType.Equals => Equals(expressionValue, condition.Value),
+            AutoSelectConditionType.IsContainedIn => IsContainedIn(expressionValue, condition.Value),
+            _ => false,
+        };
+    }
+
+    private static int Compare(object expressionValue, object conditionValue)
+    {
+        var expressionDouble = Convert.ToDouble(expressionValue);
+        var conditionDouble = Convert.ToDouble(conditionValue);
+        return expressionDouble.CompareTo(conditionDouble);
+    }
+
+    private static bool IsContainedIn(object expressionValue, object conditionValue)
+    {
+        if (conditionValue is System.Collections.IEnumerable enumerable)
+        {
+            foreach (var item in enumerable)
+            {
+                if (Equals(expressionValue, item))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
 
