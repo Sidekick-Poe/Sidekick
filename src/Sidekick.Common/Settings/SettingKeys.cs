@@ -39,7 +39,6 @@ public static class SettingKeys
     public const string OverlayCloseWithMouse = nameof(OverlayCloseWithMouse);
 
     public const string PriceCheckPredictionEnabled = nameof(PriceCheckPredictionEnabled);
-    public const string PriceCheckBulkMinimumStock = nameof(PriceCheckBulkMinimumStock);
     public const string PriceCheckNormalizeValue = nameof(PriceCheckNormalizeValue);
     public const string PriceCheckFillDefaultMin = nameof(PriceCheckFillDefaultMin);
     public const string PriceCheckFillDefaultMax = nameof(PriceCheckFillDefaultMax);

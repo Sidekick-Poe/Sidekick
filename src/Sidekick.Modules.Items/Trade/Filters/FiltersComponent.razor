@@ -2,7 +2,6 @@
 @using Sidekick.Apis.Poe.Trade.Parser.Properties
 @using Sidekick.Apis.Poe.Trade.Parser.Pseudo
 @using Sidekick.Apis.Poe.Trade.Parser.Stats
-@using Sidekick.Apis.Poe.Trade.Trade.Bulk
 @using Sidekick.Apis.Poe.Trade.Trade.Filters
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Modules.Items.Localization
@@ -27,25 +26,14 @@
         }
     </div>
 
-    <div class="flex flex-nowrap items-center w-full py-2 px-1">
-        <div class="flex flex-col items-stretch text-center px-1 grow">
-            <ButtonPrimary
-                OnClick="() => TradeService.SearchItems(Item, Filters)"
-                Disabled="TradeService.IsLoading">@Resources["Search"]</ButtonPrimary>
-        </div>
-
-        @if (BulkTradeService.SupportsBulkTrade(Item))
-        {
-            <div class="flex flex-col items-stretch text-center px-1 grow">
-                <ButtonSecondary OnClick="() => TradeService.SearchBulk(Item)"
-                                 Disabled="TradeService.IsLoading">@Resources["Bulk_Search"]</ButtonSecondary>
-            </div>
-        }
+    <div class="flex flex-col items-stretch text-center px-1 grow">
+        <ButtonPrimary
+            OnClick="() => TradeService.SearchItems(Item, Filters)"
+            Disabled="TradeService.IsLoading">@Resources["Search"]</ButtonPrimary>
     </div>
 </div>
 
 @inject IStringLocalizer<TradeResources> Resources
-@inject IBulkTradeService BulkTradeService
 @inject TradeService TradeService
 @inject IPropertyParser PropertyParser
 @inject IStatParser StatParser

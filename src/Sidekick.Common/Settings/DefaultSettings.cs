@@ -52,8 +52,6 @@ public static class DefaultSettings
 
     public static string PriceCheckBulkCurrency => "divine";
 
-    public static int PriceCheckBulkMinimumStock => 5;
-
     public static string PriceCheckItemClassFilter => DefaultItemClassFilter.BaseType.GetValueAttribute();
 
     public static double PriceCheckNormalizeValue => .1;
