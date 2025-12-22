@@ -6,6 +6,7 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
@@ -16,7 +17,7 @@ public class StatParser
     IFuzzyService fuzzyService,
     ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider,
-    Sidekick.Apis.Poe.Trade.AutoSelect.IFilterAutoSelectService autoSelectService
+    IFilterAutoSelectService autoSelectService
 ) : IStatParser
 {
     public int Priority => 300;
