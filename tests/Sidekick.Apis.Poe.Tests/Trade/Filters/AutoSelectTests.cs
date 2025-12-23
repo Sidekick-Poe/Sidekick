@@ -158,4 +158,69 @@ public class AutoSelectTests
         Assert.False(Equals(filter1.AutoSelect, filter1.DefaultAutoSelect));
         Assert.False(Equals(filter2.AutoSelect, filter2.DefaultAutoSelect));
     }
+
+    [Fact]
+    public void ShouldCheck_ReturnsNull_WhenModeIsAny()
+    {
+        var preferences = new AutoSelectPreferences { Mode = AutoSelectMode.Any };
+        Assert.Null(preferences.ShouldCheck(null!));
+    }
+
+    [Fact]
+    public void ShouldCheck_ReturnsNull_WhenNoRuleMatches()
+    {
+        var preferences = new AutoSelectPreferences
+        {
+            Mode = AutoSelectMode.Conditionally,
+            Rules =
+            [
+                new()
+                {
+                    Checked = true,
+                    Conditions =
+                    [
+                        new()
+                        {
+                            Type = AutoSelectConditionType.Equals,
+                            Value = 10,
+                            Expression = _ => 20
+                        }
+                    ]
+                }
+            ]
+        };
+        Assert.Null(preferences.ShouldCheck(null!));
+    }
+
+    [Fact]
+    public void ShouldCheck_ReturnsNullable_WhenRuleMatches()
+    {
+        var preferences = new AutoSelectPreferences
+        {
+            Mode = AutoSelectMode.Conditionally,
+            Rules =
+            [
+                new()
+                {
+                    Checked = null,
+                    Conditions =
+                    [
+                        new()
+                        {
+                            Type = AutoSelectConditionType.Equals,
+                            Value = 10,
+                            Expression = _ => 10
+                        }
+                    ]
+                }
+            ]
+        };
+        Assert.Null(preferences.ShouldCheck(null!));
+
+        preferences.Rules[0].Checked = true;
+        Assert.True(preferences.ShouldCheck(null!));
+
+        preferences.Rules[0].Checked = false;
+        Assert.False(preferences.ShouldCheck(null!));
+    }
 }

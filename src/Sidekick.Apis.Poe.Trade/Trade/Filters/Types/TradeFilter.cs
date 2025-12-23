@@ -11,7 +11,15 @@ public abstract class TradeFilter
         var autoSelect = AutoSelect ?? DefaultAutoSelect;
         if (autoSelect != null)
         {
-            Checked = autoSelect.ShouldCheck(item);
+            var result = autoSelect.ShouldCheck(item);
+            if (this is TriStatePropertyFilter triStateFilter)
+            {
+                triStateFilter.Checked = result;
+            }
+            else
+            {
+                Checked = result ?? false;
+            }
         }
     }
 

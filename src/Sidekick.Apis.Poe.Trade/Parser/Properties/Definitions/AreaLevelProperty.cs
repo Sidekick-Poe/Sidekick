@@ -39,7 +39,7 @@ public class AreaLevelProperty(
             NormalizeEnabled = false,
             Value = item.Properties.AreaLevel,
             AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey,() => null),
+            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };
         return filter;
     }

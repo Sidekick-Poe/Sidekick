@@ -23,18 +23,18 @@ public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
     {
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
-        if (obj.GetType() != this.GetType()) return false;
+        if (obj.GetType() != GetType()) return false;
         return Equals((AutoSelectPreferences)obj);
     }
 
-    public bool ShouldCheck(Item item)
+    public bool? ShouldCheck(Item item)
     {
         if (Mode == AutoSelectMode.Always) return true;
         if (Mode == AutoSelectMode.Never) return false;
+        if (Mode == AutoSelectMode.Any) return null;
 
         var matchingRule = Rules.FirstOrDefault(rule => rule.Conditions.All(c => ConditionMatches(c, item)));
-        return matchingRule?.Checked ?? false;
-
+        return matchingRule?.Checked;
     }
 
     private static bool ConditionMatches(AutoSelectCondition condition, Item item)
@@ -90,5 +90,6 @@ public enum AutoSelectMode
 {
     Always,
     Never,
+    Any,
     Conditionally,
 }

@@ -8,6 +8,7 @@ using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions.Models;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
@@ -26,12 +27,14 @@ public class ItemClassProperty : PropertyDefinition
 
     public ItemClassProperty(
         GameType game,
+        ISettingsService settingsService,
+        IGameLanguageProvider gameLanguageProvider,
         IServiceProvider serviceProvider)
     {
         this.game = game;
-        gameLanguageProvider = serviceProvider.GetRequiredService<IGameLanguageProvider>();
+        this.settingsService = settingsService;
+        this.gameLanguageProvider = gameLanguageProvider;
         tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
-        settingsService = serviceProvider.GetRequiredService<ISettingsService>();
         fuzzyService = serviceProvider.GetRequiredService<IFuzzyService>();
 
         ItemClassDefinitions = new(GetItemClassDefinitions);
@@ -224,14 +227,14 @@ public class ItemClassProperty : PropertyDefinition
         var classLabel = tradeFilterProvider.TypeCategory?.Option.Options.FirstOrDefault(x => x.Id == item.Properties.ItemClass.GetValueAttribute())?.Text;
         if (classLabel == null || item.ApiInformation.Type == null) return null;
 
-        var preferItemClass = await settingsService.GetEnum<DefaultItemClassFilter>(SettingKeys.PriceCheckItemClassFilter) ?? DefaultItemClassFilter.BaseType;
-
+        var autoSelectKey = $"Trade_Filter_{nameof(ItemClassProperty)}_{game.GetValueAttribute()}";
         var filter = new ItemClassFilter
         {
             Text = gameLanguageProvider.Language.DescriptionRarity,
             ItemClass = classLabel,
             BaseType = item.ApiInformation.Type,
-            Checked = preferItemClass == DefaultItemClassFilter.ItemClass,
+            AutoSelectSettingKey = autoSelectKey,
+            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };
         return filter;
     }
@@ -239,6 +242,14 @@ public class ItemClassProperty : PropertyDefinition
 
 public class ItemClassFilter : TradeFilter
 {
+    public ItemClassFilter()
+    {
+        DefaultAutoSelect = new AutoSelectPreferences()
+        {
+            Mode = AutoSelectMode.Never,
+        };
+    }
+
     public required string ItemClass { get; init; }
     public required string BaseType { get; init; }
 

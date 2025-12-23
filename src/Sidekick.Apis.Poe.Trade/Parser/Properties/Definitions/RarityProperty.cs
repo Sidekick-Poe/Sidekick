@@ -1,13 +1,19 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Common.Enums;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+public class RarityProperty(
+    GameType game,
+    ISettingsService settingsService,
+    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Dictionary<Rarity, Regex> RarityPatterns { get; } = new()
     {
@@ -74,9 +80,9 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
         item.Properties.Rarity = Rarity.Unknown;
     }
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal or Rarity.Unique)) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal or Rarity.Unique)) return null;
 
         var rarityLabel = item.Properties.Rarity switch
         {
@@ -87,25 +93,39 @@ public class RarityProperty(IGameLanguageProvider gameLanguageProvider) : Proper
             Rarity.Unique => gameLanguageProvider.Language.RarityUnique,
             _ => null
         };
-        if (rarityLabel == null) return Task.FromResult<TradeFilter?>(null);
+        if (rarityLabel == null) return null;
 
+        var autoSelectKey = $"Trade_Filter_{nameof(RarityProperty)}_{game.GetValueAttribute()}";
         if (item.Properties.Rarity == Rarity.Unique)
         {
-            return Task.FromResult<TradeFilter?>(new UniqueRarityFilter());
+            return new UniqueRarityFilter
+            {
+                AutoSelectSettingKey = autoSelectKey,
+                AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            };
         }
 
         var filter = new RarityFilter
         {
             Text = gameLanguageProvider.Language.DescriptionRarity,
             Value = rarityLabel,
-            Checked = false,
+            AutoSelectSettingKey = autoSelectKey,
+            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
 public class RarityFilter : StringPropertyFilter
 {
+    public RarityFilter()
+    {
+        DefaultAutoSelect = new AutoSelectPreferences()
+        {
+            Mode = AutoSelectMode.Never,
+        };
+    }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;
@@ -125,6 +145,14 @@ public class RarityFilter : StringPropertyFilter
 
 public class UniqueRarityFilter : HiddenFilter
 {
+    public UniqueRarityFilter()
+    {
+        DefaultAutoSelect = new AutoSelectPreferences()
+        {
+            Mode = AutoSelectMode.Always,
+        };
+    }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         query.Filters.GetOrCreateTypeFilters().Filters.Rarity = new SearchFilterOption("unique");

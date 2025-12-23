@@ -6,7 +6,7 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 public class AutoSelectRule : IEquatable<AutoSelectRule>
 {
     [JsonPropertyName("checked")]
-    public bool Checked { get; set; }
+    public bool? Checked { get; set; }
 
     [JsonPropertyName("conditions")]
     public List<AutoSelectCondition> Conditions { get; set; } = [];
@@ -22,7 +22,7 @@ public class AutoSelectRule : IEquatable<AutoSelectRule>
     {
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
-        if (obj.GetType() != this.GetType()) return false;
+        if (obj.GetType() != GetType()) return false;
         return Equals((AutoSelectRule)obj);
     }
 

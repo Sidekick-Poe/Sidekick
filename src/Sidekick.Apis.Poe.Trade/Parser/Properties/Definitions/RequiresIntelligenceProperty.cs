@@ -1,13 +1,19 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Common.Enums;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class RequiresIntelligenceProperty(IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+public class RequiresIntelligenceProperty(
+    GameType game,
+    ISettingsService settingsService,
+    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionRequiresInt.ToRegexIntCapture();
 
@@ -33,22 +39,33 @@ public class RequiresIntelligenceProperty(IGameLanguageProvider gameLanguageProv
         }
     }
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.RequiresIntelligence <= 0) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.RequiresIntelligence <= 0) return null;
 
+        var autoSelectKey = $"Trade_Filter_{nameof(RequiresIntelligenceProperty)}_{game.GetValueAttribute()}";
         var filter = new RequiresIntelligenceFilter
         {
             Text = gameLanguageProvider.Language.DescriptionRequiresInt,
             NormalizeEnabled = false,
             Value = item.Properties.RequiresIntelligence,
+            AutoSelectSettingKey = autoSelectKey,
+            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
 public class RequiresIntelligenceFilter : IntPropertyFilter
 {
+    public RequiresIntelligenceFilter()
+    {
+        DefaultAutoSelect = new AutoSelectPreferences()
+        {
+            Mode = AutoSelectMode.Never,
+        };
+    }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;
