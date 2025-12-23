@@ -2,6 +2,8 @@
 using Sidekick.Apis.Poe.Items;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 
+#pragma warning disable CS0659
+
 public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
 {
     [JsonPropertyName("rules")]
@@ -25,60 +27,21 @@ public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
         return Equals((AutoSelectPreferences)obj);
     }
 
-    public override int GetHashCode()
-    {
-        var hashCode = new HashCode();
-        hashCode.Add(Mode);
-        foreach (var rule in Rules)
-        {
-            hashCode.Add(rule);
-        }
-        return hashCode.ToHashCode();
-    }
-
     public bool ShouldCheck(Item item)
     {
         if (Mode == AutoSelectMode.Always) return true;
         if (Mode == AutoSelectMode.Never) return false;
 
-        if (Rules.Count == 0) return false;
+        var matchingRule = Rules.FirstOrDefault(rule => rule.Conditions.All(c => ConditionMatches(c, item)));
+        return matchingRule?.Checked ?? false;
 
-        foreach (var rule in Rules)
-        {
-            if (RuleMatches(rule, item)) return rule.Checked;
-        }
-
-        return false;
-
-    }
-
-    private static bool RuleMatches(AutoSelectRule rule, Item item)
-    {
-        foreach (var condition in rule.Conditions)
-        {
-            if (!ConditionMatches(condition, item)) return false;
-        }
-
-        return true;
     }
 
     private static bool ConditionMatches(AutoSelectCondition condition, Item item)
     {
-        if (condition.Expression == null)
-        {
-            return true;
-        }
-
-        var expressionValue = condition.Expression.Compile().Invoke(item);
-        if (expressionValue == null && condition.Value == null)
-        {
-            return true;
-        }
-
-        if (expressionValue == null || condition.Value == null)
-        {
-            return false;
-        }
+        var expressionValue = condition.Expression?.Compile().Invoke(item);
+        if (expressionValue == null && condition.Value == null) return true;
+        if (expressionValue == null || condition.Value == null) return false;
 
         return condition.Type switch
         {
@@ -94,6 +57,13 @@ public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
 
     private static int Compare(object expressionValue, object conditionValue)
     {
+        if (expressionValue is IComparable comparable)
+        {
+            // Ensure types match for comparison
+            var convertedValue = Convert.ChangeType(conditionValue, expressionValue.GetType());
+            return comparable.CompareTo(convertedValue);
+        }
+
         var expressionDouble = Convert.ToDouble(expressionValue);
         var conditionDouble = Convert.ToDouble(conditionValue);
         return expressionDouble.CompareTo(conditionDouble);

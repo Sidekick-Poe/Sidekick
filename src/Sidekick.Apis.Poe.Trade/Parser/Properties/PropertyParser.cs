@@ -64,7 +64,7 @@ public class PropertyParser
             new ItemQuantityProperty(gameLanguageProvider),
             new ItemRarityProperty(gameLanguageProvider),
             new WaystoneDropChanceProperty(gameLanguageProvider),
-            new AreaLevelProperty(gameLanguageProvider),
+            new AreaLevelProperty(game, settingsService, gameLanguageProvider),
             new BlightedProperty(gameLanguageProvider),
             new BlightRavagedProperty(gameLanguageProvider),
 

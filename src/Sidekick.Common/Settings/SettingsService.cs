@@ -114,7 +114,7 @@ public class SettingsService(
         return (DateTimeOffset?)(defaultProperty.GetValue(null) ?? null);
     }
 
-    public async Task<TValue> GetObject<TValue>(string key, Func<TValue> defaultFunc)
+    public async Task<TValue?> GetObject<TValue>(string key, Func<TValue?> defaultFunc)
         where TValue : class
     {
         await using var dbContext = new SidekickDbContext(dbContextOptions);

@@ -156,7 +156,7 @@ public class WeaponDamageProperty
     }
 }
 
-public class WeaponDamageFilter(GameType game) : WeaponDamagePropertyFilter
+public class WeaponDamageFilter(GameType game) : DoublePropertyFilter
 {
     public override void PrepareTradeRequest(Query query, Item item)
     {

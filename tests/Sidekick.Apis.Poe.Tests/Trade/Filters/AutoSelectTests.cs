@@ -6,8 +6,10 @@ namespace Sidekick.Apis.Poe.Tests.Trade.Filters;
 
 public class AutoSelectTests
 {
+    private class TestFilter : TradeFilter { }
+
     [Fact]
-    public void HasChangedFromDefaults_ReturnsFalse_WhenSame()
+    public void Equals_ReturnsTrue_WhenSame()
     {
         var preferences = new AutoSelectPreferences
         {
@@ -51,31 +53,31 @@ public class AutoSelectTests
             }
         };
 
-        var filter = new TradeFilter
+        var filter = new TestFilter
         {
             AutoSelect = preferences,
             DefaultAutoSelect = defaultPreferences
         };
 
-        Assert.False(filter.IsAutoSelectDefaults);
+        Assert.True(Equals(filter.AutoSelect, filter.DefaultAutoSelect));
     }
 
     [Fact]
-    public void HasChangedFromDefaults_ReturnsTrue_WhenModeChanged()
+    public void Equals_ReturnsFalse_WhenModeChanged()
     {
-        var filter = new TradeFilter
+        var filter = new TestFilter
         {
             AutoSelect = new AutoSelectPreferences { Mode = AutoSelectMode.Always },
             DefaultAutoSelect = new AutoSelectPreferences { Mode = AutoSelectMode.Never }
         };
 
-        Assert.True(filter.IsAutoSelectDefaults);
+        Assert.False(Equals(filter.AutoSelect, filter.DefaultAutoSelect));
     }
 
     [Fact]
-    public void HasChangedFromDefaults_ReturnsTrue_WhenRuleCheckedChanged()
+    public void Equals_ReturnsFalse_WhenRuleCheckedChanged()
     {
-        var filter = new TradeFilter
+        var filter = new TestFilter
         {
             AutoSelect = new AutoSelectPreferences
             {
@@ -87,13 +89,13 @@ public class AutoSelectTests
             }
         };
 
-        Assert.True(filter.IsAutoSelectDefaults);
+        Assert.False(Equals(filter.AutoSelect, filter.DefaultAutoSelect));
     }
 
     [Fact]
-    public void HasChangedFromDefaults_ReturnsTrue_WhenConditionValueChanged()
+    public void Equals_ReturnsFalse_WhenConditionValueChanged()
     {
-        var filter = new TradeFilter
+        var filter = new TestFilter
         {
             AutoSelect = new AutoSelectPreferences
             {
@@ -123,37 +125,37 @@ public class AutoSelectTests
             }
         };
 
-        Assert.True(filter.IsAutoSelectDefaults);
+        Assert.False(Equals(filter.AutoSelect, filter.DefaultAutoSelect));
     }
 
     [Fact]
-    public void HasChangedFromDefaults_ReturnsFalse_WhenBothNull()
+    public void Equals_ReturnsTrue_WhenBothNull()
     {
-        var filter = new TradeFilter
+        var filter = new TestFilter
         {
             AutoSelect = null,
             DefaultAutoSelect = null
         };
 
-        Assert.False(filter.IsAutoSelectDefaults);
+        Assert.True(Equals(filter.AutoSelect, filter.DefaultAutoSelect));
     }
 
     [Fact]
-    public void HasChangedFromDefaults_ReturnsTrue_WhenOneIsNull()
+    public void Equals_ReturnsFalse_WhenOneIsNull()
     {
-        var filter1 = new TradeFilter
+        var filter1 = new TestFilter
         {
             AutoSelect = new AutoSelectPreferences(),
             DefaultAutoSelect = null
         };
 
-        var filter2 = new TradeFilter
+        var filter2 = new TestFilter
         {
             AutoSelect = null,
             DefaultAutoSelect = new AutoSelectPreferences()
         };
 
-        Assert.True(filter1.IsAutoSelectDefaults);
-        Assert.True(filter2.IsAutoSelectDefaults);
+        Assert.False(Equals(filter1.AutoSelect, filter1.DefaultAutoSelect));
+        Assert.False(Equals(filter2.AutoSelect, filter2.DefaultAutoSelect));
     }
 }

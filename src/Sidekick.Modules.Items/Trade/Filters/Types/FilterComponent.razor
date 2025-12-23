@@ -1,4 +1,5 @@
 @using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 
 @switch (Filter)
@@ -7,7 +8,7 @@
         <IntPropertyFilterComponent Filter="intFilter"/>
         break;
 
-    case WeaponDamagePropertyFilter weaponDamageFilter:
+    case WeaponDamageFilter weaponDamageFilter:
         <WeaponDamagePropertyFilterComponent Filter="weaponDamageFilter"/>
         break;
 
@@ -27,7 +28,7 @@
         <ExpandableFilterComponent Filter="expandableFilter"/>
         break;
 
-    case ItemClassPropertyFilter classFilter:
+    case ItemClassFilter classFilter:
         <ItemClassPropertyFilterComponent Filter="classFilter"/>
         break;
 

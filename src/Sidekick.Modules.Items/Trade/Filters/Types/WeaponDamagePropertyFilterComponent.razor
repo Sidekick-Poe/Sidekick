@@ -1,5 +1,6 @@
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Languages
+@using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Apis.Poe.Trade.Trade.Items.Results
 
@@ -76,7 +77,7 @@
     public required Item Item { get; set; }
 
     [Parameter]
-    public required WeaponDamagePropertyFilter Filter { get; set; }
+    public required WeaponDamageFilter Filter { get; set; }
 
     private void CheckedChanged(bool value)
     {

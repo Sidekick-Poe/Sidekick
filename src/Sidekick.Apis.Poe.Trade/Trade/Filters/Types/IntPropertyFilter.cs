@@ -14,5 +14,5 @@ public class IntPropertyFilter : TradeFilter
 
     public int? Max { get; set; }
 
-    public bool NormalizeEnabled { get; set; }
+    public bool NormalizeEnabled { get; init; }
 }

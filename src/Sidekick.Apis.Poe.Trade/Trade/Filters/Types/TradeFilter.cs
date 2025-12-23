@@ -4,19 +4,30 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
-public class TradeFilter
+public abstract class TradeFilter
 {
+    public void Initialize(Item item)
+    {
+        var autoSelect = AutoSelect ?? DefaultAutoSelect;
+        if (autoSelect != null)
+        {
+            Checked = autoSelect.ShouldCheck(item);
+        }
+    }
+
     public virtual bool Checked { get; set; }
 
-    public string Text { get; set; } = string.Empty;
+    public string Text { get; init; } = string.Empty;
 
     public string? Hint { get; init; }
 
     public LineContentType Type { get; init; } = LineContentType.Simple;
 
+    public string? AutoSelectSettingKey { get; init; }
+
     public AutoSelectPreferences? AutoSelect { get; init; }
+
     public AutoSelectPreferences? DefaultAutoSelect { get; init; }
-    public bool IsAutoSelectDefaults => !Equals(AutoSelect, DefaultAutoSelect);
 
     public virtual void PrepareTradeRequest(Query query, Item item) {}
 

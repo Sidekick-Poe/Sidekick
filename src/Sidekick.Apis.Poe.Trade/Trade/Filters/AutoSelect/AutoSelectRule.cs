@@ -1,6 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 
+#pragma warning disable CS0659
+
 public class AutoSelectRule : IEquatable<AutoSelectRule>
 {
     [JsonPropertyName("checked")]
@@ -24,14 +26,4 @@ public class AutoSelectRule : IEquatable<AutoSelectRule>
         return Equals((AutoSelectRule)obj);
     }
 
-    public override int GetHashCode()
-    {
-        var hashCode = new HashCode();
-        hashCode.Add(Checked);
-        foreach (var condition in Conditions)
-        {
-            hashCode.Add(condition);
-        }
-        return hashCode.ToHashCode();
-    }
 }

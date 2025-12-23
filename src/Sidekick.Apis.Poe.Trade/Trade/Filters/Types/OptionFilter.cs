@@ -10,5 +10,5 @@ public class OptionFilter : TradeFilter
 
     public override bool Checked => Value != DefaultValue;
 
-    public required List<OptionFilterValue> Options { get; set; }
+    public required List<OptionFilterValue> Options { get; init; }
 }

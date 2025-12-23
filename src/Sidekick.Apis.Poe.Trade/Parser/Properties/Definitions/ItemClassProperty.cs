@@ -237,8 +237,11 @@ public class ItemClassProperty : PropertyDefinition
     }
 }
 
-public class ItemClassFilter : ItemClassPropertyFilter
+public class ItemClassFilter : TradeFilter
 {
+    public required string ItemClass { get; init; }
+    public required string BaseType { get; init; }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;

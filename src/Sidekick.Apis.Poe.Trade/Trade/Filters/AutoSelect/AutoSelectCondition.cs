@@ -4,16 +4,11 @@ using Serialize.Linq.Serializers;
 using Sidekick.Apis.Poe.Items;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 
+#pragma warning disable CS0659
+
 public class AutoSelectCondition : IEquatable<AutoSelectCondition>
 {
     private static ExpressionSerializer _expressionSerializer = new ExpressionSerializer(new JsonSerializer());
-
-    [JsonPropertyName("type")]
-    public string TypeAsString
-    {
-        get { return Type.ToString(); }
-        set { Type = Enum.Parse<AutoSelectConditionType>(value); }
-    }
 
     [JsonPropertyName("expression")]
     public string ExpressionAsString
@@ -25,7 +20,8 @@ public class AutoSelectCondition : IEquatable<AutoSelectCondition>
     [JsonIgnore]
     public Expression<Func<Item, object?>>? Expression { get; set; }
 
-    [JsonIgnore]
+    [JsonPropertyName("type")]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public AutoSelectConditionType Type { get; set; }
 
     [JsonPropertyName("value")]
@@ -44,10 +40,5 @@ public class AutoSelectCondition : IEquatable<AutoSelectCondition>
         if (ReferenceEquals(this, obj)) return true;
         if (obj.GetType() != this.GetType()) return false;
         return Equals((AutoSelectCondition)obj);
-    }
-
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(Type, Value, ExpressionAsString);
     }
 }
