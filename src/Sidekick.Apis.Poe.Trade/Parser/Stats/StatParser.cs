@@ -16,8 +16,7 @@ public class StatParser
     IApiStatsProvider apiStatsProvider,
     IFuzzyService fuzzyService,
     ISettingsService settingsService,
-    IGameLanguageProvider gameLanguageProvider,
-    IFilterAutoSelectService autoSelectService
+    IGameLanguageProvider gameLanguageProvider
 ) : IStatParser
 {
     public int Priority => 300;
@@ -321,14 +320,7 @@ public class StatParser
             {
                 filter.Checked = true;
             }
-            else
-            {
-                filter.Checked = await autoSelectService.ShouldCheck(item, filter);
-            }
-            isf (enableAllFilters)
-            {
-                Checked = enableAllFilters || (enableFiltersByRegex?.IsMatch(stat.Text) ?? false),
-            };
+
             result.Add(filter);
 
             var isLastFilter = i + 1 == item.Stats.Count;

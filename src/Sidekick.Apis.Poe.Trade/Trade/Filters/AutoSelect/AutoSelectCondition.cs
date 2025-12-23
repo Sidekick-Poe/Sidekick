@@ -4,7 +4,7 @@ using Serialize.Linq.Serializers;
 using Sidekick.Apis.Poe.Items;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 
-public class AutoSelectCondition
+public class AutoSelectCondition : IEquatable<AutoSelectCondition>
 {
     private static ExpressionSerializer _expressionSerializer = new ExpressionSerializer(new JsonSerializer());
 
@@ -30,4 +30,24 @@ public class AutoSelectCondition
 
     [JsonPropertyName("value")]
     public object? Value { get; set; }
+
+    public bool Equals(AutoSelectCondition? other)
+    {
+        if (ReferenceEquals(null, other)) return false;
+        if (ReferenceEquals(this, other)) return true;
+        return Type == other.Type && Equals(Value, other.Value) && ExpressionAsString == other.ExpressionAsString;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != this.GetType()) return false;
+        return Equals((AutoSelectCondition)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Type, Value, ExpressionAsString);
+    }
 }

@@ -2,13 +2,39 @@
 using Sidekick.Apis.Poe.Items;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 
-public class AutoSelectPreferences
+public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
 {
     [JsonPropertyName("rules")]
     public AutoSelectMode Mode { get; set; }
 
     [JsonPropertyName("rules")]
-    public List<AutoSelectRule> Rules { get; set; }
+    public List<AutoSelectRule> Rules { get; set; } = [];
+
+    public bool Equals(AutoSelectPreferences? other)
+    {
+        if (ReferenceEquals(null, other)) return false;
+        if (ReferenceEquals(this, other)) return true;
+        return Mode == other.Mode && Rules.SequenceEqual(other.Rules);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != this.GetType()) return false;
+        return Equals((AutoSelectPreferences)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        var hashCode = new HashCode();
+        hashCode.Add(Mode);
+        foreach (var rule in Rules)
+        {
+            hashCode.Add(rule);
+        }
+        return hashCode.ToHashCode();
+    }
 
     public bool ShouldCheck(Item item)
     {

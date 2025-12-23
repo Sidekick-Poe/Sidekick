@@ -14,9 +14,11 @@ public class TradeFilter
 
     public LineContentType Type { get; init; } = LineContentType.Simple;
 
-    public virtual void PrepareTradeRequest(Query query, Item item) {}
-
     public AutoSelectPreferences? AutoSelect { get; init; }
+    public AutoSelectPreferences? DefaultAutoSelect { get; init; }
+    public bool IsAutoSelectDefaults => !Equals(AutoSelect, DefaultAutoSelect);
+
+    public virtual void PrepareTradeRequest(Query query, Item item) {}
 
     public virtual Task OnChanged() => Task.CompletedTask;
 }
