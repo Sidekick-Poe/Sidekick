@@ -1,4 +1,8 @@
-﻿# Development Guidelines
+﻿---
+apply: always
+---
+
+# Development Guidelines
 
 ## Coding Standards
 - Follow standard C# and .NET coding conventions.
@@ -14,13 +18,3 @@
 ## UI Styling
 - Styles are managed through CSS, often using Tailwind-like classes.
 - Ensure that UI elements are visible and legible against both PoE and PoE 2 backgrounds.
-
-## Adding a New Module
-1. Create a new project in `src/Sidekick.Modules.YourModuleName`.
-2. Add a `StartupExtensions` class with an `AddSidekickYourModule` extension method.
-3. Call `services.AddSidekickModule(typeof(StartupExtensions).Assembly)` within that method.
-4. Register the module in `Program.cs` in `Sidekick.Wpf` (and other host projects if applicable).
-
-## Keybinds
-- Register new keybind handlers using `services.AddSidekickInputHandler<THandler>()`.
-- Handlers should implement `IInputHandler`.

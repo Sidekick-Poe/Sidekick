@@ -1,4 +1,8 @@
-﻿# Architecture
+﻿---
+apply: always
+---
+
+# Architecture
 
 Sidekick follows a modular and service-oriented architecture, leveraging .NET's Dependency Injection (DI) system.
 

@@ -1,4 +1,8 @@
-﻿# Tech Stack
+﻿---
+apply: always
+---
+
+# Tech Stack
 
 Sidekick is built using modern .NET technologies and a web-based UI layer.
 
