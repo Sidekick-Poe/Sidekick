@@ -6,7 +6,8 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 
 public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
 {
-    [JsonPropertyName("rules")]
+    [JsonPropertyName("mode")]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public AutoSelectMode Mode { get; set; }
 
     [JsonPropertyName("rules")]
@@ -84,12 +85,4 @@ public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
 
         return false;
     }
-}
-
-public enum AutoSelectMode
-{
-    Always,
-    Never,
-    Any,
-    Conditionally,
 }
