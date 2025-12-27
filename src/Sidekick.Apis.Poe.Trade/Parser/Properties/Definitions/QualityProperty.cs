@@ -1,14 +1,20 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
+using Sidekick.Common.Enums;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class QualityProperty(IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+public class QualityProperty(
+    GameType game,
+    ISettingsService settingsService,
+    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionQuality.ToRegexIntCapture();
 
@@ -34,10 +40,11 @@ public class QualityProperty(IGameLanguageProvider gameLanguageProvider) : Prope
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.Quality));
     }
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.Quality <= 0) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.Quality <= 0) return null;
 
+        var autoSelectKey = $"Trade_Filter_{nameof(QualityProperty)}_{game.GetValueAttribute()}";
         var filter = new QualityFilter
         {
             Text = gameLanguageProvider.Language.DescriptionQuality,
@@ -45,15 +52,40 @@ public class QualityProperty(IGameLanguageProvider gameLanguageProvider) : Prope
             Value = item.Properties.Quality,
             ValuePrefix = "+",
             ValueSuffix = "%",
-            Checked = item.Properties.Rarity == Rarity.Gem,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.Quality)) ? LineContentType.Augmented : LineContentType.Simple,
+            AutoSelectSettingKey = autoSelectKey,
+            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
 public class QualityFilter : IntPropertyFilter
 {
+    public QualityFilter()
+    {
+        DefaultAutoSelect = new AutoSelectPreferences()
+        {
+            Mode = AutoSelectMode.Conditionally,
+            Rules =
+            [
+                new()
+                {
+                    Checked = true,
+                    Conditions =
+                    [
+                        new()
+                        {
+                            Type = AutoSelectConditionType.Equals,
+                            Value = Rarity.Gem,
+                            Expression = x => x.Properties.Rarity,
+                        },
+                    ],
+                },
+            ],
+        };
+    }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;

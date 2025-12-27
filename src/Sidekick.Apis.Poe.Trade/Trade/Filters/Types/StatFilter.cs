@@ -26,13 +26,13 @@ public sealed class StatFilter : TradeFilter
         }
     }
 
-    public Stat Stat { get; }
+    public Stat Stat { get; init; }
 
     public bool UsePrimaryCategory { get; set; }
 
-    public StatCategory PrimaryCategory { get; private init; }
+    public StatCategory PrimaryCategory { get; init; }
 
-    public StatCategory SecondaryCategory { get; private init; }
+    public StatCategory SecondaryCategory { get; init; }
 
     public double? Min { get; set; }
 

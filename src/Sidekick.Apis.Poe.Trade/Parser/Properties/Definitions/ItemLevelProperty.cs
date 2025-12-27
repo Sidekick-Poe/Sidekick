@@ -1,13 +1,19 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Common.Enums;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameType game) : PropertyDefinition
+public class ItemLevelProperty(
+    GameType game,
+    ISettingsService settingsService,
+    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionItemLevel.ToRegexIntCapture();
 
@@ -33,28 +39,75 @@ public class ItemLevelProperty(IGameLanguageProvider gameLanguageProvider, GameT
         item.Properties.ItemLevel = GetInt(Pattern, item.Text);
     }
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.ItemLevel <= 0) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.ItemLevel <= 0) return null;
 
+        var autoSelectKey = $"Trade_Filter_{nameof(ItemLevelProperty)}_{game.GetValueAttribute()}";
         var filter = new ItemLevelFilter(game)
         {
             Text = gameLanguageProvider.Language.DescriptionItemLevel,
             NormalizeEnabled = false,
             Value = item.Properties.ItemLevel,
-            Checked = game == GameType.PathOfExile1 && item.Properties.ItemLevel >= 80 && item.Properties.MapTier == 0 && item.Properties.Rarity != Rarity.Unique,
+            AutoSelectSettingKey = autoSelectKey,
+            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
-public class ItemLevelFilter(GameType game) : IntPropertyFilter
+public class ItemLevelFilter : IntPropertyFilter
 {
+    public ItemLevelFilter(GameType game)
+    {
+        Game = game;
+        DefaultAutoSelect = new AutoSelectPreferences()
+        {
+            Mode = AutoSelectMode.Conditionally,
+            Rules =
+            [
+                new()
+                {
+                    Checked = true,
+                    Conditions =
+                    [
+                        new()
+                        {
+                            Type = AutoSelectConditionType.Equals,
+                            Value = GameType.PathOfExile1,
+                            Expression = x => x.Game,
+                        },
+                        new()
+                        {
+                            Type = AutoSelectConditionType.GreaterThanOrEqual,
+                            Value = 80,
+                            Expression = x => x.Properties.ItemLevel,
+                        },
+                        new()
+                        {
+                            Type = AutoSelectConditionType.Equals,
+                            Value = 0,
+                            Expression = x => x.Properties.MapTier,
+                        },
+                        new()
+                        {
+                            Type = AutoSelectConditionType.LesserThan,
+                            Value = (int)Rarity.Unique,
+                            Expression = x => (int)x.Properties.Rarity,
+                        },
+                    ],
+                },
+            ],
+        };
+    }
+
+    private GameType Game { get; }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;
 
-        switch (game)
+        switch (Game)
         {
             case GameType.PathOfExile1: query.Filters.GetOrCreateMiscFilters().Filters.ItemLevel = new StatFilterValue(this); break;
             case GameType.PathOfExile2: query.Filters.GetOrCreateTypeFilters().Filters.ItemLevel = new StatFilterValue(this); break;

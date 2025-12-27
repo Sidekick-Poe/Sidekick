@@ -1,15 +1,23 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Common.Enums;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class SanctifiedProperty(IServiceProvider serviceProvider, GameType game) : PropertyDefinition
+public class SanctifiedProperty(
+    GameType game,
+    ISettingsService settingsService,
+    IGameLanguageProvider gameLanguageProvider,
+    IServiceProvider serviceProvider) : PropertyDefinition
 {
-    private ITradeFilterProvider TradeFilterProvicer => serviceProvider.GetRequiredService<ITradeFilterProvider>();
+    private readonly ITradeFilterProvider tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
 
     public override List<ItemClass> ValidItemClasses { get; } =
     [
@@ -22,22 +30,32 @@ public class SanctifiedProperty(IServiceProvider serviceProvider, GameType game)
     {
     }
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile1) return Task.FromResult<TradeFilter?>(null);
-        if (TradeFilterProvicer.Sanctified == null) return Task.FromResult<TradeFilter?>(null);
+        if (game == GameType.PathOfExile1) return null;
+        if (tradeFilterProvider.Sanctified == null) return null;
 
+        var autoSelectKey = $"Trade_Filter_{nameof(SanctifiedProperty)}_{game.GetValueAttribute()}";
         var filter = new SanctifiedFilter
         {
-            Text = TradeFilterProvicer.Sanctified.Text ?? "Sanctified",
-            Checked = null,
+            Text = tradeFilterProvider.Sanctified.Text ?? "Sanctified",
+            AutoSelectSettingKey = autoSelectKey,
+            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
 public class SanctifiedFilter : TriStatePropertyFilter
 {
+    public SanctifiedFilter()
+    {
+        DefaultAutoSelect = new AutoSelectPreferences()
+        {
+            Mode = AutoSelectMode.Any,
+        };
+    }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (Checked == null)

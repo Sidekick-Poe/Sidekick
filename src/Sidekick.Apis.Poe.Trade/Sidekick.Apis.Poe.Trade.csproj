@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="FuzzySharp" />
     <PackageReference Include="Romanization.NET" />
+    <PackageReference Include="Serialize.Linq" />
   </ItemGroup>
 
   <ItemGroup>

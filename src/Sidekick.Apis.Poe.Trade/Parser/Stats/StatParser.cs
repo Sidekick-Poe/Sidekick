@@ -6,6 +6,7 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
@@ -309,21 +310,17 @@ public class StatParser
         if (!ItemClassConstants.WithStats.Contains(item.Properties.ItemClass)) return [];
 
         var enableAllFilters = await settingsService.GetBool(SettingKeys.PriceCheckEnableAllFilters);
-        var enableFiltersByRegexSetting = await settingsService.GetString(SettingKeys.PriceCheckEnableFiltersByRegex);
-        Regex? enableFiltersByRegex = null;
-        if (!string.IsNullOrWhiteSpace(enableFiltersByRegexSetting))
-        {
-            enableFiltersByRegex = new Regex(enableFiltersByRegexSetting, RegexOptions.IgnoreCase);
-        }
 
         var result = new List<TradeFilter>();
         for (var i = 0; i < item.Stats.Count; i++)
         {
             var stat = item.Stats[i];
-            var filter = new StatFilter(stat)
+            var filter = new StatFilter(stat);
+            if (enableAllFilters)
             {
-                Checked = enableAllFilters || (enableFiltersByRegex?.IsMatch(stat.Text) ?? false),
-            };
+                filter.Checked = true;
+            }
+
             result.Add(filter);
 
             var isLastFilter = i + 1 == item.Stats.Count;

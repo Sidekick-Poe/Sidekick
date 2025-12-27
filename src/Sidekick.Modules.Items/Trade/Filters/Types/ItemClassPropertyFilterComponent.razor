@@ -1,9 +1,6 @@
+@using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Modules.Items.Localization
-@if (!Filter.ShowRow)
-{
-    return;
-}
 
 @if (!string.IsNullOrEmpty(Filter.ItemClass))
 {
@@ -36,6 +33,6 @@
 @code {
 
     [Parameter]
-    public required ItemClassPropertyFilter Filter { get; set; }
+    public required ItemClassFilter Filter { get; set; }
 
 }

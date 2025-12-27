@@ -11,7 +11,7 @@ public class PseudoFilter : TradeFilter
         Text = stat.Text;
     }
 
-    public PseudoStat Stat { get; set; }
+    public PseudoStat Stat { get; init; }
 
     public double? Min { get; set; }
 

@@ -2,19 +2,21 @@ using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiItems;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
+using Sidekick.Common.Enums;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class RewardProperty
-(
-    IGameLanguageProvider gameLanguageProvider,
+public class RewardProperty(
     GameType game,
-    IApiItemProvider apiItemProvider
-) : PropertyDefinition
+    ISettingsService settingsService,
+    IGameLanguageProvider gameLanguageProvider,
+    IApiItemProvider apiItemProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionReward.ToRegexStringCapture();
 
@@ -31,28 +33,41 @@ public class RewardProperty
         if (item.Properties.Reward != null) propertyBlock.Parsed = true;
     }
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile2 || item.Properties.Reward == null) return Task.FromResult<TradeFilter?>(null);
+        if (game == GameType.PathOfExile2 || item.Properties.Reward == null) return null;
 
+        var autoSelectKey = $"Trade_Filter_{nameof(RewardProperty)}_{game.GetValueAttribute()}";
         var filter = new RewardFilter(apiItemProvider)
         {
             Text = gameLanguageProvider.Language.DescriptionReward,
             Value = item.Properties.Reward!,
             Type = LineContentType.Unique,
-            Checked = true,
+            AutoSelectSettingKey = autoSelectKey,
+            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
-public class RewardFilter(IApiItemProvider apiItemProvider) : StringPropertyFilter
+public class RewardFilter : StringPropertyFilter
 {
+    public RewardFilter(IApiItemProvider apiItemProvider)
+    {
+        ApiItemProvider = apiItemProvider;
+        DefaultAutoSelect = new AutoSelectPreferences()
+        {
+            Mode = AutoSelectMode.Always,
+        };
+    }
+
+    private IApiItemProvider ApiItemProvider { get; }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;
 
-        var uniqueItem = apiItemProvider.UniqueItems.FirstOrDefault(x => x.Name != null && Value.Contains(x.Name));
+        var uniqueItem = ApiItemProvider.UniqueItems.FirstOrDefault(x => x.Name != null && Value.Contains(x.Name));
         if (uniqueItem?.Name == null) return;
 
         query.Filters.GetOrCreateMapFilters().Filters.Reward = new SearchFilterOption(uniqueItem.Name);

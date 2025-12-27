@@ -1,15 +1,23 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Common.Enums;
+using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class FoulbornProperty(IServiceProvider serviceProvider, GameType game) : PropertyDefinition
+public class FoulbornProperty(
+    GameType game,
+    ISettingsService settingsService,
+    IGameLanguageProvider gameLanguageProvider,
+    IServiceProvider serviceProvider) : PropertyDefinition
 {
-    private ITradeFilterProvider TradeFilterProvicer => serviceProvider.GetRequiredService<ITradeFilterProvider>();
+    private readonly ITradeFilterProvider tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
 
     public override List<ItemClass> ValidItemClasses { get; } = [
         ..ItemClassConstants.Equipment,
@@ -27,23 +35,62 @@ public class FoulbornProperty(IServiceProvider serviceProvider, GameType game) :
         item.Properties.Foulborn = item.Stats.Any(x => x.ApiInformation.Any(y => y.Category == StatCategory.Mutated));
     }
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile2) return Task.FromResult<TradeFilter?>(null);
-        if (TradeFilterProvicer.Foulborn == null) return Task.FromResult<TradeFilter?>(null);
-        if (item.Properties.Rarity != Rarity.Unique) return Task.FromResult<TradeFilter?>(null);
+        if (game == GameType.PathOfExile2) return null;
+        if (tradeFilterProvider.Foulborn == null) return null;
+        if (item.Properties.Rarity != Rarity.Unique) return null;
 
+        var autoSelectKey = $"Trade_Filter_{nameof(FoulbornProperty)}_{game.GetValueAttribute()}";
         var filter = new FoulbornFilter
         {
-            Text = TradeFilterProvicer.Foulborn.Text ?? "Foulborn",
-            Checked = item.Properties.Foulborn,
+            Text = tradeFilterProvider.Foulborn.Text ?? "Foulborn",
+            AutoSelectSettingKey = autoSelectKey,
+            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
 public class FoulbornFilter : TriStatePropertyFilter
 {
+    public FoulbornFilter()
+    {
+        DefaultAutoSelect = new AutoSelectPreferences()
+        {
+            Mode = AutoSelectMode.Conditionally,
+            Rules =
+            [
+                new()
+                {
+                    Checked = true,
+                    Conditions =
+                    [
+                        new()
+                        {
+                            Type = AutoSelectConditionType.Equals,
+                            Value = true,
+                            Expression = x => x.Properties.Foulborn,
+                        },
+                    ],
+                },
+                new()
+                {
+                    Checked = false,
+                    Conditions =
+                    [
+                        new()
+                        {
+                            Type = AutoSelectConditionType.Equals,
+                            Value = false,
+                            Expression = x => x.Properties.Foulborn,
+                        },
+                    ],
+                },
+            ],
+        };
+    }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (Checked == null)
