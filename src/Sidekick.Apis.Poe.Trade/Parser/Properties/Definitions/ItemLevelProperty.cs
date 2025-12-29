@@ -61,44 +61,76 @@ public class ItemLevelFilter : IntPropertyFilter
     public ItemLevelFilter(GameType game)
     {
         Game = game;
-        DefaultAutoSelect = new AutoSelectPreferences()
+        if (game == GameType.PathOfExile1)
         {
-            Mode = AutoSelectMode.Conditionally,
-            Rules =
-            [
-                new()
-                {
-                    Checked = true,
-                    Conditions =
-                    [
-                        new()
-                        {
-                            Type = AutoSelectConditionType.Equals,
-                            Value = GameType.PathOfExile1,
-                            Expression = x => x.Game,
-                        },
-                        new()
-                        {
-                            Type = AutoSelectConditionType.GreaterThanOrEqual,
-                            Value = 80,
-                            Expression = x => x.Properties.ItemLevel,
-                        },
-                        new()
-                        {
-                            Type = AutoSelectConditionType.Equals,
-                            Value = 0,
-                            Expression = x => x.Properties.MapTier,
-                        },
-                        new()
-                        {
-                            Type = AutoSelectConditionType.LesserThan,
-                            Value = (int)Rarity.Unique,
-                            Expression = x => (int)x.Properties.Rarity,
-                        },
-                    ],
-                },
-            ],
-        };
+            DefaultAutoSelect = new AutoSelectPreferences()
+            {
+                Mode = AutoSelectMode.Conditionally,
+                Rules =
+                [
+                    new()
+                    {
+                        Checked = true,
+                        Conditions =
+                        [
+                            new()
+                            {
+                                Type = AutoSelectConditionType.ItemLevel,
+                                ComparisonType = AutoSelectComparisonType.GreaterThanOrEqual,
+                                Value = 80,
+                            },
+                            new()
+                            {
+                                Type = AutoSelectConditionType.MapTier,
+                                ComparisonType = AutoSelectComparisonType.Equals,
+                                Value = 0,
+                            },
+                            new()
+                            {
+                                Type = AutoSelectConditionType.Rarity,
+                                ComparisonType = AutoSelectComparisonType.LesserThan,
+                                Value = Rarity.Unique,
+                            },
+                        ],
+                    },
+                ],
+            };
+        }
+        else
+        {
+            DefaultAutoSelect = new AutoSelectPreferences()
+            {
+                Mode = AutoSelectMode.Conditionally,
+                Rules =
+                [
+                    new()
+                    {
+                        Checked = true,
+                        Conditions =
+                        [
+                            new()
+                            {
+                                Type = AutoSelectConditionType.ItemLevel,
+                                ComparisonType = AutoSelectComparisonType.GreaterThanOrEqual,
+                                Value = 82,
+                            },
+                            new()
+                            {
+                                Type = AutoSelectConditionType.MapTier,
+                                ComparisonType = AutoSelectComparisonType.Equals,
+                                Value = 0,
+                            },
+                            new()
+                            {
+                                Type = AutoSelectConditionType.Rarity,
+                                ComparisonType = AutoSelectComparisonType.LesserThan,
+                                Value = Rarity.Unique,
+                            },
+                        ],
+                    },
+                ],
+            };
+        }
     }
 
     private GameType Game { get; }

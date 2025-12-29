@@ -1,28 +1,17 @@
-﻿using System.Linq.Expressions;
-using System.Text.Json.Serialization;
-using Serialize.Linq.Serializers;
-using Sidekick.Apis.Poe.Items;
+﻿using System.Text.Json.Serialization;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 
 #pragma warning disable CS0659
 
 public class AutoSelectCondition : IEquatable<AutoSelectCondition>
 {
-    private static ExpressionSerializer _expressionSerializer = new ExpressionSerializer(new JsonSerializer());
-
-    [JsonPropertyName("expression")]
-    public string ExpressionAsString
-    {
-        get { return _expressionSerializer.SerializeText(Expression); }
-        set { Expression = _expressionSerializer.DeserializeText(value) as Expression<Func<Item, object?>>; }
-    }
-
-    [JsonIgnore]
-    public Expression<Func<Item, object?>>? Expression { get; set; }
-
     [JsonPropertyName("type")]
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public AutoSelectConditionType Type { get; set; }
+
+    [JsonPropertyName("comparisonType")]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public AutoSelectComparisonType ComparisonType { get; set; }
 
     [JsonPropertyName("value")]
     public object? Value { get; set; }
@@ -31,7 +20,7 @@ public class AutoSelectCondition : IEquatable<AutoSelectCondition>
     {
         if (ReferenceEquals(null, other)) return false;
         if (ReferenceEquals(this, other)) return true;
-        return Type == other.Type && Equals(Value, other.Value) && ExpressionAsString == other.ExpressionAsString;
+        return ComparisonType == other.ComparisonType && Equals(Value, other.Value) && Type == other.Type;
     }
 
     public override bool Equals(object? obj)

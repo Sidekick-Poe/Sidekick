@@ -149,51 +149,52 @@ public class SocketFilter : IntPropertyFilter
     public SocketFilter(GameType game)
     {
         Game = game;
-        DefaultAutoSelect = new AutoSelectPreferences()
+        if (game == GameType.PathOfExile1)
         {
-            Mode = AutoSelectMode.Conditionally,
-            Rules =
-            [
-                new()
-                {
-                    Checked = true,
-                    Conditions =
-                    [
-                        new()
-                        {
-                            Type = AutoSelectConditionType.Equals,
-                            Value = GameType.PathOfExile2,
-                            Expression = x => x.Game,
-                        },
-                        new()
-                        {
-                            Type = AutoSelectConditionType.GreaterThanOrEqual,
-                            Value = 3,
-                            Expression = x => x.Properties.Sockets.Count,
-                        },
-                    ],
-                },
-                new()
-                {
-                    Checked = true,
-                    Conditions =
-                    [
-                        new()
-                        {
-                            Type = AutoSelectConditionType.Equals,
-                            Value = GameType.PathOfExile1,
-                            Expression = x => x.Game,
-                        },
-                        new()
-                        {
-                            Type = AutoSelectConditionType.GreaterThanOrEqual,
-                            Value = 5,
-                            Expression = x => x.Properties.GetMaximumNumberOfLinks(),
-                        },
-                    ],
-                },
-            ],
-        };
+            DefaultAutoSelect = new AutoSelectPreferences()
+            {
+                Mode = AutoSelectMode.Conditionally,
+                Rules =
+                [
+                    new()
+                    {
+                        Checked = true,
+                        Conditions =
+                        [
+                            new()
+                            {
+                                Type = AutoSelectConditionType.SocketCount,
+                                ComparisonType = AutoSelectComparisonType.GreaterThanOrEqual,
+                                Value = 5,
+                            },
+                        ],
+                    },
+                ],
+            };
+        }
+        else
+        {
+            DefaultAutoSelect = new AutoSelectPreferences()
+            {
+                Mode = AutoSelectMode.Conditionally,
+                Rules =
+                [
+                    new()
+                    {
+                        Checked = true,
+                        Conditions =
+                        [
+                            new()
+                            {
+                                Type = AutoSelectConditionType.SocketCount,
+                                ComparisonType = AutoSelectComparisonType.GreaterThanOrEqual,
+                                Value = 3,
+                            },
+                        ],
+                    },
+                ],
+            };
+        }
     }
 
     private GameType Game { get; }

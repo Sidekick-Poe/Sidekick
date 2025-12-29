@@ -60,11 +60,15 @@
 
         CleanUpSeparatorFilters(Filters);
 
+        foreach (var filter in Filters)
+        {
+            filter.Initialize(Item);
+        }
+        
         TradeService.Clear();
 
         await base.OnParametersSetAsync();
     }
-
 
     private static void CleanUpSeparatorFilters(List<TradeFilter> results)
     {

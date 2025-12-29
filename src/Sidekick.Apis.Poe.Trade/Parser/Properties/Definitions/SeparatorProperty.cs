@@ -14,7 +14,6 @@ public class SeparatorProperty : PropertyDefinition
         return Task.FromResult<TradeFilter?>(new SeparatorFilter
         {
             Text = Text,
-            Checked = true,
         });
     }
 }

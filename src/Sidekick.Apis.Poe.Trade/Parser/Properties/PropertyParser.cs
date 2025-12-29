@@ -34,7 +34,7 @@ public class PropertyParser
 
         Definitions.Clear();
         Definitions.AddRange([
-            new ItemClassProperty(game, settingsService, gameLanguageProvider, serviceProvider),
+            new ItemClassProperty(game, settingsService, gameLanguageProvider, serviceProvider, resources),
             new RarityProperty(game, settingsService, gameLanguageProvider),
 
             new SeparatorProperty(),

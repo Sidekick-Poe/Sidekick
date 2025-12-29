@@ -14,17 +14,9 @@
 }
 
 <FormFieldset Legend="@Resources["Filter_Settings"]">
-    <PriceCheckItemClassFilter />
     <PriceCheckNormalizeValueEditor />
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckFillDefaultMin" Label="@Resources["PriceCheck_FillDefault_Min"]"/>
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckFillDefaultMax" Label="@Resources["PriceCheck_FillDefault_Max"]"/>
-    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckEnableAllFilters" Label="@Resources["PriceCheck_Enable_All_Filters"]" />
-</FormFieldset>
-
-<FormFieldset Legend="@Resources["Auto_Select_Rules"]">
-    <SettingTextEditor SettingKey="@SettingKeys.PriceCheckAutoSelectRules"
-                       Label="@Resources["Auto_Select_Rules_Label"]"
-                       Tooltip="@Resources["Auto_Select_Rules_Hint"]"/>
 </FormFieldset>
 
 <FormFieldset Legend="@Resources["External_Tools_Settings"]">
@@ -46,14 +38,10 @@
     private string[] SettingKeysUsed { get; } =
     {
         SettingKeys.KeyOpenPriceCheck,
-
-        SettingKeys.PriceCheckItemClassFilter,
         SettingKeys.PriceCheckNormalizeValue,
         SettingKeys.PriceCheckFillDefaultMin,
         SettingKeys.PriceCheckFillDefaultMax,
         SettingKeys.PriceCheckPredictionEnabled,
-        SettingKeys.PriceCheckEnableAllFilters,
-        SettingKeys.PriceCheckAutoSelectRules,
     };
 
     protected override async Task OnInitializedAsync()

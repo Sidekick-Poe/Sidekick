@@ -42,18 +42,12 @@ public static class DefaultSettings
     public static bool PriceCheckPredictionEnabled => true;
     public static bool UseHardwareAcceleration => true;
 
-    public static bool PriceCheckEnableAllFilters => false;
     public static bool PriceCheckFillDefaultMin => true;
     public static bool PriceCheckFillDefaultMax => false;
-
-    public static string PriceCheckEnableFiltersByRegex => "";
-    public static string PriceCheckAutoSelectRules => "[]";
 
     public static string PriceCheckItemCurrency => "";
 
     public static string PriceCheckBulkCurrency => "divine";
-
-    public static string PriceCheckItemClassFilter => DefaultItemClassFilter.BaseType.GetValueAttribute();
 
     public static double PriceCheckNormalizeValue => .1;
 

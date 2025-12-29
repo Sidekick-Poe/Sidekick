@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
@@ -8,8 +9,28 @@ public sealed class StatFilter : TradeFilter
     public StatFilter(Stat stat)
     {
         Stat = stat;
-        Checked = stat.ApiInformation.FirstOrDefault()?.Category == StatCategory.Fractured;
         Text = stat.Text;
+
+        DefaultAutoSelect = new AutoSelectPreferences()
+        {
+            Mode = AutoSelectMode.Conditionally,
+            Rules =
+            [
+                new AutoSelectRule()
+                {
+                    Checked = true,
+                    Conditions =
+                    [
+                        new AutoSelectCondition()
+                        {
+                            Type = AutoSelectConditionType.StatCategory,
+                            ComparisonType = AutoSelectComparisonType.Equals,
+                            Value = StatCategory.Fractured,
+                        },
+                    ],
+                },
+            ],
+        };
 
         var categories = stat.ApiInformation.Select(x => x.Category).Distinct().ToList();
         if (categories.Any(x => x is StatCategory.Fractured or StatCategory.Desecrated or StatCategory.Crafted))

@@ -76,9 +76,22 @@ public class QualityFilter : IntPropertyFilter
                     [
                         new()
                         {
-                            Type = AutoSelectConditionType.Equals,
+                            Type = AutoSelectConditionType.Rarity,
+                            ComparisonType = AutoSelectComparisonType.Equals,
                             Value = Rarity.Gem,
-                            Expression = x => x.Properties.Rarity,
+                        },
+                    ],
+                },
+                new()
+                {
+                    Checked = true,
+                    Conditions =
+                    [
+                        new()
+                        {
+                            Type = AutoSelectConditionType.Quality,
+                            ComparisonType = AutoSelectComparisonType.GreaterThan,
+                            Value = 20,
                         },
                     ],
                 },

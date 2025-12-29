@@ -44,12 +44,6 @@ public static class SettingKeys
     public const string PriceCheckFillDefaultMax = nameof(PriceCheckFillDefaultMax);
     public const string PriceCheckCompactMode = nameof(PriceCheckCompactMode);
     public const string PriceCheckSidebarWidth = nameof(PriceCheckSidebarWidth);
-    public const string PriceCheckItemClassFilter = nameof(PriceCheckItemClassFilter);
-    public const string PriceCheckEnableAllFilters = nameof(PriceCheckEnableAllFilters);
-    public const string PriceCheckEnableFiltersByRegex = nameof(PriceCheckEnableFiltersByRegex);
-
-    // JSON serialized rules for auto-selecting filters on overlay open
-    public const string PriceCheckAutoSelectRules = nameof(PriceCheckAutoSelectRules);
 
     public const string SaveWindowPositions = nameof(SaveWindowPositions);
 

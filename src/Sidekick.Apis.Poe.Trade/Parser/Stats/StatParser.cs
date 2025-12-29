@@ -8,6 +8,7 @@ using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
 
@@ -309,17 +310,18 @@ public class StatParser
     {
         if (!ItemClassConstants.WithStats.Contains(item.Properties.ItemClass)) return [];
 
-        var enableAllFilters = await settingsService.GetBool(SettingKeys.PriceCheckEnableAllFilters);
+        var autoSelectKey = $"Trade_Filter_Stat_{item.Game.GetValueAttribute()}";
+        var autoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null);
 
         var result = new List<TradeFilter>();
         for (var i = 0; i < item.Stats.Count; i++)
         {
             var stat = item.Stats[i];
-            var filter = new StatFilter(stat);
-            if (enableAllFilters)
+            var filter = new StatFilter(stat)
             {
-                filter.Checked = true;
-            }
+                AutoSelectSettingKey = autoSelectKey,
+                AutoSelect = autoSelect,
+            };
 
             result.Add(filter);
 
