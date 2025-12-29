@@ -1,11 +1,13 @@
 @using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Languages
 @using Sidekick.Common.Browser
 
 <ButtonLink Class="justify-start! p-3 gap-2" OnClick="OpenPoeDb">
-    <Icon Svg="@UiIcons.External"/> @(Item.Game == GameType.PathOfExile1 ? "poedb.tw" : "poe2db.tw")
+    <Icon Svg="@UiIcons.External" /> @(Item.Game == GameType.PathOfExile1 ? "poedb.tw" : "poe2db.tw")
 </ButtonLink>
 
 @inject IBrowserProvider BrowserProvider
+@inject IGameLanguageProvider GameLanguageProvider
 
 @code {
 
@@ -16,11 +18,20 @@
     {
         var poeDbBaseUri = "https://poedb.tw/";
         var poe2DbBaseUri = "https://poe2db.tw/";
-        var poeDbSubUrl = "search?q=";
-        var searchLink = Item.ApiInformation.Name ?? Item.ApiInformation.Type;
         var baseUrl = Item.Game == GameType.PathOfExile1 ? poeDbBaseUri : poe2DbBaseUri;
-        var wikiLink = poeDbSubUrl + searchLink?.Replace(" ", "+");
-        var uri = new Uri(baseUrl + wikiLink);
+        var languageCodeSuffix = GameLanguageProvider.Language.Code switch
+        {
+            "en" => "us/",
+            "es" => "sp/",
+            "zh" => "tw/",
+            "ko" => "kr/",
+            "ja" => "jp/",
+            _ => GameLanguageProvider.Language.Code + "/"
+        };
+
+        var searchLink = Item.ApiInformation.Name ?? Item.ApiInformation.Type;
+        var wikiLink = searchLink?.Replace(" ", "_");
+        var uri = new Uri(baseUrl + languageCodeSuffix + wikiLink);
 
         BrowserProvider.OpenUri(uri);
     }
