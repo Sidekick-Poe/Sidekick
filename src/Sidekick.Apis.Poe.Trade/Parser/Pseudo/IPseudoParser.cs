@@ -8,5 +8,5 @@ public interface IPseudoParser : IInitializableService
 {
     void Parse(Item item);
 
-    List<PseudoFilter> GetFilters(Item item);
+    Task<List<PseudoFilter>> GetFilters(Item item);
 }

@@ -54,17 +54,11 @@
         Filters.Add(new SeparatorFilter());
         Filters.AddRange(await StatParser.GetFilters(Item));
         Filters.Add(new SeparatorFilter());
-        Filters.AddRange(PseudoParser.GetFilters(Item));
+        Filters.AddRange(await PseudoParser.GetFilters(Item));
         Filters.Add(new SeparatorFilter());
         Filters.AddRange(await TradeFilterProvider.GetFilters(Item));
 
         CleanUpSeparatorFilters(Filters);
-
-        foreach (var filter in Filters)
-        {
-            filter.Initialize(Item);
-        }
-        
         TradeService.Clear();
 
         await base.OnParametersSetAsync();

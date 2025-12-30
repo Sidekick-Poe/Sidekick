@@ -76,10 +76,18 @@ public class TradeFilterProvider
         var result = new List<TradeFilter>();
 
         var statusFilter = await serviceProvider.GetRequiredService<PlayerStatusFilterFactory>().GetFilter(item);
-        if (statusFilter != null) result.Add(statusFilter);
+        if (statusFilter != null)
+        {
+            result.Add(statusFilter);
+            statusFilter.Initialize(item);
+        }
 
         var currencyFilter = await serviceProvider.GetRequiredService<CurrencyFilterFactory>().GetFilter(item);
-        if (currencyFilter != null) result.Add(currencyFilter);
+        if (currencyFilter != null)
+        {
+            result.Add(currencyFilter);
+            currencyFilter.Initialize(item);
+        }
 
         if (result.Count == 0) return [];
         return [new ExpandableFilter(TradeCategory.Title, result.ToArray())];

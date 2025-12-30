@@ -138,7 +138,11 @@ public class PropertyParser
             if (definition.ValidItemClasses.Count > 0 && !definition.ValidItemClasses.Contains(item.Properties.ItemClass)) continue;
 
             var filter = await definition.GetFilter(item);
-            if (filter != null) results.Add(filter);
+            if (filter != null)
+            {
+                results.Add(filter);
+                filter.Initialize(item);
+            }
         }
 
         return results;

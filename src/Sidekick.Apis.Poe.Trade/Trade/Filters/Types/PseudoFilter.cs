@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
@@ -9,6 +10,11 @@ public class PseudoFilter : TradeFilter
     {
         Stat = stat;
         Text = stat.Text;
+        
+        DefaultAutoSelect = new AutoSelectPreferences()
+        {
+            Mode = AutoSelectMode.Never,
+        };
     }
 
     public PseudoStat Stat { get; init; }

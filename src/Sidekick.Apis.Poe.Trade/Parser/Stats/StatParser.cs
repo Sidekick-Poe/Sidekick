@@ -324,6 +324,7 @@ public class StatParser
             };
 
             result.Add(filter);
+            filter.Initialize(item);
 
             var isLastFilter = i + 1 == item.Stats.Count;
             if (!isLastFilter)
