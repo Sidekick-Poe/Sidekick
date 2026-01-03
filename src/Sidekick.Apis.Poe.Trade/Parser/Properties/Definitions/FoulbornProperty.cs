@@ -69,8 +69,8 @@ public class FoulbornFilter : TriStatePropertyFilter
                         new()
                         {
                             Type = AutoSelectConditionType.Foulborn,
-                            ComparisonType = AutoSelectComparisonType.Equals,
-                            Value = true,
+                            Comparison = AutoSelectComparisonType.Equals,
+                            Value = true.ToString(),
                         },
                     ],
                 },
@@ -82,8 +82,8 @@ public class FoulbornFilter : TriStatePropertyFilter
                         new()
                         {
                             Type = AutoSelectConditionType.Foulborn,
-                            ComparisonType = AutoSelectComparisonType.Equals,
-                            Value = false,
+                            Comparison = AutoSelectComparisonType.Equals,
+                            Value = false.ToString(),
                         },
                     ],
                 },

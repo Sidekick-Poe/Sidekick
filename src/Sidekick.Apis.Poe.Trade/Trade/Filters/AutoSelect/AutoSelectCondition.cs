@@ -9,18 +9,18 @@ public class AutoSelectCondition : IEquatable<AutoSelectCondition>
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public AutoSelectConditionType Type { get; set; }
 
-    [JsonPropertyName("comparisonType")]
+    [JsonPropertyName("comparison")]
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public AutoSelectComparisonType ComparisonType { get; set; }
+    public AutoSelectComparisonType Comparison { get; set; }
 
     [JsonPropertyName("value")]
-    public object? Value { get; set; }
+    public string? Value { get; set; }
 
     public bool Equals(AutoSelectCondition? other)
     {
         if (ReferenceEquals(null, other)) return false;
         if (ReferenceEquals(this, other)) return true;
-        return ComparisonType == other.ComparisonType && Equals(Value, other.Value) && Type == other.Type;
+        return Comparison == other.Comparison && Equals(Value, other.Value) && Type == other.Type;
     }
 
     public override bool Equals(object? obj)

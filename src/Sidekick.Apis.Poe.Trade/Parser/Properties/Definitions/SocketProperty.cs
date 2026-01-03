@@ -164,8 +164,8 @@ public class SocketFilter : IntPropertyFilter
                             new()
                             {
                                 Type = AutoSelectConditionType.SocketCount,
-                                ComparisonType = AutoSelectComparisonType.GreaterThanOrEqual,
-                                Value = 5,
+                                Comparison = AutoSelectComparisonType.GreaterThanOrEqual,
+                                Value = 5.ToString(),
                             },
                         ],
                     },
@@ -187,8 +187,8 @@ public class SocketFilter : IntPropertyFilter
                             new()
                             {
                                 Type = AutoSelectConditionType.SocketCount,
-                                ComparisonType = AutoSelectComparisonType.GreaterThanOrEqual,
-                                Value = 3,
+                                Comparison = AutoSelectComparisonType.GreaterThanOrEqual,
+                                Value = 3.ToString(),
                             },
                         ],
                     },

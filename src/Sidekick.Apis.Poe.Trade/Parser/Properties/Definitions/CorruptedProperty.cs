@@ -58,8 +58,8 @@ public class CorruptedFilter : TriStatePropertyFilter
                         new()
                         {
                             Type = AutoSelectConditionType.Corrupted,
-                            ComparisonType = AutoSelectComparisonType.Equals,
-                            Value = true,
+                            Comparison = AutoSelectComparisonType.Equals,
+                            Value = true.ToString(),
                         },
                     ],
                 },
@@ -71,8 +71,8 @@ public class CorruptedFilter : TriStatePropertyFilter
                         new()
                         {
                             Type = AutoSelectConditionType.Corrupted,
-                            ComparisonType = AutoSelectComparisonType.Equals,
-                            Value = false,
+                            Comparison = AutoSelectComparisonType.Equals,
+                            Value = false.ToString(),
                         },
                     ],
                 },

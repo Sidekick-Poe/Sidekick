@@ -77,8 +77,8 @@ public class QualityFilter : IntPropertyFilter
                         new()
                         {
                             Type = AutoSelectConditionType.Rarity,
-                            ComparisonType = AutoSelectComparisonType.Equals,
-                            Value = Rarity.Gem,
+                            Comparison = AutoSelectComparisonType.Equals,
+                            Value = Rarity.Gem.ToString(),
                         },
                     ],
                 },
@@ -90,8 +90,8 @@ public class QualityFilter : IntPropertyFilter
                         new()
                         {
                             Type = AutoSelectConditionType.Quality,
-                            ComparisonType = AutoSelectComparisonType.GreaterThan,
-                            Value = 20,
+                            Comparison = AutoSelectComparisonType.GreaterThan,
+                            Value = 20.ToString(),
                         },
                     ],
                 },

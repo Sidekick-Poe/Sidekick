@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
@@ -71,40 +72,55 @@ public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
             AutoSelectConditionType.Stat => filter.Text,
             AutoSelectConditionType.StatCategory when filter is StatFilter statFilter => statFilter.PrimaryCategory,
             AutoSelectConditionType.SocketCount => item.Properties.GetMaximumNumberOfLinks(),
+            AutoSelectConditionType.Value when filter is DoublePropertyFilter doubleFilter => doubleFilter.Value,
+            AutoSelectConditionType.Value when filter is IntPropertyFilter intFilter => intFilter.Value,
+            AutoSelectConditionType.Value when filter is OptionFilter optionFilter => optionFilter.Value,
+            AutoSelectConditionType.Value when filter is PseudoFilter pseudoFilter => pseudoFilter.Stat.Value,
+            AutoSelectConditionType.Value when filter is StatFilter statFilter => statFilter.Stat.AverageValue,
+            AutoSelectConditionType.Value when filter is StringPropertyFilter stringFilter => stringFilter.Value,
             _ => null,
         };
         if (value == null && condition.Value == null) return true;
         if (value == null || condition.Value == null) return false;
 
-        return condition.ComparisonType switch
+        return condition.Comparison switch
         {
             AutoSelectComparisonType.GreaterThan => Compare(value, condition.Value) > 0,
             AutoSelectComparisonType.LesserThan => Compare(value, condition.Value) < 0,
             AutoSelectComparisonType.GreaterThanOrEqual => Compare(value, condition.Value) >= 0,
             AutoSelectComparisonType.LesserThanOrEqual => Compare(value, condition.Value) <= 0,
-            AutoSelectComparisonType.Equals => Equals(value, condition.Value),
+            AutoSelectComparisonType.Equals => Compare(value, condition.Value) == 0,
+            AutoSelectComparisonType.DoesNotEqual => Compare(value, condition.Value) != 0,
             AutoSelectComparisonType.IsContainedIn => IsContainedIn(value, condition.Value),
-            AutoSelectComparisonType.MatchesRegex => IsMatch(value, condition),
-            AutoSelectComparisonType.DoesNotMatchRegex => !IsMatch(value, condition),
+            AutoSelectComparisonType.IsNotContainedIn => !IsContainedIn(value, condition.Value),
+            AutoSelectComparisonType.MatchesRegex => IsMatch(value, condition.Value),
+            AutoSelectComparisonType.DoesNotMatchRegex => !IsMatch(value, condition.Value),
             _ => false,
         };
     }
 
-    private static bool IsMatch(object expressionValue, object conditionValue)
+    private static bool IsMatch(object expressionValue, string conditionValue)
     {
         var value = expressionValue.ToString() ?? string.Empty;
         if (string.IsNullOrEmpty(value)) return false;
 
-        if (conditionValue is not string stringValue) return false;
-
-        return Regex.IsMatch(value, stringValue);
+        return Regex.IsMatch(value, conditionValue);
     }
 
-    private static int Compare(object expressionValue, object conditionValue)
+    private static int Compare(object expressionValue, string conditionValue)
     {
+        var value = expressionValue.ToString() ?? string.Empty;
+        if (string.IsNullOrEmpty(value) && string.IsNullOrEmpty(conditionValue)) return 0;
+        if (string.IsNullOrEmpty(value)) return -1;
+        if (string.IsNullOrEmpty(conditionValue)) return 1;
+
+        if (expressionValue is Enum enumValue)
+        {
+            return string.CompareOrdinal(enumValue.ToString(), conditionValue);
+        }
+
         if (expressionValue is IComparable comparable)
         {
-            // Ensure types match for comparison
             var convertedValue = Convert.ChangeType(conditionValue, expressionValue.GetType());
             return comparable.CompareTo(convertedValue);
         }
@@ -114,10 +130,9 @@ public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
         return expressionDouble.CompareTo(conditionDouble);
     }
 
-    private static bool IsContainedIn(object expressionValue, object conditionValue)
+    private static bool IsContainedIn(object expressionValue, string conditionValue)
     {
-        if (conditionValue is not System.Collections.IEnumerable enumerable) return false;
-
-        return enumerable.Cast<object?>().Contains(expressionValue);
+        var items = JsonSerializer.Deserialize<List<string>>(conditionValue);
+        return items?.Contains(expressionValue.ToString() ?? string.Empty) ?? false;
     }
 }

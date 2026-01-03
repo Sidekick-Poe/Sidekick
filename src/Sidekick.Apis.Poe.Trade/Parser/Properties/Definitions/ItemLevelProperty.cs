@@ -76,20 +76,20 @@ public class ItemLevelFilter : IntPropertyFilter
                             new()
                             {
                                 Type = AutoSelectConditionType.ItemLevel,
-                                ComparisonType = AutoSelectComparisonType.GreaterThanOrEqual,
-                                Value = 80,
+                                Comparison = AutoSelectComparisonType.GreaterThanOrEqual,
+                                Value = 80.ToString(),
                             },
                             new()
                             {
                                 Type = AutoSelectConditionType.MapTier,
-                                ComparisonType = AutoSelectComparisonType.Equals,
-                                Value = 0,
+                                Comparison = AutoSelectComparisonType.Equals,
+                                Value = 0.ToString(),
                             },
                             new()
                             {
                                 Type = AutoSelectConditionType.Rarity,
-                                ComparisonType = AutoSelectComparisonType.LesserThan,
-                                Value = Rarity.Unique,
+                                Comparison = AutoSelectComparisonType.LesserThan,
+                                Value = Rarity.Unique.ToString(),
                             },
                         ],
                     },
@@ -111,20 +111,20 @@ public class ItemLevelFilter : IntPropertyFilter
                             new()
                             {
                                 Type = AutoSelectConditionType.ItemLevel,
-                                ComparisonType = AutoSelectComparisonType.GreaterThanOrEqual,
-                                Value = 82,
+                                Comparison = AutoSelectComparisonType.GreaterThanOrEqual,
+                                Value = 82.ToString(),
                             },
                             new()
                             {
                                 Type = AutoSelectConditionType.MapTier,
-                                ComparisonType = AutoSelectComparisonType.Equals,
-                                Value = 0,
+                                Comparison = AutoSelectComparisonType.Equals,
+                                Value = 0.ToString(),
                             },
                             new()
                             {
                                 Type = AutoSelectConditionType.Rarity,
-                                ComparisonType = AutoSelectComparisonType.LesserThan,
-                                Value = Rarity.Unique,
+                                Comparison = AutoSelectComparisonType.LesserThan,
+                                Value = Rarity.Unique.ToString(),
                             },
                         ],
                     },

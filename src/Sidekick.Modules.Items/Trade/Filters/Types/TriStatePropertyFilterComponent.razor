@@ -1,18 +1,16 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Modules.Items.Localization
 
-<FilterWrapper>
-    <div class="flex flex-nowrap items-center">
-        <div class="grow">
-            <FormTriStateCheckbox @bind-Value="Filter.Checked">
-                <div class="flex items-center gap-1">
-                    <ItemPropertyText Label="@Filter.Text"
-                                      Hint="@Filter.Hint"
-                                      Value="@Value"
-                                      ContentType="@Filter.Type"/>
-                </div>
-            </FormTriStateCheckbox>
-        </div>
+<FilterWrapper Filter="@Filter">
+    <div class="grow">
+        <FormTriStateCheckbox @bind-Value="Filter.Checked">
+            <div class="flex items-center gap-1">
+                <ItemPropertyText Label="@Filter.Text"
+                                  Hint="@Filter.Hint"
+                                  Value="@Value"
+                                  ContentType="@Filter.Type"/>
+            </div>
+        </FormTriStateCheckbox>
     </div>
 </FilterWrapper>
 

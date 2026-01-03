@@ -1,0 +1,46 @@
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
+@using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Localization
+@using Sidekick.Common.Ui.Modal
+@using Sidekick.Modules.Items.AreaInformation.Localization
+
+<Modal>
+    <ActivatorContent>
+        <ButtonIcon AdditionalClasses="ml-0.5 -mr-[6px] invisible group-hover:visible">
+            <Icon Svg="@UiIcons.Settings" Class="text-neutral-500"/>
+        </ButtonIcon>
+    </ActivatorContent>
+    <HeaderContent>
+        <Heading3>@Resources["Area_Settings"]</Heading3>
+    </HeaderContent>
+    <ChildContent>
+        <TextBase>@Resources["Settings_Description"]</TextBase>
+    </ChildContent>
+    <FooterContent>
+        <div class="flex justify-end gap-2">
+            <ButtonPrimary OnClick="context.Hide">@Resources["Close"]</ButtonPrimary>
+        </div>
+    </FooterContent>
+</Modal>
+
+@inject IStringLocalizer<AreaResources> Resources
+@inject IStringLocalizer<UiResources> UiResources
+@inject ISettingsService SettingsService
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public required TradeFilter Filter { get; set; }
+
+    private async Task Save()
+    {
+        if (string.IsNullOrEmpty(Filter.AutoSelectSettingKey)) return;
+
+        await SettingsService.Set(Filter.AutoSelectSettingKey, Filter.AutoSelect);
+    }
+
+}

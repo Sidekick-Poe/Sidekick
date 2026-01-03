@@ -24,8 +24,8 @@ public sealed class StatFilter : TradeFilter
                         new AutoSelectCondition()
                         {
                             Type = AutoSelectConditionType.StatCategory,
-                            ComparisonType = AutoSelectComparisonType.Equals,
-                            Value = StatCategory.Fractured,
+                            Comparison = AutoSelectComparisonType.Equals,
+                            Value = StatCategory.Fractured.ToString(),
                         },
                     ],
                 },

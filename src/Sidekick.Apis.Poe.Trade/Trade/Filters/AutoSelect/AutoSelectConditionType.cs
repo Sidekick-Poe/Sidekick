@@ -34,4 +34,6 @@ public enum AutoSelectConditionType
     AnyStat,
     Stat,
     StatCategory,
+    
+    Value,
 }

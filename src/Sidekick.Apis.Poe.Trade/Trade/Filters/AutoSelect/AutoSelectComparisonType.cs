@@ -7,7 +7,9 @@ public enum AutoSelectComparisonType
     GreaterThanOrEqual,
     LesserThanOrEqual,
     IsContainedIn,
+    IsNotContainedIn,
     Equals,
+    DoesNotEqual,
     MatchesRegex,
     DoesNotMatchRegex,
 }
