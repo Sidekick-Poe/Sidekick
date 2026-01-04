@@ -4,8 +4,8 @@
 @using Sidekick.Apis.Poe.Trade.Parser.Stats
 @using Sidekick.Apis.Poe.Trade.Trade.Filters
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
-@using Sidekick.Modules.Items.Localization
 @using Sidekick.Modules.Items.Trade.Filters.Types
+@using Sidekick.Modules.Items.Trade.Localization
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 
 <div class="flex flex-col h-full">
@@ -17,7 +17,7 @@
                     Influences="Item.Properties.Influences"/>
     </div>
 
-    <div class="grow overflow-y-auto pt-2">
+    <div class="grow overflow-y-auto pt-1">
         @for (var index = 0; index < Filters.Count; index++)
         {
             var filter = Filters[index];
@@ -26,7 +26,7 @@
         }
     </div>
 
-    <div class="flex flex-col items-stretch text-center p-2">
+    <div class="flex flex-col items-stretch text-center px-2 pb-2 pt-1">
         <ButtonPrimary
             OnClick="() => TradeService.SearchItems(Item, Filters)"
             Disabled="TradeService.IsLoading">@Resources["Search"]</ButtonPrimary>

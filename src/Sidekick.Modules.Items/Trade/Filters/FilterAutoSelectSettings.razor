@@ -1,9 +1,16 @@
 @using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Localization
 @using Sidekick.Common.Ui.Modal
-@using Sidekick.Modules.Items.AreaInformation.Localization
+@using Sidekick.Common.Ui.Tabs
+@using Sidekick.Modules.Items.Trade.Localization
+
+@if (string.IsNullOrEmpty(Filter.AutoSelectSettingKey) || AutoSelect == null)
+{
+    return;
+}
 
 <Modal>
     <ActivatorContent>
@@ -12,19 +19,43 @@
         </ButtonIcon>
     </ActivatorContent>
     <HeaderContent>
-        <Heading3>@Resources["Area_Settings"]</Heading3>
+        <Heading3>@Resources["Filter_Settings"]</Heading3>
     </HeaderContent>
     <ChildContent>
-        <TextBase>@Resources["Settings_Description"]</TextBase>
+        <TextBase>@Resources["AutoSelect_Description", Filter.Text]</TextBase>
+
+        <TabList Class="mt-2">
+            @ButtonContent(AutoSelectMode.Default, Resources["AutoSelect_Default"])
+            @if (Filter is TriStatePropertyFilter)
+            {
+                @ButtonContent(AutoSelectMode.Any, Resources["AutoSelect_Any"])
+            }
+            @ButtonContent(AutoSelectMode.Always, Resources["AutoSelect_Always"])
+            @ButtonContent(AutoSelectMode.Never, Resources["AutoSelect_Never"])
+            @ButtonContent(AutoSelectMode.Conditionally, Resources["AutoSelect_Conditionally"])
+        </TabList>
+
+        @if (AutoSelect.Mode == AutoSelectMode.Always)
+        {
+            <TextBase>@Resources["AutoSelect_Always_Description", Filter.Text]</TextBase>
+        }
+        else if (AutoSelect.Mode == AutoSelectMode.Never)
+        {
+            <TextBase>@Resources["AutoSelect_Never_Description", Filter.Text]</TextBase>
+        }
+        else if (AutoSelect.Mode == AutoSelectMode.Any)
+        {
+            <TextBase>@Resources["AutoSelect_Any_Description", Filter.Text]</TextBase>
+        }
     </ChildContent>
     <FooterContent>
         <div class="flex justify-end gap-2">
-            <ButtonPrimary OnClick="context.Hide">@Resources["Close"]</ButtonPrimary>
+            <ButtonPrimary OnClick="context.Hide">@UiResources["Close"]</ButtonPrimary>
         </div>
     </FooterContent>
 </Modal>
 
-@inject IStringLocalizer<AreaResources> Resources
+@inject IStringLocalizer<TradeResources> Resources
 @inject IStringLocalizer<UiResources> UiResources
 @inject ISettingsService SettingsService
 
@@ -35,6 +66,44 @@
 
     [Parameter]
     public required TradeFilter Filter { get; set; }
+
+    private AutoSelectPreferences? AutoSelect
+    {
+        get
+        {
+            if (Filter.AutoSelect?.Mode == AutoSelectMode.Default)
+            {
+                return Filter.DefaultAutoSelect;
+            }
+
+            return Filter.AutoSelect ?? Filter.DefaultAutoSelect;
+        }
+    }
+
+    private AutoSelectMode Mode => Filter.AutoSelect?.Mode ?? AutoSelectMode.Default;
+
+    private RenderFragment ButtonContent(AutoSelectMode mode, string label) =>
+        @<TabItem OnClick="() => UpdateMode(mode)"
+                  Active="mode == Mode"
+                  Text="@label"/>;
+
+    private async Task UpdateMode(AutoSelectMode mode)
+    {
+        if (Filter.AutoSelect == null)
+        {
+            Filter.AutoSelect = new AutoSelectPreferences()
+            {
+                Mode = mode,
+            };
+        }
+        else
+        {
+            Filter.AutoSelect.Mode = mode;
+        }
+
+        await Save();
+        StateHasChanged();
+    }
 
     private async Task Save()
     {

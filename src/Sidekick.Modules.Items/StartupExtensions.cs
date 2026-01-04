@@ -1,8 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common;
 using Sidekick.Modules.Items.Keybinds;
-using Sidekick.Modules.Items.Localization;
 using Sidekick.Modules.Items.Trade;
+using Sidekick.Modules.Items.Trade.Localization;
 namespace Sidekick.Modules.Items;
 
 public static class StartupExtensions

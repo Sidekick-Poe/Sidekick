@@ -9,6 +9,8 @@ public abstract class TradeFilter
     public void Initialize(Item item)
     {
         var autoSelect = AutoSelect ?? DefaultAutoSelect;
+        if (AutoSelect?.Mode == AutoSelectMode.Default) autoSelect = DefaultAutoSelect;
+
         if (autoSelect != null)
         {
             var result = autoSelect.ShouldCheck(item, this);
@@ -37,7 +39,7 @@ public abstract class TradeFilter
 
     public string? AutoSelectSettingKey { get; init; }
 
-    public AutoSelectPreferences? AutoSelect { get; init; }
+    public AutoSelectPreferences? AutoSelect { get; set; }
 
     public AutoSelectPreferences? DefaultAutoSelect { get; init; }
 

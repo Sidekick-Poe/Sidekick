@@ -4,7 +4,7 @@
     </div>
     <div class="grow flex flex-nowrap items-stretch">
         <div id="@LeftContentId"
-             class="relative min-w-80 max-w-140"
+             class="relative min-w-80 max-w-140 overflow-auto"
              style="@(LeftContentWidth != 0 ? $"width: {LeftContentWidth}px" : string.Empty)">
             <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden dark:bg-stone-950">
                 @LeftContent

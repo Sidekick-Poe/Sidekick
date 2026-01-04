@@ -15,7 +15,7 @@
 
 @if (!string.IsNullOrEmpty(Filter.BaseType))
 {
-    <FilterWrapper Filter="@Filter">
+    <FilterWrapper>
         <div class="grow">
             <FormCheckbox Value="!Filter.Checked"
                           ValueChanged="(v)=>Filter.Checked = !v">

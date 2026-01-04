@@ -2,6 +2,7 @@
 
 public enum AutoSelectMode
 {
+    Default,
     Always,
     Never,
     Any,
