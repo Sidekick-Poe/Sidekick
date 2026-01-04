@@ -14,7 +14,7 @@
 
 <Modal>
     <ActivatorContent>
-        <ButtonIcon AdditionalClasses="ml-0.5 -mr-[6px] invisible group-hover:visible">
+        <ButtonIcon AdditionalClasses="@ButtonClasses">
             <Icon Svg="@UiIcons.Settings" Class="text-neutral-500"/>
         </ButtonIcon>
     </ActivatorContent>
@@ -66,6 +66,19 @@
 
     [Parameter]
     public required TradeFilter Filter { get; set; }
+
+    private string ButtonClasses
+    {
+        get
+        {
+            if (Filter is ExpandableFilter)
+            {
+                return "-ml-6 invisible group-hover:visible";
+            }
+
+            return "invisible group-hover:visible";
+        }
+    }
 
     private AutoSelectPreferences? AutoSelect
     {

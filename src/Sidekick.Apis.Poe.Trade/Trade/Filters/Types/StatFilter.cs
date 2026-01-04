@@ -6,31 +6,33 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
 public sealed class StatFilter : TradeFilter
 {
+    public static AutoSelectPreferences GetDefault() => new AutoSelectPreferences()
+    {
+        Mode = AutoSelectMode.Conditionally,
+        Rules =
+        [
+            new AutoSelectRule()
+            {
+                Checked = true,
+                Conditions =
+                [
+                    new AutoSelectCondition()
+                    {
+                        Type = AutoSelectConditionType.StatCategory,
+                        Comparison = AutoSelectComparisonType.Equals,
+                        Value = StatCategory.Fractured.ToString(),
+                    },
+                ],
+            },
+        ],
+    };
+
     public StatFilter(Stat stat)
     {
         Stat = stat;
         Text = stat.Text;
 
-        DefaultAutoSelect = new AutoSelectPreferences()
-        {
-            Mode = AutoSelectMode.Conditionally,
-            Rules =
-            [
-                new AutoSelectRule()
-                {
-                    Checked = true,
-                    Conditions =
-                    [
-                        new AutoSelectCondition()
-                        {
-                            Type = AutoSelectConditionType.StatCategory,
-                            Comparison = AutoSelectComparisonType.Equals,
-                            Value = StatCategory.Fractured.ToString(),
-                        },
-                    ],
-                },
-            ],
-        };
+        DefaultAutoSelect = GetDefault();
 
         var categories = stat.ApiInformation.Select(x => x.Category).Distinct().ToList();
         if (categories.Any(x => x is StatCategory.Fractured or StatCategory.Desecrated or StatCategory.Crafted))

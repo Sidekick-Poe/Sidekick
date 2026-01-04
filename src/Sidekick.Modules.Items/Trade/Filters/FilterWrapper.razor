@@ -1,30 +1,13 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 
-@if (string.IsNullOrEmpty(Filter?.AutoSelectSettingKey) || true)
-{
-    <div
-        class="group duration-200 flex flex-nowrap items-center gap-x-1 transition-colors bg-transparent hover:bg-stone-800 px-2 py-0.5 min-h-6 leading-none @Class">
-        @ChildContent
-        @if (Filter != null)
-        {
-            <FilterAutoSelectSettings Filter="Filter"/>
-        }
-    </div>
-}
-else
-{
-    <Tooltip Placement="TooltipPlacement.Right">
-        <ChildContent>
-            <div
-                class="group duration-200 transition-colors bg-transparent hover:bg-stone-800 px-2 py-0.5 leading-none">
-                @ChildContent
-            </div>
-        </ChildContent>
-        <TooltipContent>
-            <FilterAutoSelectSettings Filter="Filter"/>
-        </TooltipContent>
-    </Tooltip>
-}
+<div
+    class="group relative duration-200 flex flex-nowrap items-center gap-x-1 transition-colors bg-transparent hover:bg-stone-800 pl-2 pr-0.5 py-0.5 min-h-6 leading-none @Class">
+    @ChildContent
+    @if (Filter != null)
+    {
+        <FilterAutoSelectSettings Filter="Filter"/>
+    }
+</div>
 
 @code {
 
