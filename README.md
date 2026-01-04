@@ -8,6 +8,37 @@ A Path of Exile and Path of Exile 2 companion tool. Price check items, check for
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/sidekickpoe)
 
+## Running Sidekick AppImage on Linux
+
+### Prerequisites
+Sidekick requires the following packages to be installed
+
+#### Arch-based
+
+```sh
+sudo pacman -S --needed xsel webkit2gtk-4.1 dotnet-runtime-8.0
+```
+
+#### Ubuntu
+
+```sh
+sudo apt install xsel libwebkit2gtk-4.1-0 dotnet-runtime-8.0
+```
+
+#### Fedora
+
+```sh
+sudo dnf install xsel webkit2gtk4.1 dotnet-runtime-8.0
+```
+
+### Download and run
+
+```sh
+wget https://github.com/Sidekick-Poe/Sidekick/releases/latest/download/Sidekick-linux-stable.AppImage
+chmod +x Sidekick-linux-stable.AppImage
+./Sidekick-linux-stable.AppImage
+```
+
 ## Development
 We accept most PR and ideas. If you want a feature included, create an issue and we will discuss it. We are also available on [Discord](https://discord.gg/R9HyCpV).
 #### Running the code:
