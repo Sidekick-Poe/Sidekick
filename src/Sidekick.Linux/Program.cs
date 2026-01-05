@@ -74,7 +74,7 @@ builder.Services.AddApexCharts();
 builder.Services.AddSingleton<IApplicationService, MockApplicationService>();
 builder.Services.AddSingleton<ITrayProvider, MockTrayProvider>();
 builder.Services.AddSingleton<IViewLocator, X11ViewLocator>();
-builder.Services.AddSingleton<IProcessProvider, X11ProcessProvider>();
+builder.Services.AddSidekickInitializableService<IProcessProvider, X11ProcessProvider>();
 
 #endregion Services
 
