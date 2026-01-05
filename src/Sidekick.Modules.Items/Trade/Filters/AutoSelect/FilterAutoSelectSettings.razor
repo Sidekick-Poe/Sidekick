@@ -19,7 +19,7 @@
         </ButtonIcon>
     </ActivatorContent>
     <HeaderContent>
-        <Heading3>@Resources["Filter_Settings"]</Heading3>
+        <Heading2>@Resources["Filter_Settings"]</Heading2>
     </HeaderContent>
     <ChildContent>
         <TextBase>@Resources["AutoSelect_Description", Filter.Text]</TextBase>
@@ -46,6 +46,39 @@
         else if (AutoSelect.Mode == AutoSelectMode.Any)
         {
             <TextBase>@Resources["AutoSelect_Any_Description", Filter.Text]</TextBase>
+        }
+        else if (AutoSelect.Mode == AutoSelectMode.Conditionally)
+        {
+            <TextBase>@Resources["AutoSelect_Rules_Description", Filter.Text]</TextBase>
+            <div class="flex flex-col gap-2">
+                @foreach (var rule in AutoSelect.Rules)
+                {
+                    <div class="bg-stone-800 rounded-md px-2 py-1">
+                        @for (var i = 0; i < rule.Conditions.Count; i++)
+                        {
+                            var condition = rule.Conditions[i];
+                            <div class="flex flex-nowrap gap-2">
+                                @if (i == 0)
+                                {
+                                    <span class="text-neutral-400">When</span>
+                                }
+                                else
+                                {
+                                    <span class="text-neutral-400">And</span>
+                                }
+                                <div>@condition.Type</div>
+                                <FilterAutoSelectComparisonType Condition="condition"/>
+                                <FilterAutoSelectConditionValue Condition="condition"/>
+                            </div>
+                        }
+
+                        <div class="text-neutral-400 flex flex-nowrap gap-2">
+                            <span class="text-neutral-400">Then</span>
+                            <div>@rule.Checked</div>
+                        </div>
+                    </div>
+                }
+            </div>
         }
     </ChildContent>
     <FooterContent>

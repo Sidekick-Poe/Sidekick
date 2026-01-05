@@ -1,0 +1,12 @@
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
+
+<div>@ComparisonResources[Condition.Comparison.ToString()]</div>
+
+@inject IStringLocalizer<AutoSelectComparisonType> ComparisonResources
+
+@code {
+
+    [Parameter]
+    public required AutoSelectCondition Condition { get; set; }
+
+}

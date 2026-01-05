@@ -2,6 +2,8 @@
 
 public enum AutoSelectComparisonType
 {
+    True,
+    False,
     GreaterThan,
     LesserThan,
     GreaterThanOrEqual,

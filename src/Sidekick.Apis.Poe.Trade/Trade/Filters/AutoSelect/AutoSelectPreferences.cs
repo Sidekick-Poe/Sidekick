@@ -69,7 +69,7 @@ public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
             AutoSelectConditionType.TotalDps => item.Properties.TotalDpsWithQuality,
             AutoSelectConditionType.GemLevel => item.Properties.GemLevel,
             AutoSelectConditionType.AnyStat => string.Join('\n', item.Stats.Select(x => x.Text)),
-            AutoSelectConditionType.Stat => filter.Text,
+            AutoSelectConditionType.Text => filter.Text,
             AutoSelectConditionType.StatCategory when filter is StatFilter statFilter => statFilter.PrimaryCategory,
             AutoSelectConditionType.SocketCount => item.Properties.GetMaximumNumberOfLinks(),
             AutoSelectConditionType.Value when filter is DoublePropertyFilter doubleFilter => doubleFilter.Value,
@@ -80,11 +80,12 @@ public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
             AutoSelectConditionType.Value when filter is StringPropertyFilter stringFilter => stringFilter.Value,
             _ => null,
         };
-        if (value == null && condition.Value == null) return true;
-        if (value == null || condition.Value == null) return false;
+        if (value == null) return false;
 
         return condition.Comparison switch
         {
+            AutoSelectComparisonType.True => value is true,
+            AutoSelectComparisonType.False => value is false,
             AutoSelectComparisonType.GreaterThan => Compare(value, condition.Value) > 0,
             AutoSelectComparisonType.LesserThan => Compare(value, condition.Value) < 0,
             AutoSelectComparisonType.GreaterThanOrEqual => Compare(value, condition.Value) >= 0,
@@ -99,15 +100,15 @@ public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
         };
     }
 
-    private static bool IsMatch(object expressionValue, string conditionValue)
+    private static bool IsMatch(object expressionValue, string? conditionValue)
     {
         var value = expressionValue.ToString() ?? string.Empty;
-        if (string.IsNullOrEmpty(value)) return false;
+        if (string.IsNullOrEmpty(value) || conditionValue == null) return false;
 
         return Regex.IsMatch(value, conditionValue);
     }
 
-    private static int Compare(object expressionValue, string conditionValue)
+    private static int Compare(object expressionValue, string? conditionValue)
     {
         var value = expressionValue.ToString() ?? string.Empty;
         if (string.IsNullOrEmpty(value) && string.IsNullOrEmpty(conditionValue)) return 0;
@@ -130,9 +131,16 @@ public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
         return expressionDouble.CompareTo(conditionDouble);
     }
 
-    private static bool IsContainedIn(object expressionValue, string conditionValue)
+    private static bool IsContainedIn(object expressionValue, string? conditionValue)
     {
-        var items = JsonSerializer.Deserialize<List<string>>(conditionValue);
-        return items?.Contains(expressionValue.ToString() ?? string.Empty) ?? false;
+        try
+        {
+            var items = JsonSerializer.Deserialize<List<string>>(conditionValue ?? "[]");
+            return items?.Contains(expressionValue.ToString() ?? string.Empty) ?? false;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
     }
 }

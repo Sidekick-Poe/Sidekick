@@ -12,6 +12,14 @@ public class ExpandableFilter : TradeFilter
 
     public List<TradeFilter> Filters { get; }
 
+    public override void Initialize(Item item)
+    {
+        foreach (var filter in Filters)
+        {
+            filter.Initialize(item);
+        }
+    }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         foreach (var filter in Filters)

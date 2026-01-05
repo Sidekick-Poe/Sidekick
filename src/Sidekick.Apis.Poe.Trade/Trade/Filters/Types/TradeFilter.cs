@@ -6,26 +6,25 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
 public abstract class TradeFilter
 {
-    public void Initialize(Item item)
+    public virtual void Initialize(Item item)
     {
         var autoSelect = AutoSelect ?? DefaultAutoSelect;
         if (AutoSelect?.Mode == AutoSelectMode.Default) autoSelect = DefaultAutoSelect;
 
-        if (autoSelect != null)
+        if (autoSelect == null)
         {
-            var result = autoSelect.ShouldCheck(item, this);
-            if (this is TriStatePropertyFilter triStateFilter)
-            {
-                triStateFilter.Checked = result;
-            }
-            else
-            {
-                Checked = result ?? false;
-            }
+            Checked = false;
+            return;
+        }
+
+        var result = autoSelect.ShouldCheck(item, this);
+        if (this is TriStatePropertyFilter triStateFilter)
+        {
+            triStateFilter.Checked = result;
         }
         else
         {
-            Checked = false;
+            Checked = result ?? false;
         }
     }
 

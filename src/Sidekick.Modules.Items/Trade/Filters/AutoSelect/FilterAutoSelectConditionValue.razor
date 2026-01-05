@@ -1,0 +1,15 @@
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
+
+@if (Condition.Comparison is AutoSelectComparisonType.True or AutoSelectComparisonType.False)
+{
+    return;
+}
+
+<div>@Condition.Value</div>
+
+@code {
+
+    [Parameter]
+    public required AutoSelectCondition Condition { get; set; }
+
+}
