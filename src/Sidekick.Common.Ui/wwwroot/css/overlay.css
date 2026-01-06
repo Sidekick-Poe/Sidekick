@@ -1,0 +1,119 @@
+.overlay-root {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+html, body,
+.overlay-root {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.overlay-mode body,
+body.overlay-mode,
+.overlay-mode .font-sans {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.overlay-widget {
+  position: absolute;
+  pointer-events: auto;
+  background: rgba(15, 15, 18, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform, left, top, width, height;
+  resize: both;
+  overflow: hidden;
+  min-width: 240px;
+  min-height: 180px;
+}
+
+.overlay-widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  height: 30px;
+  padding: 0 10px;
+  background: rgba(28, 28, 32, 0.95);
+  cursor: move;
+  user-select: none;
+}
+
+.overlay-widget-title {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #e2e8f0;
+}
+
+.overlay-widget-close {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(239, 68, 68, 0.9);
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.overlay-widget-close:hover {
+  background: rgba(220, 38, 38, 0.95);
+}
+
+.overlay-widget-body {
+  width: 100%;
+  height: calc(100% - 30px);
+  background: transparent;
+}
+
+.overlay-widget-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.overlay-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  color: #f8fafc;
+}
+
+.overlay-menu-title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.overlay-menu-actions {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.overlay-menu-button {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(30, 41, 59, 0.8);
+  color: #e2e8f0;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.overlay-menu-button:hover {
+  background: rgba(51, 65, 85, 0.9);
+}

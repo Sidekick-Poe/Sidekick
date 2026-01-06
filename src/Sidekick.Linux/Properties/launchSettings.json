@@ -3,10 +3,14 @@
     "Sidekick.Linux": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "https://localhost:8081/",
-      "applicationUrl": "https://localhost:8081;http://localhost:8080",
+      "launchUrl": "http://127.0.0.1:8080/",
+      "applicationUrl": "http://127.0.0.1:8080",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "WEBKIT_DISABLE_SANDBOX": "1",
+        "WEBKIT_FORCE_SANDBOX": "0",
+        "GTK_USE_PORTAL": "0",
+        "GIO_USE_VFS": "local"
       },
       "dotnetRunMessages": true
     }
