@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="WebWindowNetCore" Version="10.0.16" />
     <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
     <ProjectReference Include="..\Sidekick.Common.Updater\Sidekick.Common.Updater.csproj" />
     <ProjectReference Include="..\Sidekick.Mock\Sidekick.Mock.csproj" />

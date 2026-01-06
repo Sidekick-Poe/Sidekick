@@ -1,0 +1,38 @@
+@using Sidekick.Common.Platform
+@using Sidekick.Common.Ui.Overlay
+@inject OverlayWidgetService WidgetService
+@inject IApplicationService ApplicationService
+@inject ISidekickDialogs Dialogs
+
+<div class="overlay-menu">
+    <div class="overlay-menu-title">Sidekick</div>
+    <div class="overlay-menu-actions">
+        <button class="overlay-menu-button" @onclick="@(() => OpenWidget("/settings"))">Settings</button>
+        <button class="overlay-menu-button" @onclick="@(() => OpenWidget("/wealth"))">Wealth</button>
+        <button class="overlay-menu-button" @onclick="@(() => OpenWidget("/development"))">Development</button>
+        @if (ShowExit)
+        {
+            <button class="overlay-menu-button" @onclick="ConfirmExit">Exit</button>
+        }
+    </div>
+</div>
+
+@code {
+    private void OpenWidget(string url)
+    {
+        WidgetService.OpenWidget(url);
+    }
+
+    private async Task ConfirmExit()
+    {
+        var confirmed = await Dialogs.OpenConfirmationModal("Exit Sidekick?");
+        if (confirmed)
+        {
+            ApplicationService.Shutdown();
+        }
+    }
+
+    private bool ShowExit =>
+        OperatingSystem.IsLinux()
+        || string.Equals(ApplicationService.GetType().Name, "MockApplicationService", StringComparison.Ordinal);
+}

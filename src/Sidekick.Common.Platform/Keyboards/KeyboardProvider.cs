@@ -225,11 +225,7 @@ namespace Sidekick.Common.Platform.Keyboards
             // Make sure the key is one we recognize and validate the event and keybinds
             if (!keyMappings.TryGetValue(args.RawEvent.Keyboard.KeyCode, out var key)
                 || modifierKeys.IsMatch(key)
-                || processProvider is
-                {
-                    IsPathOfExileInFocus: false,
-                    IsSidekickInFocus: false
-                })
+                || !processProvider.IsPathOfExileInFocus)
             {
                 return;
             }

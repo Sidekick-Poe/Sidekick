@@ -52,6 +52,8 @@ public static class SettingKeys
 
     public const string SaveWindowPositions = nameof(SaveWindowPositions);
 
+    public const string OverlayWidgetLayouts = nameof(OverlayWidgetLayouts);
+
     public const string WealthEnabled = nameof(WealthEnabled);
     public const string WealthTrackedTabs = nameof(WealthTrackedTabs);
     public const string WealthItemTotalMinimum = nameof(WealthItemTotalMinimum);

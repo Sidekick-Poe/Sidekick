@@ -1,0 +1,113 @@
+@page "/overlay"
+@using Sidekick.Common.Ui.Overlay
+@inject OverlayWidgetService WidgetService
+@inject IOverlayInputRegionService InputRegionService
+@inject IJSRuntime JsRuntime
+@implements IDisposable
+
+<div id="overlay-root" class="overlay-root">
+    @foreach (var widget in widgets)
+    {
+        <div class="overlay-widget"
+             data-widget-id="@widget.Id"
+             style="left:@($"{widget.X}px"); top:@($"{widget.Y}px"); width:@($"{widget.Width}px"); height:@($"{widget.Height}px");">
+            <div class="overlay-widget-header">
+                <span class="overlay-widget-title">@widget.Title</span>
+                @if (!widget.IsMenu)
+                {
+                    <button class="overlay-widget-close" @onclick="() => CloseWidget(widget.Id)">x</button>
+                }
+            </div>
+            <div class="overlay-widget-body">
+                @if (widget.IsMenu)
+                {
+                    <OverlayMenuWidget />
+                }
+                else if (!string.IsNullOrEmpty(widget.Url))
+                {
+                    <iframe src="@widget.Url" class="overlay-widget-frame"></iframe>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private IReadOnlyList<OverlayWidgetService.OverlayWidgetState> widgets = Array.Empty<OverlayWidgetService.OverlayWidgetState>();
+    private DotNetObjectReference<OverlayHost>? dotNetRef;
+    private bool initialized;
+
+    protected override void OnInitialized()
+    {
+        WidgetService.WidgetsChanged += OnWidgetsChanged;
+        WidgetService.EnsureMenuWidget();
+        widgets = WidgetService.Widgets;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        dotNetRef = DotNetObjectReference.Create(this);
+        await JsRuntime.InvokeVoidAsync("sidekickOverlay.init", dotNetRef);
+    }
+
+    private void OnWidgetsChanged()
+    {
+        widgets = WidgetService.Widgets;
+        var regions = widgets
+            .Select(w => new OverlayRegion(w.X, w.Y, w.Width, w.Height))
+            .ToList();
+        InputRegionService.UpdateRegions(regions);
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void CloseWidget(Guid id)
+    {
+        WidgetService.CloseWidget(id);
+    }
+
+    [JSInvokable]
+    public void UpdateViewport(int width, int height)
+    {
+        WidgetService.SetViewportSize(width, height);
+    }
+
+    [JSInvokable]
+    public void UpdateWidgetBounds(List<OverlayWidgetRect> rects)
+    {
+        if (rects == null || rects.Count == 0)
+        {
+            InputRegionService.UpdateRegions(Array.Empty<OverlayRegion>());
+            return;
+        }
+
+        foreach (var rect in rects)
+        {
+            WidgetService.UpdateBounds(rect.Id, rect.X, rect.Y, rect.Width, rect.Height);
+        }
+
+        var regions = WidgetService.Widgets
+            .Select(w => new OverlayRegion(w.X, w.Y, w.Width, w.Height))
+            .ToList();
+        InputRegionService.UpdateRegions(regions);
+    }
+
+    public void Dispose()
+    {
+        WidgetService.WidgetsChanged -= OnWidgetsChanged;
+        dotNetRef?.Dispose();
+    }
+
+    public sealed class OverlayWidgetRect
+    {
+        public Guid Id { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+    }
+}

@@ -6,8 +6,10 @@
 @using Sidekick.Modules.Trade.Components.Bulk
 @using Sidekick.Modules.Trade.Components.Items
 @using Sidekick.Modules.Trade.Settings
+@using Microsoft.Extensions.Logging
 
 @inherits Sidekick.Common.Ui.Views.SidekickView
+@inject ILogger<Prices> Logger
 
 <AppTitle Title="@Resources.Trade" />
 
@@ -74,7 +76,18 @@
             return;
         }
 
-        await PriceCheckService.Initialize(ItemText.DecodeBase64Url() ?? string.Empty);
+        string decodedItem;
+        try
+        {
+            decodedItem = ItemText.DecodeBase64Url() ?? string.Empty;
+        }
+        catch (FormatException ex)
+        {
+            Logger.LogWarning(ex, "[Trade] Invalid item payload in URL.");
+            return;
+        }
+
+        await PriceCheckService.Initialize(decodedItem);
     }
 
     private async Task OnLeftContentResize(int width)
