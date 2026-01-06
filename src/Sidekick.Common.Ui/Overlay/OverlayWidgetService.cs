@@ -46,11 +46,9 @@ public sealed class OverlayWidgetService(
         }
 
         initialized = true;
-        var savedLayouts = await settingsService.GetObject<List<OverlayWidgetLayout>>(SettingKeys.OverlayWidgetLayouts);
-        if (savedLayouts == null)
-        {
-            return;
-        }
+        var savedLayouts = await settingsService.GetObject(
+            SettingKeys.OverlayWidgetLayouts,
+            () => new List<OverlayWidgetLayout>());
 
         foreach (var layout in savedLayouts)
         {

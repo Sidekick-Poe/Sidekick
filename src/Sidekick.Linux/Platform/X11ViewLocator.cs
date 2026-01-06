@@ -7,6 +7,7 @@ using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common;
+using Sidekick.Common.Platform;
 using Sidekick.Common.Ui.Overlay;
 using Sidekick.Common.Ui.Views;
 
@@ -14,7 +15,8 @@ namespace Sidekick.Linux.Platform;
 
 public sealed class X11ViewLocator(
     ILogger<X11ViewLocator> logger,
-    IServiceProvider serviceProvider) : IViewLocator, IOverlayInputRegionService, IOverlayVisibilityService, IDisposable
+    IServiceProvider serviceProvider,
+    IProcessProvider processProvider) : IViewLocator, IOverlayInputRegionService, IOverlayVisibilityService, IDisposable
 {
     private readonly object syncLock = new();
     private IntPtr display = IntPtr.Zero;
@@ -25,149 +27,75 @@ public sealed class X11ViewLocator(
     private bool dependencyDialogShown;
     private bool kdeRuleApplied;
     private IReadOnlyList<OverlayRegion> pendingRegions = Array.Empty<OverlayRegion>();
+    private readonly Dictionary<SidekickViewType, Guid> openWidgets = new();
     private int lastOverlayX;
     private int lastOverlayY;
     private int lastOverlayWidth;
     private int lastOverlayHeight;
     private DateTimeOffset lastOverlayRaise;
+    private Timer? overlayMonitor;
+    private int overlayMonitorActive;
 
-    public Task Open(string url)
+    public bool SupportsMinimize => false;
+
+    public bool SupportsMaximize => false;
+
+    public void Open(SidekickViewType type, string url)
     {
         if (string.IsNullOrEmpty(url))
         {
-            return Task.CompletedTask;
+            return;
         }
 
         if (!TryEnsureDisplay())
         {
-            return Task.CompletedTask;
+            return;
         }
 
         EnsureOverlayWindow();
         var widgetService = serviceProvider.GetService<OverlayWidgetService>();
         if (widgetService == null)
         {
-            return Task.CompletedTask;
+            return;
         }
 
         if (url == "/overlay" || url == "/")
         {
             widgetService.EnsureMenuWidget();
-            return Task.CompletedTask;
+            return;
         }
 
-        widgetService.OpenWidget(url);
-        return Task.CompletedTask;
-    }
-
-    public Task Initialize(SidekickView view)
-    {
-        return Task.CompletedTask;
-    }
-
-    public Task Minimize(SidekickView view)
-    {
-        return Task.CompletedTask;
-    }
-
-    public Task Maximize(SidekickView view)
-    {
-        return Task.CompletedTask;
-    }
-
-    public Task Close(SidekickView view)
-    {
-        CloseWidgetForView(view);
-        return Task.CompletedTask;
-    }
-
-    public Task CloseAll()
-    {
-        CloseAllOverlays();
-        return Task.CompletedTask;
-    }
-
-    public Task CloseAllOverlays()
-    {
-        var widgetService = serviceProvider.GetService<OverlayWidgetService>();
-        if (widgetService != null)
+        if (openWidgets.TryGetValue(type, out var existingId))
         {
-            widgetService.ClearWidgets();
-            widgetService.EnsureMenuWidget();
+            widgetService.CloseWidget(existingId);
+            openWidgets.Remove(type);
         }
-        return Task.CompletedTask;
+
+        var widget = widgetService.OpenWidget(url);
+        openWidgets[type] = widget.Id;
     }
 
-    private void CloseWidgetForView(SidekickView view)
+    public void Close(SidekickViewType type)
     {
+        if (type == SidekickViewType.Overlay)
+        {
+            SetOverlayVisible(false);
+            return;
+        }
+
+        if (!openWidgets.TryGetValue(type, out var widgetId))
+        {
+            return;
+        }
+
         var widgetService = serviceProvider.GetService<OverlayWidgetService>();
         if (widgetService == null)
         {
             return;
         }
 
-        var viewPath = GetPathAndQuery(view.NavigationManager?.Uri)
-            ?? GetPathAndQuery(view.CurrentView?.Url);
-        if (string.IsNullOrEmpty(viewPath))
-        {
-            return;
-        }
-
-        var widget = widgetService.Widgets
-            .FirstOrDefault(candidate => IsUrlMatch(candidate.Url, viewPath));
-        if (widget == null)
-        {
-            return;
-        }
-
-        widgetService.CloseWidget(widget.Id);
-    }
-
-    private static bool IsUrlMatch(string? widgetUrl, string viewPath)
-    {
-        if (string.IsNullOrEmpty(widgetUrl))
-        {
-            return false;
-        }
-
-        var widgetPath = GetPathAndQuery(widgetUrl);
-        if (string.IsNullOrEmpty(widgetPath))
-        {
-            return false;
-        }
-
-        if (string.Equals(widgetPath, viewPath, StringComparison.OrdinalIgnoreCase))
-        {
-            return true;
-        }
-
-        if (!viewPath.StartsWith(widgetPath, StringComparison.OrdinalIgnoreCase))
-        {
-            return false;
-        }
-
-        return viewPath.Length == widgetPath.Length
-            || viewPath[widgetPath.Length] == '/';
-    }
-
-    private static string? GetPathAndQuery(string? url)
-    {
-        if (string.IsNullOrEmpty(url))
-        {
-            return null;
-        }
-
-        if (Uri.TryCreate(url, UriKind.Absolute, out var absolute))
-        {
-            return absolute.PathAndQuery;
-        }
-
-        if (Uri.TryCreate(url, UriKind.Relative, out var relative))
-        {
-            return relative.ToString();
-        }
-
-        return url;
+        widgetService.CloseWidget(widgetId);
+        openWidgets.Remove(type);
     }
 
     public bool IsOverlayOpened()
@@ -213,6 +141,7 @@ public sealed class X11ViewLocator(
 
         if (isVisible)
         {
+            EnsureOverlayMonitor();
             UpdateOverlayBounds();
             ApplyWindowType(overlayWindow);
             ApplyWindowState(overlayWindow);
@@ -225,6 +154,7 @@ public sealed class X11ViewLocator(
         }
         else
         {
+            StopOverlayMonitor();
             XUnmapWindow(display, overlayWindow);
         }
 
@@ -233,6 +163,7 @@ public sealed class X11ViewLocator(
 
     public void Dispose()
     {
+        StopOverlayMonitor();
         if (display != IntPtr.Zero)
         {
             XCloseDisplay(display);
@@ -246,21 +177,42 @@ public sealed class X11ViewLocator(
         {
             if (overlayHost != null)
             {
+                if (!overlayHost.IsRunning)
+                {
+                    overlayHost = null;
+                    overlayWindow = IntPtr.Zero;
+                }
+                else if (overlayWindow != IntPtr.Zero && !IsWindowAlive(overlayWindow))
+                {
+                    overlayWindow = IntPtr.Zero;
+                }
+                else if (overlayWindow != IntPtr.Zero)
+                {
+                    return;
+                }
+            }
+
+            var hasHost = overlayHost != null;
+            if (!hasHost)
+            {
+                GetOverlayBounds(out var x, out var y, out var width, out var height, ShouldUseActiveWindowForBounds());
+
+                var overlayUrl = BuildAbsoluteUrl("/overlay");
+                if (!Uri.TryCreate(overlayUrl, UriKind.Absolute, out _))
+                {
+                    overlayUrl = "http://127.0.0.1:8080/overlay";
+                    logger.LogWarning("[Linux/X11] Overlay URL was not absolute; falling back to {Url}", overlayUrl);
+                }
+                logger.LogInformation("[Linux/X11] Launching overlay window at {Url}", overlayUrl);
+
+                overlayHost = new WebWindowHost(overlayUrl, "Sidekick Overlay", width, height, logger);
+                overlayHost.Show();
+            }
+
+            if (overlayHost == null)
+            {
                 return;
             }
-
-            GetOverlayBounds(out var x, out var y, out var width, out var height);
-
-            var overlayUrl = BuildAbsoluteUrl("/overlay");
-            if (!Uri.TryCreate(overlayUrl, UriKind.Absolute, out _))
-            {
-                overlayUrl = "http://127.0.0.1:8080/overlay";
-                logger.LogWarning("[Linux/X11] Overlay URL was not absolute; falling back to {Url}", overlayUrl);
-            }
-            logger.LogInformation("[Linux/X11] Launching overlay window at {Url}", overlayUrl);
-
-            overlayHost = new WebWindowHost(overlayUrl, "Sidekick Overlay", width, height, logger);
-            overlayHost.Show();
 
             overlayWindow = WaitForWindowByTitle(overlayHost.Title, TimeSpan.FromSeconds(4));
             if (overlayWindow == IntPtr.Zero)
@@ -269,11 +221,12 @@ public sealed class X11ViewLocator(
                 return;
             }
 
+            GetOverlayBounds(out var resolvedX, out var resolvedY, out var resolvedWidth, out var resolvedHeight, ShouldUseActiveWindowForBounds());
             logger.LogInformation("[Linux/X11] Resolved overlay window handle: {Handle}", overlayWindow);
             ApplyWindowType(overlayWindow);
             ApplyWindowState(overlayWindow);
             ApplyNoDecorations(overlayWindow);
-            XMoveResizeWindow(display, overlayWindow, x, y, (uint)Math.Max(1, width), (uint)Math.Max(1, height));
+            XMoveResizeWindow(display, overlayWindow, resolvedX, resolvedY, (uint)Math.Max(1, resolvedWidth), (uint)Math.Max(1, resolvedHeight));
             ApplyInputRegions(overlayWindow, pendingRegions);
             TryApplyKdeWindowRule();
             if (!overlayVisible)
@@ -291,21 +244,16 @@ public sealed class X11ViewLocator(
             return;
         }
 
-        GetOverlayBounds(out var x, out var y, out var width, out var height);
+        GetOverlayBounds(out var x, out var y, out var width, out var height, ShouldUseActiveWindowForBounds());
         XMoveResizeWindow(display, overlayWindow, x, y, (uint)Math.Max(1, width), (uint)Math.Max(1, height));
         XFlush(display);
     }
 
-    private void GetOverlayBounds(out int x, out int y, out int width, out int height)
+    private void GetOverlayBounds(out int x, out int y, out int width, out int height, bool allowActiveWindow)
     {
-        if (TryGetActiveWindowBounds(out var activeX, out var activeY, out var activeWidth, out var activeHeight)
+        if (allowActiveWindow
+            && TryGetActiveWindowBounds(out var activeX, out var activeY, out var activeWidth, out var activeHeight)
             && TryGetMonitorBoundsForPoint(activeX + (activeWidth / 2), activeY + (activeHeight / 2), out x, out y, out width, out height))
-        {
-            StoreLastOverlayBounds(x, y, width, height);
-            return;
-        }
-
-        if (TryGetPrimaryMonitorBounds(out x, out y, out width, out height))
         {
             StoreLastOverlayBounds(x, y, width, height);
             return;
@@ -320,12 +268,28 @@ public sealed class X11ViewLocator(
             return;
         }
 
+        if (TryGetPrimaryMonitorBounds(out x, out y, out width, out height))
+        {
+            StoreLastOverlayBounds(x, y, width, height);
+            return;
+        }
+
         var screen = XDefaultScreen(display);
         x = 0;
         y = 0;
         width = XDisplayWidth(display, screen);
         height = XDisplayHeight(display, screen);
         StoreLastOverlayBounds(x, y, width, height);
+    }
+
+    private bool ShouldUseActiveWindowForBounds()
+    {
+        if (processProvider.IsPathOfExileInFocus)
+        {
+            return true;
+        }
+
+        return lastOverlayWidth == 0 || lastOverlayHeight == 0;
     }
 
     private void StoreLastOverlayBounds(int x, int y, int width, int height)
@@ -575,6 +539,16 @@ public sealed class X11ViewLocator(
         width = (int)winWidth;
         height = (int)winHeight;
         return true;
+    }
+
+    private bool IsWindowAlive(IntPtr window)
+    {
+        if (display == IntPtr.Zero || window == IntPtr.Zero)
+        {
+            return false;
+        }
+
+        return XGetWindowAttributes(display, window, out _) != 0;
     }
 
     private static IntPtr ReadWindowId(IntPtr data)
@@ -1244,7 +1218,50 @@ public sealed class X11ViewLocator(
         });
     }
 
+    private void EnsureOverlayMonitor()
+    {
+        if (overlayMonitor != null)
+        {
+            return;
+        }
+
+        overlayMonitor = new Timer(_ => MonitorOverlay(), null, OverlayMonitorInterval, OverlayMonitorInterval);
+    }
+
+    private void StopOverlayMonitor()
+    {
+        overlayMonitor?.Dispose();
+        overlayMonitor = null;
+    }
+
+    private void MonitorOverlay()
+    {
+        if (Interlocked.Exchange(ref overlayMonitorActive, 1) == 1)
+        {
+            return;
+        }
+
+        try
+        {
+            if (!overlayVisible)
+            {
+                return;
+            }
+
+            SetOverlayVisible(true);
+        }
+        catch (Exception ex)
+        {
+            logger.LogDebug(ex, "[Linux/X11] Overlay monitor refresh failed.");
+        }
+        finally
+        {
+            Interlocked.Exchange(ref overlayMonitorActive, 0);
+        }
+    }
+
     private static readonly TimeSpan OverlayRaiseInterval = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan OverlayMonitorInterval = TimeSpan.FromSeconds(2);
     private const int Success = 0;
     private const int PropModeReplace = 0;
     private const int ShapeSet = 0;
@@ -1265,6 +1282,34 @@ public sealed class X11ViewLocator(
         public short Y;
         public ushort Width;
         public ushort Height;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct XWindowAttributes
+    {
+        public int X;
+        public int Y;
+        public int Width;
+        public int Height;
+        public int BorderWidth;
+        public int Depth;
+        public IntPtr Visual;
+        public IntPtr Root;
+        public int Class;
+        public int BitGravity;
+        public int WinGravity;
+        public int BackingStore;
+        public UIntPtr BackingPlanes;
+        public UIntPtr BackingPixel;
+        public int SaveUnder;
+        public IntPtr Colormap;
+        public int MapInstalled;
+        public int MapState;
+        public long AllEventMasks;
+        public long YourEventMask;
+        public long DoNotPropagateMask;
+        public int OverrideRedirect;
+        public IntPtr Screen;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -1379,6 +1424,12 @@ public sealed class X11ViewLocator(
         out UIntPtr nitems,
         out UIntPtr bytesAfter,
         out IntPtr prop);
+
+    [DllImport("libX11.so.6", EntryPoint = "XGetWindowAttributes")]
+    private static extern int XGetWindowAttributes(
+        IntPtr display,
+        IntPtr window,
+        out XWindowAttributes windowAttributes);
 
     [DllImport("libX11.so.6", EntryPoint = "XFetchName")]
     private static extern int XFetchName(IntPtr display, IntPtr window, out IntPtr windowName);

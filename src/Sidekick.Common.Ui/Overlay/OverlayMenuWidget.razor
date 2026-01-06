@@ -7,7 +7,7 @@
 <div class="overlay-menu">
     <div class="overlay-menu-title">Sidekick</div>
     <div class="overlay-menu-actions">
-        <button class="overlay-menu-button" @onclick="@(() => OpenWidget("/settings"))">Settings</button>
+        <button class="overlay-menu-button" @onclick="@(() => OpenWidget("/settings/application"))">Settings</button>
         <button class="overlay-menu-button" @onclick="@(() => OpenWidget("/wealth"))">Wealth</button>
         <button class="overlay-menu-button" @onclick="@(() => OpenWidget("/development"))">Development</button>
         @if (ShowExit)
@@ -32,7 +32,5 @@
         }
     }
 
-    private bool ShowExit =>
-        OperatingSystem.IsLinux()
-        || string.Equals(ApplicationService.GetType().Name, "MockApplicationService", StringComparison.Ordinal);
+    private bool ShowExit => OperatingSystem.IsLinux();
 }

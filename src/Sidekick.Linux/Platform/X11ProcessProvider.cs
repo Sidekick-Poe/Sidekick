@@ -28,7 +28,11 @@ public class X11ProcessProvider(ILogger<X11ProcessProvider> logger) : IProcessPr
 
     public string? ClientLogPath => null;
 
-    public bool IsPathOfExileInFocus => IsActiveWindowMatch("Path of Exile", "Path of Exile 2");
+    public bool IsPathOfExileInFocus => IsActiveWindowMatch(
+        "Path of Exile",
+        "Path of Exile 2",
+        "Path of Exiles",
+        "Path of Exiles 2");
 
     public bool IsSidekickInFocus => IsActiveWindowMatch("Sidekick");
 

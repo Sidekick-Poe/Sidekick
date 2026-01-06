@@ -30,6 +30,8 @@ internal sealed class WebWindowHost
 
     public string Title => title;
 
+    public bool IsRunning => thread?.IsAlive == true;
+
     public void Show()
     {
         if (thread != null)

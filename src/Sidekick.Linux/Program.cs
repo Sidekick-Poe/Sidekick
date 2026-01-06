@@ -1,29 +1,30 @@
 using ApexCharts;
+using Sidekick.Apis.Common;
 using Sidekick.Apis.GitHub;
 using Sidekick.Apis.Poe;
+using Sidekick.Apis.Poe.Account;
+using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe2Scout;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoePriceInfo;
 using Sidekick.Apis.PoeWiki;
-using Sidekick.Common.Updater;
 using Sidekick.Common;
-using Sidekick.Common.Blazor;
+using Sidekick.Common.Browser;
 using Sidekick.Common.Database;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Interprocess;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Overlay;
 using Sidekick.Common.Ui.Views;
+using Sidekick.Common.Updater;
+using Sidekick.Linux;
 using Sidekick.Linux.Platform;
-using Sidekick.Mock;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
-using Sidekick.Modules.Maps;
-using Sidekick.Modules.Trade;
+using Sidekick.Modules.Items;
+using Sidekick.Modules.RegexHotkeys;
 using Sidekick.Modules.Wealth;
-using Sidekick.Linux;
-using Microsoft.Extensions.FileProviders;
-using System.Reflection;
 using Velopack;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
@@ -45,21 +46,19 @@ builder.Services
 
     // Common
     .AddSidekickCommon()
-    .AddSidekickCommonBlazor()
+    .AddSidekickCommonBrowser()
     .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
     .AddSidekickCommonUi()
-    .AddSidekickCommonPlatform(o =>
-    {
-        var iconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
-        o.WindowsIconPath = iconPath;
-        o.OsxIconPath = iconPath;
-    })
     .AddSingleton<IInterprocessService, InterprocessService>()
 
     // Apis
     .AddSidekickGitHubApi()
+    .AddSidekickCommonApi()
     .AddSidekickPoeApi()
+    .AddSidekickPoeAccountApi()
+    .AddSidekickPoeTradeApi()
     .AddSidekickPoeNinjaApi()
+    .AddSidekickPoe2ScoutApi()
     .AddSidekickPoePriceInfoApi()
     .AddSidekickPoeWikiApi()
     .AddSidekickUpdater()
@@ -67,23 +66,31 @@ builder.Services
     // Modules
     .AddSidekickChat()
     .AddSidekickDevelopment()
+    .AddSidekickRegexHotkeys()
     .AddSidekickGeneral()
-    .AddSidekickMaps()
-    .AddSidekickTrade()
-    .AddSidekickWealth();
+    .AddSidekickItems()
+    .AddSidekickWealth()
+
+    // Platform (after modules so input handlers are registered)
+    .AddSidekickCommonPlatform(o =>
+    {
+        var iconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
+        o.WindowsIconPath = iconPath;
+        o.OsxIconPath = iconPath;
+    });
 
 builder.Services.AddApexCharts();
 
-builder.Services.AddSingleton<IApplicationService, MockApplicationService>();
-builder.Services.AddSingleton<ITrayProvider, MockTrayProvider>();
+builder.Services.AddSidekickInitializableService<IApplicationService, LinuxApplicationService>();
+builder.Services.AddSidekickInitializableService<LinuxOverlayDefaultsInitializer, LinuxOverlayDefaultsInitializer>();
 builder.Services.AddSingleton<IViewLocator, X11ViewLocator>();
 builder.Services.AddSingleton(sp => (X11ViewLocator)sp.GetRequiredService<IViewLocator>());
 builder.Services.AddSingleton<IOverlayInputRegionService>(sp => sp.GetRequiredService<X11ViewLocator>());
 builder.Services.AddSingleton<IOverlayVisibilityService>(sp => sp.GetRequiredService<X11ViewLocator>());
-builder.Services.AddSidekickInitializableService<OverlayWidgetService>();
+builder.Services.AddSidekickInitializableService<OverlayWidgetService, OverlayWidgetService>();
 if (string.IsNullOrEmpty(startupUrl))
 {
-    builder.Services.AddSidekickInitializableService<LinuxOverlayFocusWatcher>();
+    builder.Services.AddSidekickInitializableService<LinuxOverlayFocusWatcher, LinuxOverlayFocusWatcher>();
 }
 if (!string.IsNullOrEmpty(startupUrl))
 {
@@ -97,8 +104,6 @@ builder.Services.AddSidekickInitializableService<IProcessProvider, X11ProcessPro
 var app = builder.Build();
 
 #region Pipeline
-
-app.Services.GetRequiredService<IInterprocessService>().StartReceiving();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 

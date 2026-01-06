@@ -45,7 +45,7 @@ public sealed class LinuxOverlayFocusWatcher(
             if (shouldShow && !overlayInitialized)
             {
                 overlayInitialized = true;
-                _ = viewLocator.Open("/overlay");
+                viewLocator.Open(SidekickViewType.Overlay, "/overlay");
             }
 
             if (shouldShow != overlayVisible)

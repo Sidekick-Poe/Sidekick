@@ -12,15 +12,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="WebWindowNetCore" Version="10.0.16" />
+    <PackageReference Include="WebWindowNetCore" />
+    <ProjectReference Include="..\Sidekick.Common.Browser\Sidekick.Common.Browser.csproj" />
     <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
     <ProjectReference Include="..\Sidekick.Common.Updater\Sidekick.Common.Updater.csproj" />
-    <ProjectReference Include="..\Sidekick.Mock\Sidekick.Mock.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.Chat\Sidekick.Modules.Chat.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.Development\Sidekick.Modules.Development.csproj" />
+    <ProjectReference Include="..\Sidekick.Modules.RegexHotkeys\Sidekick.Modules.RegexHotkeys.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.General\Sidekick.Modules.General.csproj" />
-    <ProjectReference Include="..\Sidekick.Modules.Maps\Sidekick.Modules.Maps.csproj" />
-    <ProjectReference Include="..\Sidekick.Modules.Trade\Sidekick.Modules.Trade.csproj" />
+    <ProjectReference Include="..\Sidekick.Modules.Items\Sidekick.Modules.Items.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj" />
   </ItemGroup>
 

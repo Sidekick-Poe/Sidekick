@@ -28,7 +28,7 @@ public sealed class LinuxStartupWindowService(
             _ = Task.Run(async () =>
             {
                 await Task.Delay(250, CancellationToken.None);
-                await viewLocator.Open(url);
+                viewLocator.Open(SidekickViewType.Overlay, url);
                 overlayVisibilityService.SetOverlayVisible(true);
             });
         });
