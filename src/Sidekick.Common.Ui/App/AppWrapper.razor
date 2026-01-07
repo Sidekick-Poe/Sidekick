@@ -12,6 +12,7 @@
 
 @inject IJSRuntime JsRuntime
 @inject ISettingsService SettingsService
+@inject ICurrentView CurrentView
 @implements IAsyncDisposable
 
 @code {
@@ -26,6 +27,7 @@
     protected override void OnInitialized()
     {
         SettingsService.OnSettingsChanged += SettingsServiceOnOnSettingsChanged;
+        CurrentView.Closed += CurrentViewOnClosed;
         base.OnInitialized();
     }
 
@@ -54,6 +56,7 @@
             {
                 Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Common.Ui/App/AppWrapper.razor.js");
                 ZoomHandler = await Module.InvokeAsync<IJSObjectReference>("initializeZoomHandling");
+                await Module.InvokeVoidAsync("initializeEmbedHandling");
                 await UpdateZoom();
             }
             catch (Exception)
@@ -78,6 +81,27 @@
         }
 
         SettingsService.OnSettingsChanged -= SettingsServiceOnOnSettingsChanged;
+        CurrentView.Closed -= CurrentViewOnClosed;
+    }
+
+    private void CurrentViewOnClosed()
+    {
+        _ = NotifyOverlayCloseAsync();
+    }
+
+    private async Task NotifyOverlayCloseAsync()
+    {
+        try
+        {
+            Module ??= await JsRuntime.InvokeAsync<IJSObjectReference>(
+                "import",
+                "./_content/Sidekick.Common.Ui/App/AppWrapper.razor.js");
+            await Module.InvokeVoidAsync("notifyOverlayClose");
+        }
+        catch (Exception)
+        {
+            // Ignore if the JS runtime is unavailable or disposed.
+        }
     }
 
 }

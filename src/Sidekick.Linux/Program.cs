@@ -27,6 +27,10 @@ using Sidekick.Modules.RegexHotkeys;
 using Sidekick.Modules.Wealth;
 using Velopack;
 
+// Ubuntu 24.04 blocks unprivileged user namespaces, so default to disabling WebKit sandbox
+// and allow explicit opt-in via SIDEKICK_WEBKIT_SANDBOX=1.
+ConfigureWebKitSandbox();
+
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
     Args = args,
@@ -82,7 +86,6 @@ builder.Services
 builder.Services.AddApexCharts();
 
 builder.Services.AddSidekickInitializableService<IApplicationService, LinuxApplicationService>();
-builder.Services.AddSidekickInitializableService<LinuxOverlayDefaultsInitializer, LinuxOverlayDefaultsInitializer>();
 builder.Services.AddSingleton<IViewLocator, X11ViewLocator>();
 builder.Services.AddSingleton(sp => (X11ViewLocator)sp.GetRequiredService<IViewLocator>());
 builder.Services.AddSingleton<IOverlayInputRegionService>(sp => sp.GetRequiredService<X11ViewLocator>());
@@ -137,4 +140,52 @@ static string? ResolveStartupUrl(string[] args)
 
     var envUrl = Environment.GetEnvironmentVariable("SIDEKICK_STARTUP_URL");
     return string.IsNullOrWhiteSpace(envUrl) ? null : envUrl;
+}
+
+static void ConfigureWebKitSandbox()
+{
+    var sandboxEnabled = ReadBoolEnv("SIDEKICK_WEBKIT_SANDBOX");
+    if (sandboxEnabled == true)
+    {
+        SetEnvIfMissing("WEBKIT_DISABLE_SANDBOX", "0");
+        SetEnvIfMissing("WEBKIT_FORCE_SANDBOX", "1");
+    }
+    else
+    {
+        SetEnvIfMissing("WEBKIT_DISABLE_SANDBOX", "1");
+        SetEnvIfMissing("WEBKIT_FORCE_SANDBOX", "0");
+    }
+
+    SetEnvIfMissing("GTK_USE_PORTAL", "0");
+    SetEnvIfMissing("GIO_USE_VFS", "local");
+}
+
+static bool? ReadBoolEnv(string key)
+{
+    var value = Environment.GetEnvironmentVariable(key);
+    if (string.IsNullOrWhiteSpace(value))
+    {
+        return null;
+    }
+
+    return value.Trim().ToLowerInvariant() switch
+    {
+        "1" => true,
+        "true" => true,
+        "yes" => true,
+        "on" => true,
+        "0" => false,
+        "false" => false,
+        "no" => false,
+        "off" => false,
+        _ => null,
+    };
+}
+
+static void SetEnvIfMissing(string key, string value)
+{
+    if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable(key)))
+    {
+        Environment.SetEnvironmentVariable(key, value);
+    }
 }

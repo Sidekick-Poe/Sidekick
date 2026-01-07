@@ -14,7 +14,7 @@ public static class DefaultSettings
 
     public static string Zoom => "1";
 
-    public static string KeyClose => OperatingSystem.IsLinux() ? string.Empty : "Space";
+    public static string KeyClose => "Space";
 
     public static string KeyOpenWealth => "";
 
@@ -30,7 +30,7 @@ public static class DefaultSettings
 
     public static bool MouseWheelNavigateStashReverse => false;
 
-    public static bool EscapeClosesOverlays => !OperatingSystem.IsLinux();
+    public static bool EscapeClosesOverlays => true;
     public static bool OverlayCloseWithMouse => false;
 
     public static bool RetainClipboard => true;

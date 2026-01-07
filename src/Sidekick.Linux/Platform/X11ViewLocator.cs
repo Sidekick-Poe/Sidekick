@@ -79,7 +79,13 @@ public sealed class X11ViewLocator(
     {
         if (type == SidekickViewType.Overlay)
         {
-            SetOverlayVisible(false);
+            var overlayWidgetService = serviceProvider.GetService<OverlayWidgetService>();
+            if (overlayWidgetService != null)
+            {
+                overlayWidgetService.ClearWidgets();
+            }
+
+            openWidgets.Clear();
             return;
         }
 
@@ -1267,7 +1273,7 @@ public sealed class X11ViewLocator(
     private const int ShapeSet = 0;
     private const int ShapeBounding = 0;
     private const int ShapeInput = 2;
-    private const int BoundingPadding = 16;
+    private const int BoundingPadding = 0;
     private const int MotifHintDecorations = 1 << 1;
     private const int NetWmStateAdd = 1;
     private const int ClientMessage = 33;
