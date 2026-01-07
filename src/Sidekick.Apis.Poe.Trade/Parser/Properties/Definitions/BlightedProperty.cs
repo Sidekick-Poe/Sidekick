@@ -21,6 +21,8 @@ public class BlightedProperty(
         ItemClass.Map,
     ];
 
+    public override string Label => gameLanguageProvider.Language.AffixBlighted;
+
     public override void Parse(Item item)
     {
         item.Properties.Blighted = Pattern.IsMatch(item.Text.Blocks[0].Lines[^1].Text);
@@ -33,7 +35,7 @@ public class BlightedProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(BlightedProperty)}_{game.GetValueAttribute()}";
         var filter = new BlightedFilter
         {
-            Text = gameLanguageProvider.Language.AffixBlighted,
+            Text = Label,
             AutoSelectSettingKey = autoSelectKey,
             AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };

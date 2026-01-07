@@ -24,6 +24,8 @@ public class EvasionRatingProperty(
         ..ItemClassConstants.Equipment,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionEvasion;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -41,7 +43,7 @@ public class EvasionRatingProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(EvasionRatingProperty)}_{game.GetValueAttribute()}";
         var filter = new EvasionRatingFilter(game)
         {
-            Text = gameLanguageProvider.Language.DescriptionEvasion,
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.EvasionRatingWithQuality,
             OriginalValue = item.Properties.EvasionRating,

@@ -27,6 +27,8 @@ public class WeaponDamageProperty(
         ..ItemClassConstants.Weapons,
     ];
 
+    public override string Label => resources["Damage"];
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];

@@ -1,12 +1,13 @@
+@using Sidekick.Apis.Poe.Trade.Parser.Properties
+@using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
-@using Sidekick.Common.Enums
 
-<FormSelectInline Value="@Condition.Comparison.ToString()"
+<FormSelectInline Value="@Condition.Type.ToString()"
                   ValueChanged="Changed"
                   Options="Options"
                   Readonly="Readonly"/>
 
-@inject IStringLocalizer<AutoSelectComparisonType> ComparisonResources
+@inject IPropertyParser PropertyParser
 
 @code {
 
@@ -31,14 +32,17 @@
     {
         Options.Clear();
 
-        var attribute = Condition.Type.GetEnumValueAttribute<AutoSelectComparisonAttribute>();
-        if (attribute == null) return;
-
-        foreach (var value in attribute.AllowedComparisons)
+        foreach (var value in Enum.GetValues<AutoSelectConditionType>())
         {
+            var label = value switch
+            {
+                AutoSelectConditionType.ItemClass => PropertyParser.GetDefinition<ItemClassProperty>().Label,
+                _ => value.ToString(),
+            };
+
             Options.Add(new SelectOption()
             {
-                Label = ComparisonResources[value.ToString()],
+                Label =label,
                 Value = value.ToString(),
             });
         }
@@ -48,12 +52,12 @@
 
     private async Task Changed(string? value)
     {
-        if (!Enum.TryParse<AutoSelectComparisonType>(value, out var enumValue))
+        if (!Enum.TryParse<AutoSelectConditionType>(value, out var enumValue))
         {
             return;
         }
 
-        Condition.Comparison = enumValue;
+        Condition.Type = enumValue;
         await OnChanged.InvokeAsync();
     }
 }

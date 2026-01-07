@@ -30,6 +30,8 @@ public class QualityProperty(
         ..ItemClassConstants.Areas,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionQuality;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -47,7 +49,7 @@ public class QualityProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(QualityProperty)}_{game.GetValueAttribute()}";
         var filter = new QualityFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionQuality,
+            Text = Label,
             NormalizeEnabled = false,
             Value = item.Properties.Quality,
             ValuePrefix = "+",

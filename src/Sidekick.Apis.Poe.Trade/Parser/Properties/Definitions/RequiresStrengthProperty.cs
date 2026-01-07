@@ -26,6 +26,8 @@ public class RequiresStrengthProperty(
         ItemClass.Graft,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionRequiresStr;
+
     public override void Parse(Item item)
     {
         foreach (var block in item.Text.Blocks)
@@ -46,7 +48,7 @@ public class RequiresStrengthProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(RequiresStrengthProperty)}_{game.GetValueAttribute()}";
         var filter = new RequiresStrengthFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionRequiresStr,
+            Text = Label,
             NormalizeEnabled = false,
             Value = item.Properties.RequiresStrength,
             AutoSelectSettingKey = autoSelectKey,

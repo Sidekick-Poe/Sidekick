@@ -26,6 +26,8 @@ public class RequiresDexterityProperty(
         ItemClass.Graft,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionRequiresDex;
+
     public override void Parse(Item item)
     {
         foreach (var block in item.Text.Blocks)
@@ -46,7 +48,7 @@ public class RequiresDexterityProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(RequiresDexterityProperty)}_{game.GetValueAttribute()}";
         var filter = new RequiresDexterityFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionRequiresDex,
+            Text = Label,
             NormalizeEnabled = false,
             Value = item.Properties.RequiresDexterity,
             AutoSelectSettingKey = autoSelectKey,

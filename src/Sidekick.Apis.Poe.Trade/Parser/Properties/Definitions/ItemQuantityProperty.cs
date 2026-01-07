@@ -24,6 +24,8 @@ public class ItemQuantityProperty(
         ..ItemClassConstants.Areas,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionItemQuantity;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -41,7 +43,7 @@ public class ItemQuantityProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(ItemQuantityProperty)}_{game.GetValueAttribute()}";
         var filter = new ItemQuantityFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionItemQuantity,
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.ItemQuantity,
             ValuePrefix = "+",

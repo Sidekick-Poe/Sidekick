@@ -26,6 +26,8 @@ public class SanctifiedProperty(
         ..ItemClassConstants.Accessories,
     ];
 
+    public override string Label => tradeFilterProvider.Sanctified?.Text ?? "Sanctified";
+
     public override void Parse(Item item)
     {
     }
@@ -38,7 +40,7 @@ public class SanctifiedProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(SanctifiedProperty)}_{game.GetValueAttribute()}";
         var filter = new SanctifiedFilter
         {
-            Text = tradeFilterProvider.Sanctified.Text ?? "Sanctified",
+            Text = Label,
             AutoSelectSettingKey = autoSelectKey,
             AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };

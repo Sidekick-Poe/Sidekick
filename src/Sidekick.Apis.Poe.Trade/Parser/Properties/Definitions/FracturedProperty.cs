@@ -24,6 +24,8 @@ public class FracturedProperty(
         ..ItemClassConstants.WithStats,
     ];
 
+    public override string Label => tradeFilterProvider.Fractured?.Text ?? "Fractured";
+
     public override void Parse(Item item)
     {
     }
@@ -35,7 +37,7 @@ public class FracturedProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(FracturedProperty)}_{game.GetValueAttribute()}";
         var filter = new FracturedFilter
         {
-            Text = tradeFilterProvider.Fractured.Text ?? "Fractured",
+            Text = Label,
             AutoSelectSettingKey = autoSelectKey,
             AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };

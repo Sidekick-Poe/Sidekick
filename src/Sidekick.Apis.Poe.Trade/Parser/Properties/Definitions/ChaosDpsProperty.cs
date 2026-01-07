@@ -19,6 +19,12 @@ public class ChaosDpsProperty(
         ..ItemClassConstants.Weapons,
     ];
 
+    public override string Label => resources["ChaosDps"];
+
+    public override void Parse(Item item)
+    {
+    }
+
     public override async Task<TradeFilter?> GetFilter(Item item)
     {
         if (item.Properties.ChaosDps <= 0)
@@ -29,7 +35,7 @@ public class ChaosDpsProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(ChaosDpsProperty)}_{game.GetValueAttribute()}";
         var filter = new ChaosDpsFilter
         {
-            Text = resources["ChaosDps"],
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.ChaosDps ?? 0,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ChaosDamage)) ? LineContentType.Augmented : LineContentType.Simple,

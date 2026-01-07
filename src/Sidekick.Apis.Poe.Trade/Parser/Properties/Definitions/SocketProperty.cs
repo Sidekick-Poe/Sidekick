@@ -28,6 +28,8 @@ public class SocketProperty(
         ..ItemClassConstants.Gems,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionSockets;
+
     public override void Parse(Item item)
     {
         if (!item.Text.TryParseRegex(Pattern, out var match))
@@ -133,7 +135,7 @@ public class SocketProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(SocketProperty)}_{game.GetValueAttribute()}";
         var filter = new SocketFilter(game)
         {
-            Text = gameLanguageProvider.Language.DescriptionSockets,
+            Text = Label,
             NormalizeEnabled = false,
             Value = value,
             Hint = hint,

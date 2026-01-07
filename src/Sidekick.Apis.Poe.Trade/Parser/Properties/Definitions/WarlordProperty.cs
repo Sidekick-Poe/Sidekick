@@ -23,6 +23,8 @@ public class WarlordProperty(
         ..ItemClassConstants.Weapons,
     ];
 
+    public override string Label => gameLanguageProvider.Language.InfluenceWarlord;
+
     public override void Parse(Item item)
     {
         item.Properties.Influences.Warlord = GetBool(Pattern, item.Text);
@@ -35,7 +37,7 @@ public class WarlordProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(WarlordProperty)}_{game.GetValueAttribute()}";
         var filter = new WarlordFilter
         {
-            Text = gameLanguageProvider.Language.InfluenceWarlord,
+            Text = Label,
             AutoSelectSettingKey = autoSelectKey,
             AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };

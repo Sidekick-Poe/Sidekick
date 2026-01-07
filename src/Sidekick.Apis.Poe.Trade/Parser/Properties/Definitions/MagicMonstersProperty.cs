@@ -24,6 +24,8 @@ public class MagicMonstersProperty(
         ..ItemClassConstants.Areas,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionMagicMonsters;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -41,7 +43,7 @@ public class MagicMonstersProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(MagicMonstersProperty)}_{game.GetValueAttribute()}";
         var filter = new MagicMonstersFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionMagicMonsters,
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.MagicMonsters,
             ValuePrefix = "+",

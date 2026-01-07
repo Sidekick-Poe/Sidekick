@@ -29,6 +29,8 @@ public class BlockChanceProperty(
         ..ItemClassConstants.Equipment,
     ];
 
+    public override string Label => game == GameType.PathOfExile1 ? gameLanguageProvider.Language.DescriptionChanceToBlock : gameLanguageProvider.Language.DescriptionBlockChance;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -44,10 +46,9 @@ public class BlockChanceProperty(
         if (item.Properties.BlockChance <= 0) return null;
 
         var autoSelectKey = $"Trade_Filter_{nameof(BlockChanceProperty)}_{game.GetValueAttribute()}";
-        var text = game == GameType.PathOfExile1 ? gameLanguageProvider.Language.DescriptionChanceToBlock : gameLanguageProvider.Language.DescriptionBlockChance;
         var filter = new BlockChanceFilter(game)
         {
-            Text = text,
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.BlockChance,
             ValueSuffix = "%",

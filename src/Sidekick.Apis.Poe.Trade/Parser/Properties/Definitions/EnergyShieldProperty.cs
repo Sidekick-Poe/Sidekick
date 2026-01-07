@@ -34,6 +34,8 @@ public class EnergyShieldProperty(
         ..ItemClassConstants.Equipment,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionEnergyShield;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -51,15 +53,9 @@ public class EnergyShieldProperty(
         if (item.Properties.EnergyShield <= 0) return null;
 
         var autoSelectKey = $"Trade_Filter_{nameof(EnergyShieldProperty)}_{game.GetValueAttribute()}";
-        var text = gameLanguageProvider.Language.DescriptionEnergyShield;
-        if (!string.IsNullOrEmpty(gameLanguageProvider.Language.DescriptionEnergyShieldAlternate) && item.Game == GameType.PathOfExile2)
-        {
-            text = gameLanguageProvider.Language.DescriptionEnergyShieldAlternate;
-        }
-
         var filter = new EnergyShieldFilter(game)
         {
-            Text = text,
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.EnergyShieldWithQuality,
             OriginalValue = item.Properties.EnergyShield,

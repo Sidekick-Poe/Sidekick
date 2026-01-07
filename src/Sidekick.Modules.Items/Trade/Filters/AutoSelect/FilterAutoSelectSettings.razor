@@ -57,23 +57,10 @@
                         @for (var i = 0; i < rule.Conditions.Count; i++)
                         {
                             var condition = rule.Conditions[i];
-                            <div class="grid grid-cols-5 gap-x-2 gap-y-1 items-center leading-4">
-                                @if (i == 0)
-                                {
-                                    <span class="text-neutral-400">When</span>
-                                }
-                                else
-                                {
-                                    <span class="text-neutral-400">And</span>
-                                }
-                                <div class="col-span-2">@condition.Type</div>
-                                <div class="col-span-2">
-                                    <FilterAutoSelectComparisonType Condition="condition"/>
-                                </div>
-                                <div class="col-start-1 col-span-4">
-                                    <FilterAutoSelectConditionValue Condition="condition"/>
-                                </div>
-                            </div>
+                            <FilterAutoSelectCondition First="i == 0"
+                                                       Condition="condition"
+                                                       Readonly="Mode == AutoSelectMode.Default && false"
+                                                       OnChanged="Save"/>
                         }
 
                         <div class="text-neutral-400 grid grid-cols-5 gap-2 items-center pt-1 mt-1 border-t border-stone-700 leading-4">

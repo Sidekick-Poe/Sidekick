@@ -23,6 +23,8 @@ public class ShaperProperty(
         ..ItemClassConstants.Weapons,
     ];
 
+    public override string Label => gameLanguageProvider.Language.InfluenceShaper;
+
     public override void Parse(Item item)
     {
         item.Properties.Influences.Shaper = GetBool(Pattern, item.Text);
@@ -35,7 +37,7 @@ public class ShaperProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(ShaperProperty)}_{game.GetValueAttribute()}";
         var filter = new ShaperFilter
         {
-            Text = gameLanguageProvider.Language.InfluenceShaper,
+            Text = Label,
             AutoSelectSettingKey = autoSelectKey,
             AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };

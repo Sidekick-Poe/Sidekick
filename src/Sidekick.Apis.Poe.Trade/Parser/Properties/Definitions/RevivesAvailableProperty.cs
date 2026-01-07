@@ -24,6 +24,8 @@ public class RevivesAvailableProperty(
         ..ItemClassConstants.Areas,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionRevivesAvailable;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -41,7 +43,7 @@ public class RevivesAvailableProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(RevivesAvailableProperty)}_{game.GetValueAttribute()}";
         var filter = new RevivesAvailableFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionRevivesAvailable,
+            Text = Label,
             NormalizeEnabled = false,
             Value = item.Properties.RevivesAvailable,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.RevivesAvailable)) ? LineContentType.Augmented : LineContentType.Simple,

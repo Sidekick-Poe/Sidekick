@@ -23,6 +23,8 @@ public class CorruptedProperty(
         ..ItemClassConstants.WithStats,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionCorrupted;
+
     public override void Parse(Item item)
     {
         item.Properties.Corrupted = GetBool(Pattern, item.Text);
@@ -33,7 +35,7 @@ public class CorruptedProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(CorruptedProperty)}_{game.GetValueAttribute()}";
         var filter = new CorruptedFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionCorrupted,
+            Text = Label,
             AutoSelectSettingKey = autoSelectKey,
             AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };

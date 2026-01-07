@@ -23,6 +23,8 @@ public class RedeemerProperty(
         ..ItemClassConstants.Weapons,
     ];
 
+    public override string Label => gameLanguageProvider.Language.InfluenceRedeemer;
+
     public override void Parse(Item item)
     {
         item.Properties.Influences.Redeemer = GetBool(Pattern, item.Text);
@@ -35,7 +37,7 @@ public class RedeemerProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(RedeemerProperty)}_{game.GetValueAttribute()}";
         var filter = new RedeemerFilter
         {
-            Text = gameLanguageProvider.Language.InfluenceRedeemer,
+            Text = Label,
             AutoSelectSettingKey = autoSelectKey,
             AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };

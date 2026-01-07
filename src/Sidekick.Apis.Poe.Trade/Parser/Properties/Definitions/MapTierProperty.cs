@@ -21,6 +21,8 @@ public class MapTierProperty(
         ItemClass.Map,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionMapTier;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -35,7 +37,7 @@ public class MapTierProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(MapTierProperty)}_{game.GetValueAttribute()}";
         var filter = new MapTierFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionMapTier,
+            Text = Label,
             NormalizeEnabled = false,
             Value = item.Properties.MapTier,
             AutoSelectSettingKey = autoSelectKey,

@@ -26,6 +26,8 @@ public class MirroredProperty(
         ..ItemClassConstants.Accessories,
     ];
 
+    public override string Label => tradeFilterProvider.Mirrored?.Text ?? "Mirrored";
+
     public override void Parse(Item item)
     {
     }
@@ -37,7 +39,7 @@ public class MirroredProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(MirroredProperty)}_{game.GetValueAttribute()}";
         var filter = new MirroredFilter
         {
-            Text = tradeFilterProvider.Mirrored.Text ?? "Mirrored",
+            Text = Label,
             AutoSelectSettingKey = autoSelectKey,
             AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };

@@ -24,6 +24,8 @@ public class RewardProperty(
         ItemClass.Map,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionReward;
+
     public override void Parse(Item item)
     {
         if (game == GameType.PathOfExile2) return;
@@ -40,7 +42,7 @@ public class RewardProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(RewardProperty)}_{game.GetValueAttribute()}";
         var filter = new RewardFilter(apiItemProvider)
         {
-            Text = gameLanguageProvider.Language.DescriptionReward,
+            Text = Label,
             Value = item.Properties.Reward!,
             Type = LineContentType.Unique,
             AutoSelectSettingKey = autoSelectKey,

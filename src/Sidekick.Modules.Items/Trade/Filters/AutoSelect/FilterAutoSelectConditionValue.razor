@@ -12,4 +12,15 @@
     [Parameter]
     public required AutoSelectCondition Condition { get; set; }
 
+    [Parameter]
+    public bool Readonly { get; set; }
+
+    [Parameter]
+    public EventCallback OnChanged { get; set; }
+
+    public void Update()
+    {
+        StateHasChanged();
+    }
+
 }

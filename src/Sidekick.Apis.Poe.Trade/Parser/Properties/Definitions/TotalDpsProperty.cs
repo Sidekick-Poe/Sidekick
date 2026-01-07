@@ -20,6 +20,12 @@ public class TotalDpsProperty(
         ..ItemClassConstants.Weapons,
     ];
 
+    public override string Label => resources["Dps"];
+
+    public override void Parse(Item item)
+    {
+    }
+
     public override async Task<TradeFilter?> GetFilter(Item item)
     {
         if (item.Properties.TotalDps <= 0)
@@ -30,7 +36,7 @@ public class TotalDpsProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(TotalDpsProperty)}_{game.GetValueAttribute()}";
         var filter = new TotalDpsFilter(game)
         {
-            Text = resources["Dps"],
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.TotalDpsWithQuality ?? 0,
             OriginalValue = item.Properties.TotalDps ?? 0,

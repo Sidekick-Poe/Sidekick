@@ -28,6 +28,8 @@ public class CriticalHitChanceProperty(
         ..ItemClassConstants.Weapons,
     ];
 
+    public override string Label => game == GameType.PathOfExile1 ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance : gameLanguageProvider.Language.DescriptionCriticalHitChance;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -43,10 +45,9 @@ public class CriticalHitChanceProperty(
         if (item.Properties.CriticalHitChance <= 0) return null;
 
         var autoSelectKey = $"Trade_Filter_{nameof(CriticalHitChanceProperty)}_{game.GetValueAttribute()}";
-        var text = game == GameType.PathOfExile1 ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance : gameLanguageProvider.Language.DescriptionCriticalHitChance;
         var filter = new CriticalHitChanceFilter(game)
         {
-            Text = text,
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.CriticalHitChance,
             ValueSuffix = "%",

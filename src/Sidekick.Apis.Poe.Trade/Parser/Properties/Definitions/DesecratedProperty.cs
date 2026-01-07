@@ -25,6 +25,8 @@ public class DesecratedProperty(
         ..ItemClassConstants.Weapons,
     ];
 
+    public override string Label => tradeFilterProvider.Desecrated?.Text ?? "Desecrated";
+
     public override void Parse(Item item)
     {
     }
@@ -37,7 +39,7 @@ public class DesecratedProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(DesecratedProperty)}_{game.GetValueAttribute()}";
         var filter = new DesecratedFilter
         {
-            Text = tradeFilterProvider.Desecrated.Text ?? "Desecrated",
+            Text = Label,
             AutoSelectSettingKey = autoSelectKey,
             AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };

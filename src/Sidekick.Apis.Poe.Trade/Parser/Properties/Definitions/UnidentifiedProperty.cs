@@ -27,6 +27,8 @@ public class UnidentifiedProperty(
         ..ItemClassConstants.Areas,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionUnidentified;
+
     public override void Parse(Item item)
     {
         item.Properties.Unidentified = GetBool(Pattern, item.Text);
@@ -39,7 +41,7 @@ public class UnidentifiedProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(UnidentifiedProperty)}_{game.GetValueAttribute()}";
         var filter = new UnidentifiedFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionUnidentified,
+            Text = Label,
             AutoSelectSettingKey = autoSelectKey,
             AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };

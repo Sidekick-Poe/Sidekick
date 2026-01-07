@@ -1,5 +1,4 @@
 using System.Globalization;
-using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
@@ -9,6 +8,8 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
 public abstract class PropertyDefinition
 {
     public abstract List<ItemClass> ValidItemClasses { get; }
+
+    public abstract string Label { get; }
 
     public virtual void Parse(Item item) {}
 

@@ -25,6 +25,8 @@ public class SpiritProperty(
         ..ItemClassConstants.Equipment,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionSpirit;
+
     public override void Parse(Item item)
     {
         if (game == GameType.PathOfExile1) return;
@@ -43,7 +45,7 @@ public class SpiritProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(SpiritProperty)}_{game.GetValueAttribute()}";
         var filter = new SpiritFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionSpirit,
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.Spirit,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.Spirit)) ? LineContentType.Augmented : LineContentType.Simple,

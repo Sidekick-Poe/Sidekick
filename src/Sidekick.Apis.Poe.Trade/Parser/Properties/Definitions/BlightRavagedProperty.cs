@@ -21,6 +21,8 @@ public class BlightRavagedProperty(
         ItemClass.Map,
     ];
 
+    public override string Label => gameLanguageProvider.Language.AffixBlightRavaged;
+
     public override void Parse(Item item)
     {
         item.Properties.BlightRavaged = Pattern.IsMatch(item.Text.Blocks[0].Lines[^1].Text);
@@ -33,7 +35,7 @@ public class BlightRavagedProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(BlightRavagedProperty)}_{game.GetValueAttribute()}";
         var filter = new BlightRavagedFilter
         {
-            Text = gameLanguageProvider.Language.AffixBlightRavaged,
+            Text = Label,
             AutoSelectSettingKey = autoSelectKey,
             AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };

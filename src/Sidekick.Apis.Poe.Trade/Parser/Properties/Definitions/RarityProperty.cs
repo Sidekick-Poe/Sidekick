@@ -42,6 +42,8 @@ public class RarityProperty(
 
     public override List<ItemClass> ValidItemClasses { get; } = [];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionRarity;
+
     public override void Parse(Item item)
     {
         if (item.ApiInformation != null! && item.ApiInformation.IsUnique)

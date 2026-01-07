@@ -23,6 +23,8 @@ public class HunterProperty(
         ..ItemClassConstants.Weapons,
     ];
 
+    public override string Label => gameLanguageProvider.Language.InfluenceHunter;
+
     public override void Parse(Item item)
     {
         item.Properties.Influences.Hunter = GetBool(Pattern, item.Text);
@@ -35,7 +37,7 @@ public class HunterProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(HunterProperty)}_{game.GetValueAttribute()}";
         var filter = new HunterFilter
         {
-            Text = gameLanguageProvider.Language.InfluenceHunter,
+            Text = Label,
             AutoSelectSettingKey = autoSelectKey,
             AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };

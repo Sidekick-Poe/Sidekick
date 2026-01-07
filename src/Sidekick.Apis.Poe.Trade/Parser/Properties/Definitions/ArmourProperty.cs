@@ -24,6 +24,8 @@ public class ArmourProperty(
         ..ItemClassConstants.Equipment,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionArmour;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -41,7 +43,7 @@ public class ArmourProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(ArmourProperty)}_{game.GetValueAttribute()}";
         var filter = new ArmourFilter(game)
         {
-            Text = gameLanguageProvider.Language.DescriptionArmour,
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.ArmourWithQuality,
             OriginalValue = item.Properties.Armour,

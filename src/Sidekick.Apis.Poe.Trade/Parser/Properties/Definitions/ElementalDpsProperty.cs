@@ -20,6 +20,12 @@ public class ElementalDpsProperty(
         ..ItemClassConstants.Weapons,
     ];
 
+    public override string Label => resources["ElementalDps"];
+
+    public override void Parse(Item item)
+    {
+    }
+
     public override async Task<TradeFilter?> GetFilter(Item item)
     {
         if (item.Properties.ElementalDps <= 0)
@@ -30,7 +36,7 @@ public class ElementalDpsProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(ElementalDpsProperty)}_{game.GetValueAttribute()}";
         var filter = new ElementalDpsFilter(game)
         {
-            Text = resources["ElementalDps"],
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.ElementalDps ?? 0,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.FireDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ColdDamage)) || item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.LightningDamage)) ? LineContentType.Augmented : LineContentType.Simple,

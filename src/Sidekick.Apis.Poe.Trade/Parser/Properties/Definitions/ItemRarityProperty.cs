@@ -24,6 +24,8 @@ public class ItemRarityProperty(
         ..ItemClassConstants.Areas,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionItemRarity;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -41,7 +43,7 @@ public class ItemRarityProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(ItemRarityProperty)}_{game.GetValueAttribute()}";
         var filter = new ItemRarityFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionItemRarity,
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.ItemRarity,
             ValuePrefix = "+",

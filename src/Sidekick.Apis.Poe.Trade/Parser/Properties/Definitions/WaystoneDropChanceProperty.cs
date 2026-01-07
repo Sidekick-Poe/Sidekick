@@ -24,6 +24,8 @@ public class WaystoneDropChanceProperty(
         ..ItemClassConstants.Areas,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionWaystoneDropChance;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -41,7 +43,7 @@ public class WaystoneDropChanceProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(WaystoneDropChanceProperty)}_{game.GetValueAttribute()}";
         var filter = new WaystoneDropChanceFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionWaystoneDropChance,
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.WaystoneDropChance,
             ValuePrefix = "+",

@@ -20,6 +20,12 @@ public class PhysicalDpsProperty(
         ..ItemClassConstants.Weapons,
     ];
 
+    public override string Label => resources["PhysicalDps"];
+
+    public override void Parse(Item item)
+    {
+    }
+
     public override async Task<TradeFilter?> GetFilter(Item item)
     {
         if (item.Properties.PhysicalDps <= 0)
@@ -30,7 +36,7 @@ public class PhysicalDpsProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(PhysicalDpsProperty)}_{game.GetValueAttribute()}";
         var filter = new PhysicalDpsFilter(game)
         {
-            Text = resources["PhysicalDps"],
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.PhysicalDpsWithQuality ?? 0,
             OriginalValue = item.Properties.PhysicalDps ?? 0,

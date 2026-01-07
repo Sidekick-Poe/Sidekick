@@ -26,6 +26,8 @@ public class RequiresIntelligenceProperty(
         ItemClass.Graft,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionRequiresInt;
+
     public override void Parse(Item item)
     {
         foreach (var block in item.Text.Blocks)
@@ -46,7 +48,7 @@ public class RequiresIntelligenceProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(RequiresIntelligenceProperty)}_{game.GetValueAttribute()}";
         var filter = new RequiresIntelligenceFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionRequiresInt,
+            Text = Label,
             NormalizeEnabled = false,
             Value = item.Properties.RequiresIntelligence,
             AutoSelectSettingKey = autoSelectKey,

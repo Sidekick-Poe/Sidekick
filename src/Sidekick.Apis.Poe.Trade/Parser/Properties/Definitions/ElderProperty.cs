@@ -23,6 +23,8 @@ public class ElderProperty(
         ..ItemClassConstants.Weapons,
     ];
 
+    public override string Label => gameLanguageProvider.Language.InfluenceElder;
+
     public override void Parse(Item item)
     {
         item.Properties.Influences.Elder = GetBool(Pattern, item.Text);
@@ -35,7 +37,7 @@ public class ElderProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(ElderProperty)}_{game.GetValueAttribute()}";
         var filter = new ElderFilter
         {
-            Text = gameLanguageProvider.Language.InfluenceElder,
+            Text = Label,
             AutoSelectSettingKey = autoSelectKey,
             AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };

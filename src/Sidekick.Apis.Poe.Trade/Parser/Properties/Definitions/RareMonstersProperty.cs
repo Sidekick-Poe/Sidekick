@@ -24,6 +24,8 @@ public class RareMonstersProperty(
         ..ItemClassConstants.Areas,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionRareMonsters;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -41,7 +43,7 @@ public class RareMonstersProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(RareMonstersProperty)}_{game.GetValueAttribute()}";
         var filter = new RareMonstersFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionRareMonsters,
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.RareMonsters,
             ValuePrefix = "+",

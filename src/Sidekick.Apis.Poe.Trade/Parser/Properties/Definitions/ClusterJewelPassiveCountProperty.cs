@@ -16,6 +16,8 @@ public class ClusterJewelPassiveCountProperty(
 
     public override List<ItemClass> ValidItemClasses { get; } = [ItemClass.Jewel];
 
+    public override string Label => "Cluster Jewel Passives";
+
     public override void ParseAfterStats(Item item)
     {
         if (game == GameType.PathOfExile2) return;

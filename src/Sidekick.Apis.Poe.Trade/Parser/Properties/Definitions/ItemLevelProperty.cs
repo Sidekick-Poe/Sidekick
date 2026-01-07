@@ -34,6 +34,8 @@ public class ItemLevelProperty(
         ItemClass.Graft,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionItemLevel;
+
     public override void Parse(Item item)
     {
         item.Properties.ItemLevel = GetInt(Pattern, item.Text);
@@ -46,7 +48,7 @@ public class ItemLevelProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(ItemLevelProperty)}_{game.GetValueAttribute()}";
         var filter = new ItemLevelFilter(game)
         {
-            Text = gameLanguageProvider.Language.DescriptionItemLevel,
+            Text = Label,
             NormalizeEnabled = false,
             Value = item.Properties.ItemLevel,
             AutoSelectSettingKey = autoSelectKey,

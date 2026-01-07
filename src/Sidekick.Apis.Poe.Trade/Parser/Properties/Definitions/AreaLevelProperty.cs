@@ -21,6 +21,8 @@ public class AreaLevelProperty(
         ..ItemClassConstants.Areas,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionAreaLevel;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -35,7 +37,7 @@ public class AreaLevelProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(AreaLevelProperty)}_{game.GetValueAttribute()}";
         var filter = new AreaLevelFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionAreaLevel,
+            Text = Label,
             NormalizeEnabled = false,
             Value = item.Properties.AreaLevel,
             AutoSelectSettingKey = autoSelectKey,

@@ -24,6 +24,8 @@ public class AttacksPerSecondProperty(
         ..ItemClassConstants.Weapons,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionAttacksPerSecond;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -41,7 +43,7 @@ public class AttacksPerSecondProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(AttacksPerSecondProperty)}_{game.GetValueAttribute()}";
         var filter = new AttacksPerSecondFilter(game)
         {
-            Text = gameLanguageProvider.Language.DescriptionAttacksPerSecond,
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.AttacksPerSecond,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.AttacksPerSecond)) ? LineContentType.Augmented : LineContentType.Simple,

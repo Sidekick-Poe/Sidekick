@@ -13,6 +13,8 @@ public class ExpandableProperty
 
     public override List<ItemClass> ValidItemClasses => Definitions.SelectMany(x => x.ValidItemClasses).Distinct().ToList();
 
+    public override string Label => label ?? string.Empty;
+
     public override void Parse(Item item)
     {
         foreach (var definition in Definitions)
@@ -43,6 +45,6 @@ public class ExpandableProperty
 
         if (filters.Count == 0) return null;
 
-        return new ExpandableFilter(label ?? string.Empty, filters.ToArray());
+        return new ExpandableFilter(Label, filters.ToArray());
     }
 }

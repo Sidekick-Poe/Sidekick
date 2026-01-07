@@ -23,6 +23,8 @@ public class CrusaderProperty(
         ..ItemClassConstants.Weapons,
     ];
 
+    public override string Label => gameLanguageProvider.Language.InfluenceCrusader;
+
     public override void Parse(Item item)
     {
         item.Properties.Influences.Crusader = GetBool(Pattern, item.Text);
@@ -35,7 +37,7 @@ public class CrusaderProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(CrusaderProperty)}_{game.GetValueAttribute()}";
         var filter = new CrusaderFilter
         {
-            Text = gameLanguageProvider.Language.InfluenceCrusader,
+            Text = Label,
             AutoSelectSettingKey = autoSelectKey,
             AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };

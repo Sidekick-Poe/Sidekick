@@ -28,6 +28,8 @@ public class RequiresLevelProperty(
         ItemClass.Graft,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionRequiresLevel;
+
     public override void Parse(Item item)
     {
         foreach (var block in item.Text.Blocks)
@@ -48,7 +50,7 @@ public class RequiresLevelProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(RequiresLevelProperty)}_{game.GetValueAttribute()}";
         var filter = new RequiresLevelFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionRequiresLevel,
+            Text = Label,
             NormalizeEnabled = false,
             Value = item.Properties.RequiresLevel,
             AutoSelectSettingKey = autoSelectKey,

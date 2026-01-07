@@ -1,0 +1,64 @@
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
+
+<div class="grid grid-cols-5 gap-x-2 gap-y-0 items-center leading-4">
+    @if (First)
+    {
+        <span class="text-neutral-400">When</span>
+    }
+    else
+    {
+        <span class="text-neutral-400">And</span>
+    }
+    <div class="col-span-2">
+        <FilterAutoSelectConditionType @ref="ConditionType"
+                                       Condition="Condition"
+                                       OnChanged="Update"
+                                       Readonly="Readonly"/>
+    </div>
+    <div class="col-span-2">
+        <FilterAutoSelectComparisonType @ref="ComparisonType"
+                                        Condition="Condition"
+                                        OnChanged="Update"
+                                        Readonly="Readonly"/>
+    </div>
+    <div class="col-start-1 col-span-4">
+        <FilterAutoSelectConditionValue @ref="ConditionValue"
+                                        Condition="Condition"
+                                        OnChanged="Update"
+                                        Readonly="Readonly"/>
+    </div>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public required AutoSelectCondition Condition { get; set; }
+
+    [Parameter]
+    public bool Readonly { get; set; }
+
+    [Parameter]
+    public bool First { get; set; }
+
+    [Parameter]
+    public EventCallback OnChanged { get; set; }
+
+    private FilterAutoSelectConditionType? ConditionType { get; set; }
+
+    private FilterAutoSelectComparisonType? ComparisonType { get; set; }
+
+    private FilterAutoSelectConditionValue? ConditionValue { get; set; }
+
+    private async Task Update()
+    {
+        ConditionType?.Update();
+        ComparisonType?.Update();
+        ConditionValue?.Update();
+        await OnChanged.InvokeAsync();
+    }
+
+}

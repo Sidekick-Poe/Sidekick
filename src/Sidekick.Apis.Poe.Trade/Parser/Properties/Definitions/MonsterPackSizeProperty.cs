@@ -24,6 +24,8 @@ public class MonsterPackSizeProperty(
         ..ItemClassConstants.Areas,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionMonsterPackSize;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -41,7 +43,7 @@ public class MonsterPackSizeProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(MonsterPackSizeProperty)}_{game.GetValueAttribute()}";
         var filter = new MonsterPackSizeFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionMonsterPackSize,
+            Text = Label,
             NormalizeEnabled = true,
             Value = item.Properties.MonsterPackSize,
             ValuePrefix = "+",

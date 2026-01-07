@@ -19,6 +19,8 @@ public class GemLevelProperty(
 
     public override List<ItemClass> ValidItemClasses { get; } = [..ItemClassConstants.Gems];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionLevel;
+
     public override void Parse(Item item)
     {
         if (item.Properties.ItemClass is ItemClass.UncutSkillGem or ItemClass.UncutSupportGem or ItemClass.UncutSpiritGem)
@@ -39,7 +41,7 @@ public class GemLevelProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(GemLevelProperty)}_{game.GetValueAttribute()}";
         var filter = new GemLevelFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionLevel,
+            Text = Label,
             NormalizeEnabled = false,
             Value = item.Properties.GemLevel,
             AutoSelectSettingKey = autoSelectKey,

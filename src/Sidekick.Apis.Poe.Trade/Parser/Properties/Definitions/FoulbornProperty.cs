@@ -27,6 +27,8 @@ public class FoulbornProperty(
         ..ItemClassConstants.Flasks,
     ];
 
+    public override string Label => tradeFilterProvider.Foulborn?.Text ?? "Foulborn";
+
     public override void ParseAfterStats(Item item)
     {
         if (game == GameType.PathOfExile2) return;
@@ -44,7 +46,7 @@ public class FoulbornProperty(
         var autoSelectKey = $"Trade_Filter_{nameof(FoulbornProperty)}_{game.GetValueAttribute()}";
         var filter = new FoulbornFilter
         {
-            Text = tradeFilterProvider.Foulborn.Text ?? "Foulborn",
+            Text = Label,
             AutoSelectSettingKey = autoSelectKey,
             AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
         };
