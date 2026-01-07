@@ -1,6 +1,9 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
+@using Sidekick.Common.Enums
 
-<div>@ComparisonResources[Condition.Comparison.ToString()]</div>
+<FormSelectInline Value="@Condition.Comparison.ToString()"
+                  ValueChanged="Changed"
+                  Options="Options"></FormSelectInline>
 
 @inject IStringLocalizer<AutoSelectComparisonType> ComparisonResources
 
@@ -9,4 +12,44 @@
     [Parameter]
     public required AutoSelectCondition Condition { get; set; }
 
+    [Parameter]
+    public EventCallback OnChanged { get; set; }
+
+    private List<SelectOption> Options { get; set; } = [];
+
+    protected override void OnInitialized()
+    {
+        Update();
+        base.OnInitialized();
+    }
+
+    public void Update()
+    {
+        Options.Clear();
+
+        var attribute = Condition.Type.GetEnumValueAttribute<AutoSelectComparisonAttribute>();
+        if (attribute == null) return;
+
+        foreach (var value in attribute.AllowedComparisons)
+        {
+            Options.Add(new SelectOption()
+            {
+                Label = ComparisonResources[value.ToString()],
+                Value = value.ToString(),
+            });
+        }
+
+        StateHasChanged();
+    }
+
+    private async Task Changed(string? value)
+    {
+        if (!Enum.TryParse<AutoSelectComparisonType>(value, out var enumValue))
+        {
+            return;
+        }
+
+        Condition.Comparison = enumValue;
+        await OnChanged.InvokeAsync();
+    }
 }
