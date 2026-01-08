@@ -437,9 +437,15 @@ public class KeyboardProvider
 
         foreach (var stroke in keyStrokes)
         {
-            logger.LogDebug("[Keyboard] Sending " + stroke);
+            var normalizedStroke = NormalizeStrokeForCtrlHold(stroke);
+            if (string.IsNullOrEmpty(normalizedStroke))
+            {
+                continue;
+            }
 
-            var (modifiers, keys) = FetchKeys(stroke);
+            logger.LogDebug("[Keyboard] Sending " + normalizedStroke);
+
+            var (modifiers, keys) = FetchKeys(normalizedStroke);
 
             if (keys.Count == 0)
             {
@@ -581,5 +587,27 @@ public class KeyboardProvider
         {
             IsCtrlPressed = isPressed;
         }
+    }
+
+    private string? NormalizeStrokeForCtrlHold(string stroke)
+    {
+        if (!OperatingSystem.IsLinux() || !IsCtrlPressed)
+        {
+            return stroke;
+        }
+
+        var parts = stroke.Split('+', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        if (parts.Length == 0)
+        {
+            return stroke;
+        }
+
+        if (!parts.Any(part => part.Equals("Ctrl", StringComparison.OrdinalIgnoreCase)))
+        {
+            return stroke;
+        }
+
+        var filtered = parts.Where(part => !part.Equals("Ctrl", StringComparison.OrdinalIgnoreCase)).ToList();
+        return filtered.Count == 0 ? null : string.Join("+", filtered);
     }
 }

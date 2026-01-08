@@ -35,6 +35,7 @@ bld/
 
 # Local AppImage outputs and extracted artifacts (Linux debug builds)
 dist/
+appimagetool-root/
 squashfs-root/
 tmp/
 packages-microsoft-prod.deb
