@@ -11,7 +11,7 @@ public interface IClipboardProvider
     ///     this task.
     /// </summary>
     /// <returns>The text that was copied</returns>
-    Task<string?> Copy(bool? withAlt = false);
+    Task<string?> Copy(bool? withAlt = false, bool? assumeCtrlHeld = null);
 
     /// <summary>
     ///     Gets the text value of what is currently in the clipboard.

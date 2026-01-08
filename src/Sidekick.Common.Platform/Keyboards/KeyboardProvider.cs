@@ -164,6 +164,10 @@ public class KeyboardProvider
     [
     ];
 
+    private readonly Dictionary<KeyCode, string> pendingKeybinds = new();
+
+    public bool IsCtrlPressed { get; private set; }
+
     public HashSet<string?> UsedKeybinds => [.. KeybindHandlers.SelectMany(k => k.Keybinds)];
 
     /// <inheritdoc/>
@@ -215,6 +219,7 @@ public class KeyboardProvider
         // Initialize keyboard hook
         Hook = new();
         Hook.KeyPressed += OnKeyPressed;
+        Hook.KeyReleased += OnKeyReleased;
 
         // Initialize mouse hook
         Hook.MouseWheel += OnMouseWheel;
@@ -253,6 +258,8 @@ public class KeyboardProvider
 
     private void OnKeyPressed(object? sender, KeyboardHookEventArgs args)
     {
+        UpdateModifierState(args.RawEvent.Keyboard.KeyCode, isPressed: true);
+
         // Make sure the key is one we recognize and validate the event and keybinds
         if (!keyMappings.TryGetValue(args.RawEvent.Keyboard.KeyCode, out var key)
             || modifierKeys.IsMatch(key)
@@ -286,7 +293,32 @@ public class KeyboardProvider
         var keybind = str.ToString();
         OnKeyDown?.Invoke(keybind);
 
-        foreach (var keybindHandler in KeybindHandlers.Where(keybindHandler => keybindHandler.Keybinds.Contains(keybind) && keybindHandler.IsValid(keybind)))
+        var matchingHandlers = KeybindHandlers
+            .Where(keybindHandler => keybindHandler.Keybinds.Contains(keybind) && keybindHandler.IsValid(keybind))
+            .ToList();
+
+        if (matchingHandlers.Count == 0)
+        {
+            return;
+        }
+
+        if (OperatingSystem.IsLinux())
+        {
+            args.SuppressEvent = true;
+            lock (pendingKeybinds)
+            {
+                if (pendingKeybinds.ContainsKey(args.RawEvent.Keyboard.KeyCode))
+                {
+                    return;
+                }
+
+                pendingKeybinds[args.RawEvent.Keyboard.KeyCode] = keybind;
+            }
+
+            return;
+        }
+
+        foreach (var keybindHandler in matchingHandlers)
         {
             logger.LogDebug($"[Keyboard] Executing keybind handler for {str}.");
             args.SuppressEvent = true;
@@ -294,6 +326,58 @@ public class KeyboardProvider
             {
                 await keybindHandler.Execute(keybind);
                 logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
+            });
+        }
+    }
+
+    private void OnKeyReleased(object? sender, KeyboardHookEventArgs args)
+    {
+        UpdateModifierState(args.RawEvent.Keyboard.KeyCode, isPressed: false);
+
+        if (!OperatingSystem.IsLinux())
+        {
+            return;
+        }
+
+        if (!keyMappings.TryGetValue(args.RawEvent.Keyboard.KeyCode, out var key)
+            || modifierKeys.IsMatch(key))
+        {
+            return;
+        }
+
+        string? keybind;
+        lock (pendingKeybinds)
+        {
+            if (!pendingKeybinds.TryGetValue(args.RawEvent.Keyboard.KeyCode, out keybind))
+            {
+                return;
+            }
+
+            pendingKeybinds.Remove(args.RawEvent.Keyboard.KeyCode);
+        }
+
+        if (string.IsNullOrEmpty(keybind))
+        {
+            return;
+        }
+
+        var matchingHandlers = KeybindHandlers
+            .Where(keybindHandler => keybindHandler.Keybinds.Contains(keybind) && keybindHandler.IsValid(keybind))
+            .ToList();
+
+        if (matchingHandlers.Count == 0)
+        {
+            return;
+        }
+
+        foreach (var keybindHandler in matchingHandlers)
+        {
+            logger.LogDebug($"[Keyboard] Executing keybind handler for {keybind}.");
+            args.SuppressEvent = true;
+            Task.Run(async () =>
+            {
+                await keybindHandler.Execute(keybind);
+                logger.LogDebug($"[Keyboard] Completed Keybind Handler for {keybind}.");
             });
         }
     }
@@ -348,6 +432,7 @@ public class KeyboardProvider
         if (Hook != null)
         {
             Hook.KeyPressed -= OnKeyPressed;
+            Hook.KeyReleased -= OnKeyReleased;
         }
 
         foreach (var stroke in keyStrokes)
@@ -385,6 +470,7 @@ public class KeyboardProvider
         if (Hook != null)
         {
             Hook.KeyPressed += OnKeyPressed;
+            Hook.KeyReleased += OnKeyReleased;
         }
 
         return Task.CompletedTask;
@@ -469,6 +555,7 @@ public class KeyboardProvider
 
             // Ensure hook itself is set to null
             Hook.KeyPressed -= OnKeyPressed;
+            Hook.KeyReleased -= OnKeyReleased;
             Hook.MouseWheel -= OnMouseWheel;
             Hook.MouseDragged -= OnMouseDragged;
             Hook.Dispose();
@@ -486,5 +573,13 @@ public class KeyboardProvider
         var simulator = new EventSimulator();
         simulator.SimulateKeyRelease(KeyCode.VcLeftAlt);
         simulator.SimulateKeyRelease(KeyCode.VcRightAlt);
+    }
+
+    private void UpdateModifierState(KeyCode keyCode, bool isPressed)
+    {
+        if (keyCode == KeyCode.VcLeftControl || keyCode == KeyCode.VcRightControl)
+        {
+            IsCtrlPressed = isPressed;
+        }
     }
 }

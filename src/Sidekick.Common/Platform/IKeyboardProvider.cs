@@ -44,5 +44,10 @@ public interface IKeyboardProvider : IInitializableService
     /// </summary>
     void ReleaseAltModifier();
 
+    /// <summary>
+    /// Indicates whether Ctrl is currently pressed.
+    /// </summary>
+    bool IsCtrlPressed { get; }
+
     HashSet<string?> UsedKeybinds { get; }
 }
