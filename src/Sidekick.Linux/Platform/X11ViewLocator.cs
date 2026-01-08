@@ -26,6 +26,10 @@ public sealed class X11ViewLocator(
     private bool x11Unavailable;
     private bool dependencyDialogShown;
     private bool kdeRuleApplied;
+    private IntPtr lastPoeWindow;
+    private string? lastPoeTitle;
+    private int lastWidgetCount = -1;
+    private DateTimeOffset lastFocusRestore;
     private IReadOnlyList<OverlayRegion> pendingRegions = Array.Empty<OverlayRegion>();
     private readonly Dictionary<SidekickViewType, Guid> openWidgets = new();
     private int lastOverlayX;
@@ -117,6 +121,7 @@ public sealed class X11ViewLocator(
         }
 
         ApplyInputRegions(overlayWindow, pendingRegions);
+        HandleWidgetCountChange();
     }
 
     public void SetOverlayVisible(bool isVisible)
@@ -146,6 +151,7 @@ public sealed class X11ViewLocator(
 
         if (isVisible)
         {
+            UpdateLastPoeWindow();
             EnsureOverlayMonitor();
             UpdateOverlayBounds();
             ApplyWindowType(overlayWindow);
@@ -1265,6 +1271,183 @@ public sealed class X11ViewLocator(
         }
     }
 
+    private void HandleWidgetCountChange()
+    {
+        var widgetService = serviceProvider.GetService<OverlayWidgetService>();
+        if (widgetService == null)
+        {
+            return;
+        }
+
+        var widgetCount = widgetService.Widgets.Count;
+        if (widgetCount == lastWidgetCount)
+        {
+            return;
+        }
+
+        lastWidgetCount = widgetCount;
+        if (widgetCount == 0)
+        {
+            TryRestoreGameFocus();
+        }
+    }
+
+    private void UpdateLastPoeWindow()
+    {
+        if (!TryGetActiveWindow(out var window, out var title))
+        {
+            return;
+        }
+
+        if (window == overlayWindow || string.IsNullOrWhiteSpace(title))
+        {
+            return;
+        }
+
+        if (!IsPathOfExileTitle(title))
+        {
+            return;
+        }
+
+        lastPoeWindow = window;
+        lastPoeTitle = title;
+    }
+
+    private void TryRestoreGameFocus()
+    {
+        if (!processProvider.IsSidekickInFocus)
+        {
+            return;
+        }
+
+        if (processProvider.IsPathOfExileInFocus)
+        {
+            return;
+        }
+
+        if (lastPoeWindow == IntPtr.Zero || !IsWindowAlive(lastPoeWindow))
+        {
+            lastPoeWindow = IntPtr.Zero;
+            lastPoeTitle = null;
+            return;
+        }
+
+        var now = DateTimeOffset.UtcNow;
+        if (now - lastFocusRestore < TimeSpan.FromMilliseconds(500))
+        {
+            return;
+        }
+
+        lastFocusRestore = now;
+        logger.LogInformation(
+            "[Linux/X11] Restoring focus to {Title} ({Handle}).",
+            lastPoeTitle ?? "<unknown>",
+            lastPoeWindow);
+        ActivateWindow(lastPoeWindow);
+    }
+
+    private bool TryGetActiveWindow(out IntPtr window, out string? title)
+    {
+        window = IntPtr.Zero;
+        title = null;
+
+        if (display == IntPtr.Zero)
+        {
+            return false;
+        }
+
+        var root = XDefaultRootWindow(display);
+        var activeAtom = XInternAtom(display, "_NET_ACTIVE_WINDOW", true);
+        if (activeAtom == IntPtr.Zero)
+        {
+            return false;
+        }
+
+        var status = XGetWindowProperty(
+            display,
+            root,
+            activeAtom,
+            IntPtr.Zero,
+            new IntPtr(1024),
+            false,
+            IntPtr.Zero,
+            out _,
+            out _,
+            out var nitems,
+            out _,
+            out var prop);
+
+        if (status != Success || prop == IntPtr.Zero || nitems == UIntPtr.Zero)
+        {
+            if (prop != IntPtr.Zero)
+            {
+                XFree(prop);
+            }
+
+            return false;
+        }
+
+        window = ReadWindowId(prop);
+        XFree(prop);
+        if (window == IntPtr.Zero)
+        {
+            return false;
+        }
+
+        title = FetchWindowTitle(window);
+        return true;
+    }
+
+    private void ActivateWindow(IntPtr window)
+    {
+        if (display == IntPtr.Zero || window == IntPtr.Zero)
+        {
+            return;
+        }
+
+        var activeAtom = XInternAtom(display, "_NET_ACTIVE_WINDOW", false);
+        if (activeAtom != IntPtr.Zero)
+        {
+            var root = XDefaultRootWindow(display);
+            var requestor = overlayWindow != IntPtr.Zero ? overlayWindow : IntPtr.Zero;
+            var xEvent = new XEvent
+            {
+                ClientMessage = new XClientMessageEvent
+                {
+                    Type = ClientMessage,
+                    SendEvent = true,
+                    Display = display,
+                    Window = window,
+                    MessageType = activeAtom,
+                    Format = 32,
+                    Data0 = new IntPtr(2),
+                    Data1 = IntPtr.Zero,
+                    Data2 = requestor,
+                    Data3 = IntPtr.Zero,
+                    Data4 = IntPtr.Zero
+                }
+            };
+
+            XSendEvent(
+                display,
+                root,
+                false,
+                new IntPtr(SubstructureRedirectMask | SubstructureNotifyMask),
+                ref xEvent);
+            XFlush(display);
+        }
+
+        XRaiseWindow(display, window);
+        XSetInputFocus(display, window, RevertToParent, IntPtr.Zero);
+        XFlush(display);
+    }
+
+    private static bool IsPathOfExileTitle(string title)
+    {
+        return title.Contains("Path of Exile", StringComparison.OrdinalIgnoreCase)
+            || title.Contains("Path of Exiles", StringComparison.OrdinalIgnoreCase);
+    }
+
     private static readonly TimeSpan OverlayRaiseInterval = TimeSpan.FromSeconds(1);
     private static readonly TimeSpan OverlayMonitorInterval = TimeSpan.FromSeconds(2);
     private const int Success = 0;
@@ -1276,6 +1459,7 @@ public sealed class X11ViewLocator(
     private const int MotifHintDecorations = 1 << 1;
     private const int NetWmStateAdd = 1;
     private const int ClientMessage = 33;
+    private const int RevertToParent = 2;
     private const long SubstructureNotifyMask = 1L << 19;
     private const long SubstructureRedirectMask = 1L << 20;
     private static readonly IntPtr XA_ATOM = new(4);
@@ -1458,6 +1642,9 @@ public sealed class X11ViewLocator(
 
     [DllImport("libX11.so.6", EntryPoint = "XRaiseWindow")]
     private static extern int XRaiseWindow(IntPtr display, IntPtr window);
+
+    [DllImport("libX11.so.6", EntryPoint = "XSetInputFocus")]
+    private static extern int XSetInputFocus(IntPtr display, IntPtr focus, int revertTo, IntPtr time);
 
     [DllImport("libX11.so.6", EntryPoint = "XUnmapWindow")]
     private static extern int XUnmapWindow(IntPtr display, IntPtr window);
