@@ -1,20 +1,31 @@
 @page "/overlay"
 @using Sidekick.Common.Ui.Overlay
+@using Sidekick.Common
+@using Sidekick.Common.Platform
 @inject OverlayWidgetService WidgetService
 @inject IOverlayInputRegionService InputRegionService
 @inject IJSRuntime JsRuntime
+@inject IApplicationService ApplicationService
+@inject ISidekickDialogs Dialogs
 @implements IDisposable
 
 <div id="overlay-root" class="overlay-root">
     @if (ShowRestoreButton)
     {
-        <button type="button"
-                class="overlay-menu-restore"
-                title="Open menu"
-                style="@RestoreButtonStyle"
-                @onclick="RestoreMenu">
-            Sidekick Menu
-        </button>
+        <div class="overlay-home-controls" style="@RestoreButtonStyle">
+            <button type="button"
+                    class="overlay-menu-restore overlay-home-button overlay-home-launch"
+                    title="Open Sidekick Home"
+                    @onclick="RestoreHome">
+                Sidekick Home
+            </button>
+            <button type="button"
+                    class="overlay-menu-restore overlay-home-button overlay-home-exit"
+                    title="Exit Sidekick"
+                    @onclick="ConfirmExit">
+                Exit Sidekick
+            </button>
+        </div>
     }
     @foreach (var widget in widgets)
     {
@@ -23,23 +34,10 @@
              style="left:@($"{widget.X}px"); top:@($"{widget.Y}px"); width:@($"{widget.Width}px"); height:@($"{widget.Height}px");">
             <div class="overlay-widget-chrome">
                 <div class="overlay-widget-drag-handle" title="Drag"></div>
-                @if (widget.IsMenu)
-                {
-                    <button type="button"
-                            class="overlay-widget-close"
-                            title="Close"
-                            @onclick="@(() => CloseWidget(widget.Id))">
-                        ×
-                    </button>
-                }
             </div>
             <div class="overlay-widget-resize-handle" title="Resize"></div>
             <div class="overlay-widget-body">
-                @if (widget.IsMenu)
-                {
-                    <OverlayMenuWidget />
-                }
-                else if (!string.IsNullOrEmpty(widget.Url))
+                @if (!string.IsNullOrEmpty(widget.Url))
                 {
                     <iframe src="@BuildWidgetUrl(widget.Url, widget.Id)"
                             data-widget-id="@widget.Id"
@@ -51,8 +49,10 @@
 </div>
 
 @code {
-    private const int RestoreButtonWidth = 140;
+    private const int HomeButtonWidth = 140;
+    private const int ExitButtonWidth = 140;
     private const int RestoreButtonHeight = 28;
+    private const int RestoreButtonGap = 8;
     private IReadOnlyList<OverlayWidgetService.OverlayWidgetState> widgets = Array.Empty<OverlayWidgetService.OverlayWidgetState>();
     private DotNetObjectReference<OverlayHost>? dotNetRef;
     private int viewportWidth;
@@ -61,12 +61,12 @@
     private int restoreButtonY = 6;
     private int OpenWidgetCount => widgets.Count;
     private bool ShowRestoreButton => OpenWidgetCount == 0;
+    private int RestoreButtonWidth => HomeButtonWidth + ExitButtonWidth + RestoreButtonGap;
     private string RestoreButtonStyle => $"left:{restoreButtonX}px; top:{restoreButtonY}px; width:{RestoreButtonWidth}px; height:{RestoreButtonHeight}px;";
 
     protected override void OnInitialized()
     {
         WidgetService.WidgetsChanged += OnWidgetsChanged;
-        WidgetService.EnsureMenuWidget();
         widgets = WidgetService.Widgets;
     }
 
@@ -88,14 +88,18 @@
         InvokeAsync(StateHasChanged);
     }
 
-    private void CloseWidget(Guid id)
+    private void RestoreHome()
     {
-        WidgetService.CloseWidget(id);
+        WidgetService.OpenWidget("/home");
     }
 
-    private void RestoreMenu()
+    private async Task ConfirmExit()
     {
-        WidgetService.EnsureMenuWidget();
+        var confirmed = await Dialogs.OpenConfirmationModal("Exit Sidekick?");
+        if (confirmed)
+        {
+            ApplicationService.Shutdown();
+        }
     }
 
     [JSInvokable]

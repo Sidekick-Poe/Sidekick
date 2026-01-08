@@ -170,17 +170,38 @@ body.overlay-mode,
   background: rgba(51, 65, 85, 0.9);
 }
 
-.overlay-menu-restore {
+.overlay-home-controls {
   position: fixed;
   z-index: 10;
   pointer-events: auto;
-  padding: 6px 10px;
-  border-radius: 0;
+  display: flex;
+  gap: 0;
+  box-sizing: border-box;
+  align-items: center;
   border: 1px solid rgba(148, 163, 184, 0.4);
   background: rgba(30, 41, 59, 0.85);
+}
+
+.overlay-menu-restore {
+  width: 140px;
+  height: 100%;
+  padding: 0 10px;
+  border-radius: 0;
+  border: 0;
+  background: transparent;
   color: #e2e8f0;
   font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
   cursor: pointer;
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+
+.overlay-menu-restore + .overlay-menu-restore {
+  border-left: 1px solid rgba(148, 163, 184, 0.4);
 }
 
 .overlay-menu-restore:hover {

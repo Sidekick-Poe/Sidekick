@@ -11,9 +11,6 @@ public sealed class OverlayWidgetService(
 {
     private const int DefaultWidgetWidth = 600;
     private const int DefaultWidgetHeight = 420;
-    private const int MenuWidgetWidth = 420;
-    private const int MenuWidgetHeight = 320;
-    private const string MenuWidgetKey = "menu";
 
     private readonly object syncLock = new();
     private readonly List<OverlayWidgetState> widgets = [];
@@ -70,47 +67,6 @@ public sealed class OverlayWidgetService(
         {
             viewportWidth = width;
             viewportHeight = height;
-            if (!layouts.ContainsKey(MenuWidgetKey))
-            {
-                var menu = widgets.FirstOrDefault(x => x.Key == MenuWidgetKey);
-                if (menu != null)
-                {
-                    var centered = GetCenteredPosition(menu.Width, menu.Height);
-                    menu.X = centered.X;
-                    menu.Y = centered.Y;
-                    WidgetsChanged?.Invoke();
-                }
-            }
-        }
-    }
-
-    public OverlayWidgetState EnsureMenuWidget()
-    {
-        lock (syncLock)
-        {
-            var existing = widgets.FirstOrDefault(x => x.Key == MenuWidgetKey);
-            if (existing != null)
-            {
-                return existing;
-            }
-
-            var layout = GetLayout(MenuWidgetKey, MenuWidgetWidth, MenuWidgetHeight);
-            var widget = new OverlayWidgetState
-            {
-                Id = Guid.NewGuid(),
-                Key = MenuWidgetKey,
-                Title = "Sidekick",
-                Url = null,
-                IsMenu = true,
-                X = layout.X,
-                Y = layout.Y,
-                Width = layout.Width,
-                Height = layout.Height
-            };
-
-            widgets.Add(widget);
-            WidgetsChanged?.Invoke();
-            return widget;
         }
     }
 
@@ -131,7 +87,6 @@ public sealed class OverlayWidgetService(
                 Key = layoutKey,
                 Title = BuildTitle(url),
                 Url = url,
-                IsMenu = false,
                 X = layout.X,
                 Y = layout.Y,
                 Width = layout.Width,
@@ -289,7 +244,6 @@ public sealed class OverlayWidgetService(
         public string? Key { get; init; }
         public string Title { get; init; } = "Sidekick";
         public string? Url { get; init; }
-        public bool IsMenu { get; init; }
         public int X { get; set; }
         public int Y { get; set; }
         public int Width { get; set; }

@@ -76,16 +76,15 @@
 
     attachEvents() {
       document.addEventListener("mousedown", (event) => {
-        const restoreButton = event.target.closest(".overlay-menu-restore");
-        if (restoreButton) {
-          const rect = restoreButton.getBoundingClientRect();
-          this.restoreDragging = restoreButton;
+        const restoreControls = event.target.closest(".overlay-home-controls");
+        if (restoreControls) {
+          const rect = restoreControls.getBoundingClientRect();
+          this.restoreDragging = restoreControls;
           this.restoreOffsetX = event.clientX - rect.left;
           this.restoreOffsetY = event.clientY - rect.top;
           this.restoreStartX = event.clientX;
           this.restoreStartY = event.clientY;
           this.restoreMoved = false;
-          event.preventDefault();
           return;
         }
 
@@ -130,7 +129,7 @@
           const distanceX = event.clientX - this.restoreStartX;
           const distanceY = event.clientY - this.restoreStartY;
           if (!this.restoreMoved) {
-            const threshold = 3;
+            const threshold = 6;
             if (Math.hypot(distanceX, distanceY) < threshold) {
               return;
             }
@@ -150,6 +149,7 @@
           button.style.left = `${Math.round(left)}px`;
           button.style.top = `${Math.round(top)}px`;
           this.queueRestoreUpdate(Math.round(left), Math.round(top));
+          event.preventDefault();
           return;
         }
 
@@ -200,6 +200,11 @@
           this.setResizeState(false);
         }
         if (this.restoreDragging) {
+          if (this.restoreMoved) {
+            setTimeout(() => {
+              this.suppressRestoreClick = false;
+            }, 0);
+          }
           this.restoreDragging = null;
         }
       });
@@ -207,8 +212,8 @@
       document.addEventListener(
         "click",
         (event) => {
-          const restoreButton = event.target.closest(".overlay-menu-restore");
-          if (!restoreButton) {
+          const restoreControls = event.target.closest(".overlay-home-controls");
+          if (!restoreControls) {
             return;
           }
 

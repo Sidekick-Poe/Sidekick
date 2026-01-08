@@ -61,7 +61,6 @@ public sealed class X11ViewLocator(
 
         if (url == "/overlay" || url == "/")
         {
-            widgetService.EnsureMenuWidget();
             return;
         }
 
