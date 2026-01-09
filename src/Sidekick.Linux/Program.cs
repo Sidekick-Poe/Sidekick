@@ -96,6 +96,7 @@ if (string.IsNullOrEmpty(startupUrl))
 {
     builder.Services.AddSidekickInitializableService<LinuxOverlayFocusWatcher, LinuxOverlayFocusWatcher>();
 }
+builder.Services.AddSidekickInitializableService<LinuxPoeWindowWatcher, LinuxPoeWindowWatcher>();
 if (!string.IsNullOrEmpty(startupUrl))
 {
     builder.Services.AddSingleton(new LinuxStartupWindowOptions(startupUrl));
