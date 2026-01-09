@@ -1,17 +1,15 @@
 name: Build Linux AppImage
 
 # Notes:
-# - This workflow runs when a GitHub Release is published and uploads an AppImage
-#   asset named after the release tag (e.g., v2025.0108.0345).
-# - If you want to fold this into build-release.yml instead, copy the "AppImage"
-#   steps into the ubuntu-latest job after the .NET publish step and swap
-#   APPIMAGE_NAME to use steps.version.outputs.version.
+# - Manual workflow that mirrors build-release.yml versioning/release notes,
+#   but only builds the Linux AppImage (no Windows/Velopack).
+# - To integrate into build-release.yml, copy the steps from "Version" through
+#   "Release - Upload AppImage" into the ubuntu-latest job.
 # - The AppRun includes --initialize and defaults to disabling WebKit sandbox
 #   for Ubuntu 24.04 compatibility (can be overridden via env vars).
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -19,17 +17,83 @@ permissions:
 jobs:
   appimage:
     runs-on: ubuntu-latest
-    env:
-      APPDIR: dist/Sidekick.AppDir
-      APPIMAGE_NAME: Sidekick-${{ github.event.release.tag_name }}-x86_64.AppImage
     steps:
       - name: Git - Checkout
         uses: actions/checkout@v4
+
+      - name: Version
+        id: version
+        shell: pwsh
+        run: |
+          # Get the current date
+          $DATE = Get-Date -Format "yyyy.Mdd"
+
+          # Get the current hour and minute without leading zero for the hour
+          $HOUR = [int](Get-Date -Format "HH") # Convert hour to integer to strip any leading zero
+
+          # If the hour is 0 (midnight), set it to an empty string
+          if ($HOUR -eq 0) {
+            $HOUR = ''
+          }
+
+          $MINUTE = Get-Date -Format "mm" # Keep minutes as-is
+
+          # Construct the time, omitting hour if it's empty
+          $TIME = "$HOUR$MINUTE"
+
+          # Construct the version using DATE and TIME
+          $VERSION = "$DATE.$TIME"
+          Write-Output "Generated version: $VERSION"
+
+          # Export version as an output
+          echo "version=$VERSION" >> $env:GITHUB_OUTPUT
+
+      - name: Version - Update project files
+        uses: vers-one/dotnet-project-version-updater@v1.7
+        with:
+          file: "src/**/*.csproj"
+          version: ${{ steps.version.outputs.version }}
+
+      - name: Release - Delete unpublished
+        uses: hugo19941994/delete-draft-releases@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Release - Notes
+        id: notes
+        uses: release-drafter/release-drafter@v6
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          config-name: release-drafter.yml
+          name: "Sidekick v${{ steps.version.outputs.version }}"
+          tag: "v${{ steps.version.outputs.version }}"
+          version: "v${{ steps.version.outputs.version }}"
+          publish: false
+          prerelease: false
+
+      - name: Environment - Build Number
+        uses: myci-actions/export-env-var@1
+        with:
+          name: BUILD_NUMBER
+          value: ${{ steps.version.outputs.version }}
+
+      - name: Environment - Github Token
+        uses: myci-actions/export-env-var@1
+        with:
+          name: GITHUB_TOKEN
+          value: ${{ github.token }}
 
       - name: .NET - Setup
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.x
+
+      - name: AppImage - Set vars
+        shell: bash
+        run: |
+          echo "APPDIR=dist/Sidekick.AppDir" >> "$GITHUB_ENV"
+          echo "APPIMAGE_NAME=Sidekick-v${{ steps.version.outputs.version }}-x86_64.AppImage" >> "$GITHUB_ENV"
 
       - name: AppImage - Install tools
         run: |
@@ -88,4 +152,5 @@ jobs:
       - name: Release - Upload AppImage
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v${{ steps.version.outputs.version }}
           files: dist/${{ env.APPIMAGE_NAME }}
