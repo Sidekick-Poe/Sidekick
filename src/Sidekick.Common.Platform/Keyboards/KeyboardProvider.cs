@@ -525,6 +525,7 @@ public class KeyboardProvider
         return (modifierCodes, keyCodes);
     }
 
+
     public void Dispose()
     {
         Dispose(true);

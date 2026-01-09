@@ -36,7 +36,14 @@ public static class StartupExtensions
             services.AddSidekickInitializableService<IProcessProvider, Linux.Processes.ProcessProvider>();
         }
 
-        services.AddSidekickInitializableService<IKeyboardProvider, KeyboardProvider>();
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            services.AddSidekickInitializableService<IKeyboardProvider, LinuxKeyboardProvider>();
+        }
+        else
+        {
+            services.AddSidekickInitializableService<IKeyboardProvider, KeyboardProvider>();
+        }
         services.AddSingleton<IGameLogProvider, GameLogProvider>();
 
         foreach (var inputHandler in SidekickConfiguration.InputHandlers)

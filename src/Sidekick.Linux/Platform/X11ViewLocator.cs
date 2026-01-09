@@ -109,7 +109,13 @@ public sealed class X11ViewLocator(
 
     public bool IsOverlayOpened()
     {
-        return overlayWindow != IntPtr.Zero;
+        var widgetService = serviceProvider.GetService<OverlayWidgetService>();
+        if (widgetService == null)
+        {
+            return overlayWindow != IntPtr.Zero;
+        }
+
+        return widgetService.Widgets.Count > 0;
     }
 
     public void UpdateRegions(IReadOnlyList<OverlayRegion> regions)

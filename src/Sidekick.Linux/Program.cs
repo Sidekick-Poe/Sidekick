@@ -91,6 +91,7 @@ builder.Services.AddSingleton(sp => (X11ViewLocator)sp.GetRequiredService<IViewL
 builder.Services.AddSingleton<IOverlayInputRegionService>(sp => sp.GetRequiredService<X11ViewLocator>());
 builder.Services.AddSingleton<IOverlayVisibilityService>(sp => sp.GetRequiredService<X11ViewLocator>());
 builder.Services.AddSidekickInitializableService<OverlayWidgetService, OverlayWidgetService>();
+builder.Services.AddSingleton<IOverlayStateProvider, OverlayStateProvider>();
 if (string.IsNullOrEmpty(startupUrl))
 {
     builder.Services.AddSidekickInitializableService<LinuxOverlayFocusWatcher, LinuxOverlayFocusWatcher>();
