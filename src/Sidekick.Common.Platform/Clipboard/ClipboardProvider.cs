@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Settings;
@@ -13,7 +14,7 @@ public class ClipboardProvider
 ) : IClipboardProvider
 {
     /// <inheritdoc/>
-    public async Task<string?> Copy(bool? withAlt = false)
+    public async Task<string?> Copy(bool? withAlt = false, bool? assumeCtrlHeld = null)
     {
         var clipboardText = string.Empty;
         var retainClipboard = await settingsService.GetBool(SettingKeys.RetainClipboard);
@@ -29,6 +30,12 @@ public class ClipboardProvider
         {
             await keyboard.PressKey("Ctrl+Alt+C");
         }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) && assumeCtrlHeld == true)
+        {
+            // Ctrl is already held from the hotkey; avoid toggling it during the copy.
+            keyboard.ReleaseAltModifier();
+            await keyboard.PressKey("C");
+        }
         else
         {
             keyboard.ReleaseAltModifier();
@@ -37,10 +44,7 @@ public class ClipboardProvider
 
         logger.LogDebug("[Clipboard] Sent keystrokes Ctrl+C");
 
-        await Task.Delay(100);
-
-        // Retrieve clipboard.
-        var result = await GetText();
+        var result = await ReadClipboardCopyResult();
         logger.LogDebug("[Clipboard] Fetched clipboard value.");
 
         if (retainClipboard)
@@ -51,6 +55,33 @@ public class ClipboardProvider
         }
 
         return string.IsNullOrEmpty(result) ? null : result;
+    }
+
+    private async Task<string?> ReadClipboardCopyResult()
+    {
+        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            await Task.Delay(100);
+            return await GetText();
+        }
+
+        // On Linux, wait longer for the game to populate the clipboard.
+        var timeout = TimeSpan.FromMilliseconds(750);
+        var pollInterval = TimeSpan.FromMilliseconds(50);
+        var stopwatch = Stopwatch.StartNew();
+        string? result = null;
+
+        while (stopwatch.Elapsed < timeout)
+        {
+            await Task.Delay(pollInterval);
+            result = await GetText();
+            if (!string.IsNullOrEmpty(result))
+            {
+                return result;
+            }
+        }
+
+        return result;
     }
 
     /// <inheritdoc/>

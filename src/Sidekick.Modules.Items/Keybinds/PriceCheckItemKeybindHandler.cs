@@ -1,8 +1,10 @@
+using System;
 using Sidekick.Common.Extensions;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
 using Sidekick.Common.Ui.Views;
+
 namespace Sidekick.Modules.Items.Keybinds;
 
 public class PriceCheckItemKeybindHandler
@@ -25,7 +27,8 @@ public class PriceCheckItemKeybindHandler
 
     public override async Task Execute(string keybind)
     {
-        var text = await clipboardProvider.Copy();
+        var assumeCtrlHeld = OperatingSystem.IsLinux() && keyboard.IsCtrlPressed;
+        var text = await clipboardProvider.Copy(assumeCtrlHeld: assumeCtrlHeld);
         if (text == null)
         {
             await keyboard.PressKey(keybind);

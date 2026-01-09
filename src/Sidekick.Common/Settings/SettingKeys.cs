@@ -49,6 +49,6 @@ public static class SettingKeys
     public const string PriceCheckEnableFiltersByRegex = nameof(PriceCheckEnableFiltersByRegex);
 
     public const string SaveWindowPositions = nameof(SaveWindowPositions);
-
+    public const string OverlayWidgetLayouts = nameof(OverlayWidgetLayouts);
     public const string WealthItemTotalMinimum = nameof(WealthItemTotalMinimum);
 }

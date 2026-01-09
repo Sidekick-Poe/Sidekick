@@ -1,3 +1,4 @@
+using System;
 using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Common.Platform;
@@ -24,7 +25,8 @@ public class FindItemKeybindHandler(
 
     public override async Task Execute(string keybind)
     {
-        var text = await clipboardProvider.Copy();
+        var assumeCtrlHeld = OperatingSystem.IsLinux() && keyboard.IsCtrlPressed;
+        var text = await clipboardProvider.Copy(assumeCtrlHeld: assumeCtrlHeld);
         if (text == null)
         {
             await keyboard.PressKey(keybind);
