@@ -1,0 +1,91 @@
+name: Build Linux AppImage
+
+# Notes:
+# - This workflow runs when a GitHub Release is published and uploads an AppImage
+#   asset named after the release tag (e.g., v2025.0108.0345).
+# - If you want to fold this into build-release.yml instead, copy the "AppImage"
+#   steps into the ubuntu-latest job after the .NET publish step and swap
+#   APPIMAGE_NAME to use steps.version.outputs.version.
+# - The AppRun includes --initialize and defaults to disabling WebKit sandbox
+#   for Ubuntu 24.04 compatibility (can be overridden via env vars).
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  appimage:
+    runs-on: ubuntu-latest
+    env:
+      APPDIR: dist/Sidekick.AppDir
+      APPIMAGE_NAME: Sidekick-${{ github.event.release.tag_name }}-x86_64.AppImage
+    steps:
+      - name: Git - Checkout
+        uses: actions/checkout@v4
+
+      - name: .NET - Setup
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+
+      - name: AppImage - Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y squashfs-tools
+
+      - name: AppImage - Build AppDir
+        run: |
+          set -euo pipefail
+          rm -rf "$APPDIR"
+          mkdir -p "$APPDIR/usr/bin"
+
+          cat > "$APPDIR/AppRun" <<'EOF'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          HERE="$(dirname "$(readlink -f "$0")")"
+          export ASPNETCORE_URLS="${ASPNETCORE_URLS:-http://127.0.0.1:8080}"
+          export DOTNET_URLS="${DOTNET_URLS:-$ASPNETCORE_URLS}"
+          export WEBKIT_DISABLE_SANDBOX="${WEBKIT_DISABLE_SANDBOX:-1}"
+          export WEBKIT_FORCE_SANDBOX="${WEBKIT_FORCE_SANDBOX:-0}"
+          export GTK_USE_PORTAL="${GTK_USE_PORTAL:-0}"
+          export GIO_USE_VFS="${GIO_USE_VFS:-local}"
+          exec "$HERE/usr/bin/Sidekick" --initialize "$@"
+          EOF
+
+          chmod +x "$APPDIR/AppRun"
+
+          cat > "$APPDIR/Sidekick.desktop" <<'EOF'
+          [Desktop Entry]
+          Type=Application
+          Name=Sidekick
+          Exec=Sidekick
+          Icon=sidekick
+          Categories=Utility;
+          Terminal=true
+          EOF
+
+          cp src/Sidekick.Common.Ui/wwwroot/android-chrome-512x512.png "$APPDIR/sidekick.png"
+
+          dotnet publish src/Sidekick.Linux/Sidekick.Linux.csproj -c Release -r linux-x64 --self-contained true \
+            -p:PublishSingleFile=false -p:PublishTrimmed=false \
+            -o "$APPDIR/usr/bin"
+
+      - name: AppImage - Download appimagetool
+        run: |
+          curl -L https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage \
+            -o appimagetool-x86_64.AppImage
+          chmod +x appimagetool-x86_64.AppImage
+          rm -rf squashfs-root
+          ./appimagetool-x86_64.AppImage --appimage-extract
+
+      - name: AppImage - Package
+        run: |
+          ARCH=x86_64 ./squashfs-root/AppRun "$APPDIR" "dist/$APPIMAGE_NAME"
+
+      - name: Release - Upload AppImage
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/${{ env.APPIMAGE_NAME }}
