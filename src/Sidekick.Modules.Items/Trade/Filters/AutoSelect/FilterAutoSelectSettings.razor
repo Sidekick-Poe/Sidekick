@@ -14,7 +14,7 @@
 
 <Modal>
     <ActivatorContent>
-        <ButtonIcon Class="@ButtonClasses"
+        <ButtonIcon Class="invisible group-hover:visible text-neutral-500"
                     Svg="@UiIcons.Settings"/>
     </ActivatorContent>
     <HeaderContent>
@@ -49,19 +49,23 @@
         else if (AutoSelect.Mode == AutoSelectMode.Conditionally)
         {
             <TextBase Class="mb-2">@Resources["AutoSelect_Rules_Description", Filter.Text]</TextBase>
-            <div class="flex flex-col gap-2">
+            <div class="flex flex-col gap-2 mb-2">
                 @for (var ruleIndex = 0; ruleIndex < AutoSelect.Rules.Count; ruleIndex++)
                 {
                     var rule = AutoSelect.Rules[ruleIndex];
                     <div class="bg-stone-800 rounded-md"
                          @key="@rule.Id">
                         <div class="pl-2 py-1 pr-1 flex flex-nowrap gap-2 border-b-2 border-stone-700">
-                            <div class="font-bold text-lg text-neutral-400 grow">@Resources["AutoSelect_Rule"] #@(ruleIndex + 1)</div>
-                            <Tooltip Text="@Resources["AutoSelect_RemoveRule"]">
-                                <ButtonIcon Class="text-red-500! hover:text-red-300!"
-                                            Svg="@UiIcons.Close"
-                                            OnClick="() => RemoveRule(rule)"/>
-                            </Tooltip>
+                            <div
+                                class="font-bold text-lg text-neutral-400 grow">@Resources["AutoSelect_Rule"] #@(ruleIndex + 1)</div>
+                            @if (Mode == AutoSelectMode.Conditionally)
+                            {
+                                <Tooltip Text="@Resources["AutoSelect_RemoveRule"]">
+                                    <ButtonIcon Class="text-red-500! hover:text-red-300!"
+                                                Svg="@UiIcons.Close"
+                                                OnClick="() => RemoveRule(rule)"/>
+                                </Tooltip>
+                            }
                         </div>
 
                         @for (var conditionIndex = 0; conditionIndex < rule.Conditions.Count; conditionIndex++)
@@ -70,7 +74,7 @@
                             <FilterAutoSelectCondition @key="@condition.Id"
                                                        First="conditionIndex == 0"
                                                        Condition="condition"
-                                                       Readonly="Mode == AutoSelectMode.Default && false"
+                                                       Readonly="Mode == AutoSelectMode.Default"
                                                        OnChanged="Save"
                                                        OnRemoved="() => RemoveCondition(rule, condition)"
                                                        CanBeDeleted="rule.Conditions.Count > 1"/>
@@ -78,11 +82,28 @@
 
                         <div class="grid grid-cols-5 gap-2 items-center py-1 px-2 border-t border-stone-700 leading-4">
                             <span class="text-neutral-500">@Resources["AutoSelect_Then"]</span>
-                            <div class="col-span-2 text-white">@rule.Checked</div>
+                            <div class="col-span-2 text-white">
+                                <FilterAutoSelectRuleResult Rule="rule"
+                                                            Readonly="Mode == AutoSelectMode.Default"
+                                                            Filter="Filter"
+                                                            OnChanged="Save"/>
+                            </div>
+                            @if (Mode == AutoSelectMode.Conditionally)
+                            {
+                                <div class="col-span-2 flex justify-end">
+                                    <ButtonSecondary OnClick="() => AddCondition(rule)"
+                                                     Class="p-0!">@Resources["AutoSelect_AddCondition"]</ButtonSecondary>
+                                </div>
+                            }
                         </div>
                     </div>
                 }
             </div>
+
+            @if (Mode == AutoSelectMode.Conditionally)
+            {
+                <ButtonSecondary OnClick="AddRule" Class="p-0!">@Resources["AutoSelect_AddRule"]</ButtonSecondary>
+            }
         }
     </ChildContent>
     <FooterContent>
@@ -103,19 +124,6 @@
 
     [Parameter]
     public required TradeFilter Filter { get; set; }
-
-    private string ButtonClasses
-    {
-        get
-        {
-            if (Filter is ExpandableFilter)
-            {
-                return "-ml-6 invisible group-hover:visible text-neutral-500";
-            }
-
-            return "invisible group-hover:visible text-neutral-500";
-        }
-    }
 
     private AutoSelectPreferences? AutoSelect
     {
@@ -151,6 +159,23 @@
             Filter.AutoSelect.Mode = mode;
         }
 
+        await Save();
+        StateHasChanged();
+    }
+
+    private async Task AddRule()
+    {
+        var rule = new AutoSelectRule()
+        {
+            Checked = true,
+        };
+        AutoSelect?.Rules.Add(rule);
+        await AddCondition(rule);
+    }
+
+    private async Task AddCondition(AutoSelectRule rule)
+    {
+        rule.Conditions.Add(new AutoSelectCondition());
         await Save();
         StateHasChanged();
     }

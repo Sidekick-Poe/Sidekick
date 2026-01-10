@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
@@ -19,8 +20,11 @@ public sealed class StatFilter : TradeFilter
                     new AutoSelectCondition()
                     {
                         Type = AutoSelectConditionType.StatCategory,
-                        Comparison = AutoSelectComparisonType.Equals,
-                        Value = StatCategory.Fractured.ToString(),
+                        Comparison = AutoSelectComparisonType.IsContainedIn,
+                        Value = JsonSerializer.Serialize(new List<StatCategory>()
+                        {
+                            StatCategory.Fractured,
+                        }),
                     },
                 ],
             },

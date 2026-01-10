@@ -10,9 +10,7 @@ public enum AutoSelectConditionType
                           AutoSelectComparisonType.LesserThan)]
     Value,
 
-    [AutoSelectComparison(AutoSelectComparisonType.Equals,
-                          AutoSelectComparisonType.DoesNotEqual,
-                          AutoSelectComparisonType.IsContainedIn,
+    [AutoSelectComparison(AutoSelectComparisonType.IsContainedIn,
                           AutoSelectComparisonType.IsNotContainedIn)]
     ItemClass,
 
@@ -32,9 +30,7 @@ public enum AutoSelectConditionType
                           AutoSelectComparisonType.LesserThan)]
     Quality,
 
-    [AutoSelectComparison(AutoSelectComparisonType.Equals,
-                          AutoSelectComparisonType.DoesNotEqual,
-                          AutoSelectComparisonType.IsContainedIn,
+    [AutoSelectComparison(AutoSelectComparisonType.IsContainedIn,
                           AutoSelectComparisonType.IsNotContainedIn)]
     Rarity,
 
@@ -208,9 +204,7 @@ public enum AutoSelectConditionType
                           AutoSelectComparisonType.DoesNotMatchRegex)]
     Text,
 
-    [AutoSelectComparison(AutoSelectComparisonType.Equals,
-                          AutoSelectComparisonType.DoesNotEqual,
-                          AutoSelectComparisonType.IsContainedIn,
+    [AutoSelectComparison(AutoSelectComparisonType.IsContainedIn,
                           AutoSelectComparisonType.IsNotContainedIn)]
     StatCategory,
 }

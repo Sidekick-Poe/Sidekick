@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
@@ -79,8 +80,11 @@ public class QualityFilter : IntPropertyFilter
                         new()
                         {
                             Type = AutoSelectConditionType.Rarity,
-                            Comparison = AutoSelectComparisonType.Equals,
-                            Value = Rarity.Gem.ToString(),
+                            Comparison = AutoSelectComparisonType.IsContainedIn,
+                            Value = JsonSerializer.Serialize(new List<Rarity>()
+                            {
+                                Rarity.Gem,
+                            }),
                         },
                     ],
                 },
