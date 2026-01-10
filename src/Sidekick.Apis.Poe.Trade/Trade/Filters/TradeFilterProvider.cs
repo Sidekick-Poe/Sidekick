@@ -31,9 +31,15 @@ public class TradeFilterProvider
     public ApiFilter? Foulborn => GetApiFilter("misc_filters", "foulborn_item");
     public ApiFilter? Sanctified => GetApiFilter("misc_filters", "sanctified");
 
+    public ApiFilterCategory? WeaponCategory => GetApiFilterCategory("weapon_filters");
+    public ApiFilterCategory? ArmourCategory => GetApiFilterCategory("armour_filters");
+    public ApiFilterCategory? EquipmentCategory => GetApiFilterCategory("equipment_filters");
+    public ApiFilterCategory? SocketCategory => GetApiFilterCategory("socket_filters");
     public ApiFilterCategory? RequirementsCategory => GetApiFilterCategory("req_filters");
     public ApiFilterCategory? MiscellaneousCategory => GetApiFilterCategory("misc_filters");
     public ApiFilterCategory? TradeCategory => GetApiFilterCategory("trade_filters");
+    public ApiFilterCategory? EndgameCategory => GetApiFilterCategory("map_filters");
+    public ApiFilterCategory? MapCategory => GetApiFilterCategory("map_filters");
 
     private List<ApiFilterCategory> Filters { get; set; } = [];
 

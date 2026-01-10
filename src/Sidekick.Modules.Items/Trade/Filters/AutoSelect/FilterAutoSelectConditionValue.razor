@@ -5,7 +5,16 @@
     return;
 }
 
-<div>@Condition.Value</div>
+@if (Condition.Comparison is AutoSelectComparisonType.IsContainedIn or AutoSelectComparisonType.IsNotContainedIn)
+{
+    return;
+}
+
+<div class="mt-1">
+    <FormInputInline Value="@Condition.Value"
+                     ValueChanged="Changed"
+                     Readonly="Readonly"/>
+</div>
 
 @code {
 
@@ -23,4 +32,9 @@
         StateHasChanged();
     }
 
+    private async Task Changed(string? value)
+    {
+        Condition.Value = value;
+        await OnChanged.InvokeAsync();
+    }
 }

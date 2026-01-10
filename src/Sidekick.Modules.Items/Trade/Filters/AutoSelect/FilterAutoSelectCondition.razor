@@ -1,34 +1,47 @@
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
+@using Sidekick.Modules.Items.Trade.Localization
 
-<div class="grid grid-cols-5 gap-x-2 gap-y-0 items-center leading-4">
-    @if (First)
+<div class="flex flex-nowrap items-start gap-1 py-1 pl-2 pr-1 border-b border-stone-700">
+    <div class="grow grid grid-cols-5 gap-x-2 gap-y-0 items-center leading-4">
+        @if (First)
+        {
+            <span class="text-neutral-500">@Resources["AutoSelect_When"]</span>
+        }
+        else
+        {
+            <span class="text-neutral-500">@Resources["AutoSelect_And"]</span>
+        }
+        <div class="col-span-2">
+            <FilterAutoSelectConditionType @ref="ConditionType"
+                                           Condition="Condition"
+                                           OnChanged="Update"
+                                           Readonly="Readonly"/>
+        </div>
+        <div class="col-span-2">
+            <FilterAutoSelectComparisonType @ref="ComparisonType"
+                                            Condition="Condition"
+                                            OnChanged="Update"
+                                            Readonly="Readonly"/>
+        </div>
+        <div class="col-start-2 col-span-4">
+            <FilterAutoSelectConditionValue @ref="ConditionValue"
+                                            Condition="Condition"
+                                            OnChanged="Update"
+                                            Readonly="Readonly"/>
+        </div>
+    </div>
+    @if (!Readonly && CanBeDeleted)
     {
-        <span class="text-neutral-400">When</span>
+        <Tooltip Text="@Resources["AutoSelect_RemoveCondition"]">
+            <ButtonIcon Class="text-red-500! hover:text-red-300!"
+                        Svg="@UiIcons.Close"
+                        OnClick="OnRemoved"/>
+        </Tooltip>
     }
-    else
-    {
-        <span class="text-neutral-400">And</span>
-    }
-    <div class="col-span-2">
-        <FilterAutoSelectConditionType @ref="ConditionType"
-                                       Condition="Condition"
-                                       OnChanged="Update"
-                                       Readonly="Readonly"/>
-    </div>
-    <div class="col-span-2">
-        <FilterAutoSelectComparisonType @ref="ComparisonType"
-                                        Condition="Condition"
-                                        OnChanged="Update"
-                                        Readonly="Readonly"/>
-    </div>
-    <div class="col-start-1 col-span-4">
-        <FilterAutoSelectConditionValue @ref="ConditionValue"
-                                        Condition="Condition"
-                                        OnChanged="Update"
-                                        Readonly="Readonly"/>
-    </div>
 </div>
+
+@inject IStringLocalizer<TradeResources> Resources
 
 @code {
 
@@ -46,6 +59,12 @@
 
     [Parameter]
     public EventCallback OnChanged { get; set; }
+
+    [Parameter]
+    public EventCallback OnRemoved { get; set; }
+
+    [Parameter]
+    public bool CanBeDeleted { get; set; }
 
     private FilterAutoSelectConditionType? ConditionType { get; set; }
 

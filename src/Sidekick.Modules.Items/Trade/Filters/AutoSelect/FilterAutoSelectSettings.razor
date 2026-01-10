@@ -14,9 +14,8 @@
 
 <Modal>
     <ActivatorContent>
-        <ButtonIcon AdditionalClasses="@ButtonClasses">
-            <Icon Svg="@UiIcons.Settings" Class="text-neutral-500"/>
-        </ButtonIcon>
+        <ButtonIcon Class="@ButtonClasses"
+                    Svg="@UiIcons.Settings"/>
     </ActivatorContent>
     <HeaderContent>
         <Heading2>@Resources["Filter_Settings"]</Heading2>
@@ -49,23 +48,37 @@
         }
         else if (AutoSelect.Mode == AutoSelectMode.Conditionally)
         {
-            <TextBase>@Resources["AutoSelect_Rules_Description", Filter.Text]</TextBase>
+            <TextBase Class="mb-2">@Resources["AutoSelect_Rules_Description", Filter.Text]</TextBase>
             <div class="flex flex-col gap-2">
-                @foreach (var rule in AutoSelect.Rules)
+                @for (var ruleIndex = 0; ruleIndex < AutoSelect.Rules.Count; ruleIndex++)
                 {
-                    <div class="bg-stone-800 rounded-md px-2 py-1">
-                        @for (var i = 0; i < rule.Conditions.Count; i++)
+                    var rule = AutoSelect.Rules[ruleIndex];
+                    <div class="bg-stone-800 rounded-md"
+                         @key="@rule.Id">
+                        <div class="pl-2 py-1 pr-1 flex flex-nowrap gap-2 border-b-2 border-stone-700">
+                            <div class="font-bold text-lg text-neutral-400 grow">@Resources["AutoSelect_Rule"] #@(ruleIndex + 1)</div>
+                            <Tooltip Text="@Resources["AutoSelect_RemoveRule"]">
+                                <ButtonIcon Class="text-red-500! hover:text-red-300!"
+                                            Svg="@UiIcons.Close"
+                                            OnClick="() => RemoveRule(rule)"/>
+                            </Tooltip>
+                        </div>
+
+                        @for (var conditionIndex = 0; conditionIndex < rule.Conditions.Count; conditionIndex++)
                         {
-                            var condition = rule.Conditions[i];
-                            <FilterAutoSelectCondition First="i == 0"
+                            var condition = rule.Conditions[conditionIndex];
+                            <FilterAutoSelectCondition @key="@condition.Id"
+                                                       First="conditionIndex == 0"
                                                        Condition="condition"
                                                        Readonly="Mode == AutoSelectMode.Default && false"
-                                                       OnChanged="Save"/>
+                                                       OnChanged="Save"
+                                                       OnRemoved="() => RemoveCondition(rule, condition)"
+                                                       CanBeDeleted="rule.Conditions.Count > 1"/>
                         }
 
-                        <div class="text-neutral-400 grid grid-cols-5 gap-2 items-center pt-1 mt-1 border-t border-stone-700 leading-4">
-                            <span class="text-neutral-400">Then</span>
-                            <div class="col-span-2">@rule.Checked</div>
+                        <div class="grid grid-cols-5 gap-2 items-center py-1 px-2 border-t border-stone-700 leading-4">
+                            <span class="text-neutral-500">@Resources["AutoSelect_Then"]</span>
+                            <div class="col-span-2 text-white">@rule.Checked</div>
                         </div>
                     </div>
                 }
@@ -97,10 +110,10 @@
         {
             if (Filter is ExpandableFilter)
             {
-                return "-ml-6 invisible group-hover:visible";
+                return "-ml-6 invisible group-hover:visible text-neutral-500";
             }
 
-            return "invisible group-hover:visible";
+            return "invisible group-hover:visible text-neutral-500";
         }
     }
 
@@ -138,6 +151,20 @@
             Filter.AutoSelect.Mode = mode;
         }
 
+        await Save();
+        StateHasChanged();
+    }
+
+    private async Task RemoveRule(AutoSelectRule rule)
+    {
+        AutoSelect?.Rules.Remove(rule);
+        await Save();
+        StateHasChanged();
+    }
+
+    private async Task RemoveCondition(AutoSelectRule rule, AutoSelectCondition condition)
+    {
+        rule.Conditions.Remove(condition);
         await Save();
         StateHasChanged();
     }

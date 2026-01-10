@@ -8,15 +8,15 @@
     <AdornmentContent>
         @if (ShowClearButton)
         {
-            <ButtonIcon OnClick="Clear" title="@Resources["Clear"]">
-                <Icon Svg="@UiIcons.Clear"/>
-            </ButtonIcon>
+            <ButtonIcon OnClick="Clear"
+                        Svg="@UiIcons.Clear"
+                        title="@Resources["Clear"]"/>
         }
         @if (ShowResetButton)
         {
-            <ButtonIcon OnClick="Reset" title="@Resources["Reset"]">
-                <Icon Svg="@UiIcons.Reset"/>
-            </ButtonIcon>
+            <ButtonIcon OnClick="Reset"
+                        Svg="@UiIcons.Reset"
+                        title="@Resources["Reset"]"/>
         }
     </AdornmentContent>
 </FormInput>

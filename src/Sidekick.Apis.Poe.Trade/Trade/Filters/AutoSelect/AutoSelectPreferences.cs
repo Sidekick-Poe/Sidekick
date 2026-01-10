@@ -126,9 +126,16 @@ public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
             return comparable.CompareTo(convertedValue);
         }
 
-        var expressionDouble = Convert.ToDouble(expressionValue);
-        var conditionDouble = Convert.ToDouble(conditionValue);
-        return expressionDouble.CompareTo(conditionDouble);
+        try
+        {
+            var expressionDouble = Convert.ToDouble(expressionValue);
+            var conditionDouble = Convert.ToDouble(conditionValue);
+            return expressionDouble.CompareTo(conditionDouble);
+        }
+        catch (Exception)
+        {
+            return 0;
+        }
     }
 
     private static bool IsContainedIn(object expressionValue, string? conditionValue)

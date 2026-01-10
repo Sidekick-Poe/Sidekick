@@ -77,27 +77,27 @@ public class PropertyParser
             new SeparatorProperty(),
 
             new ExpandableProperty(tradeFilterProvider.RequirementsCategory?.Title,
-                                               new RequiresLevelProperty(game, settingsService, gameLanguageProvider),
-                                               new RequiresStrengthProperty(game, settingsService, gameLanguageProvider),
-                                               new RequiresDexterityProperty(game, settingsService, gameLanguageProvider),
-                                               new RequiresIntelligenceProperty(game, settingsService, gameLanguageProvider)),
+                                   new RequiresLevelProperty(game, settingsService, gameLanguageProvider),
+                                   new RequiresStrengthProperty(game, settingsService, gameLanguageProvider),
+                                   new RequiresDexterityProperty(game, settingsService, gameLanguageProvider),
+                                   new RequiresIntelligenceProperty(game, settingsService, gameLanguageProvider)),
 
             new SeparatorProperty(),
 
             new ExpandableProperty(tradeFilterProvider.MiscellaneousCategory?.Title,
-                                               new ElderProperty(game, settingsService, gameLanguageProvider),
-                                               new ShaperProperty(game, settingsService, gameLanguageProvider),
-                                               new CrusaderProperty(game, settingsService, gameLanguageProvider),
-                                               new HunterProperty(game, settingsService, gameLanguageProvider),
-                                               new RedeemerProperty(game, settingsService, gameLanguageProvider),
-                                               new WarlordProperty(game, settingsService, gameLanguageProvider),
-                                               new CorruptedProperty(game, settingsService, gameLanguageProvider),
-                                               new FracturedProperty(game, settingsService, gameLanguageProvider, serviceProvider),
-                                               new DesecratedProperty(game, settingsService, gameLanguageProvider, serviceProvider),
-                                               new SanctifiedProperty(game, settingsService, gameLanguageProvider, serviceProvider),
-                                               new MirroredProperty(game, settingsService, gameLanguageProvider, serviceProvider),
-                                               new FoulbornProperty(game, settingsService, gameLanguageProvider, serviceProvider),
-                                               new UnidentifiedProperty(game, settingsService, gameLanguageProvider)),
+                                   new ElderProperty(game, settingsService, gameLanguageProvider),
+                                   new ShaperProperty(game, settingsService, gameLanguageProvider),
+                                   new CrusaderProperty(game, settingsService, gameLanguageProvider),
+                                   new HunterProperty(game, settingsService, gameLanguageProvider),
+                                   new RedeemerProperty(game, settingsService, gameLanguageProvider),
+                                   new WarlordProperty(game, settingsService, gameLanguageProvider),
+                                   new CorruptedProperty(game, settingsService, gameLanguageProvider),
+                                   new FracturedProperty(game, settingsService, gameLanguageProvider, serviceProvider),
+                                   new DesecratedProperty(game, settingsService, gameLanguageProvider, serviceProvider),
+                                   new SanctifiedProperty(game, settingsService, gameLanguageProvider, serviceProvider),
+                                   new MirroredProperty(game, settingsService, gameLanguageProvider, serviceProvider),
+                                   new FoulbornProperty(game, settingsService, gameLanguageProvider, serviceProvider),
+                                   new UnidentifiedProperty(game, settingsService, gameLanguageProvider)),
 
             new ClusterJewelPassiveCountProperty(game, settingsService, gameLanguageProvider, serviceProvider),
         ]);
@@ -105,8 +105,13 @@ public class PropertyParser
 
     public TDefinition GetDefinition<TDefinition>() where TDefinition : PropertyDefinition
     {
-        return Definitions.OfType<TDefinition>().FirstOrDefault()
-               ?? throw new SidekickException($"Could not find definition of type {typeof(TDefinition).FullName}");
+        var definition = Definitions.OfType<TDefinition>().FirstOrDefault();
+        if (definition != null) return definition;
+
+        definition = Definitions.OfType<ExpandableProperty>().SelectMany(x => x.Definitions).OfType<TDefinition>().FirstOrDefault();
+        if (definition != null) return definition;
+
+        throw new SidekickException($"Could not find definition of type {typeof(TDefinition).FullName}");
     }
 
     public void Parse(Item item)

@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
@@ -90,8 +91,13 @@ public class ItemLevelFilter : IntPropertyFilter
                             new()
                             {
                                 Type = AutoSelectConditionType.Rarity,
-                                Comparison = AutoSelectComparisonType.LesserThan,
-                                Value = Rarity.Unique.ToString(),
+                                Comparison = AutoSelectComparisonType.IsContainedIn,
+                                Value = JsonSerializer.Serialize(new List<Rarity>()
+                                {
+                                    Rarity.Normal,
+                                    Rarity.Magic,
+                                    Rarity.Rare,
+                                }),
                             },
                         ],
                     },
@@ -125,8 +131,13 @@ public class ItemLevelFilter : IntPropertyFilter
                             new()
                             {
                                 Type = AutoSelectConditionType.Rarity,
-                                Comparison = AutoSelectComparisonType.LesserThan,
-                                Value = Rarity.Unique.ToString(),
+                                Comparison = AutoSelectComparisonType.IsContainedIn,
+                                Value = JsonSerializer.Serialize(new List<Rarity>()
+                                {
+                                    Rarity.Normal,
+                                    Rarity.Magic,
+                                    Rarity.Rare,
+                                }),
                             },
                         ],
                     },

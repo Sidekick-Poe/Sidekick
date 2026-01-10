@@ -13,8 +13,14 @@ public interface ITradeFilterProvider : IInitializableService
     ApiFilter? Mirrored { get; }
     ApiFilter? Foulborn { get; }
     ApiFilter? Sanctified { get; }
+    ApiFilterCategory? EquipmentCategory { get; }
+    ApiFilterCategory? WeaponCategory { get; }
+    ApiFilterCategory? ArmourCategory { get; }
+    ApiFilterCategory? SocketCategory { get; }
     ApiFilterCategory? RequirementsCategory { get; }
     ApiFilterCategory? MiscellaneousCategory { get; }
+    ApiFilterCategory? EndgameCategory { get; }
+    ApiFilterCategory? MapCategory { get; }
     ApiFilter? GetApiFilter(string categoryId, string filterId);
     Task<List<TradeFilter>> GetFilters(Item item);
 }

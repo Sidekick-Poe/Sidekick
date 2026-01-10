@@ -5,6 +5,9 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 
 public class AutoSelectRule : IEquatable<AutoSelectRule>
 {
+    [JsonIgnore]
+    public Guid Id { get; } = Guid.NewGuid();
+
     [JsonPropertyName("checked")]
     public bool? Checked { get; set; }
 

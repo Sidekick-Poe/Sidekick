@@ -4,6 +4,14 @@ public enum AutoSelectConditionType
 {
     [AutoSelectComparison(AutoSelectComparisonType.Equals,
                           AutoSelectComparisonType.DoesNotEqual,
+                          AutoSelectComparisonType.GreaterThanOrEqual,
+                          AutoSelectComparisonType.LesserThanOrEqual,
+                          AutoSelectComparisonType.GreaterThan,
+                          AutoSelectComparisonType.LesserThan)]
+    Value,
+
+    [AutoSelectComparison(AutoSelectComparisonType.Equals,
+                          AutoSelectComparisonType.DoesNotEqual,
                           AutoSelectComparisonType.IsContainedIn,
                           AutoSelectComparisonType.IsNotContainedIn)]
     ItemClass,
@@ -205,12 +213,4 @@ public enum AutoSelectConditionType
                           AutoSelectComparisonType.IsContainedIn,
                           AutoSelectComparisonType.IsNotContainedIn)]
     StatCategory,
-
-    [AutoSelectComparison(AutoSelectComparisonType.Equals,
-                          AutoSelectComparisonType.DoesNotEqual,
-                          AutoSelectComparisonType.GreaterThanOrEqual,
-                          AutoSelectComparisonType.LesserThanOrEqual,
-                          AutoSelectComparisonType.GreaterThan,
-                          AutoSelectComparisonType.LesserThan)]
-    Value,
 }

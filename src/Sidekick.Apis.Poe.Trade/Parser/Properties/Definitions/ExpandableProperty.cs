@@ -9,7 +9,7 @@ public class ExpandableProperty
     params PropertyDefinition[] definitions
 ) : PropertyDefinition
 {
-    private List<PropertyDefinition> Definitions { get; } = definitions.ToList();
+    public List<PropertyDefinition> Definitions { get; } = definitions.ToList();
 
     public override List<ItemClass> ValidItemClasses => Definitions.SelectMany(x => x.ValidItemClasses).Distinct().ToList();
 

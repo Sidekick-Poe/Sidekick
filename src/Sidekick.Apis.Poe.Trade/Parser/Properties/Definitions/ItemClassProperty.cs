@@ -48,7 +48,7 @@ public class ItemClassProperty : PropertyDefinition
 
     public override List<ItemClass> ValidItemClasses { get; } = [];
 
-    public override string Label => tradeFilterProvider.TypeCategory?.Text ?? "Item Class";
+    public override string Label => resources["Item_Class"];
 
     private Lazy<List<ItemClassDefinition>> ItemClassDefinitions { get; }
 

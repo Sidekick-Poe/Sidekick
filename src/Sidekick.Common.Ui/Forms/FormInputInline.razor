@@ -1,0 +1,35 @@
+@inherits FormInput
+
+<div class="relative w-full -m-0.5 p-0.5 leading-4 h-5"
+     title="@Value">
+    @if (!string.IsNullOrEmpty(Label)) {}
+    <label for="@Id"
+           class="text-base font-medium text-nowrap line-clamp-1 flex items-center gap-1 flex-nowrap">
+        @if (!string.IsNullOrEmpty(Value))
+        {
+            <span class="text-white">@Value</span>
+        }
+        else
+        {
+            <span class="text-zinc-300 italic">@(!string.IsNullOrEmpty(Label) ? Label : "no value")</span>
+        }
+    </label>
+
+    @if (!Readonly)
+    {
+        <input id="@Id"
+               @onchange="OnChange"
+               @attributes="InputAttributes"
+               @onfocus="OnFocus"
+               @onblur="OnBlur"
+               class="absolute top-0 left-0 right-0 bottom-0 @UiClasses.FocusClasses border border-none rounded-sm bg-none bg-transparent hover:bg-zinc-700 focus:bg-zinc-700 hover:border-zinc-600 focus:border-zinc-600 text-transparent hover:text-white focus:text-white leading-4 p-0.5 transition-colors duration-200 text-base appearance-none"
+               value="@Value"/>
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public bool Readonly { get; set; }
+
+}

@@ -4,10 +4,10 @@
      title="@Option?.Label">
     @if (!string.IsNullOrEmpty(Label)) {}
     <label for="@Id"
-           class="text-base font-medium text-nowrap line-clamp-1 flex items-center gap-1 flex-nowrap">
+           class="text-base font-medium text-nowrap flex items-center gap-1 flex-nowrap">
         @if (Option != null)
         {
-            <span class="text-white">@Option.Label</span>
+            <span class="text-white line-clamp-1">@Option.Label</span>
         }
         else
         {

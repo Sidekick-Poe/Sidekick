@@ -5,6 +5,9 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 
 public class AutoSelectCondition : IEquatable<AutoSelectCondition>
 {
+    [JsonIgnore]
+    public Guid Id { get; } = Guid.NewGuid();
+
     [JsonPropertyName("type")]
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public AutoSelectConditionType Type { get; set; }

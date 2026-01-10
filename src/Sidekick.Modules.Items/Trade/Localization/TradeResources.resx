@@ -298,4 +298,31 @@ Click the button to open in your browser.</value>
   <data name="AutoSelect_Any_Description" xml:space="preserve">
       <value>'{0}' filter will have a default value of 'Any'.</value>
   </data>
+  <data name="AutoSelect_Rules_Description" xml:space="preserve">
+      <value>Apply rules to the '{0}' filter. The first rule that matches all conditions will be applied. The other rules will be ignored.</value>
+  </data>
+  <data name="AutoSelect_When" xml:space="preserve">
+      <value>When</value>
+  </data>
+  <data name="AutoSelect_Then" xml:space="preserve">
+      <value>Then</value>
+  </data>
+  <data name="AutoSelect_And" xml:space="preserve">
+      <value>And</value>
+  </data>
+  <data name="AutoSelect_AddRule" xml:space="preserve">
+      <value>Add Rule</value>
+  </data>
+  <data name="AutoSelect_AddCondition" xml:space="preserve">
+      <value>Add Condition</value>
+  </data>
+  <data name="AutoSelect_Rule" xml:space="preserve">
+      <value>Rule</value>
+  </data>
+  <data name="AutoSelect_RemoveRule" xml:space="preserve">
+      <value>Remove Rule</value>
+  </data>
+  <data name="AutoSelect_RemoveCondition" xml:space="preserve">
+      <value>Remove Condition</value>
+  </data>
 </root>

@@ -15,9 +15,9 @@
     <div class="leading-none flex items-center justify-end w-5">
         @if (Filter.Value != Filter.DefaultValue)
         {
-            <ButtonIcon OnClick="@ClearSetting">
-                <Icon Svg="@UiIcons.Reset" Size="UiIconSize.Small"/>
-            </ButtonIcon>
+            <ButtonIcon OnClick="@ClearSetting"
+                        Svg="@UiIcons.Reset"
+                        Size="UiIconSize.Small"/>
         }
     </div>
 </FilterWrapper>
