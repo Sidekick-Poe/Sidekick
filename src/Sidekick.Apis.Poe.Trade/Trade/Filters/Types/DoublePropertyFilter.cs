@@ -1,8 +1,8 @@
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
-public class DoublePropertyFilter : TradeFilter
+public abstract class DoublePropertyFilter : TradeFilter
 {
-    public string? ValuePrefix { get; set; }
+    public string? ValuePrefix { get; init; }
 
     public string? ValueSuffix { get; init; }
 
@@ -14,5 +14,5 @@ public class DoublePropertyFilter : TradeFilter
 
     public double? Max { get; set; }
 
-    public bool NormalizeEnabled { get; set; }
+    public bool NormalizeEnabled { get; init; }
 }

@@ -1,16 +1,8 @@
-<span class="relative fill-current inline-block @SizeClass @Class">
+<span class="relative fill-current inline-block @GetSizeClass(Size) @Class">
     @((MarkupString)Svg)
-
-    @if (AddBadge)
-    {
-        <span class="absolute top-0 right-0 w-2 h-2 bg-red-700 rounded-full"></span>
-    }
 </span>
 
 @code {
-    [Parameter]
-    public bool AddBadge { get; set; }
-
     [Parameter]
     public required string Svg { get; set; }
 
@@ -20,7 +12,7 @@
     [Parameter]
     public UiIconSize Size { get; set; } = UiIconSize.Medium;
 
-    private string SizeClass => Size switch
+    public static string GetSizeClass(UiIconSize size) => size switch
     {
         UiIconSize.Small => "size-3 min-w-3 min-h-3",
         UiIconSize.Large => "size-12 min-w-12 min-h-12",

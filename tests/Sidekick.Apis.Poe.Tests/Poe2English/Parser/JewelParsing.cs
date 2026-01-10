@@ -1,5 +1,4 @@
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade;
 using Sidekick.Apis.Poe.Trade.Parser;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;

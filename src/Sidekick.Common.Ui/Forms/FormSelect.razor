@@ -7,7 +7,7 @@
             @Label
             @if (Tooltip is not null)
             {
-                <Tooltip Text="@Tooltip" />
+                <Tooltip Text="@Tooltip"/>
             }
         </label>
     }
@@ -28,7 +28,9 @@
                     <optgroup label="@group.Key">
                         @foreach (var option in group)
                         {
-                            <option selected="@(GetOptionValue(option.Value) == GetOptionValue(Value))" value="@GetOptionValue(option.Value)" disabled="@option.Disabled">@option.Label</option>
+                            <option selected="@(GetOptionValue(option.Value) == GetOptionValue(Value))"
+                                    value="@GetOptionValue(option.Value)"
+                                    disabled="@option.Disabled">@option.Label</option>
                         }
                     </optgroup>
                 }
@@ -37,7 +39,8 @@
             {
                 foreach (var option in Options)
                 {
-                    <option selected="@(GetOptionValue(option.Value) == GetOptionValue(Value))" value="@GetOptionValue(option.Value)" disabled="@option.Disabled">@option.Label</option>
+                    <option selected="@(GetOptionValue(option.Value) == GetOptionValue(Value))"
+                            value="@GetOptionValue(option.Value)" disabled="@option.Disabled">@option.Label</option>
                 }
             }
         </select>
@@ -69,8 +72,14 @@
 
     protected string GetOptionValue(string? value)
     {
-        if(string.IsNullOrEmpty(value)) return "null";
+        if (string.IsNullOrEmpty(value)) return "null";
         return value;
+    }
+
+    protected SelectOption? GetOption(string? value)
+    {
+        var optionValue = GetOptionValue(value);
+        return Options.FirstOrDefault(x => GetOptionValue(x.Value) == optionValue);
     }
 
     protected async Task OnChange(ChangeEventArgs args)

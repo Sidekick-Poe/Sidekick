@@ -1,17 +1,12 @@
-@using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
-@using Sidekick.Modules.Items.Localization
-@if (!Filter.ShowRow)
-{
-    return;
-}
+@using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions
 
 @if (!string.IsNullOrEmpty(Filter.ItemClass))
 {
-    <FilterWrapper>
-        <div class="flex items-center flex-nowrap justify-between">
+    <FilterWrapper Filter="@Filter">
+        <div class="grow">
             <FormCheckbox Value="Filter.Checked"
                           ValueChanged="(v)=>Filter.Checked = v">
-                <ItemPropertyText Label="@Resources["Item Class"]"
+                <ItemPropertyText Label="@Filter.Text"
                                   Value="@Filter.ItemClass"/>
             </FormCheckbox>
         </div>
@@ -21,21 +16,19 @@
 @if (!string.IsNullOrEmpty(Filter.BaseType))
 {
     <FilterWrapper>
-        <div class="flex items-center flex-nowrap justify-between">
+        <div class="grow">
             <FormCheckbox Value="!Filter.Checked"
                           ValueChanged="(v)=>Filter.Checked = !v">
-                <ItemPropertyText Label="@Resources["Base Type"]"
+                <ItemPropertyText Label="@Filter.BaseTypeText"
                                   Value="@Filter.BaseType"/>
             </FormCheckbox>
         </div>
     </FilterWrapper>
 }
 
-@inject IStringLocalizer<TradeResources> Resources
-
 @code {
 
     [Parameter]
-    public required ItemClassPropertyFilter Filter { get; set; }
+    public required ItemClassFilter Filter { get; set; }
 
 }

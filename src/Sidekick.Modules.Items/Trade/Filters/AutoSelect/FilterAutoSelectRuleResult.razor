@@ -1,0 +1,73 @@
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
+@using Sidekick.Modules.Items.Trade.Localization
+
+<FormSelectInline Value="@Value"
+                  ValueChanged="Changed"
+                  Options="Options"
+                  Readonly="Readonly"/>
+
+@inject IStringLocalizer<TradeResources> Resources
+
+@code {
+
+    [Parameter]
+    public required TradeFilter Filter { get; set; }
+
+    [Parameter]
+    public required AutoSelectRule Rule { get; set; }
+
+    [Parameter]
+    public bool Readonly { get; set; }
+
+    [Parameter]
+    public EventCallback OnChanged { get; set; }
+
+    private string Value => Rule.Checked switch
+    {
+        null => "null",
+        true => "true",
+        _ => "false",
+    };
+
+    private List<SelectOption> Options { get; set; } = [];
+
+    protected override void OnInitialized()
+    {
+        Options.Clear();
+
+        Options.Add(new SelectOption()
+        {
+            Label = Resources["AutoSelect_Result_Checked"],
+            Value = "true",
+        });
+
+        Options.Add(new SelectOption()
+        {
+            Label = Resources["AutoSelect_Result_Unchecked"],
+            Value = "false",
+        });
+
+        if (Filter is TriStatePropertyFilter)
+        {
+            Options.Add(new SelectOption()
+            {
+                Label = Resources["AutoSelect_Result_Any"],
+                Value = "null",
+            });
+        }
+
+        base.OnInitialized();
+    }
+
+    private async Task Changed(string? value)
+    {
+        Rule.Checked = value switch
+        {
+            "null" => null,
+            "true" => true,
+            _ => false,
+        };
+        await OnChanged.InvokeAsync();
+    }
+}

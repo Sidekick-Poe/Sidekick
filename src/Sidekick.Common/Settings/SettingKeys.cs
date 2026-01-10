@@ -44,9 +44,6 @@ public static class SettingKeys
     public const string PriceCheckFillDefaultMax = nameof(PriceCheckFillDefaultMax);
     public const string PriceCheckCompactMode = nameof(PriceCheckCompactMode);
     public const string PriceCheckSidebarWidth = nameof(PriceCheckSidebarWidth);
-    public const string PriceCheckItemClassFilter = nameof(PriceCheckItemClassFilter);
-    public const string PriceCheckEnableAllFilters = nameof(PriceCheckEnableAllFilters);
-    public const string PriceCheckEnableFiltersByRegex = nameof(PriceCheckEnableFiltersByRegex);
 
     public const string SaveWindowPositions = nameof(SaveWindowPositions);
 

@@ -1,0 +1,40 @@
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
+
+@if (Condition.Comparison is AutoSelectComparisonType.True or AutoSelectComparisonType.False)
+{
+    return;
+}
+
+@if (Condition.Comparison is AutoSelectComparisonType.IsContainedIn or AutoSelectComparisonType.IsNotContainedIn)
+{
+    return;
+}
+
+<div class="mt-1">
+    <FormInputInline Value="@Condition.Value"
+                     ValueChanged="Changed"
+                     Readonly="Readonly"/>
+</div>
+
+@code {
+
+    [Parameter]
+    public required AutoSelectCondition Condition { get; set; }
+
+    [Parameter]
+    public bool Readonly { get; set; }
+
+    [Parameter]
+    public EventCallback OnChanged { get; set; }
+
+    public void Update()
+    {
+        StateHasChanged();
+    }
+
+    private async Task Changed(string? value)
+    {
+        Condition.Value = value;
+        await OnChanged.InvokeAsync();
+    }
+}

@@ -4,8 +4,8 @@
 @using Sidekick.Apis.Poe.Trade.Parser.Stats
 @using Sidekick.Apis.Poe.Trade.Trade.Filters
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
-@using Sidekick.Modules.Items.Localization
 @using Sidekick.Modules.Items.Trade.Filters.Types
+@using Sidekick.Modules.Items.Trade.Localization
 @using ItemHeader = Sidekick.Common.Ui.Poe.Items.ItemHeader
 
 <div class="flex flex-col h-full">
@@ -17,7 +17,7 @@
                     Influences="Item.Properties.Influences"/>
     </div>
 
-    <div class="grow overflow-y-auto pt-2">
+    <div class="grow overflow-y-auto pt-1">
         @for (var index = 0; index < Filters.Count; index++)
         {
             var filter = Filters[index];
@@ -26,7 +26,7 @@
         }
     </div>
 
-    <div class="flex flex-col items-stretch text-center px-1 grow">
+    <div class="flex flex-col items-stretch text-center px-2 pb-2 pt-1">
         <ButtonPrimary
             OnClick="() => TradeService.SearchItems(Item, Filters)"
             Disabled="TradeService.IsLoading">@Resources["Search"]</ButtonPrimary>
@@ -54,17 +54,15 @@
         Filters.Add(new SeparatorFilter());
         Filters.AddRange(await StatParser.GetFilters(Item));
         Filters.Add(new SeparatorFilter());
-        Filters.AddRange(PseudoParser.GetFilters(Item));
+        Filters.AddRange(await PseudoParser.GetFilters(Item));
         Filters.Add(new SeparatorFilter());
         Filters.AddRange(await TradeFilterProvider.GetFilters(Item));
 
         CleanUpSeparatorFilters(Filters);
-
         TradeService.Clear();
 
         await base.OnParametersSetAsync();
     }
-
 
     private static void CleanUpSeparatorFilters(List<TradeFilter> results)
     {

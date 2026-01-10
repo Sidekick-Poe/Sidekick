@@ -118,172 +118,54 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Base_Percentile" xml:space="preserve">
-    <value>Centile de base</value>
+    <value>기본 백분위수</value>
   </data>
   <data name="Corrupted" xml:space="preserve">
-    <value>Corrompu</value>
+    <value>타락된</value>
   </data>
   <data name="CountString" xml:space="preserve">
-    <value>Affiche {0} sur {1} items</value>
-  </data>
-  <data name="Filters_Equals" xml:space="preserve">
-    <value>Égal</value>
+    <value>{1} 중 {0}개의 아이템을 보여주는 중</value>
   </data>
   <data name="Filters_Max" xml:space="preserve">
-    <value>Max</value>
+    <value>최대</value>
   </data>
   <data name="Filters_Min" xml:space="preserve">
-    <value>Min</value>
+    <value>최소</value>
   </data>
   <data name="ForceCategoryHint" xml:space="preserve">
-      <value>Sélectionner cette case va limiter les recherches à cette catégorie. La désélectionner va permettre toutes les catégories dans les résultats (explicite, fracturé, etc.).</value>
+    <value>이 체크박스를 선택하면 선택된 접사와 관련된 결과에 등장합니다. 체크해제시 모든 접사가 등장합니다.</value>
   </data>
   <data name="Layout_Cards_Maximized" xml:space="preserve">
-    <value>Résultats détaillés</value>
+    <value>상세 결과</value>
   </data>
   <data name="Layout_Cards_Minimized" xml:space="preserve">
-    <value>Détails minimes</value>
+    <value>결과</value>
   </data>
   <data name="LoadMoreData" xml:space="preserve">
-    <value>Charger plus de résultats</value>
-  </data>
-  <data name="OpenQueryInWebsite" xml:space="preserve">
-    <value>Voici l'URL de la requête actuelle pour le site officiel.
-Cliquez sur le bouton pour l'ouvrir dans votre navigateur.</value>
+    <value>더 많은 데이터 불러오기</value>
   </data>
   <data name="Requires" xml:space="preserve">
-    <value>Nécessite</value>
+    <value>요구사항</value>
   </data>
   <data name="Stock" xml:space="preserve">
-    <value>Stock</value>
+    <value>재고</value>
   </data>
   <data name="Trade" xml:space="preserve">
-    <value>Trade</value>
+    <value>거래</value>
   </data>
   <data name="Unidentified" xml:space="preserve">
-    <value>Non identifié</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Rechercher</value>
-  </data>
-  <data name="Bulk_Search" xml:space="preserve">
-    <value>Vente en gros</value>
-  </data>
-  <data name="Links" xml:space="preserve">
-    <value>Liens</value>
-  </data>
-  <data name="Last_Updated" xml:space="preserve">
-    <value>Dernière mise à jour</value>
-  </data>
-  <data name="Open_Website" xml:space="preserve">
-    <value>Ouvrir le site web</value>
-  </data>
-  <data name="Any" xml:space="preserve">
-    <value>Tous</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Oui</value>
-  </data>
-  <data name="No" xml:space="preserve">
-    <value>Non</value>
-  </data>
-  <data name="Default_Item_Class_Filter" xml:space="preserve">
-    <value>Filtre de type d'item par défaut</value>
-  </data>
-  <data name="Item_Class" xml:space="preserve">
-    <value>Classe d'item</value>
-  </data>
-  <data name="Base_Type" xml:space="preserve">
-    <value>Type de base</value>
-  </data>
-  <data name="Default_FilterType" xml:space="preserve">
-    <value>Type de filtre par défaut</value>
-  </data>
-  <data name="FilterType_Minimum" xml:space="preserve">
-    <value>Minimum</value>
-  </data>
-  <data name="FilterType_Maximum" xml:space="preserve">
-    <value>Maximum</value>
-  </data>
-  <data name="FilterType_Equals" xml:space="preserve">
-    <value>Égal</value>
-  </data>
-  <data name="FilterType_Range" xml:space="preserve">
-    <value>Plage</value>
-  </data>
-  <data name="Possible_Chance_Outcomes" xml:space="preserve">
-    <value>Résultats possibles d'orbe de chance</value>
+    <value>미확인</value>
   </data>
   <data name="Item_Trade_Settings" xml:space="preserve">
-    <value>Configurations de l'échange</value>
+    <value>아이템 거래 세팅</value>
   </data>
   <data name="Bulk_Trade" xml:space="preserve">
-    <value>Vente en gros</value>
-  </data>
-  <data name="Minimum_Stock_in_Bulk_Trade" xml:space="preserve">
-    <value>Stock disponible de la vente en gros</value>
-  </data>
-  <data name="Currency_of_Results" xml:space="preserve">
-    <value>Devise des résultats</value>
-  </data>
-  <data name="Item_Listing_Age" xml:space="preserve">
-    <value>Âge de la mise en vente</value>
+      <value>대량 교환 세팅</value>
   </data>
   <data name="Buyout_Price" xml:space="preserve">
-    <value>Prix</value>
-  </data>
-  <data name="Normalize_Values" xml:space="preserve">
-    <value>Normaliser les valeurs. Laisser à 0% pour les valeurs exactes.</value>
-  </data>
-  <data name="Player_Status_OnlineLeague" xml:space="preserve">
-    <value>En ligne et dans la ligue</value>
-  </data>
-  <data name="Player_Status_Online" xml:space="preserve">
-      <value>Échange en personne</value>
-  </data>
-  <data name="Player_Status_Any" xml:space="preserve">
-    <value>Tous</value>
-  </data>
-  <data name="Player_Status" xml:space="preserve">
-    <value>Statut du joueur</value>
-  </data>
-  <data name="Filter_Settings" xml:space="preserve">
-      <value>Paramètres des filtres</value>
-  </data>
-  <data name="External_Tools_Settings" xml:space="preserve">
-      <value>Outils externes</value>
-  </data>
-  <data name="Key_Open" xml:space="preserve">
-    <value>Vérifier un item</value>
-  </data>
-  <data name="PriceCheck_Enable_All_Filters" xml:space="preserve">
-    <value>Cocher tous les filtres automatiquement</value>
-  </data>
-  <data name="PriceCheck_Enable_Filters_By_Regex" xml:space="preserve">
-    <value>Cocher les filtres correspondant au regex</value>
+    <value>가격</value>
   </data>
   <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
-    <value>Afficher les prédictions de poeprices.info (PoE1 seulement)</value>
-  </data>
-  <data name="PriceCheck_Automatically_Load_More_Data" xml:space="preserve">
-    <value>Charger automatiquement plus de résultats lors du défilement vers le bas</value>
-  </data>
-  <data name="PriceCheck_Automatically_Search" xml:space="preserve">
-    <value>Rechercher automatiquement lors de la vérification du prix</value>
-  </data>
-  <data name="Setting_Rate_Limit_Hint" xml:space="preserve">
-    <value>Il est recommandé de laisser désactivé afin de ne pas dépasser la limite de taux de l'API.</value>
-  </data>
-  <data name="Item_Trade" xml:space="preserve">
-    <value>Item</value>
-  </data>
-  <data name="Clear_Filters" xml:space="preserve">
-      <value>Retirer les filtres</value>
-  </data>
-  <data name="Player_Status_Available" xml:space="preserve">
-      <value>Achat instantané et Échange en personne</value>
-  </data>
-  <data name="Player_Status_Securable" xml:space="preserve">
-      <value>Achat instantané</value>
+    <value>poeprices.info에서 가져온 가격 예측 보여주기 (PoE1)</value>
   </data>
 </root>

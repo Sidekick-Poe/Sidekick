@@ -1,12 +1,16 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using FuzzySharp;
+using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
+using Sidekick.Apis.Poe.Trade.Localization;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
 
@@ -15,7 +19,8 @@ public class StatParser
     IApiStatsProvider apiStatsProvider,
     IFuzzyService fuzzyService,
     ISettingsService settingsService,
-    IGameLanguageProvider gameLanguageProvider
+    IGameLanguageProvider gameLanguageProvider,
+    IStringLocalizer<PoeResources> resources
 ) : IStatParser
 {
     public int Priority => 300;
@@ -308,13 +313,8 @@ public class StatParser
     {
         if (!ItemClassConstants.WithStats.Contains(item.Properties.ItemClass)) return [];
 
-        var enableAllFilters = await settingsService.GetBool(SettingKeys.PriceCheckEnableAllFilters);
-        var enableFiltersByRegexSetting = await settingsService.GetString(SettingKeys.PriceCheckEnableFiltersByRegex);
-        Regex? enableFiltersByRegex = null;
-        if (!string.IsNullOrWhiteSpace(enableFiltersByRegexSetting))
-        {
-            enableFiltersByRegex = new Regex(enableFiltersByRegexSetting, RegexOptions.IgnoreCase);
-        }
+        var autoSelectKey = $"Trade_Filter_Stat_{item.Game.GetValueAttribute()}";
+        var autoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null);
 
         var result = new List<TradeFilter>();
         for (var i = 0; i < item.Stats.Count; i++)
@@ -322,9 +322,11 @@ public class StatParser
             var stat = item.Stats[i];
             var filter = new StatFilter(stat)
             {
-                Checked = enableAllFilters || (enableFiltersByRegex?.IsMatch(stat.Text) ?? false),
+                AutoSelect = autoSelect,
             };
+
             result.Add(filter);
+            filter.Initialize(item);
 
             var isLastFilter = i + 1 == item.Stats.Count;
             if (!isLastFilter)
@@ -337,6 +339,15 @@ public class StatParser
             }
         }
 
-        return result;
+        return
+        [
+            new ExpandableFilter(resources["Stat_Filters"], result.ToArray())
+            {
+                AutoSelectSettingKey = autoSelectKey,
+                AutoSelect = autoSelect,
+                DefaultAutoSelect = StatFilter.GetDefault(),
+                Checked = true,
+            },
+        ];
     }
 }
