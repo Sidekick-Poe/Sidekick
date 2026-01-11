@@ -18,6 +18,7 @@ using Sidekick.Common.Ui.Overlay;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
 using Sidekick.Linux;
+using Sidekick.Linux.Diagnostics;
 using Sidekick.Linux.Platform;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
@@ -86,6 +87,7 @@ builder.Services
 builder.Services.AddApexCharts();
 
 builder.Services.AddSidekickInitializableService<IApplicationService, LinuxApplicationService>();
+builder.Services.AddSidekickInitializableService<LinuxDiagnosticsService, LinuxDiagnosticsService>();
 builder.Services.AddSingleton<IViewLocator, X11ViewLocator>();
 builder.Services.AddSingleton(sp => (X11ViewLocator)sp.GetRequiredService<IViewLocator>());
 builder.Services.AddSingleton<IOverlayInputRegionService>(sp => sp.GetRequiredService<X11ViewLocator>());

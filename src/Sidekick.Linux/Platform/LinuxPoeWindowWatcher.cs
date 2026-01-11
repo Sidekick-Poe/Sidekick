@@ -359,15 +359,20 @@ public sealed class LinuxPoeWindowWatcher(
 
             if (status == Success && prop != IntPtr.Zero && nitems != UIntPtr.Zero)
             {
-                var title = Marshal.PtrToStringUTF8(prop);
-                XFree(prop);
-                if (!string.IsNullOrEmpty(title))
+                try
                 {
-                    return title;
+                    var title = Marshal.PtrToStringUTF8(prop);
+                    if (!string.IsNullOrEmpty(title))
+                    {
+                        return title;
+                    }
+                }
+                finally
+                {
+                    XFree(prop);
                 }
             }
-
-            if (prop != IntPtr.Zero)
+            else if (prop != IntPtr.Zero)
             {
                 XFree(prop);
             }
