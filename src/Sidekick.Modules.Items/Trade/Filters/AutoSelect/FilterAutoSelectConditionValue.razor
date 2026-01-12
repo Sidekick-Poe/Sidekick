@@ -1,3 +1,6 @@
+@using System.Text.Json
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Languages
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
 
 @if (Condition.Comparison is AutoSelectComparisonType.True or AutoSelectComparisonType.False)
@@ -7,6 +10,12 @@
 
 @if (Condition.Comparison is AutoSelectComparisonType.IsContainedIn or AutoSelectComparisonType.IsNotContainedIn)
 {
+    <div class="mt-1">
+        <FormMultiSelectInline Value="@GetMultiValue()"
+                               ValueChanged="MultiChanged"
+                               Readonly="Readonly"
+                               Options="GetOptions()"/>
+    </div>
     return;
 }
 
@@ -16,8 +25,13 @@
                      Readonly="Readonly"/>
 </div>
 
+@inject IGameLanguageProvider GameLanguageProvider
+
 @code {
 
+    [CascadingParameter]
+    public required Item Item { get; set; }
+    
     [Parameter]
     public required AutoSelectCondition Condition { get; set; }
 
@@ -36,5 +50,167 @@
     {
         Condition.Value = value;
         await OnChanged.InvokeAsync();
+    }
+
+    private List<string> GetMultiValue()
+    {
+        try
+        {
+            return JsonSerializer.Deserialize<List<string>>(Condition.Value ?? "[]") ?? [];
+        }
+        catch (Exception)
+        {
+            return [];
+        }
+    }
+    
+    private async Task MultiChanged(List<string> value)
+    {
+        Condition.Value = JsonSerializer.Serialize(value);
+        await OnChanged.InvokeAsync();
+    }
+    
+    private List<SelectOption> GetOptions()
+    {
+        if (Condition.Type == AutoSelectConditionType.Rarity)
+        {
+            return
+            [
+                CreateRarity(Rarity.Normal),
+                CreateRarity(Rarity.Magic),
+                CreateRarity(Rarity.Rare),
+                CreateRarity(Rarity.Unique),
+                CreateRarity(Rarity.Currency),
+            ];
+
+            SelectOption CreateRarity(Rarity rarity)
+            {
+                return new SelectOption()
+                {
+                    Label = rarity switch
+                    {
+                        Rarity.Currency => GameLanguageProvider.Language.RarityCurrency,
+                        Rarity.DivinationCard => GameLanguageProvider.Language.RarityDivinationCard,
+                        Rarity.Normal => GameLanguageProvider.Language.RarityNormal,
+                        Rarity.Magic => GameLanguageProvider.Language.RarityMagic,
+                        Rarity.Rare => GameLanguageProvider.Language.RarityRare,
+                        Rarity.Unique => GameLanguageProvider.Language.RarityUnique,
+                        _ => rarity.ToString(),
+                    },
+                    Value = rarity.ToString(),
+                };
+            }
+        }
+
+        if (Condition.Type == AutoSelectConditionType.ItemClass)
+        {
+            return
+            [
+                CreateItemClass(ItemClass.AbyssJewel),
+                CreateItemClass(ItemClass.Amulet),
+                CreateItemClass(ItemClass.Belt),
+                CreateItemClass(ItemClass.BodyArmour),
+                CreateItemClass(ItemClass.Boots),
+                CreateItemClass(ItemClass.Bow),
+                CreateItemClass(ItemClass.Claw),
+                CreateItemClass(ItemClass.Crossbow),
+                CreateItemClass(ItemClass.Dagger),
+                CreateItemClass(ItemClass.FishingRod),
+                CreateItemClass(ItemClass.Flask),
+                CreateItemClass(ItemClass.Gloves),
+                CreateItemClass(ItemClass.Helmet),
+                CreateItemClass(ItemClass.Jewel),
+                CreateItemClass(ItemClass.OneHandAxe),
+                CreateItemClass(ItemClass.OneHandMace),
+                CreateItemClass(ItemClass.OneHandSword),
+                CreateItemClass(ItemClass.Quiver),
+                CreateItemClass(ItemClass.Ring),
+                CreateItemClass(ItemClass.RuneDagger),
+                CreateItemClass(ItemClass.Sceptre),
+                CreateItemClass(ItemClass.Shield),
+                CreateItemClass(ItemClass.Staff),
+                CreateItemClass(ItemClass.TwoHandAxe),
+                CreateItemClass(ItemClass.TwoHandMace),
+                CreateItemClass(ItemClass.TwoHandSword),
+                CreateItemClass(ItemClass.Wand),
+                CreateItemClass(ItemClass.Warstaff),
+            ];
+
+            SelectOption CreateItemClass(ItemClass itemClass)
+            {
+                return new SelectOption()
+                {
+                    Label = itemClass switch
+                    {
+                        ItemClass.AbyssJewel => GameLanguageProvider.Language.Classes.AbyssJewel,
+                        ItemClass.Amulet => GameLanguageProvider.Language.Classes.Amulet,
+                        ItemClass.Belt => GameLanguageProvider.Language.Classes.Belt,
+                        ItemClass.BodyArmour => GameLanguageProvider.Language.Classes.BodyArmours,
+                        ItemClass.Boots => GameLanguageProvider.Language.Classes.Boots,
+                        ItemClass.Bow => GameLanguageProvider.Language.Classes.Bows,
+                        ItemClass.Claw => GameLanguageProvider.Language.Classes.Claws,
+                        ItemClass.Crossbow => GameLanguageProvider.Language.Classes.Crossbows,
+                        ItemClass.Dagger => GameLanguageProvider.Language.Classes.Daggers,
+                        ItemClass.FishingRod => GameLanguageProvider.Language.Classes.FishingRods,
+                        ItemClass.Flask => GameLanguageProvider.Language.Classes.UtilityFlasks,
+                        ItemClass.Gloves => GameLanguageProvider.Language.Classes.Gloves,
+                        ItemClass.Helmet => GameLanguageProvider.Language.Classes.Helmets,
+                        ItemClass.Jewel => GameLanguageProvider.Language.Classes.Jewel,
+                        ItemClass.OneHandAxe => GameLanguageProvider.Language.Classes.OneHandAxes,
+                        ItemClass.OneHandMace => GameLanguageProvider.Language.Classes.OneHandMaces,
+                        ItemClass.OneHandSword => GameLanguageProvider.Language.Classes.OneHandSwords,
+                        ItemClass.Quiver => GameLanguageProvider.Language.Classes.Quivers,
+                        ItemClass.Ring => GameLanguageProvider.Language.Classes.Ring,
+                        ItemClass.RuneDagger => GameLanguageProvider.Language.Classes.RuneDaggers,
+                        ItemClass.Sceptre => GameLanguageProvider.Language.Classes.Sceptres,
+                        ItemClass.Shield => GameLanguageProvider.Language.Classes.Shields,
+                        ItemClass.Staff => GameLanguageProvider.Language.Classes.Staves,
+                        ItemClass.TwoHandAxe => GameLanguageProvider.Language.Classes.TwoHandAxes,
+                        ItemClass.TwoHandMace => GameLanguageProvider.Language.Classes.TwoHandMaces,
+                        ItemClass.TwoHandSword => GameLanguageProvider.Language.Classes.TwoHandSwords,
+                        ItemClass.Wand => GameLanguageProvider.Language.Classes.Wands,
+                        ItemClass.Warstaff => GameLanguageProvider.Language.Classes.Warstaves,
+                        _ => itemClass.ToString(),
+                    },
+                    Value = itemClass.ToString(),
+                };
+            }
+        }
+
+        if (Condition.Type == AutoSelectConditionType.StatCategory)
+        {
+            var results =new List<SelectOption>()
+            {
+                CreateItemClass(StatCategory.Implicit),
+                CreateItemClass(StatCategory.Explicit),
+                CreateItemClass(StatCategory.Fractured),
+            };
+
+            if (Item.Game == GameType.PathOfExile2)
+            {
+                results.Add(CreateItemClass(StatCategory.Desecrated));
+                results.Add(CreateItemClass(StatCategory.Rune));
+                results.Add(CreateItemClass(StatCategory.Skill));
+            }
+
+            if (Item.Game == GameType.PathOfExile1)
+            {
+                results.Add(CreateItemClass(StatCategory.Crafted));
+                results.Add(CreateItemClass(StatCategory.Mutated));
+            }
+            
+            return results;
+            
+            SelectOption CreateItemClass(StatCategory statCategory)
+            {
+                return new SelectOption()
+                {
+                    Label = statCategory.ToString(),
+                    Value = statCategory.ToString(),
+                };
+            }
+        }
+
+        return [];
     }
 }

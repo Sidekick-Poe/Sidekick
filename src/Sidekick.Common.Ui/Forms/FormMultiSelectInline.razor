@@ -1,0 +1,93 @@
+@using Sidekick.Common.Ui.Popovers
+
+<div class="relative w-full -m-0.5 p-0.5 leading-4 h-5">
+    @if (!string.IsNullOrEmpty(Label)) {}
+    <label class="text-base font-medium text-nowrap flex items-center gap-1 flex-nowrap">
+        @if (!string.IsNullOrEmpty(ValueString))
+        {
+            <span class="text-white line-clamp-1">@ValueString</span>
+        }
+        else
+        {
+            <span class="text-zinc-300 italic">@(!string.IsNullOrEmpty(Label) ? Label : "no value")</span>
+        }
+        @if (!Readonly)
+        {
+            <Icon Svg="@UiIcons.ChevronDown" Size="UiIconSize.Small"/>
+        }
+    </label>
+
+    @if (!Readonly)
+    {
+        <Popover Placement="TooltipPlacement.Bottom">
+            <ActivatorContent>
+                <div class="absolute top-0 left-0 right-0 bottom-0 border border-none rounded-sm bg-none bg-transparent hover:bg-zinc-700 focus:bg-zinc-700 hover:border-zinc-600 focus:border-zinc-600 text-transparent hover:text-white focus:text-white leading-4 p-0.5 transition-colors duration-200 text-base appearance-none line-clamp-1">
+                </div>
+            </ActivatorContent>
+            <ChildContent>
+                <div class="flex flex-col items-stretch gap-1">
+                    @foreach (var option in Options)
+                    {
+                        <FormCheckbox Value="IsChecked(option)"
+                                      ValueChanged="(value) => ToggleCheck(option, value)">@option.Label</FormCheckbox>
+                    }
+                </div>
+            </ChildContent>
+        </Popover>
+    }
+</div>
+
+@code{
+
+    [Parameter]
+    public bool Readonly { get; set; }
+
+    [Parameter]
+    public string? Label { get; set; }
+
+    [Parameter]
+    public List<string> Value { get; set; }
+
+    [Parameter]
+    public EventCallback<List<string>> ValueChanged { get; set; }
+
+    [Parameter]
+    public List<SelectOption> Options { get; set; } = new();
+
+    private string ValueString
+    {
+        get
+        {
+            if (Value.Count == 0) return "";
+            var optionLabels = Value
+                .Select(x =>
+                {
+                    var option = Options.FirstOrDefault(y => (y.Value ?? "null") == x);
+                    if (option != null) return option.Label;
+
+                    return x;
+                })
+                .ToList();
+
+            return string.Join(", ", optionLabels);
+        }
+    }
+    
+    private bool IsChecked(SelectOption option) => Value.Contains(option.Value ?? "null");
+    
+    private async Task ToggleCheck(SelectOption option, bool @checked)
+    {
+        var result = Value.ToList();
+        if (!@checked)
+        {
+            result.Remove(option.Value ?? "null");
+        }
+        else
+        {
+            result.Add(option.Value?? "null");
+        }
+
+        await ValueChanged.InvokeAsync(result);
+    }
+    
+}
