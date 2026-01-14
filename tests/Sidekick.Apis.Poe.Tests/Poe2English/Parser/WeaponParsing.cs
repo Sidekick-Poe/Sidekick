@@ -13,7 +13,7 @@ public class WeaponParsing(Poe2EnglishFixture fixture)
     public void ParseStaff()
     {
         var actual = parser.ParseItem(
-            @"Item Class: Staves
+        @"Item Class: Staves
 Rarity: Magic
 Chalybeous Ashen Staff of the Augur
 --------
@@ -40,7 +40,7 @@ Item Level: 60
     public void ParseColdBow()
     {
         var actual = parser.ParseItem(
-            @"Item Class: Bows
+        @"Item Class: Bows
 Rarity: Rare
 Brood Fletch
 Expert Composite Bow
@@ -97,7 +97,7 @@ Leeches 4.02% of Physical Damage as Mana
     [Fact]
     public void ParseElementalCrossbow()
     {
-      var actual = parser.ParseItem(@"Item Class: Crossbows
+        var actual = parser.ParseItem(@"Item Class: Crossbows
 Rarity: Rare
 Blood Core
 Bleak Crossbow
@@ -120,7 +120,7 @@ Adds 2 to 91 Lightning Damage
 Grants 3 Life per Enemy Hit
 ");
 
-      Assert.Equal(ItemClass.Crossbow, actual.Properties.ItemClass);
+        Assert.Equal(ItemClass.Crossbow, actual.Properties.ItemClass);
         Assert.Equal(Rarity.Rare, actual.Properties.Rarity);
         Assert.Equal("Bleak Crossbow", actual.ApiInformation.Type);
         Assert.Equal("Blood Core", actual.Name);
@@ -138,8 +138,8 @@ Grants 3 Life per Enemy Hit
         Assert.Equal(91, actual.Properties.LightningDamage?.Max);
 
         // Verify DPS calculations
-        Assert.Equal(115.2, actual.Properties.ElementalDps); // ((20+31)/2 + (2+91)/2) * 1.60
-        AssertExtensions.AssertCloseEnough(207.2, actual.Properties.TotalDps); // 92.0 + 115.2
+        Assert.Equal(115.2, actual.Properties.ElementalDps);// ((20+31)/2 + (2+91)/2) * 1.60
+        AssertExtensions.AssertCloseEnough(207.2, actual.Properties.TotalDps);// 92.0 + 115.2
     }
 
     [Fact]
@@ -403,7 +403,13 @@ Note: ~price 1 mirror");
 
         var fracturedFilter = modifierFilters
             .OfType<StatFilter>()
-            .First(x => x.PrimaryCategory == StatCategory.Fractured);
+            .FirstOrDefault(x => x.PrimaryCategory == StatCategory.Fractured);
+        fracturedFilter ??= modifierFilters.OfType<ExpandableFilter>()
+            .SelectMany(x => x.Filters)
+            .OfType<StatFilter>()
+            .FirstOrDefault(x => x.PrimaryCategory == StatCategory.Fractured);
+
+        Assert.NotNull(fracturedFilter);
         Assert.True(fracturedFilter.UsePrimaryCategory);
         Assert.Equal(StatCategory.Fractured, fracturedFilter.PrimaryCategory);
         Assert.Equal(StatCategory.Explicit, fracturedFilter.SecondaryCategory);
@@ -416,7 +422,13 @@ Note: ~price 1 mirror");
 
         var desecratedFilter = modifierFilters
             .OfType<StatFilter>()
-            .First(x => x.PrimaryCategory == StatCategory.Desecrated);
+            .FirstOrDefault(x => x.PrimaryCategory == StatCategory.Desecrated);
+        desecratedFilter ??= modifierFilters.OfType<ExpandableFilter>()
+            .SelectMany(x => x.Filters)
+            .OfType<StatFilter>()
+            .FirstOrDefault(x => x.PrimaryCategory == StatCategory.Desecrated);
+
+        Assert.NotNull(desecratedFilter);
         Assert.False(desecratedFilter.UsePrimaryCategory);
         Assert.Equal(StatCategory.Desecrated, desecratedFilter.PrimaryCategory);
         Assert.Equal(StatCategory.Explicit, desecratedFilter.SecondaryCategory);
