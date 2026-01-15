@@ -10,11 +10,14 @@
 
 @if (Condition.Comparison is AutoSelectComparisonType.IsContainedIn or AutoSelectComparisonType.IsNotContainedIn)
 {
-    <div class="mt-1">
-        <FormMultiSelectInline Value="@GetMultiValue()"
-                               ValueChanged="MultiChanged"
-                               Readonly="Readonly"
-                               Options="GetOptions()"/>
+    <div class="grid grid-cols-2 gap-y-0.5 gap-x-2 mt-1">
+        @foreach (var option in GetOptions())
+        {
+            <FormCheckbox Value="IsChecked(option)"
+                          ValueChanged="(value) => ToggleCheck(option, value)">
+                <span class="line-clamp-1">@option.Label</span>
+            </FormCheckbox>
+        }
     </div>
     return;
 }
@@ -31,7 +34,7 @@
 
     [CascadingParameter]
     public required Item Item { get; set; }
-    
+
     [Parameter]
     public required AutoSelectCondition Condition { get; set; }
 
@@ -52,24 +55,24 @@
         await OnChanged.InvokeAsync();
     }
 
-    private List<string> GetMultiValue()
+    private bool IsChecked(SelectOption option) => Condition.Value?.Contains($"\"{option.Value ?? "null"}\"") ?? false;
+
+    private async Task ToggleCheck(SelectOption option, bool isChecked)
     {
-        try
+        var value = JsonSerializer.Deserialize<List<string>>(Condition.Value ?? "[]") ?? [];
+        if (isChecked)
         {
-            return JsonSerializer.Deserialize<List<string>>(Condition.Value ?? "[]") ?? [];
+            value.Add(option.Value ?? "null");
         }
-        catch (Exception)
+        else
         {
-            return [];
+            value.Remove(option.Value ?? "null");
         }
-    }
-    
-    private async Task MultiChanged(List<string> value)
-    {
+
         Condition.Value = JsonSerializer.Serialize(value);
         await OnChanged.InvokeAsync();
     }
-    
+
     private List<SelectOption> GetOptions()
     {
         if (Condition.Type == AutoSelectConditionType.Rarity)
@@ -179,7 +182,7 @@
 
         if (Condition.Type == AutoSelectConditionType.StatCategory)
         {
-            var results =new List<SelectOption>()
+            var results = new List<SelectOption>()
             {
                 CreateItemClass(StatCategory.Implicit),
                 CreateItemClass(StatCategory.Explicit),
@@ -198,9 +201,9 @@
                 results.Add(CreateItemClass(StatCategory.Crafted));
                 results.Add(CreateItemClass(StatCategory.Mutated));
             }
-            
+
             return results;
-            
+
             SelectOption CreateItemClass(StatCategory statCategory)
             {
                 return new SelectOption()
