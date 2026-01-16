@@ -107,7 +107,7 @@ public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
         var value = expressionValue.ToString() ?? string.Empty;
         if (string.IsNullOrEmpty(value) || conditionValue == null) return false;
 
-        return Regex.IsMatch(value, conditionValue);
+        return Regex.IsMatch(value, conditionValue, RegexOptions.CultureInvariant | RegexOptions.Multiline);
     }
 
     private static int Compare(object expressionValue, string? conditionValue)
