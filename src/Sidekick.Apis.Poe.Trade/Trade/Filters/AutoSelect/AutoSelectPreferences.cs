@@ -88,12 +88,12 @@ public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
         {
             AutoSelectComparisonType.True => value is true,
             AutoSelectComparisonType.False => value is false,
-            AutoSelectComparisonType.GreaterThan => Compare(value, condition.Value) > 0,
-            AutoSelectComparisonType.LesserThan => Compare(value, condition.Value) < 0,
-            AutoSelectComparisonType.GreaterThanOrEqual => Compare(value, condition.Value) >= 0,
-            AutoSelectComparisonType.LesserThanOrEqual => Compare(value, condition.Value) <= 0,
-            AutoSelectComparisonType.Equals => Compare(value, condition.Value) == 0,
-            AutoSelectComparisonType.DoesNotEqual => Compare(value, condition.Value) != 0,
+            AutoSelectComparisonType.GreaterThan => TryCompare(value, condition.Value, out var result) && result > 0,
+            AutoSelectComparisonType.LesserThan => TryCompare(value, condition.Value, out var result) && result < 0,
+            AutoSelectComparisonType.GreaterThanOrEqual => TryCompare(value, condition.Value, out var result) && result >= 0,
+            AutoSelectComparisonType.LesserThanOrEqual => TryCompare(value, condition.Value, out var result) && result <= 0,
+            AutoSelectComparisonType.Equals => TryCompare(value, condition.Value, out var result) && result == 0,
+            AutoSelectComparisonType.DoesNotEqual => TryCompare(value, condition.Value, out var result) && result != 0,
             AutoSelectComparisonType.IsContainedIn => IsContainedIn(value, condition.Value),
             AutoSelectComparisonType.IsNotContainedIn => !IsContainedIn(value, condition.Value),
             AutoSelectComparisonType.MatchesRegex => IsMatch(value, condition.Value),
@@ -110,33 +110,51 @@ public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
         return Regex.IsMatch(value, conditionValue, RegexOptions.CultureInvariant | RegexOptions.Multiline);
     }
 
-    private static int Compare(object expressionValue, string? conditionValue)
+    private static bool TryCompare(object expressionValue, string? conditionValue, out int result)
     {
-        var value = expressionValue.ToString() ?? string.Empty;
-        if (string.IsNullOrEmpty(value) && string.IsNullOrEmpty(conditionValue)) return 0;
-        if (string.IsNullOrEmpty(value)) return -1;
-        if (string.IsNullOrEmpty(conditionValue)) return 1;
-
-        if (expressionValue is Enum enumValue)
-        {
-            return string.CompareOrdinal(enumValue.ToString(), conditionValue);
-        }
-
-        if (expressionValue is IComparable comparable)
-        {
-            var convertedValue = Convert.ChangeType(conditionValue, expressionValue.GetType());
-            return comparable.CompareTo(convertedValue);
-        }
-
         try
         {
+            var value = expressionValue.ToString() ?? string.Empty;
+            if (string.IsNullOrEmpty(value) && string.IsNullOrEmpty(conditionValue))
+            {
+                result = 0;
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(value))
+            {
+                result = -1;
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(conditionValue))
+            {
+                result = 1;
+                return true;
+            }
+
+            if (expressionValue is Enum enumValue)
+            {
+                result = string.CompareOrdinal(enumValue.ToString(), conditionValue);
+                return true;
+            }
+
+            if (expressionValue is IComparable comparable)
+            {
+                var convertedValue = Convert.ChangeType(conditionValue, expressionValue.GetType());
+                result = comparable.CompareTo(convertedValue);
+                return true;
+            }
+
             var expressionDouble = Convert.ToDouble(expressionValue);
             var conditionDouble = Convert.ToDouble(conditionValue);
-            return expressionDouble.CompareTo(conditionDouble);
+            result = expressionDouble.CompareTo(conditionDouble);
+            return true;
         }
         catch (Exception)
         {
-            return 0;
+            result = 0;
+            return false;
         }
     }
 
