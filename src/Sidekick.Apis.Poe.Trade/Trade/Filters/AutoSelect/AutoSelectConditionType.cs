@@ -152,6 +152,14 @@ public enum AutoSelectConditionType
                           AutoSelectComparisonType.LesserThan)]
     RareMonsters,
 
+    [AutoSelectComparison(AutoSelectComparisonType.True,
+                          AutoSelectComparisonType.False)]
+    Blighted,
+
+    [AutoSelectComparison(AutoSelectComparisonType.True,
+                          AutoSelectComparisonType.False)]
+    BlightRavaged,
+
     #endregion
 
     #region Weapons

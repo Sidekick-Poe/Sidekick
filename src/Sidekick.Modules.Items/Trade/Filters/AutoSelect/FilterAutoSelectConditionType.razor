@@ -65,6 +65,8 @@
                 AutoSelectConditionType.PhysicalDps => PropertyParser.GetDefinition<PhysicalDpsProperty>().Label,
                 AutoSelectConditionType.TotalDps => PropertyParser.GetDefinition<TotalDpsProperty>().Label,
                 AutoSelectConditionType.GemLevel => PropertyParser.GetDefinition<GemLevelProperty>().Label,
+                AutoSelectConditionType.Blighted => PropertyParser.GetDefinition<BlightedProperty>().Label,
+                AutoSelectConditionType.BlightRavaged => PropertyParser.GetDefinition<BlightRavagedProperty>().Label,
                 _ => ConditionResources[value.ToString()],
             };
 
@@ -89,6 +91,8 @@
                 AutoSelectConditionType.MagicMonsters => TradeFilterProvider.EndgameCategory?.Title ?? TradeFilterProvider.MapCategory?.Title,
                 AutoSelectConditionType.MonsterPackSize => TradeFilterProvider.EndgameCategory?.Title ?? TradeFilterProvider.MapCategory?.Title,
                 AutoSelectConditionType.RareMonsters => TradeFilterProvider.EndgameCategory?.Title ?? TradeFilterProvider.MapCategory?.Title,
+                AutoSelectConditionType.Blighted => TradeFilterProvider.EndgameCategory?.Title ?? TradeFilterProvider.MapCategory?.Title,
+                AutoSelectConditionType.BlightRavaged => TradeFilterProvider.EndgameCategory?.Title ?? TradeFilterProvider.MapCategory?.Title,
                 AutoSelectConditionType.AttacksPerSecond => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.WeaponCategory?.Title,
                 AutoSelectConditionType.CriticalHitChance => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.WeaponCategory?.Title,
                 AutoSelectConditionType.PhysicalDps => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.WeaponCategory?.Title,
