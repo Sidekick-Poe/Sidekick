@@ -9,6 +9,11 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 
 public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
 {
+    public static JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
+    {
+        Converters = { new JsonStringEnumConverter() },
+    };
+
     [JsonPropertyName("mode")]
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public AutoSelectMode Mode { get; set; }

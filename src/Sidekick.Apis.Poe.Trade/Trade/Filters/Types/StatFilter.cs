@@ -24,7 +24,7 @@ public sealed class StatFilter : TradeFilter
                         Value = JsonSerializer.Serialize(new List<StatCategory>()
                         {
                             StatCategory.Fractured,
-                        }),
+                        }, AutoSelectPreferences.JsonSerializerOptions),
                     },
                 ],
             },

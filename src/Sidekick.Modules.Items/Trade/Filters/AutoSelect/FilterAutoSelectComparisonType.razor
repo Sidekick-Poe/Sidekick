@@ -43,6 +43,11 @@
             });
         }
 
+        if (attribute.AllowedComparisons.All(x => x != Condition.Comparison))
+        {
+            Condition.Comparison = attribute.AllowedComparisons.FirstOrDefault();
+        }
+
         StateHasChanged();
     }
 

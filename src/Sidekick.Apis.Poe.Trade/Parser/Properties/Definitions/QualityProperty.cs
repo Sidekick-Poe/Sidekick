@@ -84,7 +84,7 @@ public class QualityFilter : IntPropertyFilter
                             Value = JsonSerializer.Serialize(new List<Rarity>()
                             {
                                 Rarity.Gem,
-                            }),
+                            }, AutoSelectPreferences.JsonSerializerOptions),
                         },
                     ],
                 },

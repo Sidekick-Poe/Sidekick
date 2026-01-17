@@ -10,7 +10,7 @@
 
 @if (Condition.Comparison is AutoSelectComparisonType.IsContainedIn or AutoSelectComparisonType.IsNotContainedIn)
 {
-    <div class="grid grid-cols-2 gap-y-0.5 gap-x-2 mt-1">
+    <div class="grid grid-cols-3 gap-y-0.5 gap-x-3 w-full">
         @foreach (var option in GetOptions())
         {
             <FormCheckbox Value="IsChecked(option)"
@@ -22,11 +22,9 @@
     return;
 }
 
-<div class="mt-1">
-    <FormInputInline Value="@Condition.Value"
-                     ValueChanged="Changed"
-                     Readonly="Readonly"/>
-</div>
+<FormInputInline Value="@Condition.Value"
+                 ValueChanged="Changed"
+                 Readonly="Readonly"/>
 
 @inject IGameLanguageProvider GameLanguageProvider
 
@@ -59,7 +57,16 @@
 
     private async Task ToggleCheck(SelectOption option, bool isChecked)
     {
-        var value = JsonSerializer.Deserialize<List<string>>(Condition.Value ?? "[]") ?? [];
+        List<string> value;
+        try
+        {
+            value = JsonSerializer.Deserialize<List<string>>(Condition.Value ?? "[]", AutoSelectPreferences.JsonSerializerOptions) ?? [];
+        }
+        catch (Exception)
+        {
+            value = [];
+        }
+
         if (isChecked)
         {
             value.Add(option.Value ?? "null");
@@ -69,7 +76,7 @@
             value.Remove(option.Value ?? "null");
         }
 
-        Condition.Value = JsonSerializer.Serialize(value);
+        Condition.Value = JsonSerializer.Serialize(value, AutoSelectPreferences.JsonSerializerOptions);
         await OnChanged.InvokeAsync();
     }
 

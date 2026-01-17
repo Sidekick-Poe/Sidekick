@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Database;
@@ -13,6 +14,11 @@ public class SettingsService(
     ILogger<SettingsService> logger) : ISettingsService
 {
     public event Action<string[]>? OnSettingsChanged;
+
+    private static JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
+    {
+        Converters = { new JsonStringEnumConverter() },
+    };
 
     public async Task<bool> GetBool(string key)
     {
@@ -125,7 +131,7 @@ public class SettingsService(
         {
             try
             {
-                return JsonSerializer.Deserialize<TValue>(dbSetting.Value ?? string.Empty) ?? defaultFunc.Invoke();
+                return JsonSerializer.Deserialize<TValue>(dbSetting.Value ?? string.Empty, JsonSerializerOptions) ?? defaultFunc.Invoke();
             }
             catch (Exception e)
             {
@@ -328,7 +334,7 @@ public class SettingsService(
             DateTimeOffset x => x.ToString(),
             Enum x => x.GetValueAttribute(),
             string x => x,
-            _ => JsonSerializer.Serialize(value),
+            _ => JsonSerializer.Serialize(value, JsonSerializerOptions),
         };
     }
 }

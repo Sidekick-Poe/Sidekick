@@ -12,7 +12,7 @@
     return;
 }
 
-<Modal>
+<Modal Size="ModalSize.Xl">
     <ActivatorContent>
         <ButtonIcon Class="invisible group-hover:visible text-neutral-500"
                     Svg="@UiIcons.Settings"/>
@@ -21,7 +21,7 @@
         <Heading2>@Resources["Filter_Settings"]</Heading2>
     </HeaderContent>
     <ChildContent>
-        <TextBase>@Resources["AutoSelect_Description", Filter.Text]</TextBase>
+        <TextBase Class="text-neutral-400">@Resources["AutoSelect_Description", Filter.Text]</TextBase>
 
         <TabList Class="mt-2">
             @ButtonContent(AutoSelectMode.Default, Resources["AutoSelect_Default"])
@@ -48,16 +48,16 @@
         }
         else if (AutoSelect.Mode == AutoSelectMode.Conditionally)
         {
-            <TextBase Class="mb-2">@Resources["AutoSelect_Rules_Description", Filter.Text]</TextBase>
+            <TextBase Class="mb-2 text-neutral-400">@Resources["AutoSelect_Rules_Description", Filter.Text]</TextBase>
             <div class="flex flex-col gap-2 mb-2">
                 @for (var ruleIndex = 0; ruleIndex < AutoSelect.Rules.Count; ruleIndex++)
                 {
                     var rule = AutoSelect.Rules[ruleIndex];
                     <div class="bg-stone-800 rounded-md"
                          @key="@rule.Id">
-                        <div class="pl-2 py-1 pr-1 flex flex-nowrap gap-2 border-b-2 border-stone-700">
+                        <div class="pl-2 py-1 pr-1 flex flex-nowrap gap-2">
                             <div
-                                class="font-bold text-lg text-neutral-400 grow">@Resources["AutoSelect_Rule"] #@(ruleIndex + 1)</div>
+                                class="font-bold text-lg text-white grow">@Resources["AutoSelect_Rule"] #@(ruleIndex + 1)</div>
                             @if (Mode == AutoSelectMode.Conditionally)
                             {
                                 @if (ruleIndex > 0 && AutoSelect.Rules.Count > 0)
@@ -80,19 +80,21 @@
                             }
                         </div>
 
-                        @for (var conditionIndex = 0; conditionIndex < rule.Conditions.Count; conditionIndex++)
-                        {
-                            var condition = rule.Conditions[conditionIndex];
-                            <FilterAutoSelectCondition @key="@condition.Id"
-                                                       First="conditionIndex == 0"
-                                                       Condition="condition"
-                                                       Readonly="Mode == AutoSelectMode.Default"
-                                                       OnChanged="Save"
-                                                       OnRemoved="() => RemoveCondition(rule, condition)"
-                                                       CanBeDeleted="rule.Conditions.Count > 1"/>
-                        }
+                        <div class="flex flex-col items-stretch gap-2 px-2 mb-1">
+                            @for (var conditionIndex = 0; conditionIndex < rule.Conditions.Count; conditionIndex++)
+                            {
+                                var condition = rule.Conditions[conditionIndex];
+                                <FilterAutoSelectCondition @key="@condition.Id"
+                                                           First="conditionIndex == 0"
+                                                           Condition="condition"
+                                                           Readonly="Mode == AutoSelectMode.Default"
+                                                           OnChanged="Save"
+                                                           OnRemoved="() => RemoveCondition(rule, condition)"
+                                                           CanBeDeleted="rule.Conditions.Count > 1"/>
+                            }
+                        </div>
 
-                        <div class="grid grid-cols-5 gap-2 items-center py-1 px-2 border-t border-stone-700 leading-4">
+                        <div class="grid grid-cols-5 gap-2 items-center py-1 px-2 leading-4">
                             <span class="text-neutral-500">@Resources["AutoSelect_Then"]</span>
                             <div class="col-span-2 text-white">
                                 <FilterAutoSelectRuleResult Rule="rule"

@@ -2,33 +2,31 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
 @using Sidekick.Modules.Items.Trade.Localization
 
-<div class="flex flex-nowrap items-start gap-1 py-1 pl-2 pr-1 border-b border-stone-700">
-    <div class="grow grid grid-cols-5 gap-x-2 gap-y-0 items-center leading-4">
-        @if (First)
-        {
-            <span class="text-neutral-500">@Resources["AutoSelect_When"]</span>
-        }
-        else
-        {
-            <span class="text-neutral-500">@Resources["AutoSelect_And"]</span>
-        }
-        <div class="col-span-2">
+<div class="flex flex-nowrap items-start gap-1 p-2 bg-stone-700 rounded-md">
+    <div class="grow">
+        <div class="flex flex-wrap gap-x-2 gap-y-1 items-start leading-4">
+            @if (First)
+            {
+                <span class="text-neutral-300">@Resources["AutoSelect_When"]</span>
+            }
+            else
+            {
+                <span class="text-neutral-300">@Resources["AutoSelect_And"]</span>
+            }
             <FilterAutoSelectConditionType @ref="ConditionType"
                                            Condition="Condition"
                                            OnChanged="Update"
                                            Readonly="Readonly"/>
-        </div>
-        <div class="col-span-2">
             <FilterAutoSelectComparisonType @ref="ComparisonType"
                                             Condition="Condition"
                                             OnChanged="Update"
                                             Readonly="Readonly"/>
-        </div>
-        <div class="col-start-2 col-span-4">
-            <FilterAutoSelectConditionValue @ref="ConditionValue"
-                                            Condition="Condition"
-                                            OnChanged="Update"
-                                            Readonly="Readonly"/>
+            <div class="grow min-w-20">
+                <FilterAutoSelectConditionValue @ref="ConditionValue"
+                                                Condition="Condition"
+                                                OnChanged="Update"
+                                                Readonly="Readonly"/>
+            </div>
         </div>
     </div>
     @if (!Readonly && CanBeDeleted)
