@@ -14,7 +14,8 @@
         @foreach (var option in GetOptions())
         {
             <FormCheckbox Value="IsChecked(option)"
-                          ValueChanged="(value) => ToggleCheck(option, value)">
+                          ValueChanged="(value) => ToggleCheck(option, value)"
+                          Readonly="Readonly">
                 <span class="line-clamp-1">@option.Label</span>
             </FormCheckbox>
         }

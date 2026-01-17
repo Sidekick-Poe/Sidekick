@@ -14,8 +14,9 @@
 
 <Modal Size="ModalSize.Xl">
     <ActivatorContent>
-        <ButtonIcon Class="invisible group-hover:visible text-neutral-500"
-                    Svg="@UiIcons.Settings"/>
+        <ButtonIcon Class="@ButtonClass"
+                    Svg="@UiIcons.Settings"
+                    AddBadge="Mode != AutoSelectMode.Default"/>
     </ActivatorContent>
     <HeaderContent>
         <Heading2>@Resources["Filter_Settings"]</Heading2>
@@ -138,6 +139,8 @@
 
     [Parameter]
     public required TradeFilter Filter { get; set; }
+
+    private string ButtonClass => Mode == AutoSelectMode.Default ? "invisible group-hover:visible text-neutral-500" : "text-neutral-500";
 
     private AutoSelectPreferences? AutoSelect
     {
