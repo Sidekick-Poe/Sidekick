@@ -1,25 +1,22 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class FoulbornProperty(
     GameType game,
-    ISettingsService settingsService,
-    IGameLanguageProvider gameLanguageProvider,
     IServiceProvider serviceProvider) : PropertyDefinition
 {
     private readonly ITradeFilterProvider tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
 
-    public override List<ItemClass> ValidItemClasses { get; } = [
+    public override List<ItemClass> ValidItemClasses { get; } =
+    [
         ..ItemClassConstants.Equipment,
         ..ItemClassConstants.Weapons,
         ..ItemClassConstants.Accessories,
@@ -43,12 +40,10 @@ public class FoulbornProperty(
         if (tradeFilterProvider.Foulborn == null) return null;
         if (item.Properties.Rarity != Rarity.Unique) return null;
 
-        var autoSelectKey = $"Trade_Filter_{nameof(FoulbornProperty)}_{game.GetValueAttribute()}";
         var filter = new FoulbornFilter
         {
             Text = Label,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(FoulbornProperty)}_{game.GetValueAttribute()}",
         };
         return filter;
     }
@@ -60,7 +55,7 @@ public class FoulbornFilter : TriStatePropertyFilter
     {
         DefaultAutoSelect = new AutoSelectPreferences()
         {
-            Mode = AutoSelectMode.Conditionally,
+            Mode = AutoSelectMode.Default,
             Rules =
             [
                 new()

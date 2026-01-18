@@ -6,18 +6,17 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class MapTierProperty(
     GameType game,
-    ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionMapTier.ToRegexIntCapture();
 
-    public override List<ItemClass> ValidItemClasses { get; } = [
+    public override List<ItemClass> ValidItemClasses { get; } =
+    [
         ItemClass.Map,
     ];
 
@@ -34,14 +33,12 @@ public class MapTierProperty(
     {
         if (item.Properties.MapTier <= 0) return null;
 
-        var autoSelectKey = $"Trade_Filter_{nameof(MapTierProperty)}_{game.GetValueAttribute()}";
         var filter = new MapTierFilter
         {
             Text = Label,
-            NormalizeEnabled = false,
             Value = item.Properties.MapTier,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(MapTierProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = true,
         };
         return filter;
     }
@@ -51,10 +48,7 @@ public class MapTierFilter : IntPropertyFilter
 {
     public MapTierFilter()
     {
-        DefaultAutoSelect = new AutoSelectPreferences()
-        {
-            Mode = AutoSelectMode.Always,
-        };
+        DefaultAutoSelect = AutoSelectPreferences.Create(true);
     }
 
     public override void PrepareTradeRequest(Query query, Item item)

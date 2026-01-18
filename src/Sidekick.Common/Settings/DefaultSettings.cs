@@ -42,14 +42,9 @@ public static class DefaultSettings
     public static bool PriceCheckPredictionEnabled => true;
     public static bool UseHardwareAcceleration => true;
 
-    public static bool PriceCheckFillDefaultMin => true;
-    public static bool PriceCheckFillDefaultMax => false;
-
     public static string PriceCheckItemCurrency => "";
 
     public static string PriceCheckBulkCurrency => "divine";
-
-    public static double PriceCheckNormalizeValue => .1;
 
     public static bool PriceCheckCompactMode => false;
 

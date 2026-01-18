@@ -6,13 +6,11 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class UnidentifiedProperty(
     GameType game,
-    ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionUnidentified.ToRegexLine();
@@ -38,12 +36,10 @@ public class UnidentifiedProperty(
     {
         if (!item.Properties.Unidentified) return null;
 
-        var autoSelectKey = $"Trade_Filter_{nameof(UnidentifiedProperty)}_{game.GetValueAttribute()}";
         var filter = new UnidentifiedFilter
         {
             Text = Label,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(UnidentifiedProperty)}_{game.GetValueAttribute()}",
         };
         return filter;
     }
@@ -53,10 +49,7 @@ public class UnidentifiedFilter : TriStatePropertyFilter
 {
     public UnidentifiedFilter()
     {
-        DefaultAutoSelect = new AutoSelectPreferences()
-        {
-            Mode = AutoSelectMode.Always,
-        };
+        DefaultAutoSelect = AutoSelectPreferences.Create(true);
     }
 
     public override void PrepareTradeRequest(Query query, Item item)

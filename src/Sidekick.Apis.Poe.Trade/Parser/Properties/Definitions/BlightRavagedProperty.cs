@@ -6,18 +6,17 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class BlightRavagedProperty(
     GameType game,
-    ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.AffixBlightRavaged.ToRegexAffix(gameLanguageProvider.Language.AffixSuperior);
 
-    public override List<ItemClass> ValidItemClasses { get; } = [
+    public override List<ItemClass> ValidItemClasses { get; } =
+    [
         ItemClass.Map,
     ];
 
@@ -32,12 +31,10 @@ public class BlightRavagedProperty(
     {
         if (!item.Properties.BlightRavaged) return null;
 
-        var autoSelectKey = $"Trade_Filter_{nameof(BlightRavagedProperty)}_{game.GetValueAttribute()}";
         var filter = new BlightRavagedFilter
         {
             Text = Label,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(BlightRavagedProperty)}_{game.GetValueAttribute()}",
         };
         return filter;
     }
@@ -47,10 +44,7 @@ public class BlightRavagedFilter : TradeFilter
 {
     public BlightRavagedFilter()
     {
-        DefaultAutoSelect = new AutoSelectPreferences()
-        {
-            Mode = AutoSelectMode.Always,
-        };
+        DefaultAutoSelect = AutoSelectPreferences.Create(true);
     }
 
     public override void PrepareTradeRequest(Query query, Item item)

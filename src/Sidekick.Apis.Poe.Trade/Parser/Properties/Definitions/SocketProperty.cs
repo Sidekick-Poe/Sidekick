@@ -8,13 +8,11 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class SocketProperty(
     GameType game,
-    ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider,
     IStringLocalizer<PoeResources> resources) : PropertyDefinition
 {
@@ -132,15 +130,13 @@ public class SocketProperty(
             hint = resources["Socket_Poe1_Hint"];
         }
 
-        var autoSelectKey = $"Trade_Filter_{nameof(SocketProperty)}_{game.GetValueAttribute()}";
         var filter = new SocketFilter(game)
         {
             Text = Label,
-            NormalizeEnabled = false,
             Value = value,
             Hint = hint,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(SocketProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = false,
         };
         return filter;
     }
@@ -155,7 +151,7 @@ public class SocketFilter : IntPropertyFilter
         {
             DefaultAutoSelect = new AutoSelectPreferences()
             {
-                Mode = AutoSelectMode.Conditionally,
+                Mode = AutoSelectMode.Default,
                 Rules =
                 [
                     new()
@@ -178,7 +174,7 @@ public class SocketFilter : IntPropertyFilter
         {
             DefaultAutoSelect = new AutoSelectPreferences()
             {
-                Mode = AutoSelectMode.Conditionally,
+                Mode = AutoSelectMode.Default,
                 Rules =
                 [
                     new()

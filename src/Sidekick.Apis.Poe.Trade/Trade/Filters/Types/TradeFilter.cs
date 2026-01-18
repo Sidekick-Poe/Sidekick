@@ -2,30 +2,38 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
+using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
 public abstract class TradeFilter
 {
-    public virtual void Initialize(Item item)
+    public virtual async Task<AutoSelectResult?> Initialize(Item item, ISettingsService settingsService)
     {
-        var autoSelect = AutoSelect ?? DefaultAutoSelect;
-        if (AutoSelect?.Mode == AutoSelectMode.Default) autoSelect = DefaultAutoSelect;
+        if (string.IsNullOrEmpty(AutoSelectSettingKey)) return null;
 
-        if (autoSelect == null)
+        AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(AutoSelectSettingKey, () => null);
+        AutoSelect??= new AutoSelectPreferences()
+        {
+            Mode = AutoSelectMode.Default,
+        };
+
+        if (AutoSelectSmart == null)
         {
             Checked = false;
-            return;
+            return null;
         }
 
-        var result = autoSelect.ShouldCheck(item, this);
+        var result = await AutoSelectSmart.GetResult(item, this, settingsService);
         if (this is TriStatePropertyFilter triStateFilter)
         {
-            triStateFilter.Checked = result;
+            triStateFilter.Checked = result?.Checked;
         }
         else
         {
-            Checked = result ?? false;
+            Checked = result?.Checked ?? false;
         }
+
+        return result;
     }
 
     public virtual bool Checked { get; set; }
@@ -38,7 +46,16 @@ public abstract class TradeFilter
 
     public string? AutoSelectSettingKey { get; init; }
 
-    public AutoSelectPreferences? AutoSelect { get; set; }
+    public AutoSelectPreferences? AutoSelectSmart
+    {
+        get
+        {
+            if (AutoSelect?.Mode == AutoSelectMode.Default) return DefaultAutoSelect;
+            return AutoSelect ?? DefaultAutoSelect;
+        }
+    }
+
+    public AutoSelectPreferences? AutoSelect { get; private set; }
 
     public AutoSelectPreferences? DefaultAutoSelect { get; init; }
 

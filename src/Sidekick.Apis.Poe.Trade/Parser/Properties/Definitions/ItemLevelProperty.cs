@@ -7,13 +7,11 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class ItemLevelProperty(
     GameType game,
-    ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionItemLevel.ToRegexIntCapture();
@@ -46,14 +44,12 @@ public class ItemLevelProperty(
     {
         if (item.Properties.ItemLevel <= 0) return null;
 
-        var autoSelectKey = $"Trade_Filter_{nameof(ItemLevelProperty)}_{game.GetValueAttribute()}";
         var filter = new ItemLevelFilter(game)
         {
             Text = Label,
-            NormalizeEnabled = false,
             Value = item.Properties.ItemLevel,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(ItemLevelProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = true,
         };
         return filter;
     }
@@ -68,12 +64,13 @@ public class ItemLevelFilter : IntPropertyFilter
         {
             DefaultAutoSelect = new AutoSelectPreferences()
             {
-                Mode = AutoSelectMode.Conditionally,
+                Mode = AutoSelectMode.Default,
                 Rules =
                 [
                     new()
                     {
                         Checked = true,
+                        NormalizeBy = 0,
                         Conditions =
                         [
                             new()
@@ -108,12 +105,13 @@ public class ItemLevelFilter : IntPropertyFilter
         {
             DefaultAutoSelect = new AutoSelectPreferences()
             {
-                Mode = AutoSelectMode.Conditionally,
+                Mode = AutoSelectMode.Default,
                 Rules =
                 [
                     new()
                     {
                         Checked = true,
+                        NormalizeBy = 0,
                         Conditions =
                         [
                             new()

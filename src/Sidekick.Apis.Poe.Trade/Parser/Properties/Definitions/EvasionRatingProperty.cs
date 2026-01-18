@@ -7,20 +7,19 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class EvasionRatingProperty(
     GameType game,
-    ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionEvasion.ToRegexIntCapture();
 
     private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionEvasion.ToRegexIsAugmented();
 
-    public override List<ItemClass> ValidItemClasses { get; } = [
+    public override List<ItemClass> ValidItemClasses { get; } =
+    [
         ..ItemClassConstants.Equipment,
     ];
 
@@ -40,16 +39,14 @@ public class EvasionRatingProperty(
     {
         if (item.Properties.EvasionRating <= 0) return null;
 
-        var autoSelectKey = $"Trade_Filter_{nameof(EvasionRatingProperty)}_{game.GetValueAttribute()}";
         var filter = new EvasionRatingFilter(game)
         {
             Text = Label,
-            NormalizeEnabled = true,
             Value = item.Properties.EvasionRatingWithQuality,
             OriginalValue = item.Properties.EvasionRating,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.EvasionRating)) ? LineContentType.Augmented : LineContentType.Simple,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(EvasionRatingProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = true,
         };
         return filter;
     }
@@ -60,10 +57,7 @@ public class EvasionRatingFilter : IntPropertyFilter
     public EvasionRatingFilter(GameType game)
     {
         Game = game;
-        DefaultAutoSelect = new AutoSelectPreferences()
-        {
-            Mode = AutoSelectMode.Never,
-        };
+        DefaultAutoSelect = AutoSelectPreferences.Create(false);
     }
 
     private GameType Game { get; }

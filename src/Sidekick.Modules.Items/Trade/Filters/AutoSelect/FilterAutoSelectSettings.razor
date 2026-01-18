@@ -7,7 +7,7 @@
 @using Sidekick.Common.Ui.Tabs
 @using Sidekick.Modules.Items.Trade.Localization
 
-@if (string.IsNullOrEmpty(Filter.AutoSelectSettingKey) || AutoSelect == null)
+@if (string.IsNullOrEmpty(Filter.AutoSelectSettingKey) || AutoSelect == null || Filter is StatFilter)
 {
     return;
 }
@@ -98,10 +98,10 @@
                         <div class="grid grid-cols-5 gap-2 items-center py-1 px-2 leading-4">
                             <span class="text-neutral-500">@Resources["AutoSelect_Then"]</span>
                             <div class="col-span-2 text-white">
-                                <FilterAutoSelectRuleResult Rule="rule"
-                                                            Readonly="Mode == AutoSelectMode.Default"
-                                                            Filter="Filter"
-                                                            OnChanged="Save"/>
+                                <FilterAutoSelectRuleActions Rule="rule"
+                                                             Readonly="Mode == AutoSelectMode.Default"
+                                                             Filter="Filter"
+                                                             OnChanged="Save"/>
                             </div>
                             @if (Mode == AutoSelectMode.Conditionally)
                             {
@@ -184,7 +184,10 @@
     {
         var rule = new AutoSelectRule()
         {
-            Checked = true,
+            Actions = new AutoSelectActions()
+            {
+                Checked = true,
+            },
         };
         AutoSelect?.Rules.Add(rule);
         await AddCondition(rule);

@@ -1,15 +1,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStats;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class ClusterJewelPassiveCountProperty(
     GameType game,
-    ISettingsService settingsService,
-    IGameLanguageProvider gameLanguageProvider,
     IServiceProvider serviceProvider) : PropertyDefinition
 {
     private readonly IInvariantStatsProvider invariantStatsProvider = serviceProvider.GetRequiredService<IInvariantStatsProvider>();

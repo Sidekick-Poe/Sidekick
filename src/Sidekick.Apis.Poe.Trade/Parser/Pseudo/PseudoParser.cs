@@ -4,7 +4,6 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Definitions;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
@@ -68,17 +67,13 @@ public class PseudoParser
         var result = new List<TradeFilter>();
         foreach (var stat in item.PseudoStats)
         {
-            var autoSelectKey = $"Trade_Filter_Pseudo_{item.Game.GetValueAttribute()}_{stat.Id}";
-            var autoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null);
-
             var filter = new PseudoFilter(stat)
             {
-                AutoSelectSettingKey = autoSelectKey,
-                AutoSelect = autoSelect,
+                AutoSelectSettingKey = $"Trade_Filter_Pseudo_{item.Game.GetValueAttribute()}_{stat.Id}",
             };
 
             result.Add(filter);
-            filter.Initialize(item);
+            await filter.Initialize(item, settingsService);
         }
 
         return

@@ -1,30 +1,25 @@
 ﻿using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class PhysicalDpsProperty(
     GameType game,
-    ISettingsService settingsService,
-    IGameLanguageProvider gameLanguageProvider,
     Microsoft.Extensions.Localization.IStringLocalizer<Localization.PoeResources> resources) : PropertyDefinition
 {
-    public override List<ItemClass> ValidItemClasses { get; } = [
+    public override List<ItemClass> ValidItemClasses { get; } =
+    [
         ..ItemClassConstants.Weapons,
     ];
 
     public override string Label => resources["PhysicalDps"];
 
-    public override void Parse(Item item)
-    {
-    }
+    public override void Parse(Item item) {}
 
     public override async Task<TradeFilter?> GetFilter(Item item)
     {
@@ -33,16 +28,14 @@ public class PhysicalDpsProperty(
             return null;
         }
 
-        var autoSelectKey = $"Trade_Filter_{nameof(PhysicalDpsProperty)}_{game.GetValueAttribute()}";
         var filter = new PhysicalDpsFilter(game)
         {
             Text = Label,
-            NormalizeEnabled = true,
             Value = item.Properties.PhysicalDpsWithQuality ?? 0,
             OriginalValue = item.Properties.PhysicalDps ?? 0,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.PhysicalDamage)) ? LineContentType.Augmented : LineContentType.Simple,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(PhysicalDpsProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = true,
         };
 
         return filter;
@@ -54,10 +47,7 @@ public class PhysicalDpsFilter : DoublePropertyFilter
     public PhysicalDpsFilter(GameType game)
     {
         Game = game;
-        DefaultAutoSelect = new AutoSelectPreferences()
-        {
-            Mode = AutoSelectMode.Never,
-        };
+        DefaultAutoSelect = AutoSelectPreferences.Create(false);
     }
 
     private GameType Game { get; }

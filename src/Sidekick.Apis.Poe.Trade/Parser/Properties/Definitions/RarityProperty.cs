@@ -6,13 +6,11 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class RarityProperty(
     GameType game,
-    ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Dictionary<Rarity, Regex> RarityPatterns { get; } = new()
@@ -97,13 +95,11 @@ public class RarityProperty(
         };
         if (rarityLabel == null) return null;
 
-        var autoSelectKey = $"Trade_Filter_{nameof(RarityProperty)}_{game.GetValueAttribute()}";
         if (item.Properties.Rarity == Rarity.Unique)
         {
             return new UniqueRarityFilter
             {
-                AutoSelectSettingKey = autoSelectKey,
-                AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+                AutoSelectSettingKey = $"Trade_Filter_{nameof(RarityProperty)}_{game.GetValueAttribute()}",
             };
         }
 
@@ -111,8 +107,7 @@ public class RarityProperty(
         {
             Text = gameLanguageProvider.Language.DescriptionRarity,
             Value = rarityLabel,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(RarityProperty)}_{game.GetValueAttribute()}",
         };
         return filter;
     }
@@ -122,10 +117,7 @@ public class RarityFilter : StringPropertyFilter
 {
     public RarityFilter()
     {
-        DefaultAutoSelect = new AutoSelectPreferences()
-        {
-            Mode = AutoSelectMode.Never,
-        };
+        DefaultAutoSelect = AutoSelectPreferences.Create(false);
     }
 
     public override void PrepareTradeRequest(Query query, Item item)
@@ -149,10 +141,7 @@ public class UniqueRarityFilter : HiddenFilter
 {
     public UniqueRarityFilter()
     {
-        DefaultAutoSelect = new AutoSelectPreferences()
-        {
-            Mode = AutoSelectMode.Always,
-        };
+        DefaultAutoSelect = AutoSelectPreferences.Create(true);
     }
 
     public override void PrepareTradeRequest(Query query, Item item)

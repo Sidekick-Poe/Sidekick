@@ -6,13 +6,11 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class RequiresStrengthProperty(
     GameType game,
-    ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionRequiresStr.ToRegexIntCapture();
@@ -45,14 +43,12 @@ public class RequiresStrengthProperty(
     {
         if (item.Properties.RequiresStrength <= 0) return null;
 
-        var autoSelectKey = $"Trade_Filter_{nameof(RequiresStrengthProperty)}_{game.GetValueAttribute()}";
         var filter = new RequiresStrengthFilter
         {
             Text = Label,
-            NormalizeEnabled = false,
             Value = item.Properties.RequiresStrength,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(RequiresStrengthProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = false,
         };
         return filter;
     }
@@ -62,10 +58,7 @@ public class RequiresStrengthFilter : IntPropertyFilter
 {
     public RequiresStrengthFilter()
     {
-        DefaultAutoSelect = new AutoSelectPreferences()
-        {
-            Mode = AutoSelectMode.Never,
-        };
+        DefaultAutoSelect = AutoSelectPreferences.Create(false);
     }
 
     public override void PrepareTradeRequest(Query query, Item item)

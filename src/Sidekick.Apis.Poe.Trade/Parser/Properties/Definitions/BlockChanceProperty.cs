@@ -7,13 +7,11 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class BlockChanceProperty(
     GameType game,
-    ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = game is GameType.PathOfExile1
@@ -45,16 +43,14 @@ public class BlockChanceProperty(
     {
         if (item.Properties.BlockChance <= 0) return null;
 
-        var autoSelectKey = $"Trade_Filter_{nameof(BlockChanceProperty)}_{game.GetValueAttribute()}";
         var filter = new BlockChanceFilter(game)
         {
             Text = Label,
-            NormalizeEnabled = true,
             Value = item.Properties.BlockChance,
             ValueSuffix = "%",
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.BlockChance)) ? LineContentType.Augmented : LineContentType.Simple,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(BlockChanceProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = true,
         };
         return filter;
     }
@@ -65,10 +61,7 @@ public class BlockChanceFilter : IntPropertyFilter
     public BlockChanceFilter(GameType game)
     {
         Game = game;
-        DefaultAutoSelect = new AutoSelectPreferences()
-        {
-            Mode = AutoSelectMode.Never,
-        };
+        DefaultAutoSelect = AutoSelectPreferences.Create(false);
     }
 
     private GameType Game { get; }

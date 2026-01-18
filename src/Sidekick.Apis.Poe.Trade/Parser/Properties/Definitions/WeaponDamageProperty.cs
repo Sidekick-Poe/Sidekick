@@ -10,20 +10,19 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class WeaponDamageProperty(
     GameType game,
-    ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider,
     IStringLocalizer<PoeResources> resources,
     IInvariantStatsProvider invariantStatsProvider) : PropertyDefinition
 {
     private Regex RangePattern { get; } = new(@"([\d,\.]+)-([\d,\.]+)", RegexOptions.Compiled);
 
-    public override List<ItemClass> ValidItemClasses { get; } = [
+    public override List<ItemClass> ValidItemClasses { get; } =
+    [
         ..ItemClassConstants.Weapons,
     ];
 
@@ -147,15 +146,13 @@ public class WeaponDamageProperty(
             return null;
         }
 
-        var autoSelectKey = $"Trade_Filter_{nameof(WeaponDamageProperty)}_{game.GetValueAttribute()}";
         var filter = new WeaponDamageFilter(game)
         {
             Text = resources["Damage"],
-            NormalizeEnabled = true,
             Value = item.Properties.TotalDamageWithQuality ?? 0,
             OriginalValue = item.Properties.TotalDamage ?? 0,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(WeaponDamageProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = true,
         };
 
         return filter;
@@ -167,10 +164,7 @@ public class WeaponDamageFilter : DoublePropertyFilter
     public WeaponDamageFilter(GameType game)
     {
         Game = game;
-        DefaultAutoSelect = new AutoSelectPreferences()
-        {
-            Mode = AutoSelectMode.Never,
-        };
+        DefaultAutoSelect = AutoSelectPreferences.Create(false);
     }
 
     private GameType Game { get; }

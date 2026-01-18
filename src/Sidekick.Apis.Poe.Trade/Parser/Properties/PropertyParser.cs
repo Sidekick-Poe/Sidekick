@@ -34,72 +34,72 @@ public class PropertyParser
 
         Definitions.Clear();
         Definitions.AddRange([
-            new ItemClassProperty(game, settingsService, gameLanguageProvider, serviceProvider, resources),
-            new RarityProperty(game, settingsService, gameLanguageProvider),
+            new ItemClassProperty(game, gameLanguageProvider, serviceProvider, resources),
+            new RarityProperty(game, gameLanguageProvider),
 
             new SeparatorProperty(),
 
-            new QualityProperty(game, settingsService, gameLanguageProvider),
+            new QualityProperty(game, gameLanguageProvider),
 
-            new SpiritProperty(game, settingsService, gameLanguageProvider),
-            new ArmourProperty(game, settingsService, gameLanguageProvider),
-            new EvasionRatingProperty(game, settingsService, gameLanguageProvider),
-            new EnergyShieldProperty(game, settingsService, gameLanguageProvider),
-            new BlockChanceProperty(game, settingsService, gameLanguageProvider),
+            new SpiritProperty(game, gameLanguageProvider),
+            new ArmourProperty(game, gameLanguageProvider),
+            new EvasionRatingProperty(game, gameLanguageProvider),
+            new EnergyShieldProperty(game, gameLanguageProvider),
+            new BlockChanceProperty(game, gameLanguageProvider),
 
-            new WeaponDamageProperty(game, settingsService, gameLanguageProvider, resources, invariantStatsProvider),
-            new PhysicalDpsProperty(game, settingsService, gameLanguageProvider, resources),
-            new ElementalDpsProperty(game, settingsService, gameLanguageProvider, resources),
-            new ChaosDpsProperty(game, settingsService, gameLanguageProvider, resources),
-            new TotalDpsProperty(game, settingsService, gameLanguageProvider, resources),
-            new CriticalHitChanceProperty(game, settingsService, gameLanguageProvider),
-            new AttacksPerSecondProperty(game, settingsService, gameLanguageProvider),
+            new WeaponDamageProperty(game, gameLanguageProvider, resources, invariantStatsProvider),
+            new PhysicalDpsProperty(game, resources),
+            new ElementalDpsProperty(game, resources),
+            new ChaosDpsProperty(game, resources),
+            new TotalDpsProperty(game, resources),
+            new CriticalHitChanceProperty(game, gameLanguageProvider),
+            new AttacksPerSecondProperty(game, gameLanguageProvider),
 
-            new MapTierProperty(game, settingsService, gameLanguageProvider),
-            new RewardProperty(game, settingsService, gameLanguageProvider, apiItemProvider),
-            new RevivesAvailableProperty(game, settingsService, gameLanguageProvider),
-            new MonsterPackSizeProperty(game, settingsService, gameLanguageProvider),
-            new MagicMonstersProperty(game, settingsService, gameLanguageProvider),
-            new RareMonstersProperty(game, settingsService, gameLanguageProvider),
-            new ItemQuantityProperty(game, settingsService, gameLanguageProvider),
-            new ItemRarityProperty(game, settingsService, gameLanguageProvider),
-            new WaystoneDropChanceProperty(game, settingsService, gameLanguageProvider),
-            new AreaLevelProperty(game, settingsService, gameLanguageProvider),
-            new BlightedProperty(game, settingsService, gameLanguageProvider),
-            new BlightRavagedProperty(game, settingsService, gameLanguageProvider),
+            new MapTierProperty(game, gameLanguageProvider),
+            new RewardProperty(game, gameLanguageProvider, apiItemProvider),
+            new RevivesAvailableProperty(game, gameLanguageProvider),
+            new MonsterPackSizeProperty(game, gameLanguageProvider),
+            new MagicMonstersProperty(game, gameLanguageProvider),
+            new RareMonstersProperty(game, gameLanguageProvider),
+            new ItemQuantityProperty(game, gameLanguageProvider),
+            new ItemRarityProperty(game, gameLanguageProvider),
+            new WaystoneDropChanceProperty(game, gameLanguageProvider),
+            new AreaLevelProperty(game, gameLanguageProvider),
+            new BlightedProperty(game, gameLanguageProvider),
+            new BlightRavagedProperty(game, gameLanguageProvider),
 
             new SeparatorProperty(),
 
-            new GemLevelProperty(game, settingsService, gameLanguageProvider),
-            new ItemLevelProperty(game, settingsService, gameLanguageProvider),
-            new SocketProperty(game, settingsService, gameLanguageProvider, resources),
+            new GemLevelProperty(game, gameLanguageProvider),
+            new ItemLevelProperty(game, gameLanguageProvider),
+            new SocketProperty(game, gameLanguageProvider, resources),
 
             new SeparatorProperty(),
 
             new ExpandableProperty(tradeFilterProvider.RequirementsCategory?.Title,
-                                   new RequiresLevelProperty(game, settingsService, gameLanguageProvider),
-                                   new RequiresStrengthProperty(game, settingsService, gameLanguageProvider),
-                                   new RequiresDexterityProperty(game, settingsService, gameLanguageProvider),
-                                   new RequiresIntelligenceProperty(game, settingsService, gameLanguageProvider)),
+                                   new RequiresLevelProperty(game, gameLanguageProvider),
+                                   new RequiresStrengthProperty(game, gameLanguageProvider),
+                                   new RequiresDexterityProperty(game, gameLanguageProvider),
+                                   new RequiresIntelligenceProperty(game, gameLanguageProvider)),
 
             new SeparatorProperty(),
 
             new ExpandableProperty(tradeFilterProvider.MiscellaneousCategory?.Title,
-                                   new ElderProperty(game, settingsService, gameLanguageProvider),
-                                   new ShaperProperty(game, settingsService, gameLanguageProvider),
-                                   new CrusaderProperty(game, settingsService, gameLanguageProvider),
-                                   new HunterProperty(game, settingsService, gameLanguageProvider),
-                                   new RedeemerProperty(game, settingsService, gameLanguageProvider),
-                                   new WarlordProperty(game, settingsService, gameLanguageProvider),
-                                   new CorruptedProperty(game, settingsService, gameLanguageProvider),
-                                   new FracturedProperty(game, settingsService, gameLanguageProvider, serviceProvider),
-                                   new DesecratedProperty(game, settingsService, gameLanguageProvider, serviceProvider),
-                                   new SanctifiedProperty(game, settingsService, gameLanguageProvider, serviceProvider),
-                                   new MirroredProperty(game, settingsService, gameLanguageProvider, serviceProvider),
-                                   new FoulbornProperty(game, settingsService, gameLanguageProvider, serviceProvider),
-                                   new UnidentifiedProperty(game, settingsService, gameLanguageProvider)),
+                                   new ElderProperty(game, gameLanguageProvider),
+                                   new ShaperProperty(game, gameLanguageProvider),
+                                   new CrusaderProperty(game, gameLanguageProvider),
+                                   new HunterProperty(game, gameLanguageProvider),
+                                   new RedeemerProperty(game, gameLanguageProvider),
+                                   new WarlordProperty(game, gameLanguageProvider),
+                                   new CorruptedProperty(game, gameLanguageProvider),
+                                   new FracturedProperty(game, serviceProvider),
+                                   new DesecratedProperty(game, serviceProvider),
+                                   new SanctifiedProperty(game, serviceProvider),
+                                   new MirroredProperty(game, serviceProvider),
+                                   new FoulbornProperty(game, serviceProvider),
+                                   new UnidentifiedProperty(game, gameLanguageProvider)),
 
-            new ClusterJewelPassiveCountProperty(game, settingsService, gameLanguageProvider, serviceProvider),
+            new ClusterJewelPassiveCountProperty(game, serviceProvider),
         ]);
     }
 
@@ -143,11 +143,10 @@ public class PropertyParser
             if (definition.ValidItemClasses.Count > 0 && !definition.ValidItemClasses.Contains(item.Properties.ItemClass)) continue;
 
             var filter = await definition.GetFilter(item);
-            if (filter != null)
-            {
-                results.Add(filter);
-                filter.Initialize(item);
-            }
+            if (filter == null) continue;
+
+            results.Add(filter);
+            await filter.Initialize(item, settingsService);
         }
 
         return results;

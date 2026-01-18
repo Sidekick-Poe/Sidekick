@@ -7,20 +7,19 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class MagicMonstersProperty(
     GameType game,
-    ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionMagicMonsters.ToRegexIntCapture();
 
     private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionMagicMonsters.ToRegexIsAugmented();
 
-    public override List<ItemClass> ValidItemClasses { get; } = [
+    public override List<ItemClass> ValidItemClasses { get; } =
+    [
         ..ItemClassConstants.Areas,
     ];
 
@@ -40,17 +39,15 @@ public class MagicMonstersProperty(
     {
         if (item.Properties.MagicMonsters <= 0) return null;
 
-        var autoSelectKey = $"Trade_Filter_{nameof(MagicMonstersProperty)}_{game.GetValueAttribute()}";
         var filter = new MagicMonstersFilter
         {
             Text = Label,
-            NormalizeEnabled = true,
             Value = item.Properties.MagicMonsters,
             ValuePrefix = "+",
             ValueSuffix = "%",
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.MagicMonsters)) ? LineContentType.Augmented : LineContentType.Simple,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(MagicMonstersProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = true,
         };
         return filter;
     }
@@ -60,10 +57,7 @@ public class MagicMonstersFilter : IntPropertyFilter
 {
     public MagicMonstersFilter()
     {
-        DefaultAutoSelect = new AutoSelectPreferences()
-        {
-            Mode = AutoSelectMode.Never,
-        };
+        DefaultAutoSelect = AutoSelectPreferences.Create(false);
     }
 
     public override void PrepareTradeRequest(Query query, Item item)

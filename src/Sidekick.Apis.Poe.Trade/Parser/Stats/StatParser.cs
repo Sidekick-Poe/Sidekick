@@ -8,7 +8,6 @@ using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Localization;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
@@ -314,7 +313,6 @@ public class StatParser
         if (!ItemClassConstants.WithStats.Contains(item.Properties.ItemClass)) return [];
 
         var autoSelectKey = $"Trade_Filter_Stat_{item.Game.GetValueAttribute()}";
-        var autoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null);
 
         var result = new List<TradeFilter>();
         for (var i = 0; i < item.Stats.Count; i++)
@@ -322,21 +320,17 @@ public class StatParser
             var stat = item.Stats[i];
             var filter = new StatFilter(stat)
             {
-                AutoSelect = autoSelect,
+                AutoSelectSettingKey = autoSelectKey,
             };
 
             result.Add(filter);
-            filter.Initialize(item);
+            await filter.Initialize(item, settingsService);
 
             var isLastFilter = i + 1 == item.Stats.Count;
-            if (!isLastFilter)
-            {
-                var isDifferentBlock = item.Stats[i].BlockIndex != item.Stats[i + 1].BlockIndex;
-                if (isDifferentBlock)
-                {
-                    result.Add(new SeparatorFilter());
-                }
-            }
+            if (isLastFilter) continue;
+
+            var isDifferentBlock = item.Stats[i].BlockIndex != item.Stats[i + 1].BlockIndex;
+            if (isDifferentBlock) result.Add(new SeparatorFilter());
         }
 
         return
@@ -344,7 +338,6 @@ public class StatParser
             new ExpandableFilter(resources["Stat_Filters"], result.ToArray())
             {
                 AutoSelectSettingKey = autoSelectKey,
-                AutoSelect = autoSelect,
                 DefaultAutoSelect = StatFilter.GetDefault(),
                 Checked = true,
             },

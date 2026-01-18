@@ -157,54 +157,6 @@
         await UpdateMaxValue(value);
     }
 
-    private async Task NormalizeMinValue()
-    {
-        if (!NormalizeEnabled || !Value.HasValue || !double.TryParse(Value.Value.ToString(CultureInfo.InvariantCulture), out var value) || value == 0)
-        {
-            await UpdateMinValue(Value);
-            return;
-        }
-
-        double roundedValue;
-        if (value > 0)
-        {
-            var normalizedValue = (1 - NormalizeMultiplier) * value;
-            roundedValue = Math.Round(normalizedValue, 2);
-        }
-        else
-        {
-            var normalizedValue = (1 + NormalizeMultiplier) * value;
-            roundedValue = Math.Round(normalizedValue, 2);
-        }
-
-        if (NormalizeRoundToInteger) roundedValue = (int)roundedValue;
-        await UpdateMinValue(roundedValue);
-    }
-
-    private async Task NormalizeMaxValue()
-    {
-        if (!NormalizeEnabled || !Value.HasValue || !double.TryParse(Value.Value.ToString(CultureInfo.InvariantCulture), out var value) || value == 0)
-        {
-            await UpdateMaxValue(Value);
-            return;
-        }
-
-        double roundedValue;
-        if (value > 0)
-        {
-            var normalizedValue = (1 + NormalizeMultiplier) * value;
-            roundedValue = Math.Round(normalizedValue, 2);
-        }
-        else
-        {
-            var normalizedValue = (1 - NormalizeMultiplier) * value;
-            roundedValue = Math.Round(normalizedValue, 2);
-        }
-
-        if (NormalizeRoundToInteger) roundedValue = (int)roundedValue;
-        await UpdateMaxValue(roundedValue);
-    }
-
     private async Task Clear()
     {
         await MinChanged.InvokeAsync(null);

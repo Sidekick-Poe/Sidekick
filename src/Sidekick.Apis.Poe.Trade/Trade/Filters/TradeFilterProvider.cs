@@ -85,14 +85,14 @@ public class TradeFilterProvider
         if (statusFilter != null)
         {
             result.Add(statusFilter);
-            statusFilter.Initialize(item);
+            await statusFilter.Initialize(item, settingsService);
         }
 
         var currencyFilter = await serviceProvider.GetRequiredService<CurrencyFilterFactory>().GetFilter(item);
         if (currencyFilter != null)
         {
             result.Add(currencyFilter);
-            currencyFilter.Initialize(item);
+            await currencyFilter.Initialize(item, settingsService);
         }
 
         if (result.Count == 0) return [];

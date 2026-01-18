@@ -7,13 +7,11 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class EnergyShieldProperty(
     GameType game,
-    ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionEnergyShield.ToRegexIntCapture();
@@ -52,16 +50,14 @@ public class EnergyShieldProperty(
     {
         if (item.Properties.EnergyShield <= 0) return null;
 
-        var autoSelectKey = $"Trade_Filter_{nameof(EnergyShieldProperty)}_{game.GetValueAttribute()}";
         var filter = new EnergyShieldFilter(game)
         {
             Text = Label,
-            NormalizeEnabled = true,
             Value = item.Properties.EnergyShieldWithQuality,
             OriginalValue = item.Properties.EnergyShield,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.EnergyShield)) ? LineContentType.Augmented : LineContentType.Simple,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(EnergyShieldProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = true,
         };
         return filter;
     }
@@ -72,10 +68,7 @@ public class EnergyShieldFilter : IntPropertyFilter
     public EnergyShieldFilter(GameType game)
     {
         Game = game;
-        DefaultAutoSelect = new AutoSelectPreferences()
-        {
-            Mode = AutoSelectMode.Never,
-        };
+        DefaultAutoSelect = AutoSelectPreferences.Create(false);
     }
 
     private GameType Game { get; }

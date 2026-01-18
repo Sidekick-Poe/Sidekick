@@ -8,19 +8,18 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class RewardProperty(
     GameType game,
-    ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider,
     IApiItemProvider apiItemProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionReward.ToRegexStringCapture();
 
-    public override List<ItemClass> ValidItemClasses { get; } = [
+    public override List<ItemClass> ValidItemClasses { get; } =
+    [
         ItemClass.Map,
     ];
 
@@ -39,14 +38,12 @@ public class RewardProperty(
     {
         if (game == GameType.PathOfExile2 || item.Properties.Reward == null) return null;
 
-        var autoSelectKey = $"Trade_Filter_{nameof(RewardProperty)}_{game.GetValueAttribute()}";
         var filter = new RewardFilter(apiItemProvider)
         {
             Text = Label,
             Value = item.Properties.Reward!,
             Type = LineContentType.Unique,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(RewardProperty)}_{game.GetValueAttribute()}",
         };
         return filter;
     }
@@ -57,10 +54,7 @@ public class RewardFilter : StringPropertyFilter
     public RewardFilter(IApiItemProvider apiItemProvider)
     {
         ApiItemProvider = apiItemProvider;
-        DefaultAutoSelect = new AutoSelectPreferences()
-        {
-            Mode = AutoSelectMode.Always,
-        };
+        DefaultAutoSelect = AutoSelectPreferences.Create(true);
     }
 
     private IApiItemProvider ApiItemProvider { get; }

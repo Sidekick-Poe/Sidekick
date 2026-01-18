@@ -3,15 +3,32 @@ using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 
-#pragma warning disable CS0659
-
-public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
+public class AutoSelectPreferences
 {
-    public static JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
+    public const string DefaultNormalizeBySettingKey = "Trade_Filter_Default_NormalizeBy";
+    public const string DefaultFillMinSettingKey = "Trade_Filter_Default_FillMin";
+    public const string DefaultFillMaxSettingKey = "Trade_Filter_Default_FillMax";
+
+    public static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
-        Converters = { new JsonStringEnumConverter() },
+        Converters =
+        {
+            new JsonStringEnumConverter()
+        },
+    };
+
+    public static AutoSelectPreferences Create(bool? isChecked) => new ()
+    {
+        Rules =
+        [
+            new AutoSelectRule
+            {
+                Checked = isChecked,
+            },
+        ],
     };
 
     [JsonPropertyName("mode")]
@@ -21,29 +38,36 @@ public class AutoSelectPreferences : IEquatable<AutoSelectPreferences>
     [JsonPropertyName("rules")]
     public List<AutoSelectRule> Rules { get; set; } = [];
 
-    public bool Equals(AutoSelectPreferences? other)
+    public async Task<AutoSelectResult> GetResult(Item item, TradeFilter filter, ISettingsService settingsService)
     {
-        if (ReferenceEquals(null, other)) return false;
-        if (ReferenceEquals(this, other)) return true;
-        return Mode == other.Mode && Rules.SequenceEqual(other.Rules);
-    }
-
-    public override bool Equals(object? obj)
-    {
-        if (ReferenceEquals(null, obj)) return false;
-        if (ReferenceEquals(this, obj)) return true;
-        if (obj.GetType() != GetType()) return false;
-        return Equals((AutoSelectPreferences)obj);
-    }
-
-    public bool? ShouldCheck(Item item, TradeFilter filter)
-    {
-        if (Mode == AutoSelectMode.Always) return true;
-        if (Mode == AutoSelectMode.Never) return false;
-        if (Mode == AutoSelectMode.Any) return null;
+        var normalizeBy = await settingsService.GetDouble(DefaultNormalizeBySettingKey);
+        var fillMin = await settingsService.GetBool(DefaultFillMinSettingKey);
+        var fillMax = await settingsService.GetBool(DefaultFillMaxSettingKey);
 
         var matchingRule = Rules.FirstOrDefault(rule => rule.Conditions.All(c => ConditionMatches(c, item, filter)));
-        return matchingRule?.Checked;
+        if (matchingRule == null)
+        {
+            return CreateDefault(false);
+        }
+
+        return new AutoSelectResult()
+        {
+            Checked = matchingRule.Checked,
+            NormalizeBy = matchingRule.NormalizeBy ?? normalizeBy,
+            FillMaxRange = matchingRule.FillMaxRange ?? fillMax,
+            FillMinRange = matchingRule.FillMinRange ?? fillMin,
+        };
+
+        AutoSelectResult CreateDefault(bool? isChecked)
+        {
+            return new AutoSelectResult()
+            {
+                Checked = isChecked,
+                FillMaxRange = fillMax,
+                FillMinRange = fillMin,
+                NormalizeBy = normalizeBy,
+            };
+        }
     }
 
     private static bool ConditionMatches(AutoSelectCondition condition, Item item, TradeFilter filter)

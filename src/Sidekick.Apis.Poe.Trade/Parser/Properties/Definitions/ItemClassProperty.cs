@@ -15,7 +15,6 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -25,18 +24,15 @@ public class ItemClassProperty : PropertyDefinition
     private readonly IGameLanguageProvider gameLanguageProvider;
     private readonly IStringLocalizer<PoeResources> resources;
     private readonly ITradeFilterProvider tradeFilterProvider;
-    private readonly ISettingsService settingsService;
     private readonly IFuzzyService fuzzyService;
 
     public ItemClassProperty(
         GameType game,
-        ISettingsService settingsService,
         IGameLanguageProvider gameLanguageProvider,
         IServiceProvider serviceProvider,
         IStringLocalizer<PoeResources> resources)
     {
         this.game = game;
-        this.settingsService = settingsService;
         this.gameLanguageProvider = gameLanguageProvider;
         this.resources = resources;
         tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
@@ -201,11 +197,10 @@ public class ItemClassProperty : PropertyDefinition
 
         foreach (var definition in ItemClassDefinitions.Value)
         {
-            if (definition.Pattern?.IsMatch(line) ?? false)
-            {
-                item.Properties.ItemClass = definition.ItemClass;
-                return;
-            }
+            if (!(definition.Pattern?.IsMatch(line) ?? false)) continue;
+
+            item.Properties.ItemClass = definition.ItemClass;
+            return;
         }
 
         var classLine = line.Replace(gameLanguageProvider.Language.Classes.Prefix, "").Trim(' ', ':');
@@ -234,15 +229,13 @@ public class ItemClassProperty : PropertyDefinition
         var classLabel = tradeFilterProvider.TypeCategory?.Option.Options.FirstOrDefault(x => x.Id == item.Properties.ItemClass.GetValueAttribute())?.Text;
         if (classLabel == null || item.ApiInformation.Type == null) return null;
 
-        var autoSelectKey = $"Trade_Filter_{nameof(ItemClassProperty)}_{game.GetValueAttribute()}";
         var filter = new ItemClassFilter
         {
             Text = resources["Item_Class"],
             ItemClass = classLabel,
             BaseTypeText = resources["Base_Type"],
             BaseType = item.ApiInformation.Type,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(ItemClassProperty)}_{game.GetValueAttribute()}",
         };
         return filter;
     }
@@ -252,10 +245,7 @@ public class ItemClassFilter : TradeFilter
 {
     public ItemClassFilter()
     {
-        DefaultAutoSelect = new AutoSelectPreferences()
-        {
-            Mode = AutoSelectMode.Never,
-        };
+        DefaultAutoSelect = AutoSelectPreferences.Create(false);
     }
 
     public required string ItemClass { get; init; }

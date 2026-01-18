@@ -3,13 +3,14 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
 public sealed class StatFilter : TradeFilter
 {
-    public static AutoSelectPreferences GetDefault() => new AutoSelectPreferences()
+    public static AutoSelectPreferences GetDefault() => new()
     {
-        Mode = AutoSelectMode.Conditionally,
+        Mode = AutoSelectMode.Default,
         Rules =
         [
             new AutoSelectRule()
@@ -53,6 +54,17 @@ public sealed class StatFilter : TradeFilter
         }
     }
 
+    public override async Task<AutoSelectResult?> Initialize(Item item, ISettingsService settingsService)
+    {
+        var result = await base.Initialize(item, settingsService);
+        if (result == null) return null;
+
+        if (result.FillMinRange) NormalizeMinValue(result.NormalizeBy);
+        if (result.FillMaxRange) NormalizeMaxValue(result.NormalizeBy);
+
+        return result;
+    }
+
     public Stat Stat { get; init; }
 
     public bool UsePrimaryCategory { get; set; }
@@ -64,6 +76,46 @@ public sealed class StatFilter : TradeFilter
     public double? Min { get; set; }
 
     public double? Max { get; set; }
+
+    private void NormalizeMinValue(double normalizeBy)
+    {
+        if (Stat.AverageValue == 0)
+        {
+            Min = Stat.AverageValue;
+            return;
+        }
+
+        if (Stat.AverageValue > 0)
+        {
+            var normalizedValue = (1 - normalizeBy) * Stat.AverageValue;
+            Min = Math.Round(normalizedValue, 2);
+        }
+        else
+        {
+            var normalizedValue = (1 + normalizeBy) * Stat.AverageValue;
+            Min = Math.Round(normalizedValue, 2);
+        }
+    }
+
+    private void NormalizeMaxValue(double normalizeby)
+    {
+        if (Stat.AverageValue == 0)
+        {
+            Max = Stat.AverageValue;
+            return;
+        }
+
+        if (Stat.AverageValue > 0)
+        {
+            var normalizedValue = (1 + normalizeby) * Stat.AverageValue;
+            Max = Math.Round(normalizedValue, 2);
+        }
+        else
+        {
+            var normalizedValue = (1 - normalizeby) * Stat.AverageValue;
+            Max = Math.Round(normalizedValue, 2);
+        }
+    }
 
     public override void PrepareTradeRequest(Query query, Item item)
     {

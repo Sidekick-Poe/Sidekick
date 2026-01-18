@@ -6,18 +6,17 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class ShaperProperty(
     GameType game,
-    ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.InfluenceShaper.ToRegexLine();
 
-    public override List<ItemClass> ValidItemClasses { get; } = [
+    public override List<ItemClass> ValidItemClasses { get; } =
+    [
         ..ItemClassConstants.Equipment,
         ..ItemClassConstants.Accessories,
         ..ItemClassConstants.Weapons,
@@ -34,12 +33,10 @@ public class ShaperProperty(
     {
         if (!item.Properties.Influences.Shaper) return null;
 
-        var autoSelectKey = $"Trade_Filter_{nameof(ShaperProperty)}_{game.GetValueAttribute()}";
         var filter = new ShaperFilter
         {
             Text = Label,
-            AutoSelectSettingKey = autoSelectKey,
-            AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(autoSelectKey, () => null),
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(ShaperProperty)}_{game.GetValueAttribute()}",
         };
         return filter;
     }
@@ -49,10 +46,7 @@ public class ShaperFilter : TradeFilter
 {
     public ShaperFilter()
     {
-        DefaultAutoSelect = new AutoSelectPreferences()
-        {
-            Mode = AutoSelectMode.Always,
-        };
+        DefaultAutoSelect = AutoSelectPreferences.Create(true);
     }
 
     public override void PrepareTradeRequest(Query query, Item item)
