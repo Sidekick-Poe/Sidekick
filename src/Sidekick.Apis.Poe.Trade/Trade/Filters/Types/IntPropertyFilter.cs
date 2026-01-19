@@ -3,15 +3,15 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
-public class IntPropertyFilter : TradeFilter
+public class IntPropertyFilter : TradeFilter, INormalizableFilter
 {
     public override async Task<AutoSelectResult?> Initialize(Item item, ISettingsService settingsService)
     {
         var result = await base.Initialize(item, settingsService);
         if (result == null) return null;
 
-        if (result.FillMinRange) NormalizeMinValue(result.NormalizeBy);
-        if (result.FillMaxRange) NormalizeMaxValue(result.NormalizeBy);
+        if (result.FillMinRange) Min = (int)NormalizeMinValue(result.NormalizeBy);
+        if (result.FillMaxRange) Max = (int)NormalizeMaxValue(result.NormalizeBy);
 
         return result;
     }
@@ -22,6 +22,8 @@ public class IntPropertyFilter : TradeFilter
 
     public required int Value { get; init; }
 
+    public double NormalizeValue => Value;
+
     public int OriginalValue { get; init; }
 
     public int? Min { get; set; }
@@ -30,43 +32,41 @@ public class IntPropertyFilter : TradeFilter
 
     public required bool NormalizeEnabled { get; set; }
 
-    private void NormalizeMinValue(double normalizeBy)
+    public double NormalizeMinValue(double normalizeBy)
     {
         if (!NormalizeEnabled || Value == 0)
         {
-            Min = Value;
-            return;
+            return Value;
         }
 
         if (Value > 0)
         {
             var normalizedValue = (1 - normalizeBy) * Value;
-            Min = (int)Math.Round(normalizedValue, 0);
+            return Math.Round(normalizedValue, 0);
         }
         else
         {
             var normalizedValue = (1 + normalizeBy) * Value;
-            Min = (int)Math.Round(normalizedValue, 0);
+            return Math.Round(normalizedValue, 0);
         }
     }
 
-    private void NormalizeMaxValue(double normalizeby)
+    public double NormalizeMaxValue(double normalizeby)
     {
         if (!NormalizeEnabled || Value == 0)
         {
-            Max = Value;
-            return;
+            return Value;
         }
 
         if (Value > 0)
         {
             var normalizedValue = (1 + normalizeby) * Value;
-            Max = (int)Math.Round(normalizedValue, 0);
+            return Math.Round(normalizedValue, 0);
         }
         else
         {
             var normalizedValue = (1 - normalizeby) * Value;
-            Max = (int)Math.Round(normalizedValue, 0);
+            return Math.Round(normalizedValue, 0);
         }
     }
 

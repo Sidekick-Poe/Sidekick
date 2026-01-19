@@ -23,7 +23,7 @@
     [Parameter]
     public EventCallback OnChanged { get; set; }
 
-    private string Value => Rule.Actions.Checked switch
+    private string Value => Rule.Checked switch
     {
         null => "null",
         true => "true",
@@ -62,7 +62,7 @@
 
     private async Task Changed(string? value)
     {
-        Rule.Actions.Checked = value switch
+        Rule.Checked = value switch
         {
             "null" => null,
             "true" => true,

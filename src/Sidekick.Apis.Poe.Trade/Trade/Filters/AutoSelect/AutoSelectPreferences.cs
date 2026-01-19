@@ -44,7 +44,7 @@ public class AutoSelectPreferences
         var fillMin = await settingsService.GetBool(DefaultFillMinSettingKey);
         var fillMax = await settingsService.GetBool(DefaultFillMaxSettingKey);
 
-        var matchingRule = Rules.FirstOrDefault(rule => rule.Conditions.All(c => ConditionMatches(c, item, filter)));
+        var matchingRule = Rules.FirstOrDefault(rule => rule.Conditions.Count == 0 || rule.Conditions.All(c => ConditionMatches(c, item, filter)));
         if (matchingRule == null)
         {
             return CreateDefault(false);

@@ -1,8 +1,9 @@
-@using System.Globalization
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Common.Settings
 @using Sidekick.Modules.Items.Trade.Localization
 
-@if (!Checked)
+@if (!Filter.Checked)
 {
     return;
 }
@@ -49,16 +50,7 @@
 @code {
 
     [Parameter]
-    public bool Checked { get; set; }
-
-    [Parameter]
-    public bool NormalizeEnabled { get; set; }
-
-    [Parameter]
-    public bool NormalizeRoundToInteger { get; set; }
-
-    [Parameter]
-    public double? Value { get; set; }
+    public required INormalizableFilter Filter { get; set; }
 
     [Parameter]
     public double? Min { get; set; }
@@ -72,34 +64,7 @@
     [Parameter]
     public EventCallback<double?> MaxChanged { get; set; }
 
-    private bool LastValueChecked { get; set; }
-
-    private double NormalizeMultiplier { get; set; }
-
     private string Id { get; } = UiUtilities.GenerateId();
-
-    protected override async Task OnParametersSetAsync()
-    {
-        if (Checked != LastValueChecked)
-        {
-            LastValueChecked = Checked;
-            NormalizeMultiplier = await SettingsService.GetDouble(SettingKeys.PriceCheckNormalizeValue);
-
-            var fillMin = await SettingsService.GetBool(SettingKeys.PriceCheckFillDefaultMin);
-            if (fillMin)
-            {
-                await NormalizeMinValue();
-            }
-
-            var fillMax = await SettingsService.GetBool(SettingKeys.PriceCheckFillDefaultMax);
-            if (fillMax)
-            {
-                await NormalizeMaxValue();
-            }
-        }
-
-        await base.OnParametersSetAsync();
-    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -165,25 +130,28 @@
 
     private async Task SetMin()
     {
-        await NormalizeMinValue();
+        var normalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
+        await UpdateMinValue(Filter.NormalizeMinValue(normalizeBy));
         await UpdateMaxValue(null);
     }
 
     private async Task SetMax()
     {
-        await NormalizeMaxValue();
+        var normalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
         await UpdateMinValue(null);
+        await UpdateMaxValue(Filter.NormalizeMaxValue(normalizeBy));
     }
 
     private async Task SetEquals()
     {
-        await UpdateMinValue(Value);
-        await UpdateMaxValue(Value);
+        await UpdateMinValue(Filter.NormalizeValue);
+        await UpdateMaxValue(Filter.NormalizeValue);
     }
 
     private async Task SetRange()
     {
-        await NormalizeMinValue();
-        await NormalizeMaxValue();
+        var normalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
+        await UpdateMinValue(Filter.NormalizeMinValue(normalizeBy));
+        await UpdateMaxValue(Filter.NormalizeMaxValue(normalizeBy));
     }
 }

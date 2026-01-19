@@ -1,0 +1,65 @@
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
+@using Sidekick.Common.Ui.Localization
+@using Sidekick.Common.Ui.Modal
+@using Sidekick.Common.Ui.Tabs
+@using Sidekick.Modules.Items.Trade.Filters.AutoSelect
+@using Sidekick.Modules.Items.Trade.Localization
+
+@if (string.IsNullOrEmpty(Filter.AutoSelectSettingKey) || Filter.AutoSelect == null || Filter is StatFilter)
+{
+    return;
+}
+
+<Modal Size="ModalSize.Xl">
+    <ActivatorContent>
+        <ButtonIcon Class="@ButtonClass"
+                    Svg="@UiIcons.Settings"
+                    AddBadge="Filter.AutoSelect.Mode != AutoSelectMode.Default"/>
+    </ActivatorContent>
+    <HeaderContent>
+        <Heading2>@Resources["Filter_Settings"]</Heading2>
+    </HeaderContent>
+    <ChildContent>
+        <TabList>
+            <TabItem OnClick="@(() => CurrentTab = "initial")"
+                     Active="@(CurrentTab == "initial")"
+                     Text="Initial State"/>
+            <TabItem OnClick="@(() => CurrentTab = "global")"
+                     Active="@(CurrentTab == "global")"
+                     Text="Global Settings"/>
+        </TabList>
+
+        @switch (CurrentTab)
+        {
+            case "initial":
+                <FilterAutoSelectSettings Filter="Filter"/> break;
+            case "global":
+                <FilterGlobalSettings/> break;
+        }
+
+    </ChildContent>
+    <FooterContent>
+        <div class="flex justify-end gap-2">
+            <ButtonPrimary OnClick="context.Hide">@UiResources["Close"]</ButtonPrimary>
+        </div>
+    </FooterContent>
+</Modal>
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject IStringLocalizer<UiResources> UiResources
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public required TradeFilter Filter { get; set; }
+
+    private string ButtonClass => Filter.AutoSelect == null || Filter.AutoSelect.Mode == AutoSelectMode.Default ? "invisible group-hover:visible text-neutral-500" : "text-neutral-500";
+
+    private string CurrentTab = "initial";
+
+}

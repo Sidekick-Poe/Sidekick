@@ -4,6 +4,14 @@
 
 @switch (Filter)
 {
+    case StatFilter statFilter:
+        <StatFilterComponent Filter="statFilter"/>
+        break;
+
+    case PseudoFilter pseudoFilter:
+        <PseudoFilterComponent Filter="pseudoFilter"/>
+        break;
+
     case IntPropertyFilter intFilter:
         <IntPropertyFilterComponent Filter="intFilter"/>
         break;
@@ -34,14 +42,6 @@
 
     case OptionFilter optionFilter:
         <OptionFilterComponent Filter="optionFilter"/>
-        break;
-
-    case StatFilter statFilter:
-        <StatFilterComponent Filter="statFilter"/>
-        break;
-
-    case PseudoFilter pseudoFilter:
-        <PseudoFilterComponent Filter="pseudoFilter"/>
         break;
 
     case SeparatorFilter:

@@ -11,26 +11,26 @@ public abstract class TradeFilter
     {
         if (string.IsNullOrEmpty(AutoSelectSettingKey)) return null;
 
-        AutoSelect = await settingsService.GetObject<AutoSelectPreferences>(AutoSelectSettingKey, () => null);
-        AutoSelect??= new AutoSelectPreferences()
+        CustomAutoSelect = await settingsService.GetObject<AutoSelectPreferences>(AutoSelectSettingKey, () => null);
+        CustomAutoSelect??= new AutoSelectPreferences()
         {
             Mode = AutoSelectMode.Default,
         };
 
-        if (AutoSelectSmart == null)
+        if (AutoSelect == null)
         {
             Checked = false;
             return null;
         }
 
-        var result = await AutoSelectSmart.GetResult(item, this, settingsService);
+        var result = await AutoSelect.GetResult(item, this, settingsService);
         if (this is TriStatePropertyFilter triStateFilter)
         {
-            triStateFilter.Checked = result?.Checked;
+            triStateFilter.Checked = result.Checked;
         }
         else
         {
-            Checked = result?.Checked ?? false;
+            Checked = result.Checked ?? false;
         }
 
         return result;
@@ -46,16 +46,16 @@ public abstract class TradeFilter
 
     public string? AutoSelectSettingKey { get; init; }
 
-    public AutoSelectPreferences? AutoSelectSmart
+    public AutoSelectPreferences? AutoSelect
     {
         get
         {
-            if (AutoSelect?.Mode == AutoSelectMode.Default) return DefaultAutoSelect;
-            return AutoSelect ?? DefaultAutoSelect;
+            if (CustomAutoSelect?.Mode == AutoSelectMode.Default) return DefaultAutoSelect;
+            return CustomAutoSelect ?? DefaultAutoSelect;
         }
     }
 
-    public AutoSelectPreferences? AutoSelect { get; private set; }
+    public AutoSelectPreferences? CustomAutoSelect { get; set; }
 
     public AutoSelectPreferences? DefaultAutoSelect { get; init; }
 

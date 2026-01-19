@@ -1,12 +1,12 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
-@using Sidekick.Modules.Items.Trade.Filters.AutoSelect
+@using Sidekick.Modules.Items.Trade.Filters.Settings
 
 <div
     class="group relative duration-200 flex flex-nowrap items-center gap-x-1 transition-colors bg-transparent hover:bg-stone-800 pl-2 pr-0.5 py-0.5 min-h-6 leading-none @Class">
     @ChildContent
     @if (Filter != null)
     {
-        <FilterAutoSelectSettings Filter="Filter"/>
+        <FilterSettings Filter="Filter"/>
     }
 </div>
 

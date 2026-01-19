@@ -22,11 +22,9 @@
                      }
                  })
         {
-            <FilterRange Checked="Filter.Checked"
-                         NormalizeEnabled="true"
-                         NormalizeRoundToInteger="true"
-                         Value="@Filter.Stat.Value"
-                         @bind-Min="@Filter.Min" @bind-Max="@Filter.Max"/>
+            <FilterRange Filter="Filter"
+                         @bind-Min="@Filter.Min"
+                         @bind-Max="@Filter.Max"/>
         }
     </div>
 </FilterWrapper>

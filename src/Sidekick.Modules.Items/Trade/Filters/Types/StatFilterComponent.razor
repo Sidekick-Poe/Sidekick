@@ -37,10 +37,7 @@
                      }
                  })
         {
-            <FilterRange Checked="Filter.Checked"
-                         NormalizeEnabled="true"
-                         NormalizeRoundToInteger="true"
-                         Value="@Filter.Stat.AverageValue"
+            <FilterRange Filter="Filter"
                          @bind-Min="@Filter.Min"
                          @bind-Max="@Filter.Max"/>
         }

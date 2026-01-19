@@ -1,25 +1,20 @@
-@using Sidekick.Common.Platform
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
 @using Sidekick.Common.Ui.Localization
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Settings
 @using Sidekick.Modules.Items.Trade.Localization
 @implements IDisposable
-@inject IApplicationService ApplicationService
 
-@if (ApplicationService.SupportsKeybinds)
-{
-    <FormFieldset Legend="@UiResources["Keybindings"]">
-        <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenPriceCheck" Label="@Resources["Key_Open"]" />
-    </FormFieldset>
-}
-
-<FormFieldset Legend="@Resources["External_Tools_Settings"]">
-    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckPredictionEnabled" Label="@Resources["PriceCheck_Prediction_Enable"]" />
-</FormFieldset>
-
-<div class="flex justify-center mb-1">
-    <ButtonPrimary Disabled="!AreSettingsModified" OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonPrimary>
+<div class="flex flex-col items-stretch gap-2 mb-2">
+    <PriceCheckNormalizeValueEditor/>
+    <SettingCheckboxEditor SettingKey="@AutoSelectPreferences.DefaultFillMinSettingKey"
+                           Label="@Resources["PriceCheck_FillDefault_Min"]"/>
+    <SettingCheckboxEditor SettingKey="@AutoSelectPreferences.DefaultFillMaxSettingKey"
+                           Label="@Resources["PriceCheck_FillDefault_Max"]"/>
 </div>
+
+<ButtonSecondary Disabled="!AreSettingsModified"
+                 OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonSecondary>
 
 @inject IStringLocalizer<UiResources> UiResources
 @inject IStringLocalizer<TradeResources> Resources
@@ -31,8 +26,9 @@
 
     private string[] SettingKeysUsed { get; } =
     {
-        SettingKeys.KeyOpenPriceCheck,
-        SettingKeys.PriceCheckPredictionEnabled,
+        AutoSelectPreferences.DefaultNormalizeBySettingKey,
+        AutoSelectPreferences.DefaultFillMinSettingKey,
+        AutoSelectPreferences.DefaultFillMaxSettingKey,
     };
 
     protected override async Task OnInitializedAsync()

@@ -2,134 +2,108 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Common.Settings
-@using Sidekick.Common.Ui.Localization
-@using Sidekick.Common.Ui.Modal
-@using Sidekick.Common.Ui.Tabs
 @using Sidekick.Modules.Items.Trade.Localization
 
-@if (string.IsNullOrEmpty(Filter.AutoSelectSettingKey) || AutoSelect == null || Filter is StatFilter)
+@if (string.IsNullOrEmpty(Filter.AutoSelectSettingKey) || Filter.AutoSelect == null || Filter is StatFilter)
 {
     return;
 }
 
-<Modal Size="ModalSize.Xl">
-    <ActivatorContent>
-        <ButtonIcon Class="@ButtonClass"
-                    Svg="@UiIcons.Settings"
-                    AddBadge="Mode != AutoSelectMode.Default"/>
-    </ActivatorContent>
-    <HeaderContent>
-        <Heading2>@Resources["Filter_Settings"]</Heading2>
-    </HeaderContent>
-    <ChildContent>
-        <TextBase Class="text-neutral-400">@Resources["AutoSelect_Description", Filter.Text]</TextBase>
+<TextBase Class="text-neutral-400 mb-2">@Resources["AutoSelect_Description", Filter.Text]</TextBase>
+<TextBase Class="mb-2 text-neutral-400">@Resources["AutoSelect_Rules_Description", Filter.Text]</TextBase>
 
-        <TabList Class="mt-2">
-            @ButtonContent(AutoSelectMode.Default, Resources["AutoSelect_Default"])
-            @if (Filter is TriStatePropertyFilter)
-            {
-                @ButtonContent(AutoSelectMode.Any, Resources["AutoSelect_Any"])
-            }
-            @ButtonContent(AutoSelectMode.Always, Resources["AutoSelect_Always"])
-            @ButtonContent(AutoSelectMode.Never, Resources["AutoSelect_Never"])
-            @ButtonContent(AutoSelectMode.Conditionally, Resources["AutoSelect_Conditionally"])
-        </TabList>
+<div class="flex flex-nowrap items-center mb-2">
+    <TextBase Class="mr-2">Mode:</TextBase>
+    @ButtonContent(AutoSelectMode.Default, Resources["AutoSelect_Default"], true, false)
+    @ButtonContent(AutoSelectMode.Custom, Resources["Custom"], false, true)
+</div>
 
-        @if (AutoSelect.Mode == AutoSelectMode.Always)
-        {
-            <TextBase>@Resources["AutoSelect_Always_Description", Filter.Text]</TextBase>
-        }
-        else if (AutoSelect.Mode == AutoSelectMode.Never)
-        {
-            <TextBase>@Resources["AutoSelect_Never_Description", Filter.Text]</TextBase>
-        }
-        else if (AutoSelect.Mode == AutoSelectMode.Any)
-        {
-            <TextBase>@Resources["AutoSelect_Any_Description", Filter.Text]</TextBase>
-        }
-        else if (AutoSelect.Mode == AutoSelectMode.Conditionally)
-        {
-            <TextBase Class="mb-2 text-neutral-400">@Resources["AutoSelect_Rules_Description", Filter.Text]</TextBase>
-            <div class="flex flex-col gap-2 mb-2">
-                @for (var ruleIndex = 0; ruleIndex < AutoSelect.Rules.Count; ruleIndex++)
+<div class="flex flex-col gap-2 mb-2">
+    @for (var ruleIndex = 0; ruleIndex < Filter.AutoSelect.Rules.Count; ruleIndex++)
+    {
+        var rule = Filter.AutoSelect.Rules[ruleIndex];
+        <div class="bg-stone-800 rounded-md"
+             @key="@rule.Id">
+            <div class="pl-2 pt-1 pr-1 flex flex-nowrap gap-2">
+                <div
+                    class="font-bold text-lg text-white grow">@Resources["AutoSelect_Rule"] #@(ruleIndex + 1)</div>
+                @if (Filter.AutoSelect.Mode == AutoSelectMode.Custom)
                 {
-                    var rule = AutoSelect.Rules[ruleIndex];
-                    <div class="bg-stone-800 rounded-md"
-                         @key="@rule.Id">
-                        <div class="pl-2 py-1 pr-1 flex flex-nowrap gap-2">
-                            <div
-                                class="font-bold text-lg text-white grow">@Resources["AutoSelect_Rule"] #@(ruleIndex + 1)</div>
-                            @if (Mode == AutoSelectMode.Conditionally)
-                            {
-                                @if (ruleIndex > 0 && AutoSelect.Rules.Count > 0)
-                                {
-                                    <ButtonIcon Svg="@UiIcons.ChevronUp"
-                                                OnClick="() => MoveUp(rule)"/>
-                                }
+                    @if (ruleIndex > 0 && Filter.AutoSelect.Rules.Count > 0)
+                    {
+                        <ButtonIcon Svg="@UiIcons.ChevronUp"
+                                    OnClick="() => MoveUp(rule)"/>
+                    }
 
-                                @if (ruleIndex < AutoSelect.Rules.Count - 1)
-                                {
-                                    <ButtonIcon Svg="@UiIcons.ChevronDown"
-                                                OnClick="() => MoveDown(rule)"/>
-                                }
+                    @if (ruleIndex < Filter.AutoSelect.Rules.Count - 1)
+                    {
+                        <ButtonIcon Svg="@UiIcons.ChevronDown"
+                                    OnClick="() => MoveDown(rule)"/>
+                    }
 
-                                <Tooltip Text="@Resources["AutoSelect_RemoveRule"]">
-                                    <ButtonIcon Class="text-red-500! hover:text-red-300!"
-                                                Svg="@UiIcons.Close"
-                                                OnClick="() => RemoveRule(rule)"/>
-                                </Tooltip>
-                            }
-                        </div>
-
-                        <div class="flex flex-col items-stretch gap-2 px-2 mb-1">
-                            @for (var conditionIndex = 0; conditionIndex < rule.Conditions.Count; conditionIndex++)
-                            {
-                                var condition = rule.Conditions[conditionIndex];
-                                <FilterAutoSelectCondition @key="@condition.Id"
-                                                           First="conditionIndex == 0"
-                                                           Condition="condition"
-                                                           Readonly="Mode == AutoSelectMode.Default"
-                                                           OnChanged="Save"
-                                                           OnRemoved="() => RemoveCondition(rule, condition)"
-                                                           CanBeDeleted="rule.Conditions.Count > 1"/>
-                            }
-                        </div>
-
-                        <div class="grid grid-cols-5 gap-2 items-center py-1 px-2 leading-4">
-                            <span class="text-neutral-500">@Resources["AutoSelect_Then"]</span>
-                            <div class="col-span-2 text-white">
-                                <FilterAutoSelectRuleActions Rule="rule"
-                                                             Readonly="Mode == AutoSelectMode.Default"
-                                                             Filter="Filter"
-                                                             OnChanged="Save"/>
-                            </div>
-                            @if (Mode == AutoSelectMode.Conditionally)
-                            {
-                                <div class="col-span-2 flex justify-end">
-                                    <ButtonSecondary OnClick="() => AddCondition(rule)"
-                                                     Class="p-0!">@Resources["AutoSelect_AddCondition"]</ButtonSecondary>
-                                </div>
-                            }
-                        </div>
-                    </div>
+                    @if (Filter.AutoSelect.Rules.Count > 1)
+                    {
+                        <Tooltip Text="@Resources["AutoSelect_RemoveRule"]">
+                            <ButtonIcon Class="text-red-500! hover:text-red-300!"
+                                        Svg="@UiIcons.Close"
+                                        OnClick="() => RemoveRule(rule)"/>
+                        </Tooltip>
+                    }
                 }
             </div>
 
-            @if (Mode == AutoSelectMode.Conditionally)
-            {
-                <ButtonSecondary OnClick="AddRule" Class="p-0!">@Resources["AutoSelect_AddRule"]</ButtonSecondary>
-            }
-        }
-    </ChildContent>
-    <FooterContent>
-        <div class="flex justify-end gap-2">
-            <ButtonPrimary OnClick="context.Hide">@UiResources["Close"]</ButtonPrimary>
+            <div class="flex flex-col items-stretch gap-2 p-2">
+                @for (var conditionIndex = 0; conditionIndex < rule.Conditions.Count; conditionIndex++)
+                {
+                    var condition = rule.Conditions[conditionIndex];
+                    <FilterAutoSelectCondition @key="@condition.Id"
+                                               First="conditionIndex == 0"
+                                               Condition="condition"
+                                               Readonly="Filter.AutoSelect.Mode == AutoSelectMode.Default"
+                                               OnChanged="Save"
+                                               OnRemoved="() => RemoveCondition(rule, condition)"/>
+                }
+
+                @if (Filter.AutoSelect.Mode == AutoSelectMode.Custom)
+                {
+                    <div>
+                        <ButtonSecondary OnClick="() => AddCondition(rule)"
+                                         Class="p-0!">@Resources["AutoSelect_AddCondition"]</ButtonSecondary>
+                    </div>
+                }
+
+                <div class="flex flex-wrap gap-x-2 gap-y-1 items-start leading-4">
+                    <span class="mt-0.5 text-neutral-300">@Resources["AutoSelect_Then"]</span>
+
+                    <FilterAutoSelectRuleActions Rule="rule"
+                                                 Readonly="Filter.AutoSelect.Mode == AutoSelectMode.Default"
+                                                 Filter="Filter"
+                                                 OnChanged="Save"/>
+
+                    @if (rule.Checked == true)
+                    {
+                        <Tooltip Text="@Resources["AutoSelect_Always_Description", Filter.Text]"/>
+                    }
+                    else if (rule.Checked == false)
+                    {
+                        <Tooltip Text="@Resources["AutoSelect_Never_Description", Filter.Text]"/>
+                    }
+                    else
+                    {
+                        <Tooltip Text="@Resources["AutoSelect_Any_Description", Filter.Text]"/>
+                    }
+                </div>
+            </div>
         </div>
-    </FooterContent>
-</Modal>
+    }
+</div>
+
+@if (Filter.AutoSelect.Mode == AutoSelectMode.Custom)
+{
+    <ButtonSecondary OnClick="AddRule" Class="p-0!">@Resources["AutoSelect_AddRule"]</ButtonSecondary>
+}
 
 @inject IStringLocalizer<TradeResources> Resources
-@inject IStringLocalizer<UiResources> UiResources
 @inject ISettingsService SettingsService
 
 @code {
@@ -140,40 +114,28 @@
     [Parameter]
     public required TradeFilter Filter { get; set; }
 
-    private string ButtonClass => Mode == AutoSelectMode.Default ? "invisible group-hover:visible text-neutral-500" : "text-neutral-500";
-
-    private AutoSelectPreferences? AutoSelect
-    {
-        get
-        {
-            if (Filter.AutoSelect?.Mode == AutoSelectMode.Default)
-            {
-                return Filter.DefaultAutoSelect;
-            }
-
-            return Filter.AutoSelect ?? Filter.DefaultAutoSelect;
-        }
-    }
-
-    private AutoSelectMode Mode => Filter.AutoSelect?.Mode ?? AutoSelectMode.Default;
-
-    private RenderFragment ButtonContent(AutoSelectMode mode, string label) =>
-        @<TabItem OnClick="() => UpdateMode(mode)"
-                  Active="mode == Mode"
-                  Text="@label"/>;
+    private RenderFragment ButtonContent(AutoSelectMode mode, string label, bool first, bool last) =>
+        @<ButtonCustom OnClick="() => UpdateMode(mode)"
+                       Class="@($"px-2! py-1! {(mode == Filter.AutoSelect?.Mode ? "bg-violet-700" : "bg-violet-950 hover:bg-violet-900")} {(first ? string.Empty : "rounded-l-none!")} {(last ? string.Empty : "rounded-r-none!")}")"
+        >@label</ButtonCustom>;
 
     private async Task UpdateMode(AutoSelectMode mode)
     {
-        if (Filter.AutoSelect == null)
+        if (Filter.CustomAutoSelect == null)
         {
-            Filter.AutoSelect = new AutoSelectPreferences()
+            Filter.CustomAutoSelect = new AutoSelectPreferences()
             {
                 Mode = mode,
             };
         }
         else
         {
-            Filter.AutoSelect.Mode = mode;
+            Filter.CustomAutoSelect.Mode = mode;
+        }
+
+        if (Filter.CustomAutoSelect.Rules.Count == 0)
+        {
+            await AddRule();
         }
 
         await Save();
@@ -182,15 +144,15 @@
 
     private async Task AddRule()
     {
+        if (Filter.CustomAutoSelect == null) return;
+
         var rule = new AutoSelectRule()
         {
-            Actions = new AutoSelectActions()
-            {
-                Checked = true,
-            },
+            Checked = true,
         };
-        AutoSelect?.Rules.Add(rule);
-        await AddCondition(rule);
+        Filter.CustomAutoSelect.Rules.Add(rule);
+        await Save();
+        StateHasChanged();
     }
 
     private async Task AddCondition(AutoSelectRule rule)
@@ -202,7 +164,9 @@
 
     private async Task RemoveRule(AutoSelectRule rule)
     {
-        AutoSelect?.Rules.Remove(rule);
+        if (Filter.CustomAutoSelect == null) return;
+
+        Filter.CustomAutoSelect.Rules.Remove(rule);
         await Save();
         StateHasChanged();
     }
@@ -216,24 +180,24 @@
 
     private async Task MoveUp(AutoSelectRule rule)
     {
-        if (AutoSelect == null) return;
+        if (Filter.CustomAutoSelect == null) return;
 
-        var index = AutoSelect.Rules.IndexOf(rule);
-        AutoSelect.Rules.Remove(rule);
+        var index = Filter.CustomAutoSelect.Rules.IndexOf(rule);
+        Filter.CustomAutoSelect.Rules.Remove(rule);
 
-        AutoSelect.Rules.Insert(index - 1, rule);
+        Filter.CustomAutoSelect.Rules.Insert(index - 1, rule);
         await Save();
         StateHasChanged();
     }
 
     private async Task MoveDown(AutoSelectRule rule)
     {
-        if (AutoSelect == null) return;
+        if (Filter.CustomAutoSelect == null) return;
 
-        var index = AutoSelect.Rules.IndexOf(rule);
-        AutoSelect.Rules.Remove(rule);
+        var index = Filter.CustomAutoSelect.Rules.IndexOf(rule);
+        Filter.CustomAutoSelect.Rules.Remove(rule);
 
-        AutoSelect.Rules.Insert(index + 1, rule);
+        Filter.CustomAutoSelect.Rules.Insert(index + 1, rule);
         await Save();
         StateHasChanged();
     }
@@ -242,7 +206,6 @@
     {
         if (string.IsNullOrEmpty(Filter.AutoSelectSettingKey)) return;
 
-        await SettingsService.Set(Filter.AutoSelectSettingKey, Filter.AutoSelect);
+        await SettingsService.Set(Filter.AutoSelectSettingKey, Filter.CustomAutoSelect);
     }
-
 }

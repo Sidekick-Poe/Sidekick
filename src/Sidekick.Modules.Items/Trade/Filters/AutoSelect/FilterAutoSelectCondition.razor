@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    @if (!Readonly && CanBeDeleted)
+    @if (!Readonly)
     {
         <Tooltip Text="@Resources["AutoSelect_RemoveCondition"]">
             <ButtonIcon Class="text-red-500! hover:text-red-300!"
@@ -60,9 +60,6 @@
 
     [Parameter]
     public EventCallback OnRemoved { get; set; }
-
-    [Parameter]
-    public bool CanBeDeleted { get; set; }
 
     private FilterAutoSelectConditionType? ConditionType { get; set; }
 

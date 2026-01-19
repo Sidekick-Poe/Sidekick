@@ -1,3 +1,4 @@
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Localization
 @using Sidekick.Modules.Items.Trade.Localization
@@ -27,7 +28,7 @@
 
     private List<SelectOption> Options { get; set; } = new();
 
-    private const string SettingKey = SettingKeys.PriceCheckNormalizeValue;
+    private const string SettingKey = AutoSelectPreferences.DefaultNormalizeBySettingKey;
 
     private bool ShowResetButton { get; set; }
 

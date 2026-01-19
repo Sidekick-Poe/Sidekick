@@ -5,7 +5,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
-public class PseudoFilter : TradeFilter
+public class PseudoFilter : TradeFilter, INormalizableFilter
 {
     public PseudoFilter(PseudoStat stat)
     {
@@ -20,8 +20,8 @@ public class PseudoFilter : TradeFilter
         var result = await base.Initialize(item, settingsService);
         if (result == null) return null;
 
-        if (result.FillMinRange) NormalizeMinValue(result.NormalizeBy);
-        if (result.FillMaxRange) NormalizeMaxValue(result.NormalizeBy);
+        if (result.FillMinRange) Min = ((INormalizableFilter)this).NormalizeMinValue(result.NormalizeBy);
+        if (result.FillMaxRange) Max = ((INormalizableFilter)this).NormalizeMaxValue(result.NormalizeBy);
 
         return result;
     }
@@ -32,45 +32,9 @@ public class PseudoFilter : TradeFilter
 
     public double? Max { get; set; }
 
-    private void NormalizeMinValue(double normalizeBy)
-    {
-        if (Stat.Value == 0)
-        {
-            Min = Stat.Value;
-            return;
-        }
+    public double NormalizeValue => Stat.Value;
 
-        if (Stat.Value > 0)
-        {
-            var normalizedValue = (1 - normalizeBy) * Stat.Value;
-            Min = Math.Round(normalizedValue, 2);
-        }
-        else
-        {
-            var normalizedValue = (1 + normalizeBy) * Stat.Value;
-            Min = Math.Round(normalizedValue, 2);
-        }
-    }
-
-    private void NormalizeMaxValue(double normalizeby)
-    {
-        if (Stat.Value == 0)
-        {
-            Max = Stat.Value;
-            return;
-        }
-
-        if (Stat.Value > 0)
-        {
-            var normalizedValue = (1 + normalizeby) * Stat.Value;
-            Max = Math.Round(normalizedValue, 2);
-        }
-        else
-        {
-            var normalizedValue = (1 - normalizeby) * Stat.Value;
-            Max = Math.Round(normalizedValue, 2);
-        }
-    }
+    public bool NormalizeEnabled => true;
 
     public override void PrepareTradeRequest(Query query, Item item)
     {

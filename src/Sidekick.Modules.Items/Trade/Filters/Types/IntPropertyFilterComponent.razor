@@ -24,10 +24,7 @@
 
     @if (Filter.Checked)
     {
-        <FilterRange Checked="Filter.Checked"
-                     NormalizeEnabled="Filter.NormalizeEnabled"
-                     NormalizeRoundToInteger="true"
-                     Value="@Filter.Value"
+        <FilterRange Filter="Filter"
                      Min="@Filter.Min"
                      MinChanged="MinChanged"
                      Max="@Filter.Max"
