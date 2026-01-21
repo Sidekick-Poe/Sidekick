@@ -33,6 +33,7 @@ public static class SettingKeys
     public const string EscapeClosesOverlays = nameof(EscapeClosesOverlays);
     public const string RetainClipboard = nameof(RetainClipboard);
     public const string ChatCommands = nameof(ChatCommands);
+    public const string ChatCommandCleanupDisabled = nameof(ChatCommandCleanupDisabled);
     public const string PreferredWiki = nameof(PreferredWiki);
     public const string RegexHotkeys = nameof(RegexHotkeys);
 

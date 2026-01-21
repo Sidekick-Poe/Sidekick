@@ -24,6 +24,7 @@ public class LinuxKeyboardProvider
     ISettingsService settingsService
 ) : IKeyboardProvider, IDisposable
 {
+    private static readonly TimeSpan ResetDelay = TimeSpan.FromMilliseconds(300);
     private static readonly Dictionary<KeyCode, string> keyMappings = new()
     {
         { KeyCode.VcEscape, "Esc" },
@@ -149,6 +150,24 @@ public class LinuxKeyboardProvider
     };
 
     private static readonly Regex modifierKeys = new("^(?:Ctrl|Shift|Alt)$");
+
+    private static readonly KeyCode[] StickyReleaseKeys =
+    [
+        KeyCode.VcLeftShift,
+        KeyCode.VcRightShift,
+        KeyCode.VcLeftControl,
+        KeyCode.VcRightControl,
+        KeyCode.VcLeftAlt,
+        KeyCode.VcRightAlt,
+        KeyCode.VcLeft,
+        KeyCode.VcRight,
+        KeyCode.VcUp,
+        KeyCode.VcDown
+    ];
+
+    private readonly object resetLock = new();
+    private Timer? resetTimer;
+    private bool disposed;
 
     private static readonly HashSet<string> keybindSettingKeys =
     [
@@ -433,8 +452,15 @@ public class LinuxKeyboardProvider
             args.SuppressEvent = true;
             Task.Run(async () =>
             {
-                await keybindHandler.Execute(keybind);
-                logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
+                try
+                {
+                    await keybindHandler.Execute(keybind);
+                    logger.LogDebug($"[Keyboard] Completed Keybind Handler for {str}.");
+                }
+                finally
+                {
+                    ScheduleResetKeyState();
+                }
             });
         }
     }
@@ -485,8 +511,15 @@ public class LinuxKeyboardProvider
             args.SuppressEvent = true;
             Task.Run(async () =>
             {
-                await keybindHandler.Execute(keybind);
-                logger.LogDebug($"[Keyboard] Completed Keybind Handler for {keybind}.");
+                try
+                {
+                    await keybindHandler.Execute(keybind);
+                    logger.LogDebug($"[Keyboard] Completed Keybind Handler for {keybind}.");
+                }
+                finally
+                {
+                    ScheduleResetKeyState();
+                }
             });
         }
     }
@@ -601,6 +634,8 @@ public class LinuxKeyboardProvider
                 simulator.SimulateKeyRelease(modifierKey);
             }
         }
+
+        ScheduleResetKeyState(simulator);
 
         if (Hook != null)
         {
@@ -1010,6 +1045,13 @@ public class LinuxKeyboardProvider
             return;
         }
 
+        lock (resetLock)
+        {
+            disposed = true;
+            resetTimer?.Dispose();
+            resetTimer = null;
+        }
+
         try
         {
             // Dispose of the LogSource
@@ -1070,6 +1112,45 @@ public class LinuxKeyboardProvider
         var simulator = new EventSimulator();
         simulator.SimulateKeyRelease(KeyCode.VcLeftAlt);
         simulator.SimulateKeyRelease(KeyCode.VcRightAlt);
+    }
+
+    private void ResetKeyState(EventSimulator simulator)
+    {
+        foreach (var key in StickyReleaseKeys)
+        {
+            simulator.SimulateKeyRelease(key);
+        }
+
+        IsCtrlPressed = false;
+    }
+
+    private void ScheduleResetKeyState()
+    {
+        ScheduleResetKeyState(new EventSimulator());
+    }
+
+    private void ScheduleResetKeyState(EventSimulator simulator)
+    {
+        lock (resetLock)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            resetTimer?.Dispose();
+            resetTimer = new Timer(_ =>
+            {
+                try
+                {
+                    ResetKeyState(simulator);
+                }
+                catch (Exception ex)
+                {
+                    logger.LogDebug(ex, "[Keyboard] Failed to reset key state.");
+                }
+            }, null, ResetDelay, Timeout.InfiniteTimeSpan);
+        }
     }
 
     private void UpdateModifierState(KeyCode keyCode, bool isPressed)

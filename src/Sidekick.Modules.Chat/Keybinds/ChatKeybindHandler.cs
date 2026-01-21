@@ -67,16 +67,22 @@ public class ChatKeybindHandler(
 
         if (chatCommand.Submit)
         {
-            await keyboard.PressKey(
-            "Enter",
-            "Ctrl+A",
-            "Backspace",
-            "Ctrl+V",
-            "Enter",
-            "Enter",
-            "Up",
-            "Up",
-            "Esc");
+            var disableCleanup = await settingsService.GetBool(SettingKeys.ChatCommandCleanupDisabled);
+            var keys = new List<string>
+            {
+                "Enter",
+                "Ctrl+A",
+                "Backspace",
+                "Ctrl+V",
+                "Enter"
+            };
+
+            if (!disableCleanup)
+            {
+                keys.AddRange(["Enter", "Up", "Up", "Esc"]);
+            }
+
+            await keyboard.PressKey(keys.ToArray());
         }
         else
         {
