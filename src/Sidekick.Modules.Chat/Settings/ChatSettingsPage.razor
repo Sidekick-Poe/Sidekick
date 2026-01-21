@@ -7,6 +7,7 @@
 @using Sidekick.Common.Ui.Buttons
 @using Sidekick.Common.Ui.Layouts
 @using Sidekick.Common.Ui.Localization
+@using Sidekick.Common.Ui.Settings
 @using Sidekick.Common.Ui.Typography
 @using Sidekick.Modules.Chat.Localization
 
@@ -41,10 +42,13 @@
                     <TextBase>@Resources["Chat_Commands_Kick"]</TextBase>
                 </div>
 
-                <div class="flex gap-3">
+                <div class="flex gap-3 mb-4">
                     <code class="bg-stone-950 px-1 min-w-[8em]">@@last</code>
                     <TextBase>@Resources["Chat_Wildcard_LastWhisper_CharacterName"]</TextBase>
                 </div>
+
+                <SettingCheckboxEditor SettingKey="@SettingKeys.ChatCommandCleanupDisabled"
+                                       Label="@Resources["Chat_Disable_Cleanup_Sequence"]" />
             </div>
         </FormFieldset>
 
@@ -69,7 +73,8 @@
 
     private string[] SettingKeysUsed { get; } =
     {
-        SettingKeys.ChatCommands
+        SettingKeys.ChatCommands,
+        SettingKeys.ChatCommandCleanupDisabled
     };
 
     protected override async Task OnInitializedAsync()

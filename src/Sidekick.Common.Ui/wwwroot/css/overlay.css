@@ -1,0 +1,209 @@
+.overlay-root {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  pointer-events: none;
+  z-index: 0;
+}
+
+html, body,
+.overlay-root {
+  background: #000 !important;
+  background-color: #000 !important;
+}
+
+.overlay-mode body,
+body.overlay-mode,
+.overlay-mode .font-sans {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.overlay-widget {
+  position: absolute;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.01);
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  contain: layout paint;
+  will-change: left, top, width, height;
+  resize: both;
+  overflow: hidden;
+  min-width: 240px;
+  min-height: 180px;
+}
+
+.overlay-widget-chrome {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.overlay-widget-drag-handle {
+  pointer-events: auto;
+  width: 200px;
+  height: 18px;
+  border-radius: 8px;
+  cursor: move;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+}
+
+.overlay-widget-drag-handle::before {
+  content: "";
+  position: absolute;
+  inset: 4px 12px;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.5) 0,
+    rgba(255, 255, 255, 0.5) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.6;
+}
+
+.overlay-widget-close {
+  pointer-events: auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 0;
+  border: none;
+  background: rgba(239, 68, 68, 0.9);
+  color: #fff;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+}
+
+.overlay-widget-close:hover {
+  background: rgba(220, 38, 38, 0.95);
+}
+
+.overlay-widget-body {
+  width: 100%;
+  flex: 1 1 auto;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+.overlay-widget-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.overlay-dragging .overlay-widget-frame {
+  pointer-events: none;
+}
+
+.overlay-resizing .overlay-widget-frame {
+  pointer-events: none;
+}
+
+.overlay-widget-resize-handle {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 14px;
+  height: 14px;
+  cursor: se-resize;
+  pointer-events: auto;
+  border-right: 2px solid rgba(255, 255, 255, 0.35);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+  box-sizing: border-box;
+  opacity: 0.8;
+  z-index: 3;
+}
+
+.overlay-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  height: 100%;
+  background: #2b2b2b;
+  border-radius: 0;
+  color: #f8fafc;
+}
+
+.overlay-menu-title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.overlay-menu-actions {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.overlay-menu-button {
+  padding: 10px 12px;
+  border-radius: 0;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(30, 41, 59, 0.8);
+  color: #e2e8f0;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.overlay-menu-button:hover {
+  background: rgba(51, 65, 85, 0.9);
+}
+
+.overlay-home-controls {
+  position: fixed;
+  z-index: 10;
+  pointer-events: auto;
+  display: flex;
+  gap: 0;
+  box-sizing: border-box;
+  align-items: center;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(30, 41, 59, 0.85);
+}
+
+.overlay-menu-restore {
+  width: 140px;
+  height: 100%;
+  padding: 0 10px;
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  color: #e2e8f0;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  cursor: pointer;
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+
+.overlay-menu-restore + .overlay-menu-restore {
+  border-left: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.overlay-menu-restore:hover {
+  background: rgba(51, 65, 85, 0.95);
+}

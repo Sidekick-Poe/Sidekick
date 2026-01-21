@@ -35,6 +35,8 @@ public static class DefaultSettings
 
     public static bool RetainClipboard => true;
 
+    public static bool ChatCommandCleanupDisabled => false;
+
     public static bool WealthEnabled => false;
 
     public static string PreferredWiki => WikiSetting.PoeWiki.GetValueAttribute();

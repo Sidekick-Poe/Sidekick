@@ -1,3 +1,4 @@
+using System;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade;
@@ -30,7 +31,8 @@ public class OpenWikiPageKeybindHandler(
 
     public override async Task Execute(string keybind)
     {
-        var text = await clipboardProvider.Copy();
+        var assumeCtrlHeld = OperatingSystem.IsLinux() && keyboard.IsCtrlPressed;
+        var text = await clipboardProvider.Copy(assumeCtrlHeld: assumeCtrlHeld);
         if (text == null)
         {
             await keyboard.PressKey(keybind);

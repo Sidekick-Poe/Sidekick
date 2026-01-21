@@ -1,0 +1,156 @@
+name: Build Linux AppImage
+
+# Notes:
+# - Manual workflow that mirrors build-release.yml versioning/release notes,
+#   but only builds the Linux AppImage (no Windows/Velopack).
+# - To integrate into build-release.yml, copy the steps from "Version" through
+#   "Release - Upload AppImage" into the ubuntu-latest job.
+# - The AppRun includes --initialize and defaults to disabling WebKit sandbox
+#   for Ubuntu 24.04 compatibility (can be overridden via env vars).
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  appimage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git - Checkout
+        uses: actions/checkout@v4
+
+      - name: Version
+        id: version
+        shell: pwsh
+        run: |
+          # Get the current date
+          $DATE = Get-Date -Format "yyyy.Mdd"
+
+          # Get the current hour and minute without leading zero for the hour
+          $HOUR = [int](Get-Date -Format "HH") # Convert hour to integer to strip any leading zero
+
+          # If the hour is 0 (midnight), set it to an empty string
+          if ($HOUR -eq 0) {
+            $HOUR = ''
+          }
+
+          $MINUTE = Get-Date -Format "mm" # Keep minutes as-is
+
+          # Construct the time, omitting hour if it's empty
+          $TIME = "$HOUR$MINUTE"
+
+          # Construct the version using DATE and TIME
+          $VERSION = "$DATE.$TIME"
+          Write-Output "Generated version: $VERSION"
+
+          # Export version as an output
+          echo "version=$VERSION" >> $env:GITHUB_OUTPUT
+
+      - name: Version - Update project files
+        uses: vers-one/dotnet-project-version-updater@v1.7
+        with:
+          file: "src/**/*.csproj"
+          version: ${{ steps.version.outputs.version }}
+
+      - name: Release - Delete unpublished
+        uses: hugo19941994/delete-draft-releases@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Release - Notes
+        id: notes
+        uses: release-drafter/release-drafter@v6
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          config-name: release-drafter.yml
+          name: "Sidekick v${{ steps.version.outputs.version }}"
+          tag: "v${{ steps.version.outputs.version }}"
+          version: "v${{ steps.version.outputs.version }}"
+          publish: false
+          prerelease: false
+
+      - name: Environment - Build Number
+        uses: myci-actions/export-env-var@1
+        with:
+          name: BUILD_NUMBER
+          value: ${{ steps.version.outputs.version }}
+
+      - name: Environment - Github Token
+        uses: myci-actions/export-env-var@1
+        with:
+          name: GITHUB_TOKEN
+          value: ${{ github.token }}
+
+      - name: .NET - Setup
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+
+      - name: AppImage - Set vars
+        shell: bash
+        run: |
+          echo "APPDIR=dist/Sidekick.AppDir" >> "$GITHUB_ENV"
+          echo "APPIMAGE_NAME=Sidekick-v${{ steps.version.outputs.version }}-x86_64.AppImage" >> "$GITHUB_ENV"
+
+      - name: AppImage - Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y squashfs-tools
+
+      - name: AppImage - Build AppDir
+        run: |
+          set -euo pipefail
+          rm -rf "$APPDIR"
+          mkdir -p "$APPDIR/usr/bin"
+
+          cat > "$APPDIR/AppRun" <<'EOF'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          HERE="$(dirname "$(readlink -f "$0")")"
+          export ASPNETCORE_URLS="${ASPNETCORE_URLS:-http://127.0.0.1:8080}"
+          export DOTNET_URLS="${DOTNET_URLS:-$ASPNETCORE_URLS}"
+          export WEBKIT_DISABLE_SANDBOX="${WEBKIT_DISABLE_SANDBOX:-1}"
+          export WEBKIT_FORCE_SANDBOX="${WEBKIT_FORCE_SANDBOX:-0}"
+          export GTK_USE_PORTAL="${GTK_USE_PORTAL:-0}"
+          export GIO_USE_VFS="${GIO_USE_VFS:-local}"
+          exec "$HERE/usr/bin/Sidekick" --initialize "$@"
+          EOF
+
+          chmod +x "$APPDIR/AppRun"
+
+          cat > "$APPDIR/Sidekick.desktop" <<'EOF'
+          [Desktop Entry]
+          Type=Application
+          Name=Sidekick
+          Exec=Sidekick
+          Icon=sidekick
+          Categories=Utility;
+          Terminal=true
+          EOF
+
+          cp src/Sidekick.Common.Ui/wwwroot/android-chrome-512x512.png "$APPDIR/sidekick.png"
+
+          dotnet publish src/Sidekick.Linux/Sidekick.Linux.csproj -c Release -r linux-x64 --self-contained true \
+            -p:PublishSingleFile=false -p:PublishTrimmed=false \
+            -o "$APPDIR/usr/bin"
+
+      - name: AppImage - Download appimagetool
+        run: |
+          curl -L https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage \
+            -o appimagetool-x86_64.AppImage
+          chmod +x appimagetool-x86_64.AppImage
+          rm -rf squashfs-root
+          ./appimagetool-x86_64.AppImage --appimage-extract
+
+      - name: AppImage - Package
+        run: |
+          ARCH=x86_64 ./squashfs-root/AppRun "$APPDIR" "dist/$APPIMAGE_NAME"
+
+      - name: Release - Upload AppImage
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          files: dist/${{ env.APPIMAGE_NAME }}

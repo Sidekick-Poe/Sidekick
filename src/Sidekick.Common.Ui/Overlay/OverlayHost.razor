@@ -1,0 +1,212 @@
+@page "/overlay"
+@using Sidekick.Common.Ui.Overlay
+@using Sidekick.Common
+@using Sidekick.Common.Platform
+@inject OverlayWidgetService WidgetService
+@inject IOverlayInputRegionService InputRegionService
+@inject IJSRuntime JsRuntime
+@inject IApplicationService ApplicationService
+@inject ISidekickDialogs Dialogs
+@implements IDisposable
+
+<div id="overlay-root" class="overlay-root">
+    @if (ShowRestoreButton)
+    {
+        <div class="overlay-home-controls" style="@RestoreButtonStyle">
+            <button type="button"
+                    class="overlay-menu-restore overlay-home-button overlay-home-launch"
+                    title="Open Sidekick Home"
+                    @onclick="RestoreHome">
+                Sidekick Home
+            </button>
+            <button type="button"
+                    class="overlay-menu-restore overlay-home-button overlay-home-exit"
+                    title="Exit Sidekick"
+                    @onclick="ConfirmExit">
+                Exit Sidekick
+            </button>
+        </div>
+    }
+    @foreach (var widget in widgets)
+    {
+        <div class="overlay-widget"
+             data-widget-id="@widget.Id"
+             style="left:@($"{widget.X}px"); top:@($"{widget.Y}px"); width:@($"{widget.Width}px"); height:@($"{widget.Height}px");">
+            <div class="overlay-widget-chrome">
+                <div class="overlay-widget-drag-handle" title="Drag"></div>
+            </div>
+            <div class="overlay-widget-resize-handle" title="Resize"></div>
+            <div class="overlay-widget-body">
+                @if (!string.IsNullOrEmpty(widget.Url))
+                {
+                    <iframe src="@BuildWidgetUrl(widget.Url, widget.Id)"
+                            data-widget-id="@widget.Id"
+                            class="overlay-widget-frame"></iframe>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private const int HomeButtonWidth = 140;
+    private const int ExitButtonWidth = 140;
+    private const int RestoreButtonHeight = 28;
+    private const int RestoreButtonGap = 8;
+    private IReadOnlyList<OverlayWidgetService.OverlayWidgetState> widgets = Array.Empty<OverlayWidgetService.OverlayWidgetState>();
+    private DotNetObjectReference<OverlayHost>? dotNetRef;
+    private int viewportWidth;
+    private int viewportHeight;
+    private int restoreButtonX = 10;
+    private int restoreButtonY = 6;
+    private int OpenWidgetCount => widgets.Count;
+    private bool ShowRestoreButton => OpenWidgetCount == 0;
+    private int RestoreButtonWidth => HomeButtonWidth + ExitButtonWidth + RestoreButtonGap;
+    private string RestoreButtonStyle => $"left:{restoreButtonX}px; top:{restoreButtonY}px; width:{RestoreButtonWidth}px; height:{RestoreButtonHeight}px;";
+
+    protected override void OnInitialized()
+    {
+        WidgetService.WidgetsChanged += OnWidgetsChanged;
+        widgets = WidgetService.Widgets;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        dotNetRef = DotNetObjectReference.Create(this);
+        await JsRuntime.InvokeVoidAsync("sidekickOverlay.init", dotNetRef);
+    }
+
+    private void OnWidgetsChanged()
+    {
+        widgets = WidgetService.Widgets;
+        RefreshRegions();
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void RestoreHome()
+    {
+        WidgetService.OpenWidget("/home");
+    }
+
+    private async Task ConfirmExit()
+    {
+        var confirmed = await Dialogs.OpenConfirmationModal("Exit Sidekick?");
+        if (confirmed)
+        {
+            ApplicationService.Shutdown();
+        }
+    }
+
+    [JSInvokable]
+    public void UpdateViewport(int width, int height)
+    {
+        viewportWidth = width;
+        viewportHeight = height;
+        WidgetService.SetViewportSize(width, height);
+        ClampRestoreButtonPosition();
+        RefreshRegions();
+    }
+
+    [JSInvokable]
+    public void UpdateWidgetBounds(List<OverlayWidgetRect> rects)
+    {
+        if (rects == null || rects.Count == 0)
+        {
+            RefreshRegions();
+            return;
+        }
+
+        foreach (var rect in rects)
+        {
+            WidgetService.UpdateBounds(rect.Id, rect.X, rect.Y, rect.Width, rect.Height);
+        }
+
+        RefreshRegions();
+    }
+
+    [JSInvokable]
+    public void UpdateRestoreButtonPosition(int x, int y)
+    {
+        restoreButtonX = x;
+        restoreButtonY = y;
+        ClampRestoreButtonPosition();
+        RefreshRegions();
+        InvokeAsync(StateHasChanged);
+    }
+
+    [JSInvokable]
+    public void CloseWidgetFromJs(string widgetId)
+    {
+        if (!Guid.TryParse(widgetId, out var id))
+        {
+            return;
+        }
+
+        WidgetService.CloseWidget(id);
+    }
+
+    public void Dispose()
+    {
+        WidgetService.WidgetsChanged -= OnWidgetsChanged;
+        dotNetRef?.Dispose();
+    }
+
+    public sealed class OverlayWidgetRect
+    {
+        public Guid Id { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+    }
+
+    private static string BuildWidgetUrl(string url, Guid widgetId)
+    {
+        if (string.IsNullOrWhiteSpace(url))
+        {
+            return url;
+        }
+
+        var separator = url.Contains('?') ? "&" : "?";
+        return $"{url}{separator}overlayWidgetId={widgetId}";
+    }
+
+    private void RefreshRegions()
+    {
+        var regions = widgets
+            .Select(w => new OverlayRegion(w.X, w.Y, w.Width, w.Height))
+            .ToList();
+
+        AddDebugRegions(regions);
+        InputRegionService.UpdateRegions(regions);
+    }
+
+    private void AddDebugRegions(List<OverlayRegion> regions)
+    {
+        if (ShowRestoreButton)
+        {
+            regions.Add(new OverlayRegion(
+                restoreButtonX,
+                restoreButtonY,
+                RestoreButtonWidth,
+                RestoreButtonHeight));
+        }
+
+    }
+
+    private void ClampRestoreButtonPosition()
+    {
+        if (viewportWidth <= 0 || viewportHeight <= 0)
+        {
+            return;
+        }
+
+        restoreButtonX = Math.Clamp(restoreButtonX, 0, Math.Max(0, viewportWidth - RestoreButtonWidth));
+        restoreButtonY = Math.Clamp(restoreButtonY, 0, Math.Max(0, viewportHeight - RestoreButtonHeight));
+    }
+}

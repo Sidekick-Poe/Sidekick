@@ -16,19 +16,37 @@ Sidekick requires the following packages to be installed
 #### Arch-based
 
 ```sh
-sudo pacman -S --needed xsel webkit2gtk-4.1 dotnet-runtime-8.0
+sudo pacman -S --needed \
+  xsel webkit2gtk-4.1 dotnet-runtime-8.0 \
+  libx11 libxext libxrandr libxtst libxkbcommon libxt libxinerama \
+  libxcb libsm libice libxau libxdmcp util-linux-libs libbsd libmd
 ```
 
 #### Ubuntu
 
 ```sh
-sudo apt install xsel libwebkit2gtk-4.1-0 dotnet-runtime-8.0
+sudo apt install \
+  xsel libwebkit2gtk-4.1-0 dotnet-runtime-8.0 \
+  libx11-6 libxrandr2 libxext6 libxtst6 libxkbcommon0 libxt6 libxinerama1 \
+  libxcb1 libsm6 libice6 libxau6 libxdmcp6 libuuid1 libbsd0 libmd0
+```
+
+#### Debian
+
+```sh
+sudo apt install \
+  xsel libwebkit2gtk-4.0-37 dotnet-runtime-8.0 \
+  libx11-6 libxrandr2 libxext6 libxtst6 libxkbcommon0 libxt6 libxinerama1 \
+  libxcb1 libsm6 libice6 libxau6 libxdmcp6 libuuid1 libbsd0 libmd0
 ```
 
 #### Fedora
 
 ```sh
-sudo dnf install xsel webkit2gtk4.1 dotnet-runtime-8.0
+sudo dnf install \
+  xsel webkit2gtk4.1 dotnet-runtime-8.0 \
+  libX11 libXext libXrandr libXtst libxkbcommon libXt libXinerama \
+  libxcb libSM libICE libXau libXdmcp libuuid libbsd libmd
 ```
 
 ### Download and run
