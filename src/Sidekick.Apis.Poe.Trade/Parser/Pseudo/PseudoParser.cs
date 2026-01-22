@@ -67,21 +67,18 @@ public class PseudoParser
         var result = new List<TradeFilter>();
         foreach (var stat in item.PseudoStats)
         {
-            var filter = new PseudoFilter(stat)
+            result.Add(new PseudoFilter(stat)
             {
                 AutoSelectSettingKey = $"Trade_Filter_Pseudo_{item.Game.GetValueAttribute()}_{stat.Id}",
-            };
-
-            result.Add(filter);
-            await filter.Initialize(item, settingsService);
+            });
         }
 
-        return
-        [
-            new ExpandableFilter(resources["Pseudo_Filters"], result.ToArray())
-            {
-                Checked = true,
-            },
-        ];
+        var expandableFilter = new ExpandableFilter(resources["Pseudo_Filters"], result.ToArray())
+        {
+            Checked = true,
+        };
+        await expandableFilter.Initialize(item, settingsService);
+
+        return [expandableFilter];
     }
 }

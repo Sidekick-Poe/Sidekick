@@ -13,9 +13,9 @@
 <TextBase Class="mb-2 text-neutral-400">@Resources["AutoSelect_Rules_Description", Filter.Text]</TextBase>
 
 <div class="flex flex-nowrap items-center mb-2">
-    <TextBase Class="mr-2">Mode:</TextBase>
+    <TextBase Class="mr-2">@Resources["AutoSelect_Mode"]:</TextBase>
     @ButtonContent(AutoSelectMode.Default, Resources["AutoSelect_Default"], true, false)
-    @ButtonContent(AutoSelectMode.Custom, Resources["Custom"], false, true)
+    @ButtonContent(AutoSelectMode.Custom, Resources["AutoSelect_Custom"], false, true)
 </div>
 
 <div class="flex flex-col gap-2 mb-2">

@@ -317,14 +317,10 @@ public class StatParser
         var result = new List<TradeFilter>();
         for (var i = 0; i < item.Stats.Count; i++)
         {
-            var stat = item.Stats[i];
-            var filter = new StatFilter(stat)
+            result.Add(new StatFilter(item.Stats[i])
             {
                 AutoSelectSettingKey = autoSelectKey,
-            };
-
-            result.Add(filter);
-            await filter.Initialize(item, settingsService);
+            });
 
             var isLastFilter = i + 1 == item.Stats.Count;
             if (isLastFilter) continue;
@@ -333,14 +329,15 @@ public class StatParser
             if (isDifferentBlock) result.Add(new SeparatorFilter());
         }
 
-        return
-        [
+        var expandableFilter =
             new ExpandableFilter(resources["Stat_Filters"], result.ToArray())
             {
                 AutoSelectSettingKey = autoSelectKey,
                 DefaultAutoSelect = StatFilter.GetDefault(),
                 Checked = true,
-            },
-        ];
+            };
+        await expandableFilter.Initialize(item, settingsService);
+
+        return [expandableFilter];
     }
 }

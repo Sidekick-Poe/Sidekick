@@ -274,14 +274,8 @@ Click the button to open in your browser.</value>
   <data name="AutoSelect_Default" xml:space="preserve">
       <value>Default</value>
   </data>
-  <data name="AutoSelect_Any" xml:space="preserve">
-      <value>Any</value>
-  </data>
-  <data name="AutoSelect_Never" xml:space="preserve">
-      <value>Never</value>
-  </data>
-  <data name="AutoSelect_Always" xml:space="preserve">
-      <value>Always</value>
+  <data name="AutoSelect_Custom" xml:space="preserve">
+      <value>Custom</value>
   </data>
   <data name="AutoSelect_Conditionally" xml:space="preserve">
       <value>Conditionally</value>
@@ -333,5 +327,8 @@ Click the button to open in your browser.</value>
   </data>
   <data name="AutoSelect_Result_Any" xml:space="preserve">
       <value>Filter Is Any</value>
+  </data>
+  <data name="AutoSelect_Mode" xml:space="preserve">
+      <value>Mode</value>
   </data>
 </root>

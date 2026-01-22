@@ -21,7 +21,7 @@ public class ExpandableFilter : TradeFilter
             await filter.Initialize(item, settingsService);
         }
 
-        return null;
+        return await base.Initialize(item, settingsService);
     }
 
     public override void PrepareTradeRequest(Query query, Item item)

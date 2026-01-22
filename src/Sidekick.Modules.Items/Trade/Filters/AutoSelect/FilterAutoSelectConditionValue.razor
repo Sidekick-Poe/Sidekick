@@ -28,6 +28,7 @@
                  Readonly="Readonly"/>
 
 @inject IGameLanguageProvider GameLanguageProvider
+@inject IStringLocalizer<StatCategory> StatCategoryResources
 
 @code {
 
@@ -192,31 +193,31 @@
         {
             var results = new List<SelectOption>()
             {
-                CreateItemClass(StatCategory.Implicit),
-                CreateItemClass(StatCategory.Explicit),
-                CreateItemClass(StatCategory.Fractured),
+                CreateStatCategory(StatCategory.Implicit),
+                CreateStatCategory(StatCategory.Explicit),
+                CreateStatCategory(StatCategory.Fractured),
             };
 
             if (Item.Game == GameType.PathOfExile2)
             {
-                results.Add(CreateItemClass(StatCategory.Desecrated));
-                results.Add(CreateItemClass(StatCategory.Rune));
-                results.Add(CreateItemClass(StatCategory.Skill));
+                results.Add(CreateStatCategory(StatCategory.Desecrated));
+                results.Add(CreateStatCategory(StatCategory.Rune));
+                results.Add(CreateStatCategory(StatCategory.Skill));
             }
 
             if (Item.Game == GameType.PathOfExile1)
             {
-                results.Add(CreateItemClass(StatCategory.Crafted));
-                results.Add(CreateItemClass(StatCategory.Mutated));
+                results.Add(CreateStatCategory(StatCategory.Crafted));
+                results.Add(CreateStatCategory(StatCategory.Mutated));
             }
 
             return results;
 
-            SelectOption CreateItemClass(StatCategory statCategory)
+            SelectOption CreateStatCategory(StatCategory statCategory)
             {
                 return new SelectOption()
                 {
-                    Label = statCategory.ToString(),
+                    Label = StatCategoryResources[statCategory.ToString()],
                     Value = statCategory.ToString(),
                 };
             }
