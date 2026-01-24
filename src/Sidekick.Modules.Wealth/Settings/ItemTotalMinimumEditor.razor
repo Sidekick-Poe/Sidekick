@@ -24,7 +24,7 @@
 
     private async Task MinimumChanged(double? value)
     {
-        Minimum = value ?? DefaultSettings.WealthItemTotalMinimum;
+        Minimum = value ?? WealthSettings.WealthItemTotalMinimum;
         await SettingsService.Set(SettingKeys.WealthItemTotalMinimum, (int)Minimum);
     }
 

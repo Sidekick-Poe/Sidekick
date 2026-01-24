@@ -71,6 +71,8 @@ public class ItemLevelFilter : IntPropertyFilter
                     {
                         Checked = true,
                         NormalizeBy = 0,
+                        FillMinRange = true,
+                        FillMaxRange = false,
                         Conditions =
                         [
                             new()
@@ -112,6 +114,8 @@ public class ItemLevelFilter : IntPropertyFilter
                     {
                         Checked = true,
                         NormalizeBy = 0,
+                        FillMinRange = true,
+                        FillMaxRange = false,
                         Conditions =
                         [
                             new()

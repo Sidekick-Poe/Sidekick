@@ -72,27 +72,10 @@
                     </div>
                 }
 
-                <div class="flex flex-wrap gap-x-2 gap-y-1 items-start leading-4">
-                    <span class="mt-0.5 text-neutral-300">@Resources["AutoSelect_Then"]</span>
-
-                    <FilterAutoSelectRuleActions Rule="rule"
-                                                 Readonly="Filter.AutoSelect.Mode == AutoSelectMode.Default"
-                                                 Filter="Filter"
-                                                 OnChanged="Save"/>
-
-                    @if (rule.Checked == true)
-                    {
-                        <Tooltip Text="@Resources["AutoSelect_Always_Description", Filter.Text]"/>
-                    }
-                    else if (rule.Checked == false)
-                    {
-                        <Tooltip Text="@Resources["AutoSelect_Never_Description", Filter.Text]"/>
-                    }
-                    else
-                    {
-                        <Tooltip Text="@Resources["AutoSelect_Any_Description", Filter.Text]"/>
-                    }
-                </div>
+                <FilterAutoSelectRuleActions Rule="rule"
+                                             Readonly="Filter.AutoSelect.Mode == AutoSelectMode.Default"
+                                             Filter="Filter"
+                                             OnChanged="Save"/>
             </div>
         </div>
     }

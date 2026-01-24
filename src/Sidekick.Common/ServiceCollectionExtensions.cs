@@ -32,6 +32,12 @@ public static class ServiceCollectionExtensions
 
         services.AddSidekickInitializableService<IUiLanguageProvider, UiLanguageProvider>();
 
+        services.SetSidekickDefaultSetting(SettingKeys.LanguageParser, "en");
+        services.SetSidekickDefaultSetting(SettingKeys.LanguageUi, "en");
+        services.SetSidekickDefaultSetting(SettingKeys.Zoom, "1");
+        services.SetSidekickDefaultSetting(SettingKeys.RetainClipboard, true);
+        services.SetSidekickDefaultSetting(SettingKeys.UseHardwareAcceleration, true);
+
         return services.AddSidekickLogging();
     }
 
@@ -89,4 +95,15 @@ public static class ServiceCollectionExtensions
         SidekickConfiguration.InputHandlers.Add(typeof(TInputHandler));
         return services;
     }
+
+    public static IServiceCollection SetSidekickDefaultSetting(this IServiceCollection services, string key, object value)
+    {
+        if (!SidekickConfiguration.DefaultSettings.TryAdd(key, value))
+        {
+            SidekickConfiguration.DefaultSettings[key] = value;
+        }
+
+        return services;
+    }
+
 }

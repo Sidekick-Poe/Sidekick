@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Settings;
+
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 
 public class AutoSelectPreferences
@@ -16,7 +17,7 @@ public class AutoSelectPreferences
     {
         Converters =
         {
-            new JsonStringEnumConverter()
+            new JsonStringEnumConverter(),
         },
     };
 
@@ -27,6 +28,9 @@ public class AutoSelectPreferences
             new AutoSelectRule
             {
                 Checked = isChecked,
+                NormalizeBy = 0.1,
+                FillMinRange = true,
+                FillMaxRange = false,
             },
         ],
     };
@@ -47,7 +51,13 @@ public class AutoSelectPreferences
         var matchingRule = Rules.FirstOrDefault(rule => rule.Conditions.Count == 0 || rule.Conditions.All(c => ConditionMatches(c, item, filter)));
         if (matchingRule == null)
         {
-            return CreateDefault(false);
+            return new AutoSelectResult()
+            {
+                Checked = false,
+                FillMaxRange = fillMax,
+                FillMinRange = fillMin,
+                NormalizeBy = normalizeBy,
+            };
         }
 
         return new AutoSelectResult()
@@ -57,17 +67,6 @@ public class AutoSelectPreferences
             FillMaxRange = matchingRule.FillMaxRange ?? fillMax,
             FillMinRange = matchingRule.FillMinRange ?? fillMin,
         };
-
-        AutoSelectResult CreateDefault(bool? isChecked)
-        {
-            return new AutoSelectResult()
-            {
-                Checked = isChecked,
-                FillMaxRange = fillMax,
-                FillMinRange = fillMin,
-                NormalizeBy = normalizeBy,
-            };
-        }
     }
 
     private static bool ConditionMatches(AutoSelectCondition condition, Item item, TradeFilter filter)

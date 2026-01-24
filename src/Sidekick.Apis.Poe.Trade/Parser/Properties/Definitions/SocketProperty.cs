@@ -157,6 +157,9 @@ public class SocketFilter : IntPropertyFilter
                     new()
                     {
                         Checked = true,
+                        NormalizeBy = 0,
+                        FillMinRange = true,
+                        FillMaxRange = false,
                         Conditions =
                         [
                             new()
@@ -180,6 +183,9 @@ public class SocketFilter : IntPropertyFilter
                     new()
                     {
                         Checked = true,
+                        NormalizeBy = 0,
+                        FillMinRange = true,
+                        FillMaxRange = false,
                         Conditions =
                         [
                             new()

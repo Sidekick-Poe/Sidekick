@@ -1,6 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Initialization;
+using Sidekick.Common.Enums;
+using Sidekick.Common.Settings;
 using Sidekick.Modules.General.Keybinds;
 using Sidekick.Modules.General.Settings;
 
@@ -29,6 +31,14 @@ public static class StartupExtensions
 
         services.AddTransient<InitializationResources>();
         services.AddTransient<SettingsResources>();
+
+        services.SetSidekickDefaultSetting(SettingKeys.KeyClose, "Space");
+        services.SetSidekickDefaultSetting(SettingKeys.KeyOpenWiki, "Alt+W");
+        services.SetSidekickDefaultSetting(SettingKeys.KeyFindItems, "Ctrl+F");
+        services.SetSidekickDefaultSetting(SettingKeys.MouseWheelNavigateStash, true);
+        services.SetSidekickDefaultSetting(SettingKeys.EscapeClosesOverlays, true);
+        services.SetSidekickDefaultSetting(SettingKeys.OpenHomeOnLaunch, true);
+        services.SetSidekickDefaultSetting(SettingKeys.PreferredWiki, WikiSetting.PoeWiki.GetValueAttribute());
 
         return services;
     }

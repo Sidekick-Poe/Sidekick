@@ -331,4 +331,10 @@ Click the button to open in your browser.</value>
   <data name="AutoSelect_Mode" xml:space="preserve">
       <value>Mode</value>
   </data>
+  <data name="AutoSelect_NormalizeBy" xml:space="preserve">
+      <value>Normalize by</value>
+  </data>
+  <data name="AutoSelect_NormalizeBy_Hint" xml:space="preserve">
+      <value>Normalize item values. Leave at 0% for exact values.</value>
+  </data>
 </root>
