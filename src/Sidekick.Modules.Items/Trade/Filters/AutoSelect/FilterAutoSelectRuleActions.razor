@@ -36,24 +36,42 @@
             @if (!Readonly)
             {
                 <FormCheckbox Value="OverrideDefaults"
-                              ValueChanged="ToggleOverrideDefaults">Override defaults?
+                              ValueChanged="ToggleOverrideDefaults">@Resources["AutoSelect_OverrideDefaults"]
                 </FormCheckbox>
             }
 
+            <div class="w-full"></div>
+
             if (OverrideDefaults)
             {
-                <FilterAutoSelectNormalizeBy Value="Rule.NormalizeBy" Readonly="Readonly"/>
+                <FilterAutoSelectNormalizeBy Value="Rule.NormalizeBy"
+                                             ValueChanged="@(async (double? value) => { Rule.NormalizeBy = value; await OnChanged.InvokeAsync(); })"
+                                             Readonly="Readonly"/>
+                <FormCheckbox Value="@(Rule.FillMinRange ?? false)"
+                              ValueChanged="@(async (bool value) => { Rule.FillMinRange = value; await OnChanged.InvokeAsync(); })"
+                              Readonly="Readonly">@Resources["AutoSelect_FillMin"]</FormCheckbox>
+                <FormCheckbox Value="@(Rule.FillMaxRange ?? false)"
+                              ValueChanged="@(async (bool value) => { Rule.FillMaxRange = value; await OnChanged.InvokeAsync(); })"
+                              Readonly="Readonly">@Resources["AutoSelect_FillMax"]</FormCheckbox>
             }
             else if (Readonly)
             {
                 if (Rule.NormalizeBy.HasValue)
                 {
                     <FilterAutoSelectNormalizeBy Value="Rule.NormalizeBy" Readonly="true"/>
+                    <FormCheckbox Value="@(Rule.FillMinRange ?? false)"
+                                  Readonly="true">@Resources["AutoSelect_FillMin"]</FormCheckbox>
+                    <FormCheckbox Value="@(Rule.FillMaxRange ?? false)"
+                                  Readonly="true">@Resources["AutoSelect_FillMax"]</FormCheckbox>
                 }
             }
             else
             {
                 <FilterAutoSelectNormalizeBy Value="DefaultNormalizeBy" Readonly="true"/>
+                <FormCheckbox Value="DefaultFillMin"
+                              Readonly="true">@Resources["AutoSelect_FillMin"]</FormCheckbox>
+                <FormCheckbox Value="DefaultFillMax"
+                              Readonly="true">@Resources["AutoSelect_FillMax"]</FormCheckbox>
             }
         }
     </div>
@@ -84,6 +102,8 @@
     };
 
     private double DefaultNormalizeBy { get; set; }
+    private bool DefaultFillMin { get; set; }
+    private bool DefaultFillMax { get; set; }
 
     private bool OverrideDefaults => Rule.NormalizeBy.HasValue || Rule.FillMaxRange.HasValue || Rule.FillMinRange.HasValue;
 
@@ -115,6 +135,8 @@
         }
 
         DefaultNormalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
+        DefaultFillMin = await SettingsService.GetBool(AutoSelectPreferences.DefaultFillMinSettingKey);
+        DefaultFillMax = await SettingsService.GetBool(AutoSelectPreferences.DefaultFillMaxSettingKey);
 
         await base.OnInitializedAsync();
     }

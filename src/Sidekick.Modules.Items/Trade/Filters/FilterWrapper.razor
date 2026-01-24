@@ -6,7 +6,16 @@
     @ChildContent
     @if (Filter != null)
     {
-        <FilterSettings Filter="Filter"/>
+        if (Absolute)
+        {
+            <div class="absolute right-0.5 top-0.5">
+                <FilterSettings Filter="Filter"/>
+            </div>
+        }
+        else
+        {
+            <FilterSettings Filter="Filter"/>
+        }
     }
 </div>
 
@@ -20,5 +29,8 @@
 
     [Parameter]
     public string? Class { get; set; }
+
+    [Parameter]
+    public bool Absolute { get; set; }
 
 }

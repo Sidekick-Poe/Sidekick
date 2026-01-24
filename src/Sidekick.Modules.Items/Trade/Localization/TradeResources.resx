@@ -337,4 +337,13 @@ Click the button to open in your browser.</value>
   <data name="AutoSelect_NormalizeBy_Hint" xml:space="preserve">
       <value>Normalize item values. Leave at 0% for exact values.</value>
   </data>
+  <data name="AutoSelect_FillMin" xml:space="preserve">
+      <value>Fill Min</value>
+  </data>
+  <data name="AutoSelect_FillMax" xml:space="preserve">
+      <value>Fill Max</value>
+  </data>
+  <data name="AutoSelect_OverrideDefaults" xml:space="preserve">
+      <value>Override defaults?</value>
+  </data>
 </root>

@@ -54,9 +54,9 @@ public class AutoSelectPreferences
             return new AutoSelectResult()
             {
                 Checked = false,
+                NormalizeBy = normalizeBy,
                 FillMaxRange = fillMax,
                 FillMinRange = fillMin,
-                NormalizeBy = normalizeBy,
             };
         }
 
@@ -135,7 +135,7 @@ public class AutoSelectPreferences
         var value = expressionValue.ToString() ?? string.Empty;
         if (string.IsNullOrEmpty(value) || conditionValue == null) return false;
 
-        return Regex.IsMatch(value, conditionValue, RegexOptions.CultureInvariant | RegexOptions.Multiline);
+        return Regex.IsMatch(value, conditionValue, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Multiline);
     }
 
     private static bool TryCompare(object expressionValue, string? conditionValue, out int result)

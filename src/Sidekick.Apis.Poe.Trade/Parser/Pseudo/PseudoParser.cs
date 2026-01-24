@@ -78,6 +78,7 @@ public class PseudoParser
             Checked = true,
         };
         await expandableFilter.Initialize(item, settingsService);
+        expandableFilter.Checked = true;
 
         return [expandableFilter];
     }

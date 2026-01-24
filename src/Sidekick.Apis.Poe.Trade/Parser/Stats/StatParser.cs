@@ -337,6 +337,7 @@ public class StatParser
                 Checked = true,
             };
         await expandableFilter.Initialize(item, settingsService);
+        expandableFilter.Checked = true;
 
         return [expandableFilter];
     }

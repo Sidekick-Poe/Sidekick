@@ -2,7 +2,7 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Apis.Poe.Trade.Trade.Items.Results
 
-<FilterWrapper Filter="@Filter">
+<FilterWrapper Filter="@Filter" Absolute="true">
     <div class="grow flex flex-nowrap items-center min-h-5 justify-center gap-2 cursor-pointer @LineContentType.Simple.GetColour()"
          @onclick="() => Filter.Checked = !Filter.Checked"
          @onclick:preventDefault="true">
