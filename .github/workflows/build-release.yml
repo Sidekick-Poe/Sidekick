@@ -20,33 +20,39 @@ jobs:
         shell: pwsh
         run: |
           # Get the current date
-          $DATE = Get-Date -Format "yyyy.Mdd"
+          $DATE = Get-Date -Format "yyyy.M.dd"
+          
+          # Set the current date in YYYY-MM-DD format
+          $TODAY=$(date +'%Y-%m-%d')
 
-          # Get the current hour and minute without leading zero for the hour
-          $HOUR = [int](Get-Date -Format "HH") # Convert hour to integer to strip any leading zero
+          # Use GitHub CLI to list workflow runs for today, filtered by workflow file name
+          # The 'gh api' command is used to interact with the GitHub REST API
+          $RUNS=$(gh api --paginate "repos/${{ github.repository }}/actions/runs?created=>$TODAY&workflow=${{ github.workflow_id }}")
 
-          # If the hour is 0 (midnight), set it to an empty string
-          if ($HOUR -eq 0) {
-            $HOUR = ''
-          }
-                
-          $MINUTE = Get-Date -Format "mm" # Keep minutes as-is
+          # Count the number of existing runs for today
+          # We count the 'total_count' from the API response(s)
+          # Note: A more robust solution might involve parsing the actual list of runs and filtering more precisely if API 'created' filter isn't exact enough
+          $COUNT=$(echo "$RUNS" | jq '[.workflow_runs[]] | length')
 
-          # Construct the time, omitting hour if it's empty
-          $TIME = "$HOUR$MINUTE"
-
+          # The current run hasn't finished, so the count should be the number of previous runs + 1
+          $DAILY_RUN_NUMBER=$(($COUNT + 1))
+          
           # Construct the version using DATE and TIME
-          $VERSION = "$DATE.$TIME"
+          $VERSION = "$DATE+$DAILY_RUN_NUMBER"
           Write-Output "Generated version: $VERSION"
 
+          $CSPROJ_VERSION = "$DATE.$DAILY_RUN_NUMBER"
+          Write-Output "Generated csproj version: $CSPROJ_VERSION"
+          
           # Export version as an output
           echo "version=$VERSION" >> $env:GITHUB_OUTPUT
+          echo "csproj_version=$CSPROJ_VERSION" >> $env:GITHUB_OUTPUT
 
       - name: Version - Update project files
         uses: vers-one/dotnet-project-version-updater@v1.7
         with:
           file: "src/**/*.csproj"
-          version: ${{ steps.version.outputs.version }}
+          version: ${{ steps.version.outputs.csproj_version }}
 
       - name: Release - Delete unpublished
         uses: hugo19941994/delete-draft-releases@v1.0.0
@@ -95,9 +101,6 @@ jobs:
         if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
-          $version = "${{ steps.version.outputs.version }}"
-          Write-Output "Version: $version"
-
           dotnet publish src/Sidekick.Wpf/Sidekick.Wpf.csproj -c Release -r win-x64 -o ./Publish
           dotnet publish src/Sidekick.Web/Sidekick.Web.csproj -c Release -r win-x64 -o ./Publish-Web
 
@@ -132,9 +135,6 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         shell: bash
         run: |
-          version="${{ steps.version.outputs.version }}"
-          echo "Version: $version"
-
           dotnet build src/Sidekick.PhotinoBlazor/Sidekick.PhotinoBlazor.csproj -c Release -r linux-x64
 
           dotnet publish src/Sidekick.PhotinoBlazor/Sidekick.PhotinoBlazor.csproj -c Release -r linux-x64 -o ./Publish
