@@ -35,7 +35,7 @@ jobs:
           $COUNT=$(echo "$RUNS" | jq '[.workflow_runs[]] | length')
 
           # The current run hasn't finished, so the count should be the number of previous runs + 1
-          $DAILY_RUN_NUMBER=$((COUNT + 1))
+          $DAILY_RUN_NUMBER=$(($COUNT + 1))
           
           # Construct the version using DATE and TIME
           $VERSION = "$DATE+$DAILY_RUN_NUMBER"
