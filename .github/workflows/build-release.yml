@@ -46,7 +46,7 @@ jobs:
           
           # Export version as an output
           echo "version=$VERSION" >> $env:GITHUB_OUTPUT
-          echo "csproj_version=$VERSION" >> $env:GITHUB_OUTPUT
+          echo "csproj_version=$CSPROJ_VERSION" >> $env:GITHUB_OUTPUT
 
       - name: Version - Update project files
         uses: vers-one/dotnet-project-version-updater@v1.7
@@ -135,9 +135,6 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         shell: bash
         run: |
-          version="${{ steps.version.outputs.version }}"
-          echo "Version: $version"
-
           dotnet build src/Sidekick.PhotinoBlazor/Sidekick.PhotinoBlazor.csproj -c Release -r linux-x64
 
           dotnet publish src/Sidekick.PhotinoBlazor/Sidekick.PhotinoBlazor.csproj -c Release -r linux-x64 -o ./Publish
