@@ -29,9 +29,9 @@ public class AreaLevelProperty(
         if (item.Properties.AreaLevel > 0) propertyBlock.Parsed = true;
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.AreaLevel <= 0) return null;
+        if (item.Properties.AreaLevel <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new AreaLevelFilter
         {
@@ -40,7 +40,7 @@ public class AreaLevelProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(AreaLevelProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = false,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

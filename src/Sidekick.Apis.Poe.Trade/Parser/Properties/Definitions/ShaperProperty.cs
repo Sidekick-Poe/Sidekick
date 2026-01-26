@@ -29,16 +29,16 @@ public class ShaperProperty(
         item.Properties.Influences.Shaper = GetBool(Pattern, item.Text);
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.Properties.Influences.Shaper) return null;
+        if (!item.Properties.Influences.Shaper) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new ShaperFilter
         {
             Text = Label,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(ShaperProperty)}_{game.GetValueAttribute()}",
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

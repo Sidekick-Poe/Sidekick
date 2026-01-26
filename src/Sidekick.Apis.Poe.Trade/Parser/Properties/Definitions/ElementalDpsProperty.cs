@@ -21,11 +21,11 @@ public class ElementalDpsProperty(
 
     public override void Parse(Item item) {}
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
         if (item.Properties.ElementalDps <= 0)
         {
-            return null;
+            return Task.FromResult<TradeFilter?>(null);
         }
 
         var filter = new ElementalDpsFilter(game)
@@ -37,7 +37,7 @@ public class ElementalDpsProperty(
             NormalizeEnabled = true,
         };
 
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

@@ -35,9 +35,9 @@ public class RevivesAvailableProperty(
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.RevivesAvailable));
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.RevivesAvailable <= 0) return null;
+        if (item.Properties.RevivesAvailable <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new RevivesAvailableFilter
         {
@@ -47,7 +47,7 @@ public class RevivesAvailableProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(RevivesAvailableProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = false,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

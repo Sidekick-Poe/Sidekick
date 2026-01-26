@@ -35,9 +35,9 @@ public class RareMonstersProperty(
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.RareMonsters));
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.RareMonsters <= 0) return null;
+        if (item.Properties.RareMonsters <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new RareMonstersFilter
         {
@@ -49,7 +49,7 @@ public class RareMonstersProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(RareMonstersProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = true,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

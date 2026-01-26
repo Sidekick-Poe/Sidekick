@@ -29,16 +29,16 @@ public class WarlordProperty(
         item.Properties.Influences.Warlord = GetBool(Pattern, item.Text);
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.Properties.Influences.Warlord) return null;
+        if (!item.Properties.Influences.Warlord) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new WarlordFilter
         {
             Text = Label,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(WarlordProperty)}_{game.GetValueAttribute()}",
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

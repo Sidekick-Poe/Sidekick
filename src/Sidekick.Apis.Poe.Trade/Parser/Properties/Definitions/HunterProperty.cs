@@ -29,16 +29,16 @@ public class HunterProperty(
         item.Properties.Influences.Hunter = GetBool(Pattern, item.Text);
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.Properties.Influences.Hunter) return null;
+        if (!item.Properties.Influences.Hunter) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new HunterFilter
         {
             Text = Label,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(HunterProperty)}_{game.GetValueAttribute()}",
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

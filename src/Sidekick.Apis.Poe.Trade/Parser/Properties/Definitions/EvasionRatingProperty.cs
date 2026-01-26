@@ -35,9 +35,9 @@ public class EvasionRatingProperty(
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.EvasionRating));
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.EvasionRating <= 0) return null;
+        if (item.Properties.EvasionRating <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new EvasionRatingFilter(game)
         {
@@ -48,7 +48,7 @@ public class EvasionRatingProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(EvasionRatingProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = true,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

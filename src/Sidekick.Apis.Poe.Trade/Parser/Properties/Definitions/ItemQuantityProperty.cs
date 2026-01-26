@@ -34,9 +34,9 @@ public class ItemQuantityProperty(
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.ItemQuantity));
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.ItemQuantity <= 0) return null;
+        if (item.Properties.ItemQuantity <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new ItemQuantityFilter
         {
@@ -48,7 +48,7 @@ public class ItemQuantityProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(ItemQuantityProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = true,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

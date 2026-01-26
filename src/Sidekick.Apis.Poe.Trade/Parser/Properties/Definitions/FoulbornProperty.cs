@@ -34,18 +34,18 @@ public class FoulbornProperty(
         item.Properties.Foulborn = item.Stats.Any(x => x.ApiInformation.Any(y => y.Category == StatCategory.Mutated));
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile2) return null;
-        if (tradeFilterProvider.Foulborn == null) return null;
-        if (item.Properties.Rarity != Rarity.Unique) return null;
+        if (game == GameType.PathOfExile2) return Task.FromResult<TradeFilter?>(null);
+        if (tradeFilterProvider.Foulborn == null) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.Rarity != Rarity.Unique) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new FoulbornFilter
         {
             Text = Label,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(FoulbornProperty)}_{game.GetValueAttribute()}",
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

@@ -32,16 +32,16 @@ public class UnidentifiedProperty(
         item.Properties.Unidentified = GetBool(Pattern, item.Text);
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.Properties.Unidentified) return null;
+        if (!item.Properties.Unidentified) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new UnidentifiedFilter
         {
             Text = Label,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(UnidentifiedProperty)}_{game.GetValueAttribute()}",
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

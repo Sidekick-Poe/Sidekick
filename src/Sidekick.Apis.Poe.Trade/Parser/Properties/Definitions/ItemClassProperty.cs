@@ -221,13 +221,13 @@ public class ItemClassProperty : PropertyDefinition
         item.Properties.ItemClass = apiItemCategoryId?.GetEnumFromValue<ItemClass>() ?? ItemClass.Unknown;
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal)) return null;
-        if (item.Properties.ItemClass == ItemClass.Unknown) return null;
+        if (item.Properties.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal)) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.ItemClass == ItemClass.Unknown) return Task.FromResult<TradeFilter?>(null);
 
         var classLabel = tradeFilterProvider.TypeCategory?.Option.Options.FirstOrDefault(x => x.Id == item.Properties.ItemClass.GetValueAttribute())?.Text;
-        if (classLabel == null || item.ApiInformation.Type == null) return null;
+        if (classLabel == null || item.ApiInformation.Type == null) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new ItemClassFilter
         {
@@ -237,7 +237,7 @@ public class ItemClassProperty : PropertyDefinition
             BaseType = item.ApiInformation.Type,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(ItemClassProperty)}_{game.GetValueAttribute()}",
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

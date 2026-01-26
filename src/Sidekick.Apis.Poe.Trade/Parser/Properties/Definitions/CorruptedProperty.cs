@@ -28,14 +28,14 @@ public class CorruptedProperty(
         item.Properties.Corrupted = GetBool(Pattern, item.Text);
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
         var filter = new CorruptedFilter
         {
             Text = Label,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(CorruptedProperty)}_{game.GetValueAttribute()}",
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

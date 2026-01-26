@@ -29,16 +29,16 @@ public class RedeemerProperty(
         item.Properties.Influences.Redeemer = GetBool(Pattern, item.Text);
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.Properties.Influences.Redeemer) return null;
+        if (!item.Properties.Influences.Redeemer) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new RedeemerFilter
         {
             Text = Label,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(RedeemerProperty)}_{game.GetValueAttribute()}",
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

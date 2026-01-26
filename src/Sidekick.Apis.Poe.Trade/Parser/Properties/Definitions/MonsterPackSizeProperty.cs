@@ -35,9 +35,9 @@ public class MonsterPackSizeProperty(
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.MonsterPackSize));
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.MonsterPackSize <= 0) return null;
+        if (item.Properties.MonsterPackSize <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new MonsterPackSizeFilter
         {
@@ -49,7 +49,7 @@ public class MonsterPackSizeProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(MonsterPackSizeProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = true,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

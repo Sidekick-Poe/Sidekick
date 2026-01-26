@@ -139,11 +139,11 @@ public class WeaponDamageProperty(
         }
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
         if (item.Properties.TotalDamage <= 0)
         {
-            return null;
+            return Task.FromResult<TradeFilter?>(null);
         }
 
         var filter = new WeaponDamageFilter(game)
@@ -155,7 +155,7 @@ public class WeaponDamageProperty(
             NormalizeEnabled = true,
         };
 
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

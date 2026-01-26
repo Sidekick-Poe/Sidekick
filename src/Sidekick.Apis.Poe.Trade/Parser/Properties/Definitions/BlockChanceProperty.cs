@@ -39,9 +39,9 @@ public class BlockChanceProperty(
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.BlockChance));
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.BlockChance <= 0) return null;
+        if (item.Properties.BlockChance <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new BlockChanceFilter(game)
         {
@@ -52,7 +52,7 @@ public class BlockChanceProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(BlockChanceProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = true,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

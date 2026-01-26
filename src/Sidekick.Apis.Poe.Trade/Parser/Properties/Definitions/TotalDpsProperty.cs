@@ -21,11 +21,11 @@ public class TotalDpsProperty(
 
     public override void Parse(Item item) {}
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
         if (item.Properties.TotalDps <= 0)
         {
-            return null;
+            return Task.FromResult<TradeFilter?>(null);
         }
 
         var filter = new TotalDpsFilter(game)
@@ -38,7 +38,7 @@ public class TotalDpsProperty(
             NormalizeEnabled = true,
         };
 
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

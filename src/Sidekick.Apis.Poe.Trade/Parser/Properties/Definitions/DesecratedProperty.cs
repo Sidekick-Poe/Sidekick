@@ -26,17 +26,17 @@ public class DesecratedProperty(
 
     public override void Parse(Item item) {}
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile1) return null;
-        if (tradeFilterProvider.Desecrated == null) return null;
+        if (game == GameType.PathOfExile1) return Task.FromResult<TradeFilter?>(null);
+        if (tradeFilterProvider.Desecrated == null) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new DesecratedFilter
         {
             Text = Label,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(DesecratedProperty)}_{game.GetValueAttribute()}",
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

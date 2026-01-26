@@ -26,16 +26,16 @@ public class MirroredProperty(
 
     public override void Parse(Item item) {}
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (tradeFilterProvider.Mirrored == null) return null;
+        if (tradeFilterProvider.Mirrored == null) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new MirroredFilter
         {
             Text = Label,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(MirroredProperty)}_{game.GetValueAttribute()}",
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

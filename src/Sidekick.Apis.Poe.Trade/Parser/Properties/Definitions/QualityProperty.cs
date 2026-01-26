@@ -41,9 +41,9 @@ public class QualityProperty(
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.Quality));
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.Quality <= 0) return null;
+        if (item.Properties.Quality <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new QualityFilter
         {
@@ -55,7 +55,7 @@ public class QualityProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(QualityProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = true,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

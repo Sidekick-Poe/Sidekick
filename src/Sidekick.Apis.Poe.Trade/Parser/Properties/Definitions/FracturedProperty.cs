@@ -24,16 +24,16 @@ public class FracturedProperty(
 
     public override void Parse(Item item) {}
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (tradeFilterProvider.Fractured == null) return null;
+        if (tradeFilterProvider.Fractured == null) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new FracturedFilter
         {
             Text = Label,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(FracturedProperty)}_{game.GetValueAttribute()}",
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

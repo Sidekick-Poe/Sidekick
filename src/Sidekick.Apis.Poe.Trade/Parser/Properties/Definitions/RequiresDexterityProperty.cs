@@ -39,9 +39,9 @@ public class RequiresDexterityProperty(
         }
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.RequiresDexterity <= 0) return null;
+        if (item.Properties.RequiresDexterity <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new RequiresDexterityFilter
         {
@@ -50,7 +50,7 @@ public class RequiresDexterityProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(RequiresDexterityProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = false,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

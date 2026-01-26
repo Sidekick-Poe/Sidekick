@@ -35,9 +35,9 @@ public class AttacksPerSecondProperty(
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.AttacksPerSecond));
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.AttacksPerSecond <= 0) return null;
+        if (item.Properties.AttacksPerSecond <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new AttacksPerSecondFilter(game)
         {
@@ -47,7 +47,7 @@ public class AttacksPerSecondProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(AttacksPerSecondProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = true,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

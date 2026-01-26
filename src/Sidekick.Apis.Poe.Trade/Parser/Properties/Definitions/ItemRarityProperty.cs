@@ -35,9 +35,9 @@ public class ItemRarityProperty(
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.ItemRarity));
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.ItemRarity <= 0) return null;
+        if (item.Properties.ItemRarity <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new ItemRarityFilter
         {
@@ -49,7 +49,7 @@ public class ItemRarityProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(ItemRarityProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = true,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

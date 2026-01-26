@@ -20,9 +20,9 @@ public class ChaosDpsProperty(
 
     public override void Parse(Item item) {}
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.ChaosDps <= 0) return null;
+        if (item.Properties.ChaosDps <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new ChaosDpsFilter
         {
@@ -33,7 +33,7 @@ public class ChaosDpsProperty(
             NormalizeEnabled = true,
         };
 
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

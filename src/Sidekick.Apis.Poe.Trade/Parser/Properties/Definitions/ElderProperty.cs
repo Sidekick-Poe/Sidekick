@@ -29,16 +29,16 @@ public class ElderProperty(
         item.Properties.Influences.Elder = GetBool(Pattern, item.Text);
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.Properties.Influences.Elder) return null;
+        if (!item.Properties.Influences.Elder) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new ElderFilter
         {
             Text = Label,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(ElderProperty)}_{game.GetValueAttribute()}",
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 
