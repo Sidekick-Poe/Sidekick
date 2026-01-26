@@ -8,36 +8,62 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
 public sealed class StatFilter : TradeFilter, INormalizableFilter
 {
-    public static AutoSelectPreferences GetDefault() => new()
+    public static AutoSelectPreferences GetDefault(GameType game)
     {
-        Mode = AutoSelectMode.Default,
-        Rules =
-        [
-            new AutoSelectRule()
+        var preferences = new AutoSelectPreferences
+        {
+            Mode = AutoSelectMode.Default,
+            Rules =
+            [
+                new AutoSelectRule()
+                {
+                    Checked = true,
+                    Conditions =
+                    [
+                        new AutoSelectCondition()
+                        {
+                            Type = AutoSelectConditionType.StatCategory,
+                            Comparison = AutoSelectComparisonType.IsContainedIn,
+                            Value = JsonSerializer.Serialize(new List<StatCategory>()
+                            {
+                                StatCategory.Fractured,
+                            }, AutoSelectPreferences.JsonSerializerOptions),
+                        },
+                    ],
+                },
+            ],
+        };
+
+        if (game == GameType.PathOfExile2)
+        {
+            preferences.Rules.Add(new AutoSelectRule()
             {
                 Checked = true,
                 Conditions =
                 [
                     new AutoSelectCondition()
                     {
-                        Type = AutoSelectConditionType.StatCategory,
+                        Type = AutoSelectConditionType.Rarity,
                         Comparison = AutoSelectComparisonType.IsContainedIn,
-                        Value = JsonSerializer.Serialize(new List<StatCategory>()
+                        Value = JsonSerializer.Serialize(new List<Rarity>()
                         {
-                            StatCategory.Fractured,
+                            Rarity.Normal,
+                            Rarity.Magic,
                         }, AutoSelectPreferences.JsonSerializerOptions),
-                    },
-                ],
-            },
-        ],
-    };
+                    }
+                ]
+            });
+        }
 
-    public StatFilter(Stat stat)
+        return preferences;
+    }
+
+    public StatFilter(Stat stat, GameType game)
     {
         Stat = stat;
         Text = stat.Text;
 
-        DefaultAutoSelect = GetDefault();
+        DefaultAutoSelect = GetDefault(game);
 
         var categories = stat.ApiInformation.Select(x => x.Category).Distinct().ToList();
         if (categories.Any(x => x is StatCategory.Fractured or StatCategory.Desecrated or StatCategory.Crafted))
