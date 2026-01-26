@@ -317,7 +317,7 @@ public class StatParser
         var result = new List<TradeFilter>();
         for (var i = 0; i < item.Stats.Count; i++)
         {
-            result.Add(new StatFilter(item.Stats[i])
+            result.Add(new StatFilter(item.Stats[i], item.Game)
             {
                 AutoSelectSettingKey = autoSelectKey,
             });
@@ -333,7 +333,7 @@ public class StatParser
             new ExpandableFilter(resources["Stat_Filters"], result.ToArray())
             {
                 AutoSelectSettingKey = autoSelectKey,
-                DefaultAutoSelect = StatFilter.GetDefault(),
+                DefaultAutoSelect = StatFilter.GetDefault(item.Game),
                 Checked = true,
             };
         await expandableFilter.Initialize(item, settingsService);
