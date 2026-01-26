@@ -49,7 +49,7 @@
     private List<ChatSetting> ChatSettings { get; set; } = [];
     protected override async Task OnInitializedAsync()
     {
-        ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands, () => []);
+        ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands, () => []) ?? [];
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
         await base.OnInitializedAsync();
@@ -94,7 +94,7 @@
     {
         if (!keys.Contains(SettingKeys.ChatCommands)) return;
 
-        ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands, () => []);
+        ChatSettings = await SettingsService.GetObject<List<ChatSetting>>(SettingKeys.ChatCommands, () => []) ?? [];
         await InvokeAsync(StateHasChanged);
     }
 

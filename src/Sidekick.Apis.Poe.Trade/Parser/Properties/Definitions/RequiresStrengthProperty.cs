@@ -39,9 +39,9 @@ public class RequiresStrengthProperty(
         }
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.RequiresStrength <= 0) return null;
+        if (item.Properties.RequiresStrength <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new RequiresStrengthFilter
         {
@@ -50,7 +50,7 @@ public class RequiresStrengthProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(RequiresStrengthProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = false,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

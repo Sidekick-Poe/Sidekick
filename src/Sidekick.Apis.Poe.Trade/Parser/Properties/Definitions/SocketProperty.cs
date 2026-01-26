@@ -109,13 +109,13 @@ public class SocketProperty(
         item.Properties.Sockets = result;
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
         if (item.Properties.Sockets is not
             {
                 Count: > 0
             })
-            return null;
+            return Task.FromResult<TradeFilter?>(null);
 
         int value;
         string? hint;
@@ -138,7 +138,7 @@ public class SocketProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(SocketProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = false,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

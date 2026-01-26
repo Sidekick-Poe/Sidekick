@@ -40,9 +40,9 @@ public class ItemLevelProperty(
         item.Properties.ItemLevel = GetInt(Pattern, item.Text);
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.ItemLevel <= 0) return null;
+        if (item.Properties.ItemLevel <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new ItemLevelFilter(game)
         {
@@ -51,7 +51,7 @@ public class ItemLevelProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(ItemLevelProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = true,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

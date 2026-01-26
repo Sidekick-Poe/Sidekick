@@ -38,9 +38,9 @@ public class CriticalHitChanceProperty(
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.CriticalHitChance));
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.CriticalHitChance <= 0) return null;
+        if (item.Properties.CriticalHitChance <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new CriticalHitChanceFilter(game)
         {
@@ -51,7 +51,7 @@ public class CriticalHitChanceProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(CriticalHitChanceProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = true,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

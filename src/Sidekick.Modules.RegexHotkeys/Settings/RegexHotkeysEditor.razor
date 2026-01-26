@@ -52,7 +52,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        RegexHotkeys = await SettingsService.GetObject<List<RegexHotkey>>(SettingKey, () => []);
+        RegexHotkeys = await SettingsService.GetObject<List<RegexHotkey>>(SettingKey, () => []) ?? [];
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
         await base.OnInitializedAsync();
@@ -62,7 +62,7 @@
     {
         if (!keys.Contains(SettingKey)) return;
 
-        RegexHotkeys = await SettingsService.GetObject<List<RegexHotkey>>(SettingKey, () => []);
+        RegexHotkeys = await SettingsService.GetObject<List<RegexHotkey>>(SettingKey, () => []) ?? [];
         await InvokeAsync(StateHasChanged);
     }
 

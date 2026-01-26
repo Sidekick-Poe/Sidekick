@@ -21,11 +21,11 @@ public class PhysicalDpsProperty(
 
     public override void Parse(Item item) {}
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
         if (item.Properties.PhysicalDps <= 0)
         {
-            return null;
+            return Task.FromResult<TradeFilter?>(null);
         }
 
         var filter = new PhysicalDpsFilter(game)
@@ -38,7 +38,7 @@ public class PhysicalDpsProperty(
             NormalizeEnabled = true,
         };
 
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

@@ -34,9 +34,9 @@ public class RewardProperty(
         if (item.Properties.Reward != null) propertyBlock.Parsed = true;
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile2 || item.Properties.Reward == null) return null;
+        if (game == GameType.PathOfExile2 || item.Properties.Reward == null) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new RewardFilter(apiItemProvider)
         {
@@ -45,7 +45,7 @@ public class RewardProperty(
             Type = LineContentType.Unique,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(RewardProperty)}_{game.GetValueAttribute()}",
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

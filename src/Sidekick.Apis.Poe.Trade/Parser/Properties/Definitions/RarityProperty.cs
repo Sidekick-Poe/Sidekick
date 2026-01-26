@@ -80,9 +80,9 @@ public class RarityProperty(
         item.Properties.Rarity = Rarity.Unknown;
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal or Rarity.Unique)) return null;
+        if (item.Properties.Rarity is not (Rarity.Rare or Rarity.Magic or Rarity.Normal or Rarity.Unique)) return Task.FromResult<TradeFilter?>(null);
 
         var rarityLabel = item.Properties.Rarity switch
         {
@@ -93,14 +93,14 @@ public class RarityProperty(
             Rarity.Unique => gameLanguageProvider.Language.RarityUnique,
             _ => null
         };
-        if (rarityLabel == null) return null;
+        if (rarityLabel == null) return Task.FromResult<TradeFilter?>(null);
 
         if (item.Properties.Rarity == Rarity.Unique)
         {
-            return new UniqueRarityFilter
+            return Task.FromResult<TradeFilter?>(new UniqueRarityFilter
             {
                 AutoSelectSettingKey = $"Trade_Filter_{nameof(RarityProperty)}_{game.GetValueAttribute()}",
-            };
+            });
         }
 
         var filter = new RarityFilter
@@ -109,7 +109,7 @@ public class RarityProperty(
             Value = rarityLabel,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(RarityProperty)}_{game.GetValueAttribute()}",
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

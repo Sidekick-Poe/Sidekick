@@ -41,9 +41,9 @@ public class RequiresLevelProperty(
         }
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.RequiresLevel <= 0) return null;
+        if (item.Properties.RequiresLevel <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new RequiresLevelFilter
         {
@@ -52,7 +52,7 @@ public class RequiresLevelProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(RequiresLevelProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = false,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

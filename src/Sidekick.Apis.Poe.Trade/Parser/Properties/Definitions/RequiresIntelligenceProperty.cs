@@ -39,9 +39,9 @@ public class RequiresIntelligenceProperty(
         }
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.RequiresIntelligence <= 0) return null;
+        if (item.Properties.RequiresIntelligence <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new RequiresIntelligenceFilter
         {
@@ -50,7 +50,7 @@ public class RequiresIntelligenceProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(RequiresIntelligenceProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = false,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

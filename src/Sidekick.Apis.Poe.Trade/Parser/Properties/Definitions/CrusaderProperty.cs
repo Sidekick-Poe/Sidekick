@@ -29,16 +29,16 @@ public class CrusaderProperty(
         item.Properties.Influences.Crusader = GetBool(Pattern, item.Text);
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.Properties.Influences.Crusader) return null;
+        if (!item.Properties.Influences.Crusader) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new CrusaderFilter
         {
             Text = Label,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(CrusaderProperty)}_{game.GetValueAttribute()}",
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

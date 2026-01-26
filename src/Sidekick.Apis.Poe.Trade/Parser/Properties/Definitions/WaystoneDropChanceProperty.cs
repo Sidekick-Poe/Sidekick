@@ -35,9 +35,9 @@ public class WaystoneDropChanceProperty(
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.WaystoneDropChance));
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.WaystoneDropChance <= 0) return null;
+        if (item.Properties.WaystoneDropChance <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new WaystoneDropChanceFilter
         {
@@ -49,7 +49,7 @@ public class WaystoneDropChanceProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(WaystoneDropChanceProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = true,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

@@ -29,9 +29,9 @@ public class MapTierProperty(
         if (item.Properties.MapTier > 0) propertyBlock.Parsed = true;
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.MapTier <= 0) return null;
+        if (item.Properties.MapTier <= 0) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new MapTierFilter
         {
@@ -40,7 +40,7 @@ public class MapTierProperty(
             AutoSelectSettingKey = $"Trade_Filter_{nameof(MapTierProperty)}_{game.GetValueAttribute()}",
             NormalizeEnabled = true,
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 

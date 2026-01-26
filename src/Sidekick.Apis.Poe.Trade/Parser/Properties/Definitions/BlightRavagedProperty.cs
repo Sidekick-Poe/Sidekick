@@ -27,16 +27,16 @@ public class BlightRavagedProperty(
         item.Properties.BlightRavaged = Pattern.IsMatch(item.Text.Blocks[0].Lines[^1].Text);
     }
 
-    public override async Task<TradeFilter?> GetFilter(Item item)
+    public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.Properties.BlightRavaged) return null;
+        if (!item.Properties.BlightRavaged) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new BlightRavagedFilter
         {
             Text = Label,
             AutoSelectSettingKey = $"Trade_Filter_{nameof(BlightRavagedProperty)}_{game.GetValueAttribute()}",
         };
-        return filter;
+        return Task.FromResult<TradeFilter?>(filter);
     }
 }
 
