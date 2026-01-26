@@ -68,7 +68,7 @@
         Loading = true;
         StateHasChanged();
 
-        await Task.WhenAll(LoadScout(), LoadNinja());
+        await Task.WhenAny(LoadScout(), LoadNinja());
 
         Loading = false;
         StateHasChanged();
@@ -78,12 +78,14 @@
     {
         ScoutItem = await ScoutItemProvider.GetItem(Item.ApiInformation.InvariantText);
         ScoutHistory = (ScoutItem != null) ? await ScoutHistoryProvider.GetCurrencyHistory(ScoutItem.ItemId) : null;
+        StateHasChanged();
     }
 
     private async Task LoadNinja()
     {
         var item = NinjaItemProvider.GetExchangeItem(Item.ApiInformation.InvariantId);
         NinjaCurrency = item != null ? await NinjaExchangeProvider.GetInfo(item) : null;
+        StateHasChanged();
     }
 
 }

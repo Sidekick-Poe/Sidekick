@@ -30,7 +30,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        SupportsCurrencyExchange = CheckNinja() || await CheckScout();
+        SupportsCurrencyExchange = CheckNinja();
+        if (!SupportsCurrencyExchange) SupportsCurrencyExchange = await CheckScout();
         if (SupportsCurrencyExchange) await CurrentTabChanged.InvokeAsync("exchange");
 
         await base.OnInitializedAsync();
