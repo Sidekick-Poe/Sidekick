@@ -32,6 +32,7 @@ public class ScoutClient
     private HttpClient GetHttpClient()
     {
         var client = httpClientFactory.CreateClient();
+        client.Timeout = TimeSpan.FromSeconds(15);
         client.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
         client.DefaultRequestHeaders.UserAgent.TryParseAdd("Sidekick");
         return client;
