@@ -20,23 +20,26 @@ jobs:
         shell: pwsh
         run: |
           # Get the current date
-          $DATE = Get-Date -Format "yyyy.Mdd"
+          $DATE = Get-Date -Format "yyyy.M.dd"
+          
+          # Set the current date in YYYY-MM-DD format
+          $TODAY=$(date +'%Y-%m-%d')
+          $REPO_FULL_NAME=${{ github.repository }}
 
-          # Get the current hour and minute without leading zero for the hour
-          $HOUR = [int](Get-Date -Format "HH") # Convert hour to integer to strip any leading zero
+          # Use GitHub CLI to list workflow runs for today, filtered by workflow file name
+          # The 'gh api' command is used to interact with the GitHub REST API
+          $RUNS=$(gh api --paginate "repos/$REPO_FULL_NAME/actions/runs?created=>$TODAY&workflow=${{ github.workflow_id }}")
 
-          # If the hour is 0 (midnight), set it to an empty string
-          if ($HOUR -eq 0) {
-            $HOUR = ''
-          }
-                
-          $MINUTE = Get-Date -Format "mm" # Keep minutes as-is
+          # Count the number of existing runs for today
+          # We count the 'total_count' from the API response(s)
+          # Note: A more robust solution might involve parsing the actual list of runs and filtering more precisely if API 'created' filter isn't exact enough
+          $COUNT=$(echo "$RUNS" | jq '[.workflow_runs[]] | length')
 
-          # Construct the time, omitting hour if it's empty
-          $TIME = "$HOUR$MINUTE"
-
+          # The current run hasn't finished, so the count should be the number of previous runs + 1
+          $DAILY_RUN_NUMBER=$((COUNT + 1))
+          
           # Construct the version using DATE and TIME
-          $VERSION = "$DATE.$TIME"
+          $VERSION = "$DATE+$DAILY_RUN_NUMBER"
           Write-Output "Generated version: $VERSION"
 
           # Export version as an output
