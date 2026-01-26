@@ -1,31 +1,34 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
+using Sidekick.Common.Enums;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class SpiritProperty
-(
-    IGameLanguageProvider gameLanguageProvider,
-    GameType game
-) : PropertyDefinition
+public class SpiritProperty(
+    GameType game,
+    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionSpirit.ToRegexIntCapture();
 
     private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionSpirit.ToRegexIsAugmented();
 
-    public override List<ItemClass> ValidItemClasses { get; } = [
+    public override List<ItemClass> ValidItemClasses { get; } =
+    [
         ..ItemClassConstants.Weapons,
         ..ItemClassConstants.Equipment,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionSpirit;
+
     public override void Parse(Item item)
     {
-        if(game == GameType.PathOfExile1) return;
+        if (game == GameType.PathOfExile1) return;
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.Spirit = GetInt(Pattern, propertyBlock);
         if (item.Properties.Spirit == 0) return;
@@ -34,24 +37,29 @@ public class SpiritProperty
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.Spirit));
     }
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        if (game == GameType.PathOfExile1 || item.Properties.Spirit <= 0) return Task.FromResult<TradeFilter?>(null);
+        if (game == GameType.PathOfExile1 || item.Properties.Spirit <= 0) return null;
 
         var filter = new SpiritFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionSpirit,
-            NormalizeEnabled = true,
+            Text = Label,
             Value = item.Properties.Spirit,
-            Checked = false,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.Spirit)) ? LineContentType.Augmented : LineContentType.Simple,
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(SpiritProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = true,
         };
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
 public class SpiritFilter : IntPropertyFilter
 {
+    public SpiritFilter()
+    {
+        DefaultAutoSelect = AutoSelectPreferences.Create(false);
+    }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;

@@ -3,7 +3,8 @@
         @TopContent
     </div>
     <div class="grow flex flex-nowrap items-stretch">
-        <div id="@LeftContentId" class="@LeftContentClasses"
+        <div id="@LeftContentId"
+             class="relative min-w-80 max-w-140 overflow-auto"
              style="@(LeftContentWidth != 0 ? $"width: {LeftContentWidth}px" : string.Empty)">
             <div class="absolute top-0 left-0 w-full h-full overflow-y-auto overflow-x-hidden dark:bg-stone-950">
                 @LeftContent
@@ -74,23 +75,6 @@
     public EventCallback<int> OnLeftContentResize { get; set; }
 
     private string LeftContentId { get; } = UiUtilities.GenerateId();
-
-    private string LeftContentClasses
-    {
-        get
-        {
-            List<string> classes =
-            [
-                "relative",
-                "overflow-auto",
-                "min-w-80",
-                "z-10",
-                "max-w-140",
-            ];
-
-            return string.Join(" ", classes);
-        }
-    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

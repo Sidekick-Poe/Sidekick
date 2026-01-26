@@ -10,7 +10,5 @@ public class OptionFilter : TradeFilter
 
     public override bool Checked => Value != DefaultValue;
 
-    public required List<OptionFilterValue> Options { get; set; }
-
-    public virtual string? SettingKey { get; init; }
+    public required List<OptionFilterValue> Options { get; init; }
 }

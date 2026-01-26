@@ -9,6 +9,8 @@ public abstract class PropertyDefinition
 {
     public abstract List<ItemClass> ValidItemClasses { get; }
 
+    public abstract string Label { get; }
+
     public virtual void Parse(Item item) {}
 
     public virtual void ParseAfterStats(Item item) {}

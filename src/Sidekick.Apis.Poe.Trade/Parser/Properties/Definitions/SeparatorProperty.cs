@@ -9,12 +9,13 @@ public class SeparatorProperty : PropertyDefinition
 
     public override List<ItemClass> ValidItemClasses { get; } = [];
 
+    public override string Label => Text;
+
     public override Task<TradeFilter?> GetFilter(Item item)
     {
         return Task.FromResult<TradeFilter?>(new SeparatorFilter
         {
-            Text = Text,
-            Checked = true,
+            Text = Label,
         });
     }
 }

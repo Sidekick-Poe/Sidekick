@@ -1,19 +1,26 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Common.Enums;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+public class MapTierProperty(
+    GameType game,
+    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionMapTier.ToRegexIntCapture();
 
-    public override List<ItemClass> ValidItemClasses { get; } = [
+    public override List<ItemClass> ValidItemClasses { get; } =
+    [
         ItemClass.Map,
     ];
+
+    public override string Label => gameLanguageProvider.Language.DescriptionMapTier;
 
     public override void Parse(Item item)
     {
@@ -22,23 +29,28 @@ public class MapTierProperty(IGameLanguageProvider gameLanguageProvider) : Prope
         if (item.Properties.MapTier > 0) propertyBlock.Parsed = true;
     }
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.MapTier <= 0) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.MapTier <= 0) return null;
 
         var filter = new MapTierFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionMapTier,
-            NormalizeEnabled = false,
+            Text = Label,
             Value = item.Properties.MapTier,
-            Checked = true,
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(MapTierProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = true,
         };
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
 public class MapTierFilter : IntPropertyFilter
 {
+    public MapTierFilter()
+    {
+        DefaultAutoSelect = AutoSelectPreferences.Create(true);
+    }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;

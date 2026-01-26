@@ -5,25 +5,28 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Localization;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Common.Enums;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class WeaponDamageProperty
-(
-    IGameLanguageProvider gameLanguageProvider,
+public class WeaponDamageProperty(
     GameType game,
+    IGameLanguageProvider gameLanguageProvider,
     IStringLocalizer<PoeResources> resources,
-    IInvariantStatsProvider invariantStatsProvider
-) : PropertyDefinition
+    IInvariantStatsProvider invariantStatsProvider) : PropertyDefinition
 {
     private Regex RangePattern { get; } = new(@"([\d,\.]+)-([\d,\.]+)", RegexOptions.Compiled);
 
-    public override List<ItemClass> ValidItemClasses { get; } = [
+    public override List<ItemClass> ValidItemClasses { get; } =
+    [
         ..ItemClassConstants.Weapons,
     ];
+
+    public override string Label => resources["Damage"];
 
     public override void Parse(Item item)
     {
@@ -136,33 +139,41 @@ public class WeaponDamageProperty
         }
     }
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
         if (item.Properties.TotalDamage <= 0)
         {
-            return Task.FromResult<TradeFilter?>(null);
+            return null;
         }
 
         var filter = new WeaponDamageFilter(game)
         {
             Text = resources["Damage"],
-            NormalizeEnabled = true,
             Value = item.Properties.TotalDamageWithQuality ?? 0,
             OriginalValue = item.Properties.TotalDamage ?? 0,
-            Checked = false,
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(WeaponDamageProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = true,
         };
 
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
-public class WeaponDamageFilter(GameType game) : WeaponDamagePropertyFilter
+public class WeaponDamageFilter : DoublePropertyFilter
 {
+    public WeaponDamageFilter(GameType game)
+    {
+        Game = game;
+        DefaultAutoSelect = AutoSelectPreferences.Create(false);
+    }
+
+    private GameType Game { get; }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;
 
-        switch (game)
+        switch (Game)
         {
             case GameType.PathOfExile1: query.Filters.GetOrCreateWeaponFilters().Filters.Damage = new StatFilterValue(this); break;
             case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.Damage = new StatFilterValue(this); break;

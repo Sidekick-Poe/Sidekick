@@ -42,4 +42,6 @@ public static class SidekickConfiguration
     ///     The list of input handlers handled by this application
     /// </summary>
     public static List<Type> InputHandlers { get; } = new();
+
+    public static Dictionary<string, object> DefaultSettings { get; } = new();
 }

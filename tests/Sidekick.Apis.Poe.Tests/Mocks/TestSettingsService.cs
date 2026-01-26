@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Text.Json;
+using Sidekick.Common;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Tests.Mocks;
@@ -16,13 +17,7 @@ public class TestSettingsService : ISettingsService
             return Task.FromResult(boolValue);
         }
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty == null)
-        {
-            return Task.FromResult(false);
-        }
-
-        return Task.FromResult((bool)(defaultProperty.GetValue(null) ?? false));
+        return Task.FromResult(GetDefault<bool>(key));
     }
 
     public Task<string?> GetString(string key)
@@ -32,13 +27,7 @@ public class TestSettingsService : ISettingsService
             return Task.FromResult(value);
         }
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty == null)
-        {
-            return Task.FromResult<string?>(null);
-        }
-
-        return Task.FromResult((string?)defaultProperty.GetValue(null));
+        return Task.FromResult(GetDefault<string>(key));
     }
 
     public Task<int> GetInt(string key)
@@ -48,13 +37,7 @@ public class TestSettingsService : ISettingsService
             return Task.FromResult(intValue);
         }
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty == null)
-        {
-            return Task.FromResult(0);
-        }
-
-        return Task.FromResult((int)(defaultProperty.GetValue(null) ?? 0));
+        return Task.FromResult(GetDefault<int>(key));
     }
 
     public Task<double> GetDouble(string key)
@@ -64,13 +47,7 @@ public class TestSettingsService : ISettingsService
             return Task.FromResult(intValue);
         }
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty == null)
-        {
-            return Task.FromResult(0.0);
-        }
-
-        return Task.FromResult((double)(defaultProperty.GetValue(null) ?? 0));
+        return Task.FromResult(GetDefault<double>(key));
     }
 
     public Task<DateTimeOffset?> GetDateTime(string key)
@@ -80,13 +57,7 @@ public class TestSettingsService : ISettingsService
             return Task.FromResult<DateTimeOffset?>(dateValue);
         }
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty == null)
-        {
-            return Task.FromResult<DateTimeOffset?>(null);
-        }
-
-        return Task.FromResult((DateTimeOffset?)defaultProperty.GetValue(null));
+        return Task.FromResult<DateTimeOffset?>(GetDefault<DateTimeOffset>(key));
     }
 
     public Task<TEnum?> GetEnum<TEnum>(string key) where TEnum : struct, Enum
@@ -105,30 +76,33 @@ public class TestSettingsService : ISettingsService
             }
         }
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty == null)
+        if (!SidekickConfiguration.DefaultSettings.TryGetValue(key, out var defaultValue))
         {
             return Task.FromResult<TEnum?>(null);
         }
 
-        var propertyValue = defaultProperty.GetValue(null)?.ToString();
-        if (Enum.TryParse<TEnum>(propertyValue, out var defaultValue))
+        if (Enum.TryParse<TEnum>(defaultValue.ToString(), out var defaultEnumValue))
         {
-            return Task.FromResult<TEnum?>(defaultValue);
+            return Task.FromResult<TEnum?>(defaultEnumValue);
         }
 
-        var defaultEnumValueFromAttribute = propertyValue?.GetEnumFromValue<TEnum>();
-        return Task.FromResult(defaultEnumValueFromAttribute);
+        var defaultEnumValueFromAttribute = defaultValue.ToString()?.GetEnumFromValue<TEnum>();
+        if (defaultEnumValueFromAttribute != null)
+        {
+            return Task.FromResult(defaultEnumValueFromAttribute);
+        }
+
+        return Task.FromResult<TEnum?>(null);
     }
 
-    public Task<TValue> GetObject<TValue>(string key, Func<TValue> defaultFunc)
-    where TValue : class
+    public Task<TValue?> GetObject<TValue>(string key, Func<TValue?> defaultFunc)
+        where TValue : class
     {
         if (store.TryGetValue(key, out var value))
         {
             try
             {
-                if(!string.IsNullOrEmpty(value)) return Task.FromResult(JsonSerializer.Deserialize<TValue>(value) ?? defaultFunc.Invoke());
+                if (!string.IsNullOrEmpty(value)) return Task.FromResult(JsonSerializer.Deserialize<TValue>(value) ?? defaultFunc.Invoke());
             }
             catch
             {
@@ -136,30 +110,18 @@ public class TestSettingsService : ISettingsService
             }
         }
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty != null)
-        {
-            try
-            {
-                return Task.FromResult((TValue)(defaultProperty.GetValue(null) ?? throw new Exception("The default settings returned null.")));
-            }
-            catch
-            {
-                // Ignore and fall back to default
-            }
-        }
-
-        return Task.FromResult(defaultFunc.Invoke());
+        var defaultValue = GetDefault<TValue>(key);
+        return Task.FromResult(defaultValue ?? defaultFunc.Invoke());
     }
 
     public Task Set(string key, object? value)
     {
         var stringValue = GetStringValue(value);
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty != null)
+        var defaultConfiguration = SidekickConfiguration.DefaultSettings.GetValueOrDefault(key);
+        if (defaultConfiguration != null)
         {
-            var defaultValue = GetStringValue(defaultProperty.GetValue(null));
+            var defaultValue = GetStringValue(defaultConfiguration);
             if (defaultValue == stringValue)
             {
                 stringValue = null;
@@ -205,13 +167,7 @@ public class TestSettingsService : ISettingsService
                 continue;
             }
 
-            var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-            if (defaultProperty == null)
-            {
-                continue;
-            }
-
-            var defaultValue = GetStringValue(defaultProperty.GetValue(null));
+            var defaultValue = GetStringValue(SidekickConfiguration.DefaultSettings.GetValueOrDefault(key));
             if (defaultValue != stored)
             {
                 return Task.FromResult(true);
@@ -261,5 +217,15 @@ public class TestSettingsService : ISettingsService
             string x => x,
             _ => JsonSerializer.Serialize(value),
         };
+    }
+
+    private static TValue? GetDefault<TValue>(string key)
+    {
+        if (SidekickConfiguration.DefaultSettings.TryGetValue(key, out var value) && value is TValue typedValue)
+        {
+            return typedValue;
+        }
+
+        return default;
     }
 }

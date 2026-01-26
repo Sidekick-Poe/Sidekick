@@ -1,12 +1,15 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using FuzzySharp;
+using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
+using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
+using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
 
@@ -15,7 +18,8 @@ public class StatParser
     IApiStatsProvider apiStatsProvider,
     IFuzzyService fuzzyService,
     ISettingsService settingsService,
-    IGameLanguageProvider gameLanguageProvider
+    IGameLanguageProvider gameLanguageProvider,
+    IStringLocalizer<PoeResources> resources
 ) : IStatParser
 {
     public int Priority => 300;
@@ -308,35 +312,33 @@ public class StatParser
     {
         if (!ItemClassConstants.WithStats.Contains(item.Properties.ItemClass)) return [];
 
-        var enableAllFilters = await settingsService.GetBool(SettingKeys.PriceCheckEnableAllFilters);
-        var enableFiltersByRegexSetting = await settingsService.GetString(SettingKeys.PriceCheckEnableFiltersByRegex);
-        Regex? enableFiltersByRegex = null;
-        if (!string.IsNullOrWhiteSpace(enableFiltersByRegexSetting))
-        {
-            enableFiltersByRegex = new Regex(enableFiltersByRegexSetting, RegexOptions.IgnoreCase);
-        }
+        var autoSelectKey = $"Trade_Filter_Stat_{item.Game.GetValueAttribute()}";
 
         var result = new List<TradeFilter>();
         for (var i = 0; i < item.Stats.Count; i++)
         {
-            var stat = item.Stats[i];
-            var filter = new StatFilter(stat)
+            result.Add(new StatFilter(item.Stats[i])
             {
-                Checked = enableAllFilters || (enableFiltersByRegex?.IsMatch(stat.Text) ?? false),
-            };
-            result.Add(filter);
+                AutoSelectSettingKey = autoSelectKey,
+            });
 
             var isLastFilter = i + 1 == item.Stats.Count;
-            if (!isLastFilter)
-            {
-                var isDifferentBlock = item.Stats[i].BlockIndex != item.Stats[i + 1].BlockIndex;
-                if (isDifferentBlock)
-                {
-                    result.Add(new SeparatorFilter());
-                }
-            }
+            if (isLastFilter) continue;
+
+            var isDifferentBlock = item.Stats[i].BlockIndex != item.Stats[i + 1].BlockIndex;
+            if (isDifferentBlock) result.Add(new SeparatorFilter());
         }
 
-        return result;
+        var expandableFilter =
+            new ExpandableFilter(resources["Stat_Filters"], result.ToArray())
+            {
+                AutoSelectSettingKey = autoSelectKey,
+                DefaultAutoSelect = StatFilter.GetDefault(),
+                Checked = true,
+            };
+        await expandableFilter.Initialize(item, settingsService);
+        expandableFilter.Checked = true;
+
+        return [expandableFilter];
     }
 }

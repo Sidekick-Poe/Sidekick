@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Base_Percentile" xml:space="preserve">
+    <value>Base Percentile</value>
+  </data>
+  <data name="Corrupted" xml:space="preserve">
+    <value>Corrupted</value>
+  </data>
+  <data name="CountString" xml:space="preserve">
+    <value>Showing {0} out of {1} items</value>
+  </data>
+  <data name="Filters_Equals" xml:space="preserve">
+    <value>Equals</value>
+  </data>
+  <data name="Filters_Max" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="Filters_Min" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="ForceCategoryHint" xml:space="preserve">
+      <value>Selecting this checkbox will force this specific category in the results. Unchecking allows for all modifier categories in the results (explicit, fractured, etc.).</value>
+  </data>
+  <data name="Layout_Cards_Maximized" xml:space="preserve">
+    <value>Detailed results</value>
+  </data>
+  <data name="Layout_Cards_Minimized" xml:space="preserve">
+    <value>Minimal details</value>
+  </data>
+  <data name="LoadMoreData" xml:space="preserve">
+    <value>Load More Data</value>
+  </data>
+  <data name="OpenQueryInWebsite" xml:space="preserve">
+    <value>This is the URL of the current query for the official website.
+Click the button to open in your browser.</value>
+  </data>
+  <data name="Requires" xml:space="preserve">
+    <value>Requires</value>
+  </data>
+  <data name="Stock" xml:space="preserve">
+    <value>Stock</value>
+  </data>
+  <data name="Trade" xml:space="preserve">
+    <value>Trade</value>
+  </data>
+  <data name="Unidentified" xml:space="preserve">
+    <value>Unidentified</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Bulk_Search" xml:space="preserve">
+    <value>Bulk Search</value>
+  </data>
+  <data name="Links" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="Last_Updated" xml:space="preserve">
+    <value>Last Updated</value>
+  </data>
+  <data name="Open_Website" xml:space="preserve">
+    <value>Open Website</value>
+  </data>
+  <data name="Any" xml:space="preserve">
+    <value>Any</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Default_Item_Class_Filter" xml:space="preserve">
+    <value>Default Item Type Filter</value>
+  </data>
+  <data name="Default_FilterType" xml:space="preserve">
+    <value>Default filter range type</value>
+  </data>
+  <data name="FilterType_Minimum" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
+  <data name="FilterType_Maximum" xml:space="preserve">
+    <value>Maximum</value>
+  </data>
+  <data name="FilterType_Equals" xml:space="preserve">
+    <value>Equals</value>
+  </data>
+  <data name="FilterType_Range" xml:space="preserve">
+    <value>Range</value>
+  </data>
+  <data name="Possible_Chance_Outcomes" xml:space="preserve">
+    <value>Possible Chance Outcomes</value>
+  </data>
+  <data name="Item_Trade_Settings" xml:space="preserve">
+    <value>Item Trade Settings</value>
+  </data>
+  <data name="Bulk_Trade" xml:space="preserve">
+    <value>Bulk Trade</value>
+  </data>
+  <data name="Minimum_Stock_in_Bulk_Trade" xml:space="preserve">
+    <value>Minimum Stock in Bulk Trade</value>
+  </data>
+  <data name="Currency_of_Results" xml:space="preserve">
+    <value>Currency of Results</value>
+  </data>
+  <data name="Item_Listing_Age" xml:space="preserve">
+    <value>Item Listing Age</value>
+  </data>
+  <data name="Buyout_Price" xml:space="preserve">
+    <value>Buyout Price</value>
+  </data>
+  <data name="Normalize_Values" xml:space="preserve">
+    <value>Normalize item values. Leave at 0% for exact values.</value>
+  </data>
+  <data name="Filter_Settings" xml:space="preserve">
+      <value>Filter Settings</value>
+  </data>
+  <data name="External_Tools_Settings" xml:space="preserve">
+      <value>External Tools</value>
+  </data>
+  <data name="Key_Open" xml:space="preserve">
+    <value>Open Item Overlay</value>
+  </data>
+  <data name="PriceCheck_Enable_All_Filters" xml:space="preserve">
+    <value>Pre-check all filters automatically</value>
+  </data>
+  <data name="PriceCheck_Enable_Filters_By_Regex" xml:space="preserve">
+    <value>Pre-check filters matching this regex</value>
+  </data>
+  <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
+    <value>Show price prediction from poeprices.info (PoE1 only)</value>
+  </data>
+  <data name="Item_Trade" xml:space="preserve">
+    <value>Item Trade</value>
+  </data>
+  <data name="Clear_Filters" xml:space="preserve">
+      <value>Clear Filters</value>
+  </data>
+  <data name="CurrencyExchange" xml:space="preserve">
+      <value>Currency Exchange</value>
+  </data>
+  <data name="TradeInstructions" xml:space="preserve">
+      <value>Start by selecting the properties and modifiers you want to compare your item with the trade listings. Then get your results by clicking the 'Search' button.</value>
+  </data>
+  <data name="NoResults" xml:space="preserve">
+      <value>No results found</value>
+  </data>
+  <data name="PriceCheck_FillDefault_Min" xml:space="preserve">
+      <value>Pre-fill a default minimum value</value>
+  </data>
+  <data name="PriceCheck_FillDefault_Max" xml:space="preserve">
+      <value>Pre-fill a default maximum value</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+      <value>Tools</value>
+  </data>
+  <data name="AutoSelect_Default" xml:space="preserve">
+      <value>Default</value>
+  </data>
+  <data name="AutoSelect_Custom" xml:space="preserve">
+      <value>Custom</value>
+  </data>
+  <data name="AutoSelect_Conditionally" xml:space="preserve">
+      <value>Conditionally</value>
+  </data>
+  <data name="AutoSelect_Description" xml:space="preserve">
+      <value>Update the default behaviour of the '{0}' trade filter.</value>
+  </data>
+  <data name="AutoSelect_Always_Description" xml:space="preserve">
+      <value>'{0}' filter will always be selected by default.</value>
+  </data>
+  <data name="AutoSelect_Never_Description" xml:space="preserve">
+      <value>'{0}' filter will never be selected by default.</value>
+  </data>
+  <data name="AutoSelect_Any_Description" xml:space="preserve">
+      <value>'{0}' filter will have a default value of 'Any'.</value>
+  </data>
+  <data name="AutoSelect_Rules_Description" xml:space="preserve">
+      <value>Apply rules to the '{0}' filter. The first rule that matches all conditions will be applied. The other rules will be ignored.</value>
+  </data>
+  <data name="AutoSelect_When" xml:space="preserve">
+      <value>When</value>
+  </data>
+  <data name="AutoSelect_Then" xml:space="preserve">
+      <value>Then</value>
+  </data>
+  <data name="AutoSelect_And" xml:space="preserve">
+      <value>And</value>
+  </data>
+  <data name="AutoSelect_AddRule" xml:space="preserve">
+      <value>Add Rule</value>
+  </data>
+  <data name="AutoSelect_AddCondition" xml:space="preserve">
+      <value>Add Condition</value>
+  </data>
+  <data name="AutoSelect_Rule" xml:space="preserve">
+      <value>Rule</value>
+  </data>
+  <data name="AutoSelect_RemoveRule" xml:space="preserve">
+      <value>Remove Rule</value>
+  </data>
+  <data name="AutoSelect_RemoveCondition" xml:space="preserve">
+      <value>Remove Condition</value>
+  </data>
+  <data name="AutoSelect_Result_Checked" xml:space="preserve">
+      <value>Filter Is Checked</value>
+  </data>
+  <data name="AutoSelect_Result_Unchecked" xml:space="preserve">
+      <value>Filter is Unchecked</value>
+  </data>
+  <data name="AutoSelect_Result_Any" xml:space="preserve">
+      <value>Filter Is Any</value>
+  </data>
+  <data name="AutoSelect_Mode" xml:space="preserve">
+      <value>Mode</value>
+  </data>
+  <data name="AutoSelect_NormalizeBy" xml:space="preserve">
+      <value>Normalize by</value>
+  </data>
+  <data name="AutoSelect_NormalizeBy_Hint" xml:space="preserve">
+      <value>Normalize item values. Leave at 0% for exact values.</value>
+  </data>
+  <data name="AutoSelect_FillMin" xml:space="preserve">
+      <value>Fill Min</value>
+  </data>
+  <data name="AutoSelect_FillMax" xml:space="preserve">
+      <value>Fill Max</value>
+  </data>
+  <data name="AutoSelect_OverrideDefaults" xml:space="preserve">
+      <value>Override defaults?</value>
+  </data>
+</root>

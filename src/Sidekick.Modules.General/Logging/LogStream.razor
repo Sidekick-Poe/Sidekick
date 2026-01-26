@@ -3,7 +3,7 @@
 @implements IAsyncDisposable
 @inject IJSRuntime JsRuntime
 
-<div @ref="LogContainer" class="flex flex-col overflow-y-auto max-h-[calc(100vh-120px)] font-mono text-xs whitespace-pre-wrap p-4 bg-black/20 rounded-lg border border-white/10">
+<div @ref="LogContainer" class="flex flex-col overflow-y-auto max-h-[calc(100vh-120px)] font-mono text-sm whitespace-pre-wrap p-4 bg-black/20 rounded-lg border border-white/10">
     @foreach (var log in Logs)
     {
         <div class="mb-1 border-b border-white/5 pb-1 last:border-0 last:pb-0 @GetLogClass(log)">@log</div>

@@ -31,9 +31,15 @@ public class TradeFilterProvider
     public ApiFilter? Foulborn => GetApiFilter("misc_filters", "foulborn_item");
     public ApiFilter? Sanctified => GetApiFilter("misc_filters", "sanctified");
 
+    public ApiFilterCategory? WeaponCategory => GetApiFilterCategory("weapon_filters");
+    public ApiFilterCategory? ArmourCategory => GetApiFilterCategory("armour_filters");
+    public ApiFilterCategory? EquipmentCategory => GetApiFilterCategory("equipment_filters");
+    public ApiFilterCategory? SocketCategory => GetApiFilterCategory("socket_filters");
     public ApiFilterCategory? RequirementsCategory => GetApiFilterCategory("req_filters");
     public ApiFilterCategory? MiscellaneousCategory => GetApiFilterCategory("misc_filters");
     public ApiFilterCategory? TradeCategory => GetApiFilterCategory("trade_filters");
+    public ApiFilterCategory? EndgameCategory => GetApiFilterCategory("map_filters");
+    public ApiFilterCategory? MapCategory => GetApiFilterCategory("map_filters");
 
     private List<ApiFilterCategory> Filters { get; set; } = [];
 
@@ -76,10 +82,18 @@ public class TradeFilterProvider
         var result = new List<TradeFilter>();
 
         var statusFilter = await serviceProvider.GetRequiredService<PlayerStatusFilterFactory>().GetFilter(item);
-        if (statusFilter != null) result.Add(statusFilter);
+        if (statusFilter != null)
+        {
+            result.Add(statusFilter);
+            await statusFilter.Initialize(item, settingsService);
+        }
 
         var currencyFilter = await serviceProvider.GetRequiredService<CurrencyFilterFactory>().GetFilter(item);
-        if (currencyFilter != null) result.Add(currencyFilter);
+        if (currencyFilter != null)
+        {
+            result.Add(currencyFilter);
+            await currencyFilter.Initialize(item, settingsService);
+        }
 
         if (result.Count == 0) return [];
         return [new ExpandableFilter(TradeCategory.Title, result.ToArray())];

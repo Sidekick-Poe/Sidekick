@@ -34,79 +34,84 @@ public class PropertyParser
 
         Definitions.Clear();
         Definitions.AddRange([
-            new ItemClassProperty(game, serviceProvider),
-            new RarityProperty(gameLanguageProvider),
+            new ItemClassProperty(game, gameLanguageProvider, serviceProvider, resources),
+            new RarityProperty(game, gameLanguageProvider),
 
             new SeparatorProperty(),
 
-            new QualityProperty(gameLanguageProvider),
+            new QualityProperty(game, gameLanguageProvider),
 
-            new SpiritProperty(gameLanguageProvider, game),
-            new ArmourProperty(gameLanguageProvider, game),
-            new EvasionRatingProperty(gameLanguageProvider, game),
-            new EnergyShieldProperty(gameLanguageProvider, game),
-            new BlockChanceProperty(gameLanguageProvider, game),
+            new SpiritProperty(game, gameLanguageProvider),
+            new ArmourProperty(game, gameLanguageProvider),
+            new EvasionRatingProperty(game, gameLanguageProvider),
+            new EnergyShieldProperty(game, gameLanguageProvider),
+            new BlockChanceProperty(game, gameLanguageProvider),
 
-            new WeaponDamageProperty(gameLanguageProvider, game, resources, invariantStatsProvider),
+            new WeaponDamageProperty(game, gameLanguageProvider, resources, invariantStatsProvider),
             new PhysicalDpsProperty(game, resources),
             new ElementalDpsProperty(game, resources),
-            new ChaosDpsProperty(resources),
+            new ChaosDpsProperty(game, resources),
             new TotalDpsProperty(game, resources),
-            new CriticalHitChanceProperty(gameLanguageProvider, game),
-            new AttacksPerSecondProperty(gameLanguageProvider, game),
+            new CriticalHitChanceProperty(game, gameLanguageProvider),
+            new AttacksPerSecondProperty(game, gameLanguageProvider),
 
-            new MapTierProperty(gameLanguageProvider),
-            new RewardProperty(gameLanguageProvider, game, apiItemProvider),
-            new RevivesAvailableProperty(gameLanguageProvider),
-            new MonsterPackSizeProperty(gameLanguageProvider),
-            new MagicMonstersProperty(gameLanguageProvider),
-            new RareMonstersProperty(gameLanguageProvider),
-            new ItemQuantityProperty(gameLanguageProvider),
-            new ItemRarityProperty(gameLanguageProvider),
-            new WaystoneDropChanceProperty(gameLanguageProvider),
-            new AreaLevelProperty(gameLanguageProvider),
-            new BlightedProperty(gameLanguageProvider),
-            new BlightRavagedProperty(gameLanguageProvider),
+            new MapTierProperty(game, gameLanguageProvider),
+            new RewardProperty(game, gameLanguageProvider, apiItemProvider),
+            new RevivesAvailableProperty(game, gameLanguageProvider),
+            new MonsterPackSizeProperty(game, gameLanguageProvider),
+            new MagicMonstersProperty(game, gameLanguageProvider),
+            new RareMonstersProperty(game, gameLanguageProvider),
+            new ItemQuantityProperty(game, gameLanguageProvider),
+            new ItemRarityProperty(game, gameLanguageProvider),
+            new WaystoneDropChanceProperty(game, gameLanguageProvider),
+            new AreaLevelProperty(game, gameLanguageProvider),
+            new BlightedProperty(game, gameLanguageProvider),
+            new BlightRavagedProperty(game, gameLanguageProvider),
 
             new SeparatorProperty(),
 
-            new GemLevelProperty(gameLanguageProvider),
-            new ItemLevelProperty(gameLanguageProvider, game),
-            new SocketProperty(gameLanguageProvider, game, resources),
+            new GemLevelProperty(game, gameLanguageProvider),
+            new ItemLevelProperty(game, gameLanguageProvider),
+            new SocketProperty(game, gameLanguageProvider, resources),
 
             new SeparatorProperty(),
 
             new ExpandableProperty(tradeFilterProvider.RequirementsCategory?.Title,
-                                               new RequiresLevelProperty(gameLanguageProvider),
-                                               new RequiresStrengthProperty(gameLanguageProvider),
-                                               new RequiresDexterityProperty(gameLanguageProvider),
-                                               new RequiresIntelligenceProperty(gameLanguageProvider)),
+                                   new RequiresLevelProperty(game, gameLanguageProvider),
+                                   new RequiresStrengthProperty(game, gameLanguageProvider),
+                                   new RequiresDexterityProperty(game, gameLanguageProvider),
+                                   new RequiresIntelligenceProperty(game, gameLanguageProvider)),
 
             new SeparatorProperty(),
 
             new ExpandableProperty(tradeFilterProvider.MiscellaneousCategory?.Title,
-                                               new ElderProperty(gameLanguageProvider),
-                                               new ShaperProperty(gameLanguageProvider),
-                                               new CrusaderProperty(gameLanguageProvider),
-                                               new HunterProperty(gameLanguageProvider),
-                                               new RedeemerProperty(gameLanguageProvider),
-                                               new WarlordProperty(gameLanguageProvider),
-                                               new CorruptedProperty(gameLanguageProvider),
-                                               new FracturedProperty(serviceProvider),
-                                               new DesecratedProperty(serviceProvider, game),
-                                               new SanctifiedProperty(serviceProvider, game),
-                                               new MirroredProperty(serviceProvider),
-                                               new FoulbornProperty(serviceProvider, game),
-                                               new UnidentifiedProperty(gameLanguageProvider)),
+                                   new ElderProperty(game, gameLanguageProvider),
+                                   new ShaperProperty(game, gameLanguageProvider),
+                                   new CrusaderProperty(game, gameLanguageProvider),
+                                   new HunterProperty(game, gameLanguageProvider),
+                                   new RedeemerProperty(game, gameLanguageProvider),
+                                   new WarlordProperty(game, gameLanguageProvider),
+                                   new CorruptedProperty(game, gameLanguageProvider),
+                                   new FracturedProperty(game, serviceProvider),
+                                   new DesecratedProperty(game, serviceProvider),
+                                   new SanctifiedProperty(game, serviceProvider),
+                                   new MirroredProperty(game, serviceProvider),
+                                   new FoulbornProperty(game, serviceProvider),
+                                   new UnidentifiedProperty(game, gameLanguageProvider)),
 
-            new ClusterJewelPassiveCountProperty(serviceProvider, game),
+            new ClusterJewelPassiveCountProperty(game, serviceProvider),
         ]);
     }
 
     public TDefinition GetDefinition<TDefinition>() where TDefinition : PropertyDefinition
     {
-        return Definitions.OfType<TDefinition>().FirstOrDefault()
-               ?? throw new SidekickException($"Could not find definition of type {typeof(TDefinition).FullName}");
+        var definition = Definitions.OfType<TDefinition>().FirstOrDefault();
+        if (definition != null) return definition;
+
+        definition = Definitions.OfType<ExpandableProperty>().SelectMany(x => x.Definitions).OfType<TDefinition>().FirstOrDefault();
+        if (definition != null) return definition;
+
+        throw new SidekickException($"Could not find definition of type {typeof(TDefinition).FullName}");
     }
 
     public void Parse(Item item)
@@ -138,7 +143,10 @@ public class PropertyParser
             if (definition.ValidItemClasses.Count > 0 && !definition.ValidItemClasses.Contains(item.Properties.ItemClass)) continue;
 
             var filter = await definition.GetFilter(item);
-            if (filter != null) results.Add(filter);
+            if (filter == null) continue;
+
+            results.Add(filter);
+            await filter.Initialize(item, settingsService);
         }
 
         return results;

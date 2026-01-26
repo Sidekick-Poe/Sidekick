@@ -1,0 +1,194 @@
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
+@using Sidekick.Common.Settings
+@using Sidekick.Modules.Items.Trade.Localization
+
+@if (string.IsNullOrEmpty(Filter.AutoSelectSettingKey) || Filter.AutoSelect == null || Filter is StatFilter)
+{
+    return;
+}
+
+<TextBase Class="text-neutral-400 mb-2">@Resources["AutoSelect_Description", Filter.Text]</TextBase>
+<TextBase Class="mb-2 text-neutral-400">@Resources["AutoSelect_Rules_Description", Filter.Text]</TextBase>
+
+<div class="flex flex-nowrap items-center mb-2">
+    <TextBase Class="mr-2">@Resources["AutoSelect_Mode"]:</TextBase>
+    @ButtonContent(AutoSelectMode.Default, Resources["AutoSelect_Default"], true, false)
+    @ButtonContent(AutoSelectMode.Custom, Resources["AutoSelect_Custom"], false, true)
+</div>
+
+<div class="flex flex-col gap-2 mb-2">
+    @for (var ruleIndex = 0; ruleIndex < Filter.AutoSelect.Rules.Count; ruleIndex++)
+    {
+        var rule = Filter.AutoSelect.Rules[ruleIndex];
+        <div class="bg-stone-800 rounded-md"
+             @key="@rule.Id">
+            <div class="pl-2 pt-1 pr-1 flex flex-nowrap gap-2">
+                <div
+                    class="font-bold text-lg text-white grow">@Resources["AutoSelect_Rule"] #@(ruleIndex + 1)</div>
+                @if (Filter.AutoSelect.Mode == AutoSelectMode.Custom)
+                {
+                    @if (ruleIndex > 0 && Filter.AutoSelect.Rules.Count > 0)
+                    {
+                        <ButtonIcon Svg="@UiIcons.ChevronUp"
+                                    OnClick="() => MoveUp(rule)"/>
+                    }
+
+                    @if (ruleIndex < Filter.AutoSelect.Rules.Count - 1)
+                    {
+                        <ButtonIcon Svg="@UiIcons.ChevronDown"
+                                    OnClick="() => MoveDown(rule)"/>
+                    }
+
+                    @if (Filter.AutoSelect.Rules.Count > 1)
+                    {
+                        <Tooltip Text="@Resources["AutoSelect_RemoveRule"]">
+                            <ButtonIcon Class="text-red-500! hover:text-red-300!"
+                                        Svg="@UiIcons.Close"
+                                        OnClick="() => RemoveRule(rule)"/>
+                        </Tooltip>
+                    }
+                }
+            </div>
+
+            <div class="flex flex-col items-stretch gap-2 p-2">
+                @for (var conditionIndex = 0; conditionIndex < rule.Conditions.Count; conditionIndex++)
+                {
+                    var condition = rule.Conditions[conditionIndex];
+                    <FilterAutoSelectCondition @key="@condition.Id"
+                                               First="conditionIndex == 0"
+                                               Condition="condition"
+                                               Readonly="Filter.AutoSelect.Mode == AutoSelectMode.Default"
+                                               OnChanged="Save"
+                                               OnRemoved="() => RemoveCondition(rule, condition)"/>
+                }
+
+                @if (Filter.AutoSelect.Mode == AutoSelectMode.Custom)
+                {
+                    <div>
+                        <ButtonSecondary OnClick="() => AddCondition(rule)"
+                                         Class="p-0!">@Resources["AutoSelect_AddCondition"]</ButtonSecondary>
+                    </div>
+                }
+
+                <FilterAutoSelectRuleActions Rule="rule"
+                                             Readonly="Filter.AutoSelect.Mode == AutoSelectMode.Default"
+                                             Filter="Filter"
+                                             OnChanged="Save"/>
+            </div>
+        </div>
+    }
+</div>
+
+@if (Filter.AutoSelect.Mode == AutoSelectMode.Custom)
+{
+    <ButtonSecondary OnClick="AddRule" Class="p-0!">@Resources["AutoSelect_AddRule"]</ButtonSecondary>
+}
+
+@inject IStringLocalizer<TradeResources> Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public required TradeFilter Filter { get; set; }
+
+    private RenderFragment ButtonContent(AutoSelectMode mode, string label, bool first, bool last) =>
+        @<ButtonCustom OnClick="() => UpdateMode(mode)"
+                       Class="@($"px-2! py-1! {(mode == Filter.AutoSelect?.Mode ? "bg-violet-700" : "bg-violet-950 hover:bg-violet-900")} {(first ? string.Empty : "rounded-l-none!")} {(last ? string.Empty : "rounded-r-none!")}")"
+        >@label</ButtonCustom>;
+
+    private async Task UpdateMode(AutoSelectMode mode)
+    {
+        if (Filter.CustomAutoSelect == null)
+        {
+            Filter.CustomAutoSelect = new AutoSelectPreferences()
+            {
+                Mode = mode,
+            };
+        }
+        else
+        {
+            Filter.CustomAutoSelect.Mode = mode;
+        }
+
+        if (Filter.CustomAutoSelect.Rules.Count == 0)
+        {
+            await AddRule();
+        }
+
+        await Save();
+        StateHasChanged();
+    }
+
+    private async Task AddRule()
+    {
+        if (Filter.CustomAutoSelect == null) return;
+
+        var rule = new AutoSelectRule()
+        {
+            Checked = true,
+        };
+        Filter.CustomAutoSelect.Rules.Add(rule);
+        await Save();
+        StateHasChanged();
+    }
+
+    private async Task AddCondition(AutoSelectRule rule)
+    {
+        rule.Conditions.Add(new AutoSelectCondition());
+        await Save();
+        StateHasChanged();
+    }
+
+    private async Task RemoveRule(AutoSelectRule rule)
+    {
+        if (Filter.CustomAutoSelect == null) return;
+
+        Filter.CustomAutoSelect.Rules.Remove(rule);
+        await Save();
+        StateHasChanged();
+    }
+
+    private async Task RemoveCondition(AutoSelectRule rule, AutoSelectCondition condition)
+    {
+        rule.Conditions.Remove(condition);
+        await Save();
+        StateHasChanged();
+    }
+
+    private async Task MoveUp(AutoSelectRule rule)
+    {
+        if (Filter.CustomAutoSelect == null) return;
+
+        var index = Filter.CustomAutoSelect.Rules.IndexOf(rule);
+        Filter.CustomAutoSelect.Rules.Remove(rule);
+
+        Filter.CustomAutoSelect.Rules.Insert(index - 1, rule);
+        await Save();
+        StateHasChanged();
+    }
+
+    private async Task MoveDown(AutoSelectRule rule)
+    {
+        if (Filter.CustomAutoSelect == null) return;
+
+        var index = Filter.CustomAutoSelect.Rules.IndexOf(rule);
+        Filter.CustomAutoSelect.Rules.Remove(rule);
+
+        Filter.CustomAutoSelect.Rules.Insert(index + 1, rule);
+        await Save();
+        StateHasChanged();
+    }
+
+    private async Task Save()
+    {
+        if (string.IsNullOrEmpty(Filter.AutoSelectSettingKey)) return;
+
+        await SettingsService.Set(Filter.AutoSelectSettingKey, Filter.CustomAutoSelect);
+    }
+}

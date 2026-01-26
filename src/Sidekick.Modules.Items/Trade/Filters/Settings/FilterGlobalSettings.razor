@@ -1,0 +1,68 @@
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
+@using Sidekick.Common.Ui.Localization
+@using Sidekick.Common.Settings
+@using Sidekick.Common.Ui.Settings
+@using Sidekick.Modules.Items.Trade.Localization
+@implements IDisposable
+
+<div class="flex flex-col items-stretch gap-2 mb-2">
+    <DefaultNormalizeByEditor/>
+    <SettingCheckboxEditor SettingKey="@AutoSelectPreferences.DefaultFillMinSettingKey"
+                           Label="@Resources["PriceCheck_FillDefault_Min"]"/>
+    <SettingCheckboxEditor SettingKey="@AutoSelectPreferences.DefaultFillMaxSettingKey"
+                           Label="@Resources["PriceCheck_FillDefault_Max"]"/>
+</div>
+
+<ButtonSecondary Disabled="!AreSettingsModified"
+                 OnClick="RestoreDefaults">@UiResources["Restore_Defaults"]</ButtonSecondary>
+
+@inject IStringLocalizer<UiResources> UiResources
+@inject IStringLocalizer<TradeResources> Resources
+@inject ISettingsService SettingsService
+
+@code {
+
+    private bool AreSettingsModified { get; set; }
+
+    private string[] SettingKeysUsed { get; } =
+    {
+        AutoSelectPreferences.DefaultNormalizeBySettingKey,
+        AutoSelectPreferences.DefaultFillMinSettingKey,
+        AutoSelectPreferences.DefaultFillMaxSettingKey,
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        SettingsService.OnSettingsChanged += CheckIfSettingsAreModified;
+
+        CheckIfSettingsAreModified(SettingKeysUsed);
+
+        await base.OnInitializedAsync();
+    }
+
+    private async void CheckIfSettingsAreModified(string[] keys)
+    {
+        if (!keys.Any(key => SettingKeysUsed.Contains(key)))
+        {
+            return;
+        }
+
+        AreSettingsModified = await SettingsService.IsSettingModified(SettingKeysUsed);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async void RestoreDefaults()
+    {
+        await SettingsService.DeleteSetting(SettingKeysUsed);
+
+        AreSettingsModified = false;
+
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        SettingsService.OnSettingsChanged -= CheckIfSettingsAreModified;
+    }
+
+}

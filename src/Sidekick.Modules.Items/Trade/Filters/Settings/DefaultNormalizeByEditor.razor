@@ -1,24 +1,24 @@
-@using Sidekick.Common.Enums
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Localization
-@using Sidekick.Modules.Items.Localization
+@using Sidekick.Modules.Items.Trade.Localization
 
 <FormSelect Value="@Value"
             ValueChanged="ValueChanged"
-            Label="@TradeResources["Default_Item_Class_Filter"]"
+            Label="@Resources["Normalize_Values"]"
             Options="Options">
     <AdornmentContent>
         @if (ShowResetButton)
         {
-            <ButtonIcon OnClick="Reset" title="@UiResources["Reset"]">
-                <Icon Svg="@UiIcons.Reset"/>
-            </ButtonIcon>
+            <ButtonIcon OnClick="Reset"
+                        Svg="@UiIcons.Reset"
+                        title="@UiResources["Reset"]"/>
         }
     </AdornmentContent>
 </FormSelect>
 
 @inject IStringLocalizer<UiResources> UiResources
-@inject IStringLocalizer<TradeResources> TradeResources
+@inject IStringLocalizer<TradeResources> Resources
 @inject ISettingsService SettingsService
 @implements IDisposable
 
@@ -28,30 +28,33 @@
 
     private List<SelectOption> Options { get; set; } = new();
 
-    private const string SettingKey = SettingKeys.PriceCheckItemClassFilter;
+    private const string SettingKey = AutoSelectPreferences.DefaultNormalizeBySettingKey;
 
     private bool ShowResetButton { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        Value = await SettingsService.GetString(SettingKey);
+        var values = new List<double>
+        {
+            0,
+            .05,
+            .1,
+            .15,
+            .2,
+            .25
+        };
+
+        Value = (await SettingsService.GetDouble(SettingKey)).ToString();
         ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
 
         SettingsService.OnSettingsChanged += OnSettingsChanged;
 
-        Options =
-        [
-            new()
+        Options = values.Select(x => new SelectOption
             {
-                Value = DefaultItemClassFilter.BaseType.GetValueAttribute(),
-                Label = TradeResources["Base_Type"],
-            },
-            new()
-            {
-                Value = DefaultItemClassFilter.ItemClass.GetValueAttribute(),
-                Label = TradeResources["Item_Class"],
-            }
-        ];
+                Value = x.ToString(),
+                Label = x.ToString("P0")
+            })
+            .ToList();
 
         await base.OnInitializedAsync();
     }
@@ -67,7 +70,7 @@
     {
         if (!keys.Contains(SettingKey)) return;
 
-        Value = await SettingsService.GetString(SettingKey);
+        Value = (await SettingsService.GetDouble(SettingKey)).ToString();
         ShowResetButton = await SettingsService.IsSettingModified(SettingKey);
         await InvokeAsync(StateHasChanged);
     }

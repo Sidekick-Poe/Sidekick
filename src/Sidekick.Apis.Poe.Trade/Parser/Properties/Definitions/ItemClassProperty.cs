@@ -3,16 +3,18 @@ using FuzzySharp;
 using FuzzySharp.SimilarityRatio;
 using FuzzySharp.SimilarityRatio.Scorer.StrategySensitive;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
+using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions.Models;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Settings;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -20,18 +22,20 @@ public class ItemClassProperty : PropertyDefinition
 {
     private readonly GameType game;
     private readonly IGameLanguageProvider gameLanguageProvider;
+    private readonly IStringLocalizer<PoeResources> resources;
     private readonly ITradeFilterProvider tradeFilterProvider;
-    private readonly ISettingsService settingsService;
     private readonly IFuzzyService fuzzyService;
 
     public ItemClassProperty(
         GameType game,
-        IServiceProvider serviceProvider)
+        IGameLanguageProvider gameLanguageProvider,
+        IServiceProvider serviceProvider,
+        IStringLocalizer<PoeResources> resources)
     {
         this.game = game;
-        gameLanguageProvider = serviceProvider.GetRequiredService<IGameLanguageProvider>();
+        this.gameLanguageProvider = gameLanguageProvider;
+        this.resources = resources;
         tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
-        settingsService = serviceProvider.GetRequiredService<ISettingsService>();
         fuzzyService = serviceProvider.GetRequiredService<IFuzzyService>();
 
         ItemClassDefinitions = new(GetItemClassDefinitions);
@@ -39,6 +43,8 @@ public class ItemClassProperty : PropertyDefinition
     }
 
     public override List<ItemClass> ValidItemClasses { get; } = [];
+
+    public override string Label => resources["Item_Class"];
 
     private Lazy<List<ItemClassDefinition>> ItemClassDefinitions { get; }
 
@@ -191,11 +197,10 @@ public class ItemClassProperty : PropertyDefinition
 
         foreach (var definition in ItemClassDefinitions.Value)
         {
-            if (definition.Pattern?.IsMatch(line) ?? false)
-            {
-                item.Properties.ItemClass = definition.ItemClass;
-                return;
-            }
+            if (!(definition.Pattern?.IsMatch(line) ?? false)) continue;
+
+            item.Properties.ItemClass = definition.ItemClass;
+            return;
         }
 
         var classLine = line.Replace(gameLanguageProvider.Language.Classes.Prefix, "").Trim(' ', ':');
@@ -224,21 +229,29 @@ public class ItemClassProperty : PropertyDefinition
         var classLabel = tradeFilterProvider.TypeCategory?.Option.Options.FirstOrDefault(x => x.Id == item.Properties.ItemClass.GetValueAttribute())?.Text;
         if (classLabel == null || item.ApiInformation.Type == null) return null;
 
-        var preferItemClass = await settingsService.GetEnum<DefaultItemClassFilter>(SettingKeys.PriceCheckItemClassFilter) ?? DefaultItemClassFilter.BaseType;
-
         var filter = new ItemClassFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionRarity,
+            Text = resources["Item_Class"],
             ItemClass = classLabel,
+            BaseTypeText = resources["Base_Type"],
             BaseType = item.ApiInformation.Type,
-            Checked = preferItemClass == DefaultItemClassFilter.ItemClass,
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(ItemClassProperty)}_{game.GetValueAttribute()}",
         };
         return filter;
     }
 }
 
-public class ItemClassFilter : ItemClassPropertyFilter
+public class ItemClassFilter : TradeFilter
 {
+    public ItemClassFilter()
+    {
+        DefaultAutoSelect = AutoSelectPreferences.Create(false);
+    }
+
+    public required string ItemClass { get; init; }
+    public required string BaseType { get; init; }
+    public required string BaseTypeText { get; init; }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;

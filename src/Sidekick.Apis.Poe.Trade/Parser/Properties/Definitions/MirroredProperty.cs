@@ -1,15 +1,19 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Common.Enums;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class MirroredProperty(IServiceProvider serviceProvider) : PropertyDefinition
+public class MirroredProperty(
+    GameType game,
+    IServiceProvider serviceProvider) : PropertyDefinition
 {
-    private ITradeFilterProvider TradeFilterProvicer => serviceProvider.GetRequiredService<ITradeFilterProvider>();
+    private readonly ITradeFilterProvider tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
 
     public override List<ItemClass> ValidItemClasses { get; } =
     [
@@ -18,25 +22,30 @@ public class MirroredProperty(IServiceProvider serviceProvider) : PropertyDefini
         ..ItemClassConstants.Accessories,
     ];
 
-    public override void Parse(Item item)
-    {
-    }
+    public override string Label => tradeFilterProvider.Mirrored?.Text ?? "Mirrored";
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override void Parse(Item item) {}
+
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        if (TradeFilterProvicer.Mirrored == null) return Task.FromResult<TradeFilter?>(null);
+        if (tradeFilterProvider.Mirrored == null) return null;
 
         var filter = new MirroredFilter
         {
-            Text = TradeFilterProvicer.Mirrored.Text ?? "Mirrored",
-            Checked = null,
+            Text = Label,
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(MirroredProperty)}_{game.GetValueAttribute()}",
         };
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
 public class MirroredFilter : TriStatePropertyFilter
 {
+    public MirroredFilter()
+    {
+        DefaultAutoSelect = AutoSelectPreferences.Create(null);
+    }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (Checked == null)

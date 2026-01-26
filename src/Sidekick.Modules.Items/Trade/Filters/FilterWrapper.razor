@@ -1,10 +1,36 @@
-<div class="duration-200 transition-colors bg-transparent hover:bg-stone-800 px-2 py-0.5 leading-none">
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
+@using Sidekick.Modules.Items.Trade.Filters.Settings
+
+<div
+    class="group relative duration-200 flex flex-nowrap items-center gap-x-1 transition-colors bg-transparent hover:bg-stone-800 pl-2 pr-0.5 py-0.5 min-h-6 leading-none @Class">
     @ChildContent
+    @if (Filter != null)
+    {
+        if (Absolute)
+        {
+            <div class="absolute right-0.5 top-0.5">
+                <FilterSettings Filter="Filter"/>
+            </div>
+        }
+        else
+        {
+            <FilterSettings Filter="Filter"/>
+        }
+    }
 </div>
 
 @code {
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public TradeFilter? Filter { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public bool Absolute { get; set; }
 
 }

@@ -1,0 +1,129 @@
+@using Sidekick.Apis.Poe.Trade.Localization
+@using Sidekick.Apis.Poe.Trade.Parser.Properties
+@using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions
+@using Sidekick.Apis.Poe.Trade.Trade.Filters
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
+
+<FormSelectInline Value="@Condition.Type.ToString()"
+                  ValueChanged="Changed"
+                  Options="Options"
+                  Readonly="Readonly"/>
+
+@inject IPropertyParser PropertyParser
+@inject IStringLocalizer<AutoSelectConditionType> ConditionResources
+@inject IStringLocalizer<PoeResources> PoeResources
+@inject ITradeFilterProvider TradeFilterProvider
+
+@code {
+
+    [Parameter]
+    public required AutoSelectCondition Condition { get; set; }
+
+    [Parameter]
+    public bool Readonly { get; set; }
+
+    [Parameter]
+    public EventCallback OnChanged { get; set; }
+
+    private List<SelectOption> Options { get; set; } = [];
+
+    protected override void OnInitialized()
+    {
+        Update();
+        base.OnInitialized();
+    }
+
+    public void Update()
+    {
+        Options.Clear();
+
+        foreach (var value in Enum.GetValues<AutoSelectConditionType>())
+        {
+            var label = value switch
+            {
+                AutoSelectConditionType.ItemClass => PropertyParser.GetDefinition<ItemClassProperty>().Label,
+                AutoSelectConditionType.ItemLevel => PropertyParser.GetDefinition<ItemLevelProperty>().Label,
+                AutoSelectConditionType.Quality => PropertyParser.GetDefinition<QualityProperty>().Label,
+                AutoSelectConditionType.Rarity => PropertyParser.GetDefinition<RarityProperty>().Label,
+                AutoSelectConditionType.Corrupted => PropertyParser.GetDefinition<CorruptedProperty>().Label,
+                AutoSelectConditionType.Spirit => PropertyParser.GetDefinition<SpiritProperty>().Label,
+                AutoSelectConditionType.Foulborn => PropertyParser.GetDefinition<FoulbornProperty>().Label,
+                AutoSelectConditionType.SocketCount => PropertyParser.GetDefinition<SocketProperty>().Label,
+                AutoSelectConditionType.Armour => PropertyParser.GetDefinition<ArmourProperty>().Label,
+                AutoSelectConditionType.EvasionRating => PropertyParser.GetDefinition<EvasionRatingProperty>().Label,
+                AutoSelectConditionType.EnergyShield => PropertyParser.GetDefinition<EnergyShieldProperty>().Label,
+                AutoSelectConditionType.BlockChance => PropertyParser.GetDefinition<BlockChanceProperty>().Label,
+                AutoSelectConditionType.AreaLevel => PropertyParser.GetDefinition<AreaLevelProperty>().Label,
+                AutoSelectConditionType.MapTier => PropertyParser.GetDefinition<MapTierProperty>().Label,
+                AutoSelectConditionType.ItemQuantity => PropertyParser.GetDefinition<ItemQuantityProperty>().Label,
+                AutoSelectConditionType.ItemRarity => PropertyParser.GetDefinition<ItemRarityProperty>().Label,
+                AutoSelectConditionType.MagicMonsters => PropertyParser.GetDefinition<MagicMonstersProperty>().Label,
+                AutoSelectConditionType.MonsterPackSize => PropertyParser.GetDefinition<MonsterPackSizeProperty>().Label,
+                AutoSelectConditionType.RareMonsters => PropertyParser.GetDefinition<RareMonstersProperty>().Label,
+                AutoSelectConditionType.AttacksPerSecond => PropertyParser.GetDefinition<AttacksPerSecondProperty>().Label,
+                AutoSelectConditionType.CriticalHitChance => PropertyParser.GetDefinition<CriticalHitChanceProperty>().Label,
+                AutoSelectConditionType.PhysicalDps => PropertyParser.GetDefinition<PhysicalDpsProperty>().Label,
+                AutoSelectConditionType.TotalDps => PropertyParser.GetDefinition<TotalDpsProperty>().Label,
+                AutoSelectConditionType.GemLevel => PropertyParser.GetDefinition<GemLevelProperty>().Label,
+                AutoSelectConditionType.Blighted => PropertyParser.GetDefinition<BlightedProperty>().Label,
+                AutoSelectConditionType.BlightRavaged => PropertyParser.GetDefinition<BlightRavagedProperty>().Label,
+                _ => ConditionResources[value.ToString()],
+            };
+
+            var group = value switch
+            {
+                AutoSelectConditionType.ItemClass => ConditionResources["Group_Properties"],
+                AutoSelectConditionType.ItemLevel => ConditionResources["Group_Properties"],
+                AutoSelectConditionType.Quality => ConditionResources["Group_Properties"],
+                AutoSelectConditionType.Rarity => ConditionResources["Group_Properties"],
+                AutoSelectConditionType.Corrupted => TradeFilterProvider.MiscellaneousCategory?.Title,
+                AutoSelectConditionType.Foulborn => TradeFilterProvider.MiscellaneousCategory?.Title,
+                AutoSelectConditionType.SocketCount => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.SocketCategory?.Title,
+                AutoSelectConditionType.Armour => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.ArmourCategory?.Title,
+                AutoSelectConditionType.EvasionRating => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.ArmourCategory?.Title,
+                AutoSelectConditionType.EnergyShield => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.ArmourCategory?.Title,
+                AutoSelectConditionType.BlockChance => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.ArmourCategory?.Title,
+                AutoSelectConditionType.Spirit => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.ArmourCategory?.Title,
+                AutoSelectConditionType.AreaLevel => TradeFilterProvider.EndgameCategory?.Title ?? TradeFilterProvider.MapCategory?.Title,
+                AutoSelectConditionType.MapTier => TradeFilterProvider.EndgameCategory?.Title ?? TradeFilterProvider.MapCategory?.Title,
+                AutoSelectConditionType.ItemQuantity => TradeFilterProvider.EndgameCategory?.Title ?? TradeFilterProvider.MapCategory?.Title,
+                AutoSelectConditionType.ItemRarity => TradeFilterProvider.EndgameCategory?.Title ?? TradeFilterProvider.MapCategory?.Title,
+                AutoSelectConditionType.MagicMonsters => TradeFilterProvider.EndgameCategory?.Title ?? TradeFilterProvider.MapCategory?.Title,
+                AutoSelectConditionType.MonsterPackSize => TradeFilterProvider.EndgameCategory?.Title ?? TradeFilterProvider.MapCategory?.Title,
+                AutoSelectConditionType.RareMonsters => TradeFilterProvider.EndgameCategory?.Title ?? TradeFilterProvider.MapCategory?.Title,
+                AutoSelectConditionType.Blighted => TradeFilterProvider.EndgameCategory?.Title ?? TradeFilterProvider.MapCategory?.Title,
+                AutoSelectConditionType.BlightRavaged => TradeFilterProvider.EndgameCategory?.Title ?? TradeFilterProvider.MapCategory?.Title,
+                AutoSelectConditionType.AttacksPerSecond => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.WeaponCategory?.Title,
+                AutoSelectConditionType.CriticalHitChance => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.WeaponCategory?.Title,
+                AutoSelectConditionType.PhysicalDps => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.WeaponCategory?.Title,
+                AutoSelectConditionType.TotalDps => TradeFilterProvider.EquipmentCategory?.Title ?? TradeFilterProvider.WeaponCategory?.Title,
+                AutoSelectConditionType.GemLevel => TradeFilterProvider.MiscellaneousCategory?.Title,
+                AutoSelectConditionType.AnyStat => PoeResources["Stat_Filters"],
+                AutoSelectConditionType.Text => PoeResources["Stat_Filters"],
+                AutoSelectConditionType.StatCategory => PoeResources["Stat_Filters"],
+                AutoSelectConditionType.Value => ConditionResources["Group_Filter"],
+                _ => throw new ArgumentOutOfRangeException()
+            };
+
+            Options.Add(new SelectOption()
+            {
+                Label = label,
+                Value = value.ToString(),
+                Group = group,
+            });
+        }
+
+        StateHasChanged();
+    }
+
+    private async Task Changed(string? value)
+    {
+        if (!Enum.TryParse<AutoSelectConditionType>(value, out var enumValue))
+        {
+            return;
+        }
+
+        Condition.Type = enumValue;
+        await OnChanged.InvokeAsync();
+    }
+}

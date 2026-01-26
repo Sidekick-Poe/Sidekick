@@ -1,13 +1,18 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.ApiStats;
+
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class ClusterJewelPassiveCountProperty(IServiceProvider serviceProvider, GameType game) : PropertyDefinition
+public class ClusterJewelPassiveCountProperty(
+    GameType game,
+    IServiceProvider serviceProvider) : PropertyDefinition
 {
-    private IInvariantStatsProvider InvariantStatsProvider { get; } = serviceProvider.GetRequiredService<IInvariantStatsProvider>();
+    private readonly IInvariantStatsProvider invariantStatsProvider = serviceProvider.GetRequiredService<IInvariantStatsProvider>();
 
     public override List<ItemClass> ValidItemClasses { get; } = [ItemClass.Jewel];
+
+    public override string Label => "Cluster Jewel Passives";
 
     public override void ParseAfterStats(Item item)
     {
@@ -35,7 +40,7 @@ public class ClusterJewelPassiveCountProperty(IServiceProvider serviceProvider, 
 
             foreach (var stat in line.ApiInformation)
             {
-                if (stat.Id == InvariantStatsProvider.ClusterJewelSmallPassiveCountStatId)
+                if (stat.Id == invariantStatsProvider.ClusterJewelSmallPassiveCountStatId)
                 {
                     return (int)line.AverageValue;
                 }
@@ -56,9 +61,9 @@ public class ClusterJewelPassiveCountProperty(IServiceProvider serviceProvider, 
 
             foreach (var apiStat in line.ApiInformation)
             {
-                if (apiStat.Id == InvariantStatsProvider.ClusterJewelSmallPassiveGrantStatId)
+                if (apiStat.Id == invariantStatsProvider.ClusterJewelSmallPassiveGrantStatId)
                 {
-                    return InvariantStatsProvider.ClusterJewelSmallPassiveGrantOptions[line.OptionValue.Value].Replace("\n", ", ");
+                    return invariantStatsProvider.ClusterJewelSmallPassiveGrantOptions[line.OptionValue.Value].Replace("\n", ", ");
                 }
             }
         }

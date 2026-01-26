@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common;
+using Sidekick.Common.Settings;
 using Sidekick.Modules.Chat.Keybinds;
 
 namespace Sidekick.Modules.Chat;
@@ -19,6 +20,16 @@ public static class StartupExtensions
         services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
         services.AddSidekickInputHandler<ChatKeybindHandler>();
+
+        services.SetSidekickDefaultSetting(SettingKeys.ChatCommands, new List<ChatSetting>()
+        {
+            new("F5", "/hideout", true),
+            new("F4", "/leave", true),
+            new("Ctrl+Enter", "@last ", false),
+            new("F9", "/exit", true),
+        });
+
+
         return services;
     }
 }

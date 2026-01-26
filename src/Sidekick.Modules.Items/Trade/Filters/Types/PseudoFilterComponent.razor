@@ -1,37 +1,31 @@
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 
-<FilterWrapper>
-    <div class="flex flex-nowrap items-center">
-        <div class="grow">
-            <FormCheckbox Value="Filter.Checked"
-                          ValueChanged="CheckedChanged">
-                <ItemStatText Class="text-left"
-                                  Category="StatCategory.Pseudo">@Filter.Text</ItemStatText>
-            </FormCheckbox>
-        </div>
+<FilterWrapper Filter="@Filter">
+    <div class="grow">
+        <FormCheckbox Value="Filter.Checked"
+                      ValueChanged="CheckedChanged">
+            <ItemStatText Class="text-left"
+                          Category="StatCategory.Pseudo">@Filter.Text</ItemStatText>
+        </FormCheckbox>
+    </div>
 
-        <div class="flex flex-col items-end justify-between">
-            <ItemStatCategoryChip Category="StatCategory.Pseudo"/>
+    <div class="flex flex-col items-end justify-between gap-[2px]">
+        <ItemStatCategoryChip Category="StatCategory.Pseudo"/>
 
-            <div class="h-[2px]"></div>
-
-            @if (Filter is
+        @if (Filter is
+                 {
+                     Checked: true,
+                     Stat:
                      {
-                         Checked: true,
-                         Stat:
-                         {
-                             Value: not 0
-                         }
-                     })
-            {
-                <FilterRange Checked="Filter.Checked"
-                             NormalizeEnabled="true"
-                             NormalizeRoundToInteger="true"
-                             Value="@Filter.Stat.Value"
-                             @bind-Min="@Filter.Min" @bind-Max="@Filter.Max"/>
-            }
-        </div>
+                         Value: not 0
+                     }
+                 })
+        {
+            <FilterRange Filter="Filter"
+                         @bind-Min="@Filter.Min"
+                         @bind-Max="@Filter.Max"/>
+        }
     </div>
 </FilterWrapper>
 

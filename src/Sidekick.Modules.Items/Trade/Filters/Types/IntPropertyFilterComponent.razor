@@ -2,43 +2,34 @@
 @using Sidekick.Apis.Poe.Languages
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 
-@if (!Filter.ShowRow)
-{
-    return;
-}
-
-<FilterWrapper>
-    <div class="flex flex-nowrap items-center">
-        <div class="grow">
-            <FormCheckbox Value="Filter.Checked"
-                          ValueChanged="CheckedChanged">
-                <ItemPropertyText Label="@Filter.Text"
-                                  Hint="@Filter.Hint"
-                                  Value="@($"{Filter.ValuePrefix}{Filter.Value}{Filter.ValueSuffix}")"
-                                  ContentType="@Filter.Type"
-                                  HasAdditionalInformation="Filter.Value != Filter.OriginalValue && Filter.OriginalValue > 0">
-                    <AdditionalInformation>
-                        <ItemPropertyText Label="@($"{GameLanguageProvider.Language.DescriptionQuality} {Item.Properties.Quality}%")"
-                                          Value="@($"{Filter.ValuePrefix}{Filter.OriginalValue}{Filter.ValueSuffix}")"/>
-                        <ItemPropertyText Label="@($"{GameLanguageProvider.Language.DescriptionQuality} 20%")"
-                                          Value="@($"{Filter.ValuePrefix}{Filter.Value}{Filter.ValueSuffix}")"/>
-                    </AdditionalInformation>
-                </ItemPropertyText>
-            </FormCheckbox>
-        </div>
-
-        @if (Filter.Checked)
-        {
-            <FilterRange Checked="Filter.Checked"
-                         NormalizeEnabled="Filter.NormalizeEnabled"
-                         NormalizeRoundToInteger="true"
-                         Value="@Filter.Value"
-                         Min="@Filter.Min"
-                         MinChanged="MinChanged"
-                         Max="@Filter.Max"
-                         MaxChanged="MaxChanged"/>
-        }
+<FilterWrapper Filter="@Filter">
+    <div class="grow">
+        <FormCheckbox Value="Filter.Checked"
+                      ValueChanged="CheckedChanged">
+            <ItemPropertyText Label="@Filter.Text"
+                              Hint="@Filter.Hint"
+                              Value="@($"{Filter.ValuePrefix}{Filter.Value}{Filter.ValueSuffix}")"
+                              ContentType="@Filter.Type"
+                              HasAdditionalInformation="Filter.Value != Filter.OriginalValue && Filter.OriginalValue > 0">
+                <AdditionalInformation>
+                    <ItemPropertyText
+                        Label="@($"{GameLanguageProvider.Language.DescriptionQuality} {Item.Properties.Quality}%")"
+                        Value="@($"{Filter.ValuePrefix}{Filter.OriginalValue}{Filter.ValueSuffix}")"/>
+                    <ItemPropertyText Label="@($"{GameLanguageProvider.Language.DescriptionQuality} 20%")"
+                                      Value="@($"{Filter.ValuePrefix}{Filter.Value}{Filter.ValueSuffix}")"/>
+                </AdditionalInformation>
+            </ItemPropertyText>
+        </FormCheckbox>
     </div>
+
+    @if (Filter.Checked)
+    {
+        <FilterRange Filter="Filter"
+                     Min="@Filter.Min"
+                     MinChanged="MinChanged"
+                     Max="@Filter.Max"
+                     MaxChanged="MaxChanged"/>
+    }
 </FilterWrapper>
 
 @inject IGameLanguageProvider GameLanguageProvider

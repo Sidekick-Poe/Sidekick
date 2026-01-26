@@ -1,0 +1,78 @@
+@using Sidekick.Apis.Poe.Items
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
+@using Sidekick.Modules.Items.Trade.Localization
+
+<div class="flex flex-nowrap items-start gap-1 p-2 bg-stone-700 rounded-md">
+    <div class="grow">
+        <div class="flex flex-wrap gap-x-2 gap-y-1 items-start leading-4">
+            @if (First)
+            {
+                <span class="mt-0.5 text-neutral-300">@Resources["AutoSelect_When"]</span>
+            }
+            else
+            {
+                <span class="mt-0.5 text-neutral-300">@Resources["AutoSelect_And"]</span>
+            }
+            <FilterAutoSelectConditionType @ref="ConditionType"
+                                           Condition="Condition"
+                                           OnChanged="Update"
+                                           Readonly="Readonly"/>
+            <FilterAutoSelectComparisonType @ref="ComparisonType"
+                                            Condition="Condition"
+                                            OnChanged="Update"
+                                            Readonly="Readonly"/>
+            <div class="grow min-w-20">
+                <FilterAutoSelectConditionValue @ref="ConditionValue"
+                                                Condition="Condition"
+                                                OnChanged="Update"
+                                                Readonly="Readonly"/>
+            </div>
+        </div>
+    </div>
+    @if (!Readonly)
+    {
+        <Tooltip Text="@Resources["AutoSelect_RemoveCondition"]">
+            <ButtonIcon Class="text-red-500! hover:text-red-300!"
+                        Svg="@UiIcons.Close"
+                        OnClick="OnRemoved"/>
+        </Tooltip>
+    }
+</div>
+
+@inject IStringLocalizer<TradeResources> Resources
+
+@code {
+
+    [CascadingParameter]
+    public required Item Item { get; set; }
+
+    [Parameter]
+    public required AutoSelectCondition Condition { get; set; }
+
+    [Parameter]
+    public bool Readonly { get; set; }
+
+    [Parameter]
+    public bool First { get; set; }
+
+    [Parameter]
+    public EventCallback OnChanged { get; set; }
+
+    [Parameter]
+    public EventCallback OnRemoved { get; set; }
+
+    private FilterAutoSelectConditionType? ConditionType { get; set; }
+
+    private FilterAutoSelectComparisonType? ComparisonType { get; set; }
+
+    private FilterAutoSelectConditionValue? ConditionValue { get; set; }
+
+    private async Task Update()
+    {
+        ConditionType?.Update();
+        ComparisonType?.Update();
+        ConditionValue?.Update();
+        await OnChanged.InvokeAsync();
+    }
+
+}

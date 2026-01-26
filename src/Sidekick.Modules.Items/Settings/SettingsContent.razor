@@ -2,7 +2,7 @@
 @using Sidekick.Common.Ui.Localization
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Settings
-@using Sidekick.Modules.Items.Localization
+@using Sidekick.Modules.Items.Trade.Localization
 @implements IDisposable
 @inject IApplicationService ApplicationService
 
@@ -12,15 +12,6 @@
         <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenPriceCheck" Label="@Resources["Key_Open"]" />
     </FormFieldset>
 }
-
-<FormFieldset Legend="@Resources["Filter_Settings"]">
-    <PriceCheckItemClassFilter />
-    <PriceCheckNormalizeValueEditor />
-    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckFillDefaultMin" Label="@Resources["PriceCheck_FillDefault_Min"]"/>
-    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckFillDefaultMax" Label="@Resources["PriceCheck_FillDefault_Max"]"/>
-    <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckEnableAllFilters" Label="@Resources["PriceCheck_Enable_All_Filters"]" />
-    <SettingTextEditor SettingKey="@SettingKeys.PriceCheckEnableFiltersByRegex" Label="@Resources["PriceCheck_Enable_Filters_By_Regex"]" Tooltip="@UiResources["Regex_Hint"]" />
-</FormFieldset>
 
 <FormFieldset Legend="@Resources["External_Tools_Settings"]">
     <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckPredictionEnabled" Label="@Resources["PriceCheck_Prediction_Enable"]" />
@@ -41,14 +32,7 @@
     private string[] SettingKeysUsed { get; } =
     {
         SettingKeys.KeyOpenPriceCheck,
-
-        SettingKeys.PriceCheckItemClassFilter,
-        SettingKeys.PriceCheckNormalizeValue,
-        SettingKeys.PriceCheckFillDefaultMin,
-        SettingKeys.PriceCheckFillDefaultMax,
         SettingKeys.PriceCheckPredictionEnabled,
-        SettingKeys.PriceCheckEnableAllFilters,
-        SettingKeys.PriceCheckEnableFiltersByRegex,
     };
 
     protected override async Task OnInitializedAsync()

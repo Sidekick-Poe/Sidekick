@@ -1,15 +1,43 @@
+using System.Text.Json;
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 
-public sealed class StatFilter : TradeFilter
+public sealed class StatFilter : TradeFilter, INormalizableFilter
 {
+    public static AutoSelectPreferences GetDefault() => new()
+    {
+        Mode = AutoSelectMode.Default,
+        Rules =
+        [
+            new AutoSelectRule()
+            {
+                Checked = true,
+                Conditions =
+                [
+                    new AutoSelectCondition()
+                    {
+                        Type = AutoSelectConditionType.StatCategory,
+                        Comparison = AutoSelectComparisonType.IsContainedIn,
+                        Value = JsonSerializer.Serialize(new List<StatCategory>()
+                        {
+                            StatCategory.Fractured,
+                        }, AutoSelectPreferences.JsonSerializerOptions),
+                    },
+                ],
+            },
+        ],
+    };
+
     public StatFilter(Stat stat)
     {
         Stat = stat;
-        Checked = stat.ApiInformation.FirstOrDefault()?.Category == StatCategory.Fractured;
         Text = stat.Text;
+
+        DefaultAutoSelect = GetDefault();
 
         var categories = stat.ApiInformation.Select(x => x.Category).Distinct().ToList();
         if (categories.Any(x => x is StatCategory.Fractured or StatCategory.Desecrated or StatCategory.Crafted))
@@ -26,17 +54,32 @@ public sealed class StatFilter : TradeFilter
         }
     }
 
-    public Stat Stat { get; }
+    public override async Task<AutoSelectResult?> Initialize(Item item, ISettingsService settingsService)
+    {
+        var result = await base.Initialize(item, settingsService);
+        if (result == null) return null;
+
+        if (result.FillMinRange) Min = ((INormalizableFilter)this).NormalizeMinValue(result.NormalizeBy);
+        if (result.FillMaxRange) Max = ((INormalizableFilter)this).NormalizeMaxValue(result.NormalizeBy);
+
+        return result;
+    }
+
+    public Stat Stat { get; init; }
 
     public bool UsePrimaryCategory { get; set; }
 
-    public StatCategory PrimaryCategory { get; private init; }
+    public StatCategory PrimaryCategory { get; init; }
 
-    public StatCategory SecondaryCategory { get; private init; }
+    public StatCategory SecondaryCategory { get; init; }
 
     public double? Min { get; set; }
 
     public double? Max { get; set; }
+
+    public double NormalizeValue => Stat.AverageValue;
+
+    public bool NormalizeEnabled => true;
 
     public override void PrepareTradeRequest(Query query, Item item)
     {

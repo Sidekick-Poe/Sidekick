@@ -1,51 +1,46 @@
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
-@using Sidekick.Modules.Items.Localization
+@using Sidekick.Modules.Items.Trade.Localization
 
-<FilterWrapper>
-    <div class="flex flex-nowrap items-center">
-        <div class="grow">
-            <FormCheckbox Value="Filter.Checked"
-                          ValueChanged="CheckedChanged">
-                <ItemStatText Class="text-left"
-                                  Category="Filter.Stat.ApiInformation.FirstOrDefault()?.Category">@Filter.Text</ItemStatText>
-            </FormCheckbox>
-        </div>
+<FilterWrapper Filter="Filter">
+    <div class="grow">
+        <FormCheckbox Value="Filter.Checked"
+                      ValueChanged="CheckedChanged">
+            <ItemStatText Class="text-left"
+                          Category="Filter.Stat.ApiInformation.FirstOrDefault()?.Category">@Filter.Text</ItemStatText>
+        </FormCheckbox>
+    </div>
 
-        <OilAnointment Filter="Filter"/>
+    <OilAnointment Filter="Filter"/>
 
-        <div class="flex flex-col items-end justify-between gap-[2px] -mr-1">
-            @if (Filter is
+    <div class="flex flex-col items-end justify-between gap-[2px]">
+        @if (Filter is
+                 {
+                     Checked: true,
+                     SecondaryCategory: not StatCategory.Undefined
+                 })
+        {
+            <Tooltip Text="@Resources["ForceCategoryHint"]" Placement="TooltipPlacement.Right">
+                <ItemStatCategoryChip Category="Filter.PrimaryCategory"
+                                      Checked="Filter.UsePrimaryCategory"
+                                      ShowCheckbox="true"
+                                      OnClick="() => Filter.UsePrimaryCategory = !Filter.UsePrimaryCategory"/>
+            </Tooltip>
+        }
+
+        @if (Filter is
+                 {
+                     Checked: true,
+                     Stat:
                      {
-                         Checked: true,
-                         SecondaryCategory: not StatCategory.Undefined
-                     })
-            {
-                <Tooltip Text="@Resources["ForceCategoryHint"]" Placement="TooltipPlacement.Right">
-                    <ItemStatCategoryChip Category="Filter.PrimaryCategory"
-                                              Checked="Filter.UsePrimaryCategory"
-                                              ShowCheckbox="true"
-                                              OnClick="() => Filter.UsePrimaryCategory = !Filter.UsePrimaryCategory"/>
-                </Tooltip>
-            }
-
-            @if (Filter is
-                     {
-                         Checked: true,
-                         Stat:
-                         {
-                             HasValues: true
-                         }
-                     })
-            {
-                <FilterRange Checked="Filter.Checked"
-                             NormalizeEnabled="true"
-                             NormalizeRoundToInteger="true"
-                             Value="@Filter.Stat.AverageValue"
-                             @bind-Min="@Filter.Min"
-                             @bind-Max="@Filter.Max"/>
-            }
-        </div>
+                         HasValues: true
+                     }
+                 })
+        {
+            <FilterRange Filter="Filter"
+                         @bind-Min="@Filter.Min"
+                         @bind-Max="@Filter.Max"/>
+        }
     </div>
 </FilterWrapper>
 

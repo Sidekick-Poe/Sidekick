@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sidekick.Common.Database;
@@ -14,6 +15,14 @@ public class SettingsService(
 {
     public event Action<string[]>? OnSettingsChanged;
 
+    private static JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
+    {
+        Converters =
+        {
+            new JsonStringEnumConverter()
+        },
+    };
+
     public async Task<bool> GetBool(string key)
     {
         await using var dbContext = new SidekickDbContext(dbContextOptions);
@@ -25,13 +34,7 @@ public class SettingsService(
             return boolValue;
         }
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty == null)
-        {
-            return false;
-        }
-
-        return (bool)(defaultProperty.GetValue(null) ?? false);
+        return GetDefault<bool>(key);
     }
 
     public async Task<string?> GetString(string key)
@@ -45,13 +48,7 @@ public class SettingsService(
             return dbSetting.Value;
         }
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty == null)
-        {
-            return null;
-        }
-
-        return (string?)(defaultProperty.GetValue(null) ?? null);
+        return GetDefault<string>(key);
     }
 
     public async Task<int> GetInt(string key)
@@ -65,13 +62,7 @@ public class SettingsService(
             return intValue;
         }
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty == null)
-        {
-            return 0;
-        }
-
-        return (int)(defaultProperty.GetValue(null) ?? 0);
+        return GetDefault<int>(key);
     }
 
     public async Task<double> GetDouble(string key)
@@ -85,13 +76,7 @@ public class SettingsService(
             return doubleValue;
         }
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty == null)
-        {
-            return 0;
-        }
-
-        return (double)(defaultProperty.GetValue(null) ?? 0);
+        return GetDefault<double>(key);
     }
 
     public async Task<DateTimeOffset?> GetDateTime(string key)
@@ -105,16 +90,10 @@ public class SettingsService(
             return dateTimeValue;
         }
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty == null)
-        {
-            return null;
-        }
-
-        return (DateTimeOffset?)(defaultProperty.GetValue(null) ?? null);
+        return GetDefault<DateTimeOffset>(key);
     }
 
-    public async Task<TValue> GetObject<TValue>(string key, Func<TValue> defaultFunc)
+    public async Task<TValue?> GetObject<TValue>(string key, Func<TValue?> defaultFunc)
         where TValue : class
     {
         await using var dbContext = new SidekickDbContext(dbContextOptions);
@@ -125,7 +104,7 @@ public class SettingsService(
         {
             try
             {
-                return JsonSerializer.Deserialize<TValue>(dbSetting.Value ?? string.Empty) ?? defaultFunc.Invoke();
+                return JsonSerializer.Deserialize<TValue>(dbSetting.Value ?? string.Empty, JsonSerializerOptions) ?? defaultFunc.Invoke();
             }
             catch (Exception e)
             {
@@ -133,20 +112,8 @@ public class SettingsService(
             }
         }
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty != null)
-        {
-            try
-            {
-                return (TValue)(defaultProperty.GetValue(null) ?? throw new Exception("The default settings returned null."));
-            }
-            catch (Exception e)
-            {
-                logger.LogError(e, "[SettingsService] Could not cast the default setting value to the requested object.");
-            }
-        }
-
-        return defaultFunc.Invoke();
+        var defaultValue = GetDefault<TValue>(key);
+        return defaultValue ?? defaultFunc.Invoke();
     }
 
     public async Task<TEnum?> GetEnum<TEnum>(string key)
@@ -167,21 +134,19 @@ public class SettingsService(
             return enumFromAttribute;
         }
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty == null)
+        if (!SidekickConfiguration.DefaultSettings.TryGetValue(key, out var defaultValue))
         {
             return null;
         }
 
         try
         {
-            var propertyValue = defaultProperty.GetValue(null)?.ToString();
-            if (Enum.TryParse<TEnum>(propertyValue, out var defaultValue))
+            if (Enum.TryParse<TEnum>(defaultValue.ToString(), out var defaultEnumValue))
             {
-                return defaultValue;
+                return defaultEnumValue;
             }
 
-            var defaultEnumValueFromAttribute = propertyValue?.GetEnumFromValue<TEnum>();
+            var defaultEnumValueFromAttribute = defaultValue.ToString()?.GetEnumFromValue<TEnum>();
             if (defaultEnumValueFromAttribute != null)
             {
                 return defaultEnumValueFromAttribute;
@@ -202,14 +167,12 @@ public class SettingsService(
     {
         var stringValue = GetStringValue(value);
 
-        var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-        if (defaultProperty != null)
+        var defaultConfiguration = SidekickConfiguration.DefaultSettings.GetValueOrDefault(key);
+        defaultConfiguration ??= GetDefaultValue(value);
+        if (defaultConfiguration != null)
         {
-            var defaultValue = GetStringValue(defaultProperty.GetValue(null));
-            if (defaultValue == stringValue)
-            {
-                stringValue = null;
-            }
+            var defaultValue = GetStringValue(defaultConfiguration);
+            if (defaultValue == stringValue) stringValue = null;
         }
 
         await using var dbContext = new SidekickDbContext(dbContextOptions);
@@ -249,47 +212,15 @@ public class SettingsService(
 
     public async Task<bool> IsSettingModified(params string[] keys)
     {
-        if (keys.Length == 0)
-        {
-            return false;
-        }
+        if (keys.Length == 0) return false;
 
         await using var dbContext = new SidekickDbContext(dbContextOptions);
-
-        var dbSettings = await dbContext.Settings.Where(x => keys.Contains(x.Key)).ToListAsync();
-
-        foreach (var key in keys)
-        {
-            var dbSetting = dbSettings.FirstOrDefault(x => x.Key == key);
-
-            if (dbSetting == null)
-            {
-                continue;
-            }
-
-            var defaultProperty = typeof(DefaultSettings).GetProperty(key);
-            if (defaultProperty == null)
-            {
-                continue;
-            }
-
-            var defaultValue = GetStringValue(defaultProperty.GetValue(null));
-
-            if (defaultValue != dbSetting.Value)
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return await dbContext.Settings.Where(x => keys.Contains(x.Key)).AnyAsync();
     }
 
     public async Task DeleteSetting(params string[] keys)
     {
-        if (keys.Length == 0)
-        {
-            return;
-        }
+        if (keys.Length == 0) return;
 
         await using var dbContext = new SidekickDbContext(dbContextOptions);
         var changed = false;
@@ -328,7 +259,29 @@ public class SettingsService(
             DateTimeOffset x => x.ToString(),
             Enum x => x.GetValueAttribute(),
             string x => x,
-            _ => JsonSerializer.Serialize(value),
+            _ => JsonSerializer.Serialize(value, JsonSerializerOptions),
+        };
+    }
+
+    private static TValue? GetDefault<TValue>(string key)
+    {
+        if (SidekickConfiguration.DefaultSettings.TryGetValue(key, out var value) && value is TValue typedValue)
+        {
+            return typedValue;
+        }
+
+        return default;
+    }
+
+    private static object? GetDefaultValue(object? value)
+    {
+        return value switch
+        {
+            bool => false,
+            string => string.Empty,
+            int => 0,
+            double => 0,
+            _ => null,
         };
     }
 }

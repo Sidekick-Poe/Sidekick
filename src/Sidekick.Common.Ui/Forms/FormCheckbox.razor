@@ -2,12 +2,13 @@
        @onmousedown="OnMouseDown"
        @onkeydown="OnKeyDown"
        @onclick:preventDefault="true"
-       class="flex items-center leading-none select-none @(Dense ? "min-h-4 gap-[3px]" : "min-h-5 gap-2")">
+       class="flex items-center leading-none select-none @(Dense ? "min-h-4 gap-[3px]" : "min-h-5 gap-1")">
     <input type="checkbox"
+           disabled="@Readonly"
            checked="@Value"
            @onchange="OnChange"
-           class="@(Dense ? "w-4 h-4 min-w-4 min-h-4" : "w-5 h-5 min-w-5 min-h-5") border-2 rounded-sm bg-zinc-700 border-zinc-600 text-zinc-600 @UiClasses.FocusClasses">
-    <span class="text-zinc-200 font-medium @(Dense ? "text-sm" : "text-base") grow">
+           class="@(Dense ? "w-4 h-4 min-w-4 min-h-4" : "w-5 h-5 min-w-5 min-h-5") rounded-sm @FormInputInline.ColorClasses text-zinc-600! @(Readonly ? string.Empty : FormInputInline.TransitionClasses) @UiClasses.FocusClasses">
+    <span class="text-white font-medium @(Dense ? "text-sm" : "text-base") grow">
         @ChildContent
     </span>
 </label>
@@ -26,8 +27,13 @@
     [Parameter]
     public bool Dense { get; set; }
 
+    [Parameter]
+    public bool Readonly { get; set; }
+
     private async Task OnChange(ChangeEventArgs args)
     {
+        if (Readonly) return;
+
         if (bool.TryParse(args.Value?.ToString(), out var boolValue))
         {
             await ValueChanged.InvokeAsync(boolValue);
@@ -40,6 +46,8 @@
 
     private async Task OnMouseEnter(MouseEventArgs args)
     {
+        if (Readonly) return;
+
         if (args.Buttons == 1)
         {
             await ValueChanged.InvokeAsync(!Value);
@@ -48,6 +56,8 @@
 
     private async Task OnMouseDown(MouseEventArgs args)
     {
+        if (Readonly) return;
+
         if (args.Buttons == 1)
         {
             await ValueChanged.InvokeAsync(!Value);
@@ -56,6 +66,8 @@
 
     private async Task OnKeyDown(KeyboardEventArgs args)
     {
+        if (Readonly) return;
+
         if (args.Key == " ")
         {
             await ValueChanged.InvokeAsync(!Value);

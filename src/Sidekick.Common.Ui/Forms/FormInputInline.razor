@@ -1,0 +1,38 @@
+@inherits FormInput
+
+<div class="relative w-full"
+     title="@Value">
+    <label for="@Id"
+           class="@Classes @ColorClasses @(Readonly ? string.Empty : TransitionClasses) text-nowrap line-clamp-1">
+        @if (!string.IsNullOrEmpty(Value))
+        {
+            <span class="text-white">@Value</span>
+        }
+        else
+        {
+            <span class="text-zinc-300 italic">@(!string.IsNullOrEmpty(Label) ? Label : "no value")</span>
+        }
+    </label>
+
+    @if (!Readonly)
+    {
+        <input id="@Id"
+               @onchange="OnChange"
+               @attributes="InputAttributes"
+               @onfocus="OnFocus"
+               @onblur="OnBlur"
+               class="absolute top-0 left-0 right-0 bottom-0 @UiClasses.FocusClasses @Classes @ColorClasses @TransitionClasses"
+               value="@Value"/>
+    }
+</div>
+
+@code {
+
+    public const string Classes = "p-0.5 leading-4 h-5 rounded-sm text-base bg-none";
+    public const string ColorClasses = "border border-zinc-600 bg-zinc-800 text-white";
+    public const string TransitionClasses = "transition-colors duration-200 hover:bg-zinc-700 focus:bg-zinc-700 hover:border-zinc-500 focus:border-zinc-500";
+
+    [Parameter]
+    public bool Readonly { get; set; }
+
+}

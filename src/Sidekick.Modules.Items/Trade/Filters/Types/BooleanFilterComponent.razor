@@ -1,22 +1,14 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
-@if (!Filter.ShowRow)
-{
-    return;
-}
 
-<FilterWrapper>
-    <div class="flex flex-nowrap items-center">
-        <div class="grow">
-            <FormCheckbox @bind-Value="Filter.Checked">
-                <div class="flex items-center gap-1">
-                    <ItemPropertyText Label="@Filter.Text"
-                                      Hint="@Filter.Hint"
-                                      Value="@(Filter.Checked ? "true" : "false")"
-                                      ContentType="@Filter.Type"
-                                      OnlyShowLabel="true"/>
-                </div>
-            </FormCheckbox>
-        </div>
+<FilterWrapper Filter="@Filter">
+    <div class="grow">
+        <FormCheckbox @bind-Value="Filter.Checked">
+            <ItemPropertyText Label="@Filter.Text"
+                              Hint="@Filter.Hint"
+                              Value="@(Filter.Checked ? "true" : "false")"
+                              ContentType="@Filter.Type"
+                              OnlyShowLabel="true"/>
+        </FormCheckbox>
     </div>
 </FilterWrapper>
 

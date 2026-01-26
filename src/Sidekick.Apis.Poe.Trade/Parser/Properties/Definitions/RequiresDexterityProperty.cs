@@ -1,13 +1,17 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Common.Enums;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class RequiresDexterityProperty(IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+public class RequiresDexterityProperty(
+    GameType game,
+    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionRequiresDex.ToRegexIntCapture();
 
@@ -19,6 +23,8 @@ public class RequiresDexterityProperty(IGameLanguageProvider gameLanguageProvide
         ..ItemClassConstants.Weapons,
         ItemClass.Graft,
     ];
+
+    public override string Label => gameLanguageProvider.Language.DescriptionRequiresDex;
 
     public override void Parse(Item item)
     {
@@ -33,22 +39,28 @@ public class RequiresDexterityProperty(IGameLanguageProvider gameLanguageProvide
         }
     }
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.RequiresDexterity <= 0) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.RequiresDexterity <= 0) return null;
 
         var filter = new RequiresDexterityFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionRequiresDex,
-            NormalizeEnabled = false,
+            Text = Label,
             Value = item.Properties.RequiresDexterity,
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(RequiresDexterityProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = false,
         };
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
 public class RequiresDexterityFilter : IntPropertyFilter
 {
+    public RequiresDexterityFilter()
+    {
+        DefaultAutoSelect = AutoSelectPreferences.Create(false);
+    }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;

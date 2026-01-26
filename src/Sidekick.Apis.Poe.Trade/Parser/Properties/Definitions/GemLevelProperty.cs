@@ -1,20 +1,23 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Common.Enums;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class GemLevelProperty
-(
-    IGameLanguageProvider gameLanguageProvider
-) : PropertyDefinition
+public class GemLevelProperty(
+    GameType game,
+    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionLevel.ToRegexIntCapture();
 
     public override List<ItemClass> ValidItemClasses { get; } = [..ItemClassConstants.Gems];
+
+    public override string Label => gameLanguageProvider.Language.DescriptionLevel;
 
     public override void Parse(Item item)
     {
@@ -29,23 +32,28 @@ public class GemLevelProperty
         if (item.Properties.GemLevel > 0) propertyBlock.Parsed = true;
     }
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.GemLevel <= 0) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.GemLevel <= 0) return null;
 
         var filter = new GemLevelFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionLevel,
-            NormalizeEnabled = false,
+            Text = Label,
             Value = item.Properties.GemLevel,
-            Checked = true,
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(GemLevelProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = false,
         };
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
 public class GemLevelFilter : IntPropertyFilter
 {
+    public GemLevelFilter()
+    {
+        DefaultAutoSelect = AutoSelectPreferences.Create(true);
+    }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;

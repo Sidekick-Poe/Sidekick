@@ -14,8 +14,8 @@
 
 <BodySectionContent SectionName="@Id">
     <div id="@Id" tabindex="-1"
-         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-40 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-md max-h-full">
+         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-40 justify-center items-center w-full p-4 md:inset-0 h-full max-h-full">
+        <div class="relative p-4 w-full @SizeClass max-h-full">
             <div class="relative bg-stone-950 border border-stone-700 text-white rounded-lg shadow-sm p-4">
                 @if (HeaderContent != null)
                 {
@@ -54,6 +54,15 @@
 
     [Parameter]
     public EventCallback OnShow { get; set; }
+
+    [Parameter]
+    public ModalSize Size { get; set; }
+
+    private string SizeClass => Size switch
+    {
+        ModalSize.Xl => "max-w-xl",
+        _ => "max-w-md",
+    };
 
     private string Id { get; } = UiUtilities.GenerateId();
 

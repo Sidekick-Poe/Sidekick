@@ -1,0 +1,63 @@
+@using System.Globalization
+@using Sidekick.Modules.Items.Trade.Localization
+
+
+<div class="flex flex-nowrap gap-2">
+    <span class="mt-0.5 text-neutral-300">@Resources["AutoSelect_NormalizeBy"]</span>
+    <FormSelectInline Value="@Value.ToString()"
+                      ValueChanged="OnValueChanged"
+                      Options="Options"
+                      Readonly="@Readonly"/>
+    <Tooltip Text="@Resources["Normalize_Values"]"/>
+</div>
+
+@inject IStringLocalizer<TradeResources> Resources
+
+@code {
+
+    [Parameter]
+    public double? Value { get; set; }
+
+    [Parameter]
+    public EventCallback<double?> ValueChanged { get; set; }
+
+    [Parameter]
+    public bool Readonly { get; set; }
+
+    private List<SelectOption> Options { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var values = new List<double>
+        {
+            0,
+            .05,
+            .1,
+            .15,
+            .2,
+            .25
+        };
+
+        Options = values.Select(x => new SelectOption
+            {
+                Value = x.ToString(CultureInfo.InvariantCulture),
+                Label = x.ToString("P0"),
+            })
+            .ToList();
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task OnValueChanged(string? value)
+    {
+        if (double.TryParse(value, out var result))
+        {
+            await ValueChanged.InvokeAsync(result);
+        }
+        else
+        {
+            await ValueChanged.InvokeAsync(0);
+        }
+    }
+
+}

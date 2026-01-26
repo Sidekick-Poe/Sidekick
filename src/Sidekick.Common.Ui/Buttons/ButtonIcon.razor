@@ -3,8 +3,15 @@
         @attributes="AdditionalAttributes"
         @onclick="() => OnClick.InvokeAsync()"
         @onclick:preventDefault="true"
-        class="disabled:opacity-50 inline-flex items-center justify-center text-base font-medium tracking-wide dark:text-violet-500 transition-colors duration-200 rounded-md bg-transparent hover:text-violet-400 @UiClasses.FocusClasses @AdditionalClasses">
-    @ChildContent
+        class="disabled:opacity-50 dark:text-violet-500 transition-colors duration-200 rounded-md bg-transparent hover:text-violet-400 @UiClasses.FocusClasses @Class @Icon.GetSizeClass(Size)">
+    <span class="relative fill-current inline-block @Icon.GetSizeClass(Size) @Class">
+        @((MarkupString)Svg)
+
+        @if (AddBadge)
+        {
+            <span class="absolute top-0 right-0 w-2 h-2 bg-red-700 rounded-full"></span>
+        }
+    </span>
 </button>
 
 @code {
@@ -16,12 +23,20 @@
     public EventCallback OnClick { get; set; }
 
     [Parameter]
-    public bool Disabled { get; set; }
+    public required string Svg { get; set; }
 
     [Parameter]
-    public string? AdditionalClasses { get; set; }
+    public bool AddBadge { get; set; }
+
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public UiIconSize Size { get; set; } = UiIconSize.Medium;
+
+    [Parameter]
+    public bool Disabled { get; set; }
 
     [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object>? AdditionalAttributes { get; set; }
-
 }

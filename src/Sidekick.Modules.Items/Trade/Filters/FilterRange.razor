@@ -1,8 +1,9 @@
-@using System.Globalization
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect
+@using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Common.Settings
-@using Sidekick.Modules.Items.Localization
+@using Sidekick.Modules.Items.Trade.Localization
 
-@if (!Checked)
+@if (!Filter.Checked)
 {
     return;
 }
@@ -30,18 +31,14 @@
     </ActivatorContent>
     <ChildContent>
         <div class="flex flex-nowrap gap-1">
-            <ButtonIcon OnClick="SetMin">
-                <Icon Svg="@UiIcons.FilterGreaterThan" />
-            </ButtonIcon>
-            <ButtonIcon OnClick="SetMax">
-                <Icon Svg="@UiIcons.FilterLessThan" />
-            </ButtonIcon>
-            <ButtonIcon OnClick="SetEquals">
-                <Icon Svg="@UiIcons.FilterEquals" />
-            </ButtonIcon>
-            <ButtonIcon OnClick="SetRange">
-                <Icon Svg="@UiIcons.FilterRange" />
-            </ButtonIcon>
+            <ButtonIcon OnClick="SetMin"
+                        Svg="@UiIcons.FilterGreaterThan"/>
+            <ButtonIcon OnClick="SetMax"
+                        Svg="@UiIcons.FilterLessThan"/>
+            <ButtonIcon OnClick="SetEquals"
+                        Svg="@UiIcons.FilterEquals"/>
+            <ButtonIcon OnClick="SetRange"
+                        Svg="@UiIcons.FilterRange"/>
         </div>
     </ChildContent>
 </Popover>
@@ -53,16 +50,7 @@
 @code {
 
     [Parameter]
-    public bool Checked { get; set; }
-
-    [Parameter]
-    public bool NormalizeEnabled { get; set; }
-
-    [Parameter]
-    public bool NormalizeRoundToInteger { get; set; }
-
-    [Parameter]
-    public double? Value { get; set; }
+    public required INormalizableFilter Filter { get; set; }
 
     [Parameter]
     public double? Min { get; set; }
@@ -76,34 +64,7 @@
     [Parameter]
     public EventCallback<double?> MaxChanged { get; set; }
 
-    private bool LastValueChecked { get; set; }
-
-    private double NormalizeMultiplier { get; set; }
-
     private string Id { get; } = UiUtilities.GenerateId();
-
-    protected override async Task OnParametersSetAsync()
-    {
-        if (Checked != LastValueChecked)
-        {
-            LastValueChecked = Checked;
-            NormalizeMultiplier = await SettingsService.GetDouble(SettingKeys.PriceCheckNormalizeValue);
-
-            var fillMin = await SettingsService.GetBool(SettingKeys.PriceCheckFillDefaultMin);
-            if (fillMin)
-            {
-                await NormalizeMinValue();
-            }
-
-            var fillMax = await SettingsService.GetBool(SettingKeys.PriceCheckFillDefaultMax);
-            if (fillMax)
-            {
-                await NormalizeMaxValue();
-            }
-        }
-
-        await base.OnParametersSetAsync();
-    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -161,54 +122,6 @@
         await UpdateMaxValue(value);
     }
 
-    private async Task NormalizeMinValue()
-    {
-        if (!NormalizeEnabled || !Value.HasValue || !double.TryParse(Value.Value.ToString(CultureInfo.InvariantCulture), out var value) || value == 0)
-        {
-            await UpdateMinValue(Value);
-            return;
-        }
-
-        double roundedValue;
-        if (value > 0)
-        {
-            var normalizedValue = (1 - NormalizeMultiplier) * value;
-            roundedValue = Math.Round(normalizedValue, 2);
-        }
-        else
-        {
-            var normalizedValue = (1 + NormalizeMultiplier) * value;
-            roundedValue = Math.Round(normalizedValue, 2);
-        }
-
-        if (NormalizeRoundToInteger) roundedValue = (int)roundedValue;
-        await UpdateMinValue(roundedValue);
-    }
-
-    private async Task NormalizeMaxValue()
-    {
-        if (!NormalizeEnabled || !Value.HasValue || !double.TryParse(Value.Value.ToString(CultureInfo.InvariantCulture), out var value) || value == 0)
-        {
-            await UpdateMaxValue(Value);
-            return;
-        }
-
-        double roundedValue;
-        if (value > 0)
-        {
-            var normalizedValue = (1 + NormalizeMultiplier) * value;
-            roundedValue = Math.Round(normalizedValue, 2);
-        }
-        else
-        {
-            var normalizedValue = (1 - NormalizeMultiplier) * value;
-            roundedValue = Math.Round(normalizedValue, 2);
-        }
-
-        if (NormalizeRoundToInteger) roundedValue = (int)roundedValue;
-        await UpdateMaxValue(roundedValue);
-    }
-
     private async Task Clear()
     {
         await MinChanged.InvokeAsync(null);
@@ -217,25 +130,28 @@
 
     private async Task SetMin()
     {
-        await NormalizeMinValue();
+        var normalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
+        await UpdateMinValue(Filter.NormalizeMinValue(normalizeBy));
         await UpdateMaxValue(null);
     }
 
     private async Task SetMax()
     {
-        await NormalizeMaxValue();
+        var normalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
         await UpdateMinValue(null);
+        await UpdateMaxValue(Filter.NormalizeMaxValue(normalizeBy));
     }
 
     private async Task SetEquals()
     {
-        await UpdateMinValue(Value);
-        await UpdateMaxValue(Value);
+        await UpdateMinValue(Filter.NormalizeValue);
+        await UpdateMaxValue(Filter.NormalizeValue);
     }
 
     private async Task SetRange()
     {
-        await NormalizeMinValue();
-        await NormalizeMaxValue();
+        var normalizeBy = await SettingsService.GetDouble(AutoSelectPreferences.DefaultNormalizeBySettingKey);
+        await UpdateMinValue(Filter.NormalizeMinValue(normalizeBy));
+        await UpdateMaxValue(Filter.NormalizeMaxValue(normalizeBy));
     }
 }

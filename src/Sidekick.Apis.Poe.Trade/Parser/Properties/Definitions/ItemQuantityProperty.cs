@@ -1,14 +1,18 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
+using Sidekick.Common.Enums;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class ItemQuantityProperty(IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+public class ItemQuantityProperty(
+    GameType game,
+    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionItemQuantity.ToRegexIntCapture();
 
@@ -17,6 +21,8 @@ public class ItemQuantityProperty(IGameLanguageProvider gameLanguageProvider) : 
     public override List<ItemClass> ValidItemClasses { get; } = [
         ..ItemClassConstants.Areas,
     ];
+
+    public override string Label => gameLanguageProvider.Language.DescriptionItemQuantity;
 
     public override void Parse(Item item)
     {
@@ -28,26 +34,31 @@ public class ItemQuantityProperty(IGameLanguageProvider gameLanguageProvider) : 
         if (GetBool(IsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.ItemQuantity));
     }
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.ItemQuantity <= 0) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.ItemQuantity <= 0) return null;
 
         var filter = new ItemQuantityFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionItemQuantity,
-            NormalizeEnabled = true,
+            Text = Label,
             Value = item.Properties.ItemQuantity,
             ValuePrefix = "+",
             ValueSuffix = "%",
-            Checked = false,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.ItemQuantity)) ? LineContentType.Augmented : LineContentType.Simple,
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(ItemQuantityProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = true,
         };
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
 public class ItemQuantityFilter : IntPropertyFilter
 {
+    public ItemQuantityFilter()
+    {
+        DefaultAutoSelect = AutoSelectPreferences.Create(false);
+    }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;

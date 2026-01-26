@@ -1,13 +1,17 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Common.Enums;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class RequiresLevelProperty(IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+public class RequiresLevelProperty(
+    GameType game,
+    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionLevel.ToRegexIntCapture();
 
@@ -22,6 +26,8 @@ public class RequiresLevelProperty(IGameLanguageProvider gameLanguageProvider) :
         ItemClass.Graft,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionRequiresLevel;
+
     public override void Parse(Item item)
     {
         foreach (var block in item.Text.Blocks)
@@ -35,22 +41,28 @@ public class RequiresLevelProperty(IGameLanguageProvider gameLanguageProvider) :
         }
     }
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.RequiresLevel <= 0) return Task.FromResult<TradeFilter?>(null);
+        if (item.Properties.RequiresLevel <= 0) return null;
 
         var filter = new RequiresLevelFilter
         {
-            Text = gameLanguageProvider.Language.DescriptionRequiresLevel,
-            NormalizeEnabled = false,
+            Text = Label,
             Value = item.Properties.RequiresLevel,
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(RequiresLevelProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = false,
         };
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
 public class RequiresLevelFilter : IntPropertyFilter
 {
+    public RequiresLevelFilter()
+    {
+        DefaultAutoSelect = AutoSelectPreferences.Create(false);
+    }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;

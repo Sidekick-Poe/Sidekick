@@ -1,18 +1,18 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Results;
+using Sidekick.Common.Enums;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class EnergyShieldProperty
-(
-    IGameLanguageProvider gameLanguageProvider,
-    GameType game
-) : PropertyDefinition
+public class EnergyShieldProperty(
+    GameType game,
+    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionEnergyShield.ToRegexIntCapture();
 
@@ -32,6 +32,8 @@ public class EnergyShieldProperty
         ..ItemClassConstants.Equipment,
     ];
 
+    public override string Label => gameLanguageProvider.Language.DescriptionEnergyShield;
+
     public override void Parse(Item item)
     {
         var propertyBlock = item.Text.Blocks[1];
@@ -44,36 +46,38 @@ public class EnergyShieldProperty
         else if (AlternateIsAugmentedPattern != null && GetBool(AlternateIsAugmentedPattern, propertyBlock)) item.Properties.AugmentedProperties.Add(nameof(ItemProperties.EnergyShield));
     }
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        if (item.Properties.EnergyShield <= 0) return Task.FromResult<TradeFilter?>(null);
-
-        var text = gameLanguageProvider.Language.DescriptionEnergyShield;
-        if (!string.IsNullOrEmpty(gameLanguageProvider.Language.DescriptionEnergyShieldAlternate) && item.Game == GameType.PathOfExile2)
-        {
-            text = gameLanguageProvider.Language.DescriptionEnergyShieldAlternate;
-        }
+        if (item.Properties.EnergyShield <= 0) return null;
 
         var filter = new EnergyShieldFilter(game)
         {
-            Text = text,
-            NormalizeEnabled = true,
+            Text = Label,
             Value = item.Properties.EnergyShieldWithQuality,
             OriginalValue = item.Properties.EnergyShield,
-            Checked = false,
             Type = item.Properties.AugmentedProperties.Contains(nameof(ItemProperties.EnergyShield)) ? LineContentType.Augmented : LineContentType.Simple,
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(EnergyShieldProperty)}_{game.GetValueAttribute()}",
+            NormalizeEnabled = true,
         };
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
-public class EnergyShieldFilter(GameType game) : IntPropertyFilter
+public class EnergyShieldFilter : IntPropertyFilter
 {
+    public EnergyShieldFilter(GameType game)
+    {
+        Game = game;
+        DefaultAutoSelect = AutoSelectPreferences.Create(false);
+    }
+
+    private GameType Game { get; }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (!Checked) return;
 
-        switch (game)
+        switch (Game)
         {
             case GameType.PathOfExile1: query.Filters.GetOrCreateArmourFilters().Filters.EnergyShield = new StatFilterValue(this); break;
             case GameType.PathOfExile2: query.Filters.GetOrCreateEquipmentFilters().Filters.EnergyShield = new StatFilterValue(this); break;

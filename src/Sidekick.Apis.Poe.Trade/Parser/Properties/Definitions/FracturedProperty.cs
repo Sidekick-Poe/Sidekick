@@ -1,40 +1,49 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
+using Sidekick.Common.Enums;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
-public class FracturedProperty(IServiceProvider serviceProvider) : PropertyDefinition
+public class FracturedProperty(
+    GameType game,
+    IServiceProvider serviceProvider) : PropertyDefinition
 {
-    private ITradeFilterProvider TradeFilterProvicer => serviceProvider.GetRequiredService<ITradeFilterProvider>();
+    private readonly ITradeFilterProvider tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
 
     public override List<ItemClass> ValidItemClasses { get; } =
     [
         ..ItemClassConstants.WithStats,
     ];
 
-    public override void Parse(Item item)
-    {
-    }
+    public override string Label => tradeFilterProvider.Fractured?.Text ?? "Fractured";
 
-    public override Task<TradeFilter?> GetFilter(Item item)
+    public override void Parse(Item item) {}
+
+    public override async Task<TradeFilter?> GetFilter(Item item)
     {
-        if (TradeFilterProvicer.Fractured == null) return Task.FromResult<TradeFilter?>(null);
+        if (tradeFilterProvider.Fractured == null) return null;
 
         var filter = new FracturedFilter
         {
-            Text = TradeFilterProvicer.Fractured.Text ?? "Fractured",
-            Checked = null,
+            Text = Label,
+            AutoSelectSettingKey = $"Trade_Filter_{nameof(FracturedProperty)}_{game.GetValueAttribute()}",
         };
-        return Task.FromResult<TradeFilter?>(filter);
+        return filter;
     }
 }
 
 public class FracturedFilter : TriStatePropertyFilter
 {
+    public FracturedFilter()
+    {
+        DefaultAutoSelect = AutoSelectPreferences.Create(null);
+    }
+
     public override void PrepareTradeRequest(Query query, Item item)
     {
         if (Checked == null)
