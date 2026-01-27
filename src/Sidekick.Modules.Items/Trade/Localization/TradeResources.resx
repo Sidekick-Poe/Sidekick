@@ -235,9 +235,6 @@ Click the button to open in your browser.</value>
   <data name="External_Tools_Settings" xml:space="preserve">
       <value>External Tools</value>
   </data>
-  <data name="Key_Open" xml:space="preserve">
-    <value>Open Item Overlay</value>
-  </data>
   <data name="PriceCheck_Enable_All_Filters" xml:space="preserve">
     <value>Pre-check all filters automatically</value>
   </data>
@@ -245,7 +242,7 @@ Click the button to open in your browser.</value>
     <value>Pre-check filters matching this regex</value>
   </data>
   <data name="PriceCheck_Prediction_Enable" xml:space="preserve">
-    <value>Show price prediction from poeprices.info (PoE1 only)</value>
+      <value>Show price prediction from poeprices.info (PoE1 only)</value>
   </data>
   <data name="Item_Trade" xml:space="preserve">
     <value>Item Trade</value>

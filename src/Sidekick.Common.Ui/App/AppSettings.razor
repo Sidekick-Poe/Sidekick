@@ -1,8 +1,6 @@
-@using Sidekick.Common.Ui.Localization
-@using Sidekick.Common.Ui.Sections
 
 <button type="button"
-        @onclick="ToggleDrawer"
+        @onclick="OpenSettings"
         @onclick:preventDefault="true"
         @onclick:stopPropagation="true"
         tabindex="-1"
@@ -11,67 +9,13 @@
     <Icon Svg="@UiIcons.Settings" Size="@UiIconSize.Medium" />
 </button>
 
-<div class="relative">
-    @if (Visible)
-    {
-        <BodySectionContent SectionName="app-settings">
-            <div
-                class="dark:bg-stone-950 shadow-lg text-white fixed top-0 right-0 bottom-0 w-[450px] z-30 flex flex-col">
-                <div class="w-full flex justify-end">
-                    <button type="button"
-                            @onclick="OpenSettings"
-                            @onclick:preventDefault="true"
-                            @onclick:stopPropagation="true"
-                            tabindex="-1"
-                            title="@Resources["All_Settings"]"
-                            class="p-2 text-base font-medium tracking-wide text-white border-r transition-colors duration-200 border-stone-700 bg-stone-950 hover:bg-stone-700 hover:border-stone-600 flex items-center gap-1 leading-none">
-                        <Icon Svg="@UiIcons.Settings" Size="@UiIconSize.Medium" />
-                        <span>@Resources["All_Settings"]</span>
-                    </button>
-                    <button type="button"
-                            @onclick="ToggleDrawer"
-                            @onclick:preventDefault="true"
-                            @onclick:stopPropagation="true"
-                            tabindex="-1"
-                            title="@Resources["Close"]"
-                            class="p-2 text-base font-medium tracking-wide text-white transition-colors duration-200 border-stone-700 bg-stone-950 hover:bg-stone-700 hover:border-stone-600 flex items-center gap-1 leading-none">
-                        <Icon Svg="@UiIcons.ArrowForward" Size="@UiIconSize.Medium" />
-                        <span>@Resources["Close"]</span>
-                    </button>
-                </div>
-                <div class="h-full w-full overflow-y-auto overflow-x-hidden p-4 grow">
-                    @ChildContent
-                </div>
-            </div>
-
-            <div class="dark:bg-stone-700/20 cursor-default fixed h-full left-0 top-0 w-full z-20"
-                 @onclick="() => Visible = false"
-                 @onclick:preventDefault="true"
-                 @onclick:stopPropagation="true">
-            </div>
-        </BodySectionContent>
-    }
-</div>
-
 @inject ICurrentView CurrentView
-@inject IStringLocalizer<UiResources> Resources
-@inject NavigationManager NavigationManager
 @inject IViewLocator ViewLocator
 
 @code {
 
     [Parameter]
     public required string Href { get; set; }
-
-    [Parameter]
-    public required RenderFragment ChildContent { get; set; }
-
-    private bool Visible { get; set; }
-
-    private void ToggleDrawer()
-    {
-        Visible = !Visible;
-    }
 
     private void OpenSettings()
     {
