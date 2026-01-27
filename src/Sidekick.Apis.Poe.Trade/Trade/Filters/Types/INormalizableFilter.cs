@@ -13,15 +13,16 @@ public interface INormalizableFilter
             return NormalizeValue;
         }
 
+        var isInteger = NormalizeValue % 1 == 0;
         if (NormalizeValue > 0)
         {
             var normalizedValue = (1 - normalizeBy) * NormalizeValue;
-            return Math.Round(normalizedValue, 2);
+            return isInteger ? Math.Round(normalizedValue) : Math.Round(normalizedValue, 2);
         }
         else
         {
             var normalizedValue = (1 + normalizeBy) * NormalizeValue;
-            return Math.Round(normalizedValue, 2);
+            return isInteger ? Math.Round(normalizedValue) : Math.Round(normalizedValue, 2);
         }
     }
 
@@ -32,15 +33,16 @@ public interface INormalizableFilter
             return NormalizeValue;
         }
 
+        var isInteger = NormalizeValue % 1 == 0;
         if (NormalizeValue > 0)
         {
             var normalizedValue = (1 + normalizeby) * NormalizeValue;
-            return Math.Round(normalizedValue, 2);
+            return isInteger ? Math.Round(normalizedValue) : Math.Round(normalizedValue, 2);
         }
         else
         {
             var normalizedValue = (1 - normalizeby) * NormalizeValue;
-            return Math.Round(normalizedValue, 2);
+            return isInteger ? Math.Round(normalizedValue) : Math.Round(normalizedValue, 2);
         }
     }
 

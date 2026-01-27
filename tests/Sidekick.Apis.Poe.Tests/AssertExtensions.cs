@@ -1,4 +1,5 @@
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Xunit;
 
 namespace Sidekick.Apis.Poe.Tests;
@@ -52,6 +53,21 @@ public static class AssertExtensions
         if (expectedValue != null)
         {
             Assert.Equal(expectedValue, actualModifier?.Value);
+        }
+    }
+
+    public static IEnumerable<TradeFilter> FlattenFilters(this List<TradeFilter> filters)
+    {
+        foreach (var filter in filters)
+        {
+            yield return filter;
+
+            if (filter is not ExpandableFilter expandable) yield break;
+
+            foreach (var subFilter in expandable.Filters)
+            {
+                yield return subFilter;
+            }
         }
     }
 }
