@@ -15,11 +15,6 @@ public class FracturedProperty(
 {
     private readonly ITradeFilterProvider tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.WithStats,
-    ];
-
     public override string Label => tradeFilterProvider.Fractured?.Text ?? "Fractured";
 
     public override void Parse(Item item) {}

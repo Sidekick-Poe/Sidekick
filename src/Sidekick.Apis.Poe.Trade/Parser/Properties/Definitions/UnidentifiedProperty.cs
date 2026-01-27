@@ -15,20 +15,17 @@ public class UnidentifiedProperty(
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionUnidentified.ToRegexLine();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Equipment,
-        ..ItemClassConstants.Weapons,
-        ..ItemClassConstants.Accessories,
-        ..ItemClassConstants.Flasks,
-        ..ItemClassConstants.Jewels,
-        ..ItemClassConstants.Areas,
-    ];
-
     public override string Label => gameLanguageProvider.Language.DescriptionUnidentified;
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Accessories.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Flasks.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Jewels.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Areas.Contains(item.Properties.ItemClass)) return;
+
         item.Properties.Unidentified = GetBool(Pattern, item.Text);
     }
 

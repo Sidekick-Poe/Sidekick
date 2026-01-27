@@ -18,15 +18,12 @@ public class EvasionRatingProperty(
 
     private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionEvasion.ToRegexIsAugmented();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Equipment,
-    ];
-
     public override string Label => gameLanguageProvider.Language.DescriptionEvasion;
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass)) return;
+
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.EvasionRating = GetInt(Pattern, propertyBlock);
         if (item.Properties.EvasionRating == 0) return;

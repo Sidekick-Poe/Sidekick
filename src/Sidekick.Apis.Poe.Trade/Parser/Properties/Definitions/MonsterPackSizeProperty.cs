@@ -18,15 +18,12 @@ public class MonsterPackSizeProperty(
 
     private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionMonsterPackSize.ToRegexIsAugmented();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Areas,
-    ];
-
     public override string Label => gameLanguageProvider.Language.DescriptionMonsterPackSize;
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Areas.Contains(item.Properties.ItemClass)) return;
+
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.MonsterPackSize = GetInt(Pattern, propertyBlock);
         if (item.Properties.MonsterPackSize == 0) return;

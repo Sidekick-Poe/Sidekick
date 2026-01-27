@@ -11,8 +11,6 @@ public class ExpandableProperty
 {
     public List<PropertyDefinition> Definitions { get; } = definitions.ToList();
 
-    public override List<ItemClass> ValidItemClasses => Definitions.SelectMany(x => x.ValidItemClasses).Distinct().ToList();
-
     public override string Label => label ?? string.Empty;
 
     public override void Parse(Item item)

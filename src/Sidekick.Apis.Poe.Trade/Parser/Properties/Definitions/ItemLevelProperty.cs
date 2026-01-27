@@ -16,27 +16,21 @@ public class ItemLevelProperty(
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionItemLevel.ToRegexIntCapture();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Equipment,
-        ..ItemClassConstants.Weapons,
-        ..ItemClassConstants.Accessories,
-
-        ..ItemClassConstants.Flasks,
-        ..ItemClassConstants.Jewels,
-        ..ItemClassConstants.Areas,
-
-        ItemClass.SanctumRelic,
-        ItemClass.SanctumResearch,
-
-        ItemClass.Wombgift,
-        ItemClass.Graft,
-    ];
-
     public override string Label => gameLanguageProvider.Language.DescriptionItemLevel;
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Accessories.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Flasks.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Jewels.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Areas.Contains(item.Properties.ItemClass) &&
+            item.Properties.ItemClass != ItemClass.SanctumRelic &&
+            item.Properties.ItemClass != ItemClass.SanctumResearch &&
+            item.Properties.ItemClass != ItemClass.Wombgift &&
+            item.Properties.ItemClass != ItemClass.Graft) return;
+
         item.Properties.ItemLevel = GetInt(Pattern, item.Text);
     }
 

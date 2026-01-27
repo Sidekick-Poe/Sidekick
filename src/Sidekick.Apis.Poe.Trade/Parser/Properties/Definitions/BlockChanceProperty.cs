@@ -22,15 +22,12 @@ public class BlockChanceProperty(
         ? gameLanguageProvider.Language.DescriptionChanceToBlock.ToRegexIsAugmented()
         : gameLanguageProvider.Language.DescriptionBlockChance.ToRegexIsAugmented();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Equipment,
-    ];
-
     public override string Label => game == GameType.PathOfExile1 ? gameLanguageProvider.Language.DescriptionChanceToBlock : gameLanguageProvider.Language.DescriptionBlockChance;
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass)) return;
+
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.BlockChance = GetInt(Pattern, propertyBlock);
         if (item.Properties.BlockChance == 0) return;

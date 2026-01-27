@@ -15,17 +15,14 @@ public class RedeemerProperty(
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.InfluenceRedeemer.ToRegexLine();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Equipment,
-        ..ItemClassConstants.Accessories,
-        ..ItemClassConstants.Weapons,
-    ];
-
     public override string Label => gameLanguageProvider.Language.InfluenceRedeemer;
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Accessories.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass)) return;
+
         item.Properties.Influences.Redeemer = GetBool(Pattern, item.Text);
     }
 

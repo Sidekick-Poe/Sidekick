@@ -18,14 +18,12 @@ public class ItemQuantityProperty(
 
     private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionItemQuantity.ToRegexIsAugmented();
 
-    public override List<ItemClass> ValidItemClasses { get; } = [
-        ..ItemClassConstants.Areas,
-    ];
-
     public override string Label => gameLanguageProvider.Language.DescriptionItemQuantity;
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Areas.Contains(item.Properties.ItemClass)) return;
+
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.ItemQuantity = GetInt(Pattern, propertyBlock);
         if (item.Properties.ItemQuantity == 0) return;

@@ -18,15 +18,12 @@ public class RewardProperty(
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionReward.ToRegexStringCapture();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ItemClass.Map,
-    ];
-
     public override string Label => gameLanguageProvider.Language.DescriptionReward;
 
     public override void Parse(Item item)
     {
+        if (item.Properties.ItemClass != ItemClass.Map) return;
+
         if (game == GameType.PathOfExile2) return;
 
         var propertyBlock = item.Text.Blocks[1];

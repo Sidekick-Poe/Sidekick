@@ -17,17 +17,14 @@ public class RequiresStrengthProperty(
 
     private Regex RequiresPattern { get; } = new($@"^{gameLanguageProvider.Language.DescriptionRequires}.*?(\d+)\s*{gameLanguageProvider.Language.DescriptionRequiresStr}");
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Equipment,
-        ..ItemClassConstants.Weapons,
-        ItemClass.Graft,
-    ];
-
     public override string Label => gameLanguageProvider.Language.DescriptionRequiresStr;
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
+            item.Properties.ItemClass != ItemClass.Graft) return;
+
         foreach (var block in item.Text.Blocks)
         {
             item.Properties.RequiresStrength = GetInt(Pattern, block);

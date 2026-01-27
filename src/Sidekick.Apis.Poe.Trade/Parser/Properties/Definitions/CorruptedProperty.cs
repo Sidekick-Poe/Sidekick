@@ -15,12 +15,6 @@ public class CorruptedProperty(
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionCorrupted.ToRegexLine();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Gems,
-        ..ItemClassConstants.WithStats,
-    ];
-
     public override string Label => gameLanguageProvider.Language.DescriptionCorrupted;
 
     public override void Parse(Item item)

@@ -18,16 +18,13 @@ public class SpiritProperty(
 
     private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionSpirit.ToRegexIsAugmented();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Weapons,
-        ..ItemClassConstants.Equipment,
-    ];
-
     public override string Label => gameLanguageProvider.Language.DescriptionSpirit;
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Equipment.Contains(item.Properties.ItemClass)) return;
+
         if (game == GameType.PathOfExile1) return;
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.Spirit = GetInt(Pattern, propertyBlock);

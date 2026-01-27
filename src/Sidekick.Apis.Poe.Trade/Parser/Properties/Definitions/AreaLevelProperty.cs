@@ -15,15 +15,12 @@ public class AreaLevelProperty(
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionAreaLevel.ToRegexIntCapture();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Areas,
-    ];
-
     public override string Label => gameLanguageProvider.Language.DescriptionAreaLevel;
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Areas.Contains(item.Properties.ItemClass)) return;
+
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.AreaLevel = GetInt(Pattern, propertyBlock);
         if (item.Properties.AreaLevel > 0) propertyBlock.Parsed = true;

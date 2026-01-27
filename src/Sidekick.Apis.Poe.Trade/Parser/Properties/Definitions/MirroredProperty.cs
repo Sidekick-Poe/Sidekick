@@ -15,13 +15,6 @@ public class MirroredProperty(
 {
     private readonly ITradeFilterProvider tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Equipment,
-        ..ItemClassConstants.Weapons,
-        ..ItemClassConstants.Accessories,
-    ];
-
     public override string Label => tradeFilterProvider.Mirrored?.Text ?? "Mirrored";
 
     public override void Parse(Item item) {}

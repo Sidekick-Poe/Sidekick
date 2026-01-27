@@ -18,15 +18,12 @@ public class AttacksPerSecondProperty(
 
     private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionAttacksPerSecond.ToRegexIsAugmented();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Weapons,
-    ];
-
     public override string Label => gameLanguageProvider.Language.DescriptionAttacksPerSecond;
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Weapons.Contains(item.Properties.ItemClass)) return;
+
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.AttacksPerSecond = GetDouble(Pattern, propertyBlock);
         if (item.Properties.AttacksPerSecond == 0) return;

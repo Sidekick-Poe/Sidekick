@@ -118,8 +118,6 @@ public class PropertyParser
     {
         foreach (var definition in Definitions)
         {
-            if (definition.ValidItemClasses.Count > 0 && !definition.ValidItemClasses.Contains(item.Properties.ItemClass)) continue;
-
             definition.Parse(item);
         }
     }
@@ -128,8 +126,6 @@ public class PropertyParser
     {
         foreach (var definition in Definitions)
         {
-            if (definition.ValidItemClasses.Count > 0 && !definition.ValidItemClasses.Contains(item.Properties.ItemClass)) continue;
-
             definition.ParseAfterStats(item);
         }
     }
@@ -140,8 +136,6 @@ public class PropertyParser
 
         foreach (var definition in Definitions)
         {
-            if (definition.ValidItemClasses.Count > 0 && !definition.ValidItemClasses.Contains(item.Properties.ItemClass)) continue;
-
             var filter = await definition.GetFilter(item);
             if (filter == null) continue;
 
