@@ -24,6 +24,8 @@
     <UpToDateCheckInput Remove="Unique\UniqueTab.razor" />
     <UpToDateCheckInput Remove="Trade\Bulk\BulkResult.razor" />
     <UpToDateCheckInput Remove="Trade\Bulk\BulkSticky.razor" />
+    <UpToDateCheckInput Remove="Settings\SettingsContent.razor" />
+    <UpToDateCheckInput Remove="Settings\SettingsPage.razor" />
   </ItemGroup>
 
 </Project>

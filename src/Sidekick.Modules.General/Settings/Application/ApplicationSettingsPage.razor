@@ -24,19 +24,6 @@
             @if (ApplicationService.SupportsKeybinds) {}
         </FormFieldset>
 
-        @if (ApplicationService.SupportsKeybinds)
-        {
-            <FormFieldset Legend="@SettingsResources["Overlay_Settings"]">
-                <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
-                <SettingCheckboxEditor SettingKey="@SettingKeys.SaveWindowPositions"
-                                       Label="@Resources["SaveWindowPositions"]"/>
-                <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayCloseWithMouse"
-                                       Label="@Resources["OverlayCloseWithMouse"]"/>
-                <SettingCheckboxEditor SettingKey="@SettingKeys.EscapeClosesOverlays"
-                                       Label="@Resources["EscapeClosesOverlays"]"/>
-            </FormFieldset>
-        }
-
         @if (ApplicationService.SupportsHardwareAcceleration)
         {
             <FormFieldset Legend="@SettingsResources["Other"]">
@@ -70,11 +57,7 @@
         SettingKeys.RetainClipboard,
         SettingKeys.SilentStart,
         SettingKeys.OpenHomeOnLaunch,
-        SettingKeys.SaveWindowPositions,
         SettingKeys.Zoom,
-        SettingKeys.KeyClose,
-        SettingKeys.OverlayCloseWithMouse,
-        SettingKeys.EscapeClosesOverlays,
         SettingKeys.UseHardwareAcceleration,
     ];
 

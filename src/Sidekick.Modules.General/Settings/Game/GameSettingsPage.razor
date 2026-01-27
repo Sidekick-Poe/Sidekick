@@ -22,6 +22,23 @@
             </div>
         </FormFieldset>
 
+        <FormFieldset Legend="@SettingResources["Item_Overlay"]">
+            @if (ApplicationService.SupportsKeybinds)
+            {
+                <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenPriceCheck" Label="@SettingResources["Key_OpenItem"]"/>
+                <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
+            }
+
+            <SettingCheckboxEditor SettingKey="@SettingKeys.PriceCheckPredictionEnabled"
+                                   Label="@SettingResources["ItemOverlay_Prediction_Enable"]"/>
+            <SettingCheckboxEditor SettingKey="@SettingKeys.SaveWindowPositions"
+                                   Label="@Resources["SaveWindowPositions"]"/>
+            <SettingCheckboxEditor SettingKey="@SettingKeys.OverlayCloseWithMouse"
+                                   Label="@Resources["OverlayCloseWithMouse"]"/>
+            <SettingCheckboxEditor SettingKey="@SettingKeys.EscapeClosesOverlays"
+                                   Label="@Resources["EscapeClosesOverlays"]"/>
+        </FormFieldset>
+
         @if (ApplicationService.SupportsKeybinds)
         {
             <FormFieldset Legend="@Resources["Wiki"]">
@@ -35,7 +52,7 @@
             <FormFieldset Legend="@SettingResources["Other_Settings"]">
                 <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStash">
                     <TextWithKeybinds Text="@Resources["MouseWheelNavigateStash"]"
-                                      Keybinds="@(["Ctrl+MWheel"])" />
+                                      Keybinds="@(["Ctrl+MWheel"])"/>
                 </SettingCheckboxEditor>
                 <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStashReverse"
                                        Label="@Resources["MouseWheelNavigateStashReverse"]"/>
@@ -68,12 +85,18 @@
 
     private string[] SettingKeysUsed { get; } =
     [
+        SettingKeys.KeyOpenPriceCheck,
+        SettingKeys.PriceCheckPredictionEnabled,
         SettingKeys.KeyOpenWiki,
         SettingKeys.PreferredWiki,
         SettingKeys.MouseWheelNavigateStash,
         SettingKeys.MouseWheelNavigateStashReverse,
         SettingKeys.KeyFindItems,
         SettingKeys.KeyOpenInCraftOfExile,
+        SettingKeys.KeyClose,
+        SettingKeys.SaveWindowPositions,
+        SettingKeys.OverlayCloseWithMouse,
+        SettingKeys.EscapeClosesOverlays,
     ];
 
     public async Task ResetCache()
