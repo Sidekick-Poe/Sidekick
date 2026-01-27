@@ -93,4 +93,27 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
         actual.AssertHasStat(StatCategory.Explicit, "#% increased Magnitude of Poison you inflict", 7);
         actual.AssertHasStat(StatCategory.Explicit, "#% increased Crossbow Reload Speed", 13);
     }
+
+    [Fact]
+    public void ParseClashingRuby()
+    {
+        var actual = parser.ParseItem(
+            @"Item Class: Jewels
+Rarity: Magic
+Clashing Ruby of Valour
+--------
+Item Level: 26
+--------
+12% increased Melee Damage
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.");
+
+        Assert.Equal(ItemClass.Jewel, actual.Properties.ItemClass);
+        Assert.Equal(Rarity.Magic, actual.Properties.Rarity);
+        Assert.Equal("Ruby", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal(26, actual.Properties.ItemLevel);
+
+        actual.AssertHasStat(StatCategory.Explicit, "#% increased Melee Damage", 12);
+    }
 }
