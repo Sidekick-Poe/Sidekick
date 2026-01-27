@@ -12,11 +12,6 @@ public class ElementalDpsProperty(
     GameType game,
     Microsoft.Extensions.Localization.IStringLocalizer<Localization.PoeResources> resources) : PropertyDefinition
 {
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Weapons,
-    ];
-
     public override string Label => resources["ElementalDps"];
 
     public override void Parse(Item item) {}

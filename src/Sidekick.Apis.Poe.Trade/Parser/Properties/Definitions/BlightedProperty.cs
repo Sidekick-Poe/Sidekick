@@ -15,15 +15,12 @@ public class BlightedProperty(
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.AffixBlighted.ToRegexAffix(gameLanguageProvider.Language.AffixSuperior);
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ItemClass.Map,
-    ];
-
     public override string Label => gameLanguageProvider.Language.AffixBlighted;
 
     public override void Parse(Item item)
     {
+        if (item.Properties.ItemClass != ItemClass.Map) return;
+
         item.Properties.Blighted = Pattern.IsMatch(item.Text.Blocks[0].Lines[^1].Text);
     }
 

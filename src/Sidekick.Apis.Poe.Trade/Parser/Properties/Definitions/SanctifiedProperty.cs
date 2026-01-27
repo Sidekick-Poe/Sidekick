@@ -15,13 +15,6 @@ public class SanctifiedProperty(
 {
     private readonly ITradeFilterProvider tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Equipment,
-        ..ItemClassConstants.Weapons,
-        ..ItemClassConstants.Accessories,
-    ];
-
     public override string Label => tradeFilterProvider.Sanctified?.Text ?? "Sanctified";
 
     public override void Parse(Item item) {}

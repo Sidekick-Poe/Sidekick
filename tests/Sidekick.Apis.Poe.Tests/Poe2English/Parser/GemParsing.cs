@@ -103,4 +103,48 @@ Skills can be managed in the Skills Panel.
         Assert.NotNull(actual.Properties.Sockets);
         Assert.Equal(4, actual.Properties.Sockets.Count);
     }
+
+    [Fact]
+    public void ParseCorruptedLightningArrow()
+    {
+        var actual = parser.ParseItem(
+            @"Rarity: Gem
+Cast on Critical
+--------
+Buff, Persistent, Trigger, Meta
+Level: 20 (augmented)
+19 Levels from Gem
++1 Level from Corruption (augmented)
+Quality: +20% (augmented)
+Reservation: 100 Spirit
+--------
+Requires: Level 84, 147 Int
+--------
+Sockets: G G G G G 
+--------
+While active, gains Energy when you Critically Hit enemies and triggers socketed Spells on reaching maximum Energy.
+--------
+10% increased Reservation Efficiency
+Gains 1 Energy per Power of enemies you
+Critically Hit with Skills, modified by the percentage of the enemy's Ailment Threshold the Critical Hit will deal
+57% increased Energy gained
+Triggers all Socketed Spells and loses all Energy on reaching maximum Energy
+--------
+Support
+--------
+Has 10 maximum Energy per 0.1 seconds of base cast time of Socketed Spells
+Socketed Skills deal 20% less Damage
+--------
+Place one or more Skill Gems into this Meta Gem's sockets in the Skills Panel. The socketed Skills will be incorporated into the Meta Gem's effect.
+--------
+Corrupted
+");
+
+        Assert.Equal("Cast on Critical", actual.ApiInformation.Type);
+        Assert.Null(actual.ApiInformation.Name);
+        Assert.Equal(20, actual.Properties.GemLevel);
+        Assert.NotNull(actual.Properties.Sockets);
+        Assert.Equal(5, actual.Properties.Sockets.Count);
+        Assert.True(actual.Properties.Corrupted);
+    }
 }

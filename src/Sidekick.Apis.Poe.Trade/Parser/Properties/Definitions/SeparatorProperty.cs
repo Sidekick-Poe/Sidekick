@@ -7,8 +7,6 @@ public class SeparatorProperty : PropertyDefinition
 {
     public const string Text = "---";
 
-    public override List<ItemClass> ValidItemClasses { get; } = [];
-
     public override string Label => Text;
 
     public override Task<TradeFilter?> GetFilter(Item item)

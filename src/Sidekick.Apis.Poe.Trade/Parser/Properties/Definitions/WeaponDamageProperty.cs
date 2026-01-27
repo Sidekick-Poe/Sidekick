@@ -21,15 +21,12 @@ public class WeaponDamageProperty(
 {
     private Regex RangePattern { get; } = new(@"([\d,\.]+)-([\d,\.]+)", RegexOptions.Compiled);
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Weapons,
-    ];
-
     public override string Label => resources["Damage"];
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Weapons.Contains(item.Properties.ItemClass)) return;
+
         var propertyBlock = item.Text.Blocks[1];
 
         // Parse damage ranges

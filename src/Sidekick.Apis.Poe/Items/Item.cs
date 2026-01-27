@@ -7,7 +7,7 @@ public class Item
         Text = new TextItem(text);
         Game = game;
 
-        if (Text.Blocks[0].Lines.Count >= 3) Type = Text.Blocks[0].Lines[^1].Text;
+        if (Text.Blocks[0].Lines.Count >= 2) Type = Text.Blocks[0].Lines[^1].Text;
         if (Text.Blocks[0].Lines.Count >= 4) Name = Text.Blocks[0].Lines[^2].Text;
 
         Text.Blocks[0].Parsed = true;

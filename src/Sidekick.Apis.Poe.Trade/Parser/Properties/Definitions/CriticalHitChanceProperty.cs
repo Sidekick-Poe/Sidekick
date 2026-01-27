@@ -22,14 +22,12 @@ public class CriticalHitChanceProperty(
         ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance.ToRegexIsAugmented()
         : gameLanguageProvider.Language.DescriptionCriticalHitChance.ToRegexIsAugmented();
 
-    public override List<ItemClass> ValidItemClasses { get; } = [
-        ..ItemClassConstants.Weapons,
-    ];
-
     public override string Label => game == GameType.PathOfExile1 ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance : gameLanguageProvider.Language.DescriptionCriticalHitChance;
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Weapons.Contains(item.Properties.ItemClass)) return;
+
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.CriticalHitChance = GetDouble(Pattern, propertyBlock);
         if (item.Properties.CriticalHitChance == 0) return;

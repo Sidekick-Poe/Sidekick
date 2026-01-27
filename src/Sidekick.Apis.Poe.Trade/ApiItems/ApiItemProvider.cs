@@ -84,7 +84,10 @@ public class ApiItemProvider
 
                 if (!string.IsNullOrEmpty(information.Type) && !information.IsUnique)
                 {
-                    TypePatterns.Add((new Regex(Regex.Escape(information.Type)), information));
+                    // Match as a whole "word" (not inside other words like "Clashing")
+                    // \p{L} = any unicode letter, so this works across languages too.
+                    var typeRegex = $@"(?<!\p{{L}}){Regex.Escape(information.Type)}(?!\p{{L}})";
+                    TypePatterns.Add((new Regex(typeRegex, RegexOptions.Compiled), information));
                 }
 
                 if (!string.IsNullOrEmpty(information.Text))

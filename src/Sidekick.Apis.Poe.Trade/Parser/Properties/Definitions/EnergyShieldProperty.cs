@@ -28,14 +28,12 @@ public class EnergyShieldProperty(
             ? gameLanguageProvider.Language.DescriptionEnergyShieldAlternate.ToRegexIsAugmented()
             : null;
 
-    public override List<ItemClass> ValidItemClasses { get; } = [
-        ..ItemClassConstants.Equipment,
-    ];
-
     public override string Label => gameLanguageProvider.Language.DescriptionEnergyShield;
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass)) return;
+
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.EnergyShield = GetInt(Pattern, propertyBlock);
         if (item.Properties.EnergyShield <= 0 && AlternatePattern != null) item.Properties.EnergyShield = GetInt(AlternatePattern, propertyBlock);

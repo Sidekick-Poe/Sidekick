@@ -15,17 +15,14 @@ public class WarlordProperty(
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.InfluenceWarlord.ToRegexLine();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Equipment,
-        ..ItemClassConstants.Accessories,
-        ..ItemClassConstants.Weapons,
-    ];
-
     public override string Label => gameLanguageProvider.Language.InfluenceWarlord;
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Accessories.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass)) return;
+
         item.Properties.Influences.Warlord = GetBool(Pattern, item.Text);
     }
 

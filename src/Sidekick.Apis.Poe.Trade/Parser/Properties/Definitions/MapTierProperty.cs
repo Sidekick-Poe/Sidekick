@@ -15,15 +15,12 @@ public class MapTierProperty(
 {
     private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionMapTier.ToRegexIntCapture();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ItemClass.Map,
-    ];
-
     public override string Label => gameLanguageProvider.Language.DescriptionMapTier;
 
     public override void Parse(Item item)
     {
+        if (item.Properties.ItemClass != ItemClass.Map) return;
+
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.MapTier = GetInt(Pattern, propertyBlock);
         if (item.Properties.MapTier > 0) propertyBlock.Parsed = true;

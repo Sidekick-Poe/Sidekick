@@ -17,19 +17,16 @@ public class RequiresLevelProperty(
 
     private Regex RequiresPattern { get; } = new($@"^{gameLanguageProvider.Language.DescriptionRequires}.*{gameLanguageProvider.Language.DescriptionLevel}\s*(\d+)");
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Equipment,
-        ..ItemClassConstants.Weapons,
-        ..ItemClassConstants.Accessories,
-        ..ItemClassConstants.Flasks,
-        ItemClass.Graft,
-    ];
-
     public override string Label => gameLanguageProvider.Language.DescriptionRequiresLevel;
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Accessories.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Flasks.Contains(item.Properties.ItemClass) &&
+            item.Properties.ItemClass != ItemClass.Graft) return;
+
         foreach (var block in item.Text.Blocks)
         {
             item.Properties.RequiresLevel = GetInt(Pattern, block);

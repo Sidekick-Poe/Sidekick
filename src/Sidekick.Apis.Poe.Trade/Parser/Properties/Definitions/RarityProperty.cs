@@ -38,8 +38,6 @@ public class RarityProperty(
         }
     };
 
-    public override List<ItemClass> ValidItemClasses { get; } = [];
-
     public override string Label => gameLanguageProvider.Language.DescriptionRarity;
 
     public override void Parse(Item item)
@@ -62,11 +60,12 @@ public class RarityProperty(
             return;
         }
 
+        var propertyBlock = item.Text.Blocks[0];
         foreach (var pattern in RarityPatterns)
         {
-            if (!pattern.Value.IsMatch(item.Text.Blocks[0].Lines[1].Text)) continue;
+            if (!GetBool(pattern.Value, propertyBlock)) continue;
 
-            item.Text.Blocks[0].Lines[1].Parsed = true;
+            item.Text.Blocks[0].Parsed = true;
             item.Properties.Rarity = pattern.Key;
             return;
         }

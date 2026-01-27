@@ -11,11 +11,6 @@ public class ChaosDpsProperty(
     GameType game,
     Microsoft.Extensions.Localization.IStringLocalizer<Localization.PoeResources> resources) : PropertyDefinition
 {
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Weapons,
-    ];
-
     public override string Label => resources["ChaosDps"];
 
     public override void Parse(Item item) {}

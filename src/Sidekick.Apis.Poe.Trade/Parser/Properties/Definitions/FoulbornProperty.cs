@@ -15,19 +15,16 @@ public class FoulbornProperty(
 {
     private readonly ITradeFilterProvider tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Equipment,
-        ..ItemClassConstants.Weapons,
-        ..ItemClassConstants.Accessories,
-        ..ItemClassConstants.Jewels,
-        ..ItemClassConstants.Flasks,
-    ];
-
     public override string Label => tradeFilterProvider.Foulborn?.Text ?? "Foulborn";
 
     public override void ParseAfterStats(Item item)
     {
+        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Accessories.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Jewels.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Flasks.Contains(item.Properties.ItemClass)) return;
+
         if (game == GameType.PathOfExile2) return;
         if (item.Properties.Rarity != Rarity.Unique) return;
 

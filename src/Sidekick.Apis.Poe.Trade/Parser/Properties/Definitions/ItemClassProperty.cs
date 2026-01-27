@@ -42,8 +42,6 @@ public class ItemClassProperty : PropertyDefinition
         ApiItemClassDefinitions = new(GetApiItemClassDefinitions);
     }
 
-    public override List<ItemClass> ValidItemClasses { get; } = [];
-
     public override string Label => resources["Item_Class"];
 
     private Lazy<List<ItemClassDefinition>> ItemClassDefinitions { get; }
@@ -193,12 +191,12 @@ public class ItemClassProperty : PropertyDefinition
         if (item.Properties.ItemClass != ItemClass.Unknown) return;
 
         var line = item.Text.Blocks[0].Lines[0].Text;
-        item.Text.Blocks[0].Lines[0].Parsed = true;
 
         foreach (var definition in ItemClassDefinitions.Value)
         {
             if (!(definition.Pattern?.IsMatch(line) ?? false)) continue;
 
+            item.Text.Blocks[0].Lines[0].Parsed = true;
             item.Properties.ItemClass = definition.ItemClass;
             return;
         }

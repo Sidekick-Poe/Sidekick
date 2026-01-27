@@ -10,12 +10,12 @@ public class ClusterJewelPassiveCountProperty(
 {
     private readonly IInvariantStatsProvider invariantStatsProvider = serviceProvider.GetRequiredService<IInvariantStatsProvider>();
 
-    public override List<ItemClass> ValidItemClasses { get; } = [ItemClass.Jewel];
-
     public override string Label => "Cluster Jewel Passives";
 
     public override void ParseAfterStats(Item item)
     {
+        if (item.Properties.ItemClass != ItemClass.Jewel) return;
+
         if (game == GameType.PathOfExile2) return;
         if (item.Properties.Rarity == Rarity.Unique) return;
 

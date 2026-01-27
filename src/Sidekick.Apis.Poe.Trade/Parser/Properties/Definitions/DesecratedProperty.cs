@@ -15,13 +15,6 @@ public class DesecratedProperty(
 {
     private readonly ITradeFilterProvider tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Equipment,
-        ..ItemClassConstants.Accessories,
-        ..ItemClassConstants.Weapons,
-    ];
-
     public override string Label => tradeFilterProvider.Desecrated?.Text ?? "Desecrated";
 
     public override void Parse(Item item) {}

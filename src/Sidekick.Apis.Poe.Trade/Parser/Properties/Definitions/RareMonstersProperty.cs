@@ -18,15 +18,12 @@ public class RareMonstersProperty(
 
     private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionRareMonsters.ToRegexIsAugmented();
 
-    public override List<ItemClass> ValidItemClasses { get; } =
-    [
-        ..ItemClassConstants.Areas,
-    ];
-
     public override string Label => gameLanguageProvider.Language.DescriptionRareMonsters;
 
     public override void Parse(Item item)
     {
+        if (!ItemClassConstants.Areas.Contains(item.Properties.ItemClass)) return;
+
         var propertyBlock = item.Text.Blocks[1];
         item.Properties.RareMonsters = GetInt(Pattern, propertyBlock);
         if (item.Properties.RareMonsters == 0) return;
