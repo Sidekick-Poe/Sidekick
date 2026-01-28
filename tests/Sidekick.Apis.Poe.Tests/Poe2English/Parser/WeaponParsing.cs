@@ -1,5 +1,6 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Trade.Parser;
+using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe2English.Parser;
@@ -286,7 +287,7 @@ Grants 3 Life per Enemy Hit
     }
 
     [Fact]
-    public void ParseElementalQuarterstaff()
+    public async Task ParseElementalQuarterstaff()
     {
         var actual = parser.ParseItem(@"Item Class: Quarterstaves
 Rarity: Rare
@@ -342,6 +343,11 @@ Corrupted
         // Verify DPS calculations
         AssertExtensions.AssertCloseEnough(101.5, actual.Properties.ElementalDps);
         AssertExtensions.AssertCloseEnough(216.2, actual.Properties.TotalDps);
+
+        var statFilters = await fixture.StatParser.GetFilters(actual);
+        var meleeStat = statFilters.FlattenFilters().OfType<StatFilter>().FirstOrDefault(s => s.Text == "+3 to Level of all Melee Skills");
+        Assert.NotNull(meleeStat);
+        Assert.Equal(3, meleeStat.Min);
     }
 
     [Fact]

@@ -12,6 +12,7 @@ using Sidekick.Apis.Poe.Trade.Parser;
 using Sidekick.Apis.Poe.Trade.Parser.Properties;
 using Sidekick.Apis.Poe.Trade.Parser.Stats;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
+using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
@@ -65,6 +66,8 @@ public abstract class ParserFixture : IAsyncLifetime
         SettingsService = TestContext.Services.GetRequiredService<ISettingsService>();
         await SettingsService.Set(SettingKeys.LanguageParser, Language);
         await SettingsService.Set(SettingKeys.LanguageUi, Language);
+        await SettingsService.Set(AutoSelectPreferences.DefaultFillMinSettingKey, true);
+        await SettingsService.Set(AutoSelectPreferences.DefaultNormalizeBySettingKey, 0.1);
         if (GameType == GameType.PathOfExile1) await SettingsService.Set(SettingKeys.LeagueId, "poe1.Standard");
         else if (GameType == GameType.PathOfExile2) await SettingsService.Set(SettingKeys.LeagueId, "poe2.Standard");
 
