@@ -1,3 +1,6 @@
+@using Sidekick.Common.Ui.Sections
+@using Sidekick.Common.Enums
+
 <FlowbiteComponent Script="popover"
                    ScriptParameters="@(new[]
                                      {
@@ -9,12 +12,12 @@
     @ActivatorContent
 </FlowbiteComponent>
 
-<div id="@Id"
-     class="fixed! z-10 invisible opacity-0 transition-opacity duration-300 border border-solid border-stone-800 bg-black grow overflow-y-auto overflow-x-hidden p-2 rounded-lg shadow-lg @Class">
-    @ChildContent
-</div>
-
-@using Sidekick.Common.Enums
+<BodySectionContent SectionName="@Id">
+    <div id="@Id"
+         class="absolute z-10 invisible opacity-0 transition-opacity duration-300 border border-solid border-stone-800 bg-black text-white grow overflow-y-auto overflow-x-hidden p-2 rounded-lg shadow-lg @Class">
+        @ChildContent
+    </div>
+</BodySectionContent>
 
 @code {
 
