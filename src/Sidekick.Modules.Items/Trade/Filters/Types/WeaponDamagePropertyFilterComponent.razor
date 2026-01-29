@@ -57,10 +57,7 @@
 
     @if (Filter.Checked)
     {
-        <FilterRange Checked="Filter.Checked"
-                     NormalizeEnabled="Filter.NormalizeEnabled"
-                     NormalizeRoundToInteger="true"
-                     Value="@Filter.Value"
+        <FilterRange Filter="Filter"
                      @bind-Min="@Filter.Min"
                      @bind-Max="@Filter.Max"/>
     }
