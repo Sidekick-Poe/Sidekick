@@ -26,8 +26,8 @@ jobs:
           # Use GitHub's auto-incrementing run number
           $DAILY_RUN_NUMBER = ${{ github.run_number }}
           
-          # Construct the version using DATE and run number
-          $VERSION = "$DATE-build.$DAILY_RUN_NUMBER"
+          # Construct the version using DATE and run number (4-part version)
+          $VERSION = "$DATE.$DAILY_RUN_NUMBER"
           Write-Output "Generated version: $VERSION"
 
           $CSPROJ_VERSION = "$DATE.$DAILY_RUN_NUMBER"
