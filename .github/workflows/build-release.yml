@@ -17,31 +17,28 @@ jobs:
 
       - name: Version
         id: version
+        uses: reecetech/version-increment@2024.4.4
+        with:
+          scheme: calver
+          release_branch: main
+
+      - name: Version - Set outputs
+        id: version_outputs
         shell: pwsh
         run: |
-          # Get the current date in EST (UTC - 5 hours)
-          $estNow = (Get-Date).ToUniversalTime().AddHours(-5)
-          $DATE = $estNow.ToString("yyyy.M.dd")
-          
-          # Use GitHub's auto-incrementing run number
-          $DAILY_RUN_NUMBER = ${{ github.run_number }}
-          
-          # Construct the version using DATE and run number (4-part version)
-          $VERSION = "$DATE.$DAILY_RUN_NUMBER"
+          # The action outputs the version without 'v' prefix
+          $VERSION = "${{ steps.version.outputs.version }}"
           Write-Output "Generated version: $VERSION"
 
-          $CSPROJ_VERSION = "$DATE.$DAILY_RUN_NUMBER"
-          Write-Output "Generated csproj version: $CSPROJ_VERSION"
-          
-          # Export version as an output
+          # Export for other steps
           echo "version=$VERSION" >> $env:GITHUB_OUTPUT
-          echo "csproj_version=$CSPROJ_VERSION" >> $env:GITHUB_OUTPUT
+          echo "csproj_version=$VERSION" >> $env:GITHUB_OUTPUT
 
       - name: Version - Update project files
         uses: vers-one/dotnet-project-version-updater@v1.7
         with:
           file: "src/**/*.csproj"
-          version: ${{ steps.version.outputs.csproj_version }}
+          version: ${{ steps.version_outputs.outputs.csproj_version }}
 
       - name: Release - Delete unpublished
         uses: hugo19941994/delete-draft-releases@v1.0.0
@@ -55,9 +52,9 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           config-name: release-drafter.yml
-          name: "Sidekick v${{ steps.version.outputs.version }}"
-          tag: "v${{ steps.version.outputs.version }}"
-          version: "v${{ steps.version.outputs.version }}"
+          name: "Sidekick v${{ steps.version_outputs.outputs.version }}"
+          tag: "v${{ steps.version_outputs.outputs.version }}"
+          version: "v${{ steps.version_outputs.outputs.version }}"
           publish: false
           prerelease: false
 
@@ -65,7 +62,7 @@ jobs:
         uses: myci-actions/export-env-var@1
         with:
           name: BUILD_NUMBER
-          value: ${{ steps.version.outputs.version }}
+          value: ${{ steps.version_outputs.outputs.version }}
 
       - name: Environment - Github Token
         uses: myci-actions/export-env-var@1
@@ -97,7 +94,7 @@ jobs:
         if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
-          $version = "${{ steps.version.outputs.version }}"
+          $version = "${{ steps.version_outputs.outputs.version }}"
           Write-Output "Version: $version"
 
           $body = "${{ steps.notes.outputs.body }}"
@@ -133,7 +130,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         shell: bash
         run: |
-          version="${{ steps.version.outputs.version }}"
+          version="${{ steps.version_outputs.outputs.version }}"
           echo "Version: $version"
 
           body="${{ steps.notes.outputs.body }}"
