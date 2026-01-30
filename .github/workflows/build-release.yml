@@ -18,12 +18,15 @@ jobs:
       - name: Version
         id: version
         shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          # Get the current date
-          $DATE = Get-Date -Format "yyyy.M.dd"
+          # Get the current date in EST (UTC - 5 hours)
+          $estNow = (Get-Date).ToUniversalTime().AddHours(-5)
+          $DATE = $estNow.ToString("yyyy.M.dd")
           
-          # Set the current date in YYYY-MM-DD format (PowerShell syntax)
-          $TODAY = Get-Date -Format "yyyy-MM-dd"
+          # Set the current date in YYYY-MM-DD format (EST)
+          $TODAY = $estNow.ToString("yyyy-MM-dd")
 
           # Use GitHub CLI to list workflow runs for this workflow
           # The 'gh api' command is used to interact with the GitHub REST API
