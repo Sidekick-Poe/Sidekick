@@ -46,18 +46,6 @@ jobs:
           publish: false
           prerelease: false
 
-      - name: Environment - Build Number
-        uses: myci-actions/export-env-var@1
-        with:
-          name: BUILD_NUMBER
-          value: ${{ steps.version.outputs.version }}
-
-      - name: Environment - Github Token
-        uses: myci-actions/export-env-var@1
-        with:
-          name: GITHUB_TOKEN
-          value: ${{ github.token }}
-
       - name: .NET - Setup
         uses: actions/setup-dotnet@v4
         with:
