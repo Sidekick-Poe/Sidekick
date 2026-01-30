@@ -58,7 +58,7 @@
     [Parameter]
     public required TradeFilter Filter { get; set; }
 
-    private string ButtonClass => Filter.AutoSelect == null || Filter.AutoSelect.Mode == AutoSelectMode.Default ? "invisible group-hover:visible text-neutral-500" : "text-neutral-500";
+    private string ButtonClass => Filter.AutoSelect == null || Filter.AutoSelect.Mode == AutoSelectMode.Default ? "invisible group-hover:visible group-hover/filter-settings:visible text-neutral-500" : "text-neutral-500";
 
     private string CurrentTab = "initial";
 
