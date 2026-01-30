@@ -18,28 +18,15 @@ jobs:
       - name: Version
         id: version
         shell: pwsh
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
           # Get the current date in EST (UTC - 5 hours)
           $estNow = (Get-Date).ToUniversalTime().AddHours(-5)
           $DATE = $estNow.ToString("yyyy.M.dd")
           
-          # Set the current date in YYYY-MM-DD format (EST)
-          $TODAY = $estNow.ToString("yyyy-MM-dd")
-
-          # Use GitHub CLI to list workflow runs for this workflow
-          # The 'gh api' command is used to interact with the GitHub REST API
-          $RUNS = gh api --paginate "repos/${{ github.repository }}/actions/runs" | ConvertFrom-Json
-
-          # Count the number of existing runs for today by filtering
-          # Filter runs that were created today AND match this workflow, then count them
-          $COUNT = ($RUNS.workflow_runs | Where-Object { $_.created_at -like "$TODAY*" -and $_.name -eq "${{ github.workflow }}" }).Count
-
-          # The current run hasn't finished, so the count should be the number of previous runs + 1
-          $DAILY_RUN_NUMBER = $COUNT + 1
+          # Use GitHub's auto-incrementing run number
+          $DAILY_RUN_NUMBER = ${{ github.run_number }}
           
-          # Construct the version using DATE and TIME
+          # Construct the version using DATE and run number
           $VERSION = "$DATE+$DAILY_RUN_NUMBER"
           Write-Output "Generated version: $VERSION"
 
