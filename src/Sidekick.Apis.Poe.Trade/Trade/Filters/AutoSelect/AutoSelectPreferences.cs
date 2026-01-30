@@ -28,9 +28,6 @@ public class AutoSelectPreferences
             new AutoSelectRule
             {
                 Checked = isChecked,
-                NormalizeBy = 0.1,
-                FillMinRange = true,
-                FillMaxRange = false,
             },
         ],
     };
