@@ -22,23 +22,11 @@ jobs:
           scheme: calver
           release_branch: main
 
-      - name: Version - Set outputs
-        id: version_outputs
-        shell: pwsh
-        run: |
-          # The action outputs the version without 'v' prefix
-          $VERSION = "${{ steps.version.outputs.version }}"
-          Write-Output "Generated version: $VERSION"
-
-          # Export for other steps
-          echo "version=$VERSION" >> $env:GITHUB_OUTPUT
-          echo "csproj_version=$VERSION" >> $env:GITHUB_OUTPUT
-
       - name: Version - Update project files
         uses: vers-one/dotnet-project-version-updater@v1.7
         with:
           file: "src/**/*.csproj"
-          version: ${{ steps.version_outputs.outputs.csproj_version }}
+          version: ${{ steps.version.outputs.version }}
 
       - name: Release - Delete unpublished
         uses: hugo19941994/delete-draft-releases@v1.0.0
@@ -52,9 +40,9 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           config-name: release-drafter.yml
-          name: "Sidekick v${{ steps.version_outputs.outputs.version }}"
-          tag: "v${{ steps.version_outputs.outputs.version }}"
-          version: "v${{ steps.version_outputs.outputs.version }}"
+          name: "Sidekick v${{ steps.version.outputs.version }}"
+          tag: "v${{ steps.version.outputs.version }}"
+          version: "v${{ steps.version.outputs.version }}"
           publish: false
           prerelease: false
 
@@ -62,7 +50,7 @@ jobs:
         uses: myci-actions/export-env-var@1
         with:
           name: BUILD_NUMBER
-          value: ${{ steps.version_outputs.outputs.version }}
+          value: ${{ steps.version.outputs.version }}
 
       - name: Environment - Github Token
         uses: myci-actions/export-env-var@1
@@ -94,7 +82,7 @@ jobs:
         if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
-          $version = "${{ steps.version_outputs.outputs.version }}"
+          $version = "${{ steps.version.outputs.version }}"
           Write-Output "Version: $version"
 
           $body = "${{ steps.notes.outputs.body }}"
@@ -130,7 +118,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         shell: bash
         run: |
-          version="${{ steps.version_outputs.outputs.version }}"
+          version="${{ steps.version.outputs.version }}"
           echo "Version: $version"
 
           body="${{ steps.notes.outputs.body }}"
