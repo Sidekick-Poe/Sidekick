@@ -30,11 +30,11 @@ jobs:
 
           # Use GitHub CLI to list workflow runs for this workflow
           # The 'gh api' command is used to interact with the GitHub REST API
-          $RUNS = gh api --paginate "repos/${{ github.repository }}/actions/runs"
+          $RUNS = gh api --paginate "repos/${{ github.repository }}/actions/runs" | ConvertFrom-Json
 
-          # Count the number of existing runs for today by filtering with jq
+          # Count the number of existing runs for today by filtering
           # Filter runs that were created today AND match this workflow, then count them
-          $COUNT = echo $RUNS | jq --arg TODAY "$TODAY" --arg WORKFLOW "${{ github.workflow }}" '[.workflow_runs[] | select(.created_at | startswith($TODAY)) | select(.name == $WORKFLOW)] | length'
+          $COUNT = ($RUNS.workflow_runs | Where-Object { $_.created_at -like "$TODAY*" -and $_.name -eq "${{ github.workflow }}" }).Count
 
           # The current run hasn't finished, so the count should be the number of previous runs + 1
           $DAILY_RUN_NUMBER = $COUNT + 1
