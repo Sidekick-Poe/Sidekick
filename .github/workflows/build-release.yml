@@ -22,20 +22,19 @@ jobs:
           # Get the current date
           $DATE = Get-Date -Format "yyyy.M.dd"
           
-          # Set the current date in YYYY-MM-DD format
-          $TODAY=$(date +'%Y-%m-%d')
+          # Set the current date in YYYY-MM-DD format (PowerShell syntax)
+          $TODAY = Get-Date -Format "yyyy-MM-dd"
 
-          # Use GitHub CLI to list workflow runs for today, filtered by workflow file name
+          # Use GitHub CLI to list workflow runs for this workflow
           # The 'gh api' command is used to interact with the GitHub REST API
-          $RUNS=$(gh api --paginate "repos/${{ github.repository }}/actions/runs?created=>$TODAY&workflow=${{ github.workflow_id }}")
+          $RUNS = gh api --paginate "repos/${{ github.repository }}/actions/runs"
 
-          # Count the number of existing runs for today
-          # We count the 'total_count' from the API response(s)
-          # Note: A more robust solution might involve parsing the actual list of runs and filtering more precisely if API 'created' filter isn't exact enough
-          $COUNT=$(echo "$RUNS" | jq '[.workflow_runs[]] | length')
+          # Count the number of existing runs for today by filtering with jq
+          # Filter runs that were created today AND match this workflow, then count them
+          $COUNT = echo $RUNS | jq --arg TODAY "$TODAY" --arg WORKFLOW "${{ github.workflow }}" '[.workflow_runs[] | select(.created_at | startswith($TODAY)) | select(.name == $WORKFLOW)] | length'
 
           # The current run hasn't finished, so the count should be the number of previous runs + 1
-          $DAILY_RUN_NUMBER=$(($COUNT + 1))
+          $DAILY_RUN_NUMBER = $COUNT + 1
           
           # Construct the version using DATE and TIME
           $VERSION = "$DATE+$DAILY_RUN_NUMBER"
