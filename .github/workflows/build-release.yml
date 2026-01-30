@@ -27,7 +27,7 @@ jobs:
           $DAILY_RUN_NUMBER = ${{ github.run_number }}
           
           # Construct the version using DATE and run number
-          $VERSION = "$DATE+$DAILY_RUN_NUMBER"
+          $VERSION = "$DATE-$DAILY_RUN_NUMBER"
           Write-Output "Generated version: $VERSION"
 
           $CSPROJ_VERSION = "$DATE.$DAILY_RUN_NUMBER"
