@@ -30,7 +30,7 @@ public static class StringExtensions
 
     public static string? GetUrlSlugForLeague(this string? leagueId)
     {
-        return leagueId?.Split('.').ElementAtOrDefault(1);
+        return leagueId?.Split('.', 2).ElementAtOrDefault(1);
     }
 
     public static GameType GetGameFromLeagueId(this string? leagueId)
