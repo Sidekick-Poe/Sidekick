@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <Version>1.0.0.0</Version>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <FileVersion>1.0.0.0</FileVersion>
+        <InformationalVersion>1.0.0.0</InformationalVersion>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <AssemblyName>Sidekick</AssemblyName>
+        <ApplicationIcon>favicon.ico</ApplicationIcon>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Sidekick.Common.Updater\Sidekick.Common.Updater.csproj" />
+        <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.Chat\Sidekick.Modules.Chat.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.Development\Sidekick.Modules.Development.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.General\Sidekick.Modules.General.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.RegexHotkeys\Sidekick.Modules.RegexHotkeys.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.Items\Sidekick.Modules.Items.csproj" />
+        <ProjectReference Include="..\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="ElectronNET.Core" />
+      <PackageReference Include="ElectronNET.Core.AspNet" />
+      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" />
+    </ItemGroup>
+
+</Project>
