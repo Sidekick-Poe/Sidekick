@@ -1,4 +1,5 @@
 ﻿@using Microsoft.EntityFrameworkCore
+@using Sidekick.Apis.Poe.Account.Authentication
 @using Sidekick.Apis.Poe.Account.Stash
 @using Sidekick.Apis.Poe.Account.Stash.Models
 @using Sidekick.Common.Ui.Popovers
@@ -75,6 +76,7 @@
 @inject IStashService StashService
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject WealthProvider WealthProvider
+@inject IAuthenticationService AuthenticationService
 
 @code {
 
@@ -105,6 +107,9 @@
 
     private async Task Refresh()
     {
+        var state = await AuthenticationService.GetCurrentState();
+        if (state != AuthenticationState.Authenticated) return;
+
         Loading = true;
         StateHasChanged();
 
