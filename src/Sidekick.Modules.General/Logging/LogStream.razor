@@ -1,9 +1,9 @@
-﻿@using Microsoft.JSInterop
+@using Microsoft.JSInterop
 @using Sidekick.Common.Logging
 @implements IAsyncDisposable
 @inject IJSRuntime JsRuntime
 
-<div @ref="LogContainer" class="flex flex-col overflow-y-auto max-h-[calc(100vh-120px)] font-mono text-sm whitespace-pre-wrap p-4 bg-black/20 rounded-lg border border-white/10">
+<div @ref="LogContainer" class="flex flex-col overflow-auto max-h-[calc(100vh-120px)] text-nowrap font-mono text-sm p-4 bg-black/20 border border-white/10">
     @foreach (var log in Logs)
     {
         <div class="mb-1 border-b border-white/5 pb-1 last:border-0 last:pb-0 @GetLogClass(log)">@log</div>
@@ -15,40 +15,16 @@
     private List<string> Logs { get; set; } = new();
     private IJSObjectReference? Module { get; set; }
 
-    private string GetLogClass(string log)
+    private static string GetLogClass(string log) => log switch
     {
-        if (log.Contains("[WRN]"))
-        {
-            return "text-yellow-500";
-        }
-
-        if (log.Contains("[ERR]"))
-        {
-            return "text-red-500";
-        }
-
-        if (log.Contains("[FTL]"))
-        {
-            return "text-red-700 font-bold";
-        }
-
-        if (log.Contains("[DBG]"))
-        {
-            return "text-gray-400";
-        }
-
-        if (log.Contains("[VRB]"))
-        {
-            return "text-gray-500";
-        }
-
-        if (log.Contains("[INF]"))
-        {
-            return "text-blue-400";
-        }
-
-        return "text-gray-200";
-    }
+        var x when x.Contains("[WRN]") => "text-yellow-500",
+        var x when x.Contains("[ERR]") => "text-red-500",
+        var x when x.Contains("[FTL]") => "text-red-700 font-bold",
+        var x when x.Contains("[DBG]") => "text-gray-400",
+        var x when x.Contains("[VRB]") => "text-gray-500",
+        var x when x.Contains("[INF]") => "text-blue-400",
+        _ => "text-gray-200"
+    };
 
     protected override void OnInitialized()
     {
