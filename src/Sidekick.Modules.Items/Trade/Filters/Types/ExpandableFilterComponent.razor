@@ -2,41 +2,44 @@
 @using Sidekick.Apis.Poe.Trade.Trade.Filters.Types
 @using Sidekick.Apis.Poe.Trade.Trade.Items.Results
 
-<FilterWrapper Filter="@Filter" Absolute="true">
-    <div class="grow flex flex-nowrap items-center min-h-5 justify-center gap-2 cursor-pointer @LineContentType.Simple.GetColour()"
-         @onclick="() => Filter.Checked = !Filter.Checked"
-         @onclick:preventDefault="true">
-        <Icon Size="UiIconSize.Small"
-              Svg="@(Filter.Checked ? UiIcons.ChevronDown : UiIcons.ChevronRight)"/>
+<div class="group/filter-settings">
+    <FilterWrapper Filter="@Filter" Absolute="true">
+        <div
+            class="grow flex flex-nowrap items-center min-h-5 justify-center gap-2 cursor-pointer @LineContentType.Simple.GetColour()"
+            @onclick="() => Filter.Checked = !Filter.Checked"
+            @onclick:preventDefault="true">
+            <Icon Size="UiIconSize.Small"
+                  Svg="@(Filter.Checked ? UiIcons.ChevronDown : UiIcons.ChevronRight)"/>
 
-        <ItemPropertyText Label="@Filter.Text"
-                          Hint="@Filter.Hint"
-                          Value="@(Filter.Checked ? "true" : "false")"
-                          ContentType="@Filter.Type"
-                          OnlyShowLabel="true"/>
+            <ItemPropertyText Label="@Filter.Text"
+                              Hint="@Filter.Hint"
+                              Value="@(Filter.Checked ? "true" : "false")"
+                              ContentType="@Filter.Type"
+                              OnlyShowLabel="true"/>
 
-        <Icon Size="UiIconSize.Small"
-              Svg="@(Filter.Checked ? UiIcons.ChevronDown : UiIcons.ChevronLeft)"/>
-    </div>
-</FilterWrapper>
+            <Icon Size="UiIconSize.Small"
+                  Svg="@(Filter.Checked ? UiIcons.ChevronDown : UiIcons.ChevronLeft)"/>
+        </div>
+    </FilterWrapper>
 
-@for (var index = 0; index < Filter.Filters.Count; index++)
-{
-    var filter = Filter.Filters[index];
-    var key = $"{Item.Id}_filter_{index}";
-
-    if (!Expanded)
+    @for (var index = 0; index < Filter.Filters.Count; index++)
     {
-        if (filter is TriStatePropertyFilter triState)
-        {
-            if (triState.Checked == null) continue;
-        }
-        else if (!filter.Checked) continue;
-    }
+        var filter = Filter.Filters[index];
+        var key = $"{Item.Id}_filter_{index}";
 
-    <FilterComponent @key="key"
-                     Filter="filter"/>
-}
+        if (!Expanded)
+        {
+            if (filter is TriStatePropertyFilter triState)
+            {
+                if (triState.Checked == null) continue;
+            }
+            else if (!filter.Checked) continue;
+        }
+
+        <FilterComponent @key="key"
+                         Filter="filter"/>
+    }
+</div>
 
 @code {
 
