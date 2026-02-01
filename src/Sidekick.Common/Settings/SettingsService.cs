@@ -113,6 +113,13 @@ public class SettingsService(
         }
 
         var defaultValue = GetDefault<TValue>(key);
+        if (defaultValue != null)
+        {
+            // We need to make sure that the object returned here is of a different instance than the default.
+            var serializedDefault = JsonSerializer.Serialize(defaultValue, JsonSerializerOptions);
+            defaultValue = JsonSerializer.Deserialize<TValue>(serializedDefault, JsonSerializerOptions);
+        }
+
         return defaultValue ?? defaultFunc.Invoke();
     }
 
@@ -281,7 +288,7 @@ public class SettingsService(
             string => string.Empty,
             int => 0,
             double => 0,
-            _ => null,
+            _ => value == null ? null : JsonSerializer.Serialize(value, JsonSerializerOptions)
         };
     }
 }
