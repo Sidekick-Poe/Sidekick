@@ -1,4 +1,4 @@
-namespace Sidekick.Common.Settings;
+namespace Sidekick.Modules.RegexHotkeys.Settings;
 
 /// <summary>
 /// Hotkeys to enter regex in the inventory search.

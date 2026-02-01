@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Common;
 using Sidekick.Common.Settings;
 using Sidekick.Modules.Chat.Keybinds;
+using Sidekick.Modules.Chat.Settings;
 
 namespace Sidekick.Modules.Chat;
 

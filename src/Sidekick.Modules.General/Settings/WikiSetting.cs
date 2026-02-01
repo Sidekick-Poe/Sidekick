@@ -1,6 +1,6 @@
 using Sidekick.Common.Enums;
 
-namespace Sidekick.Common.Settings;
+namespace Sidekick.Modules.General.Settings;
 
 /// <summary>
 ///     Identifies the type of wiki

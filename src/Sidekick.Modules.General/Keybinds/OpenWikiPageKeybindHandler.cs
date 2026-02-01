@@ -7,6 +7,7 @@ using Sidekick.Common.Exceptions;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
+using Sidekick.Modules.General.Settings;
 
 namespace Sidekick.Modules.General.Keybinds;
 
