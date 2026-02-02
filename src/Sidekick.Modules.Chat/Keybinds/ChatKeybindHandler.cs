@@ -2,6 +2,7 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Common.Platform;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
+using Sidekick.Modules.Chat.Settings;
 
 namespace Sidekick.Modules.Chat.Keybinds;
 

@@ -2,6 +2,7 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.PoeNinja.Clients;
 using Sidekick.Apis.PoeNinja.Exchange.Models;
+using Sidekick.Apis.PoeNinja.IndexState;
 using Sidekick.Apis.PoeNinja.Items.Models;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Settings;
@@ -10,7 +11,8 @@ namespace Sidekick.Apis.PoeNinja.Exchange;
 public class NinjaExchangeProvider(
     INinjaClient ninjaClient,
     ISettingsService settingsService,
-    ICacheProvider cacheProvider) : INinjaExchangeProvider
+    ICacheProvider cacheProvider,
+    INinjaIndexStateProvider indexStateProvider) : INinjaExchangeProvider
 {
     private async Task<string> GetCacheKey(string type)
     {
@@ -46,10 +48,10 @@ public class NinjaExchangeProvider(
 
     private async Task<Uri> GetDetailsUri(NinjaExchangeItem item)
     {
-        var league = await settingsService.GetLeague();
         var game = await settingsService.GetGame();
         var gamePath = game == GameType.PathOfExile1 ? "" : "poe2/";
-        return new Uri($"https://poe.ninja/{gamePath}economy/{league?.ToLowerInvariant()}/{item.Page.Url}/{item.DetailsId}");
+        var leagueIndexState = await indexStateProvider.GetLeague();
+        return new Uri($"https://poe.ninja/{gamePath}economy/{leagueIndexState?.Url}/{item.Page.Url}/{item.DetailsId}");
     }
 
     private async Task<ApiOverviewResult?> GetResult(string type)

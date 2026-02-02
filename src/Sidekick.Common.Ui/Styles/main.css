@@ -20,6 +20,7 @@
     --font-*: initial;
     --font-sans: fontin, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --font-caps: fontin-smallcaps, fontin, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-mono: monospace;
     --text-*: initial;
     --text-xs: 0.625rem;
     --text-sm: 0.75rem;
