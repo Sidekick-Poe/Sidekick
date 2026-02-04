@@ -1,0 +1,34 @@
+@using Sidekick.Common.Ui.Views
+@using Sidekick.Electron.Services
+
+<Sidekick.Common.Ui.Main />
+
+@inject ICurrentView CurrentView
+@inject WebViewLocator ViewLocator
+@implements IDisposable
+
+@code {
+
+    [Inject]
+    public required NavigationManager NavigationManager { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ViewLocator.Views.Add(this);
+        CurrentView.Closed += CurrentViewClosed;
+
+        base.OnInitialized();
+    }
+
+    private void CurrentViewClosed()
+    {
+        NavigationManager.NavigateTo("/home");
+    }
+
+    public void Dispose()
+    {
+        ViewLocator.Views.Remove(this);
+        CurrentView.Closed -= CurrentViewClosed;
+    }
+
+}

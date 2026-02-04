@@ -16,6 +16,7 @@ using Sidekick.Common.Platform;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
+using Sidekick.Electron.Services;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
@@ -106,7 +107,7 @@ else
 app.UseStaticFiles();
 app.UseAntiforgery();
 
-app.MapRazorComponents<BlazorApp.Components.App>()
+app.MapRazorComponents<Main>()
     .AddInteractiveWebAssemblyRenderMode();
 
 app.Run();
