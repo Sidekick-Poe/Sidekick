@@ -288,7 +288,7 @@ public class SettingsService(
             string => string.Empty,
             int => 0,
             double => 0,
-            _ => value == null ? null : JsonSerializer.Serialize(value, JsonSerializerOptions)
+            _ => null,
         };
     }
 }
