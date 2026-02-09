@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
@@ -96,13 +97,10 @@ public class RarityProperty(
 
         if (item.Properties.Rarity == Rarity.Unique)
         {
-            return Task.FromResult<TradeFilter?>(new UniqueRarityFilter
-            {
-                AutoSelectSettingKey = $"Trade_Filter_{nameof(RarityProperty)}_{game.GetValueAttribute()}",
-            });
+            return Task.FromResult<TradeFilter?>(new UniqueRarityFilter());
         }
 
-        var filter = new RarityFilter
+        var filter = new RarityFilter(item.Game)
         {
             Text = gameLanguageProvider.Language.DescriptionRarity,
             Value = rarityLabel,
@@ -114,9 +112,40 @@ public class RarityProperty(
 
 public class RarityFilter : StringPropertyFilter
 {
-    public RarityFilter()
+    public RarityFilter(GameType game)
     {
-        DefaultAutoSelect = AutoSelectPreferences.Create(false);
+        if (game == GameType.PathOfExile1)
+        {
+            DefaultAutoSelect = AutoSelectPreferences.Create(false);
+        }
+        else
+        {
+            DefaultAutoSelect = new AutoSelectPreferences
+            {
+                Mode = AutoSelectMode.Default,
+                Rules =
+                [
+                    new AutoSelectRule()
+                    {
+                        Checked = true,
+                        Conditions =
+                        [
+                            new AutoSelectCondition()
+                            {
+                                Type = AutoSelectConditionType.Rarity,
+                                Comparison = AutoSelectComparisonType.IsContainedIn,
+                                Value = JsonSerializer.Serialize(new List<Rarity>()
+                                {
+                                    Rarity.Normal,
+                                    Rarity.Magic,
+                                }, AutoSelectPreferences.JsonSerializerOptions),
+                            },
+                        ],
+                    },
+                ],
+            };
+
+        }
     }
 
     public override void PrepareTradeRequest(Query query, Item item)
