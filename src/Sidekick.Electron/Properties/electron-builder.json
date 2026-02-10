@@ -1,5 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/refs/heads/master/packages/app-builder-lib/scheme.json",
+  "appId": "com.sidekick-poe.app",
   "compression": "maximum",
   "linux": {
     "target": [
@@ -9,10 +10,15 @@
     "artifactName": "${name}-${arch}-${version}.${ext}"
   },
   "win": {
+    "executableName": "Sidekick",
     "target": [
       {
         "target": "portable",
-        "arch": "x64"
+        "arch": ["x64", "arm64"]
+      },
+      {
+        "target": "nsis",
+        "arch": ["x64", "arm64"]
       }
     ]
   }

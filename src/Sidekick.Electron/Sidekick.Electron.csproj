@@ -13,6 +13,7 @@
         <ApplicationIcon>favicon.ico</ApplicationIcon>
     </PropertyGroup>
 
+    <!--
     <ItemGroup>
         <ProjectReference Include="..\Sidekick.Common.Updater\Sidekick.Common.Updater.csproj" />
         <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
@@ -23,11 +24,28 @@
         <ProjectReference Include="..\Sidekick.Modules.Items\Sidekick.Modules.Items.csproj" />
         <ProjectReference Include="..\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj" />
     </ItemGroup>
+-->
 
     <ItemGroup>
       <PackageReference Include="ElectronNET.Core" />
       <PackageReference Include="ElectronNET.Core.AspNet" />
       <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Services\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Services\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Services\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Services\**" />
     </ItemGroup>
 
 </Project>
