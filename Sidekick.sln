@@ -83,6 +83,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Apis.Poe", "src\Si
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Common.Tests", "tests\Sidekick.Common.Tests\Sidekick.Common.Tests.csproj", "{4629BF9F-A7A0-406A-A53C-5E8E1B7B82B1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{BC647F1C-6A5B-475B-A339-B7302255D21D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Data.Builder", "src\Sidekick.Data.Builder\Sidekick.Data.Builder.csproj", "{DDEE9957-B7B7-4213-A988-8638047CDA59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidekick.Data", "src\Sidekick.Data\Sidekick.Data.csproj", "{0EC15D1D-DEBE-4A60-B24A-9BB0180B7B4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -299,6 +305,22 @@ Global
 		{4629BF9F-A7A0-406A-A53C-5E8E1B7B82B1}.Linux-Release|Any CPU.Build.0 = Debug|Any CPU
 		{4629BF9F-A7A0-406A-A53C-5E8E1B7B82B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4629BF9F-A7A0-406A-A53C-5E8E1B7B82B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDEE9957-B7B7-4213-A988-8638047CDA59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDEE9957-B7B7-4213-A988-8638047CDA59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDEE9957-B7B7-4213-A988-8638047CDA59}.Linux-Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDEE9957-B7B7-4213-A988-8638047CDA59}.Linux-Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDEE9957-B7B7-4213-A988-8638047CDA59}.Linux-Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDEE9957-B7B7-4213-A988-8638047CDA59}.Linux-Release|Any CPU.Build.0 = Debug|Any CPU
+		{DDEE9957-B7B7-4213-A988-8638047CDA59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDEE9957-B7B7-4213-A988-8638047CDA59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EC15D1D-DEBE-4A60-B24A-9BB0180B7B4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EC15D1D-DEBE-4A60-B24A-9BB0180B7B4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EC15D1D-DEBE-4A60-B24A-9BB0180B7B4F}.Linux-Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EC15D1D-DEBE-4A60-B24A-9BB0180B7B4F}.Linux-Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EC15D1D-DEBE-4A60-B24A-9BB0180B7B4F}.Linux-Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EC15D1D-DEBE-4A60-B24A-9BB0180B7B4F}.Linux-Release|Any CPU.Build.0 = Debug|Any CPU
+		{0EC15D1D-DEBE-4A60-B24A-9BB0180B7B4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EC15D1D-DEBE-4A60-B24A-9BB0180B7B4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -327,6 +349,8 @@ Global
 		{6802359E-B82B-4828-990D-15A5240A884D} = {BB6816F5-1413-4545-96FA-D31D2D9BF6B1}
 		{958AA915-D4FA-4C9A-918E-0957F012E510} = {7285BD58-2544-44AA-8488-52EA8E55D239}
 		{4629BF9F-A7A0-406A-A53C-5E8E1B7B82B1} = {1D8BF515-81E9-4769-9B27-24DFB8D8BDCC}
+		{DDEE9957-B7B7-4213-A988-8638047CDA59} = {BC647F1C-6A5B-475B-A339-B7302255D21D}
+		{0EC15D1D-DEBE-4A60-B24A-9BB0180B7B4F} = {BC647F1C-6A5B-475B-A339-B7302255D21D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17B5631D-95B3-4007-BE6B-C9BBE799D014}
