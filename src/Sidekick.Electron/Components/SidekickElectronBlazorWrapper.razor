@@ -2,6 +2,7 @@
 @using Sidekick.Common.Platform.EventArgs
 @using Sidekick.Common.Ui.Views
 @using Sidekick.Electron.Services
+@using static ElectronNET.API.Electron;
 
 <Sidekick.Common.Ui.Main />
 
@@ -29,25 +30,41 @@
 
     private void CurrentViewMinimized()
     {
-        
+        WindowManager.BrowserWindows.FirstOrDefault()?.Minimize();
     }
 
-    private void CurrentViewMaximized()
+    private async void CurrentViewMaximized()
     {
+        var browserWindow = WindowManager.BrowserWindows.FirstOrDefault();
         
+        if (browserWindow == null)
+        {
+            return;
+        }
+
+        var isMaximized = await browserWindow.IsMaximizedAsync();
+
+        if (isMaximized)
+        {
+            browserWindow.Unmaximize();
+        }
+        else
+        {
+            browserWindow.Maximize();
+        }
     }
 
     private void CurrentViewClosed()
     {
         if (new Uri(NavigationManager.Uri).PathAndQuery == "/home")
         {
-            ApplicationService.Shutdown();
+            App.Quit();
         }
         else
         {
             NavigationManager.NavigateTo("/home");
         }
-    }   
+    }
 
     public void Dispose()
     {

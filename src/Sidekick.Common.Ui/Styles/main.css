@@ -62,3 +62,7 @@
 :root {
     --sidekick-vh: 100vh; /* Fallback */
 }
+
+.app-drag-handle {
+    app-region: drag;
+}

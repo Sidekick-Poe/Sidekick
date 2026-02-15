@@ -3,11 +3,11 @@ namespace Sidekick.Electron.Services;
 
 public class ElectronApplicationService : IApplicationService
 {
-    public bool SupportsKeybinds => false;
+    public bool SupportsKeybinds => true;
 
-    public bool SupportsAuthentication => false;
+    public bool SupportsAuthentication => true;
 
-    public bool SupportsHardwareAcceleration => false;
+    public bool SupportsHardwareAcceleration => true;
 
     public int Priority => 9000;
 

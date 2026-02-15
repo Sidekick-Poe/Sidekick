@@ -4,11 +4,16 @@ namespace Sidekick.Electron.Services;
 
 public class ElectronViewLocator : IViewLocator
 {
-    /// <inheritdoc />
-    public bool SupportsMinimize => false;
+    public ElectronViewLocator()
+    {
+        
+    }
 
     /// <inheritdoc />
-    public bool SupportsMaximize => false;
+    public bool SupportsMinimize => true;
+
+    /// <inheritdoc />
+    public bool SupportsMaximize => true;
 
     public List<SidekickElectronBlazorWrapper> Views { get; } = [];
 
@@ -19,6 +24,7 @@ public class ElectronViewLocator : IViewLocator
 
     public void Close(SidekickViewType type)
     {
+        var a = ElectronNET.API.Electron.WindowManager.BrowserWindows.ToList();
         Views.ForEach(x => x.NavigationManager.NavigateTo("/home"));
     }
 

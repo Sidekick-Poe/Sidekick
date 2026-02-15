@@ -86,12 +86,9 @@ builder.UseElectron(args, async () =>
     {
         Show = false,
         IsRunningBlazor = true,
+        Frame = false,
+        Icon = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico"),
     };
-
-    if (OperatingSystem.IsWindows() || OperatingSystem.IsLinux())
-    {
-        options.AutoHideMenuBar = true;
-    }
 
     var browserWindow = await Electron.WindowManager.CreateWindowAsync(options);
     browserWindow.OnReadyToShow += () => browserWindow.Show();
