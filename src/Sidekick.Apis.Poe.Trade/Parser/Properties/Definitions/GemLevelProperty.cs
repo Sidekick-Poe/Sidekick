@@ -25,8 +25,9 @@ public class GemLevelProperty(
             return;
         }
 
-        if (game == GameType.PathOfExile1 && (item.Properties.ItemClass != ItemClass.ActiveGem ||
-                                              item.Properties.ItemClass != ItemClass.SupportGem))
+        if (game == GameType.PathOfExile1 &&
+            item.Properties.ItemClass != ItemClass.ActiveGem &&
+            item.Properties.ItemClass != ItemClass.SupportGem)
         {
             return;
         }
