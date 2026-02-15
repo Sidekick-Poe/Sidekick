@@ -19,7 +19,19 @@ public class GemLevelProperty(
 
     public override void Parse(Item item)
     {
-        if (item.Properties.ItemClass is ItemClass.UncutSkillGem or ItemClass.UncutSupportGem or ItemClass.UncutSpiritGem)
+        if (item.Properties.ItemClass is ItemClass.UncutSkillGem or ItemClass.UncutSupportGem
+            or ItemClass.UncutSpiritGem)
+        {
+            return;
+        }
+
+        if (game == GameType.PathOfExile1 && (item.Properties.ItemClass != ItemClass.ActiveGem ||
+                                              item.Properties.ItemClass != ItemClass.SupportGem))
+        {
+            return;
+        }
+
+        if (item.Properties.Rarity != Rarity.Gem)
         {
             return;
         }
