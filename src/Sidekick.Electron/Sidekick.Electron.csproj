@@ -13,7 +13,6 @@
         <ApplicationIcon>favicon.ico</ApplicationIcon>
     </PropertyGroup>
 
-    <!--
     <ItemGroup>
         <ProjectReference Include="..\Sidekick.Common.Updater\Sidekick.Common.Updater.csproj" />
         <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
@@ -24,28 +23,30 @@
         <ProjectReference Include="..\Sidekick.Modules.Items\Sidekick.Modules.Items.csproj" />
         <ProjectReference Include="..\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj" />
     </ItemGroup>
--->
 
     <ItemGroup>
-      <PackageReference Include="ElectronNET.Core" />
-      <PackageReference Include="ElectronNET.Core.AspNet" />
-      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" />
+        <PackageReference Include="ElectronNET.Core" />
+        <PackageReference Include="ElectronNET.Core.AspNet" />
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="Services\**" />
+        <Content Update="wwwroot\**">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 
-    <ItemGroup>
-      <EmbeddedResource Remove="Services\**" />
-    </ItemGroup>
+    <Target Name="Copywwwroot" BeforeTargets="Build">
+        <ItemGroup>
+            <WwwRootFiles Include="$(ProjectDir)..\Sidekick.Common.Ui\wwwroot\**\*.*" />
+        </ItemGroup>
+        <Copy SourceFiles="@(WwwRootFiles)" DestinationFolder="$(ProjectDir)wwwroot\%(RecursiveDir)" />
+    </Target>
 
-    <ItemGroup>
-      <Content Remove="Services\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="Services\**" />
-    </ItemGroup>
+    <Target Name="CopyData" BeforeTargets="Build">
+        <ItemGroup>
+            <DataFiles Include="$(ProjectDir)..\..\data\**\*.*" />
+        </ItemGroup>
+        <Copy SourceFiles="@(DataFiles)" DestinationFolder="$(ProjectDir)wwwroot\data\%(RecursiveDir)" />
+    </Target>
 
 </Project>

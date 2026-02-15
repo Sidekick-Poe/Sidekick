@@ -1,7 +1,8 @@
 using Sidekick.Common.Ui.Views;
+using Sidekick.Electron.Components;
 namespace Sidekick.Electron.Services;
 
-public class WebViewLocator : IViewLocator
+public class ElectronViewLocator : IViewLocator
 {
     /// <inheritdoc />
     public bool SupportsMinimize => false;
@@ -9,7 +10,7 @@ public class WebViewLocator : IViewLocator
     /// <inheritdoc />
     public bool SupportsMaximize => false;
 
-    public List<SidekickWebWrapper> Views { get; } = [];
+    public List<SidekickElectronBlazorWrapper> Views { get; } = [];
 
     public void Open(SidekickViewType type, string url)
     {

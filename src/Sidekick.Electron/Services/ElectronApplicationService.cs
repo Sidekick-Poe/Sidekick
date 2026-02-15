@@ -1,7 +1,7 @@
 using Sidekick.Common.Platform;
 namespace Sidekick.Electron.Services;
 
-public class WebApplicationService : IApplicationService
+public class ElectronApplicationService : IApplicationService
 {
     public bool SupportsKeybinds => false;
 

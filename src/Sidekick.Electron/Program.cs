@@ -1,23 +1,46 @@
+using ApexCharts;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
-using Sidekick.Electron;
+using Sidekick.Apis.Common;
+using Sidekick.Apis.GitHub;
+using Sidekick.Apis.Poe;
+using Sidekick.Apis.Poe.Trade;
+using Sidekick.Apis.Poe2Scout;
+using Sidekick.Apis.PoeNinja;
+using Sidekick.Apis.PoePriceInfo;
+using Sidekick.Apis.PoeWiki;
+using Sidekick.Common;
+using Sidekick.Common.Browser;
+using Sidekick.Common.Database;
+using Sidekick.Common.Platform;
+using Sidekick.Common.Ui;
+using Sidekick.Common.Ui.Views;
+using Sidekick.Common.Updater;
+using Sidekick.Electron.Components;
+using Sidekick.Electron.Services;
+using Sidekick.Modules.Chat;
+using Sidekick.Modules.Development;
+using Sidekick.Modules.General;
+using Sidekick.Modules.Items;
+using Sidekick.Modules.RegexHotkeys;
+using Velopack;
 
-// VelopackApp.Build().Run();
+VelopackApp.Build().Run();
 
-var builder = WebApplication.CreateBuilder(args);
-
-#region Services
+var webApplicationOptions = new WebApplicationOptions
+{
+    ContentRootPath = AppContext.BaseDirectory,
+    Args = args,
+};
+var builder = WebApplication.CreateBuilder(webApplicationOptions);
 
 builder.Services
     .AddRazorComponents()
-    .AddInteractiveWebAssemblyComponents();
+    .AddInteractiveServerComponents();
 
-builder.Services.AddElectron();
-builder.Services.AddRazorPages();
-builder.Services.AddHttpClient();
 builder.Services.AddLocalization();
 
-/*
+builder.Services.AddElectron();
 
 builder.Services
 
@@ -43,13 +66,19 @@ builder.Services
     .AddSidekickDevelopment()
     .AddSidekickRegexHotkeys()
     .AddSidekickGeneral()
-    .AddSidekickItems();
+    .AddSidekickItems()
+
+    // Platform needs to be at the end
+    .AddSidekickCommonPlatform(o =>
+    {
+        o.WindowsIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico");
+        o.OsxIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/apple-touch-icon.png");
+    });
 
 builder.Services.AddApexCharts();
-builder.Services.AddSidekickInitializableService<IApplicationService, WebApplicationService>();
-builder.Services.AddSingleton<IViewLocator, WebViewLocator>();
-builder.Services.AddSingleton(sp => (WebViewLocator)sp.GetRequiredService<IViewLocator>());
-*/
+builder.Services.AddSidekickInitializableService<IApplicationService, ElectronApplicationService>();
+builder.Services.AddSingleton<IViewLocator, ElectronViewLocator>();
+builder.Services.AddSingleton(sp => (ElectronViewLocator)sp.GetRequiredService<IViewLocator>());
 
 builder.UseElectron(args, async () =>
 {
@@ -68,27 +97,13 @@ builder.UseElectron(args, async () =>
     browserWindow.OnReadyToShow += () => browserWindow.Show();
 });
 
-#endregion Services
-
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseWebAssemblyDebugging();
-}
-else
-{
-    app.UseExceptionHandler("/Error", createScopeForErrors: true);
-}
+app.UseExceptionHandler("/Error", createScopeForErrors: true);
 
 app.UseStaticFiles();
 app.UseAntiforgery();
 
-app.UseRouting();
-
-app.MapRazorPages();
-
-app.MapRazorComponents<ElectronTest>()
-    .AddInteractiveWebAssemblyRenderMode();
+app.MapRazorComponents<ElectronHostPage>().AddInteractiveServerRenderMode();
 
 app.Run();

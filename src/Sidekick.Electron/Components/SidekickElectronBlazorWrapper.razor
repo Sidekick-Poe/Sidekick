@@ -1,0 +1,58 @@
+@using Sidekick.Common.Platform
+@using Sidekick.Common.Platform.EventArgs
+@using Sidekick.Common.Ui.Views
+@using Sidekick.Electron.Services
+
+<Sidekick.Common.Ui.Main />
+
+@inject ICurrentView CurrentView
+@inject ElectronViewLocator ViewLocator
+@inject IKeyboardProvider KeyboardProvider
+@inject IApplicationService ApplicationService
+@implements IDisposable
+
+@code {
+
+    [Inject]
+    public required NavigationManager NavigationManager { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ViewLocator.Views.Add(this);
+
+        CurrentView.Minimized += CurrentViewMinimized;
+        CurrentView.Maximized += CurrentViewMaximized;
+        CurrentView.Closed += CurrentViewClosed;
+
+        base.OnInitialized();
+    }
+
+    private void CurrentViewMinimized()
+    {
+        
+    }
+
+    private void CurrentViewMaximized()
+    {
+        
+    }
+
+    private void CurrentViewClosed()
+    {
+        if (new Uri(NavigationManager.Uri).PathAndQuery == "/home")
+        {
+            ApplicationService.Shutdown();
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/home");
+        }
+    }   
+
+    public void Dispose()
+    {
+        ViewLocator.Views.Remove(this);
+        CurrentView.Closed -= CurrentViewClosed;
+    }
+
+}
