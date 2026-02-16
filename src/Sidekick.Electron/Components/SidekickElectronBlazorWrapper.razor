@@ -58,7 +58,7 @@
     {
         if (new Uri(NavigationManager.Uri).PathAndQuery == "/home")
         {
-            App.Quit();
+            WindowManager.BrowserWindows.First().Hide();
         }
         else
         {

@@ -24,7 +24,6 @@ public class ElectronViewLocator : IViewLocator
 
     public void Close(SidekickViewType type)
     {
-        var a = ElectronNET.API.Electron.WindowManager.BrowserWindows.ToList();
         Views.ForEach(x => x.NavigationManager.NavigateTo("/home"));
     }
 

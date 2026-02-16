@@ -3,22 +3,23 @@
   "appId": "com.sidekick-poe.app",
   "compression": "maximum",
   "linux": {
+    "icon": "bin/wwwroot/android-chrome-512x512.png",
     "target": [
-      "tar.xz"
+      {
+        "target": "dir",
+        "arch": ["x64"]
+      }
     ],
     "executableArgs": [ "--no-sandbox" ],
     "artifactName": "${name}-${arch}-${version}.${ext}"
   },
   "win": {
+    "icon": "bin/wwwroot/android-chrome-512x512.png",
     "executableName": "Sidekick",
     "target": [
       {
-        "target": "portable",
-        "arch": ["x64", "arm64"]
-      },
-      {
-        "target": "nsis",
-        "arch": ["x64", "arm64"]
+        "target": "dir",
+        "arch": [ "x64" ]
       }
     ]
   }
