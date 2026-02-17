@@ -1,4 +1,4 @@
-@if (!ApplicationService.SupportsKeybinds)
+@if (!Configuration.Value.SupportsKeybinds)
 {
     return;
 }
@@ -8,9 +8,9 @@
                        Value="@Value"
                        ValueChanged="ValueChanged" />
 
-@using Sidekick.Common.Platform
+@using Microsoft.Extensions.Options
 
-@inject IApplicationService ApplicationService
+@inject IOptions<SidekickConfiguration> Configuration
 
 @code {
 

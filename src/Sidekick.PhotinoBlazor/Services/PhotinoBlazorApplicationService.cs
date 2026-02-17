@@ -23,12 +23,6 @@ public class PhotinoBlazorApplicationService
     IBrowserProvider browserProvider,
     IOptions<SidekickConfiguration> configuration) : IApplicationService, IDisposable
 {
-    public bool SupportsKeybinds => true;
-
-    public bool SupportsAuthentication => false;
-
-    public bool SupportsHardwareAcceleration => false;
-
     private bool Initialized { get; set; }
 
     private NotifyIcon? Icon { get; set; }

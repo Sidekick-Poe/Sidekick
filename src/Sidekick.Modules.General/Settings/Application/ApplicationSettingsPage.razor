@@ -1,5 +1,6 @@
 @using Microsoft.Extensions.Localization
-@using Sidekick.Common.Platform
+@using Microsoft.Extensions.Options
+@using Sidekick.Common
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Buttons
 @using Sidekick.Common.Ui.Forms
@@ -14,17 +15,16 @@
         <FormFieldset Legend="@SettingsResources["General_Settings"]">
             <InterfaceLanguageEditor/>
             <ZoomEditor/>
-            @if (ApplicationService.SupportsKeybinds)
+            @if (Configuration.Value.SupportsKeybinds)
             {
                 <SettingCheckboxEditor SettingKey="@SettingKeys.RetainClipboard"
                                        Label="@Resources["General_RetainClipboard"]"/>
             }
             <SettingCheckboxEditor SettingKey="@SettingKeys.SilentStart" Label="@SettingsResources["SilentStart"]" />
             <SettingCheckboxEditor SettingKey="@SettingKeys.OpenHomeOnLaunch" Label="@SettingsResources["OpenHomeOnLaunch"]" Tooltip="@SettingsResources["OpenHomeOnLaunch_Hint"]" />
-            @if (ApplicationService.SupportsKeybinds) {}
         </FormFieldset>
 
-        @if (ApplicationService.SupportsHardwareAcceleration)
+        @if (Configuration.Value.SupportsHardwareAcceleration)
         {
             <FormFieldset Legend="@SettingsResources["Other"]">
                 <SettingCheckboxEditor SettingKey="@SettingKeys.UseHardwareAcceleration"
@@ -45,8 +45,8 @@
 @inject IStringLocalizer<SettingsResources> SettingsResources
 @inject IStringLocalizer<UiResources> UiResources
 @inject IStringLocalizer<GeneralResources> Resources
-@inject IApplicationService ApplicationService
 @inject ISettingsService SettingsService
+@inject IOptions<SidekickConfiguration> Configuration
 
 @code {
 

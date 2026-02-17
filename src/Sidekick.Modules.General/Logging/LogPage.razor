@@ -1,5 +1,7 @@
 @page "/logs"
 @using Microsoft.Extensions.Localization
+@using Microsoft.Extensions.Options
+@using Sidekick.Common
 @using Sidekick.Common.Folder
 @using Sidekick.Common.Logging
 @using Sidekick.Common.Platform
@@ -12,7 +14,7 @@
     <AppContainer>
         <div class="mb-3 flex gap-3">
             <Heading1>@Resources["Logs"]</Heading1>
-            @if (ApplicationService.SupportsKeybinds)
+            @if (Configuration.Value.SupportsKeybinds)
             {
                 <div class="ml-auto flex justify-end gap-3">
                     <ButtonSecondary
@@ -29,7 +31,7 @@
 @inject IStringLocalizer<LogResources> Resources
 @inject IFolderProvider FolderProvider
 @inject IClipboardProvider ClipboardProvider
-@inject IApplicationService ApplicationService
+@inject IOptions<SidekickConfiguration> Configuration
 
 @code {
 

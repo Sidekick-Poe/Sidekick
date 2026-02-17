@@ -1,8 +1,8 @@
-@using Sidekick.Common.Platform
+@using Microsoft.Extensions.Options
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Localization
 
-@if (!ApplicationService.SupportsKeybinds)
+@if (!Configuration.Value.SupportsKeybinds)
 {
     return;
 }
@@ -21,9 +21,9 @@
 </KeybindEditorInternal>
 
 
-@inject IApplicationService ApplicationService
 @inject ISettingsService SettingsService
 @inject IStringLocalizer<UiResources> Resources
+@inject IOptions<SidekickConfiguration> Configuration
 @implements IDisposable
 
 @code {

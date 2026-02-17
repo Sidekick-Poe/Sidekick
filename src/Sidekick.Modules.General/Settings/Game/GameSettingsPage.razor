@@ -1,5 +1,6 @@
 @using Microsoft.Extensions.Localization
-@using Sidekick.Common.Platform
+@using Microsoft.Extensions.Options
+@using Sidekick.Common
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.App
@@ -23,7 +24,7 @@
         </FormFieldset>
 
         <FormFieldset Legend="@SettingResources["Item_Overlay"]">
-            @if (ApplicationService.SupportsKeybinds)
+            @if (Configuration.Value.SupportsKeybinds)
             {
                 <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenPriceCheck" Label="@SettingResources["Key_OpenItem"]"/>
                 <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
@@ -39,7 +40,7 @@
                                    Label="@Resources["EscapeClosesOverlays"]"/>
         </FormFieldset>
 
-        @if (ApplicationService.SupportsKeybinds)
+        @if (Configuration.Value.SupportsKeybinds)
         {
             <FormFieldset Legend="@Resources["Wiki"]">
                 <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenWiki" Label="@Resources["Wiki_Key_Open"]"/>
@@ -47,7 +48,7 @@
             </FormFieldset>
         }
 
-        @if (ApplicationService.SupportsKeybinds)
+        @if (Configuration.Value.SupportsKeybinds)
         {
             <FormFieldset Legend="@SettingResources["Other_Settings"]">
                 <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStash">
@@ -70,13 +71,13 @@
 </LayoutMenu>
 
 @page "/settings/game"
-@inject IApplicationService ApplicationService
 @inject IStringLocalizer<SettingsResources> SettingResources
 @inject IStringLocalizer<UiResources> UiResources
 @inject IStringLocalizer<GeneralResources> Resources
 @inject ISettingsService SettingsService
 @inject ICacheProvider CacheProvider
 @inject NavigationManager NavigationManager
+@inject IOptions<SidekickConfiguration> Configuration
 @implements IDisposable
 
 @code {
