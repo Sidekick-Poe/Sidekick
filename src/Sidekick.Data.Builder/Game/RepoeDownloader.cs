@@ -1,14 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Sidekick.Data.Files;
-using Sidekick.Data.Options;
+using Sidekick.Apis.Poe.Items;
 
-namespace Sidekick.Data.Game;
+namespace Sidekick.Data.Builder.Game;
 
 public class RepoeDownloader(
     ILogger<RepoeDownloader> logger,
-    DataFileWriter dataFileWriter,
-    IOptions<DataOptions> options)
+    DataProvider dataProvider)
 {
     private sealed record RepoeLanguageInfo(string Code, string LanguageSlug);
 
@@ -40,7 +37,6 @@ public class RepoeDownloader(
     private async Task DownloadPoe1()
     {
         using var http = new HttpClient();
-        http.Timeout = TimeSpan.FromSeconds(options.Value.TimeoutSeconds);
 
         List<RepoeFile> files =
         [
@@ -52,7 +48,7 @@ public class RepoeDownloader(
             foreach (var language in Languages)
             {
                 var url = "https://repoe-fork.github.io/" + language.LanguageSlug + file.FilePath;
-                await DownloadToFile(http, url, "poe1", GetFileName(language.Code, file.FileName));
+                await DownloadToFile(http, url, GameType.PathOfExile1, GetFileName(language.Code, file.FileName));
             }
         }
     }
@@ -60,7 +56,6 @@ public class RepoeDownloader(
     private async Task DownloadPoe2()
     {
         using var http = new HttpClient();
-        http.Timeout = TimeSpan.FromSeconds(options.Value.TimeoutSeconds);
 
         List<RepoeFile> files =
         [
@@ -71,19 +66,19 @@ public class RepoeDownloader(
             foreach (var language in Languages)
             {
                 var url = "https://repoe-fork.github.io/poe2/" + language.LanguageSlug + file.FilePath;
-                await DownloadToFile(http, url, "poe2", GetFileName(language.Code, file.FileName));
+                await DownloadToFile(http, url, GameType.PathOfExile2, GetFileName(language.Code, file.FileName));
             }
         }
     }
 
-    private async Task DownloadToFile(HttpClient http, string url, string game, string fileName)
+    private async Task DownloadToFile(HttpClient http, string url, GameType game, string fileName)
     {
         try
         {
             logger.LogInformation($"GET {url}");
             using var response = await http.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
             response.EnsureSuccessStatusCode();
-            await dataFileWriter.Write(game, "game", fileName, await response.Content.ReadAsStreamAsync());
+            await dataProvider.Write(game, $"game/{fileName}", await response.Content.ReadAsStreamAsync());
         }
         catch (Exception ex)
         {

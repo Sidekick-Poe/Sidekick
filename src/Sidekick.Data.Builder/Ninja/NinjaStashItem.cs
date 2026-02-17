@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Data.Ninja;
+﻿namespace Sidekick.Data.Builder.Ninja;
 
 internal sealed record NinjaStashItem(
     string Name,

@@ -1,15 +1,12 @@
 ﻿using System.Net.Http.Headers;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Sidekick.Data.Files;
-using Sidekick.Data.Options;
+using Sidekick.Apis.Poe.Items;
 
-namespace Sidekick.Data.Trade;
+namespace Sidekick.Data.Builder.Trade;
 
-internal class TradeDownloader(
+public class TradeDownloader(
     ILogger<TradeDownloader> logger,
-    DataFileWriter dataFileWriter,
-    IOptions<DataOptions> options)
+    DataProvider dataProvider)
 {
     private sealed record TradeLanguageInfo(string Code, string Poe1Api, string Poe2Api);
 
@@ -50,22 +47,21 @@ internal class TradeDownloader(
     private static string GetFileName(string langCode, string path)
         => $"{path}.{langCode}.json";
 
-    private static string GetApiBase(string langCode, string game)
+    private static string GetApiBase(string langCode, GameType game)
     {
         var lang = Languages.First(l => l.Code == langCode);
-        return game == "poe2" ? lang.Poe2Api : lang.Poe1Api;
+        return game == GameType.PathOfExile2 ? lang.Poe2Api : lang.Poe1Api;
     }
 
     public async Task DownloadAll()
     {
         using var http = new HttpClient();
-        http.Timeout = TimeSpan.FromSeconds(options.Value.TimeoutSeconds);
         http.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Sidekick.Data", "1.0"));
         http.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
 
         List<string> paths = ["items", "stats", "static", "filters"];
 
-        foreach (var game in new[] { "poe1", "poe2" })
+        foreach (var game in new[] { GameType.PathOfExile1, GameType.PathOfExile2 })
         {
             // Download leagues once (English, invariant)
             var leaguesUrl = GetApiBase("en", game) + "data/leagues";
@@ -82,14 +78,14 @@ internal class TradeDownloader(
         }
     }
 
-    private async Task DownloadToFile(HttpClient http, string url, string game, string fileName)
+    private async Task DownloadToFile(HttpClient http, string url, GameType game, string fileName)
     {
         try
         {
             logger.LogInformation($"GET {url}");
             using var response = await http.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
             response.EnsureSuccessStatusCode();
-            await dataFileWriter.Write(game, "trade", fileName, await response.Content.ReadAsStreamAsync());
+            await dataProvider.Write(game, $"trade/{fileName}", await response.Content.ReadAsStreamAsync());
         }
         catch (Exception ex)
         {

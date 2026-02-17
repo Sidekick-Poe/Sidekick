@@ -2,16 +2,14 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Sidekick.Data.Files;
-using Sidekick.Data.Options;
+using Sidekick.Apis.Poe.Items;
+using Sidekick.Data.Trade;
 
-namespace Sidekick.Data.Ninja;
+namespace Sidekick.Data.Builder.Ninja;
 
-internal class NinjaDownloader(
+public class NinjaDownloader(
     ILogger<NinjaDownloader> logger,
-    DataFileWriter dataFileWriter,
-    IOptions<DataOptions> options)
+    DataProvider dataProvider)
 {
     private static readonly List<NinjaPage> Poe1Pages =
     [
@@ -78,39 +76,26 @@ internal class NinjaDownloader(
 
     public async Task DownloadAll()
     {
-        if (string.IsNullOrWhiteSpace(options.Value.DataFolder))
-        {
-            throw new ArgumentException("Data folder cannot be null for download.");
-        }
+        var poe1Leagues = await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile1, "trade/leagues.en.json");
+        await DownloadForGame(GameType.PathOfExile1,
+            poe1Leagues.First().Id ?? throw new ArgumentException("No leagues found for Poe1"));
 
-        if (string.IsNullOrWhiteSpace(options.Value.Poe1League) &&
-            string.IsNullOrWhiteSpace(options.Value.Poe2League))
-        {
-            throw new ArgumentException("At least one of --poe1 or --poe2 must be provided for download-ninja.");
-        }
-
-        if (!string.IsNullOrWhiteSpace(options.Value.Poe1League))
-        {
-            await DownloadForGame(game: "poe1", options.Value.Poe1League);
-        }
-
-        if (!string.IsNullOrWhiteSpace(options.Value.Poe2League))
-        {
-            await DownloadForGame(game: "poe2", options.Value.Poe2League);
-        }
+        var poe2Leagues = await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile2, "trade/leagues.en.json");
+        await DownloadForGame(GameType.PathOfExile2,
+            poe2Leagues.First().Id ?? throw new ArgumentException("No leagues found for Poe2"));
 
         return;
 
-        async Task DownloadForGame(string game, string league)
+        async Task DownloadForGame(GameType game, string league)
         {
             await DownloadExchange(game, league);
             await DownloadStash(game, league);
         }
 
-        async Task DownloadExchange(string game, string league)
+        async Task DownloadExchange(GameType game, string league)
         {
             var exchangeItems = new List<NinjaExchangeItem>();
-            var exchangePages = game == "poe1" ? Poe1Pages : Poe2Pages;
+            var exchangePages = game == GameType.PathOfExile1 ? Poe1Pages : Poe2Pages;
 
             await Task.WhenAll(exchangePages.Select(async page =>
             {
@@ -147,13 +132,13 @@ internal class NinjaDownloader(
                 }
             }));
 
-            await dataFileWriter.Write(game, "ninja", GetFileName("exchange"), exchangeItems);
+            await dataProvider.Write(game, $"ninja/{GetFileName("exchange")}", exchangeItems);
         }
 
-        async Task DownloadStash(string game, string league)
+        async Task DownloadStash(GameType game, string league)
         {
             var stashItems = new List<NinjaStashItem>();
-            var stashPages = game == "poe1" ? Poe1Pages : Poe2Pages;
+            var stashPages = game == GameType.PathOfExile1 ? Poe1Pages : Poe2Pages;
 
             await Task.WhenAll(stashPages.Select(async page =>
             {
@@ -192,7 +177,7 @@ internal class NinjaDownloader(
                 }
             }));
 
-            await dataFileWriter.Write(game, "ninja", GetFileName("stash"), stashItems);
+            await dataProvider.Write(game, $"ninja/{GetFileName("stash")}", stashItems);
         }
     }
 

@@ -1,4 +1,4 @@
-﻿namespace Sidekick.Data.Ninja;
+﻿namespace Sidekick.Data.Builder.Ninja;
 
 internal static class NinjaPages
 {
