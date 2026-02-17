@@ -1,11 +1,12 @@
 ﻿using System.Globalization;
 using System.Text.Json;
+using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
 namespace Sidekick.Apis.Poe.Tests.Mocks;
 
-public class TestSettingsService : ISettingsService
+public class TestSettingsService(IOptions<SidekickConfiguration> configuration) : ISettingsService
 {
     public event Action<string[]>? OnSettingsChanged;
     private readonly Dictionary<string, string?> store = new();
@@ -76,7 +77,7 @@ public class TestSettingsService : ISettingsService
             }
         }
 
-        if (!SidekickConfiguration.DefaultSettings.TryGetValue(key, out var defaultValue))
+        if (!configuration.Value.DefaultSettings.TryGetValue(key, out var defaultValue))
         {
             return Task.FromResult<TEnum?>(null);
         }
@@ -118,7 +119,7 @@ public class TestSettingsService : ISettingsService
     {
         var stringValue = GetStringValue(value);
 
-        var defaultConfiguration = SidekickConfiguration.DefaultSettings.GetValueOrDefault(key);
+        var defaultConfiguration = configuration.Value.DefaultSettings.GetValueOrDefault(key);
         if (defaultConfiguration != null)
         {
             var defaultValue = GetStringValue(defaultConfiguration);
@@ -167,7 +168,7 @@ public class TestSettingsService : ISettingsService
                 continue;
             }
 
-            var defaultValue = GetStringValue(SidekickConfiguration.DefaultSettings.GetValueOrDefault(key));
+            var defaultValue = GetStringValue(configuration.Value.DefaultSettings.GetValueOrDefault(key));
             if (defaultValue != stored)
             {
                 return Task.FromResult(true);
@@ -219,9 +220,9 @@ public class TestSettingsService : ISettingsService
         };
     }
 
-    private static TValue? GetDefault<TValue>(string key)
+    private TValue? GetDefault<TValue>(string key)
     {
-        if (SidekickConfiguration.DefaultSettings.TryGetValue(key, out var value) && value is TValue typedValue)
+        if (configuration.Value.DefaultSettings.TryGetValue(key, out var value) && value is TValue typedValue)
         {
             return typedValue;
         }

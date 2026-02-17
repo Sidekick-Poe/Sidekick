@@ -44,7 +44,7 @@ builder.Services.AddLocalization();
 builder.Services
 
     // Common
-    .AddSidekickCommon()
+    .AddSidekickCommon(SidekickApplicationType.Web)
     .AddSidekickCommonBrowser()
     .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
     .AddSidekickCommonUi()

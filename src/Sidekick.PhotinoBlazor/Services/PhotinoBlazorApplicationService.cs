@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using NotificationIcon.NET;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Home;
@@ -19,8 +20,8 @@ public class PhotinoBlazorApplicationService
     ILogger<PhotinoBlazorApplicationService> logger,
     IStringLocalizer<HomeResources> resources,
     IUiLanguageProvider uiLanguageProvider,
-    IBrowserProvider browserProvider
-) : IApplicationService, IDisposable
+    IBrowserProvider browserProvider,
+    IOptions<SidekickConfiguration> configuration) : IApplicationService, IDisposable
 {
     public bool SupportsKeybinds => true;
 
@@ -110,7 +111,7 @@ public class PhotinoBlazorApplicationService
             if (!PackageVerifier.IsXselInstalled())
             {
                 logger.LogError("[ApplicationService] xsel is not installed. Please install xsel to enable clipboard functionality.");
-                SidekickConfiguration.IsXselPackageMissing = true;
+                configuration.Value.IsXselPackageMissing = true;
             }
         }
     }

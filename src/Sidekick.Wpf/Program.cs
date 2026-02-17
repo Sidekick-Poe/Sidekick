@@ -87,7 +87,7 @@ If you need more support consider asking on the official Sidekick discord server
         services
 
             // Common
-            .AddSidekickCommon()
+            .AddSidekickCommon(SidekickApplicationType.Wpf)
             .AddSidekickCommonBrowser()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
             .AddSidekickCommonUi()

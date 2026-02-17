@@ -66,7 +66,7 @@ public class Program
         services
 
             // Common
-            .AddSidekickCommon()
+            .AddSidekickCommon(SidekickApplicationType.Photino)
             .AddSidekickCommonBrowser()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
             .AddSidekickCommonUi()

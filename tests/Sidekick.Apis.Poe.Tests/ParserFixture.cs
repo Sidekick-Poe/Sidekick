@@ -1,6 +1,7 @@
 using Bunit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
@@ -48,7 +49,7 @@ public abstract class ParserFixture : IAsyncLifetime
 
         TestContext.Services
             // Building blocks
-            .AddSidekickCommon()
+            .AddSidekickCommon(SidekickApplicationType.Test)
             .AddSidekickCommonBrowser()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
 
@@ -100,8 +101,9 @@ public abstract class ParserFixture : IAsyncLifetime
         await cache.Clear();
 
         var logger = serviceProvider.GetRequiredService<ILogger<ParserFixture>>();
+        var configuration = serviceProvider.GetRequiredService<IOptions<SidekickConfiguration>>();
         List<IInitializableService> services = [];
-        foreach (var serviceType in SidekickConfiguration.InitializableServices)
+        foreach (var serviceType in configuration.Value.InitializableServices)
         {
             var service = serviceProvider.GetRequiredService(serviceType);
             if (service is not IInitializableService initializableService) continue;

@@ -39,12 +39,6 @@ public static class StartupExtensions
         services.AddSidekickInitializableService<IKeyboardProvider, KeyboardProvider>();
         services.AddSingleton<IGameLogProvider, GameLogProvider>();
 
-        foreach (var inputHandler in SidekickConfiguration.InputHandlers)
-        {
-            SidekickConfiguration.InitializableServices.Add(inputHandler);
-            services.AddSingleton(inputHandler);
-        }
-
         return services;
     }
 }
