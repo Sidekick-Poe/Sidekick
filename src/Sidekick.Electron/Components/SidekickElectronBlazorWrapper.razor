@@ -1,15 +1,18 @@
 @using Sidekick.Common.Platform
 @using Sidekick.Common.Platform.EventArgs
+@using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Views
 @using Sidekick.Electron.Services
 @using static ElectronNET.API.Electron;
 
 <Sidekick.Common.Ui.Main />
 
-@inject ICurrentView CurrentView
+@inject ICurrentView View
 @inject ElectronViewLocator ViewLocator
 @inject IKeyboardProvider KeyboardProvider
 @inject IApplicationService ApplicationService
+@inject IViewPreferenceService viewPreferenceService
+
 @implements IDisposable
 
 @code {
@@ -17,26 +20,54 @@
     [Inject]
     public required NavigationManager NavigationManager { get; set; }
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         ViewLocator.Views.Add(this);
 
-        CurrentView.Minimized += CurrentViewMinimized;
-        CurrentView.Maximized += CurrentViewMaximized;
-        CurrentView.Closed += CurrentViewClosed;
+        View.Minimized += ViewMinimized;
+        View.Maximized += ViewMaximized;
+        View.Closed += ViewClosed;
+        View.OptionsChanged += ViewOptionsChanged;
+
+        await NormalizeView();
 
         base.OnInitialized();
     }
 
-    private void CurrentViewMinimized()
+    private async void ViewOptionsChanged()
+    {
+        await NormalizeView();
+    }
+
+    private async Task NormalizeView()
+    {
+        var browserWindow = WindowManager.BrowserWindows.First();
+
+        if (View.Width != null && View.Height != null)
+        {
+            browserWindow.SetSize(View.Width.Value, View.Height.Value);
+        }
+        else
+        {
+            var viewPreference = await viewPreferenceService.Get(SidekickViewType.Standard.ToString());
+            if (viewPreference != null)
+            {
+                browserWindow.SetSize(viewPreference.Width, viewPreference.Height);
+            }
+        }
+
+        browserWindow.Center();
+    }
+
+    private void ViewMinimized()
     {
         WindowManager.BrowserWindows.FirstOrDefault()?.Minimize();
     }
 
-    private async void CurrentViewMaximized()
+    private async void ViewMaximized()
     {
         var browserWindow = WindowManager.BrowserWindows.FirstOrDefault();
-        
+
         if (browserWindow == null)
         {
             return;
@@ -54,7 +85,7 @@
         }
     }
 
-    private void CurrentViewClosed()
+    private void ViewClosed()
     {
         if (new Uri(NavigationManager.Uri).PathAndQuery == "/home")
         {
@@ -69,7 +100,10 @@
     public void Dispose()
     {
         ViewLocator.Views.Remove(this);
-        CurrentView.Closed -= CurrentViewClosed;
+        View.Minimized -= ViewMinimized;
+        View.Maximized -= ViewMaximized;
+        View.Closed -= ViewClosed;
+        View.OptionsChanged -= ViewOptionsChanged;
     }
 
 }

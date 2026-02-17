@@ -87,10 +87,18 @@ builder.UseElectron(args, async () =>
         Show = false,
         IsRunningBlazor = true,
         Frame = false,
+        HasShadow = false,
         Icon = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot/favicon.ico"),
     };
 
+    if (OperatingSystem.IsWindows())
+    {
+        options.ThickFrame = false;
+        options.RoundedCorners = false;
+    }
+
     var browserWindow = await Electron.WindowManager.CreateWindowAsync(options);
+
     browserWindow.OnReadyToShow += () => browserWindow.Show();
 });
 
