@@ -2,7 +2,7 @@
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Localization
 
-@if (!Configuration.Value.SupportsKeybinds)
+@if (!Configuration.Value.ApplicationType.SupportsKeybinds())
 {
     return;
 }

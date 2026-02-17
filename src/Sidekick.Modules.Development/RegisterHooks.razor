@@ -5,7 +5,7 @@
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.Buttons
 
-@if (Configuration.Value.SupportsKeybinds)
+@if (Configuration.Value.ApplicationType.SupportsKeybinds())
 {
     <FormFieldset Legend="Keybinds">
         <ButtonPrimary OnClick="Register">Bind keyboard hooks</ButtonPrimary>
@@ -21,7 +21,7 @@
 
     protected override void OnInitialized()
     {
-        if (Configuration.Value.SupportsKeybinds)
+        if (Configuration.Value.ApplicationType.SupportsKeybinds())
         {
             KeyboardProvider = ServiceProvider.GetService<IKeyboardProvider>();
         }

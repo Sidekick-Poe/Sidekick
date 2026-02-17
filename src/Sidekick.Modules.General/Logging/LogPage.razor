@@ -14,7 +14,7 @@
     <AppContainer>
         <div class="mb-3 flex gap-3">
             <Heading1>@Resources["Logs"]</Heading1>
-            @if (Configuration.Value.SupportsKeybinds)
+            @if (Configuration.Value.ApplicationType.SupportsKeybinds())
             {
                 <div class="ml-auto flex justify-end gap-3">
                     <ButtonSecondary

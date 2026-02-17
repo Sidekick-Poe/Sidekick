@@ -15,7 +15,7 @@
         <FormFieldset Legend="@SettingsResources["General_Settings"]">
             <InterfaceLanguageEditor/>
             <ZoomEditor/>
-            @if (Configuration.Value.SupportsKeybinds)
+            @if (Configuration.Value.ApplicationType.SupportsKeybinds())
             {
                 <SettingCheckboxEditor SettingKey="@SettingKeys.RetainClipboard"
                                        Label="@Resources["General_RetainClipboard"]"/>
@@ -24,7 +24,7 @@
             <SettingCheckboxEditor SettingKey="@SettingKeys.OpenHomeOnLaunch" Label="@SettingsResources["OpenHomeOnLaunch"]" Tooltip="@SettingsResources["OpenHomeOnLaunch_Hint"]" />
         </FormFieldset>
 
-        @if (Configuration.Value.SupportsHardwareAcceleration)
+        @if (Configuration.Value.ApplicationType.SupportsHardwareAcceleration())
         {
             <FormFieldset Legend="@SettingsResources["Other"]">
                 <SettingCheckboxEditor SettingKey="@SettingKeys.UseHardwareAcceleration"

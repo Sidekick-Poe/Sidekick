@@ -12,7 +12,7 @@
     <MenuItem Href="/settings/game">@Resources["Game"]</MenuItem>
     <MenuItem Href="/settings/application">@Resources["Application"]</MenuItem>
 
-    @if (Configuration.Value.SupportsKeybinds)
+    @if (Configuration.Value.ApplicationType.SupportsKeybinds())
     {
         <MenuItem Href="/settings/chat">@Resources["Chat_Commands"]</MenuItem>
         <MenuItem Href="/settings/regexhotkeys">@Resources["Regex_Hotkeys"]</MenuItem>

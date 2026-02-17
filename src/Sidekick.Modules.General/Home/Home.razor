@@ -18,7 +18,7 @@
     <ChildContent>
         <AppContainer>
             <AppLogo/>
-            @if (Configuration.Value.SupportsKeybinds)
+            @if (Configuration.Value.ApplicationType.SupportsKeybinds())
             {
                 <div class="mx-auto text-center">
                     <TextBase><TextWithKeybinds Text="@Resources["Price_Check_Tip"]" Keybinds="[KeyOpenPriceCheck]" /></TextBase>
@@ -41,7 +41,7 @@
         </AppContainer>
     </ChildContent>
     <BottomContent>
-        @if (Configuration.Value.SupportsKeybinds)
+        @if (Configuration.Value.ApplicationType.SupportsKeybinds())
         {
             <div class="flex justify-end py-2 px-3">
                 <SettingCheckboxEditor SettingKey="@SettingKeys.OpenHomeOnLaunch"

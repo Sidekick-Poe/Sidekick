@@ -24,7 +24,7 @@
         </FormFieldset>
 
         <FormFieldset Legend="@SettingResources["Item_Overlay"]">
-            @if (Configuration.Value.SupportsKeybinds)
+            @if (Configuration.Value.ApplicationType.SupportsKeybinds())
             {
                 <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenPriceCheck" Label="@SettingResources["Key_OpenItem"]"/>
                 <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
@@ -40,7 +40,7 @@
                                    Label="@Resources["EscapeClosesOverlays"]"/>
         </FormFieldset>
 
-        @if (Configuration.Value.SupportsKeybinds)
+        @if (Configuration.Value.ApplicationType.SupportsKeybinds())
         {
             <FormFieldset Legend="@Resources["Wiki"]">
                 <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenWiki" Label="@Resources["Wiki_Key_Open"]"/>
@@ -48,7 +48,7 @@
             </FormFieldset>
         }
 
-        @if (Configuration.Value.SupportsKeybinds)
+        @if (Configuration.Value.ApplicationType.SupportsKeybinds())
         {
             <FormFieldset Legend="@SettingResources["Other_Settings"]">
                 <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStash">

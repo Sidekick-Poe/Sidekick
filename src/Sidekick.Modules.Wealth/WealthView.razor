@@ -20,7 +20,7 @@
             return;
         }
 
-        @if (!Configuration.Value.SupportsKeybinds || !Configuration.Value.SupportsAuthentication)
+        @if (!Configuration.Value.ApplicationType.SupportsKeybinds() || !Configuration.Value.ApplicationType.SupportsAuthentication())
         {
             <AlertError>@Resources["Not_Supported"]</AlertError>
             return;

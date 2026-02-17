@@ -46,11 +46,4 @@ public class SidekickConfiguration
     public Dictionary<string, object> DefaultSettings { get; } = new();
 
     public SidekickApplicationType ApplicationType { get; set; }
-
-    public bool SupportsKeybinds => ApplicationType == SidekickApplicationType.Wpf
-                                    || ApplicationType == SidekickApplicationType.Photino;
-
-    public bool SupportsAuthentication => ApplicationType == SidekickApplicationType.Wpf;
-
-    public bool SupportsHardwareAcceleration => ApplicationType == SidekickApplicationType.Wpf;
 }
