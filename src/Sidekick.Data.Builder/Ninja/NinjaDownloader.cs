@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Common.Enums;
 using Sidekick.Data.Trade;
 
 namespace Sidekick.Data.Builder.Ninja;
@@ -76,13 +77,13 @@ public class NinjaDownloader(
 
     public async Task DownloadAll()
     {
-        var poe1Leagues = await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile1, "trade/leagues.en.json");
+        var poe1LeagueResult = await dataProvider.Read<TradeResult<List<TradeLeague>>>(GameType.PathOfExile1, "trade/leagues.en.json");
         await DownloadForGame(GameType.PathOfExile1,
-            poe1Leagues.First().Id ?? throw new ArgumentException("No leagues found for Poe1"));
+            poe1LeagueResult.Result.First().Id ?? throw new ArgumentException("No leagues found for Poe1"));
 
-        var poe2Leagues = await dataProvider.Read<List<TradeLeague>>(GameType.PathOfExile2, "trade/leagues.en.json");
+        var poe2LeagueResult = await dataProvider.Read<TradeResult<List<TradeLeague>>>(GameType.PathOfExile2, "trade/leagues.en.json");
         await DownloadForGame(GameType.PathOfExile2,
-            poe2Leagues.First().Id ?? throw new ArgumentException("No leagues found for Poe2"));
+            poe2LeagueResult.Result.First().Id ?? throw new ArgumentException("No leagues found for Poe2"));
 
         return;
 
@@ -102,7 +103,7 @@ public class NinjaDownloader(
                 if (!page.SupportsExchange) return;
 
                 var url =
-                    $"https://poe.ninja/{game}/api/economy/exchange/current/overview?league={league.Replace(' ', '+')}&type={page.Type}";
+                    $"https://poe.ninja/{game.GetValueAttribute()}/api/economy/exchange/current/overview?league={league.Replace(' ', '+')}&type={page.Type}";
                 try
                 {
                     using var http = new HttpClient();
@@ -145,7 +146,7 @@ public class NinjaDownloader(
                 if (!page.SupportsStash || page.SupportsExchange) return;
 
                 var url =
-                    $"https://poe.ninja/{game}/api/economy/stash/current/item/overview?league={league.Replace(' ', '+')}&type={page.Type}";
+                    $"https://poe.ninja/{game.GetValueAttribute()}/api/economy/stash/current/item/overview?league={league.Replace(' ', '+')}&type={page.Type}";
                 try
                 {
                     using var http = new HttpClient();

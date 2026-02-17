@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Sidekick.Common;
 using Sidekick.Data.Builder;
 using Sidekick.Data.Builder.Cli;
 
@@ -15,6 +16,7 @@ services.AddLogging(o =>
 });
 
 services.AddSingleton<CommandExecutor>();
+services.AddSidekickCommon(SidekickApplicationType.DataBuilder);
 services.AddSidekickDataBuilder();
 
 #endregion

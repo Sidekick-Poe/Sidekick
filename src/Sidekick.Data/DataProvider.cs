@@ -11,6 +11,7 @@ namespace Sidekick.Data;
 
 public class DataProvider
 {
+    private readonly IOptions<SidekickConfiguration> configuration;
     private readonly ILogger<DataProvider> logger;
 
     private static readonly JsonSerializerOptions JsonOptions = new()
@@ -22,11 +23,10 @@ public class DataProvider
 
     private string DataDirectory { get; set; }
 
-    private bool IsSolutionFolder { get; set; }
-
     public DataProvider(IOptions<SidekickConfiguration> configuration,
         ILogger<DataProvider> logger)
     {
+        this.configuration = configuration;
         this.logger = logger;
         DataDirectory = GetDataDirectory();
 
@@ -40,7 +40,6 @@ public class DataProvider
                 var solutionDirectory = FindSolutionDirectory();
                 if (!string.IsNullOrEmpty(solutionDirectory))
                 {
-                    IsSolutionFolder = true;
                     return $"{solutionDirectory}/data";
                 }
             }
@@ -106,7 +105,7 @@ public class DataProvider
 
     public void DeleteAll()
     {
-        if (!IsSolutionFolder)
+        if (configuration.Value.ApplicationType != SidekickApplicationType.DataBuilder)
         {
             throw new SidekickException("Can not delete all data except when running in CLI mode.");
         }

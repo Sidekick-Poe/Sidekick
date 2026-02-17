@@ -17,9 +17,9 @@ internal sealed class CommandExecutor(
         try
         {
             dataProvider.DeleteAll();
-            await ninjaDownloader.DownloadAll();
             await tradeDownloader.DownloadAll();
             await repoeDownloader.DownloadAll();
+            await ninjaDownloader.DownloadAll();
 
             logger.LogInformation("Done.");
             return 0;
