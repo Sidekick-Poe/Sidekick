@@ -3,18 +3,15 @@ using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
-using Sidekick.Apis.Poe.Trade.ApiStats.Models;
-using Sidekick.Apis.Poe.Trade.Clients;
-using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
-using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Trade;
+using Sidekick.Data.Trade.Models;
 namespace Sidekick.Apis.Poe.Trade.ApiStats;
 
 public class ApiStatsProvider
 (
-    ICacheProvider cacheProvider,
-    ITradeApiClient tradeApiClient,
+    TradeDataProvider tradeDataProvider,
     IInvariantStatsProvider invariantStatsProvider,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
@@ -40,9 +37,7 @@ public class ApiStatsProvider
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        var cacheKey = $"{game.GetValueAttribute()}_Stats";
-        var apiCategories = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<ApiCategory>(game, gameLanguageProvider.Language, "stats"), (cache) => cache.Result.Any());
-        if (apiCategories == null) throw new SidekickException("Could not fetch stats from the trade API.");
+        var apiCategories = await tradeDataProvider.GetStats(game, gameLanguageProvider.Language.Code);
 
         ReplacementPatterns.Clear();
         if (!string.IsNullOrEmpty(gameLanguageProvider.Language.RegexIncreased))
@@ -67,7 +62,7 @@ public class ApiStatsProvider
         }
 
         Definitions.Clear();
-        foreach (var apiCategory in apiCategories.Result)
+        foreach (var apiCategory in apiCategories)
         {
             var statCategory = GetStatCategory(apiCategory.Entries[0].Id);
             var patterns = ComputeCategoryPatterns(apiCategory, statCategory);
@@ -94,7 +89,7 @@ public class ApiStatsProvider
         FillSpecialPseudoPattern(pseudoPatterns, logbookPatterns);
     }
 
-    private List<StatDefinition> ComputeCategoryPatterns(ApiCategory apiCategory, StatCategory statCategory)
+    private List<StatDefinition> ComputeCategoryPatterns(TradeStatCategory apiCategory, StatCategory statCategory)
     {
         if (apiCategory.Entries.Count == 0 || statCategory == StatCategory.Undefined) return [];
 
@@ -107,7 +102,7 @@ public class ApiStatsProvider
         return patterns;
     }
 
-    private IEnumerable<StatDefinition> ComputeDefinition(StatCategory statCategory, ApiStat entry)
+    private IEnumerable<StatDefinition> ComputeDefinition(StatCategory statCategory, TradeStat entry)
     {
         if (invariantStatsProvider.IgnoreStatIds.Contains(entry.Id)) yield break;
 

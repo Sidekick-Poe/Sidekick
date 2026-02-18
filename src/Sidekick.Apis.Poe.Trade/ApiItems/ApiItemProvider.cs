@@ -2,20 +2,16 @@ using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Trade.ApiItems.Models;
 using Sidekick.Apis.Poe.Trade.ApiStatic;
-using Sidekick.Apis.Poe.Trade.Clients;
-using Sidekick.Apis.Poe.Trade.Clients.Models;
-using Sidekick.Common.Cache;
-using Sidekick.Common.Enums;
-using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Trade;
+using Sidekick.Data.Trade.Models;
+
 namespace Sidekick.Apis.Poe.Trade.ApiItems;
 
 public class ApiItemProvider
 (
-    ICacheProvider cacheProvider,
-    ITradeApiClient tradeApiClient,
+    TradeDataProvider tradeDataProvider,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService,
     IApiStaticDataProvider apiStaticDataProvider
@@ -36,10 +32,7 @@ public class ApiItemProvider
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        var cacheKey = $"{game.GetValueAttribute()}_Items";
-
-        var result = await cacheProvider.GetOrSet(cacheKey, () => tradeApiClient.FetchData<ApiCategory>(game, gameLanguageProvider.Language, "items"), (cache) => cache.Result.Any());
-        if (result == null) throw new SidekickException("Could not fetch items from the trade API.");
+        var result = await tradeDataProvider.GetItems(game, gameLanguageProvider.Language.Code);
 
         InitializeItems(result);
         UniqueItems = NamePatterns.Select(x => x.Item)
@@ -51,13 +44,13 @@ public class ApiItemProvider
         TextPatterns = TextPatterns.OrderByDescending(x => x.Item.Text?.Length ?? 0).ToList();
     }
 
-    private void InitializeItems(FetchResult<ApiCategory> result)
+    private void InitializeItems(List<TradeItemCategory> result)
     {
         NamePatterns.Clear();
         TypePatterns.Clear();
         TextPatterns.Clear();
 
-        foreach (var category in result.Result)
+        foreach (var category in result)
         {
             foreach (var entry in category.Entries)
             {

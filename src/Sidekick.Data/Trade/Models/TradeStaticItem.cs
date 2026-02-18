@@ -1,6 +1,6 @@
-namespace Sidekick.Apis.Poe.Trade.ApiStatic.Models;
+namespace Sidekick.Data.Trade.Models;
 
-public class StaticItem
+public class TradeStaticItem
 {
     public required string Id { get; set; }
     public string? Text { get; set; }

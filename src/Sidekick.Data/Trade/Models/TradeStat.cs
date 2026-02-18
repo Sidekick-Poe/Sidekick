@@ -1,10 +1,10 @@
-namespace Sidekick.Apis.Poe.Trade.ApiStats.Models;
+namespace Sidekick.Data.Trade.Models;
 
-public record ApiStat
+public record TradeStat
 {
     public required string Id { get; init; }
     public required string Text { get; set; }
     public required string Type { get; init; }
 
-    public ApiStatOptions? Option { get; set; }
+    public TradeStatOptions? Option { get; set; }
 }

@@ -1,6 +1,6 @@
-namespace Sidekick.Apis.Poe.Trade.Trade.Filters.Models;
+namespace Sidekick.Data.Trade.Models;
 
-public class ApiFilterOption
+public class TradeFilterOption
 {
     public string? Id { get; set; }
     public string? Text { get; set; }

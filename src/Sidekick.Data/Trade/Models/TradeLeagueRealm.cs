@@ -1,4 +1,4 @@
-namespace Sidekick.Data.Trade;
+namespace Sidekick.Data.Trade.Models;
 
 public enum TradeLeagueRealm
 {

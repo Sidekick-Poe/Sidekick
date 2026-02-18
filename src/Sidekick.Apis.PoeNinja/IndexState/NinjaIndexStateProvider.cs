@@ -8,7 +8,7 @@ namespace Sidekick.Apis.PoeNinja.IndexState;
 
 public class NinjaIndexStateProvider(
     INinjaClient ninjaClient,
-    ICacheProvider cacheProvider,
+    ICacheProvider2 cacheProvider,
     ISettingsService settingsService) : INinjaIndexStateProvider
 {
     private async Task<string> GetCacheKey()

@@ -13,7 +13,7 @@ namespace Sidekick.Apis.Poe2Scout.Items;
 public class ScoutItemProvider(
     ISettingsService settingsService,
     IScoutCategoryProvider categoryProvider,
-    ICacheProvider cacheProvider,
+    ICacheProvider2 cacheProvider,
     IScoutClient scoutClient) : IScoutItemProvider
 {
     private List<ScoutItem>? Items { get; set; }

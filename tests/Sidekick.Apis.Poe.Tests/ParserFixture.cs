@@ -18,7 +18,6 @@ using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Browser;
-using Sidekick.Common.Cache;
 using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
@@ -97,9 +96,6 @@ public abstract class ParserFixture : IAsyncLifetime
 
     private static async Task Initialize(IServiceProvider serviceProvider)
     {
-        var cache = serviceProvider.GetRequiredService<ICacheProvider>();
-        await cache.Clear();
-
         var logger = serviceProvider.GetRequiredService<ILogger<ParserFixture>>();
         var configuration = serviceProvider.GetRequiredService<IOptions<SidekickConfiguration>>();
         List<IInitializableService> services = [];

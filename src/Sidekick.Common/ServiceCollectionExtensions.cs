@@ -24,7 +24,7 @@ public static class ServiceCollectionExtensions
         _applicationType = applicationType;
 
         services.AddSingleton<IBrowserProvider, BrowserProvider>();
-        services.AddSingleton<ICacheProvider, CacheProvider>();
+        services.AddSingleton<ICacheProvider2, CacheProvider>();
         services.AddSingleton<IFolderProvider, FolderProvider>();
         services.AddSingleton<ISettingsService, SettingsService>();
 

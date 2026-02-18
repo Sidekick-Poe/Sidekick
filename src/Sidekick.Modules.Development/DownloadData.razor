@@ -1,12 +1,12 @@
 ﻿@using System.Text.Json
 @using Sidekick.Apis.Poe.Items
 @using Sidekick.Apis.Poe.Languages
-@using Sidekick.Apis.Poe.Trade.ApiItems.Models
 @using Sidekick.Apis.Poe.Trade.Clients
 @using Sidekick.Apis.Poe.Trade.Clients.Models
 @using Sidekick.Common.Enums
 @using Sidekick.Common.Ui.Buttons
 @using Sidekick.Common.Ui.Forms
+@using Sidekick.Data.Trade.Models
 
 <FormFieldset Legend="Preload Data">
     <FormInput Label="Folder Path (/data)"
@@ -111,7 +111,7 @@
         foreach (var game in games)
         {
             LogMessage($"[{game.GetValueAttribute()}] Analyzing items.");
-            await AnalyzePath<ApiCategory>(game, "items", AnalyzeItems);
+            await AnalyzePath<TradeItemCategory>(game, "items", AnalyzeItems);
         }
     }
 
@@ -137,7 +137,7 @@
     }
 
     private void AnalyzeItems(IGameLanguage language,
-        FetchResult<ApiCategory> result)
+        FetchResult<TradeItemCategory> result)
     {
         var itemCount = result.Result.SelectMany(x => x.Entries).Count();
         LogMessage($"[{language.Code}] {itemCount} items found.");

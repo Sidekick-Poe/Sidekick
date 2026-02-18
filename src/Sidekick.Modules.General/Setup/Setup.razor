@@ -1,7 +1,6 @@
 @page "/setup"
 @using System.Text.Json
 @using Microsoft.Extensions.Localization
-@using Sidekick.Apis.Poe.Trade
 @using Sidekick.Apis.Poe.Trade.Leagues
 @using Sidekick.Common.Cache
 @using Sidekick.Common.Extensions
@@ -78,7 +77,7 @@
 @inject ISettingsService SettingsService
 @inject IApplicationService ApplicationService
 @inject ILeagueProvider LeagueProvider
-@inject ICacheProvider CacheProvider
+@inject ICacheProvider2 CacheProvider
 @inject IStringLocalizer<Setup> Resources
 @inject NavigationManager NavigationManager
 @inject ICurrentView CurrentView
@@ -99,6 +98,7 @@
         if (apiLeaguesHash != settingsLeaguesHash)
         {
             NewLeagues = true;
+            // TODO: Rebuild data?
             await CacheProvider.Clear();
         }
 

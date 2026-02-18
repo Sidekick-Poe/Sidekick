@@ -10,7 +10,8 @@ namespace Sidekick.Data.Builder.Ninja;
 
 public class NinjaDownloader(
     ILogger<NinjaDownloader> logger,
-    DataProvider dataProvider)
+    DataProvider dataProvider,
+    TradeDataProvider tradeDataProvider)
 {
     private static readonly List<NinjaPage> Poe1Pages =
     [
@@ -77,13 +78,13 @@ public class NinjaDownloader(
 
     public async Task DownloadAll()
     {
-        var poe1LeagueResult = await dataProvider.Read<TradeResult<List<TradeLeague>>>(GameType.PathOfExile1, "trade/leagues.en.json");
+        var poe1Leagues = await tradeDataProvider.GetLeagues(GameType.PathOfExile1);
         await DownloadForGame(GameType.PathOfExile1,
-            poe1LeagueResult.Result.First().Id ?? throw new ArgumentException("No leagues found for Poe1"));
+            poe1Leagues.First().Id ?? throw new ArgumentException("No leagues found for Poe1"));
 
-        var poe2LeagueResult = await dataProvider.Read<TradeResult<List<TradeLeague>>>(GameType.PathOfExile2, "trade/leagues.en.json");
+        var poe2Leagues = await tradeDataProvider.GetLeagues(GameType.PathOfExile2);
         await DownloadForGame(GameType.PathOfExile2,
-            poe2LeagueResult.Result.First().Id ?? throw new ArgumentException("No leagues found for Poe2"));
+            poe2Leagues.First().Id ?? throw new ArgumentException("No leagues found for Poe2"));
 
         return;
 

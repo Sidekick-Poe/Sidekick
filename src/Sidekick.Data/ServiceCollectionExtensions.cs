@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Sidekick.Data.Trade;
 
 namespace Sidekick.Data;
 
@@ -9,6 +10,7 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services)
     {
         services.TryAddSingleton<DataProvider>();
+        services.TryAddSingleton<TradeDataProvider>();
 
         return services;
     }

@@ -1,4 +1,3 @@
-@using Sidekick.Common.Cache
 @using Sidekick.Common.Settings
 @using System.Globalization
 @using Microsoft.Extensions.Localization
@@ -14,7 +13,6 @@
 @inject IGameLanguageProvider GameLanguageProvider
 @inject ISettingsService SettingsService
 @inject NavigationManager NavigationManager
-@inject ICacheProvider CacheProvider
 
 @code {
 
@@ -45,7 +43,7 @@
     {
         Language = value;
         await SettingsService.Set(SettingKeys.LanguageParser, value);
-        await CacheProvider.Clear();
+        // TODO: Clear data?
         NavigationManager.NavigateTo("/initialize");
     }
 

@@ -2,15 +2,17 @@ using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.Clients;
-using Sidekick.Apis.Poe.Trade.Leagues.Models;
-using Sidekick.Common.Cache;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
+using Sidekick.Data;
+using Sidekick.Data.Trade;
+using Sidekick.Data.Trade.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Leagues;
 
 public class LeagueProvider(
-    ICacheProvider cacheProvider,
+    TradeDataProvider tradeDataProvider,
+    DataProvider dataProvider,
     ITradeApiClient tradeApiClient,
     IGameLanguageProvider gameLanguageProvider,
     ILogger<LeagueProvider> logger) : ILeagueProvider
@@ -19,17 +21,16 @@ public class LeagueProvider(
 
     public async Task<List<League>> GetList(bool fromCache)
     {
+        // TODO: change?
+
         if (fromCache)
         {
-            var result = await cacheProvider.GetOrSet("Leagues", FetchAll, (cache) => cache.Count != 0);
-            if (result != null) return result;
+            return await FetchAllFromData();
         }
 
         try
         {
-            var result = await FetchAll();
-            await cacheProvider.Set("Leagues", result);
-            return result;
+            return await FetchAllFromApi();
         }
         catch (Exception e)
         {
@@ -41,38 +42,48 @@ public class LeagueProvider(
         }
     }
 
-    private async Task<List<League>> FetchAll()
+    private async Task<List<League>> FetchAllFromApi()
     {
         await gameLanguageProvider.Initialize();
 
         List<League> leagues = [];
 
         leagues.AddRange(await Fetch(GameType.PathOfExile2));
-
         leagues.AddRange(await Fetch(GameType.PathOfExile1));
 
         return leagues;
+
+        async Task<List<League>> Fetch(GameType game)
+        {
+            var response = await tradeApiClient.FetchData<TradeLeague>(game, gameLanguageProvider.InvariantLanguage, "leagues");
+            await dataProvider.Write(game, "trade/leagues.en.json", response);
+            return response.Result
+                .Where(x => x is { Id: not null, Text: not null })
+                .Where(x => x is { Realm: not TradeLeagueRealm.PC, Realm: not TradeLeagueRealm.Poe2 })
+                .Select(x => new League(game, $"{game.GetValueAttribute()}.{x.Id}", x.Text!))
+                .ToList();
+        }
     }
 
-    private async Task<List<League>> Fetch(GameType game)
+    private async Task<List<League>> FetchAllFromData()
     {
-        var response = await tradeApiClient.FetchData<ApiLeague>(game, gameLanguageProvider.InvariantLanguage, "leagues");
-        var leagues = new List<League>();
-        foreach (var apiLeague in response.Result)
-        {
-            if (apiLeague.Id == null || apiLeague.Text == null)
-            {
-                continue;
-            }
+        await gameLanguageProvider.Initialize();
 
-            if (apiLeague.Realm != LeagueRealm.PC && apiLeague.Realm != LeagueRealm.Poe2)
-            {
-                continue;
-            }
+        List<League> leagues = [];
 
-            leagues.Add(new(game, $"{game.GetValueAttribute()}.{apiLeague.Id}", apiLeague.Text));
-        }
+        leagues.AddRange(await GetLeaguesForGame(GameType.PathOfExile2));
+        leagues.AddRange(await GetLeaguesForGame(GameType.PathOfExile1));
 
         return leagues;
+
+        async Task<List<League>> GetLeaguesForGame(GameType game)
+        {
+            var data = await tradeDataProvider.GetLeagues(game);
+            return data
+                .Where(x => x is { Id: not null, Text: not null })
+                .Where(x => x is { Realm: not TradeLeagueRealm.PC, Realm: not TradeLeagueRealm.Poe2 })
+                .Select(x => new League(game, $"{game.GetValueAttribute()}.{x.Id}", x.Text!))
+                .ToList();
+        }
     }
 }

@@ -75,7 +75,7 @@
 @inject IStringLocalizer<UiResources> UiResources
 @inject IStringLocalizer<GeneralResources> Resources
 @inject ISettingsService SettingsService
-@inject ICacheProvider CacheProvider
+@inject ICacheProvider2 CacheProvider
 @inject NavigationManager NavigationManager
 @inject IOptions<SidekickConfiguration> Configuration
 @implements IDisposable
@@ -102,6 +102,7 @@
 
     public async Task ResetCache()
     {
+        // TODO: Rebuild data
         await CacheProvider.Clear();
         NavigationManager.NavigateTo("/initialize");
     }

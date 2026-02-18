@@ -1,17 +1,13 @@
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Trade.ApiStats.Models;
-using Sidekick.Apis.Poe.Trade.Clients;
-using Sidekick.Common.Cache;
-using Sidekick.Common.Enums;
-using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Trade;
+using Sidekick.Data.Trade.Models;
 namespace Sidekick.Apis.Poe.Trade.ApiStats;
 
 public class InvariantStatsProvider
 (
-    ICacheProvider cacheProvider,
-    ITradeApiClient tradeApiClient,
+    TradeDataProvider tradeDataProvider,
     IGameLanguageProvider gameLanguageProvider,
     ISettingsService settingsService
 ) : IInvariantStatsProvider
@@ -48,7 +44,7 @@ public class InvariantStatsProvider
         InitializeWeaponDamageIds(result);
     }
 
-    private void InitializeIgnore(List<ApiCategory> apiCategories)
+    private void InitializeIgnore(List<TradeStatCategory> apiCategories)
     {
         IgnoreStatIds.Clear();
         foreach (var apiCategory in apiCategories)
@@ -59,7 +55,7 @@ public class InvariantStatsProvider
         }
     }
 
-    private void InitializeWeaponDamageIds(List<ApiCategory> apiCategories)
+    private void InitializeWeaponDamageIds(List<TradeStatCategory> apiCategories)
     {
         FireWeaponDamageIds.Clear();
         ColdWeaponDamageIds.Clear();
@@ -79,7 +75,7 @@ public class InvariantStatsProvider
         }
     }
 
-    private void InitializeIncursionRooms(List<ApiCategory> apiCategories)
+    private void InitializeIncursionRooms(List<TradeStatCategory> apiCategories)
     {
         IncursionRoomStatIds.Clear();
         foreach (var apiCategory in apiCategories)
@@ -90,7 +86,7 @@ public class InvariantStatsProvider
         }
     }
 
-    private void InitializeLogbookFactions(List<ApiCategory> apiCategories)
+    private void InitializeLogbookFactions(List<TradeStatCategory> apiCategories)
     {
         LogbookFactionStatIds.Clear();
         foreach (var apiCategory in apiCategories)
@@ -101,7 +97,7 @@ public class InvariantStatsProvider
         }
     }
 
-    private void InitializeClusterJewel(List<ApiCategory> apiCategories)
+    private void InitializeClusterJewel(List<TradeStatCategory> apiCategories)
     {
         foreach (var apiCategory in apiCategories)
         {
@@ -130,24 +126,16 @@ public class InvariantStatsProvider
         }
     }
 
-    private static bool IsCategory(ApiCategory apiCategory, string? key)
+    private static bool IsCategory(TradeStatCategory apiCategory, string? key)
     {
         var first = apiCategory.Entries.FirstOrDefault();
         return first?.Id.Split('.')[0] == key;
     }
 
-    public async Task<List<ApiCategory>> GetList()
+    public async Task<List<TradeStatCategory>> GetList()
     {
         var game = await settingsService.GetGame();
-        var cacheKey = $"{game.GetValueAttribute()}_InvariantStats";
-
-        var apiCategories = await cacheProvider.GetOrSet(cacheKey,
-                                            async () =>
-                                            {
-                                                var result = await tradeApiClient.FetchData<ApiCategory>(game, gameLanguageProvider.InvariantLanguage, "stats");
-                                                return result.Result;
-                                            }, (cache) => cache.Any());
-        if (apiCategories == null) throw new SidekickException("Could not fetch stats from the trade API.");
+        var apiCategories = await tradeDataProvider.GetStats(game, gameLanguageProvider.InvariantLanguage.Code);
 
         apiCategories.ForEach(category =>
         {

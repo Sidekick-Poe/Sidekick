@@ -1,5 +1,5 @@
-using Sidekick.Apis.Poe.Trade.ApiStats.Models;
 using Sidekick.Common.Initialization;
+using Sidekick.Data.Trade.Models;
 namespace Sidekick.Apis.Poe.Trade.ApiStats;
 
 public interface IInvariantStatsProvider : IInitializableService
@@ -22,5 +22,5 @@ public interface IInvariantStatsProvider : IInitializableService
 
     Dictionary<int, string> ClusterJewelSmallPassiveGrantOptions { get; }
 
-    Task<List<ApiCategory>> GetList();
+    Task<List<TradeStatCategory>> GetList();
 }

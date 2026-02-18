@@ -1,9 +1,6 @@
 @using Microsoft.Extensions.Localization
 @using Sidekick.Apis.Poe.Extensions
-@using Sidekick.Apis.Poe.Trade
 @using Sidekick.Apis.Poe.Trade.Leagues
-@using Sidekick.Common.Cache
-@using Sidekick.Common.Extensions
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Forms
 
@@ -16,7 +13,6 @@
 @inject IStringLocalizer<SettingsResources> Resources
 @inject ISettingsService SettingsService
 @inject ILeagueProvider LeagueProvider
-@inject ICacheProvider CacheProvider
 @inject NavigationManager NavigationManager
 
 @code {
@@ -60,7 +56,7 @@
 
         if (AutoRefresh && currentGame != newGame)
         {
-            await CacheProvider.Clear();
+            // TODO: Clear data?
             NavigationManager.NavigateTo("/initialize");
         }
     }

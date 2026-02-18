@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
 using Sidekick.Apis.Poe.Items;
-namespace Sidekick.Apis.Poe.Trade.ApiItems.Models;
+namespace Sidekick.Data.Trade.Models;
 
-public class ApiItem
+public class TradeItem
 {
     public string? Name { get; init; }
 
@@ -13,7 +13,7 @@ public class ApiItem
     [JsonPropertyName("disc")]
     public string? Discriminator { get; init; }
 
-    public ApiItemFlags? Flags { get; init; }
+    public TradeItemFlags? Flags { get; init; }
 
     [JsonIgnore]
     public string? Category { get; set; }
@@ -21,7 +21,7 @@ public class ApiItem
     [JsonIgnore]
     public bool IsUnique => Flags?.Unique ?? false;
 
-    internal ItemApiInformation ToItemApiInformation() => new()
+    public ItemApiInformation ToItemApiInformation() => new()
     {
         Type = Type,
         Name = Name,
