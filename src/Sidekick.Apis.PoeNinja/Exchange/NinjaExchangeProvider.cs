@@ -11,7 +11,7 @@ namespace Sidekick.Apis.PoeNinja.Exchange;
 public class NinjaExchangeProvider(
     INinjaClient ninjaClient,
     ISettingsService settingsService,
-    ICacheProvider2 cacheProvider,
+    ICacheProvider cacheProvider,
     INinjaIndexStateProvider indexStateProvider) : INinjaExchangeProvider
 {
     private async Task<string> GetCacheKey(string type)

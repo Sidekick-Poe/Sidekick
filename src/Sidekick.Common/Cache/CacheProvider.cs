@@ -6,7 +6,7 @@ namespace Sidekick.Common.Cache;
 /// <summary>
 ///     Implementation for the cache provider.
 /// </summary>
-public class CacheProvider(ILogger<CacheProvider> logger) : ICacheProvider2
+public class CacheProvider(ILogger<CacheProvider> logger) : ICacheProvider
 {
     private const string CachePath = "SidekickCache";
 

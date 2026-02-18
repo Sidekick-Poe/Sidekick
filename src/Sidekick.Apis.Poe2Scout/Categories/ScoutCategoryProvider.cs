@@ -10,7 +10,7 @@ namespace Sidekick.Apis.Poe2Scout.Categories;
 public class ScoutCategoryProvider(
     IScoutClient scoutClient,
     ISettingsService settingsService,
-    ICacheProvider2 cacheProvider) : IScoutCategoryProvider
+    ICacheProvider cacheProvider) : IScoutCategoryProvider
 {
     public async Task<List<ScoutCategory>> GetUniqueCategories()
     {

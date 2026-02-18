@@ -20,7 +20,7 @@ public class PoeWikiClient
     ILogger<PoeWikiClient> logger,
     IHttpClientFactory httpClientFactory,
     IBrowserProvider browserProvider,
-    ICacheProvider2 cacheProvider
+    ICacheProvider cacheProvider
 ) : IPoeWikiClient
 {
     private static JsonSerializerOptions JsonSerializerOptions { get; } = new()

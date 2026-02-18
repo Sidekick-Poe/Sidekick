@@ -11,7 +11,7 @@ namespace Sidekick.Apis.PoeNinja.Stash;
 public class NinjaStashProvider(
     INinjaClient ninjaClient,
     ISettingsService settingsService,
-    ICacheProvider2 cacheProvider,
+    ICacheProvider cacheProvider,
     INinjaIndexStateProvider indexStateProvider) : INinjaStashProvider
 {
     private async Task<string> GetCacheKey(string type)

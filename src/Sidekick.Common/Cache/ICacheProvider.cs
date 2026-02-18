@@ -3,8 +3,7 @@ namespace Sidekick.Common.Cache;
 /// <summary>
 ///     Interface for the cache provider.
 /// </summary>
-// TODO: Rename (remove 2)
-public interface ICacheProvider2
+public interface ICacheProvider
 {
     /// <summary>
     ///     Gets the value of the cache if it is set and the cache passes the validator. Otherwise returns null.
