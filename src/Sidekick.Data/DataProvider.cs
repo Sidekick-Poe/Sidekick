@@ -35,7 +35,7 @@ public class DataProvider
         string GetDataDirectory()
         {
 #if DEBUG
-            if (configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder)
+            if (configuration.Value.ApplicationType == SidekickApplicationType.DataBuilder || configuration.Value.ApplicationType == SidekickApplicationType.Test)
             {
                 var solutionDirectory = FindSolutionDirectory();
                 if (!string.IsNullOrEmpty(solutionDirectory))

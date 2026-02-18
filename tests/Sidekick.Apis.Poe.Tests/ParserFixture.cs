@@ -21,6 +21,7 @@ using Sidekick.Common.Browser;
 using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
+using Sidekick.Data;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests;
 
@@ -51,6 +52,7 @@ public abstract class ParserFixture : IAsyncLifetime
             .AddSidekickCommon(SidekickApplicationType.Test)
             .AddSidekickCommonBrowser()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
+            .AddSidekickData()
 
             // Apis
             .AddSidekickCommonApi()
