@@ -12,11 +12,11 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class ItemLevelProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionItemLevel.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionItemLevel.ToRegexIntCapture();
 
-    public override string Label => gameLanguageProvider.Language.DescriptionItemLevel;
+    public override string Label => currentGameLanguage.Language.DescriptionItemLevel;
 
     public override void Parse(Item item)
     {

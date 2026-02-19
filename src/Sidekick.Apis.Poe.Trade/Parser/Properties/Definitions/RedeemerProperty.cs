@@ -11,11 +11,11 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class RedeemerProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.InfluenceRedeemer.ToRegexLine();
+    private Regex Pattern { get; } = currentGameLanguage.Language.InfluenceRedeemer.ToRegexLine();
 
-    public override string Label => gameLanguageProvider.Language.InfluenceRedeemer;
+    public override string Label => currentGameLanguage.Language.InfluenceRedeemer;
 
     public override void Parse(Item item)
     {

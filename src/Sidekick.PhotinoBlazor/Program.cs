@@ -18,6 +18,7 @@ using Sidekick.Common.Platform;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
+using Sidekick.Data;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
@@ -70,6 +71,9 @@ public class Program
             .AddSidekickCommonBrowser()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
             .AddSidekickCommonUi()
+
+            // Data
+            .AddSidekickData()
 
             // Apis
             .AddSidekickGitHubApi()

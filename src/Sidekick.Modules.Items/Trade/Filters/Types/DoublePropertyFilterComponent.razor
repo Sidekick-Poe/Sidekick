@@ -14,9 +14,9 @@
                               HasAdditionalInformation="Math.Abs(Filter.Value - Filter.OriginalValue) > 0.001 && Filter.OriginalValue > 0">
                 <AdditionalInformation>
                     <ItemPropertyText
-                        Label="@($"{GameLanguageProvider.Language.DescriptionQuality} {Item.Properties.Quality}%")"
+                        Label="@($"{CurrentGameLanguage.Language.DescriptionQuality} {Item.Properties.Quality}%")"
                         Value="@($"{Filter.ValuePrefix}{Filter.OriginalValue.ToString("0.00", CultureInfo.InvariantCulture)}{Filter.ValueSuffix}")"/>
-                    <ItemPropertyText Label="@($"{GameLanguageProvider.Language.DescriptionQuality} 20%")"
+                    <ItemPropertyText Label="@($"{CurrentGameLanguage.Language.DescriptionQuality} 20%")"
                                       Value="@($"{Filter.ValuePrefix}{Filter.Value.ToString("0.00", CultureInfo.InvariantCulture)}{Filter.ValueSuffix}")"/>
                 </AdditionalInformation>
             </ItemPropertyText>
@@ -31,7 +31,7 @@
     }
 </FilterWrapper>
 
-@inject IGameLanguageProvider GameLanguageProvider
+@inject ICurrentGameLanguage CurrentGameLanguage
 
 @code {
 

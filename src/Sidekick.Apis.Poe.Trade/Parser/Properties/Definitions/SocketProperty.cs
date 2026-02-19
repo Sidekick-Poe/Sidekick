@@ -13,12 +13,12 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class SocketProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider,
+    ICurrentGameLanguage currentGameLanguage,
     IStringLocalizer<PoeResources> resources) : PropertyDefinition
 {
-    private Regex Pattern { get; } = new Regex($"{Regex.Escape(gameLanguageProvider.Language.DescriptionSockets)}.*?([-RGBWAS]+)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)");
+    private Regex Pattern { get; } = new Regex($"{Regex.Escape(currentGameLanguage.Language.DescriptionSockets)}.*?([-RGBWAS]+)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)\\ ?([-RGBWAS]*)");
 
-    public override string Label => gameLanguageProvider.Language.DescriptionSockets;
+    public override string Label => currentGameLanguage.Language.DescriptionSockets;
 
     public override void Parse(Item item)
     {

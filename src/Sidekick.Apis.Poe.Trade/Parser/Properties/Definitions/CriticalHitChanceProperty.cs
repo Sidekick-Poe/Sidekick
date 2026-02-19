@@ -12,17 +12,17 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class CriticalHitChanceProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
     private Regex Pattern { get; } = game is GameType.PathOfExile1
-        ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance.ToRegexDoubleCapture()
-        : gameLanguageProvider.Language.DescriptionCriticalHitChance.ToRegexDoubleCapture();
+        ? currentGameLanguage.Language.DescriptionCriticalStrikeChance.ToRegexDoubleCapture()
+        : currentGameLanguage.Language.DescriptionCriticalHitChance.ToRegexDoubleCapture();
 
     private Regex IsAugmentedPattern { get; } = game is GameType.PathOfExile1
-        ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance.ToRegexIsAugmented()
-        : gameLanguageProvider.Language.DescriptionCriticalHitChance.ToRegexIsAugmented();
+        ? currentGameLanguage.Language.DescriptionCriticalStrikeChance.ToRegexIsAugmented()
+        : currentGameLanguage.Language.DescriptionCriticalHitChance.ToRegexIsAugmented();
 
-    public override string Label => game == GameType.PathOfExile1 ? gameLanguageProvider.Language.DescriptionCriticalStrikeChance : gameLanguageProvider.Language.DescriptionCriticalHitChance;
+    public override string Label => game == GameType.PathOfExile1 ? currentGameLanguage.Language.DescriptionCriticalStrikeChance : currentGameLanguage.Language.DescriptionCriticalHitChance;
 
     public override void Parse(Item item)
     {

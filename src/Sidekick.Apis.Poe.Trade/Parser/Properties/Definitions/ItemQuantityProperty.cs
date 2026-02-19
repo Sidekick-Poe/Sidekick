@@ -12,13 +12,13 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class ItemQuantityProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionItemQuantity.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionItemQuantity.ToRegexIntCapture();
 
-    private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionItemQuantity.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionItemQuantity.ToRegexIsAugmented();
 
-    public override string Label => gameLanguageProvider.Language.DescriptionItemQuantity;
+    public override string Label => currentGameLanguage.Language.DescriptionItemQuantity;
 
     public override void Parse(Item item)
     {

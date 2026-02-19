@@ -15,7 +15,7 @@ public class LeagueProvider(
     TradeDataProvider tradeDataProvider,
     DataProvider dataProvider,
     ITradeApiClient tradeApiClient,
-    IGameLanguageProvider gameLanguageProvider,
+    ICurrentGameLanguage currentGameLanguage,
     ILogger<LeagueProvider> logger) : ILeagueProvider
 {
     private readonly ILogger logger = logger;
@@ -45,7 +45,7 @@ public class LeagueProvider(
 
     private async Task<List<League>> FetchAllFromApi()
     {
-        await gameLanguageProvider.Initialize();
+        await currentGameLanguage.Initialize();
 
         List<League> leagues = [];
 
@@ -56,7 +56,7 @@ public class LeagueProvider(
 
         async Task<List<League>> Fetch(GameType game)
         {
-            var response = await tradeApiClient.FetchData<RawTradeLeague>(game, gameLanguageProvider.InvariantLanguage, "leagues");
+            var response = await tradeApiClient.FetchData<RawTradeLeague>(game, currentGameLanguage.InvariantLanguage, "leagues");
             await dataProvider.Write(game, "trade/leagues.en.json", response);
             return response.Result
                 .Where(x => x is { Id: not null, Text: not null })
@@ -68,7 +68,7 @@ public class LeagueProvider(
 
     private async Task<List<League>> FetchAllFromData()
     {
-        await gameLanguageProvider.Initialize();
+        await currentGameLanguage.Initialize();
 
         List<League> leagues = [];
 

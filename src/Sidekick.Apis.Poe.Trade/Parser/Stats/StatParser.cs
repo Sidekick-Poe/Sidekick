@@ -19,7 +19,7 @@ public class StatParser
     IFuzzyService fuzzyService,
     IApiStatsProvider apiStatsProvider,
     ISettingsService settingsService,
-    IGameLanguageProvider gameLanguageProvider,
+    ICurrentGameLanguage currentGameLanguage,
     IStringLocalizer<PoeResources> resources
 ) : IStatParser
 {
@@ -33,17 +33,17 @@ public class StatParser
     {
         List<string> positiveTexts =
         [
-            ..gameLanguageProvider.Language.RegexIncreased.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
-            ..gameLanguageProvider.Language.RegexMore.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
-            ..gameLanguageProvider.Language.RegexFaster.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
+            ..currentGameLanguage.Language.RegexIncreased.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
+            ..currentGameLanguage.Language.RegexMore.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
+            ..currentGameLanguage.Language.RegexFaster.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
         ];
         PositivePattern = positiveTexts.Count != 0 ? new Regex($"(?:{string.Join('|', positiveTexts)})") : null;
 
         List<string> negativeTexts =
         [
-            ..gameLanguageProvider.Language.RegexReduced.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
-            ..gameLanguageProvider.Language.RegexLess.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
-            ..gameLanguageProvider.Language.RegexSlower.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
+            ..currentGameLanguage.Language.RegexReduced.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
+            ..currentGameLanguage.Language.RegexLess.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
+            ..currentGameLanguage.Language.RegexSlower.Split('|').Where(x => !string.IsNullOrWhiteSpace(x)),
         ];
         NegativePattern = negativeTexts.Count != 0 ? new Regex($"(?:{string.Join('|', negativeTexts)})") : null;
 
@@ -122,11 +122,11 @@ public class StatParser
         if (category == StatCategory.Mutated) category = StatCategory.Explicit;
 
         var cleanLine = block.Lines[lineIndex].Text.RemoveCategory();
-        var fuzzySingleLine = fuzzyService.CleanFuzzyText(gameLanguageProvider.Language, cleanLine);
+        var fuzzySingleLine = fuzzyService.CleanFuzzyText(currentGameLanguage.Language, cleanLine);
         string? fuzzyDoubleLine = null;
         if (lineIndex < block.Lines.Count - 1)
         {
-            fuzzyDoubleLine = fuzzyService.CleanFuzzyText(gameLanguageProvider.Language, cleanLine + " " + block.Lines[lineIndex + 1].Text);
+            fuzzyDoubleLine = fuzzyService.CleanFuzzyText(currentGameLanguage.Language, cleanLine + " " + block.Lines[lineIndex + 1].Text);
         }
 
         var results = new List<(int Ratio, TradeStatDefinition Pattern)>();
@@ -189,7 +189,7 @@ public class StatParser
             MatchedFuzzily = matchedFuzzily,
         };
 
-        var fuzzyLine = fuzzyService.CleanFuzzyText(gameLanguageProvider.Language, text);
+        var fuzzyLine = fuzzyService.CleanFuzzyText(currentGameLanguage.Language, text);
         var filteredDefinitions = definitions
             .DistinctBy(x => x.Id)
             .OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText))

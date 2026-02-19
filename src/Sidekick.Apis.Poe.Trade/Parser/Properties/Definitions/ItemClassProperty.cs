@@ -21,19 +21,19 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 public class ItemClassProperty : PropertyDefinition
 {
     private readonly GameType game;
-    private readonly IGameLanguageProvider gameLanguageProvider;
+    private readonly ICurrentGameLanguage currentGameLanguage;
     private readonly IStringLocalizer<PoeResources> resources;
     private readonly ITradeFilterProvider tradeFilterProvider;
     private readonly IFuzzyService fuzzyService;
 
     public ItemClassProperty(
         GameType game,
-        IGameLanguageProvider gameLanguageProvider,
+        ICurrentGameLanguage currentGameLanguage,
         IServiceProvider serviceProvider,
         IStringLocalizer<PoeResources> resources)
     {
         this.game = game;
-        this.gameLanguageProvider = gameLanguageProvider;
+        this.currentGameLanguage = currentGameLanguage;
         this.resources = resources;
         tradeFilterProvider = serviceProvider.GetRequiredService<ITradeFilterProvider>();
         fuzzyService = serviceProvider.GetRequiredService<IFuzzyService>();
@@ -56,7 +56,7 @@ public class ItemClassProperty : PropertyDefinition
         {
             Id = x.Id,
             Text = x.Text,
-            FuzzyText = x.Text is null ? null : fuzzyService.CleanFuzzyText(gameLanguageProvider.Language, x.Text),
+            FuzzyText = x.Text is null ? null : fuzzyService.CleanFuzzyText(currentGameLanguage.Language, x.Text),
         });
     }
 
@@ -64,106 +64,106 @@ public class ItemClassProperty : PropertyDefinition
     {
         List<ItemClassDefinition> definitions =
         [
-            CreateItemClassDefinition(ItemClass.Amulet, gameLanguageProvider.Language.Classes.Amulet),
-            CreateItemClassDefinition(ItemClass.Belt, gameLanguageProvider.Language.Classes.Belt),
-            CreateItemClassDefinition(ItemClass.Ring, gameLanguageProvider.Language.Classes.Ring),
-            CreateItemClassDefinition(ItemClass.Trinket, gameLanguageProvider.Language.Classes.Trinkets),
+            CreateItemClassDefinition(ItemClass.Amulet, currentGameLanguage.Language.Classes.Amulet),
+            CreateItemClassDefinition(ItemClass.Belt, currentGameLanguage.Language.Classes.Belt),
+            CreateItemClassDefinition(ItemClass.Ring, currentGameLanguage.Language.Classes.Ring),
+            CreateItemClassDefinition(ItemClass.Trinket, currentGameLanguage.Language.Classes.Trinkets),
 
-            CreateItemClassDefinition(ItemClass.BodyArmour, gameLanguageProvider.Language.Classes.BodyArmours),
-            CreateItemClassDefinition(ItemClass.Boots, gameLanguageProvider.Language.Classes.Boots),
-            CreateItemClassDefinition(ItemClass.Gloves, gameLanguageProvider.Language.Classes.Gloves),
-            CreateItemClassDefinition(ItemClass.Helmet, gameLanguageProvider.Language.Classes.Helmets),
-            CreateItemClassDefinition(ItemClass.Quiver, gameLanguageProvider.Language.Classes.Quivers),
-            CreateItemClassDefinition(ItemClass.Shield, gameLanguageProvider.Language.Classes.Shields),
-            CreateItemClassDefinition(ItemClass.Focus, gameLanguageProvider.Language.Classes.Focus),
-            CreateItemClassDefinition(ItemClass.Buckler, gameLanguageProvider.Language.Classes.Bucklers),
+            CreateItemClassDefinition(ItemClass.BodyArmour, currentGameLanguage.Language.Classes.BodyArmours),
+            CreateItemClassDefinition(ItemClass.Boots, currentGameLanguage.Language.Classes.Boots),
+            CreateItemClassDefinition(ItemClass.Gloves, currentGameLanguage.Language.Classes.Gloves),
+            CreateItemClassDefinition(ItemClass.Helmet, currentGameLanguage.Language.Classes.Helmets),
+            CreateItemClassDefinition(ItemClass.Quiver, currentGameLanguage.Language.Classes.Quivers),
+            CreateItemClassDefinition(ItemClass.Shield, currentGameLanguage.Language.Classes.Shields),
+            CreateItemClassDefinition(ItemClass.Focus, currentGameLanguage.Language.Classes.Focus),
+            CreateItemClassDefinition(ItemClass.Buckler, currentGameLanguage.Language.Classes.Bucklers),
 
-            CreateItemClassDefinition(ItemClass.DivinationCard, gameLanguageProvider.Language.Classes.DivinationCard),
+            CreateItemClassDefinition(ItemClass.DivinationCard, currentGameLanguage.Language.Classes.DivinationCard),
 
-            CreateItemClassDefinition(ItemClass.Resonator, gameLanguageProvider.Language.Classes.DelveStackableSocketableCurrency),
-            CreateItemClassDefinition(ItemClass.HeistObjective, gameLanguageProvider.Language.Classes.HeistTarget),
-            CreateItemClassDefinition(ItemClass.Omen, gameLanguageProvider.Language.Classes.Omen),
-            CreateItemClassDefinition(ItemClass.Socketable, gameLanguageProvider.Language.Classes.Socketable),
+            CreateItemClassDefinition(ItemClass.Resonator, currentGameLanguage.Language.Classes.DelveStackableSocketableCurrency),
+            CreateItemClassDefinition(ItemClass.HeistObjective, currentGameLanguage.Language.Classes.HeistTarget),
+            CreateItemClassDefinition(ItemClass.Omen, currentGameLanguage.Language.Classes.Omen),
+            CreateItemClassDefinition(ItemClass.Socketable, currentGameLanguage.Language.Classes.Socketable),
 
             // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.UniqueFragment),
             // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.Fossil),
             // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.Incubator),
             // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.Tattoo),
 
-            CreateItemClassDefinition(ItemClass.ActiveGem, gameLanguageProvider.Language.Classes.ActiveSkillGems),
-            CreateItemClassDefinition(ItemClass.SupportGem, gameLanguageProvider.Language.Classes.SupportSkillGems),
-            CreateItemClassDefinition(ItemClass.UncutSkillGem, gameLanguageProvider.Language.Classes.UncutSkillGems),
-            CreateItemClassDefinition(ItemClass.UncutSupportGem, gameLanguageProvider.Language.Classes.UncutSupportGems),
-            CreateItemClassDefinition(ItemClass.UncutSpiritGem, gameLanguageProvider.Language.Classes.UncutSpiritGems),
+            CreateItemClassDefinition(ItemClass.ActiveGem, currentGameLanguage.Language.Classes.ActiveSkillGems),
+            CreateItemClassDefinition(ItemClass.SupportGem, currentGameLanguage.Language.Classes.SupportSkillGems),
+            CreateItemClassDefinition(ItemClass.UncutSkillGem, currentGameLanguage.Language.Classes.UncutSkillGems),
+            CreateItemClassDefinition(ItemClass.UncutSupportGem, currentGameLanguage.Language.Classes.UncutSupportGems),
+            CreateItemClassDefinition(ItemClass.UncutSpiritGem, currentGameLanguage.Language.Classes.UncutSpiritGems),
 
             // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.AwakenedSupportSkillGems),
 
-            CreateItemClassDefinition(ItemClass.Blueprint, gameLanguageProvider.Language.Classes.Blueprint),
-            CreateItemClassDefinition(ItemClass.Contract, gameLanguageProvider.Language.Classes.Contract),
-            CreateItemClassDefinition(ItemClass.HeistReward, gameLanguageProvider.Language.Classes.HeistBrooch),
-            CreateItemClassDefinition(ItemClass.HeistUtility, gameLanguageProvider.Language.Classes.HeistCloak),
-            CreateItemClassDefinition(ItemClass.HeistWeapon, gameLanguageProvider.Language.Classes.HeistGear),
-            CreateItemClassDefinition(ItemClass.HeistTool, gameLanguageProvider.Language.Classes.HeistTool),
+            CreateItemClassDefinition(ItemClass.Blueprint, currentGameLanguage.Language.Classes.Blueprint),
+            CreateItemClassDefinition(ItemClass.Contract, currentGameLanguage.Language.Classes.Contract),
+            CreateItemClassDefinition(ItemClass.HeistReward, currentGameLanguage.Language.Classes.HeistBrooch),
+            CreateItemClassDefinition(ItemClass.HeistUtility, currentGameLanguage.Language.Classes.HeistCloak),
+            CreateItemClassDefinition(ItemClass.HeistWeapon, currentGameLanguage.Language.Classes.HeistGear),
+            CreateItemClassDefinition(ItemClass.HeistTool, currentGameLanguage.Language.Classes.HeistTool),
 
-            CreateItemClassDefinition(ItemClass.Jewel, gameLanguageProvider.Language.Classes.Jewel),
-            CreateItemClassDefinition(ItemClass.AbyssJewel, gameLanguageProvider.Language.Classes.AbyssJewel),
+            CreateItemClassDefinition(ItemClass.Jewel, currentGameLanguage.Language.Classes.Jewel),
+            CreateItemClassDefinition(ItemClass.AbyssJewel, currentGameLanguage.Language.Classes.AbyssJewel),
 
             // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.ClusterJewel),
 
-            CreateItemClassDefinition(ItemClass.Logbook, gameLanguageProvider.Language.Classes.Logbooks),
+            CreateItemClassDefinition(ItemClass.Logbook, currentGameLanguage.Language.Classes.Logbooks),
 
-            CreateItemClassDefinition(ItemClass.Waystone, gameLanguageProvider.Language.Classes.Waystone),
-            CreateItemClassDefinition(ItemClass.Breachstone, gameLanguageProvider.Language.Classes.Breachstone),
-            CreateItemClassDefinition(ItemClass.Barya, gameLanguageProvider.Language.Classes.Barya),
-            CreateItemClassDefinition(ItemClass.BossKey, gameLanguageProvider.Language.Classes.BossKey),
-            CreateItemClassDefinition(ItemClass.Ultimatum, gameLanguageProvider.Language.Classes.Ultimatum),
-            CreateItemClassDefinition(ItemClass.Tablet, gameLanguageProvider.Language.Classes.Tablet),
-            CreateItemClassDefinition(ItemClass.MapFragment, gameLanguageProvider.Language.Classes.MapFragments),
+            CreateItemClassDefinition(ItemClass.Waystone, currentGameLanguage.Language.Classes.Waystone),
+            CreateItemClassDefinition(ItemClass.Breachstone, currentGameLanguage.Language.Classes.Breachstone),
+            CreateItemClassDefinition(ItemClass.Barya, currentGameLanguage.Language.Classes.Barya),
+            CreateItemClassDefinition(ItemClass.BossKey, currentGameLanguage.Language.Classes.BossKey),
+            CreateItemClassDefinition(ItemClass.Ultimatum, currentGameLanguage.Language.Classes.Ultimatum),
+            CreateItemClassDefinition(ItemClass.Tablet, currentGameLanguage.Language.Classes.Tablet),
+            CreateItemClassDefinition(ItemClass.MapFragment, currentGameLanguage.Language.Classes.MapFragments),
 
-            CreateItemClassDefinition(ItemClass.MemoryLine, gameLanguageProvider.Language.Classes.MemoryLine),
+            CreateItemClassDefinition(ItemClass.MemoryLine, currentGameLanguage.Language.Classes.MemoryLine),
 
-            CreateItemClassDefinition(ItemClass.Bow, gameLanguageProvider.Language.Classes.Bows),
-            CreateItemClassDefinition(ItemClass.Crossbow, gameLanguageProvider.Language.Classes.Crossbows),
-            CreateItemClassDefinition(ItemClass.Claw, gameLanguageProvider.Language.Classes.Claws),
-            CreateItemClassDefinition(ItemClass.Dagger, gameLanguageProvider.Language.Classes.Daggers),
-            CreateItemClassDefinition(ItemClass.RuneDagger, gameLanguageProvider.Language.Classes.RuneDaggers),
-            CreateItemClassDefinition(ItemClass.OneHandAxe, gameLanguageProvider.Language.Classes.OneHandAxes),
-            CreateItemClassDefinition(ItemClass.OneHandMace, gameLanguageProvider.Language.Classes.OneHandMaces),
-            CreateItemClassDefinition(ItemClass.OneHandSword, gameLanguageProvider.Language.Classes.OneHandSwords),
-            CreateItemClassDefinition(ItemClass.Sceptre, gameLanguageProvider.Language.Classes.Sceptres),
-            CreateItemClassDefinition(ItemClass.Staff, gameLanguageProvider.Language.Classes.Staves),
-            CreateItemClassDefinition(ItemClass.Spear, gameLanguageProvider.Language.Classes.Spears),
-            CreateItemClassDefinition(ItemClass.Talisman, gameLanguageProvider.Language.Classes.Talismans),
+            CreateItemClassDefinition(ItemClass.Bow, currentGameLanguage.Language.Classes.Bows),
+            CreateItemClassDefinition(ItemClass.Crossbow, currentGameLanguage.Language.Classes.Crossbows),
+            CreateItemClassDefinition(ItemClass.Claw, currentGameLanguage.Language.Classes.Claws),
+            CreateItemClassDefinition(ItemClass.Dagger, currentGameLanguage.Language.Classes.Daggers),
+            CreateItemClassDefinition(ItemClass.RuneDagger, currentGameLanguage.Language.Classes.RuneDaggers),
+            CreateItemClassDefinition(ItemClass.OneHandAxe, currentGameLanguage.Language.Classes.OneHandAxes),
+            CreateItemClassDefinition(ItemClass.OneHandMace, currentGameLanguage.Language.Classes.OneHandMaces),
+            CreateItemClassDefinition(ItemClass.OneHandSword, currentGameLanguage.Language.Classes.OneHandSwords),
+            CreateItemClassDefinition(ItemClass.Sceptre, currentGameLanguage.Language.Classes.Sceptres),
+            CreateItemClassDefinition(ItemClass.Staff, currentGameLanguage.Language.Classes.Staves),
+            CreateItemClassDefinition(ItemClass.Spear, currentGameLanguage.Language.Classes.Spears),
+            CreateItemClassDefinition(ItemClass.Talisman, currentGameLanguage.Language.Classes.Talismans),
 
             // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.Flails),
             // GetItemClass(ItemClass.Unknown, GameLanguageProvider.Language.Classes.Rapiers),
-            CreateItemClassDefinition(ItemClass.FishingRod, gameLanguageProvider.Language.Classes.FishingRods),
-            CreateItemClassDefinition(ItemClass.TwoHandAxe, gameLanguageProvider.Language.Classes.TwoHandAxes),
-            CreateItemClassDefinition(ItemClass.TwoHandMace, gameLanguageProvider.Language.Classes.TwoHandMaces),
-            CreateItemClassDefinition(ItemClass.TwoHandSword, gameLanguageProvider.Language.Classes.TwoHandSwords),
-            CreateItemClassDefinition(ItemClass.Wand, gameLanguageProvider.Language.Classes.Wands),
-            CreateItemClassDefinition(ItemClass.Warstaff, gameLanguageProvider.Language.Classes.Warstaves, gameLanguageProvider.Language.Classes.Quarterstaves),
+            CreateItemClassDefinition(ItemClass.FishingRod, currentGameLanguage.Language.Classes.FishingRods),
+            CreateItemClassDefinition(ItemClass.TwoHandAxe, currentGameLanguage.Language.Classes.TwoHandAxes),
+            CreateItemClassDefinition(ItemClass.TwoHandMace, currentGameLanguage.Language.Classes.TwoHandMaces),
+            CreateItemClassDefinition(ItemClass.TwoHandSword, currentGameLanguage.Language.Classes.TwoHandSwords),
+            CreateItemClassDefinition(ItemClass.Wand, currentGameLanguage.Language.Classes.Wands),
+            CreateItemClassDefinition(ItemClass.Warstaff, currentGameLanguage.Language.Classes.Warstaves, currentGameLanguage.Language.Classes.Quarterstaves),
 
-            CreateItemClassDefinition(ItemClass.Tincture, gameLanguageProvider.Language.Classes.Tinctures),
-            CreateItemClassDefinition(ItemClass.Corpse, gameLanguageProvider.Language.Classes.Corpses),
-            CreateItemClassDefinition(ItemClass.Charms, gameLanguageProvider.Language.Classes.Charms),
+            CreateItemClassDefinition(ItemClass.Tincture, currentGameLanguage.Language.Classes.Tinctures),
+            CreateItemClassDefinition(ItemClass.Corpse, currentGameLanguage.Language.Classes.Corpses),
+            CreateItemClassDefinition(ItemClass.Charms, currentGameLanguage.Language.Classes.Charms),
 
-            CreateItemClassDefinition(ItemClass.SanctumRelic, gameLanguageProvider.Language.Classes.SanctumRelics),
-            CreateItemClassDefinition(ItemClass.SanctumResearch, gameLanguageProvider.Language.Classes.SanctumResearch),
+            CreateItemClassDefinition(ItemClass.SanctumRelic, currentGameLanguage.Language.Classes.SanctumRelics),
+            CreateItemClassDefinition(ItemClass.SanctumResearch, currentGameLanguage.Language.Classes.SanctumResearch),
         ];
 
         if (game == GameType.PathOfExile2)
         {
             definitions.AddRange([
-                CreateItemClassDefinition(ItemClass.LifeFlask, gameLanguageProvider.Language.Classes.LifeFlasks),
-                CreateItemClassDefinition(ItemClass.ManaFlask, gameLanguageProvider.Language.Classes.ManaFlasks),
+                CreateItemClassDefinition(ItemClass.LifeFlask, currentGameLanguage.Language.Classes.LifeFlasks),
+                CreateItemClassDefinition(ItemClass.ManaFlask, currentGameLanguage.Language.Classes.ManaFlasks),
             ]);
         }
 
         if (game == GameType.PathOfExile1)
         {
             definitions.AddRange([
-                CreateItemClassDefinition(ItemClass.Flask, gameLanguageProvider.Language.Classes.HybridFlasks),
+                CreateItemClassDefinition(ItemClass.Flask, currentGameLanguage.Language.Classes.HybridFlasks),
             ]);
         }
 
@@ -180,11 +180,11 @@ public class ItemClassProperty : PropertyDefinition
             Id = itemClass.GetValueAttribute(),
             Text = text,
             Pattern = BuildRegex(labels),
-            FuzzyText = text is null ? null : fuzzyService.CleanFuzzyText(gameLanguageProvider.Language, text),
+            FuzzyText = text is null ? null : fuzzyService.CleanFuzzyText(currentGameLanguage.Language, text),
         };
     }
 
-    private Regex BuildRegex(params string[] labels) => new($"^{Regex.Escape(gameLanguageProvider.Language.Classes.Prefix)}:* *(?:{string.Join("|", labels.Select(Regex.Escape))})$");
+    private Regex BuildRegex(params string[] labels) => new($"^{Regex.Escape(currentGameLanguage.Language.Classes.Prefix)}:* *(?:{string.Join("|", labels.Select(Regex.Escape))})$");
 
     public override void Parse(Item item)
     {
@@ -201,18 +201,18 @@ public class ItemClassProperty : PropertyDefinition
             return;
         }
 
-        var classLine = line.Replace(gameLanguageProvider.Language.Classes.Prefix, "").Trim(' ', ':');
+        var classLine = line.Replace(currentGameLanguage.Language.Classes.Prefix, "").Trim(' ', ':');
 
         // There is a weird thing where the API says Map Fragment and the game says Misc Map Items. I thought we could hardcode it here.
-        if (classLine == gameLanguageProvider.Language.Classes.MiscMapItems)
+        if (classLine == currentGameLanguage.Language.Classes.MiscMapItems)
         {
-            classLine = gameLanguageProvider.Language.Classes.MapFragments;
+            classLine = currentGameLanguage.Language.Classes.MapFragments;
         }
 
         var categoryToMatch = new ItemClassDefinition()
         {
             Text = classLine,
-            FuzzyText = fuzzyService.CleanFuzzyText(gameLanguageProvider.Language, classLine)
+            FuzzyText = fuzzyService.CleanFuzzyText(currentGameLanguage.Language, classLine)
         };
         var apiItemCategoryId = Process.ExtractOne(categoryToMatch, ApiItemClassDefinitions.Value, x => x.FuzzyText, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
 

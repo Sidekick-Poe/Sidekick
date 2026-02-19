@@ -12,7 +12,7 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Filters;
 public class TradeFilterProvider
 (
     TradeDataProvider tradeDataProvider,
-    IGameLanguageProvider gameLanguageProvider,
+    ICurrentGameLanguage currentGameLanguage,
     ISettingsService settingsService,
     IServiceProvider serviceProvider
 ) : ITradeFilterProvider
@@ -46,7 +46,7 @@ public class TradeFilterProvider
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        Filters = await tradeDataProvider.GetFilters(game, gameLanguageProvider.Language.Code);
+        Filters = await tradeDataProvider.GetFilters(game, currentGameLanguage.Language.Code);
     }
 
     public RawTradeFilterCategory? GetApiFilterCategory(string categoryId)

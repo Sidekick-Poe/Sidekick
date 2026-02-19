@@ -4,12 +4,12 @@
 @if (Result.Item.ItemLevel > 0)
 {
     <div class="text-center text-[#7f7f7f]">
-        <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionItemLevel"
+        <ItemPropertyText Label="@CurrentGameLanguage.Language.DescriptionItemLevel"
                           Value="@Result.Item.ItemLevel.ToString()" Class="text-center justify-center"/>
     </div>
 }
 
-@inject IGameLanguageProvider GameLanguageProvider
+@inject ICurrentGameLanguage CurrentGameLanguage
 
 @code {
 

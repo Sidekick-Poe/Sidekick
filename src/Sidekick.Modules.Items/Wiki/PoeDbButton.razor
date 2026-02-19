@@ -7,7 +7,7 @@
 </ButtonLink>
 
 @inject IBrowserProvider BrowserProvider
-@inject IGameLanguageProvider GameLanguageProvider
+@inject ICurrentGameLanguage CurrentGameLanguage
 
 @code {
 
@@ -19,14 +19,14 @@
         var poeDbBaseUri = "https://poedb.tw/";
         var poe2DbBaseUri = "https://poe2db.tw/";
         var baseUrl = Item.Game == GameType.PathOfExile1 ? poeDbBaseUri : poe2DbBaseUri;
-        var languageCodeSuffix = GameLanguageProvider.Language.Code switch
+        var languageCodeSuffix = CurrentGameLanguage.Language.Code switch
         {
             "en" => "us/",
             "es" => "sp/",
             "zh" => "tw/",
             "ko" => "kr/",
             "ja" => "jp/",
-            _ => GameLanguageProvider.Language.Code + "/"
+            _ => CurrentGameLanguage.Language.Code + "/"
         };
 
         var searchLink = Item.ApiInformation.Name ?? Item.ApiInformation.Type;

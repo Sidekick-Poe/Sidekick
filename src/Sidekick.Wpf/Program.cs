@@ -22,6 +22,7 @@ using Sidekick.Common.Settings;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
+using Sidekick.Data;
 using Sidekick.Modules.Chat;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
@@ -91,6 +92,9 @@ If you need more support consider asking on the official Sidekick discord server
             .AddSidekickCommonBrowser()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
             .AddSidekickCommonUi()
+
+            // Data
+            .AddSidekickData()
 
             // Apis
             .AddSidekickGitHubApi()

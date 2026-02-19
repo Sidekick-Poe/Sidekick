@@ -9,7 +9,7 @@ namespace Sidekick.Apis.Poe.Trade.ApiStatic;
 public class ApiStaticDataProvider
 (
     TradeDataProvider tradeDataProvider,
-    IGameLanguageProvider gameLanguageProvider,
+    ICurrentGameLanguage currentGameLanguage,
     ISettingsService settingsService
 ) : IApiStaticDataProvider
 {
@@ -29,7 +29,7 @@ public class ApiStaticDataProvider
 
     private async Task InitializeText(GameType game)
     {
-        var result = await tradeDataProvider.GetStaticItems(game, gameLanguageProvider.Language.Code);
+        var result = await tradeDataProvider.GetStaticItems(game, currentGameLanguage.Language.Code);
 
         TextDictionary.Clear();
         FillDictionary(TextDictionary, result, x => x.Text);
@@ -37,7 +37,7 @@ public class ApiStaticDataProvider
 
     private async Task InitializeInvariant(GameType game)
     {
-        var result = await tradeDataProvider.GetStaticItems(game, gameLanguageProvider.InvariantLanguage.Code);
+        var result = await tradeDataProvider.GetStaticItems(game, currentGameLanguage.InvariantLanguage.Code);
 
         InvariantDictionary.Clear();
         FillDictionary(InvariantDictionary, result, x => x.Id);

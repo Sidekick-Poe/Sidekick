@@ -18,7 +18,7 @@ public class PseudoParser
     ISettingsService settingsService,
     IStringLocalizer<PoeResources> resources,
     TradeDataProvider tradeDataProvider,
-    IGameLanguageProvider gameLanguageProvider
+    ICurrentGameLanguage currentGameLanguage
 ) : IPseudoParser
 {
     private List<PseudoDefinition> Definitions { get; } = new();
@@ -42,7 +42,7 @@ public class PseudoParser
             new ManaDefinition(game),
         ]);
 
-        var categories = await tradeDataProvider.GetRawStats(game, gameLanguageProvider.InvariantLanguage.Code);
+        var categories = await tradeDataProvider.GetRawStats(game, currentGameLanguage.InvariantLanguage.Code);
         categories.RemoveAll(x => x.Entries.FirstOrDefault()?.Id.StartsWith("pseudo") == true);
 
         var pseudoDefinitions = apiStatsProvider.Definitions

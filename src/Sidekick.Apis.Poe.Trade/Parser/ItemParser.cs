@@ -19,7 +19,7 @@ public class ItemParser
     IStatParser statParser,
     IPseudoParser pseudoParser,
     IPropertyParser propertyParser,
-    IGameLanguageProvider gameLanguageProvider,
+    ICurrentGameLanguage currentGameLanguage,
     IApiInformationParser apiInformationParser,
     ISettingsService settingsService
 ) : IItemParser
@@ -32,7 +32,7 @@ public class ItemParser
 
     public async Task Initialize()
     {
-        var unusableRegex = Regex.Escape(gameLanguageProvider.Language.DescriptionUnusable);
+        var unusableRegex = Regex.Escape(currentGameLanguage.Language.DescriptionUnusable);
         unusableRegex += @"[\n\r]+" + TextItem.SeparatorPattern + @"[\n\r]+";
         UnusablePattern = new Regex(unusableRegex, RegexOptions.Compiled);
         Game = await settingsService.GetGame();

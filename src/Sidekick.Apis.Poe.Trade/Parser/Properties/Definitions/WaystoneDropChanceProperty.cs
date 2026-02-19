@@ -12,13 +12,13 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class WaystoneDropChanceProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionWaystoneDropChance.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionWaystoneDropChance.ToRegexIntCapture();
 
-    private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionWaystoneDropChance.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionWaystoneDropChance.ToRegexIsAugmented();
 
-    public override string Label => gameLanguageProvider.Language.DescriptionWaystoneDropChance;
+    public override string Label => currentGameLanguage.Language.DescriptionWaystoneDropChance;
 
     public override void Parse(Item item)
     {

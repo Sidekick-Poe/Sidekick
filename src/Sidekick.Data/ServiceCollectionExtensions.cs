@@ -13,7 +13,7 @@ public static class ServiceCollectionExtensions
     {
         services.TryAddSingleton<DataProvider>();
         services.TryAddSingleton<TradeDataProvider>();
-        services.AddSingleton<IFuzzyService, FuzzyService>();
+        services.TryAddSingleton<IFuzzyService, FuzzyService>();
         services.AddSidekickInitializableService<TradeInvariantStatProvider>();
 
         return services;

@@ -15,7 +15,7 @@
 @inject IStringLocalizer<ValuationResources> Resources
 @inject IScoutItemProvider ScoutItemProvider
 @inject INinjaItemProvider NinjaItemProvider
-@inject IGameLanguageProvider GameLanguageProvider
+@inject ICurrentGameLanguage CurrentGameLanguage
 
 @code {
 
@@ -51,7 +51,7 @@
     {
         return Item.Game == GameType.PathOfExile1
                && Item.Properties.Rarity == Rarity.Rare
-               && GameLanguageProvider.IsEnglish();
+               && CurrentGameLanguage.IsEnglish();
     }
 
     private async Task<bool> CheckScout()

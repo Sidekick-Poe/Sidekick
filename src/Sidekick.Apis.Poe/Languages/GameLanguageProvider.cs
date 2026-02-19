@@ -1,27 +1,20 @@
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Extensions;
-using Sidekick.Common.Settings;
+
 namespace Sidekick.Apis.Poe.Languages;
 
-public class GameLanguageProvider(ISettingsService settingsService) : IGameLanguageProvider
+public class GameLanguageProvider : IGameLanguageProvider
 {
     private const string EnglishLanguageCode = "en";
-    private IGameLanguage? language;
     private IGameLanguage? invariantLanguage;
 
-    public IGameLanguage Language => language ?? throw new SidekickException("The game language could not be found.");
-
-    public IGameLanguage InvariantLanguage => invariantLanguage ?? throw new SidekickException("The English language could not be found.");
-
-    /// <inheritdoc />
-    public int Priority => 0;
-
-    /// <inheritdoc />
-    public async Task Initialize()
+    public IGameLanguage InvariantLanguage
     {
-        var languageCode = await settingsService.GetString(SettingKeys.LanguageParser) ?? EnglishLanguageCode;
-        language = GetLanguage(languageCode);
-        invariantLanguage = GetInvariantLanguage();
+        get
+        {
+            invariantLanguage ??= GetInvariantLanguage();
+            return invariantLanguage;
+        }
     }
 
     public List<GameLanguageAttribute> GetList()
@@ -60,17 +53,5 @@ public class GameLanguageProvider(ISettingsService settingsService) : IGameLangu
         var implementationType = languages.FirstOrDefault(x => x.LanguageCode == EnglishLanguageCode)?.ImplementationType ?? throw new SidekickException("The English language could not be found.");
 
         return (IGameLanguage?)Activator.CreateInstance(implementationType) ?? throw new SidekickException("The English language could not be found.");
-    }
-
-    public bool IsEnglish()
-    {
-        return Language.GetType() == InvariantLanguage.GetType();
-    }
-
-    public bool IsChinese()
-    {
-        var languages = GetList();
-        var chineseLanguage = languages.FirstOrDefault(x => x.LanguageCode == "zh");
-        return chineseLanguage?.ImplementationType == Language.GetType();
     }
 }

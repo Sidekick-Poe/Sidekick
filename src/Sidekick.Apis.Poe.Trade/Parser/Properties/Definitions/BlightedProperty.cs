@@ -11,11 +11,11 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class BlightedProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.AffixBlighted.ToRegexAffix(gameLanguageProvider.Language.AffixSuperior);
+    private Regex Pattern { get; } = currentGameLanguage.Language.AffixBlighted.ToRegexAffix(currentGameLanguage.Language.AffixSuperior);
 
-    public override string Label => gameLanguageProvider.Language.AffixBlighted;
+    public override string Label => currentGameLanguage.Language.AffixBlighted;
 
     public override void Parse(Item item)
     {

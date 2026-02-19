@@ -12,7 +12,7 @@ namespace Sidekick.Apis.Poe.Trade.ApiItems;
 public class ApiItemProvider
 (
     TradeDataProvider tradeDataProvider,
-    IGameLanguageProvider gameLanguageProvider,
+    ICurrentGameLanguage currentGameLanguage,
     ISettingsService settingsService,
     IApiStaticDataProvider apiStaticDataProvider
 ) : IApiItemProvider
@@ -32,7 +32,7 @@ public class ApiItemProvider
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        var result = await tradeDataProvider.GetItems(game, gameLanguageProvider.Language.Code);
+        var result = await tradeDataProvider.GetItems(game, currentGameLanguage.Language.Code);
 
         InitializeItems(result);
         UniqueItems = NamePatterns.Select(x => x.Item)
@@ -62,7 +62,7 @@ public class ApiItemProvider
                 information.InvariantText = apiData?.Text;
                 information.Image = apiData?.Image;
 
-                if (gameLanguageProvider.IsEnglish())
+                if (currentGameLanguage.IsEnglish())
                 {
                     information.InvariantName = entry.Name;
                     information.InvariantType = entry.Type;

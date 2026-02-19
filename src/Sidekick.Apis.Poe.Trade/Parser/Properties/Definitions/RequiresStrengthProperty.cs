@@ -11,13 +11,13 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class RequiresStrengthProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionRequiresStr.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionRequiresStr.ToRegexIntCapture();
 
-    private Regex RequiresPattern { get; } = new($@"^{gameLanguageProvider.Language.DescriptionRequires}.*?(\d+)\s*{gameLanguageProvider.Language.DescriptionRequiresStr}");
+    private Regex RequiresPattern { get; } = new($@"^{currentGameLanguage.Language.DescriptionRequires}.*?(\d+)\s*{currentGameLanguage.Language.DescriptionRequiresStr}");
 
-    public override string Label => gameLanguageProvider.Language.DescriptionRequiresStr;
+    public override string Label => currentGameLanguage.Language.DescriptionRequiresStr;
 
     public override void Parse(Item item)
     {

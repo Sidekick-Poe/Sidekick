@@ -20,7 +20,7 @@ public class RepoeDownloader(
         new("fr", "French/"),
         new("ja", "Japanese/"),
         new("ko", "Korean/"),
-        new("en", "Portuguese/"),
+        new("pt", "Portuguese/"),
         new("ru", "Russian/"),
         new("th", "Thai/"),
         new("zh", "Traditional Chinese/"),

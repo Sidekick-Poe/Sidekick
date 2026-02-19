@@ -16,7 +16,7 @@ public class OpenWikiPageKeybindHandler(
     ISettingsService settingsService,
     IProcessProvider processProvider,
     IItemParser itemParser,
-    IGameLanguageProvider gameLanguageProvider,
+    ICurrentGameLanguage currentGameLanguage,
     IBrowserProvider browserProvider,
     IKeyboardProvider keyboard) : KeybindHandler(settingsService, SettingKeys.KeyOpenWiki)
 {
@@ -43,7 +43,7 @@ public class OpenWikiPageKeybindHandler(
         var wikiPreferred = await settingsService.GetEnum<WikiSetting>(SettingKeys.PreferredWiki);
         if (wikiPreferred == WikiSetting.PoeWiki)
         {
-            if (!gameLanguageProvider.IsEnglish())
+            if (!currentGameLanguage.IsEnglish())
             {
                 throw new UnavailableTranslationException();
             }

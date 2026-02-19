@@ -11,11 +11,11 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class UnidentifiedProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionUnidentified.ToRegexLine();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionUnidentified.ToRegexLine();
 
-    public override string Label => gameLanguageProvider.Language.DescriptionUnidentified;
+    public override string Label => currentGameLanguage.Language.DescriptionUnidentified;
 
     public override void Parse(Item item)
     {

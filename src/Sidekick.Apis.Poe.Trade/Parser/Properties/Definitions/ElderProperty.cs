@@ -11,11 +11,11 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class ElderProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.InfluenceElder.ToRegexLine();
+    private Regex Pattern { get; } = currentGameLanguage.Language.InfluenceElder.ToRegexLine();
 
-    public override string Label => gameLanguageProvider.Language.InfluenceElder;
+    public override string Label => currentGameLanguage.Language.InfluenceElder;
 
     public override void Parse(Item item)
     {

@@ -13,8 +13,10 @@ public static class ServiceCollectionExtensions
     {
         services.TryAddSingleton<NinjaDownloader>();
         services.TryAddSingleton<TradeDownloader>();
+        services.TryAddSingleton<TradeStatBuilder>();
         services.TryAddSingleton<RepoeDownloader>();
+        services.TryAddSingleton<DataBuilder>();
 
-        return services.AddSidekickData();
+        return services;
     }
 }

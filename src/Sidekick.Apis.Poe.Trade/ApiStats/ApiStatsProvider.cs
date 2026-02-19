@@ -8,7 +8,7 @@ namespace Sidekick.Apis.Poe.Trade.ApiStats;
 public class ApiStatsProvider
 (
     TradeDataProvider tradeDataProvider,
-    IGameLanguageProvider gameLanguageProvider,
+    ICurrentGameLanguage currentGameLanguage,
     ISettingsService settingsService
 ) : IApiStatsProvider
 {
@@ -21,7 +21,7 @@ public class ApiStatsProvider
     public async Task Initialize()
     {
         var game = await settingsService.GetGame();
-        Definitions = await tradeDataProvider.GetStats(game, gameLanguageProvider.Language.Code);
+        Definitions = await tradeDataProvider.GetStats(game, currentGameLanguage.Language.Code);
     }
 
     public bool IsMatch(string id, string text)

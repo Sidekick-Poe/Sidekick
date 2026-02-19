@@ -96,7 +96,7 @@ public class DataProvider
         Directory.CreateDirectory(DataDirectory);
 
         var path = Path.Combine(DataDirectory, game.GetValueAttribute(), filePath);
-        if (!File.Exists(path)) throw new SidekickException("The data file does not exist.");
+        if (!File.Exists(path)) throw new SidekickException($"The data file does not exist. {filePath}");
 
         await using var fileStream = File.OpenRead(path);
         return await JsonSerializer.DeserializeAsync<TResult>(fileStream, JsonOptions)
