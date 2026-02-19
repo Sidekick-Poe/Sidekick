@@ -1,10 +1,10 @@
 using Sidekick.Common.Initialization;
-using Sidekick.Data.Trade.Models;
+using Sidekick.Data.Trade.Models.Raw;
 namespace Sidekick.Apis.Poe.Trade.ApiStatic;
 
 public interface IApiStaticDataProvider : IInitializableService
 {
-    TradeStaticItem? GetById(string? id);
+    RawTradeStaticItem? GetById(string? id);
 
-    TradeStaticItem? Get(string? name, string? type);
+    RawTradeStaticItem? Get(string? name, string? type);
 }

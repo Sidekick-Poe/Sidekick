@@ -9,6 +9,8 @@ public interface IGameLanguageProvider : IInitializableService
 
     List<GameLanguageAttribute> GetList();
 
+    IGameLanguage GetLanguage(string? languageCode);
+
     bool IsEnglish();
 
     bool IsChinese();

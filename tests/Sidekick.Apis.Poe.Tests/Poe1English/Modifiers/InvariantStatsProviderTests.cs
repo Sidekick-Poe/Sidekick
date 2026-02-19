@@ -1,11 +1,12 @@
 using Sidekick.Apis.Poe.Trade.ApiStats;
+using Sidekick.Data.Trade;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests.Poe1English.Modifiers;
 
 [Collection(Collections.Poe1EnglishFixture)]
 public class InvariantStatsProviderTests(Poe1EnglishFixture fixture)
 {
-    private readonly IInvariantStatsProvider provider = fixture.InvariantStatsProvider;
+    private readonly TradeInvariantStatProvider provider = fixture.InvariantStatProvider;
 
     [Fact]
     public void ClusterJewelSmallPassiveCountModifierIdIsDefined()

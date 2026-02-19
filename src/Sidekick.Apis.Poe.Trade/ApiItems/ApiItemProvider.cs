@@ -5,7 +5,7 @@ using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStatic;
 using Sidekick.Common.Settings;
 using Sidekick.Data.Trade;
-using Sidekick.Data.Trade.Models;
+using Sidekick.Data.Trade.Models.Raw;
 
 namespace Sidekick.Apis.Poe.Trade.ApiItems;
 
@@ -44,7 +44,7 @@ public class ApiItemProvider
         TextPatterns = TextPatterns.OrderByDescending(x => x.Item.Text?.Length ?? 0).ToList();
     }
 
-    private void InitializeItems(List<TradeItemCategory> result)
+    private void InitializeItems(List<RawTradeItemCategory> result)
     {
         NamePatterns.Clear();
         TypePatterns.Clear();

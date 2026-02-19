@@ -3,7 +3,7 @@ using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Common.Settings;
 using Sidekick.Data.Trade;
-using Sidekick.Data.Trade.Models;
+using Sidekick.Data.Trade.Models.Raw;
 namespace Sidekick.Apis.Poe.Trade.ApiStatic;
 
 public class ApiStaticDataProvider
@@ -13,8 +13,8 @@ public class ApiStaticDataProvider
     ISettingsService settingsService
 ) : IApiStaticDataProvider
 {
-    private Dictionary<string, TradeStaticItem> TextDictionary { get; } = new();
-    private Dictionary<string, TradeStaticItem> InvariantDictionary { get; } = new();
+    private Dictionary<string, RawTradeStaticItem> TextDictionary { get; } = new();
+    private Dictionary<string, RawTradeStaticItem> InvariantDictionary { get; } = new();
 
     /// <inheritdoc/>
     public int Priority => 100;
@@ -43,7 +43,7 @@ public class ApiStaticDataProvider
         FillDictionary(InvariantDictionary, result, x => x.Id);
     }
 
-    private void FillDictionary(Dictionary<string, TradeStaticItem> dictionary, List<TradeStaticItemCategory> result, Func<TradeStaticItem, string?> keyFunc)
+    private void FillDictionary(Dictionary<string, RawTradeStaticItem> dictionary, List<RawTradeStaticItemCategory> result, Func<RawTradeStaticItem, string?> keyFunc)
     {
         foreach (var category in result)
         {
@@ -58,7 +58,7 @@ public class ApiStaticDataProvider
         }
     }
 
-    public TradeStaticItem? GetById(string? id)
+    public RawTradeStaticItem? GetById(string? id)
     {
         if (string.IsNullOrEmpty(id)) return null;
 
@@ -72,7 +72,7 @@ public class ApiStaticDataProvider
         return InvariantDictionary.GetValueOrDefault(id);
     }
 
-    public TradeStaticItem? Get(string? name, string? type)
+    public RawTradeStaticItem? Get(string? name, string? type)
     {
         var data = !string.IsNullOrEmpty(name) ? TextDictionary.GetValueOrDefault(name) : null;
         data ??= !string.IsNullOrEmpty(type) ? TextDictionary.GetValueOrDefault(type) : null;

@@ -1,21 +1,24 @@
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Parser.Pseudo.Definitions;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Trade;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 
 public class PseudoParser
 (
-    IInvariantStatsProvider invariantStatsProvider,
     IApiStatsProvider apiStatsProvider,
     ISettingsService settingsService,
-    IStringLocalizer<PoeResources> resources
+    IStringLocalizer<PoeResources> resources,
+    TradeDataProvider tradeDataProvider,
+    IGameLanguageProvider gameLanguageProvider
 ) : IPseudoParser
 {
     private List<PseudoDefinition> Definitions { get; } = new();
@@ -39,14 +42,16 @@ public class PseudoParser
             new ManaDefinition(game),
         ]);
 
-        var categories = await invariantStatsProvider.GetList();
+        var categories = await tradeDataProvider.GetRawStats(game, gameLanguageProvider.InvariantLanguage.Code);
         categories.RemoveAll(x => x.Entries.FirstOrDefault()?.Id.StartsWith("pseudo") == true);
 
-        var localizedPseudoStats = apiStatsProvider.Definitions.GetValueOrDefault(StatCategory.Pseudo);
+        var pseudoDefinitions = apiStatsProvider.Definitions
+            .Where(x=>x.Category == StatCategory.Pseudo)
+            .ToList();
 
         foreach (var definition in Definitions)
         {
-            definition.InitializeDefinition(categories, localizedPseudoStats);
+            definition.InitializeDefinition(categories, pseudoDefinitions);
         }
     }
 

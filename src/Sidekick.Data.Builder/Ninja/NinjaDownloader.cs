@@ -76,7 +76,7 @@ public class NinjaDownloader(
         Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
     };
 
-    public async Task DownloadAll()
+    public async Task Download()
     {
         var poe1Leagues = await tradeDataProvider.GetLeagues(GameType.PathOfExile1);
         await DownloadForGame(GameType.PathOfExile1,
@@ -131,6 +131,7 @@ public class NinjaDownloader(
                 catch (Exception ex)
                 {
                     logger.LogError(ex, $"Failed exchange {url}");
+                    throw;
                 }
             }));
 
@@ -176,6 +177,7 @@ public class NinjaDownloader(
                 catch (Exception ex)
                 {
                     logger.LogError(ex, $"Failed stash {url}");
+                    throw;
                 }
             }));
 

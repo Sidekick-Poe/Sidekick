@@ -43,7 +43,7 @@ public class GameLanguageProvider(ISettingsService settingsService) : IGameLangu
         return result;
     }
 
-    private IGameLanguage GetLanguage(string? languageCode)
+    public IGameLanguage GetLanguage(string? languageCode)
     {
         languageCode ??= EnglishLanguageCode;
 

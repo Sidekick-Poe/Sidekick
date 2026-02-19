@@ -1,16 +1,16 @@
 using Sidekick.Apis.Poe.Extensions;
+using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Common.Settings;
-using Sidekick.Data.Trade;
-using Sidekick.Data.Trade.Models;
-namespace Sidekick.Apis.Poe.Trade.ApiStats;
+using Sidekick.Common.Initialization;
+using Sidekick.Data.Trade.Models.Raw;
 
-public class InvariantStatsProvider
+namespace Sidekick.Data.Trade;
+
+public class TradeInvariantStatProvider
 (
     TradeDataProvider tradeDataProvider,
-    IGameLanguageProvider gameLanguageProvider,
-    ISettingsService settingsService
-) : IInvariantStatsProvider
+    IGameLanguageProvider gameLanguageProvider
+) : IInitializableService
 {
     public List<string> IgnoreStatIds { get; } = [];
 
@@ -36,18 +36,28 @@ public class InvariantStatsProvider
     /// <inheritdoc/>
     public async Task Initialize()
     {
-        var result = await GetList();
-        InitializeIgnore(result);
-        InitializeIncursionRooms(result);
-        InitializeLogbookFactions(result);
-        InitializeClusterJewel(result);
-        InitializeWeaponDamageIds(result);
+        var categories = await tradeDataProvider.GetRawStats(GameType.PathOfExile1, gameLanguageProvider.InvariantLanguage.Code);
+        categories.AddRange(await tradeDataProvider.GetRawStats(GameType.PathOfExile2, gameLanguageProvider.InvariantLanguage.Code));
+
+        categories.ForEach(category =>
+        {
+            category.Entries.ForEach(entry =>
+            {
+                entry.Text = entry.Text.RemoveSquareBrackets();
+            });
+        });
+
+        InitializeIgnore(categories);
+        InitializeIncursionRooms(categories);
+        InitializeLogbookFactions(categories);
+        InitializeClusterJewel(categories);
+        InitializeWeaponDamageIds(categories);
     }
 
-    private void InitializeIgnore(List<TradeStatCategory> apiCategories)
+    private void InitializeIgnore(List<RawTradeStatCategory> categories)
     {
         IgnoreStatIds.Clear();
-        foreach (var apiCategory in apiCategories)
+        foreach (var apiCategory in categories)
         {
             if (!IsCategory(apiCategory, "pseudo")) { continue; }
 
@@ -55,12 +65,12 @@ public class InvariantStatsProvider
         }
     }
 
-    private void InitializeWeaponDamageIds(List<TradeStatCategory> apiCategories)
+    private void InitializeWeaponDamageIds(List<RawTradeStatCategory> categories)
     {
         FireWeaponDamageIds.Clear();
         ColdWeaponDamageIds.Clear();
         LightningWeaponDamageIds.Clear();
-        foreach (var apiCategory in apiCategories)
+        foreach (var apiCategory in categories)
         {
             if (IsCategory(apiCategory, "pseudo")) { continue; }
 
@@ -75,10 +85,10 @@ public class InvariantStatsProvider
         }
     }
 
-    private void InitializeIncursionRooms(List<TradeStatCategory> apiCategories)
+    private void InitializeIncursionRooms(List<RawTradeStatCategory> categories)
     {
         IncursionRoomStatIds.Clear();
-        foreach (var apiCategory in apiCategories)
+        foreach (var apiCategory in categories)
         {
             if (!IsCategory(apiCategory, "pseudo")) { continue; }
 
@@ -86,10 +96,10 @@ public class InvariantStatsProvider
         }
     }
 
-    private void InitializeLogbookFactions(List<TradeStatCategory> apiCategories)
+    private void InitializeLogbookFactions(List<RawTradeStatCategory> categories)
     {
         LogbookFactionStatIds.Clear();
-        foreach (var apiCategory in apiCategories)
+        foreach (var apiCategory in categories)
         {
             if (!IsCategory(apiCategory, "pseudo")) { continue; }
 
@@ -97,9 +107,9 @@ public class InvariantStatsProvider
         }
     }
 
-    private void InitializeClusterJewel(List<TradeStatCategory> apiCategories)
+    private void InitializeClusterJewel(List<RawTradeStatCategory> categories)
     {
-        foreach (var apiCategory in apiCategories)
+        foreach (var apiCategory in categories)
         {
             if (!IsCategory(apiCategory, "enchant")) { continue; }
 
@@ -126,25 +136,9 @@ public class InvariantStatsProvider
         }
     }
 
-    private static bool IsCategory(TradeStatCategory apiCategory, string? key)
+    private static bool IsCategory(RawTradeStatCategory apiCategory, string? key)
     {
         var first = apiCategory.Entries.FirstOrDefault();
         return first?.Id.Split('.')[0] == key;
-    }
-
-    public async Task<List<TradeStatCategory>> GetList()
-    {
-        var game = await settingsService.GetGame();
-        var apiCategories = await tradeDataProvider.GetStats(game, gameLanguageProvider.InvariantLanguage.Code);
-
-        apiCategories.ForEach(category =>
-        {
-            category.Entries.ForEach(entry =>
-            {
-                entry.Text = entry.Text.RemoveSquareBrackets();
-            });
-        });
-
-        return apiCategories;
     }
 }

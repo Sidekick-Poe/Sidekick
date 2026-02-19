@@ -1,6 +1,6 @@
-namespace Sidekick.Data.Trade.Models;
+namespace Sidekick.Data.Trade.Models.Raw;
 
-public class TradeLeague
+public class RawTradeLeague
 {
     public string? Id { get; set; }
 

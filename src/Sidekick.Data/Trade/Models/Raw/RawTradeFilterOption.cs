@@ -1,6 +1,6 @@
-namespace Sidekick.Data.Trade.Models;
+namespace Sidekick.Data.Trade.Models.Raw;
 
-public class TradeFilterOption
+public class RawTradeFilterOption
 {
     public string? Id { get; set; }
     public string? Text { get; set; }

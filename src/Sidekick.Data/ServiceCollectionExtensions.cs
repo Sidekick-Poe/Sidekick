@@ -1,5 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Sidekick.Common;
+using Sidekick.Data.Fuzzy;
 using Sidekick.Data.Trade;
 
 namespace Sidekick.Data;
@@ -11,6 +13,8 @@ public static class ServiceCollectionExtensions
     {
         services.TryAddSingleton<DataProvider>();
         services.TryAddSingleton<TradeDataProvider>();
+        services.AddSingleton<IFuzzyService, FuzzyService>();
+        services.AddSidekickInitializableService<TradeInvariantStatProvider>();
 
         return services;
     }

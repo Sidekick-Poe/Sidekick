@@ -3,13 +3,13 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Trade.ApiStats;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.AutoSelect;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Trade;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -17,7 +17,7 @@ public class WeaponDamageProperty(
     GameType game,
     IGameLanguageProvider gameLanguageProvider,
     IStringLocalizer<PoeResources> resources,
-    IInvariantStatsProvider invariantStatsProvider) : PropertyDefinition
+    TradeInvariantStatProvider invariantStatProvider) : PropertyDefinition
 {
     private Regex RangePattern { get; } = new(@"([\d,\.]+)-([\d,\.]+)", RegexOptions.Compiled);
 
@@ -97,9 +97,9 @@ public class WeaponDamageProperty(
     {
         if (game == GameType.PathOfExile2) return;
 
-        var damageMods = invariantStatsProvider.FireWeaponDamageIds.ToList();
-        damageMods.AddRange(invariantStatsProvider.ColdWeaponDamageIds);
-        damageMods.AddRange(invariantStatsProvider.LightningWeaponDamageIds);
+        var damageMods = invariantStatProvider.FireWeaponDamageIds.ToList();
+        damageMods.AddRange(invariantStatProvider.ColdWeaponDamageIds);
+        damageMods.AddRange(invariantStatProvider.LightningWeaponDamageIds);
 
         var itemMods = item.Stats.Where(x => x.ApiInformation.Any(y => damageMods.Contains(y.Id ?? string.Empty))).ToList();
         if (itemMods.Count == 0) return;
@@ -123,9 +123,9 @@ public class WeaponDamageProperty(
                 var range = new DamageRange(min, max);
 
                 var ids = itemMods[matchIndex].ApiInformation.Where(x => x.Id != null).Select(x => x.Id!).ToList();
-                var isFire = invariantStatsProvider.FireWeaponDamageIds.Any(x => ids.Contains(x));
-                var isCold = invariantStatsProvider.ColdWeaponDamageIds.Any(x => ids.Contains(x));
-                var isLightning = invariantStatsProvider.LightningWeaponDamageIds.Any(x => ids.Contains(x));
+                var isFire = invariantStatProvider.FireWeaponDamageIds.Any(x => ids.Contains(x));
+                var isCold = invariantStatProvider.ColdWeaponDamageIds.Any(x => ids.Contains(x));
+                var isLightning = invariantStatProvider.LightningWeaponDamageIds.Any(x => ids.Contains(x));
 
                 if (isFire) item.Properties.FireDamage = range;
                 else if (isCold) item.Properties.ColdDamage = range;

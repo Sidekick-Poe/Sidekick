@@ -76,7 +76,7 @@ public class DataProvider
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
         await using var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None);
         await JsonSerializer.SerializeAsync(fs, data, JsonOptions);
-        logger.LogInformation($"Saved {game.GetValueAttribute()}/{filePath}");
+        logger.LogInformation($"Saved {path}");
     }
 
     public async Task Write(GameType game, string filePath, Stream stream)
@@ -87,7 +87,7 @@ public class DataProvider
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
         await using var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None);
         await stream.CopyToAsync(fs);
-        logger.LogInformation($"Saved {game.GetValueAttribute()}/{filePath}");
+        logger.LogInformation($"Saved {path}");
     }
 
     public async Task<TResult> Read<TResult>(GameType game, string filePath)

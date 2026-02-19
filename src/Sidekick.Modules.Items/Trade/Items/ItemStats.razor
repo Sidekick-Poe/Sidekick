@@ -4,6 +4,7 @@
 @using Sidekick.Apis.Poe.Trade.ApiStats
 @using Sidekick.Apis.Poe.Trade.Trade.Items.Models
 @using Sidekick.Apis.Poe.Trade.Trade.Items.Results
+@using Sidekick.Common.Enums
 
 <ItemSeparator Rarity="Result.Item.Rarity"/>
 @foreach (var line in Stats)
@@ -130,9 +131,17 @@
             yield return new StatLine(text: text)
             {
                 BlockIndex = block,
-                Category = ApiStatsProvider.GetStatCategory(id),
+                Category = GetStatCategory(id),
                 Tier = mod?.Tier,
             };
+        }
+
+        yield break;
+
+        StatCategory GetStatCategory(string id)
+        {
+            var value = id.Split('.').First();
+            return value.GetEnumFromValue<StatCategory>();
         }
     }
 

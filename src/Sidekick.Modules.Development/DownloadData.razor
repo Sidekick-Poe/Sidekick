@@ -7,6 +7,7 @@
 @using Sidekick.Common.Ui.Buttons
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Data.Trade.Models
+@using Sidekick.Data.Trade.Models.Raw
 
 <FormFieldset Legend="Preload Data">
     <FormInput Label="Folder Path (/data)"
@@ -111,7 +112,7 @@
         foreach (var game in games)
         {
             LogMessage($"[{game.GetValueAttribute()}] Analyzing items.");
-            await AnalyzePath<TradeItemCategory>(game, "items", AnalyzeItems);
+            await AnalyzePath<RawTradeItemCategory>(game, "items", AnalyzeItems);
         }
     }
 
@@ -137,7 +138,7 @@
     }
 
     private void AnalyzeItems(IGameLanguage language,
-        FetchResult<TradeItemCategory> result)
+        FetchResult<RawTradeItemCategory> result)
     {
         var itemCount = result.Result.SelectMany(x => x.Entries).Count();
         LogMessage($"[{language.Code}] {itemCount} items found.");

@@ -7,6 +7,7 @@ using Sidekick.Common.Exceptions;
 using Sidekick.Data;
 using Sidekick.Data.Trade;
 using Sidekick.Data.Trade.Models;
+using Sidekick.Data.Trade.Models.Raw;
 
 namespace Sidekick.Apis.Poe.Trade.Leagues;
 
@@ -55,7 +56,7 @@ public class LeagueProvider(
 
         async Task<List<League>> Fetch(GameType game)
         {
-            var response = await tradeApiClient.FetchData<TradeLeague>(game, gameLanguageProvider.InvariantLanguage, "leagues");
+            var response = await tradeApiClient.FetchData<RawTradeLeague>(game, gameLanguageProvider.InvariantLanguage, "leagues");
             await dataProvider.Write(game, "trade/leagues.en.json", response);
             return response.Result
                 .Where(x => x is { Id: not null, Text: not null })

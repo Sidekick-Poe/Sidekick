@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Languages;
 
 namespace Sidekick.Data.Builder.Trade;
 
@@ -8,52 +9,15 @@ public class TradeDownloader(
     ILogger<TradeDownloader> logger,
     DataProvider dataProvider)
 {
-    private sealed record TradeLanguageInfo(string Code, string Poe1Api, string Poe2Api);
+    private static string GetFileName(IGameLanguage language, string path)
+        => $"{path}.{language.Code}.json";
 
-    private static readonly List<TradeLanguageInfo> Languages = new()
+    private static string GetApiBase(IGameLanguage language, GameType game)
     {
-        new("en",
-            Poe1Api: "https://www.pathofexile.com/api/trade/",
-            Poe2Api: "https://www.pathofexile.com/api/trade2/"),
-        new("de",
-            Poe1Api: "https://de.pathofexile.com/api/trade/",
-            Poe2Api: "https://de.pathofexile.com/api/trade2/"),
-        new("es",
-            Poe1Api: "https://es.pathofexile.com/api/trade/",
-            Poe2Api: "https://es.pathofexile.com/api/trade2/"),
-        new("fr",
-            Poe1Api: "https://fr.pathofexile.com/api/trade/",
-            Poe2Api: "https://fr.pathofexile.com/api/trade2/"),
-        new("ja",
-            Poe1Api: "https://jp.pathofexile.com/api/trade/",
-            Poe2Api: "https://jp.pathofexile.com/api/trade2/"),
-        new("ko",
-            Poe1Api: "https://poe.game.daum.net/api/trade/",
-            Poe2Api: "https://poe.game.daum.net/api/trade2/"),
-        new("pt",
-            Poe1Api: "https://br.pathofexile.com/api/trade/",
-            Poe2Api: "https://br.pathofexile.com/api/trade2/"),
-        new("ru",
-            Poe1Api: "https://ru.pathofexile.com/api/trade/",
-            Poe2Api: "https://ru.pathofexile.com/api/trade2/"),
-        new("th",
-            Poe1Api: "https://th.pathofexile.com/api/trade/",
-            Poe2Api: "https://th.pathofexile.com/api/trade2/"),
-        new("zh",
-            Poe1Api: "http://www.pathofexile.tw/api/trade/",
-            Poe2Api: "http://www.pathofexile.tw/api/trade2/"),
-    };
-
-    private static string GetFileName(string langCode, string path)
-        => $"{path}.{langCode}.json";
-
-    private static string GetApiBase(string langCode, GameType game)
-    {
-        var lang = Languages.First(l => l.Code == langCode);
-        return game == GameType.PathOfExile2 ? lang.Poe2Api : lang.Poe1Api;
+        return game == GameType.PathOfExile2 ? language.Poe2TradeApiBaseUrl : language.PoeTradeApiBaseUrl;
     }
 
-    public async Task DownloadAll()
+    public async Task Download(IGameLanguage language)
     {
         using var http = new HttpClient();
         http.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Sidekick.Data", "1.0"));
@@ -61,19 +25,20 @@ public class TradeDownloader(
 
         List<string> paths = ["items", "stats", "static", "filters"];
 
-        foreach (var game in new[] { GameType.PathOfExile1, GameType.PathOfExile2 })
+        foreach (var game in new[]
+                 {
+                     GameType.PathOfExile1,
+                     GameType.PathOfExile2
+                 })
         {
             // Download leagues once (English, invariant)
-            var leaguesUrl = GetApiBase("en", game) + "data/leagues";
-            await DownloadToFile(http, leaguesUrl, game, GetFileName("en", "leagues"));
+            var leaguesUrl = GetApiBase(language, game) + "data/leagues";
+            await DownloadToFile(http, leaguesUrl, game, GetFileName(language, "leagues"));
 
-            foreach (var language in Languages)
+            foreach (var path in paths)
             {
-                foreach (var path in paths)
-                {
-                    var url = GetApiBase(language.Code, game) + "data/" + path;
-                    await DownloadToFile(http, url, game, GetFileName(language.Code, path));
-                }
+                var url = GetApiBase(language, game) + "data/" + path;
+                await DownloadToFile(http, url, game, GetFileName(language, path));
             }
         }
     }
@@ -85,11 +50,12 @@ public class TradeDownloader(
             logger.LogInformation($"GET {url}");
             using var response = await http.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
             response.EnsureSuccessStatusCode();
-            await dataProvider.Write(game, $"trade/{fileName}", await response.Content.ReadAsStreamAsync());
+            await dataProvider.Write(game, $"trade/raw/{fileName}", await response.Content.ReadAsStreamAsync());
         }
         catch (Exception ex)
         {
             logger.LogError(ex, $"Failed for {url}: {ex.Message}");
+            throw;
         }
     }
 }

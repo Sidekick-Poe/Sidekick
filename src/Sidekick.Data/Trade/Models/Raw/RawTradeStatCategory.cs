@@ -1,10 +1,10 @@
-namespace Sidekick.Data.Trade.Models;
+namespace Sidekick.Data.Trade.Models.Raw;
 
-public class TradeItemCategory
+public class RawTradeStatCategory
 {
     public string? Id { get; set; }
     public string? Label { get; set; }
-    public List<TradeItem> Entries { get; set; } = new();
+    public List<RawTradeStat> Entries { get; set; } = new();
 
     public override string ToString() => $"{Label} - {Entries.Count} entries";
 }

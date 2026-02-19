@@ -2,7 +2,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Sidekick.Apis.Poe.Trade.ApiItems;
 using Sidekick.Apis.Poe.Trade.ApiStatic;
 using Sidekick.Apis.Poe.Trade.ApiStats;
-using Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Clients;
 using Sidekick.Apis.Poe.Trade.Leagues;
 using Sidekick.Apis.Poe.Trade.Localization;
@@ -32,14 +31,12 @@ public static class StartupExtensions
 
         services.AddSingleton<IItemTradeService, ItemTradeService>();
         services.AddSingleton<ILeagueProvider, LeagueProvider>();
-        services.AddSingleton<IFuzzyService, FuzzyService>();
         services.AddSingleton<IApiInformationParser, ApiInformationParser>();
 
         services.AddSidekickInitializableService<IItemParser, ItemParser>();
         services.AddSidekickInitializableService<IPropertyParser, PropertyParser>();
         services.AddSidekickInitializableService<IApiItemProvider, ApiItemProvider>();
         services.AddSidekickInitializableService<IApiStaticDataProvider, ApiStaticDataProvider>();
-        services.AddSidekickInitializableService<IInvariantStatsProvider, InvariantStatsProvider>();
         services.AddSidekickInitializableService<IApiStatsProvider, ApiStatsProvider>();
         services.AddSidekickInitializableService<IStatParser, StatParser>();
         services.AddSidekickInitializableService<IPseudoParser, PseudoParser>();

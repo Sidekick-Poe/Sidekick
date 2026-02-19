@@ -22,6 +22,7 @@ using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
 using Sidekick.Data;
+using Sidekick.Data.Trade;
 using Xunit;
 namespace Sidekick.Apis.Poe.Tests;
 
@@ -32,7 +33,7 @@ public abstract class ParserFixture : IAsyncLifetime
 
     private Task? initializationTask;
 
-    public IInvariantStatsProvider InvariantStatsProvider { get; private set; } = null!;
+    public TradeInvariantStatProvider InvariantStatProvider { get; private set; } = null!;
     public IItemParser Parser { get; private set; } = null!;
     public IGameLanguageProvider GameLanguageProvider { get; private set; } = null!;
     public ITradeFilterProvider TradeFilterProvider { get; private set; } = null!;
@@ -82,7 +83,7 @@ public abstract class ParserFixture : IAsyncLifetime
         await initializationTask;
 
         Parser = TestContext.Services.GetRequiredService<IItemParser>();
-        InvariantStatsProvider = TestContext.Services.GetRequiredService<IInvariantStatsProvider>();
+        InvariantStatProvider = TestContext.Services.GetRequiredService<TradeInvariantStatProvider>();
         GameLanguageProvider = TestContext.Services.GetRequiredService<IGameLanguageProvider>();
         PropertyParser = TestContext.Services.GetRequiredService<IPropertyParser>();
         TradeFilterProvider = TestContext.Services.GetRequiredService<ITradeFilterProvider>();

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Items;
+using Sidekick.Apis.Poe.Languages;
 
 namespace Sidekick.Data.Builder.Game;
 
@@ -25,18 +26,19 @@ public class RepoeDownloader(
         new("zh", "Traditional Chinese/"),
     };
 
-    private static string GetFileName(string langCode, string path)
-        => $"{path}.{langCode}.json";
+    private static string GetFileName(IGameLanguage language, string path)
+        => $"{path}.{language.Code}.json";
 
-    public async Task DownloadAll()
+    public async Task Download(IGameLanguage language)
     {
-        await DownloadPoe1();
-        await DownloadPoe2();
+        await DownloadPoe1(language);
+        await DownloadPoe2(language);
     }
 
-    private async Task DownloadPoe1()
+    private async Task DownloadPoe1(IGameLanguage language)
     {
         using var http = new HttpClient();
+        var repoeLanguage = Languages.First(x => x.Code == language.Code);
 
         List<RepoeFile> files =
         [
@@ -45,29 +47,22 @@ public class RepoeDownloader(
 
         foreach (var file in files)
         {
-            foreach (var language in Languages)
-            {
-                var url = "https://repoe-fork.github.io/" + language.LanguageSlug + file.FilePath;
-                await DownloadToFile(http, url, GameType.PathOfExile1, GetFileName(language.Code, file.FileName));
-            }
+            var url = "https://repoe-fork.github.io/" + repoeLanguage.LanguageSlug + file.FilePath;
+            await DownloadToFile(http, url, GameType.PathOfExile1, GetFileName(language, file.FileName));
         }
     }
 
-    private async Task DownloadPoe2()
+    private async Task DownloadPoe2(IGameLanguage language)
     {
         using var http = new HttpClient();
+        var repoeLanguage = Languages.First(x => x.Code == language.Code);
 
-        List<RepoeFile> files =
-        [
-        ];
+        List<RepoeFile> files = [];
 
         foreach (var file in files)
         {
-            foreach (var language in Languages)
-            {
-                var url = "https://repoe-fork.github.io/poe2/" + language.LanguageSlug + file.FilePath;
-                await DownloadToFile(http, url, GameType.PathOfExile2, GetFileName(language.Code, file.FileName));
-            }
+            var url = "https://repoe-fork.github.io/poe2/" + repoeLanguage.LanguageSlug + file.FilePath;
+            await DownloadToFile(http, url, GameType.PathOfExile2, GetFileName(language, file.FileName));
         }
     }
 
@@ -83,6 +78,7 @@ public class RepoeDownloader(
         catch (Exception ex)
         {
             logger.LogError(ex, $"Failed for {url}: {ex.Message}");
+            throw;
         }
     }
 }

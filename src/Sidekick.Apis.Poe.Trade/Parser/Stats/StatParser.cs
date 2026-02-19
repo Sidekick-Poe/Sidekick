@@ -6,17 +6,18 @@ using Sidekick.Apis.Poe.Extensions;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Trade.ApiStats;
-using Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Enums;
 using Sidekick.Common.Settings;
+using Sidekick.Data.Fuzzy;
+using Sidekick.Data.Trade.Models;
 namespace Sidekick.Apis.Poe.Trade.Parser.Stats;
 
 public class StatParser
 (
-    IApiStatsProvider apiStatsProvider,
     IFuzzyService fuzzyService,
+    IApiStatsProvider apiStatsProvider,
     ISettingsService settingsService,
     IGameLanguageProvider gameLanguageProvider,
     IStringLocalizer<PoeResources> resources
@@ -96,7 +97,7 @@ public class StatParser
         }
     }
 
-    private static IEnumerable<StatDefinition> MatchStatPatterns(TextBlock block, int lineIndex, IReadOnlyCollection<StatDefinition> allAvailablePatterns)
+    private static IEnumerable<TradeStatDefinition> MatchStatPatterns(TextBlock block, int lineIndex, IReadOnlyCollection<TradeStatDefinition> allAvailablePatterns)
     {
         foreach (var pattern in allAvailablePatterns)
         {
@@ -115,20 +116,20 @@ public class StatParser
         }
     }
 
-    private IEnumerable<StatDefinition> MatchStatFuzzily(TextBlock block, int lineIndex, IReadOnlyCollection<StatDefinition> allAvailablePatterns)
+    private IEnumerable<TradeStatDefinition> MatchStatFuzzily(TextBlock block, int lineIndex, IReadOnlyCollection<TradeStatDefinition> allAvailablePatterns)
     {
         var category = block.Lines[lineIndex].Text.ParseCategory();
         if (category == StatCategory.Mutated) category = StatCategory.Explicit;
 
         var cleanLine = block.Lines[lineIndex].Text.RemoveCategory();
-        var fuzzySingleLine = fuzzyService.CleanFuzzyText(cleanLine);
+        var fuzzySingleLine = fuzzyService.CleanFuzzyText(gameLanguageProvider.Language, cleanLine);
         string? fuzzyDoubleLine = null;
         if (lineIndex < block.Lines.Count - 1)
         {
-            fuzzyDoubleLine = fuzzyService.CleanFuzzyText(cleanLine + " " + block.Lines[lineIndex + 1].Text);
+            fuzzyDoubleLine = fuzzyService.CleanFuzzyText(gameLanguageProvider.Language, cleanLine + " " + block.Lines[lineIndex + 1].Text);
         }
 
-        var results = new List<(int Ratio, StatDefinition Pattern)>();
+        var results = new List<(int Ratio, TradeStatDefinition Pattern)>();
         var resultsLock = new object();// Lock object to synchronize access to results
 
         Parallel.ForEach(allAvailablePatterns,
@@ -162,28 +163,21 @@ public class StatParser
         }
     }
 
-    private IReadOnlyCollection<StatDefinition> GetAllAvailablePatterns(Item item)
+    private IReadOnlyCollection<TradeStatDefinition> GetAllAvailablePatterns(Item item)
     {
         return item.Properties.ItemClass switch
         {
-            ItemClass.SanctumRelic =>
-            [
-                .. apiStatsProvider.Definitions[StatCategory.Sanctum]
-            ],
-            ItemClass.Tablet =>
-            [
-                .. apiStatsProvider.Definitions[StatCategory.Implicit],
-                .. apiStatsProvider.Definitions[StatCategory.Explicit]
-            ],
-            _ =>
-            [
-                .. apiStatsProvider.Definitions.SelectMany(x => x.Value)
-            ]
+            ItemClass.SanctumRelic => apiStatsProvider.Definitions
+                .Where(x => x.Category == StatCategory.Sanctum)
+                .ToList(),
+            ItemClass.Tablet => apiStatsProvider.Definitions
+                .Where(x => x.Category == StatCategory.Implicit || x.Category == StatCategory.Explicit)
+                .ToList(),
+            _ => apiStatsProvider.Definitions.ToList(),
         };
-
     }
 
-    private Stat CreateStat(TextBlock block, List<TextLine> lines, List<StatDefinition> definitions, bool matchedFuzzily)
+    private Stat CreateStat(TextBlock block, List<TextLine> lines, List<TradeStatDefinition> definitions, bool matchedFuzzily)
     {
         var text = string.Join('\n', lines.Select(x => x.Text));
         var category = text.ParseCategory();
@@ -195,7 +189,7 @@ public class StatParser
             MatchedFuzzily = matchedFuzzily,
         };
 
-        var fuzzyLine = fuzzyService.CleanFuzzyText(text);
+        var fuzzyLine = fuzzyService.CleanFuzzyText(gameLanguageProvider.Language, text);
         var filteredDefinitions = definitions
             .DistinctBy(x => x.Id)
             .OrderByDescending(x => Fuzz.Ratio(fuzzyLine, x.FuzzyText))
@@ -219,17 +213,20 @@ public class StatParser
                 },
             });
 
-            foreach (var secondaryDefinition in definition.SecondaryDefinitions)
+            if (definition.SecondaryDefinitions != null)
             {
-                stat.ApiInformation.Add(new(text: secondaryDefinition.Text)
+                foreach (var secondaryDefinition in definition.SecondaryDefinitions)
                 {
-                    Id = secondaryDefinition.Id,
-                    Category = category switch
+                    stat.ApiInformation.Add(new(text: secondaryDefinition.Text)
                     {
-                        StatCategory.Mutated => StatCategory.Mutated,
-                        _ => secondaryDefinition.Category,
-                    },
-                });
+                        Id = secondaryDefinition.Id,
+                        Category = category switch
+                        {
+                            StatCategory.Mutated => StatCategory.Mutated,
+                            _ => secondaryDefinition.Category,
+                        },
+                    });
+                }
             }
         }
 
@@ -252,7 +249,7 @@ public class StatParser
         return stat;
     }
 
-    private static void ParseStatValue(Stat stat, StatDefinition? definition)
+    private static void ParseStatValue(Stat stat, TradeStatDefinition? definition)
     {
         switch (definition)
         {

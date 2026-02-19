@@ -2,14 +2,14 @@ using System.Text.RegularExpressions;
 using Romanization;
 using Sidekick.Apis.Poe.Languages;
 using Sidekick.Apis.Poe.Languages.Implementations;
-namespace Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
+namespace Sidekick.Data.Fuzzy;
 
-public class FuzzyService(IGameLanguageProvider gameLanguageProvider) : IFuzzyService
+public class FuzzyService : IFuzzyService
 {
     private readonly Regex cleanFuzzyPattern = new("[-+0-9%#]");
     private readonly Regex trimPattern = new(@"\s+");
 
-    public string CleanFuzzyText(string text)
+    public string CleanFuzzyText(IGameLanguage language, string text)
     {
         if (string.IsNullOrEmpty(text))
         {
@@ -19,8 +19,8 @@ public class FuzzyService(IGameLanguageProvider gameLanguageProvider) : IFuzzySe
         text = cleanFuzzyPattern.Replace(text, string.Empty);
         text = trimPattern.Replace(text, " ").Trim();
 
-        if (gameLanguageProvider.Language is GameLanguageKo) text = RomanizeKorean(text);
-        if (gameLanguageProvider.Language is GameLanguageJa) text = RomanizeJapanese(text);
+        if (language is GameLanguageKo) text = RomanizeKorean(text);
+        if (language is GameLanguageJa) text = RomanizeJapanese(text);
 
         return text;
     }
@@ -32,14 +32,12 @@ public class FuzzyService(IGameLanguageProvider gameLanguageProvider) : IFuzzySe
         KoreanRomanization ??= new Korean.RevisedRomanization();
         try
         {
-            text = KoreanRomanization.Process(text);
+            return KoreanRomanization.Process(text);
         }
         catch (Exception)
         {
-            // Do nothing if the romanization fails.
+            return text;
         }
-
-        return text;
     }
 
     private static Japanese.KanjiReadings? JapaneseRomanization { get; set; }
@@ -49,14 +47,12 @@ public class FuzzyService(IGameLanguageProvider gameLanguageProvider) : IFuzzySe
         JapaneseRomanization ??= new Japanese.KanjiReadings();
         try
         {
-            text = JapaneseRomanization.Process(text);
+            return JapaneseRomanization.Process(text);
         }
         catch (Exception)
         {
-            // Do nothing if the romanization fails.
+            return text;
         }
-
-        return text;
     }
 
 }

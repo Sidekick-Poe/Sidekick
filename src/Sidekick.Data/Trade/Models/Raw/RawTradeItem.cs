@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
 using Sidekick.Apis.Poe.Items;
-namespace Sidekick.Data.Trade.Models;
+namespace Sidekick.Data.Trade.Models.Raw;
 
-public class TradeItem
+public class RawTradeItem
 {
     public string? Name { get; init; }
 
@@ -13,7 +13,7 @@ public class TradeItem
     [JsonPropertyName("disc")]
     public string? Discriminator { get; init; }
 
-    public TradeItemFlags? Flags { get; init; }
+    public RawTradeItemFlags? Flags { get; init; }
 
     [JsonIgnore]
     public string? Category { get; set; }

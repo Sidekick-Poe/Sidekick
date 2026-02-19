@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Trade.ApiStats.Fuzzy;
 using Sidekick.Apis.Poe.Trade.Localization;
 using Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions.Models;
 using Sidekick.Apis.Poe.Trade.Trade.Filters;
@@ -15,6 +14,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests;
 using Sidekick.Apis.Poe.Trade.Trade.Items.Requests.Filters;
 using Sidekick.Common.Enums;
+using Sidekick.Data.Fuzzy;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
@@ -56,7 +56,7 @@ public class ItemClassProperty : PropertyDefinition
         {
             Id = x.Id,
             Text = x.Text,
-            FuzzyText = x.Text is null ? null : fuzzyService.CleanFuzzyText(x.Text),
+            FuzzyText = x.Text is null ? null : fuzzyService.CleanFuzzyText(gameLanguageProvider.Language, x.Text),
         });
     }
 
@@ -180,7 +180,7 @@ public class ItemClassProperty : PropertyDefinition
             Id = itemClass.GetValueAttribute(),
             Text = text,
             Pattern = BuildRegex(labels),
-            FuzzyText = text is null ? null : fuzzyService.CleanFuzzyText(text),
+            FuzzyText = text is null ? null : fuzzyService.CleanFuzzyText(gameLanguageProvider.Language, text),
         };
     }
 
@@ -212,7 +212,7 @@ public class ItemClassProperty : PropertyDefinition
         var categoryToMatch = new ItemClassDefinition()
         {
             Text = classLine,
-            FuzzyText = fuzzyService.CleanFuzzyText(classLine)
+            FuzzyText = fuzzyService.CleanFuzzyText(gameLanguageProvider.Language, classLine)
         };
         var apiItemCategoryId = Process.ExtractOne(categoryToMatch, ApiItemClassDefinitions.Value, x => x.FuzzyText, ScorerCache.Get<DefaultRatioScorer>())?.Value?.Id ?? null;
 

@@ -1,37 +1,43 @@
 ﻿using Sidekick.Apis.Poe.Items;
 using Sidekick.Data.Trade.Models;
+using Sidekick.Data.Trade.Models.Raw;
 
 namespace Sidekick.Data.Trade;
 
 public class TradeDataProvider(DataProvider dataProvider)
 {
-    public async Task<List<TradeLeague>> GetLeagues(GameType gameType)
+    public async Task<List<RawTradeLeague>> GetLeagues(GameType gameType)
     {
-        var result = await dataProvider.Read<TradeResult<List<TradeLeague>>>(gameType, "trade/leagues.en.json");
+        var result = await dataProvider.Read<RawTradeResult<List<RawTradeLeague>>>(gameType, "trade/raw/leagues.en.json");
         return result.Result;
     }
 
-    public async Task<List<TradeItemCategory>> GetItems(GameType gameType, string language)
+    public async Task<List<RawTradeItemCategory>> GetItems(GameType gameType, string language)
     {
-        var result = await dataProvider.Read<TradeResult<List<TradeItemCategory>>>(gameType, $"trade/items.{language}.json");
+        var result = await dataProvider.Read<RawTradeResult<List<RawTradeItemCategory>>>(gameType, $"trade/raw/items.{language}.json");
         return result.Result;
     }
 
-    public async Task<List<TradeStaticItemCategory>> GetStaticItems(GameType gameType, string language)
+    public async Task<List<RawTradeStaticItemCategory>> GetStaticItems(GameType gameType, string language)
     {
-        var result = await dataProvider.Read<TradeResult<List<TradeStaticItemCategory>>>(gameType, $"trade/static.{language}.json");
+        var result = await dataProvider.Read<RawTradeResult<List<RawTradeStaticItemCategory>>>(gameType, $"trade/raw/static.{language}.json");
         return result.Result;
     }
 
-    public async Task<List<TradeStatCategory>> GetStats(GameType gameType, string language)
+    public async Task<List<RawTradeStatCategory>> GetRawStats(GameType gameType, string language)
     {
-        var result = await dataProvider.Read<TradeResult<List<TradeStatCategory>>>(gameType, $"trade/stats.{language}.json");
+        var result = await dataProvider.Read<RawTradeResult<List<RawTradeStatCategory>>>(gameType, $"trade/raw/stats.{language}.json");
         return result.Result;
     }
 
-    public async Task<List<TradeFilterCategory>> GetFilters(GameType gameType, string language)
+    public async Task<List<TradeStatDefinition>> GetStats(GameType gameType, string language)
     {
-        var result = await dataProvider.Read<TradeResult<List<TradeFilterCategory>>>(gameType, $"trade/filters.{language}.json");
+        return await dataProvider.Read<List<TradeStatDefinition>>(gameType, $"trade/stats.{language}.json");
+    }
+
+    public async Task<List<RawTradeFilterCategory>> GetFilters(GameType gameType, string language)
+    {
+        var result = await dataProvider.Read<RawTradeResult<List<RawTradeFilterCategory>>>(gameType, $"trade/raw/filters.{language}.json");
         return result.Result;
     }
 }

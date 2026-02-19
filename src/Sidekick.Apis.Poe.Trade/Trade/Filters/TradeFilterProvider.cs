@@ -6,8 +6,7 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters.Definitions;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Settings;
 using Sidekick.Data.Trade;
-using Sidekick.Data.Trade.Models;
-using TradeFilter = Sidekick.Data.Trade.Models.TradeFilter;
+using Sidekick.Data.Trade.Models.Raw;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters;
 
 public class TradeFilterProvider
@@ -18,27 +17,27 @@ public class TradeFilterProvider
     IServiceProvider serviceProvider
 ) : ITradeFilterProvider
 {
-    public TradeFilter? TypeCategory => GetApiFilter("type_filters", "category");
-    public TradeFilter? TradePrice => GetApiFilter("trade_filters", "price");
-    public TradeFilter? TradeIndexed => GetApiFilter("trade_filters", "indexed");
-    public TradeFilter? Desecrated => GetApiFilter("misc_filters", "desecrated");
-    public TradeFilter? Veiled => GetApiFilter("misc_filters", "veiled");
-    public TradeFilter? Fractured => GetApiFilter("misc_filters", "fractured_item");
-    public TradeFilter? Mirrored => GetApiFilter("misc_filters", "mirrored");
-    public TradeFilter? Foulborn => GetApiFilter("misc_filters", "foulborn_item");
-    public TradeFilter? Sanctified => GetApiFilter("misc_filters", "sanctified");
+    public RawTradeFilter? TypeCategory => GetApiFilter("type_filters", "category");
+    public RawTradeFilter? TradePrice => GetApiFilter("trade_filters", "price");
+    public RawTradeFilter? TradeIndexed => GetApiFilter("trade_filters", "indexed");
+    public RawTradeFilter? Desecrated => GetApiFilter("misc_filters", "desecrated");
+    public RawTradeFilter? Veiled => GetApiFilter("misc_filters", "veiled");
+    public RawTradeFilter? Fractured => GetApiFilter("misc_filters", "fractured_item");
+    public RawTradeFilter? Mirrored => GetApiFilter("misc_filters", "mirrored");
+    public RawTradeFilter? Foulborn => GetApiFilter("misc_filters", "foulborn_item");
+    public RawTradeFilter? Sanctified => GetApiFilter("misc_filters", "sanctified");
 
-    public TradeFilterCategory? WeaponCategory => GetApiFilterCategory("weapon_filters");
-    public TradeFilterCategory? ArmourCategory => GetApiFilterCategory("armour_filters");
-    public TradeFilterCategory? EquipmentCategory => GetApiFilterCategory("equipment_filters");
-    public TradeFilterCategory? SocketCategory => GetApiFilterCategory("socket_filters");
-    public TradeFilterCategory? RequirementsCategory => GetApiFilterCategory("req_filters");
-    public TradeFilterCategory? MiscellaneousCategory => GetApiFilterCategory("misc_filters");
-    public TradeFilterCategory? TradeCategory => GetApiFilterCategory("trade_filters");
-    public TradeFilterCategory? EndgameCategory => GetApiFilterCategory("map_filters");
-    public TradeFilterCategory? MapCategory => GetApiFilterCategory("map_filters");
+    public RawTradeFilterCategory? WeaponCategory => GetApiFilterCategory("weapon_filters");
+    public RawTradeFilterCategory? ArmourCategory => GetApiFilterCategory("armour_filters");
+    public RawTradeFilterCategory? EquipmentCategory => GetApiFilterCategory("equipment_filters");
+    public RawTradeFilterCategory? SocketCategory => GetApiFilterCategory("socket_filters");
+    public RawTradeFilterCategory? RequirementsCategory => GetApiFilterCategory("req_filters");
+    public RawTradeFilterCategory? MiscellaneousCategory => GetApiFilterCategory("misc_filters");
+    public RawTradeFilterCategory? TradeCategory => GetApiFilterCategory("trade_filters");
+    public RawTradeFilterCategory? EndgameCategory => GetApiFilterCategory("map_filters");
+    public RawTradeFilterCategory? MapCategory => GetApiFilterCategory("map_filters");
 
-    private List<TradeFilterCategory> Filters { get; set; } = [];
+    private List<RawTradeFilterCategory> Filters { get; set; } = [];
 
     /// <inheritdoc/>
     public int Priority => 200;
@@ -50,12 +49,12 @@ public class TradeFilterProvider
         Filters = await tradeDataProvider.GetFilters(game, gameLanguageProvider.Language.Code);
     }
 
-    public TradeFilterCategory? GetApiFilterCategory(string categoryId)
+    public RawTradeFilterCategory? GetApiFilterCategory(string categoryId)
     {
         return Filters.FirstOrDefault(x => x.Id == categoryId);
     }
 
-    public TradeFilter? GetApiFilter(string categoryId, string filterId)
+    public RawTradeFilter? GetApiFilter(string categoryId, string filterId)
     {
         return GetApiFilterCategory(categoryId)?.Filters.FirstOrDefault(x => x.Id == filterId);
     }

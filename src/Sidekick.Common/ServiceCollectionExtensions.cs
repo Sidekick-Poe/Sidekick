@@ -90,6 +90,18 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
+    public static IServiceCollection AddSidekickInitializableService<TService>(
+        this IServiceCollection services)
+        where TService : class, IInitializableService
+    {
+        services.AddSingleton<TService>();
+        services.Configure<SidekickConfiguration>(configuration =>
+        {
+            configuration.InitializableServices.Add(typeof(TService));
+        });
+        return services;
+    }
+
     /// <summary>
     ///     Adds an input handler to the application
     /// </summary>

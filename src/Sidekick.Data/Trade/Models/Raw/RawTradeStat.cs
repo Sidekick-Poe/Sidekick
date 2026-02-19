@@ -1,10 +1,10 @@
-namespace Sidekick.Data.Trade.Models;
+namespace Sidekick.Data.Trade.Models.Raw;
 
-public record TradeStat
+public record RawTradeStat
 {
     public required string Id { get; init; }
     public required string Text { get; set; }
     public required string Type { get; init; }
 
-    public TradeStatOptions? Option { get; set; }
+    public RawTradeStatOptions? Option { get; set; }
 }
