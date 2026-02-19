@@ -40,4 +40,9 @@ public class TradeDataProvider(DataProvider dataProvider)
         var result = await dataProvider.Read<RawTradeResult<List<RawTradeFilterCategory>>>(gameType, $"trade/raw/filters.{language}.json");
         return result.Result;
     }
+
+    public async Task<TradeInvariantStats> GetInvariantStats(GameType gameType)
+    {
+        return await dataProvider.Read<TradeInvariantStats>(gameType, $"trade/stats.invariant.json");
+    }
 }

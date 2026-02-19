@@ -60,7 +60,7 @@ public class LeagueProvider(
             await dataProvider.Write(game, "trade/leagues.en.json", response);
             return response.Result
                 .Where(x => x is { Id: not null, Text: not null })
-                .Where(x => x is { Realm: not TradeLeagueRealm.PC, Realm: not TradeLeagueRealm.Poe2 })
+                .Where(x => x.Realm is TradeLeagueRealm.PC or TradeLeagueRealm.Poe2)
                 .Select(x => new League(game, $"{game.GetValueAttribute()}.{x.Id}", x.Text!))
                 .ToList();
         }
@@ -82,7 +82,7 @@ public class LeagueProvider(
             var data = await tradeDataProvider.GetLeagues(game);
             return data
                 .Where(x => x is { Id: not null, Text: not null })
-                .Where(x => x is { Realm: not TradeLeagueRealm.PC, Realm: not TradeLeagueRealm.Poe2 })
+                .Where(x => x.Realm is TradeLeagueRealm.PC or TradeLeagueRealm.Poe2)
                 .Select(x => new League(game, $"{game.GetValueAttribute()}.{x.Id}", x.Text!))
                 .ToList();
         }

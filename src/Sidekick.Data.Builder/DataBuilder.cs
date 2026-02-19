@@ -3,7 +3,7 @@ using Sidekick.Apis.Poe.Languages;
 using Sidekick.Data.Builder.Game;
 using Sidekick.Data.Builder.Ninja;
 using Sidekick.Data.Builder.Trade;
-using Sidekick.Data.Trade;
+
 namespace Sidekick.Data.Builder;
 
 public class DataBuilder(
@@ -13,7 +13,7 @@ public class DataBuilder(
     TradeDownloader tradeDownloader,
     TradeStatBuilder tradeStatBuilder,
     RepoeDownloader repoeDownloader,
-    TradeInvariantStatProvider tradeInvariantStatProvider,
+    TradeInvariantStatBuilder tradeInvariantStatBuilder,
     IGameLanguageProvider gameLanguageProvider)
 {
     private bool InvariantBuilt { get; set; }
@@ -24,6 +24,8 @@ public class DataBuilder(
 
         InvariantBuilt = false;
         dataProvider.DeleteAll();
+
+        await BuildInvariant();
 
         foreach (var language in gameLanguageProvider.GetList())
         {
@@ -59,7 +61,9 @@ public class DataBuilder(
         logger.LogInformation("Building invariant data file.");
 
         await ninjaDownloader.Download();
-        await tradeInvariantStatProvider.Initialize();
+
+        await tradeInvariantStatBuilder.Build();
+
         InvariantBuilt = true;
 
         logger.LogInformation("Invariant data file built.");

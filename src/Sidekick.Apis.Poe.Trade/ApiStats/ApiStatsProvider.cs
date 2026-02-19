@@ -3,6 +3,7 @@ using Sidekick.Apis.Poe.Languages;
 using Sidekick.Common.Settings;
 using Sidekick.Data.Trade;
 using Sidekick.Data.Trade.Models;
+
 namespace Sidekick.Apis.Poe.Trade.ApiStats;
 
 public class ApiStatsProvider
@@ -14,6 +15,8 @@ public class ApiStatsProvider
 {
     public List<TradeStatDefinition> Definitions { get; private set; } = [];
 
+    public TradeInvariantStats InvariantStats { get; private set; } = new();
+
     /// <inheritdoc/>
     public int Priority => 200;
 
@@ -22,6 +25,7 @@ public class ApiStatsProvider
     {
         var game = await settingsService.GetGame();
         Definitions = await tradeDataProvider.GetStats(game, currentGameLanguage.Language.Code);
+        InvariantStats = await tradeDataProvider.GetInvariantStats(game);
     }
 
     public bool IsMatch(string id, string text)

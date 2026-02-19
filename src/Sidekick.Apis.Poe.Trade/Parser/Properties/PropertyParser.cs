@@ -9,7 +9,6 @@ using Sidekick.Apis.Poe.Trade.Trade.Filters;
 using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Settings;
-using Sidekick.Data.Trade;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Properties;
 
@@ -20,8 +19,7 @@ public class PropertyParser
     IApiItemProvider apiItemProvider,
     ITradeFilterProvider tradeFilterProvider,
     ISettingsService settingsService,
-    IStringLocalizer<PoeResources> resources,
-    TradeInvariantStatProvider invariantStatProvider
+    IStringLocalizer<PoeResources> resources
 ) : IPropertyParser
 {
     public int Priority => 300;
@@ -47,7 +45,7 @@ public class PropertyParser
             new EnergyShieldProperty(game, currentGameLanguage),
             new BlockChanceProperty(game, currentGameLanguage),
 
-            new WeaponDamageProperty(game, currentGameLanguage, resources, invariantStatProvider),
+            new WeaponDamageProperty(game, currentGameLanguage, serviceProvider, resources),
             new PhysicalDpsProperty(game, resources),
             new ElementalDpsProperty(game, resources),
             new ChaosDpsProperty(game, resources),

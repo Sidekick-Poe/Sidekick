@@ -14,7 +14,6 @@ public static class ServiceCollectionExtensions
         services.TryAddSingleton<DataProvider>();
         services.TryAddSingleton<TradeDataProvider>();
         services.TryAddSingleton<IFuzzyService, FuzzyService>();
-        services.AddSidekickInitializableService<TradeInvariantStatProvider>();
 
         return services;
     }

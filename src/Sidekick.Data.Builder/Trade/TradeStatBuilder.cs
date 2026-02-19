@@ -12,7 +12,6 @@ namespace Sidekick.Data.Builder.Trade;
 public class TradeStatBuilder(
     TradeDataProvider tradeDataProvider,
     IFuzzyService fuzzyService,
-    TradeInvariantStatProvider tradeInvariantStatProvider,
     DataProvider dataProvider)
 {
     private record StatReplaceEntry(Regex Pattern, string Replacement);
@@ -33,6 +32,7 @@ public class TradeStatBuilder(
     private async Task Build(GameType game, IGameLanguage language)
     {
         var apiCategories = await tradeDataProvider.GetRawStats(game, language.Code);
+        var invariantStats = await tradeDataProvider.GetInvariantStats(game);
 
         ReplacementPatterns = BuildReplacementPatterns(language);
         var definitions = new List<TradeStatDefinition>();
@@ -44,13 +44,16 @@ public class TradeStatBuilder(
 
             foreach (var entry in apiCategory.Entries)
             {
+                if (invariantStats.IgnoreStatIds.Contains(entry.Id)) continue;
+
                 definitions.AddRange(GetDefinitions(language, statCategory, entry));
             }
         }
 
         ComputeSecondaryDefinitions();
-        ComputeSpecialPseudoPattern(tradeInvariantStatProvider.IncursionRoomStatIds);
-        ComputeSpecialPseudoPattern(tradeInvariantStatProvider.LogbookFactionStatIds);
+
+        ComputeSpecialPseudoPattern(invariantStats.IncursionRoomStatIds);
+        ComputeSpecialPseudoPattern(invariantStats.LogbookFactionStatIds);
 
         await dataProvider.Write(game, $"trade/stats.{language.Code}.json", definitions);
 
@@ -133,8 +136,6 @@ public class TradeStatBuilder(
 
     private IEnumerable<TradeStatDefinition> GetDefinitions(IGameLanguage language, StatCategory statCategory, RawTradeStat entry)
     {
-        if (tradeInvariantStatProvider.IgnoreStatIds.Contains(entry.Id)) yield break;
-
         entry.Text = entry.Text.RemoveSquareBrackets();
 
         if (entry.Option?.Options.Count > 0)
