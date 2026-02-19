@@ -27,12 +27,6 @@ public static class StringExtensions
         return SquareBracketPattern.Replace(text, "$1");
     }
 
-
-    public static string? GetUrlSlugForLeague(this string? leagueId)
-    {
-        return leagueId?.Split('.', 2).ElementAtOrDefault(1);
-    }
-
     public static GameType GetGameFromLeagueId(this string? leagueId)
     {
         return leagueId

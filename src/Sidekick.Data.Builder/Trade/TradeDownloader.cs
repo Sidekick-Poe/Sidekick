@@ -19,11 +19,17 @@ public class TradeDownloader(
 
     public async Task Download(IGameLanguage language)
     {
+        await DownloadPath(language, "items");
+        await DownloadPath(language, "stats");
+        await DownloadPath(language, "static");
+        await DownloadPath(language, "filters");
+    }
+
+    public async Task DownloadPath(IGameLanguage language, string path)
+    {
         using var http = new HttpClient();
         http.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Sidekick.Data", "1.0"));
         http.DefaultRequestHeaders.TryAddWithoutValidation("X-Powered-By", "Sidekick");
-
-        List<string> paths = ["items", "stats", "static", "filters"];
 
         foreach (var game in new[]
                  {
@@ -31,15 +37,8 @@ public class TradeDownloader(
                      GameType.PathOfExile2
                  })
         {
-            // Download leagues once (English, invariant)
-            var leaguesUrl = GetApiBase(language, game) + "data/leagues";
-            await DownloadToFile(http, leaguesUrl, game, GetFileName(language, "leagues"));
-
-            foreach (var path in paths)
-            {
-                var url = GetApiBase(language, game) + "data/" + path;
-                await DownloadToFile(http, url, game, GetFileName(language, path));
-            }
+            var url = GetApiBase(language, game) + "data/" + path;
+            await DownloadToFile(http, url, game, GetFileName(language,path));
         }
     }
 

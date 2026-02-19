@@ -6,10 +6,15 @@ namespace Sidekick.Data.Trade;
 
 public class TradeDataProvider(DataProvider dataProvider)
 {
-    public async Task<List<RawTradeLeague>> GetLeagues(GameType gameType)
+    public async Task<List<RawTradeLeague>> GetRawLeagues(GameType gameType)
     {
         var result = await dataProvider.Read<RawTradeResult<List<RawTradeLeague>>>(gameType, "trade/raw/leagues.en.json");
         return result.Result;
+    }
+
+    public async Task<List<TradeLeague>> GetLeagues(GameType gameType)
+    {
+        return await dataProvider.Read<List<TradeLeague>>(gameType, "trade/leagues.invariant.json");
     }
 
     public async Task<List<RawTradeItemCategory>> GetItems(GameType gameType, string language)

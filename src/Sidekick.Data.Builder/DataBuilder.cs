@@ -11,6 +11,7 @@ public class DataBuilder(
     DataProvider dataProvider,
     NinjaDownloader ninjaDownloader,
     TradeDownloader tradeDownloader,
+    TradeLeagueBuilder  tradeLeagueBuilder,
     TradeStatBuilder tradeStatBuilder,
     RepoeDownloader repoeDownloader,
     TradeInvariantStatBuilder tradeInvariantStatBuilder,
@@ -18,12 +19,19 @@ public class DataBuilder(
 {
     private bool InvariantBuilt { get; set; }
 
-    public async Task BuildAll()
+    public async Task DownloadAndBuildAll()
     {
         logger.LogInformation("Building all data files.");
 
         InvariantBuilt = false;
         dataProvider.DeleteAll();
+
+
+        foreach (var language in gameLanguageProvider.GetList())
+        {
+            var languageDetails = gameLanguageProvider.GetLanguage(language.LanguageCode);
+            await Download(languageDetails);
+        }
 
         await BuildInvariant();
 
@@ -36,18 +44,23 @@ public class DataBuilder(
         logger.LogInformation("Built all data files.");
     }
 
-    public async Task Build(IGameLanguage language)
+    public async Task Download(IGameLanguage language)
     {
-        logger.LogInformation($"Building {language.Code} data file.");
+        logger.LogInformation($"Downloading {language.Code} data files.");
 
         await tradeDownloader.Download(language);
         await repoeDownloader.Download(language);
 
-        await BuildInvariant();
+        logger.LogInformation($"Downloaded {language.Code} data file.");
+    }
+
+    public async Task Build(IGameLanguage language)
+    {
+        logger.LogInformation($"Building {language.Code} data files.");
 
         await tradeStatBuilder.Build(language);
 
-        logger.LogInformation($"Built {language.Code} data file.");
+        logger.LogInformation($"Built {language.Code} data files.");
     }
 
     public async Task BuildInvariant()
@@ -58,14 +71,14 @@ public class DataBuilder(
             return;
         }
 
-        logger.LogInformation("Building invariant data file.");
+        logger.LogInformation("Building invariant data files.");
 
+        await tradeLeagueBuilder.Build();
         await ninjaDownloader.Download();
-
         await tradeInvariantStatBuilder.Build();
 
         InvariantBuilt = true;
 
-        logger.LogInformation("Invariant data file built.");
+        logger.LogInformation("Invariant data files built.");
     }
 }

@@ -10,7 +10,7 @@ internal sealed class CommandExecutor(
     {
         try
         {
-            await dataBuilder.BuildAll();
+            await dataBuilder.DownloadAndBuildAll();
             return 0;
         }
         catch (Exception ex)

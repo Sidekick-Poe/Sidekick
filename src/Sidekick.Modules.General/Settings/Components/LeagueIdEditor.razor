@@ -35,11 +35,11 @@
     {
         var leagues = await LeagueProvider.GetList(true);
         Options = leagues
-                  .GroupBy(x => x.Id)
+                  .GroupBy(x => x.Value)
                   .Select(
                       x => new SelectOption()
                           {
-                              Value = x.First().Id,
+                              Value = x.First().Value,
                               Label = x.First().Text,
                               Group = Resources[x.First().Game.ToString()]
                           })
