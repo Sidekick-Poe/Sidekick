@@ -20,18 +20,11 @@ public class CurrentGameLanguage(
     public async Task Initialize()
     {
         var languageCode = await settingsService.GetString(SettingKeys.LanguageParser) ?? EnglishLanguageCode;
-        language = gameLanguageProvider.GetLanguage(languageCode);
+        language = gameLanguageProvider.GetList()
+            .FirstOrDefault(x => x.Code == languageCode);
     }
 
-    public bool IsEnglish()
-    {
-        return Language.GetType() == gameLanguageProvider.InvariantLanguage.GetType();
-    }
+    public bool IsEnglish() => Language.Code == "en";
 
-    public bool IsChinese()
-    {
-        var languages = gameLanguageProvider.GetList();
-        var chineseLanguage = languages.FirstOrDefault(x => x.LanguageCode == "zh");
-        return chineseLanguage?.ImplementationType == Language.GetType();
-    }
+    public bool IsChinese() => Language.Code == "zh";
 }

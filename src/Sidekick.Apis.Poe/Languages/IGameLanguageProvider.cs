@@ -4,7 +4,5 @@ public interface IGameLanguageProvider
 {
     IGameLanguage InvariantLanguage { get; }
 
-    List<GameLanguageAttribute> GetList();
-
-    IGameLanguage GetLanguage(string? languageCode);
+    List<IGameLanguage> GetList();
 }

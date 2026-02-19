@@ -27,12 +27,12 @@
         Language = await SettingsService.GetString(SettingKeys.LanguageParser);
         var languages = GameLanguageProvider.GetList();
         Options = languages
-                  .OrderBy(x => x.Name)
+                  .OrderBy(x => x.Label)
                   .Select(
                       x => new SelectOption()
                           {
-                              Value = x.LanguageCode,
-                              Label = $"{new CultureInfo(x.LanguageCode).DisplayName} ({x.LanguageCode})",
+                              Value = x.Code,
+                              Label = $"{new CultureInfo(x.Code).DisplayName} ({x.Code})",
                           })
                   .ToList();
 

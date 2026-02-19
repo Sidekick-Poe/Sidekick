@@ -29,16 +29,14 @@ public class DataBuilder(
 
         foreach (var language in gameLanguageProvider.GetList())
         {
-            var languageDetails = gameLanguageProvider.GetLanguage(language.LanguageCode);
-            await Download(languageDetails);
+            await Download(language);
         }
 
         await BuildInvariant();
 
         foreach (var language in gameLanguageProvider.GetList())
         {
-            var languageDetails = gameLanguageProvider.GetLanguage(language.LanguageCode);
-            await Build(languageDetails);
+            await Build(language);
         }
 
         logger.LogInformation("Built all data files.");

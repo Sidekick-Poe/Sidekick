@@ -1,10 +1,10 @@
 
 namespace Sidekick.Apis.Poe.Languages.Implementations;
 
-[GameLanguage("Korean", "ko")]
 public class GameLanguageKo : IGameLanguage
 {
     public string Code => "ko";
+    public string Label => "Korean";
 
     public string PoeTradeBaseUrl => "https://poe.game.daum.net/trade/";
     public string PoeTradeApiBaseUrl => "https://poe.game.daum.net/api/trade/";

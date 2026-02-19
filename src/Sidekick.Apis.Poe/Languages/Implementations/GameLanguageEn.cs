@@ -1,10 +1,10 @@
 
 namespace Sidekick.Apis.Poe.Languages.Implementations;
 
-[GameLanguage("English", "en")]
 public class GameLanguageEn : IGameLanguage
 {
     public string Code => "en";
+    public string Label => "English";
 
     public string PoeTradeBaseUrl => "https://www.pathofexile.com/trade/";
     public string PoeTradeApiBaseUrl => "https://www.pathofexile.com/api/trade/";
@@ -158,4 +158,5 @@ public class GameLanguageEn : IGameLanguage
         Charms = "Charms",
     };
 }
+
 

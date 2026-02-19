@@ -55,10 +55,8 @@
             {
                 await DownloadLeagues(game);
 
-                foreach (var languageAttribute in languages)
+                foreach (var language in languages)
                 {
-                    var language = languageAttribute.Build();
-
                     foreach (var path in paths)
                     {
                         var fileName = TradeApiClient.GetDataFileName(game, language, path);
@@ -119,9 +117,8 @@
     private async Task AnalyzePath<TReturn>(GameType game, string path, Action<IGameLanguage, FetchResult<TReturn>> analyzeFunc)
     {
         var languages = GameLanguageProvider.GetList();
-        foreach (var languageAttribute in languages)
+        foreach (var language in languages)
         {
-            var language = languageAttribute.Build();
             var fileName = TradeApiClient.GetDataFileName(game, language, path);
             var filePath = Path.Combine(DataFolder, fileName);
 

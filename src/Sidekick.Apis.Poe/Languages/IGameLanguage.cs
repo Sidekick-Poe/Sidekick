@@ -5,6 +5,8 @@ public interface IGameLanguage
 {
     string Code { get; }
 
+    string Label { get; }
+
     string PoeTradeBaseUrl { get; }
 
     string PoeTradeApiBaseUrl { get; }

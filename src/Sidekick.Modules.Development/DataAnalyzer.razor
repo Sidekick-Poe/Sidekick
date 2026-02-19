@@ -44,10 +44,8 @@
 
         try
         {
-            foreach (var languageAttribute in languages)
+            foreach (var language in languages)
             {
-                var language = languageAttribute.Build();
-
                 foreach (var path in paths)
                 {
                     // Construct POE1 URLs and filenames
