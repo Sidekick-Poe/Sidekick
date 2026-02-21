@@ -12,8 +12,6 @@ public class LeagueProvider(
     TradeLeagueBuilder tradeLeagueBuilder,
     ILogger<LeagueProvider> logger) : ILeagueProvider
 {
-    private readonly ILogger logger = logger;
-
     public async Task<List<TradeLeague>> GetList(bool fromCache)
     {
         if (!fromCache)

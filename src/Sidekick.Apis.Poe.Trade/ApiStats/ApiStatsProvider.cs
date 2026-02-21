@@ -27,10 +27,4 @@ public class ApiStatsProvider
         Definitions = await tradeDataProvider.GetStats(game, currentGameLanguage.Language.Code);
         InvariantStats = await tradeDataProvider.GetInvariantStats(game);
     }
-
-    public bool IsMatch(string id, string text)
-    {
-        var definition = Definitions.FirstOrDefault(definition => definition.Id == id);
-        return definition?.Pattern.IsMatch(text) ?? false;
-    }
 }

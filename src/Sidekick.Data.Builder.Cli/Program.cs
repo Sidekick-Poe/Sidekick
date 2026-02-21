@@ -4,7 +4,6 @@ using Sidekick.Apis.Poe;
 using Sidekick.Common;
 using Sidekick.Data;
 using Sidekick.Data.Builder;
-using Sidekick.Data.Builder.Cli;
 
 #region Services
 
@@ -17,7 +16,7 @@ services.AddLogging(o =>
     o.AddConsole();
 });
 
-services.AddSingleton<CommandExecutor>();
+
 services.AddSidekickCommon(SidekickApplicationType.DataBuilder);
 services.AddSidekickPoeApi();
 services.AddSidekickData();
@@ -26,5 +25,16 @@ services.AddSidekickDataBuilder();
 #endregion
 
 var serviceProvider = services.BuildServiceProvider();
-var executor = serviceProvider.GetRequiredService<CommandExecutor>();
-return await executor.Execute();
+
+try
+{
+    var dataBuilder = serviceProvider.GetRequiredService<DataBuilder>();
+    await dataBuilder.DownloadAndBuildAll();
+    return 0;
+}
+catch (Exception ex)
+{
+    var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+    logger.LogCritical(ex, "Failed to execute command.");
+    return 2;
+}

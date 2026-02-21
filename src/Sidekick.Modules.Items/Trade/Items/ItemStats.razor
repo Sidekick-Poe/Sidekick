@@ -123,7 +123,7 @@
                 continue;
             }
 
-            var text = texts.FirstOrDefault(x => ApiStatsProvider.IsMatch(id, x)) ?? texts[index];
+            var text = texts[index];
             text = text.RemoveSquareBrackets();
 
             var mod = mods.FirstOrDefault(x => x.Magnitudes?.Any(y => y.Hash == id) == true);

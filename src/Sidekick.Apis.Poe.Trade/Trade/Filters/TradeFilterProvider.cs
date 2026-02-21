@@ -18,8 +18,6 @@ public class TradeFilterProvider
 ) : ITradeFilterProvider
 {
     public RawTradeFilter? TypeCategory => GetApiFilter("type_filters", "category");
-    public RawTradeFilter? TradePrice => GetApiFilter("trade_filters", "price");
-    public RawTradeFilter? TradeIndexed => GetApiFilter("trade_filters", "indexed");
     public RawTradeFilter? Desecrated => GetApiFilter("misc_filters", "desecrated");
     public RawTradeFilter? Veiled => GetApiFilter("misc_filters", "veiled");
     public RawTradeFilter? Fractured => GetApiFilter("misc_filters", "fractured_item");
@@ -49,7 +47,7 @@ public class TradeFilterProvider
         Filters = await tradeDataProvider.GetFilters(game, currentGameLanguage.Language.Code);
     }
 
-    public RawTradeFilterCategory? GetApiFilterCategory(string categoryId)
+    private RawTradeFilterCategory? GetApiFilterCategory(string categoryId)
     {
         return Filters.FirstOrDefault(x => x.Id == categoryId);
     }
@@ -59,11 +57,11 @@ public class TradeFilterProvider
         return GetApiFilterCategory(categoryId)?.Filters.FirstOrDefault(x => x.Id == filterId);
     }
 
-    public async Task<List<Types.TradeFilter>> GetFilters(Item item)
+    public async Task<List<TradeFilter>> GetFilters(Item item)
     {
         if (TradeCategory?.Title == null) return [];
 
-        var result = new List<Types.TradeFilter>();
+        var result = new List<TradeFilter>();
 
         var statusFilter = await serviceProvider.GetRequiredService<PlayerStatusFilterFactory>().GetFilter(item);
         if (statusFilter != null)
