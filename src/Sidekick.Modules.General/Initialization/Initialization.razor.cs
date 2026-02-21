@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Initialization;
+using Sidekick.Common.Cache;
 using Sidekick.Common.Exceptions;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Platform;
@@ -37,6 +38,9 @@ public partial class Initialization
     private NavigationManager NavigationManager { get; set; } = null!;
 
     [Inject]
+    private ICacheProvider CacheProvider { get; set; } = null!;
+
+    [Inject]
     private IOptions<SidekickConfiguration> Configuration { get; set; } = null!;
 
     private int Count { get; set; }
@@ -66,7 +70,7 @@ public partial class Initialization
             var previousVersion = await SettingsService.GetString(SettingKeys.Version);
             if (version != previousVersion)
             {
-                // TODO: Clear data?
+                await CacheProvider.Clear();
                 await SettingsService.Set(SettingKeys.Version, version);
             }
 

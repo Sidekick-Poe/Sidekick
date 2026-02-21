@@ -16,8 +16,4 @@
     <ProjectReference Include="..\Sidekick.Data\Sidekick.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Items\Models\" />
-  </ItemGroup>
-
 </Project>

@@ -2,6 +2,7 @@
 @using System.Globalization
 @using Microsoft.Extensions.Localization
 @using Sidekick.Apis.Poe.Languages
+@using Sidekick.Common.Cache
 @using Sidekick.Common.Ui.Forms
 
 <FormSelect Label="@Resources["Language_Parser"]"
@@ -13,6 +14,7 @@
 @inject IGameLanguageProvider GameLanguageProvider
 @inject ISettingsService SettingsService
 @inject NavigationManager NavigationManager
+@inject ICacheProvider CacheProvider
 
 @code {
 
@@ -43,7 +45,7 @@
     {
         Language = value;
         await SettingsService.Set(SettingKeys.LanguageParser, value);
-        // TODO: Clear data?
+        await CacheProvider.Clear();
         NavigationManager.NavigateTo("/initialize");
     }
 

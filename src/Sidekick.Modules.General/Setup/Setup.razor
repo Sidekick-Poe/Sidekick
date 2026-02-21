@@ -98,7 +98,6 @@
         if (apiLeaguesHash != settingsLeaguesHash)
         {
             NewLeagues = true;
-            // TODO: Rebuild data?
             await CacheProvider.Clear();
         }
 
