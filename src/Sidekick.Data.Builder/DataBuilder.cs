@@ -17,13 +17,10 @@ public class DataBuilder(
     TradeInvariantStatBuilder tradeInvariantStatBuilder,
     IGameLanguageProvider gameLanguageProvider)
 {
-    private bool InvariantBuilt { get; set; }
-
     public async Task DownloadAndBuildAll()
     {
         logger.LogInformation("Building all data files.");
 
-        InvariantBuilt = false;
         dataProvider.DeleteAll();
 
 
@@ -63,19 +60,11 @@ public class DataBuilder(
 
     public async Task BuildInvariant()
     {
-        if (InvariantBuilt)
-        {
-            logger.LogInformation("Invariant build already complete.");
-            return;
-        }
-
         logger.LogInformation("Building invariant data files.");
 
         await tradeLeagueBuilder.Build();
         await ninjaDownloader.Download();
         await tradeInvariantStatBuilder.Build();
-
-        InvariantBuilt = true;
 
         logger.LogInformation("Invariant data files built.");
     }

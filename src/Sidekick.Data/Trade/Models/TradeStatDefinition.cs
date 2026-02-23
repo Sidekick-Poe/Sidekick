@@ -41,6 +41,5 @@ public class TradeStatDefinition
     [JsonIgnore]
     public int LineCount => lineCount ??= OptionText != null ? OptionText.Split('\n').Length : Text.Split('\n').Length;
 
-    // TODO: Reduce Secondary Definitions to simply use the id to avoid repeated information in JSON
-    public List<TradeStatDefinition>? SecondaryDefinitions { get; set; }
+    public List<string>? SecondaryDefinitions { get; set; }
 }

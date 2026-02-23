@@ -9,6 +9,8 @@ using Sidekick.Common.Exceptions;
 
 namespace Sidekick.Data;
 
+public record DataFile(string Path, string Name, long Size, DateTimeOffset LastModified);
+
 public class DataProvider
 {
     private readonly IOptions<SidekickConfiguration> configuration;
@@ -18,10 +20,13 @@ public class DataProvider
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+        Converters =
+        {
+            new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
+        }
     };
 
-    private string DataDirectory { get; set; }
+    public string DataDirectory { get; }
 
     public DataProvider(IOptions<SidekickConfiguration> configuration,
         ILogger<DataProvider> logger)
@@ -115,5 +120,27 @@ public class DataProvider
             Directory.Delete(DataDirectory, true);
             Directory.CreateDirectory(DataDirectory);
         }
+    }
+
+    public List<DataFile> GetFiles()
+    {
+        var files = new List<DataFile>();
+        if (!Directory.Exists(DataDirectory))
+        {
+            return files;
+        }
+
+        var directoryInfo = new DirectoryInfo(DataDirectory);
+        foreach (var file in directoryInfo.GetFiles("*", SearchOption.AllDirectories))
+        {
+            files.Add(new DataFile(
+                      Path: file.FullName,
+                      Name: Path.GetRelativePath(DataDirectory, file.FullName),
+                      Size: file.Length,
+                      LastModified: file.LastWriteTimeUtc
+                      ));
+        }
+
+        return files;
     }
 }

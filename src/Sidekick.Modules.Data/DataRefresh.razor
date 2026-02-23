@@ -1,0 +1,124 @@
+﻿@using Microsoft.Extensions.Localization
+@using Microsoft.Extensions.Logging
+@using Sidekick.Apis.Poe.Languages
+@using Sidekick.Common.Cache
+@using Sidekick.Common.Ui.Alerts
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Forms
+@using Sidekick.Common.Ui.Layouts
+@using Sidekick.Common.Ui.Localization
+@using Sidekick.Common.Ui.Modal
+@using Sidekick.Common.Ui.Progress
+@using Sidekick.Common.Ui.Typography
+@using Sidekick.Data.Builder
+@using Sidekick.Modules.Data.Localization
+
+<Modal Size="ModalSize.Medium"
+       @ref="Modal">
+    <ActivatorContent>
+        <ButtonPrimary>@Resources["Refresh"]</ButtonPrimary>
+    </ActivatorContent>
+    <HeaderContent>
+        <Heading2>@Resources["Refresh"]</Heading2>
+    </HeaderContent>
+    <ChildContent>
+        <TextBase>@Resources["Refresh_Description"]</TextBase>
+        <LayoutDivider/>
+        @if (Loading)
+        {
+            <AlertInfo>@Resources["Loading"]</AlertInfo>
+            <ProgressBar Indeterminate="true"/>
+        }
+        else if (Error)
+        {
+            <AlertError>@Resources["Error"]</AlertError>
+        }
+        else
+        {
+            <div class="flex flex-wrap gap-x-4 gap-y-1">
+                <FormCheckbox Value="true"
+                              Readonly="true">@GameLanguageProvider.InvariantLanguage.Label</FormCheckbox>
+
+                @foreach (var language in GameLanguageProvider.GetList())
+                {
+                    if (language.Code == GameLanguageProvider.InvariantLanguage.Code) continue;
+
+                    <FormCheckbox
+                        Value="Language == language || language.Code == GameLanguageProvider.InvariantLanguage.Code"
+                        ValueChanged="v => Select(language)"
+                        Readonly="language.Code == GameLanguageProvider.InvariantLanguage.Code">@language.Label</FormCheckbox>
+                }
+            </div>
+        }
+    </ChildContent>
+    <FooterContent>
+        <div class="flex justify-end gap-2">
+            <ButtonSecondary OnClick="context.Hide">@UiResources["Close"]</ButtonSecondary>
+            <ButtonPrimary OnClick="Refresh">@Resources["Refresh"]</ButtonPrimary>
+        </div>
+    </FooterContent>
+</Modal>
+
+@inject IStringLocalizer<DataResources> Resources
+@inject IStringLocalizer<UiResources> UiResources
+@inject ICacheProvider CacheProvider
+@inject DataBuilder DataBuilder
+@inject IGameLanguageProvider GameLanguageProvider
+@inject NavigationManager NavigationManager
+@inject ILogger<DataRefresh> Logger
+
+@code {
+    [Parameter]
+    public EventCallback OnRefresh { get; set; }
+
+    private Modal? Modal { get; set; }
+
+    private bool Loading { get; set; }
+
+    private bool Error { get; set; }
+
+    private IGameLanguage? Language { get; set; }
+
+    private void Select(IGameLanguage language)
+    {
+        if (language == Language)
+        {
+            Language = null;
+            return;
+        }
+
+        Language = language;
+    }
+
+    private async Task Refresh()
+    {
+        Loading = true;
+        StateHasChanged();
+
+        try
+        {
+            await DataBuilder.Download(GameLanguageProvider.InvariantLanguage);
+            await DataBuilder.Build(GameLanguageProvider.InvariantLanguage);
+            await DataBuilder.BuildInvariant();
+
+            if (Language != null)
+            {
+                await DataBuilder.Download(Language);
+                await DataBuilder.Build(Language);
+            }
+
+            await CacheProvider.Clear();
+            await OnRefresh.InvokeAsync();
+            Modal?.Hide();
+            NavigationManager.NavigateTo("/initialize");
+        }
+        catch (Exception e)
+        {
+            Logger.LogError(e, "An error occured while downloading and building data.");
+            Error = true;
+        }
+
+        Loading = false;
+        StateHasChanged();
+    }
+}

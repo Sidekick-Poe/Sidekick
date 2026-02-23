@@ -45,6 +45,7 @@ public class TradeStatBuilder(
             foreach (var entry in apiCategory.Entries)
             {
                 if (invariantStats.IgnoreStatIds.Contains(entry.Id)) continue;
+                if (string.IsNullOrEmpty(entry.Id)) continue;
 
                 definitions.AddRange(GetDefinitions(language, statCategory, entry));
             }
@@ -68,7 +69,9 @@ public class TradeStatBuilder(
                 if (!definition.Category.HasExplicitStat()) continue;
 
                 definition.SecondaryDefinitions ??= [];
-                definition.SecondaryDefinitions.AddRange(explicitDefinitions.Where(x => x.Text == definition.Text));
+                definition.SecondaryDefinitions.AddRange(explicitDefinitions
+                                                             .Where(x => x.Text == definition.Text)
+                                                             .Select(x => x.Id));
             }
         }
 

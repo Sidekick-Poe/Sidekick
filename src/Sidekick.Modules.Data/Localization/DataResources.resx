@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Reset_Cache" xml:space="preserve">
+    <value>Reset Cache</value>
+  </data>
+    <data name="KB" xml:space="preserve">
+        <value>KB</value>
+    </data>
+    <data name="Last_Updated" xml:space="preserve">
+        <value>Last Updated</value>
+    </data>
+    <data name="Data" xml:space="preserve">
+        <value>Data</value>
+    </data>
+    <data name="Refresh" xml:space="preserve">
+        <value>Refresh Data Files</value>
+    </data>
+    <data name="Open_Folder" xml:space="preserve">
+        <value>Open Data Folder</value>
+    </data>
+    <data name="Refresh_Description" xml:space="preserve">
+        <value>Refreshing your data retrieves the latest information from all available sources so your features stay up to date. Choose the languages you want to refresh. English is always included.</value>
+    </data>
+    <data name="Loading" xml:space="preserve">
+        <value>Downloading and building data... This can take a couple minutes.</value>
+    </data>
+    <data name="Error" xml:space="preserve">
+        <value>An error occured while downloading and building data files. Logs may include additional information.</value>
+    </data>
+</root>

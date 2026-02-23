@@ -2,13 +2,11 @@
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.PoeNinja.Items.Models;
 using Sidekick.Common.Settings;
-using Sidekick.Data;
 using Sidekick.Data.Ninja;
 namespace Sidekick.Apis.PoeNinja.Items;
 
 public class NinjaItemProvider(
     ISettingsService settingsService,
-    DataProvider dataProvider,
     NinjaDataProvider ninjaDataProvider) : INinjaItemProvider
 {
     private List<NinjaExchangeItem> ExchangeItems { get; } = [];

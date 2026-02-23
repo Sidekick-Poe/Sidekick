@@ -215,8 +215,11 @@ public class StatParser
 
             if (definition.SecondaryDefinitions != null)
             {
-                foreach (var secondaryDefinition in definition.SecondaryDefinitions)
+                foreach (var secondaryDefinitionId in definition.SecondaryDefinitions)
                 {
+                    var secondaryDefinition = apiStatsProvider.Definitions.FirstOrDefault(x => x.Id == secondaryDefinitionId);
+                    if(secondaryDefinition == null) continue;
+
                     stat.ApiInformation.Add(new(text: secondaryDefinition.Text)
                     {
                         Id = secondaryDefinition.Id,

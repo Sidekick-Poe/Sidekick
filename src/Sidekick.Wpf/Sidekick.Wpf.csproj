@@ -34,6 +34,7 @@
     <ProjectReference Include="..\Sidekick.Common.Updater\Sidekick.Common.Updater.csproj" />
     <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.Chat\Sidekick.Modules.Chat.csproj" />
+    <ProjectReference Include="..\Sidekick.Modules.Data\Sidekick.Modules.Data.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.Development\Sidekick.Modules.Development.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.RegexHotkeys\Sidekick.Modules.RegexHotkeys.csproj" />
     <ProjectReference Include="..\Sidekick.Modules.General\Sidekick.Modules.General.csproj" />

@@ -1,52 +1,53 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <Version>1.0.0.0</Version>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
-    <InformationalVersion>1.0.0.0</InformationalVersion>
-    <TargetFramework>net8.0</TargetFramework>
-    <ApplicationIcon>favicon.ico</ApplicationIcon>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <AssemblyName>Sidekick</AssemblyName>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <Version>1.0.0.0</Version>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <FileVersion>1.0.0.0</FileVersion>
+        <InformationalVersion>1.0.0.0</InformationalVersion>
+        <TargetFramework>net8.0</TargetFramework>
+        <ApplicationIcon>favicon.ico</ApplicationIcon>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <AssemblyName>Sidekick</AssemblyName>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Sidekick.Common.Updater\Sidekick.Common.Updater.csproj" />
-    <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj" />
-    <ProjectReference Include="..\Sidekick.Modules.Chat\Sidekick.Modules.Chat.csproj" />
-    <ProjectReference Include="..\Sidekick.Modules.Development\Sidekick.Modules.Development.csproj" />
-    <ProjectReference Include="..\Sidekick.Modules.General\Sidekick.Modules.General.csproj" />
-    <ProjectReference Include="..\Sidekick.Modules.RegexHotkeys\Sidekick.Modules.RegexHotkeys.csproj" />
-    <ProjectReference Include="..\Sidekick.Modules.Items\Sidekick.Modules.Items.csproj" />
-    <ProjectReference Include="..\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="NotificationIcon.NET" />
-    <PackageReference Include="Photino.Blazor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="wwwroot\**">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <Target Name="Copywwwroot" BeforeTargets="Build">
     <ItemGroup>
-      <WwwRootFiles Include="$(ProjectDir)..\Sidekick.Common.Ui\wwwroot\**\*.*" />
+        <ProjectReference Include="..\Sidekick.Common.Updater\Sidekick.Common.Updater.csproj"/>
+        <ProjectReference Include="..\Sidekick.Common.Platform\Sidekick.Common.Platform.csproj"/>
+        <ProjectReference Include="..\Sidekick.Modules.Chat\Sidekick.Modules.Chat.csproj"/>
+        <ProjectReference Include="..\Sidekick.Modules.Data\Sidekick.Modules.Data.csproj"/>
+        <ProjectReference Include="..\Sidekick.Modules.Development\Sidekick.Modules.Development.csproj"/>
+        <ProjectReference Include="..\Sidekick.Modules.General\Sidekick.Modules.General.csproj"/>
+        <ProjectReference Include="..\Sidekick.Modules.RegexHotkeys\Sidekick.Modules.RegexHotkeys.csproj"/>
+        <ProjectReference Include="..\Sidekick.Modules.Items\Sidekick.Modules.Items.csproj"/>
+        <ProjectReference Include="..\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj"/>
     </ItemGroup>
-    <Copy SourceFiles="@(WwwRootFiles)" DestinationFolder="$(ProjectDir)wwwroot\%(RecursiveDir)" />
-  </Target>
 
-  <Target Name="CopyData" BeforeTargets="Build">
     <ItemGroup>
-      <DataFiles Include="$(ProjectDir)..\..\data\**\*.*" />
+        <PackageReference Include="NotificationIcon.NET"/>
+        <PackageReference Include="Photino.Blazor"/>
     </ItemGroup>
-    <Copy SourceFiles="@(DataFiles)" DestinationFolder="$(ProjectDir)wwwroot\data\%(RecursiveDir)" />
-  </Target>
+
+    <ItemGroup>
+        <Content Update="wwwroot\**">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <Target Name="Copywwwroot" BeforeTargets="Build">
+        <ItemGroup>
+            <WwwRootFiles Include="$(ProjectDir)..\Sidekick.Common.Ui\wwwroot\**\*.*"/>
+        </ItemGroup>
+        <Copy SourceFiles="@(WwwRootFiles)" DestinationFolder="$(ProjectDir)wwwroot\%(RecursiveDir)"/>
+    </Target>
+
+    <Target Name="CopyData" BeforeTargets="Build">
+        <ItemGroup>
+            <DataFiles Include="$(ProjectDir)..\..\data\**\*.*"/>
+        </ItemGroup>
+        <Copy SourceFiles="@(DataFiles)" DestinationFolder="$(ProjectDir)wwwroot\data\%(RecursiveDir)"/>
+    </Target>
 
 </Project>

@@ -21,6 +21,7 @@ using Sidekick.Common.Updater;
 using Sidekick.Data;
 using Sidekick.Data.Builder;
 using Sidekick.Modules.Chat;
+using Sidekick.Modules.Data;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Items;
@@ -91,6 +92,7 @@ public class Program
 
             // Modules
             .AddSidekickChat()
+            .AddSidekickModuleData()
             .AddSidekickDevelopment()
             .AddSidekickRegexHotkeys()
             .AddSidekickGeneral()
