@@ -51,7 +51,18 @@ jobs:
         with:
           dotnet-version: 8.x
 
-      - name: Windows - Test
+      - name: Data - Publish
+        shell: bash
+        run: |
+          dotnet publish src/Sidekick.Data.Builder.Cli/Sidekick.Data.Builder.Cli.csproj -c Release -o src/Sidekick.Data.Builder.Cli/build --self-contained true
+          chmod +x ./src/Sidekick.Data.Builder.Cli/build
+
+      - name: Data - Execute
+        shell: bash
+        run: |
+          dotnet ./src/Sidekick.Data.Builder.Cli/build/Sidekick.Data.dll
+
+      - name: .NET - Test
         if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
