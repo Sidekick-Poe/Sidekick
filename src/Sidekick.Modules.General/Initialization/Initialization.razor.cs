@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Sidekick.Common;
 using Sidekick.Common.Blazor.Initialization;
 using Sidekick.Common.Cache;
@@ -31,13 +32,16 @@ public partial class Initialization
     private ISettingsService SettingsService { get; set; } = null!;
 
     [Inject]
-    private ICacheProvider CacheProvider { get; set; } = null!;
-
-    [Inject]
     private ICurrentView CurrentView { get; set; } = null!;
 
     [Inject]
     private NavigationManager NavigationManager { get; set; } = null!;
+
+    [Inject]
+    private ICacheProvider CacheProvider { get; set; } = null!;
+
+    [Inject]
+    private IOptions<SidekickConfiguration> Configuration { get; set; } = null!;
 
     private int Count { get; set; }
 
@@ -61,7 +65,7 @@ public partial class Initialization
         try
         {
             completed = 0;
-            Count = SidekickConfiguration.InitializableServices.Count;
+            Count = Configuration.Value.InitializableServices.Count;
             var version = ApplicationService.GetVersion();
             var previousVersion = await SettingsService.GetString(SettingKeys.Version);
             if (version != previousVersion)
@@ -73,7 +77,7 @@ public partial class Initialization
             // Report initial progress
             await ReportProgress();
 
-            var services = SidekickConfiguration.InitializableServices
+            var services = Configuration.Value.InitializableServices
                 .Select(serviceType =>
                 {
                     var service = ServiceProvider.GetRequiredService(serviceType);

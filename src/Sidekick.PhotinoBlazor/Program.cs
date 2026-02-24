@@ -18,7 +18,10 @@ using Sidekick.Common.Platform;
 using Sidekick.Common.Ui;
 using Sidekick.Common.Ui.Views;
 using Sidekick.Common.Updater;
+using Sidekick.Data;
+using Sidekick.Data.Builder;
 using Sidekick.Modules.Chat;
+using Sidekick.Modules.Data;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Items;
@@ -67,10 +70,14 @@ public class Program
         services
 
             // Common
-            .AddSidekickCommon()
+            .AddSidekickCommon(SidekickApplicationType.Photino)
             .AddSidekickCommonBrowser()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
             .AddSidekickCommonUi()
+
+            // Data
+            .AddSidekickData()
+            .AddSidekickDataBuilder()
 
             // Apis
             .AddSidekickGitHubApi()
@@ -86,6 +93,7 @@ public class Program
 
             // Modules
             .AddSidekickChat()
+            .AddSidekickModuleData()
             .AddSidekickDevelopment()
             .AddSidekickRegexHotkeys()
             .AddSidekickGeneral()

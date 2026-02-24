@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Sidekick.Common.Database;
 using Sidekick.Common.Database.Tables;
 using Sidekick.Common.Enums;
@@ -11,6 +12,7 @@ namespace Sidekick.Common.Settings;
 
 public class SettingsService(
     DbContextOptions<SidekickDbContext> dbContextOptions,
+    IOptions<SidekickConfiguration> sidekickConfiguration,
     ILogger<SettingsService> logger) : ISettingsService
 {
     public event Action<string[]>? OnSettingsChanged;
@@ -141,7 +143,7 @@ public class SettingsService(
             return enumFromAttribute;
         }
 
-        if (!SidekickConfiguration.DefaultSettings.TryGetValue(key, out var defaultValue))
+        if (!sidekickConfiguration.Value.DefaultSettings.TryGetValue(key, out var defaultValue))
         {
             return null;
         }
@@ -174,7 +176,7 @@ public class SettingsService(
     {
         var stringValue = GetStringValue(value);
 
-        var defaultConfiguration = SidekickConfiguration.DefaultSettings.GetValueOrDefault(key);
+        var defaultConfiguration = sidekickConfiguration.Value.DefaultSettings.GetValueOrDefault(key);
         defaultConfiguration ??= GetDefaultValue(value);
         if (defaultConfiguration != null)
         {
@@ -270,9 +272,9 @@ public class SettingsService(
         };
     }
 
-    private static TValue? GetDefault<TValue>(string key)
+    private TValue? GetDefault<TValue>(string key)
     {
-        if (SidekickConfiguration.DefaultSettings.TryGetValue(key, out var value) && value is TValue typedValue)
+        if (sidekickConfiguration.Value.DefaultSettings.TryGetValue(key, out var value) && value is TValue typedValue)
         {
             return typedValue;
         }

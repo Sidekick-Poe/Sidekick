@@ -21,21 +21,21 @@
 
     @if (Result.Item.Extended?.ArmourAtMax > 0)
     {
-        <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionArmour"
+        <ItemPropertyText Label="@CurrentGameLanguage.Language.DescriptionArmour"
                           Value="@(Result.Item.Extended?.ArmourAtMax.Value.ToString())"
                           ContentType="GetContentType(Result.Item.Extended?.ArmourAugmented)"/>
     }
 
     @if (Result.Item.Extended?.EvasionAtMax > 0)
     {
-        <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionEvasion"
+        <ItemPropertyText Label="@CurrentGameLanguage.Language.DescriptionEvasion"
                           Value="@(Result.Item.Extended?.EvasionAtMax.Value.ToString())"
                           ContentType="GetContentType(Result.Item.Extended?.EvasionAugmented)"/>
     }
 
     @if (Result.Item.Extended?.EnergyShieldAtMax > 0)
     {
-        <ItemPropertyText Label="@GameLanguageProvider.Language.DescriptionEnergyShield"
+        <ItemPropertyText Label="@CurrentGameLanguage.Language.DescriptionEnergyShield"
                           Value="@(Result.Item.Extended?.EnergyShieldAtMax.Value.ToString())"
                           ContentType="GetContentType(Result.Item.Extended?.EnergyShieldAugmented)"/>
     }
@@ -64,7 +64,7 @@
 
 @inject IStringLocalizer<PoeResources> PoeResources
 @inject IStringLocalizer<TradeResources> TradeResources
-@inject IGameLanguageProvider GameLanguageProvider
+@inject ICurrentGameLanguage CurrentGameLanguage
 
 @code {
 

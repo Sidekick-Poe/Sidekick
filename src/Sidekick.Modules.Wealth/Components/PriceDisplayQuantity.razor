@@ -1,5 +1,6 @@
 @using Sidekick.Apis.Poe.Trade.ApiStatic
-@using Sidekick.Apis.Poe.Trade.ApiStatic.Models
+@using Sidekick.Data.Trade.Models
+@using Sidekick.Data.Trade.Models.Raw
 <div class="flex flex-nowrap gap-1 leading-3 items-center">
     <div class="font-medium tracking-tight text-sm">@Quantity</div>
     <div class="font-medium text-base">&times;</div>
@@ -23,6 +24,6 @@
     [Parameter]
     public decimal Value { get; set; }
 
-    private StaticItem? ChaosItem => ApiStaticDataProvider.GetById("chaos");
+    private RawTradeStaticItem? ChaosItem => ApiStaticDataProvider.GetById("chaos");
 
 }

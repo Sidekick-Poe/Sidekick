@@ -11,11 +11,11 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class HunterProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.InfluenceHunter.ToRegexLine();
+    private Regex Pattern { get; } = currentGameLanguage.Language.InfluenceHunter.ToRegexLine();
 
-    public override string Label => gameLanguageProvider.Language.InfluenceHunter;
+    public override string Label => currentGameLanguage.Language.InfluenceHunter;
 
     public override void Parse(Item item)
     {

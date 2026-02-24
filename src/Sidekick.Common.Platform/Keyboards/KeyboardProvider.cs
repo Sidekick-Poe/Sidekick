@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using SharpHook;
 using SharpHook.Data;
 using SharpHook.Logging;
@@ -15,8 +16,8 @@ public class KeyboardProvider
 (
     ILogger<KeyboardProvider> logger,
     IServiceProvider serviceProvider,
-    IProcessProvider processProvider
-) : IKeyboardProvider, IDisposable
+    IProcessProvider processProvider,
+    IOptions<SidekickConfiguration> configuration) : IKeyboardProvider, IDisposable
 {
     private static readonly Dictionary<KeyCode, string> keyMappings = new()
     {
@@ -195,7 +196,7 @@ public class KeyboardProvider
     {
         // Initialize keybindings
         KeybindHandlers.Clear();
-        foreach (var keybindType in SidekickConfiguration.InputHandlers)
+        foreach (var keybindType in configuration.Value.InputHandlers)
         {
             var keybindHandler = serviceProvider.GetRequiredService(keybindType) as KeybindHandler;
             if (keybindHandler == null) continue;

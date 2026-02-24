@@ -11,11 +11,11 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class WarlordProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.InfluenceWarlord.ToRegexLine();
+    private Regex Pattern { get; } = currentGameLanguage.Language.InfluenceWarlord.ToRegexLine();
 
-    public override string Label => gameLanguageProvider.Language.InfluenceWarlord;
+    public override string Label => currentGameLanguage.Language.InfluenceWarlord;
 
     public override void Parse(Item item)
     {

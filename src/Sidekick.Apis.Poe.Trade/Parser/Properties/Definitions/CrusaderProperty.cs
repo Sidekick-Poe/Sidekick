@@ -11,11 +11,11 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class CrusaderProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.InfluenceCrusader.ToRegexLine();
+    private Regex Pattern { get; } = currentGameLanguage.Language.InfluenceCrusader.ToRegexLine();
 
-    public override string Label => gameLanguageProvider.Language.InfluenceCrusader;
+    public override string Label => currentGameLanguage.Language.InfluenceCrusader;
 
     public override void Parse(Item item)
     {

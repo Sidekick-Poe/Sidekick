@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.ApiStats;
-using Sidekick.Apis.Poe.Trade.ApiStats.Models;
+using Sidekick.Data.Trade.Models;
+using Sidekick.Data.Trade.Models.Raw;
 
 namespace Sidekick.Apis.Poe.Trade.Parser.Pseudo;
 
@@ -31,7 +31,7 @@ public abstract class PseudoDefinition
 
     private List<PseudoStatDefinition> Definitions { get; set; } = new();
 
-    internal void InitializeDefinition(List<ApiCategory> apiCategories, List<StatDefinition>? localizedPseudoStats)
+    internal void InitializeDefinition(List<RawTradeStatCategory> apiCategories, List<TradeStatDefinition>? localizedPseudoStats)
     {
         if (!Enabled) return;
 

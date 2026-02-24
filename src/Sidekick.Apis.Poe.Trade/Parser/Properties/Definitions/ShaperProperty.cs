@@ -11,11 +11,11 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class ShaperProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.InfluenceShaper.ToRegexLine();
+    private Regex Pattern { get; } = currentGameLanguage.Language.InfluenceShaper.ToRegexLine();
 
-    public override string Label => gameLanguageProvider.Language.InfluenceShaper;
+    public override string Label => currentGameLanguage.Language.InfluenceShaper;
 
     public override void Parse(Item item)
     {

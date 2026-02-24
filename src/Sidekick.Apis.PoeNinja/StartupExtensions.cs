@@ -16,7 +16,6 @@ public static class StartupExtensions
         services.AddSingleton<INinjaClient, NinjaClient>();
         services.AddSingleton<INinjaExchangeProvider, NinjaExchangeProvider>();
         services.AddSingleton<INinjaStashProvider, NinjaStashProvider>();
-        services.AddSingleton<INinjaPageProvider, NinjaPageProvider>();
         services.AddSingleton<INinjaIndexStateProvider, NinjaIndexStateProvider>();
         services.AddSidekickInitializableService<INinjaItemProvider, NinjaItemProvider>();
 

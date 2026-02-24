@@ -14,7 +14,7 @@ public class PoePriceInfoClient(
     ISettingsService settingsService,
     ILogger<PoePriceInfoClient> logger,
     IHttpClientFactory httpClientFactory,
-    IGameLanguageProvider gameLanguageProvider) : IPoePriceInfoClient
+    ICurrentGameLanguage currentGameLanguage) : IPoePriceInfoClient
 {
     private static JsonSerializerOptions JsonSerializerOptions { get; } = new()
     {
@@ -33,7 +33,7 @@ public class PoePriceInfoClient(
 
     public async Task<PricePrediction?> GetPricePrediction(Item item)
     {
-        if (item.Properties.Rarity != Rarity.Rare || !gameLanguageProvider.IsEnglish())
+        if (item.Properties.Rarity != Rarity.Rare || !currentGameLanguage.IsEnglish())
         {
             return null;
         }

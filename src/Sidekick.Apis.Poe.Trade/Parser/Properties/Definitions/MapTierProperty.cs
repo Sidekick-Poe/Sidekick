@@ -11,11 +11,11 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class MapTierProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionMapTier.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionMapTier.ToRegexIntCapture();
 
-    public override string Label => gameLanguageProvider.Language.DescriptionMapTier;
+    public override string Label => currentGameLanguage.Language.DescriptionMapTier;
 
     public override void Parse(Item item)
     {

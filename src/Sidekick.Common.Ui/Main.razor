@@ -1,6 +1,7 @@
+@using Microsoft.Extensions.Options
 
 <AppWrapper>
-    <Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="SidekickConfiguration.Modules">
+    <Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="Configuration.Value.Modules">
         <Found Context="routeData">
             <RouteView RouteData="@routeData"/>
         </Found>
@@ -21,3 +22,5 @@
         </NotFound>
     </Router>
 </AppWrapper>
+
+@inject IOptions<SidekickConfiguration> Configuration

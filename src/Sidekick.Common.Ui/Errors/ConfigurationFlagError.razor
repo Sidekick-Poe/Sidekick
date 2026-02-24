@@ -1,10 +1,12 @@
 ﻿
-@if (SidekickConfiguration.IsXselPackageMissing)
+@if (Configuration.Value.IsXselPackageMissing)
 {
     <AlertError>@Resources["XselPackageMissing"]</AlertError>
 }
 
 @inject IStringLocalizer<UiResources> Resources
+@inject IOptions<SidekickConfiguration> Configuration
+@using Microsoft.Extensions.Options
 @using Sidekick.Common.Ui.Localization
 @implements IDisposable
 
@@ -12,7 +14,7 @@
 
     protected override void OnInitialized()
     {
-        SidekickConfiguration.FlagChanged += SidekickConfigurationOnFlagChanged;
+        Configuration.Value.FlagChanged += SidekickConfigurationOnFlagChanged;
         base.OnInitialized();
     }
 
@@ -23,7 +25,7 @@
 
     public void Dispose()
     {
-        SidekickConfiguration.FlagChanged -= SidekickConfigurationOnFlagChanged;
+        Configuration.Value.FlagChanged -= SidekickConfigurationOnFlagChanged;
     }
 
 }

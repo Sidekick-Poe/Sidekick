@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
@@ -15,10 +16,12 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class WeaponDamageProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider,
-    IStringLocalizer<PoeResources> resources,
-    IInvariantStatsProvider invariantStatsProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage,
+    IServiceProvider serviceProvider,
+    IStringLocalizer<PoeResources> resources) : PropertyDefinition
 {
+    private readonly IApiStatsProvider apiStatsProvider = serviceProvider.GetRequiredService<IApiStatsProvider>();
+
     private Regex RangePattern { get; } = new(@"([\d,\.]+)-([\d,\.]+)", RegexOptions.Compiled);
 
     public override string Label => resources["Damage"];
@@ -34,18 +37,18 @@ public class WeaponDamageProperty(
         {
             var lineText = line.Text.Replace(".", "").Replace(",", "").Trim();
 
-            var isElemental = lineText.StartsWith(gameLanguageProvider.Language.DescriptionElementalDamage);
+            var isElemental = lineText.StartsWith(currentGameLanguage.Language.DescriptionElementalDamage);
             if (isElemental)
             {
                 ParseElementalDamage(lineText, item.Properties);
                 continue;
             }
 
-            var isPhysical = lineText.StartsWith(gameLanguageProvider.Language.DescriptionPhysicalDamage);
-            var isChaos = lineText.StartsWith(gameLanguageProvider.Language.DescriptionChaosDamage);
-            var isFire = lineText.StartsWith(gameLanguageProvider.Language.DescriptionFireDamage);
-            var isCold = lineText.StartsWith(gameLanguageProvider.Language.DescriptionColdDamage);
-            var isLightning = lineText.StartsWith(gameLanguageProvider.Language.DescriptionLightningDamage);
+            var isPhysical = lineText.StartsWith(currentGameLanguage.Language.DescriptionPhysicalDamage);
+            var isChaos = lineText.StartsWith(currentGameLanguage.Language.DescriptionChaosDamage);
+            var isFire = lineText.StartsWith(currentGameLanguage.Language.DescriptionFireDamage);
+            var isCold = lineText.StartsWith(currentGameLanguage.Language.DescriptionColdDamage);
+            var isLightning = lineText.StartsWith(currentGameLanguage.Language.DescriptionLightningDamage);
 
             if (!isPhysical && !isChaos && !isFire && !isCold && !isLightning)
             {
@@ -97,9 +100,9 @@ public class WeaponDamageProperty(
     {
         if (game == GameType.PathOfExile2) return;
 
-        var damageMods = invariantStatsProvider.FireWeaponDamageIds.ToList();
-        damageMods.AddRange(invariantStatsProvider.ColdWeaponDamageIds);
-        damageMods.AddRange(invariantStatsProvider.LightningWeaponDamageIds);
+        var damageMods = apiStatsProvider.InvariantStats.FireWeaponDamageIds.ToList();
+        damageMods.AddRange(apiStatsProvider.InvariantStats.ColdWeaponDamageIds);
+        damageMods.AddRange(apiStatsProvider.InvariantStats.LightningWeaponDamageIds);
 
         var itemMods = item.Stats.Where(x => x.ApiInformation.Any(y => damageMods.Contains(y.Id ?? string.Empty))).ToList();
         if (itemMods.Count == 0) return;
@@ -108,7 +111,7 @@ public class WeaponDamageProperty(
         // In Path of Exile 1, the elemental damage properties have (augmented) as suffix instead of the easier to parse (fire|cold|lightning).
         foreach (var line in item.Text.Blocks[1].Lines)
         {
-            var isElemental = line.Text.StartsWith(gameLanguageProvider.Language.DescriptionElementalDamage);
+            var isElemental = line.Text.StartsWith(currentGameLanguage.Language.DescriptionElementalDamage);
             if (!isElemental) continue;
 
             var lineText = line.Text.Replace(".", "").Replace(",", "").Trim();
@@ -123,9 +126,9 @@ public class WeaponDamageProperty(
                 var range = new DamageRange(min, max);
 
                 var ids = itemMods[matchIndex].ApiInformation.Where(x => x.Id != null).Select(x => x.Id!).ToList();
-                var isFire = invariantStatsProvider.FireWeaponDamageIds.Any(x => ids.Contains(x));
-                var isCold = invariantStatsProvider.ColdWeaponDamageIds.Any(x => ids.Contains(x));
-                var isLightning = invariantStatsProvider.LightningWeaponDamageIds.Any(x => ids.Contains(x));
+                var isFire = apiStatsProvider.InvariantStats.FireWeaponDamageIds.Any(x => ids.Contains(x));
+                var isCold = apiStatsProvider.InvariantStats.ColdWeaponDamageIds.Any(x => ids.Contains(x));
+                var isLightning = apiStatsProvider.InvariantStats.LightningWeaponDamageIds.Any(x => ids.Contains(x));
 
                 if (isFire) item.Properties.FireDamage = range;
                 else if (isCold) item.Properties.ColdDamage = range;

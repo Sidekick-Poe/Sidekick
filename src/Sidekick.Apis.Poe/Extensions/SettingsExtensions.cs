@@ -7,7 +7,7 @@ public static class SettingsExtensions
     public static async Task<string?> GetLeague(this ISettingsService settingsService)
     {
         var leagueId = await settingsService.GetString(SettingKeys.LeagueId);
-        return leagueId.GetUrlSlugForLeague();
+        return leagueId?.Split('.', 2).ElementAtOrDefault(1);
     }
 
     public static async Task<GameType> GetGame(this ISettingsService settingsService)

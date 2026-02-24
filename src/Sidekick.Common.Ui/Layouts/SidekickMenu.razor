@@ -1,6 +1,7 @@
-﻿@using Sidekick.Common.Platform
-@using Sidekick.Common.Ui.Localization
+﻿@using Sidekick.Common.Ui.Localization
+@using Microsoft.Extensions.Options
 @using System.Diagnostics
+
 @inherits LayoutComponentBase
 
 <MenuList>
@@ -11,7 +12,7 @@
     <MenuItem Href="/settings/game">@Resources["Game"]</MenuItem>
     <MenuItem Href="/settings/application">@Resources["Application"]</MenuItem>
 
-    @if (ApplicationService.SupportsKeybinds)
+    @if (Configuration.Value.ApplicationType.SupportsKeybinds())
     {
         <MenuItem Href="/settings/chat">@Resources["Chat_Commands"]</MenuItem>
         <MenuItem Href="/settings/regexhotkeys">@Resources["Regex_Hotkeys"]</MenuItem>
@@ -19,6 +20,7 @@
 
     <MenuLegend Legend="@Resources["Help"]" />
     <MenuItem Href="/about">@Resources["About"]</MenuItem>
+    <MenuItem Href="/data">@Resources["Data"]</MenuItem>
     <MenuItem Href="/logs">@Resources["Logs"]</MenuItem>
 
     @if (Debugger.IsAttached)
@@ -35,4 +37,4 @@
 </MenuList>
 
 @inject IStringLocalizer<UiResources> Resources
-@inject IApplicationService ApplicationService
+@inject IOptions<SidekickConfiguration> Configuration

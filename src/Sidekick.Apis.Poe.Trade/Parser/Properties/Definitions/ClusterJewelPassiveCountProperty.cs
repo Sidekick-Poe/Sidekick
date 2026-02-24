@@ -8,7 +8,7 @@ public class ClusterJewelPassiveCountProperty(
     GameType game,
     IServiceProvider serviceProvider) : PropertyDefinition
 {
-    private readonly IInvariantStatsProvider invariantStatsProvider = serviceProvider.GetRequiredService<IInvariantStatsProvider>();
+    private readonly IApiStatsProvider apiStatsProvider = serviceProvider.GetRequiredService<IApiStatsProvider>();
 
     public override string Label => "Cluster Jewel Passives";
 
@@ -40,7 +40,7 @@ public class ClusterJewelPassiveCountProperty(
 
             foreach (var stat in line.ApiInformation)
             {
-                if (stat.Id == invariantStatsProvider.ClusterJewelSmallPassiveCountStatId)
+                if (stat.Id == apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveCountStatId)
                 {
                     return (int)line.AverageValue;
                 }
@@ -61,9 +61,9 @@ public class ClusterJewelPassiveCountProperty(
 
             foreach (var apiStat in line.ApiInformation)
             {
-                if (apiStat.Id == invariantStatsProvider.ClusterJewelSmallPassiveGrantStatId)
+                if (apiStat.Id == apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantStatId)
                 {
-                    return invariantStatsProvider.ClusterJewelSmallPassiveGrantOptions[line.OptionValue.Value].Replace("\n", ", ");
+                    return apiStatsProvider.InvariantStats.ClusterJewelSmallPassiveGrantOptions[line.OptionValue.Value].Replace("\n", ", ");
                 }
             }
         }

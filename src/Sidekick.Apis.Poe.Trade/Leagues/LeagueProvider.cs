@@ -1,78 +1,39 @@
 using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Languages;
-using Sidekick.Apis.Poe.Trade.Clients;
-using Sidekick.Apis.Poe.Trade.Leagues.Models;
-using Sidekick.Common.Cache;
-using Sidekick.Common.Enums;
 using Sidekick.Common.Exceptions;
+using Sidekick.Data.Builder.Trade;
+using Sidekick.Data.Trade;
+using Sidekick.Data.Trade.Models;
 
 namespace Sidekick.Apis.Poe.Trade.Leagues;
 
 public class LeagueProvider(
-    ICacheProvider cacheProvider,
-    ITradeApiClient tradeApiClient,
-    IGameLanguageProvider gameLanguageProvider,
+    TradeDataProvider tradeDataProvider,
+    TradeLeagueBuilder tradeLeagueBuilder,
     ILogger<LeagueProvider> logger) : ILeagueProvider
 {
-    private readonly ILogger logger = logger;
-
-    public async Task<List<League>> GetList(bool fromCache)
+    public async Task<List<TradeLeague>> GetList(bool fromCache)
     {
-        if (fromCache)
+        if (!fromCache)
         {
-            var result = await cacheProvider.GetOrSet("Leagues", FetchAll, (cache) => cache.Count != 0);
-            if (result != null) return result;
-        }
-
-        try
-        {
-            var result = await FetchAll();
-            await cacheProvider.Set("Leagues", result);
-            return result;
-        }
-        catch (Exception e)
-        {
-            logger.LogError(e, "[LeagueProvider] Error fetching leagues.");
-            throw new ApiErrorException
+            try
             {
-                AdditionalInformation = ["If the official trade website is down, Sidekick will not work.", "Please try again later or open a ticket on GitHub."],
-            };
-        }
-    }
-
-    private async Task<List<League>> FetchAll()
-    {
-        await gameLanguageProvider.Initialize();
-
-        List<League> leagues = [];
-
-        leagues.AddRange(await Fetch(GameType.PathOfExile2));
-
-        leagues.AddRange(await Fetch(GameType.PathOfExile1));
-
-        return leagues;
-    }
-
-    private async Task<List<League>> Fetch(GameType game)
-    {
-        var response = await tradeApiClient.FetchData<ApiLeague>(game, gameLanguageProvider.InvariantLanguage, "leagues");
-        var leagues = new List<League>();
-        foreach (var apiLeague in response.Result)
-        {
-            if (apiLeague.Id == null || apiLeague.Text == null)
-            {
-                continue;
+                await tradeLeagueBuilder.Build();
             }
-
-            if (apiLeague.Realm != LeagueRealm.PC && apiLeague.Realm != LeagueRealm.Poe2)
+            catch (Exception e)
             {
-                continue;
+                logger.LogError(e, "[LeagueProvider] Error fetching leagues.");
+                throw new ApiErrorException
+                {
+                    AdditionalInformation = ["If the official trade website is down, Sidekick will not work.", "Please try again later or open a ticket on GitHub."],
+                };
             }
-
-            leagues.Add(new(game, $"{game.GetValueAttribute()}.{apiLeague.Id}", apiLeague.Text));
         }
 
-        return leagues;
+        return
+        [
+            ..await tradeDataProvider.GetLeagues(GameType.PathOfExile2),
+            ..await tradeDataProvider.GetLeagues(GameType.PathOfExile1),
+        ];
     }
 }

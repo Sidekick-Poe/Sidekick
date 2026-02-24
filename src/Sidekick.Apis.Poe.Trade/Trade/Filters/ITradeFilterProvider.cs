@@ -1,26 +1,25 @@
 using Sidekick.Apis.Poe.Items;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Models;
-using Sidekick.Apis.Poe.Trade.Trade.Filters.Types;
 using Sidekick.Common.Initialization;
+using Sidekick.Data.Trade.Models.Raw;
 namespace Sidekick.Apis.Poe.Trade.Trade.Filters;
 
 public interface ITradeFilterProvider : IInitializableService
 {
-    ApiFilter? TypeCategory { get; }
-    ApiFilter? Desecrated { get; }
-    ApiFilter? Veiled { get; }
-    ApiFilter? Fractured { get; }
-    ApiFilter? Mirrored { get; }
-    ApiFilter? Foulborn { get; }
-    ApiFilter? Sanctified { get; }
-    ApiFilterCategory? EquipmentCategory { get; }
-    ApiFilterCategory? WeaponCategory { get; }
-    ApiFilterCategory? ArmourCategory { get; }
-    ApiFilterCategory? SocketCategory { get; }
-    ApiFilterCategory? RequirementsCategory { get; }
-    ApiFilterCategory? MiscellaneousCategory { get; }
-    ApiFilterCategory? EndgameCategory { get; }
-    ApiFilterCategory? MapCategory { get; }
-    ApiFilter? GetApiFilter(string categoryId, string filterId);
-    Task<List<TradeFilter>> GetFilters(Item item);
+    RawTradeFilter? TypeCategory { get; }
+    RawTradeFilter? Desecrated { get; }
+    RawTradeFilter? Veiled { get; }
+    RawTradeFilter? Fractured { get; }
+    RawTradeFilter? Mirrored { get; }
+    RawTradeFilter? Foulborn { get; }
+    RawTradeFilter? Sanctified { get; }
+    RawTradeFilterCategory? EquipmentCategory { get; }
+    RawTradeFilterCategory? WeaponCategory { get; }
+    RawTradeFilterCategory? ArmourCategory { get; }
+    RawTradeFilterCategory? SocketCategory { get; }
+    RawTradeFilterCategory? RequirementsCategory { get; }
+    RawTradeFilterCategory? MiscellaneousCategory { get; }
+    RawTradeFilterCategory? EndgameCategory { get; }
+    RawTradeFilterCategory? MapCategory { get; }
+    RawTradeFilter? GetApiFilter(string categoryId, string filterId);
+    Task<List<Types.TradeFilter>> GetFilters(Item item);
 }

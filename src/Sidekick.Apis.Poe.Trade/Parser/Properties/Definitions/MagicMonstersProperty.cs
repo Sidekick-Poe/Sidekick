@@ -12,13 +12,13 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class MagicMonstersProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionMagicMonsters.ToRegexIntCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionMagicMonsters.ToRegexIntCapture();
 
-    private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionMagicMonsters.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionMagicMonsters.ToRegexIsAugmented();
 
-    public override string Label => gameLanguageProvider.Language.DescriptionMagicMonsters;
+    public override string Label => currentGameLanguage.Language.DescriptionMagicMonsters;
 
     public override void Parse(Item item)
     {

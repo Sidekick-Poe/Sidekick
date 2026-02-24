@@ -12,13 +12,13 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class AttacksPerSecondProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider) : PropertyDefinition
+    ICurrentGameLanguage currentGameLanguage) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionAttacksPerSecond.ToRegexDoubleCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionAttacksPerSecond.ToRegexDoubleCapture();
 
-    private Regex IsAugmentedPattern { get; } = gameLanguageProvider.Language.DescriptionAttacksPerSecond.ToRegexIsAugmented();
+    private Regex IsAugmentedPattern { get; } = currentGameLanguage.Language.DescriptionAttacksPerSecond.ToRegexIsAugmented();
 
-    public override string Label => gameLanguageProvider.Language.DescriptionAttacksPerSecond;
+    public override string Label => currentGameLanguage.Language.DescriptionAttacksPerSecond;
 
     public override void Parse(Item item)
     {

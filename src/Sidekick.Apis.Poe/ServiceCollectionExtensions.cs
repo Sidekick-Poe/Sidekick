@@ -8,7 +8,8 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddSidekickPoeApi(
         this IServiceCollection services)
     {
-        services.AddSidekickInitializableService<IGameLanguageProvider, GameLanguageProvider>();
+        services.AddSidekickInitializableService<ICurrentGameLanguage, CurrentGameLanguage>();
+        services.AddSingleton<IGameLanguageProvider, GameLanguageProvider>();
 
         return services;
     }

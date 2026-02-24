@@ -1,7 +1,6 @@
 @page "/setup"
 @using System.Text.Json
 @using Microsoft.Extensions.Localization
-@using Sidekick.Apis.Poe.Trade
 @using Sidekick.Apis.Poe.Trade.Leagues
 @using Sidekick.Common.Cache
 @using Sidekick.Common.Extensions
@@ -105,7 +104,7 @@
         // Check to see if we should run Setup first before running the rest of the initialization process
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
         var parserLanguage = await SettingsService.GetString(SettingKeys.LanguageParser);
-        if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Id != leagueId) || NewLeagues || parserLanguage == null)
+        if (string.IsNullOrEmpty(leagueId) || leagues.All(x => x.Value != leagueId) || NewLeagues || parserLanguage == null)
         {
             RequiresSetup = true;
         }
@@ -132,7 +131,7 @@
     {
         var leagueId = await SettingsService.GetString(SettingKeys.LeagueId);
         var leagues = await LeagueProvider.GetList(true);
-        if (leagues.All(x => x.Id != leagueId))
+        if (leagues.All(x => x.Value != leagueId))
         {
             FormInvalid = true;
             return;

@@ -18,7 +18,7 @@ namespace Sidekick.Apis.Poe.Trade.Trade.Items;
 public class ItemTradeService
 (
     ILogger<ItemTradeService> logger,
-    IGameLanguageProvider gameLanguageProvider,
+    ICurrentGameLanguage currentGameLanguage,
     ISettingsService settingsService,
     IHttpClientFactory httpClientFactory
 ) : IItemTradeService
@@ -72,7 +72,7 @@ public class ItemTradeService
             }
 
             var league = await settingsService.GetLeague();
-            var uri = new Uri($"{gameLanguageProvider.Language.GetTradeApiBaseUrl(item.Game)}search/{league}");
+            var uri = new Uri($"{currentGameLanguage.Language.GetTradeApiBaseUrl(item.Game)}search/{league}");
 
             var request = new QueryRequest()
             {
@@ -110,7 +110,7 @@ public class ItemTradeService
             logger.LogInformation($"[Trade API] Fetching Trade API Listings from Query {queryId}.");
 
             using var httpClient = httpClientFactory.CreateClient(TradeApiClient.ClientName);
-            var response = await httpClient.GetAsync(gameLanguageProvider.Language.GetTradeApiBaseUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId);
+            var response = await httpClient.GetAsync(currentGameLanguage.Language.GetTradeApiBaseUrl(game) + "fetch/" + string.Join(",", ids) + "?query=" + queryId);
             if (!response.IsSuccessStatusCode)
             {
                 return [];
@@ -134,7 +134,7 @@ public class ItemTradeService
 
     public async Task<Uri> GetTradeUri(GameType game, string queryId)
     {
-        var baseUri = new Uri(gameLanguageProvider.Language.GetTradeBaseUrl(game) + "search/");
+        var baseUri = new Uri(currentGameLanguage.Language.GetTradeBaseUrl(game) + "search/");
         var league = await settingsService.GetLeague();
         return new Uri(baseUri, $"{league}/{queryId}");
     }

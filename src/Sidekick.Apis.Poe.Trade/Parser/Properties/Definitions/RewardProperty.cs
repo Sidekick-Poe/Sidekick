@@ -13,12 +13,12 @@ namespace Sidekick.Apis.Poe.Trade.Parser.Properties.Definitions;
 
 public class RewardProperty(
     GameType game,
-    IGameLanguageProvider gameLanguageProvider,
+    ICurrentGameLanguage currentGameLanguage,
     IApiItemProvider apiItemProvider) : PropertyDefinition
 {
-    private Regex Pattern { get; } = gameLanguageProvider.Language.DescriptionReward.ToRegexStringCapture();
+    private Regex Pattern { get; } = currentGameLanguage.Language.DescriptionReward.ToRegexStringCapture();
 
-    public override string Label => gameLanguageProvider.Language.DescriptionReward;
+    public override string Label => currentGameLanguage.Language.DescriptionReward;
 
     public override void Parse(Item item)
     {

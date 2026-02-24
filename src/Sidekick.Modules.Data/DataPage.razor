@@ -1,0 +1,124 @@
+@using Microsoft.Extensions.Localization
+@using Sidekick.Common.Ui.App
+@using Sidekick.Common.Cache
+@using Sidekick.Common.Folder
+@using Sidekick.Common.Ui.Buttons
+@using Sidekick.Common.Ui.Layouts
+@using Sidekick.Common.Ui.Typography
+@using Sidekick.Data
+@using Sidekick.Modules.Data.Localization
+
+<LayoutMenu>
+    <AppContainer>
+        <div class="flex flex-nowrap justify-between">
+            <Heading1>@Resources["Data"]</Heading1>
+
+            <div class="flex flex-nowrap gap-2">
+                <ButtonSecondary
+                    OnClick="()=>FolderProvider.OpenFolder(DataProvider.DataDirectory)">@Resources["Open_Folder"]
+                </ButtonSecondary>
+                <DataRefresh OnRefresh="Refresh"/>
+                <ButtonPrimary OnClick="ResetCache">@Resources["Reset_Cache"]</ButtonPrimary>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 mt-3 gap-3">
+            <div class="flex flex-col items-stretch gap-2">
+                <Heading2>Path of Exile 1</Heading2>
+                <Heading3>poe.ninja</Heading3>
+                @foreach (var file in PoE1NinjaFiles)
+                {
+                    @RenderDataFile(file)
+                }
+
+                <Heading3 Class="mt-4">Trade</Heading3>
+                @foreach (var file in PoE1TradeFiles)
+                {
+                    @RenderDataFile(file)
+                }
+            </div>
+            <div class="flex flex-col items-stretch gap-2">
+                <Heading2>Path of Exile 2</Heading2>
+                <Heading3>poe.ninja</Heading3>
+                @foreach (var file in PoE2NinjaFiles)
+                {
+                    @RenderDataFile(file)
+                }
+
+                <Heading3 Class="mt-4">Trade</Heading3>
+                @foreach (var file in PoE2TradeFiles)
+                {
+                    @RenderDataFile(file)
+                }
+            </div>
+        </div>
+    </AppContainer>
+</LayoutMenu>
+
+@page "/data"
+@inject ICacheProvider CacheProvider
+@inject DataProvider DataProvider
+@inject IFolderProvider FolderProvider
+@inject NavigationManager NavigationManager
+@inject IStringLocalizer<DataResources> Resources
+
+@code {
+
+    private List<DataFile> PoE1NinjaFiles { get; set; } = [];
+    private List<DataFile> PoE1TradeFiles { get; set; } = [];
+
+    private List<DataFile> PoE2NinjaFiles { get; set; } = [];
+    private List<DataFile> PoE2TradeFiles { get; set; } = [];
+
+    private RenderFragment RenderDataFile(DataFile file) =>
+        @<div class="rounded-lg bg-stone-950 px-2 py-1 gap-3">
+            <div class="text-white">@file.Name</div>
+            <div class="flex flex-nowrap gap-3 text-neutral-300">
+                <TextCaption>@(Math.Ceiling(file.Size / 1024d)) @Resources["KB"]</TextCaption>
+                <div class="flex flex-nowrap gap-1">
+                    <TextCaption>@Resources["Last_Updated"]:</TextCaption>
+                    <TextAge Date="file.LastModified"/>
+                </div>
+            </div>
+        </div>;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Refresh();
+        await base.OnInitializedAsync();
+    }
+
+    private void Refresh()
+    {
+        var files = DataProvider.GetFiles();
+
+        var poe1Files = files.Where(x => x.Name.Contains("poe1")).ToList();
+        PoE1NinjaFiles = poe1Files
+            .Where(x => x.Name.Contains("ninja"))
+            .OrderByDescending(x => x.LastModified)
+            .ToList();
+        PoE1TradeFiles = poe1Files
+            .Where(x => x.Name.Contains("trade"))
+            .OrderByDescending(x => x.LastModified)
+            .ToList();
+
+        var poe2Files = files.Where(x => x.Name.Contains("poe2")).ToList();
+        PoE2NinjaFiles = poe2Files
+            .Where(x => x.Name.Contains("ninja"))
+            .OrderByDescending(x => x.LastModified)
+            .ToList();
+        PoE2TradeFiles = poe2Files
+            .Where(x => x.Name.Contains("trade"))
+            .OrderByDescending(x => x.LastModified)
+            .ToList();
+
+        StateHasChanged();
+    }
+
+    private async Task ResetCache()
+    {
+        await CacheProvider.Clear();
+        NavigationManager.NavigateTo("/initialize");
+    }
+
+}

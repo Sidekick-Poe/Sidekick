@@ -20,11 +20,11 @@
                 <PriceDisplayQuantity Value="item.Price" Quantity="item.Count"/>
                 @if (item.GemLevel > 0)
                 {
-                    <TextCaption Class="text-gray-400">@GameLanguageProvider.Language.DescriptionLevel: @item.GemLevel</TextCaption>
+                    <TextCaption Class="text-gray-400">@CurrentGameLanguage.Language.DescriptionLevel: @item.GemLevel</TextCaption>
                 }
                 @if (item.MapTier > 0)
                 {
-                    <TextCaption Class="text-gray-400">@GameLanguageProvider.Language.DescriptionMapTier: @item.MapTier</TextCaption>
+                    <TextCaption Class="text-gray-400">@CurrentGameLanguage.Language.DescriptionMapTier: @item.MapTier</TextCaption>
                 }
             </div>
         </div>
@@ -37,7 +37,7 @@
 @inject WealthProvider WealthProvider
 @inject DbContextOptions<SidekickDbContext> DbContextOptions
 @inject ISettingsService SettingsService
-@inject IGameLanguageProvider GameLanguageProvider
+@inject ICurrentGameLanguage CurrentGameLanguage
 @implements IDisposable
 
 @code {

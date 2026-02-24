@@ -18,7 +18,7 @@
 </div>
 
 @inject IPoeWikiClient PoeWikiClient
-@inject IGameLanguageProvider GameLanguageProvider
+@inject ICurrentGameLanguage CurrentGameLanguage
 
 @code {
 
@@ -39,7 +39,7 @@
             return;
         }
 
-        if (Filter.Stat.ApiInformation.FirstOrDefault()?.Category == StatCategory.Enchant && GameLanguageProvider.IsEnglish())
+        if (Filter.Stat.ApiInformation.FirstOrDefault()?.Category == StatCategory.Enchant && CurrentGameLanguage.IsEnglish())
         {
             var oilMetadataIds = await PoeWikiClient.GetOilsMetadataIdsFromEnchantment(Filter.Stat);
 

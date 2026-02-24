@@ -1,10 +1,10 @@
 @using Microsoft.Extensions.Localization
-@using Sidekick.Common.Platform
+@using Microsoft.Extensions.Options
+@using Sidekick.Common
 @using Sidekick.Common.Settings
 @using Sidekick.Common.Ui.Forms
 @using Sidekick.Common.Ui.App
 @using Sidekick.Common.Ui.Buttons
-@using Sidekick.Common.Cache
 @using Sidekick.Modules.General.Localization
 @using Sidekick.Common.Ui.Layouts
 @using Sidekick.Common.Ui.Localization
@@ -16,14 +16,10 @@
         <FormFieldset Legend="@SettingResources["General_Settings"]">
             <LanguageParserEditor/>
             <LeagueIdEditor/>
-
-            <div class="py-2">
-                <ButtonPrimary OnClick="ResetCache">@SettingResources["Reset_Cache"]</ButtonPrimary>
-            </div>
         </FormFieldset>
 
         <FormFieldset Legend="@SettingResources["Item_Overlay"]">
-            @if (ApplicationService.SupportsKeybinds)
+            @if (Configuration.Value.ApplicationType.SupportsKeybinds())
             {
                 <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenPriceCheck" Label="@SettingResources["Key_OpenItem"]"/>
                 <SettingKeybindEditor SettingKey="@SettingKeys.KeyClose" Label="@Resources["Key_Close"]" />
@@ -39,7 +35,7 @@
                                    Label="@Resources["EscapeClosesOverlays"]"/>
         </FormFieldset>
 
-        @if (ApplicationService.SupportsKeybinds)
+        @if (Configuration.Value.ApplicationType.SupportsKeybinds())
         {
             <FormFieldset Legend="@Resources["Wiki"]">
                 <SettingKeybindEditor SettingKey="@SettingKeys.KeyOpenWiki" Label="@Resources["Wiki_Key_Open"]"/>
@@ -47,7 +43,7 @@
             </FormFieldset>
         }
 
-        @if (ApplicationService.SupportsKeybinds)
+        @if (Configuration.Value.ApplicationType.SupportsKeybinds())
         {
             <FormFieldset Legend="@SettingResources["Other_Settings"]">
                 <SettingCheckboxEditor SettingKey="@SettingKeys.MouseWheelNavigateStash">
@@ -70,13 +66,11 @@
 </LayoutMenu>
 
 @page "/settings/game"
-@inject IApplicationService ApplicationService
 @inject IStringLocalizer<SettingsResources> SettingResources
 @inject IStringLocalizer<UiResources> UiResources
 @inject IStringLocalizer<GeneralResources> Resources
 @inject ISettingsService SettingsService
-@inject ICacheProvider CacheProvider
-@inject NavigationManager NavigationManager
+@inject IOptions<SidekickConfiguration> Configuration
 @implements IDisposable
 
 @code {
@@ -98,12 +92,6 @@
         SettingKeys.OverlayCloseWithMouse,
         SettingKeys.EscapeClosesOverlays,
     ];
-
-    public async Task ResetCache()
-    {
-        await CacheProvider.Clear();
-        NavigationManager.NavigateTo("/initialize");
-    }
 
     protected override async Task OnInitializedAsync()
     {

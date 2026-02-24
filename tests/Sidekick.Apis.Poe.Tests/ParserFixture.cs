@@ -1,6 +1,7 @@
 using Bunit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Sidekick.Apis.Common;
 using Sidekick.Apis.Poe.Items;
 using Sidekick.Apis.Poe.Languages;
@@ -17,11 +18,12 @@ using Sidekick.Apis.PoeNinja;
 using Sidekick.Apis.PoeWiki;
 using Sidekick.Common;
 using Sidekick.Common.Browser;
-using Sidekick.Common.Cache;
 using Sidekick.Common.Database;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Settings;
+using Sidekick.Data;
 using Xunit;
+
 namespace Sidekick.Apis.Poe.Tests;
 
 public abstract class ParserFixture : IAsyncLifetime
@@ -31,9 +33,8 @@ public abstract class ParserFixture : IAsyncLifetime
 
     private Task? initializationTask;
 
-    public IInvariantStatsProvider InvariantStatsProvider { get; private set; } = null!;
     public IItemParser Parser { get; private set; } = null!;
-    public IGameLanguageProvider GameLanguageProvider { get; private set; } = null!;
+    public ICurrentGameLanguage CurrentGameLanguage { get; private set; } = null!;
     public ITradeFilterProvider TradeFilterProvider { get; private set; } = null!;
     public IPropertyParser PropertyParser { get; private set; } = null!;
     public ISettingsService SettingsService { get; private set; } = null!;
@@ -48,9 +49,10 @@ public abstract class ParserFixture : IAsyncLifetime
 
         TestContext.Services
             // Building blocks
-            .AddSidekickCommon()
+            .AddSidekickCommon(SidekickApplicationType.Test)
             .AddSidekickCommonBrowser()
             .AddSidekickCommonDatabase(SidekickPaths.DatabasePath)
+            .AddSidekickData()
 
             // Apis
             .AddSidekickCommonApi()
@@ -80,8 +82,7 @@ public abstract class ParserFixture : IAsyncLifetime
         await initializationTask;
 
         Parser = TestContext.Services.GetRequiredService<IItemParser>();
-        InvariantStatsProvider = TestContext.Services.GetRequiredService<IInvariantStatsProvider>();
-        GameLanguageProvider = TestContext.Services.GetRequiredService<IGameLanguageProvider>();
+        CurrentGameLanguage = TestContext.Services.GetRequiredService<ICurrentGameLanguage>();
         PropertyParser = TestContext.Services.GetRequiredService<IPropertyParser>();
         TradeFilterProvider = TestContext.Services.GetRequiredService<ITradeFilterProvider>();
         ApiStatsProvider = TestContext.Services.GetRequiredService<IApiStatsProvider>();
@@ -96,12 +97,10 @@ public abstract class ParserFixture : IAsyncLifetime
 
     private static async Task Initialize(IServiceProvider serviceProvider)
     {
-        var cache = serviceProvider.GetRequiredService<ICacheProvider>();
-        await cache.Clear();
-
         var logger = serviceProvider.GetRequiredService<ILogger<ParserFixture>>();
+        var configuration = serviceProvider.GetRequiredService<IOptions<SidekickConfiguration>>();
         List<IInitializableService> services = [];
-        foreach (var serviceType in SidekickConfiguration.InitializableServices)
+        foreach (var serviceType in configuration.Value.InitializableServices)
         {
             var service = serviceProvider.GetRequiredService(serviceType);
             if (service is not IInitializableService initializableService) continue;
