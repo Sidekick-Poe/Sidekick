@@ -38,6 +38,10 @@ public enum AutoSelectConditionType
                           AutoSelectComparisonType.False)]
     Corrupted,
 
+    [AutoSelectComparison(AutoSelectComparisonType.True,
+                          AutoSelectComparisonType.False)]
+    Unidentified,
+
     [AutoSelectComparison(AutoSelectComparisonType.Equals,
                           AutoSelectComparisonType.DoesNotEqual,
                           AutoSelectComparisonType.GreaterThanOrEqual,

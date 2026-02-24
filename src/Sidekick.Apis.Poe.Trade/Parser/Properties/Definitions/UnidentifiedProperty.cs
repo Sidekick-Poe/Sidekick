@@ -31,7 +31,12 @@ public class UnidentifiedProperty(
 
     public override Task<TradeFilter?> GetFilter(Item item)
     {
-        if (!item.Properties.Unidentified) return Task.FromResult<TradeFilter?>(null);
+        if (!ItemClassConstants.Equipment.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Weapons.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Accessories.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Flasks.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Jewels.Contains(item.Properties.ItemClass) &&
+            !ItemClassConstants.Areas.Contains(item.Properties.ItemClass)) return Task.FromResult<TradeFilter?>(null);
 
         var filter = new UnidentifiedFilter
         {
@@ -46,7 +51,29 @@ public class UnidentifiedFilter : TriStatePropertyFilter
 {
     public UnidentifiedFilter()
     {
-        DefaultAutoSelect = AutoSelectPreferences.Create(true);
+        DefaultAutoSelect = new AutoSelectPreferences()
+        {
+            Mode = AutoSelectMode.Default,
+            Rules =
+            [
+                new()
+                {
+                    Checked = true,
+                    Conditions =
+                    [
+                        new()
+                        {
+                            Type = AutoSelectConditionType.Unidentified,
+                            Comparison = AutoSelectComparisonType.True,
+                        },
+                    ],
+                },
+                new()
+                {
+                    Checked = null,
+                },
+            ],
+        };
     }
 
     public override void PrepareTradeRequest(Query query, Item item)
