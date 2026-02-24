@@ -118,6 +118,8 @@ public class StatParser
 
     private IEnumerable<TradeStatDefinition> MatchStatFuzzily(TextBlock block, int lineIndex, IReadOnlyCollection<TradeStatDefinition> allAvailablePatterns)
     {
+        yield break;
+
         var category = block.Lines[lineIndex].Text.ParseCategory();
         if (category == StatCategory.Mutated) category = StatCategory.Explicit;
 

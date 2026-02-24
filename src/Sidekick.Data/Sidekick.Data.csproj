@@ -15,4 +15,8 @@
       <ProjectReference Include="..\Sidekick.Apis.Poe\Sidekick.Apis.Poe.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Game\" />
+    </ItemGroup>
+
 </Project>

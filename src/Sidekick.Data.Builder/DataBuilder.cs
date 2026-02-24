@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Languages;
-using Sidekick.Data.Builder.Game;
 using Sidekick.Data.Builder.Ninja;
+using Sidekick.Data.Builder.Repoe;
 using Sidekick.Data.Builder.Trade;
 
 namespace Sidekick.Data.Builder;
@@ -22,7 +22,6 @@ public class DataBuilder(
         logger.LogInformation("Building all data files.");
 
         dataProvider.DeleteAll();
-
 
         foreach (var language in gameLanguageProvider.GetList())
         {

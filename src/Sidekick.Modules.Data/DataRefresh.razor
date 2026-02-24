@@ -102,7 +102,7 @@
             await DataBuilder.Build(GameLanguageProvider.InvariantLanguage);
             await DataBuilder.BuildInvariant();
 
-            if (Language != null)
+            if (Language != null && Language.Code != GameLanguageProvider.InvariantLanguage.Code)
             {
                 await DataBuilder.Download(Language);
                 await DataBuilder.Build(Language);

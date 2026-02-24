@@ -10,4 +10,8 @@
       <ProjectReference Include="..\Sidekick.Data\Sidekick.Data.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Game\" />
+    </ItemGroup>
+
 </Project>
