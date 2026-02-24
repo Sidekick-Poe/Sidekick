@@ -1,12 +1,10 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using Serilog;
 using Sidekick.Common.Browser;
 using Sidekick.Common.Cache;
 using Sidekick.Common.Folder;
 using Sidekick.Common.Initialization;
 using Sidekick.Common.Localization;
-using Sidekick.Common.Logging;
 using Sidekick.Common.Platform.Input;
 using Sidekick.Common.Settings;
 
@@ -37,18 +35,6 @@ public static class ServiceCollectionExtensions
         services.SetSidekickDefaultSetting(SettingKeys.Zoom, "1");
         services.SetSidekickDefaultSetting(SettingKeys.RetainClipboard, true);
         services.SetSidekickDefaultSetting(SettingKeys.UseHardwareAcceleration, true);
-
-        return services.AddSidekickLogging();
-    }
-
-    private static IServiceCollection AddSidekickLogging(this IServiceCollection services)
-    {
-        services.AddLogging(
-            builder =>
-            {
-                builder.AddSerilog();
-            });
-        services.AddSingleton(LogHelper.GetLogger("Sidekick_log.log"));
 
         return services;
     }
