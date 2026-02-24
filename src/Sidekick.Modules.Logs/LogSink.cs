@@ -2,8 +2,7 @@ using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting;
 using Serilog.Formatting.Display;
-
-namespace Sidekick.Common.Logging;
+namespace Sidekick.Modules.Logs;
 
 public class LogSink : ILogEventSink
 {
