@@ -25,6 +25,7 @@ using Sidekick.Modules.Data;
 using Sidekick.Modules.Development;
 using Sidekick.Modules.General;
 using Sidekick.Modules.Items;
+using Sidekick.Modules.Logs;
 using Sidekick.Modules.RegexHotkeys;
 using Sidekick.Modules.Wealth;
 using Sidekick.PhotinoBlazor.Services;
@@ -97,6 +98,7 @@ public class Program
             .AddSidekickRegexHotkeys()
             .AddSidekickGeneral()
             .AddSidekickItems()
+            .AddSidekickLogs()
             .AddSidekickWealth()
 
             // Platform needs to be at the end

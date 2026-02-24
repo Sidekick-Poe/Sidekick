@@ -21,7 +21,8 @@
         <ProjectReference Include="..\Sidekick.Modules.RegexHotkeys\Sidekick.Modules.RegexHotkeys.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.General\Sidekick.Modules.General.csproj"/>
         <ProjectReference Include="..\Sidekick.Modules.Items\Sidekick.Modules.Items.csproj"/>
-        <ProjectReference Include="..\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj"/>
+        <ProjectReference Include="..\Sidekick.Modules.Logs\Sidekick.Modules.Logs.csproj" />
+        <ProjectReferenceInclude="..\Sidekick.Modules.Wealth\Sidekick.Modules.Wealth.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

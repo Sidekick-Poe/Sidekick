@@ -1,5 +1,4 @@
 @using Microsoft.JSInterop
-@using Sidekick.Common.Logging
 @implements IAsyncDisposable
 @inject IJSRuntime JsRuntime
 
@@ -51,7 +50,7 @@
     {
         if (firstRender)
         {
-            Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Modules.General/Logging/LogStream.razor.js");
+            Module = await JsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Sidekick.Modules.Logs/LogStream.razor.js");
             await ScrollToBottom();
         }
     }

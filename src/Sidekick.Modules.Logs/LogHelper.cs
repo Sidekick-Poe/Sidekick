@@ -1,7 +1,7 @@
 ﻿using Serilog;
 using Serilog.Events;
-
-namespace Sidekick.Common.Logging;
+using Sidekick.Common;
+namespace Sidekick.Modules.Logs;
 
 public class LogHelper
 {
