@@ -16,7 +16,6 @@ services.AddLogging(o =>
     o.AddConsole();
 });
 
-
 services.AddSidekickCommon(SidekickApplicationType.DataBuilder);
 services.AddSidekickPoeApi();
 services.AddSidekickData();

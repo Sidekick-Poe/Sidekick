@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Sidekick.Common\Sidekick.Common.csproj" />
+    <ProjectReference Include="..\..\src\Sidekick.Modules.Logs\Sidekick.Modules.Logs.csproj" />
   </ItemGroup>
 
 </Project>

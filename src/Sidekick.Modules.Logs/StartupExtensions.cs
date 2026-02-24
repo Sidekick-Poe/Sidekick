@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Serilog;
 using Sidekick.Common;
 namespace Sidekick.Modules.Logs;
@@ -17,10 +18,12 @@ public static class StartupExtensions
     {
         services.AddSidekickModule(typeof(StartupExtensions).Assembly);
 
-        services.AddLogging(
-        builder =>
+        services.AddLogging(o =>
         {
-            builder.AddSerilog();
+            o.AddFilter("Microsoft", LogLevel.Warning);
+            o.AddFilter("System", LogLevel.Warning);
+            o.AddConsole();
+            o.AddSerilog();
         });
         services.AddSingleton(LogHelper.GetLogger("Sidekick_log.log"));
 
