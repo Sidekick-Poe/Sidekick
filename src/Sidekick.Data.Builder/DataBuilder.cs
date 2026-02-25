@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Sidekick.Apis.Poe.Languages;
+using Sidekick.Data.Builder.Items;
 using Sidekick.Data.Builder.Ninja;
 using Sidekick.Data.Builder.Repoe;
 using Sidekick.Data.Builder.Trade;
@@ -9,6 +10,7 @@ namespace Sidekick.Data.Builder;
 public class DataBuilder(
     ILogger<DataBuilder> logger,
     DataProvider dataProvider,
+    ItemStatBuilder itemStatBuilder,
     NinjaDownloader ninjaDownloader,
     TradeDownloader tradeDownloader,
     TradeLeagueBuilder  tradeLeagueBuilder,
@@ -53,6 +55,7 @@ public class DataBuilder(
         logger.LogInformation($"Building {language.Code} data files.");
 
         await tradeStatBuilder.Build(language);
+        await itemStatBuilder.Build(language);
 
         logger.LogInformation($"Built {language.Code} data files.");
     }

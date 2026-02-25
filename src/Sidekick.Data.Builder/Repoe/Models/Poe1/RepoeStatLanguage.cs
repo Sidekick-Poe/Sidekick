@@ -6,7 +6,7 @@ public class RepoeStatLanguage
     [JsonPropertyName("string")]
     public string? Text { get; set; }
 
-    [JsonPropertyName("string")]
+    [JsonPropertyName("reminder_text")]
     public string? ReminderText { get; set; }
 
     [JsonPropertyName("condition")]

@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Sidekick.Data.Builder.Items;
 using Sidekick.Data.Builder.Ninja;
 using Sidekick.Data.Builder.Repoe;
 using Sidekick.Data.Builder.Trade;
@@ -11,12 +12,18 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddSidekickDataBuilder(
         this IServiceCollection services)
     {
+        services.TryAddSingleton<ItemStatBuilder>();
+
         services.TryAddSingleton<NinjaDownloader>();
+
+        services.TryAddSingleton<RepoeDataProvider>();
+        services.TryAddSingleton<RepoeDownloader>();
+
         services.TryAddSingleton<TradeDownloader>();
         services.TryAddSingleton<TradeStatBuilder>();
         services.TryAddSingleton<TradeLeagueBuilder>();
         services.TryAddSingleton<TradeInvariantStatBuilder>();
-        services.TryAddSingleton<RepoeDownloader>();
+
         services.TryAddSingleton<DataBuilder>();
 
         return services;

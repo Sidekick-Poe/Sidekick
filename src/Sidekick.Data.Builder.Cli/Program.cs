@@ -60,8 +60,8 @@ try
     {
         var gameLanguageProvider = serviceProvider.GetRequiredService<IGameLanguageProvider>();
         await dataBuilder.Download(gameLanguageProvider.InvariantLanguage);
-        await dataBuilder.Build(gameLanguageProvider.InvariantLanguage);
         await dataBuilder.BuildInvariant();
+        await dataBuilder.Build(gameLanguageProvider.InvariantLanguage);
 
         if (!string.IsNullOrEmpty(options.Value.Language) && options.Value.Language != gameLanguageProvider.InvariantLanguage.Code)
         {

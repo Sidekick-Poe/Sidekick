@@ -99,8 +99,8 @@
         try
         {
             await DataBuilder.Download(GameLanguageProvider.InvariantLanguage);
-            await DataBuilder.Build(GameLanguageProvider.InvariantLanguage);
             await DataBuilder.BuildInvariant();
+            await DataBuilder.Build(GameLanguageProvider.InvariantLanguage);
 
             if (Language != null && Language.Code != GameLanguageProvider.InvariantLanguage.Code)
             {

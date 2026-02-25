@@ -9,5 +9,5 @@ public class RepoeStatTrade
 
     public required StatCategory Type { get; set; }
 
-    public string? Option { get; set; }
+    public RepoeStatTradeOptions? Option { get; set; }
 }

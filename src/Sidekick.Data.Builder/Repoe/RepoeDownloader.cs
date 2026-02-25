@@ -28,7 +28,6 @@ public class RepoeDownloader(
     private static List<RepoeFile> Poe1Files { get; } =
     [
         new("stat_translations", "stat_translations.min.json"),
-        new("stats", "stats.min.json"),
     ];
 
     private static List<RepoeFile> Poe2Files { get; } =
